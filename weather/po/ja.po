@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-14 16:08+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,16 +25,15 @@ msgstr ""
 
 #: ../src/applet-config.c:171
 msgid "I couldn't find this location"
-msgstr ""
+msgstr "この場所を見つけることはできませんでした。"
 
 #: ../src/applet-config.c:225
-#, fuzzy
 msgid "Search for your location :"
 msgstr "現在地の検索"
 
 #: ../src/applet-init.c:18
 msgid "weather"
-msgstr ""
+msgstr "天気予報"
 
 #: ../src/applet-init.c:21
 msgid ""
@@ -44,6 +44,12 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
+"ドックに天気を表示するアプレット。\n"
+"データは www.weather.com から提供されていて、設定パネルから現在地の検索を行う"
+"ことができます。\n"
+"目を楽しませる 3D デスクレットとしてドックから分離させることが可能です。\n"
+"メインのアイコンを中クリックすると現在の気象情報が、サブのアイコンを左クリッ"
+"クすると予報が表示されます。\n"
 
 #: ../src/applet-load-icons.c:15
 msgid "Monday"
@@ -90,9 +96,8 @@ msgid "Apr"
 msgstr "4月"
 
 #: ../src/applet-load-icons.c:15
-#, fuzzy
 msgid "May"
-msgstr "月曜日"
+msgstr "5月"
 
 #: ../src/applet-load-icons.c:15
 msgid "Jun"
@@ -140,7 +145,7 @@ msgstr "気温"
 
 #: ../src/applet-notifications.c:92
 msgid "Precipitation Probability"
-msgstr ""
+msgstr "降水確率"
 
 #: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
 msgid "Wind"
@@ -159,13 +164,12 @@ msgid "SunSet"
 msgstr "日の入り"
 
 #: ../src/applet-notifications.c:104
-#, fuzzy
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
 msgstr ""
-"データの取得が出来ませんでした。\n"
-"回線接続に問題はありませんか？"
+"データが取得できませんでした。\n"
+"現在再試行中です ..."
 
 #: ../src/applet-notifications.c:118
 msgid "feeled"
@@ -181,16 +185,15 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
 #: ../data/messages:7
-#, fuzzy
 msgid "Let it empty to use the name of the city."
-msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
+msgstr "都市の名前を使用するには空欄のままに。"
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -231,51 +234,48 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:25
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:27
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:29
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:31
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:33
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:37
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:39
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:41
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:43
 msgid "Lock position ?"
@@ -336,7 +336,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:71
 msgid "Right offset :"
@@ -442,51 +442,56 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 msgid "Render desklet in 3D ?"
 msgstr "デスクレットを 3D 描画？"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "This is the weather applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr ""
-#~ "これは Fabrice Rey によって \n"
-#~ "Cairo-Dock 用に製作された Weather アプレットです。"
+msgid ""
+"This is the weather applet\n"
+" made by Fabrice Rey for Cairo-Dock"
+msgstr ""
+"これは Fabrice Rey によって \n"
+"Cairo-Dock 用に製作された Weather アプレットです。"
 
-#, fuzzy
-#~ msgid "Main Icon"
-#~ msgstr "アイコン"
+msgid "Main Icon"
+msgstr "メイン・アイコン"
 
-#~ msgid ""
-#~ "Enter your location\n"
-#~ " (for exemple : Paris, France)"
-#~ msgstr ""
-#~ "現在地の入力\n"
-#~ "（例 : Tokyo, Japan）"
+msgid ""
+"Enter your location\n"
+" (for exemple : Paris, France)"
+msgstr ""
+"現在地の入力\n"
+"（例 : Tokyo, Japan）"
 
-#~ msgid "Choose your location :"
-#~ msgstr "現在地の選択 :"
+msgid "Choose your location :"
+msgstr "現在地の選択 :"
 
-#~ msgid "Search for your location"
-#~ msgstr "現在地の検索"
+msgid "Search for your location"
+msgstr "現在地の検索"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"

@@ -192,6 +192,7 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 			myData.TextureCover = cairo_dock_create_texture_from_surface (myData.pSurfaces[iStatus]);
 			cd_opengl_render_to_texture (myApplet);
 			CD_APPLET_REDRAW_MY_ICON;
+			g_print ("DESSIN RB\n");
 		}
 		else
 		{
@@ -207,6 +208,7 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 			myData.TextureCover = cairo_dock_create_texture_from_surface (pSurface);
 			cd_opengl_render_to_texture (myApplet);
 			CD_APPLET_REDRAW_MY_ICON;
+			g_print ("DESSIN RB\n");
 		}
 		else
 		{

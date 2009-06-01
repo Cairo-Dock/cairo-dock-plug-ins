@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-02-07 20:01+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +17,7 @@ msgstr ""
 
 #: ../src/applet-init.c:19
 msgid "slider"
-msgstr ""
+msgstr "スライダー"
 
 #: ../src/applet-init.c:22
 msgid ""
@@ -25,6 +26,10 @@ msgid ""
 "Click to play/pause or to edit the current image.\n"
 "Middle-click to open the images folder."
 msgstr ""
+"画像をスライド表示するシンプルなアプレット。\n"
+"ディレクトリを指定して、表示に関する視覚効果を選択します。\n"
+"クリックで再生/一時停止、または現在の画像の編集、\n"
+"中クリックで画像フォルダを開きます。"
 
 #: ../src/applet-notifications.c:153
 msgid "Play"
@@ -48,7 +53,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -93,51 +98,48 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -198,7 +200,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:69
 msgid "Right offset :"
@@ -250,17 +252,19 @@ msgstr "ファイルをランダムに閲覧？"
 
 #: ../data/messages:91
 msgid "Display image name as quickinfo ?"
-msgstr "画像の名前をクイック・インフォとして表示？"
+msgstr "画像の名前をクイック情報として表示？"
 
 #: ../data/messages:93
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
 msgstr ""
+"画像読み込み中にドックがフリーズすることを防ぎますが、Cairo バックエンド使用"
+"時には働きません。"
 
 #: ../data/messages:95
 msgid "Use another thread to load the images ?"
-msgstr ""
+msgstr "画像の読み込みに別スレッドを使用？"
 
 #: ../data/messages:97
 msgid "Behaviour"
@@ -324,7 +328,7 @@ msgstr "shrink down"
 
 #: ../data/messages:127
 msgid "cube"
-msgstr ""
+msgstr "cube"
 
 #: ../data/messages:129
 msgid "random"
@@ -332,7 +336,7 @@ msgstr "ランダム"
 
 #: ../data/messages:131
 msgid "Number of steps for a transition :"
-msgstr ""
+msgstr "画像切り替え時の描画刻み :"
 
 #: ../data/messages:133
 msgid "Display"
@@ -365,71 +369,77 @@ msgstr ""
 msgid "Choose a background color :"
 msgstr "背景色の選択 :"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "This is the Slider applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr ""
-#~ "これは ChAnGFu によって製作された \n"
-#~ "Cairo-Dock 用の Slider アプレットです。"
+msgid ""
+"This is the Slider applet\n"
+" made by ChAnGFu for Cairo-Dock"
+msgstr ""
+"これは ChAnGFu によって製作された \n"
+"Cairo-Dock 用の Slider アプレットです。"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Reflection image :"
-#~ msgstr "反射の画像 :"
+msgid "Reflection image :"
+msgstr "反射の画像 :"
 
-#~ msgid "Reflection tansparency :"
-#~ msgstr "反射の透明度 :"
+msgid "Reflection tansparency :"
+msgstr "反射の透明度 :"
 
-#~ msgid "Not yet implemented."
-#~ msgstr "未だ実装していません"
+msgid "Not yet implemented."
+msgstr "未だ実装していません"
 
-#~ msgid "Not implemented yet"
-#~ msgstr "未だ実装していません"
+msgid "Not implemented yet"
+msgstr "未だ実装していません"
 
-#~ msgid "Options"
-#~ msgstr "オプション"
+msgid "Options"
+msgstr "オプション"
 
-#~ msgid "Give better image rendering"
-#~ msgstr "画像の描画をより良くします"
+msgid "Give better image rendering"
+msgstr "画像の描画をより良くします"
 
-#~ msgid "Not  yetimplemented."
-#~ msgstr "未だ実装していません"
+msgid "Not  yetimplemented."
+msgstr "未だ実装していません"
 
-#~ msgid "Background & Reflection"
-#~ msgstr "背景と反射"
+msgid "Background & Reflection"
+msgstr "背景と反射"
 
-#~ msgid "Set it to zero if you don't want to use a background"
-#~ msgstr "背景を使用したくない場合は 0 に設定してください。"
+msgid "Set it to zero if you don't want to use a background"
+msgstr "背景を使用したくない場合は 0 に設定してください。"
 
-#~ msgid "Set it to zero if you dont don't want to use a foreground"
-#~ msgstr "前景を使用したくない場合は 0 に設定してください。"
+msgid "Set it to zero if you dont don't want to use a foreground"
+msgstr "前景を使用したくない場合は 0 に設定してください。"
 
-#~ msgid ""
-#~ "It's an image that will be displayed belox the slide, like a frame for "
-#~ "exemple. Let it empty to use the default one."
-#~ msgstr ""
-#~ "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのも"
-#~ "のを使用するには空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed belox the slide, like a frame for "
+"exemple. Let it empty to use the default one."
+msgstr ""
+"例えばフレームのように、スライドの背後に表示される画像です。デフォルトのもの"
+"を使用するには空欄のままにしてください。"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"

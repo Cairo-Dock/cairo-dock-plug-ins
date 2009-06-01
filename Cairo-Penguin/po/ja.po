@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-04-01 10:42+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-02 17:57+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,11 +23,11 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"ドックに動くペンギンを追加しよう！\n"
+"ドックに動くペンギンを追加！\n"
 "左クリックでアニメーションの変更。\n"
 "中クリックでペンギンにちょっかい。^_^\n"
 "Tux 画像は Pingus から取得。他のキャラクタを使用したり、簡単に追加することも"
-"可能です。"
+"可能。"
 
 #: ../src/applet-notifications.c:20
 msgid "Hey, I'm here !"
@@ -40,12 +41,12 @@ msgstr "申し訳ないが今ちょうど忙しいんで。"
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから、君に付き合ってる"
-"暇なんかないよ。"
+"君に付き合ってる暇なんかないよ。ここいらのアイコンを全部掘ったり埋めたりしな"
+"きゃいかんから。"
 
 #: ../src/applet-notifications.c:23
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
+msgstr "君のドックは散らかりすぎだぞ！私に片付けさせなさい。"
 
 #: ../src/applet-notifications.c:24
 msgid "Admit my superiority on you as a penguin !"
@@ -89,7 +90,7 @@ msgstr "アイアーのために！"
 
 #: ../src/applet-notifications.c:114
 msgid "Hey, you there !"
-msgstr "ヘイ、そこのあんた！"
+msgstr "ヘイ、そこのユー！"
 
 #: ../src/applet-notifications.c:118
 msgid "Wake up"
@@ -117,7 +118,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定します。"
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Icon size when the penguin is not free :"
@@ -183,7 +184,7 @@ msgstr "地面のオフセット :"
 #~ msgstr "アイコンの名前 :"
 
 #~ msgid "You're dock is so messy ! Let me clean it."
-#~ msgstr "君のドックは散らかりすぎだろう！私に片付けさせなさい。"
+#~ msgstr "君のドックは散らかりすぎだぞ！私に片付けさせなさい。"
 
 #~ msgid "Module"
 #~ msgstr "モジュール"
@@ -240,9 +241,8 @@ msgstr "地面のオフセット :"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは"
-#~ "移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可"
-#~ "能です。"
+#~ "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくな"
+#~ "ります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #~ msgid "Lock position ?"
 #~ msgstr "位置を固定？"
@@ -287,7 +287,7 @@ msgstr "地面のオフセット :"
 #~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+#~ msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #~ msgid "Right offset :"
 #~ msgstr "右方向のオフセット :"
@@ -310,3 +310,22 @@ msgstr "地面のオフセット :"
 
 #~ msgid "Foreground tansparency :"
 #~ msgstr "前景の透明度 :"
+
+#~ msgid "Name of the icon as it will appear in its label in the dock :"
+#~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(class=Cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
+#~ "る動作設定での指定法 : (class=Cairo-dock & type=utility)"
+
+#~ msgid "Top offset :"
+#~ msgstr "上方向のオフセット :"
+
+#~ msgid "Display"
+#~ msgstr "表示"
+
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

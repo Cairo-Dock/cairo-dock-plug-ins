@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-14 22:23+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-31 22:05+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,12 +22,18 @@ msgid ""
 "You can also quickly add/remove a desktop through the right-click menu.\n"
 "Scroll up/down on the main icon to go to the left/right desktop."
 msgstr ""
+"仮想デスクトップ間の切り替えを行うためのアプレット。\n"
+"切り替えには２つの形式 : コンパクト（アイコン１つ）と拡張（サブ・ドック使用）\n"
+"右クリックメニューから、デスクトップを素早く追加/削除することができ、\n"
+"メインアイコン上での上下スクロールによって左/右のデスクトップに移動することも可能です。"
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:188
+#: ../src/applet-load-icons.c:29
+#: ../src/applet-notifications.c:188
 msgid "Current"
 msgstr "現在"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:180
+#: ../src/applet-load-icons.c:35
+#: ../src/applet-notifications.c:180
 msgid "Desktop"
 msgstr "デスクトップ"
 
@@ -43,9 +50,8 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトを使用するに空欄のままに"
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -55,14 +61,14 @@ msgstr "このアプレットのアイコンの大きさ"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#: ../data/messages:9 ../data/messages:129
+#: ../data/messages:9
+#: ../data/messages:129
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するに空欄のままに"
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "アイコンの名前 :"
+msgstr "画像のファイル名前 :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -73,12 +79,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -98,42 +100,37 @@ msgid ""
 "b Keep below ?\n"
 "b Keep above ?"
 msgstr ""
+"アクセシビリティ :\n"
+"b 最後面表示？\n"
+"b 最前面表示？"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
-#, fuzzy
 msgid "Keep above"
-msgstr "他ウィンドウより常に上に？"
+msgstr "最前面表示"
 
 #: ../data/messages:31
-#, fuzzy
 msgid "Keep below"
-msgstr "他ウィンドウより常に下に？"
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -153,20 +150,15 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
-"欄のままにしてください。"
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -194,7 +186,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:69
 msgid "Right offset :"
@@ -209,12 +201,8 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
-"合は空欄のままにしてください。"
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -224,17 +212,14 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81 ../data/messages:83
+#: ../data/messages:81
+#: ../data/messages:83
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:85
-msgid ""
-"All the desktops will be drawn on the main icon. Otherwise a subdock will "
-"contain all the desktops."
-msgstr ""
-"全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サ"
-"ブ・ドックに含まれるようになります。"
+msgid "All the desktops will be drawn on the main icon. Otherwise a subdock will contain all the desktops."
+msgstr "全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サブ・ドックに含まれるようになります。"
 
 #: ../data/messages:87
 msgid "Use the compact mode ?"
@@ -257,9 +242,8 @@ msgid "Draw the windows on icon ?"
 msgstr "アイコン上にウィンドウを描画？"
 
 #: ../data/messages:97
-#, fuzzy
 msgid "Draw hidden windows too ?"
-msgstr "アイコン上にウィンドウを描画？"
+msgstr "隠れた状態のウィンドウも描画？"
 
 #: ../data/messages:99
 msgid "Display options"
@@ -269,7 +253,9 @@ msgstr "表示オプション"
 msgid "Size of the inside lines :"
 msgstr "内側の線のサイズ :"
 
-#: ../data/messages:103 ../data/messages:109 ../data/messages:113
+#: ../data/messages:103
+#: ../data/messages:109
+#: ../data/messages:113
 #: ../data/messages:117
 msgid "r, v, b, a"
 msgstr "赤、緑、青、アルファ"
@@ -326,80 +312,101 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "拡張モード時にデスクレットを 3D 描画？"
 
-#~ msgid ""
-#~ "This is the switcher applet\n"
-#~ " made by Cchumi for Cairo-Dock"
-#~ msgstr ""
-#~ "これは Cchumi によって製作された \n"
-#~ "Cairo-Dock 用の switcher アプレットです。"
+msgid ""
+"This is the switcher applet\n"
+" made by Cchumi for Cairo-Dock"
+msgstr ""
+"これは Cchumi によって製作された \n"
+"Cairo-Dock 用の switcher アプレットです。"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Size of the Windows line :"
-#~ msgstr "ウィンドウのラインのサイズ :"
+msgid "Size of the Windows line :"
+msgstr "ウィンドウのラインのサイズ :"
 
-#~ msgid "ICON"
-#~ msgstr "アイコン"
+msgid "ICON"
+msgstr "アイコン"
 
-#~ msgid "MODULE"
-#~ msgstr "モジュール"
+msgid "MODULE"
+msgstr "モジュール"
 
-#~ msgid "Reload now"
-#~ msgstr "直ちに再読み込み"
+msgid "Reload now"
+msgstr "直ちに再読み込み"
 
-#~ msgid "Default icon :"
-#~ msgstr "デフォルトのアイコン :"
+msgid "Default icon :"
+msgstr "デフォルトのアイコン :"
 
-#~ msgid "Broken icon :"
-#~ msgstr "リンク切れ時のアイコン :"
+msgid "Broken icon :"
+msgstr "リンク切れ時のアイコン :"
 
-#~ msgid "Number of Viewports"
-#~ msgstr "ビューポートの数 :"
+msgid "Number of Viewports"
+msgstr "ビューポートの数 :"
 
-#~ msgid "Show Light Icon ?"
-#~ msgstr "シンプルなメイン・アイコンを表示？"
+msgid "Show Light Icon ?"
+msgstr "シンプルなメイン・アイコンを表示？"
 
-#~ msgid "Show Quickinfo on the Icon ?"
-#~ msgstr "アイコン上に情報を表示？"
+msgid "Show Quickinfo on the Icon ?"
+msgstr "アイコン上に情報を表示？"
 
-#~ msgid "Number of Viewports "
-#~ msgstr "ビューポートの数"
+msgid "Number of Viewports "
+msgstr "ビューポートの数"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
-#~ msgid "Is detached from the dock ?"
-#~ msgstr "ドックから分離？"
+msgid "Is detached from the dock ?"
+msgstr "ドックから分離？"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
-#~ msgstr ""
-#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (name=cairo-dock & type=utility)"
+
+msgid ""
+"This applet allows you to switch between your virtual desktops.\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
+"You can also quickly add/remove a desktop through the right-click menu."
+msgstr ""
+"仮想デスクトップ間の切り替えを行うためのアプレット。\n"
+"切り替えには２つの形式 : コンパクト（アイコン１つ）と拡張（サブ・ドック使用）\n"
+"右クリックメニューから、デスクトップを素早く追加/削除することもできます。"
+
+msgid "Keep below ?"
+msgstr "他ウィンドウより常に下に？"
+
+msgid "Keep above ?"
+msgstr "他ウィンドウより常に上に？"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
+
+msgid "Display"
+msgstr "表示"
+
+#~ msgid "Accessibility :"
+#~ msgstr "アクセシビリティ :"
+

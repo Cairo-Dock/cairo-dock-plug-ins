@@ -7,6 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -16,7 +17,7 @@ msgstr ""
 
 #: ../src/applet-init.c:19
 msgid "keyboard indicator"
-msgstr ""
+msgstr "キーボード・インジケータ"
 
 #: ../src/applet-init.c:22
 msgid ""
@@ -26,6 +27,11 @@ msgid ""
 "\tScroll up/down to select the previous/next layout\n"
 "\tRight-click gives you access to the list of available layouts."
 msgstr ""
+"キーボードのレイアウトを制御するアプレット。\n"
+"\t現在の Num Lock と Caps Lock の表示もできます。\t左クリックで次のレイアウト"
+"に切り替え、\n"
+"\tスクロールの上下で前/次のレイアウトの選択、\n"
+"\t右クリックで利用可能なレイアウトのリストにアクセスします。"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -33,7 +39,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -64,11 +70,10 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
-#, fuzzy
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動で"
+"きます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -79,42 +84,40 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
 msgid ""
@@ -215,147 +218,152 @@ msgstr "前景の透明度 :"
 
 #: ../data/messages:81
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:83
 msgid "caps lock, num lock, etc"
-msgstr ""
+msgstr "caps lock, num lock 等"
 
 #: ../data/messages:85
 msgid "Display keyboard locks as quick-info ?"
-msgstr ""
+msgstr "キーボードの Lock をクイック情報として表示？"
 
 #: ../data/messages:87
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
+"ミリ秒単位。キーボード・レイアウト変更時にアニメーションさせたくない場合は 0 "
+"に設定してください。"
 
 #: ../data/messages:89
 msgid "Duration of the transition animation :"
-msgstr ""
+msgstr "レイアウト変更時のアニメーション持続時間 :"
 
 #: ../data/messages:91
 msgid "Display"
-msgstr ""
+msgstr "表示"
 
 #: ../data/messages:95
-#, fuzzy
 msgid "Text color"
-msgstr "色の選択"
+msgstr "テキストの色 :"
 
 #: ../data/messages:97
-#, fuzzy
 msgid "Text weight :"
-msgstr "高さ :"
+msgstr "テキストの太さ :"
 
 #: ../data/messages:99
 msgid "Outline text ?"
-msgstr ""
+msgstr "テキストを強調表示？"
 
 #: ../data/messages:101
 msgid "Font :"
+msgstr "フォント :"
+
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"
+
+msgid "width :"
+msgstr "幅 :"
+
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
 msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。負の値の場合は、画面の右下から数えられます。"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#, fuzzy
-#~ msgid "Image's filename :"
-#~ msgstr "アイコンの名前 :"
+msgid "Copy"
+msgstr "コピー"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "New Tab"
+msgstr "新しいタブ"
 
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
-#~ "Negative values are counted from the right/bottom of the screen"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。負の値の場合は、画面の右下から数えられます。"
+msgid "Rename current Tab"
+msgstr "現在のタブの名前変更"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Close current Tab"
+msgstr "現在のタブを閉じる"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid "Terminal"
+msgstr "端末"
 
-#~ msgid "Copy"
-#~ msgstr "コピー"
+msgid "Set title for this tab :"
+msgstr "このタブのタイトルを設定 :"
 
-#~ msgid "New Tab"
-#~ msgstr "新しいタブ"
+msgid "Paste"
+msgstr "貼り付け"
 
-#~ msgid "Rename current Tab"
-#~ msgstr "現在のタブの名前変更"
+msgid "Rename this Tab"
+msgstr "このタブの名前変更"
 
-#~ msgid "Close current Tab"
-#~ msgstr "現在のタブを閉じる"
+msgid "Change this Tab's color"
+msgstr "このタブの色を変更"
 
-#~ msgid "Terminal"
-#~ msgstr "端末"
+msgid "Close this Tab"
+msgstr "このタブを閉じる"
 
-#~ msgid "Set title for this tab :"
-#~ msgstr "このタブのタイトルを設定 :"
+msgid "Size of the icon you wish this applet has (in pixels)"
+msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"
 
-#~ msgid "Paste"
-#~ msgstr "貼り付け"
+msgid "Name of the icon as it will appear in its label in cairo-dock :"
+msgstr "Cairo-Dock のラベル上に表示するアイコンの名前 :"
 
-#~ msgid "Rename this Tab"
-#~ msgstr "このタブの名前変更"
+msgid "GUI"
+msgstr "GUI"
 
-#~ msgid "Change this Tab's color"
-#~ msgstr "このタブの色を変更"
+msgid "needs to restart the applet."
+msgstr "アプレットの再起動が必要です。"
 
-#~ msgid "Close this Tab"
-#~ msgstr "このタブを閉じる"
+msgid "Terminal's transparency :"
+msgstr "端末の透明度 :"
 
-#~ msgid "Size of the icon you wish this applet has (in pixels)"
-#~ msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"
+msgid "Foreground color (r, v, b):"
+msgstr "前面の色（赤、緑、青） :"
 
-#~ msgid "Name of the icon as it will appear in its label in cairo-dock :"
-#~ msgstr "Cairo-Dock のラベル上に表示するアイコンの名前 :"
+msgid "Background color (r, v, b):"
+msgstr "背景の色（赤、緑、青） :"
 
-#~ msgid "GUI"
-#~ msgstr "GUI"
+msgid ""
+"When the terminal is in a dialog. When it is in a desklet, you can just "
+"resize the desklet as usual."
+msgstr ""
+"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
+"のサイズ変更が可能です。"
 
-#~ msgid "needs to restart the applet."
-#~ msgstr "アプレットの再起動が必要です。"
+msgid "Size of the terminal (line x columns) :"
+msgstr "端末の大きさ（行×列） :"
 
-#~ msgid "Terminal's transparency :"
-#~ msgstr "端末の透明度 :"
+msgid "Shortkey to show the terminal"
+msgstr "端末を表示するショートカットキー :"
 
-#~ msgid "Foreground color (r, v, b):"
-#~ msgstr "前面の色（赤、緑、青） :"
+msgid "Always on top ?"
+msgstr "常に最前面に表示？"
 
-#~ msgid "Background color (r, v, b):"
-#~ msgstr "背景の色（赤、緑、青） :"
+msgid "Rename Tab"
+msgstr "タブ名の変更"
 
-#~ msgid ""
-#~ "When the terminal is in a dialog. When it is in a desklet, you can just "
-#~ "resize the desklet as usual."
-#~ msgstr ""
-#~ "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレッ"
-#~ "トのサイズ変更が可能です。"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
 
-#~ msgid "Size of the terminal (line x columns) :"
-#~ msgstr "端末の大きさ（行×列） :"
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
 
-#~ msgid "Shortkey to show the terminal"
-#~ msgstr "端末を表示するショートカットキー :"
-
-#~ msgid "Always on top ?"
-#~ msgstr "常に最前面に表示？"
-
-#~ msgid "Rename Tab"
-#~ msgstr "タブ名の変更"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "height :"
+msgstr "高さ :"

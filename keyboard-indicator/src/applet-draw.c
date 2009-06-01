@@ -49,7 +49,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
 		}
 		
-		//\__________________ On lance une transition entre ancienne et nouvelle surface/texture, ou on dersvg_handlessine direct.
+		//\__________________ On lance une transition entre ancienne et nouvelle surface/texture, ou on dessine direct.
 		if (myConfig.iTransitionDuration != 0 && myData.pOldSurface != NULL)
 		{
 			CD_APPLET_SET_TRANSITION_ON_MY_ICON (cd_xkbd_render_step_cairo,

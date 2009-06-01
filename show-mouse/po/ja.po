@@ -7,6 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -60,7 +61,7 @@ msgstr "両方"
 
 #: ../data/messages:17
 msgid "Number of particles per source :"
-msgstr "源泉当りの粒の数 :"
+msgstr "源泉当りの粒子の数 :"
 
 #: ../data/messages:19
 msgid "in ms."
@@ -68,7 +69,7 @@ msgstr "ミリ秒単位"
 
 #: ../data/messages:21
 msgid "Particles life time :"
-msgstr "粒の持続時間"
+msgstr "粒子の持続時間"
 
 #: ../data/messages:23
 msgid "In pixels."
@@ -76,7 +77,7 @@ msgstr "ピクセル単位"
 
 #: ../data/messages:25
 msgid "Particle size :"
-msgstr "粒の大きさ :"
+msgstr "粒子の大きさ :"
 
 #: ../data/messages:27
 msgid "1st color of gradation :"
@@ -92,7 +93,7 @@ msgstr "ランダムな色？"
 
 #: ../data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr "高い数値ほど、より広範囲に各源泉から粒が散乱します。"
+msgstr "高い数値ほど、より広範囲に各源泉から粒子が散乱します。"
 
 #: ../data/messages:35
 msgid "Scattering :"

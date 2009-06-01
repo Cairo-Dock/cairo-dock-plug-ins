@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-02-07 19:44+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +31,16 @@ msgid ""
 "Middle-click on a tab to close it,\n"
 "Double-click next to the tabs to open a new one."
 msgstr ""
+"ドックに端末を追加！\n"
+"左/中クリックで端末を表示/隠す（キーボードショートカットの割り当ても可"
+"能。）\n"
+"数多くのタブを開いたり、各タブの色の変更ができます。\n"
+"ファイルやテキストをドラッグ＆ドロップしたり、アクションの選択も可能です。\n"
+"利用可能なショートカット: 現在のタブを開く/閉じるには 'CTRL+t' および 'CTRL"
+"+w'、\n"
+"タブを右クリックすると、タブに関わるメニューの表示、\n"
+"タブを中クリックすると、タブを閉じる、\n"
+"タブの右隣をダブルクリックすると新しいタブを開きます。 "
 
 #: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
 msgid "New Tab"
@@ -77,7 +88,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -112,42 +123,40 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
 msgid ""
@@ -279,45 +288,55 @@ msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
 #: ../data/messages:95
-#, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "端末を表示するショートカットキー :"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "デスクレットの位置（X ; Y） :"
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
 
-#~ msgid "Size of the icon you wish this applet has (in pixels)"
-#~ msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"
+msgid "Size of the icon you wish this applet has (in pixels)"
+msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#~ msgid "Always on top ?"
-#~ msgstr "常に最前面に表示？"
+msgid "Always on top ?"
+msgstr "常に最前面に表示？"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid "Rename Tab"
-#~ msgstr "タブ名の変更"
+msgid "Rename Tab"
+msgstr "タブ名の変更"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"

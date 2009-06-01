@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-15 00:49+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -73,7 +74,7 @@ msgstr ""
 
 #: ../src/powermanager-init.c:15
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
-msgstr ""
+msgstr "ラップトップのバッテリー用の電源管理。ACPI と DBus とともに動作。"
 
 #: ../src/powermanager-menu-functions.c:44
 msgid "Set up power management"
@@ -101,7 +102,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -146,51 +147,48 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -251,7 +249,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:69
 msgid "Right offset :"
@@ -389,168 +387,174 @@ msgstr "通告中にアイコンをアニメーション化？"
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid "List of available gauges :"
-#~ msgstr "利用可能な目盛りのリスト :"
+msgid "List of available gauges :"
+msgstr "利用可能な目盛りのリスト :"
 
-#~ msgid "Icon size"
-#~ msgstr "アイコンの大きさ"
+msgid "Icon size"
+msgstr "アイコンの大きさ"
 
-#~ msgid "Use average system ?"
-#~ msgstr "アベレージ・システムを使用？"
+msgid "Use average system ?"
+msgstr "アベレージ・システムを使用？"
 
-#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
-#~ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
 
-#~ msgid "Width :"
-#~ msgstr "幅 :"
+msgid "Width :"
+msgstr "幅 :"
 
-#~ msgid "Height :"
-#~ msgstr "高さ :"
+msgid "Height :"
+msgstr "高さ :"
 
-#~ msgid "bounce"
-#~ msgstr "バウンド"
+msgid "bounce"
+msgstr "バウンド"
 
-#~ msgid "rotate"
-#~ msgstr "回転"
+msgid "rotate"
+msgstr "回転"
 
-#~ msgid "blink"
-#~ msgstr "点滅"
+msgid "blink"
+msgstr "点滅"
 
-#~ msgid "pulse"
-#~ msgstr "波動"
+msgid "pulse"
+msgstr "波動"
 
-#~ msgid "upside-down"
-#~ msgstr "上下逆さま"
+msgid "upside-down"
+msgstr "上下逆さま"
 
-#~ msgid "wobbly"
-#~ msgstr "伸び縮み"
+msgid "wobbly"
+msgstr "伸び縮み"
 
-#~ msgid "random"
-#~ msgstr "ランダム"
+msgid "random"
+msgstr "ランダム"
 
-#~ msgid "ICON"
-#~ msgstr "アイコン"
+msgid "ICON"
+msgstr "アイコン"
 
-#~ msgid "MODULE"
-#~ msgstr "モジュール"
+msgid "MODULE"
+msgstr "モジュール"
 
-#~ msgid "Theme"
-#~ msgstr "テーマ"
+msgid "Theme"
+msgstr "テーマ"
 
-#~ msgid "Interval of time to check if dustbin is full/empty :"
-#~ msgstr "Interval of time to check if dustbin is full/empty :"
+msgid "Interval of time to check if dustbin is full/empty :"
+msgstr "Interval of time to check if dustbin is full/empty :"
 
-#~ msgid "in seconds"
-#~ msgstr "en secondes"
+msgid "in seconds"
+msgstr "en secondes"
 
-#~ msgid "Here you can specify a list of Trash directory :"
-#~ msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
+msgid "Here you can specify a list of Trash directory :"
+msgstr "Ici vous pouvez spécifier une liste de répertoires poubelle ;"
 
-#~ msgid "File browser used to show a trash :"
-#~ msgstr "Navigateur de fichier pour visualiser la poubelle ;"
+msgid "File browser used to show a trash :"
+msgstr "Navigateur de fichier pour visualiser la poubelle ;"
 
-#~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
-#~ msgstr ""
-#~ "Ceci est l'applet poubelle de Cairo-Dock\n"
-#~ " écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+msgstr ""
+"Ceci est l'applet poubelle de Cairo-Dock\n"
+" écrit par Fabrice Rey (fabounet_03@yahoo.fr)"
 
-#~ msgid "Show Trash"
-#~ msgstr "Ouvrir la poubelle"
+msgid "Show Trash"
+msgstr "Ouvrir la poubelle"
 
-#~ msgid "Show All"
-#~ msgstr "Ouvrir toutes"
+msgid "Show All"
+msgstr "Ouvrir toutes"
 
-#~ msgid "Delete Trash"
-#~ msgstr "Vider la poubelle"
+msgid "Delete Trash"
+msgstr "Vider la poubelle"
 
-#~ msgid "Delete All"
-#~ msgstr "Vider toutes"
+msgid "Delete All"
+msgstr "Vider toutes"
 
-#~ msgid "You're about to delete all files in %s. Sure ?"
-#~ msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
+msgid "You're about to delete all files in %s. Sure ?"
+msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
 
-#~ msgid "You're about to delete all files all dustbins. Sure ?"
-#~ msgstr ""
-#~ "Vous êtes sur le point de détruire tous les fichiers de toutes les "
-#~ "poubelles. Sur ?"
+msgid "You're about to delete all files all dustbins. Sure ?"
+msgstr ""
+"Vous êtes sur le point de détruire tous les fichiers de toutes les "
+"poubelles. Sur ?"
 
-#~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual file browser,\n"
-#~ "you can change it in the conf panel of this module"
-#~ msgstr ""
-#~ "Un problème est survenu.\n"
-#~ "Si '%s' n'est pas votre navigateur de fichier usuel,\n"
-#~ "vous pouvez le changer dans le panneau de conf de cette applet."
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change it in the conf panel of this module"
+msgstr ""
+"Un problème est survenu.\n"
+"Si '%s' n'est pas votre navigateur de fichier usuel,\n"
+"vous pouvez le changer dans le panneau de conf de cette applet."
 
-#~ msgid "Show %s"
-#~ msgstr "Ouvrir %s"
+msgid "Show %s"
+msgstr "Ouvrir %s"
 
-#~ msgid "Delete %s"
-#~ msgstr "Vider %s"
+msgid "Delete %s"
+msgstr "Vider %s"
 
-#~ msgid "Quick info"
-#~ msgstr "クイック情報"
+msgid "Quick info"
+msgstr "クイック情報"
 
-#~ msgid ""
-#~ "Laptop on Battery \n"
-#~ " Battery charged at:"
-#~ msgstr ""
-#~ "Laptop on Battery \n"
-#~ " Battery charged at:"
+msgid ""
+"Laptop on Battery \n"
+" Battery charged at:"
+msgstr ""
+"Laptop on Battery \n"
+" Battery charged at:"
 
-#~ msgid ""
-#~ "Laptop on Charge \n"
-#~ " Battery charged at:"
-#~ msgstr ""
-#~ "ラップトップは電源使用中 \n"
-#~ "バッテリー充電完了:"
+msgid ""
+"Laptop on Charge \n"
+" Battery charged at:"
+msgstr ""
+"ラップトップは電源使用中 \n"
+"バッテリー充電完了:"
 
-#~ msgid "Effet to apply on the icon according to charge :"
-#~ msgstr "充電量に応じてアイコンに適用する効果 :"
+msgid "Effet to apply on the icon according to charge :"
+msgstr "充電量に応じてアイコンに適用する効果 :"
 
-#~ msgid "List of available themes for the analogic display :"
-#~ msgstr "アナログ表示に利用可能なテーマのリスト :"
+msgid "List of available themes for the analogic display :"
+msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#~ msgid "Considering put your Laptop on charge."
-#~ msgstr "ラップトップの充電を考慮してください。"
+msgid "Considering put your Laptop on charge."
+msgstr "ラップトップの充電を考慮してください。"
 
-#~ msgid ""
-#~ "PowerManager.\n"
-#~ " Your battery is now Charged"
-#~ msgstr ""
-#~ "PowerManager.\n"
-#~ "バッテリーの充電が完了しました。"
+msgid ""
+"PowerManager.\n"
+" Your battery is now Charged"
+msgstr ""
+"PowerManager.\n"
+"バッテリーの充電が完了しました。"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"

@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-15 10:35+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +17,11 @@ msgstr ""
 
 #: ../src/applet-config.c:419
 msgid "Search for your location :"
-msgstr ""
+msgstr "現在地の検索 :"
 
 #: ../src/applet-init.c:21
 msgid "clock"
-msgstr ""
+msgstr "時計"
 
 #: ../src/applet-init.c:24
 msgid ""
@@ -32,6 +33,13 @@ msgid ""
 "date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
+"日付や時間をドックに表示するアプレット。\n"
+"利用可能な表示形式は２種類 : Cairo-Clock を元にしたデジタルとアナログ\n"
+"Cairo-Clock のテーマと互換性を持ち、ドックから分離させれば Cairo-Clock の完全"
+"クローンに。\n"
+"アラーム機能と基本的なカレンダー機能に対応し、日付や時刻の設定を行うことがで"
+"きます。\n"
+"左クリックでカレンダーを表示/隠す、中クリックでアラームを停止させます。"
 
 #: ../src/applet-notifications.c:53
 msgid "Calendar"
@@ -47,7 +55,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -55,8 +63,7 @@ msgstr "このアプレットのアイコンの大きさ"
 
 #: ../data/messages:7
 msgid "Let it empty to use the location's name if available."
-msgstr ""
-"リストから場所の名前を取得してそれを使用するには空欄のままにしてください。"
+msgstr "現在地名が利用可能な際にそれを使用する場合は空欄のままに。"
 
 #: ../data/messages:9
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -99,51 +106,48 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:25
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:27
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:29
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:31
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:33
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:37
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:39
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:41
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:43
 msgid "Lock position ?"
@@ -204,7 +208,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:71
 msgid "Right offset :"
@@ -279,10 +283,12 @@ msgid ""
 "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
 "animation. It requires OpenGL."
 msgstr ""
+"ミリ秒単位。滑らかなアニメーションにしない場合は 0 に設定、1000 に設定すると"
+"連続したアニメーションになります。要 OpenGL。"
 
 #: ../data/messages:105
 msgid "Display seconds with smooth animation of a duration of :"
-msgstr ""
+msgstr "滑らかなアニメーションによる秒針表示の継続時間 :"
 
 #: ../data/messages:107
 msgid ""
@@ -322,9 +328,8 @@ msgid "Text color for the numeric display:"
 msgstr "デジタル表示時のテキスト色 :"
 
 #: ../data/messages:121
-#, fuzzy
 msgid "Weight of the text :"
-msgstr "右方向のオフセット :"
+msgstr "テキストの太さ :"
 
 #: ../data/messages:123
 msgid ""
@@ -343,9 +348,8 @@ msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示用に利用可能なテーマのリスト :"
 
 #: ../data/messages:131
-#, fuzzy
 msgid "Text color of the date :"
-msgstr "デジタル表示時のテキスト色 :"
+msgstr "日付のテキスト色 :"
 
 #: ../data/messages:133
 msgid "Setup time and date"
@@ -366,131 +370,142 @@ msgstr "アラーム"
 #: ../data/messages:141
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
-msgstr ""
+msgstr "新しいアラームを最後に追加、または最後のアラームが削除されます。"
 
 #: ../data/messages:143
 msgid "Add or remove an alarm :"
+msgstr "アラームの追加または削除 :"
+
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+msgid ""
+"This is the Cairo-Dock's clock applet\n"
+" made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
+"The analogic representation is a port of the well-known Cairo-Clock\n"
+" from MacSlow (http://macslow.thepimp.net)."
 msgstr ""
+"これは Fabrice Rey (fabounet@users.berlios.de) によって \n"
+"Cairo-Dock 用に製作された Cairo-Dock's clock アプレットです。\n"
+"アナログ表示は MacSlow (http://macslow.thepimp.net) による\n"
+"有名な Cairo-Clock からの移植です。"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "List of available themes for the numeric display :"
+msgstr "デジタル表示用に利用可能なテーマのリスト :"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "default"
+msgstr "デフォルト"
 
-#~ msgid ""
-#~ "This is the Cairo-Dock's clock applet\n"
-#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
-#~ " from MacSlow (http://macslow.thepimp.net)."
-#~ msgstr ""
-#~ "これは Fabrice Rey (fabounet@users.berlios.de) によって \n"
-#~ "Cairo-Dock 用に製作された Cairo-Dock's clock アプレットです。\n"
-#~ "アナログ表示は MacSlow (http://macslow.thepimp.net) による\n"
-#~ "有名な Cairo-Clock からの移植です。"
+msgid "Choose a location"
+msgstr "場所を選択"
 
-#~ msgid "List of available themes for the numeric display :"
-#~ msgstr "デジタル表示用に利用可能なテーマのリスト :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "default"
-#~ msgstr "デフォルト"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Choose a location"
-#~ msgstr "場所を選択"
+msgid "Alarm n°1"
+msgstr "第 1 アラーム"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+msgstr "xx:xx 形式で記入。例えば 8:35pm の場合は 20:35 です。"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "Time you want to be notified :"
+msgstr "通知させる時刻の設定 :"
 
-#~ msgid "Alarm n°1"
-#~ msgstr "第 1 アラーム"
+msgid "Repeat every"
+msgstr "リピート :　毎"
 
-#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-#~ msgstr "xx:xx 形式で記入。例えば 8:35pm の場合は 20:35 です。"
+msgid "Never"
+msgstr "しない"
 
-#~ msgid "Time you want to be notified :"
-#~ msgstr "通知させる時刻の設定 :"
+msgid "Day"
+msgstr "日"
 
-#~ msgid "Repeat every"
-#~ msgstr "リピート :　毎"
+msgid "Monday"
+msgstr "月曜日"
 
-#~ msgid "Never"
-#~ msgstr "しない"
+msgid "Tuesday"
+msgstr "火曜日"
 
-#~ msgid "Day"
-#~ msgstr "日"
+msgid "Wednesday"
+msgstr "水曜日"
 
-#~ msgid "Monday"
-#~ msgstr "月曜日"
+msgid "Thursday"
+msgstr "木曜日"
 
-#~ msgid "Tuesday"
-#~ msgstr "火曜日"
+msgid "Friday"
+msgstr "金曜日"
 
-#~ msgid "Wednesday"
-#~ msgstr "水曜日"
+msgid "Saturday"
+msgstr "土曜日"
 
-#~ msgid "Thursday"
-#~ msgstr "木曜日"
+msgid "Sunday"
+msgstr "日曜日"
 
-#~ msgid "Friday"
-#~ msgstr "金曜日"
+msgid "Week Day"
+msgstr "平日"
 
-#~ msgid "Saturday"
-#~ msgstr "土曜日"
+msgid "Week End"
+msgstr "週末"
 
-#~ msgid "Sunday"
-#~ msgstr "日曜日"
+msgid "Month"
+msgstr "月"
 
-#~ msgid "Week Day"
-#~ msgstr "平日"
+msgid "If every month, which day of the month ? :"
+msgstr "毎月に設定した場合、月のどの日？ :"
 
-#~ msgid "Week End"
-#~ msgstr "週末"
+msgid "Message you want to use to be notified :"
+msgstr "通知させたいメッセージ :"
 
-#~ msgid "Month"
-#~ msgstr "月"
+msgid "For exemple, < play /path/to/file.ogg >."
+msgstr "例えば、< play /path/to/file.ogg >。"
 
-#~ msgid "If every month, which day of the month ? :"
-#~ msgstr "毎月に設定した場合、月のどの日？ :"
+msgid "Command to execute :"
+msgstr "実行するコマンド :"
 
-#~ msgid "Message you want to use to be notified :"
-#~ msgstr "通知させたいメッセージ :"
+msgid "Alarm n°2"
+msgstr "第 2 アラーム"
 
-#~ msgid "For exemple, < play /path/to/file.ogg >."
-#~ msgstr "例えば、< play /path/to/file.ogg >。"
+msgid "Alarm n°3"
+msgstr "第 3 アラーム"
 
-#~ msgid "Command to execute :"
-#~ msgstr "実行するコマンド :"
+msgid "Show the date ?"
+msgstr "日付を表示？"
 
-#~ msgid "Alarm n°2"
-#~ msgstr "第 2 アラーム"
+msgid "ALARM"
+msgstr "アラーム"
 
-#~ msgid "Alarm n°3"
-#~ msgstr "第 3 アラーム"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
 
-#~ msgid "Show the date ?"
-#~ msgstr "日付を表示？"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid "ALARM"
-#~ msgstr "アラーム"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid "Configuration"
+msgstr "設定"
 
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
+msgid "Display"
+msgstr "表示"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"

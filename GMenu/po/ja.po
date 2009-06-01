@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-14 19:25+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,40 +23,44 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"一般的なアプリケーションメニューと最近使用したファイルを表示します。\n"
+"XDG に準拠したメニュー (Gnome, XFCE, KDE, ...) と互換性があります。\n"
+"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 "
+"のようなショートキーの設定も可能）。\n"
+"メニューをポップアップさせるショートキー（ALT+F1 のような)を設定することでき"
+"ます。"
 
 #: ../src/applet-notifications.c:144
 msgid "Quick launch"
-msgstr ""
+msgstr "クリック起動"
 
 #: ../src/applet-notifications.c:145
-#, fuzzy
 msgid "Configure menu"
-msgstr "設定"
+msgstr "メニューの設定"
 
 #: ../src/applet-notifications.c:146
 msgid "Clear recent"
-msgstr ""
+msgstr "履歴の消去"
 
 #: ../src/applet-recent.c:47
 msgid "Recent Documents"
-msgstr ""
+msgstr "最近開いたドキュメント"
 
 #: ../src/applet-recent.c:99
 msgid "Clear the list of the recently used documents ?"
-msgstr ""
+msgstr "最近開いたドキュメントのリストを消去しますか？"
 
 #: ../src/applet-run-dialog.c:337
 msgid "Enter a command to launch :"
-msgstr ""
+msgstr "起動コマンドを入力 :"
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトを使用するには空欄のままに。"
+msgstr "デフォルトのアプレット・サイズをするには 0 に設定してください。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -70,9 +75,8 @@ msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
 #: ../data/messages:11
-#, fuzzy
 msgid "Image's filename :"
-msgstr "アイコンの名前 :"
+msgstr "画像のファイル名 :"
 
 #: ../data/messages:13
 msgid "Name of the dock it belongs to:"
@@ -109,42 +113,40 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:27
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:31
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:33
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:35
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:39
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:41
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:43
 msgid ""
@@ -254,66 +256,68 @@ msgstr "メニューにアイコンを表示？"
 
 #: ../data/messages:89
 msgid "Shortkey to show/hide the menu :"
-msgstr ""
+msgstr "メニューの表示/非表示のショートキー :"
 
 #: ../data/messages:91
 msgid "Shortkey to show/hide the quick-launch dialog :"
-msgstr ""
+msgstr "クイック起動ダイアログの表示/非表示のショートキー :"
 
 #: ../data/messages:95
 msgid "Command to use to configure the menu :"
-msgstr ""
+msgstr "メニューの編集に使用するコマンド :"
 
 #: ../data/messages:97
 msgid "Recent documents"
-msgstr ""
+msgstr "最近開いたドキュメント"
 
 #: ../data/messages:99
 msgid "Show recent documents ?"
-msgstr ""
+msgstr "最近開いたドキュメントを表示？"
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Let blank to not use this filter."
-msgstr "デフォルトを使用するには空欄のままに。"
+msgstr "このフィルタを使用しない場合は空欄に。"
 
 #: ../data/messages:103
 msgid "Only show files that are under this folder or its sub-folder :"
-msgstr ""
+msgstr "このフォルダ下またはこのフォルダのサブフォルダ下のファイルのみ表示 :"
 
 #: ../data/messages:105
 msgid "in days. Set 0 to not use this filter."
-msgstr ""
+msgstr "日数単位。0 に設定すると、このフィルタは使用されません。"
 
 #: ../data/messages:107
 msgid "Only show files whose last modification date is less than ;"
+msgstr "最終変更日が指定日数内のファイルのみ表示 :"
+
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+msgid ""
+"This is the GMenu applet\n"
+" made by Fabounet (Fabrice Rey) for Cairo-Dock"
 msgstr ""
+"これは Fabounet (Fabrice Rey) によって \n"
+"Cairo-Dock 用に製作された Gmenu アプレットです。"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid ""
-#~ "This is the GMenu applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "これは Fabounet (Fabrice Rey) によって \n"
-#~ "Cairo-Dock 用に製作された Gmenu アプレットです。"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
-
-#~ msgid "Module"
-#~ msgstr "モジュール"
-
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"

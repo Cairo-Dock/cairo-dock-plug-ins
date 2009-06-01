@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-15 10:31+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,6 +29,13 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"このアプレットはクリップボードとマウスによる選択を監視して、\n"
+"それらを素早く呼び出せるようにします。有名な Klipper のクローンです。\n"
+"クリップボードやマウス・セレクション、既定のアクション、定形文アイテムに対応"
+"しています。\n"
+"左クリックでクリップボードとマウス・セレクション履歴のポップアップ、\n"
+"テキストをアイコンにドロップすると定形文アイテムを作成、中クリックでそれらを"
+"呼び出します。"
 
 #: ../src/applet-notifications.c:72
 msgid ""
@@ -147,7 +155,7 @@ msgstr "アイコン"
 
 #: ../data/messages:55
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
 #: ../data/messages:57
 msgid "Desired icon size for this applet"
@@ -159,12 +167,11 @@ msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
 #: ../data/messages:61
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "デフォルトのものを使用するには空欄のままに。"
 
 #: ../data/messages:63
-#, fuzzy
 msgid "Image's filename :"
-msgstr "アイコンの名前 :"
+msgstr "画像のファイル名前 :"
 
 #: ../data/messages:65
 msgid "Name of the dock it belongs to:"
@@ -201,42 +208,40 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:79
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:81
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:83
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:85
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:87
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:89
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:91
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:93
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:95
 msgid ""
@@ -458,31 +463,34 @@ msgstr "定形文登録アイテム"
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "中クリックでアクセス可能な定形文として登録されたアイテムのリスト :"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "This is the Clipper applet\n"
-#~ " made by Fabrice Rey (Fabounet) for Cairo-Dock"
-#~ msgstr ""
-#~ "これは Fabrice Rey (Fabounet) によって \n"
-#~ "Cairo-Dock 用に製作された Clipper アプレットです。"
+msgid ""
+"This is the Clipper applet\n"
+" made by Fabrice Rey (Fabounet) for Cairo-Dock"
+msgstr ""
+"これは Fabrice Rey (Fabounet) によって \n"
+"Cairo-Dock 用に製作された Clipper アプレットです。"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Module"
+msgstr "モジュール"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"

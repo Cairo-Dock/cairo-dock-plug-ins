@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-15 00:55+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-02 21:51+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,9 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:31
-#, fuzzy
 msgid "musicPlayer"
-msgstr "オーディオ・プレイヤー"
+msgstr "musicPlayer"
 
 #: ../src/applet-init.c:34
 msgid ""
@@ -28,6 +28,13 @@ msgid ""
 "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
+"あらゆる音楽プレイヤーを制御するアプレット。\n"
+"左クリックで再生/一時停止、中クリックで次の曲へ、\n"
+"スクロールの上下で前/次の曲を再生します。\n"
+"曲をドラッグ＆ドロップしてキューに入れることもできます（プレイヤーによりま"
+"す）。\n"
+"備考：XMMS には、'xmms-infopipe' プラグインのインストールが、\n"
+"       Songbird には、その DBus アドオンをインストールする必要があります。\n"
 
 #: ../src/applet-notifications.c:89
 msgid "Previous"
@@ -62,9 +69,8 @@ msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -124,13 +130,12 @@ msgid "Keep above other windows ?"
 msgstr "他ウィンドウより常に上に？"
 
 #: ../data/messages:29
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
@@ -141,9 +146,8 @@ msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:35
 msgid "Lock position ?"
@@ -204,7 +208,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:63
 msgid "Right offset :"
@@ -264,23 +268,23 @@ msgstr "Banshee"
 
 #: ../data/messages:89
 msgid "Rhythmbox"
-msgstr ""
+msgstr "Rhythmbox"
 
 #: ../data/messages:91
 msgid "QuodLibet"
-msgstr ""
+msgstr "QuodLibet"
 
 #: ../data/messages:93
 msgid "Listen"
-msgstr ""
+msgstr "Listen"
 
 #: ../data/messages:95
 msgid "Amarok 2"
-msgstr ""
+msgstr "Amarok 2"
 
 #: ../data/messages:97
 msgid "Amarok 1.4"
-msgstr ""
+msgstr "Amarok 1.4"
 
 #: ../data/messages:99
 msgid ""
@@ -349,11 +353,11 @@ msgstr "コントローラ"
 
 #: ../data/messages:129
 msgid "False 3D Themes (OpenGL only)"
-msgstr ""
+msgstr "擬似 3D テーマ（OpenGL のみ）"
 
 #: ../data/messages:131
 msgid "List of available specific themes :"
-msgstr ""
+msgstr "利用可能なテーマのリスト :"
 
 #: ../data/messages:133
 msgid "Action on music change"
@@ -442,39 +446,39 @@ msgstr "「リンク切れ」のアイコン画像の名前 :"
 
 #: ../data/messages:183
 msgid "Downloads"
-msgstr ""
+msgstr "ダウンロード"
 
 #: ../data/messages:185
 msgid "You need to be connected to the Internet."
-msgstr ""
+msgstr "インターネットに接続している必要があります。"
 
 #: ../data/messages:187
 msgid "Allow CID to download missing covers :"
-msgstr ""
+msgstr "CIDによる未取得カバーのダウンロードを許可 :"
 
 #: ../data/messages:189
 msgid "in seconds"
-msgstr ""
+msgstr "秒単位"
 
 #: ../data/messages:191
 msgid "Delay before checking for missing covers :"
-msgstr ""
+msgstr "未取得カバーのチェック開始の遅延時間 :"
 
 #: ../data/messages:193
 msgid "The smaller image will be downloaded faster than a big one."
-msgstr ""
+msgstr "小さい画像の方が大きいものよりも速くダウンロードされます。"
 
 #: ../data/messages:195
 msgid "Size of the downloaded covers :"
-msgstr ""
+msgstr "ダウンロード・カバーのサイズ :"
 
 #: ../data/messages:197
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: ../data/messages:199
 msgid "Large"
-msgstr ""
+msgstr "大"
 
 #~ msgid "Simple Desklet"
 #~ msgstr "シンプル・デスクレット"
@@ -576,3 +580,16 @@ msgstr ""
 
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(class=Cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
+#~ "る動作設定での指定法 : (class=Cairo-dock & type=utility)"
+
+#~ msgid "Set to 0 to use the default applet size"
+#~ msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
+
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

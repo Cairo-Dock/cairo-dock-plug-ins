@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-02-07 19:56+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-31 20:40+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,326 +18,267 @@ msgstr ""
 #: ../src/applet-init.c:22
 msgid ""
 "A Gnome-Do-like plug-in.\n"
-"It lets you control the dock and quickly launch any command with the "
-"keyboard :\n"
-" Start a session with the shortkey of your choice, Escape, Return or "
-"shortkey to close it.\n"
+"It lets you control the dock and quickly launch any command with the keyboard :\n"
+" Start a session with the shortkey of your choice, Escape, Return or shortkey to close it.\n"
 " use the arrows to navigate into the docks and sub-docks,\n"
-" or type a command to find the corresponding launcher, or to launch any "
-"command\n"
+" or type a command to find the corresponding launcher, or to launch any command\n"
 " Press Tab to automatically jump to the next suitable launcher\n"
-" Press enter to click the icon or validate the command, Shift+Enter for Shift"
-"+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
+" Press enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
 msgstr ""
+"Gnome-Do 風のプラグイン。\n"
+"キーボードでドックを制御したり、コマンドを素早く実行することができます。:\n"
+"任意設定したショートキーでセッションを開始、Escape や Return、ショートキーで閉じます。\n"
+"カーソルキーを使用してドックやサブ・ドック内をナビゲートしたり、\n"
+"コマンドを入力して該当のランチャーを探したり、コマンドの実行を行います。\n"
+"Tab を押すと自動的に次の該当ランチャーにジャンプします。\n"
+"Enter を押すとアイコンのクリックまたは入力コマンドの決定、Shift+Enter は Shift+クリック、Alt+Enter は中クリック、Ctrl+Enter は左クリックです。"
 
 #: ../src/applet-session.c:30
 msgid "Enter your search"
-msgstr ""
+msgstr "検索を入力してください"
 
 #: ../data/messages:1
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../data/messages:3
 msgid "Shortkey to activate/deactivate Do :"
-msgstr ""
+msgstr "Do を開始/停止するショートキー :"
 
 #: ../data/messages:5
 msgid "Animations"
-msgstr ""
+msgstr "アニメーション"
 
-#: ../data/messages:7 ../data/messages:11 ../data/messages:15
+#: ../data/messages:7
+#: ../data/messages:11
+#: ../data/messages:15
 msgid "In ms."
-msgstr ""
+msgstr "ミリ秒単位"
 
 #: ../data/messages:9
 msgid "Duration of the character animation (OpenGL only) :"
-msgstr ""
+msgstr "文字のアニメーションの持続時間（OpenGL のみ）:"
 
 #: ../data/messages:13
 msgid "Duration of the appearance animation :"
-msgstr ""
+msgstr "出現時のアニメーションの持続時間 :"
 
 #: ../data/messages:17
 msgid "Duration of the stop animation :"
-msgstr ""
+msgstr "停止時のアニメーションの持続時間 :"
 
 #: ../data/messages:19
 msgid "Animation of the current icon :"
-msgstr ""
+msgstr "現在のアイコンのアニメーション :"
 
 #: ../data/messages:21
 msgid "use the Navigation mode ?"
-msgstr ""
+msgstr "ナビゲーション・モードを使用？"
 
 #: ../data/messages:23
 msgid "Characters"
-msgstr ""
+msgstr "文字"
 
 #: ../data/messages:25
-msgid ""
-"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-"number or so."
-msgstr ""
+msgid "for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so."
+msgstr "例えば Monospace, Purisa, ... 。 数字などを付さずフォント名のみを入力してください。"
 
 #: ../data/messages:27
 msgid "Font used to display what you type :"
-msgstr ""
+msgstr "入力テキストの表示に使用するフォント :"
 
 #: ../data/messages:29
 msgid "Color of the text's frame  :"
-msgstr ""
+msgstr "テキストの枠の色 :"
 
 #: ../data/messages:31
 msgid "Font size, relatively to the dock's size :"
-msgstr ""
+msgstr "ドックの大きさに相対したフォントの大きさ :"
 
 #: ../data/messages:33
 msgid "between 1 and 9, the bigger, the heavier."
-msgstr ""
+msgstr "1 から 9 の間、大きい値ほど太くなります。"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "Text weight :"
-msgstr "高さ :"
+msgstr "テキストの太さ :"
 
 #: ../data/messages:37
 msgid "Should the text be outlined ?"
-msgstr ""
+msgstr "テキストをアウトライン表示？"
 
 #: ../data/messages:39
-#, fuzzy
 msgid "Text color :"
-msgstr "色の選択"
+msgstr "テキストの色 :"
 
 #: ../data/messages:41
 msgid "Color of the background of the characters :"
-msgstr ""
+msgstr "文字の背景色 :"
 
 #: ../data/messages:43
 msgid "Set 0 to center the text vertically."
-msgstr ""
+msgstr "テキストを垂直方向の中央に表示するには 0 に設定してください。"
 
 #: ../data/messages:45
 msgid "Relative vertical position of the text :"
-msgstr ""
+msgstr "テキストの垂直方向の相対位置 :"
 
 #~ msgid "Icon"
 #~ msgstr "アイコン"
-
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "width :"
 #~ msgstr "幅 :"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Name of the dock it belongs to:"
 #~ msgstr "帰属先ドックの名前 :"
-
 #~ msgid "Desklet"
 #~ msgstr "デスクレット"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
-
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click. "
 #~ "Negative values are counted from the right/bottom of the screen"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。負の値の場合は、画面の右下から数えられます。"
-
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
-
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
-
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
-
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
-
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
-
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
 #~ "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくな"
 #~ "ります。その場合でも ALT + 左クリックで移動させることはできます。"
-
 #~ msgid "Lock position ?"
 #~ msgstr "位置を固定？"
-
 #~ msgid "in degrees."
 #~ msgstr "角度"
-
 #~ msgid "Rotation :"
 #~ msgstr "回転 :"
-
 #~ msgid "Decorations"
 #~ msgstr "装飾"
-
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr ""
 #~ "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してくださ"
 #~ "い。"
-
 #~ msgid "Choose a decoration theme for this desklet :"
 #~ msgstr "このデスクレットの装飾テーマの選択 :"
-
 #~ msgid ""
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は"
 #~ "空欄のままにしてください。"
-
 #~ msgid "Background image :"
 #~ msgstr "背景画像 :"
-
 #~ msgid "Background tansparency :"
 #~ msgstr "背景の透明度 :"
-
 #~ msgid "in pixels. Use this to adjust the left position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
-
 #~ msgid "Left offset :"
 #~ msgstr "左方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the top position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
-
 #~ msgid "Top offset :"
 #~ msgstr "上方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
-
 #~ msgid "Right offset :"
 #~ msgstr "右方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
-
 #~ msgid "Bottom offset :"
 #~ msgstr "下方向のオフセット :"
-
 #~ msgid ""
 #~ "It's an image that will be displayed above the drawings, like a reflect "
 #~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない"
 #~ "場合は空欄のままにしてください。"
-
 #~ msgid "Foreground image :"
 #~ msgstr "前景画像 :"
-
 #~ msgid "Foreground tansparency :"
 #~ msgstr "前景の透明度 :"
-
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid "Copy"
 #~ msgstr "コピー"
-
 #~ msgid "New Tab"
 #~ msgstr "新しいタブ"
-
 #~ msgid "Rename current Tab"
 #~ msgstr "現在のタブの名前変更"
-
 #~ msgid "Close current Tab"
 #~ msgstr "現在のタブを閉じる"
-
 #~ msgid "Terminal"
 #~ msgstr "端末"
-
 #~ msgid "Set title for this tab :"
 #~ msgstr "このタブのタイトルを設定 :"
-
 #~ msgid "Paste"
 #~ msgstr "貼り付け"
-
 #~ msgid "Rename this Tab"
 #~ msgstr "このタブの名前変更"
-
 #~ msgid "Change this Tab's color"
 #~ msgstr "このタブの色を変更"
-
 #~ msgid "Close this Tab"
 #~ msgstr "このタブを閉じる"
-
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"
-
 #~ msgid "Name of the icon as it will appear in its label in cairo-dock :"
 #~ msgstr "Cairo-Dock のラベル上に表示するアイコンの名前 :"
-
 #~ msgid "GUI"
 #~ msgstr "GUI"
-
 #~ msgid "needs to restart the applet."
 #~ msgstr "アプレットの再起動が必要です。"
-
 #~ msgid "Terminal's transparency :"
 #~ msgstr "端末の透明度 :"
-
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "前面の色（赤、緑、青） :"
-
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "背景の色（赤、緑、青） :"
-
 #~ msgid ""
 #~ "When the terminal is in a dialog. When it is in a desklet, you can just "
 #~ "resize the desklet as usual."
 #~ msgstr ""
 #~ "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレッ"
 #~ "トのサイズ変更が可能です。"
-
 #~ msgid "Size of the terminal (line x columns) :"
 #~ msgstr "端末の大きさ（行×列） :"
-
 #~ msgid "Shortkey to show the terminal"
 #~ msgstr "端末を表示するショートカットキー :"
-
 #~ msgid "Always on top ?"
 #~ msgstr "常に最前面に表示？"
-
 #~ msgid "Rename Tab"
 #~ msgstr "タブ名の変更"
-
 #~ msgid "Lockposition ?"
 #~ msgstr "位置を固定？"
+

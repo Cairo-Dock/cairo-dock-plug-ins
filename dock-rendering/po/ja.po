@@ -7,26 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-04-01 11:52+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-31 22:26+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rendering-init.c:22 ../data/messages:19
+#: ../src/rendering-init.c:22
+#: ../data/messages:19
 msgid "Caroussel"
 msgstr "Caroussel"
 
 #: ../src/rendering-init.c:23
 msgid "3D plane"
-msgstr ""
+msgstr "3D plane"
 
-#: ../src/rendering-init.c:24 ../data/messages:37
+#: ../src/rendering-init.c:24
+#: ../data/messages:37
 msgid "Parabolic"
 msgstr "Parabolic"
 
-#: ../src/rendering-init.c:25 ../data/messages:59
+#: ../src/rendering-init.c:25
+#: ../data/messages:59
 msgid "Rainbow"
 msgstr "Rainbow"
 
@@ -34,7 +38,8 @@ msgstr "Rainbow"
 msgid "Slide"
 msgstr "Slide"
 
-#: ../src/rendering-init.c:28 ../data/messages:119
+#: ../src/rendering-init.c:28
+#: ../data/messages:119
 msgid "Curve"
 msgstr "Curve"
 
@@ -42,14 +47,11 @@ msgstr "Curve"
 msgid ""
 "This module adds different views to your dock.\n"
 "Any dock or sub-dock can be displayed with the view of your choice.\n"
-"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
-"are provided."
+"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided."
 msgstr ""
 "このモジュールは、ドックに様々なビュー形式を追加します。\n"
-"あらゆるドックやサブ・ドックを選択したビュー形式で表示させることが可能で"
-"す。\n"
-"現在のところ、3D-plane, Caroussel, Parabolic, Rainbow, Slide, Curve 形式が提"
-"供されています。"
+"あらゆるドックやサブ・ドックを選択したビュー形式で表示させることが可能です。\n"
+"現在のところ、3D-plane, Caroussel, Parabolic, Rainbow, Slide, Curve 形式が提供されています。"
 
 #: ../data/messages:1
 msgid "Inclinated Plane"
@@ -63,19 +65,23 @@ msgstr "小さい数値ほど、より低い視点から見た地面になりま
 msgid "Height of the vanishing point :"
 msgstr "消尽点の高さ :"
 
-#: ../data/messages:7 ../data/messages:129
+#: ../data/messages:7
+#: ../data/messages:129
 msgid "Choose the way separators are drawn :"
 msgstr "区切りの描画の仕方 :"
 
-#: ../data/messages:9 ../data/messages:131
+#: ../data/messages:9
+#: ../data/messages:131
 msgid "Normal separator"
 msgstr "通常の区切り"
 
-#: ../data/messages:11 ../data/messages:133
+#: ../data/messages:11
+#: ../data/messages:133
 msgid "Flat separator"
 msgstr "平坦な区切り"
 
-#: ../data/messages:13 ../data/messages:135
+#: ../data/messages:13
+#: ../data/messages:135
 msgid "Physical separator"
 msgstr "物理的な区切り"
 
@@ -88,37 +94,24 @@ msgid "For flat separators, you can specify their color:"
 msgstr "平坦な区切りに適用する色の指定 :"
 
 #: ../data/messages:21
-msgid ""
-"In degrees, regarding the vertical position. It's a sort of inclination of "
-"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
-"the plane is not inclined at all (vertical)."
-msgstr ""
-"垂直に対する角度。3D 風にするための水平の地面の傾きです。従って 0 に設定する"
-"と地面は全く傾斜しません（垂直）。"
+msgid "In degrees, regarding the vertical position. It's a sort of inclination of the plane on the horizontal, giving the 3D feeling. So setting it to 0 means the plane is not inclined at all (vertical)."
+msgstr "垂直に対する角度。3D 風にするための水平の地面の傾きです。従って 0 に設定すると地面は全く傾斜しません（垂直）。"
 
 #: ../data/messages:23
 msgid "Inclination of the plane :"
 msgstr "地面の傾斜 :"
 
 #: ../data/messages:25
-msgid ""
-"0.5 means the dock is half-folded, so half the icons are on the foreground, "
-"and half are on the background."
-msgstr ""
-"0.5 ではドックが半分に畳まれた状態になります。つまり、アイコンの半分が前方に"
-"配置され、もう半分が後方に配置されます。"
+msgid "0.5 means the dock is half-folded, so half the icons are on the foreground, and half are on the background."
+msgstr "0.5 ではドックが半分に畳まれた状態になります。つまり、アイコンの半分が前方に配置され、もう半分が後方に配置されます。"
 
 #: ../data/messages:27
 msgid "Percentage of the dock's width that appears on the foreground :"
 msgstr "前方に表示するドックの幅の割合 :"
 
 #: ../data/messages:29
-msgid ""
-"The greater, the deeper. It is in fact the gap between background icons' "
-"bottom and foreground icons' top (in pixels)."
-msgstr ""
-"数値が大きいほど奥行きが深くなります。正確には、後方のアイコンの下端と前方の"
-"アイコンの上端との隙間の大きさです（ピクセル単位）。"
+msgid "The greater, the deeper. It is in fact the gap between background icons' bottom and foreground icons' top (in pixels)."
+msgstr "数値が大きいほど奥行きが深くなります。正確には、後方のアイコンの下端と前方のアイコンの上端との隙間の大きさです（ピクセル単位）。"
 
 #: ../data/messages:31
 msgid "Depth of the plane :"
@@ -150,15 +143,15 @@ msgstr "高さ/幅 の割合 :"
 
 #: ../data/messages:47
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
-msgstr ""
-"0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが"
-"最大になります。"
+msgstr "0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが最大になります。"
 
-#: ../data/messages:49 ../data/messages:67
+#: ../data/messages:49
+#: ../data/messages:67
 msgid "Magnitude of the wave :"
 msgstr "波形の振幅 :"
 
-#: ../data/messages:51 ../data/messages:125
+#: ../data/messages:51
+#: ../data/messages:125
 msgid "in pixels."
 msgstr "ピクセル単位"
 
@@ -167,44 +160,33 @@ msgid "Space between icons and their label :"
 msgstr "アイコンとそのラベル同士の隙間 :"
 
 #: ../data/messages:55
-msgid ""
-"It may recquire more CPU during the unfolding animation, except if you "
-"launch Cairo-Dock with Glitz."
-msgstr ""
-"これを有効にすると、Cairo-Dock を Glitz とともに起動する場合以外は、展開のア"
-"ニメーション中に CPU 使用がより多く必要になる可能性があります。"
+msgid "It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz."
+msgstr "これを有効にすると、Cairo-Dock を Glitz とともに起動する場合以外は、展開のアニメーション中に CPU 使用がより多く必要になる可能性があります。"
 
 #: ../data/messages:57
 msgid "Draw labels while unfolding ?"
 msgstr "展開中にラベルを描画？"
 
-#: ../data/messages:61 ../data/messages:85
+#: ../data/messages:61
+#: ../data/messages:85
 msgid "Space between rows :"
-msgstr "列の間隔 :"
+msgstr "横列同士の間隔 :"
 
 #: ../data/messages:63
 msgid "Space between icons :"
-msgstr "アイコン同士の間隔 :"
+msgstr "同列アイコン同士の間隔 :"
 
 #: ../data/messages:65
-msgid ""
-"0 means the wave is totally flat, 1 means the wave is identical to other "
-"views."
-msgstr ""
-"0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他"
-"の外観と同一になります。"
+msgid "0 means the wave is totally flat, 1 means the wave is identical to other views."
+msgstr "0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他の外観と同一になります。"
 
 #: ../data/messages:69
 msgid "Number of icons on the first row :"
 msgstr "最初の横列のアイコンの数 :"
 
 #: ../data/messages:71
-msgid ""
-"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
-"widely opened."
-msgstr ""
-"円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開し"
-"ます。"
+msgid "in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened."
+msgstr "円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開します。"
 
 #: ../data/messages:73
 msgid "Cone's width :"
@@ -212,9 +194,7 @@ msgstr "円錐の幅 :"
 
 #: ../data/messages:75
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
-msgstr ""
-"弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画"
-"が遅くなります。"
+msgstr "弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画が遅くなります。"
 
 #: ../data/messages:77
 msgid "Bow color :"
@@ -310,90 +290,67 @@ msgstr "カーブの高さ"
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "ポイントが置かれたアイコンはテキストのみ表示？"
-
 #~ msgid "it's the 'a' in y=k*x^a"
 #~ msgstr "y=k*x^a 式の 'a' に該当します。"
-
 #~ msgid ""
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr "ラベルは含みません。この割合を保つように係数 'k' が調節されます。 "
-
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "定義された区切りアイコンの代わりに平坦な区切りを使用？"
-
 #~ msgid "If so, you can specify its color:"
 #~ msgstr "使用の場合の色の指定 :"
-
 #~ msgid "Icon"
 #~ msgstr "アイコン"
-
 #~ msgid "Desired icon size for this applet"
 #~ msgstr "このアプレットのアイコンの大きさ"
-
 #~ msgid "width :"
 #~ msgstr "幅 :"
-
 #~ msgid "height :"
 #~ msgstr "高さ :"
-
 #~ msgid "Name of the icon as it will appear in its label in the dock :"
 #~ msgstr "ドックのラベル上に表示するアイコンの名前 :"
-
 #~ msgid "Module"
 #~ msgstr "モジュール"
-
 #~ msgid "Icon's name :"
 #~ msgstr "アイコンの名前 :"
-
 #~ msgid ""
 #~ "This is the CD_APPLET_NAME applet\n"
 #~ " made by CD_MY_NAME for Cairo-Dock"
 #~ msgstr ""
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
 #~ msgid "Desklet"
 #~ msgstr "デスクレット"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + "
 #~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
 #~ "ク、または ALT + 左クリックでサイズ変更できます。"
-
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "デスクレットの寸法（幅×高さ） :"
-
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
 #~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
 #~ "させることができます。"
-
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "デスクレットの位置（X ; Y） :"
-
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "ドックから分離？"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
-
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
-
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 #~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
-
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "ウィジェット・レイヤ上に表示？"
-
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
@@ -401,73 +358,54 @@ msgstr "カーブの高さ"
 #~ "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは"
 #~ "移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可"
 #~ "能です。"
-
 #~ msgid "Lock position ?"
 #~ msgstr "位置を固定？"
-
 #~ msgid "in degrees."
 #~ msgstr "角度"
-
 #~ msgid "Rotation :"
 #~ msgstr "回転 :"
-
 #~ msgid "Decorations"
 #~ msgstr "装飾"
-
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr ""
 #~ "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してくださ"
 #~ "い。"
-
 #~ msgid "Choose a decoration theme for this desklet :"
 #~ msgstr "このデスクレットの装飾テーマの選択 :"
-
 #~ msgid ""
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は"
 #~ "空欄のままにしてください。"
-
 #~ msgid "Background image :"
 #~ msgstr "背景画像 :"
-
 #~ msgid "Background tansparency :"
 #~ msgstr "背景の透明度 :"
-
 #~ msgid "in pixels. Use this to adjust the left position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
-
 #~ msgid "Left offset :"
 #~ msgstr "左方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the top position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
-
 #~ msgid "Top offset :"
 #~ msgstr "上方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
-
 #~ msgid "Right offset :"
 #~ msgstr "右方向のオフセット :"
-
 #~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
 #~ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
-
 #~ msgid "Bottom offset :"
 #~ msgstr "下方向のオフセット :"
-
 #~ msgid ""
 #~ "It's an image that will be displayed above the drawings, like a reflect "
 #~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない"
 #~ "場合は空欄のままにしてください。"
-
 #~ msgid "Foreground image :"
 #~ msgstr "前景画像 :"
-
 #~ msgid "Foreground tansparency :"
 #~ msgstr "前景の透明度 :"
+

@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-14 21:29+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-02 11:41+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,9 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/applet-init.c:18
-#, fuzzy
 msgid "showDesklets"
-msgstr "デスクレット"
+msgstr "デスクレット表示"
 
 #: ../src/applet-init.c:21
 msgid ""
@@ -26,15 +26,18 @@ msgid ""
 "Basically, if you run under Compiz, you don't need this applet;\n"
 " you should just use the 'Widget Layer' capabilities of desklets."
 msgstr ""
+"デスクレットに素早くアクセスするためのアプレット。\n"
+"左クリックでデスクレットを表示/隠します。\n"
+"Compiz を稼働させている場合、このアプレットは基本的に必要なく、\n"
+"デスクレットの「Widget Layer」機能を使用するだけで済みます。"
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "アイコン"
 
 #: ../data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのものを使用するには空欄のままに。"
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -140,9 +143,8 @@ msgstr "デスクレットの表示/隠すのキーショートカット :"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは"
-#~ "移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可"
-#~ "能です。"
+#~ "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくな"
+#~ "ります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #~ msgid "Lock position ?"
 #~ msgstr "位置を固定？"
@@ -190,7 +192,7 @@ msgstr "デスクレットの表示/隠すのキーショートカット :"
 #~ msgstr "上方向のオフセット :"
 
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+#~ msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #~ msgid "Right offset :"
 #~ msgstr "右方向のオフセット :"
@@ -213,3 +215,19 @@ msgstr "デスクレットの表示/隠すのキーショートカット :"
 
 #~ msgid "Foreground tansparency :"
 #~ msgstr "前景の透明度 :"
+
+#~ msgid "Desklet"
+#~ msgstr "デスクレット"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(class=Cairo-dock & type=utility)"
+#~ msgstr ""
+#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
+#~ "る動作設定での指定法 : (class=Cairo-dock & type=utility)"
+
+#~ msgid "Display"
+#~ msgstr "表示"
+
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

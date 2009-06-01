@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-15 10:44+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-05-31 22:54+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,39 +17,39 @@ msgstr ""
 
 #: ../src/cd-mail-applet-config.c:155
 msgid "Please choose an account type."
-msgstr ""
+msgstr "アカウントの種類を選択してください。"
 
 #: ../src/cd-mail-applet-config.c:160
-#, fuzzy
 msgid "New account's name"
-msgstr "アイコンの名前 :"
+msgstr "新しいアカウントの名前 :"
 
 #: ../src/cd-mail-applet-config.c:163
 msgid "Please enter a name for this account."
-msgstr ""
+msgstr "このアカウントの名前を入力してください。"
 
 #: ../src/cd-mail-applet-config.c:173
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
+"このアカウントはすでに存在します。\n"
+"新しいアカウント用の別の名前を選択してください。"
 
 #: ../src/cd-mail-applet-config.c:258
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr ""
+msgstr "このアカウントの名前を入力してください。任意の名前を付けることができます。"
 
 #: ../src/cd-mail-applet-config.c:313
-#, fuzzy
 msgid "Remove Account"
 msgstr "アカウントの削除"
 
 #: ../src/cd-mail-applet-etpan.c:160
 msgid "unknown"
-msgstr ""
+msgstr "不明"
 
 #: ../src/cd-mail-applet-etpan.c:160
 msgid "no subject"
-msgstr ""
+msgstr "件名なし"
 
 #: ../src/cd-mail-applet-etpan.c:296
 msgid "No unread mail in your mailboxes"
@@ -57,15 +58,15 @@ msgstr "Mailbox に未読メールはありません。"
 #: ../src/cd-mail-applet-etpan.c:318
 #, c-format
 msgid "You have %d new mails :"
-msgstr ""
+msgstr "%d 新着メール :"
 
 #: ../src/cd-mail-applet-etpan.c:320
 msgid "You have a new mail :"
-msgstr ""
+msgstr "1 新着メール :"
 
 #: ../src/cd-mail-applet-init.c:21
 msgid "mail"
-msgstr ""
+msgstr "メール"
 
 #: ../src/cd-mail-applet-init.c:24
 msgid ""
@@ -74,6 +75,10 @@ msgid ""
 "Left-click to launch the prefered mail application,\n"
 "Middle-click to refresh all the mailboxes."
 msgstr ""
+"Eメール新着時の通知に非常に役立つアプレット。\n"
+"様々な種類のメールボックスのチェックが可能 (yahoo, gmail, etc)\n"
+"左クリックで任意のメール・アプリケーションの起動、\n"
+"中クリックですべてのメールボックスについて更新します。"
 
 #: ../src/cd-mail-applet-notifications.c:39
 #, c-format
@@ -87,14 +92,13 @@ msgstr ""
 "このモジュールの設定パネルで変更可能です。"
 
 #: ../src/cd-mail-applet-notifications.c:86
-#, fuzzy
 msgid "Refresh a mail account"
-msgstr "アカウントの削除"
+msgstr "アカウントの更新"
 
 #: ../src/cd-mail-applet-notifications.c:97
 #, c-format
 msgid "Launch %s"
-msgstr ""
+msgstr "起動 %s"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -102,7 +106,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -121,12 +125,8 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
-"または ALT + 左クリックでサイズ変更できます。"
+msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -134,9 +134,7 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
-"せることができます。"
+msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -147,51 +145,40 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
-msgstr ""
-"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
+msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -211,20 +198,15 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
-"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
-"欄のままにしてください。"
+msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
+msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -252,7 +234,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:69
 msgid "Right offset :"
@@ -267,12 +249,8 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
-"合は空欄のままにしてください。"
+msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
+msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -292,16 +270,15 @@ msgstr "利用可能テーマから１つ選択 :"
 
 #: ../data/messages:85
 msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "デフォルトのサブ・ドックのビュー形式を使用するには空欄のままに。"
 
 #: ../data/messages:87
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "「新着メール」の音ファイル :"
+msgstr "サブ・ドックに使用するビュー形式の名前 :"
 
 #: ../data/messages:89
 msgid "Show new messages' content ?"
-msgstr ""
+msgstr "新着メッセージの内容を表示？"
 
 #: ../data/messages:91
 msgid "Theme overriding"
@@ -321,323 +298,308 @@ msgstr "「新着メール」の音ファイル :"
 
 #: ../data/messages:99
 msgid "Mail application"
-msgstr ""
+msgstr "メール・アプリケーション"
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Prefered mail application to launch on left-click :"
-msgstr "左クリックで起動させるアプリケーションのパス"
+msgstr "左クリックで起動させる任意のメール・アプリケーション :"
 
 #: ../data/messages:103
-msgid ""
-"only use this if it differs from its name. Generally it is not the case, "
-"except for Thunderbird."
-msgstr ""
+msgid "only use this if it differs from its name. Generally it is not the case, except for Thunderbird."
+msgstr "名前とクラス名が異なる場合にのみ使用してください。Thunderbird を除いて、使用が必要となるケースは基本的に稀です。"
 
 #: ../data/messages:105
 msgid "Class of the mail application (optionnal)"
-msgstr ""
+msgstr "メール・アプリケーションのクラス（任意）"
 
 #: ../data/messages:107
-msgid ""
-"It will prevent the application's icon to appear in the task bar. The "
-"applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
+msgid "It will prevent the application's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "アプリケーションのアイコンがタスクバーに表示されないようにします。アプレットのアイコンがランチャーやアプリ、アプレットとして動作します。"
 
 #: ../data/messages:109
 msgid "Steal the application's icon in taskbar ?"
-msgstr ""
+msgstr "タスクバーのアプリケーションのアイコンを奪取？"
 
 #: ../data/messages:111
-#, fuzzy
 msgid "Add an mail account"
-msgstr "新規アカウントの追加"
+msgstr "メールアカウントの追加"
 
 #: ../data/messages:113
 msgid "The new account will be created with specified type and name."
-msgstr ""
+msgstr "新しいアカウントが指定の種類と名前で作成されます。"
 
 #: ../data/messages:115
 msgid "Add an account with specified type and name:"
+msgstr "指定の種類と名前のアカウントを追加 :"
+
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
+
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
+
+msgid ""
+"This is the mail applet\n"
+" made by Christophe Chapuis for Cairo-Dock"
 msgstr ""
+"これは Christophe Chapuis によって製作された \n"
+"Cairo-Dock 用の mail アプレットです。"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
-
-#~ msgid ""
-#~ "This is the mail applet\n"
-#~ " made by Christophe Chapuis for Cairo-Dock"
-#~ msgstr ""
-#~ "これは Christophe Chapuis によって製作された \n"
-#~ "Cairo-Dock 用の mail アプレットです。"
-
-#~ msgid "Modify a mail account"
-#~ msgstr "アカウントの編集"
-
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "ソケットを非ブロック・モードにセットできません。接続試行が中断すると、パネ"
-#~ "ルが閉じるときに固まってしまう可能性があります。"
-
-#~ msgid "Failed to connect to server: %s"
-#~ msgstr "サーバへの接続に失敗 : %s"
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "ソケットをブロック・モードに戻せません。データが正しく取得できない可能性が"
-#~ "あります。"
-
-#~ msgid "TLS handshake failed: %s"
-#~ msgstr "TLS ハンドシェイクに失敗 : %s"
+msgid "Modify a mail account"
+msgstr "アカウントの編集"
 
-#~ msgid ""
-#~ "Received HTTP response code %d.  The most likely reason for this is that "
-#~ "your GMail username or password is incorrect."
-#~ msgstr ""
-#~ "HTTP 応答コード %d を受け取りました。恐らく GMail のユーザー名またはパス"
-#~ "ワードが正しくありません。"
+msgid "Unable to set socket to non-blocking mode.  If the connect attempt hangs, the panel may hang on close."
+msgstr "ソケットを非ブロック・モードにセットできません。接続試行が中断すると、パネルが閉じるときに固まってしまう可能性があります。"
 
-#~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
-#~ msgstr ""
-#~ "HTTP 応答コード %d を受け取りましたが、本来 200 であるべきです。Gmail サー"
-#~ "バに問題があるか、サーバの認証方式や新規メッセージのフィード元の場所が変更"
-#~ "された可能性があります。"
+msgid "Failed to connect to server: %s"
+msgstr "サーバへの接続に失敗 : %s"
 
-#~ msgid "_Username:"
-#~ msgstr "ユーザー名(_U):"
+msgid "Unable to return socket to blocking mode.  Data may not be retreived correctly."
+msgstr "ソケットをブロック・モードに戻せません。データが正しく取得できない可能性があります。"
 
-#~ msgid "_Password:"
-#~ msgstr "パスワード(_P):"
+msgid "TLS handshake failed: %s"
+msgstr "TLS ハンドシェイクに失敗 : %s"
 
-#~ msgid "Check for _new messages every"
-#~ msgstr "新着メッセージのチェック(_N):"
+msgid "Received HTTP response code %d.  The most likely reason for this is that your GMail username or password is incorrect."
+msgstr "HTTP 応答コード %d を受け取りました。恐らく GMail のユーザー名またはパスワードが正しくありません。"
 
-#~ msgid "minute(s)."
-#~ msgstr "分間隔"
+msgid "Received HTTP response code %d, which should be 200.  There may be a problem with GMail's servers, or they have incompatibly changed their authentication method or location of the new messages feed."
+msgstr "HTTP 応答コード %d を受け取りましたが、本来 200 であるべきです。Gmail サーバに問題があるか、サーバの認証方式や新規メッセージのフィード元の場所が変更された可能性があります。"
 
-#~ msgid "Remote GMail Mailbox"
-#~ msgstr "リモート GMail Mailbox"
+msgid "_Username:"
+msgstr "ユーザー名(_U):"
 
-#~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
-#~ msgstr ""
-#~ "GMail プラグインは、Google のメールサービスに接続して、新着メッセージの数"
-#~ "を安全に取得することができます。"
+msgid "_Password:"
+msgstr "パスワード(_P):"
 
-#~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
-#~ msgstr ""
-#~ "セキュア IMAP は利用できません。また、IMAP サーバは平文記述のログインに対"
-#~ "応していません。"
+msgid "Check for _new messages every"
+msgstr "新着メッセージのチェック(_N):"
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
-#~ msgstr ""
-#~ "STARTTLS セキュリティを要求しましたが、このサーバは対応していません。"
+msgid "minute(s)."
+msgstr "分間隔"
 
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr ""
-#~ "IMAP 応答のすべてを受け取るにはバッファが小さすぎます。これはバグです！"
+msgid "Remote GMail Mailbox"
+msgstr "リモート GMail Mailbox"
 
-#~ msgid "Failed to get folder list"
-#~ msgstr "フォルダのリストの取得に失敗"
+msgid "The GMail plugin can connect to Google's mail service and securely retrieve the number of new messages."
+msgstr "GMail プラグインは、Google のメールサービスに接続して、新着メッセージの数を安全に取得することができます。"
 
-#~ msgid "Please wait..."
-#~ msgstr "お待ちください..."
+msgid "Secure IMAP is not available, and the IMAP server does not support plaintext logins."
+msgstr "セキュア IMAP は利用できません。また、IMAP サーバは平文記述のログインに対応していません。"
 
-#~ msgid "Set New Mail Folders"
-#~ msgstr "新規メールフォルダの設定"
+msgid "STARTTLS security was requested, but this server does not support it."
+msgstr "STARTTLS セキュリティを要求しましたが、このサーバは対応していません。"
 
-#~ msgid "New Mail Folders"
-#~ msgstr "新規メールフォルダ"
+msgid "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+msgstr "IMAP 応答のすべてを受け取るにはバッファが小さすぎます。これはバグです！"
 
-#~ msgid "Advanced IMAP Options"
-#~ msgstr "IMAP 詳細オプション"
+msgid "Failed to get folder list"
+msgstr "フォルダのリストの取得に失敗"
 
-#~ msgid "Connection"
-#~ msgstr "接続"
+msgid "Please wait..."
+msgstr "お待ちください..."
 
-#~ msgid "Use unsecured connection"
-#~ msgstr "非セキュアな接続を使用"
+msgid "Set New Mail Folders"
+msgstr "新規メールフォルダの設定"
 
-#~ msgid "Use SSL/TLS on alternate port"
-#~ msgstr "SSL/TLS を別ポートで使用"
+msgid "New Mail Folders"
+msgstr "新規メールフォルダ"
 
-#~ msgid "Use SSL/TLS via STARTTLS"
-#~ msgstr "SSL/TLS via STARTTLS を使用"
+msgid "Advanced IMAP Options"
+msgstr "IMAP 詳細オプション"
 
-#~ msgid "Use non-standard IMAP _port:"
-#~ msgstr "非標準 IMAP ポートを使用(_P):"
+msgid "Connection"
+msgstr "接続"
 
-#~ msgid "Folders"
-#~ msgstr "フォルダ"
+msgid "Use unsecured connection"
+msgstr "非セキュアな接続を使用"
 
-#~ msgid "IMAP server _directory:"
-#~ msgstr "IMAP サーバ・ディレクトリ(_D):"
+msgid "Use SSL/TLS on alternate port"
+msgstr "SSL/TLS を別ポートで使用"
 
-#~ msgid "IMAP Server"
-#~ msgstr "IMAP サーバ"
+msgid "Use SSL/TLS via STARTTLS"
+msgstr "SSL/TLS via STARTTLS を使用"
 
-#~ msgid "_Mail server:"
-#~ msgstr "メールサーバ(_M):"
+msgid "Use non-standard IMAP _port:"
+msgstr "非標準 IMAP ポートを使用(_P):"
 
-#~ msgid "_Advanced..."
-#~ msgstr "詳細設定(_A)..."
+msgid "Folders"
+msgstr "フォルダ"
 
-#~ msgid "New mail _folders..."
-#~ msgstr "新着メールフォルダ(_F)..."
+msgid "IMAP server _directory:"
+msgstr "IMAP サーバ・ディレクトリ(_D):"
 
-#~ msgid "Remote IMAP Mailbox"
-#~ msgstr "リモート IMAP Mailbox"
+msgid "IMAP Server"
+msgstr "IMAP サーバ"
 
-#~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
-#~ msgstr ""
-#~ "IMAP プラグインは、IMAP プロトコルに対応しているリモートのメールサーバに接"
-#~ "続することができ、リンク保護のため SSL の使用も可能です。"
+msgid "_Mail server:"
+msgstr "メールサーバ(_M):"
 
-#~ msgid "Failed to get status of file %s: %s"
-#~ msgstr "ファイルのステータス取得に失敗 %s: %s"
+msgid "_Advanced..."
+msgstr "詳細設定(_A)..."
 
-#~ msgid "%s is not a directory. Is %s really a valid maildir?"
-#~ msgstr "%s はディレクトリではありません。%s は本当に有効な maildir ですか？"
+msgid "New mail _folders..."
+msgstr "新着メールフォルダ(_F)..."
 
-#~ msgid "Select Maildir Folder"
-#~ msgstr "Maildir フォルダの選択"
+msgid "Remote IMAP Mailbox"
+msgstr "リモート IMAP Mailbox"
 
-#~ msgid "Maildir _Path:"
-#~ msgstr "Maildir のパス(_P):"
+msgid "The IMAP plugin can connect to a remote mail server that supports the IMAP protocol, optionally using SSL for link protection."
+msgstr "IMAP プラグインは、IMAP プロトコルに対応しているリモートのメールサーバに接続することができ、リンク保護のため SSL の使用も可能です。"
 
-#~ msgid "_Interval:"
-#~ msgstr "インターバル(_I):"
+msgid "Failed to get status of file %s: %s"
+msgstr "ファイルのステータス取得に失敗 %s: %s"
 
-#~ msgid "Local Maildir Spool"
-#~ msgstr "ローカル Maildir スプール"
+msgid "%s is not a directory. Is %s really a valid maildir?"
+msgstr "%s はディレクトリではありません。%s は本当に有効な maildir ですか？"
 
-#~ msgid ""
-#~ "The Maildir plugin can watch a local maildir-style mail spool for new "
-#~ "messages."
-#~ msgstr ""
-#~ "Maildir プラグインは新着メッセージのためにローカルの Maildir スタイルの"
-#~ "メール・スプールを監視できます。"
+msgid "Select Maildir Folder"
+msgstr "Maildir フォルダの選択"
 
-#~ msgid "Select mbox file"
-#~ msgstr "Mbox ファイルの選択"
+msgid "Maildir _Path:"
+msgstr "Maildir のパス(_P):"
 
-#~ msgid "Mbox _Filename:"
-#~ msgstr "Mbox のファイル名(_F):"
+msgid "_Interval:"
+msgstr "インターバル(_I):"
 
-#~ msgid "Local Mbox spool"
-#~ msgstr "ローカル Mbox スプール"
+msgid "Local Maildir Spool"
+msgstr "ローカル Maildir スプール"
 
-#~ msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-#~ msgstr ""
-#~ "Mbox プラグインは新着メッセージのためにローカルの Mbox タイプのメール・ス"
-#~ "プールを監視します。 "
+msgid "The Maildir plugin can watch a local maildir-style mail spool for new messages."
+msgstr "Maildir プラグインは新着メッセージのためにローカルの Maildir スタイルのメール・スプールを監視できます。"
 
-#~ msgid "Malformed line %s in %s ignored."
-#~ msgstr "不正な形式の行 %s（%s）は無視されました。"
+msgid "Select mbox file"
+msgstr "Mbox ファイルの選択"
 
-#~ msgid ""
-#~ "The configuration of this plugin is read from\n"
-#~ "the default mh maildir profile file ~/.mh_profile"
-#~ msgstr ""
-#~ "このプラグインの設定はデフォルトの mh maildir \n"
-#~ "プロファイルファイル ~/.mh_profile から読まれます。"
+msgid "Mbox _Filename:"
+msgstr "Mbox のファイル名(_F):"
 
-#~ msgid "Local MH mail folder"
-#~ msgstr "ローカル MH メールフォルダ"
+msgid "Local Mbox spool"
+msgstr "ローカル Mbox スプール"
 
-#~ msgid "MH plugin watches local MH folders for new mail"
-#~ msgstr "MH プラグインは新着メールのために MH フォルダを監視します。"
+msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+msgstr "Mbox プラグインは新着メッセージのためにローカルの Mbox タイプのメール・スプールを監視します。 "
 
-#~ msgid "Advanced POP3 Options"
-#~ msgstr "POP3 の詳細オプション"
+msgid "Malformed line %s in %s ignored."
+msgstr "不正な形式の行 %s（%s）は無視されました。"
 
-#~ msgid "Use SSL/TLS via STLS"
-#~ msgstr "SSL/TLS via STLS を使用"
+msgid ""
+"The configuration of this plugin is read from\n"
+"the default mh maildir profile file ~/.mh_profile"
+msgstr ""
+"このプラグインの設定はデフォルトの mh maildir \n"
+"プロファイルファイル ~/.mh_profile から読まれます。"
 
-#~ msgid "Use non-standard POP3 _port:"
-#~ msgstr "非標準 POP3 ポートを使用(_P):"
+msgid "Local MH mail folder"
+msgstr "ローカル MH メールフォルダ"
 
-#~ msgid "POP3 Server"
-#~ msgstr "POP3 サーバ"
+msgid "MH plugin watches local MH folders for new mail"
+msgstr "MH プラグインは新着メールのために MH フォルダを監視します。"
 
-#~ msgid "Remote POP3 Mailbox"
-#~ msgstr "リモート POP3 Mailbox"
+msgid "Advanced POP3 Options"
+msgstr "POP3 の詳細オプション"
 
-#~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
-#~ msgstr ""
-#~ "POP3 プラグインは、POP3 プロトコルに対応するリモートのメールサーバに接続で"
-#~ "きます。リンク保護のため SSL を使用することも可能です。"
+msgid "Use SSL/TLS via STLS"
+msgstr "SSL/TLS via STLS を使用"
 
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: %s"
+msgid "Use non-standard POP3 _port:"
+msgstr "非標準 POP3 ポートを使用(_P):"
 
-#~ msgid "Not compiled with SSL/TLS support"
-#~ msgstr "SSL/TLS 対応でコンパイルされていません"
+msgid "POP3 Server"
+msgstr "POP3 サーバ"
 
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfceMailwatch: TLS ハンドシェイクに失敗: SSL 対応でコンパイルされていませ"
-#~ "ん。"
+msgid "Remote POP3 Mailbox"
+msgstr "リモート POP3 Mailbox"
 
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
+msgid "The POP3 plugin can connect to a remote mail server that supports the POP3 protocol, optionally using SSL for link protection."
+msgstr "POP3 プラグインは、POP3 プロトコルに対応するリモートのメールサーバに接続できます。リンク保護のため SSL を使用することも可能です。"
 
-#~ msgid "This mailbox type does not require any configuration settings."
-#~ msgstr "この mailbox タイプには設定変更の必要はありません。"
+msgid "XfceMailwatch: TLS handshake failed: %s"
+msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: %s"
 
-#~ msgid "Mailbox _Name:"
-#~ msgstr "Mailbox の名前(_N):"
+msgid "Not compiled with SSL/TLS support"
+msgstr "SSL/TLS 対応でコンパイルされていません"
 
-#~ msgid "Edit Mailbox: %s"
-#~ msgstr "Mailbox の編集: %s"
+msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+msgstr "XfceMailwatch: TLS ハンドシェイクに失敗: SSL 対応でコンパイルされていません。"
 
-#~ msgid "Select Mailbox Type"
-#~ msgstr "Mailbox タイプの選択"
+msgid "A secure connection was requested, but gnutls was not initialised"
+msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
 
-#~ msgid "Select a mailbox type.  A description of the type will appear below."
-#~ msgstr ""
-#~ "Mailbox のタイプを選択してください。各タイプの説明が下に表示されます。"
+msgid "This mailbox type does not require any configuration settings."
+msgstr "この mailbox タイプには設定変更の必要はありません。"
 
-#~ msgid "Add New Mailbox"
-#~ msgstr "新規 Mailbox の追加"
+msgid "Mailbox _Name:"
+msgstr "Mailbox の名前(_N):"
 
-#~ msgid "Mailboxes"
-#~ msgstr "Mailboxes"
+msgid "Edit Mailbox: %s"
+msgstr "Mailbox の編集: %s"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "Select Mailbox Type"
+msgstr "Mailbox タイプの選択"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "Select a mailbox type.  A description of the type will appear below."
+msgstr "Mailbox のタイプを選択してください。各タイプの説明が下に表示されます。"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Add New Mailbox"
+msgstr "新規 Mailbox の追加"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+msgid "Mailboxes"
+msgstr "Mailboxes"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid "width :"
+msgstr "幅 :"
+
+msgid "height :"
+msgstr "高さ :"
+
+msgid "Lockposition ?"
+msgstr "位置を固定？"
+
+msgid "Module"
+msgstr "モジュール"
+
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+msgid ""
+"This applet is very useful to warn you when you get new e-mails\n"
+"It can check in any kind of mailbox (yahoo, gmail, etc)"
+msgstr ""
+"新着メールの通知に便利なアプレット。\n"
+"あらゆる形式のメールボックス（yahoo, gmail 等）をチェックすることができます。"
+
+msgid "You have"
+msgstr "You have"
+
+msgid "new mails :"
+msgstr "new mails :"
+
+msgid "new mail :"
+msgstr "new mail :"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Path to application to launch on left-click"
+msgstr "左クリックで起動させるアプリケーションのパス"
+
+msgid "Add a new mail account"
+msgstr "新規アカウントの追加"
+
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"
+

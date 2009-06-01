@@ -24,8 +24,8 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)
-		cairo_dock_inhibate_class ("x-session-manager", myIcon);
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)  // on prend le controle de l'icone de la fenetre.
+		CD_APPLET_MANAGE_APPLICATION ("x-session-manager", TRUE);
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -39,6 +39,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	CD_APPLET_MANAGE_APPLICATION ("x-session-manager", FALSE);  // on relache le controle de l'icone de la fenetre.
 CD_APPLET_STOP_END
 
 

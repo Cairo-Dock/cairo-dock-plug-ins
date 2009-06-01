@@ -112,16 +112,16 @@ msgstr "輝く効果を追加？"
 #: ../data/messages:41 ../data/messages:61 ../data/messages:77
 #: ../data/messages:95 ../data/messages:113
 msgid "Number of particles :"
-msgstr "粒の数"
+msgstr "粒子の数"
 
 #: ../data/messages:43 ../data/messages:63 ../data/messages:79
 #: ../data/messages:97 ../data/messages:115
 msgid "Particle size :"
-msgstr "粒の大きさ :"
+msgstr "粒子の大きさ :"
 
 #: ../data/messages:45 ../data/messages:81 ../data/messages:99
 msgid "Particle speed :"
-msgstr "粒の速度 :"
+msgstr "粒子の速度 :"
 
 #: ../data/messages:47
 msgid "Stars"

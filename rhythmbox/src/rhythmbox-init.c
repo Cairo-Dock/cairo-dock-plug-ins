@@ -36,6 +36,10 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
+	//\_______________ on charge le theme 4D si necessaire.
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+		myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
+	
 	//\_______________ on initialise DBus et on recupere l'etat courant si RB est deja lance.
 	myData.dbus_enable = rhythmbox_dbus_connect_to_bus ();
 	if (myData.dbus_enable)
@@ -69,8 +73,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
-		myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
-		//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+		//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
 		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 			cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,

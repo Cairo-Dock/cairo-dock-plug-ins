@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2008-11-14 20:45+0900\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,6 +35,11 @@ msgid ""
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
+"ゴミ箱を管理するアプレット。\n"
+"アイコンへのドラッグ＆ドロップでファイルをゴミ箱に移したりディスクのアンマウ"
+"ントが行えます。\n"
+"ゴミがスペースを取りすぎる場合の警告も可能です。右クリックでゴミ箱に関する有"
+"益な情報を表示します。"
 
 #: ../src/applet-notifications.c:31 ../src/applet-notifications.c:36
 msgid "Show Trash"
@@ -97,7 +103,7 @@ msgstr "アイコン"
 
 #: ../data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../data/messages:5
 msgid "Desired icon size for this applet"
@@ -144,51 +150,48 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-#, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (name=cairo-dock & type=utility)"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "アクセシビリティ :"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "通常"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "最前面表示"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "最後面表示"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "ウィジェット・レイヤ上に表示？"
+msgstr "ウィジェット・レイヤ上"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "空間確保"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
-"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
-"す。"
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -249,7 +252,7 @@ msgstr "上方向のオフセット :"
 
 #: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
 
 #: ../data/messages:69
 msgid "Right offset :"
@@ -369,59 +372,70 @@ msgstr ""
 msgid "Alternative file browser used to show a trash :"
 msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
 
-#~ msgid "Keep below other windows ?"
-#~ msgstr "他ウィンドウより常に下に？"
+msgid "Keep below other windows ?"
+msgstr "他ウィンドウより常に下に？"
 
-#~ msgid "Keep above other windows ?"
-#~ msgstr "他ウィンドウより常に上に？"
+msgid "Keep above other windows ?"
+msgstr "他ウィンドウより常に上に？"
 
-#~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
-#~ msgstr ""
-#~ "これは Fabrice Rey (fabounet@users.berlios.de) により\n"
-#~ "Cairo-Dock 用に製作された dustbin アプレットです。"
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet@users.berlios.de)"
+msgstr ""
+"これは Fabrice Rey (fabounet@users.berlios.de) により\n"
+"Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#~ msgid "width :"
-#~ msgstr "幅 :"
+msgid "width :"
+msgstr "幅 :"
 
-#~ msgid "height :"
-#~ msgstr "高さ :"
+msgid "height :"
+msgstr "高さ :"
 
-#~ msgid "in seconds"
-#~ msgstr "秒単位"
+msgid "in seconds"
+msgstr "秒単位"
 
-#~ msgid "Here you can specify a list of Trash directory :"
-#~ msgstr "ここでゴミ箱ディレクトリのリストの指定可能 :"
+msgid "Here you can specify a list of Trash directory :"
+msgstr "ここでゴミ箱ディレクトリのリストの指定可能 :"
 
-#~ msgid "File browser used to show a trash :"
-#~ msgstr "ゴミ箱の表示に使用するファイルブラウザ :"
+msgid "File browser used to show a trash :"
+msgstr "ゴミ箱の表示に使用するファイルブラウザ :"
 
-#~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet_03@yahoo.fr)"
-#~ msgstr ""
-#~ "これは Fabrice Rey (fabounet_03@yahoo.fr) により\n"
-#~ "Cairo-Dock 用に製作された dustbin アプレットです。"
+msgid ""
+"This is the dustbin applet for Cairo-Dock\n"
+" made by Fabrice Rey (fabounet_03@yahoo.fr)"
+msgstr ""
+"これは Fabrice Rey (fabounet_03@yahoo.fr) により\n"
+"Cairo-Dock 用に製作された dustbin アプレットです。"
 
-#~ msgid "You're about to delete all files all dustbins. Sure ?"
-#~ msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
+msgid "You're about to delete all files all dustbins. Sure ?"
+msgstr "全ゴミ箱の全ファイルを削除しようとしています。よろしいですか？"
 
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
+msgid "Lockposition ?"
+msgstr "位置を固定？"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+msgid "Icon's name :"
+msgstr "アイコンの名前 :"
 
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+msgid ""
+"This is the CD_APPLET_NAME applet\n"
+" made by CD_MY_NAME for Cairo-Dock"
+msgstr ""
+"これは CD_MY_NAME によって \n"
+"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
+
+msgid "Keep on widget layer ?"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Display"
+msgstr "表示"
+
+msgid "Image's filename :"
+msgstr "画像のファイル名前 :"
