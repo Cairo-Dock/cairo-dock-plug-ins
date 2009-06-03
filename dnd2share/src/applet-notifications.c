@@ -14,47 +14,54 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-dnd2share.h"
 
-static void cd_dnd2share_delete_picture_in_menu (GtkMenuItem *menu_item, gpointer *data)
+static void _clear_history (GtkMenuItem *menu_item, gpointer *data)
 {	
-	cd_dnd2share_delete_picture ();
+	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files ?"), myIcon, myContainer);
+	if (iAnswer == GTK_RESPONSE_YES)
+	{
+		cd_dnd2share_clear_working_directory ();
+		cd_dnd2share_clear_history ();
+	}
 }
 
-static void cd_dnd2share_delete_all_pictures_in_menu (GtkMenuItem *menu_item, gpointer *data)
+static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 {	
-	cd_dnd2share_delete_all_pictures ();
+	if (g_file_test (pItem->cLocalPath, G_FILE_TEST_EXISTS))
+		cairo_dock_fm_launch_uri (pItem->cLocalPath);
+	else
+	{
+		gchar *cPreviewPath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+		if (g_file_test (cPreviewPath, G_FILE_TEST_EXISTS))
+		{
+			cairo_dock_fm_launch_uri (cPreviewPath);
+		}
+		else
+		{
+			cd_warning ("couldn't find the orignial file nor a preview of it");
+			cairo_dock_remove_dialog_if_any (myIcon);
+			cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the orignial file nor a preview of it."),
+				myIcon,
+				myContainer,
+				myConfig.dTimeDialogs,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		}
+		g_free (cPreviewPath);
+	}
 }
 
-static void cd_dnd2share_copy_url_0_into_clipboard_in_menu (GtkMenuItem *menu_item, gpointer *data)
+static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 {
-	myData.iUrlTypeToCopy = 0;
-	cd_dnd2share_copy_url_into_clipboard (myData.iUrlTypeToCopy);
+	cd_dnd2share_copy_url_to_clipboard (cURL);
+	if (myConfig.bEnableDialogs)
+	{
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("The URL has been stored into the clipboard.\nJust use 'CTRL+v' to paste it anywhere."),
+			myIcon,
+			myContainer,
+			myConfig.dTimeDialogs,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	}
 } 
-
-static void cd_dnd2share_copy_url_1_into_clipboard_in_menu (GtkMenuItem *menu_item, gpointer *data)
-{
-	myData.iUrlTypeToCopy = 1;
-	cd_dnd2share_copy_url_into_clipboard (myData.iUrlTypeToCopy);
-} 
-
-static void cd_dnd2share_copy_url_2_into_clipboard_in_menu (GtkMenuItem *menu_item, gpointer *data)
-{
-	myData.iUrlTypeToCopy = 2;
-	cd_dnd2share_copy_url_into_clipboard (myData.iUrlTypeToCopy);
-} 
-
-static void cd_dnd2share_copy_url_3_into_clipboard_in_menu (GtkMenuItem *menu_item, gpointer *data)
-{
-	myData.iUrlTypeToCopy = 3;
-	cd_dnd2share_copy_url_into_clipboard (myData.iUrlTypeToCopy);
-} 
-
-static void cd_dnd2share_copy_url_4_into_clipboard_in_menu (GtkMenuItem *menu_item, gpointer *data)
-{
-	myData.iUrlTypeToCopy = 4;
-	cd_dnd2share_copy_url_into_clipboard (myData.iUrlTypeToCopy);
-} 
-
-
 
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -62,215 +69,197 @@ CD_APPLET_ON_CLICK_BEGIN
 
 	cairo_dock_remove_dialog_if_any (myIcon);
 	
-	myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-	myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-	
-	if ( g_file_test (myData.cCurrentLogFile, G_FILE_TEST_EXISTS) || g_file_test (myData.cCurrentConfigFile, G_FILE_TEST_EXISTS))
+	if (myData.cLastURL == NULL)
 	{
-		if (g_file_test (myData.cCurrentLogFile, G_FILE_TEST_EXISTS))
-		{
-			// On génère d'abord le fichier de conf:
-			cd_dnd2share_extract_urls_from_log ();
-		}	
-			
-		// Puis  dans tous les cas on extrait les urls :
-		cd_dnd2share_get_urls_from_stored_file ();
-		// Et on affiche l'info-bulle :
-		cairo_dock_show_temporary_dialog ("The prefered URL of picture %i\nhas been stored into the clipboard\nJust use 'CTRL+v' in a text fill to use it",
+		cairo_dock_show_temporary_dialog_with_icon (myConfig.iNbItems != 0 ?
+				D_("No uploaded file available\n.Just drag'n drop a file on the icon to upload it") :
+				D_("No uploaded file available\n.Consider activating the history if you want the applet remembers previous uploads."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
-			myData.iCurrentPictureNumber);
-		
-		cd_dnd2share_copy_url_into_clipboard (myConfig.iUrlPicturesType);
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 	else
 	{
-		if (myData.iNumberOfStoredPic == 0)
-		{
-			cairo_dock_show_temporary_dialog ("No stored files\nJust drag'n drop a file on the icon to upload it",
-				myIcon,
-				myContainer,
-				myConfig.dTimeDialogs);
-		}
-		else
-		{
-			cairo_dock_show_temporary_dialog ("Waiting for the log file.\nPlease wait...",
-				myIcon,
-				myContainer,
-				myConfig.dTimeDialogs);
-		}
+		cd_dnd2share_copy_url_to_clipboard (myData.cLastURL);
 	}
-		
-	/// A VOIR L'UTILITE :
-	cd_dnd2share_check_number_of_stored_pictures ();
 CD_APPLET_ON_CLICK_END
 
 
-
 CD_APPLET_ON_DROP_DATA_BEGIN
-
+	cd_debug ("DND2SHARE : drop de '%s'", CD_APPLET_RECEIVED_DATA);
+	CDFileType iFileType = CD_UNKNOWN_TYPE;
+	
 	if( strncmp(CD_APPLET_RECEIVED_DATA, "file://", 7) == 0)
 	{
-		cd_debug ("DND2SHARE : ''%s'' --> nouvelle image !", CD_APPLET_RECEIVED_DATA);
 		// Les formats supportés par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
 		// ... mais l'applet ne prendra en charge que les plus utilisés :
 		
-		gboolean isPicture = g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"GIF")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"gif")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"PNG")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"png")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"BMP")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"bmp")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"TIFF")
-			|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"tiff");
-		
-		if(isPicture)
+		guint64 iSize;
+		time_t iLastModificationTime;
+		gchar *cMimeType = NULL;
+		int iUID, iGID, iPermissionsMask;
+		if (cairo_dock_fm_get_file_properties (CD_APPLET_RECEIVED_DATA, &iSize, &iLastModificationTime, &cMimeType, &iUID, &iGID, &iPermissionsMask))
 		{
-			cd_debug ("DND2SHARE : Le format est compatible");
-			
-			gchar *cDroppedPicturePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL));
-			cd_dnd2share_new_picture (cDroppedPicturePath);
-			g_free (cDroppedPicturePath);
-					
-		}
-		else
-		{
-			
-			cd_debug ("DND2SHARE : Le format n'est pas supporté ... ou ce n'est pas une image !");
-			
-			// On affiche une info-bulle :
-			if (myConfig.bEnableDialogs)
+			if (cMimeType != NULL)
 			{
-				cairo_dock_remove_dialog_if_any (myIcon);
-				cairo_dock_show_temporary_dialog ("%s\n%s",
-					myIcon,
-					myContainer,
-					myConfig.dTimeDialogs,
-					D_("Sorry, the picture format is not allowed"),
-					D_("... or this is not a picture"));
+				g_print ("cMimeType : %s\n", cMimeType);
+				if (strncmp (cMimeType, "image", 5) == 0)
+					iFileType = CD_TYPE_IMAGE;
+				else if (strncmp (cMimeType, "video", 5) == 0)
+					iFileType = CD_TYPE_VIDEO;
 			}
+			g_free (cMimeType);
 		}
 		
+		if (iFileType == CD_UNKNOWN_TYPE)
+		{
+			if (g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"GIF")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"gif")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"PNG")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"png")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"BMP")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"bmp")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"TIFF")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"tiff"))
+				iFileType = CD_TYPE_IMAGE;
+			else if (g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"avi") 
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"AVI")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"mov")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"ogg")
+				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"mp4"))
+				iFileType = CD_TYPE_VIDEO;
+		}
+	}
+	else  // c'est du texte.
+	{
+		iFileType = CD_TYPE_TEXT;
+	}
+	
+	if (iFileType == CD_UNKNOWN_TYPE)
+	{
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("Sorry but we couldn't guess the type of this file."),
+			myIcon,
+			myContainer,
+			myConfig.dTimeDialogs,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	}
+	else
+	{
+		cd_dnd2share_launch_upload (CD_APPLET_RECEIVED_DATA, iFileType);
 	}
 CD_APPLET_ON_DROP_DATA_END
 
 
-
 CD_APPLET_ON_SCROLL_BEGIN
-		cd_dnd2share_check_number_of_stored_pictures (); // avant toute chose, on recompte nos images enregistrées
-		if (myData.iNumberOfStoredPic == 0)
+	if (myData.pUpoadedItems == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	CDUploadedItem *pItem;
+	if (CD_APPLET_SCROLL_DOWN)
+	{
+		myData.iCurrentItemNum ++;  // item suivant.
+		pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);
+		if (pItem == NULL)
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-			CD_APPLET_REDRAW_MY_ICON;
-			
-			if (myConfig.bEnableDialogs)
-			{
-				cairo_dock_remove_dialog_if_any (myIcon);
-				cairo_dock_show_temporary_dialog ("%s",
-				myIcon,
-				myContainer,
-				myConfig.dTimeDialogs,
-				D_("No picture"));
-			}
+			pItem = myData.pUpoadedItems->data;
+			myData.iCurrentItemNum = 0;
+		}
+	}
+	else if (CD_APPLET_SCROLL_UP)
+	{
+		myData.iCurrentItemNum --;  // item precedent.
+		pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);
+		if (pItem == NULL)
+		{
+			pItem = g_list_last (myData.pUpoadedItems)->data;
+			myData.iCurrentItemNum = g_list_length (myData.pUpoadedItems) - 1;
+		}
+	}
+	g_free (myData.cLastURL);
+	myData.cLastURL = NULL;
+	
+	g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);  // parano
+	
+	myData.cLastURL = g_strdup (cd_dnd2share_get_prefered_url_from_item (pItem));
+	if (myConfig.bDisplayLastImage)
+	{
+		gchar *cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+		if (g_file_test (cPreview, G_FILE_TEST_EXISTS))
+		{
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (cPreview);
+			g_free (cPreview);
 		}
 		else
-		{	
-				
-			if (CD_APPLET_SCROLL_DOWN)
+		{
+			cPreview = pItem->cLocalPath;
+			if (g_file_test (cPreview, G_FILE_TEST_EXISTS))
 			{
-				if (myData.iCurrentPictureNumber == 1)
-					myData.iCurrentPictureNumber = myData.iNumberOfStoredPic;
-				else
-					myData.iCurrentPictureNumber--;
-				
-				// On affiche une info-bulle :
-				if (myConfig.bEnableDialogs)
-				{
-					cairo_dock_remove_dialog_if_any (myIcon);
-					cairo_dock_show_temporary_dialog ("Picture %i:\nPress 'Left mouse button' to\ncopy the prefered url\ninto the clipboard",
-						myIcon,
-						myContainer,
-						myConfig.dTimeDialogs,
-						myData.iCurrentPictureNumber);
-				}
-				
-				myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-	
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCurrentPicturePath);
-				CD_APPLET_REDRAW_MY_ICON;
-			}
-			else if (CD_APPLET_SCROLL_UP)
-			{
-				if (myData.iCurrentPictureNumber ==  myData.iNumberOfStoredPic)
-					myData.iCurrentPictureNumber = 1;
-				else
-					myData.iCurrentPictureNumber++;
-					
-				// On affiche une info-bulle :
-				if (myConfig.bEnableDialogs)
-				{
-					cairo_dock_remove_dialog_if_any (myIcon);
-					cairo_dock_show_temporary_dialog ("Picture %i:\nPress 'Left mouse button' to\ncopy the prefered url\ninto the clipboard",
-						myIcon,
-						myContainer,
-						myConfig.dTimeDialogs,
-						myData.iCurrentPictureNumber);
-				}
-				
-				myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCurrentPicturePath);
-				CD_APPLET_REDRAW_MY_ICON;
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (cPreview);
 			}
 			else
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			{
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			}
 		}
+	}
+	
+	if (myConfig.bEnableDialogs)
+	{
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog (D_("Picture %s (%d):\nPress 'Left mouse button' to copy the URL into the clipboard"),
+			myIcon,
+			myContainer,
+			myConfig.dTimeDialogs,
+			pItem->cFileName, myData.iCurrentItemNum);
+	}
 CD_APPLET_ON_SCROLL_END
 
 
-
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (myData.iNumberOfStoredPic > 0)
-	{
-		cd_dnd2share_delete_picture ();
-	}
+	/// un truc utile ?...
+	
 CD_APPLET_ON_MIDDLE_CLICK_END
-
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-
-	cd_dnd2share_check_number_of_stored_pictures ();
-	if (myData.iNumberOfStoredPic > 0)
-	{		
-		CD_APPLET_ADD_IN_MENU (D_("Delete this picture"), cd_dnd2share_delete_picture_in_menu, pModuleSubMenu);
+	
+	if (myData.pUpoadedItems != NULL)
+		CD_APPLET_ADD_IN_MENU (D_("Clear History"), _clear_history, CD_APPLET_MY_MENU);
+	
+	CDSiteBackend *pBackend;
+	CDUploadedItem *pItem;
+	GtkWidget *pItemSubMenu;
+	int i;
+	GList *it;
+	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		gchar *cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+		if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
+		{
+			g_free (cPreview);
+			cPreview = NULL;
+		}
+		pItemSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (pItem->cFileName, pModuleSubMenu, cPreview);
+		g_free (cPreview);
 		
-		CD_APPLET_ADD_IN_MENU (D_("Delete ALL pictures"), cd_dnd2share_delete_all_pictures_in_menu, pModuleSubMenu);
+		pBackend = &myData.backends[pItem->iSiteID];
+		for (i = 0; i < pBackend->iNbUrls; i ++)
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);
 		
+		/// ajouter un "remove_from_history" ...
 		
-		
-		CD_APPLET_ADD_IN_MENU (D_("BBcode 150px (forums)"), cd_dnd2share_copy_url_0_into_clipboard_in_menu, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU (D_("BBcode 600px (forums)"), cd_dnd2share_copy_url_1_into_clipboard_in_menu, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU (D_("BBcode FullPic (forums)"), cd_dnd2share_copy_url_2_into_clipboard_in_menu, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU (D_("Display Image (html page)"), cd_dnd2share_copy_url_3_into_clipboard_in_menu, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU (D_("Direct Link (picture)"), cd_dnd2share_copy_url_4_into_clipboard_in_menu, CD_APPLET_MY_MENU);
 	}
 	
-	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END

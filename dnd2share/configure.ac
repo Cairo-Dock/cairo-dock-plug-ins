@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dnd2share],[0.0.1],[Yann Dulieu (nochka85@cairo-dock.org)])
+AC_INIT([cd-dnd2share],[0.0.2],[Yann Dulieu (nochka85@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -21,8 +21,8 @@ AC_SUBST(GETTEXT_DND2SHARE)
 AC_SUBST(VERSION_DND2SHARE, "$VERSION")
 AC_SUBST(PACKAGE_DND2SHARE, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dnd2share]
-AC_SUBST(pkgdatadir)
+dnd2sharedatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dnd2share]
+AC_SUBST(dnd2share)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 
@@ -33,6 +33,5 @@ AC_CONFIG_FILES([Makefile
 		src/Makefile
 		po/Makefile.in
 		data/Makefile
-		data/readme
 		data/dnd2share.conf])
 AC_OUTPUT

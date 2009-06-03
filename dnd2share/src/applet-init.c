@@ -7,24 +7,26 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 ******************************************************************************/
 
-#include "stdlib.h"
+#include <stdlib.h>
+#include <glib/gstdio.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-init.h"
 #include "applet-dnd2share.h"
+#include "applet-backend-uppix.h"
+#include "applet-init.h"
 
 
 CD_APPLET_DEFINITION ("dnd2share",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("This applet manages uploads\n"
-	"You can send files to host web services simply by drag and droping them on the icon.\n"
-	"The chosen type of url is automatically stored in clipboard to be directly copied in a forum.\n"
-	"The applet stores your last uploads to retrieve them without any account.\n"),
-	"Yann Dulieu (Nochka85)\n"
-	"Based on a script made by pmd (http://pmdz.info).")
+	N_("This applet lets you share files easily :\n"
+	"You can send files to host web services by simply drag-and-dropping them on the icon.\n"
+	"The resulting URL is automatically stored in the clipboard to be directly copied by CTRL+v.\n"
+	"It can keep an history of your last uploads to retrieve them without any account.\n"
+	"Based on a script made by pmd (http://pmdz.info)."),
+	"Yann Dulieu (Nochka85) & Fabrice Rey (Fabounet)")
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -33,34 +35,48 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	if (myIcon->acFileName == NULL)  // set a default icon if none is specified.
+	// on cree le repertoire de l'historique si necessaire.
+	myData.cWorkingDirPath = g_strdup_printf ("%s/dnd2share", g_cCairoDockDataDir);
+	if (! g_file_test (myData.cWorkingDirPath, G_FILE_TEST_EXISTS))
 	{
-		
-		myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		
-		if (!myConfig.bEnableHistory) // Si on ne souhaite pas d'historique -> On efface le contenu du myData.cWorkingDirPath
+		cd_debug ("DND2SHARE : le dossier '%s' n'existe pas encore -> On le crée", myData.cWorkingDirPath);
+		if (g_mkdir (myData.cWorkingDirPath, 7*8*8+7*8+5) != 0)
 		{
-			cd_debug ("DND2SHARE : Pas d'historique -> On efface le contenu de '%s'", myData.cWorkingDirPath);
-			cd_dnd2share_delete_all_pictures ();
+			cd_warning ("couldn't create directory '%s' !\nNo history will be available.", myData.cWorkingDirPath);
+			myConfig.iNbItems == 0;
 		}
-		
-		cd_dnd2share_check_number_of_stored_pictures ();
-		
-		if (myData.iNumberOfStoredPic == 0)
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-		else
-		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCurrentPicturePath);
-		}
-		
-		
-			
 	}
-
-	CD_APPLET_REDRAW_MY_ICON;
 	
+	// On nettoie le repertoire de l'historique si necessaire.
+	cd_dnd2share_clean_working_directory ();
+	
+	// On enregistre les backends.
+	cd_dnd2share_register_uppix_backend ();
+	myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
+	
+	// On construit l'historique.
+	if (myConfig.iNbItems != 0)
+		cd_dnd2share_build_history ();
+	
+	// On remet la derniere URL en memoire pour le clic gauche.
+	if (myData.pUpoadedItems != NULL)
+	{
+		CDUploadedItem *pItem = g_list_last (myData.pUpoadedItems)->data;
+		cd_dnd2share_set_current_url_from_item (pItem);
+	}
+	
+	// On affiche la derniere image uploadee.
+	if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
+	{
+		CDUploadedItem *pItem = myData.pUpoadedItems->data;
+		gchar *cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+		if (g_file_test (cPreview, G_FILE_TEST_EXISTS))
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (cPreview);
+		g_free (cPreview);
+	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+	
+	// On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
@@ -77,8 +93,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-	/// To be continued ...
-	
 	
 CD_APPLET_STOP_END
 
@@ -92,86 +106,27 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->acFileName == NULL)
+		// On nettoie le repertoire de travail si necessaire.
+		cd_dnd2share_clean_working_directory ();
+		
+		// on reconstruit l'historique.
+		cd_dnd2share_clear_history ();
+		if (myConfig.iNbItems != 0)
+			cd_dnd2share_build_history ();
+		
+		myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
+		
+		// On affiche la derniere image uploadee.
+		if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 		{
-			if (!myConfig.bEnableHistory) // Si on ne souhaite pas d'historique -> On efface le contenu du myData.cWorkingDirPath
-			{
-				cd_debug ("DND2SHARE : Pas d'historique -> On efface le contenu de '%s'", myData.cWorkingDirPath);
-				cd_dnd2share_delete_all_pictures ();				
-			}
-			else
-			{
-				if (myConfig.bEnableHistoryLimit)
-				{
-					while (myData.iNumberOfStoredPic > myConfig.iNbItems)
-					{
-						// Je décale tout pour obtenir le nb d'images maxi demandé :
-						gint iSourcePictureNumber = 2; 
-						gchar *cSourcePicturePath;
-						gchar *cSourceLogFile;
-						gchar *cSourceConfigFile;
-						
-						gint iDestPictureNumber = 1; 
-						gchar *cDestPicturePath;
-						gchar *cDestLogFile;
-						gchar *cDestConfigFile;
-								
-						gint i;
-						
-						for (i=0 ; i< myData.iNumberOfStoredPic; i++)
-						{
-							cd_debug ("DND2SHARE : Trop d'image -> J'en retire 1 !");
-							cSourcePicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iSourcePictureNumber);
-							cSourceLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iSourcePictureNumber);
-							cSourceConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iSourcePictureNumber);
-							
-							cDestPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iDestPictureNumber);
-							cDestLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iDestPictureNumber);
-							cDestConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iDestPictureNumber);
-							
-							remove(cDestPicturePath);
-							remove(cDestLogFile);
-							remove(cDestConfigFile);
-										
-							rename(cSourcePicturePath, cDestPicturePath);
-							rename(cSourceLogFile, cDestLogFile);
-							rename(cSourceConfigFile, cDestConfigFile);
-							
-							iSourcePictureNumber = iSourcePictureNumber + 1;
-							iDestPictureNumber = iDestPictureNumber + 1;
-						}
-						g_free (cSourcePicturePath);
-						g_free (cSourceLogFile);
-						g_free (cSourceConfigFile);
-						g_free (cDestPicturePath);
-						g_free (cDestLogFile);
-						g_free (cDestConfigFile);
-						
-						cd_dnd2share_check_number_of_stored_pictures ();
-					}
-				
-				myData.iCurrentPictureNumber = myData.iNumberOfStoredPic;
-				myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		
-				}
-			}			
-			
-			cd_dnd2share_check_number_of_stored_pictures ();
-			
-			
-			if (myData.iNumberOfStoredPic == 0)
-				CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-			else
-			{
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCurrentPicturePath);
-			}
-			
-			CD_APPLET_REDRAW_MY_ICON;
+			CDUploadedItem *pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);
+			if (pItem == NULL)
+				pItem = myData.pUpoadedItems->data;
+			gchar *cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+			if (g_file_test (cPreview, G_FILE_TEST_EXISTS))
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (cPreview);
+			g_free (cPreview);
 		}
-		
-		/// To be continued ...
-		
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
 CD_APPLET_RELOAD_END

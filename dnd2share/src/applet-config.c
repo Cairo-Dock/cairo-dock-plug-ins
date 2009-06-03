@@ -18,40 +18,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableDialogs = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
-	myConfig.dTimeDialogs = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "time_dialogs", 5000);
-	myConfig.bEnableHistory = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_history");
-	myConfig.bEnableHistoryLimit = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_history_limit");
+	myConfig.dTimeDialogs = 1000. * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "dialogs_duration", 5);
 	myConfig.iNbItems = CD_CONFIG_GET_INTEGER ("Configuration", "nb_items");
-	myConfig.iUrlPicturesType = CD_CONFIG_GET_INTEGER ("Configuration", "url_pictures_type");
-	
-	if (!myConfig.bEnableHistory)
-	{
-		myConfig.bEnableHistoryLimit = TRUE;
-		myConfig.iNbItems = 1;
-	}
-		
-	myData.cWorkingDirPath = g_strdup_printf ("%s/.config/cairo-dock/dnd2share",
-					g_getenv ("HOME"));
-	if (g_file_test (myData.cWorkingDirPath, G_FILE_TEST_EXISTS))
-	{
-		cd_debug ("DND2SHARE : Le dossier '%s' existe déjà", myData.cWorkingDirPath);
-	}
-	else  
-	{
-		cd_debug ("DND2SHARE : le dossier '%s' n'existe pas encore -> On le crée", myData.cWorkingDirPath);
-		gchar *cCommandMkdir = g_strdup_printf ("mkdir %s", myData.cWorkingDirPath);
-		g_spawn_command_line_async (cCommandMkdir, NULL);
-		g_free (cCommandMkdir);
-	}
-	
-	cd_dnd2share_check_number_of_stored_pictures ();
-		
-	if (myData.iNumberOfStoredPic != 0)
-	{
-		myData.iCurrentPictureNumber = myData.iNumberOfStoredPic;
-		cd_debug("DND2SHARE : Je vais récupérer les info dans %i.conf", myData.iCurrentPictureNumber);
-		cd_dnd2share_get_urls_from_stored_file ();
-	}
+	myConfig.bkeepCopy = CD_CONFIG_GET_BOOLEAN ("Configuration", "keep copy");
+	myConfig.bDisplayLastImage = myConfig.bkeepCopy && CD_CONFIG_GET_BOOLEAN ("Configuration", "display last image");
+	myConfig.iPreferedSite = CD_CONFIG_GET_INTEGER ("Configuration", "prefered site");
+	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -64,6 +36,13 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);  // stoppe le thread.
 	
+	g_free (myData.cCurrentFilePath);  // on libere la memoire partagee apres.
+	g_strfreev (myData.cResultUrls);
 	
+	cd_dnd2share_clear_history ();
+	
+	g_free (myData.cLastURL);
+	g_free (myData.cWorkingDirPath);
 CD_APPLET_RESET_DATA_END

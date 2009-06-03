@@ -42,14 +42,14 @@ sed -i "s/CD_PKG/$UpperName/g" template.conf.in
 mv template.conf.in "$AppletName.conf.in"
 
 sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
-sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
+sed -i "s/pkgdatadir/${LowerName}datadir/g" Makefile.am
 
 
 cd ../src
 sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
 sed -i "s/CD_LIB_NAME/$LibName/g" Makefile.am
 sed -i "s/CD_PKG/$UpperName/g" Makefile.am
-sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
+sed -i "s/pkgdatadir/${LowerName}datadir/g" Makefile.am
 
 sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c

@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(dnd2sharedatadir)
 
 module_DATA = \
 	dnd2share.conf\

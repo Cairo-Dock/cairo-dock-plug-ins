@@ -1,418 +1,372 @@
 #include <stdlib.h>
 #include <math.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
-#include "applet-config.h"
 #include "applet-dnd2share.h"
 
 
-
-void cd_dnd2share_check_number_of_stored_pictures (void)
+void cd_dnd2share_free_uploaded_item (CDUploadedItem *pItem)
 {
-	/// A FAIRE : Nettoyer les endroits où la fonction est utilisée !  <- Pour l'instant, on le fait un peu partout :-D
-	
-	gchar *cPicFile;
-	gboolean bContinueSearch = TRUE;
-	
-	
-	myData.iNumberOfStoredPic = 0;
-	
-	//~ while (myData.iNumberOfStoredPic < myConfig.iNbItems && bContinueSearch)
-	while (bContinueSearch)
-	{
-		cPicFile = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iNumberOfStoredPic+1);
-		if (g_file_test (cPicFile, G_FILE_TEST_EXISTS))
-		{
-			myData.iNumberOfStoredPic++;
-			bContinueSearch = TRUE;
-		}
-		else
-			bContinueSearch = FALSE;
-	}
-	g_free (cPicFile);
-	cd_debug("DND2SHARE : Nombre d'images stockées : %i",myData.iNumberOfStoredPic);	
+	if (pItem == NULL)
+		return ;
+	g_strfreev (pItem->cDistantUrls);
+	g_free (pItem->cItemName);
+	g_free (pItem->cLocalPath);
+	g_free (pItem);
 }
 
 
-void cd_dnd2share_extract_urls_from_log (void)
+void cd_dnd2share_build_history (void)
 {
-	// On récupère toutes les infos dans le fichier de log :
-	//D'abord l'url de DisplayImage
-	/// A FAIRE : se passer des g_spawn_command_line_sync !
-	gchar *cCommandDisplayImage = g_strdup_printf ("grep -oEm 1 '\\[url\\=([^]]*)' %s", myData.cCurrentLogFile);
-	myData.cDisplayImage = NULL;
-	g_spawn_command_line_sync (cCommandDisplayImage, &myData.cDisplayImage,  NULL, NULL, NULL);
-	myData.cDisplayImage = strchr(myData.cDisplayImage, 'h'); // On retire tout ce qui se trouve avant http://
-	myData.cDisplayImage[strlen(myData.cDisplayImage) - 1] = '\0';  // on retire le \n à la fin
-	cd_debug ("DND2SHARE : Display Image = %s", myData.cDisplayImage);
-	g_free (cCommandDisplayImage);
-	// Puis l'url de DirectLink
-	gchar *cCommandDirectLink = g_strdup_printf ("grep -oEm 1 '\\[img\\]([^[]*)' %s", myData.cCurrentLogFile);
-	myData.cDirectLink = NULL;
-	g_spawn_command_line_sync (cCommandDirectLink, &myData.cDirectLink,  NULL, NULL, NULL);
-	myData.cDirectLink = strchr(myData.cDirectLink, 'h'); // On retire tout ce qui se trouve avant http://
-	myData.cDirectLink[strlen(myData.cDirectLink) - 1] = '\0';  // on retire le \n à la fin
-	cd_debug ("DND2SHARE : Direct Link = %s", myData.cDirectLink);
-	g_free (cCommandDirectLink);
-	// Puis on créé les autres URLs à la mano ;-) :
-	myData.cBBCodeFullPic = g_strdup_printf ("[url=%s][img]%s[/img][/url]", myData.cDisplayImage, myData.cDirectLink);
-	gchar *cDirectLinkWithoutExt;
-	cDirectLinkWithoutExt = g_strdup_printf ("%s", myData.cDisplayImage); // On copie "myData.cDisplayImage" dans "cDirectLinkWithoutExt"
-	cDirectLinkWithoutExt[strlen(cDirectLinkWithoutExt) - 5] = '\0';  // on retire le .html\0 à la fin
-	cd_debug ("DND2SHARE : BBCODE_Full = '%s'", myData.cBBCodeFullPic);
-	myData.cBBCode150px = g_strdup_printf ("[url=%s][img]%st.jpg[/img][/url]", myData.cDisplayImage, cDirectLinkWithoutExt);
-	myData.cBBCode600px = g_strdup_printf ("[url=%s][img]%stt.jpg[/img][/url]", myData.cDisplayImage, cDirectLinkWithoutExt);
-	g_free (cDirectLinkWithoutExt);
-	cd_debug ("DND2SHARE : BBCODE_150px = '%s'", myData.cBBCode150px);
-	cd_debug ("DND2SHARE : BBCODE_600px = '%s'", myData.cBBCode600px);
+	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+	if (pKeyFile == NULL)  // pas encore d'historique.
+	{
+		g_free (cConfFilePath);
+		return ;
+	}
 	
-	/// A FAIRE : Controler la présence des bbcodes .... car ils peuvent ne pas exister en fonction de la taille de l'image
-
-	// On remplit le nouveau fichier de conf :
-	FILE* fichier = NULL;
-	fichier = fopen(myData.cCurrentConfigFile, "w+");
-	if (fichier != NULL)
+	CDUploadedItem *pItem;
+	gsize length = 0;
+	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	int iSiteID;
+	gchar *cItemName;
+	GString *sUrlKey = g_string_new ("");
+	GError *erreur = NULL;
+	int i,j;
+	for (i = 0; pGroupList[i] != NULL; i ++)
 	{
-		fprintf(fichier, "[URLS]\nDisplayImage = %s\nDirectLink = %s\nBBCodeFull = [url=%s][img]%s[/img][/url]\nBBCode150px = %s\nBBCode600px = %s\n",
-				myData.cDisplayImage,
-				myData.cDirectLink,
-				myData.cDisplayImage, myData.cDirectLink,
-				myData.cBBCode150px,
-				myData.cBBCode600px);
-		fclose(fichier);
-		remove(myData.cCurrentLogFile);  // On efface l'ancien fichier log
+		cItemName = pGroupList[i];
+		iSiteID = g_key_file_get_integer (pKeyFile, cItemName, "site", &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning (erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (iSiteID >= CD_NB_SITES)
+		{
+			cd_warning ("dnd2share : this backend doesn't exist !");
+			continue;
+		}
+		
+		pItem = g_new0 (CDUploadedItem, 1);
+		pItem->cItemName = cItemName;
+		pItem->iSiteID = iSiteID;
+		pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iSiteID].iNbUrls+1);
+		for (j = 0; j < myData.backends[pItem->iSiteID].iNbUrls; j ++)
+		{
+			g_string_printf (sUrlKey, "url%d", j);
+			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);
+		}
+		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);  /// un 'int' est-ce que ca suffit ?...
+		pItem->cLocalPath = g_key_file_get_string (pKeyFile, cItemName, "local path", NULL);
+		pItem->cFileName = g_path_get_basename (pItem->cLocalPath);
+		
+		myData.pUpoadedItems = g_list_prepend (myData.pUpoadedItems, pItem);
 	}
-	else
-	{
-		cd_debug ("DND2SHARE : Erreur dans la création du fichier %s", myData.cCurrentConfigFile);
-	}
-
-	cd_dnd2share_check_number_of_stored_pictures ();
-
+	g_string_free (sUrlKey, TRUE);
+	g_free (pGroupList);  // le contenu a ete pris par la liste.
+	g_key_file_free (pKeyFile);
 }
 
-void cd_dnd2share_get_urls_from_stored_file (void)
-{	
-	if (g_file_test (myData.cCurrentConfigFile, G_FILE_TEST_EXISTS))
-	{
-		GError *erreur = NULL;
-		GKeyFile *pKeyFile = cairo_dock_open_key_file (myData.cCurrentConfigFile);
-			
-		
-		if (pKeyFile != NULL)
-		{
-			myData.cDisplayImage = g_key_file_get_string (pKeyFile, "URLS", "DisplayImage", &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			
-			myData.cDirectLink = g_key_file_get_string (pKeyFile, "URLS", "DirectLink", &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			
-			myData.cBBCodeFullPic = g_key_file_get_string (pKeyFile, "URLS", "BBCodeFull", &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			
-			myData.cBBCode150px = g_key_file_get_string (pKeyFile, "URLS", "BBCode150px", &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			
-			myData.cBBCode600px = g_key_file_get_string (pKeyFile, "URLS", "BBCode600px", &erreur);
-			if (erreur != NULL)
-			{
-				cd_warning (erreur->message);
-				g_error_free (erreur);
-				erreur = NULL;
-			}
-			
-			g_key_file_free (pKeyFile);
-						
-			myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-			cd_debug ("DND2SHARE : Image '%s/%i.preview'",myData.cWorkingDirPath, myData.iCurrentPictureNumber);		
-		}
-	}
-	
+void cd_dnd2share_clear_history (void)
+{
+	g_list_foreach (myData.pUpoadedItems, (GFunc) cd_dnd2share_free_uploaded_item, NULL);
+	g_list_free (myData.pUpoadedItems);
+	myData.pUpoadedItems = NULL;
 }
 
 
-void cd_dnd2share_new_picture (gchar *cDroppedPicturePath)
-{
-	gint iTailleMaxImage = 2000000;  // Taille limite en octets autorisée pour l'envoi d'image
-	gint iTailleImage;
-	gchar *cOutput;
-	
-	g_free (myData.cCurrentPicturePath);
-		
-	GString *command_check_size = g_string_new ("");
-	g_string_printf (command_check_size, "stat -c%%s \"%s\"", cDroppedPicturePath);
-	g_spawn_command_line_sync (command_check_size->str, &cOutput,  NULL, NULL, NULL);
-	iTailleImage = atoi(cOutput);
-	cd_debug ("DND2SHARE : taille de l'image = %i octets",iTailleImage);
-	
-	if (iTailleImage < iTailleMaxImage)  // L'image est inférieure au 2Mo Maxi -> On peut continuer :-)
-	{
-		
-		cd_dnd2share_check_number_of_stored_pictures ();
-		/// A FAIRE :  On décale tout :
-		// On décale toutes les images stockées si on dépasse le nombre d'images demandées :	
-		if (myData.iNumberOfStoredPic == myConfig.iNbItems && myConfig.bEnableHistoryLimit)
-		{
-			gint iSourcePictureNumber = 2; 
-			gchar *cSourcePicturePath;
-			gchar *cSourceLogFile;
-			gchar *cSourceConfigFile;
-			
-			gint iDestPictureNumber = 1; 
-			gchar *cDestPicturePath;
-			gchar *cDestLogFile;
-			gchar *cDestConfigFile;
-					
-			gint i;
-			
-			for (i=0 ; i< myData.iNumberOfStoredPic; i++)
-			{
-				cSourcePicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iSourcePictureNumber);
-				cSourceLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iSourcePictureNumber);
-				cSourceConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iSourcePictureNumber);
-				
-				cDestPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iDestPictureNumber);
-				cDestLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iDestPictureNumber);
-				cDestConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iDestPictureNumber);
-				
-				remove(cDestPicturePath);
-				remove(cDestLogFile);
-				remove(cDestConfigFile);
-							
-				rename(cSourcePicturePath, cDestPicturePath);
-				rename(cSourceLogFile, cDestLogFile);
-				rename(cSourceConfigFile, cDestConfigFile);
-				
-				iSourcePictureNumber = iSourcePictureNumber + 1;
-				iDestPictureNumber = iDestPictureNumber + 1;
-			}
-			g_free (cSourcePicturePath);
-			g_free (cSourceLogFile);
-			g_free (cSourceConfigFile);
-			g_free (cDestPicturePath);
-			g_free (cDestLogFile);
-			g_free (cDestConfigFile);	
-		}
-		
-		cd_dnd2share_check_number_of_stored_pictures ();
-		myData.iCurrentPictureNumber = myData.iNumberOfStoredPic + 1;
-		myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-				
-		cd_debug ("DND2SHARE : Fichier de log -> %s", myData.cCurrentLogFile);	
-		
-		// On envoie notre fichier :
-		GString *command_upload = g_string_new ("");
-		g_string_printf (command_upload, "curl uppix.net -F myimage=@%s -F submit=Upload -F formup=1 -o %s", cDroppedPicturePath, myData.cCurrentLogFile);
-		g_spawn_command_line_async (command_upload->str, NULL);
-		/// à voir comment rajouter un équivalent à > /dev/null 2>&1 
-		g_string_free (command_upload, TRUE);
-		
-		
-		// On affecte l'image à notre icone et on redraw :
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (cDroppedPicturePath);
-		CD_APPLET_REDRAW_MY_ICON;
-		
-			
-		// On affiche une info-bulle quand tout est terminé :	
-		if (myConfig.bEnableDialogs)
-		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog ("%s\n%s",
-				myIcon,
-				myContainer,
-				myConfig.dTimeDialogs,
-				D_("Picture has been uploaded."),
-				D_("Press 'Left mouse button' to retrieve the urls"));
-		}
-				
-		// On copie l'image dans myData.cWorkingDirPath :
-		/// A FAIRE : Copier une miniature au lieu de l'original ;-)
-		gchar *cCommandCopyPicture = g_strdup_printf ("cp %s %s", cDroppedPicturePath, myData.cCurrentPicturePath);
-		g_spawn_command_line_async (cCommandCopyPicture, NULL);
-		g_free (cCommandCopyPicture);
-	}
-	else  // L'image est trop volumineuse 
-	{
-		cd_debug ("DND2SHARE : Désolé, l'image dépasse le quota de 2Mo imposé par Uppix.net");
-		
-		if (myConfig.bEnableDialogs)
-		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog ("%s\n%s",
-				myIcon,
-				myContainer,
-				myConfig.dTimeDialogs,
-				D_("Sorry, the picture exceeds"),
-				D_("the 2Mo Max file size allowed by Uppix.net"));
-		}
-		
-	}
-	g_string_free (command_check_size, TRUE);
-	g_free (cOutput);
-	
-	cd_dnd2share_check_number_of_stored_pictures ();	
-}
 
-void cd_dnd2share_delete_picture (void)
+static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 {
-	cd_message ("DND2SHARE : J'efface l'image et les fichiers .log et .conf (si présents)");
-		
-	remove(myData.cCurrentPicturePath);
-	remove(myData.cCurrentLogFile);
-	remove(myData.cCurrentConfigFile);
-	
-	// On décale les fichiers si on a supprimer une image différente de la dernière
-	if (myData.iCurrentPictureNumber != myData.iNumberOfStoredPic)
+	gboolean bResultOK = myData.pCurrentBackend->upload (cFilePath, myData.iCurrentFileType);
+}
+static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
+{
+	if (myData.cResultUrls == NULL)  // une erreur s'est produite.
 	{
-		gint iSourcePictureNumber = myData.iCurrentPictureNumber + 1; 
-		gchar *cSourcePicturePath;
-		gchar *cSourceLogFile;
-		gchar *cSourceConfigFile;
-		
-		gint iDestPictureNumber = myData.iCurrentPictureNumber; 
-		gchar *cDestPicturePath;
-		gchar *cDestLogFile;
-		gchar *cDestConfigFile;
-				
-		gint i;
-		
-		for (i=0 ; i<myData.iNumberOfStoredPic; i++)
-		{
-			cSourcePicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iSourcePictureNumber);
-			cSourceLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iSourcePictureNumber);
-			cSourceConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iSourcePictureNumber);
-			
-			cDestPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, iDestPictureNumber);
-			cDestLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, iDestPictureNumber);
-			cDestConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, iDestPictureNumber);
-						
-			rename(cSourcePicturePath, cDestPicturePath);
-			rename(cSourceLogFile, cDestLogFile);
-			rename(cSourceConfigFile, cDestConfigFile);
-			
-			iSourcePictureNumber = iSourcePictureNumber + 1;
-			iDestPictureNumber = iDestPictureNumber + 1;
-		}
-		g_free (cSourcePicturePath);
-		g_free (cSourceLogFile);
-		g_free (cSourceConfigFile);
-		g_free (cDestPicturePath);
-		g_free (cDestLogFile);
-		g_free (cDestConfigFile);
-	}
-	else
-	{
-		// Pas de décalage à faire mais on passe à l'image précédente et on redraw :
-		myData.iCurrentPictureNumber = myData.iCurrentPictureNumber - 1;
-		myData.cCurrentPicturePath = g_strdup_printf ("%s/%i.preview", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentLogFile = g_strdup_printf ("%s/%i.log", myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-		myData.cCurrentConfigFile = g_strdup_printf ("%s/%i.conf",myData.cWorkingDirPath, myData.iCurrentPictureNumber);
-	}
-	
-	
-	cd_dnd2share_check_number_of_stored_pictures ();
-	
-	if (myData.iNumberOfStoredPic == 0)
-	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog ("No stored files\nJust drag'n drop a file on the icon to upload it",
+		cairo_dock_show_temporary_dialog_with_icon (D_("Couldn't upload the file, check that your internet connexion is active."),
 			myIcon,
 			myContainer,
-			myConfig.dTimeDialogs);
+			myConfig.dTimeDialogs,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
-	else 
+	else
 	{
-		if (myData.cCurrentPicturePath != NULL)
+		// On rajoute l'item a l'historique.
+		if (myConfig.iNbItems != 0)
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCurrentPicturePath);
+			// On ouvre le fichier de l'historique.
+			gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
+			GKeyFile *pKeyFile;
+			if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // pas encore d'historique.
+				pKeyFile = g_key_file_new ();
+			else
+				pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+			if (pKeyFile == NULL)  // probleme de droit ?
+			{
+				cd_warning ("Couldn't add this item to history.");
+			}
+			else
+			{
+				// On regarde si on n'a pas atteint la limite de taille de l'historique.
+				gsize length = 0;
+				gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+				if (length == myConfig.iNbItems)  // il faut supprimer le 1er item.
+				{
+					g_key_file_remove_group (pKeyFile, pGroupList[0], NULL);
+					if (myData.pUpoadedItems != NULL)  // il est en dernier dans la liste.
+					{
+						GList *it = g_list_last (myData.pUpoadedItems);
+						if (it->prev != NULL)
+							it->prev->next = NULL;
+						it->prev = NULL;
+						cd_dnd2share_free_uploaded_item (it->data);
+						g_list_free1 (it);
+					}
+				}
+				g_strfreev (pGroupList);
+				
+				// on rajoute le nouvel item en fin de fichier.
+				time_t iDate = time (NULL);
+				gchar *cItemName = g_strdup_printf ("item_%ld", iDate);
+				
+				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite);
+				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);  // idem que precedemment sur l'integer.
+				GString *sUrlKey = g_string_new ("");
+				int j;
+				for (j = 0; j < myData.pCurrentBackend->iNbUrls; j ++)
+				{
+					g_string_printf (sUrlKey, "url%d", j);
+					g_key_file_set_string (pKeyFile, cItemName, sUrlKey->str, myData.cResultUrls[j]);
+				}
+				g_key_file_set_string (pKeyFile, cItemName, "local path", cFilePath);
+				
+				// et en debut de liste aussi.
+				CDUploadedItem *pItem = g_new0 (CDUploadedItem, 1);
+				pItem->cItemName = cItemName;
+				pItem->iSiteID = myConfig.iPreferedSite;
+				pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iSiteID].iNbUrls + 1);
+				for (j = 0; j < myData.pCurrentBackend->iNbUrls; j ++)
+				{
+					pItem->cDistantUrls[j] = g_strdup (myData.cResultUrls[j]);
+				}
+				pItem->iDate = iDate;
+				pItem->cLocalPath = g_strdup (cFilePath);
+				pItem->cFileName = g_path_get_basename (cFilePath);
+				myData.pUpoadedItems = g_list_prepend (myData.pUpoadedItems, pItem);
+				
+				// On ecrit tout.
+				cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+				g_key_file_free (pKeyFile);
+				g_string_free (sUrlKey, TRUE);
+				
+				// On garde une copie du fichier.
+				if (myConfig.bkeepCopy)
+				{
+					gchar *cCommand = g_strdup_printf ("cp '%s' '%s/%s'", cFilePath, myData.cWorkingDirPath, cItemName);
+					int r = system (cCommand);
+					g_free (cCommand);
+				}
+			}
+			g_free (cConfFilePath);
+		}
+		
+		// On copie l'URL dans le clipboard.
+		gchar *cURL = myData.cResultUrls[myData.pCurrentBackend->iPreferedUrlType];
+		if (cURL == NULL)
+		{
+			int i;
+			for (i = 0; i < myData.pCurrentBackend->iNbUrls && cURL == NULL; i ++)
+			{
+				cURL = myData.cResultUrls[i];
+			}
+		}
+		cd_dnd2share_copy_url_to_clipboard (cURL);
+		
+		// On garde en memoire la derniere URL au cas ou on n'aurait pas/plus d'historique.
+		g_free (myData.cLastURL);
+		myData.cLastURL = g_strdup (cURL);
+		myData.iCurrentItemNum = 0;
+		
+		// On signale par un dialogue la fin de l'upload.
+		if (myConfig.bEnableDialogs || myDesklet)
+		{
 			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog ("Picture %i:\nPress 'Left mouse button' to\ncopy the prefered url\ninto the clipboard",
+			cairo_dock_show_temporary_dialog_with_icon (D_("File has been uploaded.\nJust press CTRL+v to paste its URL anywhere."),
 				myIcon,
 				myContainer,
 				myConfig.dTimeDialogs,
-				myData.iCurrentPictureNumber);
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
 	}
-	CD_APPLET_REDRAW_MY_ICON;	
-}
-
-
-void cd_dnd2share_delete_all_pictures (void)
-{
-	cd_message ("DND2SHARE : J'efface le répertoire complet...");
-
-	// On efface PUIS re-crée le répertoire de travail :
-	gchar *cCommandDeleteDir = g_strdup_printf ("rm -rf %s", myData.cWorkingDirPath);
-	g_spawn_command_line_async (cCommandDeleteDir, NULL);
-	g_free (cCommandDeleteDir);
-	gchar *cCommandCreateDir = g_strdup_printf ("mkdir %s", myData.cWorkingDirPath);
-	g_spawn_command_line_async (cCommandCreateDir, NULL);
-	g_free (cCommandCreateDir);
 	
-	// et on remet tout à zéro :
-	myData.iNumberOfStoredPic = 0;
-	myData.iCurrentPictureNumber = 0;
-	// puis on redraw :
-	CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-	CD_APPLET_REDRAW_MY_ICON;	
+	// On arrete son animation.
+	cairo_dock_stop_icon_animation (myIcon);
+	
+	if (myConfig.bDisplayLastImage)
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
+		CD_APPLET_REDRAW_MY_ICON;
+	}
+	
+	// On nettoie la memoire partagee.
+	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	myData.pMeasureTimer = NULL;
+	g_free (myData.cCurrentFilePath);
+	myData.cCurrentFilePath = NULL;
+	g_strfreev (myData.cResultUrls);
+	myData.cResultUrls = NULL;
+	return FALSE;
+}
+void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
+{
+	if (strncmp (cFilePath, "file://", 7) == 0)
+		cFilePath += 7;
+	if (myData.pMeasureTimer != NULL)
+	{
+		cd_warning ("Please wait the current upload is finished.");
+		return ;
+	}
+	
+	// on lance la mesure.
+	myData.cCurrentFilePath = g_strdup (cFilePath);  // sera efface a la fin de l'upload.
+	myData.iCurrentFileType = myData.iCurrentFileType;
+	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,  // 1 shot measure.
+		NULL,
+		(CairoDockReadTimerFunc) _cd_dnd2share_threaded_upload,
+		(CairoDockUpdateTimerFunc) _cd_dnd2share_update_from_result,
+		myData.cCurrentFilePath);
+	
+	cairo_dock_launch_measure (myData.pMeasureTimer);
+	
+	// On lance une animation.
+	cairo_dock_request_icon_animation (myIcon, myContainer, myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
+	cairo_dock_mark_icon_as_clicked (myIcon);  // pour ne pas se faire interrompre par un survol.
+	cairo_dock_launch_animation (myContainer);
 }
 
-void cd_dnd2share_copy_url_into_clipboard (gint iUrlNumberInList)
-{	
-	gchar *cUrlToCopy;
-	// On copie notre url dans le clipboard :	
+
+
+void cd_dnd2share_clear_working_directory (void)
+{
+	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
+	gchar *cCommand = g_strdup_printf ("rm -rf '%s'/*", myData.cWorkingDirPath);
+	int r = system (cCommand);
+	g_free (cCommand);
+	
+	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
+	g_file_set_contents (cConfFilePath, "#dnd2share's history\n\n", -1, NULL);
+	g_free (cConfFilePath);
+	
+	if (myConfig.bDisplayLastImage)
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+	}
+}
+
+
+void cd_dnd2share_clear_copies_in_working_directory (void)
+{
+	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
+	gchar *cCommand = g_strdup_printf ("find '%s' ! -name *.conf -exec rm -f {} \\;", myData.cWorkingDirPath);
+	int r = system (cCommand);
+	g_free (cCommand);
+}
+
+void cd_dnd2share_set_working_directory_size (int iNbItems)
+{
+	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+	if (pKeyFile == NULL)  // pas encore d'historique.
+	{
+		g_free (cConfFilePath);
+		return ;
+	}
+	
+	gsize length = 0;
+	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	if (length > iNbItems)
+	{
+		gchar *cItemName;
+		GString *sPreviewPath = g_string_new ("");
+		int i;
+		for (i = 0; pGroupList[i] != NULL && i < length - iNbItems; i ++)  // on supprime les n premiers groupes en trop, ainsi que leurs eventuelles prevues.
+		{
+			cItemName = pGroupList[i];
+			g_string_printf (sPreviewPath, "%s/%s", myData.cWorkingDirPath, cItemName);
+			g_remove (sPreviewPath->str);
+			g_key_file_remove_group (pKeyFile, cItemName, NULL);
+		}
+		cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+		g_string_free (sPreviewPath, TRUE);
+	}
+	
+	g_strfreev (pGroupList);
+	g_key_file_free (pKeyFile);
+	g_free (cConfFilePath);
+}
+
+void cd_dnd2share_clean_working_directory (void)
+{
+	if (myConfig.iNbItems == 0)  // on ne veut plus d'historique => vidons le repertoire.
+	{
+		cd_debug ("DND2SHARE : Pas d'historique -> On efface le contenu de '%s'", myData.cWorkingDirPath);
+		cd_dnd2share_clear_working_directory ();
+	}
+	else
+	{
+		cd_dnd2share_set_working_directory_size (myConfig.iNbItems);  // on efface les items en trop.
+		if (! myConfig.bkeepCopy)  // on veut bien un historique mais sans les sauvegardes locales des images => nettoyons le repertoire.
+		{
+			cd_debug ("DND2SHARE : Pas de copies locales -> On efface les images de '%s'", myData.cWorkingDirPath);
+			cd_dnd2share_clear_copies_in_working_directory ();
+		}
+	}
+}
+
+
+void cd_dnd2share_copy_url_to_clipboard (const gchar *cURL)
+{
 	GtkClipboard *pClipBoard;
 	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+	gtk_clipboard_set_text (pClipBoard, cURL, -1);
+}
+
+
+gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem)
+{
+	CDSiteBackend *pBackend = &myData.backends[pItem->iSiteID];
+	gchar *cURL = pItem->cDistantUrls[pBackend->iPreferedUrlType];
+	if (cURL == NULL)
+	{
+		int i;
+		for (i = 0; i < pBackend->iNbUrls && cURL == NULL; i ++)
+		{
+			cURL = pItem->cDistantUrls[i];
+		}
+	}
+	return cURL;
+}
+
+void cd_dnd2share_set_current_url_from_item (CDUploadedItem *pItem)
+{
+	gchar *cURL = cd_dnd2share_get_prefered_url_from_item (pItem);
+	g_free (myData.cLastURL);
+	myData.cLastURL = g_strdup (cURL);
 	
-	cd_debug ("DND2SHARE : Url à copier dans le clipboard = %i", iUrlNumberInList); 
-	
-	switch (iUrlNumberInList)
-    {
-		case (0):
-			cUrlToCopy =  g_strdup_printf ("%s", myData.cBBCode150px);
-		break;
-		case (1):
-			cUrlToCopy =  g_strdup_printf ("%s", myData.cBBCode600px);
-		break;
-		case (2):
-			cUrlToCopy =  g_strdup_printf ("%s", myData.cBBCodeFullPic);
-		break;
-		case (3):
-			cUrlToCopy =  g_strdup_printf ("%s", myData.cDisplayImage);
-		break;
-		case (4):
-			cUrlToCopy =  g_strdup_printf ("%s", myData.cDirectLink);
-		break;
-		default:
-			cd_debug ("DND2SHARE : Erreur dans le choix de l'url !");
-		break;
-    }
-    cd_debug ("DND2SHARE : cUrlToCopy = %s",cUrlToCopy);
-    gtk_clipboard_set_text (pClipBoard, cUrlToCopy, -1);
-    cd_debug ("DND2SHARE : C'est copié !!!");
-    g_free (cUrlToCopy);
-    cd_debug ("DND2SHARE : cUrlToCopy est libéré !!!");
+	int i = 0;
+	GList *it;
+	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
+	{
+		if (it->data == pItem)
+			break ;
+		i ++;
+	}
+	myData.iCurrentItemNum = i;
 }
