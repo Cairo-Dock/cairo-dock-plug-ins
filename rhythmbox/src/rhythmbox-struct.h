@@ -72,52 +72,52 @@ struct _AppletData {
 	
 	GLuint TextureEmblemPause;
 	
-	gint itopleftX;
-	gint itopleftY;
-	gint ibottomleftX;
-	gint ibottomleftY;
-	gint ibottomrightX;
-	gint ibottomrightY;
-	gint itoprightX;
-	gint itoprightY;
+	gdouble itopleftX;
+	gdouble itopleftY;
+	gdouble ibottomleftX;
+	gdouble ibottomleftY;
+	gdouble ibottomrightX;
+	gdouble ibottomrightY;
+	gdouble itoprightX;
+	gdouble itoprightY;
 	GLuint draw_cover;  // calllist
 	
 	gint numberButtons;
 	gboolean osd;
 	
 	// A passer en structure :
-	gint button1coordX;
-	gint button1coordY;
-	gint button1sizeX;
-	gint button1sizeY;
+	gdouble button1coordX;
+	gdouble button1coordY;
+	gdouble button1sizeX;
+	gdouble button1sizeY;
 	GLuint TextureButton1;
 	gboolean mouseOnButton1;
 	GLuint TextureOsdPlay;
 	GLuint TextureOsdPause;
 	
 	// A passer en structure :
-	gint button2coordX;
-	gint button2coordY;
-	gint button2sizeX;
-	gint button2sizeY;
+	gdouble button2coordX;
+	gdouble button2coordY;
+	gdouble button2sizeX;
+	gdouble button2sizeY;
 	GLuint TextureButton2;
 	gboolean mouseOnButton2;
 	GLuint TextureOsdPrev;
 	
 	// A passer en structure :
-	gint button3coordX;
-	gint button3coordY;
-	gint button3sizeX;
-	gint button3sizeY;
+	gdouble button3coordX;
+	gdouble button3coordY;
+	gdouble button3sizeX;
+	gdouble button3sizeY;
 	GLuint TextureButton3;
 	gboolean mouseOnButton3;
 	GLuint TextureOsdNext;
 	
 	// A passer en structure :
-	gint button4coordX;
-	gint button4coordY;
-	gint button4sizeX;
-	gint button4sizeY;
+	gdouble button4coordX;
+	gdouble button4coordY;
+	gdouble button4sizeX;
+	gdouble button4sizeY;
 	GLuint TextureButton4;
 	gboolean mouseOnButton4;
 	GLuint TextureOsdHome;
@@ -125,6 +125,7 @@ struct _AppletData {
 	gint iMouseX;
 	gint iMouseY;
 	gboolean NoOSD;
+	gint iState;  // combinaison des etats des differents boutons.
 	
 	gboolean CoverWasDistant;
 	gint iAnimationCount;

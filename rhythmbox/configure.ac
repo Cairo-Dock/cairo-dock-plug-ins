@@ -35,6 +35,5 @@ AC_CONFIG_FILES([Makefile
 		data/Makefile
 		data/rhythmbox.conf
 		data/themes/Makefile
-		data/themes/None/Makefile
 		data/themes/cd_box_simple/Makefile])
 AC_OUTPUT

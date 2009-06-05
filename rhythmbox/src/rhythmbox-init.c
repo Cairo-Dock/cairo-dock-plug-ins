@@ -140,7 +140,8 @@ CD_APPLET_RELOAD_BEGIN
 			myData.pSurfaces[i] = NULL;
 		}
 	}
-		
+	
+	cd_opengl_reset_opengl_datas (myApplet);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -150,11 +151,9 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED,
 			(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 			myApplet);
-		cd_opengl_reset_opengl_datas (myApplet);  // si le theme a change.
 		
-		if (myConfig.bOpenglThemes)
+		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 		{
-			myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);			
 			//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 				cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
@@ -162,6 +161,11 @@ CD_APPLET_RELOAD_BEGIN
 					CAIRO_DOCK_RUN_AFTER,
 					myApplet);
 		}
+	}
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+	{
+		myConfig.bOpenglThemes = cd_opengl_load_3D_theme (myApplet, myConfig.cThemePath);
 	}
 	
 	//\_______________ On redessine notre icone.

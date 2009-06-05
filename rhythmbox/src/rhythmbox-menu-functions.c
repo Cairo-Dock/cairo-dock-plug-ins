@@ -216,9 +216,15 @@ gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, C
 {
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	if (cd_opengl_mouse_is_over_buttons (myApplet))
+	
+	int iState = myData.iState;
+	cd_opengl_mouse_is_over_buttons (myApplet);
+	
+	if (iState != myData.iState)
 	{
-		*bStartAnimation = TRUE;
+		//*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
+		
+		cd_opengl_render_to_texture (myApplet);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
