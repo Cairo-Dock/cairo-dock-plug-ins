@@ -12,8 +12,24 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-rays.h"
 #include "applet-spot.h"
 
+void cd_animations_init_spot (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt)
+{
+	if (myData.iSpotTexture == 0)
+		myData.iSpotTexture = cd_animation_load_spot_texture ();
+	if (myData.iHaloTexture == 0)
+		myData.iHaloTexture = cd_animation_load_halo_texture ();
+	if (myData.iSpotFrontTexture == 0)
+		myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
+	if (myData.iRaysTexture == 0)
+		myData.iRaysTexture = cd_animations_load_rays_texture ();
+	if (pData->pRaysSystem == NULL && myConfig.iNbRaysParticles != 0)
+		pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
+	pData->fRadiusFactor = .001;
+	pData->fHaloRotationAngle = 0;
+}
 
 void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor)
 {

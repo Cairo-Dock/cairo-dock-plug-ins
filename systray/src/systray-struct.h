@@ -31,6 +31,8 @@
 
 struct _AppletConfig {
   gchar *shortcut;
+  gint iIconPacking;
+  gint iIconSize;
 } ;
 
 

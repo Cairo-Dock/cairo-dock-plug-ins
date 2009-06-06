@@ -11,13 +11,6 @@
 		cd_warning (erreur->message);\
 		g_error_free (erreur);\
 		erreur = NULL; }
-#define _make_texture(texture, cGroupName, cKeyName)\
-	cImageName = g_key_file_get_string (pKeyFile, cGroupName, cKeyName, &erreur);\
-	_check_error(erreur);\
-	if (cImageName != NULL) {\
-		g_string_printf (sImagePath, "%s/%s", cThemePath, cImageName);\
-		texture = cairo_dock_create_texture_from_image (sImagePath->str);\
-		g_free (cImageName); }
 
 #define _make_texture_at_size(texture, cGroupName, cKeyName, w, h)\
 	cImageName = g_key_file_get_string (pKeyFile, cGroupName, cKeyName, &erreur);\
@@ -28,6 +21,31 @@
 		texture = cairo_dock_create_texture_from_surface (pSurface);\
 		cairo_surface_destroy (pSurface);\
 		g_free (cImageName); }
+
+#define _draw_osd(texture, x_, y_, w_, h_)\
+	X = myData.osdPausecoordX - myData.osdPausesizeX/2;\
+	Y = myData.osdPausecoordY - myData.osdPausesizeY/2;\
+	_transform_coords(X, Y, u1, v1);\
+	X = myData.osdPausecoordX - myData.osdPausesizeX/2;\
+	Y = myData.osdPausecoordY + myData.osdPausesizeY/2;\
+	_transform_coords(X, Y, u2, v2);\
+	X = myData.osdPausecoordX + myData.osdPausesizeX/2;\
+	Y = myData.osdPausecoordY + myData.osdPausesizeY/2;\
+	_transform_coords(X, Y, u3, v3);\
+	X = myData.osdPausecoordX + myData.osdPausesizeX/2;\
+	Y = myData.osdPausecoordY - myData.osdPausesizeY/2;\
+	_transform_coords(X, Y, u4, v4);\
+	glBindTexture (GL_TEXTURE_2D, texture);\
+	glBegin (GL_QUADS);\
+	glTexCoord2d (0,0);\
+	glVertex3f (- iWidth/2 + u1, + iHeight/2 - v1, 0);\
+	glTexCoord2d (0,1);\
+	glVertex3f (- iWidth/2 + u2, + iHeight/2 - v2, 0);\
+	glTexCoord2d (1,1);\
+	glVertex3f (- iWidth/2 + u3, + iHeight/2 - v3, 0);\
+	glTexCoord2d (1,0);\
+	glVertex3f (- iWidth/2 + u4, + iHeight/2 - v4, 0);\
+	glEnd ();
 
 gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 {
@@ -123,8 +141,6 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	
 	//\_______________ les zones cliquables et l'OSD.
 	myData.numberButtons = g_key_file_get_integer (pKeyFile, "Buttons", "number", NULL);
-	
-	myData.mouseOnButton1 = myData.mouseOnButton2 = myData.mouseOnButton3 = myData.mouseOnButton4 = 0;
 	if (myData.numberButtons != 0)
 	{
 		myData.osd = g_key_file_get_boolean (pKeyFile, "Buttons", "osd", &erreur);
@@ -146,8 +162,25 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		
 		if (myData.osd)
 		{
-			//_make_texture (myData.TextureOsdPlay, "Button1", "osd_play");
-			//_make_texture (myData.TextureOsdPause, "Button1", "osd_pause");
+			myData.osdPlaycoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd play X", &erreur) * fZoomX;
+			_check_error(erreur);
+			myData.osdPlaycoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd play Y", &erreur) * fZoomY;
+			_check_error(erreur);
+			myData.osdPlaysizeX = g_key_file_get_integer (pKeyFile, "Button1", "osd play sizeX", &erreur) * fZoomX;
+			_check_error(erreur);
+			myData.osdPlaysizeY = g_key_file_get_integer (pKeyFile, "Button1", "osd play sizeY", &erreur) * fZoomY;
+			_check_error(erreur);
+			_make_texture_at_size (myData.TextureOsdPlay, "Button1", "osd_play", myData.osdPlaysizeX, myData.osdPlaysizeY);
+
+			myData.osdPausecoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd pause X", &erreur) * fZoomX;
+			_check_error(erreur);
+			myData.osdPausecoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause Y", &erreur) * fZoomY;
+			_check_error(erreur);
+			myData.osdPausesizeX = g_key_file_get_integer (pKeyFile, "Button1", "osd pause sizeX", &erreur) * fZoomX;
+			_check_error(erreur);
+			myData.osdPausesizeY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause sizeY", &erreur) * fZoomY;
+			_check_error(erreur);
+			_make_texture_at_size (myData.TextureOsdPause, "Button1", "osd_pause", myData.osdPausesizeX, myData.osdPausesizeY);
 		}
 		
 		// Bouton 4
@@ -166,7 +199,15 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 			
 			if (myData.osd)
 			{
-				//_make_texture (myData.TextureOsdHome, "Button4", "osd");
+				myData.osdHomecoordX = g_key_file_get_integer (pKeyFile, "Button4", "osd X", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdHomecoordY = g_key_file_get_integer (pKeyFile, "Button4", "osd Y", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdHomesizeX = g_key_file_get_integer (pKeyFile, "Button4", "osd sizeX", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdHomesizeY = g_key_file_get_integer (pKeyFile, "Button4", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				_make_texture_at_size (myData.TextureOsdHome, "Button4", "osd", myData.osdHomesizeX, myData.osdHomesizeY);
 			}
 		}
 		
@@ -186,7 +227,15 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 			
 			if (myData.osd)
 			{
-				//_make_texture (myData.TextureOsdNext, "Button3", "osd");
+				myData.osdNextcoordX = g_key_file_get_integer (pKeyFile, "Button3", "osd X", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdNextcoordY = g_key_file_get_integer (pKeyFile, "Button3", "osd Y", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdNextsizeX = g_key_file_get_integer (pKeyFile, "Button3", "osd sizeX", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdNextsizeY = g_key_file_get_integer (pKeyFile, "Button3", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				_make_texture_at_size (myData.TextureOsdNext, "Button3", "osd", myData.osdNextsizeX, myData.osdNextsizeY);
 			}
 		}
 		
@@ -206,7 +255,15 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 			
 			if (myData.osd)
 			{
-				//_make_texture (myData.TextureOsdPrev, "Button2", "osd");
+				myData.osdPrevcoordX = g_key_file_get_integer (pKeyFile, "Button2", "osd X", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdPrevcoordY = g_key_file_get_integer (pKeyFile, "Button2", "osd Y", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdPrevsizeX = g_key_file_get_integer (pKeyFile, "Button2", "osd sizeX", &erreur) * fZoomX;
+				_check_error(erreur);
+				myData.osdPrevsizeY = g_key_file_get_integer (pKeyFile, "Button2", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				_make_texture_at_size (myData.TextureOsdPrev, "Button2", "osd", myData.osdPrevsizeX, myData.osdPrevsizeY);
 			}
 		}
 	}
@@ -226,6 +283,11 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 		_cairo_dock_delete_texture (myData.TextureFrame);
 		myData.TextureFrame = 0;
 	}
+	if(myData.iPrevTextureCover != 0)
+	{	
+		_cairo_dock_delete_texture (myData.iPrevTextureCover);
+		myData.iPrevTextureCover = 0;
+	}
 	if(myData.TextureCover != 0)
 	{	
 		_cairo_dock_delete_texture (myData.TextureCover);
@@ -235,11 +297,6 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 	{
 		_cairo_dock_delete_texture (myData.TextureReflect);
 		myData.TextureReflect = 0;
-	}
-	if(myData.TextureName != 0)
-	{
-		_cairo_dock_delete_texture (myData.TextureName);
-		myData.TextureName = 0;
 	}
 	if(myData.TextureButton1 != 0)
 	{
@@ -286,10 +343,14 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 		_cairo_dock_delete_texture (myData.TextureOsdHome);
 		myData.TextureOsdHome = 0;
 	}
+	myData.mouseOnButton1 = myData.mouseOnButton2 = myData.mouseOnButton3 = myData.mouseOnButton4 = 0;
+	myData.iButton1Count = myData.iButton2Count = myData.iButton3Count = myData.iButton4Count = 0;
+	myData.iState = 0;
+	myData.iCoverTransition = 0;
 }
 
 
-#define _transform_coords(X, Y) \
+#define _transform_coords(X, Y, x, y) \
 	dx1 = 1. - fabs (X - X1) / W;\
 	dy1 = 1. - fabs (Y - Y1) / H;\
 	dx2 = 1. - fabs (X - X2) / W;\
@@ -303,51 +364,61 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 
 void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%d)\n", __func__, myData.iCoverTransition);
 	_cairo_dock_enable_texture ();
-	_cairo_dock_set_blend_pbuffer ();
+	_cairo_dock_set_blend_source ();
 	
 	// on dessine le cadre.
 	_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureFrame, iWidth, iHeight, 1.);
 	
 	// on dessine la couverture.
+	glPushMatrix ();
+	glScalef (iWidth, iHeight, 1.);
+	if (myData.iPrevTextureCover != 0 && myData.iCoverTransition != 0)
+	{
+		_cairo_dock_set_blend_over ();
+		_cairo_dock_set_alpha ((double)myData.iCoverTransition/NB_TRANSITION_STEP);
+		glBindTexture(GL_TEXTURE_2D, myData.iPrevTextureCover);
+		glCallList(myData.draw_cover);
+	}
 	if (myData.TextureCover != 0)
 	{
-		glPushMatrix ();
-		glScalef (iWidth, iHeight, 1.);
+		_cairo_dock_set_blend_over ();
+		_cairo_dock_set_alpha (1.-(double)myData.iCoverTransition/NB_TRANSITION_STEP);
 		glBindTexture(GL_TEXTURE_2D, myData.TextureCover);
 		glCallList(myData.draw_cover);
-		glPopMatrix ();
 	}
+	glPopMatrix ();
+	_cairo_dock_set_blend_over ();
 	
 	
 	// on dessine les boutons qui sont allumes.
-	if (myData.mouseOnButton1)
+	if (myData.iButton1Count)
 	{
 		glPushMatrix ();
 		glTranslatef (-iWidth/2 + myData.button1coordX, +iHeight/2 - myData.button1coordY, 0.);
-		_cairo_dock_apply_texture_at_size (myData.TextureButton1, myData.button1sizeX, myData.button1sizeY);
+		_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureButton1, myData.button1sizeX, myData.button1sizeY, (double)myData.iButton1Count/NB_TRANSITION_STEP);
 		glPopMatrix ();
 	}
-	if (myData.mouseOnButton2)
+	if (myData.iButton2Count)
 	{
 		glPushMatrix ();
 		glTranslatef (-iWidth/2 + myData.button2coordX, +iHeight/2 - myData.button2coordY, 0.);
-		_cairo_dock_apply_texture_at_size (myData.TextureButton2, myData.button2sizeX, myData.button2sizeY);
+		_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureButton2, myData.button2sizeX, myData.button2sizeY, (double)myData.iButton2Count/NB_TRANSITION_STEP);
 		glPopMatrix ();
 	}
-	if (myData.mouseOnButton3)
+	if (myData.iButton3Count)
 	{
 		glPushMatrix ();
 		glTranslatef (-iWidth/2 + myData.button3coordX, +iHeight/2 - myData.button3coordY, 0.);
-		_cairo_dock_apply_texture_at_size (myData.TextureButton3, myData.button3sizeX, myData.button3sizeY);
+		_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureButton3, myData.button3sizeX, myData.button3sizeY, (double)myData.iButton3Count/NB_TRANSITION_STEP);
 		glPopMatrix ();
 	}
-	if (myData.mouseOnButton4)
+	if (myData.iButton4Count)
 	{
 		glPushMatrix ();
 		glTranslatef (-iWidth/2 + myData.button4coordX, +iHeight/2 - myData.button4coordY, 0.);
-		_cairo_dock_apply_texture_at_size (myData.TextureButton4, myData.button4sizeX, myData.button4sizeY);
+		_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureButton4, myData.button4sizeX, myData.button4sizeY, (double)myData.iButton4Count/NB_TRANSITION_STEP);
 		glPopMatrix ();
 	}
 	
@@ -376,203 +447,56 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 	double t4y = y4 - Y4;
 	
 	double dx1, dy1, dx2, dy2, dx3, dy3, dx4, dy4;  // ponderations.
+	double X, Y;  // coordonnees initiales d'un coin de l'OSD.
 	double u1, v1, u2, v2, u3, v3, u4, v4;  // coordonnees finales des coins de l'OSD.
 	
 	// on dessine les OSD.
-	
-	
-	// on dessine les reflets.
-	if (myData.TextureReflect != 0)
-		_cairo_dock_apply_texture_at_size (myData.TextureReflect, iWidth, iHeight);
-	
-	_cairo_dock_disable_texture ();
-}
-
-/*void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
-{
-	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity( );
-	glColor4ub(255,255,255,255);	
-	glEnable(GL_DEPTH_TEST);
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	glAlphaFunc ( GL_GREATER, 0.1 ) ;
-	glEnable ( GL_ALPHA_TEST ) ;
-	
-	glEnable(GL_TEXTURE_2D);
-	
-	glPushMatrix ();
-			
-	// On recentre la matrice et on la recule pour voir toute la scene.
-	glTranslatef (iWidth/2, iHeight/2, -iWidth);
-	glScalef(iWidth, -iHeight, iWidth);
-	
-	glDepthMask(GL_FALSE);  // On passe le depth en lecture seul -> Tout s'affichera dans l'ordre de création sans tenir compte de la profondeur.
-			
-	cairo_dock_apply_texture (myData.TextureFrame);
-		
-	glBindTexture(GL_TEXTURE_2D, myData.TextureCover);
-	glCallList(myData.draw_cover);
-	
-		
-	// Affichage de l'osd PAUSE
-	if (myConfig.bOverrideOsd && !myData.playing && myData.numberButtons != 0)
+	//if(myData.bIsRunning && myData.iState != 0)
 	{
-		if(myData.bIsRunning)
-		{
-			glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
-			glCallList(myData.draw_cover);
-		}
-	}
-	else if (myData.osd && myData.cover_exist && myData.NoOSD)
-	{
-		if (myData.bIsRunning)
+		_cairo_dock_set_alpha (1.);
+		if (myData.mouseOnButton1)
 		{
 			if (myData.playing)
 			{
-				// On n'affiche rien si on est en lecture
+				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
+				g_print ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f\n", u1, v1, u2, v2,u3,v3,u4,v4);
 			}
 			else
 			{
-				glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
-				glCallList(myData.draw_cover);
+				_draw_osd (myData.TextureOsdPlay, myData.osdPlaycoordX, myData.osdPlaycoordY, myData.osdPlaysizeX, myData.osdPlaysizeY);
+				g_print ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f\n", u1, v1, u2, v2,u3,v3,u4,v4);
 			}
 		}
-	}
-				
-	// On affiche les images des boutons survolés et de l'OSD ;)
-	if (myData.numberButtons != 0)
-	{
-		if (myData.mouseOnButton1)
+		else if (myData.mouseOnButton2)
 		{
-			cairo_dock_apply_texture (myData.TextureButton1);
-			if (myData.osd && !myConfig.bOverrideOsd)
-			{
-				if (myData.bIsRunning)
-				{
-					if (myData.playing)
-					{
-						glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPause);
-						glCallList(myData.draw_cover);
-					}
-					else
-					{
-						glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPlay);
-						glCallList(myData.draw_cover);
-					}
-				}
-				else
-				{
-					glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPlay);
-					glCallList(myData.draw_cover);
-				}
-			}
-					
+			_draw_osd (myData.TextureOsdPrev, myData.osdPrevcoordX, myData.osdPrevcoordY, myData.osdPrevsizeX, myData.osdPrevsizeY);
 		}
-		
-		if (myData.numberButtons > 3 && myData.mouseOnButton4)
+		else if (myData.mouseOnButton3)
 		{
-			cairo_dock_apply_texture (myData.TextureButton4);
-			if (myData.osd && !myConfig.bOverrideOsd)
-			{
-				glBindTexture(GL_TEXTURE_2D, myData.TextureOsdHome);
-				glCallList(myData.draw_cover);
-			}
+			_draw_osd (myData.TextureOsdNext, myData.osdNextcoordX, myData.osdNextcoordY, myData.osdNextsizeX, myData.osdNextsizeY);
 		}
-		if (myData.numberButtons > 2 && myData.mouseOnButton3)
+		else if (myData.mouseOnButton4)
 		{
-			cairo_dock_apply_texture (myData.TextureButton3);
-			if (myData.osd && !myConfig.bOverrideOsd)
-			{
-				glBindTexture(GL_TEXTURE_2D, myData.TextureOsdNext);
-				glCallList(myData.draw_cover);
-			}
+			_draw_osd (myData.TextureOsdHome, myData.osdHomecoordX, myData.osdHomecoordY, myData.osdHomesizeX, myData.osdHomesizeY);
 		}
-		if (myData.numberButtons > 1 && myData.mouseOnButton2)
+		else if (! myData.playing)
 		{
-			cairo_dock_apply_texture (myData.TextureButton2);
-			if (myData.osd && !myConfig.bOverrideOsd)
-			{
-				glBindTexture(GL_TEXTURE_2D, myData.TextureOsdPrev);
-				glCallList(myData.draw_cover);
-			}
+			_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
+		}
+		else if (myData.playing && ! myData.cover_exist)
+		{
+			_draw_osd (myData.TextureOsdPlay, myData.osdPlaycoordX, myData.osdPlaycoordY, myData.osdPlaysizeX, myData.osdPlaysizeY);
 		}
 	}
 	
-	cairo_dock_apply_texture (myData.TextureReflect);
-		
 	
-	// Debug mode pour l'aide à la création des thèmes:
-	if(myData.b3dThemesDebugMode)
-	{
-		glDisable(GL_TEXTURE_2D);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);
-		
-		if (myData.numberButtons != 0)
-		{
-			// Affichage button 1 :
-			glBegin(GL_QUADS);
-			glColor4ub(255,0,0,100);
-			glVertex3d( ((myData.button1coordX - (myData.button1sizeX/2))-500.)/1000. , (500.- (myData.button1coordY - (myData.button1sizeY/2)))/1000., 0);
-			glVertex3d( ((myData.button1coordX - (myData.button1sizeX/2))-500.)/1000. , (500.- (myData.button1coordY + (myData.button1sizeY/2)))/1000., 0);
-			glVertex3d( ((myData.button1coordX + (myData.button1sizeX/2))-500.)/1000. , (500.- (myData.button1coordY + (myData.button1sizeY/2)))/1000., 0);
-			glVertex3d( ((myData.button1coordX + (myData.button1sizeX/2))-500.)/1000. , (500.- (myData.button1coordY - (myData.button1sizeY/2)))/1000., 0);
-			glEnd();
-			}			
-			if (myData.numberButtons > 3)
-			{
-				// Affichage button 4 :
-				glBegin(GL_QUADS);
-				glColor4ub(255,0,255,100);
-				glVertex3d( ((myData.button4coordX - (myData.button4sizeX/2))-500.)/1000. , (500.- (myData.button4coordY - (myData.button4sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button4coordX - (myData.button4sizeX/2))-500.)/1000. , (500.- (myData.button4coordY + (myData.button4sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button4coordX + (myData.button4sizeX/2))-500.)/1000. , (500.- (myData.button4coordY + (myData.button4sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button4coordX + (myData.button4sizeX/2))-500.)/1000. , (500.- (myData.button4coordY - (myData.button4sizeY/2)))/1000., 0);
-				glEnd();
-			}
-			if (myData.numberButtons > 2)
-			{
-				// Affichage button 3 :
-				glBegin(GL_QUADS);
-				glColor4ub(0,0,255,100);
-				glVertex3d( ((myData.button3coordX - (myData.button3sizeX/2))-500.)/1000. , (500.- (myData.button3coordY - (myData.button3sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button3coordX - (myData.button3sizeX/2))-500.)/1000. , (500.- (myData.button3coordY + (myData.button3sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button3coordX + (myData.button3sizeX/2))-500.)/1000. , (500.- (myData.button3coordY + (myData.button3sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button3coordX + (myData.button3sizeX/2))-500.)/1000. , (500.- (myData.button3coordY - (myData.button3sizeY/2)))/1000., 0);
-				glEnd();
-			}
-			if (myData.numberButtons > 1)
-			{
-				// Affichage button 2 :
-				glBegin(GL_QUADS);
-				glColor4ub(0,255,0,100);
-				glVertex3d( ((myData.button2coordX - (myData.button2sizeX/2))-500.)/1000. , (500.- (myData.button2coordY - (myData.button2sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button2coordX - (myData.button2sizeX/2))-500.)/1000. , (500.- (myData.button2coordY + (myData.button2sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button2coordX + (myData.button2sizeX/2))-500.)/1000. , (500.- (myData.button2coordY + (myData.button2sizeY/2)))/1000., 0);
-				glVertex3d( ((myData.button2coordX + (myData.button2sizeX/2))-500.)/1000. , (500.- (myData.button2coordY - (myData.button2sizeY/2)))/1000., 0);
-				glEnd();
-			}
-			
-			// Et on affiche les coordonnees survolées ;-)
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("Coord X = %i , Coord Y = %i", myData.iMouseX, myData.iMouseY);  
-						
-			glEnable(GL_TEXTURE_2D);
-			glColor4ub(255,255,255,255);
-		}
+	// on dessine les reflets.
+	_cairo_dock_set_blend_pbuffer ();
+	if (myData.TextureReflect != 0)
+		_cairo_dock_apply_texture_at_size_with_alpha (myData.TextureReflect, iWidth, iHeight, 1.);
 	
-	
-	glDepthMask(GL_TRUE);
-			
-	glDisable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.);
-	glDisable ( GL_ALPHA_TEST ) ;
-	glDisable (GL_BLEND);
-	glDisable (GL_DEPTH_TEST);
-		
-	glPopMatrix ();
-}*/
+	_cairo_dock_disable_texture ();
+}
 
 
 void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
@@ -588,7 +512,7 @@ void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
 }
 
 
-gboolean cd_opengl_mouse_is_over_buttons (CairoDockModuleInstance *myApplet)
+int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet)
 {	
 	if (myDesklet->iWidth == 0 || myDesklet->iHeight == 0 || myData.numberButtons == 0)  // precaution.
 		return FALSE;
@@ -605,7 +529,6 @@ gboolean cd_opengl_mouse_is_over_buttons (CairoDockModuleInstance *myApplet)
 		myData.iMouseY > (myData.button1coordY - (myData.button1sizeY/2)) &&
 		myData.iMouseY < (myData.button1coordY + (myData.button1sizeY/2))
 	);
-	
 	if (myData.numberButtons > 3)
 	{
 		// Test du survol button 4 :
@@ -637,20 +560,8 @@ gboolean cd_opengl_mouse_is_over_buttons (CairoDockModuleInstance *myApplet)
 		);
 	}
 	
-	if ( myData.mouseOnButton1 || myData.mouseOnButton2 || myData.mouseOnButton3 || myData.mouseOnButton4)
-	{
-		g_print ("on est sur un bouton\n");
-		myData.iState = (myData.mouseOnButton1 << 0) |
+	return (myData.mouseOnButton1 << 0) |
 			(myData.mouseOnButton2 << 1) |
 			(myData.mouseOnButton3 << 2) |
 			(myData.mouseOnButton4 << 3);
-		myData.NoOSD = FALSE;
-		return TRUE;
-	}
-	else
-	{
-		myData.iState = 0;
-		myData.NoOSD = TRUE;
-		return FALSE;
-	}
 }

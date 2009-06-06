@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_animations_init_wobbly (CDAnimationData *pData,gboolean  bUseOpenGL);
+void cd_animations_init_wobbly (CDAnimationData *pData, gboolean  bUseOpenGL);
 
 
 gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolean bWillContinue);

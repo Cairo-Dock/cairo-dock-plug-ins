@@ -114,6 +114,8 @@ typedef struct _CDAnimationData {
 	gboolean bIsWobblying;
 	CDAnimationGridNode gridNodes[4][4];
 	GLfloat pCtrlPts[4][4][3];
+	gint iWobblyCount;
+	gdouble fWobblyWidthFactor, fWobblyHeightFactor;
 	
 	gboolean bIsWaving;
 	gdouble fWavePosition;
@@ -126,9 +128,6 @@ typedef struct _CDAnimationData {
 	gdouble fPulseAlpha;
 	
 	gint iNumRound;
-	
-	gint iWobblyCount;
-	gdouble fWobblyWidthFactor, fWobblyHeightFactor;
 	
 	gboolean bIsBouncing;
 	gint iBounceCount;

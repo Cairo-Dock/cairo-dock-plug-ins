@@ -64,16 +64,26 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 			cd_debug ("RB : BOUCLE 2 : La pochette est locale -> On affiche");
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{	
-				if (myData.TextureCover != 0)
-					_cairo_dock_delete_texture (myData.TextureCover);
+				if (myData.iPrevTextureCover != 0)
+					_cairo_dock_delete_texture (myData.iPrevTextureCover);
+				myData.iPrevTextureCover = myData.TextureCover;
 				myData.TextureCover = cairo_dock_create_texture_from_image (myData.playing_cover);
-				cd_opengl_render_to_texture (myApplet);
+				if (myData.iPrevTextureCover != 0)
+				{
+					myData.iCoverTransition = NB_TRANSITION_STEP;
+					cairo_dock_launch_animation (myContainer);
+				}
+				else
+				{
+					cd_opengl_render_to_texture (myApplet);
+					CD_APPLET_REDRAW_MY_ICON;
+				}
 			}
 			else
 			{
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+				CD_APPLET_REDRAW_MY_ICON;
 			}
-			CD_APPLET_REDRAW_MY_ICON;
 			myData.cover_exist = TRUE;
 			myData.iSidCheckCover = 0;
 			return FALSE;
@@ -187,12 +197,20 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 		}
 		if (bUse3DTheme)
 		{
-			if (myData.TextureCover != 0)
-				_cairo_dock_delete_texture (myData.TextureCover);
+			if (myData.iPrevTextureCover != 0)
+				_cairo_dock_delete_texture (myData.iPrevTextureCover);
+			myData.iPrevTextureCover = myData.TextureCover;
 			myData.TextureCover = cairo_dock_create_texture_from_surface (myData.pSurfaces[iStatus]);
-			cd_opengl_render_to_texture (myApplet);
-			CD_APPLET_REDRAW_MY_ICON;
-			g_print ("DESSIN RB\n");
+			if (myData.iPrevTextureCover != 0)
+			{
+				myData.iCoverTransition = NB_TRANSITION_STEP;
+				cairo_dock_launch_animation (myContainer);
+			}
+			else
+			{
+				cd_opengl_render_to_texture (myApplet);
+				CD_APPLET_REDRAW_MY_ICON;
+			}
 		}
 		else
 		{
@@ -203,12 +221,20 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 	{
 		if (bUse3DTheme)
 		{
-			if (myData.TextureCover != 0)
-				_cairo_dock_delete_texture (myData.TextureCover);
+			if (myData.iPrevTextureCover != 0)
+				_cairo_dock_delete_texture (myData.iPrevTextureCover);
+			myData.iPrevTextureCover = myData.TextureCover;
 			myData.TextureCover = cairo_dock_create_texture_from_surface (pSurface);
-			cd_opengl_render_to_texture (myApplet);
-			CD_APPLET_REDRAW_MY_ICON;
-			g_print ("DESSIN RB\n");
+			if (myData.iPrevTextureCover != 0)
+			{
+				myData.iCoverTransition = NB_TRANSITION_STEP;
+				cairo_dock_launch_animation (myContainer);
+			}
+			else
+			{
+				cd_opengl_render_to_texture (myApplet);
+				CD_APPLET_REDRAW_MY_ICON;
+			}
 		}
 		else
 		{

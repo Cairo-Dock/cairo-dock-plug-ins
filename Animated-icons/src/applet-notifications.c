@@ -33,6 +33,18 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		pData = g_new0 (CDAnimationData, 1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	}
+	else
+	{
+		pData->fRotationSpeed = 0;
+		pData->fRadiusFactor = 0;
+		pData->bIsWobblying = FALSE;
+		pData->bIsWobblying = FALSE;
+		pData->bIsWaving = FALSE;
+		pData->fPulseAlpha = 0;
+		pData->bIsBouncing = FALSE;
+		pData->bIsBlinking = FALSE;
+		pData->iNumRound = 0;
+	}
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
@@ -48,19 +60,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			break;
 			
 			case CD_ANIMATIONS_ROTATE :
-				if (bUseOpenGL)
-				{
-					if (myData.iChromeTexture == 0)
-						myData.iChromeTexture = cd_animation_load_chrome_texture ();
-					if (myData.iCallList[myConfig.iMeshType] == 0)
-						myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
-				}
-				else
-					pData->fRotateWidthFactor = 1.;
-				pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
-				pData->fRotationBrake = 1.;
-				pData->fAdjustFactor = 0.;
-				pData->bRotationBeginning = TRUE;
+				cd_animations_init_rotation (pData, dt, bUseOpenGL);
 				*bStartAnimation = TRUE;
 			break;
 			
@@ -89,18 +89,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			case CD_ANIMATIONS_SPOT :
 				if (! bUseOpenGL)
 					break ;
-				if (myData.iSpotTexture == 0)
-					myData.iSpotTexture = cd_animation_load_spot_texture ();
-				if (myData.iHaloTexture == 0)
-					myData.iHaloTexture = cd_animation_load_halo_texture ();
-				if (myData.iSpotFrontTexture == 0)
-					myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
-				if (myData.iRaysTexture == 0)
-					myData.iRaysTexture = cd_animations_load_rays_texture ();
-				if (pData->pRaysSystem == NULL && myConfig.iNbRaysParticles != 0)
-					pData->pRaysSystem = cd_animations_init_rays (pIcon, pDock, dt);
-				pData->fRadiusFactor = .001;
-				pData->fHaloRotationAngle = 0;
+				cd_animations_init_spot (pIcon, pDock, pData, dt);
 				*bStartAnimation = TRUE;
 			break;
 			

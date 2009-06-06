@@ -49,9 +49,9 @@ CD_APPLET_INIT_BEGIN
 		systray_build_and_show ();
 		CD_APPLET_SET_STATIC_DESKLET;
 	}
-	if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
+	if (myDock)  // en mode desklet, on n'a pas besoin de l'icone.
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
 }
 CD_APPLET_INIT_END
@@ -70,6 +70,24 @@ CD_APPLET_RELOAD_BEGIN
 {
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myData.tray && myData.tray->box)
+		{
+			GtkWidget *pOldBox = myData.tray->box;
+			myData.tray->box = (myConfig.iIconPacking == 0 ? gtk_hbox_new(TRUE, 0) : gtk_vbox_new(TRUE, 0));
+			gtk_container_add (GTK_CONTAINER (myData.tray->widget), myData.tray->box);
+			gtk_widget_show_all (myData.tray->box);
+			
+			GtkWidget *icon;
+			GList *ic;
+			for (ic = myData.tray->icons; ic != NULL; ic = ic->next)
+			{
+				icon = ic->data;
+				gtk_widget_reparent (icon, myData.tray->box);
+				gtk_widget_set_size_request (icon, myConfig.iIconSize, myConfig.iIconSize);
+			}
+			gtk_widget_destroy (pOldBox);
+		}
+		
 		if (! myData.tray)
 		{
 			if (myDesklet != NULL)  // on cree le systray pour avoir qqch a afficher dans le desklet.
@@ -99,9 +117,9 @@ CD_APPLET_RELOAD_BEGIN
 			systray_apply_settings();
 		}
 		
-		if (myDock && myIcon->acFileName == NULL)  // en mode desklet, on n'a pas besoin de l'icone.
+		if (myDock)  // en mode desklet, on n'a pas besoin de l'icone.
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		}
 	}
 }

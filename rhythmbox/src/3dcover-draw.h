@@ -13,7 +13,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 
 void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet);
 
-gboolean cd_opengl_mouse_is_over_buttons (CairoDockModuleInstance *myApplet);
+int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet);
 
 
 #endif //__CD_3DCOVER_DRAW__

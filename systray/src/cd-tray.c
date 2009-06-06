@@ -28,8 +28,8 @@
 #include "systray-struct.h"
 
 
-static const guint icon_size_w = 24;
-static const guint icon_size_h = 24;
+//static const guint icon_size_w = 24;
+//static const guint icon_size_h = 24;
 
 static void
 tray_icon_added (NaTrayManager *manager,
@@ -98,7 +98,7 @@ tray_icon_added (NaTrayManager *manager,
   gtk_widget_set_colormap(icon, gdk_screen_get_rgb_colormap (gdk_screen_get_default()));
   gtk_box_pack_start(GTK_BOX(applet->box), icon, TRUE, TRUE, 0);
   //gtk_widget_set_size_request((applet->box), 52, 28);
-  gtk_widget_set_size_request(icon, 24, 24);
+  gtk_widget_set_size_request(icon, myConfig.iIconSize, myConfig.iIconSize);
   //tray_resize_container(applet);
   force_redraw(applet);
 }
@@ -216,7 +216,7 @@ TrayApplet* tray_init (GtkWidget *parent)
     widget = widget->parent;
   screen = gtk_widget_get_screen(GTK_WIDGET(widget));
 
-  applet->box = gtk_hbox_new(TRUE, 0);
+  applet->box = (myConfig.iIconPacking == 0 ? gtk_hbox_new(TRUE, 0) : gtk_vbox_new(TRUE, 0));
   gtk_widget_show(applet->box);
   //gtk_widget_set_size_request(applet->box, icon_size_w*10, icon_size_h + 6);
   tray_resize_container(applet);

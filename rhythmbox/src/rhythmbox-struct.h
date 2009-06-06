@@ -31,6 +31,8 @@ typedef enum {
 	MY_APPLET_NB_DECORATIONS
 } MyAppletDecoration;
 
+#define NB_TRANSITION_STEP 8.
+
 
 struct _AppletConfig {
 	gboolean enableDialogs;
@@ -44,7 +46,6 @@ struct _AppletConfig {
 	//gboolean extendedDesklet;
 	
 	gboolean bOpenglThemes;
-	gboolean bOverrideOsd;
 	gchar *cThemePath;
 	} ;
 
@@ -65,12 +66,11 @@ struct _AppletData {
 	gchar *playing_cover;
 	guint iSidCheckCover;
 	
-	GLuint TextureName;
+	gint iCoverTransition;
+	GLuint iPrevTextureCover;
 	GLuint TextureFrame;
 	GLuint TextureCover;
 	GLuint TextureReflect;
-	
-	GLuint TextureEmblemPause;
 	
 	gdouble itopleftX;
 	gdouble itopleftY;
@@ -85,49 +85,51 @@ struct _AppletData {
 	gint numberButtons;
 	gboolean osd;
 	
-	// A passer en structure :
-	gdouble button1coordX;
-	gdouble button1coordY;
-	gdouble button1sizeX;
-	gdouble button1sizeY;
-	GLuint TextureButton1;
+	// A passer en structure...
 	gboolean mouseOnButton1;
+	GLuint TextureButton1;
+	gdouble button1coordX, button1coordY;
+	gdouble button1sizeX, button1sizeY;
+	gint iButton1Count;
 	GLuint TextureOsdPlay;
+	gdouble osdPlaycoordX, osdPlaycoordY;
+	gdouble osdPlaysizeX, osdPlaysizeY;
 	GLuint TextureOsdPause;
+	gdouble osdPausecoordX, osdPausecoordY;
+	gdouble osdPausesizeX, osdPausesizeY;
 	
-	// A passer en structure :
-	gdouble button2coordX;
-	gdouble button2coordY;
-	gdouble button2sizeX;
-	gdouble button2sizeY;
-	GLuint TextureButton2;
 	gboolean mouseOnButton2;
+	GLuint TextureButton2;
+	gdouble button2coordX, button2coordY;
+	gdouble button2sizeX, button2sizeY;
+	gint iButton2Count;
 	GLuint TextureOsdPrev;
+	gdouble osdPrevcoordX, osdPrevcoordY;
+	gdouble osdPrevsizeX, osdPrevsizeY;
 	
-	// A passer en structure :
-	gdouble button3coordX;
-	gdouble button3coordY;
-	gdouble button3sizeX;
-	gdouble button3sizeY;
-	GLuint TextureButton3;
 	gboolean mouseOnButton3;
+	GLuint TextureButton3;
+	gdouble button3coordX, button3coordY;
+	gdouble button3sizeX, button3sizeY;
+	gint iButton3Count;
 	GLuint TextureOsdNext;
+	gdouble osdNextcoordX, osdNextcoordY;
+	gdouble osdNextsizeX, osdNextsizeY;
 	
-	// A passer en structure :
-	gdouble button4coordX;
-	gdouble button4coordY;
-	gdouble button4sizeX;
-	gdouble button4sizeY;
-	GLuint TextureButton4;
 	gboolean mouseOnButton4;
+	GLuint TextureButton4;
+	gdouble button4coordX, button4coordY;
+	gdouble button4sizeX, button4sizeY;
+	gint iButton4Count;
 	GLuint TextureOsdHome;
+	gdouble osdHomecoordX, osdHomecoordY;
+	gdouble osdHomesizeX, osdHomesizeY;
 	
 	gint iMouseX;
 	gint iMouseY;
-	gboolean NoOSD;
 	gint iState;  // combinaison des etats des differents boutons.
 	
-	gboolean CoverWasDistant;
+	gboolean CoverWasDistant;  // a degager en testant sur la taille ...
 	gint iAnimationCount;
 	} ;
 

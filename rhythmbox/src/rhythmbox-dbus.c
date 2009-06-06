@@ -12,7 +12,7 @@ static DBusGProxy *dbus_proxy_shell = NULL;
 
 gboolean rhythmbox_dbus_connect_to_bus (void)
 {
-	cd_message ("");
+	cd_message ("detecting rhythmbox ...");
 	if (cairo_dock_bdus_is_enabled ())
 	{
 		dbus_proxy_player = cairo_dock_create_new_session_proxy (
@@ -357,9 +357,9 @@ void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 }
 
 
-void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
+void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
 {
-	g_print ("%s (%s)\n",__func__,cImageURI);
+	g_print ("\n%s (%s)\n\n",__func__,cImageURI);
 	g_free (myData.playing_cover);
 	myData.playing_cover = g_strdup (cImageURI);
 	

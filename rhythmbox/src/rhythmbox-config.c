@@ -28,7 +28,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.bOpenglThemes)
 	{
 		//\_______________ On on recupere le theme choisi.	
-		myConfig.bOverrideOsd = CD_CONFIG_GET_BOOLEAN ("Configuration", "override_osd");
 		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
 	}
 CD_APPLET_GET_CONFIG_END

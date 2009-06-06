@@ -29,8 +29,7 @@ x position=0
 y position=0
 
 use size=false
-width=32
-height=28
+
 
 #b Is detached from the dock ?
 initially detached=true
@@ -45,8 +44,15 @@ sticky=true
 locked = false
 
 decorations = 
+size=50;24
 
 #[gtk-preferences]
 [GUI]
 #k Shortkey to toggle the systray in dock mode :
 shortkey = <Control>F4
+
+#r[horizontal;vertical] Icons packing :
+icon packing = 0
+
+#i[16;48] Icons size :
+icon size = 24

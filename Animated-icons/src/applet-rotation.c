@@ -12,10 +12,29 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-mesh-factory.h"
 #include "applet-rotation.h"
 
 static float fCapsuleObjectPlaneS[4] = { 0.59f*2, 0., 0., 0. }; // pour un plaquages propre des textures
 static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
+
+void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bUseOpenGL)
+{
+	if (bUseOpenGL)
+	{
+		if (myData.iChromeTexture == 0)
+			myData.iChromeTexture = cd_animation_load_chrome_texture ();
+		if (myData.iCallList[myConfig.iMeshType] == 0)
+			myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+	}
+	else
+		pData->fRotateWidthFactor = 1.;
+	pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
+	pData->fRotationBrake = 1.;
+	pData->fAdjustFactor = 0.;
+	pData->bRotationBeginning = TRUE;
+}
+
 
 void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {

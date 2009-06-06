@@ -26,7 +26,6 @@ libcd_rhythmbox_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(rhythmboxdatadir)"\"\
-	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""rhythmbox.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""rhythmbox"\"\
@@ -34,6 +33,7 @@ libcd_rhythmbox_la_CFLAGS = \
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_RHYTHMBOX)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
+	-DGL_GLEXT_PROTOTYPES=\""1"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\
 	-O3

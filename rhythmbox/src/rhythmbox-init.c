@@ -73,7 +73,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
-		//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
+		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
 		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 			cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
@@ -154,7 +154,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 		{
-			//CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
+			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 				cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED,
 					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,

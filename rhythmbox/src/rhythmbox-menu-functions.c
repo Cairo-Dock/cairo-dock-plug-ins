@@ -198,15 +198,41 @@ CD_APPLET_ON_SCROLL_BEGIN
 CD_APPLET_ON_SCROLL_END
 
 
+#define _update_button_count(on, count) \
+	if (on) {\
+		if (count < NB_TRANSITION_STEP) {\
+			count ++;\
+			bNeedsUpdate = TRUE; } }\
+	else if (count != 0) {\
+		count --;\
+		bNeedsUpdate = TRUE; }
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 
-	myData.iAnimationCount ++;
+	gboolean bNeedsUpdate = FALSE;
+	
+	if (myData.iCoverTransition > 0)
+	{
+		myData.iCoverTransition --;
+		bNeedsUpdate = TRUE;
+	}
+	
+	_update_button_count (myData.mouseOnButton1, myData.iButton1Count);
+	_update_button_count (myData.mouseOnButton2, myData.iButton2Count);
+	_update_button_count (myData.mouseOnButton3, myData.iButton3Count);
+	_update_button_count (myData.mouseOnButton4, myData.iButton4Count);
+	
+	if (! bNeedsUpdate)
+		CD_APPLET_STOP_UPDATE_ICON;  // quit.
+	
 	cd_opengl_render_to_texture (myApplet);
 	
-	if (myData.iAnimationCount == 8)
+	if ((myData.iCoverTransition == 0) &&
+		(myData.iButton1Count == 0 || myData.iButton1Count == NB_TRANSITION_STEP) &&
+		(myData.iButton2Count == 0 || myData.iButton2Count == NB_TRANSITION_STEP) &&
+		(myData.iButton3Count == 0 || myData.iButton3Count == NB_TRANSITION_STEP) &&
+		(myData.iButton4Count == 0 || myData.iButton4Count == NB_TRANSITION_STEP))
 	{
-		myData.iAnimationCount = 0;
-		CD_APPLET_STOP_UPDATE_ICON;
+		CD_APPLET_PAUSE_UPDATE_ICON;  // redraw and stop.
 	}
 	
 CD_APPLET_ON_UPDATE_ICON_END
@@ -217,14 +243,13 @@ gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, C
 	if (pContainer != myContainer)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	int iState = myData.iState;
-	cd_opengl_mouse_is_over_buttons (myApplet);
+	int iPrevState = myData.iState;
+	myData.iState = cd_opengl_check_buttons_state (myApplet);
 	
-	if (iState != myData.iState)
+	if (iPrevState != myData.iState)
 	{
-		//*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
-		
-		cd_opengl_render_to_texture (myApplet);
+		*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
+		//cd_opengl_render_to_texture (myApplet);  // ...sinon on redessine juste.
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

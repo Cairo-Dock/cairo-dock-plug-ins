@@ -1,15 +1,14 @@
 
-#ifndef __APPLET_ICON_RENDERER__
-#define  __APPLET_ICON_RENDERER__
-
+#ifndef __APPLET_ICON_ROTATION__
+#define  __APPLET_ICON_ROTATION__
 
 #include <cairo-dock.h>
 #include <applet-struct.h>
 
+
+void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bUseOpenGL);
+
 #define cd_animation_load_chrome_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("texture-chrome.png")
-#define cd_animation_load_spot_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot.png")
-#define cd_animation_load_halo_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("halo.png")
-#define cd_animation_load_spot_front_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot-front2.png")
 
 void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground);
 

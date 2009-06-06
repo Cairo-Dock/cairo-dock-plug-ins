@@ -363,6 +363,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
    */
   window = g_new (Window, 1);
   *window = xevent->data.l[2];
+  XResizeWindow(cairo_dock_get_Xdisplay (), *window, myConfig.iIconSize, myConfig.iIconSize);
   g_object_set_data_full (G_OBJECT (socket),
 			  "na-tray-child-window",
 			  window, g_free);
@@ -394,6 +395,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
           gtk_widget_set_size_request(icon, nw,  nh);
       }
       */
+	  //gtk_widget_set_size_request(socket, myConfig.iIconSize,  myConfig.iIconSize);
       gtk_widget_show(socket);
     }
   else
