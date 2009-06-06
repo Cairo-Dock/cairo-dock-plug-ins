@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
@@ -58,7 +57,6 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../data/messages:21
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
@@ -92,7 +90,7 @@ msgstr ""
 
 #: ../data/messages:33
 msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:35
 msgid ""

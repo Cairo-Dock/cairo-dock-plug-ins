@@ -116,32 +116,31 @@ msgstr ""
 
 #: ../data/messages:27
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:29
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:31
 msgid "Keep above"
-msgstr ""
+msgstr "Toujours devant"
 
 #: ../data/messages:33
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:35
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:37
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:39
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:41
 msgid ""
@@ -381,99 +380,3 @@ msgstr ""
 #: ../data/messages:143
 msgid "Add or remove an alarm :"
 msgstr "Ajoute ou retire une alarme :"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#, fuzzy
-#~ msgid ""
-#~ "This is the Cairo-Dock's clock applet\n"
-#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
-#~ " from MacSlow (http://macslow.thepimp.net)."
-#~ msgstr ""
-#~ "Ceci est l'applet horloge de Cairo-Dock\n"
-#~ "écrite par Fabrice Rey (fabounet_03@yahoo.fr).\n"
-#~ "La représentation analogique est un port de la fameuse Cairo-Clock\n"
-#~ " écrite par MacSlow (http://macslow.thepimp.net)."
-
-#~ msgid "List of available themes for the numeric display :"
-#~ msgstr "Liste des thèmes disponibles pour la vue numérique :"
-
-#~ msgid "Choose a location"
-#~ msgstr "Choisissez une localité"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"
-
-#~ msgid "Alarm n°1"
-#~ msgstr "Alarme n°1"
-
-#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-#~ msgstr "de la forme xx:xx. Par exemple, 20:35 pour 8:35pm"
-
-#~ msgid "Time you want to be notified :"
-#~ msgstr "Heure de la notification :"
-
-#~ msgid "Repeat every"
-#~ msgstr "Répeter tous les"
-
-#~ msgid "Never"
-#~ msgstr "Jamais"
-
-#~ msgid "Day"
-#~ msgstr "Jours"
-
-#~ msgid "Monday"
-#~ msgstr "Lundi"
-
-#~ msgid "Tuesday"
-#~ msgstr "Mardi"
-
-#~ msgid "Wednesday"
-#~ msgstr "Mercredi"
-
-#~ msgid "Thursday"
-#~ msgstr "Jeudi"
-
-#~ msgid "Friday"
-#~ msgstr "Vendredi"
-
-#~ msgid "Saturday"
-#~ msgstr "Samedi"
-
-#~ msgid "Sunday"
-#~ msgstr "Dimanche"
-
-#~ msgid "Week Day"
-#~ msgstr "Jours de la semaine"
-
-#~ msgid "Week End"
-#~ msgstr "Week Ends"
-
-#~ msgid "Month"
-#~ msgstr "Mois"
-
-#~ msgid "If every month, which day of the month ? :"
-#~ msgstr "Si chaque mois, quel jour du mois ? :"
-
-#~ msgid "Message you want to use to be notified :"
-#~ msgstr "Message utilisé pour être notifié :"
-
-#~ msgid "For exemple, < play /path/to/file.ogg >."
-#~ msgstr "Par exemple, < play /chemin/vers/le/fichier.ogg >."
-
-#~ msgid "Command to execute :"
-#~ msgstr "Commande à exécuter"
-
-#~ msgid "Alarm n°2"
-#~ msgstr "Alarme n°2"
-
-#~ msgid "Alarm n°3"
-#~ msgstr "Alarme n°3"

@@ -63,7 +63,6 @@ msgid "mail"
 msgstr ""
 
 #: ../src/cd-mail-applet-init.c:24
-#, fuzzy
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)\n"
@@ -73,6 +72,8 @@ msgstr ""
 "Cet applet est très utile pour vous avertir de nouveaux courriers.\n"
 "Il peut les vérifier dans plusieurs types de messageries (Yahoo!, Gmail, "
 "etc.)"
+"Clic gauche pour lancer l'application mail préférée,\n"
+"Clic milieu pour rafraîchir les comptes."
 
 #: ../src/cd-mail-applet-notifications.c:39
 #, c-format
@@ -154,32 +155,31 @@ msgstr ""
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "Toujours devant"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:39
 msgid ""
@@ -293,9 +293,8 @@ msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../data/messages:87
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "Nom du fichier son pour les nouveaux e-mails :"
+msgstr "Vue utilisée pour le sous-dock :"
 
 #: ../data/messages:89
 msgid "Show new messages' content ?"
@@ -322,9 +321,8 @@ msgid "Mail application"
 msgstr ""
 
 #: ../data/messages:101
-#, fuzzy
 msgid "Prefered mail application to launch on left-click :"
-msgstr "Chemin de l'application à exécuter au clic gauche"
+msgstr "Application mail préférée à exécuter au clic gauche"
 
 #: ../data/messages:103
 msgid ""
@@ -344,10 +342,9 @@ msgstr ""
 
 #: ../data/messages:109
 msgid "Steal the application's icon in taskbar ?"
-msgstr ""
+msgstr "Voler l'icône de l'application dans la barre des taches ?"
 
 #: ../data/messages:111
-#, fuzzy
 msgid "Add an mail account"
 msgstr "Ajouter un nouveau compte e-mail"
 
@@ -358,278 +355,3 @@ msgstr "Le nouveau compte pourra être créé avec un type et un nom spécifiés
 #: ../data/messages:115
 msgid "Add an account with specified type and name:"
 msgstr "Ajouter un compte avec un type et un nom spécifiés"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid "Default"
-#~ msgstr "Défaut"
-
-#~ msgid ""
-#~ "This is the mail applet\n"
-#~ " made by Christophe Chapuis for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet mail\n"
-#~ " écrite par Christophe Chapuis pour Cairo-Dock"
-
-#~ msgid "Modify a mail account"
-#~ msgstr "Modifier un compte e-mail"
-
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr ""
-#~ "Impossible de mettre le socket en mode non-bloquant. Si la tentative de "
-#~ "connexion bloque, la barre peut bloquer à la fermeture."
-
-#~ msgid "Failed to connect to server: %s"
-#~ msgstr "Impossible de se connecter au serveur: %s"
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr ""
-#~ "Impossible de modifier le socket en mode bloquant. Les données ont pu ne "
-#~ "pas être reçus correctement."
-
-#~ msgid "TLS handshake failed: %s"
-#~ msgstr "La négociation TLS a échoué: %s "
-
-#~ msgid ""
-#~ "Received HTTP response code %d.  The most likely reason for this is that "
-#~ "your GMail username or password is incorrect."
-#~ msgstr ""
-#~ "Code de réponse HTTP reçu %d. La raison la plus plausible est que votre "
-#~ "login ou mot de passe GMail est incorrect."
-
-#~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
-#~ msgstr ""
-#~ "Code de retour HTTP reçu %d, devrait être 200. Il y a peut-être un "
-#~ "problème avec les serveurs GMail, ou il y a un changement de méthode "
-#~ "d'authentification ou de répertoires des nouveaux messages."
-
-#~ msgid "_Username:"
-#~ msgstr "_Nom d'utilisateur:"
-
-#~ msgid "_Password:"
-#~ msgstr "_Mot de passe:"
-
-#~ msgid "Check for _new messages every"
-#~ msgstr "Vérification des _nouveaux messages toutes les"
-
-#~ msgid "minute(s)."
-#~ msgstr "minute(s)."
-
-#~ msgid "Remote GMail Mailbox"
-#~ msgstr "Boite GMail à distance"
-
-#~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
-#~ msgstr ""
-#~ "Le plugin GMail peut se connecter au service mail de Google and récupérer "
-#~ "le nombre de nouveaux messages de manière sécurisé"
-
-#~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
-#~ msgstr ""
-#~ "Secure IMAP n'est pas disponible, et le serveur IMAP ne supporte pas les "
-#~ "login en mode texte."
-
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
-#~ msgstr "Securité STARTTLS demandée, mais le serveur ne le supporte pas."
-
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr ""
-#~ "Le buffer est trop petit pour recevoir la totalité de la réponse IMAP. "
-#~ "C'est un bug !"
-
-#~ msgid "Failed to get folder list"
-#~ msgstr "Impossible de récupérer la liste des dossiers"
-
-#~ msgid "Please wait..."
-#~ msgstr "Veuillez patienter..."
-
-#~ msgid "Set New Mail Folders"
-#~ msgstr "Ajouter un Nouveau Dossier Mail"
-
-#~ msgid "New Mail Folders"
-#~ msgstr "Nouveaux dossiers E-Mail"
-
-#~ msgid "Advanced IMAP Options"
-#~ msgstr "Options IMAP avancées"
-
-#~ msgid "Connection"
-#~ msgstr "Connexion"
-
-#~ msgid "Use unsecured connection"
-#~ msgstr "Utiliser une connexion non sécurisée"
-
-#~ msgid "Use SSL/TLS on alternate port"
-#~ msgstr "Utiliser SSL/TLS sur un port alternatif"
-
-#~ msgid "Use SSL/TLS via STARTTLS"
-#~ msgstr "Utiliser SSL/TLS par STARTTLS"
-
-#~ msgid "Use non-standard IMAP _port:"
-#~ msgstr "Utiliser un _port IMAP non standard:"
-
-#~ msgid "Folders"
-#~ msgstr "Répertoires"
-
-#~ msgid "IMAP server _directory:"
-#~ msgstr "_Répertoire du serveur IMAP:"
-
-#~ msgid "IMAP Server"
-#~ msgstr "Serveur IMAP"
-
-#~ msgid "_Mail server:"
-#~ msgstr "_Serveur Mail:"
-
-#~ msgid "_Advanced..."
-#~ msgstr "_Avancé..."
-
-#~ msgid "New mail _folders..."
-#~ msgstr "Nouveaux _dossiers d'E-Mail..."
-
-#~ msgid "Remote IMAP Mailbox"
-#~ msgstr "Mailbox IMAP à distance"
-
-#~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
-#~ msgstr ""
-#~ "Le plugin IMAP peut se connecter à un serveur mail à distance qui "
-#~ "supporte le protocole IMAP, optionnellement en utilisant SSL pour la "
-#~ "sécurité."
-
-#~ msgid "Failed to get status of file %s: %s"
-#~ msgstr "Impossible de récupérer l'état du fichier %s: %s"
-
-#~ msgid "%s is not a directory. Is %s really a valid maildir?"
-#~ msgstr ""
-#~ "%s n'est pas un répertoire. Est-ce que %s est un répertoire mail valide?"
-
-#~ msgid "Select Maildir Folder"
-#~ msgstr "Selectionnez le Dossier Maildir"
-
-#~ msgid "Maildir _Path:"
-#~ msgstr "_Chemin Maildir:"
-
-#~ msgid "_Interval:"
-#~ msgstr "_Intervalle:"
-
-#~ msgid "Local Maildir Spool"
-#~ msgstr "File d'attente locale de Boîte de réception"
-
-#~ msgid ""
-#~ "The Maildir plugin can watch a local maildir-style mail spool for new "
-#~ "messages."
-#~ msgstr ""
-#~ "Le plugin Maildir peut surveiller les nouveaux messages d'une file "
-#~ "d'attente de boîte de réception."
-
-#~ msgid "Select mbox file"
-#~ msgstr "Selectionnez le fichier mbox"
-
-#~ msgid "Mbox _Filename:"
-#~ msgstr "_Nom du fichier mbox:"
-
-#~ msgid "Local Mbox spool"
-#~ msgstr "File d'attente local Mbox"
-
-#~ msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-#~ msgstr ""
-#~ "Le plugin Mbox peut surveiller l'arrivée de nouveaux messages pour une "
-#~ "file d'attente de type mbox"
-
-#~ msgid "Malformed line %s in %s ignored."
-#~ msgstr "Omission de la ligne mal construite %s dans %s."
-
-#~ msgid ""
-#~ "The configuration of this plugin is read from\n"
-#~ "the default mh maildir profile file ~/.mh_profile"
-#~ msgstr ""
-#~ "La configuration de ce plugin est lu depuis\n"
-#~ "le profil mh maildir par défaut ~/.mh_profile"
-
-#~ msgid "Local MH mail folder"
-#~ msgstr "Dossier local MH"
-
-#~ msgid "MH plugin watches local MH folders for new mail"
-#~ msgstr "Le plugin MH surveille les nouveaux messages des dossiers locaux MH"
-
-#~ msgid "Advanced POP3 Options"
-#~ msgstr "Options POP3 avancées"
-
-#~ msgid "Use SSL/TLS via STLS"
-#~ msgstr "Utiliser SSL/TLS via STLS"
-
-#~ msgid "Use non-standard POP3 _port:"
-#~ msgstr "Utilisez un _port POP3 non standard:"
-
-#~ msgid "POP3 Server"
-#~ msgstr "Serveur POP3"
-
-#~ msgid "Remote POP3 Mailbox"
-#~ msgstr "Boîte Mail à distance POP3 "
-
-#~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
-#~ msgstr ""
-#~ "Le plugin POP3 peut se connecter à un serveur mail qui supporte le "
-#~ "protocole POP3, "
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch: la négociation TLS a échoué: %s"
-
-#~ msgid "Not compiled with SSL/TLS support"
-#~ msgstr "Non compilé avec le support SSL/TLS"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr ""
-#~ "XfceMailwatch: la négociation TLS a échoué: non compilé avec le support "
-#~ "SSL."
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr ""
-#~ "Une connexion sécurisée a été demandé, mais gnutls n'a pas été initialisé"
-
-#~ msgid "This mailbox type does not require any configuration settings."
-#~ msgstr "Le type de Mailbox ne nécessite pas de configuration."
-
-#~ msgid "Mailbox _Name:"
-#~ msgstr "_Nom de la Mailbox:"
-
-#~ msgid "Edit Mailbox: %s"
-#~ msgstr "Editer la Mailbox: %s"
-
-#~ msgid "Select Mailbox Type"
-#~ msgstr "Selectionnez le Type de Mailbox"
-
-#~ msgid "Select a mailbox type.  A description of the type will appear below."
-#~ msgstr ""
-#~ "Selectionnez un type de Mailbox. Un description du type apparaîtra en "
-#~ "dessous."
-
-#~ msgid "Add New Mailbox"
-#~ msgstr "Ajouter une nouvelle Mailbox"
-
-#~ msgid "Mailboxes"
-#~ msgstr "Mailboxes"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"

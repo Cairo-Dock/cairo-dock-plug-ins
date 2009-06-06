@@ -137,7 +137,7 @@ msgstr ""
 
 #: ../data/messages:31
 msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:33
 msgid ""

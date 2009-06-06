@@ -1,0 +1,450 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007 Cairo-Dock project
+# This file is distributed under the same license as the Cairo-Dock package.
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+msgid "day(s)"
+msgstr "giorno/i"
+
+#: ../src/applet-cpusage.c:225
+msgid "Loading"
+msgstr "Caricamento"
+
+#: ../src/applet-init.c:10
+msgid "cpusage"
+msgstr ""
+
+#: ../src/applet-init.c:13
+msgid ""
+"The cpusage applet show you the amount of CPU currently used.\n"
+"Middle click on the icon to get some valuable info.\n"
+"Left click on the icon to get a list of the most cpu using programs."
+msgstr ""
+
+#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
+msgid "Data acquisition has failed"
+msgstr "L'acquisizione dei dati è fallita"
+
+#: ../src/applet-notifications.c:118
+msgid "Model Name"
+msgstr "Nome del modello"
+
+#: ../src/applet-notifications.c:118
+msgid "Frequency"
+msgstr "Frequenza"
+
+#: ../src/applet-notifications.c:118
+msgid "core(s)"
+msgstr "core(s)"
+
+#: ../src/applet-notifications.c:118
+msgid "Up time"
+msgstr "Up time"
+
+#: ../src/applet-notifications.c:118
+msgid "Activity time"
+msgstr "Tempi di attività"
+
+#: ../src/applet-notifications.c:143
+msgid "Monitor System"
+msgstr "Monitorare il sistema"
+
+#: ../data/messages:1
+msgid "Icon"
+msgstr "Icona"
+
+#: ../data/messages:3
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:5
+msgid "Desired icon size for this applet"
+msgstr "Dimensione dell'icona desiderata per questa applet"
+
+#: ../data/messages:7
+msgid "Name of the icon as it will appear in its label in the dock :"
+msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
+
+#: ../data/messages:9
+msgid "Name of the dock it belongs to:"
+msgstr "Nome del contenitore al quale appartiene :"
+
+#: ../data/messages:11
+msgid "Desklet"
+msgstr "Desklet"
+
+#: ../data/messages:13
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"centrale o ALT + click sinistro come esempio."
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#: ../data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+"sinistro"
+
+#: ../data/messages:19
+msgid "Desklet's position (x ; y) :"
+msgstr "Posizione della desklet (x ; y) :"
+
+#: ../data/messages:21
+msgid "Is detached from the dock ?"
+msgstr "E' staccata dalla barra ?"
+
+#: ../data/messages:23
+#, fuzzy
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep above"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:33
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Mantenere nella sezione dei widget ?"
+
+#: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"Se la posizione è bloccata, la desklet non può essere mossa con un semplice "
+"copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
+"con ALT + click sinistro."
+
+#: ../data/messages:41
+msgid "Lock position ?"
+msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:43
+msgid "in degrees."
+msgstr "in gradi."
+
+#: ../data/messages:45
+msgid "Rotation :"
+msgstr "Rotazione :"
+
+#: ../data/messages:47
+msgid "Decorations"
+msgstr "Decorazioni"
+
+#: ../data/messages:49
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+"Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
+
+#: ../data/messages:51
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Scegliere un tema decorativo per questa desklet :"
+
+#: ../data/messages:53
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
+"esempio. Lasciare vuoto per non utilizzarne."
+
+#: ../data/messages:55
+msgid "Background image :"
+msgstr "Immagine dello sfondo :"
+
+#: ../data/messages:57
+msgid "Background tansparency :"
+msgstr "Trasparenza dello sfondo :"
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
+
+#: ../data/messages:61
+msgid "Left offset :"
+msgstr "Compensazione a sinistra :"
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in alto del disegno."
+
+#: ../data/messages:65
+msgid "Top offset :"
+msgstr "Compensazione in alto :"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione a destra del disegno."
+
+#: ../data/messages:69
+msgid "Right offset :"
+msgstr "Compensazione a destra :"
+
+#: ../data/messages:71
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+"in pixels. Usare questo per aggiustare la posizione in basso del disegno."
+
+#: ../data/messages:73
+msgid "Bottom offset :"
+msgstr "Compensazione in basso :"
+
+#: ../data/messages:75
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
+"esempio. Lasciare vuoto per non usarla."
+
+#: ../data/messages:77
+msgid "Foreground image :"
+msgstr "Immagine in primo piano :"
+
+#: ../data/messages:79
+msgid "Foreground tansparency :"
+msgstr "Trasparenza in primo piano :"
+
+#: ../data/messages:81 ../data/messages:141
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: ../data/messages:83
+msgid "Display"
+msgstr "Mostrare"
+
+#: ../data/messages:85
+msgid "Display a graphic rather than a gauge ?"
+msgstr "Mostrare un grafico al posto di un indicatore ?"
+
+#: ../data/messages:87
+msgid "Type of graphic :"
+msgstr "Tipo di grafico :"
+
+#: ../data/messages:89
+msgid "Line"
+msgstr "Linea"
+
+#: ../data/messages:91
+msgid "Plain"
+msgstr "Piatto"
+
+#: ../data/messages:93
+msgid "Bar"
+msgstr "Barra"
+
+#: ../data/messages:95
+msgid "Circle"
+msgstr "Cerchio"
+
+#: ../data/messages:97
+msgid "Plain Circle"
+msgstr "Cerchio Piatto"
+
+#: ../data/messages:99
+msgid "It's the color of the graphic for high CPU values."
+msgstr "E' il colore del grafico per i valori alti della CPU."
+
+#: ../data/messages:101
+msgid "High values color :"
+msgstr "Colore valori alti :"
+
+#: ../data/messages:103
+msgid "It's the color of the graphic for low CPU values."
+msgstr "E' il colore del grafico per i valori bassi della CPU."
+
+#: ../data/messages:105
+msgid "Low values color :"
+msgstr "Colore valori bassi :"
+
+#: ../data/messages:107
+msgid "Background color of the graphic :"
+msgstr "Colore di sfondo del grafico :"
+
+#: ../data/messages:109
+#, fuzzy
+msgid "Choose one of the available themes :"
+msgstr "Lista dei temi disponibili per l'indicatore :"
+
+#: ../data/messages:111
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+"se si vuole alcuna filigrana."
+
+#: ../data/messages:113
+msgid "Image to display as a watermark :"
+msgstr "Immagine da mostrare come filigrana :"
+
+#: ../data/messages:115
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Settare a 0 se si vuole alcuna filigrana."
+
+#: ../data/messages:117
+msgid "Transparency of the watermark :"
+msgstr "Trasparenza della filigrana :"
+
+#: ../data/messages:119
+msgid "Display CPU usage values :"
+msgstr "Mostrare i valori di utilizzo della CPU :"
+
+#: ../data/messages:121
+msgid "No"
+msgstr "No"
+
+#: ../data/messages:123
+msgid "On icon"
+msgstr "Sull'icona"
+
+#: ../data/messages:125
+msgid "On label"
+msgstr "Sull'etichetta"
+
+#: ../data/messages:127
+msgid "Top List"
+msgstr "Top List"
+
+#: ../data/messages:129
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU-"
+"using programs."
+msgstr ""
+"Quando si clicca col tasto sinistro sull'icona, verrà mostrata la lista dei "
+"N programmi che usano maggior CPU."
+
+#: ../data/messages:131
+msgid "Number of programs to display in the top list :"
+msgstr "Numero dei programmi mostrati nella 'top list'"
+
+#: ../data/messages:133
+msgid "It's the first color of the gradation used to write the top list."
+msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:135
+msgid "Start color of the top list :"
+msgstr "Primo colore della 'top list' :"
+
+#: ../data/messages:137
+msgid "It's the second color of the gradation used to write the top list."
+msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+
+#: ../data/messages:139
+msgid "Stop color of the top list :"
+msgstr "Ultimo colore della 'top list' :"
+
+#: ../data/messages:143 ../data/messages:147
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:145
+msgid "Delay between refresh :"
+msgstr "Ritardo tra gli aggiornamenti"
+
+#: ../data/messages:149
+msgid "Delay between refresh of the top list :"
+msgstr "Ritardo tra gli aggiornamenti della 'top list'"
+
+#: ../data/messages:151
+#, fuzzy
+msgid "Let empty to use he default one."
+msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:153
+msgid "User command to show a system monitor :"
+msgstr "Comando utente per mostrare il monitor di sistema :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"
+
+#~ msgid ""
+#~ "This is the cpusage applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è l'applet cpusage\n"
+#~ " scritta da parAdOxxx_ZeRo per Cairo-Dock"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
+
+#~ msgid "turbo-night-fuel"
+#~ msgstr "turbo-night-fuel"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Information to display on the icon :"
+#~ msgstr "Informazione da mostrare sull'icona :"
+
+#~ msgid "Waiting"
+#~ msgstr "Attendere..."
+
+#~ msgid "Personnalisation"
+#~ msgstr "Personalizzazione"
+
+#~ msgid "Delay between signal checks :"
+#~ msgstr "Ritardo tra i controlli del segnale :"
+
+#~ msgid "Debug"
+#~ msgstr "Debug"
+
+#~ msgid "in milliseconds."
+#~ msgstr "in millisecondi."
+
+#~ msgid "Lockposition ?"
+#~ msgstr "Bloccare la posizione ?"

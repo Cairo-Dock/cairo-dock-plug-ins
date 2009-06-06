@@ -29,6 +29,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 	pInterface->reset_data = CD_APPLET_RESET_DATA_FUNC;
 	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
 	pInterface->initModule = CD_APPLET_INIT_FUNC;
+	pInterface->stopModule = CD_APPLET_STOP_FUNC;
 
 	/*//\_______________ On enregistre les decorateurs (on le fait maintenant au cas ou un dialogue serait affiche pendant le chargement initial).
 	cd_decorator_register_comics ();
@@ -57,18 +58,19 @@ CD_APPLET_INIT_BEGIN
 CD_APPLET_INIT_END
 
 
-/*CD_APPLET_STOP_BEGIN
+CD_APPLET_STOP_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_COMICS_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_MODERN_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_3DPLANE_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_TOOLTIP_NAME);
+	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_CURLY_NAME);
 	
 	cairo_dock_update_dialog_decorator_list_for_gui ();
 CD_APPLET_STOP_END
 
 
-CD_APPLET_RELOAD_BEGIN
+/*CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		// rien a faire.

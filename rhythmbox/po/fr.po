@@ -118,31 +118,29 @@ msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:23
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:25
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:27
 msgid "Keep above"
-msgstr ""
+msgstr "Toujours devant"
 
 #: ../data/messages:29
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:31
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:33
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:35
-#, fuzzy
 msgid ""
 "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
 "dock & type=utility)}"
@@ -152,7 +150,7 @@ msgstr ""
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:39
 msgid ""

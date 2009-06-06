@@ -101,7 +101,7 @@ msgstr "Quantité de flou :"
 #~ "de Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Keep on widget layer ?"
-#~ msgstr "Garder sur la couche des widgets ?"
+#~ msgstr "Sur la couche widgets"
 
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "

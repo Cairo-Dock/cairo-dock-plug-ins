@@ -57,6 +57,13 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	if (pKeyFile == NULL)
 		return FALSE;
 	
+	gint iVersion = g_key_file_get_integer (pKeyFile, "Theme", "version", NULL);
+	if (iVersion != 2)
+	{
+		/// effacer le theme et le recuperer sur le serveur...
+		
+	}
+	
 	GError *erreur = NULL;
 	GString *sImagePath = g_string_new ("");	
 	
@@ -149,36 +156,36 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		_check_error(erreur);
 		
 		// Bouton 1
-		myData.button1coordX = g_key_file_get_integer (pKeyFile, "Button1", "X", &erreur) * fZoomX;
-		_check_error(erreur);
-		myData.button1coordY = g_key_file_get_integer (pKeyFile, "Button1", "Y", &erreur) * fZoomY;
-		_check_error(erreur);
 		myData.button1sizeX = g_key_file_get_integer (pKeyFile, "Button1", "sizeX", &erreur) * fZoomX;
 		_check_error(erreur);
 		myData.button1sizeY = g_key_file_get_integer (pKeyFile, "Button1", "sizeY", &erreur) * fZoomY;
+		_check_error(erreur);
+		myData.button1coordX = g_key_file_get_integer (pKeyFile, "Button1", "X", &erreur) * fZoomX + myData.button1sizeX/2;  // on se ramene au centre.
+		_check_error(erreur);
+		myData.button1coordY = g_key_file_get_integer (pKeyFile, "Button1", "Y", &erreur) * fZoomY + myData.button1sizeY/2;  // on se ramene au centre.
 		_check_error(erreur);
 		
 		_make_texture_at_size (myData.TextureButton1, "Button1", "picture", myData.button1sizeX, myData.button1sizeY);
 		
 		if (myData.osd)
 		{
-			myData.osdPlaycoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd play X", &erreur) * fZoomX;
-			_check_error(erreur);
-			myData.osdPlaycoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd play Y", &erreur) * fZoomY;
-			_check_error(erreur);
 			myData.osdPlaysizeX = g_key_file_get_integer (pKeyFile, "Button1", "osd play sizeX", &erreur) * fZoomX;
 			_check_error(erreur);
 			myData.osdPlaysizeY = g_key_file_get_integer (pKeyFile, "Button1", "osd play sizeY", &erreur) * fZoomY;
 			_check_error(erreur);
+			myData.osdPlaycoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd play X", &erreur) * fZoomX + myData.osdPlaysizeX/2;
+			_check_error(erreur);
+			myData.osdPlaycoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd play Y", &erreur) * fZoomY + myData.osdPlaysizeY/2;
+			_check_error(erreur);
 			_make_texture_at_size (myData.TextureOsdPlay, "Button1", "osd_play", myData.osdPlaysizeX, myData.osdPlaysizeY);
 
-			myData.osdPausecoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd pause X", &erreur) * fZoomX;
-			_check_error(erreur);
-			myData.osdPausecoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause Y", &erreur) * fZoomY;
-			_check_error(erreur);
 			myData.osdPausesizeX = g_key_file_get_integer (pKeyFile, "Button1", "osd pause sizeX", &erreur) * fZoomX;
 			_check_error(erreur);
 			myData.osdPausesizeY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause sizeY", &erreur) * fZoomY;
+			_check_error(erreur);
+			myData.osdPausecoordX = g_key_file_get_integer (pKeyFile, "Button1", "osd pause X", &erreur) * fZoomX + myData.osdPausesizeX/2;
+			_check_error(erreur);
+			myData.osdPausecoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause Y", &erreur) * fZoomY + myData.osdPausesizeY/2;
 			_check_error(erreur);
 			_make_texture_at_size (myData.TextureOsdPause, "Button1", "osd_pause", myData.osdPausesizeX, myData.osdPausesizeY);
 		}
@@ -186,26 +193,26 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		// Bouton 4
 		if (myData.numberButtons > 3)
 		{
-			myData.button4coordX = g_key_file_get_integer (pKeyFile, "Button4", "X", &erreur) * fZoomX;
-			_check_error(erreur);
-			myData.button4coordY = g_key_file_get_integer (pKeyFile, "Button4", "Y", &erreur) * fZoomY;
 			_check_error(erreur);
 			myData.button4sizeX = g_key_file_get_integer (pKeyFile, "Button4", "sizeX", &erreur) * fZoomX;
 			_check_error(erreur);
 			myData.button4sizeY = g_key_file_get_integer (pKeyFile, "Button4", "sizeY", &erreur) * fZoomY;
 			_check_error(erreur);
+			myData.button4coordX = g_key_file_get_integer (pKeyFile, "Button4", "X", &erreur) * fZoomX + myData.button4sizeX/2;
+			_check_error(erreur);
+			myData.button4coordY = g_key_file_get_integer (pKeyFile, "Button4", "Y", &erreur) * fZoomY + myData.button4sizeY/2;
 			
 			_make_texture_at_size (myData.TextureButton4, "Button4", "picture", myData.button4sizeX, myData.button4sizeY);
 			
 			if (myData.osd)
 			{
-				myData.osdHomecoordX = g_key_file_get_integer (pKeyFile, "Button4", "osd X", &erreur) * fZoomX;
-				_check_error(erreur);
-				myData.osdHomecoordY = g_key_file_get_integer (pKeyFile, "Button4", "osd Y", &erreur) * fZoomY;
-				_check_error(erreur);
 				myData.osdHomesizeX = g_key_file_get_integer (pKeyFile, "Button4", "osd sizeX", &erreur) * fZoomX;
 				_check_error(erreur);
 				myData.osdHomesizeY = g_key_file_get_integer (pKeyFile, "Button4", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdHomecoordX = g_key_file_get_integer (pKeyFile, "Button4", "osd X", &erreur) * fZoomX + myData.osdHomesizeX/2;
+				_check_error(erreur);
+				myData.osdHomecoordY = g_key_file_get_integer (pKeyFile, "Button4", "osd Y", &erreur) * fZoomY + myData.osdHomesizeY/2;
 				_check_error(erreur);
 				_make_texture_at_size (myData.TextureOsdHome, "Button4", "osd", myData.osdHomesizeX, myData.osdHomesizeY);
 			}
@@ -214,26 +221,26 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		// Bouton 3
 		if (myData.numberButtons > 2)
 		{
-			myData.button3coordX = g_key_file_get_integer (pKeyFile, "Button3", "X", &erreur) * fZoomX;
-			_check_error(erreur);
-			myData.button3coordY = g_key_file_get_integer (pKeyFile, "Button3", "Y", &erreur) * fZoomY;
-			_check_error(erreur);
 			myData.button3sizeX = g_key_file_get_integer (pKeyFile, "Button3", "sizeX", &erreur) * fZoomX;
 			_check_error(erreur);
 			myData.button3sizeY = g_key_file_get_integer (pKeyFile, "Button3", "sizeY", &erreur) * fZoomY;
+			_check_error(erreur);
+			myData.button3coordX = g_key_file_get_integer (pKeyFile, "Button3", "X", &erreur) * fZoomX + myData.button3sizeX/2;
+			_check_error(erreur);
+			myData.button3coordY = g_key_file_get_integer (pKeyFile, "Button3", "Y", &erreur) * fZoomY + myData.button3sizeY/2;
 			_check_error(erreur);
 			
 			_make_texture_at_size (myData.TextureButton3, "Button3", "picture", myData.button3sizeX, myData.button3sizeY);
 			
 			if (myData.osd)
 			{
-				myData.osdNextcoordX = g_key_file_get_integer (pKeyFile, "Button3", "osd X", &erreur) * fZoomX;
-				_check_error(erreur);
-				myData.osdNextcoordY = g_key_file_get_integer (pKeyFile, "Button3", "osd Y", &erreur) * fZoomY;
-				_check_error(erreur);
 				myData.osdNextsizeX = g_key_file_get_integer (pKeyFile, "Button3", "osd sizeX", &erreur) * fZoomX;
 				_check_error(erreur);
 				myData.osdNextsizeY = g_key_file_get_integer (pKeyFile, "Button3", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdNextcoordX = g_key_file_get_integer (pKeyFile, "Button3", "osd X", &erreur) * fZoomX + myData.osdNextsizeX/2;
+				_check_error(erreur);
+				myData.osdNextcoordY = g_key_file_get_integer (pKeyFile, "Button3", "osd Y", &erreur) * fZoomY + myData.osdNextsizeY/2;
 				_check_error(erreur);
 				_make_texture_at_size (myData.TextureOsdNext, "Button3", "osd", myData.osdNextsizeX, myData.osdNextsizeY);
 			}
@@ -242,26 +249,26 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		// Bouton 2
 		if (myData.numberButtons > 1)
 		{
-			myData.button2coordX = g_key_file_get_integer (pKeyFile, "Button2", "X", &erreur) * fZoomX;
-			_check_error(erreur);
-			myData.button2coordY = g_key_file_get_integer (pKeyFile, "Button2", "Y", &erreur) * fZoomY;
-			_check_error(erreur);
 			myData.button2sizeX = g_key_file_get_integer (pKeyFile, "Button2", "sizeX", &erreur) * fZoomX;
 			_check_error(erreur);
 			myData.button2sizeY = g_key_file_get_integer (pKeyFile, "Button2", "sizeY", &erreur) * fZoomY;
+			_check_error(erreur);
+			myData.button2coordX = g_key_file_get_integer (pKeyFile, "Button2", "X", &erreur) * fZoomX + myData.button2sizeX/2;
+			_check_error(erreur);
+			myData.button2coordY = g_key_file_get_integer (pKeyFile, "Button2", "Y", &erreur) * fZoomY + myData.button2sizeY/2;
 			_check_error(erreur);
 			
 			_make_texture_at_size (myData.TextureButton2, "Button2", "picture", myData.button2sizeX, myData.button2sizeY);
 			
 			if (myData.osd)
 			{
-				myData.osdPrevcoordX = g_key_file_get_integer (pKeyFile, "Button2", "osd X", &erreur) * fZoomX;
-				_check_error(erreur);
-				myData.osdPrevcoordY = g_key_file_get_integer (pKeyFile, "Button2", "osd Y", &erreur) * fZoomY;
-				_check_error(erreur);
 				myData.osdPrevsizeX = g_key_file_get_integer (pKeyFile, "Button2", "osd sizeX", &erreur) * fZoomX;
 				_check_error(erreur);
 				myData.osdPrevsizeY = g_key_file_get_integer (pKeyFile, "Button2", "osd sizeY", &erreur) * fZoomY;
+				_check_error(erreur);
+				myData.osdPrevcoordX = g_key_file_get_integer (pKeyFile, "Button2", "osd X", &erreur) * fZoomX + myData.osdPrevsizeX/2;
+				_check_error(erreur);
+				myData.osdPrevcoordY = g_key_file_get_integer (pKeyFile, "Button2", "osd Y", &erreur) * fZoomY + myData.osdPrevsizeY/2;
 				_check_error(erreur);
 				_make_texture_at_size (myData.TextureOsdPrev, "Button2", "osd", myData.osdPrevsizeX, myData.osdPrevsizeY);
 			}

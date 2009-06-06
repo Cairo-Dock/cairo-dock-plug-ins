@@ -93,32 +93,31 @@ msgstr ""
 
 #: ../data/messages:29
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:31
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:33
 msgid "Keep above"
-msgstr ""
+msgstr "Toujours devant"
 
 #: ../data/messages:35
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:37
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:39
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:41
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:43
 msgid ""
@@ -244,33 +243,8 @@ msgstr ""
 
 #: ../data/messages:93
 msgid "User-defined command to execute to shutdown :"
-msgstr "Commande spécifique à exécuter pour se éteindre :"
+msgstr "Commande spécifique à exécuter pour éteindre :"
 
 #: ../data/messages:95
 msgid "Invert buttons ?"
-msgstr "Inverser les raccourcis ?"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid ""
-#~ "This is a very simple logout applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est une applet très basique de log-out\n"
-#~ " écrite par Fabrice Rey for Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"
-
-#~ msgid "Module"
-#~ msgstr "Module"
-
-#~ msgid "Lockposition ?"
-#~ msgstr "Verrouiller la position ?"
+msgstr "Inverser les boutons ?"

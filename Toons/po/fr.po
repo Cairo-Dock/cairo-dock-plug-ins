@@ -78,33 +78,31 @@ msgstr ""
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:29
-#, fuzzy
 msgid "Keep above"
-msgstr "Garder le ratio ?"
+msgstr "Toujours devant"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:39
 msgid ""
@@ -240,36 +238,3 @@ msgstr "Une grande fréquence d'actualisation utiliser plus de CPU"
 #: ../data/messages:97
 msgid "High refresh frequency ?"
 msgstr "Fréquence d'actualisation élevée?"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
-#~ "Negative values are counted from the right/bottom of the screen"
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
-#~ "+ clic gauche."
-
-#~ msgid "Module"
-#~ msgstr "Module"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid ""
-#~ "This is the Toons applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet Toons\n"
-#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"

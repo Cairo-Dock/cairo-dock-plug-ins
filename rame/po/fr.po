@@ -101,32 +101,31 @@ msgstr ""
 
 #: ../data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ../data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: ../data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "Toujours devant"
 
 #: ../data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "Toujours derrière"
 
 #: ../data/messages:33
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "Réserver l'espace"
 
 #: ../data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "Visible sur tous les bureaux ?"
 
 #: ../data/messages:39
 msgid ""

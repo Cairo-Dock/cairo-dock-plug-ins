@@ -22,7 +22,7 @@ AC_SUBST(VERSION_DND2SHARE, "$VERSION")
 AC_SUBST(PACKAGE_DND2SHARE, "$PACKAGE")
 
 dnd2sharedatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dnd2share]
-AC_SUBST(dnd2share)
+AC_SUBST(dnd2sharedatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 

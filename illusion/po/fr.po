@@ -50,14 +50,12 @@ msgid "Break"
 msgstr "Casser"
 
 #: ../data/messages:13 ../data/messages:25
-#, fuzzy
 msgid "BlackHole"
 msgstr "Trou Noir"
 
 #: ../data/messages:15
-#, fuzzy
 msgid "Animation on appearance :"
-msgstr "Animation de disparition :"
+msgstr "Animation d'apparition :"
 
 #: ../data/messages:29 ../data/messages:47 ../data/messages:51
 #: ../data/messages:61 ../data/messages:67
@@ -110,18 +108,16 @@ msgstr "Trou Noir"
 
 #: ../data/messages:69
 msgid "in round per second."
-msgstr ""
+msgstr "en tours par seconde."
 
 #: ../data/messages:71
-#, fuzzy
 msgid "Rotation speed :"
-msgstr "Vitesse des particules :"
+msgstr "Vitesse de rotation :"
 
 #: ../data/messages:73
 msgid "The greatest, the fastest the icon will collapse to the center."
-msgstr ""
+msgstr "Plus c'est grand, plus vite les icônes vont s'effondrer vers le centre."
 
 #: ../data/messages:75
-#, fuzzy
 msgid "Attraction of the hole :"
-msgstr "Durée de l'animation :"
+msgstr "Attraction du trou noir :"

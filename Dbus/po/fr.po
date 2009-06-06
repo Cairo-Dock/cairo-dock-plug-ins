@@ -45,16 +45,13 @@ msgid "Let extern applications show/hide the docks ?"
 msgstr "Autoriser les applications externes à montrer/cacher les docks ?"
 
 #: ../data/messages:13
-#, fuzzy
 msgid "Let extern applications add launchers into the docks ?"
-msgstr "Autoriser les applications externes à recharger le dock ?"
+msgstr "Autoriser les applications externes à rajouter des lanceurs dans le dock ?"
 
 #: ../data/messages:15
-#, fuzzy
 msgid "Let extern applications modify the labels of the icons ?"
-msgstr "Autoriser les applications externes à recharger les applets ?"
+msgstr "Autoriser les applications externes à modifier les étiquettes des icônes ?"
 
 #: ../data/messages:17
-#, fuzzy
 msgid "Let extern applications modify the quick-infos on the icons ?"
-msgstr "Autoriser les pop-up de dialogues par des applications externes ?"
+msgstr "Autoriser les applications externes à modifier les infos-rapides sur les icônes  ?"

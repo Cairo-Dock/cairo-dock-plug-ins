@@ -82,7 +82,7 @@ msgstr "pour le plug-in \"widget layer\" de CompizFusion, régler le comportemen
 
 #: ../data/messages:29
 msgid "Keep on widget layer ?"
-msgstr "Garder sur la couche des widgets ?"
+msgstr "Sur la couche widgets"
 
 #: ../data/messages:35
 #: ../data/messages:33

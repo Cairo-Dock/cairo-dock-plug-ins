@@ -50,9 +50,12 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
-	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS))  // on a efface notre instance, on efface donc aussi le repertoire.
+	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS) && myConfig.cStackDir)  // on a efface notre instance, on efface donc aussi le repertoire.
 	{
-		g_remove (myConfig.cStackDir);
+		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", myConfig.cStackDir);
+		g_print ("Stack : %s\n", myConfig.cStackDir);
+		int r = system (cCommand);
+		g_free (cCommand);
 	}
 	
 CD_APPLET_STOP_END
