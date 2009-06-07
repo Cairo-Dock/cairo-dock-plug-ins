@@ -17,4 +17,5 @@ void onChangePlaying(DBusGProxy *player_proxy,gboolean playing, gpointer data);
 void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data);
 void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data);
 
+
 #endif

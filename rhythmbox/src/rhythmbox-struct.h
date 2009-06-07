@@ -131,6 +131,16 @@ struct _AppletData {
 	
 	gboolean CoverWasDistant;  // a degager en testant sur la taille ...
 	gint iAnimationCount;
+	
+	// Pour tester la taille des pochettes téléchargées :
+	gint iCurrentFileSize;
+    gint iLastFileSize;
+    gboolean bSizeIsConstant;
+	guint iSidLoopForMagnatune;
+	gboolean bLoopForMagnatune;
+	gboolean bLoopForMagnatuneDone;
+
+	
 	} ;
 
 

@@ -49,19 +49,28 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 	//g_print ("%s (%s)\n", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
-		cd_message ("RB : la couverture '%s' est desormais disponible", myData.playing_cover);
+			
+		cd_message ("RB-YDU : la couverture '%s' est disponible", myData.playing_cover);
 		
 		if (myData.CoverWasDistant)
 		{
-			/// tester la taille du fichier sur 2 iterations successives ... 
-			cd_debug ("RB : BOUCLE 2 : C'est une pochette qui était distante -> On n'affiche rien avant la prochaine boucle");
-			myData.CoverWasDistant = FALSE ;
-			myData.cover_exist = FALSE;
-			return TRUE;
+			cd_check_if_size_is_constant (myData.playing_cover);
+			if (myData.bSizeIsConstant)
+			{ 
+				cd_message ("RB-YDU : la couverture '%s' est desormais disponible et la taille est constante", myData.playing_cover);
+				myData.CoverWasDistant = FALSE ;
+				myData.cover_exist = FALSE;
+				return TRUE;
+			}
+			else 
+			{
+				cd_message ("RB-YDU : la couverture '%s' n'est pas encore complete", myData.playing_cover);
+				// On laisse myData.CoverWasDistant à TRUE pour rentrer à nouveau dans la boucle au prochain tour ;-)
+			}			
 		}
 		else
 		{
-			cd_debug ("RB : BOUCLE 2 : La pochette est locale -> On affiche");
+			cd_debug ("RB-YDU : BOUCLE 2 : La pochette est locale -> On affiche");
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{	
 				if (myData.iPrevTextureCover != 0)
@@ -88,6 +97,7 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 			myData.iSidCheckCover = 0;
 			return FALSE;
 		}
+		
 	}
 	else
 	{
@@ -241,4 +251,31 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
 		}
 	}
+}
+
+void cd_check_if_size_is_constant (gchar *cFileName)
+{
+    gchar *cSize;
+    gchar *cCommand = g_strdup_printf ("stat -c %%s \"%s\"", cFileName);
+    g_spawn_command_line_sync (cCommand, &cSize, NULL, NULL, NULL);
+    g_free (cCommand);
+    myData.iCurrentFileSize = atoi(cSize);
+    
+    
+    cd_debug ("RB-YDU : Ancienne taille du fichier %s = %i", cFileName, myData.iLastFileSize);
+    cd_debug ("RB-YDU : Taille actuelle du fichier %s = %i", cFileName, myData.iCurrentFileSize);
+    
+    if ( myData.iCurrentFileSize == myData.iLastFileSize )
+    {
+        cd_debug ("RB-YDU : La taille est identique -> le fichier %s est COMPLET et prêt à être traité", cFileName);
+        
+        myData.iLastFileSize = 9999;
+        myData.bSizeIsConstant = TRUE;
+    }
+    else
+    {
+        cd_debug ("RB-YDU : le fichier %s n'est pas complet ... il faut attendre encore un peu", cFileName);
+        myData.iLastFileSize = myData.iCurrentFileSize;
+        myData.bSizeIsConstant = FALSE;
+    }
 }

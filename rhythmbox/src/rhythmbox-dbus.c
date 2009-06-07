@@ -120,7 +120,17 @@ void rhythmbox_getPlayingUri(void)
 
 
 void getSongInfos(void)
-{	
+{
+	if (myData.bLoopForMagnatune)
+	{
+		cd_debug("RB-YDU : On relance la vérif et on stoppe le timer");
+		//\_______________ On stoppe le timer.
+		g_source_remove (myData.iSidLoopForMagnatune);
+		myData.iSidLoopForMagnatune = 0;
+		myData.bLoopForMagnatune = FALSE;
+		myData.bLoopForMagnatuneDone = TRUE;
+	}	
+	
 	GHashTable *data_list = NULL;
 	GValue *value;
 	const gchar *data;
@@ -182,8 +192,9 @@ void getSongInfos(void)
 					
 					myData.CoverWasDistant = TRUE;
 					g_spawn_command_line_async (cCommand, NULL);
-					cd_debug("RB : La commande pour un fichier distant est passée");
+					cd_debug("RB-YDU : La commande pour un fichier distant est passée");
 					g_free (cCommand);
+					myData.bLoopForMagnatuneDone = FALSE;
 				}
 				else if (strncmp (cString, "file://", 7) == 0)
 				{
@@ -191,7 +202,7 @@ void getSongInfos(void)
 					myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
 					if (erreur != NULL)
 					{
-						cd_warning ("RB : %s", erreur->message);
+						cd_warning ("RB-YDU : %s", erreur->message);
 						g_error_free (erreur);
 					}
 				}
@@ -204,6 +215,7 @@ void getSongInfos(void)
 		
 		if (myData.playing_cover == NULL)  // soit RB nous a rien file, soit le fichier est distant => on va etablir une adresse locale qu'on testera dans le update_icon.
 		{
+			cd_debug("RB-YDU : Pas d'adresse de la part de RB ... on regarde en local");
 			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
 			if (cSongPath != NULL)  // c'est un fichier local.
 			{
@@ -252,12 +264,27 @@ void getSongInfos(void)
 			
 			if (myData.playing_cover == NULL)  // on regarde maintenant dans le cache de RB.
 			{
+				cd_debug("RB-YDU : On regarde dans le répertoire .cache/rhythmbox/covers/");
 				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
-			}	
+				if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+				{					
+					myData.bLoopForMagnatuneDone = FALSE;
+				}
+				else if (!myData.bLoopForMagnatuneDone)
+				{
+					cd_debug("RB-YDU : Toujours pas de pochette -> On recommence (pour Magnatune ou Jamendo)");
+					/// Boucle en générale atteinte lors de la lecture de Magnatune ou Jamendo ;-)
+					myData.bLoopForMagnatune = TRUE ;
+					//\_______________ On lance le timer pour tester 2 secondes plus tard.
+					myData.iSidLoopForMagnatune = g_timeout_add_seconds (2, (GSourceFunc) getSongInfos, (gpointer) myApplet);						
+				}
+				else
+					myData.bLoopForMagnatuneDone = FALSE;
+			}
 		}
-				
-		g_print ("  playing_cover <- %s\n", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
 		
+		g_print ("RB-YDU :  playing_cover <- %s\n", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
+				
 		g_hash_table_destroy (data_list);
 	}
 	else
@@ -269,6 +296,7 @@ void getSongInfos(void)
 		myData.playing_cover = NULL;
 	}
 }
+
 
 
 //*********************************************************************************
