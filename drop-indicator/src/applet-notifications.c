@@ -99,7 +99,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.pHoverIndicatorSurface != NULL)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL)
+			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
 			{
 				cairo_save (pCairoContext);
 				if (pDock->bHorizontalDock)
@@ -108,8 +108,8 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 						pIcon->fDrawY);
 				else
 					cairo_translate (pCairoContext,
-						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
-						pIcon->fDrawY);
+						pIcon->fDrawY,
+						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale);
 				cairo_set_source_surface (pCairoContext, myData.pHoverIndicatorSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, pData->fAlphaHover);
 				cairo_restore (pCairoContext);
@@ -205,18 +205,18 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.iHoverIndicatorTexture != 0)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL)
+			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
 			{
 				_cairo_dock_enable_texture ();
 				_cairo_dock_set_blend_over ();
 				glPushMatrix ();
 				if (pDock->bHorizontalDock)
-					glTranslatef (pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
-						pDock->iCurrentHeight - pIcon->fDrawY,
+					glTranslatef (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale,
+						pDock->iCurrentHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
 						0.);
 				else
-					glTranslatef (pDock->iCurrentHeight - pIcon->fDrawY,
-						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
+					glTranslatef (pDock->iCurrentHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
+						pDock->iCurrentWidth - (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale),
 						0.);
 				_cairo_dock_apply_texture_at_size_with_alpha (myData.iHoverIndicatorTexture,
 					myData.fHoverIndicatorWidth,

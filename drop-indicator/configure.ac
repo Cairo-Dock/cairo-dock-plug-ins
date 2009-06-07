@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-drop_indicator],[1.0.0],[Fabounet (Fabrice Rey) (fabounet@users.berlios.de)])
+AC_INIT([cd-drop_indicator],[1.1.0],[Fabounet (Fabrice Rey) (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
