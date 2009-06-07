@@ -173,7 +173,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		if (my_iFlatSeparatorTexture != 0)
 		{
-			glDeleteTextures (1, &my_iFlatSeparatorTexture);
+			_cairo_dock_delete_texture (my_iFlatSeparatorTexture);
 			my_iFlatSeparatorTexture = 0;
 		}
 		

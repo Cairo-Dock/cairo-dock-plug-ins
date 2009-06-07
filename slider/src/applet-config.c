@@ -52,8 +52,8 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pCairoSurface);
 	
 	if (myData.iPrevTexture != 0 && myData.iPrevTexture != myData.iTexture)
-		glDeleteTextures (1, &myData.iPrevTexture);
+		_cairo_dock_delete_texture (myData.iPrevTexture);
 	if (myData.iTexture != 0)
-		glDeleteTextures (1, &myData.iTexture);
+		_cairo_dock_delete_texture (myData.iTexture);
 	
 CD_APPLET_RESET_DATA_END

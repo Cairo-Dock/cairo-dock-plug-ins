@@ -26,7 +26,7 @@ msgstr ""
 "rapidement.\n"
 "Vous pouvez configurer un raccourci pour ouvrir directement la navigation\n"
 "Clique du milieu pour ouvrir le dossier principal.\n"
-"Plusieurs instances de cet applet peuvent être lancés si vous désirer "
+"Plusieurs instances de cet applet peuvent être lancés si vous désirez pouvoir "
 "naviguer dans différents dossiers."
 
 #: ../src/applet-menu.c:97 ../src/applet-menu.c:103
@@ -236,7 +236,7 @@ msgstr "Configuration"
 
 #: ../data/messages:89
 msgid "Folder to browse :"
-msgstr "Dossier à naviguer"
+msgstr "Dossier à parcourir :"
 
 #: ../data/messages:91
 msgid "It can be quite heavy to load a lot of icons."
@@ -248,11 +248,11 @@ msgstr "Afficher les icônes dans le menu ?"
 
 #: ../data/messages:95
 msgid "List folders first ?"
-msgstr "Donner la liste des dossiers en premier ?"
+msgstr "Lister les dossiers en premier ?"
 
 #: ../data/messages:97
 msgid "Ignore case ?"
-msgstr "Cas à ignorer ?"
+msgstr "Ignorer la casse ?"
 
 #: ../data/messages:99
 msgid "Show hidden files ?"
@@ -273,34 +273,3 @@ msgstr ""
 #: ../data/messages:105
 msgid "Gradual building of the menu :"
 msgstr "Construction graduelle du menu"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#, fuzzy
-#~ msgid ""
-#~ "This is the Quick Browser applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet quick-browser\n"
-#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"
-
-#, fuzzy
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
-#~ "Negative values are counted from the right/bottom of the screen"
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
-#~ "+ clic gauche."
-
-#~ msgid "Module"
-#~ msgstr "Module"

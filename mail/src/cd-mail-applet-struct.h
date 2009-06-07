@@ -30,6 +30,7 @@ struct _AppletConfig {
 	gchar *cMailClass;
 	gboolean bStealTaskBarIcon;
 	gboolean bShowMessageContent;
+	gboolean bCheckOnStartup;
 } ;
 
 struct _AppletData {

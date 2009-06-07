@@ -101,7 +101,7 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = turbo-night-fuel
+theme = Turbo-night-fuel
 
 #v
 sep1=

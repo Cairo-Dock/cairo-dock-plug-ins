@@ -267,7 +267,7 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		cairo_surface_destroy (myData.pDropIndicatorSurface);
 	if (myData.iDropIndicatorTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iDropIndicatorTexture);
+		_cairo_dock_delete_texture (myData.iDropIndicatorTexture);
 		myData.iDropIndicatorTexture = 0;
 	}
 	myData.pDropIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
@@ -289,8 +289,21 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		/*gchar *cGradationTexturePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_MASK_INDICATOR_NAME);
 		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_image (cGradationTexturePath);
 		g_free (cGradationTexturePath);*/
-		myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
+		if (myData.iBilinearGradationTexture == 0)
+			myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
 		
 		//gdk_gl_drawable_gl_end (pGlDrawable);
 	}
+}
+
+
+gboolean cd_drop_indicator_stop_dock (gpointer data, CairoDock *pDock)
+{
+	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
+	if (pData != NULL)
+	{
+		g_free (pData);
+		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

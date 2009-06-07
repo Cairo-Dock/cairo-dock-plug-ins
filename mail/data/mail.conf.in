@@ -92,6 +92,10 @@ renderer =
 #b Show new messages' content ?
 show content = true
 
+#b Check mail account on startup ?
+#{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/mdify the mail accounts you want.}
+check = true
+
 #F[Theme overriding] 
 frame_over =
 

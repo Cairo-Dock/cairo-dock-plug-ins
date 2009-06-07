@@ -51,7 +51,7 @@ static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
 	}
 	if (pAnimation->iTexture != 0)
 	{
-		glDeleteTextures (1, &pAnimation->iTexture);
+		_cairo_dock_delete_texture (pAnimation->iTexture);
 		pAnimation->iTexture = 0;
 	}
 }

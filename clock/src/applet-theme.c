@@ -307,27 +307,27 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 	}
 	if (myData.iBgTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iBgTexture);
+		_cairo_dock_delete_texture (myData.iBgTexture);
 		myData.iBgTexture = 0;
 	}
 	if (myData.iFgTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iFgTexture);
+		_cairo_dock_delete_texture (myData.iFgTexture);
 		myData.iFgTexture = 0;
 	}
 	if (myData.iHourNeedleTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iHourNeedleTexture);
+		_cairo_dock_delete_texture (myData.iHourNeedleTexture);
 		myData.iHourNeedleTexture = 0;
 	}
 	if (myData.iMinuteNeedleTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iMinuteNeedleTexture);
+		_cairo_dock_delete_texture (myData.iMinuteNeedleTexture);
 		myData.iMinuteNeedleTexture = 0;
 	}
 	if (myData.iSecondNeedleTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iSecondNeedleTexture);
+		_cairo_dock_delete_texture (myData.iSecondNeedleTexture);
 		myData.iSecondNeedleTexture = 0;
 	}
 	if (myData.iDateTexture != 0)

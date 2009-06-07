@@ -112,7 +112,7 @@ mix graph = false
 bg color = .5;.5;1.;.4
 
 #h+[/usr/share/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = turbo-night-fuel
+theme = Turbo-night-fuel
 
 #v
 sep1=

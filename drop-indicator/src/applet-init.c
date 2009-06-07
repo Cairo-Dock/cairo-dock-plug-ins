@@ -56,23 +56,21 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_stop_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 static void _free_data_on_dock (gchar *cDockName, CairoDock *pDock, gpointer data)
 {
-	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
-	if (pData != NULL)
-	{
-		g_free (pData);
-		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
-	}
+	cd_drop_indicator_stop_dock (NULL, pDock);
 }
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_stop_dock, NULL);
 	
 	cairo_dock_foreach_docks (_free_data_on_dock, NULL);
 CD_APPLET_STOP_END

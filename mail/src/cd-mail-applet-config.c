@@ -86,7 +86,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	}
 	g_strfreev (pGroupList);
 	
-	 //\_______________ On initialise tous les comptes.
+	//\_______________ On initialise tous les comptes.
 	cd_mail_init_accounts(myApplet);
 }
 
@@ -113,8 +113,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	
+	myConfig.bCheckOnStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "check", TRUE);
+	
 	//\_________________ On recupere les comptes mail.
-	_get_mail_accounts (CD_APPLET_MY_KEY_FILE, myApplet);
+	if (myConfig.bCheckOnStartup)
+		_get_mail_accounts (CD_APPLET_MY_KEY_FILE, myApplet);
 CD_APPLET_GET_CONFIG_END
 
 

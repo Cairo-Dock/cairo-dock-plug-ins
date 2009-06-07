@@ -34,7 +34,7 @@ void cd_drop_indicator_free_buffers (void)
 {
 	if (myData.iDropIndicatorTexture != 0)
 	{
-		glDeleteTextures (1, &myData.iDropIndicatorTexture);
+		_cairo_dock_delete_texture (myData.iDropIndicatorTexture);
 		myData.iDropIndicatorTexture = 0;
 	}
 	
@@ -45,9 +45,22 @@ void cd_drop_indicator_free_buffers (void)
 	}
 }
 
+void _reser_data_on_one_dock (gchar *cDockName, CairoDock *pDock, gpointer data)
+{
+	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
+	if (pData == NULL)
+		return ;
+	g_free (pData);
+}
 CD_APPLET_RESET_DATA_BEGIN
 	/// free our data on all docks ..
-	
+	cairo_dock_foreach_docks ((GHFunc) _reser_data_on_one_dock, NULL);
 	
 	cd_drop_indicator_free_buffers ();
+	
+	if (myData.iBilinearGradationTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iBilinearGradationTexture);
+		myData.iBilinearGradationTexture = 0;
+	}
 CD_APPLET_RESET_DATA_END
