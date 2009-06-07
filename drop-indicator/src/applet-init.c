@@ -43,6 +43,21 @@ static void _load_drop_indicator (void)
 		iInitialWidth,
 		iInitialHeight);
 	g_free (cImagePath);
+	
+	if (myConfig.cHoverIndicatorImageName != NULL)
+	{
+		cImagePath = cairo_dock_generate_file_path (myConfig.cHoverIndicatorImageName);
+	}
+	else
+	{
+		cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_DEFAULT_HOVER_INDICATOR_NAME);
+	}
+	cd_drop_indicator_load_hover_indicator (cImagePath,
+		pCairoContext,
+		iInitialWidth/3,
+		iInitialHeight*2/3);
+	g_free (cImagePath);
+	
 	cairo_destroy (pCairoContext);
 }
 

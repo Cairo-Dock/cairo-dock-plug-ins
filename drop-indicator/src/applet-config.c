@@ -19,12 +19,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fRotationSpeed = CD_CONFIG_GET_DOUBLE ("Configuration", "rotation speed");
 	myConfig.iSpeed = CD_CONFIG_GET_INTEGER ("Configuration", "speed");
 	myConfig.cDropIndicatorImageName = CD_CONFIG_GET_STRING ("Configuration", "drop indicator");
+	myConfig.cHoverIndicatorImageName = CD_CONFIG_GET_STRING ("Configuration", "hover indicator");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cDropIndicatorImageName);
+	g_free (myConfig.cHoverIndicatorImageName);
 	
 CD_APPLET_RESET_CONFIG_END
 
@@ -42,6 +44,18 @@ void cd_drop_indicator_free_buffers (void)
 	{
 		cairo_surface_destroy (myData.pDropIndicatorSurface);
 		myData.pDropIndicatorSurface = NULL;
+	}
+	
+	if (myData.iHoverIndicatorTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iHoverIndicatorTexture);
+		myData.iHoverIndicatorTexture = 0;
+	}
+	
+	if (myData.pHoverIndicatorSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pHoverIndicatorSurface);
+		myData.pHoverIndicatorSurface = NULL;
 	}
 }
 

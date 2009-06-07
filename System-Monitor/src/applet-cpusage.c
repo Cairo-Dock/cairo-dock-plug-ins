@@ -134,11 +134,6 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 {
 	static char cContent[512+1];
 	
-	g_timer_stop (myData.pClock);
-	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
-	g_timer_start (myData.pClock);
-	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
-	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	if (fd == NULL)
 	{
@@ -155,6 +150,11 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}
+	
+	g_timer_stop (myData.pClock);
+	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
+	g_timer_start (myData.pClock);
+	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
 	
 	long long int new_cpu_user = 0, new_cpu_user_nice = 0, new_cpu_system = 0, new_cpu_idle = 0;
 	tmp += 3;  // on saute 'cpu'.
@@ -174,6 +174,8 @@ void cd_cpusage_read_data (CairoDockModuleInstance *myApplet)
 	if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 	{
 		myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
+		if (myData.cpu_usage < 0)  // peut arriver car le fichier pipe est pas mis a jour tous les dt, donc il y'a potentiellement un ecart de dt avec la vraie valeur. Ca plus le temps d'execution.  
+			myData.cpu_usage = 0;
 		cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
 			myData.iNbCPU,
 			myData.cpu_user, new_cpu_user,

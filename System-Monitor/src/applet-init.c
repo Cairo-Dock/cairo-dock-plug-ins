@@ -51,7 +51,7 @@ CD_APPLET_INIT_BEGIN
 	memset (&attr, 0, sizeof (CairoGaugeAttribute));
 	attr.rendererAttribute.cModelName = "gauge";
 	attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
-	attr.rendererAttribute.iNbValues = 4;
+	attr.rendererAttribute.iNbValues = 1;
 	attr.cThemePath = myConfig.cGThemePath;
 	cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, &attr);
 	

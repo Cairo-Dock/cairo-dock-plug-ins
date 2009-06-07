@@ -7,6 +7,10 @@
 #{Typically an arrow, that will be displayed when you try to drop a new launcher into the dock. Let empty to use the default one.}
 drop indicator =
 
+#S+ Image when hovering an icon :
+#{An emblem that will be displayed when you try to drop something onto an icon. Let empty to use the default one.}
+hover indicator =
+
 #I+[1;5] Speed :
 speed = 1
 

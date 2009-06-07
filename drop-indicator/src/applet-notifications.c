@@ -95,6 +95,26 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		cairo_pattern_destroy (pPattern);
 		cairo_pattern_destroy (pGradationPattern);
 		cairo_restore (pCairoContext);
+		
+		if (pData->fAlphaHover > 0 && myData.pHoverIndicatorSurface != NULL)
+		{
+			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
+			if (pIcon != NULL)
+			{
+				cairo_save (pCairoContext);
+				if (pDock->bHorizontalDock)
+					cairo_translate (pCairoContext,
+						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
+						pIcon->fDrawY);
+				else
+					cairo_translate (pCairoContext,
+						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
+						pIcon->fDrawY);
+				cairo_set_source_surface (pCairoContext, myData.pHoverIndicatorSurface, 0., 0.);
+				cairo_paint_with_alpha (pCairoContext, pData->fAlphaHover);
+				cairo_restore (pCairoContext);
+			}
+		}
 	}
 	else
 	{
@@ -175,11 +195,37 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		glDisable(GL_TEXTURE_GEN_T);
 		glDisable (GL_BLEND);
 		_cairo_dock_set_blend_alpha ();
+		glPopMatrix();
 		
 		//\_________________ On remet la matrice des textures.
 		glMatrixMode(GL_TEXTURE);
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
+		
+		if (pData->fAlphaHover > 0 && myData.iHoverIndicatorTexture != 0)
+		{
+			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
+			if (pIcon != NULL)
+			{
+				_cairo_dock_enable_texture ();
+				_cairo_dock_set_blend_over ();
+				glPushMatrix ();
+				if (pDock->bHorizontalDock)
+					glTranslatef (pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
+						pDock->iCurrentHeight - pIcon->fDrawY,
+						0.);
+				else
+					glTranslatef (pDock->iCurrentHeight - pIcon->fDrawY,
+						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
+						0.);
+				_cairo_dock_apply_texture_at_size_with_alpha (myData.iHoverIndicatorTexture,
+					myData.fHoverIndicatorWidth,
+					myData.fHoverIndicatorHeight,
+					pData->fAlphaHover);
+				glPushMatrix ();
+				_cairo_dock_disable_texture ();
+			}
+		}
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -189,16 +235,19 @@ gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gb
 {
 	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
-	if (pDock->bCanDrop)
+	if (pDock->bIsDragging)
 	{
 		if (pData == NULL)
 		{
 			pData = g_new0 (CDDropIndicatorData, 1);
 			CD_APPLET_SET_MY_DOCK_DATA (pDock, pData);
 		}
-		pData->fAlpha = 1.;
+		if (pDock->bCanDrop)
+			pData->fAlpha = 1.;
+		else
+			pData->fAlphaHover = 1.;
 	}
-	else if (pData != NULL && pData->fAlpha <= 0)
+	else if (pData != NULL && pData->fAlpha <= 0 && pData->fAlphaHover <= 0)
 	{
 		g_free (pData);
 		pData = NULL;
@@ -223,12 +272,16 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	pData->iDropIndicatorRotation += myConfig.fRotationSpeed * 360. * dt/1e3;
 	if (pDock->bCanDrop)
 	{
+		pData->fAlphaHover -= .05;
 		*bContinueAnimation = TRUE;
 	}
 	else
 	{
 		pData->fAlpha -= .05;
-		if (pData->fAlpha <= 0)
+		if (!pDock->bIsDragging)
+			pData->fAlphaHover -= .05;
+		
+		if (pData->fAlpha <= 0 && pData->fAlphaHover <= 0)
 		{
 			g_free (pData);
 			CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
@@ -237,25 +290,30 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 			*bContinueAnimation = TRUE;
 	}
 	
-	//if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+	GdkRectangle rect = {(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
+		(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),
+		(int) myData.fDropIndicatorWidth,
+		(int) 2*myData.fDropIndicatorHeight};
+	if (! pDock->bHorizontalDock)
 	{
-		GdkRectangle rect = {(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
-			(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),
-			(int) myData.fDropIndicatorWidth,
-			(int) 2*myData.fDropIndicatorHeight};
-		if (! pDock->bHorizontalDock)
-		{
-			rect.x = (int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight);
-			rect.y = (int) pDock->iMouseX - myData.fDropIndicatorWidth/2;
-			rect.width = (int) 2*myData.fDropIndicatorHeight;
-			rect.height =(int) myData.fDropIndicatorWidth;
-		}
-		//g_print ("rect (%d;%d) (%dx%d)\n", rect.x, rect.y, rect.width, rect.height);
-		if (rect.width > 0 && rect.height > 0)
-		{
-			gdk_window_invalidate_rect (pDock->pWidget->window, &rect, FALSE);
-		}
+		rect.x = (int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight);
+		rect.y = (int) pDock->iMouseX - myData.fDropIndicatorWidth/2;
+		rect.width = (int) 2*myData.fDropIndicatorHeight;
+		rect.height =(int) myData.fDropIndicatorWidth;
 	}
+	//g_print ("rect (%d;%d) (%dx%d)\n", rect.x, rect.y, rect.width, rect.height);
+	if (rect.width > 0 && rect.height > 0)
+	{
+		gdk_window_invalidate_rect (pDock->pWidget->window, &rect, FALSE);
+	}
+	
+	if (pData->fAlphaHover > 0)
+	{
+		Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
+		if (pIcon != NULL)
+			cairo_dock_redraw_icon (pIcon, pDock);
+	}
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -280,19 +338,34 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		NULL, NULL);
 	if (g_bUseOpenGL && myData.pDropIndicatorSurface != NULL)
 	{
-		/*GdkGLContext* pGlContext = gtk_widget_get_gl_context (g_pMainDock->pWidget);
-		GdkGLDrawable* pGlDrawable = gtk_widget_get_gl_drawable (g_pMainDock->pWidget);
-		if (!gdk_gl_drawable_gl_begin (pGlDrawable, pGlContext))
-			return ;*/
 		myData.iDropIndicatorTexture = cairo_dock_create_texture_from_surface (myData.pDropIndicatorSurface);
 		
-		/*gchar *cGradationTexturePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_MASK_INDICATOR_NAME);
-		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_image (cGradationTexturePath);
-		g_free (cGradationTexturePath);*/
 		if (myData.iBilinearGradationTexture == 0)
 			myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
-		
-		//gdk_gl_drawable_gl_end (pGlDrawable);
+	}
+}
+
+void cd_drop_indicator_load_hover_indicator (gchar *cImagePath, cairo_t* pSourceContext, int iWidth, int iHeight)
+{
+	cd_message ("%s (%s)\n", __func__, cImagePath);
+	if (myData.pHoverIndicatorSurface != NULL)
+		cairo_surface_destroy (myData.pHoverIndicatorSurface);
+	if (myData.iHoverIndicatorTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iHoverIndicatorTexture);
+		myData.iHoverIndicatorTexture = 0;
+	}
+	myData.pHoverIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
+		pSourceContext,
+		1.,
+		iWidth,
+		iHeight,
+		CAIRO_DOCK_KEEP_RATIO,
+		&myData.fHoverIndicatorWidth, &myData.fHoverIndicatorHeight,
+		NULL, NULL);
+	if (g_bUseOpenGL && myData.pHoverIndicatorSurface != NULL)
+	{
+		myData.iHoverIndicatorTexture = cairo_dock_create_texture_from_surface (myData.pHoverIndicatorSurface);
 	}
 }
 

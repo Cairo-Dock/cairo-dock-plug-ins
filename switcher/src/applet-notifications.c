@@ -73,16 +73,7 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-static void _cd_switcher_add_desktop (GtkMenuItem *menu_item, Icon *pIcon)
-{
-	cd_switcher_add_a_desktop ();
-}
-static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, Icon *pIcon)
-{
-	cd_switcher_remove_last_desktop ();
-}
-
-CD_APPLET_ON_SCROLL_BEGIN
+CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
   int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
   int iNumDesktop, iNumViewportX, iNumViewportY;
   cd_debug ("Switcher: current %d", iIndex);
@@ -111,13 +102,37 @@ CD_APPLET_ON_SCROLL_BEGIN
 		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
 CD_APPLET_ON_SCROLL_END
 
+
+static void _cd_switcher_add_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_switcher_add_a_desktop ();
+}
+static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cd_switcher_remove_last_desktop ();
+}
+static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	g_iNbDesktops = cairo_dock_get_nb_desktops ();
+	cairo_dock_get_nb_viewports (&g_iNbViewportX, &g_iNbViewportY);
+	on_change_screen_geometry (myApplet, NULL);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU (_("Add a desktop"), _cd_switcher_add_desktop, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (_("Remove last desktop"), _cd_switcher_remove_last_desktop, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Add a desktop"),
+			GTK_STOCK_ADD,
+			_cd_switcher_add_desktop,
+			pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Remove last desktop"),
+			GTK_STOCK_REMOVE,
+			_cd_switcher_remove_last_desktop,
+			pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Refresh"),
+			GTK_STOCK_REFRESH,
+			_cd_switcher_refresh,
+			pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
-
 
 
 

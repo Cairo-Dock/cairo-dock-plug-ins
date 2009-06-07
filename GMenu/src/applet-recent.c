@@ -17,7 +17,7 @@ recent_documents_activate_cb (GtkRecentChooser *chooser,
 {
 	GtkRecentInfo *recent_info = gtk_recent_chooser_get_current_item (chooser);
 	const char *uri = gtk_recent_info_get_uri (recent_info);
-	g_print ("uri : %s / %s\n", uri, gtk_recent_info_get_display_name(recent_info));
+	g_print ("%s (%s) : %s\n", __func__, uri, gtk_recent_info_get_display_name(recent_info));
 	cairo_dock_fm_launch_uri (uri);
 	gtk_recent_info_unref (recent_info);
 }
@@ -35,24 +35,25 @@ panel_recent_manager_changed_cb (GtkRecentManager *manager,
 
 void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet)
 {
-	g_return_if_fail (myData.pRecentMenuItem == NULL && myData.pRecentManager != NULL);
-	GtkWidget      *recent_menu;
-	GtkWidget      *pMenuItem;
-	int             size;
-
-	//\_____________ On construit une entree de sous-menu.
-	pMenuItem = gtk_separator_menu_item_new ();
-	gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
-	
-	pMenuItem = gtk_image_menu_item_new_with_label (D_("Recent Documents"));
-	const gchar *cIconPath = MY_APPLET_SHARE_DATA_DIR"/icon-recent.svg";
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 16, 16, NULL);
-	GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-	g_object_unref (pixbuf);
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+	//\_____________ On construit une entree de sous-menu qu'on insere dans le menu principal.
+	if (myData.pRecentMenuItem == NULL)
+	{
+		GtkWidget *pSeparator = gtk_separator_menu_item_new ();
+		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pSeparator);
+		
+		GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (D_("Recent Documents"));
+		const gchar *cIconPath = MY_APPLET_SHARE_DATA_DIR"/icon-recent.png";
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
+		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
+		g_object_unref (pixbuf);
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
+		gtk_widget_show_all (pMenuItem);
+		myData.pRecentMenuItem = pMenuItem;
+	}
 	
 	//\_____________ On construit le menu des fichiers recents.
-	recent_menu = gtk_recent_chooser_menu_new_for_manager (myData.pRecentManager);
+	GtkWidget *recent_menu = gtk_recent_chooser_menu_new_for_manager (myData.pRecentManager);
 	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), myConfig.bHasIcons);
 	if (myData.pRecentFilter != NULL)
 	{
@@ -70,7 +71,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 
 	g_signal_connect_object (myData.pRecentManager, "changed",
 		G_CALLBACK (panel_recent_manager_changed_cb),
-		 pMenuItem, 0);
+		 myData.pRecentMenuItem, 0);
 	
 	//\_____________ On le personnalise un peu.
 	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu),
@@ -80,16 +81,12 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent_menu),
 		GTK_RECENT_SORT_MRU);  // most recently used
 	
-	//\_____________ On l'insere dans le menu global.
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), recent_menu);
-	gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
-	gtk_widget_show_all (pMenuItem);
+	//\_____________ On l'insere dans notre entree.
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (myData.pRecentMenuItem), recent_menu);
 	
-	size = 0;
+	int size = 0;
 	g_object_get (myData.pRecentManager, "size", &size, NULL);
-	gtk_widget_set_sensitive (pMenuItem, size > 0);
-	
-	myData.pRecentMenuItem = pMenuItem;
+	gtk_widget_set_sensitive (myData.pRecentMenuItem, size > 0);
 }
 
 
