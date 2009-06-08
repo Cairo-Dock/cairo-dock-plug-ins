@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -42,11 +41,11 @@ msgstr "メニューの設定"
 msgid "Clear recent"
 msgstr "履歴の消去"
 
-#: ../src/applet-recent.c:47
+#: ../src/applet-recent.c:44
 msgid "Recent Documents"
 msgstr "最近開いたドキュメント"
 
-#: ../src/applet-recent.c:99
+#: ../src/applet-recent.c:96
 msgid "Clear the list of the recently used documents ?"
 msgstr "最近開いたドキュメントのリストを消去しますか？"
 
@@ -290,34 +289,34 @@ msgstr "日数単位。0 に設定すると、このフィルタは使用され�
 msgid "Only show files whose last modification date is less than ;"
 msgstr "最終変更日が指定日数内のファイルのみ表示 :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid ""
-"This is the GMenu applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"これは Fabounet (Fabrice Rey) によって \n"
-"Cairo-Dock 用に製作された Gmenu アプレットです。"
+#~ msgid ""
+#~ "This is the GMenu applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabounet (Fabrice Rey) によって \n"
+#~ "Cairo-Dock 用に製作された Gmenu アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"

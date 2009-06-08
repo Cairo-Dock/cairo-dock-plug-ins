@@ -28,35 +28,35 @@ msgstr ""
 "Vous pouvez rapidement copier le chemin/url/texte vers le presse-papiers, ou "
 "l'ouvrir."
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:47
 msgid "Clear the stack ?"
 msgstr "Vider la pile ?"
 
-#: ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:64
 msgid "Set new name for this item :"
 msgstr "Définir un nouveau nom pour cet objet :"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid "Paste (drag'n'drop)"
 msgstr "Coller (déposer)"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:105
 msgid "Copy (middle click)"
 msgstr "Copier (clique du milieu)"
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:106
 msgid "Cut"
 msgstr "Couper"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:107
 msgid "Rename this item"
 msgstr "Renommer cet objet"
 
-#: ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:108
 msgid "Remove this item"
 msgstr "Enlever cet objet"
 
-#: ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:110
 msgid "Clear the stack"
 msgstr "Nettoyer le stack"
 

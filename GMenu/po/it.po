@@ -35,11 +35,11 @@ msgstr "Configurazione"
 msgid "Clear recent"
 msgstr ""
 
-#: ../src/applet-recent.c:47
+#: ../src/applet-recent.c:44
 msgid "Recent Documents"
 msgstr ""
 
-#: ../src/applet-recent.c:99
+#: ../src/applet-recent.c:96
 msgid "Clear the list of the recently used documents ?"
 msgstr ""
 

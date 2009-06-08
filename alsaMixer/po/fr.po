@@ -34,7 +34,8 @@ msgstr ""
 "Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez "
 "définir un raccourci pour cela)\n"
 "Vous pouvez aussi cacher l'infobulle en cliquant dessus.\n"
-"Clique milieu pour désactiver ou activer le son, double clic pour ouvrir le mixer de canaux\n"
+"Clique milieu pour désactiver ou activer le son, double clic pour ouvrir le "
+"mixer de canaux\n"
 "Cet applet fonctionne avec le pilote audio Alsa."
 
 #: ../src/applet-mixer.c:41

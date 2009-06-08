@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cd-mail-applet-config.c:155
+#: ../src/cd-mail-applet-config.c:158
 msgid "Please choose an account type."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:160
+#: ../src/cd-mail-applet-config.c:163
 msgid "New account's name"
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:163
+#: ../src/cd-mail-applet-config.c:166
 msgid "Please enter a name for this account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:173
+#: ../src/cd-mail-applet-config.c:176
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:258
+#: ../src/cd-mail-applet-config.c:261
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:313
+#: ../src/cd-mail-applet-config.c:316
 msgid "Remove Account"
 msgstr ""
 
@@ -50,16 +50,16 @@ msgstr ""
 msgid "no subject"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:296
+#: ../src/cd-mail-applet-etpan.c:297
 msgid "No unread mail in your mailboxes"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:318
+#: ../src/cd-mail-applet-etpan.c:319
 #, c-format
 msgid "You have %d new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:320
+#: ../src/cd-mail-applet-etpan.c:321
 msgid "You have a new mail :"
 msgstr ""
 
@@ -283,57 +283,68 @@ msgid "Show new messages' content ?"
 msgstr ""
 
 #: ../data/messages:91
-msgid "Theme overriding"
+msgid ""
+"If you have any problem with the applet, uncheck this option during the "
+"maintenance mode, then let the dock launch itself, and remove/mdify the mail "
+"accounts you want."
 msgstr ""
 
 #: ../data/messages:93
-msgid "Name of the file for the \"no mail\" image :"
+msgid "Check mail account on startup ?"
 msgstr ""
 
 #: ../data/messages:95
-msgid "Name of the file for the \"has mail\" image :"
+msgid "Theme overriding"
 msgstr ""
 
 #: ../data/messages:97
-msgid "Name of the file for the \"new mail\" sound :"
+msgid "Name of the file for the \"no mail\" image :"
 msgstr ""
 
 #: ../data/messages:99
-msgid "Mail application"
+msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../data/messages:101
-msgid "Prefered mail application to launch on left-click :"
+msgid "Name of the file for the \"new mail\" sound :"
 msgstr ""
 
 #: ../data/messages:103
+msgid "Mail application"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Prefered mail application to launch on left-click :"
+msgstr ""
+
+#: ../data/messages:107
 msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
 msgstr ""
 
-#: ../data/messages:105
+#: ../data/messages:109
 msgid "Class of the mail application (optionnal)"
 msgstr ""
 
-#: ../data/messages:107
+#: ../data/messages:111
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../data/messages:109
+#: ../data/messages:113
 msgid "Steal the application's icon in taskbar ?"
 msgstr ""
 
-#: ../data/messages:111
+#: ../data/messages:115
 msgid "Add an mail account"
 msgstr ""
 
-#: ../data/messages:113
+#: ../data/messages:117
 msgid "The new account will be created with specified type and name."
 msgstr ""
 
-#: ../data/messages:115
+#: ../data/messages:119
 msgid "Add an account with specified type and name:"
 msgstr ""

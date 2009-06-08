@@ -52,6 +52,8 @@ struct _AppletConfig {
 struct _AppletData {
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
+	
+	// etat du lecteur.
 	gboolean dbus_enable;
 	gboolean bIsRunning;
 	gboolean playing;
@@ -64,10 +66,14 @@ struct _AppletData {
 	gchar *playing_album;
 	gchar *playing_title;
 	gchar *playing_cover;
-	guint iSidCheckCover;
 	
+	gboolean bCoverNeedsTest;
+	gint iCurrentFileSize;
+	guint iSidCheckCover;
 	gint iCoverTransition;
 	GLuint iPrevTextureCover;
+	
+	// pochette 3D
 	GLuint TextureFrame;
 	GLuint TextureCover;
 	GLuint TextureReflect;
@@ -84,8 +90,7 @@ struct _AppletData {
 	
 	gint numberButtons;
 	gboolean osd;
-	
-	// A passer en structure...
+	/// A passer en structure...
 	gboolean mouseOnButton1;
 	GLuint TextureButton1;
 	gdouble button1coordX, button1coordY;
@@ -128,19 +133,13 @@ struct _AppletData {
 	gint iMouseX;
 	gint iMouseY;
 	gint iState;  // combinaison des etats des differents boutons.
-	
-	gboolean CoverWasDistant;  // a degager en testant sur la taille ...
-	gint iAnimationCount;
-	
-	// Pour tester la taille des pochettes téléchargées :
+	/*gboolean CoverWasDistant;  // a degager en testant sur la taille ...
 	gint iCurrentFileSize;
     gint iLastFileSize;
     gboolean bSizeIsConstant;
 	guint iSidLoopForMagnatune;
 	gboolean bLoopForMagnatune;
-	gboolean bLoopForMagnatuneDone;
-
-	
+	gboolean bLoopForMagnatuneDone;*/
 	} ;
 
 

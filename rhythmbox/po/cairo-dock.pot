@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:96
+#: ../src/rhythmbox-draw.c:149
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:182
+#: ../src/rhythmbox-draw.c:221
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
-#: ../src/rhythmbox-draw.c:187
+#: ../src/rhythmbox-draw.c:222 ../src/rhythmbox-draw.c:224
+#: ../src/rhythmbox-draw.c:226
 msgid "Unknown"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:184
+#: ../src/rhythmbox-draw.c:223
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:186
+#: ../src/rhythmbox-draw.c:225
 msgid "Title"
 msgstr ""
 
@@ -321,7 +321,7 @@ msgstr ""
 
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
 #: ../data/messages:135 ../data/messages:139
-msgid "Let t empty to use the default icon."
+msgid "Let it empty to use the default icon."
 msgstr ""
 
 #: ../data/messages:125

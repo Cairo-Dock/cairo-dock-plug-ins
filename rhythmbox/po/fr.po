@@ -15,24 +15,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:96
+#: ../src/rhythmbox-draw.c:149
 msgid "Track"
 msgstr "Piste"
 
-#: ../src/rhythmbox-draw.c:182
+#: ../src/rhythmbox-draw.c:221
 msgid "Artist"
 msgstr "Artiste"
 
-#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
-#: ../src/rhythmbox-draw.c:187
+#: ../src/rhythmbox-draw.c:222 ../src/rhythmbox-draw.c:224
+#: ../src/rhythmbox-draw.c:226
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/rhythmbox-draw.c:184
+#: ../src/rhythmbox-draw.c:223
 msgid "Album"
 msgstr "Album"
 
-#: ../src/rhythmbox-draw.c:186
+#: ../src/rhythmbox-draw.c:225
 msgid "Title"
 msgstr "Titre"
 
@@ -345,7 +345,8 @@ msgstr ""
 
 #: ../data/messages:123 ../data/messages:127 ../data/messages:131
 #: ../data/messages:135 ../data/messages:139
-msgid "Let t empty to use the default icon."
+#, fuzzy
+msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour utiliser l'icône par défaut"
 
 #: ../data/messages:125

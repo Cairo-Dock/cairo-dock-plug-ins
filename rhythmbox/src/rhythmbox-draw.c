@@ -1,5 +1,6 @@
-#include "string.h"
+#include <string.h>
 #include <glib/gi18n.h>
+#include <sys/stat.h>
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
@@ -44,15 +45,45 @@ void rhythmbox_iconWitness(int animationLength)
 	CD_APPLET_ANIMATE_MY_ICON (myConfig.changeAnimation, animationLength);
 }
 
-gboolean _rhythmbox_check_cover_is_present (gpointer data)
+
+static gboolean _rhythmbox_check_cover_is_present (gpointer data)
 {
+	gboolean bCheckSize = GPOINTER_TO_INT (data);
 	//g_print ("%s (%s)\n", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
-			
-		cd_message ("RB-YDU : la couverture '%s' est disponible", myData.playing_cover);
+		cd_message ("RB-YDU : la couverture '%s' est presente sur le disque", myData.playing_cover);
 		
-		if (myData.CoverWasDistant)
+		if (!bCheckSize || cd_check_if_size_is_constant (myData.playing_cover))
+		{
+			cd_message ("RB-YDU : la couverture '%s' est desormais disponible et la taille est constante", myData.playing_cover);
+			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+			{	
+				if (myData.iPrevTextureCover != 0)
+					_cairo_dock_delete_texture (myData.iPrevTextureCover);
+				myData.iPrevTextureCover = myData.TextureCover;
+				myData.TextureCover = cairo_dock_create_texture_from_image (myData.playing_cover);
+				if (myData.iPrevTextureCover != 0)
+				{
+					myData.iCoverTransition = NB_TRANSITION_STEP;
+					cairo_dock_launch_animation (myContainer);
+				}
+				else
+				{
+					cd_opengl_render_to_texture (myApplet);
+					CD_APPLET_REDRAW_MY_ICON;
+				}
+			}
+			else
+			{
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+				CD_APPLET_REDRAW_MY_ICON;
+			}
+			myData.cover_exist = TRUE;
+			myData.iSidCheckCover = 0;
+			return FALSE;
+		}
+		/*if (myData.CoverWasDistant)
 		{
 			cd_check_if_size_is_constant (myData.playing_cover);
 			if (myData.bSizeIsConstant)
@@ -96,15 +127,11 @@ gboolean _rhythmbox_check_cover_is_present (gpointer data)
 			myData.cover_exist = TRUE;
 			myData.iSidCheckCover = 0;
 			return FALSE;
-		}
-		
+		}*/
 	}
-	else
-	{
-		myData.cover_exist = FALSE;
-		return TRUE;
-	}
+	return TRUE;
 }
+
 void update_icon(gboolean make_witness)
 {
 	cd_message ("Update icon");
@@ -123,9 +150,23 @@ void update_icon(gboolean make_witness)
 		}
 		
 		//Affichage de la couverture de l'album.
-		if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL)  // couverture potentielle mais pas encore chargee.
+		if (myData.iSidCheckCover != 0)  // on stoppe la precedente boucle.
 		{
-			if (myData.iSidCheckCover != 0)
+			g_source_remove (myData.iSidCheckCover);
+			myData.iSidCheckCover = 0;
+		}
+		if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL)  // couverture pas encore chargee.
+		{
+			if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
+			{
+				myData.iCurrentFileSize = 0;
+				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, GINT_TO_POINTER (TRUE));
+			}
+			else  // la couverture est deja disponible, on peut tester tout de suite.
+			{
+				_rhythmbox_check_cover_is_present (GINT_TO_POINTER (FALSE));
+			}
+			/*if (myData.iSidCheckCover != 0)
 			{
 				g_source_remove (myData.iSidCheckCover);
 				myData.iSidCheckCover = 0;
@@ -134,10 +175,10 @@ void update_icon(gboolean make_witness)
 			if (! myData.cover_exist)
 			{
 				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, (gpointer) NULL);
-			}
+			}*/
 		}
 		
-		if (! myData.cover_exist)
+		if (! myData.cover_exist)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut.
 		{
 			if(myData.playing)
 			{
@@ -253,9 +294,20 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 	}
 }
 
-void cd_check_if_size_is_constant (gchar *cFileName)
+gboolean cd_check_if_size_is_constant (gchar *cFileName)
 {
-    gchar *cSize;
+	static struct stat buf;
+	g_return_val_if_fail (cFileName != NULL, TRUE);
+	if (stat (cFileName, &buf) != -1)
+	{
+		g_print  ("RB : taille de la pochette : %d -> %d\n", myData.iCurrentFileSize, buf.st_size);
+		gboolean bConstantSize = (buf.st_size != 0 && buf.st_size == myData.iCurrentFileSize);
+		myData.iCurrentFileSize = buf.st_size;
+		return bConstantSize;
+	}
+	else
+		return TRUE;
+    /*gchar *cSize;
     gchar *cCommand = g_strdup_printf ("stat -c %%s \"%s\"", cFileName);
     g_spawn_command_line_sync (cCommand, &cSize, NULL, NULL, NULL);
     g_free (cCommand);
@@ -277,5 +329,5 @@ void cd_check_if_size_is_constant (gchar *cFileName)
         cd_debug ("RB-YDU : le fichier %s n'est pas complet ... il faut attendre encore un peu", cFileName);
         myData.iLastFileSize = myData.iCurrentFileSize;
         myData.bSizeIsConstant = FALSE;
-    }
+    }*/
 }

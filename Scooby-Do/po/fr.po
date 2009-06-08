@@ -12,18 +12,52 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-command-finder.c:667
+msgid "Match case"
+msgstr ""
+
+#: ../src/applet-command-finder.c:671
+msgid "Music"
+msgstr ""
+
+#: ../src/applet-command-finder.c:676
+msgid "Image"
+msgstr ""
+
+#: ../src/applet-command-finder.c:680
+msgid "Video"
+msgstr ""
+
+#: ../src/applet-command-finder.c:684
+msgid "Text"
+msgstr ""
+
+#: ../src/applet-command-finder.c:688
+msgid "Html"
+msgstr ""
+
+#: ../src/applet-command-finder.c:692
+msgid "Sources"
+msgstr ""
+
+#: ../src/applet-command-finder.c:707
+msgid "Narrow your search"
+msgstr ""
+
 #: ../src/applet-init.c:22
+#, fuzzy
 msgid ""
-"A Gnome-Do-like plug-in.\n"
-"It lets you control the dock and quickly launch any command with the "
-"keyboard :\n"
-" Start a session with the shortkey of your choice, Escape, Return or "
-"shortkey to close it.\n"
-" use the arrows to navigate into the docks and sub-docks,\n"
-" or type a command to find the corresponding launcher, or to launch any "
-"command\n"
-" Press Tab to automatically jump to the next suitable launcher\n"
-" Press enter to click the icon or validate the command, Shift+Enter for Shift"
+"A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+"- the navigation mode : use the arrows to navigate into the docks and sub-"
+"docks,\n"
+"  or type a command to find a corresponding launcher and press Tab to "
+"automatically jump to the next suitable launcher\n"
+"- the finder mode : type a command to find the corresponding launcher, or to "
+"launch any command or file\n"
+"  use the arrows or Tab to navigate between the found launchers if any\n"
+"Escape, Return or the same shortkey to finish.\n"
+"Press Enter to click the icon or validate the command, Shift+Enter for Shift"
 "+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
 msgstr ""
 "Un plug-in pour avoir un lanceur d'application rapide comme Gnome-Do (ALT+F2)"
@@ -39,7 +73,7 @@ msgstr ""
 "+Enter correspond à Shift+clique, Alt+Enter pour le clique du milieu et Ctrl"
 "+Enter pour clique gauche."
 
-#: ../src/applet-session.c:30
+#: ../src/applet-session.c:34
 msgid "Enter your search"
 msgstr ""
 
@@ -48,20 +82,26 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:3
-msgid "Shortkey to activate/deactivate Do :"
+#, fuzzy
+msgid "Shortkey to activate/deactivate the navigation mode :"
 msgstr "Raccourci pour l'activation ou la désactivation :"
 
 #: ../data/messages:5
+#, fuzzy
+msgid "Shortkey to activate/deactivate the finder mode :"
+msgstr "Raccourci pour l'activation ou la désactivation :"
+
+#: ../data/messages:7
+msgid "Maximum number of results to display for files :"
+msgstr ""
+
+#: ../data/messages:9
 msgid "Animations"
 msgstr "Animations"
 
-#: ../data/messages:7 ../data/messages:11 ../data/messages:15
+#: ../data/messages:11 ../data/messages:15
 msgid "In ms."
 msgstr "En ms"
-
-#: ../data/messages:9
-msgid "Duration of the character animation (OpenGL only) :"
-msgstr "Durée de l'animation des caractères (Uniquement avec l'OpenGL) :"
 
 #: ../data/messages:13
 msgid "Duration of the appearance animation :"
@@ -124,12 +164,11 @@ msgid "Color of the background of the characters :"
 msgstr "Couleur d'arrière plan des caractères :"
 
 #: ../data/messages:43
-msgid "Set 0 to center the text vertically."
+msgid "Write text on the top of the dock ?"
 msgstr ""
 
-#: ../data/messages:45
-msgid "Relative vertical position of the text :"
-msgstr ""
+#~ msgid "Duration of the character animation (OpenGL only) :"
+#~ msgstr "Durée de l'animation des caractères (Uniquement avec l'OpenGL) :"
 
 #~ msgid "r, v, b, a"
 #~ msgstr "r, v, b, a"

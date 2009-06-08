@@ -44,13 +44,27 @@ msgid "Image for the drag'n'drop animation :"
 msgstr "Image pour l'animation lors d'un dépôt :"
 
 #: ../data/messages:7
+#, fuzzy
+msgid ""
+"An emblem that will be displayed when you try to drop something onto an "
+"icon. Let empty to use the default one."
+msgstr ""
+"En général, c'est une flèche qui sera affichée lorsque vous essayez de "
+"déposer un nouveau lanceur dans le dock. Laissez vide pour utiliser celui "
+"par défaut."
+
+#: ../data/messages:9
+msgid "Image when hovering an icon :"
+msgstr ""
+
+#: ../data/messages:11
 msgid "Speed :"
 msgstr "Vitesse :"
 
-#: ../data/messages:9
+#: ../data/messages:13
 msgid "Number of round per second."
 msgstr "Nombre de tour par seconde."
 
-#: ../data/messages:11
+#: ../data/messages:15
 msgid "Rotation speed :"
 msgstr "Vitesse de rotation :"

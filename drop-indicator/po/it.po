@@ -38,14 +38,24 @@ msgid "Image for the drag'n'drop animation :"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Speed :"
+msgid ""
+"An emblem that will be displayed when you try to drop something onto an "
+"icon. Let empty to use the default one."
 msgstr ""
 
 #: ../data/messages:9
-msgid "Number of round per second."
+msgid "Image when hovering an icon :"
 msgstr ""
 
 #: ../data/messages:11
+msgid "Speed :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Number of round per second."
+msgstr ""
+
+#: ../data/messages:15
 msgid "Rotation speed :"
 msgstr ""
 

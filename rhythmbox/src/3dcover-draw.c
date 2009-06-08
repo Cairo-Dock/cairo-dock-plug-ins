@@ -57,11 +57,40 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	if (pKeyFile == NULL)
 		return FALSE;
 	
-	gint iVersion = g_key_file_get_integer (pKeyFile, "Theme", "version", NULL);
+	gchar *cThemePathUpToDate = NULL;
+	gint iVersion = g_key_file_get_integer (pKeyFile, "Description", "Version", NULL);
 	if (iVersion != 2)
 	{
 		/// effacer le theme et le recuperer sur le serveur...
+		g_print ("theme en version inferieure => sera mis a jour...\n");
+		// on ferme la config de l'actuel theme.
+		g_key_file_free (pKeyFile);
+		pKeyFile = NULL;
 		
+		// on supprime le theme.
+		g_return_val_if_fail (cThemePath && *cThemePath == '/', FALSE);
+		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", cThemePath);
+		int r = system (cCommand);
+		g_free (cCommand);
+		
+		// on recupere le theme distant.
+		pKeyFile = cairo_dock_open_key_file (myApplet->cConfFilePath);
+		if (pKeyFile != NULL)
+		{
+			gboolean bFlushConfFileNeeded = FALSE;
+			cThemePathUpToDate = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_simple");
+			cThemePath = cThemePathUpToDate;
+			g_key_file_free (pKeyFile);
+			pKeyFile = NULL;
+			
+			// on ouvre la config du nouveau theme.
+			cConfFilePath = g_strdup_printf ("%s/%s", cThemePath, "theme.conf");
+			pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+			g_free (cConfFilePath);
+			if (pKeyFile == NULL)
+				return FALSE;
+		}
+		g_return_val_if_fail (pKeyFile != NULL, FALSE);
 	}
 	
 	GError *erreur = NULL;
@@ -275,6 +304,7 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		}
 	}
 	g_key_file_free (pKeyFile);
+	g_free (cThemePathUpToDate);
 	return TRUE;
 }
 

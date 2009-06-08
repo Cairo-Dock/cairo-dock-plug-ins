@@ -13,6 +13,6 @@ void music_dialog(void);
 
 void rhythmbox_set_surface (MyAppletPlayerStatus iStatus);
 
-void cd_check_if_size_is_constant (gchar *cFileName);
+gboolean cd_check_if_size_is_constant (gchar *cFileName);
 
 #endif

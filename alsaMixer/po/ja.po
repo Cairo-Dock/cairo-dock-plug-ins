@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-05-31 22:17+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -23,16 +22,20 @@ msgstr "AlsaMixer"
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
-"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
+"for it)\n"
 "You can also hide the dialog by clicking on it.\n"
-"Middle-click to set or unset to mute, double-click to raise the channels mixer.\n"
+"Middle-click to set or unset to mute, double-click to raise the channels "
+"mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
 "ドックから音量制御を行うためのアプレット。\n"
 "アイコン上の上下スクロールで音量の上げ下げ、\n"
-"アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの割り当て可能）、\n"
+"アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの"
+"割り当て可能）、\n"
 "ダイアログを隠すにはそのダイアログをクリック、\n"
-"中クリックでミュートとその解除、ダブルクリックでチャンネルミキサーの呼び出し。\n"
+"中クリックでミュートとその解除、ダブルクリックでチャンネルミキサーの呼び出"
+"し。\n"
 "このアプレットは、Alsa サウンド・ドライバに対して働きます。"
 
 #: ../src/applet-mixer.c:41
@@ -105,16 +108,24 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。マイナスの値では、画面の右/下から数えられます。"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。マイナスの値では、画面の右/下から数えられます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -125,8 +136,12 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
@@ -157,8 +172,12 @@ msgid "Should be visible on all desktops ?"
 msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -178,15 +197,20 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -229,8 +253,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -261,8 +289,14 @@ msgid "Choose which channel to control :"
 msgstr "制御するチャンネルの選択 :"
 
 #: ../data/messages:91
-msgid "On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just let it empty."
-msgstr "カードのなかには、1チャンネルが右または左の1サイドだけ制御するものがあります。そのときは、両側の制御のために第2チャンネルの指定が必要になります。大抵の場合、ここは空欄のままにしてください。"
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just let it empty."
+msgstr ""
+"カードのなかには、1チャンネルが右または左の1サイドだけ制御するものがありま"
+"す。そのときは、両側の制御のために第2チャンネルの指定が必要になります。大抵の"
+"場合、ここは空欄のままにしてください。"
 
 #: ../data/messages:93
 msgid "Optionnally, choose a second channel to control :"
@@ -332,9 +366,7 @@ msgstr "透過"
 msgid "Draw Bar"
 msgstr "バーの描画"
 
-#: ../data/messages:127
-#: ../data/messages:131
-#: ../data/messages:135
+#: ../data/messages:127 ../data/messages:131 ../data/messages:135
 msgid "Let empty to use the default one."
 msgstr "デフォルトを使用するには空欄のままに。"
 
@@ -350,76 +382,81 @@ msgstr "制御不可時のアイコン :"
 msgid "Mute icon :"
 msgstr "ミュート時のアイコン :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid "I couldn't find any element '%s'"
-msgstr "要素 '%s' が見つかりません"
+#~ msgid "I couldn't find any element '%s'"
+#~ msgstr "要素 '%s' が見つかりません"
 
-msgid ""
-"This is the AlsaMixer applet\n"
-" made by Fabounet (Fabrice Rey) for Cairo-Dock"
-msgstr ""
-"これは Fabounet (Fabrice Rey) によって\n"
-"Cairo-Dock 用に製作された AlsaMixer アプレットです。"
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabounet (Fabrice Rey) によって\n"
+#~ "Cairo-Dock 用に製作された AlsaMixer アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "Choose which mixer's element to control :"
-msgstr "制御するミキサー要素の選択 :"
+#~ msgid "Choose which mixer's element to control :"
+#~ msgstr "制御するミキサー要素の選択 :"
 
-msgid "Let empty to use default one."
-msgstr "デフォルトを使用するには空欄のままに。"
+#~ msgid "Let empty to use default one."
+#~ msgstr "デフォルトを使用するには空欄のままに。"
 
-msgid "Choose an effet to apply on the icon according to volume :"
-msgstr "音量に合わせてアイコンに適用にする効果の選択 :"
+#~ msgid "Choose an effet to apply on the icon according to volume :"
+#~ msgstr "音量に合わせてアイコンに適用にする効果の選択 :"
 
-msgid "Command to run to show an advanced sound mixer :"
-msgstr "高機能サウンドミキサー表示のために実行するコマンド :"
+#~ msgid "Command to run to show an advanced sound mixer :"
+#~ msgstr "高機能サウンドミキサー表示のために実行するコマンド :"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
+#~ "させることができます。"
 
-msgid ""
-"This applet lets you control the sound volume from the dock.\n"
-"Scroll up/down on the icon to increase/decrease the volume.\n"
-"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
-"You can also hide the dialog by clicking on it.\n"
-"Middle-click to set or unset to mute.\n"
-"This applet works with the Alsa sound driver."
-msgstr ""
-"ドックから音量制御を行うためのアプレット。\n"
-"アイコン上の上下スクロールで音量の上げ下げ、\n"
-"アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの割り当て可能）、\n"
-"ダイアログを隠すにはそのダイアログをクリック、\n"
-"中クリックでミュートとその解除を行います。このアプレットは、Alsa サウンド・ドライバに対して働きます。"
+#~ msgid ""
+#~ "This applet lets you control the sound volume from the dock.\n"
+#~ "Scroll up/down on the icon to increase/decrease the volume.\n"
+#~ "Click on icon to show/hide volume control (you can bind a keyboard "
+#~ "shortcut for it)\n"
+#~ "You can also hide the dialog by clicking on it.\n"
+#~ "Middle-click to set or unset to mute.\n"
+#~ "This applet works with the Alsa sound driver."
+#~ msgstr ""
+#~ "ドックから音量制御を行うためのアプレット。\n"
+#~ "アイコン上の上下スクロールで音量の上げ下げ、\n"
+#~ "アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカッ"
+#~ "トの割り当て可能）、\n"
+#~ "ダイアログを隠すにはそのダイアログをクリック、\n"
+#~ "中クリックでミュートとその解除を行います。このアプレットは、Alsa サウン"
+#~ "ド・ドライバに対して働きます。"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"
 
-msgid "Image's filename :"
-msgstr "画像のファイル名前 :"
-
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

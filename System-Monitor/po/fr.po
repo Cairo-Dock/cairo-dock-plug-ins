@@ -18,50 +18,52 @@ msgstr ""
 msgid "day(s)"
 msgstr "jour(s)"
 
-#: ../src/applet-cpusage.c:225
+#: ../src/applet-cpusage.c:229
 msgid "Loading"
 msgstr "Chargement"
 
 #: ../src/applet-init.c:10
-msgid "cpusage"
-msgstr "cpusage"
+msgid "System Monitor"
+msgstr ""
 
 #: ../src/applet-init.c:13
+#, fuzzy
 msgid ""
-"The cpusage applet show you the amount of CPU currently used.\n"
+"This applet shows you the CPU load, RAM usage, graphic card temperature, "
+"etc.\n"
 "Middle click on the icon to get some valuable info.\n"
-"Left click on the icon to get a list of the most cpu using programs."
+"Left click on the icon to get a list of the most ressources using programs."
 msgstr ""
 "Cet applet vous indique l'utilisation en temps réel du CPU.\n"
 "Clique du milieu sur l'icône pour avoir quelques informations précieuses.\n"
 "Clique gauche sur l'icône pour avoir une liste des programmes les plus "
 "gourmants en CPU."
 
-#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Model Name"
 msgstr "Nom du modèle"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "core(s)"
 msgstr "coeur(s)"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Up time"
 msgstr "Temps d'activité système"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Activity time"
 msgstr "Temps d'activité"
 
-#: ../src/applet-notifications.c:143
+#: ../src/applet-notifications.c:142
 msgid "Monitor System"
 msgstr "Moniteur système"
 
@@ -397,6 +399,9 @@ msgstr "Laissez vide pour utiliser celle par défaut."
 #: ../data/messages:153
 msgid "User command to show a system monitor :"
 msgstr "Commande pour montrer un moniteur système :"
+
+#~ msgid "cpusage"
+#~ msgstr "cpusage"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Garder en-dessous des autres fenêtres ?"

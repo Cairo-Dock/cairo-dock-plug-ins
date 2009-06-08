@@ -24,21 +24,25 @@ msgstr ""
 "droit).\n"
 " Roulette vers le haut/bas pour aller sur le bureau de gauche/droite."
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:188
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:203
 msgid "Current"
 msgstr "Courant"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:180
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:195
 msgid "Desktop"
 msgstr "Bureau"
 
-#: ../src/applet-notifications.c:116
+#: ../src/applet-notifications.c:122
 msgid "Add a desktop"
 msgstr "Ajouter un bureau"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:126
 msgid "Remove last desktop"
 msgstr "Retirer le dernier bureau"
+
+#: ../src/applet-notifications.c:130
+msgid "Refresh"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"

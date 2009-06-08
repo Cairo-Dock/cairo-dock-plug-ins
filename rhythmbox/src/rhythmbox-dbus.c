@@ -121,7 +121,7 @@ void rhythmbox_getPlayingUri(void)
 
 void getSongInfos(void)
 {
-	if (myData.bLoopForMagnatune)
+	/*if (myData.bLoopForMagnatune)
 	{
 		cd_debug("RB-YDU : On relance la vérif et on stoppe le timer");
 		//\_______________ On stoppe le timer.
@@ -129,7 +129,7 @@ void getSongInfos(void)
 		myData.iSidLoopForMagnatune = 0;
 		myData.bLoopForMagnatune = FALSE;
 		myData.bLoopForMagnatuneDone = TRUE;
-	}	
+	}*/
 	
 	GHashTable *data_list = NULL;
 	GValue *value;
@@ -170,33 +170,32 @@ void getSongInfos(void)
 		else myData.playing_duration = 0;
 		cd_message ("  playing_duration <- %ds", myData.playing_duration);
 		
+		// La couverture.
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
 		g_free (myData.playing_cover);
 		myData.playing_cover = NULL;
-		myData.CoverWasDistant = FALSE;
-		if (value != NULL && G_VALUE_HOLDS_STRING(value))
+		myData.bCoverNeedsTest = FALSE;
+		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
 		{
 			const gchar *cString = g_value_get_string(value);
-			cd_debug ("RB-YDU : RB nous a refile cette adresse : %s", cString);
-			
 			if (cString != NULL)
 			{
-				if(strncmp(cString, "http://", 7) == 0)  // ce cas arrive-t-il ? j'ai l'impression que RB ne nous file l'adresse que quand il l'a deja dans son cache (ou en local ?).
+				cd_debug ("RB-YDU : RB nous a refile cette adresse : %s", cString);
+				if(strncmp(cString, "http://", 7) == 0)  // fichier distant, on decide de le telecharger nous-memes.
 				{
 					cd_debug("RB-YDU : Le fichier est distant");
 					gchar *cCommand = g_strdup_printf ("wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
 						g_getenv ("HOME"),
 						myData.playing_artist,
 						myData.playing_album,
-						cString);
+						cString);  // question : n'y a-t-il pas de risque de conflit avec RB ?...
 					
-					myData.CoverWasDistant = TRUE;
+					myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
 					g_spawn_command_line_async (cCommand, NULL);
-					cd_debug("RB-YDU : La commande pour un fichier distant est passée");
 					g_free (cCommand);
-					myData.bLoopForMagnatuneDone = FALSE;
+					//myData.bLoopForMagnatuneDone = FALSE;
 				}
-				else if (strncmp (cString, "file://", 7) == 0)
+				else if (strncmp (cString, "file://", 7) == 0)  // URI local, on l'accepte sans verifier.
 				{
 					GError *erreur = NULL;
 					myData.playing_cover = g_filename_from_uri (cString, NULL, &erreur);
@@ -204,9 +203,11 @@ void getSongInfos(void)
 					{
 						cd_warning ("RB-YDU : %s", erreur->message);
 						g_error_free (erreur);
+						g_free (myData.playing_cover);
+						myData.playing_cover = NULL;
 					}
 				}
-				else if (*cString == '/')
+				else if (*cString == '/')  // fichier local, on l'accepte sans verifier.
 				{
 					myData.playing_cover = g_strdup (cString);
 				}
@@ -217,7 +218,7 @@ void getSongInfos(void)
 		{
 			cd_debug("RB-YDU : Pas d'adresse de la part de RB ... on regarde en local");
 			gchar *cSongPath = g_filename_from_uri (myData.playing_uri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
-			if (cSongPath != NULL)  // c'est un fichier local.
+			if (cSongPath != NULL)  // c'est une chanson en local.
 			{
 				gchar *cSongDir = g_path_get_dirname (cSongPath);
 				g_free (cSongPath);
@@ -266,7 +267,8 @@ void getSongInfos(void)
 			{
 				cd_debug("RB-YDU : On regarde dans le répertoire .cache/rhythmbox/covers/");
 				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
-				if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
+				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
+				/*if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 				{					
 					myData.bLoopForMagnatuneDone = FALSE;
 				}
@@ -279,12 +281,11 @@ void getSongInfos(void)
 					myData.iSidLoopForMagnatune = g_timeout_add_seconds (2, (GSourceFunc) getSongInfos, (gpointer) myApplet);						
 				}
 				else
-					myData.bLoopForMagnatuneDone = FALSE;
+					myData.bLoopForMagnatuneDone = FALSE;*/
 			}
 		}
 		
 		g_print ("RB-YDU :  playing_cover <- %s\n", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
-				
 		g_hash_table_destroy (data_list);
 	}
 	else
@@ -338,7 +339,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 }
 
 //*********************************************************************************
-// rhythmbox_onChangeSong() : Fonction executée à chaque changement play/pause
+// onChangePlaying() : Fonction executée à chaque changement play/pause
 //*********************************************************************************
 void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
@@ -359,7 +360,7 @@ void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 }
 
 //*********************************************************************************
-// rhythmbox_elapsedChanged() : Fonction executée à chaque changement de temps joué
+// onElapsedChanged() : Fonction executée à chaque changement de temps joué
 //*********************************************************************************
 void onElapsedChanged(DBusGProxy *player_proxy,int elapsed, gpointer data)
 {

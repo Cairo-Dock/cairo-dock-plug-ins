@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-05-31 22:13+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -18,15 +17,18 @@ msgstr ""
 #: ../src/applet-init.c:23
 msgid ""
 "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-"XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is still experimental.\n"
+"XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+"still experimental.\n"
 "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "Launch/Play/Pause on left click, Next song on middle click.\n"
 "You can drag and drop songs on the icon to put them in the queue.\n"
 "Scroll up/down to play the previous/next song."
 msgstr ""
 "XMMS や Audacious, Banshee, Exaile を制御するためのアプレットです。\n"
-"XMMS と Audacious には完全に対応していますが、Banshee や Exaile の監視はまだ実験的です。\n"
-"XMMS には、'xmms-infopipe' プラグインのインストールが必要です。左クリックで再生/一時停止、中クリックで次の曲に進みます。\n"
+"XMMS と Audacious には完全に対応していますが、Banshee や Exaile の監視はまだ"
+"実験的です。\n"
+"XMMS には、'xmms-infopipe' プラグインのインストールが必要です。左クリックで再"
+"生/一時停止、中クリックで次の曲に進みます。\n"
 "曲をドラッグ＆ドロップしてキューに入れることもできます。\n"
 "マウスを上下スクロールさせると、前や次の曲を再生します。"
 
@@ -83,8 +85,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -92,7 +98,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -103,8 +111,12 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (Class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (Class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
@@ -135,8 +147,13 @@ msgid "Should be visible on all desktops ?"
 msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -156,15 +173,20 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -207,8 +229,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -247,8 +273,13 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../data/messages:95
-msgid "It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr "タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作するようになります。"
+msgid ""
+"It will prevent the player's icon to appear in the task bar. The applet's "
+"icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+"タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプ"
+"レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
+"になります。"
 
 #: ../data/messages:97
 msgid "Steal the player's icon from taskbar ?"
@@ -334,11 +365,8 @@ msgstr "音楽の切り替わりの際のアニメーション :"
 msgid "Personnalisation"
 msgstr "カスタマイズ"
 
-#: ../data/messages:139
-#: ../data/messages:143
-#: ../data/messages:147
-#: ../data/messages:151
-#: ../data/messages:155
+#: ../data/messages:139 ../data/messages:143 ../data/messages:147
+#: ../data/messages:151 ../data/messages:155
 msgid "Let it empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -362,86 +390,86 @@ msgstr "「一時停止」のアイコン画像の名前 :"
 msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」のアイコン画像の名前 :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid ""
-"This is the xmms applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu によって製作された \n"
-"Cairo-Dock 用の xmms アプレットです。"
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu によって製作された \n"
+#~ "Cairo-Dock 用の xmms アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "bounce"
-msgstr "バウンド"
+#~ msgid "bounce"
+#~ msgstr "バウンド"
 
-msgid "rotate"
-msgstr "回転"
+#~ msgid "rotate"
+#~ msgstr "回転"
 
-msgid "blink"
-msgstr "点滅"
+#~ msgid "blink"
+#~ msgstr "点滅"
 
-msgid "pulse"
-msgstr "波動"
+#~ msgid "pulse"
+#~ msgstr "波動"
 
-msgid "upside-down"
-msgstr "上下逆さま"
+#~ msgid "upside-down"
+#~ msgstr "上下逆さま"
 
-msgid "wobbly"
-msgstr "伸び縮み"
+#~ msgid "wobbly"
+#~ msgstr "伸び縮み"
 
-msgid "random"
-msgstr "ランダム"
+#~ msgid "random"
+#~ msgstr "ランダム"
 
-msgid "Play/Pause"
-msgstr "再生/一時停止"
+#~ msgid "Play/Pause"
+#~ msgstr "再生/一時停止"
 
-msgid "Next"
-msgstr "次へ"
+#~ msgid "Next"
+#~ msgstr "次へ"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid ""
-"An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-"XMMS & Audacious are fully supported,\n"
-"but Banshee and Exaile's monitoring is still experimental.\n"
-"For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-"Play/Pause on left click, Next song on middle click.\n"
-"You can drag and drop songs to put them in the queue.\n"
-"Scroll updown to play the previous/next sound\n"
-"Down play the next sound"
-msgstr ""
-"XMMS や Audacious, Banshee, Exaile を制御するためのアプレットです。\n"
-"XMMS と Audacious には完全に対応していますが、\n"
-"Banshee や Exaile の監視はまだ実験的です。\n"
-"XMMS には、'xmms-infopipe' プラグインのインストールが必要です。左クリックで再生/一時停止、中クリックで次の曲に進みます。\n"
-"曲をドラッグ＆ドロップしてキューに入れることもできます。\n"
-"マウスを上下にスクロールさせて、前や次の曲を再生、\n"
-"スクロールボタンの押すと次の曲を再生します。"
+#~ msgid ""
+#~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
+#~ "XMMS & Audacious are fully supported,\n"
+#~ "but Banshee and Exaile's monitoring is still experimental.\n"
+#~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+#~ "Play/Pause on left click, Next song on middle click.\n"
+#~ "You can drag and drop songs to put them in the queue.\n"
+#~ "Scroll updown to play the previous/next sound\n"
+#~ "Down play the next sound"
+#~ msgstr ""
+#~ "XMMS や Audacious, Banshee, Exaile を制御するためのアプレットです。\n"
+#~ "XMMS と Audacious には完全に対応していますが、\n"
+#~ "Banshee や Exaile の監視はまだ実験的です。\n"
+#~ "XMMS には、'xmms-infopipe' プラグインのインストールが必要です。左クリック"
+#~ "で再生/一時停止、中クリックで次の曲に進みます。\n"
+#~ "曲をドラッグ＆ドロップしてキューに入れることもできます。\n"
+#~ "マウスを上下にスクロールさせて、前や次の曲を再生、\n"
+#~ "スクロールボタンの押すと次の曲を再生します。"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
-
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"

@@ -39,11 +39,11 @@ msgstr "Configurer le menu"
 msgid "Clear recent"
 msgstr "Vider les documents récents"
 
-#: ../src/applet-recent.c:47
+#: ../src/applet-recent.c:44
 msgid "Recent Documents"
 msgstr "Documents récents"
 
-#: ../src/applet-recent.c:99
+#: ../src/applet-recent.c:96
 msgid "Clear the list of the recently used documents ?"
 msgstr "Vider la liste des Documents récents ?"
 

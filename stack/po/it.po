@@ -22,36 +22,36 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:47
 #, fuzzy
 msgid "Clear the stack ?"
 msgstr "Pulire lo stack"
 
-#: ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:64
 msgid "Set new name for this item :"
 msgstr "Inserire un nuovo nome per questo oggetto :"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid "Paste (drag'n'drop)"
 msgstr "Incolla (copia-incolla)"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:105
 msgid "Copy (middle click)"
 msgstr "Copia (click centrale)"
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:106
 msgid "Cut"
 msgstr "Taglia"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:107
 msgid "Rename this item"
 msgstr "Rinominare questo oggetto"
 
-#: ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:108
 msgid "Remove this item"
 msgstr "Rimuovere questo oggetto"
 
-#: ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:110
 msgid "Clear the stack"
 msgstr "Pulire lo stack"
 

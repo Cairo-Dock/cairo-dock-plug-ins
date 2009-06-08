@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-02-07 19:56+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -33,35 +32,35 @@ msgstr ""
 "従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
 "ます。"
 
-#: ../src/applet-notifications.c:49
+#: ../src/applet-notifications.c:47
 msgid "Clear the stack ?"
 msgstr "スタックを消去？"
 
-#: ../src/applet-notifications.c:66
+#: ../src/applet-notifications.c:64
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:102
 msgid "Paste (drag'n'drop)"
 msgstr "貼り付け（ドラッグ＆ドロップ）"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:105
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:106
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../src/applet-notifications.c:109
+#: ../src/applet-notifications.c:107
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:108
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../src/applet-notifications.c:112
+#: ../src/applet-notifications.c:110
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 
@@ -348,65 +347,66 @@ msgstr ""
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "コピー/貼り付け/切り取り 時にセレクションの方のクリップボードを使用？"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid ""
-"This is the Stack applet\n"
-" made by ChAnGFu & Fabounet for Cairo-Dock"
-msgstr ""
-"これは ChAnGFu と Fabounet によって製作された \n"
-"Cairo-Dock 用の Stack アプレットです。"
+#~ msgid ""
+#~ "This is the Stack applet\n"
+#~ " made by ChAnGFu & Fabounet for Cairo-Dock"
+#~ msgstr ""
+#~ "これは ChAnGFu と Fabounet によって製作された \n"
+#~ "Cairo-Dock 用の Stack アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "Reload Stacks"
-msgstr "Stack の再読み込み"
+#~ msgid "Reload Stacks"
+#~ msgstr "Stack の再読み込み"
 
-msgid "Clean local directory"
-msgstr "ローカルディレクトリをクリーン"
+#~ msgid "Clean local directory"
+#~ msgstr "ローカルディレクトリをクリーン"
 
-msgid ""
-"Stacks will act as a the shortcut applet's but with files. To add a file, "
-"just drag and drop it on the Stacks icon"
-msgstr ""
-"Stack は Shortcut アプレットのファイル版のように働きます。Stack アイコンにド"
-"ラッグ＆ドロップするだけでファイルを追加できます。"
+#~ msgid ""
+#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
+#~ "just drag and drop it on the Stacks icon"
+#~ msgstr ""
+#~ "Stack は Shortcut アプレットのファイル版のように働きます。Stack アイコンに"
+#~ "ドラッグ＆ドロップするだけでファイルを追加できます。"
 
-msgid "Use only Stacks local directory ?"
-msgstr "Stack をローカルのディレクトリにのみ使用？"
+#~ msgid "Use only Stacks local directory ?"
+#~ msgstr "Stack をローカルのディレクトリにのみ使用？"
 
-msgid "Monitored Directories :"
-msgstr "モニタ対象のディレクトリ :"
+#~ msgid "Monitored Directories :"
+#~ msgstr "モニタ対象のディレクトリ :"
 
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-"ファイルリストが大きくなる場合にこのオプションを使用すると、ドックの動作が遅"
-"くなるので、適切に使用してください。"
+#~ msgid ""
+#~ "This option with large files lists can slow down the dock, use it "
+#~ "properly."
+#~ msgstr ""
+#~ "ファイルリストが大きくなる場合にこのオプションを使用すると、ドックの動作が"
+#~ "遅くなるので、適切に使用してください。"
 
-msgid "List hidden files ?"
-msgstr "隠しファイルも一覧化？"
+#~ msgid "List hidden files ?"
+#~ msgstr "隠しファイルも一覧化？"
 
-msgid "Separate different directories with separators ?"
-msgstr "異なるディレクトリ同士を区切りで区分？"
+#~ msgid "Separate different directories with separators ?"
+#~ msgstr "異なるディレクトリ同士を区切りで区分？"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"

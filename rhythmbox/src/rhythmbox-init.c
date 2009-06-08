@@ -187,6 +187,6 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		rhythmbox_set_surface (PLAYER_BROKEN);
 	}
-	myData.CoverWasDistant = FALSE;
+	//myData.CoverWasDistant = FALSE;
 	
 CD_APPLET_RELOAD_END

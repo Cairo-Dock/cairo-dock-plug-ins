@@ -26,7 +26,7 @@ msgstr ""
 "Vous pouvez sélectionner votre page, paramétrer le défilement désiré\n"
 "et cacher les barres de défilement pour obtenir un vrai 'rognage' de la page."
 
-#: ../src/applet-widget.c:35
+#: ../src/applet-widget.c:58
 msgid "Weblets"
 msgstr "Weblets"
 

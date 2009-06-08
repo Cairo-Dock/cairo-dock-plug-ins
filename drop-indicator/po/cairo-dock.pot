@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,13 +41,23 @@ msgid "Image for the drag'n'drop animation :"
 msgstr ""
 
 #: ../data/messages:7
-msgid "Speed :"
+msgid ""
+"An emblem that will be displayed when you try to drop something onto an "
+"icon. Let empty to use the default one."
 msgstr ""
 
 #: ../data/messages:9
-msgid "Number of round per second."
+msgid "Image when hovering an icon :"
 msgstr ""
 
 #: ../data/messages:11
+msgid "Speed :"
+msgstr ""
+
+#: ../data/messages:13
+msgid "Number of round per second."
+msgstr ""
+
+#: ../data/messages:15
 msgid "Rotation speed :"
 msgstr ""

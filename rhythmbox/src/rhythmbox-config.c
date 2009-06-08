@@ -31,8 +31,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
 	}
 	
-	myData.iLastFileSize = 9999;
-	myData.bLoopForMagnatuneDone = FALSE;	
+	//myData.iLastFileSize = 9999;
+	//myData.bLoopForMagnatuneDone = FALSE;
 CD_APPLET_GET_CONFIG_END
 
 

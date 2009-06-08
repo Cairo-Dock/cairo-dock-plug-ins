@@ -30,6 +30,11 @@ msgstr "Je ne peux pas trouver cette emplacement"
 msgid "Search for your location :"
 msgstr "Chercher votre emplacement"
 
+#: ../src/applet-config.c:229
+msgid ""
+"Enter the name of your location and press Enter to choose amongst results."
+msgstr ""
+
 #: ../src/applet-init.c:18
 msgid "weather"
 msgstr "Météo"
@@ -374,12 +379,8 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:87
-msgid ""
-"Right click on the icon to let Cairo-Dock help you to find your location "
-"code."
+msgid "Enter the name of your location in the text entry and press Enter."
 msgstr ""
-"Clique droit sur l'icône pour laisser Cairo-Dock vous aider à trouver le "
-"code de votre location."
 
 #: ../data/messages:89
 msgid "Code of your location :"
@@ -445,6 +446,13 @@ msgstr "Nom de la vue utilisée pour le sous-dock :"
 #: ../data/messages:119
 msgid "Render desklet in 3D ?"
 msgstr "Dessiner le desklet en 3D ?"
+
+#~ msgid ""
+#~ "Right click on the icon to let Cairo-Dock help you to find your location "
+#~ "code."
+#~ msgstr ""
+#~ "Clique droit sur l'icône pour laisser Cairo-Dock vous aider à trouver le "
+#~ "code de votre location."
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Garder en-dessous des autres fenêtres ?"

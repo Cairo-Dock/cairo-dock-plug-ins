@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-05-31 21:34+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -17,7 +16,8 @@ msgstr ""
 
 #: ../src/applet-init.c:13
 msgid ""
-"This applet shows you the bit rate of your internet connection and some stats about it.\n"
+"This applet shows you the bit rate of your internet connection and some "
+"stats about it.\n"
 "Left-click on the icon to have the total amount of data transfered\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
@@ -25,8 +25,7 @@ msgstr ""
 "アイコンの左クリックで転送データの総量の表示、\n"
 "中クリックでネットワーク（要 ネットワーク・マネージャ）の有効化/無効化。"
 
-#: ../src/applet-netspeed.c:24
-#: ../src/applet-netspeed.c:32
+#: ../src/applet-netspeed.c:24 ../src/applet-netspeed.c:32
 msgid "B"
 msgstr "B"
 
@@ -34,8 +33,7 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48
-#: ../src/applet-notifications.c:14
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
 msgid "MB"
 msgstr "MB"
 
@@ -67,10 +65,12 @@ msgstr "アップロード"
 #, c-format
 msgid ""
 "Interface '%s' seems to not exist or is not readable.\n"
-" You may need to open the configuration panel of this applet, and choose the interface you wish to monitor."
+" You may need to open the configuration panel of this applet, and choose the "
+"interface you wish to monitor."
 msgstr ""
 "インターフェイス '%s' は存在しないか、読み込みできません。\n"
-"このアプレットの設定パネルを開いて、監視したいインターフェイスを選択する必要があるかもしれません。"
+"このアプレットの設定パネルを開いて、監視したいインターフェイスを選択する必要"
+"があるかもしれません。"
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"
@@ -105,16 +105,24 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。マイナスの値は、画面の右/下から数えられます。"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。マイナスの値は、画面の右/下から数えられます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -125,8 +133,12 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
@@ -157,8 +169,12 @@ msgid "Should be visible on all desktops ?"
 msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -178,15 +194,20 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -229,8 +250,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -240,8 +265,7 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81
-#: ../data/messages:135
+#: ../data/messages:81 ../data/messages:135
 msgid "Configuration"
 msgstr "設定"
 
@@ -273,8 +297,7 @@ msgstr "円（線）"
 msgid "Plain Circle"
 msgstr "円（面）"
 
-#: ../data/messages:97
-#: ../data/messages:105
+#: ../data/messages:97 ../data/messages:105
 msgid "It's the color of the graphic for high CPU values."
 msgstr "高 CPU 値のグラフの色"
 
@@ -282,8 +305,7 @@ msgstr "高 CPU 値のグラフの色"
 msgid "High values color for the download speed :"
 msgstr "ダウンロードの高速度値の色 :"
 
-#: ../data/messages:101
-#: ../data/messages:109
+#: ../data/messages:101 ../data/messages:109
 msgid "It's the color of the graphic for low CPU values."
 msgstr "低 CPU 値のグラフの色"
 
@@ -312,8 +334,12 @@ msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから１つ選択 :"
 
 #: ../data/messages:119
-msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
-msgstr "デフォルトの画像を使用するには空欄のままに。透かし模様を表示させたくない場合は、透明度を 0 に設定してください。"
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"デフォルトの画像を使用するには空欄のままに。透かし模様を表示させたくない場合"
+"は、透明度を 0 に設定してください。"
 
 #: ../data/messages:121
 msgid "Image to display as a watermark on the gauge :"
@@ -367,92 +393,94 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid "Interface '%s' seems to not exist or is not readable"
-msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
+#~ msgid "Interface '%s' seems to not exist or is not readable"
+#~ msgstr "インターフェイス '%s' は存在しないか、読み込みできないようです。"
 
-msgid ""
-"This is the netspeed applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"これは parAdOxxx_ZeRo によって製作された \n"
-"Cairo-Dock 用の netspeed アプレットです。"
+#~ msgid ""
+#~ "This is the netspeed applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "これは parAdOxxx_ZeRo によって製作された \n"
+#~ "Cairo-Dock 用の netspeed アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2f%s\n"
-"  uploaded : %.2f%s"
-msgstr ""
-"データの総量 :\n"
-"  ダウンロード : %.2f%s\n"
-"  アップロード : %.2f%s"
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "データの総量 :\n"
+#~ "  ダウンロード : %.2f%s\n"
+#~ "  アップロード : %.2f%s"
 
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
 
-msgid "Waiting"
-msgstr "待機中"
+#~ msgid "Waiting"
+#~ msgstr "待機中"
 
-msgid "Personnalisation"
-msgstr "カスタマイズ"
+#~ msgid "Personnalisation"
+#~ msgstr "カスタマイズ"
 
-msgid "Delay between signal checks :"
-msgstr "信号チェックの間隔時間 :"
+#~ msgid "Delay between signal checks :"
+#~ msgstr "信号チェックの間隔時間 :"
 
-msgid "Debug"
-msgstr "デバグ"
+#~ msgid "Debug"
+#~ msgstr "デバグ"
 
-msgid "in milliseconds."
-msgstr "ミリ秒単位"
+#~ msgid "in milliseconds."
+#~ msgstr "ミリ秒単位"
 
-msgid ""
-"Total amount of data :\n"
-"  downloaded : %.2fKB\n"
-"  uploaded : %.2fKB"
-msgstr ""
-"データの総量 :\n"
-"  ダウンロード : %.2fKB\n"
-"  アップロード : %.2fKB"
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2fKB\n"
+#~ "  uploaded : %.2fKB"
+#~ msgstr ""
+#~ "データの総量 :\n"
+#~ "  ダウンロード : %.2fKB\n"
+#~ "  アップロード : %.2fKB"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
+#~ "させることができます。"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"
 
-msgid "List of available themes for the gauge :"
-msgstr "ゲージに利用可能なテーマのリスト :"
+#~ msgid "List of available themes for the gauge :"
+#~ msgstr "ゲージに利用可能なテーマのリスト :"
 
-msgid "Display"
-msgstr "表示"
+#~ msgid "Display"
+#~ msgstr "表示"
 
-msgid "Image's filename :"
-msgstr "画像のファイル名前 :"
-
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

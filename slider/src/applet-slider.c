@@ -104,16 +104,18 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 						if (iFormat == SLIDER_JPG)
 						{
 							pExifData = exif_data_new_from_file (sFilePath->str);
-							
-							pExifEntry = exif_data_get_entry (pExifData, EXIF_TAG_ORIENTATION);
-							if (pExifEntry != NULL)
+							if (pExifData != NULL)
 							{
-								byteOrder = exif_data_get_byte_order (pExifData);
-								pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
-								cd_debug ("iOrientation : %d", pImage->iOrientation);
+								pExifEntry = exif_data_get_entry (pExifData, EXIF_TAG_ORIENTATION);
+								if (pExifEntry != NULL)
+								{
+									byteOrder = exif_data_get_byte_order (pExifData);
+									pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
+									cd_debug ("iOrientation : %d", pImage->iOrientation);
+								}
+								
+								exif_data_unref (pExifData);
 							}
-							
-							exif_data_unref (pExifData);
 						}
 						#endif
 						if (bSortAlpha)  // ordre alphabetique.

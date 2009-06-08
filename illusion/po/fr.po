@@ -116,7 +116,8 @@ msgstr "Vitesse de rotation :"
 
 #: ../data/messages:73
 msgid "The greatest, the fastest the icon will collapse to the center."
-msgstr "Plus c'est grand, plus vite les icônes vont s'effondrer vers le centre."
+msgstr ""
+"Plus c'est grand, plus vite les icônes vont s'effondrer vers le centre."
 
 #: ../data/messages:75
 msgid "Attraction of the hole :"

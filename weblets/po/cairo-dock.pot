@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgid ""
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
 
-#: ../src/applet-widget.c:35
+#: ../src/applet-widget.c:58
 msgid "Weblets"
 msgstr ""
 

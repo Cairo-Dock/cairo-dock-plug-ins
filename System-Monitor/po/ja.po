@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-05-31 21:13+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -15,55 +14,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:41
-#: ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
 msgid "day(s)"
 msgstr "日"
 
-#: ../src/applet-cpusage.c:225
+#: ../src/applet-cpusage.c:229
 msgid "Loading"
 msgstr "読み込み中"
 
 #: ../src/applet-init.c:10
-msgid "cpusage"
-msgstr "CPU使用率"
+msgid "System Monitor"
+msgstr ""
 
 #: ../src/applet-init.c:13
+#, fuzzy
 msgid ""
-"The cpusage applet show you the amount of CPU currently used.\n"
+"This applet shows you the CPU load, RAM usage, graphic card temperature, "
+"etc.\n"
 "Middle click on the icon to get some valuable info.\n"
-"Left click on the icon to get a list of the most cpu using programs."
+"Left click on the icon to get a list of the most ressources using programs."
 msgstr ""
 "現在の CPU 使用率を表示するアプレット。\n"
 "アイコンの中クリックで情報表示、\n"
 "アイコンの左クリックで CPU を最も使用しているプログラムのリストを表示します。"
 
-#: ../src/applet-notifications.c:105
-#: ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Model Name"
 msgstr "モデル名"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Frequency"
 msgstr "周波数"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "core(s)"
 msgstr "コア"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Up time"
 msgstr "稼働時間"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Activity time"
 msgstr "動作時間"
 
-#: ../src/applet-notifications.c:143
+#: ../src/applet-notifications.c:142
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
@@ -92,8 +91,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:13
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
@@ -101,7 +104,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:17
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -112,8 +117,12 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:23
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:25
 msgid "Accessibility :"
@@ -144,8 +153,12 @@ msgid "Should be visible on all desktops ?"
 msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:39
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなります。その場合でも ALT + 左クリックで移動させることはできます。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
 
 #: ../data/messages:41
 msgid "Lock position ?"
@@ -165,15 +178,20 @@ msgstr "装飾"
 
 #: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:53
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:55
 msgid "Background image :"
@@ -216,8 +234,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:75
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:77
 msgid "Foreground image :"
@@ -227,8 +249,7 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81
-#: ../data/messages:141
+#: ../data/messages:81 ../data/messages:141
 msgid "Configuration"
 msgstr "設定"
 
@@ -289,8 +310,12 @@ msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから１つ選択 :"
 
 #: ../data/messages:111
-msgid "Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark."
-msgstr "デフォルトの画像を使用するには空欄のままにしてください。透かし模様を使用したくない場合は、透明度を 0 に設定してください。"
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"デフォルトの画像を使用するには空欄のままにしてください。透かし模様を使用した"
+"くない場合は、透明度を 0 に設定してください。"
 
 #: ../data/messages:113
 msgid "Image to display as a watermark :"
@@ -325,8 +350,12 @@ msgid "Top List"
 msgstr "トップリスト"
 
 #: ../data/messages:129
-msgid "When you left-click on the icon, you will get the list of the N most CPU-using programs."
-msgstr "アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリストが得られます。"
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU-"
+"using programs."
+msgstr ""
+"アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリスト"
+"が得られます。"
 
 #: ../data/messages:131
 msgid "Number of programs to display in the top list :"
@@ -348,8 +377,7 @@ msgstr "トップリストの記載に使用するグラデーションの終了
 msgid "Stop color of the top list :"
 msgstr "トップリストの終了色 :"
 
-#: ../data/messages:143
-#: ../data/messages:147
+#: ../data/messages:143 ../data/messages:147
 msgid "in seconds."
 msgstr "秒単位"
 
@@ -369,71 +397,73 @@ msgstr "デフォルトのコマンドを使用するには空欄のままに。
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "cpusage"
+#~ msgstr "CPU使用率"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid ""
-"This is the cpusage applet\n"
-" made by parAdOxxx_ZeRo for Cairo-Dock"
-msgstr ""
-"これは parAdOxxx_ZeRo によって製作された \n"
-"Cairo-Dock 用の cpusage アプレットです。"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid ""
+#~ "This is the cpusage applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "これは parAdOxxx_ZeRo によって製作された \n"
+#~ "Cairo-Dock 用の cpusage アプレットです。"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "turbo-night-fuel"
-msgstr "turbo-night-fuel"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
+#~ msgid "turbo-night-fuel"
+#~ msgstr "turbo-night-fuel"
 
-msgid "Waiting"
-msgstr "待機中"
+#~ msgid "Information to display on the icon :"
+#~ msgstr "アイコン上に表示する情報 :"
 
-msgid "Personnalisation"
-msgstr "カスタマイズ"
+#~ msgid "Waiting"
+#~ msgstr "待機中"
 
-msgid "Delay between signal checks :"
-msgstr "信号チェックの間隔時間 :"
+#~ msgid "Personnalisation"
+#~ msgstr "カスタマイズ"
 
-msgid "Debug"
-msgstr "デバグ"
+#~ msgid "Delay between signal checks :"
+#~ msgstr "信号チェックの間隔時間 :"
 
-msgid "in milliseconds."
-msgstr "ミリ秒"
+#~ msgid "Debug"
+#~ msgstr "デバグ"
 
-msgid "Acquisition of data failed"
-msgstr "データ取得に失敗"
+#~ msgid "in milliseconds."
+#~ msgstr "ミリ秒"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Acquisition of data failed"
+#~ msgstr "データ取得に失敗"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
-msgid "Icon's name :"
-msgstr "アイコンの名前 :"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid "List of available themes for the gauge :"
-msgstr "ゲージに利用可能なテーマのリスト :"
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"
 
-msgid "Image's filename :"
-msgstr "画像のファイル名前 :"
+#~ msgid "List of available themes for the gauge :"
+#~ msgstr "ゲージに利用可能なテーマのリスト :"
 
+#~ msgid "Image's filename :"
+#~ msgstr "画像のファイル名前 :"

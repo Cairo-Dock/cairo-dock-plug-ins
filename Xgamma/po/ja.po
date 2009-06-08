@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-05-31 22:14+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
@@ -21,7 +20,8 @@ msgid ""
 "Scroll up/down to increase/decrease the luminosity\n"
 "Left-click to open a dialog to setup the luminosity\n"
 "Middle-click to set it up for each color.\n"
-"You can also define a luminosity value that will be applied automatically on startup."
+"You can also define a luminosity value that will be applied automatically on "
+"startup."
 msgstr ""
 "ドックからスクリーンの明るさを直接設定。\n"
 "上下のスクロールで明るさの上げ下げ、\n"
@@ -29,8 +29,7 @@ msgstr ""
 "中クリックで各色ごとの設定が行います。\n"
 "スタートアップ時に自動的に適用する明るさの値を設定することも可能です。"
 
-#: ../src/applet-notifications.c:26
-#: ../src/applet-xgamma.c:149
+#: ../src/applet-notifications.c:26 ../src/applet-xgamma.c:149
 msgid "Set up gamma :"
 msgstr "ガンマ値設定 :"
 
@@ -71,8 +70,12 @@ msgid "Desklet"
 msgstr "デスクレット"
 
 #: ../data/messages:17
-msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
@@ -80,7 +83,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 
 #: ../data/messages:21
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../data/messages:23
 msgid "Desklet's position (x ; y) :"
@@ -91,8 +96,12 @@ msgid "Is detached from the dock ?"
 msgstr "ドックから分離？"
 
 #: ../data/messages:27
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における動作設定での指定法 : (class=Cairo-dock & type=utility)"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #: ../data/messages:29
 msgid "Accessibility :"
@@ -123,8 +132,13 @@ msgid "Should be visible on all desktops ?"
 msgstr "すべてのデスクトップに表示させる？"
 
 #: ../data/messages:43
-msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能です。"
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../data/messages:45
 msgid "Lock position ?"
@@ -144,15 +158,20 @@ msgstr "装飾"
 
 #: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
 
 #: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
 #: ../data/messages:57
-msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../data/messages:59
 msgid "Background image :"
@@ -195,8 +214,12 @@ msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
 
 #: ../data/messages:79
-msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../data/messages:81
 msgid "Foreground image :"
@@ -222,51 +245,51 @@ msgstr "使用しない場合は 0 に設定してください。"
 msgid "Luminosity to automatically apply on startup :"
 msgstr "スタートアップ時に自動的に適用する明るさ :"
 
-msgid "Keep below other windows ?"
-msgstr "他ウィンドウより常に下に？"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "他ウィンドウより常に下に？"
 
-msgid "Keep above other windows ?"
-msgstr "他ウィンドウより常に上に？"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "他ウィンドウより常に上に？"
 
-msgid ""
-"This is the Xgamma applet\n"
-" made by Fabrice Rey for Cairo-Dock"
-msgstr ""
-"これは Fabrice Rey によって\n"
-"Cairo-Dock 用に製作された Xgamma アプレットです。"
+#~ msgid ""
+#~ "This is the Xgamma applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "これは Fabrice Rey によって\n"
+#~ "Cairo-Dock 用に製作された Xgamma アプレットです。"
 
-msgid "width :"
-msgstr "幅 :"
+#~ msgid "width :"
+#~ msgstr "幅 :"
 
-msgid "height :"
-msgstr "高さ :"
+#~ msgid "height :"
+#~ msgstr "高さ :"
 
-msgid "Lockposition ?"
-msgstr "位置を固定？"
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
 
-msgid "Module"
-msgstr "モジュール"
+#~ msgid "Module"
+#~ msgstr "モジュール"
 
-msgid ""
-"This is the CD_APPLET_NAME applet\n"
-" made by CD_MY_NAME for Cairo-Dock"
-msgstr ""
-"これは CD_MY_NAME によって \n"
-"Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-msgid ""
-"Setup the luminosity of your screen directly from your dock.\n"
-"Scroll up/down to increase/decrease the luminosity\n"
-"Left-click to open a dialog to setup the luminosity\n"
-"Middle-click to set it up for each color.\n"
-"You can also define a luminosity value that will be applied automatically on startup.\n"
-msgstr ""
-"ドックからスクリーンの明るさを直接設定。\n"
-"上下のスクロールで明るさの上げ下げ、\n"
-"左クリックで明るさを設定するダイアログを開き、\n"
-"中クリックで各色ごとの設定が行います。\n"
-"スタートアップ時に自動的に適用する明るさの値を設定することも可能です。\n"
+#~ msgid ""
+#~ "Setup the luminosity of your screen directly from your dock.\n"
+#~ "Scroll up/down to increase/decrease the luminosity\n"
+#~ "Left-click to open a dialog to setup the luminosity\n"
+#~ "Middle-click to set it up for each color.\n"
+#~ "You can also define a luminosity value that will be applied automatically "
+#~ "on startup.\n"
+#~ msgstr ""
+#~ "ドックからスクリーンの明るさを直接設定。\n"
+#~ "上下のスクロールで明るさの上げ下げ、\n"
+#~ "左クリックで明るさを設定するダイアログを開き、\n"
+#~ "中クリックで各色ごとの設定が行います。\n"
+#~ "スタートアップ時に自動的に適用する明るさの値を設定することも可能です。\n"
 
-msgid "Keep on widget layer ?"
-msgstr "ウィジェット・レイヤ上に表示？"
-
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "ウィジェット・レイヤ上に表示？"

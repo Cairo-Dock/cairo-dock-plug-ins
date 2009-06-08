@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,22 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-command-finder.c:667
+msgid "Match case"
+msgstr ""
+
+#: ../src/applet-command-finder.c:671
+msgid "Music"
+msgstr ""
+
+#: ../src/applet-command-finder.c:676
+msgid "Image"
+msgstr ""
+
+#: ../src/applet-command-finder.c:680
+msgid "Video"
+msgstr ""
+
+#: ../src/applet-command-finder.c:684
+msgid "Text"
+msgstr ""
+
+#: ../src/applet-command-finder.c:688
+msgid "Html"
+msgstr ""
+
+#: ../src/applet-command-finder.c:692
+msgid "Sources"
+msgstr ""
+
+#: ../src/applet-command-finder.c:707
+msgid "Narrow your search"
+msgstr ""
+
 #: ../src/applet-init.c:22
 msgid ""
-"A Gnome-Do-like plug-in.\n"
-"It lets you control the dock and quickly launch any command with the "
-"keyboard :\n"
-" Start a session with the shortkey of your choice, Escape, Return or "
-"shortkey to close it.\n"
-" use the arrows to navigate into the docks and sub-docks,\n"
-" or type a command to find the corresponding launcher, or to launch any "
-"command\n"
-" Press Tab to automatically jump to the next suitable launcher\n"
-" Press enter to click the icon or validate the command, Shift+Enter for Shift"
+"A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+"- the navigation mode : use the arrows to navigate into the docks and sub-"
+"docks,\n"
+"  or type a command to find a corresponding launcher and press Tab to "
+"automatically jump to the next suitable launcher\n"
+"- the finder mode : type a command to find the corresponding launcher, or to "
+"launch any command or file\n"
+"  use the arrows or Tab to navigate between the found launchers if any\n"
+"Escape, Return or the same shortkey to finish.\n"
+"Press Enter to click the icon or validate the command, Shift+Enter for Shift"
 "+click, Alt+Enter for middle click, and Ctrl+Enter for left click."
 msgstr ""
 
-#: ../src/applet-session.c:30
+#: ../src/applet-session.c:34
 msgid "Enter your search"
 msgstr ""
 
@@ -40,19 +73,23 @@ msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:3
-msgid "Shortkey to activate/deactivate Do :"
+msgid "Shortkey to activate/deactivate the navigation mode :"
 msgstr ""
 
 #: ../data/messages:5
-msgid "Animations"
+msgid "Shortkey to activate/deactivate the finder mode :"
 msgstr ""
 
-#: ../data/messages:7 ../data/messages:11 ../data/messages:15
-msgid "In ms."
+#: ../data/messages:7
+msgid "Maximum number of results to display for files :"
 msgstr ""
 
 #: ../data/messages:9
-msgid "Duration of the character animation (OpenGL only) :"
+msgid "Animations"
+msgstr ""
+
+#: ../data/messages:11 ../data/messages:15
+msgid "In ms."
 msgstr ""
 
 #: ../data/messages:13
@@ -114,9 +151,5 @@ msgid "Color of the background of the characters :"
 msgstr ""
 
 #: ../data/messages:43
-msgid "Set 0 to center the text vertically."
-msgstr ""
-
-#: ../data/messages:45
-msgid "Relative vertical position of the text :"
+msgid "Write text on the top of the dock ?"
 msgstr ""

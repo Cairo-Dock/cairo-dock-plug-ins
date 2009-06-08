@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-05-23 02:21+0200\n"
+"POT-Creation-Date: 2009-06-09 02:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,11 @@ msgstr ""
 
 #: ../src/applet-config.c:225
 msgid "Search for your location :"
+msgstr ""
+
+#: ../src/applet-config.c:229
+msgid ""
+"Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
 
 #: ../src/applet-init.c:18
@@ -347,9 +352,7 @@ msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:87
-msgid ""
-"Right click on the icon to let Cairo-Dock help you to find your location "
-"code."
+msgid "Enter the name of your location in the text entry and press Enter."
 msgstr ""
 
 #: ../data/messages:89
