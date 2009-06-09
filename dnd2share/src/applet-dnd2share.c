@@ -83,7 +83,7 @@ void cd_dnd2share_clear_history (void)
 
 static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 {
-	gboolean bResultOK = myData.pCurrentBackend->upload (cFilePath, myData.iCurrentFileType);
+	myData.pCurrentBackend->upload (cFilePath, myData.iCurrentFileType);
 }
 static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 {

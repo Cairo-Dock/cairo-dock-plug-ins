@@ -16,7 +16,6 @@ icon =
 #d Name of the dock it belongs to:
 dock name = 
 
-icon=
 order=
 
 #[gtk-convert]

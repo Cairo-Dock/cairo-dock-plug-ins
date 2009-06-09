@@ -15,6 +15,7 @@ typedef enum _CDFileType {
 
 typedef enum _CDSiteId {
 	CD_UPPIX=0,
+	CD_IMAGEBIN,
 	CD_NB_SITES
 	} CDSiteId;
 
@@ -28,7 +29,7 @@ typedef struct _CDUploadedItem {
 	CDFileType iFileType;
 	} CDUploadedItem;
 
-typedef gboolean (* CDUploadFunc) (const gchar *cFilePath, CDFileType iFileType);
+typedef void (* CDUploadFunc) (const gchar *cFilePath, CDFileType iFileType);
 
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;

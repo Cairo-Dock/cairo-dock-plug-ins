@@ -15,6 +15,8 @@ libcd_dnd2share_la_SOURCES = \
 	applet-dnd2share.h\
 	applet-backend-uppix.c\
 	applet-backend-uppix.h\
+	applet-backend-imagebin.c\
+	applet-backend-imagebin.h\
 	applet-struct.h
 
 

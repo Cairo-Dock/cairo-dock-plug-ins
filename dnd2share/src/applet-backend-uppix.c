@@ -8,10 +8,10 @@
 #include "applet-backend-uppix.h"
 
 #define NB_URLS 5
-const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "BBCode150px", "BBCode600px", "BBCodeFullPic"};  /// franchement le seul lien interessant c'est DirectLink non ?...
+static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "BBCode150px", "BBCode600px", "BBCodeFullPic"};  /// franchement le seul lien interessant c'est DirectLink non ?...
 
 
-static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
+static void upload (const gchar *cFilePath, CDFileType iFileType)
 {
 	g_print ("%s (%s, %d)\n", __func__, cFilePath, iFileType);
 	// On lance la commande d'upload.
@@ -20,7 +20,7 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 	if (fds == -1)
 	{
 		g_free (cLogFile);
-		return FALSE;
+		return ;
 	}
 	close(fds);
 	
@@ -42,7 +42,7 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 	{
 		g_remove (cLogFile);
 		g_free (cLogFile);
-		return FALSE;
+		return ;
 	}
 	
 	gchar *str = g_strstr_len (cDisplayImage, -1, "http://"); // On retire tout ce qui se trouve avant http://
@@ -93,8 +93,6 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 	myData.cResultUrls[2] = cBBCode150px;
 	myData.cResultUrls[3] = cBBCode600px;
 	myData.cResultUrls[4] = cBBCodeFullPic;
-	
-	return TRUE;
 }
 
 
@@ -105,5 +103,4 @@ void cd_dnd2share_register_uppix_backend (void)
 	myData.backends[CD_UPPIX].cUrlLabels = s_UrlLabels;
 	myData.backends[CD_UPPIX].iPreferedUrlType = 0;
 	myData.backends[CD_UPPIX].upload = upload;
-	
 }

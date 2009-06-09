@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-05-31 22:26+0900\n"
+"PO-Revision-Date: 2009-06-04 15:22+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -230,7 +230,7 @@ msgstr "SimpleSlide"
 
 #: ../data/messages:83
 msgid "Space between columns :"
-msgstr "縦の列同士の間隔 :"
+msgstr "縦列同士の間隔 :"
 
 #: ../data/messages:87
 msgid "Max size of icons :"

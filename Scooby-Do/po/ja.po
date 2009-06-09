@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-05-31 20:40+0900\n"
+"PO-Revision-Date: 2009-06-04 14:42+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: ../src/applet-command-finder.c:707
 #, fuzzy
 msgid "Narrow your search"
-msgstr "検索を入力してください"
+msgstr "検索入力"
 
 #: ../src/applet-init.c:22
 #, fuzzy
@@ -66,16 +66,17 @@ msgstr ""
 "Gnome-Do 風のプラグイン。\n"
 "キーボードでドックを制御したり、コマンドを素早く実行することができます。:\n"
 "任意設定したショートキーでセッションを開始、Escape や Return、ショートキーで"
-"閉じます。\n"
-"カーソルキーを使用してドックやサブ・ドック内をナビゲートしたり、\n"
-"コマンドを入力して該当のランチャーを探したり、コマンドの実行を行います。\n"
-"Tab を押すと自動的に次の該当ランチャーにジャンプします。\n"
-"Enter を押すとアイコンのクリックまたは入力コマンドの決定、Shift+Enter は "
-"Shift+クリック、Alt+Enter は中クリック、Ctrl+Enter は左クリックです。"
+"セッションを閉じます。\n"
+"カーソルキーを使用してドックやサブ・ドック内をナビゲートしたり、コマンドを入"
+"力して該当のランチャーの検索やコマンドの実行を行います。\n"
+"Tab を押すと自動的に次の該当ランチャーにジャンプ、Enter を押すとアイコンのク"
+"リックまたは入力コマンドの決定になります。\n"
+"Shift+Enter は Shift+クリック、Alt+Enter は中クリック、Ctrl+Enter は左クリッ"
+"クに相当します。"
 
 #: ../src/applet-session.c:34
 msgid "Enter your search"
-msgstr "検索を入力してください"
+msgstr "検索入力"
 
 #: ../data/messages:1
 msgid "Configuration"

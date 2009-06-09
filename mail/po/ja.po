@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-05-31 22:54+0900\n"
+"PO-Revision-Date: 2009-06-04 15:55+0900\n"
 "Last-Translator: jiro kawada <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,16 +53,16 @@ msgstr "件名なし"
 
 #: ../src/cd-mail-applet-etpan.c:297
 msgid "No unread mail in your mailboxes"
-msgstr "Mailbox に未読メールはありません。"
+msgstr "メールボックスに未読メールはありません。"
 
 #: ../src/cd-mail-applet-etpan.c:319
 #, c-format
 msgid "You have %d new mails :"
-msgstr "%d 新着メール :"
+msgstr "新着メールが %d 通あります :"
 
 #: ../src/cd-mail-applet-etpan.c:321
 msgid "You have a new mail :"
-msgstr "1 新着メール :"
+msgstr "新着メールが 1 通あります :"
 
 #: ../src/cd-mail-applet-init.c:21
 msgid "mail"
@@ -78,7 +78,7 @@ msgstr ""
 "Eメール新着時の通知に非常に役立つアプレット。\n"
 "様々な種類のメールボックスのチェックが可能 (yahoo, gmail, etc)\n"
 "左クリックで任意のメール・アプリケーションの起動、\n"
-"中クリックですべてのメールボックスについて更新します。"
+"中クリックですべてのメールボックスについて更新を行います。"
 
 #: ../src/cd-mail-applet-notifications.c:39
 #, c-format
@@ -98,7 +98,7 @@ msgstr "アカウントの更新"
 #: ../src/cd-mail-applet-notifications.c:97
 #, c-format
 msgid "Launch %s"
-msgstr "起動 %s"
+msgstr "%s を起動"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -348,7 +348,7 @@ msgstr ""
 
 #: ../data/messages:109
 msgid "Class of the mail application (optionnal)"
-msgstr "メール・アプリケーションのクラス（任意）"
+msgstr "メール・アプリケーションのクラス（任意入力）"
 
 #: ../data/messages:111
 msgid ""
@@ -439,7 +439,7 @@ msgstr "指定の種類と名前のアカウントを追加 :"
 #~ msgstr "分間隔"
 
 #~ msgid "Remote GMail Mailbox"
-#~ msgstr "リモート GMail Mailbox"
+#~ msgstr "リモート GMail メールボックス"
 
 #~ msgid ""
 #~ "The GMail plugin can connect to Google's mail service and securely "
@@ -514,7 +514,7 @@ msgstr "指定の種類と名前のアカウントを追加 :"
 #~ msgstr "新着メールフォルダ(_F)..."
 
 #~ msgid "Remote IMAP Mailbox"
-#~ msgstr "リモート IMAP Mailbox"
+#~ msgstr "リモート IMAP メールボックス"
 
 #~ msgid ""
 #~ "The IMAP plugin can connect to a remote mail server that supports the "
@@ -591,7 +591,7 @@ msgstr "指定の種類と名前のアカウントを追加 :"
 #~ msgstr "POP3 サーバ"
 
 #~ msgid "Remote POP3 Mailbox"
-#~ msgstr "リモート POP3 Mailbox"
+#~ msgstr "リモート POP3 メールボックス"
 
 #~ msgid ""
 #~ "The POP3 plugin can connect to a remote mail server that supports the "
@@ -615,26 +615,26 @@ msgstr "指定の種類と名前のアカウントを追加 :"
 #~ msgstr "セキュア接続を要求しましたが、gnutls は初期化されませんでした。"
 
 #~ msgid "This mailbox type does not require any configuration settings."
-#~ msgstr "この mailbox タイプには設定変更の必要はありません。"
+#~ msgstr "この種類のメールボックスには設定変更の必要はありません。"
 
 #~ msgid "Mailbox _Name:"
-#~ msgstr "Mailbox の名前(_N):"
+#~ msgstr "メールボックスの名前(_N):"
 
 #~ msgid "Edit Mailbox: %s"
-#~ msgstr "Mailbox の編集: %s"
+#~ msgstr "メールボックスの編集: %s"
 
 #~ msgid "Select Mailbox Type"
-#~ msgstr "Mailbox タイプの選択"
+#~ msgstr "メールボックスの種類の選択"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Mailbox のタイプを選択してください。各タイプの説明が下に表示されます。"
+#~ "メールボックスの種類を選択してください。各種類の説明が下に表示されます。"
 
 #~ msgid "Add New Mailbox"
-#~ msgstr "新規 Mailbox の追加"
+#~ msgstr "新規メールボックスの追加"
 
 #~ msgid "Mailboxes"
-#~ msgstr "Mailboxes"
+#~ msgstr "メールボックス"
 
 #~ msgid "width :"
 #~ msgstr "幅 :"

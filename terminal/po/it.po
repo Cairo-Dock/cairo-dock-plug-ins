@@ -86,14 +86,23 @@ msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
 #: ../data/messages:9
+msgid "Let empty to use the default one."
+msgstr ""
+
+#: ../data/messages:11
+#, fuzzy
+msgid "Image's filename :"
+msgstr "Nome dell'icona :"
+
+#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Nome del contenitore al quale appartiene:"
 
-#: ../data/messages:11
+#: ../data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:13 ../data/messages:17
+#: ../data/messages:17 ../data/messages:21
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -101,15 +110,15 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:15 ../data/messages:19
+#: ../data/messages:19 ../data/messages:23
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:21
+#: ../data/messages:25
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:23
+#: ../data/messages:27
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -118,36 +127,36 @@ msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
-#: ../data/messages:25
+#: ../data/messages:29
 msgid "Accessibility :"
 msgstr ""
 
-#: ../data/messages:27
+#: ../data/messages:31
 msgid "Normal"
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:33
 msgid "Keep above"
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:35
 msgid "Keep below"
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:37
 #, fuzzy
 msgid "On Widget Layer"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:35
+#: ../data/messages:39
 msgid "Reserve space"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:41
 msgid "Should be visible on all desktops ?"
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -156,32 +165,32 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "in degrees."
 msgstr "in gradi."
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Rotation :"
 msgstr "Rotazione :"
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Decorations"
 msgstr "Decorazioni"
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Scegliere 'personalizzato' per definire la propria decorazione qui sotto."
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Scegliere un tema decorativo per questa desklet :"
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -189,51 +198,51 @@ msgstr ""
 "E' un'immagine che sarà mostrata sotto il disegno, come un motivo per "
 "esempio. Lasciare vuoto per non utilizzarne."
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Background image :"
 msgstr "Immagine dello sfondo :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Background tansparency :"
 msgstr "Trasparenza dello sfondo :"
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a sinistra del disegno."
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Left offset :"
 msgstr "Compensazione a sinistra :"
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in alto del disegno."
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Top offset :"
 msgstr "Compensazione in alto :"
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione a destra del disegno."
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Right offset :"
 msgstr "Compensazione a destra :"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 "in pixels. Usare questo per aggiustare la posizione in basso del disegno."
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Bottom offset :"
 msgstr "Compensazione in basso :"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -241,35 +250,35 @@ msgstr ""
 "E' un'immagine che sarà mostrata sopra il disegno, come un riflesso per "
 "esempio. Lasciare vuoto per non usarla."
 
-#: ../data/messages:77
+#: ../data/messages:81
 msgid "Foreground image :"
 msgstr "Immagine in primo piano :"
 
-#: ../data/messages:79
+#: ../data/messages:83
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:81
+#: ../data/messages:85
 msgid "GUI"
 msgstr "GUI"
 
-#: ../data/messages:83
+#: ../data/messages:87
 msgid "needs to restart the applet."
 msgstr "riavvio dell'applet necessario."
 
-#: ../data/messages:85
+#: ../data/messages:89
 msgid "Terminal's transparency :"
 msgstr "Trasparenza del terminale :"
 
-#: ../data/messages:87
+#: ../data/messages:91
 msgid "Foreground color (r, v, b):"
 msgstr "Colore del primo piano (r, v, b):"
 
-#: ../data/messages:89
+#: ../data/messages:93
 msgid "Background color (r, v, b):"
 msgstr "Colore di sfondo (r, v, b):"
 
-#: ../data/messages:91
+#: ../data/messages:95
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -277,11 +286,11 @@ msgstr ""
 "Quando il terminale è in un dialogo. Quando è in una desklet, potete "
 "ridimensionare la desklet come sempre."
 
-#: ../data/messages:93
+#: ../data/messages:97
 msgid "Size of the terminal (line x columns) :"
 msgstr "Dimensione del terminale (linee x colonne) :"
 
-#: ../data/messages:95
+#: ../data/messages:99
 #, fuzzy
 msgid "Shortkey to show the terminal :"
 msgstr "Scorciatoia da tastiera per mostrare il terminale :"
@@ -315,9 +324,6 @@ msgstr "Scorciatoia da tastiera per mostrare il terminale :"
 
 #~ msgid "Always on top ?"
 #~ msgstr "Sempre in primo piano ?"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nome dell'icona :"
 
 #~ msgid "Lockposition ?"
 #~ msgstr "Bloccare la posizione ?"
