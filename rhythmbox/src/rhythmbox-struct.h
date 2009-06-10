@@ -66,7 +66,9 @@ struct _AppletData {
 	gchar *playing_album;
 	gchar *playing_title;
 	gchar *playing_cover;
+	gchar *previous_cover;
 	
+	gint iSidGetDistantCover;
 	gboolean bCoverNeedsTest;
 	gint iCurrentFileSize;
 	guint iSidCheckCover;

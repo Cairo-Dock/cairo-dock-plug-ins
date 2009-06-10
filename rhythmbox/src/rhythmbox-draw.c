@@ -49,7 +49,7 @@ void rhythmbox_iconWitness(int animationLength)
 static gboolean _rhythmbox_check_cover_is_present (gpointer data)
 {
 	gboolean bCheckSize = GPOINTER_TO_INT (data);
-	//g_print ("%s (%s)\n", __func__, myData.playing_cover);
+	g_print ("%s (%s)\n", __func__, myData.playing_cover);
 	if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("RB-YDU : la couverture '%s' est presente sur le disque", myData.playing_cover);
@@ -132,7 +132,15 @@ static gboolean _rhythmbox_check_cover_is_present (gpointer data)
 	return TRUE;
 }
 
-void update_icon(gboolean make_witness)
+static gboolean _rhythmbox_check_distant_song_info_twice (gpointer data)
+{
+	getSongInfos (FALSE);  // FALSE <=> on ne recupere que la couverture.
+	update_icon (TRUE, FALSE);
+	myData.iSidGetDistantCover = 0;
+	return FALSE;
+}
+
+void update_icon(gboolean make_witness, gboolean bCheckTwice)
 {
 	cd_message ("Update icon");
 	if(myData.playing_uri != NULL)
@@ -155,16 +163,25 @@ void update_icon(gboolean make_witness)
 			g_source_remove (myData.iSidCheckCover);
 			myData.iSidCheckCover = 0;
 		}
+		if (myData.iSidGetDistantCover != 0)  // on stoppe la precedente boucle.
+		{
+			g_source_remove (myData.iSidGetDistantCover);
+			myData.iSidGetDistantCover = 0;
+		}
+		if (myData.playing_cover == NULL && bCheckTwice)  // info manquante, cela arrive avec les chansons distantes (bug de RB ?) on teste 2 fois de suite a 2 secondes d'intervalle.
+		{
+			myData.iSidGetDistantCover = g_timeout_add_seconds (2, (GSourceFunc) _rhythmbox_check_distant_song_info_twice, GINT_TO_POINTER (TRUE));
+		}
 		if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL)  // couverture pas encore chargee.
 		{
 			if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
 			{
 				myData.iCurrentFileSize = 0;
-				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, GINT_TO_POINTER (TRUE));
+				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
 			}
 			else  // la couverture est deja disponible, on peut tester tout de suite.
 			{
-				_rhythmbox_check_cover_is_present (GINT_TO_POINTER (FALSE));
+				_rhythmbox_check_cover_is_present (GINT_TO_POINTER (FALSE));  // FALSE <=> tester seulement l'existence du fichier.
 			}
 			/*if (myData.iSidCheckCover != 0)
 			{

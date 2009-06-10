@@ -119,7 +119,7 @@ void rhythmbox_getPlayingUri(void)
 }
 
 
-void getSongInfos(void)
+void getSongInfos(gboolean bGetAll)
 {
 	/*if (myData.bLoopForMagnatune)
 	{
@@ -142,39 +142,42 @@ void getSongInfos(void)
 		&data_list,
 		G_TYPE_INVALID))
 	{
-		g_free (myData.playing_artist);
-		value = (GValue *) g_hash_table_lookup(data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_artist = g_strdup (g_value_get_string(value));
-		else myData.playing_artist = NULL;
-		cd_message ("  playing_artist <- %s", myData.playing_artist);
-		
-		g_free (myData.playing_album);
-		value = (GValue *) g_hash_table_lookup(data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_album = g_strdup (g_value_get_string(value));
-		else myData.playing_album = NULL;
-		cd_message ("  playing_album <- %s", myData.playing_album);
-		
-		g_free (myData.playing_title);
-		value = (GValue *) g_hash_table_lookup(data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_title = g_strdup (g_value_get_string(value));
-		else myData.playing_title = NULL;
-		cd_message ("  playing_title <- %s", myData.playing_title);
-		
-		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_track = g_value_get_uint(value);
-		else myData.playing_track = 0;
-		cd_message ("  playing_track <- %d", myData.playing_track);
-		
-		value = (GValue *) g_hash_table_lookup(data_list, "duration");
-		if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_duration = g_value_get_uint(value);
-		else myData.playing_duration = 0;
-		cd_message ("  playing_duration <- %ds", myData.playing_duration);
-		
-		// La couverture.
+		if (bGetAll)
+		{
+			g_free (myData.playing_artist);
+			value = (GValue *) g_hash_table_lookup(data_list, "artist");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_artist = g_strdup (g_value_get_string(value));
+			else myData.playing_artist = NULL;
+			cd_message ("  playing_artist <- %s", myData.playing_artist);
+			
+			g_free (myData.playing_album);
+			value = (GValue *) g_hash_table_lookup(data_list, "album");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_album = g_strdup (g_value_get_string(value));
+			else myData.playing_album = NULL;
+			cd_message ("  playing_album <- %s", myData.playing_album);
+			
+			g_free (myData.playing_title);
+			value = (GValue *) g_hash_table_lookup(data_list, "title");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.playing_title = g_strdup (g_value_get_string(value));
+			else myData.playing_title = NULL;
+			cd_message ("  playing_title <- %s", myData.playing_title);
+			
+			value = (GValue *) g_hash_table_lookup(data_list, "track-number");
+			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_track = g_value_get_uint(value);
+			else myData.playing_track = 0;
+			cd_message ("  playing_track <- %d", myData.playing_track);
+			
+			value = (GValue *) g_hash_table_lookup(data_list, "duration");
+			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.playing_duration = g_value_get_uint(value);
+			else myData.playing_duration = 0;
+			cd_message ("  playing_duration <- %ds", myData.playing_duration);
+			
+			g_free (myData.previous_cover);
+			myData.previous_cover = myData.playing_cover;  // on memorise la precedente couverture.
+			myData.playing_cover = NULL;
+			myData.bCoverNeedsTest = FALSE;
+		}
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
-		g_free (myData.playing_cover);
-		myData.playing_cover = NULL;
-		myData.bCoverNeedsTest = FALSE;
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
 		{
 			const gchar *cString = g_value_get_string(value);
@@ -184,15 +187,16 @@ void getSongInfos(void)
 				if(strncmp(cString, "http://", 7) == 0)  // fichier distant, on decide de le telecharger nous-memes.
 				{
 					cd_debug("RB-YDU : Le fichier est distant");
-					gchar *cCommand = g_strdup_printf ("wget -O %s/.cache/rhythmbox/covers/\"%s - %s.jpg\" %s",
-						g_getenv ("HOME"),
-						myData.playing_artist,
-						myData.playing_album,
-						cString);  // question : n'y a-t-il pas de risque de conflit avec RB ?...
-					
+					myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
+					if (! g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))  // si RB n'est pas deja en train de le telecharger.
+					{
+						gchar *cCommand = g_strdup_printf ("wget -O '%s' '%s'",
+							myData.playing_cover,
+							cString);
+						g_spawn_command_line_async (cCommand, NULL);
+						g_free (cCommand);
+					}
 					myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
-					g_spawn_command_line_async (cCommand, NULL);
-					g_free (cCommand);
 					//myData.bLoopForMagnatuneDone = FALSE;
 				}
 				else if (strncmp (cString, "file://", 7) == 0)  // URI local, on l'accepte sans verifier.
@@ -263,7 +267,7 @@ void getSongInfos(void)
 				g_free (cSongDir);
 			}
 			
-			if (myData.playing_cover == NULL)  // on regarde maintenant dans le cache de RB.
+			if (myData.playing_cover == NULL && ! bGetAll)  // on regarde maintenant dans le cache de RB.
 			{
 				cd_debug("RB-YDU : On regarde dans le répertoire .cache/rhythmbox/covers/");
 				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
@@ -296,6 +300,8 @@ void getSongInfos(void)
 		g_free (myData.playing_cover);
 		myData.playing_cover = NULL;
 	}
+	if (cairo_dock_strings_differ (myData.previous_cover, myData.playing_cover))  // la couverture a change, son existence est incertaine. Sinon son existence ne change pas.
+		myData.cover_exist = FALSE;
 }
 
 
@@ -314,8 +320,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	{
 		myData.playing_uri = g_strdup (uri);
 		myData.bIsRunning = TRUE;  // s'il n'etait pas ouvert au demarrage de l'applet, on ne l'a pas detecte. Il le sera donc ici.
-		myData.cover_exist = FALSE;
-		getSongInfos();
+		getSongInfos(TRUE);  // TRUE <=> get all
 	}
 	else
 	{
@@ -335,7 +340,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 		
 		dbus_detect_rhythmbox();
 	}
-	update_icon(TRUE);
+	update_icon(TRUE, TRUE);
 }
 
 //*********************************************************************************

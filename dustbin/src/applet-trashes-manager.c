@@ -354,7 +354,8 @@ static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 	gchar *cCommand = g_strdup_printf ("find '%s' -maxdepth 1 -mindepth 1 -exec rm -rf '{}' \\;", cDirectory);  // un rm -rf * n'efface pas les fichiers caches.
 	cd_message (cCommand);
 	g_print ("***\n***%s\n***\n", cCommand);
-	system (cCommand);
+	///int r = system (cCommand);
+	cairo_dock_launch_command (cCommand);  // est-ce que ca ne va pas saturer le file-monitor ?
 	g_free (cCommand);
 }
 

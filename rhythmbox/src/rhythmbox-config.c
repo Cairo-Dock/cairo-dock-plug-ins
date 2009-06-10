@@ -55,7 +55,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.playing_artist);
 	g_free (myData.playing_album);
 	g_free (myData.playing_title);
-			
+	g_free (myData.playing_cover);
+	g_free (myData.previous_cover);
+	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++)
 	{

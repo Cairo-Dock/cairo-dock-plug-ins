@@ -49,8 +49,8 @@ CD_APPLET_INIT_BEGIN
 		{
 			rhythmbox_getPlaying();
 			rhythmbox_getPlayingUri();
-			getSongInfos();
-			update_icon( FALSE );
+			getSongInfos(TRUE);  // TRUE <=> get all
+			update_icon( FALSE , FALSE);
 		}
 		else  // player eteint.
 		{
@@ -97,6 +97,8 @@ CD_APPLET_STOP_BEGIN
 	
 	if (myData.iSidCheckCover != 0)
 		g_source_remove (myData.iSidCheckCover);
+	if (myData.iSidGetDistantCover != 0)
+		g_source_remove (myData.iSidGetDistantCover);
 	
 	rhythmbox_dbus_disconnect_from_bus ();
 	
@@ -173,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if(myData.bIsRunning)
 		{
-			update_icon( FALSE );
+			update_icon( FALSE , FALSE);
 		}
 		else
 		{
