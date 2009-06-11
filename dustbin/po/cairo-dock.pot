@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-10 02:33+0200\n"
+"POT-Creation-Date: 2009-06-12 01:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,16 +73,16 @@ msgstr ""
 msgid "failed to unmount %s"
 msgstr ""
 
-#: ../src/applet-trashes-manager.c:365
+#: ../src/applet-trashes-manager.c:366
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr ""
 
-#: ../src/applet-trashes-manager.c:367
+#: ../src/applet-trashes-manager.c:368
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr ""
 
-#: ../src/applet-trashes-manager.c:440
+#: ../src/applet-trashes-manager.c:441
 #, c-format
 msgid ""
 "A problem occured\n"

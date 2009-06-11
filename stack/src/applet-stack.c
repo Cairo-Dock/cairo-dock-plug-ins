@@ -84,14 +84,16 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	
 	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
 	{
-		if (strncmp (cContent, "http://", 7) == 0)
+		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0)
 		{
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');
 			if (str != NULL)
 				*str = '\0';
+			if (str[strlen(str)-1] == '/')
+				str[strlen(str)-1] = '\0';
 			str = strrchr (buf, '/');
-			if (str != NULL)
+			if (str != NULL && *(str+1) != '\0')
 			{
 				cName = g_strdup (str+1);
 				g_free (buf);
@@ -112,6 +114,7 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	{
 		cName = cairo_dock_cut_string (cContent, 15);  // 15 caracteres par defaut.
 	}
+	g_return_val_if_fail (cName != NULL, NULL);
 	
 	GList *pIconsList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	GList *ic;

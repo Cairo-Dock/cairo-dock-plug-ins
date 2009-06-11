@@ -77,16 +77,16 @@ msgstr "%s est maintenant démonté"
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
 
-#: ../src/applet-trashes-manager.c:365
+#: ../src/applet-trashes-manager.c:366
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
 
-#: ../src/applet-trashes-manager.c:367
+#: ../src/applet-trashes-manager.c:368
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tous les fichiers seront supprimés. Etes-vous sûr ?"
 
-#: ../src/applet-trashes-manager.c:440
+#: ../src/applet-trashes-manager.c:441
 #, c-format
 msgid ""
 "A problem occured\n"

@@ -14,13 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:37 ../src/applet-cpusage.c:42
 msgid "day(s)"
 msgstr "日"
-
-#: ../src/applet-cpusage.c:229
-msgid "Loading"
-msgstr "読み込み中"
 
 #: ../src/applet-init.c:10
 msgid "System Monitor"
@@ -38,33 +34,41 @@ msgstr ""
 "アイコンの中クリックで情報表示、\n"
 "アイコンの左クリックで CPU を最も使用しているプログラムのリストを表示します。"
 
-#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
+#: ../src/applet-monitor.c:60 ../src/applet-rame.c:114
+msgid "Loading"
+msgstr "読み込み中"
+
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:37
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Model Name"
 msgstr "モデル名"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Frequency"
 msgstr "周波数"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "core(s)"
 msgstr "コア"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Up time"
 msgstr "稼働時間"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Activity time"
 msgstr "動作時間"
 
-#: ../src/applet-notifications.c:142
+#: ../src/applet-notifications.c:57
 msgid "Monitor System"
 msgstr "システム・モニタ"
+
+#: ../src/applet-top.c:233
+msgid "Mb"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -249,153 +253,197 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81 ../data/messages:141
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:83
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "利用可能なテーマから１つ選択 :"
+
+#: ../data/messages:85
+msgid "Gauge"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:85
-msgid "Display a graphic rather than a gauge ?"
-msgstr "ゲージの代りにグラフを表示？"
-
-#: ../data/messages:87
-msgid "Type of graphic :"
-msgstr "グラフの種類 :"
-
-#: ../data/messages:89
-msgid "Line"
-msgstr "線"
-
 #: ../data/messages:91
-msgid "Plain"
-msgstr "面"
-
-#: ../data/messages:93
-msgid "Bar"
-msgstr "棒"
-
-#: ../data/messages:95
-msgid "Circle"
-msgstr "円（線）"
-
-#: ../data/messages:97
-msgid "Plain Circle"
-msgstr "円（面）"
-
-#: ../data/messages:99
-msgid "It's the color of the graphic for high CPU values."
-msgstr "CPU 高負荷値のグラフの色"
-
-#: ../data/messages:101
-msgid "High values color :"
-msgstr "高負荷値時の色 :"
-
-#: ../data/messages:103
-msgid "It's the color of the graphic for low CPU values."
-msgstr "CPU 低負荷値のグラフの色"
-
-#: ../data/messages:105
-msgid "Low values color :"
-msgstr "低負荷値時の色 :"
-
-#: ../data/messages:107
-msgid "Background color of the graphic :"
-msgstr "グラフの背景色 :"
-
-#: ../data/messages:109
 msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから１つ選択 :"
 
-#: ../data/messages:111
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+#: ../data/messages:93 ../data/messages:117
+msgid "Parameters"
 msgstr ""
-"デフォルトの画像を使用するには空欄のままにしてください。透かし模様を使用した"
-"くない場合は、透明度を 0 に設定してください。"
+
+#: ../data/messages:95
+msgid "Type of graphic :"
+msgstr "グラフの種類 :"
+
+#: ../data/messages:97
+msgid "Line"
+msgstr "線"
+
+#: ../data/messages:99
+msgid "Plain"
+msgstr "面"
+
+#: ../data/messages:101
+msgid "Bar"
+msgstr "棒"
+
+#: ../data/messages:103
+msgid "Circle"
+msgstr "円（線）"
+
+#: ../data/messages:105
+msgid "Plain Circle"
+msgstr "円（面）"
+
+#: ../data/messages:107
+msgid "It's the color of the graphic for high CPU values."
+msgstr "CPU 高負荷値のグラフの色"
+
+#: ../data/messages:109
+msgid "High values color :"
+msgstr "高負荷値時の色 :"
+
+#: ../data/messages:111
+msgid "It's the color of the graphic for low CPU values."
+msgstr "CPU 低負荷値のグラフの色"
 
 #: ../data/messages:113
-msgid "Image to display as a watermark :"
-msgstr "透かし模様として表示する画像 :"
+msgid "Low values color :"
+msgstr "低負荷値時の色 :"
 
 #: ../data/messages:115
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "透かし模様を使用したくない場合は、0 に設定してください。"
-
-#: ../data/messages:117
-msgid "Transparency of the watermark :"
-msgstr "透かし模様の透明度 :"
+msgid "Background color of the graphic :"
+msgstr "グラフの背景色 :"
 
 #: ../data/messages:119
-msgid "Display CPU usage values :"
-msgstr "CPU 使用率の表示 :"
+msgid "Show CPU usage ?"
+msgstr ""
 
 #: ../data/messages:121
+msgid "Show RAM usage ?"
+msgstr ""
+
+#: ../data/messages:123
+msgid "Show SWAP too ?"
+msgstr ""
+
+#: ../data/messages:125
+msgid "You need an nVidia and the 'nvidia-settings' tool."
+msgstr ""
+
+#: ../data/messages:127
+msgid "Show graphic card temperature ?"
+msgstr ""
+
+#: ../data/messages:129
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:131
+#, fuzzy
+msgid "Display values :"
+msgstr "CPU 使用率の表示 :"
+
+#: ../data/messages:133
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:123
+#: ../data/messages:135
 msgid "On icon"
 msgstr "アイコン上"
 
-#: ../data/messages:125
+#: ../data/messages:137
 msgid "On label"
 msgstr "ラベル上"
 
-#: ../data/messages:127
+#: ../data/messages:139 ../data/messages:167
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:141
+msgid "Delay between refresh :"
+msgstr "更新の間隔時間 :"
+
+#: ../data/messages:143 ../data/messages:147
+#, fuzzy
+msgid "Let empty to use the default one."
+msgstr "デフォルトのコマンドを使用するには空欄のままに。"
+
+#: ../data/messages:145 ../data/messages:149
+#, fuzzy
+msgid "Class of the system monitor program:"
+msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+
+#: ../data/messages:151
 msgid "Top List"
 msgstr "トップリスト"
 
-#: ../data/messages:129
+#: ../data/messages:153
+#, fuzzy
 msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
+"When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
 "アイコンを左クリックすると、CPU を最も使用している上位 N のプログラムのリスト"
 "が得られます。"
 
-#: ../data/messages:131
+#: ../data/messages:155
 msgid "Number of programs to display in the top list :"
 msgstr "トップリストに表示するプログラム数 :"
 
-#: ../data/messages:133
+#: ../data/messages:157
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの開始色"
 
-#: ../data/messages:135
+#: ../data/messages:159
 msgid "Start color of the top list :"
 msgstr "トップリストの開始色 :"
 
-#: ../data/messages:137
+#: ../data/messages:161
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "トップリストの記載に使用するグラデーションの終了色"
 
-#: ../data/messages:139
+#: ../data/messages:163
 msgid "Stop color of the top list :"
 msgstr "トップリストの終了色 :"
 
-#: ../data/messages:143 ../data/messages:147
-msgid "in seconds."
-msgstr "秒単位"
+#: ../data/messages:165
+msgid "Show top memory usage in % ?"
+msgstr ""
 
-#: ../data/messages:145
-msgid "Delay between refresh :"
-msgstr "更新の間隔時間 :"
-
-#: ../data/messages:149
+#: ../data/messages:169
 msgid "Delay between refresh of the top list :"
 msgstr "トップリストの更新間隔 :"
 
-#: ../data/messages:151
-msgid "Let empty to use he default one."
-msgstr "デフォルトのコマンドを使用するには空欄のままに。"
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "ゲージの代りにグラフを表示？"
 
-#: ../data/messages:153
-msgid "User command to show a system monitor :"
-msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "デフォルトの画像を使用するには空欄のままにしてください。透かし模様を使用し"
+#~ "たくない場合は、透明度を 0 に設定してください。"
+
+#~ msgid "Image to display as a watermark :"
+#~ msgstr "透かし模様として表示する画像 :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "透かし模様を使用したくない場合は、0 に設定してください。"
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "透かし模様の透明度 :"
 
 #~ msgid "cpusage"
 #~ msgstr "CPU使用率"

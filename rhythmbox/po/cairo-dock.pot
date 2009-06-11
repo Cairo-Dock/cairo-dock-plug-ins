@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-10 02:33+0200\n"
+"POT-Creation-Date: 2009-06-12 01:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,24 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:149
+#: ../src/rhythmbox-draw.c:158
 msgid "Track"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:221
+#: ../src/rhythmbox-draw.c:229
 msgid "Artist"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:222 ../src/rhythmbox-draw.c:224
-#: ../src/rhythmbox-draw.c:226
+#: ../src/rhythmbox-draw.c:230 ../src/rhythmbox-draw.c:232
+#: ../src/rhythmbox-draw.c:234
 msgid "Unknown"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:223
+#: ../src/rhythmbox-draw.c:231
 msgid "Album"
 msgstr ""
 
-#: ../src/rhythmbox-draw.c:225
+#: ../src/rhythmbox-draw.c:233
 msgid "Title"
 msgstr ""
 

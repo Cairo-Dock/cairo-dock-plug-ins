@@ -4,21 +4,25 @@
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-init.h"
-#include "applet-cpusage.h"
+#include "applet-top.h"
+#include "applet-monitor.h"
 
 
 CD_APPLET_DEFINITION (N_("System Monitor"),
-	2, 0, 4,
+	2, 0, 5,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\n"
 	"Middle click on the icon to get some valuable info.\n"
 	"Left click on the icon to get a list of the most ressources using programs."),
 	"parAdOxxx_ZeRo & Fabounet")
 
+#define CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON(pAttr) cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
+#define CD_APPLET_RELOAD_MY_DATA_RENDERER(pAttr) cairo_dock_reload_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
+
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {
-	cd_cpusage_read_data (myApplet);
-	cd_cpusage_update_from_data (myApplet);
+	cd_sysmonitor_get_data (myApplet);
+	cd_sysmonitor_update_from_data (myApplet);
 	return TRUE;
 }
 
@@ -47,23 +51,35 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
 	}*/
 	
-	CairoGaugeAttribute attr;
-	memset (&attr, 0, sizeof (CairoGaugeAttribute));
-	attr.rendererAttribute.cModelName = "gauge";
-	attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
-	attr.rendererAttribute.iNbValues = 1;
-	attr.cThemePath = myConfig.cGThemePath;
-	cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, &attr);
+	// Initialisation du rendu.
+	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
+	{
+		CairoGaugeAttribute attr;
+		memset (&attr, 0, sizeof (CairoGaugeAttribute));
+		attr.rendererAttribute.cModelName = "gauge";
+		attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
+		attr.rendererAttribute.iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
+		attr.cThemePath = myConfig.cGThemePath;
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (&attr);
+	}
+	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
+	{
+		
+	}
 	
-	//Initialisation du timer de mesure.
+	// Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
 		NULL,  // cd_cpusage_read_data
 		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_cpusage_update_from_data
 		myApplet);
-	myData.bAcquisitionOK = TRUE;
+	//myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
+	
+	// On gere l'appli "moniteur systeme".
+	if (myConfig.cSystemMonitorClass)
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -76,6 +92,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	if (myConfig.cSystemMonitorClass)
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, FALSE);
 CD_APPLET_STOP_END
 
 
@@ -88,6 +107,7 @@ CD_APPLET_RELOAD_BEGIN
 	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
+		cd_sysmonitor_stop_top_dialog (myApplet);
 		/*cairo_dock_free_gauge (myData.pGauge);
 		cairo_dock_free_graph (myData.pGraph);
 		if (myConfig.bUseGraphic)
@@ -114,7 +134,7 @@ CD_APPLET_RELOAD_BEGIN
 		attr.rendererAttribute.cModelName = "gauge";
 		attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
 		attr.cThemePath = myConfig.cGThemePath;
-		cairo_dock_reload_data_renderer_on_icon (myIcon, myContainer, myDrawContext, &attr);
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (&attr);
 		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
@@ -131,6 +151,9 @@ CD_APPLET_RELOAD_BEGIN
 		myData.pTopList = NULL;
 		if (myData.pTopMeasureTimer != NULL)
 			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
+		
+		if (myConfig.cSystemMonitorClass)
+			CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
 	}
 	else {  // on redessine juste l'icone.
 		/*if (myData.pGauge != NULL)
@@ -154,7 +177,7 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
 		}
 		*/
-		cairo_dock_reload_data_renderer_on_icon (myIcon, myContainer, myDrawContext, NULL);
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
@@ -163,6 +186,7 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
-		cd_cpusage_update_from_data (myApplet);
+		if (! cairo_dock_measure_is_running (myData.pMeasureTimer))
+			cd_sysmonitor_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

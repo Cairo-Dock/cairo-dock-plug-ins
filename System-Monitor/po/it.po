@@ -12,13 +12,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:37 ../src/applet-cpusage.c:42
 msgid "day(s)"
 msgstr "giorno/i"
-
-#: ../src/applet-cpusage.c:229
-msgid "Loading"
-msgstr "Caricamento"
 
 #: ../src/applet-init.c:10
 msgid "System Monitor"
@@ -32,33 +28,41 @@ msgid ""
 "Left click on the icon to get a list of the most ressources using programs."
 msgstr ""
 
-#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
+#: ../src/applet-monitor.c:60 ../src/applet-rame.c:114
+msgid "Loading"
+msgstr "Caricamento"
+
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:37
 msgid "Data acquisition has failed"
 msgstr "L'acquisizione dei dati è fallita"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Model Name"
 msgstr "Nome del modello"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Frequency"
 msgstr "Frequenza"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "core(s)"
 msgstr "core(s)"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Up time"
 msgstr "Up time"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Activity time"
 msgstr "Tempi di attività"
 
-#: ../src/applet-notifications.c:142
+#: ../src/applet-notifications.c:57
 msgid "Monitor System"
 msgstr "Monitorare il sistema"
+
+#: ../src/applet-top.c:233
+msgid "Mb"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -251,155 +255,198 @@ msgstr "Immagine in primo piano :"
 msgid "Foreground tansparency :"
 msgstr "Trasparenza in primo piano :"
 
-#: ../data/messages:81 ../data/messages:141
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Configurazione"
 
 #: ../data/messages:83
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "Lista dei temi disponibili per l'indicatore :"
+
+#: ../data/messages:85
+msgid "Gauge"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:85
-msgid "Display a graphic rather than a gauge ?"
-msgstr "Mostrare un grafico al posto di un indicatore ?"
-
-#: ../data/messages:87
-msgid "Type of graphic :"
-msgstr "Tipo di grafico :"
-
-#: ../data/messages:89
-msgid "Line"
-msgstr "Linea"
-
 #: ../data/messages:91
-msgid "Plain"
-msgstr "Piatto"
-
-#: ../data/messages:93
-msgid "Bar"
-msgstr "Barra"
-
-#: ../data/messages:95
-msgid "Circle"
-msgstr "Cerchio"
-
-#: ../data/messages:97
-msgid "Plain Circle"
-msgstr "Cerchio Piatto"
-
-#: ../data/messages:99
-msgid "It's the color of the graphic for high CPU values."
-msgstr "E' il colore del grafico per i valori alti della CPU."
-
-#: ../data/messages:101
-msgid "High values color :"
-msgstr "Colore valori alti :"
-
-#: ../data/messages:103
-msgid "It's the color of the graphic for low CPU values."
-msgstr "E' il colore del grafico per i valori bassi della CPU."
-
-#: ../data/messages:105
-msgid "Low values color :"
-msgstr "Colore valori bassi :"
-
-#: ../data/messages:107
-msgid "Background color of the graphic :"
-msgstr "Colore di sfondo del grafico :"
-
-#: ../data/messages:109
 #, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Lista dei temi disponibili per l'indicatore :"
 
-#: ../data/messages:111
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+#: ../data/messages:93 ../data/messages:117
+msgid "Parameters"
 msgstr ""
-"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
-"se si vuole alcuna filigrana."
+
+#: ../data/messages:95
+msgid "Type of graphic :"
+msgstr "Tipo di grafico :"
+
+#: ../data/messages:97
+msgid "Line"
+msgstr "Linea"
+
+#: ../data/messages:99
+msgid "Plain"
+msgstr "Piatto"
+
+#: ../data/messages:101
+msgid "Bar"
+msgstr "Barra"
+
+#: ../data/messages:103
+msgid "Circle"
+msgstr "Cerchio"
+
+#: ../data/messages:105
+msgid "Plain Circle"
+msgstr "Cerchio Piatto"
+
+#: ../data/messages:107
+msgid "It's the color of the graphic for high CPU values."
+msgstr "E' il colore del grafico per i valori alti della CPU."
+
+#: ../data/messages:109
+msgid "High values color :"
+msgstr "Colore valori alti :"
+
+#: ../data/messages:111
+msgid "It's the color of the graphic for low CPU values."
+msgstr "E' il colore del grafico per i valori bassi della CPU."
 
 #: ../data/messages:113
-msgid "Image to display as a watermark :"
-msgstr "Immagine da mostrare come filigrana :"
+msgid "Low values color :"
+msgstr "Colore valori bassi :"
 
 #: ../data/messages:115
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Settare a 0 se si vuole alcuna filigrana."
-
-#: ../data/messages:117
-msgid "Transparency of the watermark :"
-msgstr "Trasparenza della filigrana :"
+msgid "Background color of the graphic :"
+msgstr "Colore di sfondo del grafico :"
 
 #: ../data/messages:119
-msgid "Display CPU usage values :"
-msgstr "Mostrare i valori di utilizzo della CPU :"
+msgid "Show CPU usage ?"
+msgstr ""
 
 #: ../data/messages:121
+msgid "Show RAM usage ?"
+msgstr ""
+
+#: ../data/messages:123
+msgid "Show SWAP too ?"
+msgstr ""
+
+#: ../data/messages:125
+msgid "You need an nVidia and the 'nvidia-settings' tool."
+msgstr ""
+
+#: ../data/messages:127
+msgid "Show graphic card temperature ?"
+msgstr ""
+
+#: ../data/messages:129
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:131
+#, fuzzy
+msgid "Display values :"
+msgstr "Mostrare i valori di utilizzo della CPU :"
+
+#: ../data/messages:133
 msgid "No"
 msgstr "No"
 
-#: ../data/messages:123
+#: ../data/messages:135
 msgid "On icon"
 msgstr "Sull'icona"
 
-#: ../data/messages:125
+#: ../data/messages:137
 msgid "On label"
 msgstr "Sull'etichetta"
 
-#: ../data/messages:127
+#: ../data/messages:139 ../data/messages:167
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:141
+msgid "Delay between refresh :"
+msgstr "Ritardo tra gli aggiornamenti"
+
+#: ../data/messages:143 ../data/messages:147
+#, fuzzy
+msgid "Let empty to use the default one."
+msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:145 ../data/messages:149
+#, fuzzy
+msgid "Class of the system monitor program:"
+msgstr "Comando utente per mostrare il monitor di sistema :"
+
+#: ../data/messages:151
 msgid "Top List"
 msgstr "Top List"
 
-#: ../data/messages:129
+#: ../data/messages:153
+#, fuzzy
 msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
+"When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
 "Quando si clicca col tasto sinistro sull'icona, verrà mostrata la lista dei "
 "N programmi che usano maggior CPU."
 
-#: ../data/messages:131
+#: ../data/messages:155
 msgid "Number of programs to display in the top list :"
 msgstr "Numero dei programmi mostrati nella 'top list'"
 
-#: ../data/messages:133
+#: ../data/messages:157
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:135
+#: ../data/messages:159
 msgid "Start color of the top list :"
 msgstr "Primo colore della 'top list' :"
 
-#: ../data/messages:137
+#: ../data/messages:161
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
-#: ../data/messages:139
+#: ../data/messages:163
 msgid "Stop color of the top list :"
 msgstr "Ultimo colore della 'top list' :"
 
-#: ../data/messages:143 ../data/messages:147
-msgid "in seconds."
-msgstr "in secondi."
+#: ../data/messages:165
+msgid "Show top memory usage in % ?"
+msgstr ""
 
-#: ../data/messages:145
-msgid "Delay between refresh :"
-msgstr "Ritardo tra gli aggiornamenti"
-
-#: ../data/messages:149
+#: ../data/messages:169
 msgid "Delay between refresh of the top list :"
 msgstr "Ritardo tra gli aggiornamenti della 'top list'"
 
-#: ../data/messages:151
-#, fuzzy
-msgid "Let empty to use he default one."
-msgstr "Lasciare vuoto per utilizzare l'icona di default."
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "Mostrare un grafico al posto di un indicatore ?"
 
-#: ../data/messages:153
-msgid "User command to show a system monitor :"
-msgstr "Comando utente per mostrare il monitor di sistema :"
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
+#~ "0 se si vuole alcuna filigrana."
+
+#~ msgid "Image to display as a watermark :"
+#~ msgstr "Immagine da mostrare come filigrana :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Settare a 0 se si vuole alcuna filigrana."
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "Trasparenza della filigrana :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Mantenere al di sotto delle altre finestre ?"

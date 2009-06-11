@@ -3,8 +3,9 @@
 #include <sys/stat.h>
 
 #include "rhythmbox-struct.h"
-#include "rhythmbox-draw.h"
 #include "3dcover-draw.h"
+#include "rhythmbox-dbus.h"
+#include "rhythmbox-draw.h"
 
 static gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
@@ -135,12 +136,12 @@ static gboolean _rhythmbox_check_cover_is_present (gpointer data)
 static gboolean _rhythmbox_check_distant_song_info_twice (gpointer data)
 {
 	getSongInfos (FALSE);  // FALSE <=> on ne recupere que la couverture.
-	update_icon (TRUE, FALSE);
+	update_icon (FALSE);
 	myData.iSidGetDistantCover = 0;
 	return FALSE;
 }
 
-void update_icon(gboolean make_witness, gboolean bCheckTwice)
+void update_icon (gboolean bFirstTime)
 {
 	cd_message ("Update icon");
 	if(myData.playing_uri != NULL)
@@ -168,11 +169,11 @@ void update_icon(gboolean make_witness, gboolean bCheckTwice)
 			g_source_remove (myData.iSidGetDistantCover);
 			myData.iSidGetDistantCover = 0;
 		}
-		if (myData.playing_cover == NULL && bCheckTwice)  // info manquante, cela arrive avec les chansons distantes (bug de RB ?) on teste 2 fois de suite a 2 secondes d'intervalle.
+		if (myData.playing_cover == NULL && bFirstTime)  // info manquante, cela arrive avec les chansons distantes (bug de RB ?) on teste 2 fois de suite a 2 secondes d'intervalle.
 		{
 			myData.iSidGetDistantCover = g_timeout_add_seconds (2, (GSourceFunc) _rhythmbox_check_distant_song_info_twice, GINT_TO_POINTER (TRUE));
 		}
-		if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL)  // couverture pas encore chargee.
+		else if (!myData.cover_exist && myConfig.enableCover && myData.playing_cover != NULL)  // couverture connue mais pas encore chargee.
 		{
 			if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
 			{
@@ -183,19 +184,9 @@ void update_icon(gboolean make_witness, gboolean bCheckTwice)
 			{
 				_rhythmbox_check_cover_is_present (GINT_TO_POINTER (FALSE));  // FALSE <=> tester seulement l'existence du fichier.
 			}
-			/*if (myData.iSidCheckCover != 0)
-			{
-				g_source_remove (myData.iSidCheckCover);
-				myData.iSidCheckCover = 0;
-			}	
-			_rhythmbox_check_cover_is_present (myApplet);
-			if (! myData.cover_exist)
-			{
-				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) _rhythmbox_check_cover_is_present, (gpointer) NULL);
-			}*/
 		}
 		
-		if (! myData.cover_exist)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut.
+		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
 		{
 			if(myData.playing)
 			{
@@ -208,7 +199,7 @@ void update_icon(gboolean make_witness, gboolean bCheckTwice)
 		}
 		
 		//Animation de l'icone et dialogue.
-		if(make_witness)
+		if(bFirstTime)
 		{
 			rhythmbox_iconWitness(1);
 			if(myConfig.enableDialogs)
@@ -324,27 +315,4 @@ gboolean cd_check_if_size_is_constant (gchar *cFileName)
 	}
 	else
 		return TRUE;
-    /*gchar *cSize;
-    gchar *cCommand = g_strdup_printf ("stat -c %%s \"%s\"", cFileName);
-    g_spawn_command_line_sync (cCommand, &cSize, NULL, NULL, NULL);
-    g_free (cCommand);
-    myData.iCurrentFileSize = atoi(cSize);
-    
-    
-    cd_debug ("RB-YDU : Ancienne taille du fichier %s = %i", cFileName, myData.iLastFileSize);
-    cd_debug ("RB-YDU : Taille actuelle du fichier %s = %i", cFileName, myData.iCurrentFileSize);
-    
-    if ( myData.iCurrentFileSize == myData.iLastFileSize )
-    {
-        cd_debug ("RB-YDU : La taille est identique -> le fichier %s est COMPLET et prêt à être traité", cFileName);
-        
-        myData.iLastFileSize = 9999;
-        myData.bSizeIsConstant = TRUE;
-    }
-    else
-    {
-        cd_debug ("RB-YDU : le fichier %s n'est pas complet ... il faut attendre encore un peu", cFileName);
-        myData.iLastFileSize = myData.iCurrentFileSize;
-        myData.bSizeIsConstant = FALSE;
-    }*/
 }

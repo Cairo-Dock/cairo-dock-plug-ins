@@ -15,24 +15,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/rhythmbox-draw.c:149
+#: ../src/rhythmbox-draw.c:158
 msgid "Track"
 msgstr "Piste"
 
-#: ../src/rhythmbox-draw.c:221
+#: ../src/rhythmbox-draw.c:229
 msgid "Artist"
 msgstr "Artiste"
 
-#: ../src/rhythmbox-draw.c:222 ../src/rhythmbox-draw.c:224
-#: ../src/rhythmbox-draw.c:226
+#: ../src/rhythmbox-draw.c:230 ../src/rhythmbox-draw.c:232
+#: ../src/rhythmbox-draw.c:234
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/rhythmbox-draw.c:223
+#: ../src/rhythmbox-draw.c:231
 msgid "Album"
 msgstr "Album"
 
-#: ../src/rhythmbox-draw.c:225
+#: ../src/rhythmbox-draw.c:233
 msgid "Title"
 msgstr "Titre"
 

@@ -50,7 +50,7 @@ CD_APPLET_INIT_BEGIN
 			rhythmbox_getPlaying();
 			rhythmbox_getPlayingUri();
 			getSongInfos(TRUE);  // TRUE <=> get all
-			update_icon( FALSE , FALSE);
+			update_icon (FALSE);
 		}
 		else  // player eteint.
 		{
@@ -175,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if(myData.bIsRunning)
 		{
-			update_icon( FALSE , FALSE);
+			update_icon (FALSE);
 		}
 		else
 		{

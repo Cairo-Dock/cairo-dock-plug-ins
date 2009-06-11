@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-10 02:33+0200\n"
+"POT-Creation-Date: 2009-06-12 01:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:37 ../src/applet-cpusage.c:42
 msgid "day(s)"
-msgstr ""
-
-#: ../src/applet-cpusage.c:229
-msgid "Loading"
 msgstr ""
 
 #: ../src/applet-init.c:10
@@ -36,32 +32,40 @@ msgid ""
 "Left click on the icon to get a list of the most ressources using programs."
 msgstr ""
 
-#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
+#: ../src/applet-monitor.c:60 ../src/applet-rame.c:114
+msgid "Loading"
+msgstr ""
+
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:37
 msgid "Data acquisition has failed"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Model Name"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Frequency"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "core(s)"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Up time"
 msgstr ""
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Activity time"
 msgstr ""
 
-#: ../src/applet-notifications.c:142
+#: ../src/applet-notifications.c:57
 msgid "Monitor System"
+msgstr ""
+
+#: ../src/applet-top.c:233
+msgid "Mb"
 msgstr ""
 
 #: ../data/messages:1
@@ -234,146 +238,168 @@ msgstr ""
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:81 ../data/messages:141
+#: ../data/messages:81
 msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:83
-msgid "Display"
+msgid "Choose the style of the display : "
 msgstr ""
 
 #: ../data/messages:85
-msgid "Display a graphic rather than a gauge ?"
+msgid "Gauge"
 msgstr ""
 
 #: ../data/messages:87
-msgid "Type of graphic :"
+msgid "Graph"
 msgstr ""
 
 #: ../data/messages:89
-msgid "Line"
+msgid "Display"
 msgstr ""
 
 #: ../data/messages:91
-msgid "Plain"
-msgstr ""
-
-#: ../data/messages:93
-msgid "Bar"
-msgstr ""
-
-#: ../data/messages:95
-msgid "Circle"
-msgstr ""
-
-#: ../data/messages:97
-msgid "Plain Circle"
-msgstr ""
-
-#: ../data/messages:99
-msgid "It's the color of the graphic for high CPU values."
-msgstr ""
-
-#: ../data/messages:101
-msgid "High values color :"
-msgstr ""
-
-#: ../data/messages:103
-msgid "It's the color of the graphic for low CPU values."
-msgstr ""
-
-#: ../data/messages:105
-msgid "Low values color :"
-msgstr ""
-
-#: ../data/messages:107
-msgid "Background color of the graphic :"
-msgstr ""
-
-#: ../data/messages:109
 msgid "Choose one of the available themes :"
 msgstr ""
 
+#: ../data/messages:93 ../data/messages:117
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:107
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:109
+msgid "High values color :"
+msgstr ""
+
 #: ../data/messages:111
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+msgid "It's the color of the graphic for low CPU values."
 msgstr ""
 
 #: ../data/messages:113
-msgid "Image to display as a watermark :"
+msgid "Low values color :"
 msgstr ""
 
 #: ../data/messages:115
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
-
-#: ../data/messages:117
-msgid "Transparency of the watermark :"
+msgid "Background color of the graphic :"
 msgstr ""
 
 #: ../data/messages:119
-msgid "Display CPU usage values :"
+msgid "Show CPU usage ?"
 msgstr ""
 
 #: ../data/messages:121
-msgid "No"
+msgid "Show RAM usage ?"
 msgstr ""
 
 #: ../data/messages:123
-msgid "On icon"
+msgid "Show SWAP too ?"
 msgstr ""
 
 #: ../data/messages:125
-msgid "On label"
+msgid "You need an nVidia and the 'nvidia-settings' tool."
 msgstr ""
 
 #: ../data/messages:127
-msgid "Top List"
+msgid "Show graphic card temperature ?"
 msgstr ""
 
 #: ../data/messages:129
-msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
-"using programs."
+msgid "Show free memory instead of used memory ?"
 msgstr ""
 
 #: ../data/messages:131
-msgid "Number of programs to display in the top list :"
+msgid "Display values :"
 msgstr ""
 
 #: ../data/messages:133
-msgid "It's the first color of the gradation used to write the top list."
+msgid "No"
 msgstr ""
 
 #: ../data/messages:135
-msgid "Start color of the top list :"
+msgid "On icon"
 msgstr ""
 
 #: ../data/messages:137
-msgid "It's the second color of the gradation used to write the top list."
+msgid "On label"
 msgstr ""
 
-#: ../data/messages:139
-msgid "Stop color of the top list :"
-msgstr ""
-
-#: ../data/messages:143 ../data/messages:147
+#: ../data/messages:139 ../data/messages:167
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:145
+#: ../data/messages:141
 msgid "Delay between refresh :"
 msgstr ""
 
-#: ../data/messages:149
-msgid "Delay between refresh of the top list :"
+#: ../data/messages:143 ../data/messages:147
+msgid "Let empty to use the default one."
+msgstr ""
+
+#: ../data/messages:145 ../data/messages:149
+msgid "Class of the system monitor program:"
 msgstr ""
 
 #: ../data/messages:151
-msgid "Let empty to use he default one."
+msgid "Top List"
 msgstr ""
 
 #: ../data/messages:153
-msgid "User command to show a system monitor :"
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+"using programs."
+msgstr ""
+
+#: ../data/messages:155
+msgid "Number of programs to display in the top list :"
+msgstr ""
+
+#: ../data/messages:157
+msgid "It's the first color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:159
+msgid "Start color of the top list :"
+msgstr ""
+
+#: ../data/messages:161
+msgid "It's the second color of the gradation used to write the top list."
+msgstr ""
+
+#: ../data/messages:163
+msgid "Stop color of the top list :"
+msgstr ""
+
+#: ../data/messages:165
+msgid "Show top memory usage in % ?"
+msgstr ""
+
+#: ../data/messages:169
+msgid "Delay between refresh of the top list :"
 msgstr ""

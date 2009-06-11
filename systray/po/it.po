@@ -3,93 +3,104 @@
 # This file is distributed under the same license as the Cairo-Dock package.
 # Fabrice Rey <fabounet@users.berlios.de>, 2007.
 #
-#: po/fr.po:7 po/fr.po:8 po/fr.po:182 po/fr.po:186 po/fr.po:209 po/fr.po:213
-#: po/fr.po:233 po/fr.po:236 po/fr.po:239 po/fr.po:242 po/fr.po:245
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/systray-init.c:35
+msgid ""
+"Add a systray to your dock.\n"
+"Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+"for it.)\n"
+"Middle-click to close the dalog.\n"
+"But the best way to use it id to detach it from the dock, and place it "
+"somewhere, above other windows."
+msgstr ""
+
+#: ../data/messages:1
 msgid "Icon"
 msgstr "Icona"
 
+#: ../data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr ""
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
-msgid "width :"
-msgstr "larghezza :"
-
-msgid "height :"
-msgstr "altezza :"
-
-msgid "Name of the icon as it will appear in its label in the dock :"
+#: ../data/messages:7
+#, fuzzy
+msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-msgid "Module"
-msgstr "Modulo"
-
-msgid "Icon's name :"
-msgstr "Nome dell'icona :"
-
-#: src/applet-notifications.c:13
-msgid "This is the CD_APPLET_NAME applet\n made by CD_MY_NAME for Cairo-Dock"
-msgstr "Questa è CD_APPLET_NAME\n scritta da CD_MY_NAME per Cairo-Dock"
+#: ../data/messages:9
+msgid "Name of the dock it belongs to:"
+msgstr ""
 
 #: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
 #: ../data/messages:13
-msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"centrale o ALT + click sinistro come esempio."
-
-#: ../data/messages:15
-msgid "Desklet's dimension (width x height) :"
-msgstr "Dimensione della desklet (larghezza x altezza) :"
-
-#: ../data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:21
+#: ../data/messages:17
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
+#: ../data/messages:19
+#, fuzzy
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+"di Compiz a : (name=cairo-dock & type=utility)"
+
+#: ../data/messages:21
+msgid "Accessibility :"
+msgstr ""
+
 #: ../data/messages:23
-msgid "Keep below other windows ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
+msgid "Normal"
+msgstr ""
 
 #: ../data/messages:25
-msgid "Keep above other windows ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:27
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+msgid "Keep below"
 msgstr ""
-"per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento di "
-"Compiz a : (name=cairo-dock & type=utility)"
 
 #: ../data/messages:29
-msgid "Keep on widget layer ?"
+#, fuzzy
+msgid "On Widget Layer"
 msgstr "Mantenere nella sezione dei widget ?"
 
-#: ../data/messages:35 ../data/messages:33
+#: ../data/messages:31
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:35
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -98,6 +109,64 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:35
+#: ../data/messages:37
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
+
+#: ../data/messages:39
+msgid "GUI"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Shortkey to toggle the systray in dock mode :"
+msgstr ""
+
+#: ../data/messages:43
+#, fuzzy
+msgid "Icons packing :"
+msgstr "Nome dell'icona :"
+
+#: ../data/messages:45
+msgid "horizontal"
+msgstr ""
+
+#: ../data/messages:47
+msgid "vertical"
+msgstr ""
+
+#: ../data/messages:49
+#, fuzzy
+msgid "Icons size :"
+msgstr "Nome dell'icona :"
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "Questa è CD_APPLET_NAME\n"
+#~ " scritta da CD_MY_NAME per Cairo-Dock"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+#~ "centrale o ALT + click sinistro come esempio."
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimensione della desklet (larghezza x altezza) :"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"

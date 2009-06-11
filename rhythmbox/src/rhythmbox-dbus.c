@@ -3,7 +3,6 @@
 
 #include "rhythmbox-struct.h"
 #include "rhythmbox-draw.h"
-#include "rhythmbox-struct.h"
 #include "rhythmbox-dbus.h"
 
 static DBusGProxy *dbus_proxy_player = NULL;
@@ -272,24 +271,10 @@ void getSongInfos(gboolean bGetAll)
 				cd_debug("RB-YDU : On regarde dans le répertoire .cache/rhythmbox/covers/");
 				myData.playing_cover = g_strdup_printf("%s/.cache/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.playing_artist, myData.playing_album);
 				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
-				/*if (g_file_test (myData.playing_cover, G_FILE_TEST_EXISTS))
-				{					
-					myData.bLoopForMagnatuneDone = FALSE;
-				}
-				else if (!myData.bLoopForMagnatuneDone)
-				{
-					cd_debug("RB-YDU : Toujours pas de pochette -> On recommence (pour Magnatune ou Jamendo)");
-					/// Boucle en générale atteinte lors de la lecture de Magnatune ou Jamendo ;-)
-					myData.bLoopForMagnatune = TRUE ;
-					//\_______________ On lance le timer pour tester 2 secondes plus tard.
-					myData.iSidLoopForMagnatune = g_timeout_add_seconds (2, (GSourceFunc) getSongInfos, (gpointer) myApplet);						
-				}
-				else
-					myData.bLoopForMagnatuneDone = FALSE;*/
 			}
 		}
 		
-		g_print ("RB-YDU :  playing_cover <- %s\n", myData.playing_cover);  // a la fin de tout ca, playing_cover est non NULL, mais le fichier n'est peut-etre pas encore dispo sur le disque.
+		g_print ("RB-YDU :  playing_cover <- %s\n", myData.playing_cover);
 		g_hash_table_destroy (data_list);
 	}
 	else
@@ -340,7 +325,7 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 		
 		dbus_detect_rhythmbox();
 	}
-	update_icon(TRUE, TRUE);
+	update_icon (TRUE);
 }
 
 //*********************************************************************************

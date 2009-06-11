@@ -14,13 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-cpusage.c:41 ../src/applet-cpusage.c:46
+#: ../src/applet-cpusage.c:37 ../src/applet-cpusage.c:42
 msgid "day(s)"
 msgstr "jour(s)"
-
-#: ../src/applet-cpusage.c:229
-msgid "Loading"
-msgstr "Chargement"
 
 #: ../src/applet-init.c:10
 msgid "System Monitor"
@@ -39,33 +35,41 @@ msgstr ""
 "Clique gauche sur l'icône pour avoir une liste des programmes les plus "
 "gourmants en CPU."
 
-#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
+#: ../src/applet-monitor.c:60 ../src/applet-rame.c:114
+msgid "Loading"
+msgstr "Chargement"
+
+#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:37
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Model Name"
 msgstr "Nom du modèle"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "core(s)"
 msgstr "coeur(s)"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Up time"
 msgstr "Temps d'activité système"
 
-#: ../src/applet-notifications.c:117
+#: ../src/applet-notifications.c:32
 msgid "Activity time"
 msgstr "Temps d'activité"
 
-#: ../src/applet-notifications.c:142
+#: ../src/applet-notifications.c:57
 msgid "Monitor System"
 msgstr "Moniteur système"
+
+#: ../src/applet-top.c:233
+msgid "Mb"
+msgstr ""
 
 #: ../data/messages:1
 msgid "Icon"
@@ -252,153 +256,197 @@ msgstr "Image d'avant-plan"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan"
 
-#: ../data/messages:81 ../data/messages:141
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:83
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "Liste des thèmes disponibles pour les jauges :"
+
+#: ../data/messages:85
+msgid "Gauge"
+msgstr ""
+
+#: ../data/messages:87
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:89
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:85
-msgid "Display a graphic rather than a gauge ?"
-msgstr "Afficher un graphique plutôt qu'une jauge ?"
-
-#: ../data/messages:87
-msgid "Type of graphic :"
-msgstr "Type de graphique :"
-
-#: ../data/messages:89
-msgid "Line"
-msgstr "Cartésien (ligne)"
-
 #: ../data/messages:91
-msgid "Plain"
-msgstr "Plein"
-
-#: ../data/messages:93
-msgid "Bar"
-msgstr "Histogramme (barres)"
-
-#: ../data/messages:95
-msgid "Circle"
-msgstr "Circulaire"
-
-#: ../data/messages:97
-msgid "Plain Circle"
-msgstr "Circulaire plein"
-
-#: ../data/messages:99
-msgid "It's the color of the graphic for high CPU values."
-msgstr "C'est la couleur du graphique pour les hautes valeurs de CPU."
-
-#: ../data/messages:101
-msgid "High values color :"
-msgstr "Couleur des hautes valeurs :"
-
-#: ../data/messages:103
-msgid "It's the color of the graphic for low CPU values."
-msgstr "C'est la couleur du graphique pour les basses valeurs de CPU."
-
-#: ../data/messages:105
-msgid "Low values color :"
-msgstr "Couleur des faibles valeurs :"
-
-#: ../data/messages:107
-msgid "Background color of the graphic :"
-msgstr "Couleur de fond du graphique :"
-
-#: ../data/messages:109
 msgid "Choose one of the available themes :"
 msgstr "Liste des thèmes disponibles pour les jauges :"
 
-#: ../data/messages:111
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+#: ../data/messages:93 ../data/messages:117
+msgid "Parameters"
 msgstr ""
-"Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 si "
-"vous ne voulez pas de filigrane."
+
+#: ../data/messages:95
+msgid "Type of graphic :"
+msgstr "Type de graphique :"
+
+#: ../data/messages:97
+msgid "Line"
+msgstr "Cartésien (ligne)"
+
+#: ../data/messages:99
+msgid "Plain"
+msgstr "Plein"
+
+#: ../data/messages:101
+msgid "Bar"
+msgstr "Histogramme (barres)"
+
+#: ../data/messages:103
+msgid "Circle"
+msgstr "Circulaire"
+
+#: ../data/messages:105
+msgid "Plain Circle"
+msgstr "Circulaire plein"
+
+#: ../data/messages:107
+msgid "It's the color of the graphic for high CPU values."
+msgstr "C'est la couleur du graphique pour les hautes valeurs de CPU."
+
+#: ../data/messages:109
+msgid "High values color :"
+msgstr "Couleur des hautes valeurs :"
+
+#: ../data/messages:111
+msgid "It's the color of the graphic for low CPU values."
+msgstr "C'est la couleur du graphique pour les basses valeurs de CPU."
 
 #: ../data/messages:113
-msgid "Image to display as a watermark :"
-msgstr "Image à afficher en filigrane :"
+msgid "Low values color :"
+msgstr "Couleur des faibles valeurs :"
 
 #: ../data/messages:115
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
-
-#: ../data/messages:117
-msgid "Transparency of the watermark :"
-msgstr "Transparence du filigrane"
+msgid "Background color of the graphic :"
+msgstr "Couleur de fond du graphique :"
 
 #: ../data/messages:119
-msgid "Display CPU usage values :"
-msgstr "Afficher les valeurs d'utilisations du CPU :"
+msgid "Show CPU usage ?"
+msgstr ""
 
 #: ../data/messages:121
+msgid "Show RAM usage ?"
+msgstr ""
+
+#: ../data/messages:123
+msgid "Show SWAP too ?"
+msgstr ""
+
+#: ../data/messages:125
+msgid "You need an nVidia and the 'nvidia-settings' tool."
+msgstr ""
+
+#: ../data/messages:127
+msgid "Show graphic card temperature ?"
+msgstr ""
+
+#: ../data/messages:129
+msgid "Show free memory instead of used memory ?"
+msgstr ""
+
+#: ../data/messages:131
+#, fuzzy
+msgid "Display values :"
+msgstr "Afficher les valeurs d'utilisations du CPU :"
+
+#: ../data/messages:133
 msgid "No"
 msgstr "Non"
 
-#: ../data/messages:123
+#: ../data/messages:135
 msgid "On icon"
 msgstr "Sur l'icône"
 
-#: ../data/messages:125
+#: ../data/messages:137
 msgid "On label"
 msgstr "Sur l'étiquette"
 
-#: ../data/messages:127
+#: ../data/messages:139 ../data/messages:167
+msgid "in seconds."
+msgstr "en secondes."
+
+#: ../data/messages:141
+msgid "Delay between refresh :"
+msgstr "Délai entre les rafraîchissements"
+
+#: ../data/messages:143 ../data/messages:147
+#, fuzzy
+msgid "Let empty to use the default one."
+msgstr "Laissez vide pour utiliser celle par défaut."
+
+#: ../data/messages:145 ../data/messages:149
+#, fuzzy
+msgid "Class of the system monitor program:"
+msgstr "Commande pour montrer un moniteur système :"
+
+#: ../data/messages:151
 msgid "Top List"
 msgstr "Tête de liste"
 
-#: ../data/messages:129
+#: ../data/messages:153
+#, fuzzy
 msgid ""
-"When you left-click on the icon, you will get the list of the N most CPU-"
+"When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
 "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
 "le plus de CPU."
 
-#: ../data/messages:131
+#: ../data/messages:155
 msgid "Number of programs to display in the top list :"
 msgstr "Nombre de programmes à afficher dans la top liste :"
 
-#: ../data/messages:133
+#: ../data/messages:157
 msgid "It's the first color of the gradation used to write the top list."
 msgstr "Première couleur pour le texte de la graduation de la top liste."
 
-#: ../data/messages:135
+#: ../data/messages:159
 msgid "Start color of the top list :"
 msgstr "Couleur de début de la top liste :"
 
-#: ../data/messages:137
+#: ../data/messages:161
 msgid "It's the second color of the gradation used to write the top list."
 msgstr "Seconde couleur pour le texte de la graduation de la top liste."
 
-#: ../data/messages:139
+#: ../data/messages:163
 msgid "Stop color of the top list :"
 msgstr "Couleur de fin de la top liste :"
 
-#: ../data/messages:143 ../data/messages:147
-msgid "in seconds."
-msgstr "en secondes."
+#: ../data/messages:165
+msgid "Show top memory usage in % ?"
+msgstr ""
 
-#: ../data/messages:145
-msgid "Delay between refresh :"
-msgstr "Délai entre les rafraîchissements"
-
-#: ../data/messages:149
+#: ../data/messages:169
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
 
-#: ../data/messages:151
-msgid "Let empty to use he default one."
-msgstr "Laissez vide pour utiliser celle par défaut."
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "Afficher un graphique plutôt qu'une jauge ?"
 
-#: ../data/messages:153
-msgid "User command to show a system monitor :"
-msgstr "Commande pour montrer un moniteur système :"
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 "
+#~ "si vous ne voulez pas de filigrane."
+
+#~ msgid "Image to display as a watermark :"
+#~ msgstr "Image à afficher en filigrane :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "Transparence du filigrane"
 
 #~ msgid "cpusage"
 #~ msgstr "cpusage"

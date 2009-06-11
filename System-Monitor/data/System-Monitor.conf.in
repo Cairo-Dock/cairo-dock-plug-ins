@@ -78,13 +78,23 @@ fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
-#F[Display;gtk-dialog-info]
-frame_disp=
 
-#b+ Display a graphic rather than a gauge ?
-use graphic = false
+#r+[Gauge;Graph] Choose the style of the display : 
+renderer = 0
+
+
+#F[Display;gtk-dialog-info]
+frame_gauge=
+
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+theme = Turbo-night-fuel
+
+
+#F[Display;gtk-dialog-info]
+frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
@@ -100,32 +110,54 @@ low color = 1;1;0
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = Turbo-night-fuel
+
+#F[Parameters;gtk-dialog-info]
+frame_graph=
+
+#b Show CPU usage ?
+show cpu = true
+
+#b Show RAM usage ?
+show ram = true
+
+#b Show SWAP too ?
+show swap = false
+
+#b Show graphic card temperature ?
+#{You need an nVidia and the 'nvidia-settings' tool.}
+show nvidia = false
+
+#b Show free memory instead of used memory ?
+show free = false
+
+#r[No;On icon;On label] Display values :
+info display = 1
+
+#i[1;30] Delay between refresh :
+#{in seconds.}
+delay = 2
 
 #v
 sep1=
 
-#S+ Image to display as a watermark :
-#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
-watermark image =
+#s User command to show a system monitor :
+#{Let empty to use the default one.}
+sys monitor =
 
-#e+[0;1] Transparency of the watermark :
-#{Set it up to 0 if you don't want to have a watermark.}
-watermark alpha = .6
+#b Steal the system monitor's icon in taskbar ?
+#{It will prevent the system monitor's icon to appear in the taskbar. The applet's icon will then behave as a launcher, an appli, and an applet.}
+inhibate appli = true
 
-#v
-sep2=
-
-#r[No;On icon;On label] Display CPU usage values :
-info display = 1
+#s Class of the system monitor program:
+#{Let empty to use the default one.}
+sys monitor class =
 
 
 #F[Top List;gtk-sort-ascending]
 frame_top=
 
 #i[1;20] Number of programs to display in the top list :
-#{When you left-click on the icon, you will get the list of the N most CPU-using programs.}
+#{When you left-click on the icon, you will get the list of the N most CPU/RAM-using programs.}
 top = 3
 
 #c+3[0;1] Start color of the top list :
@@ -136,20 +168,11 @@ top color start = 1;0;0
 #{It's the second color of the gradation used to write the top list.}
 top color stop = 1;1;0
 
-
-#F[Configuration;gtk-preferences]
-frame_conf=
-
-#i[1;30] Delay between refresh :
-#{in seconds.}
-delay = 2
+#b Show top memory usage in % ?
+top in percent = false
 
 #i[1;30] Delay between refresh of the top list :
 #{in seconds.}
 top delay = 2
-
-#s User command to show a system monitor :
-#{Let empty to use he default one.}
-sys monitor =
 
 HZ = 100

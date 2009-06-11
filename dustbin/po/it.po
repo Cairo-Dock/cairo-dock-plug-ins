@@ -69,16 +69,16 @@ msgstr "%s è smontato adesso"
 msgid "failed to unmount %s"
 msgstr "fallimento nello smontare %s"
 
-#: ../src/applet-trashes-manager.c:365
+#: ../src/applet-trashes-manager.c:366
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "State per cancellare tutti i files in %s. Sicuri ?"
 
-#: ../src/applet-trashes-manager.c:367
+#: ../src/applet-trashes-manager.c:368
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tutti i files saranno cancellati dai cestini. Sicuri ?"
 
-#: ../src/applet-trashes-manager.c:440
+#: ../src/applet-trashes-manager.c:441
 #, c-format
 msgid ""
 "A problem occured\n"
