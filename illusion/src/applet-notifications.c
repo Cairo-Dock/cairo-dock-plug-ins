@@ -22,7 +22,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
-	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
+	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))  // gere le cas ou pDock est NULL.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)

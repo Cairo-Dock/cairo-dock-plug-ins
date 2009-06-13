@@ -218,20 +218,59 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 {
 	// On ecrit les processus dans l'ordre.
 	CDProcess *pProcess;
-	int i;
+	int i, iNameLength=0;
+	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
+	{
+		pProcess = myData.pTopList[i];
+		if (pProcess == NULL || pProcess->cName == NULL)
+			break;
+		iNameLength = MAX (iNameLength, strlen (pProcess->cName));
+	}
+	
+	gchar *cSpaces = g_new0 (gchar, iNameLength+1);
+	memset (cSpaces, ' ', iNameLength);
+	int iOffset;
 	GString *sTopInfo = g_string_new ("");
 	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
 	{
 		pProcess = myData.pTopList[i];
-		if (pProcess == NULL)
+		if (pProcess == NULL || pProcess->cName == NULL)
 			break;
-		g_string_append_printf (sTopInfo, "  %s (%d) : %.1f%%  -  %.1f%s\n",
+		iOffset = iNameLength-strlen (pProcess->cName);
+		if (pProcess->iPid < 1e5)
+		{
+			if (pProcess->iPid < 1e4)
+			{
+				if (pProcess->iPid < 1e3)
+				{
+					if (pProcess->iPid < 1e2)
+					{
+						if (pProcess->iPid < 1e1)
+							iOffset += 5;
+						else
+							iOffset += 4;
+					}
+					else
+						iOffset += 3;
+				}
+				else
+					iOffset += 2;
+			}
+			else
+				iOffset += 1;
+		}
+		cSpaces[iOffset] = '\0';
+		g_string_append_printf (sTopInfo, "  %s (%d)%s: %.1f%%  %s-  %.1f%s\n",
 			pProcess->cName,
 			pProcess->iPid,
+			cSpaces,
 			100 * pProcess->fCpuPercent,
+			(pProcess->fCpuPercent > .1 ? "" : " "),
 			(double) pProcess->iMemAmount / (myConfig.bTopInPercent && myData.ramTotal ? 10.24 * myData.ramTotal : 1024 * 1024),
 			(myConfig.bTopInPercent && myData.ramTotal ? "%" : D_("Mb")));
+		cSpaces[iOffset] = ' ';
 	}
+	g_free (cSpaces);
 	if (i == 0)  // liste vide.
 	{
 		g_string_free (sTopInfo, TRUE);

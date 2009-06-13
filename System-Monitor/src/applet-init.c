@@ -18,6 +18,7 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 
 #define CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON(pAttr) cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
 #define CD_APPLET_RELOAD_MY_DATA_RENDERER(pAttr) cairo_dock_reload_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
+#define CAIRO_DATA_RENDERER_ATTRIBUTE(pAttr) ((CairoDataRendererAttribute *) pAttr)
 
 static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 {
@@ -26,46 +27,81 @@ static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 	return TRUE;
 }
 
+static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+{
+	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	int iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
+	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
+	{
+		CairoGaugeAttribute attr;  // les attributs de la jauge.
+		memset (&attr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "gauge";
+		attr.cThemePath = myConfig.cGThemePath;
+	}
+	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
+	{
+		CairoGraph2Attribute attr;  // les attributs du graphe.
+		memset (&attr, 0, sizeof (CairoGraph2Attribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "graph";
+		pRenderAttr->iMemorySize = 20;
+		attr.iType = myConfig.iGraphType;
+		attr.iRadius = 5;
+		attr.bMixGraphs = myConfig.iGraphType;
+		double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
+		double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
+		int i = 0;
+		if (myConfig.bShowCpu)
+		{
+			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
+			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
+			i ++;
+		}
+		if (myConfig.bShowRam)
+		{
+			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
+			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
+			i ++;
+		}
+		if (myConfig.bShowSwap)
+		{
+			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
+			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
+			i ++;
+		}
+		if (myConfig.bShowNvidia)
+		{
+			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
+			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
+			i ++;
+		}
+		attr.fHighColor = fHighColor;
+		attr.fLowColor = fLowColor;
+		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+	}
+	else if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
+	{
+		
+	}
+	if (pRenderAttr != NULL)
+	{
+		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
+		pRenderAttr->iNbValues = iNbValues;
+		if (! bReload)
+			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+		else
+			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	}
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	//Initialisation du rendu jauge/graphique.
-	/*double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	if (myConfig.bUseGraphic)
-	{
-		myData.pGraph = cairo_dock_create_graph (myDrawContext,
-			20, myConfig.iGraphType,
-			myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-			myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
-		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		CD_APPLET_RENDER_GRAPH (myData.pGraph);
-	}
-	else
-	{
-		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
-	}*/
-	
 	// Initialisation du rendu.
-	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
-	{
-		CairoGaugeAttribute attr;
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		attr.rendererAttribute.cModelName = "gauge";
-		attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
-		attr.rendererAttribute.iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
-		attr.cThemePath = myConfig.cGThemePath;
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (&attr);
-	}
-	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
-	{
-		
-	}
+	_set_data_renderer (myApplet, FALSE);
 	
 	// Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
@@ -74,7 +110,7 @@ CD_APPLET_INIT_BEGIN
 		NULL,  // cd_cpusage_read_data
 		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_cpusage_update_from_data
 		myApplet);
-	//myData.bAcquisitionOK = TRUE;
+	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);
 	
 	// On gere l'appli "moniteur systeme".
@@ -108,43 +144,16 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
 		cd_sysmonitor_stop_top_dialog (myApplet);
-		/*cairo_dock_free_gauge (myData.pGauge);
-		cairo_dock_free_graph (myData.pGraph);
-		if (myConfig.bUseGraphic)
-		{
-			myData.pGauge = NULL;
-			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
-				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
-			if (myConfig.cWatermarkImagePath != NULL)
-				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
-		else
-		{
-			myData.pGraph = NULL;
-			myData.pGauge = cairo_dock_load_gauge(myDrawContext,
-				myConfig.cGThemePath,
-				myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-			if (myConfig.cWatermarkImagePath != NULL)
-				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}*/
-		CairoGaugeAttribute attr;
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		attr.rendererAttribute.cModelName = "gauge";
-		attr.rendererAttribute.iLatencyTime = myConfig.iCheckInterval*1000;
-		attr.cThemePath = myConfig.cGThemePath;
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (&attr);
+
+		_set_data_renderer (myApplet, TRUE);
 		
-		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
-		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_LABEL)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		}
 		
+		myData.bAcquisitionOK = TRUE;
 		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
 		
 		g_free (myData.pTopList);
@@ -156,27 +165,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
 	}
 	else {  // on redessine juste l'icone.
-		/*if (myData.pGauge != NULL)
-			cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		else if (myData.pGraph != NULL)
-			cairo_dock_reload_graph (myDrawContext, myData.pGraph, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		else if (myConfig.bUseGraphic)
-			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
-				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
-		else
-			myData.pGauge = cairo_dock_load_gauge(myDrawContext,
-				myConfig.cGThemePath,
-				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		if (myConfig.cWatermarkImagePath != NULL)
-		{
-			if (myData.pGauge != NULL)
-				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-			else
-				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
-		*/
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;

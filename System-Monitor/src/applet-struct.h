@@ -18,6 +18,7 @@ typedef enum _CDSysmonitorDisplayType {
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
+	gdouble fSmoothFactor;
 	gboolean bShowCpu;
 	gboolean bShowRam;
 	gboolean bShowNvidia;
@@ -34,6 +35,7 @@ struct _AppletConfig {
 	gdouble fLowColor[3];
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
+	gboolean bMixGraph;
 	
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;

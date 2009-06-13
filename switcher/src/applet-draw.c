@@ -76,18 +76,22 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 		pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 		if (pParentDock == NULL)
 			pParentDock = g_pMainDock;
-		double fMaxScale = cairo_dock_get_max_scale (pParentDock);
-		double fRatio = pParentDock->fRatio;
+		int iWidth, iHeight;
+		cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
+		double fZoomX = (double) w/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
+		double fZoomY = (double) h/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
+		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
 		
 		cairo_translate (pCairoContext,
-			(1.*x/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth,
-			(1.*y/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight);
+			(1.*x/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * iWidth/2,
+			(1.*y/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * iHeight/2);
 		cairo_scale (pCairoContext,
-			1.*w/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / (pIcon->fWidth/fRatio*fMaxScale),
-			1.*h/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / (pIcon->fHeight/fRatio*fMaxScale));
+			fZoom,
+			fZoom);
 		cairo_set_source_surface (pCairoContext,
 			pIcon->pIconBuffer,
-			0., 0.);
+			0.,
+			0.);
 		cairo_paint (pCairoContext);
 	}
 	

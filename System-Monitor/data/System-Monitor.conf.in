@@ -86,14 +86,14 @@ fg alpha = 1
 renderer = 0
 
 
-#F[Display;gtk-dialog-info]
+#F[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = Turbo-night-fuel
 
 
-#F[Display;gtk-dialog-info]
+#F[Graph;gtk-dialog-info]
 frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -112,7 +112,7 @@ bg color = .5;.5;1.;.4
 
 
 #F[Parameters;gtk-dialog-info]
-frame_graph=
+frame_param =
 
 #b Show CPU usage ?
 show cpu = true
@@ -136,6 +136,10 @@ info display = 1
 #i[1;30] Delay between refresh :
 #{in seconds.}
 delay = 2
+
+#e[0;1] How smooth is the movement ?
+#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
+smooth = 1
 
 #v
 sep1=

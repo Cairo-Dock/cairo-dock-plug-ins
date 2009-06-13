@@ -8,7 +8,7 @@
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
-#include "applet-cpusage.h"
+#include "applet-monitor.h"
 
 #define CPUSAGE_DATA_PIPE		CD_SYSMONITOR_PROC_FS"/stat"
 #define CPUSAGE_UPTIME_PIPE		CD_SYSMONITOR_PROC_FS"/uptime"
@@ -26,7 +26,7 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 	}
 	
 	double fUpTime = 0, fIdleTime = 0;
-	fscanf (fd, "%lf %lf\n", &fUpTime, &fIdleTime);
+	int r = fscanf (fd, "%lf %lf\n", &fUpTime, &fIdleTime);
 	fclose (fd);
 	
 	const int minute = 60;
@@ -53,7 +53,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 	g_file_get_contents (CPUSAGE_PROC_INFO_PIPE, &cContent, &length, NULL);
 	if (cContent == NULL)
 	{
-		cd_warning ("cpusage : can't open %s, assuming their is only 1 CPU with 1 core", CPUSAGE_PROC_INFO_PIPE);
+		cd_warning ("sysmonitor : can't open %s, assuming their is only 1 CPU with 1 core", CPUSAGE_PROC_INFO_PIPE);
 		myData.iNbCPU = 1;
 	}
 	else
@@ -110,7 +110,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 		while (TRUE);
 	}
 	myData.iNbCPU = MAX (myData.iNbCPU, 1);
-	cd_debug ("cpusage : %d CPU/core(s) found", myData.iNbCPU);
+	cd_debug ("sysmonitor : %d CPU/core(s) found", myData.iNbCPU);
 	g_free (cContent);
 }
 
@@ -122,7 +122,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 	while (*tmp == ' ') \
 		tmp ++; \
 	if (*tmp == '\0') { \
-		cd_warning ("cpusage : problem when reading pipe"); \
+		cd_warning ("sysmonitor : problem when reading pipe"); \
 		myData.bAcquisitionOK = FALSE; \
 		return ; }
 
@@ -133,7 +133,7 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	if (fd == NULL)
 	{
-		cd_warning ("cpusage : can't open %s", CPUSAGE_DATA_PIPE);
+		cd_warning ("sysmonitor : can't open %s", CPUSAGE_DATA_PIPE);
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}
@@ -142,7 +142,7 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 	fclose (fd);
 	if (tmp == NULL)
 	{
-		cd_warning ("cpusage : can't read %s", CPUSAGE_DATA_PIPE);
+		cd_warning ("sysmonitor : can't read %s", CPUSAGE_DATA_PIPE);
 		myData.bAcquisitionOK = FALSE;
 		return ;
 	}
@@ -184,7 +184,6 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 			(new_cpu_system - myData.cpu_system) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
 			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
 	}
-	myData.bAcquisitionOK = TRUE;
 	myData.cpu_user = new_cpu_user;
 	myData.cpu_user_nice = new_cpu_user_nice;
 	myData.cpu_system = new_cpu_system;

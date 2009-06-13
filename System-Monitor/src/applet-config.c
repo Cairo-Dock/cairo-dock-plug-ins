@@ -11,6 +11,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "delay");
+	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	
 	myConfig.bShowCpu = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show cpu", TRUE);
 	myConfig.bShowRam = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show ram", TRUE);
@@ -19,10 +20,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowFreeMemory = CD_CONFIG_GET_BOOLEAN ("Configuration", "show free");
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
+	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
+	
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 	
-	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
+	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
@@ -37,6 +40,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
 	
 	myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
+	g_free (myDialogs.dialogTextDescription.cFont);
+	myDialogs.dialogTextDescription.cFont = g_strdup ("Mono");  // on prend une police a chasse fixe.
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color stop", myConfig.pTopTextDescription->fColorStop);
 	myConfig.pTopTextDescription->bVerticalPattern = TRUE;
