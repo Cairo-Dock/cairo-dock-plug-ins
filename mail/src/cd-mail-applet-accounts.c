@@ -15,7 +15,6 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 #include "cd-mail-applet-etpan.h"
 #include "cd-mail-applet-accounts.h"
 
-
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "pop3");
@@ -273,6 +272,34 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
   gboolean bFlushConfFileNeeded = FALSE;
 
+#if __WORDSIZE == 64
+/* in 64bit libetpan crashes with RSS, so use the IMAP feature of GMail
+ * instead of RSS. */
+  mailaccount->driver = IMAP_STORAGE;
+  mailaccount->storage = mailstorage_new(NULL);
+  mailaccount->folder = NULL;
+  mailaccount->server = g_strdup("imap.gmail.com");
+  mailaccount->port = 993;
+  mailaccount->connection_type = CONNECTION_TYPE_TLS;
+  mailaccount->user = NULL;
+  mailaccount->password = NULL;
+  mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
+  mailaccount->path = g_strdup("Inbox");
+  mailaccount->timeout = 0;
+  
+  if (g_key_file_has_key (pKeyFile, mailbox_name, "username", NULL))
+  {
+    mailaccount->user = CD_CONFIG_GET_STRING (mailbox_name, "username");
+  }
+  if (g_key_file_has_key (pKeyFile, mailbox_name, "password", NULL))
+  {
+    gchar *encryptedPassword = CD_CONFIG_GET_STRING (mailbox_name, "password");
+    cairo_dock_decrypt_string( encryptedPassword,  &(mailaccount->password) );
+
+    if( encryptedPassword ) g_free(encryptedPassword);
+  }
+  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
+#else
   mailaccount->driver = FEED_STORAGE;
   mailaccount->storage = mailstorage_new(NULL);
   mailaccount->folder = NULL;
@@ -325,6 +352,7 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
   g_free( user_without_column );
   g_free( password_without_column );
+#endif
 }
 
 void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )

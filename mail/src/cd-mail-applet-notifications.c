@@ -106,13 +106,13 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL)
 		return ;
-	
+
 	CDMailAccount *pMailAccount;
 	guint i;
 	for (i = 0; i < myData.pMailAccounts->len; i++)
 	{
 		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-		if (pMailAccount->name && strcmp (pMailAccount->name, CD_APPLET_CLICKED_ICON->acName) == 0)
+		if (pMailAccount->name && (myData.pMailAccounts->len == 1 || strcmp (pMailAccount->name, CD_APPLET_CLICKED_ICON->acName) == 0))
 			break ;
 	}
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)

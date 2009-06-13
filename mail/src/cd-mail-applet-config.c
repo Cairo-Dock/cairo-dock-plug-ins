@@ -33,7 +33,12 @@ static struct storage_type_def storage_tab[] = {
   {"feed", "RSS/Feed", cd_mail_retrieve_feed_params, cd_mail_create_feed_params },
 };
 
+#if __WORDSIZE == 64
+/* in 64bit libetpan crashes with RSS, so... avoid it. */
+const int MAIL_NB_STORAGE_TYPES = (sizeof(storage_tab) / sizeof(struct storage_type_def)) - 1;
+#else
 const int MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
+#endif
 
 static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myApplet)
 {

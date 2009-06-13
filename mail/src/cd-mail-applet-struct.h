@@ -57,7 +57,7 @@ typedef struct {
     int port;
     int connection_type;
     gchar *user;
-    gchar *password;
+    guchar *password;
     int auth_type;
     gchar *path;
     guint timeout;
