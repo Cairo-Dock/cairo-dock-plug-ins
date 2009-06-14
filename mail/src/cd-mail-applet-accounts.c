@@ -272,7 +272,7 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
   gboolean bFlushConfFileNeeded = FALSE;
 
-#if __WORDSIZE == 64
+#if ( __WORDSIZE == 64 )
 /* in 64bit libetpan crashes with RSS, so use the IMAP feature of GMail
  * instead of RSS. */
   mailaccount->driver = IMAP_STORAGE;

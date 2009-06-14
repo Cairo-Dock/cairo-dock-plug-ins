@@ -30,15 +30,15 @@ static struct storage_type_def storage_tab[] = {
   {"mh", "MH", cd_mail_retrieve_mh_params, cd_mail_create_mh_params },
   {"maildir", "MailDir", cd_mail_retrieve_maildir_params , cd_mail_create_maildir_params},
   {"gmail", "GMail", cd_mail_retrieve_gmail_params, cd_mail_create_gmail_params },
+#if ( __WORDSIZE == 64 )
+/* in 64bit libetpan crashes with RSS, so... avoid it. */
+#warning "Compilation 64bits: avoiding RSS accounts"
+#else
   {"feed", "RSS/Feed", cd_mail_retrieve_feed_params, cd_mail_create_feed_params },
+#endif
 };
 
-#if __WORDSIZE == 64
-/* in 64bit libetpan crashes with RSS, so... avoid it. */
-const int MAIL_NB_STORAGE_TYPES = (sizeof(storage_tab) / sizeof(struct storage_type_def)) - 1;
-#else
 const int MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
-#endif
 
 static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myApplet)
 {
@@ -69,7 +69,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		gchar *cMailAccountType = g_key_file_get_string (pKeyFile, cMailAccountName, "type", NULL);
 
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
-       		{
+    {
 			if (g_strcasecmp(storage_tab[j].name, cMailAccountType) == 0)
 			{
 				account_type = j;

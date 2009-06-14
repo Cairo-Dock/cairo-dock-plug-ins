@@ -285,8 +285,6 @@ void cd_mail_load_icons( CairoDockModuleInstance *myApplet )
 void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
 	g_return_if_fail (myDrawContext != NULL);
-	if (myData.iNbUnreadMails == myData.iPrevNbUnreadMails)  // rien de nouveau, rien a faire.
-		return ;
 	
 	gchar *cNewImage = NULL;
 	if (myData.iNbUnreadMails <= 0)  // plus de mail.
