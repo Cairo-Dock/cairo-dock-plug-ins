@@ -261,17 +261,16 @@ msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:83
-#, fuzzy
 msgid "Choose the style of the display : "
-msgstr "Liste des thèmes disponibles pour les jauges :"
+msgstr "Choisissez la style d'affichage :"
 
 #: ../data/messages:85
 msgid "Gauge"
-msgstr ""
+msgstr "Jauge"
 
 #: ../data/messages:87
 msgid "Graph"
-msgstr ""
+msgstr "Graphique"
 
 #: ../data/messages:89
 msgid "Display"
@@ -279,11 +278,11 @@ msgstr "Affichage"
 
 #: ../data/messages:91
 msgid "Choose one of the available themes :"
-msgstr "Liste des thèmes disponibles pour les jauges :"
+msgstr "Choisissez l'un des thèmes disponibles :"
 
 #: ../data/messages:93 ../data/messages:117
 msgid "Parameters"
-msgstr ""
+msgstr "Paramètres"
 
 #: ../data/messages:95
 msgid "Type of graphic :"
@@ -379,27 +378,24 @@ msgid "Delay between refresh :"
 msgstr "Délai entre les rafraîchissements"
 
 #: ../data/messages:143 ../data/messages:147
-#, fuzzy
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../data/messages:145 ../data/messages:149
-#, fuzzy
 msgid "Class of the system monitor program:"
-msgstr "Commande pour montrer un moniteur système :"
+msgstr "Classe du programme 'moniteur système' :"
 
 #: ../data/messages:151
 msgid "Top List"
-msgstr "Tête de liste"
+msgstr "Liste Top"
 
 #: ../data/messages:153
-#, fuzzy
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
 "Le clic droit sur l'icône vous donne la liste des programmes qui utilisent "
-"le plus de CPU."
+"le plus de CPU/RAM."
 
 #: ../data/messages:155
 msgid "Number of programs to display in the top list :"
@@ -428,44 +424,3 @@ msgstr ""
 #: ../data/messages:169
 msgid "Delay between refresh of the top list :"
 msgstr "Délai entre les rafraîchissements de la top liste :"
-
-#~ msgid "Display a graphic rather than a gauge ?"
-#~ msgstr "Afficher un graphique plutôt qu'une jauge ?"
-
-#~ msgid ""
-#~ "Let it empty to use the default image. Set the transparency to 0 if you "
-#~ "don't want to have any watermark."
-#~ msgstr ""
-#~ "Laisser à 0 pour utiliser l'image par défaut. Mettez la transparence à 0 "
-#~ "si vous ne voulez pas de filigrane."
-
-#~ msgid "Image to display as a watermark :"
-#~ msgstr "Image à afficher en filigrane :"
-
-#~ msgid "Set it up to 0 if you don't want to have a watermark."
-#~ msgstr "Mettez-le à 0 si vous ne voulez pas de filigrane."
-
-#~ msgid "Transparency of the watermark :"
-#~ msgstr "Transparence du filigrane"
-
-#~ msgid "cpusage"
-#~ msgstr "cpusage"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid ""
-#~ "This is the cpusage applet\n"
-#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet cpusage\n"
-#~ " écrite par parAdOxxx_ZeRo pour Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"

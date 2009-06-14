@@ -46,6 +46,13 @@ struct _AppletConfig {
 	gchar *cSystemMonitorClass;
 	gboolean bStealTaskBarIcon;
 	gdouble fUserHZ;
+	
+	gchar *cSoundPath;
+	gint iLowerLimit;
+	gint iUpperLimit;
+	gint iAlertLimit;
+	gboolean bAlert;
+	gboolean bAlertSound;
 } ;
 
 typedef struct {
@@ -58,13 +65,14 @@ typedef struct {
 	} CDProcess;
 
 struct _AppletData {
-	Gauge *pGauge;
-	CairoDockGraph *pGraph;
-	
-	gint iNbCPU;  // constante.
-	gulong iMemPageSize;  // constante.
-	gint iFrequency;  // constante (a voir si on l'actualise...)
-	gchar *cModelName;  // constante
+	// infos, constantes.
+	gint iNbCPU;
+	gulong iMemPageSize;
+	gint iFrequency;
+	gchar *cModelName;
+	gchar *cGPUName;
+	gint iVideoRam;
+	gchar *cDriverVersion;
 	
 	CairoDockMeasure *pMeasureTimer;
 	// memoire partagee pour le thread principal.
@@ -76,7 +84,9 @@ struct _AppletData {
 	unsigned long long ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	unsigned long long swapTotal, swapFree, swapUsed;
 	gdouble fPrevRamPercent, fPrevSwapPercent;
+	gint iGPUTemp;
 	// fin de la memoire partagee.
+	gboolean bAlerted;
 	
 	gint iNbProcesses;
 	CairoDialog *pTopDialog;

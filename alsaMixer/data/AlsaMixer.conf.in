@@ -117,7 +117,7 @@ hide on leave = true
 frame_disp =
 
 #r[No;On label;On icon] Display volume :
-display volume = 0
+display volume = 1
 
 #r+[None;Zoom;Transparency;Draw Bar] Effet to apply on the icon according to volume :
 effect = 3

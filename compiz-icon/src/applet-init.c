@@ -39,7 +39,7 @@ CD_APPLET_INIT_BEGIN
 			myData.bCompizRestarted = TRUE;
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (CD_COMPIZ_CHECK_TIME,
-			(CairoDockAquisitionTimerFunc) NULL/*cd_compiz_acquisition*/,
+			(CairoDockAquisitionTimerFunc) NULL,
 			(CairoDockReadTimerFunc) cd_compiz_read_data,
 			(CairoDockUpdateTimerFunc) cd_compiz_update_from_data,
 			myApplet);

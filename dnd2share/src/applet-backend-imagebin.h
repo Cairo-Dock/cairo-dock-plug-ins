@@ -1,5 +1,5 @@
-#ifndef __CD_BACKEND_UPPIX__
-#define  __CD_BACKEND_UPPIX__
+#ifndef __CD_BACKEND_IMAGEBIN__
+#define  ___CD_BACKEND_IMAGEBIN__
 
 #include <cairo-dock.h>
 #include "applet-struct.h"

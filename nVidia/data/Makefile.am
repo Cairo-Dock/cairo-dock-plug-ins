@@ -5,7 +5,6 @@ moduledir = $(nvidiadatadir)
 
 module_DATA = \
 	nVidia.conf\
-	nvidia\
 	nvidia-config\
 	preview.png\
 	broken.svg\

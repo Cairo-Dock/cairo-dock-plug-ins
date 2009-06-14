@@ -13,6 +13,8 @@ libcd_System_Monitor_la_SOURCES = \
 	applet-cpusage.h\
 	applet-rame.c\
 	applet-rame.h\
+	applet-nvidia.c\
+	applet-nvidia.h\
 	applet-top.c\
 	applet-top.h\
 	applet-monitor.c\

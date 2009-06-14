@@ -182,3 +182,23 @@ top in percent = false
 top delay = 2
 
 HZ = 100
+
+
+#F[Graphic Card temperature;gtk-dialog-info]
+frame_nvidia =
+
+#i[20;60] Lower limit of core temperature :
+#{in celcius. The temperature will be displayed between this value and the upper limit.}
+llt = 0
+#i[60;120] Upper limit of core temperature :
+#{in celcius. The temperature will be displayed between the lower limit and this value.}
+ult = 110
+#b Alert when core temperature is high ?
+alert=true
+#i[60;120] Alert limit of core temperature :
+#{in celcius.}
+alt = 100
+#b Play a sound during the alert ?
+asound=true
+#u Sound path :
+sound path = /usr/share/sounds/error.wav

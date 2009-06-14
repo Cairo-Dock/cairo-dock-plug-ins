@@ -10,6 +10,7 @@
 #include "applet-notifications.h"
 #include "applet-cpusage.h"
 #include "applet-rame.h"
+#include "applet-nvidia.h"
 #include "applet-monitor.h"
 
 #define CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON(pValues) cairo_dock_render_new_data_on_icon (myIcon, myContainer, myDrawContext, pValues)
@@ -27,7 +28,7 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 	}
 	if (myConfig.bShowNvidia)
 	{
-		/// cd_sysmonitor_get_nvidia_data (myApplet);
+		cd_sysmonitor_get_nvidia_data (myApplet);
 	}
 	
 	if (! myData.bInitialized)
@@ -94,7 +95,19 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 			}
 			if (myConfig.bShowNvidia)
 			{
-				fValues[i++] = (double) 0.;
+				double fTempPercent;
+				if (myData.iGPUTemp <= myConfig.iLowerLimit)
+					fTempPercent = 0;
+				else if (myData.iGPUTemp >= myConfig.iUpperLimit )
+					fTempPercent = 1.;
+				else
+					fTempPercent = (double) (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
+				fValues[i++] = fTempPercent;
+				if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
+					myData.bAlerted = FALSE; //On réinitialise l'alerte quand la température descend en dessou de la limite.
+				
+				if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
+					cd_nvidia_alert (myApplet);
 			}
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (fValues);
 		}

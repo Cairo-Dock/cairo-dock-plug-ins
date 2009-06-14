@@ -94,7 +94,7 @@ temp type=1
 #{in seconds.}
 delay = 3
 
-#i[0;60] Lower limit of core temperature :
+#i[20;60] Lower limit of core temperature :
 #{in celcius. The temperature will be displayed between this value and the upper limit.}
 llt = 0
 #i[60;120] Upper limit of core temperature :
@@ -132,7 +132,7 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] List of available themes for the analogic display :
-theme = radium
+theme = Radium
 
 #S+ Image to display as a watermark on the gauge :
 #{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}

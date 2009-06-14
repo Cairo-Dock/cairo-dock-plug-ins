@@ -30,11 +30,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
 	
-	myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
+	/*myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
 	if (myConfig.fAlpha != 0)
 	{
 		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
-	}
+	}*/
+	
+	myConfig.iLowerLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "llt", 50);
+	myConfig.iUpperLimit = MAX (myConfig.iLowerLimit+1, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "ult", 110));
+	myConfig.iAlertLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "alt", 100);
+	myConfig.bAlert = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "alert", TRUE);
+	myConfig.bAlertSound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "asound", TRUE);
+	myConfig.cSoundPath = CD_CONFIG_GET_STRING ("Configuration", "sound path");
 	
 	myConfig.iNbDisplayedProcesses = CD_CONFIG_GET_INTEGER ("Configuration", "top");
 	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
@@ -90,5 +97,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pProcessTable != NULL)
 		g_hash_table_destroy (myData.pProcessTable);
 	cairo_surface_destroy (myData.pTopSurface);
+	
+	g_free (myData.cModelName);
+	g_free (myData.cModelName);
+	g_free (myData.cGPUName);
+	g_free (myData.cDriverVersion);
+	
 CD_APPLET_RESET_DATA_END
 

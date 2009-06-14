@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
 #include "applet-backend-uppix.h"
+#include "applet-backend-imagebin.h"
 #include "applet-init.h"
 
 

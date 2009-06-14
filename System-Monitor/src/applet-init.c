@@ -88,6 +88,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		pRenderAttr->iNbValues = iNbValues;
+		pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		else

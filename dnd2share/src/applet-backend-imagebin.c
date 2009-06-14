@@ -31,7 +31,7 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 	{
 		// on remplace les espaces du texte par des %20.
 		gchar **cTextParts = g_strsplit (cFilePath, " ", -1);
-		GString *sContent = g_string_new_sized (strlen (cFilePath) + 300);  // 100 espaces d'avance.
+		GString *sContent = g_string_sized_new (strlen (cFilePath) + 300);  // 100 espaces d'avance.
 		int i;
 		for (i = 0; cTextParts[i] != NULL; i ++)
 		{

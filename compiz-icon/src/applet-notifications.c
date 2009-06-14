@@ -25,32 +25,19 @@ Fabrice Rey <fabounet@users.berlios.de>
 static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;
-	gchar *cTmpFile = g_strdup ("/tmp/compiz-version.XXXXXX");
-	int fds = mkstemp (cTmpFile);
-	if (fds == -1) {
-		g_free (cTmpFile);
-		return;
-	}
-	close(fds);
-	gchar *cCommand = g_strdup_printf ("compiz.real --version | awk '{print $2}' > %s", cTmpFile);
-	system (cCommand);
+	
+	gchar *cCommand = g_strdup_printf ("compiz.real --version | awk '{print $2}'");
+	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
-	GError *erreur = NULL;
-	gsize length = 0;
-	gchar *cContent = NULL;
-	g_file_get_contents (cTmpFile, &cContent, &length, &erreur);
-	if (erreur != NULL) {
-		cd_warning ("Attention : couldn't guess Compiz's version [%s]", erreur->message);
-		g_error_free (erreur);
+	
+	if (cResult == NULL) {
+		cd_warning ("couldn't guess Compiz's version");
 		return ;
 	}
-	if (cContent != NULL) {
-		cairo_dock_get_version_from_string (cContent, &myData.iCompizMajor, &myData.iCompizMinor, &myData.iCompizMicro);
-		g_free (cContent);
-	}
+	cairo_dock_get_version_from_string (cResult, &myData.iCompizMajor, &myData.iCompizMinor, &myData.iCompizMicro);
+	g_free (cResult);
+	
 	cd_message ("Compiz : %d.%d.%d", myData.iCompizMajor, myData.iCompizMinor, myData.iCompizMicro);
-	g_remove (cTmpFile);
-	g_free (cTmpFile);
 }
 
 static void _compiz_dbus_action (const gchar *cCommand) {
@@ -61,7 +48,7 @@ static void _compiz_dbus_action (const gchar *cCommand) {
 	g_spawn_command_line_async (cDbusCommand, &erreur);
 	g_free (cDbusCommand);
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to send '%s' : %s", cCommand, erreur->message);
+		cd_warning ("Compiz-icon : when trying to send '%s' : %s", cCommand, erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -93,16 +80,14 @@ static void _compiz_action_by_id (int k, Icon *pIcon) {
   switch (k) {
     case 0:
       cd_debug ("test de ccsm ...");
-      system ("which ccsm > /tmp/ccsm-test-tmp");
-      gchar *cContents = NULL;
-      g_file_get_contents ("/tmp/ccsm-test-tmp", &cContents, NULL, NULL);
-      if (cContents == NULL || *cContents != '/')
+      gchar *cResult = cairo_dock_launch_command_sync ("which ccsm");
+      if (cResult == NULL || *cResult != '/')
       {
         cairo_dock_show_temporary_dialog_with_icon (_("To configure Compiz, you need to install CCSM\n through your package manager (Synaptic, YasT, etc)"), pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 10000, "same icon");
       }
       else
         cairo_dock_launch_command ("ccsm");
-      g_free (cContents);
+      g_free (cResult);
     break;
     case 1:
       cairo_dock_launch_command ("emerald-theme-manager");
