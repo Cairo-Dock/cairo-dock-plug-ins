@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <glib/gi18n.h>
-#include <glib/gprintf.h>
 
 #include <fcntl.h>
 #include <unistd.h>

@@ -1,4 +1,4 @@
-#include "stdlib.h"
+#include <stdlib.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -45,10 +45,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraph2Attribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = 20;
+		pRenderAttr->iMemorySize = 40;
 		attr.iType = myConfig.iGraphType;
-		attr.iRadius = 5;
-		attr.bMixGraphs = myConfig.iGraphType;
+		attr.iRadius = 10;
+		attr.bMixGraphs = myConfig.bMixGraph;
 		double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		int i = 0;

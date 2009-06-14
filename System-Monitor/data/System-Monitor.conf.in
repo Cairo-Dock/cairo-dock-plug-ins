@@ -110,6 +110,8 @@ low color = 1;1;0
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
+#b Show all values on same graph ?
+mix graph = false
 
 #F[Parameters;gtk-dialog-info]
 frame_param =
