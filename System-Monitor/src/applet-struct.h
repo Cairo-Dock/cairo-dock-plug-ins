@@ -87,6 +87,7 @@ struct _AppletData {
 	gint iGPUTemp;
 	// fin de la memoire partagee.
 	gboolean bAlerted;
+	gint iCount;
 	
 	gint iNbProcesses;
 	CairoDialog *pTopDialog;

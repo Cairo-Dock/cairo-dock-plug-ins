@@ -108,8 +108,8 @@ CD_APPLET_INIT_BEGIN
 	myData.pClock = g_timer_new ();
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
-		NULL,  // cd_cpusage_read_data
-		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_cpusage_update_from_data
+		NULL,  // cd_sysmonitor_get_data
+		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_sysmonitor_update_from_data
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);

@@ -10,8 +10,12 @@ module_DATA = \
 	link-3.svg\
 	link-4.svg\
 	link-5.svg\
-	icon.png\
+	icon.png
+
+
+dist_wifidata_SCRIPTS = \
 	access-point\
 	wifi
+
 
 EXTRA_DIST = $(module_DATA)

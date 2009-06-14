@@ -42,7 +42,7 @@ CD_APPLET_INIT_BEGIN
 	myData.iPreviousQuality = -1;  // force le dessin.
 	myData.prev_prcnt = -1;
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		cd_wifi_acquisition,
+		NULL,
 		cd_wifi_read_data,
 		cd_wifi_update_from_data,
 		myApplet);

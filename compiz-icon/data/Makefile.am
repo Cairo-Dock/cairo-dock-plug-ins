@@ -5,8 +5,6 @@ moduledir = $(compiz_icondatadir)
 
 module_DATA = \
 	compiz-icon.conf\
-	compiz\
-	compiz-kill\
 	preview.png\
 	default.svg\
 	broken.svg\
@@ -17,5 +15,9 @@ module_DATA = \
 	3.svg\
 	4.svg\
 	icon.png
+
+dist_compiz_icondata_SCRIPTS = \
+	compiz-kill\
+	compiz
 
 EXTRA_DIST = $(module_DATA)

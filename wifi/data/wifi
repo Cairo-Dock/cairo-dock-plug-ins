@@ -1,4 +1,4 @@
 #!/bin/bash
-if [ ! -w $1 ] ; then exit 1 ; fi
-iwconfig > $1 2>/dev/null
-echo "Wifi" >> $1
+
+iwconfig 2>/dev/null
+echo "Wifi"

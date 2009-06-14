@@ -1,3 +1,3 @@
 #!/bin/bash
-if [ ! -w $2 ] ; then exit 1 ; fi
-iwlist $1 scan | grep "ESSID" >> $2
+
+iwlist $1 scan | grep "ESSID"

@@ -20,39 +20,9 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-draw.h"
 #include "applet-wifi.h"
 
-
 static char  *s_cTmpFile = NULL;
 static char  *s_cTmpFileAccessPoint = NULL;
 
-void cd_wifi_acquisition (void) {
-	s_cTmpFile = g_strdup ("/tmp/wifi.XXXXXX");
-	int fds = mkstemp (s_cTmpFile);
-	if (fds == -1) {
-		g_free (s_cTmpFile);
-		s_cTmpFile = NULL;
-		return;
-	}
-	gchar *cCommand = g_strdup_printf("bash %s/wifi %s", MY_APPLET_SHARE_DATA_DIR, s_cTmpFile);
-	system (cCommand);
-	g_free (cCommand);
-	close (fds);
-	
-	/*if (myData.cConnName != NULL) {
-		s_cTmpFileAccessPoint = g_strdup ("/tmp/wifi-access.XXXXXX");
-		fds =mkstemp (s_cTmpFileAccessPoint);
-		if (fds == -1)
-		{
-			g_free (s_cTmpFileAccessPoint);
-			s_cTmpFileAccessPoint = NULL;
-			return;
-		}
-		cCommand = g_strdup_printf("bash %s/access-point %s %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName, s_cTmpFileAccessPoint);
-		system (cCommand);
-		g_free (cCommand);
-		close(fds);
-	}*/  /// Il faudrait en faire quelque chose ...
-	
-}
 
 static float pourcent(float x, float y) {
   float p = 0;
@@ -159,24 +129,27 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	return TRUE;
 }
 
-void cd_wifi_read_data (void) {
-	if (s_cTmpFile == NULL)
-		return ;
-		
-	gchar *cContent = NULL;
-	gsize length = 0;
-	GError *erreur = NULL;
+void cd_wifi_read_data (void)
+{
+	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
+	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+	g_free (cCommand);
 	
-	g_file_get_contents (s_cTmpFile, &cContent, &length, &erreur);
-	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
+	/*if (myData.cConnName != NULL) {
+		cCommand = g_strdup_printf("bash %s/access-point %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName, s_cTmpFileAccessPoint);
+		gchar *cResult2 = cairo_dock_launch_command_sync (cCommand);
+		g_free (cCommand);
+	}*/  /// Il faudrait en faire quelque chose ...
+	
+	if (cResult == NULL)
+	{
+		cd_warning ("wifi : couldn't retrieve infos\nIt may happen if 'iwconfig' needs root priviledges.");
 		myData.bAcquisitionOK = FALSE;
 	}
-	else {
-		gboolean bAcquisitionOK = _wifi_get_values_from_file (cContent, &myData.flink, &myData.mlink, &myData.prcnt, &myData.iQuality);
-		g_free (cContent);
+	else
+	{
+		gboolean bAcquisitionOK = _wifi_get_values_from_file (cResult, &myData.flink, &myData.mlink, &myData.prcnt, &myData.iQuality);
+		g_free (cResult);
 		
 		if (! bAcquisitionOK || myData.prcnt <= 0) {
 			myData.bAcquisitionOK = FALSE;
@@ -187,10 +160,6 @@ void cd_wifi_read_data (void) {
 			myData.bAcquisitionOK = TRUE;
 		}
 	}
-	
-	g_remove (s_cTmpFile);
-	g_free (s_cTmpFile);
-	s_cTmpFile = NULL;
 }
 
 
@@ -203,6 +172,5 @@ gboolean cd_wifi_update_from_data (void) {
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
 	}
-	
 	return TRUE;
 }
