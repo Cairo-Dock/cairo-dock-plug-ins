@@ -64,6 +64,11 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
 	if (pLastIcon != NULL)
 		pDock->iMaxRightMargin = fExtraWidth/2 + pLastIcon->fWidth;
+	
+	pDock->inputArea.x = fExtraWidthMin/2;
+	pDock->inputArea.y = 0;
+	pDock->inputArea.width = pDock->iMinDockWidth - fExtraWidthMin;
+	pDock->inputArea.height = pDock->iMinDockHeight;
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY)

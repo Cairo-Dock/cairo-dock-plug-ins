@@ -99,7 +99,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pTopSurface);
 	
 	g_free (myData.cModelName);
-	g_free (myData.cModelName);
 	g_free (myData.cGPUName);
 	g_free (myData.cDriverVersion);
 	
