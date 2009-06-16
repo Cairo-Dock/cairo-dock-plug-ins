@@ -67,10 +67,17 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 			{
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myDesklet ?
-							(myData.cpu_usage < 10 ? "CPU:%.1f%%" : "CPU:%.0f%%") :
-							(myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%")),
-						myData.cpu_usage);
+					if (myConfig.bShowCpu)
+					{
+						CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ((myDesklet ?
+								(myData.cpu_usage < 10 ? "CPU:%.1f%%" : "CPU:%.0f%%") :
+								(myData.cpu_usage < 10 ? "%.1f%%" : "%.0f%%")),
+							myData.cpu_usage);
+					}
+					else if (myConfig.bShowRam)
+					{
+						
+					}
 				}
 				else
 				{
@@ -87,7 +94,8 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 			}
 			if (myConfig.bShowRam)
 			{
-				fValues[i++] = (double) (myConfig.bShowFreeMemory ? myData.ramFree + myData.ramCached : myData.ramUsed - myData.ramCached) / myData.ramTotal;
+				fValues[i++] = (double) (myConfig.bShowFreeMemory ? myData.ramFree + myData.ramCached + myData.ramBuffers : myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
+				g_print ("RAM : %.2f%%\n", fValues[i-1]*100);
 			}
 			if (myConfig.bShowSwap)
 			{

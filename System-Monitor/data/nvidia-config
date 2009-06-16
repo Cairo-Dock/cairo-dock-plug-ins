@@ -1,0 +1,9 @@
+#!/bin/bash
+
+nvidia-settings -v | grep version | head -n 1
+echo ""
+nvidia-settings -q Gpus | cut -d '(' -f 2 -s
+echo ""
+nvidia-settings -q VideoRam -t
+echo ""
+nvidia-settings -q NvidiaDriverVersion -t
