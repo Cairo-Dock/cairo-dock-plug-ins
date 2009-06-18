@@ -28,6 +28,14 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 	else {
 		myData.iGPUTemp = iGpuTemp;
 	}
+	
+	myData.fPrevGpuTempPercent = myData.fGpuTempPercent;
+	if (myData.iGPUTemp <= myConfig.iLowerLimit)
+		myData.fGpuTempPercent = 0;
+	else if (myData.iGPUTemp >= myConfig.iUpperLimit )
+		myData.fGpuTempPercent = 1.;
+	else
+		myData.fGpuTempPercent = (double) (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
 }
 
 
@@ -36,7 +44,7 @@ void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
 	gchar *cCommand = g_strdup_printf ("bash %s/nvidia-config", MY_APPLET_SHARE_DATA_DIR);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
-	if (cResult == NULL || *cResult == '\n')  // les 'echo ""' du script rajoutent des retours chariots.
+	if (cResult == NULL || *cResult == '\n')
 	{
 		myData.cGPUName = g_strdup ("none");
 		return ;

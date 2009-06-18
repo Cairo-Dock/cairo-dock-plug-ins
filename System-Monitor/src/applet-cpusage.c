@@ -100,7 +100,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 			}*/
 			
 			if (str != NULL)
-				line = str;  // optimisation : on se place au milieu de la ligne.
+				line = str;  // optimisation : on se place apres ce qu'on a trouve.
 			
 			str = strchr (line, '\n');
 			if (str == NULL)
@@ -167,12 +167,13 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 	go_to_next_value(tmp)
 	new_cpu_idle = atoll (tmp);
 	
+	myData.fPrevCpuPercent = myData.fCpuPercent;
 	if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 	{
-		myData.cpu_usage = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
-		if (myData.cpu_usage < 0)  // peut arriver car le fichier pipe est pas mis a jour tous les dt, donc il y'a potentiellement un ecart de dt avec la vraie valeur. Ca plus le temps d'execution.  
-			myData.cpu_usage = 0;
-		cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
+		myData.fCpuPercent = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
+		if (myData.fCpuPercent < 0)  // peut arriver car le fichier pipe est pas mis a jour tous les dt, donc il y'a potentiellement un ecart de dt avec la vraie valeur. Ca plus le temps d'execution.  
+			myData.fCpuPercent = 0;
+		/*cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
 			myData.iNbCPU,
 			myData.cpu_user, new_cpu_user,
 			myData.cpu_user_nice, new_cpu_user_nice,
@@ -182,7 +183,7 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 			(new_cpu_user - myData.cpu_user) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
 			(new_cpu_user_nice - myData.cpu_user_nice) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
 			(new_cpu_system - myData.cpu_system) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
+			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);*/
 	}
 	myData.cpu_user = new_cpu_user;
 	myData.cpu_user_nice = new_cpu_user_nice;

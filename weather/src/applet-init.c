@@ -29,9 +29,10 @@ CD_APPLET_PRE_INIT_END
 
 
 CD_APPLET_INIT_BEGIN
+	// On lance la mesure periodique.
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		(CairoDockAquisitionTimerFunc) cd_weather_acquisition,
-		(CairoDockReadTimerFunc) cd_weather_read_data,
+		(CairoDockAquisitionTimerFunc) NULL,
+		(CairoDockReadTimerFunc) cd_weather_get_distant_data,
 		(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
 		myApplet);
 	cairo_dock_launch_measure (myData.pMeasureTimer);
@@ -41,6 +42,8 @@ CD_APPLET_INIT_BEGIN
 		gpointer data[3] = {"Loading...", NULL, FALSE};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
 	}*/
+	
+	// On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -61,10 +64,9 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		
 		if (myConfig.bSetName)
 		{
-			CD_APPLET_DELETE_MY_ICONS_LIST;
+			CD_APPLET_DELETE_MY_ICONS_LIST;  // comme on va changer le nom, autant virer les icones du sous-dock des maintenant.
 			g_free (myIcon->acName);
 			myIcon->acName = NULL;
 		}
@@ -85,8 +87,8 @@ CD_APPLET_RELOAD_BEGIN
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		
 		myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-			(CairoDockAquisitionTimerFunc) cd_weather_acquisition,
-			(CairoDockReadTimerFunc) cd_weather_read_data,
+			(CairoDockAquisitionTimerFunc) NULL,
+			(CairoDockReadTimerFunc) cd_weather_get_distant_data,
 			(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
 			myApplet);
 		cairo_dock_launch_measure (myData.pMeasureTimer);

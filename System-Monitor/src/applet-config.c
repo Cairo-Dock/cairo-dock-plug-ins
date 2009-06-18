@@ -5,7 +5,6 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 
-#define CD_APPLET_REMOVE_MY_DATA_RENDERER cairo_dock_remove_data_renderer_on_icon (myIcon)
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.

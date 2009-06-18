@@ -80,14 +80,18 @@ struct _AppletData {
 	gboolean bAcquisitionOK;
 	GTimer *pClock;
 	long long int cpu_user, cpu_user_nice, cpu_system, cpu_idle;
-	gdouble cpu_usage;
 	unsigned long long ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	unsigned long long swapTotal, swapFree, swapUsed;
-	gdouble fPrevRamPercent, fPrevSwapPercent;
 	gint iGPUTemp;
+	gdouble fCpuPercent;
+	gdouble fPrevCpuPercent;
+	gdouble fRamPercent,fSwapPercent;
+	gdouble fPrevRamPercent, fPrevSwapPercent;
+	gdouble fGpuTempPercent;
+	gdouble fPrevGpuTempPercent;
 	// fin de la memoire partagee.
 	gboolean bAlerted;
-	gint iCount;
+	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	
 	gint iNbProcesses;
 	CairoDialog *pTopDialog;

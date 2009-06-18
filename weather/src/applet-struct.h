@@ -76,16 +76,17 @@ typedef struct {
 	} Day;
 
 struct _AppletData {
+	// memoire partagee.
 	Unit units;
 	gchar *cLocation;
 	gchar *cLon;
 	gchar *cLat;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
+	gboolean bErrorInThread;
+	// fin memoire partagee.
 	CairoDockMeasure *pMeasureTimer;
 	gboolean bErrorRetrievingData;
-	gchar *cCCDataFilePath;
-	gchar *cForecastDataFilePath;
 	GList *pLocationsList;
 	} ;
 

@@ -16,11 +16,8 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	"Left click on the icon to get a list of the most ressources using programs."),
 	"parAdOxxx_ZeRo & Fabounet")
 
-#define CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON(pAttr) cairo_dock_add_new_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
-#define CD_APPLET_RELOAD_MY_DATA_RENDERER(pAttr) cairo_dock_reload_data_renderer_on_icon (myIcon, myContainer, myDrawContext, pAttr)
-#define CAIRO_DATA_RENDERER_ATTRIBUTE(pAttr) ((CairoDataRendererAttribute *) pAttr)
 
-static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
+static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 {
 	cd_sysmonitor_get_data (myApplet);
 	cd_sysmonitor_update_from_data (myApplet);
@@ -45,7 +42,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraph2Attribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = 40;
+		pRenderAttr->iMemorySize = (int) myIcon->fWidth;  // bon compromis sur la lisibilite.
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.bMixGraphs = myConfig.bMixGraph;
@@ -82,7 +79,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	}
 	else if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
 	{
-		
+		/// A FAIRE...
 	}
 	if (pRenderAttr != NULL)
 	{
@@ -109,7 +106,7 @@ CD_APPLET_INIT_BEGIN
 	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
 		NULL,
 		NULL,  // cd_sysmonitor_get_data
-		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_sysmonitor_update_from_data
+		(CairoDockUpdateTimerFunc) _unthreaded_task,  // cd_sysmonitor_update_from_data
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_measure (myData.pMeasureTimer);

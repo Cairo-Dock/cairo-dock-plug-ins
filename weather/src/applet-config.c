@@ -96,8 +96,6 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_free_measure_timer (myData.pMeasureTimer);
 	
-	g_free (myData.cCCDataFilePath);
-	g_free (myData.cForecastDataFilePath);
 	g_free (myData.cLon);
 	g_free (myData.cLat);
 	_reset_units (&myData.units);

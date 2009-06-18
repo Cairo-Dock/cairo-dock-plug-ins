@@ -36,59 +36,6 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 	return cLocationFilePath;
 }
 
-void cd_weather_acquisition (CairoDockModuleInstance *myApplet)
-{
-	gboolean bTest = FALSE;
-	int r;
-	gchar *cCommand;
-	if (myConfig.bCurrentConditions)
-	{
-		g_free (myData.cCCDataFilePath);
-		myData.cCCDataFilePath = g_strdup ("/tmp/weather-cc.XXXXXX");
-		int fds = mkstemp (myData.cCCDataFilePath);
-		if (fds == -1)
-		{
-			g_free (myData.cCCDataFilePath);
-			myData.cCCDataFilePath = NULL;
-			return;
-		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), myData.cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		cd_debug ("weather : %s", cCommand);
-		r = system (cCommand);
-		g_free (cCommand);
-		close(fds);
-	}
-	
-	
-	if (myConfig.iNbDays > 0)
-	{
-		g_free (myData.cForecastDataFilePath);
-		myData.cForecastDataFilePath = g_strdup ("/tmp/weather-forecast.XXXXXX");
-		int fds = mkstemp (myData.cForecastDataFilePath);
-		if (fds == -1)
-		{
-			g_free (myData.cForecastDataFilePath);
-			myData.cForecastDataFilePath = NULL;
-			return;
-		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), myData.cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		cd_debug ("weather : %s", cCommand);
-		r = system (cCommand);
-		g_free (cCommand);
-		close(fds);
-	}
-	
-	if (bTest/* && g_file_test ("~/plug-ins/weather/data/frxx0076.xml", G_FILE_TEST_EXISTS)*/)
-	{
-		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/frxx0076.xml %s", myData.cCCDataFilePath);
-		r = system (cCommand);
-		g_free (cCommand);
-		
-		cCommand = g_strdup_printf ("cp ~/plug-ins/weather/data/FRXX0076-meteo.xml %s", myData.cForecastDataFilePath);
-		r = system (cCommand);
-		g_free (cCommand);
-	}
-}
 
 static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *root_node, gchar *cRootNodeName, GError **erreur)
 {
@@ -144,7 +91,9 @@ GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 	_cd_weather_close_xml_file (doc);
 	return cLocationsList;
 }
-void cd_weather_parse_data (CairoDockModuleInstance *myApplet, gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
+
+
+static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
 {
 	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
@@ -325,44 +274,78 @@ void cd_weather_parse_data (CairoDockModuleInstance *myApplet, gchar *cDataFileP
 }
 
 
-void cd_weather_read_data (CairoDockModuleInstance *myApplet)
+void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 {
-	GError *erreur = NULL;
+	//\____________________ On recupere les conditions courantes sur le serveur.
+	int r;
+	gchar *cCommand;
+	gchar *cCCDataFilePath = NULL;
 	if (myConfig.bCurrentConditions)
 	{
-		if (myData.cCCDataFilePath == NULL)
-			return ;
-		cd_weather_parse_data (myApplet, myData.cCCDataFilePath, TRUE, &erreur);
-		if (erreur != NULL)
+		cCCDataFilePath = g_strdup ("/tmp/weather-cc.XXXXXX");
+		int fds = mkstemp (cCCDataFilePath);
+		if (fds == -1)
 		{
-			cd_warning ("weather : %s", erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-			myData.bErrorRetrievingData = TRUE;
+			g_free (cCCDataFilePath);
+			return;
 		}
-		else
-			myData.bErrorRetrievingData = FALSE;
-		g_remove (myData.cCCDataFilePath);
-		g_free (myData.cCCDataFilePath);
-		myData.cCCDataFilePath = NULL;
+		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cd_debug ("weather : %s", cCommand);
+		r = system (cCommand);
+		g_free (cCommand);
+		close(fds);
 	}
 	
+	//\____________________ On recupere les previsions a N jours sur le serveur.
+	gchar *cForecastDataFilePath = NULL;
 	if (myConfig.iNbDays > 0)
 	{
-		if (myData.cForecastDataFilePath == NULL)
-			return ;
-		cd_weather_parse_data (myApplet, myData.cForecastDataFilePath, FALSE, &erreur);
+		cForecastDataFilePath = g_strdup ("/tmp/weather-forecast.XXXXXX");
+		int fds = mkstemp (cForecastDataFilePath);
+		if (fds == -1)
+		{
+			g_free (cForecastDataFilePath);
+			return;
+		}
+		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 3 -T 10", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cd_debug ("weather : %s", cCommand);
+		r = system (cCommand);
+		g_free (cCommand);
+		close(fds);
+	}
+	
+	//\____________________ On extrait les donnees des conditions courantes.
+	GError *erreur = NULL;
+	if (cCCDataFilePath != NULL)
+	{
+		_cd_weather_parse_data (myApplet, cCCDataFilePath, TRUE, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("weather : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
-			myData.bErrorRetrievingData = TRUE;
+			myData.bErrorInThread = TRUE;
 		}
 		else
-			myData.bErrorRetrievingData = FALSE;
-		g_remove (myData.cForecastDataFilePath);
-		g_free (myData.cForecastDataFilePath);
-		myData.cForecastDataFilePath = NULL;
+			myData.bErrorInThread = FALSE;
+		g_remove (cCCDataFilePath);
+		g_free (cCCDataFilePath);
+	}
+	
+	//\____________________ On extrait les donnees des previsions a N jours.
+	if (cForecastDataFilePath != NULL)
+	{
+		_cd_weather_parse_data (myApplet, cForecastDataFilePath, FALSE, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("weather : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorInThread = TRUE;
+		}
+		else
+			myData.bErrorInThread = FALSE;
+		g_remove (cForecastDataFilePath);
+		g_free (cForecastDataFilePath);
 	}
 }

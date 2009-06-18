@@ -310,6 +310,24 @@ void cd_sysmonitor_stop_top_dialog (CairoDockModuleInstance *myApplet)
 	cd_sysmonitor_clean_all_processes (myApplet);
 }
 
+static void _sort_one_process (int *iPid, CDProcess *pProcess, CairoDockModuleInstance *myApplet)
+{
+	_cd_sysmonitor_insert_process_in_top_list (myApplet, pProcess);
+}
+static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+{
+	gboolean bSortByRamNew = (iClickedButton == 1);
+	if (bSortByRamNew != myData.bSortTopByRam)  // on peut lire myData.bSortTopByRam car le thread n'y accede qu'en lecture.
+	{
+		cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);  // le thread se termine.
+		myData.bSortTopByRam = bSortByRamNew;
+		memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));  // on re-trie tout suivant le nouvel ordre.
+		g_hash_table_foreach (myData.pProcessTable, (GHFunc) _sort_one_process, myApplet);
+		_cd_sysmonitor_update_top_list (myApplet);  // on redessine.
+		cairo_dock_launch_measure_delayed (myData.pTopMeasureTimer, 1000. * myConfig.iProcessCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
+	}
+	cairo_dock_dialog_reference (pDialog);
+}
 void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pTopDialog == NULL);
@@ -319,7 +337,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	gtk_widget_set_size_request (pInteractiveWidget,
 		myConfig.pTopTextDescription->iSize * 15,
 		myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
-	myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
+	/*myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
 		myIcon,
 		myContainer,
 		0,
@@ -327,7 +345,18 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 		pInteractiveWidget,
 		NULL,
 		NULL,
-		NULL);
+		NULL);*/
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.cText = cTitle;
+	attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE;
+	attr.pInteractiveWidget = pInteractiveWidget;
+	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_change_order;
+	attr.pUserData = myApplet;
+	gchar *cButtons[3] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.png", MY_APPLET_SHARE_DATA_DIR"/button-ram.png", NULL};
+	attr.cButtonsImage = cButtons;
+	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon,	myContainer);
+	
 	g_free (cTitle);
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
