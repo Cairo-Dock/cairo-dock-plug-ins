@@ -79,7 +79,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
-		int r = system ("kde-system-monitor");
+		int r = system ("kde-system-monitor &");
 	}
 	else
 	{

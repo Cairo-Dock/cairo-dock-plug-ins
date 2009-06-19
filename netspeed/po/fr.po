@@ -73,7 +73,7 @@ msgid ""
 msgstr ""
 "L'interface '%s' semble ne pas exister ou n'est pas lisible.\n"
 "Vous devriez ouvrir la configuration de cette applet, et choisir l'interface "
-"que vous voulez monitorer."
+"que vous voulez surveiller."
 
 #: ../src/applet-notifications.c:44
 msgid "Monitor System"

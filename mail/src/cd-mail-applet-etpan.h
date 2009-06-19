@@ -6,8 +6,7 @@
 #include "cd-mail-applet-struct.h"
 
 
-void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount);
-void cd_mail_read_folder_data(CDMailAccount *pMailAccount);
+void cd_mail_get_folder_data(CDMailAccount *pMailAccount);
 gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount );
 
 void cd_mail_load_icons( CairoDockModuleInstance *myApplet );

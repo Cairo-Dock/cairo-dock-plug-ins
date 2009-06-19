@@ -9,9 +9,6 @@ icon size = 0;0
 #s Name of the icon as it will appear in its label in the dock :
 name = netspeed
 
-#S+ Image's filename :
-icon = 
-
 #d Name of the dock it belongs to:
 dock name = 
 
@@ -84,63 +81,39 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b+ Display a graphic rather than a gauge ?
-use graphic = false
+#r+[Gauge;Graph] Choose the style of the display : 
+renderer = 0
 
-#v
-sep_graph =
+
+#F[Gauge;gtk-dialog-info]
+frame_gauge=
+
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+theme = Turbo-night-fuel
+
+
+#F[Graph;gtk-dialog-info]
+frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
-#c+3[0;1] High values color for the download speed :
+#c+3[0;1] High values color :
 #{It's the color of the graphic for high CPU values.}
-high color = 0;0;1
+high color = 1;0;0
 
-#c+3[0;1] Low values color for the download speed :
+#c+3[0;1] Low values color :
 #{It's the color of the graphic for low CPU values.}
-low color = 0;1;0
-
-#c+3[0;1] High values color for the upload speed :
-#{It's the color of the graphic for high CPU values.}
-high color2 = 1;0;0
-
-#c+3[0;1] Low values color for the upload speed :
-#{It's the color of the graphic for low CPU values.}
-low color2 = 1;1;0
-
-#b Draw both values on the same graph ?
-mix graph = false
+low color = 1;1;0
 
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#v
-sep_gauge =
+#b Show all values on same graph ?
+mix graph = false
 
-#h+[/usr/share/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = Turbo-night-fuel
-
-#v
-sep1=
-
-#S+ Image to display as a watermark on the gauge :
-#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
-watermark image =
-
-#e+[0;1] Transparency of the watermark :
-#{Set it up to 0 if you don't want to have a watermark.}
-watermark alpha = .6
-
-#v
-sep2=
-
-#r[No;On icon;On label] Display speed values :
-info display = 1
-
-
-#F[Configuration;gtk-preferences]
-frame_conf=
+#F[Parameters;gtk-dialog-info]
+frame_param =
 
 #s interface :
 #{By default it will be 'eth0'.}
@@ -149,6 +122,9 @@ interface =
 #i[1;30] Delay between 2 measures :
 #{in seconds.}
 delay = 3
+
+#r[No;On icon;On label] Display speed values :
+info display = 1
 
 #s User command to show a system monitor :
 #{Let empty to use he default one.}

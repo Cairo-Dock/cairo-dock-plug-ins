@@ -5,14 +5,23 @@
 #include <cairo-dock.h>
 
 
+typedef enum _CDNetspeedDisplayType {
+	CD_NETSPEED_GAUGE=0,
+	CD_NETSPEED_GRAPH,
+	CD_NETSPEED_BAR,
+	CD_NETSPEED_NB_TYPES
+	} CDNetspeedDisplayType; 
+
+#define CD_NETSPEED_NB_MAX_VALUES 2
+
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
-	const gchar *cGThemePath;
+	gchar *cGThemePath;
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	
-	gboolean bUseGraphic;
+	CDNetspeedDisplayType iDisplayType;
 	CairoDockTypeGraph iGraphType;
 	gboolean bMixGraph;
 	gdouble fLowColor[3];  // Down
@@ -26,18 +35,19 @@ struct _AppletConfig {
 	CairoDockInfoDisplay iInfoDisplay;
 	
 	gchar *cSystemMonitorCommand;
+	gdouble fSmoothFactor;
 } ;
 
 struct _AppletData {
 	GTimer *pClock;
+	// shared memory
 	gboolean bInitialized;
+	gboolean bAcquisitionOK;
 	long long int iReceivedBytes, iTransmittedBytes;
 	gint iDownloadSpeed, iUploadSpeed;
 	gint iMaxUpRate, iMaxDownRate;
-	gboolean bAcquisitionOK;
-	CairoDockTask *pTask;
-	Gauge *pGauge;
-	CairoDockGraph *pGraph;
+	// end of shared memory
+	CairoDockTask *pPeriodicTask;
 	DBusGProxy *dbus_proxy_nm;
 } ;
 

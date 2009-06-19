@@ -78,6 +78,7 @@ CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
+	g_free (myConfig.cGThemePath);
 	g_free (myConfig.defaultTitle);
 	cairo_dock_free_label_description (myConfig.pTopTextDescription);
 	g_free (myConfig.cWatermarkImagePath);

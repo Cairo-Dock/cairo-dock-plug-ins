@@ -26,7 +26,7 @@ struct _AppletConfig {
 	gboolean bShowFreeMemory;
 	
 	CairoDockInfoDisplay iInfoDisplay;
-	const gchar *cGThemePath;
+	gchar *cGThemePath;
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;
 	

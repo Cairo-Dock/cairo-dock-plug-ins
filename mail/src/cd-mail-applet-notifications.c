@@ -105,7 +105,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL)
-		return ;
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 
 	CDMailAccount *pMailAccount;
 	guint i;
@@ -121,7 +121,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
 		g_print ("account is being checked, wait a second\n");
-		return ;
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
 	struct mail_flags *pFlags = NULL;

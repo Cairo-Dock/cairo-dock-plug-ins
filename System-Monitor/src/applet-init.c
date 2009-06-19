@@ -13,7 +13,8 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\n"
 	"Middle click on the icon to get some valuable info.\n"
-	"Left click on the icon to get a list of the most ressources using programs."),
+	"Left click on the icon to get a list of the most ressources using programs.\n"
+	"You can instanciate this applet several times to show different values each time."),
 	"parAdOxxx_ZeRo & Fabounet")
 
 
@@ -27,7 +28,6 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
 	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
-	int iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
@@ -42,7 +42,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraph2Attribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = (int) myIcon->fWidth;  // bon compromis sur la lisibilite.
+		pRenderAttr->iMemorySize = 32;  // bon compromis sur la lisibilite.
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.bMixGraphs = myConfig.bMixGraph;
@@ -84,7 +84,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	if (pRenderAttr != NULL)
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = iNbValues;
+		pRenderAttr->iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
 		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -137,7 +137,6 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
 		cd_sysmonitor_stop_top_dialog (myApplet);

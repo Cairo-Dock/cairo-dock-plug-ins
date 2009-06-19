@@ -16,6 +16,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cInterface = g_strdup ("eth0");
 	myConfig.iStringLen = strlen (myConfig.cInterface);
 	
+	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
@@ -25,7 +26,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
 	}
 	
-	myConfig.bUseGraphic = CD_CONFIG_GET_BOOLEAN ("Configuration", "use graphic");
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
@@ -39,6 +39,7 @@ CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
+	g_free (myConfig.cGThemePath);
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cInterface);
 	g_free (myConfig.cWatermarkImagePath);
@@ -47,14 +48,12 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pTask);
+	cairo_dock_free_task (myData.pPeriodicTask);
 	
 	if (myData.dbus_proxy_nm != NULL)
 		g_object_unref (myData.dbus_proxy_nm);
 	
-	//Adieu la jauge...
-	cairo_dock_free_gauge(myData.pGauge);
-	cairo_dock_free_graph (myData.pGraph);
+	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 	g_timer_destroy (myData.pClock);
 CD_APPLET_RESET_DATA_END

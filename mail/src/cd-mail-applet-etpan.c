@@ -36,7 +36,8 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 		pIconList = g_list_append (pIconList, pIcon);\
 		pMailAccount->icon = pIcon; }
 
-void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount)
+
+void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donnees des mails (nombre, titres, resume eventuellement) et les placer dans une structure dediee a l'affichage...
 {
 	if( ! pMailAccount )
 		return ;
@@ -174,16 +175,6 @@ void cd_mail_acquire_folder_data(CDMailAccount *pMailAccount)
 			mailstorage_disconnect(pMailAccount->storage);  /// utile ?? il n'y a pas de mailstorage_connect ...
 		}
 	}
-}
-
-/*
- * Extraire les donnees des mails (nombre, titres, resume eventuellement)
- * et les placer dans une structure dediee a l'affichage
- */
-void cd_mail_read_folder_data(CDMailAccount *pMailAccount)
-{
-	if( !pMailAccount ) return;
-	
 }
 
 gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )

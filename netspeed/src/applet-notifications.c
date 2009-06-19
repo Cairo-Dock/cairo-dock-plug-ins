@@ -11,18 +11,26 @@ CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);
 	if (myData.bAcquisitionOK)
 	{
-		cairo_dock_show_temporary_dialog("%s :\n  %s : %.2f%s\n  %s : %.2f%s", myIcon, myContainer, 5e3, D_("Total amount of data"), D_("downloaded"), (double) myData.iReceivedBytes / (1024*1204), D_("MB"), D_("uploaded"), (double) myData.iTransmittedBytes / (1024*1204), D_("MB"));
+		cairo_dock_show_temporary_dialog_with_icon ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
+			myIcon, myContainer, 6e3,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			D_("Total amount of data"),
+			D_("downloaded"), (double) myData.iReceivedBytes / (1024*1204), D_("MB"),
+			D_("uploaded"), (double) myData.iTransmittedBytes / (1024*1204), D_("MB"));
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog(D_("Interface '%s' seems to not exist or is not readable.\n You may need to open the configuration panel of this applet, and choose the interface you wish to monitor."), myIcon, myContainer, 5e3, myConfig.cInterface);
+		cairo_dock_show_temporary_dialog_with_icon (D_("Interface '%s' seems to not exist or is not readable.\n You may need to open the configuration panel of this applet, and choose the interface you wish to monitor."),
+		myIcon, myContainer, 8e3,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+		myConfig.cInterface);
 	}
 CD_APPLET_ON_CLICK_END
 
 
 static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
-	cairo_dock_stop_task (myData.pTask);
-	cairo_dock_launch_task (myData.pTask);
+	cairo_dock_stop_task (myData.pPeriodicTask);
+	cairo_dock_launch_task (myData.pPeriodicTask);
 }
 static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
@@ -32,7 +40,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
-		system ("kde-system-monitor");
+		int r = system ("kde-system-monitor &");
 	}
 	else
 	{
