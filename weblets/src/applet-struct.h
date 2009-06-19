@@ -28,7 +28,7 @@ struct _AppletData {
       CairoDialog *dialog;
 	    GtkWidget *pGtkMozEmbed;
 	    WebKitWebView *pWebKitView;
-	    CairoDockMeasure *pRefreshTimer;
+	    CairoDockTask *pRefreshTimer;
 	} ;
 
 

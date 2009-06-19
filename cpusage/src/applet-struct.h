@@ -44,7 +44,7 @@ struct _AppletData {
 	gchar *cModelName;
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	GTimer *pClock;
 	long long int cpu_user, cpu_user_nice, cpu_system, cpu_idle;
 	gdouble cpu_usage;
@@ -55,7 +55,7 @@ struct _AppletData {
 	CairoDialog *pTopDialog;
 	GTimer *pTopClock;
 	cairo_surface_t *pTopSurface;
-	CairoDockMeasure *pTopMeasureTimer;
+	CairoDockTask *pTopTask;
 } ;
 
 

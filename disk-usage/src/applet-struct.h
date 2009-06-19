@@ -46,7 +46,7 @@ struct _AppletData {
 	
 	gboolean bAcquisitionOK;
 	
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 } ;
 
 #endif

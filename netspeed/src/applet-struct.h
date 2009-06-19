@@ -35,7 +35,7 @@ struct _AppletData {
 	gint iDownloadSpeed, iUploadSpeed;
 	gint iMaxUpRate, iMaxDownRate;
 	gboolean bAcquisitionOK;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	Gauge *pGauge;
 	CairoDockGraph *pGraph;
 	DBusGProxy *dbus_proxy_nm;

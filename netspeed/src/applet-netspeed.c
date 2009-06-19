@@ -154,11 +154,11 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_RENDER_GRAPH (myData.pGraph);
 		}
 		
-		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
+		cairo_dock_downgrade_frequency_state (myData.pTask);
 	}
 	else
 	{
-		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
+		cairo_dock_set_normal_frequency_state (myData.pTask);
 		
 		if (! myData.bInitialized)
 		{

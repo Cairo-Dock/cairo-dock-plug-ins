@@ -49,7 +49,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (myData.pTopDialog != NULL)
 		{
-			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+			cairo_dock_stop_task (myData.pTopTask);
 			cairo_dock_dialog_unreference (myData.pTopDialog);
 			myData.pTopDialog = NULL;
 			cairo_surface_destroy (myData.pTopSurface);
@@ -80,13 +80,12 @@ CD_APPLET_ON_CLICK_BEGIN
 		gpointer pConfig[2] = {myConfig.pTopTextDescription, "Loading ..."};
 		cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", myDrawContext, (CairoDialogRendererConfigPtr) pConfig);
 		
-		if (myData.pTopMeasureTimer == NULL)
-			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (5,
-				NULL,
-				(CairoDockReadTimerFunc) _cd_rame_get_top_list,
-				(CairoDockUpdateTimerFunc) _cd_rame_update_top_list,
+		if (myData.pTopTask == NULL)
+			myData.pTopTask = cairo_dock_new_task (5,
+				(CairoDockGetDataAsyncFunc) _cd_rame_get_top_list,
+				(CairoDockUpdateSyncFunc) _cd_rame_update_top_list,
 				myApplet);
-		cairo_dock_launch_measure (myData.pTopMeasureTimer);
+		cairo_dock_launch_task (myData.pTopTask);
 	}
 	else
 		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 3e3);

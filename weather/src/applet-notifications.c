@@ -42,9 +42,9 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+	cairo_dock_stop_task (myData.pTask);
 	
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

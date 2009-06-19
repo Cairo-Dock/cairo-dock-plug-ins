@@ -61,7 +61,7 @@ typedef struct {
     int auth_type;
     gchar *path;
     guint timeout;
-    CairoDockMeasure *pAccountMailTimer;
+    CairoDockTask *pAccountMailTimer;
     Icon *icon;
     gboolean bInitialized;
     GList *pUnseenMessageList;  // liste de gchar*

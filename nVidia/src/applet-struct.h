@@ -52,8 +52,8 @@ struct _AppletData {
 	gboolean bAlerted;
 	gboolean bSettingsTooOld;
 	gint iPreviousGPUTemp;
-	CairoDockMeasure *pMeasureTimer;
-	CairoDockMeasure *pConfigMeasureTimer;
+	CairoDockTask *pTask;
+	CairoDockTask *pConfigTask;
 	Gauge *pGauge;
 	CairoDockGraph *pGraph;
 } ;

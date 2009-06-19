@@ -26,7 +26,7 @@ struct _AppletData {
 	gboolean opening;
 	guint iSidCheckNotes;
 	GHashTable *hNoteTable;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	} ;
 
 #endif

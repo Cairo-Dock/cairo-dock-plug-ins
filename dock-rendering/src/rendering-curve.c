@@ -85,6 +85,11 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+	
+	pDock->inputArea.x = fDeltaX+fDeltaTip;
+	pDock->inputArea.y = 0;
+	pDock->inputArea.width = pDock->iMinDockWidth - 2 * (fDeltaX+fDeltaTip);
+	pDock->inputArea.height = pDock->iMinDockHeight;
 }
 
 

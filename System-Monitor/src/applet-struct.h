@@ -74,7 +74,7 @@ struct _AppletData {
 	gint iVideoRam;
 	gchar *cDriverVersion;
 	
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pPeriodicTask;
 	// memoire partagee pour le thread principal.
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;
@@ -89,6 +89,7 @@ struct _AppletData {
 	gdouble fPrevRamPercent, fPrevSwapPercent;
 	gdouble fGpuTempPercent;
 	gdouble fPrevGpuTempPercent;
+	gboolean bNeedsUpdate;
 	// fin de la memoire partagee.
 	gboolean bAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
@@ -96,7 +97,7 @@ struct _AppletData {
 	gint iNbProcesses;
 	CairoDialog *pTopDialog;
 	cairo_surface_t *pTopSurface;
-	CairoDockMeasure *pTopMeasureTimer;
+	CairoDockTask *pTopTask;
 	// memoire partagee pour le thread "top".
 	GHashTable *pProcessTable;
 	CDProcess **pTopList;

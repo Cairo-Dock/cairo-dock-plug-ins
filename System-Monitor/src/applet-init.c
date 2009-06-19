@@ -85,7 +85,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		pRenderAttr->iNbValues = iNbValues;
-		pRenderAttr->bWriteValues = TRUE;
+		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		else
@@ -101,15 +101,14 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
 	
-	// Initialisation du timer de mesure.
+	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		NULL,
-		NULL,  // cd_sysmonitor_get_data
-		(CairoDockUpdateTimerFunc) _unthreaded_task,  // cd_sysmonitor_update_from_data
+	myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		(CairoDockGetDataAsyncFunc) NULL,  // cd_sysmonitor_get_data
+		(CairoDockUpdateSyncFunc) _unthreaded_task,  // cd_sysmonitor_update_from_data
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pPeriodicTask);
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)
@@ -142,7 +141,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
 		cd_sysmonitor_stop_top_dialog (myApplet);
-
+		
 		_set_data_renderer (myApplet, TRUE);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
@@ -152,12 +151,16 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		myData.bAcquisitionOK = TRUE;
-		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		myData.fPrevCpuPercent = 0;
+		myData.fPrevRamPercent = 0;
+		myData.fPrevSwapPercent = 0;
+		myData.fPrevGpuTempPercent = 0;
+		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 		
 		g_free (myData.pTopList);
 		myData.pTopList = NULL;
-		if (myData.pTopMeasureTimer != NULL)
-			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
+		if (myData.pTopTask != NULL)
+			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iProcessCheckInterval);
 		
 		if (myConfig.cSystemMonitorClass)
 			CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
@@ -172,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
-		if (! cairo_dock_measure_is_running (myData.pMeasureTimer))
+		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
 			cd_sysmonitor_update_from_data (myApplet);
 	}
 CD_APPLET_RELOAD_END

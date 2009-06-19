@@ -30,12 +30,11 @@ CD_APPLET_PRE_INIT_END
 
 CD_APPLET_INIT_BEGIN
 	// On lance la mesure periodique.
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		(CairoDockAquisitionTimerFunc) NULL,
-		(CairoDockReadTimerFunc) cd_weather_get_distant_data,
-		(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		(CairoDockGetDataAsyncFunc) cd_weather_get_distant_data,
+		(CairoDockUpdateSyncFunc) cd_weather_update_from_data,
 		myApplet);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	/**if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
 	{
@@ -86,12 +85,11 @@ CD_APPLET_RELOAD_BEGIN
 	
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		
-		myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-			(CairoDockAquisitionTimerFunc) NULL,
-			(CairoDockReadTimerFunc) cd_weather_get_distant_data,
-			(CairoDockUpdateTimerFunc) cd_weather_update_from_data,
+		myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+			(CairoDockGetDataAsyncFunc) cd_weather_get_distant_data,
+			(CairoDockUpdateSyncFunc) cd_weather_update_from_data,
 			myApplet);
-		cairo_dock_launch_measure (myData.pMeasureTimer);
+		cairo_dock_launch_task (myData.pTask);
 
 	}
 	else

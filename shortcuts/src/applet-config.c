@@ -35,8 +35,8 @@ CD_APPLET_RESET_CONFIG_END
 
 void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
-	cd_shortcuts_stop_disk_measure (myApplet);
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cd_shortcuts_stop_disk_task (myApplet);
+	cairo_dock_free_task (myData.pTask);
 	
 	if (myData.cDisksURI != NULL)
 	{

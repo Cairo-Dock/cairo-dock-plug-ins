@@ -58,19 +58,19 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		//\________________________ On traite le message.
 		if (pDustbin == NULL)  // recalcul complet.
 		{
-			cd_dustbin_measure_all_dustbins (&myData.iNbFiles, &myData.iSize);
+			cd_dustbin_task_all_dustbins (&myData.iNbFiles, &myData.iSize);
 		}
 		else if (cURI == NULL)
 		{
 			g_atomic_int_add (&myData.iNbFiles, - pDustbin->iNbFiles);
 			g_atomic_int_add (&myData.iSize, - pDustbin->iSize);
-			cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+			cd_dustbin_task_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
 			g_atomic_int_add (&myData.iNbFiles, pDustbin->iNbFiles);
 			g_atomic_int_add (&myData.iSize, pDustbin->iSize);
 		}
 		else  // calcul d'un fichier supplementaire.
 		{
-			cd_dustbin_measure_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
+			cd_dustbin_task_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
 			pDustbin->iNbFiles += iNbFiles;
 			pDustbin->iSize += iSize;
 			g_atomic_int_add (&myData.iNbFiles, iNbFiles);
@@ -141,7 +141,7 @@ static gboolean _cd_dustbin_check_for_redraw (gpointer data)
 	}
 	return TRUE;
 }
-static void _cd_dustbin_launch_measure (void)
+static void _cd_dustbin_launch_task (void)
 {
 	cd_message ("");
 	if (g_atomic_int_compare_and_exchange (&s_iThreadIsRunning, 0, 1))  // il etait egal a 0, on lui met 1 et on lance le thread.
@@ -162,9 +162,9 @@ static void _cd_dustbin_launch_measure (void)
 		}
 	}
 }
-static gboolean _cd_dustbin_launch_measure_delayed (gpointer *data)
+static gboolean _cd_dustbin_launch_task_delayed (gpointer *data)
 {
-	_cd_dustbin_launch_measure ();
+	_cd_dustbin_launch_task ();
 	s_iSidDelayMeasure = 0;
 	return FALSE;
 }
@@ -203,7 +203,7 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 			g_source_remove (s_iSidDelayMeasure);
 			s_iSidDelayMeasure = 0;
 		}
-		s_iSidDelayMeasure = g_timeout_add (400, (GSourceFunc) _cd_dustbin_launch_measure_delayed, NULL);  // on retarde le calcul, car il y'a probablement d'autres fichiers qui vont arriver.
+		s_iSidDelayMeasure = g_timeout_add (400, (GSourceFunc) _cd_dustbin_launch_task_delayed, NULL);  // on retarde le calcul, car il y'a probablement d'autres fichiers qui vont arriver.
 	}
 	if (pDustbin == NULL)
 		cd_dustbin_draw_quick_info (TRUE);
@@ -233,7 +233,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	return iNbTrashes;
 }
 
-void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_task_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 	g_atomic_int_set (iNbFiles, 0);
@@ -275,7 +275,7 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 				cd_debug ("  %s est un repertoire", sFilePath->str);
 				iNbFilesSubDir = 0;
 				iSizeSubDir = 0;
-				cd_dustbin_measure_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
+				cd_dustbin_task_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
 				g_atomic_int_add (iNbFiles, iNbFilesSubDir);
 				g_atomic_int_add (iSize, iSizeSubDir);
 				cd_debug ("  + %d fichiers dans ce sous-repertoire", iNbFilesSubDir );
@@ -292,7 +292,7 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 	g_dir_close (dir);
 }
 
-void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_task_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cURI);
 	
@@ -312,7 +312,7 @@ void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDu
 	{
 		if (S_ISDIR (buf.st_mode))
 		{
-			cd_dustbin_measure_directory (cFilePath, iInfoType, pDustbin, iNbFiles, iSize);
+			cd_dustbin_task_directory (cFilePath, iInfoType, pDustbin, iNbFiles, iSize);
 		}
 		else
 		{
@@ -328,7 +328,7 @@ void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDu
 	g_free (cFilePath);
 }
 
-void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
+void cd_dustbin_task_all_dustbins (int *iNbFiles, int *iSize)
 {
 	cd_message ("");
 	g_atomic_int_set (iNbFiles, 0);
@@ -341,7 +341,7 @@ void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 	{
 		pDustbin = pElement->data;
 		
-		cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+		cd_dustbin_task_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
 		
 		g_atomic_int_add (iNbFiles, pDustbin->iNbFiles);
 		g_atomic_int_add (iSize, pDustbin->iSize);
@@ -448,7 +448,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	}
 }
 
-void cd_dustbin_sum_all_measures (int *iNbFiles, int *iSize)
+void cd_dustbin_sum_all_tasks (int *iNbFiles, int *iSize)
 {
 	int iTotalMeasure = 0;
 	CdDustbin *pDustbin;

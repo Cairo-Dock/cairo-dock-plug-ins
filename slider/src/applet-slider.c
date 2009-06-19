@@ -52,7 +52,7 @@ static int _compare_images_order (SliderImage *image2, SliderImage *image1) {
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
-static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha) {
+static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha) {
 #ifdef HAVE_EXIF
 	ExifData *pExifData;
 	ExifEntry *pExifEntry;
@@ -76,7 +76,7 @@ static GList *cd_slider_measure_directory (GList *pList, gchar *cDirectory, gboo
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
 		if (stat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode) && bRecursive) {
-				pList = cd_slider_measure_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
+				pList = cd_slider_task_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
 			}
 			else {
 				extension = strrchr(cFileName,'.');
@@ -142,7 +142,7 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 		return;
 	}
 	
-	myData.pList = cd_slider_measure_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
+	myData.pList = cd_slider_task_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
 	
 	if (myConfig.bRandom) {
 		//cd_debug ("Slider - Mixing images ...");
@@ -277,7 +277,7 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
 		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
 		cd_debug ("Slider - on threade");
-		cairo_dock_launch_measure (myData.pMeasureImage);
+		cairo_dock_launch_task (myData.pMeasureImage);
 		myData.iTimerID = 0;
 		return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
 	}

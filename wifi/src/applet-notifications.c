@@ -16,8 +16,8 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
-	cairo_dock_stop_measure_timer (myData.pMeasureTimer);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_stop_task (myData.pTask);
+	cairo_dock_launch_task (myData.pTask);
 }
 
 static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
@@ -82,6 +82,6 @@ static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver u
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	//On ajoutera la désactivation quand elle sera fonctionnelle...
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

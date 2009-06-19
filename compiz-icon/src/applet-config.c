@@ -74,7 +74,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pTask);
 	
 	if (myIcon->pSubDock != NULL) {
 		CD_APPLET_DESTROY_MY_SUBDOCK;

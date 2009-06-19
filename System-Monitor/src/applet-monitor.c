@@ -16,6 +16,8 @@
 
 void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 {
+	myData.bNeedsUpdate = FALSE;
+	
 	if (myConfig.bShowCpu)
 	{
 		cd_sysmonitor_get_cpu_data (myApplet);
@@ -103,29 +105,32 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				g_string_free (sInfo, TRUE);
 			}
 			
-			int i = 0;
-			if (myConfig.bShowCpu)
+			if (myData.bNeedsUpdate || myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 			{
-				s_fValues[i++] = (double) myData.fCpuPercent / 100;
+				int i = 0;
+				if (myConfig.bShowCpu)
+				{
+					s_fValues[i++] = (double) myData.fCpuPercent / 100;
+				}
+				if (myConfig.bShowRam)
+				{
+					s_fValues[i++] = myData.fRamPercent / 100;
+				}
+				if (myConfig.bShowSwap)
+				{
+					s_fValues[i++] = (double) (myData.swapTotal ? (myConfig.bShowFreeMemory ? myData.swapFree : myData.swapUsed) / myData.swapTotal : 0.);
+				}
+				if (myConfig.bShowNvidia)
+				{
+					s_fValues[i++] = myData.fGpuTempPercent;
+					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
+						myData.bAlerted = FALSE; //On réinitialise l'alerte quand la température descend en dessou de la limite.
+					
+					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
+						cd_nvidia_alert (myApplet);
+				}
+				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 			}
-			if (myConfig.bShowRam)
-			{
-				s_fValues[i++] = myData.fRamPercent / 100;
-			}
-			if (myConfig.bShowSwap)
-			{
-				s_fValues[i++] = (double) (myData.swapTotal ? (myConfig.bShowFreeMemory ? myData.swapFree : myData.swapUsed) / myData.swapTotal : 0.);
-			}
-			if (myConfig.bShowNvidia)
-			{
-				s_fValues[i++] = myData.fGpuTempPercent;
-				if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
-					myData.bAlerted = FALSE; //On réinitialise l'alerte quand la température descend en dessou de la limite.
-				
-				if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
-					cd_nvidia_alert (myApplet);
-			}
-			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
 	}
 	return myData.bAcquisitionOK;

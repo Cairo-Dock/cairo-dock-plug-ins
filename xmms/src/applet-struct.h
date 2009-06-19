@@ -62,7 +62,7 @@ struct _AppletData {
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 } ;
 
 #endif

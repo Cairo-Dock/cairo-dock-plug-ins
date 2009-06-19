@@ -94,7 +94,7 @@ CD_APPLET_RESET_CONFIG_END
 
 void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pTask);
 	
 	g_free (myData.cLon);
 	g_free (myData.cLat);

@@ -128,7 +128,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	//On s'occupe des handelers.
 	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handeler, NULL);
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pTask);
 	
 	//Bye bye pauvres textures opengl
 	glDeleteTextures (1, &myData.TextureFrame);

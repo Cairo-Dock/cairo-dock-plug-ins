@@ -41,12 +41,11 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.iPreviousQuality = -1;  // force le dessin.
 	myData.prev_prcnt = -1;
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		NULL,
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 		cd_wifi_read_data,
 		cd_wifi_update_from_data,
 		myApplet);
-	cairo_dock_launch_measure_delayed (myData.pMeasureTimer, 5000);
+	cairo_dock_launch_task_delayed (myData.pTask, 5000);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -109,9 +108,9 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		myData.iPreviousQuality = -1;  // on force le redessin.
 		myData.prev_prcnt = -1;
-		cairo_dock_stop_measure_timer (myData.pMeasureTimer);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
-		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
-		cairo_dock_launch_measure (myData.pMeasureTimer);  // mesure immediate.
+		cairo_dock_stop_task (myData.pTask);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
+		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
+		cairo_dock_launch_task (myData.pTask);  // mesure immediate.
 	}
 	else {  // on redessine juste l'icone.
 		myData.iPreviousQuality = -1;  // force le redessin.

@@ -42,13 +42,12 @@ CD_APPLET_INIT_BEGIN
 	}
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		NULL,
-		(CairoDockReadTimerFunc) cd_netspeed_read_data,
-		(CairoDockUpdateTimerFunc) cd_netspeed_update_from_data,
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		(CairoDockGetDataAsyncFunc) cd_netspeed_read_data,
+		(CairoDockUpdateSyncFunc) cd_netspeed_update_from_data,
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -103,7 +102,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		}
 		
-		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
 		if (myData.pGauge != NULL)

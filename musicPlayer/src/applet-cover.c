@@ -3,13 +3,13 @@
 
 extern gboolean bCurrentlyDownloading, bCurrentlyDownloadingXML;
 static gchar *cImageURL = NULL;
-static CairoDockMeasure *pMeasureTimer = NULL;
+static CairoDockMeasure *pTask = NULL;
 
 gboolean _cd_proceed_download_cover (gpointer p) {
 
     // Si on ne télécharge pas, on arrête la boucle direct
     if (!myConfig.bDownload) {
-        cairo_dock_stop_measure_timer (pMeasureTimer);
+        cairo_dock_stop_task (pTask);
         return FALSE;
     }
 
@@ -31,7 +31,7 @@ gboolean _cd_proceed_download_cover (gpointer p) {
             bCurrentlyDownloadingXML = FALSE;
             bCurrentlyDownloading = FALSE;
             cd_debug ("Téléchargement impossible\n");
-            cairo_dock_stop_measure_timer (pMeasureTimer);
+            cairo_dock_stop_task (pTask);
             return FALSE;
         }
     }
@@ -50,15 +50,15 @@ gboolean _cd_proceed_download_cover (gpointer p) {
 gboolean cd_download_musicPlayer_cover (gpointer data) {
 	myData.iCheckIter++;
 	if (myData.iCheckIter > myConfig.iTimeToWait && myConfig.bDownload) {
-		if (pMeasureTimer) {
-            if (cairo_dock_measure_is_running(pMeasureTimer))
-                cairo_dock_stop_measure_timer(pMeasureTimer);
-            if (cairo_dock_measure_is_active(pMeasureTimer))
-                cairo_dock_free_measure_timer(pMeasureTimer);
+		if (pTask) {
+            if (cairo_dock_task_is_running(pTask))
+                cairo_dock_stop_task(pTask);
+            if (cairo_dock_task_is_active(pTask))
+                cairo_dock_free_task(pTask);
         }
-        pMeasureTimer = cairo_dock_new_measure_timer (2 *1000, NULL, NULL, (CairoDockUpdateTimerFunc) _cd_proceed_download_cover, NULL);
+        pTask = cairo_dock_new_task (2 *1000, NULL, NULL, (CairoDockUpdateSyncFunc) _cd_proceed_download_cover, NULL);
         
-        cairo_dock_launch_measure (pMeasureTimer);
+        cairo_dock_launch_task (pTask);
 		return FALSE;
 	}
 	return TRUE;

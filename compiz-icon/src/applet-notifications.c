@@ -141,7 +141,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
 		if (pClickedIcon == myIcon)
-			cairo_dock_launch_measure (myData.pMeasureTimer);
+			cairo_dock_launch_task (myData.pTask);
 		else {
 			if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;

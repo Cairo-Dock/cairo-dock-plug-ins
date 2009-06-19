@@ -1,4 +1,5 @@
 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -160,6 +161,7 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 	
 	go_to_next_value(tmp)
 	new_cpu_user_nice = atoll (tmp);
+	//g_print ("%lld --> %lld\n", myData.cpu_user, new_cpu_user);
 	
 	go_to_next_value(tmp)
 	new_cpu_system = atoll (tmp);
@@ -167,12 +169,16 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 	go_to_next_value(tmp)
 	new_cpu_idle = atoll (tmp);
 	
-	myData.fPrevCpuPercent = myData.fCpuPercent;
 	if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer la frequence.
 	{
 		myData.fCpuPercent = 100. * (1. - (new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);
 		if (myData.fCpuPercent < 0)  // peut arriver car le fichier pipe est pas mis a jour tous les dt, donc il y'a potentiellement un ecart de dt avec la vraie valeur. Ca plus le temps d'execution.  
 			myData.fCpuPercent = 0;
+		if (fabs (myData.fCpuPercent - myData.fPrevCpuPercent) > 1)
+		{
+			myData.fPrevCpuPercent = myData.fCpuPercent;
+			myData.bNeedsUpdate = TRUE;
+		}
 		/*cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
 			myData.iNbCPU,
 			myData.cpu_user, new_cpu_user,

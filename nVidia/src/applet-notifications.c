@@ -55,6 +55,6 @@ static void nvidia_setting(void) {  /// a mettre dans les plug-ins d'integration
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	///On ajoutera la désactivation quand elle sera fonctionnelle... // la desactivation de quoi ?
 	nvidia_setting();
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

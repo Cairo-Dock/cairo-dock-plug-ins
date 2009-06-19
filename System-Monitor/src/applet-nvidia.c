@@ -29,13 +29,17 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 		myData.iGPUTemp = iGpuTemp;
 	}
 	
-	myData.fPrevGpuTempPercent = myData.fGpuTempPercent;
 	if (myData.iGPUTemp <= myConfig.iLowerLimit)
 		myData.fGpuTempPercent = 0;
 	else if (myData.iGPUTemp >= myConfig.iUpperLimit )
 		myData.fGpuTempPercent = 1.;
 	else
 		myData.fGpuTempPercent = (double) (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
+	if (fabs (myData.fGpuTempPercent - myData.fPrevGpuTempPercent) > 1)
+	{
+		myData.fPrevGpuTempPercent = myData.fGpuTempPercent;
+		myData.bNeedsUpdate = TRUE;
+	}
 }
 
 

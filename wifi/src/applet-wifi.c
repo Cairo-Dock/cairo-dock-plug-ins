@@ -166,11 +166,11 @@ void cd_wifi_read_data (void)
 gboolean cd_wifi_update_from_data (void) {
 	if (myData.bAcquisitionOK) {
 		cd_wifi_draw_icon ();
-		cairo_dock_set_normal_frequency_state (myData.pMeasureTimer);
+		cairo_dock_set_normal_task_frequency (myData.pTask);
 	}
 	else {
 		cd_wifi_draw_no_wireless_extension ();
-		cairo_dock_downgrade_frequency_state (myData.pMeasureTimer);
+		cairo_dock_downgrade_task_frequency (myData.pTask);
 	}
 	return TRUE;
 }

@@ -64,8 +64,12 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 		get_value (myData.ramCached)  // Cached.
 		cd_debug ("ramCached : %lld", myData.ramCached);
 		
-		myData.fPrevRamPercent = myData.fRamPercent;
 		myData.fRamPercent = 100. * (myConfig.bShowFreeMemory ? myData.ramFree + myData.ramCached + myData.ramBuffers : myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
+		if (fabs (myData.fRamPercent - myData.fPrevRamPercent) > 1)
+		{
+			myData.fPrevRamPercent = myData.fRamPercent;
+			myData.bNeedsUpdate = TRUE;
+		}
 		
 		if (myConfig.bShowSwap)
 		{
@@ -89,8 +93,12 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
 			
-			myData.fPrevSwapPercent = myData.fSwapPercent;
 			myData.fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;  // pas de cache/buffers ?...
+			if (fabs (myData.fSwapPercent - myData.fPrevSwapPercent) > 1)
+			{
+				myData.fPrevSwapPercent = myData.fSwapPercent;
+				myData.bNeedsUpdate = TRUE;
+			}
 		}
 		
 		g_free (cContent);

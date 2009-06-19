@@ -87,7 +87,7 @@ static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
 		return FALSE;
 	
 	if (myConfig.bUseThread)
-		cairo_dock_stop_measure_timer (myData.pMeasureImage);
+		cairo_dock_stop_task (myData.pMeasureImage);
 	
 	int i;
 	if (myData.iNbScroll > 0)
@@ -162,7 +162,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
-	if (cd_slider_next_slide_is_scheduled (myApplet) || cairo_dock_measure_is_running (myData.pMeasureImage))  // on est en attente d'une image, on quitte la boucle tout de suite.
+	if (cd_slider_next_slide_is_scheduled (myApplet) || cairo_dock_task_is_running (myData.pMeasureImage))  // on est en attente d'une image, on quitte la boucle tout de suite.
 		CD_APPLET_STOP_UPDATE_ICON;
 	
 	gboolean bContinueTransition = FALSE;

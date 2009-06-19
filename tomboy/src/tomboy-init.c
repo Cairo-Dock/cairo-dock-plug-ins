@@ -27,12 +27,11 @@ CD_APPLET_INIT_BEGIN
 	{
 		dbus_detect_tomboy();
 		free_all_notes ();  // il faut le faire en-dehors du thread.
-		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
-				NULL,
-				(CairoDockReadTimerFunc) getAllNotes,
-				(CairoDockUpdateTimerFunc) cd_tomboy_load_notes,
+		myData.pTask = cairo_dock_new_task (0,
+				(CairoDockGetDataAsyncFunc) getAllNotes,
+				(CairoDockUpdateSyncFunc) cd_tomboy_load_notes,
 				myApplet);
-		cairo_dock_launch_measure (myData.pMeasureTimer);
+		cairo_dock_launch_task (myData.pTask);
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
@@ -72,7 +71,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myData.dbus_enable)
 		{
-			cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+			cairo_dock_stop_task (myData.pTask);
 			free_all_notes ();  // il faut le faire en-dehors du thread.
 			
 			//\___________ On arrete le timer.
@@ -83,7 +82,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			
 			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
-			cairo_dock_launch_measure (myData.pMeasureTimer);
+			cairo_dock_launch_task (myData.pTask);
 		}
 	}
 	

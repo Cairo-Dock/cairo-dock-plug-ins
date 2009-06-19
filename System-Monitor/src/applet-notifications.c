@@ -25,7 +25,7 @@ CD_APPLET_ON_CLICK_END
 #define _convert_from_kb(s) (int) (((s >> 20) == 0) ? (s >> 10) : (s >> 20))
 #define _unit(s) (((s >> 20) == 0) ? D_("Mb") : D_("Gb"))
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (myData.bAcquisitionOK)
+	if (myData.bInitialized && myData.bAcquisitionOK)
 	{
 		if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;

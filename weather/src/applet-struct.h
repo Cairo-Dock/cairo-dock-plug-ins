@@ -85,7 +85,7 @@ struct _AppletData {
 	Day days[WEATHER_NB_DAYS_MAX];
 	gboolean bErrorInThread;
 	// fin memoire partagee.
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;
 	} ;

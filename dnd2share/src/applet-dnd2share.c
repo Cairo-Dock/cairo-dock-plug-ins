@@ -216,8 +216,8 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	}
 	
 	// On nettoie la memoire partagee.
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
-	myData.pMeasureTimer = NULL;
+	cairo_dock_free_task (myData.pTask);
+	myData.pTask = NULL;
 	g_free (myData.cCurrentFilePath);
 	myData.cCurrentFilePath = NULL;
 	g_strfreev (myData.cResultUrls);
@@ -228,7 +228,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 {
 	if (strncmp (cFilePath, "file://", 7) == 0)
 		cFilePath += 7;
-	if (myData.pMeasureTimer != NULL)
+	if (myData.pTask != NULL)
 	{
 		cd_warning ("Please wait the current upload is finished.");
 		return ;
@@ -237,13 +237,12 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	// on lance la mesure.
 	myData.cCurrentFilePath = g_strdup (cFilePath);  // sera efface a la fin de l'upload.
 	myData.iCurrentFileType = myData.iCurrentFileType;
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,  // 1 shot measure.
-		NULL,
-		(CairoDockReadTimerFunc) _cd_dnd2share_threaded_upload,
-		(CairoDockUpdateTimerFunc) _cd_dnd2share_update_from_result,
+	myData.pTask = cairo_dock_new_task (0,  // 1 shot task.
+		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
+		(CairoDockUpdateSyncFunc) _cd_dnd2share_update_from_result,
 		myData.cCurrentFilePath);
 	
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	// On lance une animation.
 	cairo_dock_request_icon_animation (myIcon, myContainer, myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.

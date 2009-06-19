@@ -61,7 +61,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 		if (myConfig.cSystemMonitorClass == NULL)
 		{
 			if (myConfig.cSystemMonitorCommand != NULL)
+			{
 				myConfig.cSystemMonitorClass = g_strdup (myConfig.cSystemMonitorCommand);  // couper au 1er espace ...
+				
+			}
 			else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 				myConfig.cSystemMonitorClass = g_strdup ("gnome-system-monitor");
 			else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
@@ -84,12 +87,12 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pPeriodicTask);
 	g_timer_destroy (myData.pClock);
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
-	cairo_dock_free_measure_timer (myData.pTopMeasureTimer);
+	cairo_dock_free_task (myData.pTopTask);
 	if (myData.pTopClock != NULL)
 		g_timer_destroy (myData.pTopClock);
 	g_free (myData.pTopList);

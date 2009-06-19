@@ -43,7 +43,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pTask);
 	g_timer_destroy (myData.pClock);
 	
 	cairo_dock_free_gauge (myData.pGauge);

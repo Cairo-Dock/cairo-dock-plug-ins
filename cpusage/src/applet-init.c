@@ -15,7 +15,7 @@ CD_APPLET_DEFINITION (N_("cpusage"),
 	"Left click on the icon to get a list of the most cpu using programs."),
 	"parAdOxxx_ZeRo")
 
-static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
+static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 {
 	cd_cpusage_read_data (myApplet);
 	cd_cpusage_update_from_data (myApplet);
@@ -49,13 +49,12 @@ CD_APPLET_INIT_BEGIN
 	
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		NULL,
-		NULL,  // cd_cpusage_read_data
-		(CairoDockUpdateTimerFunc) _unthreaded_measure,  // cd_cpusage_update_from_data
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		(CairoDockGetDataAsyncFunc)NULL,  // cd_cpusage_read_data
+		(CairoDockUpdateSyncFunc) _unthreaded_task,  // cd_cpusage_update_from_data
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -111,12 +110,12 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		}
 		
-		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 		
 		g_free (myData.pTopList);
 		myData.pTopList = NULL;
-		if (myData.pTopMeasureTimer != NULL)
-			cairo_dock_change_measure_frequency (myData.pTopMeasureTimer, myConfig.iProcessCheckInterval);
+		if (myData.pTopTask != NULL)
+			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iProcessCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
 		if (myData.pGauge != NULL)

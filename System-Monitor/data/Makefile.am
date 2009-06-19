@@ -7,8 +7,8 @@ module_DATA = \
 	System-Monitor.conf\
 	preview.png\
 	icon.png\
-	button-cpu.svg\
-	button-ram.svg
+	button-cpu.png\
+	button-ram.png
 
 dist_system_monitordata_SCRIPTS = \
 	nvidia-config

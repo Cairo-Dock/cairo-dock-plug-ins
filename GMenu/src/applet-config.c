@@ -44,9 +44,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 		cd_keybinder_unbind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch);
 	g_free (myConfig.cQuickLaunchShortkey);
 	
-	if (!cairo_dock_dialog_unreference (myData.pQuickLaunchDialog))
-		cairo_dock_dialog_unreference (myData.pQuickLaunchDialog);
-	
 	g_free (myConfig.cRecentRootDirFilter);
 CD_APPLET_RESET_CONFIG_END
 
@@ -70,4 +67,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	if (myData.completion)
 		g_completion_free (myData.completion);
+	
+	if (!cairo_dock_dialog_unreference (myData.pQuickLaunchDialog))
+		cairo_dock_dialog_unreference (myData.pQuickLaunchDialog);
 CD_APPLET_RESET_DATA_END

@@ -2,9 +2,6 @@
 # Exaile Emulated pipe
 # Pipe created by ChAnGFu
 
-if [ ! -w $1 ] ; then exit 1 ; fi
-FILE=$1
-
 EXAILE=`ps aux | grep exaile | grep -v grep | grep -v info`
 if [ "x$EXAILE" = "x" ]; then
   exit
@@ -33,16 +30,16 @@ POSITION=${POSITION#*[}
 POSITION=${POSITION%*]}
 
 #Status du player
-echo "status: $STATUS" > $FILE
+echo "status: $STATUS"
 #Position du morceaux
-echo "trackInPlaylist: N/A" >> $FILE
+echo "trackInPlaylist: N/A"
 #Position actuelle en secondes
-echo "uSecPosition: N/A" >> $FILE
+echo "uSecPosition: N/A"
 #Temps écoulé
-echo "timeElapsed $POSITION" >> $FILE
+echo "timeElapsed $POSITION"
 #Temps total en secondes
-echo "totalTimeInSec N/A" >> $FILE
+echo "totalTimeInSec N/A"
 #Temps total du son
-echo "totalTime: $TTIME" >> $FILE
+echo "totalTime: $TTIME"
 #Titre du son
-echo "nowTitle: $GTITLE" >> $FILE
+echo "nowTitle: $GTITLE"

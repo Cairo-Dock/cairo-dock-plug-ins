@@ -33,18 +33,16 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
 	
-	myData.pMeasureImage = cairo_dock_new_measure_timer (0,
-		NULL,
-		(CairoDockReadTimerFunc) cd_slider_read_image,
-		(CairoDockUpdateTimerFunc) cd_slider_update_transition,
-		myApplet);  // 0 <=> one shot measure.
+	myData.pMeasureImage = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) cd_slider_read_image,
+		(CairoDockUpdateSyncFunc) cd_slider_update_transition,
+		myApplet);  // 0 <=> one shot task.
 	
-	myData.pMeasureDirectory = cairo_dock_new_measure_timer (0,
-		NULL,
-		(CairoDockReadTimerFunc) cd_slider_get_files_from_dir,
-		(CairoDockUpdateTimerFunc) cd_slider_next_slide,
-		myApplet);  // 0 <=> one shot measure.
-	cairo_dock_launch_measure_delayed (myData.pMeasureDirectory, 1500.);
+	myData.pMeasureDirectory = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
+		(CairoDockUpdateSyncFunc) cd_slider_next_slide,
+		myApplet);  // 0 <=> one shot task.
+	cairo_dock_launch_task_delayed (myData.pMeasureDirectory, 1500.);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -100,13 +98,13 @@ CD_APPLET_RELOAD_BEGIN
 	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		cairo_dock_stop_measure_timer (myData.pMeasureImage);
-		cairo_dock_stop_measure_timer (myData.pMeasureDirectory);
+		cairo_dock_stop_task (myData.pMeasureImage);
+		cairo_dock_stop_task (myData.pMeasureDirectory);
 		cd_slider_free_images_list (myData.pList);
 		myData.pList = NULL;
 		myData.pElement = NULL;
 		myData.bPause = FALSE;
-		cairo_dock_launch_measure (myData.pMeasureDirectory);
+		cairo_dock_launch_task (myData.pMeasureDirectory);
 	}
 	else {
 		//Nothing to do ^^

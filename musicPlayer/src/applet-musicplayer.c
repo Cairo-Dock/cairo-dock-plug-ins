@@ -40,20 +40,20 @@ void cd_musicplayer_arm_handeler (void) {
 		myData.pCurrentHandeler->configure();
 	
 	if (myData.pCurrentHandeler->bSeparateAcquisition == TRUE) { //CF: Utilisation du thread pour les actions longues
-  	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
+  	myData.pTask = cairo_dock_new_task (1,
   		(CairoDockAquisitionTimerFunc) myData.pCurrentHandeler->acquisition,
-  		(CairoDockReadTimerFunc) myData.pCurrentHandeler->read_data,
-  		(CairoDockUpdateTimerFunc) cd_musicplayer_draw_icon,
+  		(CairoDockGetDataAsyncFunc) myData.pCurrentHandeler->read_data,
+  		(CairoDockUpdateSyncFunc) cd_musicplayer_draw_icon,
   		NULL);
 	} //CF: Du coup, xmms ne ralenti plus le dock, retour au thread.
 	else {
-  	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
+  	myData.pTask = cairo_dock_new_task (1,
   		NULL,
   		NULL,
-  		(CairoDockUpdateTimerFunc) cd_musicplayer_get_data,
+  		(CairoDockUpdateSyncFunc) cd_musicplayer_get_data,
   		NULL);
 	}
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	//CF: On s'amuse a casser mon plugin hein Mav :P
 	
 	myData.pCurrentHandeler->free_data();
@@ -65,7 +65,7 @@ void cd_musicplayer_disarm_handeler (void) {
 		return ;
 	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data();
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);
+	cairo_dock_free_task (myData.pTask);
 	myData.pCurrentHandeler = NULL;
 }
 

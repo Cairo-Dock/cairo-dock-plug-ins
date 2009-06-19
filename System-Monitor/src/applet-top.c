@@ -298,7 +298,7 @@ void cd_sysmonitor_stop_top_dialog (CairoDockModuleInstance *myApplet)
 	if (myData.pTopDialog == NULL)
 		return ;
 	// on arrete la mesure.
-	cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+	cairo_dock_stop_task (myData.pTopTask);
 	// on detruit le dialogue.
 	cairo_dock_dialog_unreference (myData.pTopDialog);
 	myData.pTopDialog = NULL;
@@ -319,12 +319,12 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 	gboolean bSortByRamNew = (iClickedButton == 1);
 	if (bSortByRamNew != myData.bSortTopByRam)  // on peut lire myData.bSortTopByRam car le thread n'y accede qu'en lecture.
 	{
-		cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);  // le thread se termine.
+		cairo_dock_stop_task (myData.pTopTask);  // le thread se termine.
 		myData.bSortTopByRam = bSortByRamNew;
 		memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));  // on re-trie tout suivant le nouvel ordre.
 		g_hash_table_foreach (myData.pProcessTable, (GHFunc) _sort_one_process, myApplet);
 		_cd_sysmonitor_update_top_list (myApplet);  // on redessine.
-		cairo_dock_launch_measure_delayed (myData.pTopMeasureTimer, 1000. * myConfig.iProcessCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
+		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
 	}
 	cairo_dock_dialog_reference (pDialog);
 }
@@ -366,11 +366,10 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	// on lance la mesure.
 	myData.pTopClock = g_timer_new ();
 	myData.iNbProcesses = 0;
-	if (myData.pTopMeasureTimer == NULL)
-		myData.pTopMeasureTimer = cairo_dock_new_measure_timer (myConfig.iProcessCheckInterval,
-			NULL,
-			(CairoDockReadTimerFunc) _cd_sysmonitor_get_top_list,
-			(CairoDockUpdateTimerFunc) _cd_sysmonitor_update_top_list,
+	if (myData.pTopTask == NULL)
+		myData.pTopTask = cairo_dock_new_task (myConfig.iProcessCheckInterval,
+			(CairoDockGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
+			(CairoDockUpdateSyncFunc) _cd_sysmonitor_update_top_list,
 			myApplet);
-	cairo_dock_launch_measure (myData.pTopMeasureTimer);
+	cairo_dock_launch_task (myData.pTopTask);
 }

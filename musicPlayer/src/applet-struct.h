@@ -152,7 +152,7 @@ struct _AppletConfig {
 
 struct _AppletData {
 	//Pointeurs du Canevas
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	GList *pHandelers;
 	MusicPlayerHandeler *pCurrentHandeler;
 	

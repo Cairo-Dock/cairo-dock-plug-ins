@@ -54,7 +54,7 @@ static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
 			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
 			if( pMailAccount )
 			{
-				cairo_dock_launch_measure(pMailAccount->pAccountMailTimer);
+				cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
 			}
 		}
 	}
@@ -70,7 +70,7 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 {
 	if( pMailAccount )
 	{
-		cairo_dock_launch_measure(pMailAccount->pAccountMailTimer);
+		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
 	}
 }
 static void _cd_mail_launch_mail_appli (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
@@ -118,7 +118,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
 		return ;
 	
-	if (cairo_dock_measure_is_running (pMailAccount->pAccountMailTimer))
+	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
 		g_print ("account is being checked, wait a second\n");
 		return ;

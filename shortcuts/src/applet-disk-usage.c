@@ -135,27 +135,26 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_shortcuts_stop_disk_measure (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_stop_disk_task (CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_stop_measure_timer (myData.pDiskMeasureTimer);
+	cairo_dock_stop_task (myData.pDiskTask);
 	g_list_foreach (myData.pDiskUsageList, (GFunc) g_free, NULL);
 	g_list_free (myData.pDiskUsageList);
 	myData.pDiskUsageList = NULL;
 }
 
-void cd_shortcuts_launch_disk_measure (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_launch_disk_task (CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.iDisplayType != CD_SHOW_NOTHING)
 	{
-		if (myData.pDiskMeasureTimer == NULL)
+		if (myData.pDiskTask == NULL)
 		{
-			myData.pDiskMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-				NULL,
-				(CairoDockReadTimerFunc) cd_shortcuts_get_disk_usage, 
-				(CairoDockUpdateTimerFunc) cd_shortcuts_update_disk_usage, 
+			myData.pDiskTask = cairo_dock_new_task (myConfig.iCheckInterval,
+				(CairoDockGetDataAsyncFunc) cd_shortcuts_get_disk_usage, 
+				(CairoDockUpdateSyncFunc) cd_shortcuts_update_disk_usage, 
 				myApplet);
 		}
-		cairo_dock_launch_measure (myData.pDiskMeasureTimer);
+		cairo_dock_launch_task (myData.pDiskTask);
 	}
 }
 

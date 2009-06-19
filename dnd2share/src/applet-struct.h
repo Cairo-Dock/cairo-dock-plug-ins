@@ -59,7 +59,7 @@ struct _AppletData {
 	CDSiteBackend backends[CD_NB_SITES];
 	CDSiteBackend *pCurrentBackend;
 	
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	gchar *cCurrentFilePath;  // memoire partagee avec le thread, a manipuler avec les precautions d'usage.
 	CDFileType iCurrentFileType;  // idem
 	gchar **cResultUrls;  // idem

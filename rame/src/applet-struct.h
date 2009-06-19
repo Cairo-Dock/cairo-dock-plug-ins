@@ -39,7 +39,7 @@ typedef struct {
 	} CDProcess;
 
 struct _AppletData {
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	unsigned long long ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	unsigned long long swapTotal, swapFree, swapUsed;
 	gdouble fPrevRamPercent, fPrevSwapPercent;
@@ -53,7 +53,7 @@ struct _AppletData {
 	gint iNbDisplayedProcesses;
 	cairo_surface_t *pTopSurface;
 	CairoDialog *pTopDialog;
-	CairoDockMeasure *pTopMeasureTimer;
+	CairoDockTask *pTopTask;
 } ;
 
 

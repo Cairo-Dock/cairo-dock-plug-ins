@@ -36,7 +36,7 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_measure_timer (myData.pMeasureTimer);  // stoppe le thread.
+	cairo_dock_free_task (myData.pTask);  // stoppe le thread.
 	
 	g_free (myData.cCurrentFilePath);  // on libere la memoire partagee apres.
 	g_strfreev (myData.cResultUrls);

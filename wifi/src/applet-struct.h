@@ -67,7 +67,7 @@ struct _AppletData {
 	gchar *cConnName;
 	gboolean bAcquisitionOK;
 	gboolean bWirelessExt;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	Gauge *pGauge;
 	CairoDockGraph *pGraph;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];

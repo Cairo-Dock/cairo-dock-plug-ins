@@ -41,6 +41,7 @@ void cd_nvidia_acquisition (void) {
 }
 
 void cd_nvidia_read_data (void) {
+	cd_nvidia_acquisition ();
 	if (s_cTmpFile == NULL)
 		return ;
 	gchar *cContent = NULL;
@@ -101,6 +102,7 @@ void cd_nvidia_config_acquisition (void) {
 }
 
 static gboolean _nvidia_get_values_from_file (gchar *cContent) {
+	cd_nvidia_config_acquisition ();
 	gchar **cInfopipesList = g_strsplit (cContent, "\n", -1);
 	gchar *cOneInfopipe;
 	gint i=0;

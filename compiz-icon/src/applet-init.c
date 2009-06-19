@@ -38,12 +38,11 @@ CD_APPLET_INIT_BEGIN
 		if (! myConfig.forceConfig) // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 			myData.bCompizRestarted = TRUE;
 		
-		myData.pMeasureTimer = cairo_dock_new_measure_timer (CD_COMPIZ_CHECK_TIME,
-			(CairoDockAquisitionTimerFunc) NULL,
-			(CairoDockReadTimerFunc) cd_compiz_read_data,
-			(CairoDockUpdateTimerFunc) cd_compiz_update_from_data,
+		myData.pTask = cairo_dock_new_task (CD_COMPIZ_CHECK_TIME,
+			(CairoDockGetDataAsyncFunc) cd_compiz_read_data,
+			(CairoDockUpdateSyncFunc) cd_compiz_update_from_data,
 			myApplet);
-		cairo_dock_launch_measure (myData.pMeasureTimer);
+		cairo_dock_launch_task (myData.pTask);
 	}
 	else {
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
@@ -78,20 +77,20 @@ CD_APPLET_RELOAD_BEGIN
 			myDesklet->icons = NULL;
 		}
 		
-		if (cairo_dock_measure_is_active (myData.pMeasureTimer) && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
-			cairo_dock_stop_measure_timer (myData.pMeasureTimer);
+		if (cairo_dock_task_is_active (myData.pTask) && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
+			cairo_dock_stop_task (myData.pTask);
 			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");
 		}
-		else if (! cairo_dock_measure_is_active (myData.pMeasureTimer) && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
+		else if (! cairo_dock_task_is_active (myData.pTask) && (myConfig.bAutoReloadDecorator || myConfig.bAutoReloadCompiz)) {
 			myData.iCompizIcon = -1;
 			myData.bDecoratorRestarted = FALSE;
 			if (! myConfig.forceConfig) // on fait comme si c'est nous qui l'avons mis dans l'etat actuel.
 				myData.bCompizRestarted = TRUE;
 			
-			cairo_dock_launch_measure (myData.pMeasureTimer);
+			cairo_dock_launch_task (myData.pTask);
 		}
 		else {
-			if (cairo_dock_measure_is_active (myData.pMeasureTimer))
+			if (cairo_dock_task_is_active (myData.pTask))
 				myData.iCompizIcon = -1;
 			else {
 				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserImage[COMPIZ_DEFAULT], "default.svg");

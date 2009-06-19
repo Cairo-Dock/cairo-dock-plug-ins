@@ -150,15 +150,15 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_REDRAW_MY_ICON;
 	
 	myData.bErrorRetrievingData = myData.bErrorInThread;
-	if (myData.bErrorRetrievingData && myData.pMeasureTimer->iCheckInterval > 20)
+	if (myData.bErrorRetrievingData && myData.pTask->iPeriod > 20)
 	{
 		cd_message ("no data, will re-try in 20s");
-		cairo_dock_change_measure_frequency (myData.pMeasureTimer, 20);  // on re-essaiera dans 20s.
+		cairo_dock_change_task_frequency (myData.pTask, 20);  // on re-essaiera dans 20s.
 	}
-	else if (myData.pMeasureTimer->iCheckInterval != myConfig.iCheckInterval)
+	else if (myData.pTask->iPeriod != myConfig.iCheckInterval)
 	{
 		cd_message ("revert to normal frequency");
-		cairo_dock_change_measure_frequency (myData.pMeasureTimer, myConfig.iCheckInterval);
+		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
 	}
 	
 	return TRUE;

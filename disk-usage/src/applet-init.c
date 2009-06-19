@@ -22,7 +22,7 @@ CD_APPLET_DEFINITION (N_("disk-usage"),
 	"You can have more details with a middle-click."),
 	"Jackass (Benjamin SANS)")
 
-static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
+static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 {
 	cd_hdd_read_data (myApplet);
 	cd_hdd_update_from_data (myApplet);
@@ -32,7 +32,7 @@ static gboolean _unthreaded_measure (CairoDockModuleInstance *myApplet)
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
-		_unthreaded_measure (myApplet);
+		_unthreaded_task (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
@@ -45,13 +45,13 @@ CD_APPLET_INIT_BEGIN
 	
 	//Initialisation du timer de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 		NULL,
 		NULL, 
-		(CairoDockUpdateTimerFunc) _unthreaded_measure, 
+		(CairoDockUpdateSyncFunc) _unthreaded_task, 
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -69,7 +69,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
-		_unthreaded_measure (myApplet);
+		_unthreaded_task (myApplet);
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
@@ -89,13 +89,13 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
-		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 		
 		//if (!cairo_dock_fm_add_monitor_full(myConfig.cDevice, FALSE, NULL, (CairoDockFMMonitorCallback) cairo_dock_fm_action_on_file_event, myIcon))
 		//	cd_warning ("Disk-usage : can't monitor drives");
 	} else {
 		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		_unthreaded_measure (myApplet);
+		_unthreaded_task (myApplet);
 	}
 
 CD_APPLET_RELOAD_END

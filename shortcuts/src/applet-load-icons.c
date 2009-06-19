@@ -19,7 +19,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
-	cd_shortcuts_stop_disk_measure (myApplet);
+	cd_shortcuts_stop_disk_task (myApplet);
 	
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
 	
@@ -70,7 +70,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 		g_free (cTargetURI);
 	}
 	
-	cd_shortcuts_launch_disk_measure (myApplet);
+	cd_shortcuts_launch_disk_task (myApplet);
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
@@ -212,7 +212,7 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	
 	
 	// launch disk usage
-	cd_shortcuts_launch_disk_measure (myApplet);
+	cd_shortcuts_launch_disk_task (myApplet);
 	
 	return TRUE;
 }

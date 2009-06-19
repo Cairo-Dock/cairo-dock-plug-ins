@@ -65,7 +65,7 @@ struct _AppletData {
 	gboolean bDecoratorIsRunning;
 	gboolean bCompizIsRunning;
 	gboolean bAcquisitionOK;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	gboolean bCompizRestarted;
 	gboolean bDecoratorRestarted;
 	int iCompizMajor, iCompizMinor, iCompizMicro;

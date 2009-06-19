@@ -2,8 +2,6 @@
 # Banshee Emulated pipe
 # Pipe created by ChAnGFu
 
-if [ ! -w $1 ] ; then exit 1 ; fi
-FILE=$1
 
 STATUS=$(banshee --query-status)
 STATUS=${STATUS#*:}
@@ -30,21 +28,21 @@ ETIME="$M:$S"
 
 #Status du player
 if [  "$STATUS" -eq "1" ]; then
-  echo "status: Playing" > $FILE
+  echo "status: Playing"
 elif [  "$STATUS" -eq "0" ]; then
-  echo "status: Paused" > $FILE
+  echo "status: Paused"
 fi
 #Position du morceaux
-echo "trackInPlaylist: N/A" >> $FILE
+echo "trackInPlaylist: N/A"
 #Position actuelle en secondes
-echo "uSecPosition: $POSITIONSEC" >> $FILE
+echo "uSecPosition: $POSITIONSEC"
 #Temps écoulé
-#echo "timeElapsed $ETIME" >> $FILE
-echo "" >> $FILE
+#echo "timeElapsed $ETIME"
+echo ""
 #Temps total en secondes
-echo "totalTimeInSec $TTIMESEC" >> $FILE
+echo "totalTimeInSec $TTIMESEC"
 #Temps total du son
-#echo "totalTime: $TTIME" >> $FILE
-echo "" >> $FILE
+#echo "totalTime: $TTIME"
+echo ""
 #Titre du son
-echo "nowTitle: $GTITLE" >> $FILE
+echo "nowTitle: $GTITLE"

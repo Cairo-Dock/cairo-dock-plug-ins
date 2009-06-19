@@ -38,12 +38,12 @@ typedef struct _CDDiskUsage {
 
 struct _AppletData {
 	GList *pIconList;
-	CairoDockMeasure *pMeasureTimer;
+	CairoDockTask *pTask;
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	
-	CairoDockMeasure *pDiskMeasureTimer;
+	CairoDockTask *pDiskTask;
 	GList *pDiskUsageList;
 	gboolean bDisksHaveChanged;
 	} ;

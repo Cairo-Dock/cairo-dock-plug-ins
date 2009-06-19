@@ -2,9 +2,6 @@
 # Audacious Emulated pipe
 # Pipe created by ChAnGFu
 
-if [ ! -w $1 ] ; then exit 1 ; fi
-FILE=$1
-
 STATUS=$(audtool playback-status)
 TITLE=$(audtool current-song)
 
@@ -16,18 +13,18 @@ if [  "$TITLE" = "No song playing." ]; then
 fi
 
 #Status du player
-echo "status: $STATUS" > $FILE
+echo "status: $STATUS"
 #Position du morceaux
-echo "trackInPlaylist: $(audtool playlist-position)" >> $FILE
+echo "trackInPlaylist: $(audtool playlist-position)"
 #Position actuelle en secondes
-echo "uSecPosition: $(audtool current-song-output-length-frames)" >> $FILE
+echo "uSecPosition: $(audtool current-song-output-length-frames)"
 #Temps écoulé
-#echo "timeElapsed $(audtool current-song-output-length)" >> $FILE
-echo "" >> $FILE
+#echo "timeElapsed $(audtool current-song-output-length)"
+echo ""
 #Temps total en secondes
-echo "totalTimeInSec $(audtool current-song-length-frames)" >> $FILE
+echo "totalTimeInSec $(audtool current-song-length-frames)"
 #Temps total du son
-#echo "totalTime: $(audtool current-song-length)" >> $FILE
-echo "" >> $FILE
+#echo "totalTime: $(audtool current-song-length)"
+echo ""
 #Titre du son
-echo "nowTitle: $TITLE" >> $FILE
+echo "nowTitle: $TITLE"

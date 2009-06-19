@@ -37,12 +37,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	//\_______________ On charge les icones dans un sous-dock.
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
-		NULL,
-		(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,
-		(CairoDockUpdateTimerFunc) cd_shortcuts_build_shortcuts_from_data,
+	myData.pTask = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
+		(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
 		myApplet);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -71,12 +70,11 @@ CD_APPLET_RELOAD_BEGIN
 		}*/
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		myData.pMeasureTimer = cairo_dock_new_measure_timer (0,
-			NULL,
-			(CairoDockReadTimerFunc) cd_shortcuts_get_shortcuts_data,
-			(CairoDockUpdateTimerFunc) cd_shortcuts_build_shortcuts_from_data,
+		myData.pTask = cairo_dock_new_task (0,
+			(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
+			(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
 			myApplet);
-		cairo_dock_launch_measure (myData.pMeasureTimer);
+		cairo_dock_launch_task (myData.pTask);
 	}
 	else if (myDesklet)
 	{

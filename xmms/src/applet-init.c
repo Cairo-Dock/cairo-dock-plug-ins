@@ -53,12 +53,11 @@ CD_APPLET_INIT_BEGIN
 	myData.previousPlayingTitle = NULL;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (1,
-		(CairoDockAquisitionTimerFunc) cd_xmms_acquisition,
-		(CairoDockReadTimerFunc) cd_xmms_read_data,
-		(CairoDockUpdateTimerFunc) cd_xmms_draw_icon,
+	myData.pTask = cairo_dock_new_task (1,
+		(CairoDockGetDataAsyncFunc) cd_xmms_read_pipe,
+		(CairoDockUpdateSyncFunc) cd_xmms_draw_icon,
 		myApplet);
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	if (myConfig.bStealTaskBarIcon) {
 		cairo_dock_inhibate_class (s_cPlayerClass[myConfig.iPlayer], myIcon);

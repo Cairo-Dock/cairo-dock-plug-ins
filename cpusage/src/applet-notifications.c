@@ -58,7 +58,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (myData.pTopDialog != NULL)
 		{
-			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+			cairo_dock_stop_task (myData.pTopTask);
 			cairo_dock_dialog_unreference (myData.pTopDialog);
 			myData.pTopDialog = NULL;
 			g_timer_destroy (myData.pTopClock);
@@ -93,13 +93,12 @@ CD_APPLET_ON_CLICK_BEGIN
 		
 		myData.pTopClock = g_timer_new ();
 		myData.iNbProcesses = 0;
-		if (myData.pTopMeasureTimer == NULL)
-			myData.pTopMeasureTimer = cairo_dock_new_measure_timer (myConfig.iProcessCheckInterval,
-				NULL,
-				(CairoDockReadTimerFunc) _cd_cpusage_get_top_list,
-				(CairoDockUpdateTimerFunc) _cd_cpusage_update_top_list,
+		if (myData.pTopTask == NULL)
+			myData.pTopTask = cairo_dock_new_task (myConfig.iProcessCheckInterval,
+				(CairoDockGetDataAsyncFunc) _cd_cpusage_get_top_list,
+				(CairoDockUpdateSyncFunc) _cd_cpusage_update_top_list,
 				myApplet);
-		cairo_dock_launch_measure (myData.pTopMeasureTimer);
+		cairo_dock_launch_task (myData.pTopTask);
 	}
 	else
 		cairo_dock_show_temporary_dialog(D_("Data acquisition has failed"), myIcon, myContainer, 3e3);

@@ -39,13 +39,12 @@ CD_APPLET_INIT_BEGIN
 	}
 
 	//Initialisation du timer de mesure.
-	myData.pMeasureTimer = cairo_dock_new_measure_timer (myConfig.iCheckInterval,
-		NULL,
-		(CairoDockReadTimerFunc) cd_rame_read_data,
-		(CairoDockUpdateTimerFunc) cd_rame_update_from_data,
+	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		(CairoDockGetDataAsyncFunc) cd_rame_read_data,
+		(CairoDockUpdateSyncFunc) cd_rame_update_from_data,
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_measure (myData.pMeasureTimer);
+	cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -100,17 +99,17 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		myData.fPrevRamPercent = 0;  // on force le redessin.
-		cairo_dock_relaunch_measure_immediately (myData.pMeasureTimer, myConfig.iCheckInterval);
+		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 		
-		if (cairo_dock_measure_is_active (myData.pTopMeasureTimer))
+		if (cairo_dock_task_is_active (myData.pTopTask))
 		{
 			cd_rame_clean_all_processes ();
-			cairo_dock_stop_measure_timer (myData.pTopMeasureTimer);
+			cairo_dock_stop_task (myData.pTopTask);
 			g_free (myData.pTopList);
 			myData.pTopList = NULL;
 			g_free (myData.pPreviousTopList);
 			myData.pPreviousTopList = NULL;
-			cairo_dock_launch_measure (myData.pTopMeasureTimer);
+			cairo_dock_launch_task (myData.pTopTask);
 		}
 	}
 	else {  // on redessine juste l'icone.
