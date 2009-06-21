@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.5],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.0.6],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -256,7 +256,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 CPUSAGE_PACKAGE="cd-cpusage"
 AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
 
-AC_SUBST(VERSION_CPUSAGE, "1.2.6")
+AC_SUBST(VERSION_CPUSAGE, "1.3.0")
 AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
 
 AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
@@ -374,7 +374,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 NETSPEED_PACKAGE=cd-netspeed
 AC_SUBST(GETTEXT_NETSPEED, "$NETSPEED_PACKAGE")
 
-AC_SUBST(VERSION_NETSPEED, "1.1.5")
+AC_SUBST(VERSION_NETSPEED, "1.2.0")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
@@ -401,7 +401,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RAME_PACKAGE=cd-rame
 AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
 
-AC_SUBST(VERSION_RAME, "1.1.7")
+AC_SUBST(VERSION_RAME, "1.2.0")
 AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
 
 AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
@@ -565,7 +565,7 @@ AC_SUBST(weatheruserdirname, "weather")
 WIFI_PACKAGE="cd-wifi"
 AC_SUBST(GETTEXT_WIFI, "$WIFI_PACKAGE")
 
-AC_SUBST(VERSION_WIFI, "1.1.5")
+AC_SUBST(VERSION_WIFI, "1.2.0")
 AC_SUBST(PACKAGE_WIFI, "$WIFI_PACKAGE")
 
 AC_SUBST(wifidatadir, "${pkgdatadir}/wifi")

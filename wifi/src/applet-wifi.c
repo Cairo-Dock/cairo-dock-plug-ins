@@ -129,7 +129,7 @@ static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *i
 	return TRUE;
 }
 
-void cd_wifi_read_data (void)
+void cd_wifi_get_data (void)
 {
 	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);

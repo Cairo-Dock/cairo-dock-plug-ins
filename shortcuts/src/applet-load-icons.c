@@ -19,7 +19,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
-	cd_shortcuts_stop_disk_task (myApplet);
+	cd_shortcuts_stop_disk_periodic_task (myApplet);
 	
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
 	
@@ -70,7 +70,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 		g_free (cTargetURI);
 	}
 	
-	cd_shortcuts_launch_disk_task (myApplet);
+	cd_shortcuts_launch_disk_periodic_task (myApplet);
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
@@ -137,7 +137,7 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
 		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_change_bookmarks, myApplet))
-			cd_warning ("Attention : can't monitor bookmarks");
+			cd_warning ("Shortcuts : can't monitor bookmarks");
 		
 		myData.cBookmarksURI = cBookmarkFilePath;
 	}
@@ -169,50 +169,10 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	
 	//\_______________________ On charge la nouvelle liste.
 	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Tree", NULL);
-	/*if (myDock)  // en mode 'dock', on affiche les raccourcis dans un sous-dock.
-	{
-		if (myIcon->pSubDock == NULL)
-		{
-			if (myData.pIconList != NULL)  // l'applet peut faire 'show desktop'.
-			{
-				cd_message ("  creation du sous-dock des raccourcis");
-				CD_APPLET_CREATE_MY_SUBDOCK (myData.pIconList, myConfig.cRenderer);
-				myData.pIconList = NULL;
-			}
-		}
-		else  // on a deja notre sous-dock, on remplace juste ses icones.
-		{
-			cd_message ("  rechargement du sous-dock des raccourcis");
-			if (myData.pIconList == NULL)  // inutile de le garder.
-			{
-				CD_APPLET_DESTROY_MY_SUBDOCK;
-			}
-			else
-			{
-				CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (myData.pIconList);
-			}
-		}
-	}
-	else
-	{
-		if (myIcon->pSubDock != NULL)
-		{
-			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
-			myIcon->pSubDock = NULL;
-		}
-		
-		myDesklet->icons = myData.pIconList;
-		myData.pIconList = NULL;
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
-		
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	}*/
-	
 	myData.pIconList = NULL;
 	
-	
-	// launch disk usage
-	cd_shortcuts_launch_disk_task (myApplet);
+	//\_______________________ On lance la tache de mesure des disques.
+	cd_shortcuts_launch_disk_periodic_task (myApplet);
 	
 	return TRUE;
 }

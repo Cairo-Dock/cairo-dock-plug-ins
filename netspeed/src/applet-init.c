@@ -76,7 +76,7 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
 	myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) cd_netspeed_read_data,
+		(CairoDockGetDataAsyncFunc) cd_netspeed_get_data,
 		(CairoDockUpdateSyncFunc) cd_netspeed_update_from_data,
 		myApplet);
 	myData.bAcquisitionOK = TRUE;

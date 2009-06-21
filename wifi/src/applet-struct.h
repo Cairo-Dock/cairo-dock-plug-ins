@@ -29,12 +29,13 @@ typedef enum {
 	WIFI_EFFECT_BAR,
 } CDWifiEffect;
 
-typedef enum {
-	WIFI_ICON = 0,
-	WIFI_GAUGE,
-	WIFI_GRAPHIC,
-	WIFI_NB_DISPLAY,
-} CDWifiDisplay;
+
+typedef enum _CDWifiDisplayType {
+	CD_WIFI_GAUGE=0,
+	CD_WIFI_GRAPH,
+	CD_WIFI_BAR,
+	CD_WIFI_NB_TYPES
+	} CDWifiDisplayType; 
 
 struct _AppletConfig {
 	gchar *defaultTitle;
@@ -46,7 +47,7 @@ struct _AppletConfig {
 	
 	CDWifiInfoType quickInfoType;
 	CDWifiEffect iEffect;
-	CDWifiDisplay iDisplay;
+	CDWifiDisplayType iDisplayType;
 	
 	gint iCheckInterval;
 	
@@ -54,6 +55,7 @@ struct _AppletConfig {
 	gdouble fLowColor[3];
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
+	gdouble fSmoothFactor;
 	
 	gboolean bESSID;
 };

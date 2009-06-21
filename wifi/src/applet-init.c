@@ -17,33 +17,59 @@ CD_APPLET_DEFINITION ("wifi",
 	"ChAnGFu (Rémy Robertson)");
 
 
+static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+{
+	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	if (myConfig.iDisplayType == CD_WIFI_GAUGE)
+	{
+		CairoGaugeAttribute attr;  // les attributs de la jauge.
+		memset (&attr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "gauge";
+		attr.cThemePath = myConfig.cGThemePath;
+	}
+	else if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+	{
+		CairoGraph2Attribute attr;  // les attributs du graphe.
+		memset (&attr, 0, sizeof (CairoGraph2Attribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "graph";
+		pRenderAttr->iMemorySize = 32;  // bon compromis sur la lisibilite.
+		attr.iType = myConfig.iGraphType;
+		attr.iRadius = 10;
+		attr.fHighColor = myConfig.fHigholor;
+		attr.fLowColor = myConfig.fLowColor;
+		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+	}
+	else if (myConfig.iDisplayType == CD_WIFI_BAR)
+	{
+		/// A FAIRE...
+	}
+	if (pRenderAttr != NULL)
+	{
+		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
+		pRenderAttr->iNbValues = 2;
+		//pRenderAttr->bWriteValues = TRUE;
+		if (! bReload)
+			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+		else
+			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	}
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	
-	//Initialisation de la jauge
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
-	if (myConfig.iDisplay == WIFI_GRAPHIC) {
-		myData.pGraph = cairo_dock_create_graph (myDrawContext,
-			20, myConfig.iGraphType,
-			myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-			myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
-		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		CD_APPLET_RENDER_GRAPH (myData.pGraph);
-	}
-	else if (myConfig.iDisplay == WIFI_GAUGE) {
-		myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-		if (myConfig.cWatermarkImagePath != NULL)
-			cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		CD_APPLET_RENDER_GAUGE (myData.pGauge, 0.);
-	}
+	// Initialisation du rendu.
+	_set_data_renderer (myApplet, FALSE);
 	
+	// Initialisation de la tache periodique de mesure.
 	myData.iPreviousQuality = -1;  // force le dessin.
 	myData.prev_prcnt = -1;
 	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		cd_wifi_read_data,
-		cd_wifi_update_from_data,
+		(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
+		(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,
 		myApplet);
 	cairo_dock_launch_task_delayed (myData.pTask, 5000);
 	
@@ -77,33 +103,8 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pSurfaces[i] = NULL;
 			}
 		}
-
-    if (myData.pGauge != NULL) {
-		  cairo_dock_free_gauge (myData.pGauge);
-		  myData.pGauge = NULL;
-		}
-		if (myData.pGraph != NULL) {
-      myData.pGraph = NULL;
-		  cairo_dock_free_graph (myData.pGraph);
-		}
 		
-		if (myConfig.iDisplay == WIFI_GRAPHIC) {
-			myData.pGauge = NULL;
-			myData.pGraph = cairo_dock_create_graph (myDrawContext,
-				20, myConfig.iGraphType,
-				myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale,
-				myConfig.fLowColor, myConfig.fHigholor, myConfig.fBgColor, NULL, NULL);
-			if (myConfig.cWatermarkImagePath != NULL)
-				cairo_dock_add_watermark_on_graph (myDrawContext, myData.pGraph, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
-		else if (myConfig.iDisplay == WIFI_GAUGE) {
-			myData.pGraph = NULL;
-			myData.pGauge = cairo_dock_load_gauge (myDrawContext,
-				myConfig.cGThemePath,
-				myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-			if (myConfig.cWatermarkImagePath != NULL)
-				cairo_dock_add_watermark_on_gauge (myDrawContext, myData.pGauge, myConfig.cWatermarkImagePath, myConfig.fAlpha);
-		}
+		_set_data_renderer (myApplet, TRUE);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		myData.iPreviousQuality = -1;  // on force le redessin.

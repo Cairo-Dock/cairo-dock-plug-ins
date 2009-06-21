@@ -137,7 +137,7 @@ void cd_amarok1_getStatus (void)
 }
 
 void cd_amarok1_acquisition (void) {
-	system ("echo amarok 1.4 >> /dev/null");
+	int r = system ("echo amarok 1.4 >> /dev/null");
 	cd_amarok1_getStatus();
 	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
 		cd_amarok1_read_data();

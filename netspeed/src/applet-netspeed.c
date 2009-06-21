@@ -15,7 +15,7 @@
 
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-static void cd_netspeed_formatRate(CairoDockModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
+static void cd_netspeed_formatRate (CairoDockModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
 	int smallRate;
 	
 	if (rate <= 0)
@@ -68,7 +68,7 @@ static void cd_netspeed_formatRate(CairoDockModuleInstance *myApplet, unsigned l
 }
 
 
-void cd_netspeed_read_data (CairoDockModuleInstance *myApplet)
+void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);

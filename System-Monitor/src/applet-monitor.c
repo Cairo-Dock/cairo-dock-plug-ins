@@ -122,7 +122,7 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				}
 				if (myConfig.bShowNvidia)
 				{
-					s_fValues[i++] = myData.fGpuTempPercent;
+					s_fValues[i++] = myData.fGpuTempPercent / 100;
 					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
 						myData.bAlerted = FALSE; //On réinitialise l'alerte quand la température descend en dessou de la limite.
 					

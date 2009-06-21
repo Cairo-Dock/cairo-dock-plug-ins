@@ -28,7 +28,7 @@ Rémy Robertson (changfu@cairo-dock.org)
 void cd_quodlibet_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
-	gchar *value;
+	const gchar *value;
 	
 	if (dbus_g_proxy_call (myData.dbus_proxy_player, "CurrentSong", NULL,
 		G_TYPE_INVALID,
@@ -65,14 +65,14 @@ void cd_quodlibet_getSongInfos (void)
 		
 		value = (const char *) g_hash_table_lookup (data_list, "tracknumber");
 		if (value != NULL)
-		  myData.iTrackNumber = g_strdup (value);
+		  myData.iTrackNumber = atoi (value);
 		else
 		  myData.iTrackNumber = 0;
 		//cd_message ("\tMP : playing_track <- %s", myData.iTrackNumber);
 		
 		value = (const char *) g_hash_table_lookup (data_list, "~#length");
 		if (value != NULL) 
-			myData.iSongLength = g_strdup (value);
+			myData.iSongLength = atoi (value);
 		else 
 		  myData.iSongLength = 0;
 		//cd_message ("\tMP : playing_duration <- %s", myData.iSongLength);

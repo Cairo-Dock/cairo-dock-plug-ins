@@ -83,55 +83,44 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
-#F+[Information;gtk-info]
-frame_info=
-#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
-signal_type=2
-#i[1;60] Delay between signal checks :
-#{in seconds.}
-delay = 10
-#s Alternative command line to launch Wireless Configuration :
-#{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
-command = 
 
-#F+[Display;gtk-dnd-multiple]
-frame_disp=
-#b Overwrite the default label with the connection point name ?
-essid = true
 
-#r+[Images;Gauges;Graphic] Display type :
-display type = 0
+#r+[Gauge;Graph;Icons] Choose the style of the display : 
+renderer = 0
 
-#r+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
-effect=0
+
+#F[Gauge;gtk-dialog-info]
+frame_gauge=
+
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+theme = Turbo-night-fuel
+
+
+#F[Graph;gtk-dialog-info]
+frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+3[0;1] High values color :
-#{It's the color of the graphic for high Strength values.}
+#{It's the color of the graphic for high quality signal.}
 high color = 1;0;0
 
 #c+3[0;1] Low values color :
-#{It's the color of the graphic for low Strength values.}
+#{It's the color of the graphic for low quality signal.}
 low color = 1;1;0
 
 #c+4[0;1] Background color of the graphic :
 bg color = .5;.5;1.;.4
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] List of available themes for the analogic display :/
-theme = radium
 
-#S+ Image to display as a watermark on the gauge :
-#{Let it empty to use the default image. Set the transparency to 0 if you don't want to have any watermark.}
-watermark image =
 
-#e+[0;1] Transparency of the watermark :
-#{Set it up to 0 if you don't want to have a watermark.}
-watermark alpha = .6
+#F[Parameters;gtk-dialog-info]
+frame_icons =
 
-#X+[Alternative images;gtk-dialog-info]
-frame_img =
+#r+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
+effect=0
+
 #S+ Name of an image for the 'no signal' icon :
 #{Let it empty to use the default icon.}
 icon_0 = 
@@ -150,3 +139,21 @@ icon_4 =
 #S+ Name of an image for the 'exellent' icon :
 #{Let it empty to use the default icon.}
 icon_5 = 
+
+
+#F[Parameters;gtk-dialog-info]
+frame_param =
+
+#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+signal_type=2
+#i[1;60] Delay between signal checks :
+#{in seconds.}
+delay = 10
+#s Alternative command line to launch Wireless Configuration :
+#{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
+command = 
+
+#F+[Display;gtk-dnd-multiple]
+frame_disp=
+#b Overwrite the default label with the connection point name ?
+essid = true

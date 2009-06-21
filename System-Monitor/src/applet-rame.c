@@ -8,7 +8,6 @@
 #include <unistd.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-rame.h"
 
 #define RAME_DATA_PIPE CD_SYSMONITOR_PROC_FS"/meminfo"

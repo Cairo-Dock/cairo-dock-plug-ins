@@ -27,10 +27,14 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 }
 
 
-void cd_musicplayer_get_data (void) {
+static void cd_musicplayer_get_data_async (void) {
 	myData.pCurrentHandeler->acquisition();
 	myData.pCurrentHandeler->read_data();
-	cd_musicplayer_draw_icon();
+}
+static gboolean cd_musicplayer_get_data_and_update (void) {
+	myData.pCurrentHandeler->acquisition();
+	myData.pCurrentHandeler->read_data();
+	return cd_musicplayer_draw_icon();
 }
 
 /* Prepare l'handeler et le lance */
@@ -41,16 +45,14 @@ void cd_musicplayer_arm_handeler (void) {
 	
 	if (myData.pCurrentHandeler->bSeparateAcquisition == TRUE) { //CF: Utilisation du thread pour les actions longues
   	myData.pTask = cairo_dock_new_task (1,
-  		(CairoDockAquisitionTimerFunc) myData.pCurrentHandeler->acquisition,
-  		(CairoDockGetDataAsyncFunc) myData.pCurrentHandeler->read_data,
+  		(CairoDockGetDataAsyncFunc) cd_musicplayer_get_data_async,
   		(CairoDockUpdateSyncFunc) cd_musicplayer_draw_icon,
   		NULL);
 	} //CF: Du coup, xmms ne ralenti plus le dock, retour au thread.
 	else {
   	myData.pTask = cairo_dock_new_task (1,
   		NULL,
-  		NULL,
-  		(CairoDockUpdateSyncFunc) cd_musicplayer_get_data,
+  		(CairoDockUpdateSyncFunc) cd_musicplayer_get_data_and_update,
   		NULL);
 	}
 	cairo_dock_launch_task (myData.pTask);

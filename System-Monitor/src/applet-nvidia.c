@@ -8,7 +8,6 @@
 #include <unistd.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-nvidia.h"
 
 void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
@@ -32,9 +31,9 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 	if (myData.iGPUTemp <= myConfig.iLowerLimit)
 		myData.fGpuTempPercent = 0;
 	else if (myData.iGPUTemp >= myConfig.iUpperLimit )
-		myData.fGpuTempPercent = 1.;
+		myData.fGpuTempPercent = 100.;
 	else
-		myData.fGpuTempPercent = (double) (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
+		myData.fGpuTempPercent = 100. * (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
 	if (fabs (myData.fGpuTempPercent - myData.fPrevGpuTempPercent) > 1)
 	{
 		myData.fPrevGpuTempPercent = myData.fGpuTempPercent;

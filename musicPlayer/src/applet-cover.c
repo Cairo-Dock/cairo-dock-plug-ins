@@ -3,7 +3,7 @@
 
 extern gboolean bCurrentlyDownloading, bCurrentlyDownloadingXML;
 static gchar *cImageURL = NULL;
-static CairoDockMeasure *pTask = NULL;
+static CairoDockTask *pTask = NULL;
 
 gboolean _cd_proceed_download_cover (gpointer p) {
 
@@ -56,7 +56,7 @@ gboolean cd_download_musicPlayer_cover (gpointer data) {
             if (cairo_dock_task_is_active(pTask))
                 cairo_dock_free_task(pTask);
         }
-        pTask = cairo_dock_new_task (2 *1000, NULL, NULL, (CairoDockUpdateSyncFunc) _cd_proceed_download_cover, NULL);
+        pTask = cairo_dock_new_task (2 *1000, NULL, (CairoDockUpdateSyncFunc) _cd_proceed_download_cover, NULL);
         
         cairo_dock_launch_task (pTask);
 		return FALSE;

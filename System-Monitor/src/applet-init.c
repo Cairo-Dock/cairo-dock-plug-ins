@@ -175,6 +175,12 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
 		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
+		{
+			myData.fPrevCpuPercent = 0;
+			myData.fPrevRamPercent = 0;
+			myData.fPrevSwapPercent = 0;
+			myData.fPrevGpuTempPercent = 0;
 			cd_sysmonitor_update_from_data (myApplet);
+		}
 	}
 CD_APPLET_RELOAD_END

@@ -31,13 +31,13 @@ void cd_wifi_draw_icon (void) {
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
 			if (myIcon->cQuickInfo != NULL) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 				bNeedRedraw = TRUE;
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
 			if (myData.iQuality != myData.iPreviousQuality) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (D_(s_cLevelQualityName[myData.iQuality]));
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (D_(s_cLevelQualityName[myData.iQuality]));
 				bNeedRedraw = TRUE;
 			}
 		break;
@@ -58,24 +58,18 @@ void cd_wifi_draw_icon (void) {
 		break;
 	}
 	
-	if (myData.iQuality != myData.iPreviousQuality) {
+	if (myData.iQuality != myData.iPreviousQuality || myConfig.iDisplayType == CD_WIFI_GRAPH) {
 		myData.iPreviousQuality = myData.iQuality;
 		
 		//cd_debug ("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
-		if (myConfig.iDisplay == WIFI_GAUGE) {
-			CD_APPLET_RENDER_GAUGE (myData.pGauge, (double) myData.prcnt / 100);
-			bNeedRedraw = TRUE;
-		}
-		else if (myConfig.iDisplay == WIFI_GRAPHIC) {
-			CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.prcnt / 100);
-		}
-		else {
+		if (myConfig.iDisplayType == CD_WIFI_BAR) {
 			cd_wifi_draw_icon_with_effect (myData.iQuality);
 		}
-	}
-	else {
-		if (myConfig.iDisplay == WIFI_GRAPHIC)
-			CD_APPLET_RENDER_GRAPH_NEW_VALUE (myData.pGraph, (double) myData.prcnt / 100); //On veut toujours avoir une valeur
+		else
+		{
+			double fValue = myData.iQuality / 100.;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fValue);
+		}
 	}
 	
 	if (myConfig.bESSID && myData.cESSID != NULL && strcmp (myData.cESSID, myIcon->acName))

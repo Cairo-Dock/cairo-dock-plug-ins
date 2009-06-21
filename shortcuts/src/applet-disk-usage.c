@@ -135,7 +135,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_shortcuts_stop_disk_task (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_stop_disk_periodic_task (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_stop_task (myData.pDiskTask);
 	g_list_foreach (myData.pDiskUsageList, (GFunc) g_free, NULL);
@@ -143,7 +143,7 @@ void cd_shortcuts_stop_disk_task (CairoDockModuleInstance *myApplet)
 	myData.pDiskUsageList = NULL;
 }
 
-void cd_shortcuts_launch_disk_task (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.iDisplayType != CD_SHOW_NOTHING)
 	{

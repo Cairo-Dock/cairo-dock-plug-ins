@@ -1,15 +1,14 @@
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include <fcntl.h>
 #include <unistd.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
-#include "applet-monitor.h"
+#include "applet-cpusage.h"
 
 #define CPUSAGE_DATA_PIPE		CD_SYSMONITOR_PROC_FS"/stat"
 #define CPUSAGE_UPTIME_PIPE		CD_SYSMONITOR_PROC_FS"/uptime"
@@ -34,12 +33,12 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 	const int hour = minute * 60;
 	const int day = hour * 24;
 	int iUpTime = (int) fUpTime, iActivityTime = (int) (fUpTime - fIdleTime);
-	*cUpTime = g_strdup_printf ("%ld %s, %ld:%02ld:%02ld",
+	*cUpTime = g_strdup_printf ("%d %s, %d:%02d:%02d",
 		iUpTime / day, D_("day(s)"),
 		(iUpTime % day) / hour,
 		(iUpTime % hour) / minute,
 		iUpTime % minute);
-	*cActivityTime = g_strdup_printf ("%ld %s, %ld:%02ld:%02ld",
+	*cActivityTime = g_strdup_printf ("%d %s, %d:%02d:%02d",
 		iActivityTime / day, D_("day(s)"),
 		(iActivityTime % day) / hour,
 		(iActivityTime % hour) / minute,
