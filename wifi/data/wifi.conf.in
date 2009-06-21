@@ -115,7 +115,7 @@ bg color = .5;.5;1.;.4
 
 
 
-#F[Parameters;gtk-dialog-info]
+#F[Icons;gtk-dialog-info]
 frame_icons =
 
 #r+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
@@ -149,6 +149,11 @@ signal_type=2
 #i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
+
+#e[0;1] How smooth is the movement ?
+#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
+smooth = .33
+
 #s Alternative command line to launch Wireless Configuration :
 #{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
 command = 

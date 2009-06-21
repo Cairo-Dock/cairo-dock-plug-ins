@@ -472,8 +472,8 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		if (r == MAIL_NO_ERROR)
 		{
 			pMailAccount->pAccountMailTimer = cairo_dock_new_task (pMailAccount->timeout * 60,
-				cd_mail_get_folder_data,
-				cd_mail_update_account_status,
+				(CairoDockGetDataAsyncFunc) cd_mail_get_folder_data,
+				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
 				pMailAccount);
 			cairo_dock_launch_task (pMailAccount->pAccountMailTimer);
 		}

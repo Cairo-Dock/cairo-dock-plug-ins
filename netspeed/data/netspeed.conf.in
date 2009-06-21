@@ -123,6 +123,10 @@ interface =
 #{in seconds.}
 delay = 3
 
+#e[0;1] How smooth is the movement ?
+#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
+smooth = .33
+
 #r[No;On icon;On label] Display speed values :
 info display = 1
 

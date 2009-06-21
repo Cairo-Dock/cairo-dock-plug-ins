@@ -116,7 +116,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 			break ;
 	}
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
-		return ;
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
