@@ -47,7 +47,6 @@ CD_APPLET_INIT_BEGIN
 	myData.pClock = g_timer_new ();
 	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 		NULL,
-		NULL, 
 		(CairoDockUpdateSyncFunc) _unthreaded_task, 
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
