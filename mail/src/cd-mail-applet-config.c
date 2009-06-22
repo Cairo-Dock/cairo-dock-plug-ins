@@ -69,7 +69,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		gchar *cMailAccountType = g_key_file_get_string (pKeyFile, cMailAccountName, "type", NULL);
 
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
-    {
+		{
 			if (g_strcasecmp(storage_tab[j].name, cMailAccountType) == 0)
 			{
 				account_type = j;
@@ -79,7 +79,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		/* in case the account type is unknown, just ignore... */
 		if( j >= MAIL_NB_STORAGE_TYPES )
 			continue;
-		g_print ("  type : %d\n", j);
+		g_print ("  mail type : %d\n", j);
 		
 		pMailAccount = g_new0 (CDMailAccount, 1);
 		g_ptr_array_add (myData.pMailAccounts, pMailAccount);
@@ -90,9 +90,6 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		(storage_tab[account_type].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
 	}
 	g_strfreev (pGroupList);
-	
-	//\_______________ On initialise tous les comptes.
-	cd_mail_init_accounts(myApplet);
 }
 
 CD_APPLET_GET_CONFIG_BEGIN
@@ -227,7 +224,6 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 	
 	gchar *cMailAccount = pGroupList[iNumAccount];
 	g_key_file_remove_group (pKeyFile, cMailAccount, NULL);
-	g_strfreev (pGroupList);
 	
 	cairo_dock_write_keys_to_file (pKeyFile, CD_APPLET_MY_CONF_FILE);
 	
@@ -235,6 +231,37 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 	
 	//\____________ On recharge le panneau de config.
 	cairo_dock_reload_current_group_widget (myApplet);
+	
+	//\____________ On supprime le compte et son icone de la liste.
+	CDMailAccount *pMailAccount;
+	guint i;
+	for (i = 0; i < myData.pMailAccounts->len; i ++)
+	{
+		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+		if( !pMailAccount ) continue;
+		
+		if (strcmp (cMailAccount, pMailAccount->name) == 0)
+		{
+			cd_debug ("mail : found old account");
+			CDMailAccount *pRemovedMailAccount = g_ptr_array_remove_index (myData.pMailAccounts, i); // decale tout de 1 vers la gauche.
+			Icon *pIcon = pRemovedMailAccount->icon;
+			CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+			if (myDock)
+				cairo_dock_remove_one_icon_from_dock (CAIRO_DOCK (pContainer), pIcon);
+			else
+			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
+				pDesklet->icons = g_list_remove (pDesklet->icons, pIcon);
+				cairo_dock_redraw_container (pContainer);
+			}
+			cd_debug ("mail : delete old icon");
+			cairo_dock_free_icon (pIcon);
+			cd_debug ("mail : delete old account");
+			cd_mail_free_account (pRemovedMailAccount);
+		}
+	}
+	
+	g_strfreev (pGroupList);
 }
 
 void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)

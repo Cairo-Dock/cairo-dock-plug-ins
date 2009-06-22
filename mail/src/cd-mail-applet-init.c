@@ -153,12 +153,12 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 }
 
 CD_APPLET_INIT_BEGIN
-	
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 
+	//\_______________ On charge surfaces et textures.
 	GError *erreur = NULL;
 	_load_theme (myApplet, &erreur);
 	if (erreur != NULL)
@@ -168,22 +168,20 @@ CD_APPLET_INIT_BEGIN
 		return;
 	}
 	
+	//\_______________ On gere l'appli 'mail'
+	CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myConfig.bStealTaskBarIcon);
+	
+	//\_______________ On initialise tous les comptes et on lance un timer pour chacun.
+	cd_mail_init_accounts(myApplet);
+	
+	//\_______________ On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-	
-	if (myConfig.bStealTaskBarIcon)
-	{
-		cairo_dock_inhibate_class (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myIcon);
-	}
-	
-	cd_mail_load_icons( myApplet );
-
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 	}
-
 CD_APPLET_INIT_END
 
 
@@ -195,6 +193,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
+	CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, FALSE);
 CD_APPLET_STOP_END
 
 
@@ -210,14 +209,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 		
-		if (myIcon->cClass != NULL && ! myConfig.bStealTaskBarIcon)
-		{
-			cairo_dock_deinhibate_class (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myIcon);
-		}
-		else if (myIcon->cClass == NULL && myConfig.bStealTaskBarIcon)
-		{
-			cairo_dock_inhibate_class (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myIcon);
-		}
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myConfig.bStealTaskBarIcon);
 		
 		GError *erreur = NULL;
 		_load_theme (myApplet, &erreur);
@@ -233,7 +225,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
 		}
 		
-		cd_mail_load_icons( myApplet );  // la config vient d'etre rechargee, donc les comptes sont tout neufs (ils ne possedent pas d'icone).
+		cd_mail_init_accounts(myApplet);  // la config vient d'etre rechargee, donc les comptes sont tout neufs.
 	}
 	
 CD_APPLET_RELOAD_END

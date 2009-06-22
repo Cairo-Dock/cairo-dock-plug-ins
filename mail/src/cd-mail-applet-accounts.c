@@ -15,10 +15,27 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 #include "cd-mail-applet-etpan.h"
 #include "cd-mail-applet-accounts.h"
 
+#define _add_icon(pMailAccount)\
+		pIcon = g_new0 (Icon, 1);\
+		pIcon->acName = g_strdup (pMailAccount->name);\
+		pIcon->acFileName = g_strdup (myConfig.cNoMailUserImage);\
+		pIcon->cQuickInfo = g_strdup ("...");\
+		pIcon->fOrder = i;\
+		pIcon->fScale = 1.;\
+		pIcon->fAlpha = 1.;\
+		pIcon->fWidthFactor = 1.;\
+		pIcon->fHeightFactor = 1.;\
+		pIcon->acCommand = g_strdup ("none");\
+		pIcon->cParentDockName = g_strdup (myIcon->acName);\
+		cd_debug (" + %s (%s)\n", pIcon->acName, pIcon->acFileName);\
+		pIconList = g_list_append (pIconList, pIcon);\
+		pMailAccount->icon = pIcon;
+
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "pop3");
-
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);  // on lui met un widget pour ne pas que la cle se fasse bazarder lors d'une mise a jour du fichier de conf.
+	
 	g_key_file_set_string (pKeyFile, pMailAccountName, "host", "pop3.myhost.org");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
 
@@ -80,6 +97,7 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "imap");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "host", "imap.myhost.org");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
@@ -152,6 +170,7 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mbox");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "filename", "");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s0 path of mbox file:", NULL);
@@ -188,6 +207,7 @@ void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 void cd_mail_create_mh_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mh");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
@@ -217,6 +237,7 @@ void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile,
 void cd_mail_create_maildir_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "maildir");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 path to mail directory:", NULL);
@@ -255,6 +276,7 @@ void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKey
 void cd_mail_create_gmail_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "gmail");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
@@ -358,6 +380,7 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "feed");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://www.cairo-dock.org/rss/cd_svn.xml");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 address of feed:", NULL);
@@ -394,8 +417,7 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 }
 
-/*
-{
+/*{
   {POP3_STORAGE, "pop3", {"host", "username", "password", "auth_type", "timeout mn", "port", NULL}},
   {IMAP_STORAGE, "imap", {"host", "username", "password", "auth_type", "timeout mn", "port", "server_directory"}},
   {NNTP_STORAGE, "nntp", {NULL, NULL, NULL, NULL, NULL, NULL, NULL}},
@@ -404,8 +426,7 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   {MAILDIR_STORAGE, "maildir", {"path", "mtime", "interval", NULL, NULL, NULL, NULL}},
   {FEED_STORAGE, "feed", {"username", "password", "timeout mn", NULL, NULL, NULL, NULL}},
   {FEED_STORAGE, "gmail", {"username", "password", "timeout mn", NULL, NULL, NULL, NULL}},
-};
-*/
+};*/
 
 
 void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
@@ -414,9 +435,13 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		return ;
 	g_print ("%s (%d comptes)\n", __func__, myData.pMailAccounts->len);
 	
+	//\_______________________ On initialise chaque compte.
 	CDMailAccount *pMailAccount;
-  	guint i;
+  	GList *pIconList = NULL;
+	Icon *pIcon;
+	int iNbIcons = 0;
 	int r;
+	guint i;
 	for (i = 0; i < myData.pMailAccounts->len; i ++)
 	{
 		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
@@ -467,10 +492,15 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 			default :
 				r = -1;
 		}
-
+		
+		// add an icon for this account.
+		_add_icon (pMailAccount);
+		iNbIcons ++;
+		
 		//  if all is OK, then set a timeout for this mail account
 		if (r == MAIL_NO_ERROR)
 		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
 			pMailAccount->pAccountMailTimer = cairo_dock_new_task (pMailAccount->timeout * 60,
 				(CairoDockGetDataAsyncFunc) cd_mail_get_folder_data,
 				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
@@ -480,9 +510,22 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		else
 		{
 			cd_warning ("mail : the mail account %s couldn't be initialized !", pMailAccount->name);
+			cairo_dock_set_quick_info (myDrawContext, "N/A", pIcon, cairo_dock_get_max_scale (CD_APPLET_MY_ICONS_LIST_CONTAINER));
 		}
 	}
+	
+	//\_______________________ On efface l'ancienne liste.
+	CD_APPLET_DELETE_MY_ICONS_LIST;
+	
+	//\_______________________ On charge la nouvelle liste.
+	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, (iNbIcons > 1 ? "Caroussel" : "Simple"), (iNbIcons > 1 ? pConfig : NULL));
+	
+	//\_______________ On dessine l'icone principale initialement.
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
 }
+
 
 void cd_mail_free_account (CDMailAccount *pMailAccount)
 {

@@ -65,6 +65,7 @@ typedef struct {
     Icon *icon;
     gboolean bInitialized;
     GList *pUnseenMessageList;  // liste de gchar*
+	gboolean bError;
 } CDMailAccount;
 
 
