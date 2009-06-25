@@ -39,13 +39,18 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 
 static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *root_node, gchar *cRootNodeName, GError **erreur)
 {
+	if (cairo_dock_get_file_size (cDataFilePath) == 0)
+	{
+		g_set_error (erreur, 1, 1, "file '%s' doesn't exist (no connection ?)", cDataFilePath);
+		return NULL;
+	}
 	xmlInitParser ();
 	
 	xmlDocPtr doc = xmlParseFile (cDataFilePath);
 	if (doc == NULL)
 	{
-		g_set_error (erreur, 1, 1, "file '%s' doesn't exist or is unreadable (no connection ?)", cDataFilePath);
-		return doc;
+		g_set_error (erreur, 1, 1, "file '%s' is uncorrect (no connection ?)", cDataFilePath);
+		return NULL;
 	}
 	
 	xmlNodePtr noeud = xmlDocGetRootElement (doc);

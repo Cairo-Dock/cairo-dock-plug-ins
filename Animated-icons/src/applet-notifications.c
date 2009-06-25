@@ -38,7 +38,6 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		pData->fRotationSpeed = 0;
 		pData->fRadiusFactor = 0;
 		pData->bIsWobblying = FALSE;
-		pData->bIsWobblying = FALSE;
 		pData->bIsWaving = FALSE;
 		pData->fPulseAlpha = 0;
 		pData->bIsBouncing = FALSE;
@@ -65,8 +64,8 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			break;
 			
 			case CD_ANIMATIONS_BLINK :
-				*bStartAnimation = TRUE;
 				cd_animations_init_blink (pData, dt);
+				*bStartAnimation = TRUE;
 			break;
 			
 			case CD_ANIMATIONS_PULSE :

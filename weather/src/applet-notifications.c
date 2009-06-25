@@ -72,7 +72,7 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 	
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (_("No data were available\n is connection alive ?"), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("No data were available\n is connection alive ?"), 
 			(myDock ? pIcon : myIcon),
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
@@ -98,13 +98,22 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
-	
-	if (myData.bErrorRetrievingData)
+	if (cairo_dock_task_is_running (myData.pTask))
 	{
-		cairo_dock_show_temporary_dialog_with_icon (_("No data were available\nRe-trying now ..."), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being fetched, please re-try in a few seconds."), 
 			myIcon,
 			myContainer,
-			myConfig.cDialogDuration,
+			3000,
+			myIcon->acFileName);
+		
+		return NULL;
+	}
+	if (myData.bErrorRetrievingData)
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("No data were available\nRe-trying now ..."), 
+			myIcon,
+			myContainer,
+			3000,
 			myIcon->acFileName);
 		_cd_weather_reload (NULL, myApplet);
 		

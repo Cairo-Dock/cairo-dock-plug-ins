@@ -302,10 +302,14 @@ void rhythmbox_set_surface (MyAppletPlayerStatus iStatus)
 	}
 }
 
-gboolean cd_check_if_size_is_constant (gchar *cFileName)
+gboolean cd_check_if_size_is_constant (gchar *cFilePath)
 {
-	static struct stat buf;
-	g_return_val_if_fail (cFileName != NULL, TRUE);
+	int iSize = cairo_dock_get_file_size (cFilePath);
+	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
+	myData.iCurrentFileSize = iSize;
+	return bConstantSize;
+	/*static struct stat buf;
+	g_return_val_if_fail (cFilePath != NULL, TRUE);
 	if (stat (cFileName, &buf) != -1)
 	{
 		g_print  ("RB : taille de la pochette : %d -> %d\n", myData.iCurrentFileSize, buf.st_size);
@@ -314,5 +318,5 @@ gboolean cd_check_if_size_is_constant (gchar *cFileName)
 		return bConstantSize;
 	}
 	else
-		return TRUE;
+		return TRUE;*/
 }

@@ -35,10 +35,7 @@ gboolean cd_animations_update_blink (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	
 	pData->iBlinkCount --;
 	
-	if (! bUseOpenGL)
-	{
-		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-	}
+	cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	
 	return (pData->iBlinkCount > 0);
 }
