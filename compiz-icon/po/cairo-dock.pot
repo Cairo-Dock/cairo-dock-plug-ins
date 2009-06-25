@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-12 01:43+0200\n"
+"POT-Creation-Date: 2009-06-26 02:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr ""
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:170
 msgid "Emerald Manager"
 msgstr ""
 
@@ -45,33 +45,33 @@ msgstr ""
 msgid "Widget Layer"
 msgstr ""
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:86
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../src/applet-notifications.c:186
+#: ../src/applet-notifications.c:171
 msgid "Reload Emerald"
 msgstr ""
 
-#: ../src/applet-notifications.c:190
+#: ../src/applet-notifications.c:175
 msgid "Switch Windows Manager"
 msgstr ""
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:176
 msgid "Switch Windows Decorator"
 msgstr ""
 
-#: ../src/applet-notifications.c:200
+#: ../src/applet-notifications.c:185
 msgid "Toggle Exposition Mode"
 msgstr ""
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:186
 msgid "Toggle Widgets Layer"
 msgstr ""
 
-#: ../src/applet-notifications.c:203
+#: ../src/applet-notifications.c:188
 msgid "Toggle Show Desktop"
 msgstr ""
 

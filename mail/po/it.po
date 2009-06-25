@@ -12,52 +12,52 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cd-mail-applet-config.c:158
+#: ../src/cd-mail-applet-config.c:160
 msgid "Please choose an account type."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:163
+#: ../src/cd-mail-applet-config.c:165
 #, fuzzy
 msgid "New account's name"
 msgstr "Nome dell'icona :"
 
-#: ../src/cd-mail-applet-config.c:166
+#: ../src/cd-mail-applet-config.c:168
 msgid "Please enter a name for this account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:176
+#: ../src/cd-mail-applet-config.c:178
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:261
+#: ../src/cd-mail-applet-config.c:293
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:316
+#: ../src/cd-mail-applet-config.c:348
 #, fuzzy
 msgid "Remove Account"
 msgstr "Cancellare un account e-mail"
 
-#: ../src/cd-mail-applet-etpan.c:160
+#: ../src/cd-mail-applet-etpan.c:168
 msgid "unknown"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:160
+#: ../src/cd-mail-applet-etpan.c:168
 msgid "no subject"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:297
+#: ../src/cd-mail-applet-etpan.c:303
 msgid "No unread mail in your mailboxes"
 msgstr "Non ci sono messaggi non letti nelle vostre mailboxes"
 
-#: ../src/cd-mail-applet-etpan.c:319
+#: ../src/cd-mail-applet-etpan.c:325
 #, c-format
 msgid "You have %d new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:321
+#: ../src/cd-mail-applet-etpan.c:327
 msgid "You have a new mail :"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-12 01:43+0200\n"
+"POT-Creation-Date: 2009-06-26 02:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,21 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:158
+#: ../src/applet-config.c:156
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
 
-#: ../src/applet-config.c:171
+#: ../src/applet-config.c:169
 msgid "I couldn't find this location"
 msgstr ""
 
-#: ../src/applet-config.c:225
+#: ../src/applet-config.c:223
 msgid "Search for your location :"
 msgstr ""
 
-#: ../src/applet-config.c:229
+#: ../src/applet-config.c:227
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -135,7 +135,7 @@ msgid ""
 " is connection alive ?"
 msgstr ""
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:127
 msgid "Temperature"
 msgstr ""
 
@@ -143,33 +143,37 @@ msgstr ""
 msgid "Precipitation Probability"
 msgstr ""
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:128
 msgid "Wind"
 msgstr ""
 
-#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:129
 msgid "Humidity"
 msgstr ""
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunRise"
 msgstr ""
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunSet"
 msgstr ""
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
+msgid "Data are being fetched, please re-try in a few seconds."
+msgstr ""
+
+#: ../src/applet-notifications.c:113
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
 msgstr ""
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:127
 msgid "feeled"
 msgstr ""
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:129
 msgid "Pressure"
 msgstr ""
 

@@ -119,27 +119,44 @@ msgid "Is detached from the dock ?"
 msgstr "Est-il détaché du dock ?"
 
 #: ../data/messages:25
-msgid "Keep below other windows ?"
-msgstr "Garder en-dessous des autres fenêtres ?"
-
-#: ../data/messages:27
-msgid "Keep above other windows ?"
-msgstr "Garder au-dessus des autres fenêtres ?"
-
-#: ../data/messages:29
 #, fuzzy
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=cairo-dock & type=utility)"
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
 "Compiz à : (class=Cairo-dock & type=utility)"
 
+#: ../data/messages:27
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Normal"
+msgstr ""
+
 #: ../data/messages:31
-msgid "Keep on widget layer ?"
-msgstr "Sur la couche widgets"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:33
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:35
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "Sur la couche widgets"
+
+#: ../data/messages:37
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:41
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -148,33 +165,33 @@ msgstr ""
 "avec le bouton gauche de la souris. Bien sur il pourra toujours être déplacé "
 "avec ALT + clic_gauche"
 
-#: ../data/messages:35
+#: ../data/messages:43
 msgid "Lock position ?"
 msgstr "Verrouiller la position ?"
 
-#: ../data/messages:37
+#: ../data/messages:45
 msgid "in degrees."
 msgstr "en degrés."
 
-#: ../data/messages:39
+#: ../data/messages:47
 msgid "Rotation :"
 msgstr "Rotation :"
 
-#: ../data/messages:41
+#: ../data/messages:49
 msgid "Decorations"
 msgstr "Décorations"
 
-#: ../data/messages:43
+#: ../data/messages:51
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 "Choisissez le thème 'personnal' pour définir vos propres décorations ci-"
 "dessous."
 
-#: ../data/messages:45
+#: ../data/messages:53
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
-#: ../data/messages:47
+#: ../data/messages:55
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -182,47 +199,47 @@ msgstr ""
 "C'est une image qui sera affichée derrière les dessins, comme un cadre par "
 "exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:49
+#: ../data/messages:57
 msgid "Background image :"
 msgstr "Image de fond :"
 
-#: ../data/messages:51
+#: ../data/messages:59
 msgid "Background tansparency :"
 msgstr "Transparence du fond :"
 
-#: ../data/messages:53
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
-#: ../data/messages:55
+#: ../data/messages:63
 msgid "Left offset :"
 msgstr "Décalage à gauche :"
 
-#: ../data/messages:57
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
-#: ../data/messages:59
+#: ../data/messages:67
 msgid "Top offset :"
 msgstr "Décalage en haut :"
 
-#: ../data/messages:61
+#: ../data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
-#: ../data/messages:63
+#: ../data/messages:71
 msgid "Right offset :"
 msgstr "Décalage à droite :"
 
-#: ../data/messages:65
+#: ../data/messages:73
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
-#: ../data/messages:67
+#: ../data/messages:75
 msgid "Bottom offset :"
 msgstr "Décalage en bas :"
 
-#: ../data/messages:69
+#: ../data/messages:77
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -230,63 +247,63 @@ msgstr ""
 "C'est une image qui sera affichée par-dessus les dessins, comme un reflet "
 "par exemple. Laissez vide pour n'en utiliser aucune."
 
-#: ../data/messages:71
+#: ../data/messages:79
 msgid "Foreground image :"
 msgstr "Image d'avant-plan :"
 
-#: ../data/messages:73
+#: ../data/messages:81
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:75
+#: ../data/messages:83
 msgid "Configuration"
 msgstr "Configuration"
 
-#: ../data/messages:77
+#: ../data/messages:85
 msgid "Audio Player"
 msgstr "Lecteur Audio"
 
-#: ../data/messages:79
+#: ../data/messages:87
 msgid "Player to control:"
 msgstr "Lecteur à contrôler:"
 
-#: ../data/messages:81
+#: ../data/messages:89
 msgid "XMMS"
 msgstr ""
 
-#: ../data/messages:83
+#: ../data/messages:91
 msgid "Exaile"
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:93
 msgid "Songbird"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:95
 msgid "Banshee"
 msgstr ""
 
-#: ../data/messages:89
+#: ../data/messages:97
 msgid "Rhythmbox"
 msgstr ""
 
-#: ../data/messages:91
+#: ../data/messages:99
 msgid "QuodLibet"
 msgstr ""
 
-#: ../data/messages:93
+#: ../data/messages:101
 msgid "Listen"
 msgstr ""
 
-#: ../data/messages:95
+#: ../data/messages:103
 msgid "Amarok 2"
 msgstr ""
 
-#: ../data/messages:97
+#: ../data/messages:105
 msgid "Amarok 1.4"
 msgstr ""
 
-#: ../data/messages:99
+#: ../data/messages:107
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -295,190 +312,206 @@ msgstr ""
 "L'icône de l'applet se comportera comme un lanceur, une application et un "
 "applet."
 
-#: ../data/messages:101
+#: ../data/messages:109
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
-#: ../data/messages:103
+#: ../data/messages:111
 msgid "Display"
 msgstr "Affichage"
 
-#: ../data/messages:105
+#: ../data/messages:113
 msgid "Display the cover ?"
 msgstr "Afficher la couverture ?"
 
-#: ../data/messages:107
+#: ../data/messages:115
 msgid "Information to display on the icon :"
 msgstr "Information à afficher sur l'icône :"
 
-#: ../data/messages:109
+#: ../data/messages:117
 msgid "Nothing"
 msgstr "Rien"
 
-#: ../data/messages:111
+#: ../data/messages:119
 msgid "Time Elapsed"
 msgstr "Temps Écoulé"
 
-#: ../data/messages:113
+#: ../data/messages:121
 msgid "Time Left"
 msgstr "Temps Restant"
 
-#: ../data/messages:115
+#: ../data/messages:123
 msgid "N° of track"
 msgstr "N° de piste"
 
-#: ../data/messages:117
+#: ../data/messages:125
 msgid "Desklet display mode :"
 msgstr "Mode d'affichage Desklet :"
 
-#: ../data/messages:119
+#: ../data/messages:127
 msgid "Simple"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:129
 msgid "Info"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:131
 msgid "Info and Controler"
 msgstr "Info et Controleur"
 
-#: ../data/messages:125
+#: ../data/messages:133
 msgid "Caroussel"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:135
 msgid "Controler"
 msgstr "Controleur"
 
-#: ../data/messages:129
-msgid "False 3D Themes (OpenGL only)"
-msgstr "Faux Themes 3D (nécessite l'OpenGL)"
+#: ../data/messages:137
+msgid "OpenGL"
+msgstr ""
 
-#: ../data/messages:131
-msgid "List of available specific themes :"
-msgstr "Liste des thèmes spécifiques :"
-
-#: ../data/messages:133
+#: ../data/messages:139
 msgid "Action on music change"
 msgstr "Actions au changement de musique"
 
-#: ../data/messages:135
+#: ../data/messages:141
 msgid "Show an info-bubble ?"
 msgstr "Montrer une info-bulle ?"
 
-#: ../data/messages:137
+#: ../data/messages:143
 msgid "With a icon ?"
 msgstr "Avec une icône ?"
 
-#: ../data/messages:139
+#: ../data/messages:145
 msgid "in ms."
 msgstr "en ms."
 
-#: ../data/messages:141
+#: ../data/messages:147
 msgid "Time length of info-bubbles :"
 msgstr "Durée des info-bulles :"
 
-#: ../data/messages:143
+#: ../data/messages:149
 msgid "Animate icon ?"
 msgstr "Animer l'icône ?"
 
-#: ../data/messages:145
+#: ../data/messages:151
 msgid "Animation when music changes :"
 msgstr "Animation au changement de musique :"
 
-#: ../data/messages:147
+#: ../data/messages:153
 msgid "bounce"
 msgstr "Rebond"
 
-#: ../data/messages:149
+#: ../data/messages:155
 msgid "rotate"
 msgstr "Rotation"
 
-#: ../data/messages:151
+#: ../data/messages:157
 msgid "blink"
 msgstr "Clignotement"
 
-#: ../data/messages:153
+#: ../data/messages:159
 msgid "pulse"
 msgstr "Pulsation"
 
-#: ../data/messages:155
+#: ../data/messages:161
 msgid "upside-down"
 msgstr "Sens dessus-dessous"
 
-#: ../data/messages:157
+#: ../data/messages:163
 msgid "wobbly"
 msgstr "Élastique"
 
-#: ../data/messages:159
+#: ../data/messages:165
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../data/messages:161
+#: ../data/messages:167
+msgid "False 3D Themes (OpenGL only)"
+msgstr "Faux Themes 3D (nécessite l'OpenGL)"
+
+#: ../data/messages:169
+msgid "Don't forget to choose \"OpenGL\" in \"Desklet display mode\""
+msgstr ""
+
+#: ../data/messages:171
+#, fuzzy
+msgid "List of available specific themes :/"
+msgstr "Liste des thèmes spécifiques :"
+
+#: ../data/messages:173
 msgid "Personnalisation"
 msgstr "Personnalisation"
 
-#: ../data/messages:163 ../data/messages:167 ../data/messages:171
-#: ../data/messages:175 ../data/messages:179
+#: ../data/messages:175 ../data/messages:179 ../data/messages:183
+#: ../data/messages:187 ../data/messages:191
 msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
-#: ../data/messages:165
+#: ../data/messages:177
 msgid "Name of an image for the 'default' icon :"
 msgstr "Nom de l'image 'Par Defaut' :"
 
-#: ../data/messages:169
+#: ../data/messages:181
 msgid "Name of an image for the 'play' icon :"
 msgstr "Nom de l'image 'Jouer' :"
 
-#: ../data/messages:173
+#: ../data/messages:185
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Nom de l'image 'Stop' :"
 
-#: ../data/messages:177
+#: ../data/messages:189
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
-#: ../data/messages:181
+#: ../data/messages:193
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Nom de l'image 'Pas de Signal': "
 
-#: ../data/messages:183
+#: ../data/messages:195
 msgid "Downloads"
 msgstr "Téléchargements"
 
-#: ../data/messages:185
+#: ../data/messages:197
 msgid "You need to be connected to the Internet."
 msgstr "Vous devez être connecté à Internet."
 
-#: ../data/messages:187
-msgid "Allow CID to download missing covers :"
+#: ../data/messages:199
+#, fuzzy
+msgid "Allow Cairo-Dock to download missing covers :"
 msgstr "Autoriser CD à télécharger les pochettes manquantes :"
 
-#: ../data/messages:189
+#: ../data/messages:201
 msgid "in seconds"
 msgstr "en secondes"
 
-#: ../data/messages:191
+#: ../data/messages:203
 msgid "Delay before checking for missing covers :"
 msgstr "Délais avant de le contrôle des pochettes manquantes :"
 
-#: ../data/messages:193
+#: ../data/messages:205
 msgid "The smaller image will be downloaded faster than a big one."
 msgstr "Une image plus petite sera téléchargée plus rapidement qu'une grande."
 
-#: ../data/messages:195
+#: ../data/messages:207
 msgid "Size of the downloaded covers :"
 msgstr "Taille des pochettes téléchargées :"
 
-#: ../data/messages:197
+#: ../data/messages:209
 msgid "Medium"
 msgstr "Moyennes"
 
-#: ../data/messages:199
+#: ../data/messages:211
 msgid "Large"
 msgstr "Larges"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Garder en-dessous des autres fenêtres ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Garder au-dessus des autres fenêtres ?"
 
 #, fuzzy
 #~ msgid "Simple Desklet"

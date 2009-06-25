@@ -36,7 +36,8 @@ msgstr "o"
 msgid "KB"
 msgstr "Ko"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "Mo"
 
@@ -48,23 +49,23 @@ msgstr "Go"
 msgid "TB"
 msgstr "To"
 
-#: ../src/applet-netspeed.c:166
+#: ../src/applet-netspeed.c:163
 msgid "Loading"
 msgstr "Chargement"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:17
 msgid "Total amount of data"
 msgstr "Taille totale des données"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:18
 msgid "downloaded"
 msgstr "téléchargés"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:19
 msgid "uploaded"
 msgstr "envoyés"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid ""
 "Interface '%s' seems to not exist or is not readable.\n"
@@ -75,11 +76,11 @@ msgstr ""
 "Vous devriez ouvrir la configuration de cette applet, et choisir l'interface "
 "que vous voulez surveiller."
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:52
 msgid "Monitor System"
 msgstr "Moniteur système"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:54
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
@@ -271,135 +272,158 @@ msgstr "Image d'avant-plan :"
 msgid "Foreground tansparency :"
 msgstr "Transparence de l'avant-plan :"
 
-#: ../data/messages:81 ../data/messages:135
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../data/messages:83
-msgid "Display a graphic rather than a gauge ?"
-msgstr "Afficher un graphique au lieu d'une jauge ?"
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "Liste des thèmes disponibles pour la jauge :"
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
+msgid "Gauge"
+msgstr ""
+
+#: ../data/messages:87 ../data/messages:93
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Choose one of the available themes :"
+msgstr "Liste des thèmes disponibles pour la jauge :"
+
+#: ../data/messages:95
 msgid "Type of graphic :"
 msgstr "Type de graphique"
 
-#: ../data/messages:87
+#: ../data/messages:97
 msgid "Line"
 msgstr "Cartésien (ligne)"
 
-#: ../data/messages:89
+#: ../data/messages:99
 msgid "Plain"
 msgstr "Plein"
 
-#: ../data/messages:91
+#: ../data/messages:101
 msgid "Bar"
 msgstr "Histogramme (barres)"
 
-#: ../data/messages:93
+#: ../data/messages:103
 msgid "Circle"
 msgstr "Circulaire"
 
-#: ../data/messages:95
+#: ../data/messages:105
 msgid "Plain Circle"
 msgstr "Circulaire plein"
 
-#: ../data/messages:97 ../data/messages:105
+#: ../data/messages:107
 msgid "It's the color of the graphic for high CPU values."
 msgstr ""
 "C'est la couleur du graphique pour les hautes valeurs de téléchargement."
 
-#: ../data/messages:99
-msgid "High values color for the download speed :"
-msgstr "Couleur des hautes valeurs de vitesse :"
+#: ../data/messages:109
+#, fuzzy
+msgid "High values color :"
+msgstr "Couleur des hautes valeurs de la vitesse d'upload :"
 
-#: ../data/messages:101 ../data/messages:109
+#: ../data/messages:111
 msgid "It's the color of the graphic for low CPU values."
 msgstr ""
 "C'est la couleur du graphique pour les basses valeurs de téléchargement."
 
-#: ../data/messages:103
-msgid "Low values color for the download speed :"
-msgstr "Couleur des basses valeurs de vitesse :"
-
-#: ../data/messages:107
-msgid "High values color for the upload speed :"
-msgstr "Couleur des hautes valeurs de la vitesse d'upload :"
-
-#: ../data/messages:111
-msgid "Low values color for the upload speed :"
-msgstr "Couleur des basses valeurs de la vitesse d'upload :"
-
 #: ../data/messages:113
-msgid "Draw both values on the same graph ?"
-msgstr "Dessiner les deux valeurs sur le même graph ?"
+#, fuzzy
+msgid "Low values color :"
+msgstr "Couleur des basses valeurs de la vitesse d'upload :"
 
 #: ../data/messages:115
 msgid "Background color of the graphic :"
 msgstr "Couleur d'arrière plan du graphique :"
 
 #: ../data/messages:117
-msgid "Choose one of the available themes :"
-msgstr "Liste des thèmes disponibles pour la jauge :"
+#, fuzzy
+msgid "Show all values on same graph ?"
+msgstr "Dessiner les deux valeurs sur le même graph ?"
 
 #: ../data/messages:119
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+msgid "Parameters"
 msgstr ""
-"Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 si "
-"vous ne voulez pas de filigrane"
 
 #: ../data/messages:121
-msgid "Image to display as a watermark on the gauge :"
-msgstr "Image à afficher en filigrane sur la jauge :"
-
-#: ../data/messages:123
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Mettez 0 si vous ne voulez pas de filigrane."
-
-#: ../data/messages:125
-msgid "Transparency of the watermark :"
-msgstr "Transparence du filigrane :"
-
-#: ../data/messages:127
-msgid "Display speed values :"
-msgstr "Afficher les valeurs de vitesse :"
-
-#: ../data/messages:129
-msgid "No"
-msgstr "Non"
-
-#: ../data/messages:131
-msgid "On icon"
-msgstr "Sur l'icône"
-
-#: ../data/messages:133
-msgid "On label"
-msgstr "Sur l'étiquette"
-
-#: ../data/messages:137
 msgid "By default it will be 'eth0'."
 msgstr "Par défaut ça sera 'eth0'."
 
-#: ../data/messages:139
+#: ../data/messages:123
 msgid "interface :"
 msgstr "interface :"
 
-#: ../data/messages:141
+#: ../data/messages:125
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../data/messages:143
+#: ../data/messages:127
 msgid "Delay between 2 measures :"
 msgstr "Intervalle entre 2 mesures :"
 
-#: ../data/messages:145
+#: ../data/messages:129
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:131
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:133
+msgid "Display speed values :"
+msgstr "Afficher les valeurs de vitesse :"
+
+#: ../data/messages:135
+msgid "No"
+msgstr "Non"
+
+#: ../data/messages:137
+msgid "On icon"
+msgstr "Sur l'icône"
+
+#: ../data/messages:139
+msgid "On label"
+msgstr "Sur l'étiquette"
+
+#: ../data/messages:141
 msgid "Let empty to use he default one."
 msgstr "Laisser vide pour utiliser celui par défaut."
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "User command to show a system monitor :"
 msgstr "Commande utilisateur pour montrer le moniteur système :"
+
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "Afficher un graphique au lieu d'une jauge ?"
+
+#~ msgid "High values color for the download speed :"
+#~ msgstr "Couleur des hautes valeurs de vitesse :"
+
+#~ msgid "Low values color for the download speed :"
+#~ msgstr "Couleur des basses valeurs de vitesse :"
+
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "Laissez vide pour utiliser l'image par défaut. Mettez la transparence à 0 "
+#~ "si vous ne voulez pas de filigrane"
+
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "Image à afficher en filigrane sur la jauge :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Mettez 0 si vous ne voulez pas de filigrane."
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "Transparence du filigrane :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Garder en-dessous des autres fenêtres ?"

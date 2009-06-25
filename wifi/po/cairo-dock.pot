@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-12 01:43+0200\n"
+"POT-Creation-Date: 2009-06-26 02:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:87 ../data/messages:117
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
 msgid "None"
 msgstr ""
 
@@ -40,17 +40,17 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
-#: ../src/applet-draw.c:130
+#: ../src/applet-draw.c:124
 msgid "Wifi disabled."
 msgstr ""
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
 msgstr ""
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid "Signal Strength:"
 msgstr ""
 
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Network Administration"
 msgstr ""
 
-#: ../src/applet-wifi.c:127 ../src/applet-wifi.c:132
+#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
 msgid "Unknown"
 msgstr ""
 
@@ -252,178 +252,166 @@ msgid "Configuration"
 msgstr ""
 
 #: ../data/messages:83
-msgid "Information"
+msgid "Choose the style of the display : "
 msgstr ""
 
-#: ../data/messages:85
-msgid "Information to display on the icon :"
+#: ../data/messages:85 ../data/messages:91
+msgid "Gauge"
 msgstr ""
 
-#: ../data/messages:89
-msgid "Signal Strength"
+#: ../data/messages:87 ../data/messages:95
+msgid "Graph"
 msgstr ""
 
-#: ../data/messages:91
-msgid "Signal Strength in percent"
+#: ../data/messages:89 ../data/messages:119
+msgid "Icons"
 msgstr ""
 
 #: ../data/messages:93
-msgid "Raw Signal Informations"
-msgstr ""
-
-#: ../data/messages:95
-msgid "in seconds."
+msgid "Choose one of the available themes :"
 msgstr ""
 
 #: ../data/messages:97
-msgid "Delay between signal checks :"
+msgid "Type of graphic :"
 msgstr ""
 
 #: ../data/messages:99
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Plain"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:107
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:109
+msgid "It's the color of the graphic for high quality signal."
+msgstr ""
+
+#: ../data/messages:111
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:113
+msgid "It's the color of the graphic for low quality signal."
+msgstr ""
+
+#: ../data/messages:115
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:117
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:121
+msgid "Effect to apply on the icon according to strength :"
+msgstr ""
+
+#: ../data/messages:125
+msgid "Zoom"
+msgstr ""
+
+#: ../data/messages:127
+msgid "Transparency"
+msgstr ""
+
+#: ../data/messages:129
+msgid "Draw Bar"
+msgstr ""
+
+#: ../data/messages:131 ../data/messages:135 ../data/messages:139
+#: ../data/messages:143 ../data/messages:147 ../data/messages:151
+msgid "Let it empty to use the default icon."
+msgstr ""
+
+#: ../data/messages:133
+msgid "Name of an image for the 'no signal' icon :"
+msgstr ""
+
+#: ../data/messages:137
+msgid "Name of an image for the 'very low' icon :"
+msgstr ""
+
+#: ../data/messages:141
+msgid "Name of an image for the 'low' icon :"
+msgstr ""
+
+#: ../data/messages:145
+msgid "Name of an image for the 'middle' icon :"
+msgstr ""
+
+#: ../data/messages:149
+msgid "Name of an image for the 'good' icon :"
+msgstr ""
+
+#: ../data/messages:153
+msgid "Name of an image for the 'exellent' icon :"
+msgstr ""
+
+#: ../data/messages:155
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:157
+msgid "Information to display on the icon :"
+msgstr ""
+
+#: ../data/messages:161
+msgid "Signal Strength"
+msgstr ""
+
+#: ../data/messages:163
+msgid "Signal Strength in percent"
+msgstr ""
+
+#: ../data/messages:165
+msgid "Raw Signal Informations"
+msgstr ""
+
+#: ../data/messages:167
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:169
+msgid "Delay between signal checks :"
+msgstr ""
+
+#: ../data/messages:171
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:173
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:175
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
 
-#: ../data/messages:101
+#: ../data/messages:177
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 
-#: ../data/messages:103
+#: ../data/messages:179
 msgid "Display"
 msgstr ""
 
-#: ../data/messages:105
-msgid "Overwrite the default label with the connection point name ?"
-msgstr ""
-
-#: ../data/messages:107
-msgid "Display type :"
-msgstr ""
-
-#: ../data/messages:109
-msgid "Images"
-msgstr ""
-
-#: ../data/messages:111
-msgid "Gauges"
-msgstr ""
-
-#: ../data/messages:113
-msgid "Graphic"
-msgstr ""
-
-#: ../data/messages:115
-msgid "Effect to apply on the icon according to strength :"
-msgstr ""
-
-#: ../data/messages:119
-msgid "Zoom"
-msgstr ""
-
-#: ../data/messages:121
-msgid "Transparency"
-msgstr ""
-
-#: ../data/messages:123
-msgid "Draw Bar"
-msgstr ""
-
-#: ../data/messages:125
-msgid "Type of graphic :"
-msgstr ""
-
-#: ../data/messages:127
-msgid "Line"
-msgstr ""
-
-#: ../data/messages:129
-msgid "Plain"
-msgstr ""
-
-#: ../data/messages:131
-msgid "Bar"
-msgstr ""
-
-#: ../data/messages:133
-msgid "Circle"
-msgstr ""
-
-#: ../data/messages:135
-msgid "Plain Circle"
-msgstr ""
-
-#: ../data/messages:137
-msgid "It's the color of the graphic for high Strength values."
-msgstr ""
-
-#: ../data/messages:139
-msgid "High values color :"
-msgstr ""
-
-#: ../data/messages:141
-msgid "It's the color of the graphic for low Strength values."
-msgstr ""
-
-#: ../data/messages:143
-msgid "Low values color :"
-msgstr ""
-
-#: ../data/messages:145
-msgid "Background color of the graphic :"
-msgstr ""
-
-#: ../data/messages:147
-msgid "List of available themes for the analogic display :"
-msgstr ""
-
-#: ../data/messages:149
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr ""
-
-#: ../data/messages:151
-msgid "Image to display as a watermark on the gauge :"
-msgstr ""
-
-#: ../data/messages:153
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr ""
-
-#: ../data/messages:155
-msgid "Transparency of the watermark :"
-msgstr ""
-
-#: ../data/messages:157
-msgid "Alternative images"
-msgstr ""
-
-#: ../data/messages:159 ../data/messages:163 ../data/messages:167
-#: ../data/messages:171 ../data/messages:175 ../data/messages:179
-msgid "Let it empty to use the default icon."
-msgstr ""
-
-#: ../data/messages:161
-msgid "Name of an image for the 'no signal' icon :"
-msgstr ""
-
-#: ../data/messages:165
-msgid "Name of an image for the 'very low' icon :"
-msgstr ""
-
-#: ../data/messages:169
-msgid "Name of an image for the 'low' icon :"
-msgstr ""
-
-#: ../data/messages:173
-msgid "Name of an image for the 'middle' icon :"
-msgstr ""
-
-#: ../data/messages:177
-msgid "Name of an image for the 'good' icon :"
-msgstr ""
-
 #: ../data/messages:181
-msgid "Name of an image for the 'exellent' icon :"
+msgid "Overwrite the default label with the connection point name ?"
 msgstr ""

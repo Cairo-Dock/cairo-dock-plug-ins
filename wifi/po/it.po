@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:87 ../data/messages:117
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
 msgid "None"
 msgstr "Nessun Segnale"
 
@@ -38,11 +38,11 @@ msgstr "Buono"
 msgid "Excellent"
 msgstr "Eccellente"
 
-#: ../src/applet-draw.c:130
+#: ../src/applet-draw.c:124
 msgid "Wifi disabled."
 msgstr "Wifi disattivata."
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi attiva. \n"
 " Connesso su:"
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid "Signal Strength:"
 msgstr "Potenza del segnale:"
 
@@ -69,7 +69,7 @@ msgstr "Verifica dell'Estensione Wifi"
 msgid "Network Administration"
 msgstr "Amministrazione della Rete"
 
-#: ../src/applet-wifi.c:127 ../src/applet-wifi.c:132
+#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -273,34 +273,158 @@ msgid "Configuration"
 msgstr "Configurazione"
 
 #: ../data/messages:83
-msgid "Information"
-msgstr "Informazione"
+msgid "Choose the style of the display : "
+msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:91
+#, fuzzy
+msgid "Gauge"
+msgstr "Indicatori"
+
+#: ../data/messages:87 ../data/messages:95
+#, fuzzy
+msgid "Graph"
+msgstr "Grafico"
+
+#: ../data/messages:89 ../data/messages:119
+#, fuzzy
+msgid "Icons"
+msgstr "Icona"
+
+#: ../data/messages:93
+msgid "Choose one of the available themes :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Type of graphic :"
+msgstr "Tipo di grafico :"
+
+#: ../data/messages:99
+msgid "Line"
+msgstr "Linea"
+
+#: ../data/messages:101
+msgid "Plain"
+msgstr "Piano"
+
+#: ../data/messages:103
+msgid "Bar"
+msgstr "Barra"
+
+#: ../data/messages:105
+msgid "Circle"
+msgstr "Cerchio"
+
+#: ../data/messages:107
+msgid "Plain Circle"
+msgstr "Cerchio Piatto"
+
+#: ../data/messages:109
+#, fuzzy
+msgid "It's the color of the graphic for high quality signal."
+msgstr "E' il colore del grafico per i valori alti del Segnale."
+
+#: ../data/messages:111
+msgid "High values color :"
+msgstr "Colore valori alti :"
+
+#: ../data/messages:113
+#, fuzzy
+msgid "It's the color of the graphic for low quality signal."
+msgstr "E' il colore del grafico per i valori bassi del Segnale."
+
+#: ../data/messages:115
+msgid "Low values color :"
+msgstr "Colore valori bassi :"
+
+#: ../data/messages:117
+msgid "Background color of the graphic :"
+msgstr "Colore di sfondo del grafico :"
+
+#: ../data/messages:121
+msgid "Effect to apply on the icon according to strength :"
+msgstr "Effetti da attivare all'icona in base alla forza :"
+
+#: ../data/messages:125
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../data/messages:127
+msgid "Transparency"
+msgstr "Trasparenza"
+
+#: ../data/messages:129
+msgid "Draw Bar"
+msgstr "Disegnare una barra"
+
+#: ../data/messages:131 ../data/messages:135 ../data/messages:139
+#: ../data/messages:143 ../data/messages:147 ../data/messages:151
+msgid "Let it empty to use the default icon."
+msgstr "Lasciate vuoto per utilizzare l'icona di default."
+
+#: ../data/messages:133
+msgid "Name of an image for the 'no signal' icon :"
+msgstr "Immagine dell'icona 'Nessun Segnale' :"
+
+#: ../data/messages:137
+msgid "Name of an image for the 'very low' icon :"
+msgstr "Immagine dell'icona 'Molto Basso' :"
+
+#: ../data/messages:141
+msgid "Name of an image for the 'low' icon :"
+msgstr "Immagine dell'icona 'Basso' :"
+
+#: ../data/messages:145
+msgid "Name of an image for the 'middle' icon :"
+msgstr "Immagine dell'icona 'Normale' :"
+
+#: ../data/messages:149
+msgid "Name of an image for the 'good' icon :"
+msgstr "Immagine dell'icona 'Buono' :"
+
+#: ../data/messages:153
+msgid "Name of an image for the 'exellent' icon :"
+msgstr "Immagine dell'icona 'Eccellente' :"
+
+#: ../data/messages:155
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:157
 msgid "Information to display on the icon :"
 msgstr "Informazioni da mostrare sull'icona :"
 
-#: ../data/messages:89
+#: ../data/messages:161
 msgid "Signal Strength"
 msgstr "Forza del Segnale"
 
-#: ../data/messages:91
+#: ../data/messages:163
 msgid "Signal Strength in percent"
 msgstr "Forza del Segnale in percentuale"
 
-#: ../data/messages:93
+#: ../data/messages:165
 msgid "Raw Signal Informations"
 msgstr "Info brute sul segnale"
 
-#: ../data/messages:95
+#: ../data/messages:167
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:97
+#: ../data/messages:169
 msgid "Delay between signal checks :"
 msgstr "Ritardo tra le verifiche del segnale :"
 
-#: ../data/messages:99
+#: ../data/messages:171
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:173
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:175
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -308,150 +432,45 @@ msgstr ""
 "Permette di sovrascrivere la linea di comando di default dell'applet e "
 "lanciare l'interfaccia di configurazione wireless."
 
-#: ../data/messages:101
+#: ../data/messages:177
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
 
-#: ../data/messages:103
+#: ../data/messages:179
 msgid "Display"
 msgstr "Mostrare"
 
-#: ../data/messages:105
+#: ../data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
-#: ../data/messages:107
-msgid "Display type :"
-msgstr "Tipi di indicazioni :"
+#~ msgid "Information"
+#~ msgstr "Informazione"
 
-#: ../data/messages:109
-msgid "Images"
-msgstr "Immagini"
+#~ msgid "Display type :"
+#~ msgstr "Tipi di indicazioni :"
 
-#: ../data/messages:111
-msgid "Gauges"
-msgstr "Indicatori"
+#~ msgid "Images"
+#~ msgstr "Immagini"
 
-#: ../data/messages:113
-msgid "Graphic"
-msgstr "Grafico"
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../data/messages:115
-msgid "Effect to apply on the icon according to strength :"
-msgstr "Effetti da attivare all'icona in base alla forza :"
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
+#~ "0 se si vuole alcuna filigrana."
 
-#: ../data/messages:119
-msgid "Zoom"
-msgstr "Zoom"
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "Immagine da mostrare come filigrana nel grafico :"
 
-#: ../data/messages:121
-msgid "Transparency"
-msgstr "Trasparenza"
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Settare a 0 se si vuole alcuna filigrana."
 
-#: ../data/messages:123
-msgid "Draw Bar"
-msgstr "Disegnare una barra"
-
-#: ../data/messages:125
-msgid "Type of graphic :"
-msgstr "Tipo di grafico :"
-
-#: ../data/messages:127
-msgid "Line"
-msgstr "Linea"
-
-#: ../data/messages:129
-msgid "Plain"
-msgstr "Piano"
-
-#: ../data/messages:131
-msgid "Bar"
-msgstr "Barra"
-
-#: ../data/messages:133
-msgid "Circle"
-msgstr "Cerchio"
-
-#: ../data/messages:135
-msgid "Plain Circle"
-msgstr "Cerchio Piatto"
-
-#: ../data/messages:137
-msgid "It's the color of the graphic for high Strength values."
-msgstr "E' il colore del grafico per i valori alti del Segnale."
-
-#: ../data/messages:139
-msgid "High values color :"
-msgstr "Colore valori alti :"
-
-#: ../data/messages:141
-msgid "It's the color of the graphic for low Strength values."
-msgstr "E' il colore del grafico per i valori bassi del Segnale."
-
-#: ../data/messages:143
-msgid "Low values color :"
-msgstr "Colore valori bassi :"
-
-#: ../data/messages:145
-msgid "Background color of the graphic :"
-msgstr "Colore di sfondo del grafico :"
-
-#: ../data/messages:147
-msgid "List of available themes for the analogic display :"
-msgstr "Lista dei temi disponibili per la vista analogica :"
-
-#: ../data/messages:149
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr ""
-"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
-"se si vuole alcuna filigrana."
-
-#: ../data/messages:151
-msgid "Image to display as a watermark on the gauge :"
-msgstr "Immagine da mostrare come filigrana nel grafico :"
-
-#: ../data/messages:153
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Settare a 0 se si vuole alcuna filigrana."
-
-#: ../data/messages:155
-msgid "Transparency of the watermark :"
-msgstr "Trasparenza della filigrana :"
-
-#: ../data/messages:157
-msgid "Alternative images"
-msgstr ""
-
-#: ../data/messages:159 ../data/messages:163 ../data/messages:167
-#: ../data/messages:171 ../data/messages:175 ../data/messages:179
-msgid "Let it empty to use the default icon."
-msgstr "Lasciate vuoto per utilizzare l'icona di default."
-
-#: ../data/messages:161
-msgid "Name of an image for the 'no signal' icon :"
-msgstr "Immagine dell'icona 'Nessun Segnale' :"
-
-#: ../data/messages:165
-msgid "Name of an image for the 'very low' icon :"
-msgstr "Immagine dell'icona 'Molto Basso' :"
-
-#: ../data/messages:169
-msgid "Name of an image for the 'low' icon :"
-msgstr "Immagine dell'icona 'Basso' :"
-
-#: ../data/messages:173
-msgid "Name of an image for the 'middle' icon :"
-msgstr "Immagine dell'icona 'Normale' :"
-
-#: ../data/messages:177
-msgid "Name of an image for the 'good' icon :"
-msgstr "Immagine dell'icona 'Buono' :"
-
-#: ../data/messages:181
-msgid "Name of an image for the 'exellent' icon :"
-msgstr "Immagine dell'icona 'Eccellente' :"
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "Trasparenza della filigrana :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Mantenere al di sotto delle altre finestre ?"

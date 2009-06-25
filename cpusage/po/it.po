@@ -31,31 +31,31 @@ msgid ""
 "Left click on the icon to get a list of the most cpu using programs."
 msgstr ""
 
-#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
 msgid "Data acquisition has failed"
 msgstr "L'acquisizione dei dati è fallita"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Model Name"
 msgstr "Nome del modello"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Frequency"
 msgstr "Frequenza"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "core(s)"
 msgstr "core(s)"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Up time"
 msgstr "Up time"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Activity time"
 msgstr "Tempi di attività"
 
-#: ../src/applet-notifications.c:143
+#: ../src/applet-notifications.c:142
 msgid "Monitor System"
 msgstr "Monitorare il sistema"
 

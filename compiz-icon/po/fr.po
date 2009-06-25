@@ -33,7 +33,7 @@ msgstr ""
 msgid "Configure Compiz"
 msgstr "Configurer Compiz"
 
-#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:185
+#: ../src/applet-load-icon.c:21 ../src/applet-notifications.c:170
 msgid "Emerald Manager"
 msgstr "Gestionnaire Emerald"
 
@@ -49,7 +49,7 @@ msgstr "Exposé"
 msgid "Widget Layer"
 msgstr "Couche des Widgets"
 
-#: ../src/applet-notifications.c:101
+#: ../src/applet-notifications.c:86
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
@@ -57,27 +57,27 @@ msgstr ""
 "Pour configurer Compiz, vous devez avoir installé CCSM\n"
 " avec votre gestionnaire de paquets (Synaptic, YasT, etc)"
 
-#: ../src/applet-notifications.c:186
+#: ../src/applet-notifications.c:171
 msgid "Reload Emerald"
 msgstr "Recharger Emerald"
 
-#: ../src/applet-notifications.c:190
+#: ../src/applet-notifications.c:175
 msgid "Switch Windows Manager"
 msgstr "Changer de Gestionnaire de Fenêtres"
 
-#: ../src/applet-notifications.c:191
+#: ../src/applet-notifications.c:176
 msgid "Switch Windows Decorator"
 msgstr "Changer le Décorateur de Fenêtres"
 
-#: ../src/applet-notifications.c:200
+#: ../src/applet-notifications.c:185
 msgid "Toggle Exposition Mode"
 msgstr "Activer le Mode Exposition"
 
-#: ../src/applet-notifications.c:201
+#: ../src/applet-notifications.c:186
 msgid "Toggle Widgets Layer"
 msgstr "Activer la Couche des Widgets"
 
-#: ../src/applet-notifications.c:203
+#: ../src/applet-notifications.c:188
 msgid "Toggle Show Desktop"
 msgstr "Montrer le Bureau"
 

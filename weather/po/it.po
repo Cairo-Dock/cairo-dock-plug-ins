@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:158
+#: ../src/applet-config.c:156
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,16 +22,16 @@ msgstr ""
 "Non ho potuto recuperare le info\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-config.c:171
+#: ../src/applet-config.c:169
 msgid "I couldn't find this location"
 msgstr ""
 
-#: ../src/applet-config.c:225
+#: ../src/applet-config.c:223
 #, fuzzy
 msgid "Search for your location :"
 msgstr "Ricerca della vostra località"
 
-#: ../src/applet-config.c:229
+#: ../src/applet-config.c:227
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 "Nessun dato disponible\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:127
 msgid "Temperature"
 msgstr "Temperatura"
 
@@ -146,23 +146,27 @@ msgstr "Temperatura"
 msgid "Precipitation Probability"
 msgstr "Probabilità di precipitazione"
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:128
 msgid "Wind"
 msgstr "Vento"
 
-#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:129
 msgid "Humidity"
 msgstr "Umidità"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunRise"
 msgstr "Alba"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunSet"
 msgstr "Tramonto"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
+msgid "Data are being fetched, please re-try in a few seconds."
+msgstr ""
+
+#: ../src/applet-notifications.c:113
 #, fuzzy
 msgid ""
 "No data were available\n"
@@ -171,11 +175,11 @@ msgstr ""
 "Nessun dato disponible\n"
 " la connessione è attiva ?"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:127
 msgid "feeled"
 msgstr "risentito"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:129
 msgid "Pressure"
 msgstr "Pressione"
 

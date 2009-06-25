@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-12 01:43+0200\n"
+"POT-Creation-Date: 2009-06-26 02:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,52 +20,98 @@ msgstr ""
 msgid "day(s)"
 msgstr ""
 
-#: ../src/applet-init.c:10
+#: ../src/applet-init.c:11
 msgid "System Monitor"
 msgstr ""
 
-#: ../src/applet-init.c:13
+#: ../src/applet-init.c:14
 msgid ""
 "This applet shows you the CPU load, RAM usage, graphic card temperature, "
 "etc.\n"
 "Middle click on the icon to get some valuable info.\n"
-"Left click on the icon to get a list of the most ressources using programs."
+"Left click on the icon to get a list of the most ressources using programs.\n"
+"You can instanciate this applet several times to show different values each "
+"time."
 msgstr ""
 
-#: ../src/applet-monitor.c:60 ../src/applet-rame.c:114
+#: ../src/applet-monitor.c:60
 msgid "Loading"
 msgstr ""
 
-#: ../src/applet-notifications.c:19 ../src/applet-notifications.c:37
-msgid "Data acquisition has failed"
+#: ../src/applet-notifications.c:21 ../src/applet-notifications.c:69
+msgid ""
+"The acquisition of one or more data has failed.\n"
+"You should remove the data that couldn't be fetched."
 msgstr ""
 
-#: ../src/applet-notifications.c:32
-msgid "Model Name"
+#: ../src/applet-notifications.c:26 ../src/applet-notifications.c:43
+#: ../src/applet-top.c:268
+msgid "Mb"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:26
+msgid "Gb"
+msgstr ""
+
+#: ../src/applet-notifications.c:43
+msgid "GPU model"
+msgstr ""
+
+#: ../src/applet-notifications.c:43
+msgid "Video Ram"
+msgstr ""
+
+#: ../src/applet-notifications.c:43
+msgid "Driver Version"
+msgstr ""
+
+#: ../src/applet-notifications.c:43
+msgid "Core Temperature"
+msgstr ""
+
+#: ../src/applet-notifications.c:53
+msgid "CPU model"
+msgstr ""
+
+#: ../src/applet-notifications.c:54
 msgid "Frequency"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:55
 msgid "core(s)"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:56
 msgid "Up time"
 msgstr ""
 
-#: ../src/applet-notifications.c:32
+#: ../src/applet-notifications.c:57
 msgid "Activity time"
 msgstr ""
 
-#: ../src/applet-notifications.c:57
+#: ../src/applet-notifications.c:58
+msgid "Memory"
+msgstr ""
+
+#: ../src/applet-notifications.c:59
+msgid "Free"
+msgstr ""
+
+#: ../src/applet-notifications.c:60
+msgid "Cached"
+msgstr ""
+
+#: ../src/applet-notifications.c:61
+msgid "Buffers"
+msgstr ""
+
+#: ../src/applet-notifications.c:91
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-top.c:233
-msgid "Mb"
+#: ../src/applet-nvidia.c:122
+#, c-format
+msgid "Alert ! Graphic Card core temperature has reached %d°C"
 msgstr ""
 
 #: ../data/messages:1
@@ -246,24 +292,16 @@ msgstr ""
 msgid "Choose the style of the display : "
 msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
 msgid "Gauge"
 msgstr ""
 
-#: ../data/messages:87
+#: ../data/messages:87 ../data/messages:93
 msgid "Graph"
-msgstr ""
-
-#: ../data/messages:89
-msgid "Display"
 msgstr ""
 
 #: ../data/messages:91
 msgid "Choose one of the available themes :"
-msgstr ""
-
-#: ../data/messages:93 ../data/messages:117
-msgid "Parameters"
 msgstr ""
 
 #: ../data/messages:95
@@ -310,96 +348,172 @@ msgstr ""
 msgid "Background color of the graphic :"
 msgstr ""
 
+#: ../data/messages:117
+msgid "Show all values on same graph ?"
+msgstr ""
+
 #: ../data/messages:119
-msgid "Show CPU usage ?"
+msgid "Parameters"
 msgstr ""
 
 #: ../data/messages:121
-msgid "Show RAM usage ?"
+msgid "Show CPU usage ?"
 msgstr ""
 
 #: ../data/messages:123
-msgid "Show SWAP too ?"
+msgid "Show RAM usage ?"
 msgstr ""
 
 #: ../data/messages:125
-msgid "You need an nVidia and the 'nvidia-settings' tool."
+msgid "Show SWAP too ?"
 msgstr ""
 
 #: ../data/messages:127
-msgid "Show graphic card temperature ?"
+msgid "You need an nVidia and the 'nvidia-settings' tool."
 msgstr ""
 
 #: ../data/messages:129
-msgid "Show free memory instead of used memory ?"
+msgid "Show graphic card temperature ?"
 msgstr ""
 
 #: ../data/messages:131
-msgid "Display values :"
+msgid "Show free memory instead of used memory ?"
 msgstr ""
 
 #: ../data/messages:133
-msgid "No"
+msgid "Display values :"
 msgstr ""
 
 #: ../data/messages:135
-msgid "On icon"
+msgid "No"
 msgstr ""
 
 #: ../data/messages:137
+msgid "On icon"
+msgstr ""
+
+#: ../data/messages:139
 msgid "On label"
 msgstr ""
 
-#: ../data/messages:139 ../data/messages:167
+#: ../data/messages:141 ../data/messages:177
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:143
 msgid "Delay between refresh :"
 msgstr ""
 
-#: ../data/messages:143 ../data/messages:147
+#: ../data/messages:145
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:147
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:149 ../data/messages:157
 msgid "Let empty to use the default one."
 msgstr ""
 
-#: ../data/messages:145 ../data/messages:149
-msgid "Class of the system monitor program:"
-msgstr ""
-
 #: ../data/messages:151
-msgid "Top List"
+msgid "User command to show a system monitor :"
 msgstr ""
 
 #: ../data/messages:153
+msgid ""
+"It will prevent the system monitor's icon to appear in the taskbar. The "
+"applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr ""
+
+#: ../data/messages:155
+msgid "Steal the system monitor's icon in taskbar ?"
+msgstr ""
+
+#: ../data/messages:159
+msgid "Class of the system monitor program:"
+msgstr ""
+
+#: ../data/messages:161
+msgid "Top List"
+msgstr ""
+
+#: ../data/messages:163
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
 
-#: ../data/messages:155
+#: ../data/messages:165
 msgid "Number of programs to display in the top list :"
 msgstr ""
 
-#: ../data/messages:157
+#: ../data/messages:167
 msgid "It's the first color of the gradation used to write the top list."
 msgstr ""
 
-#: ../data/messages:159
+#: ../data/messages:169
 msgid "Start color of the top list :"
 msgstr ""
 
-#: ../data/messages:161
+#: ../data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
 msgstr ""
 
-#: ../data/messages:163
+#: ../data/messages:173
 msgid "Stop color of the top list :"
 msgstr ""
 
-#: ../data/messages:165
+#: ../data/messages:175
 msgid "Show top memory usage in % ?"
 msgstr ""
 
-#: ../data/messages:169
+#: ../data/messages:179
 msgid "Delay between refresh of the top list :"
+msgstr ""
+
+#: ../data/messages:181
+msgid "Graphic Card temperature"
+msgstr ""
+
+#: ../data/messages:183
+msgid ""
+"in celcius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
+
+#: ../data/messages:185
+msgid "Lower limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:187
+msgid ""
+"in celcius. The temperature will be displayed between the lower limit and "
+"this value."
+msgstr ""
+
+#: ../data/messages:189
+msgid "Upper limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:191
+msgid "Alert when core temperature is high ?"
+msgstr ""
+
+#: ../data/messages:193
+msgid "in celcius."
+msgstr ""
+
+#: ../data/messages:195
+msgid "Alert limit of core temperature :"
+msgstr ""
+
+#: ../data/messages:197
+msgid "Play a sound during the alert ?"
+msgstr ""
+
+#: ../data/messages:199
+msgid "Sound path :"
 msgstr ""

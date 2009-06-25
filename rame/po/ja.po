@@ -26,15 +26,15 @@ msgstr ""
 msgid "Mb"
 msgstr "Mb"
 
-#: ../src/applet-notifications.c:92
+#: ../src/applet-notifications.c:91
 msgid "Data acquisition has failed"
 msgstr "データの取得に失敗"
 
-#: ../src/applet-notifications.c:113
+#: ../src/applet-notifications.c:112
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
-#: ../src/applet-rame.c:119
+#: ../src/applet-rame.c:121
 msgid "Loading"
 msgstr "読み込み中"
 

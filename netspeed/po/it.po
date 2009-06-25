@@ -28,7 +28,8 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "MB"
 
@@ -40,23 +41,23 @@ msgstr "GB"
 msgid "TB"
 msgstr "TB"
 
-#: ../src/applet-netspeed.c:166
+#: ../src/applet-netspeed.c:163
 msgid "Loading"
 msgstr "Caricamento"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:17
 msgid "Total amount of data"
 msgstr "Totale dei dati"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:18
 msgid "downloaded"
 msgstr "ricevuti"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:19
 msgid "uploaded"
 msgstr "inviati"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid ""
 "Interface '%s' seems to not exist or is not readable.\n"
@@ -64,11 +65,11 @@ msgid ""
 "interface you wish to monitor."
 msgstr ""
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:52
 msgid "Monitor System"
 msgstr ""
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:54
 msgid "Re-check interface"
 msgstr "Ri-verifica dell'interfaccia"
 
@@ -258,64 +259,66 @@ msgstr ""
 msgid "Foreground tansparency :"
 msgstr ""
 
-#: ../data/messages:81 ../data/messages:135
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "Configurazione"
 
 #: ../data/messages:83
-msgid "Display a graphic rather than a gauge ?"
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#: ../data/messages:85 ../data/messages:89
+msgid "Gauge"
 msgstr ""
 
-#: ../data/messages:85
-msgid "Type of graphic :"
-msgstr ""
-
-#: ../data/messages:87
-msgid "Line"
-msgstr ""
-
-#: ../data/messages:89
-msgid "Plain"
+#: ../data/messages:87 ../data/messages:93
+msgid "Graph"
 msgstr ""
 
 #: ../data/messages:91
-msgid "Bar"
-msgstr ""
-
-#: ../data/messages:93
-msgid "Circle"
-msgstr ""
+#, fuzzy
+msgid "Choose one of the available themes :"
+msgstr "Lista dei temi disponibili per la vista analogica :"
 
 #: ../data/messages:95
-msgid "Plain Circle"
+msgid "Type of graphic :"
 msgstr ""
 
-#: ../data/messages:97 ../data/messages:105
-msgid "It's the color of the graphic for high CPU values."
+#: ../data/messages:97
+msgid "Line"
 msgstr ""
 
 #: ../data/messages:99
-msgid "High values color for the download speed :"
+msgid "Plain"
 msgstr ""
 
-#: ../data/messages:101 ../data/messages:109
-msgid "It's the color of the graphic for low CPU values."
+#: ../data/messages:101
+msgid "Bar"
 msgstr ""
 
 #: ../data/messages:103
-msgid "Low values color for the download speed :"
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Plain Circle"
 msgstr ""
 
 #: ../data/messages:107
-msgid "High values color for the upload speed :"
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:109
+msgid "High values color :"
 msgstr ""
 
 #: ../data/messages:111
-msgid "Low values color for the upload speed :"
+msgid "It's the color of the graphic for low CPU values."
 msgstr ""
 
 #: ../data/messages:113
-msgid "Draw both values on the same graph ?"
+msgid "Low values color :"
 msgstr ""
 
 #: ../data/messages:115
@@ -323,70 +326,79 @@ msgid "Background color of the graphic :"
 msgstr ""
 
 #: ../data/messages:117
-#, fuzzy
-msgid "Choose one of the available themes :"
-msgstr "Lista dei temi disponibili per la vista analogica :"
+msgid "Show all values on same graph ?"
+msgstr ""
 
 #: ../data/messages:119
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+msgid "Parameters"
 msgstr ""
-"Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
-"se si vuole alcuna filigrana."
 
 #: ../data/messages:121
-msgid "Image to display as a watermark on the gauge :"
-msgstr "Immagine da mostrare come filigrana nell'indicatore :"
-
-#: ../data/messages:123
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "Settare a 0 se si vuole alcuna filigrana."
-
-#: ../data/messages:125
-msgid "Transparency of the watermark :"
-msgstr "Trasparenza della filigrana :"
-
-#: ../data/messages:127
-msgid "Display speed values :"
-msgstr "Mostrare i valori della velocità :"
-
-#: ../data/messages:129
-msgid "No"
-msgstr "No"
-
-#: ../data/messages:131
-msgid "On icon"
-msgstr "Sull'icona"
-
-#: ../data/messages:133
-msgid "On label"
-msgstr "Sull'etichetta"
-
-#: ../data/messages:137
 msgid "By default it will be 'eth0'."
 msgstr "Di default sarà 'eth0'."
 
-#: ../data/messages:139
+#: ../data/messages:123
 msgid "interface :"
 msgstr "interfaccia :"
 
-#: ../data/messages:141
+#: ../data/messages:125
 msgid "in seconds."
 msgstr "in secondi."
 
-#: ../data/messages:143
+#: ../data/messages:127
 msgid "Delay between 2 measures :"
 msgstr "Intervallo tra le due misure :"
 
-#: ../data/messages:145
+#: ../data/messages:129
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:131
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:133
+msgid "Display speed values :"
+msgstr "Mostrare i valori della velocità :"
+
+#: ../data/messages:135
+msgid "No"
+msgstr "No"
+
+#: ../data/messages:137
+msgid "On icon"
+msgstr "Sull'icona"
+
+#: ../data/messages:139
+msgid "On label"
+msgstr "Sull'etichetta"
+
+#: ../data/messages:141
 #, fuzzy
 msgid "Let empty to use he default one."
 msgstr "Lasciare vuoto per usare l'icona di default."
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "User command to show a system monitor :"
 msgstr ""
+
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
+#~ "0 se si vuole alcuna filigrana."
+
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "Immagine da mostrare come filigrana nell'indicatore :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Settare a 0 se si vuole alcuna filigrana."
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "Trasparenza della filigrana :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Mantenere al di sotto delle altre finestre ?"

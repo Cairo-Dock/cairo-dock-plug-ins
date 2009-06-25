@@ -20,9 +20,6 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-draw.h"
 #include "applet-wifi.h"
 
-static char  *s_cTmpFile = NULL;
-static char  *s_cTmpFileAccessPoint = NULL;
-
 
 static float pourcent(float x, float y) {
   float p = 0;
@@ -136,7 +133,7 @@ void cd_wifi_get_data (void)
 	g_free (cCommand);
 	
 	/*if (myData.cConnName != NULL) {
-		cCommand = g_strdup_printf("bash %s/access-point %s", MY_APPLET_SHARE_DATA_DIR, myData.cConnName, s_cTmpFileAccessPoint);
+		cCommand = g_strdup_printf("bash %s/access-point", MY_APPLET_SHARE_DATA_DIR, myData.cConnName);
 		gchar *cResult2 = cairo_dock_launch_command_sync (cCommand);
 		g_free (cCommand);
 	}*/  /// Il faudrait en faire quelque chose ...

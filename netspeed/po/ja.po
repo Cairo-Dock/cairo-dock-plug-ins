@@ -33,7 +33,8 @@ msgstr "B"
 msgid "KB"
 msgstr "KB"
 
-#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:14
+#: ../src/applet-netspeed.c:48 ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:19
 msgid "MB"
 msgstr "MB"
 
@@ -45,23 +46,23 @@ msgstr "GB"
 msgid "TB"
 msgstr "TB"
 
-#: ../src/applet-netspeed.c:166
+#: ../src/applet-netspeed.c:163
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:17
 msgid "Total amount of data"
 msgstr "データ総量"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:18
 msgid "downloaded"
 msgstr "ダウンロード"
 
-#: ../src/applet-notifications.c:14
+#: ../src/applet-notifications.c:19
 msgid "uploaded"
 msgstr "アップロード"
 
-#: ../src/applet-notifications.c:18
+#: ../src/applet-notifications.c:23
 #, c-format
 msgid ""
 "Interface '%s' seems to not exist or is not readable.\n"
@@ -72,11 +73,11 @@ msgstr ""
 "このアプレットの設定パネルを開いて、監視したいインターフェイスを選択する必要"
 "があるかもしれません。"
 
-#: ../src/applet-notifications.c:44
+#: ../src/applet-notifications.c:52
 msgid "Monitor System"
 msgstr "システム・モニタ"
 
-#: ../src/applet-notifications.c:46
+#: ../src/applet-notifications.c:54
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
@@ -265,133 +266,156 @@ msgstr "前景画像 :"
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
 
-#: ../data/messages:81 ../data/messages:135
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:83
-msgid "Display a graphic rather than a gauge ?"
-msgstr "ゲージの代りにグラフを表示？"
+#, fuzzy
+msgid "Choose the style of the display : "
+msgstr "利用可能なテーマから１つ選択 :"
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:89
+msgid "Gauge"
+msgstr ""
+
+#: ../data/messages:87 ../data/messages:93
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Choose one of the available themes :"
+msgstr "利用可能なテーマから１つ選択 :"
+
+#: ../data/messages:95
 msgid "Type of graphic :"
 msgstr "グラフの種類 :"
 
-#: ../data/messages:87
+#: ../data/messages:97
 msgid "Line"
 msgstr "線"
 
-#: ../data/messages:89
+#: ../data/messages:99
 msgid "Plain"
 msgstr "面"
 
-#: ../data/messages:91
+#: ../data/messages:101
 msgid "Bar"
 msgstr "棒"
 
-#: ../data/messages:93
+#: ../data/messages:103
 msgid "Circle"
 msgstr "円（線）"
 
-#: ../data/messages:95
+#: ../data/messages:105
 msgid "Plain Circle"
 msgstr "円（面）"
 
-#: ../data/messages:97 ../data/messages:105
+#: ../data/messages:107
 msgid "It's the color of the graphic for high CPU values."
 msgstr "高 CPU 値のグラフの色"
 
-#: ../data/messages:99
-msgid "High values color for the download speed :"
-msgstr "ダウンロードの高速度値の色 :"
-
-#: ../data/messages:101 ../data/messages:109
-msgid "It's the color of the graphic for low CPU values."
-msgstr "低 CPU 値のグラフの色"
-
-#: ../data/messages:103
-msgid "Low values color for the download speed :"
-msgstr "ダウンロードの低速度値の色 :"
-
-#: ../data/messages:107
-msgid "High values color for the upload speed :"
+#: ../data/messages:109
+#, fuzzy
+msgid "High values color :"
 msgstr "アップロードの高速度値の色 :"
 
 #: ../data/messages:111
-msgid "Low values color for the upload speed :"
-msgstr "アップロードの低速度値の色 :"
+msgid "It's the color of the graphic for low CPU values."
+msgstr "低 CPU 値のグラフの色"
 
 #: ../data/messages:113
-msgid "Draw both values on the same graph ?"
-msgstr "同じグラフ上に両方の値を描画？"
+#, fuzzy
+msgid "Low values color :"
+msgstr "アップロードの低速度値の色 :"
 
 #: ../data/messages:115
 msgid "Background color of the graphic :"
 msgstr "グラフの背景色 :"
 
 #: ../data/messages:117
-msgid "Choose one of the available themes :"
-msgstr "利用可能なテーマから１つ選択 :"
+#, fuzzy
+msgid "Show all values on same graph ?"
+msgstr "同じグラフ上に両方の値を描画？"
 
 #: ../data/messages:119
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
+msgid "Parameters"
 msgstr ""
-"デフォルトの画像を使用するには空欄のままに。透かし模様を表示させたくない場合"
-"は、透明度を 0 に設定してください。"
 
 #: ../data/messages:121
-msgid "Image to display as a watermark on the gauge :"
-msgstr "ゲージ上の透かし模様として表示する画像 :"
-
-#: ../data/messages:123
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "透かし模様を表示したくない場合は、0 に設定してください。"
-
-#: ../data/messages:125
-msgid "Transparency of the watermark :"
-msgstr "透かし模様の透明度 :"
-
-#: ../data/messages:127
-msgid "Display speed values :"
-msgstr "速度の表示 :"
-
-#: ../data/messages:129
-msgid "No"
-msgstr "なし"
-
-#: ../data/messages:131
-msgid "On icon"
-msgstr "アイコン上"
-
-#: ../data/messages:133
-msgid "On label"
-msgstr "ラベル上"
-
-#: ../data/messages:137
 msgid "By default it will be 'eth0'."
 msgstr "デフォルトでは 'eth0' になります。"
 
-#: ../data/messages:139
+#: ../data/messages:123
 msgid "interface :"
 msgstr "インターフェイス :"
 
-#: ../data/messages:141
+#: ../data/messages:125
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:143
+#: ../data/messages:127
 msgid "Delay between 2 measures :"
 msgstr "計測の間隔時間 :"
 
-#: ../data/messages:145
+#: ../data/messages:129
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:131
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:133
+msgid "Display speed values :"
+msgstr "速度の表示 :"
+
+#: ../data/messages:135
+msgid "No"
+msgstr "なし"
+
+#: ../data/messages:137
+msgid "On icon"
+msgstr "アイコン上"
+
+#: ../data/messages:139
+msgid "On label"
+msgstr "ラベル上"
+
+#: ../data/messages:141
 msgid "Let empty to use he default one."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:147
+#: ../data/messages:143
 msgid "User command to show a system monitor :"
 msgstr "システム・モニタを表示するためのユーザー定義コマンド :"
+
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "ゲージの代りにグラフを表示？"
+
+#~ msgid "High values color for the download speed :"
+#~ msgstr "ダウンロードの高速度値の色 :"
+
+#~ msgid "Low values color for the download speed :"
+#~ msgstr "ダウンロードの低速度値の色 :"
+
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "デフォルトの画像を使用するには空欄のままに。透かし模様を表示させたくない場"
+#~ "合は、透明度を 0 に設定してください。"
+
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "ゲージ上の透かし模様として表示する画像 :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "透かし模様を表示したくない場合は、0 に設定してください。"
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "透かし模様の透明度 :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"

@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:158
+#: ../src/applet-config.c:156
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,15 +22,15 @@ msgstr ""
 "情報の取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-config.c:171
+#: ../src/applet-config.c:169
 msgid "I couldn't find this location"
 msgstr "この場所を見つけることはできませんでした。"
 
-#: ../src/applet-config.c:225
+#: ../src/applet-config.c:223
 msgid "Search for your location :"
 msgstr "現在地の検索"
 
-#: ../src/applet-config.c:229
+#: ../src/applet-config.c:227
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -143,7 +143,7 @@ msgstr ""
 "データの取得が出来ませんでした。\n"
 "回線接続に問題はありませんか？"
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:127
 msgid "Temperature"
 msgstr "気温"
 
@@ -151,23 +151,27 @@ msgstr "気温"
 msgid "Precipitation Probability"
 msgstr "降水確率"
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:128
 msgid "Wind"
 msgstr "風"
 
-#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:129
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunRise"
 msgstr "日の出"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunSet"
 msgstr "日の入り"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
+msgid "Data are being fetched, please re-try in a few seconds."
+msgstr ""
+
+#: ../src/applet-notifications.c:113
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
@@ -175,11 +179,11 @@ msgstr ""
 "データが取得できませんでした。\n"
 "現在再試行中です ..."
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:127
 msgid "feeled"
 msgstr "体感温度"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:129
 msgid "Pressure"
 msgstr "気圧"
 

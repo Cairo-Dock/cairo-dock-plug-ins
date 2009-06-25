@@ -19,7 +19,7 @@ CD_APPLET_DEFINITION ("wifi",
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
 	if (myConfig.iDisplayType == CD_WIFI_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.

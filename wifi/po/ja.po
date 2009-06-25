@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:87 ../data/messages:117
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
 msgid "None"
 msgstr "なし"
 
@@ -38,11 +38,11 @@ msgstr "良好"
 msgid "Excellent"
 msgstr "最高"
 
-#: ../src/applet-draw.c:130
+#: ../src/applet-draw.c:124
 msgid "Wifi disabled."
 msgstr "Wifi は無効です。"
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid ""
 "Wifi enabled. \n"
 " Connected on:"
@@ -50,7 +50,7 @@ msgstr ""
 "Wifi は有効です。\n"
 "接続先 :"
 
-#: ../src/applet-draw.c:134
+#: ../src/applet-draw.c:128
 msgid "Signal Strength:"
 msgstr "信号の強さ :"
 
@@ -71,7 +71,7 @@ msgstr "Wireless Extension のチェック"
 msgid "Network Administration"
 msgstr "ネットワーク管理"
 
-#: ../src/applet-wifi.c:127 ../src/applet-wifi.c:132
+#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
 msgid "Unknown"
 msgstr "不明"
 
@@ -271,34 +271,158 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:83
-msgid "Information"
-msgstr "情報"
+msgid "Choose the style of the display : "
+msgstr ""
 
-#: ../data/messages:85
+#: ../data/messages:85 ../data/messages:91
+#, fuzzy
+msgid "Gauge"
+msgstr "ゲージ"
+
+#: ../data/messages:87 ../data/messages:95
+#, fuzzy
+msgid "Graph"
+msgstr "グラフ"
+
+#: ../data/messages:89 ../data/messages:119
+#, fuzzy
+msgid "Icons"
+msgstr "アイコン"
+
+#: ../data/messages:93
+msgid "Choose one of the available themes :"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Type of graphic :"
+msgstr "グラフの種類 :"
+
+#: ../data/messages:99
+msgid "Line"
+msgstr "線"
+
+#: ../data/messages:101
+msgid "Plain"
+msgstr "面"
+
+#: ../data/messages:103
+msgid "Bar"
+msgstr "棒"
+
+#: ../data/messages:105
+msgid "Circle"
+msgstr "円（線）"
+
+#: ../data/messages:107
+msgid "Plain Circle"
+msgstr "円（面）"
+
+#: ../data/messages:109
+#, fuzzy
+msgid "It's the color of the graphic for high quality signal."
+msgstr "高強値のグラフの色"
+
+#: ../data/messages:111
+msgid "High values color :"
+msgstr "高値の色 :"
+
+#: ../data/messages:113
+#, fuzzy
+msgid "It's the color of the graphic for low quality signal."
+msgstr "低弱値のグラフの色"
+
+#: ../data/messages:115
+msgid "Low values color :"
+msgstr "弱値の色 :"
+
+#: ../data/messages:117
+msgid "Background color of the graphic :"
+msgstr "グラフの背景色 :"
+
+#: ../data/messages:121
+msgid "Effect to apply on the icon according to strength :"
+msgstr "電波の強さに合わせてアイコンに適用する効果 :"
+
+#: ../data/messages:125
+msgid "Zoom"
+msgstr "ズーム"
+
+#: ../data/messages:127
+msgid "Transparency"
+msgstr "透過"
+
+#: ../data/messages:129
+msgid "Draw Bar"
+msgstr "バーの描画"
+
+#: ../data/messages:131 ../data/messages:135 ../data/messages:139
+#: ../data/messages:143 ../data/messages:147 ../data/messages:151
+msgid "Let it empty to use the default icon."
+msgstr "デフォルトのアイコンを使用するには空欄のままに。"
+
+#: ../data/messages:133
+msgid "Name of an image for the 'no signal' icon :"
+msgstr "「信号なし」のアイコン画像の名前 :"
+
+#: ../data/messages:137
+msgid "Name of an image for the 'very low' icon :"
+msgstr "「非常に弱い」のアイコン画像の名前 :"
+
+#: ../data/messages:141
+msgid "Name of an image for the 'low' icon :"
+msgstr "「弱い」のアイコン画像の名前 :"
+
+#: ../data/messages:145
+msgid "Name of an image for the 'middle' icon :"
+msgstr "「中程度」のアイコン画像の名前 :"
+
+#: ../data/messages:149
+msgid "Name of an image for the 'good' icon :"
+msgstr "「良好」のアイコン画像の名前 :"
+
+#: ../data/messages:153
+msgid "Name of an image for the 'exellent' icon :"
+msgstr "「最高」のアイコン画像の名前 :"
+
+#: ../data/messages:155
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:157
 msgid "Information to display on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:89
+#: ../data/messages:161
 msgid "Signal Strength"
 msgstr "信号の強さ"
 
-#: ../data/messages:91
+#: ../data/messages:163
 msgid "Signal Strength in percent"
 msgstr "信号の強さ（％単位）"
 
-#: ../data/messages:93
+#: ../data/messages:165
 msgid "Raw Signal Informations"
 msgstr "生信号の情報"
 
-#: ../data/messages:95
+#: ../data/messages:167
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:97
+#: ../data/messages:169
 msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
-#: ../data/messages:99
+#: ../data/messages:171
+msgid ""
+"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"movement is continue."
+msgstr ""
+
+#: ../data/messages:173
+msgid "How smooth is the movement ?"
+msgstr ""
+
+#: ../data/messages:175
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -306,150 +430,48 @@ msgstr ""
 "アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
 "ンタフェースを起動することができます。"
 
-#: ../data/messages:101
+#: ../data/messages:177
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "無線設定を起動する代替のコマンドライン :"
 
-#: ../data/messages:103
+#: ../data/messages:179
 msgid "Display"
 msgstr "表示"
 
-#: ../data/messages:105
+#: ../data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
 
-#: ../data/messages:107
-msgid "Display type :"
-msgstr "表示タイプ :"
+#~ msgid "Information"
+#~ msgstr "情報"
 
-#: ../data/messages:109
-msgid "Images"
-msgstr "画像"
+#~ msgid "Display type :"
+#~ msgstr "表示タイプ :"
 
-#: ../data/messages:111
-msgid "Gauges"
-msgstr "ゲージ"
+#~ msgid "Images"
+#~ msgstr "画像"
 
-#: ../data/messages:113
-msgid "Graphic"
-msgstr "グラフ"
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "アナログ表示に利用可能なテーマのリスト :"
 
-#: ../data/messages:115
-msgid "Effect to apply on the icon according to strength :"
-msgstr "電波の強さに合わせてアイコンに適用する効果 :"
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr ""
+#~ "デフォルトの画像を使用するには空欄のままに。透かし模様を使用したくない場合"
+#~ "は、透明度を 0 に設定してください。"
 
-#: ../data/messages:119
-msgid "Zoom"
-msgstr "ズーム"
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "ゲージ上に透かし模様として表示する画像 :"
 
-#: ../data/messages:121
-msgid "Transparency"
-msgstr "透過"
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "透かし模様を使用したくない場合は 0 に設定してください。"
 
-#: ../data/messages:123
-msgid "Draw Bar"
-msgstr "バーの描画"
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "透かし模様の透明度 :"
 
-#: ../data/messages:125
-msgid "Type of graphic :"
-msgstr "グラフの種類 :"
-
-#: ../data/messages:127
-msgid "Line"
-msgstr "線"
-
-#: ../data/messages:129
-msgid "Plain"
-msgstr "面"
-
-#: ../data/messages:131
-msgid "Bar"
-msgstr "棒"
-
-#: ../data/messages:133
-msgid "Circle"
-msgstr "円（線）"
-
-#: ../data/messages:135
-msgid "Plain Circle"
-msgstr "円（面）"
-
-#: ../data/messages:137
-msgid "It's the color of the graphic for high Strength values."
-msgstr "高強値のグラフの色"
-
-#: ../data/messages:139
-msgid "High values color :"
-msgstr "高値の色 :"
-
-#: ../data/messages:141
-msgid "It's the color of the graphic for low Strength values."
-msgstr "低弱値のグラフの色"
-
-#: ../data/messages:143
-msgid "Low values color :"
-msgstr "弱値の色 :"
-
-#: ../data/messages:145
-msgid "Background color of the graphic :"
-msgstr "グラフの背景色 :"
-
-#: ../data/messages:147
-msgid "List of available themes for the analogic display :"
-msgstr "アナログ表示に利用可能なテーマのリスト :"
-
-#: ../data/messages:149
-msgid ""
-"Let it empty to use the default image. Set the transparency to 0 if you "
-"don't want to have any watermark."
-msgstr ""
-"デフォルトの画像を使用するには空欄のままに。透かし模様を使用したくない場合"
-"は、透明度を 0 に設定してください。"
-
-#: ../data/messages:151
-msgid "Image to display as a watermark on the gauge :"
-msgstr "ゲージ上に透かし模様として表示する画像 :"
-
-#: ../data/messages:153
-msgid "Set it up to 0 if you don't want to have a watermark."
-msgstr "透かし模様を使用したくない場合は 0 に設定してください。"
-
-#: ../data/messages:155
-msgid "Transparency of the watermark :"
-msgstr "透かし模様の透明度 :"
-
-#: ../data/messages:157
-msgid "Alternative images"
-msgstr "代わりの画像"
-
-#: ../data/messages:159 ../data/messages:163 ../data/messages:167
-#: ../data/messages:171 ../data/messages:175 ../data/messages:179
-msgid "Let it empty to use the default icon."
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
-#: ../data/messages:161
-msgid "Name of an image for the 'no signal' icon :"
-msgstr "「信号なし」のアイコン画像の名前 :"
-
-#: ../data/messages:165
-msgid "Name of an image for the 'very low' icon :"
-msgstr "「非常に弱い」のアイコン画像の名前 :"
-
-#: ../data/messages:169
-msgid "Name of an image for the 'low' icon :"
-msgstr "「弱い」のアイコン画像の名前 :"
-
-#: ../data/messages:173
-msgid "Name of an image for the 'middle' icon :"
-msgstr "「中程度」のアイコン画像の名前 :"
-
-#: ../data/messages:177
-msgid "Name of an image for the 'good' icon :"
-msgstr "「良好」のアイコン画像の名前 :"
-
-#: ../data/messages:181
-msgid "Name of an image for the 'exellent' icon :"
-msgstr "「最高」のアイコン画像の名前 :"
+#~ msgid "Alternative images"
+#~ msgstr "代わりの画像"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"

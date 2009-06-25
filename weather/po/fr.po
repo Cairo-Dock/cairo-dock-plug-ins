@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-config.c:158
+#: ../src/applet-config.c:156
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -22,15 +22,15 @@ msgstr ""
 "Je n'ai pas pu récupérer les info\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-config.c:171
+#: ../src/applet-config.c:169
 msgid "I couldn't find this location"
 msgstr "Je ne peux pas trouver cette emplacement"
 
-#: ../src/applet-config.c:225
+#: ../src/applet-config.c:223
 msgid "Search for your location :"
 msgstr "Chercher votre emplacement"
 
-#: ../src/applet-config.c:229
+#: ../src/applet-config.c:227
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -145,7 +145,7 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:91 ../src/applet-notifications.c:127
 msgid "Temperature"
 msgstr "Température"
 
@@ -153,23 +153,27 @@ msgstr "Température"
 msgid "Precipitation Probability"
 msgstr "Probabilité de précipitation"
 
-#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:119
+#: ../src/applet-notifications.c:93 ../src/applet-notifications.c:128
 msgid "Wind"
 msgstr "Vent"
 
-#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:94 ../src/applet-notifications.c:129
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunRise"
 msgstr "Lever du soleil"
 
-#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:121
+#: ../src/applet-notifications.c:95 ../src/applet-notifications.c:130
 msgid "SunSet"
 msgstr "Coucher du soleil"
 
-#: ../src/applet-notifications.c:104
+#: ../src/applet-notifications.c:103
+msgid "Data are being fetched, please re-try in a few seconds."
+msgstr ""
+
+#: ../src/applet-notifications.c:113
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
@@ -177,11 +181,11 @@ msgstr ""
 "Aucune donnée disponible\n"
 "Nouvel essai ..."
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:127
 msgid "feeled"
 msgstr "ressentie"
 
-#: ../src/applet-notifications.c:120
+#: ../src/applet-notifications.c:129
 msgid "Pressure"
 msgstr "Pression"
 

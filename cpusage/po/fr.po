@@ -37,31 +37,31 @@ msgstr ""
 "Clique gauche sur l'icône pour avoir une liste des programmes les plus "
 "gourmants en CPU."
 
-#: ../src/applet-notifications.c:105 ../src/applet-notifications.c:123
+#: ../src/applet-notifications.c:104 ../src/applet-notifications.c:122
 msgid "Data acquisition has failed"
 msgstr "L'acquisition des données a échoué"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Model Name"
 msgstr "Nom du modèle"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "core(s)"
 msgstr "coeur(s)"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Up time"
 msgstr "Temps d'activité système"
 
-#: ../src/applet-notifications.c:118
+#: ../src/applet-notifications.c:117
 msgid "Activity time"
 msgstr "Temps d'activité"
 
-#: ../src/applet-notifications.c:143
+#: ../src/applet-notifications.c:142
 msgid "Monitor System"
 msgstr "Moniteur système"
 
