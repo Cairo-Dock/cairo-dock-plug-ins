@@ -6,7 +6,7 @@
 #F-[when hovering an icon]
 frame_hov =
 
-#r4[Fire;Stars;Rain;Snow;Storm] Effects used :
+#r+4[Fire;Stars;Rain;Snow;Storm] Effects used :
 effects = 0
 
 #F-[when clicking on an launcher]

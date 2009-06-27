@@ -320,7 +320,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 ICON_EFFECTS_PACKAGE=cd-icon-effect
 AC_SUBST(GETTEXT_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
-AC_SUBST(VERSION_ICON_EFFECTS, "1.1.2")
+AC_SUBST(VERSION_ICON_EFFECTS, "1.1.3")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
@@ -329,7 +329,7 @@ AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
 ILLUSION_PACKAGE=cd-illusion
 AC_SUBST(GETTEXT_ILLUSION, "$ILLUSION_PACKAGE")
 
-AC_SUBST(VERSION_ILLUSION, "1.0.1")
+AC_SUBST(VERSION_ILLUSION, "1.0.2")
 AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
 
 AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")

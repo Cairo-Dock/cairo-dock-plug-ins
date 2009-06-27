@@ -16,26 +16,6 @@ Written by Christophe Chapuis (for any bug report, please mail me to tofe@users.
 #include "cd-mail-applet-accounts.h"
 #include "cd-mail-applet-etpan.h"
 
-#define _add_icon(pMailAccount)\
-	if (pMailAccount->name != NULL) {\
-		pIcon = g_new0 (Icon, 1);\
-		pIcon->acName = g_strdup (pMailAccount->name);\
-		pIcon->acFileName = g_strdup (pMailAccount->iNbUnseenMails > 0 ? myConfig.cHasMailUserImage : myConfig.cNoMailUserImage);\
-		if (pMailAccount->iNbUnseenMails>0)\
-			pIcon->cQuickInfo = g_strdup_printf ("%d", pMailAccount->iNbUnseenMails);\
-		else\
-			pIcon->cQuickInfo = g_strdup ("...");\
-		pIcon->fOrder = i;\
-		pIcon->fScale = 1.;\
-		pIcon->fAlpha = 1.;\
-		pIcon->fWidthFactor = 1.;\
-		pIcon->fHeightFactor = 1.;\
-		pIcon->acCommand = g_strdup ("none");\
-		pIcon->cParentDockName = g_strdup (myIcon->acName);\
-		cd_debug (" + %s (%s)\n", pIcon->acName, pIcon->acFileName);\
-		pIconList = g_list_append (pIconList, pIcon);\
-		pMailAccount->icon = pIcon; }
-
 
 void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donnees des mails (nombre, titres, resume eventuellement) et les placer dans une structure dediee a l'affichage...
 {
@@ -76,10 +56,9 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 		uint32_t result_unseen;
 		
 		//if( MAIL_NO_ERROR == mailsession_unseen_number(pMailAccount->folder->fld_session, pMailAccount->name, &result_unseen) )
-		if( MAIL_NO_ERROR == mailfolder_status(pMailAccount->folder,
-												&result_messages, &result_recent, &result_unseen) )
+		if( MAIL_NO_ERROR == mailfolder_status(pMailAccount->folder, &result_messages, &result_recent, &result_unseen) )
 		{
-			//g_print ("data ok\n");
+			g_print ("mail : %d/%d/%d\n", result_messages, result_recent, result_unseen);
 			pMailAccount->iPrevNbUnseenMails = pMailAccount->iNbUnseenMails;
 			if( pMailAccount->iNbUnseenMails != (guint)result_unseen )  // nombre de messages non lus a change, on va supposer que cela provient soit de leur lecture, soit de leur arrivee, en excluant le cas ou arrivee = lecture, qui laisserait inchange le nombre de mails non lus.
 			{
@@ -87,7 +66,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 				
 				// On recupere les messages non lus.
 				//if (myConfig.bShowMessageContent && pMailAccount->bInitialized)  // && pMailAccount->iNbUnseenMails > pMailAccount->iPrevNbUnseenMails
-				CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;					
+				CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 				if (myConfig.bShowMessageContent)
 				{
 					g_print ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
@@ -191,9 +170,13 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 {
 	if( !pUpdatedMailAccount ) return TRUE;
 	CairoDockModuleInstance *myApplet = pUpdatedMailAccount->pAppletInstance;
-	GList *pIconList = CD_APPLET_MY_ICONS_LIST;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	Icon *pIcon = pUpdatedMailAccount->icon;
+	if (pIcon == NULL)  // cas d'un seul compte.
+	{
+		pIcon = myIcon;
+		pContainer = myContainer;
+	}
 	g_return_val_if_fail (pIcon != NULL, TRUE);
 	
 	//\_______________________ On met a jour l'icone du compte.
@@ -230,62 +213,6 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	pUpdatedMailAccount->bInitialized = TRUE;
 	return TRUE;
 }
-
-
-
-/*void cd_mail_load_icons( CairoDockModuleInstance *myApplet )
-{
-	CDMailAccount *pMailAccount;
-	GList *pIconList = NULL;
-	Icon *pIcon;
-	guint i;
-	int iNbIcons = 0;
-	
-	myData.iPrevNbUnreadMails = 0;
-	myData.iNbUnreadMails = 0;
-	
-	//\_______________________ On construit la liste des icones.
-	if (myData.pMailAccounts != NULL)
-	{
-		for (i = 0; i < myData.pMailAccounts->len; i ++)
-		{
-			pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-			if( !pMailAccount )
-				continue;
-			
-			//myData.iNbUnreadMails += pMailAccount->iNbUnseenMails;  // a priori c'est a 0.
-			_add_icon (pMailAccount);
-			iNbIcons ++;
-		}
-	}
-	g_print ( "%s () : %d messages initialement\n", __func__, myData.iNbUnreadMails );
-	
-	//\_______________________ On efface l'ancienne liste.
-	CD_APPLET_DELETE_MY_ICONS_LIST;
-	
-	//\_______________________ On charge la nouvelle liste.
-	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, (iNbIcons > 1 ? "Caroussel" : "Simple"), (iNbIcons > 1 ? pConfig : NULL));
-	
-	//\_______________________ On redessine l'icone principale.
-	gchar *cNewImage;
-	if (myData.iNbUnreadMails > 0)
-	{
-		cNewImage = myConfig.cHasMailUserImage;
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails);
-	}
-	else
-	{
-		cNewImage = myConfig.cNoMailUserImage;
-		//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("0");
-	}
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (cNewImage);
-	
-	if (myDesklet)
-		gtk_widget_queue_draw (myDesklet->pWidget);
-	else
-	CD_APPLET_REDRAW_MY_ICON;
-}*/
 
 
 

@@ -92,18 +92,16 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet != NULL)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	
+	int i; // reset surfaces utilisateurs.
+	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
+		if (myData.pSurfaces[i] != NULL) {
+			cairo_surface_destroy (myData.pSurfaces[i]);
+			myData.pSurfaces[i] = NULL;
+		}
+	}
 	
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
-		int i; // reset surfaces utilisateurs.
-		for (i = 0; i < WIFI_NB_QUALITY; i ++) {
-			if (myData.pSurfaces[i] != NULL) {
-				cairo_surface_destroy (myData.pSurfaces[i]);
-				myData.pSurfaces[i] = NULL;
-			}
-		}
-		
 		_set_data_renderer (myApplet, TRUE);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-26 02:39+0200\n"
+"POT-Creation-Date: 2009-06-27 03:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,32 +34,32 @@ msgid ""
 "Please choose another name for the new account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:293
+#: ../src/cd-mail-applet-config.c:306
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:348
+#: ../src/cd-mail-applet-config.c:361
 msgid "Remove Account"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "unknown"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "no subject"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:303
+#: ../src/cd-mail-applet-etpan.c:230
 msgid "No unread mail in your mailboxes"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:325
+#: ../src/cd-mail-applet-etpan.c:252
 #, c-format
 msgid "You have %d new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:327
+#: ../src/cd-mail-applet-etpan.c:254
 msgid "You have a new mail :"
 msgstr ""
 
@@ -83,11 +83,11 @@ msgid ""
 "you can change it in the conf panel of this module"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:86
+#: ../src/cd-mail-applet-notifications.c:91
 msgid "Refresh a mail account"
 msgstr ""
 
-#: ../src/cd-mail-applet-notifications.c:97
+#: ../src/cd-mail-applet-notifications.c:102
 #, c-format
 msgid "Launch %s"
 msgstr ""

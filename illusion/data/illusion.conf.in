@@ -3,10 +3,10 @@
 #[gtk-preferences]
 [Global]
 
-#r+[Evaporate;Fade out;Explode;Break;BlackHole] Animation on disappearance :
+#r+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on disappearance :
 disappearance = 2
 
-#r+[Evaporate;Fade out;Explode;Break;BlackHole] Animation on appearance :
+#r+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on appearance :
 appearance = 4
 
 

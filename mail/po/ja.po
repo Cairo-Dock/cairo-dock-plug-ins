@@ -34,33 +34,33 @@ msgstr ""
 "このアカウントはすでに存在します。\n"
 "新しいアカウント用の別の名前を選択してください。"
 
-#: ../src/cd-mail-applet-config.c:293
+#: ../src/cd-mail-applet-config.c:306
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 "このアカウントの名前を入力してください。任意の名前を付けることができます。"
 
-#: ../src/cd-mail-applet-config.c:348
+#: ../src/cd-mail-applet-config.c:361
 msgid "Remove Account"
 msgstr "アカウントの削除"
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "unknown"
 msgstr "不明"
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "no subject"
 msgstr "件名なし"
 
-#: ../src/cd-mail-applet-etpan.c:303
+#: ../src/cd-mail-applet-etpan.c:230
 msgid "No unread mail in your mailboxes"
 msgstr "メールボックスに未読メールはありません。"
 
-#: ../src/cd-mail-applet-etpan.c:325
+#: ../src/cd-mail-applet-etpan.c:252
 #, c-format
 msgid "You have %d new mails :"
 msgstr "新着メールが %d 通あります :"
 
-#: ../src/cd-mail-applet-etpan.c:327
+#: ../src/cd-mail-applet-etpan.c:254
 msgid "You have a new mail :"
 msgstr "新着メールが 1 通あります :"
 
@@ -91,11 +91,11 @@ msgstr ""
 "'%s' が普段使用している標準のメーラーでない場合は、\n"
 "このモジュールの設定パネルで変更可能です。"
 
-#: ../src/cd-mail-applet-notifications.c:86
+#: ../src/cd-mail-applet-notifications.c:91
 msgid "Refresh a mail account"
 msgstr "アカウントの更新"
 
-#: ../src/cd-mail-applet-notifications.c:97
+#: ../src/cd-mail-applet-notifications.c:102
 #, c-format
 msgid "Launch %s"
 msgstr "%s を起動"

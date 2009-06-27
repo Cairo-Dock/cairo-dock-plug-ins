@@ -34,6 +34,8 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		
 		gboolean bSartAnimation = FALSE;
 		CDIllusionEffect iEffect = (pData->sens == 1 ? myConfig.iDisappearanceEffect : myConfig.iAppearanceEffect);
+		if (iEffect >= CD_ILLUSION_NB_EFFECTS)
+			iEffect = g_random_int_range (0, CD_ILLUSION_NB_EFFECTS);
 		switch (iEffect)
 		{
 			case CD_ILLUSION_EVAPORATE :

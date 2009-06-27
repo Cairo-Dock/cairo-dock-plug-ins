@@ -31,92 +31,96 @@ msgstr "全般"
 msgid "Animation on disappearance :"
 msgstr "消失時のアニメーション :"
 
-#: ../data/messages:5 ../data/messages:17 ../data/messages:27
+#: ../data/messages:5 ../data/messages:19 ../data/messages:31
 msgid "Evaporate"
 msgstr "蒸発"
 
-#: ../data/messages:7 ../data/messages:19 ../data/messages:45
+#: ../data/messages:7 ../data/messages:21 ../data/messages:49
 msgid "Fade out"
 msgstr "溶暗"
 
-#: ../data/messages:9 ../data/messages:21 ../data/messages:49
+#: ../data/messages:9 ../data/messages:23 ../data/messages:53
 msgid "Explode"
 msgstr "爆発"
 
-#: ../data/messages:11 ../data/messages:23 ../data/messages:59
+#: ../data/messages:11 ../data/messages:25 ../data/messages:63
 msgid "Break"
 msgstr "破砕"
 
-#: ../data/messages:13 ../data/messages:25
+#: ../data/messages:13 ../data/messages:27
 msgid "BlackHole"
 msgstr "ブラックホール"
 
-#: ../data/messages:15
+#: ../data/messages:15 ../data/messages:29
+msgid "Random"
+msgstr ""
+
+#: ../data/messages:17
 msgid "Animation on appearance :"
 msgstr "出現時のアニメーション :"
 
-#: ../data/messages:29 ../data/messages:47 ../data/messages:51
-#: ../data/messages:61 ../data/messages:67
+#: ../data/messages:33 ../data/messages:51 ../data/messages:55
+#: ../data/messages:65 ../data/messages:71
 msgid "Duration of the animation :"
 msgstr "アニメーションの持続時間 :"
 
-#: ../data/messages:31
+#: ../data/messages:35
 msgid "1st color of gradation :"
 msgstr "グラデーションの１番色 :"
 
-#: ../data/messages:33
+#: ../data/messages:37
 msgid "2nd color of gradation :"
 msgstr "グラデーションの２番色 :"
 
-#: ../data/messages:35
+#: ../data/messages:39
 msgid "Random colors ?"
 msgstr "ランダムな色？"
 
-#: ../data/messages:37
+#: ../data/messages:41
 msgid "Number of particles :"
 msgstr "粒子の数 :"
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid "Particle size :"
 msgstr "粒子のサイズ :"
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Particle speed :"
 msgstr "粒子の速度 :"
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "Evaporate upward ?"
 msgstr "上方向に蒸発？"
 
-#: ../data/messages:53 ../data/messages:63
+#: ../data/messages:57 ../data/messages:67
 msgid "Number of pieces :"
 msgstr "破片の数 :"
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "Explosion radius :"
 msgstr "爆発の半径 :"
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Break the icon in cubes ?"
 msgstr "キューブ状にアイコンを破砕？"
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Black Hole"
 msgstr "ブラックホール"
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "in round per second."
 msgstr "秒当たりの回転数"
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid "Rotation speed :"
 msgstr "回転速度 :"
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "The greatest, the fastest the icon will collapse to the center."
 msgstr "数値が大きいほど、アイコンは中央に速く収縮します。"
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Attraction of the hole :"
 msgstr "ホールの引力 :"
 

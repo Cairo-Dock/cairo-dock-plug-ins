@@ -494,7 +494,14 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		}
 		
 		// add an icon for this account.
-		_add_icon (pMailAccount);
+		if (myData.pMailAccounts->len == 1)  // 1 seul compte
+		{
+			pIcon = myIcon;
+		}
+		else
+		{
+			_add_icon (pMailAccount);
+		}
 		iNbIcons ++;
 		
 		//  if all is OK, then set a timeout for this mail account
@@ -510,7 +517,8 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		else
 		{
 			cd_warning ("mail : the mail account %s couldn't be initialized !", pMailAccount->name);
-			cairo_dock_set_quick_info (myDrawContext, "N/A", pIcon, cairo_dock_get_max_scale (CD_APPLET_MY_ICONS_LIST_CONTAINER));
+			CairoContainer *pContainer = (myData.pMailAccounts->len == 1 ? myContainer : CD_APPLET_MY_ICONS_LIST_CONTAINER);
+			cairo_dock_set_quick_info (myDrawContext, "N/A", pIcon, cairo_dock_get_max_scale (pContainer));
 		}
 	}
 	
@@ -518,12 +526,16 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, (iNbIcons > 1 ? "Caroussel" : "Simple"), (iNbIcons > 1 ? pConfig : NULL));
+	if (myData.pMailAccounts->len > 1)
+	{
+		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, (iNbIcons > 1 ? "Caroussel" : "Simple"), (iNbIcons > 1 ? pConfig : NULL));
+	}
 	
 	//\_______________ On dessine l'icone principale initialement.
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
+	if (iNbIcons > 0)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
 }
 
 

@@ -258,8 +258,21 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 			cairo_dock_free_icon (pIcon);
 			cd_debug ("mail : delete old account");
 			cd_mail_free_account (pRemovedMailAccount);
+			break ;
 		}
 	}
+	
+	if (myData.pMailAccounts->len <= 1)
+	{
+		CD_APPLET_DELETE_MY_ICONS_LIST;
+		if (myData.pMailAccounts->len == 1)
+		{
+			pMailAccount = g_ptr_array_index (myData.pMailAccounts, 0);
+			if (pMailAccount)
+				pMailAccount->icon = NULL;
+		}
+	}
+	
 	
 	g_strfreev (pGroupList);
 }

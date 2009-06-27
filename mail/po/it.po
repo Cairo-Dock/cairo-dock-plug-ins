@@ -31,33 +31,33 @@ msgid ""
 "Please choose another name for the new account."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:293
+#: ../src/cd-mail-applet-config.c:306
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 
-#: ../src/cd-mail-applet-config.c:348
+#: ../src/cd-mail-applet-config.c:361
 #, fuzzy
 msgid "Remove Account"
 msgstr "Cancellare un account e-mail"
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "unknown"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:168
+#: ../src/cd-mail-applet-etpan.c:147
 msgid "no subject"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:303
+#: ../src/cd-mail-applet-etpan.c:230
 msgid "No unread mail in your mailboxes"
 msgstr "Non ci sono messaggi non letti nelle vostre mailboxes"
 
-#: ../src/cd-mail-applet-etpan.c:325
+#: ../src/cd-mail-applet-etpan.c:252
 #, c-format
 msgid "You have %d new mails :"
 msgstr ""
 
-#: ../src/cd-mail-applet-etpan.c:327
+#: ../src/cd-mail-applet-etpan.c:254
 msgid "You have a new mail :"
 msgstr ""
 
@@ -84,12 +84,12 @@ msgstr ""
 "Se '%s non è la'applicazione mail predefinita,\n"
 "potete cambiarla nel pannello di configurazione di questa applet."
 
-#: ../src/cd-mail-applet-notifications.c:86
+#: ../src/cd-mail-applet-notifications.c:91
 #, fuzzy
 msgid "Refresh a mail account"
 msgstr "Cancellare un account e-mail"
 
-#: ../src/cd-mail-applet-notifications.c:97
+#: ../src/cd-mail-applet-notifications.c:102
 #, c-format
 msgid "Launch %s"
 msgstr ""
