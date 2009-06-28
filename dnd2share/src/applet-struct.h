@@ -10,6 +10,7 @@ typedef enum _CDFileType {
 	CD_TYPE_TEXT,
 	CD_TYPE_IMAGE,
 	CD_TYPE_VIDEO,
+	CD_TYPE_FILE,
 	CD_NB_FILE_TYPES
 	} CDFileType;
 

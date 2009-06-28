@@ -62,6 +62,7 @@ void cd_dnd2share_build_history (void)
 			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);
 		}
 		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);  /// un 'int' est-ce que ca suffit ?...
+		pItem->iFileType = g_key_file_get_integer (pKeyFile, cItemName, "type", NULL);
 		pItem->cLocalPath = g_key_file_get_string (pKeyFile, cItemName, "local path", NULL);
 		pItem->cFileName = g_path_get_basename (pItem->cLocalPath);
 		
@@ -138,6 +139,7 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				
 				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite);
 				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);  // idem que precedemment sur l'integer.
+				g_key_file_set_integer (pKeyFile, cItemName, "type", myData.iCurrentFileType);
 				GString *sUrlKey = g_string_new ("");
 				int j;
 				for (j = 0; j < myData.pCurrentBackend->iNbUrls; j ++)
@@ -236,7 +238,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	
 	// on lance la mesure.
 	myData.cCurrentFilePath = g_strdup (cFilePath);  // sera efface a la fin de l'upload.
-	myData.iCurrentFileType = myData.iCurrentFileType;
+	myData.iCurrentFileType = iFileType;
 	myData.pTask = cairo_dock_new_task (0,  // 1 shot task.
 		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
 		(CairoDockUpdateSyncFunc) _cd_dnd2share_update_from_result,

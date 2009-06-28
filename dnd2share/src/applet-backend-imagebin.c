@@ -3,6 +3,7 @@
 #include <math.h>
 #include <unistd.h>
 #include <glib/gstdio.h>
+#include <string.h>
 
 #include "applet-struct.h"
 #include "applet-backend-imagebin.h"
@@ -13,7 +14,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
+static void upload (const gchar *cFilePath, CDFileType iFileType)
 {
 	g_print ("%s (%s, %d)\n", __func__, cFilePath, iFileType);
 	// On lance la commande d'upload.
@@ -39,7 +40,7 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 			g_string_append (sContent, cTextParts[i]);
 		}
 		g_strfreev (cTextParts);
-		cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://pastebin.ca/quiet-paste.php -F api=%s -F content=%s -F type=1 -F expiry=1%%20month -o %s", API_KEY, sContent->str, cLogFile);
+		cCommand = g_strdup_printf ("wget -O \"%s\" --tries=2 --timeout=5 --post-data \"content=%s&api=%s&description=cairo-dock&type=1&expiry=1%%20month&name=%s\" http://pastebin.ca/quiet-paste.php", cLogFile, sContent->str, API_KEY, g_getenv ("USER"));  // apparemment plus facile a faire avec wget qu'avec curl, qui retourne une erreur 417 a chaque fois.
 		g_string_free (sContent, TRUE);
 	}
 	else
@@ -53,17 +54,38 @@ static gboolean upload (const gchar *cFilePath, CDFileType iFileType)
 	
 	// On récupère l'URL dans le log :
 	gchar *cURL = NULL;
+	gchar *cContent = NULL;
+	gsize length = 0;
+	g_file_get_contents (cLogFile, &cContent, &length, NULL);
 	if (iFileType == CD_TYPE_TEXT)
-		cCommand = g_strdup_printf ("sed '/SUCCESS:/!d;s/^.*:\\([0-9][0-9]*\\).*$/http:\\/\\/pastebin.ca\\/\\1/' '%s'", cLogFile);
+	{
+		gchar *str = g_strstr_len (cContent, -1, "SUCCESS:");
+		if (str != NULL)
+		{
+			int index = atoi (str+8);
+			cURL = g_strdup_printf ("http://pastebin.ca/%d", index);
+		}
+	}
 	else
-		cCommand = g_strdup_printf ("sed 's/<p>You can find this at <a href='([^<]+)'>([^<]+)</a></p>/http:\\/\\/imagebin.ca\\/\\1/' '%s'", cLogFile);
-	g_spawn_command_line_sync (cCommand, &cURL,  NULL, NULL, NULL);
-	g_free (cCommand);
+	{
+		gchar *str = g_strstr_len (cContent, -1, "href='");
+		if (str != NULL)
+		{
+			str += 6;
+			gchar *end = strchr (str, '\'');
+			if (end != NULL)
+			{
+				*end = '\0';
+				cURL = g_strdup (str);
+			}
+		}
+	}
+	g_free (cContent);
 	
 	g_remove (cLogFile);
 	g_free (cLogFile);
 	
-	if (cURL == NULL || *cURL == '\0')
+	if (cURL == NULL)
 	{
 		return ;
 	}

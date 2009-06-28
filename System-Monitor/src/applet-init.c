@@ -42,7 +42,8 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraph2Attribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = 32;  // bon compromis sur la lisibilite.
+		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
+		g_print ("pRenderAttr->iMemorySize : %d\n", pRenderAttr->iMemorySize);
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.bMixGraphs = myConfig.bMixGraph;
@@ -166,6 +167,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {  // on redessine juste l'icone.
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		/// mettre l'historique a la nouvelle taille de l'icone...
+		
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);

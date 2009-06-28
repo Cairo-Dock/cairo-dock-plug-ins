@@ -26,26 +26,42 @@ static void _clear_history (GtkMenuItem *menu_item, gpointer *data)
 
 static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 {	
-	if (g_file_test (pItem->cLocalPath, G_FILE_TEST_EXISTS))
-		cairo_dock_fm_launch_uri (pItem->cLocalPath);
-	else
+	if (pItem->iFileType == CD_TYPE_TEXT)
 	{
-		gchar *cPreviewPath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
-		if (g_file_test (cPreviewPath, G_FILE_TEST_EXISTS))
+		cd_dnd2share_copy_url_to_clipboard (pItem->cLocalPath);
+		if (myConfig.bEnableDialogs)
 		{
-			cairo_dock_fm_launch_uri (cPreviewPath);
-		}
-		else
-		{
-			cd_warning ("couldn't find the orignial file nor a preview of it");
 			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the orignial file nor a preview of it."),
+			cairo_dock_show_temporary_dialog_with_icon (D_("The text has been pasted in the clipboard.\nYou can retrieve it with CTRL+v."),
 				myIcon,
 				myContainer,
 				myConfig.dTimeDialogs,
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
-		g_free (cPreviewPath);
+	}
+	else
+	{
+		if (g_file_test (pItem->cLocalPath, G_FILE_TEST_EXISTS))
+			cairo_dock_fm_launch_uri (pItem->cLocalPath);
+		else
+		{
+			gchar *cPreviewPath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+			if (g_file_test (cPreviewPath, G_FILE_TEST_EXISTS))
+			{
+				cairo_dock_fm_launch_uri (cPreviewPath);
+			}
+			else
+			{
+				cd_warning ("couldn't find the orignial file nor a preview of it");
+				cairo_dock_remove_dialog_if_any (myIcon);
+				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the orignial file nor a preview of it."),
+					myIcon,
+					myContainer,
+					myConfig.dTimeDialogs,
+					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			}
+			g_free (cPreviewPath);
+		}
 	}
 }
 
@@ -87,7 +103,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_debug ("DND2SHARE : drop de '%s'", CD_APPLET_RECEIVED_DATA);
+	g_print  ("DND2SHARE : drop de '%s'\n", CD_APPLET_RECEIVED_DATA);
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
 	
 	if( strncmp(CD_APPLET_RECEIVED_DATA, "file://", 7) == 0)
@@ -104,7 +120,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		{
 			if (cMimeType != NULL)
 			{
-				g_print ("cMimeType : %s\n", cMimeType);
+				g_print ("cMimeType : %s (%s)\n", cMimeType, CD_APPLET_RECEIVED_DATA);
 				if (strncmp (cMimeType, "image", 5) == 0)
 					iFileType = CD_TYPE_IMAGE;
 				else if (strncmp (cMimeType, "video", 5) == 0)
@@ -138,6 +154,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	}
 	else  // c'est du texte.
 	{
+		g_print ("TEXT\n");
 		iFileType = CD_TYPE_TEXT;
 	}
 	
@@ -238,6 +255,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CDSiteBackend *pBackend;
 	CDUploadedItem *pItem;
 	GtkWidget *pItemSubMenu;
+	gchar *str;
 	int i;
 	GList *it;
 	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
@@ -249,16 +267,23 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_free (cPreview);
 			cPreview = NULL;
 		}
+		str = strchr (pItem->cFileName, '\n');
+		if (str)
+			*str = '\0';
 		pItemSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (pItem->cFileName, pModuleSubMenu, cPreview);
+		if (str)
+			*str = '\n';
 		g_free (cPreview);
 		
 		pBackend = &myData.backends[pItem->iSiteID];
 		for (i = 0; i < pBackend->iNbUrls; i ++)
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);
+		if (pItem->iFileType != CD_TYPE_TEXT)
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);
+		else
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get text"), _show_local_file, pItemSubMenu, pItem);
 		
-		/// ajouter un "remove_from_history" ...
-		
+		///CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 	}
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
