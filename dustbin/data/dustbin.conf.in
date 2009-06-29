@@ -86,7 +86,7 @@ fg alpha = 1
 frame1 =
 
 #h+[@dustbindatadir@/themes;@dustbinuserdirname@;dustbin] Choose one of the available themes :/
-theme = Gion
+theme = default
 
 #S+ Name of an image to overwrite the theme's empty image :
 empty image = 

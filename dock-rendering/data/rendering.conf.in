@@ -146,7 +146,7 @@ curvature = 50
 
 #i+[0;50] Amplitude of the curve.
 #{in pixels.}
-amplitude = 20
+amplitude = 25
 
 #r+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
 draw curve separator = 0

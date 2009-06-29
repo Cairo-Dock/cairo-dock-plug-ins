@@ -28,9 +28,9 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize) + myLabels.iLabelSize + myBackground.iDockLineWidth + myBackground.iFrameMargin;
+	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize * pDock->fRatio) + myLabels.iLabelSize + myBackground.iDockLineWidth + myBackground.iFrameMargin;
 	
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	
 	double fInclinationOnHorizon = 0, fExtraWidth = 0;
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
@@ -52,7 +52,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
 	
-	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize + pDock->iMaxIconHeight;
+	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->fRatio + pDock->iMaxIconHeight;
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
@@ -92,7 +92,7 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 
 static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
@@ -175,7 +175,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 
 static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
 {
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
@@ -379,7 +379,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
@@ -666,7 +666,7 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	double fReflectionOffsetY = (pDock->bDirectionUp ? -1 : 1) * myIcons.fReflectSize;
+	double fReflectionOffsetY = (pDock->bDirectionUp ? -1 : 1) * myIcons.fReflectSize * pDock->fRatio;
 	Icon* icon;
 	GList* ic;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
@@ -826,7 +826,7 @@ void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
 
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 {
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	
@@ -896,7 +896,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		prev_icon = icon;
 	if (next_icon == NULL)
 		next_icon = icon;
-	double hi = myIcons.fReflectSize + myBackground.iFrameMargin;
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
