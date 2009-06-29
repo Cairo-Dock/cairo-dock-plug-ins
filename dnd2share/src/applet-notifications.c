@@ -25,7 +25,7 @@ static void _clear_history (GtkMenuItem *menu_item, gpointer *data)
 }
 
 static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
-{	
+{
 	if (pItem->iFileType == CD_TYPE_TEXT)
 	{
 		cd_dnd2share_copy_url_to_clipboard (pItem->cLocalPath);
@@ -64,6 +64,10 @@ static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 		}
 	}
 }
+static void _remove_from_history (GtkMenuItem *menu_item, CDUploadedItem *pItem)
+{
+	cd_dnd2share_remove_one_item (pItem);
+}
 
 static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 {
@@ -79,26 +83,43 @@ static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 	}
 } 
 
-
-//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-CD_APPLET_ON_CLICK_BEGIN
-
-	cairo_dock_remove_dialog_if_any (myIcon);
-	
+static void _store_last_url (gboolean bIntoClipboard)
+{
 	if (myData.cLastURL == NULL)
 	{
+		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_show_temporary_dialog_with_icon (myConfig.iNbItems != 0 ?
-				D_("No uploaded file available\n.Just drag'n drop a file on the icon to upload it") :
-				D_("No uploaded file available\n.Consider activating the history if you want the applet remembers previous uploads."),
-			myIcon,
-			myContainer,
-			myConfig.dTimeDialogs,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			D_("No uploaded file available\n.Just drag'n drop a file on the icon to upload it") :
+			D_("No uploaded file available\n.Consider activating the history if you want the applet remembers previous uploads."),
+		myIcon,
+		myContainer,
+		myConfig.dTimeDialogs,
+		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 	else
 	{
-		cd_dnd2share_copy_url_to_clipboard (myData.cLastURL);
+		if (bIntoClipboard)
+			cd_dnd2share_copy_url_to_clipboard (myData.cLastURL);
+		else
+			cd_dnd2share_copy_url_to_primary (myData.cLastURL);
+		
+		if (myConfig.bEnableDialogs)
+		{
+			cairo_dock_remove_dialog_if_any (myIcon);
+			cairo_dock_show_temporary_dialog_with_icon (bIntoClipboard ? 
+					D_("The current URL has been stored into the clipboard.\nJust use 'CTRL+v' to paste it anywhere.") :
+					D_("The current URL has been stored into the selection.\nJust middle-click to paste it anywhere."),
+				myIcon,
+				myContainer,
+				myConfig.dTimeDialogs,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		}
 	}
+}
+
+//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
+CD_APPLET_ON_CLICK_BEGIN
+	_store_last_url (TRUE);
 CD_APPLET_ON_CLICK_END
 
 
@@ -240,8 +261,7 @@ CD_APPLET_ON_SCROLL_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	/// un truc utile ?...
-	
+	_store_last_url (FALSE);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -256,17 +276,42 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CDUploadedItem *pItem;
 	GtkWidget *pItemSubMenu;
 	gchar *str;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gboolean bIsDirectory;
+	int iVolumeID;
+	double fOrder;
 	int i;
 	GList *it;
 	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		gchar *cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
-		if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
+		gchar *cPreview = NULL;
+		if (pItem->iFileType == CD_TYPE_IMAGE)
 		{
-			g_free (cPreview);
-			cPreview = NULL;
+			cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+			if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
+			{
+				g_free (cPreview);
+				cPreview = cairo_dock_search_icon_s_path ("image-x-generic");;
+			}
 		}
+		else if (pItem->iFileType == CD_TYPE_TEXT)
+		{
+			cPreview = cairo_dock_search_icon_s_path ("text-x-generic");
+		}
+		else if (pItem->iFileType == CD_TYPE_VIDEO)
+		{
+			cPreview = cairo_dock_search_icon_s_path ("video-x-generic");
+		}
+		if (cPreview == NULL)
+		{
+			cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cPreview, &bIsDirectory, &iVolumeID, &fOrder, 0);
+			g_free (cName);
+			cName = NULL;
+			g_free (cURI);
+			cURI = NULL;
+		}
+		
 		str = strchr (pItem->cFileName, '\n');
 		if (str)
 			*str = '\0';
@@ -283,7 +328,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		else
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get text"), _show_local_file, pItemSubMenu, pItem);
 		
-		///CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 	}
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);

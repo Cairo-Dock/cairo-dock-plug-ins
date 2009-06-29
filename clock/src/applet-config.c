@@ -177,12 +177,12 @@ static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myA
 	iNumNewAlarm ++;
 	
 	//\____________ On rajoute les champs de la nouvelle alarme.
-	_add_new_entry ("frame", "F[Alarm]", "", "");
-	_add_new_entry ("time", "s", "Time you want to be notified :\n{in the form xx:xx. For exemple, 20:35 for 8:35pm}", "");
-	_add_new_entry ("repeat", "r[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month]", "Repeat every", "0");
-	_add_new_entry ("day", "i[1;31]", "If every month, which day of the month ? :", "1");
-	_add_new_entry ("message", "s", "Message you want to use to be notified :", "go to bed !");
-	_add_new_entry ("command", "s", "Command to execute :\n{For exemple : play /path/to/file.ogg}", "");
+	_add_new_entry ("frame", "F0[Alarm]", "", "");
+	_add_new_entry ("time", "s0", "Time you want to be notified :\n{in the form xx:xx. For exemple, 20:35 for 8:35pm}", "");
+	_add_new_entry ("repeat", "r0[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month]", "Repeat every", "0");
+	_add_new_entry ("day", "i0[1;31]", "If every month, which day of the month ? :", "1");
+	_add_new_entry ("message", "s0", "Message you want to use to be notified :", "go to bed !");
+	_add_new_entry ("command", "s0", "Command to execute :\n{For exemple : play /path/to/file.ogg}", "");
 	
 	cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
 	g_key_file_free (pKeyFile);

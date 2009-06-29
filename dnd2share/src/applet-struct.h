@@ -21,7 +21,7 @@ typedef enum _CDSiteId {
 	} CDSiteId;
 
 typedef struct _CDUploadedItem {
-	gchar *cItemName;  // nom de l'item, c'est aussi le nom de la copie locale si l'option est activee ("item-$timestamp").
+	gchar *cItemName;  // nom de l'item, c'est aussi le nom du groupe dans le fichier historique et de la copie locale si l'option est activee (de la forme "item-$timestamp").
 	CDSiteId iSiteID;  // pour savoir quel site on a utilise => nous donne le backend.
 	gchar **cDistantUrls;  // il peut y en avoir plusieurs (differentes tailles, etc), le backend sait lesquelles il s'agit.
 	time_t iDate;  // date de l'upload, permet de classer les items entre eux et de leur donner un nom unique.
@@ -33,11 +33,11 @@ typedef struct _CDUploadedItem {
 typedef void (* CDUploadFunc) (const gchar *cFilePath, CDFileType iFileType);
 
 typedef struct _CDSiteBackend {
-	const gchar *cSiteName;
-	gint iNbUrls;
-	const gchar **cUrlLabels;
-	gint iPreferedUrlType;  /// eventuellement a mettre en conf...
-	CDUploadFunc upload;
+	const gchar *cSiteName;  // nom du site, pour affichage
+	gint iNbUrls;  // nombre d'URLs qu'il renvoie.
+	const gchar **cUrlLabels;  // description de chacune de ces URL.
+	gint iPreferedUrlType;  // celle qui est la plus utile, eventuellement a mettre en conf.
+	CDUploadFunc upload;  // la fonction d'upload, threadee.
 	} CDSiteBackend;
 
 

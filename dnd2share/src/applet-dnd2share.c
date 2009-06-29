@@ -338,7 +338,12 @@ void cd_dnd2share_copy_url_to_clipboard (const gchar *cURL)
 	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gtk_clipboard_set_text (pClipBoard, cURL, -1);
 }
-
+void cd_dnd2share_copy_url_to_primary (const gchar *cURL)
+{
+	GtkClipboard *pClipBoard;
+	pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
+	gtk_clipboard_set_text (pClipBoard, cURL, -1);
+}
 
 gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem)
 {
@@ -370,4 +375,50 @@ void cd_dnd2share_set_current_url_from_item (CDUploadedItem *pItem)
 		i ++;
 	}
 	myData.iCurrentItemNum = i;
+}
+
+
+void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
+{
+	g_return_if_fail (pItem != NULL);
+	
+	// On enleve le groupe correspondant dans le fichier de l'historique.
+	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
+	if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // pas encore d'historique.
+		return;
+	
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+	if (pKeyFile == NULL)  // probleme de droit ?
+	{
+		cd_warning ("Couldn't remove this item from history.");
+		return ;
+	}
+	
+	g_key_file_remove_group (pKeyFile, pItem->cItemName, NULL);
+	cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+	g_key_file_free (pKeyFile);
+	g_free (cConfFilePath);
+	
+	// On efface sa copie de sauvegarde.
+	gchar *cPreviewPath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+	g_remove (cPreviewPath);
+	g_free (cPreviewPath);
+	
+	// Si c'est l'item courant, on pointe vers le suivant.
+	if (myData.pUpoadedItems && myData.pUpoadedItems->data == pItem)
+	{
+		g_free (myData.cLastURL);
+		myData.cLastURL = NULL;
+		myData.iCurrentItemNum = 0;
+		if (myData.pUpoadedItems->next != NULL)
+		{
+			CDUploadedItem *pNextItem = myData.pUpoadedItems->next->data;
+			gchar *cURL = cd_dnd2share_get_prefered_url_from_item (pNextItem);
+			myData.cLastURL = g_strdup (cURL);
+		}
+	}
+	
+	// On enleve l'item de la liste.
+	myData.pUpoadedItems = g_list_remove (myData.pUpoadedItems, pItem);
+	cd_dnd2share_free_uploaded_item (pItem);
 }
