@@ -26,5 +26,10 @@ void cd_switcher_add_a_desktop (void);
 void cd_switcher_remove_last_desktop (void);
 
 
+void cd_switcher_update_from_screen_geometry (void);
+
+gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet);
+
+
 #endif
 

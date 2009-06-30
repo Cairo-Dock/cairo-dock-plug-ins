@@ -50,5 +50,6 @@ struct _AppletData {
 	SwitcherApplet switcher;
 	cairo_surface_t *pDefaultMapSurface;
 	gint iSidRedrawMainIconIdle;
+	gint iSidAutoRefresh;
 } ;
 #endif

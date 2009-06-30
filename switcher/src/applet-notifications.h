@@ -15,9 +15,9 @@ CD_APPLET_ON_SCROLL_H
 
 gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow);
 
-gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null);
+gboolean on_change_desktop (CairoDockModuleInstance *myApplet);
 
-gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet, gpointer null);
+gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet);
 
 gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure);
 

@@ -32,4 +32,7 @@ gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem);
 void cd_dnd2share_set_current_url_from_item (CDUploadedItem *pItem);
 
 
+void cd_dnd2share_remove_one_item (CDUploadedItem *pItem);
+
+
 #endif // __CD_DND2SHARE__

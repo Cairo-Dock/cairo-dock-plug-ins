@@ -47,17 +47,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) on_change_active_window,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
-	//\___________________ On calcule la geometrie de l'icone en mode compact.
-	cd_switcher_compute_nb_lines_and_columns ();
-	
-	//\___________________ On recupere le bureau courant et sa position sur la grille.
-	cd_switcher_get_current_desktop ();
-	
-	//\___________________ On charge le bon nombre d'icones dans le sous-dock ou le desklet.
-	cd_switcher_load_icons ();
-	
-	//\___________________ On dessine l'icone principale.
-	cd_switcher_draw_main_icon ();
+	cd_switcher_update_from_screen_geometry ();
 	
 	//\___________________ On affiche le numero du bureau courant.
 	if (myConfig.bDisplayNumDesk)
@@ -65,6 +55,10 @@ CD_APPLET_INIT_BEGIN
 		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 	}
+	
+	//\___________________ Dans le cas ou l'applet demarre au chargement de la session, le nombre de bureaux peut etre incorrect.
+	if (cairo_dock_is_loading ())
+		myData.iSidAutoRefresh = g_timeout_add_seconds (2, cd_switcher_refresh_desktop_values, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -73,7 +67,10 @@ CD_APPLET_STOP_BEGIN
 	if (myData.iSidRedrawMainIconIdle != 0)
 	{
 		g_source_remove (myData.iSidRedrawMainIconIdle);
-		myData.iSidRedrawMainIconIdle = 0;
+	}
+	if (myData.iSidAutoRefresh != 0)
+	{
+		g_source_remove (myData.iSidAutoRefresh);
 	}
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;

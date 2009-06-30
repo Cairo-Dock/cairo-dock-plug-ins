@@ -8,7 +8,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-06-30 02:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,23 +23,23 @@ msgid ""
 "Scroll up/down on the main icon to go to the left/right desktop."
 msgstr ""
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:203
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:201
 msgid "Current"
 msgstr ""
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:195
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:193
 msgid "Desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:120
 msgid "Add a desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:124
 msgid "Remove last desktop"
 msgstr ""
 
-#: ../src/applet-notifications.c:130
+#: ../src/applet-notifications.c:128
 msgid "Refresh"
 msgstr ""
 

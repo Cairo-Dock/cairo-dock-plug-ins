@@ -20,23 +20,23 @@ msgid ""
 "Scroll up/down on the main icon to go to the left/right desktop."
 msgstr ""
 
-#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:203
+#: ../src/applet-load-icons.c:29 ../src/applet-notifications.c:201
 msgid "Current"
 msgstr "Attuale"
 
-#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:195
+#: ../src/applet-load-icons.c:35 ../src/applet-notifications.c:193
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../src/applet-notifications.c:122
+#: ../src/applet-notifications.c:120
 msgid "Add a desktop"
 msgstr "Aggiungi un desktop"
 
-#: ../src/applet-notifications.c:126
+#: ../src/applet-notifications.c:124
 msgid "Remove last desktop"
 msgstr "Rimuovi l'ultimo desktop"
 
-#: ../src/applet-notifications.c:130
+#: ../src/applet-notifications.c:128
 msgid "Refresh"
 msgstr ""
 

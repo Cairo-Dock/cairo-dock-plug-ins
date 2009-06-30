@@ -9,6 +9,8 @@ Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-load-icons.h"
+#include "applet-draw.h"
 #include "applet-desktops.h"
 
 
@@ -221,4 +223,29 @@ void cd_switcher_add_a_desktop (void)
 void cd_switcher_remove_last_desktop (void)
 {
 	cd_switcher_change_nb_desktops (-1);
+}
+
+
+void cd_switcher_update_from_screen_geometry (void)
+{
+	//\___________________ On calcule la geometrie de l'icone en mode compact.
+	cd_switcher_compute_nb_lines_and_columns ();
+	
+	//\___________________ On recupere le bureau courant et sa position sur la grille.
+	cd_switcher_get_current_desktop ();
+	
+	//\___________________ On charge le bon nombre d'icones dans le sous-dock ou le desklet.
+	cd_switcher_load_icons ();
+	
+	//\___________________ On dessine l'icone principale.
+	cd_switcher_draw_main_icon ();
+}
+
+gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
+{
+	g_iNbDesktops = cairo_dock_get_nb_desktops ();
+	cairo_dock_get_nb_viewports (&g_iNbViewportX, &g_iNbViewportY);
+	cd_switcher_update_from_screen_geometry ();
+	myData.iSidAutoRefresh = 0;
+	return FALSE;
 }

@@ -113,9 +113,7 @@ static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, CairoDockM
 }
 static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	g_iNbDesktops = cairo_dock_get_nb_desktops ();
-	cairo_dock_get_nb_viewports (&g_iNbViewportX, &g_iNbViewportY);
-	on_change_screen_geometry (myApplet, NULL);
+	cd_switcher_refresh_desktop_values (myApplet);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
@@ -157,7 +155,7 @@ gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XAc
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null)
+gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
 	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
@@ -214,13 +212,10 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet, gpointer null)
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet, gpointer null)
+gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("");
-	cd_switcher_compute_nb_lines_and_columns ();
-	cd_switcher_get_current_desktop ();
-	cd_switcher_load_icons ();
-	cd_switcher_draw_main_icon ();
+	cd_switcher_update_from_screen_geometry ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
