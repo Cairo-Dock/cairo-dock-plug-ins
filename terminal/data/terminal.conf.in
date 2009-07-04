@@ -88,10 +88,10 @@ fg alpha = 1
 #{needs to restart the applet.}
 terminal transparency=.5
 
-#c+3[0;1] Foreground color (r, v, b):
+#c+ Foreground color (r, v, b):
 foreground color= 1.; 1.; 1.
 
-#c+3[0;1] Background color (r, v, b):
+#c+ Background color (r, v, b):
 background color= 0.; 0.; 0.
 
 #I[5;999] Size of the terminal (line x columns) :

@@ -117,6 +117,6 @@ no stretch=true
 #b Force the image to fill the icon/desklet ?
 #{If the image is too small, it will be zoomed in.}
 fill icon = false
-#c+4[0;1] Choose a background color :
+#C+ Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background color = 1.0; 1.0; 1.0; 1.0

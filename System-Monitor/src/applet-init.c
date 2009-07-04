@@ -38,8 +38,8 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	}
 	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 	{
-		CairoGraph2Attribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraph2Attribute));
+		CairoGraphAttribute attr;  // les attributs du graphe.
+		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.

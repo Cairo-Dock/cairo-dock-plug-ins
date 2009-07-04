@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.0.7],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.0-alpha],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -252,15 +252,6 @@ AC_SUBST(PACKAGE_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
 AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 
-############# CPUSAGE #################
-CPUSAGE_PACKAGE="cd-cpusage"
-AC_SUBST(GETTEXT_CPUSAGE, "$CPUSAGE_PACKAGE")
-
-AC_SUBST(VERSION_CPUSAGE, "1.3.0")
-AC_SUBST(PACKAGE_CPUSAGE, "$CPUSAGE_PACKAGE")
-
-AC_SUBST(cpusagedatadir, "${pkgdatadir}/cpusage")
-
 ############# DBUS #################
 DBUS_PACKAGE="cd-Dbus"
 AC_SUBST(GETTEXT_DBUS, "$DBUS_PACKAGE")
@@ -379,15 +370,6 @@ AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 
-############# NVIDIA #################
-NVIDIA_PACKAGE=cd-nVidia
-AC_SUBST(GETTEXT_NVIDIA, "$NVIDIA_PACKAGE")
-
-AC_SUBST(VERSION_NVIDIA, "1.1.1")
-AC_SUBST(PACKAGE_NVIDIA, "$NVIDIA_PACKAGE")
-
-AC_SUBST(nvidiadatadir, "${pkgdatadir}/nVidia")
-
 ############# POWERMANAGER #################
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
@@ -396,15 +378,6 @@ AC_SUBST(VERSION_POWERMANAGER, "1.2.17")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
-
-############# RAME #################
-RAME_PACKAGE=cd-rame
-AC_SUBST(GETTEXT_RAME, "$RAME_PACKAGE")
-
-AC_SUBST(VERSION_RAME, "1.2.0")
-AC_SUBST(PACKAGE_RAME, "$RAME_PACKAGE")
-
-AC_SUBST(ramedatadir, "${pkgdatadir}/rame")
 
 ############# RENDERING #################
 RENDERING_PACKAGE=cd-rendering
@@ -513,6 +486,15 @@ AC_SUBST(VERSION_SWITCHER, "1.0.6")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
+
+############# SYSTEM MONITOR #################
+SYSTEM_MONITOR_PACKAGE="cd-system-monitor"
+AC_SUBST(GETTEXT_SYSTEM_MONITOR, "$SYSTEM_MONITOR_PACKAGE")
+
+AC_SUBST(VERSION_SYSTEM_MONITOR, "1.0.0-beta")
+AC_SUBST(PACKAGE_SYSTEM_MONITOR, "$SYSTEM_MONITOR_PACKAGE")
+
+AC_SUBST(system_monitordatadir, "${pkgdatadir}/System-monitor")
 
 ############# SYSTRAY #################
 SYSTRAY_PACKAGE=cd-systray
@@ -655,12 +637,6 @@ AC_CONFIG_FILES([
 	compiz-icon/data/Makefile
 	compiz-icon/data/compiz-icon.conf
 	
-	cpusage/Makefile
-	cpusage/src/Makefile
-	cpusage/po/Makefile.in
-	cpusage/data/Makefile
-	cpusage/data/cpusage.conf
-	
 	Dbus/Makefile
 	Dbus/src/Makefile
 	Dbus/po/Makefile.in
@@ -739,23 +715,11 @@ AC_CONFIG_FILES([
 	netspeed/data/Makefile
 	netspeed/data/netspeed.conf
 	
-	nVidia/Makefile
-	nVidia/src/Makefile
-	nVidia/po/Makefile.in
-	nVidia/data/Makefile
-	nVidia/data/nVidia.conf
-	
 	powermanager/Makefile
 	powermanager/src/Makefile
 	powermanager/po/Makefile.in
 	powermanager/data/Makefile
 	powermanager/data/powermanager.conf
-	
-	rame/Makefile
-	rame/src/Makefile
-	rame/po/Makefile.in
-	rame/data/Makefile
-	rame/data/rame.conf
 	
 	dock-rendering/Makefile
 	dock-rendering/src/Makefile
@@ -830,6 +794,12 @@ AC_CONFIG_FILES([
 	switcher/data/Makefile
 	switcher/data/switcher.conf
 	
+	System-Monitor/Makefile
+	System-Monitor/src/Makefile
+	System-Monitor/po/Makefile.in
+	System-Monitor/data/Makefile
+	System-Monitor/data/System-Monitor.conf
+	
 	systray/Makefile
 	systray/src/Makefile
 	systray/po/Makefile.in
@@ -900,7 +870,6 @@ AC_OUTPUT([po/Makefile
 	Clipper/po/Makefile
 	clock/po/Makefile
 	compiz-icon/po/Makefile
-	cpusage/po/Makefile
 	Dbus/po/Makefile
 	drop-indicator/po/Makefile
 	dustbin/po/Makefile
@@ -912,9 +881,7 @@ AC_OUTPUT([po/Makefile
 	mail/po/Makefile
 	motion-blur/po/Makefile
 	netspeed/po/Makefile
-	nVidia/po/Makefile
 	powermanager/po/Makefile
-	rame/po/Makefile
 	dock-rendering/po/Makefile
 	desklet-rendering/po/Makefile
 	dialog-rendering/po/Makefile
@@ -927,6 +894,7 @@ AC_OUTPUT([po/Makefile
 	slider/po/Makefile
 	stack/po/Makefile
 	switcher/po/Makefile
+	System-Monitor/po/Makefile
 	systray/po/Makefile
 	terminal/po/Makefile
 	tomboy/po/Makefile

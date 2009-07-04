@@ -370,7 +370,7 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 		pIcon->fWidthFactor *= fDamageWidthFactor;
 		pIcon->fHeightFactor *= fDamageHeightFactor;
 		
-		cairo_dock_redraw_my_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 		
 		pIcon->fWidthFactor /= fDamageWidthFactor;
 		pIcon->fHeightFactor /= fDamageHeightFactor;

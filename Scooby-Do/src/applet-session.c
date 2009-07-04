@@ -30,8 +30,7 @@ void cd_do_open_session (void)
 	if (! myData.bNavigationMode && myData.pPromptSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-		double fTextXOffset, fTextYOffset;
-		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), pCairoContext, &myConfig.labelDescription, 1., &myData.iPromptWidth, &myData.iPromptHeight, &fTextXOffset, &fTextYOffset);
+		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), pCairoContext, &myConfig.labelDescription, &myData.iPromptWidth, &myData.iPromptHeight);
 		cairo_destroy (pCairoContext);
 		if (g_bUseOpenGL)
 		{

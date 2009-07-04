@@ -117,7 +117,7 @@ sep_deco =
 
 digital = default
 
-#c+4[0;1] Text color for the numeric display:
+#C+ Text color for the numeric display:
 #{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
 
@@ -134,7 +134,7 @@ sep_deco_mod =
 #h+[@clockdatadir@/themes;@clockuserdirname@;@clockuserdirname@] List of available themes for the analogic display :/
 theme = default
 
-#c+4[0;1] Text color of the date :
+#C+ Text color of the date :
 #{r, v, b, a}
 date color = 1.0; 5.0; 0.9; 1.
 

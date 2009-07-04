@@ -9,7 +9,7 @@ vanishing point y = 200
 #r+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
 draw separator = 0
 
-#c+4[0;1] For flat separators, you can specify their color:
+#C+ For flat separators, you can specify their color:
 #{red, blue, green, alpha}
 separator color = 0.9;0.9;1.0;0.8
 
@@ -73,11 +73,11 @@ nb icons min = 1
 #{in degree. The smaller, the more the cone is narrow. 180° means the cone is widely opened.}
 cone = 150
 
-#c+4[0;1] Bow color :
+#C+ Bow color :
 #{Set transparency to 0 to not use it. It is quite slow with cairo.}
 bow color = 0.7,0.9,1.0,0.8
 
-#c+4[0;1] Line color :
+#C+ Line color :
 line color = 0.5,1.0,0.9,0.6
 
 
@@ -107,10 +107,10 @@ simple_display_all_icons = false
 #b+ Draw a background ?
 simple_draw_background  = true
 
-#c+4[0;1] First gradient color (r,v,b,a) :
+#C+ First gradient color (r,v,b,a) :
 simple_color_frame_start=0;0;0;1;
 
-#c+4[0;1] Second gradient color (r,v,b,a) :
+#C+ Second gradient color (r,v,b,a) :
 simple_color_frame_stop=0.3;0.3;0.3;0.6;
 
 #b+ Top to bottom gradient ?
@@ -134,7 +134,7 @@ simple_radius = 15
 #i+[0;10] Border line width :
 simple_lineWidth = 5
 
-#c+4[0;1] Border line color (r,v,b,a) :
+#C+ Border line color (r,v,b,a) :
 simple_color_border_line = 1;1;1;0.5;
 
 

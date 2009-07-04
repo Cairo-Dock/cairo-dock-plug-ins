@@ -10,10 +10,49 @@
 
 
 CD_APPLET_DEFINITION ("PowerManager",
-	1, 6, 2,
+	2, 0, 6,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("A power manager for laptop's battery. It works with ACPI and DBus."),
 	"Necropotame (Adrien Pilleboue)")
+
+static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+{
+	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE)
+	{
+		CairoGaugeAttribute attr;  // les attributs de la jauge.
+		memset (&attr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "gauge";
+		attr.cThemePath = myConfig.cGThemePath;
+	}
+	else if (myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
+	{
+		CairoGraphAttribute attr;  // les attributs du graphe.
+		memset (&attr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "graph";
+		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
+		g_print ("pRenderAttr->iMemorySize : %d\n", pRenderAttr->iMemorySize);
+		attr.iType = myConfig.iGraphType;
+		attr.iRadius = 10;
+		attr.fHighColor = myConfig.fHigholor;
+		attr.fLowColor = myConfig.fLowColor;
+		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+	}
+	else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+	{
+		
+	}
+	if (pRenderAttr != NULL)
+	{
+		//pRenderAttr->bWriteValues = TRUE;
+		if (! bReload)
+			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+		else
+			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	}
+}
 
 
 CD_APPLET_INIT_BEGIN
@@ -30,11 +69,8 @@ CD_APPLET_INIT_BEGIN
 		{
 			///get_on_battery();
 			
-			if (myConfig.bUseGauge)
-			{
-				double fMaxScale = cairo_dock_get_max_scale (myContainer);
-				myData.pGauge = cairo_dock_load_gauge (myDrawContext, myConfig.cGThemePath, myIcon->fWidth * fMaxScale, myIcon->fHeight * fMaxScale);
-			}
+			// Initialisation du rendu.
+			_set_data_renderer (myApplet, FALSE);
 			
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
@@ -73,11 +109,9 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	
-	double fMaxScale = cairo_dock_get_max_scale (myContainer);
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cairo_dock_free_gauge(myData.pGauge);
-		myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cGThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+		_set_data_renderer (myApplet, TRUE);
 		
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.
 		{
@@ -88,24 +122,25 @@ CD_APPLET_RELOAD_BEGIN
 		
 	}
 	else
-		cairo_dock_reload_gauge (myDrawContext, myData.pGauge, myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
+	{
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		/// mettre l'historique a la nouvelle taille de l'icone...
+	}
 	
 	//\_______________ On redessine notre icone.
 	if (myData.dbus_enable)
 	{
 		if(myData.battery_present)
 		{
-			if (myConfig.bUseGauge)  // On recharge la jauge.
+			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
 			{
-				///double fMaxScale = (myDock != NULL ? 1 + g_fAmplitude : 1);
-				///myData.pGauge = cairo_dock_load_gauge(myDrawContext,myConfig.cThemePath,myIcon->fWidth * fMaxScale,myIcon->fHeight * fMaxScale);
-				
-				cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
+				double fPercent = (double) myData.battery_charge / 100.;
+				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 				
 				//Embleme sur notre icône
 				CD_APPLET_DRAW_EMBLEM ((myData.on_battery ? CAIRO_DOCK_EMBLEM_BLANK : CAIRO_DOCK_EMBLEM_CHARGE), CAIRO_DOCK_EMBLEM_MIDDLE);
 			}
-			else  // on redessine juste l'icone actuelle.
+			else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 			
 			if (!myData.on_battery && myData.battery_charge < 100)

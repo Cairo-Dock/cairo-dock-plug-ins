@@ -83,16 +83,37 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#i[20;180] Interval of time between 2 checks :
-#{in seconds.}
-check interval = 30
+#r+[Gauge;Graph;Icons] Choose the style of the display : 
+use gauge = 0
 
-use approx = false
 
-use_dbus = false
+#F[Gauge;gtk-dialog-info]
+frame_gauge=
 
-#F[Display;gtk-dnd-multiple]
-frame_info=
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+theme = Battery
+
+
+#F[Graph;gtk-dialog-info]
+frame_graph=
+
+#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+graphic type = 0
+
+#c+ High values color :
+#{It's the color of the graphic for high CPU values.}
+high color = 1;0;0
+
+#c+ Low values color :
+#{It's the color of the graphic for low CPU values.}
+low color = 1;1;0
+
+#C+ Background color of the graphic :
+bg color = .5;.5;1.;.4
+
+
+#F[Icons;gtk-dialog-info]
+frame_icons=
 
 #S+ Icon's filename when on battery :
 battery icon = 
@@ -102,13 +123,22 @@ charge icon =
 effect=0
 
 
-#b+ Use a gauge instead of icons ?
-use gauge = true
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = Battery
+
+#F[Parameters;gtk-dialog-info]
+frame_param =
+
+#i[20;180] Interval of time between 2 checks :
+#{in seconds.}
+check interval = 30
 
 #r+[nothing;charge;time] Information to be displayed on the icon :
 quick-info_type=2
+
+use approx = false
+
+use_dbus = false
+
+use gauge = true
 
 
 #F[Alert;gtk-dialog-info]

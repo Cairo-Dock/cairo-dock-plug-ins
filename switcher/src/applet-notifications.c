@@ -194,7 +194,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 				icon->bHasIndicator = FALSE;
 				icon->fAlpha = 1.;
 				if (myDock)
-					cairo_dock_redraw_my_icon (icon, pContainer);
+					cairo_dock_redraw_icon (icon, pContainer);
 			}
 			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
 			{
@@ -202,7 +202,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 				icon->bHasIndicator = TRUE;
 				icon->fAlpha = .7;
 				if (myDock)
-					cairo_dock_redraw_my_icon (icon, pContainer);
+					cairo_dock_redraw_icon (icon, pContainer);
 			}
 		}
 		if (myDesklet)

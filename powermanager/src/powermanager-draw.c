@@ -49,12 +49,14 @@ void update_icon(void)
 				myData.bCritical = FALSE;
 			}
 			
-			if (myConfig.bUseGauge)
+			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 			{
-				cairo_dock_render_gauge (myDrawContext, myContainer, myIcon, myData.pGauge, (double) myData.battery_charge / 100);
+				double fPercent = (double) myData.battery_charge / 100.;
+				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
+				
 				bNeedRedraw = TRUE;
 			}
-			else
+			else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
 			{
 				cd_powermanager_draw_icon_with_effect (myData.on_battery);
 				bNeedRedraw = FALSE;

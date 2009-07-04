@@ -309,7 +309,7 @@ void cd_animations_update_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnima
 		fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fRotateWidthFactor));
 		pIcon->fWidthFactor *= fDamageWidthFactor;
 		
-		cairo_dock_redraw_my_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 		
 		pIcon->fWidthFactor /= fDamageWidthFactor;
 	}

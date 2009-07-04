@@ -58,19 +58,19 @@ gpointer cd_dustbin_threaded_calculation (gpointer data)
 		//\________________________ On traite le message.
 		if (pDustbin == NULL)  // recalcul complet.
 		{
-			cd_dustbin_task_all_dustbins (&myData.iNbFiles, &myData.iSize);
+			cd_dustbin_measure_all_dustbins (&myData.iNbFiles, &myData.iSize);
 		}
 		else if (cURI == NULL)
 		{
 			g_atomic_int_add (&myData.iNbFiles, - pDustbin->iNbFiles);
 			g_atomic_int_add (&myData.iSize, - pDustbin->iSize);
-			cd_dustbin_task_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+			cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
 			g_atomic_int_add (&myData.iNbFiles, pDustbin->iNbFiles);
 			g_atomic_int_add (&myData.iSize, pDustbin->iSize);
 		}
 		else  // calcul d'un fichier supplementaire.
 		{
-			cd_dustbin_task_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
+			cd_dustbin_measure_one_file (cURI, myConfig.iQuickInfoType, pDustbin, &iNbFiles, &iSize);
 			pDustbin->iNbFiles += iNbFiles;
 			pDustbin->iSize += iSize;
 			g_atomic_int_add (&myData.iNbFiles, iNbFiles);
@@ -233,7 +233,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	return iNbTrashes;
 }
 
-void cd_dustbin_task_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 	g_atomic_int_set (iNbFiles, 0);
@@ -275,7 +275,7 @@ void cd_dustbin_task_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, 
 				cd_debug ("  %s est un repertoire", sFilePath->str);
 				iNbFilesSubDir = 0;
 				iSizeSubDir = 0;
-				cd_dustbin_task_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
+				cd_dustbin_measure_directory (sFilePath->str, iInfoType, pDustbin, &iNbFilesSubDir, &iSizeSubDir);
 				g_atomic_int_add (iNbFiles, iNbFilesSubDir);
 				g_atomic_int_add (iSize, iSizeSubDir);
 				cd_debug ("  + %d fichiers dans ce sous-repertoire", iNbFilesSubDir );
@@ -292,7 +292,7 @@ void cd_dustbin_task_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, 
 	g_dir_close (dir);
 }
 
-void cd_dustbin_task_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cURI);
 	
@@ -300,7 +300,7 @@ void cd_dustbin_task_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustb
 	gchar *cFilePath = g_filename_from_uri (cURI, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("dustbin : %s", erreur->message);
 		g_error_free (erreur);
 		g_atomic_int_set (iNbFiles, 0);
 		g_atomic_int_set (iSize, 0);
@@ -312,7 +312,7 @@ void cd_dustbin_task_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustb
 	{
 		if (S_ISDIR (buf.st_mode))
 		{
-			cd_dustbin_task_directory (cFilePath, iInfoType, pDustbin, iNbFiles, iSize);
+			cd_dustbin_measure_directory (cFilePath, iInfoType, pDustbin, iNbFiles, iSize);
 		}
 		else
 		{
@@ -328,7 +328,7 @@ void cd_dustbin_task_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustb
 	g_free (cFilePath);
 }
 
-void cd_dustbin_task_all_dustbins (int *iNbFiles, int *iSize)
+void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize)
 {
 	cd_message ("");
 	g_atomic_int_set (iNbFiles, 0);
@@ -341,7 +341,7 @@ void cd_dustbin_task_all_dustbins (int *iNbFiles, int *iSize)
 	{
 		pDustbin = pElement->data;
 		
-		cd_dustbin_task_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
+		cd_dustbin_measure_directory (pDustbin->cPath, myConfig.iQuickInfoType, pDustbin, &pDustbin->iNbFiles, &pDustbin->iSize);
 		
 		g_atomic_int_add (iNbFiles, pDustbin->iNbFiles);
 		g_atomic_int_add (iSize, pDustbin->iSize);

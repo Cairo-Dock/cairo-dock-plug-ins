@@ -29,7 +29,7 @@ void power_config(void) {  /// a mettre dans les plug-ins d'integration.
 	}
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("PM : %s", erreur->message);
 		g_error_free (erreur);
 	}
 }

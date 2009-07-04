@@ -12,15 +12,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/powermanager-draw.c:115
+#: ../src/powermanager-draw.c:117
 msgid "None"
 msgstr "Nessuno"
 
-#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:173
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -28,12 +28,12 @@ msgstr ""
 "Portatile con Batteria.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:177
-#: ../src/powermanager-draw.c:183
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
 msgid "Estimated time with Charge:"
 msgstr "Autonomia stimata:"
 
-#: ../src/powermanager-draw.c:151
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -41,15 +41,15 @@ msgstr ""
 "Portatile in Carica.\n"
 " Batteria caricata al:"
 
-#: ../src/powermanager-draw.c:151
+#: ../src/powermanager-draw.c:153
 msgid "Estimated Charge time:"
 msgstr "Tempo di Carica stimato:"
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "Nessuna batteria trovata."
 
-#: ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:179
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -57,11 +57,11 @@ msgstr ""
 "PowerManager.\n"
 "Il livello della batteria sembra essere basso"
 
-#: ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:179
 msgid "Please put your Laptop on charge."
 msgstr "Meglio mettere il vostro Laptop in carica."
 
-#: ../src/powermanager-draw.c:183
+#: ../src/powermanager-draw.c:185
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -292,109 +292,169 @@ msgid "Configuration"
 msgstr "Configurazione"
 
 #: ../data/messages:83
-msgid "in seconds."
-msgstr "in secondi."
+msgid "Gauge"
+msgstr ""
 
 #: ../data/messages:85
-msgid "Interval of time between 2 checks :"
-msgstr "Intervallo tra le due verifiche :"
-
-#: ../data/messages:87
-msgid "Display"
-msgstr "Mostrare "
-
-#: ../data/messages:89
-msgid "Icon's filename when on battery :"
-msgstr "Nome dell'icona quando in modalità batteria :"
-
-#: ../data/messages:91
-msgid "Icon's filename when on charge :"
-msgstr "Nome dell'icona quando in modalità ricarica :"
-
-#: ../data/messages:93
-msgid "Effect to apply on the icon according to charge :"
-msgstr "Effetto da applicare all'icona quando in ricarica :"
-
-#: ../data/messages:95 ../data/messages:109
-msgid "nothing"
-msgstr "Nessuno"
-
-#: ../data/messages:97
-msgid "zoom"
-msgstr "Zoom"
-
-#: ../data/messages:99
-msgid "transparency"
-msgstr "Trasparenza"
-
-#: ../data/messages:101
-msgid "draw bar"
-msgstr "Disegna una barra"
-
-#: ../data/messages:103
-msgid "Use a gauge instead of icons ?"
-msgstr "Utilizzare un indicatore al posto dell'icona ?"
-
-#: ../data/messages:105
 #, fuzzy
 msgid "Choose one of the available themes :"
 msgstr "Lista degli indicatori possibili :"
 
+#: ../data/messages:87
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:93
+#, fuzzy
+msgid "Plain"
+msgstr "Lampeggiamento"
+
+#: ../data/messages:95
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:101
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:103
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+
 #: ../data/messages:107
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:109
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:111
+#, fuzzy
+msgid "Icons"
+msgstr "Icona"
+
+#: ../data/messages:113
+msgid "Icon's filename when on battery :"
+msgstr "Nome dell'icona quando in modalità batteria :"
+
+#: ../data/messages:115
+msgid "Icon's filename when on charge :"
+msgstr "Nome dell'icona quando in modalità ricarica :"
+
+#: ../data/messages:117
+msgid "Effect to apply on the icon according to charge :"
+msgstr "Effetto da applicare all'icona quando in ricarica :"
+
+#: ../data/messages:119 ../data/messages:135
+msgid "nothing"
+msgstr "Nessuno"
+
+#: ../data/messages:121
+msgid "zoom"
+msgstr "Zoom"
+
+#: ../data/messages:123
+msgid "transparency"
+msgstr "Trasparenza"
+
+#: ../data/messages:125
+msgid "draw bar"
+msgstr "Disegna una barra"
+
+#: ../data/messages:127
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:129
+msgid "in seconds."
+msgstr "in secondi."
+
+#: ../data/messages:131
+msgid "Interval of time between 2 checks :"
+msgstr "Intervallo tra le due verifiche :"
+
+#: ../data/messages:133
 msgid "Information to be displayed on the icon :"
 msgstr "Informazioni da mostrare nell'icona :"
 
-#: ../data/messages:111
+#: ../data/messages:137
 msgid "charge"
 msgstr "Carica"
 
-#: ../data/messages:113
+#: ../data/messages:139
 msgid "time"
 msgstr "Tempo"
 
-#: ../data/messages:115
+#: ../data/messages:141
 msgid "Alert"
 msgstr "Attenzione"
 
-#: ../data/messages:117
+#: ../data/messages:143
 msgid "Alert when battery charged ?"
 msgstr "Allertare quando la batteria è carica?"
 
-#: ../data/messages:119 ../data/messages:129 ../data/messages:137
+#: ../data/messages:145 ../data/messages:155 ../data/messages:163
 msgid "Let it empty to have no sound"
 msgstr "Lasciare vuoto per non avere suoni"
 
-#: ../data/messages:121 ../data/messages:131 ../data/messages:139
+#: ../data/messages:147 ../data/messages:157 ../data/messages:165
 msgid "Use a sound :"
 msgstr "Utilizzare un suono :"
 
-#: ../data/messages:123
+#: ../data/messages:149
 msgid "Alert when low battery ?"
 msgstr "Allertare quando la batteria è scarica?"
 
-#: ../data/messages:125
+#: ../data/messages:151
 msgid "in percent."
 msgstr "in percentuale"
 
-#: ../data/messages:127
+#: ../data/messages:153
 msgid "Battery level :"
 msgstr "Livello della batteria"
 
-#: ../data/messages:133
+#: ../data/messages:159
 msgid "When battery level is under 4%"
 msgstr "Quando la carica è al di sotto del 4%"
 
-#: ../data/messages:135
+#: ../data/messages:161
 msgid "Alert when battery charge is critical ?"
 msgstr "Allertare quando la carica è critica?"
 
-#: ../data/messages:141
+#: ../data/messages:167
 msgid "Animate icon during the alert ?"
 msgstr "Animare l'icona durante l'allerta ?"
 
-#: ../data/messages:143
+#: ../data/messages:169
 msgid "Animation during alert :"
 msgstr "Animazione durante l'allerta :"
+
+#~ msgid "Display"
+#~ msgstr "Mostrare "
+
+#~ msgid "Use a gauge instead of icons ?"
+#~ msgstr "Utilizzare un indicatore al posto dell'icona ?"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Mantenere al di sotto delle altre finestre ?"
@@ -422,9 +482,6 @@ msgstr "Animazione durante l'allerta :"
 
 #~ msgid "rotate"
 #~ msgstr "Rotazione"
-
-#~ msgid "blink"
-#~ msgstr "Lampeggiamento"
 
 #~ msgid "pulse"
 #~ msgstr "Pulsazione"

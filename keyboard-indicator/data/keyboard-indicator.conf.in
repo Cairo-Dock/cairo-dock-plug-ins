@@ -97,7 +97,7 @@ disp=
 #S+ Background image :
 bg image =
 
-#c+3[0;1] Text color
+#c+ Text color
 text color =
 
 #i+[1;9] Text weight :

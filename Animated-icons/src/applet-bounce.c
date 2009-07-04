@@ -98,7 +98,7 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 		pIcon->fDrawY -= (pDock->bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fHeight += fPrevElevation;
 		
-		cairo_dock_redraw_my_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 		//cairo_dock_redraw_container (pDock);
 		pIcon->fDrawY += (pDock->bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fWidthFactor = fDamageWidthFactor;

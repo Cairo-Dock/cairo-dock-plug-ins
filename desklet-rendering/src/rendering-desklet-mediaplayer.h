@@ -16,13 +16,13 @@ typedef struct {
 	
 	gdouble fDeskletWidth;
 	
-	gdouble fArtistWidth;
-	gdouble fArtistHeight;
+	gint fArtistWidth;
+	gint fArtistHeight;
 	gdouble fArtistXOffset;
 	gdouble fArtistYOffset;
 	
-	gdouble fTitleWidth;
-	gdouble fTitleHeight;
+	gint fTitleWidth;
+	gint fTitleHeight;
 	gdouble fTitleXOffset;
 	gdouble fTitleYOffset;
 	

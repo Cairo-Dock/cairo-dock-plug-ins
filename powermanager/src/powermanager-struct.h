@@ -4,6 +4,13 @@
 #include <cairo-dock.h>
 
 
+typedef enum _CDPowermanagerDisplayType {
+	CD_POWERMANAGER_GAUGE=0,
+	CD_POWERMANAGER_GRAPH,
+	CD_POWERMANAGER_ICONS,
+	CD_POWERMANAGER_NB_TYPES
+	} CDPowermanagerDisplayType; 
+
 typedef enum {
 	POWER_MANAGER_NOTHING = 0,
 	POWER_MANAGER_CHARGE,
@@ -29,6 +36,12 @@ struct _AppletConfig {
 	gchar *defaultTitle;
 	MyAppletQuickInfoType quickInfoType;
 	gint iCheckInterval;
+	
+	CDPowermanagerDisplayType iDisplayType;
+	CairoDockTypeGraph iGraphType;
+	gdouble fLowColor[3];
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
 	
 	gboolean batteryWitness;
 	gboolean highBatteryWitness;

@@ -32,8 +32,7 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, cairo_t *pSour
 		pText->pTextSurface = cairo_dock_create_surface_from_text (cInitialText,
 			pSourceContext,
 			&pText->textDescription,
-			1.,
-			&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
+			&iTextWidth, &iTextHeight);
 	}
 	
 	
@@ -92,8 +91,7 @@ void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData)
 	pText->pTextSurface = cairo_dock_create_surface_from_text (cNewText,
 		pCairoContext,
 		&pText->textDescription,
-		1.,
-		&iTextWidth, &iTextHeight, &fTextXOffset, &fTextYOffset);
+		&iTextWidth, &iTextHeight);
 	cairo_destroy (pCairoContext);
 	
 	if (iTextWidth > pDialog->iInteractiveWidth || iTextHeight > pDialog->iInteractiveHeight)

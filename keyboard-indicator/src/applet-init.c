@@ -41,7 +41,7 @@ static void _load_bg_image (void)
 	
 	if (myConfig.cBackgroundImage != NULL)
 	{
-		myData.pBackgroundSurface = CD_APPLET_LOAD_USER_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage, (gchar *)NULL);
+		myData.pBackgroundSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage);
 		if (g_bUseOpenGL)
 			myData.iBackgroundTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
 	}

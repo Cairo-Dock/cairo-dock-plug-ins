@@ -347,8 +347,7 @@ static void _on_delete_menu (GtkMenuShell *menu, CairoDock *pDock)
 static void inline _cd_do_make_info (const gchar *cInfo)
 {
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-	double fTextXOffset, fTextYOffset;
-	myData.pInfoSurface = cairo_dock_create_surface_from_text (cInfo, pCairoContext, &myConfig.infoDescription, 1., &myData.iInfoWidth, &myData.iInfoHeight, &fTextXOffset, &fTextYOffset);
+	myData.pInfoSurface = cairo_dock_create_surface_from_text (cInfo, pCairoContext, &myConfig.infoDescription, &myData.iInfoWidth, &myData.iInfoHeight);
 	if (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock))
 		myData.iInfoTexture = cairo_dock_create_texture_from_surface (myData.pInfoSurface);
 	cairo_destroy (pCairoContext);

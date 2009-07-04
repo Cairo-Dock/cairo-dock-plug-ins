@@ -7,7 +7,7 @@ corner = 8
 
 #i+[1;10] Border width :
 border = 1
-#c+4[0;1] Line color of the bubble :
+#C+ Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
 #[gtk-preference]
 [Modern]
@@ -15,7 +15,7 @@ line color = 1.0; 1.0; 1.0; 1.0
 corner = 30
 #i+[0;10] Border width :
 border = 1
-#c+4[0;1] Line color of the bubble :
+#C+ Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
 
 #i+[1;5] Space between lines of the tip :
@@ -31,10 +31,10 @@ corner = 0
 #i+[1;10] Border width of the plane :
 border = 1
 
-#c+4[0;1] Line color of the plane :
+#C+ Line color of the plane :
 line color = 1.0; 1.0; 1.0; 1.0
 
-#c+4[0;1] Color of the plane :
+#C+ Color of the plane :
 plane color = 1.0; 1.0; 1.0; 0.5
 
 
@@ -47,10 +47,10 @@ corner = 8
 #i+[1;10] Border width :
 border = 1
 
-#c+4[0;1] Line color of the bubble :
+#C+ Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
 
-#c+4[0;1] Color of the margin :
+#C+ Color of the margin :
 margin color = .9;.9;.9;1.0
 
 
@@ -63,7 +63,7 @@ corner = 8
 #i+[1;10] Border width :
 border = 1
 
-#c+4[0;1] Line color of the bubble :
+#C+ Line color of the bubble :
 line color = 1.0; 1.0; 1.0; 1.0
 
 #e[0.1;2] Curvature of the tip :

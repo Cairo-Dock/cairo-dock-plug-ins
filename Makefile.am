@@ -36,10 +36,6 @@ if WITH_RHYTHMBOX
 rhythmbox_dir=rhythmbox
 endif
 
-if WITH_NVIDIA
-nvidia_dir=nVidia
-endif
-
 if WITH_COMPIZ_ICON
 compiz_icon_dir=compiz-icon
 endif
@@ -71,7 +67,6 @@ SUBDIRS = . po\
 	Clipper\
 	clock\
 	${compiz_icon_dir}\
-	cpusage\
 	desklet-rendering\
 	dialog-rendering\
 	dock-rendering\
@@ -88,10 +83,8 @@ SUBDIRS = . po\
 	${mail_dir}\
 	motion-blur\
 	netspeed\
-	${nvidia_dir}\
 	${powermanager_dir}\
 	quick-browser\
-	rame\
 	${rhythmbox_dir}\
 	shortcuts\
 	showDesklets\
@@ -100,6 +93,7 @@ SUBDIRS = . po\
 	slider\
 	stack\
 	switcher\
+	System-Monitor\
 	systray\
 	${terminal_dir}\
 	${tomboy_dir}\

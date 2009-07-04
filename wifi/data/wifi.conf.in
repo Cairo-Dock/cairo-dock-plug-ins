@@ -102,15 +102,15 @@ frame_graph=
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
-#c+3[0;1] High values color :
+#c+ High values color :
 #{It's the color of the graphic for high quality signal.}
 high color = 1;0;0
 
-#c+3[0;1] Low values color :
+#c+ Low values color :
 #{It's the color of the graphic for low quality signal.}
 low color = 1;1;0
 
-#c+4[0;1] Background color of the graphic :
+#C+ Background color of the graphic :
 bg color = .5;.5;1.;.4
 
 

@@ -12,9 +12,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", POWER_MANAGER_TIME);
 	
-	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
-	myConfig.cUserBatteryIconName = CD_CONFIG_GET_STRING ("Configuration", "battery icon");
-	myConfig.cUserChargeIconName = CD_CONFIG_GET_STRING ("Configuration", "charge icon");
 	
 	myConfig.lowBatteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "low battery", TRUE);
 	
@@ -29,6 +26,21 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
 	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");
 	
+	
+	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
+	
+	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	
+	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	
+	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
+	myConfig.cUserBatteryIconName = CD_CONFIG_GET_STRING ("Configuration", "battery icon");
+	myConfig.cUserChargeIconName = CD_CONFIG_GET_STRING ("Configuration", "charge icon");
+	
+	
 	GString *sKeyName = g_string_new ("");
 	int i;
 	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
@@ -36,9 +48,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cSoundPath[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
 	}
 	g_string_free (sKeyName, TRUE);
-	
-	myConfig.bUseGauge = CD_CONFIG_GET_BOOLEAN ("Configuration", "use gauge");
-	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 	
 	myConfig.bUseApprox = CD_CONFIG_GET_BOOLEAN ("Configuration", "use approx");
 CD_APPLET_GET_CONFIG_END
@@ -61,10 +70,10 @@ CD_APPLET_RESET_CONFIG_END
 
 CD_APPLET_RESET_DATA_BEGIN
 
+	CD_APPLET_REMOVE_MY_DATA_RENDERER;
+	
 	cairo_surface_destroy (myData.pSurfaceBattery);
 	cairo_surface_destroy (myData.pSurfaceCharge);
-	
-	cairo_dock_free_gauge(myData.pGauge);
 	
 	g_free (myData.cBatteryStateFilePath);
 	

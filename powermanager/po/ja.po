@@ -14,15 +14,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/powermanager-draw.c:115
+#: ../src/powermanager-draw.c:117
 msgid "None"
 msgstr "なし"
 
-#: ../src/powermanager-draw.c:144 ../src/powermanager-draw.c:173
+#: ../src/powermanager-draw.c:146 ../src/powermanager-draw.c:175
 msgid "Unknown"
 msgstr "不明"
 
-#: ../src/powermanager-draw.c:147
+#: ../src/powermanager-draw.c:149
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
@@ -30,12 +30,12 @@ msgstr ""
 "ラップトップはバッテリー使用中。\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:147 ../src/powermanager-draw.c:177
-#: ../src/powermanager-draw.c:183
+#: ../src/powermanager-draw.c:149 ../src/powermanager-draw.c:179
+#: ../src/powermanager-draw.c:185
 msgid "Estimated time with Charge:"
 msgstr "充電のおよその時間:"
 
-#: ../src/powermanager-draw.c:151
+#: ../src/powermanager-draw.c:153
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
@@ -43,15 +43,15 @@ msgstr ""
 "ラップトップは電源使用中\n"
 "バッテリー充電完了:"
 
-#: ../src/powermanager-draw.c:151
+#: ../src/powermanager-draw.c:153
 msgid "Estimated Charge time:"
 msgstr "およその充電時間:"
 
-#: ../src/powermanager-draw.c:157
+#: ../src/powermanager-draw.c:159
 msgid "No Battery found."
 msgstr "バッテリーが見つかりません。"
 
-#: ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:179
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -59,11 +59,11 @@ msgstr ""
 "PowerManager.\n"
 "バッテリーの充電が少ないようです。"
 
-#: ../src/powermanager-draw.c:177
+#: ../src/powermanager-draw.c:179
 msgid "Please put your Laptop on charge."
 msgstr "ラップトップを充電してください。"
 
-#: ../src/powermanager-draw.c:183
+#: ../src/powermanager-draw.c:185
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -283,108 +283,168 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../data/messages:83
-msgid "in seconds."
-msgstr "秒単位"
+msgid "Gauge"
+msgstr ""
 
 #: ../data/messages:85
-msgid "Interval of time between 2 checks :"
-msgstr "チェックの間隔時間 :"
-
-#: ../data/messages:87
-msgid "Display"
-msgstr "表示"
-
-#: ../data/messages:89
-msgid "Icon's filename when on battery :"
-msgstr "バッテリー使用時のアイコンファイル名 :"
-
-#: ../data/messages:91
-msgid "Icon's filename when on charge :"
-msgstr "充電時のアイコンファイル名 :"
-
-#: ../data/messages:93
-msgid "Effect to apply on the icon according to charge :"
-msgstr "充電量に応じてアイコンに適用する効果 :"
-
-#: ../data/messages:95 ../data/messages:109
-msgid "nothing"
-msgstr "なし"
-
-#: ../data/messages:97
-msgid "zoom"
-msgstr "ズーム"
-
-#: ../data/messages:99
-msgid "transparency"
-msgstr "透過"
-
-#: ../data/messages:101
-msgid "draw bar"
-msgstr "バーの描画"
-
-#: ../data/messages:103
-msgid "Use a gauge instead of icons ?"
-msgstr "アイコンの代わりに目盛りを使用？"
-
-#: ../data/messages:105
 msgid "Choose one of the available themes :"
 msgstr "利用可能なテーマから1つ選択 :"
 
+#: ../data/messages:87
+msgid "Graph"
+msgstr ""
+
+#: ../data/messages:89
+msgid "Type of graphic :"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Line"
+msgstr ""
+
+#: ../data/messages:93
+#, fuzzy
+msgid "Plain"
+msgstr "点滅"
+
+#: ../data/messages:95
+msgid "Bar"
+msgstr ""
+
+#: ../data/messages:97
+msgid "Circle"
+msgstr ""
+
+#: ../data/messages:99
+msgid "Plain Circle"
+msgstr ""
+
+#: ../data/messages:101
+msgid "It's the color of the graphic for high CPU values."
+msgstr ""
+
+#: ../data/messages:103
+msgid "High values color :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "It's the color of the graphic for low CPU values."
+msgstr ""
+
 #: ../data/messages:107
+msgid "Low values color :"
+msgstr ""
+
+#: ../data/messages:109
+msgid "Background color of the graphic :"
+msgstr ""
+
+#: ../data/messages:111
+#, fuzzy
+msgid "Icons"
+msgstr "アイコン"
+
+#: ../data/messages:113
+msgid "Icon's filename when on battery :"
+msgstr "バッテリー使用時のアイコンファイル名 :"
+
+#: ../data/messages:115
+msgid "Icon's filename when on charge :"
+msgstr "充電時のアイコンファイル名 :"
+
+#: ../data/messages:117
+msgid "Effect to apply on the icon according to charge :"
+msgstr "充電量に応じてアイコンに適用する効果 :"
+
+#: ../data/messages:119 ../data/messages:135
+msgid "nothing"
+msgstr "なし"
+
+#: ../data/messages:121
+msgid "zoom"
+msgstr "ズーム"
+
+#: ../data/messages:123
+msgid "transparency"
+msgstr "透過"
+
+#: ../data/messages:125
+msgid "draw bar"
+msgstr "バーの描画"
+
+#: ../data/messages:127
+msgid "Parameters"
+msgstr ""
+
+#: ../data/messages:129
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../data/messages:131
+msgid "Interval of time between 2 checks :"
+msgstr "チェックの間隔時間 :"
+
+#: ../data/messages:133
 msgid "Information to be displayed on the icon :"
 msgstr "アイコン上に表示する情報 :"
 
-#: ../data/messages:111
+#: ../data/messages:137
 msgid "charge"
 msgstr "充電量"
 
-#: ../data/messages:113
+#: ../data/messages:139
 msgid "time"
 msgstr "時間"
 
-#: ../data/messages:115
+#: ../data/messages:141
 msgid "Alert"
 msgstr "通告"
 
-#: ../data/messages:117
+#: ../data/messages:143
 msgid "Alert when battery charged ?"
 msgstr "バッテリー充電完了時に通告？"
 
-#: ../data/messages:119 ../data/messages:129 ../data/messages:137
+#: ../data/messages:145 ../data/messages:155 ../data/messages:163
 msgid "Let it empty to have no sound"
 msgstr "音を使用しない場合は空欄のままに。"
 
-#: ../data/messages:121 ../data/messages:131 ../data/messages:139
+#: ../data/messages:147 ../data/messages:157 ../data/messages:165
 msgid "Use a sound :"
 msgstr "音を使用 :"
 
-#: ../data/messages:123
+#: ../data/messages:149
 msgid "Alert when low battery ?"
 msgstr "バッテリー低残量時に通告？"
 
-#: ../data/messages:125
+#: ../data/messages:151
 msgid "in percent."
 msgstr "パーセント単位"
 
-#: ../data/messages:127
+#: ../data/messages:153
 msgid "Battery level :"
 msgstr "バッテリーレベル"
 
-#: ../data/messages:133
+#: ../data/messages:159
 msgid "When battery level is under 4%"
 msgstr "バッテリーレベルが 4% を下回るとき"
 
-#: ../data/messages:135
+#: ../data/messages:161
 msgid "Alert when battery charge is critical ?"
 msgstr "バッテリー充電が警告？"
 
-#: ../data/messages:141
+#: ../data/messages:167
 msgid "Animate icon during the alert ?"
 msgstr "通告中にアイコンをアニメーション化？"
 
-#: ../data/messages:143
+#: ../data/messages:169
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
+
+#~ msgid "Display"
+#~ msgstr "表示"
+
+#~ msgid "Use a gauge instead of icons ?"
+#~ msgstr "アイコンの代わりに目盛りを使用？"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
@@ -415,9 +475,6 @@ msgstr "通告中のアニメーション :"
 
 #~ msgid "rotate"
 #~ msgstr "回転"
-
-#~ msgid "blink"
-#~ msgstr "点滅"
 
 #~ msgid "pulse"
 #~ msgstr "波動"

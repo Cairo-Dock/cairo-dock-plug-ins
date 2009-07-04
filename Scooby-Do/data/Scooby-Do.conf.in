@@ -37,7 +37,7 @@ char=
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 text font = 
 
-#c+4[0;1] Color of the text's frame  :
+#C+ Color of the text's frame  :
 frame color = 0.9; 0.9; 0.95; .75
 
 #e+[.1;.5] Font size, relatively to the dock's size :
@@ -50,10 +50,10 @@ text weight = 5
 #b+ Should the text be outlined ?
 text outlined = true
 
-#c+3[0;1] Text color :
+#c+ Text color :
 text color = 1;1.;1.
 
-#c+4[0;1] Color of the background of the characters :
+#C+ Color of the background of the characters :
 bg color = 0.0; 0.0; 0.1; .8
 
 #b Write text on the top of the dock ?

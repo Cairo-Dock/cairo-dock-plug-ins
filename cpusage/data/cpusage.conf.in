@@ -89,15 +89,15 @@ use graphic = false
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
-#c+3[0;1] High values color :
+#c+ High values color :
 #{It's the color of the graphic for high CPU values.}
 high color = 1;0;0
 
-#c+3[0;1] Low values color :
+#c+ Low values color :
 #{It's the color of the graphic for low CPU values.}
 low color = 1;1;0
 
-#c+4[0;1] Background color of the graphic :
+#C+ Background color of the graphic :
 bg color = .5;.5;1.;.4
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
@@ -128,11 +128,11 @@ frame_top=
 #{When you left-click on the icon, you will get the list of the N most CPU-using programs.}
 top = 3
 
-#c+3[0;1] Start color of the top list :
+#c+ Start color of the top list :
 #{It's the first color of the gradation used to write the top list.}
 top color start = 1;0;0
 
-#c+3[0;1] Stop color of the top list :
+#c+ Stop color of the top list :
 #{It's the second color of the gradation used to write the top list.}
 top color stop = 1;1;0
 
