@@ -61,17 +61,17 @@ struct _AppletConfig {
 };
 
 struct _AppletData {
+	// shared memory
 	CDWifiQuality iQuality, iPreviousQuality;
-	gint prcnt, prev_prcnt;
-	gint flink, prev_flink;
-	gint mlink, prev_mlink;
+	gint iPercent, iPrevPercent;
+	gint iSignalLevel, iPrevSignalLevel;
+	gint iPrevNoiseLevel, iNoiseLevel;
 	gchar *cESSID;
-	gchar *cConnName;
-	gboolean bAcquisitionOK;
+	gchar *cInterface;
+	gchar *cAccessPoint;
+	// end of shared memory
 	gboolean bWirelessExt;
 	CairoDockTask *pTask;
-	Gauge *pGauge;
-	CairoDockGraph *pGraph;
 	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
 };
 

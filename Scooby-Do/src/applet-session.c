@@ -40,7 +40,6 @@ void cd_do_open_session (void)
 	else if (myData.bNavigationMode && myData.pArrowSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-		double fTextXOffset, fTextYOffset;
 		myData.pArrowSurface = cairo_dock_create_surface_for_icon (MY_APPLET_SHARE_DATA_DIR"/arrows.svg", pCairoContext, g_pMainDock->iMaxDockHeight, g_pMainDock->iMaxDockHeight);
 		myData.iArrowWidth = g_pMainDock->iMaxDockHeight;
 		myData.iArrowHeight = g_pMainDock->iMaxDockHeight;
@@ -193,7 +192,6 @@ void cd_do_load_pending_caracters (void)
 	GLuint iTexture;
 	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	gchar c[2] = {'\0', '\0'};
-	double fTextXOffset, fTextYOffset;
 	CDChar *pChar;
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	int iDeltaT = cairo_dock_get_animation_delta_t (g_pMainDock);
@@ -214,7 +212,7 @@ void cd_do_load_pending_caracters (void)
 		myData.pCharList = g_list_append (myData.pCharList, pChar);
 		
 		// on cree la surface.
-		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, 1., &pChar->iWidth, &pChar->iHeight, &fTextXOffset, &fTextYOffset);
+		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, &pChar->iWidth, &pChar->iHeight);
 		if (g_pMainDock->bHorizontalDock)
 		{
 			myData.iTextWidth += pChar->iWidth;

@@ -9,7 +9,7 @@
 
 
 CD_APPLET_DEFINITION ("wifi",
-	1, 6, 2,
+	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet shows you the signal strength of the first active wifi connection\n"
 	"Left-click to pop-up some info,"
@@ -48,7 +48,6 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	if (pRenderAttr != NULL)
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = 2;
 		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -65,13 +64,15 @@ CD_APPLET_INIT_BEGIN
 	_set_data_renderer (myApplet, FALSE);
 	
 	// Initialisation de la tache periodique de mesure.
-	myData.iPreviousQuality = -1;  // force le dessin.
-	myData.prev_prcnt = -1;
+	myData.iPreviousQuality = -2;  // force le dessin.
 	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 		(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
 		(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,
 		myApplet);
-	cairo_dock_launch_task_delayed (myData.pTask, 5000);
+	if (cairo_dock_is_loading ())
+		cairo_dock_launch_task_delayed (myData.pTask, 5000);
+	else
+		cairo_dock_launch_task (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -101,23 +102,32 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
-	if (CD_APPLET_MY_CONFIG_CHANGED) {
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
 		_set_data_renderer (myApplet, TRUE);
 		
+		myData.iQuality = -2;  // force le redessin.
+		myData.iPercent = -2;
+		myData.iSignalLevel = -2;
+		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		myData.iPreviousQuality = -1;  // on force le redessin.
-		myData.prev_prcnt = -1;
-		cairo_dock_stop_task (myData.pTask);  // on stoppe avant car  on ne veut pas attendre la prochaine iteration.
+		cairo_dock_stop_task (myData.pTask);  // on stoppe avant car on ne veut pas attendre la prochaine iteration.
 		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
 		cairo_dock_launch_task (myData.pTask);  // mesure immediate.
 	}
-	else {  // on redessine juste l'icone.
-		myData.iPreviousQuality = -1;  // force le redessin.
-		if (myData.bAcquisitionOK) {
-			cd_wifi_draw_icon ();
-		}
-		else {
-			cd_wifi_draw_no_wireless_extension ();
+	else  // on redessine juste l'icone.
+	{
+		myData.iQuality = -2;  // force le redessin.
+		if (! cairo_dock_task_is_running (myData.pTask))
+		{
+			if (myData.bWirelessExt)
+			{
+				cd_wifi_draw_icon ();
+			}
+			else
+			{
+				cd_wifi_draw_no_wireless_extension ();
+			}
 		}
 	}
 CD_APPLET_RELOAD_END

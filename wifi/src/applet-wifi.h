@@ -4,9 +4,9 @@
 #include <cairo-dock.h>
 
 
-void cd_wifi_get_data (void);
+void cd_wifi_get_data (gpointer data);
 
-gboolean cd_wifi_update_from_data (void);
+gboolean cd_wifi_update_from_data (gpointer data);
 
 
 #endif

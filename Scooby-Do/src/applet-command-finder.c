@@ -468,6 +468,9 @@ void cd_do_find_matching_files (void)
 		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), cPath);
 	}
 	
+	/// completer avec les actions :
+	/// mail, open folder, copy adress, copy, move, ...
+	
 	gtk_widget_show_all (myData.pFileMenu);
 	
 	g_signal_connect (G_OBJECT (myData.pFileMenu),

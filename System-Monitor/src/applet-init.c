@@ -167,8 +167,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {  // on redessine juste l'icone.
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
-		/// mettre l'historique a la nouvelle taille de l'icone...
-		
+		if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
+			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
 		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);

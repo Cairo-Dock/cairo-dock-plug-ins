@@ -118,6 +118,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else {  // on redessine juste l'icone.
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		if (myConfig.iDisplayType == CD_NETSPEED_GRAPH)
+			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
 		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
 			cd_netspeed_update_from_data (myApplet);

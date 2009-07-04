@@ -138,7 +138,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 				Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, &pParentDock);
 				if (pPointingIcon != NULL)
 				{
-					cairo_dock_show_subdock (pPointingIcon, FALSE, pParentDock);  // utile pour le montrage des sous-docks au clic.
+					cairo_dock_show_subdock (pPointingIcon, pParentDock, FALSE);  // utile pour le montrage des sous-docks au clic.
 				}
 			}
 			else
@@ -183,7 +183,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		cairo_dock_request_icon_animation (pIcon, pDock, myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
 		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 		//if (myAccessibility.bShowSubDockOnClick)
-		//	cairo_dock_show_subdock (pIcon, FALSE, pDock);
+		//	cairo_dock_show_subdock (pIcon, pDock, FALSE);
 	}
 	
 	myData.pCurrentDock = pDock;

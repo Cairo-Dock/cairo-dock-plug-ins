@@ -144,8 +144,6 @@ icon_5 =
 #F[Parameters;gtk-dialog-info]
 frame_param =
 
-#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
-signal_type=2
 #i[1;60] Delay between signal checks :
 #{in seconds.}
 delay = 10
@@ -158,7 +156,12 @@ smooth = .33
 #{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
 command = 
 
+
 #F+[Display;gtk-dnd-multiple]
 frame_disp=
+
+#r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+signal_type=2
+
 #b Overwrite the default label with the connection point name ?
 essid = true

@@ -21,151 +21,140 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-wifi.h"
 
 
-static float pourcent(float x, float y) {
-  float p = 0;
-  if (x > y) {
-    x = y;
-  }
-  
-  else if (x < 0) {
-   x = 0;
-  }
-  
-  p = (x / y) *100;
-  return p;
-}
+#define _pick_string(cValueName, cValue) \
+	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
+	if (str) {\
+		str += strlen (cValueName) + 1;\
+		if (*str == ' ')\
+			str ++;\
+		if (*str == '"') {\
+			str ++;\
+			str2 = strchr (str, '"'); }\
+		else {\
+			str2 = strchr (str, ' '); }\
+		if (str2) {\
+			cValue = g_strndup (str, str2 - str);\
+			cd_debug ("%s : %s", cValueName, cValue); } }
+#define _pick_value(cValueName, iValue, iMaxValue)\
+	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
+	if (str) {\
+		str += strlen (cValueName) + 1;\
+		iValue = atoi (str);\
+		str2 = strchr (str, '/');\
+		if (str2)\
+			iMaxValue = atoi (str2+1);\
+		cd_debug ("%s : %d (/%d)", cValueName, iValue, iMaxValue); }
 
-static gboolean _wifi_get_values_from_file (gchar *cContent, int *iFlink, int *iMlink, int *iPercentage, CDWifiQuality *iQuality) {
-	gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
-	gchar *cOneInfopipe;
-	gchar *cESSID = NULL, *cQuality = NULL, *cConnName = NULL;
-	int flink=0, mlink=0, i=0, prcnt=0;
-	for (i = 0; cInfopipesList[i] != NULL; i ++) {
+void cd_wifi_get_data (gpointer data)
+{
+	myData.iPreviousQuality = myData.iQuality;
+	myData.iQuality = -1;
+	myData.iPrevPercent = myData.iPercent;
+	myData.iPercent = -1;
+	myData.iPrevSignalLevel = myData.iSignalLevel;
+	myData.iSignalLevel = -1;
+	myData.iPrevNoiseLevel = myData.iNoiseLevel;
+	myData.iNoiseLevel = -1;
+	g_free (myData.cESSID);
+	myData.cESSID = NULL;
+	g_free (myData.cInterface);
+	myData.cInterface = NULL;
+	g_free (myData.cAccessPoint);
+	myData.cAccessPoint = NULL;
+	
+	gchar *cResult = cairo_dock_launch_command_sync (MY_APPLET_SHARE_DATA_DIR"/wifi");
+	if (cResult == NULL || *cResult == '\0')  //   // erreur a l'execution d'iwconfig (probleme de droit d'execution ou iwconfig pas installe) ou aucune interface wifi presente
+	{ 
+		g_free (cResult);
+		return ;
+	}
+	
+	gchar **cInfopipesList = g_strsplit (cResult, "\n", -1);
+	g_free (cResult);
+	gchar *cOneInfopipe, *str, *str2;
+	int i, iMaxValue;
+	for (i = 0; cInfopipesList[i] != NULL; i ++)
+	{
 		cOneInfopipe = cInfopipesList[i];
-		if (*cOneInfopipe == '\0')
+		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )
 			continue;
 		
-		if ((i == 0) && (strcmp(cOneInfopipe,"Wifi") == 0)) {
-			g_strfreev (cInfopipesList);
-			myData.bWirelessExt = FALSE; //On n'a pas de device wifi d'activé
-			return FALSE;
-		}
-		else if (cESSID == NULL) {
-			cESSID = g_strstr_len (cOneInfopipe, -1, "ESSID");  // eth1 IEEE 802.11g ESSID:"bla bla bla" 
-			if (cESSID != NULL) {
-				cESSID += 6;  // on saute le ':' avec.
-				if (*cESSID == '"') { // on enleve les guillemets.
-					cESSID ++;
-					gchar *str = strchr (cESSID, '"');
-					if (str != NULL)
-						*str = '\0';
-				}
-				else {
-					cESSID = NULL;
-				}
-			}
-		}
-		else { // on a deja trouve l'EESID qui vient en 1er, on peut donc chercher le reste.
-			cQuality = g_strstr_len (cOneInfopipe, -1, "Link Quality");
-			if (cQuality != NULL) { //Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm 
-				cQuality += 13;  // on saute le '=' avec.
-				gchar *str = strchr (cQuality, '/');
-				if (str != NULL) {
-					*str = '\0';
-					flink = atoi(cQuality);
-					mlink = atoi(str+1);
-					prcnt = pourcent (flink, mlink);
-					myData.bWirelessExt = TRUE; //On a un device wifi activé
-				}
-				break; //Les autres lignes ne nous importent peu.
-			}
-		}
-		if (cConnName == NULL && i == 0) {
-			cConnName = g_strdup (cOneInfopipe); // wlan0     IEEE 802.11g  ESSID:"WANADOO-21C8" 
-			gchar *str = strchr (cConnName, ' ');
-			if (str != NULL)
-				*str = '\0';
-		}
-	}
-	
-	cd_debug ("Wifi - Name: %s - ESSID: %s - Signal Quality: %d/%d", cConnName, cESSID, flink, mlink);
-	
-	if (cESSID == NULL)
-		cESSID = D_("Unknown");
-	g_free (myData.cESSID);
-	myData.cESSID = g_strdup (cESSID);
-	
-	if (cConnName == NULL)
-		cConnName = D_("Unknown");
-	g_free (myData.cConnName);
-	myData.cConnName = g_strdup (cConnName);
-	
-	*iFlink = flink;
-	*iMlink = mlink;
-	if (prcnt <= 0) {
-		*iQuality = WIFI_QUALITY_NO_SIGNAL;
-	}
-	else if (prcnt < 20) {
-		*iQuality = WIFI_QUALITY_VERY_LOW;
-	}
-	else if (prcnt < 40) {
-		*iQuality = WIFI_QUALITY_LOW;
-	}
-	else if (prcnt < 60) {
-		*iQuality = WIFI_QUALITY_MIDDLE;
-	}
-	else if (prcnt < 80) {
-		*iQuality = WIFI_QUALITY_GOOD;
-	}
-	else {
-		*iQuality = WIFI_QUALITY_EXCELLENT;
-	}
-	*iPercentage = prcnt;
-	
-	g_strfreev (cInfopipesList);  // on le libere a la fin car cESSID pointait dessus.
-	return TRUE;
-}
-
-void cd_wifi_get_data (void)
-{
-	gchar *cCommand = g_strdup_printf("bash %s/wifi", MY_APPLET_SHARE_DATA_DIR);
-	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-	g_free (cCommand);
-	
-	/*if (myData.cConnName != NULL) {
-		cCommand = g_strdup_printf("bash %s/access-point", MY_APPLET_SHARE_DATA_DIR, myData.cConnName);
-		gchar *cResult2 = cairo_dock_launch_command_sync (cCommand);
-		g_free (cCommand);
-	}*/  /// Il faudrait en faire quelque chose ...
-	
-	if (cResult == NULL)
-	{
-		cd_warning ("wifi : couldn't retrieve infos\nIt may happen if 'iwconfig' needs root priviledges.");
-		myData.bAcquisitionOK = FALSE;
-	}
-	else
-	{
-		gboolean bAcquisitionOK = _wifi_get_values_from_file (cResult, &myData.flink, &myData.mlink, &myData.prcnt, &myData.iQuality);
-		g_free (cResult);
+		if (myData.cInterface != NULL && *cOneInfopipe != ' ')  // nouvelle interface, on n'en veut qu'une.
+			break ;
 		
-		if (! bAcquisitionOK || myData.prcnt <= 0) {
-			myData.bAcquisitionOK = FALSE;
-			myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
-			myData.prcnt = 0;
+		if (myData.cInterface == NULL && *cOneInfopipe != ' ')
+		{
+			str = cOneInfopipe;  // le nom de l'interface est en debut de ligne.
+			str2 = strchr (str, ' ');
+			if (str2)
+			{
+				myData.cInterface = g_strndup (cOneInfopipe, str2 - str);
+				cd_debug ("interface : %s", myData.cInterface);
+			}
 		}
-		else {
-			myData.bAcquisitionOK = TRUE;
+		
+		if (myData.cESSID == NULL)
+		{
+			_pick_string ("ESSID", myData.cESSID);  // eth1 IEEE 802.11g ESSID:"bla bla bla"
+		}
+		/*if (myData.cNickName == NULL)
+		{
+			_pick_string ("Nickname", myData.cNickName);
+		}*/
+		if (myData.cAccessPoint == NULL)
+		{
+			_pick_string ("Access Point", myData.cAccessPoint);
+		}
+		
+		if (myData.iQuality == -1)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
+		{
+			iMaxValue = 0;
+			_pick_value ("Link Quality", myData.iQuality, iMaxValue);
+			if (iMaxValue != 0)  // vieille version, qualite indiquee en %
+			{
+				myData.iPercent = 100. * myData.iQuality / iMaxValue;
+				if (myData.iPercent <= 0)
+					myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
+				else if (myData.iPercent < 20)
+					myData.iQuality = WIFI_QUALITY_VERY_LOW;
+				else if (myData.iPercent < 40)
+					myData.iQuality = WIFI_QUALITY_LOW;
+				else if (myData.iPercent < 60)
+					myData.iQuality = WIFI_QUALITY_MIDDLE;
+				else if (myData.iPercent < 80)
+					myData.iQuality = WIFI_QUALITY_GOOD;
+				else
+					myData.iQuality = WIFI_QUALITY_EXCELLENT;
+			}
+			else
+			{
+				myData.iPercent = 100. * myData.iQuality / (WIFI_NB_QUALITY-1);
+			}
+		}
+		if (myData.iSignalLevel == -1)
+		{
+			_pick_value ("Signal level", myData.iSignalLevel, iMaxValue);
+		}
+		if (myData.iNoiseLevel == -1)
+		{
+			_pick_value ("Noise level", myData.iNoiseLevel, iMaxValue);
 		}
 	}
+	g_strfreev (cInfopipesList);
 }
 
 
-gboolean cd_wifi_update_from_data (void) {
-	if (myData.bAcquisitionOK) {
+gboolean cd_wifi_update_from_data (gpointer data)
+{
+	if (myData.cInterface != NULL)
+	{
+		myData.bWirelessExt = TRUE;
 		cd_wifi_draw_icon ();
 		cairo_dock_set_normal_task_frequency (myData.pTask);
 	}
-	else {
+	else
+	{
+		myData.bWirelessExt = FALSE;
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_task_frequency (myData.pTask);
 	}

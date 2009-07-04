@@ -8,28 +8,26 @@
 #include "applet-draw.h"
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);
 	cd_wifi_bubble();
 CD_APPLET_ON_CLICK_END
 
-static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer *data) {
+
+static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data) {
 	cairo_dock_stop_task (myData.pTask);
 	cairo_dock_launch_task (myData.pTask);
 }
-
-static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
-	if (myConfig.cUserCommand != NULL) { //Commande utilisateur, pour hardy heron ^^
+static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data) {  /// a mettre dans les plug-ins d'integration.
+	if (myConfig.cUserCommand != NULL) {
 		cairo_dock_launch_command (myConfig.cUserCommand);
 		return;
 	}
 
-	if (g_file_test ("/opt/wicd/daemon.py", G_FILE_TEST_EXISTS)) { //On détecte wicd
-		cairo_dock_launch_command ("/opt/wicd/./gui.py");
+	/*if (g_file_test ("/opt/wicd/daemon.py", G_FILE_TEST_EXISTS)) { //On détecte wicd
+		cairo_dock_launch_command ("/opt/wicd/gui.py");
 		return;
-	}
+	}*/
 	
 	gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
@@ -52,36 +50,46 @@ static void eth_config(void) {  /// a mettre dans les plug-ins d'integration.
 	
 	cairo_dock_launch_command (cCommand);
 }
-
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		if (! myData.bAcquisitionOK) {
-			CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu);
-		}
-		CD_APPLET_ADD_IN_MENU (D_("Network Administration"), eth_config, pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	if (! myData.bWirelessExt)
+		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu);
+	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_wifi_show_config, pSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
-static void toggel_wlan(void) { //Trouver la commande pour activer/désactiver une connection
-	GError *erreur = NULL;
-	if (myData.bWirelessExt) {
-		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s down", myData.cConnName);
-		g_spawn_command_line_async (cCommand, &erreur);
-		g_free (cCommand);
-	}
-	else {
-		gchar *cCommand = g_strdup_printf ("gksu ifconfig %s up", myData.cConnName);
-		g_spawn_command_line_async (cCommand, &erreur);
-		g_free (cCommand);
-	}
-	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
-		g_error_free (erreur);
-	}
-}
 
+static void toggle_wlan(void)
+{
+	DBusGProxy *dbus_proxy_nm = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			"/org/freedesktop/NetworkManager",
+			"org.freedesktop.NetworkManager");
+	g_return_if_fail (dbus_proxy_nm != NULL);
+	
+	guint state = 0;
+	dbus_g_proxy_call (dbus_proxy_nm, "state", NULL,
+		G_TYPE_INVALID,
+		G_TYPE_UINT, &state,
+		G_TYPE_INVALID);
+	cd_debug ("current network state : %d", state);
+	if (state == 3)  // actif
+	{
+		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "sleep",
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+	}
+	else if (state == 1)  // inactif
+	{
+		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "wake",
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+	}
+	
+	g_object_unref (dbus_proxy_nm);
+}
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	//On ajoutera la désactivation quand elle sera fonctionnelle...
-	cairo_dock_launch_task (myData.pTask);
-	cairo_dock_remove_dialog_if_any (myIcon);
+	toggle_wlan ();
+	//cairo_dock_launch_task (myData.pTask);
+	//cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

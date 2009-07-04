@@ -6,7 +6,6 @@
 #include "applet-config.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
@@ -61,7 +60,8 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pSurfaces[i]);
 	
 	g_free (myData.cESSID);
-	g_free (myData.cConnName);
+	g_free (myData.cInterface);
+	g_free (myData.cAccessPoint);
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
