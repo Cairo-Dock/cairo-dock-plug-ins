@@ -33,7 +33,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
-	//\_________________ On chope les coordonn�es du curseur par rapport a notre container.
+	//\_________________ On chope les coordonnees du curseur par rapport a notre container.
 	int iMouseX, iMouseY;
  	gdk_window_get_pointer (myContainer->pWidget->window, &iMouseX, &iMouseY, NULL);
 	

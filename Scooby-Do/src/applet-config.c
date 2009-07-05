@@ -81,7 +81,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cd_do_close_session ();
 	cd_do_exit_session ();
 	
-	if (myData.dir_hash)
+	/*if (myData.dir_hash)
 		g_hash_table_destroy (myData.dir_hash);
 	
 	GList *l;
@@ -94,7 +94,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_list_free (myData.completion_items);
 	
 	if (myData.completion)
-		g_completion_free (myData.completion);
+		g_completion_free (myData.completion);*/
 	
 	if (myData.pPromptSurface != NULL)
 		cairo_surface_destroy (myData.pPromptSurface);

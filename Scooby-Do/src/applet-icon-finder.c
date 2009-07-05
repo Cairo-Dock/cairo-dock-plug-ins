@@ -244,23 +244,28 @@ static void _cd_do_search_in_one_dock (Icon *pIcon, CairoDock *pDock, gpointer d
 }
 void cd_do_search_matching_icons (void)
 {
+	if (myData.sCurrentText->len == 0)
+		return;
+	g_print ("%s (%s)\n", __func__, myData.sCurrentText->str);
 	gchar *str = strchr (myData.sCurrentText->str, ' ');  // on ne compte pas les arguments d'une eventuelle commande deja tapee.
 	int length = myData.sCurrentText->len;
 	if (str != NULL)
 	{
 		g_string_set_size (myData.sCurrentText, str - myData.sCurrentText->str + 1);
-		g_print ("str <- '%s' %d\n", myData.sCurrentText->str, myData.sCurrentText->len);
+		g_print (" on ne cherchera que '%s' (len=%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
 	}
 		
 	if (myData.pMatchingIcons == NULL)
 	{
 		if (myData.bSessionStartedAutomatically)  // on cherche dans le dock courant.
 		{
+			g_print ("on cherche dans le dock\n");
 			_cd_do_search_matching_icons_in_dock (myData.pCurrentDock);
 			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 		}
 		else
 		{
+			g_print ("on cherche tout\n");
 			// on parcours tous les docks.
 			cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _cd_do_search_in_one_dock, NULL);
 			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
@@ -271,6 +276,7 @@ void cd_do_search_matching_icons (void)
 	}
 	else  // optimisation : on peut se contenter de chercher parmi les icones deja trouvees.
 	{
+		g_print ("on se contente d'enlever celles en trop\n");
 		GList *ic, *next_ic;
 		Icon *pIcon;
 		ic = myData.pMatchingIcons;
@@ -285,7 +291,7 @@ void cd_do_search_matching_icons (void)
 	}
 	myData.pCurrentMatchingElement = NULL;
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
-	g_print ("%d / %d\n", length , myData.sCurrentText->len);
+	//g_print ("%d / %d\n", length , myData.sCurrentText->len);
 	if (length != myData.sCurrentText->len)
 		g_string_set_size (myData.sCurrentText, length);
 }

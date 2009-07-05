@@ -221,7 +221,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
-			g_print ("%d/%d\n", myData.iNbValidCaracters, myData.sCurrentText->len);
+			g_print ("%d/%d (%s)\n", myData.iNbValidCaracters, myData.sCurrentText->len, myData.sCurrentText->str);
 			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
 				myData.iNbValidCaracters --;
 			
@@ -239,7 +239,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				g_list_free (myData.pMatchingIcons);
 				myData.pMatchingIcons = NULL;
 				cd_do_search_matching_icons ();
-				if (myData.pMatchingIcons == NULL)  // on n'a trouve aucun programme, on cherche un fichier.
+				if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche un fichier.
 				{
 					cd_do_find_matching_files ();
 					
@@ -253,21 +253,21 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			
 			// on repositionne les caracteres et on anime tout ca.
 			cd_do_launch_appearance_animation ();
-			if (myData.iNbValidCaracters == 0)  // plus de caracteres => plus d'animation immediatement, donc on force une fois le redessin.
-				cairo_dock_redraw_container (pContainer);
 		}
 	}
 	else if (iKeyVal == GDK_Tab)  // completion.
 	{
+		gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
 		if (! myData.bNavigationMode)
 		{
 			if (myData.pMatchingIcons != NULL)
 			{
-				cd_do_select_previous_next_matching_icon (TRUE);
+				cd_do_select_previous_next_matching_icon (!bPrevious);
 			}
 			else
 			{
-				if (myData.completion)
+				
+				/*if (myData.completion)
 				{
 					gchar *tmp = g_new0 (gchar, myData.iNbValidCaracters+1);
 					strncpy (tmp, myData.sCurrentText->str, myData.iNbValidCaracters);
@@ -313,13 +313,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					}
 					g_free (new_prefix);
 					g_free (tmp);
-				}
+				}*/
 			}
 		}
 		else if (myData.iNbValidCaracters > 0)  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 		{
-			gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
-			
 			// on cherche l'icone suivante.
 			cd_do_search_current_icon (TRUE);
 			
@@ -505,10 +503,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		else  // on cherche la liste des icones qui correspondent.
 		{
 			cd_do_search_matching_icons ();
-			// si on a trouve aucun lanceur, on essaye l'autocompletion.
+			
+			// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
 			if (myData.pMatchingIcons == NULL)
 			{
-				// on cherche un programme correspondant, cf GMenu.
+				// on cherche un fichier correspondant.
 				cd_do_find_matching_files ();
 				
 				// On affiche un filtre sur les fichiers.

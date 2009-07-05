@@ -24,7 +24,7 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 
 static void _browse_dir (const gchar *cDirPath);
 
-static GList *
+/*static GList *
 fill_files_from (const char *dirname,
 		const char *dirprefix,
 		char        prefix,
@@ -178,11 +178,11 @@ void cd_do_update_completion (const char *text)
 		return;
 
 	if (text [0] == '/') {
-		/* complete against absolute path */
+		// complete against absolute path
 		dirname = g_path_get_dirname (text);
 		dirprefix = g_strdup (dirname);
 	} else {
-		/* complete against relative path and executable name */
+		// complete against relative path and executable name
 		if (!strchr (text, '/')) {
 			executables = fill_executables (myData.possible_executables,
 							myData.completion_items,
@@ -217,7 +217,7 @@ void cd_do_update_completion (const char *text)
 	g_completion_add_items (myData.completion, list);
 		
 	myData.completion_items = g_list_concat (myData.completion_items, list);
-}
+}*/
 
 
 
@@ -276,7 +276,7 @@ static gchar **_cd_do_locate_files (const char *text)
 		}
 		if (myData.iCurrentFilter & DO_TYPE_VIDEO)
 		{
-			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.ogg\" \"*%s*.wmv\"", text, text, text, text);
+			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.og[gv]\" \"*%s*.wmv\"", text, text, text, text);
 		}
 		if (myData.iCurrentFilter & DO_TYPE_TEXT)
 		{

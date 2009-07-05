@@ -83,11 +83,11 @@ struct _AppletData {
 	gboolean bIgnoreIconState;
 	gint iAppearanceTime;
 	
-	GHashTable *dir_hash;
+	/*GHashTable *dir_hash;
 	GList *possible_executables;
 	GList *completion_items;
 	GCompletion *completion;
-	gboolean completion_started;
+	gboolean completion_started;*/
 	
 	gint iPrevMouseX, iPrevMouseY;
 	gint iMouseX, iMouseY;

@@ -243,7 +243,7 @@ void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinA
 			if (pAnimation->iNbDirections == 2) // on peut repartir dans l'autre sens ou remonter.
 			{
 				int iRandom = g_random_int_range (0, 3);
-				if (iRandom == 0)  // 1 chance sur 3.
+				if (iRandom != 0)  // 2 chance sur 3.
 				{
 					myData.iCurrentDirection = 1 - myData.iCurrentDirection;
 					cd_debug ("myData.iCurrentDirection <- %d", myData.iCurrentDirection);

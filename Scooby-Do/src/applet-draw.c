@@ -121,7 +121,8 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_restore (pCairoContext);
 			
 			// on les dessine.
-			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale) / 2;  // abscisse de l'icone courante.
+			double fIconScale = (iIconsWidth * fScale > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / (iIconsWidth * fScale) : 1.);
+			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
@@ -132,7 +133,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 				pIcon = ic->data;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
-				fZoom = (double) pMainDock->iCurrentHeight/2 / iHeight;
+				fZoom = fIconScale * pMainDock->iCurrentHeight/2 / iHeight;
 				cairo_save (pCairoContext);
 				
 				cairo_translate (pCairoContext,
@@ -162,11 +163,12 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 		
 		// dessin du fond du texte.
 		double fFrameWidth = myData.iTextWidth * fScale;
+		double fTextScale = (fFrameWidth > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / fFrameWidth : 1.);
 		double fFrameHeight = myData.iTextHeight * fScale;
 		double fRadius = fFrameHeight / 5 * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-		fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth) / 2;
+		fDockOffsetX = (pMainDock->iCurrentWidth - fFrameWidth * fTextScale) / 2;
 		fDockOffsetY = (myConfig.bTextOnTop ? 0. : pMainDock->iCurrentHeight - fFrameHeight);
 		
 		cairo_save (pCairoContext);
@@ -186,13 +188,13 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_save (pCairoContext);
 			
 			cairo_translate (pCairoContext,
-				pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2,
+				(pChar->iCurrentX * fScale * fTextScale + pMainDock->iCurrentWidth/2),
 				pChar->iCurrentY + (myConfig.bTextOnTop ?
 					(myData.iTextHeight - pChar->iHeight) * fScale :
 					pMainDock->iCurrentHeight - pChar->iHeight * fScale));  // aligne en bas.
 			
-			if (fScale != 1)
-				cairo_scale (pCairoContext, fScale, fScale);
+			if (fScale * fTextScale != 1)
+				cairo_scale (pCairoContext, fScale*fTextScale, fScale*fTextScale);
 			cairo_set_source_surface (pCairoContext, pChar->pSurface, 0., 0.);
 			cairo_paint_with_alpha (pCairoContext, fAlpha);
 			
@@ -319,7 +321,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			glPopMatrix ();
 			
 			// on les dessine.
-			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale) / 2;  // abscisse de l'icone courante.
+			double fIconScale = (iIconsWidth * fScale > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / (iIconsWidth * fScale) : 1.);
+			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
@@ -337,40 +340,41 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				fZoom = (double) pMainDock->iCurrentHeight/2 / iHeight;
 				glPushMatrix ();
 				
-				glTranslatef (x + iWidth * fZoom/2 * fScale,
+				glTranslatef (x + iWidth * fZoom/2 * fScale * fIconScale,
 					(myConfig.bTextOnTop ?
 						pMainDock->iCurrentHeight/4 :
 						pMainDock->iCurrentHeight - iHeight * fZoom/2 * fScale),
 					0.);
 				_cairo_dock_apply_texture_at_size (pIcon->iIconTexture,
-					iWidth * fZoom * fScale,
-					pMainDock->iCurrentHeight/2 * fScale);
+					iWidth * fZoom * fScale * fIconScale,
+					pMainDock->iCurrentHeight/2 * fScale * fIconScale);
 				
 				if (myData.pCurrentMatchingElement == ic)
 				{
 					_cairo_dock_disable_texture ();
 					fLineWidth = 4.;
 					double fFrameColor[4] = {myConfig.pFrameColor[0]+.1, myConfig.pFrameColor[1]+.1, myConfig.pFrameColor[2]+.1, 1.};
-					cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, iWidth * fZoom * fScale - fLineWidth, iHeight * fZoom * fScale - fLineWidth, -iWidth/2 * fZoom * fScale + fLineWidth/2, iHeight * fZoom/2 * fScale - fLineWidth/2, fFrameColor);
+					cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, iWidth * fZoom * fScale * fIconScale - fLineWidth, iHeight * fZoom * fScale * fIconScale - fLineWidth, -iWidth/2 * fZoom * fScale * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fScale * fIconScale - fLineWidth/2, fFrameColor);
 					_cairo_dock_enable_texture ();
 					_cairo_dock_set_blend_over ();
 					_cairo_dock_set_alpha (1.);
 				}
 				
 				glPopMatrix ();
-				x += iWidth * fZoom * fScale;
+				x += iWidth * fZoom * fScale * fIconScale;
 			}
 			_cairo_dock_disable_texture ();
 		}
 		
 		// dessin du fond du texte.
 		double fFrameWidth = myData.iTextWidth * fScale;
+		double fTextScale = (fFrameWidth > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / fFrameWidth : 1.);
 		double fFrameHeight = myData.iTextHeight * fScale;
 		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-		fDockOffsetX = pMainDock->iCurrentWidth/2 - fFrameWidth / 2 - fRadius;
+		fDockOffsetX = pMainDock->iCurrentWidth/2 - fFrameWidth * fTextScale / 2 - fRadius;
 		fDockOffsetY = (myConfig.bTextOnTop ? pMainDock->iCurrentHeight : fFrameHeight);
 		
 		glPushMatrix ();
@@ -394,7 +398,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			pChar = c->data;
 			glPushMatrix();
 			
-			glTranslatef (pChar->iCurrentX * fScale + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
+			glTranslatef (pChar->iCurrentX * fScale * fTextScale + pMainDock->iCurrentWidth/2 + pChar->iWidth/2,
 				(myConfig.bTextOnTop ?
 					pMainDock->iCurrentHeight - (myData.iTextHeight - pChar->iHeight/2) * fScale :
 					pChar->iHeight/2 * fScale),
@@ -405,7 +409,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			{
 				glBindTexture (GL_TEXTURE_2D, pChar->iTexture);
 				
-				glScalef (pChar->iWidth * fScale, fScale * pChar->iHeight, 1.);
+				glScalef (pChar->iWidth * fScale * fTextScale, pChar->iHeight * fScale * fTextScale, 1.);
 				
 				glRotatef (fRotationAngle+STATIC_ANGLE, 1., 0., 0.);
 				glRotatef (STATIC_ANGLE-5, 0., 0., 1.);
