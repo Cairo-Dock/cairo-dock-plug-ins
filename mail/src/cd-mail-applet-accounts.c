@@ -453,41 +453,41 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 				r = pop3_mailstorage_init(pMailAccount->storage, pMailAccount->server, pMailAccount->port,
 					NULL, pMailAccount->connection_type,
 					pMailAccount->auth_type, pMailAccount->user, pMailAccount->password,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 
 			case IMAP_STORAGE:
 				r = imap_mailstorage_init(pMailAccount->storage, pMailAccount->server, pMailAccount->port,
 					NULL, pMailAccount->connection_type,
 					IMAP_AUTH_TYPE_PLAIN, pMailAccount->user, pMailAccount->password,
-					FALSE /*cached*/, NULL /*cache_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/);
 			break;
 
 			case NNTP_STORAGE:
 				r = nntp_mailstorage_init(pMailAccount->storage, pMailAccount->server, pMailAccount->port,
 					NULL, pMailAccount->connection_type,
 					NNTP_AUTH_TYPE_PLAIN, pMailAccount->user, pMailAccount->password,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 
 			case MBOX_STORAGE:
 				r = mbox_mailstorage_init(pMailAccount->storage, pMailAccount->path,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 
 			case MH_STORAGE:
 				r = mh_mailstorage_init(pMailAccount->storage, pMailAccount->path,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 		        
 			case MAILDIR_STORAGE:
 				r = maildir_mailstorage_init(pMailAccount->storage, pMailAccount->path,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 		        
 			case FEED_STORAGE:
 				r = feed_mailstorage_init(pMailAccount->storage, pMailAccount->path,
-					FALSE /*cached*/, NULL /*cache_directory*/, NULL /*flags_directory*/);
+					myData.cWorkingDirPath!=NULL?TRUE:FALSE /*cached*/, myData.cWorkingDirPath /*cache_directory*/, myData.cWorkingDirPath /*flags_directory*/);
 			break;
 			default :
 				r = -1;
@@ -559,6 +559,9 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 	
 	g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
 	g_list_free (pMailAccount->pUnseenMessageList);
+	
+	g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
+	g_list_free (pMailAccount->pUnseenMessageUid);
 	
 	g_free( pMailAccount );
 }

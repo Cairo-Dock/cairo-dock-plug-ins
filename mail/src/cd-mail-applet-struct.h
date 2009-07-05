@@ -36,6 +36,7 @@ struct _AppletConfig {
 struct _AppletData {
 	GPtrArray *pMailAccounts;
 	guint iNbUnreadMails, iPrevNbUnreadMails;
+	gchar *cWorkingDirPath;
 	time_t timeEndOfSound;
 	
 	GLuint iNoMailTexture;
@@ -65,7 +66,9 @@ typedef struct {
     Icon *icon;
     gboolean bInitialized;
     GList *pUnseenMessageList;  // liste de gchar*
-	gboolean bError;
+    GList *pUnseenMessageUid;  // liste de gchar*
+
+    gboolean bError;
 } CDMailAccount;
 
 

@@ -72,7 +72,11 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					g_print ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
 					g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
 					g_list_free (pMailAccount->pUnseenMessageList);
+					g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
+					g_list_free (pMailAccount->pUnseenMessageUid);
 					pMailAccount->pUnseenMessageList = NULL;
+					pMailAccount->pUnseenMessageUid = NULL;
+					
 					mailmessage *pMessage;
 					struct mailmime *pMailMime;
 					struct mailimf_fields *pFields;
@@ -81,25 +85,41 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					struct mailimf_subject *pSubject;
 					struct mailimf_message_id *pUid;
 					struct mailimf_mailbox *pFromMailBox;
-					char *cBodyText, *cFrom, *cSubject, *cMessage, *cUid;
+					char *cRawBodyText, *cBodyText, *cFrom, *cSubject, *cMessage, *cUid;
 					size_t length;
-					guint i;
-					guint iNbCheckedAccounts = MIN (20, pMailAccount->iNbUnseenMails);
-					for (i = 0; i < iNbCheckedAccounts; i ++)
+					guint i = 1;
+					guint iNbAccountsToCheck = MIN (20, pMailAccount->iNbUnseenMails);
+					for (i = 1; iNbAccountsToCheck > 0; i ++)
 					{
 						cFrom = NULL;
 						cSubject = NULL;
 						cBodyText = NULL;
+						cRawBodyText = NULL;
 						cUid = NULL;
 						pMessage = NULL;
 						pSingleFields = NULL;
+						struct mail_flags *pFlags = NULL;
+
+						cd_message ("Fetching message number %d...\n", i);
 						
 						r = mailfolder_get_message (pMailAccount->folder, i, &pMessage);  /// or result_messages - i ?...
 						if (r != MAIL_NO_ERROR || pMessage == NULL)
 						{
-							cd_warning ("couldn't get the message");
+							cd_warning ("couldn't get the message number %d", i);
 							continue;
 						}
+						r = mailmessage_get_flags (pMessage, &pFlags);
+						if (r != MAIL_NO_ERROR || pFlags == NULL)
+						{
+							cd_warning ("couldn't get the message flags !", i);
+							continue;
+						}
+						if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
+						    (pFlags->fl_flags & MAIL_FLAG_SEEN) > 0 )
+						{
+							continue;
+						}
+						iNbAccountsToCheck--;
 						
 						r = mailmessage_get_bodystructure (pMessage, &pMailMime);
 						if (r != MAIL_NO_ERROR)
@@ -107,13 +127,29 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 							cd_warning ("couldn't parse the message structure");
 							continue;
 						}
-						r = mailmessage_fetch_section_body (pMessage, pMailMime, &cBodyText, &length);
+						r = mailmessage_fetch_body (pMessage, &cRawBodyText, &length);
 						if (r != MAIL_NO_ERROR)
 						{
 							cd_warning ("couldn't fetch the body");
 							continue;
 						}
-						g_print (" -> '%s'\n", cBodyText);
+						else
+						{
+							#if 0
+							size_t cur_token = 0;
+
+							r = mailmime_encoded_phrase_parse("iso-8859-1",
+								cRawBodyText, length,
+								&cur_token, "UTF-8",
+								&cBodyText);
+							if (r != MAILIMF_NO_ERROR) 
+							#endif
+							{
+							  cBodyText = g_strdup(cRawBodyText);
+							}
+							
+							g_print (" -> '%s'\n", cBodyText);
+						}
 						
 						r = mailmessage_fetch_envelope(pMessage, &pFields);
 						if (r != MAIL_NO_ERROR)
@@ -127,15 +163,35 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						pFrom = pSingleFields->fld_from;
 						if (pFrom != NULL)
 						{
-							pFromMailBox = (struct mailimf_mailbox *) clist_begin (pFrom->frm_mb_list->mb_list);
-							cFrom = pFromMailBox->mb_display_name;
-							if (cFrom == NULL)
-								cFrom = pFromMailBox->mb_addr_spec;
+							pFromMailBox = (struct mailimf_mailbox *) clist_content(clist_begin (pFrom->frm_mb_list->mb_list));
+							if (pFromMailBox->mb_display_name == NULL)
+							{
+								cFrom = g_strdup(pFromMailBox->mb_addr_spec);
+							}
+							else
+							{
+								size_t cur_token = 0;
+								r = mailmime_encoded_phrase_parse("iso-8859-1",
+									pFromMailBox->mb_display_name, strlen(pFromMailBox->mb_display_name),
+									&cur_token, "iso-8859-1",
+									&cFrom);
+								if (r != MAILIMF_NO_ERROR) {
+								  cFrom = g_strdup(pFromMailBox->mb_display_name);
+								}
+							}
 						}
 						pSubject = pSingleFields->fld_subject;
 						if (pSubject != NULL)
 						{
-							cSubject = pSubject->sbj_value;
+							size_t cur_token = 0;
+
+							r = mailmime_encoded_phrase_parse("iso-8859-1",
+								pSubject->sbj_value, strlen(pSubject->sbj_value),
+								&cur_token, "iso-8859-1",
+								&cSubject);
+							if (r != MAILIMF_NO_ERROR) {
+							  cSubject = g_strdup(pSubject->sbj_value);
+							}
 						}
 						pUid = pSingleFields->fld_message_id;
 						if (pUid != NULL)
@@ -144,12 +200,20 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						}
 						g_print ("    cUid : %s\n", cUid);
 						
-						cMessage = g_strdup_printf ("From : %s [%s]\n  %s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
+						cMessage = g_strdup_printf ("From : %s\nSubject : %s\n%s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
 						pMailAccount->pUnseenMessageList = g_list_append (pMailAccount->pUnseenMessageList, cMessage);
+
+						pMailAccount->pUnseenMessageUid = g_list_append (pMailAccount->pUnseenMessageUid, g_strdup(pMessage->msg_uid));
+
+						g_print ("  Message preview: \n%s", cMessage);
 						
-						mailmessage_fetch_result_free (pMessage, cBodyText);
+						mailmessage_fetch_result_free (pMessage, cRawBodyText);
 						mailimf_single_fields_free (pSingleFields);
 						mailmessage_free (pMessage);
+						
+						if( cFrom ) g_free(cFrom);
+						if( cSubject ) g_free(cSubject);
+						if( cBodyText ) g_free(cBodyText);
 					}
 				}
 			}

@@ -114,6 +114,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 
 	CDMailAccount *pMailAccount;
 	guint i;
+	int r;
 	for (i = 0; i < myData.pMailAccounts->len; i++)
 	{
 		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
@@ -129,19 +130,54 @@ CD_APPLET_ON_SCROLL_BEGIN
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
-	struct mail_flags *pFlags = NULL;
-	mailmessage *pMessage = NULL;
-	int r;
-	GList *l;
+	/* Ensure the connection is alive */
+	r = mailfolder_connect(pMailAccount->folder);
+	if (r != MAIL_NO_ERROR)  // no connexion, we keep the previous satus.
+	{
+		cd_warning ("mail : couldn't connect to '%s'", pMailAccount->name);
+		pMailAccount->bError = TRUE;
+	}
+	
+	g_print( "Displaying messages\n" );
+	GList *l, *l_Uid;
 	gchar *cMessage;
-	for (l = pMailAccount->pUnseenMessageList; l != NULL; l = l->next)
+	gchar *cMessageUid;
+	mailmessage *pMessage;
+	for (i = 1, l = pMailAccount->pUnseenMessageList, l_Uid = pMailAccount->pUnseenMessageUid; l != NULL && l_Uid != NULL; l = l->next, l_Uid = l_Uid->next, i++)
 	{
 		cMessage = l->data;
+		cMessageUid = l_Uid->data;
+		pMessage = NULL;
+		
 		cairo_dock_remove_dialog_if_any (CD_APPLET_CLICKED_ICON);
 		cairo_dock_show_temporary_dialog_with_icon (cMessage, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, 10e3, "same icon");
 		
-		// on marque le message comme lu.
-		///r = mailmessage_get_flags (pMessage, &pFlags);
+		// on marque le compte comme lu.
+		if( !pMailAccount->bError )
+		{
+			struct mail_flags *pFlags = NULL;
+
+			// on marque le message comme lu.
+			cd_message ("Fetching message number %d...\n", i);
+			
+			r = mailfolder_get_message_by_uid (pMailAccount->folder, cMessageUid, &pMessage);  /// or result_messages - i ?...
+			if (r != MAIL_NO_ERROR || pMessage == NULL)
+			{
+				cd_warning ("couldn't get the message number %d", i);
+				continue;
+			}
+			r = mailmessage_get_flags (pMessage, &pFlags);
+			if (r != MAIL_NO_ERROR || pFlags == NULL)
+			{
+				cd_warning ("couldn't get the message flags !", i);
+				continue;
+			}
+			
+			pFlags->fl_flags &= ~MAIL_FLAG_NEW;
+			pFlags->fl_flags |= MAIL_FLAG_SEEN;
+			
+			r = mailmessage_check( pMessage );
+		}
 	}
 	
 CD_APPLET_ON_SCROLL_END

@@ -150,6 +150,17 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 		if (myData.iCubeCallList == 0)
 			myData.iCubeCallList = cd_mail_load_cube_calllist();
 	}
+
+	// on cree le repertoire de l'historique si necessaire.
+	myData.cWorkingDirPath = g_strdup_printf ("%s/mail", g_cCairoDockDataDir);
+	if (! g_file_test (myData.cWorkingDirPath, G_FILE_TEST_EXISTS))
+	{
+		cd_debug ("Plugin Mail : le dossier '%s' n'existe pas encore -> On le cree", myData.cWorkingDirPath);
+		if (g_mkdir (myData.cWorkingDirPath, 7*8*8+7*8+0) != 0)
+		{
+			cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", myData.cWorkingDirPath);
+		}
+	}
 }
 
 CD_APPLET_INIT_BEGIN
@@ -178,6 +189,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myDesklet)
 	{
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
@@ -191,6 +203,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
 	CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, FALSE);
