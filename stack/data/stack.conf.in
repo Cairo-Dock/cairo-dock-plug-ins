@@ -120,4 +120,4 @@ sort by = 1
 
 #b When copy/paste/cut, use the selection clipboard ?
 #{It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl+v clipboard}
-selection = FALSE
+selection = false

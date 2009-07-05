@@ -37,6 +37,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCurlyLineWidth = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Curly", "border", 1);
 	CD_CONFIG_GET_COLOR ("Curly", "line color", &myConfig.fCurlyLineColor);
 	myConfig.fCurlyCurvature = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Curly", "curvature", 1.5);
+	myConfig.bCulrySideToo = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Curly", "side too", FALSE);
 CD_APPLET_GET_CONFIG_END
 
 

@@ -21,8 +21,6 @@ showDesktop
 rhythmbox
 xmms
 compiz-icon
-cpusage
-rame
 netspeed
 slider
 Clipper
@@ -31,7 +29,6 @@ GMenu
 wifi
 tomboy
 systray
-nVidia
 stack
 ###Stable but still under development :
 powermanager
@@ -47,3 +44,8 @@ keyboard-indicator
 quick-browser
 Toons
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
+System-Monitor
+#Scooby-Do
+#mail
+#dnd2share
+#Music-Player

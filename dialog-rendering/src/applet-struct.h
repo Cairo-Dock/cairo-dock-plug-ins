@@ -28,6 +28,7 @@ struct _AppletConfig {
 	gint iCurlyLineWidth;
 	gdouble fCurlyLineColor[4];
 	gdouble fCurlyCurvature;
+	gboolean bCulrySideToo;
 } ;
 
 struct _AppletData {

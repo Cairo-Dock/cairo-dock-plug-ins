@@ -252,7 +252,10 @@ static gboolean on_button_press_dialog (GtkWidget *widget,
 	myData.pDialog = NULL;
 	return FALSE;
 }
-
+static gboolean _on_key_press_dialog (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
+{
+	myData.pDialog = NULL;  // le dialogue est dereference donc tout ce qu'on a a faire c'est prendre en compte ce fait !
+}
 void mixer_show_hide_dialog (void)
 {
 	if (myDesklet)
@@ -273,6 +276,7 @@ void mixer_show_hide_dialog (void)
 		memset (&attr, 0, sizeof (CairoDialogAttribute));
 		attr.cText = cMessage;
 		attr.pInteractiveWidget = pScale;
+		attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_key_press_dialog;
 		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 		g_signal_connect (G_OBJECT (myData.pDialog->pWidget),
 			"button-press-event",

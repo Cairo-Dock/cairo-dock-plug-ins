@@ -19,8 +19,8 @@ void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
-	pDialog->iBottomMargin = iMargin;
-	pDialog->iMinBottomGap = MAX (20, myConfig.iCurlyRadius);
+	pDialog->iBottomMargin = 2*iMargin;
+	pDialog->iMinBottomGap = MAX (20, 2*myConfig.iCurlyRadius);
 	pDialog->iMinFrameWidth = 10;  // au pif.
 	pDialog->fAlign = .5;
 	pDialog->fReflectAlpha = 0.;
@@ -30,8 +30,9 @@ void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
 void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *pDialog) {
 	double fLineWidth = myConfig.iCurlyLineWidth;
 	double fRadius = myConfig.iCurlyRadius;
-	double fTipHeight = MIN (pDialog->iDistanceToDock, 20);  // on completera par un trait.
-	double dh = MAX (1, myConfig.fCurlyCurvature * fTipHeight);
+	double fBottomRadius = 2 * fRadius;
+	double fTipHeight = (pDialog->iDistanceToDock);  // on completera par un trait.
+	double dh = MIN (MAX (1, myConfig.fCurlyCurvature * fTipHeight), .4 * pDialog->iWidth);
 	
 	double fOffsetX = fRadius + fLineWidth / 2;
 	double fOffsetY = (pDialog->bDirectionUp ? fLineWidth / 2 : pDialog->iHeight - fLineWidth / 2);
@@ -43,15 +44,15 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	cairo_set_tolerance (pCairoContext, 0.33);
 	
 	// Ligne du haut (Haut gauche -> Haut Droite)
-	///cairo_rel_line_to (pCairoContext, iWidth - (2 * fRadius + fLineWidth), 0);
+	double fDeltaTop = MIN (pDialog->iTopMargin, .2 * fDemiWidth);
 	cairo_rel_curve_to (pCairoContext,
 		fDemiWidth/2, 0,
-		fDemiWidth/2, sens * pDialog->iTopMargin,
-		fDemiWidth, sens * pDialog->iTopMargin);
+		fDemiWidth/2, sens * fDeltaTop,
+		fDemiWidth, sens * fDeltaTop);
 	cairo_rel_curve_to (pCairoContext,
 		fDemiWidth/2, 0,
-		fDemiWidth/2, - sens * pDialog->iTopMargin,
-		fDemiWidth, - sens * pDialog->iTopMargin);
+		fDemiWidth/2, - sens * fDeltaTop,
+		fDemiWidth, - sens * fDeltaTop);
 	
 	// Coin haut droit.
 	cairo_rel_curve_to (pCairoContext,
@@ -61,15 +62,24 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	
 	// Ligne droite. (Haut droit -> Bas droit)
 	double fDemiHeight = .5 * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (fRadius + fLineWidth/2));
-	cairo_rel_curve_to (pCairoContext,
-		0, sens * fDemiHeight/2,
-		- .5 * pDialog->iRightMargin, sens * fDemiHeight/2,
-		- .5 * pDialog->iRightMargin, sens * fDemiHeight);
-	cairo_rel_curve_to (pCairoContext,
-		0, sens * fDemiHeight/2,
-		.5 * pDialog->iRightMargin, sens * fDemiHeight/2,
-		.5 * pDialog->iRightMargin, sens * fDemiHeight);
-	///cairo_rel_line_to (pCairoContext, 0, sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
+	double fDeltaSide = MIN (pDialog->iRightMargin, .2 * fDemiHeight);
+	if (myConfig.bCulrySideToo)
+	{
+		cairo_rel_curve_to (pCairoContext,
+			0, sens * fDemiHeight/2,
+			- .5 * fDeltaSide, sens * fDemiHeight/2,
+			- .5 * fDeltaSide, sens * fDemiHeight);
+		cairo_rel_curve_to (pCairoContext,
+			0, sens * fDemiHeight/2,
+			.5 * fDeltaSide, sens * fDemiHeight/2,
+			.5 * fDeltaSide, sens * fDemiHeight);
+	}
+	else
+	{
+		cairo_rel_line_to (pCairoContext,
+			0,
+			sens * fDemiHeight * 2);
+	}
 	
 	fDemiWidth = .5 * pDialog->iWidth - fLineWidth/2;
 	// Coin bas droit et pointe.
@@ -85,16 +95,23 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 		- fDemiWidth, - sens * fTipHeight);
 	
 	// On remonte par la gauche.
-	///cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
-	cairo_rel_curve_to (pCairoContext,
-		0, - sens * fDemiHeight/2,
-		.5 * pDialog->iRightMargin, - sens * fDemiHeight/2,
-		.5 * pDialog->iRightMargin, - sens * fDemiHeight);
-	cairo_rel_curve_to (pCairoContext,
-		0, - sens * fDemiHeight/2,
-		- .5 * pDialog->iRightMargin, - sens * fDemiHeight/2,
-		- .5 * pDialog->iRightMargin, - sens * fDemiHeight);
-	
+	if (myConfig.bCulrySideToo)
+	{
+		cairo_rel_curve_to (pCairoContext,
+			0, - sens * fDemiHeight/2,
+			.5 * fDeltaSide, - sens * fDemiHeight/2,
+			.5 * fDeltaSide, - sens * fDemiHeight);
+		cairo_rel_curve_to (pCairoContext,
+			0, - sens * fDemiHeight/2,
+			- .5 * fDeltaSide, - sens * fDemiHeight/2,
+			- .5 * fDeltaSide, - sens * fDemiHeight);
+	}
+	else
+	{cairo_rel_line_to (pCairoContext,
+			0,
+			- sens * fDemiHeight * 2);
+		
+	}
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,

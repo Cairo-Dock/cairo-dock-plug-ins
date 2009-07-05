@@ -58,7 +58,7 @@ msgstr "Enlever cet objet"
 
 #: ../src/applet-notifications.c:110
 msgid "Clear the stack"
-msgstr "Nettoyer le stack"
+msgstr "Vider la pile"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -299,7 +299,7 @@ msgid ""
 "considering their types (video, images, etc...)"
 msgstr ""
 "Cette option vous permet d'éviter que certains fichiers soit affihcer dans "
-"le stacks en prenant en compte leur types (video, images, etc...)"
+"la pile en prenant en compte leur types (video, images, etc...)"
 
 #: ../data/messages:107
 msgid "Filter files with their mime types ?"
@@ -343,22 +343,3 @@ msgstr ""
 #: ../data/messages:125
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "Lors d'un copier/coller/couper, utiliser la sélection X ?"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid ""
-#~ "This is the Stack applet\n"
-#~ " made by ChAnGFu & Fabounet for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet Stack\n"
-#~ " écrite par ChAnGFu & Fabounet pour Cairo-Dock"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"
