@@ -455,7 +455,6 @@ void cd_do_find_matching_files (void)
 			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-			gtk_widget_set_tooltip_text (pMenuItem, cPath);
 			g_free (cIconName);
 			cIconName = NULL;
 		}
@@ -463,6 +462,7 @@ void cd_do_find_matching_files (void)
 		{
 			pMenuItem = gtk_menu_item_new_with_label (cFileName);
 		}
+		gtk_widget_set_tooltip_text (pMenuItem, cPath);
 		
 		gtk_menu_shell_append  (GTK_MENU_SHELL (myData.pFileMenu), pMenuItem);
 		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), cPath);

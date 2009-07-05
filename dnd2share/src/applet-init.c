@@ -54,6 +54,7 @@ CD_APPLET_INIT_BEGIN
 	// On enregistre les backends.
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
+	cd_dnd2share_register_imageshack_backend ();
 	myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
 	
 	// On construit l'historique.

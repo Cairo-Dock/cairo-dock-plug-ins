@@ -17,6 +17,7 @@ typedef enum _CDFileType {
 typedef enum _CDSiteId {
 	CD_UPPIX=0,
 	CD_IMAGEBIN,
+	CD_IMAGESHACK,
 	CD_NB_SITES
 	} CDSiteId;
 

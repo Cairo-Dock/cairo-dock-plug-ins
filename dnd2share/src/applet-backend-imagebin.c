@@ -1,3 +1,12 @@
+/******************************************************************************
+
+This file is a part of the cairo-dock program, 
+released under the terms of the GNU General Public License.
+
+Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+
+******************************************************************************/
+
 #define _BSD_SOURCE
 #include <stdlib.h>
 #include <math.h>
@@ -45,7 +54,7 @@ static void upload (const gchar *cFilePath, CDFileType iFileType)
 	}
 	else
 	{
-		cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://imagebin.ca/upload.php -F f=@%s -F t=file -o %s", cFilePath, cLogFile);
+		cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://imagebin.ca/upload.php -F f=@'%s' -F t=file -o '%s'", cFilePath, cLogFile);
 	}
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);

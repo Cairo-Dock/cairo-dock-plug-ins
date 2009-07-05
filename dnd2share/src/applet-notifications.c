@@ -246,16 +246,17 @@ CD_APPLET_ON_SCROLL_BEGIN
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 			}
 		}
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 	
 	if (myConfig.bEnableDialogs)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog (D_("Picture %s (%d):\nPress 'Left mouse button' to copy the URL into the clipboard"),
+		cairo_dock_show_temporary_dialog (D_("%s '%s' (n°%d):\nPress 'Left mouse button' to copy the URL into the clipboard"),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
-			pItem->cFileName, myData.iCurrentItemNum);
+			(pItem->iFileType == CD_TYPE_TEXT ? "Text" : "File"), pItem->cFileName, myData.iCurrentItemNum);
 	}
 CD_APPLET_ON_SCROLL_END
 
