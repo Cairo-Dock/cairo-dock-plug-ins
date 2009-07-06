@@ -83,12 +83,6 @@ struct _AppletData {
 	gboolean bIgnoreIconState;
 	gint iAppearanceTime;
 	
-	/*GHashTable *dir_hash;
-	GList *possible_executables;
-	GList *completion_items;
-	GCompletion *completion;
-	gboolean completion_started;*/
-	
 	gint iPrevMouseX, iPrevMouseY;
 	gint iMouseX, iMouseY;
 	gint iMotionCount;
@@ -108,21 +102,30 @@ struct _AppletData {
 	
 	GList *pApplications;
 	GList *pMonitorList;
+	GList *pCurrentApplicationToLoad;
+	guint iSidLoadExternAppliIdle;
 	
 	gint iLocateAvailable;
 	gint iCurrentFilter;
 	gboolean bMatchCase;
 	GtkWidget *pFileMenu;
-	gchar **pMatchingFiles;
 	gint iNbMatchingFiles;
 	CairoDialog *pFilterDialog;
-	
-	GList *pCompletionItemSurface;
-	GList *pCompletionItemTexture;
+	CairoDockTask *pLocateTask;
+	// shared memory
+	gchar **pMatchingFiles;
+	gchar *cCurrentLocateText;
+	gint iLocateFilter;
+	gboolean bLocateMatchCase;
+	// end of shared memory
 	
 	cairo_surface_t *pInfoSurface;
 	GLuint iInfoTexture;
 	gint iInfoWidth, iInfoHeight;
+	
+	/// not used.
+	GList *pCompletionItemSurface;
+	GList *pCompletionItemTexture;
 	} ;
 
 

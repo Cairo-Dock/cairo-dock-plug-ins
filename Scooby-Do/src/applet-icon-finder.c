@@ -13,6 +13,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-command-finder.h"
 #include "applet-session.h"
+#include "applet-appli-finder.h"
 #include "applet-icon-finder.h"
 
 static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPrefix, int length)
@@ -290,6 +291,8 @@ void cd_do_search_matching_icons (void)
 		}
 	}
 	myData.pCurrentMatchingElement = NULL;
+	if (myData.pCurrentApplicationToLoad != NULL)  // on va continuer le chargement sur la sous-liste.
+		myData.pCurrentApplicationToLoad = myData.pMatchingIcons;  // comme l'ordre de la liste n'a pas ete altere, on n'est sur de ne pas sauter d'icone.
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
 	//g_print ("%d / %d\n", length , myData.sCurrentText->len);
 	if (length != myData.sCurrentText->len)

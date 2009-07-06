@@ -92,7 +92,7 @@ dialogs_duration = 5
 #F[Behaviour;gtk-execute]
 frame_behav =
 
-#r[Uppix;Imagebin;ImageShack] Choose which site to use :
+#r[Uppix;Imagebin;ImageShack;dl.free.fr] Choose which site to use :
 prefered site = 1
 
 #I[0;100] Number of items to keep in the history :

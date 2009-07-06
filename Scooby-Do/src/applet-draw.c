@@ -34,8 +34,11 @@ static inline int _cd_do_get_matching_icons_width (void)
 		pIcon = ic->data;
 		pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 		cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
-		fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
-		iIconsWidth += iWidth * fZoom;
+		if (iHeight != 0)
+		{
+			fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
+			iIconsWidth += iWidth * fZoom;
+		}
 	}
 	return iIconsWidth;
 }
@@ -131,6 +134,8 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
+				if (pIcon->pIconBuffer == NULL)  // icone pas encore chargee.
+					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
 				fZoom = fIconScale * pMainDock->iCurrentHeight/2 / iHeight;
@@ -335,6 +340,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
+				if (pIcon->iIconTexture == 0)  // icone pas encore chargee.
+					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
 				fZoom = (double) pMainDock->iCurrentHeight/2 / iHeight;

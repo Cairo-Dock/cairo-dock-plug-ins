@@ -11,14 +11,16 @@ libcd_Scooby_Do_la_SOURCES = \
 	applet-config.h\
 	applet-notifications.c\
 	applet-notifications.h\
-	applet-icon-finder.c\
-	applet-icon-finder.h\
-	applet-command-finder.c\
-	applet-command-finder.h\
 	applet-draw.c\
 	applet-draw.h\
 	applet-session.c\
 	applet-session.h\
+	applet-icon-finder.c\
+	applet-icon-finder.h\
+	applet-command-finder.c\
+	applet-command-finder.h\
+	applet-appli-finder.c\
+	applet-appli-finder.h\
 	applet-struct.h
 
 

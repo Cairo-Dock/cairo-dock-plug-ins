@@ -16,6 +16,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-dnd2share.h"
 #include "applet-backend-uppix.h"
 #include "applet-backend-imagebin.h"
+#include "applet-backend-imageshack.h"
+#include "applet-backend-free.h"
 #include "applet-init.h"
 
 
@@ -55,6 +57,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
 	cd_dnd2share_register_imageshack_backend ();
+	cd_dnd2share_register_free_backend ();
 	myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
 	
 	// On construit l'historique.

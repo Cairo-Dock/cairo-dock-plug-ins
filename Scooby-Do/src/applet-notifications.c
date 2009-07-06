@@ -266,54 +266,8 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else
 			{
+				/// faire apparaitre le menu avec tous les résultats.
 				
-				/*if (myData.completion)
-				{
-					gchar *tmp = g_new0 (gchar, myData.iNbValidCaracters+1);
-					strncpy (tmp, myData.sCurrentText->str, myData.iNbValidCaracters);
-					gchar *new_prefix = NULL;
-					GList *pPossibleItems = g_completion_complete (myData.completion,
-						tmp,
-						&new_prefix);
-					if (new_prefix != NULL)
-					{
-						myData.iNbValidCaracters = strlen (new_prefix);
-						g_print ("myData.iNbValidCaracters <- %d\n", myData.iNbValidCaracters);
-					}
-					if (pPossibleItems != NULL)
-					{
-						gchar *item;
-						GList *it;
-						g_print ("on cherche %s => on a le choix entre :\n", tmp);
-						for (it = pPossibleItems; it != NULL; it = it->next)
-						{
-							item = it->data;
-							g_print (" - %s\n", item);
-							if (g_ascii_strncasecmp (myData.sCurrentText->str, item, myData.sCurrentText->len) == 0)
-							{
-								g_print ("  on pointe actuellement sur %s\n", item);
-								break ;
-							}
-						}
-						if (it == NULL || it->next == NULL)  // pas trouve ou dernier.
-							item = pPossibleItems->data;
-						else
-							item = it->next->data;
-						g_print ("  --> on complete maintenant avec %s\n", item);
-						
-						// on efface les anciens caracteres automatiques, et on charge les nouveaux.
-						cd_do_delete_invalid_caracters ();
-						
-						g_string_assign (myData.sCurrentText, item);
-						
-						cd_do_load_pending_caracters ();
-						
-						// on repositionne les caracteres et on anime tout ca.
-						cd_do_launch_appearance_animation ();
-					}
-					g_free (new_prefix);
-					g_free (tmp);
-				}*/
 			}
 		}
 		else if (myData.iNbValidCaracters > 0)  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.

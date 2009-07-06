@@ -206,23 +206,23 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				myConfig.dTimeDialogs,
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
+		if (myConfig.bDisplayLastImage)
+		{
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
 	}
 	
 	// On arrete son animation.
 	cairo_dock_stop_icon_animation (myIcon);
-	
-	if (myConfig.bDisplayLastImage)
-	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
-		CD_APPLET_REDRAW_MY_ICON;
-	}
 	
 	// On nettoie la memoire partagee.
 	cairo_dock_free_task (myData.pTask);
 	myData.pTask = NULL;
 	g_free (myData.cCurrentFilePath);
 	myData.cCurrentFilePath = NULL;
-	g_strfreev (myData.cResultUrls);
+	if (myData.cResultUrls)
+		g_strfreev (myData.cResultUrls);
 	myData.cResultUrls = NULL;
 	return FALSE;
 }

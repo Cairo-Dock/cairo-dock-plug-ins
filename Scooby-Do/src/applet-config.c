@@ -14,6 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-draw.h"
 #include "applet-session.h"
+#include "applet-appli-finder.h"
 #include "applet-config.h"
 
 
@@ -81,20 +82,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	cd_do_close_session ();
 	cd_do_exit_session ();
 	
-	/*if (myData.dir_hash)
-		g_hash_table_destroy (myData.dir_hash);
+	cairo_dock_free_task (myData.pLocateTask);
 	
-	GList *l;
-	for (l = myData.possible_executables; l; l = l->next)
-		g_free (l->data);
-	g_list_free (myData.possible_executables);
-	
-	for (l = myData.completion_items; l; l = l->next)
-		g_free (l->data);
-	g_list_free (myData.completion_items);
-	
-	if (myData.completion)
-		g_completion_free (myData.completion);*/
+	cd_do_reset_applications_list ();
 	
 	if (myData.pPromptSurface != NULL)
 		cairo_surface_destroy (myData.pPromptSurface);

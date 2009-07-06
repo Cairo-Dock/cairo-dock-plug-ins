@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-dnd2share],[0.0.3],[Yann Dulieu (nochka85@cairo-dock.org)])
+AC_INIT([cd-dnd2share],[0.0.4],[Yann Dulieu (nochka85@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
