@@ -164,12 +164,14 @@ CD_APPLET_ON_SCROLL_BEGIN
 			if (r != MAIL_NO_ERROR || pMessage == NULL)
 			{
 				cd_warning ("couldn't get the message number %d", i);
+				mailmessage_free (pMessage);
 				continue;
 			}
 			r = mailmessage_get_flags (pMessage, &pFlags);
 			if (r != MAIL_NO_ERROR || pFlags == NULL)
 			{
 				cd_warning ("couldn't get the message flags !", i);
+				mailmessage_free (pMessage);
 				continue;
 			}
 			
@@ -177,6 +179,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 			pFlags->fl_flags |= MAIL_FLAG_SEEN;
 			
 			r = mailmessage_check( pMessage );
+			mailmessage_free (pMessage);
 		}
 	}
 	

@@ -88,6 +88,10 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					char *cRawBodyText, *cBodyText, *cFrom, *cSubject, *cMessage, *cUid;
 					size_t length;
 					guint i = 1;
+
+					struct mailmessage_list * msg_list = NULL;
+		      mailfolder_get_messages_list(pMailAccount->folder, &msg_list);
+	
 					guint iNbAccountsToCheck = MIN (20, pMailAccount->iNbUnseenMails);
 					for (i = 1; iNbAccountsToCheck > 0; i ++)
 					{
@@ -101,25 +105,34 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						struct mail_flags *pFlags = NULL;
 
 						cd_message ("Fetching message number %d...\n", i);
+
+						if (carray_count(msg_list->msg_tab) < i) {
+							break;
+						}
+
+						pMessage = carray_get(msg_list->msg_tab, i-1);
 						
-						r = mailfolder_get_message (pMailAccount->folder, i, &pMessage);  /// or result_messages - i ?...
 						if (r != MAIL_NO_ERROR || pMessage == NULL)
 						{
 							cd_warning ("couldn't get the message number %d", i);
+							iNbAccountsToCheck--;
 							continue;
 						}
 						r = mailmessage_get_flags (pMessage, &pFlags);
 						if (r != MAIL_NO_ERROR || pFlags == NULL)
 						{
 							cd_warning ("couldn't get the message flags !", i);
-							continue;
 						}
-						if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
-						    (pFlags->fl_flags & MAIL_FLAG_SEEN) > 0 )
+						else
 						{
-							continue;
+							if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
+									(pFlags->fl_flags & MAIL_FLAG_SEEN) > 0 )
+							{
+								continue;
+							}
 						}
 						iNbAccountsToCheck--;
+
 						
 						r = mailmessage_get_bodystructure (pMessage, &pMailMime);
 						if (r != MAIL_NO_ERROR)
@@ -150,7 +163,6 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 							
 							g_print (" -> '%s'\n", cBodyText);
 						}
-						
 						r = mailmessage_fetch_envelope(pMessage, &pFields);
 						if (r != MAIL_NO_ERROR)
 						{
@@ -209,12 +221,13 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						
 						mailmessage_fetch_result_free (pMessage, cRawBodyText);
 						mailimf_single_fields_free (pSingleFields);
-						mailmessage_free (pMessage);
 						
 						if( cFrom ) g_free(cFrom);
 						if( cSubject ) g_free(cSubject);
 						if( cBodyText ) g_free(cBodyText);
 					}
+					
+					mailmessage_list_free(msg_list);
 				}
 			}
 		}
