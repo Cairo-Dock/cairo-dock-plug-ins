@@ -18,7 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-read-data.h"
 
-#define CD_WEATHER_BASE_URL "http://xoap.weather.com"
+#define CD_WEATHER_BASE_URL "http://xml.weather.com"
 
 gchar *cd_weather_get_location_data (gchar *cLocation)
 {
