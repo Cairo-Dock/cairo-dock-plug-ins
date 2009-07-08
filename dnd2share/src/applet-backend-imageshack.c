@@ -12,14 +12,13 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include <math.h>
 #include <unistd.h>
 #include <glib/gstdio.h>
-#include <string.h>
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-imagebin.h"
+#include "applet-backend-uppix.h"
 
-#define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+#define NB_URLS 2
+static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
 
 
 static void upload (const gchar *cFilePath)
@@ -35,29 +34,41 @@ static void upload (const gchar *cFilePath)
 	close(fds);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://imagebin.ca/upload.php -F f=@'%s' -F t=file -o '%s'", cFilePath, cLogFile);
+	gchar *cCommand = NULL;
+	cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://imageshack.us -F xml=yes -F tags=Cairo-Dock -F fileupload=@'%s' -o '%s'", cFilePath, cLogFile);
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
 	// On récupère l'URL dans le log :
-	gchar *cURL = NULL;
+	gchar *cURL = NULL, *cThumbnail = NULL;
 	gchar *cContent = NULL;
 	gsize length = 0;
 	g_file_get_contents (cLogFile, &cContent, &length, NULL);
-	gchar *str = g_strstr_len (cContent, -1, "href='");
+	
+	gchar *str = g_strstr_len (cContent, -1, "<image_link>");
 	if (str != NULL)
 	{
-		str += 6;
-		gchar *end = strchr (str, '\'');
+		str += 12;  // <image_link>http://bla/bla/bla.png</image_link>
+		gchar *end = g_strstr_len (str, -1, "</image_link>");
 		if (end != NULL)
 		{
-			*end = '\0';
-			cURL = g_strdup (str);
+			cURL = g_strndup (str, end - str);
 		}
 	}
-	g_free (cContent);
 	
+	str = g_strstr_len (cContent, -1, "<thumb_link>");
+	if (str != NULL)
+	{
+		str += 12;  // <thumb_link>http://bla/bla/bla.png</thumb_link>
+		gchar *end = g_strstr_len (str, -1, "</thumb_link>");
+		if (end != NULL)
+		{
+			cThumbnail = g_strndup (str, end - str);
+		}
+	}	
+	
+	g_free (cContent);
 	g_remove (cLogFile);
 	g_free (cLogFile);
 	
@@ -69,13 +80,14 @@ static void upload (const gchar *cFilePath)
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
 	myData.cResultUrls[0] = cURL;
+	myData.cResultUrls[1] = cThumbnail;
 }
 
 
-void cd_dnd2share_register_imagebin_backend (void)
+void cd_dnd2share_register_imageshack_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_IMAGE,
-		"imagebin.ca",
+		"imageshack.us",
 		NB_URLS,
 		s_UrlLabels,
 		0,

@@ -32,7 +32,7 @@ typedef struct _CDUploadedItem {
 	CDFileType iFileType;
 	} CDUploadedItem;
 
-typedef void (* CDUploadFunc) (const gchar *cFilePath, CDFileType iFileType);
+typedef void (* CDUploadFunc) (const gchar *cFilePath);
 
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;  // nom du site, pour affichage
@@ -50,7 +50,7 @@ struct _AppletConfig {
 	gint iNbItems;
 	gboolean bkeepCopy;
 	gboolean bDisplayLastImage;
-	CDSiteId iPreferedSite;
+	CDSiteId iPreferedSite[CD_NB_FILE_TYPES];
 	gchar *cIconAnimation;
 	} ;
 
@@ -59,8 +59,9 @@ struct _AppletConfig {
 struct _AppletData {
 	gchar *cWorkingDirPath;
 		
-	CDSiteBackend backends[CD_NB_SITES];
-	CDSiteBackend *pCurrentBackend;
+	CDSiteBackend backends[CD_NB_FILE_TYPES][CD_NB_SITES];
+	CDSiteBackend *pCurrentBackend[CD_NB_FILE_TYPES];
+	int iNbSitesForType[CD_NB_FILE_TYPES];
 	
 	CairoDockTask *pTask;
 	gchar *cCurrentFilePath;  // memoire partagee avec le thread, a manipuler avec les precautions d'usage.

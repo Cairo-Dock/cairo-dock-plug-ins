@@ -55,8 +55,8 @@ void cd_dnd2share_build_history (void)
 		pItem = g_new0 (CDUploadedItem, 1);
 		pItem->cItemName = cItemName;
 		pItem->iSiteID = iSiteID;
-		pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iSiteID].iNbUrls+1);
-		for (j = 0; j < myData.backends[pItem->iSiteID].iNbUrls; j ++)
+		pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iFileType][pItem->iSiteID].iNbUrls+1);
+		for (j = 0; j < myData.backends[pItem->iFileType][pItem->iSiteID].iNbUrls; j ++)
 		{
 			g_string_printf (sUrlKey, "url%d", j);
 			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);
@@ -84,7 +84,9 @@ void cd_dnd2share_clear_history (void)
 
 static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 {
-	myData.pCurrentBackend->upload (cFilePath, myData.iCurrentFileType);
+	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[myData.iCurrentFileType];
+	g_return_if_fail (pCurrentBackend != NULL);
+	pCurrentBackend->upload (cFilePath);
 }
 static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 {
@@ -99,6 +101,7 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	}
 	else
 	{
+		CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[myData.iCurrentFileType];
 		// On rajoute l'item a l'historique.
 		if (myConfig.iNbItems != 0)
 		{
@@ -137,12 +140,12 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				time_t iDate = time (NULL);
 				gchar *cItemName = g_strdup_printf ("item_%ld", iDate);
 				
-				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite);
+				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite[myData.iCurrentFileType]);
 				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);  // idem que precedemment sur l'integer.
 				g_key_file_set_integer (pKeyFile, cItemName, "type", myData.iCurrentFileType);
 				GString *sUrlKey = g_string_new ("");
 				int j;
-				for (j = 0; j < myData.pCurrentBackend->iNbUrls; j ++)
+				for (j = 0; j < pCurrentBackend->iNbUrls; j ++)
 				{
 					g_string_printf (sUrlKey, "url%d", j);
 					g_key_file_set_string (pKeyFile, cItemName, sUrlKey->str, myData.cResultUrls[j]);
@@ -152,9 +155,9 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				// et en debut de liste aussi.
 				CDUploadedItem *pItem = g_new0 (CDUploadedItem, 1);
 				pItem->cItemName = cItemName;
-				pItem->iSiteID = myConfig.iPreferedSite;
-				pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iSiteID].iNbUrls + 1);
-				for (j = 0; j < myData.pCurrentBackend->iNbUrls; j ++)
+				pItem->iSiteID = myConfig.iPreferedSite[myData.iCurrentFileType];
+				pItem->cDistantUrls = g_new0 (gchar*, pCurrentBackend->iNbUrls + 1);
+				for (j = 0; j < pCurrentBackend->iNbUrls; j ++)
 				{
 					pItem->cDistantUrls[j] = g_strdup (myData.cResultUrls[j]);
 				}
@@ -180,11 +183,11 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		}
 		
 		// On copie l'URL dans le clipboard.
-		gchar *cURL = myData.cResultUrls[myData.pCurrentBackend->iPreferedUrlType];
+		gchar *cURL = myData.cResultUrls[pCurrentBackend->iPreferedUrlType];
 		if (cURL == NULL)
 		{
 			int i;
-			for (i = 0; i < myData.pCurrentBackend->iNbUrls && cURL == NULL; i ++)
+			for (i = 0; i < pCurrentBackend->iNbUrls && cURL == NULL; i ++)
 			{
 				cURL = myData.cResultUrls[i];
 			}
@@ -347,7 +350,7 @@ void cd_dnd2share_copy_url_to_primary (const gchar *cURL)
 
 gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem)
 {
-	CDSiteBackend *pBackend = &myData.backends[pItem->iSiteID];
+	CDSiteBackend *pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
 	gchar *cURL = pItem->cDistantUrls[pBackend->iPreferedUrlType];
 	if (cURL == NULL)
 	{
@@ -421,4 +424,18 @@ void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
 	// On enleve l'item de la liste.
 	myData.pUpoadedItems = g_list_remove (myData.pUpoadedItems, pItem);
 	cd_dnd2share_free_uploaded_item (pItem);
+}
+
+
+void cd_dnd2share_register_new_backend (CDFileType iFileType, const gchar *cSiteName, int iNbUrls, const gchar **cUrlLabels, int iPreferedUrlType, CDUploadFunc pUploadFunc)
+{
+	int iNumSite = myData.iNbSitesForType[iFileType];
+	CDSiteBackend *pNewBackend = &myData.backends[iFileType][iNumSite];
+	myData.iNbSitesForType[iFileType] ++;
+	
+	pNewBackend->cSiteName = cSiteName;
+	pNewBackend->iNbUrls = iNbUrls;
+	pNewBackend->cUrlLabels = cUrlLabels;
+	pNewBackend->iPreferedUrlType = iPreferedUrlType;
+	pNewBackend->upload = pUploadFunc;
 }

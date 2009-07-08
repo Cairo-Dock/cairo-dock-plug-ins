@@ -35,4 +35,7 @@ void cd_dnd2share_set_current_url_from_item (CDUploadedItem *pItem);
 void cd_dnd2share_remove_one_item (CDUploadedItem *pItem);
 
 
+void cd_dnd2share_register_new_backend (CDFileType iFileType, const gchar *cSiteName, int iNbUrls, const gchar **cUrlLabels, int iPreferedUrlType, CDUploadFunc pUploadFunc);
+
+
 #endif // __CD_DND2SHARE__

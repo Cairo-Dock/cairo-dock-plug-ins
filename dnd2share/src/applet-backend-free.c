@@ -15,6 +15,7 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-dnd2share.h"
 #include "applet-backend-free.h"
 
 #define NB_URLS 1
@@ -23,7 +24,7 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 #define EMAIL "fab@fab.fr"
 #define PWD "cairo-dock"
 
-static void upload (const gchar *cFilePath, CDFileType iFileType)
+static void upload (const gchar *cFilePath)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("%s/%s '%s'", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath);
@@ -35,8 +36,9 @@ static void upload (const gchar *cFilePath, CDFileType iFileType)
 	}
 	
 	if (cResult[strlen(cResult)-1] == '\n' || cResult[strlen(cResult)-1] == '\r')
-		g_print ("enlever le dernier char\n");
+		cd_warning ("enlever le retour chariot !");
 	
+	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
 	myData.cResultUrls[0] = cResult;
 }
@@ -44,9 +46,10 @@ static void upload (const gchar *cFilePath, CDFileType iFileType)
 
 void cd_dnd2share_register_free_backend (void)
 {
-	myData.backends[CD_FREE].cSiteName = "dl.free.fr";
-	myData.backends[CD_FREE].iNbUrls = NB_URLS;
-	myData.backends[CD_FREE].cUrlLabels = s_UrlLabels;
-	myData.backends[CD_FREE].iPreferedUrlType = 0;
-	myData.backends[CD_FREE].upload = upload;
+	cd_dnd2share_register_new_backend (CD_TYPE_FILE,
+		"dl.free.fr",
+		NB_URLS,
+		s_UrlLabels,
+		0,
+		upload);
 }

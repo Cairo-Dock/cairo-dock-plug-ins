@@ -14,16 +14,16 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include <glib/gstdio.h>
 
 #include "applet-struct.h"
+#include "applet-dnd2share.h"
 #include "applet-backend-uppix.h"
 
 #define NB_URLS 5
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "BBCode150px", "BBCode600px", "BBCodeFullPic"};  /// franchement le seul lien interessant c'est DirectLink non ?...
 
 
-static void upload (const gchar *cFilePath, CDFileType iFileType)
+static void upload (const gchar *cFilePath)
 {
-	g_print ("%s (%s, %d)\n", __func__, cFilePath, iFileType);
-	// On lance la commande d'upload.
+	// On cree un fichier de log temporaire.
 	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
 	int fds = mkstemp (cLogFile);
 	if (fds == -1)
@@ -33,6 +33,7 @@ static void upload (const gchar *cFilePath, CDFileType iFileType)
 	}
 	close(fds);
 	
+	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 uppix.net -F myimage=@%s -F submit=Upload -F formup=1 -o %s", cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);
@@ -107,9 +108,10 @@ static void upload (const gchar *cFilePath, CDFileType iFileType)
 
 void cd_dnd2share_register_uppix_backend (void)
 {
-	myData.backends[CD_UPPIX].cSiteName = "Uppix.net";
-	myData.backends[CD_UPPIX].iNbUrls = NB_URLS;
-	myData.backends[CD_UPPIX].cUrlLabels = s_UrlLabels;
-	myData.backends[CD_UPPIX].iPreferedUrlType = 0;
-	myData.backends[CD_UPPIX].upload = upload;
+	cd_dnd2share_register_new_backend (CD_TYPE_IMAGE,
+		"Uppix.net",
+		NB_URLS,
+		s_UrlLabels,
+		0,
+		upload);
 }

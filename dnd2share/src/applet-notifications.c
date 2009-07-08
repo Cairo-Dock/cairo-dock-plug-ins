@@ -286,6 +286,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
+		
+		// on cherche une miniature a mettre dans le menu.
 		gchar *cPreview = NULL;
 		if (pItem->iFileType == CD_TYPE_IMAGE)
 		{
@@ -313,6 +315,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cURI = NULL;
 		}
 		
+		// on cree un sous-menu pour ce fichier.
 		str = strchr (pItem->cFileName, '\n');
 		if (str)
 			*str = '\0';
@@ -321,7 +324,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			*str = '\n';
 		g_free (cPreview);
 		
-		pBackend = &myData.backends[pItem->iSiteID];
+		// on le peuple avec les liens.
+		pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
 		for (i = 0; i < pBackend->iNbUrls; i ++)
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
 		if (pItem->iFileType != CD_TYPE_TEXT)

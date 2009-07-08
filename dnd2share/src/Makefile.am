@@ -21,6 +21,8 @@ libcd_dnd2share_la_SOURCES = \
 	applet-backend-imageshack.h\
 	applet-backend-free.c\
 	applet-backend-free.h\
+	applet-backend-pastebin.c\
+	applet-backend-pastebin.h\
 	applet-struct.h
 
 

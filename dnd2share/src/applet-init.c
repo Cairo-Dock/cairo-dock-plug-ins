@@ -18,6 +18,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-backend-imagebin.h"
 #include "applet-backend-imageshack.h"
 #include "applet-backend-free.h"
+#include "applet-backend-pastebin.h"
 #include "applet-init.h"
 
 
@@ -53,13 +54,22 @@ CD_APPLET_INIT_BEGIN
 	// On nettoie le repertoire de l'historique si necessaire.
 	cd_dnd2share_clean_working_directory ();
 	
-	// On enregistre les backends.
+	// On enregistre les backends (attention a bien respecter l'ordre du fichier de conf !)
+	// text
+	cd_dnd2share_register_pastebin_backend ();
+	// image
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
 	cd_dnd2share_register_imageshack_backend ();
+	// video
+	// ...
+	// file
 	cd_dnd2share_register_free_backend ();
-	myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
 	
+	int t;
+	for (t = 0; t < CD_NB_FILE_TYPES; t ++)
+		myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
+		
 	// On construit l'historique.
 	if (myConfig.iNbItems != 0)
 		cd_dnd2share_build_history ();
@@ -120,7 +130,9 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.iNbItems != 0)
 			cd_dnd2share_build_history ();
 		
-		myData.pCurrentBackend = &myData.backends[myConfig.iPreferedSite];
+		int t;
+		for (t = 0; t < CD_NB_FILE_TYPES; t ++)
+			myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
 		
 		// On affiche la derniere image uploadee.
 		if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)

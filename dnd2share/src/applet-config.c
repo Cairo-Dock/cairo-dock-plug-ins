@@ -22,21 +22,23 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbItems = CD_CONFIG_GET_INTEGER ("Configuration", "nb_items");
 	myConfig.bkeepCopy = CD_CONFIG_GET_BOOLEAN ("Configuration", "keep copy");
 	myConfig.bDisplayLastImage = myConfig.bkeepCopy && CD_CONFIG_GET_BOOLEAN ("Configuration", "display last image");
-	myConfig.iPreferedSite = CD_CONFIG_GET_INTEGER ("Configuration", "prefered site");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
+	myConfig.iPreferedSite[CD_TYPE_TEXT] = CD_CONFIG_GET_INTEGER ("Configuration", "text site");
+	myConfig.iPreferedSite[CD_TYPE_IMAGE] = CD_CONFIG_GET_INTEGER ("Configuration", "image site");
+	myConfig.iPreferedSite[CD_TYPE_VIDEO] = CD_CONFIG_GET_INTEGER ("Configuration", "video site");
+	myConfig.iPreferedSite[CD_TYPE_FILE] = CD_CONFIG_GET_INTEGER ("Configuration", "file site");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	
-	
 CD_APPLET_RESET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pTask);  // stoppe le thread.
+	cairo_dock_free_task (myData.pTask);  // stoppe la tache.
 	
 	g_free (myData.cCurrentFilePath);  // on libere la memoire partagee apres.
 	g_strfreev (myData.cResultUrls);

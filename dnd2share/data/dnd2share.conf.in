@@ -81,19 +81,18 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Info-bubbles]
+#F[Info-bubbles;gtk-dialog-info]
 frame_info =
+
 #b Enable info-bubbles ?
 enable_dialogs = true
-#i Duration of the info-bubbles :
+
+#i[1;15] Duration of the info-bubbles :
 #{in seconds.}
 dialogs_duration = 5
 
 #F[Behaviour;gtk-execute]
 frame_behav =
-
-#r[Uppix;Imagebin;ImageShack;dl.free.fr] Choose which site to use :
-prefered site = 1
 
 #I[0;100] Number of items to keep in the history :
 nb_items = 10
@@ -107,3 +106,19 @@ display last image = false
 
 #a+ Animation of the icon during upload :
 animation=pulse
+
+
+#F[Sites;gtk-convert]
+frame_site =
+
+#r[Pastebin] Preferred site for texts :
+text site = 0
+
+#r[Uppix;Imagebin;ImageShack] Preferred site for images :
+image site = 0
+
+#r[None yet] Preferred site for videos :
+video site = 0
+
+#r[dl.free.fr] Preferred site for files hosting :
+file site = 0
