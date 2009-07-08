@@ -52,6 +52,8 @@ struct _AppletConfig {
 	gboolean bDisplayLastImage;
 	CDSiteId iPreferedSite[CD_NB_FILE_TYPES];
 	gchar *cIconAnimation;
+	gchar *cCustomScripts[CD_NB_FILE_TYPES];
+	gchar *cDropboxDir;
 	} ;
 
 
@@ -64,9 +66,11 @@ struct _AppletData {
 	int iNbSitesForType[CD_NB_FILE_TYPES];
 	
 	CairoDockTask *pTask;
+	// shared memory
 	gchar *cCurrentFilePath;  // memoire partagee avec le thread, a manipuler avec les precautions d'usage.
 	CDFileType iCurrentFileType;  // idem
 	gchar **cResultUrls;  // idem
+	// end of shared memory
 	
 	GList *pUpoadedItems;  // une liste de CDUploadedItem*
 	gchar *cLastURL;  // la derniere URL a avoir ete copiee dans le clipboard; on pourra y acceder par clic gauche sur l'icone.

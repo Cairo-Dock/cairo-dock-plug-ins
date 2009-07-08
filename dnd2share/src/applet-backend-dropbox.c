@@ -16,19 +16,32 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-free.h"
+#include "applet-backend-dropbox.h"
 
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
+
 static void upload (const gchar *cFilePath)
 {
+	g_return_if_fail (myConfig.cCustomScripts[myData.iCurrentFileType] != NULL);
+	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("%s/%s '%s'", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath);
+	gchar *cCommand = g_strdup_printf ("dropbox start && cp '%s' '~/Dropbox/Public/%s'", cFilePath, myConfig.cDropboxDir ? myConfig.cDropboxDir : "");
+	int r = system (cCommand);
+	g_free (cCommand);
+	
+	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
+	gchar *cFileName = g_path_get_basename (cFilePath);
+	cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s/%s'", myConfig.cDropboxDir ? myConfig.cDropboxDir : "", cFileName)
+	
+	g_print ("commande dropbox : %s\n", cCommand);
+	g_free (cFileName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
 	{
+		cd_warning ("Dropbox ne nous a pas renvoye d'adresse :-(");
 		return ;
 	}
 	
@@ -41,10 +54,10 @@ static void upload (const gchar *cFilePath)
 }
 
 
-void cd_dnd2share_register_free_backend (void)
+void cd_dnd2share_register_dropbox_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_FILE,
-		"dl.free.fr",
+		"DropBox",
 		NB_URLS,
 		s_UrlLabels,
 		0,

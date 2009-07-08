@@ -168,7 +168,11 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Tree", NULL);
+	///CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Tree", NULL);
+	double lineColor[4] = {0, 0, 1, 1};
+	double bgColor[4] = {0, 1, 0, .4};
+	gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
+	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Slide", &slideParams);
 	myData.pIconList = NULL;
 	
 	//\_______________________ On lance la tache de mesure des disques.

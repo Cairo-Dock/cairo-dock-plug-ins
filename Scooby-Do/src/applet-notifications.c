@@ -247,6 +247,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				}
 				else  // on a trouve au moins un programme, on cache le filtre des fichiers.
 				{
+					
 					cd_do_hide_filter_dialog ();
 				}
 			}
@@ -337,13 +338,33 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else if (myData.iNbValidCaracters > 0)  // pas d'icone mais du texte => on l'execute.
 		{
-			g_print ("on valide '%s'\n", myData.sCurrentText->str);
-			gchar *cFile = g_strdup_printf ("%s/%s", g_getenv ("HOME"), myData.sCurrentText->str);
-			if (g_file_test (cFile, G_FILE_TEST_EXISTS))
-				cairo_dock_fm_launch_uri (cFile);
+			gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
+			gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+			g_free (cCommand);
+			if (cResult != NULL && cResult[strlen (cResult)-1] == '\n')
+				cResult[strlen (cResult)-1] = '\0';
+			if (cResult != NULL && cResult[strlen (cResult)-1] == '\r')
+				cResult[strlen (cResult)-1] = '\0';
+			if (cResult != NULL && strcmp (cResult, "0") != 0)
+			{
+				g_print ("result : '%s'\n", cResult);
+				GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+				gtk_clipboard_set_text (pClipBoard, cResult, -1);
+				Icon *pIcon = cairo_dock_get_dialogless_icon ();
+				cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
+					pIcon,
+					g_pMainDock,
+					3000,
+					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+					cResult);
+				double fResult = atof (cResult);
+			}
 			else
-				cairo_dock_launch_command (myData.sCurrentText->str);
-			g_free (cFile);
+			{
+				g_print ("on valide '%s'\n", myData.sCurrentText->str);
+				cairo_dock_fm_launch_uri (myData.sCurrentText->str);
+			}
+			g_free (cResult);
 		}
 		cd_do_close_session ();
 	}
@@ -446,6 +467,29 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (string)  /// utiliser l'unichar ...
 	{
+		g_print ("string:'%s'\n", string);
+		if ((iModifierType & GDK_CONTROL_MASK) && iUnicodeChar == 'v')  // CTRL+v
+		{
+			g_print ("CTRL+v\n");
+			GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+			gchar *cText = gtk_clipboard_wait_for_text (pClipBoard);  // la main loop s'execute pendant ce temps.
+			if (cText != NULL)
+			{
+				g_print ("clipboard : '%s'\n", cText);
+				gchar *str = strchr (cText, '\r');
+				if (str)
+					*str = '\0';
+				str = strchr (cText, '\n');
+				if (str)
+					*str = '\0';
+				g_string_append (myData.sCurrentText, cText);
+				cd_do_load_pending_caracters ();
+				cd_do_launch_appearance_animation ();
+				myData.iNbValidCaracters = myData.sCurrentText->len;  // cela valide le texte colle.
+			}
+			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		}
+		
 		// on rajoute la lettre au mot
 		g_string_append_c (myData.sCurrentText, *string);
 		myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
@@ -459,28 +503,13 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			cd_do_search_matching_icons ();
 			
 			// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
-			if (myData.pMatchingIcons == NULL)
+			if (myData.pMatchingIcons == NULL && myData.iNbMatchingFiles != -1)
 			{
 				// on cherche un fichier correspondant.
 				cd_do_find_matching_files ();
 				
 				// On affiche un filtre sur les fichiers.
 				cd_do_show_filter_dialog ();
-				
-				/*cd_do_update_completion (myData.sCurrentText->str);
-				
-				if (myData.completion)
-				{
-					gchar *cCompletedString = NULL;
-					g_completion_complete_utf8 (myData.completion,
-						myData.sCurrentText->str,
-						&cCompletedString);
-					if (cCompletedString != NULL)
-					{
-						g_print ("on a pu completer la chaine => %s\n", cCompletedString);
-						g_string_assign (myData.sCurrentText, cCompletedString);
-					}
-				}*/
 			}
 		}
 		

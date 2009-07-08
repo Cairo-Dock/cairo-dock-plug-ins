@@ -27,12 +27,28 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iPreferedSite[CD_TYPE_IMAGE] = CD_CONFIG_GET_INTEGER ("Configuration", "image site");
 	myConfig.iPreferedSite[CD_TYPE_VIDEO] = CD_CONFIG_GET_INTEGER ("Configuration", "video site");
 	myConfig.iPreferedSite[CD_TYPE_FILE] = CD_CONFIG_GET_INTEGER ("Configuration", "file site");
+	
+	myConfig.cCustomScripts[CD_TYPE_TEXT] = CD_CONFIG_GET_STRING ("Configuration", "text script");
+	myConfig.cCustomScripts[CD_TYPE_IMAGE] = CD_CONFIG_GET_STRING ("Configuration", "image script");
+	myConfig.cCustomScripts[CD_TYPE_VIDEO] = CD_CONFIG_GET_STRING ("Configuration", "video script");
+	myConfig.cCustomScripts[CD_TYPE_FILE] = CD_CONFIG_GET_STRING ("Configuration", "file script");
+	int i;
+	for (i = 0; i < CD_NB_FILE_TYPES; i ++)  // on empeche de choisir le backend custom si aucun script n'est fourni.
+	{
+		if (myConfig.cCustomScripts[i] == NULL && myConfig.iPreferedSite[i] == 0)
+			myConfig.iPreferedSite[i] = 1;
+	}
+	myConfig.cDropboxDir = CD_CONFIG_GET_STRING ("Configuration", "dropbox dir");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	
+	g_free (myConfig.cIconAnimation);
+	int i;
+	for (i = 0; i < CD_NB_FILE_TYPES; i ++)
+		g_free (myConfig.cCustomScripts[i]);
+	g_free (myConfig.cDropboxDir);
 CD_APPLET_RESET_CONFIG_END
 
 

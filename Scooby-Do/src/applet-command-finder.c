@@ -20,6 +20,7 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 
 #include "applet-struct.h"
 #include "applet-command-finder.h"
+#include "applet-notifications.h"
 #include "applet-session.h"
 
 static void _browse_dir (const gchar *cDirPath);
@@ -102,6 +103,7 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 		&standard_error,
 		&exit_status,
 		&erreur);
+	g_string_free (sCommand, TRUE);
 	if (erreur != NULL)
 	{
 		cd_warning (erreur->message);
@@ -111,6 +113,13 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 	if (standard_error != NULL && *standard_error != '\0')
 	{
 		cd_warning (standard_error);
+	}
+	
+	if (standard_output == NULL || *standard_output == '\0')
+	{
+		g_free (standard_output);
+		g_free (standard_error);
+		return NULL;
 	}
 	
 	gchar **files = g_strsplit (standard_output, "\n", 0);
@@ -130,7 +139,6 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 	
 	g_free (standard_output);
 	g_free (standard_error);
-	g_string_free (sCommand, TRUE);
 	return files;
 }
 
@@ -157,33 +165,8 @@ static void inline _cd_do_make_info (const gchar *cInfo)
 	cairo_destroy (pCairoContext);
 }
 
-static void _cd_do_search_files (gpointer data)
+void _reset_info_results (void)
 {
-	myData.pMatchingFiles = _cd_do_locate_files (myData.cCurrentLocateText, TRUE);  // avec limite.
-}
-static gboolean _cd_do_update_from_files (gpointer data)
-{
-	if (myData.iLocateFilter != myData.iCurrentFilter ||
-		myData.bLocateMatchCase != myData.bMatchCase ||
-		cairo_dock_strings_differ (myData.cCurrentLocateText, myData.sCurrentText->str))  // la situation a change entre le lancement de la tache et la mise a jour.
-	{
-		if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
-		{
-			g_strfreev (myData.pMatchingFiles);
-			myData.pMatchingFiles = NULL;
-			myData.iNbMatchingFiles = 0;
-		}
-		
-		if (myData.pMatchingIcons != NULL)  // on a des applis, on quitte.
-			return FALSE;
-		
-		myData.iLocateFilter = myData.iCurrentFilter;
-		myData.bLocateMatchCase = myData.bMatchCase;
-		g_free (myData.cCurrentLocateText);
-		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
-		cairo_dock_launch_task (myData.pLocateTask);
-	}
-	
 	if (myData.pInfoSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pInfoSurface);
@@ -194,11 +177,65 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		_cairo_dock_delete_texture (myData.iInfoTexture);
 		myData.iInfoTexture = 0;
 	}
+}
+
+static void _cd_do_search_files (gpointer data)
+{
+	myData.pMatchingFiles = _cd_do_locate_files (myData.cCurrentLocateText, TRUE);  // avec limite.
+}
+static gboolean _cd_do_update_from_files (gpointer data)
+{
+	if (! cd_do_session_is_waiting_for_input ())  // on a quitte la session en cours de route.
+	{
+		_reset_info_results ();
+		return FALSE;
+	}
+	if (myData.iLocateFilter != myData.iCurrentFilter ||
+		myData.bLocateMatchCase != myData.bMatchCase ||
+		cairo_dock_strings_differ (myData.cCurrentLocateText, myData.sCurrentText->str))  // la situation a change entre le lancement de la tache et la mise a jour, on va relancer la recherche immediatement.
+	{
+		if (myData.pMatchingFiles == NULL &&
+		myData.sCurrentText->len > 0 &&
+		strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
+		myData.iLocateFilter == myData.iCurrentFilter && 
+		myData.bLocateMatchCase == myData.bMatchCase)  // la recherche est identique, seul le texte comporte plus de caracteres; comme on n'a rien trouve, inutile de chercher a nouveau, on quitte.
+		{
+			g_print ("useless\n");
+			_reset_info_results ();
+			_cd_do_make_info (D_("no result"));
+			myData.iNbMatchingFiles = -1;
+			cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
+			return FALSE;
+		}
+		
+		if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
+		{
+			g_strfreev (myData.pMatchingFiles);
+			myData.pMatchingFiles = NULL;
+			myData.iNbMatchingFiles = 0;
+		}
+		
+		if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
+		{
+			_reset_info_results ();
+			return FALSE;
+		}
+		
+		myData.iLocateFilter = myData.iCurrentFilter;
+		myData.bLocateMatchCase = myData.bMatchCase;
+		g_free (myData.cCurrentLocateText);
+		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
+		cairo_dock_relaunch_task_immediately (myData.pLocateTask, 0);
+		return FALSE;
+	}
+	
+	_reset_info_results ();
 	
 	// si aucun resultat, on l'indique et on quitte.
-	if (myData.pMatchingFiles == NULL || myData.pMatchingFiles[0] == NULL)
+	if (myData.pMatchingFiles == NULL)
 	{
 		_cd_do_make_info (D_("no result"));
+		myData.iNbMatchingFiles = -1;
 		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		return FALSE;
 	}
@@ -218,7 +255,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		cd_do_launch_appearance_animation ();
 		return FALSE;*/
 	}
-	g_print ("%s;%s;...\n", myData.pMatchingFiles[0], myData.pMatchingFiles[1]);
+	//g_print ("%s;%s;...\n", myData.pMatchingFiles[0], myData.pMatchingFiles[1]);
 	
 	// trop de resultats, on l'indique et on abandonne la recherche.
 	int i=0;
@@ -233,6 +270,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		gchar *cInfo = g_strdup_printf ("> %d %s", myConfig.iNbResultMax, D_("results"));
 		_cd_do_make_info (cInfo);
 		g_free (cInfo);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		
 		return FALSE;
 	}
@@ -311,36 +349,30 @@ void cd_do_find_matching_files (void)
 	if (myData.sCurrentText->len == 0)
 		return ;
 	
-	if (myData.pLocateTask== NULL)
+	if (myData.pLocateTask == NULL)
 	{
 		myData.pLocateTask = cairo_dock_new_task (0,
 			(CairoDockGetDataAsyncFunc) _cd_do_search_files,
 			(CairoDockUpdateSyncFunc) _cd_do_update_from_files,
 			NULL);
 	}
-	if (! cairo_dock_task_is_running (myData.pLocateTask))  // sinon, on la laisse se finir, et lorsqu'elle aura finit, on la relancera avec le nouveau texte.
+	myData.iNbMatchingFiles = 0;
+	
+	if (! cairo_dock_task_is_running (myData.pLocateTask))  // sinon, on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte.
 	{
 		if (myData.pMatchingFiles != NULL)
 		{
 			g_strfreev (myData.pMatchingFiles);
 			myData.pMatchingFiles = NULL;
-			myData.iNbMatchingFiles = 0;
 		}
+		myData.iNbMatchingFiles = 0;
+		
 		myData.iLocateFilter = myData.iCurrentFilter;
 		myData.bLocateMatchCase = myData.bMatchCase;
 		g_free (myData.cCurrentLocateText);
 		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
 		
-		if (myData.pInfoSurface != NULL)
-		{
-			cairo_surface_destroy (myData.pInfoSurface);
-			myData.pInfoSurface = NULL;
-		}
-		if (myData.iInfoTexture != 0)
-		{
-			_cairo_dock_delete_texture (myData.iInfoTexture);
-			myData.iInfoTexture = 0;
-		}
+		_reset_info_results ();
 		_cd_do_make_info (D_("Searching..."));
 		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		
@@ -353,7 +385,14 @@ static void _on_activate_filter_item (GtkToggleButton *pButton, gpointer data)
 {
 	gint iFilterItem = GPOINTER_TO_INT (data);
 	if (gtk_toggle_button_get_active (pButton))
+	{
 		myData.iCurrentFilter |= iFilterItem;
+		if (myData.iNbMatchingFiles == -1)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
+		{
+			g_print ("useless\n");
+			return ;
+		}
+	}
 	else
 		myData.iCurrentFilter &= (~iFilterItem);
 	g_print ("myData.iCurrentFilter  <- %d\n", myData.iCurrentFilter);
@@ -361,14 +400,19 @@ static void _on_activate_filter_item (GtkToggleButton *pButton, gpointer data)
 	// on relance le locate.
 	cd_do_find_matching_files ();
 	
-	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
+	///cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 }
 static void _on_activate_match_case (GtkToggleButton *pButton, gpointer data)
 {
 	myData.bMatchCase = gtk_toggle_button_get_active (pButton);
+	if (myData.bMatchCase && myData.iNbMatchingFiles == -1)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
+	{
+		g_print ("useless\n");
+		return ;
+	}
 	cd_do_find_matching_files ();
 	
-	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
+	///cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 }
 static GtkWidget *_cd_do_build_filter_widget (void)
 {
@@ -407,6 +451,14 @@ static GtkWidget *_cd_do_build_filter_widget (void)
 	return pFilterWidget;
 }
 
+
+static gboolean on_key_press_dialog (GtkWidget *pWidget,
+	GdkEventKey *pKey,
+	gpointer data)
+{
+	cd_do_key_pressed (NULL, g_pMainDock, pKey->keyval, pKey->state, pKey->string);
+	return FALSE;
+}
 void cd_do_show_filter_dialog (void)
 {
 	if (myData.pFilterDialog != NULL)
@@ -420,6 +472,11 @@ void cd_do_show_filter_dialog (void)
 	attr.pInteractiveWidget = pFilterWidget;
 	Icon *pIcon = cairo_dock_get_dialogless_icon ();
 	myData.pFilterDialog = cairo_dock_build_dialog (&attr, pIcon, pIcon ? CAIRO_CONTAINER (g_pMainDock) : NULL);
+	
+	g_signal_connect (G_OBJECT (myData.pFilterDialog->pWidget),
+		"key-press-event",
+		G_CALLBACK (on_key_press_dialog),
+		NULL);
 	
 	cairo_dock_dialog_reference (myData.pFilterDialog);
 }

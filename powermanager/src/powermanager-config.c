@@ -26,8 +26,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
 	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");
 	
-	
-	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
+	if (! g_key_file_has_key (CD_APPLET_MY_KEY_FILE, "Configuration", "renderer", NULL))  // old version.
+	{
+		myConfig.iDisplayType = (g_key_file_get_boolean (CD_APPLET_MY_KEY_FILE, "Configuration", "use gauge", NULL) ? CD_POWERMANAGER_GAUGE : CD_POWERMANAGER_ICONS);
+		int dummy = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
+	}
+	else
+		myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
 	

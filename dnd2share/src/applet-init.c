@@ -14,11 +14,12 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
+#include "applet-backend-pastebin.h"
 #include "applet-backend-uppix.h"
 #include "applet-backend-imagebin.h"
 #include "applet-backend-imageshack.h"
 #include "applet-backend-free.h"
-#include "applet-backend-pastebin.h"
+#include "applet-backend-custom.h"
 #include "applet-init.h"
 
 
@@ -39,7 +40,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	// on cree le repertoire de l'historique si necessaire.
+	//\____________ on cree le repertoire de l'historique si necessaire.
 	myData.cWorkingDirPath = g_strdup_printf ("%s/dnd2share", g_cCairoDockDataDir);
 	if (! g_file_test (myData.cWorkingDirPath, G_FILE_TEST_EXISTS))
 	{
@@ -51,37 +52,39 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	// On nettoie le repertoire de l'historique si necessaire.
+	//\____________ On nettoie le repertoire de l'historique si necessaire (config changee lorsque applet non active).
 	cd_dnd2share_clean_working_directory ();
 	
-	// On enregistre les backends (attention a bien respecter l'ordre du fichier de conf !)
-	// text
+	//\____________ On enregistre les backends (attention a bien respecter l'ordre du fichier de conf !)
+	// custom backends, ils prennent le numero 0.
+	cd_dnd2share_register_custom_backends ();
+	// text backends
 	cd_dnd2share_register_pastebin_backend ();
-	// image
+	// image backends
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
 	cd_dnd2share_register_imageshack_backend ();
-	// video
+	// video backends
 	// ...
-	// file
+	// file backends
 	cd_dnd2share_register_free_backend ();
 	
 	int t;
 	for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 		myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
-		
-	// On construit l'historique.
+	
+	//\____________ On construit l'historique.
 	if (myConfig.iNbItems != 0)
 		cd_dnd2share_build_history ();
 	
-	// On remet la derniere URL en memoire pour le clic gauche.
+	//\____________ On remet la derniere URL en memoire pour le clic gauche.
 	if (myData.pUpoadedItems != NULL)
 	{
 		CDUploadedItem *pItem = g_list_last (myData.pUpoadedItems)->data;
 		cd_dnd2share_set_current_url_from_item (pItem);
 	}
 	
-	// On affiche la derniere image uploadee.
+	//\____________ On affiche la derniere image uploadee.
 	if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 	{
 		CDUploadedItem *pItem = myData.pUpoadedItems->data;
@@ -92,7 +95,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
-	// On s'abonne aux notifications.
+	//\____________ On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
@@ -122,10 +125,10 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		// On nettoie le repertoire de travail si necessaire.
+		//\____________ On nettoie le repertoire de travail si necessaire.
 		cd_dnd2share_clean_working_directory ();
 		
-		// on reconstruit l'historique.
+		//\____________ on reconstruit l'historique.
 		cd_dnd2share_clear_history ();
 		if (myConfig.iNbItems != 0)
 			cd_dnd2share_build_history ();
@@ -134,7 +137,7 @@ CD_APPLET_RELOAD_BEGIN
 		for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 			myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
 		
-		// On affiche la derniere image uploadee.
+		//\____________ On affiche la derniere image uploadee.
 		if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 		{
 			CDUploadedItem *pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);

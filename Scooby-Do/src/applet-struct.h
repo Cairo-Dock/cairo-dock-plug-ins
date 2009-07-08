@@ -114,9 +114,9 @@ struct _AppletData {
 	CairoDockTask *pLocateTask;
 	// shared memory
 	gchar **pMatchingFiles;
-	gchar *cCurrentLocateText;
-	gint iLocateFilter;
-	gboolean bLocateMatchCase;
+	gchar *cCurrentLocateText;  // lecture seule dans le thread
+	gint iLocateFilter;  // lecture seule dans le thread
+	gboolean bLocateMatchCase;  // lecture seule dans le thread
 	// end of shared memory
 	
 	cairo_surface_t *pInfoSurface;

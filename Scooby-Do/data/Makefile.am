@@ -9,4 +9,7 @@ module_DATA = \
 	icon.png\
 	arrows.svg
 
+dist_scooby_dodata_SCRIPTS = \
+	calc.sh
+
 EXTRA_DIST = $(module_DATA)

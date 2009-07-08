@@ -14,6 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "rendering-desklet-simple.h"
 #include "rendering-desklet-controler.h"
 #include "rendering-desklet-mediaplayer.h"
+#include "rendering-desklet-slide.h"
 #include "rendering-desklet-decorations.h"
 #include "rendering-init.h"
 
@@ -34,6 +35,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("desklet rendering"),
 	rendering_register_simple_desklet_renderer ();
 	rendering_register_controler_desklet_renderer ();
 	rendering_register_mediaplayer_desklet_renderer ();  // By ChAnGFu
+	rendering_register_slide_desklet_renderer ();  // By ChAnGFu
 	
 	//\_______________ On enregistre les decorations.
 	cd_rendering_register_desklet_decorations ();

@@ -231,15 +231,21 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 }
 void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 {
-	if (strncmp (cFilePath, "file://", 7) == 0)
-		cFilePath += 7;
 	if (myData.pTask != NULL)
 	{
-		cd_warning ("Please wait the current upload is finished.");
+		cd_warning ("Please wait the current upload is finished before starting a new one.");
+		return ;
+	}
+	
+	if (myData.pCurrentBackend[iFileType]->upload == NULL)
+	{
+		cd_warning ("sorry, it's still not possible to upload this type of file");
 		return ;
 	}
 	
 	// on lance la mesure.
+	if (strncmp (cFilePath, "file://", 7) == 0)
+		cFilePath += 7;
 	myData.cCurrentFilePath = g_strdup (cFilePath);  // sera efface a la fin de l'upload.
 	myData.iCurrentFileType = iFileType;
 	myData.pTask = cairo_dock_new_task (0,  // 1 shot task.

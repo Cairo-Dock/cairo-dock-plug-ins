@@ -72,6 +72,12 @@ CD_APPLET_INIT_BEGIN
 			// Initialisation du rendu.
 			_set_data_renderer (myApplet, FALSE);
 			
+			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
+			{
+				double x=0;
+				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&x);
+			}
+			
 			myData.previous_battery_charge = -1;
 			myData.previous_battery_time = -1;
 			myData.alerted = TRUE;

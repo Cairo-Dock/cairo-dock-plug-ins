@@ -21,6 +21,8 @@ libcd_desklet_rendering_la_SOURCES = \
 	rendering-desklet-mediaplayer.h\
 	rendering-desklet-decorations.c\
 	rendering-desklet-decorations.h\
+	rendering-desklet-slide.c\
+	rendering-desklet-slide.h\
 	rendering-struct.h
 
 dock_version = `pkg-config --modversion cairo-dock`

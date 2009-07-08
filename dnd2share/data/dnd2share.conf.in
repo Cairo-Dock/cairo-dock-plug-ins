@@ -111,14 +111,33 @@ animation=pulse
 #F[Sites;gtk-convert]
 frame_site =
 
-#r[Pastebin] Preferred site for texts :
-text site = 0
+#r[Custom;Pastebin] Preferred site for texts :
+text site = 1
 
-#r[Uppix;Imagebin;ImageShack] Preferred site for images :
-image site = 0
+#r[Custom;Uppix;Imagebin;ImageShack] Preferred site for images :
+image site = 1
 
-#r[None yet] Preferred site for videos :
-video site = 0
+#r[Custom;None yet] Preferred site for videos :
+video site = 1
 
-#r[dl.free.fr] Preferred site for files hosting :
-file site = 0
+#r[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
+file site = 1
+
+#v
+sep_sites=
+
+#s Custom script for text upload : 
+text script =
+
+#s Custom script for image upload : 
+image script =
+
+#s Custom script for video upload : 
+video script =
+
+#s Custom script for file upload : 
+file script =
+
+#s Sub-folder of DropBox to upload to :
+#{Let empty to upload files into the 'Public' folder.}
+dropbox dir =

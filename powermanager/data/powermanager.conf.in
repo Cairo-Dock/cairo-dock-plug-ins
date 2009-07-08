@@ -84,7 +84,7 @@ fg alpha = 1
 [Configuration]
 
 #r+[Gauge;Graph;Icons] Choose the style of the display : 
-use gauge = 0
+renderer = 0
 
 
 #F[Gauge;gtk-dialog-info]

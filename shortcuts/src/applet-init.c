@@ -78,7 +78,11 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
+		///cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
+		double lineColor[4] = {0, 0, 1, 1};
+		double bgColor[4] = {0, 1, 0, .4};
+		gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Slide", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, &slideParams);
 	}
 	else
 	{

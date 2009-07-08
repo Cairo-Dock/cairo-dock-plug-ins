@@ -148,8 +148,8 @@ void cd_do_exit_session (void)
 	{
 		g_strfreev (myData.pMatchingFiles);
 		myData.pMatchingFiles = NULL;
-		myData.iNbMatchingFiles = 0;
 	}
+	myData.iNbMatchingFiles = 0;
 	if (myData.pInfoSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pInfoSurface);

@@ -115,7 +115,8 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 				{
 					int iWidth, iHeight;
 					cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
-					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->acFileName, myDrawContext, iWidth, iHeight);;
+					g_print ("myDrawContext : %d\n", myDrawContext);
+					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->acFileName, myDrawContext, iWidth, iHeight);
 					cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 					
 					cairo_dock_set_icon_surface_with_bar (pIconContext, pSurface, fValue, pIcon, pContainer);
