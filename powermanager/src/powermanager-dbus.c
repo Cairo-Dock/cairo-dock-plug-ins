@@ -113,7 +113,6 @@ gboolean dbus_connect_to_bus (void)
 			G_CALLBACK(on_battery_changed), NULL, NULL);
 		
 		gboolean bBatteryFound = cd_powermanager_find_battery();
-		bBatteryFound = TRUE;
 		if (! bBatteryFound)  // on n'a pas trouve de batterie nous-meme.
 		{
 			gchar *cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
@@ -228,7 +227,6 @@ gboolean update_stats(void)
 		cd_powermanager_find_battery ();
 	if (myData.cBatteryStateFilePath == NULL)
 		return TRUE;
-	return TRUE;
 	int k;
 	gchar *cContent = NULL;
 	gsize length=0;
