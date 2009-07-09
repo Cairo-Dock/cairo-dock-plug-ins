@@ -9,6 +9,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <math.h>
+#include <glib.h>
 
 #include "cd-mail-applet-config.h"
 #include "cd-mail-applet-notifications.h"

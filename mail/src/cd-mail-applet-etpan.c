@@ -148,15 +148,16 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						}
 						else
 						{
-							#if 0
-							size_t cur_token = 0;
+							if( pMailAccount->driver == FEED_STORAGE )
+							{
+								size_t cur_token = 0;
 
-							r = mailmime_encoded_phrase_parse("iso-8859-1",
-								cRawBodyText, length,
-								&cur_token, "UTF-8",
-								&cBodyText);
-							if (r != MAILIMF_NO_ERROR) 
-							#endif
+								r = mailmime_encoded_phrase_parse("UTF-8",
+									cRawBodyText, length,
+									&cur_token, "UTF-8",
+									&cBodyText);
+							}
+							if (r != MAILIMF_NO_ERROR)
 							{
 							  cBodyText = g_strdup(cRawBodyText);
 							}
@@ -185,7 +186,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 								size_t cur_token = 0;
 								r = mailmime_encoded_phrase_parse("iso-8859-1",
 									pFromMailBox->mb_display_name, strlen(pFromMailBox->mb_display_name),
-									&cur_token, "iso-8859-1",
+									&cur_token, "UTF-8",
 									&cFrom);
 								if (r != MAILIMF_NO_ERROR) {
 								  cFrom = g_strdup(pFromMailBox->mb_display_name);
@@ -199,7 +200,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 
 							r = mailmime_encoded_phrase_parse("iso-8859-1",
 								pSubject->sbj_value, strlen(pSubject->sbj_value),
-								&cur_token, "iso-8859-1",
+								&cur_token, "UTF-8",
 								&cSubject);
 							if (r != MAILIMF_NO_ERROR) {
 							  cSubject = g_strdup(pSubject->sbj_value);

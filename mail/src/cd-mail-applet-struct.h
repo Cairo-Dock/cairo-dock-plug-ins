@@ -45,6 +45,12 @@ struct _AppletData {
 
 	gdouble current_rotX;
 	gdouble current_rotY;
+
+	CairoDialog *pMessagesDialog;
+	GtkTextBuffer *pTextBuffer;
+	GtkWidget *pPrevButton;
+	GtkWidget *pNextButton;
+	gint iCurrentlyShownMail;
 } ;
 
 typedef struct {

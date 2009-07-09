@@ -107,6 +107,134 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 
 CD_APPLET_ON_BUILD_MENU_END
 
+void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
+{
+	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GList *l = pMailAccount->pUnseenMessageList;
+	gchar *cMessage;
+	gint i = myData.iCurrentlyShownMail;
+
+	if( myData.iCurrentlyShownMail < 0 )
+		myData.iCurrentlyShownMail = 0;
+	
+	for( ; i > 0 && l != NULL; i-- )
+	{
+		if( l->next == NULL ) break;
+		l = l->next;
+	}
+	if( i > 0 ) // just in case, to stay inside boundaries
+	{
+		myData.iCurrentlyShownMail -= i;
+	}
+	cMessage = l->data;
+  gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
+
+	if( myData.iCurrentlyShownMail == 0 )
+	{
+		gtk_widget_set_sensitive( myData.pPrevButton, FALSE );		
+	}
+	else
+	{
+		gtk_widget_set_sensitive( myData.pPrevButton, TRUE );		
+	}
+	if( l->next == NULL )
+	{
+		gtk_widget_set_sensitive( myData.pNextButton, FALSE );
+	}
+	else
+	{
+		gtk_widget_set_sensitive( myData.pNextButton, TRUE );		
+	}
+}
+
+void _cd_mail_show_prev_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
+{
+	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+
+	myData.iCurrentlyShownMail--;
+	_cd_mail_show_current_mail(pMailAccount);
+}
+
+void _cd_mail_show_next_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
+{
+	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+
+	myData.iCurrentlyShownMail++;
+	_cd_mail_show_current_mail(pMailAccount);
+}
+
+void _cd_mail_close_preview_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
+{
+	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+
+	if( myData.pMessagesDialog != NULL )
+	{
+		cairo_dock_dialog_unreference (myData.pMessagesDialog);
+		myData.pMessagesDialog = NULL;
+	}
+}
+
+GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
+{
+	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+
+	/*
+	 * Appearance of the container:
+	 * ____________________________
+	 * | Subject: xxxxxx           |    <---- simple text area
+	 * | From:    xxxxxx           |    <---- simple text area
+	 * | bla bla blablabla bla .. ^|
+	 * | .. blla blablabla bla .. ||    <---- this is a multi-line, scrollable text
+	 * | bla ... abl  abla.       v|
+	 * | <--       CLOSE       --> |    <---- 3 buttons, attached Left,Center,Right
+	 * -----------------------------
+	 */
+	GtkWidget *vbox = gtk_vbox_new(FALSE, 0);
+
+	GtkWidget *pTextView = gtk_text_view_new();
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(pTextView), FALSE);
+	gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(pTextView), FALSE);
+	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(pTextView), GTK_WRAP_WORD );
+
+	myData.pTextBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pTextView));
+
+	GtkWidget* pScrolledWindow = gtk_scrolled_window_new(NULL, NULL);
+	gtk_scrolled_window_add_with_viewport( GTK_SCROLLED_WINDOW(pScrolledWindow), pTextView );
+	gtk_scrolled_window_set_policy( GTK_SCROLLED_WINDOW(pScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC );
+	
+	gtk_box_pack_start(GTK_BOX(vbox), pScrolledWindow, TRUE, TRUE, 0);
+	
+	GtkWidget *hbox = gtk_hbox_new(TRUE, 0);
+	myData.pPrevButton = gtk_button_new_from_stock( GTK_STOCK_GO_BACK );
+	GtkWidget *pCloseButton = gtk_button_new_from_stock( GTK_STOCK_CLOSE );
+	myData.pNextButton = gtk_button_new_from_stock( GTK_STOCK_GO_FORWARD );
+
+	gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(myData.pPrevButton), FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(pCloseButton), TRUE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(myData.pNextButton), FALSE, FALSE, 0);
+
+	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
+	
+	// then we need to put the callbacks
+	gtk_signal_connect( GTK_OBJECT(myData.pPrevButton), "clicked", G_CALLBACK(_cd_mail_show_prev_mail_cb), (gpointer)pMailAccount );
+	gtk_signal_connect( GTK_OBJECT(myData.pNextButton), "clicked", G_CALLBACK(_cd_mail_show_next_mail_cb), (gpointer)pMailAccount );
+	gtk_signal_connect( GTK_OBJECT(pCloseButton),       "clicked", G_CALLBACK(_cd_mail_close_preview_cb), (gpointer)pMailAccount );
+
+	GList *l = pMailAccount->pUnseenMessageList;
+	gchar *cMessage;
+	cMessage = l->data;
+
+  gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
+	myData.iCurrentlyShownMail = 0;
+
+	gtk_widget_set_sensitive( myData.pPrevButton, FALSE );
+	if( l->next == NULL )
+	{
+		gtk_widget_set_sensitive( myData.pNextButton, FALSE );
+	}
+
+	return vbox;
+}
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL)
@@ -139,6 +267,30 @@ CD_APPLET_ON_SCROLL_BEGIN
 	}
 	
 	g_print( "Displaying messages\n" );
+	{
+		if( myData.pMessagesDialog == NULL )
+		{
+			myData.pMessagesDialog = cairo_dock_show_dialog_full (_("Mail"),
+				myIcon, myContainer,
+				0,
+				"same icon",
+				cd_mail_messages_container_new(pMailAccount),
+				NULL, NULL, NULL);
+		}
+		else
+		{
+			// scroll one message
+			if (CD_APPLET_SCROLL_DOWN)
+			{
+				_cd_mail_show_prev_mail_cb(NULL, pMailAccount);
+			}
+			else if (CD_APPLET_SCROLL_UP)
+			{
+				_cd_mail_show_next_mail_cb(NULL, pMailAccount);
+			}
+		}
+	}
+	
 	GList *l, *l_Uid;
 	gchar *cMessage;
 	gchar *cMessageUid;
@@ -148,9 +300,6 @@ CD_APPLET_ON_SCROLL_BEGIN
 		cMessage = l->data;
 		cMessageUid = l_Uid->data;
 		pMessage = NULL;
-		
-		cairo_dock_remove_dialog_if_any (CD_APPLET_CLICKED_ICON);
-		cairo_dock_show_temporary_dialog_with_icon (cMessage, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, 10e3, "same icon");
 		
 		// on marque le compte comme lu.
 		if( !pMailAccount->bError )
@@ -164,7 +313,6 @@ CD_APPLET_ON_SCROLL_BEGIN
 			if (r != MAIL_NO_ERROR || pMessage == NULL)
 			{
 				cd_warning ("couldn't get the message number %d", i);
-				mailmessage_free (pMessage);
 				continue;
 			}
 			r = mailmessage_get_flags (pMessage, &pFlags);
