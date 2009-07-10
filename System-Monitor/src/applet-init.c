@@ -104,10 +104,16 @@ CD_APPLET_INIT_BEGIN
 	
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) NULL,  // cd_sysmonitor_get_data
-		(CairoDockUpdateSyncFunc) _unthreaded_task,  // cd_sysmonitor_update_from_data
-		myApplet);
+	if (myConfig.bShowNvidia || (myConfig.bShowCpu && myConfig.bShowRam))
+		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
+			(CairoDockGetDataAsyncFunc) cd_sysmonitor_get_data,
+			(CairoDockUpdateSyncFunc) cd_sysmonitor_update_from_data,  // _unthreaded_task
+			myApplet);
+	else
+		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
+			(CairoDockGetDataAsyncFunc) NULL,
+			(CairoDockUpdateSyncFunc) _unthreaded_task,
+			myApplet);
 	myData.bAcquisitionOK = TRUE;
 	cairo_dock_launch_task (myData.pPeriodicTask);
 	
@@ -155,6 +161,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevRamPercent = 0;
 		myData.fPrevSwapPercent = 0;
 		myData.fPrevGpuTempPercent = 0;
+		myData.iTimerCount = 0;
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 		
 		g_free (myData.pTopList);

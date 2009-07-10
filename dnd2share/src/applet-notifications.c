@@ -181,17 +181,10 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	
 	if (iFileType == CD_UNKNOWN_TYPE)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Sorry but we couldn't guess the type of this file."),
-			myIcon,
-			myContainer,
-			myConfig.dTimeDialogs,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		iFileType = CD_TYPE_FILE;
+		g_print ("we'll consider this as an archive.");
 	}
-	else
-	{
-		cd_dnd2share_launch_upload (CD_APPLET_RECEIVED_DATA, iFileType);
-	}
+	cd_dnd2share_launch_upload (CD_APPLET_RECEIVED_DATA, iFileType);
 CD_APPLET_ON_DROP_DATA_END
 
 

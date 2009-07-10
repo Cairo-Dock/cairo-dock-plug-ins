@@ -53,8 +53,7 @@ void update_icon(void)
 			{
 				double fPercent = (double) myData.battery_charge / 100.;
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
-				
-				bNeedRedraw = TRUE;
+				bNeedRedraw = FALSE;
 			}
 			else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
 			{

@@ -370,6 +370,26 @@ gboolean update_stats(void)
 		else
 			cd_message ("found fPresentRate = %.2f\n", fPresentRate);
 		
+		if (fPresentRate > 0)
+		{
+			if (myData.on_battery)
+			{
+				myData.fDischargeMeanRate = (myData.fDischargeMeanRate * myData.iNbDischargeMeasures + fPresentRate) / (myData.iNbDischargeMeasures + 1);
+				myData.iNbDischargeMeasures ++;
+				g_print ("fDischargeMeanRate : %.2f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
+			}
+			else
+			{
+				myData.fChargeMeanRate = (myData.fChargeMeanRate * myData.iNbChargeMeasures + fPresentRate) / (myData.iNbChargeMeasures + 1);
+				myData.iNbChargeMeasures ++;
+				g_print ("fChargeMeanRate : %.2f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
+			}
+		}
+		else
+		{
+			g_print ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
+			fPresentRate = (myData.on_battery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
+		}
 		
 		//Utile de connaitre l'autonomie estimée quand la batterie est chargée
 		if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete

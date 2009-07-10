@@ -333,7 +333,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        ///icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
 	        ///icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;
 	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX ;
-	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY;
+	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY + icon->iTextHeight;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :

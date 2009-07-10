@@ -45,7 +45,7 @@ CD_APPLET_INIT_BEGIN
 	//\_______________ On charge notre theme.
 	cd_clock_load_theme (myApplet);
 	cd_clock_load_back_and_fore_ground (myApplet);
-	g_print ("CD_APPLET_MY_CONTAINER_IS_OPENGL : %d\n", CD_APPLET_MY_CONTAINER_IS_OPENGL);
+	//g_print ("CD_APPLET_MY_CONTAINER_IS_OPENGL : %d\n", CD_APPLET_MY_CONTAINER_IS_OPENGL);
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cd_clock_load_textures (myApplet);
 	

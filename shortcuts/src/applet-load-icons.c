@@ -119,7 +119,7 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 	if (myConfig.bListBookmarks)
 	{
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
-		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))
+		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))  // on le cree pour pouvoir ajouter des signets.
 		{
 			FILE *f = fopen (cBookmarkFilePath, "a");
 			fclose (f);
@@ -168,11 +168,27 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	///CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Tree", NULL);
-	double lineColor[4] = {0, 0, 1, 1};
-	double bgColor[4] = {0, 1, 0, .4};
-	gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
-	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, "Slide", &slideParams);
+	gpointer *deskletParams = NULL;
+	const gchar *cDeskletRendererName = NULL;
+	switch (myConfig.iDeskletRendererType)
+	{
+		case CD_DESKLET_SLIDE :
+		default :
+		{
+			double lineColor[4] = {0, 0, 1, 1};
+			double bgColor[4] = {0, 1, 0, .4};
+			gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
+			deskletParams = slideParams;
+			cDeskletRendererName = "Slide";
+		}
+		break ;
+		
+		case CD_DESKLET_TREE :
+			deskletParams = NULL;
+			cDeskletRendererName = "Tree";
+		break ;
+	}
+	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, cDeskletRendererName, deskletParams);
 	myData.pIconList = NULL;
 	
 	//\_______________________ On lance la tache de mesure des disques.

@@ -75,7 +75,7 @@ struct _AppletData {
 	gchar *cDriverVersion;
 	
 	CairoDockTask *pPeriodicTask;
-	// memoire partagee pour le thread principal.
+	// shared memory for the main thread.
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;
 	GTimer *pClock;
@@ -90,7 +90,8 @@ struct _AppletData {
 	gdouble fGpuTempPercent;
 	gdouble fPrevGpuTempPercent;
 	gboolean bNeedsUpdate;
-	// fin de la memoire partagee.
+	gint iTimerCount;
+	// end of shared memory.
 	gboolean bAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	
@@ -98,12 +99,12 @@ struct _AppletData {
 	CairoDialog *pTopDialog;
 	cairo_surface_t *pTopSurface;
 	CairoDockTask *pTopTask;
-	// memoire partagee pour le thread "top".
+	// shared memory for the "top" thread.
 	GHashTable *pProcessTable;
 	CDProcess **pTopList;
 	GTimer *pTopClock;
 	gboolean bSortTopByRam;
-	// fin de la memoire partagee.
+	// end of shared memory.
 } ;
 
 

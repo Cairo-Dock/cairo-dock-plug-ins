@@ -55,6 +55,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_string_free (sKeyName, TRUE);
 	
 	myConfig.bUseApprox = CD_CONFIG_GET_BOOLEAN ("Configuration", "use approx");
+	
+	myConfig.fLastDischargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "discharge rate");
+	myConfig.fLastChargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "charge rate");
 CD_APPLET_GET_CONFIG_END
 
 

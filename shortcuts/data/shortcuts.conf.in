@@ -105,6 +105,9 @@ use separator = true
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
+#r+[Slide;Tree] Type of view for the desklet mode :
+desklet renderer = 0
+
 #F[Disk usage]
 frame_disk=
 

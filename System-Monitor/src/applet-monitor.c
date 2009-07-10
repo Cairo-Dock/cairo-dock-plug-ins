@@ -28,7 +28,8 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 	}
 	if (myConfig.bShowNvidia)
 	{
-		cd_sysmonitor_get_nvidia_data (myApplet);
+		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lours, on decide donc de ne mettre a jour qu'une fois sur 3.
+			cd_sysmonitor_get_nvidia_data (myApplet);
 	}
 	
 	if (! myData.bInitialized)
@@ -36,6 +37,7 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 		cd_sysmonitor_get_cpu_info (myApplet);
 		myData.bInitialized = TRUE;
 	}
+	myData.iTimerCount ++;
 }
 
 

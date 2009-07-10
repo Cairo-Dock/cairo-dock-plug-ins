@@ -25,6 +25,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDrawBar = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Module", "draw bar", TRUE);
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
+	myConfig.iDeskletRendererType = CD_CONFIG_GET_INTEGER ("Module", "desklet renderer");
 CD_APPLET_GET_CONFIG_END
 
 

@@ -14,17 +14,24 @@ typedef enum {
 	CD_SHOW_FREE_SPACE_PERCENT,
 	CD_SHOW_USED_SPACE_PERCENT,
 	CD_NB_SHOW
-} CDSwictherDisplayType;
+} CDDiskUsageDisplayType;
+
+typedef enum {
+	CD_DESKLET_SLIDE=0,
+	CD_DESKLET_TREE,
+	CD_DESKLET_NB_RENDERER
+} CDDeskletRendererType;
 
 struct _AppletConfig {
 	gboolean bListDrives;
 	gboolean bListNetwork;
 	gboolean bListBookmarks;
 	gboolean bUseSeparator;
-	CDSwictherDisplayType iDisplayType;
+	CDDiskUsageDisplayType iDisplayType;
 	gint iCheckInterval;
 	gboolean bDrawBar;
 	gchar *cRenderer;
+	CDDeskletRendererType iDeskletRendererType;
 	} ;
 
 typedef struct _CDDiskUsage {
@@ -37,15 +44,18 @@ typedef struct _CDDiskUsage {
 	} CDDiskUsage;
 
 struct _AppletData {
+	// shared memory for the loading task
 	GList *pIconList;
+	// end of shared memory
 	CairoDockTask *pTask;
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	
 	CairoDockTask *pDiskTask;
+	// shared memory for the disk usage task
 	GList *pDiskUsageList;
-	gboolean bDisksHaveChanged;
+	// end of shared memory
 	} ;
 
 

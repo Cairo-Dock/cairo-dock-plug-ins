@@ -54,7 +54,9 @@ struct _AppletConfig {
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
 	gboolean bUseDBusFallback;
 	
-	gboolean bUseGauge;
+	gdouble fLastDischargeMeanRate;
+	gdouble fLastChargeMeanRate;
+	
 	gchar *cUserBatteryIconName;
 	gchar *cUserChargeIconName;
 	MyAppletEffect iEffect;
@@ -80,6 +82,11 @@ struct _AppletData {
 	gint iCurrentIndex;
 	gint iIndexMax;
 	gboolean bUseDBus;
+	
+	gdouble fChargeMeanRate;
+	gint iNbChargeMeasures;
+	gdouble fDischargeMeanRate;
+	gint iNbDischargeMeasures;
 	} ;
 
 

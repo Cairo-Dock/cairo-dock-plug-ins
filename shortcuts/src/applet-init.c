@@ -30,10 +30,6 @@ CD_APPLET_DEFINITION ("shortcuts",
 
 
 CD_APPLET_INIT_BEGIN
-	/*if (myIcon->acName == NULL && myDock)
-	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME);
-	}*/
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	//\_______________ On charge les icones dans un sous-dock.
@@ -64,10 +60,6 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On charge les icones dans un sous-dock.
 		cd_shortcuts_reset_all_datas (myApplet);  // stoppe les mesures.
 		
-		/*if (myIcon->acName == NULL && myDock)
-		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (SHORTCUTS_DEFAULT_NAME);
-		}*/
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		myData.pTask = cairo_dock_new_task (0,
@@ -76,13 +68,29 @@ CD_APPLET_RELOAD_BEGIN
 			myApplet);
 		cairo_dock_launch_task (myData.pTask);
 	}
-	else if (myDesklet)
+	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
 	{
-		///cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on n'a pas besoin du context sur myIcon.
-		double lineColor[4] = {0, 0, 1, 1};
-		double bgColor[4] = {0, 1, 0, .4};
-		gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Slide", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, &slideParams);
+		gpointer *deskletParams = NULL;
+		const gchar *cDeskletRendererName = NULL;
+		switch (myConfig.iDeskletRendererType)
+		{
+			case CD_DESKLET_SLIDE :
+			default :
+			{
+				double lineColor[4] = {0, 0, 1, 1};
+				double bgColor[4] = {0, 1, 0, .4};
+				gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
+				deskletParams = slideParams;
+				cDeskletRendererName = "Slide";
+			}
+			break ;
+			
+			case CD_DESKLET_TREE :
+				deskletParams = NULL;
+				cDeskletRendererName = "Tree";
+			break ;
+		}
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, deskletParams);
 	}
 	else
 	{

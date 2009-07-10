@@ -33,7 +33,6 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
-		g_print ("pRenderAttr->iMemorySize : %d\n", pRenderAttr->iMemorySize);
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.fHighColor = myConfig.fHigholor;
@@ -60,7 +59,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	
-	// on ne charge pas toutes les surfaces, car cela prend trop de memoire, et trop de temps au chargement, alors que ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 10 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
+	// on ne charge pas toutes les surfaces, ce qui economise de la memoire, et du temps au chargement, car ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 5 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
 	myData.dbus_enable = dbus_connect_to_bus ();
 	if (myData.dbus_enable)
@@ -108,6 +107,12 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.checkLoop);
 		myData.checkLoop = 0;
 	}
+	
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+		G_TYPE_DOUBLE, "Configuration", "discharge rate", myData.fDischargeMeanRate,
+		G_TYPE_DOUBLE, "Configuration", "charge rate", myData.fChargeMeanRate,
+		G_TYPE_INVALID);
+	
 CD_APPLET_STOP_END
 
 
@@ -120,17 +125,14 @@ CD_APPLET_RELOAD_BEGIN
 		_set_data_renderer (myApplet, TRUE);
 		
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.
-		{
 			g_source_remove (myData.checkLoop);
-			myData.checkLoop = 0;
-		}
 		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
-		
 	}
 	else
 	{
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
-		/// mettre l'historique a la nouvelle taille de l'icone...
+		if (myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
+			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 	}
 	
 	//\_______________ On redessine notre icone.

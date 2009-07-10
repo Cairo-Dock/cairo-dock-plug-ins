@@ -63,6 +63,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
 					bHasFocus = GTK_WIDGET_HAS_FOCUS (vterm);
 				}
+				bHasFocus |= (GDK_WINDOW_XID (myDesklet->pWidget->window) == cairo_dock_get_current_active_window ());
 			}
 			g_print ("%s (%d)\n", __func__, bHasFocus);
 			
@@ -80,10 +81,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 		}
 		else if (myData.dialog)
 		{
-			if (GTK_WIDGET_VISIBLE (myData.dialog->pWidget))
-				cairo_dock_hide_dialog(myData.dialog);
-			else
-				cairo_dock_unhide_dialog(myData.dialog);
+			cairo_dock_toggle_dialog_visibility (myData.dialog);
 		}
 	}
 	else
@@ -261,39 +259,50 @@ static void term_apply_settings_on_vterm(GtkWidget *vterm)
 
 void term_apply_settings (void)
 {
-  int sz = 0;
-  GtkWidget *vterm = NULL;
+	int sz = 0;
+	GtkWidget *vterm = NULL;
 
-  if (myData.tab) {
-    sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
-    for (int i = 0; i < sz; ++i) {
-      vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
-      term_apply_settings_on_vterm(vterm);
-    }
-  }
-  cd_keybinder_bind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
+	if (myData.tab) {
+		sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
+		for (int i = 0; i < sz; ++i) {
+			vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
+			term_apply_settings_on_vterm(vterm);
+		}
+	}
+	gboolean bKeyBinded = cd_keybinder_bind (myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
+	if (! bKeyBinded)
+	{
+		g_free (myConfig.shortcut);
+		myConfig.shortcut = NULL;
+	}	
 }
 
 static void on_terminal_child_exited(VteTerminal *vteterminal,
                                      gpointer t)
 {
-  gint p = gtk_notebook_page_num(GTK_NOTEBOOK(myData.tab), GTK_WIDGET(vteterminal));
-  gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
+	gint p = gtk_notebook_page_num(GTK_NOTEBOOK(myData.tab), GTK_WIDGET(vteterminal));
+	gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
 
-  if (sz > 1)
-    gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
-  else {
-    // \r needed to return to the beginning of the line
-    vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
-    vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
-                              NULL,
-                              NULL,
-                              NULL,
-                              "~/",
-                              FALSE,
-                              FALSE,
-                              FALSE);
-  }
+	if (sz > 1)
+		gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
+	else {
+		// \r needed to return to the beginning of the line
+		vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
+		vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
+			NULL,
+			NULL,
+			NULL,
+			"~/",
+			FALSE,
+			FALSE,
+			FALSE);
+		if (myData.dialog)
+			cairo_dock_hide_dialog (myData.dialog);
+		else if (myDesklet && myConfig.shortcut)
+		{
+			cairo_dock_hide_desklet (myDesklet);
+		}
+	}
 }
 
 
