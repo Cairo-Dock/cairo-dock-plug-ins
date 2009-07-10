@@ -146,7 +146,7 @@ CD_APPLET_RESET_DATA_BEGIN
 		glDeleteTextures (1, &myData.iHasMailTexture);
 		
 	if (myData.cWorkingDirPath != 0)
-		gfree(myData.cWorkingDirPath);
+		g_free(myData.cWorkingDirPath);
 CD_APPLET_RESET_DATA_END
 
 
