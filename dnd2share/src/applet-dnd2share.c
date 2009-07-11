@@ -172,7 +172,7 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				g_string_free (sUrlKey, TRUE);
 				
 				// On garde une copie du fichier.
-				if (myConfig.bkeepCopy)
+				if (myConfig.bkeepCopy && myData.iCurrentFileType == CD_TYPE_IMAGE)
 				{
 					gchar *cCommand = g_strdup_printf ("cp '%s' '%s/%s'", cFilePath, myData.cWorkingDirPath, cItemName);
 					int r = system (cCommand);
@@ -209,9 +209,14 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				myConfig.dTimeDialogs,
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
+		
+		// on met l'image correspondante sur l'icone.
 		if (myConfig.bDisplayLastImage)
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
+			if (myData.iCurrentFileType == CD_TYPE_IMAGE)
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
+			else
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 			CD_APPLET_REDRAW_MY_ICON;
 		}
 	}

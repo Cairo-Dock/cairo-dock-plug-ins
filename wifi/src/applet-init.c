@@ -70,7 +70,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,
 		myApplet);
 	if (cairo_dock_is_loading ())
-		cairo_dock_launch_task_delayed (myData.pTask, 5000);
+		cairo_dock_launch_task_delayed (myData.pTask, 2000);
 	else
 		cairo_dock_launch_task (myData.pTask);
 	
@@ -111,9 +111,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSignalLevel = -2;
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		cairo_dock_stop_task (myData.pTask);  // on stoppe avant car on ne veut pas attendre la prochaine iteration.
-		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
-		cairo_dock_launch_task (myData.pTask);  // mesure immediate.
+		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 	}
 	else  // on redessine juste l'icone.
 	{

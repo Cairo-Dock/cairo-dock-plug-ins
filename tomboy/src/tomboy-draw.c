@@ -5,21 +5,23 @@
 #include "tomboy-draw.h"
 
 
-
 void load_all_surfaces(void)
 {
 	//Chargement de default.svg
 	if (myData.pSurfaceDefault != NULL)
 		cairo_surface_destroy (myData.pSurfaceDefault);
-	if (myConfig.cIconDefault != NULL)
+	if (myDock)
 	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cIconDefault);
-		myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
+		if (myConfig.cIconDefault != NULL)
+		{
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cIconDefault);
+			myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			g_free (cUserImagePath);
+		}
+		else
+		{
+			myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
+		}
 	}
 	
 	//Chargement de note.svg
@@ -30,6 +32,8 @@ void load_all_surfaces(void)
 
 void update_icon(void)
 {
+	if (myDesklet)
+		return ;
 	if(myData.opening)
 	{
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
@@ -57,7 +61,7 @@ void cd_tomboy_mark_icons (GList *pIconsList, gboolean bForceRedraw)
 
 void cd_tomboy_reset_icon_marks (gboolean bForceRedraw)
 {
-	GList *pIconsList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	Icon *icon;
 	GList *ic;
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
@@ -74,11 +78,11 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon, gchar *
 {
 	const int iNeedleOffset = 8 * (1+g_fAmplitude);  // on laisse 8 pixels pour l'aiguille.
 	gchar **cLines = g_strsplit (cNoteContent, "\n", -1);
-	
+
 	cairo_set_operator (pIconContext, CAIRO_OPERATOR_OVER);
 	cairo_set_source_rgb (pIconContext, 1.0f, 0.5f, 0.0f);
 	cairo_set_line_width (pIconContext, 4.);
-	
+
 	cairo_select_font_face (pIconContext,
 		"sans",
 		CAIRO_FONT_SLANT_NORMAL,
@@ -86,7 +90,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon, gchar *
 	cairo_set_font_size (pIconContext, 12.0f);  // police 14 au zoom maximal.
 	cairo_text_extents_t textExtents;
 	cairo_text_extents (pIconContext, cLines[0], &textExtents);
-	
+
 	int i = 1, j = 1;
 	while (cLines[i] != NULL && iNeedleOffset+j*textExtents.height < myIcon->fHeight * (1+g_fAmplitude))
 	{
@@ -101,7 +105,9 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon, gchar *
 		i ++;
 	}
 	g_strfreev (cLines);
-	cairo_dock_add_reflection_to_icon (pIconContext, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
+	
 	if (g_bUseOpenGL)
-	  cairo_dock_update_icon_texture (pIcon);
+		cairo_dock_update_icon_texture (pIcon);
+	else
+		cairo_dock_add_reflection_to_icon (pIconContext, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
 }

@@ -86,14 +86,14 @@ fg alpha = 1
 renderer = 0
 
 
-#F[Gauge;gtk-dialog-info]
+#X[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = Turbo-night-fuel
 
 
-#F[Graph;gtk-dialog-info]
+#X[Graph;gtk-dialog-info]
 frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -113,7 +113,8 @@ bg color = .5;.5;1.;.4
 #b Show all values on same graph ?
 mix graph = false
 
-#F[Parameters;gtk-dialog-info]
+
+#F[Parameters;gtk-preferences]
 frame_param =
 
 #b Show CPU usage ?

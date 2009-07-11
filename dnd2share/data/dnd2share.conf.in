@@ -111,13 +111,13 @@ animation=pulse
 #F[Sites;gtk-convert]
 frame_site =
 
-#r[Custom;Pastebin] Preferred site for texts :
+#r[Custom;Pastebin.ca] Preferred site for texts hosting :
 text site = 1
 
-#r[Custom;Uppix;Imagebin;ImageShack] Preferred site for images :
+#r[Custom;Uppix.net;Imagebin.ca;ImageShack.us] Preferred site for images hosting :
 image site = 1
 
-#r[Custom;None yet] Preferred site for videos :
+#r[Custom;VideoBin.org] Preferred site for videos hosting :
 video site = 1
 
 #r[Custom;dl.free.fr;DropBox] Preferred site for files hosting :

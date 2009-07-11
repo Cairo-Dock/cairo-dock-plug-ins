@@ -89,14 +89,14 @@ fg alpha = 1
 renderer = 0
 
 
-#F[Gauge;gtk-dialog-info]
+#X[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = Turbo-night-fuel
 
 
-#F[Graph;gtk-dialog-info]
+#X[Graph;gtk-dialog-info]
 frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -115,7 +115,7 @@ bg color = .5;.5;1.;.4
 
 
 
-#F[Icons;gtk-dialog-info]
+#X[Icons;gtk-dialog-info]
 frame_icons =
 
 #r+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
@@ -141,7 +141,7 @@ icon_4 =
 icon_5 = 
 
 
-#F[Parameters;gtk-dialog-info]
+#F[Parameters;gtk-preferences]
 frame_param =
 
 #i[1;60] Delay between signal checks :
@@ -157,7 +157,7 @@ smooth = .33
 command = 
 
 
-#F+[Display;gtk-dnd-multiple]
+#F+[Info;gtk-info]
 frame_disp=
 
 #r[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :

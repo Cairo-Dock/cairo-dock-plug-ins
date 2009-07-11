@@ -1,4 +1,0 @@
-#!/bin/bash
-
-if [ ! -w $1 ] ; then exit 1 ; fi
-nvidia-settings -q GPUCoreTemp -t > $1

@@ -75,6 +75,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 	g_return_val_if_fail (myData.pDiskUsageList != NULL, TRUE);
 	
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	cairo_t *ctx = (0 ? myDrawContext : cairo_dock_create_context_from_container (pContainer));
 	GList *pElement = myData.pDiskUsageList;
 	CDDiskUsage *pDiskUsage;
 	Icon *pIcon;
@@ -95,19 +96,19 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 				{
 					case CD_SHOW_FREE_SPACE :
 						fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						cairo_dock_set_size_as_quick_info (myDrawContext, pIcon, pContainer, pDiskUsage->iAvail);
+						cairo_dock_set_size_as_quick_info (ctx, pIcon, pContainer, pDiskUsage->iAvail);
 					break ;
 					case CD_SHOW_USED_SPACE :
 						fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
-						cairo_dock_set_size_as_quick_info (myDrawContext, pIcon, pContainer, pDiskUsage->iUsed);
+						cairo_dock_set_size_as_quick_info (ctx, pIcon, pContainer, pDiskUsage->iUsed);
 					break ;
 					case CD_SHOW_FREE_SPACE_PERCENT :
 						fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", 100.*fValue);
+						cairo_dock_set_quick_info_full (ctx, pIcon, pContainer, "%.1f%%", 100.*fValue);
 					break ;
 					case CD_SHOW_USED_SPACE_PERCENT :
 						fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
-						cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%.1f%%", -100.*fValue);
+						cairo_dock_set_quick_info_full (ctx, pIcon, pContainer, "%.1f%%", -100.*fValue);
 					break ;
 				}
 				
@@ -115,8 +116,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 				{
 					int iWidth, iHeight;
 					cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
-					g_print ("myDrawContext : %d\n", myDrawContext);
-					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->acFileName, myDrawContext, iWidth, iHeight);
+					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->acFileName, ctx, iWidth, iHeight);
 					cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 					
 					cairo_dock_set_icon_surface_with_bar (pIconContext, pSurface, fValue, pIcon, pContainer);
@@ -131,6 +131,8 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 			pElement = pElement->next;
 		}
 	}
+	if (ctx != myDrawContext)
+		cairo_destroy (ctx);
 	
 	return TRUE;
 }

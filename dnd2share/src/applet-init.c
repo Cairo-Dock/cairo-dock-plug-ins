@@ -24,7 +24,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 
 CD_APPLET_DEFINITION ("dnd2share",
-	2, 0, 0,
+	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet lets you share files easily :\n"
 	"You can send files to host web services by simply drag-and-dropping them on the icon.\n"
@@ -65,7 +65,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_imagebin_backend ();
 	cd_dnd2share_register_imageshack_backend ();
 	// video backends
-	// ...
+	cd_dnd2share_register_videobin_backend ();
 	// file backends
 	cd_dnd2share_register_free_backend ();
 	

@@ -62,8 +62,13 @@ void cd_wifi_get_data (gpointer data)
 	g_free (myData.cAccessPoint);
 	myData.cAccessPoint = NULL;
 	
+	/*myData.iPercent = g_random_int_range (0, 100);
+	myData.iQuality = 5 * myData.iPercent/100;
+	myData.cInterface = g_strdup ("toto");
+	return;*/
+	
 	gchar *cResult = cairo_dock_launch_command_sync (MY_APPLET_SHARE_DATA_DIR"/wifi");
-	if (cResult == NULL || *cResult == '\0')  //   // erreur a l'execution d'iwconfig (probleme de droit d'execution ou iwconfig pas installe) ou aucune interface wifi presente
+	if (cResult == NULL || *cResult == '\0')  // erreur a l'execution d'iwconfig (probleme de droit d'execution ou iwconfig pas installe) ou aucune interface wifi presente
 	{ 
 		g_free (cResult);
 		return ;

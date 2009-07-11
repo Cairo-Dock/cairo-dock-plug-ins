@@ -87,14 +87,14 @@ fg alpha = 1
 renderer = 0
 
 
-#F[Gauge;gtk-dialog-info]
+#X[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = Battery
 
 
-#F[Graph;gtk-dialog-info]
+#X[Graph;gtk-dialog-info]
 frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -112,7 +112,7 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-#F[Icons;gtk-dialog-info]
+#X[Icons;gtk-dialog-info]
 frame_icons=
 
 #S+ Icon's filename when on battery :
@@ -124,7 +124,7 @@ effect=0
 
 
 
-#F[Parameters;gtk-dialog-info]
+#F[Parameters;gtk-preferences]
 frame_param =
 
 #i[20;180] Interval of time between 2 checks :

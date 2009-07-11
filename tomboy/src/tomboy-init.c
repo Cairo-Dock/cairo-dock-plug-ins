@@ -85,6 +85,10 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_launch_task (myData.pTask);
 		}
 	}
+	else if (myDesklet)
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Slide");  // on recharge juste les surfaces/textures des icones.
+	}
 	
 	//\___________ On redessine l'icone principale.
 	if (myData.dbus_enable)

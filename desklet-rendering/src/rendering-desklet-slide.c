@@ -46,7 +46,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->iHeight - 2 * pSlide->fMargin;
 	int dh = myLabels.iLabelSize;  // ecart entre 2 lignes.
-	int dw = 3 * dh;  // ecart entre 2 colonnes.
+	int dw = 2 * dh;  // ecart entre 2 colonnes.
 	int di = pSlide->iGapBetweenIcons;
 	
 	int p, q;  // nombre de lignes et colonnes.
@@ -221,6 +221,9 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	if (pSlide == NULL)
 		return ;
 	
+	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+	glDisable (GL_TEXTURE_2D);
+	
 	double fRadius = pSlide->iRadius;
 	double fLineWidth = pSlide->iLineWidth;
 	// le cadre.
@@ -244,50 +247,60 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	else
 	{
 		// le fond
+		
+		
+		// le cadre
 		_cairo_dock_set_vertex_xy (0, 0., pDesklet->iHeight);
 		_cairo_dock_set_vertex_xy (1, 0., fRadius);
 		_cairo_dock_set_vertex_xy (2, fRadius, 0.);
 		_cairo_dock_set_vertex_xy (3, pDesklet->iWidth, 0.);
 		_cairo_dock_set_path_as_current ();
-		cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fBgColor, 4);
+		cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
 		
-		// le cadre
-
 	}
 	
 	// les icones.
 	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->iHeight - 2 * pSlide->fMargin;
-	int dh = myLabels.iLabelSize;  // ecart entre 2 lignes.
-	int dw = 2 * dh;  // ecart entre 2 colonnes.
-	int di = pSlide->iGapBetweenIcons;
+	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
+	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
-	double x = pSlide->fMargin, y = pSlide->fMargin + dh;
-	int iNumLine = 0;
+	_cairo_dock_enable_texture ();
+	_cairo_dock_set_blend_source ();
+	_cairo_dock_set_alpha (1.);
+	
+	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
+	int q = 0;
 	Icon *pIcon;
 	GList *ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer != NULL)
+		if (pIcon->iIconTexture != 0)
 		{
 			glPushMatrix ();
 			
 			pIcon->fDrawX = x;
 			pIcon->fDrawY = y;
-			cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
-			//cairo_dock_render_one_icon_opengl (pIcon, pDesklet, 1., TRUE);
+			
+			glTranslatef (pIcon->fDrawX + pIcon->fWidth/2,
+				pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2,
+				0.);
+			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			glPopMatrix ();
 			
-			x += pSlide->iIconSize + dw + di;
-			if (x + pSlide->iIconSize + dw > w)
+			x += pSlide->iIconSize + dw;
+			q ++;
+			if (q == pSlide->iNbColumns)
 			{
-				x = pSlide->fMargin;
-				y += pSlide->iIconSize + dh + di;
+				q = 0;
+				x = pSlide->fMargin + dw/2;
+				y += pSlide->iIconSize + myLabels.iLabelSize + dh;
 			}
 		}
 	}
+	_cairo_dock_disable_texture ();
 }
 
 
