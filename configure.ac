@@ -108,67 +108,75 @@ AC_ARG_ENABLE(keyboard-indicator,
 	[  --enable-keyboard-indicator : Enable keyboard-indicator applet (default=yes) ],
 	[ with_keyboard_indicator=${enableval} ],
 	[ with_keyboard_indicator=yes ])
+AC_ARG_ENABLE(dnd2share,
+	[  --enable-dnd2share : Enable dnd2share applet (default=yes) ],
+	[ with_dnd2share=${enableval} ],
+	[ with_dnd2share=yes ])
+
 
 ############# PACKAGES ADDITIONNELS #################
 if test "$with_old_gnome_support" = "yes" ; then
-	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.) ])
+	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won\'t be built with Gnome<2.22 support.) ])
 	AC_SUBST(OLD_GNOME_INTEGRATION_CFLAGS)
 	AC_SUBST(OLD_GNOME_INTEGRATION_LIBS)
 fi
 if test "$with_gnome_support" = "yes" ; then
-	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ with_gnome_support=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won't be built with Gnome>=2.22 support.) ])
+	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ with_gnome_support=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won\'t be built with Gnome>=2.22 support.) ])
 	AC_SUBST(GNOME_INTEGRATION_CFLAGS)
 	AC_SUBST(GNOME_INTEGRATION_LIBS)
 fi
 if test "$with_xfce_support" = "yes" ; then
-	PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1, ,[ with_xfce_support=false; AC_MSG_WARN(Could not find thunar-vfs; Cairo-Dock won't be built with XFCE support.) ])
+	PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1, ,[ with_xfce_support=false; AC_MSG_WARN(Could not find thunar-vfs; Cairo-Dock won\'t be built with XFCE support.) ])
 	AC_SUBST(XFCE_INTEGRATION_CFLAGS)
 	AC_SUBST(XFCE_INTEGRATION_LIBS)
 fi
 if test "$with_alsa_mixer" = "yes" ; then
-	PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE,alsa, ,[ with_alsa_mixer=false; AC_MSG_WARN(Could not find alsa; Cairo-Dock won't be built with AlsaMixer applet.) ])
+	PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE,alsa, ,[ with_alsa_mixer=false; AC_MSG_WARN(Could not find alsa; Cairo-Dock won\'t be built with AlsaMixer applet.) ])
 	AC_SUBST(ALSA_MIXER_PACKAGE_CFLAGS)
 	AC_SUBST(ALSA_MIXER_PACKAGE_LIBS)
 fi
 if test "$with_terminal" = "yes" ; then
-	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ with_terminal=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won't be built with Terminal applet.) ])
+	PKG_CHECK_MODULES(TERMINAL_PACKAGE,vte, ,[ with_terminal=false; AC_MSG_WARN(Could not find vte; Cairo-Dock won\'t be built with Terminal applet.) ])
 	AC_SUBST(TERMINAL_PACKAGE_CFLAGS)
 	AC_SUBST(TERMINAL_PACKAGE_LIBS)
 fi
 if test "$with_xgamma" = "yes" ; then
-	PKG_CHECK_MODULES(XGAMMA_PACKAGE,x11 xxf86vm, ,[ with_xgamma=false; AC_MSG_WARN(Could not find xxf86vm; Cairo-Dock won't be built with Xgamma applet.) ])
+	PKG_CHECK_MODULES(XGAMMA_PACKAGE,x11 xxf86vm, ,[ with_xgamma=false; AC_MSG_WARN(Could not find xxf86vm; Cairo-Dock won\'t be built with Xgamma applet.) ])
 	AC_SUBST(XGAMMA_PACKAGE_CFLAGS)
 	AC_SUBST(XGAMMA_PACKAGE_LIBS)
 fi
 if test "$with_gmenu" = "yes" ; then
-	PKG_CHECK_MODULES(GMENU_PACKAGE,libgnome-menu, ,[ with_gmenu=false; AC_MSG_WARN(Could not find libgnome-menu; Cairo-Dock won't be built with GMenu applet.) ])
+	PKG_CHECK_MODULES(GMENU_PACKAGE,libgnome-menu, ,[ with_gmenu=false; AC_MSG_WARN(Could not find libgnome-menu; Cairo-Dock won\'t be built with GMenu applet.) ])
 	AC_SUBST(GMENU_PACKAGE_CFLAGS)
 	AC_SUBST(GMENU_PACKAGE_LIBS)
 fi
 if test "$with_gio_in_gmenu" = "yes" ; then
-	PKG_CHECK_MODULES(GMENU_GIO, gio-2.0, ,[ with_gio_in_gmenu=false; AC_MSG_WARN(Could not find gio-2.0; the GMenu applet won't be built with. Depending on libgnome-menu, it may not be a problem.) ])
+	PKG_CHECK_MODULES(GMENU_GIO, gio-2.0, ,[ with_gio_in_gmenu=false; AC_MSG_WARN(Could not find gio-2.0; the GMenu applet won\'t be built with. Depending on libgnome-menu, it may not be a problem.) ])
 	AC_SUBST(GMENU_GIO_CFLAGS)
 	AC_SUBST(GMENU_GIO_LIBS)
 fi
 if test "$with_mail" = "yes" ; then
-	AC_CHECK_HEADERS(errno.h fcntl.h math.h netdb.h netinet/in.h signal.h stddef.h string.h sys/select.h sys/socket.h sys/stat.h sys/types.h sys/wait.h time.h unistd.h)
-	AC_CHECK_FUNCS(mmap sigaction srandom)
-
-	# Checks for crypt library
-	AC_CHECK_LIB(crypt, encrypt)
+	MAIL_PACKAGE_CFLAGS=`libetpan-config --cflags`
+	MAIL_PACKAGE_LIBS=`libetpan-config --libs`
+	if test "x$MAIL_PACKAGE_LIBS" = "x"; then
+		echo "warning : Could not find libetpan; Cairo-Dock won't be built with Mail applet."
+		with_mail=false
+	fi
+	AC_SUBST(MAIL_PACKAGE_CFLAGS)
+	AC_SUBST(MAIL_PACKAGE_LIBS)
 fi
 if test "$with_weblets" = "yes" ; then
-	PKG_CHECK_MODULES(WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.) ])
+	PKG_CHECK_MODULES(WEBKIT,webkit-1.0, ,[ with_weblets=false; AC_MSG_WARN(Could not find webkit-1.0; Cairo-Dock won\'t be built with Weblets applet.) ])
 	AC_SUBST(WEBKIT_CFLAGS)
 	AC_SUBST(WEBKIT_LIBS)
 fi
 if test "$with_exif" = "yes" ; then
-	PKG_CHECK_MODULES(EXIF,libexif, ,[ with_exif=false; AC_MSG_WARN(Could not find libexif; Slider won't be built with exif capbilities.) ])
+	PKG_CHECK_MODULES(EXIF,libexif, ,[ with_exif=false; AC_MSG_WARN(Could not find libexif; Slider won\'t be built with exif capbilities.) ])
 	AC_SUBST(EXIF_CFLAGS)
 	AC_SUBST(EXIF_LIBS)
 fi
 if test "$with_keyboard_indicator" = "yes" ; then
-	PKG_CHECK_MODULES(KEYBOARD_INDICATOR_PACKAGE,libxklavier, ,[ with_keyboard_indicator=false; AC_MSG_WARN(Could not find libxklavier; Cairo-Dock won't be built with keyboard-indicator applet.) ])
+	PKG_CHECK_MODULES(KEYBOARD_INDICATOR_PACKAGE,libxklavier, ,[ with_keyboard_indicator=false; AC_MSG_WARN(Could not find libxklavier; Cairo-Dock won\'t be built with keyboard-indicator applet.) ])
 	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_CFLAGS)
 	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_LIBS)
 fi
@@ -193,6 +201,7 @@ AM_CONDITIONAL( [WITH_MAIL], [test "$with_mail" = "yes"] )
 AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
 AM_CONDITIONAL( [WITH_EXIF], [test "$with_exif" = "yes"] )
 AM_CONDITIONAL( [WITH_KEYBOARD_INDICATOR], [test "$with_keyboard_indicator" = "yes"] )
+AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
@@ -260,6 +269,15 @@ AC_SUBST(VERSION_DBUS, "0.5.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
+
+############# DND2SHARE #################
+DND2SHARE_PACKAGE="cd-dnd2share"
+AC_SUBST(GETTEXT_DND2SHARE, "$DBUS_PACKAGE")
+
+AC_SUBST(VERSION_DND2SHARE, "1.0.0-beta")
+AC_SUBST(PACKAGE_DND2SHARE, "$DBUS_PACKAGE")
+
+AC_SUBST(dnd2sharedatadir, "${pkgdatadir}/dnd2share")
 
 ############# DROP INDICATOR #################
 DROP_INDICATOR_PACKAGE=cd-drop_indicator
@@ -643,6 +661,12 @@ AC_CONFIG_FILES([
 	Dbus/data/Makefile
 	Dbus/data/Dbus.conf
 	
+	dnd2share/Makefile
+	dnd2share/src/Makefile
+	dnd2share/po/Makefile.in
+	dnd2share/data/Makefile
+	dnd2share/data/dnd2share.conf
+	
 	drop-indicator/Makefile
 	drop-indicator/src/Makefile
 	drop-indicator/po/Makefile.in
@@ -871,6 +895,7 @@ AC_OUTPUT([po/Makefile
 	clock/po/Makefile
 	compiz-icon/po/Makefile
 	Dbus/po/Makefile
+	dnd2share/po/Makefile
 	drop-indicator/po/Makefile
 	dustbin/po/Makefile
 	GMenu/po/Makefile

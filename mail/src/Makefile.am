@@ -17,16 +17,13 @@ libcd_mail_la_SOURCES = \
 	cd-mail-applet-accounts.c\
 	cd-mail-applet-accounts.h
 
-dock_version = `pkg-config --modversion cairo-dock`
 
-libetpan_CFLAGS=`libetpan-config --cflags`
-libetpan_LDFLAGS=`libetpan-config --libs`
+dock_version = `pkg-config --modversion cairo-dock`
 
 libcd_mail_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	$(MAIL_PACKAGE_CFLAGS)\
-	$(libetpan_CFLAGS) \
 	-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(maildatadir)"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
@@ -46,9 +43,9 @@ libcd_mail_la_CFLAGS = \
 
 
 libcd_mail_la_LIBADD = \
-	$(PACKAGE_LIBS) $(MAIL_PACKAGE_LIBS) -lm
+	$(PACKAGE_LIBS) -lm \
+	$(MAIL_PACKAGE_LIBS)
 
 
 libcd_mail_la_LDFLAGS =\
-	-avoid-version -module \
-	$(libetpan_LDFLAGS)
+	-avoid-version -module

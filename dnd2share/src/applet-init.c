@@ -20,6 +20,8 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-backend-imageshack.h"
 #include "applet-backend-free.h"
 #include "applet-backend-custom.h"
+#include "applet-backend-dropbox.h"
+#include "applet-backend-videobin.h"
 #include "applet-init.h"
 
 
@@ -30,7 +32,7 @@ CD_APPLET_DEFINITION ("dnd2share",
 	"You can send files to host web services by simply drag-and-dropping them on the icon.\n"
 	"The resulting URL is automatically stored in the clipboard to be directly copied by CTRL+v.\n"
 	"It can keep an history of your last uploads to retrieve them without any account.\n"
-	"Based on a script made by pmd (http://pmdz.info). Needs 'curl' and 'wget' to upload data."),
+	"You'll need to install 'curl' and 'wget' to upload the data."),
 	"Yann Dulieu (Nochka85) & Fabrice Rey (Fabounet)")
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -68,6 +70,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_videobin_backend ();
 	// file backends
 	cd_dnd2share_register_free_backend ();
+	cd_dnd2share_register_dropbox_backend ();
 	
 	int t;
 	for (t = 0; t < CD_NB_FILE_TYPES; t ++)

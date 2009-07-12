@@ -12,7 +12,6 @@ typedef struct {
 	gboolean bRoundedRadius;
 	gint iRadius;
 	gdouble fLineColor[4];
-	gdouble fBgColor[4];
 	gint iLineWidth;
 	gint iGapBetweenIcons;
 	// computed data

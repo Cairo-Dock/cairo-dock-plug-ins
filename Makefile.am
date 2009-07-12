@@ -60,6 +60,10 @@ if WITH_KEYBOARD_INDICATOR
 keyboard_indicator_dir=keyboard-indicator
 endif
 
+if WITH_DND2SHARE
+dnd2share_dir=dnd2share
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -67,10 +71,11 @@ SUBDIRS = . po\
 	Clipper\
 	clock\
 	${compiz_icon_dir}\
+	Dbus\
 	desklet-rendering\
 	dialog-rendering\
+	${dnd2share_dir}\
 	dock-rendering\
-	Dbus\
 	drop-indicator\
 	dustbin\
 	${gmenu_dir}\
