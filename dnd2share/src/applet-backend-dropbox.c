@@ -33,7 +33,7 @@ static void upload (const gchar *cFilePath)
 	
 	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
 	gchar *cFileName = g_path_get_basename (cFilePath);
-	cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s/%s'", myConfig.cDropboxDir ? myConfig.cDropboxDir : "", cFileName)
+	cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s/%s'", myConfig.cDropboxDir ? myConfig.cDropboxDir : "", cFileName);
 	
 	g_print ("commande dropbox : %s\n", cCommand);
 	g_free (cFileName);

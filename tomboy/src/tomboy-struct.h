@@ -17,6 +17,7 @@ struct _AppletConfig {
 	gchar *cDateFormat;
 	gboolean bAutoNaming;
 	gboolean bAskBeforeDelete;
+	gdouble fTextColor[3];
 	} ;
 
 struct _AppletData {
@@ -27,6 +28,7 @@ struct _AppletData {
 	guint iSidCheckNotes;
 	GHashTable *hNoteTable;
 	CairoDockTask *pTask;
+	gint iSidResetQuickInfo;
 	} ;
 
 #endif

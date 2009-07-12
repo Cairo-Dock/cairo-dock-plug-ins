@@ -33,6 +33,7 @@ struct _AppletConfig {
 	CdDustbinInfotype iQuickInfoType;
 	int iGlobalSizeLimit;
 	int iSizeLimit;
+	gboolean bAskBeforeDelete;
 	
 	double fCheckInterval;
 	gchar *cDefaultBrowser;

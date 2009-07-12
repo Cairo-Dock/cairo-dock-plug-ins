@@ -297,7 +297,7 @@ void cd_dnd2share_clear_working_directory (void)
 void cd_dnd2share_clear_copies_in_working_directory (void)
 {
 	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
-	gchar *cCommand = g_strdup_printf ("find '%s' ! -name *.conf -exec rm -f {} \\;", myData.cWorkingDirPath);
+	gchar *cCommand = g_strdup_printf ("find '%s' -mindepth 1 ! -name *.conf -exec rm -f '{}' \\;", myData.cWorkingDirPath);
 	int r = system (cCommand);
 	g_free (cCommand);
 }

@@ -108,6 +108,9 @@ size limit = 0
 #{in Mb. You will be notified when you go over this limit. Set 0 to not use it.}
 global size limit = 0
 
+#b Ask confirmation before empty Trash ?
+confirm = true
+
 #X[Desktop-less support]
 frame3 =
 

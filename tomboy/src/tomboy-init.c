@@ -20,7 +20,7 @@ CD_APPLET_INIT_BEGIN
 	myData.hNoteTable = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
 		NULL,  // l'URI est partage avec l'icone.
-		(GDestroyNotify) cairo_dock_free_icon);
+		(GDestroyNotify) NULL);  // on detruit les icones nous-memes.
 	
 	myData.dbus_enable = dbus_connect_to_bus ();
 	if (myData.dbus_enable)
@@ -54,10 +54,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	
 	if (myData.iSidCheckNotes != 0)
-	{
 		g_source_remove (myData.iSidCheckNotes);
-		myData.iSidCheckNotes = 0;
-	}
+	if (myData.iSidResetQuickInfo != 0)
+		g_source_remove (myData.iSidResetQuickInfo);
+	
 	dbus_disconnect_from_bus ();
 CD_APPLET_STOP_END
 
@@ -80,23 +80,31 @@ CD_APPLET_RELOAD_BEGIN
 				g_source_remove (myData.iSidCheckNotes);
 				myData.iSidCheckNotes = 0;
 			}
+			if (myData.iSidResetQuickInfo != 0)
+			{
+				g_source_remove (myData.iSidResetQuickInfo);
+				myData.iSidResetQuickInfo = 0;
+			}
 			
-			//\___________ On reconstruit le sous-dock (si l'icone de la note a change).
+			//\___________ On reconstruit les icones (si l'icone de la note a change).
 			cairo_dock_launch_task (myData.pTask);
 		}
 	}
 	else if (myDesklet)
 	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Slide");  // on recharge juste les surfaces/textures des icones.
+		cd_tomboy_reload_desklet_renderer ();  // on recharge juste les surfaces/textures des icones.
 	}
 	
 	//\___________ On redessine l'icone principale.
-	if (myData.dbus_enable)
+	if (myDock)
 	{
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault);
-	}
-	else  // on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
+		if (myData.dbus_enable)
+		{
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault);
+		}
+		else  // on signale par l'icone appropriee que le bus n'est pas accessible.
+		{
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
+		}
 	}
 CD_APPLET_RELOAD_END

@@ -25,6 +25,8 @@ libcd_dnd2share_la_SOURCES = \
 	applet-backend-pastebin.h\
 	applet-backend-custom.c\
 	applet-backend-custom.h\
+	applet-backend-dropbox.c\
+	applet-backend-dropbox.h\
 	applet-backend-videobin.c\
 	applet-backend-videobin.h\
 	applet-struct.h

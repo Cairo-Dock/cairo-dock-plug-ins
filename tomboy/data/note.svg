@@ -233,7 +233,7 @@
        xlink:href="#linearGradient5388"
        id="radialGradient2550"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.998827,0,0,0.191404,-100.2505,122.0944)"
+       gradientTransform="matrix(2.0471139,0,0,0.1960279,-103.12689,124.54931)"
        cx="101.20975"
        cy="344.29547"
        fx="101.20975"
@@ -254,16 +254,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:zoom="1.4"
+     inkscape:cx="150.71429"
+     inkscape:cy="77.142857"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="925"
-     inkscape:window-height="716"
-     inkscape:window-x="739"
-     inkscape:window-y="308" />
+     inkscape:window-height="719"
+     inkscape:window-x="91"
+     inkscape:window-y="0" />
   <metadata
      id="metadata2741">
     <rdf:RDF>
@@ -293,7 +293,7 @@
           <path
              sodipodi:nodetypes="ccccccccc"
              id="path5386"
-             d="M 14.974447,46.475504 L 194.76189,46.475504 L 195.4725,104.34263 C 195.79018,131.68638 200.02052,177.15322 204,202.78328 C 177.35165,202.56155 145.01834,205.66557 118.37001,205.44385 C 97.509577,206.59336 75.569645,206.73241 52.81508,206.109 L 10.000086,205.44385 C 12.089211,184.60282 14.661461,164.42691 14.974447,143.58588 L 14.974447,46.475504 z"
+             d="M 14.881619,47.103642 L 199.0123,47.103642 L 199.74008,106.3687 C 200.06543,134.37301 204.39797,180.93822 208.47358,207.18744 C 181.18147,206.96036 148.06706,210.13936 120.77497,209.91229 C 99.410602,211.08956 76.940653,211.23197 53.636392,210.5935 L 9.7870893,209.91229 C 11.926683,188.56779 14.561072,167.90447 14.881619,146.55997 L 14.881619,47.103642 z"
              style="opacity:0.5;fill:url(#radialGradient2550);fill-opacity:1;stroke:none;stroke-width:1.99999964;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
           <path
              sodipodi:nodetypes="ccccccccc"

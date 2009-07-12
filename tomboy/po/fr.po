@@ -67,8 +67,8 @@ msgid "Search for next week's note"
 msgstr "Chercher pour la note de la semaine prochaine"
 
 #: ../src/tomboy-notifications.c:192
-msgid "Reset marks"
-msgstr "Redémarrer les marques"
+msgid "Clear marks"
+msgstr "Effacer les marques"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -168,12 +168,3 @@ msgstr "Sinon, il vous sera demandé de le nommer"
 #: ../data/messages:45
 msgid "Automatically name a new note ?"
 msgstr "Nommer automatiquement une nouvelle note ?"
-
-#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
-#~ msgstr "Applet écrite par Necropotame (Adrien Pilleboue)"
-
-#~ msgid "width :"
-#~ msgstr "largeur :"
-
-#~ msgid "height :"
-#~ msgstr "hauteur :"

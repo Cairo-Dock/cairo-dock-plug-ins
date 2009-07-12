@@ -118,7 +118,6 @@ sep_deco =
 digital = default
 
 #C+ Text color for the numeric display:
-#{r, v, b, a}
 text color = 0.0; 0.0; 0.5; 1.
 
 #i+[1;9] Weight of the text :
@@ -135,8 +134,7 @@ sep_deco_mod =
 theme = default
 
 #C+ Text color of the date :
-#{r, v, b, a}
-date color = 1.0; 5.0; 0.9; 1.
+date color = 1.0; 0.; 0.9; 1.
 
 #F[Setup time and date;gtk-file]
 frame3 =

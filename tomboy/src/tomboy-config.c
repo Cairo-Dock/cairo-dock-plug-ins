@@ -5,7 +5,6 @@
 #include "tomboy-config.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle		= CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Icon", "default icon");
@@ -17,8 +16,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDateFormat 		= CD_CONFIG_GET_STRING ("Configuration", "date format");
 	if (myConfig.cDateFormat == NULL)
 		myConfig.cDateFormat = g_strdup ("%d/%m/%y");
-	myConfig.bAutoNaming = CD_CONFIG_GET_BOOLEAN ("Configuration", "auto-naming");
+	myConfig.bAutoNaming = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "auto-naming", TRUE);
 	myConfig.bAskBeforeDelete = CD_CONFIG_GET_BOOLEAN ("Configuration", "ask delete");
+	double couleur[3] = {1., 0., 0.5};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, couleur);
 CD_APPLET_GET_CONFIG_END
 
 

@@ -12,7 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <math.h>
 #include <unistd.h>
 #include <glib/gstdio.h>
-#include <string.h>hosting
+#include <string.h>
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"

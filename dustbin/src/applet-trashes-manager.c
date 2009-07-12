@@ -361,16 +361,23 @@ static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 
 void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 {
-	gchar *cQuestion;
-	if (cDirectory != NULL)
-		cQuestion = g_strdup_printf (D_("You're about to delete all files in %s. Sure ?"), cDirectory);
-	else if (myData.pDustbinsList != NULL)
-		cQuestion = g_strdup_printf (D_("You're about to delete all files in all dustbins. Sure ?"));
+	int iAnswer;
+	if (myConfig.bAskBeforeDelete)
+	{
+		gchar *cQuestion;
+		if (cDirectory != NULL)
+			cQuestion = g_strdup_printf (D_("You're about to delete all files in %s. Sure ?"), cDirectory);
+		else if (myData.pDustbinsList != NULL)
+			cQuestion = g_strdup_printf (D_("You're about to delete all files in all dustbins. Sure ?"));
+		else
+			return;
+		iAnswer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myContainer);
+		g_free (cQuestion);
+	}
 	else
-		return;
-	int answer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myContainer);
-	g_free (cQuestion);
-	if (answer == GTK_RESPONSE_YES)
+		iAnswer = GTK_RESPONSE_YES;
+	
+	if (iAnswer == GTK_RESPONSE_YES)
 	{
 		GString *sCommand = g_string_new ("");
 		if (cDirectory != NULL)
