@@ -251,6 +251,41 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 				0.);
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
+			if (pIcon->iLabelTexture != 0)
+			{
+				glPushMatrix ();
+				
+				double u0 = 0., u1 = 1.;
+				double fOffsetX = 0.;
+				if (pIcon->bPointed)
+				{
+					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
+						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
+					else if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
+						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
+				}
+				else if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+				{
+					fOffsetX = 0.;
+					u1 = (double) (pIcon->fWidth + 2 * myLabels.iLabelSize) / pIcon->iTextWidth;
+				}
+				
+				glTranslatef (fOffsetX, pIcon->fHeight/2 + pIcon->iTextHeight / 2, 0.);
+				
+				glBindTexture (GL_TEXTURE_2D, pIcon->iLabelTexture);
+				_cairo_dock_apply_current_texture_portion_at_size_with_offset (u0, 0.,
+					u1 - u0, 1.,
+					pIcon->iTextWidth * (u1 - u0), pIcon->iTextHeight,
+					0., 0.);
+				
+				/*_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iLabelTexture,
+					pIcon->iTextWidth,
+					pIcon->iTextHeight,
+					1.);*/
+				
+				glPopMatrix ();
+			}
+			
 			if (pIcon->iQuickInfoTexture != 0)
 			{
 				glTranslatef (0., (- pIcon->fHeight + pIcon->iQuickInfoHeight)/2, 0.);

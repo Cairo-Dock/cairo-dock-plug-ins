@@ -70,27 +70,19 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
 	{
-		gpointer *deskletParams = NULL;
 		const gchar *cDeskletRendererName = NULL;
 		switch (myConfig.iDeskletRendererType)
 		{
 			case CD_DESKLET_SLIDE :
 			default :
-			{
-				double lineColor[4] = {0, 0, 1, 1};
-				double bgColor[4] = {0, 1, 0, .4};
-				gpointer slideParams[5] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (myContainer->iHeight/5), &lineColor, &bgColor, GINT_TO_POINTER (1)};
-				deskletParams = slideParams;
 				cDeskletRendererName = "Slide";
-			}
 			break ;
 			
 			case CD_DESKLET_TREE :
-				deskletParams = NULL;
 				cDeskletRendererName = "Tree";
 			break ;
 		}
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, deskletParams);
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
 	}
 	else
 	{

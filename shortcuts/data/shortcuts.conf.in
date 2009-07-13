@@ -54,7 +54,7 @@ frame_deco=
 
 #o+ Choose a decoration theme for this desklet :
 #{Choose the 'personnal' one to define your own decorations below.}
-decorations = default
+decorations = frame&reflects
 
 #v
 sep_deco =

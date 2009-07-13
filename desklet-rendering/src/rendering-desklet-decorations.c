@@ -74,7 +74,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0,
 		0,
 		0);  // ...
-	_register_desklet_decorations ("Starcraft2",
+	_register_desklet_decorations ("futuristic",
 		"starcraft2.png",
 		NULL,
 		5,
@@ -88,6 +88,12 @@ void cd_rendering_register_desklet_decorations (void)
 		0,
 		0,
 		0);
-	
+	_register_desklet_decorations ("board",
+		"board.png",
+		NULL,
+		0,
+		0,
+		0,
+		0);  // ...
 }
 

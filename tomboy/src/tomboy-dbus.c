@@ -84,7 +84,10 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	pIcon->cParentDockName = g_strdup (myIcon->acName);
 	pIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
 	if (myConfig.bDrawContent)
+	{
 		pIcon->cClass = getNoteContent (cNoteURI);
+		cairo_dock_set_icon_static (pIcon);  // pour la lisibilite, pas d'animation.
+	}
 	return pIcon;
 }
 

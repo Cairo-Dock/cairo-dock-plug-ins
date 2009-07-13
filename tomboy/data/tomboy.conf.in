@@ -106,8 +106,8 @@ renderer =
 #b Draw note's content on their icon ?
 draw content = true
 
-#c+ Text color of the date :
-text color = 1.0; 0.3; 0.
+#c+ Text color of the content :
+text color = 1.0; 0.0; 0.
 
 
 #s Date format to search for :

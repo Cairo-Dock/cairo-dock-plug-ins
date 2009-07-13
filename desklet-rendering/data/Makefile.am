@@ -15,6 +15,7 @@ module_DATA = \
 	cd_box.svg\
 	starcraft2.png\
 	dark-bg.png\
-	clear-bg.svg
+	clear-bg.svg\
+	board.png
 
 EXTRA_DIST = $(module_DATA)

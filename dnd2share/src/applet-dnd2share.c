@@ -38,7 +38,7 @@ void cd_dnd2share_build_history (void)
 	CDUploadedItem *pItem;
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
-	int iSiteID;
+	int iSiteID, iFileType;
 	gchar *cItemName;
 	GString *sUrlKey = g_string_new ("");
 	GError *erreur = NULL;
@@ -59,18 +59,32 @@ void cd_dnd2share_build_history (void)
 			cd_warning ("dnd2share : this backend doesn't exist !");
 			continue;
 		}
+		iFileType = g_key_file_get_integer (pKeyFile, cItemName, "type", &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning (erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (iFileType >= CD_NB_FILE_TYPES)
+		{
+			cd_warning ("dnd2share : this type of file doesn't exist !");
+			continue;
+		}
 		
 		pItem = g_new0 (CDUploadedItem, 1);
 		pItem->cItemName = cItemName;
 		pItem->iSiteID = iSiteID;
-		pItem->cDistantUrls = g_new0 (gchar*, myData.backends[pItem->iFileType][pItem->iSiteID].iNbUrls+1);
-		for (j = 0; j < myData.backends[pItem->iFileType][pItem->iSiteID].iNbUrls; j ++)
+		pItem->iFileType = iFileType;
+		pItem->cDistantUrls = g_new0 (gchar*, myData.backends[iFileType][iSiteID].iNbUrls+1);
+		for (j = 0; j < myData.backends[iFileType][iSiteID].iNbUrls; j ++)
 		{
 			g_string_printf (sUrlKey, "url%d", j);
 			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);
 		}
 		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);  /// un 'int' est-ce que ca suffit ?...
-		pItem->iFileType = g_key_file_get_integer (pKeyFile, cItemName, "type", NULL);
+		
 		pItem->cLocalPath = g_key_file_get_string (pKeyFile, cItemName, "local path", NULL);
 		pItem->cFileName = g_path_get_basename (pItem->cLocalPath);
 		
@@ -164,6 +178,7 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				CDUploadedItem *pItem = g_new0 (CDUploadedItem, 1);
 				pItem->cItemName = cItemName;
 				pItem->iSiteID = myConfig.iPreferedSite[myData.iCurrentFileType];
+				pItem->iFileType = myData.iCurrentFileType;
 				pItem->cDistantUrls = g_new0 (gchar*, pCurrentBackend->iNbUrls + 1);
 				for (j = 0; j < pCurrentBackend->iNbUrls; j ++)
 				{

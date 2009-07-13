@@ -222,7 +222,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 					myData.fHoverIndicatorWidth,
 					myData.fHoverIndicatorHeight,
 					pData->fAlphaHover);
-				glPushMatrix ();
+				glPopMatrix ();
 				_cairo_dock_disable_texture ();
 			}
 		}

@@ -14,17 +14,12 @@ typedef enum _CDFileType {
 	CD_NB_FILE_TYPES
 	} CDFileType;
 
-typedef enum _CDSiteId {
-	CD_UPPIX=0,
-	CD_IMAGEBIN,
-	CD_IMAGESHACK,
-	CD_FREE,
-	CD_NB_SITES
-	} CDSiteId;
+#define CD_NB_SITES 8
+
 
 typedef struct _CDUploadedItem {
 	gchar *cItemName;  // nom de l'item, c'est aussi le nom du groupe dans le fichier historique et de la copie locale si l'option est activee (de la forme "item-$timestamp").
-	CDSiteId iSiteID;  // pour savoir quel site on a utilise => nous donne le backend.
+	gint iSiteID;  // pour savoir quel site on a utilise => nous donne le backend.
 	gchar **cDistantUrls;  // il peut y en avoir plusieurs (differentes tailles, etc), le backend sait lesquelles il s'agit.
 	time_t iDate;  // date de l'upload, permet de classer les items entre eux et de leur donner un nom unique.
 	gchar *cLocalPath;  // chemin du fichier sur le disque dur au moment de son upload.
@@ -50,7 +45,7 @@ struct _AppletConfig {
 	gint iNbItems;
 	gboolean bkeepCopy;
 	gboolean bDisplayLastImage;
-	CDSiteId iPreferedSite[CD_NB_FILE_TYPES];
+	gint iPreferedSite[CD_NB_FILE_TYPES];
 	gchar *cIconAnimation;
 	gchar *cCustomScripts[CD_NB_FILE_TYPES];
 	gchar *cDropboxDir;

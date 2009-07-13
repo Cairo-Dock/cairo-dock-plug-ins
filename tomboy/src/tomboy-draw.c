@@ -125,7 +125,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 {
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &w, &h);
-	const int iNeedleOffset = 40./200*h;  // on laisse de la place pour l'aiguille de la punaise.
+	const int iNeedleOffset = 42./200*h;  // on laisse de la place pour l'aiguille de la punaise.
 	gchar **cLines = g_strsplit (pIcon->cClass, "\n", -1);
 	if (cLines == NULL)
 		return ;
@@ -137,11 +137,10 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 	cairo_select_font_face (pIconContext,
 		"sans",
 		CAIRO_FONT_SLANT_NORMAL,
-		CAIRO_FONT_WEIGHT_BOLD);
-	cairo_set_font_size (pIconContext, 12.);  // police 12 au zoom maximal.
+		CAIRO_FONT_WEIGHT_NORMAL);
+	cairo_set_font_size (pIconContext, (myDock ? 14. : 12.));  // police 12 au zoom maximal.
 	cairo_text_extents_t textExtents;
 	cairo_text_extents (pIconContext, cLines[0], &textExtents);
-	g_print (" + %s...\n", cLines[0]);
 	
 	int i = 1, j = 1;
 	while (cLines[i] != NULL && iNeedleOffset+j*textExtents.height < h)
@@ -150,7 +149,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 		{
 			cairo_move_to (pIconContext,
 				0,
-				iNeedleOffset+j*textExtents.height);
+				iNeedleOffset+j*(textExtents.height+1));
 			cairo_show_text (pIconContext, cLines[i]);
 			j ++;
 		}

@@ -27,7 +27,7 @@ static void upload (const gchar *cFilePath)
 	g_return_if_fail (myConfig.cCustomScripts[myData.iCurrentFileType] != NULL);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("%s/%s '%s'", MY_APPLET_SHARE_DATA_DIR, myConfig.cCustomScripts[myData.iCurrentFileType], cFilePath);
+	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[myData.iCurrentFileType], cFilePath);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
@@ -35,12 +35,25 @@ static void upload (const gchar *cFilePath)
 		return ;
 	}
 	
-	if (cResult[strlen(cResult)-1] == '\n' || cResult[strlen(cResult)-1] == '\r')
-		cd_warning ("enlever le retour chariot !");
+	if (cResult[strlen(cResult)-1] == '\r')
+		cResult[strlen(cResult)-1] = '\0';
+	if (cResult[strlen(cResult)-1] == '\n')
+		cResult[strlen(cResult)-1] = '\0';
+	
+	// On prend la derniere ligne, au cas ou le script aurait blablate sur la sortie.
+	gchar *str = strrchr (cResult, '\n');
+	if (str != NULL)
+		str ++;
+	else
+		str = cResult;
+	
+	if (! cairo_dock_string_is_adress (str))
+		cd_warning ("this adress (%s) seems not valid !\nThe output was : '%s'", str, cResult);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
-	myData.cResultUrls[0] = cResult;
+	myData.cResultUrls[0] = g_strdup (str);
+	g_free (cResult);
 }
 
 

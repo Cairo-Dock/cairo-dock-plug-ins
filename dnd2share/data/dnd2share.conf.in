@@ -126,16 +126,16 @@ file site = 1
 #v
 sep_sites=
 
-#s Custom script for text upload : 
+#S Custom script for text upload : 
 text script =
 
-#s Custom script for image upload : 
+#S Custom script for image upload : 
 image script =
 
-#s Custom script for video upload : 
+#S Custom script for video upload : 
 video script =
 
-#s Custom script for file upload : 
+#S Custom script for file upload : 
 file script =
 
 #s Sub-folder of DropBox to upload to :
