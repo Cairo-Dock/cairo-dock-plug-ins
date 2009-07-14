@@ -31,6 +31,7 @@ struct _AppletConfig {
 	gboolean bStealTaskBarIcon;
 	gboolean bShowMessageContent;
 	gboolean bCheckOnStartup;
+	guint iNbMaxShown;
 } ;
 
 struct _AppletData {

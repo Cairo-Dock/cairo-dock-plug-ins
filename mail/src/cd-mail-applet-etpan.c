@@ -92,7 +92,11 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					struct mailmessage_list * msg_list = NULL;
 		      mailfolder_get_messages_list(pMailAccount->folder, &msg_list);
 	
-					guint iNbAccountsToCheck = MIN (20, pMailAccount->iNbUnseenMails);
+					guint iNbAccountsToCheck = 20;
+					if( myConfig.iNbMaxShown != -1 )
+					{
+						 iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
+					}
 					for (i = 1; iNbAccountsToCheck > 0; i ++)
 					{
 						cFrom = NULL;
@@ -349,6 +353,10 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 							{
 								cMessage = l->data;
 								g_string_append_printf(ttip_str, "\n      %s", cMessage);
+							}
+							if( myConfig.iNbMaxShown != -1 && myConfig.iNbMaxShown < pMailAccount->iNbUnseenMails )
+							{
+								g_string_append_printf(ttip_str, "\n(more...)", cMessage);
 							}
 						}
 					}

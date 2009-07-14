@@ -92,6 +92,10 @@ renderer =
 #b Show new messages' content ?
 show content = true
 
+#i[-1;20] Maximum of new messages shown ?
+#{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
+max shown mails = -1
+
 #b Check mail account on startup ?
 #{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/mdify the mail accounts you want.}
 check = true
