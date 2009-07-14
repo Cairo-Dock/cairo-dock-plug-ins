@@ -169,10 +169,24 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		}
 		g_free (cBookmarkFilePath);
 		if (myDock)
+		{
 			cairo_dock_update_dock_size (myIcon->pSubDock);
+		}
 		else
 		{
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+			const gchar *cDeskletRendererName = NULL;
+			switch (myConfig.iDeskletRendererType)
+			{
+				case CD_DESKLET_SLIDE :
+				default :
+					cDeskletRendererName = "Slide";
+				break ;
+				
+				case CD_DESKLET_TREE :
+					cDeskletRendererName = "Tree";
+				break ;
+			}
+			cairo_dock_set_desklet_renderer_by_name (myDesklet, cDeskletRendererName, NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 			gtk_widget_queue_draw (myDesklet->pWidget);
 		}
 	}

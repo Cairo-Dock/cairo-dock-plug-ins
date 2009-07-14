@@ -39,8 +39,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceDefault);
 	cairo_surface_destroy (myData.pSurfaceNote);
 	
-	free_all_notes ();
+	free_all_notes ();  // detruit aussi la liste des icones.
 	g_hash_table_destroy (myData.hNoteTable);
 	
-	CD_APPLET_DESTROY_MY_SUBDOCK;
 CD_APPLET_RESET_DATA_END

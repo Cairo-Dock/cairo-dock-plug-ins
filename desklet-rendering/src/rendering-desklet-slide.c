@@ -357,6 +357,43 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	} while (ic != pFirstDrawnElement);
 	
 	_cairo_dock_disable_texture ();
+	
+	
+	
+	/*GLuint selectBuf[512];
+    GLint hits=0;
+    GLint viewport[4];
+	
+    glGetIntegerv (GL_VIEWPORT, viewport);
+	glSelectBuffer (512, selectBuf);
+	
+	glRenderMode(GL_SELECT);
+	glInitNames();
+	glPushName(0);
+	
+	glMatrixMode (GL_PROJECTION);
+    gluPickMatrix ((GLdouble) pDesklet->iMouseX, (GLdouble) (viewport[3] - pDesklet->iMouseY), 2.0, 2.0, viewport);
+	
+	glMatrixMode(GL_MODELVIEW);
+	
+	//foreach icon
+		//glLoadName(icon->iIconTexture);
+		//draw icons bounding box (without texture)
+	
+	hits = glRenderMode (GL_RENDER);
+	for(i=0; i<hits; ++i)
+    {
+        PickingInfo info;
+       
+        id = buffer[(i<<2)+3];
+        closest = buffer[(i<<2)+1];
+    }
+	Pour chaque enregistrement de hit, elle se compose des éléments suivants :
+
+    * Le nombre de nom dans la pile.
+    * Valeur minimale de la coordonnée Z (compris entre [0,1] et multiplié par 2^32 - 1 et arrondi à l'entier non signé le plus proche.
+    * Valeur maximale de la coordonnée Z (compris entre [0,1] et multiplié par 2^32 - 1 et arrondi à l'entier non signé le plus proche.
+    * Contenu de la pile de nom.*/
 }
 
 

@@ -33,8 +33,14 @@ CD_APPLET_INIT_BEGIN
 	
 	penguin_start_animating_with_delay (myApplet);
 	
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);
-	cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);
+	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		CAIRO_DOCK_RUN_FIRST,
+		myApplet);
+	cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
+		CAIRO_DOCK_RUN_FIRST,
+		myApplet);
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
 
@@ -44,9 +50,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet);
+	penguin_remove_notfications();
 	
 	if (myData.iSidRestartDelayed != 0)
 	{
@@ -66,9 +70,7 @@ CD_APPLET_RELOAD_BEGIN
 			g_source_remove (myData.iSidRestartDelayed);
 			myData.iSidRestartDelayed = 0;
 		}
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet);
-		cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+		penguin_remove_notfications();
 		
 		//\_______________ On efface sa derniere position.
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();

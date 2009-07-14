@@ -9,6 +9,11 @@
 
 #define penguin_is_resting(pAnimation) ((pAnimation) == NULL || (pAnimation)->iNbFrames <= 1 && (pAnimation)->iSpeed == 0)
 
+#define penguin_remove_notfications() do {\
+	cairo_dock_remove_notification_func_on_icon (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);\
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);\
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet); } while (0)
+
 void penguin_move_in_dock (CairoDockModuleInstance *myApplet);
 gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);
 void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer);

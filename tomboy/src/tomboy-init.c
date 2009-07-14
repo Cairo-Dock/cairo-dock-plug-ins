@@ -26,14 +26,13 @@ CD_APPLET_INIT_BEGIN
 	if (myData.dbus_enable)
 	{
 		dbus_detect_tomboy();
-		free_all_notes ();  // il faut le faire en-dehors du thread.
 		myData.pTask = cairo_dock_new_task (0,
 				(CairoDockGetDataAsyncFunc) getAllNotes,
 				(CairoDockUpdateSyncFunc) cd_tomboy_load_notes,
 				myApplet);
 		cairo_dock_launch_task (myData.pTask);
 	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+	else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
 	}
@@ -72,7 +71,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.dbus_enable)
 		{
 			cairo_dock_stop_task (myData.pTask);
-			free_all_notes ();  // il faut le faire en-dehors du thread.
+			free_all_notes ();  // detruit aussi la liste des icones.
 			
 			//\___________ On arrete le timer.
 			if (myData.iSidCheckNotes != 0)

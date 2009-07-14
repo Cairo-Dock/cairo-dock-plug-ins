@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Name of the icon when the penguin is not free :
-name = Cairo-Penguin
+name = Tux
 
 #d Name of the dock it belongs to:
 dock name = 
@@ -29,7 +29,7 @@ change delay = 8
 alpha = 1.
 
 #b Let the penguin wander everywhere in the dock ?
-free = false
+free = true
 
 #i+[0;50] Ground offset :
 #{in pixels.}
