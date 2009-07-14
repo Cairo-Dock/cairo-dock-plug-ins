@@ -14,10 +14,39 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define _cairo_dock_set_path_as_current(...) _cairo_dock_set_vertex_pointer(pVertexTab)
 
-CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)  // gboolean, int, gdouble[4], gdouble[4]
+
+static gboolean on_move_inside_desklet (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
-	GList *pIconsList = pDesklet->icons;
-	
+	if (CAIRO_DOCK_IS_DESKLET (pContainer) && CAIRO_DESKLET (pContainer)->pRenderer->render == rendering_draw_slide_in_desklet)
+	{
+		CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
+		Icon *pIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
+		if (pIcon != NULL)
+		{
+			if (! pIcon->bPointed)
+			{
+				Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
+				if (pPointedIcon != NULL)
+					pPointedIcon->bPointed = FALSE;
+				pIcon->bPointed = TRUE;
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+		else
+		{
+			Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
+			if (pPointedIcon != NULL)
+			{
+				pPointedIcon->bPointed = FALSE;
+				gtk_widget_queue_draw (pDesklet->pWidget);
+			}
+		}
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)  // gboolean, int, gdouble[4]
+{
 	CDSlideParameters *pSlide = g_new0 (CDSlideParameters, 1);
 	if (pConfig != NULL)
 	{
@@ -28,6 +57,8 @@ CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *p
 		pSlide->iLineWidth = 2;
 		pSlide->iGapBetweenIcons = 10;
 	}
+	
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_move_inside_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	return pSlide;
 }
@@ -77,6 +108,8 @@ void rendering_load_slide_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 
 void rendering_free_slide_data (CairoDesklet *pDesklet)
 {
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_move_inside_desklet, NULL);
+	
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
 		return ;
@@ -232,6 +265,7 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
 	
+	
 	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
@@ -239,12 +273,32 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		
+		pIcon->fDrawX = x;
+		pIcon->fDrawY = y;
+		
+		x += pSlide->iIconSize + dw;
+		q ++;
+		if (q == pSlide->iNbColumns)
+		{
+			q = 0;
+			x = pSlide->fMargin + dw/2;
+			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
+		}
+	}
+	
+	
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+	ic = pFirstDrawnElement;
+	do
+	{
+		pIcon = ic->data;
+		
 		if (pIcon->iIconTexture != 0)
 		{
 			glPushMatrix ();
-			
-			pIcon->fDrawX = x;
-			pIcon->fDrawY = y;
 			
 			glTranslatef (pIcon->fDrawX + pIcon->fWidth/2,
 				pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2,
@@ -259,15 +313,20 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 				double fOffsetX = 0.;
 				if (pIcon->bPointed)
 				{
+					_cairo_dock_set_alpha (1.);
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
+						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
 					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
 						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
-					else if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
-						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
 				}
-				else if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+				else
 				{
-					fOffsetX = 0.;
-					u1 = (double) (pIcon->fWidth + 2 * myLabels.iLabelSize) / pIcon->iTextWidth;
+					_cairo_dock_set_alpha (.6);
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					{
+						fOffsetX = 0.;
+						u1 = (double) (pIcon->fWidth + 2 * myLabels.iLabelSize) / pIcon->iTextWidth;
+					}
 				}
 				
 				glTranslatef (fOffsetX, pIcon->fHeight/2 + pIcon->iTextHeight / 2, 0.);
@@ -277,11 +336,7 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 					u1 - u0, 1.,
 					pIcon->iTextWidth * (u1 - u0), pIcon->iTextHeight,
 					0., 0.);
-				
-				/*_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iLabelTexture,
-					pIcon->iTextWidth,
-					pIcon->iTextHeight,
-					1.);*/
+				_cairo_dock_set_alpha (1.);
 				
 				glPopMatrix ();
 			}
@@ -296,20 +351,13 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			}
 			
 			glPopMatrix ();
-			
-			x += pSlide->iIconSize + dw;
-			q ++;
-			if (q == pSlide->iNbColumns)
-			{
-				q = 0;
-				x = pSlide->fMargin + dw/2;
-				y += pSlide->iIconSize + myLabels.iLabelSize + dh;
-			}
 		}
-	}
+		
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
+	} while (ic != pFirstDrawnElement);
+	
 	_cairo_dock_disable_texture ();
 }
-
 
 
 void rendering_register_slide_desklet_renderer (void)

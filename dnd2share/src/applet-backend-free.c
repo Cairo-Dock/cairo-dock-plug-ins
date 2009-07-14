@@ -32,8 +32,10 @@ static void upload (const gchar *cFilePath)
 		return ;
 	}
 	
-	if (cResult[strlen(cResult)-1] == '\n' || cResult[strlen(cResult)-1] == '\r')
-		cd_warning ("enlever le retour chariot !");
+	if (cResult[strlen(cResult)-1] == '\r')
+		cResult[strlen(cResult)-1] = '\0';
+	if (cResult[strlen(cResult)-1] == '\n')
+		cResult[strlen(cResult)-1] = '\0';
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);

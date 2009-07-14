@@ -7,7 +7,7 @@
 shortkey = <Control>F9
 
 #k Shortkey to activate/deactivate the finder mode :
-shortkey search = <Control>F8
+shortkey search = <Control>Return
 
 #i[1;20] Maximum number of results to display for files :
 nb results max = 10
@@ -21,13 +21,10 @@ appear duration = 500
 
 #I[0;2000] Duration of the stop animation :
 #{In ms.}
-stop duration = 700
+stop duration = 800
 
 #a+ Animation of the current icon :
 animation=pulse
-
-#b use the Navigation mode ?
-nav mode = true
 
 
 #F[Characters]
@@ -51,7 +48,7 @@ text weight = 5
 text outlined = true
 
 #c+ Text color :
-text color = 1;1.;1.
+text color = 1.;1.;1.
 
 #C+ Color of the background of the characters :
 bg color = 0.0; 0.0; 0.1; .8

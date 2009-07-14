@@ -23,10 +23,10 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 	"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 	"- the navigation mode : use the arrows to navigate into the docks and sub-docks,\n"
 	"  or type a command to find a corresponding launcher and press Tab to automatically jump to the next suitable launcher\n"
+	"  press Enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"- the finder mode : type a command to find the corresponding launcher, or to launch any command or file\n"
 	"  use the arrows or Tab to navigate between the found launchers if any\n"
-	"Escape, Return or the same shortkey to finish.\n"
-	"Press Enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click."),
+	"Escape, Return or the same shortkey to finish."),
 	"Fabounet (Fabrice Rey)")
 
 
