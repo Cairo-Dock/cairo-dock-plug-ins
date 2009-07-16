@@ -198,6 +198,9 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, ca
 	int iNbIcons = g_list_length (pDesklet->icons);
 	pCaroussel->fDeltaTheta = (iNbIcons != 0 ? 2 * G_PI / iNbIcons : 0);
 	
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
+	
 	return pCaroussel;
 }
 
@@ -238,21 +241,13 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		pCaroussel->a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
 		pCaroussel->b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
 	}
-	
-	/*// brancher la rotation sur la position de la souris, lors de l'update du desklet
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, pDesklet);
-	//  on garde quand meme la notif pour le scroll, pour les nostalgiques
-	cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, CAIRO_DOCK_RUN_AFTER, pDesklet);
-	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_AFTER, NULL);*/
 }
 
 
 void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 {
-//	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
-	/*cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, pDesklet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, NULL);*/
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, NULL);
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -714,25 +709,22 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 }
 
 
+void rendering_draw_caroussel_bounding_box (CairoDesklet *pDesklet)
+{
+	/// A FAIRE...
+	
+}
 
 void rendering_register_caroussel_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render = rendering_draw_caroussel_in_desklet;
-	pRenderer->configure = rendering_configure_caroussel;
-	pRenderer->load_data = rendering_load_caroussel_data;
-	pRenderer->free_data = rendering_free_caroussel_data;
-	pRenderer->load_icons = rendering_load_icons_for_caroussel;
-	pRenderer->render_opengl = rendering_draw_caroussel_in_desklet_opengl;
+	pRenderer->render 			= (CairoDeskletRenderFunc) rendering_draw_caroussel_in_desklet;
+	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) rendering_configure_caroussel;
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) rendering_load_caroussel_data;
+	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) rendering_free_caroussel_data;
+	pRenderer->load_icons 		= (CairoDeskletLoadIconsFunc) rendering_load_icons_for_caroussel;
+	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) rendering_draw_caroussel_in_desklet_opengl;
+	pRenderer->render_bounding_box 	= (CairoDeskletGLRenderFunc) rendering_draw_caroussel_bounding_box;
 	
-	cairo_dock_register_desklet_renderer (MY_APPLET_CAROUSSEL_DESKLET_RENDERER_NAME, pRenderer);
-	
-	/// je deplace ca la pour le moment, il faudrait les enregistrer sur le desklet en particulier plutot que tous.
-	/// le scroll fait planter ...
-	
-	// brancher la rotation sur la position de la souris, lors de l'update du desklet
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	//  on garde quand meme la notif pour le scroll, pour les nostalgiques
-	///cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) on_scroll_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_desklet_renderer ("Caroussel", pRenderer);
 }

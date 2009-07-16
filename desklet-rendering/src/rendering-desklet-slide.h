@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_SLIDE_DESKLET_RENDERER_NAME "Slide"
-
 
 typedef struct {
 	// from config

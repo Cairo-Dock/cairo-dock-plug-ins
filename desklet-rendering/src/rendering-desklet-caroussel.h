@@ -4,8 +4,6 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_CAROUSSEL_DESKLET_RENDERER_NAME "Caroussel"
-
 
 typedef struct {
 	gboolean b3D;

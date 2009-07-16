@@ -59,10 +59,10 @@ static void upload (const gchar *cFilePath)
 
 void cd_dnd2share_register_custom_backends (void)
 {
-	int i;
-	for (i = 0; i < CD_NB_FILE_TYPES; i ++)
+	CDFileType t;
+	for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 	{
-		cd_dnd2share_register_new_backend (i,
+		cd_dnd2share_register_new_backend (t,
 			"custom",
 			NB_URLS,
 			s_UrlLabels,

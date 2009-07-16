@@ -42,6 +42,7 @@ static gboolean on_move_inside_desklet (gpointer pUserData, CairoContainer *pCon
 			}
 		}
 	}
+	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -224,36 +225,37 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 {
 	_cairo_dock_define_static_vertex_tab (7);
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
-	//g_print ("%s(%x)\n", __func__, pSlide);
 	if (pSlide == NULL)
 		return ;
 	
-	//glDisable (GL_TEXTURE_2D);
-	
+	// le cadre.
 	double fRadius = pSlide->iRadius;
 	double fLineWidth = pSlide->iLineWidth;
-	// le cadre.
-	if (pSlide->bRoundedRadius)
+	if (fLineWidth != 0 && pSlide->fLineColor[3] != 0)
 	{
-		// le cadre
-		cairo_dock_draw_rounded_rectangle_opengl (fRadius,
-			fLineWidth,
-			pDesklet->iWidth - 2 * fRadius,
-			pDesklet->iHeight,
-			0., 0.,
-			pSlide->fLineColor);
+		if (pSlide->bRoundedRadius)
+		{
+			cairo_dock_draw_rounded_rectangle_opengl (fRadius,
+				fLineWidth,
+				pDesklet->iWidth - 2 * fRadius,
+				pDesklet->iHeight,
+				0., 0.,
+				pSlide->fLineColor);
+			glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+		}
+		else
+		{
+			int i = 0;
+			_cairo_dock_set_vertex_xy (0, -pDesklet->iWidth/2, 				+pDesklet->iHeight/2);
+			_cairo_dock_set_vertex_xy (1, -pDesklet->iWidth/2, 				-pDesklet->iHeight/2 + fRadius);
+			_cairo_dock_set_vertex_xy (2, -pDesklet->iWidth/2 + fRadius, 	-pDesklet->iHeight/2);
+			_cairo_dock_set_vertex_xy (3, +pDesklet->iWidth/2, 				-pDesklet->iHeight/2);
+			_cairo_dock_set_path_as_current ();
+			cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
+		}
 	}
-	else
-	{
-		int i = 0;
-		glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
-		_cairo_dock_set_vertex_xy (0, 0., pDesklet->iHeight);
-		_cairo_dock_set_vertex_xy (1, 0., fRadius);
-		_cairo_dock_set_vertex_xy (2, fRadius, 0.);
-		_cairo_dock_set_vertex_xy (3, pDesklet->iWidth, 0.);
-		_cairo_dock_set_path_as_current ();
-		cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
-	}
+	
+	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
 	
 	// les icones.
 	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
@@ -303,6 +305,7 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			glTranslatef (pIcon->fDrawX + pIcon->fWidth/2,
 				pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2,
 				0.);
+			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			if (pIcon->iLabelTexture != 0)
@@ -357,55 +360,50 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	} while (ic != pFirstDrawnElement);
 	
 	_cairo_dock_disable_texture ();
-	
-	
-	
-	/*GLuint selectBuf[512];
-    GLint hits=0;
-    GLint viewport[4];
-	
-    glGetIntegerv (GL_VIEWPORT, viewport);
-	glSelectBuffer (512, selectBuf);
-	
-	glRenderMode(GL_SELECT);
-	glInitNames();
-	glPushName(0);
-	
-	glMatrixMode (GL_PROJECTION);
-    gluPickMatrix ((GLdouble) pDesklet->iMouseX, (GLdouble) (viewport[3] - pDesklet->iMouseY), 2.0, 2.0, viewport);
-	
-	glMatrixMode(GL_MODELVIEW);
-	
-	//foreach icon
-		//glLoadName(icon->iIconTexture);
-		//draw icons bounding box (without texture)
-	
-	hits = glRenderMode (GL_RENDER);
-	for(i=0; i<hits; ++i)
-    {
-        PickingInfo info;
-       
-        id = buffer[(i<<2)+3];
-        closest = buffer[(i<<2)+1];
-    }
-	Pour chaque enregistrement de hit, elle se compose des éléments suivants :
+}
 
-    * Le nombre de nom dans la pile.
-    * Valeur minimale de la coordonnée Z (compris entre [0,1] et multiplié par 2^32 - 1 et arrondi à l'entier non signé le plus proche.
-    * Valeur maximale de la coordonnée Z (compris entre [0,1] et multiplié par 2^32 - 1 et arrondi à l'entier non signé le plus proche.
-    * Contenu de la pile de nom.*/
+
+void rendering_draw_slide_bounding_box (CairoDesklet *pDesklet)
+{
+	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+	
+	double x, y, w, h;
+	int numActive = 0;
+	Icon *pIcon;
+	GList *ic;
+	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (pIcon->iIconTexture == 0)
+			continue;
+		
+		w = pIcon->fWidth/2;
+		h = pIcon->fHeight/2;
+		x = pIcon->fDrawX + w;
+		y = pDesklet->iHeight - pIcon->fDrawY - h;
+		
+		glLoadName(pIcon->iIconTexture);
+		
+		glBegin(GL_QUADS);
+		glVertex3f(x-.5*w, y+.5*h, 0.);
+		glVertex3f(x+.5*w, y+.5*h, 0.);
+		glVertex3f(x+.5*w, y-.5*h, 0.);
+		glVertex3f(x-.5*w, y-.5*h, 0.);
+		glEnd();
+	}	
 }
 
 
 void rendering_register_slide_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render = rendering_draw_slide_in_desklet;
-	pRenderer->configure = rendering_configure_slide;
-	pRenderer->load_data = rendering_load_slide_data;
-	pRenderer->free_data = rendering_free_slide_data;
-	pRenderer->load_icons = rendering_load_icons_for_slide;
-	pRenderer->render_opengl = rendering_draw_slide_in_desklet_opengl;
+	pRenderer->render 			= (CairoDeskletRenderFunc) rendering_draw_slide_in_desklet;
+	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) rendering_configure_slide;
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) rendering_load_slide_data;
+	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) rendering_free_slide_data;
+	pRenderer->load_icons 		= (CairoDeskletLoadIconsFunc) rendering_load_icons_for_slide;
+	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) rendering_draw_slide_in_desklet_opengl;
+	pRenderer->render_bounding_box 	= (CairoDeskletGLRenderFunc) rendering_draw_slide_bounding_box;
 	
-	cairo_dock_register_desklet_renderer (MY_APPLET_SLIDE_DESKLET_RENDERER_NAME, pRenderer);
+	cairo_dock_register_desklet_renderer ("Slide", pRenderer);
 }

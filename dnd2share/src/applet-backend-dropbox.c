@@ -24,8 +24,6 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 static void upload (const gchar *cFilePath)
 {
-	g_return_if_fail (myConfig.cCustomScripts[myData.iCurrentFileType] != NULL);
-	
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("dropbox start && cp '%s' '~/Dropbox/Public/%s'", cFilePath, myConfig.cDropboxDir ? myConfig.cDropboxDir : "");
 	int r = system (cCommand);
@@ -45,8 +43,10 @@ static void upload (const gchar *cFilePath)
 		return ;
 	}
 	
-	if (cResult[strlen(cResult)-1] == '\n' || cResult[strlen(cResult)-1] == '\r')
-		cd_warning ("enlever le retour chariot !");
+	if (cResult[strlen(cResult)-1] == '\r')
+		cResult[strlen(cResult)-1] = '\0';
+	if (cResult[strlen(cResult)-1] == '\n')
+		cResult[strlen(cResult)-1] = '\0';
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
