@@ -33,7 +33,7 @@ icon=
 
 #j+[48;512] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
-size = 196;196
+size = 400;200
 
 #i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click. Negative values are counted from the right/bottom of the screen}
@@ -109,6 +109,11 @@ draw content = true
 #c+ Text color of the content :
 text color = 1.0; 0.0; 0.
 
+#b Display note's content with a dialog ?
+popup content = true
+
+#v
+sep=
 
 #s Date format to search for :
 #{Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y).}

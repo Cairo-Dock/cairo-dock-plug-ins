@@ -4,6 +4,7 @@
 
 #include "tomboy-struct.h"
 #include "tomboy-draw.h"
+#include "tomboy-notifications.h"
 #include "tomboy-dbus.h"
 
 static DBusGProxy *dbus_proxy_tomboy = NULL;
@@ -81,7 +82,8 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->acCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca deviendrait un vrai lanceur.
-	pIcon->cParentDockName = g_strdup (myIcon->acName);
+	if (myDock)
+		pIcon->cParentDockName = g_strdup (myIcon->acName);  // a priori inutile, la macro le fait ... a tester.
 	pIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
 	if (myConfig.bDrawContent)
 	{
@@ -341,6 +343,10 @@ gboolean cd_tomboy_load_notes (void)
 {
 	GList *pList = g_hash_table_get_values (myData.hNoteTable);
 	CD_APPLET_LOAD_MY_ICONS_LIST (pList, myConfig.cRenderer, "Slide", NULL);
+	
+	if (myConfig.bPopupContent)
+		cairo_dock_register_notification_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
+	
 	update_icon ();
 	
 	cd_tomboy_draw_content_on_all_icons ();
@@ -354,6 +360,7 @@ void free_all_notes (void)
 {
 	cd_message ("");
 	g_hash_table_remove_all (myData.hNoteTable);
+	cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);  // le sous-dock n'est pas forcement detruit.
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 }
 
@@ -392,7 +399,6 @@ void showNote(gchar *note_name)
 }
 
 
-
 gchar **getNoteTags (const gchar *note_name)
 {
 	gchar **cTags = NULL;
@@ -403,7 +409,6 @@ gchar **getNoteTags (const gchar *note_name)
 		G_TYPE_INVALID);
 	return cTags;
 }
-
 
 
 static gchar **_cd_tomboy_get_note_names_with_tag (gchar *cTag)
@@ -465,7 +470,7 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
 {
 	g_return_val_if_fail (cContents != NULL, NULL);
-	GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	GList *pList = CD_APPLET_MY_ICONS_LIST;
 	GList *pMatchList = NULL;
 	Icon *icon;
 	GList *ic;

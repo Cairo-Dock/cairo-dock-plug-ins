@@ -60,6 +60,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
 	myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
+	myConfig.cSpotImage = CD_CONFIG_GET_STRING ("Spot", "spot image");
+	myConfig.cSpotFrontImage = CD_CONFIG_GET_STRING ("Spot", "spot imagefront ");
 	gdouble pColor[4];
 	CD_CONFIG_GET_COLOR_RVB ("Spot", "spot color", pColor);
 	for (i=0; i<3; i++)
@@ -67,12 +69,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR ("Spot", "halo color", pColor);
 	for (i=0; i<4; i++)
 		myConfig.pHaloColor[i] = pColor[i];
-	CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", myConfig.pRaysColor1);
-	//for (i=0; i<3; i++)
-	//	myConfig.pRaysColor1[i] = pColor[i];
-	CD_CONFIG_GET_COLOR_RVB ("Spot", "color2", myConfig.pRaysColor2);
-	//for (i=0; i<3; i++)
-	//	myConfig.pRaysColor2[i] = pColor[i];
+	CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", pColor);
+	for (i=0; i<3; i++)
+		myConfig.pRaysColor1[i] = pColor[i];
+	CD_CONFIG_GET_COLOR_RVB ("Spot", "color2", pColor);
+	for (i=0; i<3; i++)
+		myConfig.pRaysColor2[i] = pColor[i];
 	myConfig.bMysticalRays = CD_CONFIG_GET_BOOLEAN ("Spot", "mystical");
 	myConfig.iNbRaysParticles = CD_CONFIG_GET_INTEGER ("Spot", "nb part");
 	myConfig.iRaysParticleSize = CD_CONFIG_GET_INTEGER ("Spot", "part size");
@@ -101,7 +103,8 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	
+	g_free (myConfig.cSpotImage);
+	g_free (myConfig.cSpotFrontImage);
 CD_APPLET_RESET_CONFIG_END
 
 

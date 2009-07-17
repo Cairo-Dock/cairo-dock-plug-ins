@@ -15,33 +15,31 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define _cairo_dock_set_path_as_current(...) _cairo_dock_set_vertex_pointer(pVertexTab)
 
 
-static gboolean on_move_inside_desklet (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+static gboolean on_enter_icon_desklet (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
-	if (CAIRO_DOCK_IS_DESKLET (pContainer) && CAIRO_DESKLET (pContainer)->pRenderer->render == rendering_draw_slide_in_desklet)
+	gtk_widget_queue_draw (pContainer->pWidget);
+	/*CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
+	Icon *pIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
+	if (pIcon != NULL)
 	{
-		CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
-		Icon *pIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
-		if (pIcon != NULL)
-		{
-			if (! pIcon->bPointed)
-			{
-				Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
-				if (pPointedIcon != NULL)
-					pPointedIcon->bPointed = FALSE;
-				pIcon->bPointed = TRUE;
-				gtk_widget_queue_draw (pDesklet->pWidget);
-			}
-		}
-		else
+		if (! pIcon->bPointed)
 		{
 			Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
 			if (pPointedIcon != NULL)
-			{
 				pPointedIcon->bPointed = FALSE;
-				gtk_widget_queue_draw (pDesklet->pWidget);
-			}
+			pIcon->bPointed = TRUE;
+			gtk_widget_queue_draw (pDesklet->pWidget);
 		}
 	}
+	else
+	{
+		Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
+		if (pPointedIcon != NULL)
+		{
+			pPointedIcon->bPointed = FALSE;
+			gtk_widget_queue_draw (pDesklet->pWidget);
+		}
+	}*/
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -59,7 +57,7 @@ CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *p
 		pSlide->iGapBetweenIcons = 10;
 	}
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_move_inside_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	return pSlide;
 }
@@ -109,7 +107,7 @@ void rendering_load_slide_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 
 void rendering_free_slide_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_move_inside_desklet, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_desklet, NULL);
 	
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
@@ -308,6 +306,14 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
+			if (pIcon->bHasIndicator && g_iIndicatorTexture != 0)
+			{
+				glPushMatrix ();
+				glTranslatef (0., - pIcon->fHeight/2 + g_fIndicatorHeight/2 * pIcon->fWidth / g_fIndicatorWidth, 0.);
+				_cairo_dock_apply_texture_at_size (g_iIndicatorTexture, pIcon->fWidth, g_fIndicatorHeight * pIcon->fWidth / g_fIndicatorWidth);
+				glPopMatrix ();
+			}
+			
 			if (pIcon->iLabelTexture != 0)
 			{
 				glPushMatrix ();
@@ -403,7 +409,6 @@ void rendering_register_slide_desklet_renderer (void)
 	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) rendering_free_slide_data;
 	pRenderer->load_icons 		= (CairoDeskletLoadIconsFunc) rendering_load_icons_for_slide;
 	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) rendering_draw_slide_in_desklet_opengl;
-	pRenderer->render_bounding_box 	= (CairoDeskletGLRenderFunc) rendering_draw_slide_bounding_box;
 	
 	cairo_dock_register_desklet_renderer ("Slide", pRenderer);
 }

@@ -261,8 +261,8 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="925"
-     inkscape:window-height="719"
-     inkscape:window-x="91"
+     inkscape:window-height="726"
+     inkscape:window-x="0"
      inkscape:window-y="0" />
   <metadata
      id="metadata2741">
@@ -280,7 +280,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       transform="translate(-4.0004103,-6.4750209)"
+       transform="matrix(1.0582321,0,0,1.1312645,-13.318025,-23.057273)"
        id="g2746">
       <g
          transform="matrix(1.1341203,-0.1640015,0.1640015,1.1341203,-12.261381,30.758192)"

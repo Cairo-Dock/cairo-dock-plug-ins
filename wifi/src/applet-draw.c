@@ -36,7 +36,7 @@ void cd_wifi_draw_icon (void) {
 			}
 		break;
 		case WIFI_INFO_SIGNAL_STRENGTH_LEVEL :
-			if (myData.iQuality != myData.iPreviousQuality) {
+			if (myData.iQuality != myData.iPreviousQuality && myData.iQuality < WIFI_NB_QUALITY) {
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (D_(s_cLevelQualityName[myData.iQuality]));
 				bNeedRedraw = TRUE;
 			}
@@ -79,6 +79,9 @@ void cd_wifi_draw_icon (void) {
 }
 
 void cd_wifi_draw_icon_with_effect (CDWifiQuality iQuality) {
+	if (iQuality >= WIFI_NB_QUALITY)
+		iQuality = WIFI_QUALITY_NO_SIGNAL;
+	
 	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
 	if (pSurface == NULL) {
 		if (myConfig.cUserImage[iQuality] != NULL) {

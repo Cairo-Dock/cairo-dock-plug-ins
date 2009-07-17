@@ -41,6 +41,8 @@ struct _AppletConfig {
 	gint iSpotDuration;
 	gboolean bContinueSpot;
 	GLfloat pSpotColor[3];
+	gchar *cSpotImage;
+	gchar *cSpotFrontImage;
 	GLfloat pHaloColor[4];
 	gdouble pRaysColor1[3];
 	gdouble pRaysColor2[3];

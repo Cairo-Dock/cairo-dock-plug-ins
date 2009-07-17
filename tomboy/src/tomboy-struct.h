@@ -14,6 +14,7 @@ struct _AppletConfig {
 	gboolean bNoDeletedSignal;
 	gchar *cRenderer;
 	gboolean bDrawContent;
+	gboolean bPopupContent;
 	gchar *cDateFormat;
 	gboolean bAutoNaming;
 	gboolean bAskBeforeDelete;

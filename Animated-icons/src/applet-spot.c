@@ -31,6 +31,7 @@ void cd_animations_init_spot (Icon *pIcon, CairoDock *pDock, CDAnimationData *pD
 	pData->fHaloRotationAngle = 0;
 }
 
+
 void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor)
 {
 	glPushMatrix ();
@@ -46,7 +47,7 @@ void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 	if (! pDock->bDirectionUp)
 		glScalef (1., -1., 1.);
 	
-	glColor4f (1., 1., 1., pIcon->fAlpha);
+	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], pIcon->fAlpha);
 	cairo_dock_draw_texture (myData.iSpotTexture, fRadiusFactor * pIcon->fWidth * pIcon->fScale, fRadiusFactor * CD_ANIMATIONS_SPOT_HEIGHT * pIcon->fScale);
 	
 	glPopMatrix ();
@@ -71,8 +72,8 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 	if (! pDock->bDirectionUp)
 		glScalef (1., -1., 1.);
 	
-	glColor4f (1., 1., 1., pIcon->fAlpha);
-	cairo_dock_draw_texture (myData.iHaloTexture, pIcon->fWidth * pIcon->fScale*.25, 6);
+	glColor4f (myConfig.pHaloColor[0], myConfig.pHaloColor[1], myConfig.pHaloColor[2], pIcon->fAlpha);
+	cairo_dock_draw_texture (myData.iHaloTexture, pIcon->fWidth * pIcon->fScale*.25, 6);  // taille qui rend pas trop mal.
 	
 	glPopMatrix ();
 }
@@ -92,7 +93,7 @@ void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRad
 	if (! pDock->bDirectionUp)
 		glScalef (1., -1., 1.);
 	
-	glColor4f (1., 1., 1., pIcon->fAlpha);
+	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], pIcon->fAlpha);
 	cairo_dock_draw_texture (myData.iSpotFrontTexture, fRadiusFactor * pIcon->fWidth * pIcon->fScale, fRadiusFactor * pIcon->fHeight * pIcon->fScale);
 	
 	glPopMatrix ();

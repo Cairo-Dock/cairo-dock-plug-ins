@@ -11,7 +11,10 @@
 CD_APPLET_DEFINITION ("TomBoy",
 	1, 5, 4,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
-	N_("Control your TomBoy's notes directly in the dock !"),
+	N_("Control your TomBoy's notes directly in the dock !\n"
+	"Click on a note to open it, Escape to close it.\n"
+	"Middle-click to instantly create a new note.\n"
+	"You can search inside notes and display their content on the icons."),
 	"Necropotame (Adrien Pilleboue)")
 
 CD_APPLET_INIT_BEGIN
@@ -51,6 +54,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);
 	
 	if (myData.iSidCheckNotes != 0)
 		g_source_remove (myData.iSidCheckNotes);

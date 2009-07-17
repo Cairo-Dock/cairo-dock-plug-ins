@@ -5,9 +5,9 @@
 
 #include <cairo-dock.h>
 
-#define cd_animation_load_spot_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot.png")
 #define cd_animation_load_halo_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("halo.png")
-#define cd_animation_load_spot_front_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("spot-front2.png")
+#define cd_animation_load_spot_texture(...) CD_APPLET_LOAD_TEXTURE_WITH_DEFAULT (myConfig.cSpotImage, "spot.png")
+#define cd_animation_load_spot_front_texture(...) CD_APPLET_LOAD_TEXTURE_WITH_DEFAULT (myConfig.cSpotFrontImage, "spot-front2.png")
 
 void cd_animations_init_spot (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt);
 

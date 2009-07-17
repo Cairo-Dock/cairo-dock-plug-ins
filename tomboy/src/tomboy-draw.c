@@ -148,8 +148,8 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 		if (*cLines[i] != '\0')  // on saute les lignes vides.
 		{
 			cairo_move_to (pIconContext,
-				0,
-				iNeedleOffset+j*(textExtents.height+1));
+				12./200*h,  // on laisse un peu de place pour ne pas deborder sur la gauche.
+				iNeedleOffset+j*(textExtents.height+2));
 			cairo_show_text (pIconContext, cLines[i]);
 			j ++;
 		}
@@ -190,4 +190,6 @@ void cd_tomboy_reload_desklet_renderer (void)
 	CD_APPLET_SET_DESKLET_RENDERER ("Slide");
 	
 	cd_tomboy_draw_content_on_all_icons ();
+	
+	cairo_dock_redraw_container (myContainer);
 }

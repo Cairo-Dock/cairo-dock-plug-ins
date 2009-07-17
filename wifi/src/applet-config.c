@@ -55,6 +55,8 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_task (myData.pTask);
 	
+	CD_APPLET_REMOVE_MY_DATA_RENDERER;
+	
 	int i;
 	for (i = 0; i < WIFI_NB_QUALITY; i ++)
 		cairo_surface_destroy (myData.pSurfaces[i]);
@@ -62,7 +64,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cESSID);
 	g_free (myData.cInterface);
 	g_free (myData.cAccessPoint);
-	
-	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 CD_APPLET_RESET_DATA_END

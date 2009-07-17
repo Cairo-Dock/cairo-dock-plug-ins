@@ -187,3 +187,23 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	else
 		_cd_tomboy_create_new_note ();
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+
+
+gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
+{
+	GList *pList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		cairo_dock_remove_dialog_if_any (icon);
+	}
+	
+	if (pIcon->bPointed)
+		cairo_dock_show_temporary_dialog_with_icon (pIcon->cClass, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

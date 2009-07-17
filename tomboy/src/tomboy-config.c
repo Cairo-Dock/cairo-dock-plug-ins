@@ -13,6 +13,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDrawContent 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
+	myConfig.bPopupContent 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "popup content", TRUE);
 	myConfig.cDateFormat 		= CD_CONFIG_GET_STRING ("Configuration", "date format");
 	if (myConfig.cDateFormat == NULL)
 		myConfig.cDateFormat = g_strdup ("%d/%m/%y");

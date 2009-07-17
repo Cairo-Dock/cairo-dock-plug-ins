@@ -64,6 +64,14 @@ duration = 1000
 #b+ Repeat while icon is pointed ?
 continue = true
 
+#S+ Image for the spot :
+#{Let empty to use the default one.}}
+image spot =
+
+#S+ Image for the front spot :
+#{Let empty to use the default one.}}
+image front spot =
+
 #c+3 color of the spot :
 spot color = .2;.2;1
 
