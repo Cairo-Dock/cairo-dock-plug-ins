@@ -94,7 +94,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon ("%d %s", myDesklet->icons->data, myContainer, 3000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, iNbResults, iNbResults > 1 ? D_("results") : D_("result"));
+		cairo_dock_show_temporary_dialog_with_icon ("%d %s", pIconsList ? pIconsList->data : myDesklet->icons->data, myContainer, 3000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, iNbResults, iNbResults > 1 ? D_("results") : D_("result"));
 	}
 }
 

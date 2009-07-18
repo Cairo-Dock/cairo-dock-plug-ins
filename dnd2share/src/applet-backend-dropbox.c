@@ -25,7 +25,8 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 static void upload (const gchar *cFilePath)
 {
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("dropbox start && cp '%s' '~/Dropbox/Public/%s'", cFilePath, myConfig.cDropboxDir ? myConfig.cDropboxDir : "");
+	gchar *cCommand = g_strdup_printf ("cp '%s' '~/Dropbox/Public/%s'", cFilePath, myConfig.cDropboxDir ? myConfig.cDropboxDir : "");
+	g_print ("commande dropbox1 : \n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
@@ -33,7 +34,7 @@ static void upload (const gchar *cFilePath)
 	gchar *cFileName = g_path_get_basename (cFilePath);
 	cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s/%s'", myConfig.cDropboxDir ? myConfig.cDropboxDir : "", cFileName);
 	
-	g_print ("commande dropbox : %s\n", cCommand);
+	g_print ("commande dropbox2 : %s\n", cCommand);
 	g_free (cFileName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);

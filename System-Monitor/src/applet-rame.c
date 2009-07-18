@@ -75,12 +75,8 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 			goto_next_line  // SwapCached:
 			goto_next_line  // Active:
 			goto_next_line  // Inactive:
-			goto_next_line  // HighTotal:
-			goto_next_line  // HighFree:
-			goto_next_line  // LowTotal:
-			goto_next_line  // LowFree:
 			
-			while (strncmp (str, "SwapTotal", 9) != 0)
+			while (strncmp (str, "SwapTotal", 9) != 0)  // apres, suivant la version su noyau, les lignes ne sont pas les memes, on fait donc une recherche.
 			{
 				goto_next_line
 			}
@@ -92,7 +88,7 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
 			
-			myData.fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;  // pas de cache/buffers ?...
+			myData.fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;  // que faire de SwapCached ?...
 			if (fabs (myData.fSwapPercent - myData.fPrevSwapPercent) > 1)
 			{
 				myData.fPrevSwapPercent = myData.fSwapPercent;

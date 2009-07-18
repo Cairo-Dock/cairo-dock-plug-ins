@@ -3,8 +3,6 @@
 
 #include <cairo-dock.h>
 #include <cairo-dock-applet-single-instance.h>
-	
-#define TOMBOY_DEFAULT_NAME "_TomBoy_"
 
 struct _AppletConfig {
 	gchar *defaultTitle;
@@ -29,7 +27,8 @@ struct _AppletData {
 	guint iSidCheckNotes;
 	GHashTable *hNoteTable;
 	CairoDockTask *pTask;
-	gint iSidResetQuickInfo;
+	guint iSidResetQuickInfo;
+	guint iSidPopupDialog;
 	} ;
 
 #endif

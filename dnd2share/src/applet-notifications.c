@@ -127,11 +127,16 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	g_print  ("DND2SHARE : drop de '%s'\n", CD_APPLET_RECEIVED_DATA);
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
 	
+	gchar *cFilePath = NULL;
 	if( strncmp(CD_APPLET_RECEIVED_DATA, "file://", 7) == 0)
 	{
 		// Les formats supportés par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
 		// ... mais l'applet ne prendra en charge que les plus utilisés :
+		
+		cFilePath = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL);  // on passe en encodage UTF-8.
+		if (cFilePath == NULL)
+			return 	CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		
 		guint64 iSize;
 		time_t iLastModificationTime;
@@ -184,7 +189,9 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		iFileType = CD_TYPE_FILE;
 		g_print ("we'll consider this as an archive.");
 	}
-	cd_dnd2share_launch_upload (CD_APPLET_RECEIVED_DATA, iFileType);
+	cd_dnd2share_launch_upload (cFilePath ? cFilePath : CD_APPLET_RECEIVED_DATA, iFileType);
+	g_free (cFilePath);
+	
 CD_APPLET_ON_DROP_DATA_END
 
 

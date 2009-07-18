@@ -29,7 +29,9 @@ CD_APPLET_DEFINITION ("dnd2share",
 	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet lets you share files easily :\n"
-	"You can send files to host web services by simply drag-and-dropping them on the icon.\n"
+	"Drag-and-drop a file on the icon to upload it to one of the available hosting sites.\n"
+	"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+	"You can upload text, image, video, and files.\n"
 	"The resulting URL is automatically stored in the clipboard to be directly copied by CTRL+v.\n"
 	"It can keep an history of your last uploads to retrieve them without any account.\n"
 	"You'll need to install 'curl' and 'wget' to upload the data."),

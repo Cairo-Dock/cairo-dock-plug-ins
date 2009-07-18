@@ -60,6 +60,8 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidCheckNotes);
 	if (myData.iSidResetQuickInfo != 0)
 		g_source_remove (myData.iSidResetQuickInfo);
+	if (myData.iSidPopupDialog != 0)
+		g_source_remove (myData.iSidPopupDialog);
 	
 	dbus_disconnect_from_bus ();
 CD_APPLET_STOP_END
@@ -88,6 +90,12 @@ CD_APPLET_RELOAD_BEGIN
 				g_source_remove (myData.iSidResetQuickInfo);
 				myData.iSidResetQuickInfo = 0;
 			}
+			if (myData.iSidPopupDialog != 0)
+			{
+				g_source_remove (myData.iSidPopupDialog);
+				myData.iSidPopupDialog = 0;
+			}
+			
 			
 			//\___________ On reconstruit les icones (si l'icone de la note a change).
 			cairo_dock_launch_task (myData.pTask);

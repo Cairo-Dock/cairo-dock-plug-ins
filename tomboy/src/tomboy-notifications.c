@@ -190,9 +190,21 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 
-
+static gboolean _popup_dialog (Icon *pIcon)
+{
+	if (g_list_find (CD_APPLET_MY_ICONS_LIST, pIcon))  // on verifie que l'icone ne s'est pas fait effacee entre-temps.
+		cairo_dock_show_temporary_dialog_with_icon (pIcon->cClass, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	myData.iSidPopupDialog = 0;
+	return FALSE;
+}
 gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
+	if (myData.iSidPopupDialog != 0)
+	{
+		g_source_remove (myData.iSidPopupDialog);
+		myData.iSidPopupDialog = 0;
+	}
+	
 	GList *pList = CD_APPLET_MY_ICONS_LIST;
 	Icon *icon;
 	GList *ic;
@@ -203,7 +215,9 @@ gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *p
 	}
 	
 	if (pIcon->bPointed)
-		cairo_dock_show_temporary_dialog_with_icon (pIcon->cClass, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	{
+		myData.iSidPopupDialog = g_timeout_add (500, (GSourceFunc)_popup_dialog, pIcon);
+	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
