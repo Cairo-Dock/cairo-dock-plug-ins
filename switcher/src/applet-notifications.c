@@ -28,7 +28,9 @@ CD_APPLET_ON_CLICK_BEGIN
 		int iMouseX, iMouseY;
 		if (myDesklet)
 		{
-			cairo_dock_get_coords_on_3D_desklet (myDesklet, &iMouseX, &iMouseY);
+			/// il faudrait voir comment utiliser le picking.
+			iMouseX = myContainer->iMouseX;
+			iMouseY = myContainer->iMouseY;
 			iMouseX -= myIcon->fDrawX;
 			iMouseY -= myIcon->fDrawY;
 		}

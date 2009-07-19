@@ -27,6 +27,8 @@ pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/CD_APPLET_NAME]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

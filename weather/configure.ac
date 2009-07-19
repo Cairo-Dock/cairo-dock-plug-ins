@@ -27,6 +27,8 @@ weatherdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weather]
 AC_SUBST(weatherdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock libxml-2.0)

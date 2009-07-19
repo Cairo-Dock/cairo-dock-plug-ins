@@ -33,7 +33,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = 32;  // bon compromis sur la lisibilite.
+		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.bMixGraphs = myConfig.bMixGraph;
@@ -57,6 +57,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		pRenderAttr->iNbValues = 2;
+		pRenderAttr->bUpdateMinMax = TRUE;
 		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);

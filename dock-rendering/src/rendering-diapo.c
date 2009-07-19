@@ -94,22 +94,21 @@ void cd_rendering_render_diapo (cairo_t *pCairoContext, CairoDock *pDock)
         if(my_diapo_draw_background)
         {
 	        //\____________________ On trace le cadre.
-
 	        cairo_save (pCairoContext);
 	        cairo_dock_draw_frame_for_diapo (pCairoContext, pDock);
 
 	        //\____________________ On dessine les decorations dedans.
-
 	        cairo_dock_render_decorations_in_frame_for_diapo (pCairoContext, pDock);
 	
 	        //\____________________ On dessine le cadre.
 	        if (my_diapo_lineWidth > 0)
 	        {
 		        cairo_set_line_width (pCairoContext,  my_diapo_lineWidth);
-	                cairo_set_source_rgba (pCairoContext, my_diapo_color_border_line[0],
-	                                                      my_diapo_color_border_line[1],
-                                                              my_diapo_color_border_line[2],
-	                                                      my_diapo_color_border_line[3] * (1. - pDock->fFoldingFactor));
+				cairo_set_source_rgba (pCairoContext,
+					my_diapo_color_border_line[0],
+					my_diapo_color_border_line[1],
+					my_diapo_color_border_line[2],
+					my_diapo_color_border_line[3] * (1. - 0*pDock->fFoldingFactor));
 		        cairo_stroke (pCairoContext);
 	        }
 	        cairo_restore (pCairoContext);
@@ -291,8 +290,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
         i = 0;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
-	
-	
+		
 //////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
 		icon = ic->data;
 		cairo_dock_rendering_diapo_get_gridXY_from_index(nRowsX, i, &x, &y);
@@ -300,16 +298,17 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 		
 //////////////////////////////////////////////////////////////////////////////////////// On affecte les parametres de dessin  :                
 		
-		
-//////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !
+//////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas ! -> je pense que c'est corrige.
 	        icon->fX = iconeX;
 	        icon->fY = iconeY;	
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
 	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
-	        icon->fDrawX = iconeX + my_diapo_iconGapX + maxWidth [x] / 2  - (icon->fWidth  * icon->fScale) / 2 ;
-	        icon->fDrawY = iconeY + my_diapo_iconGapY + maxHeight[y] / 2  - (icon->fHeight * icon->fScale) / 2 ;	    
+	        icon->fDrawX = iconeX + my_diapo_iconGapX + maxWidth [x] / 2  - (icon->fWidth  * icon->fScale) / 2;
+	        icon->fDrawY = iconeY + my_diapo_iconGapY + maxHeight[y] / 2  - (icon->fHeight * icon->fScale) / 2;
+			icon->fDrawX -= (icon->fDrawX - pDock->iCurrentWidth/2) * pDock->fFoldingFactor;
+			icon->fDrawY *= pDock->fFoldingFactor;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On prépare pour la suivante :
@@ -329,7 +328,8 @@ Icon* cairo_dock_calculate_icons_position_for_diapo(CairoDock *pDock, guint nRow
 //////////////////////////////////////////////////////////////////////////////////////// On affecte tous les parametres qui n'ont pas été défini précédement
 	        icon->fPhase = 0.;
 	        icon->fOrientation = 0.;//2. * G_PI * pDock->fFoldingFactor;                // rotation de l'icone
-            icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
+            if (FALSE)
+				icon->fWidthFactor = icon->fHeightFactor = 1. - pDock->fFoldingFactor;
         }
         if(iconeX != 0.)//cas de la rangé non terminée
         {
@@ -685,31 +685,29 @@ void cairo_dock_draw_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 
 void cairo_dock_render_decorations_in_frame_for_diapo (cairo_t *pCairoContext, CairoDock *pDock)
 {
-
 ////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
 
         cairo_pattern_t *mon_super_pattern;
-        cairo_save (pCairoContext);       
         mon_super_pattern = cairo_pattern_create_linear (0.0, 0.0,
                                                 my_diapo_fade2right  ? pDock->iMaxDockWidth  : 0.0,      // Y'aurait surement des calculs complexes à faire mais 
                                                 my_diapo_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
                                                 
-        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, my_diapo_color_frame_start[0],                   
-                                                                 my_diapo_color_frame_start[1], 
-                                                                 my_diapo_color_frame_start[2], 
-                                                                 my_diapo_color_frame_start[3] * (1. - pDock->fFoldingFactor)); // On gère aussi l'anim de depliage parcequ'on est des dingues
+        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0,
+			my_diapo_color_frame_start[0],
+			my_diapo_color_frame_start[1],
+			my_diapo_color_frame_start[2],
+			my_diapo_color_frame_start[3] * (1. - 0*pDock->fFoldingFactor)); // de transparent a opaque au depliage
                                                 
-        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, my_diapo_color_frame_stop[0] ,                  
-                                                                 my_diapo_color_frame_stop[1] , 
-                                                                 my_diapo_color_frame_stop[2] , 
-                                                                 my_diapo_color_frame_stop[3]  * (1. - pDock->fFoldingFactor)); 
+        cairo_pattern_add_color_stop_rgba (mon_super_pattern,1,
+			my_diapo_color_frame_stop[0],
+			my_diapo_color_frame_stop[1],
+			my_diapo_color_frame_stop[2] ,
+			my_diapo_color_frame_stop[3]  * (1. - 0*pDock->fFoldingFactor)); 
         cairo_set_source (pCairoContext, mon_super_pattern);
         
-////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?
+////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant pour pouvoir tracer le contour apres.
         cairo_fill_preserve (pCairoContext);  
         cairo_pattern_destroy (mon_super_pattern);    
-        cairo_restore (pCairoContext);
-
 }
 
 

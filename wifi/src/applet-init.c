@@ -34,7 +34,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = 32;  // bon compromis sur la lisibilite.
+		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.fHighColor = myConfig.fHigholor;
@@ -115,6 +115,10 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on redessine juste l'icone.
 	{
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
+		
 		myData.iQuality = -2;  // force le redessin.
 		if (! cairo_dock_task_is_running (myData.pTask))
 		{

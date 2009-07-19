@@ -25,6 +25,8 @@ terminaldatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/terminal]
 AC_SUBST(terminaldatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

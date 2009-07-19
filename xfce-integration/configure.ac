@@ -15,6 +15,8 @@ xfce_integrationdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/xfce-
 AC_SUBST(xfce_integrationdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 AC_SUBST(VERSION_XFCE_INTEGRATION, "$VERSION")
 AC_SUBST(PACKAGE_XFCE_INTEGRATION, "$PACKAGE")

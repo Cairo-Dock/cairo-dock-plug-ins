@@ -25,6 +25,8 @@ show_deskletsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/showDesk
 AC_SUBST(show_deskletsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

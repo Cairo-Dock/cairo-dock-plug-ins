@@ -49,6 +49,8 @@ gmenudatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/GMenu]
 AC_SUBST(gmenudatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

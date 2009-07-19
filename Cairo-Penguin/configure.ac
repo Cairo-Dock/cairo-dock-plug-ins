@@ -27,6 +27,8 @@ cairo_penguindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Cairo-Pe
 AC_SUBST(cairo_penguindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

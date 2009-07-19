@@ -26,6 +26,8 @@ icon_effectsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/icon-effe
 AC_SUBST(icon_effectsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

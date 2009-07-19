@@ -25,12 +25,16 @@ renderingdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/rendering]
 AC_SUBST(renderingdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/rendering]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

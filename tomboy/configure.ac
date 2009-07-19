@@ -25,6 +25,8 @@ tomboydatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/tomboy]
 AC_SUBST(tomboydatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, "cairo-dock dbus-glib-1 dbus-1")

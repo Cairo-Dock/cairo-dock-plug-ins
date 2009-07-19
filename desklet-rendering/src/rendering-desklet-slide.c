@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define _cairo_dock_set_path_as_current(...) _cairo_dock_set_vertex_pointer(pVertexTab)
 
 
-static gboolean on_enter_icon_desklet (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
+static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
 	gtk_widget_queue_draw (pContainer->pWidget);
 	/*CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
@@ -57,7 +57,7 @@ CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *p
 		pSlide->iGapBetweenIcons = 10;
 	}
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	return pSlide;
 }
@@ -107,7 +107,7 @@ void rendering_load_slide_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 
 void rendering_free_slide_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_desklet, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
@@ -202,9 +202,69 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 			
 			pIcon->fDrawX = x;
 			pIcon->fDrawY = y;
-			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->iWidth);
+			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->iWidth);
 			
 			cairo_restore (pCairoContext);
+			
+			
+			if (pIcon->pTextBuffer != NULL)
+			{
+				cairo_save (pCairoContext);
+				
+				double fOffsetX = 0., fAlpha;
+				if (pIcon->bPointed)
+				{
+					fAlpha = 1.;
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
+						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
+						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
+				}
+				else
+				{
+					fAlpha = .6;
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					{
+						fOffsetX = pIcon->fWidth/2 + myLabels.iLabelSize;
+						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (pIcon->fDrawX,
+							0.,
+							pIcon->fWidth + 2*myLabels.iLabelSize + pIcon->fDrawX,
+							0.);
+						cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
+						cairo_pattern_add_color_stop_rgba (pGradationPattern,
+							0.,
+							0.,
+							0.,
+							0.,
+							fAlpha);
+						cairo_pattern_add_color_stop_rgba (pGradationPattern,
+							0.75,
+							0.,
+							0.,
+							0.,
+							fAlpha);
+						cairo_pattern_add_color_stop_rgba (pGradationPattern,
+							1.,
+							0.,
+							0.,
+							0.,
+							0.);
+						cairo_mask (pCairoContext, pGradationPattern);
+						cairo_pattern_destroy (pGradationPattern);
+					}
+				}
+				cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
+				
+				cairo_set_source_surface (pCairoContext,
+					pIcon->pTextBuffer,
+					fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
+					-myLabels.iLabelSize);
+				cairo_paint_with_alpha (pCairoContext, fAlpha);
+				cairo_restore (pCairoContext);
+				
+				cairo_restore (pCairoContext);
+			}
+			
 			
 			x += pSlide->iIconSize + dw;
 			q ++;

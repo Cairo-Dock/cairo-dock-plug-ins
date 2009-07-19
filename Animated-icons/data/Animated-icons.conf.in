@@ -66,11 +66,11 @@ continue = true
 
 #S+ Image for the spot :
 #{Let empty to use the default one.}}
-image spot =
+spot image =
 
 #S+ Image for the front spot :
 #{Let empty to use the default one.}}
-image front spot =
+spot front image =
 
 #c+3 color of the spot :
 spot color = .2;.2;1

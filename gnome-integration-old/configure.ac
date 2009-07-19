@@ -15,6 +15,8 @@ gnome_integration_olddatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/
 AC_SUBST(gnome_integration_olddatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 AC_SUBST(VERSION_GNOME_INTEGRATION_OLD, "$VERSION")
 AC_SUBST(PACKAGE_GNOME_INTEGRATION_OLD, "$PACKAGE")

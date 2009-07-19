@@ -28,6 +28,8 @@ xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Xgamma]
 AC_SUBST(xgammadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile

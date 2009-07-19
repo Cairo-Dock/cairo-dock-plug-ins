@@ -25,14 +25,32 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 static void upload (const gchar *cFilePath)
 {
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("cp '%s' '~/Dropbox/Public/%s'", cFilePath, myConfig.cDropboxDir ? myConfig.cDropboxDir : "");
-	g_print ("commande dropbox1 : \n", cCommand);
+	gchar *cCommand;
+	if (myConfig.cDropboxDir)
+		cCommand= g_strdup_printf ("cp '%s' '%s'", cFilePath, myConfig.cDropboxDir);
+	else
+		cCommand= g_strdup_printf ("cp '%s' ~/Dropbox/Public", cFilePath);
+	g_print ("commande dropbox1 : %s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
 	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
 	gchar *cFileName = g_path_get_basename (cFilePath);
-	cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s/%s'", myConfig.cDropboxDir ? myConfig.cDropboxDir : "", cFileName);
+	if (myConfig.cDropboxDir)
+	{
+		gchar *str = g_strstr_len (myConfig.cDropboxDir, -1, "Dropbox");
+		if (!str)
+		{
+			str = strrchr (myConfig.cDropboxDir, '/');
+			if (str)
+				str ++;
+		}
+		g_return_if_fail (str != NULL);
+			
+		cCommand = g_strdup_printf ("dropbox puburl '%s/%s'", str, myConfig.cDropboxDir, cFileName);
+	}
+	else
+		cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s'", cFileName); 
 	
 	g_print ("commande dropbox2 : %s\n", cCommand);
 	g_free (cFileName);

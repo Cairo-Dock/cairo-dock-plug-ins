@@ -25,6 +25,8 @@ maildatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/mail]
 AC_SUBST(maildatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 MAIL_PACKAGE_CFLAGS=`libetpan-config --cflags`

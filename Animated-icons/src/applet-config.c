@@ -61,7 +61,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
 	myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
 	myConfig.cSpotImage = CD_CONFIG_GET_STRING ("Spot", "spot image");
-	myConfig.cSpotFrontImage = CD_CONFIG_GET_STRING ("Spot", "spot imagefront ");
+	myConfig.cSpotFrontImage = CD_CONFIG_GET_STRING ("Spot", "spot front image");
 	gdouble pColor[4];
 	CD_CONFIG_GET_COLOR_RVB ("Spot", "spot color", pColor);
 	for (i=0; i<3; i++)

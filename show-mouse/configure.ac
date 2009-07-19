@@ -26,6 +26,8 @@ show_mousedatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/show_mouse]
 AC_SUBST(show_mousedatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

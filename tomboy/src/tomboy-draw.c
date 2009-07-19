@@ -123,16 +123,15 @@ void cd_tomboy_reset_icon_marks (gboolean bForceRedraw)
 
 void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 {
+	if (pIcon->cClass == NULL || *pIcon->cClass == '\0')  // note vide => rien a afficher.
+		return ;
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &w, &h);
 	const int iNeedleOffset = 42./200*h;  // on laisse de la place pour l'aiguille de la punaise.
 	gchar **cLines = g_strsplit (pIcon->cClass, "\n", -1);
-	if (cLines == NULL)
-		return ;
 	
 	cairo_set_operator (pIconContext, CAIRO_OPERATOR_OVER);
 	cairo_set_source_rgb (pIconContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2]);
-	//cairo_set_line_width (pIconContext, 4.);
 
 	cairo_select_font_face (pIconContext,
 		"sans",
@@ -140,7 +139,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 		CAIRO_FONT_WEIGHT_NORMAL);
 	cairo_set_font_size (pIconContext, (myDock ? 14. : 12.));  // police 12 au zoom maximal.
 	cairo_text_extents_t textExtents;
-	cairo_text_extents (pIconContext, cLines[0], &textExtents);
+	cairo_text_extents (pIconContext, cLines[0], &textExtents);  // on recupere la hauteur d'une ligne.
 	
 	int i = 1, j = 1;
 	while (cLines[i] != NULL && iNeedleOffset+j*textExtents.height < h)

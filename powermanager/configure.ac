@@ -25,6 +25,8 @@ powermanagerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/powermana
 AC_SUBST(powermanagerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, "cairo-dock dbus-glib-1 dbus-1")

@@ -26,6 +26,8 @@ motion_blurdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/motion_blu
 AC_SUBST(motion_blurdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

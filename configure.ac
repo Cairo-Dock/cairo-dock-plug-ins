@@ -72,10 +72,6 @@ AC_ARG_ENABLE(rhythmbox,
 	[  --enable-rhythmbox : Enable Rhythmbox applet (default=yes) ],
 	[ with_rhythmbox=${enableval} ],
 	[ with_rhythmbox=yes ])
-AC_ARG_ENABLE(nvidia,
-	[  --enable-nvidia: Enable nVidia applet (default=yes) ],
-	[ with_nvidia=${enableval} ],
-	[ with_nvidia=yes ])
 AC_ARG_ENABLE(compiz-icon,
 	[  --enable-compiz-icon : Enable Compiz-Icon applet (default=yes) ],
 	[ with_compiz_icon=${enableval} ],
@@ -192,7 +188,6 @@ AM_CONDITIONAL( [WITH_POWERMANAGER], [test "$with_powermanager" = "yes"] )
 AM_CONDITIONAL( [WITH_WIFI], [test "$with_wifi" = "yes"] )
 AM_CONDITIONAL( [WITH_TOMBOY], [test "$with_tomboy" = "yes"] )
 AM_CONDITIONAL( [WITH_RHYTHMBOX], [test "$with_rhythmbox" = "yes"] )
-AM_CONDITIONAL( [WITH_NVIDIA], [test "$with_nvidia" = "yes"] )
 AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
 AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
@@ -205,7 +200,7 @@ AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
-AC_SUBST(GETTEXT_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
+AC_SUBST(GETTEXT_ALSA_MIXER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_ALSA_MIXER, "1.0.8")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
@@ -214,7 +209,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 
 ############# ANIMATED ICONS #################
 ANIMATED_ICONS_PACKAGE=cd-Animated-icons
-AC_SUBST(GETTEXT_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
+AC_SUBST(GETTEXT_ANIMATED_ICONS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.3")
 AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
@@ -223,7 +218,7 @@ AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
 
 ############# CLIPPER #################
 CLIPPER_PACKAGE="cd-Clipper"
-AC_SUBST(GETTEXT_CLIPPER, "$CLIPPER_PACKAGE")
+AC_SUBST(GETTEXT_CLIPPER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_CLIPPER, "1.0.3")
 AC_SUBST(PACKAGE_CLIPPER, "$CLIPPER_PACKAGE")
@@ -232,7 +227,7 @@ AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 
 ############# CAIRO_PENGUIN #################
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
-AC_SUBST(GETTEXT_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
+AC_SUBST(GETTEXT_CAIRO_PENGUIN, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.4")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
@@ -243,7 +238,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 
 ############# CLOCK #################
 CLOCK_PACKAGE="cd-clock"
-AC_SUBST(GETTEXT_CLOCK, "$CLOCK_PACKAGE")
+AC_SUBST(GETTEXT_CLOCK, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_CLOCK, "2.0.4")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
@@ -254,7 +249,7 @@ AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 
 ############# COMPIZ_ICON #################
 COMPIZ_ICON_PACKAGE="cd-compiz-icon"
-AC_SUBST(GETTEXT_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
+AC_SUBST(GETTEXT_COMPIZ_ICON, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_COMPIZ_ICON, "1.1.2")
 AC_SUBST(PACKAGE_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
@@ -263,7 +258,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 
 ############# DBUS #################
 DBUS_PACKAGE="cd-Dbus"
-AC_SUBST(GETTEXT_DBUS, "$DBUS_PACKAGE")
+AC_SUBST(GETTEXT_DBUS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_DBUS, "0.5.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
@@ -272,16 +267,16 @@ AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
 
 ############# DND2SHARE #################
 DND2SHARE_PACKAGE="cd-dnd2share"
-AC_SUBST(GETTEXT_DND2SHARE, "$DBUS_PACKAGE")
+AC_SUBST(GETTEXT_DND2SHARE, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DND2SHARE, "1.0.0-beta")
+AC_SUBST(VERSION_DND2SHARE, "1.0.0-beta2")
 AC_SUBST(PACKAGE_DND2SHARE, "$DBUS_PACKAGE")
 
 AC_SUBST(dnd2sharedatadir, "${pkgdatadir}/dnd2share")
 
 ############# DROP INDICATOR #################
 DROP_INDICATOR_PACKAGE=cd-drop_indicator
-AC_SUBST(GETTEXT_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
+AC_SUBST(GETTEXT_DROP_INDICATOR, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_DROP_INDICATOR, "1.1.0")
 AC_SUBST(PACKAGE_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
@@ -290,7 +285,7 @@ AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
 
 ############# DUSTBIN #################
 DUSTBIN_PACKAGE=cd-dustbin
-AC_SUBST(GETTEXT_DUSTBIN, "$DUSTBIN_PACKAGE")
+AC_SUBST(GETTEXT_DUSTBIN, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_DUSTBIN, "2.2.3")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
@@ -302,7 +297,7 @@ AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
 
 ############# GMENU #################
 GMENU_PACKAGE=cd-GMenu
-AC_SUBST(GETTEXT_GMENU, "$GMENU_PACKAGE")
+AC_SUBST(GETTEXT_GMENU, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_GMENU, "1.1.2")
 AC_SUBST(PACKAGE_GMENU, "$GMENU_PACKAGE")
@@ -327,7 +322,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 
 ############# ICON EFFECT #################
 ICON_EFFECTS_PACKAGE=cd-icon-effect
-AC_SUBST(GETTEXT_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
+AC_SUBST(GETTEXT_ICON_EFFECTS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_ICON_EFFECTS, "1.1.3")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
@@ -336,7 +331,7 @@ AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
 
 ############# ILLUSION #################
 ILLUSION_PACKAGE=cd-illusion
-AC_SUBST(GETTEXT_ILLUSION, "$ILLUSION_PACKAGE")
+AC_SUBST(GETTEXT_ILLUSION, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_ILLUSION, "1.0.2")
 AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
@@ -345,7 +340,7 @@ AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")
 
 ############# KEYBOARD_INDICATOR #################
 KEYBOARD_INDICATOR_PACKAGE="cd-keyboard-indicator"
-AC_SUBST(GETTEXT_KEYBOARD_INDICATOR, "$KEYBOARD_INDICATOR_PACKAGE")
+AC_SUBST(GETTEXT_KEYBOARD_INDICATOR, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_KEYBOARD_INDICATOR, "1.0.2")
 AC_SUBST(PACKAGE_KEYBOARD_INDICATOR, "$KEYBOARD_INDICATOR_PACKAGE")
@@ -363,7 +358,7 @@ AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
 
 ############# MAIL #################
 MAIL_PACKAGE=cd-mail
-AC_SUBST(GETTEXT_MAIL, "$MAIL_PACKAGE")
+AC_SUBST(GETTEXT_MAIL, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_MAIL, "1.0.4")
 AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
@@ -372,7 +367,7 @@ AC_SUBST(maildatadir, "${pkgdatadir}/mail")
 
 ############# MOTION BLUR #################
 MOTION_BLUR_PACKAGE=cd-motion_blur
-AC_SUBST(GETTEXT_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
+AC_SUBST(GETTEXT_MOTION_BLUR, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_MOTION_BLUR, "1.0.2")
 AC_SUBST(PACKAGE_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
@@ -381,7 +376,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 
 ############# NETSPEED #################
 NETSPEED_PACKAGE=cd-netspeed
-AC_SUBST(GETTEXT_NETSPEED, "$NETSPEED_PACKAGE")
+AC_SUBST(GETTEXT_NETSPEED, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_NETSPEED, "1.2.0")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
@@ -390,7 +385,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 
 ############# POWERMANAGER #################
 POWERMANAGER_PACKAGE=cd-powermanager
-AC_SUBST(GETTEXT_POWERMANAGER, "$POWERMANAGER_PACKAGE")
+AC_SUBST(GETTEXT_POWERMANAGER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_POWERMANAGER, "1.2.17")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
@@ -399,7 +394,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 
 ############# RENDERING #################
 RENDERING_PACKAGE=cd-rendering
-AC_SUBST(GETTEXT_RENDERING, "$RENDERING_PACKAGE")
+AC_SUBST(GETTEXT_RENDERING, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_RENDERING, "1.5.5")
 AC_SUBST(PACKAGE_RENDERING, "$RENDERING_PACKAGE")
@@ -408,7 +403,7 @@ AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 
 ############# DESKLET_RENDERING #################
 DESKLET_RENDERING_PACKAGE=cd-desklet-rendering
-AC_SUBST(GETTEXT_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
+AC_SUBST(GETTEXT_DESKLET_RENDERING, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_DESKLET_RENDERING, "1.5.3")
 AC_SUBST(PACKAGE_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
@@ -417,7 +412,7 @@ AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
 
 ############# DIALOG_RENDERING #################
 DIALOG_RENDERING_PACKAGE=cd-dialog-rendering
-AC_SUBST(GETTEXT_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
+AC_SUBST(GETTEXT_DIALOG_RENDERING, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_DIALOG_RENDERING, "0.4.2")
 AC_SUBST(PACKAGE_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
@@ -426,7 +421,7 @@ AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 
 ############# QUICK BROWSER #################
 QUICK_BROWSER_PACKAGE=cd-quick-browser
-AC_SUBST(GETTEXT_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
+AC_SUBST(GETTEXT_QUICK_BROWSER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_QUICK_BROWSER, "1.0.2")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
@@ -435,7 +430,7 @@ AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 
 ############# RHYTHMBOX #################
 RHYTHMBOX_PACKAGE=cd-rhythmbox
-AC_SUBST(GETTEXT_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
+AC_SUBST(GETTEXT_RHYTHMBOX, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_RHYTHMBOX, "1.2.6")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
@@ -444,7 +439,7 @@ AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
 
 ############# SHORTCUTS #################
 SHORTCUTS_PACKAGE=cd-shortcuts
-AC_SUBST(GETTEXT_SHORTCUTS, "$SHORTCUTS_PACKAGE")
+AC_SUBST(GETTEXT_SHORTCUTS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SHORTCUTS, "1.2.1")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
@@ -453,7 +448,7 @@ AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
 
 ############# SHOW DESKLETS #################
 SHOW_DESKLETS_PACKAGE=cd-showDesklets
-AC_SUBST(GETTEXT_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
+AC_SUBST(GETTEXT_SHOW_DESKLETS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.4")
 AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
@@ -462,7 +457,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 
 ############# SHOW DESKTOP #################
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
-AC_SUBST(GETTEXT_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
+AC_SUBST(GETTEXT_SHOW_DESKTOP, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.5")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
@@ -471,7 +466,7 @@ AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 
 ############# SHOW MOUSE #################
 SHOW_MOUSE_PACKAGE=cd-show_mouse
-AC_SUBST(GETTEXT_SHOW_MOUSE, "$SHOW_MOUSE_PACKAGE")
+AC_SUBST(GETTEXT_SHOW_MOUSE, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SHOW_MOUSE, "1.0.2")
 AC_SUBST(PACKAGE_SHOW_MOUSE, "$SHOW_MOUSE_PACKAGE")
@@ -480,7 +475,7 @@ AC_SUBST(show_mousedatadir, "${pkgdatadir}/show_mouse")
 
 ############# SLIDER #################
 SLIDER_PACKAGE="cd-slider"
-AC_SUBST(GETTEXT_SLIDER, "$SLIDER_PACKAGE")
+AC_SUBST(GETTEXT_SLIDER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SLIDER, "2.0.2")
 AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
@@ -489,7 +484,7 @@ AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
 
 ############# STACK #################
 STACK_PACKAGE="cd-stack"
-AC_SUBST(GETTEXT_STACK, "$STACK_PACKAGE")
+AC_SUBST(GETTEXT_STACK, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_STACK, "0.2.4")
 AC_SUBST(PACKAGE_STACK, "$STACK_PACKAGE")
@@ -498,7 +493,7 @@ AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
 
 ############# SWITCHER #################
 SWITCHER_PACKAGE="cd-switcher"
-AC_SUBST(GETTEXT_SWITCHER, "$SWITCHER_PACKAGE")
+AC_SUBST(GETTEXT_SWITCHER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SWITCHER, "1.0.6")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
@@ -507,7 +502,7 @@ AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
 
 ############# SYSTEM MONITOR #################
 SYSTEM_MONITOR_PACKAGE="cd-system-monitor"
-AC_SUBST(GETTEXT_SYSTEM_MONITOR, "$SYSTEM_MONITOR_PACKAGE")
+AC_SUBST(GETTEXT_SYSTEM_MONITOR, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SYSTEM_MONITOR, "1.0.0-beta")
 AC_SUBST(PACKAGE_SYSTEM_MONITOR, "$SYSTEM_MONITOR_PACKAGE")
@@ -516,7 +511,7 @@ AC_SUBST(system_monitordatadir, "${pkgdatadir}/System-monitor")
 
 ############# SYSTRAY #################
 SYSTRAY_PACKAGE=cd-systray
-AC_SUBST(GETTEXT_SYSTRAY, "$SYSTRAY_PACKAGE")
+AC_SUBST(GETTEXT_SYSTRAY, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_SYSTRAY, "0.1.8")
 AC_SUBST(PACKAGE_SYSTRAY, "$SYSTRAY_PACKAGE")
@@ -525,7 +520,7 @@ AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
 
 ############# TERMINAL #################
 TERMINAL_PACKAGE="cd-terminal"
-AC_SUBST(GETTEXT_TERMINAL, "$TERMINAL_PACKAGE")
+AC_SUBST(GETTEXT_TERMINAL, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_TERMINAL, "1.0.5")
 AC_SUBST(PACKAGE_TERMINAL, "$TERMINAL_PACKAGE")
@@ -534,7 +529,7 @@ AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
 
 ############# TOMBOY #################
 TOMBOY_PACKAGE="cd-tomboy"
-AC_SUBST(GETTEXT_TOMBOY, "$TOMBOY_PACKAGE")
+AC_SUBST(GETTEXT_TOMBOY, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_TOMBOY, "1.0.4")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
@@ -543,7 +538,7 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 
 ############# TOONS #################
 TOONS_PACKAGE="cd-Toons"
-AC_SUBST(GETTEXT_TOONS, "$TOONS_PACKAGE")
+AC_SUBST(GETTEXT_TOONS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_TOONS, "1.0.3")
 AC_SUBST(PACKAGE_TOONS, "$TOONS_PACKAGE")
@@ -553,7 +548,7 @@ AC_SUBST(toonsuserdirname,"Toons")
 
 ############# WEATHER #################
 WEATHER_PACKAGE="cd-weather"
-AC_SUBST(GETTEXT_WEATHER, "$WEATHER_PACKAGE")
+AC_SUBST(GETTEXT_WEATHER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_WEATHER, "1.2.5")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
@@ -563,7 +558,7 @@ AC_SUBST(weatheruserdirname, "weather")
 
 ############# WIFI #################
 WIFI_PACKAGE="cd-wifi"
-AC_SUBST(GETTEXT_WIFI, "$WIFI_PACKAGE")
+AC_SUBST(GETTEXT_WIFI, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_WIFI, "1.2.0")
 AC_SUBST(PACKAGE_WIFI, "$WIFI_PACKAGE")
@@ -580,7 +575,7 @@ AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 
 ############# XGAMMA #################
 XGAMMA_PACKAGE="cd-Xgamma"
-AC_SUBST(GETTEXT_XGAMMA, "$XGAMMA_PACKAGE")
+AC_SUBST(GETTEXT_XGAMMA, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_XGAMMA, "1.1.2")
 AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
@@ -589,7 +584,7 @@ AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 
 ############# XMMS #################
 XMMS_PACKAGE="cd-xmms"
-AC_SUBST(GETTEXT_XMMS, "$XMMS_PACKAGE")
+AC_SUBST(GETTEXT_XMMS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_XMMS, "0.2.7")
 AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
@@ -601,7 +596,7 @@ WEBLETS_PACKAGE="cd-weblets"
 
 AC_DEFINE(HAVE_WEBKIT,1,[Defined if we want to use webkit.])
 
-AC_SUBST(GETTEXT_WEBLETS, "$WEBLETS_PACKAGE")
+AC_SUBST(GETTEXT_WEBLETS, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_WEBLETS, "0.3.2")
 AC_SUBST(PACKAGE_WEBLETS, "$WEBLETS_PACKAGE")
@@ -615,19 +610,16 @@ AC_CONFIG_FILES([
 	
 	alsaMixer/Makefile
 	alsaMixer/src/Makefile
-	alsaMixer/po/Makefile.in
 	alsaMixer/data/Makefile
 	alsaMixer/data/AlsaMixer.conf
 	
 	Animated-icons/Makefile
 	Animated-icons/src/Makefile
-	Animated-icons/po/Makefile.in
 	Animated-icons/data/Makefile
 	Animated-icons/data/Animated-icons.conf
 	
 	Cairo-Penguin/Makefile
 	Cairo-Penguin/src/Makefile
-	Cairo-Penguin/po/Makefile.in
 	Cairo-Penguin/data/Makefile
 	Cairo-Penguin/data/Cairo-Penguin.conf
 	Cairo-Penguin/data/themes/Makefile
@@ -635,13 +627,11 @@ AC_CONFIG_FILES([
 	
 	Clipper/Makefile
 	Clipper/src/Makefile
-	Clipper/po/Makefile.in
 	Clipper/data/Makefile
 	Clipper/data/Clipper.conf
 	
 	clock/Makefile
 	clock/src/Makefile
-	clock/po/Makefile.in
 	clock/data/Makefile
 	clock/data/clock.conf
 	clock/data/digital/Makefile
@@ -651,31 +641,26 @@ AC_CONFIG_FILES([
 	
 	compiz-icon/Makefile
 	compiz-icon/src/Makefile
-	compiz-icon/po/Makefile.in
 	compiz-icon/data/Makefile
 	compiz-icon/data/compiz-icon.conf
 	
 	Dbus/Makefile
 	Dbus/src/Makefile
-	Dbus/po/Makefile.in
 	Dbus/data/Makefile
 	Dbus/data/Dbus.conf
 	
 	dnd2share/Makefile
 	dnd2share/src/Makefile
-	dnd2share/po/Makefile.in
 	dnd2share/data/Makefile
 	dnd2share/data/dnd2share.conf
 	
 	drop-indicator/Makefile
 	drop-indicator/src/Makefile
-	drop-indicator/po/Makefile.in
 	drop-indicator/data/Makefile
 	drop-indicator/data/drop_indicator.conf
 	
 	dustbin/Makefile
 	dustbin/src/Makefile
-	dustbin/po/Makefile.in
 	dustbin/data/Makefile
 	dustbin/data/dustbin.conf
 	dustbin/data/themes/Makefile
@@ -683,7 +668,6 @@ AC_CONFIG_FILES([
 	
 	GMenu/Makefile
 	GMenu/src/Makefile
-	GMenu/po/Makefile.in
 	GMenu/data/Makefile
 	GMenu/data/GMenu.conf
 	
@@ -697,31 +681,26 @@ AC_CONFIG_FILES([
 	
 	icon-effect/Makefile
 	icon-effect/src/Makefile
-	icon-effect/po/Makefile.in
 	icon-effect/data/Makefile
 	icon-effect/data/icon-effect.conf
 	
 	illusion/Makefile
 	illusion/src/Makefile
-	illusion/po/Makefile.in
 	illusion/data/Makefile
 	illusion/data/illusion.conf
 	
 	keyboard-indicator/Makefile
 	keyboard-indicator/src/Makefile
-	keyboard-indicator/po/Makefile.in
 	keyboard-indicator/data/Makefile
 	keyboard-indicator/data/keyboard-indicator.conf
 	
 	logout/Makefile
 	logout/src/Makefile
-	logout/po/Makefile.in
 	logout/data/Makefile
 	logout/data/logout.conf
 	
 	mail/Makefile
 	mail/src/Makefile
-	mail/po/Makefile.in
 	mail/data/Makefile
 	mail/data/mail.conf
 	mail/data/themes/Makefile
@@ -729,48 +708,40 @@ AC_CONFIG_FILES([
 	
 	motion-blur/Makefile
 	motion-blur/src/Makefile
-	motion-blur/po/Makefile.in
 	motion-blur/data/Makefile
 	motion-blur/data/motion_blur.conf
 	
 	netspeed/Makefile
 	netspeed/src/Makefile
-	netspeed/po/Makefile.in
 	netspeed/data/Makefile
 	netspeed/data/netspeed.conf
 	
 	powermanager/Makefile
 	powermanager/src/Makefile
-	powermanager/po/Makefile.in
 	powermanager/data/Makefile
 	powermanager/data/powermanager.conf
 	
 	dock-rendering/Makefile
 	dock-rendering/src/Makefile
-	dock-rendering/po/Makefile.in
 	dock-rendering/data/Makefile
 	dock-rendering/data/rendering.conf
 	
 	desklet-rendering/Makefile
 	desklet-rendering/src/Makefile
-	desklet-rendering/po/Makefile.in
 	desklet-rendering/data/Makefile
 	
 	dialog-rendering/Makefile
 	dialog-rendering/src/Makefile
-	dialog-rendering/po/Makefile.in
 	dialog-rendering/data/Makefile
 	dialog-rendering/data/dialog-rendering.conf
 	
 	quick-browser/Makefile
 	quick-browser/src/Makefile
-	quick-browser/po/Makefile.in
 	quick-browser/data/Makefile
 	quick-browser/data/quick-browser.conf
 	
 	rhythmbox/Makefile
 	rhythmbox/src/Makefile
-	rhythmbox/po/Makefile.in
 	rhythmbox/data/Makefile
 	rhythmbox/data/rhythmbox.conf
 	rhythmbox/data/themes/Makefile
@@ -778,73 +749,61 @@ AC_CONFIG_FILES([
 	
 	shortcuts/Makefile
 	shortcuts/src/Makefile
-	shortcuts/po/Makefile.in
 	shortcuts/data/Makefile
 	shortcuts/data/shortcuts.conf
 	
 	showDesklets/Makefile
 	showDesklets/src/Makefile
-	showDesklets/po/Makefile.in
 	showDesklets/data/Makefile
 	showDesklets/data/showDesklets.conf
 	
 	showDesktop/Makefile
 	showDesktop/src/Makefile
-	showDesktop/po/Makefile.in
 	showDesktop/data/Makefile
 	showDesktop/data/showDesktop.conf
 	
 	show-mouse/Makefile
 	show-mouse/src/Makefile
-	show-mouse/po/Makefile.in
 	show-mouse/data/Makefile
 	show-mouse/data/show_mouse.conf
 	
 	slider/Makefile
 	slider/src/Makefile
-	slider/po/Makefile.in
 	slider/data/Makefile
 	slider/data/slider.conf
 	
 	stack/Makefile
 	stack/src/Makefile
-	stack/po/Makefile.in
 	stack/data/Makefile
 	stack/data/stack.conf
 
 	switcher/Makefile
 	switcher/src/Makefile
-	switcher/po/Makefile.in
 	switcher/data/Makefile
 	switcher/data/switcher.conf
 	
 	System-Monitor/Makefile
 	System-Monitor/src/Makefile
-	System-Monitor/po/Makefile.in
 	System-Monitor/data/Makefile
 	System-Monitor/data/System-Monitor.conf
 	
 	systray/Makefile
 	systray/src/Makefile
-	systray/po/Makefile.in
 	systray/data/Makefile
 	systray/data/systray.conf
 	
 	terminal/Makefile
 	terminal/src/Makefile
-	terminal/po/Makefile.in
 	terminal/data/Makefile
 	terminal/data/terminal.conf
 	
 	tomboy/Makefile
 	tomboy/src/Makefile
-	tomboy/po/Makefile.in
 	tomboy/data/Makefile
 	tomboy/data/tomboy.conf
 	
 	Toons/Makefile
 	Toons/src/Makefile
-	Toons/po/Makefile.in
 	Toons/data/Makefile
 	Toons/data/Toons.conf
 	Toons/data/themes/Makefile
@@ -852,7 +811,6 @@ AC_CONFIG_FILES([
 	
 	weather/Makefile
 	weather/src/Makefile
-	weather/po/Makefile.in
 	weather/data/Makefile
 	weather/data/weather.conf
 	weather/data/themes/Makefile
@@ -860,13 +818,11 @@ AC_CONFIG_FILES([
 	
 	weblets/Makefile
 	weblets/src/Makefile
-	weblets/po/Makefile.in
 	weblets/data/Makefile
 	weblets/data/weblets.conf
 	
 	wifi/Makefile
 	wifi/src/Makefile
-	wifi/po/Makefile.in
 	wifi/data/Makefile
 	wifi/data/wifi.conf
 	
@@ -876,59 +832,16 @@ AC_CONFIG_FILES([
 	
 	Xgamma/Makefile
 	Xgamma/src/Makefile
-	Xgamma/po/Makefile.in
 	Xgamma/data/Makefile
 	Xgamma/data/Xgamma.conf
 	
 	xmms/Makefile
 	xmms/src/Makefile
-	xmms/po/Makefile.in
 	xmms/data/Makefile
 	xmms/data/xmms.conf
 	])
 
 AC_OUTPUT([po/Makefile
-	alsaMixer/po/Makefile
-	Animated-icons/po/Makefile
-	Cairo-Penguin/po/Makefile
-	Clipper/po/Makefile
-	clock/po/Makefile
-	compiz-icon/po/Makefile
-	Dbus/po/Makefile
-	dnd2share/po/Makefile
-	drop-indicator/po/Makefile
-	dustbin/po/Makefile
-	GMenu/po/Makefile
-	icon-effect/po/Makefile
-	illusion/po/Makefile
-	keyboard-indicator/po/Makefile
-	logout/po/Makefile
-	mail/po/Makefile
-	motion-blur/po/Makefile
-	netspeed/po/Makefile
-	powermanager/po/Makefile
-	dock-rendering/po/Makefile
-	desklet-rendering/po/Makefile
-	dialog-rendering/po/Makefile
-	quick-browser/po/Makefile
-	rhythmbox/po/Makefile
-	shortcuts/po/Makefile
-	showDesklets/po/Makefile
-	showDesktop/po/Makefile
-	show-mouse/po/Makefile
-	slider/po/Makefile
-	stack/po/Makefile
-	switcher/po/Makefile
-	System-Monitor/po/Makefile
-	systray/po/Makefile
-	terminal/po/Makefile
-	tomboy/po/Makefile
-	Toons/po/Makefile
-	weather/po/Makefile
-	weblets/po/Makefile
-	wifi/po/Makefile
-	Xgamma/po/Makefile
-	xmms/po/Makefile
 	])
 
 echo "Cairo-Dock-plugins will be compiled with the following options :"
@@ -941,11 +854,11 @@ echo " * Compil PowerManager applet : "${with_powermanager}
 echo " * Compil Wifi applet : "${with_wifi}
 echo " * Compil Tomboy applet : "${with_tomboy}
 echo " * Compil Rhythmbox applet : "${with_rhythmbox}
-echo " * Compil nVidia applet : "${with_nvidia}
 echo " * Compil Xgamma applet : "${with_xgamma}
 echo " * Compil GMenu applet : "${with_gmenu}
 echo " * Enable gio in GMenu applet : "${with_gio_in_gmenu}
 echo " * Compil Mail applet : "${with_mail}
 echo " * Compil Weblets applet : "${with_weblets}
 echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
+echo " * Compil Dnd2share applet : "${with_dnd2share}
 

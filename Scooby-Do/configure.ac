@@ -27,6 +27,8 @@ scooby_dodatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Scooby-Do]
 AC_SUBST(scooby_dodatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

@@ -25,6 +25,8 @@ stacksdatadir=[`pkg-config cairo-dock --variable=pluginsdir`/stacks]
 AC_SUBST(stacksdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)

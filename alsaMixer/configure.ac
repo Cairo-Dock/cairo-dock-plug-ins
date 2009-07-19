@@ -11,7 +11,7 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL()
 AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 GETTEXT_ALSA_MIXER=cd-AlsaMixer
@@ -25,6 +25,8 @@ alsa_mixerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/AlsaMixer]
 AC_SUBST(alsa_mixerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
+posubdir=po
+AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
