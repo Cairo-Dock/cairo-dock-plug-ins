@@ -14,21 +14,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:334
+#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:343
 msgid "Copy"
 msgstr "コピー"
 
 #: ../src/terminal-init.c:34
+#, fuzzy
 msgid ""
 "Add a terminal to your dock !\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
 "for it.)\n"
-"You can open many tabs, rename them, change their color.\n"
 "You can drag'n'drop files or text and select an action.\n"
-"Shortcuts are available : 'CTRL+t' and 'CTRL+w' to open/close current tab,\n"
-"Right-click on a tab to interact on it,\n"
-"Middle-click on a tab to close it,\n"
-"Double-click next to the tabs to open a new one."
+"You can open many tabs, rename them, change their color (right-click on a "
+"tab to interact on it)\n"
+"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+"To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 "ドックに端末を追加！\n"
 "左/中クリックで端末を表示/隠す（キーボードショートカットの割り当ても可"
@@ -41,7 +41,7 @@ msgstr ""
 "る、\n"
 "タブの右隣をダブルクリックすると新しいタブを開きます。 "
 
-#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
+#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:359
 msgid "New Tab"
 msgstr "新しいタブ"
 
@@ -57,27 +57,27 @@ msgstr "現在のタブを閉じる"
 msgid "Terminal"
 msgstr "端末"
 
-#: ../src/terminal-widget.c:139
+#: ../src/terminal-widget.c:137
 msgid "Set title for this tab :"
 msgstr "このタブのタイトルを設定 :"
 
-#: ../src/terminal-widget.c:193
+#: ../src/terminal-widget.c:191
 msgid "Select a color"
 msgstr "色の選択"
 
-#: ../src/terminal-widget.c:340
+#: ../src/terminal-widget.c:349
 msgid "Paste"
 msgstr "貼り付け"
 
-#: ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:365
 msgid "Rename this Tab"
 msgstr "このタブの名前変更"
 
-#: ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:371
 msgid "Change this Tab's color"
 msgstr "このタブの色を変更"
 
-#: ../src/terminal-widget.c:368
+#: ../src/terminal-widget.c:377
 msgid "Close this Tab"
 msgstr "このタブを閉じる"
 
@@ -114,7 +114,7 @@ msgstr "帰属先ドックの名前 :"
 msgid "Desklet"
 msgstr "デスクレット"
 
-#: ../data/messages:17 ../data/messages:21
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -122,9 +122,19 @@ msgstr ""
 "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
-#: ../data/messages:19 ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
 
 #: ../data/messages:25
 msgid "Is detached from the dock ?"
@@ -304,15 +314,6 @@ msgstr "端末を表示するショートカットキー :"
 
 #~ msgid "Keep above other windows ?"
 #~ msgstr "他ウィンドウより常に上に？"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "デスクレットの位置（X ; Y） :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "このアプレットのアイコンの大きさ（ピクセル単位）"

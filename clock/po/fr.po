@@ -323,19 +323,15 @@ msgstr ""
 msgid "Use the analogic view ?"
 msgstr "Utiliser la vue analogique ?"
 
-#: ../data/messages:117 ../data/messages:129
-msgid "r, v, b, a"
-msgstr "r, v, b, a"
-
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Text color for the numeric display:"
 msgstr "Couleur du texte pour l'affiche numérique:"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Weight of the text :"
 msgstr "Taille du texte :"
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -343,40 +339,43 @@ msgstr ""
 "par exemple Monospace, Purisa, ... Ecrivez simplement la nom de la police "
 "sans aucun nombre ou autre."
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Font used for the numeric display :"
 msgstr "Police utilisée pour l'affichage numérique :"
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "List of available themes for the analogic display :"
 msgstr "Liste des thèmes disponibles pour la vue analogique :"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Text color of the date :"
 msgstr "Couleur du texte de la date :"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Setup time and date"
 msgstr "Régler la date et l'heure"
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "Let empty to use default command."
 msgstr "Laissez vide pour utiliser la commande par défaut."
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Specific command to run :"
 msgstr "Commande spécifique à exécuter :"
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "Alarm"
 msgstr "Alarme"
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "La nouvelle alarme sera ajoutée à la fin / la dernière alarme sera enlevée."
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "Add or remove an alarm :"
 msgstr "Ajoute ou retire une alarme :"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, v, b, a"

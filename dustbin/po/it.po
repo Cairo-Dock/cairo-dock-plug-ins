@@ -69,16 +69,16 @@ msgstr "%s è smontato adesso"
 msgid "failed to unmount %s"
 msgstr "fallimento nello smontare %s"
 
-#: ../src/applet-trashes-manager.c:366
+#: ../src/applet-trashes-manager.c:369
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "State per cancellare tutti i files in %s. Sicuri ?"
 
-#: ../src/applet-trashes-manager.c:368
+#: ../src/applet-trashes-manager.c:371
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tutti i files saranno cancellati dai cestini. Sicuri ?"
 
-#: ../src/applet-trashes-manager.c:441
+#: ../src/applet-trashes-manager.c:448
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -342,37 +342,41 @@ msgid "Maximum size authorized for each dustbin :"
 msgstr "Dimensione massima per ogni singolo cestino :"
 
 #: ../data/messages:111
+msgid "Ask confirmation before empty Trash ?"
+msgstr ""
+
+#: ../data/messages:113
 msgid "Desktop-less support"
 msgstr "Supporto senza Desktop"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "They don't even need to be real trash directories."
 msgstr "Non è necessario che questa sia la cartella del Cestino."
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
 "Potete specificare qui una lista addizionale di cartelle Cestino da "
 "monitorare :"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "in seconds, only used if you can't monitor directories."
 msgstr ""
 "in secondi. Da utilizzare solo se non si può monitorare direttamente le "
 "cartelle."
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "intervallo di tempo per verificare se il Cestino è pieno/vuoto :"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "Utilizzare solo se si constata che l'applet non mostra il Cestino al click."
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Alternative file browser used to show a trash :"
 msgstr "Aprire il cestino con :"
 

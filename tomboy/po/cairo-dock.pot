@@ -15,60 +15,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/tomboy-init.c:14
-msgid "Control your TomBoy's notes directly in the dock !"
+#: ../src/tomboy-draw.c:90 ../src/tomboy-draw.c:97
+msgid "results"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:51
+#: ../src/tomboy-draw.c:90 ../src/tomboy-draw.c:97
+msgid "result"
+msgstr ""
+
+#: ../src/tomboy-init.c:14
+msgid ""
+"Control your TomBoy's notes directly in the dock !\n"
+"Click on a note to open it, Escape to close it.\n"
+"Middle-click to instantly create a new note.\n"
+"You can search inside notes and display their content on the icons."
+msgstr ""
+
+#: ../src/tomboy-notifications.c:49
 msgid "Note name : "
 msgstr ""
 
-#: ../src/tomboy-notifications.c:74
+#: ../src/tomboy-notifications.c:72
 msgid "Delete this note ?"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:90
+#: ../src/tomboy-notifications.c:88
 msgid "Search for :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:111
+#: ../src/tomboy-notifications.c:104
 msgid "Search for tag :"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:167
+#: ../src/tomboy-notifications.c:143
 msgid "Reload notes"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:170
+#: ../src/tomboy-notifications.c:144
 msgid "Add a note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:174
+#: ../src/tomboy-notifications.c:150
 msgid "Delete this note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:177
+#: ../src/tomboy-notifications.c:153
 msgid "Search"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:178
-msgid "Searh for tag"
+#: ../src/tomboy-notifications.c:154
+msgid "Search for tag"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:180
+#: ../src/tomboy-notifications.c:156
 msgid "Search for today's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:181
+#: ../src/tomboy-notifications.c:157
 msgid "Search for this week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:182
+#: ../src/tomboy-notifications.c:158
 msgid "Search for next week's note"
 msgstr ""
 
-#: ../src/tomboy-notifications.c:192
-msgid "Reset marks"
+#: ../src/tomboy-notifications.c:168
+msgid "Clear marks"
 msgstr ""
 
 #: ../data/messages:1
@@ -112,10 +124,162 @@ msgid "Name of an image for the 'broken' icon :"
 msgstr ""
 
 #: ../data/messages:25
-msgid "Configuration"
+msgid "Desklet"
 msgstr ""
 
 #: ../data/messages:27
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+
+#: ../data/messages:29
+msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:31
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+
+#: ../data/messages:33
+msgid "Desklet's position (x ; y) :"
+msgstr ""
+
+#: ../data/messages:35
+msgid "Is detached from the dock ?"
+msgstr ""
+
+#: ../data/messages:37
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+
+#: ../data/messages:39
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Normal"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Keep above"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:47
+msgid "On Widget Layer"
+msgstr ""
+
+#: ../data/messages:49
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:53
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+
+#: ../data/messages:55
+msgid "Lock position ?"
+msgstr ""
+
+#: ../data/messages:57
+msgid "in degrees."
+msgstr ""
+
+#: ../data/messages:59
+msgid "Rotation :"
+msgstr ""
+
+#: ../data/messages:61
+msgid "Decorations"
+msgstr ""
+
+#: ../data/messages:63
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+
+#: ../data/messages:65
+msgid "Choose a decoration theme for this desklet :"
+msgstr ""
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:69
+msgid "Background image :"
+msgstr ""
+
+#: ../data/messages:71
+msgid "Background tansparency :"
+msgstr ""
+
+#: ../data/messages:73
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+
+#: ../data/messages:75
+msgid "Left offset :"
+msgstr ""
+
+#: ../data/messages:77
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+
+#: ../data/messages:79
+msgid "Top offset :"
+msgstr ""
+
+#: ../data/messages:81
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+
+#: ../data/messages:83
+msgid "Right offset :"
+msgstr ""
+
+#: ../data/messages:85
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+
+#: ../data/messages:87
+msgid "Bottom offset :"
+msgstr ""
+
+#: ../data/messages:89
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+
+#: ../data/messages:91
+msgid "Foreground image :"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Foreground tansparency :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:97
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -123,41 +287,49 @@ msgid ""
 "terminal."
 msgstr ""
 
-#: ../data/messages:29
+#: ../data/messages:99
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr ""
 
-#: ../data/messages:31
+#: ../data/messages:101
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
-#: ../data/messages:33
+#: ../data/messages:103
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
-#: ../data/messages:35
+#: ../data/messages:105
 msgid "Draw note's content on their icon ?"
 msgstr ""
 
-#: ../data/messages:37
+#: ../data/messages:107
+msgid "Text color of the content :"
+msgstr ""
+
+#: ../data/messages:109
+msgid "Display note's content with a dialog ?"
+msgstr ""
+
+#: ../data/messages:111
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
 
-#: ../data/messages:39
+#: ../data/messages:113
 msgid "Date format to search for :"
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:115
 msgid "Ask confirmation before deleting a note ?"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:117
 msgid "Otherwise you will be asked to name it."
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:119
 msgid "Automatically name a new note ?"
 msgstr ""

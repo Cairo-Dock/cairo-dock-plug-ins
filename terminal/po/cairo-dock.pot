@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:334
+#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:343
 msgid "Copy"
 msgstr ""
 
@@ -24,15 +24,14 @@ msgid ""
 "Add a terminal to your dock !\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
 "for it.)\n"
-"You can open many tabs, rename them, change their color.\n"
 "You can drag'n'drop files or text and select an action.\n"
-"Shortcuts are available : 'CTRL+t' and 'CTRL+w' to open/close current tab,\n"
-"Right-click on a tab to interact on it,\n"
-"Middle-click on a tab to close it,\n"
-"Double-click next to the tabs to open a new one."
+"You can open many tabs, rename them, change their color (right-click on a "
+"tab to interact on it)\n"
+"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+"To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 
-#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
+#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:359
 msgid "New Tab"
 msgstr ""
 
@@ -48,27 +47,27 @@ msgstr ""
 msgid "Terminal"
 msgstr ""
 
-#: ../src/terminal-widget.c:139
+#: ../src/terminal-widget.c:137
 msgid "Set title for this tab :"
 msgstr ""
 
-#: ../src/terminal-widget.c:193
+#: ../src/terminal-widget.c:191
 msgid "Select a color"
 msgstr ""
 
-#: ../src/terminal-widget.c:340
+#: ../src/terminal-widget.c:349
 msgid "Paste"
 msgstr ""
 
-#: ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:365
 msgid "Rename this Tab"
 msgstr ""
 
-#: ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:371
 msgid "Change this Tab's color"
 msgstr ""
 
-#: ../src/terminal-widget.c:368
+#: ../src/terminal-widget.c:377
 msgid "Close this Tab"
 msgstr ""
 
@@ -104,14 +103,22 @@ msgstr ""
 msgid "Desklet"
 msgstr ""
 
-#: ../data/messages:17 ../data/messages:21
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
 
-#: ../data/messages:19 ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
+msgstr ""
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
 msgstr ""
 
 #: ../data/messages:25

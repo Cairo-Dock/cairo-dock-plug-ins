@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
+#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:335
 #: ../src/applet-load-icons.c:57
 msgid "Unmounted"
 msgstr "アンマウント済み"
@@ -275,42 +275,54 @@ msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
 #: ../data/messages:103
+msgid "Type of view for the desklet mode :"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Slide"
+msgstr ""
+
+#: ../data/messages:107
+msgid "Tree"
+msgstr ""
+
+#: ../data/messages:109
 msgid "Disk usage"
 msgstr "ディスク使用量"
 
-#: ../data/messages:105
+#: ../data/messages:111
 msgid "Show disk usage :"
 msgstr "ディスク使用量の表示 :"
 
-#: ../data/messages:107
+#: ../data/messages:113
 msgid "No"
 msgstr "なし"
 
-#: ../data/messages:109
+#: ../data/messages:115
 msgid "Free space"
 msgstr "空き容量"
 
-#: ../data/messages:111
+#: ../data/messages:117
 msgid "Used space"
 msgstr "使用容量"
 
-#: ../data/messages:113
+#: ../data/messages:119
 msgid "Free space percent"
 msgstr "空き容量の割合"
 
-#: ../data/messages:115
+#: ../data/messages:121
 msgid "Used space percent"
 msgstr "使用容量の割合"
 
-#: ../data/messages:117
+#: ../data/messages:123
 msgid "In seconds."
 msgstr "秒単位"
 
-#: ../data/messages:119
+#: ../data/messages:125
 msgid "Delay between disk usage refresh :"
 msgstr "ディスク使用量の更新間隔 :"
 
-#: ../data/messages:121
+#: ../data/messages:127
 msgid "Display disk usage with a bar ?"
 msgstr "ディスク使用量をバーで表示？"
 

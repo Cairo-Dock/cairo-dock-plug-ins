@@ -318,19 +318,15 @@ msgstr ""
 msgid "Use the analogic view ?"
 msgstr "アナログ表示を使用？"
 
-#: ../data/messages:117 ../data/messages:129
-msgid "r, v, b, a"
-msgstr "赤、緑、青、透明"
-
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Text color for the numeric display:"
 msgstr "デジタル表示時のテキスト色 :"
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Weight of the text :"
 msgstr "テキストの太さ :"
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
@@ -338,42 +334,45 @@ msgstr ""
 "例えば Monospace や Purisa など....。数字の類などなしにフォント名を入力してく"
 "ださい。"
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Font used for the numeric display :"
 msgstr "デジタル表示時に使用するフォント :"
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "List of available themes for the analogic display :"
 msgstr "アナログ表示用に利用可能なテーマのリスト :"
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Text color of the date :"
 msgstr "日付のテキスト色 :"
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Setup time and date"
 msgstr "時刻と日付の設定"
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "Let empty to use default command."
 msgstr "デフォルトのコマンドを使用するには空欄のままに。"
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Specific command to run :"
 msgstr "実行するコマンドの指定 :"
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr "新しいアラームを最後に追加、または最後のアラームが削除されます。"
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "Add or remove an alarm :"
 msgstr "アラームの追加または削除 :"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "赤、緑、青、透明"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"

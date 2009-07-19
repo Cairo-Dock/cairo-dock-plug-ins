@@ -32,35 +32,43 @@ msgstr ""
 "従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
 "ます。"
 
-#: ../src/applet-notifications.c:47
+#: ../src/applet-notifications.c:51
 msgid "Clear the stack ?"
 msgstr "スタックを消去？"
 
-#: ../src/applet-notifications.c:64
+#: ../src/applet-notifications.c:68
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../src/applet-notifications.c:102
-msgid "Paste (drag'n'drop)"
-msgstr "貼り付け（ドラッグ＆ドロップ）"
-
-#: ../src/applet-notifications.c:105
+#: ../src/applet-notifications.c:126
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../src/applet-notifications.c:106
+#: ../src/applet-notifications.c:127
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../src/applet-notifications.c:107
+#: ../src/applet-notifications.c:128
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../src/applet-notifications.c:108
+#: ../src/applet-notifications.c:129
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../src/applet-notifications.c:110
+#: ../src/applet-notifications.c:133
+msgid "Open (click)"
+msgstr ""
+
+#: ../src/applet-notifications.c:135
+msgid "Open folder"
+msgstr ""
+
+#: ../src/applet-notifications.c:140
+msgid "Paste (drag'n'drop)"
+msgstr "貼り付け（ドラッグ＆ドロップ）"
+
+#: ../src/applet-notifications.c:141
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 

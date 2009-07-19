@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:173
 msgid "None"
 msgstr "Aucune"
 
@@ -39,20 +39,40 @@ msgid "Excellent"
 msgstr "Excellent"
 
 #: ../src/applet-draw.c:124
+msgid ""
+"Checking connection...\n"
+"Please retry in a few seconds"
+msgstr ""
+
+#: ../src/applet-draw.c:132
 msgid "Wifi disabled."
 msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:128
-msgid ""
-"Wifi enabled. \n"
-" Connected on:"
-msgstr ""
-"Wifi activé. \n"
-" Connecté sur:"
+#: ../src/applet-draw.c:137
+#, fuzzy
+msgid "Wifi enabled."
+msgstr "Wifi désactivé."
 
-#: ../src/applet-draw.c:128
-msgid "Signal Strength:"
-msgstr "Puissance du Signal:"
+#: ../src/applet-draw.c:139
+msgid "Network ID"
+msgstr ""
+
+#: ../src/applet-draw.c:139
+#, fuzzy
+msgid "unknown"
+msgstr "Inconnu"
+
+#: ../src/applet-draw.c:140
+msgid "Access point"
+msgstr ""
+
+#: ../src/applet-draw.c:141
+msgid "Interface"
+msgstr ""
+
+#: ../src/applet-draw.c:142
+msgid "Signal Quality"
+msgstr ""
 
 #: ../src/applet-init.c:14
 msgid ""
@@ -64,17 +84,13 @@ msgstr ""
 "Clique gauche pour obtenir des informations dans une petite fenêtre.\n"
 "Clique du milieu pour forcer l'actualisation des informations."
 
-#: ../src/applet-notifications.c:59
+#: ../src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
 msgstr "Verifier les Extensions Wifi"
 
-#: ../src/applet-notifications.c:61
+#: ../src/applet-notifications.c:57
 msgid "Network Administration"
 msgstr "Administration du Réseau"
-
-#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
-msgid "Unknown"
-msgstr "Inconnu"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -388,57 +404,70 @@ msgid "Parameters"
 msgstr ""
 
 #: ../data/messages:157
-msgid "Information to display on the icon :"
-msgstr "Information à afficher sur l'icône :"
-
-#: ../data/messages:161
-msgid "Signal Strength"
-msgstr "Force du Signal"
-
-#: ../data/messages:163
-msgid "Signal Strength in percent"
-msgstr "Force du Signal en pourcent"
-
-#: ../data/messages:165
-msgid "Raw Signal Informations"
-msgstr "Infos Brutes du Signal"
-
-#: ../data/messages:167
 msgid "in seconds."
 msgstr "en seconde."
 
-#: ../data/messages:169
+#: ../data/messages:159
 msgid "Delay between signal checks :"
 msgstr "Temps entre les vérifications :"
 
-#: ../data/messages:171
+#: ../data/messages:161
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
 msgstr ""
 
-#: ../data/messages:173
+#: ../data/messages:163
 msgid "How smooth is the movement ?"
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:165
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
 "Cela permet d'utiliser une interface de configuration du wifi exotique."
 
-#: ../data/messages:177
+#: ../data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Ouvrir la configuration du Wifi avec :"
 
+#: ../data/messages:169
+msgid "Info"
+msgstr ""
+
+#: ../data/messages:171
+msgid "Information to display on the icon :"
+msgstr "Information à afficher sur l'icône :"
+
+#: ../data/messages:175
+msgid "Signal Strength"
+msgstr "Force du Signal"
+
+#: ../data/messages:177
+msgid "Signal Strength in percent"
+msgstr "Force du Signal en pourcent"
+
 #: ../data/messages:179
-msgid "Display"
-msgstr "Affichage"
+msgid "Raw Signal Informations"
+msgstr "Infos Brutes du Signal"
 
 #: ../data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Ecraser l'étiquette par défaut avec le nom du point d'accès ?"
+
+#~ msgid ""
+#~ "Wifi enabled. \n"
+#~ " Connected on:"
+#~ msgstr ""
+#~ "Wifi activé. \n"
+#~ " Connecté sur:"
+
+#~ msgid "Signal Strength:"
+#~ msgstr "Puissance du Signal:"
+
+#~ msgid "Display"
+#~ msgstr "Affichage"
 
 #~ msgid "Information"
 #~ msgstr "Information"

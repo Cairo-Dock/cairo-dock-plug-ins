@@ -75,7 +75,7 @@ msgstr ""
 "アプレットの設定パネルを開いて、\n"
 "制御したいオーディオ・チャンネルを正しく選択してください。"
 
-#: ../src/applet-mixer.c:268
+#: ../src/applet-mixer.c:271
 msgid "Set up volume :"
 msgstr "ボリューム設定 :"
 

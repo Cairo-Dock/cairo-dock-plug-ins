@@ -210,6 +210,7 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 			if (pIcon->pTextBuffer != NULL)
 			{
 				cairo_save (pCairoContext);
+				cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
 				
 				double fOffsetX = 0., fAlpha;
 				if (pIcon->bPointed)
@@ -219,13 +220,21 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
 					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
 						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
+					cairo_set_source_surface (pCairoContext,
+						pIcon->pTextBuffer,
+						fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
+						-myLabels.iLabelSize);
+					cairo_paint_with_alpha (pCairoContext, fAlpha);
 				}
 				else
 				{
 					fAlpha = .6;
 					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
 					{
-						fOffsetX = pIcon->fWidth/2 + myLabels.iLabelSize;
+						if (pIcon->iTextWidth > pIcon->fWidth + 2*myLabels.iLabelSize)
+							fOffsetX = 0.;
+						else
+							fOffsetX = pIcon->fWidth/2 - pIcon->iTextWidth/2;
 						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (pIcon->fDrawX,
 							0.,
 							pIcon->fWidth + 2*myLabels.iLabelSize + pIcon->fDrawX,
@@ -249,18 +258,14 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 							0.,
 							0.,
 							0.);
+						cairo_set_source_surface (pCairoContext,
+							pIcon->pTextBuffer,
+							fOffsetX,
+							-myLabels.iLabelSize);
 						cairo_mask (pCairoContext, pGradationPattern);
 						cairo_pattern_destroy (pGradationPattern);
 					}
 				}
-				cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
-				
-				cairo_set_source_surface (pCairoContext,
-					pIcon->pTextBuffer,
-					fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
-					-myLabels.iLabelSize);
-				cairo_paint_with_alpha (pCairoContext, fAlpha);
-				cairo_restore (pCairoContext);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -428,36 +433,6 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 	_cairo_dock_disable_texture ();
 }
 
-
-void rendering_draw_slide_bounding_box (CairoDesklet *pDesklet)
-{
-	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
-	
-	double x, y, w, h;
-	int numActive = 0;
-	Icon *pIcon;
-	GList *ic;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (pIcon->iIconTexture == 0)
-			continue;
-		
-		w = pIcon->fWidth/2;
-		h = pIcon->fHeight/2;
-		x = pIcon->fDrawX + w;
-		y = pDesklet->iHeight - pIcon->fDrawY - h;
-		
-		glLoadName(pIcon->iIconTexture);
-		
-		glBegin(GL_QUADS);
-		glVertex3f(x-.5*w, y+.5*h, 0.);
-		glVertex3f(x+.5*w, y+.5*h, 0.);
-		glVertex3f(x+.5*w, y-.5*h, 0.);
-		glVertex3f(x-.5*w, y-.5*h, 0.);
-		glEnd();
-	}	
-}
 
 
 void rendering_register_slide_desklet_renderer (void)

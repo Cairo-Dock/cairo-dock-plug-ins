@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:321
+#: ../src/applet-bookmarks.c:122 ../src/applet-bookmarks.c:335
 #: ../src/applet-load-icons.c:57
 msgid "Unmounted"
 msgstr "Smontato"
@@ -276,42 +276,54 @@ msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
 
 #: ../data/messages:103
-msgid "Disk usage"
+msgid "Type of view for the desklet mode :"
 msgstr ""
 
 #: ../data/messages:105
-msgid "Show disk usage :"
+msgid "Slide"
 msgstr ""
 
 #: ../data/messages:107
-msgid "No"
+msgid "Tree"
 msgstr ""
 
 #: ../data/messages:109
-msgid "Free space"
+msgid "Disk usage"
 msgstr ""
 
 #: ../data/messages:111
-msgid "Used space"
+msgid "Show disk usage :"
 msgstr ""
 
 #: ../data/messages:113
-msgid "Free space percent"
+msgid "No"
 msgstr ""
 
 #: ../data/messages:115
-msgid "Used space percent"
+msgid "Free space"
 msgstr ""
 
 #: ../data/messages:117
-msgid "In seconds."
+msgid "Used space"
 msgstr ""
 
 #: ../data/messages:119
-msgid "Delay between disk usage refresh :"
+msgid "Free space percent"
 msgstr ""
 
 #: ../data/messages:121
+msgid "Used space percent"
+msgstr ""
+
+#: ../data/messages:123
+msgid "In seconds."
+msgstr ""
+
+#: ../data/messages:125
+msgid "Delay between disk usage refresh :"
+msgstr ""
+
+#: ../data/messages:127
 msgid "Display disk usage with a bar ?"
 msgstr ""
 

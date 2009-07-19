@@ -25,7 +25,6 @@ extern gdouble  my_diapo_simple_fScaleMax;
 extern gint     my_diapo_simple_sinW;
 extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
-//extern gboolean  my_diapo_simple_text_only_on_pointed;
 
 extern gdouble  my_diapo_simple_color_frame_start[4];
 extern gdouble  my_diapo_simple_color_frame_stop[4];
@@ -344,7 +343,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
 			icon->fDrawX -= (icon->fDrawX - pDock->iCurrentWidth/2) * pDock->fFoldingFactor;
 			if (pDock->fFoldingFactor > .5)
-				icon->fDrawY = icon->fDrawY + (pDock->iCurrentHeight - Y_BORDER_SPACE - icon->fDrawY) * (pDock->fFoldingFactor - .5);
+				icon->fDrawY = icon->fDrawY + ((pDock->bDirectionUp ? pDock->iCurrentHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * (pDock->fFoldingFactor - .5);
 			icon->fAlpha = (pDock->fFoldingFactor > .8 ? (1 - pDock->fFoldingFactor) / .2 : 1.);
 			
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
@@ -395,15 +394,15 @@ void cairo_dock_calculate_wave_with_position_diapo_simple(GList *pIconList, gint
 		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
                 guint x1 = Mx;
                 ///gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
-                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX;
+                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth / 2) + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX;
                 guint y1 = My;
                 ///gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
-                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY;
+                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY + icon->iTextHeight;
                 gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
               
                 if(my_diapo_simple_lineaire)
                 {
-                        gdouble eloignementMax = 3. * (icon->fWidth + icon->fHeight)  / 2;
+                        gdouble eloignementMax = my_diapo_simple_sinW;  // 3. * (icon->fWidth + icon->fHeight)  / 2
                         if(distanceE > eloignementMax)
                         {
                                 icon->fScale = 1.;

@@ -14,60 +14,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/tomboy-init.c:14
-msgid "Control your TomBoy's notes directly in the dock !"
-msgstr "ドックから直接 Tomboy ノートを制御！"
+#: ../src/tomboy-draw.c:90 ../src/tomboy-draw.c:97
+msgid "results"
+msgstr ""
 
-#: ../src/tomboy-notifications.c:51
+#: ../src/tomboy-draw.c:90 ../src/tomboy-draw.c:97
+#, fuzzy
+msgid "result"
+msgstr "デスクレット"
+
+#: ../src/tomboy-init.c:14
+msgid ""
+"Control your TomBoy's notes directly in the dock !\n"
+"Click on a note to open it, Escape to close it.\n"
+"Middle-click to instantly create a new note.\n"
+"You can search inside notes and display their content on the icons."
+msgstr ""
+
+#: ../src/tomboy-notifications.c:49
 msgid "Note name : "
 msgstr "ノートの名前 :"
 
-#: ../src/tomboy-notifications.c:74
+#: ../src/tomboy-notifications.c:72
 msgid "Delete this note ?"
 msgstr "このノートを削除？"
 
-#: ../src/tomboy-notifications.c:90
+#: ../src/tomboy-notifications.c:88
 msgid "Search for :"
 msgstr "検索 :"
 
-#: ../src/tomboy-notifications.c:111
+#: ../src/tomboy-notifications.c:104
 msgid "Search for tag :"
 msgstr "タグ検索 :"
 
-#: ../src/tomboy-notifications.c:167
+#: ../src/tomboy-notifications.c:143
 msgid "Reload notes"
 msgstr "ノートを再読み込み"
 
-#: ../src/tomboy-notifications.c:170
+#: ../src/tomboy-notifications.c:144
 msgid "Add a note"
 msgstr "ノートを追加"
 
-#: ../src/tomboy-notifications.c:174
+#: ../src/tomboy-notifications.c:150
 msgid "Delete this note"
 msgstr "このノートを削除"
 
-#: ../src/tomboy-notifications.c:177
+#: ../src/tomboy-notifications.c:153
 msgid "Search"
 msgstr "検索"
 
-#: ../src/tomboy-notifications.c:178
-msgid "Searh for tag"
+#: ../src/tomboy-notifications.c:154
+#, fuzzy
+msgid "Search for tag"
 msgstr "タグ検索"
 
-#: ../src/tomboy-notifications.c:180
+#: ../src/tomboy-notifications.c:156
 msgid "Search for today's note"
 msgstr "今日のノートの検索"
 
-#: ../src/tomboy-notifications.c:181
+#: ../src/tomboy-notifications.c:157
 msgid "Search for this week's note"
 msgstr "今週のノートの検索"
 
-#: ../src/tomboy-notifications.c:182
+#: ../src/tomboy-notifications.c:158
 msgid "Search for next week's note"
 msgstr "次週のノートの検索"
 
-#: ../src/tomboy-notifications.c:192
-msgid "Reset marks"
+#: ../src/tomboy-notifications.c:168
+#, fuzzy
+msgid "Clear marks"
 msgstr "マークのリセット"
 
 #: ../data/messages:1
@@ -111,10 +126,177 @@ msgid "Name of an image for the 'broken' icon :"
 msgstr "「リンク切れ」アイコンの画像の名前 :"
 
 #: ../data/messages:25
+msgid "Desklet"
+msgstr "デスクレット"
+
+#: ../data/messages:27
+msgid ""
+"Depending on your WindowManager, you can resize it with ALT + middle_click "
+"or ALT + left_click for exemple."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
+
+#: ../data/messages:29
+msgid "Desklet's dimension (width x height) :"
+msgstr "デスクレットの寸法（幅×高さ） :"
+
+#: ../data/messages:31
+#, fuzzy
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click. "
+"Negative values are counted from the right/bottom of the screen"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
+
+#: ../data/messages:33
+msgid "Desklet's position (x ; y) :"
+msgstr "デスクレットの位置（X ; Y） :"
+
+#: ../data/messages:35
+msgid "Is detached from the dock ?"
+msgstr "ドックから分離？"
+
+#: ../data/messages:37
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+"動作設定での指定法 : (class=Cairo-dock & type=utility)"
+
+#: ../data/messages:39
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:41
+msgid "Normal"
+msgstr ""
+
+#: ../data/messages:43
+msgid "Keep above"
+msgstr ""
+
+#: ../data/messages:45
+msgid "Keep below"
+msgstr ""
+
+#: ../data/messages:47
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "ウィジェット・レイヤ上に表示？"
+
+#: ../data/messages:49
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:51
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:53
+msgid ""
+"If locked, the desklet can't be moved by simply dragging it with the left "
+"mouse button. Of course you can still move it with ALT + left_click."
+msgstr ""
+"固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくなり"
+"ます。その場合でも ALT + 左クリックで移動させることはできます。"
+
+#: ../data/messages:55
+msgid "Lock position ?"
+msgstr "位置を固定？"
+
+#: ../data/messages:57
+msgid "in degrees."
+msgstr "角度"
+
+#: ../data/messages:59
+msgid "Rotation :"
+msgstr "回転 :"
+
+#: ../data/messages:61
+msgid "Decorations"
+msgstr "装飾"
+
+#: ../data/messages:63
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr ""
+"以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
+
+#: ../data/messages:65
+msgid "Choose a decoration theme for this desklet :"
+msgstr "このデスクレットの装飾テーマの選択 :"
+
+#: ../data/messages:67
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
+
+#: ../data/messages:69
+msgid "Background image :"
+msgstr "背景画像 :"
+
+#: ../data/messages:71
+msgid "Background tansparency :"
+msgstr "背景の透明度 :"
+
+#: ../data/messages:73
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
+
+#: ../data/messages:75
+msgid "Left offset :"
+msgstr "左方向のオフセット :"
+
+#: ../data/messages:77
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
+
+#: ../data/messages:79
+msgid "Top offset :"
+msgstr "上方向のオフセット :"
+
+#: ../data/messages:81
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
+
+#: ../data/messages:83
+msgid "Right offset :"
+msgstr "右方向のオフセット :"
+
+#: ../data/messages:85
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
+
+#: ../data/messages:87
+msgid "Bottom offset :"
+msgstr "下方向のオフセット :"
+
+#: ../data/messages:89
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
+
+#: ../data/messages:91
+msgid "Foreground image :"
+msgstr "前景画像 :"
+
+#: ../data/messages:93
+msgid "Foreground tansparency :"
+msgstr "前景の透明度 :"
+
+#: ../data/messages:95
 msgid "Configuration"
 msgstr "設定"
 
-#: ../data/messages:27
+#: ../data/messages:97
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -126,23 +308,32 @@ msgstr ""
 "'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみこのオプションに"
 "チェックを入れてください。"
 
-#: ../data/messages:29
+#: ../data/messages:99
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
 
-#: ../data/messages:31
+#: ../data/messages:101
 msgid "Let it empty to use default sub-dock view."
 msgstr "サブ・ドックのデフォルトの外観を使用するには空欄のままに。"
 
-#: ../data/messages:33
+#: ../data/messages:103
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
 
-#: ../data/messages:35
+#: ../data/messages:105
 msgid "Draw note's content on their icon ?"
 msgstr "アイコン上にノートの内容を描画？"
 
-#: ../data/messages:37
+#: ../data/messages:107
+msgid "Text color of the content :"
+msgstr ""
+
+#: ../data/messages:109
+#, fuzzy
+msgid "Display note's content with a dialog ?"
+msgstr "アイコン上にノートの内容を描画？"
+
+#: ../data/messages:111
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -152,21 +343,24 @@ msgstr ""
 "y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用"
 "するには、空欄のままにしてください。"
 
-#: ../data/messages:39
+#: ../data/messages:113
 msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
-#: ../data/messages:41
+#: ../data/messages:115
 msgid "Ask confirmation before deleting a note ?"
 msgstr "ノートを削除する前に確認を取る？"
 
-#: ../data/messages:43
+#: ../data/messages:117
 msgid "Otherwise you will be asked to name it."
 msgstr "無効の場合は、名前の入力を求められます。"
 
-#: ../data/messages:45
+#: ../data/messages:119
 msgid "Automatically name a new note ?"
 msgstr "新しいノートに自動的に名前を付ける？"
+
+#~ msgid "Control your TomBoy's notes directly in the dock !"
+#~ msgstr "ドックから直接 Tomboy ノートを制御！"
 
 #~ msgid "Applet by Necropotame (Adrien Pilleboue)"
 #~ msgstr "Necropotame (Adrien Pilleboue) 製作のアプレット"
@@ -293,31 +487,6 @@ msgstr "新しいノートに自動的に名前を付ける？"
 #~ "これは CD_MY_NAME によって \n"
 #~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
 
-#~ msgid "Desklet"
-#~ msgstr "デスクレット"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリッ"
-#~ "ク、または ALT + 左クリックでサイズ変更できます。"
-
-#~ msgid "Desklet's dimension (width x height) :"
-#~ msgstr "デスクレットの寸法（幅×高さ） :"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動"
-#~ "させることができます。"
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "デスクレットの位置（X ; Y） :"
-
-#~ msgid "Is detached from the dock ?"
-#~ msgstr "ドックから分離？"
-
 #~ msgid "Keep below other windows ?"
 #~ msgstr "他ウィンドウより常に下に？"
 
@@ -330,93 +499,6 @@ msgstr "新しいノートに自動的に名前を付ける？"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
 #~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
-
-#~ msgid "Keep on widget layer ?"
-#~ msgstr "ウィジェット・レイヤ上に表示？"
-
-#~ msgid ""
-#~ "If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click."
-#~ msgstr ""
-#~ "固定した場合、マウスの左ボタンを押しながらのドラッグによる移動は出来なくな"
-#~ "ります。その場合でも ALT + 左クリックで移動させることはできます。"
-
-#~ msgid "Lock position ?"
-#~ msgstr "位置を固定？"
-
-#~ msgid "in degrees."
-#~ msgstr "角度"
-
-#~ msgid "Rotation :"
-#~ msgstr "回転 :"
-
-#~ msgid "Decorations"
-#~ msgstr "装飾"
-
-#~ msgid "Choose the 'personnal' one to define your own decorations below."
-#~ msgstr ""
-#~ "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してくださ"
-#~ "い。"
-
-#~ msgid "Choose a decoration theme for this desklet :"
-#~ msgstr "このデスクレットの装飾テーマの選択 :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the drawings, like a frame for "
-#~ "exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は"
-#~ "空欄のままにしてください。"
-
-#~ msgid "Background image :"
-#~ msgstr "背景画像 :"
-
-#~ msgid "Background tansparency :"
-#~ msgstr "背景の透明度 :"
-
-#~ msgid "in pixels. Use this to adjust the left position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
-
-#~ msgid "Left offset :"
-#~ msgstr "左方向のオフセット :"
-
-#~ msgid "in pixels. Use this to adjust the top position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
-
-#~ msgid "Top offset :"
-#~ msgstr "上方向のオフセット :"
-
-#~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の右方向位置の調整に使用してください。"
-
-#~ msgid "Right offset :"
-#~ msgstr "右方向のオフセット :"
-
-#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
-#~ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
-
-#~ msgid "Bottom offset :"
-#~ msgstr "下方向のオフセット :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない"
-#~ "場合は空欄のままにしてください。"
-
-#~ msgid "Foreground image :"
-#~ msgstr "前景画像 :"
-
-#~ msgid "Foreground tansparency :"
-#~ msgstr "前景の透明度 :"
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)"
-#~ msgstr ""
-#~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Image's filename :"
 #~ msgstr "画像のファイル名前 :"

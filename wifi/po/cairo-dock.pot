@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:173
 msgid "None"
 msgstr ""
 
@@ -40,17 +40,37 @@ msgid "Excellent"
 msgstr ""
 
 #: ../src/applet-draw.c:124
+msgid ""
+"Checking connection...\n"
+"Please retry in a few seconds"
+msgstr ""
+
+#: ../src/applet-draw.c:132
 msgid "Wifi disabled."
 msgstr ""
 
-#: ../src/applet-draw.c:128
-msgid ""
-"Wifi enabled. \n"
-" Connected on:"
+#: ../src/applet-draw.c:137
+msgid "Wifi enabled."
 msgstr ""
 
-#: ../src/applet-draw.c:128
-msgid "Signal Strength:"
+#: ../src/applet-draw.c:139
+msgid "Network ID"
+msgstr ""
+
+#: ../src/applet-draw.c:139
+msgid "unknown"
+msgstr ""
+
+#: ../src/applet-draw.c:140
+msgid "Access point"
+msgstr ""
+
+#: ../src/applet-draw.c:141
+msgid "Interface"
+msgstr ""
+
+#: ../src/applet-draw.c:142
+msgid "Signal Quality"
 msgstr ""
 
 #: ../src/applet-init.c:14
@@ -60,16 +80,12 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../src/applet-notifications.c:59
+#: ../src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
 msgstr ""
 
-#: ../src/applet-notifications.c:61
+#: ../src/applet-notifications.c:57
 msgid "Network Administration"
-msgstr ""
-
-#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
-msgid "Unknown"
 msgstr ""
 
 #: ../data/messages:1
@@ -364,51 +380,51 @@ msgid "Parameters"
 msgstr ""
 
 #: ../data/messages:157
-msgid "Information to display on the icon :"
-msgstr ""
-
-#: ../data/messages:161
-msgid "Signal Strength"
-msgstr ""
-
-#: ../data/messages:163
-msgid "Signal Strength in percent"
-msgstr ""
-
-#: ../data/messages:165
-msgid "Raw Signal Informations"
-msgstr ""
-
-#: ../data/messages:167
 msgid "in seconds."
 msgstr ""
 
-#: ../data/messages:169
+#: ../data/messages:159
 msgid "Delay between signal checks :"
 msgstr ""
 
-#: ../data/messages:171
+#: ../data/messages:161
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
 msgstr ""
 
-#: ../data/messages:173
+#: ../data/messages:163
 msgid "How smooth is the movement ?"
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:165
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
 
-#: ../data/messages:177
+#: ../data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 
+#: ../data/messages:169
+msgid "Info"
+msgstr ""
+
+#: ../data/messages:171
+msgid "Information to display on the icon :"
+msgstr ""
+
+#: ../data/messages:175
+msgid "Signal Strength"
+msgstr ""
+
+#: ../data/messages:177
+msgid "Signal Strength in percent"
+msgstr ""
+
 #: ../data/messages:179
-msgid "Display"
+msgid "Raw Signal Informations"
 msgstr ""
 
 #: ../data/messages:181

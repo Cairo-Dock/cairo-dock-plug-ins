@@ -77,16 +77,16 @@ msgstr "%s est maintenant démonté"
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
 
-#: ../src/applet-trashes-manager.c:366
+#: ../src/applet-trashes-manager.c:369
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
 msgstr "Vous êtes sur le point de détruire tous les fichiers dans %s. Sur ?"
 
-#: ../src/applet-trashes-manager.c:368
+#: ../src/applet-trashes-manager.c:371
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tous les fichiers seront supprimés. Etes-vous sûr ?"
 
-#: ../src/applet-trashes-manager.c:441
+#: ../src/applet-trashes-manager.c:448
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -345,39 +345,43 @@ msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
 #: ../data/messages:111
+msgid "Ask confirmation before empty Trash ?"
+msgstr ""
+
+#: ../data/messages:113
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
-#: ../data/messages:113
+#: ../data/messages:115
 msgid "They don't even need to be real trash directories."
 msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
 
-#: ../data/messages:115
+#: ../data/messages:117
 msgid ""
 "Here you can specify a list of additionnal Trash directories to monitor :"
 msgstr ""
 "Vous pouvez spécifier ici une liste additionnelle de répertoire(s) poubelle"
 "(s) à surveiller :"
 
-#: ../data/messages:117
+#: ../data/messages:119
 msgid "in seconds, only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
 "disponible."
 
-#: ../data/messages:119
+#: ../data/messages:121
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr ""
 "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
 
-#: ../data/messages:121
+#: ../data/messages:123
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
 "poubelle au clic."
 
-#: ../data/messages:123
+#: ../data/messages:125
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
 

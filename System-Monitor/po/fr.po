@@ -37,7 +37,7 @@ msgstr ""
 "Clique gauche sur l'icône pour avoir une liste des programmes les plus "
 "gourmants en CPU."
 
-#: ../src/applet-monitor.c:60
+#: ../src/applet-monitor.c:62
 msgid "Loading"
 msgstr "Chargement"
 

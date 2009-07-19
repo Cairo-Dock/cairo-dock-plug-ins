@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:159
+#: ../src/applet-draw.c:12 ../data/messages:123 ../data/messages:173
 msgid "None"
 msgstr "なし"
 
@@ -39,20 +39,40 @@ msgid "Excellent"
 msgstr "最高"
 
 #: ../src/applet-draw.c:124
+msgid ""
+"Checking connection...\n"
+"Please retry in a few seconds"
+msgstr ""
+
+#: ../src/applet-draw.c:132
 msgid "Wifi disabled."
 msgstr "Wifi は無効です。"
 
-#: ../src/applet-draw.c:128
-msgid ""
-"Wifi enabled. \n"
-" Connected on:"
-msgstr ""
-"Wifi は有効です。\n"
-"接続先 :"
+#: ../src/applet-draw.c:137
+#, fuzzy
+msgid "Wifi enabled."
+msgstr "Wifi は無効です。"
 
-#: ../src/applet-draw.c:128
-msgid "Signal Strength:"
-msgstr "信号の強さ :"
+#: ../src/applet-draw.c:139
+msgid "Network ID"
+msgstr ""
+
+#: ../src/applet-draw.c:139
+#, fuzzy
+msgid "unknown"
+msgstr "不明"
+
+#: ../src/applet-draw.c:140
+msgid "Access point"
+msgstr ""
+
+#: ../src/applet-draw.c:141
+msgid "Interface"
+msgstr ""
+
+#: ../src/applet-draw.c:142
+msgid "Signal Quality"
+msgstr ""
 
 #: ../src/applet-init.c:14
 msgid ""
@@ -63,17 +83,13 @@ msgstr ""
 "最初にアクティブとなった無線接続の信号の強さを表示するアプレット。\n"
 "左クリックで情報を表示、中クリックで直ちに再チェックを行います。"
 
-#: ../src/applet-notifications.c:59
+#: ../src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
 msgstr "Wireless Extension のチェック"
 
-#: ../src/applet-notifications.c:61
+#: ../src/applet-notifications.c:57
 msgid "Network Administration"
 msgstr "ネットワーク管理"
-
-#: ../src/applet-wifi.c:94 ../src/applet-wifi.c:99
-msgid "Unknown"
-msgstr "不明"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -389,40 +405,24 @@ msgid "Parameters"
 msgstr ""
 
 #: ../data/messages:157
-msgid "Information to display on the icon :"
-msgstr "アイコン上に表示する情報 :"
-
-#: ../data/messages:161
-msgid "Signal Strength"
-msgstr "信号の強さ"
-
-#: ../data/messages:163
-msgid "Signal Strength in percent"
-msgstr "信号の強さ（％単位）"
-
-#: ../data/messages:165
-msgid "Raw Signal Informations"
-msgstr "生信号の情報"
-
-#: ../data/messages:167
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../data/messages:169
+#: ../data/messages:159
 msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
-#: ../data/messages:171
+#: ../data/messages:161
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
 msgstr ""
 
-#: ../data/messages:173
+#: ../data/messages:163
 msgid "How smooth is the movement ?"
 msgstr ""
 
-#: ../data/messages:175
+#: ../data/messages:165
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -430,17 +430,46 @@ msgstr ""
 "アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
 "ンタフェースを起動することができます。"
 
-#: ../data/messages:177
+#: ../data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "無線設定を起動する代替のコマンドライン :"
 
+#: ../data/messages:169
+msgid "Info"
+msgstr ""
+
+#: ../data/messages:171
+msgid "Information to display on the icon :"
+msgstr "アイコン上に表示する情報 :"
+
+#: ../data/messages:175
+msgid "Signal Strength"
+msgstr "信号の強さ"
+
+#: ../data/messages:177
+msgid "Signal Strength in percent"
+msgstr "信号の強さ（％単位）"
+
 #: ../data/messages:179
-msgid "Display"
-msgstr "表示"
+msgid "Raw Signal Informations"
+msgstr "生信号の情報"
 
 #: ../data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
+
+#~ msgid ""
+#~ "Wifi enabled. \n"
+#~ " Connected on:"
+#~ msgstr ""
+#~ "Wifi は有効です。\n"
+#~ "接続先 :"
+
+#~ msgid "Signal Strength:"
+#~ msgstr "信号の強さ :"
+
+#~ msgid "Display"
+#~ msgstr "表示"
 
 #~ msgid "Information"
 #~ msgstr "情報"

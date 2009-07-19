@@ -30,7 +30,7 @@ msgid ""
 "time."
 msgstr ""
 
-#: ../src/applet-monitor.c:60
+#: ../src/applet-monitor.c:62
 msgid "Loading"
 msgstr "Caricamento"
 

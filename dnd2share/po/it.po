@@ -13,39 +13,123 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../src/applet-dnd2share.c:118
+msgid "Couldn't upload the file, check that your internet connexion is active."
+msgstr ""
+
+#: ../src/applet-dnd2share.c:229
+msgid ""
+"File has been uploaded.\n"
+"Just press CTRL+v to paste its URL anywhere."
+msgstr ""
+
+#: ../src/applet-init.c:31
+msgid ""
+"This applet lets you share files easily :\n"
+"Drag-and-drop a file on the icon to upload it to one of the available "
+"hosting sites.\n"
+"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+"You can upload text, image, video, and files.\n"
+"The resulting URL is automatically stored in the clipboard to be directly "
+"copied by CTRL+v.\n"
+"It can keep an history of your last uploads to retrieve them without any "
+"account.\n"
+"You'll need to install 'curl' and 'wget' to upload the data."
+msgstr ""
+
+#: ../src/applet-notifications.c:19
+msgid "Clear the list of the recently uploaded files ?"
+msgstr ""
+
+#: ../src/applet-notifications.c:35
+msgid ""
+"The text has been pasted in the clipboard.\n"
+"You can retrieve it with CTRL+v."
+msgstr ""
+
+#: ../src/applet-notifications.c:57
+msgid "Sorry, couldn't find the orignial file nor a preview of it."
+msgstr ""
+
+#: ../src/applet-notifications.c:78
+msgid ""
+"The URL has been stored into the clipboard.\n"
+"Just use 'CTRL+v' to paste it anywhere."
+msgstr ""
+
+#: ../src/applet-notifications.c:92
+msgid ""
+"No uploaded file available\n"
+".Just drag'n drop a file on the icon to upload it"
+msgstr ""
+
+#: ../src/applet-notifications.c:93
+msgid ""
+"No uploaded file available\n"
+".Consider activating the history if you want the applet remembers previous "
+"uploads."
+msgstr ""
+
+#: ../src/applet-notifications.c:110
+msgid ""
+"The current URL has been stored into the clipboard.\n"
+"Just use 'CTRL+v' to paste it anywhere."
+msgstr ""
+
+#: ../src/applet-notifications.c:111
+msgid ""
+"The current URL has been stored into the selection.\n"
+"Just middle-click to paste it anywhere."
+msgstr ""
+
+#: ../src/applet-notifications.c:255
+#, c-format
+msgid ""
+"%s '%s' (n°%d):\n"
+"Press 'Left mouse button' to copy the URL into the clipboard"
+msgstr ""
+
+#: ../src/applet-notifications.c:274
+msgid "Clear History"
+msgstr ""
+
+#: ../src/applet-notifications.c:336
+msgid "Open file"
+msgstr ""
+
+#: ../src/applet-notifications.c:338
+msgid "Get text"
+msgstr ""
+
+#: ../src/applet-notifications.c:340
+msgid "Remove from history"
+msgstr ""
+
 #: ../data/messages:1
 msgid "Icon"
 msgstr "Icona"
 
 #: ../data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr ""
+
+#: ../data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Dimensione dell'icona desiderata per questa applet"
 
-#: ../data/messages:5
-msgid "width :"
-msgstr "larghezza :"
-
 #: ../data/messages:7
-msgid "height :"
-msgstr "altezza :"
-
-#: ../data/messages:9
-msgid "Let it empty to use the location's name if available."
-msgstr ""
-
-#: ../data/messages:11
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
-#: ../data/messages:13
+#: ../data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr ""
 
-#: ../data/messages:15
+#: ../data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:17
+#: ../data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -53,48 +137,64 @@ msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:19
+#: ../data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione della desklet (larghezza x altezza) :"
 
-#: ../data/messages:21
+#: ../data/messages:17
 #, fuzzy
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click. "
-"Negative values are counted from the right/bottom of the screen"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
-"sinistro"
+"centrale o ALT + click sinistro come esempio."
 
-#: ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Posizione della desklet (x ; y) :"
 
-#: ../data/messages:25
+#: ../data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "E' staccata dalla barra ?"
 
-#: ../data/messages:27
-msgid "Keep below other windows ?"
-msgstr "Mantenere al di sotto delle altre finestre ?"
-
-#: ../data/messages:29
-msgid "Keep above other windows ?"
-msgstr "Mantenere al di sopra delle altre finestre ?"
-
-#: ../data/messages:31
+#: ../data/messages:23
+#, fuzzy
 msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
 msgstr ""
 "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
 "di Compiz a : (name=cairo-dock & type=utility)"
 
+#: ../data/messages:25
+msgid "Accessibility :"
+msgstr ""
+
+#: ../data/messages:27
+msgid "Normal"
+msgstr ""
+
+#: ../data/messages:29
+msgid "Keep above"
+msgstr ""
+
+#: ../data/messages:31
+msgid "Keep below"
+msgstr ""
+
 #: ../data/messages:33
-msgid "Keep on widget layer ?"
+#, fuzzy
+msgid "On Widget Layer"
 msgstr "Mantenere nella sezione dei widget ?"
 
 #: ../data/messages:35
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -103,89 +203,230 @@ msgstr ""
 "copia/incolla con il bottone sinistro del mouse. Potete comunque muoverla "
 "con ALT + click sinistro."
 
-#: ../data/messages:37
+#: ../data/messages:41
 msgid "Lock position ?"
 msgstr "Bloccare la posizione ?"
 
-#: ../data/messages:39
+#: ../data/messages:43
 msgid "in degrees."
 msgstr ""
 
-#: ../data/messages:41
+#: ../data/messages:45
 msgid "Rotation :"
 msgstr ""
 
-#: ../data/messages:43
+#: ../data/messages:47
 msgid "Decorations"
 msgstr ""
 
-#: ../data/messages:45
+#: ../data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
 
-#: ../data/messages:47
+#: ../data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
 
-#: ../data/messages:49
+#: ../data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:51
+#: ../data/messages:55
 msgid "Background image :"
 msgstr ""
 
-#: ../data/messages:53
+#: ../data/messages:57
 msgid "Background tansparency :"
 msgstr ""
 
-#: ../data/messages:55
+#: ../data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
 
-#: ../data/messages:57
+#: ../data/messages:61
 msgid "Left offset :"
 msgstr ""
 
-#: ../data/messages:59
+#: ../data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
 
-#: ../data/messages:61
+#: ../data/messages:65
 msgid "Top offset :"
 msgstr ""
 
-#: ../data/messages:63
+#: ../data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
 
-#: ../data/messages:65
+#: ../data/messages:69
 msgid "Right offset :"
 msgstr ""
 
-#: ../data/messages:67
+#: ../data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
 
-#: ../data/messages:69
+#: ../data/messages:73
 msgid "Bottom offset :"
 msgstr ""
 
-#: ../data/messages:71
+#: ../data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
 msgstr ""
 
-#: ../data/messages:73
+#: ../data/messages:77
 msgid "Foreground image :"
 msgstr ""
 
-#: ../data/messages:75
+#: ../data/messages:79
 msgid "Foreground tansparency :"
 msgstr ""
+
+#: ../data/messages:81
+msgid "Configuration"
+msgstr ""
+
+#: ../data/messages:83
+msgid "Info-bubbles"
+msgstr ""
+
+#: ../data/messages:85
+msgid "Enable info-bubbles ?"
+msgstr ""
+
+#: ../data/messages:87
+msgid "in seconds."
+msgstr ""
+
+#: ../data/messages:89
+msgid "Duration of the info-bubbles :"
+msgstr ""
+
+#: ../data/messages:91
+msgid "Behaviour"
+msgstr ""
+
+#: ../data/messages:93
+msgid "Number of items to keep in the history :"
+msgstr ""
+
+#: ../data/messages:95
+msgid "Keep a copy of each uploaded image ?"
+msgstr ""
+
+#: ../data/messages:97
+msgid "This will override the image setting."
+msgstr ""
+
+#: ../data/messages:99
+msgid "If so, display the last image on the icon ?"
+msgstr ""
+
+#: ../data/messages:101
+msgid "Animation of the icon during upload :"
+msgstr ""
+
+#: ../data/messages:103
+msgid "Sites"
+msgstr ""
+
+#: ../data/messages:105
+msgid "Preferred site for texts hosting :"
+msgstr ""
+
+#: ../data/messages:107 ../data/messages:113 ../data/messages:123
+#: ../data/messages:129
+msgid "Custom"
+msgstr ""
+
+#: ../data/messages:109
+msgid "Pastebin.ca"
+msgstr ""
+
+#: ../data/messages:111
+msgid "Preferred site for images hosting :"
+msgstr ""
+
+#: ../data/messages:115
+msgid "Uppix.net"
+msgstr ""
+
+#: ../data/messages:117
+msgid "Imagebin.ca"
+msgstr ""
+
+#: ../data/messages:119
+msgid "ImageShack.us"
+msgstr ""
+
+#: ../data/messages:121
+msgid "Preferred site for videos hosting :"
+msgstr ""
+
+#: ../data/messages:125
+msgid "VideoBin.org"
+msgstr ""
+
+#: ../data/messages:127
+msgid "Preferred site for files hosting :"
+msgstr ""
+
+#: ../data/messages:131
+msgid "dl.free.fr"
+msgstr ""
+
+#: ../data/messages:133
+msgid "DropBox"
+msgstr ""
+
+#: ../data/messages:135
+msgid "Custom script for text upload : "
+msgstr ""
+
+#: ../data/messages:137
+msgid "Custom script for image upload : "
+msgstr ""
+
+#: ../data/messages:139
+msgid "Custom script for video upload : "
+msgstr ""
+
+#: ../data/messages:141
+msgid "Custom script for file upload : "
+msgstr ""
+
+#: ../data/messages:143
+msgid "Let empty to upload files into the 'Public' folder."
+msgstr ""
+
+#: ../data/messages:145
+msgid "Sub-folder of DropBox to upload to :"
+msgstr ""
+
+#~ msgid "width :"
+#~ msgstr "larghezza :"
+
+#~ msgid "height :"
+#~ msgstr "altezza :"
+
+#, fuzzy
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
+#~ "sinistro"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Mantenere al di sotto delle altre finestre ?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "Mantenere al di sopra delle altre finestre ?"
 
 #~ msgid "Module"
 #~ msgstr "Modulo"

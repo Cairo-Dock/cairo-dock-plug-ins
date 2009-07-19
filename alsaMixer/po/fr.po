@@ -75,7 +75,7 @@ msgstr ""
 "Vous devriez essayer d'ouvrir la configuration de cette applet,\n"
 " et de sélectionner le bon canal audio que vous voulez contrôler."
 
-#: ../src/applet-mixer.c:268
+#: ../src/applet-mixer.c:271
 msgid "Set up volume :"
 msgstr "Réglez le volume :"
 

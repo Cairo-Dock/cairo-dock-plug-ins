@@ -14,21 +14,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:334
+#: ../src/terminal-callbacks.c:66 ../src/terminal-widget.c:343
 msgid "Copy"
 msgstr "Copier"
 
 #: ../src/terminal-init.c:34
+#, fuzzy
 msgid ""
 "Add a terminal to your dock !\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
 "for it.)\n"
-"You can open many tabs, rename them, change their color.\n"
 "You can drag'n'drop files or text and select an action.\n"
-"Shortcuts are available : 'CTRL+t' and 'CTRL+w' to open/close current tab,\n"
-"Right-click on a tab to interact on it,\n"
-"Middle-click on a tab to close it,\n"
-"Double-click next to the tabs to open a new one."
+"You can open many tabs, rename them, change their color (right-click on a "
+"tab to interact on it)\n"
+"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+"To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 "Ajoute un terminal à votre dock !\n"
 "Clique gauche/milieu pour afficher/cacher le terminal (vous pouvez définir "
@@ -42,7 +42,7 @@ msgstr ""
 "Clique du milieu sur un onglet pour le fermer,\n"
 "Double clique sur les onglets pour en ouvrir un nouveau."
 
-#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:350
+#: ../src/terminal-menu-functions.c:80 ../src/terminal-widget.c:359
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -58,27 +58,27 @@ msgstr "Fermer l'onglet courant"
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/terminal-widget.c:139
+#: ../src/terminal-widget.c:137
 msgid "Set title for this tab :"
 msgstr "Définissez un titre pour cet onglet :"
 
-#: ../src/terminal-widget.c:193
+#: ../src/terminal-widget.c:191
 msgid "Select a color"
 msgstr "Sélectionner une couleur"
 
-#: ../src/terminal-widget.c:340
+#: ../src/terminal-widget.c:349
 msgid "Paste"
 msgstr "Coller"
 
-#: ../src/terminal-widget.c:356
+#: ../src/terminal-widget.c:365
 msgid "Rename this Tab"
 msgstr "Renommer cet onglet"
 
-#: ../src/terminal-widget.c:362
+#: ../src/terminal-widget.c:371
 msgid "Change this Tab's color"
 msgstr "Changer la couleur de cet onglet"
 
-#: ../src/terminal-widget.c:368
+#: ../src/terminal-widget.c:377
 msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
@@ -116,7 +116,7 @@ msgstr "Nom du conteneur auquel il appartient:"
 msgid "Desklet"
 msgstr "Desklet"
 
-#: ../data/messages:17 ../data/messages:21
+#: ../data/messages:17
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -124,9 +124,19 @@ msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le redimensionner avec "
 "ALT + clic milieu ou ALT + clic gauche par exemple."
 
-#: ../data/messages:19 ../data/messages:23
+#: ../data/messages:19
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
+
+#: ../data/messages:21
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr ""
+"Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
+"clic gauche."
+
+#: ../data/messages:23
+msgid "Desklet's position (x ; y) :"
+msgstr "Position du desklet (x ; y) :"
 
 #: ../data/messages:25
 msgid "Is detached from the dock ?"
@@ -308,15 +318,6 @@ msgstr "Raccourci clavier pour montrer le terminal :"
 
 #~ msgid "Keep above other windows ?"
 #~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT "
-#~ "+ clic gauche."
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "Position du desklet (x ; y) :"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Taille désirée de l'icône dans le dock (en pixels)"

@@ -292,57 +292,53 @@ msgstr ""
 msgid "Use the analogic view ?"
 msgstr ""
 
-#: ../data/messages:117 ../data/messages:129
-msgid "r, v, b, a"
-msgstr ""
-
-#: ../data/messages:119
+#: ../data/messages:117
 msgid "Text color for the numeric display:"
 msgstr ""
 
-#: ../data/messages:121
+#: ../data/messages:119
 msgid "Weight of the text :"
 msgstr ""
 
-#: ../data/messages:123
+#: ../data/messages:121
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
 msgstr ""
 
-#: ../data/messages:125
+#: ../data/messages:123
 msgid "Font used for the numeric display :"
 msgstr ""
 
-#: ../data/messages:127
+#: ../data/messages:125
 msgid "List of available themes for the analogic display :"
 msgstr ""
 
-#: ../data/messages:131
+#: ../data/messages:127
 msgid "Text color of the date :"
 msgstr ""
 
-#: ../data/messages:133
+#: ../data/messages:129
 msgid "Setup time and date"
 msgstr ""
 
-#: ../data/messages:135
+#: ../data/messages:131
 msgid "Let empty to use default command."
 msgstr ""
 
-#: ../data/messages:137
+#: ../data/messages:133
 msgid "Specific command to run :"
 msgstr ""
 
-#: ../data/messages:139
+#: ../data/messages:135
 msgid "Alarm"
 msgstr ""
 
-#: ../data/messages:141
+#: ../data/messages:137
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../data/messages:143
+#: ../data/messages:139
 msgid "Add or remove an alarm :"
 msgstr ""
