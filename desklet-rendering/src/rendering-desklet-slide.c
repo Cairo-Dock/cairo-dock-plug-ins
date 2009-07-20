@@ -17,29 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
-	gtk_widget_queue_draw (pContainer->pWidget);
-	/*CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
-	Icon *pIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
-	if (pIcon != NULL)
-	{
-		if (! pIcon->bPointed)
-		{
-			Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
-			if (pPointedIcon != NULL)
-				pPointedIcon->bPointed = FALSE;
-			pIcon->bPointed = TRUE;
-			gtk_widget_queue_draw (pDesklet->pWidget);
-		}
-	}
-	else
-	{
-		Icon *pPointedIcon = cairo_dock_get_pointed_icon (pDesklet->icons);
-		if (pPointedIcon != NULL)
-		{
-			pPointedIcon->bPointed = FALSE;
-			gtk_widget_queue_draw (pDesklet->pWidget);
-		}
-	}*/
+	gtk_widget_queue_draw (pContainer->pWidget);  // et oui, on n'a rien d'autre a faire.
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
@@ -189,6 +167,8 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
 	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
+	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
+	
 	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
@@ -196,12 +176,32 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		
+		pIcon->fDrawX = x;
+		pIcon->fDrawY = y;
+		
+		x += pSlide->iIconSize + dw;
+		q ++;
+		if (q == pSlide->iNbColumns)
+		{
+			q = 0;
+			x = pSlide->fMargin + dw/2;
+			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
+		}
+	}
+	
+	
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
+	if (pFirstDrawnElement == NULL)
+		return;
+	ic = pFirstDrawnElement;
+	do
+	{
+		pIcon = ic->data;
 		if (pIcon->pIconBuffer != NULL)
 		{
 			cairo_save (pCairoContext);
 			
-			pIcon->fDrawX = x;
-			pIcon->fDrawY = y;
 			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->iWidth);
 			
 			cairo_restore (pCairoContext);
@@ -231,13 +231,10 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 					fAlpha = .6;
 					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
 					{
-						if (pIcon->iTextWidth > pIcon->fWidth + 2*myLabels.iLabelSize)
-							fOffsetX = 0.;
-						else
-							fOffsetX = pIcon->fWidth/2 - pIcon->iTextWidth/2;
-						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (pIcon->fDrawX,
+						fOffsetX = - myLabels.iLabelSize;
+						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (fOffsetX,
 							0.,
-							pIcon->fWidth + 2*myLabels.iLabelSize + pIcon->fDrawX,
+							fOffsetX + pIcon->fWidth + 2*myLabels.iLabelSize,
 							0.);
 						cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 						cairo_pattern_add_color_stop_rgba (pGradationPattern,
@@ -265,22 +262,23 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 						cairo_mask (pCairoContext, pGradationPattern);
 						cairo_pattern_destroy (pGradationPattern);
 					}
+					else
+					{
+						fOffsetX = pIcon->fWidth/2 - pIcon->iTextWidth/2;
+						cairo_set_source_surface (pCairoContext,
+							pIcon->pTextBuffer,
+							fOffsetX,
+							-myLabels.iLabelSize);
+						cairo_paint_with_alpha (pCairoContext, fAlpha);
+					}
 				}
 				
 				cairo_restore (pCairoContext);
 			}
-			
-			
-			x += pSlide->iIconSize + dw;
-			q ++;
-			if (q == pSlide->iNbColumns)
-			{
-				q = 0;
-				x = pSlide->fMargin + dw/2;
-				y += pSlide->iIconSize + myLabels.iLabelSize + dh;
-			}
 		}
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	}
+	while (ic != pFirstDrawnElement);
 }
 
 

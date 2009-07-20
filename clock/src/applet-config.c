@@ -39,6 +39,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
 	
+	myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
 	//myConfig.cDigital 		= CD_CONFIG_GET_STRING ("Module", "digital");
 	
 	//\_______________ On recupere les alarmes.
@@ -104,7 +105,8 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cFont);
 	g_free (myConfig.cLocation);
 	g_free (myConfig.cDigital);
-
+	g_free (myConfig.cNumericBackgroundImage);
+	
 	CDClockAlarm *pAlarm;
 	int i;
 	if (myConfig.pAlarms != NULL)

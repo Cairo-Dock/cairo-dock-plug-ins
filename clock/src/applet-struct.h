@@ -80,6 +80,7 @@ struct _AppletConfig {
 	double fTextColor[4];
 	double fDateColor[4];
 	gchar *cThemePath;
+	gchar *cNumericBackgroundImage;
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
@@ -105,6 +106,7 @@ struct _AppletData {
 	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
 	struct tm currentTime;
 	
+	cairo_surface_t *pNumericBgSurface;
 	ClockDigital pDigitalClock;
 	
 	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture, iDateTexture;

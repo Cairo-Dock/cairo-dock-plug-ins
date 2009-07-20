@@ -127,6 +127,9 @@ weight = 5
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 font = 
 
+#D+ Image to draw on the background :
+numeric bg =
+
 #v
 sep_deco_mod =
 

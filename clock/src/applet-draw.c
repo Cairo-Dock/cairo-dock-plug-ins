@@ -234,11 +234,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
 	g_string_free (sFormat, TRUE);
 	
-	cairo_set_tolerance (myDrawContext, 0.5);
-	cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-	cairo_paint (myDrawContext);
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+	cairo_dock_erase_cairo_context (myDrawContext);
+	if (myData.pNumericBgSurface != NULL)
+	{
+		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
+		cairo_paint (myDrawContext);
+	}
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();

@@ -236,16 +236,23 @@ void cd_clock_load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 
 	//\_______________ On construit les surfaces d'arriere-plan et d'avant-plan une bonne fois pour toutes.
-	myData.pBackgroundSurface = cd_clock_create_bg_surface (myApplet,
-		myDrawContext,
-		iWidth,
-		iHeight,
-		KIND_BACKGROUND);
-	myData.pForegroundSurface = cd_clock_create_bg_surface (myApplet,
-		myDrawContext,
-		iWidth,
-		iHeight,
-		KIND_FOREGROUND);
+	if (myConfig.bOldStyle)
+	{
+		myData.pBackgroundSurface = cd_clock_create_bg_surface (myApplet,
+			myDrawContext,
+			iWidth,
+			iHeight,
+			KIND_BACKGROUND);
+		myData.pForegroundSurface = cd_clock_create_bg_surface (myApplet,
+			myDrawContext,
+			iWidth,
+			iHeight,
+			KIND_FOREGROUND);
+	}
+	else if (myConfig.cNumericBackgroundImage != NULL)
+	{
+		myData.pNumericBgSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cNumericBackgroundImage);
+	}
 }
 
 void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
@@ -334,6 +341,12 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 	{
 		_cairo_dock_delete_texture (myData.iDateTexture);
 		myData.iDateTexture = 0;
+	}
+	
+	if (myData.pNumericBgSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pNumericBgSurface);
+		myData.pNumericBgSurface = NULL;
 	}
 	
 	if (bClearAll)

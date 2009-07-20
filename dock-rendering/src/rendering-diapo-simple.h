@@ -40,16 +40,16 @@ static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoCont
 
 void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
 
-void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
+void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock, double fAlpha);
 
 
 void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock);
 
 GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, int *iNbPoints);
 
-GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (CairoDock *pDock, GLfloat **colors, int *iNbPoints);
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (CairoDock *pDock, double fAlpha, GLfloat **colors, int *iNbPoints);
 
-GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat *color);
+GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pDock, double fAlpha, GLfloat *color);
 
 
 #endif

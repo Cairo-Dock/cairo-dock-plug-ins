@@ -83,22 +83,22 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	if(my_diapo_simple_draw_background)
 	{
 		//\____________________ On trace le cadre.
-
 		cairo_save (pCairoContext);
 		cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
 
 		//\____________________ On dessine les decorations dedans.
-		cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock);
+		double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
+		cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock, fAlpha);
 
 		//\____________________ On dessine le cadre.
-		if (my_diapo_simple_lineWidth > 0)
+		if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
 		{
 			cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
 			cairo_set_source_rgba (pCairoContext,
 				my_diapo_simple_color_border_line[0],
 				my_diapo_simple_color_border_line[1],
 				my_diapo_simple_color_border_line[2],
-				my_diapo_simple_color_border_line[3] * (1. - 0*pDock->fFoldingFactor));
+				my_diapo_simple_color_border_line[3] * fAlpha);
 			cairo_stroke (pCairoContext);
 		}
 		else
@@ -135,7 +135,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 		gdouble zoom;
 		if(icon->pTextBuffer != NULL && (my_diapo_simple_display_all_icons || icon->bPointed))
 		{
-			double fAlpha = (pDock->fFoldingFactor > .5 ? 2 * (1 - pDock->fFoldingFactor) : 1.);
+			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);
 			cairo_save (pCairoContext);
 			
 			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
@@ -316,9 +316,11 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 		
        	GList *pointed_ic = NULL;
 //////////////////////////////////////////////////////////////////////////////////////// On crée une liste d'icone des icones à parcourir :
-	GList* ic;
+	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
+	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
 	Icon* icon;
-        i = 0;
+	GList* ic;
+	i = 0;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 	
@@ -341,10 +343,9 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        ///icon->fDrawY = icon->fY + my_diapo_simple_iconGapY + icon->fHeight * (1. - icon->fScale) / 2;
 	        icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
 	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
-			icon->fDrawX -= (icon->fDrawX - pDock->iCurrentWidth/2) * pDock->fFoldingFactor;
-			if (pDock->fFoldingFactor > .5)
-				icon->fDrawY = icon->fDrawY + ((pDock->bDirectionUp ? pDock->iCurrentHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * (pDock->fFoldingFactor - .5);
-			icon->fAlpha = (pDock->fFoldingFactor > .8 ? (1 - pDock->fFoldingFactor) / .2 : 1.);
+			icon->fDrawX -= (icon->fDrawX - pDock->iCurrentWidth/2) * fFoldingX;
+			icon->fDrawY = icon->fDrawY + ((pDock->bDirectionUp ? pDock->iCurrentHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * fFoldingY;
+			icon->fAlpha = (pDock->fFoldingFactor > .8 ? (1 - pDock->fFoldingFactor) / .2 : 1.);  // apparition de 1 a 0.8
 			
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
 			/**if((Mx > icon->fX) && 
@@ -587,26 +588,27 @@ void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *
 
 
 
-void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
+void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock, double fAlpha)
 {
 ////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
         cairo_pattern_t *mon_super_pattern;
         ///cairo_save (pCairoContext);       
-        mon_super_pattern = cairo_pattern_create_linear (0.0, 0.0,
-                                                my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0,      // Y'aurait surement des calculs complexes à faire mais 
-                                                my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
-                                                
+        mon_super_pattern = cairo_pattern_create_linear (0.0,
+			0.0,
+			my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0, // Y'aurait surement des calculs complexes à faire mais 
+			my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
+			
         cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
 			my_diapo_simple_color_frame_start[0],
 			my_diapo_simple_color_frame_start[1],
 			my_diapo_simple_color_frame_start[2],
-			my_diapo_simple_color_frame_start[3] * (1. - 0*pDock->fFoldingFactor));  // transparent -> opaque au depliage.
-                                                
+			my_diapo_simple_color_frame_start[3] * fAlpha);  // transparent -> opaque au depliage.
+		
         cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
 			my_diapo_simple_color_frame_stop[0],
 			my_diapo_simple_color_frame_stop[1],
 			my_diapo_simple_color_frame_stop[2],
-			my_diapo_simple_color_frame_stop[3] * (1. - 0*pDock->fFoldingFactor));
+			my_diapo_simple_color_frame_stop[3] * fAlpha);
         cairo_set_source (pCairoContext, mon_super_pattern);
         
 ////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
@@ -641,21 +643,24 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		fFrameWidth = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
 	}
 	
-	glPushMatrix ();
-	glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
-	glScalef (fFrameWidth, fFrameHeight, 1.);
-	
-	glEnable (GL_BLEND); // On active le blend
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	if (my_diapo_simple_draw_background)  // On remplit le cadre en 2 temps (avec des polygones convexes).
 	{
+		glPushMatrix ();
+		glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
+		glScalef (fFrameWidth, fFrameHeight, 1.);
+		
+		glEnable (GL_BLEND); // On active le blend
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
+		
 		glPolygonMode (GL_FRONT, GL_FILL);
 		glEnableClientState (GL_VERTEX_ARRAY);
 		glEnableClientState (GL_COLOR_ARRAY);
 		
-		//\____________________ Le cadre sans la fleche.
-		pVertexTab = cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (pDock, &pColorTab, &iNbVertex);
+		//\____________________ On remplit le cadre sans la fleche.
+		pVertexTab = cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (pDock, fAlpha, &pColorTab, &iNbVertex);
 		
 		//glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
 		_cairo_dock_set_vertex_pointer (pVertexTab);
@@ -663,25 +668,34 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		glDrawArrays (GL_POLYGON, 0, iNbVertex);
 		
 		glDisableClientState (GL_COLOR_ARRAY);
-		//\____________________ La fleche.
+		
+		//\____________________ On remplit la fleche.
 		GLfloat color[4];
-		pVertexTab = cd_rendering_generate_arrow_path_for_diapo_simple_opengl (pDock, color);
+		pVertexTab = cd_rendering_generate_arrow_path_for_diapo_simple_opengl (pDock, fAlpha, color);
 		glColor4fv (color);
 		
 		//glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
 		_cairo_dock_set_vertex_pointer (pVertexTab);
 		glDrawArrays (GL_POLYGON, 0, 4);
+		
 		glDisableClientState (GL_VERTEX_ARRAY);
+		
+		//\____________________ On genere et trace le contour du cadre complet (avec la fleche).
+		if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
+		{
+			pVertexTab = cd_rendering_generate_path_for_diapo_simple_opengl (pDock, &iNbVertex);
+			
+			//glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
+			_cairo_dock_set_vertex_pointer (pVertexTab);
+			double frame_alpha = my_diapo_simple_color_border_line[3];
+			my_diapo_simple_color_border_line[3] *= fAlpha;
+			cairo_dock_draw_current_path_opengl (my_diapo_simple_lineWidth, my_diapo_simple_color_border_line, iNbVertex);
+			my_diapo_simple_color_border_line[3] = frame_alpha;
+		}
+		
+		glPopMatrix ();
 	}
 	
-	//\____________________ On genere le chemin complet (avec la fleche).
-	pVertexTab = cd_rendering_generate_path_for_diapo_simple_opengl (pDock, &iNbVertex);
-	
-	//glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
-	_cairo_dock_set_vertex_pointer (pVertexTab);
-	cairo_dock_draw_current_path_opengl (my_diapo_simple_lineWidth, my_diapo_simple_color_border_line, iNbVertex);
-	
-	glPopMatrix ();
 	if (pDock->icons == NULL)
 		return ;
 	
@@ -708,7 +722,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		if(icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
 		{
-			double fAlpha = (pDock->fFoldingFactor > .5 ? 2 * (1 - pDock->fFoldingFactor) : 1.);
+			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
 			double fOffsetX = 0.;
 			if (icon->fDrawX + icon->fWidth * icon->fScale/2 - icon->iTextWidth/2 < 0)
 				fOffsetX = icon->iTextWidth/2 - (icon->fDrawX + icon->fWidth * icon->fScale/2);
@@ -756,16 +770,16 @@ static const double a = 2.5;  // definit combien la fleche est penchee.
 #define DELTA_ROUND_DEGREE 5
 #define TIP_OFFSET_FACTOR 2.
 #define _recopy_prev_color(pColorTab, i) memcpy (&pColorTab[4*i], &pColorTab[4*(i-1)], 4*sizeof (GLfloat));
-#define _copy_color(pColorTab, i, pDock, c) do { \
+#define _copy_color(pColorTab, i, fAlpha, c) do { \
 	pColorTab[4*i]   = c[0];\
 	pColorTab[4*i+1] = c[1];\
 	pColorTab[4*i+2] = c[2];\
-	pColorTab[4*i+3] = c[3] * (1. - 0*pDock->fFoldingFactor); } while (0)
-#define _copy_mean_color(pColorTab, i, pDock, c1, c2, f) do { \
+	pColorTab[4*i+3] = c[3] * fAlpha; } while (0)
+/*#define _copy_mean_color(pColorTab, i, fAlpha, c1, c2, f) do { \
 	pColorTab[4*i]   = c1[0]*f + c2[0]*(1-f);\
 	pColorTab[4*i+1] = c1[1]*f + c2[1]*(1-f);\
 	pColorTab[4*i+2] = c1[2]*f + c2[2]*(1-f);\
-	pColorTab[4*i+3] = (c1[3]*f + c2[3]*(1-f)) * (1. - 0*pDock->fFoldingFactor); } while (0)
+	pColorTab[4*i+3] = (c1[3]*f + c2[3]*(1-f)) * fAlpha; } while (0)*/
 GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, int *iNbPoints)
 {
 	//static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
@@ -882,7 +896,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, i
 	_cairo_dock_return_vertex_tab ();
 }
 
-GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (CairoDock *pDock, GLfloat **colors, int *iNbPoints)
+GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (CairoDock *pDock, double fAlpha, GLfloat **colors, int *iNbPoints)
 {
 	//static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
 	_cairo_dock_define_static_vertex_tab ((90/DELTA_ROUND_DEGREE+1)*4+1+3);  // +3 pour la pointe.
@@ -939,7 +953,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 			h + rh * sin (t*RADIAN));
 		//pVertexTab[3*i] = w + rw * cos (t*RADIAN);
 		//pVertexTab[3*i+1] = h + rh * sin (t*RADIAN);
-		_copy_color (pColorTab, i, pDock, pTopRightColor);
+		_copy_color (pColorTab, i, fAlpha, pTopRightColor);
 	}
 	for (t = 90;t <= 180;t += iPrecision, i++) // haut gauche.
 	{
@@ -948,7 +962,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 			h + rh * sin (t*RADIAN));
 		//pVertexTab[3*i] = -w + rw * cos (t*RADIAN);
 		//pVertexTab[3*i+1] = h + rh * sin (t*RADIAN);
-		_copy_color (pColorTab, i, pDock, pTopLeftColor);
+		_copy_color (pColorTab, i, fAlpha, pTopLeftColor);
 	}
 	for (t = 180;t <= 270;t += iPrecision, i++) // bas gauche.
 	{
@@ -957,7 +971,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 			-h + rh * sin (t*RADIAN));
 		//pVertexTab[3*i] = -w + rw * cos (t*RADIAN);
 		//pVertexTab[3*i+1] = -h + rh * sin (t*RADIAN);
-		_copy_color (pColorTab, i, pDock, pBottomLeftColor);
+		_copy_color (pColorTab, i, fAlpha, pBottomLeftColor);
 	}
 	for (t = 270;t <= 360;t += iPrecision, i++) // bas droit.
 	{
@@ -966,7 +980,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 			-h + rh * sin (t*RADIAN));
 		//pVertexTab[3*i] = w + rw * cos (t*RADIAN);
 		//pVertexTab[3*i+1] = -h + rh * sin (t*RADIAN);
-		_copy_color (pColorTab, i, pDock, pBottomRightColor);
+		_copy_color (pColorTab, i, fAlpha, pBottomRightColor);
 	}
 	_cairo_dock_close_path(i);
 	//pVertexTab[3*i] = w + rw;  // on boucle.
@@ -978,12 +992,12 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 	_cairo_dock_return_vertex_tab ();
 }
 
-#define _set_arrow_color(c1, c2, f, pDock, colors) do {\
+#define _set_arrow_color(c1, c2, f, fAlpha, colors) do {\
 	colors[0] = c1[0] * (f) + c2[0] * (1 - (f));\
 	colors[1] = c1[1] * (f) + c2[1] * (1 - (f));\
 	colors[2] = c1[2] * (f) + c2[2] * (1 - (f));\
-	colors[3] = (c1[3] * (f) + c2[3] * (1 - (f))) * (1 - 0*(pDock)->fFoldingFactor); } while (0)
-GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pDock, GLfloat *color)
+	colors[3] = (c1[3] * (f) + c2[3] * (1 - (f))) * fAlpha; } while (0)
+GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pDock, double fAlpha, GLfloat *color)
 {
 	//static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
 	_cairo_dock_define_static_vertex_tab ((90/DELTA_ROUND_DEGREE+1)*4+1+3);  // +3 pour la pointe.
@@ -1049,7 +1063,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 			x - my_diapo_simple_arrowWidth/fTotalWidth,
 			y);
 		i ++;
-		_set_arrow_color (pTopRightColor, pTopLeftColor, .5+my_diapo_simple_arrowShift/2, pDock, color);
+		_set_arrow_color (pTopRightColor, pTopLeftColor, .5+my_diapo_simple_arrowShift/2, fAlpha, color);
 	}
 	else if (!pDock->bDirectionUp && !pDock->bHorizontalDock)  // dessin de la pointe vers la gauche.
 	{
@@ -1067,7 +1081,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 			x,
 			y - my_diapo_simple_arrowWidth/fFrameHeight);
 		i ++;
-		_set_arrow_color (pTopLeftColor, pBottomLeftColor, .5+my_diapo_simple_arrowShift/2, pDock, color);
+		_set_arrow_color (pTopLeftColor, pBottomLeftColor, .5+my_diapo_simple_arrowShift/2, fAlpha, color);
 	}
 	else if (pDock->bDirectionUp && pDock->bHorizontalDock)  // dessin de la pointe vers le bas.
 	{
@@ -1085,7 +1099,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 			x + my_diapo_simple_arrowWidth/fTotalWidth,
 			y);
 		i ++;
-		_set_arrow_color (pBottomRightColor, pBottomLeftColor, .5+my_diapo_simple_arrowShift/2, pDock, color);
+		_set_arrow_color (pBottomRightColor, pBottomLeftColor, .5+my_diapo_simple_arrowShift/2, fAlpha, color);
 	}
 	else if (pDock->bDirectionUp && !pDock->bHorizontalDock)  // dessin de la pointe vers la droite.
 	{
@@ -1103,7 +1117,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 			x,
 			y + my_diapo_simple_arrowWidth/fFrameHeight);
 		i ++;
-		_set_arrow_color (pTopRightColor, pBottomRightColor, .5+my_diapo_simple_arrowShift/2, pDock, color);
+		_set_arrow_color (pTopRightColor, pBottomRightColor, .5+my_diapo_simple_arrowShift/2, fAlpha, color);
 	}
 	_cairo_dock_close_path (i);  // on boucle.
 	_cairo_dock_return_vertex_tab ();

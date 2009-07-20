@@ -138,6 +138,6 @@ video script =
 #S Custom script for file upload : 
 file script =
 
-#S Path of the DropBox folder :
+#D Path of the DropBox folder :
 #{Let empty to upload files into '~/Dropbox/Public'.}
 dropbox dir =
