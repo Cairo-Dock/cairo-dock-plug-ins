@@ -10,7 +10,6 @@ vanishing point y = 200
 draw separator = 0
 
 #C+ For flat separators, you can specify their color:
-#{red, blue, green, alpha}
 separator color = 0.9;0.9;1.0;0.8
 
 
@@ -51,7 +50,7 @@ wave magnitude= .2
 text gap = 3
 
 #b+ Draw labels while unfolding ?
-#{It may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with Glitz.}
+#{It may recquire more CPU during the unfolding animation, except with OpenGL.}
 draw text = true
 
 [Rainbow]
@@ -83,6 +82,9 @@ line color = 0.5,1.0,0.9,0.6
 
 [SimpleSlide]
 
+#F[Grid]
+frame_grid=
+
 #i+[10;100] Space between columns :
 simple_iconGapX = 40
 
@@ -104,13 +106,16 @@ simple_wide_grid = false
 #b Display text for all icons ?
 simple_display_all_icons = false
 
+#F[Frame]
+frame_frame =
+
 #b+ Draw a background ?
 simple_draw_background  = true
 
-#C+ First gradient color (r,v,b,a) :
+#C+ First gradient color :
 simple_color_frame_start=0;0;0;1;
 
-#C+ Second gradient color (r,v,b,a) :
+#C+ Second gradient color :
 simple_color_frame_stop=0.3;0.3;0.3;0.6;
 
 #b+ Top to bottom gradient ?
@@ -118,6 +123,21 @@ simple_fade2bottom = true
 
 #b+ Left to right gradient ?
 simple_fade2right = true
+
+#v
+sep_border= 
+
+#i+[0;30] Corner radius :
+simple_radius = 15
+
+#i+[0;10] Border line width :
+simple_lineWidth = 5
+
+#C+ Border line color :
+simple_color_border_line = 1;1;1;0.5;
+
+#v
+sep_arrow= 
 
 #i+[10;100] Arrow width :
 simple_arrowWidth = 40
@@ -127,15 +147,6 @@ simple_arrowHeight = 40
 
 #e+[-100;100] Arrow shift percent :
 simple_arrowShift = 30
-
-#i+[0;30] Corner radius :
-simple_radius = 15
-
-#i+[0;10] Border line width :
-simple_lineWidth = 5
-
-#C+ Border line color (r,v,b,a) :
-simple_color_border_line = 1;1;1;0.5;
 
 
 [Curve]

@@ -138,6 +138,10 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 		myData.pMatchingIcons = g_list_remove (myData.pMatchingIcons, pIcon);
 		if (myData.pCurrentMatchingElement && myData.pCurrentMatchingElement->data == pIcon)
 			myData.pCurrentMatchingElement = NULL;
+		if (myData.pCurrentApplicationToLoad && myData.pCurrentApplicationToLoad->data == pIcon)
+		{
+			myData.pCurrentApplicationToLoad = myData.pCurrentApplicationToLoad->next;
+		}
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

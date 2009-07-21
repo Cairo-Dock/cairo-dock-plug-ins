@@ -252,11 +252,14 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (myConfig.bEnableDialogs)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog (D_("%s '%s' (n°%d):\nPress 'Left mouse button' to copy the URL into the clipboard"),
+		cairo_dock_show_temporary_dialog ("%s '%s' (n°%d):\n%s",
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
-			(pItem->iFileType == CD_TYPE_TEXT ? "Text" : "File"), pItem->cFileName, myData.iCurrentItemNum);
+			(pItem->iFileType == CD_TYPE_TEXT ? D_("Text") : D_("File")),
+			pItem->cFileName,
+			myData.iCurrentItemNum,
+			D_("Click on the icon to copy the URL into the clipboard."));
 	}
 CD_APPLET_ON_SCROLL_END
 

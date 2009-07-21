@@ -30,11 +30,9 @@ x position=10
 #i[-2048;2048] ...
 y position=10
 
-#b Is detached ?
+#b Is detached from the dock ?
 initially detached=false
 #r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
-#b Keep below ?
-#b Keep above ?
 accessibility=0
 #b Should be visible on all desktops ?
 sticky=true

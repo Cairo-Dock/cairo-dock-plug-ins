@@ -151,7 +151,10 @@ static int _same_command (Icon *pIcon1, Icon *pIcon2)
 static gboolean _load_applis_buffer_idle (gpointer data)
 {
 	if (myData.pCurrentApplicationToLoad == NULL)
+	{
+		myData.iSidLoadExternAppliIdle = 0;
 		return FALSE;
+	}
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));

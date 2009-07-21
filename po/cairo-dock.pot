@@ -1213,7 +1213,7 @@ msgstr ""
 msgid "Browse images folder"
 msgstr ""
 
-#: ../stack/src/applet-init.c:24 ../stacks/src/applet-init.c:23
+#: ../stack/src/applet-init.c:24
 msgid ""
 "This applet allows you to build a stack of files, just like the Stacks "
 "applet of MacOS X.\n"
@@ -1263,14 +1263,6 @@ msgstr ""
 msgid "Clear the stack"
 msgstr ""
 
-#: ../stacks/src/applet-notifications.c:34
-msgid "Reload Stacks"
-msgstr ""
-
-#: ../stacks/src/applet-notifications.c:35
-msgid "Clean local directory"
-msgstr ""
-
 #: ../switcher/src/applet-init.c:24
 msgid ""
 "This applet allows you to switch between your virtual desktops.\n"
@@ -1309,16 +1301,6 @@ msgid ""
 "Middle-click to close the dalog.\n"
 "But the best way to use it id to detach it from the dock, and place it "
 "somewhere, above other windows."
-msgstr ""
-
-#: ../template/src/applet-init.c:18
-msgid "CD_APPLET_NAME"
-msgstr ""
-
-#: ../template/src/applet-init.c:21
-msgid ""
-"Useful description\n"
-"and manual"
 msgstr ""
 
 #: ../terminal/src/terminal-callbacks.c:66
@@ -1956,7 +1938,7 @@ msgstr ""
 #: ../quick-browser/data/messages:1 ../rhythmbox/data/messages:1
 #: ../shortcuts/data/messages:1 ../showDesklets/data/messages:1
 #: ../showDesktop/data/messages:1 ../slider/data/messages:1
-#: ../stack/data/messages:1 ../stacks/data/messages:1
+#: ../stack/data/messages:1 
 #: ../switcher/data/messages:1 
 #: ../systray/data/messages:1 ../terminal/data/messages:1
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
@@ -1976,7 +1958,7 @@ msgstr ""
 #: ../quick-browser/data/messages:3 ../rhythmbox/data/messages:3
 #: ../shortcuts/data/messages:3 ../showDesklets/data/messages:3
 #: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../stacks/data/messages:3
+#: ../stack/data/messages:3 
 #: ../switcher/data/messages:3 ../systray/data/messages:3
 #: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weather/data/messages:3 ../weblets/data/messages:3
@@ -2005,7 +1987,7 @@ msgstr ""
 #: ../quick-browser/data/messages:15 ../rhythmbox/data/messages:9
 #: ../shortcuts/data/messages:13 ../showDesklets/data/messages:17
 #: ../showDesktop/data/messages:13 ../slider/data/messages:9
-#: ../stack/data/messages:15 ../stacks/data/messages:13
+#: ../stack/data/messages:15 
 #: ../switcher/data/messages:13 
 #: ../systray/data/messages:9 ../terminal/data/messages:13
 #: ../tomboy/data/messages:9 ../weather/data/messages:11
@@ -2027,7 +2009,7 @@ msgstr ""
 #: ../quick-browser/data/messages:87 ../rhythmbox/data/messages:81
 #: ../show-mouse/data/messages:1 ../showDesklets/data/messages:19
 #: ../slider/data/messages:81 ../stack/data/messages:87
-#: ../stacks/data/messages:77 ../switcher/data/messages:81
+#:  ../switcher/data/messages:81
 #: ../switcher/data/messages:83 ../tomboy/data/messages:95
 #: ../weather/data/messages:83 ../weather/data/messages:85
 #: ../weblets/data/messages:85 ../wifi/data/messages:81
@@ -2186,7 +2168,7 @@ msgstr ""
 #: ../rhythmbox/data/messages:5 ../shortcuts/data/messages:5
 #: ../showDesklets/data/messages:5 ../showDesktop/data/messages:5
 #: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../stacks/data/messages:5 ../switcher/data/messages:5
+#:  ../switcher/data/messages:5
 #: ../systray/data/messages:5 ../terminal/data/messages:5
 #: ../tomboy/data/messages:5 ../weather/data/messages:5
 #: ../weblets/data/messages:5 ../wifi/data/messages:5 ../xmms/data/messages:5
@@ -2204,7 +2186,7 @@ msgstr ""
 #:  ../quick-browser/data/messages:9
 #: ../shortcuts/data/messages:7 ../showDesklets/data/messages:7
 #: ../showDesktop/data/messages:7 ../slider/data/messages:7
-#: ../stack/data/messages:9 ../stacks/data/messages:7
+#: ../stack/data/messages:9 
 #: ../switcher/data/messages:7 ../weather/data/messages:9
 #: ../weblets/data/messages:7 ../wifi/data/messages:7 ../xmms/data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -2218,7 +2200,7 @@ msgstr ""
 #:  ../quick-browser/data/messages:11
 #: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
 #: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../stacks/data/messages:9
+#: ../stack/data/messages:11 
 #: ../switcher/data/messages:9 ../switcher/data/messages:129
 #: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Let empty to use the default one."
@@ -2228,7 +2210,7 @@ msgstr ""
 #: ../Xgamma/data/messages:11 ../logout/data/messages:11
 #:  ../quick-browser/data/messages:13
 #: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../stacks/data/messages:11
+#: ../stack/data/messages:13 
 #: ../switcher/data/messages:11 ../terminal/data/messages:11
 #: ../weblets/data/messages:11
 msgid "Image's filename :"
@@ -2245,7 +2227,7 @@ msgstr ""
 #: ../powermanager/data/messages:11 ../quick-browser/data/messages:17
 #: ../rhythmbox/data/messages:11 ../shortcuts/data/messages:15
 #: ../showDesktop/data/messages:15 ../slider/data/messages:11
-#: ../stack/data/messages:17 ../stacks/data/messages:15
+#: ../stack/data/messages:17 
 #: ../switcher/data/messages:15 
 #: ../systray/data/messages:11 ../terminal/data/messages:15
 #: ../tomboy/data/messages:25 ../weather/data/messages:13
@@ -2266,7 +2248,7 @@ msgstr ""
 #: ../quick-browser/data/messages:19 ../rhythmbox/data/messages:13
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:17
 #: ../slider/data/messages:13 ../stack/data/messages:19
-#: ../stacks/data/messages:17 ../switcher/data/messages:17
+#:  ../switcher/data/messages:17
 #: ../terminal/data/messages:17 ../tomboy/data/messages:27
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:13 ../xmms/data/messages:13
@@ -2286,7 +2268,7 @@ msgstr ""
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:21
 #: ../rhythmbox/data/messages:15 ../shortcuts/data/messages:19
 #: ../showDesktop/data/messages:19 ../slider/data/messages:15
-#: ../stack/data/messages:21 ../stacks/data/messages:19
+#: ../stack/data/messages:21 
 #: ../switcher/data/messages:19 ../terminal/data/messages:19
 #: ../tomboy/data/messages:29 ../weather/data/messages:17
 #: ../weblets/data/messages:19 ../wifi/data/messages:15
@@ -2303,7 +2285,7 @@ msgstr ""
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:23
 #: ../rhythmbox/data/messages:17 ../shortcuts/data/messages:21
 #: ../showDesktop/data/messages:21 ../slider/data/messages:17
-#: ../stack/data/messages:23 ../stacks/data/messages:21
+#: ../stack/data/messages:23 
 #:  ../systray/data/messages:13
 #: ../terminal/data/messages:21 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
@@ -2322,7 +2304,7 @@ msgstr ""
 #: ../powermanager/data/messages:19 ../quick-browser/data/messages:25
 #: ../rhythmbox/data/messages:19 ../shortcuts/data/messages:23
 #: ../showDesktop/data/messages:23 ../slider/data/messages:19
-#: ../stack/data/messages:25 ../stacks/data/messages:23
+#: ../stack/data/messages:25 
 #: ../switcher/data/messages:21 
 #: ../systray/data/messages:15 ../terminal/data/messages:23
 #: ../tomboy/data/messages:33 ../weather/data/messages:21
@@ -2342,7 +2324,7 @@ msgstr ""
 #: ../powermanager/data/messages:21 ../quick-browser/data/messages:27
 #: ../rhythmbox/data/messages:21 ../shortcuts/data/messages:25
 #: ../showDesktop/data/messages:25 ../slider/data/messages:21
-#: ../stack/data/messages:27 ../stacks/data/messages:25
+#: ../stack/data/messages:27 
 #:  ../systray/data/messages:17
 #: ../terminal/data/messages:25 ../tomboy/data/messages:35
 #: ../weather/data/messages:23 ../weblets/data/messages:25
@@ -2487,7 +2469,7 @@ msgstr ""
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:45
 #: ../rhythmbox/data/messages:39 ../shortcuts/data/messages:43
 #: ../showDesktop/data/messages:43 ../slider/data/messages:39
-#: ../stack/data/messages:45 ../stacks/data/messages:35
+#: ../stack/data/messages:45 
 #: ../switcher/data/messages:39 
 #: ../systray/data/messages:35 ../terminal/data/messages:43
 #: ../tomboy/data/messages:53 ../weather/data/messages:41
@@ -2509,7 +2491,7 @@ msgstr ""
 #: ../powermanager/data/messages:41 ../quick-browser/data/messages:47
 #: ../rhythmbox/data/messages:41 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:45 ../slider/data/messages:41
-#: ../stack/data/messages:47 ../stacks/data/messages:37
+#: ../stack/data/messages:47 
 #: ../switcher/data/messages:41 
 #: ../systray/data/messages:37 ../terminal/data/messages:45
 #: ../tomboy/data/messages:55 ../weather/data/messages:43
@@ -2529,7 +2511,7 @@ msgstr ""
 #: ../powermanager/data/messages:43 ../quick-browser/data/messages:49
 #: ../rhythmbox/data/messages:43 ../shortcuts/data/messages:47
 #: ../showDesktop/data/messages:47 ../slider/data/messages:43
-#: ../stack/data/messages:49 ../stacks/data/messages:39
+#: ../stack/data/messages:49 
 #: ../switcher/data/messages:43 ../terminal/data/messages:47
 #: ../tomboy/data/messages:57 ../weather/data/messages:45
 #: ../weblets/data/messages:47 ../wifi/data/messages:43
@@ -2548,7 +2530,7 @@ msgstr ""
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:51
 #: ../rhythmbox/data/messages:45 ../shortcuts/data/messages:49
 #: ../showDesktop/data/messages:49 ../slider/data/messages:45
-#: ../stack/data/messages:51 ../stacks/data/messages:41
+#: ../stack/data/messages:51 
 #: ../switcher/data/messages:45 ../terminal/data/messages:49
 #: ../tomboy/data/messages:59 ../weather/data/messages:47
 #: ../weblets/data/messages:49 ../wifi/data/messages:45
@@ -2568,7 +2550,7 @@ msgstr ""
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:53
 #: ../rhythmbox/data/messages:47 ../shortcuts/data/messages:51
 #: ../showDesktop/data/messages:51 ../slider/data/messages:47
-#: ../stack/data/messages:53 ../stacks/data/messages:43
+#: ../stack/data/messages:53 
 #: ../switcher/data/messages:47 ../terminal/data/messages:51
 #: ../tomboy/data/messages:61 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:47
@@ -2589,7 +2571,7 @@ msgstr ""
 #: ../quick-browser/data/messages:55 ../rhythmbox/data/messages:49
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:53
 #: ../slider/data/messages:49 ../stack/data/messages:55
-#: ../stacks/data/messages:45 ../switcher/data/messages:49
+#:  ../switcher/data/messages:49
 #: ../terminal/data/messages:53 ../tomboy/data/messages:63
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:49 ../xmms/data/messages:49
@@ -2609,7 +2591,7 @@ msgstr ""
 #: ../quick-browser/data/messages:57 ../rhythmbox/data/messages:51
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:55
 #: ../slider/data/messages:51 ../stack/data/messages:57
-#: ../stacks/data/messages:47 ../switcher/data/messages:51
+#:  ../switcher/data/messages:51
 #: ../terminal/data/messages:55 ../tomboy/data/messages:65
 #: ../weather/data/messages:53 ../weblets/data/messages:55
 #: ../wifi/data/messages:51 ../xmms/data/messages:51
@@ -2629,7 +2611,7 @@ msgstr ""
 #: ../quick-browser/data/messages:59 ../rhythmbox/data/messages:53
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:57
 #: ../slider/data/messages:53 ../stack/data/messages:59
-#: ../stacks/data/messages:49 ../switcher/data/messages:53
+#:  ../switcher/data/messages:53
 #: ../terminal/data/messages:57 ../tomboy/data/messages:67
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:53 ../xmms/data/messages:53
@@ -2652,7 +2634,7 @@ msgstr ""
 #: ../quick-browser/data/messages:61 ../rhythmbox/data/messages:55
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:59
 #: ../slider/data/messages:55 ../stack/data/messages:61
-#: ../stacks/data/messages:51 ../switcher/data/messages:55
+#:  ../switcher/data/messages:55
 #: ../terminal/data/messages:59 ../tomboy/data/messages:69
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55 ../xmms/data/messages:55
@@ -2672,7 +2654,7 @@ msgstr ""
 #: ../quick-browser/data/messages:63 ../rhythmbox/data/messages:57
 #: ../shortcuts/data/messages:61 ../showDesktop/data/messages:61
 #: ../slider/data/messages:57 ../stack/data/messages:63
-#: ../stacks/data/messages:53 ../switcher/data/messages:57
+#:  ../switcher/data/messages:57
 #: ../terminal/data/messages:61 ../tomboy/data/messages:71
 #: ../weather/data/messages:59 ../weblets/data/messages:61
 #: ../wifi/data/messages:57 ../xmms/data/messages:57
@@ -2692,7 +2674,7 @@ msgstr ""
 #: ../quick-browser/data/messages:65 ../rhythmbox/data/messages:59
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:63
 #: ../slider/data/messages:59 ../stack/data/messages:65
-#: ../stacks/data/messages:55 ../switcher/data/messages:59
+#:  ../switcher/data/messages:59
 #: ../terminal/data/messages:63 ../tomboy/data/messages:73
 #: ../weather/data/messages:61 ../weblets/data/messages:63
 #: ../wifi/data/messages:59 ../xmms/data/messages:59
@@ -2712,7 +2694,7 @@ msgstr ""
 #: ../quick-browser/data/messages:67 ../rhythmbox/data/messages:61
 #: ../shortcuts/data/messages:65 ../showDesktop/data/messages:65
 #: ../slider/data/messages:61 ../stack/data/messages:67
-#: ../stacks/data/messages:57 ../switcher/data/messages:61
+#:  ../switcher/data/messages:61
 #: ../terminal/data/messages:65 ../tomboy/data/messages:75
 #: ../weather/data/messages:63 ../weblets/data/messages:65
 #: ../wifi/data/messages:61 ../xmms/data/messages:61
@@ -2732,7 +2714,7 @@ msgstr ""
 #: ../quick-browser/data/messages:69 ../rhythmbox/data/messages:63
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:67
 #: ../slider/data/messages:63 ../stack/data/messages:69
-#: ../stacks/data/messages:59 ../switcher/data/messages:63
+#:  ../switcher/data/messages:63
 #: ../terminal/data/messages:67 ../tomboy/data/messages:77
 #: ../weather/data/messages:65 ../weblets/data/messages:67
 #: ../wifi/data/messages:63 ../xmms/data/messages:63
@@ -2752,7 +2734,7 @@ msgstr ""
 #: ../quick-browser/data/messages:71 ../rhythmbox/data/messages:65
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:69
 #: ../slider/data/messages:65 ../stack/data/messages:71
-#: ../stacks/data/messages:61 ../switcher/data/messages:65
+#:  ../switcher/data/messages:65
 #: ../terminal/data/messages:69 ../tomboy/data/messages:79
 #: ../weather/data/messages:67 ../weblets/data/messages:69
 #: ../wifi/data/messages:65 ../xmms/data/messages:65
@@ -2772,7 +2754,7 @@ msgstr ""
 #: ../quick-browser/data/messages:73 ../rhythmbox/data/messages:67
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:71
 #: ../slider/data/messages:67 ../stack/data/messages:73
-#: ../stacks/data/messages:63 ../switcher/data/messages:67
+#:  ../switcher/data/messages:67
 #: ../terminal/data/messages:71 ../tomboy/data/messages:81
 #: ../weather/data/messages:69 ../weblets/data/messages:71
 #: ../wifi/data/messages:67 ../xmms/data/messages:67
@@ -2792,7 +2774,7 @@ msgstr ""
 #: ../quick-browser/data/messages:75 ../rhythmbox/data/messages:69
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:73
 #: ../slider/data/messages:69 ../stack/data/messages:75
-#: ../stacks/data/messages:65 ../switcher/data/messages:69
+#:  ../switcher/data/messages:69
 #: ../terminal/data/messages:73 ../tomboy/data/messages:83
 #: ../weather/data/messages:71 ../weblets/data/messages:73
 #: ../wifi/data/messages:69 ../xmms/data/messages:69
@@ -2812,7 +2794,7 @@ msgstr ""
 #: ../quick-browser/data/messages:77 ../rhythmbox/data/messages:71
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:75
 #: ../slider/data/messages:71 ../stack/data/messages:77
-#: ../stacks/data/messages:67 ../switcher/data/messages:71
+#:  ../switcher/data/messages:71
 #: ../terminal/data/messages:75 ../tomboy/data/messages:85
 #: ../weather/data/messages:73 ../weblets/data/messages:75
 #: ../wifi/data/messages:71 ../xmms/data/messages:71
@@ -2832,7 +2814,7 @@ msgstr ""
 #: ../quick-browser/data/messages:79 ../rhythmbox/data/messages:73
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:77
 #: ../slider/data/messages:73 ../stack/data/messages:79
-#: ../stacks/data/messages:69 ../switcher/data/messages:73
+#:  ../switcher/data/messages:73
 #: ../terminal/data/messages:77 ../tomboy/data/messages:87
 #: ../weather/data/messages:75 ../weblets/data/messages:77
 #: ../wifi/data/messages:73 ../xmms/data/messages:73
@@ -2852,7 +2834,7 @@ msgstr ""
 #: ../quick-browser/data/messages:81 ../rhythmbox/data/messages:75
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:79
 #: ../slider/data/messages:75 ../stack/data/messages:81
-#: ../stacks/data/messages:71 ../switcher/data/messages:75
+#:  ../switcher/data/messages:75
 #: ../terminal/data/messages:79 ../tomboy/data/messages:89
 #: ../weather/data/messages:77 ../weblets/data/messages:79
 #: ../wifi/data/messages:75 ../xmms/data/messages:75
@@ -2874,7 +2856,7 @@ msgstr ""
 #: ../quick-browser/data/messages:83 ../rhythmbox/data/messages:77
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:81
 #: ../slider/data/messages:77 ../stack/data/messages:83
-#: ../stacks/data/messages:73 ../switcher/data/messages:77
+#:  ../switcher/data/messages:77
 #: ../terminal/data/messages:81 ../tomboy/data/messages:91
 #: ../weather/data/messages:79 ../weblets/data/messages:81
 #: ../wifi/data/messages:77 ../xmms/data/messages:77
@@ -2894,7 +2876,7 @@ msgstr ""
 #: ../quick-browser/data/messages:85 ../rhythmbox/data/messages:79
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:83
 #: ../slider/data/messages:79 ../stack/data/messages:85
-#: ../stacks/data/messages:75 ../switcher/data/messages:79
+#:  ../switcher/data/messages:79
 #: ../terminal/data/messages:83 ../tomboy/data/messages:93
 #: ../weather/data/messages:81 ../weblets/data/messages:83
 #: ../wifi/data/messages:79 ../xmms/data/messages:79
@@ -3795,14 +3777,14 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
-#: ../stacks/data/messages:103 ../switcher/data/messages:133
+#:  ../switcher/data/messages:133
 #: ../tomboy/data/messages:101 ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
-#: ../stacks/data/messages:105 ../switcher/data/messages:135
+#:  ../switcher/data/messages:135
 #: ../tomboy/data/messages:103 ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
@@ -5344,13 +5326,13 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: ../stack/data/messages:105 ../stacks/data/messages:95
+#: ../stack/data/messages:105 
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr ""
 
-#: ../stack/data/messages:107 ../stacks/data/messages:97
+#: ../stack/data/messages:107 
 msgid "Filter files with their mime types ?"
 msgstr ""
 
@@ -5358,7 +5340,7 @@ msgstr ""
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr ""
 
-#: ../stack/data/messages:111 ../stacks/data/messages:101
+#: ../stack/data/messages:111 
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr ""
 
@@ -5390,58 +5372,6 @@ msgstr ""
 
 #: ../stack/data/messages:125
 msgid "When copy/paste/cut, use the selection clipboard ?"
-msgstr ""
-
-#: ../stacks/data/messages:79
-msgid "Directory & Options"
-msgstr ""
-
-#: ../stacks/data/messages:81
-msgid ""
-"Stacks will act as a the shortcut applet's but with files. To add a file, "
-"just drag and drop it on the Stacks icon"
-msgstr ""
-
-#: ../stacks/data/messages:83
-msgid "Use only Stacks local directory ?"
-msgstr ""
-
-#: ../stacks/data/messages:85
-msgid ""
-"You can use '_LocalDirectory_' tag to have both stack local and all "
-"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
-msgstr ""
-
-#: ../stacks/data/messages:87
-msgid "Monitored Directories :"
-msgstr ""
-
-#: ../stacks/data/messages:89
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-
-#: ../stacks/data/messages:91
-msgid "List hidden files ?"
-msgstr ""
-
-#: ../stacks/data/messages:93
-msgid "Separate different directories with separators ?"
-msgstr ""
-
-#: ../stacks/data/messages:99
-msgid "Eg: image, text, video, audio, application..."
-msgstr ""
-
-#: ../switcher/data/messages:23
-msgid "Is detached ?"
-msgstr ""
-
-#: ../switcher/data/messages:25
-msgid ""
-"Accessibility :\n"
-"b Keep below ?\n"
-"b Keep above ?"
 msgstr ""
 
 #: ../switcher/data/messages:85

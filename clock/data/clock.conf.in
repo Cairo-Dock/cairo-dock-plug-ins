@@ -102,7 +102,7 @@ show seconds = false
 smooth = 500
 
 #s Timezone :
-#{For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select your location from a list. Let empty to get the local time.}
+#{For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time.}
 location =
 
 #F[Style;gtk-dnd-multiple]
@@ -127,7 +127,7 @@ weight = 5
 #{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
 font = 
 
-#D+ Image to draw on the background :
+#S+ Image to draw on the background :
 numeric bg =
 
 #v
