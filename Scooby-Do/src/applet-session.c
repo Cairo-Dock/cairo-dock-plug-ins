@@ -143,6 +143,10 @@ void cd_do_exit_session (void)
 		g_list_free (myData.pMatchingIcons);
 		myData.pMatchingIcons = NULL;
 		myData.pCurrentMatchingElement = NULL;
+		myData.pCurrentMatchingElement = NULL;
+		myData.iMatchingGlideCount = 0;
+		myData.iPreviousMatchingOffset = 0;
+		myData.iCurrentMatchingOffset = 0;
 	}
 	if (myData.pMatchingFiles != NULL)
 	{

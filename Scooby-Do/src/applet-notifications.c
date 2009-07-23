@@ -104,6 +104,14 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			}
 		}
 		
+		//\___________________ animation du decalage des icones d'appli correspondantes.
+		if (myData.iMatchingGlideCount != 0)
+		{
+			myData.iMatchingGlideCount --;
+			double f = (double) myData.iMatchingGlideCount / 10;
+			myData.iCurrentMatchingOffset = myData.iPreviousMatchingOffset * f + myData.iMatchingAimPoint * (1 - f);
+		}
+		
 		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
 	}
 	

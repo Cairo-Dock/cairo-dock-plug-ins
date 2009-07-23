@@ -291,6 +291,9 @@ void cd_do_search_matching_icons (void)
 		}
 	}
 	myData.pCurrentMatchingElement = NULL;
+	myData.iMatchingGlideCount = 0;
+	myData.iPreviousMatchingOffset = 0;
+	myData.iCurrentMatchingOffset = 0;
 	if (myData.pCurrentApplicationToLoad != NULL)  // on va continuer le chargement sur la sous-liste.
 		myData.pCurrentApplicationToLoad = myData.pMatchingIcons;  // comme l'ordre de la liste n'a pas ete altere, on n'est sur de ne pas sauter d'icone.
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pCurrentDock));
@@ -303,10 +306,14 @@ void cd_do_search_matching_icons (void)
 void cd_do_select_previous_next_matching_icon (gboolean bNext)
 {
 	GList *pMatchingElement = myData.pCurrentMatchingElement;
-	if (!bNext)
-		myData.pCurrentMatchingElement = cairo_dock_get_previous_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
-	else
-		myData.pCurrentMatchingElement = cairo_dock_get_next_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
+	do
+	{
+		if (!bNext)
+			myData.pCurrentMatchingElement = cairo_dock_get_previous_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
+		else
+			myData.pCurrentMatchingElement = cairo_dock_get_next_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
+	} while (myData.pCurrentMatchingElement != pMatchingElement && ((Icon*)myData.pCurrentMatchingElement->data)->pIconBuffer == NULL);
+	
 	if (myData.pCurrentMatchingElement != pMatchingElement)  // on complete le texte et on redessine.
 	{
 		Icon *pIcon = myData.pCurrentMatchingElement->data;
@@ -324,8 +331,29 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		
 		cd_do_load_pending_caracters ();
 		
+		// on arme l'animation de decalage.
+		/*myData.iCurrentMatchingDirection = (bNext ? -1 : 1);
+		CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+		int iWidth, iHeight;
+		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+		if (iHeight != 0)
+		{
+			double fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
+			myData.iCurrentMatchingOffset = iWidth * fZoom;
+		}*/
+		myData.iMatchingGlideCount = 10;  // on rembobine l'animation.
+		myData.iPreviousMatchingOffset = myData.iCurrentMatchingOffset;  // on part du point courant.
+		CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+		int iWidth, iHeight;
+		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+		if (iHeight != 0)
+		{
+			double fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
+			myData.iMatchingAimPoint += (bNext ? 1 : -1) * iWidth * fZoom;  // on cherche a atteindre le nouveau point.
+		}
+		
 		// on repositionne les caracteres et on anime tout ca.
 		cd_do_launch_appearance_animation ();
-		cairo_dock_redraw_container (g_pMainDock);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 	}
 }

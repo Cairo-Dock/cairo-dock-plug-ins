@@ -17,7 +17,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #define STATIC_ANGLE 15.
 
-#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) (((k + 0) % (2*n)) - n) / n));
+#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n));
 
 const int s_iNbPromptAnimationSteps = 40;
 
@@ -32,8 +32,10 @@ static inline int _cd_do_get_matching_icons_width (void)
 	for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		if (pIcon->pIconBuffer == NULL && pIcon->iIconTexture == 0)  // icone pas encore chargee.
+			continue;
 		pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-		cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 		if (iHeight != 0)
 		{
 			fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
@@ -41,6 +43,30 @@ static inline int _cd_do_get_matching_icons_width (void)
 		}
 	}
 	return iIconsWidth;
+}
+
+static inline int _cd_do_get_icon_x (GList *pElement)
+{
+	int iOffset = 0;
+	CairoDock *pParentDock;
+	Icon *pIcon;
+	int iWidth, iHeight;
+	double fZoom;
+	GList *ic;
+	for (ic = myData.pMatchingIcons; ic != NULL && ic != pElement; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (pIcon->pIconBuffer == NULL && pIcon->iIconTexture == 0)  // icone pas encore chargee.
+			continue;
+		pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+		if (iHeight != 0)
+		{
+			fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
+			iOffset += iWidth * fZoom;
+		}
+	}
+	return iOffset;
 }
 
 void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
@@ -124,12 +150,22 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_restore (pCairoContext);
 			
 			// on les dessine.
+			//int iOffsetX = _cd_do_get_icon_x (myData.pCurrentMatchingElement) + myData.iCurrentMatchingOffset * myData.iCurrentMatchingDirection - iIconsWidth/2;  // ecart au centre du debut de l'icone courante.
+			//iOffsetX = - iOffsetX;
+			int iOffsetX = myData.iCurrentMatchingOffset + iIconsWidth/2;
+			while (iOffsetX > iIconsWidth)
+				iOffsetX -= iIconsWidth;
+			while (iOffsetX < 0)
+				iOffsetX += iIconsWidth;
+			
 			double fIconScale = (iIconsWidth * fScale > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / (iIconsWidth * fScale) : 1.);
-			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;  // abscisse de l'icone courante.
+			double x0 = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;
+			double x = x0 + iOffsetX * fIconScale * fScale;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
 			double fZoom;
+			gboolean bRound = FALSE;
 			GList *ic;
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
@@ -137,10 +173,23 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 				if (pIcon->pIconBuffer == NULL)  // icone pas encore chargee.
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-				cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
+				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 				fZoom = fIconScale * pMainDock->iCurrentHeight/2 / iHeight;
 				cairo_save (pCairoContext);
 				
+				//if (!bRound)
+				{
+					if (x < x0)
+					{
+						bRound = TRUE;
+						x += iIconsWidth * fIconScale * fScale;
+					}
+					else if (x > x0 + iIconsWidth * fIconScale * fScale)
+					{
+						x -= iIconsWidth * fIconScale * fScale;
+						bRound = TRUE;
+					}
+				}
 				cairo_translate (pCairoContext,
 					x,
 					(myConfig.bTextOnTop ?
@@ -326,16 +375,27 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			glPopMatrix ();
 			
 			// on les dessine.
+			//int iOffsetX = _cd_do_get_icon_x (myData.pCurrentMatchingElement) + myData.iCurrentMatchingOffset * myData.iCurrentMatchingDirection - iIconsWidth/2;  // ecart au centre du debut de l'icone courante.
+			//iOffsetX = - iOffsetX;
+			g_print ("myData.iCurrentMatchingOffset : %d\n", myData.iCurrentMatchingOffset);
+			int iOffsetX = myData.iCurrentMatchingOffset + iIconsWidth/2;
+			while (iOffsetX > iIconsWidth)
+				iOffsetX -= iIconsWidth;
+			while (iOffsetX < 0)
+				iOffsetX += iIconsWidth;
+			
 			double fIconScale = (iIconsWidth * fScale > pMainDock->iCurrentWidth ? (double) pMainDock->iCurrentWidth / (iIconsWidth * fScale) : 1.);
-			double x = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;  // abscisse de l'icone courante.
+			double x0 = (pMainDock->iCurrentWidth - iIconsWidth * fScale * fIconScale) / 2;
+			double x = x0 - iOffsetX * fIconScale * fScale;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
 			double fZoom;
+			gboolean bRound = FALSE;
 			GList *ic;
 			
 			_cairo_dock_enable_texture ();
-			_cairo_dock_set_blend_over ();
+			_cairo_dock_set_blend_alpha ();
 			_cairo_dock_set_alpha (1.);
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
@@ -343,18 +403,32 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				if (pIcon->iIconTexture == 0)  // icone pas encore chargee.
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-				cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
+				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 				fZoom = (double) pMainDock->iCurrentHeight/2 / iHeight;
 				glPushMatrix ();
 				
-				glTranslatef (x + iWidth * fZoom/2 * fScale * fIconScale,
+				//if (!bRound)
+				{
+					if (x < x0)
+					{
+						bRound = TRUE;
+						x += iIconsWidth * fIconScale * fScale;
+					}
+					else if (x > x0 + iIconsWidth * fIconScale * fScale)
+					{
+						x -= iIconsWidth * fIconScale * fScale;
+						bRound = TRUE;
+					}
+				}
+				glTranslatef (x + 0*iWidth * fZoom/2 * fScale * fIconScale,
 					(myConfig.bTextOnTop ?
 						pMainDock->iCurrentHeight/4 :
 						pMainDock->iCurrentHeight - iHeight * fZoom/2 * fScale),
 					0.);
-				_cairo_dock_apply_texture_at_size (pIcon->iIconTexture,
+				_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iIconTexture,
 					iWidth * fZoom * fScale * fIconScale,
-					pMainDock->iCurrentHeight/2 * fScale * fIconScale);
+					pMainDock->iCurrentHeight/2 * fScale * fIconScale,
+					(myData.pCurrentMatchingElement == ic ? 1. : .7));
 				
 				if (myData.pCurrentMatchingElement == ic)
 				{

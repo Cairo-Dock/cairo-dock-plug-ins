@@ -456,7 +456,7 @@ static gboolean on_key_press_dialog (GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	gpointer data)
 {
-	cd_do_key_pressed (NULL, g_pMainDock, pKey->keyval, pKey->state, pKey->string);
+	cd_do_key_pressed (NULL, CAIRO_CONTAINER (g_pMainDock), pKey->keyval, pKey->state, pKey->string);
 	return FALSE;
 }
 void cd_do_show_filter_dialog (void)
@@ -489,4 +489,15 @@ void cd_do_hide_filter_dialog (void)
 	if (! cairo_dock_dialog_unreference (myData.pFilterDialog))
 		cairo_dock_dialog_unreference (myData.pFilterDialog);
 	myData.pFilterDialog = NULL;
+}
+
+
+
+CDListing *cd_do_create_listing_container (void)
+{
+	CDListing *pListing = g_new0 (CDListing, 1);
+	
+	
+	
+	return pListing;
 }

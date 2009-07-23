@@ -39,6 +39,10 @@ struct _AppletConfig {
 	CairoDockLabelDescription infoDescription;
 	} ;
 
+typedef struct _CDListing {
+	CairoContainer container;
+	GList *pEntries;
+	} CDListing;
 
 typedef struct _CDChar {
 	gchar c;
@@ -51,13 +55,6 @@ typedef struct _CDChar {
 	gint iCurrentX, iCurrentY;
 	gdouble fRotationAngle;
 	} CDChar;
-
-typedef struct _CDAppli {
-	gchar *cDesktopFilePath;
-	gchar *cCommand;
-	gchar *cIcon;
-	gchar *cWorkingDirectory;
-	} CDAppli;
 
 typedef enum _CDFileType {
 	DO_TYPE_NONE	=0,
@@ -99,6 +96,10 @@ struct _AppletData {
 	
 	GList *pMatchingIcons;
 	GList *pCurrentMatchingElement;
+	gint iCurrentMatchingOffset;
+	gint iPreviousMatchingOffset;
+	gint iMatchingGlideCount;
+	gint iMatchingAimPoint;
 	
 	GList *pApplications;
 	GList *pMonitorList;
