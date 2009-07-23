@@ -1884,7 +1884,7 @@ msgstr "Point d'accès"
 
 #: ../wifi/src/applet-draw.c:141
 msgid "Interface"
-msgstr ""Interface
+msgstr "Interface"
 
 #: ../wifi/src/applet-draw.c:142
 msgid "Signal Quality"
