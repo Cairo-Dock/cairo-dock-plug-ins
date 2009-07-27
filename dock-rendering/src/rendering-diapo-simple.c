@@ -302,7 +302,7 @@ guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRow
 	else if(my_diapo_simple_wide_grid)
 	{
 	        *nRowX = ceil(sqrt(count));
-        	*nRowY = ceil(((double) count) / *nRowX) : 0;
+        	*nRowY = ceil(((double) count) / *nRowX);
 	}
 	else
 	{
