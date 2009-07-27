@@ -86,7 +86,7 @@ line color = 0.5,1.0,0.9,0.6
 frame_grid=
 
 #i+[10;100] Space between columns :
-simple_iconGapX = 40
+simple_iconGapX = 50
 
 #i+[15;100] Space between rows :
 simple_iconGapY = 50
@@ -100,8 +100,11 @@ simple_sinW = 200
 #b+ Use a linear wave rather than a sinusoidal one ?
 simple_lineaire = false
 
-#b+ Use a wide shape ?
-simple_wide_grid = false
+#b+ Pack icons rather horizontally than vertically ?
+simple_wide_grid = true
+
+#v
+sep_icon= 
 
 #b Display text for all icons ?
 simple_display_all_icons = false

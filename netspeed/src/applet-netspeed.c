@@ -10,7 +10,6 @@
 #include "applet-netspeed.h"
 #include "cairo-dock.h"
 
-
 #define NETSPEED_DATA_PIPE "/proc/net/dev"
 
 
@@ -140,7 +139,8 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	static double s_fValues[CD_NETSPEED_NB_MAX_VALUES];
-	
+	static gchar s_upRateFormatted[11];
+	static gchar s_downRateFormatted[11];
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
@@ -168,17 +168,15 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
-				gchar upRateFormatted[11];
-				gchar downRateFormatted[11];
-				cd_netspeed_formatRate (myApplet, myData.iUploadSpeed, upRateFormatted);
-				cd_netspeed_formatRate (myApplet, myData.iDownloadSpeed, downRateFormatted);
+				cd_netspeed_formatRate (myApplet, myData.iUploadSpeed, s_upRateFormatted);
+				cd_netspeed_formatRate (myApplet, myData.iDownloadSpeed, s_downRateFormatted);
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", downRateFormatted, upRateFormatted);
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
 				}
 				else
 				{
-					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s\n↑%s", downRateFormatted, upRateFormatted);
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
 				}
 			}
 			
@@ -199,9 +197,8 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 			else
 				fDownValue = 0.;
 			
-			int i = 0;
-			s_fValues[i++] = fUpValue;
-			s_fValues[i] = fDownValue;
+			s_fValues[0] = fDownValue;
+			s_fValues[1] = fUpValue;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
 	}

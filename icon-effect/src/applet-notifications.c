@@ -23,7 +23,6 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 {
 	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
 		return ;
-	
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 	{

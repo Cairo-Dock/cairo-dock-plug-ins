@@ -61,6 +61,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 			}
 			else
 			{
+				//g_print ("+ %s\n", pIcon->acCommand);
 				pDiskUsage = g_new0 (CDDiskUsage, 1);
 				myData.pDiskUsageList = g_list_append (myData.pDiskUsageList, pDiskUsage);
 			}

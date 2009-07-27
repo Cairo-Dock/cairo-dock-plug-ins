@@ -58,6 +58,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.fLastDischargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "discharge rate");
 	myConfig.fLastChargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "charge rate");
+	myData.fLastDischargeMeanRate = myConfig.fLastDischargeMeanRate;
+	myData.fLastChargeMeanRate = myConfig.fLastChargeMeanRate;
 CD_APPLET_GET_CONFIG_END
 
 

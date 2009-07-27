@@ -294,16 +294,21 @@ guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRow
 {
 //////////////////////////////////////////////////////////////////////////////////////// Calcul du nombre de ligne / colonne :
 	guint count = g_list_length(pIconList);
-	if(my_diapo_simple_wide_grid)
+	if (count == 0)
 	{
-	        *nRowX = count  ? ceil(sqrt(count)) : 0;
-        	*nRowY = count  ? ceil(((double) count) / *nRowX) : 0;
+		*nRowX = 0;
+		*nRowY = 0;
+	}
+	else if(my_diapo_simple_wide_grid)
+	{
+	        *nRowX = ceil(sqrt(count));
+        	*nRowY = ceil(((double) count) / *nRowX) : 0;
 	}
 	else
 	{
-	        *nRowY = count  ? ceil(sqrt(count)) : 0;
-	        *nRowX = count  ? ceil(((double) count) / *nRowY) : 0;
-        }
+	        *nRowY = ceil(sqrt(count));
+	        *nRowX = ceil(((double) count) / *nRowY);
+    }
 	return count;
 }
 

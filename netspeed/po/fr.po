@@ -369,16 +369,16 @@ msgstr "Intervalle entre 2 mesures :"
 #: ../data/messages:129
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
-"movement is continue."
-msgstr ""
+"transition is continue."
+msgstr "Cette option nécessite l'OpenGL. Mettez 0 pour ne pas l'utiliser, 1 signifie que la transition est continue."
 
 #: ../data/messages:131
-msgid "How smooth is the movement ?"
-msgstr ""
+msgid "Fluidity of the transition between 2 values :"
+msgstr "Fluidité de la transition entre 2 valeurs :"
 
 #: ../data/messages:133
-msgid "Display speed values :"
-msgstr "Afficher les valeurs de vitesse :"
+msgid "Display rate values :"
+msgstr "Afficher les valeurs de débit :"
 
 #: ../data/messages:135
 msgid "No"

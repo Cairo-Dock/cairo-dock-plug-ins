@@ -85,25 +85,25 @@ fg alpha = 1
 renderer = 0
 
 
-#F[Gauge;gtk-dialog-info]
+#X[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
 theme = Turbo-night-fuel
 
 
-#F[Graph;gtk-dialog-info]
+#X[Graph;gtk-dialog-info]
 frame_graph=
 
 #r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+ High values color :
-#{It's the color of the graphic for high CPU values.}
+#{It's the color of the graphic for high rate values.}
 high color = 1;0;0
 
 #c+ Low values color :
-#{It's the color of the graphic for low CPU values.}
+#{It's the color of the graphic for low rate values.}
 low color = 1;1;0
 
 #C+ Background color of the graphic :
@@ -123,11 +123,11 @@ interface =
 #{in seconds.}
 delay = 3
 
-#e[0;1] How smooth is the movement ?
-#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
+#e[0;1] Fluidity of the transition between 2 values :
+#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the transition is continue.}
 smooth = .33
 
-#r[No;On icon;On label] Display speed values :
+#r[No;On icon;On label] Display rate values :
 info display = 1
 
 #s User command to show a system monitor :

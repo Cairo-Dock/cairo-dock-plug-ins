@@ -497,7 +497,22 @@ CDListing *cd_do_create_listing_container (void)
 {
 	CDListing *pListing = g_new0 (CDListing, 1);
 	
+	/*pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
+	pListing->container.bIsHorizontal = TRUE;
+	pListing->container.bDirectionUp = TRUE;
+	pListing->container.fZoom = 1.;
 	
+	GtkWidget* pWindow = cairo_dock_create_container_window_no_opengl ();
+	gtk_window_set_title (GTK_WINDOW(pWindow), "cairo-dock-desklet");
+	gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
+	pListing->container.pWidget = pWindow;
 	
+	int iNbLines = myConfig.iNbResultMax;
+	int iWidth = g_iScreenWidth[CAIRO_DOCK_HORIZONTAL] / 4;
+	int iHeight = (myDialogs.dialogTextDescription.iSize + 2) * iNbLines;
+	gdk_window_resize (pWindow,
+		iWidth,
+		iHeight);
+	*/
 	return pListing;
 }

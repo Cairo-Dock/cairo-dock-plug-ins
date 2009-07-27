@@ -140,6 +140,9 @@ use_dbus = false
 
 use gauge = true
 
+discharge rate = 0
+charge rate = 0
+
 
 #F[Alert;gtk-dialog-info]
 frame_alert=

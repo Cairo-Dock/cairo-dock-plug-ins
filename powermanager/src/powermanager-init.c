@@ -108,11 +108,6 @@ CD_APPLET_STOP_BEGIN
 		myData.checkLoop = 0;
 	}
 	
-	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-		G_TYPE_DOUBLE, "Configuration", "discharge rate", myData.fDischargeMeanRate,
-		G_TYPE_DOUBLE, "Configuration", "charge rate", myData.fChargeMeanRate,
-		G_TYPE_INVALID);
-	
 CD_APPLET_STOP_END
 
 

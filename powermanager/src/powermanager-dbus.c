@@ -377,12 +377,27 @@ gboolean update_stats(void)
 				myData.fDischargeMeanRate = (myData.fDischargeMeanRate * myData.iNbDischargeMeasures + fPresentRate) / (myData.iNbDischargeMeasures + 1);
 				myData.iNbDischargeMeasures ++;
 				g_print ("fDischargeMeanRate : %.2f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
+				
+				if (fabs (myData.fLastDischargeMeanRate - myData.fDischargeMeanRate) > 30)
+				{
+					myData.fLastDischargeMeanRate = myData.fDischargeMeanRate;
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+						G_TYPE_DOUBLE, "Configuration", "discharge rate", myData.fDischargeMeanRate,
+						G_TYPE_INVALID);
+				}
 			}
 			else
 			{
 				myData.fChargeMeanRate = (myData.fChargeMeanRate * myData.iNbChargeMeasures + fPresentRate) / (myData.iNbChargeMeasures + 1);
 				myData.iNbChargeMeasures ++;
 				g_print ("fChargeMeanRate : %.2f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
+				if (fabs (myData.fLastChargeMeanRate - myData.fChargeMeanRate) > 30)
+				{
+					myData.fLastChargeMeanRate = myData.fChargeMeanRate;
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+						G_TYPE_DOUBLE, "Configuration", "charge rate", myData.fChargeMeanRate,
+						G_TYPE_INVALID);
+				}
 			}
 		}
 		else
