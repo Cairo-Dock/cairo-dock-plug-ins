@@ -5,6 +5,7 @@
 #include "rhythmbox-config.h"
 #include "rhythmbox-draw.h"
 #include "3dcover-draw.h"
+#include "rhythmbox-dbus.h"
 
 #define _check_error(erreur) \
 	if (erreur != NULL) { \
@@ -216,7 +217,7 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 			_check_error(erreur);
 			myData.osdPausecoordY = g_key_file_get_integer (pKeyFile, "Button1", "osd pause Y", &erreur) * fZoomY + myData.osdPausesizeY/2;
 			_check_error(erreur);
-			_make_texture_at_size (myData.TextureOsdPause, "Button1", "osd_pause", myData.osdPausesizeX, myData.osdPausesizeY);
+			_make_texture_at_size (myData.TextureOsdPause, "Button1", "osd_pause", myData.osdPausesizeX, myData.osdPausesizeY);			
 		}
 		
 		// Bouton 4
@@ -518,7 +519,16 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		}
 		else if (! myData.playing)
 		{
-			_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
+			dbus_detect_rhythmbox();
+			
+			if (! myData.bIsRunning)
+			{
+				// rhythmbox n'est pas lancé, donc on n'affiche pas l'osd de pause ;-)
+			}
+			else
+			{
+				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
+			}
 		}
 		else if (myData.playing && ! myData.cover_exist)
 		{
