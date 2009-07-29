@@ -24,7 +24,7 @@ CD_APPLET_DEFINITION ("switcher",
 	N_("This applet allows you to switch between your virtual desktops.\n"
 	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
 	"You can also quickly add/remove a desktop through the right-click menu.\n"
-	"Scroll up/down on the main icon to go to the left/right desktop."),
+	"Scroll up/down on the main icon to go to the left/right desktop, middle-click to show the desktop"),
 	"Cchumi")
 
 

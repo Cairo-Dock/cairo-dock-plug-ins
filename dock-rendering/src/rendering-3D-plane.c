@@ -48,6 +48,11 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
 	
+	
+	//pDock->iMinDockWidth = g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
+	//pDock->iMaxDockWidth = MAX (pDock->iMaxDockWidth, g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+	
+	
 	fInclination = 0.5 * pDock->iMinDockWidth / iVanishingPointY;
 	fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;

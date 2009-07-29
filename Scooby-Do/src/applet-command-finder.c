@@ -497,22 +497,50 @@ CDListing *cd_do_create_listing_container (void)
 {
 	CDListing *pListing = g_new0 (CDListing, 1);
 	
-	/*pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
+	pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
 	pListing->container.bIsHorizontal = TRUE;
 	pListing->container.bDirectionUp = TRUE;
-	pListing->container.fZoom = 1.;
+	pListing->container.fRatio = 1.;
 	
 	GtkWidget* pWindow = cairo_dock_create_container_window_no_opengl ();
-	gtk_window_set_title (GTK_WINDOW(pWindow), "cairo-dock-desklet");
+	gtk_window_set_title (GTK_WINDOW(pWindow), "cairo-dock-listing");
 	gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
+	g_signal_connect (G_OBJECT (pWindow),
+		"expose-event",
+		G_CALLBACK (on_expose_listing),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pWindow),
+		"configure-event",
+		G_CALLBACK (on_configure_listing),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pWindow),
+		"motion-notify-event",
+		G_CALLBACK (on_motion_notify_listing),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pWindow),
+		"button-press-event",
+		G_CALLBACK (on_button_press_listing),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pWindow),
+		"scroll-event",
+		G_CALLBACK (on_scroll_listing),
+		pDesklet);
+	g_signal_connect (G_OBJECT (pWindow),
+		"key-press-event",
+		G_CALLBACK (on_key_press_listing),
+		pDialog);
+	
 	pListing->container.pWidget = pWindow;
+	
 	
 	int iNbLines = myConfig.iNbResultMax;
 	int iWidth = g_iScreenWidth[CAIRO_DOCK_HORIZONTAL] / 4;
 	int iHeight = (myDialogs.dialogTextDescription.iSize + 2) * iNbLines;
-	gdk_window_resize (pWindow,
+	gdk_window_resize (pWindow->window,
 		iWidth,
 		iHeight);
-	*/
+	
+	int iX = 
+	
 	return pListing;
 }

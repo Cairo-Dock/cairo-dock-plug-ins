@@ -65,7 +65,7 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 	//int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
 	int iX = iMouseX;
 	
-	if (pDock->iWindowPositionX - (pDock->bHorizontalDock ? g_iScreenOffsetX : g_iScreenOffsetY) + pPointedIcon->fDrawX < g_iScreenWidth[pDock->bHorizontalDock] / 2)
+	if (pDock->iWindowPositionX - (pDock->bHorizontalDock ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_iScreenWidth[pDock->bHorizontalDock] / 2)
 	{
 		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
@@ -78,7 +78,7 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 		iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX =  pDock->iWindowPositionX - (pDock->bHorizontalDock ? g_iScreenOffsetX : g_iScreenOffsetY) + iX - g_iScreenWidth[pDock->bHorizontalDock] + pSubDock->iMaxLabelWidth;
+		pSubDock->iGapX =  pDock->iWindowPositionX - (pDock->bHorizontalDock ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_iScreenWidth[pDock->bHorizontalDock] + pSubDock->iMaxLabelWidth;
 	}
 	//cd_debug ("pSubDock->iGapY : %d\n", pSubDock->iGapY);
 }

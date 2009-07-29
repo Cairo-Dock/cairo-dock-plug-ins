@@ -12,6 +12,13 @@ module_DATA = \
 	preview-rainbow.jpg\
 	preview-diapo.jpg\
 	preview-diapo-simple.jpg\
-	preview-curve.jpg
+	preview-curve.jpg\
+	readme-3D-plane-view\
+	readme-caroussel-view\
+	readme-curve-view\
+	readme-diapo-simple-view\
+	readme-diapo-view\
+	readme-parabolic-view\
+	readme-rainbow-view
 
 EXTRA_DIST = $(module_DATA)

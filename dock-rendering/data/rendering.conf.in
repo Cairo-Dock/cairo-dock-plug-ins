@@ -107,7 +107,7 @@ simple_wide_grid = true
 sep_icon= 
 
 #b Display text for all icons ?
-simple_display_all_icons = false
+simple_display_all_icons = true
 
 #F[Frame]
 frame_frame =
