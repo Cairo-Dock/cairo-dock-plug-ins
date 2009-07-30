@@ -87,6 +87,8 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	cd_do_reset_applications_list ();
 	
+	cd_do_destroy_listing (myData.pListing);
+	
 	if (myData.pPromptSurface != NULL)
 		cairo_surface_destroy (myData.pPromptSurface);
 	if (myData.iPromptTexture != 0)

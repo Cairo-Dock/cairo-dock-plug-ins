@@ -41,7 +41,8 @@ struct _AppletConfig {
 
 typedef struct _CDListing {
 	CairoContainer container;
-	GList *pEntries;
+	gchar *pEntries;
+	gint iCurrentEntry;
 	} CDListing;
 
 typedef struct _CDChar {
@@ -123,6 +124,8 @@ struct _AppletData {
 	cairo_surface_t *pInfoSurface;
 	GLuint iInfoTexture;
 	gint iInfoWidth, iInfoHeight;
+	
+	CDListing *pListing;
 	
 	/// not used.
 	GList *pCompletionItemSurface;

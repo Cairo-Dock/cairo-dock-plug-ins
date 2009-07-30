@@ -465,6 +465,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		{
 			cd_do_select_previous_next_matching_icon (iKeyVal == GDK_Right || iKeyVal == GDK_Down);
 		}
+		else if (myData.pListing != NULL)
+		{
+			/// select next/previous entry in the listing...
+			
+			
+			/// in case the current entry has sub-entries, manage it...
+			
+		}
 	}
 	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up)
 	{
@@ -475,6 +483,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			Icon *pIcon = (iKeyVal == GDK_Page_Up ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
 			g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->acName : "none");
 			cd_do_change_current_icon (pIcon, myData.pCurrentDock);
+		}
+		else if (myData.pListing != NULL)
+		{
+			/// scroll 1 page up/down in the listing...
+			
 		}
 	}
 	else if (string)  /// utiliser l'unichar ...

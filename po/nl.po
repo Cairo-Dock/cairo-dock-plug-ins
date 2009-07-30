@@ -7,7 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-07-25 09:09+0100\n"
+"POT-Creation-Date: 2009-06-27 03:13+0200\n"
+"PO-Revision-Date: 2009-07-26 09:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1291,7 +1292,7 @@ msgstr ""
 
 #: ../showDesktop/src/applet-init.c:18
 msgid "showDesktop"
-msgstr ""
+msgstr "Toon bureaublad"
 
 #: ../showDesktop/src/applet-init.c:21
 msgid ""
@@ -1299,6 +1300,9 @@ msgid ""
 "Left-click to show/hide the desktop\n"
 "Middle-click does the same but doesn't hide your desklets"
 msgstr ""
+"Dit is een simpel icoon om uw bureaublad te tonen\n"
+"Klik met links om het bureaublad te tonen/verbergen\n"
+"Middelklik doet hetzelfde, maar verbergt uw desklets niet"
 
 #: ../slider/src/applet-init.c:19
 msgid "slider"
@@ -1410,24 +1414,24 @@ msgstr ""
 #: ../switcher/src/applet-load-icons.c:29
 #: ../switcher/src/applet-notifications.c:203
 msgid "Current"
-msgstr ""
+msgstr "Huidig"
 
 #: ../switcher/src/applet-load-icons.c:35
 #: ../switcher/src/applet-notifications.c:195
 msgid "Desktop"
-msgstr ""
+msgstr "Bureaublad"
 
 #: ../switcher/src/applet-notifications.c:122
 msgid "Add a desktop"
-msgstr ""
+msgstr "Bureaublad toevoegen"
 
 #: ../switcher/src/applet-notifications.c:126
 msgid "Remove last desktop"
-msgstr ""
+msgstr "Verwijder laatste bureaublad"
 
 #: ../switcher/src/applet-notifications.c:130
 msgid "Refresh"
-msgstr ""
+msgstr "Vernieuwen"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -1767,23 +1771,23 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:12
 msgid "Very Low"
-msgstr ""
+msgstr "Zeer laag"
 
 #: ../wifi/src/applet-draw.c:12
 msgid "Low"
-msgstr ""
+msgstr "Laag"
 
 #: ../wifi/src/applet-draw.c:12
 msgid "Middle"
-msgstr ""
+msgstr "Gemiddeld"
 
 #: ../wifi/src/applet-draw.c:12
 msgid "Good"
-msgstr ""
+msgstr "Goed"
 
 #: ../wifi/src/applet-draw.c:12
 msgid "Excellent"
-msgstr ""
+msgstr "Uitstekend"
 
 #: ../wifi/src/applet-draw.c:124
 msgid ""
@@ -1793,7 +1797,7 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:132
 msgid "Wifi disabled."
-msgstr ""
+msgstr "Wifi niet actief."
 
 #: ../wifi/src/applet-draw.c:137
 msgid "Wifi enabled."
@@ -1821,14 +1825,16 @@ msgid ""
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"Dit applet toont u de signaalsterkte van de eerst actieve wifi-verbinding\n"
+"Klik met links voor meer info. Middelklik om direct opnieuw te controleren."
 
 #: ../wifi/src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
-msgstr ""
+msgstr "Controleer op draadloze extensie"
 
 #: ../wifi/src/applet-notifications.c:57
 msgid "Network Administration"
-msgstr ""
+msgstr "Netwerkadministratie"
 
 #: ../xfce-integration/src/applet-init.c:19
 msgid ""
@@ -2395,7 +2401,7 @@ msgstr "Laat leeg om standaardwaarde te gebruiken."
 #: ../switcher/data/messages:11 ../terminal/data/messages:11
 #: ../weblets/data/messages:11
 msgid "Image's filename :"
-msgstr "Bestandsnaaam afbeelding :"
+msgstr "Bestandsnaam afbeelding :"
 
 #: ../Clipper/data/messages:67 ../GMenu/data/messages:15
 #: ../System-Monitor/data/messages:11 ../Toons/data/messages:11
@@ -2476,7 +2482,7 @@ msgstr "Desklet's grootte (breedte x hoogte) :"
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Afhankelijk van uw vensterbeheerder, kunt u het verplaatsen met ALT + "
-"linkermuisknop"
+"linkermuisknop."
 
 #: ../Clipper/data/messages:75 ../GMenu/data/messages:23
 #: ../System-Monitor/data/messages:19 ../Toons/data/messages:19
@@ -2669,7 +2675,7 @@ msgid ""
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
 "Indien vergrendeld, kan het desklet niet versleept worden met de "
-"linkermuisknop. U kunt het wel verslepen met de ALT + linkermuisknop."
+"linkermuisknop. U kunt het wel verslepen met de ALT + linkermuisknop"
 
 #: ../Clipper/data/messages:97 ../GMenu/data/messages:45
 #: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
@@ -3176,7 +3182,7 @@ msgstr ""
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:137
 #: ../slider/data/messages:99 ../wifi/data/messages:157
 msgid "in seconds."
-msgstr "In seconden"
+msgstr "In seconden."
 
 #: ../Clipper/data/messages:183
 msgid "Duration of the action menu :"
@@ -3698,15 +3704,15 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:121 ../wifi/data/messages:125
 msgid "Zoom"
-msgstr ""
+msgstr "Vergroten"
 
 #: ../alsaMixer/data/messages:123 ../wifi/data/messages:127
 msgid "Transparency"
-msgstr ""
+msgstr "Doorzichtigheid"
 
 #: ../alsaMixer/data/messages:125 ../wifi/data/messages:129
 msgid "Draw Bar"
-msgstr ""
+msgstr "Balk tekenen"
 
 #: ../alsaMixer/data/messages:129
 msgid "Default icon :"
@@ -3854,7 +3860,7 @@ msgid ""
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
 "Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in "
-"Compiz , de Dbus plug-in activeren samen met de plug-in voor de gewenste "
+"Compiz, de Dbus plug-in activeren samen met de plug-in voor de gewenste "
 "actie."
 
 #: ../compiz-icon/data/messages:87
@@ -4853,7 +4859,7 @@ msgstr "Laat leeg als u de standaardopdracht wilt uitvoeren."
 
 #: ../logout/data/messages:89 ../network-manager0/data/messages:81
 msgid "User-defined command to execute to log-out :"
-msgstr "Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
+msgstr "Door gebruiker bepaalde uit te voeren opdracht, om uit te loggen :"
 
 #: ../logout/data/messages:91 ../network-manager0/data/messages:83
 msgid ""
@@ -4869,8 +4875,7 @@ msgstr ""
 #: ../logout/data/messages:93 ../network-manager0/data/messages:85
 msgid "User-defined command to execute to shutdown :"
 msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te "
-"sluiten :"
+"Door gebruiker bepaalde uit te voeren opdracht, om computer af te sluiten :"
 
 #: ../logout/data/messages:95 ../network-manager0/data/messages:87
 msgid "Invert buttons ?"
@@ -5676,7 +5681,7 @@ msgstr "Afbeeldingenmap :"
 
 #: ../slider/data/messages:87
 msgid "Scan in sub direcotries ?"
-msgstr "Sub-mappen scannen ?"
+msgstr "Submappen scannen ?"
 
 #: ../slider/data/messages:89
 msgid "Randomly browse files ?"
@@ -5912,38 +5917,42 @@ msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
 msgstr ""
+"Alle bureaubladen zullen op het hoofdicoon getekend worden. Anders zal een "
+"sub-dock alle bureaubladen bevatten."
 
 #: ../switcher/data/messages:87
 msgid "Use the compact mode ?"
-msgstr ""
+msgstr "Compacte modus gebruiken ?"
 
 #: ../switcher/data/messages:89
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr ""
+"Tijdens het tekenen in compacte modus, beeldschermverhouding proberen te "
+"behouden ?"
 
 #: ../switcher/data/messages:91
 msgid "Map the wallpaper on icon ?"
-msgstr ""
+msgstr "Bureaubladachtergrond afbeelden op icoon ?"
 
 #: ../switcher/data/messages:93
 msgid "Show desktop number on the icons ?"
-msgstr ""
+msgstr "Bureaubladnummer tonen op de iconen ?"
 
 #: ../switcher/data/messages:95
 msgid "Draw the windows on icon ?"
-msgstr ""
+msgstr "Vensters op icoon tekenen ?"
 
 #: ../switcher/data/messages:97
 msgid "Draw hidden windows too ?"
-msgstr ""
+msgstr "Verborgen vensters ook tekenen ?"
 
 #: ../switcher/data/messages:99
 msgid "Display options"
-msgstr ""
+msgstr "Weergave-opties"
 
 #: ../switcher/data/messages:101
 msgid "Size of the inside lines :"
-msgstr ""
+msgstr "Dikte van binnenlijnen :"
 
 #: ../switcher/data/messages:103 ../switcher/data/messages:109
 #: ../switcher/data/messages:113 ../switcher/data/messages:117
@@ -5952,47 +5961,49 @@ msgstr "r, v, b, a"
 
 #: ../switcher/data/messages:105
 msgid "Color of the inside lines :"
-msgstr ""
+msgstr "Kleur van binnenlijnen :"
 
 #: ../switcher/data/messages:107
 msgid "Size of the extern line :"
-msgstr ""
+msgstr "Dikte van buitenlijnen :"
 
 #: ../switcher/data/messages:111
 msgid "Color of the extern line :"
-msgstr ""
+msgstr "Kleur van buitenlijnen :"
 
 #: ../switcher/data/messages:115
 msgid "Color of the Windows line :"
-msgstr ""
+msgstr "Kleur van vensterlijnen :"
 
 #: ../switcher/data/messages:119
 msgid "Color of the current desktop :"
-msgstr ""
+msgstr "Kleur van het huidige bureaublad :"
 
 #: ../switcher/data/messages:121
 msgid "How to draw the current desktop :"
-msgstr ""
+msgstr "Hoe wilt u het huidige bureaublad tekenen :"
 
 #: ../switcher/data/messages:123
 msgid "draw a frame"
-msgstr ""
+msgstr "Teken een frame"
 
 #: ../switcher/data/messages:125
 msgid "fill"
-msgstr ""
+msgstr "Vullen"
 
 #: ../switcher/data/messages:127
 msgid "fill others"
-msgstr ""
+msgstr "Andere vullen"
 
 #: ../switcher/data/messages:131
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
+"Icoon voor uitgebreide modus, als u bureaubladachtergrond niet afbeeldt op "
+"icoon :"
 
 #: ../switcher/data/messages:137
 msgid "In expanded mode, render the desklet in 3D ?"
-msgstr ""
+msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
 
 #: ../systray.new/data/messages:3
 msgid "Size of the icon you wish this applet has (in pixels)"
@@ -6228,69 +6239,71 @@ msgstr ""
 
 #: ../wifi/data/messages:109
 msgid "It's the color of the graphic for high quality signal."
-msgstr ""
+msgstr "Dit is de kleur voor de hoge kwaliteit signalen in de grafiek."
 
 #: ../wifi/data/messages:113
 msgid "It's the color of the graphic for low quality signal."
-msgstr ""
+msgstr "Dit is de kleur voor de lage kwaliteit signalen in de grafiek."
 
 #: ../wifi/data/messages:121
 msgid "Effect to apply on the icon according to strength :"
-msgstr ""
+msgstr "Effect om toe te passen op icoon, afhankelijk van sterkte :"
 
 #: ../wifi/data/messages:133
 msgid "Name of an image for the 'no signal' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
 
 #: ../wifi/data/messages:137
 msgid "Name of an image for the 'very low' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
 
 #: ../wifi/data/messages:141
 msgid "Name of an image for the 'low' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
 
 #: ../wifi/data/messages:145
 msgid "Name of an image for the 'middle' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
 
 #: ../wifi/data/messages:149
 msgid "Name of an image for the 'good' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
 
 #: ../wifi/data/messages:153
 msgid "Name of an image for the 'exellent' icon :"
-msgstr ""
+msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 
 #: ../wifi/data/messages:159
 msgid "Delay between signal checks :"
-msgstr ""
+msgstr "Tijdsduur tussen signaalcontroles :"
 
 #: ../wifi/data/messages:165
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
+"Hierdoor kunt u de standaardopdrachtlijn van het applet overschrijven en uw "
+"eigen draadloze verbinding configureren."
 
 #: ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr ""
+msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
 
 #: ../wifi/data/messages:175
 msgid "Signal Strength"
-msgstr ""
+msgstr "Signaalsterkte"
 
 #: ../wifi/data/messages:177
 msgid "Signal Strength in percent"
-msgstr ""
+msgstr "Signaalsterkte in procent"
 
 #: ../wifi/data/messages:179
 msgid "Raw Signal Informations"
-msgstr ""
+msgstr "Ruwe signaalinformatie"
 
 #: ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
-msgstr ""
+msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #: ../xmms/data/messages:89
 msgid "Audacious"
@@ -6308,187 +6321,274 @@ msgstr ""
 msgid "With an icon ?"
 msgstr ""
 
-#~ msgid "red, blue, green, alpha"
-#~ msgstr "rood, blauw, groen, alpha"
+msgid "red, blue, green, alpha"
+msgstr "rood, blauw, groen, alpha"
 
-#~ msgid "Use a wide shape ?"
-#~ msgstr "Een wijde vorm gebruiken ?"
+msgid "Use a wide shape ?"
+msgstr "Een wijde vorm gebruiken ?"
 
-#~ msgid "cpusage"
-#~ msgstr "CPU-gebruik"
+msgid "cpusage"
+msgstr "CPU-gebruik"
+
+msgid ""
+"The cpusage applet show you the amount of CPU currently used.\n"
+"Middle click on the icon to get some valuable info.\n"
+"Left click on the icon to get a list of the most cpu using programs."
+msgstr ""
+"Het CPU-gebruik applet toont het huidige gebruik van de processor.\n"
+"Middelklik op het icoon voor enige waardevolle informatie.\n"
+"Klik met links op het icoon voor een lijst met toepassingen met het meeste "
+"CPU-gebruik."
+
+msgid "Data acquisition has failed"
+msgstr "Verkrijgen van data mislukt"
+
+msgid "Model Name"
+msgstr "Modelnaam"
+
+msgid "Display a graphic rather than a gauge ?"
+msgstr "Liever een grafiek dan een meter tonen ?"
+
+msgid ""
+"Let it empty to use the default image. Set the transparency to 0 if you "
+"don't want to have any watermark."
+msgstr ""
+"Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op 0 "
+"om geen watermerk te gebruiken."
+
+msgid "Image to display as a watermark :"
+msgstr "Afbeelding om te gebruiken als watermerk :"
+
+msgid "Set it up to 0 if you don't want to have a watermark."
+msgstr "Stel in op 0 als u geen watermerk wilt."
+
+msgid "Transparency of the watermark :"
+msgstr "Doorzichtigheid van het watermerk :"
+
+msgid "Display CPU usage values :"
+msgstr "Toon CPU-gebruik waarden :"
+
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU-"
+"using programs."
+msgstr ""
+"Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
+"toepassingen met het meeste CPU-gebruik ."
+
+msgid "Display text only for pointed icon ?"
+msgstr "Alleen tekst voor aangewezen icoon tonen ?"
+
+msgid "Icon's name :"
+msgstr "Nom de l'icône :"
+
+msgid ""
+"This is the motion_blur applet\n"
+" made by Fabounet (Fabrice Rey) for Cairo-Dock"
+msgstr ""
+"Ceci est l'applet motion_blur\n"
+" écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
+
+msgid "GPU Name:"
+msgstr "Naam videokaart:"
+
+msgid "Video Ram:"
+msgstr "Videogeheugen:"
+
+msgid "Driver Version:"
+msgstr "Driver-versie"
+
+msgid "Core Temparature:"
+msgstr "Core-temperatuur:"
+
+msgid ""
+"nVidia \n"
+"Your version of 'nvidia-settings' is too old\n"
+" You need at least the 1.0.0 version"
+msgstr ""
+"nVidia \n"
+"Uw versie van 'nvidia-settings' is te oud\n"
+"U heeft minimaal versie 1.0.0 nodig."
+
+msgid ""
+"nVidia \n"
+"Couldn't acquire GPU temperature\n"
+" is 'nvidia-settings' installed on your system\n"
+" and configured to monitor GPU temperature ?"
+msgstr ""
+"nVidia \n"
+"Kon videokaarttemperatuur niet bepalen\n"
+"Is 'nvidia-settings' geïnstalleerd op uw systeem\n"
+"en ingesteld om de videokaarttemperatuur in de gaten te houden ?"
+
+msgid "Alert!"
+msgstr "Waarschuwing !"
+
+msgid "passed alert temperature level"
+msgstr "Waarschuwingstemperatuur gepasseerd"
+
+msgid ""
+"This applet displays info on you nVidia GPU\n"
+" like temperature, video ram, driver version, etc.\n"
+"Ensure that you have 'nvidia-settings' installed otherwise this plug-in "
+"won't work."
+msgstr ""
+"Dit applet toont info over uw nVidia-kaart\n"
+"Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
+"Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-in "
+"niet."
+
+msgid "Informations"
+msgstr "Informatie"
+
+msgid "Display Card name on the Label ?"
+msgstr "Kaartnaam op het label tonen ?"
+
+msgid "Display core temperature :"
+msgstr "Core-temperatuur tonen :"
+
+msgid "no"
+msgstr "Nee"
+
+msgid "on icon"
+msgstr "Op icoon"
+
+msgid "on label"
+msgstr "Op label"
+
+msgid "Delay between temperature checks :"
+msgstr "Tijd tussen temperatuurcontroles :"
+
+msgid "Image to display as a watermark on the gauge :"
+msgstr "Afbeelding om te gebruiken als watermerk op de meter :"
+
+msgid "Use a gauge instead of icons ?"
+msgstr "Een meter gebruiken in plaats van iconen ?"
+
+msgid ""
+"This applet shows you the amount of RAM and SWAP that is curently used\n"
+"Left-click to show a list of the most memory using programs"
+msgstr ""
+"Dit applet toont u het huidige RAM- en SWAP-gebruik\n"
+"Klik met links op het icoon voor een lijst met toepassingen met het meeste "
+"geheugengebruik"
+
+msgid "It's the color of the graphic for high RAM values."
+msgstr "Dit is de kleur voor de hoge RAM-waarden in de grafiek. "
+
+msgid "High values color for RAM :"
+msgstr "Hoge waarden kleur voor RAM :"
+
+msgid "It's the color of the graphic for low RAM values."
+msgstr "Dit is de kleur voor de lage RAM-waarden in de grafiek. "
+
+msgid "Low values color for RAM :"
+msgstr "Lage waarden kleur voor RAM :"
+
+msgid "High values color for SWAP :"
+msgstr "Hoge waarden kleur voor SWAP :"
+
+msgid "Low values color for SWAP :"
+msgstr "Lage waarden kleur voor SWAP :"
+
+msgid "Draw both values on the same graph ?"
+msgstr "Beide waarden in dezelfde grafiek tonen ?"
+
+msgid "Display memory values :"
+msgstr "Toon geheugengebruik waarden :"
+
+msgid ""
+"When you left-click on the icon, you will get the list of the N most memory-"
+"using programs."
+msgstr ""
+"Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
+"toepassingen met het meeste geheugengebruik."
+
+msgid "Display SWAP too ?"
+msgstr "SWAP ook tonen ?"
+
+msgid ""
+"For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
+"your location from a list. Let empty to get the local time."
+msgstr ""
+"Bijvoorbeeld :Europa/Parijs, :Japan, etc. Klik met rechts op icoon om uw "
+"locatie uit een lijst te selecteren. Laat leeg om lokale tijd te gebruiken."
+
+msgid ""
+"It may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with Glitz."
+msgstr ""
+"Dit vraagt mogelijk meer van de processor tijdens de ontvouwanimatie, tenzij "
+"u Cairo-Dock met Glitz start."
+
+msgid "First gradient color (r,v,b,a) :"
+msgstr "Eerste kleur van de gradatie (r,v,b,a) :"
+
+msgid "Second gradient color (r,v,b,a) :"
+msgstr "Tweede kleur van de gradatie (r,v,b,a) :"
+
+msgid "Border line color (r,v,b,a) :"
+msgstr "Lijnkleur rand (r,v,b,a) :"
+
+msgid ""
+"Interface '%s' seems to not exist or is not readable.\n"
+" You may need to open the configuration panel of this applet, and choose the "
+"interface you wish to monitor."
+msgstr ""
+"Interface '%s' schijnt niet te bestaan of is onleesbaar.\n"
+"Misschien moet u het configuratiepaneel van dit applet openen en de "
+"interface selecteren die u wenst te monitoren."
+
+msgid "Display speed values :"
+msgstr "Toon snelheidswaarden :"
+
+msgid "It's the color of the graphic for high Temperature values."
+msgstr "Dit is de kleur voor de hoge temperatuurwaarden in de grafiek."
+
+msgid "It's the color of the graphic for low Temperature values."
+msgstr "Dit is de kleur voor de lage temperatuurwaarden in de grafiek."
+
+msgid ""
+"This applet allows you to switch between your virtual desktops.\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
+"You can also quickly add/remove a desktop through the right-click menu.\n"
+"Scroll up/down on the main icon to go to the left/right desktop."
+msgstr ""
+"Met dit applet kunt u wisselen tussen uw virtuele bureaubladen.\n"
+"Het kent 2 modus : Compact (op 1 icoon), Uitgebreid (met een sub-dock).\n"
+"U kunt ook snel een bureaublad toevoegen/verwijderen met het "
+"rechtermuismenu.\n"
+"Scroll op/neer op het hoofdicoon om naar het linker-/rechterbureaublad te "
+"gaan."
+
+msgid "Is detached ?"
+msgstr "Loskoppelen van het dock ?"
+
+msgid ""
+"Accessibility :\n"
+"b Keep below ?\n"
+"b Keep above ?"
+msgstr ""
+"Toegangkelijkheid :\n"
+"b Onderop houden ?\n"
+"b Bovenop houden ?"
 
 #~ msgid ""
-#~ "The cpusage applet show you the amount of CPU currently used.\n"
-#~ "Middle click on the icon to get some valuable info.\n"
-#~ "Left click on the icon to get a list of the most cpu using programs."
+#~ "Wifi enabled. \n"
+#~ " Connected on:"
 #~ msgstr ""
-#~ "Het CPU-gebruik applet toont het huidige gebruik van de processor.\n"
-#~ "Middelklik op het icoon voor enige waardevolle informatie.\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
-#~ "meeste CPU-gebruik."
+#~ "Wifi actief. \n"
+#~ "Verbonden op:"
 
-#~ msgid "Data acquisition has failed"
-#~ msgstr "Verkrijgen van data mislukt"
-
-#~ msgid "Model Name"
-#~ msgstr "Modelnaam"
-
-#~ msgid "Display a graphic rather than a gauge ?"
-#~ msgstr "Liever een grafiek dan een meter tonen ?"
+#~ msgid "Signal Strength:"
+#~ msgstr "Signaalsterkte:"
 
 #~ msgid ""
-#~ "Let it empty to use the default image. Set the transparency to 0 if you "
-#~ "don't want to have any watermark."
+#~ "Accessibility :\n"
+#~ "b+ Keep below other windows ?\n"
+#~ "b+ Keep above other windows ?\n"
+#~ "b+ Keep on widget layer ?"
 #~ msgstr ""
-#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op "
-#~ "0 om geen watermerk te gebruiken."
-
-#~ msgid "Image to display as a watermark :"
-#~ msgstr "Afbeelding om te gebruiken als watermerk :"
-
-#~ msgid "Set it up to 0 if you don't want to have a watermark."
-#~ msgstr "Stel in op 0 als u geen watermerk wilt."
-
-#~ msgid "Transparency of the watermark :"
-#~ msgstr "Doorzichtigheid van het watermerk :"
-
-#~ msgid "Display CPU usage values :"
-#~ msgstr "Toon CPU-gebruik waarden :"
-
-#~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most CPU-"
-#~ "using programs."
-#~ msgstr ""
-#~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
-#~ "toepassingen met het meeste CPU-gebruik ."
-
-#~ msgid "Display text only for pointed icon ?"
-#~ msgstr "Alleen tekst voor aangewezen icoon tonen ?"
-
-#~ msgid "Icon's name :"
-#~ msgstr "Nom de l'icône :"
-
-#~ msgid ""
-#~ "This is the motion_blur applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "Ceci est l'applet motion_blur\n"
-#~ " écrite par Fabounet (Fabrice Rey) pour Cairo-Dock"
-
-#~ msgid "GPU Name:"
-#~ msgstr "Naam videokaart:"
-
-#~ msgid "Video Ram:"
-#~ msgstr "Videogeheugen:"
-
-#~ msgid "Driver Version:"
-#~ msgstr "Driver-versie"
-
-#~ msgid "Core Temparature:"
-#~ msgstr "Core-temperatuur:"
-
-#~ msgid ""
-#~ "nVidia \n"
-#~ "Your version of 'nvidia-settings' is too old\n"
-#~ " You need at least the 1.0.0 version"
-#~ msgstr ""
-#~ "nVidia \n"
-#~ "Uw versie van 'nvidia-settings' is te oud\n"
-#~ "U heeft minimaal versie 1.0.0 nodig."
-
-#~ msgid ""
-#~ "nVidia \n"
-#~ "Couldn't acquire GPU temperature\n"
-#~ " is 'nvidia-settings' installed on your system\n"
-#~ " and configured to monitor GPU temperature ?"
-#~ msgstr ""
-#~ "nVidia \n"
-#~ "Kon videokaarttemperatuur niet bepalen\n"
-#~ "Is 'nvidia-settings' geïnstalleerd op uw systeem\n"
-#~ "en ingesteld om de videokaarttemperatuur in de gaten te houden ?"
-
-#~ msgid "Alert!"
-#~ msgstr "Waarschuwing !"
-
-#~ msgid "passed alert temperature level"
-#~ msgstr "Waarschuwingstemperatuur gepasseerd"
-
-#~ msgid ""
-#~ "This applet displays info on you nVidia GPU\n"
-#~ " like temperature, video ram, driver version, etc.\n"
-#~ "Ensure that you have 'nvidia-settings' installed otherwise this plug-in "
-#~ "won't work."
-#~ msgstr ""
-#~ "Dit applet toont info over uw nVidia-kaart\n"
-#~ "Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
-#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-"
-#~ "in niet."
-
-#~ msgid "Informations"
-#~ msgstr "Informatie"
-
-#~ msgid "Display Card name on the Label ?"
-#~ msgstr "Kaartnaam op het label tonen ?"
-
-#~ msgid "Display core temperature :"
-#~ msgstr "Core-temperatuur tonen :"
-
-#~ msgid "no"
-#~ msgstr "Nee"
-
-#~ msgid "on icon"
-#~ msgstr "Op icoon"
-
-#~ msgid "on label"
-#~ msgstr "Op label"
-
-#~ msgid "Delay between temperature checks :"
-#~ msgstr "Tijd tussen temperatuurcontroles :"
-
-#~ msgid "Image to display as a watermark on the gauge :"
-#~ msgstr "Afbeelding om te gebruiken als watermerk op de meter :"
-
-#~ msgid "Use a gauge instead of icons ?"
-#~ msgstr "Een meter gebruiken in plaats van iconen ?"
-
-#~ msgid ""
-#~ "This applet shows you the amount of RAM and SWAP that is curently used\n"
-#~ "Left-click to show a list of the most memory using programs"
-#~ msgstr ""
-#~ "Dit applet toont u het huidige RAM- en SWAP-gebruik\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
-#~ "meeste geheugengebruik"
-
-#~ msgid "It's the color of the graphic for high RAM values."
-#~ msgstr "Dit is de kleur voor de hoge RAM-waarden in de grafiek. "
-
-#~ msgid "High values color for RAM :"
-#~ msgstr "Hoge waarden kleur voor RAM :"
-
-#~ msgid "It's the color of the graphic for low RAM values."
-#~ msgstr "Dit is de kleur voor de lage RAM-waarden in de grafiek. "
-
-#~ msgid "Low values color for RAM :"
-#~ msgstr "Lage waarden kleur voor RAM :"
-
-#~ msgid "High values color for SWAP :"
-#~ msgstr "Hoge waarden kleur voor SWAP :"
-
-#~ msgid "Low values color for SWAP :"
-#~ msgstr "Lage waarden kleur voor SWAP :"
-
-#~ msgid "Draw both values on the same graph ?"
-#~ msgstr "Beide waarden in dezelfde grafiek tonen ?"
-
-#~ msgid "Display memory values :"
-#~ msgstr "Toon geheugengebruik waarden :"
-
-#~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most "
-#~ "memory-using programs."
-#~ msgstr ""
-#~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
-#~ "toepassingen met het meeste geheugengebruik."
-
-#~ msgid "Display SWAP too ?"
-#~ msgstr "SWAP ook tonen ?"
+#~ "Toegankelijkheid :\n"
+#~ "b+ Onder andere vensters houden ?\n"
+#~ "b+ Boven andere vensters houden ?\n"
+#~ "b+ Op Widget Layer houden ?"
