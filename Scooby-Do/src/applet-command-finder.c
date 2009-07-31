@@ -19,11 +19,10 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include <sys/stat.h>
 
 #include "applet-struct.h"
-#include "applet-command-finder.h"
 #include "applet-notifications.h"
 #include "applet-session.h"
-
-static void _browse_dir (const gchar *cDirPath);
+#include "applet-listing.h"
+#include "applet-command-finder.h"
 
 gboolean cd_do_check_locate_is_available (void)
 {
@@ -122,20 +121,10 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 		return NULL;
 	}
 	
+	if (standard_output[strlen(standard_output)-1] == '\n')  // on vire la derniere ligne blanche.
+		standard_output[strlen(standard_output)-1] = '\0';
+	
 	gchar **files = g_strsplit (standard_output, "\n", 0);
-	if (files)
-	{
-		int i;
-		for (i = 0; files[i] != NULL; i ++)  // on vire la derniere ligne blanche.
-		{
-			if (*files[i] == '\0')
-			{
-				g_free (files[i]);
-				files[i] = NULL;
-				break ;
-			}
-		}
-	}
 	
 	g_free (standard_output);
 	g_free (standard_error);
@@ -218,6 +207,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
 		{
 			_reset_info_results ();
+			cd_do_hide_listing ();
 			return FALSE;
 		}
 		
@@ -229,59 +219,31 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		return FALSE;
 	}
 	
+	// on montre les resultats.
 	_reset_info_results ();
+	cd_do_show_listing (myData.pMatchingFiles);
+	myData.pMatchingFiles = NULL;  // la liste appartient desormais au container.
 	
-	// si aucun resultat, on l'indique et on quitte.
-	if (myData.pMatchingFiles == NULL)
+	if (myData.pListing->iNbEntries == 0)
 	{
 		_cd_do_make_info (D_("no result"));
-		myData.iNbMatchingFiles = -1;
-		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
-		return FALSE;
 	}
-	
-	// 1 seul resultat => on est arrive au bout de la recherche.
-	if (myData.pMatchingFiles[1] == NULL)
+	else if (myData.pListing->iNbEntries == myConfig.iNbResultMax + 1)
 	{
-		g_print (">>> found 1 result !\n");
-		
-		// on l'indique.
-		/*myData.iNbMatchingFiles = 1;
-		_cd_do_make_info (D_("found!"));
-		
-		// on complete automatiquement.
-		g_string_assign (myData.sCurrentText, myData.pMatchingFiles[0]);
-		cd_do_load_pending_caracters ();
-		cd_do_launch_appearance_animation ();
-		return FALSE;*/
-	}
-	//g_print ("%s;%s;...\n", myData.pMatchingFiles[0], myData.pMatchingFiles[1]);
-	
-	// trop de resultats, on l'indique et on abandonne la recherche.
-	int i=0;
-	for (i = 0; myData.pMatchingFiles[i] != NULL; i ++);
-	g_print ("i = %d\n", i);
-	myData.iNbMatchingFiles = i;
-	if (i == myConfig.iNbResultMax + 1)
-	{
-		g_strfreev (myData.pMatchingFiles);
-		myData.pMatchingFiles = NULL;
-		
 		gchar *cInfo = g_strdup_printf ("> %d %s", myConfig.iNbResultMax, D_("results"));
 		_cd_do_make_info (cInfo);
 		g_free (cInfo);
-		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
-		
-		return FALSE;
 	}
+	else
+	{
+		gchar *cInfo = g_strdup_printf (" %d %s", myData.pListing->iNbEntries, (myData.pListing->iNbEntries == 1 ? D_("result") : D_("results")));
+		_cd_do_make_info (cInfo);
+		g_free (cInfo);
+	}
+	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 	
 	// on a suffisamment affine la recherche pour pouvoir afficher nos resultat dans un menu.
-	myData.pFileMenu = gtk_menu_new ();
-	
-	gchar *cInfo = g_strdup_printf (" %d %s", myData.iNbMatchingFiles, D_("results"));
-	_cd_do_make_info (cInfo);
-	g_free (cInfo);
-	
+	/*myData.pFileMenu = gtk_menu_new ();
 	gchar *cPath;
 	gchar *cFileName;
 	GtkWidget *pMenuItem;
@@ -341,7 +303,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		NULL,
 		1,
 		gtk_get_current_event_time ());
-	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
+	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));*/
 	return FALSE;
 }
 void cd_do_find_matching_files (void)
@@ -360,12 +322,12 @@ void cd_do_find_matching_files (void)
 	
 	if (! cairo_dock_task_is_running (myData.pLocateTask))  // sinon, on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte.
 	{
-		if (myData.pMatchingFiles != NULL)
+		/*if (myData.pMatchingFiles != NULL)
 		{
 			g_strfreev (myData.pMatchingFiles);
 			myData.pMatchingFiles = NULL;
 		}
-		myData.iNbMatchingFiles = 0;
+		myData.iNbMatchingFiles = 0;*/
 		
 		myData.iLocateFilter = myData.iCurrentFilter;
 		myData.bLocateMatchCase = myData.bMatchCase;
@@ -489,212 +451,4 @@ void cd_do_hide_filter_dialog (void)
 	if (! cairo_dock_dialog_unreference (myData.pFilterDialog))
 		cairo_dock_dialog_unreference (myData.pFilterDialog);
 	myData.pFilterDialog = NULL;
-}
-
-
-
-
-
-gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, CDListing *pListing)
-{
-	if (g_bUseOpenGL && pListing->container.glContext)
-	{
-		GdkGLContext *pGlContext = gtk_widget_get_gl_context (pWidget);
-		GdkGLDrawable *pGlDrawable = gtk_widget_get_gl_drawable (pWidget);
-		if (!gdk_gl_drawable_gl_begin (pGlDrawable, pGlContext))
-			return FALSE;
-		
-		if (pExpose->area.x + pExpose->area.y != 0)
-		{
-			glEnable (GL_SCISSOR_TEST);  // ou comment diviser par 4 l'occupation CPU !
-			glScissor ((int) pExpose->area.x,
-				(int) (pListing->container.bIsHorizontal ? pListing->container.iHeight : pListing->container.iWidth) -
-					pExpose->area.y - pExpose->area.height,  // lower left corner of the scissor box.
-				(int) pExpose->area.width,
-				(int) pExpose->area.height);
-		}
-		
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_RENDER_DEFAULT_CONTAINER, pListing, NULL);
-		
-		glDisable (GL_SCISSOR_TEST);
-		
-		if (gdk_gl_drawable_is_double_buffered (pGlDrawable))
-			gdk_gl_drawable_swap_buffers (pGlDrawable);
-		else
-			glFlush ();
-		gdk_gl_drawable_gl_end (pGlDrawable);
-	}
-	else
-	{
-		cairo_t *pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
-		
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
-		
-		cairo_destroy (pCairoContext);
-	}
-	return FALSE;
-}
-gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEvent, CDListing *pListing)
-{
-	gint iNewWidth, iNewHeight;
-	if (pListing->container.bIsHorizontal)
-	{
-		pListing->container.iWindowPositionX = pEvent->x;
-		pListing->container.iWindowPositionY = pEvent->y;
-		iNewWidth = pEvent->width;
-		iNewHeight = pEvent->height;
-	}
-	else
-	{
-		pListing->container.iWindowPositionX = pEvent->y;
-		pListing->container.iWindowPositionY = pEvent->x;
-		iNewWidth = pEvent->height;
-		iNewHeight = pEvent->width;
-	}
-	
-	if (pListing->container.iWidth != iNewWidth || pListing->container.iHeight != iNewHeight)
-	{
-		pListing->container.iWidth = iNewWidth;
-		pListing->container.iHeight = iNewHeight;
-		
-		if (g_bUseOpenGL && pListing->container.glContext)
-		{
-			GdkGLContext* pGlContext = gtk_widget_get_gl_context (pWidget);
-			GdkGLDrawable* pGlDrawable = gtk_widget_get_gl_drawable (pWidget);
-			GLsizei w = pEvent->width;
-			GLsizei h = pEvent->height;
-			if (!gdk_gl_drawable_gl_begin (pGlDrawable, pGlContext))
-				return FALSE;
-			
-			glViewport(0, 0, w, h);
-			
-			cairo_dock_set_ortho_view (w, h);
-			
-			gdk_gl_drawable_gl_end (pGlDrawable);
-		}
-	}
-	return FALSE;
-}
-
-gboolean on_key_press_listing (GtkWidget *pWidget, GdkEventKey *pKey, CDListing *pListing)
-{
-	if (pKey->type == GDK_KEY_PRESS)
-	{
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_KEY_PRESSED, pListing, pKey->keyval, pKey->state, pKey->string);
-	}
-	return FALSE;
-}
-/*gboolean on_motion_notify_listing (GtkWidget* pWidget, GdkEventMotion* pMotion, CDListing *pListing)
-{
-	pListing->container.iMouseX = pMotion->x;
-	pListing->container.iMouseY = pMotion->y;
-	
-	gboolean bStartAnimation = FALSE;
-	cairo_dock_notify_on_container (pListing, CAIRO_DOCK_MOUSE_MOVED, pListing, &bStartAnimation);
-	if (bStartAnimation)
-		cairo_dock_launch_animation (CAIRO_CONTAINER (pListing));
-	
-	gdk_device_get_state (pMotion->device, pMotion->window, NULL, NULL);  // pour recevoir d'autres MotionNotify.
-	return FALSE;
-}*/
-CDListing *cd_do_create_listing (void)
-{
-	CDListing *pListing = g_new0 (CDListing, 1);
-	
-	pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
-	pListing->container.bIsHorizontal = TRUE;
-	pListing->container.bDirectionUp = TRUE;
-	pListing->container.fRatio = 1.;
-	
-	GtkWidget* pWindow = cairo_dock_create_container_window_no_opengl ();
-	gtk_window_set_title (GTK_WINDOW(pWindow), "cairo-dock-listing");
-	//gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
-	g_signal_connect (G_OBJECT (pWindow),
-		"expose-event",
-		G_CALLBACK (on_expose_listing),
-		pListing);
-	g_signal_connect (G_OBJECT (pWindow),
-		"configure-event",
-		G_CALLBACK (on_configure_listing),
-		pListing);
-	g_signal_connect (G_OBJECT (pWindow),
-		"key-press-event",
-		G_CALLBACK (on_key_press_listing),
-		pListing);
-	/*g_signal_connect (G_OBJECT (pWindow),
-		"motion-notify-event",
-		G_CALLBACK (on_motion_notify_listing),
-		pListing);
-	g_signal_connect (G_OBJECT (pWindow),
-		"button-press-event",
-		G_CALLBACK (on_button_press_listing),
-		pListing);
-	g_signal_connect (G_OBJECT (pWindow),
-		"scroll-event",
-		G_CALLBACK (on_scroll_listing),
-		pListing);*/
-	pListing->container.pWidget = pWindow;
-	
-	
-	int iNbLines = myConfig.iNbResultMax;
-	int iWidth = g_iScreenWidth[CAIRO_DOCK_HORIZONTAL] / 4;
-	int iHeight = (myDialogs.dialogTextDescription.iSize + 2) * iNbLines;
-	gdk_window_resize (pWindow->window,
-		iWidth,
-		iHeight);
-	
-	
-	int iX, iY;
-	if (g_pMainDock->bHorizontalDock)
-	{
-		iX = g_pMainDock->iWindowPositionX + g_pMainDock->iCurrentWidth/2 - iWidth/2;
-		iY = g_pMainDock->iWindowPositionY + (g_pMainDock->bDirectionUp ? - iHeight : g_pMainDock->iCurrentHeight);
-	}
-	else
-	{
-		iX = g_pMainDock->iWindowPositionY + (g_pMainDock->bDirectionUp ? - iWidth : g_pMainDock->iCurrentHeight);
-		iY = g_pMainDock->iWindowPositionX + g_pMainDock->iCurrentWidth/2 - iHeight/2;
-	}
-	gtk_window_move (GTK_WINDOW (pWindow), iX, iY);
-	
-	return pListing;
-}
-
-void cd_do_destroy_listing (CDListing *pListing)
-{
-	if (pListing == NULL)
-		return;
-	g_free (pListing);
-}
-
-
-gboolean cd_do_update_listing (gpointer pUserData, CDListing *pListing, gboolean *bContinueAnimation)
-{
-	
-}
-
-gboolean cd_do_render_listing (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
-{
-	
-}
-
-void cd_do_show_listing (void)
-{
-	if (myData.pListing == NULL)
-	{
-		myData.pListing = cd_do_create_listing ();
-		
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (myData.pListing),
-			CAIRO_DOCK_UPDATE_DEFAULT_CONTAINER_SLOW,
-			(CairoDockNotificationFunc) cd_do_update_listing,
-			CAIRO_DOCK_RUN_AFTER,
-			NULL);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (myData.pListing),
-			CAIRO_DOCK_RENDER_DEFAULT_CONTAINER,
-			(CairoDockNotificationFunc) cd_do_render_listing,
-			CAIRO_DOCK_RUN_AFTER,
-			NULL);
-	}
-	
-	
 }

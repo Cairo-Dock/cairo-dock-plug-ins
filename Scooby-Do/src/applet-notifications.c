@@ -198,6 +198,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
+		cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
 		cd_do_close_session ();
 	}
 	else if (iKeyVal == GDK_space && myData.iNbValidCaracters == 0)  // pas d'espace en debut de chaine.
@@ -259,7 +260,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				}
 				else  // on a trouve au moins un programme, on cache le filtre des fichiers.
 				{
-					
+					cd_do_hide_listing ();
 					cd_do_hide_filter_dialog ();
 				}
 			}
@@ -556,6 +557,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		myData.bNavigationMode = bNewModeNav; \
 		cd_do_open_session (); } \
 	else { \
+		cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);\
 		cd_do_close_session (); \
 		if (myData.bNavigationMode != bNewModeNav) { \
 			cd_do_open_session (); \

@@ -12,6 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "applet-struct.h"
 #include "applet-command-finder.h"
+#include "applet-listing.h"
 #include "applet-session.h"
 
 
@@ -79,10 +80,13 @@ void cd_do_close_session (void)
 		myData.pCurrentIcon = NULL;
 	}
 	
-	// on chache le filtre.
+	// on cache le filtre.
 	cd_do_hide_filter_dialog ();
 	myData.iCurrentFilter = 0;
 	myData.bMatchCase = FALSE;
+	
+	// on cache les resultats
+	cd_do_hide_listing ();
 	
 	if (myData.pCurrentDock != NULL)
 	{

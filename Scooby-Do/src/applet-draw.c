@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-session.h"
 #include "applet-draw.h"
 
-#define STATIC_ANGLE 15.
+#define STATIC_ANGLE 20.
 
 #define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n));
 
@@ -492,9 +492,9 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				
 				glScalef (pChar->iWidth * fScale * fTextScale, pChar->iHeight * fScale * fTextScale, 1.);
 				
-				glRotatef (fRotationAngle+STATIC_ANGLE, 1., 0., 0.);
-				glRotatef (STATIC_ANGLE-5, 0., 0., 1.);
-				glRotatef (STATIC_ANGLE, 0., 1., 0.);
+				glRotatef (fRotationAngle, 1., 0., 0.);
+				glRotatef (MIN (fRotationAngle/3, STATIC_ANGLE), 0., 0., 1.);
+				glRotatef (MIN (fRotationAngle/3, STATIC_ANGLE), 0., 1., 0.);
 				
 				glPolygonMode (GL_FRONT, GL_FILL);
 				double a = .5 / sqrt (2);

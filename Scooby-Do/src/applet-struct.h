@@ -41,8 +41,10 @@ struct _AppletConfig {
 
 typedef struct _CDListing {
 	CairoContainer container;
-	gchar *pEntries;
+	gchar **pEntries;
+	gint iNbEntries;
 	gint iCurrentEntry;
+	gint iAppearanceAnimationCount;
 	} CDListing;
 
 typedef struct _CDChar {

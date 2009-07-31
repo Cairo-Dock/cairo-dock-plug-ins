@@ -21,6 +21,8 @@ libcd_Scooby_Do_la_SOURCES = \
 	applet-command-finder.h\
 	applet-appli-finder.c\
 	applet-appli-finder.h\
+	applet-listing.c\
+	applet-listing.h\
 	applet-struct.h
 
 
