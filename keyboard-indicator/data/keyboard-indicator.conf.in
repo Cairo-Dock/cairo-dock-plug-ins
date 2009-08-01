@@ -108,3 +108,7 @@ outlined = true
 
 #P+ Font :
 font = 
+
+#e[.3;1] Relative size of the text :
+#{the smaller, the smaller is the text in the icon. 1 means the text fills all the icon.}
+text ratio = 1

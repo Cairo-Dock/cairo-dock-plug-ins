@@ -268,20 +268,6 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			
 			cairo_restore (pCairoContext);
 		}
-		
-		if (myData.pCompletionItemSurface != NULL)
-		{
-			GList *c;
-			/// afficher n parmi les N resultats de la completion...
-			for (c = myData.pCompletionItemSurface; c != NULL; c = c->next)
-			{
-				cairo_save (pCairoContext);
-				
-				
-				
-				cairo_restore (pCairoContext);
-			}
-		}
 	}
 }
 

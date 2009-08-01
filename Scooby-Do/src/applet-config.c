@@ -15,6 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-draw.h"
 #include "applet-session.h"
 #include "applet-appli-finder.h"
+#include "applet-listing.h"
 #include "applet-config.h"
 
 
@@ -74,7 +75,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShortkeySearch);
 	g_free (myConfig.cIconAnimation);
 	g_free (myConfig.labelDescription.cFont);
-	g_strfreev (myConfig.pDirList);
 CD_APPLET_RESET_CONFIG_END
 
 

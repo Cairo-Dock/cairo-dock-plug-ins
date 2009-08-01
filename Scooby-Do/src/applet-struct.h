@@ -34,17 +34,28 @@ struct _AppletConfig {
 	gint iAnimationDuration;
 	gint iAppearanceDuration;
 	gint iCloseDuration;
-	gchar **pDirList;
 	gint iNbResultMax;
 	CairoDockLabelDescription infoDescription;
 	} ;
 
+typedef struct _CDEntry {
+	gchar *cPath;
+	gchar *cName;
+	cairo_surface_t *pIconSurface;
+	gboolean bHasSubEntries;
+	} CDEntry;
+
 typedef struct _CDListing {
 	CairoContainer container;
-	gchar **pEntries;
+	CDEntry *pEntries;
 	gint iNbEntries;
 	gint iCurrentEntry;
 	gint iAppearanceAnimationCount;
+	gint iCurrentEntryAnimationCount;
+	gint iScrollAnimationCount;
+	gdouble fPreviousOffset;
+	gdouble fCurrentOffset;
+	gdouble fAimedOffset;
 	} CDListing;
 
 typedef struct _CDChar {
@@ -112,10 +123,9 @@ struct _AppletData {
 	gint iLocateAvailable;
 	gint iCurrentFilter;
 	gboolean bMatchCase;
-	GtkWidget *pFileMenu;
-	gint iNbMatchingFiles;
 	CairoDialog *pFilterDialog;
 	CairoDockTask *pLocateTask;
+	gboolean bFoundNothing;
 	// shared memory
 	gchar **pMatchingFiles;
 	gchar *cCurrentLocateText;  // lecture seule dans le thread
@@ -128,10 +138,6 @@ struct _AppletData {
 	gint iInfoWidth, iInfoHeight;
 	
 	CDListing *pListing;
-	
-	/// not used.
-	GList *pCompletionItemSurface;
-	GList *pCompletionItemTexture;
 	} ;
 
 

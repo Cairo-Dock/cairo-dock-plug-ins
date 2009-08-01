@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-icon-finder.h"
 #include "applet-command-finder.h"
 #include "applet-session.h"
+#include "applet-listing.h"
 #include "applet-notifications.h"
 
 
@@ -245,6 +246,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (myData.bNavigationMode)
 			{
 				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
+				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
 					cd_do_search_current_icon (FALSE);
 			}
 			else
@@ -349,7 +351,13 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			myData.bIgnoreIconState = FALSE;
 			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 		}
-		else if (myData.iNbValidCaracters > 0)  // pas d'icone mais du texte => on l'execute.
+		else if (myData.pListing && myData.pListing->pEntries)  // pas d'appli mais un fichier => on l'ouvre.
+		{
+			CDEntry *pEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
+			g_print ("on valide l'entree '%s'\n", pEntry->cPath);
+			cairo_dock_fm_launch_uri (pEntry->cPath);
+		}
+		else if (myData.iNbValidCaracters > 0)  // pas de resultat mais du texte => on l'execute.
 		{
 			gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
 			gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -366,16 +374,16 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				Icon *pIcon = cairo_dock_get_dialogless_icon ();
 				cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
 					pIcon,
-					g_pMainDock,
+					CAIRO_CONTAINER (g_pMainDock),
 					3000,
 					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 					cResult);
 				double fResult = atof (cResult);
 			}
-			else
+			else  // le calcul n'a rien donne, on execute sans chercher.
 			{
-				g_print ("on valide '%s'\n", myData.sCurrentText->str);
-				cairo_dock_fm_launch_uri (myData.sCurrentText->str);
+				g_print ("on execute '%s'\n", myData.sCurrentText->str);
+				cairo_dock_launch_command (myData.sCurrentText->str);
 			}
 			g_free (cResult);
 		}
@@ -466,29 +474,44 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		{
 			cd_do_select_previous_next_matching_icon (iKeyVal == GDK_Right || iKeyVal == GDK_Down);
 		}
-		else if (myData.pListing != NULL)
+		else if (myData.pListing != NULL && myData.pListing->pEntries != NULL)
 		{
-			/// select next/previous entry in the listing...
-			
-			
-			/// in case the current entry has sub-entries, manage it...
-			
+			if (iKeyVal == GDK_Down)
+			{
+				cd_do_select_prev_next_entry_in_listing (TRUE);  // next
+			}
+			else if (iKeyVal == GDK_Up)
+			{
+				cd_do_select_prev_next_entry_in_listing (False);  // previous
+			}
+			else if (iKeyVal == GDK_Right)
+			{
+				/// si l'entree a une sous-entree ...
+				
+			}
+			else if (iKeyVal == GDK_Left)
+			{
+				/// si on est dans un sous-listing...
+				
+			}
 		}
 	}
-	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up)
+	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home || iKeyVal == GDK_End)
 	{
 		if (myData.bNavigationMode)
 		{
 			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
 				myData.pCurrentDock = g_pMainDock;
-			Icon *pIcon = (iKeyVal == GDK_Page_Up ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
+			Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
 			g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->acName : "none");
 			cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 		}
 		else if (myData.pListing != NULL)
 		{
-			/// scroll 1 page up/down in the listing...
-			
+			if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up)
+				cd_do_select_prev_next_page_in_listing (iKeyVal == GDK_Page_Down);  // TRUE <=> next page
+			else
+				cd_do_select_last_first_entry_in_listing (iKeyVal == GDK_End);  // TRUE <=> last entry.
 		}
 	}
 	else if (string)  /// utiliser l'unichar ...
@@ -529,7 +552,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			cd_do_search_matching_icons ();
 			
 			// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
-			if (myData.pMatchingIcons == NULL && myData.iNbMatchingFiles != -1)
+			if (myData.pMatchingIcons == NULL && ! myData.bFoundNothing)
 			{
 				// on cherche un fichier correspondant.
 				cd_do_find_matching_files ();

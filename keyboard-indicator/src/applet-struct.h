@@ -8,6 +8,7 @@
 struct _AppletConfig {
 	gboolean bShowKbdIndicator;
 	gchar *cBackgroundImage;
+	gdouble fTextRatio;
 	CairoDockLabelDescription textDescription;
 	gint iTransitionDuration;
 	} ;

@@ -59,7 +59,7 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 	GError *erreur = NULL;
 	GString *sCommand = g_string_new ("locate");
 	if (bWithLimit)
-		g_string_append_printf (sCommand, " --limit=%d", myConfig.iNbResultMax+1);
+		g_string_append_printf (sCommand, " --limit=%d", 50);  // myConfig.iNbResultMax+1
 	if (myData.bLocateMatchCase)
 		g_string_append (sCommand, " -i");
 	if (*text != '/')
@@ -170,7 +170,7 @@ void _reset_info_results (void)
 
 static void _cd_do_search_files (gpointer data)
 {
-	myData.pMatchingFiles = _cd_do_locate_files (myData.cCurrentLocateText, TRUE);  // avec limite.
+	myData.pMatchingFiles = _cd_do_locate_files (myData.cCurrentLocateText, TRUE);  // FALSE <=> sans limite.
 }
 static gboolean _cd_do_update_from_files (gpointer data)
 {
@@ -184,15 +184,15 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		cairo_dock_strings_differ (myData.cCurrentLocateText, myData.sCurrentText->str))  // la situation a change entre le lancement de la tache et la mise a jour, on va relancer la recherche immediatement.
 	{
 		if (myData.pMatchingFiles == NULL &&
-		myData.sCurrentText->len > 0 &&
-		strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
-		myData.iLocateFilter == myData.iCurrentFilter && 
-		myData.bLocateMatchCase == myData.bMatchCase)  // la recherche est identique, seul le texte comporte plus de caracteres; comme on n'a rien trouve, inutile de chercher a nouveau, on quitte.
+			myData.sCurrentText->len > 0 &&
+			strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
+			myData.iLocateFilter == myData.iCurrentFilter && 
+			myData.bLocateMatchCase == myData.bMatchCase)  // la recherche est identique, seul le texte comporte plus de caracteres; comme on n'a rien trouve, inutile de chercher a nouveau, on quitte.
 		{
 			g_print ("useless\n");
 			_reset_info_results ();
 			_cd_do_make_info (D_("no result"));
-			myData.iNbMatchingFiles = -1;
+			myData.bFoundNothing = TRUE;
 			cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 			return FALSE;
 		}
@@ -201,7 +201,11 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		{
 			g_strfreev (myData.pMatchingFiles);
 			myData.pMatchingFiles = NULL;
-			myData.iNbMatchingFiles = 0;
+			/// effacer aussi le contenu actuel du listing ?...
+			if (myData.pListing && myData.pListing->pEntries)
+			{
+				
+			}
 		}
 		
 		if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
@@ -219,10 +223,46 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		return FALSE;
 	}
 	
+	// on parse les resultats.
+	myData.bFoundNothing = (myData.pMatchingFiles == NULL);
+	int i, iNbEntries;
+	if (myData.pMatchingFiles)
+		for (iNbEntries = 0; myData.pMatchingFiles[iNbEntries] != NULL; iNbEntries ++);
+	CDEntry *pEntries = g_new0 (CDEntry, iNbEntries);
+	cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+	CDEntry *pEntry;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gboolean bIsDirectory;
+	int iVolumeID;
+	double fOrder;
+	for (i = 0; i < iNbEntries; i ++)
+	{
+		pEntry = &pEntries[i];
+		pEntry->cPath = myData.pMatchingFiles[i];
+		pEntry->cName = g_path_get_basename (pEntry->cPath);
+		cairo_dock_fm_get_file_info (pEntry->cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
+		g_free (cName);
+		cName = NULL;
+		g_free (cURI);
+		cURI = NULL;
+		if (cIconName != NULL)
+		{
+			pEntry->pIconSurface = cairo_dock_create_surface_from_icon (cIconName,
+				pSourceContext,
+				myDialogs.dialogTextDescription.iSize,
+				myDialogs.dialogTextDescription.iSize);
+			g_free (cIconName);
+			cIconName = NULL;
+		}
+	}
+	cairo_destroy (pSourceContext);
+	
 	// on montre les resultats.
 	_reset_info_results ();
-	cd_do_show_listing (myData.pMatchingFiles);
-	myData.pMatchingFiles = NULL;  // la liste appartient desormais au container.
+	
+	cd_do_show_listing (pEntries, iNbEntries);
+	g_free (myData.pMatchingFiles);  // ses elements sont dans la liste des entrees.
+	myData.pMatchingFiles = NULL;  // on n'a plus besoin de la liste.
 	
 	if (myData.pListing->iNbEntries == 0)
 	{
@@ -242,68 +282,6 @@ static gboolean _cd_do_update_from_files (gpointer data)
 	}
 	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 	
-	// on a suffisamment affine la recherche pour pouvoir afficher nos resultat dans un menu.
-	/*myData.pFileMenu = gtk_menu_new ();
-	gchar *cPath;
-	gchar *cFileName;
-	GtkWidget *pMenuItem;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
-	gboolean bIsDirectory;
-	int iVolumeID;
-	double fOrder;
-	for (i = 0; myData.pMatchingFiles[i] != NULL; i ++)
-	{
-		cPath = myData.pMatchingFiles[i];
-		g_print (" + %s\n", cPath);
-
-		cairo_dock_fm_get_file_info (cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
-		g_free (cName);
-		cName = NULL;
-		g_free (cURI);
-		cURI = NULL;
-		
-		cFileName = strrchr (cPath, '/');
-		if (! cFileName)
-			continue;
-		cFileName ++;
-		if (cIconName != NULL)
-		{
-			pMenuItem = gtk_image_menu_item_new_with_label (cFileName);
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
-			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-			g_object_unref (pixbuf);
-			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-			g_free (cIconName);
-			cIconName = NULL;
-		}
-		else
-		{
-			pMenuItem = gtk_menu_item_new_with_label (cFileName);
-		}
-		gtk_widget_set_tooltip_text (pMenuItem, cPath);
-		
-		gtk_menu_shell_append  (GTK_MENU_SHELL (myData.pFileMenu), pMenuItem);
-		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), cPath);
-	}
-	
-	/// completer avec les actions :
-	/// mail, open folder, copy adress, copy, move, ...
-	
-	gtk_widget_show_all (myData.pFileMenu);
-	
-	g_signal_connect (G_OBJECT (myData.pFileMenu),
-		"deactivate",
-		G_CALLBACK (_on_delete_menu),
-		g_pMainDock);
-	
-	gtk_menu_popup (GTK_MENU (myData.pFileMenu),
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		1,
-		gtk_get_current_event_time ());
-	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));*/
 	return FALSE;
 }
 void cd_do_find_matching_files (void)
@@ -318,10 +296,12 @@ void cd_do_find_matching_files (void)
 			(CairoDockUpdateSyncFunc) _cd_do_update_from_files,
 			NULL);
 	}
-	myData.iNbMatchingFiles = 0;
+	/// effacer le contenu du listing pendant la recherche ?...
+	
 	
 	if (! cairo_dock_task_is_running (myData.pLocateTask))  // sinon, on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte.
 	{
+		/// vider le listing en attendant la fin de la recherche ?...
 		/*if (myData.pMatchingFiles != NULL)
 		{
 			g_strfreev (myData.pMatchingFiles);
@@ -336,6 +316,7 @@ void cd_do_find_matching_files (void)
 		
 		_reset_info_results ();
 		_cd_do_make_info (D_("Searching..."));
+		myData.bFoundNothing = FALSE;
 		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		
 		cairo_dock_launch_task (myData.pLocateTask);
@@ -349,7 +330,7 @@ static void _on_activate_filter_item (GtkToggleButton *pButton, gpointer data)
 	if (gtk_toggle_button_get_active (pButton))
 	{
 		myData.iCurrentFilter |= iFilterItem;
-		if (myData.iNbMatchingFiles == -1)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
+		if (myData.pListing && myData.pListing->pEntries == NULL)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
 		{
 			g_print ("useless\n");
 			return ;
@@ -367,7 +348,7 @@ static void _on_activate_filter_item (GtkToggleButton *pButton, gpointer data)
 static void _on_activate_match_case (GtkToggleButton *pButton, gpointer data)
 {
 	myData.bMatchCase = gtk_toggle_button_get_active (pButton);
-	if (myData.bMatchCase && myData.iNbMatchingFiles == -1)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
+	if (myData.bMatchCase && myData.pListing && myData.pListing->pEntries == NULL)  // on rajoute une contrainte sur une recherche qui ne fournit aucun resultat => on ignore.
 	{
 		g_print ("useless\n");
 		return ;
@@ -423,6 +404,7 @@ static gboolean on_key_press_dialog (GtkWidget *pWidget,
 }
 void cd_do_show_filter_dialog (void)
 {
+	return ;  /// desactive pour le moment...
 	if (myData.pFilterDialog != NULL)
 		return ;
 	

@@ -54,7 +54,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	myConfig.textDescription.iSize = (int) myIcon->fHeight;
+	myConfig.textDescription.iSize = (int) myIcon->fHeight * myConfig.fTextRatio;
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -93,7 +93,7 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	myConfig.textDescription.iSize = (int) myIcon->fHeight;
+	myConfig.textDescription.iSize = (int) myIcon->fHeight * myConfig.fTextRatio;
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
