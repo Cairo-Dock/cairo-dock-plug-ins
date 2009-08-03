@@ -22,6 +22,11 @@ Fabrice Rey <fabounet@users.berlios.de>
 #include "applet-draw.h"
 
 
+DBusGProxy *dbus_proxy_signal_Device;
+DBusGProxy *dbus_proxy_signal_AccessPoint;
+DBusGProxy *dbus_proxy_signal_New_ActiveAccessPoint;
+
+
 #define _pick_string(cValueName, cValue) \
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
 	if (str) {\
@@ -259,7 +264,7 @@ static void cd_NetworkMonitor_get_wireless_connection_infos (void)
 	
 }
 
-/* A finir si besoin */
+
 static void cd_NetworkMonitor_get_wired_connection_infos (void)
 {
 	DBusGProxy *dbus_proxy;
@@ -326,10 +331,10 @@ static void cd_NetworkMonitor_quality (void)
 }
 
 
-void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
+static void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
 {
 	GValue *value;
-	
+
 	value = g_hash_table_lookup (properties, "Strength");
 	if (value != NULL && G_VALUE_HOLDS_UCHAR (value))
 	{
@@ -347,28 +352,96 @@ void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties,
 }
 
 
+static void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
+{
+	GValue *value;
+	
+	value = g_hash_table_lookup (properties, "ActiveConnections");
+	cd_debug("Network-Monitor :  Changement des connexions detectes");
+	if (value != NULL && G_VALUE_HOLDS_BOXED (value))
+	{
+		cd_debug("Network-Monitor : Changement des connexions detectes et c est bien un BOXED");
+	}
+
+	cd_NetworkMonitor_get_active_connection_info();
+	cd_NetworkMonitor_draw_icon ();
+}
+
+
+static void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data)
+{
+	GValue *value;
+	
+	value = g_hash_table_lookup (AP_properties, "ActiveAccessPoint");
+	cd_debug("Network-Monitor :  Changement de l'active ap detecte");
+	if (G_VALUE_HOLDS (value, DBUS_TYPE_G_OBJECT_PATH))
+	{
+		cd_debug("Network-Monitor : New AP : %s",g_value_get_string(value));
+		cd_debug("Network-Monitor : Changement des connexions detectes et c est bien un BOXED");
+	}
+
+	cd_NetworkMonitor_get_active_connection_info();
+	cd_NetworkMonitor_disconnect_signals();
+	cd_NetworkMonitor_connect_signals();
+	//cd_NetworkMonitor_draw_icon ();
+}
+
+
+void cd_NetworkMonitor_disconnect_signals()
+{
+	dbus_g_proxy_disconnect_signal(dbus_proxy_signal_Device, "PropertiesChanged",
+			G_CALLBACK(onChangeDeviceProperties), NULL);
+	if (myData.bWirelessExt)
+	{
+		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_AccessPoint, "PropertiesChanged",
+			G_CALLBACK(onChangeWirelessProperties), NULL);
+		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",
+			G_CALLBACK(onChangeActiveAccessPoint), NULL);	
+	}
+	
+}
+
 void cd_NetworkMonitor_connect_signals ()
 {
-	DBusGProxy *dbus_proxy_AP;
+	/* Enregistrement d'un marshaller specifique au signal (sinon impossible de le récupérer ni de le voir */
+	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOXED,
+										G_TYPE_NONE, G_TYPE_VALUE ,G_TYPE_INVALID);	
+	
+	/* Connexion au signal nous permettant de detecter si une nouvelle connexion physique active */
+	dbus_proxy_signal_Device = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			"org/freedesktop/NetworkManager",
+			"org.freedesktop.NetworkManager");
+	
+	dbus_g_proxy_add_signal(dbus_proxy_signal_Device, "PropertiesChanged",dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),G_TYPE_INVALID);
+	
+	dbus_g_proxy_connect_signal(dbus_proxy_signal_Device, "PropertiesChanged",
+			G_CALLBACK(onChangeDeviceProperties), NULL, NULL);
 	
 	if (myData.bWirelessExt)
 	{
-		dbus_proxy_AP = cairo_dock_create_new_system_proxy (
+		/* Connexion au signal pour récupérer les nouvelles valeurs d'un signal WiFi */
+		dbus_proxy_signal_AccessPoint = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.NetworkManager",
 			myData.cActiveAccessPoint,
-			"org.freedesktop.NetworkManager.AccessPoint");
-						
-		dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOXED,
-							G_TYPE_NONE, G_TYPE_VALUE ,G_TYPE_INVALID);			
-					
-		dbus_g_proxy_add_signal(dbus_proxy_AP, "PropertiesChanged",dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),G_TYPE_INVALID);
+			"org.freedesktop.NetworkManager.AccessPoint");	
+								
+		dbus_g_proxy_add_signal(dbus_proxy_signal_AccessPoint, "PropertiesChanged",dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),G_TYPE_INVALID);
 
-		dbus_g_proxy_connect_signal(dbus_proxy_AP, "PropertiesChanged",
+		dbus_g_proxy_connect_signal(dbus_proxy_signal_AccessPoint, "PropertiesChanged",
 			G_CALLBACK(onChangeWirelessProperties), NULL, NULL);
-		
-		g_object_unref (dbus_proxy_AP);
+			
+		/* Connexion au signal pour récupérer la nouvelle connexion active */	
+		dbus_proxy_signal_New_ActiveAccessPoint = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			myData.cDevice,
+			"org.freedesktop.NetworkManager.Device.Wireless");	
+								
+		dbus_g_proxy_add_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),G_TYPE_INVALID);
+
+		dbus_g_proxy_connect_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",
+			G_CALLBACK(onChangeActiveAccessPoint), NULL, NULL);	
 	}
-	
 }
 
 
@@ -402,13 +475,14 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
           "org.freedesktop.DBus.Properties");
     
 	cairo_dock_dbus_get_properties(dbus_proxy_NM, "Get", "org.freedesktop.NetworkManager", "ActiveConnections", &vConnections);
-	
+
 	paActiveConnections = g_value_get_boxed (&vConnections);
 	
 	/* Parcours de la liste des connexions actives */	
 	for (j=0; j<paActiveConnections->len; j++) 
 	{
 			/* Recuperation de la liste des Devices (HAL) */
+
 			cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
 			//cd_debug("Network-Monitor : Active Connection : %s",cActiveConnection);
 
@@ -472,13 +546,17 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					
 					/* Recuperation de l'AP active */
 					cd_NetworkMonitor_get_wireless_connection_infos();
-					cd_debug("Network-Monitor : apres recup des infos : %s", myData.cAccessPoint);
 					/* Calcul de la qualite du signal */					
-					cd_NetworkMonitor_quality();							
+					cd_NetworkMonitor_quality();						
 				}
 				else
+				{
 					cd_debug("Network-Monitor : Unknown card type ?");
+					// Dessin pour aucune connexion trouvee à faire
+				}
 			}
+			g_object_unref (dbus_proxy_Device_temp);
+			g_object_unref (dbus_proxy_ActiveConnection_temp);
 			g_ptr_array_free(paDevices,TRUE);
 		}
 	
@@ -486,12 +564,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		myData.bWiredExt = FALSE; // Dans le cas où on a 2 connections, on force le wireless
 		
 	g_ptr_array_free(paActiveConnections,TRUE);
-	g_object_unref (dbus_proxy_Device_temp);
-	g_object_unref (dbus_proxy_ActiveConnection_temp);
 	g_object_unref (dbus_proxy_NM);
-	
-	cd_debug("Network-Monitor : fin fonction d'init: %s", myData.cAccessPoint);
-
 	
 	return TRUE;
 	

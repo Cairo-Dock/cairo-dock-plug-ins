@@ -127,9 +127,9 @@ void cd_NetworkMonitor_bubble (void) {
 		cd_debug("Network-Monitor : juste avant affichage : %s", myData.cAccessPoint);
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/link-5.svg";
 		g_string_assign (sInfo, D_("Wifi enabled."));
-		g_string_printf (sInfo, "%s : %s\n%s : %d\n%s : %s\n%s : %s\n%s : %d/%d",
+		g_string_printf (sInfo, "%s : %s\n%s : %d Mbps\n%s : %s\n%s : %s\n%s : %d/%d",
 			D_ ("Network ID"), myData.cESSID ? myData.cESSID : D_("Unknown"),
-			D_ ("Speed"), myData.iSpeed,
+			D_ ("Speed"), myData.iSpeed/1000,
 			D_ ("Access point"), myData.cAccessPoint,
 			D_ ("Interface"), myData.cInterface,
 			D_ ("Signal Quality"), myData.iQuality, CONNECTION_NB_QUALITY-3);

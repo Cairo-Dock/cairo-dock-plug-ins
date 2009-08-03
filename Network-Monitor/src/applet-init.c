@@ -75,6 +75,7 @@ CD_APPLET_INIT_BEGIN
 	{	
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
 		myData.bDbusConnection = TRUE;
+		
 		cd_NetworkMonitor_get_active_connection_info();
 		cd_NetworkMonitor_draw_icon (); // Dessin initial (ensuite tout passera au travers des signaux)
 		cd_NetworkMonitor_connect_signals();
@@ -103,9 +104,7 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	if (myData.bWirelessExt)
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_ActiveAccessPoint, "PropertiesChanged",
-			G_CALLBACK(onChangeWirelessProperties), NULL);
+	cd_NetworkMonitor_disconnect_signals();
 			
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
