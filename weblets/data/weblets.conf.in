@@ -33,7 +33,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=true
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -109,6 +109,6 @@ transparent background = false
 #{Time before reloading the weblet URI, in seconds. Zero means never reload.}
 reload timeout = 0
 
-#s99 Predefined bookmarks to show in applet's menu :
+#U Predefined bookmarks to show in applet's menu :
 #{Any valid URI should work.}/
 uri list = http://www.cairo-dock.org;http://www.google.com;https://m.google.com/mail;http://www.rememberthemilk.com/services/modules/googleig;https://www.meebo.com/mobile;https://www.pandora.com/radio/tuner_8_7_0_0_pandora.swf;http://digg.com/iphone#_stories;http://www.bashfr.org/?sort=top50;http://about:plugins

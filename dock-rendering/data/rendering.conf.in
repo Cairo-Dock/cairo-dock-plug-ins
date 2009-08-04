@@ -6,7 +6,7 @@
 #{The lower, the more the point of view is low on the plane.}
 vanishing point y = 200
 
-#r+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
+#l+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
 draw separator = 0
 
 #C+ For flat separators, you can specify their color:
@@ -162,5 +162,5 @@ curvature = 50
 #{in pixels.}
 amplitude = 25
 
-#r+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
+#l+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
 draw curve separator = 0

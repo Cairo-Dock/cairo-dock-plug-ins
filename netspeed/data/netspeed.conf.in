@@ -29,7 +29,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -81,7 +81,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#r+[Gauge;Graph] Choose the style of the display : 
+#l+[Gauge;Graph] Choose the style of the display : 
 renderer = 0
 
 
@@ -95,7 +95,7 @@ theme = Turbo-night-fuel
 #X[Graph;gtk-dialog-info]
 frame_graph=
 
-#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+ High values color :
@@ -127,7 +127,7 @@ delay = 3
 #{You need OpenGL for this option. Set it to 0 to not use it, 1 means the transition is continue.}
 smooth = .33
 
-#r[No;On icon;On label] Display rate values :
+#l[No;On icon;On label] Display rate values :
 info display = 1
 
 #s User command to show a system monitor :

@@ -6,25 +6,25 @@
 #F-[when hovering an icon]
 frame_hov =
 
-#r+4[Fire;Stars;Rain;Snow;Storm] Effects used :
+#V+[Fire;Stars;Rain;Snow;Storm] Effects used :
 effects = 0
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
+#V+[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
 click launchers = 0
 
 #F-[when clicking on an appli]
 frame_appli =
 
-#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
+#V+[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
 click applis = 1
 
 #F-[when clicking on an applet]
 frame_applet =
 
-#r+4[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
+#V+[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
 click applets = 2
 
 #v

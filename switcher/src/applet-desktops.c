@@ -192,6 +192,12 @@ int cd_switcher_compute_index (int iNumDesktop, int iNumViewportX, int iNumViewp
 
 void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
 {
+	if (g_iNbViewportX == 0 || g_iNbViewportY == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
+	{
+		cd_switcher_refresh_desktop_values (myApplet);
+	}
+	g_return_if_fail (g_iNbViewportX > 0 && g_iNbViewportY > 0);
+	
 	*iNumDesktop = iIndex / (g_iNbViewportX * g_iNbViewportY);
 	int index2 = iIndex % (g_iNbViewportX * g_iNbViewportY);
 	*iNumViewportX = index2 / g_iNbViewportY;

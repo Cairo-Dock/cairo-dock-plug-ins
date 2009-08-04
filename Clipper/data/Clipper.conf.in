@@ -34,7 +34,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -86,7 +86,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#r[None;Clipboard;Selection;Both] Which items should be remembered ?
+#l[None;Clipboard;Selection;Both] Which items should be remembered ?
 #{Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse.}
 item type = 3
 

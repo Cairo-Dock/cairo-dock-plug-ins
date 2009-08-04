@@ -31,7 +31,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -83,7 +83,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#r+[Gauge;Graph;Icons] Choose the style of the display : 
+#l+[Gauge;Graph;Icons] Choose the style of the display : 
 renderer = 0
 
 
@@ -97,7 +97,7 @@ theme = Battery
 #X[Graph;gtk-dialog-info]
 frame_graph=
 
-#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+ High values color :
@@ -119,7 +119,7 @@ frame_icons=
 battery icon = 
 #S+ Icon's filename when on charge :
 charge icon = 
-#r+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
+#l+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
 effect=0
 
 
@@ -131,7 +131,7 @@ frame_param =
 #{in seconds.}
 check interval = 30
 
-#r+[nothing;charge;time] Information to be displayed on the icon :
+#l+[nothing;charge;time] Information to be displayed on the icon :
 quick-info_type=2
 
 use approx = false

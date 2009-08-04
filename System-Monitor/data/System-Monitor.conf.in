@@ -29,7 +29,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -82,7 +82,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#r+[Gauge;Graph] Choose the style of the display : 
+#l+[Gauge;Graph] Choose the style of the display : 
 renderer = 0
 
 
@@ -96,7 +96,7 @@ theme = Turbo-night-fuel
 #X[Graph;gtk-dialog-info]
 frame_graph=
 
-#r+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
+#l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
 #c+ High values color :
@@ -133,7 +133,7 @@ show nvidia = false
 #b Show free memory instead of used memory ?
 show free = false
 
-#r[No;On icon;On label] Display values :
+#l[No;On icon;On label] Display values :
 info display = 1
 
 #i[1;30] Delay between refresh :

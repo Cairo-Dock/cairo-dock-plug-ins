@@ -30,7 +30,7 @@ y position = 0
 
 #b Is detached from the dock ?
 initially detached = true
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -109,7 +109,7 @@ enable_cover = true
 #b Use Opengl themes (Fake 3D) ?
 enable_opengl_themes = true
 
-#r[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
+#l[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :
 quick-info_type = 1
 
 3D desklet = false

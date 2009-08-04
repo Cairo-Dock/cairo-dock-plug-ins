@@ -6,13 +6,13 @@
 #F-[when hovering an icon]
 frame_hov =
 
-#r+7[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used :
 hover effects = 1
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#r+6[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on launcher :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on launcher :
 click launchers = 0
 
 #i+[1;5] Number of time the animation will play :
@@ -21,7 +21,7 @@ nb rounds launchers = 1
 #F-[when clicking on an appli]
 frame_appli =
 
-#r+6[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applis :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applis :
 click applis = 0
 
 #i+[1;5] Number of time the animation will play :
@@ -30,7 +30,7 @@ nb rounds applis = 1
 #F-[when clicking on an applet]
 frame_applet =
 
-#r+6[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applets :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applets :
 click applets = 0
 
 #i+[1;5] Number of time the animation will play :
@@ -47,7 +47,7 @@ duration = 1500
 #b+ Repeat while icon is pointed ?
 continue = false
 
-#r+ [Normal;Cube;Capsule] Type of mesh :
+#l+ [Normal;Cube;Capsule] Type of mesh :
 mesh = 2
 
 #c+4 color of the mesh :
@@ -103,7 +103,7 @@ part speed = 5.
 #[@animated_iconsdatadir@/icon-wobbly.png]
 [Wobbly]
 
-#r+[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
+#l+[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
 stretch = 0
 
 #i+[200;350] Spring constant :

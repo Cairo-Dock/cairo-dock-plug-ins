@@ -30,7 +30,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -102,9 +102,9 @@ frame_ops=
 #i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
-#r[play/pause;open image] Action when applet is clicked :
+#l[play/pause;open image] Action when applet is clicked :
 click=0
-#r[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;cube;random] Effect while changing image :
+#l[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;cube;random] Effect while changing image :
 change animation=1
 #i[8;60] Number of steps for a transition :
 nb step = 20

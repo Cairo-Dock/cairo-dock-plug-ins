@@ -1,7 +1,7 @@
 
 SUBDIRS = .
 
-moduledir = $(pkgdatadir)
+moduledir = $(keyboard_indicatordatadir)
 
 module_DATA = \
 	keyboard-indicator.conf\

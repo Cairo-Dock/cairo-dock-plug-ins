@@ -30,7 +30,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -97,7 +97,7 @@ full image =
 #F[Config;gtk-preferences]
 frame2 =
 
-#r[None;Number of trashes;Total number of files;Total weight] Display the following quick info :
+#l[None;Number of trashes;Total number of files;Total weight] Display the following quick info :
 quick info = 1
 
 #i Maximum total size of all dustbins :

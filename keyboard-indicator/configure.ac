@@ -21,8 +21,8 @@ AC_SUBST(GETTEXT_KEYBOARD_INDICATOR)
 AC_SUBST(VERSION_KEYBOARD_INDICATOR, "$VERSION")
 AC_SUBST(PACKAGE_KEYBOARD_INDICATOR, "$PACKAGE")
 
-pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/keyboard-indicator]
-AC_SUBST(pkgdatadir)
+keyboard_indicatordatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/keyboard-indicator]
+AC_SUBST(keyboard_indicatordatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
 posubdir=po

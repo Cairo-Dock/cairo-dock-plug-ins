@@ -10,7 +10,7 @@ nb sources = 2
 #{In round per second.}
 rotation speed = .5
 
-#r[dock;desklet;both] Show mouse on :
+#l[dock;desklet;both] Show mouse on :
 container = 2
 
 #v 

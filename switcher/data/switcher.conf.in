@@ -32,7 +32,7 @@ y position=10
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 accessibility=0
 #b Should be visible on all desktops ?
 sticky=true
@@ -133,7 +133,7 @@ rgbwlinecolor = 0.0; 0.0; 0.5; 1.
 #{r, v, b, a}
 rgbindcolor = 0.0; 0.0; 0.5; 0.5
 
-#r+[draw a frame;fill;fill others] How to draw the current desktop :
+#l+[draw a frame;fill;fill others] How to draw the current desktop :
 fill current = 1
 
 

@@ -30,7 +30,7 @@ y position = 0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -111,16 +111,16 @@ animation=pulse
 #F[Sites;gtk-convert]
 frame_site =
 
-#r[Custom;Pastebin.ca] Preferred site for texts hosting :
+#l[Custom;Pastebin.ca] Preferred site for texts hosting :
 text site = 1
 
-#r[Custom;Uppix.net;Imagebin.ca;ImageShack.us] Preferred site for images hosting :
+#l[Custom;Uppix.net;Imagebin.ca;ImageShack.us] Preferred site for images hosting :
 image site = 1
 
-#r[Custom;VideoBin.org] Preferred site for videos hosting :
+#l[Custom;VideoBin.org] Preferred site for videos hosting :
 video site = 1
 
-#r[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
+#l[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
 file site = 1
 
 #v

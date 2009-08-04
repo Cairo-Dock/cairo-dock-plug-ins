@@ -33,7 +33,7 @@ use size=false
 
 #b Is detached from the dock ?
 initially detached=true
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -51,7 +51,7 @@ size=50;24
 #k Shortkey to toggle the systray in dock mode :
 shortkey = <Control>F4
 
-#r[horizontal;vertical] Icons packing :
+#l[horizontal;vertical] Icons packing :
 icon packing = 0
 
 #i[16;48] Icons size :

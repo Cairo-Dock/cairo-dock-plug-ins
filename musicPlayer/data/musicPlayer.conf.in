@@ -31,7 +31,7 @@ y position=0
 
 #b Is detached from the dock ?
 initially detached=false
-#r[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
 #b Should be visible on all desktops ?
@@ -85,7 +85,7 @@ fg alpha = 1
 
 #F[Audio Player]
 frame1 =
-#r[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
+#l[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
 current-player=XMMS
 
 #b Steal the player's icon from taskbar ?
@@ -98,10 +98,10 @@ frame_disp=
 #b Display the cover ?
 enable_cover=true
 
-#r[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
+#l[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
 quick-info_type=1
 
-#r+[Simple;Info;Info and Controler;Caroussel;Controler;OpenGL] Desklet display mode :
+#l+[Simple;Info;Info and Controler;Caroussel;Controler;OpenGL] Desklet display mode :
 extended_mode=0
 
 #F[Action on music change;gtk-preferences]
@@ -155,6 +155,6 @@ DOWNLOAD=FALSE
 #{in seconds}
 DELAY=3
 
-#r[Medium;Large] Size of the downloaded covers :
+#l[Medium;Large] Size of the downloaded covers :
 #{The smaller image will be downloaded faster than a big one.}
 D_SIZE=
