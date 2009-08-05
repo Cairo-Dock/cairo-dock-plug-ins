@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="166.48903"
+   id="svg2983"
+   inkscape:version="0.46"
+   sodipodi:docbase="C:\WINDOWS\Desktop"
+   sodipodi:docname="active-button.svg"
+   sodipodi:version="0.32"
+   width="558.21222"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <metadata
+     id="metadata3">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title />
+        <dc:description />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>unsorted</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://www.openclipart.org">
+            <dc:title />
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+        <dc:date />
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="" />
+        <dc:language>en</dc:language>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2985">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective21" />
+    <linearGradient
+       id="linearGradient1221">
+      <stop
+         id="stop1222"
+         offset="0.0000000"
+         style="stop-color:#ffffff;stop-opacity:1.0000000;" />
+      <stop
+         id="stop1223"
+         offset="1.0000000"
+         style="stop-color:#ffffff;stop-opacity:0.058333300;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1220"
+       x1="128.35407"
+       x2="133.15878"
+       xlink:href="#linearGradient1221"
+       y1="520.26321"
+       y2="832.66158"
+       gradientTransform="matrix(2.9255195,0,0,0.3418196,-99.180993,-216.59625)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3180">
+      <stop
+         id="stop3181"
+         offset="0.0000000"
+         style="stop-color:#fff9f9;stop-opacity:0.29166666;" />
+      <stop
+         id="stop3182"
+         offset="1.0000000"
+         style="stop-color:#0068e5;stop-opacity:1.0000000;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1217"
+       x1="-202.17438"
+       x2="-195.54711"
+       xlink:href="#linearGradient3180"
+       y1="-705.17679"
+       y2="-456.08843"
+       gradientTransform="matrix(1.8310781,0,0,0.5461264,99.180993,216.59625)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     id="base"
+     inkscape:cx="362.05578"
+     inkscape:cy="272.04812"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="726"
+     inkscape:window-width="1024"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:zoom="0.45593757"
+     pagecolor="#ffffff"
+     showgrid="false"
+     inkscape:current-layer="svg2983" />
+  <rect
+     height="163.57672"
+     id="rect1216"
+     rx="81.079254"
+     ry="81.788361"
+     style="fill:url(#linearGradient1217);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.32984409pt"
+     transform="scale(-1,-1)"
+     width="555.29993"
+     x="-556.7561"
+     y="-165.03287" />
+  <path
+     d="M 84.746627,7.0044539 C 38.533437,14.375824 15.137677,57.583974 84.746627,63.601974 C 214.52834,63.601974 344.31011,63.601974 474.09181,63.601974 C 567.36799,65.730504 513.71928,13.533134 474.09181,7.0044539 C 344.31011,7.0044539 214.52834,7.0044539 84.746627,7.0044539 z"
+     id="path1219"
+     style="fill:url(#linearGradient1220);fill-opacity:1;fill-rule:evenodd;stroke-width:1pt" />
+</svg>
