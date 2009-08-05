@@ -44,7 +44,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 		//myConfig.labelDescription.fBackgroundColor[3] = 0;
 	}
 	
-	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER ("Configuration", "nb results max");
+	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 50);
+	myConfig.iNbLinesInListing = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 10);
+	
 	myConfig.infoDescription.cFont = "Sans";
 	myConfig.infoDescription.iSize = 14;
 	myConfig.infoDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
@@ -97,4 +99,10 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pArrowSurface);
 	if (myData.iArrowTexture != 0)
 		_cairo_dock_delete_texture (myData.iArrowTexture);
+	if (myData.pScoobySurface != NULL)
+		cairo_surface_destroy (myData.pScoobySurface);
+	if (myData.pActiveButtonSurface != NULL)
+		cairo_surface_destroy (myData.pActiveButtonSurface);
+	if (myData.pInactiveButtonSurface != NULL)
+		cairo_surface_destroy (myData.pInactiveButtonSurface);
 CD_APPLET_RESET_DATA_END

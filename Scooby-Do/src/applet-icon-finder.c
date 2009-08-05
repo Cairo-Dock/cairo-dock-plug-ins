@@ -223,6 +223,7 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 }
 
 
+
 static inline void _cd_do_search_matching_icons_in_dock (CairoDock *pDock)
 {
 	Icon *pIcon;
@@ -332,15 +333,6 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		cd_do_load_pending_caracters ();
 		
 		// on arme l'animation de decalage.
-		/*myData.iCurrentMatchingDirection = (bNext ? -1 : 1);
-		CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-		if (iHeight != 0)
-		{
-			double fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
-			myData.iCurrentMatchingOffset = iWidth * fZoom;
-		}*/
 		myData.iMatchingGlideCount = 10;  // on rembobine l'animation.
 		myData.iPreviousMatchingOffset = myData.iCurrentMatchingOffset;  // on part du point courant.
 		CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);

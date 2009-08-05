@@ -7,7 +7,9 @@ module_DATA = \
 	Scooby-Do.conf\
 	preview.png\
 	icon.png\
-	arrows.svg
+	arrows.svg\
+	active-button.svg\
+	inactive-button.svg
 
 dist_scooby_dodata_SCRIPTS = \
 	calc.sh

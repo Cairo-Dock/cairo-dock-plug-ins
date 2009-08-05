@@ -10,7 +10,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Icon", "default icon");
 	myConfig.cIconClose		= CD_CONFIG_GET_STRING ("Icon", "close icon");
 	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
-	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal");
+	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal"); // Ce problème n'étant vu que sur Gutsy, on pourrait le supprimer
+	myConfig.iAppControlled		= CD_CONFIG_GET_INTEGER ("Configuration", "app controlled");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDrawContent 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
 	myConfig.bPopupContent 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "popup content", TRUE);

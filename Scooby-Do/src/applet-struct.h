@@ -36,14 +36,24 @@ struct _AppletConfig {
 	gint iCloseDuration;
 	gint iNbResultMax;
 	CairoDockLabelDescription infoDescription;
-	} ;
+	gint iNbLinesInListing;
+	};
 
-typedef struct _CDEntry {
+typedef struct _CDEntry CDEntry;
+typedef gboolean (*CDFillEntryFunc) (CDEntry *pEntry);
+typedef void (*CDExecuteEntryFunc) (CDEntry *pEntry);
+typedef CDEntry* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
+
+struct _CDEntry {
 	gchar *cPath;
 	gchar *cName;
+	gchar *cIconName;
 	cairo_surface_t *pIconSurface;
-	gboolean bHasSubEntries;
-	} CDEntry;
+	gboolean bIsFolder;
+	CDFillEntryFunc fill;
+	CDExecuteEntryFunc execute;
+	CDListSubEntryFunc list;
+	} ;
 
 typedef struct _CDListing {
 	CairoContainer container;
@@ -56,6 +66,11 @@ typedef struct _CDListing {
 	gdouble fPreviousOffset;
 	gdouble fCurrentOffset;
 	gdouble fAimedOffset;
+	gint iTitleOffset;
+	gint iTitleWidth;
+	gint sens;
+	guint iSidFillEntries;
+	gint iEntryToFill;
 	} CDListing;
 
 typedef struct _CDChar {
@@ -70,17 +85,18 @@ typedef struct _CDChar {
 	gdouble fRotationAngle;
 	} CDChar;
 
-typedef enum _CDFileType {
-	DO_TYPE_NONE	=0,
-	DO_TYPE_MUSIC	=1<<0,
-	DO_TYPE_IMAGE	=1<<1,
-	DO_TYPE_VIDEO	=1<<2,
-	DO_TYPE_TEXT	=1<<3,
-	DO_TYPE_HTML	=1<<4,
-	DO_TYPE_SOURCE	=1<<5
-	} CDFileType;
+typedef enum _CDFilter {
+	DO_FILTER_NONE	=0,
+	DO_MATCH_CASE	=1<<0,
+	DO_TYPE_MUSIC	=1<<1,
+	DO_TYPE_IMAGE	=1<<2,
+	DO_TYPE_VIDEO	=1<<3,
+	DO_TYPE_TEXT	=1<<4,
+	DO_TYPE_HTML	=1<<5,
+	DO_TYPE_SOURCE	=1<<6
+	} CDFilter;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
+//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculation, etc.
 struct _AppletData {
 	GString *sCurrentText;
 	gint iStopCount;
@@ -122,7 +138,6 @@ struct _AppletData {
 	
 	gint iLocateAvailable;
 	gint iCurrentFilter;
-	gboolean bMatchCase;
 	CairoDialog *pFilterDialog;
 	CairoDockTask *pLocateTask;
 	gboolean bFoundNothing;
@@ -130,14 +145,17 @@ struct _AppletData {
 	gchar **pMatchingFiles;
 	gchar *cCurrentLocateText;  // lecture seule dans le thread
 	gint iLocateFilter;  // lecture seule dans le thread
-	gboolean bLocateMatchCase;  // lecture seule dans le thread
 	// end of shared memory
-	
-	cairo_surface_t *pInfoSurface;
-	GLuint iInfoTexture;
-	gint iInfoWidth, iInfoHeight;
+	CDEntry *pLocateBackup;
+	gint iNbEntriesBackup;
+	CDEntry *pCurrentSubEntry;
+	GList *pListingHistory;
 	
 	CDListing *pListing;
+	gchar *cStatus;
+	cairo_surface_t *pScoobySurface;
+	cairo_surface_t *pActiveButtonSurface, *pInactiveButtonSurface;
+	cairo_surface_t *pInfoSurface;
 	} ;
 
 

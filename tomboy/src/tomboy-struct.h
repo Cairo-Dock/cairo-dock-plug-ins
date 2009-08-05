@@ -10,6 +10,7 @@ struct _AppletConfig {
 	gchar *cIconClose;
 	gchar *cIconBroken;
 	gboolean bNoDeletedSignal;
+	gint iAppControlled;
 	gchar *cRenderer;
 	gboolean bDrawContent;
 	gboolean bPopupContent;

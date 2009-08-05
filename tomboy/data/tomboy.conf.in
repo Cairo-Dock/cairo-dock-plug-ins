@@ -95,9 +95,19 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
+
+#F[Parameters;gtk-preferences]
+frame_param =
+
+#l[Gnote;Tomboy] Choose the note-taking application to control :
+app controlled = 1
+
 #b Emulate the 'NoteDeleted' signal ?
 #{Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal.}
 no deleted signal = true
+
+#F[View;gtk-orientation-portrait]
+frame_view=
 
 #n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
@@ -112,8 +122,8 @@ text color = 1.0; 0.0; 0.
 #b Display note's content with a dialog ?
 popup content = true
 
-#v
-sep=
+#F[Parameters;gtk-dialog-info]
+frame_param =
 
 #s Date format to search for :
 #{Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Let it blnk to use the default one (%d/%m/%y).}

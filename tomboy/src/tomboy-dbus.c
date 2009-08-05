@@ -12,16 +12,28 @@ static DBusGProxy *dbus_proxy_tomboy = NULL;
 extern struct tm *localtime_r (time_t *timer, struct tm *tp);
 
 
+
 gboolean dbus_connect_to_bus (void)
 {
 	cd_message ("");
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_bdus_is_enabled ()) // bdus :-)
 	{
-		dbus_proxy_tomboy = cairo_dock_create_new_dbus_proxy (
-			"org.gnome.Tomboy",
-			"/org/gnome/Tomboy/RemoteControl",
-			"org.gnome.Tomboy.RemoteControl"
-		);
+		if (myConfig.iAppControlled)
+		{
+			dbus_proxy_tomboy = cairo_dock_create_new_dbus_proxy (
+				"org.gnome.Tomboy",
+				"/org/gnome/Tomboy/RemoteControl",
+				"org.gnome.Tomboy.RemoteControl"
+			);
+		}
+		else
+		{
+			dbus_proxy_tomboy = cairo_dock_create_new_dbus_proxy (
+				"org.gnome.Gnote",
+				"/org/gnome/Gnote/RemoteControl",
+				"org.gnome.Gnote.RemoteControl"
+			);
+		}
 		
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy (No marshaller for signature of signal 'NoteDeleted') :-(
 			G_TYPE_STRING,
@@ -66,7 +78,14 @@ void dbus_disconnect_from_bus (void)
 void dbus_detect_tomboy(void)
 {
 	cd_message ("");
-	myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Tomboy");
+	if (myConfig.iAppControlled)
+	{
+		myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Tomboy");
+	}
+	else
+	{
+		myData.opening = cairo_dock_dbus_detect_application ("org.gnome.Gnote");
+	}
 }
 
 
@@ -287,7 +306,12 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 		g_strfreev (cNotes);
 	}
 	else
-		g_print ("tomboy is not running\n");
+	{
+		if (myConfig.iAppControlled)
+			g_print ("Tomboy is not running\n");
+		else
+			g_print ("Gnote is not running\n");
+	}
 	return TRUE;
 }
 

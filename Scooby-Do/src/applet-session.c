@@ -80,11 +80,6 @@ void cd_do_close_session (void)
 		myData.pCurrentIcon = NULL;
 	}
 	
-	// on cache le filtre.
-	cd_do_hide_filter_dialog ();
-	myData.iCurrentFilter = 0;
-	myData.bMatchCase = FALSE;
-	
 	// on cache les resultats
 	cd_do_hide_listing ();
 	
@@ -162,11 +157,6 @@ void cd_do_exit_session (void)
 	{
 		cairo_surface_destroy (myData.pInfoSurface);
 		myData.pInfoSurface = NULL;
-	}
-	if (myData.iInfoTexture != 0)
-	{
-		_cairo_dock_delete_texture (myData.iInfoTexture);
-		myData.iInfoTexture = 0;
 	}
 }
 

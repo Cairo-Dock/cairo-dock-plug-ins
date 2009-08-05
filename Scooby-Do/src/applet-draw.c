@@ -254,20 +254,6 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			
 			cairo_restore (pCairoContext);
 		}
-		
-		// dessin de la zone d'info de resultat.
-		if (myData.pInfoSurface != NULL)
-		{
-			cairo_save (pCairoContext);
-			
-			cairo_translate (pCairoContext,
-				pMainDock->iCurrentWidth - myData.iInfoWidth,
-				0.);
-			cairo_set_source_surface (pCairoContext, myData.pInfoSurface, 0., 0.);
-			cairo_paint (pCairoContext);
-			
-			cairo_restore (pCairoContext);
-		}
 	}
 }
 
@@ -363,7 +349,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			// on les dessine.
 			//int iOffsetX = _cd_do_get_icon_x (myData.pCurrentMatchingElement) + myData.iCurrentMatchingOffset * myData.iCurrentMatchingDirection - iIconsWidth/2;  // ecart au centre du debut de l'icone courante.
 			//iOffsetX = - iOffsetX;
-			g_print ("myData.iCurrentMatchingOffset : %d\n", myData.iCurrentMatchingOffset);
+			//g_print ("myData.iCurrentMatchingOffset : %d\n", myData.iCurrentMatchingOffset);
 			int iOffsetX = myData.iCurrentMatchingOffset + iIconsWidth/2;
 			while (iOffsetX > iIconsWidth)
 				iOffsetX -= iIconsWidth;
@@ -533,21 +519,5 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		cairo_dock_set_ortho_view (pMainDock->iCurrentWidth, pMainDock->iCurrentHeight);
 		glTranslatef (-pMainDock->iCurrentWidth/2, -pMainDock->iCurrentHeight/2, 0.);
 		glDisable (GL_DEPTH_TEST);
-		
-		
-		// dessin de la zone d'info de resultat.
-		if (myData.iInfoTexture != 0)
-		{
-			glPushMatrix();
-			
-			glTranslatef (
-				pMainDock->iCurrentWidth - myData.iInfoWidth/2,
-				pMainDock->iCurrentHeight - myData.iInfoHeight/2,
-				0.);
-			
-			_cairo_dock_apply_texture_at_size (myData.iInfoTexture, myData.iInfoWidth, myData.iInfoHeight);
-			glPopMatrix();
-		}
-		_cairo_dock_disable_texture ();
 	}
 }

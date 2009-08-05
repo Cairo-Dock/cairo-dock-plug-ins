@@ -12,9 +12,12 @@ gboolean cd_do_check_locate_is_available (void);
 void cd_do_find_matching_files (void);
 
 
-void cd_do_show_filter_dialog (void);
+void cd_do_activate_filter_option (int iNumOption);
 
-void cd_do_hide_filter_dialog (void);
+
+void cd_do_show_current_sub_listing (void);
+
+void cd_do_show_previous_listing (void);
 
 
 #endif

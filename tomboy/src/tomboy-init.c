@@ -8,10 +8,10 @@
 #include "tomboy-init.h"
 
 
-CD_APPLET_DEFINITION ("TomBoy",
+CD_APPLET_DEFINITION ("Note-Taking",
 	1, 5, 4,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
-	N_("Control your TomBoy's notes directly in the dock !\n"
+	N_("Control your Gnote or TomBoy's notes directly in the dock !\n"
 	"Click on a note to open it, Escape to close it.\n"
 	"Middle-click to instantly create a new note.\n"
 	"You can search inside notes and display their content on the icons."),

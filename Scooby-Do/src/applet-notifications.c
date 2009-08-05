@@ -242,10 +242,9 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			// on efface les lettres precedentes jusqu'a la derniere position validee.
 			cd_do_delete_invalid_caracters ();
 			
-			// on cherche l'icone courante si aucune.
+			// on relance la recherche.
 			if (myData.bNavigationMode)
 			{
-				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
 				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
 					cd_do_search_current_icon (FALSE);
 			}
@@ -257,13 +256,10 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche un fichier.
 				{
 					cd_do_find_matching_files ();
-					
-					cd_do_show_filter_dialog ();
 				}
-				else  // on a trouve au moins un programme, on cache le filtre des fichiers.
+				else  // on a trouve au moins un programme, on cache le listing des fichiers.
 				{
 					cd_do_hide_listing ();
-					cd_do_hide_filter_dialog ();
 				}
 			}
 			
@@ -273,119 +269,108 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Tab)  // completion.
 	{
-		gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
-		if (! myData.bNavigationMode)
+		if (myData.iNbValidCaracters > 0)
 		{
-			if (myData.pMatchingIcons != NULL)
+			gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
+			if (myData.bNavigationMode)
 			{
-				cd_do_select_previous_next_matching_icon (!bPrevious);
+				// on cherche l'icone suivante.
+				cd_do_search_current_icon (TRUE);  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 			}
-			else
+			else 
 			{
-				/// faire apparaitre le menu avec tous les résultats.
-				
-			}
-		}
-		else if (myData.iNbValidCaracters > 0)  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
-		{
-			// on cherche l'icone suivante.
-			cd_do_search_current_icon (TRUE);
-			
-			if (myData.pCurrentIcon == NULL)
-			{
-				// completion ?
+				if (myData.pMatchingIcons != NULL)
+				{
+					cd_do_select_previous_next_matching_icon (!bPrevious);
+				}
+				else
+				{
+					// faire un truc ?...
+				}
 			}
 		}
 	}
 	else if (iKeyVal == GDK_Return)
 	{
-		// en mode recherche, si on a trouve un programme, on en fait l'icone courante.
-		if (myData.pCurrentMatchingElement != NULL)  // on a selectionne un programme parmi la liste.
+		if (myData.bNavigationMode)
 		{
-			myData.pCurrentIcon = myData.pCurrentMatchingElement->data;
-			myData.pCurrentDock = cairo_dock_search_dock_from_name (myData.pCurrentIcon->cParentDockName);
-		}
-		else if ((myData.pMatchingIcons != NULL && myData.pMatchingIcons->next == NULL))  // 1 seul programme dans la liste.
-		{
-			myData.pCurrentIcon = myData.pMatchingIcons->data;
-			myData.pCurrentDock = cairo_dock_search_dock_from_name (myData.pCurrentIcon->cParentDockName);
-		}
-		if (myData.pCurrentDock == NULL)
-			myData.pCurrentDock = g_pMainDock;
-		
-		
-		if (myData.pCurrentIcon != NULL)  // on a une icone a lancer.
-		{
-			if (myData.pCurrentIcon != NULL)
-				g_print ("on valide '%s' (icone %s) [%d, %d]\n", myData.pCurrentIcon->acCommand, myData.pCurrentIcon->acName, iModifierType, GDK_SHIFT_MASK);
-			
-			myData.bIgnoreIconState = TRUE;
-			if (iModifierType & GDK_MOD1_MASK)  // ALT
+			if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
 			{
-				myData.bIgnoreIconState = TRUE;
-				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
-				myData.bIgnoreIconState = FALSE;
-				cairo_dock_notify (CAIRO_DOCK_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
-			}
-			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
-			{
-				myData.bIgnoreIconState = TRUE;
-				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
-				myData.bIgnoreIconState = FALSE;
+				g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->acName, iModifierType, GDK_SHIFT_MASK);
 				
-				myData.pCurrentDock->bMenuVisible = TRUE;
-				GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
-				gtk_widget_show_all (menu);
-				gtk_menu_popup (GTK_MENU (menu),
-					NULL,
-					NULL,
-					NULL,
-					NULL,
-					1,
-					gtk_get_current_event_time ());
+				myData.bIgnoreIconState = TRUE;
+				if (iModifierType & GDK_MOD1_MASK)  // ALT
+				{
+					myData.bIgnoreIconState = TRUE;
+					cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
+					myData.bIgnoreIconState = FALSE;
+					cairo_dock_notify (CAIRO_DOCK_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+				}
+				else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
+				{
+					myData.bIgnoreIconState = TRUE;
+					cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
+					myData.bIgnoreIconState = FALSE;
+					
+					myData.pCurrentDock->bMenuVisible = TRUE;
+					GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+					gtk_widget_show_all (menu);
+					gtk_menu_popup (GTK_MENU (menu),
+						NULL,
+						NULL,
+						NULL,
+						NULL,
+						1,
+						gtk_get_current_event_time ());
+				}
+				else if (myData.pCurrentIcon != NULL)
+					cairo_dock_notify (CAIRO_DOCK_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				if (myData.pCurrentIcon != NULL)
+					cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
+				myData.bIgnoreIconState = FALSE;
+				myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 			}
-			else if (myData.pCurrentIcon != NULL)
-				cairo_dock_notify (CAIRO_DOCK_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
-			if (myData.pCurrentIcon != NULL)
-				cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
-			myData.bIgnoreIconState = FALSE;
-			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 		}
-		else if (myData.pListing && myData.pListing->pEntries)  // pas d'appli mais un fichier => on l'ouvre.
+		else  // mode recherche.
 		{
-			CDEntry *pEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
-			g_print ("on valide l'entree '%s'\n", pEntry->cPath);
-			cairo_dock_fm_launch_uri (pEntry->cPath);
-		}
-		else if (myData.iNbValidCaracters > 0)  // pas de resultat mais du texte => on l'execute.
-		{
-			gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
-			gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-			g_free (cCommand);
-			if (cResult != NULL && cResult[strlen (cResult)-1] == '\n')
-				cResult[strlen (cResult)-1] = '\0';
-			if (cResult != NULL && cResult[strlen (cResult)-1] == '\r')
-				cResult[strlen (cResult)-1] = '\0';
-			if (cResult != NULL && strcmp (cResult, "0") != 0)
+			if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
 			{
-				g_print ("result : '%s'\n", cResult);
-				GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-				gtk_clipboard_set_text (pClipBoard, cResult, -1);
-				Icon *pIcon = cairo_dock_get_dialogless_icon ();
-				cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
-					pIcon,
-					CAIRO_CONTAINER (g_pMainDock),
-					3000,
-					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-					cResult);
-				double fResult = atof (cResult);
+				Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
+				cairo_dock_launch_command (pIcon->acCommand);
 			}
-			else  // le calcul n'a rien donne, on execute sans chercher.
+			else if (myData.pListing && myData.pListing->pEntries)  // pas d'appli mais une entree => on l'execute.
 			{
-				g_print ("on execute '%s'\n", myData.sCurrentText->str);
-				cairo_dock_launch_command (myData.sCurrentText->str);
+				CDEntry *pEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
+				g_print ("on valide l'entree '%s'\n", pEntry->cPath);
+				if (pEntry->execute)
+					pEntry->execute (pEntry);
 			}
-			g_free (cResult);
+			else if (myData.iNbValidCaracters > 0)  // pas de fichier mais du texte => on l'execute tel quel.
+			{
+				gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
+				gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+				g_free (cCommand);
+				if (cResult != NULL && strcmp (cResult, "0") != 0)
+				{
+					g_print ("result : '%s'\n", cResult);
+					GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+					gtk_clipboard_set_text (pClipBoard, cResult, -1);
+					Icon *pIcon = cairo_dock_get_dialogless_icon ();
+					cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
+						pIcon,
+						CAIRO_CONTAINER (g_pMainDock),
+						3000,
+						MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+						cResult);
+					double fResult = atof (cResult);
+				}
+				else  // le calcul n'a rien donne, on execute sans chercher.
+				{
+					g_print ("on execute '%s'\n", myData.sCurrentText->str);
+					cairo_dock_launch_command (myData.sCurrentText->str);
+				}
+				g_free (cResult);
+			}
 		}
 		cd_do_close_session ();
 	}
@@ -482,17 +467,15 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else if (iKeyVal == GDK_Up)
 			{
-				cd_do_select_prev_next_entry_in_listing (False);  // previous
+				cd_do_select_prev_next_entry_in_listing (FALSE);  // previous
 			}
 			else if (iKeyVal == GDK_Right)
 			{
-				/// si l'entree a une sous-entree ...
-				
+				cd_do_show_current_sub_listing ();
 			}
 			else if (iKeyVal == GDK_Left)
 			{
-				/// si on est dans un sous-listing...
-				
+				cd_do_show_previous_listing ();
 			}
 		}
 	}
@@ -512,6 +495,15 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				cd_do_select_prev_next_page_in_listing (iKeyVal == GDK_Page_Down);  // TRUE <=> next page
 			else
 				cd_do_select_last_first_entry_in_listing (iKeyVal == GDK_End);  // TRUE <=> last entry.
+		}
+	}
+	else if (iKeyVal >= GDK_F1 && iKeyVal <= GDK_F9)
+	{
+		if (! myData.bNavigationMode && myData.pListing != NULL && GTK_WIDGET_VISIBLE (myData.pListing->container.pWidget))
+		{
+			g_print ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
+			cd_do_activate_filter_option (iKeyVal - GDK_F1);
+			cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 		}
 	}
 	else if (string)  /// utiliser l'unichar ...
@@ -549,16 +541,16 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else  // on cherche la liste des icones qui correspondent.
 		{
-			cd_do_search_matching_icons ();
+			if (! (myData.bFoundNothing || (myData.pListing && myData.pListing->pEntries)))  // on n'est pas deja dans une recherche de fichiers
+			{
+				cd_do_search_matching_icons ();
+			}
 			
 			// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
 			if (myData.pMatchingIcons == NULL && ! myData.bFoundNothing)
 			{
 				// on cherche un fichier correspondant.
 				cd_do_find_matching_files ();
-				
-				// On affiche un filtre sur les fichiers.
-				cd_do_show_filter_dialog ();
 			}
 		}
 		

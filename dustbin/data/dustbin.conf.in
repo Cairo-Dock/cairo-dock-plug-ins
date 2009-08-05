@@ -114,8 +114,7 @@ confirm = true
 #X[Desktop-less support]
 frame3 =
 
-#D99 Here you can specify a list of additionnal Trash directories to monitor :
-#{They don't even need to be real trash directories.}/
+#D If the Trash folder is not known by the dock, you can specify it here :
 additionnal directories = 
 
 #f[0.5;10.0] Interval of time to check if dustbin is full/empty :

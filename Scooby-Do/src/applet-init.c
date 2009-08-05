@@ -13,19 +13,20 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-session.h"
+#include "applet-listing.h"
 #include "applet-init.h"
 
 
 CD_APPLET_DEFINITION ("Scooby-Do",
-	2, 0, 0,
+	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 	"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 	"- the navigation mode : use the arrows to navigate into the docks and sub-docks,\n"
-	"  or type a command to find a corresponding launcher and press Tab to automatically jump to the next suitable launcher\n"
-	"  press Enter to click the icon or validate the command, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
-	"- the finder mode : type a command to find the corresponding launcher, or to launch any command or file\n"
-	"  use the arrows or Tab to navigate between the found launchers if any\n"
+	"  or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
+	"  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
+	"- the finder mode : type a command to launch any command, file or calculation.\n"
+	"  use the arrows to navigate between the results.\n"
 	"Escape, Return or the same shortkey to finish."),
 	"Fabounet (Fabrice Rey)")
 
@@ -62,6 +63,9 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);  // shortkey were unbinded during reset_config.
 		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
+		
+		cd_do_destroy_listing (myData.pListing);
+		myData.pListing = NULL;
 		
 		if (myData.sCurrentText != NULL)
 		{

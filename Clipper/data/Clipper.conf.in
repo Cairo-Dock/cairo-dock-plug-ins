@@ -133,5 +133,5 @@ action duration = 4
 #F[Persistent items;gtk-dnd-multiple]
 frame_per =
 
-#s99 A list of persistent items that can be accessed with middle-click :/
+#U A list of persistent items that can be accessed with middle-click :/
 persistent = 
