@@ -9,6 +9,7 @@
 
 void cd_do_free_entry (CDEntry *pEntry);
 void cd_do_backup_entry (CDEntry *pInEntry, CDEntry *pFromEntry);
+void cd_do_free_listing_backup (CDListingBackup *pBackup);
 
 CDListing *cd_do_create_listing (void);
 void cd_do_destroy_listing (CDListing *pListing);

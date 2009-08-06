@@ -23,9 +23,9 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 
 #define NB_STEPS_FOR_1_ENTRY 6
 #define NB_STEPS_LATE 4
-#define _listing_compute_nb_steps(pListing) (NB_STEPS_FOR_1_ENTRY + NB_STEPS_LATE * (pListing->iNbEntries - 1))
+#define _listing_compute_nb_steps(pListing) (NB_STEPS_FOR_1_ENTRY + NB_STEPS_LATE * (MIN (myConfig.iNbLinesInListing, pListing->iNbEntries) - 1))
 #define _listing_compute_width(pListing) (.4 * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL])
-#define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (iNbLines + 4) + 2*GAP)
+#define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (iNbLines + 5) + 2*GAP)
 #define NB_STEPS_FOR_CURRENT_ENTRY 16
 #define NB_STEPS_FOR_SCROLL 8
 #define GAP 3
@@ -52,6 +52,22 @@ void cd_do_backup_entry (CDEntry *pInEntry, CDEntry *pFromEntry)
 	pInEntry->cIconName = NULL;  // on en n'a pas besoin pour le backup.
 	pInEntry->pIconSurface = NULL;  // idem.
 	pInEntry->bIsFolder = pFromEntry->bIsFolder;
+}
+
+void cd_do_free_listing_backup (CDListingBackup *pBackup)
+{
+	if (pBackup == NULL)
+		return ;
+	
+	gint i;
+	CDEntry *pEntry;
+	for (i = 0; i < pBackup->iNbEntries; i ++)
+	{
+		pEntry = &pBackup->pEntries[i];
+		cd_do_free_entry (pEntry);
+	}
+	g_free (pBackup->pEntries);
+	g_free (pBackup);
 }
 
 static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, CDListing *pListing)
@@ -306,7 +322,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 {
 	//g_print ("%s ()\n", __func__);
 	int iWidth = pListing->container.iWidth, iHeight = pListing->container.iHeight;
-	int iLeftMargin = myDialogs.dialogTextDescription.iSize + 2, iRightMargin = myDialogs.dialogTextDescription.iSize + 2;
+	int iLeftMargin = myDialogs.dialogTextDescription.iSize + 2, iRightMargin = (myDialogs.dialogTextDescription.iSize + 2) / 2;
 	int iTopMargin = (myDialogs.dialogTextDescription.iSize + 2) + GAP, iBottomMargin = (myDialogs.dialogTextDescription.iSize + 2) * 3 + GAP;
 	CDEntry *pEntry;
 	
@@ -318,21 +334,21 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	cairo_save (pCairoContext);
 	cairo_translate (pCairoContext, 0, fLineWidth);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iTopMargin - GAP);
-	cairo_set_source_rgba (pCairoContext, .9, .9, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
 	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
 	cairo_fill (pCairoContext);
 
 	cairo_translate (pCairoContext, 0, iTopMargin + fLineWidth);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iHeight - iTopMargin - iBottomMargin);
-	cairo_set_source_rgba (pCairoContext, .9, .9, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
 	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
 	cairo_fill (pCairoContext);
 	
 	cairo_translate (pCairoContext, 0, iHeight - iTopMargin - 2*fLineWidth - iBottomMargin + GAP);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iBottomMargin - GAP - fLineWidth);
-	cairo_set_source_rgba (pCairoContext, .9, .9, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
 	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
 	cairo_fill (pCairoContext);
@@ -355,6 +371,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 		int iNbSteps = _listing_compute_nb_steps (pListing);  // nb d'etapes pour l'apparition du texte.
 		int iOffsetX = NB_STEPS_FOR_1_ENTRY - (iNbSteps - pListing->iAppearanceAnimationCount);
 		double dx, dy, dm = myConfig.iNbLinesInListing * (myDialogs.dialogTextDescription.iSize + 2) / 2;
+		dm = 0;
 		int i;
 		double ymax = MIN (iTopMargin + pListing->iNbEntries * (myDialogs.dialogTextDescription.iSize + 2), iHeight - iBottomMargin);
 		for (i = 0; i < pListing->iNbEntries; i ++)
@@ -364,8 +381,9 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			pEntry = &pListing->pEntries[i];
 			
 			dx = myDialogs.dialogTextDescription.iSize + 2;  // marge a gauche.
-			if (iOffsetX > 0)
+			if (iOffsetX > 0 && pListing->iAppearanceAnimationCount > 0)
 				dx += (double) iOffsetX * (iWidth - (myDialogs.dialogTextDescription.iSize + 2)) / NB_STEPS_FOR_1_ENTRY;
+			dx = 0.;
 			dy = iTopMargin - pListing->fCurrentOffset + i * (myDialogs.dialogTextDescription.iSize + 2) + 1 + dm;
 			while (dy + myDialogs.dialogTextDescription.iSize + 2 <= iTopMargin + 1)
 				dy += pListing->iNbEntries * (myDialogs.dialogTextDescription.iSize + 2);
@@ -377,7 +395,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			cairo_translate (pCairoContext, dx, dy);
 			
 			// on fait un clip si necessaire.
-			if (dy + myDialogs.dialogTextDescription.iSize + 2 > iHeight - iBottomMargin || dy < iTopMargin)  // cette entre n'est que partiellement visible.
+			if (dy + myDialogs.dialogTextDescription.iSize + 2 > iHeight - iBottomMargin || dy < iTopMargin)  // cette entree n'est que partiellement visible.
 			{
 				if (dy < iTopMargin)
 					cairo_rectangle (pCairoContext, 0, iTopMargin - dy, iWidth, myDialogs.dialogTextDescription.iSize + 2 -(iTopMargin - dy));
@@ -389,7 +407,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			// on dessine l'icone.
 			if (pEntry->pIconSurface != NULL)
 			{
-				cairo_set_source_surface (pCairoContext, pEntry->pIconSurface, - myDialogs.dialogTextDescription.iSize - 1, 0.);
+				cairo_set_source_surface (pCairoContext, pEntry->pIconSurface, - iLeftMargin + 1, 0.);
 				cairo_paint (pCairoContext);
 			}
 			
@@ -422,10 +440,21 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 					cairo_pattern_destroy (pPattern);
 					cairo_restore (pCairoContext);
 				}
+				
+				// on dessine l'indicateur de sous-listing.
+				if (pEntry->list != NULL)
+				{
+					cairo_set_source_rgba (pCairoContext, 0., 0., 0., e);
+					cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+					cairo_close_path (pCairoContext);
+					cairo_stroke (pCairoContext);
+				}
 			}
 			
 			// on dessine le texte.
-			cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
+			cairo_set_source_rgba (pCairoContext, 0., 0., 0., 1. - (double) iOffsetX / NB_STEPS_FOR_1_ENTRY);
 			pango_layout_set_text (pLayout, pEntry->cName, -1);
 			pango_cairo_show_layout (pCairoContext, pLayout);
 			
@@ -439,17 +468,6 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				cairo_set_dash (pCairoContext, &dashes, 1, 0.);
 				cairo_stroke (pCairoContext);
 				cairo_set_dash (pCairoContext, &dashes, 0, 0.);
-			}
-			
-			// on dessine l'indicateur de sous-listing.
-			if (i == pListing->iCurrentEntry && pEntry->list != NULL)
-			{
-				cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
-				cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-				cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-				cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-				cairo_close_path (pCairoContext);
-				cairo_stroke (pCairoContext);
 			}
 			
 			cairo_restore (pCairoContext);
@@ -470,26 +488,16 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 		cairo_restore (pCairoContext);
 	}
 	
-	// on dessine l'etat de la recherche .
+	// on dessine l'etat de la recherche.
 	cairo_translate (pCairoContext, 0, iHeight - iBottomMargin);
 	cairo_set_source_surface (pCairoContext, myData.pScoobySurface, 0., 0.);
 	cairo_paint (pCairoContext);
 	
 	cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
 	cairo_translate (pCairoContext, 2 * (myDialogs.dialogTextDescription.iSize + 2), GAP);
-	if (cairo_dock_task_is_running (myData.pLocateTask))
+	if (myData.cStatus != NULL)
 	{
-		pango_layout_set_text (pLayout, D_("searching ..."), -1);
-	}
-	else if (pListing->iNbEntries != 0)
-	{
-		gchar *cInfo = g_strdup_printf (" %d %s", myData.pListing->iNbEntries, (myData.pListing->iNbEntries == 1 ? D_("result") : D_("results")));
-		pango_layout_set_text (pLayout, cInfo, -1);
-		g_free (cInfo);
-	}
-	else
-	{
-		pango_layout_set_text (pLayout, D_("no result"), -1);
+		pango_layout_set_text (pLayout, myData.cStatus, -1);
 	}
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
@@ -601,12 +609,12 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
 			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 			myData.pActiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/active-button.svg",
 				pSourceContext,
-				myDialogs.dialogTextDescription.iSize + 2,
-				myData.pListing->container.iWidth/3);
+				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 2) / 3,
+				myDialogs.dialogTextDescription.iSize + 2);
 			myData.pInactiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/inactive-button.svg",
 				pSourceContext,
-				myDialogs.dialogTextDescription.iSize + 2,
-				myData.pListing->container.iWidth/3);
+				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 2) / 3,
+				myDialogs.dialogTextDescription.iSize + 2);
 			cairo_destroy (pSourceContext);
 		}
 	}
@@ -642,12 +650,14 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
 	myData.pListing->pEntries = pEntries;
 	
 	myData.pListing->iNbEntries = iNbEntries;
-	if (iNbEntries >= myConfig.iNbResultMax)
+	if (iNbEntries == 0)
+		cd_do_set_status (D_("No result"));
+	else if (iNbEntries >= myConfig.iNbResultMax)
 		cd_do_set_status_printf ("> %d results", myConfig.iNbResultMax);
 	else
 		cd_do_set_status_printf ("> %d %s", iNbEntries, iNbEntries > 1 ? D_("results") : D_("result"));
 	
-	myData.pListing->iCurrentEntry = 0;
+	myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, iNbEntries) / 2;
 	myData.pListing->iEntryToFill = 0;
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;  // pas de surlignage pendant l'apparition.
 	
@@ -659,13 +669,14 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
 	myData.pListing->iTitleWidth = 0;
 	
 	myData.pListing->iAppearanceAnimationCount = _listing_compute_nb_steps (myData.pListing);
-	cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pListing));
+	if (iNbEntries != 0)
+		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pListing));
 	
 	myData.pListing->iEntryToFill = 0;
-	if (myData.pListing->iSidFillEntries == 0)
+	if (myData.pListing->iSidFillEntries == 0 && iNbEntries != 0)
 	{
 		myData.pListing->iSidFillEntries = g_idle_add ((GSourceFunc)_fill_entry_icon_idle, myData.pListing);
-	}	
+	}
 }
 
 void cd_do_hide_listing (void)
@@ -696,9 +707,14 @@ void cd_do_hide_listing (void)
 	myData.pListing->iScrollAnimationCount = 0;
 	myData.pListing->fAimedOffset = 0;
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+	myData.pListing->iTitleWidth = 0;
+	myData.pListing->iTitleOffset = 0;
+	myData.pListing->sens = 1;
 	
 	g_free (myData.cStatus);
 	myData.cStatus = NULL;
+	myData.bFoundNothing = FALSE;
+	
 	gtk_widget_hide (myData.pListing->container.pWidget);
 }
 

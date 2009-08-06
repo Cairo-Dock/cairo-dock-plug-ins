@@ -73,6 +73,12 @@ typedef struct _CDListing {
 	gint iEntryToFill;
 	} CDListing;
 
+typedef struct _CDListingBackup {
+	CDEntry *pEntries;
+	gint iNbEntries;
+	gint iCurrentEntry;
+	} CDListingBackup;
+
 typedef struct _CDChar {
 	gchar c;
 	cairo_surface_t *pSurface;
@@ -146,16 +152,12 @@ struct _AppletData {
 	gchar *cCurrentLocateText;  // lecture seule dans le thread
 	gint iLocateFilter;  // lecture seule dans le thread
 	// end of shared memory
-	CDEntry *pLocateBackup;
-	gint iNbEntriesBackup;
-	CDEntry *pCurrentSubEntry;
-	GList *pListingHistory;
 	
 	CDListing *pListing;
 	gchar *cStatus;
 	cairo_surface_t *pScoobySurface;
 	cairo_surface_t *pActiveButtonSurface, *pInactiveButtonSurface;
-	cairo_surface_t *pInfoSurface;
+	GList *pListingHistory;
 	} ;
 
 

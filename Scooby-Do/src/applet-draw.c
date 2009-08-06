@@ -21,9 +21,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 const int s_iNbPromptAnimationSteps = 40;
 
-static inline int _cd_do_get_matching_icons_width (void)
+static inline int _cd_do_get_matching_icons_width (int *iNbIcons)
 {
-	int iIconsWidth = 0;
+	int i = 0, iIconsWidth = 0;
 	CairoDock *pParentDock;
 	Icon *pIcon;
 	int iWidth, iHeight;
@@ -41,7 +41,9 @@ static inline int _cd_do_get_matching_icons_width (void)
 			fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
 			iIconsWidth += iWidth * fZoom;
 		}
+		i ++;
 	}
+	*iNbIcons = i;
 	return iIconsWidth;
 }
 
@@ -126,11 +128,11 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	else  // si du texte a ete entre, on le dessine, ainsi que eventuellement la liste des icones correspondantes.
 	{
 		// dessin des icones correspondantes.
-		int iIconsWidth = 0;
+		int iIconsWidth = 0, iNbIcons = 0;
 		if (myData.pMatchingIcons != NULL)
 		{
 			// on determine au prealable la largeur des icones pour pouvoir les centrer.
-			iIconsWidth = _cd_do_get_matching_icons_width ();
+			iIconsWidth = _cd_do_get_matching_icons_width (&iNbIcons);
 			
 			// dessin du fond des icones.
 			double fFrameWidth = iIconsWidth * fScale;
@@ -191,7 +193,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					}
 				}
 				cairo_translate (pCairoContext,
-					x,
+					x + (iNbIcons & 1 ? iWidth * fZoom/2 * fScale * fIconScale / 2 : 0.),
 					(myConfig.bTextOnTop ?
 						pMainDock->iCurrentHeight/2 :
 						0.));
@@ -199,7 +201,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					fZoom * fScale,
 					fZoom * fScale);
 				cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
-				cairo_paint (pCairoContext);
+				cairo_paint_with_alpha (pCairoContext, (myData.pCurrentMatchingElement == ic ? 1. : .7));
 				
 				if (myData.pCurrentMatchingElement == ic)
 				{
@@ -327,11 +329,11 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	else  // si du texte a ete entre, on le dessine, ainsi que eventuellement la liste des icones correspondantes.
 	{
 		// dessin des icones correspondantes.
-		int iIconsWidth = 0;
+		int iIconsWidth = 0, iNbIcons = 0;
 		if (myData.pMatchingIcons != NULL)
 		{
 			// on determine au prealable la largeur des icones pour povouir les centrer.
-			iIconsWidth = _cd_do_get_matching_icons_width ();
+			iIconsWidth = _cd_do_get_matching_icons_width (&iNbIcons);
 			
 			// dessin du fond des icones.
 			double fFrameWidth = iIconsWidth * fScale;
@@ -392,7 +394,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 						bRound = TRUE;
 					}
 				}
-				glTranslatef (x + 0*iWidth * fZoom/2 * fScale * fIconScale,
+				glTranslatef (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fScale * fIconScale),
 					(myConfig.bTextOnTop ?
 						pMainDock->iCurrentHeight/4 :
 						pMainDock->iCurrentHeight - iHeight * fZoom/2 * fScale),

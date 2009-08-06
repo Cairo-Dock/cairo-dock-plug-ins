@@ -9,8 +9,11 @@ shortkey = <Control>F9
 #k Shortkey to activate/deactivate the finder mode :
 shortkey search = <Control>Return
 
-#i[1;20] Maximum number of results to display for files :
-nb results max = 10
+#i[1;50] Maximum number of results :
+nb results = 10
+
+#i[1;20] Number of lines to display :
+nb lines = 10
 
 #F[Animations]
 anim=

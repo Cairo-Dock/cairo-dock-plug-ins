@@ -65,7 +65,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			cd_do_exit_session ();
 		else
 			*bContinueAnimation = TRUE;
-		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
+		cairo_dock_redraw_container (pContainer);
 	}
 	else if (cd_do_session_is_waiting_for_input ())
 	{
@@ -113,7 +113,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			myData.iCurrentMatchingOffset = myData.iPreviousMatchingOffset * f + myData.iMatchingAimPoint * (1 - f);
 		}
 		
-		cairo_dock_redraw_container (pContainer);  // definir une aire plus precisement (pour cairo) ...
+		cairo_dock_redraw_container (pContainer);
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -212,24 +212,27 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Menu)  // emulation du clic droit.
 	{
-		if (myData.pCurrentIcon != NULL)
+		if (myData.bNavigationMode)
 		{
-			myData.bIgnoreIconState = TRUE;
-			cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
-			myData.bIgnoreIconState = FALSE;
+			if (myData.pCurrentIcon != NULL)
+			{
+				myData.bIgnoreIconState = TRUE;
+				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
+				myData.bIgnoreIconState = FALSE;
+			}
+			if (myData.pCurrentDock == NULL)
+				myData.pCurrentDock = g_pMainDock;
+			myData.pCurrentDock->bMenuVisible = TRUE;
+			GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+			gtk_widget_show_all (menu);
+			gtk_menu_popup (GTK_MENU (menu),
+				NULL,
+				NULL,
+				(GtkMenuPositionFunc) _place_menu,  // pour positionner le menu sur le dock plutot que sur la souris.
+				NULL,
+				1,
+				gtk_get_current_event_time ());
 		}
-		if (myData.pCurrentDock == NULL)
-			myData.pCurrentDock = g_pMainDock;
-		myData.pCurrentDock->bMenuVisible = TRUE;
-		GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
-		gtk_widget_show_all (menu);
-		gtk_menu_popup (GTK_MENU (menu),
-			NULL,
-			NULL,
-			(GtkMenuPositionFunc) _place_menu,  // pour positionner le menu sur le dock plutot que sur la souris.
-			NULL,
-			1,
-			gtk_get_current_event_time ());
 	}
 	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
 	{

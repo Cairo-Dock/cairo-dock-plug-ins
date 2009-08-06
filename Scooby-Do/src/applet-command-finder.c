@@ -265,7 +265,7 @@ static CDEntry *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries)
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
 	if (pEntry->cPath == NULL)  // on est deja en bout de chaine.
 		return NULL;
-	if (g_file_test (pEntry->cPath, G_FILE_TEST_IS_DIR))  // on liste les fichiers du repertoire + 2 actions.
+	if (g_file_test (pEntry->cPath, G_FILE_TEST_IS_DIR))  // on liste les fichiers du repertoire et les actions sur le repertoire.
 	{
 		return _list_folder (pEntry->cPath, iNbEntries);
 	}
@@ -309,9 +309,11 @@ static void _cd_do_zip_folder (CDEntry *pEntry)
 static void _cd_do_mail_file (CDEntry *pEntry)
 {
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	gchar *cCommand = g_strdup_printf ("thunderbird pouet pouet");  /// est-ce possible avec thunderbird ? prendre aussi en compte les autres clients mail, et utiliser celui par defaut...
+	gchar *cURI = g_filename_to_uri (pEntry->cPath, NULL, NULL);
+	gchar *cCommand = g_strdup_printf ("thunderbird -compose \"attachment=%s\"", cURI);  /// prendre aussi en compte les autres clients mail, et utiliser celui par defaut...
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
+	g_free (cURI);
 }
 
 static void _cd_do_move_file (CDEntry *pEntry)
@@ -383,7 +385,7 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 		}
 		if (myData.iLocateFilter & DO_TYPE_VIDEO)
 		{
-			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.og[gv]\" \"*%s*.wmv\"", text, text, text, text);
+			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.ogv\" \"*%s*.wmv\" \"*%s*.mov\"", text, text, text, text, text);
 		}
 		if (myData.iLocateFilter & DO_TYPE_TEXT)
 		{
@@ -425,33 +427,73 @@ static gboolean _cd_do_update_from_files (gpointer data)
 	if (myData.iLocateFilter != myData.iCurrentFilter ||
 		cairo_dock_strings_differ (myData.cCurrentLocateText, myData.sCurrentText->str))  // la situation a change entre le lancement de la tache et la mise a jour, on va relancer la recherche immediatement.
 	{
-		if (myData.pMatchingFiles == NULL &&
-			myData.sCurrentText->len > 0 &&
-			strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
-			myData.iLocateFilter == myData.iCurrentFilter)  // la recherche est identique, seul le texte comporte plus de caracteres; comme on n'a rien trouve, inutile de chercher a nouveau, on quitte.
+		if ((myData.iLocateFilter & myData.iCurrentFilter) == myData.iLocateFilter &&
+			myData.cCurrentLocateText &&
+			strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0)  // c'est une sous-recherche.
 		{
-			g_print ("useless\n");
-			myData.bFoundNothing = TRUE;
-			return FALSE;
-		}
-		
-		if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
-		{
-			g_strfreev (myData.pMatchingFiles);
-			myData.pMatchingFiles = NULL;
-			/// effacer aussi le contenu actuel du listing ?...
-			if (myData.pListing && myData.pListing->pEntries)
+			if (myData.pMatchingFiles == NULL)  // on n'a rien trouve, on vide le listing et on ne la relance pas.
 			{
-				
+				myData.bFoundNothing = TRUE;
+				cd_do_show_listing (NULL, 0);
+				return FALSE;
+			}
+			else  // la recherche a ete fructueuse, on regarde si on peut la filtrer ou s'il faut la relancer.
+			{
+				int i, iNbEntries = 0;
+				if (myData.pMatchingFiles)
+					for (iNbEntries = 0; myData.pMatchingFiles[iNbEntries] != NULL; iNbEntries ++);
+				if (iNbEntries < myConfig.iNbResultMax)  // on a des resultats mais pas trop, on les charge et on lance le filtre.
+				{
+					myData.bFoundNothing = FALSE;
+					
+					CDEntry *pEntries = g_new0 (CDEntry, iNbEntries);
+					CDEntry *pEntry;
+					for (i = 0; i < iNbEntries; i ++)
+					{
+						pEntry = &pEntries[i];
+						pEntry->cPath = myData.pMatchingFiles[i];
+						pEntry->cName = g_path_get_basename (pEntry->cPath);
+						pEntry->fill = _cd_do_fill_file_entry;
+						pEntry->execute = _cd_do_launch_file;
+						pEntry->list = _cd_do_list_file_sub_entries;
+					}
+					
+					// on montre les resultats.
+					cd_do_show_listing (pEntries, iNbEntries);
+					g_free (myData.pMatchingFiles);  // ses elements sont dans la liste des entrees.
+					myData.pMatchingFiles = NULL;
+					
+					cd_do_find_matching_files ();
+					return FALSE;
+				}
+				else  // on a trop de resultats, on bache tout et on relance.
+				{
+					if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
+					{
+						g_strfreev (myData.pMatchingFiles);
+						myData.pMatchingFiles = NULL;
+					}
+				}
+			}
+		}
+		else  // c'est une nouvelle recherche, on bache tout et on relance.
+		{
+			if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
+			{
+				g_strfreev (myData.pMatchingFiles);
+				myData.pMatchingFiles = NULL;
+			}
+			
+			if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
+			{
+				cd_do_hide_listing ();
+				return FALSE;
 			}
 		}
 		
-		if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
-		{
-			cd_do_hide_listing ();
-			return FALSE;
-		}
-		
+		// on relance.
+		myData.bFoundNothing = FALSE;
+		cd_do_set_status (D_("Searching ..."));
 		myData.iLocateFilter = myData.iCurrentFilter;
 		g_free (myData.cCurrentLocateText);
 		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
@@ -461,7 +503,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 	
 	// on parse les resultats.
 	myData.bFoundNothing = (myData.pMatchingFiles == NULL);
-	int i, iNbEntries;
+	int i, iNbEntries = 0;
 	if (myData.pMatchingFiles)
 		for (iNbEntries = 0; myData.pMatchingFiles[iNbEntries] != NULL; iNbEntries ++);
 	CDEntry *pEntries = g_new0 (CDEntry, iNbEntries);
@@ -496,83 +538,112 @@ void cd_do_find_matching_files (void)
 			NULL);
 	}
 	
-	if (! cairo_dock_task_is_running (myData.pLocateTask))  // sinon, on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte/filtre.
+	if (cairo_dock_task_is_running (myData.pLocateTask))  // on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte/filtre.
+		return ;
+	
+	/// vider le listing en attendant la fin de la recherche ?...
+	
+	//g_print ("filtre : %d -> %d (%d)\n", myData.iLocateFilter, myData.iCurrentFilter, myData.iLocateFilter & myData.iCurrentFilter);
+	if ((myData.iLocateFilter & myData.iCurrentFilter) == myData.iLocateFilter &&
+		myData.cCurrentLocateText &&
+		strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
+		(! myData.pListing || myData.pListing->iNbEntries < myConfig.iNbResultMax))  // c'est une sous-recherche de la precedente.
 	{
-		/// vider le listing en attendant la fin de la recherche ?...
-		
-		g_print ("filtre : %d -> %d (%d)\n", myData.iLocateFilter, myData.iCurrentFilter, myData.iLocateFilter & myData.iCurrentFilter);
-		if (/*(myData.iLocateFilter & myData.iCurrentFilter) == myData.iLocateFilter*/myData.iCurrentFilter == myData.iLocateFilter &&  /// a remplacer une fois ecrit le filtre.
-			myData.cCurrentLocateText &&
-			strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
-			(! myData.pListing || myData.pListing->iNbEntries < myConfig.iNbResultMax))  // c'est une sous-recherche de la precedente.
+		g_print ("filtrage de la recherche\n");
+		if (myData.pListing != NULL && myData.pListing->pEntries != NULL)
 		{
-			g_print ("filtrage de la recherche\n");
-			if (myData.pListing != NULL && myData.pListing->pEntries != NULL)
+			CDEntry *pEntry;
+			int i,j=0;
+			gchar *ext;
+			for (i = 0; i < myData.pListing->iNbEntries; i ++)
 			{
-				CDEntry *pEntry;
-				int i,j=0;
-				for (i = 0; i < myData.pListing->iNbEntries; i ++)
+				pEntry = &myData.pListing->pEntries[i];
+				ext = strrchr( pEntry->cName, '.');
+				if (g_strstr_len (pEntry->cName, -1, myData.sCurrentText->str) != NULL &&
+					(!(myData.iCurrentFilter & DO_TYPE_MUSIC)
+					|| g_ascii_strcasecmp (ext, "mp3") == 0
+					|| g_ascii_strcasecmp (ext, "ogg") == 0
+					|| g_ascii_strcasecmp (ext, "wav") == 0) &&
+					(!(myData.iCurrentFilter & DO_TYPE_IMAGE)
+					|| g_ascii_strcasecmp (ext, "jpg") == 0
+					|| g_ascii_strcasecmp (ext, "jpeg") == 0
+					|| g_ascii_strcasecmp (ext, "png") == 0) &&
+					(!(myData.iCurrentFilter & DO_TYPE_VIDEO)
+					|| g_ascii_strcasecmp (ext, "avi") == 0
+					|| g_ascii_strcasecmp (ext, "mkv") == 0
+					|| g_ascii_strcasecmp (ext, "ogv") == 0
+					|| g_ascii_strcasecmp (ext, "wmv") == 0
+					|| g_ascii_strcasecmp (ext, "mov") == 0) &&
+					(!(myData.iCurrentFilter & DO_TYPE_TEXT)
+					|| g_ascii_strcasecmp (ext, "txt") == 0
+					|| g_ascii_strcasecmp (ext, "odt") == 0
+					|| g_ascii_strcasecmp (ext, "doc") == 0) &&
+					(!(myData.iCurrentFilter & DO_TYPE_HTML)
+					|| g_ascii_strcasecmp (ext, "html") == 0
+					|| g_ascii_strcasecmp (ext, "htm") == 0) &&
+					(!(myData.iCurrentFilter & DO_TYPE_SOURCE)
+					|| g_ascii_strcasecmp (ext, "c") == 0
+					|| g_ascii_strcasecmp (ext, "h") == 0
+					|| g_ascii_strcasecmp (ext, "cpp") == 0))
 				{
-					pEntry = &myData.pListing->pEntries[i];
-					if (g_strstr_len (pEntry->cName, -1, myData.sCurrentText->str) != NULL)
+					if (i != j)
 					{
-						if (i != j)
-						{
-							cd_do_free_entry (&myData.pListing->pEntries[j]);
-							memcpy (&myData.pListing->pEntries[j], pEntry, sizeof (CDEntry));
-							memset (pEntry, 0, sizeof (CDEntry));
-						}
-						j ++;
+						cd_do_free_entry (&myData.pListing->pEntries[j]);
+						memcpy (&myData.pListing->pEntries[j], pEntry, sizeof (CDEntry));
+						memset (pEntry, 0, sizeof (CDEntry));
 					}
-					
+					j ++;
 				}
-				for (i = j; i < myData.pListing->iNbEntries; i ++)
-				{
-					pEntry = &myData.pListing->pEntries[i];
-					cd_do_free_entry (pEntry);
-					memset (pEntry, 0, sizeof (CDEntry));
-				}
-				
-				myData.pListing->iNbEntries = j;
 			}
+			g_print (" => %d entree(s) convienne(nt)\n", j);
+			for (i = j; i < myData.pListing->iNbEntries; i ++)  // on vire ceux qui ne conviennent pas.
+			{
+				pEntry = &myData.pListing->pEntries[i];
+				cd_do_free_entry (pEntry);
+				memset (pEntry, 0, sizeof (CDEntry));
+			}
+			myData.pListing->iNbEntries = j;
+			myData.pListing->iEntryToFill = 0;
+		}
+		
+		if (myData.pListing->iNbEntries > 0)
+		{
+			myData.bFoundNothing = FALSE;
+			if (myData.pListing->iNbEntries >= myConfig.iNbResultMax)
+				cd_do_set_status_printf ("> %d results", myConfig.iNbResultMax);
 			else
-			{
-				myData.pListing->iNbEntries = 0;
-			}
-			if (myData.pListing->iNbEntries > 0)
-			{
-				myData.bFoundNothing = FALSE;
-			}
-			else
-			{
-				myData.bFoundNothing = TRUE;
-				g_free (myData.pListing->pEntries);
-				myData.pListing->pEntries = NULL;
-			}
-			
-			myData.pListing->iCurrentEntry = 0;
-			myData.pListing->iScrollAnimationCount = 0;
-			myData.pListing->fAimedOffset = 0;
-			myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
-			myData.pListing->sens = 1;
-			myData.pListing->iTitleOffset = 0;
-			myData.pListing->iTitleWidth = 0;
-			
-			g_free (myData.cCurrentLocateText);
-			myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
-			cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
+				cd_do_set_status_printf ("> %d %s", myData.pListing->iNbEntries, myData.pListing->iNbEntries > 1 ? D_("results") : D_("result"));
 		}
 		else
 		{
-			g_print ("on relance la recherche\n");
-			myData.iLocateFilter = myData.iCurrentFilter;
-			g_free (myData.cCurrentLocateText);
-			myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
-			
-			myData.bFoundNothing = FALSE;
-			cd_do_set_status (D_("Searching ..."));
-			cairo_dock_launch_task (myData.pLocateTask);
+			myData.bFoundNothing = TRUE;
+			cd_do_set_status (D_("No result"));
+			g_free (myData.pListing->pEntries);
+			myData.pListing->pEntries = NULL;
 		}
+		
+		myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, myData.pListing->iNbEntries) / 2;
+		myData.pListing->iScrollAnimationCount = 0;
+		myData.pListing->fAimedOffset = 0;
+		myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+		myData.pListing->sens = 1;
+		myData.pListing->iTitleOffset = 0;
+		myData.pListing->iTitleWidth = 0;
+		
+		g_free (myData.cCurrentLocateText);
+		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
+	}
+	else  // soit c'est une recherche differente, soit la recherche precedente avait fourni trop de resultats => on (re)lance la recherche.
+	{
+		g_print ("on (re)lance la recherche\n");
+		myData.iLocateFilter = myData.iCurrentFilter;
+		g_free (myData.cCurrentLocateText);
+		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
+		
+		myData.bFoundNothing = FALSE;
+		cd_do_set_status (D_("Searching ..."));
+		cairo_dock_launch_task (myData.pLocateTask);
 	}
 }
 
@@ -603,14 +674,8 @@ void cd_do_activate_filter_option (int iNumOption)
 
 void cd_do_show_current_sub_listing (void)
 {
-	// on conserve l'entree courante.
-	/*if (myData.pCurrentSubEntry == NULL)
-		myData.pCurrentSubEntry = g_new0 (CDEntry, 1);
-	else
-		cd_do_free_entry (myData.pCurrentSubEntry);
-	
-	CDEntry *pCurrentEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
-	cd_do_backup_entry (myData.pCurrentSubEntry, pCurrentEntry);*/
+	if (cairo_dock_task_is_running (myData.pLocateTask))
+		return ;
 	
 	// on construit la liste des sous-entrees.
 	CDEntry *pCurrentEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
@@ -621,32 +686,20 @@ void cd_do_show_current_sub_listing (void)
 	if (pNewEntries == NULL)
 		return ;
 	
-	// on enleve les entrees courantes du listing.
-	CDEntry *pEntry;
-	if (myData.pLocateBackup == NULL)  // on est dans les resultats du locate => on les sauvegarde.
-	{
-		myData.pLocateBackup = myData.pListing->pEntries;
-		myData.iNbEntriesBackup = myData.pListing->iNbEntries;
-	}
-	else  // on est deja dans un sous-listing => on benne tout.
-	{
-		guint i;
-		for (i = 0; i < myData.pListing->iNbEntries; i ++)
-		{
-			pEntry = &myData.pListing->pEntries[i];
-			cd_do_free_entry (pEntry);
-		}
-		g_free (myData.pListing->pEntries);
-	}
+	// on enleve le listing courant et on le conserve dans l'historique.
+	CDListingBackup *pBackup = g_new0 (CDListingBackup, 1);
+	pBackup->pEntries = myData.pListing->pEntries;
+	pBackup->iNbEntries = myData.pListing->iNbEntries;
+	pBackup->iCurrentEntry = myData.pListing->iCurrentEntry;
+	
+	myData.pListingHistory = g_list_prepend (myData.pListingHistory, pBackup);
 	myData.pListing->pEntries = NULL;
 	myData.pListing->iNbEntries = 0;
 	myData.pListing->iCurrentEntry = 0;
-	
 	myData.pListing->iAppearanceAnimationCount = 0;
 	myData.pListing->iCurrentEntryAnimationCount = 0;
 	myData.pListing->iScrollAnimationCount = 0;
-	myData.pListing->fAimedOffset = 0;
-	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+	myData.pListing->fAimedOffset = myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
 	
 	// on montre les nouveaux resultats.
 	cd_do_show_listing (pNewEntries, iNbNewEntries);
@@ -654,8 +707,33 @@ void cd_do_show_current_sub_listing (void)
 
 void cd_do_show_previous_listing (void)
 {
-	if (myData.pLocateBackup == NULL)  // si on n'est pas dans un sous-listing.
+	if (myData.pListingHistory == NULL)  // si on n'est pas dans un sous-listing.
+		return ;
+	if (cairo_dock_task_is_running (myData.pLocateTask))
 		return ;
 	
+	// on recupere le precedent sous-listing.
+	CDListingBackup *pBackup = myData.pListingHistory->data;
+	myData.pListingHistory = g_list_delete_link (myData.pListingHistory, myData.pListingHistory);
 	
+	// on enleve le sous-listing courant.
+	gint i;
+	CDEntry *pEntry;
+	for (i = 0; i < myData.pListing->iNbEntries; i ++)
+	{
+		pEntry = &myData.pListing->pEntries[i];
+		cd_do_free_entry (pEntry);
+	}
+	g_free (myData.pListing->pEntries);
+	myData.pListing->pEntries = NULL;
+	myData.pListing->iNbEntries = 0;
+	myData.pListing->iCurrentEntry = 0;
+	myData.pListing->iAppearanceAnimationCount = 0;
+	myData.pListing->iCurrentEntryAnimationCount = 0;
+	myData.pListing->iScrollAnimationCount = 0;
+	myData.pListing->fAimedOffset = myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+	
+	// on charge le nouveau sous-listing.
+	cd_do_show_listing (pBackup->pEntries, pBackup->iNbEntries);  // les entrees du backup appartiennent desormais au listing.
+	g_free (pBackup);
 }
