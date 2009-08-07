@@ -82,3 +82,11 @@ fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
 
+#[gtk-preferences]
+[Configuration]
+
+#F[Behaviour;gtk-execute]
+frame_behav =
+
+#b Swap left-clic and middle-clic ?
+swap clic = false

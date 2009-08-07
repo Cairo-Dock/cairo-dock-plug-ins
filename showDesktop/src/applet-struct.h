@@ -6,7 +6,7 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	int no_parameter_yet;
+	gboolean bswapclic;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

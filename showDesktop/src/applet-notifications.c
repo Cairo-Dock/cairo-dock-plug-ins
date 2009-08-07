@@ -22,6 +22,18 @@ CD_APPLET_ON_CLICK_BEGIN
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	
+	if (myConfig.bswapclic)
+	{
+		if (bDesktopIsVisible)  // on remet comme avant.
+		{
+			cairo_dock_set_desklets_visibility_to_default ();
+		}
+		else  // on montre le bureau, et les desklets.
+		{
+			cairo_dock_set_all_desklets_visible (FALSE);  // ne passe pas les desklets de la couche des widgets devant.
+		}
+	}
 CD_APPLET_ON_CLICK_END
 
 
@@ -36,12 +48,16 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-	if (bDesktopIsVisible)  // on remet comme avant.
+	
+	if (! myConfig.bswapclic)
 	{
-		cairo_dock_set_desklets_visibility_to_default ();
-	}
-	else  // on montre le bureau, et les desklets.
-	{
-		cairo_dock_set_all_desklets_visible (FALSE);  // ne passe pas les desklets de la couche des widgets devant.
+		if (bDesktopIsVisible)  // on remet comme avant.
+		{
+			cairo_dock_set_desklets_visibility_to_default ();
+		}
+		else  // on montre le bureau, et les desklets.
+		{
+			cairo_dock_set_all_desklets_visible (FALSE);  // ne passe pas les desklets de la couche des widgets devant.
+		}
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
