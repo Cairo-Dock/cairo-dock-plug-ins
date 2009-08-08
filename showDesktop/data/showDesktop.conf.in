@@ -88,5 +88,5 @@ fg alpha = 1
 #F[Behaviour;gtk-execute]
 frame_behav =
 
-#b Swap left-clic and middle-clic ?
+#b Swap left-click and middle-click ?
 swap clic = false

@@ -82,12 +82,10 @@ void cd_do_close_session (void)
 	
 	// on cache les resultats
 	cd_do_hide_listing ();
-	if (myData.pListingHistory != NULL)
-	{
-		g_list_foreach (myData.pListingHistory, (GFunc) cd_do_free_listing_backup, NULL);
-		g_list_free (myData.pListingHistory);
-		myData.pListingHistory = NULL;
-	}
+	
+	g_free (myData.cSearchText);
+	myData.cSearchText = NULL;
+	myData.iCurrentFilter = 0;
 	
 	if (myData.pCurrentDock != NULL)
 	{
@@ -153,11 +151,17 @@ void cd_do_exit_session (void)
 		myData.iPreviousMatchingOffset = 0;
 		myData.iCurrentMatchingOffset = 0;
 	}
-	/*if (myData.pMatchingFiles != NULL)
+	if (! cairo_dock_task_is_running (myData.pLocateTask))
 	{
-		g_strfreev (myData.pMatchingFiles);
-		myData.pMatchingFiles = NULL;
-	}*/
+		if (myData.pMatchingFiles != NULL)
+		{
+			g_strfreev (myData.pMatchingFiles);
+			myData.pMatchingFiles = NULL;
+		}
+		g_free (myData.cCurrentLocateText);
+		myData.cCurrentLocateText = NULL;
+		myData.iLocateFilter = 0;
+	}
 }
 
 

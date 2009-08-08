@@ -333,6 +333,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				myData.bIgnoreIconState = FALSE;
 				myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 			}
+			cd_do_close_session ();
 		}
 		else  // mode recherche.
 		{
@@ -350,7 +351,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else if (myData.iNbValidCaracters > 0)  // pas de fichier mais du texte => on l'execute tel quel.
 			{
-				gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
+				/*gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
 				gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 				g_free (cCommand);
 				if (cResult != NULL && strcmp (cResult, "0") != 0)
@@ -367,15 +368,17 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						cResult);
 					double fResult = atof (cResult);
 				}
-				else  // le calcul n'a rien donne, on execute sans chercher.
+				else  // le calcul n'a rien donne, on execute sans chercher.*/
 				{
 					g_print ("on execute '%s'\n", myData.sCurrentText->str);
 					cairo_dock_launch_command (myData.sCurrentText->str);
 				}
-				g_free (cResult);
+				//g_free (cResult);
 			}
+			
+			if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))
+				cd_do_close_session ();
 		}
-		cd_do_close_session ();
 	}
 	else if (iKeyVal == GDK_Left || iKeyVal == GDK_Right || iKeyVal == GDK_Up || iKeyVal == GDK_Down)
 	{
@@ -512,6 +515,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	else if (string)  /// utiliser l'unichar ...
 	{
 		g_print ("string:'%s'\n", string);
+		int iNbNewChar = 0;
 		if ((iModifierType & GDK_CONTROL_MASK) && iUnicodeChar == 'v')  // CTRL+v
 		{
 			g_print ("CTRL+v\n");
@@ -520,6 +524,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (cText != NULL)
 			{
 				g_print ("clipboard : '%s'\n", cText);
+				iNbNewChar = strlen (cText);  /// penser a l'UTF-8 ...
 				gchar *str = strchr (cText, '\r');
 				if (str)
 					*str = '\0';
@@ -529,14 +534,15 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				g_string_append (myData.sCurrentText, cText);
 				cd_do_load_pending_caracters ();
 				cd_do_launch_appearance_animation ();
-				myData.iNbValidCaracters = myData.sCurrentText->len;  // cela valide le texte colle.
+				myData.iNbValidCaracters = myData.sCurrentText->len;  // cela valide le texte colle ainsi que celles precedemment ajoutee par completion.
 			}
-			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
-		
-		// on rajoute la lettre au mot
-		g_string_append_c (myData.sCurrentText, *string);
-		myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
+		else  // on rajoute la lettre au mot
+		{
+			iNbNewChar = 1;
+			g_string_append_c (myData.sCurrentText, *string);
+			myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
+		}
 		
 		if (myData.bNavigationMode)  // on cherche un lanceur correspondant.
 		{
@@ -544,23 +550,27 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else  // on cherche la liste des icones qui correspondent.
 		{
-			if (! (myData.bFoundNothing || (myData.pListing && myData.pListing->pEntries)))  // on n'est pas deja dans une recherche de fichiers
+			if (myData.pListingHistory == NULL)
 			{
-				cd_do_search_matching_icons ();
-			}
-			
-			// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
-			if (myData.pMatchingIcons == NULL && ! myData.bFoundNothing)
-			{
-				// on cherche un fichier correspondant.
-				cd_do_find_matching_files ();
+				//if (! (myData.bFoundNothing || (myData.pListing && myData.pListing->pEntries)))  // on n'est pas deja dans une recherche de fichiers
+				if (myData.iNbValidCaracters == iNbNewChar || myData.pMatchingIcons != NULL)  // 1er ajout de lettre ou precedente recherche d'icones fructueuse => on remet ca.
+				{
+					cd_do_search_matching_icons ();
+				}
+				
+				// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
+				if (myData.pMatchingIcons == NULL && ! myData.bFoundNothing)
+				{
+					// on cherche un fichier correspondant.
+					cd_do_find_matching_files ();
+				}
 			}
 		}
 		
 		// on rajoute une surface/texture pour la/les nouvelle(s) lettre(s).
-		myData.iNbValidCaracters --;  // le nouveau caractere n'est pas encore charge.
+		myData.iNbValidCaracters -= iNbNewChar;  // le nouveau caractere n'est pas encore charge.
 		cd_do_load_pending_caracters ();
-		myData.iNbValidCaracters ++;
+		myData.iNbValidCaracters += iNbNewChar;
 		
 		// on repositionne les caracteres et on anime tout ca.
 		cd_do_launch_appearance_animation ();

@@ -47,9 +47,10 @@ typedef CDEntry* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
 struct _CDEntry {
 	gchar *cPath;
 	gchar *cName;
+	gchar *cCaseDownName;
 	gchar *cIconName;
 	cairo_surface_t *pIconSurface;
-	gboolean bIsFolder;
+	gboolean bHidden;
 	CDFillEntryFunc fill;
 	CDExecuteEntryFunc execute;
 	CDListSubEntryFunc list;
@@ -71,6 +72,7 @@ typedef struct _CDListing {
 	gint sens;
 	guint iSidFillEntries;
 	gint iEntryToFill;
+	gint iNbVisibleEntries;
 	} CDListing;
 
 typedef struct _CDListingBackup {
@@ -158,6 +160,7 @@ struct _AppletData {
 	cairo_surface_t *pScoobySurface;
 	cairo_surface_t *pActiveButtonSurface, *pInactiveButtonSurface;
 	GList *pListingHistory;
+	gchar *cSearchText;
 	} ;
 
 

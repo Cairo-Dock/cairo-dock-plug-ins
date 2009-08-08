@@ -22,6 +22,8 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries);
 
 void cd_do_hide_listing (void);
 
+void cd_do_fill_listing_entries (CDListing *pListing);
+
 
 void cd_do_select_prev_next_entry_in_listing (gboolean bNext);
 void cd_do_select_prev_next_page_in_listing (gboolean bNext);

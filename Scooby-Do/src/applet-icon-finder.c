@@ -28,6 +28,8 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 	else if (pIcon->acCommand)
 	{
 		bFound = (g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
+		if (pIcon->acName)
+			bFound |= (g_ascii_strncasecmp (cCommandPrefix, pIcon->acName, length) == 0);
 	}
 	return bFound;
 }

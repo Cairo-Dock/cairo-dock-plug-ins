@@ -20,4 +20,7 @@ void cd_do_show_current_sub_listing (void);
 void cd_do_show_previous_listing (void);
 
 
+void cd_do_filter_current_listing (void);
+
+
 #endif

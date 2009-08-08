@@ -19,7 +19,7 @@ Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, 
 #include "applet-listing.h"
 #include "applet-command-finder.h"
 
-static gboolean _cd_do_fill_file_action_entry (CDEntry *pEntry);
+static gboolean _cd_do_fill_default_entry (CDEntry *pEntry);
 static gboolean _cd_do_fill_file_entry (CDEntry *pEntry);
 static CDEntry *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries);
 static void _cd_do_launch_file (CDEntry *pEntry);
@@ -29,6 +29,12 @@ static void _cd_do_zip_folder (CDEntry *pEntry);
 static void _cd_do_mail_file (CDEntry *pEntry);
 static void _cd_do_move_file (CDEntry *pEntry);
 static void _cd_do_copy_url (CDEntry *pEntry);
+
+static gboolean _cd_do_fill_web_entry (CDEntry *pEntry);
+static CDEntry *_cd_do_list_web_sub_entries (CDEntry *pEntry, int *iNbEntries);
+static void _cd_do_web_search (CDEntry *pEntry);
+
+static void _cd_do_execute_command (CDEntry *pEntry);
 
 
 gboolean cd_do_check_locate_is_available (void)
@@ -115,8 +121,12 @@ gboolean cd_do_check_locate_is_available (void)
 }
 
 
+  //////////////////
+ // FILE BACKEND //
+//////////////////
+
 #define NB_ACTIONS_ON_FOLDER 3
-static CDEntry *_list_folder (const gchar *cPath, int *iNbEntries)
+static CDEntry *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cPath);
 	// on ouvre le repertoire.
@@ -144,21 +154,21 @@ static CDEntry *_list_folder (const gchar *cPath, int *iNbEntries)
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Zip folder"));
 	pEntry->cIconName = g_strdup ("zip");
-	pEntry->fill = _cd_do_fill_file_action_entry;
+	pEntry->fill = _cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_zip_folder;
 	
 	pEntry = &pNewEntries[i++];
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Move to"));
 	pEntry->cIconName = g_strdup (GTK_STOCK_JUMP_TO);
-	pEntry->fill = _cd_do_fill_file_action_entry;
+	pEntry->fill = _cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_move_file;
 	
 	pEntry = &pNewEntries[i++];
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Copy URL"));
 	pEntry->cIconName = g_strdup (GTK_STOCK_COPY);
-	pEntry->fill = _cd_do_fill_file_action_entry;
+	pEntry->fill = _cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_copy_url;
 	
 	const gchar *cFileName;
@@ -167,6 +177,8 @@ static CDEntry *_list_folder (const gchar *cPath, int *iNbEntries)
 		cFileName = g_dir_read_name (dir);
 		if (cFileName == NULL)
 			break ;
+		if (bNoHiddenFile && *cFileName == '.')
+			continue;
 		pEntry = &pNewEntries[i++];
 		
 		pEntry->cName = g_strdup (cFileName);
@@ -191,38 +203,38 @@ static CDEntry *_list_actions_on_file (const gchar *cPath, int *iNbActions)
 	pNewEntries[i].cPath = g_strdup (cPath);
 	pNewEntries[i].cName = g_strdup (D_("Open location"));
 	pNewEntries[i].cIconName = g_strdup (GTK_STOCK_DIRECTORY);
-	pNewEntries[i].fill = _cd_do_fill_file_action_entry;
+	pNewEntries[i].fill = _cd_do_fill_default_entry;
 	pNewEntries[i++].execute = _cd_do_show_file_location;
 	
 	pNewEntries[i].cPath = g_strdup (cPath);
 	pNewEntries[i].cName = g_strdup (D_("Zip file"));
 	pNewEntries[i].cIconName = g_strdup ("zip");
-	pNewEntries[i].fill = _cd_do_fill_file_action_entry;
+	pNewEntries[i].fill = _cd_do_fill_default_entry;
 	pNewEntries[i++].execute = _cd_do_zip_file;
 	
 	pNewEntries[i].cPath = g_strdup (cPath);
 	pNewEntries[i].cName = g_strdup (D_("Mail file"));
 	pNewEntries[i].cIconName = g_strdup ("thunderbird");  /// utiliser le client mail par defaut...
-	pNewEntries[i].fill = _cd_do_fill_file_action_entry;
+	pNewEntries[i].fill = _cd_do_fill_default_entry;
 	pNewEntries[i++].execute = _cd_do_mail_file;
 	
 	pNewEntries[i].cPath = g_strdup (cPath);
 	pNewEntries[i].cName = g_strdup (D_("Move to"));
 	pNewEntries[i].cIconName = g_strdup (GTK_STOCK_JUMP_TO);
-	pNewEntries[i].fill = _cd_do_fill_file_action_entry;
+	pNewEntries[i].fill = _cd_do_fill_default_entry;
 	pNewEntries[i++].execute = _cd_do_move_file;
 	
 	pNewEntries[i].cPath = g_strdup (cPath);
 	pNewEntries[i].cName = g_strdup (D_("Copy URL"));
 	pNewEntries[i].cIconName = g_strdup (GTK_STOCK_COPY);
-	pNewEntries[i].fill = _cd_do_fill_file_action_entry;
+	pNewEntries[i].fill = _cd_do_fill_default_entry;
 	pNewEntries[i++].execute = _cd_do_copy_url;
 	
 	*iNbActions = NB_ACTIONS_ON_FILE;
 	return pNewEntries;
 }
 
-static gboolean _cd_do_fill_file_action_entry (CDEntry *pEntry)
+static gboolean _cd_do_fill_default_entry (CDEntry *pEntry)
 {
 	if (pEntry->cIconName && pEntry->pIconSurface == NULL)
 	{
@@ -243,7 +255,7 @@ static gboolean _cd_do_fill_file_entry (CDEntry *pEntry)
 	gboolean bIsDirectory;
 	int iVolumeID;
 	double fOrder;
-	cairo_dock_fm_get_file_info (pEntry->cPath, &cName, &cURI, &cIconName, &pEntry->bIsFolder, &iVolumeID, &fOrder, 0);
+	cairo_dock_fm_get_file_info (pEntry->cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 	g_free (cName);
 	g_free (cURI);
 	if (cIconName != NULL && pEntry->pIconSurface == NULL)
@@ -267,7 +279,7 @@ static CDEntry *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries)
 		return NULL;
 	if (g_file_test (pEntry->cPath, G_FILE_TEST_IS_DIR))  // on liste les fichiers du repertoire et les actions sur le repertoire.
 	{
-		return _list_folder (pEntry->cPath, iNbEntries);
+		return _list_folder (pEntry->cPath, TRUE, iNbEntries);  // TRUE <=> no hidden files.
 	}
 	else  // on liste les actions sur le fichier.
 	{
@@ -357,6 +369,99 @@ static void _cd_do_copy_url (CDEntry *pEntry)
 }
 
 
+  /////////////////
+ // WEB BACKEND //
+/////////////////
+
+static gboolean _cd_do_fill_web_entry (CDEntry *pEntry)
+{
+	if (pEntry->cIconName && pEntry->pIconSurface == NULL)
+	{
+		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+		gchar *cImagePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/", pEntry->cIconName, NULL);
+		pEntry->pIconSurface = cairo_dock_create_surface_from_icon (cImagePath,
+			pSourceContext,
+			myDialogs.dialogTextDescription.iSize + 2,
+			myDialogs.dialogTextDescription.iSize + 2);
+		cairo_destroy (pSourceContext);
+		g_free (cImagePath);
+		return TRUE;
+	}
+	return FALSE;
+}
+#define NB_WEB_ENGINES 3
+static CDEntry *_cd_do_list_web_sub_entries (CDEntry *pEntry, int *iNbEntries)
+{
+	CDEntry *pNewEntries = g_new0 (CDEntry, NB_ACTIONS_ON_FILE);
+	int i = 0;
+	
+	pNewEntries[i].cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
+	pNewEntries[i].cName = g_strdup (D_("Google"));
+	pNewEntries[i].cIconName = g_strdup ("google.png");
+	pNewEntries[i].fill = _cd_do_fill_web_entry;
+	pNewEntries[i++].execute = _cd_do_web_search;
+	
+	pNewEntries[i].cPath = g_strdup ("http://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%s");
+	pNewEntries[i].cName = g_strdup (D_("Wikipedia"));
+	pNewEntries[i].cIconName = g_strdup ("wikipedia.png");
+	pNewEntries[i].fill = _cd_do_fill_web_entry;
+	pNewEntries[i++].execute = _cd_do_web_search;
+	
+	pNewEntries[i].cPath = g_strdup ("http://search.yahoo.com/search?p=%s&ie=utf-8");
+	pNewEntries[i].cName = g_strdup (D_("Yahoo"));
+	pNewEntries[i].cIconName = g_strdup ("yahoo.png");
+	pNewEntries[i].fill = _cd_do_fill_web_entry;
+	pNewEntries[i++].execute = _cd_do_web_search;
+	
+	*iNbEntries = NB_WEB_ENGINES;
+	return pNewEntries;
+}
+static void _cd_do_web_search (CDEntry *pEntry)
+{
+	gchar *cEscapedText = g_uri_escape_string (myData.cSearchText,
+		"",
+		TRUE);
+	g_print ("cEscapedText : %s\n", cEscapedText);
+	gchar *cURI = g_strdup_printf (pEntry->cPath, cEscapedText);
+	cairo_dock_fm_launch_uri (cURI);
+	g_free (cURI);
+	g_free (cEscapedText);
+}
+
+  /////////////////////
+ // COMMAND BACKEND //
+/////////////////////
+
+static void _cd_do_execute_command (CDEntry *pEntry)
+{
+	gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
+	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+	g_free (cCommand);
+	if (cResult != NULL && strcmp (cResult, "0") != 0)
+	{
+		g_print (" resultat du calcul : '%s'\n", cResult);
+		GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+		gtk_clipboard_set_text (pClipBoard, cResult, -1);
+		Icon *pIcon = cairo_dock_get_dialogless_icon ();
+		cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
+			pIcon,
+			CAIRO_CONTAINER (g_pMainDock),
+			3000,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			cResult);
+	}
+	else  // le calcul n'a rien donne, on execute sans chercher.
+	{
+		g_print (" pas un calcul => on execute '%s'\n", myData.sCurrentText->str);
+		cairo_dock_launch_command (myData.sCurrentText->str);
+	}
+	g_free (cResult);
+}
+
+
+  ////////////////////////
+ // FILE SEARCH ENGINE //
+////////////////////////
 
 static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 {
@@ -414,16 +519,26 @@ static gchar **_cd_do_locate_files (const char *text, gboolean bWithLimit)
 	return files;
 }
 
+
+  //////////////////////
+ // LISTING & FILTER //
+//////////////////////
+
 static void _cd_do_search_files (gpointer data)
 {
 	myData.pMatchingFiles = _cd_do_locate_files (myData.cCurrentLocateText, TRUE);  // TRUE <=> avec limite.
 }
 static gboolean _cd_do_update_from_files (gpointer data)
 {
-	if (! cd_do_session_is_waiting_for_input ())  // on a quitte la session en cours de route.
+	g_print ("%s ()\n", __func__);
+	if (! cd_do_session_is_waiting_for_input () || myData.pListingHistory != NULL)  // on a quitte la session ou on a choisi une entree en cours de route.
 	{
+		g_print (" on a quitte la session ou on a choisi une entree en cours de route\n");
+		g_strfreev (myData.pMatchingFiles);
+		myData.pMatchingFiles = NULL;
 		return FALSE;
 	}
+	
 	if (myData.iLocateFilter != myData.iCurrentFilter ||
 		cairo_dock_strings_differ (myData.cCurrentLocateText, myData.sCurrentText->str))  // la situation a change entre le lancement de la tache et la mise a jour, on va relancer la recherche immediatement.
 	{
@@ -431,6 +546,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 			myData.cCurrentLocateText &&
 			strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0)  // c'est une sous-recherche.
 		{
+			g_print (" c'est une sous-recherche\n");
 			if (myData.pMatchingFiles == NULL)  // on n'a rien trouve, on vide le listing et on ne la relance pas.
 			{
 				myData.bFoundNothing = TRUE;
@@ -439,18 +555,35 @@ static gboolean _cd_do_update_from_files (gpointer data)
 			}
 			else  // la recherche a ete fructueuse, on regarde si on peut la filtrer ou s'il faut la relancer.
 			{
-				int i, iNbEntries = 0;
+				int iNbEntries = 0;
 				if (myData.pMatchingFiles)
 					for (iNbEntries = 0; myData.pMatchingFiles[iNbEntries] != NULL; iNbEntries ++);
 				if (iNbEntries < myConfig.iNbResultMax)  // on a des resultats mais pas trop, on les charge et on lance le filtre.
 				{
 					myData.bFoundNothing = FALSE;
 					
-					CDEntry *pEntries = g_new0 (CDEntry, iNbEntries);
+					CDEntry *pEntries = g_new0 (CDEntry, iNbEntries + 2);
 					CDEntry *pEntry;
+					int i = 0;
+					
+					pEntry = &pEntries[i++];
+					pEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
+					pEntry->cName = g_strdup (D_("Search on the web"));
+					pEntry->cIconName = g_strdup ("google.png");
+					pEntry->execute = _cd_do_web_search;
+					pEntry->fill = _cd_do_fill_web_entry;
+					pEntry->list = _cd_do_list_web_sub_entries;
+					
+					pEntry = &pEntries[i++];
+					pEntry->cName = g_strdup (D_("Execute"));
+					pEntry->cIconName = g_strdup (GTK_STOCK_EXECUTE);
+					pEntry->execute = _cd_do_execute_command;
+					pEntry->fill = _cd_do_fill_default_entry;
+					pEntry->list = NULL;
+					
 					for (i = 0; i < iNbEntries; i ++)
 					{
-						pEntry = &pEntries[i];
+						pEntry = &pEntries[i+2];
 						pEntry->cPath = myData.pMatchingFiles[i];
 						pEntry->cName = g_path_get_basename (pEntry->cPath);
 						pEntry->fill = _cd_do_fill_file_entry;
@@ -459,11 +592,13 @@ static gboolean _cd_do_update_from_files (gpointer data)
 					}
 					
 					// on montre les resultats.
-					cd_do_show_listing (pEntries, iNbEntries);
+					cd_do_show_listing (pEntries, iNbEntries + 2);
 					g_free (myData.pMatchingFiles);  // ses elements sont dans la liste des entrees.
 					myData.pMatchingFiles = NULL;
+					myData.cSearchText = g_strdup (myData.cCurrentLocateText);
 					
-					cd_do_find_matching_files ();
+					cd_do_filter_current_listing ();
+					//cd_do_find_matching_files ();
 					return FALSE;
 				}
 				else  // on a trop de resultats, on bache tout et on relance.
@@ -478,6 +613,7 @@ static gboolean _cd_do_update_from_files (gpointer data)
 		}
 		else  // c'est une nouvelle recherche, on bache tout et on relance.
 		{
+			g_print (" c'est une nouvelle recherche, on bache tout et on relance\n");
 			if (myData.pMatchingFiles != NULL)  // on bache tout, sans regret.
 			{
 				g_strfreev (myData.pMatchingFiles);
@@ -487,11 +623,15 @@ static gboolean _cd_do_update_from_files (gpointer data)
 			if (myData.pMatchingIcons != NULL || myData.sCurrentText->len == 0)  // avec le texte courant on a des applis, on quitte.
 			{
 				cd_do_hide_listing ();
+				g_free (myData.cCurrentLocateText);
+				myData.cCurrentLocateText = NULL;
+				myData.iLocateFilter = 0;
 				return FALSE;
 			}
 		}
 		
 		// on relance.
+		g_print (" on relance\n");
 		myData.bFoundNothing = FALSE;
 		cd_do_set_status (D_("Searching ..."));
 		myData.iLocateFilter = myData.iCurrentFilter;
@@ -502,15 +642,35 @@ static gboolean _cd_do_update_from_files (gpointer data)
 	}
 	
 	// on parse les resultats.
+	g_print (" on parse les resultats\n");
 	myData.bFoundNothing = (myData.pMatchingFiles == NULL);
 	int i, iNbEntries = 0;
 	if (myData.pMatchingFiles)
 		for (iNbEntries = 0; myData.pMatchingFiles[iNbEntries] != NULL; iNbEntries ++);
-	CDEntry *pEntries = g_new0 (CDEntry, iNbEntries);
+				
+	
+	CDEntry *pEntries = g_new0 (CDEntry, iNbEntries + 2);
 	CDEntry *pEntry;
+	
+	i = 0;
+	pEntry = &pEntries[i++];
+	pEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
+	pEntry->cName = g_strdup (D_("Search on the web"));
+	pEntry->cIconName = g_strdup ("google.png");
+	pEntry->execute = _cd_do_web_search;
+	pEntry->fill = _cd_do_fill_web_entry;
+	pEntry->list = _cd_do_list_web_sub_entries;
+	
+	pEntry = &pEntries[i++];
+	pEntry->cName = g_strdup (D_("Execute"));
+	pEntry->cIconName = g_strdup (GTK_STOCK_EXECUTE);
+	pEntry->execute = _cd_do_execute_command;
+	pEntry->fill = _cd_do_fill_default_entry;
+	pEntry->list = NULL;
+	
 	for (i = 0; i < iNbEntries; i ++)
 	{
-		pEntry = &pEntries[i];
+		pEntry = &pEntries[i+2];
 		pEntry->cPath = myData.pMatchingFiles[i];
 		pEntry->cName = g_path_get_basename (pEntry->cPath);
 		pEntry->fill = _cd_do_fill_file_entry;
@@ -519,7 +679,8 @@ static gboolean _cd_do_update_from_files (gpointer data)
 	}
 	
 	// on montre les resultats.
-	cd_do_show_listing (pEntries, iNbEntries);
+	myData.cSearchText = g_strdup (myData.cCurrentLocateText);
+	cd_do_show_listing (pEntries, iNbEntries + 2);
 	g_free (myData.pMatchingFiles);  // ses elements sont dans la liste des entrees.
 	myData.pMatchingFiles = NULL;  // on n'a plus besoin de la liste.
 	
@@ -527,10 +688,11 @@ static gboolean _cd_do_update_from_files (gpointer data)
 }
 void cd_do_find_matching_files (void)
 {
-	if (myData.sCurrentText->len == 0)
+	g_print ("%s ()\n", __func__);
+	if (myData.sCurrentText->len == 0)  // pas de texte, donc rien a chercher.
 		return ;
 	
-	if (myData.pLocateTask == NULL)
+	if (myData.pLocateTask == NULL)  // la tache est creee la 1ere fois.
 	{
 		myData.pLocateTask = cairo_dock_new_task (0,
 			(CairoDockGetDataAsyncFunc) _cd_do_search_files,
@@ -539,90 +701,36 @@ void cd_do_find_matching_files (void)
 	}
 	
 	if (cairo_dock_task_is_running (myData.pLocateTask))  // on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte/filtre.
+	{
+		g_print (" on laisse la tache courante se finir\n");
 		return ;
-	
-	/// vider le listing en attendant la fin de la recherche ?...
+	}
 	
 	//g_print ("filtre : %d -> %d (%d)\n", myData.iLocateFilter, myData.iCurrentFilter, myData.iLocateFilter & myData.iCurrentFilter);
-	if ((myData.iLocateFilter & myData.iCurrentFilter) == myData.iLocateFilter &&
+	if (myData.pListingHistory != NULL ||
+		((myData.iLocateFilter & myData.iCurrentFilter) == myData.iLocateFilter &&
 		myData.cCurrentLocateText &&
 		strncmp (myData.cCurrentLocateText, myData.sCurrentText->str, strlen (myData.cCurrentLocateText)) == 0 &&
-		(! myData.pListing || myData.pListing->iNbEntries < myConfig.iNbResultMax))  // c'est une sous-recherche de la precedente.
+		(! myData.pListing || myData.pListing->iNbEntries < myConfig.iNbResultMax)))  // c'est une sous-recherche de la precedente qui etait fructueuse, ou un filtre sur un sous-listing.
 	{
 		g_print ("filtrage de la recherche\n");
-		if (myData.pListing != NULL && myData.pListing->pEntries != NULL)
-		{
-			CDEntry *pEntry;
-			int i,j=0;
-			gchar *ext;
-			for (i = 0; i < myData.pListing->iNbEntries; i ++)
-			{
-				pEntry = &myData.pListing->pEntries[i];
-				ext = strrchr( pEntry->cName, '.');
-				if (g_strstr_len (pEntry->cName, -1, myData.sCurrentText->str) != NULL &&
-					(!(myData.iCurrentFilter & DO_TYPE_MUSIC)
-					|| g_ascii_strcasecmp (ext, "mp3") == 0
-					|| g_ascii_strcasecmp (ext, "ogg") == 0
-					|| g_ascii_strcasecmp (ext, "wav") == 0) &&
-					(!(myData.iCurrentFilter & DO_TYPE_IMAGE)
-					|| g_ascii_strcasecmp (ext, "jpg") == 0
-					|| g_ascii_strcasecmp (ext, "jpeg") == 0
-					|| g_ascii_strcasecmp (ext, "png") == 0) &&
-					(!(myData.iCurrentFilter & DO_TYPE_VIDEO)
-					|| g_ascii_strcasecmp (ext, "avi") == 0
-					|| g_ascii_strcasecmp (ext, "mkv") == 0
-					|| g_ascii_strcasecmp (ext, "ogv") == 0
-					|| g_ascii_strcasecmp (ext, "wmv") == 0
-					|| g_ascii_strcasecmp (ext, "mov") == 0) &&
-					(!(myData.iCurrentFilter & DO_TYPE_TEXT)
-					|| g_ascii_strcasecmp (ext, "txt") == 0
-					|| g_ascii_strcasecmp (ext, "odt") == 0
-					|| g_ascii_strcasecmp (ext, "doc") == 0) &&
-					(!(myData.iCurrentFilter & DO_TYPE_HTML)
-					|| g_ascii_strcasecmp (ext, "html") == 0
-					|| g_ascii_strcasecmp (ext, "htm") == 0) &&
-					(!(myData.iCurrentFilter & DO_TYPE_SOURCE)
-					|| g_ascii_strcasecmp (ext, "c") == 0
-					|| g_ascii_strcasecmp (ext, "h") == 0
-					|| g_ascii_strcasecmp (ext, "cpp") == 0))
-				{
-					if (i != j)
-					{
-						cd_do_free_entry (&myData.pListing->pEntries[j]);
-						memcpy (&myData.pListing->pEntries[j], pEntry, sizeof (CDEntry));
-						memset (pEntry, 0, sizeof (CDEntry));
-					}
-					j ++;
-				}
-			}
-			g_print (" => %d entree(s) convienne(nt)\n", j);
-			for (i = j; i < myData.pListing->iNbEntries; i ++)  // on vire ceux qui ne conviennent pas.
-			{
-				pEntry = &myData.pListing->pEntries[i];
-				cd_do_free_entry (pEntry);
-				memset (pEntry, 0, sizeof (CDEntry));
-			}
-			myData.pListing->iNbEntries = j;
-			myData.pListing->iEntryToFill = 0;
-		}
+		cd_do_filter_current_listing ();
 		
-		if (myData.pListing->iNbEntries > 0)
+		if (myData.pListing->iNbVisibleEntries > 0)
 		{
 			myData.bFoundNothing = FALSE;
 			if (myData.pListing->iNbEntries >= myConfig.iNbResultMax)
 				cd_do_set_status_printf ("> %d results", myConfig.iNbResultMax);
 			else
-				cd_do_set_status_printf ("> %d %s", myData.pListing->iNbEntries, myData.pListing->iNbEntries > 1 ? D_("results") : D_("result"));
+				cd_do_set_status_printf ("%d %s", myData.pListing->iNbEntries, myData.pListing->iNbEntries > 1 ? D_("results") : D_("result"));
 		}
 		else
 		{
 			myData.bFoundNothing = TRUE;
 			cd_do_set_status (D_("No result"));
-			g_free (myData.pListing->pEntries);
-			myData.pListing->pEntries = NULL;
 		}
 		
-		myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, myData.pListing->iNbEntries) / 2;
+		myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, myData.pListing->iNbVisibleEntries) / 2;
 		myData.pListing->iScrollAnimationCount = 0;
 		myData.pListing->fAimedOffset = 0;
 		myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
@@ -630,8 +738,6 @@ void cd_do_find_matching_files (void)
 		myData.pListing->iTitleOffset = 0;
 		myData.pListing->iTitleWidth = 0;
 		
-		g_free (myData.cCurrentLocateText);
-		myData.cCurrentLocateText = g_strdup (myData.sCurrentText->str);
 		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 	}
 	else  // soit c'est une recherche differente, soit la recherche precedente avait fourni trop de resultats => on (re)lance la recherche.
@@ -650,7 +756,8 @@ void cd_do_find_matching_files (void)
 
 void cd_do_activate_filter_option (int iNumOption)
 {
-	int iMaskOption = 1 << iNumOption;
+	g_print ("%s (%d)\n", __func__, iNumOption);
+	int iMaskOption = (1 << iNumOption);
 	if (myData.iCurrentFilter & iMaskOption)  // on enleve l'option => ca fait (beaucoup) plus de resultats.
 	{
 		myData.iCurrentFilter &= (~iMaskOption);
@@ -677,12 +784,12 @@ void cd_do_show_current_sub_listing (void)
 	if (cairo_dock_task_is_running (myData.pLocateTask))
 		return ;
 	
-	// on construit la liste des sous-entrees.
-	CDEntry *pCurrentEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
+	// on construit la liste des sous-entrees de l'entree courante.
+	CDEntry *pEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
 	CDEntry *pNewEntries = NULL;
 	int iNbNewEntries = 0;
-	if (pCurrentEntry->list)
-		pNewEntries = pCurrentEntry->list (pCurrentEntry, &iNbNewEntries);
+	if (pEntry->list)
+		pNewEntries = pEntry->list (pEntry, &iNbNewEntries);
 	if (pNewEntries == NULL)
 		return ;
 	
@@ -695,6 +802,7 @@ void cd_do_show_current_sub_listing (void)
 	myData.pListingHistory = g_list_prepend (myData.pListingHistory, pBackup);
 	myData.pListing->pEntries = NULL;
 	myData.pListing->iNbEntries = 0;
+	myData.pListing->iNbVisibleEntries = 0;
 	myData.pListing->iCurrentEntry = 0;
 	myData.pListing->iAppearanceAnimationCount = 0;
 	myData.pListing->iCurrentEntryAnimationCount = 0;
@@ -736,4 +844,93 @@ void cd_do_show_previous_listing (void)
 	// on charge le nouveau sous-listing.
 	cd_do_show_listing (pBackup->pEntries, pBackup->iNbEntries);  // les entrees du backup appartiennent desormais au listing.
 	g_free (pBackup);
+}
+
+
+void cd_do_filter_current_listing (void)
+{
+	if (myData.pListing == NULL || myData.pListing->pEntries == NULL)
+		return ;
+	
+	gchar *cPattern = ((myData.iCurrentFilter & DO_MATCH_CASE) ? g_strdup (myData.sCurrentText->str) : g_ascii_strdown (myData.sCurrentText->str, -1));
+	gchar *cHayStack;
+	CDEntry *pEntry;
+	int i,j=0;
+	gchar *ext;
+	for (i = 0; i < myData.pListing->iNbEntries; i ++)
+	{
+		pEntry = &myData.pListing->pEntries[i];
+		if (! pEntry->cName)
+		{
+			cd_warning ("l'entree n°%d/%d est vide !", i, myData.pListing->iNbEntries);
+			continue ;
+		}
+		ext = strrchr (pEntry->cName, '.');
+		if (ext)
+			ext ++;
+		if (myData.iCurrentFilter & DO_MATCH_CASE)
+		{
+			cHayStack = pEntry->cName;
+		}
+		else
+		{
+			if (pEntry->cCaseDownName == NULL)
+				pEntry->cCaseDownName = g_ascii_strdown (pEntry->cName, -1);
+			cHayStack = pEntry->cCaseDownName;
+		}
+		if (g_strstr_len (cHayStack, -1, cPattern) != NULL &&
+			(!(myData.iCurrentFilter & DO_TYPE_MUSIC)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "mp3") == 0
+				|| g_ascii_strcasecmp (ext, "ogg") == 0
+				|| g_ascii_strcasecmp (ext, "wav") == 0))) &&
+			(!(myData.iCurrentFilter & DO_TYPE_IMAGE)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "jpg") == 0
+				|| g_ascii_strcasecmp (ext, "jpeg") == 0
+				|| g_ascii_strcasecmp (ext, "png") == 0))) &&
+			(!(myData.iCurrentFilter & DO_TYPE_VIDEO)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "avi") == 0
+				|| g_ascii_strcasecmp (ext, "mkv") == 0
+				|| g_ascii_strcasecmp (ext, "ogv") == 0
+				|| g_ascii_strcasecmp (ext, "wmv") == 0
+				|| g_ascii_strcasecmp (ext, "mov") == 0))) &&
+			(!(myData.iCurrentFilter & DO_TYPE_TEXT)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "txt") == 0
+				|| g_ascii_strcasecmp (ext, "odt") == 0
+				|| g_ascii_strcasecmp (ext, "doc") == 0))) &&
+			(!(myData.iCurrentFilter & DO_TYPE_HTML)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "html") == 0
+				|| g_ascii_strcasecmp (ext, "htm") == 0))) &&
+			(!(myData.iCurrentFilter & DO_TYPE_SOURCE)
+			|| (ext
+				&& (g_ascii_strcasecmp (ext, "c") == 0
+				|| g_ascii_strcasecmp (ext, "h") == 0
+				|| g_ascii_strcasecmp (ext, "cpp") == 0))))
+		{
+			//g_print (" %s a passe le filtre\n", pEntry->cName);
+			pEntry->bHidden = FALSE;
+			j ++;
+		}
+		else
+		{
+			pEntry->bHidden = TRUE;
+		}
+	}
+	
+	myData.pListing->iNbVisibleEntries = j;
+	cd_do_fill_listing_entries (myData.pListing);
+	
+	if (myData.pListing->pEntries[myData.pListing->iCurrentEntry].bHidden)
+		myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, myData.pListing->iNbVisibleEntries) / 2;
+	myData.pListing->iScrollAnimationCount = 0;
+	myData.pListing->fAimedOffset = 0;
+	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+	myData.pListing->sens = 1;
+	myData.pListing->iTitleOffset = 0;
+	myData.pListing->iTitleWidth = 0;
+	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 }

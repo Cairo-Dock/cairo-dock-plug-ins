@@ -26,8 +26,8 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 	"  or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
 	"  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"- the finder mode : type some text to launch any command, file or calculation.\n"
-	"  use the arrows to navigate between the results.\n"
-	"Escape, Return or the same shortkey to finish."),
+	"  use the arrows to navigate between the results, press Enter to validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+	"Escape or the same shortkey to cancel."),
 	"Fabounet (Fabrice Rey)")
 
 
