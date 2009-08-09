@@ -106,7 +106,8 @@ frame_disp =
 #b Display album's cover ?
 enable_cover = true
 
-#b Use Opengl themes (Fake 3D) ?
+#b Use 3D themes ?
+#{requires OpenGL.}
 enable_opengl_themes = true
 
 #l[nothing;time elapsed;time left;time in %;n° of track] Information to display on the icon :

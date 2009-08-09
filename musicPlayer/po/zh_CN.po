@@ -7,375 +7,444 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"Last-Translator: biAji <biaji.cn@gmail.com>\n"
+"PO-Revision-Date: 2009-03-19 19:10+0800\n"
+"Last-Translator: Tiger Soldier <tigersoldi@gmail.com>\n"
+"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/applet-notifications.c:21
-msgid ""
-"This is the musicPlayer applet\n"
-" made by ChAnGFu for Cairo-Dock"
-msgstr "这是ChAnGFu为Cairo-Dock之做的音乐播放器插件"
+#: ../src/rhythmbox-draw.c:96
+msgid "Track"
+msgstr "音轨"
 
-#: ../src/applet-notifications.c:78
+#: ../src/rhythmbox-draw.c:182
+msgid "Artist"
+msgstr "艺术家"
+
+#: ../src/rhythmbox-draw.c:183 ../src/rhythmbox-draw.c:185
+#: ../src/rhythmbox-draw.c:187
+msgid "Unknown"
+msgstr "未知"
+
+#: ../src/rhythmbox-draw.c:184
+msgid "Album"
+msgstr "专辑"
+
+#: ../src/rhythmbox-draw.c:186
+msgid "Title"
+msgstr "标题"
+
+#: ../src/rhythmbox-init.c:17
+msgid ""
+"Control your Rhythmbox player directly in the dock !\n"
+"Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+"next song, Scroll-up for previous song.\n"
+"You can drag and drop covers (jpg) on the icon to use them,\n"
+" and songs to put them in the queue."
+msgstr ""
+
+#: ../src/rhythmbox-menu-functions.c:52
 msgid "Previous"
 msgstr "上一首"
 
-#: ../src/applet-notifications.c:79
-msgid "Play/Pause (left-click)"
-msgstr "播放/暂停（左键点击）"
-
-#: ../src/applet-notifications.c:82
-msgid "Stop"
-msgstr "停止"
-
-#: ../src/applet-notifications.c:84
+#: ../src/rhythmbox-menu-functions.c:54
 msgid "Next (middle-click)"
-msgstr "下一首（中键点击）"
+msgstr "下一首(中键点击)"
 
-#: ../src/applet-notifications.c:87
-msgid "Show JumpBox"
-msgstr "显示JumpBox"
+#: ../src/rhythmbox-menu-functions.c:56
+msgid "Play/Pause (left-click)"
+msgstr "播放/暂停(左键点击)"
 
-#: ../src/applet-notifications.c:90
-msgid "Toggle Shuffle"
-msgstr "乱序"
-
-#: ../src/applet-notifications.c:93
-msgid "Toggle Repeat"
-msgstr "重复"
+#: ../src/rhythmbox-menu-functions.c:58
+msgid "Information"
+msgstr "信息"
 
 #: ../data/messages:1
 msgid "Icon"
 msgstr "图标"
 
 #: ../data/messages:3
-msgid "Desired icon size for this applet"
-msgstr "此小应用程序期望的图标大小"
+#, fuzzy
+msgid "Set to 0 to use the default applet size"
+msgstr "留空以使用默认图标。"
 
 #: ../data/messages:5
-msgid "width :"
-msgstr "宽："
+msgid "Desired icon size for this applet"
+msgstr "此小程序期望的图标大小"
 
 #: ../data/messages:7
-msgid "height :"
-msgstr "高："
+msgid "Default title :"
+msgstr "默认标题:"
 
 #: ../data/messages:9
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "显示于dock上的标签上的此图标的名称："
+msgid "Name of the dock it belongs to:"
+msgstr "所属dock名称:"
 
 #: ../data/messages:11
-msgid "Name of the dock it belongs to:"
-msgstr "归属于dock的名称："
+msgid "Desklet"
+msgstr "桌面小工具"
 
 #: ../data/messages:13
-msgid "Desklet"
-msgstr "桌面应用程序"
-
-#: ../data/messages:15
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的桌面管理"
-"器"
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
+"器。"
+
+#: ../data/messages:15
+msgid "Desklet's dimension (width x height) :"
+msgstr "桌面小工具尺寸(宽×高):"
 
 #: ../data/messages:17
-msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小应用程序大小（宽x高）："
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../data/messages:19
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可用ALT+左键移动它，此功能依赖桌面管理器。"
+msgid "Desklet's position (x ; y) :"
+msgstr "桌面小工具位置(x ; y):"
 
 #: ../data/messages:21
-msgid "Desklet's position (x ; y) :"
-msgstr "桌面小应用程序位置(x ; y)："
+msgid "Is detached from the dock ?"
+msgstr "与dock分离?"
 
 #: ../data/messages:23
-msgid "Is detached from the dock ?"
-msgstr "从dock移开？"
+msgid "Accessibility :"
+msgstr ""
 
 #: ../data/messages:25
-msgid "Keep below other windows ?"
-msgstr "位于最下窗口？"
+msgid "Normal"
+msgstr ""
 
 #: ../data/messages:27
-msgid "Keep above other windows ?"
-msgstr "窗口置顶？"
+msgid "Keep above"
+msgstr ""
 
 #: ../data/messages:29
-msgid ""
-"for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-"dock & type=utility)"
+msgid "Keep below"
 msgstr ""
-"面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & "
-"type=utility) "
 
 #: ../data/messages:31
-msgid "Keep on widget layer ?"
-msgstr "保持于小应用程序层？"
+#, fuzzy
+msgid "On Widget Layer"
+msgstr "保持于小工具层?"
 
 #: ../data/messages:33
+msgid "Reserve space"
+msgstr ""
+
+#: ../data/messages:35
+#, fuzzy
+msgid ""
+"or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
+"dock & type=utility)}"
+msgstr ""
+"面向CompizFusion的“小工具层”，将Compiz的行为设置为:(name=cairo-dock & "
+"type=utility) "
+
+#: ../data/messages:37
+msgid "Should be visible on all desktops ?"
+msgstr ""
+
+#: ../data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
 msgstr ""
-"锁定之后，桌面小应用将无法被鼠标左键拖曳移动。但您仍可以用ALT+左键移动。"
+"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
+"移动。"
 
-#: ../data/messages:35
+#: ../data/messages:41
 msgid "Lock position ?"
-msgstr "锁定位置？"
+msgstr "锁定位置?"
 
-#: ../data/messages:37
+#: ../data/messages:43
+msgid "in degrees."
+msgstr "以角度为单位。"
+
+#: ../data/messages:45
+msgid "Rotation :"
+msgstr "旋转:"
+
+#: ../data/messages:47
+msgid "Decorations"
+msgstr "装饰"
+
+#: ../data/messages:49
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
+
+#: ../data/messages:51
+msgid "Choose a decoration theme for this desklet :"
+msgstr "为这个桌面小工具选择一个装饰主题:"
+
+#: ../data/messages:53
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
+
+#: ../data/messages:55
+msgid "Background image :"
+msgstr "背景图片:"
+
+#: ../data/messages:57
+msgid "Background tansparency :"
+msgstr "背景透明度:"
+
+#: ../data/messages:59
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr "以象素为单位。使用此设置调整图画的左边位置。"
+
+#: ../data/messages:61
+msgid "Left offset :"
+msgstr "左偏移:"
+
+#: ../data/messages:63
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr "以象素为单位。使用此设置调整图画的上边位置。"
+
+#: ../data/messages:65
+msgid "Top offset :"
+msgstr "顶偏移:"
+
+#: ../data/messages:67
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr "以象素为单位。使用此设置调整图画的右边位置。"
+
+#: ../data/messages:69
+msgid "Right offset :"
+msgstr "右偏移:"
+
+#: ../data/messages:71
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr "以象素为单位。使用此设置调整图画的下边位置。"
+
+#: ../data/messages:73
+msgid "Bottom offset :"
+msgstr "底偏移:"
+
+#: ../data/messages:75
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
+
+#: ../data/messages:77
+msgid "Foreground image :"
+msgstr "前景图片:"
+
+#: ../data/messages:79
+msgid "Foreground tansparency :"
+msgstr "前景透明度:"
+
+#: ../data/messages:81
 msgid "Configuration"
 msgstr "配置"
 
-#: ../data/messages:39
-msgid "Audio Player"
-msgstr "播放器"
+#: ../data/messages:83
+msgid "Info-bubbles"
+msgstr "信息泡泡"
 
-#: ../data/messages:41
-msgid "Player to control:"
-msgstr "控制的播放器："
+#: ../data/messages:85
+msgid "Activate info-bubbles ?"
+msgstr "激活信息泡泡?"
 
-#: ../data/messages:43
-msgid "XMMS"
-msgstr "XMMS"
+#: ../data/messages:87
+msgid "in ms."
+msgstr "以毫秒为单位。"
 
-#: ../data/messages:45
+#: ../data/messages:89
+msgid "Time length of info-bubbles :"
+msgstr "信息泡泡的显示时间:"
+
+#: ../data/messages:91
+msgid "Behaviour"
+msgstr "行为"
+
+#: ../data/messages:93
+msgid "Animation when music changes :"
+msgstr "音乐切换时的动画:"
+
+#: ../data/messages:95
 msgid ""
-"It will prevent the player's icon to appear in the task bar. The applet's "
+"It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"这将阻止播放器的图标显示在任务栏上。此小应用程序的图标将形如启动器、应用程序"
-"或小应用程序"
+"这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程"
+"序的功能。"
 
-#: ../data/messages:47
-msgid "Steal the player's icon from taskbar ?"
-msgstr "由任务栏窃取播放器图标？"
+#: ../data/messages:97
+msgid "Steal the rhythmbox's icon in taskbar ?"
+msgstr "由任务栏偷取rhythmbox的图标?"
 
-#: ../data/messages:49
+#: ../data/messages:99
 msgid "Display"
 msgstr "显示"
 
-#: ../data/messages:51
-msgid "Display the cover ?"
-msgstr "显示封面？"
+#: ../data/messages:101
+#, fuzzy
+msgid "Display album's cover ?"
+msgstr "以专辑封面取代图标?"
 
-#: ../data/messages:53
+#: ../data/messages:103
+msgid "Use Opengl themes (Fake 3D) ?"
+msgstr ""
+
+#: ../data/messages:105
 msgid "Information to display on the icon :"
-msgstr "图标上显示的信息："
+msgstr "图标上显示的信息:"
 
-#: ../data/messages:55
-msgid "Nothing"
+#: ../data/messages:107
+msgid "nothing"
 msgstr "无"
 
-#: ../data/messages:57
-msgid "Time Elapsed"
+#: ../data/messages:109
+msgid "time elapsed"
 msgstr "已播放时间"
 
-#: ../data/messages:59
-msgid "Time Left"
+#: ../data/messages:111
+msgid "time left"
 msgstr "剩余时间"
 
-#: ../data/messages:61
-msgid "N° of track"
-msgstr "第N°首"
-
-#: ../data/messages:63
-msgid "Desklet display mode :"
-msgstr "桌面小应用程序显示模式："
-
-#: ../data/messages:65
-msgid "Simple"
-msgstr "简易"
-
-#: ../data/messages:67
-msgid "Info"
-msgstr "信息"
-
-#: ../data/messages:69
-msgid "Info and Controler"
-msgstr "信息及控制器"
-
-#: ../data/messages:71
-msgid "Caroussel"
-msgstr "链子"
-
-#: ../data/messages:73
-msgid "Controler"
-msgstr "控制器"
-
-#: ../data/messages:75
-#, fuzzy
-msgid "Simple Desklet"
-msgstr "简易桌面小应用"
-
-#: ../data/messages:77
-msgid ""
-"If you choose 'personnal', you can define your own decoration above, or let "
-"it blank to not use any decoration."
-msgstr ""
-"如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
-
-#: ../data/messages:79
-msgid "Choose a decoration for the desklet mode :"
-msgstr "为桌面小应用模式选择装饰"
-
-#: ../data/messages:81
-msgid "Personnal"
-msgstr "个性化"
-
-#: ../data/messages:83
-msgid "Extended 3D mode"
-msgstr "扩展3D模式"
-
-#: ../data/messages:85
-msgid "CD box"
-msgstr "CD盒"
-
-#: ../data/messages:87
-msgid "frame with reflects"
-msgstr "反射镜框"
-
-#: ../data/messages:89
-msgid "scotch"
-msgstr "磨砂"
-
-#: ../data/messages:91
-msgid "frame with scotch"
-msgstr "磨砂镜框"
-
-#: ../data/messages:93
-msgid ""
-"It's an image that will be displayed below the cover, like a frame for "
-"exemple."
-msgstr "显示于封面下的图片，比如一个镜框"
-
-#: ../data/messages:95
-msgid "Background image :"
-msgstr "背景图："
-
-#: ../data/messages:97
-msgid "Background tansparency :"
-msgstr "背景透明度："
-
-#: ../data/messages:99
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "这是您镜框的左边宽度，以点为单位。"
-
-#: ../data/messages:101
-msgid "Left offset :"
-msgstr "左偏移："
-
-#: ../data/messages:103 ../data/messages:105 ../data/messages:107
-msgid "Right offset :"
-msgstr "右偏移："
-
-#: ../data/messages:109
-msgid ""
-"It's an image that will be displayed above the cover, like a reflect for "
-"exemple."
-msgstr "显示于封面之上的图片，如同反射一样"
-
-#: ../data/messages:111
-msgid "Reflection image :"
-msgstr "反射图片："
-
 #: ../data/messages:113
-msgid "Reflection tansparency :"
-msgstr "反射透明度："
+msgid "time in %"
+msgstr "%之后"
 
 #: ../data/messages:115
-msgid "Action on music change"
-msgstr "歌曲更换时的动作"
+msgid "n° of track"
+msgstr "第N°首"
 
 #: ../data/messages:117
-msgid "Show an info-bubble ?"
-msgstr "显示信息泡泡？"
-
-#: ../data/messages:119
-msgid "With a icon ?"
-msgstr "使用图标？"
-
-#: ../data/messages:121
-msgid "in ms."
-msgstr "以毫秒为单位"
-
-#: ../data/messages:123
-msgid "Time length of info-bubbles :"
-msgstr "信息泡泡的时间长度："
-
-#: ../data/messages:125
-msgid "Animate icon ?"
-msgstr "动画图标？"
-
-#: ../data/messages:127
-msgid "Animation when music changes :"
-msgstr "音乐切换时的动画："
-
-#: ../data/messages:129
-msgid "bounce"
-msgstr "弹跳"
-
-#: ../data/messages:131
-msgid "rotate"
-msgstr "旋转"
-
-#: ../data/messages:133
-msgid "blink"
-msgstr "闪烁"
-
-#: ../data/messages:135
-msgid "pulse"
-msgstr "脉冲"
-
-#: ../data/messages:137
-msgid "upside-down"
-msgstr "倒立"
-
-#: ../data/messages:139
-msgid "wobbly"
-msgstr "抖动"
-
-#: ../data/messages:141
-msgid "random"
-msgstr "随机"
-
-#: ../data/messages:143
 msgid "Personnalisation"
 msgstr "个性化"
 
-#: ../data/messages:145 ../data/messages:149 ../data/messages:153
-#: ../data/messages:157 ../data/messages:161
-msgid "Let it empty to use the default icon."
+#: ../data/messages:119
+msgid "List of available themes for covers (requires OPENGL) :"
+msgstr ""
+
+#: ../data/messages:121
+msgid ""
+"Override the theme preference to not display the OSD with OpenGL themes ?"
+msgstr ""
+
+#: ../data/messages:123 ../data/messages:127 ../data/messages:131
+#: ../data/messages:135 ../data/messages:139
+msgid "Let t empty to use the default icon."
 msgstr "留空以使用默认图标。"
 
-#: ../data/messages:147
+#: ../data/messages:125
 msgid "Name of an image for the 'default' icon :"
-msgstr "做为默认图标的图片文件名："
+msgstr "“默认”图标的图片名称:"
 
-#: ../data/messages:151
+#: ../data/messages:129
 msgid "Name of an image for the 'play' icon :"
-msgstr "做为播放图标的图片文件名："
+msgstr "“播放”图标的图片名称:"
 
-#: ../data/messages:155
+#: ../data/messages:133
 msgid "Name of an image for the 'stop' icon :"
-msgstr "做为停止图标的图片文件名："
+msgstr "“停止”图标的图片名称:"
 
-#: ../data/messages:159
+#: ../data/messages:137
 msgid "Name of an image for the 'pause' icon :"
-msgstr "做为暂停图标的图片文件名："
+msgstr "“暂停”图标的图片名称:"
 
-#: ../data/messages:163
+#: ../data/messages:141
 msgid "Name of an image for the 'broken' icon :"
-msgstr "做为损毁图标的图片文件名："
+msgstr "“破损”图标的图片名称:"
 
-#~ msgid "Module"
-#~ msgstr "モジュール"
+#~ msgid "Keep below other windows ?"
+#~ msgstr "在其他窗口之下?"
 
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
+#~ msgid "Keep above other windows ?"
+#~ msgstr "在其他窗口之上?"
+
+#~ msgid "Draw desklet in a 3D fashion (experimental) ?"
+#~ msgstr "以3D效果绘制桌面小工具(实验性)?"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
+
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "艺术家:%s\n"
+#~ "专辑:%s\n"
+#~ "标题:%s"
+
+#~ msgid "width :"
+#~ msgstr "宽:"
+
+#~ msgid "height :"
+#~ msgstr "高:"
+
+#~ msgid "bounce"
+#~ msgstr "弹跳"
+
+#~ msgid "rotate"
+#~ msgstr "旋转"
+
+#~ msgid "blink"
+#~ msgstr "闪烁"
+
+#~ msgid "pulse"
+#~ msgstr "脉冲"
+
+#~ msgid "upside-down"
+#~ msgstr "倒立"
+
+#~ msgid "wobbly"
+#~ msgstr "抖动"
+
+#~ msgid "random"
+#~ msgstr "随机"
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or "
+#~ "let it blank to not use any decoration."
+#~ msgstr ""
+#~ "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "为桌面小应用模式选择装饰:"
+
+#~ msgid "Personnal"
+#~ msgstr "个性化"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "扩展3D模式"
+
+#~ msgid "CD box"
+#~ msgstr "CD盒"
+
+#~ msgid "frame with reflects"
+#~ msgstr "反射镜框"
+
+#~ msgid "scotch"
+#~ msgstr "磨砂"
+
+#~ msgid "frame with scotch"
+#~ msgstr "磨砂镜框"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "显示于封面下的图片，比如一个镜框"
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "这是您镜框的左边宽度，以点为单位。"
+
+#, fuzzy
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr "显示于封面之上的图片，如同反射一样"
+
+#~ msgid "Reflection image :"
+#~ msgstr "反射图片:"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "反射透明度:"

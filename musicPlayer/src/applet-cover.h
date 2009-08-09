@@ -4,10 +4,10 @@
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
-gboolean _cd_proceed_download_cover (gpointer p);
 
-gboolean cd_download_musicPlayer_cover (gpointer data);
+void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHandleCover);
 
-gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP);
+void cd_musicplayer_dl_cover (void);
+
 
 #endif

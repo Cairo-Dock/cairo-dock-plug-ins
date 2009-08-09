@@ -53,11 +53,6 @@ void cd_songbird_control (MyPlayerControl pControl, char* nothing) { //Permet d'
 	return;
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-/* Ici Songbird ne gère aucune commande */
-gboolean cd_songbird_ask_control (MyPlayerControl pControl) {
-	return FALSE;
-}
 
 /* Fonction de connexion au bus de songbird */
 void cd_songbird_acquisition (void) {
@@ -69,7 +64,7 @@ void cd_songbird_acquisition (void) {
 void cd_songbird_read_data (void) {
 	if (myData.dbus_enable)
 	{
-		if (myData.opening)
+		if (myData.bIsRunning)
 		{
 			cd_musicplayer_getStatus_string("playing", "paused", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
@@ -114,9 +109,10 @@ void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre le
 	//cd_debug("MP : Valeur de configure : %s", pSongbird->configure);
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pSongbird->control = cd_songbird_control;
-	pSongbird->ask_control = cd_songbird_ask_control;
 	pSongbird->appclass = g_strdup("Songbird"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pSongbird->name = g_strdup("Songbird");
+	pSongbird->launch = g_strdup("songbird");
+	pSongbird->iPlayerControls = 0;  // ne gere rien !
 	pSongbird->iPlayer = MP_SONGBIRD;
 	pSongbird->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler(pSongbird,"Songbird");

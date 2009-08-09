@@ -26,7 +26,7 @@ void cd_amarok1_free_data (void) { //Permet de libéré la mémoire prise par no
 	cd_debug ("");
 }
 
-void cd_amarok1_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effectuer les actions de bases sur le lecteur
+void cd_amarok1_control (MyPlayerControl pControl, const gchar *cFile) { //Permet d'effectuer les actions de bases sur le lecteur
 	GError *erreur = NULL;
 	
 	if (pControl != PLAYER_JUMPBOX && pControl != PLAYER_SHUFFLE && pControl != PLAYER_REPEAT && pControl != PLAYER_ENQUEUE) {
@@ -79,41 +79,6 @@ void cd_amarok1_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'ef
 	}
 }
 
-//Permet de renseigner l'applet des fonctions supportées par le lecteur
-gboolean cd_amarok1_ask_control (MyPlayerControl pControl) {
-	cd_debug ("");
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		case PLAYER_STOP :
-			return TRUE;
-			
-		case PLAYER_SHUFFLE :
-			return TRUE;
-			
-		case PLAYER_ENQUEUE :
-			return TRUE;
-			
-		case PLAYER_REPEAT :
-			return TRUE;
-			
-		default :
-			return FALSE;
-		break;
-	}
-	
-	return FALSE;
-}
 
 void cd_amarok1_getStatus (void)
 {
@@ -137,7 +102,7 @@ void cd_amarok1_getStatus (void)
 }
 
 void cd_amarok1_acquisition (void) {
-	int r = system ("echo amarok 1.4 >> /dev/null");
+	system ("echo amarok 1.4 >> /dev/null");
 	cd_amarok1_getStatus();
 	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
 		cd_amarok1_read_data();
@@ -170,10 +135,10 @@ void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lec
 	pAmarok1->configure = NULL; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pAmarok1->control = cd_amarok1_control;
-	pAmarok1->ask_control = cd_amarok1_ask_control;
-	pAmarok1->appclass = g_strdup("amarok"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pAmarok1->name = g_strdup("Amarok 1.4");
-	pAmarok1->launch = NULL;
+	pAmarok1->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_ENQUEUE | PLAYER_REPEAT;
+	pAmarok1->appclass = "amarok";
+	pAmarok1->name = "Amarok 1.4";
+	pAmarok1->launch = "amarok";
 	pAmarok1->iPlayer = MP_AMAROK1;
 	pAmarok1->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler (pAmarok1, "Amarok 1.4");

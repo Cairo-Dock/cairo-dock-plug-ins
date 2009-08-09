@@ -22,7 +22,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-listen.h"
 
 
-
 //Les Fonctions
 void cd_listen_getSongInfos(void)
 {
@@ -46,7 +45,7 @@ void cd_listen_free_data (void) {
 
 
 /* Controle du lecteur */
-void cd_listen_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
+void cd_listen_control (MyPlayerControl pControl, const char *file) { //Permet d'effectuer les actions de bases sur le lecteur
 	cd_debug ("");
 	
 	static gchar *cCommand = NULL;
@@ -78,30 +77,6 @@ void cd_listen_control (MyPlayerControl pControl, char* nothing) { //Permet d'ef
 	}
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_listen_ask_control (MyPlayerControl pControl) {
-	cd_debug ("");
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		default :
-			return FALSE;
-		break;
-	}
-	
-	return FALSE;
-}
-
 /* Fonction de connexion au bus de listen */
 void cd_listen_acquisition (void) {
 	cd_musicplayer_check_dbus_connection();	
@@ -110,7 +85,7 @@ void cd_listen_acquisition (void) {
 
 /* Fonction de lecture des infos */
 void cd_listen_read_data (void) {
-	if (myData.opening)
+	if (myData.bIsRunning)
 	{
 		if (myData.dbus_enable)
 		{
@@ -159,9 +134,10 @@ void cd_musicplayer_register_listen_handeler (void) { //On enregistre notre lect
 	pListen->configure = cd_listen_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pListen->control = cd_listen_control;
-	pListen->ask_control = cd_listen_ask_control;
-	pListen->appclass = g_strdup ("listen.py"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pListen->name = g_strdup ("Listen");
+	pListen->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
+	pListen->appclass = "listen.py";
+	pListen->name = "Listen";
+	pListen->name = "listen";  /// a verifier ...
 	pListen->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler (pListen, "Listen");
 }

@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Default title :
-name = TomBoy
+name = Notes
 
 #d Name of the dock it belongs to:
 dock name = 

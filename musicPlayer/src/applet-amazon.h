@@ -7,26 +7,13 @@
 
 G_BEGIN_DECLS
 
-#define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
-#define AMAZON_API_URL_1 "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId="
-#define AMAZON_API_URL_2 "&AssociateTag=webservices-20&ResponseGroup=Images,ItemAttributes&Operation=ItemSearch&ItemSearch.Shared.SearchIndex=Music"
-#define DEFAULT_XML_LOCATION "/tmp/cd_amazon.xml"
-#define DEFAULT_DOWNLOADED_IMAGE_LOCATION "/tmp/default.jpg"
-
-/**
- * Lit les noeuds du fichier en cours de parsage
- * @param reader le noeud courrant
- * @param imageSize Noeud que l'on cherche
- */
-static void cd_process_node (xmlTextReaderPtr reader, gchar **cValue);
-
 /**
  * Parse le fichier XML passé en argument
  * à la recherche de l'URL de la pochette
  * @param filename URI du fichier à lire
  * @param imageSize Taille de l'image que l'on souhaite
  */
-void cd_stream_file(const char *filename, gchar **cValue);
+gchar *cd_extract_url_from_xml_file (const gchar *filename);
 
 /**
  * Recupere le fichier xml sur amazon.
@@ -34,7 +21,7 @@ void cd_stream_file(const char *filename, gchar **cValue);
  * @param album Nom de l'album.
  * @return succes du telechargement.
  */
-gboolean cd_get_xml_file (const gchar *artist, const gchar *album);
+gchar *cd_get_xml_file (const gchar *artist, const gchar *album);
 
 /**
  * Recupere la pochette.
@@ -42,7 +29,8 @@ gboolean cd_get_xml_file (const gchar *artist, const gchar *album);
  * @param cDestPath Ou en enregistre la pochette telechargee.
  * @return succes du telechargement.
  */
-gboolean cd_download_missing_cover (const gchar *cURL, const gchar *cDestPath);
+void cd_download_missing_cover (const gchar *cURL);
+
 
 G_END_DECLS
 #endif

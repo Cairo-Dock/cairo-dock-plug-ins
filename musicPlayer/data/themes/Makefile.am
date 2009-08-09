@@ -1,7 +1,3 @@
 SUBDIRS = \
-	super_jewel\
-	cd_box_simple\
-	cd_box_3d\
-	None
-
+	cd_box_simple
 

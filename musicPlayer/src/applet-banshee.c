@@ -95,7 +95,7 @@ void cd_banshee_free_data (void) { //Permet de libéré la mémoire prise par no
 
 
 /* Controle du lecteur */
-void cd_banshee_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
+void cd_banshee_control (MyPlayerControl pControl, const char *file) { //Permet d'effectuer les actions de bases sur le lecteur
 	gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
@@ -134,25 +134,6 @@ void cd_banshee_control (MyPlayerControl pControl, char* nothing) { //Permet d'e
 	}
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_banshee_ask_control (MyPlayerControl pControl) {
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		default :
-			return FALSE;
-	}
-}
 
 /* Fonction de connexion au bus de banshee */
 void cd_banshee_acquisition (void) {
@@ -164,7 +145,7 @@ void cd_banshee_acquisition (void) {
 void cd_banshee_read_data (void) {
 	if (myData.dbus_enable)
 	{
-		if (myData.opening)
+		if (myData.bIsRunning)
 		{
 			cd_musicplayer_getStatus_string("paused", "playing", NULL); // On récupère l'état de la lecture (play/pause/stop)
 			if (myData.pPlayingStatus == PLAYER_PLAYING)
@@ -219,9 +200,10 @@ void cd_musicplayer_register_banshee_handeler (void) { //On enregistre notre lec
 	pBanshee->configure = cd_banshee_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pBanshee->control = cd_banshee_control;
-	pBanshee->ask_control = cd_banshee_ask_control;
-	pBanshee->appclass = g_strdup ("Banshee"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pBanshee->name = g_strdup ("Banshee");
+	pBanshee->appclass = "Banshee";  /// c'est sur pour le 'B' ?...
+	pBanshee->launch = "banshee";
+	pBanshee->name = "Banshee";
+	pBanshee->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
 	pBanshee->iPlayer = MP_BANSHEE;
 	pBanshee->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler(pBanshee,"Banshee");

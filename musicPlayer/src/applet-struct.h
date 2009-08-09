@@ -7,14 +7,6 @@
 //Canevas
 typedef struct _MusicPlayerHandeler MusicPlayerHandeler;
 
-/**
- * Tailles possible pour le téléchargement des pochettes
- */
-typedef enum {
-	MEDIUM_IMAGE,
-	LARGE_IMAGE
-} DownloadedImageSizes;
-
 // Players supportes
 typedef enum {
 	MP_AMAROK1 = 0,
@@ -25,7 +17,8 @@ typedef enum {
 	MP_XMMS,
 	MP_SONGBIRD,
 	MP_QUODLIBET,
-	MP_BANSHEE
+	MP_BANSHEE,
+	MB_NB_PLAYERS
 } MySupportedPlayers;
 
 typedef enum {
@@ -38,23 +31,29 @@ typedef enum {
 } MyPlayerStatus;
 
 typedef enum {
-	PLAYER_PREVIOUS = 0,
-	PLAYER_PLAY_PAUSE,
-	PLAYER_STOP,
-	PLAYER_NEXT,
-	PLAYER_JUMPBOX,
-	PLAYER_SHUFFLE,
-	PLAYER_REPEAT,
-	PLAYER_ENQUEUE,
-	PLAYER_NB_CONTROL
+	PLAYER_PREVIOUS		= 1<<0,
+	PLAYER_PLAY_PAUSE	= 1<<1,
+	PLAYER_STOP			= 1<<2,
+	PLAYER_NEXT			= 1<<3,
+	PLAYER_JUMPBOX		= 1<<4,
+	PLAYER_SHUFFLE		= 1<<5,
+	PLAYER_REPEAT		= 1<<6,
+	PLAYER_ENQUEUE		= 1<<7,
 } MyPlayerControl;
 
-typedef void (*MusicPlayerAcquireDataFunc) (void);
-typedef void (*MusicPlayerReadDataFunc) (void);
-typedef void (*MusicPlayerFreeDataFunc) (void);
-typedef void (*MusicPlayerConfigureFunc) (void);
-typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, gchar *cFile);
-typedef gboolean (*MusicPlayerAskControlerFunc) (MyPlayerControl pControl);
+typedef enum {
+	PLAYER_BAD=0,  // aucune notification, il faut tout tester en permanence
+	PLAYER_GOOD,  // notification de changement d'etat et de chanson, mais pas de temps.
+	PLAYER_EXCELLENT,  // notification pour chaque evenement => aucune boucle n'est necessaire.
+	PLAYER_NB_LEVELS
+} MyLevel;  // niveau du lecteur.
+
+typedef void (*MusicPlayerAcquireDataFunc) (void);  // obsolete
+typedef void (*MusicPlayerReadDataFunc) (void);  // acquisition des donnees, threade.
+typedef void (*MusicPlayerFreeDataFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
+typedef void (*MusicPlayerConfigureFunc) (void);  // initialise le backend (connexion des signaux, etc)
+typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
+typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, recupere la couverture. Renseigner ce champ fera que si le lecteur n'a pas renvoye de couverture au changement de chanson, on retentera 2 secondes plus tard.
 
 //A remplir lors du configure pour les players utilisant DBus.
 typedef struct {
@@ -79,17 +78,20 @@ typedef struct {
 } MusicPlayerDBus;
 
 struct _MusicPlayerHandeler {
-	MusicPlayerAcquireDataFunc 	acquisition;
+	MusicPlayerAcquireDataFunc 		acquisition;
 	MusicPlayerReadDataFunc 		read_data;
 	MusicPlayerFreeDataFunc 		free_data;
 	MusicPlayerConfigureFunc		configure;
 	MusicPlayerControlerFunc		control;
-	MusicPlayerAskControlerFunc	ask_control;
-	gchar *appclass;
-	gchar *name; //Servira a repérer le lecteur dans la GList.
-	gchar *launch;
-	gboolean bSeparateAcquisition; //Sert a activé le thread ou pas (TRUE = activé; False = désactivé)
-	MySupportedPlayers iPlayer;
+	MusicPlayerGetCoverFunc			get_cover;
+	gchar *appclass;  // classe de l'appli.
+	gchar *name;  // nom du backend.
+	gchar *launch;  // commande lancant le lecteur.
+	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
+	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = activé; False = désactivé)
+	MySupportedPlayers iPlayer;  // ID du backend.
+	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
+	MyLevel iLevel;
 };
 
 //Structures essentielles de l'applet
@@ -102,56 +104,29 @@ typedef enum {
 	MY_APPLET_NB_QUICK_INFO_TYPE
 } MyAppletQuickInfoType;
 
-typedef enum {
-	MY_DESKLET_SIMPLE = 0,
-	MY_DESKLET_INFO,
-	MY_DESKLET_INFO_AND_CONTROLER,
-	MY_DESKLET_CAROUSSEL,
-	MY_DESKLET_CONTROLER,
-	MY_DESKLET_OPENGL,
-	MY_DESKLET_NB_MODE
-} MyExtendedMode;
+#define NB_TRANSITION_STEP 8.
 
-typedef enum {
-	MY_APPLET_PERSONNAL = 0,
-	MY_APPLET_EXTENDED,
-	MY_APPLET_CD_BOX,
-	MY_APPLET_FRAME_REFLECTS,
-	MY_APPLET_SCOTCH,
-	MY_APPLET_FRAME_SCOTCH,
-	MY_APPLET_NB_DECORATIONS
-} MyAppletDecoration;
 
 struct _AppletConfig {
 	gboolean bEnableDialogs;
-	gdouble fTimeDialogs;
+	gint iDialogDuration;
 	gboolean bEnableCover;
 	gboolean bEnableAnim;
 	gchar *cChangeAnimation;
 	gchar *cMusicPlayer;
-	MyAppletQuickInfoType pQuickInfoType;
+	MyAppletQuickInfoType iQuickInfoType;
 	gchar *cDefaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
 	gboolean bStealTaskBarIcon;
-	gboolean bIconBubble;
-	MyExtendedMode iExtendedMode;
-	
-	gboolean extendedDesklet;
-	MyAppletDecoration iDecoration;
-	int iLeftOffset, iTopOffset, iRightOffset, iBottomOffset;
-	gchar *cFrameImage;
-	gchar *cReflectImage;
-	gdouble fFrameAlpha;
-	gdouble fReflectAlpha;
 	
 	gboolean bDownload;
-	DownloadedImageSizes iImagesSize;
 	gint iTimeToWait;
 	gchar *cThemePath;
+	gboolean bOpenglThemes;
 };
 
 struct _AppletData {
-	//Pointeurs du Canevas
+	//Pointeurs du canvas
 	CairoDockTask *pTask;
 	GList *pHandelers;
 	MusicPlayerHandeler *pCurrentHandeler;
@@ -163,7 +138,6 @@ struct _AppletData {
 	gchar *cTitle;
 	gchar *cArtist;
 	gchar *cAlbum;
-	gchar *cCoverPath, *cPreviousCoverPath;
 	gchar* cPlayingUri;
 	MyPlayerStatus pPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
@@ -175,34 +149,85 @@ struct _AppletData {
 	MusicPlayerDBus DBus_commands;
 	gboolean dbus_enable;
 	gboolean dbus_enable_shell;
-	gboolean opening;
+	gboolean bIsRunning;
 	
 	//Données de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
-	gchar *cQuickInfo, *cPreviousQuickInfo;
 	
-	// Telechargement des pochettes
-	gint iCheckIter;
-	
+	// Les pochettes
+	gchar *cCoverPath, *cPreviousCoverPath;
+	gint iSidGetCoverInfoTwice;
 	guint iSidCheckCover;
-	
+	gint iNbCheckFile;
+	guint iSidCheckXmlFile;
+	gint iCurrentFileSize;
+	gchar *cCurrentXmlFile;
 	gboolean cover_exist;
+	gboolean bCoverNeedsTest;
 	
-	GLuint TextureName;
+	// pochette 3D
+	gint iCoverTransition;
+	GLuint iPrevTextureCover;
 	GLuint TextureFrame;
 	GLuint TextureCover;
 	GLuint TextureReflect;
-	gchar *cThemeFrame;
-	gchar *cThemeReflect;
-	gint itopleftX;
-	gint itopleftY;
-	gint ibottomleftX;
-	gint ibottomleftY;
-	gint ibottomrightX;
-	gint ibottomrightY;
-	gint itoprightX;
-	gint itoprightY;
+	
+	gdouble itopleftX;
+	gdouble itopleftY;
+	gdouble ibottomleftX;
+	gdouble ibottomleftY;
+	gdouble ibottomrightX;
+	gdouble ibottomrightY;
+	gdouble itoprightX;
+	gdouble itoprightY;
+	GLuint draw_cover;  // calllist
+	
+	gint numberButtons;
+	gboolean osd;
+	/// A passer en structure...
+	gboolean mouseOnButton1;
+	GLuint TextureButton1;
+	gdouble button1coordX, button1coordY;
+	gdouble button1sizeX, button1sizeY;
+	gint iButton1Count;
+	GLuint TextureOsdPlay;
+	gdouble osdPlaycoordX, osdPlaycoordY;
+	gdouble osdPlaysizeX, osdPlaysizeY;
+	GLuint TextureOsdPause;
+	gdouble osdPausecoordX, osdPausecoordY;
+	gdouble osdPausesizeX, osdPausesizeY;
+	
+	gboolean mouseOnButton2;
+	GLuint TextureButton2;
+	gdouble button2coordX, button2coordY;
+	gdouble button2sizeX, button2sizeY;
+	gint iButton2Count;
+	GLuint TextureOsdPrev;
+	gdouble osdPrevcoordX, osdPrevcoordY;
+	gdouble osdPrevsizeX, osdPrevsizeY;
+	
+	gboolean mouseOnButton3;
+	GLuint TextureButton3;
+	gdouble button3coordX, button3coordY;
+	gdouble button3sizeX, button3sizeY;
+	gint iButton3Count;
+	GLuint TextureOsdNext;
+	gdouble osdNextcoordX, osdNextcoordY;
+	gdouble osdNextsizeX, osdNextsizeY;
+	
+	gboolean mouseOnButton4;
+	GLuint TextureButton4;
+	gdouble button4coordX, button4coordY;
+	gdouble button4sizeX, button4sizeY;
+	gint iButton4Count;
+	GLuint TextureOsdHome;
+	gdouble osdHomecoordX, osdHomecoordY;
+	gdouble osdHomesizeX, osdHomesizeY;
+	
+	gint iMouseX;
+	gint iMouseY;
+	gint iButtonState;  // combinaison des etats des differents boutons.
 };
 
 

@@ -16,6 +16,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 
 
 MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
+	g_return_val_if_fail (cName != NULL, NULL);
 	GList *ic;
 	MusicPlayerHandeler *handeler = NULL;
 	for (ic = myData.pHandelers; ic != NULL; ic = ic->next) {
@@ -26,80 +27,86 @@ MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
 	return NULL;
 }
 
-
-static void cd_musicplayer_get_data_async (void) {
-	myData.pCurrentHandeler->acquisition();
-	myData.pCurrentHandeler->read_data();
-}
-static gboolean cd_musicplayer_get_data_and_update (void) {
-	myData.pCurrentHandeler->acquisition();
-	myData.pCurrentHandeler->read_data();
-	return cd_musicplayer_draw_icon();
+static void _cd_musicplayer_get_data_async (gpointer data) {
+	if (myData.pCurrentHandeler->acquisition)
+		myData.pCurrentHandeler->acquisition();
+	if (myData.pCurrentHandeler->read_data)
+		myData.pCurrentHandeler->read_data();
 }
 
-/* Prepare l'handeler et le lance */
-void cd_musicplayer_arm_handeler (void) { 
+static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
+	if (myData.pCurrentHandeler->acquisition)
+		myData.pCurrentHandeler->acquisition();
+	if (myData.pCurrentHandeler->read_data)
+		myData.pCurrentHandeler->read_data();
+	return cd_musicplayer_draw_icon (data);
+}
+
+/* Initialise le backend et lance la tache periodique si necessaire.
+ */
+void cd_musicplayer_launch_handeler (void)
+{ 
 	//cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	if (myData.pCurrentHandeler->configure != NULL)
 		myData.pCurrentHandeler->configure();
 	
-	if (myData.pCurrentHandeler->bSeparateAcquisition == TRUE) { //CF: Utilisation du thread pour les actions longues
-  	myData.pTask = cairo_dock_new_task (1,
-  		(CairoDockGetDataAsyncFunc) cd_musicplayer_get_data_async,
-  		(CairoDockUpdateSyncFunc) cd_musicplayer_draw_icon,
-  		NULL);
-	} //CF: Du coup, xmms ne ralenti plus le dock, retour au thread.
-	else {
-  	myData.pTask = cairo_dock_new_task (1,
-  		NULL,
-  		(CairoDockUpdateSyncFunc) cd_musicplayer_get_data_and_update,
-  		NULL);
-	}
-	cairo_dock_launch_task (myData.pTask);
-	//CF: On s'amuse a casser mon plugin hein Mav :P
-	
-	myData.pCurrentHandeler->free_data();
+	if ((myData.pCurrentHandeler->acquisition || myData.pCurrentHandeler->read_data) && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	{
+		if (myData.pCurrentHandeler->bSeparateAcquisition == TRUE)  // Utilisation du thread pour les actions longues
+		{
+  			myData.pTask = cairo_dock_new_task (1,
+  				(CairoDockGetDataAsyncFunc) _cd_musicplayer_get_data_async,
+  				(CairoDockUpdateSyncFunc) cd_musicplayer_draw_icon,
+  				NULL);
+		}
+		else
+		{
+  			myData.pTask = cairo_dock_new_task (1,
+  				NULL,
+  				(CairoDockUpdateSyncFunc) _cd_musicplayer_get_data_and_update,
+  				NULL);
+		}
+		cairo_dock_launch_task (myData.pTask);
+	}  // else tout est fait par signaux.
 }
 
-/* Arrete l'handeler en nettoyant la memoire */
-void cd_musicplayer_disarm_handeler (void) {
+/* Arrete le backend en nettoyant la memoire
+ */
+void cd_musicplayer_stop_handeler (void)
+{
 	if (myData.pCurrentHandeler == NULL)
 		return ;
-	cd_debug ("MP : Disarming %s", myData.pCurrentHandeler->name);
+	cd_debug ("MP : stopping %s", myData.pCurrentHandeler->name);
 	myData.pCurrentHandeler->free_data();
 	cairo_dock_free_task (myData.pTask);
-	myData.pCurrentHandeler = NULL;
+	myData.pTask = NULL;
+	myData.dbus_enable = FALSE;
+	myData.bIsRunning = FALSE;
+	myData.pPlayingStatus = PLAYER_NONE;
 }
 
 
-/* Ajout d'un Handeler a la GList */
-void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName) {
-	MusicPlayerHandeler *handeler = cd_musicplayer_get_handeler_by_name (cName);
+/* Ajout d'un backend a la liste
+ */
+void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName)
+{
+	MusicPlayerHandeler *handeler = cd_musicplayer_get_handeler_by_name (cName);  // un peu paranoiaque ...
 	if (handeler == NULL) { //Inutile de rajouter un player déjà présent
-		myData.pHandelers = g_list_append (myData.pHandelers, pHandeler);
+		myData.pHandelers = g_list_prepend (myData.pHandelers, pHandeler);
 	}
 	else
 		cd_warning ("MP : Handeler %s already listed", cName);
 }
 
 
-/* Libere la memoire de l'handeler */
-void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler) {
+/* Detruit un backend
+ */
+void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler)
+{
 	if (pHandeler == NULL)
 		return ;
-	myData.pHandelers = g_list_remove (myData.pHandelers, pHandeler);
-	pHandeler->free_data();
 	
-	g_free (pHandeler->name);
-	pHandeler->name = NULL;
-	g_free (pHandeler->appclass);
-	pHandeler->appclass = NULL;
-	
-	if (pHandeler->launch != NULL) {
-	  g_free (pHandeler->launch);
-	  pHandeler->launch = NULL;
-	}
+	g_free (myData.pCurrentHandeler->cCoverDir);
 	
 	g_free (pHandeler);
-	pHandeler = NULL;
 }

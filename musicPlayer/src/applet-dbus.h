@@ -13,6 +13,7 @@ gboolean musicplayer_dbus_connect_to_bus_Shell (void);
 void musicplayer_dbus_disconnect_from_bus (void);
 void musicplayer_dbus_disconnect_from_bus_Shell (void);
 gboolean cd_musicplayer_dbus_detection(void);
+void cd_musicplayer_dbus_detect_player (void);
 
 void cd_musicplayer_check_dbus_connection (void);
 void cd_musicplayer_check_dbus_connection_with_two_interfaces (void);

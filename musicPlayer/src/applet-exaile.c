@@ -129,28 +129,6 @@ void cd_exaile_control (MyPlayerControl pControl, char* nothing) { //Permet d'ef
 	}
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_exaile_ask_control (MyPlayerControl pControl) {
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		default :
-			return FALSE;
-		break;
-	}
-	
-	return FALSE;
-}
 
 /* Fonction de connexion au bus de Exaile */
 void cd_exaile_acquisition (void) {
@@ -161,7 +139,7 @@ void cd_exaile_acquisition (void) {
 /* Fonction de lecture des infos */
 void cd_exaile_read_data (void) {
 	//cd_debug("MP : on va aller lire les donnees");
-	if (myData.opening)
+	if (myData.bIsRunning)
 	{
 		if (myData.dbus_enable)
 		{
@@ -221,10 +199,10 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->configure = cd_exaile_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pExaile->control = cd_exaile_control;
-	pExaile->ask_control = cd_exaile_ask_control;
-	pExaile->appclass = g_strdup ("exaile.py"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pExaile->name = g_strdup ("Exaile");
-	pExaile->launch = g_strdup ("exaile");
+	pExaile->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
+	pExaile->appclass = "exaile.py";
+	pExaile->name = "Exaile";
+	pExaile->launch = "exaile";
 	pExaile->iPlayer = MP_EXAILE;
 	pExaile->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler (pExaile, "Exaile");

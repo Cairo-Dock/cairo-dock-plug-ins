@@ -11,121 +11,219 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include <string.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-musicplayer.h"
+#include "applet-draw.h"
+#include "3dcover-draw.h"
+#include "applet-notifications.h"
 
 
-
-void cd_musicplayer_prev (void) {
+static void _cd_musicplayer_prev (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
 }
-void cd_musicplayer_pp (void) {
+static void _cd_musicplayer_pp (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_PLAY_PAUSE, NULL);
 }
-void cd_musicplayer_s (void) {
+static void _cd_musicplayer_stop (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_STOP, NULL);
 }
-void cd_musicplayer_next (void) {
+static void _cd_musicplayer_next (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
 }
-void cd_musicplayer_jumpbox (void) {
+static void _cd_musicplayer_jumpbox (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_JUMPBOX, NULL);
 }
-void cd_musicplayer_shuffle (void) {
+static void _cd_musicplayer_shuffle (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_SHUFFLE, NULL);
 }
-void cd_musicplayer_repeat (void) {
+static void _cd_musicplayer_repeat (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_REPEAT, NULL);
+}
+static void _cd_musicplayer_info (GtkMenuItem *menu_item, gpointer *data)
+{
+	cd_musicplayer_popup_info ();
 }
 
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-static void _musicplayer_action_by_id (int iAction) {
-	switch (iAction) {
-		case 0:
-			myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
-		break;
-		case 1:
-			myData.pCurrentHandeler->control (PLAYER_PLAY_PAUSE, NULL);
-		break;
-		case 2:
-			myData.pCurrentHandeler->control (PLAYER_STOP, NULL);
-		break;
-		case 3:
-			myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
-		break;
-		default :
-			cd_warning ("MP: No action defined, Halt.");
-		break;
-	}
-}
 CD_APPLET_ON_CLICK_BEGIN
-	if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL && pClickedIcon != myIcon) {  // clic sur une des icones du desklet.
-		_musicplayer_action_by_id (pClickedIcon->iType);
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myData.numberButtons != 0  && myConfig.bOpenglThemes && myDesklet)
+	{
+		// Actions au clic sur un bouton :
+		if (myData.mouseOnButton1)
+		{
+			if(myData.bIsRunning)
+			{
+				_cd_musicplayer_pp (NULL, NULL);
+			}
+			else if (myData.pCurrentHandeler->launch != NULL)
+			{
+				cairo_dock_launch_command (myData.pCurrentHandeler->launch);
+			}
+		}
+		else if (myData.mouseOnButton2)
+			_cd_musicplayer_prev (NULL, NULL);
+		else if (myData.mouseOnButton3)
+			_cd_musicplayer_next (NULL, NULL);
+		else if (myData.mouseOnButton4)
+			_cd_musicplayer_jumpbox (NULL, NULL);
+		else
+		{
+			if(myData.bIsRunning)
+				cd_musicplayer_popup_info ();
+			else if (myData.pCurrentHandeler->launch != NULL)
+				cairo_dock_launch_command (myData.pCurrentHandeler->launch);
+		}
 	}
-	else if (myData.dbus_enable && myData.opening) { //Player dBus
-	  cd_musicplayer_pp (); //CF: Faut faire gaffe...
+	else
+	{
+		if(myData.bIsRunning)
+			_cd_musicplayer_pp (NULL, NULL);
+		else if (myData.pCurrentHandeler->launch != NULL)
+			cairo_dock_launch_command (myData.pCurrentHandeler->launch);
 	}
-	else if (!myData.DBus_commands.service) { //Si pas de commandes DBus alors le player commandé par le shell
-	  cd_musicplayer_pp ();
-	}
-	else if (!myData.dbus_enable && !myData.opening && myData.pCurrentHandeler->launch != NULL) { //lancer le player dBus
-	  GError *erreur = NULL;
-	  cd_debug("MP : lancement du lecteur");
-	  g_spawn_command_line_async (myData.pCurrentHandeler->launch, &erreur);
-	  if (erreur != NULL) {
-		  cd_warning ("Attention : when trying to execute command : %s", erreur->message);
-		  g_error_free (erreur);
-		  CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_ERROR, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
-	  }
-	}
-	// Ici, il faudrait rajouter la possibilite d'ouvrir le lecteur s'il n'est pas ouvert //C'est fait
-		
 CD_APPLET_ON_CLICK_END
+
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-  GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-  CD_APPLET_ADD_IN_MENU (D_("Previous"), cd_musicplayer_prev, CD_APPLET_MY_MENU);
-  CD_APPLET_ADD_IN_MENU (D_("Play/Pause (left-click)"), cd_musicplayer_pp, CD_APPLET_MY_MENU);
-
-  if (myData.pCurrentHandeler->ask_control (PLAYER_STOP))
-  	CD_APPLET_ADD_IN_MENU (D_("Stop"), cd_musicplayer_s, CD_APPLET_MY_MENU);
-  	
-  CD_APPLET_ADD_IN_MENU (D_("Next (middle-click)"), cd_musicplayer_next, CD_APPLET_MY_MENU);
-
-  if (myData.pCurrentHandeler->ask_control (PLAYER_JUMPBOX))
-  	CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), cd_musicplayer_jumpbox, pSubMenu);
-  	
-  if (myData.pCurrentHandeler->ask_control (PLAYER_SHUFFLE))	
-  	CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), cd_musicplayer_shuffle, pSubMenu);
-  	
-  if (myData.pCurrentHandeler->ask_control (PLAYER_REPEAT))	
-  	CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), cd_musicplayer_repeat, pSubMenu);
-  	
-  CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PREVIOUS)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Previous"), GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PLAY_PAUSE)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Play/Pause (left-click)"), (myData.pPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_NEXT)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Next (middle-click)"), GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_STOP)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_JUMPBOX)
+		CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_SHUFFLE)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, CD_APPLET_MY_MENU);
+	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_REPEAT)
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU (D_("Information"), _cd_musicplayer_info, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-  cd_musicplayer_next ();
+	_cd_musicplayer_next (NULL, NULL);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_message (" Musicplayer: %s to enqueue", CD_APPLET_RECEIVED_DATA);
-	myData.pCurrentHandeler->control (PLAYER_ENQUEUE, CD_APPLET_RECEIVED_DATA);
+	cd_message (" %s --> nouvelle pochette ou chanson !", CD_APPLET_RECEIVED_DATA);
+	
+	gboolean isJpeg = g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
+		|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG");
+	
+	if (isJpeg)
+	{
+		if (myData.cArtist != NULL && myData.cAlbum != NULL && myData.pCurrentHandeler->cCoverDir != NULL)
+		{
+			cd_debug("Le fichier est un JPEG");
+			gchar *cCommand, *cHost = NULL;
+			gchar *cFilePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHost, NULL));
+			if (cHost != NULL)  // fichier distant, on le telecharge dans le cache du lecteur.
+			{
+				cd_debug("Le fichier est distant (sur %s)", cHost);
+				cCommand = g_strdup_printf ("wget -O '%s'/\"%s - %s.jpg\" '%s'",
+					myData.pCurrentHandeler->cCoverDir,
+					myData.cArtist,
+					myData.cAlbum,
+					CD_APPLET_RECEIVED_DATA);
+			}
+			else  // fichier local, on le copie juste dans le cache du lecteur.
+			{
+				cd_debug("Le fichier est local");
+				cCommand = g_strdup_printf ("cp '%s' '%s'/\"%s - %s.jpg\"",
+					cFilePath,
+					myData.pCurrentHandeler->cCoverDir,
+					myData.cArtist,
+					myData.cAlbum);
+				
+			}
+			cd_debug ("on recupere la pochette par : '%s'", cCommand);
+			cairo_dock_launch_command (cCommand);
+			g_free (cCommand);
+			g_free (cFilePath);
+			g_free (cHost);
+		}
+	}
+	else
+	{
+		cd_debug ("on rajoute la chanson a la queue.");
+		myData.pCurrentHandeler->control (PLAYER_ENQUEUE, CD_APPLET_RECEIVED_DATA);
+	}
 CD_APPLET_ON_DROP_DATA_END
 
 
-
 CD_APPLET_ON_SCROLL_BEGIN
-  if (CD_APPLET_SCROLL_DOWN) {
-  	myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
-  }
-  else if (CD_APPLET_SCROLL_UP) {
-  	myData.pCurrentHandeler->control (PLAYER_PREVIOUS, NULL);
-  }
-  else
-  	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (CD_APPLET_SCROLL_DOWN) {
+  		_cd_musicplayer_next (NULL, NULL);
+	}
+	else if (CD_APPLET_SCROLL_UP) {
+  		_cd_musicplayer_prev (NULL, NULL);
+	}
+	else
+  		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_SCROLL_END
+
+
+#define _update_button_count(on, count) \
+	if (on) {\
+		if (count < NB_TRANSITION_STEP) {\
+			count ++;\
+			bNeedsUpdate = TRUE; } }\
+	else if (count != 0) {\
+		count --;\
+		bNeedsUpdate = TRUE; }
+CD_APPLET_ON_UPDATE_ICON_BEGIN
+
+	gboolean bNeedsUpdate = FALSE;
+	
+	if (myData.iCoverTransition > 0)
+	{
+		myData.iCoverTransition --;
+		bNeedsUpdate = TRUE;
+	}
+	
+	_update_button_count (myData.mouseOnButton1, myData.iButton1Count);
+	_update_button_count (myData.mouseOnButton2, myData.iButton2Count);
+	_update_button_count (myData.mouseOnButton3, myData.iButton3Count);
+	_update_button_count (myData.mouseOnButton4, myData.iButton4Count);
+	
+	if (! bNeedsUpdate)
+		CD_APPLET_STOP_UPDATE_ICON;  // quit.
+	
+	cd_opengl_render_to_texture (myApplet);
+	
+	if ((myData.iCoverTransition == 0) &&
+		(myData.iButton1Count == 0 || myData.iButton1Count == NB_TRANSITION_STEP) &&
+		(myData.iButton2Count == 0 || myData.iButton2Count == NB_TRANSITION_STEP) &&
+		(myData.iButton3Count == 0 || myData.iButton3Count == NB_TRANSITION_STEP) &&
+		(myData.iButton4Count == 0 || myData.iButton4Count == NB_TRANSITION_STEP))
+	{
+		CD_APPLET_PAUSE_UPDATE_ICON;  // redraw and stop.
+	}
+	
+CD_APPLET_ON_UPDATE_ICON_END
+
+
+gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	if (pContainer != myContainer)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	int iPrevButtonState = myData.iButtonState;
+	myData.iButtonState = cd_opengl_check_buttons_state (myApplet);
+	
+	if (iPrevButtonState != myData.iButtonState)
+	{
+		*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

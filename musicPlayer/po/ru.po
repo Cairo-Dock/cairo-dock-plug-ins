@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Cairo-Dock II\n"
+"Project-Id-Version: Cairo-Dock\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-01-17 02:16+0100\n"
-"PO-Revision-Date: 2009-01-25 15:52+0500\n"
+"POT-Creation-Date: 2009-01-17 02:15+0100\n"
+"PO-Revision-Date: 2009-01-25 16:35+0500\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,41 +17,46 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
-#: ../src/applet-notifications.c:20
-msgid ""
-"This is the musicPlayer applet\n"
-" made by ChAnGFu & Mav for Cairo-Dock"
-msgstr ""
-"Апплет musicPlayer\n"
-" создан ChAnGFu & Mav для Cairo-Dock"
+#: ../src/rhythmbox-draw.c:75
+msgid "Track"
+msgstr "Дорожка"
 
-#: ../src/applet-notifications.c:77
+#: ../src/rhythmbox-draw.c:135
+#, c-format
+msgid ""
+"Artist : %s\n"
+"Album : %s\n"
+"Title : %s"
+msgstr ""
+"Исполнитель : %s\n"
+"Альбом : %s\n"
+"Заголовок : %s"
+
+#: ../src/rhythmbox-draw.c:139
+#: ../src/rhythmbox-draw.c:140
+#: ../src/rhythmbox-draw.c:141
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: ../src/rhythmbox-menu-functions.c:45
+msgid "Applet by Necropotame (Adrien Pilleboue)"
+msgstr "Апплет создан Necropotame (Adrien Pilleboue)"
+
+#: ../src/rhythmbox-menu-functions.c:55
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: ../src/applet-notifications.c:78
-msgid "Play/Pause (left-click)"
-msgstr "Играть/Пауза (левый щелчок)"
-
-#: ../src/applet-notifications.c:81
-msgid "Stop"
-msgstr "Стоп"
-
-#: ../src/applet-notifications.c:83
+#: ../src/rhythmbox-menu-functions.c:57
 msgid "Next (middle-click)"
 msgstr "Следующий (средний щелчок)"
 
-#: ../src/applet-notifications.c:86
-msgid "Show JumpBox"
-msgstr "Показывать быстрый переход"
+#: ../src/rhythmbox-menu-functions.c:59
+msgid "Play/Pause (left-click)"
+msgstr "Играть/Пауза (левый щелчок)"
 
-#: ../src/applet-notifications.c:89
-msgid "Toggle Shuffle"
-msgstr "Включить перемешивание"
-
-#: ../src/applet-notifications.c:92
-msgid "Toggle Repeat"
-msgstr "Включить повторение"
+#: ../src/rhythmbox-menu-functions.c:61
+msgid "Information"
+msgstr "Информация"
 
 #: ../data/messages:1
 msgid "Icon"
@@ -70,376 +75,238 @@ msgid "height :"
 msgstr "высота:"
 
 #: ../data/messages:9
-msgid "You can put the tag '__Player__' to display the name of the player you control"
-msgstr "Вы можете использовать тэг '__Player__', чтобы показывать название плеера, которым управляете"
+msgid "Default title :"
+msgstr "Стандартный заголовок :"
 
 #: ../data/messages:11
-msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Имя значка, который появится на подписи в панели:"
-
-#: ../data/messages:13
 msgid "Name of the dock it belongs to:"
 msgstr "Имя панели которой он принадлежит:"
 
-#: ../data/messages:15
+#: ../data/messages:13
 msgid "Desklet"
 msgstr "Десклет"
 
-#: ../data/messages:17
+#: ../data/messages:15
 msgid "Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple."
 msgstr "В зависимости от вашего Оконного менеджера, вы можете изменить размер с помощью сочетания клавиш ALT + средний щелчок или ALT + левый щелчок."
 
-#: ../data/messages:19
+#: ../data/messages:17
 msgid "Desklet's dimension (width x height) :"
 msgstr "Размер десклета (ширина х высота):"
 
-#: ../data/messages:21
+#: ../data/messages:19
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr "В зависимости от вашего Оконного менеджера, вы можете переместить его с помощью сочетания клавиш ALT + левый щелчок"
 
-#: ../data/messages:23
+#: ../data/messages:21
 msgid "Desklet's position (x ; y) :"
 msgstr "Позиция десклета (x ; y):"
 
-#: ../data/messages:25
+#: ../data/messages:23
 msgid "Is detached from the dock ?"
 msgstr "Открепить от панели?"
 
-#: ../data/messages:27
+#: ../data/messages:25
 msgid "Keep below other windows ?"
 msgstr "Держать позади окон?"
 
-#: ../data/messages:29
+#: ../data/messages:27
 msgid "Keep above other windows ?"
 msgstr "Держать поверх окон?"
 
-#: ../data/messages:31
+#: ../data/messages:29
 msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-dock & type=utility)"
 msgstr "Для \"слоя виджетов\" Compiz Fusion, установите поведение в Compiz на (имя=cairo-dock & тип=utility)"
 
-#: ../data/messages:33
+#: ../data/messages:31
 msgid "Keep on widget layer ?"
 msgstr "Держать на слое виджетов?"
 
-#: ../data/messages:35
+#: ../data/messages:33
 msgid "If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click."
 msgstr "Если заблокировано, то десклет можно легко перемещать с помощью левой кнопки мыши. И, кончено, вы по-прежнему можете использовать ALT + левый щелчок."
 
-#: ../data/messages:37
+#: ../data/messages:35
 msgid "Lock position ?"
 msgstr "Заблокировать позицию?"
 
-#: ../data/messages:39
+#: ../data/messages:37
 msgid "in degrees."
 msgstr "в градусах."
 
-#: ../data/messages:41
+#: ../data/messages:39
 msgid "Rotation :"
 msgstr "Вращение:"
 
-#: ../data/messages:43
+#: ../data/messages:41
 msgid "Decorations"
 msgstr "Оформление"
 
-#: ../data/messages:45
+#: ../data/messages:43
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "Выберите 'персональный', чтобы самостоятельно настроить оформление."
 
-#: ../data/messages:47
+#: ../data/messages:45
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Выберите тему оформления лоя этого десклета:"
 
-#: ../data/messages:49
+#: ../data/messages:47
 msgid "It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any."
 msgstr "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, чтобы не использовать."
 
-#: ../data/messages:51
-#: ../data/messages:141
+#: ../data/messages:49
 msgid "Background image :"
 msgstr "Фоновое изображение:"
 
-#: ../data/messages:53
-#: ../data/messages:143
+#: ../data/messages:51
 msgid "Background tansparency :"
 msgstr "Фоновая прозрачность:"
 
-#: ../data/messages:55
+#: ../data/messages:53
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "в пикселях. Определяет левую позицию рисунка."
 
-#: ../data/messages:57
-#: ../data/messages:147
+#: ../data/messages:55
 msgid "Left offset :"
 msgstr "Левое смещение:"
 
-#: ../data/messages:59
+#: ../data/messages:57
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "в пикселях. Определяет верхнюю позицию рисунка."
 
-#: ../data/messages:61
+#: ../data/messages:59
 msgid "Top offset :"
 msgstr "Верхнее смещение:"
 
-#: ../data/messages:63
+#: ../data/messages:61
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "в пикселях. Определяет правую позицию рисунка."
 
-#: ../data/messages:65
-#: ../data/messages:149
-#: ../data/messages:151
-#: ../data/messages:153
+#: ../data/messages:63
 msgid "Right offset :"
 msgstr "Правое смещение:"
 
-#: ../data/messages:67
+#: ../data/messages:65
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "в пикселях. Определяет нижнюю позицию рисунка."
 
-#: ../data/messages:69
+#: ../data/messages:67
 msgid "Bottom offset :"
 msgstr "Нижнее смещение:"
 
-#: ../data/messages:71
+#: ../data/messages:69
 msgid "It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any."
 msgstr "Изображение показываемое поверх рисунка, например отражение. Оставьте пустым, чтобы не использовать."
 
-#: ../data/messages:73
+#: ../data/messages:71
 msgid "Foreground image :"
 msgstr "Фоновое изображение:"
 
-#: ../data/messages:75
+#: ../data/messages:73
 msgid "Foreground tansparency :"
 msgstr "Фоновая прозрачность:"
 
-#: ../data/messages:77
+#: ../data/messages:75
 msgid "Configuration"
 msgstr "Настройки"
 
+#: ../data/messages:77
+msgid "Info-bubbles"
+msgstr "Облачко напоминаний"
+
 #: ../data/messages:79
-msgid "Audio Player"
-msgstr "Аудио проигрыватель"
+msgid "Activate info-bubbles ?"
+msgstr "Включить облачки напоминаний?"
 
 #: ../data/messages:81
-msgid "Player to control:"
-msgstr "Управлять проигрывателем:"
-
-#: ../data/messages:83
-msgid "XMMS"
-msgstr "XMMS"
-
-#: ../data/messages:85
-msgid "Exaile"
-msgstr "Exaile"
-
-#: ../data/messages:87
-msgid "Songbird"
-msgstr "Songbird"
-
-#: ../data/messages:89
-msgid "Banshee"
-msgstr "Banshee"
-
-#: ../data/messages:91
-msgid "It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr "Предотвратит появление значка проигрывателя на панель задач. Сам значок апплета, будет реагировать и как значок запуска, и как приложение, и как апплет."
-
-#: ../data/messages:93
-msgid "Steal the player's icon from taskbar ?"
-msgstr "Убрать значок проигрывателя с панели задач?"
-
-#: ../data/messages:95
-msgid "Display"
-msgstr "Отображение"
-
-#: ../data/messages:97
-msgid "Display the cover ?"
-msgstr "Показывать обложку?"
-
-#: ../data/messages:99
-msgid "Information to display on the icon :"
-msgstr "Информация на значке:"
-
-#: ../data/messages:101
-msgid "Nothing"
-msgstr "Ничего"
-
-#: ../data/messages:103
-msgid "Time Elapsed"
-msgstr "Прошедшее время"
-
-#: ../data/messages:105
-msgid "Time Left"
-msgstr "Оставшееся время"
-
-#: ../data/messages:107
-msgid "N° of track"
-msgstr "N° дорожки"
-
-#: ../data/messages:109
-msgid "Desklet display mode :"
-msgstr "Режим отображения десклета:"
-
-#: ../data/messages:111
-msgid "Simple"
-msgstr "Простой"
-
-#: ../data/messages:113
-msgid "Info"
-msgstr "Инфо"
-
-#: ../data/messages:115
-msgid "Info and Controler"
-msgstr "Инфо и управление"
-
-#: ../data/messages:117
-msgid "Caroussel"
-msgstr "Карусель"
-
-#: ../data/messages:119
-msgid "Controler"
-msgstr "Управление"
-
-#: ../data/messages:121
-msgid "Simple Desklet"
-msgstr "Просто десклет"
-
-#: ../data/messages:123
-msgid "If you choose 'personnal', you can define your own decoration above, or let it blank to not use any decoration."
-msgstr "Если выбрать 'персонально', то вы сможете задать собственное оформление, или просто оставьте пустым, чтобы не использовать оформление."
-
-#: ../data/messages:125
-msgid "Choose a decoration for the desklet mode :"
-msgstr "Выберите оформление для режима десклета:"
-
-#: ../data/messages:127
-msgid "Personnal"
-msgstr "Персонально"
-
-#: ../data/messages:129
-msgid "Extended 3D mode"
-msgstr "Расширенный 3D режим"
-
-#: ../data/messages:131
-msgid "CD box"
-msgstr "CD Коробка"
-
-#: ../data/messages:133
-msgid "frame with reflects"
-msgstr "Рамка с отражениями"
-
-#: ../data/messages:135
-msgid "scotch"
-msgstr "Скотч"
-
-#: ../data/messages:137
-msgid "frame with scotch"
-msgstr "Рамка со скотчем"
-
-#: ../data/messages:139
-msgid "It's an image that will be displayed below the cover, like a frame for exemple."
-msgstr "Здесь задаётся изображение, которое будет показано под обложкой, к примеру рамка."
-
-#: ../data/messages:145
-msgid "It's typically the width of the left side of your frame, in pixels."
-msgstr "Обычно это ширина левой стороны рамки, в пикселях."
-
-#: ../data/messages:155
-msgid "It's an image that will be displayed above the cover, like a reflect for exemple."
-msgstr "Здесь задаётся изображение, которое будет показано поверх обложки, к примеру отражение."
-
-#: ../data/messages:157
-msgid "Reflection image :"
-msgstr "Изображение отражения:"
-
-#: ../data/messages:159
-msgid "Reflection tansparency :"
-msgstr "Прозрачность отражения :"
-
-#: ../data/messages:161
-msgid "Action on music change"
-msgstr "Действие при смене дорожки"
-
-#: ../data/messages:163
-msgid "Show an info-bubble ?"
-msgstr "Показать облачко напоминаний?"
-
-#: ../data/messages:165
-msgid "With a icon ?"
-msgstr "Со значком?"
-
-#: ../data/messages:167
 msgid "in ms."
 msgstr "в мсек."
 
-#: ../data/messages:169
+#: ../data/messages:83
 msgid "Time length of info-bubbles :"
 msgstr "Длительность облачка напоминаний:"
 
-#: ../data/messages:171
-msgid "Animate icon ?"
-msgstr "Анимировать значок?"
+#: ../data/messages:85
+msgid "Behaviour"
+msgstr "Поведение"
 
-#: ../data/messages:173
+#: ../data/messages:87
 msgid "Animation when music changes :"
-msgstr "Анимация при проигрывании музыки :"
+msgstr "Анимация при проигрывании музыки:"
 
-#: ../data/messages:175
-msgid "bounce"
-msgstr "подпрыг"
+#: ../data/messages:89
+msgid "It will prevent the rhythmbox's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet."
+msgstr "Предотвратит появление значка rhythmbox на панели задач. Значок апплет будет реагировать и как значок запуска, и как приложение, и как апплет."
 
-#: ../data/messages:177
-msgid "rotate"
-msgstr "переворот"
+#: ../data/messages:91
+msgid "Steal the rhythmbox's icon in taskbar ?"
+msgstr "Убрать значок rhythmbox из панели задач?"
 
-#: ../data/messages:179
-msgid "blink"
-msgstr "моргание"
+#: ../data/messages:93
+msgid "Display"
+msgstr "Отображение"
 
-#: ../data/messages:181
-msgid "pulse"
-msgstr "импульс"
+#: ../data/messages:95
+msgid "Display album's cover instead of icon ?"
+msgstr "Показывать обложку альбома вместо значка?"
 
-#: ../data/messages:183
-msgid "upside-down"
-msgstr "кверху-вниз"
+#: ../data/messages:97
+msgid "Information to display on the icon :"
+msgstr "Информация на значке:"
 
-#: ../data/messages:185
-msgid "wobbly"
-msgstr "желе"
+#: ../data/messages:99
+msgid "nothing"
+msgstr "Ничего"
 
-#: ../data/messages:187
-msgid "random"
-msgstr "случайно"
+#: ../data/messages:101
+msgid "time elapsed"
+msgstr "Прошедшее время"
 
-#: ../data/messages:189
+#: ../data/messages:103
+msgid "time left"
+msgstr "Оставшееся время"
+
+#: ../data/messages:105
+msgid "time in %"
+msgstr "Время в %"
+
+#: ../data/messages:107
+msgid "n° of track"
+msgstr "N° дорожки"
+
+#: ../data/messages:109
+msgid "Draw desklet in a 3D fashion (experimental) ?"
+msgstr "Использовать 3D (экспериментально)?"
+
+#: ../data/messages:111
 msgid "Personnalisation"
 msgstr "Персонализация"
 
-#: ../data/messages:191
-#: ../data/messages:195
-#: ../data/messages:199
-#: ../data/messages:203
-#: ../data/messages:207
-msgid "Let it empty to use the default icon."
+#: ../data/messages:113
+#: ../data/messages:117
+#: ../data/messages:121
+#: ../data/messages:125
+#: ../data/messages:129
+msgid "Let t empty to use the default icon."
 msgstr "Оставьте пустым, чтобы использовать стандартный значок."
 
-#: ../data/messages:193
+#: ../data/messages:115
 msgid "Name of an image for the 'default' icon :"
-msgstr "Изображение для стандартного значка :"
+msgstr "Изображение для стандартного значка:"
 
-#: ../data/messages:197
+#: ../data/messages:119
 msgid "Name of an image for the 'play' icon :"
-msgstr "Изображение для значка 'играть' :"
+msgstr "Изображение для значка 'играть':"
 
-#: ../data/messages:201
+#: ../data/messages:123
 msgid "Name of an image for the 'stop' icon :"
-msgstr "Изображение для значка 'стоп' :"
+msgstr "Изображение для значка 'стоп':"
 
-#: ../data/messages:205
+#: ../data/messages:127
 msgid "Name of an image for the 'pause' icon :"
-msgstr "Изображение для значка 'пауза' :"
+msgstr "Изображение для значка 'пауза':"
 
-#: ../data/messages:209
+#: ../data/messages:131
 msgid "Name of an image for the 'broken' icon :"
-msgstr "Изображение для значка поломки :"
+msgstr "Изображение для значка поломки:"
 

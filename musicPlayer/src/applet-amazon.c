@@ -1,116 +1,141 @@
+#define _BSD_SOURCE
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "applet-amazon.h"
 #include "applet-struct.h"
 
-static gboolean flag, found;
+#define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
+#define AMAZON_API_URL_1 "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId="
+#define AMAZON_API_URL_2 "&AssociateTag=webservices-20&ResponseGroup=Images,ItemAttributes&Operation=ItemSearch&ItemSearch.Shared.SearchIndex=Music"
 
-gboolean bCurrentlyDownloading = FALSE;
-gboolean bCurrentlyDownloadingXML = FALSE;
+//static gchar *TAB_IMAGE_SIZES[2] = {"MediumImage", "LargeImage"};
 
-gchar *URL;
-gchar *TAB_IMAGE_SIZES[] = {"MediumImage","LargeImage"};
-
-/**
- * Lit les noeuds du fichier en cours de parsage
- * @param reader le noeud courrant
- * @param imageSize Noeud que l'on cherche
- */
-static void cd_process_node (xmlTextReaderPtr reader, gchar **cValue) {
-	const xmlChar *name, *value;
-
-	name = xmlTextReaderConstName(reader);
-	if (name == NULL)
-		name = BAD_CAST "--";
-
-		value = xmlTextReaderConstValue(reader);
-		if ((strcmp(name,TAB_IMAGE_SIZES[myConfig.iImagesSize])==0 || flag) && !found) {
-			//printf("node: %s ", name);
-		if (value != NULL) {
-			cd_message ("%s\n", value);
-			found=TRUE;
-			*cValue=g_strdup(value);
-		}
-		if (strcmp(name,"#text")!=0) {
-			flag=TRUE;
-		} else {
-			flag=FALSE;
-		}
-	}
-}
 
 /**
  * Parse le fichier XML passé en argument
  * à la recherche de l'URL de la pochette
  * @param filename URI du fichier à lire
- * @param imageSize Taille de l'image que l'on souhaite
  */
-void cd_stream_file(const char *filename, gchar **cValue) {
-	/*
-	* this initialize the library and check potential ABI mismatches
-	* between the version it was compiled for and the actual shared
-	* library used.
-	*/
-	LIBXML_TEST_VERSION
-	
+/*gchar *cd_extract_url_from_xml_file (const gchar *filename)
+{
+	const xmlChar *name, *value;
 	int ret;
-	
 	xmlTextReaderPtr reader;
-	flag = FALSE;
-	found=FALSE;
+	gboolean flag = FALSE;
+	gchar *cResult = NULL;
 
 	reader = xmlReaderForFile(filename, NULL, 0);
-	if (reader != NULL) {
+	if (reader != NULL)
+	{
 		ret = xmlTextReaderRead(reader);
-		while (ret == 1) {
-			cd_process_node (reader,cValue);
+		while (ret == 1)  // on parcourt tous les noeuds.
+		{
+			// nom du noeud.
+			name = xmlTextReaderConstName(reader);
+			if (name == NULL)
+				name = BAD_CAST "--";
+			g_print (" node: %s\n", name);
+			
+			if (strcmp (name, TAB_IMAGE_SIZES[myConfig.iImagesSize]) == 0)
+			{
+				ret = xmlTextReaderRead(reader);
+				name = xmlTextReaderConstName(reader);  // <URL>
+				g_print (" final node: %s\n", name);
+				
+				// valeur associee.
+				value = xmlTextReaderConstValue(reader);  // renvoit toujours NULL :-(
+				g_print (" => value: %s\n", value);
+				
+				cResult = g_strdup (value);
+				break ;
+			}
+			
+			// on passe au suivant.
 			ret = xmlTextReaderRead(reader);
 		}
 		xmlFreeTextReader(reader);
-		if (ret != 0) {
-			cd_warning ("%s : failed to parse\n", filename);
-		}
-	} else {
+	}
+	else
+	{
 		cd_warning ("Unable to open %s\n", filename);
 	}
-	/*
-	 * Cleanup function for the XML library.
-	 */
 	xmlCleanupParser();
-	/*
-	 * this is to debug memory for regression tests
-	 */
-	xmlMemoryDump();
+	return cResult;
+}*/
+gchar *cd_extract_url_from_xml_file (const gchar *filename)
+{
+	gsize length = 0;
+	gchar *cContent = NULL;
+	g_file_get_contents (filename,
+		&cContent,
+		&length,
+		NULL);
+	g_return_val_if_fail (cContent != NULL, NULL);
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	const gchar *cImageSize = (iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
+	gchar *str = g_strstr_len (cContent, -1, cImageSize);
+	gchar *cResult = NULL;
+	if (str)
+	{
+		str = g_strstr_len (str, -1, "<URL>");
+		if (str)
+		{
+			str += 5;
+			gchar *str2 = g_strstr_len (str, -1, "</URL>");
+			if (str2)
+			{
+				*str2 = '\0';
+				cResult = g_strdup (str);
+			}
+		}
+	}
+	g_free (cContent);
+	return cResult;
 }
 
-gboolean cd_get_xml_file (const gchar *artist, const gchar *album) {
+gchar *cd_get_xml_file (const gchar *artist, const gchar *album)
+{
+    g_return_val_if_fail (artist != NULL && album != NULL, FALSE);
     if (g_strcasecmp("Unknown",artist)==0 || g_strcasecmp("Unknown",album)==0)
         return FALSE;
-        
-    gchar *cFileToDownload = g_strdup_printf("%s%s%s&Artist=%s&Album=%s",AMAZON_API_URL_1,LICENCE_KEY,AMAZON_API_URL_2,artist,album);
-    gchar *cTmpFilePath = g_strdup (DEFAULT_XML_LOCATION);
-    
-    gchar *cCommand = g_strdup_printf ("rm %s", DEFAULT_DOWNLOADED_IMAGE_LOCATION);
-    if (!system (cCommand)) return FALSE;
-    g_free (cCommand);
-    cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cFileToDownload, cTmpFilePath, cTmpFilePath, cTmpFilePath);
-    cd_debug ("%s\n",cCommand);
-    //system (cCommand);
-    cairo_dock_launch_command (cCommand);
-    bCurrentlyDownloadingXML = TRUE;
-    g_free (cCommand);
-    g_free (cTmpFilePath);
-    g_free (cFileToDownload);
-    return TRUE;
+	
+	gchar *cFileToDownload = g_strdup_printf ("%s%s%s&Artist=%s&Keywords=%s",
+		AMAZON_API_URL_1,
+		LICENCE_KEY,
+		AMAZON_API_URL_2,
+		artist,
+		album);
+	
+	gchar *cTmpFilePath = g_strdup ("/tmp/amazon-cover.XXXXXX");
+	int fds = mkstemp (cTmpFilePath);
+	if (fds == -1)
+	{
+		g_free (cTmpFilePath);
+		return NULL;
+	}
+	
+	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 3 -T 4 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
+	g_print ("%s\n",cCommand);
+	cairo_dock_launch_command (cCommand);
+	
+	g_free (cCommand);
+	g_free (cFileToDownload);
+	close(fds);
+	return cTmpFilePath;
 }
 
-gboolean cd_download_missing_cover (const gchar *cURL, const gchar *cDestPath) {
-    gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s-bis' -t 2 -T 2 > /dev/null 2>&1 && mv %s-bis %s", cURL, cDestPath, cDestPath, cDestPath);
-    cd_debug ("%s\n",cCommand);
-    //system (cCommand);
-    cairo_dock_launch_command (cCommand);
-    bCurrentlyDownloading = TRUE;
-    g_free (cCommand);
-    cCommand = g_strdup_printf ("rm %s", DEFAULT_XML_LOCATION);
-    if (!system (cCommand)) return FALSE;
-    g_free (cCommand);
-    return TRUE;
+void cd_download_missing_cover (const gchar *cURL)
+{
+	if (cURL == NULL)
+		return ;
+	g_return_if_fail (myData.cCoverPath != NULL);
+	if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
+	{
+		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 2 -T 5 > /dev/null 2>&1", cURL, myData.cCoverPath);
+		g_print ("%s\n",cCommand);
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+	}
 }

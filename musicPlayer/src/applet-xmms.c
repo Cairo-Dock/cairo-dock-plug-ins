@@ -91,16 +91,9 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 	}
 }
 
-/*Permet de renseigner l'applet des fonctions supportées par le lecteur
-Un bon exemple est Banshee ou Exaile qui n'ont pas de jumpbox ni de commande stop
-Ici on répond TRUE car xmms supporte toutes les options, pour banshee il faudra faire quelque if*/
-gboolean cd_xmms_ask_control (MyPlayerControl pControl) {
-	return TRUE;
-}
-
 /*Rien a faire le pipe est déja prêt pour nous*/
 void cd_xmms_acquisition (void) {
-	system ("echo xmms >> /dev/null");
+	system ("echo xmms >> /dev/null");  // ???
 }
 
 //Fonction de lecture du tuyau.
@@ -113,10 +106,10 @@ void cd_xmms_read_data (void) {
 	GError *erreur = NULL;
 	g_file_get_contents (s_cTmpFile, &cContent, &length, &erreur);
 	if (erreur != NULL) {
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("MP : %s", erreur->message);
 		g_error_free (erreur);
 		myData.pPlayingStatus = PLAYER_NONE;
-		cd_musicplayer_player_none ();
+		//cd_musicplayer_player_none ();
 	}
 	else {
 		gchar **cInfopipesList = g_strsplit(cContent, "\n", -1);
@@ -147,7 +140,7 @@ void cd_xmms_read_data (void) {
 					myData.pPlayingStatus = PLAYER_BROKEN;
 			}
 			else if (i == s_pLineNumber[INFO_TRACK_IN_PLAYLIST]) {
-				if (myConfig.pQuickInfoType == MY_APPLET_TRACK) {
+				if (myConfig.iQuickInfoType == MY_APPLET_TRACK) {
 					gchar *str = strchr (cOneInfopipe, ':');
 					if (str != NULL) {
 						str ++;
@@ -158,7 +151,7 @@ void cd_xmms_read_data (void) {
 				}
 			}
 			else if (i == s_pLineNumber[INFO_TIME_ELAPSED_IN_SEC]) {
-				if (myConfig.pQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.pQuickInfoType == MY_APPLET_TIME_LEFT) {
+				if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT) {
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -170,7 +163,7 @@ void cd_xmms_read_data (void) {
 				}
 			}
 			else if (i == s_pLineNumber[INFO_TIME_ELAPSED]) {
-				if ((myConfig.pQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.pQuickInfoType == MY_APPLET_TIME_LEFT) && myData.iCurrentTime == -1) {
+				if ((myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT) && myData.iCurrentTime == -1) {
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -188,7 +181,7 @@ void cd_xmms_read_data (void) {
 				}
 			}
 			else if (i == s_pLineNumber[INFO_TOTAL_TIME_IN_SEC]) {
-				if (myConfig.pQuickInfoType == MY_APPLET_TIME_LEFT) {
+				if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT) {
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -200,7 +193,7 @@ void cd_xmms_read_data (void) {
 				}
 			}
 			else if (i == s_pLineNumber[INFO_TOTAL_TIME]) {
-				if (myConfig.pQuickInfoType == MY_APPLET_TIME_LEFT && myData.iSongLength == -1) {
+				if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT && myData.iSongLength == -1) {
 					gchar *str = strchr (cOneInfopipe, ' ');
 					if (str != NULL) {
 						str ++;
@@ -223,11 +216,11 @@ void cd_xmms_read_data (void) {
 					str ++;
 					while (*str == ' ')
 						str ++;
-					if ((strcmp(str," (null)") != 0) && (myData.cRawTitle == NULL || strcmp(str, myData.cRawTitle) != 0)) {
+					if ((strcmp(str, "(null)") != 0) && (myData.cRawTitle == NULL || strcmp(str, myData.cRawTitle) != 0)) {
 						g_free (myData.cRawTitle);
 						myData.cRawTitle = g_strdup (str);
 						cd_message ("On a changé de son! (%s)", myData.cRawTitle);
-						cd_musicplayer_change_desklet_data();
+						//cd_musicplayer_change_desklet_data();
 					}
 				}
 			}
@@ -244,13 +237,13 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->acquisition = cd_xmms_acquisition;
 	pXMMS->read_data = cd_xmms_read_data;
 	pXMMS->free_data = cd_xmms_free_data;
-	pXMMS->configure = NULL; //Cette fonction permettera de préparé le controleur
+	pXMMS->configure = NULL; //Cette fonction permettera de préparer le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pXMMS->control = cd_xmms_control;
-	pXMMS->ask_control = cd_xmms_ask_control;
-	pXMMS->appclass = g_strdup("xmms"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pXMMS->name = g_strdup("XMMS");
-	pXMMS->launch = NULL;
+	pXMMS->appclass = "xmms";
+	pXMMS->name = "XMMS";
+	pXMMS->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_ENQUEUE | PLAYER_REPEAT;
+	pXMMS->launch = "xmms";
 	pXMMS->iPlayer = MP_XMMS;
 	pXMMS->bSeparateAcquisition = TRUE;
 	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");

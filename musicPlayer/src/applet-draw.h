@@ -4,18 +4,23 @@
 
 #include <cairo-dock.h>
 
-#include <applet-struct.h>
+#include "applet-struct.h"
 
-gboolean cd_musicplayer_draw_icon (void);
 
-void cd_musicplayer_add_buttons_to_desklet(void);
+gboolean cd_musicplayer_draw_icon (gpointer data);
 
-void cd_musicplayer_animate_icon(int animationLength);
-void cd_musicplayer_new_song_playing(void);
+
+void cd_musicplayer_popup_info (void);
+void cd_musicplayer_animate_icon (int animationLength);
 
 void cd_musicplayer_set_surface (MyPlayerStatus iStatus);
 
-void cd_musicplayer_change_desklet_data (void);
-void cd_musicplayer_player_none (void);
+gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath);
+
+gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize);
+
+
+void cd_musicplayer_update_icon (gboolean bFirstTime);
+
 
 #endif

@@ -23,12 +23,11 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-quodlibet.h"
 
 
-
 //Les Fonctions - CF: Il y a d'autre personne qui passe dans les .c, pensez a la visibilité de vos codes...
 void cd_quodlibet_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
-	const gchar *value;
+	gchar *value;
 	
 	if (dbus_g_proxy_call (myData.dbus_proxy_player, "CurrentSong", NULL,
 		G_TYPE_INVALID,
@@ -65,14 +64,14 @@ void cd_quodlibet_getSongInfos (void)
 		
 		value = (const char *) g_hash_table_lookup (data_list, "tracknumber");
 		if (value != NULL)
-		  myData.iTrackNumber = atoi (value);
+		  myData.iTrackNumber = g_strdup (value);
 		else
 		  myData.iTrackNumber = 0;
 		//cd_message ("\tMP : playing_track <- %s", myData.iTrackNumber);
 		
 		value = (const char *) g_hash_table_lookup (data_list, "~#length");
 		if (value != NULL) 
-			myData.iSongLength = atoi (value);
+			myData.iSongLength = g_strdup (value);
 		else 
 		  myData.iSongLength = 0;
 		//cd_message ("\tMP : playing_duration <- %s", myData.iSongLength);
@@ -132,29 +131,6 @@ void cd_quodlibet_control (MyPlayerControl pControl, char* nothing) { //Permet d
 	}
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_quodlibet_ask_control (MyPlayerControl pControl) {
-	//cd_debug ("");
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		default :
-			return FALSE;
-		break;
-	}
-	
-	return FALSE;
-}
 
 /* Fonction de connexion au bus de quodlibet */
 void cd_quodlibet_acquisition (void) {
@@ -164,7 +140,7 @@ void cd_quodlibet_acquisition (void) {
 
 /* Fonction de lecture des infos */
 void cd_quodlibet_read_data (void) {
-	if (myData.opening)
+	if (myData.bIsRunning)
 	{
 		if (myData.dbus_enable)
 		{
@@ -222,9 +198,10 @@ void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre l
 	pQuodlibet->configure = cd_quodlibet_load_dbus_commands; //Cette fonction permettera de préparé le controleur
 	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
 	pQuodlibet->control = cd_quodlibet_control;
-	pQuodlibet->ask_control = cd_quodlibet_ask_control;
-	pQuodlibet->appclass = g_strdup ("Quodlibet"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pQuodlibet->name = g_strdup ("QuodLibet");
+	pQuodlibet->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
+	pQuodlibet->appclass = "Quodlibet";
+	pQuodlibet->launch = "quodlibet";
+	pQuodlibet->name = "QuodLibet";
 	pQuodlibet->iPlayer = MP_QUODLIBET;
 	pQuodlibet->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handeler (pQuodlibet, "QuodLibet");

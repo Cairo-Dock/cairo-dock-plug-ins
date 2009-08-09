@@ -15,144 +15,118 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include <glib/gi18n.h>
 #include <cairo-dock.h>
 
-
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
 #include "applet-dbus.h"
 #include "applet-draw.h"
+#include "applet-cover.h"
 #include "applet-rhythmbox.h"
 
+/////////////////////////////////
+// Les Fonctions propres a RB. //
+/////////////////////////////////
 
+/* Teste si Rhythmbox joue de la musique ou non
+ */
+static void _rhythmbox_getPlaying (void)
+{
+	cd_message ("");
+	if (cairo_dock_dbus_get_boolean (myData.dbus_proxy_player,"getPlaying"))
+		myData.pPlayingStatus = PLAYER_PLAYING;
+	else
+		myData.pPlayingStatus = PLAYER_PAUSED;
+}
 
-//Les Fonctions - CF: Il y a d'autre personne qui passe dans les .c, pensez a la visibilité de vos codes...
-void cd_rhythmbox_getSongInfos (void)
-{	
+/* Retourne l'adresse de la musique jouée
+ */
+static void _rhythmbox_getPlayingUri(void)
+{
+	cd_message ("");
+	g_free (myData.cPlayingUri);
+	myData.cPlayingUri = cairo_dock_dbus_get_string (myData.dbus_proxy_player, "getPlayingUri");
+}
+
+/* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
+ */
+void cd_rhythmbox_getSongInfos (gboolean bGetAll)
+{
 	GHashTable *data_list = NULL;
 	GValue *value;
-	
-	myData.cPlayingUri = cairo_dock_dbus_get_string (myData.dbus_proxy_player, "getPlayingUri");
-	
-	if (dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
+	const gchar *data;
+		
+	if(dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.cPlayingUri,
 		G_TYPE_INVALID,
-		dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE),
-		  &data_list,
-		  G_TYPE_INVALID))
+		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
+		&data_list,
+		G_TYPE_INVALID))
 	{
-	myData.pPreviousPlayingStatus = myData.pPlayingStatus;
-	myData.iPreviousTrackNumber = myData.iTrackNumber;
-	myData.iPreviousCurrentTime = myData.iCurrentTime;
-	// Tester si la table de hachage n'est pas vide
-		g_free (myData.cArtist);
-		value = (GValue *) g_hash_table_lookup (data_list, "artist");
-		if (value != NULL && G_VALUE_HOLDS_STRING (value))
-		  myData.cArtist = g_strdup (g_value_get_string (value));
-		else
-		  myData.cArtist = NULL;
-		cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
-		
-		g_free (myData.cAlbum);
-		value = (GValue *) g_hash_table_lookup (data_list, "album");
-		if (value != NULL && G_VALUE_HOLDS_STRING (value))
-		  myData.cAlbum = g_strdup (g_value_get_string (value));
-		else
-		  myData.cAlbum = NULL;
-		cd_message ("\tMP : playing_album <- %s", myData.cAlbum);
-		
-		g_free (myData.cTitle);
-		value = (GValue *) g_hash_table_lookup (data_list, "title");
-		if (value != NULL && G_VALUE_HOLDS_STRING (value))
-		  myData.cTitle = g_strdup (g_value_get_string (value));
-		else
-		  myData.cTitle = NULL;
-		cd_message ("\tMP : playing_title <- %s", myData.cTitle);
-		
-		value = (GValue *) g_hash_table_lookup (data_list, "track-number");
-		if (value != NULL && G_VALUE_HOLDS_UINT (value))
-		  myData.iTrackNumber = g_value_get_uint (value);
-		else
-		  myData.iTrackNumber = 0;
-		cd_message ("\tMP : playing_track <- %d", myData.iTrackNumber);
-		
-		value = (GValue *) g_hash_table_lookup (data_list, "duration");
-		if (value != NULL && G_VALUE_HOLDS_UINT (value))
-		  myData.iSongLength = g_value_get_uint (value);
-		else
-		  myData.iSongLength = 0;
-		cd_message ("\tMP : playing_duration <- %ds", myData.iSongLength);
-		
-		value = (GValue *) g_hash_table_lookup (data_list, "rb:coverArt-uri");
-		g_free (myData.cCoverPath);
-		myData.cCoverPath = NULL;
-		if (value != NULL && G_VALUE_HOLDS_STRING (value))
+		if (bGetAll)
 		{
-			const gchar *cString = g_value_get_string (value);
-			cd_debug ("RB nous a refile cette adresse : %s", cString);
-			if (cString != NULL)
-			{
-				if (strncmp (cString, "file://", 7) == 0)
-				{
-					GError *erreur = NULL;
-					myData.cCoverPath = g_filename_from_uri (cString, NULL, &erreur);
-					if (erreur != NULL)
-					{
-						cd_warning ("Attention : %s", erreur->message);
-						g_error_free (erreur);
-					}
-				}
-				else if (*cString == '/')
-				{
-					myData.cCoverPath = g_strdup (cString);
-				}
-			}
-		}
-		if (myData.cCoverPath == NULL)
-		{
-			gchar *cSongPath = g_filename_from_uri (myData.cPlayingUri, NULL, NULL);  // on teste d'abord dans le repertoire de la chanson.
-			if (cSongPath != NULL)  // c'est un fichier local.
-			{
-				gchar *cSongDir = g_path_get_dirname (cSongPath);
-				g_free (cSongPath);
-				
-				myData.cCoverPath = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.cArtist, myData.cAlbum);
-				cd_debug ("test de %s", myData.cCoverPath);
-				if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-				{
-					g_free (myData.cCoverPath);
-					myData.cCoverPath = g_strdup_printf ("%s/cover.jpg", cSongDir);
-					cd_debug ("  test de %s", myData.cCoverPath);
-					if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-					{
-						g_free (myData.cCoverPath);
-						myData.cCoverPath = NULL;
-					}
-				}
-				g_free (cSongDir);
-			}
+			g_free (myData.cArtist);
+			value = (GValue *) g_hash_table_lookup(data_list, "artist");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cArtist = g_strdup (g_value_get_string(value));
+			else myData.cArtist = NULL;
+			cd_message ("  cArtist <- %s", myData.cArtist);
 			
-			if (myData.cCoverPath == NULL)  // on regarde maintenant dans le cache de RB.
-			{
-				myData.cCoverPath = g_strdup_printf("%s/.gnome2/rhythmbox/covers/%s - %s.jpg", g_getenv ("HOME"), myData.cArtist, myData.cAlbum);  /// gerer le repertoire ~/.cache/rhythmbox/covers ...
-			}
+			g_free (myData.cAlbum);
+			value = (GValue *) g_hash_table_lookup(data_list, "album");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cAlbum = g_strdup (g_value_get_string(value));
+			else myData.cAlbum = NULL;
+			cd_message ("  cAlbum <- %s", myData.cAlbum);
+			
+			g_free (myData.cTitle);
+			value = (GValue *) g_hash_table_lookup(data_list, "title");
+			if (value != NULL && G_VALUE_HOLDS_STRING(value)) myData.cTitle = g_strdup (g_value_get_string(value));
+			else myData.cTitle = NULL;
+			cd_message ("  cTitle <- %s", myData.cTitle);
+			
+			value = (GValue *) g_hash_table_lookup(data_list, "track-number");
+			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iTrackNumber = g_value_get_uint(value);
+			else myData.iTrackNumber = 0;
+			cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
+			
+			value = (GValue *) g_hash_table_lookup(data_list, "duration");
+			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iSongLength = g_value_get_uint(value);
+			else myData.iSongLength = 0;
+			cd_message ("  iSongLength <- %ds", myData.iSongLength);
+			
+			g_free (myData.cPreviousCoverPath);
+			myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
+			myData.cCoverPath = NULL;
+			myData.bCoverNeedsTest = FALSE;
 		}
-		g_print ("  MP : playing_cover <- %s", myData.cCoverPath);
+		
+		const gchar *cString = NULL;
+		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
+		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
+			cString = g_value_get_string(value);
+		cd_musicplayer_get_cover_path (cString, ! bGetAll);  // la 2eme fois on ne recupere que la couverture et donc on cherche aussi en cache.
+		g_print ("MP :  cCoverPath <- %s\n", myData.cCoverPath);
 		
 		g_hash_table_destroy (data_list);
 	}
 	else
 	{
 		cd_warning ("  can't get song properties");
+		g_free (myData.cPlayingUri);
+		myData.cPlayingUri = NULL;
+		g_free (myData.cCoverPath);
 		myData.cCoverPath = NULL;
 	}
-	
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 	
+	//if (cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))  // la couverture a change, son existence est incertaine. Sinon son existence ne change pas.
+	//	myData.cover_exist = FALSE;
 }
 
 
-//*********************************************************************************
-// rhythmbox_onChangeSong() : Fonction executée à chaque changement de musique
-//*********************************************************************************
+/////////////////////////////////////
+// Les callbacks des signaux DBus. //
+/////////////////////////////////////
+
+/* Fonction executée à chaque changement de musique.
+ */
 void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	cd_message ("MP : %s (%s)",__func__,uri);
@@ -161,13 +135,14 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 	if(uri != NULL && *uri != '\0')
 	{
 		myData.cPlayingUri = g_strdup (uri);
-		myData.opening = TRUE;
-		cd_rhythmbox_getSongInfos();
+		myData.bIsRunning = TRUE;
+		cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
 	}
 	else
 	{
 		myData.cPlayingUri = NULL;
-		//myData.cover_exist = FALSE;
+		myData.cover_exist = FALSE;
+		
 		g_free (myData.cArtist);
 		myData.cArtist = NULL;
 		g_free (myData.cAlbum);
@@ -179,122 +154,171 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 		myData.iSongLength = 0;
 		myData.iTrackNumber = 0;
 		
-		myData.opening = cd_musicplayer_dbus_detection();
+		cd_musicplayer_dbus_detect_player ();
 	}
+	cd_musicplayer_update_icon (TRUE);
 }
 
-//Fonction executée à chaque changement play/pause
+/* Fonction executée à chaque changement play/pause
+ */
 void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
 	if (playing)
 		myData.pPlayingStatus = PLAYER_PLAYING;
 	else
 		myData.pPlayingStatus = PLAYER_PAUSED;
+	if(! myData.cover_exist && myData.cPlayingUri != NULL)
+	{
+		cd_message ("  cPlayingUri : %s", myData.cPlayingUri);
+		if(myData.pPlayingStatus == PLAYER_PLAYING)
+		{
+			cd_musicplayer_set_surface (PLAYER_PLAYING);
+		}
+		else
+		{
+			cd_musicplayer_set_surface (PLAYER_PAUSED);
+		}
+	}
 }
 
 
-//Fonction executée à chaque changement de temps joué
+/* Fonction executée à chaque changement de temps joué
+ */
 void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
 {
 	myData.iCurrentTime = elapsed;
+	if(elapsed > 0)
+	{
+		//g_print ("%s () : %ds\n", __func__, elapsed);
+		if(myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+		{
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+		else if(myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)  // avec un '-' devant.
+		{
+			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed - myData.iSongLength);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+		else if(myConfig.iQuickInfoType == MY_APPLET_PERCENTAGE)
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int) (100.*elapsed/myData.iSongLength));
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+	}
 }
 
 
-void onCovertArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)
-{ //A quoi sert cette fonction vide?
-	/*cd_message ("%s (%s)",__func__,cImageURI);*/
-	/*g_free (myData.cCoverPath);
+void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
+{
+	g_print ("\n%s (%s)\n\n",__func__,cImageURI);
+	g_free (myData.cCoverPath);
 	myData.cCoverPath = g_strdup (cImageURI);
 	
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.playing_cover);
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
 	CD_APPLET_REDRAW_MY_ICON;
 	myData.cover_exist = TRUE;
 	if (myData.iSidCheckCover != 0)
 	{
 		g_source_remove (myData.iSidCheckCover);
 		myData.iSidCheckCover = 0;
-	}*/
+	}
 }
 
-void cd_rhythmbox_proxy_connection (void)
+
+////////////////////////////
+// Definition du backend. //
+////////////////////////////
+
+/* Fonction de connexion au bus de rhythmbox.
+ */
+gboolean cd_rhythmbox_dbus_connect_to_bus (void)
 {
-	cd_debug("MP : Debut des connexions aux proxys");
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
+	if (cairo_dock_bdus_is_enabled ())
+	{
+		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
+		
+		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();  // cree le proxy pour la 2eme interface car RB en a 2.
+		
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_TYPE_UINT,
 			G_TYPE_INVALID);
-	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
 		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
+		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
 			G_CALLBACK(onChangePlaying), NULL, NULL);
 			
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
+		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
 			G_CALLBACK(onChangeSong), NULL, NULL);
 		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
+		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL, NULL);
 		
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_CALLBACK(onCovertArtChanged), NULL, NULL);	
-	cd_debug("MP : Fin des connexions aux proxys");
+		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
+			G_CALLBACK(onCoverArtChanged), NULL, NULL);
+		
+		return TRUE;
+	}
+	return FALSE;
 }
 
-
-void cd_rhythmbox_free_data (void) { //Permet de libérer la mémoire prise par notre controleur
+/* Permet de libérer la mémoire prise par notre controleur
+ */
+void cd_rhythmbox_free_data (void) {
 	if (myData.dbus_proxy_player != NULL)
 	{
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingChanged",
 			G_CALLBACK(onChangePlaying), NULL);
-		cd_debug ("playingChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingUriChanged",
 			G_CALLBACK(onChangeSong), NULL);
-		cd_debug ("playingUriChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL);
-		cd_debug ("elapsedChanged deconnecte");
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_CALLBACK(onCovertArtChanged), NULL);
-		cd_debug ("onCovertArtChanged deconnecte");
+			G_CALLBACK(onCoverArtChanged), NULL);
 	}
 	
 	musicplayer_dbus_disconnect_from_bus();
 	musicplayer_dbus_disconnect_from_bus_Shell();
-	
-	cd_debug("MP : Deconnexion du bus effectuee");
 }
 
-/* Controle du lecteur */
-void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) { //Permet d'effectuer les actions de bases sur le lecteur
+
+/* Controle du lecteur (permet d'effectuer les actions de bases sur le lecteur)
+ */
+void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
+{
 	cd_debug ("");
-	
 	gchar *cCommand = NULL;
 		
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
-			cCommand = myData.DBus_commands.previous;
+			cCommand = myData.DBus_commands.previous;  // ou bien rhythmbox-client --previous
 		break;
 		
 		case PLAYER_PLAY_PAUSE :
-			cCommand = myData.DBus_commands.play;
+			cCommand = myData.DBus_commands.play;  // ou bien rhythmbox-client --pause/--play
 		break;
 
 		case PLAYER_NEXT :
-			cCommand = myData.DBus_commands.next;
+			cCommand = myData.DBus_commands.next;  // ou bien rhythmbox-client --next
 		break;
 		
-		/*case PLAYER_ENQUEUE :
-			// A faire
-		break;*/
+		case PLAYER_ENQUEUE :
+			cCommand = g_strdup_printf ("rhythmbox-client --enqueue %s", song);
+			g_spawn_command_line_async (cCommand, NULL);
+			g_free (cCommand);
+			cCommand = NULL;
+		break;
 		
 		default :
 			return;
@@ -303,97 +327,27 @@ void cd_rhythmbox_control (MyPlayerControl pControl, char* nothing) { //Permet d
 	
 	if (pControl == PLAYER_PLAY_PAUSE) // Cas special pour RB qui necessite un argument pour le PlayPause
 	{
-		gboolean toggle;
-		cd_debug ("MP : Handeler rhythmbox : will use Play Pause", cCommand);
-		if (myData.pPlayingStatus == PLAYER_PLAYING) toggle=FALSE;
-		else toggle=TRUE;
-		dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "playPause", 
-		G_TYPE_BOOLEAN, toggle,
-		G_TYPE_INVALID,
-		G_TYPE_INVALID);
+		gboolean bStartPlaying = (myData.pPlayingStatus != PLAYER_PLAYING);
+		dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, cCommand, 
+			G_TYPE_BOOLEAN, bStartPlaying,
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
 	}
 	else if (cCommand != NULL) 
 	{
-		cd_debug ("MP : Handeler rhythmbox : will use '%s'", cCommand);
-		cairo_dock_dbus_call(myData.dbus_proxy_player, cCommand);
+		cd_debug ("MP : Handler rhythmbox : will use '%s'", cCommand);
+		cairo_dock_dbus_call (myData.dbus_proxy_player, cCommand);
 	}
 }
 
-/* Permet de renseigner l'applet des fonctions supportées par le lecteur */
-gboolean cd_rhythmbox_ask_control (MyPlayerControl pControl) {
-	cd_debug ("");
-	switch (pControl) {
-		case PLAYER_PREVIOUS :
-			return TRUE;
-		break;
-		
-		case PLAYER_PLAY_PAUSE :
-			return TRUE;		
-		break;
-
-		case PLAYER_NEXT :
-			return TRUE;
-		break;
-		
-		default :
-			return FALSE;
-		break;
-	}
-	
-	return FALSE;
+void cd_rhythmbox_get_cover_path (void)
+{
+	cd_rhythmbox_getSongInfos (FALSE);  // FALSE <=> on ne recupere que la couverture.
 }
 
-/* Fonction de connexion au bus de rhythmbox */
-void cd_rhythmbox_acquisition (void) {
-	cd_debug("MP : Vérification de la connexion DBus");
-	myData.opening = cd_musicplayer_dbus_detection();
-	/*cd_debug("MP : Opening : %d", myData.opening);
-	cd_debug("MP : DBUS Enable : %d", myData.dbus_enable);*/
-	if ((myData.opening) && (!myData.dbus_enable))// && (!myData.dbus_enable_shell))
-	{
-		cd_debug("MP : On se connecte au bus");
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // On se connecte au bus
-		if (myData.dbus_enable)
-			//cd_debug("MP : On s'est connecte au bus Player");
-			
-		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell (); // On se connecte au bus
-		if (myData.dbus_enable_shell)
-			//cd_debug("MP : On s'est connecte au bus Shell");
-		
-		if ((myData.dbus_enable) && (myData.dbus_enable_shell))
-			cd_rhythmbox_proxy_connection();
-		
-		cd_debug("MP : Connexions aux bus OK");
-		
-		if (cairo_dock_dbus_get_boolean(myData.dbus_proxy_player,"getPlaying"))
-			myData.pPlayingStatus = PLAYER_PLAYING;
-		else
-			myData.pPlayingStatus = PLAYER_PAUSED;
-		cd_rhythmbox_getSongInfos;
-	}
-	else if ((myData.opening) && (myData.dbus_enable))
-		//cd_debug("MP : Deja connecte au bus");
-		;
-	else
-	{
-		myData.dbus_enable = 0;
-		//cd_debug("MP : Lecteur non ouvert");
-	}
-}
-
-
-/* Fonction de lecture des infos */
-void cd_rhythmbox_read_data (void) {
-	/*
-	Rien a lire vu que l'echange de donnees se fait avec les proxys DBUS
-	*/ 
-	/*cd_message ("\tMP : playing_artist <- %s", myData.cArtist);
-	cd_message ("\tMP : playing_title <- %s", myData.cTitle);
-	cd_message ("\tMP : elapsed time <- %d", myData.iCurrentTime);
-	cd_message ("\tMP : song length <- %d", myData.iSongLength);*/
-}
-
-void cd_rhythmbox_load_dbus_commands (void)
+/* Initialise le backend de RB.
+ */
+void cd_rhythmbox_configure (void)
 {
 	cd_debug ("");
 	myData.DBus_commands.service = "org.gnome.Rhythmbox";
@@ -406,21 +360,50 @@ void cd_rhythmbox_load_dbus_commands (void)
 	myData.DBus_commands.stop = "";
 	myData.DBus_commands.next = "next";
 	myData.DBus_commands.previous = "previous";
+	
+	myData.dbus_enable = cd_rhythmbox_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de RB.
+	if (myData.dbus_enable)
+	{
+		cd_musicplayer_dbus_detect_player ();  // on teste la presence de RB sur le bus <=> s'il est ouvert ou pas.
+		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
+		{
+			g_print ("MP : RB is running");
+			_rhythmbox_getPlaying();
+			_rhythmbox_getPlayingUri();
+			cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
+			cd_musicplayer_update_icon (TRUE);
+		}
+		else  // player eteint.
+		{
+			cd_musicplayer_set_surface (PLAYER_NONE);
+		}
+	}
+	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+	{
+		cd_musicplayer_set_surface (PLAYER_BROKEN);
+	}
 }
 
-void cd_musicplayer_register_rhythmbox_handeler (void) { //On enregistre notre lecteur
+/* On enregistre notre lecteur.
+ */
+void cd_musicplayer_register_rhythmbox_handeler (void)
+{
 	cd_debug ("");
 	MusicPlayerHandeler *pRhythmbox = g_new0 (MusicPlayerHandeler, 1);
-	pRhythmbox->acquisition = cd_rhythmbox_acquisition;
-	pRhythmbox->read_data = cd_rhythmbox_read_data;
+	pRhythmbox->read_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
 	pRhythmbox->free_data = cd_rhythmbox_free_data;
-	pRhythmbox->configure = cd_rhythmbox_load_dbus_commands; //Cette fonction permettera de préparé le controleur
-	//Pour les lecteurs utilisants dbus, c'est elle qui connectera le dock aux services des lecteurs etc..
+	pRhythmbox->configure = cd_rhythmbox_configure;  // renseigne les proprietes DBus et se connecte au bus.
 	pRhythmbox->control = cd_rhythmbox_control;
-	pRhythmbox->ask_control = cd_rhythmbox_ask_control;
-	pRhythmbox->appclass = g_strdup("rhythmbox"); //Toujours g_strdup sinon l'applet plante au free_handler
-	pRhythmbox->name = g_strdup("Rhythmbox");
+	pRhythmbox->get_cover = cd_rhythmbox_get_cover_path;
+	
+	pRhythmbox->appclass = "rhythmbox";
+	pRhythmbox->name = "Rhythmbox";
+	pRhythmbox->launch = "rhythmbox";
+	pRhythmbox->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
 	pRhythmbox->iPlayer = MP_RHYTHMBOX;
 	pRhythmbox->bSeparateAcquisition = FALSE;
+	pRhythmbox->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
+	pRhythmbox->iLevel = PLAYER_EXCELLENT;
+	
 	cd_musicplayer_register_my_handeler(pRhythmbox, "rhythmbox");
 }

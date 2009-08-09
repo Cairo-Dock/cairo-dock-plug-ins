@@ -83,48 +83,48 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Audio Player]
-frame1 =
-#l[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
+#F[Audio Player;gtk-cdrom]
+frame_player =
+#L[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
 current-player=XMMS
 
 #b Steal the player's icon from taskbar ?
 #{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
 inhibate appli = true
 
-#F[Display;gtk-dnd-multiple]
-frame_disp=
-
-#b Display the cover ?
-enable_cover=true
-
-#l[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
-quick-info_type=1
-
-#l+[Simple;Info;Info and Controler;Caroussel;Controler;OpenGL] Desklet display mode :
-extended_mode=0
 
 #F[Action on music change;gtk-preferences]
 frame_info=
 #b Show an info-bubble ?
 enable_dialogs=true
-#b With a icon ?
-bubble icon=true
 #i Time length of info-bubbles :
-#{in ms.}
-time_dialogs=3000
-frame_anim=
+#{in s.}
+time_dialog = 3
+#a Animation when music changes :
+change_animation = wobbly
 
-#b Animate icon ?
-enable_anim=true
-#E[bounce;rotate;blink;pulse;upside-down;wobbly;random] Animation when music changes :
-change_animation=wobbly
 
-#X[False 3D Themes (OpenGL only)]
-frame_simple=
-#h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available specific themes :/
-#{Don't forget to choose "OpenGL" in "Desklet display mode"}
+#F[Display;gtk-dialog-info]
+frame_disp =
+
+#l[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
+quick-info_type=1
+
+#b Display album's cover ?
+enable_cover = true
+
+#b Allow Cairo-Dock to download missing covers ?
+#{You need to be connected to the Internet.}
+DOWNLOAD=true
+
+#b Use 3D themes ?
+#{requires OpenGL.}
+enable_opengl_themes = true
+
+#h+[@rhythmboxdatadir@/themes;rhythmbox;rhythmbox] List of available 3D themes for covers :
+#{requires OpenGL.}
 theme = cd_box_3d
+
 
 #X[Personnalisation;gtk-dialog-info]
 frame_perso =
@@ -143,18 +143,3 @@ pause icon =
 #S+ Name of an image for the 'broken' icon :
 #{Let it empty to use the default icon.}
 broken icon =
-
-#X+[Downloads;gtk-convert]
-frame_launcher =
-
-#b Allow Cairo-Dock to download missing covers :
-#{You need to be connected to the Internet.}
-DOWNLOAD=FALSE
-
-#i[0;15] Delay before checking for missing covers :
-#{in seconds}
-DELAY=3
-
-#l[Medium;Large] Size of the downloaded covers :
-#{The smaller image will be downloaded faster than a big one.}
-D_SIZE=

@@ -25,8 +25,6 @@ musicplayerdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/musicPlaye
 AC_SUBST(musicplayerdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
@@ -37,8 +35,6 @@ AC_CONFIG_FILES([Makefile
 		data/Makefile
 		data/musicPlayer.conf
 		data/themes/Makefile
-		data/themes/None/Makefile
-		data/themes/cd_box_3d/Makefile
 		data/themes/cd_box_simple/Makefile
-		data/themes/super_jewel/Makefile])
+		])
 AC_OUTPUT
