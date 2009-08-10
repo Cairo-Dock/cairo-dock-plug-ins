@@ -10,6 +10,19 @@
 static gchar *s_cIconName[CONNECTION_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg", "network-not-connected.png", "network-wired.png"};
 static gchar *s_cLevelQualityName[CONNECTION_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent"), N_("Not connected"), N_("Wired connection")};
 
+void cd_NetworkMonitor_draw_no_wireless_extension (void) {
+	if (myData.iPreviousQuality != myData.iQuality) {
+		if (myDesklet != NULL)
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		
+		myData.iPreviousQuality = myData.iQuality;
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
+		
+		CD_APPLET_REDRAW_MY_ICON;
+	}
+}
 
 void cd_NetworkMonitor_draw_icon (void) {
 	gboolean bNeedRedraw = FALSE;

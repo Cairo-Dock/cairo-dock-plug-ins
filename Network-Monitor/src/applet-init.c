@@ -22,7 +22,7 @@ CD_APPLET_DEFINITION (N_("Network-Monitor"),
 	N_("This applet shows you a monitor of your active connections\n"
 	"Left-click to pop-up some info,"
 	"Middle-click to re-check immediately."),
-	"Yann SLADEK")
+	"Yann Sladek (Mav) & Remy Robertson (ChanGFu)")
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {

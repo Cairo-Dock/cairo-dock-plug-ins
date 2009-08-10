@@ -160,13 +160,13 @@ gboolean cd_wifi_update_from_data (gpointer data)
 	if (myData.cInterface != NULL)
 	{
 		myData.bWirelessExt = TRUE;
-		cd_wifi_draw_icon ();
+		cd_NetworkMonitor_draw_icon();
 		cairo_dock_set_normal_task_frequency (myData.pTask);
 	}
 	else
 	{
 		myData.bWirelessExt = FALSE;
-		cd_wifi_draw_no_wireless_extension ();
+		cd_NetworkMonitor_draw_no_wireless_extension();
 		cairo_dock_downgrade_task_frequency (myData.pTask);
 	}
 	return TRUE;
@@ -297,7 +297,7 @@ static void cd_NetworkMonitor_get_wired_connection_infos (void)
 	vProperties = (GValue *)g_hash_table_lookup (hProperties, "HwAddress");
 	if (vProperties != NULL && G_VALUE_HOLDS_STRING (vProperties))
 	{	
-		myData.cAccessPoint = g_value_get_string (vProperties);
+		myData.cAccessPoint = g_strdup(g_value_get_string (vProperties));
 		cd_debug("Network-Monitor : Adresse physique : %s",myData.cAccessPoint);
 	}
 	
@@ -306,7 +306,6 @@ static void cd_NetworkMonitor_get_wired_connection_infos (void)
 	g_value_unset(vProperties);
 	g_hash_table_unref(hProperties);
 }
-
 
 
 static void cd_NetworkMonitor_quality (void)
@@ -331,7 +330,7 @@ static void cd_NetworkMonitor_quality (void)
 }
 
 
-static void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
+void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
 {
 	GValue *value;
 
@@ -352,7 +351,7 @@ static void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *prop
 }
 
 
-static void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
+void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
 {
 	GValue *value;
 	
@@ -367,8 +366,7 @@ static void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *proper
 	cd_NetworkMonitor_draw_icon ();
 }
 
-
-static void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data)
+void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data)
 {
 	GValue *value;
 	
@@ -384,21 +382,6 @@ static void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_pr
 	cd_NetworkMonitor_disconnect_signals();
 	cd_NetworkMonitor_connect_signals();
 	//cd_NetworkMonitor_draw_icon ();
-}
-
-
-void cd_NetworkMonitor_disconnect_signals()
-{
-	dbus_g_proxy_disconnect_signal(dbus_proxy_signal_Device, "PropertiesChanged",
-			G_CALLBACK(onChangeDeviceProperties), NULL);
-	if (myData.bWirelessExt)
-	{
-		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_AccessPoint, "PropertiesChanged",
-			G_CALLBACK(onChangeWirelessProperties), NULL);
-		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",
-			G_CALLBACK(onChangeActiveAccessPoint), NULL);	
-	}
-	
 }
 
 void cd_NetworkMonitor_connect_signals ()
@@ -442,6 +425,21 @@ void cd_NetworkMonitor_connect_signals ()
 		dbus_g_proxy_connect_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",
 			G_CALLBACK(onChangeActiveAccessPoint), NULL, NULL);	
 	}
+}
+
+
+void cd_NetworkMonitor_disconnect_signals()
+{
+	dbus_g_proxy_disconnect_signal(dbus_proxy_signal_Device, "PropertiesChanged",
+			G_CALLBACK(onChangeDeviceProperties), NULL);
+	if (myData.bWirelessExt)
+	{
+		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_AccessPoint, "PropertiesChanged",
+			G_CALLBACK(onChangeWirelessProperties), NULL);
+		dbus_g_proxy_disconnect_signal(dbus_proxy_signal_New_ActiveAccessPoint, "PropertiesChanged",
+			G_CALLBACK(onChangeActiveAccessPoint), NULL);	
+	}
+	
 }
 
 
@@ -505,7 +503,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					"org.freedesktop.DBus.Properties");
 
 				cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "Interface", &vInterface);
-				cInterface = g_value_get_string (&vInterface);
+				cInterface = g_strdup(g_value_get_string (&vInterface));
 				
 				cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "DeviceType", &vType);				
 				iDeviceType = g_value_get_uint (&vType);
@@ -529,7 +527,6 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					/* Calcul de la qualite du signal */	
 					cd_NetworkMonitor_quality();
 					
-					
 					cd_NetworkMonitor_draw_icon ();
 				}
 				else if (iDeviceType == 2)
@@ -537,7 +534,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					cd_debug("Network-Monitor : Connexion sans fil detectee");
 					cd_debug("Network-Monitor : Device : %s",cDevice);
 					myData.bWirelessExt = TRUE;
-					myData.cInterface = cInterface;
+					myData.cInterface = g_strdup(cInterface);
 					myData.cDevice = g_strdup(cDevice);
 					
 					/* On recupere le path de la connection active ainsi que du device */
@@ -569,3 +566,10 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	return TRUE;
 	
 }
+
+
+
+
+
+
+
