@@ -16,7 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Quick Browser",
+CD_APPLET_DEFINITION (N_("Quick Browser"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet lets you browse a folder and its sub-folders very quickly.\n"

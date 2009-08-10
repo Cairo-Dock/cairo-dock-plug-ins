@@ -101,14 +101,6 @@ void cd_amarok1_getStatus (void)
 	}
 }
 
-void cd_amarok1_acquisition (void) {
-	system ("echo amarok 1.4 >> /dev/null");
-	cd_amarok1_getStatus();
-	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
-		cd_amarok1_read_data();
-	}
-}
-
 //Fonction de lecture du tuyau.
 void cd_amarok1_read_data (void) {
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
@@ -126,6 +118,14 @@ void cd_amarok1_read_data (void) {
 	
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
+void cd_amarok1_acquisition (void) {
+	system ("echo amarok 1.4 >> /dev/null");
+	cd_amarok1_getStatus();
+	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
+		cd_amarok1_read_data();
+	}
+}
+
 
 void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lecteurs
 	MusicPlayerHandeler *pAmarok1 = g_new0 (MusicPlayerHandeler, 1);

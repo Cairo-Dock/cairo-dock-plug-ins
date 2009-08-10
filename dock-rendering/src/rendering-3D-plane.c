@@ -15,7 +15,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <cairo.h>
 
-#include <rendering-commons.h>
+#include "rendering-commons.h"
 #include "rendering-3D-plane.h"
 
 extern int iVanishingPointY;

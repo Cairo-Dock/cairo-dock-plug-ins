@@ -18,7 +18,7 @@ Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("switcher",
+CD_APPLET_DEFINITION (N_("switcher"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet allows you to switch between your virtual desktops.\n"

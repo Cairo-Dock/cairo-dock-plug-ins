@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cChangeAnimation 		= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "change_animation", "wobbly");
 	myConfig.bEnableCover			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
+	myConfig.bOpenglThemes 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_opengl_themes");
 	myConfig.bStealTaskBarIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	
 	myConfig.cUserImage[PLAYER_NONE] 	= CD_CONFIG_GET_STRING ("Configuration", "default icon");
