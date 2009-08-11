@@ -88,13 +88,13 @@ void cd_amarok1_getStatus (void)
 	switch (status) 
 	{
 		case 0:
-			myData.pPlayingStatus = PLAYER_STOPPED;
+			myData.iPlayingStatus = PLAYER_STOPPED;
 			break;
 		case 1:
-			myData.pPlayingStatus = PLAYER_PAUSED;
+			myData.iPlayingStatus = PLAYER_PAUSED;
 			break;
 		case 2: 
-			myData.pPlayingStatus = PLAYER_PLAYING;
+			myData.iPlayingStatus = PLAYER_PLAYING;
 			break;
 		default:
 			break;
@@ -104,7 +104,7 @@ void cd_amarok1_getStatus (void)
 //Fonction de lecture du tuyau.
 void cd_amarok1_read_data (void) {
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
-	myData.pPreviousPlayingStatus=myData.pPlayingStatus;
+	myData.pPreviousPlayingStatus=myData.iPlayingStatus;
 	myData.iPreviousTrackNumber=myData.iTrackNumber;
 	myData.iPreviousCurrentTime=myData.iCurrentTime;
 	
@@ -121,13 +121,13 @@ void cd_amarok1_read_data (void) {
 void cd_amarok1_acquisition (void) {
 	system ("echo amarok 1.4 >> /dev/null");
 	cd_amarok1_getStatus();
-	if (myData.pPlayingStatus == PLAYER_PLAYING) {	
+	if (myData.iPlayingStatus == PLAYER_PLAYING) {	
 		cd_amarok1_read_data();
 	}
 }
 
 
-void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lecteurs
+void cd_musicplayer_register_amarok1_handler (void) { //On enregistre notre lecteurs
 	MusicPlayerHandeler *pAmarok1 = g_new0 (MusicPlayerHandeler, 1);
 	pAmarok1->acquisition = cd_amarok1_acquisition;
 	pAmarok1->read_data = cd_amarok1_read_data;
@@ -141,5 +141,5 @@ void cd_musicplayer_register_amarok1_handeler (void) { //On enregistre notre lec
 	pAmarok1->launch = "amarok";
 	pAmarok1->iPlayer = MP_AMAROK1;
 	pAmarok1->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handeler (pAmarok1, "Amarok 1.4");
+	cd_musicplayer_register_my_handler (pAmarok1, "Amarok 1.4");
 }

@@ -16,9 +16,7 @@ typedef struct {
 	gdouble a;
 	gdouble b;
 	gdouble fRotationAngle;
-	guint iSidRotation;
-	gint iRotationDirection;
-	gint iRotationCount;
+	gdouble fCurrentRotationSpeed;
 	} CDCarousselParameters;
 
 typedef struct {

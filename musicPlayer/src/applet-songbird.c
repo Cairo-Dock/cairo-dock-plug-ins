@@ -67,7 +67,7 @@ void cd_songbird_read_data (void) {
 		if (myData.bIsRunning)
 		{
 			cd_musicplayer_getStatus_string("playing", "paused", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
-			if (myData.pPlayingStatus == PLAYER_PLAYING)
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_songbird_getSongInfos(); // On récupère toutes les infos de la piste en cours
 			}	
@@ -75,13 +75,13 @@ void cd_songbird_read_data (void) {
 		else
 		{
 			cd_debug("MP : lecteur non ouvert");
-			myData.pPlayingStatus = PLAYER_NONE;	
+			myData.iPlayingStatus = PLAYER_NONE;	
 		}
 	}
 	else
 	{
 		cd_debug("MP : Impossible d'accéder au bus");
-		myData.pPlayingStatus = PLAYER_BROKEN;
+		myData.iPlayingStatus = PLAYER_BROKEN;
 	}
 	
 }
@@ -100,7 +100,7 @@ void cd_songbird_load_dbus_commands (void)
 }
 
 
-void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre lecteur
+void cd_musicplayer_register_songbird_handler (void) { //On enregistre notre lecteur
 	MusicPlayerHandeler *pSongbird = g_new0 (MusicPlayerHandeler, 1);
 	pSongbird->acquisition = cd_songbird_acquisition;
 	pSongbird->read_data = cd_songbird_read_data;
@@ -115,5 +115,5 @@ void cd_musicplayer_register_songbird_handeler (void) { //On enregistre notre le
 	pSongbird->iPlayerControls = 0;  // ne gere rien !
 	pSongbird->iPlayer = MP_SONGBIRD;
 	pSongbird->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handeler(pSongbird,"Songbird");
+	cd_musicplayer_register_my_handler(pSongbird,"Songbird");
 }

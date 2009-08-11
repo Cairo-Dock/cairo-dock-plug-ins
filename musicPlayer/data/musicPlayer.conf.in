@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
-#{You can put the tag '__Player__' to display the name of the player you control}
+#{Let it empty to display the name of the player currently controlled.}
 name = Music Player
 
 #d Name of the dock it belongs to:
@@ -85,8 +85,8 @@ fg alpha = 1
 
 #F[Audio Player;gtk-cdrom]
 frame_player =
-#L[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4] Player to control:
-current-player=XMMS
+#L[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4;Audacious] Player to control:
+current-player=Audacious
 
 #b Steal the player's icon from taskbar ?
 #{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}

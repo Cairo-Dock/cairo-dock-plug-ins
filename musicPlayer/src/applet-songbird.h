@@ -17,7 +17,7 @@ void cd_songbird_acquisition (void);
 
 void cd_songbird_read_data (void);
 
-void cd_musicplayer_register_songbird_handeler (void);
+void cd_musicplayer_register_songbird_handler (void);
 
 #endif
 

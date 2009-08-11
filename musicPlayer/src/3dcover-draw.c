@@ -492,7 +492,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		_cairo_dock_set_alpha (1.);
 		if (myData.mouseOnButton1)
 		{
-			if (myData.pPlayingStatus == PLAYER_PLAYING)
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
 				//g_print ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f\n", u1, v1, u2, v2,u3,v3,u4,v4);
@@ -515,7 +515,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		{
 			_draw_osd (myData.TextureOsdHome, myData.osdHomecoordX, myData.osdHomecoordY, myData.osdHomesizeX, myData.osdHomesizeY);
 		}
-		else if (! myData.pPlayingStatus == PLAYER_PLAYING)
+		else if (! myData.iPlayingStatus == PLAYER_PLAYING)
 		{
 			if (myData.bIsRunning)  // on verifie que le lecteur est bien ouvert (il se peut qu'il ne nous previenne pas lorsqu'il quitte).
 			{
@@ -526,7 +526,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
 			}
 		}
-		else if (myData.pPlayingStatus == PLAYER_PLAYING && ! myData.cover_exist)
+		else if (myData.iPlayingStatus == PLAYER_PLAYING && ! myData.cover_exist)
 		{
 			_draw_osd (myData.TextureOsdPlay, myData.osdPlaycoordX, myData.osdPlaycoordY, myData.osdPlaysizeX, myData.osdPlaysizeY);
 		}
@@ -556,7 +556,7 @@ void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
 
 int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet)
 {	
-	if (myDesklet->iWidth == 0 || myDesklet->iHeight == 0 || myData.numberButtons == 0)  // precaution.
+	if (! myDesklet || myDesklet->iWidth == 0 || myDesklet->iHeight == 0 || myData.numberButtons == 0)  // precaution.
 		return FALSE;
 	
 	//\_________________ On convertit les coordonnees du pointeur dans le referentiel de l'icone.

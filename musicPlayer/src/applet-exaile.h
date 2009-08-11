@@ -20,6 +20,6 @@ void cd_exaile_acquisition (void);
 
 void cd_exaile_read_data (void);
 
-void cd_musicplayer_register_exaile_handeler (void);
+void cd_musicplayer_register_exaile_handler (void);
 
 #endif

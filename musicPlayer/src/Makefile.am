@@ -41,6 +41,8 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-songbird.h\
 	applet-xmms.c\
 	applet-xmms.h\
+	applet-audacious.c\
+	applet-audacious.h\
 	applet-struct.h\
 	3dcover-draw.c\
 	3dcover-draw.h

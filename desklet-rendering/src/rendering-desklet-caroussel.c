@@ -12,7 +12,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include "rendering-desklet-caroussel.h"
 
-#define CAROUSSEL_RATIO_ICON_DESKLET .5
+#define CAROUSSEL_RATIO_MAIN_ICON_DESKLET .5
 
 // Pour dessiner une icone, avec son quickinfo, dans la matrice courante.
 void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContainer, gboolean bIsReflect)
@@ -51,143 +51,78 @@ void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContai
 	}
 }
 
-static void _caroussel_rotate_delta(CairoDesklet *pDesklet, double fDeltaTheta)
+
+static inline void _caroussel_rotate_delta(CairoDesklet *pDesklet, double fDeltaTheta)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
-	if (pCaroussel == NULL)
-		return;
-	pCaroussel->fRotationAngle += pCaroussel->iRotationDirection * fDeltaTheta;
+	pCaroussel->fCurrentRotationSpeed = fDeltaTheta;
+	pCaroussel->fRotationAngle += fDeltaTheta;
 	if (pCaroussel->fRotationAngle >= 2*G_PI)
 		pCaroussel->fRotationAngle -= 2*G_PI;
 	else if (pCaroussel->fRotationAngle < 0)
 		pCaroussel->fRotationAngle += 2*G_PI;
 	gtk_widget_queue_draw (pDesklet->pWidget);
 }
-
-static gboolean _caroussel_rotate (CairoDesklet *pDesklet)
+static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bContinueAnimation)
 {
-	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
-	if (pCaroussel == NULL)
-		return FALSE;
-
-	_caroussel_rotate_delta(pDesklet, pCaroussel->fDeltaTheta / 10.);
-
-	pCaroussel->iRotationCount += (pCaroussel->iRotationDirection == GDK_SCROLL_UP ? 1 : -1);
-	if (abs (pCaroussel->iRotationCount) >= 10 || pCaroussel->iRotationCount == 0)
-	{
-		pCaroussel->iRotationCount = 0;
-		pCaroussel->iSidRotation = 0;
-		return FALSE;
-	}
-	else
-		return TRUE;
-}
-
-gboolean on_scroll_desklet(gpointer pUserData, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection)
-{
-	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet)
-	//if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	if (pDesklet->icons != NULL && (iDirection == GDK_SCROLL_DOWN || iDirection == GDK_SCROLL_UP))
-	{
-		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
-		if (pCaroussel == NULL)
-			return FALSE;
-		
-		if (pCaroussel->iSidRotation == 0)
-		{
-			pCaroussel->iRotationDirection = iDirection;
-			pCaroussel->iSidRotation = g_timeout_add (50, (GSourceFunc) _caroussel_rotate, (gpointer) pDesklet);
-		}
-		else
-		{
-			if (iDirection == pCaroussel->iRotationDirection)
-			{
-				pCaroussel->iRotationCount = 0;
-			}
-			else
-			{
-				pCaroussel->iRotationDirection = iDirection;
-			}
-		}
-		_caroussel_rotate (pDesklet);
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-gboolean on_enter_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
-{
-	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (pDesklet))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-
-	if (! pDesklet->pRenderer || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
-	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-
-	*bStartAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-gboolean on_motion_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
-{
-	//cd_message( "pUserData = %x, pDesklet = %x", pUserData, pDesklet );
-	//cd_message( "pDesklet->pIcon->acName = %s", pDesklet->pIcon->acName );
-
-	if ( !pDesklet || !pDesklet->pRenderer || !pDesklet->bInside || pDesklet->pRenderer->render != rendering_draw_caroussel_in_desklet || ! pDesklet->bInside)
-	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-
-	cd_message( "desklet-rendering : this is our stuff !");
-	
 	if (pDesklet->icons != NULL)
 	{
 		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 		if (pCaroussel == NULL)
-			return FALSE;
-
-		// si on est dans les entre 0% et 30% de la largeur du desklet,
-		// alors on tourne a droite (1)
-		if( pDesklet->iMouseX <= pDesklet->iWidth*0.3 )
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		
+		if (! pDesklet->bInside)  // on est en-dehors du desklet, on ralentit.
 		{
-			pCaroussel->iRotationDirection = 1;
+			_caroussel_rotate_delta (pDesklet, pCaroussel->fCurrentRotationSpeed * .85);
+			if (fabs (pCaroussel->fCurrentRotationSpeed) < .5/180.*G_PI)  // vitesse de rotation epsilonesque, on quitte.
+			{
+				pCaroussel->fCurrentRotationSpeed = 0;
+				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			}
+			*bContinueAnimation = TRUE;
+		}
+		else if (pDesklet->iMouseX <= pDesklet->iWidth*0.3)  // si on est dans la marge de 30% de la largeur du desklet a gauche, alors on tourne a droite
+		{
 			// La force de rotation va de 0 (lorsqu'on est a 30%) jusqu'a
 			// pCaroussel->fDeltaTheta / 10. (lorsqu'on est a 0%)
 			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
 			                        (pDesklet->iWidth*0.3 - pDesklet->iMouseX)/(pDesklet->iWidth*0.3);
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
+			*bContinueAnimation = TRUE;
 		}
-		// si on est dans les entre 80% et 100% de la largeur du desklet,
+		// si on est dans la marge de 30% de la largeur du desklet a droite,
 		// alors on tourne a gauche (-1)
 		else if( pDesklet->iMouseX >= pDesklet->iWidth*0.7 )
 		{
 			// La force de rotation va de 0 (lorsqu'on est a 70%) jusqu'a
 			// pCaroussel->fDeltaTheta / 10. (lorsqu'on est a 100%)
-			double fDeltaRotation = (pCaroussel->fDeltaTheta / 10) *
+			double fDeltaRotation = - (pCaroussel->fDeltaTheta / 10) *
 			                        (pDesklet->iMouseX - pDesklet->iWidth*0.7)/(pDesklet->iWidth*0.3);
-			pCaroussel->iRotationDirection = -1;
 			_caroussel_rotate_delta( pDesklet, fDeltaRotation );
+			*bContinueAnimation = TRUE;
+		}
+		else
+		{
+			pCaroussel->fCurrentRotationSpeed = 0.;
 		}
 	}
-
-	*bStartAnimation = TRUE;
-	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
+{
+	if (pDesklet->icons != NULL)
+	{
+		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+		if (pCaroussel == NULL)
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		if (pCaroussel->b3D && (pDesklet->iMouseX <= pDesklet->iWidth*0.3 || pDesklet->iMouseX >= pDesklet->iWidth*0.7))
+			*bStartAnimation = TRUE;
+	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-/*gboolean on_enter_desklet (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
-{
-	CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
-	if( pDesklet != pUserData || (pDesklet && !pDesklet->bInside) )
-	  return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	*bStartAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}*/
-
-
 CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
 {
-	GList *pIconsList = pDesklet->icons;
-	
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
 	if (pConfig != NULL)
 	{
@@ -197,9 +132,10 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, ca
 	
 	int iNbIcons = g_list_length (pDesklet->icons);
 	pCaroussel->fDeltaTheta = (iNbIcons != 0 ? 2 * G_PI / iNbIcons : 0);
+	//g_print ("%s (%.2f)\n", __func__, pCaroussel->fDeltaTheta);
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	return pCaroussel;
 }
@@ -209,6 +145,7 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
 		return ;
+	//g_print ("%s (%dx%d)\n", __func__, pDesklet->iWidth, pDesklet->iHeight);
 	
 	int iMaxIconWidth = 0;
 	Icon *icon;
@@ -220,34 +157,40 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 	}
 	
 	double fCentralSphereWidth, fCentralSphereHeight;
-	if (pCaroussel->b3D)
+	if (pCaroussel->b3D && ! g_bUseOpenGL)
 	{
-		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
+		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth/3, pDesklet->iHeight/2));
 		fCentralSphereHeight = fCentralSphereWidth;
 		
 		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + myIcons.fReflectSize) - 1);
-		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
-		pCaroussel->iFrameHeight = pCaroussel->iEllipseHeight + 0*2 * myBackground.iFrameMargin + myIcons.fReflectSize;
+		pCaroussel->iFrameHeight = MIN (pCaroussel->iEllipseHeight + myIcons.fReflectSize, pDesklet->iHeight);
+		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->iWidth/4, pCaroussel->iFrameHeight);
 		pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 		
 		pCaroussel->a = MAX (pDesklet->iWidth - pCaroussel->fExtraWidth - (pCaroussel->bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;
 		pCaroussel->b = MIN (pDesklet->iWidth - pCaroussel->fExtraWidth - (pCaroussel->bRotateIconsOnEllipse ? 0 : iMaxIconWidth/2), pCaroussel->iEllipseHeight)/2;  // c = sqrt (a * a - b * b) ; e = c / a.
 	}
-	else
+	else if (!pCaroussel->b3D)
 	{
-		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+		fCentralSphereWidth = MAX (1, pDesklet->iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
+		fCentralSphereHeight = MAX (1, pDesklet->iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		
 		pCaroussel->a = MAX (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iWidth;
 		pCaroussel->b = MIN (fCentralSphereWidth, fCentralSphereHeight)/2 + .1*pDesklet->iHeight;
+	}
+	else
+	{
+		fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth/3, pDesklet->iHeight/2));
+		pCaroussel->a = pDesklet->iWidth/4;
+		pCaroussel->b = fCentralSphereWidth/2 + .1*pDesklet->iWidth;
 	}
 }
 
 
 void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_motion_desklet, pDesklet);
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_DESKLET, (CairoDockNotificationFunc) on_enter_desklet, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, NULL);
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -265,17 +208,18 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		return ;
 	
 	Icon *pIcon = pDesklet->pIcon;
+	double fCentralSphereWidth = MAX (1, MIN (pDesklet->iWidth/3, pDesklet->iHeight/2));;
 	if (pIcon != NULL)
 	{
 		if (pCaroussel->b3D)
 		{
-			pIcon->fWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * CAROUSSEL_RATIO_ICON_DESKLET);
+			pIcon->fWidth = fCentralSphereWidth;
 			pIcon->fHeight = pIcon->fWidth;
 		}
 		else
 		{
-			pIcon->fWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
-			pIcon->fHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
+			pIcon->fWidth = MAX (1, pDesklet->iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
+			pIcon->fHeight = MAX (1, pDesklet->iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		}
 		
 		pIcon->fDrawX = (pDesklet->iWidth - pIcon->fWidth) / 2;
@@ -293,7 +237,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon = ic->data;
 		if (pCaroussel->b3D)
 		{
-			pIcon->fWidth = MAX (1, MIN (pDesklet->iWidth, pDesklet->iHeight) * .25);
+			pIcon->fWidth = fCentralSphereWidth/2;  // lorsque l'icone est devant, la ou elle est la plus grosse.
 			pIcon->fHeight = pIcon->fWidth;
 		}
 		else
@@ -505,8 +449,8 @@ static void _draw_disc_caroussel(CairoDesklet *pDesklet, double fTheta, double a
 		glVertex3f (0, 0., 0);
 		for( int iIter = 0; iIter <= 30; iIter++  )
 		{
-			glColor4f(0.1, 0.1, ((iIter%2)==0)?0.5:0.3, 0.5);
-			glVertex3f (1.5*a*sin(fTheta+2*G_PI*(double)iIter/30.), 0., 1.5*b*cos(fTheta+2*G_PI*(double)iIter/30.));
+			glColor4f (0.1, 0.1, ((iIter&1) ? 0.5 : 0.2), 0.5);
+			glVertex3f (1.25*a*sin(fTheta+2*G_PI*(double)iIter/30.), 0., 1.25*b*cos(fTheta+2*G_PI*(double)iIter/30.));
 		}
 	glEnd();
 	glColor4f(1., 1., 1., 1.);
@@ -523,7 +467,6 @@ static void _draw_disc_caroussel(CairoDesklet *pDesklet, double fTheta, double a
 void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
-	//g_print ("%s(%x)\n", __func__, pCaroussel);
 	if (pCaroussel == NULL)
 		return ;
 	
@@ -535,39 +478,34 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 
 	if (pCaroussel->b3D)
 	{
-		double fCentralSphereWidth, fCentralSphereHeight;
-		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius) * CAROUSSEL_RATIO_ICON_DESKLET);
-		
-		a = fCentralSphereWidth/2 + .1*pDesklet->iWidth;
-		b = fCentralSphereHeight/2 + .1*pDesklet->iHeight;
-
+		//a = fCentralSphereWidth/2 + .1*pDesklet->iWidth;
+		//b = fCentralSphereHeight/2 + .1*pDesklet->iHeight;
 		glPushMatrix ();
 		glEnable(GL_DEPTH_TEST);
 		glEnable (GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // rend le cube transparent.
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  // transparence.
 
 		//\____________________ On dessine l'icone au milieu, mais seulement les parties opaques
-		glTranslatef( 0., 0.3*b, 0. ); // on se decale un peu plus vers le haut
+		glTranslatef( 0., 0.5*b, 0. ); // on se decale un peu plus vers le haut
 
-	  glAlphaFunc ( GL_GREATER, 0.1 ) ;
-    glEnable ( GL_ALPHA_TEST ) ;
-		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), FALSE);
-    glDisable ( GL_ALPHA_TEST ) ;
+		  glAlphaFunc ( GL_GREATER, 0.1 ) ;
+		glEnable ( GL_ALPHA_TEST ) ;
+			_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), FALSE);
+		glDisable ( GL_ALPHA_TEST ) ;
 
-		glTranslatef( 0., -0.6*b, 0. );
+		glTranslatef( 0., -0.5*b, 0. );
 		//glRotatef( 10., 1., 0., 0. );
 
 		// On se met a la bonne hauteur pour le plan, c-a-d en dessous des quickinfos
 		if( pDesklet->icons )
 		{
 			pIcon = (Icon *)(pDesklet->icons->data);
-			glTranslatef( 0., -(pIcon->fHeight/2 + pIcon->iQuickInfoHeight), -b/2. );
+			glTranslatef( 0., -pIcon->fHeight/2, 0. );
 		}
 		else
 		{
 			// Au cas ou il n'y a aucune sous-icone !
-			glTranslatef( 0., -pDesklet->pIcon->fHeight/2., -b/2. );
+			glTranslatef( 0., -pDesklet->pIcon->fHeight/2., 0. );
 		}
 
 		glPolygonMode (GL_FRONT, GL_FILL);
@@ -608,8 +546,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			
 			//\____________________ On se decale au bon endroit
 			glTranslatef (-a * cos (fTheta),
-										-pIcon->fHeight/2.-pIcon->iQuickInfoHeight,
-										b * sin (fTheta));
+										-pIcon->fHeight/2./*-pIcon->iQuickInfoHeight*/,
+										b/2 * sin (fTheta));
 
 			//\____________________ Un reflet, c'est inverse --> on inverse
 			glScalef( 1, -1, 1 );
@@ -621,7 +559,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 			double alphaIcon = MAX(MIN(sin (fTheta) + 0.4, 1.), 0.2);
 
 			//\____________________ On met le reflet un peu transparent
-			pIcon->fAlpha = alphaIcon * 0.4;			
+			pIcon->fAlpha = alphaIcon * 0.4;
 
 			//\____________________ Et on dessine l'icone
 			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet), TRUE);
@@ -649,8 +587,8 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 
 			//\____________________ On se decale au bon endroit
 			glTranslatef (-a * cos (fTheta),
-										pIcon->fHeight/2 + pIcon->iQuickInfoHeight,
-										b * sin (fTheta));
+				pIcon->fHeight/2/* + pIcon->iQuickInfoHeight*/,
+				b/2 * sin (fTheta));
 
 			//\____________________ On se remet droit
 			//glRotatef( -10., 1., 0., 0. );
@@ -673,12 +611,13 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 		glDisable(GL_DEPTH_TEST);
 		glDisable (GL_BLEND);
 		glPopMatrix ();
+		g_list_free (pListSortedIcons);
 	}
 	else
 	{
 		//\____________________ On dessine l'icone au milieu
 		glPushMatrix ();
-		glScalef( 0.8, 0.8, 0 );
+		//glScalef( 0.8, 0.8, 0 );
 		_render_one_icon_and_quickinfo_opengl (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), FALSE);
 		glPopMatrix ();
 
@@ -694,7 +633,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 										b * sin (fTheta),
 										0.);
 
-			glScalef( 0.8, 0.8, 0 );
+			//glScalef( 0.8, 0.8, 0 );
 
 			//\____________________ Et on dessine l'icone
 			_render_one_icon_and_quickinfo_opengl (pIcon, CAIRO_CONTAINER (pDesklet), FALSE);
@@ -711,8 +650,122 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 
 void rendering_draw_caroussel_bounding_box (CairoDesklet *pDesklet)
 {
-	/// A FAIRE...
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	if (pCaroussel == NULL)
+		return ;
 	
+	double fTheta = G_PI/2 + pCaroussel->fRotationAngle, fDeltaTheta = pCaroussel->fDeltaTheta;
+	double a = pCaroussel->a, b = pCaroussel->b;
+	
+	double x, y, w, h;
+	Icon *pIcon;
+	if (pCaroussel->b3D)
+	{
+		glEnable(GL_DEPTH_TEST);
+		glTranslatef( 0., 0.5*b, 0. ); // on se decale un peu plus vers le haut
+		pIcon = pDesklet->pIcon;
+		if (pIcon != NULL && pIcon->iIconTexture != 0)  // l'icone au centre.
+		{
+			w = pIcon->fWidth/2;
+			h = pIcon->fHeight/2;
+			
+			glLoadName(pIcon->iIconTexture);
+			
+			glBegin(GL_QUADS);
+			glVertex3f(-w, +h, 0.);
+			glVertex3f(+w, +h, 0.);
+			glVertex3f(+w, -h, 0.);
+			glVertex3f(-w, -h, 0.);
+			glEnd();
+		}
+		
+		glTranslatef( 0., -0.5*b, 0. );
+		if( pDesklet->icons )
+		{
+			pIcon = (Icon *)(pDesklet->icons->data);
+			glTranslatef( 0., -pIcon->fHeight/2, 0. );
+		}
+		else
+		{
+			// Au cas ou il n'y a aucune sous-icone !
+			glTranslatef( 0., -pDesklet->pIcon->fHeight/2., 0. );
+		}
+		GList *ic;
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)  // les icones autour du centre.
+		{
+			pIcon = ic->data;
+			if (pIcon->iIconTexture == 0)
+				continue;
+			
+			glPushMatrix ();
+			glTranslatef (-a * cos (fTheta),
+				pIcon->fHeight/2/* + pIcon->iQuickInfoHeight*/,
+				b/2 * sin (fTheta));
+			
+			w = pIcon->fWidth/2;
+			h = pIcon->fHeight/2;
+			glLoadName(pIcon->iIconTexture);
+			
+			glBegin(GL_QUADS);
+			glVertex3f(-w, +h, 0.);
+			glVertex3f(+w, +h, 0.);
+			glVertex3f(+w, -h, 0.);
+			glVertex3f(-w, -h, 0.);
+			glEnd();
+			glPopMatrix ();
+			
+			fTheta += fDeltaTheta;
+			if (fTheta >= G_PI/2 + 2*G_PI)
+				fTheta -= 2*G_PI;
+		}
+		glDisable(GL_DEPTH_TEST);
+	}
+	else
+	{
+		pIcon = pDesklet->pIcon;
+		if (pIcon != NULL && pIcon->iIconTexture != 0)  // l'icone au centre.
+		{
+			w = pIcon->fWidth/2;
+			h = pIcon->fHeight/2;
+			x = 0.;
+			y = 0.;
+			
+			glLoadName(pIcon->iIconTexture);
+			
+			glBegin(GL_QUADS);
+			glVertex3f(x-w, y+h, 0.);
+			glVertex3f(x+w, y+h, 0.);
+			glVertex3f(x+w, y-h, 0.);
+			glVertex3f(x-w, y-h, 0.);
+			glEnd();
+		}
+		
+		GList *ic;
+		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)  // les icones autour du centre.
+		{
+			pIcon = ic->data;
+			if (pIcon->iIconTexture == 0)
+				continue;
+			
+			w = pIcon->fWidth/2;
+			h = pIcon->fHeight/2;
+			x = a * cos (fTheta);
+			y = b * sin (fTheta);
+			
+			glLoadName(pIcon->iIconTexture);
+			
+			glBegin(GL_QUADS);
+			glVertex3f(x-w, y+h, 0.);
+			glVertex3f(x+w, y+h, 0.);
+			glVertex3f(x+w, y-h, 0.);
+			glVertex3f(x-w, y-h, 0.);
+			glEnd();
+
+			fTheta += fDeltaTheta;
+			if (fTheta >= G_PI/2 + 2*G_PI)
+				fTheta -= 2*G_PI;
+		}
+	}
 }
 
 void rendering_register_caroussel_desklet_renderer (void)

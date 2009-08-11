@@ -24,6 +24,7 @@ static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg
 gboolean cd_musicplayer_draw_icon (gpointer data)
 {
 	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
+	g_print ("%s (%d)\n", __func__, myData.iPlayingStatus);
 	
 	gboolean bNeedRedraw = FALSE;
 	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
@@ -43,10 +44,10 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	
 	if (myData.pCurrentHandeler->iLevel == PLAYER_BAD)
 	{
-		if (myData.pPlayingStatus != myData.pPreviousPlayingStatus)  // changement de l'etat du lecteur.
+		if (myData.iPlayingStatus != myData.pPreviousPlayingStatus)  // changement de l'etat du lecteur.
 		{
-			cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.pPlayingStatus);
-			myData.pPreviousPlayingStatus = myData.pPlayingStatus;
+			cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.iPlayingStatus);
+			myData.pPreviousPlayingStatus = myData.iPlayingStatus;
 			
 			cd_musicplayer_update_icon (FALSE);
 			bNeedRedraw = FALSE;
@@ -204,7 +205,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		g_print ("cover_exist : %d\n", myData.cover_exist);
 		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
 		{
-			if(myData.pPlayingStatus == PLAYER_PLAYING)
+			if(myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_musicplayer_set_surface (PLAYER_PLAYING);
 			}

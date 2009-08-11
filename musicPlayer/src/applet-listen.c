@@ -94,13 +94,13 @@ void cd_listen_read_data (void) {
 		else
 		{
 			//cd_debug("MP : Impossible d'accéder au bus");
-			myData.pPlayingStatus = PLAYER_BROKEN;
+			myData.iPlayingStatus = PLAYER_BROKEN;
 		}
 	}
 	else
 	{
 		//cd_debug("MP : lecteur non ouvert");
-		myData.pPlayingStatus = PLAYER_NONE;
+		myData.iPlayingStatus = PLAYER_NONE;
 	}
 }
 
@@ -125,7 +125,7 @@ void cd_listen_load_dbus_commands (void)
 }
 
 
-void cd_musicplayer_register_listen_handeler (void) { //On enregistre notre lecteur
+void cd_musicplayer_register_listen_handler (void) { //On enregistre notre lecteur
 	cd_debug ("");
 	MusicPlayerHandeler *pListen = g_new0 (MusicPlayerHandeler, 1);
 	pListen->acquisition = cd_listen_acquisition;
@@ -139,6 +139,6 @@ void cd_musicplayer_register_listen_handeler (void) { //On enregistre notre lect
 	pListen->name = "Listen";
 	pListen->name = "listen";  /// a verifier ...
 	pListen->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handeler (pListen, "Listen");
+	cd_musicplayer_register_my_handler (pListen, "Listen");
 }
 

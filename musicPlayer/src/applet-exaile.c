@@ -49,7 +49,7 @@ void cd_exaile_getSongInfos(void)
 	uValue = (gint) cairo_dock_dbus_get_uchar (myData.dbus_proxy_player, myData.DBus_commands.current_position);
 
 	/* Décalage dû à l'utilisation du pourcentage par exaile */	
-	if (myData.iPreviousuValue == uValue && myData.pPlayingStatus == PLAYER_PLAYING && myData.iCurrentTime < ((myData.iSongLength * (uValue + 1)) / 100))
+	if (myData.iPreviousuValue == uValue && myData.iPlayingStatus == PLAYER_PLAYING && myData.iCurrentTime < ((myData.iSongLength * (uValue + 1)) / 100))
 		myData.iCurrentTime = myData.iCurrentTime +1;
 	else if (myData.iPreviousuValue != uValue)
 		myData.iCurrentTime = (myData.iSongLength * uValue) / 100;
@@ -144,12 +144,12 @@ void cd_exaile_read_data (void) {
 		if (myData.dbus_enable)
 		{
 			cd_musicplayer_getStatus_string("paused", "playing", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
-			if (myData.pPlayingStatus == PLAYER_PLAYING)
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_exaile_getSongInfos(); // On récupère toutes les infos de la piste en cours
 				cd_exaile_getCoverPath();
 			}
-			else if (myData.pPlayingStatus == PLAYER_PAUSED)
+			else if (myData.iPlayingStatus == PLAYER_PAUSED)
 			{
 				
 			}
@@ -157,13 +157,13 @@ void cd_exaile_read_data (void) {
 		else
 		{
 			//cd_debug("MP : Impossible d'accéder au bus");
-			myData.pPlayingStatus = PLAYER_BROKEN;
+			myData.iPlayingStatus = PLAYER_BROKEN;
 		}
 	}
 	else
 	{
 		//cd_debug("MP : lecteur non ouvert");
-		myData.pPlayingStatus = PLAYER_NONE;
+		myData.iPlayingStatus = PLAYER_NONE;
 
 	}
 	
@@ -190,7 +190,7 @@ void cd_exaile_load_dbus_commands (void)
 }
 
 
-void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lecteur
+void cd_musicplayer_register_exaile_handler (void) { //On enregistre notre lecteur
 	//cd_debug ("");
 	MusicPlayerHandeler *pExaile = g_new0 (MusicPlayerHandeler, 1);
 	pExaile->acquisition = cd_exaile_acquisition;
@@ -205,5 +205,5 @@ void cd_musicplayer_register_exaile_handeler (void) { //On enregistre notre lect
 	pExaile->launch = "exaile";
 	pExaile->iPlayer = MP_EXAILE;
 	pExaile->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handeler (pExaile, "Exaile");
+	cd_musicplayer_register_my_handler (pExaile, "Exaile");
 }

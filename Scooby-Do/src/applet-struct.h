@@ -104,6 +104,29 @@ typedef enum _CDFilter {
 	DO_TYPE_SOURCE	=1<<6
 	} CDFilter;
 
+typedef gboolean (*CDBackendInitFunc) (void);
+typedef void (*CDBackendSearchFunc) (gpointer pBuffer);
+typedef GList * (*CDBackendBuildEntriesFunc) (gpointer pBuffer);
+typedef void (*CDBackendFreeBufferFunc) (gpointer pBuffer);
+
+typedef struct _CDBackend {
+	// interface
+	const gchar *cName;
+	gboolean bIsThreaded;
+	CDBackendInitFunc init;
+	CDBackendSearchFunc search;  // async
+	CDBackendBuildEntriesFunc build_entries;  // sync
+	CDBackendFreeBufferFunc free_buffer;
+	// private data
+	gint iState;  // 0:uninitialized; 1:ok; -1:broken
+	CairoDockTask *pTask;
+	// shared memory
+	gpointer pBuffer;  // lecture/ecriture.
+	gchar *cCurrentLocateText;  // lecture seule dans le thread
+	gint iLocateFilter;  // lecture seule dans le thread
+	// end of shared memory
+	} CDBackend;
+
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculation, etc.
 struct _AppletData {
 	GString *sCurrentText;
@@ -161,6 +184,8 @@ struct _AppletData {
 	cairo_surface_t *pActiveButtonSurface, *pInactiveButtonSurface;
 	GList *pListingHistory;
 	gchar *cSearchText;
+	
+	GList *pBackends;
 	} ;
 
 

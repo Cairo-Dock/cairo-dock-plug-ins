@@ -21,7 +21,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "XMMS");
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
-	if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0' || strcmp (myConfig.cDefaultTitle, "__Player__") == 0)
+	if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0')
 	{
 		g_free (myConfig.cDefaultTitle);
 		myConfig.cDefaultTitle = g_strdup (myConfig.cMusicPlayer);
@@ -84,9 +84,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cPreviousCoverPath);
 	g_free (myData.cPreviousRawTitle);
 	
-	//On s'occupe des handelers.
-	cd_musicplayer_stop_handeler ();
-	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handeler, NULL);
+	//On s'occupe des handlers.
+	cd_musicplayer_stop_handler ();
+	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handler, NULL);
 	g_list_free (myData.pHandelers);
 	
 	//Bye bye pauvres textures opengl

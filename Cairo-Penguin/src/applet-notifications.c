@@ -33,7 +33,6 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 
 
 
-
 CD_APPLET_ON_CLICK_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();

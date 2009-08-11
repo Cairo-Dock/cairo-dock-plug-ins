@@ -6,15 +6,15 @@
 
 #include <applet-struct.h>
 
-MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName);
+MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName);
 
-void cd_musicplayer_launch_handeler (void);
+void cd_musicplayer_launch_handler (void);
 
-void cd_musicplayer_stop_handeler (void);
+void cd_musicplayer_stop_handler (void);
 
-void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName);
+void cd_musicplayer_register_my_handler (MusicPlayerHandeler *pHandeler, const gchar *cName);
 
-void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler);
+void cd_musicplayer_free_handler (MusicPlayerHandeler *pHandeler);
 
 
 #endif

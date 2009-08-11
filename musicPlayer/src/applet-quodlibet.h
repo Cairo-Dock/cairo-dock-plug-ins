@@ -17,7 +17,7 @@ void cd_quodlibet_acquisition (void);
 
 void cd_quodlibet_read_data (void);
 
-void cd_musicplayer_register_quodlibet_handeler (void);
+void cd_musicplayer_register_quodlibet_handler (void);
 
 #endif
 

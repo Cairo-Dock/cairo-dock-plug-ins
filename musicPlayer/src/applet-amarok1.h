@@ -6,7 +6,7 @@
 #include <cairo-dock.h>
 
 
-void cd_musicplayer_register_amarok1_handeler (void);
+void cd_musicplayer_register_amarok1_handler (void);
 
 
 #endif

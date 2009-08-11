@@ -15,14 +15,14 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-musicplayer.h"
 
 
-MusicPlayerHandeler *cd_musicplayer_get_handeler_by_name (const gchar *cName) {
+MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName) {
 	g_return_val_if_fail (cName != NULL, NULL);
 	GList *ic;
-	MusicPlayerHandeler *handeler = NULL;
+	MusicPlayerHandeler *handler = NULL;
 	for (ic = myData.pHandelers; ic != NULL; ic = ic->next) {
-		handeler = ic->data;
-		if (strcmp(handeler->name, cName) == 0)
-			return handeler;
+		handler = ic->data;
+		if (strcmp(handler->name, cName) == 0)
+			return handler;
 	}
 	return NULL;
 }
@@ -44,7 +44,7 @@ static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
 
 /* Initialise le backend et lance la tache periodique si necessaire.
  */
-void cd_musicplayer_launch_handeler (void)
+void cd_musicplayer_launch_handler (void)
 { 
 	//cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	if (myData.pCurrentHandeler->configure != NULL)
@@ -72,7 +72,7 @@ void cd_musicplayer_launch_handeler (void)
 
 /* Arrete le backend en nettoyant la memoire
  */
-void cd_musicplayer_stop_handeler (void)
+void cd_musicplayer_stop_handler (void)
 {
 	if (myData.pCurrentHandeler == NULL)
 		return ;
@@ -82,16 +82,16 @@ void cd_musicplayer_stop_handeler (void)
 	myData.pTask = NULL;
 	myData.dbus_enable = FALSE;
 	myData.bIsRunning = FALSE;
-	myData.pPlayingStatus = PLAYER_NONE;
+	myData.iPlayingStatus = PLAYER_NONE;
 }
 
 
 /* Ajout d'un backend a la liste
  */
-void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const gchar *cName)
+void cd_musicplayer_register_my_handler (MusicPlayerHandeler *pHandeler, const gchar *cName)
 {
-	MusicPlayerHandeler *handeler = cd_musicplayer_get_handeler_by_name (cName);  // un peu paranoiaque ...
-	if (handeler == NULL) { //Inutile de rajouter un player déjà présent
+	MusicPlayerHandeler *handler = cd_musicplayer_get_handler_by_name (cName);  // un peu paranoiaque ...
+	if (handler == NULL) { //Inutile de rajouter un player déjà présent
 		myData.pHandelers = g_list_prepend (myData.pHandelers, pHandeler);
 	}
 	else
@@ -101,7 +101,7 @@ void cd_musicplayer_register_my_handeler (MusicPlayerHandeler *pHandeler, const 
 
 /* Detruit un backend
  */
-void cd_musicplayer_free_handeler (MusicPlayerHandeler *pHandeler)
+void cd_musicplayer_free_handler (MusicPlayerHandeler *pHandeler)
 {
 	if (pHandeler == NULL)
 		return ;

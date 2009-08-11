@@ -147,21 +147,21 @@ void cd_musicplayer_getStatus_string (const char *status_paused, const char *sta
 {
 		gchar *status=NULL;
 		status = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_status);
-		myData.pPreviousPlayingStatus = myData.pPlayingStatus;
+		myData.pPreviousPlayingStatus = myData.iPlayingStatus;
 		if ((! g_ascii_strcasecmp(status, status_playing)) || (!g_ascii_strcasecmp(status, "1")))
 		{
 			//cd_debug("MP : le lecteur est en statut PLAY");
-			myData.pPlayingStatus = PLAYER_PLAYING;
+			myData.iPlayingStatus = PLAYER_PLAYING;
 		}
 		else if (! g_ascii_strcasecmp(status, status_paused))
 		{
 			//cd_debug("MP : le lecteur est en statut PAUSED");
-			myData.pPlayingStatus = PLAYER_PAUSED;
+			myData.iPlayingStatus = PLAYER_PAUSED;
 		}
 		else if ((status_stopped) &&(! g_ascii_strcasecmp(status, status_stopped)))
 		{
 			//cd_debug("MP : le lecteur est en statut STOPPED");
-			myData.pPlayingStatus = PLAYER_STOPPED;
+			myData.iPlayingStatus = PLAYER_STOPPED;
 		}
 		if (status != NULL)
 		{
@@ -177,9 +177,9 @@ void cd_musicplayer_getStatus_integer (int status_paused, int status_playing)
 	
 	status=cairo_dock_dbus_get_integer(myData.dbus_proxy_player, myData.DBus_commands.get_status);
 	//cd_debug("MP : Statut du lecteur : %d",status);
-	if (status == status_paused) myData.pPlayingStatus = PLAYER_PAUSED;
-	else if (status == status_playing) myData.pPlayingStatus = PLAYER_PLAYING;
-	else myData.pPlayingStatus = PLAYER_STOPPED;
+	if (status == status_paused) myData.iPlayingStatus = PLAYER_PAUSED;
+	else if (status == status_playing) myData.iPlayingStatus = PLAYER_PLAYING;
+	else myData.iPlayingStatus = PLAYER_STOPPED;
 }
 
 

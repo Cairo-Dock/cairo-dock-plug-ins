@@ -15,6 +15,6 @@ void cd_xmms_acquisition (void);
 
 void cd_xmms_read_data (void);
 
-void cd_musicplayer_register_xmms_handeler (void);
+void cd_musicplayer_register_xmms_handler (void);
 
 #endif

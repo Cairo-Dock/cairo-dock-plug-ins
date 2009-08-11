@@ -5,7 +5,7 @@
 #include <cairo-dock.h>
 
 
-void cd_musicplayer_register_listen_handeler (void);
+void cd_musicplayer_register_listen_handler (void);
 
 
 #endif

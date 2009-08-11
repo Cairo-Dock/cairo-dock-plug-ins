@@ -108,7 +108,7 @@ void cd_xmms_read_data (void) {
 	if (erreur != NULL) {
 		cd_warning ("MP : %s", erreur->message);
 		g_error_free (erreur);
-		myData.pPlayingStatus = PLAYER_NONE;
+		myData.iPlayingStatus = PLAYER_NONE;
 		//cd_musicplayer_player_none ();
 	}
 	else {
@@ -128,16 +128,16 @@ void cd_xmms_read_data (void) {
 					while (*str == ' ')
 						str ++;
 					if ((strcmp (str, "Playing") == 0) || (strcmp (str, "playing") == 0))
-						myData.pPlayingStatus = PLAYER_PLAYING;
+						myData.iPlayingStatus = PLAYER_PLAYING;
 					else if ((strcmp (str, "Paused") == 0) || (strcmp (str, "paused") == 0))
-						myData.pPlayingStatus = PLAYER_PAUSED;
+						myData.iPlayingStatus = PLAYER_PAUSED;
 					else if ((strcmp (str, "Stopped") == 0) || (strcmp (str, "stopped") == 0))
-						myData.pPlayingStatus = PLAYER_STOPPED;
+						myData.iPlayingStatus = PLAYER_STOPPED;
 					else
-						myData.pPlayingStatus = PLAYER_BROKEN;
+						myData.iPlayingStatus = PLAYER_BROKEN;
 				}
 				else
-					myData.pPlayingStatus = PLAYER_BROKEN;
+					myData.iPlayingStatus = PLAYER_BROKEN;
 			}
 			else if (i == s_pLineNumber[INFO_TRACK_IN_PLAYLIST]) {
 				if (myConfig.iQuickInfoType == MY_APPLET_TRACK) {
@@ -232,7 +232,7 @@ void cd_xmms_read_data (void) {
 	s_cTmpFile = NULL;
 }
 
-void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteurs
+void cd_musicplayer_register_xmms_handler (void) { //On enregistre notre lecteurs
 	MusicPlayerHandeler *pXMMS = g_new0 (MusicPlayerHandeler, 1);
 	pXMMS->acquisition = cd_xmms_acquisition;
 	pXMMS->read_data = cd_xmms_read_data;
@@ -246,5 +246,5 @@ void cd_musicplayer_register_xmms_handeler (void) { //On enregistre notre lecteu
 	pXMMS->launch = "xmms";
 	pXMMS->iPlayer = MP_XMMS;
 	pXMMS->bSeparateAcquisition = TRUE;
-	cd_musicplayer_register_my_handeler (pXMMS, "XMMS");
+	cd_musicplayer_register_my_handler (pXMMS, "XMMS");
 }

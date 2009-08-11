@@ -145,11 +145,11 @@ void cd_quodlibet_read_data (void) {
 		if (myData.dbus_enable)
 		{
 			cd_musicplayer_getStatus_integer(0,1); // On récupère l'état de la lecture (play/pause/stop)
-			if (myData.pPlayingStatus == PLAYER_PLAYING)
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_quodlibet_getSongInfos(); // On récupère toutes les infos de la piste en cours
 			}
-			else if (myData.pPlayingStatus == PLAYER_PAUSED)
+			else if (myData.iPlayingStatus == PLAYER_PAUSED)
 			{
 				
 			}
@@ -157,13 +157,13 @@ void cd_quodlibet_read_data (void) {
 		else
 		{
 			//cd_debug("MP : Impossible d'accéder au bus");
-			myData.pPlayingStatus = PLAYER_BROKEN;
+			myData.iPlayingStatus = PLAYER_BROKEN;
 		}
 	}
 	else
 	{
 		//cd_debug("MP : lecteur non ouvert");
-		myData.pPlayingStatus = PLAYER_NONE;
+		myData.iPlayingStatus = PLAYER_NONE;
 	}
 	
 }
@@ -189,7 +189,7 @@ void cd_quodlibet_load_dbus_commands (void)
 }
 
 
-void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre lecteur
+void cd_musicplayer_register_quodlibet_handler (void) { //On enregistre notre lecteur
 	//cd_debug ("");
 	MusicPlayerHandeler *pQuodlibet = g_new0 (MusicPlayerHandeler, 1);
 	pQuodlibet->acquisition = cd_quodlibet_acquisition;
@@ -204,5 +204,5 @@ void cd_musicplayer_register_quodlibet_handeler (void) { //On enregistre notre l
 	pQuodlibet->name = "QuodLibet";
 	pQuodlibet->iPlayer = MP_QUODLIBET;
 	pQuodlibet->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handeler (pQuodlibet, "QuodLibet");
+	cd_musicplayer_register_my_handler (pQuodlibet, "QuodLibet");
 }

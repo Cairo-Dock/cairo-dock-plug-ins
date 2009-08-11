@@ -47,13 +47,13 @@ static void _amarok2_get_status (GValueArray *s)
 	switch (status)
 	{
 		case 0:
-			myData.pPlayingStatus = PLAYER_PLAYING;
+			myData.iPlayingStatus = PLAYER_PLAYING;
 			break;
 		case 1:
-			myData.pPlayingStatus = PLAYER_PAUSED;
+			myData.iPlayingStatus = PLAYER_PAUSED;
 			break;
 		case 2: 
-			myData.pPlayingStatus = PLAYER_STOPPED;
+			myData.iPlayingStatus = PLAYER_STOPPED;
 			break;
 		default:
 			cd_warning ("unknown status from Amarok2");
@@ -67,7 +67,7 @@ static void _amarok2_get_infos (GHashTable *data_list)
 {
 	g_return_if_fail (data_list != NULL);
 	
-	myData.pPreviousPlayingStatus = myData.pPlayingStatus;
+	myData.pPreviousPlayingStatus = myData.iPlayingStatus;
 	myData.iPreviousTrackNumber = myData.iTrackNumber;
 	myData.iPreviousCurrentTime = myData.iCurrentTime;
 	
@@ -336,7 +336,7 @@ void cd_amarok2_configure (void)
 
 /* On enregistre notre lecteur.
  */
-void cd_musicplayer_register_amarok2_handeler (void) {
+void cd_musicplayer_register_amarok2_handler (void) {
 	cd_debug ("");
 	MusicPlayerHandeler *pAmarok2 = g_new0 (MusicPlayerHandeler, 1);
 	pAmarok2->read_data = cd_amarok2_read_data;
@@ -351,5 +351,5 @@ void cd_musicplayer_register_amarok2_handeler (void) {
 	pAmarok2->bSeparateAcquisition = FALSE;  // inutile de threader, c'est rapide.
 	pAmarok2->iLevel = PLAYER_GOOD;
 	
-	cd_musicplayer_register_my_handeler (pAmarok2, "Amarok 2");
+	cd_musicplayer_register_my_handler (pAmarok2, "Amarok 2");
 }

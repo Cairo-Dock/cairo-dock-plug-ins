@@ -4,7 +4,7 @@
 #include <cairo-dock.h>
 
 
-void cd_musicplayer_register_rhythmbox_handeler (void);
+void cd_musicplayer_register_rhythmbox_handler (void);
 
 
 #endif

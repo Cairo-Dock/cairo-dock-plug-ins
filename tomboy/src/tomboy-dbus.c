@@ -37,7 +37,7 @@ gboolean dbus_connect_to_bus (void)
 		
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteDeleted",  // aie, ce signal n'a pas l'air d'exister dans la version Gutsy de tomboy (No marshaller for signature of signal 'NoteDeleted') :-(
 			G_TYPE_STRING,
-			///G_TYPE_STRING,
+			//G_TYPE_STRING,
 			G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(dbus_proxy_tomboy, "NoteAdded",
 			G_TYPE_STRING,
@@ -131,9 +131,9 @@ static void _cd_tomboy_unregister_note (Icon *pIcon)
 }
 
 
-void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /**const gchar *note_title, */gpointer data)
+void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /*const gchar *note_title, */gpointer data)
 {
-	cd_message ("%s (%s)", __func__, note_uri);
+	g_print ("%s (%s)\n", __func__, note_uri);
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	

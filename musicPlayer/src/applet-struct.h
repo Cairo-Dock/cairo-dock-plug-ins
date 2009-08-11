@@ -4,7 +4,7 @@
 
 #include <cairo-dock.h>
 
-//Canevas
+//Canvas
 typedef struct _MusicPlayerHandeler MusicPlayerHandeler;
 
 // Players supportes
@@ -18,6 +18,7 @@ typedef enum {
 	MP_SONGBIRD,
 	MP_QUODLIBET,
 	MP_BANSHEE,
+	MP_AUDACIOUS,
 	MB_NB_PLAYERS
 } MySupportedPlayers;
 
@@ -42,8 +43,8 @@ typedef enum {
 } MyPlayerControl;
 
 typedef enum {
-	PLAYER_BAD=0,  // aucune notification, il faut tout tester en permanence
-	PLAYER_GOOD,  // notification de changement d'etat et de chanson, mais pas de temps.
+	PLAYER_BAD=0,  // aucune notification, il faut tout tester en permanence.
+	PLAYER_GOOD,  // notification de changement d'etat et de chanson, mais pas de temps => il faut une boucle seulement pour afficher le temps ecoule.
 	PLAYER_EXCELLENT,  // notification pour chaque evenement => aucune boucle n'est necessaire.
 	PLAYER_NB_LEVELS
 } MyLevel;  // niveau du lecteur.
@@ -106,6 +107,8 @@ typedef enum {
 
 #define NB_TRANSITION_STEP 8.
 
+#define MP_DBUS_TYPE_SONG_METADATA (dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE))
+
 
 struct _AppletConfig {
 	gboolean bEnableDialogs;
@@ -139,7 +142,7 @@ struct _AppletData {
 	gchar *cArtist;
 	gchar *cAlbum;
 	gchar* cPlayingUri;
-	MyPlayerStatus pPlayingStatus, pPreviousPlayingStatus;
+	MyPlayerStatus iPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;

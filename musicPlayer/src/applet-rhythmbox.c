@@ -32,9 +32,9 @@ static void _rhythmbox_getPlaying (void)
 {
 	cd_message ("");
 	if (cairo_dock_dbus_get_boolean (myData.dbus_proxy_player,"getPlaying"))
-		myData.pPlayingStatus = PLAYER_PLAYING;
+		myData.iPlayingStatus = PLAYER_PLAYING;
 	else
-		myData.pPlayingStatus = PLAYER_PAUSED;
+		myData.iPlayingStatus = PLAYER_PAUSED;
 }
 
 /* Retourne l'adresse de la musique jouée
@@ -48,7 +48,7 @@ static void _rhythmbox_getPlayingUri(void)
 
 /* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
  */
-void cd_rhythmbox_getSongInfos (gboolean bGetAll)
+static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 {
 	GHashTable *data_list = NULL;
 	GValue *value;
@@ -57,7 +57,7 @@ void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 	if(dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.cPlayingUri,
 		G_TYPE_INVALID,
-		dbus_g_type_get_map("GHashTable",G_TYPE_STRING, G_TYPE_VALUE),
+		MP_DBUS_TYPE_SONG_METADATA,
 		&data_list,
 		G_TYPE_INVALID))
 	{
@@ -111,6 +111,10 @@ void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 		cd_warning ("  can't get song properties");
 		g_free (myData.cPlayingUri);
 		myData.cPlayingUri = NULL;
+		g_free (myData.cTitle);
+		myData.cTitle = NULL;
+		g_free (myData.cAlbum);
+		myData.cAlbum = NULL;
 		g_free (myData.cCoverPath);
 		myData.cCoverPath = NULL;
 	}
@@ -127,7 +131,7 @@ void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 
 /* Fonction executée à chaque changement de musique.
  */
-void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
+static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
 	cd_message ("MP : %s (%s)",__func__,uri);
 	
@@ -161,16 +165,16 @@ void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 
 /* Fonction executée à chaque changement play/pause
  */
-void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
+static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
 	if (playing)
-		myData.pPlayingStatus = PLAYER_PLAYING;
+		myData.iPlayingStatus = PLAYER_PLAYING;
 	else
-		myData.pPlayingStatus = PLAYER_PAUSED;
+		myData.iPlayingStatus = PLAYER_PAUSED;
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
 		cd_message ("  cPlayingUri : %s", myData.cPlayingUri);
-		if(myData.pPlayingStatus == PLAYER_PLAYING)
+		if(myData.iPlayingStatus == PLAYER_PLAYING)
 		{
 			cd_musicplayer_set_surface (PLAYER_PLAYING);
 		}
@@ -179,12 +183,16 @@ void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 			cd_musicplayer_set_surface (PLAYER_PAUSED);
 		}
 	}
+	else
+	{
+		CD_APPLET_REDRAW_MY_ICON;
+	}
 }
 
 
 /* Fonction executée à chaque changement de temps joué
  */
-void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
+static void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
 {
 	myData.iCurrentTime = elapsed;
 	if(elapsed > 0)
@@ -209,7 +217,7 @@ void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
 }
 
 
-void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
+static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
 {
 	g_print ("\n%s (%s)\n\n",__func__,cImageURI);
 	g_free (myData.cCoverPath);
@@ -327,7 +335,7 @@ void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
 	
 	if (pControl == PLAYER_PLAY_PAUSE) // Cas special pour RB qui necessite un argument pour le PlayPause
 	{
-		gboolean bStartPlaying = (myData.pPlayingStatus != PLAYER_PLAYING);
+		gboolean bStartPlaying = (myData.iPlayingStatus != PLAYER_PLAYING);
 		dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, cCommand, 
 			G_TYPE_BOOLEAN, bStartPlaying,
 			G_TYPE_INVALID,
@@ -386,7 +394,7 @@ void cd_rhythmbox_configure (void)
 
 /* On enregistre notre lecteur.
  */
-void cd_musicplayer_register_rhythmbox_handeler (void)
+void cd_musicplayer_register_rhythmbox_handler (void)
 {
 	cd_debug ("");
 	MusicPlayerHandeler *pRhythmbox = g_new0 (MusicPlayerHandeler, 1);
@@ -405,5 +413,5 @@ void cd_musicplayer_register_rhythmbox_handeler (void)
 	pRhythmbox->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
 	pRhythmbox->iLevel = PLAYER_EXCELLENT;
 	
-	cd_musicplayer_register_my_handeler(pRhythmbox, "rhythmbox");
+	cd_musicplayer_register_my_handler(pRhythmbox, "rhythmbox");
 }

@@ -27,7 +27,7 @@ released under the terms of the GNU General Public License.
 				g_strfreev (cSplitedURI);
 				myData.iCheckIter = 0;
 				
-				if (myData.pPlayingStatus == PLAYER_PLAYING)
+				if (myData.iPlayingStatus == PLAYER_PLAYING)
 					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
@@ -45,7 +45,7 @@ released under the terms of the GNU General Public License.
 				g_strfreev (cSplitedURI);
 				myData.iCheckIter = 0;
 				
-				if (myData.pPlayingStatus == PLAYER_PLAYING)
+				if (myData.iPlayingStatus == PLAYER_PLAYING)
 					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
 				return NULL;
 			}
@@ -124,27 +124,33 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 				if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 				{
 					g_free (myData.cCoverPath);
-					myData.cCoverPath = g_strdup_printf ("%s/album.jpg", cSongDir);
+					myData.cCoverPath = g_strdup_printf ("%s/Cover.jpg", cSongDir);
 					cd_debug ("  test de %s", myData.cCoverPath);
 					if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 					{
 						g_free (myData.cCoverPath);
-						myData.cCoverPath = g_strdup_printf ("%s/albumart.jpg", cSongDir);
+						myData.cCoverPath = g_strdup_printf ("%s/cover.jpeg", cSongDir);
 						cd_debug ("  test de %s", myData.cCoverPath);
 						if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 						{
 							g_free (myData.cCoverPath);
-							myData.cCoverPath = g_strdup_printf ("%s/.folder.jpg", cSongDir);
+							myData.cCoverPath = g_strdup_printf ("%s/album.jpg", cSongDir);
 							cd_debug ("  test de %s", myData.cCoverPath);
 							if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 							{
 								g_free (myData.cCoverPath);
-								myData.cCoverPath = g_strdup_printf ("%s/folder.jpg", cSongDir);
+								myData.cCoverPath = g_strdup_printf ("%s/albumart.jpg", cSongDir);
 								cd_debug ("  test de %s", myData.cCoverPath);
 								if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 								{
 									g_free (myData.cCoverPath);
-									myData.cCoverPath = NULL;
+									myData.cCoverPath = g_strdup_printf ("%s/folder.jpg", cSongDir);
+									cd_debug ("  test de %s", myData.cCoverPath);
+									if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
+									{
+										g_free (myData.cCoverPath);
+										myData.cCoverPath = NULL;
+									}
 								}
 							}
 						}

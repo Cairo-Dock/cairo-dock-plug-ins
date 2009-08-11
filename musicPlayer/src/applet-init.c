@@ -27,6 +27,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
 #include "applet-amarok1.h" //Support Amarok 1.4
+#include "applet-audacious.h" //Support Audacious
 
 CD_APPLET_DEFINITION (N_("musicPlayer"),
 	2,0,0,
@@ -34,30 +35,35 @@ CD_APPLET_DEFINITION (N_("musicPlayer"),
 	N_("This applet lets you control any music player.\n"
 	"Left click to Play/Pause, middle-click to play Next song.\n"
 	"Scroll up/down to play previous/next song.\n"
-	"You can drag and drop songs to put them in the queue (depends on Player).\n"
+	"You can drag and drop songs on the icon to put them in the queue (depends on Player),\n"
+	" and jpeg image to use as cover.\n"
 	"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 	"       For SongBird, you have to install its dbus add-on.\n"),
-	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85")
+	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85, Fabounet")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	// Add here all player's registering functions
 	// Don't forget to add the registered Name in ../data/musicPlayer.conf.in
-	cd_musicplayer_register_xmms_handeler ();
-	cd_musicplayer_register_exaile_handeler();
-	cd_musicplayer_register_songbird_handeler();
-	cd_musicplayer_register_banshee_handeler();
-	cd_musicplayer_register_rhythmbox_handeler();
-	cd_musicplayer_register_quodlibet_handeler();
-	cd_musicplayer_register_listen_handeler();
-	cd_musicplayer_register_amarok2_handeler();
-	cd_musicplayer_register_amarok1_handeler();
+	cd_musicplayer_register_xmms_handler ();
+	cd_musicplayer_register_exaile_handler();
+	cd_musicplayer_register_songbird_handler();
+	cd_musicplayer_register_banshee_handler();
+	cd_musicplayer_register_rhythmbox_handler();
+	cd_musicplayer_register_quodlibet_handler();
+	cd_musicplayer_register_listen_handler();
+	cd_musicplayer_register_amarok2_handler();
+	cd_musicplayer_register_amarok1_handler();
+	cd_musicplayer_register_audacious_handler();
 	
 	//\_______________ on definit un mode de rendu pour notre desklet.
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
+	else if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0')
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
+	
 	
 	//\_______________ on charge le theme 3D si necessaire.
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
@@ -66,18 +72,18 @@ CD_APPLET_INIT_BEGIN
 	
 	//\_______________ on demarre le backend.
 	// Pour forcer le dessin initial.
-	myData.pPlayingStatus = PLAYER_NONE;
+	myData.iPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
-	myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
+	myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
 	if (myData.pCurrentHandeler == NULL) {
  		cd_warning ("MP : this player (%s) is not supported.", myConfig.cMusicPlayer); 
  		return; 
 	}
 	
-	cd_musicplayer_launch_handeler ();  // connexion au bus, detection de l'appli, recuperation de l'etat du lecteur si il est en marche, sinon dessin de l'icone "eteint".
+	cd_musicplayer_launch_handler ();  // connexion au bus, detection de l'appli, recuperation de l'etat du lecteur si il est en marche, sinon dessin de l'icone "eteint".
 	
 	
 	//\_______________ On prend en charge l'icone de l'appli player.
@@ -136,6 +142,8 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
+	else if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0')
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
 	
 	//\_______________ On reset surfaces et textures.
 	int i;
@@ -176,7 +184,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	
 	//\_______________ On force le redessin.
-	//myData.pPlayingStatus = PLAYER_NONE;
+	//myData.iPlayingStatus = PLAYER_NONE;
 	myData.pPreviousPlayingStatus = -1;
 	if( myData.cPreviousRawTitle )
 	{
@@ -194,14 +202,14 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On gere le changement de player ou on redessine juste l'icone.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		// on stoppe l'ancien backend et on relance le nouveau.
-		cd_musicplayer_stop_handeler ();  // libère tout ce qu'occupe notre ancien handeler.
-		myData.pCurrentHandeler = cd_musicplayer_get_handeler_by_name (myConfig.cMusicPlayer);
+		cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
+		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
 		if (myData.pCurrentHandeler == NULL)
 		{ 
  			cd_warning ("MP : this player (%s) is not supported.", myConfig.cMusicPlayer); 
  			return FALSE; 
 		}
-		cd_musicplayer_launch_handeler ();
+		cd_musicplayer_launch_handler ();
 		
 		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
 	}
