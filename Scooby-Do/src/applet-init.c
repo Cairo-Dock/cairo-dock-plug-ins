@@ -13,7 +13,11 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-session.h"
+#include "applet-search.h"
 #include "applet-listing.h"
+#include "applet-backend-files.h"
+#include "applet-backend-web.h"
+#include "applet-backend-command.h"
 #include "applet-init.h"
 
 
@@ -33,27 +37,23 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	
-	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);
 	cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);
+	
+	cd_do_register_files_backend ();
+	cd_do_register_web_backend ();
+	cd_do_register_command_backend ();
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
-	//cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
+	
+	cd_do_exit_session ();
+	cd_do_stop_all_backends ();
 CD_APPLET_STOP_END
 
 

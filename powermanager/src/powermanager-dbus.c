@@ -400,7 +400,7 @@ gboolean update_stats(void)
 				}
 			}
 		}
-		else
+		else if (myData.on_battery || myData.battery_charge < 99.9)
 		{
 			g_print ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
 			fPresentRate = (myData.on_battery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);

@@ -15,25 +15,22 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-notifications.h"
 
 
-
+static gboolean _cd_allow_minimize (CairoDesklet *pDesklet, CairoDockModuleInstance *pInstance, gpointer data)
+{
+	pDesklet->bAllowMinimize = TRUE;
+	return FALSE;
+}
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-	
-	if (myConfig.bswapclic)
+	if (! bDesktopIsVisible && !myConfig.bswapclic)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
 	{
-		if (bDesktopIsVisible)  // on remet comme avant.
-		{
-			cairo_dock_set_desklets_visibility_to_default ();
-		}
-		else  // on montre le bureau, et les desklets.
-		{
-			cairo_dock_set_all_desklets_visible (FALSE);  // ne passe pas les desklets de la couche des widgets devant.
-		}
+		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
 	}
+	
+	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 CD_APPLET_ON_CLICK_END
 
 
@@ -47,17 +44,10 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-	
-	if (! myConfig.bswapclic)
+	if (! bDesktopIsVisible && myConfig.bswapclic)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
 	{
-		if (bDesktopIsVisible)  // on remet comme avant.
-		{
-			cairo_dock_set_desklets_visibility_to_default ();
-		}
-		else  // on montre le bureau, et les desklets.
-		{
-			cairo_dock_set_all_desklets_visible (FALSE);  // ne passe pas les desklets de la couche des widgets devant.
-		}
+		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
 	}
+	
+	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 CD_APPLET_ON_MIDDLE_CLICK_END

@@ -16,6 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-session.h"
 #include "applet-appli-finder.h"
 #include "applet-listing.h"
+#include "applet-search.h"
 #include "applet-config.h"
 
 
@@ -85,7 +86,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cd_do_close_session ();
 	cd_do_exit_session ();
 	
-	cairo_dock_free_task (myData.pLocateTask);
+	cd_do_stop_all_backends ();
 	
 	cd_do_reset_applications_list ();
 	

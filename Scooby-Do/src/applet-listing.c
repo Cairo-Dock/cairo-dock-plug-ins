@@ -46,27 +46,13 @@ void cd_do_free_entry (CDEntry *pEntry)
 	cairo_surface_destroy (pEntry->pIconSurface);
 }
 
-void cd_do_backup_entry (CDEntry *pInEntry, CDEntry *pFromEntry)
-{
-	pInEntry->cPath = g_strdup (pFromEntry->cPath);
-	pInEntry->cName = g_strdup (pFromEntry->cName);
-	pInEntry->cIconName = NULL;  // on en n'a pas besoin pour le backup.
-	pInEntry->pIconSurface = NULL;  // idem.
-}
-
 void cd_do_free_listing_backup (CDListingBackup *pBackup)
 {
 	if (pBackup == NULL)
 		return ;
 	
-	gint i;
-	CDEntry *pEntry;
-	for (i = 0; i < pBackup->iNbEntries; i ++)
-	{
-		pEntry = &pBackup->pEntries[i];
-		cd_do_free_entry (pEntry);
-	}
-	g_free (pBackup->pEntries);
+	g_list_foreach (pBackup->pEntries, (GFunc)cd_do_free_entry, NULL);
+	g_list_free (pBackup->pEntries);
 	g_free (pBackup);
 }
 
@@ -81,7 +67,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 		
 		if (pExpose->area.x + pExpose->area.y != 0)
 		{
-			glEnable (GL_SCISSOR_TEST);  // ou comment diviser par 4 l'occupation CPU !
+			glEnable (GL_SCISSOR_TEST);
 			glScissor ((int) pExpose->area.x,
 				(int) (pListing->container.bIsHorizontal ? pListing->container.iHeight : pListing->container.iWidth) -
 					pExpose->area.y - pExpose->area.height,  // lower left corner of the scissor box.
@@ -101,7 +87,16 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 	}
 	else
 	{
-		cairo_t *pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
+		cairo_t *pCairoContext;
+		if (pExpose->area.x > 0 || pExpose->area.y > 0)
+		{
+			double fColor[4] = {0., 0., 0., 0.};
+			pCairoContext = cairo_dock_create_drawing_context_on_area (CAIRO_CONTAINER (pListing), &pExpose->area, fColor);
+		}
+		else
+		{
+			pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
+		}
 		
 		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
 		
@@ -253,15 +248,6 @@ void cd_do_destroy_listing (CDListing *pListing)
 		g_source_remove (pListing->container.iSidGLAnimation);
 	gtk_widget_destroy (pListing->container.pWidget);
 	
-	gint i;
-	CDEntry *pEntry;
-	for (i = 0; i < pListing->iNbEntries; i ++)
-	{
-		pEntry = &pListing->pEntries[i];
-		cd_do_free_entry (pEntry);
-	}
-	g_free (pListing->pEntries);
-	
 	g_free (pListing);
 }
 
@@ -292,9 +278,7 @@ gboolean cd_do_update_listing_notification (gpointer pUserData, CDListing *pList
 		if (pListing->iScrollAnimationCount != 0)
 			*bContinueAnimation = TRUE;
 		double f = (double) pListing->iScrollAnimationCount / NB_STEPS_FOR_SCROLL;
-		double fAimedOffset = pListing->iCurrentEntry * (myDialogs.dialogTextDescription.iSize + 2);
-		fAimedOffset = pListing->fAimedOffset;
-		pListing->fCurrentOffset = pListing->fPreviousOffset * f + fAimedOffset * (1 - f);
+		pListing->fCurrentOffset = pListing->fPreviousOffset * f + pListing->fAimedOffset * (1 - f);
 	}
 	double fRadius = MIN (6, myDialogs.dialogTextDescription.iSize/2+1);
 	if (myData.pListing->iTitleWidth > myData.pListing->container.iWidth - 2*fRadius + 10)  // 10 pixels de rab
@@ -374,13 +358,13 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 		double dx, dy, dm = myConfig.iNbLinesInListing * (myDialogs.dialogTextDescription.iSize + 2) / 2;
 		dm = 0;
 		dy = iTopMargin - pListing->fCurrentOffset + 1 + dm;
-		int i;
 		double ymax = MIN (iTopMargin + pListing->iNbEntries * (myDialogs.dialogTextDescription.iSize + 2), iHeight - iBottomMargin);
-		for (i = 0; i < pListing->iNbEntries; i ++)
+		GList *e;
+		for (e = pListing->pEntries; e != NULL; e = e->next)
 		{
 			if (iOffsetX >= NB_STEPS_FOR_1_ENTRY)  // en dehors a droite a partir de celui-ci.
 				break ;
-			pEntry = &pListing->pEntries[i];
+			pEntry = e->data;
 			if (pEntry->bHidden)
 				continue ;
 			
@@ -415,10 +399,10 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			}
 			
 			// on souligne l'entree courante.
-			if (i == pListing->iCurrentEntry)
+			if (e == pListing->pCurrentEntry)
 			{
-				double e = 1. - (double) pListing->iCurrentEntryAnimationCount / NB_STEPS_FOR_CURRENT_ENTRY;
-				if (e != 0)
+				double f = 1. - (double) pListing->iCurrentEntryAnimationCount / NB_STEPS_FOR_CURRENT_ENTRY;
+				if (f != 0)
 				{
 					cairo_save (pCairoContext);
 					double rx = .5*(iWidth - iLeftMargin - iRightMargin);
@@ -428,7 +412,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 						0.,
 						ry,
 						ry,
-						e * ry);
+						f * ry);
 					cairo_pattern_set_extend (pPattern, CAIRO_EXTEND_NONE);
 					
 					cairo_pattern_add_color_stop_rgba (pPattern,
@@ -442,17 +426,17 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 					cairo_paint (pCairoContext);
 					cairo_pattern_destroy (pPattern);
 					cairo_restore (pCairoContext);
-				}
-				
-				// on dessine l'indicateur de sous-listing.
-				if (pEntry->list != NULL)
-				{
-					cairo_set_source_rgba (pCairoContext, 0., 0., 0., e);
-					cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-					cairo_close_path (pCairoContext);
-					cairo_stroke (pCairoContext);
+					
+					// on dessine l'indicateur de sous-listing.
+					if (pEntry->list != NULL)
+					{
+						cairo_set_source_rgba (pCairoContext, 0., 0., 0., f);
+						cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+						cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+						cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+						cairo_close_path (pCairoContext);
+						cairo_stroke (pCairoContext);
+					}
 				}
 			}
 			
@@ -462,7 +446,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			pango_cairo_show_layout (pCairoContext, pLayout);
 			
 			// on separe la 1ere entree de la derniere.
-			if (i == 0)
+			if (e->prev == NULL)
 			{
 				cairo_set_source_rgba (pCairoContext, 0., 0., 0., .5);
 				cairo_move_to (pCairoContext, 0., 1.);
@@ -478,16 +462,19 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 		}
 		
 		// on dessine le chemin de l'entree courante.
-		pEntry = &pListing->pEntries[pListing->iCurrentEntry];
-		cairo_save (pCairoContext);
-		cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
-		cairo_translate (pCairoContext, fRadius - pListing->iTitleOffset, 0.);
-		pango_layout_set_text (pLayout, pEntry->cPath ? pEntry->cPath : pEntry->cName, -1);
-		PangoRectangle ink, log;
-		pango_layout_get_pixel_extents (pLayout, &ink, &log);
-		pListing->iTitleWidth = ink.width;
-		pango_cairo_show_layout (pCairoContext, pLayout);
-		cairo_restore (pCairoContext);
+		if (pListing->pCurrentEntry)
+		{
+			pEntry = pListing->pCurrentEntry->data;
+			cairo_save (pCairoContext);
+			cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
+			cairo_translate (pCairoContext, fRadius - pListing->iTitleOffset, 0.);
+			pango_layout_set_text (pLayout, pEntry->cPath ? pEntry->cPath : pEntry->cName, -1);
+			PangoRectangle ink, log;
+			pango_layout_get_pixel_extents (pLayout, &ink, &log);
+			pListing->iTitleWidth = ink.width;
+			pango_cairo_show_layout (pCairoContext, pLayout);
+			cairo_restore (pCairoContext);
+		}
 	}
 	
 	// on dessine l'etat de la recherche.
@@ -504,7 +491,6 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
 	// on dessine le filtre.
-	/// essayer de dessiner un bouton enfonce ou une encoche (on pourrait mettre le texte en cache dans une surface).
 	cairo_translate (pCairoContext, 0., myDialogs.dialogTextDescription.iSize + 2);
 	cairo_set_source_surface (pCairoContext, (myData.iCurrentFilter & DO_MATCH_CASE) ? myData.pActiveButtonSurface : myData.pInactiveButtonSurface, 0., 0.);
 	cairo_paint (pCairoContext);
@@ -560,19 +546,19 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 
 static gboolean _fill_entry_icon_idle (CDListing *pListing)
 {
-	g_print ("%s (%d)", __func__, pListing->iEntryToFill);
+	g_print ("%s (%x)", __func__, pListing->pEntryToFill);
 	
 	CDEntry *pEntry;
 	gboolean bHasBeenFilled = FALSE;
-	while (pListing->iEntryToFill < pListing->iNbEntries && ! bHasBeenFilled)
+	while (pListing->pEntryToFill != NULL && ! bHasBeenFilled)
 	{
-		pEntry = &pListing->pEntries[pListing->iEntryToFill];
+		pEntry = pListing->pEntryToFill->data;
 		if (! pEntry->bHidden && pEntry->fill)
 			bHasBeenFilled = pEntry->fill (pEntry);
-		pListing->iEntryToFill ++;
+		pListing->pEntryToFill = pListing->pEntryToFill->next;
 	}
 	
-	if (pListing->iEntryToFill >= pListing->iNbEntries)
+	if (pListing->pEntryToFill == NULL)  // on a tout rempli. ajouter || bHasBeenFilled pour redessiner au fur et a mesure.
 	{
 		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 		pListing->iSidFillEntries = 0;
@@ -580,7 +566,7 @@ static gboolean _fill_entry_icon_idle (CDListing *pListing)
 	}
 	return TRUE;
 }
-void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
+void cd_do_show_listing (GList *pEntries, int iNbEntries)
 {
 	if (myData.pListing == NULL)
 	{
@@ -638,15 +624,9 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
 	
 	if (myData.pListing->pEntries != NULL)
 	{
-		gint i;
-		CDEntry *pEntry;
 		g_print ("%d entrees precedemment\n", myData.pListing->iNbEntries);
-		for (i = 0; i < myData.pListing->iNbEntries; i ++)
-		{
-			pEntry = &myData.pListing->pEntries[i];
-			cd_do_free_entry (pEntry);
-		}
-		g_free (myData.pListing->pEntries);
+		g_list_foreach (myData.pListing->pEntries, (GFunc)cd_do_free_entry, NULL);
+		g_list_free (myData.pListing->pEntries);
 	}
 	myData.pListing->pEntries = pEntries;
 	
@@ -660,8 +640,7 @@ void cd_do_show_listing (CDEntry *pEntries, int iNbEntries)
 	else
 		cd_do_set_status_printf ("%d %s", iNbEntries, iNbEntries > 1 ? D_("results") : D_("result"));
 	
-	myData.pListing->iCurrentEntry = MIN (myConfig.iNbLinesInListing, iNbEntries) / 2;
-	myData.pListing->iEntryToFill = 0;
+	cd_do_rewind_current_entry ();
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;  // pas de surlignage pendant l'apparition.
 	
 	myData.pListing->iScrollAnimationCount = 0;
@@ -687,19 +666,13 @@ void cd_do_hide_listing (void)
 		g_source_remove (myData.pListing->iSidFillEntries);
 		myData.pListing->iSidFillEntries = 0;
 	}
-	myData.pListing->iEntryToFill = 0;
+	myData.pListing->pEntryToFill = NULL;
 	
-	gint i;
-	CDEntry *pEntry;
-	for (i = 0; i < myData.pListing->iNbEntries; i ++)
-	{
-		pEntry = &myData.pListing->pEntries[i];
-		cd_do_free_entry (pEntry);
-	}
-	g_free (myData.pListing->pEntries);
+	g_list_foreach (myData.pListing->pEntries, (GFunc)cd_do_free_entry, NULL);
+	g_list_free (myData.pListing->pEntries);
 	myData.pListing->pEntries = NULL;
 	myData.pListing->iNbEntries = 0;
-	myData.pListing->iCurrentEntry = 0;
+	myData.pListing->pCurrentEntry = NULL;
 	
 	if (myData.pListingHistory != NULL)
 	{
@@ -719,14 +692,13 @@ void cd_do_hide_listing (void)
 	
 	g_free (myData.cStatus);
 	myData.cStatus = NULL;
-	myData.bFoundNothing = FALSE;
 	
 	gtk_widget_hide (myData.pListing->container.pWidget);
 }
 
 void cd_do_fill_listing_entries (CDListing *pListing)
 {
-	pListing->iEntryToFill = 0;
+	pListing->pEntryToFill = pListing->pEntries;
 	if (pListing->iSidFillEntries == 0 && pListing->iNbVisibleEntries != 0)
 		pListing->iSidFillEntries = g_idle_add ((GSourceFunc)_fill_entry_icon_idle, pListing);
 }
@@ -734,29 +706,27 @@ void cd_do_fill_listing_entries (CDListing *pListing)
 
 void cd_do_select_prev_next_entry_in_listing (gboolean bNext)
 {
+	CDEntry *pEntry;
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
+	GList *e = myData.pListing->pCurrentEntry;
 	if (bNext)
 	{
-		int i = myData.pListing->iCurrentEntry;
 		do
 		{
-			i ++;
-			if (i >= myData.pListing->iNbEntries)
-				i = 0;
-		} while (i != myData.pListing->iCurrentEntry && myData.pListing->pEntries[i].bHidden);
-		myData.pListing->iCurrentEntry = i;
+			e = cairo_dock_get_next_element (e, myData.pListing->pEntries);
+			pEntry = e->data;
+		} while (e != myData.pListing->pCurrentEntry && pEntry->bHidden);
+		
 	}
 	else
 	{
-		int i = myData.pListing->iCurrentEntry;
 		do
 		{
-			i --;
-			if (i < 0)
-				i = myData.pListing->iNbEntries - 1;
-		} while (i != myData.pListing->iCurrentEntry && myData.pListing->pEntries[i].bHidden);
-		myData.pListing->iCurrentEntry = i;
+			e = cairo_dock_get_previous_element (e, myData.pListing->pEntries);
+			pEntry = e->data;
+		} while (e != myData.pListing->pCurrentEntry && pEntry->bHidden);
 	}
+	myData.pListing->pCurrentEntry = e;
 	myData.pListing->fAimedOffset += (bNext ? 1:-1) * (myDialogs.dialogTextDescription.iSize + 2);
 	
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;
@@ -770,39 +740,41 @@ void cd_do_select_prev_next_entry_in_listing (gboolean bNext)
 void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 {
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
+	GList *e = myData.pListing->pCurrentEntry, *f = e;
+	CDEntry *pEntry;
+	int k = 0;
 	if (bNext)
 	{
-		int i = myData.pListing->iCurrentEntry, j = i, k = 0;
 		do
 		{
-			i ++;
-			if (i >= myData.pListing->iNbEntries)
+			if (e->next == NULL)
 				break;
-			if (! myData.pListing->pEntries[i].bHidden)
+			e = e->next;
+			pEntry = e->data;
+			if (! pEntry->bHidden)
 			{
-				j = i;
+				f = e;
 				k ++;
 			}
 		} while (k < myConfig.iNbLinesInListing);
-		myData.pListing->iCurrentEntry = j;
 	}
 	else
 	{
-		int i = myData.pListing->iCurrentEntry, j = i, k = 0;
 		do
 		{
-			i --;
-			if (i < 0)
+			if (e->prev == NULL)
 				break;
-			if (! myData.pListing->pEntries[i].bHidden)
+			e = e->prev;
+			pEntry = e->data;
+			if (! pEntry->bHidden)
 			{
-				j = i;
+				f = e;
 				k ++;
 			}
 		} while (k < myConfig.iNbLinesInListing);
-		myData.pListing->iCurrentEntry = j;
 	}
-	myData.pListing->fAimedOffset = myData.pListing->iCurrentEntry * (myDialogs.dialogTextDescription.iSize + 2);
+	myData.pListing->pCurrentEntry = f;
+	myData.pListing->fAimedOffset = g_list_position (myData.pListing->pEntries, f) * (myDialogs.dialogTextDescription.iSize + 2);
 	
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;
 	myData.pListing->iScrollAnimationCount = NB_STEPS_FOR_SCROLL;
@@ -815,21 +787,30 @@ void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 void cd_do_select_last_first_entry_in_listing (gboolean bLast)
 {
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
+	GList *e = myData.pListing->pCurrentEntry;
+	int i;
 	if (bLast)
 	{
-		int i = myData.pListing->iNbEntries - 1;
-		while (i > 0 && myData.pListing->pEntries[i].bHidden)
+		e = g_list_last (myData.pListing->pEntries);
+		i = myData.pListing->iNbEntries - 1;
+		while (e->prev != NULL && ((CDEntry *)(e->data))->bHidden)
+		{
+			e = e->prev;
 			i --;
-		myData.pListing->iCurrentEntry = i;
+		}
 	}
 	else
 	{
-		int i = 0;
-		while (i < myData.pListing->iNbEntries - 1 && myData.pListing->pEntries[i].bHidden)
+		e = myData.pListing->pEntries;
+		i = 0;
+		while (e->next != NULL && ((CDEntry *)(e->data))->bHidden)
+		{
+			e = e->next;
 			i ++;
-		myData.pListing->iCurrentEntry = i;
+		}
 	}
-	myData.pListing->fAimedOffset = myData.pListing->iCurrentEntry * (myDialogs.dialogTextDescription.iSize + 2);
+	myData.pListing->pCurrentEntry = e;
+	myData.pListing->fAimedOffset = i * (myDialogs.dialogTextDescription.iSize + 2);
 	
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;
 	myData.pListing->iScrollAnimationCount = NB_STEPS_FOR_SCROLL;
@@ -843,9 +824,10 @@ void cd_do_select_nth_entry_in_listing (int iNumEntry)
 {
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
 	
-	myData.pListing->iCurrentEntry = MIN (iNumEntry, myData.pListing->iNbEntries - 1);
+	int i = MIN (iNumEntry, myData.pListing->iNbEntries - 1);
+	myData.pListing->pCurrentEntry = g_list_nth (myData.pListing->pEntries, i);
 	
-	myData.pListing->fAimedOffset = myData.pListing->iCurrentEntry * (myDialogs.dialogTextDescription.iSize + 2);
+	myData.pListing->fAimedOffset = i * (myDialogs.dialogTextDescription.iSize + 2);
 	
 	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;
 	myData.pListing->iScrollAnimationCount = NB_STEPS_FOR_SCROLL;
@@ -853,6 +835,26 @@ void cd_do_select_nth_entry_in_listing (int iNumEntry)
 	myData.pListing->sens = 1;
 	cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pListing));
 	cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
+}
+
+void cd_do_rewind_current_entry (void)
+{
+	if (myData.pListing == NULL)
+		return ;
+	int i = 0;
+	GList *e;
+	CDEntry *pEntry;
+	for (e = myData.pListing->pEntries; e && e->next != NULL; e = e->next)
+	{
+		pEntry = e->data;
+		if (! pEntry->bHidden)
+		{
+			i ++;
+			if (i == myConfig.iNbLinesInListing/2)
+				break ;
+		}
+	}
+	myData.pListing->pCurrentEntry = e;
 }
 
 

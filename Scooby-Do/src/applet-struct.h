@@ -42,7 +42,7 @@ struct _AppletConfig {
 typedef struct _CDEntry CDEntry;
 typedef gboolean (*CDFillEntryFunc) (CDEntry *pEntry);
 typedef void (*CDExecuteEntryFunc) (CDEntry *pEntry);
-typedef CDEntry* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
+typedef GList* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
 
 struct _CDEntry {
 	gchar *cPath;
@@ -58,9 +58,9 @@ struct _CDEntry {
 
 typedef struct _CDListing {
 	CairoContainer container;
-	CDEntry *pEntries;
+	GList *pEntries;
 	gint iNbEntries;
-	gint iCurrentEntry;
+	GList *pCurrentEntry;
 	gint iAppearanceAnimationCount;
 	gint iCurrentEntryAnimationCount;
 	gint iScrollAnimationCount;
@@ -71,14 +71,14 @@ typedef struct _CDListing {
 	gint iTitleWidth;
 	gint sens;
 	guint iSidFillEntries;
-	gint iEntryToFill;
+	GList *pEntryToFill;
 	gint iNbVisibleEntries;
 	} CDListing;
 
 typedef struct _CDListingBackup {
-	CDEntry *pEntries;
+	GList *pEntries;
 	gint iNbEntries;
-	gint iCurrentEntry;
+	GList *pCurrentEntry;
 	} CDListingBackup;
 
 typedef struct _CDChar {
@@ -105,25 +105,28 @@ typedef enum _CDFilter {
 	} CDFilter;
 
 typedef gboolean (*CDBackendInitFunc) (void);
-typedef void (*CDBackendSearchFunc) (gpointer pBuffer);
-typedef GList * (*CDBackendBuildEntriesFunc) (gpointer pBuffer);
-typedef void (*CDBackendFreeBufferFunc) (gpointer pBuffer);
+typedef GList * (*CDBackendSearchFunc) (const gchar *cText, gint iFilter, gpointer pData, int *iNbEntries);
 
 typedef struct _CDBackend {
 	// interface
 	const gchar *cName;
 	gboolean bIsThreaded;
+	gboolean bStaticResults;
 	CDBackendInitFunc init;
-	CDBackendSearchFunc search;  // async
-	CDBackendBuildEntriesFunc build_entries;  // sync
-	CDBackendFreeBufferFunc free_buffer;
+	CDBackendSearchFunc search;
 	// private data
 	gint iState;  // 0:uninitialized; 1:ok; -1:broken
 	CairoDockTask *pTask;
+	gboolean bTooManyResults;
+	gboolean bFoundNothing;
+	GList *pLastShownResults;
+	gint iNbLastShownResults;
 	// shared memory
-	gpointer pBuffer;  // lecture/ecriture.
+	gpointer pData;  // lecture/ecriture.
 	gchar *cCurrentLocateText;  // lecture seule dans le thread
 	gint iLocateFilter;  // lecture seule dans le thread
+	GList *pSearchResults;  // ecriture seule dans le thread
+	gint iNbSearchResults;  // ecriture seule dans le thread
 	// end of shared memory
 	} CDBackend;
 
@@ -167,16 +170,7 @@ struct _AppletData {
 	GList *pCurrentApplicationToLoad;
 	guint iSidLoadExternAppliIdle;
 	
-	gint iLocateAvailable;
 	gint iCurrentFilter;
-	CairoDialog *pFilterDialog;
-	CairoDockTask *pLocateTask;
-	gboolean bFoundNothing;
-	// shared memory
-	gchar **pMatchingFiles;
-	gchar *cCurrentLocateText;  // lecture seule dans le thread
-	gint iLocateFilter;  // lecture seule dans le thread
-	// end of shared memory
 	
 	CDListing *pListing;
 	gchar *cStatus;

@@ -14,7 +14,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-icon-finder.h"
-#include "applet-command-finder.h"
+#include "applet-search.h"
 #include "applet-session.h"
 #include "applet-listing.h"
 #include "applet-notifications.h"
@@ -193,7 +193,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	if (myData.sCurrentText == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	const gchar *cKeyName = gdk_keyval_name (iKeyVal);  // gdk_keyval_to_unicode
+	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
 	g_print ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
 	
@@ -238,7 +238,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
-			g_print ("%d/%d (%s)\n", myData.iNbValidCaracters, myData.sCurrentText->len, myData.sCurrentText->str);
+			g_print ("on efface la derniere lettre de %s %d/%d\n", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
 			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
 				myData.iNbValidCaracters --;
 			
@@ -251,18 +251,25 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
 					cd_do_search_current_icon (FALSE);
 			}
-			else
+			else // mode recherche.
 			{
-				g_list_free (myData.pMatchingIcons);
-				myData.pMatchingIcons = NULL;
-				cd_do_search_matching_icons ();
-				if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche un fichier.
+				if (myData.pListingHistory == NULL)
 				{
-					cd_do_find_matching_files ();
+					g_list_free (myData.pMatchingIcons);
+					myData.pMatchingIcons = NULL;
+					cd_do_search_matching_icons ();
+					if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche des entrees.
+					{
+						cd_do_launch_all_backends ();
+					}
+					else  // on a trouve au moins un programme, on cache le listing des fichiers.
+					{
+						cd_do_hide_listing ();
+					}
 				}
-				else  // on a trouve au moins un programme, on cache le listing des fichiers.
+				else
 				{
-					cd_do_hide_listing ();
+					cd_do_filter_current_listing ();
 				}
 			}
 			
@@ -342,38 +349,17 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
 				cairo_dock_launch_command (pIcon->acCommand);
 			}
-			else if (myData.pListing && myData.pListing->pEntries)  // pas d'appli mais une entree => on l'execute.
+			else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
 			{
-				CDEntry *pEntry = &myData.pListing->pEntries[myData.pListing->iCurrentEntry];
-				g_print ("on valide l'entree '%s'\n", pEntry->cPath);
+				CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
+				g_print ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
 				if (pEntry->execute)
 					pEntry->execute (pEntry);
 			}
-			else if (myData.iNbValidCaracters > 0)  // pas de fichier mais du texte => on l'execute tel quel.
+			else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 			{
-				/*gchar *cCommand = g_strdup_printf ("%s/calc.sh '%s'", MY_APPLET_SHARE_DATA_DIR, myData.sCurrentText->str);
-				gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-				g_free (cCommand);
-				if (cResult != NULL && strcmp (cResult, "0") != 0)
-				{
-					g_print ("result : '%s'\n", cResult);
-					GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-					gtk_clipboard_set_text (pClipBoard, cResult, -1);
-					Icon *pIcon = cairo_dock_get_dialogless_icon ();
-					cairo_dock_show_temporary_dialog_with_icon (D_("The value %s has been copied into the clipboard."),
-						pIcon,
-						CAIRO_CONTAINER (g_pMainDock),
-						3000,
-						MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-						cResult);
-					double fResult = atof (cResult);
-				}
-				else  // le calcul n'a rien donne, on execute sans chercher.*/
-				{
-					g_print ("on execute '%s'\n", myData.sCurrentText->str);
-					cairo_dock_launch_command (myData.sCurrentText->str);
-				}
-				//g_free (cResult);
+				g_print ("on execute '%s'\n", myData.sCurrentText->str);
+				cairo_dock_launch_command (myData.sCurrentText->str);
 			}
 			
 			if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))
@@ -534,7 +520,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				g_string_append (myData.sCurrentText, cText);
 				cd_do_load_pending_caracters ();
 				cd_do_launch_appearance_animation ();
-				myData.iNbValidCaracters = myData.sCurrentText->len;  // cela valide le texte colle ainsi que celles precedemment ajoutee par completion.
+				myData.iNbValidCaracters = myData.sCurrentText->len;  // cela valide le texte colle ainsi que les lettres precedemment ajoutee par completion.
 			}
 		}
 		else  // on rajoute la lettre au mot
@@ -558,12 +544,15 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					cd_do_search_matching_icons ();
 				}
 				
-				// si on n'a trouve aucun lanceur, on lance la recherche de fichiers.
-				if (myData.pMatchingIcons == NULL && ! myData.bFoundNothing)
+				// si on n'a trouve aucun lanceur, on lance la recherche dans les backends.
+				if (myData.pMatchingIcons == NULL)
 				{
-					// on cherche un fichier correspondant.
-					cd_do_find_matching_files ();
+					cd_do_launch_all_backends ();
 				}
+			}
+			else
+			{
+				cd_do_filter_current_listing ();
 			}
 		}
 		

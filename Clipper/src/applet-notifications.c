@@ -9,23 +9,17 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
 #include "applet-clipboard.h"
 #include "applet-notifications.h"
 
 
-
-
-
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.pItems == NULL)
 	{
-		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
-		cairo_dock_show_temporary_dialog_with_icon (D_("No items yet."), myIcon, myContainer, 2000, cIconPath);
-		g_free (cIconPath);
+		cairo_dock_show_temporary_dialog_with_icon (D_("No items yet."), myIcon, myContainer, 2000, "same icon");
 	}
 	else
 	{
@@ -68,9 +62,7 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myConfig.pPersistentItems == NULL)
 	{
-		//gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
 		cairo_dock_show_temporary_dialog_with_icon (D_("No persistent items.\nYou can add some by drag and dropping some text on the icon."), myIcon, myContainer, 6000, "same icon");
-		//g_free (cIconPath);
 	}
 	else
 	{

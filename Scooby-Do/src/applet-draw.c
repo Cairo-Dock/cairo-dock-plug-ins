@@ -193,7 +193,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					}
 				}
 				cairo_translate (pCairoContext,
-					x + (iNbIcons & 1 ? iWidth * fZoom/2 * fScale * fIconScale / 2 : 0.),
+					x - (iNbIcons & 1 ? iWidth * fZoom * fScale * fIconScale / 2 : 0.),
 					(myConfig.bTextOnTop ?
 						pMainDock->iCurrentHeight/2 :
 						0.));

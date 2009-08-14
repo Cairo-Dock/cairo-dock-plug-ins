@@ -11,8 +11,9 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
-#include "applet-command-finder.h"
+#include "applet-search.h"
 #include "applet-listing.h"
+#include "applet-notifications.h"
 #include "applet-session.h"
 
 
@@ -20,9 +21,14 @@ void cd_do_open_session (void)
 {
 	// on termine l'animation de fin de la precedente session.
 	cd_do_exit_session ();
+	cd_do_stop_all_backends ();  // on le fait maintenant pour ne pas bloquer au exit.
 	
-	if (myData.iLocateAvailable == 0)  // comme ca on peut re-verifier la presence de locate en re-activant le module.
-		myData.iLocateAvailable = (cd_do_check_locate_is_available () ? 1 : -1);
+	// on s'abonne aux notifications dont on aura besoin pour la session.
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	// on se met en attente de texte.
 	myData.sCurrentText = g_string_sized_new (20);
@@ -61,7 +67,7 @@ void cd_do_open_session (void)
 	cairo_dock_freeze_docks (TRUE);
 	
 	// On lance l'animation d'attente.
-	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	///cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
 }
 
 void cd_do_close_session (void)
@@ -116,6 +122,15 @@ void cd_do_close_session (void)
 
 void cd_do_exit_session (void)
 {
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
+	//cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, NULL);
+	
+	// arreter les backends...
+	
+	
 	myData.iCloseTime = 0;
 	if (myData.pCharList != NULL)
 	{
@@ -150,17 +165,6 @@ void cd_do_exit_session (void)
 		myData.iMatchingGlideCount = 0;
 		myData.iPreviousMatchingOffset = 0;
 		myData.iCurrentMatchingOffset = 0;
-	}
-	if (! cairo_dock_task_is_running (myData.pLocateTask))
-	{
-		if (myData.pMatchingFiles != NULL)
-		{
-			g_strfreev (myData.pMatchingFiles);
-			myData.pMatchingFiles = NULL;
-		}
-		g_free (myData.cCurrentLocateText);
-		myData.cCurrentLocateText = NULL;
-		myData.iLocateFilter = 0;
 	}
 }
 

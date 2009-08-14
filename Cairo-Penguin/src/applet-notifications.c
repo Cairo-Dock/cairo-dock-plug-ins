@@ -14,7 +14,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include "applet-animation.h"
 #include "applet-notifications.h"
 
-
 #define PENGUIN_NB_MESSAGES 13
 static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("Hey, I'm here !"),
@@ -30,7 +29,6 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("I'm your father !"),
 	N_("- What will we do tonight Cortex ?\n- The same thing as every nights, Minus. Try to take over the Dock !"),
 	N_("For Aiur !")};
-
 
 
 CD_APPLET_ON_CLICK_PROTO
@@ -71,8 +69,8 @@ static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myAppl
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func_on_icon (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 	
 	//\_______________ On met l'animation de repos et on la dessine.
 	int iNewAnimation = penguin_choose_resting_animation (myApplet);
