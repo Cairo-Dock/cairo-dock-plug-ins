@@ -203,7 +203,23 @@ static gboolean _check_xml_file (gpointer data)
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
 			
 			// on lance le dl du fichier image.
-			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile);
+			g_print ("avant extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
+			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile, &myData.cArtist, &myData.cAlbum, &myData.cTitle);
+			g_print ("apres extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
+			g_print ("on s'apprete a telecharger la pochette dans '%s'\n", myData.cCoverPath);
+			if (g_strstr_len (myData.cCoverPath, -1, "(null)") != NULL && myData.cArtist && myData.cAlbum)
+			{
+				g_print ("on corrige cCoverPath\n");
+				g_free (myData.cCoverPath);
+				if (myData.pCurrentHandeler->cCoverDir)
+				{
+					myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandeler->cCoverDir, myData.cArtist, myData.cAlbum);
+				}
+				else  // le lecteur n'a pas de cache, on utilise le notre.
+				{
+					myData.cCoverPath = g_strdup_printf ("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
+				}
+			}
 			cd_download_missing_cover (cURL);
 			g_free (cURL);
 			
@@ -213,7 +229,7 @@ static gboolean _check_xml_file (gpointer data)
 			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
 			
 			// on quitte la boucle de test du fichier XML.
-			g_remove (myData.cCurrentXmlFile);
+			///g_remove (myData.cCurrentXmlFile);
 			g_free (myData.cCurrentXmlFile);
 			myData.cCurrentXmlFile = NULL;
 			myData.iSidCheckXmlFile = 0;
@@ -236,13 +252,13 @@ static gboolean _check_xml_file (gpointer data)
 }
 void cd_musicplayer_dl_cover (void)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%s, %s, %s)\n", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	// on oublie ce qu'on etait en train de recuperer.
 	g_free (myData.cCurrentXmlFile);
 	myData.cCurrentXmlFile = NULL;
 	
 	// lance le dl du fichier XML.
-	myData.cCurrentXmlFile = cd_get_xml_file (myData.cArtist, myData.cAlbum);
+	myData.cCurrentXmlFile = cd_get_xml_file (myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	
 	// on teste en boucle sur la taille du fichier XML.
 	myData.iCurrentFileSize = 0;

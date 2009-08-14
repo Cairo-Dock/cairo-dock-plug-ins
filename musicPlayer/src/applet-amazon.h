@@ -13,7 +13,7 @@ G_BEGIN_DECLS
  * @param filename URI du fichier à lire
  * @param imageSize Taille de l'image que l'on souhaite
  */
-gchar *cd_extract_url_from_xml_file (const gchar *filename);
+gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gchar **album, gchar **title);
 
 /**
  * Recupere le fichier xml sur amazon.
@@ -21,7 +21,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename);
  * @param album Nom de l'album.
  * @return succes du telechargement.
  */
-gchar *cd_get_xml_file (const gchar *artist, const gchar *album);
+gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cUri);
 
 /**
  * Recupere la pochette.

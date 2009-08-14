@@ -8,6 +8,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 ******************************************************************************/
 
 #include <stdlib.h>
+#include <glib/gstdio.h>
 
 #include "applet-config.h"
 #include "applet-notifications.h"
@@ -56,6 +57,15 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_amarok2_handler();
 	cd_musicplayer_register_amarok1_handler();
 	cd_musicplayer_register_audacious_handler();
+	
+	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
+	if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+	{
+		if (g_mkdir (cCoverPath, 7*8*8+7*8+5) != 0)
+			cd_warning ("couldn't create directory %s", cCoverPath);
+	}
+	g_free (cCoverPath);
+	
 	
 	//\_______________ on definit un mode de rendu pour notre desklet.
 	if (myDesklet) {

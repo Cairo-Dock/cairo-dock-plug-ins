@@ -63,7 +63,7 @@
 	xmlCleanupParser();
 	return cResult;
 }*/
-gchar *cd_extract_url_from_xml_file (const gchar *filename)
+gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gchar **album, gchar **title)
 {
 	gsize length = 0;
 	gchar *cContent = NULL;
@@ -86,8 +86,68 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename)
 			gchar *str2 = g_strstr_len (str, -1, "</URL>");
 			if (str2)
 			{
-				*str2 = '\0';
-				cResult = g_strdup (str);
+				cResult = g_strndup (str, str2 - str);
+			}
+		}
+	}
+	if (artist != NULL && *artist == NULL)
+	{
+		str = g_strstr_len (cContent, -1, "<Artist>");
+		if (str)
+		{
+			str += 8;
+			gchar *str2 = g_strstr_len (str, -1, "</Artist>");
+			if (str2)
+			{
+				*artist = g_strndup (str, str2 - str);
+				g_print ("artist <- %s\n", *artist);
+			}
+		}
+	}
+	if (album != NULL && *album == NULL)
+	{
+		str = g_strstr_len (cContent, -1, "<Album>");
+		if (str)
+		{
+			str += 7;
+			gchar *str2 = g_strstr_len (str, -1, "</Album>");
+			if (str2)
+			{
+				*album = g_strndup (str, str2 - str);
+				g_print ("album <- %s\n", *album);
+			}
+		}
+	}
+	if ((album != NULL && *album == NULL) || (title != NULL && *title == NULL))
+	{
+		str = g_strstr_len (cContent, -1, "<Title>");
+		if (str)
+		{
+			str += 7;
+			gchar *str2 = g_strstr_len (str, -1, "</Title>");
+			if (str2)
+			{
+				gchar *cTitle = g_strndup (str, str2 - str);
+				if (album != NULL && *album == NULL)
+				{
+					str = strchr (cTitle, '/');
+					if (str)
+					{
+						*album = g_strndup (cTitle, str - cTitle);
+						g_print ("album <- %s\n", *album);
+						if (title != NULL && *title == NULL)
+							*title = g_strndup (str+1, str2 - str - 1);
+						g_free (cTitle);
+						cTitle = NULL;
+					}
+				}
+				if (album != NULL && *album == NULL)
+				{
+					*album = cTitle;
+					g_print ("album <- %s\n", *album);
+				}
+				else
+					g_free (cTitle);
 			}
 		}
 	}
@@ -95,19 +155,57 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename)
 	return cResult;
 }
 
-gchar *cd_get_xml_file (const gchar *artist, const gchar *album)
+gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cUri)
 {
-    g_return_val_if_fail (artist != NULL && album != NULL, FALSE);
-    if (g_strcasecmp("Unknown",artist)==0 || g_strcasecmp("Unknown",album)==0)
-        return FALSE;
+	g_return_val_if_fail ((artist != NULL && album != NULL) || (cUri != NULL), FALSE);
 	
-	gchar *cFileToDownload = g_strdup_printf ("%s%s%s&Artist=%s&Keywords=%s",
-		AMAZON_API_URL_1,
-		LICENCE_KEY,
-		AMAZON_API_URL_2,
-		artist,
-		album);
+	gchar *cFileToDownload;
 	
+	if (artist != NULL && album != NULL)
+		cFileToDownload = g_strdup_printf ("%s%s%s&Artist=%s&Keywords=%s",
+			AMAZON_API_URL_1,
+			LICENCE_KEY,
+			AMAZON_API_URL_2,
+			artist,
+			album);
+	else
+	{
+		g_print ("cUri : '%s'\n", cUri);
+		gchar *cKeyWord;
+		if (*cUri == '/')
+		{
+			cKeyWord = g_path_get_basename (cUri);
+		}
+		else
+		{
+			gchar *cPath = g_filename_from_uri (cUri, NULL, NULL);
+			cKeyWord = g_path_get_basename (cPath);
+			g_free (cPath);
+		}
+		g_return_val_if_fail (cKeyWord != NULL, NULL);
+		gchar *str = strrchr (cKeyWord, '.');
+		if (str)
+			*str = '\0';
+		g_strdelimit (cKeyWord, "-_~", '|');
+		gchar **words = g_strsplit (cKeyWord, "|", -1);
+		int i;
+		GString *s = g_string_new ("");
+		if (words)
+		{
+			for (i = 0; words[i] != NULL; i ++)
+			{
+				g_string_append_printf (s, "\"%s\"|", words[i]);
+			}
+			g_strfreev (words);
+		}
+		cFileToDownload = g_strdup_printf ("%s%s%s&Keywords=%s",
+			AMAZON_API_URL_1,
+			LICENCE_KEY,
+			AMAZON_API_URL_2,
+			s->str);
+		g_free (cKeyWord);
+		g_string_free (s, TRUE);
+	}
 	gchar *cTmpFilePath = g_strdup ("/tmp/amazon-cover.XXXXXX");
 	int fds = mkstemp (cTmpFilePath);
 	if (fds == -1)
