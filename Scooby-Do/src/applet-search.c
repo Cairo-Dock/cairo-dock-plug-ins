@@ -203,7 +203,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 void cd_do_launch_all_backends (void)
 {
 	g_print ("%s ()\n", __func__);
-	cd_do_show_listing (NULL, 0);
+	cd_do_show_listing ();
 	g_list_foreach (myData.pBackends, (GFunc) cd_do_launch_backend, NULL);
 }
 
@@ -234,9 +234,13 @@ void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 	g_print ("%s (%d)\n", __func__, iNbEntries);
 	if (myData.pListing == NULL)
 		return ;
+	cd_do_show_listing ();
+	
 	myData.pListing->pEntries = g_list_concat (myData.pListing->pEntries, pEntries);
 	myData.pListing->iNbEntries += iNbEntries;
 	myData.pListing->iNbVisibleEntries += iNbEntries;
+	
+	cd_do_fill_listing_entries (myData.pListing);
 }
 
 
@@ -440,7 +444,12 @@ void cd_do_show_current_sub_listing (void)
 	}
 	g_string_assign (myData.sCurrentText, "");
 	myData.iNbValidCaracters = 0;
-	cd_do_delete_invalid_caracters ();
+	//cd_do_delete_invalid_caracters ();
+	cd_do_free_char_list (myData.pCharList);
+	myData.pCharList = NULL;
+	myData.iTextWidth = 0;
+	myData.iTextHeight = 0;
+	cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 	
 	myData.pListingHistory = g_list_prepend (myData.pListingHistory, pBackup);
 	
@@ -454,7 +463,7 @@ void cd_do_show_current_sub_listing (void)
 	myData.pListing->fAimedOffset = myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
 	
 	// on montre les nouveaux resultats.
-	cd_do_show_listing (pNewEntries, iNbNewEntries);
+	cd_do_load_entries_into_listing (pNewEntries, iNbNewEntries);
 }
 
 void cd_do_show_previous_listing (void)
@@ -479,7 +488,7 @@ void cd_do_show_previous_listing (void)
 	myData.pListing->fAimedOffset = myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
 	
 	// on charge le nouveau sous-listing.
-	cd_do_show_listing (pBackup->pEntries, pBackup->iNbEntries);  // les entrees du backup appartiennent desormais au listing.
+	cd_do_load_entries_into_listing (pBackup->pEntries, pBackup->iNbEntries);  // les entrees du backup appartiennent desormais au listing.
 	g_free (pBackup);
 	
 	if (myData.pListingHistory == NULL)  // retour a la recherche principale.

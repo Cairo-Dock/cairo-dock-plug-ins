@@ -12,6 +12,7 @@ module_DATA = \
 	inactive-button.svg
 
 dist_scooby_dodata_SCRIPTS = \
-	calc.sh
+	calc.sh\
+	updatedb.sh
 
 EXTRA_DIST = $(module_DATA)

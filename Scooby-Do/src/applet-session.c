@@ -67,7 +67,7 @@ void cd_do_open_session (void)
 	cairo_dock_freeze_docks (TRUE);
 	
 	// On lance l'animation d'attente.
-	///cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
 }
 
 void cd_do_close_session (void)

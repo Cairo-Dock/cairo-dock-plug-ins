@@ -232,17 +232,33 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 void cd_musicplayer_popup_info (void)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s",
-		myIcon,
-		myContainer,
-		myConfig.iDialogDuration,
-		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-		D_("Artist"),
-		myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
-		D_("Album"),
-		myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
-		D_("Title"),
-		myData.cTitle != NULL ? myData.cTitle : D_("Unknown"));
+	if ((!myData.cArtist || !myData.cAlbum) && myData.cPlayingUri)
+	{
+		gchar *str = strrchr (myData.cPlayingUri, '/');
+		if (str)
+			str ++;
+		else
+			str = myData.cPlayingUri;
+		cairo_dock_show_temporary_dialog_with_icon ("%s : %s",
+			myIcon,
+			myContainer,
+			myConfig.iDialogDuration,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			D_("New song"),
+			str);
+	}
+	else
+		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s",
+			myIcon,
+			myContainer,
+			myConfig.iDialogDuration,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			D_("Artist"),
+			myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
+			D_("Album"),
+			myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
+			D_("Title"),
+			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"));
 }
 
 /* Anime l'icone au changement de musique

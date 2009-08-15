@@ -11,7 +11,6 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #include <string.h>
 
 #include "applet-struct.h"
-#include "applet-command-finder.h"
 #include "applet-session.h"
 #include "applet-appli-finder.h"
 #include "applet-icon-finder.h"

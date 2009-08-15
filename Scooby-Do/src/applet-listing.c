@@ -544,29 +544,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 }
 
 
-static gboolean _fill_entry_icon_idle (CDListing *pListing)
-{
-	g_print ("%s (%x)", __func__, pListing->pEntryToFill);
-	
-	CDEntry *pEntry;
-	gboolean bHasBeenFilled = FALSE;
-	while (pListing->pEntryToFill != NULL && ! bHasBeenFilled)
-	{
-		pEntry = pListing->pEntryToFill->data;
-		if (! pEntry->bHidden && pEntry->fill)
-			bHasBeenFilled = pEntry->fill (pEntry);
-		pListing->pEntryToFill = pListing->pEntryToFill->next;
-	}
-	
-	if (pListing->pEntryToFill == NULL)  // on a tout rempli. ajouter || bHasBeenFilled pour redessiner au fur et a mesure.
-	{
-		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
-		pListing->iSidFillEntries = 0;
-		return FALSE;
-	}
-	return TRUE;
-}
-void cd_do_show_listing (GList *pEntries, int iNbEntries)
+void cd_do_show_listing (void)
 {
 	if (myData.pListing == NULL)
 	{
@@ -621,40 +599,6 @@ void cd_do_show_listing (GList *pEntries, int iNbEntries)
 		_place_listing (myData.pListing);
 		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 	}
-	
-	if (myData.pListing->pEntries != NULL)
-	{
-		g_print ("%d entrees precedemment\n", myData.pListing->iNbEntries);
-		g_list_foreach (myData.pListing->pEntries, (GFunc)cd_do_free_entry, NULL);
-		g_list_free (myData.pListing->pEntries);
-	}
-	myData.pListing->pEntries = pEntries;
-	
-	myData.pListing->iNbEntries = iNbEntries;
-	myData.pListing->iNbVisibleEntries = iNbEntries;
-	
-	if (iNbEntries == 0)
-		cd_do_set_status (D_("No result"));
-	else if (iNbEntries >= myConfig.iNbResultMax)
-		cd_do_set_status_printf ("> %d results", myConfig.iNbResultMax);
-	else
-		cd_do_set_status_printf ("%d %s", iNbEntries, iNbEntries > 1 ? D_("results") : D_("result"));
-	
-	cd_do_rewind_current_entry ();
-	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;  // pas de surlignage pendant l'apparition.
-	
-	myData.pListing->iScrollAnimationCount = 0;
-	myData.pListing->fAimedOffset = 0;
-	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
-	myData.pListing->sens = 1;
-	myData.pListing->iTitleOffset = 0;
-	myData.pListing->iTitleWidth = 0;
-	
-	myData.pListing->iAppearanceAnimationCount = _listing_compute_nb_steps (myData.pListing);
-	if (iNbEntries != 0)
-		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pListing));
-	
-	cd_do_fill_listing_entries (myData.pListing);
 }
 
 void cd_do_hide_listing (void)
@@ -696,6 +640,68 @@ void cd_do_hide_listing (void)
 	gtk_widget_hide (myData.pListing->container.pWidget);
 }
 
+void cd_do_load_entries_into_listing (GList *pEntries, int iNbEntries)
+{
+	cd_do_show_listing ();
+	
+	if (myData.pListing->pEntries != NULL)
+	{
+		g_print ("%d entrees precedemment\n", myData.pListing->iNbEntries);
+		g_list_foreach (myData.pListing->pEntries, (GFunc)cd_do_free_entry, NULL);
+		g_list_free (myData.pListing->pEntries);
+	}
+	myData.pListing->pEntries = pEntries;
+	
+	myData.pListing->iNbEntries = iNbEntries;
+	myData.pListing->iNbVisibleEntries = iNbEntries;
+	
+	if (iNbEntries == 0)
+		cd_do_set_status (D_("No result"));
+	else if (iNbEntries >= myConfig.iNbResultMax)
+		cd_do_set_status_printf ("> %d results", myConfig.iNbResultMax);
+	else
+		cd_do_set_status_printf ("%d %s", iNbEntries, iNbEntries > 1 ? D_("results") : D_("result"));
+	
+	cd_do_rewind_current_entry ();
+	myData.pListing->iCurrentEntryAnimationCount = NB_STEPS_FOR_CURRENT_ENTRY;  // pas de surlignage pendant l'apparition.
+	
+	myData.pListing->iScrollAnimationCount = 0;
+	myData.pListing->fAimedOffset = 0;
+	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset = 0;
+	myData.pListing->sens = 1;
+	myData.pListing->iTitleOffset = 0;
+	myData.pListing->iTitleWidth = 0;
+	
+	myData.pListing->iAppearanceAnimationCount = _listing_compute_nb_steps (myData.pListing);
+	if (iNbEntries != 0)
+		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pListing));
+	
+	cd_do_fill_listing_entries (myData.pListing);
+}
+
+
+static gboolean _fill_entry_icon_idle (CDListing *pListing)
+{
+	g_print ("%s (%x)", __func__, pListing->pEntryToFill);
+	
+	CDEntry *pEntry;
+	gboolean bHasBeenFilled = FALSE;
+	while (pListing->pEntryToFill != NULL && ! bHasBeenFilled)
+	{
+		pEntry = pListing->pEntryToFill->data;
+		if (! pEntry->bHidden && pEntry->fill)
+			bHasBeenFilled = pEntry->fill (pEntry);
+		pListing->pEntryToFill = pListing->pEntryToFill->next;
+	}
+	
+	if (pListing->pEntryToFill == NULL)  // on a tout rempli. ajouter || bHasBeenFilled pour redessiner au fur et a mesure.
+	{
+		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
+		pListing->iSidFillEntries = 0;
+		return FALSE;
+	}
+	return TRUE;
+}
 void cd_do_fill_listing_entries (CDListing *pListing)
 {
 	pListing->pEntryToFill = pListing->pEntries;

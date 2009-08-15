@@ -99,11 +99,7 @@ static gboolean init (void)
 		
 		if (bNeedsUpdate)
 		{
-			gchar *cCommand = g_strdup_printf ("updatedb --localpaths=/ --prunepaths=\"/tmp /usr /lib /var /bin /boot /sbin /etc /sys /proc /dev /root %s/.* */\\.* */.*\" --prunefs=\"NFS nfs nfs4 rpc_pipefs afs binfmt_misc proc smbfs autofs iso9660 ncpfs coda devpts ftpfs devfs mfs shfs sysfs cifs lustre_lite tmpfs usbfs udf\" --output='%s' -l0", g_getenv ("HOME"), cDataBase);  // -U $HOME
-			g_print ("updating or creating data-base with : %s\n", cCommand);
-			cairo_dock_launch_command (cCommand);
-			g_free (cCommand);
-			
+			cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/updatedb.sh");
 			gchar *cDate = g_strdup_printf ("%ld", time (NULL));
 			g_file_set_contents (cLastUpdateFile,
 				cDate,
@@ -451,8 +447,9 @@ static GList * _build_entries (gchar *cResult, int *iNbEntries)
 		pEntry->list = _cd_do_list_file_sub_entries;
 		pEntries = g_list_prepend (pEntries, pEntry);
 	}
+	g_free (pMatchingFiles);
 	
-	g_strfreev (pMatchingFiles);
+	*iNbEntries = i;
 	return pEntries;
 }
 

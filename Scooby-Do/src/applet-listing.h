@@ -17,9 +17,11 @@ void cd_do_destroy_listing (CDListing *pListing);
 gboolean cd_do_update_listing_notification (gpointer pUserData, CDListing *pListing, gboolean *bContinueAnimation);
 gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pListing, cairo_t *pCairoContext);
 
-void cd_do_show_listing (GList *pEntries, int iNbEntries);
+void cd_do_show_listing (void);
 
 void cd_do_hide_listing (void);
+
+void cd_do_load_entries_into_listing (GList *pEntries, int iNbEntries);
 
 void cd_do_fill_listing_entries (CDListing *pListing);
 
