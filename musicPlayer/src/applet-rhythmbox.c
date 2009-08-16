@@ -90,10 +90,6 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iSongLength = g_value_get_uint(value);
 			else myData.iSongLength = 0;
 			cd_message ("  iSongLength <- %ds", myData.iSongLength);
-			
-			g_free (myData.cPreviousCoverPath);
-			myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
-			myData.cCoverPath = NULL;
 			myData.bCoverNeedsTest = FALSE;
 		}
 		

@@ -163,7 +163,7 @@ int mixer_get_mean_volume (void)
 	
 	int iMeanVolume = (iVolumeLeft + iVolumeRight) / (bHasLeft + bHasRight);
 	
-	g_print ("myData.iVolumeMin : %d ; myData.iVolumeMax : %d ; iMeanVolume : %d\n", myData.iVolumeMin, myData.iVolumeMax, iMeanVolume);
+	cd_debug ("myData.iVolumeMin : %d ; myData.iVolumeMax : %d ; iMeanVolume : %d", myData.iVolumeMin, myData.iVolumeMax, iMeanVolume);
 	return (100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
 }
 

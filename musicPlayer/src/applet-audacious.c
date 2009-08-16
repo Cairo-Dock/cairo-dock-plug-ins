@@ -23,7 +23,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 #define MP_DBUS_TYPE_PLAYER_STATUS_MPRIS (dbus_g_type_get_struct ("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
 #define MP_DBUS_TYPE_PLAYER_STATUS G_TYPE_INT
 
-gboolean bMpirs = FALSE;
+gboolean bMpris = FALSE;
 
 /*
 <node name="/Player">
@@ -279,9 +279,6 @@ static inline void _extract_metadata (GHashTable *data_list)
 	else myData.cPlayingUri = NULL;
 	cd_message ("  cUri <- %s", myData.cPlayingUri);
 	
-	g_free (myData.cPreviousCoverPath);
-	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
-	myData.cCoverPath = NULL;
 	cd_musicplayer_get_cover_path (NULL, TRUE);
 }
 
@@ -382,9 +379,9 @@ static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data
 {
 	g_print ("MP : %s (%d)\n", __func__, status);
 	myData.bIsRunning = TRUE;
-	_extract_playing_status (status);
+	//_extract_playing_status (status);
 	
-	_audacious_getPlaying_mpris ();
+	_audacious_getPlaying_mpris ();  // Audacious 2.1 is buggy, the signal marshaller doesn't comply with MPRIS but the "get" function does, so we use it to get the status when we receive the signal.
 	
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
@@ -419,7 +416,7 @@ gboolean cd_audacious_dbus_connect_to_bus (void)
 		
 		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();  // cree le proxy pour la 2eme interface car AU en a 2.
 		
-		if (bMpirs)
+		if (bMpris)
 		{
 			dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
 				MP_DBUS_TYPE_PLAYER_STATUS_MPRIS,
@@ -427,7 +424,7 @@ gboolean cd_audacious_dbus_connect_to_bus (void)
 			dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
 				G_CALLBACK(onChangePlaying_mpris), NULL, NULL);
 		}
-		else
+		else  // buggy version (2.1), the signal marshaller is wrong, but is sent correctly.
 		{
 			dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
 				MP_DBUS_TYPE_PLAYER_STATUS,
@@ -453,7 +450,7 @@ void cd_audacious_free_data (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
-		if (bMpirs)
+		if (bMpris)
 			dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "StatusChange",
 				G_CALLBACK(onChangePlaying_mpris), NULL);
 		else
@@ -557,11 +554,14 @@ void cd_audacious_read_data (void)
 {
 	if (myData.dbus_enable)
 	{
-		if (myData.bIsRunning && myData.iPlayingStatus == PLAYER_PLAYING)
+		if (myData.bIsRunning)
 		{
-			_audacious_get_time_elapsed ();
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
+				_audacious_get_time_elapsed ();
+			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
+				myData.iCurrentTime = 0;
 		}
-		else
+		else 
 		{
 			myData.iCurrentTime = 0;
 		}
@@ -587,7 +587,7 @@ void cd_audacious_configure (void)
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
 			g_print ("MP : AU is running\n");
-			_audacious_getPlaying();
+			_audacious_getPlaying_mpris ();
 			cd_audacious_getSongInfos ();
 			cd_musicplayer_update_icon (TRUE);
 		}

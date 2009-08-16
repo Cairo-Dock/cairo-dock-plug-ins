@@ -18,6 +18,7 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-musicplayer.h"
 #include "applet-dbus.h"
 #include "applet-draw.h"
+#include "applet-cover.h"
 #include "applet-banshee.h"
 
 /*
@@ -84,7 +85,7 @@ static inline void _extract_playing_status (const gchar *cCurrentState)
 		myData.iPlayingStatus = PLAYER_STOPPED;
 	else if (strcmp (cCurrentState, "playing") == 0)
 		myData.iPlayingStatus = PLAYER_PLAYING;
-	else if (strcmp (cCurrentState, "pause") == 0)
+	else if (strcmp (cCurrentState, "paused") == 0)
 		myData.iPlayingStatus = PLAYER_PAUSED;
 	else
 		myData.iPlayingStatus = PLAYER_STOPPED;
@@ -144,9 +145,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	else
 		myData.iSongLength = cairo_dock_dbus_get_uinteger (myData.dbus_proxy_player, "GetLength") / 1000;
 	
-	g_free (myData.cPreviousCoverPath);
-	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
-	myData.cCoverPath = NULL;
+	cd_musicplayer_get_cover_path (NULL, TRUE);
 }
 
 /* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
@@ -183,13 +182,12 @@ static void cd_banshee_getSongInfos (void)
 
 /* Fonction executée à chaque changement de musique.
  */
-static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
+static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gchar *cMessage, double fBufferingPercent, gpointer data)
 {
-	cd_message ("MP : %s ()",__func__);
-	
-	if (metadata != NULL)
+	g_print ("MP : %s (%s %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
+	if (cEvent != NULL)
 	{
-		_extract_metadata (metadata);
+		//_extract_metadata (metadata);
 		myData.bIsRunning = TRUE;
 	}
 	else
@@ -212,11 +210,31 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 	}
 	cd_musicplayer_update_icon (TRUE);
 }
+static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	/// extraire les valeurs...
+	
+	onChangeSong(closure, "pouet", "pouic", 0., marshal_data);
+}
+
 
 /* Fonction executée à chaque changement play/pause
  */
-static void onChangePlaying(DBusGProxy *player_proxy, gchar *cCurrentStatus, gpointer data)  // int iStatus[4]
+static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatus, gpointer data)  // int iStatus[4]
 {
+	g_print ("MP : %s (%s)\n", __func__, cCurrentStatus);
 	myData.bIsRunning = TRUE;
 	_extract_playing_status (cCurrentStatus);
 	
@@ -254,10 +272,13 @@ gboolean cd_banshee_dbus_connect_to_bus (void)
 		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();  // cree le proxy pour la 2eme interface car AU en a 2.
 		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StateChanged",
-			G_TYPE_INT,
+			G_TYPE_STRING,
 			G_TYPE_INVALID);
+		// Enregistrement d'un marshaller specifique au signal (sinon impossible de le récupérer ni de le voir
+		dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_STRING_DOUBLE,
+			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_DOUBLE ,G_TYPE_INVALID);	
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "EventChanged",
-			MP_DBUS_TYPE_SONG_METADATA,
+			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_DOUBLE,  // MP_DBUS_TYPE_SONG_METADATA
 			G_TYPE_INVALID);
 		
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StateChanged",
@@ -265,7 +286,7 @@ gboolean cd_banshee_dbus_connect_to_bus (void)
 			
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "EventChanged",
 			G_CALLBACK(onChangeSong), NULL, NULL);
-		
+
 		return TRUE;
 	}
 	return FALSE;
@@ -344,39 +365,19 @@ void cd_banshee_read_data (void)
 {
 	if (myData.dbus_enable)
 	{
-		if (myData.bIsRunning && myData.iPlayingStatus == PLAYER_PLAYING)
+		if (myData.bIsRunning)
 		{
-			_banshee_get_time_elapsed ();
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
+				_banshee_get_time_elapsed ();
+			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
+				myData.iCurrentTime = 0;
 		}
-		else
+		else 
 		{
 			myData.iCurrentTime = 0;
 		}
+		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
 	}
-	
-}
-
-void cd_banshee_load_dbus_commands (void)
-{
-	//cd_debug("MP : On charge les commande pour Banshee");
-	myData.DBus_commands.service = "org.bansheeproject.Banshee";
-	myData.DBus_commands.path = "/org/bansheeproject/Banshee/PlayerEngine";
-	myData.DBus_commands.interface = "org.bansheeproject.Banshee.PlayerEngine";
-	myData.DBus_commands.path2 = "/org/bansheeproject/Banshee/PlaybackController";
-	myData.DBus_commands.interface2 = "org.bansheeproject.Banshee.PlaybackController";
-	myData.DBus_commands.play = "Play";
-	myData.DBus_commands.pause = "Pause";
-	myData.DBus_commands.play_pause = "TogglePlaying";
-	myData.DBus_commands.next = "Next";
-	myData.DBus_commands.previous = "Previous";
-	myData.DBus_commands.get_title = "GetCurrentTrack";
-	myData.DBus_commands.get_artist = "";
-	myData.DBus_commands.get_album = "";
-	myData.DBus_commands.get_cover_path = "";
-	myData.DBus_commands.get_status = "GetCurrentState";
-	myData.DBus_commands.duration = "GetLength";
-	myData.DBus_commands.current_position = "GetPosition";
-	return;
 }
 
 /* Initialise le backend de BA.
@@ -385,10 +386,10 @@ void cd_banshee_configure (void)
 {
 	cd_debug ("");
 	myData.DBus_commands.service = "org.bansheeproject.Banshee";
-	myData.DBus_commands.path = "/org/bansheeproject/Banshee/PlaybackController";
-	myData.DBus_commands.interface = "org.bansheeproject.Banshee.PlaybackController";
-	myData.DBus_commands.path2 = "/org/bansheeproject/Banshee/PlayerEngine";
-	myData.DBus_commands.interface2 = "org.bansheeproject.Banshee.PlayerEngine";
+	myData.DBus_commands.path2 = "/org/bansheeproject/Banshee/PlaybackController";
+	myData.DBus_commands.interface2 = "org.bansheeproject.Banshee.PlaybackController";
+	myData.DBus_commands.path = "/org/bansheeproject/Banshee/PlayerEngine";
+	myData.DBus_commands.interface = "org.bansheeproject.Banshee.PlayerEngine";
 	
 	myData.dbus_enable = cd_banshee_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de AU.
 	if (myData.dbus_enable)
@@ -421,7 +422,7 @@ void cd_musicplayer_register_banshee_handler (void) { //On enregistre notre lect
 	pBanshee->get_cover = NULL;
 	pBanshee->cCoverDir = NULL;  // banshee ne gere pas les pochettes.
 	
-	pBanshee->appclass = "Banshee";
+	pBanshee->appclass = "banshee-1";  // pffff
 	pBanshee->launch = "banshee";
 	pBanshee->name = "Banshee";
 	pBanshee->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;

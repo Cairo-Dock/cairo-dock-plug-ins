@@ -209,6 +209,8 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
+	myData.cover_exist = FALSE;
+	
 	//\_______________ On gere le changement de player ou on redessine juste l'icone.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		// on stoppe l'ancien backend et on relance le nouveau.

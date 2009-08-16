@@ -70,7 +70,6 @@ CD_APPLET_INIT_BEGIN
 	
 	Window Xid = cairo_dock_get_current_active_window ();
 	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
-	g_print (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 CD_APPLET_INIT_END
 
 

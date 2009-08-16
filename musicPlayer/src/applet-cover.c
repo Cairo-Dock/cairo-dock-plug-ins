@@ -88,7 +88,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 			
 			if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))  // si le lecteur n'est pas deja en train de le telecharger.
 			{
-				gchar *cCommand = g_strdup_printf ("wget -O '%s' '%s'",
+				gchar *cCommand = g_strdup_printf ("wget -O \"%s\" \"%s\"",
 					myData.cCoverPath,
 					cString);
 				g_spawn_command_line_async (cCommand, NULL);
@@ -186,7 +186,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 
 	if (myData.cCoverPath == NULL || cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))  // la couverture a change, son existence est incertaine et il faudra charger la surface/texture avec une transition. Sinon son existence ne change pas et il n'y a rien a faire.
 	{
-		g_print (" c'est une nouvelle couverture\n");
+		g_print (" c'est une nouvelle couverture (%s -> %s)\n", myData.cPreviousCoverPath, myData.cCoverPath);
 		myData.cover_exist = FALSE;
 	}
 }

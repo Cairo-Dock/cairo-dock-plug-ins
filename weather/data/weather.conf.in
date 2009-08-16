@@ -93,11 +93,11 @@ location code = FRXX0076
 #b Use International System Units ?
 IS units = true
 
-#i Duration of dialogs :
+#i[0;40] Duration of dialogs :
 #{in seconds. Set 0 to have never-ending dialogs.}
-dialog duration = 5
+dialog duration = 7
 
-#i Interval of time between 2 checks :
+#i[5;60] Interval of time between 2 checks :
 #{in minutes.}
 check interval = 15
 

@@ -515,7 +515,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		{
 			_draw_osd (myData.TextureOsdHome, myData.osdHomecoordX, myData.osdHomecoordY, myData.osdHomesizeX, myData.osdHomesizeY);
 		}
-		else if (! myData.iPlayingStatus == PLAYER_PLAYING)
+		else if (myData.iPlayingStatus != PLAYER_PLAYING)
 		{
 			if (myData.bIsRunning)  // on verifie que le lecteur est bien ouvert (il se peut qu'il ne nous previenne pas lorsqu'il quitte).
 			{

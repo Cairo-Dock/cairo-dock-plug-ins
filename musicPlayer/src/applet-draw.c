@@ -30,14 +30,22 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
 	{
 		myData.iPreviousCurrentTime = myData.iCurrentTime;
-		if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
 		{
-			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
-			bNeedRedraw = TRUE;
+			if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+			{
+				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
+				bNeedRedraw = TRUE;
+			}
+			else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
+			{
+				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
+				bNeedRedraw = TRUE;
+			}
 		}
-		else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
+		else
 		{
-			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			bNeedRedraw = TRUE;
 		}
 	}
@@ -92,7 +100,7 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 		{
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
-			{	
+			{
 				if (myData.iPrevTextureCover != 0)
 					_cairo_dock_delete_texture (myData.iPrevTextureCover);
 				myData.iPrevTextureCover = myData.TextureCover;
@@ -140,16 +148,16 @@ static gboolean _cd_musicplayer_check_distant_cover_twice (gpointer data)
  */
 void cd_musicplayer_update_icon (gboolean bFirstTime)
 {
-	cd_message ("%s (%d, %s)", __func__, bFirstTime, myData.cTitle);
+	cd_message ("%s (%d, uri : %s / title : %s)", __func__, bFirstTime, myData.cPlayingUri, myData.cTitle);
 	if (myData.cPlayingUri != NULL || myData.cTitle != NULL)
 	{
 		if (bFirstTime)
 		{
-			//Affichage de la chanson courante.
-			gchar *songName = g_strdup_printf("%s - %s", myData.cArtist, myData.cTitle);
-			cd_message ("  songName : %s", songName);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (songName);
-			g_free (songName);
+			//Affichage de la chanson courante sur l'etiquette.
+			if (myDock)
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s - %s", myData.cArtist ? myData.cArtist : "?", myData.cTitle ? myData.cTitle : "?");
+			}
 			
 			//Affichage de l'info-rapide.
 			if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackNumber > 0)

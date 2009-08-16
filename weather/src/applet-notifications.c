@@ -42,9 +42,20 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_stop_task (myData.pTask);
-	
-	cairo_dock_launch_task (myData.pTask);
+	if (cairo_dock_task_is_running (myData.pTask))
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
+			myIcon,
+			myContainer,
+			3000,
+			"same icon");
+	}
+	else
+	{
+		cairo_dock_stop_task (myData.pTask);
+		
+		cairo_dock_launch_task (myData.pTask);
+	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
@@ -76,7 +87,7 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 			(myDock ? pIcon : myIcon),
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
-			pIcon->acFileName);
+			"same icon");
 		return NULL;
 	}
 	
@@ -86,7 +97,10 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 	Day *day = &myData.days[iNumDay];
 	DayPart *part = &day->part[iPart];
 	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
-		(myDock ? pIcon : myIcon), (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), myConfig.cDialogDuration, pIcon->acFileName,
+		(myDock ? pIcon : myIcon),
+		(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+		myConfig.cDialogDuration,
+		"same icon",
 		day->cName, day->cDate, part->cWeatherDescription,
 		D_("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
 		D_("Precipitation Probability"), _display (part->cPrecipitationProba),
@@ -104,7 +118,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 			myIcon,
 			myContainer,
 			3000,
-			myIcon->acFileName);
+			"same icon");
 		
 		return NULL;
 	}

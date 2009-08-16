@@ -74,7 +74,8 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 	g_return_val_if_fail (cContent != NULL, NULL);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	const gchar *cImageSize = (iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
+	g_print ("cover size : %d\n", iWidth);
+	const gchar *cImageSize = (iWidth > 1 && iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
 	gchar *str = g_strstr_len (cContent, -1, cImageSize);
 	gchar *cResult = NULL;
 	if (str)
@@ -162,12 +163,32 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 	gchar *cFileToDownload;
 	
 	if (artist != NULL && album != NULL)
+	{
+		gchar *cKeyWord = g_strdup (album);
+		gchar *str = cKeyWord;
+		for (str = cKeyWord; *str != '\0'; str ++)
+		{
+			if (*str == ' ')
+			{
+				*str = '|';
+				while (*str == ' ')
+					str ++;
+			}
+			if (*str == '.')
+			{
+				gchar *ptr;
+				for (ptr = str; *ptr != '\0'; ptr ++)
+					*ptr = *(ptr+1);
+			}
+		}
 		cFileToDownload = g_strdup_printf ("%s%s%s&Artist=%s&Keywords=%s",
 			AMAZON_API_URL_1,
 			LICENCE_KEY,
 			AMAZON_API_URL_2,
 			artist,
-			album);
+			cKeyWord);
+		g_free (cKeyWord);
+	}
 	else
 	{
 		g_print ("cUri : '%s'\n", cUri);
@@ -214,7 +235,7 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 		return NULL;
 	}
 	
-	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 3 -T 4 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
+	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
 	g_print ("%s\n",cCommand);
 	cairo_dock_launch_command (cCommand);
 	
@@ -231,7 +252,7 @@ void cd_download_missing_cover (const gchar *cURL)
 	g_return_if_fail (myData.cCoverPath != NULL);
 	if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
-		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O '%s' -t 2 -T 5 > /dev/null 2>&1", cURL, myData.cCoverPath);
+		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 2 -T 5 > /dev/null 2>&1", cURL, myData.cCoverPath);
 		g_print ("%s\n",cCommand);
 		cairo_dock_launch_command (cCommand);
 		g_free (cCommand);
