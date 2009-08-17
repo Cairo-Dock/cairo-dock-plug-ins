@@ -10,7 +10,6 @@ released under the terms of the GNU General Public License.
 #include "applet-draw.h"
 #include "applet-cover.h"
 
-
 /*gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) {
 	gchar **cCleanURI;
 	gchar **cSplitedURI;
@@ -71,11 +70,11 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	if (cGivenCoverPath != NULL)  // le lecteur nous donne une adresse, eventuellement distante.
 	{
 		const gchar *cString = cGivenCoverPath;
-		cd_debug ("MP : le lecteur nous a refile cette adresse : %s", cString);
+		g_print ("MP : le lecteur nous a refile cette adresse : %s\n", cString);
 		
 		if (strncmp(cString, "http://", 7) == 0)  // fichier distant, on decide de le telecharger nous-memes.
 		{
-			cd_debug("MP : Le fichier est distant");
+			g_print ("MP : Le fichier est distant\n");
 			
 			if (myData.pCurrentHandeler->cCoverDir)
 			{
@@ -107,7 +106,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	}
 	else if (bHandleCover)  // le lecteur ne nous a rien file => on va etablir une adresse locale qu'on testera dans le update_icon.
 	{
-		cd_debug("MP : Pas d'adresse de la part du lecteur ... on regarde si elle n'existe pas deja en local");
+		g_print ("MP : Pas d'adresse de la part du lecteur ... on regarde si elle n'existe pas deja en local\n");
 		gchar *cSongPath = (myData.cPlayingUri ? g_filename_from_uri (myData.cPlayingUri, NULL, NULL) : NULL);  // on teste d'abord dans le repertoire de la chanson.
 		if (cSongPath != NULL)  // c'est une chanson en local.
 		{
@@ -206,7 +205,7 @@ static gboolean _check_xml_file (gpointer data)
 			g_print ("avant extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
 			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile, &myData.cArtist, &myData.cAlbum, &myData.cTitle);
 			g_print ("apres extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
-			g_print ("on s'apprete a telecharger la pochette dans '%s'\n", myData.cCoverPath);
+			g_print ("on s'apprete a telecharger la pochette : %s -> %s\n", cURL, myData.cCoverPath);
 			if (g_strstr_len (myData.cCoverPath, -1, "(null)") != NULL && myData.cArtist && myData.cAlbum)
 			{
 				g_print ("on corrige cCoverPath\n");

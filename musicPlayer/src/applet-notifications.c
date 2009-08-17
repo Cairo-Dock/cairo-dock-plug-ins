@@ -102,7 +102,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myData.pCurrentHandeler->iPlayerControls & PLAYER_REPEAT)
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, CD_APPLET_MY_MENU);
 	
-	CD_APPLET_ADD_IN_MENU (D_("Information"), _cd_musicplayer_info, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

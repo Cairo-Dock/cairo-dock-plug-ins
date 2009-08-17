@@ -82,7 +82,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
 	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
 	
-	if (myData.pCharList == NULL)  // aucune lettre de tapee => on montre le prompt.
+	if (myData.pCharList == NULL && myData.pListingHistory == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
 		if (! myData.bNavigationMode && myData.pPromptSurface != NULL)
 		{

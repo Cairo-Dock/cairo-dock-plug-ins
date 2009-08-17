@@ -70,6 +70,22 @@ void cd_musicplayer_launch_handler (void)
 	}  // else tout est fait par signaux.
 }
 
+void cd_musicplayer_relaunch_handler (void)
+{
+	if ((myData.pCurrentHandeler->acquisition || myData.pCurrentHandeler->read_data) && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	{
+		cairo_dock_launch_task (myData.pTask);
+	}
+}
+
+void cd_musicplayer_pause_handler (void)
+{
+	if (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.pTask != NULL)
+	{
+		cairo_dock_stop_task (myData.pTask);
+	}
+}
+
 /* Arrete le backend en nettoyant la memoire
  */
 void cd_musicplayer_stop_handler (void)

@@ -30,6 +30,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 		return NULL;
 	}
 	gchar *cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/search/search?where=%s\" -O %s -o /dev/null -t 3 -T 10", cLocation, cLocationFilePath);
+	cd_debug ("weather : %s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	close(fds);

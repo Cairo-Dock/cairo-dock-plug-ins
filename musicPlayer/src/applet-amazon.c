@@ -165,6 +165,7 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 	if (artist != NULL && album != NULL)
 	{
 		gchar *cKeyWord = g_strdup (album);
+		g_strdelimit (cKeyWord, "-_~", ' ');
 		gchar *str = cKeyWord;
 		for (str = cKeyWord; *str != '\0'; str ++)
 		{

@@ -228,7 +228,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myData.bIsRunning)
-			cd_musicplayer_set_surface (PLAYER_STOPPED);  // je ne sais pas si en mode Stopped la chanson est NULL ou pas...
+			cd_musicplayer_set_surface (PLAYER_STOPPED);
 		else
 			cd_musicplayer_set_surface (PLAYER_NONE);
 	}
@@ -255,8 +255,8 @@ void cd_musicplayer_popup_info (void)
 			D_("New song"),
 			str);
 	}
-	else
-		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s",
+	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
+		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%d",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
@@ -266,7 +266,15 @@ void cd_musicplayer_popup_info (void)
 			D_("Album"),
 			myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
 			D_("Title"),
-			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"));
+			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
+			D_("Length"),
+			myData.iSongLength/60, myData.iSongLength%60);
+	else
+		cairo_dock_show_temporary_dialog_with_icon ("%s",
+			myIcon,
+			myContainer,
+			myConfig.iDialogDuration,
+			D_("There is no media playing."));
 }
 
 /* Anime l'icone au changement de musique
