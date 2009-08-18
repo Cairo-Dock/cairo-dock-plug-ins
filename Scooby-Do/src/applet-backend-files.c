@@ -37,7 +37,7 @@ static void _cd_do_copy_url (CDEntry *pEntry);
  // INIT //
 //////////
 
-static gboolean init (void)
+static gboolean init (gpointer *pData)
 {
 	gchar *cResult = cairo_dock_launch_command_sync ("which locate");
 	

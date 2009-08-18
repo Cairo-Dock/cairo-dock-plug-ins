@@ -28,15 +28,11 @@ MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName) {
 }
 
 static void _cd_musicplayer_get_data_async (gpointer data) {
-	if (myData.pCurrentHandeler->acquisition)
-		myData.pCurrentHandeler->acquisition();
 	if (myData.pCurrentHandeler->read_data)
 		myData.pCurrentHandeler->read_data();
 }
 
 static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
-	if (myData.pCurrentHandeler->acquisition)
-		myData.pCurrentHandeler->acquisition();
 	if (myData.pCurrentHandeler->read_data)
 		myData.pCurrentHandeler->read_data();
 	return cd_musicplayer_draw_icon (data);
@@ -50,7 +46,7 @@ void cd_musicplayer_launch_handler (void)
 	if (myData.pCurrentHandeler->configure != NULL)
 		myData.pCurrentHandeler->configure();
 	
-	if ((myData.pCurrentHandeler->acquisition || myData.pCurrentHandeler->read_data) && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	if (myData.pCurrentHandeler->read_data && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
 		if (myData.pCurrentHandeler->bSeparateAcquisition == TRUE)  // Utilisation du thread pour les actions longues
 		{
@@ -70,19 +66,14 @@ void cd_musicplayer_launch_handler (void)
 	}  // else tout est fait par signaux.
 }
 
+/* Relance le backend s'il avait ete arrete (lecteur en pause ou arrete).
+ */
 void cd_musicplayer_relaunch_handler (void)
 {
-	if ((myData.pCurrentHandeler->acquisition || myData.pCurrentHandeler->read_data) && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
+	if (myData.pCurrentHandeler->read_data && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
-		cairo_dock_launch_task (myData.pTask);
-	}
-}
-
-void cd_musicplayer_pause_handler (void)
-{
-	if (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.pTask != NULL)
-	{
-		cairo_dock_stop_task (myData.pTask);
+		if (cairo_dock_task_is_active (myData.pTask))
+			cairo_dock_launch_task (myData.pTask);
 	}
 }
 

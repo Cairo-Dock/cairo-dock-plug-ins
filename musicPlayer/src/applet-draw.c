@@ -24,7 +24,7 @@ static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg
 gboolean cd_musicplayer_draw_icon (gpointer data)
 {
 	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
-	g_print ("%s (%d)\n", __func__, myData.iPlayingStatus);
+	g_print ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	
 	gboolean bNeedRedraw = FALSE;
 	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
@@ -60,12 +60,20 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 			cd_musicplayer_update_icon (FALSE);
 			bNeedRedraw = FALSE;
 		}
-		else if (cairo_dock_strings_differ (myData.cPreviousRawTitle, myData.cRawTitle) || myData.iTrackNumber != myData.iPreviousTrackNumber)  // changement de chanson.
+		else if (cairo_dock_strings_differ (myData.cPreviousRawTitle, myData.cRawTitle))  // changement de chanson.
 		{
 			g_free (myData.cPreviousRawTitle);
 			myData.cPreviousRawTitle = g_strdup (myData.cRawTitle);
-			myData.iPreviousTrackNumber = myData.iTrackNumber;
-			cd_musicplayer_update_icon (FALSE);
+			cd_musicplayer_update_icon (TRUE);
+			bNeedRedraw = FALSE;
+		}
+		else if (cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))
+		{
+			g_free (myData.cPreviousCoverPath);
+			myData.cPreviousCoverPath = g_strdup (myData.cCoverPath);
+			myData.cover_exist = FALSE;
+			cd_musiplayer_set_cover_if_present (FALSE);
+			//cd_musicplayer_update_icon (FALSE);
 			bNeedRedraw = FALSE;
 		}
 	}
@@ -73,7 +81,7 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	return TRUE;
+	return (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
 }
 
 
@@ -256,7 +264,7 @@ void cd_musicplayer_popup_info (void)
 			str);
 	}
 	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%d",
+		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
@@ -268,7 +276,9 @@ void cd_musicplayer_popup_info (void)
 			D_("Title"),
 			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
 			D_("Length"),
-			myData.iSongLength/60, myData.iSongLength%60);
+			myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
+			D_("Track n°"),
+			myData.iTrackNumber);
 	else
 		cairo_dock_show_temporary_dialog_with_icon ("%s",
 			myIcon,

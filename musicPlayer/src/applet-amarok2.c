@@ -110,9 +110,6 @@ static void _amarok2_get_infos (GHashTable *data_list)
 		myData.iSongLength = 0;
 	cd_message ("\tMP : playing_duration <- %ds", myData.iSongLength);
 	
-	g_free (myData.cPreviousCoverPath);
-	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
-	myData.cCoverPath = NULL;
 	myData.bCoverNeedsTest = FALSE;
 	
 	const gchar *cString;

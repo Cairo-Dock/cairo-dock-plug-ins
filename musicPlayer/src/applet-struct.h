@@ -49,8 +49,7 @@ typedef enum {
 	PLAYER_NB_LEVELS
 } MyLevel;  // niveau du lecteur.
 
-typedef void (*MusicPlayerAcquireDataFunc) (void);  // obsolete
-typedef void (*MusicPlayerReadDataFunc) (void);  // acquisition des donnees, threade.
+typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
 typedef void (*MusicPlayerFreeDataFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
 typedef void (*MusicPlayerConfigureFunc) (void);  // initialise le backend (connexion des signaux, etc)
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
@@ -79,8 +78,7 @@ typedef struct {
 } MusicPlayerDBus;
 
 struct _MusicPlayerHandeler {
-	MusicPlayerAcquireDataFunc 		acquisition;
-	MusicPlayerReadDataFunc 		read_data;
+	MusicPlayerGetDataFunc 			read_data;
 	MusicPlayerFreeDataFunc 		free_data;
 	MusicPlayerConfigureFunc		configure;
 	MusicPlayerControlerFunc		control;

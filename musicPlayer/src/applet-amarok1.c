@@ -119,7 +119,7 @@ void cd_amarok1_read_data (void) {
 	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
 void cd_amarok1_acquisition (void) {
-	system ("echo amarok 1.4 >> /dev/null");
+	int r = system ("echo amarok 1.4 >> /dev/null");
 	cd_amarok1_getStatus();
 	if (myData.iPlayingStatus == PLAYER_PLAYING) {	
 		cd_amarok1_read_data();
@@ -129,7 +129,6 @@ void cd_amarok1_acquisition (void) {
 
 void cd_musicplayer_register_amarok1_handler (void) { //On enregistre notre lecteurs
 	MusicPlayerHandeler *pAmarok1 = g_new0 (MusicPlayerHandeler, 1);
-	pAmarok1->acquisition = cd_amarok1_acquisition;
 	pAmarok1->read_data = cd_amarok1_read_data;
 	pAmarok1->free_data = cd_amarok1_free_data;
 	pAmarok1->configure = NULL; //Cette fonction permettera de préparé le controleur

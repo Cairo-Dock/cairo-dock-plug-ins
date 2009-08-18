@@ -135,7 +135,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 	if (pBackend->iState == 0)
 	{
 		if (pBackend->init)
-			pBackend->iState = (pBackend->init () ? 1 : -1);
+			pBackend->iState = (pBackend->init (&pBackend->pData) ? 1 : -1);
 		else
 			pBackend->iState = 1;
 		

@@ -6,9 +6,12 @@
 
 #include <applet-struct.h>
 
+
 MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName);
 
 void cd_musicplayer_launch_handler (void);
+
+void cd_musicplayer_relaunch_handler (void);
 
 void cd_musicplayer_stop_handler (void);
 

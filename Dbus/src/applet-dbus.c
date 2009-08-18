@@ -72,12 +72,6 @@ void cd_dbus_stop_service (void)
 
 
 
-gboolean cd_dbus_callback_hello(dbusCallback *pDbusCallback, GError **error)
-{
-	cairo_dock_show_general_message("Hello !",3000);
-	return TRUE;
-}
-
 gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *widgetLayer, GError **error)
 {
 	if (! myConfig.bEnableDesklets)
@@ -96,7 +90,7 @@ gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *wi
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_show_dialog(dbusCallback *pDbusCallback, gchar *message, GError **error)
+gboolean cd_dbus_callback_show_dialog(dbusCallback *pDbusCallback, const gchar *message, GError **error)
 {
 	if (! myConfig.bEnablePopUp)
 		return FALSE;
@@ -112,7 +106,15 @@ gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error)
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, gchar *cModuleName, GError **error)
+gboolean cd_dbus_callback_quit (dbusCallback *pDbusCallback, GError **error)
+{
+	if (! myConfig.bEnableQuit)
+		return FALSE;
+	gtk_main_quit ();
+	return TRUE;
+}
+
+gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableReloadModule)
 		return FALSE;
@@ -135,7 +137,7 @@ gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, gchar *cDesktopFile, GError **error)
+gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, const gchar *cDesktopFile, GError **error)
 {
 	if (! myConfig.bEnableLoadLauncher)
 		return FALSE;
@@ -155,7 +157,7 @@ gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, 
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallback, gchar *cIconFile, gchar *cLabel, gchar *cCommand, gchar *cParentDockName, GError **error)
+gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallback, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error)
 {
 	if (! myConfig.bEnableCreateLauncher)
 		return FALSE;
@@ -198,7 +200,7 @@ static void _find_icon_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
 		*pFoundIcon = pIcon;
 	}
 }
-Icon *cd_dbus_find_icon (gchar *cIconName, gchar *cIconCommand, gchar *cModuleName)
+Icon *cd_dbus_find_icon (const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName)
 {
 	Icon *pIcon = NULL;
 	if (cModuleName != NULL)  // c'est une icone d'un des modules.
@@ -216,14 +218,14 @@ Icon *cd_dbus_find_icon (gchar *cIconName, gchar *cIconCommand, gchar *cModuleNa
 	else  // on cherche une icone de lanceur.
 	{
 		gpointer data[3];
-		data[0] = cIconName;
-		data[1] = cIconCommand;
+		data[0] = (gpointer) cIconName;
+		data[1] = (gpointer) cIconCommand;
 		data[2] = &pIcon;
 		cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_icon_in_dock, data);
 	}
 	return pIcon;
 }
-gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, gchar *cQuickInfo, gchar *cIconName, gchar *cIconCommand, gchar *cModuleName, GError **error)
+gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, const gchar *cQuickInfo, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableSetQuickInfo)
 		return FALSE;
@@ -246,7 +248,7 @@ gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, gchar *cQ
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, gchar *cLabel, gchar *cIconName, gchar *cIconCommand, gchar *cModuleName, GError **error)
+gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, const gchar *cLabel, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableSetLabel)
 		return FALSE;
@@ -265,5 +267,77 @@ gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, gchar *cLabel,
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
 	cairo_dock_set_icon_name (pCairoContext, cLabel, pIcon, pContainer);
 	cairo_destroy (pCairoContext);
+	return TRUE;
+}
+
+gboolean cd_dbus_callback_set_icon (dbusCallback *pDbusCallback, const gchar *cImage, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+{
+	if (! myConfig.bEnableSetIcon)
+		return FALSE;
+	
+	nullify_argument (cIconName);
+	nullify_argument (cIconCommand);
+	nullify_argument (cModuleName);
+	
+	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
+	if (pIcon == NULL)
+		return FALSE;
+	
+	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
+	if (pContainer == NULL)
+		return FALSE;
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
+	cairo_dock_set_image_on_icon (pCairoContext, cImage, pIcon, pContainer);
+	cairo_destroy (pCairoContext);
+	return TRUE;
+}
+
+gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, const gchar *cLabel, GError **error)
+{
+	if (! myConfig.bEnableNewModule)
+		return FALSE;
+	
+	CairoDockModule *pModule = g_new0 (CairoDockModule, 1);
+	CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
+	pModule->pVisitCard = pVisitCard;
+	pVisitCard->cModuleName = g_strdup (cModuleName);
+	pVisitCard->iMajorVersionNeeded = 2;
+	pVisitCard->iMinorVersionNeeded = 0;
+	pVisitCard->iMicroVersionNeeded = 0;
+	pVisitCard->cPreviewFilePath = g_strdup_printf ("%s/preview", cShareDataDir);
+	pVisitCard->cGettextDomain = g_strdup_printf ("cd-%s", cModuleName);
+	pVisitCard->cUserDataDir = g_strdup ("cModuleName");
+	pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
+	pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
+	pVisitCard->cModuleVersion = g_strdup ("0.0.1");
+	pVisitCard->iCategory = iCategory;
+	pVisitCard->cIconFilePath = g_strdup_printf ("%s/%s", cShareDataDir, "icon.png");
+	pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
+	pVisitCard->iSizeOfData = 4;  // au cas ou ...
+	pVisitCard->cDescription = g_strdup (cDescription);
+	pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
+	//pModule->pInterface->initModule = _init;
+	cairo_dock_load_manual_module (pModule);
+	
+	GError *tmp_erreur = NULL;
+	cairo_dock_activate_module (pModule, &tmp_erreur);  // cairo_dock_activate_module_and_load le rajoute en conf.
+	if (tmp_erreur != NULL)
+	{
+		g_propagate_error (error, tmp_erreur);
+		cairo_dock_free_module (pModule);
+		return FALSE;
+	}
+	
+	if (pModule->pInstancesList != NULL)
+	{
+		CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
+		if (pInstance->pDock)
+		{
+			cairo_dock_update_dock_size (pInstance->pDock);
+			gtk_widget_queue_draw (pInstance->pDock->pWidget);
+		}
+	}
+	
+	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
 	return TRUE;
 }

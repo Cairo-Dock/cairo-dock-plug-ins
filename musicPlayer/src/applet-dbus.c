@@ -101,10 +101,12 @@ void cd_musicplayer_check_dbus_connection (void)
 				cd_message("MP : Connexion au bus effectuee");
 		}
 		else if ((myData.dbus_enable) && (myData.bIsRunning)) // Sinon on est deja connecte au bus, on lit juste les donnees
-			;//cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+		{
+			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
+		}
 		else // Sinon le lecteur n'est pas ouvert
 		{
-			myData.dbus_enable = 0;
+			myData.dbus_enable = FALSE;
 			//cd_debug("MP : lecteur non ouvert");	
 		}
 	}

@@ -20,11 +20,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableReboot 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reboot");
 	myConfig.bEnableDesklets 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable desklets");
 	myConfig.bEnableReloadModule	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
+	myConfig.bEnableQuit 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable quit");
 	myConfig.bEnableShowDock 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable show dock");
 	myConfig.bEnableLoadLauncher	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
 	myConfig.bEnableCreateLauncher	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
 	myConfig.bEnableSetQuickInfo	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set quickinfo");
 	myConfig.bEnableSetLabel 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set label");
+	myConfig.bEnableSetIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set icon");
+	myConfig.bEnableNewModule		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable new module");
 CD_APPLET_GET_CONFIG_END
 
 

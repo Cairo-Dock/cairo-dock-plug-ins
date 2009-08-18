@@ -4,7 +4,7 @@
 	<interface name="org.cairodock.CairoDock">
 		<method name="Reboot">
 		</method>
-		<method name="Hello">
+		<method name="Quit">
 		</method>
 		<method name="ShowDesklet">
 			<arg name="widgetLayer" type="b" direction="in"/>
@@ -35,6 +35,12 @@
 		</method>
 		<method name="SetLabel">
 			<arg name="cQuickInfo" type="s" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+		<method name="SetIcon">
+			<arg name="cImage" type="s" direction="in"/>
 			<arg name="cIconName" type="s" direction="in"/>
 			<arg name="cIconCommand" type="s" direction="in"/>
 			<arg name="cModuleName" type="s" direction="in"/>

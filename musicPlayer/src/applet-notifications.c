@@ -122,16 +122,17 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	
 	if (isJpeg)
 	{
-		if (myData.cArtist != NULL && myData.cAlbum != NULL && myData.pCurrentHandeler->cCoverDir != NULL)
+		if (myData.cArtist != NULL && myData.cAlbum != NULL/* && myData.pCurrentHandeler->cCoverDir != NULL*/)
 		{
 			cd_debug("Le fichier est un JPEG");
+			gchar *cDirPath = myData.pCurrentHandeler->cCoverDir ? g_strdup (myData.pCurrentHandeler->cCoverDir) : g_strdup_printf("%s/musicplayer", g_cCairoDockDataDir);
 			gchar *cCommand, *cHost = NULL;
 			gchar *cFilePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHost, NULL));
 			if (cHost != NULL)  // fichier distant, on le telecharge dans le cache du lecteur.
 			{
 				cd_debug("Le fichier est distant (sur %s)", cHost);
-				cCommand = g_strdup_printf ("wget -O '%s'/\"%s - %s.jpg\" '%s'",
-					myData.pCurrentHandeler->cCoverDir,
+				cCommand = g_strdup_printf ("wget -O \"%s/%s - %s.jpg\" '%s'",
+					cDirPath,
 					myData.cArtist,
 					myData.cAlbum,
 					CD_APPLET_RECEIVED_DATA);
@@ -139,9 +140,9 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			else  // fichier local, on le copie juste dans le cache du lecteur.
 			{
 				cd_debug("Le fichier est local");
-				cCommand = g_strdup_printf ("cp '%s' '%s'/\"%s - %s.jpg\"",
+				cCommand = g_strdup_printf ("cp \"%s\" \"%s/%s - %s.jpg\"",
 					cFilePath,
-					myData.pCurrentHandeler->cCoverDir,
+					cDirPath,
 					myData.cArtist,
 					myData.cAlbum);
 				
@@ -151,6 +152,10 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			g_free (cCommand);
 			g_free (cFilePath);
 			g_free (cHost);
+			g_free (cDirPath);
+			
+			cd_musicplayer_get_cover_path (NULL, TRUE);
+			cd_musicplayer_update_icon (FALSE);
 		}
 	}
 	else

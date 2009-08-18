@@ -76,10 +76,14 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 	_cairo_dock_set_alpha (1.);
 	
 	glBindTexture (GL_TEXTURE_2D, pAnimation->iTexture);
-	_cairo_dock_apply_current_texture_portion_at_size_with_offset (1.*myData.iCurrentFrame/pAnimation->iNbFrames, 
-		.5*myData.iCurrentDirection, 1./pAnimation->iNbFrames, 1./pAnimation->iNbDirections,
-		pAnimation->iFrameWidth*fScale, pAnimation->iFrameHeight*fScale,
-		fOffsetX + myData.iCurrentPositionX, fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight*fScale/2);
+	_cairo_dock_apply_current_texture_portion_at_size_with_offset ((double) myData.iCurrentFrame/pAnimation->iNbFrames, 
+		.5*myData.iCurrentDirection,
+		1./pAnimation->iNbFrames,
+		1./pAnimation->iNbDirections,
+		pAnimation->iFrameWidth*fScale,
+		pAnimation->iFrameHeight*fScale,
+		fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth/2,
+		fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight*fScale/2);
 	_cairo_dock_disable_texture ();
 }
 void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)

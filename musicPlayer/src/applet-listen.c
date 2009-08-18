@@ -77,12 +77,6 @@ void cd_listen_control (MyPlayerControl pControl, const char *file) { //Permet d
 	}
 }
 
-/* Fonction de connexion au bus de listen */
-void cd_listen_acquisition (void) {
-	cd_musicplayer_check_dbus_connection();	
-}
-
-
 /* Fonction de lecture des infos */
 void cd_listen_read_data (void) {
 	if (myData.bIsRunning)
@@ -128,7 +122,6 @@ void cd_listen_load_dbus_commands (void)
 void cd_musicplayer_register_listen_handler (void) { //On enregistre notre lecteur
 	cd_debug ("");
 	MusicPlayerHandeler *pListen = g_new0 (MusicPlayerHandeler, 1);
-	pListen->acquisition = cd_listen_acquisition;
 	pListen->read_data = cd_listen_read_data;
 	pListen->free_data = cd_listen_free_data;
 	pListen->configure = cd_listen_load_dbus_commands; //Cette fonction permettera de préparé le controleur

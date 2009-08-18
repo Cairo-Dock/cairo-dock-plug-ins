@@ -102,7 +102,6 @@ void cd_songbird_load_dbus_commands (void)
 
 void cd_musicplayer_register_songbird_handler (void) { //On enregistre notre lecteur
 	MusicPlayerHandeler *pSongbird = g_new0 (MusicPlayerHandeler, 1);
-	pSongbird->acquisition = cd_songbird_acquisition;
 	pSongbird->read_data = cd_songbird_read_data;
 	pSongbird->free_data = cd_songbird_free_data;
 	pSongbird->configure = cd_songbird_load_dbus_commands; //Cette fonction permettera de préparé le controleur

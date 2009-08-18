@@ -104,7 +104,7 @@ typedef enum _CDFilter {
 	DO_TYPE_SOURCE	=1<<6
 	} CDFilter;
 
-typedef gboolean (*CDBackendInitFunc) (void);
+typedef gboolean (*CDBackendInitFunc) (gpointer *pData);
 typedef GList * (*CDBackendSearchFunc) (const gchar *cText, gint iFilter, gpointer pData, int *iNbEntries);
 
 typedef struct _CDBackend {

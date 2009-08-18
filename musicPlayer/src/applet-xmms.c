@@ -91,11 +91,6 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 	}
 }
 
-/*Rien a faire le pipe est déja prêt pour nous*/
-void cd_xmms_acquisition (void) {
-	system ("echo xmms >> /dev/null");  // ???
-}
-
 //Fonction de lecture du tuyau.
 void cd_xmms_read_data (void) {
 	s_cTmpFile = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
@@ -234,7 +229,6 @@ void cd_xmms_read_data (void) {
 
 void cd_musicplayer_register_xmms_handler (void) { //On enregistre notre lecteurs
 	MusicPlayerHandeler *pXMMS = g_new0 (MusicPlayerHandeler, 1);
-	pXMMS->acquisition = cd_xmms_acquisition;
 	pXMMS->read_data = cd_xmms_read_data;
 	pXMMS->free_data = cd_xmms_free_data;
 	pXMMS->configure = NULL; //Cette fonction permettera de préparer le controleur

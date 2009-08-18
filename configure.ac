@@ -108,6 +108,10 @@ AC_ARG_ENABLE(dnd2share,
 	[  --enable-dnd2share : Enable dnd2share applet (default=yes) ],
 	[ with_dnd2share=${enableval} ],
 	[ with_dnd2share=yes ])
+AC_ARG_ENABLE(musicplayer,
+	[  --enable-musicplayer : Enable musicplayer applet (default=no) ],
+	[ with_musicplayer=${enableval} ],
+	[ with_musicplayer=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -197,6 +201,8 @@ AM_CONDITIONAL( [WITH_WEBLETS], [test "$with_weblets" = "yes"] )
 AM_CONDITIONAL( [WITH_EXIF], [test "$with_exif" = "yes"] )
 AM_CONDITIONAL( [WITH_KEYBOARD_INDICATOR], [test "$with_keyboard_indicator" = "yes"] )
 AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
+AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
+
 
 ############# ALSA_MIXER #################
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
@@ -373,6 +379,15 @@ AC_SUBST(VERSION_MOTION_BLUR, "1.0.2")
 AC_SUBST(PACKAGE_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
 
 AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
+
+############# LOGOUT #################
+MUSICPLAYER_PACKAGE=cd-musicplayer
+AC_SUBST(GETTEXT_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
+
+AC_SUBST(VERSION_MUSICPLAYER, "1.0.0-alpha")
+AC_SUBST(PACKAGE_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
+
+AC_SUBST(musicplayerdatadir, "${pkgdatadir}/musicPlayer")
 
 ############# NETSPEED #################
 NETSPEED_PACKAGE=cd-netspeed
@@ -711,6 +726,11 @@ AC_CONFIG_FILES([
 	motion-blur/data/Makefile
 	motion-blur/data/motion_blur.conf
 	
+	musicPlayer/Makefile
+	musicPlayer/src/Makefile
+	musicPlayer/data/Makefile
+	musicPlayer/data/musicPlayer.conf
+	
 	netspeed/Makefile
 	netspeed/src/Makefile
 	netspeed/data/Makefile
@@ -861,4 +881,5 @@ echo " * Compil Mail applet : "${with_mail}
 echo " * Compil Weblets applet : "${with_weblets}
 echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
 echo " * Compil Dnd2share applet : "${with_dnd2share}
+echo " * Compil MusicPlayer applet : "${with_musicplayer}
 

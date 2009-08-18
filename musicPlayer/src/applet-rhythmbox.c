@@ -114,10 +114,6 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 		g_free (myData.cCoverPath);
 		myData.cCoverPath = NULL;
 	}
-	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
-	
-	//if (cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))  // la couverture a change, son existence est incertaine. Sinon son existence ne change pas.
-	//	myData.cover_exist = FALSE;
 }
 
 

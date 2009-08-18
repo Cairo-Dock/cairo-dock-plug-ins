@@ -21,8 +21,6 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-cover.h"
 #include "applet-banshee.h"
 
-// artwork = homeDir + "/.cache/album-art/" + str(currentTrack['artwork-id']) +".jpg"
-
 /*
 service : org.bansheeproject.Banshee
 
@@ -78,12 +76,13 @@ path : /org/bansheeproject/Banshee/PlayerEngine
 
     uint Position { get; set; }
     uint Length { get; }
+
+	cover cache : "$HOME/.cache/album-art/`GetCurrentTrack["artwork-id"])`.jpg"
 */
 
 
 static inline gboolean _extract_playing_status (const gchar *cCurrentState)
 {
-	
 	myData.pPreviousPlayingStatus = myData.iPlayingStatus;
 	if (cCurrentState == NULL)
 		return FALSE;
@@ -319,6 +318,8 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
 	if (! bStateChanged)
 		return ;
 	
+	if (myData.iPlayingStatus == PLAYER_PLAYING)
+		cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
 		if(myData.iPlayingStatus == PLAYER_PLAYING)
@@ -344,7 +345,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
 
 /* Fonction de connexion au bus de audacious.
  */
-gboolean cd_banshee_dbus_connect_to_bus (void)
+static gboolean _cd_banshee_dbus_connect_to_bus (void)
 {
 	if (cairo_dock_bdus_is_enabled ())
 	{
@@ -373,9 +374,9 @@ gboolean cd_banshee_dbus_connect_to_bus (void)
 	return FALSE;
 }
 
-/* Permet de libérer la mémoire prise par notre controleur
+/* Permet de libérer la mémoire prise par le backend.
  */
-void cd_banshee_free_data (void)
+static void cd_banshee_free_data (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
@@ -390,8 +391,9 @@ void cd_banshee_free_data (void)
 	musicplayer_dbus_disconnect_from_bus_Shell();
 }
 
-/* Controle du lecteur */
-void cd_banshee_control (MyPlayerControl pControl, const char *file)
+/* Controle du lecteur.
+ */
+static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 {
 	gchar *cCommand = NULL;
 	
@@ -443,8 +445,9 @@ void cd_banshee_control (MyPlayerControl pControl, const char *file)
 }
 
 
-/* Fonction de lecture des infos */
-void cd_banshee_read_data (void)
+/* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
+ */
+static void cd_banshee_read_data (void)
 {
 	if (myData.dbus_enable)
 	{
@@ -487,7 +490,7 @@ void cd_banshee_configure (void)
 	myData.DBus_commands.path = "/org/bansheeproject/Banshee/PlayerEngine";
 	myData.DBus_commands.interface = "org.bansheeproject.Banshee.PlayerEngine";
 	
-	myData.dbus_enable = cd_banshee_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de AU.
+	myData.dbus_enable = _cd_banshee_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de AU.
 	if (myData.dbus_enable)
 	{
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de BA sur le bus <=> s'il est ouvert ou pas.
@@ -509,7 +512,8 @@ void cd_banshee_configure (void)
 	}
 }
 
-void cd_musicplayer_register_banshee_handler (void) { //On enregistre notre lecteur
+void cd_musicplayer_register_banshee_handler (void)
+{
 	MusicPlayerHandeler *pBanshee = g_new0 (MusicPlayerHandeler, 1);
 	pBanshee->read_data = cd_banshee_read_data;  // recupere le temps ecoule car on n'a pas de signal pour ca.
 	pBanshee->free_data = cd_banshee_free_data;

@@ -308,10 +308,11 @@ static void cd_audacious_getSongInfos ()
 		myData.cTitle = NULL;
 		g_free (myData.cAlbum);
 		myData.cAlbum = NULL;
+		g_free (myData.cArtist);
+		myData.cArtist = NULL;
 		g_free (myData.cCoverPath);
 		myData.cCoverPath = NULL;
 	}
-	myData.cRawTitle = g_strdup_printf ("%s - %s", myData.cArtist, myData.cTitle);
 }
 
 
@@ -359,7 +360,7 @@ static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status
 	myData.bIsRunning = TRUE;
 	_extract_playing_status_mpris (status);
 	
-	if(! myData.cover_exist && myData.cPlayingUri != NULL)
+	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 	{
 		if(myData.iPlayingStatus == PLAYER_PLAYING)
 		{
@@ -383,6 +384,8 @@ static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data
 	
 	_audacious_getPlaying_mpris ();  // Audacious 2.1 is buggy, the signal marshaller doesn't comply with MPRIS but the "get" function does, so we use it to get the status when we receive the signal.
 	
+	if (myData.iPlayingStatus == PLAYER_PLAYING)
+		cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
 		if(myData.iPlayingStatus == PLAYER_PLAYING)
@@ -408,7 +411,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data
 
 /* Fonction de connexion au bus de audacious.
  */
-gboolean cd_audacious_dbus_connect_to_bus (void)
+static gboolean _cd_audacious_dbus_connect_to_bus (void)
 {
 	if (cairo_dock_bdus_is_enabled ())
 	{
@@ -444,9 +447,9 @@ gboolean cd_audacious_dbus_connect_to_bus (void)
 	return FALSE;
 }
 
-/* Permet de libérer la mémoire prise par notre controleur
+/* Permet de libérer la mémoire prise par le backend.
  */
-void cd_audacious_free_data (void)
+static void cd_audacious_free_data (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
@@ -466,11 +469,10 @@ void cd_audacious_free_data (void)
 }
 
 
-/* Controle du lecteur (permet d'effectuer les actions de bases sur le lecteur)
+/* Controle du lecteur (permet d'effectuer les actions de bases sur le lecteur).
  */
-void cd_audacious_control (MyPlayerControl pControl, const char* song)
+static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 {
-	cd_debug ("");
 	const gchar *cCommand = NULL;
 		
 	switch (pControl) {
@@ -550,7 +552,9 @@ void cd_audacious_control (MyPlayerControl pControl, const char* song)
 }
 
 
-void cd_audacious_read_data (void)
+/* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
+ */
+static void cd_audacious_read_data (void)
 {
 	if (myData.dbus_enable)
 	{
@@ -571,16 +575,15 @@ void cd_audacious_read_data (void)
 
 /* Initialise le backend de AU.
  */
-void cd_audacious_configure (void)
+static void cd_audacious_configure (void)
 {
-	cd_debug ("");
 	myData.DBus_commands.service = "org.mpris.audacious";
 	myData.DBus_commands.path = "/Player";
 	myData.DBus_commands.path2 = "/TrackList";
 	myData.DBus_commands.interface = "org.freedesktop.MediaPlayer";
 	myData.DBus_commands.interface2 = "org.freedesktop.MediaPlayer";
 	
-	myData.dbus_enable = cd_audacious_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de AU.
+	myData.dbus_enable = _cd_audacious_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de AU.
 	if (myData.dbus_enable)
 	{
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de AU sur le bus <=> s'il est ouvert ou pas.
@@ -606,7 +609,6 @@ void cd_audacious_configure (void)
  */
 void cd_musicplayer_register_audacious_handler (void)
 {
-	cd_debug ("");
 	MusicPlayerHandeler *pAudacious = g_new0 (MusicPlayerHandeler, 1);
 	pAudacious->read_data = cd_audacious_read_data;  // recupere le temps ecoule car on n'a pas de signal pour ca.
 	pAudacious->free_data = cd_audacious_free_data;

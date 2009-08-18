@@ -64,6 +64,10 @@ if WITH_DND2SHARE
 dnd2share_dir=dnd2share
 endif
 
+if WITH_MUSICPLAYER
+musicplayer_dir=musicPlayer
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -87,6 +91,7 @@ SUBDIRS = . po\
 	logout\
 	${mail_dir}\
 	motion-blur\
+	$(musicplayer_dir)\
 	netspeed\
 	${powermanager_dir}\
 	quick-browser\
