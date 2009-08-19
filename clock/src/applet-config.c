@@ -26,21 +26,38 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
 	myConfig.iSmoothAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "smooth", 500);
 	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
-	myConfig.bOldStyle 		= CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
-	double couleur[4] = {0., 0., 0.5, 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "date color", myConfig.fDateColor, couleur);
-	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
-	myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
-	int iWeight = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "weight", 5);
-	myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
-	if (myConfig.cFont == NULL)
-		myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
-	
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
+	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	
-	myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
-	//myConfig.cDigital 		= CD_CONFIG_GET_STRING ("Module", "digital");
+	//\_______________ On recupere les parametres d'apparence.
+	if (! g_key_file_has_key (pKeyFile, "Module", "style", NULL))
+	{
+		g_print ("*** pas de cle 'style' (old key : %d)\n", g_key_file_has_key (pKeyFile, "Module", "old fashion style", NULL));
+		myConfig.bOldStyle = CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
+		int useless = CD_CONFIG_GET_INTEGER ("Module", "style");
+		g_key_file_set_integer (pKeyFile, "Module", "style", myConfig.bOldStyle ? 0 : 1);
+	}
+	else
+	{
+		myConfig.bOldStyle = (CD_CONFIG_GET_INTEGER ("Module", "style") == 0);
+	}
+	
+	double couleur[4] = {0., 0., 0.5, 1.};
+	if (myConfig.bOldStyle)
+	{
+		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "date color", myConfig.fDateColor, couleur);
+	}
+	else
+	{
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
+		myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
+		int iWeight = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "weight", 5);
+		myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
+		if (myConfig.cFont == NULL)
+			myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
+		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
+	}
 	
 	//\_______________ On recupere les alarmes.
 	myConfig.pAlarms = g_ptr_array_new ();
@@ -92,11 +109,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 		}
 	} while (1);
 	g_string_free (sKeyName, TRUE);
-	
-	
-	//\_______________ On on recupere le thme choisi.
-	if (myConfig.bOldStyle)
-		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
 CD_APPLET_GET_CONFIG_END
 
 

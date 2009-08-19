@@ -20,6 +20,7 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "3dcover-draw.h"
 
 #include "applet-xmms.h" //Support XMMS
+#include "applet-xmms2.h" //Support XMMS2
 #include "applet-exaile.h" //Support Exaile
 #include "applet-songbird.h" //Support Songbird
 #include "applet-banshee.h" //Support Banshee
@@ -27,7 +28,6 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include "applet-quodlibet.h" //Support QuodLibet
 #include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
-#include "applet-amarok1.h" //Support Amarok 1.4
 #include "applet-audacious.h" //Support Audacious
 
 CD_APPLET_DEFINITION (N_("musicPlayer"),
@@ -55,7 +55,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_quodlibet_handler();
 	cd_musicplayer_register_listen_handler();
 	cd_musicplayer_register_amarok2_handler();
-	cd_musicplayer_register_amarok1_handler();
+	cd_musicplayer_register_xmms2_handler();
 	cd_musicplayer_register_audacious_handler();
 	
 	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
@@ -95,7 +95,6 @@ CD_APPLET_INIT_BEGIN
 	
 	cd_musicplayer_launch_handler ();  // connexion au bus, detection de l'appli, recuperation de l'etat du lecteur si il est en marche, sinon dessin de l'icone "eteint".
 	
-	
 	//\_______________ On prend en charge l'icone de l'appli player.
 	CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
 	
@@ -117,7 +116,6 @@ CD_APPLET_INIT_BEGIN
 				myApplet);
 		}
 	}
-	
 CD_APPLET_INIT_END
 
 
@@ -217,7 +215,11 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On gere le changement de player ou on redessine juste l'icone.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		// on stoppe l'ancien backend et on relance le nouveau.
-		cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
+		if (myData.pCurrentHandeler)
+		{
+			cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
+			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, FALSE);
+		}
 		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
 		if (myData.pCurrentHandeler == NULL)
 		{ 

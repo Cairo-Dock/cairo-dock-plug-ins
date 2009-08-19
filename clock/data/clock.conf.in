@@ -105,17 +105,16 @@ smooth = 500
 #{For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time.}
 location =
 
-#F[Style;gtk-dnd-multiple]
-frame2 =
+#F[Style;gtk-color-picker]
+frame_style =
 
-#b+ Use the analogic view ?
+#l+[Analogic;Numeric] Choose the view :
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
+style = 0
 old fashion style = true
 
-#v
-sep_deco =
-
-digital = default
+#X[Numeric View;gtk-italic]
+numeric=
 
 #C+ Text color for the numeric display:
 text color = 0.0; 0.0; 0.5; 1.
@@ -130,14 +129,16 @@ font =
 #S+ Image to draw on the background :
 numeric bg =
 
-#v
-sep_deco_mod =
+
+#X[Analogic View;@clockdatadir@/icon.png]
+analogic=
 
 #h+[@clockdatadir@/themes;@clockuserdirname@;@clockuserdirname@] List of available themes for the analogic display :/
 theme = default
 
 #C+ Text color of the date :
 date color = 1.0; 0.; 0.9; 1.
+
 
 #F[Setup time and date;gtk-file]
 frame3 =

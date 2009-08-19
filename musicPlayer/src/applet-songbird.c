@@ -54,12 +54,6 @@ void cd_songbird_control (MyPlayerControl pControl, char* nothing) { //Permet d'
 }
 
 
-/* Fonction de connexion au bus de songbird */
-void cd_songbird_acquisition (void) {
-	cd_musicplayer_check_dbus_connection();	
-}
-
-
 /* Fonction de lecture des infos */
 void cd_songbird_read_data (void) {
 	if (myData.dbus_enable)

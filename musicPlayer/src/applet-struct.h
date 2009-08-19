@@ -9,16 +9,16 @@ typedef struct _MusicPlayerHandeler MusicPlayerHandeler;
 
 // Players supportes
 typedef enum {
-	MP_AMAROK1 = 0,
+	MP_RHYTHMBOX=0,
 	MP_AMAROK2,
-	MP_RHYTHMBOX,
 	MP_EXAILE,
 	MP_LISTEN,
-	MP_XMMS,
 	MP_SONGBIRD,
 	MP_QUODLIBET,
 	MP_BANSHEE,
 	MP_AUDACIOUS,
+	MP_XMMS2,
+	MP_XMMS,
 	MB_NB_PLAYERS
 } MySupportedPlayers;
 
@@ -40,6 +40,7 @@ typedef enum {
 	PLAYER_SHUFFLE		= 1<<5,
 	PLAYER_REPEAT		= 1<<6,
 	PLAYER_ENQUEUE		= 1<<7,
+	PLAYER_RATE			= 1<<8,
 } MyPlayerControl;
 
 typedef enum {
@@ -48,6 +49,7 @@ typedef enum {
 	PLAYER_EXCELLENT,  // notification pour chaque evenement => aucune boucle n'est necessaire.
 	PLAYER_NB_LEVELS
 } MyLevel;  // niveau du lecteur.
+
 
 typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
 typedef void (*MusicPlayerFreeDataFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
@@ -83,6 +85,7 @@ struct _MusicPlayerHandeler {
 	MusicPlayerConfigureFunc		configure;
 	MusicPlayerControlerFunc		control;
 	MusicPlayerGetCoverFunc			get_cover;
+	gchar *cMprisService;  // nom du service DBus si le lecteur respecte la norme MPRIS.
 	gchar *appclass;  // classe de l'appli.
 	gchar *name;  // nom du backend.
 	gchar *launch;  // commande lancant le lecteur.
@@ -124,6 +127,8 @@ struct _AppletConfig {
 	gint iTimeToWait;
 	gchar *cThemePath;
 	gboolean bOpenglThemes;
+	
+	gboolean bPauseOnClick;
 };
 
 struct _AppletData {
@@ -144,8 +149,10 @@ struct _AppletData {
 	gint iTrackNumber, iPreviousTrackNumber;
 	gint iCurrentTime, iPreviousCurrentTime;
 	gint iSongLength;
-	gint iPreviousuValue;
-
+	gint iRating;
+	gint iTrackListLength;
+	gint iTrackListIndex;
+	
 	// Pour les lecteurs utilisant DBus
 	MusicPlayerDBus DBus_commands;
 	gboolean dbus_enable;

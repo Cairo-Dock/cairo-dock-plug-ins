@@ -28,7 +28,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	
 	myConfig.bEnableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
-	myConfig.iDialogDuration 		= 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "time_dialog", 3);
+	myConfig.iDialogDuration 		= 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "time_dialog", 4);
 	
 	myConfig.cChangeAnimation 		= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "change_animation", "wobbly");
 	myConfig.bEnableCover			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
@@ -42,6 +42,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[PLAYER_BROKEN] 	= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 
 	myConfig.bDownload   = CD_CONFIG_GET_BOOLEAN ("Configuration", "DOWNLOAD");
+	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 0) == 0);  // c'est une liste numerotee de 2 elements.
 	
 	//\_______________ On on recupere le theme choisi.
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");

@@ -5,6 +5,7 @@ lib_LTLIBRARIES = \
 
 
 libcd_musicPlayer_la_SOURCES = \
+	applet-struct.h\
 	applet-init.c\
 	applet-init.h\
 	applet-config.c\
@@ -15,14 +16,14 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-notifications.h\
 	applet-dbus.c\
 	applet-dbus.h\
-	applet-dcop.c\
-	applet-dcop.h\
 	applet-draw.c\
 	applet-draw.h\
 	applet-musicplayer.c\
 	applet-musicplayer.h\
-	applet-amarok1.c\
-	applet-amarok1.h\
+	3dcover-draw.c\
+	3dcover-draw.h\
+	applet-mpris.c\
+	applet-mpris.h\
 	applet-amarok2.c\
 	applet-amarok2.h\
 	applet-amazon.c\
@@ -43,9 +44,8 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-xmms.h\
 	applet-audacious.c\
 	applet-audacious.h\
-	applet-struct.h\
-	3dcover-draw.c\
-	3dcover-draw.h
+	applet-xmms2.c\
+	applet-xmms2.h
 
 
 dock_version = `pkg-config --modversion cairo-dock`

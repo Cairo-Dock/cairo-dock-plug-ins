@@ -11,10 +11,10 @@ Written by Rémy Robertson (for any bug report, please mail me to changfu@cairo-
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
-#include "applet-draw.h"
 #include "3dcover-draw.h"
 #include "applet-musicplayer.h"
 #include "applet-cover.h"
+#include "applet-draw.h"
 
 static gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};

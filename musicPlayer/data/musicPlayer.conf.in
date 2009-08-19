@@ -85,21 +85,23 @@ fg alpha = 1
 
 #F[Audio Player;gtk-cdrom]
 frame_player =
-#L[XMMS;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;Amarok 1.4;Audacious] Player to control:
+#L[Audacious;Exaile;Songbird;Banshee;Rhythmbox;QuodLibet;Listen;Amarok 2;XMMS 2;XMMS] Player to control:
 current-player=Audacious
 
 #b Steal the player's icon from taskbar ?
 #{It will prevent the player's icon to appear in the task bar. The applet's icon will then behave as a launcher, an appli, and an applet.}
 inhibate appli = true
 
+#l[Play/Pause on click, Next on middle-click;Show/Hide player on click, Play/Pause on middle-click] Actions on click and middle-click :
+pause on click = 0
 
 #F[Action on music change;gtk-preferences]
 frame_info=
 #b Show an info-bubble ?
 enable_dialogs=true
-#i Time length of info-bubbles :
+#i[1;30] Time length of info-bubbles :
 #{in s.}
-time_dialog = 3
+time_dialog = 4
 #a Animation when music changes :
 change_animation = wobbly
 

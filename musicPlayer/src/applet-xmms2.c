@@ -18,17 +18,17 @@ Rémy Robertson (changfu@cairo-dock.org)
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
 #include "applet-mpris.h"
-#include "applet-amarok2.h"
+#include "applet-xmms2.h"
 
 /* On enregistre notre lecteur.
  */
-void cd_musicplayer_register_amarok2_handler (void)
+void cd_musicplayer_register_xmms2_handler (void)
 {
-	MusicPlayerHandeler *pAmarok2 = cd_mpris_new_handler ();
-	pAmarok2->cMprisService = "org.kde.amarok";
-	pAmarok2->appclass = "amarok";
-	pAmarok2->launch = "amarok";
-	pAmarok2->name = "Amarok 2";
-	pAmarok2->iPlayer = MP_AMAROK2;
-	cd_musicplayer_register_my_handler (pAmarok2, "Amarok 2");
+	MusicPlayerHandeler *pXmms2 = cd_mpris_new_handler ();
+	pXmms2->cMprisService = "org.xmms.xmms2";  /// trouver le nom ...
+	pXmms2->appclass = "xmms2";  /// idem...
+	pXmms2->launch = "xmms2";  /// idem...
+	pXmms2->name = "XMMS 2";
+	pXmms2->iPlayer = MP_XMMS2;
+	cd_musicplayer_register_my_handler (pXmms2, "XMMS 2");
 }

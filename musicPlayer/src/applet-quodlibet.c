@@ -45,7 +45,7 @@ tracknumber=1
  */
 
 #define MP_DBUS_TYPE_PLAYER_STATUS G_TYPE_BOOLEAN
-#define EX_DBUS_TYPE_SONG_METADATA dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_STRING)
+#define QL_DBUS_TYPE_SONG_METADATA dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_STRING)
 /////////////////////////////////
 // Les Fonctions propres a QL. //
 /////////////////////////////////
@@ -81,7 +81,7 @@ static void _quodlibet_getPlaying (void)
 	}
 }
 
-/* Renvoie le temps ecoule en secondes..
+/* Renvoie le temps ecoule en secondes.
  */
 gint64 cairo_dock_dbus_get_integer64 (DBusGProxy *pDbusProxy, const gchar *cAccessor)
 {
@@ -164,7 +164,7 @@ void cd_quodlibet_getSongInfos (void)
 	
 	if (dbus_g_proxy_call (myData.dbus_proxy_player, "CurrentSong", NULL,
 		G_TYPE_INVALID,
-		EX_DBUS_TYPE_SONG_METADATA,
+		QL_DBUS_TYPE_SONG_METADATA,
 		&data_list,
 		G_TYPE_INVALID))
 	{
@@ -293,7 +293,6 @@ static gboolean _cd_quodlibet_dbus_connect_to_bus (void)
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
 
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "paused",
-			G_TYPE_NONE,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "paused",
 			G_CALLBACK(onChangePlaying), NULL, NULL);
@@ -305,7 +304,7 @@ static gboolean _cd_quodlibet_dbus_connect_to_bus (void)
 			G_CALLBACK(onChangePlaying2), NULL, NULL);
 		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "song-started",
-			EX_DBUS_TYPE_SONG_METADATA,
+			QL_DBUS_TYPE_SONG_METADATA,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "song-started",
 			G_CALLBACK(onChangeSong), NULL, NULL);

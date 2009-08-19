@@ -44,7 +44,11 @@ void cd_musicplayer_launch_handler (void)
 { 
 	//cd_debug ("MP : Arming %s (with class %s)", myData.pCurrentHandeler->name, myData.pCurrentHandeler->appclass);
 	if (myData.pCurrentHandeler->configure != NULL)
+	{
+		myData.DBus_commands.service = myData.pCurrentHandeler->cMprisService;
 		myData.pCurrentHandeler->configure();
+		myData.pCurrentHandeler->cMprisService = myData.DBus_commands.service;
+	}
 	
 	if (myData.pCurrentHandeler->read_data && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
@@ -72,7 +76,7 @@ void cd_musicplayer_relaunch_handler (void)
 {
 	if (myData.pCurrentHandeler->read_data && (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
-		if (cairo_dock_task_is_active (myData.pTask))
+		if (!cairo_dock_task_is_active (myData.pTask))
 			cairo_dock_launch_task (myData.pTask);
 	}
 }

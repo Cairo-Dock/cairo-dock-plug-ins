@@ -65,82 +65,6 @@ void cd_musicplayer_dbus_detect_player (void)
 	myData.bIsRunning = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
 }
 
-/// deprecated...
-gboolean cd_musicplayer_dbus_detection(void)
-{
-	gboolean isConnectedToBus = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
-	gboolean isProxyCorrect;
-	
-	if (myData.dbus_enable)
-		isProxyCorrect = isConnectedToBus?DBUS_IS_G_PROXY(myData.dbus_proxy_player):FALSE;	
-	else 
-		isProxyCorrect = TRUE; //C'est la premiere connexion, le proxy n'est pas encore actif
-
-	
-	if( !isProxyCorrect ) 
-		myData.dbus_proxy_player = NULL;
-	
-	return isConnectedToBus && isProxyCorrect;
-}
-
-
-//*********************************************************************************
-// cd_musicplayer_check_dbus_connection() : Verifie l'etat de la connexion DBus
-//*********************************************************************************
-void cd_musicplayer_check_dbus_connection (void)
-{
-	cd_debug("MP : Vérification de la connexion DBus");
-	if (myData.DBus_commands.service != NULL)
-	{
-		myData.bIsRunning = cd_musicplayer_dbus_detection();
-		if ((myData.bIsRunning) && (!myData.dbus_enable)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
-		{
-			cd_message("MP : On se connecte au bus pour la première fois");
-			myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
-			if (myData.dbus_enable)
-				cd_message("MP : Connexion au bus effectuee");
-		}
-		else if ((myData.dbus_enable) && (myData.bIsRunning)) // Sinon on est deja connecte au bus, on lit juste les donnees
-		{
-			cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
-		}
-		else // Sinon le lecteur n'est pas ouvert
-		{
-			myData.dbus_enable = FALSE;
-			//cd_debug("MP : lecteur non ouvert");	
-		}
-	}
-}
-
-
-//*********************************************************************************
-// cd_musicplayer_check_dbus_connection() : Verifie l'etat de la connexion DBus sur le Player et sur le Shell
-//*********************************************************************************
-void cd_musicplayer_check_dbus_connection_with_two_interfaces (void)
-{
-	cd_debug("MP : Vérification de la connexion DBus");
-	if (myData.DBus_commands.service != NULL)
-	{
-		myData.bIsRunning = cd_musicplayer_dbus_detection();
-		if ((myData.bIsRunning) && (!myData.dbus_enable) && (!myData.dbus_enable_shell)) // On vérifie si notre lecteur est ouvert et si on n'est pas déjà connecté au bus
-		{
-			cd_message("MP : On se connecte au bus pour la première fois");
-			myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // Alors on se connecte au bus
-			myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();
-			if ((myData.dbus_enable) && (myData.dbus_enable_shell))
-				cd_message("MP : Connexions aux bus effectuees");
-		}
-		else if ((myData.dbus_enable) && (myData.bIsRunning) && (myData.dbus_enable_shell)) // Sinon on est deja connecte au bus, on lit juste les donnees
-			;//cd_debug("MP : On est déjà connecté au bus, on va juste lire les donnees");
-		else // Sinon le lecteur n'est pas ouvert
-		{
-			myData.dbus_enable = 0;
-			//cd_debug("MP : lecteur non ouvert");	
-		}
-	}
-}
-
-
 
 //*********************************************************************************
 // musicplayer_getStatus_*() : Test si musicplayer joue de la musique ou non
@@ -172,7 +96,6 @@ void cd_musicplayer_getStatus_string (const char *status_paused, const char *sta
 		}
 }
 
-
 void cd_musicplayer_getStatus_integer (int status_paused, int status_playing)
 {
 	int status;
@@ -183,8 +106,6 @@ void cd_musicplayer_getStatus_integer (int status_paused, int status_playing)
 	else if (status == status_playing) myData.iPlayingStatus = PLAYER_PLAYING;
 	else myData.iPlayingStatus = PLAYER_STOPPED;
 }
-
-
 
 //*********************************************************************************
 // musicplayer_getCoverPath() : Retourne l'adresse de la pochette
@@ -203,3 +124,40 @@ void cd_musicplayer_getCoverPath (void)
 	else
 		cd_message("MP : Pas de couverture dispo");
 }
+
+
+MusicPlayerHandeler *cd_musicplayer_dbus_find_opened_player (void)
+{
+	// on recupere la liste des services existants.
+	gchar **name_list = cairo_dock_dbus_get_services ();
+	if (name_list)
+	{
+		// on teste chaque lecteur.
+		MusicPlayerHandeler *pHandler = NULL;
+		int i;
+		GList *h;
+		for (h = myData.pHandelers; h != NULL; h = h->next)
+		{
+			pHandler = h->data;
+			if (pHandler->cMprisService == NULL)
+				continue;
+			for (i = 0; name_list[i] != NULL; i ++)
+			{
+				if (strcmp (name_list[i], pHandler->cMprisService) == 0)  // trouve, on quitte.
+				{
+					g_print ("found %s\n", pHandler->name);
+					break;
+				}
+			}
+			if (name_list[i] != NULL)
+				break ;
+		}
+		g_strfreev (name_list);
+		return (h ? pHandler : NULL);
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
