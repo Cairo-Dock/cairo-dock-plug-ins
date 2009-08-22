@@ -2254,10 +2254,6 @@ msgstr "Capsule"
 msgid "color of the mesh :"
 msgstr "Couleur de la forme 3D :"
 
-#: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
-msgid "Let empty to use the default one."
-msgstr "Laissez vide pour utiliser celle par défaut."
-
 #: ../Animated-icons/data/messages:103
 msgid "Image for the spot :"
 msgstr "Image pour le spot :"
