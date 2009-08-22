@@ -123,7 +123,7 @@ DOWNLOAD=true
 #{requires OpenGL.}
 enable_opengl_themes = true
 
-#h+[@rhythmboxdatadir@/themes;rhythmbox;rhythmbox] List of available 3D themes for covers :
+#h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available 3D themes for covers :
 #{requires OpenGL.}
 theme = cd_box_3d
 

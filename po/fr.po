@@ -1718,8 +1718,8 @@ msgstr ""
 "Ajoute une zone de notification (systray) au dock.\n"
 "Clic gauche pour montrer le systray dans un dialogue (vous pouvez définir un "
 "raccourci clavier pour cela)\n"
-"Clic milieu pour fermer le dialogueCependant la meilleur façon de l'utiliser "
-"est de le détacher du dock et de le placer sur le bureau,\n"
+"Clic milieu pour fermer le dialogueCependant la meilleure façon de l'utiliser "
+"est de le détacher du dock\ et de le placer sur le bureau,"
 " en le gardant au-dessus des autres fenêtres."
 
 #: ../template/src/applet-init.c:18

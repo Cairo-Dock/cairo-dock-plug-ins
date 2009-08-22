@@ -32,7 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cChangeAnimation 		= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "change_animation", "wobbly");
 	myConfig.bEnableCover			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_cover");
-	myConfig.bOpenglThemes 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_opengl_themes");
+	myConfig.bOpenglThemes 			= g_bUseOpenGL && CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_opengl_themes");
 	myConfig.bStealTaskBarIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "inhibate appli");
 	
 	myConfig.cUserImage[PLAYER_NONE] 	= CD_CONFIG_GET_STRING ("Configuration", "default icon");
@@ -45,8 +45,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 0) == 0);  // c'est une liste numerotee de 2 elements.
 	
 	//\_______________ On on recupere le theme choisi.
-	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
-	
+	if (myConfig.bOpenglThemes)
+		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "cd_box_3d");
 CD_APPLET_GET_CONFIG_END
 
 
