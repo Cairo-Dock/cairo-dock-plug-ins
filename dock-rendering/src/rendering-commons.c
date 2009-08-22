@@ -85,11 +85,21 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	
 	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
 	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 300, 150);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 300, 150, -G_PI / 2);
-	cairo_destroy (pSourceContext);
 	
 	if (g_bUseOpenGL)
+	{
+		if (my_iFlatSeparatorTexture != 0)
+			_cairo_dock_delete_texture (my_iFlatSeparatorTexture);
 		my_iFlatSeparatorTexture = cairo_dock_create_texture_from_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+		cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
+	}
+	else
+	{
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 300, 150, -G_PI / 2);
+	}
+	cairo_destroy (pSourceContext);
 }
 
 

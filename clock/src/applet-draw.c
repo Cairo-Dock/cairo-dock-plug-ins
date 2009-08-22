@@ -209,16 +209,35 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	cd_clock_put_text_on_frames (myApplet, width, height, fMaxScale, pTime);
 }*/
 
+#define GAP 2
+#define MAX_RATIO 2.
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	GString *sFormat = g_string_new ("");
 	
+	cairo_dock_erase_cairo_context (myDrawContext);
+	if (myData.pNumericBgSurface != NULL)
+	{
+		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
+		cairo_paint (myDrawContext);
+	}
+	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
+	
+	PangoFontDescription *pDesc = pango_font_description_new ();
+	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
+	pango_font_description_set_family_static (pDesc, myConfig.cFont);
+	pango_font_description_set_weight (pDesc, myConfig.iWeight);
+	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
+	
+	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
+	pango_layout_set_font_description (pLayout, pDesc);
+	
 	if (myConfig.b24Mode)
 	{
 		if (myConfig.bShowSeconds)
-			g_string_printf (sFormat, "%%T");
+			g_string_assign (sFormat, "%T");
 		else
-			g_string_printf (sFormat, " %%R");
+			g_string_assign (sFormat, "%R");
 	}
 	else
 	{
@@ -228,7 +247,58 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			g_string_printf (sFormat, "%%I:%%M%s", pTime->tm_hour > 12 ? "PM" : "AM");
 	}
 	
+	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
+	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
+	PangoRectangle ink, log;
+	pango_layout_get_pixel_extents (pLayout, &ink, &log);
+	
+	cairo_save (myDrawContext);
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
+	{
+		PangoLayout *pLayout2 = pango_cairo_create_layout (myDrawContext);
+		pango_layout_set_font_description (pLayout2, pDesc);
+		
+		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", pTime);
+		pango_layout_set_text (pLayout2, s_cDateBuffer, -1);
+		PangoRectangle ink2, log2;
+		pango_layout_get_pixel_extents (pLayout2, &ink2, &log2);
+		
+		double h = ink.height + ink2.height + GAP;
+		double fZoomX = MIN ((double) (iWidth - 1) / ink.width, (double) (iWidth - 1) / ink2.width);
+		double fZoomY = (double) iHeight / h;
+		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
+			fZoomY = MAX_RATIO * fZoomX;
+		
+		cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+		cairo_scale (myDrawContext, fZoomX, fZoomY);
+		cairo_translate (myDrawContext, -ink.x, -ink.y);
+		pango_cairo_show_layout (myDrawContext, pLayout);
+		
+		cairo_restore (myDrawContext);
+		cairo_save (myDrawContext);
+		
+		cairo_translate (myDrawContext, (iWidth - fZoomX * ink2.width) / 2, (iHeight + fZoomY * GAP)/2);
+		cairo_scale (myDrawContext, fZoomX, fZoomY);
+		cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+		pango_cairo_show_layout (myDrawContext, pLayout2);
+		
+		g_object_unref (pLayout2);
+	}
+	else
+	{
+		double fZoomX = (double) (iWidth - 1) / ink.width;
+		double fZoomY = (double) iHeight / ink.height;
+		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
+			fZoomY = MAX_RATIO * fZoomX;
+		cairo_translate (myDrawContext, 0., (iHeight - fZoomY * ink.height)/2);  // centre verticalement.
+		cairo_scale (myDrawContext, fZoomX, fZoomY);
+		cairo_translate (myDrawContext, -ink.x, -ink.y);
+		pango_cairo_show_layout (myDrawContext, pLayout);
+	}
+	cairo_restore (myDrawContext);
+	g_object_unref (pLayout);
+	pango_font_description_free (pDesc);
+	/*if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 		g_string_append (sFormat, "\n%a %d %b");
 	
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
@@ -240,16 +310,6 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
 		cairo_paint (myDrawContext);
 	}
-	
-	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
-	PangoFontDescription *pDesc = pango_font_description_new ();
-	
-	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
-	pango_font_description_set_family_static (pDesc, myConfig.cFont);
-	pango_font_description_set_weight (pDesc, myConfig.iWeight);
-	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
-	pango_layout_set_font_description (pLayout, pDesc);
-	pango_font_description_free (pDesc);
 	
 	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
 	//g_print ("%s\n", s_cDateBuffer);
@@ -266,7 +326,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	pango_cairo_show_layout (myDrawContext, pLayout);
 	
 	cairo_restore (myDrawContext);
-	g_object_unref (pLayout);
+	g_object_unref (pLayout);*/
 }
 
 

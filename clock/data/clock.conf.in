@@ -110,7 +110,7 @@ frame_style =
 
 #l+[Analogic;Numeric] Choose the view :
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
-style = 0
+style = -1
 old fashion style = true
 
 #X[Numeric View;gtk-italic]

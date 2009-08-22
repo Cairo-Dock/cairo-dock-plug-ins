@@ -208,7 +208,7 @@ AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
 AC_SUBST(GETTEXT_ALSA_MIXER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ALSA_MIXER, "1.0.8")
+AC_SUBST(VERSION_ALSA_MIXER, "1.0.9")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
@@ -217,7 +217,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 ANIMATED_ICONS_PACKAGE=cd-Animated-icons
 AC_SUBST(GETTEXT_ANIMATED_ICONS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.3")
+AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.4")
 AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
 
 AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
@@ -226,7 +226,7 @@ AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
 CLIPPER_PACKAGE="cd-Clipper"
 AC_SUBST(GETTEXT_CLIPPER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CLIPPER, "1.0.3")
+AC_SUBST(VERSION_CLIPPER, "1.1.0")
 AC_SUBST(PACKAGE_CLIPPER, "$CLIPPER_PACKAGE")
 
 AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
@@ -235,7 +235,7 @@ AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
 AC_SUBST(GETTEXT_CAIRO_PENGUIN, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.4")
+AC_SUBST(VERSION_CAIRO_PENGUIN, "1.2.0")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 cairo_penguinuserdirname="Cairo-Penguin"
 AC_SUBST(cairo_penguinuserdirname)
@@ -246,7 +246,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CLOCK, "2.0.4")
+AC_SUBST(VERSION_CLOCK, "2.0.5")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 clockuserdirname="clock"
 AC_SUBST(clockuserdirname, "clock")
@@ -257,7 +257,7 @@ AC_SUBST(clockdatadir, "${pkgdatadir}/clock")
 COMPIZ_ICON_PACKAGE="cd-compiz-icon"
 AC_SUBST(GETTEXT_COMPIZ_ICON, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_COMPIZ_ICON, "1.1.2")
+AC_SUBST(VERSION_COMPIZ_ICON, "1.1.3")
 AC_SUBST(PACKAGE_COMPIZ_ICON, "$COMPIZ_ICON_PACKAGE")
 
 AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
@@ -266,7 +266,7 @@ AC_SUBST(compiz_icondatadir, "${pkgdatadir}/compiz-icon")
 DBUS_PACKAGE="cd-Dbus"
 AC_SUBST(GETTEXT_DBUS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DBUS, "0.5.0")
+AC_SUBST(VERSION_DBUS, "0.6.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
@@ -275,7 +275,7 @@ AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
 DND2SHARE_PACKAGE="cd-dnd2share"
 AC_SUBST(GETTEXT_DND2SHARE, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DND2SHARE, "1.0.0-beta2")
+AC_SUBST(VERSION_DND2SHARE, "1.0.0")
 AC_SUBST(PACKAGE_DND2SHARE, "$DBUS_PACKAGE")
 
 AC_SUBST(dnd2sharedatadir, "${pkgdatadir}/dnd2share")
@@ -284,7 +284,7 @@ AC_SUBST(dnd2sharedatadir, "${pkgdatadir}/dnd2share")
 DROP_INDICATOR_PACKAGE=cd-drop_indicator
 AC_SUBST(GETTEXT_DROP_INDICATOR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DROP_INDICATOR, "1.1.0")
+AC_SUBST(VERSION_DROP_INDICATOR, "1.1.1")
 AC_SUBST(PACKAGE_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
 
 AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
@@ -293,7 +293,7 @@ AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
 DUSTBIN_PACKAGE=cd-dustbin
 AC_SUBST(GETTEXT_DUSTBIN, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DUSTBIN, "2.2.3")
+AC_SUBST(VERSION_DUSTBIN, "2.2.4")
 AC_SUBST(PACKAGE_DUSTBIN, "$DUSTBIN_PACKAGE")
 dustbinuserdirname="dustbin"
 AC_SUBST(dustbinuserdirname)
@@ -305,7 +305,7 @@ AC_SUBST(dustbindatadir, "${pkgdatadir}/dustbin")
 GMENU_PACKAGE=cd-GMenu
 AC_SUBST(GETTEXT_GMENU, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_GMENU, "1.1.2")
+AC_SUBST(VERSION_GMENU, "1.1.3")
 AC_SUBST(PACKAGE_GMENU, "$GMENU_PACKAGE")
 
 AC_SUBST(gmenudatadir, "${pkgdatadir}/GMenu")
@@ -313,7 +313,7 @@ AC_SUBST(gmenudatadir, "${pkgdatadir}/GMenu")
 ############# GNOME-INTEGRATION #################
 GNOME_INTEGRATION_PACKAGE=cd-gnome-integration
 
-AC_SUBST(VERSION_GNOME_INTEGRATION, "1.0.1")
+AC_SUBST(VERSION_GNOME_INTEGRATION, "1.0.2")
 AC_SUBST(PACKAGE_GNOME_INTEGRATION, "$GNOME_INTEGRATION_PACKAGE")
 
 AC_SUBST(gnome_integrationdatadir, "${pkgdatadir}/gnome-integration")
@@ -321,7 +321,7 @@ AC_SUBST(gnome_integrationdatadir, "${pkgdatadir}/gnome-integration")
 ############# GNOME-INTEGRATION-OLD #################
 GNOME_INTEGRATION_OLD_PACKAGE=cd-gnome-integration-old
 
-AC_SUBST(VERSION_GNOME_INTEGRATION_OLD, "1.0.2")
+AC_SUBST(VERSION_GNOME_INTEGRATION_OLD, "1.0.3")
 AC_SUBST(PACKAGE_GNOME_INTEGRATION_OLD, "$GNOME_INTEGRATION_OLD_PACKAGE")
 
 AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
@@ -330,7 +330,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 ICON_EFFECTS_PACKAGE=cd-icon-effect
 AC_SUBST(GETTEXT_ICON_EFFECTS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ICON_EFFECTS, "1.1.3")
+AC_SUBST(VERSION_ICON_EFFECTS, "1.1.4")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
@@ -339,7 +339,7 @@ AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
 ILLUSION_PACKAGE=cd-illusion
 AC_SUBST(GETTEXT_ILLUSION, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ILLUSION, "1.0.2")
+AC_SUBST(VERSION_ILLUSION, "1.0.3")
 AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
 
 AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")
@@ -348,7 +348,7 @@ AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")
 KEYBOARD_INDICATOR_PACKAGE="cd-keyboard-indicator"
 AC_SUBST(GETTEXT_KEYBOARD_INDICATOR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_KEYBOARD_INDICATOR, "1.0.2")
+AC_SUBST(VERSION_KEYBOARD_INDICATOR, "1.1.0")
 AC_SUBST(PACKAGE_KEYBOARD_INDICATOR, "$KEYBOARD_INDICATOR_PACKAGE")
 
 AC_SUBST(keyboard_indicatordatadir, "${pkgdatadir}/keyboard-indicator")
@@ -357,7 +357,7 @@ AC_SUBST(keyboard_indicatordatadir, "${pkgdatadir}/keyboard-indicator")
 LOGOUT_PACKAGE=cd-logout
 AC_SUBST(GETTEXT_LOGOUT, "$LOGOUT_PACKAGE")
 
-AC_SUBST(VERSION_LOGOUT, "1.2.6")
+AC_SUBST(VERSION_LOGOUT, "1.2.7")
 AC_SUBST(PACKAGE_LOGOUT, "$LOGOUT_PACKAGE")
 
 AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
@@ -366,7 +366,7 @@ AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
 MAIL_PACKAGE=cd-mail
 AC_SUBST(GETTEXT_MAIL, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_MAIL, "1.0.4")
+AC_SUBST(VERSION_MAIL, "1.0.0-beta")
 AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
 
 AC_SUBST(maildatadir, "${pkgdatadir}/mail")
@@ -375,7 +375,7 @@ AC_SUBST(maildatadir, "${pkgdatadir}/mail")
 MOTION_BLUR_PACKAGE=cd-motion_blur
 AC_SUBST(GETTEXT_MOTION_BLUR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_MOTION_BLUR, "1.0.2")
+AC_SUBST(VERSION_MOTION_BLUR, "1.0.3")
 AC_SUBST(PACKAGE_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
 
 AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
@@ -384,7 +384,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 MUSICPLAYER_PACKAGE=cd-musicplayer
 AC_SUBST(GETTEXT_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
 
-AC_SUBST(VERSION_MUSICPLAYER, "1.0.0-alpha")
+AC_SUBST(VERSION_MUSICPLAYER, "1.0.0-beta")
 AC_SUBST(PACKAGE_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
 
 AC_SUBST(musicplayerdatadir, "${pkgdatadir}/musicPlayer")
@@ -393,7 +393,7 @@ AC_SUBST(musicplayerdatadir, "${pkgdatadir}/musicPlayer")
 NETSPEED_PACKAGE=cd-netspeed
 AC_SUBST(GETTEXT_NETSPEED, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_NETSPEED, "1.2.0")
+AC_SUBST(VERSION_NETSPEED, "1.2.1")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
@@ -402,7 +402,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 POWERMANAGER_PACKAGE=cd-powermanager
 AC_SUBST(GETTEXT_POWERMANAGER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_POWERMANAGER, "1.2.17")
+AC_SUBST(VERSION_POWERMANAGER, "1.3.0")
 AC_SUBST(PACKAGE_POWERMANAGER, "$POWERMANAGER_PACKAGE")
 
 AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
@@ -411,7 +411,7 @@ AC_SUBST(powermanagerdatadir, "${pkgdatadir}/powermanager")
 RENDERING_PACKAGE=cd-rendering
 AC_SUBST(GETTEXT_RENDERING, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_RENDERING, "1.5.5")
+AC_SUBST(VERSION_RENDERING, "1.5.6")
 AC_SUBST(PACKAGE_RENDERING, "$RENDERING_PACKAGE")
 
 AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
@@ -420,7 +420,7 @@ AC_SUBST(renderingdatadir, "${pkgdatadir}/rendering")
 DESKLET_RENDERING_PACKAGE=cd-desklet-rendering
 AC_SUBST(GETTEXT_DESKLET_RENDERING, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DESKLET_RENDERING, "1.5.3")
+AC_SUBST(VERSION_DESKLET_RENDERING, "1.5.4")
 AC_SUBST(PACKAGE_DESKLET_RENDERING, "$DESKLET_RENDERING_PACKAGE")
 
 AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
@@ -429,7 +429,7 @@ AC_SUBST(desklet_renderingdatadir, "${pkgdatadir}/desklet-rendering")
 DIALOG_RENDERING_PACKAGE=cd-dialog-rendering
 AC_SUBST(GETTEXT_DIALOG_RENDERING, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DIALOG_RENDERING, "0.4.2")
+AC_SUBST(VERSION_DIALOG_RENDERING, "0.4.3")
 AC_SUBST(PACKAGE_DIALOG_RENDERING, "$DIALOG_RENDERING_PACKAGE")
 
 AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
@@ -438,7 +438,7 @@ AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 QUICK_BROWSER_PACKAGE=cd-quick-browser
 AC_SUBST(GETTEXT_QUICK_BROWSER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_QUICK_BROWSER, "1.0.2")
+AC_SUBST(VERSION_QUICK_BROWSER, "1.0.3")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
@@ -447,7 +447,7 @@ AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 RHYTHMBOX_PACKAGE=cd-rhythmbox
 AC_SUBST(GETTEXT_RHYTHMBOX, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_RHYTHMBOX, "1.2.6")
+AC_SUBST(VERSION_RHYTHMBOX, "1.2.7")
 AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
 
 AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
@@ -456,7 +456,7 @@ AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHORTCUTS, "1.2.1")
+AC_SUBST(VERSION_SHORTCUTS, "1.3.0")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
@@ -465,7 +465,7 @@ AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
 SHOW_DESKLETS_PACKAGE=cd-showDesklets
 AC_SUBST(GETTEXT_SHOW_DESKLETS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.4")
+AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.5")
 AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
 
 AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
@@ -474,7 +474,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHOW_DESKTOP, "1.0.5")
+AC_SUBST(VERSION_SHOW_DESKTOP, "1.1.0")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
@@ -483,7 +483,7 @@ AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
 SHOW_MOUSE_PACKAGE=cd-show_mouse
 AC_SUBST(GETTEXT_SHOW_MOUSE, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHOW_MOUSE, "1.0.2")
+AC_SUBST(VERSION_SHOW_MOUSE, "1.0.3")
 AC_SUBST(PACKAGE_SHOW_MOUSE, "$SHOW_MOUSE_PACKAGE")
 
 AC_SUBST(show_mousedatadir, "${pkgdatadir}/show_mouse")
@@ -492,7 +492,7 @@ AC_SUBST(show_mousedatadir, "${pkgdatadir}/show_mouse")
 SLIDER_PACKAGE="cd-slider"
 AC_SUBST(GETTEXT_SLIDER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SLIDER, "2.0.2")
+AC_SUBST(VERSION_SLIDER, "2.0.3")
 AC_SUBST(PACKAGE_SLIDER, "$SLIDER_PACKAGE")
 
 AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
@@ -501,7 +501,7 @@ AC_SUBST(sliderdatadir, "${pkgdatadir}/slider")
 STACK_PACKAGE="cd-stack"
 AC_SUBST(GETTEXT_STACK, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_STACK, "0.2.4")
+AC_SUBST(VERSION_STACK, "0.2.5")
 AC_SUBST(PACKAGE_STACK, "$STACK_PACKAGE")
 
 AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
@@ -510,7 +510,7 @@ AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SWITCHER, "1.0.6")
+AC_SUBST(VERSION_SWITCHER, "1.0.7")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
@@ -528,7 +528,7 @@ AC_SUBST(system_monitordatadir, "${pkgdatadir}/System-monitor")
 SYSTRAY_PACKAGE=cd-systray
 AC_SUBST(GETTEXT_SYSTRAY, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SYSTRAY, "0.1.8")
+AC_SUBST(VERSION_SYSTRAY, "0.1.9")
 AC_SUBST(PACKAGE_SYSTRAY, "$SYSTRAY_PACKAGE")
 
 AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
@@ -537,7 +537,7 @@ AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
 TERMINAL_PACKAGE="cd-terminal"
 AC_SUBST(GETTEXT_TERMINAL, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_TERMINAL, "1.0.5")
+AC_SUBST(VERSION_TERMINAL, "1.0.6")
 AC_SUBST(PACKAGE_TERMINAL, "$TERMINAL_PACKAGE")
 
 AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
@@ -546,7 +546,7 @@ AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
 TOMBOY_PACKAGE="cd-tomboy"
 AC_SUBST(GETTEXT_TOMBOY, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_TOMBOY, "1.0.4")
+AC_SUBST(VERSION_TOMBOY, "1.1.0")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
 
 AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
@@ -555,7 +555,7 @@ AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
 TOONS_PACKAGE="cd-Toons"
 AC_SUBST(GETTEXT_TOONS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_TOONS, "1.0.3")
+AC_SUBST(VERSION_TOONS, "1.0.4")
 AC_SUBST(PACKAGE_TOONS, "$TOONS_PACKAGE")
 
 AC_SUBST(toonsdatadir, "${pkgdatadir}/Toons")
@@ -565,7 +565,7 @@ AC_SUBST(toonsuserdirname,"Toons")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_WEATHER, "1.2.5")
+AC_SUBST(VERSION_WEATHER, "1.2.6")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")
@@ -575,7 +575,7 @@ AC_SUBST(weatheruserdirname, "weather")
 WIFI_PACKAGE="cd-wifi"
 AC_SUBST(GETTEXT_WIFI, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_WIFI, "1.2.0")
+AC_SUBST(VERSION_WIFI, "1.2.1")
 AC_SUBST(PACKAGE_WIFI, "$WIFI_PACKAGE")
 
 AC_SUBST(wifidatadir, "${pkgdatadir}/wifi")
@@ -592,7 +592,7 @@ AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 XGAMMA_PACKAGE="cd-Xgamma"
 AC_SUBST(GETTEXT_XGAMMA, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_XGAMMA, "1.1.2")
+AC_SUBST(VERSION_XGAMMA, "1.1.3")
 AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
 
 AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
@@ -601,7 +601,7 @@ AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 XMMS_PACKAGE="cd-xmms"
 AC_SUBST(GETTEXT_XMMS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_XMMS, "0.2.7")
+AC_SUBST(VERSION_XMMS, "0.2.8")
 AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
 
 AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")
@@ -613,7 +613,7 @@ AC_DEFINE(HAVE_WEBKIT,1,[Defined if we want to use webkit.])
 
 AC_SUBST(GETTEXT_WEBLETS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_WEBLETS, "0.3.2")
+AC_SUBST(VERSION_WEBLETS, "0.3.3")
 AC_SUBST(PACKAGE_WEBLETS, "$WEBLETS_PACKAGE")
 
 AC_SUBST(webletsdatadir, "${pkgdatadir}/weblets")

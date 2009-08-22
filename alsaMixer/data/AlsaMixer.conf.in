@@ -89,9 +89,9 @@ frame_alsa =
 #{Let empty to use the default sound card.}
 card id = 
 
-#L Choose which channel to control :
+#L[] Choose which channel to control :
 mixer element = Master
-#L Optionnally, choose a second channel to control :
+#E[] Optionnally, choose a second channel to control :
 #{On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just let it empty.}
 mixer element 2 = 
 
@@ -106,7 +106,7 @@ frame_ctrl =
 #k Shortkey to show/hide the sound control dialog :
 shortkey = <Control>F3
 
-#i[1;50] Variation for 1 mouse scroll, in % :
+#i[1;20] Variation for 1 mouse scroll, in % :
 scroll variation = 5
 
 #b Hide the scale when mouse leaves the desklet ?

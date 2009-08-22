@@ -65,7 +65,7 @@ duration = 1000
 continue = true
 
 #S+ Image for the spot :
-#{Let empty to use the default one.}}
+#{Let empty to use the default one.}
 spot image =
 
 #S+ Image for the front spot :

@@ -77,7 +77,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 		if (pParentDock == NULL)
 			pParentDock = g_pMainDock;
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, pParentDock, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 		double fZoomX = (double) w/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
 		double fZoomY = (double) h/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
 		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
@@ -383,4 +383,59 @@ void cd_switcher_draw_main_icon (void)
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON;
+}
+
+
+void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
+{
+	g_print ("%s ()\n", __func__);
+	double x, y, w, h;
+	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+	
+	w = myData.switcher.fOneViewportWidth/2;
+	h = myData.switcher.fOneViewportHeight/2;
+	int i, j;
+	for (i = 0; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
+	{
+		x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+		x += w;
+		
+		for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
+		{
+			y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+			y = pDesklet->iHeight - (y + h);
+			
+			glLoadName(i * myData.switcher.iNbLines + j + 1);  // +1 pour ne pas avoir 0.
+			
+			glBegin(GL_QUADS);
+			glVertex3f(x-w, y+h, 0.);
+			glVertex3f(x+w, y+h, 0.);
+			glVertex3f(x+w, y-h, 0.);
+			glVertex3f(x-w, y-h, 0.);
+			glEnd();
+		}
+	}
+}
+
+void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesklet, int *iCoordX, int *iCoordY)
+{
+	g_print ("%s (%d)\n", __func__, pDesklet->iPickedObject);
+	if (pDesklet->iPickedObject != 0)
+	{
+		pDesklet->iPickedObject --;  // cf le +1
+		int i, j;
+		i = pDesklet->iPickedObject / myData.switcher.iNbLines;
+		j = pDesklet->iPickedObject % myData.switcher.iNbLines;
+		g_print ("bureau (%d;%d)\n", i, j);
+		
+		double x, y, w, h;
+		w = myData.switcher.fOneViewportWidth/2;
+		h = myData.switcher.fOneViewportHeight/2;
+		x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+		x += w;
+		y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+		y += h;
+		*iCoordX = x;
+		*iCoordY = y;
+	}
 }

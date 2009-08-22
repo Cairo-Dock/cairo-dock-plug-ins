@@ -33,9 +33,44 @@ static dbusCallback *server = NULL;
 G_DEFINE_TYPE(dbusCallback, cd_dbus_callback, G_TYPE_OBJECT);
 
 
-static void cd_dbus_callback_class_init(dbusCallbackClass *class)
+static void cd_dbus_callback_class_init(dbusCallbackClass *klass)
 {
 	cd_message("");
+	
+	// on definit les signaux dont on aura besoin.
+	myData.iSidOnClickIcon =
+		g_signal_new("on_click_icon",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__INT,
+				G_TYPE_NONE, 1, G_TYPE_INT);
+	myData.iSidOnMiddleClickIcon =
+		g_signal_new("on_middle_click_icon",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__VOID,
+				G_TYPE_NONE, 0, G_TYPE_NONE);
+	myData.iSidOnScrollIcon =
+		g_signal_new("on_scroll_icon",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__BOOLEAN,
+				G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
+	myData.iSidOnBuildMenu =
+		g_signal_new("on_build_menu",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__VOID,
+				G_TYPE_NONE, 0, G_TYPE_NONE);
+	
 	// Nothing here
 }
 static void cd_dbus_callback_init(dbusCallback *server)
@@ -44,13 +79,26 @@ static void cd_dbus_callback_init(dbusCallback *server)
 	g_return_if_fail (server->connection == NULL);
 	
 	// Initialise the DBus connection
-	server->connection = cairo_dock_get_dbus_connection ();
+	server->connection = cairo_dock_get_session_connection ();
 	
 	dbus_g_object_type_install_info(cd_dbus_callback_get_type(), &dbus_glib_cd_dbus_callback_object_info);
 	
 	// Register DBUS path
 	dbus_g_connection_register_g_object(server->connection, "/org/cairodock/CairoDock", G_OBJECT(server));
-
+	
+	// Add signals
+	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
+    if (pProxy != NULL)
+    {
+		dbus_g_proxy_add_signal(pProxy, "on_click_icon",
+			G_TYPE_INT, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_middle_click_icon",
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_scroll_icon",
+			G_TYPE_BOOLEAN, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_build_menu",
+			G_TYPE_INVALID);
+	}
 	// Register the service name
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 }
@@ -61,6 +109,8 @@ void cd_dbus_launch_service (void)
 	
 	cd_message("dbus : Lancement du service");
 	server = g_object_new(cd_dbus_callback_get_type(), NULL);  // -> appelle cd_dbus_callback_class_init() et cd_dbus_callback_init().
+	
+	/// s'abonner...
 }
 
 void cd_dbus_stop_service (void)
@@ -68,6 +118,9 @@ void cd_dbus_stop_service (void)
 	if (server != NULL)
 		g_object_unref (server);
 	server = NULL;
+	
+	/// se desabonner...
+	
 }
 
 
@@ -340,4 +393,25 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
 	return TRUE;
+}
+
+
+gboolean cd_dbus_emit_on_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
+{
+	g_signal_emit (server, myData.iSidOnClickIcon, 0, iButtonState);
+}
+
+gboolean cd_dbus_emit_on_middle_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
+{
+	g_signal_emit (server, myData.iSidOnMiddleClickIcon, 0, 0);
+}
+
+gboolean cd_dbus_emit_on_scroll_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection)
+{
+	g_signal_emit (server, myData.iSidOnScrollIcon, 0, iDirection == GDK_SCROLL_UP);
+}
+
+gboolean cd_dbus_emit_on_build_menu (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
+{
+	g_signal_emit (server, myData.iSidOnBuildMenu, 0, 0);
 }

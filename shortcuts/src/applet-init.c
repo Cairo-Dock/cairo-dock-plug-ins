@@ -30,7 +30,8 @@ CD_APPLET_DEFINITION ("shortcuts",
 
 
 CD_APPLET_INIT_BEGIN
-	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	if (myDock)
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	//\_______________ On charge les icones dans un sous-dock.
 	myData.pTask = cairo_dock_new_task (0,
@@ -60,7 +61,8 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On charge les icones dans un sous-dock.
 		cd_shortcuts_reset_all_datas (myApplet);  // stoppe les mesures.
 		
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+		if (myDock)
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		myData.pTask = cairo_dock_new_task (0,
 			(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,

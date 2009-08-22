@@ -85,6 +85,7 @@ struct _AppletConfig {
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
 	gint iWeight;
+	gboolean bOutlined;
 	gchar *cLocation;
 	gchar *cDigital;
 	gint iSmoothAnimationDuration;

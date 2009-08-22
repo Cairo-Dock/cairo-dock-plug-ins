@@ -19,13 +19,13 @@ Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@
 
 
 CD_APPLET_DEFINITION (N_("switcher"),
-	1, 6, 2,
+	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet allows you to switch between your virtual desktops.\n"
 	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
 	"You can also quickly add/remove a desktop through the right-click menu.\n"
 	"Scroll up/down on the main icon to go to the left/right desktop, middle-click to show the desktop"),
-	"Cchumi")
+	"Cchumi & Fabounet")
 
 
 CD_APPLET_INIT_BEGIN

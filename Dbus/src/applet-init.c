@@ -16,7 +16,7 @@ Written by Fabrice Rey (for any bug report, please mail me to fabounet@users.ber
 
 
 CD_APPLET_DEFINITION ("Dbus",
-	1, 6, 3,
+	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plug-in lets extern applications interact on the dock.\n"
 	"The communication between both sides is based on Dbus"),

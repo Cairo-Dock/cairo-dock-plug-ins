@@ -25,9 +25,9 @@ CD_APPLET_PRE_INIT_BEGIN (N_("desklet rendering"),
 	N_("This module provides different views for your desklets."),
 	"Fabounet (Fabrice Rey)")
 	//\_______________ On definit notre interface.
-	pInterface->read_conf_file = read_conf_file;
-	pInterface->reset_config = reset_config;
-	pInterface->reset_data = reset_data;
+	//pInterface->read_conf_file = read_conf_file;
+	//pInterface->reset_config = reset_config;
+	//pInterface->reset_data = reset_data;
 
 	//\_______________ On enregistre les vues.
 	rendering_register_tree_desklet_renderer ();

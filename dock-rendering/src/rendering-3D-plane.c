@@ -33,34 +33,49 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	
 	double fInclinationOnHorizon = 0, fExtraWidth = 0;
+	// 1ere estimation.
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
 	fInclinationOnHorizon = 0.5 * pDock->iMaxDockWidth / iVanishingPointY;
 	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + myBackground.iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
 	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	//cd_debug ("iMaxDockWidth <- %d; fInclinationOnHorizon <- %.2f; fExtraWidth <- %.2f", pDock->iMaxDockWidth, fInclinationOnHorizon, fExtraWidth);
 	
+	// on reboucle dans notre filtre de Kalmann (mais non c'est pour rire !)
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
 	//cd_debug ("pDock->iMaxDockWidth <- %d", pDock->iMaxDockWidth);
 	
+	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	{
+		if (pDock->iMaxDockWidth < cairo_dock_get_max_authorized_dock_width (pDock))  // alors on etend.
+		{
+			fExtraWidth += (cairo_dock_get_max_authorized_dock_width (pDock) - pDock->iMaxDockWidth);
+			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+			g_print ("mode etendu : pDock->iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
+		}
+	}
+	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
+	
+	// taille min.
+	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->fRatio + pDock->iMaxIconHeight;
 	
 	double fInclination = 0.5 * pDock->fFlatDockWidth / iVanishingPointY;
 	double fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
-	pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
 	
+	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	{
+		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
+	}
+	else
+	{
+		pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
+	}
 	
-	//pDock->iMinDockWidth = g_iScreenWidth[CAIRO_DOCK_HORIZONTAL];
-	//pDock->iMaxDockWidth = MAX (pDock->iMaxDockWidth, g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+	// on reboucle (sauf que on reboucle pas).
+	//fInclination = 0.5 * pDock->iMinDockWidth / iVanishingPointY;
+	//fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;  // en commentaire depuis des lustres.
 	
-	
-	fInclination = 0.5 * pDock->iMinDockWidth / iVanishingPointY;
-	fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
-	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;
-	
-	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->fRatio + pDock->iMaxIconHeight;
-	
-	if (my_pFlatSeparatorSurface[0] == NULL && (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
-		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	pDock->iMinLeftMargin = fExtraWidth/2;
 	pDock->iMinRightMargin = fExtraWidth/2;
 	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
@@ -70,10 +85,14 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	if (pLastIcon != NULL)
 		pDock->iMaxRightMargin = fExtraWidth/2 + pLastIcon->fWidth;
 	
-	pDock->inputArea.x = fExtraWidthMin/2;
+	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;  // fExtraWidthMin/2;
 	pDock->inputArea.y = 0;
-	pDock->inputArea.width = pDock->iMinDockWidth - fExtraWidthMin;
+	pDock->inputArea.width = pDock->fFlatDockWidth;  // pDock->iMinDockWidth - fExtraWidthMin;
 	pDock->inputArea.height = pDock->iMinDockHeight;
+	
+	// on charge les separateurs plat.
+	if ((my_pFlatSeparatorSurface[0] == NULL || my_iFlatSeparatorTexture == 0) && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY)
@@ -265,12 +284,31 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	double fLineWidth = myBackground.iDockLineWidth;
 	double fMargin = myBackground.iFrameMargin;
 	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
-	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-	
+	double fDockWidth;
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX + 0 - fMargin : fRadius + fLineWidth / 2);
+	double fExtraWidth = fRadius + fLineWidth/2;
+	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	{
+		double fFrameHeight = pDock->iDecorationsHeight;
+		double fInclination = 0.5 * pDock->iCurrentWidth / iVanishingPointY;
+		double fDeltaXForLoop = fInclination * (fFrameHeight + fLineWidth - (myBackground.bRoundedBottomCorner ? 2 : 1) * fRadius);
+		double cosa = 1. / sqrt (1 + fInclination * fInclination);
+		double sina = cosa * fInclination;
+		fExtraWidth = 2 * (fInclination * (fFrameHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa));
+		fDockWidth = pDock->iCurrentWidth - fExtraWidth;
+		fDockOffsetX = fExtraWidth / 2;
+	}
+	else
+	{
+		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fExtraWidth / 2);
+		if (fDockOffsetX < fExtraWidth / 2)
+			fDockOffsetX = fExtraWidth / 2;
+		if (fDockOffsetX + fDockWidth + fExtraWidth / 2 > pDock->iCurrentWidth)
+			fDockWidth = pDock->iCurrentWidth - fDockOffsetX - fExtraWidth / 2;
+	}
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
@@ -507,9 +545,17 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		cairo_rectangle (pCairoContext, fDockOffsetX, fDockOffsetY, pDock->iDecorationsHeight, pArea->height);
 	
 	double fRadius = MIN (myBackground.iDockRadius, (pDock->iDecorationsHeight + myBackground.iDockLineWidth) / 2 - 1);
-	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 	double fDeltaXTrapeze=0.;
-	double fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+	double fOffsetX;
+	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	{
+		fOffsetX = fRadius + fLineWidth / 2;
+	}
+	else
+	{
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fRadius + fLineWidth / 2);
+	}
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
 	if (g_pBackgroundSurface != NULL)
 	{
@@ -521,8 +567,6 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		
 		double cosa = 1. / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
 		fDeltaXTrapeze = fDeltaXForLoop + fRadius * cosa;
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
 		
 		double sina = cosa * fInclinationOnHorizon;
 		fDeltaXTrapeze = fInclinationOnHorizon * (pDock->iDecorationsHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa);
@@ -694,11 +738,30 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	double fLineWidth = myBackground.iDockLineWidth;
 	double fMargin = myBackground.iFrameMargin;
 	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
-	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-	
+	double fDockWidth;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-	fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX + 0 - fMargin : fRadius + fLineWidth / 2);
+	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	{
+		double fFrameHeight = pDock->iDecorationsHeight;
+		double fInclination = 0.5 * pDock->iCurrentWidth / iVanishingPointY;
+		double fDeltaXForLoop = fInclination * (fFrameHeight + fLineWidth - (myBackground.bRoundedBottomCorner ? 2 : 1) * fRadius);
+		double cosa = 1. / sqrt (1 + fInclination * fInclination);
+		double sina = cosa * fInclination;
+		double fExtraWidth = 2 * (fInclination * (fFrameHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa));
+		
+		fDockWidth = pDock->iCurrentWidth - fExtraWidth;
+		fDockOffsetX = fRadius + fLineWidth / 2;
+	}
+	else
+	{
+		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
+		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
+		/*if (fDockOffsetX - (fRadius + fLineWidth / 2) < 0)
+			fDockOffsetX = fRadius + fLineWidth / 2;
+		if (fDockOffsetX + fDockWidth + (fRadius + fLineWidth / 2) > pDock->iCurrentWidth)
+			fDockWidth = pDock->iCurrentWidth - fDockOffsetX - (fRadius + fLineWidth / 2);*/
+	}
 	
 	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
 		fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;

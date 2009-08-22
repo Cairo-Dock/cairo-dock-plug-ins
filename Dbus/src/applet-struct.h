@@ -22,7 +22,10 @@ struct _AppletConfig {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	gint no_data;
+	guint iSidOnClickIcon;
+	guint iSidOnMiddleClickIcon;
+	guint iSidOnScrollIcon;
+	guint iSidOnBuildMenu;
 	} ;
 
 

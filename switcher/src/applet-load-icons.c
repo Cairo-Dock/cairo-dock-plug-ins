@@ -10,8 +10,8 @@ Written by Cchumi & Fabrice Rey (for any bug report, please mail me to fabounet@
 
 #include "applet-struct.h"
 #include "applet-desktops.h"
-#include "applet-load-icons.h"
 #include "applet-draw.h"
+#include "applet-load-icons.h"
 
 
 static GList * _load_icons (void)
@@ -54,9 +54,9 @@ static GList * _load_icons (void)
 
 void cd_switcher_load_icons (void)
 {
+	CD_APPLET_DELETE_MY_ICONS_LIST;
 	if (myConfig.bCompactView)
 	{
-		CD_APPLET_DELETE_MY_ICONS_LIST;
 		if (myIcon->pSubDock != NULL)  // si on est passe de expanded a compact, le sous-dock vide reste.
 		{
 			CD_APPLET_DESTROY_MY_SUBDOCK;
@@ -64,6 +64,7 @@ void cd_switcher_load_icons (void)
 		if (myDesklet)
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			myDesklet->render_bounding_box = cd_switcher_draw_desktops_bounding_box;  // pour le picking du bureau clique.
 		}
 		cd_switcher_load_default_map_surface ();
 		
@@ -74,55 +75,9 @@ void cd_switcher_load_icons (void)
 		//\_______________________ On cree la liste des icones de prevision.
 		GList *pIconList = _load_icons ();
 		
-		/*//\_______________________ On efface l'ancienne liste.
-		if (myIcon->pSubDock != NULL)
-		{
-			g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myIcon->pSubDock->icons);
-			myIcon->pSubDock->icons = NULL;
-		}
-		*/
 		//\_______________________ On charge la nouvelle liste.
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
-		/*if (myDock)
-		{
-			if (myIcon->pSubDock == NULL)
-			{
-				if (pIconList != NULL)
-				{
-					CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
-				}
-			}
-			else  // on a deja notre sous-dock, on remplace juste ses icones.
-			{
-				if (pIconList == NULL)  // inutile de le garder.
-				{
-					CD_APPLET_DESTROY_MY_SUBDOCK;
-					return ;
-				}
-				else
-				{
-					CD_APPLET_LOAD_ICONS_IN_MY_SUBDOCK (pIconList);
-				}
-			}
-		}
-		else
-		{
-			if (myIcon->pSubDock != NULL)
-			{
-				CD_APPLET_DESTROY_MY_SUBDOCK;
-			}
-			if (myDesklet->icons != NULL)  // si on recharge la liste a cause d'un changement de configuration du bureau.
-			{
-				g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-				g_list_free (myDesklet->icons);
-			}
-			myDesklet->icons = pIconList;
-			
-			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-		}*/
 		
 		//\_______________________ On peint les icones.
 		cd_switcher_paint_icons ();

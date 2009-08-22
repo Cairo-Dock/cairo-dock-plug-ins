@@ -29,10 +29,20 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (myDesklet)
 		{
 			/// il faudrait voir comment utiliser le picking.
-			iMouseX = myContainer->iMouseX;
-			iMouseY = myContainer->iMouseY;
-			iMouseX -= myIcon->fDrawX;
-			iMouseY -= myIcon->fDrawY;
+			if (g_bUseOpenGL)
+			{
+				iMouseX = 0;
+				iMouseY = 0;
+				cd_switcher_extract_viewport_coords_from_picked_object (myDesklet, &iMouseX, &iMouseY);
+			}
+			else
+			{
+				iMouseX = myDesklet->iMouseX2d;
+				iMouseY = myDesklet->iMouseY2d;
+				//iMouseX -= myIcon->fDrawX;
+				//iMouseY -= myIcon->fDrawY;
+			}
+			g_print ("on cherche le bureau en (%d;%d)\n", iMouseX, iMouseY);
 		}
 		else
 		{

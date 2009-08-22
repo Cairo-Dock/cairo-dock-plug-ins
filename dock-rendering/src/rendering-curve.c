@@ -35,6 +35,8 @@ extern CDSpeparatorType my_curve_iDrawSeparator3D;
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 
+extern GLuint my_iFlatSeparatorTexture;
+
 //const guint curveOffsetX = 75;
 // OM(t) = sum ([k=0..n] Bn,k(t)*OAk)
 // Bn,k(x) = Cn,k*x^k*(1-x)^(n-k)
@@ -83,7 +85,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight;  // de bas en haut.
 	
-	if (my_pFlatSeparatorSurface[0] == NULL && (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR))
+	if ((my_pFlatSeparatorSurface[0] == NULL || my_iFlatSeparatorTexture == 0) && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	
 	pDock->inputArea.x = fDeltaX+fDeltaTip;
@@ -1133,7 +1135,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 				if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next : NULL));
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next->data : NULL));
 				glPopMatrix ();
 				
 				glDisable (GL_STENCIL_TEST);
@@ -1169,7 +1171,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 					glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);
 					
 					glPushMatrix ();
-					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next : NULL));
+					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next->data : NULL));
 					glPopMatrix ();
 					
 					glDisable (GL_STENCIL_TEST);
