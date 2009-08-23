@@ -43,6 +43,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "effects", CD_ICON_EFFECT_NB_EFFECTS, (int *)myConfig.iEffectsUsed);
+	g_print ("%s -> %d;%d\n", CD_CONFIG_GET_STRING ("Global", "effects"), myConfig.iEffectsUsed[0], myConfig.iEffectsUsed[1]);
 	
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "click launchers", CD_ICON_EFFECT_NB_EFFECTS,
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_LAUNCHER]);
@@ -98,7 +99,6 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	
 	
 CD_APPLET_RESET_CONFIG_END
 

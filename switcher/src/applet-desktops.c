@@ -81,12 +81,12 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 		if (myIcon->fWidth >= myIcon->fHeight)
 		{
 			*iBestNbColumns = (int) ceil (sqrt (iNbViewports));
-			*iBestNbLines = iNbViewports / (*iBestNbColumns);
+			*iBestNbLines = (int) ceil ((double)iNbViewports / (*iBestNbColumns));
 		}
 		else
 		{
 			*iBestNbLines = (int) ceil (sqrt (iNbViewports));
-			*iBestNbColumns = iNbViewports / (*iBestNbLines);
+			*iBestNbColumns = (int) ceil ((double)iNbViewports / (*iBestNbLines));
 		}
 	}
 }

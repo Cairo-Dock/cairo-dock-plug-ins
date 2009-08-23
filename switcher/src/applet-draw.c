@@ -155,7 +155,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cairo_set_source_rgba(myDrawContext,myConfig.RGBInLineColors[0],myConfig.RGBInLineColors[1],myConfig.RGBInLineColors[2],myConfig.RGBInLineColors[3]);
 	double xi, yj;
 	int i, j;
-	for (i = 1; i <myData.switcher.iNbColumns; i ++)  // lignes verticales.
+	for (i = 1; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
 	{
 		xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, xi, myConfig.iLineSize);
@@ -179,6 +179,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
+	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
 	for (j = 0; j < myData.switcher.iNbLines; j ++)
 	{
 		for (i = 0; i < myData.switcher.iNbColumns; i ++)
@@ -247,6 +248,9 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				if (iNumViewportY == g_iNbViewportY)
 					iNumDesktop ++;
 			}
+			k ++;
+			if (k == N)
+				break ;
 		}
 	}
 	
@@ -388,22 +392,24 @@ void cd_switcher_draw_main_icon (void)
 
 void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	double x, y, w, h;
 	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
 	
 	w = myData.switcher.fOneViewportWidth/2;
 	h = myData.switcher.fOneViewportHeight/2;
 	int i, j;
-	for (i = 0; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
+	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
+	
+	for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
-		x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-		x += w;
+		y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+		y = pDesklet->iHeight - (y + h);	
 		
-		for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
+		for (i = 0; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
 		{
-			y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-			y = pDesklet->iHeight - (y + h);
+			x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
+			x += w;
 			
 			glLoadName(i * myData.switcher.iNbLines + j + 1);  // +1 pour ne pas avoir 0.
 			
@@ -413,20 +419,24 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 			glVertex3f(x+w, y-h, 0.);
 			glVertex3f(x-w, y-h, 0.);
 			glEnd();
+			
+			k ++;
+			if (k == N)
+				break;
 		}
 	}
 }
 
 void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesklet, int *iCoordX, int *iCoordY)
 {
-	g_print ("%s (%d)\n", __func__, pDesklet->iPickedObject);
+	//g_print ("%s (%d)\n", __func__, pDesklet->iPickedObject);
 	if (pDesklet->iPickedObject != 0)
 	{
 		pDesklet->iPickedObject --;  // cf le +1
 		int i, j;
 		i = pDesklet->iPickedObject / myData.switcher.iNbLines;
 		j = pDesklet->iPickedObject % myData.switcher.iNbLines;
-		g_print ("bureau (%d;%d)\n", i, j);
+		//g_print ("bureau (%d;%d)\n", i, j);
 		
 		double x, y, w, h;
 		w = myData.switcher.fOneViewportWidth/2;

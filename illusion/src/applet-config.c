@@ -29,7 +29,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fEvaporateParticleSpeed = CD_CONFIG_GET_DOUBLE ("Evaporate", "part speed");
 	myConfig.bEvaporateFromBottom = CD_CONFIG_GET_BOOLEAN ("Evaporate", "from bottom");
 	
-	myConfig.iFadeOutDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Evaporate", "duration"));
+	myConfig.iFadeOutDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Fade out", "duration"));
 	
 	myConfig.iExplodeDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Explode", "duration"));
 	int iExplodeNbPieces = CD_CONFIG_GET_INTEGER ("Explode", "nb pieces");
