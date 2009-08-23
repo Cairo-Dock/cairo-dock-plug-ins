@@ -89,6 +89,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;  // pDock->iMinDockWidth - fExtraWidthMin;
 	pDock->inputArea.height = pDock->iMinDockHeight;
+	g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);
 	
 	// on charge les separateurs plat.
 	if ((my_pFlatSeparatorSurface[0] == NULL || my_iFlatSeparatorTexture == 0) && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
@@ -750,7 +751,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		double fExtraWidth = 2 * (fInclination * (fFrameHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa));
 		
 		fDockWidth = pDock->iCurrentWidth - fExtraWidth;
-		fDockOffsetX = fRadius + fLineWidth / 2;
+		fDockOffsetX = fExtraWidth/2;
 	}
 	else
 	{
