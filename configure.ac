@@ -68,10 +68,6 @@ AC_ARG_ENABLE(tomboy,
 	[  --enable-tomboy : Enable Tomboy applet (default=yes) ],
 	[ with_tomboy=${enableval} ],
 	[ with_tomboy=yes ])
-AC_ARG_ENABLE(rhythmbox,
-	[  --enable-rhythmbox : Enable Rhythmbox applet (default=yes) ],
-	[ with_rhythmbox=${enableval} ],
-	[ with_rhythmbox=yes ])
 AC_ARG_ENABLE(compiz-icon,
 	[  --enable-compiz-icon : Enable Compiz-Icon applet (default=yes) ],
 	[ with_compiz_icon=${enableval} ],
@@ -109,9 +105,9 @@ AC_ARG_ENABLE(dnd2share,
 	[ with_dnd2share=${enableval} ],
 	[ with_dnd2share=yes ])
 AC_ARG_ENABLE(musicplayer,
-	[  --enable-musicplayer : Enable musicplayer applet (default=no) ],
+	[  --enable-musicplayer : Enable musicplayer applet (default=yes) ],
 	[ with_musicplayer=${enableval} ],
-	[ with_musicplayer=no ])
+	[ with_musicplayer=yes ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -191,7 +187,6 @@ AM_CONDITIONAL( [WITH_TERMINAL], [test "$with_terminal" = "yes"] )
 AM_CONDITIONAL( [WITH_POWERMANAGER], [test "$with_powermanager" = "yes"] )
 AM_CONDITIONAL( [WITH_WIFI], [test "$with_wifi" = "yes"] )
 AM_CONDITIONAL( [WITH_TOMBOY], [test "$with_tomboy" = "yes"] )
-AM_CONDITIONAL( [WITH_RHYTHMBOX], [test "$with_rhythmbox" = "yes"] )
 AM_CONDITIONAL( [WITH_COMPIZ_ICON], [test "$with_compiz_icon" = "yes"] )
 AM_CONDITIONAL( [WITH_XGAMMA], [test "$with_xgamma" = "yes"] )
 AM_CONDITIONAL( [WITH_GMENU], [test "$with_gmenu" = "yes"] )
@@ -443,15 +438,6 @@ AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 
-############# RHYTHMBOX #################
-RHYTHMBOX_PACKAGE=cd-rhythmbox
-AC_SUBST(GETTEXT_RHYTHMBOX, "cairo-dock-plugins")
-
-AC_SUBST(VERSION_RHYTHMBOX, "1.2.7")
-AC_SUBST(PACKAGE_RHYTHMBOX, "$RHYTHMBOX_PACKAGE")
-
-AC_SUBST(rhythmboxdatadir, "${pkgdatadir}/rhythmbox")
-
 ############# SHORTCUTS #################
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "cairo-dock-plugins")
@@ -597,15 +583,6 @@ AC_SUBST(PACKAGE_XGAMMA, "$XGAMMA_PACKAGE")
 
 AC_SUBST(xgammadatadir, "${pkgdatadir}/Xgamma")
 
-############# XMMS #################
-XMMS_PACKAGE="cd-xmms"
-AC_SUBST(GETTEXT_XMMS, "cairo-dock-plugins")
-
-AC_SUBST(VERSION_XMMS, "0.2.8")
-AC_SUBST(PACKAGE_XMMS, "$XMMS_PACKAGE")
-
-AC_SUBST(xmmsdatadir, "${pkgdatadir}/xmms")
-
 ############# WEBLETS #################
 WEBLETS_PACKAGE="cd-weblets"
 
@@ -730,6 +707,8 @@ AC_CONFIG_FILES([
 	musicPlayer/src/Makefile
 	musicPlayer/data/Makefile
 	musicPlayer/data/musicPlayer.conf
+	musicPlayer/data/themes/Makefile
+	musicPlayer/data/themes/cd_box_simple/Makefile
 	
 	netspeed/Makefile
 	netspeed/src/Makefile
@@ -759,13 +738,6 @@ AC_CONFIG_FILES([
 	quick-browser/src/Makefile
 	quick-browser/data/Makefile
 	quick-browser/data/quick-browser.conf
-	
-	rhythmbox/Makefile
-	rhythmbox/src/Makefile
-	rhythmbox/data/Makefile
-	rhythmbox/data/rhythmbox.conf
-	rhythmbox/data/themes/Makefile
-	rhythmbox/data/themes/cd_box_simple/Makefile
 	
 	shortcuts/Makefile
 	shortcuts/src/Makefile
@@ -854,11 +826,6 @@ AC_CONFIG_FILES([
 	Xgamma/src/Makefile
 	Xgamma/data/Makefile
 	Xgamma/data/Xgamma.conf
-	
-	xmms/Makefile
-	xmms/src/Makefile
-	xmms/data/Makefile
-	xmms/data/xmms.conf
 	])
 
 AC_OUTPUT([po/Makefile
@@ -873,7 +840,6 @@ echo " * Compil Terminal applet : "${with_terminal}
 echo " * Compil PowerManager applet : "${with_powermanager}
 echo " * Compil Wifi applet : "${with_wifi}
 echo " * Compil Tomboy applet : "${with_tomboy}
-echo " * Compil Rhythmbox applet : "${with_rhythmbox}
 echo " * Compil Xgamma applet : "${with_xgamma}
 echo " * Compil GMenu applet : "${with_gmenu}
 echo " * Enable gio in GMenu applet : "${with_gio_in_gmenu}

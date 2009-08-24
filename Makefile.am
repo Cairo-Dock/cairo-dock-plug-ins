@@ -32,10 +32,6 @@ if WITH_TOMBOY
 tomboy_dir=tomboy
 endif
 
-if WITH_RHYTHMBOX
-rhythmbox_dir=rhythmbox
-endif
-
 if WITH_COMPIZ_ICON
 compiz_icon_dir=compiz-icon
 endif
@@ -95,7 +91,6 @@ SUBDIRS = . po\
 	netspeed\
 	${powermanager_dir}\
 	quick-browser\
-	${rhythmbox_dir}\
 	shortcuts\
 	showDesklets\
 	showDesktop\
@@ -112,8 +107,7 @@ SUBDIRS = . po\
 	${weblets_dir}\
 	${wifi_dir}\
 	${xfce_dir}\
-	${xgamma_dir}\
-	xmms
+	${xgamma_dir}
 
 EXTRA_DIST = \
 	intltool-extract.in\
