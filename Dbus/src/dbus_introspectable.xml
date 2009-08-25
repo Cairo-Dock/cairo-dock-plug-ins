@@ -45,5 +45,31 @@
 			<arg name="cIconCommand" type="s" direction="in"/>
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
+		<method name="Animate">
+			<arg name="cAnimation" type="s" direction="in"/>
+			<arg name="iNbRounds" type="i" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+		<method name="PopulateMenu">
+			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="pLabels" type="as" direction="in"/>	
+			<arg name="cIconName" type="s" direction="in"/>
+		</method>
+		<signal name="on_click_icon">
+			<arg name="cModuleName" type="s" />
+            <arg name="iButtonState" type="i" />
+        </signal>
+        <signal name="on_middle_click_icon">
+			<arg name="cModuleName" type="s" />
+        </signal>
+        <signal name="on_scroll_icon">
+			<arg name="cModuleName" type="s" />
+            <arg name="bDirectionUp" type="b" />
+        </signal>
+        <signal name="on_build_menu">
+			<arg name="cModuleName" type="s" />
+        </signal>
 	</interface>
 </node>

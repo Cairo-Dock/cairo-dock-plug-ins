@@ -3,17 +3,7 @@
 #define  __APPLET_DBUS__
 
 #include <cairo-dock.h>
-
-typedef struct
-{
-	GObject parent;
-	DBusGConnection *connection;
-} dbusCallback;
-
-typedef struct
-{
-	GObjectClass parent_class;
-} dbusCallbackClass;
+#include "applet-struct.h"
 
 void cd_dbus_launch_service (void);
 void cd_dbus_stop_service (void);
@@ -41,7 +31,12 @@ gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, const gchar *c
 
 gboolean cd_dbus_callback_set_icon (dbusCallback *pDbusCallback, const gchar *cImage, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
 
+gboolean cd_dbus_callback_animate (dbusCallback *pDbusCallback, const gchar *cAnimation, gint iNbRounds, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+
+
 gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, const gchar *cLabel, GError **error);
+
+gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gchar *cModuleName, const gchar **pLabels, GError **error);
 
 
 gboolean cd_dbus_emit_on_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);

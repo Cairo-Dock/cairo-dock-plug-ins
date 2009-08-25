@@ -18,14 +18,31 @@ struct _AppletConfig {
 	gboolean bEnableSetLabel;
 	gboolean bEnableSetIcon;
 	gboolean bEnableNewModule;
+	gboolean bEnableAnimateIcon;
 	} ;
+
+
+typedef struct
+{
+	GObject parent;
+	DBusGConnection *connection;
+	DBusGProxy *proxy;
+} dbusCallback;
+
+typedef struct
+{
+	GObjectClass parent_class;
+} dbusCallbackClass;
+
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
+	dbusCallback *server;
 	guint iSidOnClickIcon;
 	guint iSidOnMiddleClickIcon;
 	guint iSidOnScrollIcon;
 	guint iSidOnBuildMenu;
+	GtkWidget *pModuleSubMenu;
 	} ;
 
 
