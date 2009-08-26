@@ -42,7 +42,10 @@ struct _AppletData {
 	guint iSidOnMiddleClickIcon;
 	guint iSidOnScrollIcon;
 	guint iSidOnBuildMenu;
+	guint iSidOnDropData;
+	guint iSidOnReloadModule;
 	GtkWidget *pModuleSubMenu;
+	gchar *cCurrentMenuModule;
 	} ;
 
 

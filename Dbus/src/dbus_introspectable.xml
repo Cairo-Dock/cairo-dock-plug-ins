@@ -9,9 +9,6 @@
 		<method name="ShowDesklet">
 			<arg name="widgetLayer" type="b" direction="in"/>
 		</method>
-		<method name="ShowDialog">
-			<arg name="message" type="s" direction="in"/>
-		</method>
 		<method name="ReloadModule">
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
@@ -52,10 +49,22 @@
 			<arg name="cIconCommand" type="s" direction="in"/>
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
+		<method name="ShowDialog">
+			<arg name="message" type="s" direction="in"/>
+			<arg name="iDuration" type="i" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+		<method name="RegisterNewModule">
+			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="iCategory" type="i" direction="in"/>	
+			<arg name="cDescription" type="s" direction="in"/>
+			<arg name="cShareDataDir" type="s" direction="in"/>
+		</method>
 		<method name="PopulateMenu">
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="pLabels" type="as" direction="in"/>	
-			<arg name="cIconName" type="s" direction="in"/>
 		</method>
 		<signal name="on_click_icon">
 			<arg name="cModuleName" type="s" />
@@ -70,6 +79,14 @@
         </signal>
         <signal name="on_build_menu">
 			<arg name="cModuleName" type="s" />
+        </signal>
+        <signal name="on_drop_data">
+			<arg name="cModuleName" type="s" />
+			<arg name="cReceivedData" type="s" />
+        </signal>
+        <signal name="on_reload_module">
+			<arg name="cModuleName" type="s" />
+			<arg name="bConfigHasChanged" type="b" />
         </signal>
 	</interface>
 </node>
