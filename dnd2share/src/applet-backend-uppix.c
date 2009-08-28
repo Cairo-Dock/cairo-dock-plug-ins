@@ -35,7 +35,7 @@ static void upload (const gchar *cFilePath)
 	close(fds);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 uppix.net -F myimage=@'%s' -F submit=Upload -F formup=1 -o '%s'", cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
+	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -F myimage=@'%s' -F submit=Upload -F formup=1 -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
@@ -83,13 +83,13 @@ static void upload (const gchar *cFilePath)
 	cd_debug ("dnd2share : Direct Link = %s", cDirectLink);
 
 	// Puis on créé les autres URLs à la mano ;-) :
-	gchar *cBBCodeFullPic = g_strdup_printf ("[url=%s][img]%s[/img][/url]", cDisplayImage, cDirectLink);
+	gchar *cBBCodeFullPic = g_strdup_printf ("[img]%s[/img]", cDirectLink);
 	cd_debug ("dnd2share : BBCODE_Full = '%s'", cBBCodeFullPic);
 	
 	gchar *cDirectLinkWithoutExt = g_strdup (cDisplayImage);
 	cDirectLinkWithoutExt[strlen(cDirectLinkWithoutExt) - 5] = '\0';  // on retire le .html à la fin
-	gchar *cBBCode150px = g_strdup_printf ("[url=%s][img]%st.jpg[/img][/url]", cDisplayImage, cDirectLinkWithoutExt);
-	gchar *cBBCode600px = g_strdup_printf ("[url=%s][img]%stt.jpg[/img][/url]", cDisplayImage, cDirectLinkWithoutExt);
+	gchar *cBBCode150px = g_strdup_printf ("[url=%s][img]%st.jpg[/img][/url]", cDirectLink, cDirectLinkWithoutExt);
+	gchar *cBBCode600px = g_strdup_printf ("[url=%s][img]%stt.jpg[/img][/url]", cDirectLink, cDirectLinkWithoutExt);
 	g_free (cDirectLinkWithoutExt);
 	cd_debug ("dnd2share : BBCODE_150px = '%s'", cBBCode150px);
 	cd_debug ("dnd2share : BBCODE_600px = '%s'", cBBCode600px);

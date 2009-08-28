@@ -43,6 +43,7 @@ struct _AppletConfig {
 	gboolean bEnableDialogs;
 	gdouble dTimeDialogs;
 	gint iNbItems;
+	gint iLimitRate;
 	gboolean bkeepCopy;
 	gboolean bDisplayLastImage;
 	gint iPreferedSite[CD_NB_FILE_TYPES];
@@ -55,7 +56,6 @@ struct _AppletConfig {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gchar *cWorkingDirPath;
-		
 	CDSiteBackend backends[CD_NB_FILE_TYPES][CD_NB_SITES];
 	CDSiteBackend *pCurrentBackend[CD_NB_FILE_TYPES];
 	int iNbSitesForType[CD_NB_FILE_TYPES];

@@ -22,6 +22,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbItems = CD_CONFIG_GET_INTEGER ("Configuration", "nb_items");
 	myConfig.bkeepCopy = CD_CONFIG_GET_BOOLEAN ("Configuration", "keep copy");
 	myConfig.bDisplayLastImage = myConfig.bkeepCopy && CD_CONFIG_GET_BOOLEAN ("Configuration", "display last image");
+	myConfig.iLimitRate = CD_CONFIG_GET_INTEGER ("Configuration", "limit rate");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	myConfig.iPreferedSite[CD_TYPE_TEXT] = CD_CONFIG_GET_INTEGER ("Configuration", "text site");
 	myConfig.iPreferedSite[CD_TYPE_IMAGE] = CD_CONFIG_GET_INTEGER ("Configuration", "image site");

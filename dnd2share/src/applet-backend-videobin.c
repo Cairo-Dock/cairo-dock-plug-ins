@@ -35,7 +35,7 @@ static void upload (const gchar *cFilePath)
 	close(fds);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://www.videobin.org/add -F videoFile=@'%s' -o '%s'", cFilePath, cLogFile);
+	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@'%s' -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);

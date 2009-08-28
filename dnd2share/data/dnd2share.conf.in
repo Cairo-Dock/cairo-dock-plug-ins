@@ -104,6 +104,10 @@ keep copy = false
 #{This will override the image setting.}
 display last image = false
 
+#i[0;1000] Maximum upload rate:
+#{in KB/s - 0 means unlimited}
+limit rate = 0
+
 #a+ Animation of the icon during upload :
 animation=pulse
 

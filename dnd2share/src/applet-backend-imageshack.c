@@ -35,7 +35,7 @@ static void upload (const gchar *cFilePath)
 	
 	// On lance la commande d'upload.
 	gchar *cCommand = NULL;
-	cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 http://imageshack.us -F xml=yes -F tags=Cairo-Dock -F fileupload=@'%s' -o '%s'", cFilePath, cLogFile);
+	cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://imageshack.us -F xml=yes -F tags=Cairo-Dock -F fileupload=@'%s' -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);
 	g_print ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
