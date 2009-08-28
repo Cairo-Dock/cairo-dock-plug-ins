@@ -56,7 +56,7 @@ static GList *_list_dir (const gchar *cDirPath, CairoDockModuleInstance *myApple
 		cFileName = g_dir_read_name (dir);
 		if (cFileName == NULL)
 			break ;
-		if (! myConfig.bShowHiddenFiles && *cFileName == '.')
+		if (! myConfig.bShowHiddenFiles && ( *cFileName == '.' || cFileName[strlen(cFileName) - 1] == '~' ) )
 			continue;
 		pItem = g_new0 (CDQuickBrowserItem, 1);
 		pItem->cPath = g_strdup_printf ("%s/%s", cDirPath, cFileName);
