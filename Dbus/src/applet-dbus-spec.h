@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:STRING,INT,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:1) */
+/* BOOLEAN:STRING,INT,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:1) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER (GClosure     *closure,
                                                                                                  GValue       *return_value,
                                                                                                  guint         n_param_values,
@@ -108,7 +108,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_INT_STRING_STRING_STRING_POIN
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,BOXED,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:2) */
+/* BOOLEAN:STRING,BOXED,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:2) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_BOXED_POINTER (GClosure     *closure,
                                                                               GValue       *return_value,
                                                                               guint         n_param_values,
@@ -157,7 +157,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_BOXED_POINTER (GClosure     *
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,INT,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:3) */
+/* BOOLEAN:STRING,INT,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:3) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_INT_STRING_STRING_POINTER (GClosure     *closure,
                                                                                           GValue       *return_value,
                                                                                           guint         n_param_values,
@@ -210,7 +210,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_INT_STRING_STRING_POINTER (GC
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:4) */
+/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:4) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER (GClosure     *closure,
                                                                  GValue       *return_value,
                                                                  guint         n_param_values,
@@ -255,7 +255,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:5) */
+/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:5) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__BOOLEAN_POINTER (GClosure     *closure,
                                                                          GValue       *return_value,
                                                                          guint         n_param_values,
@@ -302,7 +302,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__BOOLEAN_POINTER (GClosure     *closu
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:6) */
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:6) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                                         GValue       *return_value,
                                                                         guint         n_param_values,
@@ -349,7 +349,7 @@ dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_POINTER (GClosure     *closur
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.2V4AZU:7) */
+/* BOOLEAN:STRING,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.73B5YU:7) */
 extern void dbus_glib_marshal_cd_dbus_callback_BOOLEAN__STRING_STRING_STRING_STRING_POINTER (GClosure     *closure,
                                                                                              GValue       *return_value,
                                                                                              guint         n_param_values,

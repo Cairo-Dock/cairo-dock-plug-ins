@@ -131,6 +131,14 @@ static void cd_dbus_callback_class_init(dbusCallbackClass *klass)
 				NULL, NULL,
 				g_cclosure_marshal_VOID__STRING,
 				G_TYPE_NONE, 1, G_TYPE_STRING);
+	myData.iSidOnMenuSelect =
+		g_signal_new("on_menu_select",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__STRING_INT,
+				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_INT);
 	myData.iSidOnDropData =
 		g_signal_new("on_drop_data",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -345,6 +353,12 @@ gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, 
 	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile, pCairoContext);
 	cairo_destroy (pCairoContext);
 	
+	if (pIcon == NULL)
+	{
+		cd_warning ("the icon couldn't be created, check that the file '%s' exists and is a valid and readable .desktop file\n", cDesktopFile);
+		return FALSE;
+	}
+	
 	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 	if (pParentDock != NULL)  // a priori toujours vrai.
 	{
@@ -416,7 +430,7 @@ Icon *cd_dbus_find_icon (const gchar *cIconName, const gchar *cIconCommand, cons
 				pIcon = pModuleInstance->pIcon;
 		}
 	}
-	else  // on cherche une icone de lanceur.
+	else if (cIconName || cIconCommand) // on cherche une icone de lanceur.
 	{
 		gpointer data[3];
 		data[0] = (gpointer) cIconName;
@@ -573,7 +587,7 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 	pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
 	pVisitCard->cModuleVersion = g_strdup ("0.0.1");
 	pVisitCard->iCategory = iCategory;
-	pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/%s", cShareDataDir, "icon.png") : NULL;
+	pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/%s", cShareDataDir, "icon") : NULL;
 	pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 	pVisitCard->iSizeOfData = 4;  // au cas ou ...
 	pVisitCard->cDescription = g_strdup (cDescription);
@@ -600,6 +614,15 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 			cairo_dock_update_dock_size (pInstance->pDock);
 			gtk_widget_queue_draw (pInstance->pDock->pWidget);
 		}
+		
+		Icon *pIcon = pInstance->pIcon;
+		if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
+		{
+			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+			cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pInstance->pContainer);
+			cairo_destroy (pDrawContext);
+			gtk_widget_queue_draw (pInstance->pContainer->pWidget);
+		}
 	}
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
@@ -610,11 +633,11 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 #define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
 
 
-static void _exec_menu_entry (GtkMenuShell *menu, gpointer data)
+static void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 {
 	int iNumEntry = GPOINTER_TO_INT (data);
 	g_print ("%s (%s, %d)\n", __func__, myData.cCurrentMenuModule, iNumEntry);
-	
+	g_signal_emit (myData.server, myData.iSidOnMenuSelect, 0, myData.cCurrentMenuModule, iNumEntry);
 }
 gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gchar *cModuleName, const gchar **pLabels, GError **error)
 {
@@ -629,7 +652,7 @@ gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gcha
 	{
 		cairo_dock_add_in_menu_with_stock_and_data (pLabels[i],
 			NULL,
-			_exec_menu_entry,
+			(GFunc) cd_dbus_emit_on_menu_select,
 			myData.pModuleSubMenu,
 			GINT_TO_POINTER (i));
 	}
@@ -684,8 +707,8 @@ gboolean cd_dbus_emit_on_build_menu (CairoDockModuleInstance *myApplet, Icon *pC
 	
 	cairo_dock_add_in_menu_with_stock_and_data (_("About this applet"),
 		GTK_STOCK_ABOUT,
-		cairo_dock_pop_up_about_applet,
-		pAppletMenu,
+		(GFunc) cairo_dock_pop_up_about_applet,
+		myData.pModuleSubMenu,
 		pClickedIcon->pModuleInstance);
 	
 	g_signal_connect (G_OBJECT (pAppletMenu),
