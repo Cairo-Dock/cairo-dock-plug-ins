@@ -34,7 +34,7 @@ static GList *_cd_clipper_get_last_item (CDClipperItemType iItemType)
 		pItem = pElement->data;
 		if (pItem->iType == iItemType && (pElement->next == NULL || ((CDClipperItem *)pElement->next->data)->iType != iItemType))
 		{
-			g_print ("%s est le dernier de son type (%d)\n", pItem->cText, iItemType);
+			cd_debug ("%s est le dernier de son type (%d)\n", pItem->cText, iItemType);
 			break ;
 		}
 	}
@@ -93,7 +93,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 			int len = strlen (pItem->cText);
 			if (len < strlen (text) && strncmp (pItem->cText, text, len) == 0)  // on ne peut pas dire len == strlen (text) - 1 avec l'UTF-8.
 			{
-				cd_message ("incremental selection, drop previous one");
+				cd_debug ("incremental selection, drop previous one");
 				cd_clipper_free_item (pItem);
 				myData.pItems = g_list_delete_link (myData.pItems, myData.pItems);
 				myData.iNbItems[iType] --;
@@ -139,7 +139,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 	else
 	{
 		bExistingItem = FALSE;
-		cd_message ("%d items / %d", myData.iNbItems[iType], myConfig.iNbItems[iType]);
+		cd_debug ("%d items / %d", myData.iNbItems[iType], myConfig.iNbItems[iType]);
 		if (myData.iNbItems[iType] == myConfig.iNbItems[iType])
 		{
 			cd_debug ("Clipper : %s remplace le dernier", text);
@@ -186,13 +186,13 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		for (pElement = myData.pActions; pElement != NULL; pElement = pElement->next)
 		{
 			pAction = pElement->data;
-			g_print ("  %s\n", pAction->cDescription);
+			cd_debug ("  %s\n", pAction->cDescription);
 			if (g_regex_match (pAction->pRegex, text, 0, NULL))
 				break ;
 		}
 		if (pElement != NULL)
 		{
-			g_print ("  trouve !\n");
+			cd_debug ("  trouve !\n");
 			pAction = pElement->data;
 			
 			GtkWidget *pMenu = cd_clipper_build_action_menu (pAction);
@@ -204,7 +204,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 }
 void cd_clipper_selection_owner_changed (GtkClipboard *pClipBoard, GdkEvent *event, gpointer user_data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	CDClipperItemType iItemType;
 	if (! myConfig.bSeparateSelections)
 		iItemType = CD_CLIPPER_BOTH;
@@ -220,7 +220,7 @@ void cd_clipper_selection_owner_changed (GtkClipboard *pClipBoard, GdkEvent *eve
 
 GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 {
-	g_print ("%s (%s)\n", __func__, cConfFilePath);
+	cd_message ("%s (%s)", __func__, cConfFilePath);
 	GKeyFile *pKeyFile = g_key_file_new ();
 	
 	GError *erreur = NULL;
@@ -371,15 +371,15 @@ static void _on_delete_action_menu (GtkMenuShell *menu, CairoDock *pDock)
 {
 	if (menu == (GtkMenuShell *)myData.pActionMenu)
 	{
-		g_print ("on oublie le menu actuel\n");
+		cd_debug ("on oublie le menu actuel");
 		myData.pActionMenu = NULL;
 	}
 	else
-		g_print ("un ancien menu est detruit\n");
+		cd_debug ("un ancien menu est detruit");
 }
 static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand *pCommand)
 {
-	g_print ("%s (%s)\n", __func__, pCommand->cDescription);
+	cd_message ("%s (%s)", __func__, pCommand->cDescription);
 	CDClipperItem *pItem = NULL;
 	if (myData.pItems != NULL)
 		pItem = myData.pItems->data;
@@ -395,7 +395,7 @@ static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand 
 GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
-	g_print ("%s\n", pAction->cDescription);
+	cd_message ("%s (%s)", __func__, pAction->cDescription);
 	
 	GtkWidget *pMenuItem;
 	GtkWidget *pImage;
@@ -407,7 +407,7 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 		pCommand = pElement->data;
 		if (pCommand->cIconFileName != NULL)
 		{
-			g_print (" icone %s\n", pCommand->cIconFileName);
+			cd_debug (" icone %s", pCommand->cIconFileName);
 			cIconFilePath = cairo_dock_search_icon_s_path (pCommand->cIconFileName);
 		}
 		else
@@ -416,7 +416,7 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 			while (*tmp != '\0' && *tmp != ' ')
 				tmp ++;
 			gchar *cIconName = g_strndup (pCommand->cFormat, tmp - pCommand->cFormat);
-			g_print (" icone %s\n", cIconName);
+			cd_debug (" icone %s", cIconName);
 			cIconFilePath = cairo_dock_search_icon_s_path (cIconName);
 			g_free (cIconName);
 		}
@@ -440,7 +440,7 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 		NULL);
 	if (myData.pActionMenu != NULL)
 	{
-		g_print ("on fusille l'actuel menu\n");
+		cd_debug ("on fusille l'actuel menu");
 		gtk_widget_destroy (myData.pActionMenu);
 	}
 	myData.pActionMenu = pMenu;
@@ -451,7 +451,7 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 
 static void _cd_clipper_activate_text_in_clipboard (GtkMenuItem *pMenuItem, gchar *cText)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_message ("%s (%s)", __func__, cText);
 	GtkClipboard *pClipBoard;
 	
 	if (myConfig.bPasteInPrimary)
@@ -472,7 +472,7 @@ static void _cd_clipper_activate_text_in_clipboard (GtkMenuItem *pMenuItem, gcha
 }
 static void _cd_clipper_activate_text_in_selection (GtkMenuItem *pMenuItem, gchar *cText)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_message ("%s (%s)", __func__, cText);
 	GtkClipboard *pClipBoard;
 	
 	if (myConfig.bPasteInClipboard)

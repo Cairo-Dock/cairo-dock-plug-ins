@@ -85,7 +85,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight;  // de bas en haut.
 	
-	if ((my_pFlatSeparatorSurface[0] == NULL || my_iFlatSeparatorTexture == 0) && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	
 	pDock->inputArea.x = fDeltaX+fDeltaTip;

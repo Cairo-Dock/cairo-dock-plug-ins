@@ -158,7 +158,7 @@ msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"Ce plug-in vous permet d'interagir avec des applications externes sur le "
+"Ce plug-in permet à des applications externes d'interagir sur le "
 "dock.\n"
 "La communication entre les deux côtés est basé sur DBus"
 
@@ -939,7 +939,7 @@ msgid ""
 msgstr ""
 "Ce module ajoute différentes vues à votre dock.\n"
 "Chaque dock ou sous-dock peut être afficher avec la vue de votre choix\n"
-"Actuellement, Plan incliné, Carrousel, Parabolique, Arc-en-ciel, Diapositive "
+"Actuellement, Plan 3D, Carrousel, Parabolique, Arc-en-ciel, Diapositive "
 "simple, Courbure et Slide sont disponibles"
 
 #: ../drop-indicator/src/applet-init.c:18
@@ -2264,11 +2264,11 @@ msgstr "Image pour le devant du spot :"
 
 #: ../Animated-icons/data/messages:109
 msgid "color of the spot :"
-msgstr "Couleur du spot"
+msgstr "teinte du spot"
 
 #: ../Animated-icons/data/messages:111
 msgid "color of the halo :"
-msgstr "Couleur du halo :"
+msgstr "teinte du halo :"
 
 #: ../Animated-icons/data/messages:113
 msgid "Rays"

@@ -24,43 +24,72 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
 extern GLuint my_iFlatSeparatorTexture;
 
+#define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
+	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;\
+	double h0max = (1 + g_fAmplitude) * pDock->iMaxIconHeight + MAX (myLabels.iLabelSize, myBackground.iFrameMargin + myBackground.iDockLineWidth);\
+	double h0 = pDock->iMaxIconHeight;\
+	double H = iVanishingPointY;\
+	double l = myBackground.iDockLineWidth;\
+	double r = MIN (myBackground.iDockRadius, (hi + h0) / 2);\
+	double gamma = 0, h, w, dw = 0
+
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize * pDock->fRatio) + myLabels.iLabelSize + myBackground.iDockLineWidth + myBackground.iFrameMargin;
+	//pDock->iMaxDockHeight = (int) ((1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize * pDock->fRatio) + myLabels.iLabelSize + myBackground.iDockLineWidth + myBackground.iFrameMargin;
 	
-	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
-	
-	double fInclinationOnHorizon = 0, fExtraWidth = 0;
+	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
+	pDock->iMaxDockHeight = (int) (hi + h0max + l);
 	// 1ere estimation.
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-	fInclinationOnHorizon = 0.5 * pDock->iMaxDockWidth / iVanishingPointY;
-	pDock->iDecorationsHeight = hi + (pDock->iMaxIconHeight + myBackground.iFrameMargin) / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
-	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
-	//cd_debug ("iMaxDockWidth <- %d; fInclinationOnHorizon <- %.2f; fExtraWidth <- %.2f", pDock->iMaxDockWidth, fInclinationOnHorizon, fExtraWidth);
+	// w
+	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // pDock->iMaxDockWidth
+	// -> gamma
+	gamma = w / 2 / H;
+	// -> h
+	h = hi + h0 / (1 + gamma);  // en fait, sqrt (1 + gamma * gamma), mais on simplifie pour diminuer l'ordre de 2. pDock->iDecorationsHeight
+	// -> dw
+	dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);  // en fait, h*gamma + r*(1-sin)/cos, or (1-sin)/cos <= 1, on majore pour simplifier. on aurait r + gamma * (h - 2 * r) si on utilisait des cercles au lieu de courbes de Bezier.
 	
-	// on reboucle dans notre filtre de Kalmann (mais non c'est pour rire !)
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));
-	//cd_debug ("pDock->iMaxDockWidth <- %d", pDock->iMaxDockWidth);
+	double Ws = w+2*dw;
+	double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+	double a = H + hi;
+	double b = H + hi + h0 - W / 2;
+	double c = - W / 2;
+	double g = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+	g_print ("gamma : %f (=) %f\n", gamma, g);
 	
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
-		if (pDock->iMaxDockWidth < cairo_dock_get_max_authorized_dock_width (pDock))  // alors on etend.
+		double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
+		if (w + 2 * dw < Ws)  // alors on etend.
 		{
-			fExtraWidth += (cairo_dock_get_max_authorized_dock_width (pDock) - pDock->iMaxDockWidth);
-			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., fExtraWidth));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
-			g_print ("mode etendu : pDock->iMaxDockWidth : %d\n", pDock->iMaxDockWidth);
+			double extra = Ws - w;
+			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+			double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+			double a = H + hi;
+			double b = H + hi + h0 - W / 2;
+			double c = - W / 2;
+			gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+			g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
+			h = hi + h0 / (1 + gamma);
 		}
 	}
+	else  // rien d'autre a faire
+	{
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+	}
+	pDock->iDecorationsHeight = h;
+	g_print ("h : %.2f -> %d\n", h, pDock->iDecorationsHeight);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
 	// taille min.
 	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->fRatio + pDock->iMaxIconHeight;
 	
-	double fInclination = 0.5 * pDock->fFlatDockWidth / iVanishingPointY;
-	double fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	double gamma_min = pDock->fFlatDockWidth / 2 / H;
+	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
+	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
@@ -68,7 +97,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	}
 	else
 	{
-		pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidth;
+		pDock->iMinDockWidth = pDock->fFlatDockWidth + 2 * dw_min;
 	}
 	
 	// on reboucle (sauf que on reboucle pas).
@@ -76,23 +105,23 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;  // en commentaire depuis des lustres.
 	
-	pDock->iMinLeftMargin = fExtraWidth/2;
-	pDock->iMinRightMargin = fExtraWidth/2;
+	pDock->iMinLeftMargin = dw;
+	pDock->iMinRightMargin = dw;
 	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 	if (pFirstIcon != NULL)
-		pDock->iMaxRightMargin = fExtraWidth/2 + pFirstIcon->fWidth;
+		pDock->iMaxRightMargin = dw + pFirstIcon->fWidth;
 	Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
 	if (pLastIcon != NULL)
-		pDock->iMaxRightMargin = fExtraWidth/2 + pLastIcon->fWidth;
+		pDock->iMaxRightMargin = dw + pLastIcon->fWidth;
 	
-	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;  // fExtraWidthMin/2;
+	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
 	pDock->inputArea.y = 0;
-	pDock->inputArea.width = pDock->fFlatDockWidth;  // pDock->iMinDockWidth - fExtraWidthMin;
+	pDock->inputArea.width = pDock->fFlatDockWidth;
 	pDock->inputArea.height = pDock->iMinDockHeight;
 	g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);
 	
 	// on charge les separateurs plat.
-	if ((my_pFlatSeparatorSurface[0] == NULL || my_iFlatSeparatorTexture == 0) && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 }
 
@@ -281,59 +310,63 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 
 void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	//\____________________ On trace le cadre.
-	double fLineWidth = myBackground.iDockLineWidth;
-	double fMargin = myBackground.iFrameMargin;
-	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
-	double fDockWidth;
-	int sens;
-	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	double fExtraWidth = fRadius + fLineWidth/2;
+	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
+	h = pDock->iDecorationsHeight;
+	if (h < 2 * r)
+		r = h / 2;
+	
+	double dx, dy;
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
-		double fFrameHeight = pDock->iDecorationsHeight;
-		double fInclination = 0.5 * pDock->iCurrentWidth / iVanishingPointY;
-		double fDeltaXForLoop = fInclination * (fFrameHeight + fLineWidth - (myBackground.bRoundedBottomCorner ? 2 : 1) * fRadius);
-		double cosa = 1. / sqrt (1 + fInclination * fInclination);
-		double sina = cosa * fInclination;
-		fExtraWidth = 2 * (fInclination * (fFrameHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa));
-		fDockWidth = pDock->iCurrentWidth - fExtraWidth;
-		fDockOffsetX = fExtraWidth / 2;
+		double Ws = pDock->iCurrentWidth;
+		gamma = Ws / 2 / H;
+		double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+		double a = H + hi;
+		double b = H + hi + h0 - W / 2;
+		double c = - W / 2;
+		gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+		h = hi + h0 / (1 + gamma);
+		//g_print ("h : %.2f (=) %d\n", h, pDock->iDecorationsHeight);
+		w = 2 * H * gamma;
+		dw = (Ws - w) / 2;
+		//g_print ("dw : %.2f (=) %.2f\n", dw, h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+		dx = dw;
 	}
 	else
 	{
-		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
+		w = cairo_dock_get_current_dock_width_linear (pDock);
+		gamma = w / 2 / H;
+		dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);
+		h = pDock->iDecorationsHeight;
 		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fExtraWidth / 2);
-		if (fDockOffsetX < fExtraWidth / 2)
-			fDockOffsetX = fExtraWidth / 2;
-		if (fDockOffsetX + fDockWidth + fExtraWidth / 2 > pDock->iCurrentWidth)
-			fDockWidth = pDock->iCurrentWidth - fDockOffsetX - fExtraWidth / 2;
+		dx = (pFirstIcon != NULL ? pFirstIcon->fX - 0*myBackground.iFrameMargin : r);
 	}
+	
+	//\____________________ On trace le cadre.
+	int sens;
 	if (pDock->bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * fLineWidth;
+		dy = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * l;
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+		dy = pDock->iDecorationsHeight + 1.5 * l;
 	}
 	
 	cairo_save (pCairoContext);
 	
-	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
-	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDock->bHorizontalDock);  // fLineWidth
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, r, l, w, pDock->iDecorationsHeight, dx, dy, sens, gamma, pDock->bHorizontalDock);
 	
 	//\____________________ On dessine les decorations dedans.
-	fDockOffsetY = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
-	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, fDockOffsetY, fDockOffsetX-fDeltaXTrapeze, fDockWidth+2*fDeltaXTrapeze);
+	dy = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - l : l);
+	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, dy, dx-fDeltaXTrapeze, w+2*fDeltaXTrapeze);
 	
 	//\____________________ On dessine le cadre.
-	if (fLineWidth > 0)
+	if (l > 0)
 	{
-		cairo_set_line_width (pCairoContext, fLineWidth);
+		cairo_set_line_width (pCairoContext, l);
 		cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 	}
@@ -736,58 +769,69 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 {
 	//\____________________ On genere le cadre.
-	double fLineWidth = myBackground.iDockLineWidth;
-	double fMargin = myBackground.iFrameMargin;
-	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
-	double fDockWidth;
-	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
+	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
+	h = pDock->iDecorationsHeight;
+	if (h < 2 * r)
+		r = h / 2;
+	
+	double dx, dy;
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
-		double fFrameHeight = pDock->iDecorationsHeight;
-		double fInclination = 0.5 * pDock->iCurrentWidth / iVanishingPointY;
-		double fDeltaXForLoop = fInclination * (fFrameHeight + fLineWidth - (myBackground.bRoundedBottomCorner ? 2 : 1) * fRadius);
-		double cosa = 1. / sqrt (1 + fInclination * fInclination);
-		double sina = cosa * fInclination;
-		double fExtraWidth = 2 * (fInclination * (fFrameHeight - (FALSE ? 2 : 1-sina) * fRadius) + fRadius * (FALSE ? 1 : cosa));
-		
-		fDockWidth = pDock->iCurrentWidth - fExtraWidth;
-		fDockOffsetX = fExtraWidth/2;
+		double Ws = pDock->iCurrentWidth;
+		double W = Ws - 2 * r;
+		double a = H + hi;
+		double b = H + hi + h0 - W / 2;
+		double c = - W / 2;
+		gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+		h = hi + h0 / (1 + gamma);
+		//g_print ("h : %.2f (=) %d\n", h, pDock->iDecorationsHeight);
+		w = 2 * H * gamma;
+		dw = (Ws - w) / 2;
+		//g_print ("dw : %.2f (=) %.2f\n", dw, h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+		dx =dw;
 	}
 	else
 	{
-		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
-		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
-		/*if (fDockOffsetX - (fRadius + fLineWidth / 2) < 0)
-			fDockOffsetX = fRadius + fLineWidth / 2;
-		if (fDockOffsetX + fDockWidth + (fRadius + fLineWidth / 2) > pDock->iCurrentWidth)
-			fDockWidth = pDock->iCurrentWidth - fDockOffsetX - (fRadius + fLineWidth / 2);*/
+		w = cairo_dock_get_current_dock_width_linear (pDock);
+		gamma = w / 2 / H;
+		dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);
+		h = pDock->iDecorationsHeight;
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		dx = (pFirstIcon != NULL ? pFirstIcon->fX - myBackground.iFrameMargin : r);
 	}
 	
-	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
-		fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;
+	//\____________________ On trace le cadre.
+	int sens;
+	if ((pDock->bDirectionUp && pDock->bHorizontalDock) || (!pDock->bDirectionUp && !pDock->bHorizontalDock))
+	{
+		sens = 1;
+		//dy = pDock->iCurrentHeight - pDock->iDecorationsHeight - 1.5 * l;
+		dy = pDock->iDecorationsHeight + 1.5*l;
+	}
 	else
-		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+	{
+		sens = -1;
+		//dy = pDock->iDecorationsHeight + 1.5 * l;
+		dy = pDock->iCurrentHeight - .5 * l;
+	}
 	
-	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth/* - 2 * fRadius*/;
-	double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
-	double fDeltaXTrapeze;
 	int iNbVertex;
-	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (fDockWidth - (myBackground.bRoundedBottomCorner ? 0*fLineWidth : 2*fLineWidth/fInclinationOnHorizon), fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, fInclinationOnHorizon, &fDeltaXTrapeze, &iNbVertex);
+	double fDeltaXTrapeze;
+	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (w - (myBackground.bRoundedBottomCorner ? 0 : 2*l/gamma), h+l, r, myBackground.bRoundedBottomCorner, gamma, &fDeltaXTrapeze, &iNbVertex);
 	
 	if (! pDock->bHorizontalDock)
-		fDockOffsetX = pDock->iCurrentWidth - fDockOffsetX + fDeltaXTrapeze;
+		dx = pDock->iCurrentWidth - dx + fDeltaXTrapeze;
 	else
-		fDockOffsetX = fDockOffsetX-fDeltaXTrapeze;
+		dx = dx - fDeltaXTrapeze;
 	
 	//\____________________ On dessine les decorations dedans.
 	//fDockOffsetY = (!pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
 	glPushMatrix ();
-	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, fDockWidth+2*fDeltaXTrapeze, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);
+	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture, w+2*fDeltaXTrapeze, h+l, dx, dy, pVertexTab, iNbVertex, pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);
 	
 	//\____________________ On dessine le cadre.
-	if (fLineWidth != 0)
-		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, iNbVertex);
+	if (l != 0)
+		cairo_dock_draw_current_path_opengl (l, myBackground.fLineColor, iNbVertex);
 	glPopMatrix ();
 	
 	/// donner un effet d'epaisseur => chaud du slip avec les separateurs physiques !

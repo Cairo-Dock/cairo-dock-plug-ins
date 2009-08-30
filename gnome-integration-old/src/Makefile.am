@@ -1,7 +1,7 @@
  #dnl Process this file with automake to produce Makefile.in
 
 lib_LTLIBRARIES = \
-	libcd-gnome-integration-old.la
+	libcd_gnome-integration-old.la
 
 
 libcd_gnome_integration_old_la_SOURCES = \
@@ -25,7 +25,7 @@ libcd_gnome_integration_old_la_CFLAGS = \
 	-DMY_APPLET_CONF_FILE=\""none"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""gnome-integration-old"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_GNOME_INTEGRATION_OLD)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""cd-gnome-integration-old"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""cd_gnome-integration-old"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-std=c99\
