@@ -73,10 +73,10 @@ spot image =
 spot front image =
 
 #c+3 color of the spot :
-spot color = .2;.2;1
+spot-color = 1;1;1
 
 #c+4 color of the halo :
-halo color = 0;0;1;1
+halo-color = 1;1;1
 
 #F-[Rays;gtk-fullscreen]
 frame_ray =

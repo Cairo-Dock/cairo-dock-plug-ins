@@ -134,7 +134,7 @@ void cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pD
 		}
 	}
 	
-	cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
 void cd_illusion_draw_break_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)

@@ -51,7 +51,7 @@ void cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 {
 	_update_explosion (pData);
 	
-	GdkRectangle area;
+	/*GdkRectangle area;
 	if (pDock->bHorizontalDock)
 	{
 		area.x = pIcon->fDrawX + (.5 - pData->fExplosionRadius/2) * pIcon->fWidth * pIcon->fScale;
@@ -66,7 +66,8 @@ void cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 		area.height = pData->fExplosionRadius * pIcon->fWidth * pIcon->fScale * 1;
 		area.width = pData->fExplosionRadius * pIcon->fHeight * pIcon->fScale * 1;
 	}
-	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
+	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);*/
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
 void cd_illusion_draw_explode_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)

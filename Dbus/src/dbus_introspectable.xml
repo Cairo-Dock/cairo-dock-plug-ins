@@ -31,7 +31,7 @@
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
 		<method name="SetLabel">
-			<arg name="cQuickInfo" type="s" direction="in"/>
+			<arg name="cLabel" type="s" direction="in"/>
 			<arg name="cIconName" type="s" direction="in"/>
 			<arg name="cIconCommand" type="s" direction="in"/>
 			<arg name="cModuleName" type="s" direction="in"/>
@@ -79,6 +79,10 @@
         </signal>
         <signal name="on_build_menu">
 			<arg name="cModuleName" type="s" />
+        </signal>
+        <signal name="on_menu_select">
+			<arg name="cModuleName" type="s" />
+			<arg name="iNumEntry" type="i" />
         </signal>
         <signal name="on_drop_data">
 			<arg name="cModuleName" type="s" />

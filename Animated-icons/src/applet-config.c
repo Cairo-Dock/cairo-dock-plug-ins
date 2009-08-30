@@ -63,10 +63,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cSpotImage = CD_CONFIG_GET_STRING ("Spot", "spot image");
 	myConfig.cSpotFrontImage = CD_CONFIG_GET_STRING ("Spot", "spot front image");
 	gdouble pColor[4];
-	CD_CONFIG_GET_COLOR_RVB ("Spot", "spot color", pColor);
+	double col[4] = {1.,1.,1.,1.};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Spot", "spot-color", pColor, col);
 	for (i=0; i<3; i++)
 		myConfig.pSpotColor[i] = pColor[i];
-	CD_CONFIG_GET_COLOR ("Spot", "halo color", pColor);
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Spot", "halo-color", pColor, col);
 	for (i=0; i<4; i++)
 		myConfig.pHaloColor[i] = pColor[i];
 	CD_CONFIG_GET_COLOR_RVB ("Spot", "color1", pColor);

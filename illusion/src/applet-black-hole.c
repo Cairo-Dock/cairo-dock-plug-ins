@@ -116,7 +116,7 @@ void cd_illusion_update_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 	
 	_update_coords (pData);
 	
-	cairo_dock_redraw_icon (pIcon, pDock);
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
 static float fCapsuleObjectPlaneS[4] = { 0.5f, 0., 0., 0. }; // pour un plaquages propre des textures

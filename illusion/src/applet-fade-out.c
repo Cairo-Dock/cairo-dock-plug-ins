@@ -28,7 +28,7 @@ void cd_illusion_update_fade_out (Icon *pIcon, CairoDock *pDock, CDIllusionData 
 	if (pData->fFadeOutAlpha < 0)
 		pData->fFadeOutAlpha = 0;
 	
-	cairo_dock_redraw_icon (pIcon, pDock);
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
 void cd_illusion_draw_fade_out_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)

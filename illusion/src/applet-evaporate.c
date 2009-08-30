@@ -139,7 +139,7 @@ void cd_illusion_update_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData
 	pData->pEvaporateSystem->fHeight = pIcon->fHeight * pIcon->fScale;
 	pData->pEvaporateSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
-	cairo_dock_redraw_icon (pIcon, pDock);
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
 void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
