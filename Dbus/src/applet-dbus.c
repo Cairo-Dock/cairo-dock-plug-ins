@@ -229,7 +229,7 @@ void cd_dbus_launch_service (void)
 			myApplet);
 		cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU,
 			(CairoDockNotificationFunc) cd_dbus_emit_on_build_menu,
-			CAIRO_DOCK_RUN_AFTER,
+			CAIRO_DOCK_RUN_FIRST,
 			myApplet);
 		cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA,
 			(CairoDockNotificationFunc) cd_dbus_emit_on_drop_data,
@@ -580,22 +580,69 @@ gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar 
 
 
 
-static gboolean cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
+#define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
+
+static void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
 	g_print ("%s ()\n", __func__);
-	//g_signal_emit (myData.server, myData.iSidOnReloadModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName, pKeyFile != NULL);
+	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
+	g_signal_emit (myData.server,
+		myData.iSidOnInitModule,
+		0,
+		pVisitCard->cModuleName);
+	
+	if (pModuleInstance->pDesklet)
+	{
+		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
+			"Simple",
+			NULL,
+			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
+			(CairoDeskletRendererConfigPtr) NULL);
+	}
+	
+	Icon *pIcon = pModuleInstance->pIcon;
+	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
+	{
+		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
+		cairo_destroy (pDrawContext);
+		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
+	}
 }
 
-static gboolean cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
+static void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {
 	g_print ("%s ()\n", __func__);
-	//g_signal_emit (myData.server, myData.iSidOnReloadModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName, pKeyFile != NULL);
+	g_signal_emit (myData.server, myData.iSidOnStopModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName);
 }
 
 static gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)
 {
 	g_print ("%s ()\n", __func__);
-	g_signal_emit (myData.server, myData.iSidOnReloadModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName, pKeyFile != NULL);
+	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
+	g_signal_emit (myData.server,
+		myData.iSidOnReloadModule,
+		0,
+		pVisitCard->cModuleName,
+		pKeyFile != NULL);
+	
+	if (pModuleInstance->pDesklet)
+	{
+		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
+			"Simple",
+			NULL,
+			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
+			(CairoDeskletRendererConfigPtr) NULL);
+	}
+	
+	Icon *pIcon = pModuleInstance->pIcon;
+	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
+	{
+		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
+		cairo_destroy (pDrawContext);
+		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
+	}
 }
 
 gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
@@ -644,23 +691,31 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 			cairo_dock_update_dock_size (pInstance->pDock);
 			gtk_widget_queue_draw (pInstance->pDock->pWidget);
 		}
-		
-		Icon *pIcon = pInstance->pIcon;
-		if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
-		{
-			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-			cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pInstance->pContainer);
-			cairo_destroy (pDrawContext);
-			gtk_widget_queue_draw (pInstance->pContainer->pWidget);
-		}
 	}
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
 	return TRUE;
 }
 
+gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error)
+{
+	if (! myConfig.bEnableNewModule)
+		return FALSE;
+	
+	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	g_return_val_if_fail (pModule != NULL, FALSE);
+	
+	if (pModule->cSoFilePath != NULL)
+	{
+		cd_warning ("can't unregister installed modules, only manual modules can");
+		return FALSE;
+	}
+	
+	cairo_dock_unregister_module (cModuleName);
+	
+	return TRUE;
+}
 
-#define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
 
 
 static void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)

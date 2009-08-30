@@ -36,6 +36,9 @@ gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar 
 
 gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error);
 
+gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error);
+
+
 gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gchar *cModuleName, const gchar **pLabels, GError **error);
 
 

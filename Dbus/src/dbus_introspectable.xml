@@ -62,6 +62,9 @@
 			<arg name="cDescription" type="s" direction="in"/>
 			<arg name="cShareDataDir" type="s" direction="in"/>
 		</method>
+		<method name="UnregisterModule">
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
 		<method name="PopulateMenu">
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="pLabels" type="as" direction="in"/>	
@@ -87,6 +90,12 @@
         <signal name="on_drop_data">
 			<arg name="cModuleName" type="s" />
 			<arg name="cReceivedData" type="s" />
+        </signal>
+        <signal name="on_init_module">
+			<arg name="cModuleName" type="s" />
+        </signal>
+        <signal name="on_stop_module">
+			<arg name="cModuleName" type="s" />
         </signal>
         <signal name="on_reload_module">
 			<arg name="cModuleName" type="s" />
