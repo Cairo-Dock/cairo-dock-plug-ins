@@ -17,5 +17,7 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 
 void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor);
 
+gboolean cd_animations_update_spot (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bWillContinue);
+
 
 #endif

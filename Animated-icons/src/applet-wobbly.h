@@ -9,7 +9,7 @@
 void cd_animations_init_wobbly (CDAnimationData *pData, gboolean  bUseOpenGL);
 
 
-gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolean bWillContinue);
+gboolean cd_animations_update_wobbly (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bWillContinue);
 
 gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bWillContinue);
 

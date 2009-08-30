@@ -167,7 +167,7 @@ static inline gboolean _calculate_forces (CDAnimationGridNode *pNode, int step, 
 
 #define _sum_rk(i) (2*pNode->rk[1][i] + 4*pNode->rk[2][i] + 2*pNode->rk[3][i] + pNode->rk[4][i]) / 6.
 
-gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolean bWillContinue)
+gboolean cd_animations_update_wobbly (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bWillContinue)
 {
 	const int n = 10;
 	double k = myConfig.fSpringConstant;
@@ -237,11 +237,12 @@ gboolean cd_animations_update_wobbly (CDAnimationData *pData, double dt, gboolea
 		}
 	}
 	
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return bContinue;
 }
 
 
-gboolean cd_animations_update_wobbly2 (CDAnimationData *pData, double dt, gboolean bWillContinue)
+gboolean cd_animations_update_wobbly2 (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bWillContinue)
 {
 	const int n = 20;
 	double k = myConfig.fSpringConstant;
@@ -326,6 +327,7 @@ gboolean cd_animations_update_wobbly2 (CDAnimationData *pData, double dt, gboole
 		}
 	}
 	
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return bContinue;
 }
 

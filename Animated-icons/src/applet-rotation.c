@@ -297,20 +297,44 @@ void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimati
 }
 
 
-void cd_animations_update_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bUseOpenGL, gboolean bWillContinue)
 {
-	double fDamageWidthFactor = pData->fRotateWidthFactor;
-	pData->fRotateWidthFactor = cos (pData->fRotationAngle/180.*G_PI);
-	if (fabs (pData->fRotateWidthFactor) < .01)
-		pData->fRotateWidthFactor = .01;
-	
-	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
+	if (pData->fRotationAngle < 40)
 	{
-		fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fRotateWidthFactor));
-		pIcon->fWidthFactor *= fDamageWidthFactor;
-		
-		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-		
-		pIcon->fWidthFactor /= fDamageWidthFactor;
+		if (pData->bRotationBeginning)
+			pData->fAdjustFactor = (40 - pData->fRotationAngle) / (40. - 0.);
 	}
+	else if (pData->bRotationBeginning)
+		pData->bRotationBeginning = FALSE;
+	if (pData->fRotationAngle > 320)
+	{
+		if (! bWillContinue)
+		{
+			pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (360. - 320.));
+			pData->fAdjustFactor = (pData->fRotationAngle - 320) / (360. - 320.);
+		}
+	}
+	pData->fRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
+	
+	if (! bUseOpenGL)
+	{
+		double fDamageWidthFactor = pData->fRotateWidthFactor;
+		pData->fRotateWidthFactor = cos (pData->fRotationAngle/180.*G_PI);
+		if (fabs (pData->fRotateWidthFactor) < .01)
+			pData->fRotateWidthFactor = .01;
+		
+		if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
+		{
+			fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fRotateWidthFactor));
+			pIcon->fWidthFactor *= fDamageWidthFactor;
+			
+			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+			
+			pIcon->fWidthFactor /= fDamageWidthFactor;
+		}
+	}
+	else
+		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+	 
+	return (pData->fRotationAngle < 360);
 }

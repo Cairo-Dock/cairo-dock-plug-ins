@@ -328,7 +328,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData->bIsWobblying)
 	{
 		if (bUseOpenGL)
-			pData->bIsWobblying = cd_animations_update_wobbly (pData, dt, _will_continue (myConfig.bContinueWobbly));
+			pData->bIsWobblying = cd_animations_update_wobbly (pDock, pData, dt, _will_continue (myConfig.bContinueWobbly));
 		else
 			pData->bIsWobblying = cd_animations_update_wobbly_cairo (pIcon, pDock, pData, _will_continue (myConfig.bContinueWobbly));
 		
@@ -347,7 +347,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	if (! pData->bIsWobblying && pData->bIsWaving)
 	{
-		pData->bIsWaving = cd_animations_update_wave (pData, dt);
+		pData->bIsWaving = cd_animations_update_wave (pDock, pData, dt);
 		if (! pData->bIsWaving && _will_continue (myConfig.bContinueWave))
 		{
 			pData->iNumRound --;
@@ -364,23 +364,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	}
 	if (! pData->bIsWobblying && ! pData->bIsWaving && pData->fRotationSpeed != 0)
 	{
-		double delta;
-		if (pData->fRotationAngle < 40)
-		{
-			if (pData->bRotationBeginning)
-				pData->fAdjustFactor = (40 - pData->fRotationAngle) / (40. - 0.);
-		}
-		else if (pData->bRotationBeginning)
-			pData->bRotationBeginning = FALSE;
-		if (pData->fRotationAngle > 320)
-		{
-			if (! _will_continue (myConfig.bContinueRotation))
-			{
-				pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (360. - 320.));
-				pData->fAdjustFactor = (pData->fRotationAngle - 320) / (360. - 320.);
-			}
-		}
-		pData->fRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
+		cd_animations_update_rotating (pIcon, pDock, pData, bUseOpenGL, _will_continue (myConfig.bContinueRotation));
 		if (pData->fRotationAngle < 360)
 		{
 			pData->iReflectShadeCount = 0;
@@ -388,22 +372,21 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		}
 		else
 		{
-			pData->fRotationAngle = 0;
 			if (_will_continue (myConfig.bContinueRotation))
 			{
+				pData->fRotationAngle -= 360;
 				pData->iNumRound --;
 				pData->iReflectShadeCount = 0;
 				*bContinueAnimation = TRUE;
 			}
 			else
 			{
+				pData->fRotationAngle = 0;
 				pData->fRotationSpeed = 0;
 				if (bUseOpenGL)
 					pData->iReflectShadeCount = _REFLECT_FADE_NB_STEP;
 			}
 		}
-		if (! bUseOpenGL)
-			cd_animations_update_rotating_cairo (pIcon, pDock, pData);
 	}
 	
 	if (pData->iReflectShadeCount != 0)
@@ -416,7 +399,18 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	
 	if (pData->fRadiusFactor != 0)
 	{
-		if (pIcon->bPointed && pDock->bInside)
+		gboolean bContinueSpot = cd_animations_update_spot (pIcon, pDock, pData, dt, _will_continue (myConfig.bContinueSpot));
+		if (bContinueSpot)  // l'animation doit continuer, qu'on ait passe un tour ou pas.
+			*bContinueAnimation = TRUE;
+		if (pData->fHaloRotationAngle > 360)  // un tour est passe.
+		{
+			pData->fHaloRotationAngle -= 360;
+			if (pData->iNumRound > 0)
+			{
+				pData->iNumRound --;
+			}
+		}
+		/*if (pIcon->bPointed && pDock->bInside)
 		{
 			pData->fRadiusFactor += 1./myConfig.iSpotDuration * dt;
 			if (pData->fRadiusFactor > 1)
@@ -470,7 +464,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				cairo_dock_free_particle_system (pData->pRaysSystem);
 				pData->pRaysSystem = NULL;
 			}
-		}
+		}*/
 	}
 	
 	if (pData->fPulseAlpha != 0)
@@ -510,8 +504,6 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			*bContinueAnimation = TRUE;
 	}
 	
-	if (bUseOpenGL)
-		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -525,6 +517,7 @@ gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 	cairo_dock_free_particle_system (pData->pRaysSystem);
 	
 	pIcon->fReflectShading = 0.;
+	pIcon->fDeltaYReflection = 0.;
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

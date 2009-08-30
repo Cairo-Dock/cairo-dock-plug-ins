@@ -50,7 +50,7 @@ void cd_animations_init_wave (CDAnimationData *pData)
 }
 
 
-gboolean cd_animations_update_wave (CDAnimationData *pData, double dt)
+gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, double dt)
 {
 	GLfloat *pVertices = &pData->pVertices[3];
 	GLfloat *pCoords = &pData->pCoords[2];
@@ -164,6 +164,8 @@ gboolean cd_animations_update_wave (CDAnimationData *pData, double dt)
 	
 	pData->fWavePosition += dt / myConfig.iWaveDuration;
 	pData->iNumActiveNodes = j + 2;
+	
+	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return (pData->fWavePosition - w/2 < 1);
 }
 

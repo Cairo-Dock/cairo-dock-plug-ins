@@ -112,6 +112,7 @@ typedef struct _CDAnimationData {
 	gdouble fRadiusFactor;
 	gdouble fHaloRotationAngle;
 	CairoParticleSystem *pRaysSystem;
+	gboolean bGrowingSpot;
 	
 	gboolean bIsWobblying;
 	CDAnimationGridNode gridNodes[4][4];

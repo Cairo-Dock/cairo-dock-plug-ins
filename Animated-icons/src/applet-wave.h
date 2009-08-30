@@ -8,7 +8,7 @@
 
 void cd_animations_init_wave (CDAnimationData *pData);
 
-gboolean cd_animations_update_wave (CDAnimationData *pData, double dt);
+gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, double dt);
 
 void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData);
 

@@ -14,7 +14,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetQuickInfo string:123 string:none string:none string:dustbin
 
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.Animate string:deault int32:2 string:any string:firefox string:none
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.Animate string:default int32:2 string:any string:firefox string:none
 
 dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetIcon string:firefox-3.0 string:any string:nautilus string:none
 
@@ -155,6 +155,22 @@ static void cd_dbus_callback_class_init(dbusCallbackClass *klass)
 				NULL, NULL,
 				g_cclosure_marshal_VOID__STRING_BOOLEAN,
 				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_BOOLEAN);
+	myData.iSidOnInitModule =
+		g_signal_new("on_init_module",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__STRING_BOOLEAN,
+				G_TYPE_NONE, 1, G_TYPE_STRING);
+	myData.iSidOnStopModule =
+		g_signal_new("on_stop_module",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__STRING_BOOLEAN,
+				G_TYPE_NONE, 1, G_TYPE_STRING);
 }
 static void cd_dbus_callback_init (dbusCallback *server)
 {
@@ -562,6 +578,20 @@ gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar 
 }
 
 
+
+
+static gboolean cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
+{
+	g_print ("%s ()\n", __func__);
+	//g_signal_emit (myData.server, myData.iSidOnReloadModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName, pKeyFile != NULL);
+}
+
+static gboolean cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
+{
+	g_print ("%s ()\n", __func__);
+	//g_signal_emit (myData.server, myData.iSidOnReloadModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName, pKeyFile != NULL);
+}
+
 static gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)
 {
 	g_print ("%s ()\n", __func__);
@@ -592,8 +622,8 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 	pVisitCard->iSizeOfData = 4;  // au cas ou ...
 	pVisitCard->cDescription = g_strdup (cDescription);
 	pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
-	//pModule->pInterface->initModule = _init;
-	//pModule->pInterface->stopModule = _stop;
+	pModule->pInterface->initModule = cd_dbus_emit_on_init_module;
+	pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
 	pModule->pInterface->reloadModule = cd_dbus_emit_on_reload_module;
 	cairo_dock_load_manual_module (pModule);
 	
@@ -645,17 +675,22 @@ gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gcha
 		return FALSE;
 	
 	if (myData.pModuleSubMenu == NULL)
+	{
+		cd_warning ("the 'PopulateMenu' method can only be used to populate the menu that was summoned from a right-click on your applet");
 		return FALSE;
+	}
 	
 	int i;
 	for (i = 0; pLabels[i] != NULL; i ++)
 	{
+		g_print (" + %s\n", pLabels[1]);
 		cairo_dock_add_in_menu_with_stock_and_data (pLabels[i],
 			NULL,
 			(GFunc) cd_dbus_emit_on_menu_select,
 			myData.pModuleSubMenu,
 			GINT_TO_POINTER (i));
 	}
+	gtk_widget_show_all (myData.pModuleSubMenu);
 	g_free (myData.cCurrentMenuModule);
 	myData.cCurrentMenuModule = g_strdup (cModuleName);
 	

@@ -41,6 +41,8 @@ gboolean cd_animations_update_pulse (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		pIcon->fWidthFactor /= fScaleFactor;
 		pIcon->fHeightFactor /= fScaleFactor;
 	}
+	else
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	
 	return pData->fPulseAlpha != 0;
 }

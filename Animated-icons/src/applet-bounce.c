@@ -84,7 +84,7 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 	
 	pData->iBounceCount --;  // c'est une loi de type acceleration dans le champ de pesanteur. 'g' et 'v0' n'interviennent pas directement, car s'expriment en fonction de 'fPossibleDeltaY' et 'n'.
 	
-	if (! bUseOpenGL && ! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
+	if (! bUseOpenGL)
 	{
 		double fDamageWidthFactor = pIcon->fWidthFactor;
 		double fDamageHeightFactor = pIcon->fHeightFactor;
@@ -99,13 +99,14 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 		pIcon->fHeight += fPrevElevation;
 		
 		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-		//cairo_dock_redraw_container (pDock);
 		pIcon->fDrawY += (pDock->bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fWidthFactor = fDamageWidthFactor;
 		pIcon->fHeightFactor = fDamageHeightFactor;
 		pIcon->fDeltaYReflection = fDeltaYReflection;
 		pIcon->fHeight -= fPrevElevation;
 	}
+	else
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	
 	return (pData->iBounceCount > 0);
 }
