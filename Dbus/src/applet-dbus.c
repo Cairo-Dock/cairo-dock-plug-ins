@@ -425,8 +425,8 @@ static void _find_icon_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
 	Icon **pFoundIcon = data[2];
 	gchar *cName = (pIcon->cInitialName != NULL ? pIcon->cInitialName : pIcon->acName);
 	//g_print ("%s (%s/%s, %s/%s)\n", __func__, cName, cIconName, pIcon->acCommand, cIconCommand);
-	if ((cIconName == NULL || (cName && g_ascii_strcasecmp (cIconName, cName) == 0)) &&
-		(cIconCommand == NULL || (pIcon->acCommand && g_ascii_strcasecmp (cIconCommand, pIcon->acCommand) == 0)))
+	if ((cIconName == NULL || (cName && g_ascii_strncasecmp (cIconName, cName, strlen (cIconName)) == 0)) &&
+		(cIconCommand == NULL || (pIcon->acCommand && g_ascii_strncasecmp (cIconCommand, pIcon->acCommand, strlen (cIconCommand)) == 0)))
 	{
 		*pFoundIcon = pIcon;
 	}

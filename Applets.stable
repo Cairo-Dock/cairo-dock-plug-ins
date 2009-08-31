@@ -1,11 +1,12 @@
 ###Core plug-ins :
-###you *should* integrate them in a whole, as they extend the dock's functionnalities.
+###you *should* integrate them, as they extend the dock's functionnalities.
 dock-rendering
 desklet-rendering
 gnome-integration-old
 gnome-integration
 xfce-integration
 Dbus
+Animated-icons
 ###Stable applets, considered as finished :
 shortcuts
 clock
@@ -18,23 +19,12 @@ weather
 terminal
 Cairo-Penguin
 showDesktop
-rhythmbox
-xmms
 compiz-icon
-netspeed
 slider
 Clipper
 GMenu
-###Stable as far as we know :
-wifi
-tomboy
-systray
-stack
-###Stable but still under development :
 powermanager
 switcher
-###Last addition of v2.0.0 :
-Animated-icons
 icon-effect
 drop-indicator
 motion-blur
@@ -43,9 +33,18 @@ illusion
 keyboard-indicator
 quick-browser
 Toons
-###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
+###Will be replaced in a near future :
+netspeed
+wifi
+###Stable as far as we know :
+tomboy
+systray
+stack
+###Last addition of v2.1.0 :
 System-Monitor
 dnd2share
+Music-Player
+###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
 #Scooby-Do
 #mail
-#Music-Player
+#Network-Manager

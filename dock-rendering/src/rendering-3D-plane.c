@@ -146,6 +146,10 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iC
 
 static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
+	gboolean bDirectionUp = pDock->bDirectionUp;
+	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	bDirectionUp = TRUE;
+	bHorizontalDock = TRUE;
 	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
@@ -170,7 +174,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
+	if (bDirectionUp)
 	{
 		sens = 1;
 		if (bIncludeEdges)
@@ -191,7 +195,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	else
 		fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
 	
-	if (pDock->bHorizontalDock)
+	if (bHorizontalDock)
 	{
 		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
 		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
@@ -203,7 +207,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		
 		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
-			if (! pDock->bDirectionUp)
+			if (! bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
 			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
 		}
@@ -220,7 +224,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		
 		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
-			if (! pDock->bDirectionUp)
+			if (! bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
 			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));
 		}
@@ -229,6 +233,10 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 
 static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
 {
+	gboolean bDirectionUp = pDock->bDirectionUp;
+	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	bDirectionUp = TRUE;
+	bHorizontalDock = TRUE;
 	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
 	hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
@@ -245,7 +253,7 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
+	if (bDirectionUp)
 	{
 		sens = 1;
 		fDockOffsetY =  (bBackGround ? 0.5*myBackground.iDockLineWidth : - 1.*myBackground.iDockLineWidth);
@@ -258,7 +266,7 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 	fDockOffsetX = (bBackGround ? .5*myBackground.iDockLineWidth * fLeftInclination + 1.*fLeftInclination : - 0.5 * myBackground.iDockLineWidth * fLeftInclination);
 	//fDockOffsetX = -.5*myBackground.iDockLineWidth;
 	
-	if (pDock->bHorizontalDock)
+	if (bHorizontalDock)
 	{
 		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut droit.
 		
@@ -283,6 +291,25 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 
 static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bHorizontal, gboolean bBackGround)
 {
+	if (pDock->bHorizontalDock)
+	{
+		if (! pDock->bDirectionUp)
+		{
+			cairo_translate (pCairoContext, 0., pDock->iCurrentHeight);
+			cairo_scale (pCairoContext, 1., -1.);
+		}
+	}
+	else
+	{
+		if (pDock->bDirectionUp)
+		{
+			
+		}
+		else
+		{
+			
+		}
+	}
 	cd_rendering_make_3D_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);
 	
 	if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)

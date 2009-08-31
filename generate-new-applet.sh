@@ -69,7 +69,4 @@ cd ..
 
 autoreconf -isvf && ./configure --prefix=/usr && make
 
-cd po
-../../../cairo-dock/po/generate-translation.sh
-
 echo "now it's your turn ! type 'sudo make install' to install it."

@@ -37,7 +37,7 @@ PKG_CHECK_MODULES(PACKAGE, "cairo-dock gtk+-2.0 gthread-2.0 cairo librsvg-2.0 db
 
 ############# COMPILATION CONDITIONNELLE #################
 AC_ARG_ENABLE([old-gnome-integration],
-	[  --enable-old-gnome-integration : Enable Gnome<2.22 integration (default=yes) ],
+	[  --enable-old-gnome-integration : Enable Gnome<2.22 integration (default=no) ],
 	[ with_old_gnome_support=${enableval} ],
 	[ with_old_gnome_support=yes ])
 AC_ARG_ENABLE(gnome-integration,
