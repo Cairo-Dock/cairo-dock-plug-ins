@@ -39,18 +39,4 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error);
 
 
-gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gchar *cModuleName, const gchar **pLabels, GError **error);
-
-
-gboolean cd_dbus_emit_on_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);
-
-gboolean cd_dbus_emit_on_middle_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer);
-
-gboolean cd_dbus_emit_on_scroll_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection);
-
-gboolean cd_dbus_emit_on_build_menu (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu);
-
-gboolean cd_dbus_emit_on_drop_data (CairoDockModuleInstance *myApplet, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer);
-
-
 #endif

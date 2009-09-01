@@ -65,41 +65,5 @@
 		<method name="UnregisterModule">
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
-		<method name="PopulateMenu">
-			<arg name="cModuleName" type="s" direction="in"/>
-			<arg name="pLabels" type="as" direction="in"/>	
-		</method>
-		<signal name="on_click_icon">
-			<arg name="cModuleName" type="s" />
-            <arg name="iButtonState" type="i" />
-        </signal>
-        <signal name="on_middle_click_icon">
-			<arg name="cModuleName" type="s" />
-        </signal>
-        <signal name="on_scroll_icon">
-			<arg name="cModuleName" type="s" />
-            <arg name="bDirectionUp" type="b" />
-        </signal>
-        <signal name="on_build_menu">
-			<arg name="cModuleName" type="s" />
-        </signal>
-        <signal name="on_menu_select">
-			<arg name="cModuleName" type="s" />
-			<arg name="iNumEntry" type="i" />
-        </signal>
-        <signal name="on_drop_data">
-			<arg name="cModuleName" type="s" />
-			<arg name="cReceivedData" type="s" />
-        </signal>
-        <signal name="on_init_module">
-			<arg name="cModuleName" type="s" />
-        </signal>
-        <signal name="on_stop_module">
-			<arg name="cModuleName" type="s" />
-        </signal>
-        <signal name="on_reload_module">
-			<arg name="cModuleName" type="s" />
-			<arg name="bConfigHasChanged" type="b" />
-        </signal>
 	</interface>
 </node>

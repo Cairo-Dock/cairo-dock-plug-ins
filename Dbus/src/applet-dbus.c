@@ -26,6 +26,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 #include "applet-dbus.h"
 #include "applet-dbus-spec.h"
+#include "interface-applet.h"
 
 #define nullify_argument(string) do {\
 	if (string != NULL && (*string == '\0' || strcmp (string, "any") == 0 || strcmp (string, "none") == 0))\
@@ -36,141 +37,29 @@ static guint dbus_xLastActiveWindow;
 
 G_DEFINE_TYPE(dbusCallback, cd_dbus_callback, G_TYPE_OBJECT);
 
-static void g_cclosure_marshal_VOID__STRING_INT (GClosure *closure,
+extern void g_cclosure_marshal_VOID__STRING_INT (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
 	gpointer invocation_hint,
 	gpointer marshal_data);
-static void g_cclosure_marshal_VOID__STRING_BOOLEAN (GClosure *closure,
+extern void g_cclosure_marshal_VOID__STRING_BOOLEAN (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
 	gpointer invocation_hint,
 	gpointer marshal_data);
-static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
+extern void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
 	gpointer invocation_hint,
 	gpointer marshal_data);
 
-
-static void g_cclosure_marshal_VOID__STRING_INT (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-
-static void g_cclosure_marshal_VOID__STRING_BOOLEAN (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-
-static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
 
 static void cd_dbus_callback_class_init(dbusCallbackClass *klass)
 {
 	cd_message("");
-	
-	// Enregistrement des marshaller specifique aux signaux.
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_INT,
-		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT ,G_TYPE_INVALID);
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_BOOLEAN,
-		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_BOOLEAN ,G_TYPE_INVALID);
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_STRING,
-		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING ,G_TYPE_INVALID);
-	
-	// on definit les signaux dont on aura besoin.
-	myData.iSidOnClickIcon =
-		g_signal_new("on_click_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_INT,
-				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_INT);
-	myData.iSidOnMiddleClickIcon =
-		g_signal_new("on_middle_click_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING,
-				G_TYPE_NONE, 1, G_TYPE_STRING);
-	myData.iSidOnScrollIcon =
-		g_signal_new("on_scroll_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_BOOLEAN,
-				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_BOOLEAN);
-	myData.iSidOnBuildMenu =
-		g_signal_new("on_build_menu",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING,
-				G_TYPE_NONE, 1, G_TYPE_STRING);
-	myData.iSidOnMenuSelect =
-		g_signal_new("on_menu_select",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_INT,
-				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_INT);
-	myData.iSidOnDropData =
-		g_signal_new("on_drop_data",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_STRING,
-				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
-	myData.iSidOnReloadModule =
-		g_signal_new("on_reload_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_BOOLEAN,
-				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_BOOLEAN);
-	myData.iSidOnInitModule =
-		g_signal_new("on_init_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_BOOLEAN,
-				G_TYPE_NONE, 1, G_TYPE_STRING);
-	myData.iSidOnStopModule =
-		g_signal_new("on_stop_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_BOOLEAN,
-				G_TYPE_NONE, 1, G_TYPE_STRING);
 }
 static void cd_dbus_callback_init (dbusCallback *server)
 {
@@ -185,22 +74,6 @@ static void cd_dbus_callback_init (dbusCallback *server)
 	// Register DBUS path
 	dbus_g_connection_register_g_object(server->connection, "/org/cairodock/CairoDock", G_OBJECT(server));
 	
-	// Add signals
-	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-	server->proxy = pProxy;
-    if (pProxy != NULL)
-    {
-		dbus_g_proxy_add_signal(pProxy, "on_click_icon",
-			G_TYPE_STRING, G_TYPE_INT, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_middle_click_icon",
-			G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_scroll_icon",
-			G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_build_menu",
-			G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_drop_data",
-			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
-	}
 	// Register the service name
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 }
@@ -211,52 +84,10 @@ void cd_dbus_launch_service (void)
 	
 	cd_message("dbus : Lancement du service");
 	myData.server = g_object_new(cd_dbus_callback_get_type(), NULL);  // appelle cd_dbus_callback_class_init() et cd_dbus_callback_init().
-	
-	// on s'abonne aux notifications qu'on voudra propager sur le bus.
-	if (myData.server->proxy != NULL)
-	{
-		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_dbus_emit_on_click_icon,
-			CAIRO_DOCK_RUN_AFTER,
-			myApplet);
-		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_dbus_emit_on_middle_click_icon,
-			CAIRO_DOCK_RUN_AFTER,
-			myApplet);
-		cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON,
-			(CairoDockNotificationFunc) cd_dbus_emit_on_scroll_icon,
-			CAIRO_DOCK_RUN_AFTER,
-			myApplet);
-		cairo_dock_register_notification (CAIRO_DOCK_BUILD_MENU,
-			(CairoDockNotificationFunc) cd_dbus_emit_on_build_menu,
-			CAIRO_DOCK_RUN_FIRST,
-			myApplet);
-		cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA,
-			(CairoDockNotificationFunc) cd_dbus_emit_on_drop_data,
-			CAIRO_DOCK_RUN_AFTER,
-			myApplet);
-	}
 }
 
 void cd_dbus_stop_service (void)
 {
-	// on se desabonne.
-	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_dbus_emit_on_click_icon,
-		myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_dbus_emit_on_middle_click_icon,
-		myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON,
-		(CairoDockNotificationFunc) cd_dbus_emit_on_scroll_icon,
-		myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_MENU,
-		(CairoDockNotificationFunc) cd_dbus_emit_on_build_menu,
-		myApplet);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA,
-		(CairoDockNotificationFunc) cd_dbus_emit_on_drop_data,
-		myApplet);
-	
 	/// virer tous les modules manuels ...
 	
 	if (myData.server != NULL)
@@ -580,70 +411,6 @@ gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar 
 
 
 
-#define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
-
-static void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
-{
-	g_print ("%s ()\n", __func__);
-	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
-	g_signal_emit (myData.server,
-		myData.iSidOnInitModule,
-		0,
-		pVisitCard->cModuleName);
-	
-	if (pModuleInstance->pDesklet)
-	{
-		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
-			"Simple",
-			NULL,
-			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
-			(CairoDeskletRendererConfigPtr) NULL);
-	}
-	
-	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
-	{
-		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
-		cairo_destroy (pDrawContext);
-		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
-	}
-}
-
-static void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
-{
-	g_print ("%s ()\n", __func__);
-	g_signal_emit (myData.server, myData.iSidOnStopModule, 0, pModuleInstance->pModule->pVisitCard->cModuleName);
-}
-
-static gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)
-{
-	g_print ("%s ()\n", __func__);
-	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
-	g_signal_emit (myData.server,
-		myData.iSidOnReloadModule,
-		0,
-		pVisitCard->cModuleName,
-		pKeyFile != NULL);
-	
-	if (pModuleInstance->pDesklet)
-	{
-		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
-			"Simple",
-			NULL,
-			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
-			(CairoDeskletRendererConfigPtr) NULL);
-	}
-	
-	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
-	{
-		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
-		cairo_destroy (pDrawContext);
-		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
-	}
-}
 
 gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
 {
@@ -668,6 +435,7 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 	pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 	pVisitCard->iSizeOfData = 4;  // au cas ou ...
 	pVisitCard->cDescription = g_strdup (cDescription);
+	//pVisitCard->bMultiInstance = TRUE;
 	pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 	pModule->pInterface->initModule = cd_dbus_emit_on_init_module;
 	pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
@@ -691,6 +459,8 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 			cairo_dock_update_dock_size (pInstance->pDock);
 			gtk_widget_queue_draw (pInstance->pDock->pWidget);
 		}
+		
+		cd_dbus_create_remote_applet_object (pInstance);
 	}
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
@@ -714,109 +484,4 @@ gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const 
 	cairo_dock_unregister_module (cModuleName);
 	
 	return TRUE;
-}
-
-
-
-static void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
-{
-	int iNumEntry = GPOINTER_TO_INT (data);
-	g_print ("%s (%s, %d)\n", __func__, myData.cCurrentMenuModule, iNumEntry);
-	g_signal_emit (myData.server, myData.iSidOnMenuSelect, 0, myData.cCurrentMenuModule, iNumEntry);
-}
-gboolean cd_dbus_callback_populate_menu (dbusCallback *pDbusCallback, const gchar *cModuleName, const gchar **pLabels, GError **error)
-{
-	if (! myConfig.bEnableNewModule)
-		return FALSE;
-	
-	if (myData.pModuleSubMenu == NULL)
-	{
-		cd_warning ("the 'PopulateMenu' method can only be used to populate the menu that was summoned from a right-click on your applet");
-		return FALSE;
-	}
-	
-	int i;
-	for (i = 0; pLabels[i] != NULL; i ++)
-	{
-		g_print (" + %s\n", pLabels[1]);
-		cairo_dock_add_in_menu_with_stock_and_data (pLabels[i],
-			NULL,
-			(GFunc) cd_dbus_emit_on_menu_select,
-			myData.pModuleSubMenu,
-			GINT_TO_POINTER (i));
-	}
-	gtk_widget_show_all (myData.pModuleSubMenu);
-	g_free (myData.cCurrentMenuModule);
-	myData.cCurrentMenuModule = g_strdup (cModuleName);
-	
-	return TRUE;
-}
-
-gboolean cd_dbus_emit_on_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
-{
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pClickedIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	g_print ("%s (%s, %d)\n", __func__, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
-	g_signal_emit (myData.server, myData.iSidOnClickIcon, 0, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-}
-
-
-gboolean cd_dbus_emit_on_middle_click_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
-{
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pClickedIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	g_print ("%s (%s)\n", __func__, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-	g_signal_emit (myData.server, myData.iSidOnMiddleClickIcon, 0, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-}
-
-gboolean cd_dbus_emit_on_scroll_icon (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection)
-{
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pClickedIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	g_signal_emit (myData.server, myData.iSidOnScrollIcon, 0, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName, CD_APPLET_SCROLL_UP);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-}
-
-static void _delete_menu (GtkMenuShell *menu, CairoDockModuleInstance *myApplet)
-{
-	myData.pModuleSubMenu = NULL;
-}
-gboolean cd_dbus_emit_on_build_menu (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
-{
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pClickedIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	myData.pModuleSubMenu = cairo_dock_create_sub_menu (pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName,
-		pAppletMenu,
-		pClickedIcon->pModuleInstance->pModule->pVisitCard->cIconFilePath);
-	
-	cairo_dock_add_in_menu_with_stock_and_data (_("About this applet"),
-		GTK_STOCK_ABOUT,
-		(GFunc) cairo_dock_pop_up_about_applet,
-		myData.pModuleSubMenu,
-		pClickedIcon->pModuleInstance);
-	
-	g_signal_connect (G_OBJECT (pAppletMenu),
-		"deactivate",
-		G_CALLBACK (_delete_menu),
-		myApplet);
-	
-	g_print ("%s (%s)\n", __func__, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-	g_signal_emit (myData.server, myData.iSidOnBuildMenu, 0, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-gboolean cd_dbus_emit_on_drop_data (CairoDockModuleInstance *myApplet, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
-{
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pClickedIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	cd_message (" %s --> sur le bus !", cReceivedData);
-	g_signal_emit (myData.server, myData.iSidOnDropData, 0, pClickedIcon->pModuleInstance->pModule->pVisitCard->cModuleName, cReceivedData);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }

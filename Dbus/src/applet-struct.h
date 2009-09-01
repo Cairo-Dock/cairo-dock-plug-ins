@@ -35,6 +35,34 @@ typedef struct
 } dbusCallbackClass;
 
 
+typedef struct
+{
+	GObject parent;
+	DBusGConnection *connection;
+	DBusGProxy *proxy;
+	gchar *cModuleName;
+	CairoDockModuleInstance *pModuleInstance;
+} dbusApplet;
+
+typedef struct
+{
+	GObjectClass parent_class;
+} dbusAppletClass;
+
+
+typedef enum {
+	CLIC=0,
+	MIDDLE_CLIC,
+	SCROLL,
+	BUILD_MENU,
+	MENU_SELECT,
+	DROP_DATA,
+	RELOAD_MODULE,
+	INIT_MODULE,
+	STOP_MODULE,
+	NB_SIGNALS
+} CDSignalEnum;
+
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	dbusCallback *server;
@@ -48,7 +76,8 @@ struct _AppletData {
 	guint iSidOnStopModule;
 	guint iSidOnMenuSelect;
 	GtkWidget *pModuleSubMenu;
-	gchar *cCurrentMenuModule;
+	gpointer pCurrentMenuDbusApplet;
+	GList *pAppletList;
 	} ;
 
 
