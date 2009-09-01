@@ -1,6 +1,3 @@
-X-Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
-X-Debianized-By: Matthew Walker <matthaeus123@gmail.com>
-X-Debianized-Date: Wed, 16 Jun 2008 13:13:07 +0000.
 X-Source-Downloaded-From: http://developer.berlios.de/projects/cairo-dock/
 X-Upstream-Author: Fabrice Rey <fabounet@users.berlios.de>.
 
@@ -107,6 +104,14 @@ Files: 	switcher/*
 Copyright: Cchumi and Fabrice Rey <fabounet@users.berlios.de>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
+Files: 	musicPlayer/*
+Copyright: Rémy Robertson, Yann Sladek and Fabrice Rey <fabounet@users.berlios.de>
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+
+Files: dnd2share/*
+Copyright: Yann Dulieu and Fabrice Rey <fabounet@users.berlios.de>
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+
 
 Files: 	alsaMixer/*
 	Animated-icons/*
@@ -127,6 +132,7 @@ Files: 	alsaMixer/*
 	motion-blur/*
 	quick-browser/*
 	rendering/*
+	Scooby-Do
 	showDesklets/*
 	show-mouse/*
 	Toons/*
