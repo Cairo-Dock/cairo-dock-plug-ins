@@ -20,9 +20,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableReboot 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reboot");
 	myConfig.bEnableDesklets 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable desklets");
 	myConfig.bEnableReloadModule	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
+	myConfig.bEnableActivateModule	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable reload module");
 	myConfig.bEnableQuit 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable quit");
 	myConfig.bEnableShowDock 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable show dock");
-	myConfig.bEnableLoadLauncher	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
+	myConfig.bEnableTweakingLauncher = CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
 	myConfig.bEnableCreateLauncher	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable add launcher");
 	myConfig.bEnableSetQuickInfo	= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set quickinfo");
 	myConfig.bEnableSetLabel 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set label");
@@ -40,6 +41,5 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	if (myData.pModuleSubMenu != NULL)
-		g_object_unref (myData.pModuleSubMenu);
+	
 CD_APPLET_RESET_DATA_END

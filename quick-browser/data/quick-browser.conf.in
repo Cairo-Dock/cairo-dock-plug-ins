@@ -94,6 +94,9 @@ dir path = ~
 #{It can be quite heavy to load a lot of icons.}
 has icons=true
 
+#l[small;medium;large] Icon size :
+icon size=0
+
 #b List folders first ?
 folders first = true
 

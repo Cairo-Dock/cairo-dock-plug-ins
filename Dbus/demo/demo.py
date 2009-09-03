@@ -44,6 +44,7 @@ def init():
 	applet_iface.connect_to_signal("on_middle_click_icon", action_on_middle_click)
 	applet_iface.connect_to_signal("on_build_menu", action_on_build_menu)
 	applet_iface.connect_to_signal("on_menu_select", action_on_menu_select)
+	applet_iface.connect_to_signal("on_drop_data", action_on_drop_data)
 	applet_iface.connect_to_signal("on_init_module", action_on_init)
 	applet_iface.connect_to_signal("on_stop_module", action_on_stop)
 	applet_iface.connect_to_signal("on_reload_module", action_on_reload)
@@ -51,6 +52,7 @@ def init():
 	# a little test
 	applet_iface.ShowDialog("I'm connected to Cairo-Dock !", 4)
 	applet_iface.SetQuickInfo("123")
+	applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "thunderbird", "echo pouic"])
 
 
 ### stop ###
@@ -74,10 +76,13 @@ def action_on_middle_click():
 
 def action_on_build_menu():
 	print "build menu !"
-	applet_iface.PopulateMenu(["choice 1", "choice 2"])
+	applet_iface.PopulateMenu(["choice 0", "choice 1"])
 	
 def action_on_menu_select(iNumEntry):
 	print "choice",iNumEntry,"has been selected !"
+	
+def action_on_drop_data(cReceivedData):
+	print "received",cReceivedData
 	
 
 def action_on_init():

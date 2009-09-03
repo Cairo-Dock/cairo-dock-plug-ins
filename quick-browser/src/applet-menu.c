@@ -141,7 +141,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		if (cIconName != NULL)
 		{
 			pMenuItem = gtk_image_menu_item_new_with_label (cFileName);
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, myConfig.iIconSize, myConfig.iIconSize, NULL);
 			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);

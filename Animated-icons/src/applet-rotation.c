@@ -114,7 +114,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-	glColor4f(1., 1., 1., pIcon->fAlpha);
+	//glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// ca sature ...
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);

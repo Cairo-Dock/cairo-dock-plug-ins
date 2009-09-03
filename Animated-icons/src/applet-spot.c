@@ -118,7 +118,7 @@ void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRad
 	glBindTexture (GL_TEXTURE_2D, myData.iSpotFrontTexture);
 	_cairo_dock_apply_current_texture_portion_at_size_with_offset (0., 0.,
 		1., fRadiusFactor,
-		pIcon->fWidth * pIcon->fScale, pIcon->fHeight * pIcon->fScale,  // * fRadiusFactor
+		pIcon->fWidth * pIcon->fScale, pIcon->fHeight * pIcon->fScale * fRadiusFactor,  // * fRadiusFactor
 		0., 0.);
 	_cairo_dock_disable_texture ();
 	

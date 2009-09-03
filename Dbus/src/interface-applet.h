@@ -8,6 +8,11 @@
 
 void cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
 
+void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
+
+void cd_dbus_unregister_notifications (void);
+
+
 void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile);
 
 void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance);
@@ -26,6 +31,8 @@ gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error);
 
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error);
+
+gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pIconFields, GError **error);
 
 
 gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);

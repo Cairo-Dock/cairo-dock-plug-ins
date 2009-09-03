@@ -347,7 +347,9 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		area.y = pIcon->fDrawY;
 		if (pDock->bDirectionUp)
 			area.y -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
-		area.width = pIcon->fWidth * pIcon->fScale * 1.4;
+		else
+			area.y -= 20;  // rayon max des particules, environ.
+		area.width = pIcon->fWidth * fMaxScale * 1.25;
 		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
 	}
 	else
@@ -356,7 +358,9 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		area.x = pIcon->fDrawY;
 		if (pDock->bDirectionUp)
 			area.x -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
-		area.height = pIcon->fWidth * pIcon->fScale * 1.4;
+		else
+			area.x -= 20;  // rayon max des particules, environ.
+		area.height = pIcon->fWidth * fMaxScale * 1.25;
 		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
 	}
 	cairo_dock_redraw_container_area (pDock, &area);

@@ -6,19 +6,20 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bEnablePopUp;
 	gboolean bEnableReboot;
 	gboolean bEnableDesklets;
 	gboolean bEnableReloadModule;
+	gboolean bEnableActivateModule;
 	gboolean bEnableQuit;
 	gboolean bEnableShowDock;
-	gboolean bEnableLoadLauncher;
+	gboolean bEnableTweakingLauncher;
 	gboolean bEnableCreateLauncher;
 	gboolean bEnableSetQuickInfo;
 	gboolean bEnableSetLabel;
 	gboolean bEnableSetIcon;
-	gboolean bEnableNewModule;
+	gboolean bEnablePopUp;
 	gboolean bEnableAnimateIcon;
+	gboolean bEnableNewModule;
 	} ;
 
 
@@ -26,13 +27,12 @@ typedef struct
 {
 	GObject parent;
 	DBusGConnection *connection;
-	DBusGProxy *proxy;
-} dbusCallback;
+} dbusMainObject;
 
 typedef struct
 {
 	GObjectClass parent_class;
-} dbusCallbackClass;
+} dbusMainObjectClass;
 
 
 typedef struct
@@ -65,19 +65,10 @@ typedef enum {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	dbusCallback *server;
-	guint iSidOnClickIcon;
-	guint iSidOnMiddleClickIcon;
-	guint iSidOnScrollIcon;
-	guint iSidOnBuildMenu;
-	guint iSidOnDropData;
-	guint iSidOnReloadModule;
-	guint iSidOnInitModule;
-	guint iSidOnStopModule;
-	guint iSidOnMenuSelect;
+	dbusMainObject *pMainObject;
+	GList *pAppletList;
 	GtkWidget *pModuleSubMenu;
 	gpointer pCurrentMenuDbusApplet;
-	GList *pAppletList;
 	} ;
 
 

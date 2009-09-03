@@ -18,14 +18,15 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetIcon string:firefox-3.0 string:any string:nautilus string:none
 
- 
+ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.ActivateModule string:dustbin boolean:true
+
 ******************************************************************************/
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 
 #include "applet-dbus.h"
-#include "applet-dbus-spec.h"
+#include "dbus-main-spec.h"
 #include "interface-applet.h"
 
 #define nullify_argument(string) do {\
@@ -35,69 +36,64 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 static gboolean dbus_deskletVisible = FALSE;
 static guint dbus_xLastActiveWindow;
 
-G_DEFINE_TYPE(dbusCallback, cd_dbus_callback, G_TYPE_OBJECT);
-
-extern void g_cclosure_marshal_VOID__STRING_INT (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data);
-extern void g_cclosure_marshal_VOID__STRING_BOOLEAN (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data);
-extern void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data);
+G_DEFINE_TYPE(dbusMainObject, cd_dbus_main, G_TYPE_OBJECT);
 
 
-static void cd_dbus_callback_class_init(dbusCallbackClass *klass)
+static void cd_dbus_main_class_init(dbusMainObjectClass *klass)
 {
 	cd_message("");
 }
-static void cd_dbus_callback_init (dbusCallback *server)
+static void cd_dbus_main_init (dbusMainObject *pMainObject)
 {
 	cd_message("");
-	g_return_if_fail (server->connection == NULL);
 	
 	// Initialise the DBus connection
-	server->connection = cairo_dock_get_session_connection ();
+	pMainObject->connection = cairo_dock_get_session_connection ();
 	
-	dbus_g_object_type_install_info(cd_dbus_callback_get_type(), &dbus_glib_cd_dbus_callback_object_info);
+	dbus_g_object_type_install_info(cd_dbus_main_get_type(), &dbus_glib_cd_dbus_main_object_info);
 	
 	// Register DBUS path
-	dbus_g_connection_register_g_object(server->connection, "/org/cairodock/CairoDock", G_OBJECT(server));
+	dbus_g_connection_register_g_object(pMainObject->connection, "/org/cairodock/CairoDock", G_OBJECT(pMainObject));
+}
+
+void cd_dbus_launch_service (void)
+{
+	g_return_if_fail (myData.pMainObject == NULL);
+	g_type_init();
+	
+	cd_message("dbus : Lancement du service");
+	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // appelle cd_dbus_main_class_init() et cd_dbus_main_init().
 	
 	// Register the service name
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 }
-void cd_dbus_launch_service (void)
-{
-	g_return_if_fail (myData.server == NULL);
-	g_type_init();
-	
-	cd_message("dbus : Lancement du service");
-	myData.server = g_object_new(cd_dbus_callback_get_type(), NULL);  // appelle cd_dbus_callback_class_init() et cd_dbus_callback_init().
-}
 
 void cd_dbus_stop_service (void)
 {
-	/// virer tous les modules manuels ...
+	// on vire tous les modules distants.
+	dbusApplet *pDbusApplet;
+	GList *a;
+	for (a = myData.pAppletList; a != NULL; a = a->next)
+	{
+		pDbusApplet = a->data;
+		cairo_dock_unregister_module (pDbusApplet->cModuleName);  // stoppe le module (toutes les instances) et l'enleve de la table.
+		g_object_unref (pDbusApplet);
+	}
+	g_list_free (myData.pAppletList);
+	myData.pAppletList = NULL;
 	
-	if (myData.server != NULL)
-		g_object_unref (myData.server);
-	myData.server = NULL;
+	// on se desabonne de toutes les notifications.
+	cd_dbus_unregister_notifications ();
+	
+	// on vire le main object.
+	if (myData.pMainObject != NULL)
+		g_object_unref (myData.pMainObject);
+	myData.pMainObject = NULL;
 }
 
 
 
-gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error)
+gboolean cd_dbus_main_reboot(dbusMainObject *pDbusCallback, GError **error)
 {
 	if (! myConfig.bEnableReboot)
 		return FALSE;
@@ -105,7 +101,7 @@ gboolean cd_dbus_callback_reboot(dbusCallback *pDbusCallback, GError **error)
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_quit (dbusCallback *pDbusCallback, GError **error)
+gboolean cd_dbus_main_quit (dbusMainObject *pDbusCallback, GError **error)
 {
 	if (! myConfig.bEnableQuit)
 		return FALSE;
@@ -113,7 +109,7 @@ gboolean cd_dbus_callback_quit (dbusCallback *pDbusCallback, GError **error)
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableReloadModule)
 		return FALSE;
@@ -138,7 +134,29 @@ gboolean cd_dbus_callback_reload_module (dbusCallback *pDbusCallback, const gcha
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_show_desklet(dbusCallback *pDbusCallback, gboolean *widgetLayer, GError **error)
+gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gboolean bActivate, GError **error)
+{
+	if (! myConfig.bEnableActivateModule)
+		return FALSE;
+	
+	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	if (pModule == NULL)
+	{
+		if (cairo_dock_find_internal_module_from_name (cModuleName) != NULL)
+			cd_warning ("Internal modules can't be (de)activated.");
+		else
+			cd_warning ("no such module (%s)", cModuleName);
+		return FALSE;
+	}
+	
+	if (bActivate)
+		cairo_dock_activate_module_and_load (cModuleName);
+	else
+		cairo_dock_deactivate_module_and_unload (cModuleName);
+	return TRUE;
+}
+
+gboolean cd_dbus_main_show_desklet(dbusMainObject *pDbusCallback, gboolean *widgetLayer, GError **error)
 {
 	if (! myConfig.bEnableDesklets)
 		return FALSE;
@@ -174,7 +192,7 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 			cairo_dock_emit_leave_signal (pDock);
 	}
 }
-gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow, GError **error)
+gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gboolean bShow, GError **error)
 {
 	if (! myConfig.bEnableShowDock)
 		return FALSE;
@@ -190,33 +208,7 @@ gboolean cd_dbus_callback_show_dock (dbusCallback *pDbusCallback, gboolean bShow
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_load_launcher_from_file (dbusCallback *pDbusCallback, const gchar *cDesktopFile, GError **error)
-{
-	if (! myConfig.bEnableLoadLauncher)
-		return FALSE;
-	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
-	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile, pCairoContext);
-	cairo_destroy (pCairoContext);
-	
-	if (pIcon == NULL)
-	{
-		cd_warning ("the icon couldn't be created, check that the file '%s' exists and is a valid and readable .desktop file\n", cDesktopFile);
-		return FALSE;
-	}
-	
-	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-	if (pParentDock != NULL)  // a priori toujours vrai.
-	{
-		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-		cairo_dock_start_icon_animation (pIcon, pParentDock);
-	}
-	
-	return TRUE;
-}
-
-gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallback, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error)
+gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallback, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error)
 {
 	if (! myConfig.bEnableCreateLauncher)
 		return FALSE;
@@ -227,7 +219,10 @@ gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallb
 	
 	CairoDock *pParentDock = cairo_dock_search_dock_from_name (cParentDockName);
 	if (pParentDock == NULL)
-		return FALSE;
+	{
+		cd_message ("le dock parent (%s) n'existe pas, on le cree", cParentDockName);
+		pParentDock = cairo_dock_create_new_dock (cParentDockName, NULL);
+	}
 	
 	Icon *pIcon = g_new0 (Icon, 1);
 	pIcon->iType = CAIRO_DOCK_LAUNCHER;
@@ -246,6 +241,101 @@ gboolean cd_dbus_callback_create_launcher_from_scratch (dbusCallback *pDbusCallb
 	
 	return TRUE;
 }
+
+gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)  // pris de cairo_dock_add_new_launcher_by_uri().
+{
+	if (! myConfig.bEnableTweakingLauncher)
+		return FALSE;
+	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
+	
+	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile, pCairoContext);
+	cairo_destroy (pCairoContext);
+	
+	if (pIcon == NULL)
+	{
+		cd_warning ("the icon couldn't be created, check that the file '%s' exists and is a valid and readable .desktop file\n", cDesktopFile);
+		return FALSE;
+	}
+	
+	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	if (pParentDock != NULL)  // a priori toujours vrai puisqu'il est cree au besoin. En fait c'est probablement le main dock pour un .desktop de base.
+	{
+		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+		cairo_dock_start_icon_animation (pIcon, pParentDock);
+	}
+	g_print (" => acDesktopFileName : %s\n", pIcon->acDesktopFileName);
+	
+	return TRUE;
+}
+
+static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
+{
+	gchar *cDesktopFile = data[0];
+	Icon **pFoundIcon = data[1];
+	if (pIcon->acDesktopFileName && g_ascii_strncasecmp (cDesktopFile, pIcon->acDesktopFileName, strlen (cDesktopFile)) == 0)
+	{
+		*pFoundIcon = pIcon;
+	}
+}
+Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
+{
+	Icon *pIcon = NULL;
+	gpointer data[2];
+	data[0] = (gpointer) cDesktopFile;
+	data[1] = &pIcon;
+	cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_launcher_in_dock, data);
+	return pIcon;
+}
+
+gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)
+{
+	if (! myConfig.bEnableTweakingLauncher)
+		return FALSE;
+	
+	nullify_argument (cDesktopFile);
+	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
+	
+	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
+	if (pIcon == NULL)
+		return FALSE;
+	
+	cairo_dock_reload_launcher (pIcon);
+	
+	return TRUE;
+}
+
+gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)
+{
+	if (! myConfig.bEnableTweakingLauncher)
+		return FALSE;
+	
+	nullify_argument (cDesktopFile);
+	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
+	
+	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
+	if (pIcon == NULL)
+		return FALSE;
+	
+	CairoDock *pDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	g_return_val_if_fail (pDock != NULL, FALSE);
+	
+	if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
+	{
+		cairo_dock_destroy_dock (pIcon->pSubDock, (CAIRO_DOCK_IS_APPLI (pIcon) && pIcon->cClass != NULL ? pIcon->cClass : pIcon->acName), NULL, NULL);
+		pIcon->pSubDock = NULL;
+	}
+	
+	cairo_dock_stop_icon_animation (pIcon);
+	pIcon->fPersonnalScale = 1.0;
+	cairo_dock_notify (CAIRO_DOCK_REMOVE_ICON, pIcon, pDock);
+	cairo_dock_start_icon_animation (pIcon, pDock);
+	
+	cairo_dock_mark_theme_as_modified (TRUE);
+	
+	return TRUE;
+}
+
 
 
 
@@ -287,7 +377,7 @@ Icon *cd_dbus_find_icon (const gchar *cIconName, const gchar *cIconCommand, cons
 	}
 	return pIcon;
 }
-gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, const gchar *cQuickInfo, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar *cQuickInfo, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableSetQuickInfo)
 		return FALSE;
@@ -311,7 +401,7 @@ gboolean cd_dbus_callback_set_quick_info (dbusCallback *pDbusCallback, const gch
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, const gchar *cLabel, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLabel, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableSetLabel)
 		return FALSE;
@@ -333,7 +423,7 @@ gboolean cd_dbus_callback_set_label (dbusCallback *pDbusCallback, const gchar *c
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_set_icon (dbusCallback *pDbusCallback, const gchar *cImage, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cImage, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableSetIcon)
 		return FALSE;
@@ -358,9 +448,9 @@ gboolean cd_dbus_callback_set_icon (dbusCallback *pDbusCallback, const gchar *cI
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_animate (dbusCallback *pDbusCallback, const gchar *cAnimation, gint iNbRounds, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnimation, gint iNbRounds, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
-	if (! myConfig.bEnableAnimateIcon)
+	if (! myConfig.bEnableAnimateIcon || cAnimation == NULL)
 		return FALSE;
 	
 	nullify_argument (cIconName);
@@ -375,15 +465,14 @@ gboolean cd_dbus_callback_animate (dbusCallback *pDbusCallback, const gchar *cAn
 	if (pContainer == NULL)
 		return FALSE;
 	
-	if (CAIRO_DOCK_IS_DOCK (pContainer) && cAnimation != NULL)
-	{
-		cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
-		return TRUE;
-	}
-	return FALSE;
+	if (! CAIRO_DOCK_IS_DOCK (pContainer))
+		return FALSE;
+	
+	cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
+	return TRUE;
 }
 
-gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar *message, gint iDuration, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *message, gint iDuration, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnablePopUp)
 		return FALSE;
@@ -411,8 +500,7 @@ gboolean cd_dbus_callback_show_dialog (dbusCallback *pDbusCallback, const gchar 
 
 
 
-
-gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
+gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
@@ -461,13 +549,14 @@ gboolean cd_dbus_callback_register_new_module (dbusCallback *pDbusCallback, cons
 		}
 		
 		cd_dbus_create_remote_applet_object (pInstance);
+		cd_dbus_emit_on_init_module (pInstance, GINT_TO_POINTER (1));  // petit hack car l'init s'est fait sans nous.
 	}
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
 	return TRUE;
 }
 
-gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const gchar *cModuleName, GError **error)
+gboolean cd_dbus_main_unregister_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
@@ -477,11 +566,17 @@ gboolean cd_dbus_callback_unregister_module (dbusCallback *pDbusCallback, const 
 	
 	if (pModule->cSoFilePath != NULL)
 	{
-		cd_warning ("can't unregister installed modules, only manual modules can");
+		cd_warning ("can't unregister installed modules, only distant modules can");
 		return FALSE;
 	}
 	
-	cairo_dock_unregister_module (cModuleName);
+	if (pModule->pInstancesList != NULL)
+	{
+		CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
+		cd_dbus_delete_remote_applet_object (pInstance);
+	}
+	
+	cairo_dock_unregister_module (cModuleName);  // stoppe le module (toutes les instances) et l'enleve de la table.
 	
 	return TRUE;
 }

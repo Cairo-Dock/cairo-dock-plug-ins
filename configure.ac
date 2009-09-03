@@ -433,7 +433,7 @@ AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 QUICK_BROWSER_PACKAGE=cd-quick-browser
 AC_SUBST(GETTEXT_QUICK_BROWSER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_QUICK_BROWSER, "1.0.3")
+AC_SUBST(VERSION_QUICK_BROWSER, "1.0.4")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")

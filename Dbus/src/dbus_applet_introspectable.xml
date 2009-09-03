@@ -22,6 +22,9 @@
 		<method name="PopulateMenu">
 			<arg name="pLabels" type="as" direction="in"/>	
 		</method>
+		<method name="AddSubIcons">
+			<arg name="pIconFields" type="as" direction="in"/>	
+		</method>
 		<signal name="on_click_icon">
             <arg name="iButtonState" type="i" />
         </signal>
