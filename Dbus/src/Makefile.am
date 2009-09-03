@@ -14,6 +14,7 @@ libcd_Dbus_la_SOURCES = \
 	interface-applet.c\
 	interface-applet.h\
 	applet-dbus-spec.h\
+	applet-dbus-applet-spec.h\
 	applet-struct.h
 
 
