@@ -22,3 +22,4 @@ install-sh
 libtool
 ltmain.sh
 missing
+stamp-h1
