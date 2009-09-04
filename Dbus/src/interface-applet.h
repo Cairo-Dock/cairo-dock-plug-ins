@@ -51,7 +51,13 @@ gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error);
 
+gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error);
+
+gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues, GError **error);
+
 gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pIconFields, GError **error);
+
+gboolean cd_dbus_applet_remove_sub_icon (dbusApplet *pDbusApplet, const gchar *cIconID, GError **error);
 
 
 gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);

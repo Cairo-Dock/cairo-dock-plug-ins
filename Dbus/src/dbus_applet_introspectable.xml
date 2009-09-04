@@ -20,33 +20,44 @@
 			<arg name="iDuration" type="i" direction="in"/>
 		</method>
 		<method name="PopulateMenu">
-			<arg name="pLabels" type="as" direction="in"/>	
+			<arg name="pLabels" type="as" direction="in"/>
+		</method>
+		<method name="AddDataRenderer">
+			<arg name="cType" type="s" direction="in"/>
+			<arg name="iNbValues" type="i" direction="in"/>
+			<arg name="cTheme" type="s" direction="in"/>
+		</method>
+		<method name="RenderValues">
+			<arg name="pValues" type="ad" direction="in"/>
 		</method>
 		<method name="AddSubIcons">
-			<arg name="pIconFields" type="as" direction="in"/>	
+			<arg name="pIconFields" type="as" direction="in"/>
+		</method>
+		<method name="RemoveSubIcon">
+			<arg name="cIconID" type="s" direction="in"/>
 		</method>
 		<signal name="on_click_icon">
-            <arg name="iButtonState" type="i" />
+            <arg name="iButtonState" type="i"/>
         </signal>
         <signal name="on_middle_click_icon">
         </signal>
         <signal name="on_scroll_icon">
-            <arg name="bDirectionUp" type="b" />
+            <arg name="bDirectionUp" type="b"/>
         </signal>
         <signal name="on_build_menu">
         </signal>
         <signal name="on_menu_select">
-			<arg name="iNumEntry" type="i" />
+			<arg name="iNumEntry" type="i"/>
         </signal>
         <signal name="on_drop_data">
-			<arg name="cReceivedData" type="s" />
+			<arg name="cReceivedData" type="s"/>
         </signal>
         <signal name="on_init_module">
         </signal>
         <signal name="on_stop_module">
         </signal>
         <signal name="on_reload_module">
-			<arg name="bConfigHasChanged" type="b" />
+			<arg name="bConfigHasChanged" type="b"/>
         </signal>
 	</interface>
 </node>

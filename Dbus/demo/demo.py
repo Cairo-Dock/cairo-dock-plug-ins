@@ -26,13 +26,15 @@ dock_iface = dbus.Interface(dock_object, "org.cairodock.CairoDock")
 
 
 ### let's register our applet !###
-dock_iface.RegisterNewModule("demo", 3, "This is a distant applet\nIt handles right and middle click\n  by Fabounet", os.path.abspath("."))
+applet_name=os.path.basename(os.path.abspath(".")) # for instance; we can give any name as long as the .conf file follows it.
+applet_share_data_dir=os.path.abspath(".")
+dock_iface.RegisterNewModule(applet_name, 3, "This is a distant applet\nIt handles right and middle click\n  by Fabounet", applet_share_data_dir)
 
 try:
 	applet_object = bus.get_object("org.cairodock.CairoDock",
-			"/org/cairodock/CairoDock/demo")
+			"/org/cairodock/CairoDock/"+applet_name)
 except dbus.DBusException:
-	print "the 'demo' module has not been registerd"
+	print "the '"+applet_name+"' module has not been registerd"
 	sys.exit(2)
 applet_iface = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")
 	
@@ -52,19 +54,18 @@ def init():
 	# a little test
 	applet_iface.ShowDialog("I'm connected to Cairo-Dock !", 4)
 	applet_iface.SetQuickInfo("123")
-	applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "thunderbird", "echo pouic"])
+	applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "trash", "abc", "icon 3", "thunderbird", "def"])
+	applet_iface.RemoveSubIcon("abc")
 
 
 ### stop ###
 def stop():
 	print "STOP"
-	bus = dbus.SessionBus()
-	remote_object = bus.get_object("org.cairodock.CairoDock", "/org/cairodock/CairoDock")
-	iface = dbus.Interface(remote_object, "org.cairodock.CairoDock")
-	iface.UnregisterModule("demo")
-	del iface
-	del remote_object
-	del bus
+	dock_iface.UnregisterModule(applet_name)
+	del dock_object
+	del dock_iface
+	del applet_object
+	del applet_iface
 	
 
 ### callbacks ###

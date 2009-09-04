@@ -59,8 +59,8 @@ typedef struct
 	GObject parent;
 	DBusGConnection *connection;
 	DBusGProxy *proxy;
-	gchar *cModuleName;
 	CairoDockModuleInstance *pModuleInstance;
+	gchar *cModuleName;
 } dbusApplet;
 
 typedef struct

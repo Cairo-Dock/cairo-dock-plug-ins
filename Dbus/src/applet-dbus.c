@@ -526,7 +526,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	pVisitCard->iMicroVersionNeeded = 0;
 	pVisitCard->cPreviewFilePath = cShareDataDir ? g_strdup_printf ("%s/preview", cShareDataDir) : NULL;
 	pVisitCard->cGettextDomain = g_strdup_printf ("cd-%s", cModuleName);
-	pVisitCard->cUserDataDir = g_strdup ("cModuleName");
+	pVisitCard->cUserDataDir = g_strdup (cModuleName);
 	pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
 	pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
 	pVisitCard->cModuleVersion = g_strdup ("0.0.1");
@@ -582,7 +582,7 @@ gboolean cd_dbus_main_unregister_module (dbusMainObject *pDbusCallback, const gc
 		return FALSE;
 	}
 	
-	if (pModule->pInstancesList != NULL)
+	if (pModule->pInstancesList != NULL)  // on le fait maintenant pour ne pas lancer le signal 'stop' (en effet c'est l'applet elle-meme qui envoie ce signal lorsqu'elle se termine), et aussi car l'instance est encore disponible.
 	{
 		CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
 		cd_dbus_delete_remote_applet_object (pInstance);
