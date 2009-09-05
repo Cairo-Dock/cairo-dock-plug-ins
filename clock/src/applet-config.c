@@ -63,11 +63,34 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 	{
 		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
-		myConfig.cFont = CD_CONFIG_GET_STRING ("Module", "font");
-		int iWeight = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "weight", 5);
-		myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
-		if (myConfig.cFont == NULL)
-			myConfig.cFont = g_strdup (myLabels.iconTextDescription.cFont);
+		
+		gchar *cFontDescription = CD_CONFIG_GET_STRING ("Module", "font");
+		if (cFontDescription == NULL)
+		{
+			cFontDescription = g_strdup ("Sans");  // sinon fd est NULL.
+		}
+		PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
+		
+		myConfig.cFont = g_strdup (pango_font_description_get_family (fd));
+		myConfig.iWeight = pango_font_description_get_weight (fd);
+		myConfig.iStyle = pango_font_description_get_style (fd);
+		if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
+		{
+			int iWeight = g_key_file_get_integer (pKeyFile, "Module", "weight", NULL);
+			myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
+			myConfig.iStyle = PANGO_STYLE_NORMAL;
+			
+			pango_font_description_set_size (fd, 12 * PANGO_SCALE);
+			pango_font_description_set_weight (fd, myConfig.iWeight);
+			pango_font_description_set_style (fd, myConfig.iStyle);
+			g_free (cFontDescription);
+			cFontDescription = pango_font_description_to_string (fd);
+			g_key_file_set_string (pKeyFile, "Module", "font", cFontDescription);
+			bFlushConfFileNeeded = TRUE;
+		}
+		pango_font_description_free (fd);
+		g_free (cFontDescription);
+		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
 	}
 	
@@ -327,7 +350,7 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 		pMenuItem = gtk_menu_item_new_with_label (cFileName);
 		pLocalData = g_new (gpointer, 2);
 		pLocalData[0] = pMenuItem;
-		pLocalData[1] = cFileName;
+		pLocalData[1] = (gpointer)cFileName;
 		pLocalList = g_list_insert_sorted (pLocalList, pLocalData, (GCompareFunc) _cd_clock_compare_path_order);
 		
 		// location de cette entree.

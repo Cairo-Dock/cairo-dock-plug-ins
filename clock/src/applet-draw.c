@@ -237,7 +237,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myConfig.cFont);
 	pango_font_description_set_weight (pDesc, myConfig.iWeight);
-	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
+	pango_font_description_set_style (pDesc, myConfig.iStyle);
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	pango_layout_set_font_description (pLayout, pDesc);
@@ -308,35 +308,6 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	cairo_restore (myDrawContext);
 	g_object_unref (pLayout);
 	pango_font_description_free (pDesc);
-	/*if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
-		g_string_append (sFormat, "\n%a %d %b");
-	
-	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
-	g_string_free (sFormat, TRUE);
-	
-	cairo_dock_erase_cairo_context (myDrawContext);
-	if (myData.pNumericBgSurface != NULL)
-	{
-		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
-		cairo_paint (myDrawContext);
-	}
-	
-	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
-	//g_print ("%s\n", s_cDateBuffer);
-	
-	PangoRectangle ink, log;
-	pango_layout_get_pixel_extents (pLayout, &ink, &log);
-	
-	cairo_save (myDrawContext);
-	
-	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
-	cairo_scale (myDrawContext, (double) (iWidth - 1) / ink.width, (double) iHeight / ink.height);
-	cairo_translate (myDrawContext, -ink.x, -ink.y);
-	
-	pango_cairo_show_layout (myDrawContext, pLayout);
-	
-	cairo_restore (myDrawContext);
-	g_object_unref (pLayout);*/
 }
 
 

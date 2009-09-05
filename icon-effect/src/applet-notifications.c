@@ -353,27 +353,33 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	GdkRectangle area;
 	if (pDock->bHorizontalDock)
 	{
-		area.x = pIcon->fDrawX - .2 * pIcon->fWidth * pIcon->fScale;
+		area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.y = pIcon->fDrawY;
-		if (pDock->bDirectionUp)
-			area.y -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
-		else
-			area.y -= 20;  // rayon max des particules, environ.
-		area.width = (pIcon->fWidth + 20) * fMaxScale * 1.25;
+		area.width = pIcon->fWidth * fMaxScale * 1.5;
 		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
+		if (pDock->bDirectionUp)
+			area.y -= myLabels.iconTextDescription.iSize;
+		else
+		{
+			area.y -= 20;  // rayon max des particules, environ.
+			area.height += 20;
+		}
 	}
 	else
 	{
-		area.y = pIcon->fDrawX - .2 * pIcon->fWidth * pIcon->fScale;
+		area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.x = pIcon->fDrawY;
 		if (pDock->bDirectionUp)
-			area.x -= (pIcon->fScale - fMaxScale) * pIcon->fHeight + myLabels.iconTextDescription.iSize;
+			area.x -= myLabels.iconTextDescription.iSize;
 		else
+		{
 			area.x -= 20;  // rayon max des particules, environ.
-		area.height = (pIcon->fWidth + 20) * fMaxScale * 1.25;
+			area.width += 20;
+		}
+		area.height = pIcon->fWidth * fMaxScale * 1.5;
 		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
 	}
-	cairo_dock_redraw_container_area (pDock, &area);
+	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
 	
 	if (! *bContinueAnimation)
 		cd_icon_effect_free_data (pUserData, pIcon);

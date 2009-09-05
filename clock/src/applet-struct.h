@@ -104,6 +104,7 @@ struct _AppletConfig {
 	gchar *cSetupTimeCommand;
 	gchar *cFont;
 	gint iWeight;
+	gint iStyle;
 	gboolean bOutlined;
 	gchar *cLocation;
 	gchar *cDigital;

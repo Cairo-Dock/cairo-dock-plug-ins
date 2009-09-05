@@ -27,16 +27,44 @@
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowKbdIndicator = CD_CONFIG_GET_BOOLEAN ("Configuration", "show indic");
-	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 	myConfig.iTransitionDuration = CD_CONFIG_GET_INTEGER ("Configuration", "transition");
 	myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStop);
+	
+	gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
+	if (cFontDescription == NULL)
+	{
+		cFontDescription = g_strdup ("Sans");  // sinon fd est NULL.
+	}
+	PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
+	myConfig.textDescription.cFont = g_strdup (pango_font_description_get_family (fd));
+	myConfig.textDescription.iWeight = pango_font_description_get_weight (fd);
+	myConfig.textDescription.iStyle = pango_font_description_get_style (fd);
+	if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
+	{
+		int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "text weight", NULL);
+		myConfig.textDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
+		myConfig.textDescription.iStyle = PANGO_STYLE_NORMAL;
+		
+		pango_font_description_set_size (fd, 12 * PANGO_SCALE);
+		pango_font_description_set_weight (fd, myConfig.textDescription.iWeight);
+		pango_font_description_set_style (fd, myConfig.textDescription.iStyle);
+		g_free (cFontDescription);
+		cFontDescription = pango_font_description_to_string (fd);
+		g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
+		bFlushConfFileNeeded = TRUE;
+	}
+	pango_font_description_free (fd);
+	g_free (cFontDescription);
+	
 	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");
 	myConfig.textDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
 	myConfig.textDescription.iStyle = PANGO_STYLE_NORMAL;
 	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
 	myConfig.textDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+	
+	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 CD_APPLET_GET_CONFIG_END
 
 

@@ -116,15 +116,13 @@ old fashion style = true
 #X[Numeric View;gtk-italic]
 numeric=
 
-#C+ Text color for the numeric display:
-text color = 0.0; 0.0; 0.5; 1.
+#P+ Font used for the numeric display :
+font = Sans 12
 
-#i+[1;9] Weight of the text :
 weight = 5
 
-#P+ Font used for the numeric display :
-#{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
-font = 
+#C+ Text color for the numeric display:
+text color = 0.0; 0.0; 0.5; 1.
 
 #S+ Image to draw on the background :
 numeric bg =
