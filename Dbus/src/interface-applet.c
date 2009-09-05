@@ -627,14 +627,7 @@ gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues,
 	
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
 	cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-	
-	CairoDataRenderer *pRenderer = pIcon->pDataRenderer;
-	g_return_val_if_fail (pRenderer != NULL, FALSE);
-	CairoDataToRenderer *pData = cairo_data_renderer_get_data (pRenderer);
-	double *values = g_new0 (double, pData->iMemorySize);
-	
-	cairo_dock_render_new_data_on_icon (pIcon, pContainer, myDrawContext, pValues->data);
-	g_free (values);
+	cairo_dock_render_new_data_on_icon (pIcon, pContainer, myDrawContext, (double *)pValues->data);
 	cairo_destroy (pDrawContext);
 	
 	cairo_dock_redraw_icon (pIcon, pContainer);
