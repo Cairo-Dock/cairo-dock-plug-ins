@@ -132,8 +132,31 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	//double fMaxScale = cairo_dock_get_max_scale (myContainer); //coefficient Max icone Width
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	
 	myData.switcher.fOneViewportHeight = (iHeight - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 	myData.switcher.fOneViewportWidth = (iWidth - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	double dx=0, dy=0;
+	double w = iWidth, h = iHeight;
+	if (myConfig.bPreserveScreenRatio)
+	{
+		double r = (double) g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		double r_ = myData.switcher.fOneViewportWidth / myData.switcher.fOneViewportHeight;
+		if (r_ > r)  // on etire trop en largeur.
+		{
+			myData.switcher.fOneViewportWidth /= r_ / r;
+			dx = iWidth/2 * (1 - r / r_);
+			w /= r_ / r;
+		}
+		else
+		{
+			myData.switcher.fOneViewportHeight /= r / r_;
+			dy = iHeight/2 * (1 - r_ / r);
+			h /= r / r_;
+		}
+	}
+	
+	cairo_save (myDrawContext);
+	cairo_translate (myDrawContext, dx, dy);
 	
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
@@ -156,8 +179,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cairo_rectangle(myDrawContext,
 		.5*myConfig.iLineSize,
 		.5*myConfig.iLineSize,
-		iWidth - myConfig.iLineSize,
-		iHeight - myConfig.iLineSize);
+		w - myConfig.iLineSize,
+		h - myConfig.iLineSize);
 
 	cairo_stroke (myDrawContext);
 	
@@ -170,14 +193,14 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	{
 		xi = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, xi, myConfig.iLineSize);
-		cairo_rel_line_to (myDrawContext, 0, iHeight - 2*myConfig.iLineSize);
+		cairo_rel_line_to (myDrawContext, 0, h - 2*myConfig.iLineSize);
 		cairo_stroke (myDrawContext);
 	}
 	for (j = 1; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
 		yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
 		cairo_move_to (myDrawContext, myConfig.iLineSize, yj);
-		cairo_rel_line_to (myDrawContext, iWidth - 2*myConfig.iLineSize, 0);
+		cairo_rel_line_to (myDrawContext, w - 2*myConfig.iLineSize, 0);
 		cairo_stroke (myDrawContext);
 	}
 	
@@ -287,6 +310,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			cairo_stroke(myDrawContext);
 	}
 	
+	cairo_restore (myDrawContext);
 	g_list_free (pWindowList);  // le contenu appartient a la hash table, mais pas la liste.
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
