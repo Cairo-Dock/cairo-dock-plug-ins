@@ -154,6 +154,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			h /= r / r_;
 		}
 	}
+	myData.switcher.fOffsetX = dx;
+	myData.switcher.fOffsetY = dy;
 	
 	cairo_save (myDrawContext);
 	cairo_translate (myDrawContext, dx, dy);
@@ -439,12 +441,12 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 	for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
 		y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-		y = pDesklet->iHeight - (y + h);	
+		y = pDesklet->iHeight - (y + h + myData.switcher.fOffsetY);	
 		
 		for (i = 0; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
 		{
 			x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-			x += w;
+			x += w + myData.switcher.fOffsetX;
 			
 			glLoadName(i * myData.switcher.iNbLines + j + 1);  // +1 pour ne pas avoir 0.
 			
@@ -477,9 +479,9 @@ void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesk
 		w = myData.switcher.fOneViewportWidth/2;
 		h = myData.switcher.fOneViewportHeight/2;
 		x = myConfig.iLineSize + i * (myData.switcher.fOneViewportWidth + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-		x += w;
+		x += w + myData.switcher.fOffsetX;
 		y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-		y += h;
+		y += h + myData.switcher.fOffsetY;
 		*iCoordX = x;
 		*iCoordY = y;
 	}

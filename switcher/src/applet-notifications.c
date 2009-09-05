@@ -75,18 +75,22 @@ CD_APPLET_ON_CLICK_BEGIN
 			iMouseY = tmp;
 		}
 		
+		double w = myIcon->fWidth * myIcon->fScale - 2 * myData.switcher.fOffsetX;
+		double h = myIcon->fHeight * myIcon->fScale - 2 * myData.switcher.fOffsetY;
+		iMouseX -= myData.switcher.fOffsetX;
+		iMouseY -= myData.switcher.fOffsetY;
 		if (iMouseX < 0)
 			iMouseX = 0;
 		if (iMouseY < 0)
 			iMouseY = 0;
-		if (iMouseX > myIcon->fWidth * myIcon->fScale)
-			iMouseX = myIcon->fWidth * myIcon->fScale;
-		if (iMouseY > myIcon->fHeight * myIcon->fScale)
-			iMouseY = myIcon->fHeight * myIcon->fScale;
+		if (iMouseX > w)
+			iMouseX = w;
+		if (iMouseY > h)
+			iMouseY = h;
 		
 		
-		iNumLine = (int) (iMouseY / (myIcon->fHeight * myIcon->fScale) * myData.switcher.iNbLines);
-		iNumColumn = (int) (iMouseX / (myIcon->fWidth * myIcon->fScale) * myData.switcher.iNbColumns);
+		iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
+		iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)

@@ -62,6 +62,7 @@ typedef struct
 	gint iCurrentLine, iCurrentColumn;
 	double fOneViewportWidth;
 	double fOneViewportHeight;
+	double fOffsetX, fOffsetY;
 } SwitcherApplet;
 
 

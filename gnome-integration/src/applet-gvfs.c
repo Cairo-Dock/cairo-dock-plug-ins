@@ -217,7 +217,7 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 				/*if (cVolumeName == NULL)
 					cVolumeName = g_volume_get_name  (pVolume);
 				else
-					cd_warning ("Attention : this drive (%s) has more than 1 volume but we only consider the first one (%s), ignoring %s", cName, cVolumeName, g_volume_get_name  (pVolume));*/
+					cd_warning ("gnome-integration : this drive (%s) has more than 1 volume but we only consider the first one (%s), ignoring %s", cName, cVolumeName, g_volume_get_name  (pVolume));*/
 				g_object_unref (pVolume);
 			}
 		}
@@ -804,7 +804,7 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 	g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome-integration : %s", erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -944,7 +944,7 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 		bSuccess = g_mount_eject_finish (G_MOUNT (pObject), res, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	
@@ -1111,7 +1111,7 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
+		cd_warning ("gnome-integration : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -1143,10 +1143,10 @@ gboolean vfs_backend_delete_file (const gchar *cURI)
 	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
 	GError *erreur = NULL;
-	gboolean bSuccess = g_file_delete (pFile, NULL, &erreur);
+	gboolean bSuccess = g_file_trash (pFile, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	g_object_unref (pFile);
@@ -1161,7 +1161,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	GFile *pNewFile = g_file_set_display_name (pOldFile, cNewName, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	gboolean bSuccess = (pNewFile != NULL);
@@ -1193,7 +1193,7 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("gnome-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	g_object_unref (pFile);
@@ -1221,7 +1221,7 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't get file properties for '%s' [%s]", cURI, erreur->message);
+		cd_warning ("gnome-integration : couldn't get file properties for '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
 	}
 	

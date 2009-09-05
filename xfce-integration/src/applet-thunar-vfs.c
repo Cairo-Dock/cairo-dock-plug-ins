@@ -1078,7 +1078,7 @@ gboolean vfs_backend_delete_file (const gchar *cURI)
 	GError *erreur = NULL;
 	cd_message ("%s (%s)", __func__, cURI);
 
-	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
+	/*ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cURI, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : %s", erreur->message);
@@ -1088,9 +1088,12 @@ gboolean vfs_backend_delete_file (const gchar *cURI)
 
 	ThunarVfsJob *pJob = thunar_vfs_unlink_file(pThunarPath, &erreur);
 	g_object_unref(pJob);
-
-	thunar_vfs_path_unref(pThunarPath);
-
+	thunar_vfs_path_unref(pThunarPath);*/
+	gchar *cTrashPath = vfs_backend_get_trash_path (NULL, NULL);
+	g_return_val_if_fail (cTrashPath != NULL, FALSE);
+	vfs_backend_move_file (cURI, cTrashPath);
+	g_free (cTrashPath);
+	
 	return TRUE;
 }
 

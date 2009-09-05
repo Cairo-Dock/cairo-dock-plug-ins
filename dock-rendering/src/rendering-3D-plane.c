@@ -62,29 +62,26 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	// -> dw
 	dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);  // en fait, h*gamma + r*(1-sin)/cos, or (1-sin)/cos <= 1, on majore pour simplifier. on aurait r + gamma * (h - 2 * r) si on utilisait des cercles au lieu de courbes de Bezier.
 	
-	double Ws = w+2*dw;
+	/*double Ws = w+2*dw;
 	double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
 	double a = H + hi;
 	double b = H + hi + h0 - W / 2;
 	double c = - W / 2;
 	double g = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
-	g_print ("gamma : %f (=) %f\n", gamma, g);
+	g_print ("gamma : %f (=) %f\n", gamma, g);*/
 	
-	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
+	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
 	{
-		double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
-		if (w + 2 * dw < Ws)  // alors on etend.
-		{
-			double extra = Ws - w;
-			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
-			double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
-			double a = H + hi;
-			double b = H + hi + h0 - W / 2;
-			double c = - W / 2;
-			gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
-			g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
-			h = hi + h0 / (1 + gamma);
-		}
+		double extra = Ws - w;
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+		double a = H + hi;
+		double b = H + hi + h0 - W / 2;
+		double c = - W / 2;
+		gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+		g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
+		h = hi + h0 / (1 + gamma);
 	}
 	else  // rien d'autre a faire
 	{
@@ -111,20 +108,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 		pDock->iMinDockWidth = pDock->fFlatDockWidth + 2 * dw_min;
 	}
 	
-	// on reboucle (sauf que on reboucle pas).
-	//fInclination = 0.5 * pDock->iMinDockWidth / iVanishingPointY;
-	//fExtraWidthMin = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
-	//pDock->iMinDockWidth = pDock->fFlatDockWidth + fExtraWidthMin;  // en commentaire depuis des lustres.
-	
-	pDock->iMinLeftMargin = dw;
-	pDock->iMinRightMargin = dw;
-	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
-	if (pFirstIcon != NULL)
-		pDock->iMaxRightMargin = dw + pFirstIcon->fWidth;
-	Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
-	if (pLastIcon != NULL)
-		pDock->iMaxRightMargin = dw + pLastIcon->fWidth;
-	
+	// input shape
 	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;
@@ -353,7 +337,8 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 	if (h < 2 * r)
 		r = h / 2;
 	
-	double dx, dy;
+	//\____________________ On definit la position du cadre.
+	double dx, dy;  // position du coin haut gauche du cadre.
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		double Ws = pDock->iCurrentWidth;
@@ -380,7 +365,6 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - 0*myBackground.iFrameMargin : r);
 	}
 	
-	//\____________________ On trace le cadre.
 	int sens;
 	if (pDock->bDirectionUp)
 	{
@@ -393,6 +377,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 		dy = pDock->iDecorationsHeight + 1.5 * l;
 	}
 	
+	//\____________________ On trace le cadre.
 	cairo_save (pCairoContext);
 	
 	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, r, l, w, pDock->iDecorationsHeight, dx, dy, sens, gamma, pDock->bHorizontalDock);
@@ -957,24 +942,6 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
-{
-	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-3D-plane.jpg", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_3D_plane;
-	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
-	pRenderer->render = cd_rendering_render_3D_plane;
-	pRenderer->render_optimized = cd_rendering_render_optimized_3D_plane;
-	pRenderer->render_opengl = cd_rendering_render_3D_plane_opengl;
-	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
-	pRenderer->bUseReflect = TRUE;
-	pRenderer->cDisplayedName = D_ (cRendererName);
-	
-	cairo_dock_register_renderer (cRendererName, pRenderer);
-}
-
-
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 {
 	double hi = myIcons.fReflectSize * pDock->fRatio + myBackground.iFrameMargin;
@@ -1139,4 +1106,22 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	}
 	
 	glDisable (GL_BLEND);
+}
+
+
+void cd_rendering_register_3D_plane_renderer (const gchar *cRendererName)
+{
+	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
+	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-3D-plane-view", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-3D-plane.jpg", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_3D_plane;
+	pRenderer->calculate_icons = cd_rendering_calculate_icons_3D_plane;
+	pRenderer->render = cd_rendering_render_3D_plane;
+	pRenderer->render_optimized = cd_rendering_render_optimized_3D_plane;
+	pRenderer->render_opengl = cd_rendering_render_3D_plane_opengl;
+	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	pRenderer->bUseReflect = TRUE;
+	pRenderer->cDisplayedName = D_ (cRendererName);
+	
+	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

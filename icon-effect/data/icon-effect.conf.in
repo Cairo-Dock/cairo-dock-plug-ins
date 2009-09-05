@@ -165,7 +165,7 @@ color1 = .6;.6;.6
 color2 = .0;.4;.6
 
 #I[10;400] Number of particles :
-nb part = 200
+nb part = 100
 
 #I[2;40] Particle size :
-part size = 20
+part size = 10
