@@ -26,7 +26,7 @@ dock_iface = dbus.Interface(dock_object, "org.cairodock.CairoDock")
 
 
 ### let's register our applet !###
-applet_name=os.path.basename(os.path.abspath(".")) # for instance; we can give any name as long as the .conf file follows it.
+applet_name="demo"
 applet_share_data_dir=os.path.abspath(".")
 dock_iface.RegisterNewModule(applet_name, 3, "This is a distant applet\nIt simulate a counter\nScroll up/down to increase/decrease the counter,\nClick/middle-click to increase/decrease the counter by 10\nDrop some text to set it as the label.\n  by Fabounet", applet_share_data_dir)
 
@@ -71,35 +71,43 @@ count=0
 
 ### callbacks ###
 def action_on_click(iState):
+	global count
 	print "clic !"
 	count += 10
-	applet_iface.SetQuickInfo(""+count)
+	applet_iface.SetQuickInfo(format(count, "d"))
+	applet_iface.RenderValues([count/100.])
 
 def action_on_middle_click():
+	global count
 	print "middle clic !"
 	count -= 10
-	applet_iface.SetQuickInfo(""+count)
+	applet_iface.SetQuickInfo(format(count, "d"))
+	applet_iface.RenderValues([count/100.])
 
 def action_on_build_menu():
 	print "build menu !"
 	applet_iface.PopulateMenu(["set min value", "set medium value", "set max value"])
 	
 def action_on_menu_select(iNumEntry):
+	global count
 	print "choice",iNumEntry,"has been selected !"
 	if iNumEntry == 0:
 		count = 0
-	else if iNumEntry == 1:
+	elif iNumEntry == 1:
 		count = 50
-	else if iNumEntry == 2:
+	elif iNumEntry == 2:
 		count = 100
-	applet_iface.SetQuickInfo(""+count)
+	applet_iface.SetQuickInfo(format(count, "d"))
+	applet_iface.RenderValues([count/100.])
 
 def action_on_scroll(bScrollUp):
+	global count
 	if bScrollUp:
-		count ++
-	else
-		count --
-	applet_iface.SetQuickInfo(""+count)
+		count += 1
+	else:
+		count -= 1
+	applet_iface.SetQuickInfo(format(count, "d"))
+	applet_iface.RenderValues([count/100.])
 
 def action_on_drop_data(cReceivedData):
 	print "received",cReceivedData
@@ -107,14 +115,18 @@ def action_on_drop_data(cReceivedData):
 	
 
 def action_on_init():
+	global count
 	print "our module is started"
 	count=1
 	applet_iface.ShowDialog("I'm connected to Cairo-Dock !", 4)
-	applet_iface.SetQuickInfo(""+count)
-	applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "trash", "abc", "icon 3", "thunderbird", "def"])
-	applet_iface.RemoveSubIcon("abc")
+	applet_iface.SetQuickInfo(format (count, "d"))
+	applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])
+	applet_iface.RemoveSubIcon("id2")
+	applet_iface.AddDataRenderer("gauge", 1, "Turbo-night")
+	applet_iface.RenderValues([0.])
 	
 def action_on_stop():
+	global count
 	print "our module is stopped"
 	count=0
 	
@@ -122,6 +134,9 @@ def action_on_reload(bConfigHasChanged):
 	print "our module is reloaded"
 	if bConfigHasChanged:
 		print " and our config has changed"
+		applet_iface.AddDataRenderer("gauge", 1, "Turbo-night")
+		applet_iface.RenderValues([count/100.])
+		applet_iface.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "trash", "abc", "icon 3", "thunderbird", "def"])
 	
 
 ### main ###

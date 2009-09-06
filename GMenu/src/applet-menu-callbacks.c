@@ -35,7 +35,7 @@ static GList *icons_to_add = NULL;
 void handle_gmenu_tree_changed (GMenuTree *tree,
 			   GtkWidget *menu)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()", __func__);
 	
 	if (myData.pMenu != NULL)
 	{
@@ -78,7 +78,7 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 void remove_gmenu_tree_monitor (GtkWidget *menu,
 			  GMenuTree  *tree)
 {
-	g_print ("%s (%x)\n", __func__, tree);
+	cd_message ("%s (%x)", __func__, tree);
 	gmenu_tree_remove_monitor (tree,
 				  (GMenuTreeChangedFunc) handle_gmenu_tree_changed,
 				  menu);
@@ -126,7 +126,7 @@ void submenu_to_display (GtkWidget *menu)
 
 	if (!g_object_get_data (G_OBJECT (menu), "panel-menu-needs-loading"))
 	{
-		g_print ("en fait non\n");
+		cd_debug ("needs no loading\n");
 		return;
 	}
 
@@ -137,7 +137,7 @@ void submenu_to_display (GtkWidget *menu)
 	if (!directory) {
 		menu_path = g_object_get_data (G_OBJECT (menu),
 					       "panel-menu-tree-path");
-		g_print ("n'est pas un directory, menu_path : %s\n", menu_path);
+		cd_debug ("n'est pas un directory, menu_path : %s\n", menu_path);
 		if (!menu_path)
 		{
 			cd_warning ("menu_path is empty");

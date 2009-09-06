@@ -184,7 +184,7 @@ static void cd_dbus_applet_init (dbusApplet *pDbusApplet)
 
 static dbusApplet * _get_dbus_applet (CairoDockModuleInstance *pModuleInstance)
 {
-	gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
+	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	dbusApplet *pDbusApplet = NULL;
 	GList *a;
 	for (a = myData.pAppletList; a != NULL; a = a->next)
@@ -346,20 +346,31 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	g_signal_emit (pDbusApplet,
 		s_iSignals[RELOAD_MODULE],
 		0,
-		pVisitCard->cModuleName,
 		pKeyFile != NULL);
 	
 	if (pModuleInstance->pDesklet)
 	{
-		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
-			"Simple",
-			NULL,
-			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
-			(CairoDeskletRendererConfigPtr) NULL);
+		if (pModuleInstance->pDesklet->icons == NULL)
+		{
+			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
+				"Simple",
+				NULL,
+				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
+				(CairoDeskletRendererConfigPtr) NULL);
+		}
+		else
+		{
+			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
+				"Caroussel",
+				NULL,
+				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
+				(CairoDeskletRendererConfigPtr) data);
+		}
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
+	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer && pIcon->pDataRenderer == NULL)
 	{
 		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
@@ -369,17 +380,19 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	
 	if (pKeyFile == NULL)
 	{
-		if (pIcon->pDataRenderer != NULL)
+		if (pIcon && pIcon->pDataRenderer != NULL)
 		{
 			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, pDrawContext, NULL);
-			cairo_destroy (pDrawContext);
 			
 			CairoDataRenderer *pRenderer = pIcon->pDataRenderer;
 			CairoDataToRenderer *pData = cairo_data_renderer_get_data (pRenderer);
 			g_print ("actuellement %d valeurs dans l'historique\n", pData->iMemorySize);
 			if (pData->iMemorySize > 2)
 				cairo_dock_resize_data_renderer_history (pIcon, pIcon->fWidth);
+			
+			cairo_dock_refresh_data_renderer (pIcon, pModuleInstance->pContainer, pDrawContext);
+			cairo_destroy (pDrawContext);
 		}
 	}
 	
@@ -610,7 +623,6 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pDrawContext, pRenderAttr);
 	cairo_destroy (pDrawContext);
 	
-	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
 
@@ -691,8 +703,9 @@ gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pI
 			GList *ic;
 			for (ic = pIconsList; ic != NULL; ic = ic->next)
 			{
-				pIcon = ic->data;
-				cairo_dock_insert_icon_in_dock (pIcon, pIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
+				pOneIcon = ic->data;
+				cairo_dock_load_one_icon_from_scratch (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
+				cairo_dock_insert_icon_in_dock (pOneIcon, pIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
 			}
 			cairo_dock_update_dock_size (pIcon->pSubDock);
 			g_list_free (pIconsList);
@@ -706,7 +719,8 @@ gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pI
 			pIcon->pSubDock = NULL;
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
-		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Slide", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, (CairoDeskletRendererConfigPtr) NULL);
+		gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
+		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, (CairoDeskletRendererConfigPtr) data);
 	}
 	
 	return TRUE;

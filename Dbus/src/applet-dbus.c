@@ -511,7 +511,11 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 
 
 
-
+static gboolean _emit_init_module (CairoDockModuleInstance *pInstance)
+{
+	cd_dbus_emit_on_init_module (pInstance, GINT_TO_POINTER (1));
+	return FALSE;
+}
 gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
@@ -542,26 +546,60 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	pModule->pInterface->reloadModule = cd_dbus_emit_on_reload_module;
 	cairo_dock_load_manual_module (pModule);
 	
+	if (pModule->pVisitCard->cDockVersionOnCompilation == NULL)
+	{
+		cairo_dock_free_module (pModule);
+		pModule = cairo_dock_find_module_from_name (cModuleName);
+	}
+	
 	GError *tmp_erreur = NULL;
+	gboolean bAlreadyInstanciated = FALSE;
 	cairo_dock_activate_module (pModule, &tmp_erreur);  // cairo_dock_activate_module_and_load le rajoute en conf.
 	if (tmp_erreur != NULL)
 	{
-		g_propagate_error (error, tmp_erreur);
+		cd_warning ("%s (maybe the applet didn't stopped correctly before)", tmp_erreur->message);
+		g_error_free (tmp_erreur);
+		tmp_erreur = NULL;
+		bAlreadyInstanciated = TRUE;
+		/*g_propagate_error (error, tmp_erreur);
 		cairo_dock_free_module (pModule);
-		return FALSE;
+		return FALSE;*/
 	}
 	
 	if (pModule->pInstancesList != NULL)
 	{
 		CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
-		if (pInstance->pDock)
+		if (! bAlreadyInstanciated)
 		{
-			cairo_dock_update_dock_size (pInstance->pDock);
-			gtk_widget_queue_draw (pInstance->pDock->pWidget);
+			if (pInstance->pDock)
+			{
+				cairo_dock_update_dock_size (pInstance->pDock);
+				gtk_widget_queue_draw (pInstance->pDock->pWidget);
+			}
+			
+			cd_dbus_create_remote_applet_object (pInstance);
 		}
-		
-		cd_dbus_create_remote_applet_object (pInstance);
-		cd_dbus_emit_on_init_module (pInstance, GINT_TO_POINTER (1));  // petit hack car l'init s'est fait sans nous.
+		else
+		{
+			if (pInstance->pIcon != NULL && pInstance->pIcon->pSubDock != NULL)  // cas ou l'applet etait deja instanciee.
+			{
+				cairo_dock_destroy_dock (pInstance->pIcon->pSubDock, pInstance->pIcon->acName, NULL, NULL);
+				pInstance->pIcon->pSubDock = NULL;
+				cairo_dock_remove_data_renderer_on_icon (pInstance->pIcon);
+			}
+			if (pInstance->pDesklet != NULL && pInstance->pDesklet->icons != NULL)  // idem, version desklet.
+			{
+				g_list_foreach (pInstance->pDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+				g_list_free (pInstance->pDesklet->icons);
+				pInstance->pDesklet->icons = NULL;
+				cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet,
+					"Simple",
+					NULL,
+					CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
+					(CairoDeskletRendererConfigPtr) NULL);
+			}
+		}
+		g_timeout_add (500, (GSourceFunc)_emit_init_module, pInstance);  // petit hack car l'objet est cree apres l'instanciation.
 	}
 	
 	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.

@@ -61,7 +61,7 @@ CD_APPLET_ON_CLICK_BEGIN
 				//iMouseX -= myIcon->fDrawX;
 				//iMouseY -= myIcon->fDrawY;
 			}
-			g_print ("on cherche le bureau en (%d;%d)\n", iMouseX, iMouseY);
+			//g_print ("on cherche le bureau en (%d;%d)\n", iMouseX, iMouseY);
 		}
 		else
 		{

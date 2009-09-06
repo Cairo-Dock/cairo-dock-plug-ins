@@ -537,9 +537,9 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 	else
 	{
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-			dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 		dw = w * xi / (1 - 2 * xi);
+		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
 	
 	if (pDock->bDirectionUp)
@@ -1019,7 +1019,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		dw = Ws * xi;  // on neglige la pointe.
 		xa = dw;
 		ya = 0;
-		xc = Ws - 2 * dw;
+		xc = Ws - dw;
 		yc = 0;
 	}
 	else  // A et C correspondent au bas des icones extremes
