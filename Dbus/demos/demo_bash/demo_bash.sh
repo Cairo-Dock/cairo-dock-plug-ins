@@ -3,7 +3,7 @@
 ### This is a part of the external applet demo_bash.py for cairo-dock
 ### Author : Nochka85
 ### Contact : nochka85@cairo-dock.org
-### Rev : 09/09/03
+### Rev : 09/09/06
 
 APP_FOLDER=$(pwd)
 
@@ -17,7 +17,7 @@ ACTION=$1
 DROP_DATA=$2
 MENU_SELECT=$2
 SCROLL_UP=$2
-CONF_FILE="/home/$USER/.config/cairo-dock/current_theme/plug-ins/cModuleName/$APP_NAME.conf"
+CONF_FILE="/home/$USER/.config/cairo-dock/current_theme/plug-ins/$APP_NAME/$APP_NAME.conf"
 
 
 

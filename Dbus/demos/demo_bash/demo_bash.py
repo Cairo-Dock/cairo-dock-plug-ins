@@ -61,8 +61,7 @@ def init():
 	applet_iface.connect_to_signal("on_reload_module", action_on_reload)
 	applet_iface.connect_to_signal("on_build_menu", action_on_build_menu)
 	applet_iface.connect_to_signal("on_menu_select", action_on_menu_select)
-	action_on_init()
-
+	
 
 ### callbacks ###
 def action_on_click(iState):
