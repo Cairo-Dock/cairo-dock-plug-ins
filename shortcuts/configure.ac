@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_SHORTCUTSE=cd-shortcuts
-AC_DEFINE_UNQUOTED(GETTEXT_SHORTCUTS,"$GETTEXT_SHORTCUTS", [Gettext package.])
-AC_SUBST(GETTEXT_SHORTCUTS)
-
 AC_SUBST(VERSION_SHORTCUTS, "$VERSION")
 AC_SUBST(PACKAGE_SHORTCUTS, "$PACKAGE")
 
@@ -26,15 +18,12 @@ shortcutsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/shortcuts]
 AC_SUBST(shortcutsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/shortcuts.conf])
 AC_OUTPUT
