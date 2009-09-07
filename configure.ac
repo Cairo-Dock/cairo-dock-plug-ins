@@ -108,6 +108,10 @@ AC_ARG_ENABLE(musicplayer,
 	[  --enable-musicplayer : Enable musicplayer applet (default=yes) ],
 	[ with_musicplayer=${enableval} ],
 	[ with_musicplayer=yes ])
+AC_ARG_ENABLE(network-monitor,
+	[  --enable-network-monitor : Enable network-monitor applet (default=no) ],
+	[ with_network_monitor=${enableval} ],
+	[ with_network_monitor=yes ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -197,6 +201,7 @@ AM_CONDITIONAL( [WITH_EXIF], [test "$with_exif" = "yes"] )
 AM_CONDITIONAL( [WITH_KEYBOARD_INDICATOR], [test "$with_keyboard_indicator" = "yes"] )
 AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
 AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
+AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -350,7 +355,7 @@ AC_SUBST(keyboard_indicatordatadir, "${pkgdatadir}/keyboard-indicator")
 
 ############# LOGOUT #################
 LOGOUT_PACKAGE=cd-logout
-AC_SUBST(GETTEXT_LOGOUT, "$LOGOUT_PACKAGE")
+AC_SUBST(GETTEXT_LOGOUT, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_LOGOUT, "1.2.7")
 AC_SUBST(PACKAGE_LOGOUT, "$LOGOUT_PACKAGE")
@@ -377,7 +382,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 
 ############# MUSICPLAYER #################
 MUSICPLAYER_PACKAGE=cd-musicplayer
-AC_SUBST(GETTEXT_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
+AC_SUBST(GETTEXT_MUSICPLAYER, "cairo-dock-plugins")
 
 AC_SUBST(VERSION_MUSICPLAYER, "1.0.0-beta")
 AC_SUBST(PACKAGE_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")

@@ -64,6 +64,10 @@ if WITH_MUSICPLAYER
 musicplayer_dir=musicPlayer
 endif
 
+if WITH_NETWORK_MONITOR
+network_monitor_dir=Network-Monitor
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -89,6 +93,7 @@ SUBDIRS = . po\
 	motion-blur\
 	$(musicplayer_dir)\
 	netspeed\
+	$(network_monitor_dir)\
 	${powermanager_dir}\
 	quick-browser\
 	shortcuts\
