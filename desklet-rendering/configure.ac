@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_DESKLET_RENDERING=cd-desklet-rendering
-AC_DEFINE_UNQUOTED(GETTEXT_DESKLET_RENDERING,"$GETTEXT_DESKLET_RENDERING", [Gettext desklet rendering package.])
-AC_SUBST(GETTEXT_DESKLET_RENDERING)
-
 AC_SUBST(VERSION_DESKLET_RENDERING, "$VERSION")
 AC_SUBST(PACKAGE_DESKLET_RENDERING, "$PACKAGE")
 
@@ -25,14 +17,10 @@ desklet_renderingdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/desk
 AC_SUBST(desklet_renderingdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
-
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile])
 AC_OUTPUT

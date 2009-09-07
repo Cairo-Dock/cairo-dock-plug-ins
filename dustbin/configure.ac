@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL([0.35.0])
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_DUSTBIN=cd-dustbin
-AC_DEFINE_UNQUOTED(GETTEXT_DUSTBIN,"$GETTEXT_DUSTBIN", [Gettext package.])
-AC_SUBST(GETTEXT_DUSTBIN)
-
 AC_SUBST(VERSION_DUSTBIN, "$VERSION")
 AC_SUBST(PACKAGE_DUSTBIN, "$PACKAGE")
 
@@ -27,15 +19,11 @@ dustbindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/dustbin]
 AC_SUBST(dustbindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
-
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock gthread-2.0)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/dustbin.conf
 		data/themes/Makefile

@@ -10,31 +10,18 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_ICON_EFFECTS=cd-icon-effect
-AC_DEFINE_UNQUOTED(GETTEXT_ICON_EFFECTS,"$GETTEXT_ICON_EFFECTS", [Gettext package.])
-AC_SUBST(GETTEXT_ICON_EFFECTS)
-
 AC_SUBST(VERSION_ICON_EFFECTS, "$VERSION")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$PACKAGE")
-
 
 icon_effectsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/icon-effect]
 AC_SUBST(icon_effectsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
-
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 	src/Makefile
-	po/Makefile.in
 	data/Makefile
 	data/icon-effect.conf])
 AC_OUTPUT

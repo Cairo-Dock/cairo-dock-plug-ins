@@ -375,7 +375,7 @@ AC_SUBST(PACKAGE_MOTION_BLUR, "$MOTION_BLUR_PACKAGE")
 
 AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 
-############# LOGOUT #################
+############# MUSICPLAYER #################
 MUSICPLAYER_PACKAGE=cd-musicplayer
 AC_SUBST(GETTEXT_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
 
@@ -392,6 +392,15 @@ AC_SUBST(VERSION_NETSPEED, "1.2.1")
 AC_SUBST(PACKAGE_NETSPEED, "$NETSPEED_PACKAGE")
 
 AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
+
+############# NETWORK_MONITOR #################
+NETWORK_MONITOR_PACKAGE=cd-network-monitor
+AC_SUBST(GETTEXT_NETWORK_MONITOR, "cairo-dock-plugins")
+
+AC_SUBST(VERSION_NETWORK_MONITOR, "1.2.1")
+AC_SUBST(PACKAGE_NETWORK_MONITOR, "$NETWORK_MONITOR_PACKAGE")
+
+AC_SUBST(network_monitordatadir, "${pkgdatadir}/Network-Monitor")
 
 ############# POWERMANAGER #################
 POWERMANAGER_PACKAGE=cd-powermanager
@@ -714,6 +723,11 @@ AC_CONFIG_FILES([
 	netspeed/src/Makefile
 	netspeed/data/Makefile
 	netspeed/data/netspeed.conf
+	
+	Network-Monitor/Makefile
+	Network-Monitor/src/Makefile
+	Network-Monitor/data/Makefile
+	Network-Monitor/data/Network-Monitor.conf
 	
 	powermanager/Makefile
 	powermanager/src/Makefile

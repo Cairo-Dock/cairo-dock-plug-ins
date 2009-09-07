@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_CAIRO_PENGUIN=cd-Cairo-Penguin
-AC_DEFINE_UNQUOTED(GETTEXT_CAIRO_PENGUIN,"$GETTEXT_CAIRO_PENGUIN", [Gettext package.])
-AC_SUBST(GETTEXT_CAIRO_PENGUIN)
-
 AC_SUBST(VERSION_CAIRO_PENGUIN, "$VERSION")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$PACKAGE")
 
@@ -27,15 +19,12 @@ cairo_penguindatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Cairo-Pe
 AC_SUBST(cairo_penguindatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/Cairo-Penguin.conf
 		data/themes/Makefile

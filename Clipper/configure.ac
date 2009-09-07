@@ -11,13 +11,6 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL([0.35.0])
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_CLIPPER=cd-Clipper
-AC_DEFINE_UNQUOTED(GETTEXT_CLIPPER,"$GETTEXT_CLIPPER", [Gettext package.])
-AC_SUBST(GETTEXT_CLIPPER)
-
 AC_SUBST(VERSION_CLIPPER, "$VERSION")
 AC_SUBST(PACKAGE_CLIPPER, "$PACKAGE")
 
@@ -25,15 +18,11 @@ Clipperdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Clipper]
 AC_SUBST(Clipperdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
-
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/Clipper.conf])
 AC_OUTPUT

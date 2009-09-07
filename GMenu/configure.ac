@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL([0.35.0])
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_GMENU=cd-GMenu
-AC_DEFINE_UNQUOTED(GETTEXT_GMENU,"$GETTEXT_GMENU", [Gettext package.])
-AC_SUBST(GETTEXT_GMENU)
-
 AC_SUBST(VERSION_GMENU, "$VERSION")
 AC_SUBST(PACKAGE_GMENU, "$PACKAGE")
 
@@ -49,12 +41,9 @@ gmenudatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/GMenu]
 AC_SUBST(gmenudatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/GMenu.conf])
 AC_OUTPUT
