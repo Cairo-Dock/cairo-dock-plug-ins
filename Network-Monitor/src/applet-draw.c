@@ -37,7 +37,7 @@ void cd_NetworkMonitor_draw_no_wireless_extension (void) {
 		myData.iPreviousQuality = myData.iQuality;
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
+		cd_NetworkMonitor_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
 		
 		CD_APPLET_REDRAW_MY_ICON;
 	}
