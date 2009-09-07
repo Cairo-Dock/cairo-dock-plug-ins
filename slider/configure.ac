@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_SLIDER=cd-slider
-AC_DEFINE_UNQUOTED(GETTEXT_SLIDER,"$GETTEXT_SLIDER", [Gettext package.])
-AC_SUBST(GETTEXT_SLIDER)
-
 AC_SUBST(VERSION_SLIDER, "$VERSION")
 AC_SUBST(PACKAGE_SLIDER, "$PACKAGE")
 
@@ -25,8 +17,6 @@ sliderdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/slider]
 AC_SUBST(sliderdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
@@ -53,7 +43,6 @@ AM_CONDITIONAL( [WITH_EXIF], [test "$exif_detected" = "true"] )
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/slider.conf])
 AC_OUTPUT

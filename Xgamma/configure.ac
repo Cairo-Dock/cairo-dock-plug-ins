@@ -10,17 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_XGAMMA=cd-Xgamma
-AC_DEFINE_UNQUOTED(GETTEXT_XGAMMA,"$GETTEXT_XGAMMA", [Gettext package.])
-AC_SUBST(GETTEXT_XGAMMA)
-
-AC_SUBST(VERSION_XGAMMA, "$VERSION")
-AC_SUBST(PACKAGE_XGAMMA, "$PACKAGE")
-
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 PKG_CHECK_MODULES(XGAMMA_PACKAGE, x11 xxf86vm)
 
@@ -28,12 +17,9 @@ xgammadatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/Xgamma]
 AC_SUBST(xgammadatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/Xgamma.conf])
 AC_OUTPUT

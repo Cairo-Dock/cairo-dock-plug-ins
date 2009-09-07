@@ -10,14 +10,6 @@ AM_INIT_AUTOMAKE([foreign])
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-
-IT_PROG_INTLTOOL([0.35.0])
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_SHOW_DESKTOP=cd-showDesktop
-AC_DEFINE_UNQUOTED(GETTEXT_SHOW_DESKTOP,"$GETTEXT_SHOW_DESKTOP", [Gettext package.])
-AC_SUBST(GETTEXT_SHOW_DESKTOP)
-
 AC_SUBST(VERSION_SHOW_DESKTOP, "$VERSION")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$PACKAGE")
 
@@ -25,15 +17,12 @@ show_desktopdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/showDeskt
 AC_SUBST(show_desktopdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/showDesktop.conf])
 AC_OUTPUT

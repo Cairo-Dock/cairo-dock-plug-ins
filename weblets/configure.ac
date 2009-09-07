@@ -11,20 +11,10 @@ AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
 
-IT_PROG_INTLTOOL()
-AC_SUBST(ALL_LINGUAS)
-AM_GLIB_GNU_GETTEXT
-GETTEXT_WEBLETS=cd-weblets
-AC_DEFINE_UNQUOTED(GETTEXT_WEBLETS,"$GETTEXT_WEBLETS", [Gettext package.])
-AC_SUBST(GETTEXT_WEBLETS)
-
-
 webletsdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`/weblets]
 AC_SUBST(webletsdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
 AC_SUBST(libdir)
-posubdir=po
-AC_SUBST(posubdir)
 
 PKG_CHECK_MODULES(PACKAGE, cairo-dock)
 
@@ -34,7 +24,6 @@ AC_SUBST(WEBKIT_LIBS)
 
 AC_CONFIG_FILES([Makefile
 		src/Makefile
-		po/Makefile.in
 		data/Makefile
 		data/weblets.conf])
 AC_OUTPUT
