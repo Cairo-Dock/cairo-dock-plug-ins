@@ -1,16 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Cairo-Dock project
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# English (United Kingdom) translation for cairo-dock-plug-ins
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the cairo-dock-plug-ins package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"Project-Id-Version: cairo-dock-plug-ins\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-09-02 17:02+0000\n"
-"PO-Revision-Date: 2009-09-04 10:41+0000\n"
-"Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2009-08-25 20:58+0000\n"
+"Last-Translator: ppmt <philippe@ppmt.org>\n"
+"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../Animated-icons/src/applet-init.c:22
 msgid "Animated icons"
-msgstr "Анимированные значки"
+msgstr "Animated icons"
 
 #: ../Animated-icons/src/applet-init.c:25
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Это плагин предоставляет много красивых эффектов для ваших значков."
+msgstr "This plug-in provides many different animations for your icons."
 
 #: ../Cairo-Penguin/src/applet-init.c:23
 msgid ""
@@ -33,99 +33,98 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Добавьте симпатичного пингвинчика к себе на панель!\n"
-"Левый щелчок сменяет анимацию,\n"
-"Средний, чтобы побеспокоить его ^_^\n"
-"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
-"лёгкостью подключить своих."
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to annoy him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:19
 msgid "Hey, I'm here !"
-msgstr "Эй, я здесь!"
+msgstr "Hey, I'm here !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:20
 msgid "Sorry but I'm busy right now."
-msgstr "Простите, но я сейчас занят."
+msgstr "Sorry but I'm busy right now."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:21
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"У меня нет времени с тобой играть, я должен копать, чтобы добыть все эти "
-"значки."
+"I don't have time to play with you, I have to dig and mine all these icons."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:22
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "Твоя панель такая грязная! Дай я её приберу."
+msgstr "Your dock is so messy ! Let me clean it."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:23
 msgid "Admit my superiority on you as a penguin !"
-msgstr "Почувствуй моё пингвинье превосходство над тобой!"
+msgstr "Admit my superiority on you as a penguin !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:24
 msgid "Wait, do you want to kill me ?!"
-msgstr "Стой, ты что, хочешь меня убить?!"
+msgstr "Wait, do you want to kill me ?!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:25
 msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "Ты вообще представляешь, как это больно быть щелкнутым??"
+msgstr "Do you know how painful it is to be clicked on ??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:26
 msgid "It's my dock now, mwahahaha !"
-msgstr "Теперь это моя панель, муаххахаа!"
+msgstr "It's my dock now, mwahahaha !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:27
 msgid "I want to be a pirate !"
-msgstr "Я хочу быть пиратом!"
+msgstr "I want to be a pirate !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:28
 msgid "You shall not pass !"
-msgstr "Ты не пройдешь!"
+msgstr "You shall not pass !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "I'm your father !"
-msgstr "Я твой отец!"
+msgstr "I'm your father !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
-"- Что мы будем делать сегодня, Кортекc?\n"
-"- То же, что и каждую ночь, Минус. Будем пытаться смыться с панели!"
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every other nights, Minus. Try to take over the Dock !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid "For Aiur !"
-msgstr "За Aiur!"
+msgstr "For Aiur !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:111
 msgid "Hey, you there !"
-msgstr "Эй, ты там!"
+msgstr "Hey, you there !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:115
 msgid "Wake up"
-msgstr "Разбудить"
+msgstr "Wake up"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:119
 msgid "Keep quiet"
-msgstr "Усыпыть"
+msgstr "Keep quiet"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:122
 msgid "Start XPenguins"
-msgstr "Запустить XPenguins"
+msgstr "Start XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Stop XPenguins"
-msgstr "Остановить XPenguins"
+msgstr "Stop XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:146
 #: ../Cairo-Penguin/src/applet-notifications.c:148
 msgid "Zzzzz"
-msgstr "Хрхрхррр"
+msgstr "Zzzzz"
 
 #: ../Clipper/src/applet-config.c:23 ../Clipper/src/applet-notifications.c:22
 msgid "No items yet."
-msgstr "Нет элементов."
+msgstr "No items yet."
 
 #: ../Clipper/src/applet-init.c:22
 msgid ""
@@ -137,18 +136,30 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"This applet keeps a trace of the clipboard and mouse selection,\n"
+"so that you can recall them quickly. It's a clone of the well-known "
+"Klipper.\n"
+"It supports clipboard and mouse selection, predefined actions, and "
+"persistent items.\n"
+"Left-click to popup the clipboard and mouse selection history,\n"
+"Drop text on the icon to create persistent items, and middle-click to recall "
+"them."
 
 #: ../Clipper/src/applet-notifications.c:65
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
+"No persistent items.\n"
+"You can add some by drag and dropping some text on the icon."
 
 #: ../Dbus/src/applet-init.c:21
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
+"This plug-in lets external applications interact with the dock.\n"
+"The communication between both sides is based on Dbus"
 
 #: ../GMenu/src/applet-init.c:23
 msgid ""
@@ -158,30 +169,35 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"Displays the common Applications menu and the Recently used files.\n"
+"It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
+"Middle-click to open a dialog to quickly launch any command (you can set up "
+"a shortkey for it, like ALT+F2)\n"
+"You can also set up a shortkey to pop up the menu (like ALT+F1)"
 
 #: ../GMenu/src/applet-notifications.c:144
 msgid "Quick launch"
-msgstr ""
+msgstr "Quick launch"
 
 #: ../GMenu/src/applet-notifications.c:145
 msgid "Configure menu"
-msgstr ""
+msgstr "Configure menu"
 
 #: ../GMenu/src/applet-notifications.c:146
 msgid "Clear recent"
-msgstr ""
+msgstr "Clear recent"
 
 #: ../GMenu/src/applet-recent.c:44
 msgid "Recent Documents"
-msgstr "Последние документы"
+msgstr "Recent Documents"
 
 #: ../GMenu/src/applet-recent.c:96
 msgid "Clear the list of the recently used documents ?"
-msgstr "Очистить список последних документов?"
+msgstr "Clear the list of the recently used documents ?"
 
 #: ../GMenu/src/applet-run-dialog.c:337
 msgid "Enter a command to launch :"
-msgstr "Введите команду для запуска:"
+msgstr "Enter a command to launch :"
 
 #: ../Network-Monitor/src/applet-draw.c:11
 #: ../powermanager/src/powermanager-draw.c:116 ../wifi/src/applet-draw.c:12
@@ -189,65 +205,65 @@ msgstr "Введите команду для запуска:"
 #: ../compiz-icon/data/messages:89 ../dustbin/data/messages:95
 #: ../wifi/data/messages:123 ../wifi/data/messages:173
 msgid "None"
-msgstr "Нет"
+msgstr "None"
 
 #: ../Network-Monitor/src/applet-draw.c:11 ../wifi/src/applet-draw.c:12
 msgid "Very Low"
-msgstr "Очень слабый"
+msgstr "Very Low"
 
 #: ../Network-Monitor/src/applet-draw.c:11 ../wifi/src/applet-draw.c:12
 msgid "Low"
-msgstr "Слабый"
+msgstr "Low"
 
 #: ../Network-Monitor/src/applet-draw.c:11 ../wifi/src/applet-draw.c:12
 msgid "Middle"
-msgstr "Средний"
+msgstr "Middle"
 
 #: ../Network-Monitor/src/applet-draw.c:11 ../wifi/src/applet-draw.c:12
 msgid "Good"
-msgstr "Хороший"
+msgstr "Good"
 
 #: ../Network-Monitor/src/applet-draw.c:11 ../wifi/src/applet-draw.c:12
 msgid "Excellent"
-msgstr "Отличный"
+msgstr "Excellent"
 
 #: ../Network-Monitor/src/applet-draw.c:11
 msgid "Not connected"
-msgstr "Нет соединения"
+msgstr "Not connected"
 
 #: ../Network-Monitor/src/applet-draw.c:11
 msgid "Wired connection"
-msgstr "Проводное подключение"
+msgstr "Wired connection"
 
 #: ../Network-Monitor/src/applet-draw.c:122 ../wifi/src/applet-draw.c:124
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
-"Проверяется подключение...\n"
-"Попробуйте снова через несколько секунд"
+"Checking connection...\n"
+"Please retry in a few seconds"
 
 #: ../Network-Monitor/src/applet-draw.c:130
 msgid "Wired Connection."
-msgstr "Проводное подключение."
+msgstr "Wired Connection."
 
 #: ../Network-Monitor/src/applet-draw.c:132
 #: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:141
 msgid "Interface"
-msgstr "Интерфейс"
+msgstr "Interface"
 
 #: ../Network-Monitor/src/applet-draw.c:133
 #: ../Network-Monitor/src/applet-draw.c:145
 msgid "Speed"
-msgstr "Скорость"
+msgstr "Speed"
 
 #: ../Network-Monitor/src/applet-draw.c:142 ../wifi/src/applet-draw.c:137
 msgid "Wifi enabled."
-msgstr "Wifi активен."
+msgstr "Wifi enabled."
 
 #: ../Network-Monitor/src/applet-draw.c:144 ../wifi/src/applet-draw.c:139
 msgid "Network ID"
-msgstr "ID сети"
+msgstr "Network ID"
 
 #: ../Network-Monitor/src/applet-draw.c:144
 #: ../musicPlayer/src/applet-draw.c:273 ../musicPlayer/src/applet-draw.c:275
@@ -257,79 +273,81 @@ msgstr "ID сети"
 #: ../rhythmbox/src/rhythmbox-draw.c:230 ../rhythmbox/src/rhythmbox-draw.c:232
 #: ../rhythmbox/src/rhythmbox-draw.c:234
 msgid "Unknown"
-msgstr "Неизвестно"
+msgstr "Unknown"
 
 #: ../Network-Monitor/src/applet-draw.c:146 ../wifi/src/applet-draw.c:140
 msgid "Access point"
-msgstr "Точка доступа"
+msgstr "Access point"
 
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:142
 msgid "Signal Quality"
-msgstr "Качество сигнала"
+msgstr "Signal Quality"
 
 #: ../Network-Monitor/src/applet-init.c:19
 msgid "Network-Monitor"
-msgstr "Сетевой монитор"
+msgstr "Network-Monitor"
 
 #: ../Network-Monitor/src/applet-init.c:22
 msgid ""
 "This applet shows you a monitor of your active connections\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"This applet monitors your active connections\n"
+"Left-click to pop-up some info,Middle-click to re-check immediately."
 
 #: ../Network-Monitor/src/applet-notifications.c:64
 #: ../wifi/src/applet-notifications.c:56
 msgid "Check for Wireless Extension"
-msgstr ""
+msgstr "Check for Wireless Extension"
 
 #: ../Network-Monitor/src/applet-notifications.c:65
 #: ../wifi/src/applet-notifications.c:57
 msgid "Network Administration"
-msgstr "Администрирование сети"
+msgstr "Network Administration"
 
 #: ../Scooby-Do/src/applet-backend-command.c:61
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr "Значение %s  было скопировано в буфер обмена"
+msgstr "The value %s has been copied into the clipboard."
 
 #: ../Scooby-Do/src/applet-backend-command.c:88
 msgid "Execute"
-msgstr "Выполнить"
+msgstr "Execute"
 
 #: ../Scooby-Do/src/applet-backend-files.c:145
 msgid "Zip folder"
-msgstr "Zip каталог"
+msgstr "Zip folder"
 
 #: ../Scooby-Do/src/applet-backend-files.c:153
 #: ../Scooby-Do/src/applet-backend-files.c:227
 msgid "Move to"
-msgstr "Переместить в"
+msgstr "Move to"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 #: ../Scooby-Do/src/applet-backend-files.c:235
 #: ../Scooby-Do/src/applet-backend-firefox.c:100
 msgid "Copy URL"
-msgstr "Копировать URL"
+msgstr "Copy URL"
 
 #: ../Scooby-Do/src/applet-backend-files.c:203
 msgid "Open location"
-msgstr "Открыть местоположение"
+msgstr "Open location"
 
 #: ../Scooby-Do/src/applet-backend-files.c:211
 msgid "Zip file"
-msgstr "Zip файл"
+msgstr "Zip file"
 
 #: ../Scooby-Do/src/applet-backend-files.c:219
 msgid "Mail file"
-msgstr "Почтовый файл"
+msgstr "Mail file"
 
 #: ../Scooby-Do/src/applet-backend-files.c:338
 msgid "Pick up a directory"
-msgstr "Укажите каталог"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:92
 msgid "Open"
-msgstr "Открыть"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:50
 msgid "Google"
@@ -341,11 +359,11 @@ msgstr "Wikipedia"
 
 #: ../Scooby-Do/src/applet-backend-web.c:66
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr "Yahoo!"
 
 #: ../Scooby-Do/src/applet-backend-web.c:128
 msgid "Search on the web"
-msgstr "Искать в Интернете"
+msgstr "Search on the web"
 
 #: ../Scooby-Do/src/applet-init.c:27
 msgid ""
@@ -363,65 +381,78 @@ msgid ""
 "maintain CTRL, ALT or SHIFT to keep the results.\n"
 "Escape or the same shortkey to cancel."
 msgstr ""
+"A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+"- the navigation mode : use arrows to navigate into the docks and sub-"
+"docks,\n"
+"  or type the name of a launcher and press Tab to automatically jump to the "
+"next suitable launcher\n"
+"  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+"for middle click, and Ctrl+Enter for left click\n"
+"- the finder mode : type some text to launch any command, file or "
+"calculation.\n"
+"  use arrows to navigate between the results, press Enter to validate, "
+"maintain CTRL, ALT or SHIFT to keep the results.\n"
+"Escape or the same shortkey to cancel."
 
 #: ../Scooby-Do/src/applet-listing.c:498
 msgid "(F1) Match case"
-msgstr ""
+msgstr "(F1) Match case"
 
 #: ../Scooby-Do/src/applet-listing.c:505
 msgid "(F2) Music"
-msgstr ""
+msgstr "(F2) Music"
 
 #: ../Scooby-Do/src/applet-listing.c:512
 msgid "(F3) Image"
-msgstr ""
+msgstr "(F3) Image"
 
 #: ../Scooby-Do/src/applet-listing.c:519
 msgid "(F4) Video"
-msgstr ""
+msgstr "(F4) Video"
 
 #: ../Scooby-Do/src/applet-listing.c:526
 msgid "(F5) Text"
-msgstr ""
+msgstr "(F5) Text"
 
 #: ../Scooby-Do/src/applet-listing.c:533
 msgid "(F6) Html"
-msgstr ""
+msgstr "(F6) Html"
 
 #: ../Scooby-Do/src/applet-listing.c:540
 msgid "(F7) Sources"
-msgstr ""
+msgstr "(F7) Sources"
 
 #: ../Scooby-Do/src/applet-listing.c:659 ../Scooby-Do/src/applet-search.c:307
 msgid "No result"
-msgstr ""
+msgstr "No result"
 
 #: ../Scooby-Do/src/applet-listing.c:663 ../Scooby-Do/src/applet-search.c:303
 #: ../tomboy/src/tomboy-draw.c:90 ../tomboy/src/tomboy-draw.c:97
 msgid "results"
-msgstr "результаты"
+msgstr "results"
 
 #: ../Scooby-Do/src/applet-listing.c:663 ../Scooby-Do/src/applet-search.c:303
 #: ../tomboy/src/tomboy-draw.c:90 ../tomboy/src/tomboy-draw.c:97
 msgid "result"
-msgstr "результат"
+msgstr "result"
 
 #: ../Scooby-Do/src/applet-search.c:113
 msgid "Searching ..."
-msgstr "Поиск..."
+msgstr "Searching ..."
 
 #: ../Scooby-Do/src/applet-session.c:40
 msgid "Enter your search"
-msgstr "Введите запрос"
+msgstr "Enter your search"
 
 #: ../System-Monitor/src/applet-cpusage.c:37
 #: ../System-Monitor/src/applet-cpusage.c:42
 msgid "day(s)"
-msgstr "день(дней)"
+msgstr "day(s)"
 
 #: ../System-Monitor/src/applet-init.c:11
 msgid "System Monitor"
-msgstr "Системный монитор"
+msgstr "System Monitor"
 
 #: ../System-Monitor/src/applet-init.c:14
 msgid ""
@@ -432,17 +463,17 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
-"Этот апплет показывает нагрузку на CPU, использование ОЗУ, температуру видео-"
-"карты и т.д.\n"
-"Средний щелчок на значке, чтобы показать дополнительную информацию.\n"
-"Левый щелчок – получить список наиболее ресурсоёмких приложений.\n"
-"Вы можете запустить это апплет несколько раз, чтобы видеть сразу несколько "
-"значений."
+"This applet shows you the CPU load, RAM usage, graphic card temperature, "
+"etc.\n"
+"Middle click on the icon to get some valuable info.\n"
+"Left click on the icon to get a list of the most resources using programs.\n"
+"You can instantiate this applet several times to show different values each "
+"time."
 
 #: ../System-Monitor/src/applet-monitor.c:62
 #: ../netspeed/src/applet-netspeed.c:163
 msgid "Loading"
-msgstr "Загрузка"
+msgstr "Loading"
 
 #: ../System-Monitor/src/applet-notifications.c:21
 #: ../System-Monitor/src/applet-notifications.c:69
@@ -450,86 +481,84 @@ msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
 msgstr ""
-"Не удалось собрать информацию с одного или нескольких источников.\n"
-"Вам следует удалить информацию, которую не удалось получить."
+"The acquisition of one or more data has failed.\n"
+"You should remove the data that couldn't be fetched."
 
 #: ../System-Monitor/src/applet-notifications.c:26
 #: ../System-Monitor/src/applet-notifications.c:43
 #: ../System-Monitor/src/applet-top.c:268
 msgid "Mb"
-msgstr "Мб"
+msgstr "Mb"
 
 #: ../System-Monitor/src/applet-notifications.c:26
 msgid "Gb"
-msgstr "Гб"
+msgstr "Gb"
 
 #: ../System-Monitor/src/applet-notifications.c:43
 msgid "GPU model"
-msgstr "Модель CPU"
+msgstr "GPU model"
 
 #: ../System-Monitor/src/applet-notifications.c:43
 msgid "Video Ram"
-msgstr "Память видео"
+msgstr "Video Ram"
 
 #: ../System-Monitor/src/applet-notifications.c:43
 msgid "Driver Version"
-msgstr "Версия драйвера"
+msgstr "Driver Version"
 
 #: ../System-Monitor/src/applet-notifications.c:43
 msgid "Core Temperature"
-msgstr "Температура процессора"
+msgstr "Core Temperature"
 
 #: ../System-Monitor/src/applet-notifications.c:53
 msgid "CPU model"
-msgstr "Модель CPU"
+msgstr "CPU model"
 
 #: ../System-Monitor/src/applet-notifications.c:54
 msgid "Frequency"
-msgstr "Частота"
+msgstr "Frequency"
 
 #: ../System-Monitor/src/applet-notifications.c:55
 msgid "core(s)"
-msgstr "ядро(ер)"
+msgstr "core(s)"
 
 #: ../System-Monitor/src/applet-notifications.c:56
 msgid "Up time"
-msgstr "Аптайм"
+msgstr "Uptime"
 
 #: ../System-Monitor/src/applet-notifications.c:57
 msgid "Activity time"
-msgstr "Время активности"
+msgstr "Activity time"
 
 #: ../System-Monitor/src/applet-notifications.c:58
 msgid "Memory"
-msgstr "Память"
+msgstr "Memory"
 
 #: ../System-Monitor/src/applet-notifications.c:59
 msgid "Free"
-msgstr "Свободно"
+msgstr "Free"
 
 #: ../System-Monitor/src/applet-notifications.c:60
 msgid "Cached"
-msgstr "Кэш"
+msgstr "Cached"
 
 #: ../System-Monitor/src/applet-notifications.c:61
 msgid "Buffers"
-msgstr "Буферы"
+msgstr "Buffers"
 
 #: ../System-Monitor/src/applet-notifications.c:91
 #: ../netspeed/src/applet-notifications.c:52
 msgid "Monitor System"
-msgstr "Отслеживаемая система"
+msgstr "Monitor System"
 
 #: ../System-Monitor/src/applet-nvidia.c:122
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Внимание! Температура видео-карты достигла %d°C"
+msgstr "Alert ! Graphic Card core temperature has reached %d°C"
 
 #: ../Toons/src/applet-init.c:22
 msgid "This applet displays a toon that will look at your mouse."
-msgstr ""
-"Этот апплет представляет из себя мультяшные глаза, которые наблюда.т за "
-"вашим курсором."
+msgstr "This applet displays a toon that will look at your mouse."
 
 #: ../Xgamma/src/applet-init.c:33
 msgid ""
@@ -540,20 +569,20 @@ msgid ""
 "You can also define a luminosity value that will be applied automatically on "
 "startup."
 msgstr ""
-"Настраивайте яркость прямо из панели.\n"
-"Прокручивание колесом мыши изменяет яркость.\n"
-"Левый щелчок, для открытия окна настроек яркости.\n"
-"Средний, для настройки под каждый цвет.\n"
-"Вы также можете настроить яркость, которая будет выставляться при загрузке "
-"системы."
+"Setup the luminosity of your screen directly from your dock.\n"
+"Scroll up/down to increase/decrease the luminosity\n"
+"Left-click to open a dialog to setup the luminosity\n"
+"Middle-click to set it up for each color.\n"
+"You can also define a luminosity value that will be applied automatically on "
+"startup."
 
 #: ../Xgamma/src/applet-notifications.c:26 ../Xgamma/src/applet-xgamma.c:149
 msgid "Set up gamma :"
-msgstr "Настройки гаммы:"
+msgstr "Set up gamma :"
 
 #: ../Xgamma/src/applet-notifications.c:51
 msgid "Apply current luminosity on startup"
-msgstr "Применять текущую яркость при загрузке"
+msgstr "Apply current luminosity on startup"
 
 #: ../alsaMixer/src/applet-init.c:12
 msgid "AlsaMixer"
@@ -570,40 +599,39 @@ msgid ""
 "mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
-"Этот апплет позволит вам управлять звуком прямо из панели.\n"
-"Прокручивание колесом мыши изменяет громкость.\n"
-"Щелчок на значке, чтобы показать/спрятать регулятор (можно настроить "
-"клавиатурное сокращение)\n"
-"Чтобы спрятать окно, можно просто щёлкнуть по нему.\n"
-"Средний щелчок, для приглушения звука, двойной щелчок вызовет микшер "
-"каналов.\n"
-"Апплет работает через драйвер Alsa."
+"This applet lets you control the sound volume from the dock.\n"
+"Scroll up/down on the icon to increase/decrease the volume.\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
+"for it)\n"
+"You can also hide the dialog by clicking on it.\n"
+"Middle-click to mute/unmute, double-click to raise the channels mixer.\n"
+"This applet works with the Alsa sound driver."
 
 #: ../alsaMixer/src/applet-mixer.c:41
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr "Не удалось открыть карту '%s'"
+msgstr "I couldn't open card '%s'"
 
 #: ../alsaMixer/src/applet-mixer.c:46
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr "Карта '%s' открыта, но не удалось получить какую-либо информацию"
+msgstr "Card '%s' opened but I couldn't get any info"
 
 #: ../alsaMixer/src/applet-mixer.c:54
 msgid "I couldn't open the mixer"
-msgstr "Не удалось открыть микшер"
+msgstr "I couldn't open the mixer"
 
 #: ../alsaMixer/src/applet-mixer.c:61
 msgid "I couldn't attach the mixer to the card"
-msgstr "Не удалось присоединить микшер к карте"
+msgstr "I couldn't attach the mixer to the card"
 
 #: ../alsaMixer/src/applet-mixer.c:68
 msgid "I couldn't register options"
-msgstr "Не удалось зарегистрировать опцию"
+msgstr "I couldn't register options"
 
 #: ../alsaMixer/src/applet-mixer.c:76
 msgid "I couldn't load the mixer"
-msgstr "Не удалось загрузить микшер"
+msgstr "I couldn't load the mixer"
 
 #: ../alsaMixer/src/applet-mixer.c:127
 #, c-format
@@ -612,25 +640,25 @@ msgid ""
 "You should try to open the configuration panel of the applet,\n"
 " and select the proper audio channel you want to control."
 msgstr ""
-"Не удалось обнаружить канал с именем '%s'\n"
-"Попробуйте открыть панель настроек апплета\n"
-" и выбрать правильный аудио-канал для управления."
+"I couldn't find any audio channel named '%s'\n"
+"You should try to open the configuration panel of the applet,\n"
+" and select the proper audio channel you want to control."
 
 #: ../alsaMixer/src/applet-mixer.c:271
 msgid "Set up volume :"
-msgstr "Установка громкости:"
+msgstr "Set up volume :"
 
 #: ../alsaMixer/src/applet-notifications.c:44
 msgid "Adjsut channels"
-msgstr "Настройка каналов"
+msgstr "Adjust channels"
 
 #: ../clock/src/applet-config.c:434 ../weather/src/applet-config.c:223
 msgid "Search for your location :"
-msgstr "Поиск местонахождения:"
+msgstr "Search for your location :"
 
 #: ../clock/src/applet-init.c:21
 msgid "clock"
-msgstr "Часы"
+msgstr "clock"
 
 #: ../clock/src/applet-init.c:24
 msgid ""
@@ -642,22 +670,14 @@ msgid ""
 "date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
-"Этот апплет отображает время и дату на вашей панели.\n"
-"Доступно 2 вида: электронные и аналоговые, основанные на Cairo-Clock.\n"
-"Совместим с темами Cairo-Clock и, если открепить, может выглядеть не хуже "
-"самих Cairo-Clock.\n"
-"Поддерживает напоминания, имеется встроенный календарь, позволяет "
-"устанавливать время и дату.\n"
-"Левый щелчок, чтобы показать/скрыть календарь, средний — чтобы остановить "
-"сигнал напоминания."
 
 #: ../clock/src/applet-notifications.c:53
 msgid "Calendar"
-msgstr "Календарь"
+msgstr "Calendar"
 
 #: ../clock/src/applet-notifications.c:65
 msgid "Set up time and date"
-msgstr "Установить время и дату"
+msgstr "Set up time and date"
 
 #: ../compiz-icon/src/applet-init.c:25
 msgid ""
@@ -667,93 +687,94 @@ msgid ""
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
-"Этот апплет позволяет управлять Compiz и другим менеджерами окон\n"
-"В суб-панели находятся основные действия для CCSM, Emerald и Compiz.\n"
-"Вы можете назначить любое из них на средний щелчок мыши.\n"
-"В панели настроек находятся некоторые опции для запуска Compiz."
+"This applet allows you to manage compiz and other windows manager\n"
+"The sub-dock gives you to access to CCSM, Emerald and some basic Compiz "
+"actions.\n"
+"You can bind one of these actions with the middle-click.\n"
+"The configuration panel gives you some options to launch Compiz."
 
 #: ../compiz-icon/src/applet-load-icon.c:21
 msgid "Configure Compiz"
-msgstr "Настроить Compiz"
+msgstr "Configure Compiz"
 
 #: ../compiz-icon/src/applet-load-icon.c:21
 #: ../compiz-icon/src/applet-notifications.c:170
 msgid "Emerald Manager"
-msgstr "Менеджер Emerald"
+msgstr "Emerald Manager"
 
 #: ../compiz-icon/src/applet-load-icon.c:21
 msgid "Reload WM"
-msgstr "Перезапустить ОМ"
+msgstr "Reload WM"
 
 #: ../compiz-icon/src/applet-load-icon.c:21
 msgid "Exposition"
-msgstr "Экспозиция"
+msgstr "Exposition"
 
 #: ../compiz-icon/src/applet-load-icon.c:21 ../compiz-icon/data/messages:93
 msgid "Widget Layer"
-msgstr "Слой виджетов"
+msgstr "Widget Layer"
 
 #: ../compiz-icon/src/applet-notifications.c:86
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
-"Для настройки Compiz вам необходимо установить CCSM\n"
-" с помощью программу управления пакетами (Synaptic, YasT, и т.д.)"
+"To configure Compiz, you need to install CCSM\n"
+" through your package manager (Synaptic, YasT, etc)"
 
 #: ../compiz-icon/src/applet-notifications.c:171
 msgid "Reload Emerald"
-msgstr "Перезапустить Emerald"
+msgstr "Reload Emerald"
 
 #: ../compiz-icon/src/applet-notifications.c:175
 msgid "Switch Windows Manager"
-msgstr "Переключить Оконный менеджер"
+msgstr "Switch Windows Manager"
 
 #: ../compiz-icon/src/applet-notifications.c:176
 msgid "Switch Windows Decorator"
-msgstr "Переключить Оконный декоратор"
+msgstr "Switch Windows Decorator"
 
 #: ../compiz-icon/src/applet-notifications.c:185
 msgid "Toggle Exposition Mode"
-msgstr "Переключатель режима экспозиции"
+msgstr "Toggle Exposition Mode"
 
 #: ../compiz-icon/src/applet-notifications.c:186
 msgid "Toggle Widgets Layer"
-msgstr "Переключатель слоя виджетов"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:188
 msgid "Toggle Show Desktop"
-msgstr "Переключатель отображения рабочего стола"
+msgstr "Toggle Show Desktop"
 
 #: ../desklet-rendering/src/rendering-init.c:22
 msgid "desklet rendering"
-msgstr "Отрисовка десклетов"
+msgstr "desklet rendering"
 
 #: ../desklet-rendering/src/rendering-init.c:25
 msgid "This module provides different views for your desklets."
-msgstr "Этот модуль предоставляет несколько видов для ваших десклетов."
+msgstr "This module provides different views for your desklets."
 
 #: ../dialog-rendering/src/applet-init.c:21
 msgid "dialog rendering"
-msgstr "Отрисовка диалоговых окон"
+msgstr "dialog rendering"
 
 #: ../dialog-rendering/src/applet-init.c:24
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr ""
-"Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
+msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:118
 msgid ""
 "Couldn't upload the file, check that your internet connexion is active."
-msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
+msgstr ""
+"Couldn't upload the file, check that your internet connexion is active."
 
 #: ../dnd2share/src/applet-dnd2share.c:229
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
-"Файл успешно загружен.\n"
-"Нажмите CTRL+v, чтобы вставить его URL куда угодно."
+"File has been uploaded.\n"
+"Just press CTRL+v to paste its URL anywhere."
 
 #: ../dnd2share/src/applet-init.c:31
 msgid ""
@@ -768,49 +789,44 @@ msgid ""
 "account.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"Это апплет позволяет легко делиться вашими файлами:\n"
-"Перетащите файл на значок, чтобы загрузить его на один из доступных файл-"
-"хостингов.\n"
-"Имеется поддержка таких как:  DropBox, Imageshack, pastebin и т.д.\n"
-"Вы можете загружать текст, изображения, видео и файлы.\n"
-"Получившаяся ссылка автоматически попадает в буфер обмена, чтобы её можно "
-"было легко вставить.\n"
-"Апплет сохраняет историю ваших загрузок, так что в любой момент можно "
-"скачать ваши файлы без проблем.\n"
-"Для загрузки файлов вам необходимо установить 'curl' и 'wget'."
+"This applet lets you share files easily :\n"
+"Drag-and-drop a file on the icon to upload it to one of the available "
+"hosting sites.\n"
+"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+"You can upload text, image, video, and files.\n"
+"The resulting URL is automatically stored in the clipboard to be directly "
+"copied with CTRL+v.\n"
+"It can keep an history of your last uploads to retrieve them without any "
+"account.\n"
+"You'll need to install 'curl' and 'wget' to upload the data."
 
 #: ../dnd2share/src/applet-notifications.c:19
 msgid "Clear the list of the recently uploaded files ?"
-msgstr "Очистить список недавно загруженных файлов?"
+msgstr "Clear the list of the recently uploaded files ?"
 
 #: ../dnd2share/src/applet-notifications.c:35
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
-"Текст был скопирован в буфер обмена.\n"
-"Используйте CTRL+v для вставки."
+"The text has been pasted in the clipboard.\n"
+"You can retrieve it with CTRL+v."
 
 #: ../dnd2share/src/applet-notifications.c:57
 msgid "Sorry, couldn't find the orignial file nor a preview of it."
 msgstr ""
-"Извиняйте, оригинальный файл как и его предпросмотр обнаружить не удалось."
 
 #: ../dnd2share/src/applet-notifications.c:78
 msgid ""
 "The URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
-"Ссылка была сохранена в буфер обмена.\n"
-"Используйте CTRL+v для вставки."
 
 #: ../dnd2share/src/applet-notifications.c:92
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
 msgstr ""
-"Не доступен файл для загрузки\n"
-" Перетащите его на значок, чтобы загрузить"
 
 #: ../dnd2share/src/applet-notifications.c:93
 msgid ""
@@ -818,81 +834,75 @@ msgid ""
 ".Consider activating the history if you want the applet remembers previous "
 "uploads."
 msgstr ""
-"Не доступен файл для загрузки\n"
-" Активируйте историю загруженных файлов, чтобы апплет мог сохранять её."
 
 #: ../dnd2share/src/applet-notifications.c:110
 msgid ""
 "The current URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
-"Текущая ссылка была сохранена в буфере обмена.\n"
-"Используйте 'CTRL+v', чтобы вставить её куда захотите."
 
 #: ../dnd2share/src/applet-notifications.c:111
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
 msgstr ""
-"Текущая ссылка была сохранена в выборе.\n"
-"Используйте средний щелчок для вставки."
 
 #: ../dnd2share/src/applet-notifications.c:259
 msgid "Text"
-msgstr "Текст"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:259
 msgid "File"
-msgstr "Файл"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:262
 msgid "Click on the icon to copy the URL into the clipboard."
-msgstr "Щёлкните на значке, чтобы скопировать ссылку в буфер обмена."
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:277
 msgid "Clear History"
-msgstr "Очистить историю"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:339
 msgid "Open file"
-msgstr "Открыть файл"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:341
 msgid "Get text"
-msgstr "Получить текст"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:343
 msgid "Remove from history"
-msgstr "Удалить из истории"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:22
 #: ../dock-rendering/data/messages:17 ../xmms/data/messages:119
 msgid "Caroussel"
-msgstr "Карусель"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:23
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
-msgstr "3D проекция"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:24
 #: ../dock-rendering/data/messages:35
 msgid "Parabolic"
-msgstr "Парабола"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:25
 #: ../dock-rendering/data/messages:57
 msgid "Rainbow"
-msgstr "Радуга"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:27 ../shortcuts/data/messages:105
 msgid "Slide"
-msgstr "Скольжение"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:28
 #: ../dock-rendering/data/messages:121
 msgid "Curve"
-msgstr "Кривая"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:110
 msgid ""
@@ -901,38 +911,32 @@ msgid ""
 "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
 "are provided."
 msgstr ""
-"Этот апплет предоставляет различные виды для вашей панели.\n"
-"Каждая панель или суб-панель будет выглядеть так, как вы укажите.\n"
-"В текущий момент доступны виды: 3D проекция, Карусель, Парабола, Радуга, "
-"Скользящий и Кривая."
 
 #: ../drop-indicator/src/applet-init.c:18
 msgid "drop indicator"
-msgstr "Индикатор сброса"
+msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:21
 msgid ""
 "This plug-in displays an animated indicator when you drop something in the "
 "dock."
 msgstr ""
-"Этот плагин отображает анимированный индикатор, когда вы помещаете что-либо "
-"на панель."
 
 #: ../dustbin/src/applet-draw.c:144
 msgid "calculating"
-msgstr "вычисляю"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:154
 msgid " trashe(s)"
-msgstr " корзин(ы)"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:158
 msgid " file(s)"
-msgstr " файл(ов)"
+msgstr ""
 
 #: ../dustbin/src/applet-init.c:20
 msgid "dustbin"
-msgstr "Мусорная корзина"
+msgstr ""
 
 #: ../dustbin/src/applet-init.c:23
 msgid ""
@@ -942,49 +946,44 @@ msgid ""
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
-"Этот апплет управляет мусорной корзиной\n"
-"Вы можете стирать файлы и отсоединять тома, перемещая их значки на значок "
-"корзины.\n"
-"Апплет будет предупреждать вас, при превышении свободного места.\n"
-"Средний щелчок отобразит полезную информацию о корзине."
 
 #: ../dustbin/src/applet-notifications.c:31
 #: ../dustbin/src/applet-notifications.c:36
 msgid "Show Trash"
-msgstr "Показать корзину"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:32
 #: ../dustbin/src/applet-notifications.c:45
 msgid "Delete Trash"
-msgstr "Удалить корзину"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:40
 #, c-format
 msgid "Show %s"
-msgstr "Показать %s"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:43
 msgid "Show All"
-msgstr "Показать все"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:49
 #, c-format
 msgid "Delete %s"
-msgstr "Удалить %s"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:52
 msgid "Delete All"
-msgstr "Удалить все"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:67
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s отсоединён"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:71
 #, c-format
 msgid "failed to unmount %s"
-msgstr "не удалось отсоединить %s"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:369
 #, c-format
