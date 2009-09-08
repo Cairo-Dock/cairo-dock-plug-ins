@@ -30,6 +30,7 @@
 #include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-draw.h"
+#include "applet-connections.h"
 
 
 DBusGProxy *dbus_proxy_signal_Device;
