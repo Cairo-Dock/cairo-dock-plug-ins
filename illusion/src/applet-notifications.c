@@ -32,7 +32,7 @@
 
 gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
-	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))  // gere le cas ou pDock est NULL.
+	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || fabs (pIcon->fPersonnalScale) < .1)  // gere le cas ou pDock est NULL. On ne demarre pas l'animation si elle est deja sur la fin.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)

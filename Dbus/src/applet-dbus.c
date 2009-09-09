@@ -329,21 +329,13 @@ gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gcha
 	if (pIcon == NULL)
 		return FALSE;
 	
-	CairoDock *pDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-	g_return_val_if_fail (pDock != NULL, FALSE);
-	
 	if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
 	{
 		cairo_dock_destroy_dock (pIcon->pSubDock, (CAIRO_DOCK_IS_APPLI (pIcon) && pIcon->cClass != NULL ? pIcon->cClass : pIcon->acName), NULL, NULL);
 		pIcon->pSubDock = NULL;
 	}
 	
-	cairo_dock_stop_icon_animation (pIcon);
-	pIcon->fPersonnalScale = 1.0;
-	cairo_dock_notify (CAIRO_DOCK_REMOVE_ICON, pIcon, pDock);
-	cairo_dock_start_icon_animation (pIcon, pDock);
-	
-	cairo_dock_mark_theme_as_modified (TRUE);
+	cairo_dock_trigger_icon_removal_from_dock (pIcon);
 	
 	return TRUE;
 }
@@ -403,8 +395,7 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 		return FALSE;
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
-	if (pContainer == NULL)
-		return FALSE;
+	g_return_val_if_fail (pContainer != NULL, FALSE);
 	double fMaxScale = cairo_dock_get_max_scale (pContainer);
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
 	cairo_dock_set_quick_info (pCairoContext, cQuickInfo, pIcon, fMaxScale);
@@ -427,8 +418,7 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 		return FALSE;
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
-	if (pContainer == NULL)
-		return FALSE;
+	g_return_val_if_fail (pContainer != NULL, FALSE);
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
 	cairo_dock_set_icon_name (pCairoContext, cLabel, pIcon, pContainer);
 	cairo_destroy (pCairoContext);
@@ -449,9 +439,7 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 		return FALSE;
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
-	if (pContainer == NULL)
-		return FALSE;
-	
+	g_return_val_if_fail (pContainer != NULL, FALSE);
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
@@ -474,8 +462,7 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 		return FALSE;
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
-	if (pContainer == NULL)
-		return FALSE;
+	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	if (! CAIRO_DOCK_IS_DOCK (pContainer))
 		return FALSE;
