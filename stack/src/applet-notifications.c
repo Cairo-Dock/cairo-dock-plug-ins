@@ -30,11 +30,11 @@ static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
 	if (pIcon->iVolumeID == 1)
 	{
-		cairo_dock_fm_launch_uri (pIcon->acCommand);
+		cairo_dock_fm_launch_uri (pIcon->cCommand);
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon (pIcon->acCommand, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, myConfig.cTextIcon);
+		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, myConfig.cTextIcon);
 		
 		cairo_dock_stop_icon_animation (pIcon);
 	}
@@ -75,11 +75,11 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item :"), pIcon, pContainer, pIcon->acName);
+	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item :"), pIcon, pContainer, pIcon->cName);
 	if (cNewName == NULL)
 		return ;
 	
-	gchar *cDesktopFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->acDesktopFileName);
+	gchar *cDesktopFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
 	cd_stack_set_item_name (cDesktopFilePath, cNewName);
 	g_free (cDesktopFilePath);
 	
@@ -92,8 +92,8 @@ static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
-	g_print ("text : '%s'\n => has been copied into the clipboard)\n", pIcon->acCommand);
-	gtk_clipboard_set_text (pClipBoard, pIcon->acCommand, -1);
+	g_print ("text : '%s'\n => has been copied into the clipboard)\n", pIcon->cCommand);
+	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 }
 static void _cd_stack_paste_content (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
@@ -106,7 +106,7 @@ static void _cd_stack_cut_item (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
-	gtk_clipboard_set_text (pClipBoard, pIcon->acCommand, -1);
+	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 	cd_stack_remove_item (myApplet, pIcon);
 }
 static void _cd_stack_open_item (GtkMenuItem *menu_item, gpointer *data)
@@ -121,7 +121,7 @@ static void _cd_stack_open_item_folder (GtkMenuItem *menu_item, gpointer *data)
 	CairoDockModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	
-	gchar *cFolderPath = g_path_get_dirname (pIcon->acCommand);
+	gchar *cFolderPath = g_path_get_dirname (pIcon->cCommand);
 	cairo_dock_fm_launch_uri (cFolderPath);
 	g_free (cFolderPath);
 }

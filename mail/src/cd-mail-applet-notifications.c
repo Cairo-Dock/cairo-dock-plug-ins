@@ -256,7 +256,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	for (i = 0; i < myData.pMailAccounts->len; i++)
 	{
 		pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-		if (pMailAccount->name && (myData.pMailAccounts->len == 1 || strcmp (pMailAccount->name, CD_APPLET_CLICKED_ICON->acName) == 0))
+		if (pMailAccount->name && (myData.pMailAccounts->len == 1 || strcmp (pMailAccount->name, CD_APPLET_CLICKED_ICON->cName) == 0))
 			break ;
 	}
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)

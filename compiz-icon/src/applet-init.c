@@ -77,7 +77,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		//\________________ les icones ont pu changer, ainsi que l'inhibition.
 		if (myIcon->pSubDock != NULL) {
-			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName, NULL, NULL);
 			myIcon->pSubDock = NULL;
 		}
 		if (myDesklet && myDesklet->icons != NULL) {

@@ -67,7 +67,7 @@ void cd_stack_clear_stack (CairoDockModuleInstance *myApplet) {
 
 void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 {
-	gchar *cFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->acDesktopFileName);
+	gchar *cFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
 	cd_message ("removing %s...", cFilePath);
 	g_remove (cFilePath);
 	g_free (cFilePath);
@@ -172,7 +172,7 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	if (pIcon != NULL)
-		pIcon->acDesktopFileName = g_path_get_basename (sConfFilePath->str);
+		pIcon->cDesktopFileName = g_path_get_basename (sConfFilePath->str);
 	
 	g_key_file_free (pKeyFile);
 	g_string_free (sConfFilePath, TRUE);

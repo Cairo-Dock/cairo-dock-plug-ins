@@ -112,17 +112,17 @@ void dbus_detect_tomboy(void)
 static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 {
 	Icon *pIcon = g_new0 (Icon, 1);
-	pIcon->acName = getNoteTitle (cNoteURI);
+	pIcon->cName = getNoteTitle (cNoteURI);
 	pIcon->fScale = 1.;
 	pIcon->fAlpha = 1.;
 	pIcon->fWidth = 48;  /// inutile je pense ...
 	pIcon->fHeight = 48;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
-	pIcon->acCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca deviendrait un vrai lanceur.
+	pIcon->cCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca deviendrait un vrai lanceur.
 	if (myDock)
-		pIcon->cParentDockName = g_strdup (myIcon->acName);  // a priori inutile, la macro le fait ... a tester.
-	pIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
+		pIcon->cParentDockName = g_strdup (myIcon->cName);  // a priori inutile, la macro le fait ... a tester.
+	pIcon->cFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
 	if (myConfig.bDrawContent)
 	{
 		pIcon->cClass = getNoteContent (cNoteURI);
@@ -139,14 +139,14 @@ static Icon *_cd_tomboy_find_note_from_uri (const gchar *cNoteURI)
 
 static void _cd_tomboy_register_note (Icon *pIcon)
 {
-	g_return_if_fail (pIcon != NULL && pIcon->acCommand != NULL);
-	g_hash_table_insert (myData.hNoteTable, pIcon->acCommand, pIcon);
+	g_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
+	g_hash_table_insert (myData.hNoteTable, pIcon->cCommand, pIcon);
 }
 
 static void _cd_tomboy_unregister_note (Icon *pIcon)
 {
-	g_return_if_fail (pIcon != NULL && pIcon->acCommand != NULL);
-	g_hash_table_remove (myData.hNoteTable, pIcon->acCommand);
+	g_return_if_fail (pIcon != NULL && pIcon->cCommand != NULL);
+	g_hash_table_remove (myData.hNoteTable, pIcon->cCommand);
 }
 
 
@@ -219,10 +219,10 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	gchar *cTitle = getNoteTitle(note_uri);
-	if (cTitle == NULL || strcmp (cTitle, pIcon->acName) != 0)  // nouveau titre.
+	if (cTitle == NULL || strcmp (cTitle, pIcon->cName) != 0)  // nouveau titre.
 	{
-		g_free (pIcon->acName);
-		pIcon->acName = cTitle;
+		g_free (pIcon->cName);
+		pIcon->cName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
 		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &myLabels.iconTextDescription);
 		cairo_destroy (pCairoContext);
@@ -520,7 +520,7 @@ GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (_cd_tomboy_note_has_contents (icon->acCommand, cContents))
+		if (_cd_tomboy_note_has_contents (icon->cCommand, cContents))
 		{
 			pMatchList = g_list_prepend (pMatchList, icon);
 		}

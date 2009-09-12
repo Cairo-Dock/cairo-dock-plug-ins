@@ -33,7 +33,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 	CairoParticleSystem *pFireParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pFireParticleSystem != NULL, NULL);
 	pFireParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
+	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 		pFireParticleSystem->bDirectionUp = FALSE;
 	pFireParticleSystem->bAddLuminance = myConfig.bFireLuminance;
 	
@@ -52,7 +52,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 		p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
 		p->y = 0.;
 		p->z = 2 * g_random_double () - 1;
-		p->fWidth = r*(p->z + 2)/3 * .5 * pDock->fRatio;
+		p->fWidth = r*(p->z + 2)/3 * .5 * pDock->container.fRatio;
 		p->fHeight = p->fWidth;
 		
 		p->vx = 0.;

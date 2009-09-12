@@ -77,8 +77,8 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.bSetName)
 		{
 			CD_APPLET_DELETE_MY_ICONS_LIST;  // comme on va changer le nom, autant virer les icones du sous-dock des maintenant.
-			g_free (myIcon->acName);
-			myIcon->acName = NULL;
+			g_free (myIcon->cName);
+			myIcon->cName = NULL;
 		}
 		if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
 	  	{

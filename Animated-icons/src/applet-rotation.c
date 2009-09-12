@@ -242,14 +242,14 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 		glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 	}
 	
-	if (pDock->bUseReflect)
+	if (pDock->container.bUseReflect)
 	{
 		glPushMatrix ();
 		_cairo_dock_set_alpha (myIcons.fAlbedo * sqrt (myIcons.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
-		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->fRatio;
-		if (pDock->bHorizontalDock)
+		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		if (pDock->container.bIsHorizontal)
 		{
-			if (pDock->bDirectionUp)
+			if (pDock->container.bDirectionUp)
 			{
 				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (0., - fOffsetY, 0.);
@@ -258,21 +258,21 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
+				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->container.fRatio, 1.);
 			}
 			glScalef (1., -1., 1.);
 		}
 		else
 		{
-			if (pDock->bDirectionUp)
+			if (pDock->container.bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				//glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (- myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				//glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			glScalef (-1., 1., 1.);
 		}
@@ -290,7 +290,7 @@ void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimati
 	pIcon->fWidthFactor *= fWidthFactor;
 	cairo_save (pCairoContext);
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 		cairo_translate (pCairoContext,
 			pIcon->fWidth * pIcon->fScale * (1 - fWidthFactor) / 2,
 			1.);

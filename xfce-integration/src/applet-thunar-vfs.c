@@ -316,18 +316,18 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			icon->cBaseURI = thunar_vfs_path_dup_uri(pThunarVfsPath);
 			cd_debug ("mount point : %s", icon->cBaseURI);
 
-			icon->acCommand = thunar_vfs_path_dup_uri(pThunarVfsPath);
+			icon->cCommand = thunar_vfs_path_dup_uri(pThunarVfsPath);
 			icon->iVolumeID = lVolumeFakeID;
 
 			cd_message (" -> icon->cBaseURI : %s", icon->cBaseURI);
 
 			icon->iType = iNewIconsType;
 
-			icon->acName = g_strdup(thunar_vfs_volume_get_name( pThunarVfsVolume ));
-			cd_debug (" -> icon->acName : %s", icon->acName);
+			icon->cName = g_strdup(thunar_vfs_volume_get_name( pThunarVfsVolume ));
+			cd_debug (" -> icon->cName : %s", icon->cName);
 
-			icon->acFileName = g_strdup(thunar_vfs_volume_lookup_icon_name(pThunarVfsVolume, gtk_icon_theme_get_default()));
-			cd_debug (" -> icon->acFileName : %s", icon->acFileName);
+			icon->cFileName = g_strdup(thunar_vfs_volume_lookup_icon_name(pThunarVfsVolume, gtk_icon_theme_get_default()));
+			cd_debug (" -> icon->cFileName : %s", icon->cFileName);
 
 			erreur = NULL;
 		    ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarVfsPath, &erreur);
@@ -422,14 +422,14 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			if ( strcmp (thunar_vfs_mime_info_get_name(pThunarVfsInfo->mime_info), "application/x-desktop") == 0)
 			{
 				gboolean bIsDirectory = FALSE;
-				file_manager_get_file_info_from_desktop_link (icon->cBaseURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
+				file_manager_get_file_info_from_desktop_link (icon->cBaseURI, &icon->cName, &icon->cCommand, &icon->cFileName, &bIsDirectory, &icon->iVolumeID);
 				cd_message ("  bIsDirectory : %d; iVolumeID : %d", bIsDirectory, icon->iVolumeID);
 			}
 			else
 			{
-				icon->acCommand = g_strdup(icon->cBaseURI);
-				icon->acName = g_strdup (thunar_vfs_path_get_name(pThunarVfsInfo->path));
-				icon->acFileName = NULL;
+				icon->cCommand = g_strdup(icon->cBaseURI);
+				icon->cName = g_strdup (thunar_vfs_path_get_name(pThunarVfsInfo->path));
+				icon->cFileName = NULL;
 				if (strncmp (thunar_vfs_mime_info_get_name(pThunarVfsInfo->mime_info), "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
 				{
 					gchar *cHostname = NULL;
@@ -442,14 +442,14 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 					}
 					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 					{
-						icon->acFileName = g_strdup (cFilePath);
-						cairo_dock_remove_html_spaces (icon->acFileName);
+						icon->cFileName = g_strdup (cFilePath);
+						cairo_dock_remove_html_spaces (icon->cFileName);
 					}
 					g_free (cHostname);
 				}
-				if (icon->acFileName == NULL)
+				if (icon->cFileName == NULL)
 				{
-					icon->acFileName = g_strdup(thunar_vfs_mime_info_lookup_icon_name(pThunarVfsInfo->mime_info, gtk_icon_theme_get_default()));
+					icon->cFileName = g_strdup(thunar_vfs_mime_info_lookup_icon_name(pThunarVfsInfo->mime_info, gtk_icon_theme_get_default()));
 				}
 			}
 

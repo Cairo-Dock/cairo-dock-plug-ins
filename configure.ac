@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.0-alpha],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.0-rc1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -111,7 +111,7 @@ AC_ARG_ENABLE(musicplayer,
 AC_ARG_ENABLE(network-monitor,
 	[  --enable-network-monitor : Enable network-monitor applet (default=no) ],
 	[ with_network_monitor=${enableval} ],
-	[ with_network_monitor=yes ])
+	[ with_network_monitor=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -867,4 +867,5 @@ echo " * Compil Weblets applet : "${with_weblets}
 echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
 echo " * Compil Dnd2share applet : "${with_dnd2share}
 echo " * Compil MusicPlayer applet : "${with_musicplayer}
+echo " * Compil Network-Monitor applet : "${with_network_monitor}
 

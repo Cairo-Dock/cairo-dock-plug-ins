@@ -26,7 +26,7 @@
 
 void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock);
 
-void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY);
+void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY);
 
 
 void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock);

@@ -302,14 +302,14 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
 			{
 				gboolean bIsDirectory = FALSE;
-				file_manager_get_file_info_from_desktop_link (cFileURI, &icon->acName, &icon->acCommand, &icon->acFileName, &bIsDirectory, &icon->iVolumeID);
-				cd_message ("  bIsDirectory : %d; iVolumeID : %d; acFileName : %s", bIsDirectory, icon->iVolumeID, icon->acFileName);
+				file_manager_get_file_info_from_desktop_link (cFileURI, &icon->cName, &icon->cCommand, &icon->cFileName, &bIsDirectory, &icon->iVolumeID);
+				cd_message ("  bIsDirectory : %d; iVolumeID : %d; cFileName : %s", bIsDirectory, icon->iVolumeID, icon->cFileName);
 			}
 			else
 			{
-				icon->acCommand = g_strdup (cFileURI);
-				icon->acName = g_strdup (info->name);
-				icon->acFileName = NULL;
+				icon->cCommand = g_strdup (cFileURI);
+				icon->cName = g_strdup (info->name);
+				icon->cFileName = NULL;
 				if (strncmp (info->mime_type, "image", 5) == 0)  // && strncmp (cFileURI, "file://", 7) == 0
 				{
 					gchar *cHostname = NULL;
@@ -321,15 +321,15 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 					}
 					else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 					{
-						icon->acFileName = g_strdup (cFilePath);
-						cairo_dock_remove_html_spaces (icon->acFileName);
+						icon->cFileName = g_strdup (cFilePath);
+						cairo_dock_remove_html_spaces (icon->cFileName);
 					}
 					g_free (cHostname);
 					g_free (cFilePath);
 				}
-				if (icon->acFileName == NULL)
+				if (icon->cFileName == NULL)
 				{
-					icon->acFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
+					icon->cFileName = gnome_icon_lookup (gtk_icon_theme_get_default (),
 						NULL,
 						NULL, // file_uri.
 						NULL,

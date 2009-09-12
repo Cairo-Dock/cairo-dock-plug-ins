@@ -90,7 +90,7 @@ void cd_wifi_draw_icon (void) {
 		}
 	}
 	
-	if (myConfig.bESSID && myData.cESSID != NULL && cairo_dock_strings_differ (myData.cESSID, myIcon->acName))
+	if (myConfig.bESSID && myData.cESSID != NULL && cairo_dock_strings_differ (myData.cESSID, myIcon->cName))
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cESSID);
 	
 	if (bNeedRedraw)

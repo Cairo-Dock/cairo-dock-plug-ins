@@ -111,7 +111,7 @@ CD_APPLET_RESET_DATA_END
 
 void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->acName);
+	g_print ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On construit la liste des canaux a controler.
 	GList *pList = mixer_get_elements_list ();
 	

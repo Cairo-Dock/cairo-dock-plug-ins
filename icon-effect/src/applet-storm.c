@@ -37,7 +37,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 	CairoParticleSystem *pStormParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pStormParticleSystem != NULL, NULL);
 	pStormParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
+	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 		pStormParticleSystem->bDirectionUp = FALSE;
 	
 	static double epsilon = 0.1;

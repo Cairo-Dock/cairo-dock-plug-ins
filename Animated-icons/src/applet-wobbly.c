@@ -350,7 +350,7 @@ gboolean cd_animations_update_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAni
 	
 	double fDamageWidthFactor = (c == iNbIterInOneRound-1 ? 1. : pData->fWobblyWidthFactor);
 	double fDamageHeightFactor = (c == iNbIterInOneRound-1 ? 1. : pData->fWobblyHeightFactor);
-	double fMinSize = .3, fMaxSize = MIN (1.75, pDock->iCurrentHeight / pIcon->fWidth);  // au plus 1.75, soit 3/8 de l'icone qui deborde de part et d'autre de son emplacement. c'est suffisamment faible pour ne pas trop empieter sur ses voisines.
+	double fMinSize = .3, fMaxSize = MIN (1.75, pDock->container.iHeight / pIcon->fWidth);  // au plus 1.75, soit 3/8 de l'icone qui deborde de part et d'autre de son emplacement. c'est suffisamment faible pour ne pas trop empieter sur ses voisines.
 	
 	double fSizeFactor = ((c/n) & 1 ? 1. / (n - k) : 1. / (1 + k));
 	//double fSizeFactor = ((c/n) & 1 ? 1.*(k+1)/n : 1.*(n-k)/n);
@@ -418,15 +418,15 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	glEvalMesh2(GL_FILL, 0, myConfig.iNbGridNodes, 0, myConfig.iNbGridNodes);  // Pour appliquer cette grille aux evaluateurs actives.
 	glPopMatrix ();
 	
-	if (pDock->bUseReflect)
+	if (pDock->container.bUseReflect)
 	{
 		glPushMatrix ();
 		double x0, y0, x1, y1;
-		double fReflectRatio = myIcons.fReflectSize * pDock->fRatio / pIcon->fHeight / pIcon->fScale;
-		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->fRatio;
-		if (pDock->bHorizontalDock)
+		double fReflectRatio = myIcons.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		if (pDock->container.bIsHorizontal)
 		{
-			if (pDock->bDirectionUp)
+			if (pDock->container.bDirectionUp)
 			{
 				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (0., - fOffsetY, 0.);
@@ -439,7 +439,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->container.fRatio, 1.);
 				x0 = 0.;
 				y0 = fReflectRatio;
 				x1 = 1.;
@@ -448,10 +448,10 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		}
 		else
 		{
-			if (pDock->bDirectionUp)
+			if (pDock->container.bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (- myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = 1. - fReflectRatio;
 				y0 = 0.;
 				x1 = 1.;
@@ -460,7 +460,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = fReflectRatio;
 				y0 = 0.;
 				x1 = 0.;
@@ -480,7 +480,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		
 		/*glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->bHorizontalDock]);
+		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->container.bIsHorizontal]);
 		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.  // myIcons.fAlbedo * pIcon->fAlpha
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -521,7 +521,7 @@ void cd_animations_draw_wobbly_cairo (Icon *pIcon, CairoDock *pDock, CDAnimation
 	pIcon->fHeightFactor *= pData->fWobblyHeightFactor;
 	cairo_save (pCairoContext);
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 		cairo_translate (pCairoContext,
 			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2,
 			pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2);

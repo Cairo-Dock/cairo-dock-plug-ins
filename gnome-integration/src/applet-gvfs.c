@@ -443,14 +443,14 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 	if (pMount != NULL)  // ce volume est monte.
 	{
 		pNewIcon = g_new0 (Icon, 1);
-		pNewIcon->acName = g_mount_get_name (pMount);
+		pNewIcon->cName = g_mount_get_name (pMount);
 		
 		pRootDir = g_mount_get_root (pMount);
-		pNewIcon->acCommand = g_file_get_uri (pRootDir);
+		pNewIcon->cCommand = g_file_get_uri (pRootDir);
 		//g_object_unref (pRootDir);
 		
 		pIcon = g_mount_get_icon (pMount);
-		pNewIcon->acFileName = _cd_get_icon_path (pIcon);
+		pNewIcon->cFileName = _cd_get_icon_path (pIcon);
 		//g_object_unref (pIcon);
 		
 		//g_object_unref (pMount);
@@ -458,17 +458,17 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 	else  // ce volume est demonte, on le montre quand meme (l'automount peut etre off).
 	{
 		pNewIcon = g_new0 (Icon, 1);
-		pNewIcon->acName = g_volume_get_name (pVolume);
+		pNewIcon->cName = g_volume_get_name (pVolume);
 		
 		pIcon = g_volume_get_icon (pVolume);
-		pNewIcon->acFileName = _cd_get_icon_path (pIcon);
+		pNewIcon->cFileName = _cd_get_icon_path (pIcon);
 		//g_object_unref (pIcon);
 		
-		pNewIcon->acCommand = g_strdup (pNewIcon->acName);
+		pNewIcon->cCommand = g_strdup (pNewIcon->cName);
 	}
 	pNewIcon->iVolumeID = 1;
-	pNewIcon->cBaseURI = g_strdup (pNewIcon->acCommand);
-	cd_message (" => %s", pNewIcon->acCommand);
+	pNewIcon->cBaseURI = g_strdup (pNewIcon->cCommand);
+	cd_message (" => %s", pNewIcon->cCommand);
 	return pNewIcon;
 }
 
@@ -657,7 +657,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				GMount *pMount = NULL;
 				if (cTargetURI != NULL)
 				{
-					icon->acCommand = g_strdup (cTargetURI);
+					icon->cCommand = g_strdup (cTargetURI);
 					GFile *file = g_file_new_for_uri (cTargetURI);
 					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
 					//g_object_unref (file);
@@ -713,10 +713,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			else
 				cName = g_strdup (cFileName);
 			
-			if (icon->acCommand == NULL)
-				icon->acCommand = g_strdup (icon->cBaseURI);
-			icon->acName = cName;
-			icon->acFileName = NULL;
+			if (icon->cCommand == NULL)
+				icon->cCommand = g_strdup (icon->cBaseURI);
+			icon->cName = cName;
+			icon->cFileName = NULL;
 			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 			{
 				gchar *cHostname = NULL;
@@ -728,16 +728,16 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 				else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 				{
-					icon->acFileName = g_strdup (cFilePath);
-					cairo_dock_remove_html_spaces (icon->acFileName);
+					icon->cFileName = g_strdup (cFilePath);
+					cairo_dock_remove_html_spaces (icon->cFileName);
 				}
 				g_free (cHostname);
 				g_free (cFilePath);
 			}
-			if (icon->acFileName == NULL)
+			if (icon->cFileName == NULL)
 			{
-				icon->acFileName = _cd_get_icon_path (pFileIcon);
-				cd_message ("icon->acFileName : %s", icon->acFileName);
+				icon->cFileName = _cd_get_icon_path (pFileIcon);
+				cd_message ("icon->cFileName : %s", icon->cFileName);
 			}
 			
 			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
@@ -765,17 +765,17 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		icon = g_new0 (Icon, 1);
 		icon->iType = iNewIconsType;
 		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
-		icon->acCommand = g_strdup ("/home");
-		//icon->acCommand = g_strdup (icon->cBaseURI);
+		icon->cCommand = g_strdup ("/home");
+		//icon->cCommand = g_strdup (icon->cBaseURI);
 		icon->iVolumeID = 0;
-		icon->acName = g_strdup ("home");
+		icon->cName = g_strdup ("home");
 		Icon *pRootIcon = cairo_dock_get_icon_with_name (pIconList, "/");
 		if (pRootIcon == NULL)
 		{
 			pRootIcon = cairo_dock_get_first_icon (pIconList);
-			g_print ("domage ! (%s:%s)\n", pRootIcon->acCommand, pRootIcon->acName);
+			g_print ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
 		}
-		icon->acFileName = g_strdup (pRootIcon->acFileName);
+		icon->cFileName = g_strdup (pRootIcon->cFileName);
 		icon->fOrder = iOrder++;
 		pIconList = g_list_insert_sorted (pIconList,
 			icon,

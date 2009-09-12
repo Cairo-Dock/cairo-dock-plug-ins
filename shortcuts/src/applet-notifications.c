@@ -64,15 +64,15 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	CairoDockModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	CairoContainer *pContainer = data[2];
-	g_print ("%s (%s)\n", __func__, pIcon->acCommand);
+	g_print ("%s (%s)\n", __func__, pIcon->cCommand);
 	
 	CDDiskUsage diskUsage;
-	cd_shortcuts_get_fs_stat (pIcon->acCommand, &diskUsage);
+	cd_shortcuts_get_fs_stat (pIcon->cCommand, &diskUsage);
 	gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
 	gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
 	GString *sInfo = g_string_new ("");
-	g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->acName, cCapacity, cFreeSpace);
-	cd_shortcuts_get_fs_info (pIcon->acCommand, sInfo);
+	g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->cName, cCapacity, cFreeSpace);
+	cd_shortcuts_get_fs_info (pIcon->cCommand, sInfo);
 	
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, pIcon, pContainer, 15000, "same icon");
 	g_string_free (sInfo, TRUE);
@@ -88,11 +88,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 10)
 	{
-		//cd_message (" menu sur %s(%s)", CD_APPLET_CLICKED_ICON->acName, CD_APPLET_CLICKED_ICON->cBaseURI);
+		//cd_message (" menu sur %s(%s)", CD_APPLET_CLICKED_ICON->cName, CD_APPLET_CLICKED_ICON->cBaseURI);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 6 && CD_APPLET_CLICKED_ICON->acCommand != NULL)
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 6 && CD_APPLET_CLICKED_ICON->cCommand != NULL)
 	{
 		if (data == NULL)
 			data = g_new (gpointer, 3);

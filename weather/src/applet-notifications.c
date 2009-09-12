@@ -32,7 +32,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL)  // on a clique sur une icone du sous-dock.
 		{
-			cd_debug (" clic sur %s", pClickedIcon->acName);
+			cd_debug (" clic sur %s", pClickedIcon->cName);
 			cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
 		}
 	}
@@ -139,7 +139,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 			myIcon,
 			myContainer,
 			3000,
-			myIcon->acFileName);
+			myIcon->cFileName);
 		_cd_weather_reload (NULL, myApplet);
 		
 		return NULL;
@@ -147,7 +147,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	
 	CurrentContitions *cc = &myData.currentConditions;
 	cairo_dock_show_temporary_dialog_with_icon ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
-		myIcon, myContainer, myConfig.cDialogDuration, myIcon->acFileName,
+		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
 		D_("Temperature"), _display (cc->cTemp), myData.units.cTemp, D_("feeled"), _display (cc->cFeeledTemp), myData.units.cTemp,
 		D_("Wind"), _display (cc->cWindSpeed), myData.units.cSpeed, _display (cc->cWindDirection),

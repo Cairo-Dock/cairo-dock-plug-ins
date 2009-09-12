@@ -33,7 +33,7 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 	CairoParticleSystem *pSnowParticleSystem = cairo_dock_create_particle_system (myConfig.iNbSnowParticles, myData.iSnowTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pSnowParticleSystem != NULL, NULL);
 	pSnowParticleSystem->dt = dt;
-	if (myConfig.bRotateEffects && ! pDock->bDirectionUp && pDock->bHorizontalDock)
+	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 		pSnowParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fSnowParticleSpeed;

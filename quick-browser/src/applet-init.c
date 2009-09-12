@@ -45,7 +45,7 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
-	if (myIcon->acName == NULL)
+	if (myIcon->cName == NULL)
 	{
 		gchar *cDirName = g_path_get_basename (myConfig.cDirPath);
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cDirName);
@@ -80,7 +80,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		if (myIcon->acName == NULL)
+		if (myIcon->cName == NULL)
 		{
 			gchar *cDirName = g_path_get_basename (myConfig.cDirPath);
 			CD_APPLET_SET_NAME_FOR_MY_ICON (cDirName);

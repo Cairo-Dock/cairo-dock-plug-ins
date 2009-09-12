@@ -140,9 +140,9 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	
 	double fVanishingDistanceLeft, fVanishingDistanceRight;
 	double fDeltaInterIconLeft, fDeltaInterIconRight;
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
-		hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+		hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 		fVanishingDistanceLeft = iVanishingPointY + pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale;
 		fVanishingDistanceRight = iVanishingPointY + pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale;
 		
@@ -152,35 +152,35 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	else
 	{
 		hi = icon->fDrawY;
-		fVanishingDistanceLeft = iVanishingPointY + pDock->iCurrentHeight - pPrevIcon->fDrawY;
-		fVanishingDistanceRight = iVanishingPointY + pDock->iCurrentHeight - pNextIcon->fDrawY;
+		fVanishingDistanceLeft = iVanishingPointY + pDock->container.iHeight - pPrevIcon->fDrawY;
+		fVanishingDistanceRight = iVanishingPointY + pDock->container.iHeight - pNextIcon->fDrawY;
 		
 		fDeltaInterIconLeft = (pPrevIcon->fDrawY) - (icon->fDrawY);
 		fDeltaInterIconRight = (icon->fDrawY) - (pNextIcon->fDrawY);
 	}
-	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / fVanishingDistanceLeft;
-	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / fVanishingDistanceRight;
+	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / fVanishingDistanceLeft;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / fVanishingDistanceRight;
 	
 	if (bBackGround || ! bIncludeEdges)  // pour s'arreter sur la courbe, on realise un clippage.
 	{
 		//\________________ On se ramene au cas du dessin optimise.
 		double x0, y0, xf, yf, w0, h0;
-		if (pDock->bDirectionUp)
+		if (pDock->container.bDirectionUp)
 		{
 			x0 = icon->fDrawX - MAX (0, fLeftInclination * (pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale));
 			xf = icon->fDrawX + icon->fWidth * icon->fScale - MIN (0, fRightInclination * (pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale));
 		}
 		else
 		{
-			x0 = icon->fDrawX - MAX (0, fLeftInclination * (pDock->iCurrentHeight - (pPrevIcon->fDrawY)));
-			xf = icon->fDrawX + icon->fWidth * icon->fScale - MIN (0, fRightInclination * (pDock->iCurrentHeight - (pNextIcon->fDrawY)));
+			x0 = icon->fDrawX - MAX (0, fLeftInclination * (pDock->container.iHeight - (pPrevIcon->fDrawY)));
+			xf = icon->fDrawX + icon->fWidth * icon->fScale - MIN (0, fRightInclination * (pDock->container.iHeight - (pNextIcon->fDrawY)));
 		}
 		if (! bIncludeEdges)  // on prolonge jusqu'en bas.
 		{
-			if (pDock->bDirectionUp)
+			if (pDock->container.bDirectionUp)
 			{
-				x0 += MIN (0, fLeftInclination * (pDock->iCurrentHeight - icon->fDrawY - icon->fHeight * icon->fScale));
-				xf += MAX (0, fRightInclination * (pDock->iCurrentHeight - icon->fDrawY - icon->fHeight * icon->fScale));
+				x0 += MIN (0, fLeftInclination * (pDock->container.iHeight - icon->fDrawY - icon->fHeight * icon->fScale));
+				xf += MAX (0, fRightInclination * (pDock->container.iHeight - icon->fDrawY - icon->fHeight * icon->fScale));
 			}
 			else
 			{
@@ -196,10 +196,10 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		
 		int sens;
 		double fDockOffsetY;  // Offset du coin haut gauche du cadre.
-		if (pDock->bDirectionUp)
+		if (pDock->container.bDirectionUp)
 		{
 			sens = 1;
-			fDockOffsetY = pDock->iCurrentHeight - .5 * fLineWidth;
+			fDockOffsetY = pDock->container.iHeight - .5 * fLineWidth;
 		}
 		else
 		{
@@ -248,7 +248,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 			double tan_theta = MAX (fabs (pMidPointCoord[1] - pMidPointCoord[3]) / (pMidPointCoord[2] - pMidPointCoord[0]), fabs (pMidPointCoord[2*iNbMidPoints+1] - pMidPointCoord[2*iNbMidPoints+3]) / (pMidPointCoord[2*iNbMidPoints+2] - pMidPointCoord[2*iNbMidPoints]));
 			fDeltaLineWidth = (fLineWidth / 2 + .1) * sqrt (1. + tan_theta*tan_theta);
 		}
-		if (pDock->bHorizontalDock)
+		if (pDock->container.bIsHorizontal)
 		{
 			cairo_move_to (pCairoContext, x0, fDockOffsetY - sens * (y * h + fDeltaLineWidth));
 			for (i = 0; i < iNbMidPoints+1; i ++)
@@ -291,13 +291,13 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
 		if (bIncludeEdges)
-			fDockOffsetY = pDock->iCurrentHeight - fHeight - (bBackGround ? myBackground.iDockLineWidth + hi : 0);
+			fDockOffsetY = pDock->container.iHeight - fHeight - (bBackGround ? myBackground.iDockLineWidth + hi : 0);
 		else
-			fDockOffsetY = pDock->iCurrentHeight - fHeight - myBackground.iDockLineWidth;
+			fDockOffsetY = pDock->container.iHeight - fHeight - myBackground.iDockLineWidth;
 	}
 	else
 	{
@@ -311,10 +311,10 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	if (bIncludeEdges)
 		fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
 	else
-		fDockOffsetX = (pDock->bDirectionUp ? icon->fDrawX - (fHeight - hi) * fLeftInclination : icon->fDrawX - (fHeight - hi) * fLeftInclination);
+		fDockOffsetX = (pDock->container.bDirectionUp ? icon->fDrawX - (fHeight - hi) * fLeftInclination : icon->fDrawX - (fHeight - hi) * fLeftInclination);
 	fDockOffsetX -= fDeltaInterIconLeft * fLeftInclination*sens;
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 	{
 		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut gauche.
 		cairo_move_to (pCairoContext, 0, 0);  // coin haut gauche.
@@ -326,7 +326,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		
 		if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
-			if (! pDock->bDirectionUp)
+			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
 			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
 		}
@@ -343,7 +343,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		
 		if (my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		{
-			if (! pDock->bDirectionUp)
+			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
 			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));
 		}
@@ -360,20 +360,20 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 		pNextIcon = icon;
 	
 	double hi, fVanishingDistanceLeft, fVanishingDistanceRight;
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
-		hi = pDock->iCurrentHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+		hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 		fVanishingDistanceLeft = iVanishingPointY + pPrevIcon->fDrawY + pPrevIcon->fHeight * pPrevIcon->fScale;
 		fVanishingDistanceRight = iVanishingPointY + pNextIcon->fDrawY + pNextIcon->fHeight * pNextIcon->fScale;
 	}
 	else
 	{
 		hi = icon->fDrawY;
-		fVanishingDistanceLeft = iVanishingPointY + pDock->iCurrentHeight - pPrevIcon->fDrawY;
-		fVanishingDistanceRight = iVanishingPointY + pDock->iCurrentHeight - pNextIcon->fDrawY;
+		fVanishingDistanceLeft = iVanishingPointY + pDock->container.iHeight - pPrevIcon->fDrawY;
+		fVanishingDistanceRight = iVanishingPointY + pDock->container.iHeight - pNextIcon->fDrawY;
 	}
-	double fLeftInclination = (icon->fDrawX - pDock->iCurrentWidth / 2) / fVanishingDistanceLeft;
-	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / fVanishingDistanceRight;
+	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / fVanishingDistanceLeft;
+	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / fVanishingDistanceRight;
 	
 	
 	double fHeight, fBigWidth, fLittleWidth;
@@ -387,7 +387,7 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
 		fDockOffsetY =  (bBackGround ? 0.5*myBackground.iDockLineWidth : - 1.*myBackground.iDockLineWidth);
@@ -400,7 +400,7 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 	fDockOffsetX = (bBackGround ? .5*myBackground.iDockLineWidth * fLeftInclination + 1.*fLeftInclination : - 0.5 * myBackground.iDockLineWidth * fLeftInclination);
 	//fDockOffsetX = -.5*myBackground.iDockLineWidth;
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 	{
 		cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);  // coin haut droit.
 		
@@ -532,7 +532,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		dx = 0;
-		double Ws = pDock->iCurrentWidth;
+		double Ws = pDock->container.iWidth;
 		dw = (Ws - w) / 2;
 	}
 	else
@@ -542,10 +542,10 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
 	
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
-		dy = pDock->iCurrentHeight - .5 * fLineWidth;
+		dy = pDock->container.iHeight - .5 * fLineWidth;
 	}
 	else
 	{
@@ -556,10 +556,10 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	//\____________________ On trace le cadre.
 	cairo_save (pCairoContext);
 	
-	cairo_dock_draw_curved_frame (pCairoContext, w + 2 * dw, h, dx, dy, pDock->bHorizontalDock, sens);
+	cairo_dock_draw_curved_frame (pCairoContext, w + 2 * dw, h, dx, dy, pDock->container.bIsHorizontal, sens);
 	
 	//\____________________ On dessine les decorations dedans.
-	dy = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	dy = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
 	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, dy, dx, w + 2 * dw);
 	
 	//\____________________ On dessine le cadre.
@@ -593,10 +593,10 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
-				cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+				cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
 				cairo_restore (pCairoContext);
 			}
 			
@@ -607,7 +607,7 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
 				cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
@@ -623,10 +623,10 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 			{
 				icon = ic->data;
 				
-				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
 					cairo_save (pCairoContext);
-					cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+					cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
 					cairo_restore (pCairoContext);
 				}
 				
@@ -654,8 +654,8 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
 	double hi = .5 * pDock->iMaxIconHeight + myBackground.iFrameMargin - 1;
-	double fLeftInclination = fabs (icon->fDrawX - pDock->iCurrentWidth / 2) / iVanishingPointY;
-	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->iCurrentWidth / 2) / iVanishingPointY;
+	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
+	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
 	double fHeight, fBigWidth, fLittleWidth;
 	if (bIncludeEdges)
@@ -677,13 +677,13 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 	
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
 		if (bIncludeEdges)
-			fDockOffsetY =  pDock->iCurrentHeight - fHeight - (bBackGround ? myBackground.iDockLineWidth + hi : 0);
+			fDockOffsetY =  pDock->container.iHeight - fHeight - (bBackGround ? myBackground.iDockLineWidth + hi : 0);
 		else
-			fDockOffsetY =  pDock->iCurrentHeight - fHeight;
+			fDockOffsetY =  pDock->container.iHeight - fHeight;
 	}
 	else
 	{
@@ -699,7 +699,7 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 		else
 			fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
 	double fXLeft, fXRight;
-	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->iCurrentWidth / 2)  // on est a droite.
+	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->container.iWidth / 2)  // on est a droite.
 	{
 		if (bIncludeEdges)
 		{
@@ -758,7 +758,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	if (cairo_dock_is_extended_dock (pDock))
 	{
 		dx = 0;
-		double Ws = pDock->iCurrentWidth;
+		double Ws = pDock->container.iWidth;
 		dw = (Ws - w) / 2;
 	}
 	else
@@ -768,10 +768,10 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - dw : fLineWidth / 2);  // la gauche du cadre suit la 1ere icone.
 	}
 	
-	if (pDock->bDirectionUp)
+	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
-		dy = pDock->iCurrentHeight - .5 * fLineWidth;
+		dy = pDock->container.iHeight - .5 * fLineWidth;
 	}
 	else
 	{
@@ -780,7 +780,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	}
 	
 	int x0, y0, w0, h0;
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 	{
 		x0 = pArea->x;
 		y0 = pArea->y;
@@ -817,7 +817,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	}
 	
 	cairo_save (pCairoContext);
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 	{
 		cairo_move_to (pCairoContext, pArea->x, dy - sens * y * h);
 		for (i = 0; i < iNbMidPoints+1; i ++)
@@ -836,7 +836,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_rel_line_to (pCairoContext, - sens * y * h, 0);
 	}
 	//\____________________ On dessine les decorations dedans.
-	dy = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	dy = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
 	cairo_dock_render_decorations_in_frame (pCairoContext, pDock, dy, dx, w + 2 * dw);
 	
 	//\____________________ On dessine le cadre.
@@ -846,9 +846,9 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_set_line_width (pCairoContext, fLineWidth);
 		cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
 		
-		dy = (pDock->bDirectionUp ? pDock->iCurrentHeight - .5 * fLineWidth : .5 * fLineWidth);
+		dy = (pDock->container.bDirectionUp ? pDock->container.iHeight - .5 * fLineWidth : .5 * fLineWidth);
 		
-		if (pDock->bHorizontalDock)
+		if (pDock->container.bIsHorizontal)
 		{
 			cairo_move_to (pCairoContext, pArea->x, dy - sens * y * h);
 			for (i = 0; i < iNbMidPoints+1; i ++)
@@ -893,7 +893,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement != NULL)
 	{
-		double fXMin = (pDock->bHorizontalDock ? pArea->x : pArea->y), fXMax = (pDock->bHorizontalDock ? pArea->x + pArea->width : pArea->y + pArea->height);
+		double fXMin = (pDock->container.bIsHorizontal ? pArea->x : pArea->y), fXMax = (pDock->container.bIsHorizontal ? pArea->x + pArea->width : pArea->y + pArea->height);
 		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 		double fXLeft, fXRight;
 		Icon *icon;
@@ -906,12 +906,12 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 			{
 				icon = ic->data;
 				
-				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL)
+				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 				{
 					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
 					{
 						cairo_save (pCairoContext);
-						cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, TRUE);
+						cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
 						cairo_restore (pCairoContext);
 					}
 				}
@@ -922,14 +922,14 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 			do
 			{
 				icon = ic->data;
-				if (! CAIRO_DOCK_IS_SEPARATOR (icon) || icon->acFileName != NULL)
+				if (! CAIRO_DOCK_IS_SEPARATOR (icon) || icon->cFileName != NULL)
 				{
 					fXLeft = icon->fDrawX + icon->fScale + 1;
 					fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
 					
 					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 					{
-						if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+						if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 							icon->fAlpha = 1;
 						else
 							icon->fAlpha = .25;
@@ -950,12 +950,12 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 				{
 					icon = ic->data;
 					
-					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->acFileName == NULL)
+					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 					{
 						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_curve_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
 						{
 							cairo_save (pCairoContext);
-							cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->bHorizontalDock, FALSE);
+							cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
 							cairo_restore (pCairoContext);
 						}
 					}
@@ -974,7 +974,7 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 				
 				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 				{
-					if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+					if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 						icon->fAlpha = 1;
 					else
 						icon->fAlpha = .25;
@@ -1001,7 +1001,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	if(pDock->icons  == NULL)
 		return NULL;
-	gint sens = pDock->bDirectionUp ? 1 : -1;
+	gint sens = pDock->container.bDirectionUp ? 1 : -1;
 	double fReflectionOffsetY = - sens * myIcons.fReflectSize;
 	// On va calculer une parabole pour approcher la courbe de bézier : 
 	// Soient A: (xa,ya) B: (xb,yb) C: (xc,yc) trois points qui appartiennent à la parabole. xa, xb et xc sont distincts.
@@ -1015,7 +1015,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock))  // A et C correspondent aux extremites du cadre
 	{
 		_define_parameters (h, hi, ti, xi, w, dw);
-		double Ws = pDock->iCurrentWidth;  // = w + 2*dw = dw / xi * (1 - 2 * xi) + 2*dw = dw / xi
+		double Ws = pDock->container.iWidth;  // = w + 2*dw = dw / xi * (1 - 2 * xi) + 2*dw = dw / xi
 		dw = Ws * xi;  // on neglige la pointe.
 		xa = dw;
 		ya = 0;
@@ -1061,11 +1061,11 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		icon->fHeightFactor = 1.;
 		///icon->fDeltaYReflection = 0.;
 		icon->fOrientation = 0.;
-		if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->iCurrentWidth)
+		if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 			icon->fAlpha = 1;
 		else
 			icon->fAlpha = .25;
-		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->iCurrentWidth, icon->fAlpha);
+		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->container.iWidth, icon->fAlpha);
 	}
 	
 	cairo_dock_check_can_drop_linear (pDock);
@@ -1123,7 +1123,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		dx = 0;
-		double Ws = pDock->iCurrentWidth;
+		double Ws = pDock->container.iWidth;
 		dw = (Ws - w) / 2;
 	}
 	else
@@ -1131,11 +1131,11 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
-	if (! pDock->bHorizontalDock)
-		dx = pDock->iCurrentWidth - dx + 0;
+	if (! pDock->container.bIsHorizontal)
+		dx = pDock->container.iWidth - dx + 0;
 	
-	if ((pDock->bHorizontalDock && ! pDock->bDirectionUp) || (! pDock->bHorizontalDock && pDock->bDirectionUp))
-		dy = pDock->iCurrentHeight - .5 * fLineWidth;
+	if ((pDock->container.bIsHorizontal && ! pDock->container.bDirectionUp) || (! pDock->container.bIsHorizontal && pDock->container.bDirectionUp))
+		dy = pDock->container.iHeight - .5 * fLineWidth;
 	else
 		dy = pDock->iDecorationsHeight + 1.5 * fLineWidth;
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
@@ -1158,7 +1158,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		w + 2 * dw, fFrameHeight + fLineWidth + fEpsilon,
 		dx, dy + (fLineWidth+fEpsilon)/2,
 		pVertexTab, iNbVertex,
-		pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);  // le cadre est trace au milieu de la ligne, donc on augmente de l la hauteur (et donc de l/2 pixels la hauteur du cadre, car [-.5, .5]), et pour compenser on se translate de l/2.
+		pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);  // le cadre est trace au milieu de la ligne, donc on augmente de l la hauteur (et donc de l/2 pixels la hauteur du cadre, car [-.5, .5]), et pour compenser on se translate de l/2.
 	glPopMatrix ();
 	
 	glColorMask (TRUE, TRUE, TRUE, TRUE);
@@ -1172,7 +1172,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		w + 2 * dw, fFrameHeight,
 		dx, dy,
 		pVertexTab, iNbVertex,
-		pDock->bHorizontalDock, pDock->bDirectionUp, pDock->fDecorationsOffsetX);
+		pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)
@@ -1199,7 +1199,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				glEnable (GL_STENCIL_TEST);
 				glStencilFunc (GL_EQUAL, 1, 1);
@@ -1222,7 +1222,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->acFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
 				cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
@@ -1238,7 +1238,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 			{
 				icon = ic->data;
 				
-				if (icon->acFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 				{
 					glEnable (GL_STENCIL_TEST);
 					glStencilFunc (GL_EQUAL, 1, 1);
@@ -1276,7 +1276,7 @@ void cd_rendering_register_curve_renderer (const gchar *cRendererName)
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-curve-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-curve.jpg", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_curve;
+	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_curve;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_curve;
 	pRenderer->render = cd_rendering_render_curve;
 	pRenderer->render_optimized = cd_rendering_render_optimized_curve;

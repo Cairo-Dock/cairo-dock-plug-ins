@@ -23,7 +23,7 @@
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
-#define CD_DOCK_IN_MOVMENT(pDock) ((myConfig.bAlways && pDock->iSidGLAnimation) || pDock->bIsShrinkingDown || pDock->bIsGrowingUp)
+#define CD_DOCK_IN_MOVMENT(pDock) ((myConfig.bAlways && cairo_dock_container_is_animating (CAIRO_CONTAINER(pDock))) || pDock->bIsShrinkingDown || pDock->bIsGrowingUp)
 
 
 gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)

@@ -29,12 +29,12 @@ char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("
 	if (myData.days[i].cName != NULL)\
 	{\
 		pIcon = g_new0 (Icon, 1);\
-		pIcon->acName = g_strdup_printf ("%s", myData.days[i].cName);\
-		pIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
-		if (! g_file_test (pIcon->acFileName, G_FILE_TEST_EXISTS))\
+		pIcon->cName = g_strdup_printf ("%s", myData.days[i].cName);\
+		pIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
-			g_free (pIcon->acFileName);\
-			pIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+			g_free (pIcon->cFileName);\
+			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
 		}\
 		if (myConfig.bDisplayTemperature)\
 			pIcon->cQuickInfo = g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax));\
@@ -43,8 +43,8 @@ char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("
 		pIcon->fAlpha = 1.;\
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
-		pIcon->acCommand = g_strdup ("none");\
-		cd_debug (" + %s (%s , %s)", pIcon->acName, myData.days[i].part[j].cWeatherDescription, pIcon->acFileName);\
+		pIcon->cCommand = g_strdup ("none");\
+		cd_debug (" + %s (%s , %s)", pIcon->cName, myData.days[i].part[j].cWeatherDescription, pIcon->cFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
@@ -83,31 +83,31 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		}
 		
-		g_free (myIcon->acFileName);
+		g_free (myIcon->cFileName);
 		if (myData.bErrorRetrievingData)
 		{
-			myIcon->acFileName = g_strdup_printf ("%s/na.png", myConfig.cThemePath);
-			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+			myIcon->cFileName = g_strdup_printf ("%s/na.png", myConfig.cThemePath);
+			if (! g_file_test (myIcon->cFileName, G_FILE_TEST_EXISTS))
 			{
-				g_free (myIcon->acFileName);
-				myIcon->acFileName = g_strdup_printf ("%s/na.svg", myConfig.cThemePath);
-				if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+				g_free (myIcon->cFileName);
+				myIcon->cFileName = g_strdup_printf ("%s/na.svg", myConfig.cThemePath);
+				if (! g_file_test (myIcon->cFileName, G_FILE_TEST_EXISTS))
 				{
-					g_free (myIcon->acFileName);
-					myIcon->acFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/broken.png");
+					g_free (myIcon->cFileName);
+					myIcon->cFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/broken.png");
 				}
 			}
 		}
 		else
 		{
-			myIcon->acFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
-			if (! g_file_test (myIcon->acFileName, G_FILE_TEST_EXISTS))
+			myIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			if (! g_file_test (myIcon->cFileName, G_FILE_TEST_EXISTS))
 			{
-				g_free (myIcon->acFileName);
-				myIcon->acFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+				g_free (myIcon->cFileName);
+				myIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
 			}
 		}
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->acFileName);
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->cFileName);
 	}
 	else
 	{
@@ -138,7 +138,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	
 	//\_______________________ On etablit le nom de l'icone.
-	if (myIcon->acName == NULL && myDock)
+	if (myIcon->cName == NULL && myDock)
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
 	}

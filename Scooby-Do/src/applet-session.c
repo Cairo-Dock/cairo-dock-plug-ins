@@ -157,7 +157,7 @@ void cd_do_exit_session (void)
 		for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->acDesktopFileName && strncmp (pIcon->acDesktopFileName, "/usr", 4) == 0 && pIcon->pIconBuffer != NULL)
+			if (pIcon->cDesktopFileName && strncmp (pIcon->cDesktopFileName, "/usr", 4) == 0 && pIcon->pIconBuffer != NULL)
 			{
 				cairo_surface_destroy (pIcon->pIconBuffer);
 				pIcon->pIconBuffer = NULL;
@@ -220,7 +220,7 @@ void cd_do_load_pending_caracters (void)
 		pChar = g_new0 (CDChar, 1);
 		pChar->c = c[0];
 		pChar->iInitialX = myData.iTextWidth/2 + iOffsetX;  // il part du coin haut droit.
-		pChar->iInitialY = g_pMainDock->iCurrentHeight/2;  // en bas.
+		pChar->iInitialY = g_pMainDock->iHeight/2;  // en bas.
 		pChar->iCurrentX = pChar->iInitialX;
 		pChar->iCurrentY = pChar->iInitialY;
 		pChar->fRotationAngle = 10. * myConfig.iAppearanceDuration / iDeltaT;
@@ -229,7 +229,7 @@ void cd_do_load_pending_caracters (void)
 		
 		// on cree la surface.
 		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, &pChar->iWidth, &pChar->iHeight);
-		if (g_pMainDock->bHorizontalDock)
+		if (g_pMainDock->bIsHorizontal)
 		{
 			myData.iTextWidth += pChar->iWidth;
 			iOffsetX += pChar->iWidth;

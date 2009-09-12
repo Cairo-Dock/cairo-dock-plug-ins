@@ -87,10 +87,10 @@ CD_APPLET_RELOAD_BEGIN
 		if (pAnimation != NULL)
 		{
 			GdkRectangle area;
-			area.x = (myDock->iCurrentWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX;
-			area.y = myDock->iCurrentHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
+			area.x = (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX;
+			area.y = myDock->container.iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
 			area.width = pAnimation->iFrameWidth;
-			area.height = pAnimation->iFrameHeight + myDock->bUseReflect * g_fReflectSize;
+			area.height = pAnimation->iFrameHeight + myDock->container.bUseReflect * g_fReflectSize;
 			gdk_window_invalidate_rect (myContainer->pWidget->window, &area, FALSE);
 		}
 		

@@ -31,8 +31,8 @@
 CD_APPLET_ON_CLICK_BEGIN
 	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
-		cd_message("tomboy : %s",pClickedIcon->acCommand);
-		showNote(pClickedIcon->acCommand);
+		cd_message("tomboy : %s",pClickedIcon->cCommand);
+		showNote(pClickedIcon->cCommand);
 	}
 	else if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
@@ -88,13 +88,13 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 		return ;
 	if (myConfig.bAskBeforeDelete)
 	{
-		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note ?"), pIcon->acName);
+		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note ?"), pIcon->cName);
 		int iAnswer = cairo_dock_ask_question_and_wait (cQuestion, pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
 		g_free (cQuestion);
 		if (iAnswer != GTK_RESPONSE_YES)
 			return ;
 	}
-	deleteNote (pIcon->acCommand);
+	deleteNote (pIcon->cCommand);
 }
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, gpointer data)
 {

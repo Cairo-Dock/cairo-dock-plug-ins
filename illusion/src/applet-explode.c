@@ -62,7 +62,7 @@ void cd_illusion_update_explode (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 	_update_explosion (pData);
 	
 	/*GdkRectangle area;
-	if (pDock->bHorizontalDock)
+	if (pDock->bIsHorizontal)
 	{
 		area.x = pIcon->fDrawX + (.5 - pData->fExplosionRadius/2) * pIcon->fWidth * pIcon->fScale;
 		area.y = MAX (0, pIcon->fDrawY + (.5 - pData->fExplosionRadius/2) * pIcon->fHeight * pIcon->fScale);

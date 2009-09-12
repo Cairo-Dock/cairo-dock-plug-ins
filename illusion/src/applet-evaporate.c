@@ -155,7 +155,7 @@ void cd_illusion_update_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData
 void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
 	glPushMatrix ();
-	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
+	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);
 	
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_alpha (pIcon->fAlpha);
@@ -187,9 +187,9 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	{
 		glPushMatrix ();
 		double x0, y0, x1, y1;
-		double fReflectRatio = myIcons.fReflectSize * pDock->fRatio / pIcon->fHeight / pIcon->fScale;
-		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->fRatio;
-		if (pDock->bHorizontalDock)
+		double fReflectRatio = myIcons.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		if (pDock->bIsHorizontal)
 		{
 			if (pDock->bDirectionUp)
 			{
@@ -204,7 +204,7 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->fRatio, 1.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->container.fRatio, 1.);
 				x0 = 0.;
 				y0 = fReflectRatio;
 				x1 = 1.;
@@ -216,7 +216,7 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 			if (pDock->bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				glScalef (- myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (- myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = 1. - fReflectRatio;
 				y0 = 0.;
 				x1 = 1.;
@@ -225,7 +225,7 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				glScalef (myIcons.fReflectSize * pDock->fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = fReflectRatio;
 				y0 = 0.;
 				x1 = 0.;
@@ -251,7 +251,7 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 		
 		glActiveTexture(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->bHorizontalDock]);
+		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->bIsHorizontal]);
 		glColor4f(1., 1., 1., 1.);  // transparence du reflet.
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

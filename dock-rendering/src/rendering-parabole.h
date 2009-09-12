@@ -33,7 +33,7 @@ void cd_rendering_calculate_reference_parabole (double alpha);
 void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock);
 
 
-void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bHorizontalDock);
+void cd_rendering_calculate_construction_parameters_parabole (Icon *icon, int iWidth, int iHeight, int iFlatDockWidth, gboolean bDirectionUp, double fAlign, gboolean bIsHorizontal);
 
 void cd_rendering_render_icons_parabole (cairo_t *pCairoContext, CairoDock *pDock, double fRatio);
 

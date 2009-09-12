@@ -30,15 +30,15 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 	gboolean bFound = FALSE;
 	if (pIcon->cBaseURI != NULL)
 	{
-		gchar *cFile = g_path_get_basename (pIcon->acCommand);
+		gchar *cFile = g_path_get_basename (pIcon->cCommand);
 		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
 		g_free (cFile);
 	}
-	else if (pIcon->acCommand)
+	else if (pIcon->cCommand)
 	{
-		bFound = (g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0);
-		if (pIcon->acName)
-			bFound |= (g_ascii_strncasecmp (cCommandPrefix, pIcon->acName, length) == 0);
+		bFound = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cCommand, length) == 0);
+		if (pIcon->cName)
+			bFound |= (g_ascii_strncasecmp (cCommandPrefix, pIcon->cName, length) == 0);
 	}
 	return bFound;
 }
@@ -89,7 +89,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 	for (ic = g_pMainDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->acCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->acCommand, length) == 0)
+		if (pIcon->cCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->cCommand, length) == 0)
 		{
 			if (pAfterIcon == NULL)
 			{
@@ -210,7 +210,7 @@ void cd_do_search_current_icon (gboolean bLoopSearch)
 	//\_________________ on cherche un lanceur correspondant.
 	CairoDock *pDock;
 	Icon *pIcon = cd_do_search_icon_by_command (myData.sCurrentText->str, (bLoopSearch ? myData.pCurrentIcon : NULL), &pDock);
-	g_print ("found icon : %s\n", pIcon ? pIcon->acName : "none");
+	g_print ("found icon : %s\n", pIcon ? pIcon->cName : "none");
 	
 	//\_________________ on gere le changement d'icone/dock.
 	cd_do_change_current_icon (pIcon, pDock);
@@ -333,12 +333,12 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		
 		if (pIcon->cBaseURI != NULL)
 		{
-			gchar *cFile = g_path_get_basename (pIcon->acCommand);
+			gchar *cFile = g_path_get_basename (pIcon->cCommand);
 			g_string_assign (myData.sCurrentText, cFile);
 			g_free (cFile);
 		}
 		else
-			g_string_assign (myData.sCurrentText, pIcon->acCommand);
+			g_string_assign (myData.sCurrentText, pIcon->cCommand);
 		
 		
 		cd_do_load_pending_caracters ();
@@ -351,7 +351,7 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 		if (iHeight != 0)
 		{
-			double fZoom = (double) g_pMainDock->iCurrentHeight/2 / iHeight;
+			double fZoom = (double) g_pMainDock->iHeight/2 / iHeight;
 			myData.iMatchingAimPoint += (bNext ? 1 : -1) * iWidth * fZoom;  // on cherche a atteindre le nouveau point.
 		}
 		

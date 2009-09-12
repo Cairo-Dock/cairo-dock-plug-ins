@@ -37,27 +37,27 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 	if (pCairoContext != NULL)
 	{
 		cairo_save (pCairoContext);
-		double fX = pDock->iMouseX - myData.fDropIndicatorWidth / 2;
-		if (pDock->bHorizontalDock)
+		double fX = pDock->container.iMouseX - myData.fDropIndicatorWidth / 2;
+		if (pDock->container.bIsHorizontal)
 			cairo_rectangle (pCairoContext,
-				(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
-				(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),
+				(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
+				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
 				(int) myData.fDropIndicatorWidth,
-				(int) (pDock->bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->iCurrentHeight));
+				(int) (pDock->container.bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->container.iHeight));
 		else
 			cairo_rectangle (pCairoContext,
-				(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),
-				(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
-				(int) (pDock->bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->iCurrentHeight),
+				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
+				(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
+				(int) (pDock->container.bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->container.iHeight),
 				(int) myData.fDropIndicatorWidth);
 		cairo_clip (pCairoContext);
 		
 		//cairo_move_to (pCairoContext, fX, 0);
-		if (pDock->bHorizontalDock)
-			cairo_translate (pCairoContext, fX, (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight));
+		if (pDock->container.bIsHorizontal)
+			cairo_translate (pCairoContext, fX, (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight));
 		else
-			cairo_translate (pCairoContext, (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight), fX);
-		double fRotationAngle = (pDock->bHorizontalDock ? (pDock->bDirectionUp ? 0 : G_PI) : (pDock->bDirectionUp ? -G_PI/2 : G_PI/2));
+			cairo_translate (pCairoContext, (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight), fX);
+		double fRotationAngle = (pDock->container.bIsHorizontal ? (pDock->container.bDirectionUp ? 0 : G_PI) : (pDock->container.bDirectionUp ? -G_PI/2 : G_PI/2));
 		cairo_rotate (pCairoContext, fRotationAngle);
 		
 		cairo_translate (pCairoContext, 0, pData->iDropIndicatorOffset);
@@ -112,7 +112,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
 			{
 				cairo_save (pCairoContext);
-				if (pDock->bHorizontalDock)
+				if (pDock->container.bIsHorizontal)
 					cairo_translate (pCairoContext,
 						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
 						pIcon->fDrawY);
@@ -128,25 +128,25 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 	}
 	else
 	{
-		double fX = pDock->iMouseX;
-		double fY = (pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
+		double fX = pDock->container.iMouseX;
+		double fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
 		glPushMatrix();
 		glLoadIdentity();
 		
-		if (pDock->bHorizontalDock)
+		if (pDock->container.bIsHorizontal)
 		{
-			fX = pDock->iMouseX;
-			fY = (pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
+			fX = pDock->container.iMouseX;
+			fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
 			glTranslatef (fX, fY, - myData.fDropIndicatorWidth-1.);
-			if (! pDock->bDirectionUp)
+			if (! pDock->container.bDirectionUp)
 				glScalef (1., -1., 1.);
 		}
 		else
 		{
-			fX = pDock->iCurrentWidth - pDock->iMouseX;
-			fY = (! pDock->bDirectionUp ? pDock->iCurrentHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
+			fX = pDock->container.iWidth - pDock->container.iMouseX;
+			fY = (! pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
 			glTranslatef (fY, fX, - myData.fDropIndicatorWidth-1.);
-			glRotatef ((pDock->bDirectionUp ? 90. : -90.), 0., 0., 1.);
+			glRotatef ((pDock->container.bDirectionUp ? 90. : -90.), 0., 0., 1.);
 		}
 		
 		glRotatef (pData->iDropIndicatorRotation, 0., 1., 0.);
@@ -220,13 +220,13 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 				_cairo_dock_enable_texture ();
 				_cairo_dock_set_blend_over ();
 				glPushMatrix ();
-				if (pDock->bHorizontalDock)
+				if (pDock->container.bIsHorizontal)
 					glTranslatef (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale,
-						pDock->iCurrentHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
+						pDock->container.iHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
 						0.);
 				else
-					glTranslatef (pDock->iCurrentHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
-						pDock->iCurrentWidth - (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale),
+					glTranslatef (pDock->container.iHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
+						pDock->container.iWidth - (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale),
 						0.);
 				_cairo_dock_apply_texture_at_size_with_alpha (myData.iHoverIndicatorTexture,
 					myData.fHoverIndicatorWidth,
@@ -300,21 +300,21 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 			*bContinueAnimation = TRUE;
 	}
 	
-	GdkRectangle rect = {(int) pDock->iMouseX - myData.fDropIndicatorWidth/2,
-		(int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight),
+	GdkRectangle rect = {(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
+		(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
 		(int) myData.fDropIndicatorWidth,
 		(int) 2*myData.fDropIndicatorHeight};
-	if (! pDock->bHorizontalDock)
+	if (! pDock->container.bIsHorizontal)
 	{
-		rect.x = (int) (pDock->bDirectionUp ? 0 : pDock->iCurrentHeight - 2*myData.fDropIndicatorHeight);
-		rect.y = (int) pDock->iMouseX - myData.fDropIndicatorWidth/2;
+		rect.x = (int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight);
+		rect.y = (int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2;
 		rect.width = (int) 2*myData.fDropIndicatorHeight;
 		rect.height =(int) myData.fDropIndicatorWidth;
 	}
 	//g_print ("rect (%d;%d) (%dx%d)\n", rect.x, rect.y, rect.width, rect.height);
 	if (rect.width > 0 && rect.height > 0)
 	{
-		gdk_window_invalidate_rect (pDock->pWidget->window, &rect, FALSE);
+		gdk_window_invalidate_rect (pDock->container.pWidget->window, &rect, FALSE);
 	}
 	
 	if (pData->fAlphaHover > 0)

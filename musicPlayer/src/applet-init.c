@@ -81,7 +81,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-	else if (myIcon->acName == NULL || *myIcon->acName == '\0')
+	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
 	
 	
@@ -160,7 +160,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-	else if (myIcon->acName == NULL || *myIcon->acName == '\0')
+	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
 	
 	//\_______________ On reset surfaces et textures.

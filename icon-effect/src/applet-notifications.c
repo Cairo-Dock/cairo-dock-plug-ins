@@ -188,8 +188,8 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData)
 {
 	glPushMatrix ();
-	if (!pDock->bHorizontalDock && myConfig.bRotateEffects)
-		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
+	if (!pDock->container.bIsHorizontal && myConfig.bRotateEffects)
+		glRotatef (pDock->container.bDirectionUp ? 90:-90, 0., 0., 1.);
 	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	
 	if (pData->pFireSystem != NULL)
@@ -218,8 +218,8 @@ static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIco
 static void _cd_icon_effect_render_effects_with_depth (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, int iDepth)
 {
 	glPushMatrix ();
-	if (!pDock->bHorizontalDock && myConfig.bRotateEffects)
-		glRotatef (pDock->bDirectionUp ? 90:-90, 0., 0., 1.);
+	if (!pDock->container.bIsHorizontal && myConfig.bRotateEffects)
+		glRotatef (pDock->container.bDirectionUp ? 90:-90, 0., 0., 1.);
 	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	
 	if (pData->pStormSystem != NULL)
@@ -261,7 +261,7 @@ gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 }
 
 
-#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->bInside))
+#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside))
 
 gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
@@ -351,13 +351,13 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	
 	double fMaxScale = cairo_dock_get_max_scale (pDock);
 	GdkRectangle area;
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 	{
 		area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.y = pIcon->fDrawY;
 		area.width = pIcon->fWidth * fMaxScale * 1.5;
 		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
-		if (pDock->bDirectionUp)
+		if (pDock->container.bDirectionUp)
 			area.y -= myLabels.iconTextDescription.iSize;
 		else
 		{
@@ -369,7 +369,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	{
 		area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.x = pIcon->fDrawY;
-		if (pDock->bDirectionUp)
+		if (pDock->container.bDirectionUp)
 			area.x -= myLabels.iconTextDescription.iSize;
 		else
 		{

@@ -431,7 +431,7 @@ void cd_clock_free_timezone_list (void)
 
 void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->acName);
+	g_print ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	GtkWidget *pCustomWidgetBox = cairo_dock_get_widget_from_name ("Alarm", "add new");
 	g_return_if_fail (pCustomWidgetBox != NULL);
@@ -476,6 +476,6 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 
 void cd_clock_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->acName);
+	g_print ("%s (%s)\n", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.
 }

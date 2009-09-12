@@ -143,8 +143,8 @@ static void _action_on_click (compizAction iAction) {
 }
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL) {  // clic sur ne icone du sous-dock.
-		//cd_debug (" clic sur %s", pClickedIcon->acName);
-		///if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+		//cd_debug (" clic sur %s", pClickedIcon->cName);
+		///if (pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
 		///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 	}
@@ -152,7 +152,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (pClickedIcon == myIcon)
 			cairo_dock_launch_task (myData.pTask);
 		else {
-			if (pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+			if (pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
 				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 		}
@@ -166,7 +166,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (pClickedIcon == myIcon) {
 		_action_on_click (myConfig.iActionOnMiddleClick);
 	}
-	else if (pClickedIcon != NULL && pClickedIcon->acCommand != NULL && strcmp (pClickedIcon->acCommand, "none") != 0)
+	else if (pClickedIcon != NULL && pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -176,7 +176,7 @@ static void cd_compiz_switch_decorator (GtkMenuItem *menu_item, gpointer *data) 
 	cd_compiz_start_decorator (iDecorator);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	if (CD_APPLET_CLICKED_ICON != NULL && strcmp(CD_APPLET_CLICKED_ICON->acName,D_("Emerald Manager")) == 0) {
+	if (CD_APPLET_CLICKED_ICON != NULL && strcmp(CD_APPLET_CLICKED_ICON->cName,D_("Emerald Manager")) == 0) {
 		CD_APPLET_ADD_IN_MENU (D_("Reload Emerald"), cd_compiz_start_favorite_decorator, CD_APPLET_MY_MENU);
 	}
 	
@@ -196,6 +196,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Show Desktop"), _compiz_menu_show_desktop, pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->acCommand == NULL || strcmp (pClickedIcon->acCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))
+	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->cCommand == NULL || strcmp (pClickedIcon->cCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;  // on ne veut pas des autres entrees habituelles du menu.
 CD_APPLET_ON_BUILD_MENU_END

@@ -69,33 +69,33 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 	if (my_fRainbowColor[3] != 0)
 	{
 		cairo_save (pCairoContext);
-		if (! pDock->bHorizontalDock)
+		if (! pDock->container.bIsHorizontal)
 		{
-			cairo_translate (pCairoContext, pDock->iCurrentHeight/2, pDock->iCurrentWidth/2);
+			cairo_translate (pCairoContext, pDock->container.iHeight/2, pDock->container.iWidth/2);
 			cairo_rotate (pCairoContext, -G_PI/2);
-			cairo_translate (pCairoContext, -pDock->iCurrentWidth/2, -pDock->iCurrentHeight/2);
+			cairo_translate (pCairoContext, -pDock->container.iWidth/2, -pDock->container.iHeight/2);
 		}
-		if (!pDock->bDirectionUp)
+		if (!pDock->container.bDirectionUp)
 		{
-			cairo_translate (pCairoContext, 0., pDock->iCurrentHeight);
+			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
 		//\____________________ On trace le cadre.
-		cairo_move_to (pCairoContext, 0., pDock->iCurrentHeight * (1 - sin (my_fRainbowConeOffset)));
-		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2, pDock->iCurrentHeight);
-		cairo_line_to (pCairoContext, pDock->iCurrentWidth, pDock->iCurrentHeight * (1 - sin (my_fRainbowConeOffset)));
-		cairo_line_to (pCairoContext, pDock->iCurrentWidth, 0.);
+		cairo_move_to (pCairoContext, 0., pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
+		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
+		cairo_line_to (pCairoContext, pDock->container.iWidth, pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
+		cairo_line_to (pCairoContext, pDock->container.iWidth, 0.);
 		cairo_line_to (pCairoContext, 0., 0.);
 		cairo_close_path (pCairoContext);
 		cairo_clip (pCairoContext);
 		
 		//\____________________ On dessine les decorations dedans.
-		cairo_pattern_t *pGradationPattern = cairo_pattern_create_radial (pDock->iCurrentWidth/2,
-			pDock->iCurrentHeight,
+		cairo_pattern_t *pGradationPattern = cairo_pattern_create_radial (pDock->container.iWidth/2,
+			pDock->container.iHeight,
 			0.,
-			pDock->iCurrentWidth/2,
-			pDock->iCurrentHeight,
-			pDock->iCurrentHeight);
+			pDock->container.iWidth/2,
+			pDock->container.iHeight,
+			pDock->container.iHeight);
 		g_return_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS);
 		
 		cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
@@ -114,13 +114,13 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		do
 		{
 			icon = ic->data;
-			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
+			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 			if (fRadius != fCurrentRadius)
 			{
 				if (fCurrentRadius == 0)  // 1er coup.
 				{
 					cairo_pattern_add_color_stop_rgba (pGradationPattern,
-						(fRadius - my_iSpaceBetweenRows/2)/ pDock->iCurrentHeight,
+						(fRadius - my_iSpaceBetweenRows/2)/ pDock->container.iHeight,
 						0.,
 						0.,
 						0.,
@@ -128,13 +128,13 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 				}
 				
 				cairo_pattern_add_color_stop_rgba (pGradationPattern,
-					(fRadius + .5 * pDock->iMaxIconHeight * fMaxScale)/ pDock->iCurrentHeight,
+					(fRadius + .5 * pDock->iMaxIconHeight * fMaxScale)/ pDock->container.iHeight,
 					my_fRainbowColor[0],
 					my_fRainbowColor[1],
 					my_fRainbowColor[2],
 					my_fRainbowColor[3]);
 				cairo_pattern_add_color_stop_rgba (pGradationPattern,
-					(fRadius + pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2)/ pDock->iCurrentHeight,
+					(fRadius + pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2)/ pDock->container.iHeight,
 					0.,
 					0.,
 					0.,
@@ -155,27 +155,27 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 	{
 		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
 		if (icon)
-			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
+			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 	}
 	fRadius += .5 * pDock->iMaxIconHeight * fMaxScale;
 	if (my_fRainbowLineColor[3] != 0)
 	{
 		cairo_save (pCairoContext);
-		if (! pDock->bHorizontalDock)
+		if (! pDock->container.bIsHorizontal)
 		{
-			cairo_translate (pCairoContext, pDock->iCurrentHeight/2, pDock->iCurrentWidth/2);
+			cairo_translate (pCairoContext, pDock->container.iHeight/2, pDock->container.iWidth/2);
 			cairo_rotate (pCairoContext, -G_PI/2);
-			cairo_translate (pCairoContext, -pDock->iCurrentWidth/2, -pDock->iCurrentHeight/2);
+			cairo_translate (pCairoContext, -pDock->container.iWidth/2, -pDock->container.iHeight/2);
 		}
-		if (!pDock->bDirectionUp)
+		if (!pDock->container.bDirectionUp)
 		{
-			cairo_translate (pCairoContext, 0., pDock->iCurrentHeight);
+			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
 		cairo_set_line_width (pCairoContext, myBackground.iDockLineWidth);
-		cairo_move_to (pCairoContext, pDock->iCurrentWidth/2 - fRadius * cos (my_fRainbowConeOffset), pDock->iCurrentHeight - fRadius * sin (my_fRainbowConeOffset));
-		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2, pDock->iCurrentHeight);
-		cairo_line_to (pCairoContext, pDock->iCurrentWidth/2 + fRadius * cos (my_fRainbowConeOffset), pDock->iCurrentHeight - fRadius * sin (my_fRainbowConeOffset));
+		cairo_move_to (pCairoContext, pDock->container.iWidth/2 - fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
+		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
+		cairo_line_to (pCairoContext, pDock->container.iWidth/2 + fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
 		cairo_set_source_rgba (pCairoContext,
 			my_fRainbowLineColor[0],
 			my_fRainbowLineColor[1],
@@ -195,8 +195,8 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
 	Icon *icon;
-	int iWidth = pDock->iCurrentWidth;
-	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	int iWidth = pDock->container.iWidth;
+	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	GList *ic = pFirstDrawnElement;
 	do
 	{
@@ -215,7 +215,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 
 static void cd_rendering_get_polar_coords (CairoDock *pDock, double *fRadius, double *fTheta)
 {
-	double x = pDock->iMouseX - pDock->iCurrentWidth / 2, y = (pDock->bDirectionUp ? pDock->iCurrentHeight - pDock->iMouseY : pDock->iMouseY);
+	double x = pDock->container.iMouseX - pDock->container.iWidth / 2, y = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->container.iMouseY : pDock->container.iMouseY);
 	
 	*fRadius = sqrt (x * x + y * y);
 	*fTheta = atan2 (x, y);
@@ -272,7 +272,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	double fWaveOffset, fWaveExtrema;
 	double x_abs = fCurvilignAbscisse;
 	int nb_iter = 0;
-	double fRatio = pDock->fRatio;
+	double fRatio = pDock->container.fRatio;
 	
 	do
 	{
@@ -384,11 +384,11 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
-	double fRatio = pDock->fRatio;
-	double w = pDock->iCurrentWidth;
-	double h = pDock->iCurrentHeight;
+	double fRatio = pDock->container.fRatio;
+	double w = pDock->container.iWidth;
+	double h = pDock->container.iHeight;
 	double fRadius, fTheta;
-	cd_debug (" mouse : (%d ; %d)\n", pDock->iMouseX, pDock->iMouseY);
+	cd_debug (" mouse : (%d ; %d)\n", pDock->container.iMouseX, pDock->container.iMouseY);
 	cd_rendering_get_polar_coords (pDock, &fRadius, &fTheta);
 	cd_debug (" polar : (%.2f ; %.2f)\n", fRadius, fTheta/G_PI*180.);
 	
@@ -436,11 +436,11 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			cd_debug ("on passe a la ligne %d (%d icones, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)\n", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
 		}
 		
-		icon->fX = fCurrentRadius + (pDock->bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
+		icon->fX = fCurrentRadius + (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
 		
 		fCurrentTheta = fThetaStart + iNbInsertedIcons * fDeltaTheta;
-		icon->fOrientation = (pDock->bDirectionUp ? fCurrentTheta : - fCurrentTheta);
-		if (! pDock->bHorizontalDock)
+		icon->fOrientation = (pDock->container.bDirectionUp ? fCurrentTheta : - fCurrentTheta);
+		if (! pDock->container.bIsHorizontal)
 		{
 			icon->fOrientation = -icon->fOrientation + 0;
 		}
@@ -448,24 +448,24 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		{
 			icon->bPointed = TRUE;
 			pPointedIcon = icon;
-			cd_debug (" POINTED ICON : %s\n", pPointedIcon->acName);
+			cd_debug (" POINTED ICON : %s\n", pPointedIcon->cName);
 		}
 		else
 			icon->bPointed = FALSE;
 		
-		//if (pDock->bHorizontalDock)
+		//if (pDock->container.bIsHorizontal)
 		{
 			icon->fDrawY = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
-			if (pDock->bDirectionUp)
-				icon->fDrawY = pDock->iCurrentHeight - icon->fDrawY;
-			icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->iCurrentWidth / 2;
+			if (pDock->container.bDirectionUp)
+				icon->fDrawY = pDock->container.iHeight - icon->fDrawY;
+			icon->fDrawX = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iWidth / 2;
 		}
 		/*else
 		{
 			icon->fDrawX = icon->fX * cos (fCurrentTheta) + icon->fWidth/2 * fCurrentScale * sin (fCurrentTheta);
-			if (!pDock->bDirectionUp)
-				icon->fDrawX = pDock->iCurrentWidth - icon->fDrawX;
-			icon->fDrawY = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->iCurrentHeight / 2;
+			if (!pDock->container.bDirectionUp)
+				icon->fDrawX = pDock->container.iWidth - icon->fDrawX;
+			icon->fDrawY = icon->fX * sin (fCurrentTheta) - icon->fWidth/2 * fCurrentScale * cos (fCurrentTheta) + pDock->container.iHeight / 2;
 		}*/
 		
 		cd_debug (" %.2fdeg ; (%.2f;%.2f)\n", fCurrentTheta/G_PI*180, icon->fDrawX, icon->fDrawY);
@@ -484,7 +484,7 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	g_free (pScales);
 	
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
-	if (! pDock->bInside ||
+	if (! pDock->container.bInside ||
 		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
 		(fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale)
 	{
@@ -594,17 +594,17 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		int i, n = (int) ceil ((G_PI/2 - my_fRainbowConeOffset) / (fDelta/180.*G_PI)), N = (2*n+1) * 2;
 		
 		glPushMatrix ();
-		if (! pDock->bHorizontalDock)
+		if (! pDock->container.bIsHorizontal)
 		{
-			glTranslatef (pDock->iCurrentHeight/2, pDock->iCurrentWidth/2, 0.);
+			glTranslatef (pDock->container.iHeight/2, pDock->container.iWidth/2, 0.);
 			glRotatef (90., 0., 0., 1.);
-			glTranslatef (0., -pDock->iCurrentHeight/2, 0.);
+			glTranslatef (0., -pDock->container.iHeight/2, 0.);
 		}
 		else
-			glTranslatef (pDock->iCurrentWidth/2, 0., 0.);
-		if (!pDock->bDirectionUp)
+			glTranslatef (pDock->container.iWidth/2, 0., 0.);
+		if (!pDock->container.bDirectionUp)
 		{
-			glTranslatef (0., pDock->iCurrentHeight, 0.);
+			glTranslatef (0., pDock->container.iHeight, 0.);
 			glScalef (1., -1., 1.);
 		}
 		
@@ -618,7 +618,7 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 			//if (fRadius > 0)
 			//	break ;
 			icon = ic->data;
-			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
+			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * icon->fScale : 0);
 			if (fRadius != fCurrentRadius)
 			{
 				_generate_sector_path (my_fRainbowConeOffset,
@@ -657,23 +657,23 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	{
 		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
 		if (icon)
-			fRadius = icon->fX - (pDock->bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
+			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 	}
 	fRadius += .5 * pDock->iMaxIconHeight * fMaxScale;
 	if (my_fRainbowLineColor[3] != 0)
 	{
 		glPushMatrix ();
-		if (! pDock->bHorizontalDock)
+		if (! pDock->container.bIsHorizontal)
 		{
-			glTranslatef (pDock->iCurrentHeight/2, pDock->iCurrentWidth/2, 0.);
+			glTranslatef (pDock->container.iHeight/2, pDock->container.iWidth/2, 0.);
 			glRotatef (90., 0., 0., 1.);
-			glTranslatef (0., -pDock->iCurrentHeight/2, 0.);
+			glTranslatef (0., -pDock->container.iHeight/2, 0.);
 		}
 		else
-			glTranslatef (pDock->iCurrentWidth/2, 0., 0.);
-		if (!pDock->bDirectionUp)
+			glTranslatef (pDock->container.iWidth/2, 0., 0.);
+		if (!pDock->container.bDirectionUp)
 		{
-			glTranslatef (0., pDock->iCurrentHeight, 0.);
+			glTranslatef (0., pDock->container.iHeight, 0.);
 			glScalef (1., -1., 1.);
 		}
 		GLfloat color[4*5] = {my_fRainbowLineColor[0], my_fRainbowLineColor[1], my_fRainbowLineColor[2], 0.,
@@ -709,8 +709,8 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
 	Icon *icon;
-	int iWidth = pDock->iCurrentWidth;
-	gboolean bHorizontalDock = pDock->bHorizontalDock;
+	int iWidth = pDock->container.iWidth;
+	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	GList *ic = pFirstDrawnElement;
 	do
 	{
@@ -730,7 +730,7 @@ void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
 	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-rainbow-view", MY_APPLET_SHARE_DATA_DIR);
 	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-rainbow.jpg", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->calculate_max_dock_size = cd_rendering_calculate_max_dock_size_rainbow;
+	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_rainbow;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_rainbow;
 	pRenderer->render = cd_rendering_render_rainbow;
 	pRenderer->render_optimized = NULL;

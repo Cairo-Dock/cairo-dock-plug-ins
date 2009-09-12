@@ -47,15 +47,15 @@ void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 {
 	glPushMatrix ();
 	//\___________________On se place au bas de l'icone.
-	if (! pDock->bHorizontalDock)
+	if (! pDock->container.bIsHorizontal)
 		glRotatef (90, 0., 0., 1.);
 	double fY = (- pIcon->fHeight + CD_ANIMATIONS_SPOT_HEIGHT) * pIcon->fScale/2;  // * fRadiusFactor
-	if (pDock->bUseReflect)
+	if (pDock->container.bUseReflect)
 		fY -= MIN (myIcons.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	glTranslatef (0., fY, 0.);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		glScalef (1., -1., 1.);
 	
 	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], fRadiusFactor * pIcon->fAlpha);
@@ -77,18 +77,18 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 	glPushMatrix ();
 	
 	//\___________________On se place au bas de l'icone.
-	if (! pDock->bHorizontalDock)
+	if (! pDock->container.bIsHorizontal)
 		glRotatef (90, 0., 0., 1.);
 	double fY = CD_ANIMATIONS_SPOT_HEIGHT * (1 + cos (G_PI * fHaloRotationAngle / 180.))/2 - pIcon->fHeight * pIcon->fScale/2;  // * fRadiusFactor
-	if (pDock->bUseReflect)
+	if (pDock->container.bUseReflect)
 		fY -= MIN (myIcons.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	double fX = .9 * pIcon->fWidth * pIcon->fScale/2;  // * fRadiusFactor
 	
 	glRotatef (fHaloRotationAngle, 0., 1., 0.);
 	glTranslatef (0., fY, fX);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		glScalef (1., -1., 1.);
 	
 	glColor4f (myConfig.pHaloColor[0], myConfig.pHaloColor[1], myConfig.pHaloColor[2], pIcon->fAlpha * fRadiusFactor);
@@ -109,15 +109,15 @@ void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRad
 {
 	glPushMatrix ();
 	//\___________________On se place au-dessus du spot.
-	if (! pDock->bHorizontalDock)
+	if (! pDock->container.bIsHorizontal)
 		glRotatef (90, 0., 0., 1.);
 	double fY = (- pIcon->fHeight + CD_ANIMATIONS_SPOT_HEIGHT/2 + pIcon->fHeight * fRadiusFactor) * pIcon->fScale/2;  // CD_ANIMATIONS_SPOT_HEIGHT/2 * fRadiusFactor
-	if (pDock->bUseReflect)
+	if (pDock->container.bUseReflect)
 		fY -= MIN (myIcons.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	glTranslatef (0., fY, 0.);
-	if (! pDock->bDirectionUp)
+	if (! pDock->container.bDirectionUp)
 		glScalef (1., -1., 1.);
 	
 	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], pIcon->fAlpha);

@@ -60,18 +60,18 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, mySystem.iFileSortType))
 					{
 						g_print (" -> %s (%d)\n", cIconName, bIsMounted);
-						g_free (icon->acName);
+						g_free (icon->cName);
 						if (bIsMounted || cIconName == NULL)
-							icon->acName = cName;
+							icon->cName = cName;
 						else
 						{
-							icon->acName = g_strdup_printf ("%s\n[%s]", cName, D_("Unmounted"));
+							icon->cName = g_strdup_printf ("%s\n[%s]", cName, D_("Unmounted"));
 							g_free (cName);
 						}
-						g_free (icon->acCommand);
-						icon->acCommand = cRealURI;
-						g_free (icon->acFileName);
-						icon->acFileName = cIconName;
+						g_free (icon->cCommand);
+						icon->cCommand = cRealURI;
+						g_free (icon->cFileName);
+						icon->cFileName = cIconName;
 						icon->iVolumeID = iVolumeID;
 						cairo_dock_load_one_icon_from_scratch (icon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
 					}

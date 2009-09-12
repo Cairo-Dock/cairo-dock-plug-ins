@@ -192,12 +192,12 @@ gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *p
 static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, int iDepth)
 {
 	glPushMatrix ();
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 		glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
 	else
 		glTranslatef (- pIcon->fHeight * pIcon->fScale/2, 0., 0.);
 	
-	if (! pDock->bHorizontalDock)
+	if (! pDock->container.bIsHorizontal)
 		glRotatef (-90, 0., 0., 1.);
 	
 	if (pData->pRaysSystem != NULL)
@@ -228,10 +228,10 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 	
 	if (pData->fRadiusFactor != 0)
 	{
-		if (pDock->bHorizontalDock)
-			glTranslatef (0., - pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		if (pDock->container.bIsHorizontal)
+			glTranslatef (0., - pData->fIconOffsetY * (pDock->container.bDirectionUp ? 1 : -1), 0.);
 		else
-			glTranslatef (- pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
+			glTranslatef (- pData->fIconOffsetY * (pDock->container.bDirectionUp ? -1 : 1), 0., 0.);
 		if (pData->pRaysSystem != NULL)
 			_cd_animations_render_rays (pIcon, pDock, pData, 1);
 		
@@ -275,10 +275,10 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pData->pRaysSystem != NULL)
 			_cd_animations_render_rays (pIcon, pDock, pData, 1);
 		
-		if (pDock->bHorizontalDock)
-			glTranslatef (0., pData->fIconOffsetY * (pDock->bDirectionUp ? 1 : -1), 0.);
+		if (pDock->container.bIsHorizontal)
+			glTranslatef (0., pData->fIconOffsetY * (pDock->container.bDirectionUp ? 1 : -1), 0.);
 		else
-			glTranslatef (pData->fIconOffsetY * (pDock->bDirectionUp ? -1 : 1), 0., 0.);
+			glTranslatef (pData->fIconOffsetY * (pDock->container.bDirectionUp ? -1 : 1), 0., 0.);
 	}
 	
 	if (pData->bIsBouncing)
@@ -326,7 +326,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 }
 
 
-#define _will_continue(bRepeat) ((pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->bInside))
+#define _will_continue(bRepeat) ((pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside))
 gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
@@ -420,7 +420,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				pData->iNumRound --;
 			}
 		}
-		/*if (pIcon->bPointed && pDock->bInside)
+		/*if (pIcon->bPointed && pDock->container.bInside)
 		{
 			pData->fRadiusFactor += 1./myConfig.iSpotDuration * dt;
 			if (pData->fRadiusFactor > 1)

@@ -99,7 +99,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					}
 				}
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
-				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->acName, cUserName) == 0) && cURI != NULL)  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
+				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->cName, cUserName) == 0) && cURI != NULL)  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
 				{
 					cd_message (" = 1 signet : %s", cOneBookmark);
 					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
@@ -135,9 +135,9 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						}
 						if (cRealURI == NULL)
 							cRealURI = g_strdup ("none");
-						pNewIcon->acName = cName;
-						pNewIcon->acCommand = cRealURI;
-						pNewIcon->acFileName = cIconName;
+						pNewIcon->cName = cName;
+						pNewIcon->cCommand = cRealURI;
+						pNewIcon->cFileName = cIconName;
 						pNewIcon->iVolumeID = iVolumeID;
 						pNewIcon->fOrder = fCurrentOrder ++;
 						if (myDesklet)
@@ -348,9 +348,9 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 				}
 				if (cRealURI == NULL)
 					cRealURI = g_strdup ("none");
-				pNewIcon->acName = cName;
-				pNewIcon->acCommand = cRealURI;
-				pNewIcon->acFileName = cIconName;
+				pNewIcon->cName = cName;
+				pNewIcon->cCommand = cRealURI;
+				pNewIcon->cFileName = cIconName;
 				pNewIcon->iVolumeID = iVolumeID;
 				pNewIcon->fOrder = fCurrentOrder ++;
 				pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);

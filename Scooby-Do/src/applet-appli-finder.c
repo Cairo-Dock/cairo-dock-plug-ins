@@ -59,11 +59,11 @@ void cd_do_reset_applications_list (void)
 
 static int _compare_appli (Icon *pIcon1, Icon *pIcon2)
 {
-	if (pIcon1->acCommand == NULL)
+	if (pIcon1->cCommand == NULL)
 		return -1;
-	if (pIcon2->acCommand == NULL)
+	if (pIcon2->cCommand == NULL)
 		return 1;
-	return strcmp (pIcon1->acCommand, pIcon2->acCommand);
+	return strcmp (pIcon1->cCommand, pIcon2->cCommand);
 }
 static void _cd_do_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
@@ -127,13 +127,13 @@ static void _browse_dir (const gchar *cDirPath)
 				continue;
 			}
 			pIcon = g_new0 (Icon, 1);
-			pIcon->acDesktopFileName = cPath;
-			pIcon->acFileName = cIconName;
-			pIcon->acCommand = cCommand;
-			str = strchr (pIcon->acCommand, '%');
+			pIcon->cDesktopFileName = cPath;
+			pIcon->cFileName = cIconName;
+			pIcon->cCommand = cCommand;
+			str = strchr (pIcon->cCommand, '%');
 			if (str != NULL)
 				*str = '\0';
-			g_print (" + %s\n", pIcon->acCommand);
+			g_print (" + %s\n", pIcon->cCommand);
 			pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
 			myData.pApplications = g_list_prepend (myData.pApplications, pIcon);
 			g_key_file_free (pKeyFile);
@@ -156,7 +156,7 @@ static void _browse_dir (const gchar *cDirPath)
 }
 static int _same_command (Icon *pIcon1, Icon *pIcon2)
 {
-	return cairo_dock_strings_differ (pIcon1->acCommand, pIcon2->acCommand);
+	return cairo_dock_strings_differ (pIcon1->cCommand, pIcon2->cCommand);
 }
 static gboolean _load_applis_buffer_idle (gpointer data)
 {
@@ -178,7 +178,7 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 			pIcon->fWidth = 48.;
 			pIcon->fHeight = 48.;
 			pIcon->fScale = 1.;
-			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->acFileName);
+			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
 			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, pCairoContext, 48., 48);
 			g_free (cIconPath);
 			if (bLoadTexture)
@@ -222,7 +222,7 @@ void cd_do_find_matching_applications (void)
 	for (a = myData.pApplications; a != NULL; a = a->next)
 	{
 		pIcon = a->data;
-		if (pIcon->acCommand == NULL || g_strncasecmp (pIcon->acCommand, myData.sCurrentText->str, myData.sCurrentText->len) != 0)
+		if (pIcon->cCommand == NULL || g_strncasecmp (pIcon->cCommand, myData.sCurrentText->str, myData.sCurrentText->len) != 0)
 		{
 			if (bFound)
 				break;
@@ -231,14 +231,14 @@ void cd_do_find_matching_applications (void)
 		}
 		if (g_list_find_custom (myData.pMatchingIcons, pIcon, (GCompareFunc)_same_command) == NULL)
 		{
-			g_print (" on ajoute %s\n", pIcon->acCommand);
+			g_print (" on ajoute %s\n", pIcon->cCommand);
 			myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
 			/*if (pIcon->pIconBuffer == NULL)
 			{
 				pIcon->fWidth = 48.;
 				pIcon->fHeight = 48.;
 				pIcon->fScale = 1.;
-				gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->acFileName);
+				gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
 				pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, pCairoContext, 48., 48);
 				g_free (cIconPath);
 				if (bLoadTexture)

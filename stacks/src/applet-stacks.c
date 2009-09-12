@@ -120,8 +120,8 @@ GList* cd_stacks_mime_filter (GList *pIconsList) {
 	GList *pFilteredList=NULL, *pElement=NULL;
 	for (pElement = pIconsList; pElement != NULL; pElement = pElement->next) {
 		pIcon = pElement->data;
-		if (_isin(myConfig.cMimeTypes, pIcon->acFileName) == FALSE) {
-			//cd_debug ("Adding %s (%s) to filtered list", pIcon->acName, pIcon->acFileName);
+		if (_isin(myConfig.cMimeTypes, pIcon->cFileName) == FALSE) {
+			//cd_debug ("Adding %s (%s) to filtered list", pIcon->cName, pIcon->cFileName);
 			pFilteredList = g_list_append (pFilteredList, pElement->data);
 		}
 	}

@@ -42,7 +42,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	if (myIcon->acFileName == NULL)  // set a default icon if none is specified.
+	if (myIcon->cFileName == NULL)  // set a default icon if none is specified.
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
 	}
@@ -76,7 +76,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->acFileName == NULL)
+		if (myIcon->cFileName == NULL)
 		{
 			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);  // set a default icon if none is specified.
 		}

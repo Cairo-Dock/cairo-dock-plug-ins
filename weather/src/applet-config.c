@@ -223,7 +223,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 }
 void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->acName);
+	g_print ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere le widget.
 	GtkWidget *pCodeEntry = cairo_dock_get_widget_from_name ("Configuration", "location code");
 	g_return_if_fail (pCodeEntry != NULL);

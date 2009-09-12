@@ -72,9 +72,9 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 		if (strncmp (cContent, "http://", 7) == 0)
 		{
 			pIcon = g_new0 (Icon, 1);
-			pIcon->acCommand = cContent;
+			pIcon->cCommand = cContent;
 			pIcon->iVolumeID = 1;
-			pIcon->acFileName = g_strdup (myConfig.cUrlIcon);
+			pIcon->cFileName = g_strdup (myConfig.cUrlIcon);
 		}
 		else
 		{
@@ -95,24 +95,24 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 			}
 			
 			pIcon = g_new0 (Icon, 1);
-			pIcon->acCommand = cContent;
+			pIcon->cCommand = cContent;
 			pIcon->iVolumeID = 1;  // on l'utilisera comme un flag.
-			if (pIcon->acName == NULL)
-				pIcon->acName = cCanonicName;
+			if (pIcon->cName == NULL)
+				pIcon->cName = cCanonicName;
 			else
 				g_free (cCanonicName);
 			
-			pIcon->acFileName = cIconName;
+			pIcon->cFileName = cIconName;
 		}
 	}
 	else
 	{
 		pIcon = g_new0 (Icon, 1);
-		pIcon->acCommand = cContent;
-		pIcon->acFileName = g_strdup (myConfig.cTextIcon);
+		pIcon->cCommand = cContent;
+		pIcon->cFileName = g_strdup (myConfig.cTextIcon);
 	}
 	
-	pIcon->acName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
+	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("Stack : %s", erreur->message);
@@ -193,7 +193,7 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 		pIcon = cd_stack_build_one_icon_from_file (myApplet, sDesktopFilePath->str);
 		if (pIcon != NULL)
 		{
-			pIcon->acDesktopFileName = g_strdup (cFileName);
+			pIcon->cDesktopFileName = g_strdup (cFileName);
 			
 			pIconsList = cd_stack_insert_icon_in_list (myApplet, pIconsList, pIcon);
 		}
@@ -212,7 +212,7 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	
 	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Tree", NULL);
 	/*cd_stack_destroy_icons (myApplet);
-	if (myIcon->acName == NULL && myDock)
+	if (myIcon->cName == NULL && myDock)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
 	
 	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);

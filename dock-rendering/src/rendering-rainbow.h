@@ -26,7 +26,7 @@
 
 void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock);
 
-void cd_rendering_calculate_construction_parameters_rainbow (Icon *icon, int iCurrentWidth, int iCurrentHeight, int iMaxDockWidth, double fReflectionOffsetY);
+void cd_rendering_calculate_construction_parameters_rainbow (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY);
 
 cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight);
 

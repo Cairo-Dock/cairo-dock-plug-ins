@@ -123,9 +123,9 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 void cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, pDock, &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &iWidth, &iHeight);
 	double fSizeX, fSizeY;
-	cairo_dock_get_current_icon_size (pIcon, pDock, &fSizeX, &fSizeY);
+	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
 	
 	double t_ = (pData->fTime / myConfig.iBreakDuration);  // t/T
 	pData->dh = t_ * t_;  // dh = 1/2 * g * t^2, avec g = 2/T^2 (hauteur comptee unitairement).
@@ -155,7 +155,7 @@ void cd_illusion_draw_break_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData 
 	glBindTexture (GL_TEXTURE_2D, pIcon->iIconTexture);
 	
 	double fSizeX, fSizeY;
-	cairo_dock_get_current_icon_size (pIcon, pDock, &fSizeX, &fSizeY);
+	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
 	
 	glPushMatrix ();
 	glTranslatef (-fSizeX/2, -fSizeY/2, 0.);

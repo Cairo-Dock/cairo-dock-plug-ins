@@ -56,7 +56,7 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 			pData->fResizeFactor -= (1 - myConfig.fBounceResize) / (n/2);
 		}
 		
-		double fPossibleDeltaY = MIN (50, (pDock->bDirectionUp ? pIcon->fDrawY : pDock->iCurrentHeight - (pIcon->fDrawY + pIcon->fHeight * pIcon->fScale)) + (1-pData->fResizeFactor)*pIcon->fHeight*pIcon->fScale);  // on borne a 50 pixels pour les rendus qui ont des fenetres grandes..
+		double fPossibleDeltaY = MIN (50, (pDock->container.bDirectionUp ? pIcon->fDrawY : pDock->container.iHeight - (pIcon->fDrawY + pIcon->fHeight * pIcon->fScale)) + (1-pData->fResizeFactor)*pIcon->fHeight*pIcon->fScale);  // on borne a 50 pixels pour les rendus qui ont des fenetres grandes..
 		if (pData->iBounceCount == 1 && ! bWillContinue)
 		{
 			pData->fElevation = 0.;
@@ -64,11 +64,11 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 		}
 		else
 		{
-			pData->fElevation = 1.*k / (n/2) * fPossibleDeltaY * (2 - 1.*k/(n/2)) - (pDock->bDirectionUp ? (1 - pData->fResizeFactor) * pIcon->fHeight*pIcon->fScale/2 : 0);
+			pData->fElevation = 1.*k / (n/2) * fPossibleDeltaY * (2 - 1.*k/(n/2)) - (pDock->container.bDirectionUp ? (1 - pData->fResizeFactor) * pIcon->fHeight*pIcon->fScale/2 : 0);
 			pIcon->fDeltaYReflection = 1.40 * pData->fElevation;  // le reflet "rebondira" de 40% de la hauteur au sol.
 			if (! bUseOpenGL)  // on prend en compte la translation du au fHeightFactor.
-				pIcon->fDeltaYReflection -= (pDock->bHorizontalDock ? pIcon->fHeight * pIcon->fScale * pIcon->fHeightFactor * (1 - pData->fResizeFactor) / (pDock->bDirectionUp ? 2:1) : pIcon->fWidth * pIcon->fScale * (1 - pData->fResizeFactor) / 2);
-			else if (! pDock->bDirectionUp)
+				pIcon->fDeltaYReflection -= (pDock->container.bIsHorizontal ? pIcon->fHeight * pIcon->fScale * pIcon->fHeightFactor * (1 - pData->fResizeFactor) / (pDock->container.bDirectionUp ? 2:1) : pIcon->fWidth * pIcon->fScale * (1 - pData->fResizeFactor) / 2);
+			else if (! pDock->container.bDirectionUp)
 			{
 				pData->fElevation -= (1 - pData->fResizeFactor) * pIcon->fHeight*pIcon->fScale/2;
 			}
@@ -79,13 +79,13 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 	else  // on commence par s'aplatir.
 	{
 		pData->fFlattenFactor = - (1. - myConfig.fBounceFlatten) / m * k + myConfig.fBounceFlatten;  // varie de 1. exclus a f inclus.
-		if (pDock->bDirectionUp)
+		if (pDock->container.bDirectionUp)
 			pData->fElevation = - (1. - pData->fFlattenFactor * pData->fResizeFactor) / 2 * pIcon->fHeight * pIcon->fScale;
 		
 		pIcon->fDeltaYReflection = pData->fElevation;
 		if (! bUseOpenGL)
-			pIcon->fDeltaYReflection -= (pDock->bHorizontalDock ? pIcon->fHeight * pIcon->fScale * (1 - pData->fResizeFactor * pData->fFlattenFactor) / (pDock->bDirectionUp ? 2:1) : pIcon->fWidth * pIcon->fScale * (1 - pData->fResizeFactor * pData->fFlattenFactor) / 2);
-		else if (! pDock->bDirectionUp)
+			pIcon->fDeltaYReflection -= (pDock->container.bIsHorizontal ? pIcon->fHeight * pIcon->fScale * (1 - pData->fResizeFactor * pData->fFlattenFactor) / (pDock->container.bDirectionUp ? 2:1) : pIcon->fWidth * pIcon->fScale * (1 - pData->fResizeFactor * pData->fFlattenFactor) / 2);
+		else if (! pDock->container.bDirectionUp)
 		{
 			pData->fElevation = - (1 - pData->fResizeFactor * pData->fFlattenFactor) * pIcon->fHeight*pIcon->fScale/2;
 		}
@@ -105,11 +105,11 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 		fPrevElevation = MAX (fPrevElevation, pData->fElevation);
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
-		pIcon->fDrawY -= (pDock->bDirectionUp ? 1 : 0) * fPrevElevation;
+		pIcon->fDrawY -= (pDock->container.bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fHeight += fPrevElevation;
 		
 		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-		pIcon->fDrawY += (pDock->bDirectionUp ? 1 : 0) * fPrevElevation;
+		pIcon->fDrawY += (pDock->container.bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fWidthFactor = fDamageWidthFactor;
 		pIcon->fHeightFactor = fDamageHeightFactor;
 		pIcon->fDeltaYReflection = fDeltaYReflection;
@@ -140,10 +140,10 @@ void cd_animations_draw_bounce_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		pIcon->fWidthFactor /= pData->fResizeFactor;
 	}
 	
-	if (pDock->bHorizontalDock)
-		glTranslatef (0., (pDock->bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0.);
+	if (pDock->container.bIsHorizontal)
+		glTranslatef (0., (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0.);
 	else
-		glTranslatef ((pDock->bDirectionUp ? -1 : 1) * pData->fElevation * sens, 0., 0.);
+		glTranslatef ((pDock->container.bDirectionUp ? -1 : 1) * pData->fElevation * sens, 0., 0.);
 }
 
 
@@ -165,22 +165,22 @@ void cd_animations_draw_bounce_cairo (Icon *pIcon, CairoDock *pDock, CDAnimation
 		pIcon->fWidthFactor /= pData->fResizeFactor;
 	}
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 		cairo_translate (pCairoContext,
 			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens,
-			(pDock->bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens);
+			(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens);
 	else
 		cairo_translate (pCairoContext,
-			(pDock->bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens,
+			(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens,
 			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens);
 	
-	if (pDock->bHorizontalDock)
+	if (pDock->container.bIsHorizontal)
 		cairo_translate (pCairoContext,
 			0.,
-			- (pDock->bDirectionUp ? 1 : -1) * pData->fElevation * sens);
+			- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens);
 	else
 		cairo_translate (pCairoContext,
-			- (pDock->bDirectionUp ? 1 : -1) * pData->fElevation * sens,
+			- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens,
 			0.);
 }
 

@@ -106,7 +106,7 @@ void cd_stacks_build_icons (void) {
 void cd_stacks_destroy_icons (void) {
 	cd_debug ("");
 	if (myDock && myIcon->pSubDock != NULL) {
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->acName, NULL, NULL);
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName, NULL, NULL);
 		myIcon->pSubDock = NULL;
 	}
 	else if (myDesklet && myDesklet->icons != NULL) {
@@ -149,7 +149,7 @@ gchar* cd_get_path_from_uri (const gchar *cURI) {
 }
 
 void _stacks_remove_one_icon (Icon *pAddedIcon) {
-	//cd_debug ("Removing %s", pAddedIcon->acName);
+	//cd_debug ("Removing %s", pAddedIcon->cName);
 	GList *pStacksIconList = (myDock ? myIcon->pSubDock->icons : myDesklet->icons);
 	if (myDock)
 		cairo_dock_detach_icon_from_dock (pAddedIcon, myIcon->pSubDock, FALSE);
@@ -260,7 +260,7 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, myConfig.bUseSeparator);
 		else
 			_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, FALSE);
-		cd_debug ("Placed After %s", pCurrentIcon->acName);
+		cd_debug ("Placed After %s", pCurrentIcon->cName);
 	}
 	else {
 		//cd_debug ("On boucle pour chercher devant quelle icônes elle doit être");
@@ -271,12 +271,12 @@ void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {
 				
 			if (pCurrentIcon == NULL) { //On a remonté toute la liste, Notre icône doit se placer en 1er
 				_placeIconWithSeparator (pAddedIcon, pPreviousIcon->fOrder - 0.01, iType, FALSE);
-				cd_debug ("Placed Before %s", pPreviousIcon->acName);
+				cd_debug ("Placed Before %s", pPreviousIcon->cName);
 				break;
 			}
 			else if (cairo_dock_compare_icons_name (pCurrentIcon, pAddedIcon) < 0) { //Notre icône après la courante
 				_placeIconWithSeparator (pAddedIcon, pCurrentIcon->fOrder + 0.01, iType, FALSE);
-				cd_debug ("Placed After %s", pCurrentIcon->acName);
+				cd_debug ("Placed After %s", pCurrentIcon->cName);
 				break;
 			}
 			
@@ -315,7 +315,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		cd_debug ("On a ajouté un fichier");
 		Icon *pAddedIcon = cairo_dock_get_icon_with_base_uri (pStacksIconList, cURI);
 		if (!myConfig.bHiddenFiles && pAddedIcon != NULL) { //On ne veut pas des fichiers cachés!
-			if (*pAddedIcon->acName == '.') {
+			if (*pAddedIcon->cName == '.') {
 				_stacks_remove_one_icon (pAddedIcon);
 				return;
 			}
@@ -350,7 +350,7 @@ void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cRawURI, Ic
 		/*Le dock se chargera tout seul de mettre a jour l'icône
 		TODO fixer le bug qui fait planter le dock quand on télécharge un fichier avec FF dans un dossier surveillé.*/
 		if (!myConfig.bHiddenFiles && pModifiedIcon != NULL) { //On ne veut pas des fichiers cachés!
-			if (*pModifiedIcon->acName == '.') {
+			if (*pModifiedIcon->cName == '.') {
 				_stacks_remove_one_icon (pModifiedIcon);
 				return;
 			}

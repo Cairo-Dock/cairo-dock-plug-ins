@@ -316,7 +316,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		{
 			if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
 			{
-				g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->acName, iModifierType, GDK_SHIFT_MASK);
+				g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
 				
 				myData.bIgnoreIconState = TRUE;
 				if (iModifierType & GDK_MOD1_MASK)  // ALT
@@ -357,7 +357,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
 			{
 				Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
-				cairo_dock_launch_command (pIcon->acCommand);
+				cairo_dock_launch_command (pIcon->cCommand);
 			}
 			else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
 			{
@@ -384,7 +384,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			{
 				if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)
 				{
-					g_print ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->acName);
+					g_print ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->cName);
 					Icon *pIcon = cairo_dock_get_first_icon (myData.pCurrentIcon->pSubDock->icons);
 					cd_do_change_current_icon (pIcon, myData.pCurrentIcon->pSubDock);
 				}
@@ -397,7 +397,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (myData.pCurrentDock, &pParentDock);
 					if (pPointingIcon != NULL)
 					{
-						g_print ("on redescend dans le dock parent via %s\n", pPointingIcon->acName);
+						g_print ("on redescend dans le dock parent via %s\n", pPointingIcon->cName);
 						cd_do_change_current_icon (pPointingIcon, pParentDock);
 					}
 				}
@@ -425,7 +425,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						pPrevIcon = cairo_dock_get_last_icon (myData.pCurrentDock->icons);
 					}
 					
-					g_print ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->acName : "none");
+					g_print ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->cName : "none");
 					cd_do_change_current_icon (pPrevIcon, myData.pCurrentDock);
 				}
 			}
@@ -452,7 +452,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						pNextIcon = cairo_dock_get_first_icon (myData.pCurrentDock->icons);
 					}
 					
-					g_print ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->acName : "none");
+					g_print ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->cName : "none");
 					cd_do_change_current_icon (pNextIcon, myData.pCurrentDock);
 				}
 			}
@@ -488,7 +488,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
 				myData.pCurrentDock = g_pMainDock;
 			Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
-			g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->acName : "none");
+			g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
 			cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 		}
 		else if (myData.pListing != NULL)

@@ -27,17 +27,17 @@
 
 #define _add_icon(pMailAccount)\
 		pIcon = g_new0 (Icon, 1);\
-		pIcon->acName = g_strdup (pMailAccount->name);\
-		pIcon->acFileName = g_strdup (myConfig.cNoMailUserImage);\
+		pIcon->cName = g_strdup (pMailAccount->name);\
+		pIcon->cFileName = g_strdup (myConfig.cNoMailUserImage);\
 		pIcon->cQuickInfo = g_strdup ("...");\
 		pIcon->fOrder = i;\
 		pIcon->fScale = 1.;\
 		pIcon->fAlpha = 1.;\
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
-		pIcon->acCommand = g_strdup ("none");\
-		pIcon->cParentDockName = g_strdup (myIcon->acName);\
-		cd_debug (" + %s (%s)\n", pIcon->acName, pIcon->acFileName);\
+		pIcon->cCommand = g_strdup ("none");\
+		pIcon->cParentDockName = g_strdup (myIcon->cName);\
+		cd_debug (" + %s (%s)\n", pIcon->cName, pIcon->cFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 		pMailAccount->icon = pIcon;
 

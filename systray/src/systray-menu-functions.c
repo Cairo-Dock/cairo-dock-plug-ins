@@ -63,7 +63,7 @@ void systray_apply_settings()
 
 void systray_build_and_show (void)
 {
-	myData.tray = tray_init(g_pMainDock->pWidget);
+	myData.tray = tray_init(g_pMainDock->container.pWidget);
 	gtk_widget_show (myData.tray->widget);
 
 	systray_apply_settings();
