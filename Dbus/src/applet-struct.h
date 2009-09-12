@@ -89,6 +89,7 @@ struct _AppletData {
 	GtkWidget *pModuleSubMenu;
 	Icon *pCurrentIconSubMenu;
 	gpointer pCurrentMenuDbusApplet;
+	gchar *cActiveModules;
 	} ;
 
 

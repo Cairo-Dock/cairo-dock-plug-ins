@@ -25,15 +25,21 @@
 #include "applet-struct.h"
 
 
-void cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
+dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
 
 void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
 
 void cd_dbus_unregister_notifications (void);
 
 
+gboolean cd_dbus_applet_is_used (const gchar *cModuleName);
+void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath);
+void cd_dbus_launch_distant_applet (const gchar *cModuleName);
+
+void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance);
 void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile);
 
+void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance);
 void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance);
 
 gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile);

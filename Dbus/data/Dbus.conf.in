@@ -38,3 +38,5 @@ enable animate icon = true
 
 #b Let extern applications register new module ?
 enable new module = true
+
+modules=

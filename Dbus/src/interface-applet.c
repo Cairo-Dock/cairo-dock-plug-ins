@@ -213,13 +213,21 @@ static dbusApplet * _remove_dbus_applet_from_list (CairoDockModuleInstance *pMod
 
 #define _applet_list_is_empty() (myData.pAppletList == NULL)
 
-void cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
+dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
 {
-	g_return_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL);  // l'interface principale a deja enregistre notre domaine, etc.
+	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);  // l'interface principale a deja enregistre notre domaine, etc.
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	
+	/// tester l'unicite...
+	dbusApplet *server = _get_dbus_applet (pModuleInstance);
+	if (server != NULL)
+	{
+		cd_warning ("this applet (%s) already has a remote object on the bus", cModuleName);
+		return server;
+	}
+	
 	// on cree l'objet DBus correspondant a l'applet.
-	dbusApplet *server = g_object_new (cd_dbus_applet_get_type(), NULL);  // appelle cd_dbus_applet_class_init() et cd_dbus_applet_init().
+	server = g_object_new (cd_dbus_applet_get_type(), NULL);  // appelle cd_dbus_applet_class_init() et cd_dbus_applet_init().
 	server->cModuleName = g_strdup (cModuleName);
 	server->pModuleInstance = pModuleInstance;
 	
@@ -253,7 +261,8 @@ void cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 			NULL);
 	}
 	
-	myData.pAppletList = g_list_prepend (myData.pAppletList, server);  /// tester l'unicite...
+	myData.pAppletList = g_list_prepend (myData.pAppletList, server);
+	return server;
 }
 
 void cd_dbus_unregister_notifications (void)
@@ -290,16 +299,44 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 
 
 
-void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
+gboolean cd_dbus_applet_is_used (const gchar *cModuleName)
 {
-	g_print ("%s ()\n", __func__);
-	dbusApplet *pDbusApplet = _get_dbus_applet (pModuleInstance);
-	if (pDbusApplet != NULL)
-		g_signal_emit (pDbusApplet,
-			s_iSignals[INIT_MODULE],
-			0,
-			NULL);
-	
+	if (myData.cActiveModules == NULL)
+		return FALSE;
+	gchar *str = g_strstr_len (myData.cActiveModules, -1, cModuleName);
+	return (str && str[strlen(cModuleName)] == ';' || str[strlen(cModuleName)] == '\0');
+}
+
+void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
+{
+	gchar *cCommand = g_strdup_printf ("cd \"%s/%s/%s\" && ./\"%s\"", cDirPath, "third-party", cModuleName, cModuleName);
+	g_print ("on lance une applet distante : '%s'\n", cCommand);
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
+}
+
+
+void cd_dbus_launch_distant_applet (const gchar *cModuleName)
+{
+	gchar *cFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR"/third-party", cModuleName);
+	if (g_file_test (cFilePath, G_FILE_TEST_EXISTS))
+	{
+		cd_dbus_launch_distant_applet_in_dir (cModuleName, MY_APPLET_SHARE_DATA_DIR);
+	}
+	else
+	{
+		g_free (cFilePath);
+		cFilePath = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "third-party", cModuleName);
+		if (g_file_test (cFilePath, G_FILE_TEST_EXISTS))
+		{
+			cd_dbus_launch_distant_applet_in_dir (cModuleName, g_cCairoDockDataDir);
+		}
+	}
+	g_free (cFilePath);
+}
+
+void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
+{
 	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
 	if (pModuleInstance->pDesklet)
 	{
@@ -311,12 +348,74 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer)
+	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer)
 	{
 		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
 		cairo_destroy (pDrawContext);
 		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
+	}
+}
+
+void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
+{
+	g_print ("%s ()\n", __func__);
+	dbusApplet *pDbusApplet = _get_dbus_applet (pModuleInstance);
+	if (pDbusApplet == NULL)
+		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
+	
+	g_signal_emit (pDbusApplet,
+		s_iSignals[INIT_MODULE],
+		0,
+		NULL);
+	
+	cd_dbus_action_on_init_module (pModuleInstance);
+	
+	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))
+	{
+		gchar *str = myData.cActiveModules;
+		if (myData.cActiveModules)
+			myData.cActiveModules = g_strdup_printf ("%s;%s", myData.cActiveModules, pModuleInstance->pModule->pVisitCard->cModuleName);
+		else
+			myData.cActiveModules = g_strdup (pModuleInstance->pModule->pVisitCard->cModuleName);
+		g_free (str);
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
+			G_TYPE_INVALID);
+	}
+	
+	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // activation faite par le dock, on verifie que le programme est lance.
+	{
+		gchar *cCommand = g_strdup_printf ("pgrep \"%s\"", pModuleInstance->pModule->pVisitCard->cModuleName);
+		gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+		g_free (cCommand);
+		if (cResult != NULL)
+		{
+			g_print ("l'applet est deja lancee\n");
+			g_free (cResult);
+		}
+		else
+		{
+			cd_dbus_launch_distant_applet (pModuleInstance->pModule->pVisitCard->cModuleName);
+		}
+	}
+}
+
+void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
+{
+	if (pModuleInstance->pIcon->pSubDock != NULL)
+	{
+		cairo_dock_destroy_dock (pModuleInstance->pIcon->pSubDock, pModuleInstance->pIcon->cName, NULL, NULL);
+		pModuleInstance->pIcon->pSubDock = NULL;
+	}
+	
+	cairo_dock_remove_data_renderer_on_icon (pModuleInstance->pIcon);
+	
+	if (pModuleInstance->pDesklet != NULL && pModuleInstance->pDesklet->icons != NULL)  // idem, version desklet.
+	{
+		g_list_foreach (pModuleInstance->pDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_free (pModuleInstance->pDesklet->icons);
+		pModuleInstance->pDesklet->icons = NULL;
 	}
 }
 
@@ -329,12 +428,28 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 			s_iSignals[STOP_MODULE],
 			0,
 			NULL);
-	if (pModuleInstance->pIcon->pSubDock != NULL)
+		
+	cd_dbus_action_on_stop_module (pModuleInstance);
+	
+	/// enlever le nom de myData.cActiveModules ...
+	if (myData.cActiveModules != NULL)
 	{
-		cairo_dock_destroy_dock (pModuleInstance->pIcon->pSubDock, pModuleInstance->pIcon->acName, NULL, NULL);
-		pModuleInstance->pIcon->pSubDock = NULL;
+		gchar *str = g_strstr_len (myData.cActiveModules, -1, pModuleInstance->pModule->pVisitCard->cModuleName);
+		if (str)
+		{
+			*str = '\0';
+			gchar *ptr = myData.cActiveModules;
+			myData.cActiveModules = g_strdup_printf ("%s%s", myData.cActiveModules, str + strlen (pModuleInstance->pModule->pVisitCard->cModuleName));
+			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+				G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
+				G_TYPE_INVALID);
+			
+			g_free (ptr);
+		}
+		pModuleInstance->pModule->pVisitCard->cModuleName;
 	}
-	cairo_dock_remove_data_renderer_on_icon (pModuleInstance->pIcon);
+	
+	cd_dbus_delete_remote_applet_object (pModuleInstance);
 }
 
 gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)
@@ -370,7 +485,7 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->acFileName == NULL && pIcon->pIconBuffer && pIcon->pDataRenderer == NULL)
+	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer && pIcon->pDataRenderer == NULL)
 	{
 		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
@@ -669,14 +784,14 @@ gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pI
 	for (i = 0; pIconFields[3*i] && pIconFields[3*i+1] && pIconFields[3*i+2]; i ++)
 	{
 		pOneIcon = g_new0 (Icon, 1);
-		pOneIcon->acName = g_strdup (pIconFields[3*i]);
-		pOneIcon->acFileName = g_strdup (pIconFields[3*i+1]);
+		pOneIcon->cName = g_strdup (pIconFields[3*i]);
+		pOneIcon->cFileName = g_strdup (pIconFields[3*i+1]);
 		pOneIcon->fOrder = i + n;
 		pOneIcon->fScale = 1.;
 		pOneIcon->fAlpha = 1.;
 		pOneIcon->fWidthFactor = 1.;
 		pOneIcon->fHeightFactor = 1.;
-		pOneIcon->acCommand = g_strdup (pIconFields[3*i+2]);
+		pOneIcon->cCommand = g_strdup (pIconFields[3*i+2]);
 		pIconsList = g_list_append (pIconsList, pOneIcon);
 	}
 	if (pIconFields[3*i] != NULL)
@@ -689,12 +804,12 @@ gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pI
 		if (pIcon->pSubDock == NULL)
 		{
 			cairo_t *pDrawContext = cairo_dock_create_context_from_container (pContainer);
-			if (pIcon->acName == NULL)
+			if (pIcon->cName == NULL)
 				cairo_dock_set_icon_name (pDrawContext, pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
 			if (cairo_dock_check_unique_subdock_name (pIcon))
-				cairo_dock_set_icon_name (pDrawContext, pIcon->acName, pIcon, pContainer);
+				cairo_dock_set_icon_name (pDrawContext, pIcon->cName, pIcon, pContainer);
 			cairo_destroy (pDrawContext);
-			pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconsList, pIcon->acName, pInstance->pDock);
+			pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconsList, pIcon->cName, pInstance->pDock);
 			//cairo_dock_set_renderer (pIcon->pSubDock, cRenderer);
 			cairo_dock_update_dock_size (pIcon->pSubDock);
 		}
@@ -715,7 +830,7 @@ gboolean cd_dbus_applet_add_sub_icons (dbusApplet *pDbusApplet, const gchar **pI
 	{
 		if (pIcon->pSubDock != NULL)  // precaution.
 		{
-			cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->acName, NULL, NULL);
+			cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName, NULL, NULL);
 			pIcon->pSubDock = NULL;
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
@@ -749,7 +864,7 @@ gboolean cd_dbus_applet_remove_sub_icon (dbusApplet *pDbusApplet, const gchar *c
 		{
 			if (pInstance->pDesklet)
 			{
-				cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->acName, NULL, NULL);
+				cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName, NULL, NULL);
 				pIcon->pSubDock = NULL;
 			}
 			else
@@ -841,7 +956,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 	g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iDirection);
 	dbusApplet *pDbusApplet = _get_dbus_applet (pAppletIcon->pModuleInstance);
 	
-	g_signal_emit (pDbusApplet, s_iSignals[SCROLL], 0, iDirection == GDK_SCROLL_UP);
+	g_signal_emit (pDbusApplet, s_iSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP));
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 

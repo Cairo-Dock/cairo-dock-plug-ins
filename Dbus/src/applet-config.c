@@ -40,6 +40,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableSetIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set icon");
 	myConfig.bEnableAnimateIcon		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable animate icon");
 	myConfig.bEnableNewModule		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable new module");
+	
+	myData.cActiveModules = CD_CONFIG_GET_STRING ("Configuration", "modules");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -51,5 +53,5 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	
+	g_free (myData.cActiveModules);
 CD_APPLET_RESET_DATA_END

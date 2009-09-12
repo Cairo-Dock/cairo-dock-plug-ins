@@ -1,3 +1,4 @@
+#!/usr/bin/python
 ### We assume the name of this applet is "demo"
 ### It is installed in a directory, like for instance ~/demo.
 ### This script should be placed in this folder, alongside with 3 files :
