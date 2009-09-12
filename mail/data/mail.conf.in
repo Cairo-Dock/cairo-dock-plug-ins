@@ -97,7 +97,7 @@ show content = true
 max shown mails = -1
 
 #b Check mail account on startup ?
-#{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/mdify the mail accounts you want.}
+#{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/modify the mail accounts you want.}
 check = true
 
 #F[Theme overriding] 
