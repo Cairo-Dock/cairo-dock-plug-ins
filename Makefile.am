@@ -68,6 +68,10 @@ if WITH_NETWORK_MONITOR
 network_monitor_dir=Network-Monitor
 endif
 
+if WITH_SCOOBY_DO
+scooby_do_dir=Scooby-Do
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -96,6 +100,7 @@ SUBDIRS = . po\
 	$(network_monitor_dir)\
 	${powermanager_dir}\
 	quick-browser\
+	${scooby_do_dir}\
 	shortcuts\
 	showDesklets\
 	showDesktop\

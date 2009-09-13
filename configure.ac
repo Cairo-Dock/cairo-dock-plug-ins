@@ -112,6 +112,10 @@ AC_ARG_ENABLE(network-monitor,
 	[  --enable-network-monitor : Enable network-monitor applet (default=no) ],
 	[ with_network_monitor=${enableval} ],
 	[ with_network_monitor=no ])
+AC_ARG_ENABLE(scooby-do,
+	[  --enable-scooby-do : Enable scooby-do applet (default=no) ],
+	[ with_scooby_do=${enableval} ],
+	[ with_scooby_do=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -202,6 +206,7 @@ AM_CONDITIONAL( [WITH_KEYBOARD_INDICATOR], [test "$with_keyboard_indicator" = "y
 AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
 AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
 AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
+AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -451,6 +456,15 @@ AC_SUBST(VERSION_QUICK_BROWSER, "1.0.4")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
+
+############# SCOOBY_DO #################
+SCOOBY_DO_PACKAGE=cd-scooby-do
+AC_SUBST(GETTEXT_SCOOBY_DO_PACKAGE, "cairo-dock-plugins")
+
+AC_SUBST(VERSION_SCOOBY_DO_PACKAGE, "0.1.0")
+AC_SUBST(PACKAGE_SCOOBY_DO_PACKAGE, "$SCOOBY_DO_PACKAGE_PACKAGE")
+
+AC_SUBST(scooby_dodatadir, "${pkgdatadir}/Scooby-Do")
 
 ############# SHORTCUTS #################
 SHORTCUTS_PACKAGE=cd-shortcuts
@@ -758,6 +772,11 @@ AC_CONFIG_FILES([
 	quick-browser/data/Makefile
 	quick-browser/data/quick-browser.conf
 	
+	Scooby-Do/Makefile
+	Scooby-Do/src/Makefile
+	Scooby-Do/data/Makefile
+	Scooby-Do/data/Scooby-Do.conf
+	
 	shortcuts/Makefile
 	shortcuts/src/Makefile
 	shortcuts/data/Makefile
@@ -868,4 +887,5 @@ echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
 echo " * Compil Dnd2share applet : "${with_dnd2share}
 echo " * Compil MusicPlayer applet : "${with_musicplayer}
 echo " * Compil Network-Monitor applet : "${with_network_monitor}
+echo " * Compil Scooby-Do applet : "${with_scooby_do}
 
