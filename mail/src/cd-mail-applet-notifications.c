@@ -121,7 +121,7 @@ void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 {
 	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 	GList *l = pMailAccount->pUnseenMessageList;
-	gchar *cMessage;
+	gchar *cMessage = "";
 	gint i = myData.iCurrentlyShownMail;
 
 	if( myData.iCurrentlyShownMail < 0 )
@@ -136,7 +136,8 @@ void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 	{
 		myData.iCurrentlyShownMail -= i;
 	}
-	cMessage = l->data;
+	if( l )
+		cMessage = l->data;
   gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
 
 	if( myData.iCurrentlyShownMail == 0 )
@@ -231,8 +232,9 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	gtk_signal_connect( GTK_OBJECT(pCloseButton),       "clicked", G_CALLBACK(_cd_mail_close_preview_cb), (gpointer)pMailAccount );
 
 	GList *l = pMailAccount->pUnseenMessageList;
-	gchar *cMessage;
-	cMessage = l->data;
+	gchar *cMessage = "";
+	if( l )
+		cMessage = l->data;
 
   gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
 	myData.iCurrentlyShownMail = 0;
@@ -276,16 +278,19 @@ CD_APPLET_ON_SCROLL_BEGIN
 		pMailAccount->bError = TRUE;
 	}
 	
-	g_print( "Displaying messages\n" );
 	{
 		if( myData.pMessagesDialog == NULL )
 		{
-			myData.pMessagesDialog = cairo_dock_show_dialog_full (_("Mail"),
-				myIcon, myContainer,
-				0,
-				"same icon",
-				cd_mail_messages_container_new(pMailAccount),
-				NULL, NULL, NULL);
+			g_print( "Displaying messages\n" );
+			if( pMailAccount->pUnseenMessageList != NULL )
+			{
+				myData.pMessagesDialog = cairo_dock_show_dialog_full (_("Mail"),
+					myIcon, myContainer,
+					0,
+					"same icon",
+					cd_mail_messages_container_new(pMailAccount),
+					NULL, NULL, NULL);
+			}
 		}
 		else
 		{
