@@ -60,8 +60,8 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	
 	pSlide->iNbIcons = g_list_length (pDesklet->icons);
 	
-	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
-	double h = pDesklet->iHeight - 2 * pSlide->fMargin;
+	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
+	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
 	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
 	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
 	int di = pSlide->iGapBetweenIcons;  // ecart entre 2 lignes/colonnes.
@@ -153,28 +153,28 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 		cairo_dock_draw_rounded_rectangle (pCairoContext,
 			fRadius,
 			fLineWidth,
-			pDesklet->iWidth - 2 * fRadius - fLineWidth,
-			pDesklet->iHeight - 2*fLineWidth);
+			pDesklet->container.iWidth - 2 * fRadius - fLineWidth,
+			pDesklet->container.iHeight - 2*fLineWidth);
 	}
 	else
 	{
 		cairo_move_to (pCairoContext, 0., 0.);
 		cairo_rel_line_to (pCairoContext,
 			0.,
-			pDesklet->iHeight - fRadius - fLineWidth);
+			pDesklet->container.iHeight - fRadius - fLineWidth);
 		cairo_rel_line_to (pCairoContext,
 			pSlide->iRadius,
 			pSlide->iRadius);
 		cairo_rel_line_to (pCairoContext,
-			pDesklet->iWidth - fRadius - fLineWidth,
+			pDesklet->container.iWidth - fRadius - fLineWidth,
 			0.);
 	}
 	cairo_set_source_rgba (pCairoContext, pSlide->fLineColor[0], pSlide->fLineColor[1], pSlide->fLineColor[2], pSlide->fLineColor[3]);
 	cairo_stroke (pCairoContext);
 	
 	// les icones.
-	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
-	double h = pDesklet->iHeight - 2 * pSlide->fMargin;
+	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
+	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
 	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
 	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
@@ -213,7 +213,7 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 		{
 			cairo_save (pCairoContext);
 			
-			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->iWidth);
+			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
 			
 			cairo_restore (pCairoContext);
 			
@@ -227,8 +227,8 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 				if (pIcon->bPointed)
 				{
 					fAlpha = 1.;
-					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
-						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->container.iWidth)
+						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
 					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
 						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
 					cairo_set_source_surface (pCairoContext,
@@ -309,29 +309,29 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 		{
 			cairo_dock_draw_rounded_rectangle_opengl (fRadius,
 				fLineWidth,
-				pDesklet->iWidth - 2 * fRadius,
-				pDesklet->iHeight,
+				pDesklet->container.iWidth - 2 * fRadius,
+				pDesklet->container.iHeight,
 				0., 0.,
 				pSlide->fLineColor);
-			glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+			glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 		}
 		else
 		{
 			int i = 0;
-			_cairo_dock_set_vertex_xy (0, -pDesklet->iWidth/2, 				+pDesklet->iHeight/2);
-			_cairo_dock_set_vertex_xy (1, -pDesklet->iWidth/2, 				-pDesklet->iHeight/2 + fRadius);
-			_cairo_dock_set_vertex_xy (2, -pDesklet->iWidth/2 + fRadius, 	-pDesklet->iHeight/2);
-			_cairo_dock_set_vertex_xy (3, +pDesklet->iWidth/2, 				-pDesklet->iHeight/2);
+			_cairo_dock_set_vertex_xy (0, -pDesklet->container.iWidth/2, 				+pDesklet->container.iHeight/2);
+			_cairo_dock_set_vertex_xy (1, -pDesklet->container.iWidth/2, 				-pDesklet->container.iHeight/2 + fRadius);
+			_cairo_dock_set_vertex_xy (2, -pDesklet->container.iWidth/2 + fRadius, 	-pDesklet->container.iHeight/2);
+			_cairo_dock_set_vertex_xy (3, +pDesklet->container.iWidth/2, 				-pDesklet->container.iHeight/2);
 			_cairo_dock_set_path_as_current ();
 			cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
 		}
 	}
 	
-	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 	
 	// les icones.
-	double w = pDesklet->iWidth - 2 * pSlide->fMargin;
-	double h = pDesklet->iHeight - 2 * pSlide->fMargin;
+	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
+	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
 	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
 	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
@@ -375,9 +375,9 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			glPushMatrix ();
 			
 			glTranslatef (pIcon->fDrawX + pIcon->fWidth/2,
-				pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2,
+				pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2,
 				0.);
-			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
+			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			if (pIcon->bHasIndicator && g_iIndicatorTexture != 0)
@@ -397,8 +397,8 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 				if (pIcon->bPointed)
 				{
 					_cairo_dock_set_alpha (1.);
-					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->iWidth)
-						fOffsetX = pDesklet->iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->container.iWidth)
+						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
 					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
 						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
 				}

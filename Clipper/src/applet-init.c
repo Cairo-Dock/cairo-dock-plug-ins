@@ -97,7 +97,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		gtk_widget_queue_draw (myDesklet->container.pWidget);
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.

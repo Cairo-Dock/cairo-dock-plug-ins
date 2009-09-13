@@ -666,6 +666,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		glEnable (GL_BLEND); // On active le blend
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		_cairo_dock_set_blend_alpha ();
 		
 		double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 		
@@ -713,6 +714,8 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	if (pDock->icons == NULL)
 		return ;
 	
+	_cairo_dock_set_blend_over ();
+		
 	//\____________________ On dessine la ficelle.
 	if (myIcons.iStringLineWidth > 0)
 		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, FALSE);

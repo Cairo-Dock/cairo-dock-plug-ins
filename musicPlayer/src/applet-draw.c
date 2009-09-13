@@ -181,7 +181,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			//Affichage de l'info-rapide.
 			if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackNumber > 0)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->iWidth >= 64 ? D_("Track") : ""), myData.iTrackNumber);  // inutile de redessiner notre icone, ce sera fait plus loin.
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackNumber);  // inutile de redessiner notre icone, ce sera fait plus loin.
 			}
 			else
 			{

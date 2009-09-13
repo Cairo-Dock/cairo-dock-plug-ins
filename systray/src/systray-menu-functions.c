@@ -72,16 +72,16 @@ void systray_build_and_show (void)
 	{
 		myData.dialog = cd_systray_build_dialog ();
 		//myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
-		gtk_window_set_resizable(GTK_WINDOW(myData.dialog->pWidget), FALSE);
+		gtk_window_set_resizable(GTK_WINDOW(myData.dialog->container.pWidget), FALSE);
 		//	gtk_window_resize(GTK_WINDOW(myData.dialog->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 	}
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		gtk_window_set_resizable(GTK_WINDOW(myDesklet->pWidget), FALSE);
-//		gtk_window_resize(GTK_WINDOW(myDesklet->pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
-		//cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
+		gtk_window_set_resizable(GTK_WINDOW(myDesklet->container.pWidget), FALSE);
+//		gtk_window_resize(GTK_WINDOW(myDesklet->container.pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
+		//cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->container.pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
 	}
 }
 

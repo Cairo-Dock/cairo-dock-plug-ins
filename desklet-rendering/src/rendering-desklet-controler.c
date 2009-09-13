@@ -41,7 +41,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 			pControler->pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
 			if (pControler->pClickedIcon != NULL)
 			{
-				gtk_widget_queue_draw (pDesklet->pWidget);
+				gtk_widget_queue_draw (pDesklet->container.pWidget);
 			}
 		}
 		else if (pButton->type == GDK_BUTTON_RELEASE)
@@ -49,7 +49,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 			if (pControler->pClickedIcon != NULL)
 			{
 				pControler->pClickedIcon = NULL;
-				gtk_widget_queue_draw (pDesklet->pWidget);
+				gtk_widget_queue_draw (pDesklet->container.pWidget);
 			}
 		}
 	}
@@ -68,7 +68,7 @@ CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, ca
 	}
 	
 	int iNbIcons = g_list_length (pDesklet->icons);
-	pControler->fGapBetweenIcons = (pDesklet->iWidth - 2*g_iDockRadius) / (iNbIcons + 1);
+	pControler->fGapBetweenIcons = (pDesklet->container.iWidth - 2*g_iDockRadius) / (iNbIcons + 1);
 	
 	return pControler;
 }
@@ -92,8 +92,8 @@ void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 	
 	if (pControler->b3D)
 	{
-		pControler->iEllipseHeight = MIN (pDesklet->pIcon->fHeight, pDesklet->iHeight - 2 * (myLabels.iconTextDescription.iSize + myIcons.fReflectSize) - 1);
-		pControler->fInclinationOnHorizon = atan2 (pDesklet->iHeight, pDesklet->iWidth/4);
+		pControler->iEllipseHeight = MIN (pDesklet->pIcon->fHeight, pDesklet->container.iHeight - 2 * (myLabels.iconTextDescription.iSize + myIcons.fReflectSize) - 1);
+		pControler->fInclinationOnHorizon = atan2 (pDesklet->container.iHeight, pDesklet->container.iWidth/4);
 		pControler->iFrameHeight = pControler->iEllipseHeight + 0*2 * myBackground.iFrameMargin + myIcons.fReflectSize;
 		pControler->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pControler->iFrameHeight, pControler->fInclinationOnHorizon, g_iDockRadius, g_iDockLineWidth);
 	}
@@ -102,11 +102,11 @@ void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		
 	}
 	
-	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+	g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-press-event",
 		G_CALLBACK (on_button_press_controler),
 		pDesklet);
-	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+	g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-release-event",
 		G_CALLBACK (on_button_press_controler),
 		pDesklet);
@@ -136,13 +136,13 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 	double fCentralSphereWidth, fCentralSphereHeight;
 	if (pControler->b3D)
 	{
-		fCentralSphereWidth = MAX (1, (MIN (pDesklet->iWidth, pDesklet->iHeight - myLabels.iconTextDescription.iSize) - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET - myIcons.fReflectSize);
+		fCentralSphereWidth = MAX (1, (MIN (pDesklet->container.iWidth, pDesklet->container.iHeight - myLabels.iconTextDescription.iSize) - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET - myIcons.fReflectSize);
 		fCentralSphereHeight = fCentralSphereWidth;
 	}
 	else
 	{
-		fCentralSphereWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET);
-		fCentralSphereHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) * CONTROLER_RATIO_ICON_DESKLET);
+		fCentralSphereWidth = MAX (1, (pDesklet->container.iWidth - g_iDockRadius) * CONTROLER_RATIO_ICON_DESKLET);
+		fCentralSphereHeight = MAX (1, (pDesklet->container.iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) * CONTROLER_RATIO_ICON_DESKLET);
 	}
 	
 	//\_________________ On charge l'icone centrale.
@@ -151,7 +151,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 	{
 		pIcon->fWidth = fCentralSphereWidth;
 		pIcon->fHeight = fCentralSphereHeight;
-		pIcon->fDrawX = (pDesklet->iWidth - pDesklet->pIcon->fWidth) / 2;
+		pIcon->fDrawX = (pDesklet->container.iWidth - pDesklet->pIcon->fWidth) / 2;
 		pIcon->fDrawY = myLabels.iconTextDescription.iSize + g_iDockRadius/2;
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
@@ -173,8 +173,8 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 		}
 		else
 		{
-			pIcon->fWidth = MAX (1, (pDesklet->iWidth - g_iDockRadius) * (1 - CONTROLER_RATIO_ICON_DESKLET));
-			pIcon->fHeight = MAX (1, (pDesklet->iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) *(1 - CONTROLER_RATIO_ICON_DESKLET));
+			pIcon->fWidth = MAX (1, (pDesklet->container.iWidth - g_iDockRadius) * (1 - CONTROLER_RATIO_ICON_DESKLET));
+			pIcon->fHeight = MAX (1, (pDesklet->container.iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) *(1 - CONTROLER_RATIO_ICON_DESKLET));
 		}
 		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
 		
@@ -236,14 +236,14 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		double fLineWidth = g_iDockLineWidth;
 		double fMargin = 0*myBackground.iFrameMargin;
 		
-		double fDockWidth = pDesklet->iWidth - fExtraWidth;
+		double fDockWidth = pDesklet->container.iWidth - fExtraWidth;
 		int sens=1;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 		fDockOffsetX = fExtraWidth / 2;
-		fDockOffsetY = pDesklet->iHeight - iControlPanelHeight - 2 * fLineWidth - iFrameHeight;
+		fDockOffsetY = pDesklet->container.iHeight - iControlPanelHeight - 2 * fLineWidth - iFrameHeight;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->bIsHorizontal);
+		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->container.bIsHorizontal);
 		
 		//\____________________ On dessine les decorations dedans.
 		cairo_set_source_rgba (pCairoContext, .8, .8, .8, .75);
@@ -261,7 +261,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		//\____________________ On dessine les icones.
 		cairo_save (pCairoContext);
 		pDesklet->pIcon->fDrawY = myLabels.iconTextDescription.iSize;
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
 		cairo_restore (pCairoContext);
 		
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -271,7 +271,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -280,7 +280,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 	else
 	{
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, FALSE, TRUE, pDesklet->iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
 		cairo_restore (pCairoContext);
 		
 		double fX = g_iDockRadius + pControler->fGapBetweenIcons, fY = myLabels.iconTextDescription.iSize + pDesklet->pIcon->fHeight;
@@ -301,7 +301,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
 				
 				cairo_restore (pCairoContext);
 			}

@@ -40,7 +40,8 @@ void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 	pDialog->iMinBottomGap = CAIRO_DIALOG_MIN_GAP;
 	pDialog->iMinFrameWidth = CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_ROUNDING_MARGIN + CAIRO_DIALOG_TIP_BASE;  // dans l'ordre.
 	pDialog->fAlign = 0.;  // la pointe colle au bord du dialogue.
-	pDialog->fReflectAlpha = 0.;  // pas de reflet merci.
+	pDialog->container.fRatio = 0.;  // pas de reflet merci.
+	pDialog->container.bUseReflect = FALSE;
 }
 
 void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *pDialog)
@@ -55,11 +56,11 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	//g_print ("TipHeight <- %d\n", (int)fTipHeight);
 
 	double fOffsetX	= fRadius +	fLineWidth / 2;
-	double fOffsetY	= (pDialog->bDirectionUp ? fLineWidth / 2 : pDialog->iHeight - fLineWidth / 2);
-	int	sens = (pDialog->bDirectionUp ?	1 :	-1);
+	double fOffsetY	= (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2);
+	int	sens = (pDialog->container.bDirectionUp ?	1 :	-1);
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
 	//g_print ("  fOffsetX : %.2f; fOffsetY	: %.2f\n", fOffsetX, fOffsetY);
-	int	iWidth = pDialog->iWidth;
+	int	iWidth = pDialog->container.iWidth;
 
 	cairo_rel_line_to (pCairoContext, iWidth - (2 *	fRadius + fLineWidth), 0);
 	// Coin	haut droit.
@@ -77,7 +78,7 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	double fDeltaMargin;
 	if (pDialog->bRight)
 	{
-		fDeltaMargin = MAX (0, pDialog->iAimedX	- pDialog->iPositionX -	fRadius	- fLineWidth / 2);
+		fDeltaMargin = MAX (0, pDialog->iAimedX	- pDialog->container.iWindowPositionX -	fRadius	- fLineWidth / 2);
 		//g_print ("fDeltaMargin : %.2f\n",	fDeltaMargin);
 		cairo_rel_line_to (pCairoContext, -iWidth +	fDeltaMargin + fLineWidth +	2 * fRadius + CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE + CAIRO_DIALOG_TIP_ROUNDING_MARGIN ,	0);	
 		cairo_rel_curve_to (pCairoContext,
@@ -92,8 +93,8 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	}
 	else
 	{
-		fDeltaMargin = MAX (0, MIN (- CAIRO_DIALOG_TIP_MARGIN -	CAIRO_DIALOG_TIP_ROUNDING_MARGIN - CAIRO_DIALOG_TIP_BASE - fRadius - fLineWidth / 2, pDialog->iPositionX - pDialog->iAimedX	- fRadius -	fLineWidth / 2)	+ pDialog->iWidth);
-		//g_print ("fDeltaMargin : %.2f	/ %d\n", fDeltaMargin, pDialog->iWidth);
+		fDeltaMargin = MAX (0, MIN (- CAIRO_DIALOG_TIP_MARGIN -	CAIRO_DIALOG_TIP_ROUNDING_MARGIN - CAIRO_DIALOG_TIP_BASE - fRadius - fLineWidth / 2, pDialog->container.iWindowPositionX - pDialog->iAimedX	- fRadius -	fLineWidth / 2)	+ pDialog->container.iWidth);
+		//g_print ("fDeltaMargin : %.2f	/ %d\n", fDeltaMargin, pDialog->container.iWidth);
 		cairo_rel_line_to (pCairoContext, -	(CAIRO_DIALOG_TIP_MARGIN + fDeltaMargin) + CAIRO_DIALOG_TIP_ROUNDING_MARGIN, 0);
 		cairo_rel_curve_to (pCairoContext,
 			0, 0,

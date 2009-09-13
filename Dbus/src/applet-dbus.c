@@ -108,16 +108,6 @@ void cd_dbus_launch_service (void)
 	_cd_dbus_launch_distant_applet_in_dir (MY_APPLET_SHARE_DATA_DIR);
 	
 	_cd_dbus_launch_distant_applet_in_dir (g_cCairoDockDataDir);
-	
-	/*if (myData.cActiveModules != NULL)
-	{
-		gchar **m = g_strsplit (myData.cActiveModules, ";", -1);
-		int i;
-		for (i = 0; m[i] != NULL; i ++)
-		{
-			cd_dbus_launch_distant_applet (m[i]);
-		}
-	}*/
 }
 
 void cd_dbus_stop_service (void)

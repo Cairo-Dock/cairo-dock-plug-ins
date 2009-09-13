@@ -224,6 +224,6 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	else {
 		myDesklet->icons = pIconList;
 		CD_APPLET_SET_DESKLET_RENDERER ("Tree");
-		///gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
+		///gtk_widget_queue_draw (myDesklet->container.pWidget);  // utile ?
 	}*/
 }

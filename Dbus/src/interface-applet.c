@@ -217,6 +217,7 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 {
 	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);  // l'interface principale a deja enregistre notre domaine, etc.
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
+	g_print ("%s (%s)\n", __func__, cModuleName);
 	
 	/// tester l'unicite...
 	dbusApplet *server = _get_dbus_applet (pModuleInstance);
@@ -301,10 +302,11 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 
 gboolean cd_dbus_applet_is_used (const gchar *cModuleName)
 {
+	//g_print ("%s (%s in %s)\n", __func__, cModuleName, myData.cActiveModules);
 	if (myData.cActiveModules == NULL)
 		return FALSE;
 	gchar *str = g_strstr_len (myData.cActiveModules, -1, cModuleName);
-	return (str && str[strlen(cModuleName)] == ';' || str[strlen(cModuleName)] == '\0');
+	return (str && (str[strlen(cModuleName)] == ';' || str[strlen(cModuleName)] == '\0'));
 }
 
 void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
@@ -446,7 +448,6 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 			
 			g_free (ptr);
 		}
-		pModuleInstance->pModule->pVisitCard->cModuleName;
 	}
 	
 	cd_dbus_delete_remote_applet_object (pModuleInstance);
@@ -888,7 +889,7 @@ gboolean cd_dbus_applet_remove_sub_icon (dbusApplet *pDbusApplet, const gchar *c
 		else
 		{
 			pInstance->pDesklet->icons = g_list_remove (pInstance->pDesklet->icons, pOneIcon);
-			gtk_widget_queue_draw (pInstance->pDesklet->pWidget);
+			gtk_widget_queue_draw (pInstance->pDesklet->container.pWidget);
 		}
 		cairo_dock_free_icon (pOneIcon);
 	}

@@ -38,7 +38,7 @@ static gboolean on_button_press_mediaplayer (GtkWidget *widget,
 			pMediaplayer->pClickedIcon = cairo_dock_find_clicked_icon_in_desklet (pDesklet);
 			if (pMediaplayer->pClickedIcon != NULL)
 			{
-				gtk_widget_queue_draw (pDesklet->pWidget);
+				gtk_widget_queue_draw (pDesklet->container.pWidget);
 			}
 		}
 		else if (pButton->type == GDK_BUTTON_RELEASE)
@@ -46,7 +46,7 @@ static gboolean on_button_press_mediaplayer (GtkWidget *widget,
 			if (pMediaplayer->pClickedIcon != NULL)
 			{
 				pMediaplayer->pClickedIcon = NULL;
-				gtk_widget_queue_draw (pDesklet->pWidget);
+				gtk_widget_queue_draw (pDesklet->container.pWidget);
 			}
 		}
 	}
@@ -66,14 +66,14 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 			pSourceContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
-			pDesklet->iWidth,
+			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 		if (pMediaplayer->cTitle != NULL)
 			pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
 			pSourceContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
-			pDesklet->iWidth,
+			pDesklet->container.iWidth,
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
 		
 		pMediaplayer->bControlButton = GPOINTER_TO_INT (pConfig[2]);
@@ -90,15 +90,15 @@ void rendering_load_mediaplayer_data (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	//On initialise la bande des boutons de controle
 	pMediaplayer->iNbIcons = g_list_length (pDesklet->icons);
 	pMediaplayer->iIconsLimit = pMediaplayer->iNbIcons / 2;
-	pMediaplayer->fBandWidth = (pDesklet->iHeight - g_iDockRadius) / 4;
+	pMediaplayer->fBandWidth = (pDesklet->container.iHeight - g_iDockRadius) / 4;
 	pMediaplayer->fIconBandOffset = pMediaplayer->fBandWidth / pMediaplayer->iNbIcons;
 	
 	//On force la détection du clique sur les icônes
-	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+	g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-press-event",
 		G_CALLBACK (on_button_press_mediaplayer),
 		pDesklet);
-	g_signal_connect (G_OBJECT (pDesklet->pWidget),
+	g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-release-event",
 		G_CALLBACK (on_button_press_mediaplayer),
 		pDesklet);
@@ -139,9 +139,9 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	if (pMediaplayer != NULL)
 	{
 		if (pMediaplayer->bControlButton) //Certain voudrons uniquement l'info, d'autre l'info + les boutons de controle
-			pIcon->fWidth = (pDesklet->iHeight - g_iDockRadius) / 4 * 3; 
+			pIcon->fWidth = (pDesklet->container.iHeight - g_iDockRadius) / 4 * 3; 
 		else
-			pIcon->fWidth = pDesklet->iHeight - g_iDockRadius; 
+			pIcon->fWidth = pDesklet->container.iHeight - g_iDockRadius; 
 		
 		pIcon->fWidth = MAX (1, pIcon->fWidth); 
 		pIcon->fHeight = pIcon->fWidth; //L'icône aura la même taille en W et en H pour afficher le texte sur le coté
@@ -149,8 +149,8 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	}
 	else
 	{
-		pIcon->fWidth = MAX (1, pDesklet->iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
-		pIcon->fHeight = MAX (1, pDesklet->iHeight - g_iDockRadius); //Icône de taille normal
+		pIcon->fWidth = MAX (1, pDesklet->container.iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
+		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - g_iDockRadius); //Icône de taille normal
 	}
 	pIcon->fDrawX = .5 * g_iDockRadius;
 	pIcon->fDrawY = .5 * g_iDockRadius;
@@ -186,9 +186,9 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			pIcon->fAlpha = 1.;
 			pIcon->fDrawX = i * (pMainIcon->fWidth / pMediaplayer->iNbIcons) - pIcon->fWidth;
 			if (i <= pMediaplayer->iIconsLimit)
-				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (i - 1));
+				pIcon->fDrawY = ((pDesklet->container.iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (i - 1));
 			else
-				pIcon->fDrawY = ((pDesklet->iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (pMediaplayer->iNbIcons - i));
+				pIcon->fDrawY = ((pDesklet->container.iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (pMediaplayer->iNbIcons - i));
 			i++;
 		}
 	}
@@ -241,7 +241,7 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			if (pIcon->pIconBuffer != NULL)
 			{
 				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
 				cairo_restore (pCairoContext);
 			}
 		}
@@ -276,14 +276,14 @@ void rendering_update_text_for_mediaplayer (CairoDesklet *pDesklet, gpointer *pN
 			pCairoContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
-			pDesklet->iWidth,
+			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 	if (pMediaplayer->cTitle != NULL)
 		pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
 			pCairoContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
-			pDesklet->iWidth,
+			pDesklet->container.iWidth,
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
 			
 	cairo_destroy (pCairoContext);

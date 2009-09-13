@@ -27,18 +27,18 @@ dock_iface = dbus.Interface(dock_object, "org.cairodock.CairoDock")
 
 
 ### let's register our applet !###
-applet_name="demo"
+applet_name=os.path.basename(os.path.abspath("."))
 applet_share_data_dir=os.path.abspath(".")
 dock_iface.RegisterNewModule(applet_name, 3, "This is a distant applet\nIt simulate a counter\nScroll up/down to increase/decrease the counter,\nClick/middle-click to increase/decrease the counter by 10\nDrop some text to set it as the label.\n  by Fabounet", applet_share_data_dir)
 
 try:
 	applet_object = bus.get_object("org.cairodock.CairoDock",
-			"/org/cairodock/CairoDock/"+applet_name)
+			"/org/cairodock/CairoDock/_"+applet_name)
 except dbus.DBusException:
-	print "the '"+applet_name+"' module has not been registerd"
+	print "the '"+applet_name+"' module has not been started"
 	sys.exit(2)
 applet_iface = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")
-	
+
 
 ### init ###
 def init():

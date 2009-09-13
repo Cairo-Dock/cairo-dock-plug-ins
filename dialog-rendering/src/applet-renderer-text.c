@@ -74,9 +74,9 @@ void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog
 	cairo_set_source_surface (pCairoContext,
 		pText->pTextSurface,
 		pDialog->iLeftMargin,
-		(pDialog->bDirectionUp ? 
+		(pDialog->container.bDirectionUp ? 
 			pDialog->iTopMargin + pDialog->iMessageHeight :
-			pDialog->iHeight - (pDialog->iTopMargin + pDialog->iBubbleHeight) + pDialog->iMessageHeight));
+			pDialog->container.iHeight - (pDialog->iTopMargin + pDialog->iBubbleHeight) + pDialog->iMessageHeight));
 	if (fAlpha != 0)
 		cairo_paint_with_alpha (pCairoContext, fAlpha);
 	else

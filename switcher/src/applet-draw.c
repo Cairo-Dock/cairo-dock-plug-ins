@@ -431,7 +431,7 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 {
 	//g_print ("%s ()\n", __func__);
 	double x, y, w, h;
-	glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, 0.);
+	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 	
 	w = myData.switcher.fOneViewportWidth/2;
 	h = myData.switcher.fOneViewportHeight/2;
@@ -441,7 +441,7 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 	for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
 		y = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize) - .5*myConfig.iInLineSize;
-		y = pDesklet->iHeight - (y + h + myData.switcher.fOffsetY);	
+		y = pDesklet->container.iHeight - (y + h + myData.switcher.fOffsetY);	
 		
 		for (i = 0; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
 		{

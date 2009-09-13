@@ -53,7 +53,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	{
 		if (myDesklet)
 		{
-			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->pWidget)) || GTK_WIDGET_HAS_FOCUS (myData.tab) || GTK_WIDGET_HAS_FOCUS (myDesklet->pWidget));
+			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->container.pWidget)) || GTK_WIDGET_HAS_FOCUS (myData.tab) || GTK_WIDGET_HAS_FOCUS (myDesklet->container.pWidget));
 			if (! bHasFocus)
 			{
 				GtkWidget *vterm;
@@ -63,7 +63,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
 					bHasFocus = GTK_WIDGET_HAS_FOCUS (vterm);
 				}
-				bHasFocus |= (GDK_WINDOW_XID (myDesklet->pWidget->window) == cairo_dock_get_current_active_window ());
+				bHasFocus |= (GDK_WINDOW_XID (myDesklet->container.pWidget->window) == cairo_dock_get_current_active_window ());
 			}
 			g_print ("%s (%d)\n", __func__, bHasFocus);
 			
@@ -247,7 +247,7 @@ static void term_apply_settings_on_vterm(GtkWidget *vterm)
 		gtk_widget_size_request (vterm, &requisition);
 		//g_print (" -> %dx%d\n", requisition.width, requisition.height);
 		if (myData.dialog)
-			gtk_window_resize (GTK_WINDOW (myData.dialog->pWidget), requisition.width, requisition.height);
+			gtk_window_resize (GTK_WINDOW (myData.dialog->container.pWidget), requisition.width, requisition.height);
 	}
 	else
 	{

@@ -83,7 +83,7 @@ void cd_stacks_build_icons (void) {
 	else {
 		myDesklet->icons = pIconList;
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		gtk_widget_queue_draw (myDesklet->pWidget);  // utile ?
+		gtk_widget_queue_draw (myDesklet->container.pWidget);  // utile ?
 	}
 	
 	gsize length = 0;
@@ -163,7 +163,7 @@ void _stacks_remove_one_icon (Icon *pAddedIcon) {
 	if (myDock)
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	else
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		gtk_widget_queue_draw (myDesklet->container.pWidget);
 }
 
 void _removeUselessSeparator (void) {
@@ -208,7 +208,7 @@ void _placeIconWithSeparator (Icon *pAddedIcon, double fOrder, int iType, gboole
 		cairo_dock_update_dock_size (myIcon->pSubDock);
 	}
 	else
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		gtk_widget_queue_draw (myDesklet->container.pWidget);
 }
 
 void _sort_my_new_icon (const gchar *cURI, Icon *pAddedIcon) {

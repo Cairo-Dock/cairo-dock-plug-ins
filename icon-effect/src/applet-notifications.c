@@ -356,28 +356,30 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.y = pIcon->fDrawY;
 		area.width = pIcon->fWidth * fMaxScale * 1.5;
-		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
+		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20;  // 20 = rayon max des particules, environ.
 		if (pDock->container.bDirectionUp)
+		{
 			area.y -= myLabels.iconTextDescription.iSize;
+		}
 		else
 		{
-			area.y -= 20;  // rayon max des particules, environ.
-			area.height += 20;
+			area.y -= 20;
 		}
 	}
 	else
 	{
 		area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.x = pIcon->fDrawY;
+		area.height = pIcon->fWidth * fMaxScale * 1.5;
+		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20;
 		if (pDock->container.bDirectionUp)
+		{
 			area.x -= myLabels.iconTextDescription.iSize;
+		}
 		else
 		{
 			area.x -= 20;  // rayon max des particules, environ.
-			area.width += 20;
 		}
-		area.height = pIcon->fWidth * fMaxScale * 1.5;
-		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize;
 	}
 	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
 	

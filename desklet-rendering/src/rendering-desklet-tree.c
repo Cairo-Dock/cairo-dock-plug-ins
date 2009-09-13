@@ -51,7 +51,7 @@ CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSo
 	pTree->iNbIconsInTree = iNbIcons;
 	pTree->iNbBranches = (int) ceil (1.*iNbIcons/3.);
 	
-	double h = pDesklet->iHeight, w = pDesklet->iWidth;
+	double h = pDesklet->container.iHeight, w = pDesklet->container.iWidth;
 	pTree->fTreeWidthFactor = (w > TREE_WIDTH ? 1 : w / TREE_WIDTH);
 	pTree->fTreeHeightFactor = h / (pTree->iNbBranches * TREE_HEIGHT);
 	
@@ -132,7 +132,7 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesk
 	if (pTree == NULL)
 		return ;
 	
-	double h = pDesklet->iHeight, w = pDesklet->iWidth;
+	double h = pDesklet->container.iHeight, w = pDesklet->container.iWidth;
 	int i;
 	for (i = 0; i < pTree->iNbBranches; i ++)
 	{
@@ -167,7 +167,7 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesk
 			pIcon->fHeightFactor = 1;
 			
 			cairo_save (pCairoContext);
-			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->iWidth);
+			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
 			cairo_restore (pCairoContext);
 			
 			iLeafNumber ++;

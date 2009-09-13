@@ -288,7 +288,7 @@ void mixer_show_hide_dialog (void)
 		attr.pInteractiveWidget = pScale;
 		attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_key_press_dialog;
 		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
-		g_signal_connect (G_OBJECT (myData.pDialog->pWidget),
+		g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
 			myData.pDialog);

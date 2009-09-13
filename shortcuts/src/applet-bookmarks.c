@@ -198,7 +198,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 				break ;
 			}
 			cairo_dock_set_desklet_renderer_by_name (myDesklet, cDeskletRendererName, NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			gtk_widget_queue_draw (myDesklet->pWidget);
+			gtk_widget_queue_draw (myDesklet->container.pWidget);
 		}
 	}
 }

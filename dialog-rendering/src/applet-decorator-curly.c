@@ -34,7 +34,8 @@ void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
 	pDialog->iMinBottomGap = MAX (20, 2*myConfig.iCurlyRadius);
 	pDialog->iMinFrameWidth = 10;  // au pif.
 	pDialog->fAlign = .5;
-	pDialog->fReflectAlpha = 0.;
+	pDialog->container.fRatio = 0.;
+	pDialog->container.bUseReflect = FALSE;
 }
 
 
@@ -43,12 +44,12 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	double fRadius = myConfig.iCurlyRadius;
 	double fBottomRadius = 2 * fRadius;
 	double fTipHeight = (pDialog->iDistanceToDock);  // on completera par un trait.
-	double dh = MIN (MAX (1, myConfig.fCurlyCurvature * fTipHeight), .4 * pDialog->iWidth);
+	double dh = MIN (MAX (1, myConfig.fCurlyCurvature * fTipHeight), .4 * pDialog->container.iWidth);
 	
 	double fOffsetX = fRadius + fLineWidth / 2;
-	double fOffsetY = (pDialog->bDirectionUp ? fLineWidth / 2 : pDialog->iHeight - fLineWidth / 2);
-	int sens = (pDialog->bDirectionUp ? 1 : -1);
-	double fDemiWidth = .5 * pDialog->iWidth - fRadius - fLineWidth/2;
+	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2);
+	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
+	double fDemiWidth = .5 * pDialog->container.iWidth - fRadius - fLineWidth/2;
 	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
@@ -92,7 +93,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 			sens * fDemiHeight * 2);
 	}
 	
-	fDemiWidth = .5 * pDialog->iWidth - fLineWidth/2;
+	fDemiWidth = .5 * pDialog->container.iWidth - fLineWidth/2;
 	// Coin bas droit et pointe.
 	cairo_rel_curve_to (pCairoContext,
 		0, sens * dh,
@@ -144,8 +145,8 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	{
 		double fGap = pDialog->iDistanceToDock - fTipHeight;
 		cairo_move_to (pCairoContext,
-			pDialog->iWidth/2,
-			pDialog->bDirectionUp ? pDialog->iHeight - fGap : fGap);
+			pDialog->container.iWidth/2,
+			pDialog->container.bDirectionUp ? pDialog->container.iHeight - fGap : fGap);
 		cairo_rel_line_to (pCairoContext, 0, sens * fGap);
 		cairo_stroke (pCairoContext);
 	}

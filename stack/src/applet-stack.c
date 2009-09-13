@@ -80,7 +80,7 @@ void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 	else
 	{
 		myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
-		gtk_widget_queue_draw (myDesklet->pWidget);
+		gtk_widget_queue_draw (myDesklet->container.pWidget);
 	}
 	cairo_dock_free_icon (pIcon);
 }
@@ -221,7 +221,7 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 		
 		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myDesklet));
 		myDesklet->icons = pStacksIconList;
-		gtk_widget_queue_draw (myDesklet->pWidget);  /// il faudrait recharger le Tree non ?...
+		gtk_widget_queue_draw (myDesklet->container.pWidget);  /// il faudrait recharger le Tree non ?...
 	}
 }
 

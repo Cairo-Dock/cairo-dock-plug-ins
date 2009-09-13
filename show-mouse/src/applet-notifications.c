@@ -39,7 +39,7 @@ gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, c
 	if (CAIRO_DOCK_IS_DESKLET (pContainer))
 	{
 		CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
-		glTranslatef (-pDesklet->iWidth/2, -pDesklet->iHeight/2, -pDesklet->iHeight*(sqrt(3)/2));
+		glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, -pDesklet->container.iHeight*(sqrt(3)/2));
 	}
 	if (pContainer->bIsHorizontal)
 		glTranslatef (pContainer->iMouseX, pContainer->iHeight - pContainer->iMouseY, 0.);

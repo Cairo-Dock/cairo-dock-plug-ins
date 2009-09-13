@@ -241,7 +241,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			}
 		}
 		if (myDesklet)
-			gtk_widget_queue_draw (myDesklet->pWidget);
+			gtk_widget_queue_draw (myDesklet->container.pWidget);
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

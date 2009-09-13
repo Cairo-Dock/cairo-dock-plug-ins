@@ -35,7 +35,8 @@ void cd_decorator_set_frame_size_modern (CairoDialog *pDialog)
 	pDialog->iMinBottomGap = 30;
 	pDialog->iMinFrameWidth = 30;  // valeur au pif.
 	pDialog->fAlign = .33;  // la pointe est a 33% du bord du dialogue.
-	pDialog->fReflectAlpha = 0.;  // pas de reflet merci.
+	pDialog->container.fRatio = 0.;  // pas de reflet merci.
+	pDialog->container.bUseReflect = FALSE;
 }
 
 
@@ -43,12 +44,12 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 {
 	double fLineWidth = myConfig.iModernLineWidth;
 	double fRadius = MIN (myConfig.iModernRadius, pDialog->iBubbleHeight/2);
-	int sens = (pDialog->bDirectionUp ?	1 :	-1);
+	int sens = (pDialog->container.bDirectionUp ?	1 :	-1);
 	int sens2 = (pDialog->bRight ? 1 :	-1);
 	
 	//\_________________ On part du haut.
-	double fOffsetX = (pDialog->bRight ? fLineWidth/2 : pDialog->iWidth - fLineWidth/2);
-	double fOffsetY = (pDialog->bDirectionUp ? 0. : pDialog->iHeight);
+	double fOffsetX = (pDialog->bRight ? fLineWidth/2 : pDialog->container.iWidth - fLineWidth/2);
+	double fOffsetY = (pDialog->container.bDirectionUp ? 0. : pDialog->container.iHeight);
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
 	
 	//\_________________ On remplit le fond.
@@ -90,16 +91,16 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 	cairo_stroke (pCairoContext);
 	
 	//\_________________ On part du haut, petit cote.
-	fOffsetX = (pDialog->bRight ? fRadius + fLineWidth/2 : pDialog->iWidth - fRadius - fLineWidth/2);
-	fOffsetY = (pDialog->bDirectionUp ? pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin : pDialog->iHeight - (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin));
+	fOffsetX = (pDialog->bRight ? fRadius + fLineWidth/2 : pDialog->container.iWidth - fRadius - fLineWidth/2);
+	fOffsetY = (pDialog->container.bDirectionUp ? pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin : pDialog->container.iHeight - (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin));
 	
 	//\_________________ On trace la pointe.
 	cairo_set_line_width (pCairoContext, 1.);
 	cairo_set_source_rgba (pCairoContext, myConfig.fModernLineColor[0], myConfig.fModernLineColor[1], myConfig.fModernLineColor[2], myConfig.fModernLineColor[3]);
-	int i, h = pDialog->iHeight - (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin);
-	double w1 = MAX (0, pDialog->iAimedX - pDialog->iPositionX - (pDialog->bRight ? fOffsetX : 0));
-	double w2 = MAX (0, pDialog->iPositionX + pDialog->iWidth - pDialog->iAimedX - (pDialog->bRight ? 0 : fRadius + fLineWidth/2));
-	//g_print ("%.2f,%.2f ; %d + %d > %d\n", w1, w2, pDialog->iPositionX, pDialog->iWidth, pDialog->iAimedX);
+	int i, h = pDialog->container.iHeight - (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin);
+	double w1 = MAX (0, pDialog->iAimedX - pDialog->container.iWindowPositionX - (pDialog->bRight ? fOffsetX : 0));
+	double w2 = MAX (0, pDialog->container.iWindowPositionX + pDialog->container.iWidth - pDialog->iAimedX - (pDialog->bRight ? 0 : fRadius + fLineWidth/2));
+	//g_print ("%.2f,%.2f ; %d + %d > %d\n", w1, w2, pDialog->container.iWindowPositionX, pDialog->container.iWidth, pDialog->iAimedX);
 	double x, y, w;
 	for (i = 0; i < h; i += 4)
 	{

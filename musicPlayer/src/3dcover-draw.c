@@ -575,12 +575,12 @@ void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
 
 int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet)
 {	
-	if (! myDesklet || myDesklet->iWidth == 0 || myDesklet->iHeight == 0 || myData.numberButtons == 0)  // precaution.
+	if (! myDesklet || myDesklet->container.iWidth == 0 || myDesklet->container.iHeight == 0 || myData.numberButtons == 0)  // precaution.
 		return FALSE;
 	
 	//\_________________ On convertit les coordonnees du pointeur dans le referentiel de l'icone.
-	myData.iMouseX = myDesklet->iMouseX - myDesklet->iLeftSurfaceOffset;
-	myData.iMouseY = myDesklet->iMouseY - myDesklet->iTopSurfaceOffset;
+	myData.iMouseX = myDesklet->container.iMouseX - myDesklet->iLeftSurfaceOffset;
+	myData.iMouseY = myDesklet->container.iMouseY - myDesklet->iTopSurfaceOffset;
 	
 	//\_________________ On teste le survole des differents boutons :
 	// Test du survol button 1 :

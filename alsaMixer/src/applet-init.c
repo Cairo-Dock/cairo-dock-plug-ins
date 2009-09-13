@@ -83,7 +83,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet && myDesklet->iHeight > 64)
+	if (myDesklet && myDesklet->container.iHeight > 64)
 	{
 		gtk_widget_show (myData.pScale);
 	}
@@ -92,9 +92,9 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet && myDesklet->iHeight > 64)
+	if (myDesklet && myDesklet->container.iHeight > 64)
 	{
-		if (! myDesklet->bInside)
+		if (! myDesklet->container.bInside)
 			gtk_widget_hide (myData.pScale);
 	}
 }
@@ -102,22 +102,22 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
 	{
-		int iScaleWidth = (myDesklet->iHeight > 64 ? 15 : 0);
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - iScaleWidth);
+		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
+		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0*g_iDockRadius/2;
-		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight;
+		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on charge l'icone nous-memes.
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		if (myConfig.bHideScaleOnLeave)
 		{
-			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 				"enter-notify-event",
 				G_CALLBACK (_cd_mixer_on_enter),
 				NULL);
-			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 				"leave-notify-event",
 				G_CALLBACK (_cd_mixer_on_leave),
 				NULL);
@@ -142,16 +142,16 @@ CD_APPLET_INIT_BEGIN
 			GtkWidget *box = gtk_hbox_new (FALSE, 0);
 			myData.pScale = mixer_build_widget (FALSE);
 			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
-			gtk_container_add (GTK_CONTAINER (myDesklet->pWidget), box);
+			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
 			gtk_widget_show_all (box);
 			
-			if (myConfig.bHideScaleOnLeave && ! myDesklet->bInside)
+			if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
 				gtk_widget_hide (myData.pScale);
-			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 				"enter-notify-event",
 				G_CALLBACK (_cd_mixer_on_enter),
 				NULL);
-			g_signal_connect (G_OBJECT (myDesklet->pWidget),
+			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 				"leave-notify-event",
 				G_CALLBACK (_cd_mixer_on_leave),
 				NULL);
@@ -191,11 +191,11 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet != NULL)
 	{
-		int iScaleWidth = (myDesklet->iHeight > 64 ? 15 : 0);
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->iWidth, myDesklet->iHeight) - iScaleWidth);
+		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
+		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0*g_iDockRadius/2;
-		myIcon->fDrawY = myDesklet->iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
+		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
 		myIcon->fScale = 1;
 		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
@@ -253,12 +253,12 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pScale = mixer_build_widget (FALSE);
 				gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
 				gtk_widget_show_all (box);
-				gtk_container_add (GTK_CONTAINER (myDesklet->pWidget), box);
-				if (myConfig.bHideScaleOnLeave && ! myDesklet->bInside)
+				gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
+				if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
 					gtk_widget_hide (myData.pScale);
 			}
 			
-			gulong iOnEnterCallbackID = g_signal_handler_find (myDesklet->pWidget,
+			gulong iOnEnterCallbackID = g_signal_handler_find (myDesklet->container.pWidget,
 				G_SIGNAL_MATCH_FUNC,
 				0,
 				0,
@@ -267,26 +267,26 @@ CD_APPLET_RELOAD_BEGIN
 				NULL);
 			if (myConfig.bHideScaleOnLeave && iOnEnterCallbackID <= 0)
 			{
-				g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 					"enter-notify-event",
 					G_CALLBACK (_cd_mixer_on_enter),
 					NULL);
-				g_signal_connect (G_OBJECT (myDesklet->pWidget),
+				g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
 					"leave-notify-event",
 					G_CALLBACK (_cd_mixer_on_leave),
 					NULL);
 			}
 			else if (! myConfig.bHideScaleOnLeave && iOnEnterCallbackID > 0)
 			{
-				g_signal_handler_disconnect (G_OBJECT (myDesklet->pWidget), iOnEnterCallbackID);
-				gulong iOnLeaveCallbackID = g_signal_handler_find (myDesklet->pWidget,
+				g_signal_handler_disconnect (G_OBJECT (myDesklet->container.pWidget), iOnEnterCallbackID);
+				gulong iOnLeaveCallbackID = g_signal_handler_find (myDesklet->container.pWidget,
 					G_SIGNAL_MATCH_FUNC,
 					0,
 					0,
 					NULL,
 					_cd_mixer_on_leave,
 					NULL);
-				g_signal_handler_disconnect (G_OBJECT (myDesklet->pWidget), iOnLeaveCallbackID);
+				g_signal_handler_disconnect (G_OBJECT (myDesklet->container.pWidget), iOnLeaveCallbackID);
 			}
 		}
 	}
@@ -298,7 +298,7 @@ CD_APPLET_RELOAD_BEGIN
 			mixer_element_update_with_event (myData.pControledElement, 0);
 		}
 		
-		if (myDesklet && myDesklet->iHeight <= 64)
+		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
 	}
 CD_APPLET_RELOAD_END

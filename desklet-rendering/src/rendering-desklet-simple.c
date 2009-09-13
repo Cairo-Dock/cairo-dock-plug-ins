@@ -31,8 +31,8 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
 	
-	pIcon->fWidth = MAX (1, pDesklet->iWidth);
-	pIcon->fHeight = MAX (1, pDesklet->iHeight);
+	pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
+	pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->fScale = 1.;

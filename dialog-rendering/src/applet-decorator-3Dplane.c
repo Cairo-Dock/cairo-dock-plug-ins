@@ -43,7 +43,8 @@ void cd_decorator_set_frame_size_3Dplane (CairoDialog *pDialog)
 	pDialog->iMinBottomGap = 10;
 	pDialog->iMinFrameWidth = 30;  // valeur au pif.
 	pDialog->fAlign = .5;
-	pDialog->fReflectAlpha = .4;
+	pDialog->container.fRatio = .4;
+	pDialog->container.bUseReflect = TRUE;
 }
 
 
@@ -54,12 +55,12 @@ void cd_decorator_draw_decorations_3Dplane (cairo_t *pCairoContext, CairoDialog 
 	double fFrameHeight = 10 + fReflectHeight;
 	double fRadius = MIN (myConfig.iPlaneRadius, fFrameHeight/2);
 	double fLineWidth = myConfig.iPlaneLineWidth;
-	int sens = (pDialog->bDirectionUp ?	1 :	-1);
+	int sens = (pDialog->container.bDirectionUp ?	1 :	-1);
 	double fFrameWidth = pDialog->iBubbleWidth;
 	double fOffsetX = pDialog->iLeftMargin;
 	double fOffsetY = pDialog->iTopMargin + pDialog->iBubbleHeight - 10;
 	
-	cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fOffsetX, fOffsetY, sens, fInclination, pDialog->bIsHorizontal);
+	cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fOffsetX, fOffsetY, sens, fInclination, pDialog->container.bIsHorizontal);
 	
 	cairo_set_source_rgba (pCairoContext, myConfig.fPlaneColor[0], myConfig.fPlaneColor[1], myConfig.fPlaneColor[2], myConfig.fPlaneColor[3]);
 	cairo_fill_preserve (pCairoContext);
