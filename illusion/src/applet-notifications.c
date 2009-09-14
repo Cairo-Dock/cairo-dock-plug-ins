@@ -50,7 +50,7 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		{
 			case CD_ILLUSION_EVAPORATE :
 				pData->iEffectDuration = myConfig.iEvaporateDuration;
-				pData->fTimeLimitPercent = 1.;
+				pData->fTimeLimitPercent = .8;
 				if (pData->sens == -1)
 					pData->fTime = pData->iEffectDuration;  // on part a rebours.
 				bSartAnimation = cd_illusion_init_evaporate (pIcon, pDock, pData);

@@ -17,22 +17,22 @@ appearance = 4
 duration = 1000
 
 #c+3 1st color of gradation :
-color1 = 0;0;1
+color1 = 0;0.7;1
 
 #c+3 2nd color of gradation :
-color2 = 0;1;0
+color2 = 1;1;0
 
 #b+ Random colors ?
 mystical = false
 
 #I[10;500] Number of particles :
-nb part = 150
+nb part = 75
 
 #I[5;40] Particle size :
-part size = 10
+part size = 6
 
 #e[0;10] Particle speed :
-part speed = 3.5
+part speed = 3.
 
 #b+ Evaporate upward ?
 from bottom = true

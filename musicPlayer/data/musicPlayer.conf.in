@@ -125,7 +125,7 @@ enable_opengl_themes = true
 
 #h+[@musicplayerdatadir@/themes;musicPlayer;musicPlayer] List of available 3D themes for covers :
 #{requires OpenGL.}
-theme = cd_box_3d
+theme = CD_Box_3D
 
 
 #X[Personnalisation;gtk-dialog-info]

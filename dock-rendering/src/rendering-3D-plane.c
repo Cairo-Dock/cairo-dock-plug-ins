@@ -80,7 +80,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 		double b = H + hi + h0 - W / 2;
 		double c = - W / 2;
 		gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
-		g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
+		//g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
 		h = hi + h0 / (1 + gamma);
 	}
 	else  // rien d'autre a faire
@@ -88,7 +88,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	}
 	pDock->iDecorationsHeight = h;
-	g_print ("h : %.2f -> %d\n", h, pDock->iDecorationsHeight);
+	//g_print ("h : %.2f -> %d\n", h, pDock->iDecorationsHeight);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
@@ -113,7 +113,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;
 	pDock->inputArea.height = pDock->iMinDockHeight;
-	g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);
+	//g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);
 	
 	// on charge les separateurs plat.
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
