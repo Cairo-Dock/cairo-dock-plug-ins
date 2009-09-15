@@ -165,8 +165,8 @@ void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 		if (myData.pDiskTask == NULL)
 		{
 			myData.pDiskTask = cairo_dock_new_task (myConfig.iCheckInterval,
-				(CairoDockGetDataAsyncFunc) cd_shortcuts_get_disk_usage, 
-				(CairoDockUpdateSyncFunc) cd_shortcuts_update_disk_usage, 
+				(CairoDockGetDataAsyncFunc) cd_shortcuts_get_disk_usage,
+				(CairoDockUpdateSyncFunc) cd_shortcuts_update_disk_usage,
 				myApplet);
 		}
 		cairo_dock_launch_task (myData.pDiskTask);

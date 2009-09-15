@@ -61,6 +61,11 @@ struct _AppletConfig {
 	gint iBlackHoleDuration;
 	gdouble fBlackHoleRotationSpeed;
 	gint iAttraction;
+	
+	gint iLightningDuration;
+	gint iLightningNbSources;
+	gint iLightningNbCtrlPts;
+	gdouble fLightningColor[3];
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -88,6 +93,13 @@ typedef struct {
 	gdouble x, y;
 	} CDIllusionBlackHole;
 
+typedef struct {
+	gdouble fSourceX;
+	gdouble fImpactX;
+	gdouble *tabx;
+	gint iNbPts;
+	} CDIllusionLightning;
+
 
 typedef struct _CDIllusionData {
 	CDIllusionEffect iCurrentEffect;
@@ -113,6 +125,8 @@ typedef struct _CDIllusionData {
 	
 	CDIllusionBlackHole *pBlackHolePoints;
 	GLfloat *pBlackHoleCoords, *pBlackHoleVertices;
+	
+	CDIllusionLightning *pLightnings;
 	} CDIllusionData;
 
 #endif

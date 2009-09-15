@@ -55,6 +55,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iBlackHoleDuration = MAX (100, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "duration", 2000));  // ms
 	myConfig.fBlackHoleRotationSpeed = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Black Hole", "omega", 1.5);  // tr/s
 	myConfig.iAttraction = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Black Hole", "attraction", 4);
+	
+	myConfig.iLightningDuration = MAX (100, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "duration", 3000));  // ms
+	myConfig.iLightningNbSources = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb sources", 3);
+	myConfig.iLightningNbCtrlPts = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb ctrl", 10);
+	CD_CONFIG_GET_COLOR_RVB ("Lightning", "color", myConfig.fLightningColor);
 CD_APPLET_GET_CONFIG_END
 
 

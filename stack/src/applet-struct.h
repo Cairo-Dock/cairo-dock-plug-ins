@@ -34,27 +34,29 @@ typedef enum {
 	} CDStackSortType;
 
 
+typedef enum {
+	CD_DESKLET_SLIDE=0,
+	CD_DESKLET_TREE,
+	CD_DESKLET_NB_RENDERER
+} CDDeskletRendererType;
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar **cMimeTypes;
 	gchar **cMonitoredDirectory;
 	gchar *cRenderer;
-	//gboolean bHiddenFiles;
-	//gboolean bLocalDir;
 	gboolean bFilter;
-	//gboolean bUseSeparator;
 	CDStackSortType iSortType;
 	gchar *cTextIcon;
 	gchar *cUrlIcon;
 	gboolean bSelectionClipBoard;
 	gchar *cStackDir;
+	CDDeskletRendererType iDeskletRendererType;
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	/*gint iIconOrder;
-	gint iSidTimer;
-	gint iNbAnimation;*/
+	gint no_data;
 } ;
 
 

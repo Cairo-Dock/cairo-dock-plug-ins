@@ -94,6 +94,9 @@ frame_sub=
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
+#l+[Slide;Tree] Type of view for the desklet mode :
+desklet renderer = 0
+
 #S+ Image for the 'text' items :
 #{They are items created by dropping a text into the Stack.}
 text icon = 

@@ -24,19 +24,6 @@
 #include "applet-stack.h"
 
 
-/*void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet) {
-	cd_debug ("");
-	if (myDock && myIcon->pSubDock != NULL) {
-		CD_APPLET_DESTROY_MY_SUBDOCK;
-	}
-	else if (myDesklet && myDesklet->icons != NULL) {
-		g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-		g_list_free (myDesklet->icons);
-		myDesklet->icons = NULL;
-	}
-}*/
-
-
 static gboolean _isin (gchar **cString, gchar *cCompar) {
 	if (cString == NULL)
 		return FALSE; //Nothing to search in
@@ -206,24 +193,24 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 
 void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 {
+	//\_______________________ On efface l'ancienne liste.
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
+	//\_______________________ On liste les icones.
 	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
 	
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Tree", NULL);
-	/*cd_stack_destroy_icons (myApplet);
-	if (myIcon->cName == NULL && myDock)
-		CD_APPLET_SET_NAME_FOR_MY_ICON (CD_STACK_DEFAULT_NAME);
-	
-	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
-	
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Tree", NULL);
-	if (myDock) {
-		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
+	//\_______________________ On charge la nouvelle liste.
+	const gchar *cDeskletRendererName = NULL;
+	switch (myConfig.iDeskletRendererType)
+	{
+		case CD_DESKLET_SLIDE :
+		default :
+			cDeskletRendererName = "Slide";
+		break ;
+		
+		case CD_DESKLET_TREE :
+			cDeskletRendererName = "Tree";
+		break ;
 	}
-	else {
-		myDesklet->icons = pIconList;
-		CD_APPLET_SET_DESKLET_RENDERER ("Tree");
-		///gtk_widget_queue_draw (myDesklet->container.pWidget);  // utile ?
-	}*/
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
 }

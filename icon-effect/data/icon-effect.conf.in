@@ -90,10 +90,10 @@ color2 = .9;.9;.9
 mystical = false
 
 #I[10;300] Number of particles :
-nb part = 35
+nb part = 25
 
 #I[10;90] Particle size :
-part size = 50
+part size = 40
 
 
 #[@icon_effectsdatadir@/snow.png]

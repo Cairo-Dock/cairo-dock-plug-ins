@@ -80,7 +80,20 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_stack_build_icons (myApplet);  // pour les mimes.
 	}
-	else if (myDesklet) {
-		CD_APPLET_SET_DESKLET_RENDERER ("Tree");  // on recharge juste les surfaces/textures des icones.
+	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
+	{
+		const gchar *cDeskletRendererName = NULL;
+		switch (myConfig.iDeskletRendererType)
+		{
+			case CD_DESKLET_SLIDE :
+			default :
+				cDeskletRendererName = "Slide";
+			break ;
+			
+			case CD_DESKLET_TREE :
+				cDeskletRendererName = "Tree";
+			break ;
+		}
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
 	}
 CD_APPLET_RELOAD_END

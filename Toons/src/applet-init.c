@@ -40,6 +40,8 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
+	CD_APPLET_SET_STATIC_ICON;
+	
 	gboolean bLoaded = cd_xeyes_load_theme (myApplet);
 	
 	if (bLoaded)

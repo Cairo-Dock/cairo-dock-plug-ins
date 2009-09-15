@@ -181,10 +181,12 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 
 void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gchar *cContent)
 {
+	//\_______________________ On cree l'item.
 	Icon *pIcon = cd_stack_create_item (myApplet, myConfig.cStackDir, cContent);
 	if (pIcon == NULL)  // peut arriver si l'icone est filtree.
 		return ;
 	
+	//\_______________________ On le charge et on le rajoute au container.
 	if (myDock)
 	{
 		if (myIcon->pSubDock == NULL)
@@ -216,12 +218,27 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 	}
 	else
 	{
-		GList *pStacksIconList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+		GList *pStacksIconList = myDesklet->icons;
 		pStacksIconList = cd_stack_insert_icon_in_list (myApplet, pStacksIconList, pIcon);
 		
-		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myDesklet));
+		//cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myDesklet));
+		
 		myDesklet->icons = pStacksIconList;
-		gtk_widget_queue_draw (myDesklet->container.pWidget);  /// il faudrait recharger le Tree non ?...
+		
+		const gchar *cDeskletRendererName = NULL;
+		switch (myConfig.iDeskletRendererType)
+		{
+			case CD_DESKLET_SLIDE :
+			default :
+				cDeskletRendererName = "Slide";
+			break ;
+			
+			case CD_DESKLET_TREE :
+				cDeskletRendererName = "Tree";
+			break ;
+		}
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
+		CAIRO_DOCK_REDRAW_MY_CONTAINER;
 	}
 }
 
