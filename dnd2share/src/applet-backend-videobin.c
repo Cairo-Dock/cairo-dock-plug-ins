@@ -34,47 +34,17 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 static void upload (const gchar *cFilePath)
 {
-	// On cree un fichier de log temporaire.
-	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
-	int fds = mkstemp (cLogFile);
-	if (fds == -1)
-	{
-		g_free (cLogFile);
-		return ;
-	}
-	close(fds);
-	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@'%s' -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);
+	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@'%s' -F api=1", myConfig.iLimitRate, cFilePath);
 	g_print ("%s\n", cCommand);
-	int r = system (cCommand);
+	gchar *cURL = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
-	
-	// On récupère l'URL dans le log :
-	gchar *cURL = NULL;
-	gchar *cContent = NULL;
-	gsize length = 0;
-	g_file_get_contents (cLogFile, &cContent, &length, NULL);
-	gchar *str = g_strstr_len (cContent, -1, "href='");
-	if (str != NULL)
-	{
-		str += 6;
-		gchar *end = strchr (str, '\'');
-		if (end != NULL)
-		{
-			*end = '\0';
-			cURL = g_strdup (str);
-		}
-	}
-	g_free (cContent);
-	
-	g_remove (cLogFile);
-	g_free (cLogFile);
-	
+
 	if (cURL == NULL)
 	{
 		return ;
 	}
+
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
