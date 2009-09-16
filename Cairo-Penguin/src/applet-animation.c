@@ -532,8 +532,8 @@ void penguin_start_animating (CairoDockModuleInstance *myApplet)
 	penguin_remove_notfications();
 	if (myConfig.bFree)
 	{
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification_on_container (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification_on_container (myContainer, CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
 	}
 	else
 	{
@@ -560,6 +560,7 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 		{
 			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
 		}
+		cairo_dock_launch_animation (myContainer);
 	}
 	
 	return FALSE;

@@ -58,8 +58,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iLightningDuration = MAX (100, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "duration", 3000));  // ms
 	myConfig.iLightningNbSources = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb sources", 3);
-	myConfig.iLightningNbCtrlPts = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb ctrl", 10);
-	CD_CONFIG_GET_COLOR_RVB ("Lightning", "color", myConfig.fLightningColor);
+	myConfig.iLightningNbCtrlPts = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb ctrl", 12);
+	double color1[3] = {0, 1, 1};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Lightning", "color1", myConfig.fLightningColor1, color1);
+	myConfig.fLightningColor1[3] = .8;
+	double color2[3] = {1, 1, 0};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Lightning", "color2", myConfig.fLightningColor2, color2);
+	myConfig.fLightningColor2[3] = .8;
 CD_APPLET_GET_CONFIG_END
 
 

@@ -3,10 +3,10 @@
 #[gtk-preferences]
 [Global]
 
-#l+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on disappearance :
+#l+[Evaporate;Fade out;Explode;Break;BlackHole;Lightning;Random] Animation on disappearance :
 disappearance = 2
 
-#l+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on appearance :
+#l+[Evaporate;Fade out;Explode;Break;BlackHole;Lightning;Random] Animation on appearance :
 appearance = 4
 
 
@@ -83,3 +83,21 @@ omega = 1.5
 #I[0;10] Attraction of the hole :
 #{The greatest, the fastest the icon will collapse to the center.}
 attraction = 4
+
+#[@illusiondatadir@/icon-lightning.svg]
+[Lightning]
+
+#I[500;5000] Duration of the animation :
+duration = 3000
+
+#c+3 Color 1 of the lightnings :
+color1 = 0;1;1
+
+#c+3 Color 2 of the lightnings :
+color2 = 1;1;0
+
+#i[1;7] Number of sources :
+nb sources = 3
+
+#i[4;25] Number of control points :
+nb ctrl = 12

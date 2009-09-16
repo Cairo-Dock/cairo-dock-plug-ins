@@ -84,7 +84,7 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 		pData->iBlurCount --;
-	//g_print ("blur <- %d\n", pData->iBlurCount);
+	cd_message ("blur <- %d", pData->iBlurCount);
 	
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	if (pData->iBlurCount <= 0)

@@ -27,6 +27,7 @@
 #include "applet-explode.h"
 #include "applet-break.h"
 #include "applet-black-hole.h"
+#include "applet-lightning.h"
 #include "applet-notifications.h"
 
 
@@ -83,6 +84,13 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 					pData->fTime = pData->iEffectDuration;
 				bSartAnimation = cd_illusion_init_black_hole (pIcon, pDock, pData);
 			break ;
+			case CD_ILLUSION_LIGHTNING :
+				pData->iEffectDuration = myConfig.iLightningDuration;
+				pData->fTimeLimitPercent = 1.;
+				if (pData->sens == -1)
+					pData->fTime = pData->iEffectDuration;
+				bSartAnimation = cd_illusion_init_lightning (pIcon, pDock, pData);
+			break ;
 			default :
 			break ;
 		}
@@ -131,6 +139,10 @@ gboolean cd_illusion_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			cd_illusion_draw_black_hole_icon (pIcon, pDock, pData);
 			*bHasBeenRendered = TRUE;
 		break ;
+		case CD_ILLUSION_LIGHTNING :
+			cd_illusion_draw_lightning_icon (pIcon, pDock, pData);
+			*bHasBeenRendered = TRUE;
+		break ;
 		default :
 		break ;
 	}
@@ -164,6 +176,9 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		break ;
 		case CD_ILLUSION_BLACK_HOLE :
 			cd_illusion_update_black_hole (pIcon, pDock, pData);
+		break ;
+		case CD_ILLUSION_LIGHTNING :
+			cd_illusion_update_lightning (pIcon, pDock, pData);
 		break ;
 		default :
 		break ;
@@ -203,6 +218,13 @@ gboolean cd_illusion_free_data (gpointer pUserData, Icon *pIcon)
 	g_free (pData->pBlackHolePoints);
 	g_free (pData->pBlackHoleCoords);
 	g_free (pData->pBlackHoleVertices);
+	
+	int i;
+	for (i = 0; i < pData->iNbSources; i ++)
+	{
+		g_free (pData->pLightnings[i].pVertexTab);
+	}
+	g_free (pData->pLightnings);
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

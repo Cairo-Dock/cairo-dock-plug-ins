@@ -388,7 +388,7 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 	
 	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // activation faite par le dock, on verifie que le programme est lance.
 	{
-		gchar *cCommand = g_strdup_printf ("pgrep \"%s\"", pModuleInstance->pModule->pVisitCard->cModuleName);
+		gchar *cCommand = g_strdup_printf ("pgrep -f \"./%s\"", pModuleInstance->pModule->pVisitCard->cModuleName);  // -f : match command line and not process name, which is limited to 15 characters; -x : match exactly.
 		gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 		g_free (cCommand);
 		if (cResult != NULL)

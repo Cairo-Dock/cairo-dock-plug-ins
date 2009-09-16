@@ -95,7 +95,17 @@ CD_APPLET_ON_CLICK_BEGIN
 		else if (myData.mouseOnButton3)
 			_cd_musicplayer_next (NULL, NULL);
 		else if (myData.mouseOnButton4)
-			_cd_musicplayer_jumpbox (NULL, NULL);
+		{
+			if(myData.bIsRunning)
+			{
+				if (myData.pCurrentHandeler->iPlayerControls & PLAYER_JUMPBOX)
+					_cd_musicplayer_jumpbox (NULL, NULL);
+				else if (myIcon->Xid != 0)
+					cairo_dock_show_xwindow (myIcon->Xid);
+			}
+			else if (myData.pCurrentHandeler->launch != NULL)
+				cairo_dock_launch_command (myData.pCurrentHandeler->launch);
+		}
 		else
 		{
 			if(myData.bIsRunning)

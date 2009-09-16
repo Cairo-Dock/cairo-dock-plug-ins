@@ -168,14 +168,14 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
 				CD_APPLET_ANIMATE_MY_ICON ("bounce", 3);
-				myData.pDialog = cairo_dock_show_temporary_dialog ("OlllÃ©Ã©Ã©Ã©Ã© !", myIcon, myContainer, 2500);
+				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllééééé !", myIcon, myContainer, 2500);
 			}
 			else
 			{
 				iRandom = g_random_int_range (0, PENGUIN_NB_MESSAGES);  // [a;b[
 				Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
 				const gchar *cMessage = D_(s_pMessage[iRandom]);
-				int iDuration = 1000 + 25 * g_utf8_strlen (cMessage, -1);
+				int iDuration = 2000 + 25 * g_utf8_strlen (cMessage, -1);
 				if (pIcon != NULL)
 					myData.pDialog = cairo_dock_show_temporary_dialog (cMessage, pIcon, myContainer, iDuration);
 				else

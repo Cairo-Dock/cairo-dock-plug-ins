@@ -29,6 +29,7 @@ typedef enum _CDIllusionEffect {
 	CD_ILLUSION_EXPLODE,
 	CD_ILLUSION_BREAK,
 	CD_ILLUSION_BLACK_HOLE,
+	CD_ILLUSION_LIGHTNING,
 	CD_ILLUSION_NB_EFFECTS
 	} CDIllusionEffect;
 
@@ -65,12 +66,14 @@ struct _AppletConfig {
 	gint iLightningDuration;
 	gint iLightningNbSources;
 	gint iLightningNbCtrlPts;
-	gdouble fLightningColor[3];
+	gdouble fLightningColor1[4];
+	gdouble fLightningColor2[4];
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	GLuint iEvaporateTexture;
+	GLuint iLightningTexture;
 	} ;
 
 typedef struct {
@@ -94,10 +97,8 @@ typedef struct {
 	} CDIllusionBlackHole;
 
 typedef struct {
-	gdouble fSourceX;
-	gdouble fImpactX;
-	gdouble *tabx;
-	gint iNbPts;
+	GLfloat *pVertexTab;
+	gint iNbCurrentVertex;
 	} CDIllusionLightning;
 
 
@@ -127,6 +128,9 @@ typedef struct _CDIllusionData {
 	GLfloat *pBlackHoleCoords, *pBlackHoleVertices;
 	
 	CDIllusionLightning *pLightnings;
+	gint iNbVertex;
+	gint iNbSources;
+	gdouble fLightningAlpha;
 	} CDIllusionData;
 
 #endif
