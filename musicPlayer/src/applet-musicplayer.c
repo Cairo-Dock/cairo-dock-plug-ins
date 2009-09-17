@@ -128,7 +128,7 @@ void cd_musicplayer_free_handler (MusicPlayerHandeler *pHandeler)
 	if (pHandeler == NULL)
 		return ;
 	
-	g_free (myData.pCurrentHandeler->cCoverDir);
+	g_free (pHandeler->cCoverDir);
 	
 	g_free (pHandeler);
 }
