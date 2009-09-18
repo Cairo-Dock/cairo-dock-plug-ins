@@ -573,9 +573,9 @@ void vfs_backend_launch_uri (const gchar *cURI)
 		g_error_free (erreur);
 		return;
 	}
-
+	
 	/* if this is a directory, open Thunar in that directory */
-	if( pThunarVfsInfo->flags & THUNAR_VFS_FILE_FLAGS_EXECUTABLE )
+	/*if( pThunarVfsInfo->flags & THUNAR_VFS_FILE_FLAGS_EXECUTABLE )
 	{
 		thunar_vfs_info_execute(pThunarVfsInfo,NULL,NULL, NULL,&erreur);
 		if (erreur != NULL)
@@ -584,7 +584,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 			g_error_free (erreur);
 		}
 	}
-	else
+	else*/  /// mis en commentaire le 17/09/2009, car il semble que thunar_vfs_info_execute ouvre Thunar sans chercher si c'est lui le file-manager par defaut.
 	{
 		ThunarVfsMimeDatabase *pMimeDB = thunar_vfs_mime_database_get_default();
 		if( pMimeDB )

@@ -87,7 +87,7 @@ struct _AppletData {
 	dbusMainObject *pMainObject;
 	GList *pAppletList;
 	GtkWidget *pModuleSubMenu;
-	Icon *pCurrentIconSubMenu;
+	Icon *pCurrentMenuIcon;
 	gpointer pCurrentMenuDbusApplet;
 	gchar *cActiveModules;
 	} ;

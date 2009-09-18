@@ -63,7 +63,7 @@ extern GLuint my_iFlatSeparatorTexture;
 	
 void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 {
-	static double fCurveCurvature= 0;
+	static double fCurveCurvature = 0;
 	if (s_pReferenceCurveS == NULL || my_fCurveCurvature != fCurveCurvature)
 	{
 		fCurveCurvature = my_fCurveCurvature;
@@ -929,10 +929,10 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 					
 					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 					{
-						if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
+						//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 							icon->fAlpha = 1;
-						else
-							icon->fAlpha = .25;
+						//else
+						//	icon->fAlpha = .25;
 						
 						cairo_save (pCairoContext);
 						
@@ -974,10 +974,10 @@ void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDo
 				
 				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 				{
-					if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
+					//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 						icon->fAlpha = 1;
-					else
-						icon->fAlpha = .25;
+					//else
+					//	icon->fAlpha = .25;
 					
 					cairo_save (pCairoContext);
 					
@@ -1061,10 +1061,10 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		icon->fHeightFactor = 1.;
 		///icon->fDeltaYReflection = 0.;
 		icon->fOrientation = 0.;
-		if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
+		//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 			icon->fAlpha = 1;
-		else
-			icon->fAlpha = .25;
+		//else
+		//	icon->fAlpha = .25;
 		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->container.iWidth, icon->fAlpha);
 	}
 	
@@ -1081,10 +1081,13 @@ GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNb
 {
 	//static GLfloat pVertexTab[((180/DELTA_ROUND_DEGREE+1)+1)*3];
 	_cairo_dock_define_static_vertex_tab ((180/DELTA_ROUND_DEGREE+1)+1);
-	
+	/*0, 0
+	(1 - my_fCurveCurvature) * fFrameWidth / 2, -sens * fControlHeight,
+	(1 + my_fCurveCurvature) * fFrameWidth / 2, -sens * fControlHeight,
+	fFrameWidth, 0*/
 	double w = 1. / 2;
 	double h = 1. / 2;
-	double xp = -w, xq = - (1 - my_fCurveCurvature) * w, xr = - xq, xs = - xp;
+	double xp = -w, xq = - my_fCurveCurvature * w, xr = - xq, xs = - xp;
 	double yp = 0., yq = fRelativeControlHeight, yr = yq, ys = yp;
 	
 	//g_print ("%s (%.2f)\n", __func__, yq);

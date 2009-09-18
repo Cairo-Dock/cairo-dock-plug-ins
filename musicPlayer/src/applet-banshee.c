@@ -174,7 +174,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		cString = g_value_get_string(value);
 	g_print ("MP : got cover path from Banshee : '%s'\n", cString);
-	gchar *cCoverPath = g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString);
+	gchar *cCoverPath = (cString ? g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString) : NULL);
 	cd_musicplayer_get_cover_path (cCoverPath, FALSE);
 	g_free (cCoverPath);
 }

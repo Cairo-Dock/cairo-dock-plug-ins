@@ -57,8 +57,8 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	int i;
 	for (i = 0; i < 2; i ++)
 	{
-		dx = iMouseX - (myIcon->fDrawX + myData.iXeyes[i] * fScale);
-		dy = iMouseY - (myIcon->fDrawY + myData.iYeyes[i] * fScale);
+		dx = iMouseX - ((myContainer->bIsHorizontal ? myIcon->fDrawX : myIcon->fDrawY) + myData.iXeyes[i] * fScale);
+		dy = iMouseY - ((myContainer->bIsHorizontal ? myIcon->fDrawY : myIcon->fDrawX) + myData.iYeyes[i] * fScale);
 		
 		if (dx != 0)
 		{

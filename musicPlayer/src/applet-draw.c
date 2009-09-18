@@ -170,7 +170,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 	cd_message ("%s (%d, uri : %s / title : %s)", __func__, bFirstTime, myData.cPlayingUri, myData.cTitle);
 	if (myData.cPlayingUri != NULL || myData.cTitle != NULL)
 	{
-		if (bFirstTime)
+		if (bFirstTime && (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED))
 		{
 			//Affichage de la chanson courante sur l'etiquette.
 			if (myDock)

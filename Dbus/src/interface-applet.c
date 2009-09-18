@@ -40,33 +40,12 @@ static guint s_iSignals[NB_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE(dbusApplet, cd_dbus_applet, G_TYPE_OBJECT);
 
-/*static void g_cclosure_marshal_VOID__INT (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data);
-
-static void g_cclosure_marshal_VOID__INT (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}*/
-
 static void _init_signals_once (dbusAppletClass *klass)
 {
 	static gboolean bFirst = TRUE;
 	if (! bFirst)
 		return;
 	bFirst = FALSE;
-	
-	// Enregistrement des marshaller specifique aux signaux.
-	//dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__INT,
-	//	G_TYPE_NONE, G_TYPE_INT ,G_TYPE_INVALID);  // clic
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSignals[CLIC] =
@@ -390,7 +369,6 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 	{
 		gchar *cCommand = g_strdup_printf ("pgrep -f \"./%s\"", pModuleInstance->pModule->pVisitCard->cModuleName);  // -f : match command line and not process name, which is limited to 15 characters; -x : match exactly.
 		gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-		g_free (cCommand);
 		if (cResult != NULL)
 		{
 			g_print ("l'applet est deja lancee\n");
@@ -398,8 +376,10 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 		}
 		else
 		{
+			g_print ("l'applet '%s' n'est pas en cours d'execution (d'apers la commande '%s'\n", pModuleInstance->pModule->pVisitCard->cModuleName, cCommand);
 			cd_dbus_launch_distant_applet (pModuleInstance->pModule->pVisitCard->cModuleName);
 		}
+		g_free (cCommand);
 	}
 }
 

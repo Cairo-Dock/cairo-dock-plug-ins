@@ -128,14 +128,14 @@ void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iW
 	icon->fHeightFactor = 1.;
 	///icon->fDeltaYReflection = 0.;
 	icon->fOrientation = 0.;
-	if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= iWidth)
+	//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= iWidth)
 	{
 		icon->fAlpha = 1;
 	}
-	else
+	/*else
 	{
 		icon->fAlpha = .25;
-	}
+	}*/
 }
 
 
@@ -704,10 +704,10 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 					
 					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 					{
-						if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
+						//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 							icon->fAlpha = 1;
-						else
-							icon->fAlpha = .25;
+						//else
+						//	icon->fAlpha = .25;
 						
 						cairo_save (pCairoContext);
 						
@@ -749,10 +749,10 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 				
 				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 				{
-					if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
+					//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
 						icon->fAlpha = 1;
-					else
-						icon->fAlpha = .25;
+					//else
+					//	icon->fAlpha = .25;
 					
 					cairo_save (pCairoContext);
 					
