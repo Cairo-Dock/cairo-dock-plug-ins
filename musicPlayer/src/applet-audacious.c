@@ -512,18 +512,19 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 			DBusGProxy *dbus_proxy_atheme = cairo_dock_create_new_session_proxy (
 				"org.atheme.audacious",
 				"/org/atheme/audacious",
-				"org.atheme.audacious");
+				"org.atheme.audacious");  // currently buggy ...
 			if (dbus_proxy_atheme != NULL)
 			{
-				if (PLAYER_JUMPBOX)
+				if (pControl == PLAYER_JUMPBOX)
 				{
 					g_print ("ShowPlaylist\n");
-					dbus_g_proxy_call_no_reply (dbus_proxy_atheme, "ShowPlaylist",
+					cairo_dock_launch_command ("audacious2 --show-jump-box");
+					/*dbus_g_proxy_call_no_reply (dbus_proxy_atheme, "ShowPlaylist",
 						G_TYPE_INVALID,
 						G_TYPE_BOOLEAN, TRUE,
-						G_TYPE_INVALID);
+						G_TYPE_INVALID);*/
 				}
-				else if (PLAYER_SHUFFLE)  // a terme, utiliser la methode "Random" du proxy_shell
+				else if (pControl == PLAYER_SHUFFLE)  // a terme, utiliser la methode "Random" du proxy_shell
 				{
 					g_print ("ToggleShuffle\n");
 					cairo_dock_dbus_call (dbus_proxy_atheme, "ToggleShuffle");
@@ -630,6 +631,7 @@ void cd_musicplayer_register_audacious_handler (void)
 	pAudacious->appclass = "audacious";  // en fait Audacious.
 	pAudacious->name = "Audacious";
 	pAudacious->launch = "audacious2";
+	pAudacious->cMprisService = "org.mpris.audacious";
 	pAudacious->iPlayer = MP_AUDACIOUS;
 	pAudacious->bSeparateAcquisition = FALSE;  // inutile de threader.
 	pAudacious->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;

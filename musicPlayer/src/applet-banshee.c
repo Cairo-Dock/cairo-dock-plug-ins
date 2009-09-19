@@ -534,6 +534,7 @@ void cd_musicplayer_register_banshee_handler (void)
 	pBanshee->appclass = "banshee-1";  // pffff
 	pBanshee->launch = "banshee";
 	pBanshee->name = "Banshee";
+	pBanshee->cMprisService = "org.bansheeproject.Banshee";
 	pBanshee->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
 	pBanshee->iPlayer = MP_BANSHEE;
 	pBanshee->bSeparateAcquisition = FALSE;

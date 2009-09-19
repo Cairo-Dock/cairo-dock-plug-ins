@@ -61,7 +61,15 @@ static void _cd_musicplayer_info (GtkMenuItem *menu_item, gpointer *data)
 static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 {
 	MusicPlayerHandeler *pHandler = cd_musicplayer_dbus_find_opened_player ();
-	if (pHandler != NULL && pHandler != myData.pCurrentHandeler)
+	if (pHandler == NULL)
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, I couldn't detect any player.\nIf it is running, it is maybe because its version is too old and does not offer such service."),
+			myIcon,
+			myContainer,
+			7000,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	}
+	else if (pHandler != myData.pCurrentHandeler)
 	{
 		if (myData.pCurrentHandeler)
 		{
@@ -143,7 +151,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GTK_STOCK_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PLAY_PAUSE)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Play/Pause (left-click)"), (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandeler->name, (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
 	}
 	else
 	{

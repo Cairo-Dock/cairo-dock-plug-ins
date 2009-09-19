@@ -114,6 +114,7 @@ void cd_musicplayer_register_songbird_handler (void) { //On enregistre notre lec
 	pSongbird->appclass = g_strdup("Songbird"); //Toujours g_strdup sinon l'applet plante au free_handler
 	pSongbird->name = g_strdup("Songbird");
 	pSongbird->launch = g_strdup("songbird");
+	pSongbird->cMprisService = "org.mozilla.songbird";
 	pSongbird->iPlayerControls = 0;  // ne gere rien !
 	pSongbird->iPlayer = MP_SONGBIRD;
 	pSongbird->bSeparateAcquisition = FALSE;

@@ -6,8 +6,8 @@
 ### Rev : 09/09/03
 
 ### We assume the name of this applet is "demo_bash"
-### This Python script (demo_bash.py) should be placed in a folder with 3 files :
-### "icon" (the default icon of the applet) , "preview" (a preview of this applet) and demo_script.sh (the script in bash)
+### This Python script (demo_bash) should be placed in a folder alongside with 3 files :
+### demo_bash.conf (the default config file), "icon" (the default icon of the applet) , "preview" (a preview of this applet) and demo_bash.sh (the script in bash, where you will place your code)
 
 ### import ###
 import sys

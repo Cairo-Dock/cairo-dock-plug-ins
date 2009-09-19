@@ -150,10 +150,12 @@ MusicPlayerHandeler *cd_musicplayer_dbus_find_opened_player (void)
 		for (h = myData.pHandelers; h != NULL; h = h->next)
 		{
 			pHandler = h->data;
+			//g_print ("%s : %s\n", pHandler->name, pHandler->cMprisService);
 			if (pHandler->cMprisService == NULL)
 				continue;
 			for (i = 0; name_list[i] != NULL; i ++)
 			{
+				g_print ("%s : %s\n", pHandler->cMprisService, name_list[i]);
 				if (strcmp (name_list[i], pHandler->cMprisService) == 0)  // trouve, on quitte.
 				{
 					g_print ("found %s\n", pHandler->name);

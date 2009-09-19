@@ -90,6 +90,7 @@ struct _AppletData {
 	Icon *pCurrentMenuIcon;
 	gpointer pCurrentMenuDbusApplet;
 	gchar *cActiveModules;
+	gboolean bServiceIsStopping;
 	} ;
 
 

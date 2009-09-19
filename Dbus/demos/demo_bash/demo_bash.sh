@@ -5,8 +5,6 @@
 ### Contact : nochka85@cairo-dock.org
 ### Rev : 09/09/06
 
-APP_FOLDER=$(pwd)
-
 DBUS_NAME="org.cairodock.CairoDock"
 DBUS_PATH="/org/cairodock/CairoDock"
 DBUS_INTERFACE="org.cairodock.CairoDock"
@@ -20,14 +18,14 @@ SCROLL_UP=$2
 CONF_FILE="/home/$USER/.config/cairo-dock/current_theme/plug-ins/$APP_NAME/$APP_NAME.conf"
 
 
-
-POSITION_IN_CONF="2"
-DESCRIPTION="This is a distant applet in bash by Nochka85"
-
+DESCRIPTION="This is a distant applet in bash"
+AUTHOR="Nochka85"
+CATEGORY="2"
+APP_FOLDER=$(pwd)
 
 #############################################################################################################
 register_the_applet() {
-dbus-send --session --dest=$DBUS_NAME $DBUS_PATH $DBUS_INTERFACE.RegisterNewModule string:"$APP_NAME" int32:$POSITION_IN_CONF string:"$DESCRIPTION" string:"$APP_FOLDER"
+dbus-send --session --dest=$DBUS_NAME $DBUS_PATH $DBUS_INTERFACE.RegisterNewModule string:"$APP_NAME" string:"$DESCRIPTION" string:"$AUTHOR" int32:$CATEGORY string:"$APP_FOLDER"
 exit
 }
 
@@ -53,8 +51,6 @@ demo_value="$PARAM"
 
 #############################################################################################################
 action_on_click() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Left clic !"
 dbus-send --session --dest=$DBUS_NAME $DBUS_PATH/$APP_NAME $DBUS_INTERFACE.applet.ShowDialog string:"Left clic !" int32:2
 
@@ -63,8 +59,6 @@ exit
 
 #############################################################################################################
 action_on_middle_click() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Middle clic !"
 dbus-send --session --dest=$DBUS_NAME $DBUS_PATH/$APP_NAME $DBUS_INTERFACE.applet.ShowDialog string:"Middle clic !" int32:2
 
@@ -73,8 +67,6 @@ exit
 
 #############################################################################################################
 action_on_scroll_icon() {
-get_ALL_conf_params
-
 if [ $SCROLL_UP -eq "0" ]; then
 	echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Scroll UP !"
 	dbus-send --session --dest=$DBUS_NAME $DBUS_PATH/$APP_NAME $DBUS_INTERFACE.applet.ShowDialog string:"Scroll UP!" int32:1
@@ -88,8 +80,6 @@ exit
 
 #############################################################################################################
 action_on_drop_data() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> $DROP_DATA has been dropped on applet !"
 
 
@@ -120,8 +110,6 @@ exit
 
 #############################################################################################################
 action_on_stop() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Our module is stopped"
 
 exit
@@ -143,8 +131,6 @@ exit
 
 #############################################################################################################
 action_on_build_menu() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Build menu !"
 dbus-send --session --dest=$DBUS_NAME $DBUS_PATH/$APP_NAME $DBUS_INTERFACE.applet.PopulateMenu array:string:"choice 0","choice 1"
 
@@ -153,8 +139,6 @@ exit
 
 #############################################################################################################
 action_on_menu_select() {
-get_ALL_conf_params
-
 echo "$APP_NAME applet -> Script Name : $SCRIPT_NAME -> Choice $MENU_SELECT has been selected !"
 dbus-send --session --dest=$DBUS_NAME $DBUS_PATH/$APP_NAME $DBUS_INTERFACE.applet.ShowDialog string:"Choice $MENU_SELECT has been selected !" int32:4
 

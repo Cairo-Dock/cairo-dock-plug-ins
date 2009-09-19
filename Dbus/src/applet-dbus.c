@@ -39,7 +39,8 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 #include "applet-dbus.h"
 #include "dbus-main-spec.h"
-#include "interface-applet.h"
+#include "interface-applet-object.h"
+#include "interface-applet-signals.h"
 
 #define nullify_argument(string) do {\
 	if (string != NULL && (*string == '\0' || strcmp (string, "any") == 0 || strcmp (string, "none") == 0))\
@@ -68,7 +69,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 	dbus_g_connection_register_g_object(pMainObject->connection, "/org/cairodock/CairoDock", G_OBJECT(pMainObject));
 }
 
-static void _cd_dbus_launch_distant_applet_in_dir (const gchar *cDirPath)
+static void _cd_dbus_launch_distant_applets_in_dir (const gchar *cDirPath)
 {
 	GError *erreur = NULL;
 	const gchar *cFileName;
@@ -98,6 +99,7 @@ void cd_dbus_launch_service (void)
 	g_return_if_fail (myData.pMainObject == NULL);
 	g_type_init();
 	
+	// on cree l'objet distant principal.
 	cd_message("dbus : Lancement du service");
 	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // appelle cd_dbus_main_class_init() et cd_dbus_main_init().
 	
@@ -105,20 +107,21 @@ void cd_dbus_launch_service (void)
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 	
 	// on lance les applets distantes.
-	_cd_dbus_launch_distant_applet_in_dir (MY_APPLET_SHARE_DATA_DIR);
+	_cd_dbus_launch_distant_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
 	
-	_cd_dbus_launch_distant_applet_in_dir (g_cCairoDockDataDir);
+	_cd_dbus_launch_distant_applets_in_dir (g_cCairoDockDataDir);
 }
 
 void cd_dbus_stop_service (void)
 {
 	// on vire tous les modules distants.
+	myData.bServiceIsStopping = TRUE;  // on stoppe les applets distantes differemment suivant que c'est l'utilisateur qui la decoche ou pas.
 	dbusApplet *pDbusApplet;
 	GList *a;
 	for (a = myData.pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
-		cairo_dock_unregister_module (pDbusApplet->cModuleName);  // stoppe le module (toutes les instances) et l'enleve de la table.
+		cairo_dock_unregister_module (pDbusApplet->cModuleName);  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte), et enleve le module de la table. l'objet distant n'est pas detruit, puisque de toute facon on vide toute la liste.
 		g_object_unref (pDbusApplet);
 	}
 	g_list_free (myData.pAppletList);
@@ -131,6 +134,7 @@ void cd_dbus_stop_service (void)
 	if (myData.pMainObject != NULL)
 		g_object_unref (myData.pMainObject);
 	myData.pMainObject = NULL;
+	myData.bServiceIsStopping = FALSE;
 }
 
 
@@ -535,16 +539,18 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 }
 
 
-static gboolean _emit_init_module (CairoDockModuleInstance *pInstance)
+
+static gboolean _emit_init_module_delayed (CairoDockModuleInstance *pInstance)
 {
-	cd_dbus_emit_on_init_module (pInstance, GINT_TO_POINTER (1));
+	cd_dbus_emit_init_signal (pInstance);
 	return FALSE;
 }
-gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gint iCategory, const gchar *cDescription, const gchar *cShareDataDir, GError **error)
+gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, gint iCategory, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
 	
+	// on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule != NULL)
 	{
@@ -570,6 +576,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
 		pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
 		pVisitCard->cModuleVersion = g_strdup ("0.0.1");
+		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
 		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/%s", cShareDataDir, "icon") : NULL;
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
@@ -590,10 +597,12 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		}
 	}
 	
+	// si l'applet ne doit pas etre utilisee, on en reste la.
 	gboolean bAppletIsUsed = cd_dbus_applet_is_used (cModuleName);
 	if (! bAppletIsUsed)
 		return TRUE;
 	
+	// sinon on active le module.
 	pModule->fLastLoadingTime = -1;  // indique a la fonction d'init que c'est l'applet qui demande a s'activer, plutot que l'utilisateur.
 	GError *tmp_erreur = NULL;
 	gboolean bAlreadyInstanciated = FALSE;
@@ -603,12 +612,13 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		cd_warning ("%s (maybe the applet didn't stop correctly before)", tmp_erreur->message);
 		g_error_free (tmp_erreur);
 		tmp_erreur = NULL;
-		bAlreadyInstanciated = TRUE;  // donc on n'est pas passe dans l'init.
+		bAlreadyInstanciated = TRUE;  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque de toute facon on le lance avec un delai, et l'objet distant existait deja.
 	}
 	
 	if (pModule->pInstancesList == NULL)
 		return FALSE;
 	
+	// on retarde l'emission du signal 'init'.
 	CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
 	if (! bAlreadyInstanciated)
 	{
@@ -618,23 +628,19 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 			cairo_dock_redraw_container (pInstance->pContainer);
 		}
 	}
-	else  // cas ou l'applet etait deja instanciee.
+	else  // cas ou l'applet etait deja instanciee, on simule un stop/init pour repartir sur de bonnes bases.
 	{
 		cd_dbus_action_on_stop_module (pInstance);
-		
 		cd_dbus_action_on_init_module (pInstance);
 	}
-	g_timeout_add (500, (GSourceFunc)_emit_init_module, pInstance);  // petit hack car l'applet attend le retour de cette fonction. Elle ne peut donc pas recuperer l'objet en attendant. On laisse une tempo pour cela.
+	g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.
 	
-	pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf.
+	///pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf. => a priori maintenant il l'est.
 	return TRUE;
 }
 
 gboolean cd_dbus_main_unregister_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, GError **error)
 {
-	if (! myConfig.bEnableNewModule)
-		return FALSE;
-	
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	g_return_val_if_fail (pModule != NULL, FALSE);
 	
@@ -654,7 +660,3 @@ gboolean cd_dbus_main_unregister_module (dbusMainObject *pDbusCallback, const gc
 	
 	return TRUE;
 }
-
-
-
-

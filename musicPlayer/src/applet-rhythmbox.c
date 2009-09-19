@@ -407,6 +407,7 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 	pRhythmbox->appclass = "rhythmbox";
 	pRhythmbox->name = "Rhythmbox";
 	pRhythmbox->launch = "rhythmbox";
+	pRhythmbox->cMprisService = "org.gnome.Rhythmbox";
 	pRhythmbox->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
 	pRhythmbox->iPlayer = MP_RHYTHMBOX;
 	pRhythmbox->bSeparateAcquisition = FALSE;

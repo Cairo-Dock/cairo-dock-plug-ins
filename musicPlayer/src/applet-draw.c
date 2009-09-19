@@ -271,7 +271,7 @@ void cd_musicplayer_popup_info (void)
 			myContainer,
 			myConfig.iDialogDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			D_("New song"),
+			D_("Current song"),
 			str);
 	}
 	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
@@ -291,11 +291,11 @@ void cd_musicplayer_popup_info (void)
 			D_("Track n°"),
 			myData.iTrackNumber);
 	else
-		cairo_dock_show_temporary_dialog_with_icon ("%s",
+		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
-			D_("There is no media playing."));
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 }
 
 /* Anime l'icone au changement de musique

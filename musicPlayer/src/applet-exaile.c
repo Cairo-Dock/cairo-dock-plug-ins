@@ -295,6 +295,7 @@ void cd_musicplayer_register_exaile_handler (void) { //On enregistre notre lecte
 	pExaile->appclass = "exaile.py";
 	pExaile->name = "Exaile";
 	pExaile->launch = "exaile";
+	pExaile->cMprisService = "org.exaile.DBusInterface";
 	pExaile->iPlayer = MP_EXAILE;
 	pExaile->bSeparateAcquisition = FALSE;
 	pExaile->iLevel = PLAYER_BAD;  // API DBus moisie sans aucun signal.

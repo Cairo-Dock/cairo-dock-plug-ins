@@ -47,7 +47,6 @@ CD_APPLET_ON_CLICK_BEGIN
 		int iMouseX, iMouseY;
 		if (myDesklet)
 		{
-			/// il faudrait voir comment utiliser le picking.
 			if (g_bUseOpenGL)
 			{
 				iMouseX = 0;
@@ -58,8 +57,6 @@ CD_APPLET_ON_CLICK_BEGIN
 			{
 				iMouseX = myDesklet->iMouseX2d;
 				iMouseY = myDesklet->iMouseY2d;
-				//iMouseX -= myIcon->fDrawX;
-				//iMouseY -= myIcon->fDrawY;
 			}
 			//g_print ("on cherche le bureau en (%d;%d)\n", iMouseX, iMouseY);
 		}

@@ -440,6 +440,7 @@ void cd_musicplayer_register_quodlibet_handler (void)
 	pQuodlibet->appclass = "quodlibet";
 	pQuodlibet->launch = "quodlibet";
 	pQuodlibet->name = "QuodLibet";
+	pQuodlibet->cMprisService = "net.sacredchao.QuodLibet";
 	pQuodlibet->iPlayer = MP_QUODLIBET;
 	pQuodlibet->bSeparateAcquisition = FALSE;
 	pQuodlibet->iLevel = PLAYER_GOOD;  // n'a besoin d'une boucle que pour afficher le temps ecoule.

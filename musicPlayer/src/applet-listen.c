@@ -140,6 +140,7 @@ void cd_musicplayer_register_listen_handler (void) { //On enregistre notre lecte
 	pListen->appclass = "listen.py";
 	pListen->name = "Listen";
 	pListen->name = "listen";  /// a verifier ...
+	pListen->cMprisService = "org.gnome.Listen";
 	pListen->bSeparateAcquisition = FALSE;
 	cd_musicplayer_register_my_handler (pListen, "Listen");
 }
