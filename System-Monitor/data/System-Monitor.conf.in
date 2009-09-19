@@ -100,11 +100,11 @@ frame_graph=
 graphic type = 0
 
 #c+ High values color :
-#{It's the color of the graphic for high CPU values.}
+#{It's the color of the graphic for high values.}
 high color = 1;0;0
 
 #c+ Low values color :
-#{It's the color of the graphic for low CPU values.}
+#{It's the color of the graphic for low values.}
 low color = 1;1;0
 
 #C+ Background color of the graphic :
