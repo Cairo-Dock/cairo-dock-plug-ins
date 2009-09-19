@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-03 05:45+0000\n"
-"Last-Translator: Yann SLADEK <Unknown>\n"
+"POT-Creation-Date: 2009-09-18 01:10+0000\n"
+"PO-Revision-Date: 2009-09-18 08:27+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-08 16:36+0000\n"
+"X-Launchpad-Export-Date: 2009-09-19 11:23+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -167,7 +168,7 @@ msgstr ""
 #: ../Dbus/src/interface-applet-signals.c:317
 #: ../Dbus/src/interface-applet.c:958 ../Dbus/src/interface-sub-applet.c:418
 msgid "About this applet"
-msgstr ""
+msgstr "A propos de cet applet"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -391,6 +392,22 @@ msgid ""
 "maintain CTRL, ALT or SHIFT to keep the results.\n"
 "Escape or the same shortkey to cancel."
 msgstr ""
+"Un plug-in dans le style de Gnome-Do pour contrôler votre dock avec le "
+"clavier.\n"
+"Il y a 2 modes, chacun pouvant être lancé par un raccourci clavier:\n"
+"- le mode de navigation : utilisez les flèches pour naviguer dans les docks "
+"et sous-docks,\n"
+"  ou entre le nom d'un lanceur et appuyez sur Tab pour automatiquement "
+"passer au lanceur suivant et approprié\n"
+"  appuyez sur Enter pour cliquer sur l'icône, Shift+Enter correspond à "
+"Shift+clique, Alt+Enter pour le clique du milieu et Ctrl+Enter pour le "
+"clique gauche\n"
+"- le mode de recherche : écrivez du texte pour lancer une commande, un "
+"fichier ou des calculs.\n"
+"  utilisez les flèches pour naviguer entre les résultats, appuyez sur Enter "
+"pour valider, maintenez la touche Ctrl, Alt ou Shift pour garder les "
+"résultats.\n"
+"Appuyez sur la touche Escape (Echape, Esc) ou équivalent pour annuler."
 
 #: ../Scooby-Do/src/applet-listing.c:508
 msgid "(F1) Match case"
@@ -552,7 +569,8 @@ msgstr "Moniteur système"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -768,10 +786,12 @@ msgstr "Rendu des dialogues"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr ""
+"Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -1045,6 +1065,10 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
+"Cette applet fournit des fonctions pour une meilleur intégration avec "
+"l'environnement Gnome.\n"
+"Il s'auto-active, vous ne devez donc pas l'activer manuellement.\n"
+"Il a été conçu pour les anciennes versions de Gnome (avant 2.22)."
 
 #: ../gnome-integration/src/applet-init.c:30
 msgid ""
@@ -1053,6 +1077,10 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
+"Cette applet fournit des fonctions pour une meilleur intégration avec "
+"l'environnement Gnome.\n"
+"Il s'auto-active, vous ne devez donc pas l'activer manuellement.\n"
+"Il a été conçu pour les versions récentes de Gnome (supérieures à la 2.22)."
 
 #: ../icon-effect/src/applet-init.c:30
 msgid "icon effects"
@@ -1088,8 +1116,8 @@ msgstr ""
 "Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../logout/src/applet-init.c:28
@@ -1252,6 +1280,16 @@ msgid ""
 "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
+"Cette applet permet le contrôle de plusieurs lecteurs de musiques.\n"
+"Un clique gauche pour Play/Pause, un clique du milieu pour passer à la "
+"musique suivant.\n"
+"Un coup de roulette vers le haut/bas pour jouer la chanson "
+"précédente/suivante.\n"
+"Vous pouvez glisser/déposer des fichiers audio sur l'icône pour les ajouter "
+"à la liste en cours (ça dépend du lecteur).\n"
+" et un fichier image pour l'utiliser comme pochette.\n"
+"Rem : Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
+"        Pour SongBird, vous devez installer le greffon DBus.\n"
 
 #: ../musicPlayer/src/applet-notifications.c:144
 msgid "Find opened player"
@@ -1497,8 +1535,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -1629,7 +1667,7 @@ msgstr "Relancer Stacks"
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
-msgstr ""
+msgstr "Nettoyer le dossier local"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1690,13 +1728,15 @@ msgstr ""
 
 #: ../template/src/applet-init.c:30
 msgid "CD_APPLET_NAME"
-msgstr ""
+msgstr "CD_APPLET_NAME"
 
 #: ../template/src/applet-init.c:33
 msgid ""
 "Useful description\n"
 "and manual"
 msgstr ""
+"Description utile\n"
+"et manuel"
 
 #: ../terminal/src/terminal-callbacks.c:84
 #: ../terminal/src/terminal-widget.c:343
@@ -2048,6 +2088,9 @@ msgid ""
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it."
 msgstr ""
+"Cette applet fournit des fonctions pour une meilleur intégration avec "
+"l'environnement XFCE.\n"
+"Il s'auto-active, vous ne devez donc pas l'activer manuellement."
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -2660,7 +2703,8 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic-gauche."
@@ -3029,7 +3073,8 @@ msgstr "Transparence du fond :"
 #: ../tomboy/data/messages:73 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:117 ../GMenu/data/messages:65
 #: ../Network-Monitor/data/messages:61 ../System-Monitor/data/messages:61
@@ -3097,7 +3142,8 @@ msgstr "Décalage en haut :"
 #: ../tomboy/data/messages:81 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:125 ../GMenu/data/messages:73
 #: ../Network-Monitor/data/messages:69 ../System-Monitor/data/messages:69
@@ -3254,8 +3300,8 @@ msgstr "Si oui, nombre d'items de sélection :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:161
 msgid "Paste into Clipboard ?"
@@ -3368,12 +3414,12 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the image of icons ?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
-#, fuzzy
 msgid "Let extern applications animate the icons ?"
-msgstr "Autoriser les applications externes à quitter le dock ?"
+msgstr "Permettre aux applications externes d'animer les icônes ?"
 
 #: ../Dbus/data/messages:25
 msgid "Let extern applications register new module ?"
@@ -3547,44 +3593,36 @@ msgid "Let it empty to use the default icon."
 msgstr "Laisser vide pour avoir l'icône par défaut"
 
 #: ../Network-Monitor/data/messages:133
-#, fuzzy
 msgid "Name of an image for the 'No signal' icon :"
-msgstr "Nom de l'image 'Aucun Signal' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Pas de signal\" :"
 
 #: ../Network-Monitor/data/messages:137
-#, fuzzy
 msgid "Name of an image for the 'Very low' icon :"
-msgstr "Nom de l'image 'Très Faible' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Très faible\" :"
 
 #: ../Network-Monitor/data/messages:141
-#, fuzzy
 msgid "Name of an image for the 'Low' icon :"
-msgstr "Nom de l'image 'Faible' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Faible\" :"
 
 #: ../Network-Monitor/data/messages:145
-#, fuzzy
 msgid "Name of an image for the 'Middle' icon :"
-msgstr "Nom de l'image 'Moyen' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Moyen\" :"
 
 #: ../Network-Monitor/data/messages:149
-#, fuzzy
 msgid "Name of an image for the 'Good' icon :"
-msgstr "Nom de l'image 'Bon' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Bon\" :"
 
 #: ../Network-Monitor/data/messages:153
-#, fuzzy
 msgid "Name of an image for the 'Excellent' icon :"
-msgstr "Nom de l'image 'Excellent' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Excellent\" :"
 
 #: ../Network-Monitor/data/messages:157
-#, fuzzy
 msgid "Name of an image for the 'Not connected' icon :"
-msgstr "Nom de l'image 'Bon' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Non connecté\" :"
 
 #: ../Network-Monitor/data/messages:161
-#, fuzzy
 msgid "Name of an image for the 'Wired connection' icon :"
-msgstr "Nom de l'image 'Exposé' :"
+msgstr "Nom ou chemin de l'image pour l'icône \"Connexion filaire\" :"
 
 #: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:135
@@ -3698,7 +3736,7 @@ msgstr "Police utilisée pour afficher ce que vous tapez :"
 
 #: ../Scooby-Do/data/messages:29
 msgid "Color of the text's frame  :"
-msgstr ""
+msgstr "Couleur du cadre du texte :"
 
 #: ../Scooby-Do/data/messages:31
 msgid "Font size, relatively to the dock's size :"
@@ -3726,7 +3764,7 @@ msgstr "Couleur d'arrière plan des caractères :"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Write text on the top of the dock ?"
-msgstr ""
+msgstr "Écrire le texte sur le haut du dock ?"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
 msgid "It's the color of the graphic for high CPU values."
@@ -4098,7 +4136,7 @@ msgstr "Choisissez la vue :"
 
 #: ../clock/data/messages:117
 msgid "Analogic"
-msgstr ""
+msgstr "Analogique"
 
 #: ../clock/data/messages:119
 msgid "Numeric"
@@ -4106,7 +4144,7 @@ msgstr "Numérique"
 
 #: ../clock/data/messages:121
 msgid "Numeric View"
-msgstr ""
+msgstr "Vue numérique"
 
 #: ../clock/data/messages:123
 msgid "Font used for the numeric display :"
@@ -4474,11 +4512,11 @@ msgstr "Si oui, afficher la dernière image sur l'icône ?"
 
 #: ../dnd2share/data/messages:101
 msgid "in KB/s - 0 means unlimited"
-msgstr ""
+msgstr "en Ko/s - 0 signifie illimité"
 
 #: ../dnd2share/data/messages:103
 msgid "Maximum upload rate:"
-msgstr ""
+msgstr "Vitesse d'envoi maximale :"
 
 #: ../dnd2share/data/messages:105
 msgid "Animation of the icon during upload :"
@@ -4556,8 +4594,8 @@ msgstr "Script personnel pour l'upload des fichiers : "
 #: ../dnd2share/data/messages:147
 msgid "Let empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:149
 msgid "Path of the DropBox folder :"
@@ -4754,7 +4792,7 @@ msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 
 #: ../dock-rendering/data/messages:93
 msgid "Pack icons rather horizontally than vertically ?"
-msgstr ""
+msgstr "Assembler les icône plutôt horizontalement que verticalement ?"
 
 #: ../dock-rendering/data/messages:95
 msgid "Display text for all icons ?"
@@ -4910,8 +4948,11 @@ msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
+"Si le dossier 'Trash' n'est pas connu par le dock, vous pouvez le spécifier "
+"ici :"
 
 #: ../dustbin/data/messages:117
 msgid "in seconds, only used if you can't monitor directories."
@@ -5111,6 +5152,8 @@ msgstr "Tracer le contour du texte ?"
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
+"Le plus petit est le texte sur l'icône. 1 signifie que le texte occupe toute "
+"l'icône."
 
 #: ../keyboard-indicator/data/messages:101
 msgid "Relative size of the text :"
@@ -5151,6 +5194,8 @@ msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 msgstr ""
+"Nombre maximum de mails qui seront visibles. Indiquez -1 pour en montrer un "
+"maximum."
 
 #: ../mail/data/messages:93
 msgid "Maximum of new messages shown ?"
@@ -5162,6 +5207,9 @@ msgid ""
 "maintenance mode, then let the dock launch itself, and remove/modify the "
 "mail accounts you want."
 msgstr ""
+"Si vous avez quelconque problème avec cette applet, décochez cette option "
+"durant le mode de maintenance. Ensuite laissez le dock se lancer par lui-"
+"même et enlevez/modifiez le compte mail que vous désirez."
 
 #: ../mail/data/messages:97
 msgid "Check mail account on startup ?"
@@ -5196,6 +5244,8 @@ msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
 msgstr ""
+"Utilisez uniquement ceci si cela diffère de son nom. Généralement, ce n'est "
+"pas le cas, excepté pour Thunderbird"
 
 #: ../mail/data/messages:113
 msgid "Class of the mail application (optionnal)"
@@ -5206,6 +5256,9 @@ msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Ceci préviendra l'icône de l'application à apparaitre dans la barre des "
+"tâches. L'icône de l'applet se comportera comme un lanceur, une application "
+"et une applet."
 
 #: ../mail/data/messages:119
 msgid "Add an mail account"
@@ -5298,7 +5351,7 @@ msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
 #: ../musicPlayer/data/messages:113
 msgid "Actions on click and middle-click :"
-msgstr ""
+msgstr "Actions au clique et au clique du milieu :"
 
 #: ../musicPlayer/data/messages:115
 msgid "Play/Pause on click, Next on middle-click"
@@ -5531,24 +5584,20 @@ msgid "It can be quite heavy to load a lot of icons."
 msgstr "Le temps de chargement peut être assez long avec beaucoup d'icônes."
 
 #: ../quick-browser/data/messages:95
-#, fuzzy
 msgid "Icon size :"
-msgstr "Taille des icônes :"
+msgstr "Taille des icônes"
 
 #: ../quick-browser/data/messages:97
-#, fuzzy
 msgid "small"
-msgstr "mail"
+msgstr "Petites"
 
 #: ../quick-browser/data/messages:99
-#, fuzzy
 msgid "medium"
 msgstr "Moyennes"
 
 #: ../quick-browser/data/messages:101
-#, fuzzy
 msgid "large"
-msgstr "Larges"
+msgstr "Grandes"
 
 #: ../quick-browser/data/messages:103
 msgid "List folders first ?"
@@ -5891,8 +5940,8 @@ msgstr "Ordre manuel"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "C'est la sélection faite à la souris, par opposition à celle de ctrl+c/ctrl+v"
 
@@ -6000,7 +6049,7 @@ msgstr "IHM"
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"
-msgstr ""
+msgstr "Raccourci pour basculer le systray dans le mode du dock:"
 
 #: ../systray/data/messages:43
 msgid "Icons packing :"
@@ -6106,8 +6155,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
-"m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:127
 msgid "Date format to search for :"
@@ -6136,6 +6185,7 @@ msgstr "Laissez vide pour utiliser le nom de la ville."
 #: ../weather/data/messages:87
 msgid "Enter the name of your location in the text entry and press Enter."
 msgstr ""
+"Entrez le nom de l'emplacement dans la boite de texte et appuyez sur Enter."
 
 #: ../weather/data/messages:89
 msgid "Code of your location :"
@@ -6262,8 +6312,8 @@ msgstr "Nom de l'image 'Excellent' :"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
@@ -6275,8 +6325,8 @@ msgstr "Nom de l'image 'Excellent' :"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6287,8 +6337,8 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ "mais le contrôle de Banshee et Exaile est encore expérimental.\n"
 #~ "Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
 #~ "Play/Pause avec le clique gauche, Next avec le clique du milieu.\n"
-#~ "Vous pouvez déposer vos fichiers musicaux sur cette applet pour l'ajouter "
-#~ "à la playlist.\n"
+#~ "Vous pouvez déposer vos fichiers musicaux sur cette applet pour l'ajouter à "
+#~ "la playlist.\n"
 #~ "La roulette de la souris vers le haut/bas, pour passer à la chanson "
 #~ "précédente/suivante."
 
@@ -6299,12 +6349,12 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ msgstr "Activer les info-bulles ?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
-#~ "Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des "
-#~ "tâaches. L'icône de l'applet se comportera alors comme un lanceur, une "
-#~ "appli et une applet."
+#~ "Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des tâaches. "
+#~ "L'icône de l'applet se comportera alors comme un lanceur, une appli et une "
+#~ "applet."
 
 #~ msgid "Steal the rhythmbox's icon in taskbar ?"
 #~ msgstr "Voler l'icône de la barre des tâches ?"
@@ -6361,16 +6411,15 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
 #~ "Cette applet permet le contrôle de plusieurs lecteurs de musique.\n"
 #~ "Clic gauche pour Play/Pause, clig du milieu pour la chanson suivante.\n"
 #~ "Molette vers le haut/bas pour passer à la chanson précédente/suivante.\n"
-#~ "Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la "
-#~ "playlist (dépend des lecteurs).\n"
+#~ "Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la playlist "
+#~ "(dépend des lecteurs).\n"
 #~ "Note : Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
 #~ "       Pour SongBird, vous devez installer le greffon DBus.\n"
 
@@ -6381,18 +6430,18 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ "You can put the tag '__Player__' to display the name of the player you "
 #~ "control"
 #~ msgstr ""
-#~ "Vous pouvez mettre le tag '__Player__' pour afficher le nom du lecteur "
-#~ "que vous controler"
+#~ "Vous pouvez mettre le tag '__Player__' pour afficher le nom du lecteur que "
+#~ "vous controler"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Taille désirée de l'icône dans le dock (en pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
+#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+#~ "Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Shortkey to toggle the systray"
 #~ msgstr "Raccourci clavier pour montrer le systray :"
@@ -6401,8 +6450,7 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ msgstr "Affinez votre recherche"
 
 #~ msgid "They don't even need to be real trash directories."
-#~ msgstr ""
-#~ "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
+#~ msgstr "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
 
 #~ msgid ""
 #~ "Here you can specify a list of additionnal Trash directories to monitor :"
@@ -6454,11 +6502,11 @@ msgstr "Nom de l'image 'Excellent' :"
 #~ msgstr "Taille des pochettes téléchargées :"
 
 #~ msgid ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)}"
+#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
+#~ "dock & type=utility)}"
 #~ msgstr ""
-#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
+#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement de "
+#~ "Compiz à : (class=Cairo-dock & type=utility)"
 
 #~ msgid "Use Opengl themes (Fake 3D) ?"
 #~ msgstr "Utilisez les thèmes OpenGL (fausse 3D) ?"

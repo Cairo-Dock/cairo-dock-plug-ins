@@ -6,13 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-06 13:02+0000\n"
+"POT-Creation-Date: 2009-09-18 01:10+0000\n"
+"PO-Revision-Date: 2009-09-13 15:25+0000\n"
 "Last-Translator: Rafael Bluhm <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-08 16:36+0000\n"
+"X-Launchpad-Export-Date: 2009-09-19 11:23+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -768,7 +769,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
 "está ativa."
@@ -1214,7 +1216,7 @@ msgstr "Faixa"
 
 #: ../musicPlayer/src/applet-draw.c:274
 msgid "New song"
-msgstr ""
+msgstr "Nova música"
 
 #: ../musicPlayer/src/applet-draw.c:283
 msgid "Artist"
@@ -1234,11 +1236,11 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:291
 msgid "Track n°"
-msgstr ""
+msgstr "Faixa n°"
 
 #: ../musicPlayer/src/applet-draw.c:298
 msgid "There is no media playing."
-msgstr ""
+msgstr "Não há mídia tocando"
 
 #: ../musicPlayer/src/applet-init.c:43
 msgid "musicPlayer"
@@ -1259,6 +1261,8 @@ msgstr ""
 #: ../musicPlayer/src/applet-notifications.c:144
 msgid "Find opened player"
 msgstr ""
+"Copiar texto\r\n"
+"Procurar tocador já aberto"
 
 #: ../musicPlayer/src/applet-notifications.c:146
 #: ../musicPlayer/src/applet-notifications.c:153
@@ -1291,7 +1295,7 @@ msgstr "Alternar ação de Repetir"
 
 #: ../musicPlayer/src/applet-notifications.c:165
 msgid "Rate this song"
-msgstr ""
+msgstr "Avalie esta canção"
 
 #: ../musicPlayer/src/applet-notifications.c:167
 msgid "Information"
@@ -1438,7 +1442,7 @@ msgstr "Reiniciar"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
-msgstr ""
+msgstr "Navegador Rápido"
 
 #: ../quick-browser/src/applet-init.c:32
 msgid ""
@@ -1503,8 +1507,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin desenha animações ao redor do cursor quando ele esta sobre um "
 "dock/desklet."
@@ -1653,8 +1657,8 @@ msgstr ""
 "Existem dois modos : compacto (em um ícone) e expandido (com um sub-dock).\n"
 "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu do "
 "botão direito.\n"
-"Role para cima/baixo no ícone principal para ir à Área de trabalho esquerda/"
-"direita, clique com o botão do meio para mostrar a Área de trabalho"
+"Role para cima/baixo no ícone principal para ir à Área de trabalho "
+"esquerda/direita, clique com o botão do meio para mostrar a Área de trabalho"
 
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:236
@@ -2070,62 +2074,59 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
-msgstr ""
+msgstr "Efeitos utilizados:"
 
 #: ../Animated-icons/data/messages:7 ../Animated-icons/data/messages:25
 #: ../Animated-icons/data/messages:43 ../Animated-icons/data/messages:61
 #: ../Animated-icons/data/messages:167
-#, fuzzy
 msgid "Bounce"
-msgstr "Nenhum"
+msgstr "Pular"
 
 #: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:27
 #: ../Animated-icons/data/messages:45 ../Animated-icons/data/messages:63
-#, fuzzy
 msgid "Rotate"
-msgstr "Rotação :"
+msgstr "Rotacionar"
 
 #: ../Animated-icons/data/messages:11 ../Animated-icons/data/messages:29
 #: ../Animated-icons/data/messages:47 ../Animated-icons/data/messages:65
 #: ../Animated-icons/data/messages:181
 msgid "Blink"
-msgstr ""
+msgstr "Piscar"
 
 #: ../Animated-icons/data/messages:13 ../Animated-icons/data/messages:31
 #: ../Animated-icons/data/messages:49 ../Animated-icons/data/messages:67
 #: ../Animated-icons/data/messages:155
-#, fuzzy
 msgid "Pulse"
-msgstr "Pausar"
+msgstr "Pulsar"
 
 #: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:33
 #: ../Animated-icons/data/messages:51 ../Animated-icons/data/messages:69
 #: ../Animated-icons/data/messages:127
 msgid "Wobbly"
-msgstr ""
+msgstr "Trêmulo"
 
 #: ../Animated-icons/data/messages:17 ../Animated-icons/data/messages:35
 #: ../Animated-icons/data/messages:53 ../Animated-icons/data/messages:71
 #: ../Animated-icons/data/messages:143
 msgid "Wave"
-msgstr ""
+msgstr "Onda"
 
 #: ../Animated-icons/data/messages:19 ../Animated-icons/data/messages:93
 msgid "Spot"
-msgstr ""
+msgstr "Spot"
 
 #: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:17
 msgid "when clicking on an launcher"
-msgstr ""
+msgstr "ao clicar em um lançador"
 
 #: ../Animated-icons/data/messages:23 ../icon-effect/data/messages:19
 msgid "Effects used on launcher :"
-msgstr ""
+msgstr "Efeitos utilizado no lançador :"
 
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73
 msgid "Number of time the animation will play :"
-msgstr ""
+msgstr "Número de vezes que a animação vai durar :"
 
 #: ../Animated-icons/data/messages:39 ../icon-effect/data/messages:31
 msgid "when clicking on an appli"
@@ -2137,24 +2138,22 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:57 ../icon-effect/data/messages:45
 msgid "when clicking on an applet"
-msgstr ""
+msgstr "ao clicar em um applet"
 
 #: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:47
 msgid "Effects used on applets :"
-msgstr ""
+msgstr "Efeitos usados em applets :"
 
 #: ../Animated-icons/data/messages:75
-#, fuzzy
 msgid "Rotation"
-msgstr "Rotação :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:95
 #: ../Animated-icons/data/messages:145 ../Animated-icons/data/messages:157
 #: ../Animated-icons/data/messages:169 ../Animated-icons/data/messages:183
 #: ../Scooby-Do/data/messages:13 ../Scooby-Do/data/messages:17
-#, fuzzy
 msgid "In ms."
-msgstr "em ms."
+msgstr ""
 
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:147 ../icon-effect/data/messages:67
@@ -2176,9 +2175,8 @@ msgid "Repeat while icon is pointed ?"
 msgstr ""
 
 #: ../Animated-icons/data/messages:83
-#, fuzzy
 msgid "Type of mesh :"
-msgstr "Deslocamento superior :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:85 ../Clipper/data/messages:83
 #: ../GMenu/data/messages:31 ../Network-Monitor/data/messages:27
@@ -2199,9 +2197,8 @@ msgid "Normal"
 msgstr "Normal"
 
 #: ../Animated-icons/data/messages:87
-#, fuzzy
 msgid "Cube"
-msgstr "Curva"
+msgstr ""
 
 #: ../Animated-icons/data/messages:89
 msgid "Capsule"
@@ -2222,9 +2219,8 @@ msgstr ""
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
 #: ../switcher/data/messages:9 ../switcher/data/messages:129
 #: ../terminal/data/messages:9 ../weblets/data/messages:9
-#, fuzzy
 msgid "Let empty to use the default one."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../Animated-icons/data/messages:103
 msgid "Image for the spot :"
@@ -2243,9 +2239,8 @@ msgid "color of the halo :"
 msgstr ""
 
 #: ../Animated-icons/data/messages:113
-#, fuzzy
 msgid "Rays"
-msgstr "dia(s)"
+msgstr ""
 
 #: ../Animated-icons/data/messages:115 ../icon-effect/data/messages:71
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:113
@@ -2300,9 +2295,8 @@ msgid "Spring constant :"
 msgstr ""
 
 #: ../Animated-icons/data/messages:139
-#, fuzzy
 msgid "Friction :"
-msgstr "Rotação :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:141
 msgid "Number of points on the grid in one direction :"
@@ -2390,9 +2384,8 @@ msgid "Icon size when the penguin is not free :"
 msgstr ""
 
 #: ../Cairo-Penguin/data/messages:7
-#, fuzzy
 msgid "Name of the icon when the penguin is not free :"
-msgstr "Nome do ícone que aparecerá em seu rótulo no dock."
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:65
 #: ../GMenu/data/messages:13 ../Network-Monitor/data/messages:9
@@ -2446,9 +2439,8 @@ msgid "in seconds"
 msgstr "em segundos"
 
 #: ../Cairo-Penguin/data/messages:17
-#, fuzzy
 msgid "Delay between animation changes :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:19
 msgid "Transparency of the penguin :"
@@ -2460,14 +2452,12 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:49
 #: ../dock-rendering/data/messages:127
-#, fuzzy
 msgid "in pixels."
-msgstr "em ms."
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:25
-#, fuzzy
 msgid "Ground offset :"
-msgstr "Deslocamento superior :"
+msgstr ""
 
 #: ../Clipper/data/messages:1
 msgid "Action_0"
@@ -2652,8 +2642,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:71 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2684,7 +2674,8 @@ msgstr "Dimensão do Desklet (largura x altura) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
 "do botão esquerdo"
@@ -3242,18 +3233,16 @@ msgid "Clipboard"
 msgstr ""
 
 #: ../Clipper/data/messages:147
-#, fuzzy
 msgid "Selection"
-msgstr "Abrir localização"
+msgstr ""
 
 #: ../Clipper/data/messages:149
 msgid "Both"
 msgstr ""
 
 #: ../Clipper/data/messages:151
-#, fuzzy
 msgid "Number of items :"
-msgstr "Sem itens ainda."
+msgstr ""
 
 #: ../Clipper/data/messages:153
 msgid ""
@@ -3297,9 +3286,8 @@ msgid "Pop-up menus at mouse position ?"
 msgstr ""
 
 #: ../Clipper/data/messages:171 ../compiz-icon/data/messages:83
-#, fuzzy
 msgid "Actions"
-msgstr "Decorações"
+msgstr ""
 
 #: ../Clipper/data/messages:173
 msgid ""
@@ -3316,18 +3304,16 @@ msgid "Display the actions when selecting an item in the history."
 msgstr ""
 
 #: ../Clipper/data/messages:179
-#, fuzzy
 msgid "Replay actions ?"
-msgstr "Manter proporção ?"
+msgstr ""
 
 #: ../Clipper/data/messages:181 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:141 ../System-Monitor/data/messages:177
 #: ../dnd2share/data/messages:87 ../netspeed/data/messages:125
 #: ../powermanager/data/messages:137 ../slider/data/messages:99
 #: ../wifi/data/messages:157
-#, fuzzy
 msgid "in seconds."
-msgstr "em segundos"
+msgstr ""
 
 #: ../Clipper/data/messages:183
 msgid "Duration of the action menu :"
@@ -3406,14 +3392,12 @@ msgid "Command to use to configure the menu :"
 msgstr ""
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Recent documents"
-msgstr "Documentos Recentes"
+msgstr ""
 
 #: ../GMenu/data/messages:99
-#, fuzzy
 msgid "Show recent documents ?"
-msgstr "Documentos Recentes"
+msgstr ""
 
 #: ../GMenu/data/messages:101
 msgid "Let blank to not use this filter."
@@ -3434,18 +3418,16 @@ msgstr ""
 #: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
 #: ../wifi/data/messages:83
-#, fuzzy
 msgid "Choose the style of the display : "
-msgstr "Escolha um dos temas disponíveis :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:85 ../Network-Monitor/data/messages:91
 #: ../System-Monitor/data/messages:85 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:85 ../netspeed/data/messages:89
 #: ../powermanager/data/messages:85 ../powermanager/data/messages:91
 #: ../wifi/data/messages:85 ../wifi/data/messages:91
-#, fuzzy
 msgid "Gauge"
-msgstr "Pausar"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:87 ../Network-Monitor/data/messages:95
 #: ../System-Monitor/data/messages:87 ../System-Monitor/data/messages:93
@@ -3459,9 +3441,8 @@ msgstr ""
 #: ../powermanager/data/messages:89 ../powermanager/data/messages:119
 #: ../shortcuts/data/messages:87 ../wifi/data/messages:89
 #: ../wifi/data/messages:119
-#, fuzzy
 msgid "Icons"
-msgstr "Ícone"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:97 ../System-Monitor/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
@@ -3478,23 +3459,20 @@ msgstr ""
 #: ../Network-Monitor/data/messages:101 ../System-Monitor/data/messages:99
 #: ../netspeed/data/messages:99 ../powermanager/data/messages:101
 #: ../wifi/data/messages:101
-#, fuzzy
 msgid "Plain"
-msgstr "Iniciar"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:103 ../System-Monitor/data/messages:101
 #: ../netspeed/data/messages:101 ../powermanager/data/messages:103
 #: ../wifi/data/messages:103
-#, fuzzy
 msgid "Bar"
-msgstr "Mar"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:105 ../System-Monitor/data/messages:103
 #: ../netspeed/data/messages:103 ../powermanager/data/messages:105
 #: ../wifi/data/messages:105
-#, fuzzy
 msgid "Circle"
-msgstr "Arquivo"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:105
 #: ../netspeed/data/messages:105 ../powermanager/data/messages:107
@@ -3539,9 +3517,8 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
 #: ../wifi/data/messages:127
-#, fuzzy
 msgid "Transparency"
-msgstr "Transparência do fundo :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
 #: ../wifi/data/messages:129
@@ -3558,9 +3535,8 @@ msgstr ""
 #: ../wifi/data/messages:135 ../wifi/data/messages:139
 #: ../wifi/data/messages:143 ../wifi/data/messages:147
 #: ../wifi/data/messages:151
-#, fuzzy
 msgid "Let it empty to use the default icon."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:133
 msgid "Name of an image for the 'No signal' icon :"
@@ -3602,9 +3578,8 @@ msgid "Parameters"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:167 ../wifi/data/messages:159
-#, fuzzy
 msgid "Delay between signal checks :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:169 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3647,9 +3622,8 @@ msgid "Signal Strength in percent"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
-#, fuzzy
 msgid "Raw Signal Informations"
-msgstr "Informação"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
@@ -3672,9 +3646,8 @@ msgid "Number of lines to display :"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:11
-#, fuzzy
 msgid "Animations"
-msgstr "Ícones animados"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:15
 msgid "Duration of the appearance animation :"
@@ -3723,9 +3696,8 @@ msgid "Should the text be outlined ?"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:39
-#, fuzzy
 msgid "Text color :"
-msgstr "Selecionar cor"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:41
 msgid "Color of the background of the characters :"
@@ -3778,15 +3750,13 @@ msgstr ""
 #: ../System-Monitor/data/messages:135 ../alsaMixer/data/messages:111
 #: ../clock/data/messages:89 ../netspeed/data/messages:135
 #: ../shortcuts/data/messages:113
-#, fuzzy
 msgid "No"
-msgstr "Nov"
+msgstr ""
 
 #: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:115
 #: ../clock/data/messages:91 ../netspeed/data/messages:137
-#, fuzzy
 msgid "On icon"
-msgstr "Abrir localização"
+msgstr ""
 
 #: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:113
 #: ../clock/data/messages:93 ../netspeed/data/messages:139
@@ -3794,9 +3764,8 @@ msgid "On label"
 msgstr ""
 
 #: ../System-Monitor/data/messages:143
-#, fuzzy
 msgid "Delay between refresh :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../System-Monitor/data/messages:151 ../netspeed/data/messages:143
 msgid "User command to show a system monitor :"
@@ -3817,9 +3786,8 @@ msgid "Class of the system monitor program:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:161
-#, fuzzy
 msgid "Top List"
-msgstr "Deslocamento superior :"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
 msgid ""
@@ -3856,9 +3824,8 @@ msgid "Delay between refresh of the top list :"
 msgstr ""
 
 #: ../System-Monitor/data/messages:181
-#, fuzzy
 msgid "Graphic Card temperature"
-msgstr "Temperatura do núcleo"
+msgstr ""
 
 #: ../System-Monitor/data/messages:183
 msgid ""
@@ -3881,9 +3848,8 @@ msgid "Upper limit of core temperature :"
 msgstr ""
 
 #: ../System-Monitor/data/messages:191
-#, fuzzy
 msgid "Alert when core temperature is high ?"
-msgstr "Alerta ! Temperatura da placa gráfica alcançou %d°C"
+msgstr ""
 
 #: ../System-Monitor/data/messages:193
 msgid "in celcius."
@@ -3940,23 +3906,18 @@ msgstr ""
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
 #: ../tomboy/data/messages:31
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
-"do botão esquerdo"
 
 #: ../alsaMixer/data/messages:83
-#, fuzzy
 msgid "Alsa"
-msgstr "AlsaMixer"
+msgstr ""
 
 #: ../alsaMixer/data/messages:85
-#, fuzzy
 msgid "Let empty to use the default sound card."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../alsaMixer/data/messages:87
 msgid "Sound card to control :"
@@ -3978,9 +3939,8 @@ msgid "Optionnally, choose a second channel to control :"
 msgstr ""
 
 #: ../alsaMixer/data/messages:95
-#, fuzzy
 msgid "Let empty to use the defaut command."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../alsaMixer/data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
@@ -4005,9 +3965,8 @@ msgid "Display"
 msgstr ""
 
 #: ../alsaMixer/data/messages:109
-#, fuzzy
 msgid "Display volume :"
-msgstr "Definir volume :"
+msgstr ""
 
 #: ../alsaMixer/data/messages:117
 msgid "Effet to apply on the icon according to volume :"
@@ -4031,9 +3990,8 @@ msgstr ""
 
 #: ../clock/data/messages:83 ../dustbin/data/messages:81
 #: ../shortcuts/data/messages:85
-#, fuzzy
 msgid "Module"
-msgstr "Intermediário"
+msgstr ""
 
 #: ../clock/data/messages:85 ../dnd2share/data/messages:91
 #: ../showDesktop/data/messages:87 ../slider/data/messages:97
@@ -4057,9 +4015,8 @@ msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr ""
 
 #: ../clock/data/messages:101
-#, fuzzy
 msgid "Show seconds ?"
-msgstr "em segundos"
+msgstr ""
 
 #: ../clock/data/messages:103
 msgid ""
@@ -4081,9 +4038,8 @@ msgid "Timezone :"
 msgstr ""
 
 #: ../clock/data/messages:111
-#, fuzzy
 msgid "Style"
-msgstr "Apresentador"
+msgstr ""
 
 #: ../clock/data/messages:113
 msgid ""
@@ -4092,9 +4048,8 @@ msgid ""
 msgstr ""
 
 #: ../clock/data/messages:115
-#, fuzzy
 msgid "Choose the view :"
-msgstr "Escolha um dos temas disponíveis :"
+msgstr ""
 
 #: ../clock/data/messages:117
 msgid "Analogic"
@@ -4133,23 +4088,20 @@ msgid "Text color of the date :"
 msgstr ""
 
 #: ../clock/data/messages:135
-#, fuzzy
 msgid "Setup time and date"
-msgstr "Define hora e data"
+msgstr ""
 
 #: ../clock/data/messages:137
 msgid "Let empty to use default command."
 msgstr ""
 
 #: ../clock/data/messages:139
-#, fuzzy
 msgid "Specific command to run :"
-msgstr "Entre o comando a ser executado :"
+msgstr ""
 
 #: ../clock/data/messages:141
-#, fuzzy
 msgid "Alarm"
-msgstr "Álbum"
+msgstr ""
 
 #: ../clock/data/messages:143
 msgid ""
@@ -4175,14 +4127,12 @@ msgid "Switch WM"
 msgstr ""
 
 #: ../compiz-icon/data/messages:95
-#, fuzzy
 msgid "Expose"
-msgstr "Exposição"
+msgstr ""
 
 #: ../compiz-icon/data/messages:97
-#, fuzzy
 msgid "Show Desktop"
-msgstr "Mostrar Área de trabalho"
+msgstr ""
 
 #: ../compiz-icon/data/messages:99
 msgid ""
@@ -4289,24 +4239,20 @@ msgid "By default it will be Emerald."
 msgstr ""
 
 #: ../compiz-icon/data/messages:143
-#, fuzzy
 msgid "Choose your Windows Decorator :"
-msgstr "Trocar Decorador de Janelas"
+msgstr ""
 
 #: ../compiz-icon/data/messages:145
-#, fuzzy
 msgid "emerald"
-msgstr "Recarregar Emerald"
+msgstr ""
 
 #: ../compiz-icon/data/messages:147
-#, fuzzy
 msgid "gtk-window-decorator"
-msgstr "Trocar Decorador de Janelas"
+msgstr ""
 
 #: ../compiz-icon/data/messages:149
-#, fuzzy
 msgid "kde-window-decorator"
-msgstr "Trocar Decorador de Janelas"
+msgstr ""
 
 #: ../compiz-icon/data/messages:151
 msgid "heliodor"
@@ -4327,9 +4273,8 @@ msgid "Name of the view used for the sub-dock :"
 msgstr ""
 
 #: ../compiz-icon/data/messages:157
-#, fuzzy
 msgid "Images"
-msgstr "(F3) Imagem"
+msgstr ""
 
 #: ../compiz-icon/data/messages:159 ../compiz-icon/data/messages:163
 #: ../compiz-icon/data/messages:167 ../compiz-icon/data/messages:171
@@ -4337,9 +4282,8 @@ msgstr "(F3) Imagem"
 #: ../compiz-icon/data/messages:183 ../compiz-icon/data/messages:187
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
 #: ../tomboy/data/messages:21
-#, fuzzy
 msgid "Let t empty to use the default icon."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../compiz-icon/data/messages:161 ../musicPlayer/data/messages:159
 #: ../tomboy/data/messages:15
@@ -4424,9 +4368,8 @@ msgid "Color of the margin :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:39
-#, fuzzy
 msgid "Curly"
-msgstr "Curva"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -4477,9 +4420,8 @@ msgid "Animation of the icon during upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:107
-#, fuzzy
 msgid "Sites"
-msgstr "Apresentador"
+msgstr ""
 
 #: ../dnd2share/data/messages:109
 msgid "Preferred site for texts hosting :"
@@ -4487,14 +4429,12 @@ msgstr ""
 
 #: ../dnd2share/data/messages:111 ../dnd2share/data/messages:117
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:133
-#, fuzzy
 msgid "Custom"
-msgstr "Recortar"
+msgstr ""
 
 #: ../dnd2share/data/messages:113
-#, fuzzy
 msgid "Pastebin.ca"
-msgstr "Colar"
+msgstr ""
 
 #: ../dnd2share/data/messages:115
 msgid "Preferred site for images hosting :"
@@ -4632,9 +4572,8 @@ msgid "The higher it is, the sooner the parabole will be curved."
 msgstr ""
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Curvature :"
-msgstr "Curva"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
 msgid "The parabole will be conscricted to a rectangle of this proportion."
@@ -4666,14 +4605,12 @@ msgid "Draw labels while unfolding ?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:59 ../dock-rendering/data/messages:85
-#, fuzzy
 msgid "Space between rows :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../dock-rendering/data/messages:61
-#, fuzzy
 msgid "Space between icons :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../dock-rendering/data/messages:63
 msgid ""
@@ -4708,19 +4645,16 @@ msgid "Line color :"
 msgstr ""
 
 #: ../dock-rendering/data/messages:79
-#, fuzzy
 msgid "SimpleSlide"
-msgstr "Apresentador"
+msgstr ""
 
 #: ../dock-rendering/data/messages:81
-#, fuzzy
 msgid "Grid"
-msgstr "Sexta-feira"
+msgstr ""
 
 #: ../dock-rendering/data/messages:83
-#, fuzzy
 msgid "Space between columns :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../dock-rendering/data/messages:87
 msgid "Max size of icons :"
@@ -4743,9 +4677,8 @@ msgid "Display text for all icons ?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:97
-#, fuzzy
 msgid "Frame"
-msgstr "Livre"
+msgstr ""
 
 #: ../dock-rendering/data/messages:99
 msgid "Draw a background ?"
@@ -4820,9 +4753,8 @@ msgid "Image when hovering an icon :"
 msgstr ""
 
 #: ../drop-indicator/data/messages:11
-#, fuzzy
 msgid "Speed :"
-msgstr "Velocidade"
+msgstr ""
 
 #: ../drop-indicator/data/messages:13
 msgid "Number of round per second."
@@ -4830,9 +4762,8 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:15 ../illusion/data/messages:75
 #: ../show-mouse/data/messages:7
-#, fuzzy
 msgid "Rotation speed :"
-msgstr "Rotação :"
+msgstr ""
 
 #: ../dustbin/data/messages:83
 msgid "Theme"
@@ -4847,9 +4778,8 @@ msgid "Name of an image to overwrite the theme's full image :"
 msgstr ""
 
 #: ../dustbin/data/messages:91
-#, fuzzy
 msgid "Config"
-msgstr "Configuração"
+msgstr ""
 
 #: ../dustbin/data/messages:93
 msgid "Display the following quick info :"
@@ -4889,7 +4819,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -4912,9 +4843,8 @@ msgstr ""
 #: ../icon-effect/data/messages:7 ../icon-effect/data/messages:21
 #: ../icon-effect/data/messages:35 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:63
-#, fuzzy
 msgid "Fire"
-msgstr "Livre"
+msgstr ""
 
 #: ../icon-effect/data/messages:9 ../icon-effect/data/messages:23
 #: ../icon-effect/data/messages:37 ../icon-effect/data/messages:51
@@ -4925,9 +4855,8 @@ msgstr ""
 #: ../icon-effect/data/messages:11 ../icon-effect/data/messages:25
 #: ../icon-effect/data/messages:39 ../icon-effect/data/messages:53
 #: ../icon-effect/data/messages:123
-#, fuzzy
 msgid "Rain"
-msgstr "Arco-íris"
+msgstr ""
 
 #: ../icon-effect/data/messages:13 ../icon-effect/data/messages:27
 #: ../icon-effect/data/messages:41 ../icon-effect/data/messages:55
@@ -4938,9 +4867,8 @@ msgstr ""
 #: ../icon-effect/data/messages:15 ../icon-effect/data/messages:29
 #: ../icon-effect/data/messages:43 ../icon-effect/data/messages:57
 #: ../icon-effect/data/messages:141
-#, fuzzy
 msgid "Storm"
-msgstr "Parar"
+msgstr ""
 
 #: ../icon-effect/data/messages:59
 msgid "Draw in background ?"
@@ -4998,24 +4926,21 @@ msgstr ""
 
 #: ../illusion/data/messages:9 ../illusion/data/messages:23
 #: ../illusion/data/messages:53
-#, fuzzy
 msgid "Explode"
-msgstr "enviado"
+msgstr ""
 
 #: ../illusion/data/messages:11 ../illusion/data/messages:25
 #: ../illusion/data/messages:63
-#, fuzzy
 msgid "Break"
-msgstr "Faixa"
+msgstr ""
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 msgid "BlackHole"
 msgstr ""
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
-#, fuzzy
 msgid "Random"
-msgstr "Arco-íris"
+msgstr ""
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance :"
@@ -5042,9 +4967,8 @@ msgid "Black Hole"
 msgstr ""
 
 #: ../illusion/data/messages:73
-#, fuzzy
 msgid "in round per second."
-msgstr "em segundos"
+msgstr ""
 
 #: ../illusion/data/messages:77
 msgid "The greatest, the fastest the icon will collapse to the center."
@@ -5077,9 +5001,8 @@ msgid "Font :"
 msgstr ""
 
 #: ../keyboard-indicator/data/messages:95
-#, fuzzy
 msgid "Text color"
-msgstr "Selecionar cor"
+msgstr ""
 
 #: ../keyboard-indicator/data/messages:97
 msgid "Outline text ?"
@@ -5183,9 +5106,8 @@ msgid ""
 msgstr ""
 
 #: ../mail/data/messages:119
-#, fuzzy
 msgid "Add an mail account"
-msgstr "Atualizar uma conta de e-mail"
+msgstr ""
 
 #: ../mail/data/messages:121
 msgid "The new account will be created with specified type and name."
@@ -5204,18 +5126,16 @@ msgid "Blur amount :"
 msgstr ""
 
 #: ../musicPlayer/data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:85
-#, fuzzy
 msgid "Audio Player"
-msgstr "Tocador de música"
+msgstr ""
 
 #: ../musicPlayer/data/messages:87
 msgid "Player to control:"
@@ -5234,9 +5154,8 @@ msgid "Banshee"
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
-#, fuzzy
 msgid "Exaile"
-msgstr "Arquivo"
+msgstr ""
 
 #: ../musicPlayer/data/messages:97
 msgid "Listen"
@@ -5277,9 +5196,8 @@ msgid "Actions on click and middle-click :"
 msgstr ""
 
 #: ../musicPlayer/data/messages:115
-#, fuzzy
 msgid "Play/Pause on click, Next on middle-click"
-msgstr "Tocar/Pausar (botão esquerdo)"
+msgstr ""
 
 #: ../musicPlayer/data/messages:117
 msgid "Show/Hide player on click, Play/Pause on middle-click"
@@ -5294,9 +5212,8 @@ msgid "Show an info-bubble ?"
 msgstr ""
 
 #: ../musicPlayer/data/messages:123
-#, fuzzy
 msgid "in s."
-msgstr "em ms."
+msgstr ""
 
 #: ../musicPlayer/data/messages:125
 msgid "Time length of info-bubbles :"
@@ -5343,9 +5260,8 @@ msgid "Use 3D themes ?"
 msgstr ""
 
 #: ../musicPlayer/data/messages:153
-#, fuzzy
 msgid "List of available 3D themes for covers :"
-msgstr "Escolha um dos temas disponíveis :"
+msgstr ""
 
 #: ../musicPlayer/data/messages:155 ../tomboy/data/messages:11
 msgid "Personnalisation"
@@ -5376,14 +5292,12 @@ msgid "By default it will be 'eth0'."
 msgstr ""
 
 #: ../netspeed/data/messages:123
-#, fuzzy
 msgid "interface :"
-msgstr "Interface"
+msgstr ""
 
 #: ../netspeed/data/messages:127
-#, fuzzy
 msgid "Delay between 2 measures :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../netspeed/data/messages:129
 msgid ""
@@ -5400,14 +5314,12 @@ msgid "Display rate values :"
 msgstr ""
 
 #: ../netspeed/data/messages:141
-#, fuzzy
 msgid "Let empty to use he default one."
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Icon name :"
-msgstr "Nome da nota : "
+msgstr ""
 
 #: ../powermanager/data/messages:121
 msgid "Icon's filename when on battery :"
@@ -5430,9 +5342,8 @@ msgid "zoom"
 msgstr ""
 
 #: ../powermanager/data/messages:131
-#, fuzzy
 msgid "transparency"
-msgstr "Transparência do fundo :"
+msgstr ""
 
 #: ../powermanager/data/messages:133
 msgid "draw bar"
@@ -5451,20 +5362,16 @@ msgid "charge"
 msgstr ""
 
 #: ../powermanager/data/messages:147
-#, fuzzy
 msgid "time"
-msgstr "Tempo em funcionamento"
+msgstr ""
 
 #: ../powermanager/data/messages:149
 msgid "Alert"
 msgstr ""
 
 #: ../powermanager/data/messages:151
-#, fuzzy
 msgid "Alert when battery charged ?"
 msgstr ""
-"Notebook carregado.\n"
-"Bateria carregada em:"
 
 #: ../powermanager/data/messages:153 ../powermanager/data/messages:163
 #: ../powermanager/data/messages:171
@@ -5481,9 +5388,8 @@ msgid "Alert when low battery ?"
 msgstr ""
 
 #: ../powermanager/data/messages:159
-#, fuzzy
 msgid "in percent."
-msgstr "em graus."
+msgstr ""
 
 #: ../powermanager/data/messages:161
 msgid "Battery level :"
@@ -5522,9 +5428,8 @@ msgid "Icon size :"
 msgstr ""
 
 #: ../quick-browser/data/messages:97
-#, fuzzy
 msgid "small"
-msgstr "e-mail"
+msgstr ""
 
 #: ../quick-browser/data/messages:99
 msgid "medium"
@@ -5569,9 +5474,8 @@ msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr ""
 
 #: ../shortcuts/data/messages:95
-#, fuzzy
 msgid "List bookmarks ?"
-msgstr "Remover este favorito"
+msgstr ""
 
 #: ../shortcuts/data/messages:97
 msgid "Separate different shortcuts with separators ?"
@@ -5582,9 +5486,8 @@ msgid "Type of view for the desklet mode :"
 msgstr ""
 
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
-#, fuzzy
 msgid "Tree"
-msgstr "Livre"
+msgstr ""
 
 #: ../shortcuts/data/messages:109
 msgid "Disk usage"
@@ -5595,14 +5498,12 @@ msgid "Show disk usage :"
 msgstr ""
 
 #: ../shortcuts/data/messages:115
-#, fuzzy
 msgid "Free space"
-msgstr "Reservar espaço"
+msgstr ""
 
 #: ../shortcuts/data/messages:117
-#, fuzzy
 msgid "Used space"
-msgstr "Reservar espaço"
+msgstr ""
 
 #: ../shortcuts/data/messages:119
 msgid "Free space percent"
@@ -5613,14 +5514,12 @@ msgid "Used space percent"
 msgstr ""
 
 #: ../shortcuts/data/messages:123
-#, fuzzy
 msgid "In seconds."
-msgstr "em segundos"
+msgstr ""
 
 #: ../shortcuts/data/messages:125
-#, fuzzy
 msgid "Delay between disk usage refresh :"
-msgstr "Atraso médio na ação de piscar :"
+msgstr ""
 
 #: ../shortcuts/data/messages:127
 msgid "Display disk usage with a bar ?"
@@ -5635,24 +5534,20 @@ msgid "In round per second."
 msgstr ""
 
 #: ../show-mouse/data/messages:9
-#, fuzzy
 msgid "Show mouse on :"
-msgstr "mostrar mouse"
+msgstr ""
 
 #: ../show-mouse/data/messages:11
-#, fuzzy
 msgid "dock"
-msgstr "Relógio"
+msgstr ""
 
 #: ../show-mouse/data/messages:13
-#, fuzzy
 msgid "desklet"
-msgstr "Desklet"
+msgstr ""
 
 #: ../show-mouse/data/messages:15
-#, fuzzy
 msgid "both"
-msgstr "Reiniciar"
+msgstr ""
 
 #: ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
@@ -5737,18 +5632,16 @@ msgid "play/pause"
 msgstr ""
 
 #: ../slider/data/messages:107
-#, fuzzy
 msgid "open image"
-msgstr "Abrir a imagem atual"
+msgstr ""
 
 #: ../slider/data/messages:109
 msgid "Effect while changing image :"
 msgstr ""
 
 #: ../slider/data/messages:111
-#, fuzzy
 msgid "none"
-msgstr "Nenhum"
+msgstr ""
 
 #: ../slider/data/messages:113
 msgid "fade"
@@ -5795,9 +5688,8 @@ msgid "Gives a better image rendering."
 msgstr ""
 
 #: ../slider/data/messages:137
-#, fuzzy
 msgid "Keep widht/height ratio ?"
-msgstr "Manter proporção ?"
+msgstr ""
 
 #: ../slider/data/messages:139
 msgid "If the image is too small, it will be zoomed in."
@@ -5818,9 +5710,8 @@ msgid "Choose a background color :"
 msgstr ""
 
 #: ../stack/data/messages:7
-#, fuzzy
 msgid "Let empty to use a default name"
-msgstr "Defina 0 para usar o tamanho padrão do applet"
+msgstr ""
 
 #: ../stack/data/messages:101
 msgid "They are items created by dropping a text into the Stack."
@@ -5839,9 +5730,8 @@ msgid "Image for the 'URL' items :"
 msgstr ""
 
 #: ../stack/data/messages:109
-#, fuzzy
 msgid "Options"
-msgstr "Abrir localização"
+msgstr ""
 
 #: ../stack/data/messages:111
 msgid ""
@@ -5862,18 +5752,16 @@ msgid "Here you can specify a list of mime types to avoid :"
 msgstr ""
 
 #: ../stack/data/messages:119
-#, fuzzy
 msgid "Sort items by :"
-msgstr "Sem itens ainda."
+msgstr ""
 
 #: ../stack/data/messages:121
 msgid "Name"
 msgstr ""
 
 #: ../stack/data/messages:123
-#, fuzzy
 msgid "Date"
-msgstr "Colar"
+msgstr ""
 
 #: ../stack/data/messages:125
 msgid "Type"
@@ -5885,8 +5773,8 @@ msgstr ""
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:131
@@ -5981,9 +5869,8 @@ msgid "In expanded mode, render the desklet in 3D ?"
 msgstr ""
 
 #: ../systray/data/messages:7 ../terminal/data/messages:7
-#, fuzzy
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
-msgstr "Nome do ícone que aparecerá em seu rótulo no dock."
+msgstr ""
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
@@ -6002,9 +5889,8 @@ msgid "horizontal"
 msgstr ""
 
 #: ../systray/data/messages:47
-#, fuzzy
 msgid "vertical"
-msgstr "Terminal"
+msgstr ""
 
 #: ../systray/data/messages:49
 msgid "Icons size :"
@@ -6015,9 +5901,8 @@ msgid "needs to restart the applet."
 msgstr ""
 
 #: ../terminal/data/messages:89
-#, fuzzy
 msgid "Terminal's transparency :"
-msgstr "Transparência da frente :"
+msgstr ""
 
 #: ../terminal/data/messages:91
 msgid "Foreground color (r, v, b):"
@@ -6042,9 +5927,8 @@ msgid "Shortkey to show the terminal :"
 msgstr ""
 
 #: ../tomboy/data/messages:7
-#, fuzzy
 msgid "Default title :"
-msgstr "Deletar esta nota ?"
+msgstr ""
 
 #: ../tomboy/data/messages:19
 msgid "Name of an image for the 'close' icon :"
@@ -6118,16 +6002,12 @@ msgid "Let it empty to use the name of the city."
 msgstr ""
 
 #: ../weather/data/messages:87
-#, fuzzy
 msgid "Enter the name of your location in the text entry and press Enter."
 msgstr ""
-"Entre com o nome do seu local e pressione Enter para escolhe um dentre os "
-"resultados."
 
 #: ../weather/data/messages:89
-#, fuzzy
 msgid "Code of your location :"
-msgstr "Procurar por seu local :"
+msgstr ""
 
 #: ../weather/data/messages:91
 msgid "Use International System Units ?"
@@ -6142,9 +6022,8 @@ msgid "Duration of dialogs :"
 msgstr ""
 
 #: ../weather/data/messages:97
-#, fuzzy
 msgid "in minutes."
-msgstr "em ms."
+msgstr ""
 
 #: ../weather/data/messages:103
 msgid "Display current conditions on the icon instead of the default one ?"
@@ -6246,15 +6125,15 @@ msgstr ""
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Controle o Rhythmbox diretamente do dock !\n"
 #~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
-#~ "Clique com o botão do meio e role para baixo para ir à próxima música, "
-#~ "role para cima para a música anterior.\n"
+#~ "Clique com o botão do meio e role para baixo para ir à próxima música, role "
+#~ "para cima para a música anterior.\n"
 #~ "Você pode arrastar e soltar capas (arquivos .jpg) no ícone para usá-las,\n"
 #~ " e músicas para colocá-las na lista."
 
@@ -6263,8 +6142,8 @@ msgstr ""
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6280,15 +6159,14 @@ msgstr ""
 #~ "Role para cima/baixo para tocar a música anterior/posterior."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type a command to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use the arrows to navigate between the results.\n"
@@ -6296,15 +6174,15 @@ msgstr ""
 #~ msgstr ""
 #~ "Um plugin similar ao Gnome-Do que permite controlar seu dock através do "
 #~ "teclado.\n"
-#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho "
-#~ "do teclado:\n"
+#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho do "
+#~ "teclado:\n"
 #~ "- modo de navegação : use as setas para navegar entre docks e sub-docks,\n"
 #~ " ou digite o nome do lançador e pressione Tab para pular automaticamente "
 #~ "para o próximo lançador apropriado.\n"
-#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, Alt"
-#~ "+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
-#~ "- modo buscador : digite um comando para chamar qualquer comando, "
-#~ "arquivo, ou cálculo.\n"
+#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, "
+#~ "Alt+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
+#~ "- modo buscador : digite um comando para chamar qualquer comando, arquivo, "
+#~ "ou cálculo.\n"
 #~ "Use as setas para navegar entre os resultados.\n"
 #~ "Esc, Retornar ou o mesmo atalho para finalizar."
 
@@ -6318,8 +6196,7 @@ msgstr ""
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
