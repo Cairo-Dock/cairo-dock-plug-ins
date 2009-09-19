@@ -98,6 +98,8 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_stop_task (myData.pTask);
 			free_all_notes ();  // detruit aussi la liste des icones.
 			
+			dbus_connect_to_bus (); // Si on change de note-taking
+			
 			//\___________ On arrete le timer.
 			if (myData.iSidCheckNotes != 0)
 			{
