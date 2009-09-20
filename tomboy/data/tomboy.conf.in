@@ -96,10 +96,6 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Parameters;gtk-preferences]
-frame_param =
-
-
 #F[View;gtk-orientation-portrait]
 frame_view=
 
