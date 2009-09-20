@@ -137,7 +137,6 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 			case CD_ICON_EFFECT_RAIN  : iRoundDuration = myConfig.iRainDuration; break;
 			case CD_ICON_EFFECT_SNOW  : iRoundDuration = myConfig.iSnowDuration; break;
 			case CD_ICON_EFFECT_SAND  : iRoundDuration = myConfig.iStormDuration; break;
-			
 		}
 	}
 	else
@@ -381,8 +380,10 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 			area.x -= 20;  // rayon max des particules, environ.
 		}
 	}
-	cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
-	
+	if (pIcon->fOrientation == 0)
+		cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
+	else
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	if (! *bContinueAnimation)
 		cd_icon_effect_free_data (pUserData, pIcon);
 	

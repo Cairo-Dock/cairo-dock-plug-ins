@@ -144,13 +144,13 @@ simple_color_border_line = 1;1;1;0.5;
 sep_arrow= 
 
 #i+[10;100] Arrow width :
-simple_arrowWidth = 40
+simple_arrowWidth = 50
 
 #i+[0;100] Arrow Height :
-simple_arrowHeight = 40
+simple_arrowHeight = 25
 
 #e+[-100;100] Arrow shift percent :
-simple_arrowShift = 30
+simple_arrowShift = 0
 
 
 [Curve]

@@ -139,10 +139,10 @@ color1 = .5;.9;1.
 color2 = .9;.9;.9
 
 #I[10;300] Number of particles :
-nb part = 100
+nb part = 70
 
 #I[2;30] Particle size :
-part size = 20
+part size = 18
 
 #e[2;20] Particle speed :
 part speed = 8

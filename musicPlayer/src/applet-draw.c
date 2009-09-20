@@ -35,7 +35,7 @@ static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg
 gboolean cd_musicplayer_draw_icon (gpointer data)
 {
 	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
-	g_print ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
+	//g_print ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	
 	gboolean bNeedRedraw = FALSE;
 	if (myData.iCurrentTime != myData.iPreviousCurrentTime)

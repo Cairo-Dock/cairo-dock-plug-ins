@@ -91,7 +91,7 @@ color2 = .1;1;.1
 mystical = false
 
 #I+[0;500] Number of rays :
-nb part = 300
+nb part = 100
 
 #I+[10;60] Rays size :
 part size = 20

@@ -101,12 +101,14 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
+		g_print ("extended\n");
 		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
 	}
 	else
 	{
 		pDock->iMinDockWidth = pDock->fFlatDockWidth + 2 * dw_min;
 	}
+	g_print ("pDock->iMinDockWidth : %d\n", pDock->iMinDockWidth);
 	
 	// input shape
 	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;

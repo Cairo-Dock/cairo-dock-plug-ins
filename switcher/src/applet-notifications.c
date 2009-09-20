@@ -29,7 +29,7 @@
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (myDock)
+	//if (myDock)
 	{
 		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
