@@ -29,10 +29,10 @@
 #include "applet-notifications.h"
 
 
-static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDIconEffects *pAnimations, gboolean *bStartAnimation)
+static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDIconEffects *pAnimations)
 {
 	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
-		return ;
+		return FALSE;
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 	{
@@ -41,6 +41,7 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 	}
 	double dt = mySystem.iGLAnimationDeltaT;
 	
+	gboolean r = FALSE;
 	int i;
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
@@ -49,31 +50,31 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 			case CD_ICON_EFFECT_FIRE :
 				if (pData->pFireSystem == NULL)
 					pData->pFireSystem = cd_icon_effect_init_fire (pIcon, pDock, dt);
-				*bStartAnimation = TRUE;
+				r = TRUE;
 			break;
 			
 			case CD_ICON_EFFECT_STARS :
 				if (pData->pStarSystem == NULL)
 					pData->pStarSystem = cd_icon_effect_init_stars (pIcon, pDock, dt);
-				*bStartAnimation = TRUE;
+				r = TRUE;
 			break;
 			
 			case CD_ICON_EFFECT_RAIN :
 				if (pData->pRainSystem == NULL)
 					pData->pRainSystem = cd_icon_effect_init_rain (pIcon, pDock, dt);
-				*bStartAnimation = TRUE;
+				r = TRUE;
 			break;
 			
 			case CD_ICON_EFFECT_SNOW :
 				if (pData->pSnowSystem == NULL)
 					pData->pSnowSystem = cd_icon_effect_init_snow (pIcon, pDock, dt);
-				*bStartAnimation = TRUE;
+				r = TRUE;
 			break;
 			
 			case CD_ICON_EFFECT_SAND :
 				if (pData->pStormSystem == NULL)
 					pData->pStormSystem = cd_icon_effect_init_storm (pIcon, pDock, dt);
-				*bStartAnimation = TRUE;
+				r = TRUE;
 			break;
 			
 			default :
@@ -81,15 +82,17 @@ static void _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *p
 			break;
 		}
 	}
+	return r;
 }
 
 gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	_cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsUsed, bStartAnimation);
-	if (bStartAnimation)
+	gboolean bStart = _cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsUsed);
+	if (bStart)
 	{
+		*bStartAnimation = TRUE;
 		CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 		pData->iRequestTime = 0;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
@@ -106,8 +109,7 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
 		iType = CAIRO_DOCK_LAUNCHER;
 	
-	gboolean bStartAnimation = FALSE;
-	_cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);
+	gboolean bStartAnimation = _cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType]);
 	if (bStartAnimation)
 	{
 		CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
@@ -171,12 +173,10 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
-	gboolean bStartAnimation = FALSE;
-	_cd_icon_effect_start (pUserData, pIcon, pDock, anim, &bStartAnimation);
+	gboolean bStartAnimation = _cd_icon_effect_start (pUserData, pIcon, pDock, anim);
 	if (bStartAnimation)
 	{
 		CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-		//pData->iNumRound = iNbRounds - 1;
 		pData->iRequestTime = iNbRounds * iRoundDuration;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	}
@@ -348,7 +348,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		}
 	}
 	
-	double fMaxScale = cairo_dock_get_max_scale (pDock);
+	double fMaxScale = (pDock->bAtBottom ? 1. : 1. + g_fAmplitude * pDock->fMagnitudeMax);
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{
