@@ -588,3 +588,20 @@ void cd_clipper_show_menu (GtkWidget *pMenu, gint iButton)
 		iButton,
 		gtk_get_current_event_time ());
 }
+
+gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType)
+{
+	GString *sText = g_string_new ("");
+	CDClipperItem *pItem;
+	GList *it;
+	for (it = myData.pItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		if ((pItem->iType & iType) == 0)
+			continue;
+		g_string_append (sText, pItem->cText);
+	}
+	gchar *cText = sText->str;
+	g_string_free (sText, FALSE);
+	return cText;
+}

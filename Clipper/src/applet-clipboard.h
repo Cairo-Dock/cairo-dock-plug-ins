@@ -48,4 +48,7 @@ GtkWidget *cd_clipper_build_persistent_items_menu (void);
 
 void cd_clipper_show_menu (GtkWidget *pMenu, gint iButton);
 
+
+gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType);
+
 #endif

@@ -56,15 +56,36 @@ static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer *data)
 	}
 	
 	g_list_foreach (myData.pItems, (GFunc) g_free, NULL);
-        g_list_free (myData.pItems);
-        myData.pItems = NULL;
-        int i;
-        for (i=0; i<4; i++)
-	        myData.iNbItems[i] = 0;
+	g_list_free (myData.pItems);
+	myData.pItems = NULL;
+	int i;
+	for (i=0; i<4; i++)
+		myData.iNbItems[i] = 0;
+}
+
+static void _cd_clipper_paste_all (GtkMenuItem *menu_item, gpointer *data)
+{
+	gchar *cText = cd_clipper_concat_items_of_type ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_PRIMARY);  // on prend que les CTRL+c si possible.
+	GtkClipboard *pClipBoard;
+	if (myConfig.bPasteInPrimary)
+	{
+		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
+		gtk_clipboard_set_text (pClipBoard, cText, -1);
+	}
+	if (myConfig.bPasteInClipboard)
+	{
+		pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+		gtk_clipboard_set_text (pClipBoard, cText, -1);
+	}
+	g_free (cText);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", "gtk-clear", _cd_clipper_clear_history, pSubMenu);
+		if (g_bEasterEggs)
+		{
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Paste all copied items", "gtk-paste", _cd_clipper_paste_all, pSubMenu);
+		}
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
