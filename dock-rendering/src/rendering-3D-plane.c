@@ -148,7 +148,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	bDirectionUp = TRUE;
 	bIsHorizontal = TRUE;
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -235,7 +235,7 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 	bDirectionUp = TRUE;
 	bIsHorizontal = TRUE;
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -482,7 +482,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -950,11 +950,9 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
-	double fHeight, fBigWidth, fLittleWidth;
-	
-	fHeight = pDock->iDecorationsHeight;
-	fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
-	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
+	double fHeight = pDock->iDecorationsHeight;
+	double fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
+	double fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	
 	double fDeltaXLeft = fHeight * fLeftInclination;
 	double fDeltaXRight = fHeight * fRightInclination;
@@ -1016,8 +1014,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		prev_icon = icon;
 	if (next_icon == NULL)
 		next_icon = icon;
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;  // = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -1036,7 +1033,6 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	}
 	double fDeltaXLeft = fHeight * fLeftInclination;
 	double fDeltaXRight = fHeight * fRightInclination;
-	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
 	
 	double fDockOffsetX, fDockOffsetY;
 	if (bBackGround)
@@ -1049,6 +1045,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		fDockOffsetX = icon->fDrawX;
 		fDockOffsetY = fHeight;
 	}
+	//g_print ("X : %.2f + %.2f/%.2f ; Y : %.2f + %.2f\n", fDockOffsetX, fBigWidth, fLittleWidth, fDockOffsetY, fHeight);
 	
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_ONE, GL_ZERO);
