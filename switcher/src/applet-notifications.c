@@ -29,19 +29,13 @@
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	//if (myDock)
-	{
-		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-	}
+	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-CD_APPLET_ON_CLICK_BEGIN
-	
-	int iNumLine, iNumColumn;
-	int iNumDesktop, iNumViewportX, iNumViewportY;
-	
+static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
+{
 	if (myConfig.bCompactView && pClickedIcon == myIcon)
 	{
 		int iMouseX, iMouseY;
@@ -85,17 +79,24 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (iMouseY > h)
 			iMouseY = h;
 		
-		
-		iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
-		iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
-		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+		int iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
+		int iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
+		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, iNumDesktop, iNumViewportX, iNumViewportY);
+		return TRUE;
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		int iIndex = pClickedIcon->fOrder;
-		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+		cd_switcher_compute_viewports_from_index (iIndex, iNumDesktop, iNumViewportX, iNumViewportY);
+		return TRUE;
 	}
 	else
+		return FALSE;
+}
+
+CD_APPLET_ON_CLICK_BEGIN
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	if (! _cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
@@ -147,21 +148,45 @@ static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstanc
 {
 	cd_switcher_refresh_desktop_values (myApplet);
 }
+static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
+{
+	
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Add a desktop"),
-			GTK_STOCK_ADD,
-			_cd_switcher_add_desktop,
-			pSubMenu);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Remove last desktop"),
-			GTK_STOCK_REMOVE,
-			_cd_switcher_remove_last_desktop,
-			pSubMenu);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Refresh"),
-			GTK_STOCK_REFRESH,
-			_cd_switcher_refresh,
-			pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a desktop"),
+		GTK_STOCK_ADD,
+		_cd_switcher_add_desktop,
+		pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last desktop"),
+		GTK_STOCK_REMOVE,
+		_cd_switcher_remove_last_desktop,
+		pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
+		GTK_STOCK_REFRESH,
+		_cd_switcher_refresh,
+		pSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	
+	if (g_bEasterEggs)
+	{
+		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		cd_switcher_build_windows_list (pSubMenu);
+		
+		int iNumDesktop, iNumViewportX, iNumViewportY;
+		if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
+		{
+			if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
+			{
+				int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
+					GTK_STOCK_JUMP_TO,
+					_cd_switcher_move_to_desktop,
+					pSubMenu,
+					GINT_TO_POINTER (iIndex));
+			}
+		}
+	}
 CD_APPLET_ON_BUILD_MENU_END
 
 

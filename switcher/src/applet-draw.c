@@ -486,3 +486,145 @@ void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesk
 		*iCoordY = y;
 	}
 }
+
+
+static void _show_window (GtkMenuItem *menu_item, Icon *pIcon)
+{
+	cairo_dock_show_xwindow (pIcon->Xid);
+}
+static void _cd_switcher_list_windows_on_viewport (Icon *pIcon, gint *pData)
+{
+	if (pIcon == NULL || pIcon->fPersonnalScale > 0)
+		return ;
+	int iNumDesktop = pData[0];
+	int iNumViewportX = pData[1];
+	int iNumViewportY = pData[2];
+	int iOneViewportWidth = pData[3];
+	int iOneViewportHeight = pData[4];
+	GtkWidget *pMenu = GINT_TO_POINTER (pData[5]);
+	
+	// On calcule les coordonnees en repere absolu.
+	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
+	x += myData.switcher.iCurrentViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
+	if (x < 0)
+		x += g_iNbViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+	int y = pIcon->windowGeometry.y;
+	y += myData.switcher.iCurrentViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	if (y < 0)
+		y += g_iNbViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
+	
+	// test d'intersection avec le viewport donne.
+	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
+		x + w <= iNumViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		x >= (iNumViewportX + 1) * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		y + h <= iNumViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
+		y >= (iNumViewportY + 1) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
+		return ;
+	if (!pIcon->pIconBuffer)
+		return ;
+	
+	g_print ("%s\n", pIcon->cName);
+	CairoDock *pParentDock = NULL;
+	pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	if (pParentDock == NULL)
+		pParentDock = g_pMainDock;
+	int iWidth, iHeight;
+	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+	
+	w = 24, h = w;
+	cairo_surface_t *surface = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
+		w,
+		h);
+	cairo_t *pCairoContext = cairo_create (surface);
+	cairo_scale (pCairoContext, (double)w/iWidth, (double)h/iHeight);
+	cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
+	cairo_paint (pCairoContext);
+	cairo_destroy (pCairoContext);
+	guchar *d, *data = cairo_image_surface_get_data (surface);
+	int r = cairo_image_surface_get_stride (surface);
+	
+	GdkPixbuf *pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+		TRUE,
+		8,
+		w,
+		h);
+	guchar *p, *pixels = gdk_pixbuf_get_pixels (pixbuf);
+	int iNbChannels = gdk_pixbuf_get_n_channels (pixbuf);
+	int iRowstride = gdk_pixbuf_get_rowstride (pixbuf);
+	
+	int red, green, blue;
+	float fAlphaFactor;
+	for (y = 0; y < h; y ++)
+	{
+		for (x = 0; x < w; x ++)
+		{
+			p = pixels + y * iRowstride + x * iNbChannels;
+			d = data + y * r + x * 4;
+			
+			fAlphaFactor = (float) d[3] / 255;
+			if (fAlphaFactor != 0)
+			{
+				red = d[0] / fAlphaFactor;
+				green = d[1] / fAlphaFactor;
+				blue = d[2] / fAlphaFactor;
+			}
+			else
+			{
+				red = blue = green = 0;
+			}
+			p[0] = blue;
+			p[1] = green;
+			p[2] = red;
+			p[3] = d[3];
+		}
+	}
+	
+	cairo_surface_destroy (surface);
+	
+	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (pIcon->cName);
+	GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_window), pIcon);
+	
+	g_object_unref (pixbuf);
+}
+void cd_switcher_build_windows_list (GtkWidget *pMenu)
+{
+	GList *pWindowList = NULL;
+	pWindowList = cairo_dock_get_current_applis_list ();
+	pWindowList = g_list_sort (pWindowList, (GCompareFunc) _compare_icons_stack_order);
+	
+	// chaque bureau/viewport.
+	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
+	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
+	int i, j;
+	for (j = 0; j < myData.switcher.iNbLines; j ++)
+	{
+		for (i = 0; i < myData.switcher.iNbColumns; i ++)
+		{
+			g_print (" listing des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
+			gint data[6] = {iNumDesktop, iNumViewportX, iNumViewportY, (int) myData.switcher.fOneViewportWidth, (int) myData.switcher.fOneViewportHeight, GPOINTER_TO_INT (pMenu)};
+			g_list_foreach (pWindowList, (GFunc) _cd_switcher_list_windows_on_viewport, data);
+			
+			GtkWidget *pMenuItem = gtk_separator_menu_item_new ();
+			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);  /// recuperer les noms des bureaux...
+			g_print ("-----------------\n");
+			
+			iNumViewportX ++;
+			if (iNumViewportX == g_iNbViewportX)
+			{
+				
+				/// _NET_DESKTOP_NAMES, UTF8_STRING
+				
+				iNumViewportY ++;
+				if (iNumViewportY == g_iNbViewportY)
+					iNumDesktop ++;
+			}
+			k ++;
+			if (k == N)
+				break ;
+		}
+	}
+}
