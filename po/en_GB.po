@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-18 17:33+0000\n"
-"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
+"POT-Creation-Date: 2009-09-21 00:45+0000\n"
+"PO-Revision-Date: 2009-09-21 09:39+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-19 11:23+0000\n"
+"X-Launchpad-Export-Date: 2009-09-23 11:14+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -775,7 +776,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1215,9 +1217,8 @@ msgid "Track"
 msgstr "Track"
 
 #: ../musicPlayer/src/applet-draw.c:274
-#, fuzzy
 msgid "Current song"
-msgstr "Current"
+msgstr "Current song"
 
 #: ../musicPlayer/src/applet-draw.c:283
 msgid "Artist"
@@ -1510,11 +1511,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -2221,11 +2222,11 @@ msgstr "Leave empty to use the default one."
 
 #: ../Animated-icons/data/messages:103
 msgid "Image for the spot :"
-msgstr ""
+msgstr "Image for the spotlight"
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the front spot :"
-msgstr ""
+msgstr "Image for the front spotlight"
 
 #: ../Animated-icons/data/messages:109
 msgid "color of the spot :"
@@ -2671,7 +2672,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3404,7 +3406,7 @@ msgstr "Show recent documents ?"
 
 #: ../GMenu/data/messages:101
 msgid "Let blank to not use this filter."
-msgstr ""
+msgstr "Leave blank if filter is not needed."
 
 #: ../GMenu/data/messages:103
 msgid "Only show files that are under this folder or its sub-folder :"
@@ -3412,7 +3414,7 @@ msgstr "Only show files that are under this folder or its sub-folder :"
 
 #: ../GMenu/data/messages:105
 msgid "in days. Set 0 to not use this filter."
-msgstr ""
+msgstr "in days. Set 0 if unsued."
 
 #: ../GMenu/data/messages:107
 msgid "Only show files whose last modification date is less than ;"
@@ -3676,7 +3678,8 @@ msgstr "Characters"
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
-msgstr "E.g. Monospace, Purisa, ... Simply type the font name with no number."
+msgstr ""
+"E.g. Monospace, Purisa, ... Simply type the font name with no number."
 
 #: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type :"
@@ -4372,17 +4375,17 @@ msgstr "Comics"
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:109
 msgid "Corner radius :"
-msgstr ""
+msgstr "Corner radius:"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
 msgid "Border width :"
-msgstr ""
+msgstr "Border width:"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Line color of the bubble :"
-msgstr ""
+msgstr "Bubble's line colour:"
 
 #: ../dialog-rendering/data/messages:9
 msgid "Modern"
@@ -4848,7 +4851,7 @@ msgstr "Display the following quick info :"
 
 #: ../dustbin/data/messages:97
 msgid "Number of trashes"
-msgstr ""
+msgstr "Number of Dustbins"
 
 #: ../dustbin/data/messages:99
 msgid "Total number of files"
@@ -4874,14 +4877,15 @@ msgstr "Maximum size authorised for each dustbin :"
 
 #: ../dustbin/data/messages:111
 msgid "Ask confirmation before empty Trash ?"
-msgstr ""
+msgstr "Ask confirmation before emptying Dustbin?"
 
 #: ../dustbin/data/messages:113
 msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -4949,7 +4953,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -4999,7 +5004,7 @@ msgstr "Break"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 msgid "BlackHole"
-msgstr "BlackHole"
+msgstr "Black Hole"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
@@ -5039,7 +5044,7 @@ msgstr "The greater, the faster the icon will collapse to the center."
 
 #: ../illusion/data/messages:79
 msgid "Attraction of the hole :"
-msgstr ""
+msgstr "Attraction of the Black Hole:"
 
 #: ../keyboard-indicator/data/messages:83
 msgid "caps lock, num lock, etc"
@@ -5131,6 +5136,9 @@ msgid ""
 "maintenance mode, then let the dock launch itself, and remove/modify the "
 "mail accounts you want."
 msgstr ""
+"If you have any problem with the applet, uncheck this option during the "
+"maintenance mode, then after the dock has relaunched, remove/modify the mail "
+"accounts you want."
 
 #: ../mail/data/messages:97
 msgid "Check mail account on startup ?"
@@ -5206,7 +5214,8 @@ msgstr "Set to 0 to use the default applet size"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
@@ -5342,7 +5351,7 @@ msgstr "List of available 3D themes for covers :"
 
 #: ../musicPlayer/data/messages:155 ../tomboy/data/messages:11
 msgid "Personnalisation"
-msgstr ""
+msgstr "Customisation"
 
 #: ../musicPlayer/data/messages:163
 msgid "Name of an image for the 'play' icon :"
@@ -5500,7 +5509,7 @@ msgstr "Folder to browse :"
 
 #: ../quick-browser/data/messages:91
 msgid "It can be quite heavy to load a lot of icons."
-msgstr ""
+msgstr "It can be CPU intense to load a lot of icons."
 
 #: ../quick-browser/data/messages:95
 msgid "Icon size :"
@@ -5588,11 +5597,11 @@ msgstr "Used space"
 
 #: ../shortcuts/data/messages:119
 msgid "Free space percent"
-msgstr ""
+msgstr "Free space (in percent)"
 
 #: ../shortcuts/data/messages:121
 msgid "Used space percent"
-msgstr ""
+msgstr "Used space (in percent)"
 
 #: ../shortcuts/data/messages:123
 msgid "In seconds."
@@ -5861,8 +5870,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
