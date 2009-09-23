@@ -117,7 +117,7 @@ old fashion style = true
 numeric=
 
 #P+ Font used for the numeric display :
-font = Sans 12
+font = Sans 16
 
 weight = 5
 
@@ -127,6 +127,8 @@ text color = 0.0; 0.0; 0.5; 1.
 #S+ Image to draw on the background :
 numeric bg =
 
+#e+[.5;1] Ratio to apply on text :
+text ratio = 1
 
 #X[Analogic View;@clockdatadir@/icon.png]
 analogic=

@@ -279,6 +279,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
 		
+		if (fZoomX * MAX (ink.width, ink2.width) > myConfig.fTextRatio * iWidth)
+		{
+			fZoomY *= myConfig.fTextRatio * iWidth / (MAX (ink.width, ink2.width) * fZoomX);
+			fZoomX = myConfig.fTextRatio * iWidth / MAX (ink.width, ink2.width);
+		}
+		
 		cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		cairo_translate (myDrawContext, -ink.x, -ink.y);
@@ -300,6 +306,13 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		double fZoomY = (double) iHeight / ink.height;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
+		
+		if (fZoomX * ink.width > myConfig.fTextRatio * iWidth)
+		{
+			fZoomY *= myConfig.fTextRatio * iWidth / (ink.width * fZoomX);
+			fZoomX = myConfig.fTextRatio * iWidth / ink.width;
+		}
+		
 		cairo_translate (myDrawContext, 0., (iHeight - fZoomY * ink.height)/2);  // centre verticalement.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		cairo_translate (myDrawContext, -ink.x, -ink.y);

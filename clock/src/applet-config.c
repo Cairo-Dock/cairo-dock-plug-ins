@@ -67,7 +67,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		gchar *cFontDescription = CD_CONFIG_GET_STRING ("Module", "font");
 		if (cFontDescription == NULL)
 		{
-			cFontDescription = g_strdup ("Sans");  // sinon fd est NULL.
+			cFontDescription = g_strdup ("Sans");  // sinon fd est NULL. On ne precise pas la taille ici pour pouvoir intercepter ce cas.
 		}
 		PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
 		
@@ -80,7 +80,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 			myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
 			myConfig.iStyle = PANGO_STYLE_NORMAL;
 			
-			pango_font_description_set_size (fd, 12 * PANGO_SCALE);
+			pango_font_description_set_size (fd, 16 * PANGO_SCALE);
 			pango_font_description_set_weight (fd, myConfig.iWeight);
 			pango_font_description_set_style (fd, myConfig.iStyle);
 			g_free (cFontDescription);
@@ -92,6 +92,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_free (cFontDescription);
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
+		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Module", "text ratio", 1.);
 	}
 	
 	//\_______________ On recupere les alarmes.
