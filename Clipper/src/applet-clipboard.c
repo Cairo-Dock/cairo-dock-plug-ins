@@ -599,7 +599,7 @@ gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType)
 		pItem = it->data;
 		if ((pItem->iType & iType) == 0)
 			continue;
-		g_string_append (sText, pItem->cText);
+		g_string_append_printf (sText, "%s\n", pItem->cText);
 	}
 	gchar *cText = sText->str;
 	g_string_free (sText, FALSE);

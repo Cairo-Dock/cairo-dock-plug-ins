@@ -148,7 +148,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	bDirectionUp = TRUE;
 	bIsHorizontal = TRUE;
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -235,7 +235,7 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 	bDirectionUp = TRUE;
 	bIsHorizontal = TRUE;
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -482,7 +482,7 @@ void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	//hi = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -1014,7 +1014,9 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		prev_icon = icon;
 	if (next_icon == NULL)
 		next_icon = icon;
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;  // = pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale);
+	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
+	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
+	//g_print ("%s : hi = %.2f/%.2f\n", icon->cName, myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin, pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale));
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
