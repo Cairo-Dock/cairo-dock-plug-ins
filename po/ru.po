@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-18 11:15+0000\n"
+"POT-Creation-Date: 2009-09-21 00:45+0000\n"
+"PO-Revision-Date: 2009-09-22 07:56+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-19 11:23+0000\n"
+"X-Launchpad-Export-Date: 2009-09-23 11:13+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -748,7 +749,8 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1184,9 +1186,8 @@ msgid "Track"
 msgstr "Дорожка"
 
 #: ../musicPlayer/src/applet-draw.c:274
-#, fuzzy
 msgid "Current song"
-msgstr "Текущий"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:283
 msgid "Artist"
@@ -1482,8 +1483,8 @@ msgstr "Показывать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
 "десклета."
@@ -2647,7 +2648,8 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -3395,7 +3397,8 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:107
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr ""
+"Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -3723,171 +3726,179 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:129
 msgid "Show graphic card temperature ?"
-msgstr ""
+msgstr "Показывать температуру видео-карты?"
 
 #: ../System-Monitor/data/messages:131
 msgid "Show free memory instead of used memory ?"
-msgstr ""
+msgstr "Показывать свободную память вместо используемой?"
 
 #: ../System-Monitor/data/messages:133
 msgid "Display values :"
-msgstr ""
+msgstr "Показывать значения:"
 
 #: ../System-Monitor/data/messages:135 ../alsaMixer/data/messages:111
 #: ../clock/data/messages:89 ../netspeed/data/messages:135
 #: ../shortcuts/data/messages:113
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:115
 #: ../clock/data/messages:91 ../netspeed/data/messages:137
 msgid "On icon"
-msgstr ""
+msgstr "На значке"
 
 #: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:113
 #: ../clock/data/messages:93 ../netspeed/data/messages:139
 msgid "On label"
-msgstr ""
+msgstr "В подписи"
 
 #: ../System-Monitor/data/messages:143
 msgid "Delay between refresh :"
-msgstr ""
+msgstr "Интервал между проверками:"
 
 #: ../System-Monitor/data/messages:151 ../netspeed/data/messages:143
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "Своя команда для показа системного монитора:"
 
 #: ../System-Monitor/data/messages:153
 msgid ""
 "It will prevent the system monitor's icon to appear in the taskbar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Это предотвратит появление значка на панели задач. Значок апплета будет "
+"вести себя как значок запуска, приложение и апплет."
 
 #: ../System-Monitor/data/messages:155
 msgid "Steal the system monitor's icon in taskbar ?"
-msgstr ""
+msgstr "Изъять значок системного монитора из панели задач?"
 
 #: ../System-Monitor/data/messages:159
 msgid "Class of the system monitor program:"
-msgstr ""
+msgstr "Класс прилажения системного монитора:"
 
 #: ../System-Monitor/data/messages:161
 msgid "Top List"
-msgstr ""
+msgstr "Топ-лист"
 
 #: ../System-Monitor/data/messages:163
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
+"При левом щелчке на значке, вы получите список приложении наиболее "
+"используемых ресурсы системы."
 
 #: ../System-Monitor/data/messages:165
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "Количество программ в списке:"
 
 #: ../System-Monitor/data/messages:167
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "Начальный цвет градации используемый для отображения топ-листа."
 
 #: ../System-Monitor/data/messages:169
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "Начальный цвет топ-листа:"
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "Конечный цвет градации используемый для отображения топ-листа."
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "Конечный цвет топ-листа:"
 
 #: ../System-Monitor/data/messages:175
 msgid "Show top memory usage in % ?"
-msgstr ""
+msgstr "Показывать использование памяти в % ?"
 
 #: ../System-Monitor/data/messages:179
 msgid "Delay between refresh of the top list :"
-msgstr ""
+msgstr "Интервал обновления топ-листа:"
 
 #: ../System-Monitor/data/messages:181
 msgid "Graphic Card temperature"
-msgstr ""
+msgstr "Температура видео-карты"
 
 #: ../System-Monitor/data/messages:183
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr ""
+"в цельсиях. Будет отображаться температура между этим значением и верхним "
+"порогом."
 
 #: ../System-Monitor/data/messages:185
 msgid "Lower limit of core temperature :"
-msgstr ""
+msgstr "Нижний порог температуры ядра:"
 
 #: ../System-Monitor/data/messages:187
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
 msgstr ""
+"в цельсиях. Будет отображаться температура между этим значением и нижним "
+"порогом."
 
 #: ../System-Monitor/data/messages:189
 msgid "Upper limit of core temperature :"
-msgstr ""
+msgstr "Верхний порог температуры ядра:"
 
 #: ../System-Monitor/data/messages:191
 msgid "Alert when core temperature is high ?"
-msgstr ""
+msgstr "Уведомлять о превышении верхнего порога?"
 
 #: ../System-Monitor/data/messages:193
 msgid "in celcius."
-msgstr ""
+msgstr "в цельсиях."
 
 #: ../System-Monitor/data/messages:195
 msgid "Alert limit of core temperature :"
-msgstr ""
+msgstr "Порог температуры ядра:"
 
 #: ../System-Monitor/data/messages:197
 msgid "Play a sound during the alert ?"
-msgstr ""
+msgstr "Звуковой сигнал при уведомлении?"
 
 #: ../System-Monitor/data/messages:199
 msgid "Sound path :"
-msgstr ""
+msgstr "Путь до звукового файла:"
 
 #: ../Toons/data/messages:83
 msgid "Keep ratio ?"
-msgstr ""
+msgstr "Сохранять масштаб?"
 
 #: ../Toons/data/messages:89
 msgid "Mean delay between winks :"
-msgstr ""
+msgstr "Средний интервал миганий:"
 
 #: ../Toons/data/messages:91 ../show-mouse/data/messages:19
 msgid "in ms."
-msgstr ""
+msgstr "в мсек."
 
 #: ../Toons/data/messages:93
 msgid "Wink duration :"
-msgstr ""
+msgstr "Интервал миганий:"
 
 #: ../Toons/data/messages:95
 msgid "A high refresh frequency will use more CPU."
-msgstr ""
+msgstr "Большая частота обновлений потребует больше ресурсов процессора."
 
 #: ../Toons/data/messages:97
 msgid "High refresh frequency ?"
-msgstr ""
+msgstr "Повысить частоту обновлений?"
 
 #: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:103
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "Изменения при 1 прокручивании колесика, в %:"
 
 #: ../Xgamma/data/messages:89
 msgid "Set 0 to not use it."
-msgstr ""
+msgstr "Установите в 0, чтобы не использовать."
 
 #: ../Xgamma/data/messages:91
 msgid "Luminosity to automatically apply on startup :"
-msgstr ""
+msgstr "Яркость при запуске:"
 
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
@@ -3896,22 +3907,24 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
+"В зависимости от вашего ОМ, вы можете перетаскивать её с помощью ALT + левый "
+"щелчок. Отрицательные значения исчисляются от правого/нижнего угла экрана"
 
 #: ../alsaMixer/data/messages:83
 msgid "Alsa"
-msgstr ""
+msgstr "Alsa"
 
 #: ../alsaMixer/data/messages:85
 msgid "Let empty to use the default sound card."
-msgstr ""
+msgstr "Оставьте пустым, чтобы использовать по умолчанию."
 
 #: ../alsaMixer/data/messages:87
 msgid "Sound card to control :"
-msgstr ""
+msgstr "Звуковая карта для управления"
 
 #: ../alsaMixer/data/messages:89
 msgid "Choose which channel to control :"
-msgstr ""
+msgstr "выберите канал для управления:"
 
 #: ../alsaMixer/data/messages:91
 msgid ""
@@ -3919,18 +3932,21 @@ msgid ""
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
+"На некоторых картах, один канал может отвечать только за одну сторону (левую "
+"или правую). Поэтому укажите здесь другой канал, чтобы управлять обеими "
+"сторонами. В большинстве случаев, просто оставьте поле пустым."
 
 #: ../alsaMixer/data/messages:93
 msgid "Optionnally, choose a second channel to control :"
-msgstr ""
+msgstr "Опционально, вебрите другой канал для управления:"
 
 #: ../alsaMixer/data/messages:95
 msgid "Let empty to use the defaut command."
-msgstr ""
+msgstr "Оставьте пустым, чтобы использовать команду по умолчанию."
 
 #: ../alsaMixer/data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "Укажите команду запуска расширенного звукового микшера:"
 
 #: ../alsaMixer/data/messages:99
 msgid "Control"
@@ -4805,7 +4821,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5758,8 +5775,8 @@ msgstr ""
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:131
