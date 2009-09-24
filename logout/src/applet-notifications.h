@@ -33,4 +33,7 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_BUILD_MENU_H
 
 
+void cd_logout_set_timer (void);
+
+
 #endif

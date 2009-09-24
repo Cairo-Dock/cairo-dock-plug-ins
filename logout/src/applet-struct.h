@@ -27,10 +27,11 @@ struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
 	gboolean bInvertButtons;
+	gint iShutdownTime;  // time_t
 	} ;
 
 struct _AppletData {
-	gint no_data;
+	guint iSidTimer;
 	} ;
 
 #endif

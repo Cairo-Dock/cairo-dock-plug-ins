@@ -49,6 +49,9 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	//\_______________ On (re)lance l'eteignage programme.
+	cd_logout_set_timer ();
 CD_APPLET_INIT_END
 
 
@@ -59,6 +62,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	CD_APPLET_MANAGE_APPLICATION ("x-session-manager", FALSE);  // on relache le controle de l'icone de la fenetre.
+	
+	if (myData.iSidTimer != 0)
+		g_source_remove (myData.iSidTimer);
 CD_APPLET_STOP_END
 
 

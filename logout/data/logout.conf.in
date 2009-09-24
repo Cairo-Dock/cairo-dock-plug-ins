@@ -95,3 +95,5 @@ user action2 =
 
 #b Invert buttons ?
 invert = true
+
+shutdown time = 0
