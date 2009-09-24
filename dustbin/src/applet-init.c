@@ -144,6 +144,14 @@ static void _cd_dusbin_start (CairoDockModuleInstance *myApplet)
 	}
 	else  // methode par defaut.
 	{
+		gchar *cDustbinPath = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), NULL);
+		if (cDustbinPath != NULL)
+		{
+			if (myConfig.cAdditionnalDirectoriesList != NULL)
+				g_strfreev (myConfig.cAdditionnalDirectoriesList);
+			myConfig.cAdditionnalDirectoriesList = g_new0 (gchar *, 2);
+			myConfig.cAdditionnalDirectoriesList[0] = cDustbinPath;
+		}
 		if (myConfig.cAdditionnalDirectoriesList != NULL)
 		{
 			cd_message ("***mode degrade");
@@ -175,7 +183,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
-	//\_______________ On d�marre la surveillance des nos poubelles.
+	//\_______________ On demarre la surveillance de nos poubelles.
 	_cd_dusbin_start (myApplet);
 CD_APPLET_INIT_END
 

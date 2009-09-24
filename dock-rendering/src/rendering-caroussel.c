@@ -80,6 +80,12 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	
 	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iMinDockHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	pDock->iMinDockWidth = MIN (pDock->iMaxDockWidth, pDock->fFlatDockWidth + fExtraWidth);
+	
+	if (pDock->pRendererData == NULL)
+	{
+		pDock->pRendererData = GINT_TO_POINTER (1);
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	}
 }
 
 
@@ -302,6 +308,14 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	return pPointedIcon;
 }
 
+void cd_rendering_free_caroussel_data (CairoDock *pDock)
+{
+	if (pDock->pRendererData != NULL)
+	{
+		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
+	}
+}
+
 
 void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 {
@@ -313,6 +327,7 @@ void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 	pRenderer->render = cd_rendering_render_caroussel;
 	pRenderer->render_optimized = NULL;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;  // cd_rendering_set_subdock_position_caroussel
+	pRenderer->free_data = cd_rendering_free_caroussel_data;
 	pRenderer->bUseReflect = TRUE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
 	

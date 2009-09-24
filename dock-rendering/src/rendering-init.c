@@ -150,14 +150,10 @@ CD_APPLET_INIT_BEGIN
 	}
 	else
 		gtk_widget_queue_draw (g_pMainDock->container.pWidget);
-	
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
-	
 	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
