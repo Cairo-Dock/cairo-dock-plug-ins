@@ -43,7 +43,7 @@ static GList * _load_icons (void)
 		}
 		else
 		{
-			pIcon->cName = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
+			pIcon->cName = (i < myConfig.iNbNames ? g_strdup (myConfig.cDesktopNames[i]) : g_strdup_printf ("%s %d", D_("Desktop"), i+1));
 			pIcon->bHasIndicator = FALSE;
 			pIcon->fAlpha = 1.;
 		}

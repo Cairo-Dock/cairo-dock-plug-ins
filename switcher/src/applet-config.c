@@ -55,6 +55,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
+	
+	//myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST ("Configuration", "desktop names", &myConfig.iNbNames);
 CD_APPLET_GET_CONFIG_END
 
 
@@ -62,6 +64,8 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cDefaultIcon);
+	if (myConfig.cDesktopNames != NULL)
+		g_strfreev (myConfig.cDesktopNames);
 	
 CD_APPLET_RESET_CONFIG_END
 

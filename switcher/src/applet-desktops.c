@@ -266,3 +266,43 @@ gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
 	myData.iSidAutoRefresh = 0;
 	return FALSE;
 }
+
+
+
+static void _cd_switcher_action_on_one_window_from_viewport (Icon *pIcon, CairoContainer *pContainer, gpointer *data)
+{
+	if (pIcon == NULL || pIcon->fPersonnalScale > 0)
+		return ;
+	int iNumDesktop = GPOINTER_TO_INT (data[0]);
+	int iNumViewportX = GPOINTER_TO_INT (data[1]);
+	int iNumViewportY = GPOINTER_TO_INT (data[2]);
+	CDSwitcherActionOnViewportFunc pFunction = data[3];
+	gpointer pUserData = data[4];
+	
+	// On calcule les coordonnees en repere absolu.
+	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
+	x += myData.switcher.iCurrentViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
+	if (x < 0)
+		x += g_iNbViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+	int y = pIcon->windowGeometry.y;
+	y += myData.switcher.iCurrentViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	if (y < 0)
+		y += g_iNbViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
+	
+	// test d'intersection avec le viewport donne.
+	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
+	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
+		x + w <= iNumViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		x >= (iNumViewportX + 1) * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		y + h <= iNumViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
+		y >= (iNumViewportY + 1) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
+		return ;
+	
+	pFunction (pIcon, iNumDesktop, iNumViewportX, iNumViewportY, pUserData);
+}
+void cd_switcher_foreach_window_on_viewport (int iNumDesktop, int iNumViewportX, int iNumViewportY, CDSwitcherActionOnViewportFunc pFunction, gpointer pUserData)
+{
+	gpointer data[5] = {GINT_TO_POINTER (iNumDesktop), GINT_TO_POINTER (iNumViewportX), GINT_TO_POINTER (iNumViewportY), pFunction, pUserData};
+	cairo_dock_foreach_applis ((CairoDockForeachIconFunc) _cd_switcher_action_on_one_window_from_viewport, FALSE, data);
+}

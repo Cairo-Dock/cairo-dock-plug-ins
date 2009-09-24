@@ -107,28 +107,27 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
-  int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
-  int iNumDesktop, iNumViewportX, iNumViewportY;
-  cd_debug ("Switcher: current %d", iIndex);
-  if (CD_APPLET_SCROLL_DOWN) {
-    iIndex++;
-    if (iIndex >= myData.switcher.iNbViewportTotal) {
-      iIndex = 0;
-    }
-    cd_debug ("Switcher: switching to %d", iIndex);
-    cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
-  }
-  else if (CD_APPLET_SCROLL_UP) {
-    iIndex = iIndex - 1;
-    if (iIndex < 0) {
-      iIndex = myData.switcher.iNbViewportTotal - 1;
-    }
-    cd_debug ("Switcher: switching to %d", iIndex);
-    cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
-  }
-  else
-  	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-  	
+	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	cd_debug ("Switcher: current %d", iIndex);
+	if (CD_APPLET_SCROLL_DOWN)
+	{
+		iIndex++;
+		if (iIndex >= myData.switcher.iNbViewportTotal)
+			iIndex = 0;
+		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	}
+	else if (CD_APPLET_SCROLL_UP)
+	{
+		iIndex = iIndex - 1;
+		if (iIndex < 0)
+			iIndex = myData.switcher.iNbViewportTotal - 1;
+		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	cd_debug ("Switcher: switching to %d", iIndex);
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
 		cairo_dock_set_current_desktop (iNumDesktop);
 	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
@@ -150,7 +149,10 @@ static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstanc
 }
 static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
 {
-	
+	int iIndex = GPOINTER_TO_INT (data);
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	cd_switcher_move_current_desktop_to (iNumDesktop, iNumViewportX, iNumViewportY);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
@@ -166,26 +168,29 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GTK_STOCK_REFRESH,
 		_cd_switcher_refresh,
 		pSubMenu);
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-	
 	if (g_bEasterEggs)
 	{
-		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
-		cd_switcher_build_windows_list (pSubMenu);
-		
 		int iNumDesktop, iNumViewportX, iNumViewportY;
 		if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		{
 			if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 			{
 				int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
+				GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
 					GTK_STOCK_JUMP_TO,
 					_cd_switcher_move_to_desktop,
 					pSubMenu,
 					GINT_TO_POINTER (iIndex));
+				gtk_widget_set_tooltip_text (pMenuItem, D_("This will move all windows from the current desktop to this one"));
 			}
 		}
+	}
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	
+	if (g_bEasterEggs)
+	{
+		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		cd_switcher_build_windows_list (pSubMenu);
 	}
 CD_APPLET_ON_BUILD_MENU_END
 
@@ -228,7 +233,6 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 	if (myConfig.bCompactView)
 	{
 		_cd_switcher_queue_draw (myApplet);
-		//cd_switcher_draw_main_icon ();
 	}
 	else
 	{
@@ -247,7 +251,10 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			icon = ic->data;
 			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
 			{
-				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
+				if (iPreviousIndex < myConfig.iNbNames)
+					cairo_dock_set_icon_name (myDrawContext, myConfig.cDesktopNames[iPreviousIndex], icon, pContainer);
+				else
+					cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
 				icon->bHasIndicator = FALSE;
 				icon->fAlpha = 1.;
 				if (myDock)
@@ -255,7 +262,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			}
 			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
 			{
-				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Current"), iIndex+1);
+				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s (%d)", D_("Current"), iIndex+1);
 				icon->bHasIndicator = TRUE;
 				icon->fAlpha = .7;
 				if (myDock)
@@ -280,6 +287,5 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEven
 {
 	cd_debug ("");
 	_cd_switcher_queue_draw (myApplet);
-	//cd_switcher_draw_main_icon ();
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

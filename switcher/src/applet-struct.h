@@ -52,6 +52,8 @@ struct _AppletConfig {
 	gboolean bPreserveScreenRatio;
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	gboolean bDisplayHiddenWindows;
+	gchar **cDesktopNames;
+	gint iNbNames;
 	} ;
 
 typedef struct
@@ -65,6 +67,7 @@ typedef struct
 	double fOffsetX, fOffsetY;
 } SwitcherApplet;
 
+typedef void (*CDSwitcherActionOnViewportFunc) (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, gpointer pUserData);
 
 struct _AppletData {
 	SwitcherApplet switcher;

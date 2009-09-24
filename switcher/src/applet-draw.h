@@ -39,6 +39,10 @@ void cd_switcher_draw_main_icon (void);
 void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet);
 void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesklet, int *iCoordX, int *iCoordY);
 
+void cd_switcher_build_windows_list (GtkWidget *pMenu);
+
+void cd_switcher_move_current_desktop_to (int iNumDesktop, int iNumViewportX, int iNumViewportY);
+
 
 #endif
 

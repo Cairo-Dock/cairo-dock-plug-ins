@@ -50,5 +50,8 @@ void cd_switcher_update_from_screen_geometry (void);
 gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet);
 
 
+void cd_switcher_foreach_window_on_viewport (int iNumDesktop, int iNumViewportX, int iNumViewportY, CDSwitcherActionOnViewportFunc pFunction, gpointer pUserData);
+
+
 #endif
 
