@@ -672,7 +672,7 @@ msgstr "Ajustez les canaux"
 
 #: ../clock/src/applet-config.c:468 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
-msgstr "Chercher votre emplacement :"
+msgstr "Cherchez votre emplacement :"
 
 #: ../clock/src/applet-init.c:32
 msgid "clock"
@@ -960,7 +960,7 @@ msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
-msgstr "drop indicator"
+msgstr "Indicateur de drop"
 
 #: ../drop-indicator/src/applet-init.c:31
 msgid ""

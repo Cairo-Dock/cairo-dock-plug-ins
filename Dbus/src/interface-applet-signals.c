@@ -65,6 +65,114 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
+	
+	// on definit les signaux dont on aura besoin.
+	s_iSignals[CLIC] =
+		g_signal_new("on_click",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT,
+			G_TYPE_NONE, 1, G_TYPE_INT);
+	s_iSignals[MIDDLE_CLIC] =
+		g_signal_new("on_middle_click",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0, G_TYPE_NONE);
+	s_iSignals[SCROLL] =
+		g_signal_new("on_scroll",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__BOOLEAN,
+			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
+	s_iSignals[BUILD_MENU] =
+		g_signal_new("on_build_menu",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0, G_TYPE_NONE);
+	s_iSignals[MENU_SELECT] =
+		g_signal_new("on_menu_select",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT,
+			G_TYPE_NONE, 1, G_TYPE_INT);
+	s_iSignals[DROP_DATA] =
+		g_signal_new("on_drop_data",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__STRING,
+			G_TYPE_NONE, 1, G_TYPE_STRING);
+	s_iSignals[INIT_MODULE] =
+		g_signal_new("on_init_module",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0, G_TYPE_NONE);
+	s_iSignals[STOP_MODULE] =
+		g_signal_new("on_stop_module",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0, G_TYPE_NONE);
+	s_iSignals[RELOAD_MODULE] =
+		g_signal_new("on_reload_module",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__BOOLEAN,
+			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
+	
+	// Add signals
+	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
+	if (pProxy != NULL)
+	{
+		dbus_g_proxy_add_signal(pProxy, "on_click",
+			G_TYPE_INT, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_middle_click",
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_scroll",
+			G_TYPE_BOOLEAN, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_build_menu",
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_menu_select",
+			G_TYPE_INT, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_drop_data",
+			G_TYPE_STRING, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_init_module",
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_stop_module",
+			G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_reload_module",
+			G_TYPE_BOOLEAN, G_TYPE_INVALID);
+	}
+}
+
+void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
+{
+	static gboolean bFirst = TRUE;
+	if (! bFirst)
+		return;
+	bFirst = FALSE;
+	
+	// Enregistrement des marshaller specifique aux signaux.
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__INT_STRING,
 		G_TYPE_NONE, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);  // clic
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOOLEAN_STRING,
@@ -73,79 +181,6 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);  // drop
 	
 	// on definit les signaux dont on aura besoin.
-	s_iSignals[CLIC] =
-		g_signal_new("on_click_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__INT,
-				G_TYPE_NONE, 1, G_TYPE_INT);
-	s_iSignals[MIDDLE_CLIC] =
-		g_signal_new("on_middle_click_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__VOID,
-				G_TYPE_NONE, 0, G_TYPE_NONE);
-	s_iSignals[SCROLL] =
-		g_signal_new("on_scroll_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__BOOLEAN,
-				G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
-	s_iSignals[BUILD_MENU] =
-		g_signal_new("on_build_menu",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__VOID,
-				G_TYPE_NONE, 0, G_TYPE_NONE);
-	s_iSignals[MENU_SELECT] =
-		g_signal_new("on_menu_select",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__INT,
-				G_TYPE_NONE, 1, G_TYPE_INT);
-	s_iSignals[DROP_DATA] =
-		g_signal_new("on_drop_data",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING,
-				G_TYPE_NONE, 1, G_TYPE_STRING);
-	s_iSignals[RELOAD_MODULE] =
-		g_signal_new("on_reload_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__BOOLEAN,
-				G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
-	s_iSignals[INIT_MODULE] =
-		g_signal_new("on_init_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__VOID,
-				G_TYPE_NONE, 0, G_TYPE_NONE);
-	s_iSignals[STOP_MODULE] =
-		g_signal_new("on_stop_module",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				g_cclosure_marshal_VOID__VOID,
-				G_TYPE_NONE, 0, G_TYPE_NONE);
-	
 	s_iSubSignals[CLIC] =
 		g_signal_new("on_click_sub_icon",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -171,7 +206,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 				g_cclosure_marshal_VOID__BOOLEAN_STRING,
 				G_TYPE_NONE, 2, G_TYPE_BOOLEAN, G_TYPE_STRING);
 	s_iSubSignals[BUILD_MENU] =
-		g_signal_new("on_build_menu_sub",
+		g_signal_new("on_build_menu_sub_icon",
 			G_OBJECT_CLASS_TYPE(klass),
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
@@ -179,7 +214,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 				g_cclosure_marshal_VOID__STRING,
 				G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSubSignals[MENU_SELECT] =
-		g_signal_new("on_menu_select_sub",
+		g_signal_new("on_menu_select_sub_icon",
 			G_OBJECT_CLASS_TYPE(klass),
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
@@ -187,7 +222,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 				g_cclosure_marshal_VOID__INT_STRING,
 				G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_STRING);
 	s_iSubSignals[DROP_DATA] =
-		g_signal_new("on_drop_data_sub",
+		g_signal_new("on_drop_data_sub_icon",
 			G_OBJECT_CLASS_TYPE(klass),
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
@@ -199,36 +234,20 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
 	if (pProxy != NULL)
 	{
-		dbus_g_proxy_add_signal(pProxy, "on_click_icon",
-			G_TYPE_INT, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_middle_click_icon",
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_scroll_icon",
-			G_TYPE_BOOLEAN, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_build_menu",
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_drop_data",
-			G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_init_module",
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_stop_module",
-			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_reload_module",
-			G_TYPE_BOOLEAN, G_TYPE_INVALID);
-		
 		dbus_g_proxy_add_signal(pProxy, "on_click_sub_icon",
 			G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_middle_click_sub_icon",
+		dbus_g_proxy_add_signal(pProxy, "on_middle_click_icon",
 			G_TYPE_STRING, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_scroll_sub_icon",
 			G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_build_menu_sub",
+		dbus_g_proxy_add_signal(pProxy, "on_build_menu_sub_icon",
 			G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_drop_data_sub",
+		dbus_g_proxy_add_signal(pProxy, "on_menu_select_sub_icon",
+			G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_drop_data_sub_icon",
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	}
 }
-
 
 #define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
 
@@ -270,7 +289,7 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 	else
 	{
 		g_print ("emit clic on sub icon\n");
-		g_signal_emit (pDbusApplet, s_iSubSignals[CLIC], 0, iButtonState, pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[CLIC], 0, iButtonState, pClickedIcon->cCommand);
 	}
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
@@ -287,7 +306,7 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[MIDDLE_CLIC], 0, NULL);
 	else
-		g_signal_emit (pDbusApplet, s_iSubSignals[MIDDLE_CLIC], 0, pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[MIDDLE_CLIC], 0, pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 
@@ -303,7 +322,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP));
 	else
-		g_signal_emit (pDbusApplet, s_iSubSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP), pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP), pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 
@@ -340,7 +359,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[BUILD_MENU], 0);
 	else
-		g_signal_emit (pDbusApplet, s_iSubSignals[BUILD_MENU], 0, pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[BUILD_MENU], 0, pClickedIcon->cCommand);
 	return (pClickedIcon == pAppletIcon ? CAIRO_DOCK_LET_PASS_NOTIFICATION : CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 }
 
@@ -350,9 +369,9 @@ void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 	int iNumEntry = GPOINTER_TO_INT (data);
 	gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
 	if (cIconID == NULL)
-		g_signal_emit ((dbusApplet *)myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
+		g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
 	else
-		g_signal_emit ((dbusApplet *)myData.pCurrentMenuDbusApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);
+		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);
 }
 
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
@@ -367,7 +386,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[DROP_DATA], 0, cReceivedData);
 	else
-		g_signal_emit (pDbusApplet, s_iSubSignals[DROP_DATA], 0, cReceivedData, pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[DROP_DATA], 0, cReceivedData, pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 

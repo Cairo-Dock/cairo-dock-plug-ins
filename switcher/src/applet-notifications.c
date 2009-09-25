@@ -289,3 +289,36 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEven
 	_cd_switcher_queue_draw (myApplet);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+
+gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	if (myDock && ! myIcon->bPointed)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	int x = pContainer->iMouseX - myIcon->fDrawX;
+	int y = pContainer->iMouseY - myIcon->fDrawY;
+	if (!pContainer->bIsHorizontal)
+	{
+		int tmp = x;
+		x = y;
+		y = tmp;
+	}
+	
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+	
+	
+	if (iIndex < myConfig.iNbNames)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDesktopNames[iIndex]);
+	}
+	else
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s %d", D_("Desktop"), iIndex+1);
+	}
+	CAIRO_DOCK_REDRAW_MY_CONTAINER;
+}

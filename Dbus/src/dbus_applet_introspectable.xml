@@ -1,55 +1,6 @@
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
 "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
 <node name="/org/cairodock/CairoDock">
-	
-	<interface name="org.cairodock.CairoDock.subapplet">
-		<method name="SetQuickInfo">
-			<arg name="cQuickInfo" type="s" direction="in"/>
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		<method name="SetLabel">
-			<arg name="cLabel" type="s" direction="in"/>
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		<method name="SetIcon">
-			<arg name="cImage" type="s" direction="in"/>
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		<method name="Animate">
-			<arg name="cAnimation" type="s" direction="in"/>
-			<arg name="iNbRounds" type="i" direction="in"/>
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		<method name="ShowDialog">
-			<arg name="message" type="s" direction="in"/>
-			<arg name="iDuration" type="i" direction="in"/>
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		
-		<signal name="on_click_icon">
-			<arg name="iButtonState" type="i"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_middle_click_icon">
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_scroll_icon">
-			<arg name="bDirectionUp" type="b"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_build_menu">
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_menu_select">
-			<arg name="iNumEntry" type="i"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_drop_data">
-			<arg name="cReceivedData" type="s"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
-	</interface>
-	
 	<interface name="org.cairodock.CairoDock.applet">
 		<method name="SetQuickInfo">
 			<arg name="cQuickInfo" type="s" direction="in"/>
@@ -68,9 +19,6 @@
 			<arg name="message" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
 		</method>
-		<method name="PopulateMenu">
-			<arg name="pLabels" type="as" direction="in"/>
-		</method>
 		<method name="AddDataRenderer">
 			<arg name="cType" type="s" direction="in"/>
 			<arg name="iNbValues" type="i" direction="in"/>
@@ -79,34 +27,33 @@
 		<method name="RenderValues">
 			<arg name="pValues" type="ad" direction="in"/>
 		</method>
-		<method name="AddSubIcons">
-			<arg name="pIconFields" type="as" direction="in"/>
+		<method name="PopulateMenu">
+			<arg name="pLabels" type="as" direction="in"/>
 		</method>
-		<method name="RemoveSubIcon">
-			<arg name="cIconID" type="s" direction="in"/>
-		</method>
-		<signal name="on_click_icon">
-            <arg name="iButtonState" type="i"/>
-        </signal>
-        <signal name="on_middle_click_icon">
-        </signal>
-        <signal name="on_scroll_icon">
-            <arg name="bDirectionUp" type="b"/>
-        </signal>
-        <signal name="on_build_menu">
-        </signal>
-        <signal name="on_menu_select">
+		
+		<signal name="on_click">
+			<arg name="iButtonState" type="i"/>
+		</signal>
+		<signal name="on_middle_click">
+		</signal>
+		<signal name="on_scroll">
+			<arg name="bDirectionUp" type="b"/>
+		</signal>
+		<signal name="on_build_menu">
+		</signal>
+		<signal name="on_menu_select">
 			<arg name="iNumEntry" type="i"/>
-        </signal>
-        <signal name="on_drop_data">
+		</signal>
+		<signal name="on_drop_data">
 			<arg name="cReceivedData" type="s"/>
-        </signal>
-        <signal name="on_init_module">
-        </signal>
-        <signal name="on_stop_module">
-        </signal>
-        <signal name="on_reload_module">
+		</signal>
+		
+		<signal name="on_init_module">
+		</signal>
+		<signal name="on_stop_module">
+		</signal>
+		<signal name="on_reload_module">
 			<arg name="bConfigHasChanged" type="b"/>
-        </signal>
+		</signal>
 	</interface>
 </node>

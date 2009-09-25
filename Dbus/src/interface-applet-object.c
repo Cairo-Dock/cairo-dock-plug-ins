@@ -25,10 +25,12 @@
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
 #include "dbus-applet-spec.h"
-//#include "dbus-sub-applet-spec.h"
+#include "dbus-sub-applet-spec.h"
 #include "interface-applet-object.h"
 
 G_DEFINE_TYPE(dbusApplet, cd_dbus_applet, G_TYPE_OBJECT);
+
+G_DEFINE_TYPE(dbusSubApplet, cd_dbus_sub_applet, G_TYPE_OBJECT);
 
 
 static void cd_dbus_applet_class_init(dbusAppletClass *klass)
@@ -45,8 +47,21 @@ static void cd_dbus_applet_init (dbusApplet *pDbusApplet)
 	
 	pDbusApplet->connection = cairo_dock_get_session_connection ();
 	pDbusApplet->proxy = cairo_dock_get_main_proxy ();
+	pDbusApplet->pSubApplet = g_object_new (cd_dbus_sub_applet_get_type(), NULL);
+	pDbusApplet->pSubApplet->pApplet = pDbusApplet;
+}
+
+static void cd_dbus_sub_applet_class_init(dbusSubAppletClass *klass)
+{
+	cd_message("");
 	
-	//dbus_g_object_type_install_info (cd_dbus_applet_get_type(), &dbus_glib_cd_dbus_sub_applet_object_info);
+	cd_dbus_sub_applet_init_signals_once (klass);
+	
+	dbus_g_object_type_install_info (cd_dbus_sub_applet_get_type(), &dbus_glib_cd_dbus_sub_applet_object_info);
+}
+static void cd_dbus_sub_applet_init (dbusSubApplet *pDbusSubApplet)
+{
+	cd_message("");
 }
 
 
@@ -105,6 +120,9 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	gchar *cPath = g_strconcat ("/org/cairodock/CairoDock/", cModuleName, NULL);
 	dbus_g_connection_register_g_object (pDbusApplet->connection, cPath, G_OBJECT(pDbusApplet));
 	g_free (cPath);
+	cPath = g_strconcat ("/org/cairodock/CairoDock/", cModuleName, "/sub_icons", NULL);
+	dbus_g_connection_register_g_object (pDbusApplet->connection, cPath, G_OBJECT(pDbusApplet->pSubApplet));
+	g_free (cPath);
 	
 	// on s'abonne aux notifications qu'on voudra propager sur le bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
@@ -145,7 +163,14 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 	}
 	
 	if (pDbusApplet != NULL)
+	{
+		if (pDbusApplet->pSubApplet != NULL)
+		{
+			g_object_unref (pDbusApplet->pSubApplet);
+			pDbusApplet->pSubApplet = NULL;
+		}
 		g_object_unref (pDbusApplet);
+	}
 }
 
 void cd_dbus_unregister_notifications (void)

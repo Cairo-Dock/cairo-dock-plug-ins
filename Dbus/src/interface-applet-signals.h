@@ -25,6 +25,7 @@
 
 
 void cd_dbus_applet_init_signals_once (dbusAppletClass *klass);
+void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass);
 
 
 gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);

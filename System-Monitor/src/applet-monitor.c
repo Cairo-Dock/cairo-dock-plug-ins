@@ -131,21 +131,21 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				int i = 0;
 				if (myConfig.bShowCpu)
 				{
-					s_fValues[i++] = (double) myData.fCpuPercent / 100;
+					s_fValues[i++] = myData.fCpuPercent / 100.;
 				}
 				if (myConfig.bShowRam)
 				{
-					s_fValues[i++] = myData.fRamPercent / 100;
+					s_fValues[i++] = myData.fRamPercent / 100.;
 				}
 				if (myConfig.bShowSwap)
 				{
-					s_fValues[i++] = (double) (myData.swapTotal ? (myConfig.bShowFreeMemory ? myData.swapFree : myData.swapUsed) / myData.swapTotal : 0.);
+					s_fValues[i++] = (myData.swapTotal ? (myConfig.bShowFreeMemory ? (double)myData.swapFree : (double)myData.swapUsed) / myData.swapTotal : 0.);
 				}
 				if (myConfig.bShowNvidia)
 				{
-					s_fValues[i++] = myData.fGpuTempPercent / 100;
+					s_fValues[i++] = myData.fGpuTempPercent / 100.;
 					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
-						myData.bAlerted = FALSE; //On réinitialise l'alerte quand la température descend en dessou de la limite.
+						myData.bAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessou de la limite.
 					
 					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
 						cd_nvidia_alert (myApplet);

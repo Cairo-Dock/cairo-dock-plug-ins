@@ -57,6 +57,13 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
+	if (g_bEasterEggs && myConfig.bCompactView)
+	{
+		cairo_dock_register_notification_on_container (myContainer,
+			CAIRO_DOCK_MOUSE_MOVED,
+			(CairoDockNotificationFunc) on_mouse_moved,
+			CAIRO_DOCK_RUN_AFTER, myApplet);
+	}
 	
 	cd_switcher_update_from_screen_geometry ();
 	
@@ -95,6 +102,8 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) on_window_configured, myApplet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window, myApplet);
+	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_MOUSE_MOVED,
+		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
 CD_APPLET_STOP_END
 
 
@@ -126,6 +135,16 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (g_bEasterEggs && (CD_APPLET_MY_CONTAINER_TYPE_CHANGED || ! myConfig.bCompactView))
+		{
+			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
+				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+			if (myConfig.bCompactView)
+				cairo_dock_register_notification_on_container (myContainer,
+					CAIRO_DOCK_MOUSE_MOVED,
+					(CairoDockNotificationFunc) on_mouse_moved,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
 		if (myConfig.bDisplayNumDesk)
 		{
 			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);

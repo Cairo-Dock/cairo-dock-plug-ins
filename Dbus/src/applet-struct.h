@@ -42,31 +42,39 @@ struct _AppletConfig {
 	} ;
 
 
-typedef struct
-{
+typedef struct _dbusMainObject dbusMainObject;
+typedef struct _dbusApplet dbusApplet;
+typedef struct _dbusSubApplet dbusSubApplet;
+
+struct _dbusMainObject {
 	GObject parent;
 	DBusGConnection *connection;
-} dbusMainObject;
-
-typedef struct
-{
+};
+typedef struct {
 	GObjectClass parent_class;
 } dbusMainObjectClass;
 
 
-typedef struct
-{
+struct _dbusApplet {
 	GObject parent;
 	DBusGConnection *connection;
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
-} dbusApplet;
-
-typedef struct
-{
+	dbusSubApplet *pSubApplet;
+};
+typedef struct {
 	GObjectClass parent_class;
 } dbusAppletClass;
+
+
+struct _dbusSubApplet {
+	GObject parent;
+	dbusApplet *pApplet;
+};
+typedef struct {
+	GObjectClass parent_class;
+} dbusSubAppletClass;
 
 
 typedef enum {
@@ -88,7 +96,7 @@ struct _AppletData {
 	GList *pAppletList;
 	GtkWidget *pModuleSubMenu;
 	Icon *pCurrentMenuIcon;
-	gpointer pCurrentMenuDbusApplet;
+	dbusApplet *pCurrentMenuDbusApplet;
 	gchar *cActiveModules;
 	gboolean bServiceIsStopping;
 	} ;
