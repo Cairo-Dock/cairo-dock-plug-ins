@@ -86,6 +86,11 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 		pDock->pRendererData = GINT_TO_POINTER (1);
 		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	}
+	
+	if (g_bEasterEggs)
+	{
+		pDock->iMinDockWidth = pDock->fFlatDockWidth/2;
+	}
 }
 
 

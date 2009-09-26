@@ -241,6 +241,17 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
 	}
 	else { // on redessine juste l'icone.
-		cd_musicplayer_update_icon (FALSE);
+		cd_musicplayer_update_icon (FALSE);  // FALSE pour ne pas avoir 2 fois le dialogue.
+		if (! myData.cover_exist)
+		{
+			if(myData.iPlayingStatus == PLAYER_PLAYING)
+			{
+				cd_musicplayer_set_surface (PLAYER_PLAYING);
+			}
+			else
+			{
+				cd_musicplayer_set_surface (PLAYER_PAUSED);
+			}
+		}
 	}
 CD_APPLET_RELOAD_END

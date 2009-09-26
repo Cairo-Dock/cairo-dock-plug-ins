@@ -125,7 +125,7 @@ void rendering_load_icons_for_tree (CairoDesklet *pDesklet, cairo_t *pSourceCont
 
 
 
-void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	cd_message ("");

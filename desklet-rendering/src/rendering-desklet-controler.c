@@ -198,7 +198,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 //
 //
 
-void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)

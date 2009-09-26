@@ -136,7 +136,7 @@ void rendering_load_icons_for_slide (CairoDesklet *pDesklet, cairo_t *pSourceCon
 
 
 
-void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	//g_print ("%s(%x)\n", __func__, pSlide);

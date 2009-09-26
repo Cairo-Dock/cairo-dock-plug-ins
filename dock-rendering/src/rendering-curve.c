@@ -114,14 +114,19 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 		pDock->iMinDockWidth = pDock->fFlatDockWidth / (1 - 2 * xi) + 2 * fDeltaTip;
 	}
 	
-	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
-	
 	// input shape
 	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;
 	pDock->inputArea.height = pDock->iMinDockHeight;
+	
+	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+	
+	if (g_bEasterEggs)
+	{
+		pDock->iMinDockWidth = pDock->fFlatDockWidth;
+	}
 }
 
 

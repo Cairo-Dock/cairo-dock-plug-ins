@@ -62,7 +62,7 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 
 void rendering_load_mediaplayer_data (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
-void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
+void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 void rendering_register_mediaplayer_desklet_renderer (void);
 

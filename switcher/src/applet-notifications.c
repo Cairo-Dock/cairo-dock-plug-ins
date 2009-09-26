@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gstdio.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
@@ -293,32 +294,92 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEven
 
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
-	if (myDock && ! myIcon->bPointed)
+	if (! myIcon->bPointed || ! pContainer->bInside)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	int x = pContainer->iMouseX - myIcon->fDrawX;
-	int y = pContainer->iMouseY - myIcon->fDrawY;
-	if (!pContainer->bIsHorizontal)
-	{
-		int tmp = x;
-		x = y;
-		y = tmp;
-	}
 	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
-	
-	
-	if (iIndex < myConfig.iNbNames)
+	if (iIndex != myData.iPrevIndexHovered)
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDesktopNames[iIndex]);
+		myData.iPrevIndexHovered = iIndex;
+		myData.fDesktopNameAlpha = 0.;
+		if (iIndex < myConfig.iNbNames)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDesktopNames[iIndex]);
+		}
+		else
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s %d", D_("Desktop"), iIndex+1);
+		}
+		if (myDock)
+			CAIRO_DOCK_REDRAW_MY_CONTAINER;
+		else
+			*bStartAnimation = TRUE;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	if (! myIcon->bPointed || ! pContainer->bInside)
+	{
+		myData.fDesktopNameAlpha -= .07;
+		if (myData.fDesktopNameAlpha < .01)
+			myData.fDesktopNameAlpha = 0;
+		if (myData.fDesktopNameAlpha != 0)
+			*bContinueAnimation = TRUE;
 	}
 	else
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s %d", D_("Desktop"), iIndex+1);
+		myData.fDesktopNameAlpha += .07;
+		if (myData.fDesktopNameAlpha > .99)
+			myData.fDesktopNameAlpha = 1;
+		if (myData.fDesktopNameAlpha != 1)
+			*bContinueAnimation = TRUE;
 	}
 	CAIRO_DOCK_REDRAW_MY_CONTAINER;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+{
+	int x, y;  // centre du texte.
+	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;
+	y = myIcon->fDrawY + myIcon->fHeight * myIcon->fScale / 2;
+	if (x - myIcon->iTextWidth/2 < 0)
+	{
+		x -= myIcon->iTextWidth/2;
+	}
+	if (pCairoContext != NULL)
+	{
+		if (myIcon->pTextBuffer == NULL)
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		cairo_save (pCairoContext);
+		cairo_translate (pCairoContext, x, y);
+		cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
+		cairo_paint_with_alpha (pCairoContext, myData.fDesktopNameAlpha);
+		cairo_restore (pCairoContext);
+	}
+	else
+	{
+		if (myIcon->iLabelTexture == 0)
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		glPushMatrix ();
+		if (myDesklet)
+			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
+		glTranslatef (x, y, 0);
+		cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);
+		glPopMatrix ();
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	*bStartAnimation = TRUE;
+	myData.iPrevIndexHovered = -1;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

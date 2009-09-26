@@ -44,7 +44,7 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 }
 
 
-void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.

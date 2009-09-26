@@ -358,7 +358,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
 	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
 			icon->fDrawX -= (icon->fDrawX - pDock->container.iWidth/2) * fFoldingX;
-			icon->fDrawY = icon->fDrawY + ((pDock->container.bDirectionUp ? pDock->container.iHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * fFoldingY;
+			icon->fDrawY = icon->fDrawY + ((pDock->container.bDirectionUp ? pDock->container.iHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * fFoldingY - myLabels.iLabelSize;
 			icon->fAlpha = (pDock->fFoldingFactor > .8 ? (1 - pDock->fFoldingFactor) / .2 : 1.);  // apparition de 1 a 0.8
 			
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :

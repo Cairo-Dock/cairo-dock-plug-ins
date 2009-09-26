@@ -120,6 +120,11 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	// on charge les separateurs plat.
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+	
+	if (g_bEasterEggs)
+	{
+		pDock->iMinDockWidth = pDock->fFlatDockWidth;
+	}
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)

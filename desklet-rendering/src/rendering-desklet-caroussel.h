@@ -52,7 +52,7 @@ void rendering_free_caroussel_data (CairoDesklet *pDesklet);
 void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 
-void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
+void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 void rendering_register_caroussel_desklet_renderer (void);
 

@@ -78,7 +78,11 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
 	myData.cCoverPath = NULL;
 	myData.bCoverNeedsTest = FALSE;
-	
+	if (myData.cArtist == NULL || myData.cAlbum == NULL)
+	{
+		myData.cover_exist = FALSE;
+		return ;
+	}
 	if (cGivenCoverPath != NULL)  // le lecteur nous donne une adresse, eventuellement distante.
 	{
 		const gchar *cString = cGivenCoverPath;

@@ -53,7 +53,7 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_AFTER, myApplet);/*Notifier d'un changement de bureau*/
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_CONFIGURED,
 		(CairoDockNotificationFunc) on_window_configured,
-		CAIRO_DOCK_RUN_AFTER, myApplet);	
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
@@ -63,6 +63,21 @@ CD_APPLET_INIT_BEGIN
 			CAIRO_DOCK_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved,
 			CAIRO_DOCK_RUN_AFTER, myApplet);
+		if (myDesklet)
+		{
+			cairo_dock_register_notification_on_container (myContainer,
+				CAIRO_DOCK_RENDER_DESKLET,
+				(CairoDockNotificationFunc) on_render_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification_on_container (myContainer,
+				CAIRO_DOCK_UPDATE_DESKLET,
+				(CairoDockNotificationFunc) on_update_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification_on_container (myContainer,
+				CAIRO_DOCK_LEAVE_DESKLET,
+				(CairoDockNotificationFunc) on_leave_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
 	}
 	
 	cd_switcher_update_from_screen_geometry ();
@@ -104,6 +119,12 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) on_change_active_window, myApplet);
 	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_MOUSE_MOVED,
 		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_RENDER_DESKLET,
+		(CairoDockNotificationFunc) on_render_desklet, myApplet);
+	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_UPDATE_DESKLET,
+		(CairoDockNotificationFunc) on_update_desklet, myApplet);
+	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_LEAVE_DESKLET,
+		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
 CD_APPLET_STOP_END
 
 
@@ -126,24 +147,40 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 		}
 	}
-	///else if (myIcon->cName == NULL || *myIcon->cName == '\0')  // il faut un nom en cas de sous-dock.
-	///	myIcon->cName = g_strdup (SWITCHER_DEFAULT_NAME);  // l'afficher ne nous interesse pas.
-	
 	cd_switcher_compute_nb_lines_and_columns ();
 	
 	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (g_bEasterEggs && (CD_APPLET_MY_CONTAINER_TYPE_CHANGED || ! myConfig.bCompactView))
+		if (g_bEasterEggs && (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView))
 		{
 			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_RENDER_DESKLET,
+				(CairoDockNotificationFunc) on_render_desklet, myApplet);
 			if (myConfig.bCompactView)
+			{
 				cairo_dock_register_notification_on_container (myContainer,
 					CAIRO_DOCK_MOUSE_MOVED,
 					(CairoDockNotificationFunc) on_mouse_moved,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
+				if (myDesklet)
+				{
+					cairo_dock_register_notification_on_container (myContainer,
+						CAIRO_DOCK_RENDER_DESKLET,
+						(CairoDockNotificationFunc) on_render_desklet,
+						CAIRO_DOCK_RUN_AFTER, myApplet);
+					cairo_dock_register_notification_on_container (myContainer,
+						CAIRO_DOCK_UPDATE_DESKLET,
+						(CairoDockNotificationFunc) on_update_desklet,
+						CAIRO_DOCK_RUN_AFTER, myApplet);
+					cairo_dock_register_notification_on_container (myContainer,
+						CAIRO_DOCK_LEAVE_DESKLET,
+						(CairoDockNotificationFunc) on_leave_desklet,
+						CAIRO_DOCK_RUN_AFTER, myApplet);
+				}
+			}
 		}
 		if (myConfig.bDisplayNumDesk)
 		{

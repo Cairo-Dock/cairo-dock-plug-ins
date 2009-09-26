@@ -170,7 +170,7 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 }
 
 
-void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized)
+void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDMediaplayerParameters *pMediaplayer = (CDMediaplayerParameters *) pDesklet->pRendererData;
 	Icon *pIcon;

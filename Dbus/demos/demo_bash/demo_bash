@@ -52,9 +52,9 @@ applet_iface = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")
 ### init ###
 def init():
 	# register to the notifications on our applet
-	applet_iface.connect_to_signal("on_click_icon", action_on_click)
-	applet_iface.connect_to_signal("on_middle_click_icon", action_on_middle_click)
-	applet_iface.connect_to_signal("on_scroll_icon", action_on_scroll_icon)
+	applet_iface.connect_to_signal("on_click", action_on_click)
+	applet_iface.connect_to_signal("on_middle_click", action_on_middle_click)
+	applet_iface.connect_to_signal("on_scroll", action_on_scroll_icon)
 	applet_iface.connect_to_signal("on_drop_data", action_on_drop_data)
 	applet_iface.connect_to_signal("on_init_module", action_on_init)
 	applet_iface.connect_to_signal("on_stop_module", action_on_stop)

@@ -127,6 +127,7 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 			_cd_switcher_get_best_agencement (g_iNbViewportX, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
 		}
 	}
+	myData.iPrevIndexHovered = -1;  // cela invalide le dernier bureau survole.
 }
 
 

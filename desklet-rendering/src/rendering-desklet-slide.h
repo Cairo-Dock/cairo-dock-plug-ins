@@ -47,7 +47,7 @@ void rendering_free_slide_data (CairoDesklet *pDesklet);
 void rendering_load_icons_for_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext);
 
 
-void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet, gboolean bRenderOptimized);
+void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 void rendering_register_slide_desklet_renderer (void);
 

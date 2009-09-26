@@ -98,13 +98,27 @@ void cd_illusion_update_lightning (Icon *pIcon, CairoDock *pDock, CDIllusionData
 
 void cd_illusion_draw_lightning_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
-	pIcon->fAlpha = pData->fLightningAlpha;
-	cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDock));
+	//pIcon->fAlpha = pData->fLightningAlpha;
+	//cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDock));
+	_cairo_dock_enable_texture ();
+	_cairo_dock_set_alpha (pIcon->fAlpha);
+	_cairo_dock_set_blend_over ();
+	
+	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	
+	double fSizeX, fSizeY;
+	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
+	double f = pData->fLightningAlpha;
+	 _cairo_dock_apply_current_texture_portion_at_size_with_offset(0, 0,
+	 	1, f,
+	 	fSizeX, f * fSizeY,
+	 	0, 0);
+	
+	_cairo_dock_disable_texture ();
+	
 	
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &iWidth, &iHeight);
-	double fSizeX, fSizeY;
-	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
 	
 	glPushMatrix ();
 	glTranslatef (0., - fSizeY/2, 0.);  // en bas au milieu.
