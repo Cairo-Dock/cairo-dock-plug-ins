@@ -175,7 +175,17 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			//Affichage de la chanson courante sur l'etiquette.
 			if (myDock)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s - %s", myData.cArtist ? myData.cArtist : "?", myData.cTitle ? myData.cTitle : "?");
+				if ((!myData.cArtist || !myData.cTitle) && myData.cPlayingUri)
+				{
+					gchar *str = strrchr (myData.cPlayingUri, '/');
+					if (str)
+						str ++;
+					else
+						str = myData.cPlayingUri;
+					CD_APPLET_SET_NAME_FOR_MY_ICON (str);
+				}
+				else
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s - %s", myData.cArtist ? myData.cArtist : D_("Unknown artist"), myData.cTitle ? myData.cTitle : D_("Unknown title"));
 			}
 			
 			//Affichage de l'info-rapide.

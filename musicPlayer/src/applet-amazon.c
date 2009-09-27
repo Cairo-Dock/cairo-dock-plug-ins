@@ -24,12 +24,118 @@
 #include "applet-amazon.h"
 #include "applet-struct.h"
 
-#define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
+//#define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
+#define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"
 #define AMAZON_API_URL_1 "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId="
 #define AMAZON_API_URL_2 "&AssociateTag=webservices-20&ResponseGroup=Images,ItemAttributes&Operation=ItemSearch&ItemSearch.Shared.SearchIndex=Music"
+/*
+ * For the detailed example we'll use a typical ItemLookup request:
+
+http://webservices.amazon.com/onca/xml?Service=AWSECommerceServic
+e&AWSAccessKeyId=00000000000000000000&Operation=ItemLookup&ItemId
+=0679722769&ResponseGroup=ItemAttributes,Offers,Images,Reviews&Ve
+rsion=2009-01-06 
+
+Steps to Sign the Example Request
+
+   1.
+
+      Enter the timestamp. For this example, we'll use GMT time of 2009-01-01T12:00:00Z
+
+      http://webservices.amazon.com/onca/xml?Service=AWSECommerceServic
+      e&AWSAccessKeyId=00000000000000000000&Operation=ItemLookup&ItemId
+      =0679722769&ResponseGroup=ItemAttributes,Offers,Images,Reviews&Ve
+      rsion=2009-01-06&Timestamp=2009-01-01T12:00:00Z
+
+   2.
+
+      URL encode the request's comma (,) and colon (;) characters, so that they don't get misinterpreted. For more information about converting to RFC 3986 specifications, see documentation and code samples for your programming language.
+
+      http://webservices.amazon.com/onca/xml?Service=AWSECommerceServic
+      e&AWSAccessKeyId=00000000000000000000&Operation=ItemLookup&ItemId
+      =0679722769&ResponseGroup=ItemAttributes%2COffers%2CImages%2CRevi
+      ews&Version=2009-01-06&Timestamp=2009-01-01T12%3A00%3A00Z
+
+      [Important]	Important
+
+      Be sure that you do not double-escape any characters.
+   3.
+
+      Split the parameter/value pairs and delete the ampersand characters (&) so that the example looks like the following:
+
+      Service=AWSECommerceService
+      AWSAccessKeyId=00000000000000000000
+      Operation=ItemLookup
+      ItemId=0679722769
+      ResponseGroup=ItemAttributes%2COffers%2CImages%2CReviews
+      Version=2009-01-06
+      Timestamp=2009-01-01T12%3A00%3A00Z
+
+   4.
+
+      Sort your parameter/value pairs by byte value (not alphabetically, lowercase parameters will be listed after uppercase ones).
+
+      AWSAccessKeyId=00000000000000000000
+      ItemId=0679722769
+      Operation=ItemLookup
+      ResponseGroup=ItemAttributes%2COffers%2CImages%2CReviews
+      Service=AWSECommerceService
+      Timestamp=2009-01-01T12%3A00%3A00Z
+      Version=2009-01-06
+
+   5.
+
+      Rejoin the sorted parameter/value list with ampersands. The result is the canonical string that we'll sign:
+
+      AWSAccessKeyId=00000000000000000000&ItemId=0679722769&Operation=I
+      temLookup&ResponseGroup=ItemAttributes%2COffers%2CImages%2CReview
+      s&Service=AWSECommerceService&Timestamp=2009-01-01T12%3A00%3A00Z&
+      Version=2009-01-06
+
+   6.
+
+      Prepend the following three lines (with line breaks) before the canonical string:
+
+      GET
+      webservices.amazon.com
+      /onca/xml
+
+   7.
+
+      The string to sign:
+
+      GET
+      webservices.amazon.com
+      /onca/xml
+      AWSAccessKeyId=00000000000000000000&ItemId=0679722769&Operation=I
+      temLookup&ResponseGroup=ItemAttributes%2COffers%2CImages%2CReview
+      s&Service=AWSECommerceService&Timestamp=2009-01-01T12%3A00%3A00Z&
+      Version=2009-01-06
+
+   8.
+
+      Calculate an RFC 2104-compliant HMAC with the SHA256 hash algorithm using the string above with our "dummy" Secret Access Key: 1234567890. For more information about this step, see documentation and code samples for your programming language.
+
+      Nace+U3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg=
+
+   9.
+
+      URL encode the plus (+) and equal (=) characters in the signature:
+
+      Nace%2BU3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg%3D
+
+  10.
+
+      Add the URL encoded signature to your request and the result is a properly-formatted signed request:
+
+      http://webservices.amazon.com/onca/xml?AWSAccessKeyId=00000000000
+      000000000&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=It
+      emAttributes%2COffers%2CImages%2CReviews&Service=AWSECommerceServ
+      ice&Timestamp=2009-01-01T12%3A00%3A00Z&Version=2009-01-06&Signatu
+      re=Nace%2BU3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg%3D
+*/
 
 //static gchar *TAB_IMAGE_SIZES[2] = {"MediumImage", "LargeImage"};
-
 
 /**
  * Parse le fichier XML passé en argument

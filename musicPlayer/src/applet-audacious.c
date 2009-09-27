@@ -580,7 +580,7 @@ static void cd_audacious_read_data (void)
 		{
 			myData.iCurrentTime = 0;
 		}
-		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
+		cd_message (" myData.iCurrentTime <- %d", myData.iCurrentTime);
 	}
 }
 
