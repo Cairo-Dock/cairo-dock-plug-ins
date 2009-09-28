@@ -560,7 +560,7 @@ AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
 TOMBOY_PACKAGE="cd-tomboy"
 AC_SUBST(GETTEXT_TOMBOY, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_TOMBOY, "1.1.0")
+AC_SUBST(VERSION_TOMBOY, "1.2.0")
 AC_SUBST(PACKAGE_TOMBOY, "$TOMBOY_PACKAGE")
 
 AC_SUBST(tomboydatadir, "${pkgdatadir}/tomboy")
