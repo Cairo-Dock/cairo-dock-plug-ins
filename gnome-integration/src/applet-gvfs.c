@@ -292,6 +292,11 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	{
 		if (*cBaseURI == '/')
 			cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
+		else if (*cBaseURI == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
+		{
+			cd_warning ("invalid URI (%s), skip it", cBaseURI);
+			return;
+		}
 		else
 			cFullURI = g_strdup (cBaseURI);
 	}
@@ -426,7 +431,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	
 	//*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE);
 	//cd_message ("ID : %d\n", *iVolumeID);
-	//g_object_unref (pFileInfo);
+	g_object_unref (pFileInfo);
 }
 
 static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)

@@ -40,7 +40,7 @@ Steps to Sign the Example Request
 
    1.
 
-      Enter the timestamp. For this example, we'll use GMT time of 2009-01-01T12:00:00Z
+      Enter the timestamp. For this example, we'll use GMT time of 2009-01-01T12:00:00Z (%F%T%z)
 
       http://webservices.amazon.com/onca/xml?Service=AWSECommerceServic
       e&AWSAccessKeyId=00000000000000000000&Operation=ItemLookup&ItemId

@@ -253,6 +253,7 @@ static gboolean _check_xml_file (gpointer data)
 	}
 	else  // on continue a tester.
 	{
+		myData.iNbCheckFile ++;
 		if (myData.iNbCheckFile > 12)  // on abandonne au bout de 3s.
 		{
 			g_print ("on abandonne le XML\n");
