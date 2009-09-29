@@ -71,18 +71,22 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 		double h = myIcon->fHeight * myIcon->fScale - 2 * myData.switcher.fOffsetY;
 		iMouseX -= myData.switcher.fOffsetX;
 		iMouseY -= myData.switcher.fOffsetY;
-		if (iMouseX < 0)
+		
+		if (iMouseX < 0 || iMouseX > w || iMouseY < 0 || iMouseY > h)
+			return FALSE;
+		/**if (iMouseX < 0)
 			iMouseX = 0;
 		if (iMouseY < 0)
 			iMouseY = 0;
 		if (iMouseX > w)
 			iMouseX = w;
 		if (iMouseY > h)
-			iMouseY = h;
+			iMouseY = h;*/
 		
 		int iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
 		int iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, iNumDesktop, iNumViewportX, iNumViewportY);
+		g_print ("(%d;%d) --> (%d;%d;%d)\n", iNumLine, iNumColumn, *iNumDesktop, *iNumViewportX, *iNumViewportY);
 		return TRUE;
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)

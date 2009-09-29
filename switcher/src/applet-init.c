@@ -91,7 +91,7 @@ CD_APPLET_INIT_BEGIN
 	
 	//\___________________ Dans le cas ou l'applet demarre au chargement de la session, le nombre de bureaux peut etre incorrect.
 	if (cairo_dock_is_loading ())
-		myData.iSidAutoRefresh = g_timeout_add_seconds (2, cd_switcher_refresh_desktop_values, myApplet);
+		myData.iSidAutoRefresh = g_timeout_add_seconds (2, (GSourceFunc) cd_switcher_refresh_desktop_values, myApplet);
 CD_APPLET_INIT_END
 
 

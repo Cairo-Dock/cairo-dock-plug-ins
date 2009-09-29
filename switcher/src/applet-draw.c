@@ -281,9 +281,13 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			iNumViewportX ++;
 			if (iNumViewportX == g_iNbViewportX)
 			{
+				iNumViewportX = 0;
 				iNumViewportY ++;
 				if (iNumViewportY == g_iNbViewportY)
+				{
+					iNumViewportY = 0;
 					iNumDesktop ++;
+				}
 			}
 			k ++;
 			if (k == N)
@@ -493,6 +497,17 @@ static void _show_window (GtkMenuItem *menu_item, Icon *pIcon)
 {
 	cairo_dock_show_xwindow (pIcon->Xid);
 }
+
+static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
+{
+	int iIndex = GPOINTER_TO_INT (data);
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	if (iNumDesktop != myData.switcher.iCurrentDesktop)
+		cairo_dock_set_current_desktop (iNumDesktop);
+	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
+		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+}
 static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
 {
 	g_print (" + %s\n", pIcon->cName);
@@ -584,6 +599,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			// on ajoute le nom du bureau/viewport dans le menu.
 			GtkWidget *pMenuItem = gtk_separator_menu_item_new ();
 			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);
+			g_object_set (pMenuItem, "height-request", 3, NULL);
 			
 			if (k < myConfig.iNbNames)
 			{
@@ -605,9 +621,11 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			gtk_misc_set_alignment (GTK_MISC (pLabel), .5, .5);
 			gtk_container_add (GTK_CONTAINER (pMenuItem), pLabel);
 			gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));
 			
 			pMenuItem = gtk_separator_menu_item_new ();
 			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);
+			g_object_set (pMenuItem, "height-request", 3, NULL);
 			
 			// on ajoute les fenetres du viewport au menu.
 			g_print (" listing des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
@@ -621,9 +639,13 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			iNumViewportX ++;
 			if (iNumViewportX == g_iNbViewportX)
 			{
+				iNumViewportX = 0;
 				iNumViewportY ++;
 				if (iNumViewportY == g_iNbViewportY)
+				{
+					iNumViewportY = 0;
 					iNumDesktop ++;
+				}
 			}
 			k ++;
 			if (k == N)

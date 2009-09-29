@@ -31,7 +31,7 @@
 
 #define CD_WEATHER_BASE_URL "http://xml.weather.com"
 
-gchar *cd_weather_get_location_data (gchar *cLocation)
+gchar *cd_weather_get_location_data (const gchar *cLocation)
 {
 	gchar *cLocationFilePath = g_strdup ("/tmp/weather-location.XXXXXX");
 	int fds = mkstemp (cLocationFilePath);
@@ -49,7 +49,7 @@ gchar *cd_weather_get_location_data (gchar *cLocation)
 }
 
 
-static xmlDocPtr _cd_weather_open_xml_file (gchar *cDataFilePath, xmlNodePtr *root_node, gchar *cRootNodeName, GError **erreur)
+static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
 	if (cairo_dock_get_file_size (cDataFilePath) == 0)
 	{
@@ -81,7 +81,7 @@ static void _cd_weather_close_xml_file (xmlDocPtr doc)
 }
 
 
-GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
+GList *cd_weather_parse_location_data (const gchar *cDataFilePath, GError **erreur)
 {
 	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
@@ -110,7 +110,7 @@ GList *cd_weather_parse_location_data (gchar *cDataFilePath, GError **erreur)
 }
 
 
-static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
+static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
 {
 	cd_message ("%s (%s)", __func__, cDataFilePath);
 	

@@ -164,9 +164,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);*/
 	
 	
-	my_diapo_simple_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    20, NULL, NULL);
-	my_diapo_simple_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapY",             &bFlushConfFileNeeded,    30, NULL, NULL);
-	my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.5, NULL, NULL);
+	my_diapo_simple_iconGapX             = MIN (30, cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapX",             &bFlushConfFileNeeded,    50, NULL, NULL));
+	my_diapo_simple_iconGapY             = MIN (30, cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_iconGapY",             &bFlushConfFileNeeded,    50, NULL, NULL));
+	my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "SimpleSlide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.0, NULL, NULL);
 	my_diapo_simple_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_sinW",                 &bFlushConfFileNeeded,   200, NULL, NULL);
 	my_diapo_simple_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_diapo_simple_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);

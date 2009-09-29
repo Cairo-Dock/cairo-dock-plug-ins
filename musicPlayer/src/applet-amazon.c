@@ -21,6 +21,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 #include "applet-amazon.h"
 #include "applet-struct.h"
 
@@ -134,8 +135,136 @@ Steps to Sign the Example Request
       ice&Timestamp=2009-01-01T12%3A00%3A00Z&Version=2009-01-06&Signatu
       re=Nace%2BU3Az4OhN7tISqgs1vdLBHBEijWcBeCqL5xN9xg%3D
 */
+#define BASE_URL "http://webservices.amazon.com/onca/xml?"
+#define HEADER "GET\nwebservices.amazon.com\n/onca/xml\n"
+#define REQUEST "Artist=%s&AssociateTag=webservices-20&AWSAccessKeyId=%s&ItemSearch.Shared.SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=Images,ItemAttributes&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
 
 //static gchar *TAB_IMAGE_SIZES[2] = {"MediumImage", "LargeImage"};
+
+#if 0
+void
+hmac_md5 (unsigned char *text, int text_len, unsigned char* key, int key_len)
+{
+        
+        MD5_CTX context;
+        unsigned char k_ipad[65];    /* inner padding -
+                                      * key XORd with ipad
+                                      */
+        unsigned char k_opad[65];    /* outer padding -
+                                      * key XORd with opad
+                                      */
+        unsigned char tk[16];
+        int i;
+        /* if key is longer than 64 bytes reset it to key=MD5(key) */
+        if (key_len > 64) {
+
+                MD5_CTX      tctx;
+
+                MD5Init(&tctx);
+                MD5Update(&tctx, key, key_len);
+                MD5Final(tk, &tctx);
+
+                key = tk;
+                key_len = 16;
+        }
+
+        /*
+         * the HMAC_MD5 transform looks like:
+         *
+         * MD5(K XOR opad, MD5(K XOR ipad, text))
+         *
+         * where K is an n byte key
+         * ipad is the byte 0x36 repeated 64 times
+
+         * opad is the byte 0x5c repeated 64 times
+         * and text is the data being protected
+         */
+
+        /* start out by storing key in pads */
+        bzero( k_ipad, sizeof k_ipad);
+        bzero( k_opad, sizeof k_opad);
+        bcopy( key, k_ipad, key_len);
+        bcopy( key, k_opad, key_len);
+
+        /* XOR key with ipad and opad values */
+        for (i=0; i<64; i++) {
+                k_ipad[i] ^= 0x36;
+                k_opad[i] ^= 0x5c;
+        }
+        /*
+         * perform inner MD5
+         */
+        MD5Init(&context);                   /* init context for 1st
+                                              * pass */
+        MD5Update(&context, k_ipad, 64)      /* start with inner pad */
+        MD5Update(&context, text, text_len); /* then text of datagram */
+        MD5Final(digest, &context);          /* finish up 1st pass */
+        /*
+         * perform outer MD5
+         */
+        MD5Init(&context);                   /* init context for 2nd
+                                              * pass */
+        MD5Update(&context, k_opad, 64);     /* start with outer pad */
+        MD5Update(&context, digest, 16);     /* then results of 1st
+                                              * hash */
+        MD5Final(digest, &context);          /* finish up 2nd pass */
+}
+#endif							
+
+char * _url_encode (const char * str)
+{
+	const char * s = str;
+	char * t = NULL;
+	char * ret;
+	char * validChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:/.?=_-$(){}~&";
+	char * isValidChar;
+	int lenght = 0;
+	// calcul de la taille de la chaine urlEncodée
+	do{
+		isValidChar = strchr(validChars, *s); // caractère valide?
+		if(!isValidChar)
+			lenght+=3; // %xx : 3 caractères
+		else
+			lenght++;  // sinon un seul
+	}while(*++s); // avance d'un cran dans la chaine. Si on est pas à la fin, on continue...
+	s = str;
+	t = g_new (gchar, lenght + 1); // Allocation à la bonne taille
+	ret = t;
+	//encodage
+	do{
+		isValidChar = strchr(validChars, *s);
+		if(!isValidChar)
+			sprintf(t, "%%%2X", *s), t+=3;
+		else
+			sprintf(t, "%c", *s), t++;
+	}while(*++s);
+	*t = 0; // 0 final
+	return ret;
+}
+
+gchar *_compute_signature (const gchar *cArtist, const gchar *cKeyWords)
+{
+	time_t t = time (NULL);  // %F%T%z
+	struct tm currentTime;
+	localtime_r (&t, &currentTime);
+	gchar cTimeStamp[50+1];
+	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
+	g_print ("timestamp : %s\n", cTimeStamp);
+	
+	gchar *cRequest = g_strdup_printf (REQUEST, cArtist, LICENCE_KEY, cKeyWords, cTimeStamp);
+	
+	gchar *cEncodedRequest = _url_encode (cRequest);
+	g_free (cRequest);
+	
+	
+	gchar *cBuffer = g_strconcat (HEADER, cEncodedRequest, NULL);
+	g_free (cEncodedRequest);
+	
+	gchar *cSignature = g_compute_checksum_for_string (G_CHECKSUM_SHA256, cBuffer, -1);
+	g_free (cBuffer);
+	
+	
+}
 
 /**
  * Parse le fichier XML passÃ© en argument

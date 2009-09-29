@@ -572,7 +572,11 @@ void cd_mpris_read_data (void)
 		if (myData.bIsRunning)
 		{
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
+			{
 				cd_mpris_get_time_elapsed ();
+				if (myData.iCurrentTime < 0)
+					myData.iPlayingStatus = PLAYER_STOPPED;
+			}
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 				myData.iCurrentTime = 0;
 		}
