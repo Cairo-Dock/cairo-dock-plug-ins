@@ -1,6 +1,6 @@
 #!en;@VERSION_CAIRO_PENGUIN@
 
-#[gtk-preferences]
+#[gtk-about]
 [Icon]
 #j+[0;128] Icon size when the penguin is not free :
 #{Set to 0 to use the default applet size}
@@ -17,7 +17,6 @@ order =
 
 #[gtk-preferences]
 [Configuration]
-
 #h+[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@;Cairo-Penguin] Choose one of the available themes :/
 theme = Classic
 
