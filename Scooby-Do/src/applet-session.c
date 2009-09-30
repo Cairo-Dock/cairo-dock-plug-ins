@@ -73,7 +73,7 @@ void cd_do_open_session (void)
 	
 	// le main dock prend le focus.
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
-	gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
+	gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
 	cairo_dock_freeze_docks (TRUE);
 	
 	// On lance l'animation d'attente.
@@ -220,7 +220,7 @@ void cd_do_load_pending_caracters (void)
 		pChar = g_new0 (CDChar, 1);
 		pChar->c = c[0];
 		pChar->iInitialX = myData.iTextWidth/2 + iOffsetX;  // il part du coin haut droit.
-		pChar->iInitialY = g_pMainDock->iHeight/2;  // en bas.
+		pChar->iInitialY = g_pMainDock->container.iHeight/2;  // en bas.
 		pChar->iCurrentX = pChar->iInitialX;
 		pChar->iCurrentY = pChar->iInitialY;
 		pChar->fRotationAngle = 10. * myConfig.iAppearanceDuration / iDeltaT;
@@ -229,7 +229,7 @@ void cd_do_load_pending_caracters (void)
 		
 		// on cree la surface.
 		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, &pChar->iWidth, &pChar->iHeight);
-		if (g_pMainDock->bIsHorizontal)
+		if (g_pMainDock->container.bIsHorizontal)
 		{
 			myData.iTextWidth += pChar->iWidth;
 			iOffsetX += pChar->iWidth;

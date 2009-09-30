@@ -346,7 +346,7 @@ static void _cd_do_move_file (CDEntry *pEntry)
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
 	GtkWidget* pFileChooserDialog = gtk_file_chooser_dialog_new (
 		D_("Pick up a directory"),
-		GTK_WINDOW (g_pMainDock->pWidget),
+		GTK_WINDOW (g_pMainDock->container.pWidget),
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
 		GTK_STOCK_OK,
 		GTK_RESPONSE_OK,

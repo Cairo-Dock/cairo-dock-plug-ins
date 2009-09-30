@@ -170,7 +170,7 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 static void _check_is_dock (gchar *cDockName, CairoDock *pDock, gpointer *data)
 {
 	Window xActiveWindow = GPOINTER_TO_INT (data[0]);
-	if (GDK_WINDOW_XID (pDock->pWidget->window) == xActiveWindow)
+	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
 		data[1] = GINT_TO_POINTER (1);
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
@@ -181,7 +181,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 	cairo_dock_foreach_docks ((GHFunc) _check_is_dock, data);
 	
 	if (data[1] == 0)
-		gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
+		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -193,8 +193,8 @@ static void _place_menu (GtkMenu *menu,
 	gpointer user_data)
 {
 	/// gerer les docks verticaux ...
-	*x = myData.pCurrentDock->iWindowPositionX + myData.pCurrentDock->iMouseX;
-	*y = myData.pCurrentDock->iWindowPositionY;
+	*x = myData.pCurrentDock->container.iWindowPositionX + myData.pCurrentDock->container.iMouseX;
+	*y = myData.pCurrentDock->container.iWindowPositionY;
 	*push_in = TRUE;
 }
 

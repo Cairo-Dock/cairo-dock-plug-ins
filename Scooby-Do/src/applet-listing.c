@@ -180,15 +180,15 @@ static gboolean on_key_press_listing (GtkWidget *pWidget, GdkEventKey *pKey, CDL
 static inline void _place_listing (CDListing *pListing)
 {
 	int iX, iY;
-	if (g_pMainDock->bIsHorizontal)
+	if (g_pMainDock->container.bIsHorizontal)
 	{
-		iX = g_pMainDock->iWindowPositionX + g_pMainDock->iWidth/2 - pListing->container.iWidth/2;
-		iY = g_pMainDock->iWindowPositionY + (g_pMainDock->bDirectionUp ? - pListing->container.iHeight : g_pMainDock->iHeight);
+		iX = g_pMainDock->container.iWindowPositionX + g_pMainDock->container.iWidth/2 - pListing->container.iWidth/2;
+		iY = g_pMainDock->container.iWindowPositionY + (g_pMainDock->container.bDirectionUp ? - pListing->container.iHeight : g_pMainDock->container.iHeight);
 	}
 	else
 	{
-		iX = g_pMainDock->iWindowPositionY + (g_pMainDock->bDirectionUp ? - pListing->container.iWidth : g_pMainDock->iHeight);
-		iY = g_pMainDock->iWindowPositionX + g_pMainDock->iWidth/2 - pListing->container.iHeight/2;
+		iX = g_pMainDock->container.iWindowPositionY + (g_pMainDock->container.bDirectionUp ? - pListing->container.iWidth : g_pMainDock->container.iHeight);
+		iY = g_pMainDock->container.iWindowPositionX + g_pMainDock->container.iWidth/2 - pListing->container.iHeight/2;
 	}
 	g_print ("(%d;%d) %dx%d\n", iX, iY, pListing->container.iWidth, pListing->container.iHeight);
 	gtk_window_move (GTK_WINDOW (pListing->container.pWidget), iX, iY);

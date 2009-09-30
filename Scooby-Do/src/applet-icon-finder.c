@@ -163,7 +163,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	if (pDock != NULL)
 	{
 		
-		gtk_window_present (GTK_WINDOW (pDock->pWidget));
+		gtk_window_present (GTK_WINDOW (pDock->container.pWidget));
 	}
 	
 	//\_________________ on gere l'allumage et l'eteignage de l'icone precedente et actuelle.
@@ -201,7 +201,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	myData.pCurrentDock = pDock;
 	myData.pCurrentIcon = pIcon;
 	if (myData.pCurrentDock == NULL)
-		gtk_window_present (GTK_WINDOW (g_pMainDock->pWidget));
+		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
 }
 
 
@@ -224,12 +224,12 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 	motion.state = 0;
 	motion.x = iMouseX;
 	motion.y = iMouseY;
-	motion.x_root = pDock->iWindowPositionX + pDock->iMouseX;
-	motion.y_root = pDock->iWindowPositionY + pDock->iMouseY;
+	motion.x_root = pDock->container.iWindowPositionX + pDock->container.iMouseX;
+	motion.y_root = pDock->container.iWindowPositionY + pDock->container.iMouseY;
 	motion.time = 0;
-	motion.window = pDock->pWidget->window;
+	motion.window = pDock->container.pWidget->window;
 	motion.device = gdk_device_get_core_pointer ();
-	g_signal_emit_by_name (pDock->pWidget, "motion-notify-event", &motion, &bReturn);
+	g_signal_emit_by_name (pDock->container.pWidget, "motion-notify-event", &motion, &bReturn);
 	return FALSE;
 }
 
@@ -351,7 +351,7 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
 		if (iHeight != 0)
 		{
-			double fZoom = (double) g_pMainDock->iHeight/2 / iHeight;
+			double fZoom = (double) g_pMainDock->container.iHeight/2 / iHeight;
 			myData.iMatchingAimPoint += (bNext ? 1 : -1) * iWidth * fZoom;  // on cherche a atteindre le nouveau point.
 		}
 		
