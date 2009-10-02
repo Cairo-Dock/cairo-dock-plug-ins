@@ -138,8 +138,9 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	
 	//\_______________________ On etablit le nom de l'icone.
-	if (myIcon->cName == NULL && myDock)
+	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
 	{
+		myData.bSetName = (myData.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
 	}
 	

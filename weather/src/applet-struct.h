@@ -107,6 +107,7 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;
+	gboolean bSetName;
 	} ;
 
 
