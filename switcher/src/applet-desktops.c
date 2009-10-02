@@ -27,13 +27,7 @@
 
 void cd_switcher_get_current_desktop (void)
 {
-	myData.switcher.iCurrentDesktop = cairo_dock_get_current_desktop ();
-	
-	int iCurrentViewportX, iCurrentViewportY;
-	cairo_dock_get_current_viewport (&iCurrentViewportX, &iCurrentViewportY);
-	myData.switcher.iCurrentViewportX = iCurrentViewportX / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-	myData.switcher.iCurrentViewportY = iCurrentViewportY / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
-	
+	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
 	cd_debug ("%s () -> %d;%d;%d", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
@@ -50,25 +44,6 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	
 	if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
 	{
-		/*double fZoom, fUsedSurface, fMaxUsedSurface=0;
-		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
-		{
-			if (iNbViewports % iNbLines != 0)
-				continue;
-			iNbDesktopByLine = iNbViewports / iNbLines;
-			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-			fZoomY = myIcon->fHeight / (iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
-			fZoom = MIN (fZoomX, fZoomY);  // zoom qui conserve le ratio.
-			fUsedSurface = (fZoom * iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]) * (fZoom * iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
-			g_print ("%d lignes => fUsedSurface: %.2f pix^2\n", iNbLines, fUsedSurface);
-			
-			if (fUsedSurface > fMaxUsedSurface)
-			{
-				fMaxUsedSurface= fUsedSurface;
-				*iBestNbColumns = iNbDesktopByLine;
-				*iBestNbLines = iNbLines;
-			}
-		}*/
 		double fRatio, fMinRatio=9999;
 		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
@@ -214,7 +189,7 @@ void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int
 	int index2 = iIndex % (g_iNbViewportX * g_iNbViewportY);
 	*iNumViewportX = index2 / g_iNbViewportY;
 	*iNumViewportY = index2 % g_iNbViewportY;
-	g_print (" -> %d;%d;%d\n", *iNumDesktop, *iNumViewportX, *iNumViewportY);
+	//g_print (" -> %d;%d;%d\n", *iNumDesktop, *iNumViewportX, *iNumViewportY);
 }
 
 
@@ -272,32 +247,13 @@ gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
 
 static void _cd_switcher_action_on_one_window_from_viewport (Icon *pIcon, CairoContainer *pContainer, gpointer *data)
 {
-	if (pIcon == NULL || pIcon->fPersonnalScale > 0)
-		return ;
 	int iNumDesktop = GPOINTER_TO_INT (data[0]);
 	int iNumViewportX = GPOINTER_TO_INT (data[1]);
 	int iNumViewportY = GPOINTER_TO_INT (data[2]);
 	CDSwitcherActionOnViewportFunc pFunction = data[3];
 	gpointer pUserData = data[4];
 	
-	// On calcule les coordonnees en repere absolu.
-	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
-	x += myData.switcher.iCurrentViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
-	if (x < 0)
-		x += g_iNbViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-	int y = pIcon->windowGeometry.y;
-	y += myData.switcher.iCurrentViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
-	if (y < 0)
-		y += g_iNbViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
-	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
-	
-	// test d'intersection avec le viewport donne.
-	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
-	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
-		x + w <= iNumViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		x >= (iNumViewportX + 1) * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		y + h <= iNumViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
-		y >= (iNumViewportY + 1) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
+	if (! cairo_dock_appli_is_on_desktop (pIcon, iNumDesktop, iNumViewportX, iNumViewportY))
 		return ;
 	
 	pFunction (pIcon, iNumDesktop, iNumViewportX, iNumViewportY, pUserData);

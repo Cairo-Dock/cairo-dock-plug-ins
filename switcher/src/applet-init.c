@@ -32,10 +32,13 @@
 CD_APPLET_DEFINITION (N_("switcher"),
 	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
-	N_("This applet allows you to switch between your virtual desktops.\n"
-	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-	"You can also quickly add/remove a desktop through the right-click menu.\n"
-	"Scroll up/down on the main icon to go to the left/right desktop, middle-click to show the desktop"),
+	N_("This applet allows you to interact with your workspaces :\n"
+	" - switch between your workspaces (scroll up/down with the mouse),\n"
+	" - name them (in the config),\n"
+	" - quickly add/remove a workspace (in the menu),\n"
+	" - show the desktop (middle-click or in the menu),\n"
+	" - list all windows on each workspace ((middle-click or in the menu)\n"
+	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."),
 	"Cchumi & Fabounet")
 
 
@@ -57,7 +60,7 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
-	if (g_bEasterEggs && myConfig.bCompactView)
+	if (myConfig.bCompactView)
 	{
 		cairo_dock_register_notification_on_container (myContainer,
 			CAIRO_DOCK_MOUSE_MOVED,
@@ -153,7 +156,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (g_bEasterEggs && (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView))
+		if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
 		{
 			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) on_mouse_moved, myApplet);

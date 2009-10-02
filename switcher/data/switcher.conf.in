@@ -106,6 +106,13 @@ Draw Windows = true
 #b Draw hidden windows too ?
 Draw hidden Windows = false
 
+#r[Show windows list;Show desktop]
+action on click = 0
+
+#U Workspace names :
+desktop names = 
+
+
 #F[Display options]
 frame_disp =
 
@@ -123,11 +130,9 @@ linesize = 3
 #{r, v, b, a}
 rgblinecolor = 0.0; 0.0; 0.5; 1.
 
-
 #C+ Color of the Windows line :
 #{r, v, b, a}
 rgbwlinecolor = 0.0; 0.0; 0.5; 1.
-
 
 #C+ Color of the current desktop :
 #{r, v, b, a}

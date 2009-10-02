@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDisplayNumDesk = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display numero desktop", TRUE);
 	myConfig.bDrawWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw Windows", TRUE);
 	myConfig.bDisplayHiddenWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw hidden Windows", TRUE);
+	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "action on click", 0);
 	
 	// couleur des lignes interieures
 	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");
@@ -56,17 +57,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
-	//myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST ("Configuration", "desktop names", &myConfig.iNbNames);
+	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &myConfig.iNbNames, "Work;Game;Video;Chat");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
-	
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cDefaultIcon);
 	if (myConfig.cDesktopNames != NULL)
 		g_strfreev (myConfig.cDesktopNames);
-	
 CD_APPLET_RESET_CONFIG_END
 
 

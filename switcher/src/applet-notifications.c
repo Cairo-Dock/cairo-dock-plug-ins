@@ -30,8 +30,17 @@
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	if (myConfig.iActionOnMiddleClick == 0)
+	{
+		GtkWidget *pMenu = gtk_menu_new ();
+		cd_switcher_build_windows_list (pMenu);
+		cairo_dock_popup_menu_on_container (pMenu, myContainer);
+	}
+	else
+	{
+		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -86,7 +95,7 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 		int iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
 		int iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, iNumDesktop, iNumViewportX, iNumViewportY);
-		g_print ("(%d;%d) --> (%d;%d;%d)\n", iNumLine, iNumColumn, *iNumDesktop, *iNumViewportX, *iNumViewportY);
+		//g_print ("(%d;%d) --> (%d;%d;%d)\n", iNumLine, iNumColumn, *iNumDesktop, *iNumViewportX, *iNumViewportY);
 		return TRUE;
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)
@@ -152,6 +161,11 @@ static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstanc
 {
 	cd_switcher_refresh_desktop_values (myApplet);
 }
+static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+}
 static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
 {
 	int iIndex = GPOINTER_TO_INT (data);
@@ -173,30 +187,36 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GTK_STOCK_REFRESH,
 		_cd_switcher_refresh,
 		pSubMenu);
-	if (g_bEasterEggs)
+
+	int iNumDesktop, iNumViewportX, iNumViewportY;
+	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 	{
-		int iNumDesktop, iNumViewportX, iNumViewportY;
-		if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
+		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
-			if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
-			{
-				int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
-				GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
-					GTK_STOCK_JUMP_TO,
-					_cd_switcher_move_to_desktop,
-					pSubMenu,
-					GINT_TO_POINTER (iIndex));
-				gtk_widget_set_tooltip_text (pMenuItem, D_("This will move all windows from the current desktop to this one"));
-			}
+			int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
+				GTK_STOCK_JUMP_TO,
+				_cd_switcher_move_to_desktop,
+				pSubMenu,
+				GINT_TO_POINTER (iIndex));
+			gtk_widget_set_tooltip_text (pMenuItem, D_("This will move all windows from the current desktop to the one you clicked on."));
 		}
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	
-	if (g_bEasterEggs)
+	if (myConfig.iActionOnMiddleClick == 0)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"),
+			GTK_STOCK_FULLSCREEN,
+			_cd_switcher_show_desktop,
+			pSubMenu);
+	}
+	else
 	{
 		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
 		cd_switcher_build_windows_list (pSubMenu);
 	}
+	
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

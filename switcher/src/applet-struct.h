@@ -54,6 +54,7 @@ struct _AppletConfig {
 	gboolean bDisplayHiddenWindows;
 	gchar **cDesktopNames;
 	gint iNbNames;
+	gint iActionOnMiddleClick;
 	} ;
 
 typedef struct
