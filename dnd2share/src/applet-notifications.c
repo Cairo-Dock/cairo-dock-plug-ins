@@ -227,6 +227,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 		if (pItem == NULL)
 		{
 			pItem = g_list_last (myData.pUpoadedItems)->data;
+			g_print ("dernier item\n");
 			myData.iCurrentItemNum = g_list_length (myData.pUpoadedItems) - 1;
 		}
 	}

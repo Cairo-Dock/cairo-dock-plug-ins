@@ -396,6 +396,7 @@ void cd_dnd2share_copy_url_to_primary (const gchar *cURL)
 gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem)
 {
 	CDSiteBackend *pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
+	g_print ("%s (type:%d; site:%d)\n", __func__, pItem->iFileType, pItem->iSiteID);
 	gchar *cURL = pItem->cDistantUrls[pBackend->iPreferedUrlType];
 	if (cURL == NULL)
 	{

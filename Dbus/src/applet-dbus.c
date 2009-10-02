@@ -69,7 +69,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 	dbus_g_connection_register_g_object(pMainObject->connection, "/org/cairodock/CairoDock", G_OBJECT(pMainObject));
 }
 
-static void _cd_dbus_launch_distant_applets_in_dir (const gchar *cDirPath)
+static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 {
 	GError *erreur = NULL;
 	const gchar *cFileName;
@@ -107,9 +107,9 @@ void cd_dbus_launch_service (void)
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 	
 	// on lance les applets distantes.
-	_cd_dbus_launch_distant_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
+	_cd_dbus_launch_third_party_applets (MY_APPLET_SHARE_DATA_DIR);
 	
-	_cd_dbus_launch_distant_applets_in_dir (g_cCairoDockDataDir);
+	_cd_dbus_launch_third_party_applets (g_cCairoDockDataDir);
 }
 
 void cd_dbus_stop_service (void)
@@ -578,7 +578,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->cModuleVersion = g_strdup ("0.0.1");
 		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
-		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/%s", cShareDataDir, "icon") : NULL;
+		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL;
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
 		pVisitCard->cDescription = g_strdup (cDescription);

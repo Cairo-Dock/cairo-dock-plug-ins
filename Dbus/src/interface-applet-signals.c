@@ -459,8 +459,8 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 		}
 		else
 		{
-			g_print ("l'applet '%s' n'est pas en cours d'execution (d'apers la commande '%s'\n", pModuleInstance->pModule->pVisitCard->cModuleName, cCommand);
-			cd_dbus_launch_distant_applet (pModuleInstance->pModule->pVisitCard->cModuleName);
+			g_print ("l'applet '%s' n'est pas en cours d'execution (d'apres la commande '%s'\n", pModuleInstance->pModule->pVisitCard->cModuleName, cCommand);
+			cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
 		}
 		g_free (cCommand);
 	}

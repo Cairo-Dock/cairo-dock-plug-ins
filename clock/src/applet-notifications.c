@@ -61,7 +61,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	else
 	{
 		GtkWidget *pCalendar = gtk_calendar_new ();
-		myData.pCalendarDialog = cairo_dock_show_dialog_full (_("Calendar"),
+		myData.pCalendarDialog = cairo_dock_show_dialog_full (D_("Calendar"),
 			myIcon, myContainer,
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/dates.svg",

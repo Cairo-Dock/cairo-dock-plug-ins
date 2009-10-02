@@ -209,22 +209,3 @@ void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 }
-
-void cd_dbus_launch_distant_applet (const gchar *cModuleName)
-{
-	gchar *cFilePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR"/third-party", cModuleName);
-	if (g_file_test (cFilePath, G_FILE_TEST_EXISTS))
-	{
-		cd_dbus_launch_distant_applet_in_dir (cModuleName, MY_APPLET_SHARE_DATA_DIR);
-	}
-	else
-	{
-		g_free (cFilePath);
-		cFilePath = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "third-party", cModuleName);
-		if (g_file_test (cFilePath, G_FILE_TEST_EXISTS))
-		{
-			cd_dbus_launch_distant_applet_in_dir (cModuleName, g_cCairoDockDataDir);
-		}
-	}
-	g_free (cFilePath);
-}

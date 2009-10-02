@@ -18,25 +18,23 @@
 */
 
 
-#ifndef __INTERFACE_APPLET_OBJECT__
-#define  __INTERFACE_APPLET_OBJECT__
+#ifndef __GNOME_INTEGRATION_INIT__
+#define  __GNOME_INTEGRATION_INIT__
+
 
 #include <cairo-dock.h>
-#include "applet-struct.h"
 
 
-dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pModuleInstance);
-
-dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
-
-void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
-
-void cd_dbus_unregister_notifications (void);
+CD_APPLET_H
 
 
-gboolean cd_dbus_applet_is_used (const gchar *cModuleName);
+struct _AppletConfig {
+	gint no_config_yet;
+} ;
 
-void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath);
+struct _AppletData {
+	gint no_data_yet;
+} ;
 
 
 #endif
