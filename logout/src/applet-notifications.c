@@ -137,10 +137,7 @@ static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	if (g_bEasterEggs)
-	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shutdown"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, pSubMenu);
-	}
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shutdown"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
