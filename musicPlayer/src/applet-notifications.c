@@ -73,12 +73,13 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 	{
 		if (myData.pCurrentHandeler)
 		{
-			cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
-			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, FALSE);
+			cd_musicplayer_stop_handler ();  // libere tout ce qu'occupe notre ancien handler.
+			CD_APPLET_MANAGE_APPLICATION (NULL);
 		}
 		myData.pCurrentHandeler = pHandler;
 		cd_musicplayer_launch_handler ();
-		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
+		if (myConfig.bStealTaskBarIcon)
+			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
 	}
 }
 

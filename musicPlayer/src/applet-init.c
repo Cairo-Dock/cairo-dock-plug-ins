@@ -106,7 +106,8 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_launch_handler ();  // connexion au bus, detection de l'appli, recuperation de l'etat du lecteur si il est en marche, sinon dessin de l'icone "eteint".
 	
 	//\_______________ On prend en charge l'icone de l'appli player.
-	CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
+	if (myConfig.bStealTaskBarIcon)
+		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
 	
 	//\_______________ On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -150,7 +151,7 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidGetCoverInfoTwice);
 	
 	// on libere la classe.
-	CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, FALSE);
+	CD_APPLET_MANAGE_APPLICATION (NULL);
 CD_APPLET_STOP_END
 
 
@@ -228,7 +229,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.pCurrentHandeler)
 		{
 			cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
-			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, FALSE);
+			CD_APPLET_MANAGE_APPLICATION (NULL);
 		}
 		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
 		if (myData.pCurrentHandeler == NULL)
@@ -238,7 +239,8 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		cd_musicplayer_launch_handler ();
 		
-		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass, myConfig.bStealTaskBarIcon);
+		if (myConfig.bStealTaskBarIcon)
+			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
 	}
 	else { // on redessine juste l'icone.
 		cd_musicplayer_update_icon (FALSE);  // FALSE pour ne pas avoir 2 fois le dialogue.

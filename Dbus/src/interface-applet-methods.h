@@ -56,6 +56,8 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 
 gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues, GError **error);
 
+gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cApplicationClass, GError **error);
+
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error);
 
 

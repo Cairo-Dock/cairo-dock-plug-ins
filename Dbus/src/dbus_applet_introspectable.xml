@@ -27,6 +27,9 @@
 		<method name="RenderValues">
 			<arg name="pValues" type="ad" direction="in"/>
 		</method>
+		<method name="ControlAppli">
+			<arg name="cApplicationClass" type="s" direction="in"/>
+		</method>
 		<method name="PopulateMenu">
 			<arg name="pLabels" type="as" direction="in"/>
 		</method>

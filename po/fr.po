@@ -778,27 +778,22 @@ msgid "This module provides different views for your desklets."
 msgstr "Ce plug-in fournit plusieurs vues pour les desklet."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-#, fuzzy
 msgid "3Dplane"
-msgstr "plan 3D"
+msgstr "Plan 3D"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#, fuzzy
 msgid "comics"
 msgstr "Bande-dessinée"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#, fuzzy
 msgid "curly"
 msgstr "Courbé"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#, fuzzy
 msgid "modern"
 msgstr "Moderne"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
-#, fuzzy
 msgid "tooltip"
 msgstr "Info-bulle"
 
@@ -1122,7 +1117,6 @@ msgstr ""
 "icônes."
 
 #: ../kde-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
@@ -1130,7 +1124,7 @@ msgid ""
 "It is designed for KDE4"
 msgstr ""
 "Cette applet fournit des fonctions pour une meilleur intégration avec "
-"l'environnement XFCE.\n"
+"l'environnement KDE4.\n"
 "Il s'auto-active, vous ne devez donc pas l'activer manuellement."
 
 #: ../keyboard-indicator/src/applet-init.c:29
@@ -1278,14 +1272,12 @@ msgid "This plug-in adds a motion blur effect on docks."
 msgstr "Ce plug-in ajoute un effet de flou de mouvements au dock."
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown artist"
-msgstr "Inconnu"
+msgstr "Artiste inconnu"
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown title"
-msgstr "Inconnu"
+msgstr "Titre inconnu"
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
@@ -1733,14 +1725,12 @@ msgid "Clean local directory"
 msgstr "Nettoyer le dossier local"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
 msgid "current"
-msgstr "Courant"
+msgstr "courant"
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
 msgid "desktop"
-msgstr "Bureau"
+msgstr "bureau"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1786,16 +1776,15 @@ msgstr "Rafraîchir"
 
 #: ../switcher/src/applet-notifications.c:184
 msgid "Move current desktop to this desktop"
-msgstr ""
+msgstr "Déplacer le bureau courant vers ce bureau"
 
 #: ../switcher/src/applet-notifications.c:189
 msgid "This will move all windows from the current desktop to this one"
-msgstr ""
+msgstr "Cela déplacera toutes les fenêtres du bureau courant vers celui-là"
 
 #: ../switcher/src/applet-notifications.c:197
-#, fuzzy
 msgid "Windows List"
-msgstr "Liste Top"
+msgstr "Liste des fenêtres"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3850,14 +3839,12 @@ msgid "Write text on the top of the dock ?"
 msgstr "Écrire le texte sur le haut du dock ?"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
-#, fuzzy
 msgid "It's the color of the graphic for high values."
-msgstr "C'est la couleur du graphique pour les hautes valeurs de CPU."
+msgstr "C'est la couleur du graphique pour les valeurs hautes."
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
-#, fuzzy
 msgid "It's the color of the graphic for low values."
-msgstr "C'est la couleur du graphique pour les basses valeurs de CPU."
+msgstr "C'est la couleur du graphique pour les valeurs basses."
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
@@ -4244,9 +4231,8 @@ msgid "Image to draw on the background :"
 msgstr "Image à dessiner en arrière-plan :"
 
 #: ../clock/data/messages:129
-#, fuzzy
 msgid "Ratio to apply on text :"
-msgstr "Information à afficher sur l'icône :"
+msgstr "Ratio à appliquer sur le texte :"
 
 #: ../clock/data/messages:131
 msgid "Analogic View"

@@ -138,7 +138,7 @@ CD_APPLET_INIT_BEGIN
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -152,8 +152,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	if (myConfig.cSystemMonitorClass)
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, FALSE);
+	CD_APPLET_MANAGE_APPLICATION (NULL);
 CD_APPLET_STOP_END
 
 
@@ -188,8 +187,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.pTopTask != NULL)
 			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iProcessCheckInterval);
 		
-		if (myConfig.cSystemMonitorClass)
-			CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass, myConfig.bStealTaskBarIcon);
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	}
 	else {  // on redessine juste l'icone.
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);

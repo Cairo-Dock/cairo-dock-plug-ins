@@ -192,7 +192,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//\_______________ On gere l'appli 'mail'
-	CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myConfig.bStealTaskBarIcon);
+	if (myConfig.bStealTaskBarIcon)
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);
 	
 	//\_______________ On initialise tous les comptes et on lance un timer pour chacun.
 	cd_mail_init_accounts(myApplet);
@@ -218,7 +219,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
-	CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, FALSE);
+	CD_APPLET_MANAGE_APPLICATION (NULL);
 CD_APPLET_STOP_END
 
 
@@ -234,7 +235,10 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 		
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication, myConfig.bStealTaskBarIcon);
+		if (myConfig.bStealTaskBarIcon)
+			CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);
+		else
+			CD_APPLET_MANAGE_APPLICATION (NULL);
 		
 		GError *erreur = NULL;
 		_load_theme (myApplet, &erreur);

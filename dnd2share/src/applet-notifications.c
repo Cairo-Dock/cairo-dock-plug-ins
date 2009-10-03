@@ -231,6 +231,8 @@ CD_APPLET_ON_SCROLL_BEGIN
 			myData.iCurrentItemNum = g_list_length (myData.pUpoadedItems) - 1;
 		}
 	}
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	g_free (myData.cLastURL);
 	myData.cLastURL = NULL;
 	

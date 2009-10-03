@@ -429,6 +429,33 @@ gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues,
 	return TRUE;
 }
 
+gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cApplicationClass, GError **error)
+{
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	Icon *pIcon = pInstance->pIcon;
+	g_return_val_if_fail (pIcon != NULL, FALSE);
+	
+	gchar *cClass = (cApplicationClass ? g_ascii_strdown (cApplicationClass, -1) : NULL);
+	if (cairo_dock_strings_differ (pIcon->cClass, cClass))
+	{
+		if (pIcon->cClass != NULL)
+			cairo_dock_deinhibate_class (pIcon->cClass, pIcon);
+		if (cClass != NULL)
+			cairo_dock_inhibate_class (cClass, pIcon);
+		if (! cairo_dock_is_loading ())
+		{
+			CairoContainer *pContainer = pInstance->pContainer;
+			if (pContainer != NULL)
+				cairo_dock_redraw_icon (pIcon, pContainer);
+		}
+	}
+	
+	g_free (cClass);
+	return TRUE;
+}
+
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)
 {
 	if (myData.pModuleSubMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)

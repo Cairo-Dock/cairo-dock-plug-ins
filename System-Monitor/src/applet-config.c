@@ -81,8 +81,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 		{
 			if (myConfig.cSystemMonitorCommand != NULL)
 			{
-				myConfig.cSystemMonitorClass = g_strdup (myConfig.cSystemMonitorCommand);  // couper au 1er espace ...
-				
+				myConfig.cSystemMonitorClass = g_strdup (myConfig.cSystemMonitorCommand);
+				gchar *str = strchr (myConfig.cSystemMonitorClass, ' ');  // on coupe au 1er espace.
+				if (str)
+					*str = '\0';
 			}
 			else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 				myConfig.cSystemMonitorClass = g_strdup ("gnome-system-monitor");
