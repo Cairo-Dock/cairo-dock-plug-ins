@@ -29,7 +29,7 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 {
 	if (myData.iSnowTexture == 0)
 		myData.iSnowTexture = cd_icon_effect_load_snow_texture ();
-	double fMaxScale = (pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
+	double fMaxScale = (!g_bEasterEggs && pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
 	CairoParticleSystem *pSnowParticleSystem = cairo_dock_create_particle_system (myConfig.iNbSnowParticles, myData.iSnowTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pSnowParticleSystem != NULL, NULL);
 	pSnowParticleSystem->dt = dt;

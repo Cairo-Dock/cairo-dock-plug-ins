@@ -281,7 +281,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueFire = cd_icon_effect_update_fire_system (pData->pFireSystem,
 			(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (pDock->bAtBottom)
+		if (!g_bEasterEggs && pDock->bAtBottom)
 			pData->pFireSystem->fHeight = pIcon->fHeight;
 		if (bContinueFire)
 			*bContinueAnimation = TRUE;
@@ -348,7 +348,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		}
 	}
 	
-	double fMaxScale = (pDock->bAtBottom ? 1. : 1. + g_fAmplitude * pDock->fMagnitudeMax);
+	double fMaxScale = (!g_bEasterEggs && pDock->bAtBottom ? 1. : 1. + g_fAmplitude * pDock->fMagnitudeMax);
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{
@@ -358,7 +358,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20;  // 20 = rayon max des particules, environ.
 		if (pDock->container.bDirectionUp)
 		{
-			area.y -= myLabels.iconTextDescription.iSize;
+			area.y -= myLabels.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
 		}
 		else
 		{
@@ -373,7 +373,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20;
 		if (pDock->container.bDirectionUp)
 		{
-			area.x -= myLabels.iconTextDescription.iSize;
+			area.x -= myLabels.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
 		}
 		else
 		{
