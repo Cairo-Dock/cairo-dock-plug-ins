@@ -7,6 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2009-09-21 00:45+0000\n"
 "PO-Revision-Date: 2009-09-08 18:26+0000\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
@@ -131,7 +132,7 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../Clipper/src/applet-notifications.c:96
+#: ../Clipper/src/applet-notifications.c:75
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -145,8 +146,10 @@ msgid ""
 "The communication between both sides is based on Dbus"
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:343
+#: ../Dbus/src/interface-applet-signals.c:324
 #: ../Dbus/src/interface-applet.c:958
+#: ../Dbus/src/interface-sub-applet-signals.c:227
+#: ../Dbus/src/interface-sub-applet.c:418
 msgid "About this applet"
 msgstr ""
 
@@ -249,8 +252,8 @@ msgid "Network ID"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:294 ../musicPlayer/src/applet-draw.c:296
-#: ../musicPlayer/src/applet-draw.c:298
+#: ../musicPlayer/src/applet-draw.c:284 ../musicPlayer/src/applet-draw.c:286
+#: ../musicPlayer/src/applet-draw.c:288
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -594,7 +597,7 @@ msgstr "Regolare il volume :"
 msgid "Adjsut channels"
 msgstr "Aggiustare i canali"
 
-#: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
+#: ../clock/src/applet-config.c:468 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
 msgstr ""
 
@@ -689,27 +692,6 @@ msgstr ""
 msgid "This module provides different views for your desklets."
 msgstr ""
 
-#: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3Dplane"
-msgstr ""
-
-#: ../dialog-rendering/src/applet-decorator-comics.h:26
-msgid "comics"
-msgstr ""
-
-#: ../dialog-rendering/src/applet-decorator-curly.h:26
-msgid "curly"
-msgstr ""
-
-#: ../dialog-rendering/src/applet-decorator-modern.h:26
-#, fuzzy
-msgid "modern"
-msgstr "Cartelle"
-
-#: ../dialog-rendering/src/applet-decorator-tooltip.h:26
-msgid "tooltip"
-msgstr ""
-
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
 msgstr ""
@@ -719,7 +701,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -979,14 +962,6 @@ msgid ""
 "This plug-in provides animations for appearance & disappearance of icons."
 msgstr ""
 
-#: ../kde-integration/src/applet-init.c:30
-msgid ""
-"This applet provides functions for a better integration into a KDE "
-"environnement.\n"
-"It is auto-activated, so you don't need to activate it.\n"
-"It is designed for KDE4"
-msgstr ""
-
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
 msgstr ""
@@ -1009,18 +984,6 @@ msgid ""
 "A very simple applet that adds an icon to log out from your session\n"
 "Left click to log out, middle click to shutdown\n"
 "You can invert this order if you prefer to shutdown on left-click."
-msgstr ""
-
-#: ../logout/src/applet-notifications.c:118
-msgid "Choose in how many minutes your PC will stop :"
-msgstr ""
-
-#: ../logout/src/applet-notifications.c:142
-msgid "Program an automatic shutdown"
-msgstr ""
-
-#: ../logout/src/applet-notifications.c:171
-msgid "Your computer will shutdown in 1 minute."
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:175
@@ -1114,45 +1077,35 @@ msgstr ""
 msgid "This plug-in adds a motion blur effect on docks."
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
-msgid "Unknown artist"
-msgstr "Sconosciuto"
-
-#: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
-msgid "Unknown title"
-msgstr "Sconosciuto"
-
-#: ../musicPlayer/src/applet-draw.c:194
+#: ../musicPlayer/src/applet-draw.c:184
 msgid "Track"
 msgstr "Traccia"
 
-#: ../musicPlayer/src/applet-draw.c:284
+#: ../musicPlayer/src/applet-draw.c:274
 msgid "Current song"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:293
+#: ../musicPlayer/src/applet-draw.c:283
 msgid "Artist"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:295
+#: ../musicPlayer/src/applet-draw.c:285
 msgid "Album"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:297
+#: ../musicPlayer/src/applet-draw.c:287
 msgid "Title"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:289
 msgid "Length"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:301
+#: ../musicPlayer/src/applet-draw.c:291
 msgid "Track n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:304
+#: ../musicPlayer/src/applet-draw.c:294
 msgid "There is no media playing."
 msgstr ""
 
@@ -1397,8 +1350,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1510,16 +1463,6 @@ msgstr "Ricaricare Stacks"
 msgid "Clean local directory"
 msgstr "Svuotare la cartella locale"
 
-#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
-msgid "current"
-msgstr "Attuale"
-
-#: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
-msgid "desktop"
-msgstr "Desktop"
-
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
 msgstr ""
@@ -1534,42 +1477,26 @@ msgid ""
 msgstr ""
 
 #: ../switcher/src/applet-load-icons.c:40
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:233
 msgid "Current"
 msgstr "Attuale"
 
 #: ../switcher/src/applet-load-icons.c:46
-#: ../switcher/src/applet-notifications.c:262
-#: ../switcher/src/applet-notifications.c:319
+#: ../switcher/src/applet-notifications.c:225
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../switcher/src/applet-notifications.c:164
+#: ../switcher/src/applet-notifications.c:152
 msgid "Add a desktop"
 msgstr "Aggiungi un desktop"
 
-#: ../switcher/src/applet-notifications.c:168
+#: ../switcher/src/applet-notifications.c:156
 msgid "Remove last desktop"
 msgstr "Rimuovi l'ultimo desktop"
 
-#: ../switcher/src/applet-notifications.c:172
+#: ../switcher/src/applet-notifications.c:160
 msgid "Refresh"
 msgstr ""
-
-#: ../switcher/src/applet-notifications.c:184
-#, fuzzy
-msgid "Move current desktop to this desktop"
-msgstr "Riempire il desktop attuale con questo colore ?"
-
-#: ../switcher/src/applet-notifications.c:189
-#, fuzzy
-msgid "This will move all windows from the current desktop to this one"
-msgstr "Riempire il desktop attuale con questo colore ?"
-
-#: ../switcher/src/applet-notifications.c:197
-#, fuzzy
-msgid "Windows List"
-msgstr "Top List"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2029,7 +1956,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
 #: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:27
 #: ../clock/data/messages:29 ../compiz-icon/data/messages:27
-#: ../dnd2share/data/messages:31 ../dustbin/data/messages:27
+#: ../dnd2share/data/messages:27 ../dustbin/data/messages:27
 #: ../keyboard-indicator/data/messages:27 ../logout/data/messages:31
 #: ../mail/data/messages:27 ../musicPlayer/data/messages:29
 #: ../netspeed/data/messages:27 ../powermanager/data/messages:27
@@ -2059,13 +1986,12 @@ msgstr ""
 #: ../GMenu/data/messages:93 ../System-Monitor/data/messages:149
 #: ../System-Monitor/data/messages:157 ../Xgamma/data/messages:9
 #: ../alsaMixer/data/messages:127 ../alsaMixer/data/messages:131
-#: ../alsaMixer/data/messages:135 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
-#: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:129 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
+#: ../alsaMixer/data/messages:135 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesklets/data/messages:9 ../showDesklets/data/messages:13
+#: ../showDesktop/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../switcher/data/messages:129
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr ""
 
@@ -2239,7 +2165,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
 #: ../Xgamma/data/messages:13 ../alsaMixer/data/messages:9
 #: ../clock/data/messages:11 ../compiz-icon/data/messages:9
-#: ../dnd2share/data/messages:13 ../dustbin/data/messages:9
+#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
 #: ../keyboard-indicator/data/messages:9 ../logout/data/messages:13
 #: ../mail/data/messages:9 ../musicPlayer/data/messages:11
 #: ../netspeed/data/messages:9 ../powermanager/data/messages:9
@@ -2258,7 +2184,7 @@ msgstr "Nome del contenitore al quale appartiene:"
 #: ../Network-Monitor/data/messages:81 ../Scooby-Do/data/messages:1
 #: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
 #: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:81
-#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:85
+#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:81
 #: ../drop-indicator/data/messages:1 ../keyboard-indicator/data/messages:81
 #: ../logout/data/messages:85 ../mail/data/messages:81
 #: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:83
@@ -2445,11 +2371,11 @@ msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nome dell'icona che apparirà sull'etichetta nella barra :"
 
 #: ../Clipper/data/messages:115 ../GMenu/data/messages:11
-#: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
-#: ../logout/data/messages:11 ../quick-browser/data/messages:13
-#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../terminal/data/messages:11 ../weblets/data/messages:11
+#: ../Xgamma/data/messages:11 ../logout/data/messages:11
+#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
+#: ../showDesktop/data/messages:11 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../terminal/data/messages:11
+#: ../weblets/data/messages:11
 msgid "Image's filename :"
 msgstr ""
 
@@ -2457,7 +2383,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:11 ../System-Monitor/data/messages:11
 #: ../Toons/data/messages:11 ../Xgamma/data/messages:15
 #: ../alsaMixer/data/messages:11 ../clock/data/messages:13
-#: ../compiz-icon/data/messages:11 ../dnd2share/data/messages:15
+#: ../compiz-icon/data/messages:11 ../dnd2share/data/messages:11
 #: ../dustbin/data/messages:11 ../keyboard-indicator/data/messages:11
 #: ../logout/data/messages:15 ../mail/data/messages:11
 #: ../musicPlayer/data/messages:13 ../netspeed/data/messages:11
@@ -2475,7 +2401,7 @@ msgstr "Desklet"
 #: ../Network-Monitor/data/messages:13 ../System-Monitor/data/messages:13
 #: ../Toons/data/messages:13 ../Xgamma/data/messages:17
 #: ../alsaMixer/data/messages:13 ../clock/data/messages:15
-#: ../compiz-icon/data/messages:13 ../dnd2share/data/messages:17
+#: ../compiz-icon/data/messages:13 ../dnd2share/data/messages:13
 #: ../dustbin/data/messages:13 ../keyboard-indicator/data/messages:13
 #: ../logout/data/messages:17 ../mail/data/messages:13
 #: ../musicPlayer/data/messages:15 ../netspeed/data/messages:13
@@ -2496,7 +2422,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
 #: ../Toons/data/messages:15 ../Xgamma/data/messages:19
 #: ../alsaMixer/data/messages:15 ../clock/data/messages:17
-#: ../compiz-icon/data/messages:15 ../dnd2share/data/messages:19
+#: ../compiz-icon/data/messages:15 ../dnd2share/data/messages:15
 #: ../dustbin/data/messages:15 ../keyboard-indicator/data/messages:15
 #: ../logout/data/messages:19 ../mail/data/messages:15
 #: ../musicPlayer/data/messages:17 ../netspeed/data/messages:15
@@ -2512,7 +2438,7 @@ msgstr "Dimensione della desklet (larghezza x altezza) :"
 #: ../Clipper/data/messages:125 ../GMenu/data/messages:21
 #: ../Network-Monitor/data/messages:17 ../System-Monitor/data/messages:17
 #: ../Toons/data/messages:17 ../Xgamma/data/messages:21
-#: ../compiz-icon/data/messages:17 ../dnd2share/data/messages:21
+#: ../compiz-icon/data/messages:17 ../dnd2share/data/messages:17
 #: ../keyboard-indicator/data/messages:17 ../logout/data/messages:21
 #: ../mail/data/messages:17 ../musicPlayer/data/messages:19
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:23
@@ -2521,7 +2447,8 @@ msgstr "Dimensione della desklet (larghezza x altezza) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
@@ -2530,7 +2457,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:19 ../System-Monitor/data/messages:19
 #: ../Toons/data/messages:19 ../Xgamma/data/messages:23
 #: ../alsaMixer/data/messages:19 ../clock/data/messages:21
-#: ../compiz-icon/data/messages:19 ../dnd2share/data/messages:23
+#: ../compiz-icon/data/messages:19 ../dnd2share/data/messages:19
 #: ../dustbin/data/messages:19 ../keyboard-indicator/data/messages:19
 #: ../logout/data/messages:23 ../mail/data/messages:19
 #: ../musicPlayer/data/messages:21 ../netspeed/data/messages:19
@@ -2548,7 +2475,7 @@ msgstr "Posizione della desklet (x ; y) :"
 #: ../Network-Monitor/data/messages:21 ../System-Monitor/data/messages:21
 #: ../Toons/data/messages:21 ../Xgamma/data/messages:25
 #: ../alsaMixer/data/messages:21 ../clock/data/messages:23
-#: ../compiz-icon/data/messages:21 ../dnd2share/data/messages:25
+#: ../compiz-icon/data/messages:21 ../dnd2share/data/messages:21
 #: ../dustbin/data/messages:21 ../keyboard-indicator/data/messages:21
 #: ../logout/data/messages:25 ../mail/data/messages:21
 #: ../musicPlayer/data/messages:23 ../netspeed/data/messages:21
@@ -2566,7 +2493,7 @@ msgstr "E' staccata dalla barra ?"
 #: ../Network-Monitor/data/messages:23 ../System-Monitor/data/messages:23
 #: ../Toons/data/messages:23 ../Xgamma/data/messages:27
 #: ../alsaMixer/data/messages:23 ../clock/data/messages:25
-#: ../compiz-icon/data/messages:23 ../dnd2share/data/messages:27
+#: ../compiz-icon/data/messages:23 ../dnd2share/data/messages:23
 #: ../dustbin/data/messages:23 ../keyboard-indicator/data/messages:23
 #: ../logout/data/messages:27 ../mail/data/messages:23
 #: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
@@ -2585,7 +2512,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:25 ../System-Monitor/data/messages:25
 #: ../Toons/data/messages:25 ../Xgamma/data/messages:29
 #: ../alsaMixer/data/messages:25 ../clock/data/messages:27
-#: ../compiz-icon/data/messages:25 ../dnd2share/data/messages:29
+#: ../compiz-icon/data/messages:25 ../dnd2share/data/messages:25
 #: ../dustbin/data/messages:25 ../keyboard-indicator/data/messages:25
 #: ../logout/data/messages:29 ../mail/data/messages:25
 #: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
@@ -2603,7 +2530,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:29 ../System-Monitor/data/messages:29
 #: ../Toons/data/messages:29 ../Xgamma/data/messages:33
 #: ../alsaMixer/data/messages:29 ../clock/data/messages:31
-#: ../compiz-icon/data/messages:29 ../dnd2share/data/messages:33
+#: ../compiz-icon/data/messages:29 ../dnd2share/data/messages:29
 #: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:29
 #: ../logout/data/messages:33 ../mail/data/messages:29
 #: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
@@ -2621,7 +2548,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:31 ../System-Monitor/data/messages:31
 #: ../Toons/data/messages:31 ../Xgamma/data/messages:35
 #: ../alsaMixer/data/messages:31 ../clock/data/messages:33
-#: ../compiz-icon/data/messages:31 ../dnd2share/data/messages:35
+#: ../compiz-icon/data/messages:31 ../dnd2share/data/messages:31
 #: ../dustbin/data/messages:31 ../keyboard-indicator/data/messages:31
 #: ../logout/data/messages:35 ../mail/data/messages:31
 #: ../musicPlayer/data/messages:33 ../netspeed/data/messages:31
@@ -2639,7 +2566,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:33 ../System-Monitor/data/messages:33
 #: ../Toons/data/messages:33 ../Xgamma/data/messages:37
 #: ../alsaMixer/data/messages:33 ../clock/data/messages:35
-#: ../compiz-icon/data/messages:33 ../dnd2share/data/messages:37
+#: ../compiz-icon/data/messages:33 ../dnd2share/data/messages:33
 #: ../dustbin/data/messages:33 ../keyboard-indicator/data/messages:33
 #: ../logout/data/messages:37 ../mail/data/messages:33
 #: ../musicPlayer/data/messages:35 ../netspeed/data/messages:33
@@ -2657,7 +2584,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:35 ../System-Monitor/data/messages:35
 #: ../Toons/data/messages:35 ../Xgamma/data/messages:39
 #: ../alsaMixer/data/messages:35 ../clock/data/messages:37
-#: ../compiz-icon/data/messages:35 ../dnd2share/data/messages:39
+#: ../compiz-icon/data/messages:35 ../dnd2share/data/messages:35
 #: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:35
 #: ../logout/data/messages:39 ../mail/data/messages:35
 #: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
@@ -2675,7 +2602,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:37 ../System-Monitor/data/messages:37
 #: ../Toons/data/messages:37 ../Xgamma/data/messages:41
 #: ../alsaMixer/data/messages:37 ../clock/data/messages:39
-#: ../compiz-icon/data/messages:37 ../dnd2share/data/messages:41
+#: ../compiz-icon/data/messages:37 ../dnd2share/data/messages:37
 #: ../dustbin/data/messages:37 ../keyboard-indicator/data/messages:37
 #: ../logout/data/messages:41 ../mail/data/messages:37
 #: ../musicPlayer/data/messages:39 ../netspeed/data/messages:37
@@ -2693,7 +2620,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:39 ../System-Monitor/data/messages:39
 #: ../Toons/data/messages:39 ../Xgamma/data/messages:43
 #: ../alsaMixer/data/messages:39 ../clock/data/messages:41
-#: ../compiz-icon/data/messages:39 ../dnd2share/data/messages:43
+#: ../compiz-icon/data/messages:39 ../dnd2share/data/messages:39
 #: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:39
 #: ../logout/data/messages:43 ../mail/data/messages:39
 #: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
@@ -2716,7 +2643,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:41 ../System-Monitor/data/messages:41
 #: ../Toons/data/messages:41 ../Xgamma/data/messages:45
 #: ../alsaMixer/data/messages:41 ../clock/data/messages:43
-#: ../compiz-icon/data/messages:41 ../dnd2share/data/messages:45
+#: ../compiz-icon/data/messages:41 ../dnd2share/data/messages:41
 #: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:41
 #: ../logout/data/messages:45 ../mail/data/messages:41
 #: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
@@ -2735,7 +2662,7 @@ msgstr "Bloccare la posizione ?"
 #: ../Network-Monitor/data/messages:43 ../System-Monitor/data/messages:43
 #: ../Toons/data/messages:43 ../Xgamma/data/messages:47
 #: ../alsaMixer/data/messages:43 ../clock/data/messages:45
-#: ../compiz-icon/data/messages:43 ../dnd2share/data/messages:47
+#: ../compiz-icon/data/messages:43 ../dnd2share/data/messages:43
 #: ../dustbin/data/messages:43 ../keyboard-indicator/data/messages:43
 #: ../logout/data/messages:47 ../mail/data/messages:43
 #: ../musicPlayer/data/messages:45 ../netspeed/data/messages:43
@@ -2752,7 +2679,7 @@ msgstr "in gradi."
 #: ../Network-Monitor/data/messages:45 ../System-Monitor/data/messages:45
 #: ../Toons/data/messages:45 ../Xgamma/data/messages:49
 #: ../alsaMixer/data/messages:45 ../clock/data/messages:47
-#: ../compiz-icon/data/messages:45 ../dnd2share/data/messages:49
+#: ../compiz-icon/data/messages:45 ../dnd2share/data/messages:45
 #: ../dustbin/data/messages:45 ../keyboard-indicator/data/messages:45
 #: ../logout/data/messages:49 ../mail/data/messages:45
 #: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
@@ -2769,7 +2696,7 @@ msgstr "Rotazione :"
 #: ../Network-Monitor/data/messages:47 ../System-Monitor/data/messages:47
 #: ../Toons/data/messages:47 ../Xgamma/data/messages:51
 #: ../alsaMixer/data/messages:47 ../clock/data/messages:49
-#: ../compiz-icon/data/messages:47 ../dnd2share/data/messages:51
+#: ../compiz-icon/data/messages:47 ../dnd2share/data/messages:47
 #: ../dustbin/data/messages:47 ../keyboard-indicator/data/messages:47
 #: ../logout/data/messages:51 ../mail/data/messages:47
 #: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
@@ -2786,7 +2713,7 @@ msgstr "Decorazioni"
 #: ../Network-Monitor/data/messages:49 ../System-Monitor/data/messages:49
 #: ../Toons/data/messages:49 ../Xgamma/data/messages:53
 #: ../alsaMixer/data/messages:49 ../clock/data/messages:51
-#: ../compiz-icon/data/messages:49 ../dnd2share/data/messages:53
+#: ../compiz-icon/data/messages:49 ../dnd2share/data/messages:49
 #: ../dustbin/data/messages:49 ../keyboard-indicator/data/messages:49
 #: ../logout/data/messages:53 ../mail/data/messages:49
 #: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
@@ -2804,7 +2731,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:51 ../System-Monitor/data/messages:51
 #: ../Toons/data/messages:51 ../Xgamma/data/messages:55
 #: ../alsaMixer/data/messages:51 ../clock/data/messages:53
-#: ../compiz-icon/data/messages:51 ../dnd2share/data/messages:55
+#: ../compiz-icon/data/messages:51 ../dnd2share/data/messages:51
 #: ../dustbin/data/messages:51 ../keyboard-indicator/data/messages:51
 #: ../logout/data/messages:55 ../mail/data/messages:51
 #: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
@@ -2821,7 +2748,7 @@ msgstr "Scegliere un tema decorativo per questa desklet :"
 #: ../Network-Monitor/data/messages:53 ../System-Monitor/data/messages:53
 #: ../Toons/data/messages:53 ../Xgamma/data/messages:57
 #: ../alsaMixer/data/messages:53 ../clock/data/messages:55
-#: ../compiz-icon/data/messages:53 ../dnd2share/data/messages:57
+#: ../compiz-icon/data/messages:53 ../dnd2share/data/messages:53
 #: ../dustbin/data/messages:53 ../keyboard-indicator/data/messages:53
 #: ../logout/data/messages:57 ../mail/data/messages:53
 #: ../musicPlayer/data/messages:55 ../netspeed/data/messages:53
@@ -2842,7 +2769,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:55 ../System-Monitor/data/messages:55
 #: ../Toons/data/messages:55 ../Xgamma/data/messages:59
 #: ../alsaMixer/data/messages:55 ../clock/data/messages:57
-#: ../compiz-icon/data/messages:55 ../dnd2share/data/messages:59
+#: ../compiz-icon/data/messages:55 ../dnd2share/data/messages:55
 #: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:55
 #: ../keyboard-indicator/data/messages:103 ../logout/data/messages:59
 #: ../mail/data/messages:55 ../musicPlayer/data/messages:57
@@ -2860,7 +2787,7 @@ msgstr "Immagine dello sfondo :"
 #: ../Network-Monitor/data/messages:57 ../System-Monitor/data/messages:57
 #: ../Toons/data/messages:57 ../Xgamma/data/messages:61
 #: ../alsaMixer/data/messages:57 ../clock/data/messages:59
-#: ../compiz-icon/data/messages:57 ../dnd2share/data/messages:61
+#: ../compiz-icon/data/messages:57 ../dnd2share/data/messages:57
 #: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:57
 #: ../logout/data/messages:61 ../mail/data/messages:57
 #: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
@@ -2877,7 +2804,7 @@ msgstr "Trasparenza dello sfondo :"
 #: ../Network-Monitor/data/messages:59 ../System-Monitor/data/messages:59
 #: ../Toons/data/messages:59 ../Xgamma/data/messages:63
 #: ../alsaMixer/data/messages:59 ../clock/data/messages:61
-#: ../compiz-icon/data/messages:59 ../dnd2share/data/messages:63
+#: ../compiz-icon/data/messages:59 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:59
 #: ../logout/data/messages:63 ../mail/data/messages:59
 #: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
@@ -2896,7 +2823,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:61 ../System-Monitor/data/messages:61
 #: ../Toons/data/messages:61 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:61 ../clock/data/messages:63
-#: ../compiz-icon/data/messages:61 ../dnd2share/data/messages:65
+#: ../compiz-icon/data/messages:61 ../dnd2share/data/messages:61
 #: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:61
 #: ../logout/data/messages:65 ../mail/data/messages:61
 #: ../musicPlayer/data/messages:63 ../netspeed/data/messages:61
@@ -2913,7 +2840,7 @@ msgstr "Compensazione a sinistra :"
 #: ../Network-Monitor/data/messages:63 ../System-Monitor/data/messages:63
 #: ../Toons/data/messages:63 ../Xgamma/data/messages:67
 #: ../alsaMixer/data/messages:63 ../clock/data/messages:65
-#: ../compiz-icon/data/messages:63 ../dnd2share/data/messages:67
+#: ../compiz-icon/data/messages:63 ../dnd2share/data/messages:63
 #: ../dustbin/data/messages:63 ../keyboard-indicator/data/messages:63
 #: ../logout/data/messages:67 ../mail/data/messages:63
 #: ../musicPlayer/data/messages:65 ../netspeed/data/messages:63
@@ -2932,7 +2859,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:65 ../System-Monitor/data/messages:65
 #: ../Toons/data/messages:65 ../Xgamma/data/messages:69
 #: ../alsaMixer/data/messages:65 ../clock/data/messages:67
-#: ../compiz-icon/data/messages:65 ../dnd2share/data/messages:69
+#: ../compiz-icon/data/messages:65 ../dnd2share/data/messages:65
 #: ../dustbin/data/messages:65 ../keyboard-indicator/data/messages:65
 #: ../logout/data/messages:69 ../mail/data/messages:65
 #: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
@@ -2949,7 +2876,7 @@ msgstr "Compensazione in alto :"
 #: ../Network-Monitor/data/messages:67 ../System-Monitor/data/messages:67
 #: ../Toons/data/messages:67 ../Xgamma/data/messages:71
 #: ../alsaMixer/data/messages:67 ../clock/data/messages:69
-#: ../compiz-icon/data/messages:67 ../dnd2share/data/messages:71
+#: ../compiz-icon/data/messages:67 ../dnd2share/data/messages:67
 #: ../dustbin/data/messages:67 ../keyboard-indicator/data/messages:67
 #: ../logout/data/messages:71 ../mail/data/messages:67
 #: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
@@ -2968,7 +2895,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:69 ../System-Monitor/data/messages:69
 #: ../Toons/data/messages:69 ../Xgamma/data/messages:73
 #: ../alsaMixer/data/messages:69 ../clock/data/messages:71
-#: ../compiz-icon/data/messages:69 ../dnd2share/data/messages:73
+#: ../compiz-icon/data/messages:69 ../dnd2share/data/messages:69
 #: ../dustbin/data/messages:69 ../keyboard-indicator/data/messages:69
 #: ../logout/data/messages:73 ../mail/data/messages:69
 #: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
@@ -2985,7 +2912,7 @@ msgstr "Compensazione a destra :"
 #: ../Network-Monitor/data/messages:71 ../System-Monitor/data/messages:71
 #: ../Toons/data/messages:71 ../Xgamma/data/messages:75
 #: ../alsaMixer/data/messages:71 ../clock/data/messages:73
-#: ../compiz-icon/data/messages:71 ../dnd2share/data/messages:75
+#: ../compiz-icon/data/messages:71 ../dnd2share/data/messages:71
 #: ../dustbin/data/messages:71 ../keyboard-indicator/data/messages:71
 #: ../logout/data/messages:75 ../mail/data/messages:71
 #: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
@@ -3004,7 +2931,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:73 ../System-Monitor/data/messages:73
 #: ../Toons/data/messages:73 ../Xgamma/data/messages:77
 #: ../alsaMixer/data/messages:73 ../clock/data/messages:75
-#: ../compiz-icon/data/messages:73 ../dnd2share/data/messages:77
+#: ../compiz-icon/data/messages:73 ../dnd2share/data/messages:73
 #: ../dustbin/data/messages:73 ../keyboard-indicator/data/messages:73
 #: ../logout/data/messages:77 ../mail/data/messages:73
 #: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
@@ -3021,7 +2948,7 @@ msgstr "Compensazione in basso :"
 #: ../Network-Monitor/data/messages:75 ../System-Monitor/data/messages:75
 #: ../Toons/data/messages:75 ../Xgamma/data/messages:79
 #: ../alsaMixer/data/messages:75 ../clock/data/messages:77
-#: ../compiz-icon/data/messages:75 ../dnd2share/data/messages:79
+#: ../compiz-icon/data/messages:75 ../dnd2share/data/messages:75
 #: ../dustbin/data/messages:75 ../keyboard-indicator/data/messages:75
 #: ../logout/data/messages:79 ../mail/data/messages:75
 #: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
@@ -3042,7 +2969,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:77 ../System-Monitor/data/messages:77
 #: ../Toons/data/messages:77 ../Xgamma/data/messages:81
 #: ../alsaMixer/data/messages:77 ../clock/data/messages:79
-#: ../compiz-icon/data/messages:77 ../dnd2share/data/messages:81
+#: ../compiz-icon/data/messages:77 ../dnd2share/data/messages:77
 #: ../dustbin/data/messages:77 ../keyboard-indicator/data/messages:77
 #: ../logout/data/messages:81 ../mail/data/messages:77
 #: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
@@ -3059,7 +2986,7 @@ msgstr "Immagine in superficie :"
 #: ../Network-Monitor/data/messages:79 ../System-Monitor/data/messages:79
 #: ../Toons/data/messages:79 ../Xgamma/data/messages:83
 #: ../alsaMixer/data/messages:79 ../clock/data/messages:81
-#: ../compiz-icon/data/messages:79 ../dnd2share/data/messages:83
+#: ../compiz-icon/data/messages:79 ../dnd2share/data/messages:79
 #: ../dustbin/data/messages:79 ../keyboard-indicator/data/messages:79
 #: ../logout/data/messages:83 ../mail/data/messages:79
 #: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
@@ -3122,8 +3049,8 @@ msgstr "Se sì, numero degli oggetti selezionati :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con CTRL"
-"+v"
+"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con "
+"CTRL+v"
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
@@ -3175,7 +3102,7 @@ msgstr "Ripetere le azioni ?"
 
 #: ../Clipper/data/messages:233 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:141 ../System-Monitor/data/messages:177
-#: ../dnd2share/data/messages:91 ../netspeed/data/messages:125
+#: ../dnd2share/data/messages:87 ../netspeed/data/messages:125
 #: ../powermanager/data/messages:137 ../slider/data/messages:99
 #: ../wifi/data/messages:157
 msgid "in seconds."
@@ -3441,7 +3368,8 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:135
-#: ../tomboy/data/messages:109 ../wifi/data/messages:155
+#: ../tomboy/data/messages:97 ../tomboy/data/messages:111
+#: ../wifi/data/messages:155
 msgid "Parameters"
 msgstr ""
 
@@ -3471,7 +3399,8 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
+msgstr ""
+"Linea di comando alternativa per lanciare la Configurazione Wireless :"
 
 #: ../Network-Monitor/data/messages:177 ../weather/data/messages:101
 #: ../wifi/data/messages:169
@@ -3578,13 +3507,11 @@ msgid "Write text on the top of the dock ?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
-#, fuzzy
-msgid "It's the color of the graphic for high values."
+msgid "It's the color of the graphic for high CPU values."
 msgstr "E' il colore del grafico per i valori alti della CPU."
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
-#, fuzzy
-msgid "It's the color of the graphic for low values."
+msgid "It's the color of the graphic for low CPU values."
 msgstr "E' il colore del grafico per i valori bassi della CPU."
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
@@ -3681,7 +3608,8 @@ msgstr "Primo colore della 'top list' :"
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+msgstr ""
+"E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
@@ -3873,7 +3801,7 @@ msgstr ""
 msgid "Module"
 msgstr "Modulo"
 
-#: ../clock/data/messages:85 ../dnd2share/data/messages:95
+#: ../clock/data/messages:85 ../dnd2share/data/messages:91
 #: ../showDesktop/data/messages:87 ../slider/data/messages:97
 msgid "Behaviour"
 msgstr "Comportamento"
@@ -3960,45 +3888,40 @@ msgid "Image to draw on the background :"
 msgstr ""
 
 #: ../clock/data/messages:129
-#, fuzzy
-msgid "Ratio to apply on text :"
-msgstr "Informazioni da mostrare sull'icona :"
-
-#: ../clock/data/messages:131
 msgid "Analogic View"
 msgstr ""
 
-#: ../clock/data/messages:133
+#: ../clock/data/messages:131
 msgid "List of available themes for the analogic display :"
 msgstr "Lista dei temi disponibili per la vista analogica :"
 
-#: ../clock/data/messages:135
+#: ../clock/data/messages:133
 msgid "Text color of the date :"
 msgstr ""
 
-#: ../clock/data/messages:137
+#: ../clock/data/messages:135
 msgid "Setup time and date"
 msgstr "Regolare la data e l'ora"
 
-#: ../clock/data/messages:139
+#: ../clock/data/messages:137
 msgid "Let empty to use default command."
 msgstr "Lasciare vuoto per usare i comandi di default."
 
-#: ../clock/data/messages:141
+#: ../clock/data/messages:139
 msgid "Specific command to run :"
 msgstr "Comando specifico da eseguire :"
 
-#: ../clock/data/messages:143
+#: ../clock/data/messages:141
 msgid "Alarm"
 msgstr "Allarme"
 
-#: ../clock/data/messages:145
+#: ../clock/data/messages:143
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Il nuovo allarme sarà aggiunto alla fine / l'ultimo allarme verrà rimosso."
 
-#: ../clock/data/messages:147
+#: ../clock/data/messages:145
 msgid "Add or remove an alarm :"
 msgstr "Aggiungere o rimuovere un'allarme"
 
@@ -4171,14 +4094,14 @@ msgstr "heliodor"
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
-#: ../switcher/data/messages:133 ../tomboy/data/messages:99
+#: ../switcher/data/messages:133 ../tomboy/data/messages:101
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
-#: ../switcher/data/messages:135 ../tomboy/data/messages:101
+#: ../switcher/data/messages:135 ../tomboy/data/messages:103
 #: ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr "Nome della vista utilizzata per la sub-dock :"
@@ -4290,120 +4213,120 @@ msgstr ""
 msgid "Curve the sides too ?"
 msgstr ""
 
-#: ../dnd2share/data/messages:87
+#: ../dnd2share/data/messages:83
 msgid "Info-bubbles"
 msgstr "Info-bubbles"
 
-#: ../dnd2share/data/messages:89
+#: ../dnd2share/data/messages:85
 msgid "Enable info-bubbles ?"
 msgstr ""
 
-#: ../dnd2share/data/messages:93
+#: ../dnd2share/data/messages:89
 msgid "Duration of the info-bubbles :"
 msgstr ""
 
-#: ../dnd2share/data/messages:97
+#: ../dnd2share/data/messages:93
 msgid "Number of items to keep in the history :"
 msgstr ""
 
-#: ../dnd2share/data/messages:99
+#: ../dnd2share/data/messages:95
 msgid "Keep a copy of each uploaded image ?"
 msgstr ""
 
-#: ../dnd2share/data/messages:101
+#: ../dnd2share/data/messages:97
 msgid "This will override the image setting."
 msgstr ""
 
-#: ../dnd2share/data/messages:103
+#: ../dnd2share/data/messages:99
 msgid "If so, display the last image on the icon ?"
 msgstr ""
 
-#: ../dnd2share/data/messages:105
+#: ../dnd2share/data/messages:101
 msgid "in KB/s - 0 means unlimited"
 msgstr ""
 
-#: ../dnd2share/data/messages:107
+#: ../dnd2share/data/messages:103
 msgid "Maximum upload rate:"
 msgstr ""
 
-#: ../dnd2share/data/messages:109
+#: ../dnd2share/data/messages:105
 msgid "Animation of the icon during upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:111
+#: ../dnd2share/data/messages:107
 msgid "Sites"
 msgstr ""
 
-#: ../dnd2share/data/messages:113
+#: ../dnd2share/data/messages:109
 msgid "Preferred site for texts hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:115 ../dnd2share/data/messages:121
-#: ../dnd2share/data/messages:131 ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:111 ../dnd2share/data/messages:117
+#: ../dnd2share/data/messages:127 ../dnd2share/data/messages:133
 msgid "Custom"
 msgstr ""
 
-#: ../dnd2share/data/messages:117
+#: ../dnd2share/data/messages:113
 msgid "Pastebin.ca"
 msgstr ""
 
-#: ../dnd2share/data/messages:119
+#: ../dnd2share/data/messages:115
 msgid "Preferred site for images hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:123
+#: ../dnd2share/data/messages:119
 msgid "Uppix.net"
 msgstr ""
 
-#: ../dnd2share/data/messages:125
+#: ../dnd2share/data/messages:121
 msgid "Imagebin.ca"
 msgstr ""
 
-#: ../dnd2share/data/messages:127
+#: ../dnd2share/data/messages:123
 msgid "ImageShack.us"
 msgstr ""
 
-#: ../dnd2share/data/messages:129
+#: ../dnd2share/data/messages:125
 msgid "Preferred site for videos hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:133
+#: ../dnd2share/data/messages:129
 msgid "VideoBin.org"
 msgstr ""
 
-#: ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:131
 msgid "Preferred site for files hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:139
+#: ../dnd2share/data/messages:135
 msgid "dl.free.fr"
 msgstr ""
 
-#: ../dnd2share/data/messages:141
+#: ../dnd2share/data/messages:137
 msgid "DropBox"
 msgstr ""
 
-#: ../dnd2share/data/messages:143
+#: ../dnd2share/data/messages:139
 msgid "Custom script for text upload : "
 msgstr ""
 
-#: ../dnd2share/data/messages:145
+#: ../dnd2share/data/messages:141
 msgid "Custom script for image upload : "
 msgstr ""
 
-#: ../dnd2share/data/messages:147
+#: ../dnd2share/data/messages:143
 msgid "Custom script for video upload : "
 msgstr ""
 
-#: ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:145
 msgid "Custom script for file upload : "
 msgstr ""
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:147
 msgid "Let empty to upload files into '~/Dropbox/Public'."
 msgstr ""
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:149
 msgid "Path of the DropBox folder :"
 msgstr ""
 
@@ -4744,7 +4667,8 @@ msgid "Desktop-less support"
 msgstr "Supporto senza Desktop"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5704,11 +5628,11 @@ msgstr "Ordine manuale"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Questa è la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl"
-"+v della tastiera"
+"Questa è la selezione fatta dal mouse, in opposizione all'usuale "
+"ctrl+c/ctrl+v della tastiera"
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -5874,47 +5798,47 @@ msgstr "Titolo di default :"
 msgid "Name of an image for the 'close' icon :"
 msgstr "Immagine per l'icona 'chiudere' :"
 
-#: ../tomboy/data/messages:97
+#: ../tomboy/data/messages:99
 msgid "View"
 msgstr ""
 
-#: ../tomboy/data/messages:103
+#: ../tomboy/data/messages:105
 msgid "Draw note's content on their icon ?"
 msgstr "Disegna il contenuto della nota nella loro icona ?"
 
-#: ../tomboy/data/messages:105
+#: ../tomboy/data/messages:107
 msgid "Text color of the content :"
 msgstr ""
 
-#: ../tomboy/data/messages:107
+#: ../tomboy/data/messages:109
 msgid "Display note's content with a dialog ?"
 msgstr ""
 
-#: ../tomboy/data/messages:111
+#: ../tomboy/data/messages:113
 msgid "Choose the note-taking application to control :"
 msgstr ""
 
-#: ../tomboy/data/messages:113
+#: ../tomboy/data/messages:115
 msgid "Gnote"
 msgstr ""
 
-#: ../tomboy/data/messages:115
+#: ../tomboy/data/messages:117
 msgid "Tomboy"
 msgstr ""
 
-#: ../tomboy/data/messages:117
+#: ../tomboy/data/messages:119
 msgid "Ask confirmation before deleting a note ?"
 msgstr ""
 
-#: ../tomboy/data/messages:119
+#: ../tomboy/data/messages:121
 msgid "Otherwise you will be asked to name it."
 msgstr ""
 
-#: ../tomboy/data/messages:121
+#: ../tomboy/data/messages:123
 msgid "Automatically name a new note ?"
 msgstr ""
 
-#: ../tomboy/data/messages:123
+#: ../tomboy/data/messages:125
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -5925,11 +5849,11 @@ msgstr ""
 "%y per l'anno (due cifre), etc ... Lasciate bianco per utilizzare quella di "
 "default (%d/%m/%y)."
 
-#: ../tomboy/data/messages:125
+#: ../tomboy/data/messages:127
 msgid "Date format to search for :"
 msgstr "Formato data da ricercare :"
 
-#: ../tomboy/data/messages:127
+#: ../tomboy/data/messages:129
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -5941,7 +5865,7 @@ msgstr ""
 "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
 "modalità Debug nel terminale."
 
-#: ../tomboy/data/messages:129
+#: ../tomboy/data/messages:131
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Emulare il segnale 'NotaSoppressa' ?"
 
@@ -6075,8 +5999,8 @@ msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
@@ -6109,30 +6033,28 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un "
-#~ "file basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
+#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un file "
+#~ "basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Utilizzare soltanto la cartella locale Stacks ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack "
-#~ "locale, sia tutte le cartelle monitorate. Bisogna assicurarsi di non "
-#~ "avere l'opzione 'Utilizzare la cartella locale Stacks' attiva."
+#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack locale, "
+#~ "sia tutte le cartelle monitorate. Bisogna assicurarsi di non avere l'opzione "
+#~ "'Utilizzare la cartella locale Stacks' attiva."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Cartelle sorvegliate :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "Questa opzione con una lunga lista di files può rallentare la barra, "
-#~ "perciò utilizzarla con prudenza."
+#~ "Questa opzione con una lunga lista di files può rallentare la barra, perciò "
+#~ "utilizzarla con prudenza."
 
 #~ msgid "Separate different directories with separators ?"
 #~ msgstr "Separare le differenti cartelle con separatori ?"
@@ -6165,11 +6087,11 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -6202,8 +6124,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
-#~ "0 se si vuole alcuna filigrana."
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+#~ "se si vuole alcuna filigrana."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
@@ -6354,8 +6276,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -6409,8 +6331,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
 #~ msgstr ""
-#~ "Impossibile configurare il socket in modo da non bloccare la connessione. "
-#~ "Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+#~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+#~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
 
 #~ msgid "Failed to connect to server: %s"
@@ -6430,17 +6352,17 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
 #~ msgstr ""
-#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-#~ "che username o password di GMail non siano corretti."
+#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+#~ "username o password di GMail non siano corretti."
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
 #~ msgstr ""
-#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci "
-#~ "un problema col server GMail, o un cambiamento nel modo di identificarsi "
-#~ "o nel modo di reperire i nuovi messaggi."
+#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+#~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+#~ "modo di reperire i nuovi messaggi."
 
 #~ msgid "_Username:"
 #~ msgstr "_Username:"
@@ -6458,28 +6380,27 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox GMail remota"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr ""
-#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare "
-#~ "il numero di nuovi messaggi in modo sicuro."
+#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+#~ "numero di nuovi messaggi in modo sicuro."
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr ""
-#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login "
-#~ "in modo testuale."
+#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+#~ "modo testuale."
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. "
-#~ "E' un bug !"
+#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+#~ "un bug !"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
@@ -6505,6 +6426,9 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgid "Use non-standard IMAP _port:"
 #~ msgstr "Utilizzare un _port IMAP non standard:"
 
+#~ msgid "Folders"
+#~ msgstr "Cartelle"
+
 #~ msgid "IMAP server _directory:"
 #~ msgstr "_Cartella del server IMAP:"
 
@@ -6524,8 +6448,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox IMAP remoto"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
 #~ "protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
@@ -6567,8 +6491,7 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "MH plugin watches local MH folders for new mail"
 #~ msgstr ""
-#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi "
-#~ "messaggi"
+#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #~ msgid "Advanced POP3 Options"
 #~ msgstr "Opzioni POP3 avanzate"
@@ -6586,8 +6509,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox POP3 remota"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
 #~ "protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
@@ -6601,8 +6524,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
-#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-#~ "supporto SSL."
+#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+#~ "SSL."
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
@@ -6621,8 +6544,7 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di "
-#~ "sotto."
+#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
 #~ msgid "Add New Mailbox"
 #~ msgstr "Aggiungere una nuova Mailbox"
@@ -6695,8 +6617,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Titolo : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
 #~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
 #~ "decorazione; lasciate vuoto per non averne."
@@ -6848,6 +6770,9 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgid "Size of the Windows line :"
 #~ msgstr "Dimensione delle linee delle Finestre :"
 
+#~ msgid "Fill the current desktop with this color ?"
+#~ msgstr "Riempire il desktop attuale con questo colore ?"
+
 #~ msgid ""
 #~ "This is the cpusage applet\n"
 #~ " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -6881,10 +6806,10 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "In base alla vostra versione di Tomboy la soppressione della nota "
-#~ "potrebbe non essere notificata. Spuntate questa casella se ricevete "
-#~ "notifiche con questo errore  <<No marshaller for signature of signal "
-#~ "'NoteDeleted'>> con modalità Debug nel terminale."
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
+#~ "modalità Debug nel terminale."
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "

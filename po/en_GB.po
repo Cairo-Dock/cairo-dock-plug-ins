@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-21 09:39+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2009-10-03 16:51+0000\n"
+"PO-Revision-Date: 2009-10-03 19:06+0000\n"
+"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-23 11:14+0000\n"
+"X-Launchpad-Export-Date: 2009-10-04 06:51+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -765,29 +766,24 @@ msgid "This module provides different views for your desklets."
 msgstr "This module provides different views for your desklets."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-#, fuzzy
 msgid "3Dplane"
-msgstr "3D plane"
+msgstr "3DPlan"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#, fuzzy
 msgid "comics"
 msgstr "Comics"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#, fuzzy
 msgid "curly"
 msgstr "Curly"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#, fuzzy
 msgid "modern"
 msgstr "Modern"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
-#, fuzzy
 msgid "tooltip"
-msgstr "Tooltip"
+msgstr "ToolTip"
 
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
@@ -798,7 +794,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1105,16 +1102,16 @@ msgstr ""
 "This plugin provides animations for appearance & disappearance of icons."
 
 #: ../kde-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for KDE4"
 msgstr ""
-"This applet provides functions for a better integration into a XFCE "
+"This applet provides functions for a better integration in a KDE "
 "environment.\n"
-"It is auto-activated, so you don't need to activate it."
+"It is auto-activated, so you don't need to activate it.\n"
+"It is designed for KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
@@ -1150,15 +1147,15 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:118
 msgid "Choose in how many minutes your PC will stop :"
-msgstr ""
+msgstr "Choose in how many minutes your PC will stop :"
 
 #: ../logout/src/applet-notifications.c:142
 msgid "Program an automatic shutdown"
-msgstr ""
+msgstr "Program an automatic shut-down"
 
 #: ../logout/src/applet-notifications.c:171
 msgid "Your computer will shutdown in 1 minute."
-msgstr ""
+msgstr "Your computer will shut-down in 1 minute."
 
 #: ../mail/src/cd-mail-applet-config.c:175
 msgid "Please choose an account type."
@@ -1258,14 +1255,12 @@ msgid "This plug-in adds a motion blur effect on docks."
 msgstr "This plugin adds a motion blur effect to docks."
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown artist"
-msgstr "Unknown"
+msgstr "Unknown artist"
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown title"
-msgstr "Unknown"
+msgstr "Unknown title"
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
@@ -1327,6 +1322,9 @@ msgid ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
+"Sorry, I couldn't detect any player.\n"
+"If it is running, it is maybe because its version is too old and does not "
+"offer such service."
 
 #: ../musicPlayer/src/applet-notifications.c:152
 msgid "Find opened player"
@@ -1566,11 +1564,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1700,12 +1698,10 @@ msgid "Clean local directory"
 msgstr "Clean local directory"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
 msgid "current"
 msgstr "Current"
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
 msgid "desktop"
 msgstr "Desktop"
 
@@ -1752,16 +1748,15 @@ msgstr "Refresh"
 
 #: ../switcher/src/applet-notifications.c:184
 msgid "Move current desktop to this desktop"
-msgstr ""
+msgstr "Move current Desktop to this Desktop"
 
 #: ../switcher/src/applet-notifications.c:189
 msgid "This will move all windows from the current desktop to this one"
-msgstr ""
+msgstr "This will move all windows from the current Desktop to this one"
 
 #: ../switcher/src/applet-notifications.c:197
-#, fuzzy
 msgid "Windows List"
-msgstr "Top List"
+msgstr "Windows List"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2752,7 +2747,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3441,7 +3437,7 @@ msgstr "Let extern applications add launchers to the docks ?"
 
 #: ../Dbus/data/messages:17
 msgid "Let extern applications modify the labels of icons ?"
-msgstr ""
+msgstr "Let external applications modify the labels of icons ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons ?"
@@ -3756,7 +3752,8 @@ msgstr "Characters"
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
-msgstr "E.g. Monospace, Purisa, ... Simply type the font name with no number."
+msgstr ""
+"E.g. Monospace, Purisa, ... Simply type the font name with no number."
 
 #: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type :"
@@ -3795,14 +3792,12 @@ msgid "Write text on the top of the dock ?"
 msgstr "Write text on the top of the dock ?"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
-#, fuzzy
 msgid "It's the color of the graphic for high values."
-msgstr "Graph colour for high values."
+msgstr "It's the colour of the graphic for high values."
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
-#, fuzzy
 msgid "It's the color of the graphic for low values."
-msgstr "Graph colour for low values."
+msgstr "It's the colour of the graphic for low values."
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
@@ -4184,9 +4179,8 @@ msgid "Image to draw on the background :"
 msgstr "Background image:"
 
 #: ../clock/data/messages:129
-#, fuzzy
 msgid "Ratio to apply on text :"
-msgstr "Information to display on the icon :"
+msgstr "Ratio to apply on text :"
 
 #: ../clock/data/messages:131
 msgid "Analogic View"
@@ -4481,7 +4475,7 @@ msgstr "Space between lines of the tip :"
 
 #: ../dialog-rendering/data/messages:23
 msgid "Border width of the plane :"
-msgstr ""
+msgstr "Border width of the plane :"
 
 #: ../dialog-rendering/data/messages:25
 msgid "Line color of the plane :"
@@ -4968,7 +4962,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5036,7 +5031,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -5296,7 +5292,8 @@ msgstr "Set to 0 to use the default applet size"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
@@ -5951,8 +5948,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
