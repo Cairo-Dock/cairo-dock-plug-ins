@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.0],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.1-0alpha0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -87,7 +87,7 @@ AC_ARG_ENABLE(gio-in-gmenu,
 AC_ARG_ENABLE(mail,
 	[  --enable-mail : Enable Mail applet (default=no) ],
 	[ with_mail=${enableval} ],
-	[ with_mail=no ])
+	[ with_mail=yes ])
 AC_ARG_ENABLE(weblets,
 	[  --enable-weblets : Enable Weblets applet (default=yes) ],
 	[ with_weblets=${enableval} ],

@@ -120,7 +120,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 
 						cd_message ("Fetching message number %d...\n", i);
 
-						if (carray_count(msg_list->msg_tab) < i) {
+						if (!msg_list || carray_count(msg_list->msg_tab) < i) {
 							break;
 						}
 
