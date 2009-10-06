@@ -105,7 +105,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;  // 4 car 2*(interieur+exterieur).
 	
 	// taille min.
-	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	/**if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
 	}
@@ -118,15 +118,12 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;
-	pDock->inputArea.height = pDock->iMinDockHeight;
+	pDock->inputArea.height = pDock->iMinDockHeight;*/
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	
-	if (g_bEasterEggs)
-	{
-		pDock->iMinDockWidth = pDock->fFlatDockWidth;
-	}
+	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 }
 
 

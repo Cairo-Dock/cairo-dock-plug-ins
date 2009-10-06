@@ -99,7 +99,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	
-	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
+	/**if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		//g_print ("extended\n");
 		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
@@ -115,16 +115,13 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->inputArea.y = 0;
 	pDock->inputArea.width = pDock->fFlatDockWidth;
 	pDock->inputArea.height = pDock->iMinDockHeight;
-	//g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);
+	//g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);*/
 	
 	// on charge les separateurs plat.
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	
-	if (g_bEasterEggs)
-	{
-		pDock->iMinDockWidth = pDock->fFlatDockWidth;
-	}
+	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 }
 
 void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)
