@@ -59,6 +59,8 @@ CD_APPLET_ON_CLICK_PROTO
 			iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
 		penguin_set_new_animation (myApplet, iNewAnimation);
 		
+		cairo_dock_redraw_container (myContainer);  // si l'animation etait down, la nouvelle a pu nous placer ailleurs.
+		
 		cairo_dock_stop_icon_animation (pClickedIcon);
 CD_APPLET_ON_CLICK_END
 

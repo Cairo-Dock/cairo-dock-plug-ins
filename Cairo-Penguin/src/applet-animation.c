@@ -48,6 +48,8 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	
 	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
+	penguin_advance_to_next_frame (myApplet, pAnimation);
+	
 	if (myDock->container.bIsHorizontal)
 	{
 		area.x = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX));
@@ -71,8 +73,6 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 		area.width = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
 	}
 	cairo_dock_redraw_container_area (myContainer, &area);
-	
-	penguin_advance_to_next_frame (myApplet, pAnimation);
 }
 
 static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
@@ -181,6 +181,8 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 	
 	penguin_calculate_new_position (myApplet, pAnimation, iXMin, iXMax, iHeight);
 	
+	penguin_advance_to_next_frame (myApplet, pAnimation);
+	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
 		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
@@ -239,8 +241,6 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON;
-	
-	penguin_advance_to_next_frame (myApplet, pAnimation);
 }
 
 
@@ -283,7 +283,7 @@ void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinA
 				if (iRandom != 0)  // 2 chance sur 3.
 				{
 					myData.iCurrentDirection = 1 - myData.iCurrentDirection;
-					cd_debug ("myData.iCurrentDirection <- %d", myData.iCurrentDirection);
+					//cd_debug ("myData.iCurrentDirection <- %d", myData.iCurrentDirection);
 				}
 				else
 				{
@@ -318,43 +318,33 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 	{
 		myData.iCurrentFrame = 0;
 		myData.iCount ++;
-		if (( myData.iCount * myData.fFrameDelay * pAnimation->iNbFrames > myConfig.iDelayBetweenChanges) || pAnimation->bEnding)  // il est temps de changer d'animation.
+		
+		if (pAnimation->bEnding)  // c'est une animation de fin, elle ne se joue qu'une seule fois.
 		{
-			if (pAnimation->bEnding)
+			myData.iSleepingTime = 0;
+			if (! myConfig.bFree)
 			{
-				myData.iSleepingTime = 0;
-				if (! myConfig.bFree)
-				{
-					cairo_save (myDrawContext);  // on n'utilise pas CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL) car il nous cree le pFullIconBuffer qui apres ecrase notre dessin.
-					cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
-					cairo_set_source_rgba (
-						myDrawContext,
-						0, 0, 0, 0);
-					cairo_paint (myDrawContext);
-					cairo_restore (myDrawContext);
-					
-					if (myIcon->pReflectionBuffer != NULL)
-					{
-						cairo_surface_destroy (myIcon->pReflectionBuffer);
-						myIcon->pReflectionBuffer = NULL;
-					}
-					 if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
-						cairo_dock_update_icon_texture (myIcon);
-					else
-						CD_APPLET_REDRAW_MY_ICON;
-				}
-				else  // on reste sur la derniere image de l'animation de fin.
-				{
-					myData.iCurrentFrame = pAnimation->iNbFrames - 1;
-				}
+				cairo_dock_erase_cairo_context (myDrawContext);  // CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL)
 				
-				penguin_start_animating_with_delay (myApplet);
+				if (myIcon->pReflectionBuffer != NULL)
+				{
+					cairo_surface_destroy (myIcon->pReflectionBuffer);
+					myIcon->pReflectionBuffer = NULL;
+				}
+					if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+					cairo_dock_update_icon_texture (myIcon);
 			}
-			else
+			else  // on reste sur la derniere image de l'animation de fin.
 			{
-				int iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
-				penguin_set_new_animation (myApplet, iNewAnimation);
+				myData.iCurrentFrame = pAnimation->iNbFrames - 1;
 			}
+			
+			penguin_start_animating_with_delay (myApplet);
+		}
+		else if (myData.iCount * myData.fFrameDelay * pAnimation->iNbFrames > myConfig.iDelayBetweenChanges)  // il est temps de changer d'animation.
+		{
+			int iNewAnimation = penguin_choose_next_animation (myApplet, pAnimation);
+			penguin_set_new_animation (myApplet, iNewAnimation);
 		}
 	}
 }
@@ -363,7 +353,7 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 
 int penguin_choose_movement_animation (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	if (myData.iNbMovmentAnimations == 0)
 		return 0;
 	else
@@ -376,7 +366,7 @@ int penguin_choose_movement_animation (CairoDockModuleInstance *myApplet)
 
 int penguin_choose_go_up_animation (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	if (myData.iNbGoUpAnimations == 0)
 		return penguin_choose_movement_animation (myApplet);
 	else
@@ -389,7 +379,7 @@ int penguin_choose_go_up_animation (CairoDockModuleInstance *myApplet)
 
 int penguin_choose_beginning_animation (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	if (myData.iNbBeginningAnimations == 0)
 		return penguin_choose_movement_animation (myApplet);
 	else
@@ -402,7 +392,7 @@ int penguin_choose_beginning_animation (CairoDockModuleInstance *myApplet)
 
 int penguin_choose_ending_animation (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	if (myData.iNbEndingAnimations == 0)
 		return penguin_choose_go_up_animation (myApplet);
 	else
@@ -415,7 +405,7 @@ int penguin_choose_ending_animation (CairoDockModuleInstance *myApplet)
 
 int penguin_choose_resting_animation (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	if (myData.iNbRestAnimations == 0)
 		return penguin_choose_go_up_animation (myApplet);
 	else
@@ -428,7 +418,7 @@ int penguin_choose_resting_animation (CairoDockModuleInstance *myApplet)
 
 int penguin_choose_next_animation (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation)
 {
-	cd_debug ("");
+	//cd_debug ("");
 	int iNewAnimation;
 	if (pAnimation == NULL || pAnimation->bEnding)  // le pingouin est en fin d'animation, on le relance.
 	{
@@ -460,7 +450,7 @@ int penguin_choose_next_animation (CairoDockModuleInstance *myApplet, PenguinAni
 
 void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnimation)
 {
-	cd_message ("%s (%d)", __func__, iNewAnimation);
+	//cd_message ("%s (%d)", __func__, iNewAnimation);
 	PenguinAnimation *pPreviousAnimation = penguin_get_current_animation ();
 	int iPreviousWidth = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameWidth : 0);
 	int iPreviousHeight = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameHeight : 0);
@@ -505,7 +495,8 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 
 gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	if (pContainer != myContainer)
+	PenguinAnimation *pAnimation = penguin_get_current_animation ();
+	if (pAnimation == NULL || (pAnimation->bEnding && myData.iCount > 0))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	penguin_move_in_dock (myApplet);
@@ -515,7 +506,8 @@ gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoConta
 
 gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	if (pIcon != myIcon)
+	PenguinAnimation *pAnimation = penguin_get_current_animation ();
+	if (pAnimation == NULL || (pAnimation->bEnding && myData.iCount > 0))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	penguin_move_in_icon (myApplet);
