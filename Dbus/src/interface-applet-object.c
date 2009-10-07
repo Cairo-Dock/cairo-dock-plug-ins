@@ -204,7 +204,21 @@ gboolean cd_dbus_applet_is_used (const gchar *cModuleName)
 
 void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
 {
-	gchar *cCommand = g_strdup_printf ("cd \"%s/%s/%s\" && ./\"%s\"", cDirPath, "third-party", cModuleName, cModuleName);
+	// on verifie que le processus distant n'est pas deja lance.
+	gchar *cCommand = g_strdup_printf ("pgrep -f \"./%s\"", cModuleName);
+	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+	if (cResult != NULL)
+	{
+		g_print ("l'applet est deja lancee\n");
+		g_free (cResult);
+		g_free (cCommand);
+		return;
+	}
+	g_print ("l'applet '%s' n'est pas en cours d'execution (d'apres la commande '%s'\n", cModuleName, cCommand);
+	g_free (cCommand);
+	
+	// on le lance.
+	cCommand = g_strdup_printf ("cd \"%s/%s/%s\" && ./\"%s\"", cDirPath, "third-party", cModuleName, cModuleName);
 	g_print ("on lance une applet distante : '%s'\n", cCommand);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);

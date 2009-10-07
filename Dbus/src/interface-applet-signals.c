@@ -450,19 +450,7 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 	
 	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // activation faite par le dock, on verifie que le programme est lance.
 	{
-		gchar *cCommand = g_strdup_printf ("pgrep -f \"./%s\"", pModuleInstance->pModule->pVisitCard->cModuleName);  // -f : match command line and not process name, which is limited to 15 characters; -x : match exactly.
-		gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-		if (cResult != NULL)
-		{
-			g_print ("l'applet est deja lancee\n");
-			g_free (cResult);
-		}
-		else
-		{
-			g_print ("l'applet '%s' n'est pas en cours d'execution (d'apres la commande '%s'\n", pModuleInstance->pModule->pVisitCard->cModuleName, cCommand);
-			cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
-		}
-		g_free (cCommand);
+		cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
 	}
 }
 

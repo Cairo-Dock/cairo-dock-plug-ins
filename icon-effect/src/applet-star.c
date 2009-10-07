@@ -29,7 +29,7 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 {
 	if (myData.iStarTexture == 0)
 		myData.iStarTexture = cd_icon_effect_load_star_texture ();
-	double fMaxScale = (!g_bEasterEggs && pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pStarParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pStarParticleSystem != NULL, NULL);
 	pStarParticleSystem->dt = dt;

@@ -281,8 +281,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		gboolean bContinueFire = cd_icon_effect_update_fire_system (pData->pFireSystem,
 			(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
 		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (!g_bEasterEggs && pDock->bAtBottom)
-			pData->pFireSystem->fHeight = pIcon->fHeight;
 		if (bContinueFire)
 			*bContinueAnimation = TRUE;
 		else
@@ -348,7 +346,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		}
 	}
 	
-	double fMaxScale = (!g_bEasterEggs && pDock->bAtBottom ? 1. : 1. + g_fAmplitude * pDock->fMagnitudeMax);
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{
