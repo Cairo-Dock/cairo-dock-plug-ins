@@ -138,6 +138,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
 	
 	gchar *cFilePath = NULL;
+	int iWithComma = 0;
+	gchar *cLogFileWithComma = NULL;
 	if( strncmp(CD_APPLET_RECEIVED_DATA, "file://", 7) == 0)
 	{
 		// Les formats supportés par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
@@ -147,6 +149,25 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		cFilePath = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL);  // on passe en encodage UTF-8.
 		if (cFilePath == NULL)
 			return 	CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		
+		
+		if ( strchr(cFilePath, ',') != NULL) // S'il y une virgule, curl n'aime pas
+		{
+			cLogFileWithComma = g_strdup ("/tmp/dnd2share-file_with_comma.XXXXXX");
+			int fds = mkstemp (cLogFileWithComma);
+			if (fds == -1)
+			{
+				g_free (cLogFileWithComma);
+				return ;
+			}
+			close(fds);
+			gchar *cCommandCopyFileWithComma;
+			cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, cLogFileWithComma); // copie du fichier dans les tmp
+			int r = system (cCommandCopyFileWithComma);
+			iWithComma = 1;
+			g_free (cCommandCopyFileWithComma);
+			cFilePath = cLogFileWithComma; // on utilise le fichier tmp
+		}
 		
 		guint64 iSize;
 		time_t iLastModificationTime;
@@ -201,6 +222,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	}
 	cd_dnd2share_launch_upload (cFilePath ? cFilePath : CD_APPLET_RECEIVED_DATA, iFileType);
 	g_free (cFilePath);
+	if (iWithComma)
+		g_remove (cFilePath); // fichier tmp
 	
 CD_APPLET_ON_DROP_DATA_END
 
