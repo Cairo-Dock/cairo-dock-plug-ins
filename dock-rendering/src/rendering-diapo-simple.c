@@ -348,7 +348,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        ///icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
 	        ///icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;
 	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX ;
-	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY + icon->iTextHeight;
+	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + icon->fHeight/2 * (my_diapo_simple_fScaleMax - 1) + 2*Y_BORDER_SPACE - 0*(my_diapo_simple_arrowHeight + 10) + 0*.5*my_diapo_simple_iconGapY + icon->iTextHeight;
 
 
 //////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
@@ -359,7 +359,7 @@ Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, gui
 	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
 			icon->fDrawX -= (icon->fDrawX - pDock->container.iWidth/2) * fFoldingX;
 			icon->fDrawY = icon->fDrawY + ((pDock->container.bDirectionUp ? pDock->container.iHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * fFoldingY - myLabels.iLabelSize;
-			icon->fAlpha = (pDock->fFoldingFactor > .8 ? (1 - pDock->fFoldingFactor) / .2 : 1.);  // apparition de 1 a 0.8
+			icon->fAlpha = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / (1 - .7) : 1.);  // apparition de 1 a 0.7
 			
 ////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
 			/**if((Mx > icon->fX) && 
