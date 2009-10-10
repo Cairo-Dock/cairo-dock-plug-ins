@@ -122,7 +122,10 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	pIcon->cCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca deviendrait un vrai lanceur.
 	if (myDock)
 		pIcon->cParentDockName = g_strdup (myIcon->cName);  // a priori inutile, la macro le fait ... a tester.
-	pIcon->cFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
+	if (myConfig.cIconEmpty == NULL)
+		pIcon->cFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
+	else
+		pIcon->cFileName = g_strdup (myConfig.cIconEmpty);
 	if (myConfig.bDrawContent)
 	{
 		pIcon->cClass = getNoteContent (cNoteURI);
@@ -242,7 +245,10 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 				int iWidth, iHeight;
 				cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &iWidth, &iHeight);
 				g_print ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
-				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/note.svg", pIconContext, iWidth, iHeight);
+				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cIconEmpty != NULL ? myConfig.cIconEmpty : MY_APPLET_SHARE_DATA_DIR"/note.svg",
+					pIconContext,
+					iWidth,
+					iHeight);
 			}
 			cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote);  // on efface l'ancien texte.
 			cd_tomboy_draw_content_on_icon (pIconContext, pIcon);

@@ -45,8 +45,11 @@ void load_all_surfaces(void)
 			myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
 		}
 		
-		//Chargement de note.svg
-		myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/note.svg");
+		//Chargement de note.svg ou d'une autre icone.
+		if (myConfig.cIconEmpty == NULL)
+			myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/note.svg");
+		else
+			myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cIconEmpty);
 	}
 	else
 	{
@@ -113,7 +116,13 @@ void cd_tomboy_show_results (GList *pIconsList)
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon ("%d %s", pIconsList ? pIconsList->data : myDesklet->icons->data, myContainer, 3000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, iNbResults, iNbResults > 1 ? D_("results") : D_("result"));
+		cairo_dock_show_temporary_dialog_with_icon ("%d %s",
+			pIconsList ? pIconsList->data : myDesklet->icons->data,
+			myContainer,
+			myConfig.iDialogDuration,
+			myConfig.cIconDefault != NULL ? myConfig.cIconDefault : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			iNbResults,
+			iNbResults > 1 ? D_("results") : D_("result"));
 	}
 }
 

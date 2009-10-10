@@ -29,12 +29,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Icon", "default icon");
 	myConfig.cIconClose		= CD_CONFIG_GET_STRING ("Icon", "close icon");
 	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
+	myConfig.cIconEmpty 		= CD_CONFIG_GET_STRING ("Icon", "empty icon");
 	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal"); // Ce problème n'étant vu que sur Gutsy, on pourrait le supprimer
 	myConfig.iAppControlled		= CD_CONFIG_GET_INTEGER ("Configuration", "app controlled");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDrawContent 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
 	myConfig.bPopupContent 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "popup content", TRUE);
 	myConfig.cDateFormat 		= CD_CONFIG_GET_STRING ("Configuration", "date format");
+	myConfig.iDialogDuration 	= 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "time_dialog", 3);
 	if (myConfig.cDateFormat == NULL)
 		myConfig.cDateFormat = g_strdup ("%d/%m/%y");
 	myConfig.bAutoNaming = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "auto-naming", TRUE);
@@ -50,6 +52,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cIconDefault);
 	g_free (myConfig.cIconClose);
 	g_free (myConfig.cIconBroken);
+	g_free (myConfig.cIconEmpty);
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cDateFormat);
 CD_APPLET_RESET_CONFIG_END

@@ -23,6 +23,9 @@ close icon =
 #S+ Name of an image for the 'broken' icon :
 #{Let t empty to use the default icon.}
 broken icon = 
+#S+ Name of an image for the 'empty' icon :
+#{Let t empty to use the default icon.}
+empty icon = 
 
 order=
 icon=
@@ -132,3 +135,7 @@ date format =
 #b Emulate the 'NoteDeleted' signal ?
 #{Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal.}
 no deleted signal = true
+
+#i[1;30] Time length of info-bubbles :
+#{in s.}
+time_dialog = 10

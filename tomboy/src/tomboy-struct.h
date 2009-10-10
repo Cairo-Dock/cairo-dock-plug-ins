@@ -28,6 +28,7 @@ struct _AppletConfig {
 	gchar *cIconDefault;
 	gchar *cIconClose;
 	gchar *cIconBroken;
+	gchar *cIconEmpty;
 	gboolean bNoDeletedSignal;
 	gint iAppControlled;
 	gchar *cRenderer;
@@ -37,6 +38,7 @@ struct _AppletConfig {
 	gboolean bAutoNaming;
 	gboolean bAskBeforeDelete;
 	gdouble fTextColor[3];
+	gint iDialogDuration;
 	} ;
 
 struct _AppletData {
