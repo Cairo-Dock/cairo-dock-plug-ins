@@ -17,8 +17,11 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define _BSD_SOURCE
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -158,7 +161,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			if (fds == -1)
 			{
 				g_free (cLogFileWithComma);
-				return ;
+				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 			}
 			close(fds);
 			gchar *cCommandCopyFileWithComma;
