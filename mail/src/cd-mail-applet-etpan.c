@@ -373,7 +373,11 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 				}
 			}
 			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (ttip_str->str, myIcon, myContainer, 5000, "same icon");
+			cairo_dock_show_temporary_dialog_with_icon (ttip_str->str,
+				myIcon,
+				myContainer,
+				myConfig.iDialogDuration,
+				"same icon");
 
 			g_string_free(ttip_str, TRUE);
 		}
