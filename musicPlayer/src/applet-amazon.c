@@ -234,7 +234,7 @@ static gchar *_compute_request_and_signature (const gchar *cArtist, const gchar 
 	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
 	g_print ("timestamp : %s\n", cTimeStamp);
 	
-	gchar *cRequest = g_strdup_printf (REQUEST, _url_encode (cArtist), LICENCE_KEY, _url_encode (cKeyWords), _url_encode (cTimeStamp));
+	gchar *cRequest = g_strdup_printf (REQUEST,  (cArtist), LICENCE_KEY,  (cKeyWords), _url_encode (cTimeStamp));
 	
 	gchar *cBuffer = g_strconcat (HEADER, cRequest, NULL);
 	g_print ("cBuffer : %s\n", cBuffer);

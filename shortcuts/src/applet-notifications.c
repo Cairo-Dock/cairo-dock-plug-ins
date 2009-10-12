@@ -66,18 +66,24 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	CairoContainer *pContainer = data[2];
 	g_print ("%s (%s)\n", __func__, pIcon->cCommand);
 	
+	GString *sInfo = g_string_new ("");
 	CDDiskUsage diskUsage;
 	cd_shortcuts_get_fs_stat (pIcon->cCommand, &diskUsage);
-	gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
-	gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
-	GString *sInfo = g_string_new ("");
-	g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->cName, cCapacity, cFreeSpace);
-	cd_shortcuts_get_fs_info (pIcon->cCommand, sInfo);
-	
+	if (diskUsage.iTotal > 0)
+	{
+		gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
+		gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
+		g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->cName, cCapacity, cFreeSpace);
+		g_free (cCapacity);
+		g_free (cFreeSpace);
+		cd_shortcuts_get_fs_info (pIcon->cCommand, sInfo);
+	}
+	else
+	{
+		g_string_append_printf (sInfo, "Name : %s\nNot mounted", pIcon->cName);
+	}
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, pIcon, pContainer, 15000, "same icon");
 	g_string_free (sInfo, TRUE);
-	g_free (cCapacity);
-	g_free (cFreeSpace);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer *data = NULL;

@@ -238,18 +238,26 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 
 static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 {
-	if (! pDock->container.bInside)
+	if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 0) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
-	}
-	else if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 0) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))  // (X_BORDER_SPACE/2)
-	{
-		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_ON_THE_EDGE;
 	}
 	else
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
+	/*if ((pDock->container.iMouseX < X_BORDER_SPACE/2) || (pDock->container.iMouseX > pDock->iMaxDockWidth - X_BORDER_SPACE/2) || (pDock->container.iMouseY < Y_BORDER_SPACE/2) || (pDock->container.iMouseY > pDock->iMaxDockHeight - Y_BORDER_SPACE/2))
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;  // CAIRO_DOCK_MOUSE_ON_THE_EDGE
+	}
+	else if ((pDock->container.iMouseX >= X_BORDER_SPACE/2) && (pDock->container.iMouseX <= pDock->iMaxDockWidth - X_BORDER_SPACE/2) && (pDock->container.iMouseY >= Y_BORDER_SPACE/2) && (pDock->container.iMouseY <= pDock->iMaxDockHeight - Y_BORDER_SPACE/2))
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
+	}
+	else
+	{
+		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
+	}*/
 }
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {

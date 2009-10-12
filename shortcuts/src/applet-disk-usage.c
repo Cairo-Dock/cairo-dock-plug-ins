@@ -46,6 +46,10 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 		pDiskUsage->iUsed  = pDiskUsage->iTotal - pDiskUsage->iAvail;
 		//g_print ("%lld / %lld\n", pDiskUsage->iAvail, pDiskUsage->iTotal);
 	}
+	else
+	{
+		pDiskUsage->iTotal = 0;
+	}
 }
 
 void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
