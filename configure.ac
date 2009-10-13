@@ -371,7 +371,7 @@ AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
 MAIL_PACKAGE=cd-mail
 AC_SUBST(GETTEXT_MAIL, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_MAIL, "1.0.0-beta")
+AC_SUBST(VERSION_MAIL, "1.0.0-beta1")
 AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
 
 AC_SUBST(maildatadir, "${pkgdatadir}/mail")

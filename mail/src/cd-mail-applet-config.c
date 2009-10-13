@@ -128,6 +128,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.bCheckOnStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "check", TRUE);
 	
+	myConfig.iDialogDuration = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "time_dialog", 5);
+	
 	//\_________________ On recupere les comptes mail.
 	if (myConfig.bCheckOnStartup)
 		_get_mail_accounts (CD_APPLET_MY_KEY_FILE, myApplet);

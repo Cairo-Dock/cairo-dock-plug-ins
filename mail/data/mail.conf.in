@@ -82,25 +82,23 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#h+[@maildatadir@/themes;mail] Choose one of the available themes :
-theme = Default
+
+#F[Sub-Dock view] 
+frame_sub-dock =
 
 #n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/
 renderer = 
 
-#b Show new messages' content ?
-show content = true
 
-#i[-1;20] Maximum of new messages shown ?
-#{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
-max shown mails = -1
+#F[Sub-Dock view] 
+frame_them =
 
-#b Check mail account on startup ?
-#{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/modify the mail accounts you want.}
-check = true
+#h+[@maildatadir@/themes;mail] Choose one of the available themes :
+theme = Default
 
-#F[Theme overriding] 
+
+#X[Theme overriding;gtk-about] 
 frame_over =
 
 #S+ Name of the file for the "no mail" image :
@@ -111,6 +109,26 @@ has mail image =
 
 #u Name of the file for the "new mail" sound :
 new mail sound = 
+
+
+#F[Behaviour] 
+frame_config_mail =
+
+#b Show new messages' content ?
+show content = true
+
+#i[-1;20] Maximum of new messages shown ?
+#{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
+max shown mails = -1
+
+#i[3;30] Time length of the dialog :
+#{in s.}
+time_dialog = 5
+
+#b Check mail account on startup ?
+#{If you have any problem with the applet, uncheck this option during the maintenance mode, then let the dock launch itself, and remove/modify the mail accounts you want.}
+check = true
+
 
 #F[Mail application] 
 frame_appli =

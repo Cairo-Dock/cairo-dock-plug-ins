@@ -51,6 +51,7 @@ struct _AppletConfig {
 	gboolean bShowMessageContent;
 	gboolean bCheckOnStartup;
 	guint iNbMaxShown;
+	gint iDialogDuration;
 } ;
 
 struct _AppletData {
