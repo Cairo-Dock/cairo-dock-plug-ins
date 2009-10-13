@@ -1797,7 +1797,7 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "upplevd"
 
 #: ../weather/src/applet-notifications.c:154

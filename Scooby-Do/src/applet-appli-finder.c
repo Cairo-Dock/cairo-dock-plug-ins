@@ -158,6 +158,10 @@ static int _same_command (Icon *pIcon1, Icon *pIcon2)
 {
 	return cairo_dock_strings_differ (pIcon1->cCommand, pIcon2->cCommand);
 }
+static int _similar_command (Icon *pIcon2, const gchar *cCommand)
+{
+	return (!pIcon2->cCommand || strncmp (cCommand, pIcon2->cCommand, strlen (cCommand)));
+}
 static gboolean _load_applis_buffer_idle (gpointer data)
 {
 	if (myData.pCurrentApplicationToLoad == NULL)
@@ -215,41 +219,60 @@ void cd_do_find_matching_applications (void)
 	
 	//\_______________ On teste chaque appli qu'on rajoute a la liste si elle correspond.
 	gboolean bFound = FALSE;
+	gboolean bMatch;
 	Icon *pIcon;
-	//cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-	//gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	GList *a;
 	for (a = myData.pApplications; a != NULL; a = a->next)
 	{
 		pIcon = a->data;
-		if (pIcon->cCommand == NULL || g_strncasecmp (pIcon->cCommand, myData.sCurrentText->str, myData.sCurrentText->len) != 0)
+		if (pIcon->cCommand == NULL)
+			bMatch = FALSE;
+		else
 		{
-			if (bFound)
+			bMatch = (g_strncasecmp (pIcon->cCommand, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
+			if (!bMatch)
+			{
+				gchar *str = strchr (pIcon->cCommand, '-');  // on se limite au 1er tiret.
+				if (str && *(str-1) != ' ')  // on verifie qu'il n'est pas un tiret d'option
+				{
+					str ++;
+					bMatch = (g_strncasecmp (str, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
+				}
+			}
+		}
+		
+		if (!bMatch)
+		{
+			/*if (bFound)
 				break;
-			else
+			else*/
 				continue;
 		}
 		if (g_list_find_custom (myData.pMatchingIcons, pIcon, (GCompareFunc)_same_command) == NULL)
 		{
 			g_print (" on ajoute %s\n", pIcon->cCommand);
 			myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
-			/*if (pIcon->pIconBuffer == NULL)
-			{
-				pIcon->fWidth = 48.;
-				pIcon->fHeight = 48.;
-				pIcon->fScale = 1.;
-				gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
-				pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, pCairoContext, 48., 48);
-				g_free (cIconPath);
-				if (bLoadTexture)
-					pIcon->iIconTexture = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);
-			}*/
 		}
 	}
-	//cairo_destroy (pCairoContext);
 	myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 	
-	/// lancer le chargement des icones en idle...
+	//\_______________ On place l'appli preferee en premier.
+	int i = *myData.sCurrentText->str - 'a';
+	if (i >= 0 && i < 26)
+	{
+		gchar *cPrefferedAppli = myConfig.cPreferredApplis[i];
+		if (cPrefferedAppli != NULL && *cPrefferedAppli != '\0')
+		{
+			GList *ic = g_list_find_custom (myData.pMatchingIcons, cPrefferedAppli, (GCompareFunc) _similar_command);
+			if (ic != NULL)
+			{
+				myData.pMatchingIcons = g_list_remove_link (myData.pMatchingIcons, ic);
+				myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, ic);
+			}
+		}
+	}
+	
+	//\_______________ On lance le chargement des icones en idle.
 	myData.pCurrentApplicationToLoad = myData.pMatchingIcons;
 	if (myData.iSidLoadExternAppliIdle == 0)
 		myData.iSidLoadExternAppliIdle = g_idle_add (_load_applis_buffer_idle, NULL);

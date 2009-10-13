@@ -2125,7 +2125,7 @@ msgstr ""
 "Nouvel essai ..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "ressentie"
 
 #: ../weather/src/applet-notifications.c:154

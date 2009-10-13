@@ -183,7 +183,7 @@ static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gch
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "tmp") == 0)
 					myData.currentConditions.cTemp = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "flik") == 0)
-					myData.currentConditions.cFeeledTemp = xmlNodeGetContent (fils);
+					myData.currentConditions.cFeltTemp = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "t") == 0)
 					myData.currentConditions.cWeatherDescription = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "icon") == 0)

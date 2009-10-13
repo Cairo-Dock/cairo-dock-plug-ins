@@ -65,7 +65,7 @@ static void _reset_current_conditions (CurrentContitions *pCurrentContitions)
 	g_free (pCurrentContitions->cDataAcquisitionDate);
 	g_free (pCurrentContitions->cObservatory);
 	g_free (pCurrentContitions->cTemp);
-	g_free (pCurrentContitions->cFeeledTemp);
+	g_free (pCurrentContitions->cFeltTemp);
 	g_free (pCurrentContitions->cWeatherDescription);
 	g_free (pCurrentContitions->cIconNumber);
 	g_free (pCurrentContitions->cWindSpeed);

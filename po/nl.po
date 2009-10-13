@@ -2108,7 +2108,7 @@ msgstr ""
 "Opnieuw proberen..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "Gevoelstemperatuur"
 
 #: ../weather/src/applet-notifications.c:154

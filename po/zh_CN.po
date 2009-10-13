@@ -1785,7 +1785,7 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "体感温度"
 
 #: ../weather/src/applet-notifications.c:154

@@ -161,17 +161,56 @@ static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstanc
 {
 	cd_switcher_refresh_desktop_values (myApplet);
 }
-static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
-{
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-}
 static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
 {
 	int iIndex = GPOINTER_TO_INT (data);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	cd_switcher_move_current_desktop_to (iNumDesktop, iNumViewportX, iNumViewportY);
+}
+static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
+{
+	// on demande le nouveau nom.
+	int iIndex = GPOINTER_TO_INT (data);
+	gchar *cName = (iIndex < myConfig.iNbNames ? g_strdup (myConfig.cDesktopNames[iIndex]) : g_strdup_printf ("%s %d", D_("Desktop"), iIndex+1));
+	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Rename this workspace"), myIcon, myContainer, cName);
+	g_free (cName);
+	
+	if (cNewName != NULL)
+	{
+		// on augmente la taille du tableau si necessaire.
+		if (iIndex >= myConfig.iNbNames)
+		{
+			myConfig.cDesktopNames = g_realloc (myConfig.cDesktopNames, (iIndex + 2) * sizeof (gchar*));  // NULL-terminated.
+			int i;
+			for (i = myConfig.iNbNames; i < iIndex; i ++)  // on met des noms par defaut aux nouveaux, sauf a celui choisi.
+				myConfig.cDesktopNames[i] = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
+			myConfig.cDesktopNames[iIndex] = NULL;
+			myConfig.cDesktopNames[iIndex+1] = NULL;  // NULL-terminated.
+			myConfig.iNbNames = iIndex + 1;
+		}
+		
+		g_free (myConfig.cDesktopNames[iIndex]);
+		myConfig.cDesktopNames[iIndex] = cNewName;  // donc ne pas liberer 'cNewName'.
+		
+		// on sauvegarde le nom dans le fichier de conf.
+		GString *sNames = g_string_new ("");
+		int i;
+		for (i = 0; i < myConfig.iNbNames; i ++)
+		{
+			g_string_append_printf (sNames, "%s;", myConfig.cDesktopNames[i]);
+		}
+		sNames->str[sNames->len-1] = '\0';
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING, "Configuration", "desktop names", sNames->str,
+			G_TYPE_INVALID);
+		g_string_free (sNames, TRUE);
+	}
+}
+static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
@@ -191,9 +230,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 	{
+		int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"),
+			GTK_STOCK_EDIT,
+			_cd_switcher_rename_desktop,
+			pSubMenu,
+			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
-			int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
 			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
 				GTK_STOCK_JUMP_TO,
 				_cd_switcher_move_to_desktop,

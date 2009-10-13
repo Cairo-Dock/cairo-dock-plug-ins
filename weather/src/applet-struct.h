@@ -65,7 +65,7 @@ typedef struct {
 	gchar *cDataAcquisitionDate;
 	gchar *cObservatory;
 	gchar *cTemp;
-	gchar *cFeeledTemp;
+	gchar *cFeltTemp;
 	gchar *cWeatherDescription;
 	gchar *cIconNumber;
 	gchar *cWindSpeed;

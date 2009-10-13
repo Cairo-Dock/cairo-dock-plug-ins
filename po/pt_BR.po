@@ -2088,7 +2088,7 @@ msgstr ""
 "Tentando novamente ..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "sentido"
 
 #: ../weather/src/applet-notifications.c:154

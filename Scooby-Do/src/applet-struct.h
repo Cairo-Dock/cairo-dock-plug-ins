@@ -56,6 +56,7 @@ struct _AppletConfig {
 	gint iNbResultMax;
 	CairoDockLabelDescription infoDescription;
 	gint iNbLinesInListing;
+	gchar **cPreferredApplis;
 	};
 
 typedef struct _CDEntry CDEntry;

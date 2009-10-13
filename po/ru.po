@@ -2096,7 +2096,7 @@ msgstr ""
 "Обновление..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "Комфорт"
 
 #: ../weather/src/applet-notifications.c:154

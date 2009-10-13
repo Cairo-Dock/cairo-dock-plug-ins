@@ -29,6 +29,34 @@
 #include "applet-search.h"
 #include "applet-config.h"
 
+static const gchar *s_DefaultApplis[26+1] = {
+	"abiword",
+	"gnome-background-properties",
+	"gnome-calculator",
+	"gnome-dictionary",
+	"evince",
+	"firefox",
+	"gjiten",
+	"",
+	"inkscape",
+	"",
+	"kate",
+	"",
+	"",
+	"nautilus --browser",
+	"ooffice",
+	"pan",
+	"",
+	"rhythmbox",
+	"synaptic",
+	"gnome-terminal",
+	"",
+	"vlc",
+	"",
+	"",
+	"yast",
+	"",
+	NULL};
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -74,6 +102,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.infoDescription.fBackgroundColor[3] = 0;
 	myConfig.infoDescription.fBackgroundColor[3] = 0.33;
 	myConfig.infoDescription.iMargin = 8;
+	
+	myConfig.cPreferredApplis = g_new0 (gchar *, 26+1);  // NULL-terminated
+	gchar key[2];
+	int i;
+	for (i = 0; i < 26; i ++)
+	{
+		sprintf (key, "%c", 'a'+i);
+		myConfig.cPreferredApplis[i] = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", key, s_DefaultApplis[i]);
+	}
 CD_APPLET_GET_CONFIG_END
 
 
@@ -88,6 +125,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShortkeySearch);
 	g_free (myConfig.cIconAnimation);
 	g_free (myConfig.labelDescription.cFont);
+	g_strfreev (myConfig.cPreferredApplis);
 CD_APPLET_RESET_CONFIG_END
 
 
