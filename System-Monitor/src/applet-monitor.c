@@ -156,3 +156,47 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 	}
 	return myData.bAcquisitionOK;
 }
+
+
+void cd_sysmonitor_format_value (double fValue, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+{
+	int i = -1;
+	if (myConfig.bShowCpu)
+	{
+		i ++;
+		if (i == iNumValue)  // c'est celle-la qu'on veut afficher.
+		{
+			snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f%%" : (fValue < 1 ? " %.0f%%" : "%.0f%%"), fValue * 100.);
+			return ;
+		}
+	}
+	if (myConfig.bShowRam)
+	{
+		i ++;
+		if (i == iNumValue)
+		{
+			snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f%%" : (fValue < 1 ? " %.0f%%" : "%.0f%%"), fValue * 100.);
+			return ;
+		}
+	}
+	if (myConfig.bShowSwap)
+	{
+		i ++;
+		if (i == iNumValue)
+		{
+			snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f%%" : (fValue < 1 ? " %.0f%%" : "%.0f%%"), fValue * 100.);
+			return ;
+		}
+	}
+	if (myConfig.bShowNvidia)
+	{
+		i ++;
+		if (i == iNumValue)
+		{
+			double fTemp = myConfig.iLowerLimit + fValue * myConfig.iUpperLimit;
+			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
+			return ;
+		}
+	}
+	snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f" : (fValue < 1 ? " %.0f" : "%.0f"), fValue * 100.);
+}

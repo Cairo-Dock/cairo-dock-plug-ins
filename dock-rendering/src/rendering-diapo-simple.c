@@ -49,52 +49,90 @@ extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_icons;
 
 const  gint X_BORDER_SPACE = 40;
-const  gint Y_BORDER_SPACE = 40;
-//const  gint  MaxTextWidthSimple = 125; 
+const  gint ARROW_TIP = 10;  // pour gerer la pointe de la fleche.
 
-/// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom (?).
+/// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom.
+
+
+// Fonctions utiles pour transformer l'index de la liste en couple (x,y) sur la grille et inversement.
+static inline void _get_gridXY_from_index (guint nRowsX, guint index, guint* gridX, guint* gridY)
+{
+	*gridX = index % nRowsX;
+	*gridY = index / nRowsX;
+}
+static inline guint _get_index_from_gridXY (guint nRowsX, guint gridX, guint gridY)
+{
+	return gridX + gridY * nRowsX;
+}
+
+static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRowX, guint *nRowY)
+{
+	// Calcul du nombre de lignes (nY) / colonnes (nX) :
+	guint count = g_list_length (pIconList);
+	if (count == 0)
+	{
+		*nRowX = 0;
+		*nRowY = 0;
+	}
+	else if (my_diapo_simple_wide_grid)
+	{
+		*nRowX = ceil(sqrt(count));
+		*nRowY = ceil(((double) count) / *nRowX);
+	}
+	else
+	{
+		*nRowY = ceil(sqrt(count));
+		*nRowX = ceil(((double) count) / *nRowY);
+	}
+	return count;
+}
+
 
 void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
-{	
-        guint nRowsX = 0;
-        guint nRowsY = 0;
-        guint nIcones = 0;
-
-//////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
-        nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);
-//////////////////////////////////////////////////////////////////////////////////////// On calcule la taille de l'affichage
-        if(nIcones != 0)
-        {
-	   ///pDock->iMinDockWidth  = pDock->iMaxDockWidth  = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + 2 * my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
-	   ///pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + 2 * my_diapo_simple_iconGapY) + Y_BORDER_SPACE * 3 + my_diapo_simple_arrowHeight-30;	// 30 -> pour que la fleche aille plus bas
-	   pDock->iMinDockWidth = pDock->iMaxDockWidth = nRowsX * (((Icon*)pDock->icons->data)->fWidth  + my_diapo_simple_iconGapX) + X_BORDER_SPACE * 2;
-	   pDock->iMinDockHeight = pDock->iMaxDockHeight = nRowsY * (((Icon*)pDock->icons->data)->fHeight + my_diapo_simple_iconGapY) + Y_BORDER_SPACE + my_diapo_simple_arrowHeight+10 + myLabels.iLabelSize;  // +10 -> pour que la fleche aille plus bas
-        }
-        else
-        {
-                ///pDock->iMaxDockWidth = pDock->iMaxDockHeight = pDock->iMinDockWidth = pDock->iMinDockHeight = 0;
-                pDock->iMaxDockWidth = pDock->iMinDockWidth = X_BORDER_SPACE * 2 + 1;
-                pDock->iMaxDockHeight = pDock->iMinDockHeight = Y_BORDER_SPACE + 1 + my_diapo_simple_arrowHeight+10;
-        }
-
-//////////////////////////////////////////////////////////////////////////////////////// Définition de la zone de déco avec Valérie Damidot - 0 car on s'en fout un peu comme l'emission de cette grognasse... :D
+{
+	// On calcule la configuration de la grille
+	guint nRowsX = 0;  // nb colonnes.
+	guint nRowsY = 0;  // nb lignes.
+	guint nIcones = 0;  // nb icones.
+	nIcones = _cd_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);
+	
+	// On calcule la taille de l'affichage
+	if(nIcones != 0)
+	{
+		int iMaxIconWidth = ((Icon*)pDock->icons->data)->fWidth;  // approximation un peu bof.
+		pDock->iMaxDockWidth = nRowsX * (iMaxIconWidth + my_diapo_simple_iconGapX) + 2*X_BORDER_SPACE;
+		pDock->iMaxDockHeight = (nRowsY - 1) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) +  // les icones
+			pDock->iMaxIconHeight * my_diapo_simple_fScaleMax +  // les icones des bords zooment
+			myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
+			my_diapo_simple_lineWidth + // les demi-lignes du haut et du bas
+			my_diapo_simple_arrowHeight + ARROW_TIP;  // la fleche etendue
+		pDock->iMinDockWidth = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;
+		pDock->iMinDockHeight = pDock->iMaxDockHeight;
+	}
+	else
+	{
+		pDock->iMaxDockWidth = pDock->iMinDockWidth = X_BORDER_SPACE * 2 + 1;
+		pDock->iMaxDockHeight = pDock->iMinDockHeight = my_diapo_simple_lineWidth + my_diapo_simple_arrowHeight + ARROW_TIP + 1;
+	}
+	
+	// pas de decorations.
 	pDock->iDecorationsHeight = 0;
 	pDock->iDecorationsWidth  = 0;
 	
-//////////////////////////////////////////////////////////////////////////////////////// On affecte ca aussi au cas où
+	// On affecte ca aussi au cas ou.
 	pDock->fFlatDockWidth = pDock->iMinDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+g_fAmplitude);
-
 }
+
 
 void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	if(my_diapo_simple_draw_background)
+	if (my_diapo_simple_draw_background)
 	{
 		//\____________________ On trace le cadre.
 		cairo_save (pCairoContext);
 		cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
-
+		
 		//\____________________ On dessine les decorations dedans.
 		double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 		cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock, fAlpha);
@@ -213,14 +251,14 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 				}
 				else
 				{
-						fOffsetX = icon->fDrawY + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
-						if (fOffsetX < 0)
-							fOffsetX = 0;
-						else if (fOffsetX + icon->iTextWidth > pDock->container.iHeight)
-							fOffsetX = pDock->container.iHeight - icon->iTextWidth;
-						cairo_translate (pCairoContext,
-							fOffsetX,
-							icon->fDrawX - icon->iTextHeight);
+					fOffsetX = icon->fDrawY + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
+					if (fOffsetX < 0)
+						fOffsetX = 0;
+					else if (fOffsetX + icon->iTextWidth > pDock->container.iHeight)
+						fOffsetX = pDock->container.iHeight - icon->iTextWidth;
+					cairo_translate (pCairoContext,
+						fOffsetX,
+						icon->fDrawX - icon->iTextHeight);
 				}
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
@@ -236,53 +274,118 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	while (ic != pFirstDrawnElement);
 }
 
+
+
+static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
+{
+	// On calcule la position de base pour toutes les icones
+	int iOffsetY = .5 * pDock->iMaxIconHeight * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
+		myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
+		.5 * my_diapo_simple_lineWidth;  // demi-ligne du haut;
+	
+	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
+	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
+	Icon* icon;
+	GList* ic, *pointed_ic=NULL;
+	int i, x, y;
+	for (ic = pDock->icons, i = 0; ic != NULL; ic = ic->next, i++)
+	{
+		icon = ic->data;
+		
+		// position sur la grille.
+		_get_gridXY_from_index(nRowsX, i, &x, &y);
+		
+		// on en deduit la position au repos.
+		icon->fX = X_BORDER_SPACE + .5*my_diapo_simple_iconGapX + (icon->fWidth + my_diapo_simple_iconGapX) * x;
+		icon->fY = iOffsetY + (icon->fHeight + my_diapo_simple_iconGapY) * y;
+		if (!pDock->container.bDirectionUp)
+			icon->fY = pDock->container.iHeight - icon->fY - icon->fHeight;
+		
+		// on en deduit le zoom par rapport a la position de la souris.
+		gdouble distanceE = sqrt ((icon->fX + icon->fWidth/2 - Mx) * (icon->fX + icon->fWidth/2 - Mx) + (icon->fY + icon->fHeight/2 - My) * (icon->fY + icon->fHeight/2 - My));
+		if (my_diapo_simple_lineaire)
+		{
+			gdouble eloignementMax = my_diapo_simple_sinW;  // 3. * (icon->fWidth + icon->fHeight)  / 2
+			icon->fScale = MAX (1., my_diapo_simple_fScaleMax + (1. - my_diapo_simple_fScaleMax) * distanceE / eloignementMax);
+			icon->fPhase = 0.;
+		}
+		else
+		{
+			icon->fPhase = distanceE * G_PI / my_diapo_simple_sinW + G_PI / 2.;
+			if (icon->fPhase < 0)
+				icon->fPhase = 0;
+			else if (icon->fPhase > G_PI)
+				icon->fPhase = G_PI;
+			icon->fScale = 1. + (my_diapo_simple_fScaleMax - 1.) * sin (icon->fPhase);
+		}
+		
+		// on tient compte du zoom (zoom centre).
+		icon->fXMin = icon->fXMax = icon->fXAtRest =  // Ca on s'en sert pas encore
+		icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
+		icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
+		
+		// on tient compte du depliage.
+		icon->fDrawX -= (icon->fDrawX - pDock->container.iWidth/2) * fFoldingX;
+		icon->fDrawY = icon->fDrawY + (pDock->container.bDirectionUp ?
+			pDock->container.iHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + icon->fDrawY) :
+			- icon->fDrawY) * fFoldingY;
+		
+		icon->fAlpha = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / (1 - .7) : 1.);  // apparition de 1 a 0.7
+		
+		// On regarde si l'icone est pointee, si oui elle est un peu plus visible que les autres.
+		if((Mx > icon->fX - .5*my_diapo_simple_iconGapX) && 
+			(My > icon->fY - .5*my_diapo_simple_iconGapY) &&
+			(Mx < icon->fX + icon->fWidth  + .5*my_diapo_simple_iconGapX) &&
+			(My < icon->fY + icon->fHeight + .5*my_diapo_simple_iconGapY))
+		{
+			icon->bPointed = TRUE;
+			pointed_ic = ic;
+			icon->fAlpha *= 1.;
+		}
+		else
+		{
+			icon->bPointed = FALSE;
+			icon->fAlpha *= 0.75;
+		}
+		
+		// On affecte tous les parametres qui n'ont pas été défini précédement
+		icon->fPhase = 0.;
+		icon->fOrientation = 0 * 2. * G_PI * pDock->fFoldingFactor;
+		icon->fWidthFactor = icon->fHeightFactor = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / .3 : 1.);
+		//icon->fWidthFactor = icon->fHeightFactor = 1.;
+	}
+	return (pointed_ic == NULL ? NULL : pointed_ic->data);
+}
 static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 {
 	if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 0) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}
-	else
+	else  // on fait simple.
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
-	/*if ((pDock->container.iMouseX < X_BORDER_SPACE/2) || (pDock->container.iMouseX > pDock->iMaxDockWidth - X_BORDER_SPACE/2) || (pDock->container.iMouseY < Y_BORDER_SPACE/2) || (pDock->container.iMouseY > pDock->iMaxDockHeight - Y_BORDER_SPACE/2))
-	{
-		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;  // CAIRO_DOCK_MOUSE_ON_THE_EDGE
-	}
-	else if ((pDock->container.iMouseX >= X_BORDER_SPACE/2) && (pDock->container.iMouseX <= pDock->iMaxDockWidth - X_BORDER_SPACE/2) && (pDock->container.iMouseY >= Y_BORDER_SPACE/2) && (pDock->container.iMouseY <= pDock->iMaxDockHeight - Y_BORDER_SPACE/2))
-	{
-		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
-	}
-	else
-	{
-		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
-	}*/
+}
+static void _cd_rendering_check_can_drop_linear (CairoDock *pDock)
+{
+	pDock->bCanDrop = TRUE;  /// caluler bCanDrop ...
 }
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {
-        guint nRowsX = 0;
-        guint nRowsY = 0;
-        guint nIcones = 0;
-     
-
-//////////////////////////////////////////////////////////////////////////////////////// On calcule la configuration de la grille :
-        nIcones = cairo_dock_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);      
+	// On calcule la configuration de la grille
+	guint nRowsX = 0;
+	guint nRowsY = 0;
+	guint nIcones = 0;
+	nIcones = _cd_rendering_diapo_simple_guess_grid (pDock->icons, &nRowsX, &nRowsY);
 	
-
-//////////////////////////////////////////////////////////////////////////////////////// On calcule les tailles des icones en fonction de la souris
-	cairo_dock_calculate_wave_with_position_diapo_simple(pDock->icons, pDock->container.iMouseX, pDock->container.iMouseY, nRowsX);
-
-
-//////////////////////////////////////////////////////////////////////////////////////// On calcule les positions des icones	
-	Icon *pPointedIcon = cairo_dock_calculate_icons_position_for_diapo_simple(pDock, nRowsX, nRowsY, pDock->container.iMouseX, pDock->container.iMouseY);
-
-
+	// On calcule les parametres des icones
+	Icon *pPointedIcon = _cd_rendering_calculate_icons_for_diapo_simple (pDock, nRowsX, nRowsY, pDock->container.iMouseX, pDock->container.iMouseY);
+	
 	_cd_rendering_check_if_mouse_inside_diapo_simple (pDock);
 	
-	/// caluler bCanDrop ...
+	_cd_rendering_check_can_drop_linear (pDock);
 	
-//////////////////////////////////////////////////////////////////////////////////////// On revoie l'icone pointee et NULL sinon
 	return pPointedIcon;
 }
 
@@ -307,336 +410,165 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 }
 
 
-guint cairo_dock_rendering_diapo_simple_guess_grid(GList *pIconList, guint *nRowX, guint *nRowY)
-{
-//////////////////////////////////////////////////////////////////////////////////////// Calcul du nombre de ligne / colonne :
-	guint count = g_list_length(pIconList);
-	if (count == 0)
-	{
-		*nRowX = 0;
-		*nRowY = 0;
-	}
-	else if(my_diapo_simple_wide_grid)
-	{
-	        *nRowX = ceil(sqrt(count));
-        	*nRowY = ceil(((double) count) / *nRowX);
-	}
-	else
-	{
-	        *nRowY = ceil(sqrt(count));
-	        *nRowX = ceil(((double) count) / *nRowY);
-    }
-	return count;
-}
-
-Icon* cairo_dock_calculate_icons_position_for_diapo_simple(CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
-{
-//////////////////////////////////////////////////////////////////////////////////////// On calcule la position de base pour toutes les icones :
-        guint i = 0;
-        guint x = 0;
-        guint y = 0;
-		
-       	GList *pointed_ic = NULL;
-//////////////////////////////////////////////////////////////////////////////////////// On crée une liste d'icone des icones à parcourir :
-	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
-	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
-	Icon* icon;
-	GList* ic;
-	i = 0;
-	for (ic = pDock->icons; ic != NULL; ic = ic->next)
-	{
-	
-//////////////////////////////////////////////////////////////////////////////////////// On recupere la structure d'infos
-		icon = ic->data;
-		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
-		
-//////////////////////////////////////////////////////////////////////////////////////// On affecte les parametres de dessin  :
-		
-//////////////////////////////////////////////////////////////////////////////////////// On va PAS se servir des fX fY comme d'index de la grille ailleurs qu'ici CAR le fY est changé dans des fonctions de drawing qui devrait pas !   ----> a confirmer mais ca ne devrait plus !
-	        ///icon->fX = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + X_BORDER_SPACE;
-	        ///icon->fY = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + Y_BORDER_SPACE;
-	        icon->fX = (icon->fWidth  + my_diapo_simple_iconGapX) * x + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX ;
-	        icon->fY = (icon->fHeight + my_diapo_simple_iconGapY) * y + icon->fHeight/2 * (my_diapo_simple_fScaleMax - 1) + 2*Y_BORDER_SPACE - 0*(my_diapo_simple_arrowHeight + 10) + 0*.5*my_diapo_simple_iconGapY + icon->iTextHeight;
-
-
-//////////////////////////////////////////////////////////////////////////////////////// On passe au réferentiel de l'image :
-	        icon->fXMin = icon->fXMax = icon->fXAtRest = //Ca on s'en sert pas encore
-	        ///icon->fDrawX = icon->fX + my_diapo_simple_iconGapX + icon->fWidth  * (1. - icon->fScale) / 2;
-	        ///icon->fDrawY = icon->fY + my_diapo_simple_iconGapY + icon->fHeight * (1. - icon->fScale) / 2;
-	        icon->fDrawX = icon->fX + icon->fWidth  * (1. - icon->fScale) / 2;
-	        icon->fDrawY = icon->fY + icon->fHeight * (1. - icon->fScale) / 2;
-			icon->fDrawX -= (icon->fDrawX - pDock->container.iWidth/2) * fFoldingX;
-			icon->fDrawY = icon->fDrawY + ((pDock->container.bDirectionUp ? pDock->container.iHeight - Y_BORDER_SPACE : 0) - icon->fDrawY) * fFoldingY - myLabels.iLabelSize;
-			icon->fAlpha = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / (1 - .7) : 1.);  // apparition de 1 a 0.7
-			
-////////////////////////////////////////////////////////////////////////////////////////On va check de la mouse là :
-			/**if((Mx > icon->fX) && 
-			   (My > icon->fY) &&
-			   (Mx < icon->fX + icon->fWidth  + 2 * my_diapo_simple_iconGapX) &&
-			   (My < icon->fY + icon->fHeight + 2 * my_diapo_simple_iconGapY))*/
-			   if((Mx > icon->fX - .5*my_diapo_simple_iconGapX) && 
-			   (My > icon->fY - .5*my_diapo_simple_iconGapY) &&
-			   (Mx < icon->fX + icon->fWidth  + .5*my_diapo_simple_iconGapX) &&
-			   (My < icon->fY + icon->fHeight + .5*my_diapo_simple_iconGapY))
-			{
-				icon->bPointed = TRUE;
-				pointed_ic = ic;
-				icon->fAlpha *= 1.;
-	        }
-	        else
-	        {
-				icon->bPointed = FALSE; 
-				icon->fAlpha *= 0.75;
-	        }
-
-//////////////////////////////////////////////////////////////////////////////////////// On prépare pour la suivante :
-	        i++;
-	               
-//////////////////////////////////////////////////////////////////////////////////////// On affecte tous les parametres qui n'ont pas été défini précédement
-	        icon->fPhase = 0.;
-	        icon->fOrientation = 0 * 2. * G_PI * pDock->fFoldingFactor;
-            icon->fWidthFactor = icon->fHeightFactor = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / .3 : 1.);
-			//icon->fWidthFactor = icon->fHeightFactor = 1.;
-	}
-	return pointed_ic == NULL ? NULL : pointed_ic->data;
-}
-
-
-
-void cairo_dock_calculate_wave_with_position_diapo_simple(GList *pIconList, gint Mx, gint My, guint nRowsX)
-{
-        guint i = 0;
-        guint x = 0;
-        guint y = 0;
-              
-        GList* ic;
-	Icon *icon;
-	for (ic = pIconList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		cairo_dock_rendering_diapo_simple_get_gridXY_from_index(nRowsX, i, &x, &y);
-                guint x1 = Mx;
-                ///gdouble x2 = (icon->fWidth  + 2 * my_diapo_simple_iconGapX) * x + (icon->fWidth  / 2) + my_diapo_simple_iconGapX + X_BORDER_SPACE;
-                gdouble x2 = (icon->fWidth + my_diapo_simple_iconGapX) * x + (icon->fWidth / 2) + X_BORDER_SPACE + .5*my_diapo_simple_iconGapX;
-                guint y1 = My;
-                ///gdouble y2 = (icon->fHeight + 2 * my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + my_diapo_simple_iconGapY + Y_BORDER_SPACE;
-                gdouble y2 = (icon->fHeight + my_diapo_simple_iconGapY) * y + (icon->fHeight / 2) + Y_BORDER_SPACE + .5*my_diapo_simple_iconGapY + icon->iTextHeight;
-                gdouble distanceE = sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-              
-                if(my_diapo_simple_lineaire)
-                {
-                        gdouble eloignementMax = my_diapo_simple_sinW;  // 3. * (icon->fWidth + icon->fHeight)  / 2
-                        if(distanceE > eloignementMax)
-                        {
-                                icon->fScale = 1.;
-                        }
-                        else
-                        {
-                                icon->fScale = - (1./eloignementMax) * distanceE + my_diapo_simple_fScaleMax;
-                        }
-                }
-                else
-                {
-                        icon->fPhase = distanceE * G_PI / my_diapo_simple_sinW + G_PI / 2.;
-                        if (icon->fPhase < 0)
-                        {
-                                icon->fPhase = 0;
-                        }
-                        else if (icon->fPhase > G_PI)
-                        {
-                                icon->fPhase = G_PI;
-                        }
-                        icon->fScale = 1. + (my_diapo_simple_fScaleMax-1.) * sin (icon->fPhase);                
-                }
-                i++;
- 	}
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////// Fonctions utiles pour transformer l'index de la liste en couple (x,y) sur la grille
-void cairo_dock_rendering_diapo_simple_get_gridXY_from_index(guint nRowsX, guint index, guint* gridX, guint* gridY)
-{
-        *gridX = index % nRowsX;
-        *gridY = (index - *gridX) / nRowsX;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////// Et inversement (proportionnel)
-guint cairo_dock_rendering_diapo_simple_get_index_from_gridXY(guint nRowsX, guint gridX, guint gridY)
-{
-        return gridX + gridY * nRowsX;
-}
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////// Methodes de dessin :
-
 
 static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-        const gdouble arrow_dec = 2;
-	gdouble fFrameWidth  = pDock->iMaxDockWidth-2*X_BORDER_SPACE;
-	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10); // +10->pour que la fleche aille plus bas...  -----> quel petit joueur, regarde les calculs de malade que je me suis tape pour la pointe des dialogues ! :-)
+	const gdouble arrow_dec = 2;
+	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE;
+	gdouble fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);  // (pDock->container.bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
+	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight + ARROW_TIP);
 	
+	cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
 
-        cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
-
-
-        //HautGauche -> HautDroit
-        if(pDock->container.bDirectionUp)
-        {
-                cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
-        }
-        else
-        {
-               //On fait la fleche
-                cairo_rel_line_to (pCairoContext,  (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth), 0);                //     _
-                cairo_rel_line_to (pCairoContext, + my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec,  -my_diapo_simple_arrowHeight);       //  \. 
-                cairo_rel_line_to (pCairoContext, + my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, +my_diapo_simple_arrowHeight);        //    /     
-                cairo_rel_line_to (pCairoContext, (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth) , 0);               // _     
-        }
-        //\_________________ Coin haut droit.
-        cairo_rel_curve_to (pCairoContext,
-                0, 0,
-                my_diapo_simple_radius, 0,
-                my_diapo_simple_radius, my_diapo_simple_radius );
-
-
-        //HautDroit -> BasDroit
-        cairo_rel_line_to (pCairoContext, 0, fFrameHeight + my_diapo_simple_lineWidth - my_diapo_simple_radius *  2 );
-        //\_________________ Coin bas droit.
-         cairo_rel_curve_to (pCairoContext,
-                        0, 0,
-                        0 , my_diapo_simple_radius,
-                        -my_diapo_simple_radius , my_diapo_simple_radius);
-
-
-        //BasDroit -> BasGauche        
-        if(!pDock->container.bDirectionUp)
-        {
-                cairo_rel_line_to (pCairoContext, - fFrameWidth , 0);
-        }
-        else
-        {
-                //On fait la fleche
-                cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth), 0);                //     _
-                cairo_rel_line_to (pCairoContext, - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, my_diapo_simple_arrowHeight);        //    /     
-                cairo_rel_line_to (pCairoContext, - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, -my_diapo_simple_arrowHeight);       //  \. 
-                cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth) , 0);               // _      
-        }
-        //\_________________ Coin bas gauche.
-        cairo_rel_curve_to (pCairoContext,
-                        0, 0,
-                        -my_diapo_simple_radius, 0,
-                        -my_diapo_simple_radius, -my_diapo_simple_radius );
-                        
-                        
-        //BasGauche -> HautGauche
-        cairo_rel_line_to (pCairoContext, 0, - fFrameHeight - my_diapo_simple_lineWidth + my_diapo_simple_radius * 2);
-        //\_________________ Coin haut gauche.
-        cairo_rel_curve_to (pCairoContext,
-                0, 0,
-                0 , -my_diapo_simple_radius ,
-                my_diapo_simple_radius, -my_diapo_simple_radius );
+	//HautGauche -> HautDroit
+	if(pDock->container.bDirectionUp)
+	{
+		cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
+	}
+	else
+	{
+		//On fait la fleche
+		cairo_rel_line_to (pCairoContext,  (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth), 0);                //     _
+		cairo_rel_line_to (pCairoContext, + my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec,  -my_diapo_simple_arrowHeight);       //  \.
+		cairo_rel_line_to (pCairoContext, + my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, +my_diapo_simple_arrowHeight);        //    /
+		cairo_rel_line_to (pCairoContext, (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth) , 0);               // _
+	}
+	//\_________________ Coin haut droit.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		my_diapo_simple_radius, 0,
+		my_diapo_simple_radius, my_diapo_simple_radius );
+	
+	//HautDroit -> BasDroit
+	cairo_rel_line_to (pCairoContext, 0, fFrameHeight + my_diapo_simple_lineWidth - my_diapo_simple_radius *  2 );
+	//\_________________ Coin bas droit.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		0 , my_diapo_simple_radius,
+		-my_diapo_simple_radius , my_diapo_simple_radius);
+	
+	//BasDroit -> BasGauche
+	if(!pDock->container.bDirectionUp)
+	{
+		cairo_rel_line_to (pCairoContext, - fFrameWidth , 0);
+	}
+	else
+	{
+		//On fait la fleche
+		cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth), 0);                //     _
+		cairo_rel_line_to (pCairoContext, - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, my_diapo_simple_arrowHeight);        //    /     
+		cairo_rel_line_to (pCairoContext, - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec, -my_diapo_simple_arrowHeight);       //  \. 
+		cairo_rel_line_to (pCairoContext, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth) , 0);               // _      
+	}
+	//\_________________ Coin bas gauche.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		-my_diapo_simple_radius, 0,
+		-my_diapo_simple_radius, -my_diapo_simple_radius);
+	
+	//BasGauche -> HautGauche
+	cairo_rel_line_to (pCairoContext, 0, - fFrameHeight - my_diapo_simple_lineWidth + my_diapo_simple_radius * 2);
+	//\_________________ Coin haut gauche.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		0 , -my_diapo_simple_radius ,
+		my_diapo_simple_radius, -my_diapo_simple_radius);
 
 }
 static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	const gdouble arrow_dec = 2;
-	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;
-	gdouble fFrameHeight = pDock->iMaxDockHeight - Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);
+	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE;
+	gdouble fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
 	gdouble fDockOffsetX = X_BORDER_SPACE;
-	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight);
+	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight + ARROW_TIP);
 	
+	cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
 
-        cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
-
-        if(pDock->container.bDirectionUp)
-        {
-                cairo_rel_line_to (pCairoContext, 0, fFrameWidth);
-        }
-        else
-        {
-                cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth));                //     _
-                cairo_rel_line_to (pCairoContext, -my_diapo_simple_arrowHeight, my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);       //  \. 
-                cairo_rel_line_to (pCairoContext, my_diapo_simple_arrowHeight, + my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);        //    /     
-                cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth));               // _     
-       } 
-        //\_________________ Coin haut droit.
-        cairo_rel_curve_to (pCairoContext,
-                0, 0,
-                0, my_diapo_simple_radius,
-                my_diapo_simple_radius, my_diapo_simple_radius);
-        cairo_rel_line_to (pCairoContext, fFrameHeight + my_diapo_simple_lineWidth - my_diapo_simple_radius * 2, 0);
-        //\_________________ Coin bas droit.
-         cairo_rel_curve_to (pCairoContext,
-                        0, 0,
-                        my_diapo_simple_radius, 0,
-                        my_diapo_simple_radius, -my_diapo_simple_radius);
-        if(!pDock->container.bDirectionUp)
-        {
-                cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
-        }
-        else
-        {
-                //On fait la fleche
-                cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth));                 //     _
-                cairo_rel_line_to (pCairoContext,  my_diapo_simple_arrowHeight, - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);        //    /     
-                cairo_rel_line_to (pCairoContext, -my_diapo_simple_arrowHeight, - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec );       //  \. 
-                cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth));                 // _      
-        }
-        
-        //\_________________ Coin bas gauche.
-         cairo_rel_curve_to (pCairoContext,
-                        0, 0,
-                        0, -my_diapo_simple_radius,
-                        -my_diapo_simple_radius, -my_diapo_simple_radius);
-        cairo_rel_line_to (pCairoContext, - fFrameHeight - my_diapo_simple_lineWidth + my_diapo_simple_radius * 2, 0);
-        //\_________________ Coin haut gauche.
-        cairo_rel_curve_to (pCairoContext,
-                0, 0,
-                -my_diapo_simple_radius, 0,
-                -my_diapo_simple_radius, my_diapo_simple_radius);
+	if(pDock->container.bDirectionUp)
+	{
+		cairo_rel_line_to (pCairoContext, 0, fFrameWidth);
+	}
+	else
+	{
+		cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth));                //     _
+		cairo_rel_line_to (pCairoContext, -my_diapo_simple_arrowHeight, my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);       //  \. 
+		cairo_rel_line_to (pCairoContext, my_diapo_simple_arrowHeight, + my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);        //    /     
+		cairo_rel_line_to (pCairoContext,0,(fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth));               // _     
+	}
+	//\_________________ Coin haut droit.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		0, my_diapo_simple_radius,
+		my_diapo_simple_radius, my_diapo_simple_radius);
+	cairo_rel_line_to (pCairoContext, fFrameHeight + my_diapo_simple_lineWidth - my_diapo_simple_radius * 2, 0);
+	//\_________________ Coin bas droit.
+	cairo_rel_curve_to (pCairoContext,
+			0, 0,
+			my_diapo_simple_radius, 0,
+			my_diapo_simple_radius, -my_diapo_simple_radius);
+	if(!pDock->container.bDirectionUp)
+	{
+		cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
+	}
+	else
+	{
+		//On fait la fleche
+		cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth));                 //     _
+		cairo_rel_line_to (pCairoContext,  my_diapo_simple_arrowHeight, - my_diapo_simple_arrowWidth/2 - my_diapo_simple_arrowShift * fFrameWidth + my_diapo_simple_arrowShift * fFrameWidth / arrow_dec);        //    /     
+		cairo_rel_line_to (pCairoContext, -my_diapo_simple_arrowHeight, - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth - my_diapo_simple_arrowShift * fFrameWidth / arrow_dec );       //  \. 
+		cairo_rel_line_to (pCairoContext, 0, - (fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + my_diapo_simple_arrowShift * fFrameWidth));                 // _      
+	}
+	
+	//\_________________ Coin bas gauche.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		0, -my_diapo_simple_radius,
+		-my_diapo_simple_radius, -my_diapo_simple_radius);
+	cairo_rel_line_to (pCairoContext, - fFrameHeight - my_diapo_simple_lineWidth + my_diapo_simple_radius * 2, 0);
+	//\_________________ Coin haut gauche.
+	cairo_rel_curve_to (pCairoContext,
+		0, 0,
+		-my_diapo_simple_radius, 0,
+		-my_diapo_simple_radius, my_diapo_simple_radius);
 }
 void cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
-        if (pDock->container.bIsHorizontal)
-                cairo_dock_draw_frame_horizontal_for_diapo_simple (pCairoContext, pDock);
-        else
-                cairo_dock_draw_frame_vertical_for_diapo_simple (pCairoContext, pDock);
+	if (pDock->container.bIsHorizontal)
+		cairo_dock_draw_frame_horizontal_for_diapo_simple (pCairoContext, pDock);
+	else
+		cairo_dock_draw_frame_vertical_for_diapo_simple (pCairoContext, pDock);
 }
 
 
 
 void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock, double fAlpha)
 {
-////////////////////////////////////////////////////////////////////////////////////////On se fait un beau pattern dégradé :
-        cairo_pattern_t *mon_super_pattern;
-        ///cairo_save (pCairoContext);       
-        mon_super_pattern = cairo_pattern_create_linear (0.0,
-			0.0,
-			my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0, // Y'aurait surement des calculs complexes à faire mais 
-			my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
+	// On se fait un beau pattern degrade :
+	cairo_pattern_t *mon_super_pattern;
+	mon_super_pattern = cairo_pattern_create_linear (0.0,
+		0.0,
+		my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0, // Y'aurait surement des calculs complexes à faire mais 
+		my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels près pour un dégradé : OSEF !
 			
-        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
-			my_diapo_simple_color_frame_start[0],
-			my_diapo_simple_color_frame_start[1],
-			my_diapo_simple_color_frame_start[2],
-			my_diapo_simple_color_frame_start[3] * fAlpha);  // transparent -> opaque au depliage.
+	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
+		my_diapo_simple_color_frame_start[0],
+		my_diapo_simple_color_frame_start[1],
+		my_diapo_simple_color_frame_start[2],
+		my_diapo_simple_color_frame_start[3] * fAlpha);  // transparent -> opaque au depliage.
 		
-        cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
-			my_diapo_simple_color_frame_stop[0],
-			my_diapo_simple_color_frame_stop[1],
-			my_diapo_simple_color_frame_stop[2],
-			my_diapo_simple_color_frame_stop[3] * fAlpha);
-        cairo_set_source (pCairoContext, mon_super_pattern);
-        
-////////////////////////////////////////////////////////////////////////////////////////On remplit le contexte en le préservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
-        cairo_fill_preserve (pCairoContext);
-        cairo_pattern_destroy (mon_super_pattern);
-        ///cairo_restore (pCairoContext);
+	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
+		my_diapo_simple_color_frame_stop[0],
+		my_diapo_simple_color_frame_stop[1],
+		my_diapo_simple_color_frame_stop[2],
+		my_diapo_simple_color_frame_stop[3] * fAlpha);
+	cairo_set_source (pCairoContext, mon_super_pattern);
+	
+	//On remplit le contexte en le préservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
+	cairo_fill_preserve (pCairoContext);
+	cairo_pattern_destroy (mon_super_pattern);
 }
 
 
@@ -648,21 +580,21 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	double fDockOffsetX, fDockOffsetY;
 	if (pDock->container.bIsHorizontal)
 	{
 		fDockOffsetX = X_BORDER_SPACE;
-		fDockOffsetY = (!pDock->container.bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight+10);
+		fDockOffsetY = (!pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
 		fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-		fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+		fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	}
 	else
 	{
 		fDockOffsetY = X_BORDER_SPACE;
-		fDockOffsetX = (!pDock->container.bDirectionUp ? Y_BORDER_SPACE : my_diapo_simple_arrowHeight+10);
+		fDockOffsetX = (!pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
 		fFrameHeight = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-		fFrameWidth = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+		fFrameWidth = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	}
 	
 	
@@ -811,7 +743,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, i
 	_cairo_dock_define_static_vertex_tab ((90/DELTA_ROUND_DEGREE+1)*4+1+3);  // +3 pour la pointe.
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE - 2*fRadius;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	
 	const gdouble arrow_dec = 2;
 	double fTotalWidth = fFrameWidth + 2 * fRadius;
@@ -928,7 +860,7 @@ GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow (Cairo
 	static GLfloat pColorTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*4];  // +3 pour la pointe.
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE - 2*fRadius;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	
 	const gdouble arrow_dec = 2;
 	double fTotalWidth = fFrameWidth + 2 * fRadius;
@@ -1028,7 +960,7 @@ GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoDock *pD
 	_cairo_dock_define_static_vertex_tab ((90/DELTA_ROUND_DEGREE+1)*4+1+3);  // +3 pour la pointe.
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE - 2*fRadius;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight- Y_BORDER_SPACE - (my_diapo_simple_arrowHeight+10);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	
 	const gdouble arrow_dec = 2;
 	double fTotalWidth = fFrameWidth + 2 * fRadius;

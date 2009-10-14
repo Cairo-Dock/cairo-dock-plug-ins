@@ -84,7 +84,7 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - 0*pSubDock->iMaxDockWidth - pSubDock->iMaxLabelWidth;
+		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - pSubDock->iMaxLabelWidth;
 	}
 	else
 	{

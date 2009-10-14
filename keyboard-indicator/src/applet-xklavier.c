@@ -94,6 +94,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		XklEngine *pEngine = xkl_engine_get_instance (dsp); // const
 		XklState state;
 		xkl_engine_get_state (pEngine, Xid, &state);
+		cd_debug ("group : %d -> %d ; indic : %d -> %d", myData.iCurrentGroup, state.group, myData.iCurrentIndic, state.indicators);
 		
 		if (myData.iCurrentGroup == state.group && myData.iCurrentIndic == state.indicators)
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -107,7 +108,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
 		
 		cCurrentGroup = pGroupNames[state.group];
-		cd_debug ("group : %d (%s)", state.group, cCurrentGroup);
+		cd_debug (" group name : %s (%d groups)", cCurrentGroup, n);
 		
 		// on recupere l'indicateur courant.
 		int i;
@@ -123,11 +124,13 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 			sCurrentIndicator = g_string_new ("");
 			for (i = 0; i < n; i ++)
 			{
+				cd_debug ("  indic %d : %s", i, pIndicatorNames[i]);
 				if ((state.indicators >> i) & 1)
 				{
 					g_string_append_printf (sCurrentIndicator, "%s%s", (sCurrentIndicator->len == 0 ? "" : " / "), pIndicatorNames[i]);
 				}
 			}
+			cd_debug (" indicator name : %s", sCurrentIndicator->str);
 		}
 		
 		// on se souvient de l'etat courant.
