@@ -144,6 +144,13 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free( myConfig.cMailClass );
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cRenderer);
+
+	if( myData.pMessagesDialog != NULL ) // make sure the dialog is closed
+	{
+		cairo_dock_dialog_unreference (myData.pMessagesDialog);
+		myData.pMessagesDialog = NULL;
+	}
+		
 	myConfig.iNbMaxShown = 0;
 CD_APPLET_RESET_CONFIG_END
 
