@@ -6385,9 +6385,6 @@ msgstr "Nom de l'image 'Bon' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-#~ msgid "felt"
-#~ msgstr "ressentie"
-
 #~ msgid "New song"
 #~ msgstr "Nouvelle chanson"
 
