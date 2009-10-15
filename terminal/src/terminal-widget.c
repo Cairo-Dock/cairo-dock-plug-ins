@@ -301,6 +301,9 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
 		else if (myDesklet && myConfig.shortcut)
 		{
 			cairo_dock_hide_desklet (myDesklet);
+			Icon *icon = cairo_dock_get_dialogless_icon ();
+			g_return_if_fail (icon != NULL);
+			cairo_dock_show_temporary_dialog_with_icon (D_("You can call back the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
 		}
 	}
 }

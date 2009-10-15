@@ -30,7 +30,7 @@ libcd_terminal_la_CFLAGS = \
 	-DMY_APPLET_USER_DATA_DIR=\""terminal"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_TERMINAL)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_TERMINAL)"\"\
-        -DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
+	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
 	-std=c99\
 	-Werror-implicit-function-declaration\

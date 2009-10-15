@@ -193,7 +193,7 @@ void cd_sysmonitor_format_value (double fValue, int iNumValue, gchar *cFormatBuf
 		i ++;
 		if (i == iNumValue)
 		{
-			double fTemp = myConfig.iLowerLimit + fValue * myConfig.iUpperLimit;
+			double fTemp = myConfig.iLowerLimit + fValue * (myConfig.iUpperLimit - myConfig.iLowerLimit);
 			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
 			return ;
 		}

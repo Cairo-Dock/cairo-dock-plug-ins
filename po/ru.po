@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-09-29 01:44+0000\n"
 "PO-Revision-Date: 2009-09-30 12:17+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -392,8 +391,8 @@ msgstr ""
 "панелей\n"
 "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
 "ближайший похожий\n"
-"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
-"Alt+Enter для среднего и Ctrl+Enter для левого\n"
+"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, Alt"
+"+Enter для среднего и Ctrl+Enter для левого\n"
 "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
 "или вычисление.\n"
 "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
@@ -799,8 +798,7 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1567,8 +1565,8 @@ msgstr "Показывать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a "
-"dock/desklet."
+"This plug-in draw some animation around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
 "десклета."
@@ -2096,8 +2094,9 @@ msgstr ""
 "Обновление..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "felt"
-msgstr "Комфорт"
+#, fuzzy
+msgid "feeled"
+msgstr "emerald"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -2754,8 +2753,7 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -3503,8 +3501,7 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:107
 msgid "Only show files whose last modification date is less than ;"
-msgstr ""
-"Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -4879,8 +4876,7 @@ msgstr "Процент смешения стрелки:"
 
 #: ../dock-rendering/data/messages:123
 msgid "The lower, the more the curve will seem flat."
-msgstr ""
-"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:125
 msgid "Curvature of the curve in percent :"
@@ -4983,8 +4979,7 @@ msgid "Desktop-less support"
 msgstr "Сквозная поддержка."
 
 #: ../dustbin/data/messages:115
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
 
 #: ../dustbin/data/messages:117
@@ -5236,8 +5231,8 @@ msgid ""
 "mail accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и "
-"измените/удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
+"удалите нужный аккаунт."
 
 #: ../mail/data/messages:97
 msgid "Check mail account on startup ?"
@@ -5756,8 +5751,7 @@ msgstr "В пикселях."
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr ""
-"Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
@@ -5971,11 +5965,11 @@ msgstr "Вручную"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual "
-"ctrl+c/ctrl+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
+"+v clipboard"
 msgstr ""
-"Это выбор сделанный при помощи мыши, вместо обычно используемого "
-"ctrl+c/ctrl+v буфера обмена."
+"Это выбор сделанный при помощи мыши, вместо обычно используемого ctrl+c/ctrl"
+"+v буфера обмена."
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6065,8 +6059,7 @@ msgstr "только другие"
 
 #: ../switcher/data/messages:131
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr ""
-"Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:137
 msgid "In expanded mode, render the desklet in 3D ?"
@@ -6336,6 +6329,9 @@ msgstr "Файл изображения для значка 'хороший':"
 #: ../wifi/data/messages:153
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Файл изображения для значка 'отличный':"
+
+#~ msgid "felt"
+#~ msgstr "Комфорт"
 
 #~ msgid "New song"
 #~ msgstr "Новая композиция"

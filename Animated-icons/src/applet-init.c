@@ -49,13 +49,13 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce");
-	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate");
-	myData.iAnimationID[CD_ANIMATIONS_BLINK] = cairo_dock_register_animation ("blink");
-	myData.iAnimationID[CD_ANIMATIONS_PULSE] = cairo_dock_register_animation ("pulse");
-	myData.iAnimationID[CD_ANIMATIONS_WOBBLY] = cairo_dock_register_animation ("wobbly");
-	myData.iAnimationID[CD_ANIMATIONS_WAVE] = cairo_dock_register_animation ("wave");
-	myData.iAnimationID[CD_ANIMATIONS_SPOT] = cairo_dock_register_animation ("spot");
+	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce", D_("Bounce"));
+	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate", D_("Rotate"));
+	myData.iAnimationID[CD_ANIMATIONS_BLINK] = cairo_dock_register_animation ("blink", D_("Blink"));
+	myData.iAnimationID[CD_ANIMATIONS_PULSE] = cairo_dock_register_animation ("pulse", D_("Pulse"));
+	myData.iAnimationID[CD_ANIMATIONS_WOBBLY] = cairo_dock_register_animation ("wobbly", D_("Wobbly"));
+	myData.iAnimationID[CD_ANIMATIONS_WAVE] = cairo_dock_register_animation ("wave", D_("Wave"));
+	myData.iAnimationID[CD_ANIMATIONS_SPOT] = cairo_dock_register_animation ("spot", D_("Spot"));
 	
 	if (! cairo_dock_is_loading ())
 		cairo_dock_update_animations_list_for_gui ();

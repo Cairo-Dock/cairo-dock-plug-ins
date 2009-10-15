@@ -51,11 +51,11 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire");
-	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars");
-	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain");
-	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow");
-	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm");
+	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire", D_("Fire"));
+	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars", D_("Stars"));
+	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain", D_("Rain"));
+	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow", D_("Snow"));
+	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm", D_("Storm"));
 	
 	if (! cairo_dock_is_loading ())
 		cairo_dock_update_animations_list_for_gui ();

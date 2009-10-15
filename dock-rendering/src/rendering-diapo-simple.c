@@ -592,7 +592,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	else
 	{
 		fDockOffsetY = X_BORDER_SPACE;
-		fDockOffsetX = (!pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
+		fDockOffsetX = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
 		fFrameHeight = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
 		fFrameWidth = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	}
