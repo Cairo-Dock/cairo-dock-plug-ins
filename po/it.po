@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-08 18:26+0000\n"
+"POT-Creation-Date: 2009-10-11 20:27+0000\n"
+"PO-Revision-Date: 2009-10-13 00:52+0000\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-23 11:13+0000\n"
+"X-Launchpad-Export-Date: 2009-10-13 07:02+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -702,9 +703,8 @@ msgid "curly"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#, fuzzy
 msgid "modern"
-msgstr "Cartelle"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
@@ -719,7 +719,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1115,14 +1116,12 @@ msgid "This plug-in adds a motion blur effect on docks."
 msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown artist"
-msgstr "Sconosciuto"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown title"
-msgstr "Sconosciuto"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
@@ -1397,8 +1396,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1511,14 +1510,12 @@ msgid "Clean local directory"
 msgstr "Svuotare la cartella locale"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
 msgid "current"
-msgstr "Attuale"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
 msgid "desktop"
-msgstr "Desktop"
+msgstr ""
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1557,19 +1554,16 @@ msgid "Refresh"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:184
-#, fuzzy
 msgid "Move current desktop to this desktop"
-msgstr "Riempire il desktop attuale con questo colore ?"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:189
-#, fuzzy
 msgid "This will move all windows from the current desktop to this one"
-msgstr "Riempire il desktop attuale con questo colore ?"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:197
-#, fuzzy
 msgid "Windows List"
-msgstr "Top List"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -1872,9 +1866,8 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
-#, fuzzy
 msgid "feeled"
-msgstr "emerald"
+msgstr "risentito"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -2522,7 +2515,8 @@ msgstr "Dimensione della desklet (larghezza x altezza) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
@@ -3123,8 +3117,8 @@ msgstr "Se sì, numero degli oggetti selezionati :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con CTRL"
-"+v"
+"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con "
+"CTRL+v"
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
@@ -3472,7 +3466,8 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
+msgstr ""
+"Linea di comando alternativa per lanciare la Configurazione Wireless :"
 
 #: ../Network-Monitor/data/messages:177 ../weather/data/messages:101
 #: ../wifi/data/messages:169
@@ -3579,14 +3574,12 @@ msgid "Write text on the top of the dock ?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
-#, fuzzy
 msgid "It's the color of the graphic for high values."
-msgstr "E' il colore del grafico per i valori alti della CPU."
+msgstr ""
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
-#, fuzzy
 msgid "It's the color of the graphic for low values."
-msgstr "E' il colore del grafico per i valori bassi della CPU."
+msgstr ""
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
@@ -3682,7 +3675,8 @@ msgstr "Primo colore della 'top list' :"
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+msgstr ""
+"E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
@@ -3961,9 +3955,8 @@ msgid "Image to draw on the background :"
 msgstr ""
 
 #: ../clock/data/messages:129
-#, fuzzy
 msgid "Ratio to apply on text :"
-msgstr "Informazioni da mostrare sull'icona :"
+msgstr ""
 
 #: ../clock/data/messages:131
 msgid "Analogic View"
@@ -4745,7 +4738,8 @@ msgid "Desktop-less support"
 msgstr "Supporto senza Desktop"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5705,11 +5699,11 @@ msgstr "Ordine manuale"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Questa è la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl"
-"+v della tastiera"
+"Questa è la selezione fatta dal mouse, in opposizione all'usuale "
+"ctrl+c/ctrl+v della tastiera"
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6075,12 +6069,15 @@ msgstr "Immagine dell'icona 'Buono' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Immagine dell'icona 'Eccellente' :"
 
-#~ msgid "felt"
-#~ msgstr "risentito"
+#~ msgid "It's the color of the graphic for high CPU values."
+#~ msgstr "E' il colore del grafico per i valori alti della CPU."
+
+#~ msgid "It's the color of the graphic for low CPU values."
+#~ msgstr "E' il colore del grafico per i valori bassi della CPU."
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
@@ -6113,30 +6110,28 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un "
-#~ "file basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
+#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un file "
+#~ "basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Utilizzare soltanto la cartella locale Stacks ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack "
-#~ "locale, sia tutte le cartelle monitorate. Bisogna assicurarsi di non "
-#~ "avere l'opzione 'Utilizzare la cartella locale Stacks' attiva."
+#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack locale, "
+#~ "sia tutte le cartelle monitorate. Bisogna assicurarsi di non avere l'opzione "
+#~ "'Utilizzare la cartella locale Stacks' attiva."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Cartelle sorvegliate :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "Questa opzione con una lunga lista di files può rallentare la barra, "
-#~ "perciò utilizzarla con prudenza."
+#~ "Questa opzione con una lunga lista di files può rallentare la barra, perciò "
+#~ "utilizzarla con prudenza."
 
 #~ msgid "Separate different directories with separators ?"
 #~ msgstr "Separare le differenti cartelle con separatori ?"
@@ -6169,11 +6164,11 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -6206,8 +6201,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
-#~ "0 se si vuole alcuna filigrana."
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+#~ "se si vuole alcuna filigrana."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
@@ -6358,8 +6353,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -6413,8 +6408,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
 #~ msgstr ""
-#~ "Impossibile configurare il socket in modo da non bloccare la connessione. "
-#~ "Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+#~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+#~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
 
 #~ msgid "Failed to connect to server: %s"
@@ -6434,17 +6429,17 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
 #~ msgstr ""
-#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-#~ "che username o password di GMail non siano corretti."
+#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+#~ "username o password di GMail non siano corretti."
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
 #~ msgstr ""
-#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci "
-#~ "un problema col server GMail, o un cambiamento nel modo di identificarsi "
-#~ "o nel modo di reperire i nuovi messaggi."
+#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+#~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+#~ "modo di reperire i nuovi messaggi."
 
 #~ msgid "_Username:"
 #~ msgstr "_Username:"
@@ -6462,28 +6457,27 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox GMail remota"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr ""
-#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare "
-#~ "il numero di nuovi messaggi in modo sicuro."
+#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+#~ "numero di nuovi messaggi in modo sicuro."
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr ""
-#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login "
-#~ "in modo testuale."
+#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+#~ "modo testuale."
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. "
-#~ "E' un bug !"
+#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+#~ "un bug !"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
@@ -6509,6 +6503,9 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgid "Use non-standard IMAP _port:"
 #~ msgstr "Utilizzare un _port IMAP non standard:"
 
+#~ msgid "Folders"
+#~ msgstr "Cartelle"
+
 #~ msgid "IMAP server _directory:"
 #~ msgstr "_Cartella del server IMAP:"
 
@@ -6528,8 +6525,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox IMAP remoto"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
 #~ "protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
@@ -6571,8 +6568,7 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "MH plugin watches local MH folders for new mail"
 #~ msgstr ""
-#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi "
-#~ "messaggi"
+#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #~ msgid "Advanced POP3 Options"
 #~ msgstr "Opzioni POP3 avanzate"
@@ -6590,8 +6586,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgstr "Mailbox POP3 remota"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
 #~ "protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
@@ -6605,8 +6601,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
-#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-#~ "supporto SSL."
+#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+#~ "SSL."
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
@@ -6625,8 +6621,7 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di "
-#~ "sotto."
+#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
 #~ msgid "Add New Mailbox"
 #~ msgstr "Aggiungere una nuova Mailbox"
@@ -6699,8 +6694,8 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Titolo : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
 #~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
 #~ "decorazione; lasciate vuoto per non averne."
@@ -6852,6 +6847,9 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ msgid "Size of the Windows line :"
 #~ msgstr "Dimensione delle linee delle Finestre :"
 
+#~ msgid "Fill the current desktop with this color ?"
+#~ msgstr "Riempire il desktop attuale con questo colore ?"
+
 #~ msgid ""
 #~ "This is the cpusage applet\n"
 #~ " made by parAdOxxx_ZeRo for Cairo-Dock"
@@ -6885,10 +6883,10 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "In base alla vostra versione di Tomboy la soppressione della nota "
-#~ "potrebbe non essere notificata. Spuntate questa casella se ricevete "
-#~ "notifiche con questo errore  <<No marshaller for signature of signal "
-#~ "'NoteDeleted'>> con modalità Debug nel terminale."
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
+#~ "modalità Debug nel terminale."
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "
@@ -6978,3 +6976,6 @@ msgstr "Immagine dell'icona 'Eccellente' :"
 
 #~ msgid "Total Time"
 #~ msgstr "Tempo Totale"
+
+#~ msgid "felt"
+#~ msgstr "risentito"

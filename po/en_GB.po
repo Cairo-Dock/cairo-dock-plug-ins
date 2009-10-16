@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-03 19:06+0000\n"
+"POT-Creation-Date: 2009-10-13 21:30+0000\n"
+"PO-Revision-Date: 2009-10-14 12:36+0000\n"
 "Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-04 06:51+0000\n"
+"X-Launchpad-Export-Date: 2009-10-15 06:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -32,7 +33,7 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Add a lively Penguin in your dock !\n"
+"Add a lively Penguin in your dock!\n"
 "Left click to change the animation,\n"
 "Middle-click to annoy him ^_^\n"
 "Tux images are taken from Pingus, some other characters are available or can "
@@ -40,7 +41,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here !"
-msgstr "Hey, I'm here !"
+msgstr "Hey, I'm here!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
@@ -54,51 +55,51 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "Your dock is so messy ! Let me clean it."
+msgstr "Your dock is so messy! Let me clean it."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin !"
-msgstr "Admit my superiority on you as a penguin !"
+msgstr "Admit my superiority on you as a penguin!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me ?!"
-msgstr "Wait, do you want to kill me ?!"
+msgstr "Wait, do you want to kill me?!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "Do you know how painful it is to be clicked on ??"
+msgstr "Do you know how painful it is to be clicked on??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha !"
-msgstr "It's my dock now, mwahahaha !"
+msgstr "It's my dock now, mwahahaha!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate !"
-msgstr "I want to be a pirate !"
+msgstr "I want to be a pirate!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass !"
-msgstr "You shall not pass !"
+msgstr "You shall not pass!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father !"
-msgstr "I'm your father !"
+msgstr "I'm your father!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
-"- What will we do tonight Cortex ?\n"
-"- The same thing as every other nights, Minus. Try to take over the Dock !"
+"- What will we do tonight Cortex?\n"
+"- The same thing as every other nights, Minus. Try to take over the Dock!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur !"
-msgstr "For Aiur !"
+msgstr "For Aiur!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:121
 msgid "Hey, you there !"
-msgstr "Hey, you there !"
+msgstr "Hey, you there!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:125
 msgid "Wake up"
@@ -197,7 +198,7 @@ msgstr "Recent Documents"
 
 #: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents ?"
-msgstr "Clear the list of the recently used documents ?"
+msgstr "Clear the list of the recently used documents?"
 
 #: ../GMenu/src/applet-run-dialog.c:349
 msgid "Enter a command to launch :"
@@ -557,7 +558,7 @@ msgstr "Monitor System"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Alert ! Graphic Card core temperature has reached %d°C"
+msgstr "Alert! Graphic Card core temperature has reached %d°C"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -793,7 +794,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -831,7 +833,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:29
 msgid "Clear the list of the recently uploaded files ?"
-msgstr "Clear the list of the recently uploaded files ?"
+msgstr "Clear the list of the recently uploaded files?"
 
 #: ../dnd2share/src/applet-notifications.c:45
 msgid ""
@@ -1419,7 +1421,7 @@ msgid ""
 msgstr ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 " You may have to set up the interface you wish to monitor.\n"
-" Do you want to do it now ?"
+" Do you want to do it now?"
 
 #: ../netspeed/src/applet-notifications.c:73
 msgid "Re-check interface"
@@ -1562,11 +1564,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1800,7 +1802,7 @@ msgid ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
-"Add a terminal to your dock !\n"
+"Add a terminal to your dock!\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut to "
 "it.)\n"
 "You can drag & drop files or text and select an action.\n"
@@ -1857,7 +1859,7 @@ msgid ""
 "Middle-click to instantly create a new note.\n"
 "You can search inside notes and display their content on the icons."
 msgstr ""
-"Control your Gnote or TomBoy's notes directly from the dock !\n"
+"Control your Gnote or TomBoy's notes directly from the dock!\n"
 "Click on a note to open it, Escape to close it.\n"
 "Middle-click to instantly create a new note.\n"
 "You can search inside notes and display their content on the icons."
@@ -2086,9 +2088,8 @@ msgstr ""
 "Retrying now..."
 
 #: ../weather/src/applet-notifications.c:152
-#, fuzzy
 msgid "feeled"
-msgstr "emerald"
+msgstr "Feels like"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -2746,7 +2747,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -2914,7 +2916,7 @@ msgstr "Reserve space"
 #: ../weather/data/messages:39 ../weblets/data/messages:41
 #: ../wifi/data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr "Should be visible on all desktops ?"
+msgstr "Should be visible on all desktops?"
 
 #: ../Clipper/data/messages:147 ../GMenu/data/messages:43
 #: ../Network-Monitor/data/messages:39 ../System-Monitor/data/messages:39
@@ -3297,7 +3299,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:193
 msgid "Which items should be remembered ?"
-msgstr "Which items should be remembered ?"
+msgstr "Which items should be remembered?"
 
 #: ../Clipper/data/messages:197
 msgid "Clipboard"
@@ -3325,7 +3327,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:207
 msgid "Separate clipboard and selection ?"
-msgstr "Separate clipboard and selection ?"
+msgstr "Separate clipboard and selection?"
 
 #: ../Clipper/data/messages:209
 msgid "If so, number of selection items :"
@@ -3339,7 +3341,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
-msgstr "Paste into Clipboard ?"
+msgstr "Paste into Clipboard?"
 
 #: ../Clipper/data/messages:215
 msgid ""
@@ -3351,7 +3353,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:217
 msgid "Paste into Selection ?"
-msgstr "Paste into Selection ?"
+msgstr "Paste into Selection?"
 
 #: ../Clipper/data/messages:219
 msgid "Shortkey to pop-up the items menu :"
@@ -3359,7 +3361,7 @@ msgstr "Shortkey to pop-up the items menu :"
 
 #: ../Clipper/data/messages:221
 msgid "Pop-up menus at mouse position ?"
-msgstr "Pop-up menus at mouse position ?"
+msgstr "Pop-up menus at mouse position?"
 
 #: ../Clipper/data/messages:223 ../compiz-icon/data/messages:83
 msgid "Actions"
@@ -3375,7 +3377,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:227
 msgid "Enable actions ?"
-msgstr "Enable actions ?"
+msgstr "Enable actions?"
 
 #: ../Clipper/data/messages:229
 msgid "Display the actions when selecting an item in the history."
@@ -3383,7 +3385,7 @@ msgstr "Display actions when selecting an item in the history."
 
 #: ../Clipper/data/messages:231
 msgid "Replay actions ?"
-msgstr "Replay actions ?"
+msgstr "Replay actions?"
 
 #: ../Clipper/data/messages:233 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:141 ../System-Monitor/data/messages:177
@@ -3423,39 +3425,39 @@ msgstr "Let external applications show/hide desklets?"
 
 #: ../Dbus/data/messages:11
 msgid "Let extern applications reload the applets ?"
-msgstr "Let external applications reload applets"
+msgstr "Let external applications reload applets?"
 
 #: ../Dbus/data/messages:13
 msgid "Let extern applications show/hide the docks ?"
-msgstr "Let external applications show/hide docks"
+msgstr "Let external applications show/hide docks?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers into the docks ?"
-msgstr "Let extern applications add launchers to the docks ?"
+msgstr "Let extern applications add launchers to the docks?"
 
 #: ../Dbus/data/messages:17
 msgid "Let extern applications modify the labels of icons ?"
-msgstr "Let external applications modify the labels of icons ?"
+msgstr "Let external applications modify the labels of icons?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons ?"
-msgstr "Let extern applications modify the quick-infos on icons ?"
+msgstr "Let extern applications modify the quick-infos on icons?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the image of icons ?"
-msgstr "Let extern applications modify the icons' image ?"
+msgstr "Let extern applications modify the icons' image?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate the icons ?"
-msgstr "Let extern applications animate icons ?"
+msgstr "Let extern applications animate icons?"
 
 #: ../Dbus/data/messages:25
 msgid "Let extern applications register new module ?"
-msgstr "Let extern applications register new module ?"
+msgstr "Let extern applications register new module?"
 
 #: ../GMenu/data/messages:87 ../quick-browser/data/messages:93
 msgid "Display icons in the menu ?"
-msgstr "Display icons in the menu ?"
+msgstr "Display icons in the menu?"
 
 #: ../GMenu/data/messages:89 ../quick-browser/data/messages:109
 msgid "Shortkey to show/hide the menu :"
@@ -3475,7 +3477,7 @@ msgstr "Recent documents"
 
 #: ../GMenu/data/messages:99
 msgid "Show recent documents ?"
-msgstr "Show recent documents ?"
+msgstr "Show recent documents?"
 
 #: ../GMenu/data/messages:101
 msgid "Let blank to not use this filter."
@@ -3670,7 +3672,7 @@ msgstr ""
 #: ../Network-Monitor/data/messages:171 ../System-Monitor/data/messages:147
 #: ../wifi/data/messages:163
 msgid "How smooth is the movement ?"
-msgstr "How smooth is the movement ?"
+msgstr "How smooth is the movement?"
 
 #: ../Network-Monitor/data/messages:173 ../wifi/data/messages:165
 msgid ""
@@ -3708,7 +3710,7 @@ msgstr "Raw Signal Informations"
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
-msgstr "Overwrite the default label with the connection point name ?"
+msgstr "Overwrite the default label with the connection point name?"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
@@ -3750,7 +3752,8 @@ msgstr "Characters"
 msgid ""
 "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 "number or so."
-msgstr "E.g. Monospace, Purisa, ... Simply type the font name with no number."
+msgstr ""
+"E.g. Monospace, Purisa, ... Simply type the font name with no number."
 
 #: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type :"
@@ -3774,7 +3777,7 @@ msgstr "Text size:"
 
 #: ../Scooby-Do/data/messages:37
 msgid "Should the text be outlined ?"
-msgstr "Outline text ?"
+msgstr "Outline text?"
 
 #: ../Scooby-Do/data/messages:39
 msgid "Text color :"
@@ -3786,7 +3789,7 @@ msgstr "Character background colour:"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Write text on the top of the dock ?"
-msgstr "Write text on the top of the dock ?"
+msgstr "Write text on the top of the dock?"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
 msgid "It's the color of the graphic for high values."
@@ -3798,11 +3801,11 @@ msgstr "It's the colour of the graphic for low values."
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
-msgstr "Show all values on same graph ?"
+msgstr "Show all values on same graph?"
 
 #: ../System-Monitor/data/messages:121
 msgid "Show CPU usage ?"
-msgstr "Show CPU usage ?"
+msgstr "Show CPU usage?"
 
 #: ../System-Monitor/data/messages:123
 msgid "Show RAM usage ?"
@@ -3810,7 +3813,7 @@ msgstr "Show RAM usage ?"
 
 #: ../System-Monitor/data/messages:125
 msgid "Show SWAP too ?"
-msgstr "Show SWAP too ?"
+msgstr "Show SWAP too?"
 
 #: ../System-Monitor/data/messages:127
 msgid "You need an nVidia and the 'nvidia-settings' tool."
@@ -3818,11 +3821,11 @@ msgstr "You need an nVidia card and the 'nvidia-settings' tool."
 
 #: ../System-Monitor/data/messages:129
 msgid "Show graphic card temperature ?"
-msgstr "Show graphic card's temperature ?"
+msgstr "Show graphic card's temperature?"
 
 #: ../System-Monitor/data/messages:131
 msgid "Show free memory instead of used memory ?"
-msgstr "Show free memory instead of used memory ?"
+msgstr "Show free memory instead of used memory?"
 
 #: ../System-Monitor/data/messages:133
 msgid "Display values :"
@@ -3862,7 +3865,7 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:155
 msgid "Steal the system monitor's icon in taskbar ?"
-msgstr "Steal the system monitor's icon from the taskbar ?"
+msgstr "Steal the system monitor's icon from the taskbar?"
 
 #: ../System-Monitor/data/messages:159
 msgid "Class of the system monitor program:"
@@ -3902,7 +3905,7 @@ msgstr "Top list stop colour:"
 
 #: ../System-Monitor/data/messages:175
 msgid "Show top memory usage in % ?"
-msgstr "Show top memory usage in % ?"
+msgstr "Show top memory usage in %?"
 
 #: ../System-Monitor/data/messages:179
 msgid "Delay between refresh of the top list :"
@@ -3958,7 +3961,7 @@ msgstr "Path to sound file:"
 
 #: ../Toons/data/messages:83
 msgid "Keep ratio ?"
-msgstr "Keep ratio"
+msgstr "Keep ratio?"
 
 #: ../Toons/data/messages:89
 msgid "Mean delay between winks :"
@@ -4051,7 +4054,7 @@ msgstr "Shortkey to show/hide the sound control dialog:"
 
 #: ../alsaMixer/data/messages:105
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr "Hide the scale when mouse leaves the desklet"
+msgstr "Hide the scale when mouse leaves the desklet?"
 
 #: ../alsaMixer/data/messages:107 ../keyboard-indicator/data/messages:91
 #: ../musicPlayer/data/messages:129 ../slider/data/messages:133
@@ -4275,7 +4278,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:109
 msgid "Auto-reload the Decorator ?"
-msgstr "Auto-reload the Decorator"
+msgstr "Auto-reload the Decorator?"
 
 #: ../compiz-icon/data/messages:111
 msgid "Load Compiz with options at applet's startup."
@@ -4500,7 +4503,7 @@ msgstr "Curvature of the tip :"
 
 #: ../dialog-rendering/data/messages:49
 msgid "Curve the sides too ?"
-msgstr "Curve the sides too ?"
+msgstr "Curve the sides too?"
 
 #: ../dnd2share/data/messages:87
 msgid "Info-bubbles"
@@ -4508,7 +4511,7 @@ msgstr "Info-bubbles"
 
 #: ../dnd2share/data/messages:89
 msgid "Enable info-bubbles ?"
-msgstr "Enable info-bubbles ?"
+msgstr "Enable info-bubbles?"
 
 #: ../dnd2share/data/messages:93
 msgid "Duration of the info-bubbles :"
@@ -4520,7 +4523,7 @@ msgstr "Number of items to keep in the history :"
 
 #: ../dnd2share/data/messages:99
 msgid "Keep a copy of each uploaded image ?"
-msgstr "Keep a copy of each uploaded image ?"
+msgstr "Keep a copy of each uploaded image?"
 
 #: ../dnd2share/data/messages:101
 msgid "This will override the image setting."
@@ -4528,7 +4531,7 @@ msgstr "This will override the image setting."
 
 #: ../dnd2share/data/messages:103
 msgid "If so, display the last image on the icon ?"
-msgstr "If so, display the last image on the icon ?"
+msgstr "If so, display the last image on the icon?"
 
 #: ../dnd2share/data/messages:105
 msgid "in KB/s - 0 means unlimited"
@@ -4805,11 +4808,11 @@ msgstr "Use a linear wave rather than a sinusoidal wave?"
 
 #: ../dock-rendering/data/messages:93
 msgid "Pack icons rather horizontally than vertically ?"
-msgstr "Pack icons horizontally rather than vertically ?"
+msgstr "Pack icons horizontally rather than vertically?"
 
 #: ../dock-rendering/data/messages:95
 msgid "Display text for all icons ?"
-msgstr "Display text for all icons"
+msgstr "Display text for all icons?"
 
 #: ../dock-rendering/data/messages:97
 msgid "Frame"
@@ -4817,7 +4820,7 @@ msgstr "Frame"
 
 #: ../dock-rendering/data/messages:99
 msgid "Draw a background ?"
-msgstr "Draw a background ?"
+msgstr "Draw a background?"
 
 #: ../dock-rendering/data/messages:101
 msgid "First gradient color :"
@@ -4829,11 +4832,11 @@ msgstr "Second gradient colour :"
 
 #: ../dock-rendering/data/messages:105
 msgid "Top to bottom gradient ?"
-msgstr "Top to bottom gradient ?"
+msgstr "Top to bottom gradient?"
 
 #: ../dock-rendering/data/messages:107
 msgid "Left to right gradient ?"
-msgstr "Left to right gradient ?"
+msgstr "Left to right gradient?"
 
 #: ../dock-rendering/data/messages:111
 msgid "Border line width :"
@@ -4959,7 +4962,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5027,7 +5031,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -5189,7 +5194,7 @@ msgstr "Invert buttons?"
 
 #: ../mail/data/messages:89
 msgid "Show new messages' content ?"
-msgstr "Show new messages' content ?"
+msgstr "Show new messages' content?"
 
 #: ../mail/data/messages:91
 msgid ""
@@ -5201,7 +5206,7 @@ msgstr ""
 
 #: ../mail/data/messages:93
 msgid "Maximum of new messages shown ?"
-msgstr "Maximum of new messages shown ?"
+msgstr "Maximum of new messages shown?"
 
 #: ../mail/data/messages:95
 msgid ""
@@ -5215,7 +5220,7 @@ msgstr ""
 
 #: ../mail/data/messages:97
 msgid "Check mail account on startup ?"
-msgstr "Check mail account on startup ?"
+msgstr "Check mail account on startup?"
 
 #: ../mail/data/messages:99
 msgid "Theme overriding"
@@ -5275,7 +5280,7 @@ msgstr "Add an account with specified type and name:"
 
 #: ../motion-blur/data/messages:3
 msgid "Also blur on mouse movement ?"
-msgstr "Also blur on mouse movement ?"
+msgstr "Also blur on mouse movement?"
 
 #: ../motion-blur/data/messages:5
 msgid "Blur amount :"
@@ -5287,7 +5292,8 @@ msgstr "Set to 0 to use the default applet size"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
@@ -5347,7 +5353,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:111
 msgid "Steal the player's icon from taskbar ?"
-msgstr "Steal the player's icon from the taskbar"
+msgstr "Steal the player's icon from the taskbar?"
 
 #: ../musicPlayer/data/messages:113
 msgid "Actions on click and middle-click :"
@@ -5399,7 +5405,7 @@ msgstr "Track number"
 
 #: ../musicPlayer/data/messages:141
 msgid "Display album's cover ?"
-msgstr "Display album's cover ?"
+msgstr "Display album's cover?"
 
 #: ../musicPlayer/data/messages:143
 msgid "You need to be connected to the Internet."
@@ -5407,7 +5413,7 @@ msgstr "You need to be connected to the Internet."
 
 #: ../musicPlayer/data/messages:145
 msgid "Allow Cairo-Dock to download missing covers ?"
-msgstr "Allow Cairo-Dock to download missing covers ?"
+msgstr "Allow Cairo-Dock to download missing covers?"
 
 #: ../musicPlayer/data/messages:147 ../musicPlayer/data/messages:151
 msgid "requires OpenGL."
@@ -5415,7 +5421,7 @@ msgstr "requires OpenGL."
 
 #: ../musicPlayer/data/messages:149
 msgid "Use 3D themes ?"
-msgstr "Use 3D themes ?"
+msgstr "Use 3D themes?"
 
 #: ../musicPlayer/data/messages:153
 msgid "List of available 3D themes for covers :"
@@ -5531,7 +5537,7 @@ msgstr "Notification"
 
 #: ../powermanager/data/messages:151
 msgid "Alert when battery charged ?"
-msgstr "Notification when battery charged"
+msgstr "Notification when battery charged?"
 
 #: ../powermanager/data/messages:153 ../powermanager/data/messages:163
 #: ../powermanager/data/messages:171
@@ -5561,11 +5567,11 @@ msgstr "When battery level is under 4%"
 
 #: ../powermanager/data/messages:169
 msgid "Alert when battery charge is critical ?"
-msgstr "Alert when battery charge is critical"
+msgstr "Alert when battery charge is critical?"
 
 #: ../powermanager/data/messages:175
 msgid "Animate icon during the alert ?"
-msgstr "Animate icon during the alert"
+msgstr "Animate icon during the alert?"
 
 #: ../powermanager/data/messages:177
 msgid "Animation during alert :"
@@ -5601,11 +5607,11 @@ msgstr "large"
 
 #: ../quick-browser/data/messages:103
 msgid "List folders first ?"
-msgstr "List folders first ?"
+msgstr "List folders first?"
 
 #: ../quick-browser/data/messages:105
 msgid "Ignore case ?"
-msgstr "Ignore case ?"
+msgstr "Ignore case?"
 
 #: ../quick-browser/data/messages:107
 msgid "Show hidden files ?"
@@ -5685,7 +5691,7 @@ msgstr "Delay between disk usage refresh :"
 
 #: ../shortcuts/data/messages:127
 msgid "Display disk usage with a bar ?"
-msgstr "Display disk usage with a bar ?"
+msgstr "Display disk usage with a bar?"
 
 #: ../show-mouse/data/messages:3
 msgid "Numbrer of sources :"
@@ -5742,7 +5748,7 @@ msgstr "Image name to hide desklets :"
 
 #: ../showDesklets/data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr "Show/hide desklets that are on the widget layer too ?"
+msgstr "Show/hide desklets that are on the widget layer too?"
 
 #: ../showDesklets/data/messages:23
 msgid "Shortkey to show/hide the desklets :"
@@ -5750,7 +5756,7 @@ msgstr "Shortkey to show/hide the desklets :"
 
 #: ../showDesktop/data/messages:89
 msgid "Swap left-click and middle-click ?"
-msgstr "Swap left-click and middle-click ?"
+msgstr "Swap left-click and middle-click?"
 
 #: ../slider/data/messages:83
 msgid "Directory"
@@ -5762,15 +5768,15 @@ msgstr "Directory of the images :"
 
 #: ../slider/data/messages:87
 msgid "Scan in sub direcotries ?"
-msgstr "Scan sub direcotries ?"
+msgstr "Scan sub direcotries?"
 
 #: ../slider/data/messages:89
 msgid "Randomly browse files ?"
-msgstr "Randomly browse files ?"
+msgstr "Randomly browse files?"
 
 #: ../slider/data/messages:91
 msgid "Display image name as quickinfo ?"
-msgstr "Display image name as quickinfo ?"
+msgstr "Display image name as quickinfo?"
 
 #: ../slider/data/messages:93
 msgid ""
@@ -5862,7 +5868,7 @@ msgstr "If the image is too small, it will be stretched."
 
 #: ../slider/data/messages:141
 msgid "Force the image to fill the icon/desklet ?"
-msgstr "Force the image to fill the icon/desklet ?"
+msgstr "Force the image to fill the icon/desklet?"
 
 #: ../slider/data/messages:143
 msgid ""
@@ -5942,15 +5948,15 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
-msgstr "When copying/pasting/cutting, use the selection clipboard"
+msgstr "When copying/pasting/cutting, use the selection clipboard?"
 
 #: ../switcher/data/messages:85
 msgid ""
@@ -6039,7 +6045,7 @@ msgstr "Icon to use in expanded mode if wallpaper is not mapped:"
 
 #: ../switcher/data/messages:137
 msgid "In expanded mode, render the desklet in 3D ?"
-msgstr "In expanded mode, render the desklet in 3D ?"
+msgstr "In expanded mode, render the desklet in 3D?"
 
 #: ../systray/data/messages:7 ../terminal/data/messages:7
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
@@ -6115,7 +6121,7 @@ msgstr "View"
 
 #: ../tomboy/data/messages:103
 msgid "Draw note's content on their icon ?"
-msgstr "Draw note's content on their icon ?"
+msgstr "Draw note's content on their icon?"
 
 #: ../tomboy/data/messages:105
 msgid "Text color of the content :"
@@ -6123,7 +6129,7 @@ msgstr "Text colour of the content :"
 
 #: ../tomboy/data/messages:107
 msgid "Display note's content with a dialog ?"
-msgstr "Display note's content with a dialog ?"
+msgstr "Display note's content with a dialog?"
 
 #: ../tomboy/data/messages:111
 msgid "Choose the note-taking application to control :"
@@ -6147,7 +6153,7 @@ msgstr "Otherwise you will be asked to name it."
 
 #: ../tomboy/data/messages:121
 msgid "Automatically name a new note ?"
-msgstr "Automatically name a new note ?"
+msgstr "Automatically name a new note?"
 
 #: ../tomboy/data/messages:123
 msgid ""
@@ -6177,7 +6183,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:129
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr "Emulate the 'NoteDeleted' signal ?"
+msgstr "Emulate the 'NoteDeleted' signal?"
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."
@@ -6307,8 +6313,8 @@ msgstr "'Good' icon filename:"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "'Excellent' icon filename:"
 
-#~ msgid "felt"
-#~ msgstr "Feels like"
-
 #~ msgid "New song"
 #~ msgstr "New song"
+
+#~ msgid "felt"
+#~ msgstr "Feels like"

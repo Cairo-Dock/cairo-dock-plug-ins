@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2009-09-29 01:44+0000\n"
-"PO-Revision-Date: 2009-10-01 15:48+0000\n"
-"Last-Translator: José A. Fuentes Santiago <Unknown>\n"
+"POT-Creation-Date: 2009-10-05 15:22+0000\n"
+"PO-Revision-Date: 2009-10-05 13:11+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-02 06:39+0000\n"
+"X-Launchpad-Export-Date: 2009-10-06 06:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1853,7 +1853,7 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
-msgid "felt"
+msgid "feeled"
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:154

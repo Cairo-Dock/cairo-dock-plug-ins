@@ -6,13 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-08 18:39+0000\n"
+"POT-Creation-Date: 2009-10-11 20:27+0000\n"
+"PO-Revision-Date: 2009-10-13 00:51+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-23 11:13+0000\n"
+"X-Launchpad-Export-Date: 2009-10-13 07:02+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -759,9 +760,8 @@ msgid "This module provides different views for your desklets."
 msgstr "Este módulo provê diferentes visualizações para seus desklets."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-#, fuzzy
 msgid "3Dplane"
-msgstr "Plano 3D"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 msgid "comics"
@@ -788,7 +788,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Não foi possível enviar o ficheiro, verifique se sua conexão com a internet "
 "está ativa."
@@ -1098,15 +1099,12 @@ msgstr ""
 "Este plugin provê animações para o aparecimento e desaparecimento dos ícones."
 
 #: ../kde-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for KDE4"
 msgstr ""
-"Este applet provê funções para um melhor integração no ambiente XFCE.\n"
-"Esta auto-activado, portanto, você não precisa activá-lo."
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
@@ -1252,14 +1250,12 @@ msgid "This plug-in adds a motion blur effect on docks."
 msgstr "Este plugin adiciona o efeito de desfoque de movimento nos docks."
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown artist"
-msgstr "Desconhecido"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown title"
-msgstr "Desconhecido"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
@@ -1562,8 +1558,8 @@ msgstr "mostrar rato"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin desenha animações ao redor do cursor quando ele esta sobre um "
 "dock/desklet."
@@ -1697,14 +1693,12 @@ msgid "Clean local directory"
 msgstr "Limpar o directório local"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
 msgid "current"
-msgstr "Actual"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
 msgid "desktop"
-msgstr "Área de trabalho"
+msgstr ""
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1722,8 +1716,8 @@ msgstr ""
 "Existem dois modos : compacto (em um ícone) e expandido (com um sub-dock).\n"
 "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu do "
 "botão direito.\n"
-"Role para cima/baixo no ícone principal para ir à Área de trabalho esquerda/"
-"direita, clique com o botão do meio para mostrar a Área de trabalho"
+"Role para cima/baixo no ícone principal para ir à Área de trabalho "
+"esquerda/direita, clique com o botão do meio para mostrar a Área de trabalho"
 
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:270
@@ -2094,9 +2088,8 @@ msgstr ""
 "A tentar novamente ..."
 
 #: ../weather/src/applet-notifications.c:152
-#, fuzzy
 msgid "feeled"
-msgstr "emerald"
+msgstr "sentido"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -2722,8 +2715,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2754,7 +2747,8 @@ msgstr "Dimensão do Desklet (largura x altura) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
 "do botão esquerdo"
@@ -4166,9 +4160,8 @@ msgid "Image to draw on the background :"
 msgstr ""
 
 #: ../clock/data/messages:129
-#, fuzzy
 msgid "Ratio to apply on text :"
-msgstr "Informação a mostrar no ícone:"
+msgstr ""
 
 #: ../clock/data/messages:131
 msgid "Analogic View"
@@ -4916,7 +4909,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5871,8 +5865,8 @@ msgstr "Ordenar manualmente"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:131
@@ -6221,28 +6215,24 @@ msgstr ""
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
 
-#~ msgid "felt"
-#~ msgstr "sentido"
-
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Controle o Rhythmbox diretamente do dock !\n"
 #~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
-#~ "Clique com o botão do meio e role para baixo para ir à próxima música, "
-#~ "role para cima para a música anterior.\n"
-#~ "Você pode arrastar e soltar capas (ficheiros .jpg) no ícone para usá-"
-#~ "las,\n"
+#~ "Clique com o botão do meio e role para baixo para ir à próxima música, role "
+#~ "para cima para a música anterior.\n"
+#~ "Você pode arrastar e soltar capas (ficheiros .jpg) no ícone para usá-las,\n"
 #~ " e músicas para colocá-las na lista."
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6273,15 +6263,14 @@ msgstr ""
 #~ msgstr "Pastas monitorizadas:"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type a command to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use the arrows to navigate between the results.\n"
@@ -6289,15 +6278,15 @@ msgstr ""
 #~ msgstr ""
 #~ "Um plugin similar ao Gnome-Do que permite controlar seu dock através do "
 #~ "teclado.\n"
-#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho "
-#~ "do teclado:\n"
+#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho do "
+#~ "teclado:\n"
 #~ "- modo de navegação : use as setas para navegar entre docks e sub-docks,\n"
 #~ " ou digite o nome do lançador e pressione Tab para pular automaticamente "
 #~ "para o próximo lançador apropriado.\n"
-#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, Alt"
-#~ "+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
-#~ "- modo buscador : digite um comando para chamar qualquer comando, "
-#~ "ficheiro, ou cálculo.\n"
+#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, "
+#~ "Alt+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
+#~ "- modo buscador : digite um comando para chamar qualquer comando, ficheiro, "
+#~ "ou cálculo.\n"
 #~ "Use as setas para navegar entre os resultados.\n"
 #~ "Esc, Retornar ou o mesmo atalho para finalizar."
 
@@ -6311,8 +6300,7 @@ msgstr ""
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
@@ -6324,3 +6312,6 @@ msgstr ""
 #~ "tocador).\n"
 #~ "Nota : Para XMMS, você tem que instalar o plugin 'xmms-infopipe'.\n"
 #~ "Para o SongBird, você tem que instalar o add-on Dbus.\n"
+
+#~ msgid "felt"
+#~ msgstr "sentido"

@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-09-08 18:43+0000\n"
+"POT-Creation-Date: 2009-10-11 20:27+0000\n"
+"PO-Revision-Date: 2009-10-13 00:55+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-09-23 11:13+0000\n"
+"X-Launchpad-Export-Date: 2009-10-13 07:02+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
@@ -719,7 +720,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1112,14 +1114,12 @@ msgid "This plug-in adds a motion blur effect on docks."
 msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown artist"
-msgstr "Okänt"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:188
-#, fuzzy
 msgid "Unknown title"
-msgstr "Okänt"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
@@ -1394,8 +1394,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1508,14 +1508,12 @@ msgid "Clean local directory"
 msgstr ""
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
-#, fuzzy
 msgid "current"
-msgstr "Aktuell"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
-#, fuzzy
 msgid "desktop"
-msgstr "Skrivbord"
+msgstr ""
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1866,9 +1864,8 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
-#, fuzzy
 msgid "feeled"
-msgstr "emerald"
+msgstr "upplevd"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -2516,7 +2513,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
@@ -3542,14 +3540,12 @@ msgid "Write text on the top of the dock ?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
-#, fuzzy
 msgid "It's the color of the graphic for high values."
-msgstr "Startfärgen för färgtoning i topplistan."
+msgstr ""
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
-#, fuzzy
 msgid "It's the color of the graphic for low values."
-msgstr "Startfärgen för färgtoning i topplistan."
+msgstr ""
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
@@ -3746,8 +3742,8 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Beroende på din fönsterhanterare, kan du flytta fönstret med ALT"
-"+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
+"Beroende på din fönsterhanterare, kan du flytta fönstret med "
+"ALT+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
 
 #: ../alsaMixer/data/messages:83
 msgid "Alsa"
@@ -3914,9 +3910,8 @@ msgid "Image to draw on the background :"
 msgstr ""
 
 #: ../clock/data/messages:129
-#, fuzzy
 msgid "Ratio to apply on text :"
-msgstr "Information att visa på ikonen:"
+msgstr ""
 
 #: ../clock/data/messages:131
 msgid "Analogic View"
@@ -4689,7 +4684,8 @@ msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5646,8 +5642,8 @@ msgstr "Manuell sortering"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
 
 #: ../stack/data/messages:131
@@ -6010,15 +6006,12 @@ msgstr ""
 msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
 
-#~ msgid "felt"
-#~ msgstr "upplevd"
-
 #~ msgid "Activate info-bubbles ?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -6072,8 +6065,8 @@ msgstr ""
 #~ msgstr "höjd:"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -6248,11 +6241,11 @@ msgstr ""
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Choose a decoration for the desklet mode :"
 #~ msgstr "Välj dekoration för deskletläge:"
@@ -6419,3 +6412,6 @@ msgstr ""
 #~ msgstr ""
 #~ "xmms applet\n"
 #~ " skapad av ChAnGFu för Cairo-Dock"
+
+#~ msgid "felt"
+#~ msgstr "upplevd"

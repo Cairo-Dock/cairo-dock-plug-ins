@@ -1,29 +1,29 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2007 Cairo-Dock project
-# This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Traditional Chinese translation for cairo-dock-plug-ins
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the cairo-dock-plug-ins package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-10-11 20:27+0000\n"
-"PO-Revision-Date: 2009-10-13 00:56+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
-"Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
+"Project-Id-Version: cairo-dock-plug-ins\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-10-15 14:40+0000\n"
+"PO-Revision-Date: 2009-10-15 15:36+0000\n"
+"Last-Translator: Rossi Liu <Unknown>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-13 07:02+0000\n"
+"X-Launchpad-Export-Date: 2009-10-16 06:58+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
-msgstr "动态图标"
+msgstr "動畫圖示"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "本插件提供了多种不同的图标动态效果"
+msgstr "這個外掛程式能夠提供您更多不同的圖示動畫。"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -33,92 +33,95 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
+"增加一個活潑可愛的企鵝在您的Dock上面！\n"
+"左鍵能夠改變這個動畫。中鍵能夠鬧他 ^_^\n"
+"企鵝影像取自於Pingus，其他的可用字型可以很輕鬆的添加。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here !"
-msgstr "嘿，我在这儿！"
+msgstr "嘿！我在這裡！！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "对不起，我现在有点忙。"
+msgstr "我在忙啦！麥吵！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "我没功夫跟你玩，我忙着把这些图标挖出来呢。"
+msgstr "我沒時間陪你玩，我要好好的挖掘這些圖示，看看裏面有沒有寶貝。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "你的dock乱套了！我来帮你打扫一下吧。"
+msgstr "你的圖示好髒喔！看不下去了，我來幫你清理。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin !"
-msgstr "承认我这个企鹅比你优秀吧！"
+msgstr "我用我卓越的權力承認你是隻企鵝！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me ?!"
-msgstr "不要啊~~你要杀死我么？！"
+msgstr "等...等...等等......你想要殺了我嗎？"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "你知道这么被点来点去多疼么？！！"
+msgstr "你知道一直點擊我有多痛~~~苦~~~嗎？"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha !"
-msgstr "现在这是我的dock啦，哇咔咔咔咔！"
+msgstr "這個Dock現在是我的了！！哇~~~哈哈~~哇~~哈哈哈哈~~~~"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate !"
-msgstr "我要成为一名伟大的海贼！"
+msgstr "我要成為海賊王！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass !"
-msgstr "禁止通过！"
+msgstr "You shall not pass!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father !"
-msgstr "我是你父亲！"
+msgstr "靠北喔！挖是你老杯啦！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- What will we do tonight Cortex ?\n"
 "- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
-"- Cortex， 我们晚做些什么？\n"
-"- 跟每天晚上一样啊，Minus。占据这个Dock！"
+"- 我們今晚要做什麼Cortex?\n"
+"- 就像每一個晚上一樣，Minus。試著接管Dock ！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur !"
-msgstr "为了Aiur！"
+msgstr "For Aiur !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:121
 msgid "Hey, you there !"
-msgstr ""
+msgstr "嘿!你在那裡啊!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:125
 msgid "Wake up"
-msgstr "醒醒！"
+msgstr "醒來"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:129
 msgid "Keep quiet"
-msgstr "肃静！"
+msgstr "保持安靜"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:132
 msgid "Start XPenguins"
-msgstr "启动XPenguins"
+msgstr "啟動 X企鵝"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:133
 msgid "Stop XPenguins"
-msgstr "停止XPenguins"
+msgstr "停止X企鵝"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:156
 #: ../Cairo-Penguin/src/applet-notifications.c:158
 msgid "Zzzzz"
-msgstr "Zzzzz"
+msgstr "ZZzzz...."
 
 #: ../Clipper/src/applet-config.c:33 ../Clipper/src/applet-notifications.c:32
 msgid "No items yet."
-msgstr "目前无项目"
+msgstr "還沒有東西呢！"
 
 #: ../Clipper/src/applet-init.c:32
 msgid ""
@@ -130,23 +133,32 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"這個小程式會不斷的追蹤剪貼簿與滑鼠的選擇，\n"
+"所以你可以很快的回call這些，這是拷貝自well-know Klipper。\n"
+"它支援剪貼簿與滑鼠選擇，預定義的行動，以及固定的物件。\n"
+"右鍵點擊可以彈跳出剪貼簿與滑鼠選擇的歷史紀錄。\n"
+"放文字在這個圖示上面可以建立一個固定的物件，中鍵可以回call它們。"
 
 #: ../Clipper/src/applet-notifications.c:96
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
+"沒有固定的物件。\n"
+"你可以加入一些文字，利用 拖-拉 文字的方式到這個圖示上面。"
 
 #: ../Dbus/src/applet-init.c:31
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
+"這個外掛讓外來的應用程式可以影響Dock。\n"
+"雙方溝通的基礎用的是Dbus。"
 
 #: ../Dbus/src/interface-applet-signals.c:343
 #: ../Dbus/src/interface-applet.c:958
 msgid "About this applet"
-msgstr ""
+msgstr "關於這個小程式(applet)"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -156,30 +168,34 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"顯示常用應用程式選單與最近使用的文件檔案。\n"
+"這相容於任何XDG系列的選單(Gnome、XFCE、KDE ....)\n"
+"中鍵可以開啟交談式視窗來快速執行任何指令(你可以設定一個熱鍵給他，像是ALT + F2)\n"
+"你也可以設定一個熱鍵來彈跳初選單(例如ALT + F1)"
 
 #: ../GMenu/src/applet-notifications.c:154
 msgid "Quick launch"
-msgstr ""
+msgstr "快速執行"
 
 #: ../GMenu/src/applet-notifications.c:155
 msgid "Configure menu"
-msgstr "设置菜单"
+msgstr "設置選單"
 
 #: ../GMenu/src/applet-notifications.c:156
 msgid "Clear recent"
-msgstr ""
+msgstr "清除最近的紀錄"
 
 #: ../GMenu/src/applet-recent.c:56
 msgid "Recent Documents"
-msgstr ""
+msgstr "清除最近的文件"
 
 #: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents ?"
-msgstr "清除最近使用的文档列表？"
+msgstr "清除最近使用過的文件列表嗎？"
 
 #: ../GMenu/src/applet-run-dialog.c:349
 msgid "Enter a command to launch :"
-msgstr "输入命令并启动"
+msgstr "輸入一個執行指令："
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:135 ../wifi/src/applet-draw.c:31
@@ -188,11 +204,11 @@ msgstr "输入命令并启动"
 #: ../compiz-icon/data/messages:89 ../dustbin/data/messages:95
 #: ../wifi/data/messages:123 ../wifi/data/messages:173
 msgid "None"
-msgstr "无"
+msgstr "無"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Very Low"
-msgstr "很低"
+msgstr "非常低"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Low"
@@ -200,51 +216,53 @@ msgstr "低"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Middle"
-msgstr "中等"
+msgstr "中間"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Good"
-msgstr "良好"
+msgstr "好"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Excellent"
-msgstr "很好"
+msgstr "極好"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Not connected"
-msgstr ""
+msgstr "沒有連線"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Wired connection"
-msgstr ""
+msgstr "有線網路連線"
 
 #: ../Network-Monitor/src/applet-draw.c:141 ../wifi/src/applet-draw.c:143
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
+"檢查連線中...\n"
+"請稍候再重新嘗試"
 
 #: ../Network-Monitor/src/applet-draw.c:149
 msgid "Wired Connection."
-msgstr "有线连接."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:151
 #: ../Network-Monitor/src/applet-draw.c:166 ../wifi/src/applet-draw.c:160
 msgid "Interface"
-msgstr ""
+msgstr "網路介面卡"
 
 #: ../Network-Monitor/src/applet-draw.c:152
 #: ../Network-Monitor/src/applet-draw.c:164
 msgid "Speed"
-msgstr ""
+msgstr "速度"
 
 #: ../Network-Monitor/src/applet-draw.c:161 ../wifi/src/applet-draw.c:156
 msgid "Wifi enabled."
-msgstr ""
+msgstr "Wifi已啟用。"
 
 #: ../Network-Monitor/src/applet-draw.c:163 ../wifi/src/applet-draw.c:158
 msgid "Network ID"
-msgstr ""
+msgstr "網路ID"
 
 #: ../Network-Monitor/src/applet-draw.c:163
 #: ../musicPlayer/src/applet-draw.c:294 ../musicPlayer/src/applet-draw.c:296
@@ -252,95 +270,97 @@ msgstr ""
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
-msgstr "未知"
+msgstr "不明的"
 
 #: ../Network-Monitor/src/applet-draw.c:165 ../wifi/src/applet-draw.c:159
 msgid "Access point"
-msgstr ""
+msgstr "存取點"
 
 #: ../Network-Monitor/src/applet-draw.c:167 ../wifi/src/applet-draw.c:161
 msgid "Signal Quality"
-msgstr ""
+msgstr "訊號品質"
 
 #: ../Network-Monitor/src/applet-init.c:29
 msgid "Network-Monitor"
-msgstr ""
+msgstr "網路監視器"
 
 #: ../Network-Monitor/src/applet-init.c:32
 msgid ""
 "This applet shows you a monitor of your active connections\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"這個小程式能夠監視您已經啟用的連線。\n"
+"左鍵點擊能夠彈跳出交談式視窗顯示資訊，滑鼠中鍵點擊可以馬上更新資訊。"
 
 #: ../Network-Monitor/src/applet-notifications.c:74
 #: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
-msgstr "检查无线扩展"
+msgstr "檢查無線網路範圍"
 
 #: ../Network-Monitor/src/applet-notifications.c:75
 #: ../wifi/src/applet-notifications.c:76
 msgid "Network Administration"
-msgstr "网络管理"
+msgstr "網路管理"
 
 #: ../Scooby-Do/src/applet-backend-command.c:71
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr ""
+msgstr "這個 %s 資料已經拷貝到剪貼簿當中。"
 
 #: ../Scooby-Do/src/applet-backend-command.c:98
 msgid "Execute"
-msgstr ""
+msgstr "執行"
 
 #: ../Scooby-Do/src/applet-backend-files.c:155
 msgid "Zip folder"
-msgstr ""
+msgstr "壓縮資料夾"
 
 #: ../Scooby-Do/src/applet-backend-files.c:163
 #: ../Scooby-Do/src/applet-backend-files.c:237
 msgid "Move to"
-msgstr ""
+msgstr "移至"
 
 #: ../Scooby-Do/src/applet-backend-files.c:171
 #: ../Scooby-Do/src/applet-backend-files.c:245
 #: ../Scooby-Do/src/applet-backend-firefox.c:110
 msgid "Copy URL"
-msgstr ""
+msgstr "複製 URL"
 
 #: ../Scooby-Do/src/applet-backend-files.c:213
 msgid "Open location"
-msgstr ""
+msgstr "開啟語言支援"
 
 #: ../Scooby-Do/src/applet-backend-files.c:221
 msgid "Zip file"
-msgstr ""
+msgstr "壓縮檔案"
 
 #: ../Scooby-Do/src/applet-backend-files.c:229
 msgid "Mail file"
-msgstr ""
+msgstr "郵寄檔案"
 
 #: ../Scooby-Do/src/applet-backend-files.c:348
 msgid "Pick up a directory"
-msgstr ""
+msgstr "撿起一個目錄"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
-msgstr ""
+msgstr "開啟"
 
 #: ../Scooby-Do/src/applet-backend-web.c:60
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 #: ../Scooby-Do/src/applet-backend-web.c:68
 msgid "Wikipedia"
-msgstr ""
+msgstr "維基百科"
 
 #: ../Scooby-Do/src/applet-backend-web.c:76
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: ../Scooby-Do/src/applet-backend-web.c:138
 msgid "Search on the web"
-msgstr ""
+msgstr "從網路上搜尋"
 
 #: ../Scooby-Do/src/applet-init.c:37
 msgid ""
@@ -358,6 +378,15 @@ msgid ""
 "maintain CTRL, ALT or SHIFT to keep the results.\n"
 "Escape or the same shortkey to cancel."
 msgstr ""
+"一個像是Gnome-Do的外掛，它能夠讓您用鍵盤控制您的Dock。\n"
+"有兩種模式，一個是用鍵盤熱鍵觸發：\n"
+"- 瀏覽模式：使用方向鍵來瀏覽進入Dock與子Dock，\n"
+"  或者輸入快速啟動的名稱或TAB按鍵來自動的跳到下一個快速啟動\n"
+"  在圖示上面按下Enter等同滑鼠的點擊，SHIFT + Enter等同SHIFT + 點擊，ALT + Enter 等同中鍵點擊，CTRL + "
+"Enter 等同左鍵點擊\n"
+"- 尋找模式：輸入一些文字來啟動任何一個指令、檔案或者是計算機。\n"
+"  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀看結果的顯現。\n"
+"ESC按鍵為取消。"
 
 #: ../Scooby-Do/src/applet-listing.c:508
 msgid "(F1) Match case"
@@ -412,7 +441,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
 msgid "day(s)"
-msgstr "日"
+msgstr ""
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
@@ -431,7 +460,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-monitor.c:81
 #: ../netspeed/src/applet-netspeed.c:182
 msgid "Loading"
-msgstr "载入"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:40
 #: ../System-Monitor/src/applet-notifications.c:88
@@ -472,19 +501,19 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:73
 msgid "Frequency"
-msgstr "频率"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:74
 msgid "core(s)"
-msgstr "核"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:75
 msgid "Up time"
-msgstr "运行时间"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:76
 msgid "Activity time"
-msgstr "活动时间"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:77
 msgid "Memory"
@@ -505,7 +534,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-notifications.c:110
 #: ../netspeed/src/applet-notifications.c:71
 msgid "Monitor System"
-msgstr "系统监视器"
+msgstr ""
 
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
@@ -528,7 +557,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma :"
-msgstr "设置Gamma值："
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
@@ -553,28 +582,28 @@ msgstr ""
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr "无法打开声卡'%s'"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr "声卡'%s'已打开但无法获取信息。"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:64
 msgid "I couldn't open the mixer"
-msgstr "无法打开混音器。"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:71
 msgid "I couldn't attach the mixer to the card"
-msgstr "无法连接混音器至声卡"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
-msgstr "无法注册选项"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
-msgstr "无法载入混音器"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:137
 #, c-format
@@ -586,15 +615,15 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:281
 msgid "Set up volume :"
-msgstr "设置音量："
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:54
 msgid "Adjsut channels"
-msgstr "调整通道"
+msgstr ""
 
 #: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
-msgstr "查询您的位置"
+msgstr ""
 
 #: ../clock/src/applet-init.c:32
 msgid "clock"
@@ -613,11 +642,11 @@ msgstr ""
 
 #: ../clock/src/applet-notifications.c:64
 msgid "Calendar"
-msgstr "日历"
+msgstr ""
 
 #: ../clock/src/applet-notifications.c:76
 msgid "Set up time and date"
-msgstr "设置时间和日期"
+msgstr ""
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -630,24 +659,24 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Configure Compiz"
-msgstr "配置Compiz"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Emerald Manager"
-msgstr "Emerald主题管理器"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Reload WM"
-msgstr "重新载入窗口管理器"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
-msgstr "展示"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:93
 msgid "Widget Layer"
-msgstr "Widget层"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:95
 msgid ""
@@ -657,27 +686,27 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:180
 msgid "Reload Emerald"
-msgstr "重新加载Emerald"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Manager"
-msgstr "切换窗口管理器"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:185
 msgid "Switch Windows Decorator"
-msgstr "切换窗口装饰器"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Exposition Mode"
-msgstr "切换展示模式"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:195
 msgid "Toggle Widgets Layer"
-msgstr "切换Widget层"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:197
 msgid "Toggle Show Desktop"
-msgstr "切换显示桌面"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
@@ -816,7 +845,7 @@ msgstr ""
 #: ../dock-rendering/src/rendering-init.c:33
 #: ../dock-rendering/data/messages:17
 msgid "Caroussel"
-msgstr "链子"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:34
 #: ../dialog-rendering/data/messages:19
@@ -826,22 +855,22 @@ msgstr ""
 #: ../dock-rendering/src/rendering-init.c:35
 #: ../dock-rendering/data/messages:35
 msgid "Parabolic"
-msgstr "抛物线"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:57
 msgid "Rainbow"
-msgstr "彩虹"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97
 msgid "Slide"
-msgstr "滑动"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:39
 #: ../dock-rendering/data/messages:121
 msgid "Curve"
-msgstr "曲线"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:121
 msgid ""
@@ -863,15 +892,15 @@ msgstr ""
 
 #: ../dustbin/src/applet-draw.c:155
 msgid "calculating"
-msgstr "计算"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:165
 msgid " trashe(s)"
-msgstr " 垃圾"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:169
 msgid " file(s)"
-msgstr " 文件"
+msgstr ""
 
 #: ../dustbin/src/applet-init.c:31
 msgid "dustbin"
@@ -889,49 +918,49 @@ msgstr ""
 #: ../dustbin/src/applet-notifications.c:42
 #: ../dustbin/src/applet-notifications.c:47
 msgid "Show Trash"
-msgstr "显示垃圾"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
 msgid "Delete Trash"
-msgstr "清空回收站"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:51
 #, c-format
 msgid "Show %s"
-msgstr "显示%s"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:54
 msgid "Show All"
-msgstr "全部显示"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:60
 #, c-format
 msgid "Delete %s"
-msgstr "删除%s"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:63
 msgid "Delete All"
-msgstr "全部删除"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:78
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s已经卸载"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:82
 #, c-format
 msgid "failed to unmount %s"
-msgstr "卸载%s失败"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:380
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
-msgstr "您将删除%s中的所有文件，确定?"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:382
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr "您将删除全部回收站中的所有文件。确定?"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:459
 #, c-format
@@ -940,9 +969,6 @@ msgid ""
 "If '%s' is not your usual file browser,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
-"发生问题。\n"
-"如果“%s”不是您平时使用的文件浏览器，\n"
-"您可以在此模块的配置面板中进行更改。"
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -1045,7 +1071,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:376
 msgid "Remove Account"
-msgstr "移除账户"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
@@ -1057,7 +1083,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:322
 msgid "No unread mail in your mailboxes"
-msgstr "您的邮箱中没有未读邮件"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:344
 #, c-format
@@ -1087,12 +1113,10 @@ msgid ""
 "If '%s' is not your usual mail application,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
-"出现问题\n"
-"如果“%s”不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
 
 #: ../mail/src/cd-mail-applet-notifications.c:101
 msgid "Refresh a mail account"
-msgstr "移除邮件账号"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:112
 #, c-format
@@ -1121,7 +1145,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:194
 msgid "Track"
-msgstr "音轨"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:284
 msgid "Current song"
@@ -1129,15 +1153,15 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:293
 msgid "Artist"
-msgstr "艺术家"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:295
 msgid "Album"
-msgstr "专辑"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:297
 msgid "Title"
-msgstr "标题"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:299
 msgid "Length"
@@ -1180,31 +1204,31 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:159
 msgid "Previous"
-msgstr "上一首"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:161
 msgid "Play/Pause (left-click)"
-msgstr "播放/暂停(左键点击)"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:163
 msgid "Next (middle-click)"
-msgstr "下一首(中键点击)"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:165
 msgid "Stop"
-msgstr "停止"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:167
 msgid "Show JumpBox"
-msgstr "显示JumpBox"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:169
 msgid "Toggle Shuffle"
-msgstr "乱序"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:171
 msgid "Toggle Repeat"
-msgstr "重复"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:173
 msgid "Rate this song"
@@ -1212,7 +1236,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:175
 msgid "Information"
-msgstr "信息"
+msgstr ""
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -1224,37 +1248,37 @@ msgstr ""
 
 #: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
 msgid "B"
-msgstr "B"
+msgstr ""
 
 #: ../netspeed/src/applet-netspeed.c:58
 msgid "KB"
-msgstr "KB"
+msgstr ""
 
 #: ../netspeed/src/applet-netspeed.c:66
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr "MB"
+msgstr ""
 
 #: ../netspeed/src/applet-netspeed.c:74
 msgid "GB"
-msgstr "GB"
+msgstr ""
 
 #: ../netspeed/src/applet-netspeed.c:82
 msgid "TB"
-msgstr "TB"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
-msgstr "数据总量"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:37
 msgid "downloaded"
-msgstr "已下载"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:38
 msgid "uploaded"
-msgstr "已上传"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:43
 #, c-format
@@ -1266,7 +1290,7 @@ msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:73
 msgid "Re-check interface"
-msgstr "重新检查网卡"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:167
 msgid ""
@@ -1356,7 +1380,7 @@ msgstr ""
 #: ../shortcuts/src/applet-bookmarks.c:346
 #: ../shortcuts/src/applet-load-icons.c:73
 msgid "Unmounted"
-msgstr "卸载"
+msgstr ""
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1372,7 +1396,7 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Remove this bookmark"
-msgstr "移除此书签"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:102
 msgid "Get disk info"
@@ -1425,19 +1449,19 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:163
 msgid "Play"
-msgstr "播放"
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:163
 msgid "Pause"
-msgstr "暂停"
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:166
 msgid "Open current image"
-msgstr "打开当前图片"
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:168
 msgid "Browse images folder"
-msgstr "浏览图片文件夹"
+msgstr ""
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -1491,11 +1515,11 @@ msgstr ""
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
-msgstr "重载Stacks"
+msgstr ""
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
-msgstr "清除本地目录"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
 msgid "current"
@@ -1576,7 +1600,7 @@ msgstr ""
 #: ../terminal/src/terminal-callbacks.c:84
 #: ../terminal/src/terminal-widget.c:343
 msgid "Copy"
-msgstr "复制"
+msgstr ""
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -1593,43 +1617,43 @@ msgstr ""
 #: ../terminal/src/terminal-menu-functions.c:80
 #: ../terminal/src/terminal-widget.c:359
 msgid "New Tab"
-msgstr "新建标签"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
-msgstr "更名当前标签"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
-msgstr "关闭当前标签"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:45
 msgid "Terminal"
-msgstr "终端"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:137
 msgid "Set title for this tab :"
-msgstr "设置此标签标题:"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:191
 msgid "Select a color"
-msgstr "选择颜色"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:349
 msgid "Paste"
-msgstr "粘贴"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:365
 msgid "Rename this Tab"
-msgstr "更名此标签"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:371
 msgid "Change this Tab's color"
-msgstr "变更此标签颜色"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:377
 msgid "Close this Tab"
-msgstr "关闭此标签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-init.c:33
 msgid ""
@@ -1641,7 +1665,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:68
 msgid "Note name : "
-msgstr "便签名称: "
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:91
 msgid "Delete this note ?"
@@ -1649,27 +1673,27 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:107
 msgid "Search for :"
-msgstr "搜索:"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:123
 msgid "Search for tag :"
-msgstr "搜索标签:"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:162
 msgid "Reload notes"
-msgstr "相关便签:"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:163
 msgid "Add a note"
-msgstr "添加便签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:169
 msgid "Delete this note"
-msgstr "删除此便签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:172
 msgid "Search"
-msgstr "搜索"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:173
 msgid "Search for tag"
@@ -1677,15 +1701,15 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:175
 msgid "Search for today's note"
-msgstr "搜索今日便签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:176
 msgid "Search for this week's note"
-msgstr "搜索本周便签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:177
 msgid "Search for next week's note"
-msgstr "搜索下周便签"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:187
 msgid "Clear marks"
@@ -1696,12 +1720,10 @@ msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
-"无法获取信息，\n"
-"请检查互联网连接?"
 
 #: ../weather/src/applet-config.c:179
 msgid "I couldn't find this location"
-msgstr "我无法找到这个位置"
+msgstr ""
 
 #: ../weather/src/applet-config.c:237
 msgid ""
@@ -1724,79 +1746,79 @@ msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr "星期一"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr "星期二"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr "星期三"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr "星期四"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr "星期五"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr "星期六"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr "星期日"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
-msgstr "1月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Feb"
-msgstr "2月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Mar"
-msgstr "3月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Apr"
-msgstr "4月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "May"
-msgstr "5月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jun"
-msgstr "6月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jui"
-msgstr "7月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Aug"
-msgstr "8月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sep"
-msgstr "9月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Oct"
-msgstr "10月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Nov"
-msgstr "11月"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Dec"
-msgstr "12月"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:58
 msgid "Data are being retrieved, please wait a moment."
@@ -1804,42 +1826,42 @@ msgstr ""
 
 #: ../weather/src/applet-notifications.c:73
 msgid "Reload now"
-msgstr "重新载入"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:97
 msgid ""
 "No data were available\n"
 " is connection alive ?"
-msgstr "无数据。请检查互联网连接"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:116
 #: ../weather/src/applet-notifications.c:152
 msgid "Temperature"
-msgstr "气温"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:117
 msgid "Precipitation Probability"
-msgstr "冰雹概率"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:118
 #: ../weather/src/applet-notifications.c:153
 msgid "Wind"
-msgstr "风"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:119
 #: ../weather/src/applet-notifications.c:154
 msgid "Humidity"
-msgstr "湿度"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:120
 #: ../weather/src/applet-notifications.c:155
 msgid "SunRise"
-msgstr "日出"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:120
 #: ../weather/src/applet-notifications.c:155
 msgid "SunSet"
-msgstr "日落"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:128
 msgid "Data are being fetched, please re-try in a few seconds."
@@ -1853,11 +1875,11 @@ msgstr ""
 
 #: ../weather/src/applet-notifications.c:152
 msgid "feeled"
-msgstr "体感温度"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
-msgstr "气压"
+msgstr ""
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -1873,7 +1895,7 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:151
 msgid "Wifi disabled."
-msgstr "Wifi已禁用。"
+msgstr ""
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -2186,7 +2208,7 @@ msgstr ""
 #: ../weather/data/messages:1 ../weblets/data/messages:1
 #: ../wifi/data/messages:1
 msgid "Icon"
-msgstr "图标"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../GMenu/data/messages:3 ../Network-Monitor/data/messages:3
@@ -2231,7 +2253,7 @@ msgstr ""
 #: ../weather/data/messages:11 ../weblets/data/messages:13
 #: ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
-msgstr "所属dock名称:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:189
 #: ../Dbus/data/messages:1 ../GMenu/data/messages:85
@@ -2251,7 +2273,7 @@ msgstr "所属dock名称:"
 #: ../weather/data/messages:85 ../weblets/data/messages:85
 #: ../wifi/data/messages:81
 msgid "Configuration"
-msgstr "配置"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:93
 #: ../System-Monitor/data/messages:91 ../Toons/data/messages:85
@@ -2259,7 +2281,7 @@ msgstr "配置"
 #: ../netspeed/data/messages:91 ../powermanager/data/messages:93
 #: ../weather/data/messages:113 ../wifi/data/messages:93
 msgid "Choose one of the available themes :"
-msgstr "选择主题:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:87
 msgid "in seconds"
@@ -2267,20 +2289,20 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:17
 msgid "Delay between animation changes :"
-msgstr "动画间隔时间："
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:19
 msgid "Transparency of the penguin :"
-msgstr "企鹅透明度："
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
-msgstr "允许企鹅在dock的任何地方漫步？"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:49
 #: ../dock-rendering/data/messages:127
 msgid "in pixels."
-msgstr "以点为单位。"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:25
 msgid "Ground offset :"
@@ -2406,7 +2428,7 @@ msgstr ""
 #: ../tomboy/data/messages:5 ../weather/data/messages:5
 #: ../weblets/data/messages:5 ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
-msgstr "此小程序期望的图标大小"
+msgstr ""
 
 #: ../Clipper/data/messages:111 ../GMenu/data/messages:7
 #: ../Network-Monitor/data/messages:7 ../System-Monitor/data/messages:7
@@ -2422,7 +2444,7 @@ msgstr "此小程序期望的图标大小"
 #: ../switcher/data/messages:7 ../weather/data/messages:9
 #: ../weblets/data/messages:7 ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "在dock中显示的图标标签名称:"
+msgstr ""
 
 #: ../Clipper/data/messages:115 ../GMenu/data/messages:11
 #: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
@@ -2449,7 +2471,7 @@ msgstr ""
 #: ../weather/data/messages:13 ../weblets/data/messages:15
 #: ../wifi/data/messages:11
 msgid "Desklet"
-msgstr "桌面小工具"
+msgstr ""
 
 #: ../Clipper/data/messages:121 ../GMenu/data/messages:17
 #: ../Network-Monitor/data/messages:13 ../System-Monitor/data/messages:13
@@ -2468,7 +2490,7 @@ msgstr "桌面小工具"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
+msgstr ""
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2485,7 +2507,7 @@ msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小�
 #: ../tomboy/data/messages:29 ../weather/data/messages:17
 #: ../weblets/data/messages:19 ../wifi/data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr "桌面小工具尺寸(宽×高):"
+msgstr ""
 
 #: ../Clipper/data/messages:125 ../GMenu/data/messages:21
 #: ../Network-Monitor/data/messages:17 ../System-Monitor/data/messages:17
@@ -2501,7 +2523,7 @@ msgstr "桌面小工具尺寸(宽×高):"
 #: ../wifi/data/messages:17
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
+msgstr ""
 
 #: ../Clipper/data/messages:127 ../GMenu/data/messages:23
 #: ../Network-Monitor/data/messages:19 ../System-Monitor/data/messages:19
@@ -2519,7 +2541,7 @@ msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的�
 #: ../weather/data/messages:21 ../weblets/data/messages:23
 #: ../wifi/data/messages:19
 msgid "Desklet's position (x ; y) :"
-msgstr "桌面小工具位置(x ; y):"
+msgstr ""
 
 #: ../Clipper/data/messages:129 ../GMenu/data/messages:25
 #: ../Network-Monitor/data/messages:21 ../System-Monitor/data/messages:21
@@ -2537,7 +2559,7 @@ msgstr "桌面小工具位置(x ; y):"
 #: ../weather/data/messages:23 ../weblets/data/messages:25
 #: ../wifi/data/messages:21
 msgid "Is detached from the dock ?"
-msgstr "与dock分离?"
+msgstr ""
 
 #: ../Clipper/data/messages:131 ../GMenu/data/messages:27
 #: ../Network-Monitor/data/messages:23 ../System-Monitor/data/messages:23
@@ -2684,7 +2706,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
+msgstr ""
 
 #: ../Clipper/data/messages:149 ../GMenu/data/messages:45
 #: ../Network-Monitor/data/messages:41 ../System-Monitor/data/messages:41
@@ -2702,7 +2724,7 @@ msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移
 #: ../weather/data/messages:43 ../weblets/data/messages:45
 #: ../wifi/data/messages:41
 msgid "Lock position ?"
-msgstr "锁定位置?"
+msgstr ""
 
 #: ../Clipper/data/messages:151 ../GMenu/data/messages:47
 #: ../Network-Monitor/data/messages:43 ../System-Monitor/data/messages:43
@@ -2719,7 +2741,7 @@ msgstr "锁定位置?"
 #: ../tomboy/data/messages:57 ../weather/data/messages:45
 #: ../weblets/data/messages:47 ../wifi/data/messages:43
 msgid "in degrees."
-msgstr "以角度为单位。"
+msgstr ""
 
 #: ../Clipper/data/messages:153 ../GMenu/data/messages:49
 #: ../Network-Monitor/data/messages:45 ../System-Monitor/data/messages:45
@@ -2736,7 +2758,7 @@ msgstr "以角度为单位。"
 #: ../tomboy/data/messages:59 ../weather/data/messages:47
 #: ../weblets/data/messages:49 ../wifi/data/messages:45
 msgid "Rotation :"
-msgstr "旋转:"
+msgstr ""
 
 #: ../Clipper/data/messages:155 ../GMenu/data/messages:51
 #: ../Network-Monitor/data/messages:47 ../System-Monitor/data/messages:47
@@ -2753,7 +2775,7 @@ msgstr "旋转:"
 #: ../tomboy/data/messages:61 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:47
 msgid "Decorations"
-msgstr "装饰"
+msgstr ""
 
 #: ../Clipper/data/messages:157 ../GMenu/data/messages:53
 #: ../Network-Monitor/data/messages:49 ../System-Monitor/data/messages:49
@@ -2770,7 +2792,7 @@ msgstr "装饰"
 #: ../tomboy/data/messages:63 ../weather/data/messages:51
 #: ../weblets/data/messages:53 ../wifi/data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
+msgstr ""
 
 #: ../Clipper/data/messages:159 ../GMenu/data/messages:55
 #: ../Network-Monitor/data/messages:51 ../System-Monitor/data/messages:51
@@ -2787,7 +2809,7 @@ msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
 #: ../tomboy/data/messages:65 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:51
 msgid "Choose a decoration theme for this desklet :"
-msgstr "为这个桌面小工具选择一个装饰主题:"
+msgstr ""
 
 #: ../Clipper/data/messages:161 ../GMenu/data/messages:57
 #: ../Network-Monitor/data/messages:53 ../System-Monitor/data/messages:53
@@ -2806,7 +2828,7 @@ msgstr "为这个桌面小工具选择一个装饰主题:"
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
+msgstr ""
 
 #: ../Clipper/data/messages:163 ../GMenu/data/messages:59
 #: ../Network-Monitor/data/messages:55 ../System-Monitor/data/messages:55
@@ -2824,7 +2846,7 @@ msgstr "在图画下面显示的图片，例如边框。留空则为不使用图
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55
 msgid "Background image :"
-msgstr "背景图片:"
+msgstr ""
 
 #: ../Clipper/data/messages:165 ../GMenu/data/messages:61
 #: ../Network-Monitor/data/messages:57 ../System-Monitor/data/messages:57
@@ -2841,7 +2863,7 @@ msgstr "背景图片:"
 #: ../tomboy/data/messages:71 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
 msgid "Background tansparency :"
-msgstr "背景透明度:"
+msgstr ""
 
 #: ../Clipper/data/messages:167 ../GMenu/data/messages:63
 #: ../Network-Monitor/data/messages:59 ../System-Monitor/data/messages:59
@@ -2858,7 +2880,7 @@ msgstr "背景透明度:"
 #: ../tomboy/data/messages:73 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "以象素为单位。使用此设置调整图画的左边位置。"
+msgstr ""
 
 #: ../Clipper/data/messages:169 ../GMenu/data/messages:65
 #: ../Network-Monitor/data/messages:61 ../System-Monitor/data/messages:61
@@ -2875,7 +2897,7 @@ msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 #: ../tomboy/data/messages:75 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:61
 msgid "Left offset :"
-msgstr "左偏移:"
+msgstr ""
 
 #: ../Clipper/data/messages:171 ../GMenu/data/messages:67
 #: ../Network-Monitor/data/messages:63 ../System-Monitor/data/messages:63
@@ -2892,7 +2914,7 @@ msgstr "左偏移:"
 #: ../tomboy/data/messages:77 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr "以象素为单位。使用此设置调整图画的上边位置。"
+msgstr ""
 
 #: ../Clipper/data/messages:173 ../GMenu/data/messages:69
 #: ../Network-Monitor/data/messages:65 ../System-Monitor/data/messages:65
@@ -2909,7 +2931,7 @@ msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 #: ../tomboy/data/messages:79 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:65
 msgid "Top offset :"
-msgstr "顶偏移:"
+msgstr ""
 
 #: ../Clipper/data/messages:175 ../GMenu/data/messages:71
 #: ../Network-Monitor/data/messages:67 ../System-Monitor/data/messages:67
@@ -2926,7 +2948,7 @@ msgstr "顶偏移:"
 #: ../tomboy/data/messages:81 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "以象素为单位。使用此设置调整图画的右边位置。"
+msgstr ""
 
 #: ../Clipper/data/messages:177 ../GMenu/data/messages:73
 #: ../Network-Monitor/data/messages:69 ../System-Monitor/data/messages:69
@@ -2943,7 +2965,7 @@ msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 #: ../tomboy/data/messages:83 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:69
 msgid "Right offset :"
-msgstr "右偏移:"
+msgstr ""
 
 #: ../Clipper/data/messages:179 ../GMenu/data/messages:75
 #: ../Network-Monitor/data/messages:71 ../System-Monitor/data/messages:71
@@ -2960,7 +2982,7 @@ msgstr "右偏移:"
 #: ../tomboy/data/messages:85 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr "以象素为单位。使用此设置调整图画的下边位置。"
+msgstr ""
 
 #: ../Clipper/data/messages:181 ../GMenu/data/messages:77
 #: ../Network-Monitor/data/messages:73 ../System-Monitor/data/messages:73
@@ -2977,7 +2999,7 @@ msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 #: ../tomboy/data/messages:87 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:73
 msgid "Bottom offset :"
-msgstr "底偏移:"
+msgstr ""
 
 #: ../Clipper/data/messages:183 ../GMenu/data/messages:79
 #: ../Network-Monitor/data/messages:75 ../System-Monitor/data/messages:75
@@ -2996,7 +3018,7 @@ msgstr "底偏移:"
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
+msgstr ""
 
 #: ../Clipper/data/messages:185 ../GMenu/data/messages:81
 #: ../Network-Monitor/data/messages:77 ../System-Monitor/data/messages:77
@@ -3013,7 +3035,7 @@ msgstr "在图画上面显示的图片，例如反射。留空则为不使用图
 #: ../tomboy/data/messages:91 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:77
 msgid "Foreground image :"
-msgstr "前景图片:"
+msgstr ""
 
 #: ../Clipper/data/messages:187 ../GMenu/data/messages:83
 #: ../Network-Monitor/data/messages:79 ../System-Monitor/data/messages:79
@@ -3030,7 +3052,7 @@ msgstr "前景图片:"
 #: ../tomboy/data/messages:93 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:79
 msgid "Foreground tansparency :"
-msgstr "前景透明度:"
+msgstr ""
 
 #: ../Clipper/data/messages:191
 msgid ""
@@ -3101,7 +3123,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:223 ../compiz-icon/data/messages:83
 msgid "Actions"
-msgstr "动作"
+msgstr ""
 
 #: ../Clipper/data/messages:225
 msgid ""
@@ -3127,7 +3149,7 @@ msgstr ""
 #: ../powermanager/data/messages:137 ../slider/data/messages:99
 #: ../wifi/data/messages:157
 msgid "in seconds."
-msgstr "以秒为单位。"
+msgstr ""
 
 #: ../Clipper/data/messages:235
 msgid "Duration of the action menu :"
@@ -3143,11 +3165,11 @@ msgstr ""
 
 #: ../Dbus/data/messages:3
 msgid "Let extern applications pop-up dialogs in the dock ?"
-msgstr "令外部应用程序的弹出对话框出现在dock上？"
+msgstr ""
 
 #: ../Dbus/data/messages:5
 msgid "Let extern applications reboot the dock ?"
-msgstr "允许外部应用程序重启dock？"
+msgstr ""
 
 #: ../Dbus/data/messages:7
 msgid "Let extern applications quit the dock ?"
@@ -3155,7 +3177,7 @@ msgstr ""
 
 #: ../Dbus/data/messages:9
 msgid "Let extern applications show/hide the desklets ?"
-msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+msgstr ""
 
 #: ../Dbus/data/messages:11
 msgid "Let extern applications reload the applets ?"
@@ -3262,37 +3284,37 @@ msgstr ""
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../wifi/data/messages:97
 msgid "Type of graphic :"
-msgstr "图表类型:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:99 ../System-Monitor/data/messages:97
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:99
 #: ../wifi/data/messages:99
 msgid "Line"
-msgstr "折线图"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:101 ../System-Monitor/data/messages:99
 #: ../netspeed/data/messages:99 ../powermanager/data/messages:101
 #: ../wifi/data/messages:101
 msgid "Plain"
-msgstr "平面图"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:103 ../System-Monitor/data/messages:101
 #: ../netspeed/data/messages:101 ../powermanager/data/messages:103
 #: ../wifi/data/messages:103
 msgid "Bar"
-msgstr "柱状图"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:105 ../System-Monitor/data/messages:103
 #: ../netspeed/data/messages:103 ../powermanager/data/messages:105
 #: ../wifi/data/messages:105
 msgid "Circle"
-msgstr "圆环图"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:105
 #: ../netspeed/data/messages:105 ../powermanager/data/messages:107
 #: ../wifi/data/messages:107
 msgid "Plain Circle"
-msgstr "平面圆环图"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:109 ../wifi/data/messages:109
 msgid "It's the color of the graphic for high quality signal."
@@ -3302,7 +3324,7 @@ msgstr ""
 #: ../netspeed/data/messages:109 ../powermanager/data/messages:111
 #: ../wifi/data/messages:111
 msgid "High values color :"
-msgstr "高信号强度颜色:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:113 ../wifi/data/messages:113
 msgid "It's the color of the graphic for low quality signal."
@@ -3312,32 +3334,32 @@ msgstr ""
 #: ../netspeed/data/messages:113 ../powermanager/data/messages:115
 #: ../wifi/data/messages:115
 msgid "Low values color :"
-msgstr "低信号强度颜色:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:117 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:117
 #: ../wifi/data/messages:117
 msgid "Background color of the graphic :"
-msgstr "图表背景色:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:121 ../wifi/data/messages:121
 msgid "Effect to apply on the icon according to strength :"
-msgstr "依据信号强度对图标施加效果:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:125 ../alsaMixer/data/messages:121
 #: ../wifi/data/messages:125
 msgid "Zoom"
-msgstr "缩放"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
 #: ../wifi/data/messages:127
 msgid "Transparency"
-msgstr "透明度"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
 #: ../wifi/data/messages:129
 msgid "Draw Bar"
-msgstr "绘制状态条"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:131 ../Network-Monitor/data/messages:135
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:143
@@ -3350,7 +3372,7 @@ msgstr "绘制状态条"
 #: ../wifi/data/messages:143 ../wifi/data/messages:147
 #: ../wifi/data/messages:151
 msgid "Let it empty to use the default icon."
-msgstr "留空以使用默认图标。"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:133
 msgid "Name of an image for the 'No signal' icon :"
@@ -3392,7 +3414,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:167 ../wifi/data/messages:159
 msgid "Delay between signal checks :"
-msgstr "信号检查间隔:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:169 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3410,37 +3432,37 @@ msgstr ""
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
-msgstr "允许您启动自己的无线配置界面以替代默认命令行。"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "载入无线配置界面替代命令:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:177 ../weather/data/messages:101
 #: ../wifi/data/messages:169
 msgid "Info"
-msgstr "信息"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:179 ../musicPlayer/data/messages:131
 #: ../wifi/data/messages:171
 msgid "Information to display on the icon :"
-msgstr "图标上显示的信息:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:183 ../wifi/data/messages:175
 msgid "Signal Strength"
-msgstr "信号强度"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:185 ../wifi/data/messages:177
 msgid "Signal Strength in percent"
-msgstr "信号强度百分比"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
 msgid "Raw Signal Informations"
-msgstr "原始信号信息"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
-msgstr "以接入点名称替代默认标签"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
@@ -3460,7 +3482,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:11
 msgid "Animations"
-msgstr "アニメーション"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:15
 msgid "Duration of the appearance animation :"
@@ -3564,25 +3586,25 @@ msgstr ""
 #: ../clock/data/messages:89 ../netspeed/data/messages:135
 #: ../shortcuts/data/messages:113
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:115
 #: ../clock/data/messages:91 ../netspeed/data/messages:137
 msgid "On icon"
-msgstr "在图标上"
+msgstr ""
 
 #: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:113
 #: ../clock/data/messages:93 ../netspeed/data/messages:139
 msgid "On label"
-msgstr "在标签上"
+msgstr ""
 
 #: ../System-Monitor/data/messages:143
 msgid "Delay between refresh :"
-msgstr "刷新间隔:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:151 ../netspeed/data/messages:143
 msgid "User command to show a system monitor :"
-msgstr "显示系统监视器的用户命令:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:153
 msgid ""
@@ -3600,7 +3622,7 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:161
 msgid "Top List"
-msgstr "占用率列表"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
 msgid ""
@@ -3610,23 +3632,23 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:165
 msgid "Number of programs to display in the top list :"
-msgstr "占用率列表上显示的程序数目:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:167
 msgid "It's the first color of the gradation used to write the top list."
-msgstr "用于显示CPU占用率列表的渐变色的第一种颜色。"
+msgstr ""
 
 #: ../System-Monitor/data/messages:169
 msgid "Start color of the top list :"
-msgstr "占用率列表的起始颜色:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr "用于显示CPU占用率列表的渐变色的第二种颜色。"
+msgstr ""
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
-msgstr "占用率列表的结束颜色:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:175
 msgid "Show top memory usage in % ?"
@@ -3634,7 +3656,7 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:179
 msgid "Delay between refresh of the top list :"
-msgstr "占用率列表刷新时间间隔:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:181
 msgid "Graphic Card temperature"
@@ -3690,7 +3712,7 @@ msgstr ""
 
 #: ../Toons/data/messages:91 ../show-mouse/data/messages:19
 msgid "in ms."
-msgstr "以毫秒为单位。"
+msgstr ""
 
 #: ../Toons/data/messages:93
 msgid "Wink duration :"
@@ -3726,19 +3748,19 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:83
 msgid "Alsa"
-msgstr "Alsa"
+msgstr ""
 
 #: ../alsaMixer/data/messages:85
 msgid "Let empty to use the default sound card."
-msgstr "留空则使用默认声卡。"
+msgstr ""
 
 #: ../alsaMixer/data/messages:87
 msgid "Sound card to control :"
-msgstr "控制的声卡："
+msgstr ""
 
 #: ../alsaMixer/data/messages:89
 msgid "Choose which channel to control :"
-msgstr "选择控制的通道："
+msgstr ""
 
 #: ../alsaMixer/data/messages:91
 msgid ""
@@ -3753,49 +3775,49 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:95
 msgid "Let empty to use the defaut command."
-msgstr "留空则使用默认指令。"
+msgstr ""
 
 #: ../alsaMixer/data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr "指定显示高级混音器的命令："
+msgstr ""
 
 #: ../alsaMixer/data/messages:99
 msgid "Control"
-msgstr "控制"
+msgstr ""
 
 #: ../alsaMixer/data/messages:101
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr "用于显示/隐藏音量控制对话框的快捷键："
+msgstr ""
 
 #: ../alsaMixer/data/messages:105
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr "鼠标离开桌面提示时，隐藏刻度？"
+msgstr ""
 
 #: ../alsaMixer/data/messages:107 ../keyboard-indicator/data/messages:91
 #: ../musicPlayer/data/messages:129 ../slider/data/messages:133
 #: ../stack/data/messages:89 ../weather/data/messages:111
 msgid "Display"
-msgstr "显示"
+msgstr ""
 
 #: ../alsaMixer/data/messages:109
 msgid "Display volume :"
-msgstr "显示音量："
+msgstr ""
 
 #: ../alsaMixer/data/messages:117
 msgid "Effet to apply on the icon according to volume :"
-msgstr "根据音量置于图标的效果："
+msgstr ""
 
 #: ../alsaMixer/data/messages:129
 msgid "Default icon :"
-msgstr "默认图标："
+msgstr ""
 
 #: ../alsaMixer/data/messages:133
 msgid "Broken icon :"
-msgstr "毁坏的图标："
+msgstr ""
 
 #: ../alsaMixer/data/messages:137
 msgid "Mute icon :"
-msgstr "静音图标："
+msgstr ""
 
 #: ../clock/data/messages:7
 msgid "Let it empty to use the location's name if available."
@@ -3804,32 +3826,32 @@ msgstr ""
 #: ../clock/data/messages:83 ../dustbin/data/messages:81
 #: ../shortcuts/data/messages:85
 msgid "Module"
-msgstr "モジュール"
+msgstr ""
 
 #: ../clock/data/messages:85 ../dnd2share/data/messages:95
 #: ../showDesktop/data/messages:87 ../slider/data/messages:97
 msgid "Behaviour"
-msgstr "行为"
+msgstr ""
 
 #: ../clock/data/messages:87
 msgid "Show the date :"
-msgstr "显示日期："
+msgstr ""
 
 #: ../clock/data/messages:95
 msgid "for numeric format only."
-msgstr "数字时钟专用。"
+msgstr ""
 
 #: ../clock/data/messages:97
 msgid "Should the time be displayed as a 24h format ?"
-msgstr "以24小时制式显示时间么？"
+msgstr ""
 
 #: ../clock/data/messages:99
 msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr "如果为否，则小应用程序将一分钟更新时间一次，以节省CPU。"
+msgstr ""
 
 #: ../clock/data/messages:101
 msgid "Show seconds ?"
-msgstr "显示秒针？"
+msgstr ""
 
 #: ../clock/data/messages:103
 msgid ""
@@ -3848,17 +3870,17 @@ msgstr ""
 
 #: ../clock/data/messages:109
 msgid "Timezone :"
-msgstr "时区"
+msgstr ""
 
 #: ../clock/data/messages:111
 msgid "Style"
-msgstr "风格"
+msgstr ""
 
 #: ../clock/data/messages:113
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
-msgstr "指针时钟基于CairoClock；否则将以数字时钟显示。"
+msgstr ""
 
 #: ../clock/data/messages:115
 msgid "Choose the view :"
@@ -3878,11 +3900,11 @@ msgstr ""
 
 #: ../clock/data/messages:123
 msgid "Font used for the numeric display :"
-msgstr "用于数字显示的字体："
+msgstr ""
 
 #: ../clock/data/messages:125
 msgid "Text color for the numeric display:"
-msgstr "数字时钟使用的文字颜色："
+msgstr ""
 
 #: ../clock/data/messages:127
 msgid "Image to draw on the background :"
@@ -3898,7 +3920,7 @@ msgstr ""
 
 #: ../clock/data/messages:133
 msgid "List of available themes for the analogic display :"
-msgstr "可用的表盘主题列表:"
+msgstr ""
 
 #: ../clock/data/messages:135
 msgid "Text color of the date :"
@@ -3906,19 +3928,19 @@ msgstr ""
 
 #: ../clock/data/messages:137
 msgid "Setup time and date"
-msgstr "设置时间和日期"
+msgstr ""
 
 #: ../clock/data/messages:139
 msgid "Let empty to use default command."
-msgstr "保持为空以使用默认的命令。"
+msgstr ""
 
 #: ../clock/data/messages:141
 msgid "Specific command to run :"
-msgstr "指定运行的命令："
+msgstr ""
 
 #: ../clock/data/messages:143
 msgid "Alarm"
-msgstr "闹钟"
+msgstr ""
 
 #: ../clock/data/messages:145
 msgid ""
@@ -3933,67 +3955,67 @@ msgstr ""
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
-msgstr "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插件"
+msgstr ""
 
 #: ../compiz-icon/data/messages:87
 msgid "Choose an action for the middle click on the icon :"
-msgstr "选择中间点击图标执行的行为："
+msgstr ""
 
 #: ../compiz-icon/data/messages:91
 msgid "Switch WM"
-msgstr "切换窗口管理器"
+msgstr ""
 
 #: ../compiz-icon/data/messages:95
 msgid "Expose"
-msgstr "展示"
+msgstr ""
 
 #: ../compiz-icon/data/messages:97
 msgid "Show Desktop"
-msgstr "显示桌面"
+msgstr ""
 
 #: ../compiz-icon/data/messages:99
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
-msgstr "此命令用于载入系统窗口管理器；留空则使用默认窗口管理器。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:101
 msgid "Custom command for system's Windows Manager :"
-msgstr "系统窗口管理器自定义命令："
+msgstr ""
 
 #: ../compiz-icon/data/messages:103
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
-msgstr "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:105
 msgid "Auto-reload Compiz ?"
-msgstr "自动重载Compiz？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:107
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
-msgstr "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz"
+msgstr ""
 
 #: ../compiz-icon/data/messages:109
 msgid "Auto-reload the Decorator ?"
-msgstr "自动重载装饰器？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:111
 msgid "Load Compiz with options at applet's startup."
-msgstr "小应用程序启动的时候载入包括设置的Compiz。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:113
 msgid "Force Compiz settings at startup ?"
-msgstr "启动时强制使用Compiz设置？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:115
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
-msgstr "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起动器和应用程序的功能"
+msgstr ""
 
 #: ../compiz-icon/data/messages:117 ../mail/data/messages:117
 msgid "Steal the application's icon in taskbar ?"
@@ -4003,11 +4025,11 @@ msgstr ""
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
-msgstr "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:121
 msgid "Add Exposition & Widget Layer to sub-dock ?"
-msgstr "在子dock上添加展示和Widget层图标？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:123
 msgid ""
@@ -4021,7 +4043,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:127
 msgid "Compiz Options"
-msgstr "Compiz首选项"
+msgstr ""
 
 #: ../compiz-icon/data/messages:129
 msgid ""
@@ -4030,70 +4052,68 @@ msgid ""
 "when binding textures, that's why this option gives a heavy performance "
 "increase on Nvidia."
 msgstr ""
-"使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户"
-"会感到性能影响。"
 
 #: ../compiz-icon/data/messages:131
 msgid "Use Loose Binding ?"
-msgstr "使用松散绑定？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:133
 msgid "Use thoses options only if you know them."
-msgstr "仅当你了解这些选项时方可使用。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:135
 msgid "Use Indirect Rendering ?"
-msgstr "使用间接渲染？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:137
 msgid "Usefull when having dual or more X separate screens."
-msgstr "当使用双头显示或多个X屏幕时有用。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:139
 msgid "Only Current Screen ?"
-msgstr "仅使用当前屏幕？"
+msgstr ""
 
 #: ../compiz-icon/data/messages:141
 msgid "By default it will be Emerald."
-msgstr "默认为Emerald。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:143
 msgid "Choose your Windows Decorator :"
-msgstr "选择您的窗口装饰器："
+msgstr ""
 
 #: ../compiz-icon/data/messages:145
 msgid "emerald"
-msgstr "emerald"
+msgstr ""
 
 #: ../compiz-icon/data/messages:147
 msgid "gtk-window-decorator"
-msgstr "gtk窗口装饰器"
+msgstr ""
 
 #: ../compiz-icon/data/messages:149
 msgid "kde-window-decorator"
-msgstr "kde窗口装饰器"
+msgstr ""
 
 #: ../compiz-icon/data/messages:151
 msgid "heliodor"
-msgstr "heliodor"
+msgstr ""
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
 #: ../switcher/data/messages:133 ../tomboy/data/messages:99
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
-msgstr "留空以使用默认的子dock视图。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
 #: ../switcher/data/messages:135 ../tomboy/data/messages:101
 #: ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
-msgstr "子dock使用的视图名称:"
+msgstr ""
 
 #: ../compiz-icon/data/messages:157
 msgid "Images"
-msgstr "图像"
+msgstr ""
 
 #: ../compiz-icon/data/messages:159 ../compiz-icon/data/messages:163
 #: ../compiz-icon/data/messages:167 ../compiz-icon/data/messages:171
@@ -4102,41 +4122,41 @@ msgstr "图像"
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
 #: ../tomboy/data/messages:21
 msgid "Let t empty to use the default icon."
-msgstr "留空以使用默认图标。"
+msgstr ""
 
 #: ../compiz-icon/data/messages:161 ../musicPlayer/data/messages:159
 #: ../tomboy/data/messages:15
 msgid "Name of an image for the 'default' icon :"
-msgstr "“默认”图标的图片名称:"
+msgstr ""
 
 #: ../compiz-icon/data/messages:165 ../musicPlayer/data/messages:175
 #: ../tomboy/data/messages:23
 msgid "Name of an image for the 'broken' icon :"
-msgstr "“破损”图标的图片名称:"
+msgstr ""
 
 #: ../compiz-icon/data/messages:169
 msgid "Name of an image for the 'other wm' icon :"
-msgstr "'其它窗口管理器'图标使用的图片名称："
+msgstr ""
 
 #: ../compiz-icon/data/messages:173
 msgid "Name of an image for the 'setting' icon :"
-msgstr "'设置'图标使用的图片名称："
+msgstr ""
 
 #: ../compiz-icon/data/messages:177
 msgid "Name of an image for the 'emerald' icon :"
-msgstr "'emerald'图标使用的图片名称："
+msgstr ""
 
 #: ../compiz-icon/data/messages:181
 msgid "Name of an image for the 'reload' icon :"
-msgstr "'重新载入'图标使用的图片名称："
+msgstr ""
 
 #: ../compiz-icon/data/messages:185
 msgid "Name of an image for the 'exposition' icon :"
-msgstr "'展示'图标使用的图片名称："
+msgstr ""
 
 #: ../compiz-icon/data/messages:189
 msgid "Name of an image for the 'widget layer' icon :"
-msgstr "'widget层'图标使用的图片名称："
+msgstr ""
 
 #: ../dialog-rendering/data/messages:1
 msgid "Comics"
@@ -4146,7 +4166,7 @@ msgstr ""
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:109
 msgid "Corner radius :"
-msgstr "角弧度:"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
@@ -4200,7 +4220,7 @@ msgstr ""
 
 #: ../dnd2share/data/messages:87
 msgid "Info-bubbles"
-msgstr "情報を通知する吹き出し"
+msgstr ""
 
 #: ../dnd2share/data/messages:89
 msgid "Enable info-bubbles ?"
@@ -4317,102 +4337,102 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:1
 msgid "Inclinated Plane"
-msgstr "斜板"
+msgstr ""
 
 #: ../dock-rendering/data/messages:3
 msgid "The lower, the more the point of view is low on the plane."
-msgstr "越低，则视点相对于板平面越低。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:5
 msgid "Height of the vanishing point :"
-msgstr "消失点高度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:7 ../dock-rendering/data/messages:131
 msgid "Choose the way separators are drawn :"
-msgstr "选择间隔的绘制方式:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:9 ../dock-rendering/data/messages:133
 msgid "Normal separator"
-msgstr "普通间隔"
+msgstr ""
 
 #: ../dock-rendering/data/messages:11 ../dock-rendering/data/messages:135
 msgid "Flat separator"
-msgstr "平间隔"
+msgstr ""
 
 #: ../dock-rendering/data/messages:13 ../dock-rendering/data/messages:137
 msgid "Physical separator"
-msgstr "物理间隔"
+msgstr ""
 
 #: ../dock-rendering/data/messages:15
 msgid "For flat separators, you can specify their color:"
-msgstr "您可以指定平间隔的颜色:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:19
 msgid ""
 "In degrees, regarding the vertical position. It's a sort of inclination of "
 "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
 "the plane is not inclined at all (vertical)."
-msgstr "相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果设为0则意味着板面无倾斜（垂直）"
+msgstr ""
 
 #: ../dock-rendering/data/messages:21
 msgid "Inclination of the plane :"
-msgstr "平板斜度"
+msgstr ""
 
 #: ../dock-rendering/data/messages:23
 msgid ""
 "0.5 means the dock is half-folded, so half the icons are on the foreground, "
 "and half are on the background."
-msgstr "0.5意味着半折叠，于是图标的一半位于前景，一半位于背景"
+msgstr ""
 
 #: ../dock-rendering/data/messages:25
 msgid "Percentage of the dock's width that appears on the foreground :"
-msgstr "显示于前景的dock的宽度的百分比:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:27
 msgid ""
 "The greater, the deeper. It is in fact the gap between background icons' "
 "bottom and foreground icons' top (in pixels)."
-msgstr "取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
+msgstr ""
 
 #: ../dock-rendering/data/messages:29
 msgid "Depth of the plane :"
-msgstr "板深度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:31
 msgid "otherwise they will turn."
-msgstr "否则它们会翻转。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:33
 msgid "Always show icons' face ?"
-msgstr "总是显示图标?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:37
 msgid "The higher it is, the sooner the parabole will be curved."
-msgstr "取值越高，抛物线越陡"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Curvature :"
-msgstr "弧度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
 msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr "抛物线将受限于此比例"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Ratio height/width :"
-msgstr "高宽比:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:45
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
-msgstr "0意味着无波，1意味着大波。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:47 ../dock-rendering/data/messages:65
 msgid "Magnitude of the wave :"
-msgstr "波幅:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:51
 msgid "Space between icons and their label :"
-msgstr "图标及其标签之间的空隙:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:53
 msgid ""
@@ -4421,51 +4441,51 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:55
 msgid "Draw labels while unfolding ?"
-msgstr "展开时绘制标签"
+msgstr ""
 
 #: ../dock-rendering/data/messages:59 ../dock-rendering/data/messages:85
 msgid "Space between rows :"
-msgstr "行间隔:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:61
 msgid "Space between icons :"
-msgstr "图标间隔:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:63
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
-msgstr "0意味着平波，1意味着与其它视图一样"
+msgstr ""
 
 #: ../dock-rendering/data/messages:67
 msgid "Number of icons on the first row :"
-msgstr "第一行的图标数:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:69
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
-msgstr "以角度为单位，取值越小则锥体越窄。180°意味着圆锥是完全开放的。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:71
 msgid "Cone's width :"
-msgstr "锥形宽度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:73
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
-msgstr "将透明度设为0则不使用此颜色。在使用cairo时很慢。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:75
 msgid "Bow color :"
-msgstr "弓形颜色:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:77
 msgid "Line color :"
-msgstr "直线颜色:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:79
 msgid "SimpleSlide"
-msgstr "简单滑动"
+msgstr ""
 
 #: ../dock-rendering/data/messages:81
 msgid "Grid"
@@ -4473,19 +4493,19 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:83
 msgid "Space between columns :"
-msgstr "列间隙:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:87
 msgid "Max size of icons :"
-msgstr "图标最大尺寸:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:89
 msgid "Sinusoidal wave radius :"
-msgstr "正弦曲线半径:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:91
 msgid "Use a linear wave rather than a sinusoidal one ?"
-msgstr "使用线性波替代正弦曲线?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:93
 msgid "Pack icons rather horizontally than vertically ?"
@@ -4493,7 +4513,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:95
 msgid "Display text for all icons ?"
-msgstr "为所有图标显示文本?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:97
 msgid "Frame"
@@ -4501,7 +4521,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:99
 msgid "Draw a background ?"
-msgstr "绘制背景?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:101
 msgid "First gradient color :"
@@ -4513,15 +4533,15 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:105
 msgid "Top to bottom gradient ?"
-msgstr "由上至下渐变?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:107
 msgid "Left to right gradient ?"
-msgstr "由左至右渐变?"
+msgstr ""
 
 #: ../dock-rendering/data/messages:111
 msgid "Border line width :"
-msgstr "边线宽度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:113
 msgid "Border line color :"
@@ -4529,27 +4549,27 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:115
 msgid "Arrow width :"
-msgstr "箭头宽度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:117
 msgid "Arrow Height :"
-msgstr "箭头高度:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:119
 msgid "Arrow shift percent :"
-msgstr "箭头变换百分比"
+msgstr ""
 
 #: ../dock-rendering/data/messages:123
 msgid "The lower, the more the curve will seem flat."
-msgstr "取值越低，曲线越平。"
+msgstr ""
 
 #: ../dock-rendering/data/messages:125
 msgid "Curvature of the curve in percent :"
-msgstr "曲线弧度，以百分比表示:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:129
 msgid "Amplitude of the curve."
-msgstr "曲线波幅。"
+msgstr ""
 
 #: ../drop-indicator/data/messages:3
 msgid ""
@@ -4586,48 +4606,48 @@ msgstr ""
 
 #: ../dustbin/data/messages:83
 msgid "Theme"
-msgstr "主题"
+msgstr ""
 
 #: ../dustbin/data/messages:87
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr "用于覆盖主题空回收站的图片名称:"
+msgstr ""
 
 #: ../dustbin/data/messages:89
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr "用于覆盖主题满回收站的图片名称:"
+msgstr ""
 
 #: ../dustbin/data/messages:91
 msgid "Config"
-msgstr "配置"
+msgstr ""
 
 #: ../dustbin/data/messages:93
 msgid "Display the following quick info :"
-msgstr "显示以下快捷信息:"
+msgstr ""
 
 #: ../dustbin/data/messages:97
 msgid "Number of trashes"
-msgstr "垃圾数量"
+msgstr ""
 
 #: ../dustbin/data/messages:99
 msgid "Total number of files"
-msgstr "文件总数"
+msgstr ""
 
 #: ../dustbin/data/messages:101
 msgid "Total weight"
-msgstr "总重"
+msgstr ""
 
 #: ../dustbin/data/messages:103 ../dustbin/data/messages:107
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
-msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。设置为0则禁用此功能。"
+msgstr ""
 
 #: ../dustbin/data/messages:105
 msgid "Maximum total size of all dustbins :"
-msgstr "所有回收站最大容量:"
+msgstr ""
 
 #: ../dustbin/data/messages:109
 msgid "Maximum size authorized for each dustbin :"
-msgstr "每个回收站的最大容量:"
+msgstr ""
 
 #: ../dustbin/data/messages:111
 msgid "Ask confirmation before empty Trash ?"
@@ -4635,7 +4655,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:113
 msgid "Desktop-less support"
-msgstr "无桌面支持"
+msgstr ""
 
 #: ../dustbin/data/messages:115
 msgid ""
@@ -4644,20 +4664,20 @@ msgstr ""
 
 #: ../dustbin/data/messages:117
 msgid "in seconds, only used if you can't monitor directories."
-msgstr "以秒为单位，仅用于无法监视目录的情况。"
+msgstr ""
 
 #: ../dustbin/data/messages:119
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr "监视回收站满/空状态的时间间隔:"
+msgstr ""
 
 #: ../dustbin/data/messages:121
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
-msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示垃圾的情况下。"
+msgstr ""
 
 #: ../dustbin/data/messages:123
 msgid "Alternative file browser used to show a trash :"
-msgstr "用于显示垃圾的替代文件浏览器:"
+msgstr ""
 
 #: ../icon-effect/data/messages:7 ../icon-effect/data/messages:21
 #: ../icon-effect/data/messages:35 ../icon-effect/data/messages:49
@@ -4838,26 +4858,26 @@ msgstr ""
 
 #: ../logout/data/messages:87
 msgid "Let empty to execute the default command."
-msgstr "留空以执行默认的命令。"
+msgstr ""
 
 #: ../logout/data/messages:89
 msgid "User-defined command to execute to log-out :"
-msgstr "用户指定执行的注销命令:"
+msgstr ""
 
 #: ../logout/data/messages:91
 msgid ""
 "It will be available on middle click. Let empty to execute the default "
 "command, that greatly depends on your distribution. Sometimes the command to "
 "shutdown is just the same as the one to log out."
-msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
+msgstr ""
 
 #: ../logout/data/messages:93
 msgid "User-defined command to execute to shutdown :"
-msgstr "用户指定执行的关机命令:"
+msgstr ""
 
 #: ../logout/data/messages:95
 msgid "Invert buttons ?"
-msgstr "反转按钮?"
+msgstr ""
 
 #: ../mail/data/messages:89
 msgid "Show new messages' content ?"
@@ -4886,19 +4906,19 @@ msgstr ""
 
 #: ../mail/data/messages:99
 msgid "Theme overriding"
-msgstr "覆盖主题"
+msgstr ""
 
 #: ../mail/data/messages:101
 msgid "Name of the file for the \"no mail\" image :"
-msgstr "“无邮件”图像文件名:"
+msgstr ""
 
 #: ../mail/data/messages:103
 msgid "Name of the file for the \"has mail\" image :"
-msgstr "“有邮件”图像文件名:"
+msgstr ""
 
 #: ../mail/data/messages:105
 msgid "Name of the file for the \"new mail\" sound :"
-msgstr "“新邮件”声音文件名:"
+msgstr ""
 
 #: ../mail/data/messages:107
 msgid "Mail application"
@@ -4930,11 +4950,11 @@ msgstr ""
 
 #: ../mail/data/messages:121
 msgid "The new account will be created with specified type and name."
-msgstr "新账户将用指定类型和名称创建。"
+msgstr ""
 
 #: ../mail/data/messages:123
 msgid "Add an account with specified type and name:"
-msgstr "用指定类型和名称增加一个账户:"
+msgstr ""
 
 #: ../motion-blur/data/messages:3
 msgid "Also blur on mouse movement ?"
@@ -4954,11 +4974,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
-msgstr "播放器"
+msgstr ""
 
 #: ../musicPlayer/data/messages:87
 msgid "Player to control:"
-msgstr "控制的播放器："
+msgstr ""
 
 #: ../musicPlayer/data/messages:89
 msgid "Amarok 2"
@@ -4966,15 +4986,15 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:91
 msgid "Audacious"
-msgstr "Audacious"
+msgstr ""
 
 #: ../musicPlayer/data/messages:93
 msgid "Banshee"
-msgstr "Banshee"
+msgstr ""
 
 #: ../musicPlayer/data/messages:95
 msgid "Exaile"
-msgstr "Exaile"
+msgstr ""
 
 #: ../musicPlayer/data/messages:97
 msgid "Listen"
@@ -4998,17 +5018,17 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:107
 msgid "XMMS"
-msgstr "XMMS"
+msgstr ""
 
 #: ../musicPlayer/data/messages:109
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
-msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
+msgstr ""
 
 #: ../musicPlayer/data/messages:111
 msgid "Steal the player's icon from taskbar ?"
-msgstr "由任务栏窃取播放器图标？"
+msgstr ""
 
 #: ../musicPlayer/data/messages:113
 msgid "Actions on click and middle-click :"
@@ -5024,11 +5044,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:119
 msgid "Action on music change"
-msgstr "歌曲更换时的动作"
+msgstr ""
 
 #: ../musicPlayer/data/messages:121
 msgid "Show an info-bubble ?"
-msgstr "显示信息泡泡？"
+msgstr ""
 
 #: ../musicPlayer/data/messages:123
 msgid "in s."
@@ -5036,27 +5056,27 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:125
 msgid "Time length of info-bubbles :"
-msgstr "信息泡泡的时间长度："
+msgstr ""
 
 #: ../musicPlayer/data/messages:127
 msgid "Animation when music changes :"
-msgstr "音乐切换时的动画:"
+msgstr ""
 
 #: ../musicPlayer/data/messages:133
 msgid "Nothing"
-msgstr "无"
+msgstr ""
 
 #: ../musicPlayer/data/messages:135
 msgid "Time Elapsed"
-msgstr "已播放时间"
+msgstr ""
 
 #: ../musicPlayer/data/messages:137
 msgid "Time Left"
-msgstr "剩余时间"
+msgstr ""
 
 #: ../musicPlayer/data/messages:139
 msgid "N° of track"
-msgstr "第N°首"
+msgstr ""
 
 #: ../musicPlayer/data/messages:141
 msgid "Display album's cover ?"
@@ -5084,19 +5104,19 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:155 ../tomboy/data/messages:11
 msgid "Personnalisation"
-msgstr "个性化"
+msgstr ""
 
 #: ../musicPlayer/data/messages:163
 msgid "Name of an image for the 'play' icon :"
-msgstr "“播放”图标的图片名称:"
+msgstr ""
 
 #: ../musicPlayer/data/messages:167
 msgid "Name of an image for the 'stop' icon :"
-msgstr "“停止”图标的图片名称:"
+msgstr ""
 
 #: ../musicPlayer/data/messages:171
 msgid "Name of an image for the 'pause' icon :"
-msgstr "“暂停”图标的图片名称:"
+msgstr ""
 
 #: ../netspeed/data/messages:107
 msgid "It's the color of the graphic for high rate values."
@@ -5108,15 +5128,15 @@ msgstr ""
 
 #: ../netspeed/data/messages:121
 msgid "By default it will be 'eth0'."
-msgstr "默认为“eth0”。"
+msgstr ""
 
 #: ../netspeed/data/messages:123
 msgid "interface :"
-msgstr "网卡:"
+msgstr ""
 
 #: ../netspeed/data/messages:127
 msgid "Delay between 2 measures :"
-msgstr "两次取值间隔:"
+msgstr ""
 
 #: ../netspeed/data/messages:129
 msgid ""
@@ -5134,7 +5154,7 @@ msgstr ""
 
 #: ../netspeed/data/messages:141
 msgid "Let empty to use he default one."
-msgstr "留空则使用默认值。"
+msgstr ""
 
 #: ../powermanager/data/messages:7
 msgid "Icon name :"
@@ -5154,7 +5174,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:127 ../powermanager/data/messages:143
 msgid "nothing"
-msgstr "なし"
+msgstr ""
 
 #: ../powermanager/data/messages:129
 msgid "zoom"
@@ -5170,7 +5190,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:139 ../weather/data/messages:99
 msgid "Interval of time between 2 checks :"
-msgstr "两次检查间的间隔时间:"
+msgstr ""
 
 #: ../powermanager/data/messages:141
 msgid "Information to be displayed on the icon :"
@@ -5282,23 +5302,23 @@ msgstr ""
 
 #: ../shortcuts/data/messages:89
 msgid "List drives and volumes ?"
-msgstr "列出驱动器与卷标?"
+msgstr ""
 
 #: ../shortcuts/data/messages:91
 msgid "List network ?"
-msgstr "列出网络?"
+msgstr ""
 
 #: ../shortcuts/data/messages:93
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
-msgstr "GTK书签，由Nautilus之类程序使用。"
+msgstr ""
 
 #: ../shortcuts/data/messages:95
 msgid "List bookmarks ?"
-msgstr "列出书签?"
+msgstr ""
 
 #: ../shortcuts/data/messages:97
 msgid "Separate different shortcuts with separators ?"
-msgstr "用间隔隔开不同的快捷方式?"
+msgstr ""
 
 #: ../shortcuts/data/messages:103 ../stack/data/messages:95
 msgid "Type of view for the desklet mode :"
@@ -5390,19 +5410,19 @@ msgstr ""
 
 #: ../showDesklets/data/messages:11
 msgid "Image name to show desklets :"
-msgstr "显示桌面小工具的图片名称:"
+msgstr ""
 
 #: ../showDesklets/data/messages:15
 msgid "Image name to hide desklets :"
-msgstr "隐藏桌面小工具的图片名称:"
+msgstr ""
 
 #: ../showDesklets/data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr "同时显示/隐藏在小工具层的桌面小工具?"
+msgstr ""
 
 #: ../showDesklets/data/messages:23
 msgid "Shortkey to show/hide the desklets :"
-msgstr "用于显示/隐藏桌面小应用的快捷键:"
+msgstr ""
 
 #: ../showDesktop/data/messages:89
 msgid "Swap left-click and middle-click ?"
@@ -5410,123 +5430,123 @@ msgstr ""
 
 #: ../slider/data/messages:83
 msgid "Directory"
-msgstr "目录"
+msgstr ""
 
 #: ../slider/data/messages:85
 msgid "Directory of the images :"
-msgstr "图片目录:"
+msgstr ""
 
 #: ../slider/data/messages:87
 msgid "Scan in sub direcotries ?"
-msgstr "扫描子目录?"
+msgstr ""
 
 #: ../slider/data/messages:89
 msgid "Randomly browse files ?"
-msgstr "随机浏览文件?"
+msgstr ""
 
 #: ../slider/data/messages:91
 msgid "Display image name as quickinfo ?"
-msgstr "在快捷信息中显示图片名称?"
+msgstr ""
 
 #: ../slider/data/messages:93
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
-msgstr "这可以防止dock在转入图片时无法响应，但不能在cairo模式下使用。"
+msgstr ""
 
 #: ../slider/data/messages:95
 msgid "Use another thread to load the images ?"
-msgstr "使用另一个线程载入图片?"
+msgstr ""
 
 #: ../slider/data/messages:101
 msgid "Sliding delay :"
-msgstr "切换间隔:"
+msgstr ""
 
 #: ../slider/data/messages:103
 msgid "Action when applet is clicked :"
-msgstr "当小程序被点击时执行操作:"
+msgstr ""
 
 #: ../slider/data/messages:105
 msgid "play/pause"
-msgstr "播放/暂停"
+msgstr ""
 
 #: ../slider/data/messages:107
 msgid "open image"
-msgstr "打开图片"
+msgstr ""
 
 #: ../slider/data/messages:109
 msgid "Effect while changing image :"
-msgstr "图片切换效果:"
+msgstr ""
 
 #: ../slider/data/messages:111
 msgid "none"
-msgstr "无"
+msgstr ""
 
 #: ../slider/data/messages:113
 msgid "fade"
-msgstr "渐隐"
+msgstr ""
 
 #: ../slider/data/messages:115
 msgid "blank fade"
-msgstr "空白渐隐"
+msgstr ""
 
 #: ../slider/data/messages:117
 msgid "fade in out"
-msgstr "淡入淡出"
+msgstr ""
 
 #: ../slider/data/messages:119
 msgid "side kick"
-msgstr "插袋效果"
+msgstr ""
 
 #: ../slider/data/messages:121
 msgid "diaporama"
-msgstr "幻灯效果"
+msgstr ""
 
 #: ../slider/data/messages:123
 msgid "grow up"
-msgstr "生长"
+msgstr ""
 
 #: ../slider/data/messages:125
 msgid "shrink down"
-msgstr "凋落"
+msgstr ""
 
 #: ../slider/data/messages:127
 msgid "cube"
-msgstr "立方体"
+msgstr ""
 
 #: ../slider/data/messages:129
 msgid "random"
-msgstr "随机"
+msgstr ""
 
 #: ../slider/data/messages:131
 msgid "Number of steps for a transition :"
-msgstr "转换步数:"
+msgstr ""
 
 #: ../slider/data/messages:135
 msgid "Gives a better image rendering."
-msgstr "优化图像渲染"
+msgstr ""
 
 #: ../slider/data/messages:137
 msgid "Keep widht/height ratio ?"
-msgstr "维持纵横比?"
+msgstr ""
 
 #: ../slider/data/messages:139
 msgid "If the image is too small, it will be zoomed in."
-msgstr "如果图片太小，将进行放大。"
+msgstr ""
 
 #: ../slider/data/messages:141
 msgid "Force the image to fill the icon/desklet ?"
-msgstr "强制图片充填图标/桌面小工具?"
+msgstr ""
 
 #: ../slider/data/messages:143
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "如果您不想使用背景，可将透明度通道设置为0。"
+msgstr ""
 
 #: ../slider/data/messages:145
 msgid "Choose a background color :"
-msgstr "选择背景色:"
+msgstr ""
 
 #: ../stack/data/messages:7
 msgid "Let empty to use a default name"
@@ -5556,11 +5576,11 @@ msgstr ""
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
-msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr ""
 
 #: ../stack/data/messages:113
 msgid "Filter files with their mime types ?"
-msgstr "根据MIME类型过滤文件"
+msgstr ""
 
 #: ../stack/data/messages:115
 msgid "Eg: image, text, video, audio, application, ..."
@@ -5568,7 +5588,7 @@ msgstr ""
 
 #: ../stack/data/messages:117
 msgid "Here you can specify a list of mime types to avoid :"
-msgstr "在此指定不显示的文件MIME类型列表:"
+msgstr ""
 
 #: ../stack/data/messages:119
 msgid "Sort items by :"
@@ -5641,7 +5661,7 @@ msgstr ""
 #: ../switcher/data/messages:103 ../switcher/data/messages:109
 #: ../switcher/data/messages:113 ../switcher/data/messages:117
 msgid "r, v, b, a"
-msgstr "红, 绿, 蓝, 阿尔法"
+msgstr ""
 
 #: ../switcher/data/messages:105
 msgid "Color of the inside lines :"
@@ -5689,11 +5709,11 @@ msgstr ""
 
 #: ../systray/data/messages:7 ../terminal/data/messages:7
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
-msgstr "显示于cairo-dock标签上的此图标的名称:"
+msgstr ""
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
-msgstr "GUI"
+msgstr ""
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"
@@ -5717,29 +5737,29 @@ msgstr ""
 
 #: ../terminal/data/messages:87
 msgid "needs to restart the applet."
-msgstr "需要重启小应用程序。"
+msgstr ""
 
 #: ../terminal/data/messages:89
 msgid "Terminal's transparency :"
-msgstr "终端透明度:"
+msgstr ""
 
 #: ../terminal/data/messages:91
 msgid "Foreground color (r, v, b):"
-msgstr "前景色(红、绿、蓝):"
+msgstr ""
 
 #: ../terminal/data/messages:93
 msgid "Background color (r, v, b):"
-msgstr "背景色(红、绿、蓝):"
+msgstr ""
 
 #: ../terminal/data/messages:95
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
+msgstr ""
 
 #: ../terminal/data/messages:97
 msgid "Size of the terminal (line x columns) :"
-msgstr "终端尺寸(行×列):"
+msgstr ""
 
 #: ../terminal/data/messages:99
 msgid "Shortkey to show the terminal :"
@@ -5747,11 +5767,11 @@ msgstr ""
 
 #: ../tomboy/data/messages:7
 msgid "Default title :"
-msgstr "默认标题:"
+msgstr ""
 
 #: ../tomboy/data/messages:19
 msgid "Name of an image for the 'close' icon :"
-msgstr "用于关闭图标的图片名"
+msgstr ""
 
 #: ../tomboy/data/messages:97
 msgid "View"
@@ -5759,7 +5779,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:103
 msgid "Draw note's content on their icon ?"
-msgstr "在图标上绘制便签内容?"
+msgstr ""
 
 #: ../tomboy/data/messages:105
 msgid "Text color of the content :"
@@ -5799,12 +5819,10 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
-"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:125
 msgid "Date format to search for :"
-msgstr "搜索使用的日期格式:"
+msgstr ""
 
 #: ../tomboy/data/messages:127
 msgid ""
@@ -5813,16 +5831,14 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
-"signal 'NoteDeleted'>>的错误的时候，启用此项目"
 
 #: ../tomboy/data/messages:129
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr "模拟“删除便签”信号?"
+msgstr ""
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."
-msgstr "留空则使用城市名称。"
+msgstr ""
 
 #: ../weather/data/messages:87
 msgid "Enter the name of your location in the text entry and press Enter."
@@ -5830,67 +5846,67 @@ msgstr ""
 
 #: ../weather/data/messages:89
 msgid "Code of your location :"
-msgstr "您的位置代码:"
+msgstr ""
 
 #: ../weather/data/messages:91
 msgid "Use International System Units ?"
-msgstr "使用国际单位?"
+msgstr ""
 
 #: ../weather/data/messages:93
 msgid "in seconds. Set 0 to have never-ending dialogs."
-msgstr "以秒为单位。设为0则对话框不自动消失。"
+msgstr ""
 
 #: ../weather/data/messages:95
 msgid "Duration of dialogs :"
-msgstr "对话框持续时间:"
+msgstr ""
 
 #: ../weather/data/messages:97
 msgid "in minutes."
-msgstr "以分为单位。"
+msgstr ""
 
 #: ../weather/data/messages:103
 msgid "Display current conditions on the icon instead of the default one ?"
-msgstr "以当前情况图标取代默认图标?"
+msgstr ""
 
 #: ../weather/data/messages:105
 msgid "Number of days you want to forecast :"
-msgstr "预报天数:"
+msgstr ""
 
 #: ../weather/data/messages:107
 msgid "Display nights too ?"
-msgstr "显示夜晚情况?"
+msgstr ""
 
 #: ../weather/data/messages:109
 msgid "Display temperature as quick info ?"
-msgstr "以快速信息显示温度?"
+msgstr ""
 
 #: ../weather/data/messages:119
 msgid "Render desklet in 3D ?"
-msgstr "以3D渲染桌面小应用?"
+msgstr ""
 
 #: ../weblets/data/messages:87
 msgid "URI to load in weblet"
-msgstr "weblet载入的URI"
+msgstr ""
 
 #: ../weblets/data/messages:89
 msgid "Show scrollbars ?"
-msgstr "显示卷轴"
+msgstr ""
 
 #: ../weblets/data/messages:91
 msgid "Horizontal scroll of the browser in pixel"
-msgstr "以点为单位的浏览器水平卷轴位置"
+msgstr ""
 
 #: ../weblets/data/messages:93
 msgid "Position of horizontal scrollbar"
-msgstr "水平卷轴位置"
+msgstr ""
 
 #: ../weblets/data/messages:95
 msgid "Vertical scroll of the browser in pixel"
-msgstr "以点为单位的浏览器垂直卷轴位置"
+msgstr ""
 
 #: ../weblets/data/messages:97
 msgid "Position of vertical scrollbar in pixel"
-msgstr "垂直卷轴位置"
+msgstr ""
 
 #: ../weblets/data/messages:99
 msgid ""
@@ -5908,11 +5924,11 @@ msgstr ""
 #: ../weblets/data/messages:105
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "重载URI的时间间隔，以秒为单位。为0则不重载"
+msgstr ""
 
 #: ../weblets/data/messages:107
 msgid "Time between two page refreshes"
-msgstr "页面刷新时间"
+msgstr ""
 
 #: ../weblets/data/messages:109
 msgid "Any valid URI should work."
@@ -5924,936 +5940,24 @@ msgstr ""
 
 #: ../wifi/data/messages:133
 msgid "Name of an image for the 'no signal' icon :"
-msgstr "用于“无信号”图标的图片名称:"
+msgstr ""
 
 #: ../wifi/data/messages:137
 msgid "Name of an image for the 'very low' icon :"
-msgstr "用于“信号很弱”图标的图片名称:"
+msgstr ""
 
 #: ../wifi/data/messages:141
 msgid "Name of an image for the 'low' icon :"
-msgstr "用于“信号弱”图标的图片名称:"
+msgstr ""
 
 #: ../wifi/data/messages:145
 msgid "Name of an image for the 'middle' icon :"
-msgstr "用于“信号中等”图标的图片名称:"
+msgstr ""
 
 #: ../wifi/data/messages:149
 msgid "Name of an image for the 'good' icon :"
-msgstr "用于“信号良好”图标的图片名称:"
+msgstr ""
 
 #: ../wifi/data/messages:153
 msgid "Name of an image for the 'exellent' icon :"
-msgstr "用于“信号很好”图标的图片名称:"
-
-#~ msgid "It's the color of the graphic for high CPU values."
-#~ msgstr "高CPU占用率图表颜色。"
-
-#~ msgid "It's the color of the graphic for low CPU values."
-#~ msgstr "低CPU占用率图表颜色。"
-
-#~ msgid "Activate info-bubbles ?"
-#~ msgstr "吹き出しによる情報表示を有効化?"
-
-#~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-#~ "icon will then behave as a launcher, an appli, and an applet."
-#~ msgstr "这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
-
-#~ msgid "Steal the rhythmbox's icon in taskbar ?"
-#~ msgstr "由任务栏偷取rhythmbox的图标?"
-
-#~ msgid "time elapsed"
-#~ msgstr "経過時間"
-
-#~ msgid "time left"
-#~ msgstr "残り時間"
-
-#~ msgid "time in %"
-#~ msgstr "%之后"
-
-#~ msgid "n° of track"
-#~ msgstr "第N°首"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "在其他窗口之下?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "在其他窗口之上?"
-
-#~ msgid "Keep on widget layer ?"
-#~ msgstr "保持于小应用程序层？"
-
-#~ msgid "Directory & Options"
-#~ msgstr "目录及选项"
-
-#~ msgid ""
-#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
-#~ "just drag and drop it on the Stacks icon"
-#~ msgstr "Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到Stacks的图标上。"
-
-#~ msgid "Use only Stacks local directory ?"
-#~ msgstr "仅使用Stacks本地目录?"
-
-#~ msgid ""
-#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
-#~ msgstr "您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没有选中“仅使用Stacks本地目录。"
-
-#~ msgid "Monitored Directories :"
-#~ msgstr "监控目录:"
-
-#~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it properly."
-#~ msgstr "此选项在大量文件列表的情况下将降低dock的速度，请酌情使用。"
-
-#~ msgid "List hidden files ?"
-#~ msgstr "列出隐藏文件?"
-
-#~ msgid "Separate different directories with separators ?"
-#~ msgstr "使用间隔分隔不同的目录"
-
-#~ msgid "Eg: image, text, video, audio, application..."
-#~ msgstr "例如: 图片、文本、影像、音频、应用程序……"
-
-#~ msgid "Activate extended desklet mode ?"
-#~ msgstr "启用扩展桌面小工具模式？"
-
-#~ msgid "Extended display mode :"
-#~ msgstr "扩展显示模式："
-
-#~ msgid "Info and Controler"
-#~ msgstr "信息及控制器"
-
-#~ msgid "Controler"
-#~ msgstr "控制器"
-
-#~ msgid "Animate icon ?"
-#~ msgstr "动画图标？"
-
-#~ msgid "Use the analogic view ?"
-#~ msgstr "使用指针时钟？"
-
-#~ msgid "width :"
-#~ msgstr "宽："
-
-#~ msgid "height :"
-#~ msgstr "高："
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-#~ "dock & type=utility)"
-#~ msgstr ""
-#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility)"
-
-#~ msgid "Size of the icon you wish this applet has (in pixels)"
-#~ msgstr "期望此小应用程序的图标大小（以点为单位）"
-
-#~ msgid ""
-#~ "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
-#~ "your location from a list. Let empty to get the local time."
-#~ msgstr "比如：Europe/Paris，:Japan之类。右击图标则由列表选择您的位置，留空则使用当地时间"
-
-#~ msgid "red, blue, green, alpha"
-#~ msgstr "红，蓝，绿，alpha"
-
-#~ msgid ""
-#~ "It may recquire more CPU during the unfolding animation, except if you "
-#~ "launch Cairo-Dock with Glitz."
-#~ msgstr "这将在展开动画时消耗更多的CPU，除非您是用Glitz加载Cairo-Dock的。"
-
-#~ msgid "Use a wide shape ?"
-#~ msgstr "使用宽的形状?"
-
-#~ msgid "First gradient color (r,v,b,a) :"
-#~ msgstr "第一种渐变颜色（红，绿，蓝，透明）:"
-
-#~ msgid "Second gradient color (r,v,b,a) :"
-#~ msgstr "第二种渐变颜色（红，绿，蓝，透明）:"
-
-#~ msgid "Border line color (r,v,b,a) :"
-#~ msgstr "边线颜色（红，绿，蓝，透明）:"
-
-#~ msgid "They don't even need to be real trash directories."
-#~ msgstr "它们甚至不必真的是回收站目录。"
-
-#~ msgid ""
-#~ "Here you can specify a list of additionnal Trash directories to monitor :"
-#~ msgstr "您可以在此指定需要监视的额外的回收站目录:"
-
-#~ msgid "Display the cover ?"
-#~ msgstr "显示封面？"
-
-#~ msgid "Desklet display mode :"
-#~ msgstr "桌面小应用程序显示模式："
-
-#~ msgid "Simple"
-#~ msgstr "简易"
-
-#~ msgid "With a icon ?"
-#~ msgstr "使用图标？"
-
-#~ msgid "bounce"
-#~ msgstr "弹跳"
-
-#~ msgid "rotate"
-#~ msgstr "旋转"
-
-#~ msgid "blink"
-#~ msgstr "闪烁"
-
-#~ msgid "pulse"
-#~ msgstr "脉冲"
-
-#~ msgid "upside-down"
-#~ msgstr "倒立"
-
-#~ msgid "wobbly"
-#~ msgstr "抖动"
-
-#~ msgid "Display speed values :"
-#~ msgstr "显示速度值:"
-
-#~ msgid "Data acquisition has failed"
-#~ msgstr "数据采集失败"
-
-#~ msgid "Model Name"
-#~ msgstr "模型名"
-
-#~ msgid "Display a graphic rather than a gauge ?"
-#~ msgstr "显示图表而不是表盘?"
-
-#~ msgid ""
-#~ "Let it empty to use the default image. Set the transparency to 0 if you "
-#~ "don't want to have any watermark."
-#~ msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
-
-#~ msgid "Image to display as a watermark :"
-#~ msgstr "水印图片:"
-
-#~ msgid "Set it up to 0 if you don't want to have a watermark."
-#~ msgstr "如果您不想要水印，请设为0."
-
-#~ msgid "Transparency of the watermark :"
-#~ msgstr "水印透明度:"
-
-#~ msgid "Display CPU usage values :"
-#~ msgstr "显示CPU占用率:"
-
-#~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most CPU-"
-#~ "using programs."
-#~ msgstr "左键单击图标时，将显示N个CPU占用率最高的程序的列表。"
-
-#~ msgid "I couldn't find any element '%s'"
-#~ msgstr "无法找到原件：'%s'"
-
-#~ msgid ""
-#~ "This is the AlsaMixer applet\n"
-#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
-#~ msgstr ""
-#~ "AlsaMixer小应用程序\n"
-#~ "作者Fabounet (Fabrice Rey)"
-
-#~ msgid "Command to run to show an advanced sound mixer :"
-#~ msgstr "用于显示高级声音混合器的命令:"
-
-#~ msgid "Open an advanced sound mixer with :"
-#~ msgstr "用以下打开高级混音器："
-
-#~ msgid "Lockposition ?"
-#~ msgstr "位置を固定？"
-
-#~ msgid ""
-#~ "This is the CD_APPLET_NAME applet\n"
-#~ " made by CD_MY_NAME for Cairo-Dock"
-#~ msgstr ""
-#~ "これは CD_MY_NAME によって \n"
-#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
-
-#~ msgid "Icon's name :"
-#~ msgstr "アイコンの名前 :"
-
-#~ msgid ""
-#~ "This is the Cairo-Penguin applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr ""
-#~ "这是Cairo企鹅小应用程序\n"
-#~ " Fabrice Rey为Cairo-Dock所作"
-
-#~ msgid ""
-#~ "This is the Cairo-Dock's clock applet\n"
-#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
-#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
-#~ " from MacSlow (http://macslow.thepimp.net)."
-#~ msgstr ""
-#~ "这是Cairo-Dock的时钟小应用程序。\n"
-#~ "由Fabrice Rey (fabounet_03@yahoo.fr)为Cario-Dock制作。 \n"
-#~ "指针式时钟由著名的MacSlow（http://macslow.thepimp.net）\n"
-#~ "的Cairo-Clock移植而来。"
-
-#~ msgid "List of available themes for the numeric display :"
-#~ msgstr "指针时钟存在的主题列表："
-
-#~ msgid "Choose a location"
-#~ msgstr "选择位置"
-
-#~ msgid "Alarm n°1"
-#~ msgstr "闹钟n°1"
-
-#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
-#~ msgstr "使用xx:xx的格式。比如：20:35用于8:35pm"
-
-#~ msgid "Time you want to be notified :"
-#~ msgstr "您想被提醒的时间："
-
-#~ msgid "Repeat every"
-#~ msgstr "重复每"
-
-#~ msgid "Never"
-#~ msgstr "永远不"
-
-#~ msgid "Day"
-#~ msgstr "天"
-
-#~ msgid "Week Day"
-#~ msgstr "星期"
-
-#~ msgid "Week End"
-#~ msgstr "周末"
-
-#~ msgid "Month"
-#~ msgstr "月"
-
-#~ msgid "If every month, which day of the month ? :"
-#~ msgstr "如果每月进行，选择哪天？："
-
-#~ msgid "Message you want to use to be notified :"
-#~ msgstr "您想被提醒的内容："
-
-#~ msgid "For exemple, < play /path/to/file.ogg >."
-#~ msgstr "比如说：< play /chemin/vers/le/fichier.ogg >。"
-
-#~ msgid "Command to execute :"
-#~ msgstr "执行的命令："
-
-#~ msgid "Alarm n°2"
-#~ msgstr "闹钟n°2"
-
-#~ msgid "Alarm n°3"
-#~ msgstr "闹钟n°3"
-
-#~ msgid "Show the date ?"
-#~ msgstr "显示日期？"
-
-#~ msgid "ALARM"
-#~ msgstr "闹钟"
-
-#~ msgid "default"
-#~ msgstr "défaut"
-
-#~ msgid ""
-#~ "This is the compiz-icon applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr ""
-#~ "compiz-icon小应用程序\n"
-#~ "由ChAnGFu为Cairo-Dock制作"
-
-#~ msgid "Windows Manager"
-#~ msgstr "Gestionnaire de Fenêtres"
-
-#~ msgid "Select your Windows Manager :"
-#~ msgstr "Choisissez votre Gestionnaire de Fenêtres :"
-
-#~ msgid "Force settings at startup"
-#~ msgstr "Forcer ma configuration au démarrage"
-
-#~ msgid "Load default Windows Manager with options at startup."
-#~ msgstr "Charge le Gestionnaire de Fenêtres par defaut au démarrage."
-
-#~ msgid "broken"
-#~ msgstr "cassé"
-
-#~ msgid "other"
-#~ msgstr "autre"
-
-#~ msgid "Compiz"
-#~ msgstr "Compiz"
-
-#~ msgid "Metacity"
-#~ msgstr "Metaxity"
-
-#~ msgid "Kwin"
-#~ msgstr "Kwin"
-
-#~ msgid "XFCE"
-#~ msgstr "XFCE"
-
-#~ msgid "Load Compiz with options at startup."
-#~ msgstr "Charger Compiz avec les options au démarrage."
-
-#~ msgid "Display text only for pointed icon ?"
-#~ msgstr "仅为指向的图标显示文本?"
-
-#~ msgid "it's the 'a' in y=k*x^a"
-#~ msgstr "rappresenta 'a' in y=k*x^a"
-
-#~ msgid ""
-#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
-#~ "ratio."
-#~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
-#~ "questo rapporto."
-
-#~ msgid "Use a flat separator instead of the defined separator icon ?"
-#~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
-
-#~ msgid "If so, you can specify its color:"
-#~ msgstr "Se sì, precisate il suo colore:"
-
-#~ msgid "Diapo"
-#~ msgstr "Diapo"
-
-#~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
-#~ msgstr ""
-#~ "这是回收站小程序。\n"
-#~ "由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
-
-#~ msgid ""
-#~ "This is a very simple logout applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr ""
-#~ "这是一个非常简单的注销小程序\n"
-#~ "由Fabrice Rey为Cairo-Dock作的"
-
-#~ msgid "You have"
-#~ msgstr "您有"
-
-#~ msgid "Default"
-#~ msgstr "默认"
-
-#~ msgid ""
-#~ "This is the mail applet\n"
-#~ " made by Christophe Chapuis for Cairo-Dock"
-#~ msgstr ""
-#~ "这是邮件小程序\n"
-#~ "由Christophe Chapuis为Cairo-Dock开发"
-
-#~ msgid "Modify a mail account"
-#~ msgstr "编辑邮件用户"
-
-#~ msgid ""
-#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
-#~ "the panel may hang on close."
-#~ msgstr "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
-
-#~ msgid "Failed to connect to server: %s"
-#~ msgstr "无法连接到服务器:%s"
-
-#~ msgid ""
-#~ "Unable to return socket to blocking mode.  Data may not be retreived "
-#~ "correctly."
-#~ msgstr "无法将socket置于阻塞模式，取回的数据可能会失真。"
-
-#~ msgid "TLS handshake failed: %s"
-#~ msgstr "TLS握手失败:%s"
-
-#~ msgid ""
-#~ "Received HTTP response code %d.  The most likely reason for this is that "
-#~ "your GMail username or password is incorrect."
-#~ msgstr "收到HTTP响应码:%d。 最可能的原因是您的Gmail用户名或密码错误。"
-
-#~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
-#~ "with GMail's servers, or they have incompatibly changed their authentication "
-#~ "method or location of the new messages feed."
-#~ msgstr "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式或新邮件推送位置做了不兼容的变更。"
-
-#~ msgid "_Username:"
-#~ msgstr "_用户名:"
-
-#~ msgid "_Password:"
-#~ msgstr "_密码:"
-
-#~ msgid "Check for _new messages every"
-#~ msgstr "检查新邮件间隔每"
-
-#~ msgid "minute(s)."
-#~ msgstr "分钟。"
-
-#~ msgid "Remote GMail Mailbox"
-#~ msgstr "移除Gmail邮箱"
-
-#~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
-#~ "the number of new messages."
-#~ msgstr "GMail插件可以连接至Google的邮件服务，并安全的取回您的新邮件数目。"
-
-#~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
-#~ "logins."
-#~ msgstr "安全IMAP方式不存在，而且IMAP服务器不支持纯文本登录。"
-
-#~ msgid "STARTTLS security was requested, but this server does not support it."
-#~ msgstr "需要STARTTLS安全，但此服务器不予支持。"
-
-#~ msgid ""
-#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
-#~ msgstr "缓冲区太小以致无法接收所有的IMAP响应。这是一个bug！"
-
-#~ msgid "Failed to get folder list"
-#~ msgstr "获取邮件夹失败"
-
-#~ msgid "Please wait..."
-#~ msgstr "请稍候……"
-
-#~ msgid "Set New Mail Folders"
-#~ msgstr "设置新邮件夹"
-
-#~ msgid "New Mail Folders"
-#~ msgstr "新邮件夹"
-
-#~ msgid "Advanced IMAP Options"
-#~ msgstr "高级IMAP选项"
-
-#~ msgid "Connection"
-#~ msgstr "连接"
-
-#~ msgid "Use unsecured connection"
-#~ msgstr "使用不安全连接"
-
-#~ msgid "Use SSL/TLS on alternate port"
-#~ msgstr "使用替代端口上的SSL/TLS"
-
-#~ msgid "Use SSL/TLS via STARTTLS"
-#~ msgstr "通过STARTTLS使用SSL/TLS"
-
-#~ msgid "Use non-standard IMAP _port:"
-#~ msgstr "使用非标准IMAP端口:"
-
-#~ msgid "Folders"
-#~ msgstr "邮件夹"
-
-#~ msgid "IMAP server _directory:"
-#~ msgstr "IMAP服务器目录:"
-
-#~ msgid "IMAP Server"
-#~ msgstr "IMAP服务器"
-
-#~ msgid "_Mail server:"
-#~ msgstr "_邮件服务器:"
-
-#~ msgid "_Advanced..."
-#~ msgstr "_高级……"
-
-#~ msgid "New mail _folders..."
-#~ msgstr "新邮件_邮件夹……"
-
-#~ msgid "Remote IMAP Mailbox"
-#~ msgstr "远程IMAP邮箱"
-
-#~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
-#~ "protocol, optionally using SSL for link protection."
-#~ msgstr "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
-
-#~ msgid "Failed to get status of file %s: %s"
-#~ msgstr "获取文件 %s: %s 状态失败"
-
-#~ msgid "%s is not a directory. Is %s really a valid maildir?"
-#~ msgstr "%s 不是一个目录。%s真的是一个合法的邮件目录么?"
-
-#~ msgid "Select Maildir Folder"
-#~ msgstr "选择邮件目录"
-
-#~ msgid "Maildir _Path:"
-#~ msgstr "邮件目录_路径:"
-
-#~ msgid "_Interval:"
-#~ msgstr "_间隔:"
-
-#~ msgid "Local Maildir Spool"
-#~ msgstr "本地邮件目录缓冲池"
-
-#~ msgid ""
-#~ "The Maildir plugin can watch a local maildir-style mail spool for new "
-#~ "messages."
-#~ msgstr "邮件目录插件用于监视一个本地邮件目录格式的邮件缓冲池，以获取新邮件"
-
-#~ msgid "Select mbox file"
-#~ msgstr "选择mbox文件"
-
-#~ msgid "Mbox _Filename:"
-#~ msgstr "Mbox_文件名:"
-
-#~ msgid "Local Mbox spool"
-#~ msgstr "本地Mbox缓冲池"
-
-#~ msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
-#~ msgstr "Mbox插件监视一个本地mbox形态的邮件缓冲池以发现新邮件"
-
-#~ msgid "Malformed line %s in %s ignored."
-#~ msgstr "不规范行%s位于%s被忽略。"
-
-#~ msgid ""
-#~ "The configuration of this plugin is read from\n"
-#~ "the default mh maildir profile file ~/.mh_profile"
-#~ msgstr "此插件的配置由默认mh邮件目录下存档文件~/.mh_profile中读取"
-
-#~ msgid "Local MH mail folder"
-#~ msgstr "本地MH邮件目录"
-
-#~ msgid "MH plugin watches local MH folders for new mail"
-#~ msgstr "MH插件监视本地MH目录以获取新邮件"
-
-#~ msgid "Advanced POP3 Options"
-#~ msgstr "高级POP3选项"
-
-#~ msgid "Use SSL/TLS via STLS"
-#~ msgstr "通过STLS使用SSL/TLS"
-
-#~ msgid "Use non-standard POP3 _port:"
-#~ msgstr "使用非标准POP3_端口:"
-
-#~ msgid "POP3 Server"
-#~ msgstr "POP3服务器"
-
-#~ msgid "Remote POP3 Mailbox"
-#~ msgstr "远程POP3邮箱"
-
-#~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
-#~ "protocol, optionally using SSL for link protection."
-#~ msgstr "POP3插件可以连接至支持POP3协议的远程邮件服务器，并支持SSL链接保护"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: %s"
-#~ msgstr "XfceMailwatch:TLS握手失败:%s"
-
-#~ msgid "Not compiled with SSL/TLS support"
-#~ msgstr "编译时未加入SSL/TLS支持"
-
-#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
-#~ msgstr "XfceMailwatch:TLS握手失败:编译时未加入SSL/TLS支持"
-
-#~ msgid "A secure connection was requested, but gnutls was not initialised"
-#~ msgstr "需要安全链接，但gnutls未初始化"
-
-#~ msgid "This mailbox type does not require any configuration settings."
-#~ msgstr "此邮箱类型不必进行配置"
-
-#~ msgid "Mailbox _Name:"
-#~ msgstr "邮箱_名称:"
-
-#~ msgid "Edit Mailbox: %s"
-#~ msgstr "编辑邮箱:%s"
-
-#~ msgid "Select Mailbox Type"
-#~ msgstr "选择邮箱类型"
-
-#~ msgid "Select a mailbox type.  A description of the type will appear below."
-#~ msgstr "选择邮箱类型。类型的描述如下。"
-
-#~ msgid "Add New Mailbox"
-#~ msgstr "添加新邮箱"
-
-#~ msgid "Mailboxes"
-#~ msgstr "邮箱"
-
-#~ msgid ""
-#~ "This is the musicPlayer applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr "这是ChAnGFu为Cairo-Dock之做的音乐播放器插件"
-
-#~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or let "
-#~ "it blank to not use any decoration."
-#~ msgstr "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
-
-#~ msgid "Choose a decoration for the desklet mode :"
-#~ msgstr "为桌面小应用模式选择装饰:"
-
-#~ msgid "Personnal"
-#~ msgstr "个性化"
-
-#~ msgid "Extended 3D mode"
-#~ msgstr "扩展3D模式"
-
-#~ msgid "CD box"
-#~ msgstr "CD盒"
-
-#~ msgid "frame with reflects"
-#~ msgstr "反射镜框"
-
-#~ msgid "scotch"
-#~ msgstr "磨砂"
-
-#~ msgid "frame with scotch"
-#~ msgstr "磨砂镜框"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the cover, like a frame for "
-#~ "exemple."
-#~ msgstr "显示于封面下的图片，比如一个镜框"
-
-#~ msgid "It's typically the width of the left side of your frame, in pixels."
-#~ msgstr "这是您镜框的左边宽度，以点为单位。"
-
-#~ msgid "Reflection image :"
-#~ msgstr "反射图片:"
-
-#~ msgid "Reflection tansparency :"
-#~ msgstr "反射透明度:"
-
-#~ msgid "High values color for the download speed :"
-#~ msgstr "下载速度快时的颜色:"
-
-#~ msgid "Low values color for the download speed :"
-#~ msgstr "下载速度慢时的颜色:"
-
-#~ msgid "High values color for the upload speed :"
-#~ msgstr "上传速度快时的颜色:"
-
-#~ msgid "Low values color for the upload speed :"
-#~ msgstr "上传速度慢时的颜色:"
-
-#~ msgid "Draw both values on the same graph ?"
-#~ msgstr "在同一张图里绘制上传和下载速度值?"
-
-#~ msgid "Image to display as a watermark on the gauge :"
-#~ msgstr "表盘水印图片:"
-
-#~ msgid "Interface '%s' seems to not exist or is not readable"
-#~ msgstr "网卡“%s”不存在或不可读"
-
-#~ msgid ""
-#~ "This is the netspeed applet\n"
-#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
-#~ msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock编写的netspeed小应用程序"
-
-#~ msgid ""
-#~ "Total amount of data :\n"
-#~ "  downloaded : %.2f%s\n"
-#~ "  uploaded : %.2f%s"
-#~ msgstr ""
-#~ "数据总量:\n"
-#~ "  下载:%.2f%s\n"
-#~ "  上传:%.2f%s"
-
-#~ msgid "Waiting"
-#~ msgstr "Waiting"
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "in milliseconds."
-#~ msgstr "en millisecondes."
-
-#~ msgid ""
-#~ "Total amount of data :\n"
-#~ "  downloaded : %.2fKB\n"
-#~ "  uploaded : %.2fKB"
-#~ msgstr ""
-#~ "Quantité total de données :\n"
-#~ "  Down : %.2fKo\n"
-#~ " Up : %.2fKo"
-
-#~ msgid "Draw desklet in a 3D fashion (experimental) ?"
-#~ msgstr "以3D效果绘制桌面小工具(实验性)?"
-
-#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
-#~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
-
-#~ msgid ""
-#~ "Artist : %s\n"
-#~ "Album : %s\n"
-#~ "Title : %s"
-#~ msgstr ""
-#~ "アーティスト : %s\n"
-#~ "アルバム : %s\n"
-#~ "タイトル : %s"
-
-#~ msgid ""
-#~ "This is the shortcuts applet\n"
-#~ " made by Fabounet for Cairo-Dock"
-#~ msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
-
-#~ msgid ""
-#~ "This is the showDesklets applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的showDesklets小应用程序"
-
-#~ msgid ""
-#~ "This is the showDesktop applet\n"
-#~ " made by Romain Perol for Cairo-Dock"
-#~ msgstr "这是Romain Perol为Cairo-Dock制作的显示桌面小程序。"
-
-#~ msgid ""
-#~ "This is the Slider applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr "这是ChAnGFu为Cairo-Dock制作的幻灯片小应用程序"
-
-#~ msgid "Choose a background and foreground decoration :"
-#~ msgstr "选择背景和前景的装饰:"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the slide, like a frame for "
-#~ "exemple."
-#~ msgstr "显示于幻灯片下的图片，比如一个镜框"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the slide, like a reflect for "
-#~ "exemple."
-#~ msgstr "显示于封面之上的图片，如同反射一样"
-
-#~ msgid "Not yet implemented."
-#~ msgstr "尚未实现"
-
-#~ msgid "Not implemented yet"
-#~ msgstr "未だ実装していません"
-
-#~ msgid "Give better image rendering"
-#~ msgstr "画像の描画をより良くします"
-
-#~ msgid "Not  yetimplemented."
-#~ msgstr "未だ実装していません"
-
-#~ msgid "Background & Reflection"
-#~ msgstr "背景と反射"
-
-#~ msgid "Set it to zero if you don't want to use a background"
-#~ msgstr "背景を使用したくない場合は 0 に設定してください。"
-
-#~ msgid "Set it to zero if you dont don't want to use a foreground"
-#~ msgstr "前景を使用したくない場合は 0 に設定してください。"
-
-#~ msgid ""
-#~ "It's an image that will be displayed belox the slide, like a frame for "
-#~ "exemple. Let it empty to use the default one."
-#~ msgstr "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのものを使用するには空欄のままにしてください。"
-
-#~ msgid ""
-#~ "This is the stacks applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr "这是ChAnGFu为Cairo-Dock编写的stacks小应用程序。"
-
-#~ msgid ""
-#~ "This is the cpusage applet\n"
-#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
-#~ msgstr ""
-#~ "这是显示CPU占用率的小程序\n"
-#~ "由parAdOxxx_ZeRo为Cairo-Dock制作。"
-
-#~ msgid "turbo-night-fuel"
-#~ msgstr "夜色油量表"
-
-#~ msgid "Always on top ?"
-#~ msgstr "常に最前面に表示?"
-
-#~ msgid "Rename Tab"
-#~ msgstr "タブ名の変更"
-
-#~ msgid "Searh for tag"
-#~ msgstr "搜索标签"
-
-#~ msgid "Reset marks"
-#~ msgstr "重置标记"
-
-#~ msgid "Display album's cover instead of icon ?"
-#~ msgstr "アイコンの代わりにアルバムのカバーを表示?"
-
-#~ msgid "Next"
-#~ msgstr "次へ"
-
-#~ msgid "° of track"
-#~ msgstr "トラック番号"
-
-#~ msgid ""
-#~ "If your tomboy version is not recent enough, it may not have this signal. "
-#~ "Only check this box if you notice some message like <<No marshaller for "
-#~ "signature of signal 'NoteDeleted'>> in the terminal."
-#~ msgstr ""
-#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があります。端末上で <<No marshaller for "
-#~ "signature of signal 'NoteDeleted'>> "
-#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
-
-#~ msgid ""
-#~ "Right click on the icon to let Cairo-Dock help you to find your location "
-#~ "code."
-#~ msgstr "右击图标使Cario-Dock帮助您寻找您的位置代码。"
-
-#~ msgid ""
-#~ "This is the weather applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的天气小应用程序。"
-
-#~ msgid ""
-#~ "Enter your location\n"
-#~ " (for exemple : Paris, France)"
-#~ msgstr ""
-#~ "输入您的位置\n"
-#~ "（比如:Beijing, China）"
-
-#~ msgid "Choose your location :"
-#~ msgstr "选择您的位置"
-
-#~ msgid "Search for your location"
-#~ msgstr "查询您的位置"
-
-#~ msgid ""
-#~ "This is the weblets applet\n"
-#~ " made by Christophe Chapuis for Cairo-Dock"
-#~ msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
-
-#~ msgid ""
-#~ "Wifi enabled. \n"
-#~ " Connected on:"
-#~ msgstr ""
-#~ "Wifi已启用。\n"
-#~ "接入:"
-
-#~ msgid "Signal Strength:"
-#~ msgstr "信号强度:"
-
-#~ msgid "Display type :"
-#~ msgstr "显示类型"
-
-#~ msgid "Gauges"
-#~ msgstr "表盘"
-
-#~ msgid "Graphic"
-#~ msgstr "图表"
-
-#~ msgid "It's the color of the graphic for high Strength values."
-#~ msgstr "信号强度高时的图表颜色。"
-
-#~ msgid "It's the color of the graphic for low Strength values."
-#~ msgstr "信号强度低时的图表颜色。"
-
-#~ msgid "radium"
-#~ msgstr "镭"
-
-#~ msgid ""
-#~ "This is the wifi applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小程序"
-
-#~ msgid "Use a jauge instead of icons?"
-#~ msgstr "以标尺替代图标?"
-
-#~ msgid ""
-#~ "This is the Xgamma applet\n"
-#~ " made by Fabrice Rey for Cairo-Dock"
-#~ msgstr "这是Fabrice Rey为Cairo-Dock制作的Xgamma小应用程序。"
-
-#~ msgid ""
-#~ "This is the xmms applet\n"
-#~ " made by ChAnGFu for Cairo-Dock"
-#~ msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
-
-#~ msgid "Play/Pause"
-#~ msgstr "再生/一時停止"
-
-#~ msgid "felt"
-#~ msgstr "体感温度"
+msgstr ""
