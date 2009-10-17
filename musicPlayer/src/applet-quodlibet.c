@@ -82,7 +82,7 @@ static void _quodlibet_getPlaying (void)
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
-		myData.iPlayingStatus = PLAYER_STOPPED;
+		myData.iPlayingStatus = PLAYER_NONE;
 	}
 	else
 	{
@@ -274,14 +274,7 @@ static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpau
 	cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 	{
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -381,7 +374,11 @@ static void cd_quodlibet_read_data (void)
 		if (myData.bIsRunning)
 		{
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
+			{
 				_quodlibet_get_time_elapsed ();
+				if (myData.iCurrentTime < 0)
+					myData.iPlayingStatus = PLAYER_STOPPED;
+			}
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 				myData.iCurrentTime = 0;
 		}

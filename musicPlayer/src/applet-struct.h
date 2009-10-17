@@ -74,7 +74,7 @@ typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, thre
 typedef void (*MusicPlayerFreeDataFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
 typedef void (*MusicPlayerConfigureFunc) (void);  // initialise le backend (connexion des signaux, etc)
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
-typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, recupere la couverture. Renseigner ce champ fera que si le lecteur n'a pas renvoye de couverture au changement de chanson, on retentera 2 secondes plus tard.
+typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, recupere la couverture. Renseigner ce champ fera que si le lecteur n'a pas renvoye de couverture au changement de chanson, on retentera 2 secondes plus tard avec cette fonction.
 
 //A remplir lors du configure pour les players utilisant DBus.
 typedef struct {

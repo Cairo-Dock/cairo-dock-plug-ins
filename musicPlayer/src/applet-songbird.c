@@ -69,10 +69,10 @@ void cd_songbird_read_data (void) {
 	{
 		if (myData.bIsRunning)
 		{
-			cd_musicplayer_getStatus_string("playing", "paused", "stopped"); // On récupère l'état de la lecture (play/pause/stop)
+			cd_musicplayer_getStatus_string("playing", "paused", "stopped"); // On recupere l'etat de la lecture (play/pause/stop)
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
-				cd_songbird_getSongInfos(); // On récupère toutes les infos de la piste en cours
+				cd_songbird_getSongInfos(); // On recupere toutes les infos de la piste en cours
 			}	
 		}
 		else
@@ -118,5 +118,6 @@ void cd_musicplayer_register_songbird_handler (void) { //On enregistre notre lec
 	pSongbird->iPlayerControls = 0;  // ne gere rien !
 	pSongbird->iPlayer = MP_SONGBIRD;
 	pSongbird->bSeparateAcquisition = FALSE;
+	pSongbird->iLevel = PLAYER_BAD;
 	cd_musicplayer_register_my_handler(pSongbird,"Songbird");
 }

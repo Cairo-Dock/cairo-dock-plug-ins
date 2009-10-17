@@ -215,11 +215,19 @@ static void cd_banshee_getCoverPath (void)
 	g_print ("%s ()\n", __func__);
 	GHashTable *data_list = NULL;
 	GValue *value;
+	GError *erreur = NULL;
 	
-	if (dbus_g_proxy_call (myData.dbus_proxy_player, "GetCurrentTrack", NULL, G_TYPE_INVALID,
+	dbus_g_proxy_call (myData.dbus_proxy_player, "GetCurrentTrack", &erreur, G_TYPE_INVALID,
 		MP_DBUS_TYPE_SONG_METADATA,
-		  &data_list,
-		  G_TYPE_INVALID))
+		&data_list,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_warning (erreur->message);
+		g_error_free (erreur);
+		myData.iPlayingStatus = PLAYER_NONE;
+	}
+	else
 	{
 		const gchar *cString = NULL;
 		value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
@@ -331,14 +339,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
 		cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -463,11 +464,15 @@ static void cd_banshee_read_data (void)
 		if (myData.bIsRunning)
 		{
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
-				_banshee_get_time_elapsed ();
+			{
+				_banshee_get_time_elapsed();
+				if (myData.iCurrentTime < 0)
+					myData.iPlayingStatus = PLAYER_STOPPED;
+			}
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 			{
 				myData.iCurrentTime = 0;
-				if (myData.iPlayingStatus == PLAYER_STOPPED && myData.pPreviousPlayingStatus != PLAYER_STOPPED)
+				if (myData.iPlayingStatus == PLAYER_STOPPED && myData.pPreviousPlayingStatus != PLAYER_STOPPED)  /// utile ?...
 				{
 					g_print ("LECTEUR STOPPE\n");
 					myData.pPreviousPlayingStatus = PLAYER_STOPPED;

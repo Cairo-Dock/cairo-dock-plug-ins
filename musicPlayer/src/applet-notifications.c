@@ -90,6 +90,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		// Actions au clic sur un bouton :
 		if (myData.mouseOnButton1)
 		{
+			cd_musicplayer_dbus_detect_player ();  // on teste ici au cas ou l'applet n'aurait pas detecte la fermeture du lecteur.
 			if(myData.bIsRunning)
 			{
 				_cd_musicplayer_pp (NULL, NULL);
@@ -105,6 +106,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			_cd_musicplayer_next (NULL, NULL);
 		else if (myData.mouseOnButton4)
 		{
+			cd_musicplayer_dbus_detect_player ();  // on teste ici au cas ou l'applet n'aurait pas detecte la fermeture du lecteur.
 			if(myData.bIsRunning)
 			{
 				if (myData.pCurrentHandeler->iPlayerControls & PLAYER_JUMPBOX)
@@ -117,14 +119,16 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else
 		{
+			cd_musicplayer_dbus_detect_player ();  // on teste ici au cas ou l'applet n'aurait pas detecte la fermeture du lecteur.
 			if(myData.bIsRunning)
 				cd_musicplayer_popup_info ();
 			else if (myData.pCurrentHandeler->launch != NULL)
 				cairo_dock_launch_command (myData.pCurrentHandeler->launch);
 		}
 	}
-	else
+	else  // pas de boutons.
 	{
+		cd_musicplayer_dbus_detect_player ();  // on teste ici au cas ou l'applet n'aurait pas detecte la fermeture du lecteur.
 		if(myData.bIsRunning)
 		{
 			if (myConfig.bPauseOnClick)

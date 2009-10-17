@@ -242,14 +242,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		g_print ("cover_exist : %d\n", myData.cover_exist);
 		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
 		{
-			if(myData.iPlayingStatus == PLAYER_PLAYING)
-			{
-				cd_musicplayer_set_surface (PLAYER_PLAYING);
-			}
-			else
-			{
-				cd_musicplayer_set_surface (PLAYER_PAUSED);
-			}
+			cd_musicplayer_set_surface (myData.iPlayingStatus);
 		}
 	}
 	else  // aucune donnees, c'est soit un probleme soit le lecteur qui s'est ferme.

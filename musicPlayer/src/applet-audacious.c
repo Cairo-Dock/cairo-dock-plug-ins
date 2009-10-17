@@ -194,7 +194,7 @@ static void _audacious_getPlaying_mpris (void)
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
-		myData.iPlayingStatus = PLAYER_STOPPED;
+		myData.iPlayingStatus = PLAYER_NONE;
 	}
 	else
 	{
@@ -214,7 +214,7 @@ static void _audacious_getPlaying (void)
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
-		myData.iPlayingStatus = PLAYER_STOPPED;
+		myData.iPlayingStatus = PLAYER_NONE;
 	}
 	else
 	{
@@ -372,14 +372,7 @@ static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status
 	
 	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 	{
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -398,14 +391,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data
 		cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -572,7 +558,11 @@ static void cd_audacious_read_data (void)
 		if (myData.bIsRunning)
 		{
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
+			{
 				_audacious_get_time_elapsed ();
+				if (myData.iCurrentTime < 0)
+					myData.iPlayingStatus = PLAYER_STOPPED;
+			}
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 				myData.iCurrentTime = 0;
 		}

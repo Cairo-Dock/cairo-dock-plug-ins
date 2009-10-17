@@ -174,14 +174,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
 		cd_message ("  cPlayingUri : %s", myData.cPlayingUri);
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{

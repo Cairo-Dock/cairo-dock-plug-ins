@@ -41,6 +41,7 @@ Steps to Sign the Example Request
 
    1.
       Enter the timestamp. For this example, we'll use GMT time of 2009-01-01T12:00:00Z (%F%T%z)
+      This is a fixed -length subset of the format defined by ISO 8601, represented in Universal Time (GMT): YYYY-MM-DDThh:mm:ssZ (where T and Z are literals).
 
       http://webservices.amazon.com/onca/xml?Service=AWSECommerceServic
       e&AWSAccessKeyId=00000000000000000000&Operation=ItemLookup&ItemId
@@ -127,7 +128,8 @@ Steps to Sign the Example Request
 */
 #define BASE_URL "http://webservices.amazon.com/onca/xml"
 #define HEADER "GET\nwebservices.amazon.com\n/onca/xml\n"
-#define REQUEST "Artist=%s&AssociateTag=webservices%%2D20&AWSAccessKeyId=%s&ItemSearch.Shared.SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=Images%%2CItemAttributes&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
+//#define REQUEST "Artist=%s&AssociateTag=webservices%%2D20&AWSAccessKeyId=%s&ItemSearch.Shared.SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=Images%%2CItemAttributes&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
+#define REQUEST "AWSAccessKeyId=%s&SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
 #define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"
 #define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"
 
@@ -183,7 +185,10 @@ static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
 	g_checksum_reset (cs);
 	g_checksum_update (cs, k_opad, 64);
 	g_checksum_update (cs, inner_digest, digest_len);  // 16
-	gchar *cDigest = g_strdup (g_checksum_get_string (cs));
+	
+	//gchar *cDigest = g_strdup (g_checksum_get_string (cs));
+	g_checksum_get_digest (cs, inner_digest, &digest_len);
+	gchar *cDigest = g_base64_encode (inner_digest, digest_len);
 	
 	g_checksum_free (cs);
 	g_free (tmp_key);
@@ -234,7 +239,7 @@ static gchar *_compute_request_and_signature (const gchar *cArtist, const gchar 
 	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
 	g_print ("timestamp : %s\n", cTimeStamp);
 	
-	gchar *cRequest = g_strdup_printf (REQUEST,  (cArtist), LICENCE_KEY,  (cKeyWords), _url_encode (cTimeStamp));
+	gchar *cRequest = g_strdup_printf (REQUEST, /*(cArtist),*/ LICENCE_KEY, /*(cKeyWords)*/"nightwish", _url_encode (cTimeStamp));
 	
 	gchar *cBuffer = g_strconcat (HEADER, cRequest, NULL);
 	g_print ("cBuffer : %s\n", cBuffer);

@@ -417,14 +417,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	
 	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 	{
-		if(myData.iPlayingStatus == PLAYER_PLAYING)
-		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
-		}
-		else
-		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
-		}
+		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
 	else
 	{

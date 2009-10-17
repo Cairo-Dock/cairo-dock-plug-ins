@@ -92,11 +92,11 @@ void cd_listen_read_data (void) {
 	{
 		if (myData.dbus_enable)
 		{
-				cd_listen_getSongInfos(); // On récupère toutes les infos de la piste en cours
+			cd_listen_getSongInfos(); // On recupere toutes les infos de la piste en cours
 		}
 		else
 		{
-			//cd_debug("MP : Impossible d'accéder au bus");
+			//cd_debug("MP : Impossible d'acceder au bus");
 			myData.iPlayingStatus = PLAYER_BROKEN;
 		}
 	}
@@ -142,6 +142,7 @@ void cd_musicplayer_register_listen_handler (void) { //On enregistre notre lecte
 	pListen->name = "listen";  /// a verifier ...
 	pListen->cMprisService = "org.gnome.Listen";
 	pListen->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handler (pListen, "Listen");
+	pListen->iLevel = PLAYER_BAD;
+cd_musicplayer_register_my_handler (pListen, "Listen");
 }
 

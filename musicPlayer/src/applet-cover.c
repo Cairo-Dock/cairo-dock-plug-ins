@@ -210,14 +210,15 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 
 static gboolean _check_xml_file (gpointer data)
 {
+	// on teste la presence du fichier xml.
 	if (g_file_test (myData.cCurrentXmlFile, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("MP : le fichier XML '%s' est present sur le disque", myData.cCurrentXmlFile);
+		// s'il est complet, on le lit.
 		if (cd_musicplayer_check_size_is_constant (myData.cCurrentXmlFile))
 		{
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
 			
-			// on lance le dl du fichier image.
 			g_print ("avant extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
 			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile, &myData.cArtist, &myData.cAlbum, &myData.cTitle);
 			g_print ("apres extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
@@ -235,6 +236,8 @@ static gboolean _check_xml_file (gpointer data)
 					myData.cCoverPath = g_strdup_printf ("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
 				}
 			}
+			
+			// on lance le dl du fichier image.
 			cd_download_missing_cover (cURL);
 			g_free (cURL);
 			
@@ -244,25 +247,24 @@ static gboolean _check_xml_file (gpointer data)
 			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
 			
 			// on quitte la boucle de test du fichier XML.
-			///g_remove (myData.cCurrentXmlFile);
-			g_free (myData.cCurrentXmlFile);
-			myData.cCurrentXmlFile = NULL;
-			myData.iSidCheckXmlFile = 0;
-			return FALSE;
-		}
-	}
-	else  // on continue a tester.
-	{
-		myData.iNbCheckFile ++;
-		if (myData.iNbCheckFile > 12)  // on abandonne au bout de 3s.
-		{
-			g_print ("on abandonne le XML\n");
 			g_remove (myData.cCurrentXmlFile);
 			g_free (myData.cCurrentXmlFile);
 			myData.cCurrentXmlFile = NULL;
 			myData.iSidCheckXmlFile = 0;
 			return FALSE;
 		}
+	}
+	// si non present ou non complet, on continue a tester qques secondes.
+	myData.iNbCheckFile ++;
+	if (myData.iNbCheckFile > 12)  // on abandonne au bout de 3s.
+	{
+		g_print ("on abandonne le XML\n");
+		g_remove (myData.cCurrentXmlFile);
+		g_free (myData.cCurrentXmlFile);
+		myData.cCurrentXmlFile = NULL;
+		myData.iSidCheckXmlFile = 0;
+		myData.iNbCheckFile = 0;
+		return FALSE;
 	}
 	return TRUE;
 }
