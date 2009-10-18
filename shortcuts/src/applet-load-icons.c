@@ -40,6 +40,8 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 	//\________________ On met a jour les signets qui pointeraient sur un repertoire du point de montage nouvellement (de)monte.
 	if (!myConfig.bListBookmarks)
 		return;
+	if (! myIcon->pSubDock && (!myDesklet || !myDesklet->icons))
+		return;
 	GList *ic;
 	Icon *icon;
 	gboolean bIsMounted;

@@ -34,11 +34,10 @@ animation=pulse
 char=
 
 #P+ Font used to display what you type :
-#{for exemple Monospace, Purisa, ... Just write the font name wihtout any number or so.}
-text font = 
+font = Monospace 16
 
 #C+ Color of the text's frame  :
-frame color = 0.9; 0.9; 0.95; .75
+frame color = 0.9; 0.9; 0.95; .8
 
 #e+[.1;.5] Font size, relatively to the dock's size :
 font size = .5
@@ -62,80 +61,80 @@ text on top = true
 #X[Preferred applications]
 pref=
 
-#Preferred application starting with 'a' :
+#s Preferred application starting with 'a' :
 a = abiword
 
-#Preferred application starting with 'b' :
+#s Preferred application starting with 'b' :
 b = gnome-background-properties
 
-#Preferred application starting with 'c' :
+#s Preferred application starting with 'c' :
 c = gnome-calculator
 
-#Preferred application starting with 'd' :
+#s Preferred application starting with 'd' :
 d = gnome-dictionary
 
-#Preferred application starting with 'e' :
+#s Preferred application starting with 'e' :
 e = evince
 
-#Preferred application starting with 'f' :
+#s Preferred application starting with 'f' :
 f = firefox
 
-#Preferred application starting with 'g' :
+#s Preferred application starting with 'g' :
 g = gjiten
 
-#Preferred application starting with 'h' :
+#s Preferred application starting with 'h' :
 h = 
 
-#Preferred application starting with 'i' :
+#s Preferred application starting with 'i' :
 i = inkscape
 
-#Preferred application starting with 'j' :
+#s Preferred application starting with 'j' :
 j = 
 
-#Preferred application starting with 'k' :
+#s Preferred application starting with 'k' :
 k = kate
 
-#Preferred application starting with 'l' :
+#s Preferred application starting with 'l' :
 l = 
 
-#Preferred application starting with 'm' :
+#s Preferred application starting with 'm' :
 m = 
 
-#Preferred application starting with 'n' :
+#s Preferred application starting with 'n' :
 n = nautilus --browser
 
-#Preferred application starting with 'o' :
+#s Preferred application starting with 'o' :
 o = ooffice
 
-#Preferred application starting with 'p' :
+#s Preferred application starting with 'p' :
 p = pan
 
-#Preferred application starting with 'q' :
+#s Preferred application starting with 'q' :
 q = 
 
-#Preferred application starting with 'r' :
+#s Preferred application starting with 'r' :
 r = rhythmbox
 
-#Preferred application starting with 's' :
+#s Preferred application starting with 's' :
 s = synaptic
 
-#Preferred application starting with 't' :
+#s Preferred application starting with 't' :
 t = gnome-terminal
 
-#Preferred application starting with 'u' :
+#s Preferred application starting with 'u' :
 u = 
 
-#Preferred application starting with 'v' :
+#s Preferred application starting with 'v' :
 v = vlc
 
-#Preferred application starting with 'w' :
+#s Preferred application starting with 'w' :
 w = 
 
-#Preferred application starting with 'x' :
+#s Preferred application starting with 'x' :
 x = 
 
-#Preferred application starting with 'y' :
+#s Preferred application starting with 'y' :
 y = yast
 
-#Preferred application starting with 'z' :
+#s Preferred application starting with 'z' :
 z = 

@@ -67,10 +67,11 @@ typedef GList* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
 struct _CDEntry {
 	gchar *cPath;
 	gchar *cName;
-	gchar *cCaseDownName;
+	gchar *cLowerCaseName;
 	gchar *cIconName;
 	cairo_surface_t *pIconSurface;
 	gboolean bHidden;
+	gboolean bMainEntry;
 	CDFillEntryFunc fill;
 	CDExecuteEntryFunc execute;
 	CDListSubEntryFunc list;

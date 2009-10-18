@@ -51,7 +51,7 @@ void cd_do_free_entry (CDEntry *pEntry)
 	
 	g_free (pEntry->cPath);
 	g_free (pEntry->cName);
-	g_free (pEntry->cCaseDownName);
+	g_free (pEntry->cLowerCaseName);
 	g_free (pEntry->cIconName);
 	cairo_surface_destroy (pEntry->pIconSurface);
 }
@@ -379,6 +379,8 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				continue ;
 			
 			dx = myDialogs.dialogTextDescription.iSize + 2;  // marge a gauche.
+			if (! pEntry->bMainEntry && myData.pListingHistory == NULL)
+				dx += myDialogs.dialogTextDescription.iSize;
 			//if (iOffsetX > 0 && pListing->iAppearanceAnimationCount > 0)
 			//	dx += (double) iOffsetX * (iWidth - (myDialogs.dialogTextDescription.iSize + 2)) / NB_STEPS_FOR_1_ENTRY;
 			dy += (myDialogs.dialogTextDescription.iSize + 2);
@@ -408,7 +410,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				cairo_paint (pCairoContext);
 			}
 			
-			// on souligne l'entree courante.
+			// on surligne l'entree courante.
 			if (e == pListing->pCurrentEntry)
 			{
 				double f = 1. - (double) pListing->iCurrentEntryAnimationCount / NB_STEPS_FOR_CURRENT_ENTRY;

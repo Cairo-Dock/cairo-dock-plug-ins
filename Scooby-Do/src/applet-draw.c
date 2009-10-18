@@ -186,7 +186,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-				fZoom = fIconScale * pMainDock->container.iHeight/2 / iHeight;
+				fZoom = fIconScale * pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1.25 : 1.);
 				cairo_save (pCairoContext);
 				
 				//if (!bRound)
@@ -388,7 +388,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-				fZoom = (double) pMainDock->container.iHeight/2 / iHeight;
+				fZoom = (double) pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1.25 : 1.);
 				glPushMatrix ();
 				
 				//if (!bRound)

@@ -263,9 +263,11 @@ void cd_do_find_matching_applications (void)
 		gchar *cPrefferedAppli = myConfig.cPreferredApplis[i];
 		if (cPrefferedAppli != NULL && *cPrefferedAppli != '\0')
 		{
+			g_print (" > une appli preferee est definie : '%s'\n", cPrefferedAppli);
 			GList *ic = g_list_find_custom (myData.pMatchingIcons, cPrefferedAppli, (GCompareFunc) _similar_command);
 			if (ic != NULL)
 			{
+				g_print (" > on la passe en permier\n");
 				myData.pMatchingIcons = g_list_remove_link (myData.pMatchingIcons, ic);
 				myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, ic);
 			}

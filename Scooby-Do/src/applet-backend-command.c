@@ -97,6 +97,7 @@ static GList * search (const gchar *cText, gint iFilter, gpointer pData, int *iN
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cName = g_strdup (D_("Execute"));
 	pEntry->cIconName = g_strdup (GTK_STOCK_EXECUTE);
+	pEntry->bMainEntry = TRUE;
 	pEntry->execute = _cd_do_execute_command;
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntries = g_list_prepend (pEntries, pEntry);

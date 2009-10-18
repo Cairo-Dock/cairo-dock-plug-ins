@@ -352,9 +352,9 @@ int cd_do_filter_entries (GList *pEntries, gint iNbEntries)
 		}
 		else
 		{
-			if (pEntry->cCaseDownName == NULL)
-				pEntry->cCaseDownName = g_ascii_strdown (pEntry->cName, -1);
-			cHayStack = pEntry->cCaseDownName;
+			if (pEntry->cLowerCaseName == NULL)
+				pEntry->cLowerCaseName = g_ascii_strdown (pEntry->cName, -1);
+			cHayStack = pEntry->cLowerCaseName;
 		}
 		if (g_strstr_len (cHayStack, -1, cPattern) != NULL &&
 			(!(myData.iCurrentFilter & DO_TYPE_MUSIC)

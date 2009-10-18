@@ -106,7 +106,7 @@ Draw Windows = true
 #b Draw hidden windows too ?
 Draw hidden Windows = false
 
-#r[Show windows list;Show desktop]
+#l[Show windows list;Show desktop]
 action on click = 0
 
 #U Workspace names :

@@ -25,10 +25,6 @@
 #include "applet-amazon.h"
 #include "applet-struct.h"
 
-//#define LICENCE_KEY "0C3430YZ2MVJKQ4JEKG2"
-//#define AMAZON_API_URL_1 "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId="
-//#define AMAZON_API_URL_2 "&AssociateTag=webservices-20&ResponseGroup=Images,ItemAttributes&Operation=ItemSearch&ItemSearch.Shared.SearchIndex=Music"
-
 /*
  * For the detailed example we'll use a typical ItemLookup request:
 
@@ -128,12 +124,9 @@ Steps to Sign the Example Request
 */
 #define BASE_URL "http://webservices.amazon.com/onca/xml"
 #define HEADER "GET\nwebservices.amazon.com\n/onca/xml\n"
-//#define REQUEST "Artist=%s&AssociateTag=webservices%%2D20&AWSAccessKeyId=%s&ItemSearch.Shared.SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=Images%%2CItemAttributes&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
-#define REQUEST "AWSAccessKeyId=%s&SearchIndex=Music&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
-#define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"
-#define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"
-
-//static gchar *TAB_IMAGE_SIZES[2] = {"MediumImage", "LargeImage"};
+#define REQUEST "AWSAccessKeyId=%s&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&SearchIndex=Music&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
+#define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"  // if you reuse the code below, please take the time to make your own key !
+#define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"  // please do not use this key ! It is reserved for Cairo-Dock.
 
 static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
 {
@@ -204,7 +197,7 @@ static gchar *_url_encode (const gchar * str)
 	const gchar * s = str;
 	char * t = NULL;
 	char * ret;
-	char * validChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_.!~*'()";  // :/.?=_-$(){}~&
+	char * validChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_.!~*'()";
 	char * isValidChar;
 	int lenght = 0;
 	// calcul de la taille de la chaine urlEncodée
@@ -230,22 +223,27 @@ static gchar *_url_encode (const gchar * str)
 	return ret;
 }
 
-static gchar *_compute_request_and_signature (const gchar *cArtist, const gchar *cKeyWords, gchar **cSignature)
+static gchar *_compute_request_and_signature (const gchar *cKeyWords, gchar **cSignature)
 {
 	time_t t = time (NULL);  // %F%T%z
 	struct tm currentTime;
 	localtime_r (&t, &currentTime);
 	gchar cTimeStamp[50+1];
 	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
-	g_print ("timestamp : %s\n", cTimeStamp);
+	//g_print ("timestamp : %s\n", cTimeStamp);
 	
-	gchar *cRequest = g_strdup_printf (REQUEST, /*(cArtist),*/ LICENCE_KEY, /*(cKeyWords)*/"nightwish", _url_encode (cTimeStamp));
+	gchar *keywords = _url_encode(cKeyWords);
+	gchar *time = _url_encode (cTimeStamp);
+	gchar *cRequest = g_strdup_printf (REQUEST, LICENCE_KEY, keywords, time);
+	g_free (keywords);
+	g_free (time);
+	//gchar *cRequest = g_strdup_printf (REQUEST, (cArtist), LICENCE_KEY, (cKeyWords), _url_encode (cTimeStamp));
 	
 	gchar *cBuffer = g_strconcat (HEADER, cRequest, NULL);
-	g_print ("cBuffer : %s\n", cBuffer);
+	//g_print ("cBuffer : %s\n", cBuffer);
 	
 	*cSignature = _hmac_crypt (cBuffer, PRIVATE_KEY, G_CHECKSUM_SHA256);
-	g_print ("cSignature : %s\n", *cSignature);
+	//g_print ("cSignature : %s\n", *cSignature);
 	
 	g_free (cBuffer);
 	return cRequest;
@@ -256,7 +254,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 	gchar *cKeyWords = NULL;
 	if (artist != NULL && album != NULL)
 	{
-		cKeyWords = g_strdup (album);
+		cKeyWords = g_strdup_printf ("%s,%s", artist, album);
 		g_strdelimit (cKeyWords, "-_~", ' ');
 		gchar *str = cKeyWords;
 		for (str = cKeyWords; *str != '\0'; str ++)
@@ -315,7 +313,7 @@ static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar
 	gchar *cKeyWords = _make_keywords (cArtist, cAlbum, cUri);
 	
 	gchar *cSignature = NULL;
-	gchar *cRequest = _compute_request_and_signature (cArtist, cKeyWords, &cSignature);
+	gchar *cRequest = _compute_request_and_signature (cKeyWords, &cSignature);
 	
 	gchar *cUrl = g_strdup_printf ("%s?%s&Signature=%s", BASE_URL, cRequest, _url_encode (cSignature));
 	g_print ("==> URL : %s\n", cUrl);
@@ -341,7 +339,7 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 	}
 	
 	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
-	g_print ("%s\n",cCommand);
+	//g_print ("%s\n",cCommand);
 	cairo_dock_launch_command (cCommand);
 	
 	g_free (cCommand);
@@ -362,7 +360,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 	g_return_val_if_fail (cContent != NULL, NULL);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_print ("cover size : %d\n", iWidth);
+	//g_print ("cover size : %d\n", iWidth);
 	const gchar *cImageSize = (iWidth > 1 && iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
 	gchar *str = g_strstr_len (cContent, -1, cImageSize);
 	gchar *cResult = NULL;

@@ -69,19 +69,23 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
 	myConfig.bTextOnTop = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "text on top", TRUE);
-	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "text font");
-	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");
-	myConfig.labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
+	
+	gchar *cFontDescription = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "font", "Monospace 16");
+	if (cFontDescription == NULL)
+		cFontDescription = g_strdup ("Monospace 16");  // sinon fd est NULL.
+	
+	PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
+	myConfig.labelDescription.cFont = g_strdup (pango_font_description_get_family (fd));
+	myConfig.labelDescription.iWeight = pango_font_description_get_weight (fd);
+	myConfig.labelDescription.iStyle = pango_font_description_get_style (fd);
+	pango_font_description_free (fd);
+	g_free (cFontDescription);
+	
 	myConfig.labelDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "text outlined");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStop);
-	myConfig.labelDescription.iStyle = PANGO_STYLE_NORMAL;
 	myConfig.labelDescription.iMargin = 2;
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
-	if (myConfig.iAppearanceDuration == 0 || ! g_bUseOpenGL)  // si pas d'animation 3D, on ne met pas de fond aux lettres.
-	{
-		//myConfig.labelDescription.fBackgroundColor[3] = 0;
-	}
 	
 	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 50);
 	myConfig.iNbLinesInListing = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 10);

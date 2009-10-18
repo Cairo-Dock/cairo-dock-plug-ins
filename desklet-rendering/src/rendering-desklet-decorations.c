@@ -23,24 +23,27 @@
 #include "rendering-desklet-decorations.h"
 
 
-#define _register_desklet_decorations(cName, _cBackGroundImagePath, _cForeGroundImagePath, _iLeftMargin, _iTopMargin, _iRightMargin, _iBottomMargin) \
-	pDecoration = g_new0 (CairoDeskletDecoration, 1);\
-	if (_cBackGroundImagePath != NULL)\
-		pDecoration->cBackGroundImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, _cBackGroundImagePath);\
-	if (_cForeGroundImagePath != NULL)\
-		pDecoration->cForeGroundImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, _cForeGroundImagePath);\
-	pDecoration->fBackGroundAlpha = 1.;\
-	pDecoration->fForeGroundAlpha = 1.;\
-	pDecoration->iLeftMargin = _iLeftMargin;\
-	pDecoration->iTopMargin = _iTopMargin;\
-	pDecoration->iRightMargin = _iRightMargin;\
-	pDecoration->iBottomMargin = _iBottomMargin;\
-	cairo_dock_register_desklet_decoration (cName, pDecoration)
+static inline void _register_desklet_decorations (const gchar *cName, const gchar *_cDisplayedName, const gchar *_cBackGroundImagePath, const gchar *_cForeGroundImagePath, int _iLeftMargin, int _iTopMargin, int _iRightMargin, int _iBottomMargin)
+{
+	CairoDeskletDecoration *pDecoration = g_new0 (CairoDeskletDecoration, 1);
+	pDecoration->cDisplayedName = _cDisplayedName;
+	if (_cBackGroundImagePath != NULL)
+		pDecoration->cBackGroundImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, _cBackGroundImagePath);
+	if (_cForeGroundImagePath != NULL)
+		pDecoration->cForeGroundImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, _cForeGroundImagePath);
+	pDecoration->fBackGroundAlpha = 1.;
+	pDecoration->fForeGroundAlpha = 1.;
+	pDecoration->iLeftMargin = _iLeftMargin;
+	pDecoration->iTopMargin = _iTopMargin;
+	pDecoration->iRightMargin = _iRightMargin;
+	pDecoration->iBottomMargin = _iBottomMargin;
+	cairo_dock_register_desklet_decoration (cName, pDecoration);
+}
 	
 void cd_rendering_register_desklet_decorations (void)
 {
-	CairoDeskletDecoration *pDecoration;
 	_register_desklet_decorations ("frame&reflects",
+		D_("frame&reflects"),
 		"frame.svg",
 		"reflect.svg",
 		5,
@@ -49,6 +52,7 @@ void cd_rendering_register_desklet_decorations (void)
 		5);  // 200x200
 	
 	_register_desklet_decorations ("scotch",
+		D_("scotch"),
 		NULL,
 		"scotch.svg",
 		40,
@@ -57,6 +61,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0);  // 550x500
 	
 	_register_desklet_decorations ("frame with scotch",
+		D_("frame with scotch"),
 		NULL,
 		"scotch+frame.svg",
 		87,
@@ -65,6 +70,7 @@ void cd_rendering_register_desklet_decorations (void)
 		50);  // 550x500
 	
 	_register_desklet_decorations ("CD box",
+		D_("CD box"),
 		"cd_box.svg",
 		"cd_box_cover.svg",
 		93,
@@ -72,6 +78,7 @@ void cd_rendering_register_desklet_decorations (void)
 		72,
 		79);  // 750x700
 	_register_desklet_decorations ("dark",
+		D_("dark"),
 		"dark-bg.png",
 		NULL,
 		0,
@@ -79,6 +86,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0,
 		0);  // ...
 	_register_desklet_decorations ("clear",
+		D_("clear"),
 		"clear-bg.svg",
 		NULL,
 		0,
@@ -86,6 +94,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0,
 		0);  // ...
 	_register_desklet_decorations ("futuristic",
+		D_("futuristic"),
 		"starcraft2.png",
 		NULL,
 		5,
@@ -93,6 +102,7 @@ void cd_rendering_register_desklet_decorations (void)
 		72,
 		5);  // 265x253
 	_register_desklet_decorations ("none",
+		D_("none"),
 		NULL,
 		NULL,
 		0,
@@ -100,6 +110,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0,
 		0);
 	_register_desklet_decorations ("board",
+		D_("board"),
 		"board.png",
 		NULL,
 		0,

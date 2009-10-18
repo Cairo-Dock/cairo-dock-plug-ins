@@ -33,6 +33,7 @@
 // sub-listing
 static GList *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries);
 // fill entry
+static gboolean _cd_do_fill_main_entry (CDEntry *pEntry);
 static gboolean _cd_do_fill_file_entry (CDEntry *pEntry);
 // actions
 static void _cd_do_launch_file (CDEntry *pEntry);
@@ -42,6 +43,85 @@ static void _cd_do_zip_folder (CDEntry *pEntry);
 static void _cd_do_mail_file (CDEntry *pEntry);
 static void _cd_do_move_file (CDEntry *pEntry);
 static void _cd_do_copy_url (CDEntry *pEntry);
+
+
+static gchar *_locate_files (const char *text, int iFilter, gint iLimit)
+{
+	GString *sCommand = g_string_new ("locate");
+	g_string_append_printf (sCommand, " -d '%s/ScoobyDo/ScoobyDo.db'", g_cCairoDockDataDir);
+	if (iLimit > 0)
+		g_string_append_printf (sCommand, " --limit=%d", iLimit);
+	if (! (iFilter & DO_MATCH_CASE))
+		g_string_append (sCommand, " -i");
+	if (*text != '/')
+		g_string_append (sCommand, " -b");
+	
+	if (iFilter == DO_FILTER_NONE || iFilter == DO_MATCH_CASE)
+	{
+		g_string_append_printf (sCommand, " \"%s\"", text);
+	}
+	else
+	{
+		if (iFilter & DO_TYPE_MUSIC)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.mp3\" \"*%s*.ogg\" \"*%s*.wav\"", text, text, text);
+		}
+		if (iFilter & DO_TYPE_IMAGE)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.jpg\" \"*%s*.jpeg\" \"*%s*.png\"", text, text, text);
+		}
+		if (iFilter & DO_TYPE_VIDEO)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.ogv\" \"*%s*.wmv\" \"*%s*.mov\"", text, text, text, text, text);
+		}
+		if (iFilter & DO_TYPE_TEXT)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.txt\" \"*%s*.odt\" \"*%s*.doc\"", text, text, text);
+		}
+		if (iFilter & DO_TYPE_HTML)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.html\" \"*%s*.htm\"", text, text);
+		}
+		if (iFilter & DO_TYPE_SOURCE)
+		{
+			g_string_append_printf (sCommand, " \"*%s*.[ch]\" \"*%s*.cpp\"", text, text);
+		}
+	}
+	
+	g_print (">>> %s\n", sCommand->str);
+	gchar *cResult = cairo_dock_launch_command_sync (sCommand->str);
+	if (cResult == NULL || *cResult == '\0')
+	{
+		g_free (cResult);
+		return NULL;
+	}
+	
+	return cResult;
+}
+
+static GList * _build_entries (gchar *cResult, int *iNbEntries)
+{
+	gchar **pMatchingFiles = g_strsplit (cResult, "\n", 0);
+	
+	GList *pEntries = NULL;
+	CDEntry *pEntry;
+	int i;
+	for (i = 0; pMatchingFiles[i] != NULL; i ++)
+	{
+		pEntry = g_new0 (CDEntry, 1);
+		pEntry->cPath = pMatchingFiles[i];
+		pEntry->cName = g_path_get_basename (pEntry->cPath);
+		pEntry->fill = _cd_do_fill_file_entry;
+		pEntry->execute = _cd_do_launch_file;
+		pEntry->list = _cd_do_list_file_sub_entries;
+		pEntries = g_list_prepend (pEntries, pEntry);
+	}
+	g_free (pMatchingFiles);
+	
+	*iNbEntries = i;
+	return pEntries;
+}
+
 
   //////////
  // INIT //
@@ -267,10 +347,43 @@ static GList *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries)
 	}
 }
 
+static GList *_cd_do_search_all (CDEntry *pEntry, int *iNbEntries)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	gchar *cResult = _locate_files (myData.cSearchText, myData.iCurrentFilter, myConfig.iNbResultMax);
+	
+	if (cResult == NULL)
+	{
+		*iNbEntries = 0;
+		return NULL;
+	}
+	GList *pEntries = _build_entries (cResult, iNbEntries);
+	g_free (cResult);
+	return pEntries;
+}
+
+
 
   ////////////////
  // FILL ENTRY //
 ////////////////
+
+static gboolean _cd_do_fill_main_entry (CDEntry *pEntry)
+{
+	if (pEntry->cIconName && pEntry->pIconSurface == NULL)
+	{
+		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+		gchar *cImagePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/", pEntry->cIconName, NULL);
+		pEntry->pIconSurface = cairo_dock_create_surface_from_icon (cImagePath,
+			pSourceContext,
+			myDialogs.dialogTextDescription.iSize + 2,
+			myDialogs.dialogTextDescription.iSize + 2);
+		cairo_destroy (pSourceContext);
+		g_free (cImagePath);
+		return TRUE;
+	}
+	return FALSE;
+}
 
 static gboolean _cd_do_fill_file_entry (CDEntry *pEntry)
 {
@@ -386,87 +499,10 @@ static void _cd_do_copy_url (CDEntry *pEntry)
  // SEARCH //
 ////////////
 
-static gchar *_locate_files (const char *text, int iFilter, gboolean bWithLimit)
-{
-	GString *sCommand = g_string_new ("locate");
-	g_string_append_printf (sCommand, " -d '%s/ScoobyDo/ScoobyDo.db'", g_cCairoDockDataDir);
-	if (bWithLimit)
-		g_string_append_printf (sCommand, " --limit=%d", myConfig.iNbResultMax);
-	if (! (iFilter & DO_MATCH_CASE))
-		g_string_append (sCommand, " -i");
-	if (*text != '/')
-		g_string_append (sCommand, " -b");
-	
-	if (iFilter == DO_FILTER_NONE || iFilter == DO_MATCH_CASE)
-	{
-		g_string_append_printf (sCommand, " \"%s\"", text);
-	}
-	else
-	{
-		if (iFilter & DO_TYPE_MUSIC)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.mp3\" \"*%s*.ogg\" \"*%s*.wav\"", text, text, text);
-		}
-		if (iFilter & DO_TYPE_IMAGE)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.jpg\" \"*%s*.jpeg\" \"*%s*.png\"", text, text, text);
-		}
-		if (iFilter & DO_TYPE_VIDEO)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.avi\" \"*%s*.mkv\" \"*%s*.ogv\" \"*%s*.wmv\" \"*%s*.mov\"", text, text, text, text, text);
-		}
-		if (iFilter & DO_TYPE_TEXT)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.txt\" \"*%s*.odt\" \"*%s*.doc\"", text, text, text);
-		}
-		if (iFilter & DO_TYPE_HTML)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.html\" \"*%s*.htm\"", text, text);
-		}
-		if (iFilter & DO_TYPE_SOURCE)
-		{
-			g_string_append_printf (sCommand, " \"*%s*.[ch]\" \"*%s*.cpp\"", text, text);
-		}
-	}
-	
-	g_print (">>> %s\n", sCommand->str);
-	gchar *cResult = cairo_dock_launch_command_sync (sCommand->str);
-	if (cResult == NULL || *cResult == '\0')
-	{
-		g_free (cResult);
-		return NULL;
-	}
-	
-	return cResult;
-}
-
-static GList * _build_entries (gchar *cResult, int *iNbEntries)
-{
-	gchar **pMatchingFiles = g_strsplit (cResult, "\n", 0);
-	
-	GList *pEntries = NULL;
-	CDEntry *pEntry;
-	int i;
-	for (i = 0; pMatchingFiles[i] != NULL; i ++)
-	{
-		pEntry = g_new0 (CDEntry, 1);
-		pEntry->cPath = pMatchingFiles[i];
-		pEntry->cName = g_path_get_basename (pEntry->cPath);
-		pEntry->fill = _cd_do_fill_file_entry;
-		pEntry->execute = _cd_do_launch_file;
-		pEntry->list = _cd_do_list_file_sub_entries;
-		pEntries = g_list_prepend (pEntries, pEntry);
-	}
-	g_free (pMatchingFiles);
-	
-	*iNbEntries = i;
-	return pEntries;
-}
-
 static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
-	gchar *cResult = _locate_files (cText, iFilter, TRUE);  // TRUE <=> avec limite.
+	gchar *cResult = _locate_files (cText, iFilter, 3);
 	
 	if (cResult == NULL)
 	{
@@ -475,6 +511,18 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 	}
 	GList *pEntries = _build_entries (cResult, iNbEntries);
 	g_free (cResult);
+	
+	CDEntry *pEntry = g_new0 (CDEntry, 1);
+	pEntry->cPath = g_strdup ("Files");
+	pEntry->cName = g_strdup (D_("Files"));
+	pEntry->cIconName = g_strdup ("files.png");
+	pEntry->bMainEntry = TRUE;
+	pEntry->fill = _cd_do_fill_main_entry;
+	pEntry->execute = NULL;
+	pEntry->list = _cd_do_search_all;
+	pEntries = g_list_prepend (pEntries, pEntry);
+	
+	*iNbEntries = (*iNbEntries + 1);
 	return pEntries;
 }
 

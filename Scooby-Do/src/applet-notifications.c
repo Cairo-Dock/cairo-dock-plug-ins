@@ -32,10 +32,9 @@
 
 gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
-	if (pContainer != CAIRO_CONTAINER (g_pMainDock) || ! cd_do_session_is_running ())
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
-	if (pCairoContext)
+	if (pCairoContext != NULL)
 	{
 		cd_do_render_cairo (g_pMainDock, pCairoContext);
 	}
@@ -50,8 +49,7 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 
 gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	if (! cd_do_session_is_running ())
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (myData.iMotionCount != 0)
 	{
@@ -62,9 +60,6 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			f * myData.iPrevMouseY + (1-f) * myData.iMouseY);
 		*bContinueAnimation = TRUE;
 	}
-	
-	if (pContainer != CAIRO_CONTAINER (g_pMainDock))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iDeltaT = cairo_dock_get_animation_delta_t (pContainer);
 	if (cd_do_session_is_closing ())
@@ -146,7 +141,7 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 {
 	if (pIcon == myData.pCurrentIcon && ! myData.bIgnoreIconState)
 	{
-		g_print ("notre icone vient de se faire detruire\n");
+		g_print ("notre icone vient de se faire stopper\n");
 		myData.pCurrentIcon = NULL;
 		myData.pCurrentDock = NULL;
 		
@@ -167,7 +162,7 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 }
 
 
-static void _check_is_dock (gchar *cDockName, CairoDock *pDock, gpointer *data)
+static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gpointer *data)
 {
 	Window xActiveWindow = GPOINTER_TO_INT (data[0]);
 	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
@@ -178,7 +173,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	gpointer data[2] = {GINT_TO_POINTER (*XActiveWindow), 0};
-	cairo_dock_foreach_docks ((GHFunc) _check_is_dock, data);
+	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
 	
 	if (data[1] == 0)
 		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
@@ -249,7 +244,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		if (myData.iNbValidCaracters > 0)
 		{
 			g_print ("on efface la derniere lettre de %s %d/%d\n", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
-			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
+			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
 				myData.iNbValidCaracters --;
 			
 			// on efface les lettres precedentes jusqu'a la derniere position validee.
@@ -261,9 +256,9 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
 					cd_do_search_current_icon (FALSE);
 			}
-			else // mode recherche.
+			else  // mode recherche.
 			{
-				if (myData.pListingHistory == NULL)
+				if (myData.pListingHistory == NULL)  // recherche principale.
 				{
 					g_list_free (myData.pMatchingIcons);
 					myData.pMatchingIcons = NULL;
@@ -277,7 +272,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						cd_do_hide_listing ();
 					}
 				}
-				else
+				else  // sous-recherche => on filtre.
 				{
 					cd_do_filter_current_listing ();
 				}
