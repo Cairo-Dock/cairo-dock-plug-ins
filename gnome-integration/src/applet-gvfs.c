@@ -292,13 +292,17 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	{
 		if (*cBaseURI == '/')
 			cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
-		else if (*cBaseURI == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
-		{
-			cd_warning ("invalid URI (%s), skip it", cBaseURI);
-			return;
-		}
 		else
 			cFullURI = g_strdup (cBaseURI);
+		if (*cBaseURI == ':' || *cFullURI == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
+		{
+			cd_warning ("invalid URI (%s ; %s), skip it", cBaseURI, cFullURI);
+			g_free (cFullURI);
+			*cName = NULL;
+			*cURI = NULL;
+			*cIconName = NULL;
+			return;
+		}
 	}
 	cd_message (" -> cFullURI : %s", cFullURI);
 	

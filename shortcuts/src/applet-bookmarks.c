@@ -38,7 +38,7 @@ static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, gpoi
 	
 	*pList = g_list_append (*pList, icon);
 	if (myIcon->pSubDock != NULL)
-		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, myConfig.bUseSeparator);
+		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, FALSE);
 	else if (myDesklet)
 	{
 		myDesklet->icons = _cd_shortcuts_detach_icon_from_list (icon, myDesklet->icons, myConfig.bUseSeparator);
