@@ -815,7 +815,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		w = 2 * H * gamma;
 		dw = (Ws - w) / 2;
 		//g_print ("dw : %.2f (=) %.2f\n", dw, h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
-		dx =dw;
+		dx = dw;
 	}
 	else
 	{

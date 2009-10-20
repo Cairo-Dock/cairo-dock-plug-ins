@@ -630,7 +630,9 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	}
 	else  // cas ou l'applet etait deja instanciee, on simule un stop/init pour repartir sur de bonnes bases.
 	{
+		g_print ("on stoppe l'applet d'abord\n");
 		cd_dbus_action_on_stop_module (pInstance);
+		g_print ("puis on la relance\n");
 		cd_dbus_action_on_init_module (pInstance);
 	}
 	g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.

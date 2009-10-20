@@ -92,8 +92,8 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 		1./pAnimation->iNbDirections,
 		pAnimation->iFrameWidth*fScale,
 		pAnimation->iFrameHeight*fScale,
-		fOffsetX + myData.iCurrentPositionX + pAnimation->iFrameWidth/2,
-		fOffsetY + myData.iCurrentPositionY + pAnimation->iFrameHeight*fScale/2);
+		floor (fOffsetX + myData.iCurrentPositionX + .5*pAnimation->iFrameWidth) + .5,
+		floor (fOffsetY + myData.iCurrentPositionY + .5*pAnimation->iFrameHeight*fScale) + .5);
 	_cairo_dock_disable_texture ();
 }
 void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
@@ -139,11 +139,11 @@ void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pC
 		if (myDock->container.bDirectionUp)
 			cairo_translate (pCairoContext,
 				myDock->container.iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight,
-				myDock->container.iWidth - (floor ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX)));
+				floor (myDock->container.iWidth - (.5*(myDock->container.iWidth - myDock->fFlatDockWidth) + myData.iCurrentPositionX)));
 		else
 			cairo_translate (pCairoContext,
 				myData.iCurrentPositionY,
-				floor ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX));
+				floor (.5*(myDock->container.iWidth - myDock->fFlatDockWidth) + myData.iCurrentPositionX));
 		cairo_dock_draw_surface (pCairoContext, pSurface, pAnimation->iFrameWidth, pAnimation->iFrameHeight, myDock->container.bDirectionUp, myDock->container.bIsHorizontal, 1.);
 	}
 	
