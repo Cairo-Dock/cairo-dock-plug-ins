@@ -250,7 +250,7 @@ GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 	CDClipperAction *pAction;
 	CDClipperCommand *pCommand;
 	int i = 0, j;
-        while (1)
+	while (1)
 	{
 		g_string_printf (sActionGroupName, "Action_%d", i);
 		if (! g_key_file_has_group (pKeyFile, sActionGroupName->str))
@@ -298,8 +298,10 @@ GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 				bEnabled = TRUE;
 			}
 			if (! bEnabled)
+			{
+				j ++;
 				continue;
-			
+			}
 			pCommand = g_new0 (CDClipperCommand, 1);
 			pCommand->cFormat = g_key_file_get_string (pKeyFile,
 				sCommandGroupName->str,

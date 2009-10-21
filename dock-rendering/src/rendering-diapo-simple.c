@@ -174,6 +174,11 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 	{
 		icon = ic->data;
 		
+		if (icon->bPointed)
+		{
+			
+		}
+		
 		cairo_save (pCairoContext);
 		cairo_dock_render_one_icon (icon, pDock, pCairoContext, 1., FALSE);
 		cairo_restore (pCairoContext);
@@ -340,12 +345,11 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		{
 			icon->bPointed = TRUE;
 			pointed_ic = ic;
-			icon->fAlpha *= 1.;
 		}
 		else
 		{
 			icon->bPointed = FALSE;
-			icon->fAlpha *= 0.75;
+			///icon->fAlpha *= 0.75;
 		}
 		
 		// On affecte tous les parametres qui n'ont pas été défini précédement
@@ -674,6 +678,36 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		icon = ic->data;
 		
 		glPushMatrix ();
+		
+		if (icon->bPointed)
+		{
+			double fX, fY;
+			if (pDock->container.bIsHorizontal)
+			{
+				fY = pDock->container.iHeight - icon->fDrawY + icon->fHeight * (my_diapo_simple_fScaleMax - icon->fScale)/2;
+				fX = icon->fDrawX - icon->fWidth * (my_diapo_simple_fScaleMax - icon->fScale)/2;
+			}
+			else
+			{
+				fX = icon->fDrawY - icon->fHeight * (my_diapo_simple_fScaleMax - icon->fScale)/2;
+				fY =  pDock->container.iWidth - icon->fDrawX + icon->fWidth * (my_diapo_simple_fScaleMax - icon->fScale)/2;
+			}
+			double r = my_diapo_simple_radius/2;
+			/*double fColor[4] = {(my_diapo_simple_color_frame_start[0] + my_diapo_simple_color_frame_stop[0])/2 + .1,
+				(my_diapo_simple_color_frame_start[1] + my_diapo_simple_color_frame_stop[1])/2 + .1,
+				(my_diapo_simple_color_frame_start[2] + my_diapo_simple_color_frame_stop[2])/2 + .1,
+				(my_diapo_simple_color_frame_start[3] + my_diapo_simple_color_frame_stop[3])/2 + .1};*/
+			double fColor[4] = {MAX (my_diapo_simple_color_frame_start[0], my_diapo_simple_color_frame_stop[0]) + .1,
+				MAX (my_diapo_simple_color_frame_start[1], my_diapo_simple_color_frame_stop[1]) + .1,
+				MAX (my_diapo_simple_color_frame_start[2], my_diapo_simple_color_frame_stop[2]) + .1,
+				MAX (my_diapo_simple_color_frame_start[3], my_diapo_simple_color_frame_stop[3]) + .1};
+			cairo_dock_draw_rounded_rectangle_opengl (r,
+				0,
+				icon->fWidth * my_diapo_simple_fScaleMax - r,
+				icon->fHeight * my_diapo_simple_fScaleMax,
+				fX, fY,
+				fColor);
+		}
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		
