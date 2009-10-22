@@ -7,13 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-14 12:36+0000\n"
-"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
+"PO-Revision-Date: 2009-10-17 09:35+0000\n"
+"Last-Translator: Rossi Liu <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-15 06:53+0000\n"
+"X-Launchpad-Export-Date: 2009-10-18 07:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -389,9 +389,8 @@ msgid "Pick up a directory"
 msgstr "Pick up a directory"
 
 #: ../Scooby-Do/src/applet-backend-files.c:517
-#, fuzzy
 msgid "Files"
-msgstr "File"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
@@ -414,9 +413,8 @@ msgid "Mediadico"
 msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
-#, fuzzy
 msgid "Amazon"
-msgstr "Animations"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
@@ -815,9 +813,8 @@ msgid "frame&reflects"
 msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
-#, fuzzy
 msgid "scotch"
-msgstr "Both"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with scotch"
@@ -832,9 +829,8 @@ msgid "dark"
 msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
-#, fuzzy
 msgid "clear"
-msgstr "Calendar"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
@@ -846,9 +842,8 @@ msgid "none"
 msgstr "none"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
-#, fuzzy
 msgid "board"
-msgstr "Clipboard"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
@@ -1867,9 +1862,8 @@ msgstr "Desktop"
 
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
-#, fuzzy
 msgid "Rename this workspace"
-msgstr "Rename this Tab"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
@@ -1888,16 +1882,14 @@ msgid "Move current desktop to this desktop"
 msgstr "Move current Desktop to this Desktop"
 
 #: ../switcher/src/applet-notifications.c:246
-#, fuzzy
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "This will move all windows from the current Desktop to this one"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:252
-#, fuzzy
 msgid "Show the desktop"
-msgstr "Show Desktop"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
@@ -2238,9 +2230,8 @@ msgstr ""
 "Retrying now..."
 
 #: ../weather/src/applet-notifications.c:152
-#, fuzzy
 msgid "felt"
-msgstr "result"
+msgstr "Feels like"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
@@ -3896,139 +3887,112 @@ msgid "Write text on the top of the dock ?"
 msgstr "Write text on the top of the dock?"
 
 #: ../Scooby-Do/data/messages:43
-#, fuzzy
 msgid "Preferred applications"
-msgstr "Mail application"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:45
-#, fuzzy
 msgid "Preferred application starting with 'a' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:47
-#, fuzzy
 msgid "Preferred application starting with 'b' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:49
-#, fuzzy
 msgid "Preferred application starting with 'c' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:51
-#, fuzzy
 msgid "Preferred application starting with 'd' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:53
-#, fuzzy
 msgid "Preferred application starting with 'e' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:55
-#, fuzzy
 msgid "Preferred application starting with 'f' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:57
-#, fuzzy
 msgid "Preferred application starting with 'g' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:59
-#, fuzzy
 msgid "Preferred application starting with 'h' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:61
-#, fuzzy
 msgid "Preferred application starting with 'i' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:63
-#, fuzzy
 msgid "Preferred application starting with 'j' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:65
-#, fuzzy
 msgid "Preferred application starting with 'k' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:67
-#, fuzzy
 msgid "Preferred application starting with 'l' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:69
-#, fuzzy
 msgid "Preferred application starting with 'm' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:71
-#, fuzzy
 msgid "Preferred application starting with 'n' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:73
-#, fuzzy
 msgid "Preferred application starting with 'o' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:75
-#, fuzzy
 msgid "Preferred application starting with 'p' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:77
-#, fuzzy
 msgid "Preferred application starting with 'q' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:79
-#, fuzzy
 msgid "Preferred application starting with 'r' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:81
-#, fuzzy
 msgid "Preferred application starting with 's' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:83
-#, fuzzy
 msgid "Preferred application starting with 't' :"
-msgstr "Preferred mail application to launch on left-click :"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:85
-#, fuzzy
 msgid "Preferred application starting with 'u' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:87
-#, fuzzy
 msgid "Preferred application starting with 'v' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:89
-#, fuzzy
 msgid "Preferred application starting with 'w' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:91
-#, fuzzy
 msgid "Preferred application starting with 'x' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:93
-#, fuzzy
 msgid "Preferred application starting with 'y' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:95
-#, fuzzy
 msgid "Preferred application starting with 'z' :"
-msgstr "Let external applications reboot the dock?"
+msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
 msgid "It's the color of the graphic for high values."
@@ -5442,9 +5406,8 @@ msgid "in s."
 msgstr "in seconds"
 
 #: ../mail/data/messages:111 ../tomboy/data/messages:115
-#, fuzzy
 msgid "Time length of the dialog :"
-msgstr "Time length of tooltips:"
+msgstr ""
 
 #: ../mail/data/messages:113
 msgid ""
@@ -6200,19 +6163,16 @@ msgid "Draw hidden windows too ?"
 msgstr "Draw hidden windows?"
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Show windows list"
-msgstr "Windows List"
+msgstr ""
 
 #: ../switcher/data/messages:101
-#, fuzzy
 msgid "Show desktop"
-msgstr "Show Desktop"
+msgstr ""
 
 #: ../switcher/data/messages:103
-#, fuzzy
 msgid "Workspace names :"
-msgstr "Note name: "
+msgstr ""
 
 #: ../switcher/data/messages:105
 msgid "Display options"
@@ -6340,9 +6300,8 @@ msgid "Name of an image for the 'close' icon :"
 msgstr "Name of the dock it belongs to:"
 
 #: ../tomboy/data/messages:27
-#, fuzzy
 msgid "Name of an image for the 'empty' icon :"
-msgstr "Name of the image for the 'play' icon :"
+msgstr ""
 
 #: ../tomboy/data/messages:101
 msgid "View"

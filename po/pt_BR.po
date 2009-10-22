@@ -6,13 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-13 00:49+0000\n"
+"POT-Creation-Date: 2009-10-22 00:54+0000\n"
+"PO-Revision-Date: 2009-10-22 01:07+0000\n"
 "Last-Translator: André Gondim <andregondim@ubuntu.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-13 07:02+0000\n"
+"X-Launchpad-Export-Date: 2009-10-22 07:27+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -205,7 +206,7 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:343
 msgid "About this applet"
-msgstr ""
+msgstr "Sobre este applet"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -392,13 +393,12 @@ msgid "Pick up a directory"
 msgstr "Pegar um diretório"
 
 #: ../Scooby-Do/src/applet-backend-files.c:517
-#, fuzzy
 msgid "Files"
-msgstr "Arquivo"
+msgstr "Arquivos"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
 #: ../Scooby-Do/src/applet-backend-web.c:56
 msgid "Wikipedia"
@@ -418,7 +418,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Amazon"
-msgstr ""
+msgstr "Amazonas"
 
 #: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
@@ -440,6 +440,18 @@ msgid ""
 "maintain CTRL, ALT or SHIFT to keep the results.\n"
 "Escape or the same shortkey to cancel."
 msgstr ""
+"Um plug-in Gnome-Do-like permite controlar seu dock através do teclado.\n"
+"Ele tem 2 modos, cada um acionado por um atalho de teclado:\n"
+"- Modo de navegação: use as setas para navegar nos docks e sub-doks,\n"
+"  ou digite o nome de um lançador e pressione Tab para saltar "
+"automaticamente para o próximo lançador adequado\n"
+"  pressione Enter para clicar no ícone, Shift+Enter para Shift+clique, "
+"Alt+Enter para um clique do meio e Ctrl+Enter para um clique esquerdo\n"
+"- Modo finder: digite algum texto para lançar qualquer comando, arquivo ou "
+"cálculo.\n"
+"  Use as setas para navegar entre os resultados, pressione Enter para "
+"validar, manter a tecla CTRL, ALT ou SHIFT para manter os resultados.\n"
+"Escape ou o mesmo atalho para cancelar."
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
@@ -805,41 +817,40 @@ msgstr "Alternar Mostrar Área de Trabalho"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
-msgstr ""
+msgstr "moldura&reflexos"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch"
-msgstr ""
+msgstr "cortes"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with scotch"
-msgstr ""
+msgstr "moldura com cortes"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
-msgstr ""
+msgstr "caixa de CD"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr ""
+msgstr "escuro"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
-#, fuzzy
 msgid "clear"
-msgstr "Calendário"
+msgstr "limpar"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
-msgstr ""
+msgstr "futurista"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:111
 msgid "none"
-msgstr ""
+msgstr "nenhum"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "board"
-msgstr ""
+msgstr "quadro"
 
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
@@ -859,7 +870,7 @@ msgstr "quadrinhos"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 msgid "curly"
-msgstr ""
+msgstr "enrolado"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
@@ -867,7 +878,7 @@ msgstr "moderno"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr ""
+msgstr "janela pop-up contendo opções"
 
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
@@ -878,7 +889,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
 "está ativa."
@@ -1181,31 +1193,31 @@ msgstr "Este plugin adiciona vários efeitos aos ícones"
 #: ../icon-effect/data/messages:21 ../icon-effect/data/messages:35
 #: ../icon-effect/data/messages:49 ../icon-effect/data/messages:63
 msgid "Fire"
-msgstr ""
+msgstr "Fogo"
 
 #: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:37
 #: ../icon-effect/data/messages:51 ../icon-effect/data/messages:87
 msgid "Stars"
-msgstr ""
+msgstr "Estrelas"
 
 #: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:53 ../icon-effect/data/messages:123
 msgid "Rain"
-msgstr ""
+msgstr "Chuva"
 
 #: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:105
 msgid "Snow"
-msgstr ""
+msgstr "Neve"
 
 #: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:141
 msgid "Storm"
-msgstr ""
+msgstr "Tempestade"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
@@ -1224,6 +1236,9 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for KDE4"
 msgstr ""
+"Este applet fornece funções para uma melhor integração num ambiente KDE.\n"
+"É auto-ativado, assim você não precisa ativá-lo.\n"
+"É desenhado para o KDE4."
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
@@ -1423,6 +1438,15 @@ msgid ""
 "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
+"Este applet permite controlar qualquer player de música.\n"
+"Clique no botão esquerdo para Iniciar/Pausar, clique no botão do meio para a "
+"próxima música.\n"
+"Rolar para cima/para baixo para inciar  anterior/próxima música.\n"
+"Você pode arrastar e soltar as músicas no ícone para colocá-los na "
+"fila(depende do player),\n"
+" e de imagem JPEG para usar como cobertura.\n"
+"Nota: Para o XMMS, você tem que instalar o plug-in 'xmms-infopipe'.\n"
+"       Para Songbird, você tem que instalar o dbus add-on.\n"
 
 #: ../musicPlayer/src/applet-notifications.c:66
 msgid ""
@@ -1430,6 +1454,9 @@ msgid ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
+"Desculpe, não foi possível detectar nenhum reprodutor.\n"
+"Se algum estiver rodando, talvez seja porque sua versão é muito antiga e não "
+"ofereça este serviço."
 
 #: ../musicPlayer/src/applet-notifications.c:157
 msgid "Find opened player"
@@ -1677,8 +1704,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin desenha animações ao redor do cursor quando ele esta sobre um "
 "dock/desklet."
@@ -1764,14 +1791,11 @@ msgstr ""
 "transferência, ou abri-los."
 
 #: ../stack/src/applet-notifications.c:48
-#, fuzzy
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
-"Sem itens persistentes.\n"
-"Você pode adicioná-los arrastando e soltando algum texto no ícone."
 
 #: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
@@ -1831,7 +1855,7 @@ msgstr "área de trabalho"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
-msgstr ""
+msgstr "Alternador"
 
 #: ../switcher/src/applet-init.c:35
 msgid ""
@@ -1843,6 +1867,15 @@ msgid ""
 " - list all windows on each workspace ((middle-click or in the menu)\n"
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
+"Este applet permite que você interaja com suas áreas de trabalho:\n"
+" - Alternar entre as suas áreas de trabalho (rolar para cima / baixo com o "
+"mouse),\n"
+" - nome delas (na configuração),\n"
+" - rapidamente adicionar ou remover um espaço de trabalho (no menu),\n"
+" - mostrar a área de trabalho (média ou clique no menu),\n"
+" - lista todas as janelas em cada área de trabalho (clique do meio ou no "
+"menu)\n"
+"Ele tem 2 modos: compacto (em 1 ícone) e ampliado (com um sub-dock)."
 
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:334
@@ -1859,9 +1892,8 @@ msgstr "Área de trabalho"
 
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
-#, fuzzy
 msgid "Rename this workspace"
-msgstr "Renomear esta aba"
+msgstr "Renomear esta área de trabalho"
 
 #: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
@@ -1877,18 +1909,19 @@ msgstr "Atualizar"
 
 #: ../switcher/src/applet-notifications.c:241
 msgid "Move current desktop to this desktop"
-msgstr ""
+msgstr "Renomeie esta área de trabalho"
 
 #: ../switcher/src/applet-notifications.c:246
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr ""
+"Isto moverá todas as janelas da área de trabalho atual para a que você "
+"clicou."
 
 #: ../switcher/src/applet-notifications.c:252
-#, fuzzy
 msgid "Show the desktop"
-msgstr "Mostrar Área de trabalho"
+msgstr "Mostrar o ambiente de trabalho"
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
@@ -1975,7 +2008,7 @@ msgstr "Selecionar cor"
 #: ../terminal/src/terminal-widget.c:306
 #, c-format
 msgid "You can call back the Terminal desklet by typing %s"
-msgstr ""
+msgstr "Você pode chamar de volta o Desklet Terminal, digitando %s"
 
 #: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
@@ -2175,7 +2208,7 @@ msgstr "Dez"
 
 #: ../weather/src/applet-notifications.c:58
 msgid "Data are being retrieved, please wait a moment."
-msgstr ""
+msgstr "Os dados estão sendo recuperados, por favor, aguarde um momento."
 
 #: ../weather/src/applet-notifications.c:73
 msgid "Reload now"
@@ -2287,7 +2320,7 @@ msgstr "Global"
 
 #: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering an icon"
-msgstr ""
+msgstr "quando paira um ícone"
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
@@ -2312,7 +2345,7 @@ msgstr "ao clicar em uma apli"
 
 #: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:33
 msgid "Effects used on applis :"
-msgstr ""
+msgstr "Efeitos usados em Applis:"
 
 #: ../Animated-icons/data/messages:57 ../icon-effect/data/messages:45
 msgid "when clicking on an applet"
@@ -2331,7 +2364,7 @@ msgstr "Rotação"
 #: ../Animated-icons/data/messages:169 ../Animated-icons/data/messages:183
 #: ../Scooby-Do/data/messages:13 ../Scooby-Do/data/messages:17
 msgid "In ms."
-msgstr ""
+msgstr "Em ms."
 
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:147 ../icon-effect/data/messages:67
@@ -2341,7 +2374,7 @@ msgstr ""
 #: ../illusion/data/messages:55 ../illusion/data/messages:65
 #: ../illusion/data/messages:71
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "Duração da animação :"
 
 #: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
@@ -2350,11 +2383,11 @@ msgstr ""
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:129
 #: ../icon-effect/data/messages:147
 msgid "Repeat while icon is pointed ?"
-msgstr ""
+msgstr "Repita enquanto ícone é apontado?"
 
 #: ../Animated-icons/data/messages:83
 msgid "Type of mesh :"
-msgstr ""
+msgstr "Tipo de malha:"
 
 #: ../Animated-icons/data/messages:85 ../Clipper/data/messages:135
 #: ../GMenu/data/messages:31 ../Network-Monitor/data/messages:27
@@ -2380,11 +2413,11 @@ msgstr "Cubo"
 
 #: ../Animated-icons/data/messages:89
 msgid "Capsule"
-msgstr ""
+msgstr "Cápsula"
 
 #: ../Animated-icons/data/messages:91
 msgid "color of the mesh :"
-msgstr ""
+msgstr "Cor da malha:"
 
 #: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
@@ -2399,127 +2432,127 @@ msgstr ""
 #: ../switcher/data/messages:135 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "Deixe em branco para usar o padrão."
 
 #: ../Animated-icons/data/messages:103
 msgid "Image for the spot :"
-msgstr ""
+msgstr "Imagem para o local:"
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the front spot :"
-msgstr ""
+msgstr "Imagem para o lugar da frente:"
 
 #: ../Animated-icons/data/messages:109
 msgid "color of the spot :"
-msgstr ""
+msgstr "cor do local:"
 
 #: ../Animated-icons/data/messages:111
 msgid "color of the halo :"
-msgstr ""
+msgstr "Cor da auréola :"
 
 #: ../Animated-icons/data/messages:113
 msgid "Rays"
-msgstr ""
+msgstr "Raios"
 
 #: ../Animated-icons/data/messages:115 ../icon-effect/data/messages:71
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:113
 #: ../icon-effect/data/messages:131 ../icon-effect/data/messages:149
 #: ../illusion/data/messages:35 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "1ª de gradação de cor :"
 
 #: ../Animated-icons/data/messages:117 ../icon-effect/data/messages:73
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:115
 #: ../icon-effect/data/messages:133 ../icon-effect/data/messages:151
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "2ª de gradação de cor :"
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:99 ../illusion/data/messages:39
 #: ../show-mouse/data/messages:31
 msgid "Random colors ?"
-msgstr ""
+msgstr "Cores aleatórias ?"
 
 #: ../Animated-icons/data/messages:121
 msgid "Number of rays :"
-msgstr ""
+msgstr "Número de raios :"
 
 #: ../Animated-icons/data/messages:123
 msgid "Rays size :"
-msgstr ""
+msgstr "Tamanho do raio :"
 
 #: ../Animated-icons/data/messages:125
 msgid "Rays speed :"
-msgstr ""
+msgstr "Velocidade do raio ?"
 
 #: ../Animated-icons/data/messages:129
 msgid "Initial stretch :"
-msgstr ""
+msgstr "Trecho inicial:"
 
 #: ../Animated-icons/data/messages:131
 msgid "Horizontal stretch"
-msgstr ""
+msgstr "Trecho horizontal"
 
 #: ../Animated-icons/data/messages:133
 msgid "Vertical stretch"
-msgstr ""
+msgstr "Trecho vertical"
 
 #: ../Animated-icons/data/messages:135
 msgid "Corner stretch"
-msgstr ""
+msgstr "Extremidade do trecho"
 
 #: ../Animated-icons/data/messages:137
 msgid "Spring constant :"
-msgstr ""
+msgstr "Constante de mola:"
 
 #: ../Animated-icons/data/messages:139
 msgid "Friction :"
-msgstr ""
+msgstr "Atrito:"
 
 #: ../Animated-icons/data/messages:141
 msgid "Number of points on the grid in one direction :"
-msgstr ""
+msgstr "Número de pontos da grade em uma direção:"
 
 #: ../Animated-icons/data/messages:151
 msgid "Width of the wave :"
-msgstr ""
+msgstr "Largura da onda:"
 
 #: ../Animated-icons/data/messages:153
 msgid "Amplitude of the wave :"
-msgstr ""
+msgstr "Amplitude da onda:"
 
 #: ../Animated-icons/data/messages:159
 msgid "Duration of the pulse :"
-msgstr ""
+msgstr "Duração do pulso:"
 
 #: ../Animated-icons/data/messages:163
 msgid "Zoom max of the pulse :"
-msgstr ""
+msgstr "Zoom máximo do pulso:"
 
 #: ../Animated-icons/data/messages:165
 msgid "Should the pulse follow the shape of the icon ?"
-msgstr ""
+msgstr "O pulso deve seguir a forma do ícone?"
 
 #: ../Animated-icons/data/messages:171
 msgid "Duration of the bounce :"
-msgstr ""
+msgstr "Duração do salto:"
 
 #: ../Animated-icons/data/messages:175
 msgid "When bouncing, resize the icon of :"
-msgstr ""
+msgstr "Quando saltado, redimensionar o ícone de:"
 
 #: ../Animated-icons/data/messages:177
 msgid "the smaller, the more it will flatten."
-msgstr ""
+msgstr "o menor, mais ele vai achatar."
 
 #: ../Animated-icons/data/messages:179
 msgid "How much the icon will flatten when hurting the ground :"
-msgstr ""
+msgstr "Quanto ao ícone achatará prejudicando o ground:"
 
 #: ../Animated-icons/data/messages:185
 msgid "Duration of the blink :"
-msgstr ""
+msgstr "Duração do blink:"
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
 #: ../GMenu/data/messages:1 ../Network-Monitor/data/messages:1
@@ -2556,15 +2589,15 @@ msgstr "Ícone"
 #: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "Defina 0 para usar o tamanho padrão do minaplicativo."
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size when the penguin is not free :"
-msgstr ""
+msgstr "Tamanho do ícone quando o pingüim não está livre:"
 
 #: ../Cairo-Penguin/data/messages:7
 msgid "Name of the icon when the penguin is not free :"
-msgstr ""
+msgstr "Nome do ícone quando o pingüim não está livre:"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
 #: ../GMenu/data/messages:13 ../Network-Monitor/data/messages:9
@@ -2619,128 +2652,128 @@ msgstr "em segundos"
 
 #: ../Cairo-Penguin/data/messages:17
 msgid "Delay between animation changes :"
-msgstr ""
+msgstr "Demora entre as mudanças de animação:"
 
 #: ../Cairo-Penguin/data/messages:19
 msgid "Transparency of the penguin :"
-msgstr ""
+msgstr "Transparência do pingüim:"
 
 #: ../Cairo-Penguin/data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
-msgstr ""
+msgstr "Deixar o pinguim mover-se por toda parte no dock?"
 
 #: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:49
 #: ../dock-rendering/data/messages:127
 msgid "in pixels."
-msgstr ""
+msgstr "em píxeis."
 
 #: ../Cairo-Penguin/data/messages:25
 msgid "Ground offset :"
-msgstr ""
+msgstr "Deslocamento do ground:"
 
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:53
 msgid "Action_0"
-msgstr ""
+msgstr "Ação_0"
 
 #: ../Clipper/data/messages:3 ../Clipper/data/messages:55
 msgid "Action_0/Command_0"
-msgstr ""
+msgstr "Ação_0/Comando_0"
 
 #: ../Clipper/data/messages:5 ../Clipper/data/messages:57
 msgid "Action_1"
-msgstr ""
+msgstr "Ação_1"
 
 #: ../Clipper/data/messages:7 ../Clipper/data/messages:59
 msgid "Action_1/Command_0"
-msgstr ""
+msgstr "Ação_1/Comando_0"
 
 #: ../Clipper/data/messages:9 ../Clipper/data/messages:61
 msgid "Action_1/Command_1"
-msgstr ""
+msgstr "Ação_1/Comando_1"
 
 #: ../Clipper/data/messages:11 ../Clipper/data/messages:63
 msgid "Action_1/Command_2"
-msgstr ""
+msgstr "Ação_1/Comando_2"
 
 #: ../Clipper/data/messages:13 ../Clipper/data/messages:65
 msgid "Action_1/Command_3"
-msgstr ""
+msgstr "Ação_1/Comando_3"
 
 #: ../Clipper/data/messages:15 ../Clipper/data/messages:67
 msgid "Action_1/Command_4"
-msgstr ""
+msgstr "Ação_1/Comando_4"
 
 #: ../Clipper/data/messages:17 ../Clipper/data/messages:69
 msgid "Action_2"
-msgstr ""
+msgstr "Ação_2"
 
 #: ../Clipper/data/messages:19 ../Clipper/data/messages:71
 msgid "Action_2/Command_0"
-msgstr ""
+msgstr "Ação_2/Comando_0"
 
 #: ../Clipper/data/messages:21 ../Clipper/data/messages:73
 msgid "Action_2/Command_1"
-msgstr ""
+msgstr "Ação_2/Comando_1"
 
 #: ../Clipper/data/messages:23 ../Clipper/data/messages:75
 msgid "Action_3"
-msgstr ""
+msgstr "Ação_3"
 
 #: ../Clipper/data/messages:25 ../Clipper/data/messages:77
 msgid "Action_3/Command_0"
-msgstr ""
+msgstr "Ação_3/Comando_0"
 
 #: ../Clipper/data/messages:27 ../Clipper/data/messages:79
 msgid "Action_3/Command_1"
-msgstr ""
+msgstr "Ação_3/Comando_1"
 
 #: ../Clipper/data/messages:29 ../Clipper/data/messages:81
 msgid "Action_4"
-msgstr ""
+msgstr "Ação_4"
 
 #: ../Clipper/data/messages:31 ../Clipper/data/messages:83
 msgid "Action_4/Command_0"
-msgstr ""
+msgstr "Ação_4/Comando_0"
 
 #: ../Clipper/data/messages:33 ../Clipper/data/messages:85
 msgid "Action_4/Command_1"
-msgstr ""
+msgstr "Ação_4/Comando_1"
 
 #: ../Clipper/data/messages:35 ../Clipper/data/messages:87
 msgid "Action_5"
-msgstr ""
+msgstr "Ação_5"
 
 #: ../Clipper/data/messages:37 ../Clipper/data/messages:89
 msgid "Action_5/Command_0"
-msgstr ""
+msgstr "Ação_5/Comando_0"
 
 #: ../Clipper/data/messages:39 ../Clipper/data/messages:91
 msgid "Action_5/Command_1"
-msgstr ""
+msgstr "Ação_5/Comando_1"
 
 #: ../Clipper/data/messages:41 ../Clipper/data/messages:93
 msgid "Action_6"
-msgstr ""
+msgstr "Ação_0/Comando_0"
 
 #: ../Clipper/data/messages:43 ../Clipper/data/messages:95
 msgid "Action_6/Command_0"
-msgstr ""
+msgstr "Ação_6/Comando_0"
 
 #: ../Clipper/data/messages:45 ../Clipper/data/messages:97
 msgid "Action_6/Command_1"
-msgstr ""
+msgstr "Ação_6/Comando_1"
 
 #: ../Clipper/data/messages:47 ../Clipper/data/messages:99
 msgid "Action_6/Command_2"
-msgstr ""
+msgstr "Ação_6/Comando_2"
 
 #: ../Clipper/data/messages:49 ../Clipper/data/messages:101
 msgid "Action_6/Command_3"
-msgstr ""
+msgstr "Ação_6/Comando_3"
 
 #: ../Clipper/data/messages:51 ../Clipper/data/messages:103
 msgid "Action_6/Command_4"
-msgstr ""
+msgstr "Ação_6/Comando_4"
 
 #: ../Clipper/data/messages:109 ../GMenu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../System-Monitor/data/messages:5
@@ -2783,7 +2816,7 @@ msgstr "Nome do ícone que aparecerá em seu rótulo no dock."
 #: ../stack/data/messages:13 ../switcher/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image's filename :"
-msgstr ""
+msgstr "Nome do arquivo de Imagem :"
 
 #: ../Clipper/data/messages:119 ../GMenu/data/messages:15
 #: ../Network-Monitor/data/messages:11 ../System-Monitor/data/messages:11
@@ -2821,8 +2854,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2853,7 +2886,8 @@ msgstr "Dimensão do Desklet (largura x altura) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
 "do botão esquerdo"
@@ -3401,89 +3435,99 @@ msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr ""
+"Itens de transferência são aqueles que você captura com CTRL + C. Itens de "
+"seleção são aqueles que você captura selecionando um texto com o mouse."
 
 #: ../Clipper/data/messages:193
 msgid "Which items should be remembered ?"
-msgstr ""
+msgstr "Quais itens devem ser lembrados?"
 
 #: ../Clipper/data/messages:197
 msgid "Clipboard"
-msgstr ""
+msgstr "Área de transferência"
 
 #: ../Clipper/data/messages:199
 msgid "Selection"
-msgstr ""
+msgstr "Seleção"
 
 #: ../Clipper/data/messages:201
 msgid "Both"
-msgstr ""
+msgstr "Ambos"
 
 #: ../Clipper/data/messages:203
 msgid "Number of items :"
-msgstr ""
+msgstr "Número de itens:"
 
 #: ../Clipper/data/messages:205
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
 msgstr ""
+"É especialmente útil se você selecionar o texto, muitas vezes com o mouse e "
+"não quer perder seus itens da área de transferência por causa de um grande "
+"número de itens de seleção."
 
 #: ../Clipper/data/messages:207
 msgid "Separate clipboard and selection ?"
-msgstr ""
+msgstr "Separar área de tranferância e seleção ?"
 
 #: ../Clipper/data/messages:209
 msgid "If so, number of selection items :"
-msgstr ""
+msgstr "Em caso afirmativo, número de artigos da seleção:"
 
 #: ../Clipper/data/messages:211
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
+"Quando você clica em um item, o seu conteúdo se torna acessível com CTRL + V"
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
-msgstr ""
+msgstr "Colar na área de transferência ?"
 
 #: ../Clipper/data/messages:215
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr ""
+"Quando você clica em um item, o seu conteúdo se torna acessível com o clique "
+"do meio"
 
 #: ../Clipper/data/messages:217
 msgid "Paste into Selection ?"
-msgstr ""
+msgstr "Colar na seleção?"
 
 #: ../Clipper/data/messages:219
 msgid "Shortkey to pop-up the items menu :"
-msgstr ""
+msgstr "Atalho para o menu de itens pop-up:"
 
 #: ../Clipper/data/messages:221
 msgid "Pop-up menus at mouse position ?"
-msgstr ""
+msgstr "Menus pop-up na posição do mouse?"
 
 #: ../Clipper/data/messages:223 ../compiz-icon/data/messages:83
 msgid "Actions"
-msgstr ""
+msgstr "Ações"
 
 #: ../Clipper/data/messages:225
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
 msgstr ""
+"Se algumas ações estão associadas a um item, elas serão propostas para você "
+"quando o item é criado."
 
 #: ../Clipper/data/messages:227
 msgid "Enable actions ?"
-msgstr ""
+msgstr "Ativar ações?"
 
 #: ../Clipper/data/messages:229
 msgid "Display the actions when selecting an item in the history."
-msgstr ""
+msgstr "Exibe as ações ao selecionar um item no histórico."
 
 #: ../Clipper/data/messages:231
 msgid "Replay actions ?"
-msgstr ""
+msgstr "Ações de repetição?"
 
 #: ../Clipper/data/messages:233 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:141 ../System-Monitor/data/messages:177
@@ -3491,113 +3535,120 @@ msgstr ""
 #: ../powermanager/data/messages:137 ../slider/data/messages:99
 #: ../wifi/data/messages:157
 msgid "in seconds."
-msgstr ""
+msgstr "em segundos."
 
 #: ../Clipper/data/messages:235
 msgid "Duration of the action menu :"
-msgstr ""
+msgstr "Duração do menu de ação:"
 
 #: ../Clipper/data/messages:237
 msgid "Persistent items"
-msgstr ""
+msgstr "Itens persistentes"
 
 #: ../Clipper/data/messages:239
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr ""
+"Uma lista de itens persistentes que podem ser acessados com um clique de "
+"meio:"
 
 #: ../Dbus/data/messages:3
 msgid "Let extern applications pop-up dialogs in the dock ?"
-msgstr ""
+msgstr "Permitir que aplicações externas incluam diálogos pop-up nos docks?"
 
 #: ../Dbus/data/messages:5
 msgid "Let extern applications reboot the dock ?"
-msgstr ""
+msgstr "Permitir que aplicações externas reiniciem os docks?"
 
 #: ../Dbus/data/messages:7
 msgid "Let extern applications quit the dock ?"
-msgstr ""
+msgstr "Permitir que aplicações externas fechem os docks?"
 
 #: ../Dbus/data/messages:9
 msgid "Let extern applications show/hide the desklets ?"
-msgstr ""
+msgstr "Permitir que aplicações externas mostrem/ocultem os desklets?"
 
 #: ../Dbus/data/messages:11
 msgid "Let extern applications reload the applets ?"
-msgstr ""
+msgstr "Permitir que aplicações externas recarreguem os applets?"
 
 #: ../Dbus/data/messages:13
 msgid "Let extern applications show/hide the docks ?"
-msgstr ""
+msgstr "Permitir que aplicações externas mostrem/ocultem os docks?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers into the docks ?"
-msgstr ""
+msgstr "Permitir que aplicações externas adicionem lançadores nos docks?"
 
 #: ../Dbus/data/messages:17
 msgid "Let extern applications modify the labels of icons ?"
-msgstr ""
+msgstr "Permitir que aplicações externas modifiquem os nomes dos ícones?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons ?"
 msgstr ""
+"Permitir que aplicações externas modifiquem as informações rápidas nos "
+"ícones?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the image of icons ?"
-msgstr ""
+msgstr "Permitir que aplicações externas modifiquem as imagens dos ícnones?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate the icons ?"
-msgstr ""
+msgstr "Permitir que aplicações externas animem os ícones?"
 
 #: ../Dbus/data/messages:25
 msgid "Let extern applications register new module ?"
-msgstr ""
+msgstr "Permitir aplicações externas registrar no novo módulo?"
 
 #: ../GMenu/data/messages:87 ../quick-browser/data/messages:93
 msgid "Display icons in the menu ?"
-msgstr ""
+msgstr "Mostar ícones no menu?"
 
 #: ../GMenu/data/messages:89 ../quick-browser/data/messages:109
 msgid "Shortkey to show/hide the menu :"
-msgstr ""
+msgstr "Atalho para mostrar / esconder o menu:"
 
 #: ../GMenu/data/messages:91
 msgid "Shortkey to show/hide the quick-launch dialog :"
-msgstr ""
+msgstr "Atalho para mostrar / esconder a janela de lançamento rápido:"
 
 #: ../GMenu/data/messages:95
 msgid "Command to use to configure the menu :"
-msgstr ""
+msgstr "Comando a ser usado para configurar o menu:"
 
 #: ../GMenu/data/messages:97
 msgid "Recent documents"
-msgstr ""
+msgstr "Documentos recentes"
 
 #: ../GMenu/data/messages:99
 msgid "Show recent documents ?"
-msgstr ""
+msgstr "Mostrar documentos recentes?"
 
 #: ../GMenu/data/messages:101
 msgid "Let blank to not use this filter."
-msgstr ""
+msgstr "Deixe em branco para não usar esse filtro."
 
 #: ../GMenu/data/messages:103
 msgid "Only show files that are under this folder or its sub-folder :"
 msgstr ""
+"Mostrar apenas os arquivos que estão dentro desta pasta e sua(s) sub-"
+"pasta(s):"
 
 #: ../GMenu/data/messages:105
 msgid "in days. Set 0 to not use this filter."
-msgstr ""
+msgstr "em dia(s). Defina 0 para não usar esse filtro."
 
 #: ../GMenu/data/messages:107
 msgid "Only show files whose last modification date is less than ;"
 msgstr ""
+"Mostrar apenas os arquivos cuja data da última modificação é inferior;"
 
 #: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
 #: ../wifi/data/messages:83
 msgid "Choose the style of the display : "
-msgstr ""
+msgstr "Escolha o estilo do visor: "
 
 #: ../Network-Monitor/data/messages:85 ../Network-Monitor/data/messages:91
 #: ../System-Monitor/data/messages:85 ../System-Monitor/data/messages:89
@@ -3605,7 +3656,7 @@ msgstr ""
 #: ../powermanager/data/messages:85 ../powermanager/data/messages:91
 #: ../wifi/data/messages:85 ../wifi/data/messages:91
 msgid "Gauge"
-msgstr ""
+msgstr "medidor"
 
 #: ../Network-Monitor/data/messages:87 ../Network-Monitor/data/messages:95
 #: ../System-Monitor/data/messages:87 ../System-Monitor/data/messages:93
@@ -3613,95 +3664,95 @@ msgstr ""
 #: ../powermanager/data/messages:87 ../powermanager/data/messages:95
 #: ../wifi/data/messages:87 ../wifi/data/messages:95
 msgid "Graph"
-msgstr ""
+msgstr "Gráfico"
 
 #: ../Network-Monitor/data/messages:89 ../Network-Monitor/data/messages:119
 #: ../powermanager/data/messages:89 ../powermanager/data/messages:119
 #: ../shortcuts/data/messages:87 ../wifi/data/messages:89
 #: ../wifi/data/messages:119
 msgid "Icons"
-msgstr ""
+msgstr "Ícones"
 
 #: ../Network-Monitor/data/messages:97 ../System-Monitor/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../wifi/data/messages:97
 msgid "Type of graphic :"
-msgstr ""
+msgstr "Tipo de gráfico:"
 
 #: ../Network-Monitor/data/messages:99 ../System-Monitor/data/messages:97
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:99
 #: ../wifi/data/messages:99
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 #: ../Network-Monitor/data/messages:101 ../System-Monitor/data/messages:99
 #: ../netspeed/data/messages:99 ../powermanager/data/messages:101
 #: ../wifi/data/messages:101
 msgid "Plain"
-msgstr ""
+msgstr "Plano"
 
 #: ../Network-Monitor/data/messages:103 ../System-Monitor/data/messages:101
 #: ../netspeed/data/messages:101 ../powermanager/data/messages:103
 #: ../wifi/data/messages:103
 msgid "Bar"
-msgstr ""
+msgstr "Barra"
 
 #: ../Network-Monitor/data/messages:105 ../System-Monitor/data/messages:103
 #: ../netspeed/data/messages:103 ../powermanager/data/messages:105
 #: ../wifi/data/messages:105
 msgid "Circle"
-msgstr ""
+msgstr "Círculo"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:105
 #: ../netspeed/data/messages:105 ../powermanager/data/messages:107
 #: ../wifi/data/messages:107
 msgid "Plain Circle"
-msgstr ""
+msgstr "Círculo plano"
 
 #: ../Network-Monitor/data/messages:109 ../wifi/data/messages:109
 msgid "It's the color of the graphic for high quality signal."
-msgstr ""
+msgstr "É a cor do gráfico para o sinal de alta qualidade."
 
 #: ../Network-Monitor/data/messages:111 ../System-Monitor/data/messages:109
 #: ../netspeed/data/messages:109 ../powermanager/data/messages:111
 #: ../wifi/data/messages:111
 msgid "High values color :"
-msgstr ""
+msgstr "Valor da cor de alta qualidade:"
 
 #: ../Network-Monitor/data/messages:113 ../wifi/data/messages:113
 msgid "It's the color of the graphic for low quality signal."
-msgstr ""
+msgstr "É a cor do gráfico para o sinal de baixa qualidade."
 
 #: ../Network-Monitor/data/messages:115 ../System-Monitor/data/messages:113
 #: ../netspeed/data/messages:113 ../powermanager/data/messages:115
 #: ../wifi/data/messages:115
 msgid "Low values color :"
-msgstr ""
+msgstr "Valor da cor de baixa qualidade:"
 
 #: ../Network-Monitor/data/messages:117 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:117
 #: ../wifi/data/messages:117
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "Cor de fundo do gráfico:"
 
 #: ../Network-Monitor/data/messages:121 ../wifi/data/messages:121
 msgid "Effect to apply on the icon according to strength :"
-msgstr ""
+msgstr "Efeito para aplicar sobre o ícone de acordo com a intensidade:"
 
 #: ../Network-Monitor/data/messages:125 ../alsaMixer/data/messages:121
 #: ../wifi/data/messages:125
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 #: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
 #: ../wifi/data/messages:127
 msgid "Transparency"
-msgstr ""
+msgstr "Transparência"
 
 #: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
 #: ../wifi/data/messages:129
 msgid "Draw Bar"
-msgstr ""
+msgstr "Desenhar barra"
 
 #: ../Network-Monitor/data/messages:131 ../Network-Monitor/data/messages:135
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:143
@@ -3714,49 +3765,49 @@ msgstr ""
 #: ../wifi/data/messages:143 ../wifi/data/messages:147
 #: ../wifi/data/messages:151
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "Deixe-o em branco para usar o ícone padrão."
 
 #: ../Network-Monitor/data/messages:133
 msgid "Name of an image for the 'No signal' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Sem sinal':"
 
 #: ../Network-Monitor/data/messages:137
 msgid "Name of an image for the 'Very low' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Muito baixa(o)':"
 
 #: ../Network-Monitor/data/messages:141
 msgid "Name of an image for the 'Low' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Baixa(o)'"
 
 #: ../Network-Monitor/data/messages:145
 msgid "Name of an image for the 'Middle' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Meio(a)':"
 
 #: ../Network-Monitor/data/messages:149
 msgid "Name of an image for the 'Good' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Bom/Boa':"
 
 #: ../Network-Monitor/data/messages:153
 msgid "Name of an image for the 'Excellent' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Excelente':"
 
 #: ../Network-Monitor/data/messages:157
 msgid "Name of an image for the 'Not connected' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Não conectado(a)':"
 
 #: ../Network-Monitor/data/messages:161
 msgid "Name of an image for the 'Wired connection' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Conexão sem fio':"
 
 #: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:135
 #: ../tomboy/data/messages:117 ../wifi/data/messages:155
 msgid "Parameters"
-msgstr ""
+msgstr "Parâmetros"
 
 #: ../Network-Monitor/data/messages:167 ../wifi/data/messages:159
 msgid "Delay between signal checks :"
-msgstr ""
+msgstr "Atraso entre os controles de sinal:"
 
 #: ../Network-Monitor/data/messages:169 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3764,39 +3815,45 @@ msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
 msgstr ""
+"Você necessita do OpenGL para eta opção. Ajuste-o para 0 para desativá-lo.  "
+"1 significa que o movimento é contínuo."
 
 #: ../Network-Monitor/data/messages:171 ../System-Monitor/data/messages:147
 #: ../wifi/data/messages:163
 msgid "How smooth is the movement ?"
-msgstr ""
+msgstr "Quão suave é o movimento?"
 
 #: ../Network-Monitor/data/messages:173 ../wifi/data/messages:165
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
 msgstr ""
+"Permite que você substitua a linha de comando padrão do applet  e que você "
+"inicie uma de interface de configuração sem fio (wireless)."
 
 #: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
+"Alternativa para iniciar um linha de comando de configuração sem fio "
+"(wireless):"
 
 #: ../Network-Monitor/data/messages:177 ../weather/data/messages:101
 #: ../wifi/data/messages:169
 msgid "Info"
-msgstr ""
+msgstr "Informação"
 
 #: ../Network-Monitor/data/messages:179 ../musicPlayer/data/messages:131
 #: ../wifi/data/messages:171
 msgid "Information to display on the icon :"
-msgstr ""
+msgstr "Informação(ões) a ser(em) exibida(s) no ícone:"
 
 #: ../Network-Monitor/data/messages:183 ../wifi/data/messages:175
 msgid "Signal Strength"
-msgstr ""
+msgstr "Potência do sinal"
 
 #: ../Network-Monitor/data/messages:185 ../wifi/data/messages:177
 msgid "Signal Strength in percent"
-msgstr ""
+msgstr "Força do sinal em porcentagem"
 
 #: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
 msgid "Raw Signal Informations"
@@ -3804,347 +3861,355 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
-msgstr ""
+msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
-msgstr ""
+msgstr "Atalho para activar/desactivar o modo de navegação:"
 
 #: ../Scooby-Do/data/messages:5
 msgid "Shortkey to activate/deactivate the finder mode :"
-msgstr ""
+msgstr "Atalho para ativar/desativar o modo de busca:"
 
 #: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
-msgstr ""
+msgstr "Número máximo de resultados:"
 
 #: ../Scooby-Do/data/messages:9
 msgid "Number of lines to display :"
-msgstr ""
+msgstr "Número de linhas a exibir:"
 
 #: ../Scooby-Do/data/messages:11
 msgid "Animations"
-msgstr ""
+msgstr "Animações"
 
 #: ../Scooby-Do/data/messages:15
 msgid "Duration of the appearance animation :"
-msgstr ""
+msgstr "Duração da animação:"
 
 #: ../Scooby-Do/data/messages:19
 msgid "Duration of the stop animation :"
-msgstr ""
+msgstr "Duração da pausa da animação:"
 
 #: ../Scooby-Do/data/messages:21
 msgid "Animation of the current icon :"
-msgstr ""
+msgstr "Animação do ícone atual:"
 
 #: ../Scooby-Do/data/messages:23
 msgid "Characters"
-msgstr ""
+msgstr "Caracteres"
 
 #: ../Scooby-Do/data/messages:25
 msgid "Font used to display what you type :"
-msgstr ""
+msgstr "Fonte usada para exibir o que você digita:"
 
 #: ../Scooby-Do/data/messages:27
 msgid "Color of the text's frame  :"
-msgstr ""
+msgstr "Cor da moldura do texto:"
 
 #: ../Scooby-Do/data/messages:29
 msgid "Font size, relatively to the dock's size :"
-msgstr ""
+msgstr "Tamanho da fonte, relativamente ao tamanho do Dock:"
 
 #: ../Scooby-Do/data/messages:31
 msgid "between 1 and 9, the bigger, the heavier."
-msgstr ""
+msgstr "entre 1 e 9, quanto maior, mais pesado."
 
 #: ../Scooby-Do/data/messages:33
 msgid "Text weight :"
-msgstr ""
+msgstr "Tamanho do texto:"
 
 #: ../Scooby-Do/data/messages:35
 msgid "Should the text be outlined ?"
-msgstr ""
+msgstr "Caso o texto seja delineado?"
 
 #: ../Scooby-Do/data/messages:37
 msgid "Text color :"
-msgstr ""
+msgstr "Cor do texto:"
 
 #: ../Scooby-Do/data/messages:39
 msgid "Color of the background of the characters :"
-msgstr ""
+msgstr "Cor de fundo dos caracteres:"
 
 #: ../Scooby-Do/data/messages:41
 msgid "Write text on the top of the dock ?"
-msgstr ""
+msgstr "Escrever o texto no topo do dock?"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Preferred applications"
-msgstr ""
+msgstr "Aplicativos preferidos"
 
 #: ../Scooby-Do/data/messages:45
 msgid "Preferred application starting with 'a' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'a':"
 
 #: ../Scooby-Do/data/messages:47
 msgid "Preferred application starting with 'b' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'b':"
 
 #: ../Scooby-Do/data/messages:49
 msgid "Preferred application starting with 'c' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'c':"
 
 #: ../Scooby-Do/data/messages:51
 msgid "Preferred application starting with 'd' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'd':"
 
 #: ../Scooby-Do/data/messages:53
 msgid "Preferred application starting with 'e' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'e':"
 
 #: ../Scooby-Do/data/messages:55
 msgid "Preferred application starting with 'f' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'f':"
 
 #: ../Scooby-Do/data/messages:57
 msgid "Preferred application starting with 'g' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'g':"
 
 #: ../Scooby-Do/data/messages:59
 msgid "Preferred application starting with 'h' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'h':"
 
 #: ../Scooby-Do/data/messages:61
 msgid "Preferred application starting with 'i' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'i':"
 
 #: ../Scooby-Do/data/messages:63
 msgid "Preferred application starting with 'j' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'j':"
 
 #: ../Scooby-Do/data/messages:65
 msgid "Preferred application starting with 'k' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'k':"
 
 #: ../Scooby-Do/data/messages:67
 msgid "Preferred application starting with 'l' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'l':"
 
 #: ../Scooby-Do/data/messages:69
 msgid "Preferred application starting with 'm' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'm':"
 
 #: ../Scooby-Do/data/messages:71
 msgid "Preferred application starting with 'n' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'n':"
 
 #: ../Scooby-Do/data/messages:73
 msgid "Preferred application starting with 'o' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'o':"
 
 #: ../Scooby-Do/data/messages:75
 msgid "Preferred application starting with 'p' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'p':"
 
 #: ../Scooby-Do/data/messages:77
 msgid "Preferred application starting with 'q' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'q':"
 
 #: ../Scooby-Do/data/messages:79
 msgid "Preferred application starting with 'r' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'r':"
 
 #: ../Scooby-Do/data/messages:81
 msgid "Preferred application starting with 's' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 's':"
 
 #: ../Scooby-Do/data/messages:83
 msgid "Preferred application starting with 't' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 't':"
 
 #: ../Scooby-Do/data/messages:85
 msgid "Preferred application starting with 'u' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'u':"
 
 #: ../Scooby-Do/data/messages:87
 msgid "Preferred application starting with 'v' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'v':"
 
 #: ../Scooby-Do/data/messages:89
 msgid "Preferred application starting with 'w' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'w':"
 
 #: ../Scooby-Do/data/messages:91
 msgid "Preferred application starting with 'x' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'x':"
 
 #: ../Scooby-Do/data/messages:93
 msgid "Preferred application starting with 'y' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'y':"
 
 #: ../Scooby-Do/data/messages:95
 msgid "Preferred application starting with 'z' :"
-msgstr ""
+msgstr "Aplicativos preferidos começando com 'z':"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
 msgid "It's the color of the graphic for high values."
-msgstr ""
+msgstr "É a cor do gráfico para valores elevados."
 
 #: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
 msgid "It's the color of the graphic for low values."
-msgstr ""
+msgstr "É a cor do gráfico para valores baixos."
 
 #: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
 msgid "Show all values on same graph ?"
-msgstr ""
+msgstr "Mostrar todos os valores no mesmo gráfico?"
 
 #: ../System-Monitor/data/messages:121
 msgid "Show CPU usage ?"
-msgstr ""
+msgstr "Mostrar o uso da CPU?"
 
 #: ../System-Monitor/data/messages:123
 msgid "Show RAM usage ?"
-msgstr ""
+msgstr "Mostrar o uso da RAM?"
 
 #: ../System-Monitor/data/messages:125
 msgid "Show SWAP too ?"
-msgstr ""
+msgstr "Mostrar SWAP também?"
 
 #: ../System-Monitor/data/messages:127
 msgid "You need an nVidia and the 'nvidia-settings' tool."
-msgstr ""
+msgstr "Você precisa de uma nVidia e o componente 'nvidia-settings'"
 
 #: ../System-Monitor/data/messages:129
 msgid "Show graphic card temperature ?"
-msgstr ""
+msgstr "Mostrar a temperatura da placa de vídeo?"
 
 #: ../System-Monitor/data/messages:131
 msgid "Show free memory instead of used memory ?"
-msgstr ""
+msgstr "Mostrar a memória livre em vez de memória utilizada?"
 
 #: ../System-Monitor/data/messages:133
 msgid "Display values :"
-msgstr ""
+msgstr "Apresentar valores:"
 
 #: ../System-Monitor/data/messages:135 ../alsaMixer/data/messages:111
 #: ../clock/data/messages:89 ../netspeed/data/messages:135
 #: ../shortcuts/data/messages:113
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:115
 #: ../clock/data/messages:91 ../netspeed/data/messages:137
 msgid "On icon"
-msgstr ""
+msgstr "No ícones"
 
 #: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:113
 #: ../clock/data/messages:93 ../netspeed/data/messages:139
 msgid "On label"
-msgstr ""
+msgstr "No rótulo"
 
 #: ../System-Monitor/data/messages:143
 msgid "Delay between refresh :"
-msgstr ""
+msgstr "Atraso entre a(s) recarga(s):"
 
 #: ../System-Monitor/data/messages:151 ../netspeed/data/messages:143
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "Comando de usuário para mostrar um monitor do sistema:"
 
 #: ../System-Monitor/data/messages:153
 msgid ""
 "It will prevent the system monitor's icon to appear in the taskbar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Ele impedirá o ícone do monitor do sistema apareça na barra de tarefas. O "
+"ícone do applet irá se comportar como um lançador, um aplicativo e um applet."
 
 #: ../System-Monitor/data/messages:155
 msgid "Steal the system monitor's icon in taskbar ?"
-msgstr ""
+msgstr "Tirar o ícone do monitor do sistema na barra de tarefas?"
 
 #: ../System-Monitor/data/messages:159
 msgid "Class of the system monitor program:"
-msgstr ""
+msgstr "Classe do programa monitor do sistema:"
 
 #: ../System-Monitor/data/messages:161
 msgid "Top List"
-msgstr ""
+msgstr "Top List"
 
 #: ../System-Monitor/data/messages:163
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
 msgstr ""
+"Quando você der um clique esquerdo sobre o ícone, você terá a lista de N  "
+"mais CPU/RAM-usada pelos programas."
 
 #: ../System-Monitor/data/messages:165
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "Número de programas a serem exibidos no top list:"
 
 #: ../System-Monitor/data/messages:167
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "É a primeira cor da ordem usada para escrever o top list."
 
 #: ../System-Monitor/data/messages:169
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "Inicia a cor do top list:"
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "É a segunda cor da ordem usada para escrever o top list."
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "Para a cor do top list:"
 
 #: ../System-Monitor/data/messages:175
 msgid "Show top memory usage in % ?"
-msgstr ""
+msgstr "Mostrar o uso de memória alte e m%?"
 
 #: ../System-Monitor/data/messages:179
 msgid "Delay between refresh of the top list :"
-msgstr ""
+msgstr "Demora entre a atualização do top list:"
 
 #: ../System-Monitor/data/messages:181
 msgid "Graphic Card temperature"
-msgstr ""
+msgstr "Temperatura da placa de vídeo"
 
 #: ../System-Monitor/data/messages:183
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr ""
+"em Celsius (ºC). A temperatura será exibida entre este valor e o limite "
+"acima."
 
 #: ../System-Monitor/data/messages:185
 msgid "Lower limit of core temperature :"
-msgstr ""
+msgstr "Limite mínimo de temperatura do núcleo:"
 
 #: ../System-Monitor/data/messages:187
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
 msgstr ""
+"em Celsius (ºC). A temperatura será exibida entre o limite mínimo e este "
+"valor."
 
 #: ../System-Monitor/data/messages:189
 msgid "Upper limit of core temperature :"
-msgstr ""
+msgstr "Limite máximo da temperatura do núcleo:"
 
 #: ../System-Monitor/data/messages:191
 msgid "Alert when core temperature is high ?"
-msgstr ""
+msgstr "Alertar quando a temperatura do núcleo estiver alta?"
 
 #: ../System-Monitor/data/messages:193
 msgid "in celcius."
-msgstr ""
+msgstr "em Celsius (ºC)."
 
 #: ../System-Monitor/data/messages:195
 msgid "Alert limit of core temperature :"
-msgstr ""
+msgstr "Limite para alertar sobre a temperatura do núcleo:"
 
 #: ../System-Monitor/data/messages:197
 msgid "Play a sound during the alert ?"
-msgstr ""
+msgstr "Tocar um som durante o alerta?"
 
 #: ../System-Monitor/data/messages:199
 msgid "Sound path :"
-msgstr ""
+msgstr "Caminho do arquivo de som:"
 
 #: ../Toons/data/messages:83
 msgid "Keep ratio ?"
@@ -4172,15 +4237,15 @@ msgstr "Freqüência de atualização alta ?"
 
 #: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:103
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "Variação de 1 de rolagem do mouse, em %:"
 
 #: ../Xgamma/data/messages:89
 msgid "Set 0 to not use it."
-msgstr ""
+msgstr "Atruibua 0 para não usá-lo."
 
 #: ../Xgamma/data/messages:91
 msgid "Luminosity to automatically apply on startup :"
-msgstr ""
+msgstr "Luminosidade para aplicar automaticamente na inicialização:"
 
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
@@ -4189,22 +4254,25 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
+"Dependendo do seu WindowManager, você pode movê-lo com ALT + clique "
+"esquerdo. Os valores negativos são contados a partir da direita/inferior d "
+"tela"
 
 #: ../alsaMixer/data/messages:83
 msgid "Alsa"
-msgstr ""
+msgstr "Alsa"
 
 #: ../alsaMixer/data/messages:85
 msgid "Let empty to use the default sound card."
-msgstr ""
+msgstr "Deixe em branco para usar a placa de som padrão."
 
 #: ../alsaMixer/data/messages:87
 msgid "Sound card to control :"
-msgstr ""
+msgstr "Placa de som para controlar:"
 
 #: ../alsaMixer/data/messages:89
 msgid "Choose which channel to control :"
-msgstr ""
+msgstr "Escolha qual o canal para controlar:"
 
 #: ../alsaMixer/data/messages:91
 msgid ""
@@ -4212,283 +4280,308 @@ msgid ""
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
+"Em algumas placas, um canal só controla 1 lado (direito ou esquerdo). Em "
+"seguida, terá de especificar um segundo canal aqui, para controlar os dois "
+"lados. Na maioria das vezes, você deve apenas deixá-lo vazio."
 
 #: ../alsaMixer/data/messages:93
 msgid "Optionnally, choose a second channel to control :"
-msgstr ""
+msgstr "Opcionalmente, escolha um segundo canal para controlar:"
 
 #: ../alsaMixer/data/messages:95
 msgid "Let empty to use the defaut command."
-msgstr ""
+msgstr "Deixe em branco para usar o comando padrão."
 
 #: ../alsaMixer/data/messages:97
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "Especifique um comando para executar uma mesa de som avançado:"
 
 #: ../alsaMixer/data/messages:99
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 #: ../alsaMixer/data/messages:101
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr ""
+msgstr "Atalho para mostra/ocultar o diálogo de controle de som:"
 
 #: ../alsaMixer/data/messages:105
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr ""
+msgstr "Esconder a escala quando o mouse soltar o Desklet?"
 
 #: ../alsaMixer/data/messages:107 ../keyboard-indicator/data/messages:91
 #: ../musicPlayer/data/messages:129 ../slider/data/messages:133
 #: ../stack/data/messages:89 ../weather/data/messages:111
 msgid "Display"
-msgstr ""
+msgstr "Vídeo"
 
 #: ../alsaMixer/data/messages:109
 msgid "Display volume :"
-msgstr ""
+msgstr "Mostrar o volume:"
 
 #: ../alsaMixer/data/messages:117
 msgid "Effet to apply on the icon according to volume :"
-msgstr ""
+msgstr "Aplicar efeito sobre o ícone de acordo com o volume:"
 
 #: ../alsaMixer/data/messages:129
 msgid "Default icon :"
-msgstr ""
+msgstr "Ícone padrão:"
 
 #: ../alsaMixer/data/messages:133
 msgid "Broken icon :"
-msgstr ""
+msgstr "Ícone quebrado:"
 
 #: ../alsaMixer/data/messages:137
 msgid "Mute icon :"
-msgstr ""
+msgstr "Ícone Mudo:"
 
 #: ../clock/data/messages:7
 msgid "Let it empty to use the location's name if available."
-msgstr ""
+msgstr "Deixe-o em branco para usar o nome do local, se disponível."
 
 #: ../clock/data/messages:83 ../dustbin/data/messages:81
 #: ../shortcuts/data/messages:85
 msgid "Module"
-msgstr ""
+msgstr "Módulo"
 
 #: ../clock/data/messages:85 ../dnd2share/data/messages:95
 #: ../mail/data/messages:101 ../showDesktop/data/messages:87
 #: ../slider/data/messages:97
 msgid "Behaviour"
-msgstr ""
+msgstr "Comportamento"
 
 #: ../clock/data/messages:87
 msgid "Show the date :"
-msgstr ""
+msgstr "Mostrar a data:"
 
 #: ../clock/data/messages:95
 msgid "for numeric format only."
-msgstr ""
+msgstr "para o formato numérico."
 
 #: ../clock/data/messages:97
 msgid "Should the time be displayed as a 24h format ?"
-msgstr ""
+msgstr "Deve o tempo ser indicado como um formato 24h?"
 
 #: ../clock/data/messages:99
 msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr ""
+"Se não, então o minipaplicativo irá atualizar tempo, uma vez por minuto, "
+"economizando CPU."
 
 #: ../clock/data/messages:101
 msgid "Show seconds ?"
-msgstr ""
+msgstr "Mostrar segundos?"
 
 #: ../clock/data/messages:103
 msgid ""
 "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
 "animation. It requires OpenGL."
 msgstr ""
+"Em ms. Defina 0 para não ter uma animação suave, defina 1000 para ter uma "
+"animação contínua. Ele requer OpenGL."
 
 #: ../clock/data/messages:105
 msgid "Display seconds with smooth animation of a duration of :"
-msgstr ""
+msgstr "Apresenta os segundos com animação estável de uma duração de:"
 
 #: ../clock/data/messages:107
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
 msgstr ""
+"Por exemplo: Europa/Paris, : Japão, etc. Deixe vazio para obter a hora local."
 
 #: ../clock/data/messages:109
 msgid "Timezone :"
-msgstr ""
+msgstr "Fuso horário:"
 
 #: ../clock/data/messages:111
 msgid "Style"
-msgstr ""
+msgstr "Estilo"
 
 #: ../clock/data/messages:113
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
 msgstr ""
+"A exibição analógica é  baseada no CairoClock;  caso contrário não será "
+"indicada em uma forma numérica."
 
 #: ../clock/data/messages:115
 msgid "Choose the view :"
-msgstr ""
+msgstr "Escolha o modo de exibição:"
 
 #: ../clock/data/messages:117
 msgid "Analogic"
-msgstr ""
+msgstr "Analógico"
 
 #: ../clock/data/messages:119
 msgid "Numeric"
-msgstr ""
+msgstr "Numérico"
 
 #: ../clock/data/messages:121
 msgid "Numeric View"
-msgstr ""
+msgstr "Exibição numérica"
 
 #: ../clock/data/messages:123
 msgid "Font used for the numeric display :"
-msgstr ""
+msgstr "Fonte usada para a exibição numérica:"
 
 #: ../clock/data/messages:125
 msgid "Text color for the numeric display:"
-msgstr ""
+msgstr "Cor do texto para a exibição numérica:"
 
 #: ../clock/data/messages:127
 msgid "Image to draw on the background :"
-msgstr ""
+msgstr "Image parao plano de fundo:"
 
 #: ../clock/data/messages:129
 msgid "Ratio to apply on text :"
-msgstr ""
+msgstr "Relação a aplicar-se no texto:"
 
 #: ../clock/data/messages:131
 msgid "Analogic View"
-msgstr ""
+msgstr "Exibição analógica"
 
 #: ../clock/data/messages:133
 msgid "List of available themes for the analogic display :"
-msgstr ""
+msgstr "Lista de temas disponíveis para a exibição analógica:"
 
 #: ../clock/data/messages:135
 msgid "Text color of the date :"
-msgstr ""
+msgstr "Cor de texto da data:"
 
 #: ../clock/data/messages:137
 msgid "Setup time and date"
-msgstr ""
+msgstr "Configuração de data e hora"
 
 #: ../clock/data/messages:139
 msgid "Let empty to use default command."
-msgstr ""
+msgstr "Deixe em branco para usar o comando padrão."
 
 #: ../clock/data/messages:141
 msgid "Specific command to run :"
-msgstr ""
+msgstr "Especifique o comando para executar:"
 
 #: ../clock/data/messages:143
 msgid "Alarm"
-msgstr ""
+msgstr "Alarme"
 
 #: ../clock/data/messages:145
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
+"O novo alarme será adicionado ao final / o último alarme será removido."
 
 #: ../clock/data/messages:147
 msgid "Add or remove an alarm :"
-msgstr ""
+msgstr "Adicionar ou remover um alarme:"
 
 #: ../compiz-icon/data/messages:85
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
+"Exceto para mudar para outro WM, você deve ativar o plug-in Dbus no Compiz, "
+"junto com o plug-in correspondente à ação desejada."
 
 #: ../compiz-icon/data/messages:87
 msgid "Choose an action for the middle click on the icon :"
-msgstr ""
+msgstr "Escolha uma ação para o clique do meio no ícone:"
 
 #: ../compiz-icon/data/messages:91
 msgid "Switch WM"
-msgstr ""
+msgstr "Alterar WM"
 
 #: ../compiz-icon/data/messages:95
 msgid "Expose"
-msgstr ""
+msgstr "Expor"
 
 #: ../compiz-icon/data/messages:97
 msgid "Show Desktop"
-msgstr ""
+msgstr "Mostrar área de trabalho"
 
 #: ../compiz-icon/data/messages:99
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
 msgstr ""
+"Este comando será utilizado para lançar o sistema WM; deixe em branco para "
+"utilizar o padrão."
 
 #: ../compiz-icon/data/messages:101
 msgid "Custom command for system's Windows Manager :"
-msgstr ""
+msgstr "Personalizar o comando para o sistema do Windows Manager:"
 
 #: ../compiz-icon/data/messages:103
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
 msgstr ""
+"Se inesperadamente Compiz fechar, o Cairo-Dock irá reiniciá-lo.  Então, você "
+"tem que fechar o Compiz do dock."
 
 #: ../compiz-icon/data/messages:105
 msgid "Auto-reload Compiz ?"
-msgstr ""
+msgstr "Recarregar o Compiz automaticamente?"
 
 #: ../compiz-icon/data/messages:107
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
 msgstr ""
+"Se o decorador fechar inesperadamente, Cairo-Dock o reiniciará. Depois, você "
+"tem que fechar o Compiz do dock."
 
 #: ../compiz-icon/data/messages:109
 msgid "Auto-reload the Decorator ?"
-msgstr ""
+msgstr "Recarregar o Decorator automaticamente?"
 
 #: ../compiz-icon/data/messages:111
 msgid "Load Compiz with options at applet's startup."
-msgstr ""
+msgstr "Carrega o Compiz com opções na inicialização do miniaplicativo."
 
 #: ../compiz-icon/data/messages:113
 msgid "Force Compiz settings at startup ?"
-msgstr ""
+msgstr "Forçar as configurações do Compiz na inicialização?"
 
 #: ../compiz-icon/data/messages:115
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
+"Impedirá o que o ícone do CSSM ou do Emerald apareça na barra de tarefas. Os "
+"ícones dos sub-docks correspondentes serão em seguida  lançadores e um appli."
 
 #: ../compiz-icon/data/messages:117 ../mail/data/messages:127
 msgid "Steal the application's icon in taskbar ?"
-msgstr ""
+msgstr "Retirar o ícones do aplicativo da barra de tarefas?"
 
 #: ../compiz-icon/data/messages:119
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
 msgstr ""
+"Mostar no sub-dock do miniaplicativo 2 ícones dos plug-ins para Compiz "
+"Exposition & Widget Layer. Caso contrário, estarão disponíveis no menu."
 
 #: ../compiz-icon/data/messages:121
 msgid "Add Exposition & Widget Layer to sub-dock ?"
-msgstr ""
+msgstr "Adicionar Exposition & Widget Layer no sub-dock?"
 
 #: ../compiz-icon/data/messages:123
 msgid ""
 "Display in the applet's sub-dock an icon for the Emerald's configuration "
 "panel."
 msgstr ""
+"Mostrar no sub-dock dos miniaplicativos um ícones para o painel de "
+"configuração do Emeral."
 
 #: ../compiz-icon/data/messages:125
 msgid "Add Emerald's Configuration to sub-dock ?"
-msgstr ""
+msgstr "Adicionar a configuração do Emerald no sub-dock?"
 
 #: ../compiz-icon/data/messages:127
 msgid "Compiz Options"
-msgstr ""
+msgstr "Opções do Compiz"
 
 #: ../compiz-icon/data/messages:129
 msgid ""
@@ -4497,68 +4590,72 @@ msgid ""
 "when binding textures, that's why this option gives a heavy performance "
 "increase on Nvidia."
 msgstr ""
+"Com a execução restrita da textura ela está obrigatoriamente ativa, com a "
+"perda da execução ela está ativa quando criada.  O driver do Nvidia parece "
+"um pouco lento quando as texturas são executadas, é por isso que esta opção "
+"dá um aumento de desempenho no Nvidia."
 
 #: ../compiz-icon/data/messages:131
 msgid "Use Loose Binding ?"
-msgstr ""
+msgstr "Usar a perda de execução?"
 
 #: ../compiz-icon/data/messages:133
 msgid "Use thoses options only if you know them."
-msgstr ""
+msgstr "Use tais opções apenas se você conhecê-las."
 
 #: ../compiz-icon/data/messages:135
 msgid "Use Indirect Rendering ?"
-msgstr ""
+msgstr "Usar renderização indireta?"
 
 #: ../compiz-icon/data/messages:137
 msgid "Usefull when having dual or more X separate screens."
-msgstr ""
+msgstr "Útil quando se tem dual X ou mais telas separadas."
 
 #: ../compiz-icon/data/messages:139
 msgid "Only Current Screen ?"
-msgstr ""
+msgstr "Somente a tela atual?"
 
 #: ../compiz-icon/data/messages:141
 msgid "By default it will be Emerald."
-msgstr ""
+msgstr "Por padrão, ela será Emerald."
 
 #: ../compiz-icon/data/messages:143
 msgid "Choose your Windows Decorator :"
-msgstr ""
+msgstr "Escolha o seu Windows Decorator:"
 
 #: ../compiz-icon/data/messages:145
 msgid "emerald"
-msgstr ""
+msgstr "emerald"
 
 #: ../compiz-icon/data/messages:147
 msgid "gtk-window-decorator"
-msgstr ""
+msgstr "gtk-window-decorator"
 
 #: ../compiz-icon/data/messages:149
 msgid "kde-window-decorator"
-msgstr ""
+msgstr "kde-window-decorator"
 
 #: ../compiz-icon/data/messages:151
 msgid "heliodor"
-msgstr ""
+msgstr "Berilo"
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
 #: ../switcher/data/messages:139 ../tomboy/data/messages:103
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
-msgstr ""
+msgstr "Deixe-o em branco para usar a exibição padrão do sub-dock."
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
 #: ../switcher/data/messages:141 ../tomboy/data/messages:105
 #: ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
-msgstr ""
+msgstr "Nome da visualização usada para o sub-dock :"
 
 #: ../compiz-icon/data/messages:157
 msgid "Images"
-msgstr ""
+msgstr "Imagens"
 
 #: ../compiz-icon/data/messages:159 ../compiz-icon/data/messages:163
 #: ../compiz-icon/data/messages:167 ../compiz-icon/data/messages:171
@@ -4567,250 +4664,251 @@ msgstr ""
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
 #: ../tomboy/data/messages:21 ../tomboy/data/messages:25
 msgid "Let t empty to use the default icon."
-msgstr ""
+msgstr "Deixe-o em branco para usar o ícone padrão."
 
 #: ../compiz-icon/data/messages:161 ../musicPlayer/data/messages:159
 #: ../tomboy/data/messages:15
 msgid "Name of an image for the 'default' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'padrão':"
 
 #: ../compiz-icon/data/messages:165 ../musicPlayer/data/messages:175
 #: ../tomboy/data/messages:23
 msgid "Name of an image for the 'broken' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'quebrado':"
 
 #: ../compiz-icon/data/messages:169
 msgid "Name of an image for the 'other wm' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'outro WM':"
 
 #: ../compiz-icon/data/messages:173
 msgid "Name of an image for the 'setting' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Configurações':"
 
 #: ../compiz-icon/data/messages:177
 msgid "Name of an image for the 'emerald' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone \"Emerald':"
 
 #: ../compiz-icon/data/messages:181
 msgid "Name of an image for the 'reload' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Recarregar':"
 
 #: ../compiz-icon/data/messages:185
 msgid "Name of an image for the 'exposition' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'Exposição':"
 
 #: ../compiz-icon/data/messages:189
 msgid "Name of an image for the 'widget layer' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'camada widget':"
 
 #: ../dialog-rendering/data/messages:1
 msgid "Comics"
-msgstr ""
+msgstr "Quadrinhos"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:109
 msgid "Corner radius :"
-msgstr ""
+msgstr "Raio do canto :"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
 msgid "Border width :"
-msgstr ""
+msgstr "Largura da borda:"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Line color of the bubble :"
-msgstr ""
+msgstr "Cor de linha da bolha:"
 
 #: ../dialog-rendering/data/messages:9
 msgid "Modern"
-msgstr ""
+msgstr "Moderno"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
-msgstr ""
+msgstr "Espaço entre as linhas da dica:"
 
 #: ../dialog-rendering/data/messages:23
 msgid "Border width of the plane :"
-msgstr ""
+msgstr "Largura da borda do avião:"
 
 #: ../dialog-rendering/data/messages:25
 msgid "Line color of the plane :"
-msgstr ""
+msgstr "Cor de linha do avião:"
 
 #: ../dialog-rendering/data/messages:27
 msgid "Color of the plane :"
-msgstr ""
+msgstr "Cor do avião:"
 
 #: ../dialog-rendering/data/messages:29
 msgid "Tooltip"
-msgstr ""
+msgstr "Dica de ferramenta"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Color of the margin :"
-msgstr ""
+msgstr "Cor da margem:"
 
 #: ../dialog-rendering/data/messages:39
 msgid "Curly"
-msgstr ""
+msgstr "Ondulado"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
-msgstr ""
+msgstr "Curvatura da dica:"
 
 #: ../dialog-rendering/data/messages:49
 msgid "Curve the sides too ?"
-msgstr ""
+msgstr "Lados arredondados também?"
 
 #: ../dnd2share/data/messages:87
 msgid "Info-bubbles"
-msgstr ""
+msgstr "Balões de informação"
 
 #: ../dnd2share/data/messages:89
 msgid "Enable info-bubbles ?"
-msgstr ""
+msgstr "Ativar balões de informação?"
 
 #: ../dnd2share/data/messages:93
 msgid "Duration of the info-bubbles :"
-msgstr ""
+msgstr "Duração dos balões de informação:"
 
 #: ../dnd2share/data/messages:97
 msgid "Number of items to keep in the history :"
-msgstr ""
+msgstr "Número de itens para manter no histórico:"
 
 #: ../dnd2share/data/messages:99
 msgid "Keep a copy of each uploaded image ?"
-msgstr ""
+msgstr "Manter uma cópia de cada imagem carregada?"
 
 #: ../dnd2share/data/messages:101
 msgid "This will override the image setting."
-msgstr ""
+msgstr "Isto irá substituir a definição de imagem."
 
 #: ../dnd2share/data/messages:103
 msgid "If so, display the last image on the icon ?"
-msgstr ""
+msgstr "Se assim for, exibir a última imagem do ícone?"
 
 #: ../dnd2share/data/messages:105
 msgid "in KB/s - 0 means unlimited"
-msgstr ""
+msgstr "em KB / s - 0 significa ilimitado"
 
 #: ../dnd2share/data/messages:107
 msgid "Maximum upload rate:"
-msgstr ""
+msgstr "Taxa máx. de envio:"
 
 #: ../dnd2share/data/messages:109
 msgid "Animation of the icon during upload :"
-msgstr ""
+msgstr "Animação do ícone durante o carregamento:"
 
 #: ../dnd2share/data/messages:111
 msgid "Sites"
-msgstr ""
+msgstr "Sites"
 
 #: ../dnd2share/data/messages:113
 msgid "Preferred site for texts hosting :"
-msgstr ""
+msgstr "Site preferido para hospedagem do(s) texto(s):"
 
 #: ../dnd2share/data/messages:115 ../dnd2share/data/messages:121
 #: ../dnd2share/data/messages:131 ../dnd2share/data/messages:137
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: ../dnd2share/data/messages:117
 msgid "Pastebin.ca"
-msgstr ""
+msgstr "Pastebin.ca"
 
 #: ../dnd2share/data/messages:119
 msgid "Preferred site for images hosting :"
-msgstr ""
+msgstr "Site preferido para hospedagem da(s) imagem(ns):"
 
 #: ../dnd2share/data/messages:123
 msgid "Uppix.net"
-msgstr ""
+msgstr "Uppix.net"
 
 #: ../dnd2share/data/messages:125
 msgid "Imagebin.ca"
-msgstr ""
+msgstr "Imagebin.ca"
 
 #: ../dnd2share/data/messages:127
 msgid "ImageShack.us"
-msgstr ""
+msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:129
 msgid "Preferred site for videos hosting :"
-msgstr ""
+msgstr "Site preferido para hospedagem do(s) vídeo(s):"
 
 #: ../dnd2share/data/messages:133
 msgid "VideoBin.org"
-msgstr ""
+msgstr "VideoBin.org"
 
 #: ../dnd2share/data/messages:135
 msgid "Preferred site for files hosting :"
-msgstr ""
+msgstr "Site preferido para hospedagem do(s) arquivo(s):"
 
 #: ../dnd2share/data/messages:139
 msgid "dl.free.fr"
-msgstr ""
+msgstr "dl.free.fr"
 
 #: ../dnd2share/data/messages:141
 msgid "DropBox"
-msgstr ""
+msgstr "DropBox"
 
 #: ../dnd2share/data/messages:143
 msgid "Custom script for text upload : "
-msgstr ""
+msgstr "Personalizar o script para carregar o(s) texto(s): "
 
 #: ../dnd2share/data/messages:145
 msgid "Custom script for image upload : "
-msgstr ""
+msgstr "Personalizar o script para carregar a(s) imagem(ns): "
 
 #: ../dnd2share/data/messages:147
 msgid "Custom script for video upload : "
-msgstr ""
+msgstr "Personalizar o script para carregar o(s) vídeo(s): "
 
 #: ../dnd2share/data/messages:149
 msgid "Custom script for file upload : "
-msgstr ""
+msgstr "Personalizar o script para carregar o(s) arquivo(s): "
 
 #: ../dnd2share/data/messages:151
 msgid "Let empty to upload files into '~/Dropbox/Public'."
 msgstr ""
+"Deixe em branco para carregar os arquivos a partir de '~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:153
 msgid "Path of the DropBox folder :"
-msgstr ""
+msgstr "Caminho da pasta do Dropbox."
 
 #: ../dock-rendering/data/messages:1
 msgid "Inclinated Plane"
-msgstr ""
+msgstr "Avião inclinado"
 
 #: ../dock-rendering/data/messages:3
 msgid "The lower, the more the point of view is low on the plane."
-msgstr ""
+msgstr "Mais baixo, mais o ponto da visão é baixo no avião."
 
 #: ../dock-rendering/data/messages:5
 msgid "Height of the vanishing point :"
-msgstr ""
+msgstr "Altura do ponto de fuga:"
 
 #: ../dock-rendering/data/messages:7 ../dock-rendering/data/messages:131
 msgid "Choose the way separators are drawn :"
-msgstr ""
+msgstr "Escolha a forma como são elaborados os separadores:"
 
 #: ../dock-rendering/data/messages:9 ../dock-rendering/data/messages:133
 msgid "Normal separator"
-msgstr ""
+msgstr "Separador Normal"
 
 #: ../dock-rendering/data/messages:11 ../dock-rendering/data/messages:135
 msgid "Flat separator"
-msgstr ""
+msgstr "Separador horizontal"
 
 #: ../dock-rendering/data/messages:13 ../dock-rendering/data/messages:137
 msgid "Physical separator"
-msgstr ""
+msgstr "Separador físico"
 
 #: ../dock-rendering/data/messages:15
 msgid "For flat separators, you can specify their color:"
-msgstr ""
+msgstr "Para separadores horizontais, você pode especificar a cor deles:"
 
 #: ../dock-rendering/data/messages:19
 msgid ""
@@ -4818,465 +4916,494 @@ msgid ""
 "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
 "the plane is not inclined at all (vertical)."
 msgstr ""
+"Em graus, em relação à posição vertical. É uma espécie de inclinação do "
+"avião na horizontal, dando a sensação de 3D. Assim, o valor de 0 significa "
+"que o avião não está inclinado totalmente (vertical)."
 
 #: ../dock-rendering/data/messages:21
 msgid "Inclination of the plane :"
-msgstr ""
+msgstr "Inclinação do avião:"
 
 #: ../dock-rendering/data/messages:23
 msgid ""
 "0.5 means the dock is half-folded, so half the icons are on the foreground, "
 "and half are on the background."
 msgstr ""
+"0,5 significa que o encaixe é meio-dobrado, de modo a uma metade dos ícones "
+"está em primeiro plano, e outra metade está no fundo."
 
 #: ../dock-rendering/data/messages:25
 msgid "Percentage of the dock's width that appears on the foreground :"
-msgstr ""
+msgstr "Percentagem de largura do dock que aparece em primeiro plano:"
 
 #: ../dock-rendering/data/messages:27
 msgid ""
 "The greater, the deeper. It is in fact the gap between background icons' "
 "bottom and foreground icons' top (in pixels)."
 msgstr ""
+"O maior, mais profundo. É, de fato, a depressão entre a parte inferior "
+"ícones e o seu topo 'ícones de fundo e primeiro plano' em (pixels)."
 
 #: ../dock-rendering/data/messages:29
 msgid "Depth of the plane :"
-msgstr ""
+msgstr "Profundidade do avião:"
 
 #: ../dock-rendering/data/messages:31
 msgid "otherwise they will turn."
-msgstr ""
+msgstr "caso contrário, ele virará."
 
 #: ../dock-rendering/data/messages:33
 msgid "Always show icons' face ?"
-msgstr ""
+msgstr "Sempre mostrar a face dos ícones?"
 
 #: ../dock-rendering/data/messages:37
 msgid "The higher it is, the sooner the parabole will be curved."
-msgstr ""
+msgstr "É o elevado, a parábola estará curvada ao máximo."
 
 #: ../dock-rendering/data/messages:39
 msgid "Curvature :"
-msgstr ""
+msgstr "Curvatura:"
 
 #: ../dock-rendering/data/messages:41
 msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr ""
+msgstr "A parábola estará constrita em um retângulo desta proporção."
 
 #: ../dock-rendering/data/messages:43
 msgid "Ratio height/width :"
-msgstr ""
+msgstr "Proporção  altura / largura:"
 
 #: ../dock-rendering/data/messages:45
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr ""
+"0 significa que a onda é totalmente plana, 1 que  a onda está no máximo."
 
 #: ../dock-rendering/data/messages:47 ../dock-rendering/data/messages:65
 msgid "Magnitude of the wave :"
-msgstr ""
+msgstr "Amplitude da onda:"
 
 #: ../dock-rendering/data/messages:51
 msgid "Space between icons and their label :"
-msgstr ""
+msgstr "Espaço entre os ícones e seus rótulos:"
 
 #: ../dock-rendering/data/messages:53
 msgid ""
 "It may recquire more CPU during the unfolding animation, except with OpenGL."
 msgstr ""
+"Pode requerer mais da CPU durante a animação de desdobrar, exceto com o "
+"OpenGL."
 
 #: ../dock-rendering/data/messages:55
 msgid "Draw labels while unfolding ?"
-msgstr ""
+msgstr "Desanhar rótulo enquanto desdobra?"
 
 #: ../dock-rendering/data/messages:59 ../dock-rendering/data/messages:85
 msgid "Space between rows :"
-msgstr ""
+msgstr "Espaço entre linhas:"
 
 #: ../dock-rendering/data/messages:61
 msgid "Space between icons :"
-msgstr ""
+msgstr "Espaço entre ícones :"
 
 #: ../dock-rendering/data/messages:63
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
 msgstr ""
+"0 significa que a onda é totalmente plana, 1 fica que a onda é idêntica a "
+"outros pontos de vista."
 
 #: ../dock-rendering/data/messages:67
 msgid "Number of icons on the first row :"
-msgstr ""
+msgstr "Número de ícones na primeira linha:"
 
 #: ../dock-rendering/data/messages:69
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
 msgstr ""
+"em graus. O menor, aparenta um cone  estreito. 180 º o cone está "
+"completamente aberto."
 
 #: ../dock-rendering/data/messages:71
 msgid "Cone's width :"
-msgstr ""
+msgstr "Largura do cone:"
 
 #: ../dock-rendering/data/messages:73
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
 msgstr ""
+"Ajustar a transparência para 0   para não usá-la. É muito lento com o Cairo."
 
 #: ../dock-rendering/data/messages:75
 msgid "Bow color :"
-msgstr ""
+msgstr "Cor do arco:"
 
 #: ../dock-rendering/data/messages:77
 msgid "Line color :"
-msgstr ""
+msgstr "Cor da linha:"
 
 #: ../dock-rendering/data/messages:79
 msgid "SimpleSlide"
-msgstr ""
+msgstr "Slide simples"
 
 #: ../dock-rendering/data/messages:81
 msgid "Grid"
-msgstr ""
+msgstr "Grade"
 
 #: ../dock-rendering/data/messages:83
 msgid "Space between columns :"
-msgstr ""
+msgstr "Espaço entre as colunas:"
 
 #: ../dock-rendering/data/messages:87
 msgid "Max size of icons :"
-msgstr ""
+msgstr "Tamanho máximo dos ícones:"
 
 #: ../dock-rendering/data/messages:89
 msgid "Sinusoidal wave radius :"
-msgstr ""
+msgstr "Raio da onda senoidal:"
 
 #: ../dock-rendering/data/messages:91
 msgid "Use a linear wave rather than a sinusoidal one ?"
-msgstr ""
+msgstr "Usar uma onda linear ao invés de uma senoidal?"
 
 #: ../dock-rendering/data/messages:93
 msgid "Pack icons rather horizontally than vertically ?"
-msgstr ""
+msgstr "Pacote de ícones em vez de na horizontal ou vertical?"
 
 #: ../dock-rendering/data/messages:95
 msgid "Display text for all icons ?"
-msgstr ""
+msgstr "Exibe o texto para todos os ícones?"
 
 #: ../dock-rendering/data/messages:97
 msgid "Frame"
-msgstr ""
+msgstr "Quadro"
 
 #: ../dock-rendering/data/messages:99
 msgid "Draw a background ?"
-msgstr ""
+msgstr "Desenhar plano de fundo?"
 
 #: ../dock-rendering/data/messages:101
 msgid "First gradient color :"
-msgstr ""
+msgstr "Primeira cor gradiente:"
 
 #: ../dock-rendering/data/messages:103
 msgid "Second gradient color :"
-msgstr ""
+msgstr "Segunda cor gradiente:"
 
 #: ../dock-rendering/data/messages:105
 msgid "Top to bottom gradient ?"
-msgstr ""
+msgstr "Gradiente de cima para baixo?"
 
 #: ../dock-rendering/data/messages:107
 msgid "Left to right gradient ?"
-msgstr ""
+msgstr "Gradiente da esquerda para a direita?"
 
 #: ../dock-rendering/data/messages:111
 msgid "Border line width :"
-msgstr ""
+msgstr "Largura da linha da borda:"
 
 #: ../dock-rendering/data/messages:113
 msgid "Border line color :"
-msgstr ""
+msgstr "Cor da linha da borda:"
 
 #: ../dock-rendering/data/messages:115
 msgid "Arrow width :"
-msgstr ""
+msgstr "Largura da seta:"
 
 #: ../dock-rendering/data/messages:117
 msgid "Arrow Height :"
-msgstr ""
+msgstr "Altura da seta:"
 
 #: ../dock-rendering/data/messages:119
 msgid "Arrow shift percent :"
-msgstr ""
+msgstr "Movimento da seta %:"
 
 #: ../dock-rendering/data/messages:123
 msgid "The lower, the more the curve will seem flat."
-msgstr ""
+msgstr "O menor,  a curva parecerá plana."
 
 #: ../dock-rendering/data/messages:125
 msgid "Curvature of the curve in percent :"
-msgstr ""
+msgstr "Curvatura da curva em porcentagem:"
 
 #: ../dock-rendering/data/messages:129
 msgid "Amplitude of the curve."
-msgstr ""
+msgstr "Amplitude da curva."
 
 #: ../drop-indicator/data/messages:3
 msgid ""
 "Typically an arrow, that will be displayed when you try to drop a new "
 "launcher into the dock. Let empty to use the default one."
 msgstr ""
+"Normalmente numa seta, que será exibida quando você tentar soltar um novo "
+"lançador no dock. Deixe em branco para usar o padrão."
 
 #: ../drop-indicator/data/messages:5
 msgid "Image for the drag'n'drop animation :"
-msgstr ""
+msgstr "Imagem para a animação 'arrastar e soltar':"
 
 #: ../drop-indicator/data/messages:7
 msgid ""
 "An emblem that will be displayed when you try to drop something onto an "
 "icon. Let empty to use the default one."
 msgstr ""
+"Um símbolo que será exibido quando você tenta soltar alguma coisa sobre um "
+"ícone. Deixe em branco para usar o padrão."
 
 #: ../drop-indicator/data/messages:9
 msgid "Image when hovering an icon :"
-msgstr ""
+msgstr "Imagem quando flutuar no ar um ícone:"
 
 #: ../drop-indicator/data/messages:11
 msgid "Speed :"
-msgstr ""
+msgstr "Velocidade :"
 
 #: ../drop-indicator/data/messages:13
 msgid "Number of round per second."
-msgstr ""
+msgstr "Número de voltas por segundo."
 
 #: ../drop-indicator/data/messages:15 ../illusion/data/messages:75
 #: ../show-mouse/data/messages:7
 msgid "Rotation speed :"
-msgstr ""
+msgstr "Velocidade de rotação:"
 
 #: ../dustbin/data/messages:83
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: ../dustbin/data/messages:87
 msgid "Name of an image to overwrite the theme's empty image :"
-msgstr ""
+msgstr "Nome de uma imagem para substituir a imagem vazia do tema:"
 
 #: ../dustbin/data/messages:89
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr ""
+msgstr "Nome de uma imagem para substituir a imagem completa do tema:"
 
 #: ../dustbin/data/messages:91
 msgid "Config"
-msgstr ""
+msgstr "Configurar"
 
 #: ../dustbin/data/messages:93
 msgid "Display the following quick info :"
-msgstr ""
+msgstr "Mostrar a seguinte informação rápida:"
 
 #: ../dustbin/data/messages:97
 msgid "Number of trashes"
-msgstr ""
+msgstr "Número de lixeiras"
 
 #: ../dustbin/data/messages:99
 msgid "Total number of files"
-msgstr ""
+msgstr "Número total de arquivos"
 
 #: ../dustbin/data/messages:101
 msgid "Total weight"
-msgstr ""
+msgstr "Tamanho total"
 
 #: ../dustbin/data/messages:103 ../dustbin/data/messages:107
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
+"em MB. Você será notificado quando esse limite for ultrapassado. Defina 0 "
+"para não usá-lo."
 
 #: ../dustbin/data/messages:105
 msgid "Maximum total size of all dustbins :"
-msgstr ""
+msgstr "O tamanho máximo total de todas as lixeiras:"
 
 #: ../dustbin/data/messages:109
 msgid "Maximum size authorized for each dustbin :"
-msgstr ""
+msgstr "O tamanho máximo autorizado para cada lixeira:"
 
 #: ../dustbin/data/messages:111
 msgid "Ask confirmation before empty Trash ?"
-msgstr ""
+msgstr "Pedir confirmação antes de esvair a lixeira?"
 
 #: ../dustbin/data/messages:113
 msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
+"Se a pasta Lixiera não é informada pelo dock, você pode especificá-la aqui:"
 
 #: ../dustbin/data/messages:117
 msgid "in seconds, only used if you can't monitor directories."
-msgstr ""
+msgstr "em segundos, usado somente se você não puder monitorar diretórios."
 
 #: ../dustbin/data/messages:119
 msgid "Interval of time to check if dustbin is full/empty :"
-msgstr ""
+msgstr "Intervalo de tempo para verificar se a lixeira está cheia / vazia:"
 
 #: ../dustbin/data/messages:121
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
+"Só use isso se você notar que o mniaplicativo não pode exibir a lixeira ao "
+"clicá-la."
 
 #: ../dustbin/data/messages:123
 msgid "Alternative file browser used to show a trash :"
-msgstr ""
+msgstr "Navegador de arquivos alternativo usado para mostrar uma lixeira:"
 
 #: ../icon-effect/data/messages:59
 msgid "Draw in background ?"
-msgstr ""
+msgstr "Desenhar plano de fundo?"
 
 #: ../icon-effect/data/messages:61
 msgid "Rotate effects with dock ?"
-msgstr ""
+msgstr "Efeito de rotação com dock?"
 
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:89
 #: ../icon-effect/data/messages:107 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:143
 msgid "In ms. Set 0 to not use this effect."
-msgstr ""
+msgstr "em ms. Defina 0 para não usar esse efeito."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
 msgstr ""
+"Ele alterará ligeiramente as cores, assim você pode ter que modificá-las."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
-msgstr ""
+msgstr "Adicionar luminosidade?"
 
 #: ../icon-effect/data/messages:81 ../icon-effect/data/messages:101
 #: ../icon-effect/data/messages:117 ../icon-effect/data/messages:135
 #: ../icon-effect/data/messages:153 ../illusion/data/messages:41
 msgid "Number of particles :"
-msgstr ""
+msgstr "Número de partículas:"
 
 #: ../icon-effect/data/messages:83 ../icon-effect/data/messages:103
 #: ../icon-effect/data/messages:119 ../icon-effect/data/messages:137
 #: ../icon-effect/data/messages:155 ../illusion/data/messages:43
 #: ../show-mouse/data/messages:25
 msgid "Particle size :"
-msgstr ""
+msgstr "Tamanho da partícula:"
 
 #: ../icon-effect/data/messages:85 ../icon-effect/data/messages:121
 #: ../icon-effect/data/messages:139 ../illusion/data/messages:45
 msgid "Particle speed :"
-msgstr ""
+msgstr "Velocidade da partícula:"
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance :"
-msgstr ""
+msgstr "Animação de desvanecimento:"
 
 #: ../illusion/data/messages:5 ../illusion/data/messages:19
 #: ../illusion/data/messages:31
 msgid "Evaporate"
-msgstr ""
+msgstr "Evaporar"
 
 #: ../illusion/data/messages:7 ../illusion/data/messages:21
 #: ../illusion/data/messages:49
 msgid "Fade out"
-msgstr ""
+msgstr "Esvanecer"
 
 #: ../illusion/data/messages:9 ../illusion/data/messages:23
 #: ../illusion/data/messages:53
 msgid "Explode"
-msgstr ""
+msgstr "Explosão"
 
 #: ../illusion/data/messages:11 ../illusion/data/messages:25
 #: ../illusion/data/messages:63
 msgid "Break"
-msgstr ""
+msgstr "Interrupção"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 msgid "BlackHole"
-msgstr ""
+msgstr "Buraco negro"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
-msgstr ""
+msgstr "Randômico"
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance :"
-msgstr ""
+msgstr "Animação de esvanecimento:"
 
 #: ../illusion/data/messages:47
 msgid "Evaporate upward ?"
-msgstr ""
+msgstr "Evaporar para cima?"
 
 #: ../illusion/data/messages:57 ../illusion/data/messages:67
 msgid "Number of pieces :"
-msgstr ""
+msgstr "Número de partículas:"
 
 #: ../illusion/data/messages:59
 msgid "Explosion radius :"
-msgstr ""
+msgstr "Raio de explosão:"
 
 #: ../illusion/data/messages:61
 msgid "Break the icon in cubes ?"
-msgstr ""
+msgstr "Quebrar o ícone em forma de cubos?"
 
 #: ../illusion/data/messages:69
 msgid "Black Hole"
-msgstr ""
+msgstr "Buraco negro"
 
 #: ../illusion/data/messages:73
 msgid "in round per second."
-msgstr ""
+msgstr "em voltas por segundo."
 
 #: ../illusion/data/messages:77
 msgid "The greatest, the fastest the icon will collapse to the center."
-msgstr ""
+msgstr "O maior, mais rápido será o ícone do colapso do centro."
 
 #: ../illusion/data/messages:79
 msgid "Attraction of the hole :"
-msgstr ""
+msgstr "Atração do buraco:"
 
 #: ../keyboard-indicator/data/messages:83
 msgid "caps lock, num lock, etc"
-msgstr ""
+msgstr "caps lock, num lock, etc"
 
 #: ../keyboard-indicator/data/messages:85
 msgid "Display keyboard locks as quick-info ?"
-msgstr ""
+msgstr "Exibe o bloqueio do teclado enquanto apresenta informações?"
 
 #: ../keyboard-indicator/data/messages:87
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
+"em ms. Configurá-lo para 0 se você não quer uma animação quando muda a "
+"disposição do teclado."
 
 #: ../keyboard-indicator/data/messages:89
 msgid "Duration of the transition animation :"
-msgstr ""
+msgstr "Duração da animação de transição:"
 
 #: ../keyboard-indicator/data/messages:93
 msgid "Font :"
-msgstr ""
+msgstr "Fonte:"
 
 #: ../keyboard-indicator/data/messages:95
 msgid "Text color"
-msgstr ""
+msgstr "Cor do texto"
 
 #: ../keyboard-indicator/data/messages:97
 msgid "Outline text ?"
-msgstr ""
+msgstr "Texto do contorno?"
 
 #: ../keyboard-indicator/data/messages:99
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
+"menor é o texto no ícone. 1 significa que o texto preenche todos os ícone."
 
 #: ../keyboard-indicator/data/messages:101
 msgid "Relative size of the text :"
-msgstr ""
+msgstr "Tamanho relativo do texto:"
 
 #: ../logout/data/messages:87
 msgid "Let empty to execute the default command."
-msgstr ""
+msgstr "Deixe vazio para executar o comando padrão."
 
 #: ../logout/data/messages:89
 msgid "User-defined command to execute to log-out :"
-msgstr ""
+msgstr "Definida pelo usuário para executar o comando para o desligamento:"
 
 #: ../logout/data/messages:91
 msgid ""
@@ -5284,57 +5411,62 @@ msgid ""
 "command, that greatly depends on your distribution. Sometimes the command to "
 "shutdown is just the same as the one to log out."
 msgstr ""
+"Ele estará disponível no clique do meio. Deixe vazio para executar o comando "
+"padrão, que depende em grande parte a sua distribuição. Às vezes o comando "
+"de desligamento é exatamente o mesmo ao sair."
 
 #: ../logout/data/messages:93
 msgid "User-defined command to execute to shutdown :"
-msgstr ""
+msgstr "Definida pelo usuário para executar o comando de desligamento:"
 
 #: ../logout/data/messages:95
 msgid "Invert buttons ?"
-msgstr ""
+msgstr "Inverter botões?"
 
 #: ../mail/data/messages:83 ../mail/data/messages:89
 msgid "Sub-Dock view"
-msgstr ""
+msgstr "Ver sub-dock"
 
 #: ../mail/data/messages:93
 msgid "Theme overriding"
-msgstr ""
+msgstr "Tema principal"
 
 #: ../mail/data/messages:95
 msgid "Name of the file for the \"no mail\" image :"
-msgstr ""
+msgstr "Nome do arquivo para a imagem de 'nenhum e-mail':"
 
 #: ../mail/data/messages:97
 msgid "Name of the file for the \"has mail\" image :"
-msgstr ""
+msgstr "Nome do arquivo para a imagem de 'tem e-mail':"
 
 #: ../mail/data/messages:99
 msgid "Name of the file for the \"new mail\" sound :"
-msgstr ""
+msgstr "Nome do arquivo para a imagem de 'novo e-mail':"
 
 #: ../mail/data/messages:103
 msgid "Show new messages' content ?"
-msgstr ""
+msgstr "Mostar o conteúdo da(s) nova(s) mensagem(ns)?"
 
 #: ../mail/data/messages:105
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 msgstr ""
+"O número máximo de mensagens que serão apresentadas. Coloque 1 para mostrar "
+"o máximo possível."
 
 #: ../mail/data/messages:107
 msgid "Maximum of new messages shown ?"
-msgstr ""
+msgstr "Número máximo de novas mensagens mostradas?"
 
 #: ../mail/data/messages:109 ../musicPlayer/data/messages:123
 #: ../tomboy/data/messages:113
 msgid "in s."
-msgstr ""
+msgstr "em s."
 
 #: ../mail/data/messages:111 ../tomboy/data/messages:115
 msgid "Time length of the dialog :"
-msgstr ""
+msgstr "Tempo da caixa de diálogo:"
 
 #: ../mail/data/messages:113
 msgid ""
@@ -5342,62 +5474,73 @@ msgid ""
 "maintenance mode, then let the dock launch itself, and remove/modify the "
 "mail accounts you want."
 msgstr ""
+"Se você tiver qualquer problema com o miniaplicativo, desmarque esta opção "
+"durante o modo de manutenção, em seguida, saia do dock e remova / altere as "
+"contas de email que você desejar."
 
 #: ../mail/data/messages:115
 msgid "Check mail account on startup ?"
-msgstr ""
+msgstr "Verificar conta de email na inicialização?"
 
 #: ../mail/data/messages:117
 msgid "Mail application"
-msgstr ""
+msgstr "Gerenciador de e-mail"
 
 #: ../mail/data/messages:119
 msgid "Prefered mail application to launch on left-click :"
 msgstr ""
+"Gerenciador de e-mail preferido para incialização com um clique esquerdo:"
 
 #: ../mail/data/messages:121
 msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
 msgstr ""
+"só use isso se o nome é diferente. Geralmente não é o caso, exceto para o "
+"Thunderbird."
 
 #: ../mail/data/messages:123
 msgid "Class of the mail application (optionnal)"
-msgstr ""
+msgstr "Classe do gerenciador de e-mail (opcional)"
 
 #: ../mail/data/messages:125
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Ele irá impedir que o ícone do gerenciador apareça na barra de tarefas. O "
+"ícone do miniaplicativo se comportará como um lançador, um appli e um "
+"miniaplicativo."
 
 #: ../mail/data/messages:129
 msgid "Add an mail account"
-msgstr ""
+msgstr "Adicionar uma conta de e-mail"
 
 #: ../mail/data/messages:131
 msgid "The new account will be created with specified type and name."
-msgstr ""
+msgstr "A nova conta será criada com o tipo e o  nome especificados."
 
 #: ../mail/data/messages:133
 msgid "Add an account with specified type and name:"
-msgstr ""
+msgstr "Adicionar uma conta com o tipo e o  nome especificados:"
 
 #: ../motion-blur/data/messages:3
 msgid "Also blur on mouse movement ?"
-msgstr ""
+msgstr "Mostrar o rastro do movimento do mouse?"
 
 #: ../motion-blur/data/messages:5
 msgid "Blur amount :"
-msgstr ""
+msgstr "Tamanho do rastro"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
 msgstr ""
+"Deixe em branco para mostrar o nome do reproduzir de aúdio que está sendo "
+"controlado."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
-msgstr ""
+msgstr "Reprodutor de áudio"
 
 #: ../musicPlayer/data/messages:87
 msgid "Player to control:"
@@ -5405,43 +5548,43 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:89
 msgid "Amarok 2"
-msgstr ""
+msgstr "Amarok 2"
 
 #: ../musicPlayer/data/messages:91
 msgid "Audacious"
-msgstr ""
+msgstr "Audacious"
 
 #: ../musicPlayer/data/messages:93
 msgid "Banshee"
-msgstr ""
+msgstr "Banshee"
 
 #: ../musicPlayer/data/messages:95
 msgid "Exaile"
-msgstr ""
+msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:97
 msgid "Listen"
-msgstr ""
+msgstr "Ouvir"
 
 #: ../musicPlayer/data/messages:99
 msgid "QuodLibet"
-msgstr ""
+msgstr "QuodLibet"
 
 #: ../musicPlayer/data/messages:101
 msgid "Rhythmbox"
-msgstr ""
+msgstr "Rhythmbox"
 
 #: ../musicPlayer/data/messages:103
 msgid "Songbird"
-msgstr ""
+msgstr "Songbird"
 
 #: ../musicPlayer/data/messages:105
 msgid "XMMS 2"
-msgstr ""
+msgstr "XMMS 2"
 
 #: ../musicPlayer/data/messages:107
 msgid "XMMS"
-msgstr ""
+msgstr "XMMS"
 
 #: ../musicPlayer/data/messages:109
 msgid ""
@@ -5483,15 +5626,15 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:133
 msgid "Nothing"
-msgstr ""
+msgstr "Nada"
 
 #: ../musicPlayer/data/messages:135
 msgid "Time Elapsed"
-msgstr ""
+msgstr "Tempo transcorrido"
 
 #: ../musicPlayer/data/messages:137
 msgid "Time Left"
-msgstr ""
+msgstr "Tempo restante"
 
 #: ../musicPlayer/data/messages:139
 msgid "N° of track"
@@ -5593,15 +5736,15 @@ msgstr ""
 
 #: ../powermanager/data/messages:127 ../powermanager/data/messages:143
 msgid "nothing"
-msgstr ""
+msgstr "nada"
 
 #: ../powermanager/data/messages:129
 msgid "zoom"
-msgstr ""
+msgstr "zoom"
 
 #: ../powermanager/data/messages:131
 msgid "transparency"
-msgstr ""
+msgstr "transparência"
 
 #: ../powermanager/data/messages:133
 msgid "draw bar"
@@ -5617,15 +5760,15 @@ msgstr ""
 
 #: ../powermanager/data/messages:145
 msgid "charge"
-msgstr ""
+msgstr "carga"
 
 #: ../powermanager/data/messages:147
 msgid "time"
-msgstr ""
+msgstr "hora"
 
 #: ../powermanager/data/messages:149
 msgid "Alert"
-msgstr ""
+msgstr "Alerta"
 
 #: ../powermanager/data/messages:151
 msgid "Alert when battery charged ?"
@@ -5687,15 +5830,15 @@ msgstr ""
 
 #: ../quick-browser/data/messages:97
 msgid "small"
-msgstr ""
+msgstr "pequeno"
 
 #: ../quick-browser/data/messages:99
 msgid "medium"
-msgstr ""
+msgstr "médio"
 
 #: ../quick-browser/data/messages:101
 msgid "large"
-msgstr ""
+msgstr "grande"
 
 #: ../quick-browser/data/messages:103
 msgid "List folders first ?"
@@ -5707,7 +5850,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:107
 msgid "Show hidden files ?"
-msgstr ""
+msgstr "Mostrar arquivos ocultos ?"
 
 #: ../quick-browser/data/messages:111
 msgid ""
@@ -5745,11 +5888,11 @@ msgstr ""
 
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
 msgid "Tree"
-msgstr ""
+msgstr "Árvore"
 
 #: ../shortcuts/data/messages:109
 msgid "Disk usage"
-msgstr ""
+msgstr "Uso de disco"
 
 #: ../shortcuts/data/messages:111
 msgid "Show disk usage :"
@@ -5757,23 +5900,23 @@ msgstr ""
 
 #: ../shortcuts/data/messages:115
 msgid "Free space"
-msgstr ""
+msgstr "Espaço livre"
 
 #: ../shortcuts/data/messages:117
 msgid "Used space"
-msgstr ""
+msgstr "Espaço usado"
 
 #: ../shortcuts/data/messages:119
 msgid "Free space percent"
-msgstr ""
+msgstr "Espaço livre em porcento"
 
 #: ../shortcuts/data/messages:121
 msgid "Used space percent"
-msgstr ""
+msgstr "Espaço usado em porcento"
 
 #: ../shortcuts/data/messages:123
 msgid "In seconds."
-msgstr ""
+msgstr "Em segudos."
 
 #: ../shortcuts/data/messages:125
 msgid "Delay between disk usage refresh :"
@@ -5805,7 +5948,7 @@ msgstr ""
 
 #: ../show-mouse/data/messages:15
 msgid "both"
-msgstr ""
+msgstr "ambos"
 
 #: ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
@@ -5849,7 +5992,7 @@ msgstr ""
 
 #: ../slider/data/messages:83
 msgid "Directory"
-msgstr ""
+msgstr "Diretório"
 
 #: ../slider/data/messages:85
 msgid "Directory of the images :"
@@ -5927,11 +6070,11 @@ msgstr ""
 
 #: ../slider/data/messages:127
 msgid "cube"
-msgstr ""
+msgstr "cubo"
 
 #: ../slider/data/messages:129
 msgid "random"
-msgstr ""
+msgstr "aleatório"
 
 #: ../slider/data/messages:131
 msgid "Number of steps for a transition :"
@@ -5985,7 +6128,7 @@ msgstr ""
 
 #: ../stack/data/messages:109
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #: ../stack/data/messages:111
 msgid ""
@@ -6011,15 +6154,15 @@ msgstr ""
 
 #: ../stack/data/messages:121
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: ../stack/data/messages:123
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: ../stack/data/messages:125
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../stack/data/messages:127
 msgid "Manual order"
@@ -6027,8 +6170,8 @@ msgstr ""
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:131
@@ -6070,18 +6213,16 @@ msgid "Show windows list"
 msgstr ""
 
 #: ../switcher/data/messages:101
-#, fuzzy
 msgid "Show desktop"
-msgstr "Mostrar Área de trabalho"
+msgstr "Mostrar área de trabalho"
 
 #: ../switcher/data/messages:103
-#, fuzzy
 msgid "Workspace names :"
-msgstr "Nome da nota : "
+msgstr ""
 
 #: ../switcher/data/messages:105
 msgid "Display options"
-msgstr ""
+msgstr "Exibir opções"
 
 #: ../switcher/data/messages:107
 msgid "Size of the inside lines :"
@@ -6090,7 +6231,7 @@ msgstr ""
 #: ../switcher/data/messages:109 ../switcher/data/messages:115
 #: ../switcher/data/messages:119 ../switcher/data/messages:123
 msgid "r, v, b, a"
-msgstr ""
+msgstr "r, v, b, a"
 
 #: ../switcher/data/messages:111
 msgid "Color of the inside lines :"
@@ -6122,7 +6263,7 @@ msgstr ""
 
 #: ../switcher/data/messages:131
 msgid "fill"
-msgstr ""
+msgstr "preencher"
 
 #: ../switcher/data/messages:133
 msgid "fill others"
@@ -6142,7 +6283,7 @@ msgstr ""
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
-msgstr ""
+msgstr "Interface Gráfica do Usuário"
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"
@@ -6154,11 +6295,11 @@ msgstr ""
 
 #: ../systray/data/messages:45
 msgid "horizontal"
-msgstr ""
+msgstr "horizontal"
 
 #: ../systray/data/messages:47
 msgid "vertical"
-msgstr ""
+msgstr "vertical"
 
 #: ../systray/data/messages:49
 msgid "Icons size :"
@@ -6208,7 +6349,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:101
 msgid "View"
-msgstr ""
+msgstr "Ver"
 
 #: ../tomboy/data/messages:107
 msgid "Draw note's content on their icon ?"
@@ -6228,11 +6369,11 @@ msgstr ""
 
 #: ../tomboy/data/messages:121
 msgid "Gnote"
-msgstr ""
+msgstr "Gnote"
 
 #: ../tomboy/data/messages:123
 msgid "Tomboy"
-msgstr ""
+msgstr "Tomboy"
 
 #: ../tomboy/data/messages:125
 msgid "Ask confirmation before deleting a note ?"
@@ -6400,6 +6541,20 @@ msgid "Name of an image for the 'exellent' icon :"
 msgstr ""
 
 #~ msgid ""
+#~ "Control your Rhythmbox player directly in the dock !\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
+#~ "You can drag and drop covers (jpg) on the icon to use them,\n"
+#~ " and songs to put them in the queue."
+#~ msgstr ""
+#~ "Controle o Rhythmbox diretamente do dock !\n"
+#~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
+#~ "Clique com o botão do meio e role para baixo para ir à próxima música, role "
+#~ "para cima para a música anterior.\n"
+#~ "Você pode arrastar e soltar capas (arquivos .jpg) no ícone para usá-las,\n"
+#~ " e músicas para colocá-las na lista."
+
+#~ msgid ""
 #~ "This applet allows you to switch between your virtual desktops.\n"
 #~ "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
 #~ "You can also quickly add/remove a desktop through the right-click menu.\n"
@@ -6407,39 +6562,22 @@ msgstr ""
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Este applet permite alternar entre suas Áreas de trabalho virtuais.\n"
-#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-"
-#~ "dock).\n"
-#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu "
-#~ "do botão direito.\n"
+#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-dock).\n"
+#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu do "
+#~ "botão direito.\n"
 #~ "Role para cima/baixo no ícone principal para ir à Área de trabalho "
-#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de "
-#~ "trabalho"
-
-#, fuzzy
-#~ msgid "feeled"
-#~ msgstr "sentido"
-
-#~ msgid ""
-#~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
-#~ "You can drag and drop covers (jpg) on the icon to use them,\n"
-#~ " and songs to put them in the queue."
-#~ msgstr ""
-#~ "Controle o Rhythmbox diretamente do dock !\n"
-#~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
-#~ "Clique com o botão do meio e role para baixo para ir à próxima música, "
-#~ "role para cima para a música anterior.\n"
-#~ "Você pode arrastar e soltar capas (arquivos .jpg) no ícone para usá-las,\n"
-#~ " e músicas para colocá-las na lista."
+#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de trabalho"
 
 #~ msgid "Control your TomBoy's notes directly in the dock !\n"
 #~ msgstr "Controle seu TomBoy Notas diretamente do dock !\n"
 
+#~ msgid "feeled"
+#~ msgstr "sentido"
+
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6455,15 +6593,14 @@ msgstr ""
 #~ "Role para cima/baixo para tocar a música anterior/posterior."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type a command to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use the arrows to navigate between the results.\n"
@@ -6471,15 +6608,15 @@ msgstr ""
 #~ msgstr ""
 #~ "Um plugin similar ao Gnome-Do que permite controlar seu dock através do "
 #~ "teclado.\n"
-#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho "
-#~ "do teclado:\n"
+#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho do "
+#~ "teclado:\n"
 #~ "- modo de navegação : use as setas para navegar entre docks e sub-docks,\n"
 #~ " ou digite o nome do lançador e pressione Tab para pular automaticamente "
 #~ "para o próximo lançador apropriado.\n"
-#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, Alt"
-#~ "+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
-#~ "- modo buscador : digite um comando para chamar qualquer comando, "
-#~ "arquivo, ou cálculo.\n"
+#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, "
+#~ "Alt+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
+#~ "- modo buscador : digite um comando para chamar qualquer comando, arquivo, "
+#~ "ou cálculo.\n"
 #~ "Use as setas para navegar entre os resultados.\n"
 #~ "Esc, Retornar ou o mesmo atalho para finalizar."
 
@@ -6493,8 +6630,7 @@ msgstr ""
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""

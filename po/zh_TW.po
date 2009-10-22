@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2009-10-15 14:40+0000\n"
-"PO-Revision-Date: 2009-10-15 15:36+0000\n"
+"POT-Creation-Date: 2009-10-22 00:54+0000\n"
+"PO-Revision-Date: 2009-10-21 05:19+0000\n"
 "Last-Translator: Rossi Liu <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-16 06:58+0000\n"
+"X-Launchpad-Export-Date: 2009-10-22 07:27+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -24,6 +24,47 @@ msgstr "動畫圖示"
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
 msgstr "這個外掛程式能夠提供您更多不同的圖示動畫。"
+
+#: ../Animated-icons/src/applet-init.c:52 ../Animated-icons/data/messages:7
+#: ../Animated-icons/data/messages:25 ../Animated-icons/data/messages:43
+#: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:167
+msgid "Bounce"
+msgstr "彈跳(Bounce)"
+
+#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
+#: ../Animated-icons/data/messages:63
+msgid "Rotate"
+msgstr "旋轉(Rotate)"
+
+#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:181
+msgid "Blink"
+msgstr "閃爍(Blink)"
+
+#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:155
+msgid "Pulse"
+msgstr "Pulse"
+
+#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:127
+msgid "Wobbly"
+msgstr "搖晃(Wobbly)"
+
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:143
+msgid "Wave"
+msgstr "波浪(Wave)"
+
+#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
+#: ../Animated-icons/data/messages:93
+msgid "Spot"
+msgstr "點 (Spot)"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -94,28 +135,28 @@ msgstr ""
 msgid "For Aiur !"
 msgstr "For Aiur !"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:121
+#: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Hey, you there !"
 msgstr "嘿!你在那裡啊!"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:125
+#: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
 msgstr "醒來"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:129
+#: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
 msgstr "保持安靜"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:132
+#: ../Cairo-Penguin/src/applet-notifications.c:134
 msgid "Start XPenguins"
 msgstr "啟動 X企鵝"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:133
+#: ../Cairo-Penguin/src/applet-notifications.c:135
 msgid "Stop XPenguins"
 msgstr "停止X企鵝"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:156
 #: ../Cairo-Penguin/src/applet-notifications.c:158
+#: ../Cairo-Penguin/src/applet-notifications.c:160
 msgid "Zzzzz"
 msgstr "ZZzzz...."
 
@@ -139,7 +180,7 @@ msgstr ""
 "右鍵點擊可以彈跳出剪貼簿與滑鼠選擇的歷史紀錄。\n"
 "放文字在這個圖示上面可以建立一個固定的物件，中鍵可以回call它們。"
 
-#: ../Clipper/src/applet-notifications.c:96
+#: ../Clipper/src/applet-notifications.c:93
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -156,7 +197,6 @@ msgstr ""
 "雙方溝通的基礎用的是Dbus。"
 
 #: ../Dbus/src/interface-applet-signals.c:343
-#: ../Dbus/src/interface-applet.c:958
 msgid "About this applet"
 msgstr "關於這個小程式(applet)"
 
@@ -244,7 +284,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:149
 msgid "Wired Connection."
-msgstr ""
+msgstr "有線連線"
 
 #: ../Network-Monitor/src/applet-draw.c:151
 #: ../Network-Monitor/src/applet-draw.c:166 ../wifi/src/applet-draw.c:160
@@ -265,8 +305,8 @@ msgid "Network ID"
 msgstr "網路ID"
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:294 ../musicPlayer/src/applet-draw.c:296
-#: ../musicPlayer/src/applet-draw.c:298
+#: ../musicPlayer/src/applet-draw.c:297 ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:301
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -311,54 +351,66 @@ msgstr "這個 %s 資料已經拷貝到剪貼簿當中。"
 msgid "Execute"
 msgstr "執行"
 
-#: ../Scooby-Do/src/applet-backend-files.c:155
+#: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip folder"
 msgstr "壓縮資料夾"
 
-#: ../Scooby-Do/src/applet-backend-files.c:163
-#: ../Scooby-Do/src/applet-backend-files.c:237
+#: ../Scooby-Do/src/applet-backend-files.c:243
+#: ../Scooby-Do/src/applet-backend-files.c:317
 msgid "Move to"
 msgstr "移至"
 
-#: ../Scooby-Do/src/applet-backend-files.c:171
-#: ../Scooby-Do/src/applet-backend-files.c:245
+#: ../Scooby-Do/src/applet-backend-files.c:251
+#: ../Scooby-Do/src/applet-backend-files.c:325
 #: ../Scooby-Do/src/applet-backend-firefox.c:110
 msgid "Copy URL"
 msgstr "複製 URL"
 
-#: ../Scooby-Do/src/applet-backend-files.c:213
+#: ../Scooby-Do/src/applet-backend-files.c:293
 msgid "Open location"
 msgstr "開啟語言支援"
 
-#: ../Scooby-Do/src/applet-backend-files.c:221
+#: ../Scooby-Do/src/applet-backend-files.c:301
 msgid "Zip file"
 msgstr "壓縮檔案"
 
-#: ../Scooby-Do/src/applet-backend-files.c:229
+#: ../Scooby-Do/src/applet-backend-files.c:309
 msgid "Mail file"
 msgstr "郵寄檔案"
 
-#: ../Scooby-Do/src/applet-backend-files.c:348
+#: ../Scooby-Do/src/applet-backend-files.c:461
 msgid "Pick up a directory"
 msgstr "撿起一個目錄"
+
+#: ../Scooby-Do/src/applet-backend-files.c:517
+msgid "Files"
+msgstr "檔案"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
 msgstr "開啟"
 
-#: ../Scooby-Do/src/applet-backend-web.c:60
-msgid "Google"
-msgstr "Google"
-
-#: ../Scooby-Do/src/applet-backend-web.c:68
+#: ../Scooby-Do/src/applet-backend-web.c:56
 msgid "Wikipedia"
 msgstr "維基百科"
 
-#: ../Scooby-Do/src/applet-backend-web.c:76
+#: ../Scooby-Do/src/applet-backend-web.c:64
 msgid "Yahoo"
 msgstr "Yahoo"
 
-#: ../Scooby-Do/src/applet-backend-web.c:138
+#: ../Scooby-Do/src/applet-backend-web.c:72
+msgid "Google"
+msgstr "Google"
+
+#: ../Scooby-Do/src/applet-backend-web.c:91
+msgid "Mediadico"
+msgstr "Mediadico"
+
+#: ../Scooby-Do/src/applet-backend-web.c:99
+msgid "Amazon"
+msgstr "亞馬遜(Amazon)"
+
+#: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
 msgstr "從網路上搜尋"
 
@@ -388,64 +440,64 @@ msgstr ""
 "  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀看結果的顯現。\n"
 "ESC按鍵為取消。"
 
-#: ../Scooby-Do/src/applet-listing.c:508
+#: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
-msgstr ""
+msgstr "(F1)比較檔案"
 
-#: ../Scooby-Do/src/applet-listing.c:515
+#: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
-msgstr ""
+msgstr "(F2)音樂"
 
-#: ../Scooby-Do/src/applet-listing.c:522
+#: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
-msgstr ""
+msgstr "(F3)圖片"
 
-#: ../Scooby-Do/src/applet-listing.c:529
+#: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
-msgstr ""
+msgstr "(F4)影像"
 
-#: ../Scooby-Do/src/applet-listing.c:536
+#: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
-msgstr ""
+msgstr "(F5)文字"
 
-#: ../Scooby-Do/src/applet-listing.c:543
+#: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
-msgstr ""
+msgstr "(F6)HTML"
 
-#: ../Scooby-Do/src/applet-listing.c:550
+#: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
-msgstr ""
+msgstr "(F7)原始碼"
 
-#: ../Scooby-Do/src/applet-listing.c:669 ../Scooby-Do/src/applet-search.c:317
+#: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:317
 msgid "No result"
-msgstr ""
+msgstr "沒有結果"
 
-#: ../Scooby-Do/src/applet-listing.c:673 ../Scooby-Do/src/applet-search.c:313
-#: ../tomboy/src/tomboy-draw.c:109 ../tomboy/src/tomboy-draw.c:116
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:313
+#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "results"
-msgstr ""
+msgstr "結果"
 
-#: ../Scooby-Do/src/applet-listing.c:673 ../Scooby-Do/src/applet-search.c:313
-#: ../tomboy/src/tomboy-draw.c:109 ../tomboy/src/tomboy-draw.c:116
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:313
+#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "result"
-msgstr ""
+msgstr "結果"
 
 #: ../Scooby-Do/src/applet-search.c:123
 msgid "Searching ..."
-msgstr ""
+msgstr "搜尋中..."
 
 #: ../Scooby-Do/src/applet-session.c:50
 msgid "Enter your search"
-msgstr ""
+msgstr "請輸入您要的搜尋"
 
 #: ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
 msgid "day(s)"
-msgstr ""
+msgstr "天"
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
-msgstr ""
+msgstr "系統監視器"
 
 #: ../System-Monitor/src/applet-init.c:33
 msgid ""
@@ -456,11 +508,15 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
+"這個小程式可以顯示您的CPU負載、記憶體使用率、顯示卡的溫度等等。\n"
+"在圖示上面按下中鍵可以得到一些有用的資訊。\n"
+"而左鍵點擊圖示會顯示目前執行中的程式使用多少的系統資源。\n"
+"您可以拷貝這個小程式很多次，然後每個設定不同的顯示資訊。"
 
 #: ../System-Monitor/src/applet-monitor.c:81
 #: ../netspeed/src/applet-netspeed.c:182
 msgid "Loading"
-msgstr ""
+msgstr "載入中"
 
 #: ../System-Monitor/src/applet-notifications.c:40
 #: ../System-Monitor/src/applet-notifications.c:88
@@ -468,82 +524,84 @@ msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
 msgstr ""
+"取得的資料有錯誤。\n"
+"您應該刪除資料，否則無法繼續存取。"
 
 #: ../System-Monitor/src/applet-notifications.c:45
 #: ../System-Monitor/src/applet-notifications.c:62
 #: ../System-Monitor/src/applet-top.c:287
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: ../System-Monitor/src/applet-notifications.c:45
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #: ../System-Monitor/src/applet-notifications.c:62
 msgid "GPU model"
-msgstr ""
+msgstr "GPU型號"
 
 #: ../System-Monitor/src/applet-notifications.c:62
 msgid "Video Ram"
-msgstr ""
+msgstr "顯示卡記憶體"
 
 #: ../System-Monitor/src/applet-notifications.c:62
 msgid "Driver Version"
-msgstr ""
+msgstr "驅動程式版本"
 
 #: ../System-Monitor/src/applet-notifications.c:62
 msgid "Core Temperature"
-msgstr ""
+msgstr "核心溫度"
 
 #: ../System-Monitor/src/applet-notifications.c:72
 msgid "CPU model"
-msgstr ""
+msgstr "CPU型號"
 
 #: ../System-Monitor/src/applet-notifications.c:73
 msgid "Frequency"
-msgstr ""
+msgstr "頻率"
 
 #: ../System-Monitor/src/applet-notifications.c:74
 msgid "core(s)"
-msgstr ""
+msgstr "多核心"
 
 #: ../System-Monitor/src/applet-notifications.c:75
 msgid "Up time"
-msgstr ""
+msgstr "時間上限"
 
 #: ../System-Monitor/src/applet-notifications.c:76
 msgid "Activity time"
-msgstr ""
+msgstr "啟動時間"
 
 #: ../System-Monitor/src/applet-notifications.c:77
 msgid "Memory"
-msgstr ""
+msgstr "記憶體"
 
 #: ../System-Monitor/src/applet-notifications.c:78
 msgid "Free"
-msgstr ""
+msgstr "自由"
 
 #: ../System-Monitor/src/applet-notifications.c:79
 msgid "Cached"
-msgstr ""
+msgstr "已快取"
 
 #: ../System-Monitor/src/applet-notifications.c:80
 msgid "Buffers"
-msgstr ""
+msgstr "緩衝區"
 
 #: ../System-Monitor/src/applet-notifications.c:110
 #: ../netspeed/src/applet-notifications.c:71
 msgid "Monitor System"
-msgstr ""
+msgstr "系統監視器"
 
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr ""
+msgstr "警告！顯示卡的核心溫度已經到達%d°C"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr ""
+msgstr "這個小程式會顯示動畫來看著你的滑鼠移動。"
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -554,18 +612,23 @@ msgid ""
 "You can also define a luminosity value that will be applied automatically on "
 "startup."
 msgstr ""
+"可以從您的Dock上面直接的調整螢幕的亮度。\n"
+"捲動 上/下 來 增強/減弱 亮度。\n"
+"左鍵點擊來打開交談式視窗設定亮度。\n"
+"中鍵點擊設定獨自每個顏色。\n"
+"您還可以定義在啟動電腦時自動使用設定亮度值。"
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma :"
-msgstr ""
+msgstr "設定gamma值："
 
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
-msgstr ""
+msgstr "同意將目前的亮度值套用在系統啟動的亮度"
 
 #: ../alsaMixer/src/applet-init.c:31
 msgid "AlsaMixer"
-msgstr ""
+msgstr "Alsa混合器"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -578,32 +641,38 @@ msgid ""
 "mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
+"這個小程式可以讓您從Dock上面控制聲音的大小。\n"
+"在圖示上面捲動 上/下 來 增加/降低 聲音大小。\n"
+"在圖示上面點擊可以 顯示/隱藏 聲音控制台(您還可以設定一個鍵盤熱鍵來做相同的動作)。\n"
+"您還可以在交談式視窗上面點擊來隱藏它。\n"
+"中鍵點擊可以使用或者是不使用靜音，雙擊圖示可以顯示出聲音頻道的混合器。\n"
+"這個小工具工作在Alsa的聲音驅動程式當中。"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr ""
+msgstr "我沒有辦法打開 '%s' 音效卡"
 
 #: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr ""
+msgstr "音效卡 '%s' 已經開啟了，但是我找不到任何的資訊。"
 
 #: ../alsaMixer/src/applet-mixer.c:64
 msgid "I couldn't open the mixer"
-msgstr ""
+msgstr "我沒有辦法打開混合器"
 
 #: ../alsaMixer/src/applet-mixer.c:71
 msgid "I couldn't attach the mixer to the card"
-msgstr ""
+msgstr "我不能連結混合器與音效卡"
 
 #: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
-msgstr ""
+msgstr "我不能註冊選項"
 
 #: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
-msgstr ""
+msgstr "我無法載入混合器"
 
 #: ../alsaMixer/src/applet-mixer.c:137
 #, c-format
@@ -612,22 +681,25 @@ msgid ""
 "You should try to open the configuration panel of the applet,\n"
 " and select the proper audio channel you want to control."
 msgstr ""
+"我不能找到任何  '%s' 聲音頻道名稱\n"
+"您也許需要試著打開小程式的設置面板，\n"
+" 並選擇適當的聲音頻道。"
 
 #: ../alsaMixer/src/applet-mixer.c:281
 msgid "Set up volume :"
-msgstr ""
+msgstr "設定音量："
 
 #: ../alsaMixer/src/applet-notifications.c:54
 msgid "Adjsut channels"
-msgstr ""
+msgstr "調整頻道："
 
-#: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
+#: ../clock/src/applet-config.c:476 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
-msgstr ""
+msgstr "尋找您的語言設定："
 
 #: ../clock/src/applet-init.c:32
 msgid "clock"
-msgstr ""
+msgstr "時鐘"
 
 #: ../clock/src/applet-init.c:35
 msgid ""
@@ -639,14 +711,19 @@ msgid ""
 "date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
+"這個小程式可以在您的Dock上面顯示時間與日期。\n"
+"現在有2個風貌：數字型與指針型，都在「Cairo-時鐘」裏面。\n"
+"這相容於Cairo-時鐘的主題，而且您可以完美的將它從Cairo-時鐘上分離。\n"
+"它也支援鬧鐘與基本的日曆，並且可以設定時間與日期。\n"
+"左鍵點擊來 顯示/隱藏 日曆，中鍵點擊來停止鬧鐘。"
 
 #: ../clock/src/applet-notifications.c:64
 msgid "Calendar"
-msgstr ""
+msgstr "日曆"
 
 #: ../clock/src/applet-notifications.c:76
 msgid "Set up time and date"
-msgstr ""
+msgstr "設定時間與日期"
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -656,104 +733,149 @@ msgid ""
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
+"這個小程式可以用來管理Compiz與其他的視窗管理員。\n"
+"這個子Dock可以讓您開啟CCSM、Emerald與一些基本的Compiz動作。\n"
+"您可以設定用滑鼠中鍵點擊來做到一些動作。\n"
+"設置面板可以給您一些啟動Compiz的選項。"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Configure Compiz"
-msgstr ""
+msgstr "設置Compiz"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Emerald Manager"
-msgstr ""
+msgstr "Emerald管理員"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Reload WM"
-msgstr ""
+msgstr "重新載入視窗管理員(WM)"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
-msgstr ""
+msgstr "瀏覽全部桌面"
 
 #: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:93
 msgid "Widget Layer"
-msgstr ""
+msgstr "桌面小程式層(Widget Layer)"
 
 #: ../compiz-icon/src/applet-notifications.c:95
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
+"要設置Compiz，您需要安裝CCSM。\n"
+" 在您的套件管理程式中(例如Synaptic、YasT等等)"
 
 #: ../compiz-icon/src/applet-notifications.c:180
 msgid "Reload Emerald"
-msgstr ""
+msgstr "重新載入Emerald"
 
 #: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Manager"
-msgstr ""
+msgstr "切換視窗管理員"
 
 #: ../compiz-icon/src/applet-notifications.c:185
 msgid "Switch Windows Decorator"
-msgstr ""
+msgstr "切換視窗裝飾器"
 
 #: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Exposition Mode"
-msgstr ""
+msgstr "切換瀏覽模式"
 
 #: ../compiz-icon/src/applet-notifications.c:195
 msgid "Toggle Widgets Layer"
-msgstr ""
+msgstr "切換桌面小程式層(Widgets Layer)"
 
 #: ../compiz-icon/src/applet-notifications.c:197
 msgid "Toggle Show Desktop"
-msgstr ""
+msgstr "切換顯示桌面"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:46
+msgid "frame&reflects"
+msgstr "框架與反射(frame&reflects)"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:55
+msgid "scotch"
+msgstr "刻痕(scotch)"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:64
+msgid "frame with scotch"
+msgstr "框架刻痕"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:73
+msgid "CD box"
+msgstr "CD音樂盒"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:81
+msgid "dark"
+msgstr "黑暗(dark)"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:89
+msgid "clear"
+msgstr "晴朗(clear)"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:97
+msgid "futuristic"
+msgstr "新潮(futuristic)"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:105
+#: ../slider/data/messages:111
+msgid "none"
+msgstr "沒有"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:113
+msgid "board"
+msgstr "地板"
 
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
-msgstr ""
+msgstr "桌面小工具的渲染"
 
 #: ../desklet-rendering/src/rendering-init.c:36
 msgid "This module provides different views for your desklets."
-msgstr ""
+msgstr "這麼模組提供不同的風貌給您的桌面小工具。"
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
-msgstr ""
+msgstr "3D平面(3D plane)"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 msgid "comics"
-msgstr ""
+msgstr "漫畫(comics)"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 msgid "curly"
-msgstr ""
+msgstr "捲曲(curly)"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
-msgstr ""
+msgstr "摩登(modern)"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr ""
+msgstr "提示"
 
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
-msgstr ""
+msgstr "交談式視窗渲染"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr ""
+msgstr "這個外掛提供一些的外框裝飾給交談式對話框。"
 
 #: ../dnd2share/src/applet-dnd2share.c:129
 msgid ""
 "Couldn't upload the file, check that your internet connexion is active."
-msgstr ""
+msgstr "無法更新檔案，請檢查您的網際網路連線是否正常。"
 
 #: ../dnd2share/src/applet-dnd2share.c:240
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
+"檔案已經更新完畢。\n"
+"只要按下CTRL + v 可在任何地方貼上URL位址。"
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -768,109 +890,128 @@ msgid ""
 "account.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
+"這個小程式可以讓您很簡單的分享檔案：\n"
+"拖-放檔案在這個圖示上面，就能夠上傳檔案到可用的主機站台。\n"
+"他支援很多的站台，像是DropBox、Imageshack、pastebin等等。\n"
+"您可以上傳文字、圖片、影像與檔案。\n"
+"而上傳完畢的超連結網址會自動的儲存在您的剪貼簿裏面，只要按下CTRL + v 就可以貼出來。\n"
+"您可以在沒有任何帳戶的情況之下，將您的最後上傳檔案網址保存在剪貼簿的歷史紀錄當中。\n"
+"您還需要安裝 'curl' 與 'wget' 這兩個程式來上傳資料。"
 
-#: ../dnd2share/src/applet-notifications.c:29
+#: ../dnd2share/src/applet-notifications.c:32
 msgid "Clear the list of the recently uploaded files ?"
-msgstr ""
+msgstr "清除列表最近上傳的文件？"
 
-#: ../dnd2share/src/applet-notifications.c:45
+#: ../dnd2share/src/applet-notifications.c:48
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
+"該文字已被粘貼在剪貼簿。\n"
+"您可以用CTRL + v 取回。"
 
-#: ../dnd2share/src/applet-notifications.c:67
+#: ../dnd2share/src/applet-notifications.c:70
 msgid "Sorry, couldn't find the orignial file nor a preview of it."
-msgstr ""
+msgstr "對不起，找不到原始文件或是它的預覽。"
 
-#: ../dnd2share/src/applet-notifications.c:88
+#: ../dnd2share/src/applet-notifications.c:91
 msgid ""
 "The URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
+"該網址已被儲存到剪貼簿。\n"
+"只要使用 Ctrl + v 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:102
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
 msgstr ""
+"沒有可用的上傳檔案\n"
+".只要 拖-放 檔案到圖示上面就可以開始上傳。"
 
-#: ../dnd2share/src/applet-notifications.c:103
+#: ../dnd2share/src/applet-notifications.c:106
 msgid ""
 "No uploaded file available\n"
 ".Consider activating the history if you want the applet remembers previous "
 "uploads."
 msgstr ""
+"沒有可用的上傳檔案\n"
+".如果您想讓小程式記得以前的上傳。請考慮啟用歷史紀錄(剪貼簿)。"
 
-#: ../dnd2share/src/applet-notifications.c:120
+#: ../dnd2share/src/applet-notifications.c:123
 msgid ""
 "The current URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
+"目前已儲存 URL 到剪貼簿。\n"
+"只要使用 'CTRL+v' 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:121
+#: ../dnd2share/src/applet-notifications.c:124
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
 msgstr ""
+"目前的網址已被存儲到選擇。\n"
+"只要使用 'CTRL+v' 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:269
+#: ../dnd2share/src/applet-notifications.c:298
 msgid "Text"
-msgstr ""
+msgstr "文字"
 
-#: ../dnd2share/src/applet-notifications.c:269
+#: ../dnd2share/src/applet-notifications.c:298
 msgid "File"
-msgstr ""
+msgstr "檔案"
 
-#: ../dnd2share/src/applet-notifications.c:272
+#: ../dnd2share/src/applet-notifications.c:301
 msgid "Click on the icon to copy the URL into the clipboard."
-msgstr ""
+msgstr "點擊圖示複製URL到剪貼簿。"
 
-#: ../dnd2share/src/applet-notifications.c:287
+#: ../dnd2share/src/applet-notifications.c:316
 msgid "Clear History"
-msgstr ""
+msgstr "清除歷史紀錄"
 
-#: ../dnd2share/src/applet-notifications.c:349
+#: ../dnd2share/src/applet-notifications.c:378
 msgid "Open file"
-msgstr ""
+msgstr "開啟檔案"
 
-#: ../dnd2share/src/applet-notifications.c:351
+#: ../dnd2share/src/applet-notifications.c:380
 msgid "Get text"
-msgstr ""
+msgstr "取得文字"
 
-#: ../dnd2share/src/applet-notifications.c:353
+#: ../dnd2share/src/applet-notifications.c:382
 msgid "Remove from history"
-msgstr ""
+msgstr "從歷史紀錄中刪除"
 
 #: ../dock-rendering/src/rendering-init.c:33
 #: ../dock-rendering/data/messages:17
 msgid "Caroussel"
-msgstr ""
+msgstr "Caroussel"
 
 #: ../dock-rendering/src/rendering-init.c:34
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
-msgstr ""
+msgstr "3D平面(3D plane)"
 
 #: ../dock-rendering/src/rendering-init.c:35
 #: ../dock-rendering/data/messages:35
 msgid "Parabolic"
-msgstr ""
+msgstr "拋物狀天線(Parabolic)"
 
 #: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:57
 msgid "Rainbow"
-msgstr ""
+msgstr "彩虹(Rainbow)"
 
 #: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97
 msgid "Slide"
-msgstr ""
+msgstr "投影片(Slide)"
 
 #: ../dock-rendering/src/rendering-init.c:39
 #: ../dock-rendering/data/messages:121
 msgid "Curve"
-msgstr ""
+msgstr "曲線(Curve)"
 
 #: ../dock-rendering/src/rendering-init.c:121
 msgid ""
@@ -879,32 +1020,35 @@ msgid ""
 "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
 "are provided."
 msgstr ""
+"這個模組增加不同的風貌到您的Dock上。\n"
+"Dock或者是子Dock可以用您選擇的新的風貌來展示。\n"
+"提供了Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, 與 Curve 風貌。"
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
-msgstr ""
+msgstr "放下指標圖形"
 
 #: ../drop-indicator/src/applet-init.c:31
 msgid ""
 "This plug-in displays an animated indicator when you drop something in the "
 "dock."
-msgstr ""
+msgstr "這個外掛當您放了什麼東西在Dock上時會顯示一個動畫。"
 
 #: ../dustbin/src/applet-draw.c:155
 msgid "calculating"
-msgstr ""
+msgstr "計算"
 
 #: ../dustbin/src/applet-draw.c:165
 msgid " trashe(s)"
-msgstr ""
+msgstr " 垃圾"
 
 #: ../dustbin/src/applet-draw.c:169
 msgid " file(s)"
-msgstr ""
+msgstr " 檔案"
 
 #: ../dustbin/src/applet-init.c:31
 msgid "dustbin"
-msgstr ""
+msgstr "回收桶"
 
 #: ../dustbin/src/applet-init.c:34
 msgid ""
@@ -914,53 +1058,57 @@ msgid ""
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
+"這個小程式管理回收桶\n"
+"您可以把不要的檔案或者是想要卸載的磁碟丟到圖示上面。\n"
+"假如您使用了太多的空間，這個小程式可以警告您。\n"
+"中鍵點擊可以顯示關於回收桶的使用資訊。"
 
 #: ../dustbin/src/applet-notifications.c:42
 #: ../dustbin/src/applet-notifications.c:47
 msgid "Show Trash"
-msgstr ""
+msgstr "顯示回收桶"
 
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
 msgid "Delete Trash"
-msgstr ""
+msgstr "刪除垃圾"
 
 #: ../dustbin/src/applet-notifications.c:51
 #, c-format
 msgid "Show %s"
-msgstr ""
+msgstr "顯示 %s"
 
 #: ../dustbin/src/applet-notifications.c:54
 msgid "Show All"
-msgstr ""
+msgstr "全部顯示"
 
 #: ../dustbin/src/applet-notifications.c:60
 #, c-format
 msgid "Delete %s"
-msgstr ""
+msgstr "刪除 %s"
 
 #: ../dustbin/src/applet-notifications.c:63
 msgid "Delete All"
-msgstr ""
+msgstr "全部刪除"
 
 #: ../dustbin/src/applet-notifications.c:78
 #, c-format
 msgid "%s is now unmounted"
-msgstr ""
+msgstr "%s 現在已卸載"
 
 #: ../dustbin/src/applet-notifications.c:82
 #, c-format
 msgid "failed to unmount %s"
-msgstr ""
+msgstr "卸載 %s 失敗"
 
 #: ../dustbin/src/applet-trashes-manager.c:380
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
-msgstr ""
+msgstr "你要刪除的所有在%s的檔案 。確定嗎？"
 
 #: ../dustbin/src/applet-trashes-manager.c:382
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr ""
+msgstr "您即將刪除回收桶中的所有檔案。確定嗎？"
 
 #: ../dustbin/src/applet-trashes-manager.c:459
 #, c-format
@@ -969,6 +1117,9 @@ msgid ""
 "If '%s' is not your usual file browser,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
+"出現了問題\n"
+"假如 '%s' 不是你常用的檔案瀏覽器。\n"
+"您可以利用這個模組的設置改變它。"
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -977,6 +1128,9 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
+"這個小程式提供了更好的功能，融入到GNOME的桌面環境。\n"
+"這是自動啟用，所以你不需要啟用它。\n"
+"它是專門設計給老的 Gnome 版本 (2.22之前)。"
 
 #: ../gnome-integration/src/applet-init.c:30
 msgid ""
@@ -985,23 +1139,56 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
+"這個小程式提供了更好的功能，融入到GNOME的桌面環境。\n"
+"這是自動啟用，所以你不需要啟用它。\n"
+"它是專門設計給Gnome 包含2.22之後的版本。"
 
 #: ../icon-effect/src/applet-init.c:30
 msgid "icon effects"
-msgstr ""
+msgstr "圖示效果"
 
 #: ../icon-effect/src/applet-init.c:33
 msgid "This plug-in adds many special effects to your icons."
-msgstr ""
+msgstr "這個外掛可以在您的圖示上面增加很多特殊的效果。"
+
+#: ../icon-effect/src/applet-init.c:54 ../icon-effect/data/messages:7
+#: ../icon-effect/data/messages:21 ../icon-effect/data/messages:35
+#: ../icon-effect/data/messages:49 ../icon-effect/data/messages:63
+msgid "Fire"
+msgstr "像火"
+
+#: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
+#: ../icon-effect/data/messages:23 ../icon-effect/data/messages:37
+#: ../icon-effect/data/messages:51 ../icon-effect/data/messages:87
+msgid "Stars"
+msgstr "有星星"
+
+#: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
+#: ../icon-effect/data/messages:25 ../icon-effect/data/messages:39
+#: ../icon-effect/data/messages:53 ../icon-effect/data/messages:123
+msgid "Rain"
+msgstr "有雨"
+
+#: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
+#: ../icon-effect/data/messages:27 ../icon-effect/data/messages:41
+#: ../icon-effect/data/messages:55 ../icon-effect/data/messages:105
+msgid "Snow"
+msgstr "下雪"
+
+#: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
+#: ../icon-effect/data/messages:29 ../icon-effect/data/messages:43
+#: ../icon-effect/data/messages:57 ../icon-effect/data/messages:141
+msgid "Storm"
+msgstr "暴風雨"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
-msgstr ""
+msgstr "幻象(illusion)"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
 "This plug-in provides animations for appearance & disappearance of icons."
-msgstr ""
+msgstr "此外掛提供了顯示與消失的圖示動畫。"
 
 #: ../kde-integration/src/applet-init.c:30
 msgid ""
@@ -1010,10 +1197,13 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for KDE4"
 msgstr ""
+"這個小程式提供了更好的功能，融入到KDE的桌面環境。\n"
+"這是自動啟用，所以你不需要啟用它。\n"
+"它是專門設計給KDE4。"
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
-msgstr ""
+msgstr "鍵盤指標圖形"
 
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid ""
@@ -1023,10 +1213,15 @@ msgid ""
 "\tScroll up/down to select the previous/next layout\n"
 "\tRight-click gives you access to the list of available layouts."
 msgstr ""
+"這個小程式可以讓您控制鍵盤佈局。\n"
+"\t它還可以顯示目前的 NUM 和 CAPS LOCK 。\n"
+"\t左鍵點擊切換到下一個鍵盤佈局\n"
+"\t向上/向下 滾動選擇 上一個/下一個 鍵盤佈局。\n"
+"\t右鍵點擊，您可以存取現有的鍵盤佈局列表。"
 
 #: ../logout/src/applet-init.c:28
 msgid "logout"
-msgstr ""
+msgstr "登出"
 
 #: ../logout/src/applet-init.c:31
 msgid ""
@@ -1034,69 +1229,74 @@ msgid ""
 "Left click to log out, middle click to shutdown\n"
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
+"一個非常簡單的小程式，它增加了一個圖示可以登出您目前作業階段。\n"
+"左鍵點擊登出，中鍵點擊關機。\n"
+"如果您希望關機用左鍵點擊，您也可以顛倒此順序。"
 
 #: ../logout/src/applet-notifications.c:118
 msgid "Choose in how many minutes your PC will stop :"
-msgstr ""
+msgstr "選擇多少分鐘後電腦就會停止："
 
-#: ../logout/src/applet-notifications.c:142
+#: ../logout/src/applet-notifications.c:140
 msgid "Program an automatic shutdown"
-msgstr ""
+msgstr "計劃的自動關機"
 
-#: ../logout/src/applet-notifications.c:171
+#: ../logout/src/applet-notifications.c:168
 msgid "Your computer will shutdown in 1 minute."
-msgstr ""
+msgstr "您的電腦將在1分鐘內關機。"
 
-#: ../mail/src/cd-mail-applet-config.c:175
+#: ../mail/src/cd-mail-applet-config.c:184
 msgid "Please choose an account type."
-msgstr ""
+msgstr "請選擇帳戶類型。"
 
-#: ../mail/src/cd-mail-applet-config.c:180
+#: ../mail/src/cd-mail-applet-config.c:189
 msgid "New account's name"
-msgstr ""
+msgstr "新帳號的名稱"
 
-#: ../mail/src/cd-mail-applet-config.c:183
+#: ../mail/src/cd-mail-applet-config.c:192
 msgid "Please enter a name for this account."
-msgstr ""
+msgstr "請輸入此帳號的名稱。"
 
-#: ../mail/src/cd-mail-applet-config.c:193
+#: ../mail/src/cd-mail-applet-config.c:202
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
+"此帳號已存在。\n"
+"請選擇其他名稱為新帳號。"
 
-#: ../mail/src/cd-mail-applet-config.c:321
+#: ../mail/src/cd-mail-applet-config.c:330
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr ""
+msgstr "輸入此帳號的名稱。你可以給它任何你想要的名字。"
 
-#: ../mail/src/cd-mail-applet-config.c:376
+#: ../mail/src/cd-mail-applet-config.c:385
 msgid "Remove Account"
-msgstr ""
+msgstr "移除帳號"
 
 #: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
-msgstr ""
+msgstr "未知"
 
 #: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
-msgstr ""
+msgstr "沒有主旨"
 
 #: ../mail/src/cd-mail-applet-etpan.c:322
 msgid "No unread mail in your mailboxes"
-msgstr ""
+msgstr "沒有未讀的信件在您的信箱當中"
 
 #: ../mail/src/cd-mail-applet-etpan.c:344
 #, c-format
 msgid "You have %d new mails :"
-msgstr ""
+msgstr "您有 %d 封新信件："
 
 #: ../mail/src/cd-mail-applet-etpan.c:346
 msgid "You have a new mail :"
-msgstr ""
+msgstr "您有新信件："
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr ""
+msgstr "電子信件"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -1105,6 +1305,10 @@ msgid ""
 "Left-click to launch the prefered mail application,\n"
 "Middle-click to refresh all the mailboxes."
 msgstr ""
+"這個小程式非常有用，當您收到新的電子信件時會通知您，\n"
+"它可以檢查任何類型的郵箱（雅虎，Gmail等）\n"
+"左鍵點擊會啟動首選信件應用程式，\n"
+"中鍵點擊會更新所有信箱。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:49
 #, c-format
@@ -1113,71 +1317,74 @@ msgid ""
 "If '%s' is not your usual mail application,\n"
 "you can change it in the conf panel of this module"
 msgstr ""
+"出現了問題\n"
+"如果 '%s' 不是您平常使用的信件應用程式，\n"
+"您可以在這個模組的設置面板裏面更改它。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:101
 msgid "Refresh a mail account"
-msgstr ""
+msgstr "更新信件帳戶"
 
 #: ../mail/src/cd-mail-applet-notifications.c:112
 #, c-format
 msgid "Launch %s"
-msgstr ""
+msgstr "執行 %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:287
 msgid "Mail"
-msgstr ""
+msgstr "信件"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
-msgstr ""
+msgstr "動態模糊"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plug-in adds a motion blur effect on docks."
-msgstr ""
+msgstr "這個外掛增加了Dock的動態模糊效果。"
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown artist"
-msgstr ""
+msgstr "未知歌手"
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown title"
-msgstr ""
+msgstr "未知標題"
 
-#: ../musicPlayer/src/applet-draw.c:194
+#: ../musicPlayer/src/applet-draw.c:204
 msgid "Track"
-msgstr ""
+msgstr "曲目"
 
-#: ../musicPlayer/src/applet-draw.c:284
+#: ../musicPlayer/src/applet-draw.c:287
 msgid "Current song"
-msgstr ""
+msgstr "目前歌曲"
 
-#: ../musicPlayer/src/applet-draw.c:293
+#: ../musicPlayer/src/applet-draw.c:296
 msgid "Artist"
-msgstr ""
+msgstr "歌手"
 
-#: ../musicPlayer/src/applet-draw.c:295
+#: ../musicPlayer/src/applet-draw.c:298
 msgid "Album"
-msgstr ""
+msgstr "專輯"
 
-#: ../musicPlayer/src/applet-draw.c:297
+#: ../musicPlayer/src/applet-draw.c:300
 msgid "Title"
-msgstr ""
+msgstr "歌名"
 
-#: ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:302
 msgid "Length"
-msgstr ""
-
-#: ../musicPlayer/src/applet-draw.c:301
-msgid "Track n°"
-msgstr ""
+msgstr "長度"
 
 #: ../musicPlayer/src/applet-draw.c:304
+msgid "Track n°"
+msgstr "曲目 n°"
+
+#: ../musicPlayer/src/applet-draw.c:307
 msgid "There is no media playing."
-msgstr ""
+msgstr "沒有媒體播放 。"
 
 #: ../musicPlayer/src/applet-init.c:43
 msgid "musicPlayer"
-msgstr ""
+msgstr "音樂播放"
 
 #: ../musicPlayer/src/applet-init.c:46
 msgid ""
@@ -1190,6 +1397,13 @@ msgid ""
 "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
+"這個小程式讓你可以控制音樂播放器。\n"
+"左鍵點擊可以 播放/暫停 ，中鍵點擊播放下一首歌曲。\n"
+"向上/向下 滾動播放 上/下 一首歌曲。\n"
+"你可以 拖-放 歌曲的圖示，把他們在播放清單中（取決於播放器），\n"
+" 和JPEG圖片作為封面。\n"
+"注：XMMS的，你必須安裝 'xmms - infopipe' 外掛。\n"
+"       對於SongBird，你必須安裝它的 Dbus 附掛。\n"
 
 #: ../musicPlayer/src/applet-notifications.c:66
 msgid ""
@@ -1197,46 +1411,48 @@ msgid ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
+"對不起，我沒有發現任何播放器。\n"
+"如果它正在執行，也許是因為它的版本太舊，不提供這種服務。"
 
-#: ../musicPlayer/src/applet-notifications.c:152
+#: ../musicPlayer/src/applet-notifications.c:157
 msgid "Find opened player"
-msgstr ""
+msgstr "尋找已開啟的播放器"
 
-#: ../musicPlayer/src/applet-notifications.c:159
+#: ../musicPlayer/src/applet-notifications.c:164
 msgid "Previous"
-msgstr ""
+msgstr "上一個"
 
-#: ../musicPlayer/src/applet-notifications.c:161
+#: ../musicPlayer/src/applet-notifications.c:166
 msgid "Play/Pause (left-click)"
-msgstr ""
+msgstr "播放/停止(左鍵點擊)"
 
-#: ../musicPlayer/src/applet-notifications.c:163
+#: ../musicPlayer/src/applet-notifications.c:168
 msgid "Next (middle-click)"
-msgstr ""
+msgstr "下一個(中鍵點擊)"
 
-#: ../musicPlayer/src/applet-notifications.c:165
+#: ../musicPlayer/src/applet-notifications.c:170
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
-#: ../musicPlayer/src/applet-notifications.c:167
+#: ../musicPlayer/src/applet-notifications.c:172
 msgid "Show JumpBox"
-msgstr ""
+msgstr "顯示 JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:169
+#: ../musicPlayer/src/applet-notifications.c:174
 msgid "Toggle Shuffle"
-msgstr ""
+msgstr "切換亂數選歌"
 
-#: ../musicPlayer/src/applet-notifications.c:171
+#: ../musicPlayer/src/applet-notifications.c:176
 msgid "Toggle Repeat"
-msgstr ""
+msgstr "切換重複播放"
 
-#: ../musicPlayer/src/applet-notifications.c:173
+#: ../musicPlayer/src/applet-notifications.c:178
 msgid "Rate this song"
-msgstr ""
+msgstr "評分這首歌"
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:180
 msgid "Information"
-msgstr ""
+msgstr "資訊"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -1245,40 +1461,43 @@ msgid ""
 "Left-click on the icon to have the total amount of data transfered\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
+"這個小程式顯示您網際網路連接的位元速率，還有關於它的一些統計資料。\n"
+"左鍵點擊圖示有全部的數據傳輸量。\n"
+"中鍵點擊 不啟用/啟用網絡 (需要網路管理員)。"
 
 #: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: ../netspeed/src/applet-netspeed.c:58
 msgid "KB"
-msgstr ""
+msgstr "KB"
 
 #: ../netspeed/src/applet-netspeed.c:66
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 #: ../netspeed/src/applet-netspeed.c:74
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #: ../netspeed/src/applet-netspeed.c:82
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
-msgstr ""
+msgstr "總資料量"
 
 #: ../netspeed/src/applet-notifications.c:37
 msgid "downloaded"
-msgstr ""
+msgstr "已下載"
 
 #: ../netspeed/src/applet-notifications.c:38
 msgid "uploaded"
-msgstr ""
+msgstr "已上傳"
 
 #: ../netspeed/src/applet-notifications.c:43
 #, c-format
@@ -1287,80 +1506,91 @@ msgid ""
 " You may have to set up the interface you wish to monitor.\n"
 " Do you want to do it now ?"
 msgstr ""
+"'%s'界面卡似乎不存在或無法讀取。\n"
+" 您要監視它必須要先設定好界面卡。\n"
+" 你想這樣做嗎？"
 
 #: ../netspeed/src/applet-notifications.c:73
 msgid "Re-check interface"
-msgstr ""
+msgstr "重新檢查界面卡"
 
 #: ../powermanager/src/powermanager-draw.c:167
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
 msgstr ""
+"筆記型電腦的電池。\n"
+" 電池充電於："
 
 #: ../powermanager/src/powermanager-draw.c:167
 #: ../powermanager/src/powermanager-draw.c:197
 #: ../powermanager/src/powermanager-draw.c:203
 msgid "Estimated time with Charge:"
-msgstr ""
+msgstr "估計充電的時間："
 
 #: ../powermanager/src/powermanager-draw.c:171
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
 msgstr ""
+"筆記型電腦的充電。\n"
+" 電池充電於："
 
 #: ../powermanager/src/powermanager-draw.c:171
 msgid "Estimated Charge time:"
-msgstr ""
+msgstr "估計充電時間 ："
 
 #: ../powermanager/src/powermanager-draw.c:177
 msgid "No Battery found."
-msgstr ""
+msgstr "沒有找到電池 。"
 
 #: ../powermanager/src/powermanager-draw.c:197
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
 msgstr ""
+"電源管理員。\n"
+"電池電量似乎是低的"
 
 #: ../powermanager/src/powermanager-draw.c:197
 msgid "Please put your Laptop on charge."
-msgstr ""
+msgstr "請把您的筆記型電腦充電。"
 
 #: ../powermanager/src/powermanager-draw.c:203
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
 msgstr ""
+"電源管理員。\n"
+"現在你的電池正在充電"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
-msgstr ""
+msgstr "電源管理員可管理筆記型電腦的電池。它工作在ACPI和DBus 。"
 
 #: ../powermanager/src/powermanager-menu-functions.c:63
 msgid "Set up power management"
-msgstr ""
+msgstr "設定電源管理"
 
 #: ../powermanager/src/powermanager-menu-functions.c:66
 msgid "Halt"
-msgstr ""
+msgstr "停止"
 
 #: ../powermanager/src/powermanager-menu-functions.c:67
 msgid "Hibernate"
-msgstr ""
+msgstr "休眠"
 
 #: ../powermanager/src/powermanager-menu-functions.c:68
 msgid "Suspend"
-msgstr ""
+msgstr "暫停"
 
 #: ../powermanager/src/powermanager-menu-functions.c:69
 msgid "Reboot"
-msgstr ""
+msgstr "重新開機"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
-msgstr ""
+msgstr "快速瀏覽"
 
 #: ../quick-browser/src/applet-init.c:32
 msgid ""
@@ -1370,17 +1600,21 @@ msgid ""
 "This applet can be instanciated several times, if you want to browse "
 "different folders."
 msgstr ""
+"這個小程式可以讓您非常快速的瀏覽您的資料夾。\n"
+"您可以設定快速鍵來彈跳出選單。\n"
+"滑鼠中鍵可以開啟主資料夾。\n"
+"假如您想要看不同的資料夾，那麼這個小程式可以複製好幾個來設定不同資料夾。"
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:113
 msgid "Open this folder"
-msgstr ""
+msgstr "打開這個資料夾"
 
 #: ../shortcuts/src/applet-bookmarks.c:133
 #: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:73
+#: ../shortcuts/src/applet-load-icons.c:75
 msgid "Unmounted"
-msgstr ""
+msgstr "已卸載"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1393,28 +1627,34 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
+"一個讓您快速存取所有捷徑的小程式。\n"
+"它可以管理硬碟，網路位置，與Nautilus的書籤(即使您沒有Nautilus)。\n"
+"拖-放 資料夾在主圖示上面或者是子Dock上面來增加書籤。\n"
+"簡單的存取您的桌面只要在主圖示上面按下滑鼠中鍵。\n"
+"快速的 卸載/掛載 掛載點只要在掛載點上面按下滑鼠中鍵。\n"
+"這個小程式還可以顯示關於您硬碟的保貴資訊，例如剩下的空間，類型等等。"
 
-#: ../shortcuts/src/applet-notifications.c:92
+#: ../shortcuts/src/applet-notifications.c:98
 msgid "Remove this bookmark"
-msgstr ""
+msgstr "移除這個書籤"
 
-#: ../shortcuts/src/applet-notifications.c:102
+#: ../shortcuts/src/applet-notifications.c:108
 msgid "Get disk info"
-msgstr ""
+msgstr "取得硬碟資訊"
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
-msgstr ""
+msgstr "顯示滑鼠"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
 "This plug-in draw some animation around the cursor when it's inside a "
 "dock/desklet."
-msgstr ""
+msgstr "這個外掛可以顯示出一些動畫，當你滑鼠指標進入Dock或者是桌面小工具(Desklet)的區域時，會在指標周圍顯現出來。"
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
-msgstr ""
+msgstr "顯示桌面小工具"
 
 #: ../showDesklets/src/applet-init.c:31
 msgid ""
@@ -1423,10 +1663,14 @@ msgid ""
 "Basically, if you run under Compiz, you don't need this applet;\n"
 " you should just use the 'Widget Layer' capabilities of desklets."
 msgstr ""
+"這個小程式可以快速的存取您的桌面小工具(Desklet)。\n"
+"左鍵點擊可以 顯示/隱藏 您的桌面小工具。\n"
+"基本上您只要執行Compiz，您不需要這個小程式；\n"
+" 您只需要使用\"桌面小程式層(Widget Layer)\"就有桌面小工具的功能了。"
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
-msgstr ""
+msgstr "顯示桌面"
 
 #: ../showDesktop/src/applet-init.c:31
 msgid ""
@@ -1434,10 +1678,13 @@ msgid ""
 "Left-click to show/hide the desktop\n"
 "Middle-click does the same but doesn't hide your desklets"
 msgstr ""
+"這是一個顯示桌面的簡單小程式\n"
+"左鍵點擊 顯示/隱藏 桌面\n"
+"中鍵點擊也是一樣的，但是並不會隱藏您的桌面小工具(Desklets)"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr ""
+msgstr "投影片式輪放圖片"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -1446,22 +1693,24 @@ msgid ""
 "Click to play/pause or to edit the current image.\n"
 "Middle-click to open the images folder."
 msgstr ""
+"這是一個基本的圖片輪放小程式\n"
+" 您可以只有選擇圖片的目錄與如何顯示的效果就可以了。"
 
 #: ../slider/src/applet-notifications.c:163
 msgid "Play"
-msgstr ""
+msgstr "播放"
 
 #: ../slider/src/applet-notifications.c:163
 msgid "Pause"
-msgstr ""
+msgstr "暫停"
 
 #: ../slider/src/applet-notifications.c:166
 msgid "Open current image"
-msgstr ""
+msgstr "打開目前圖片"
 
 #: ../slider/src/applet-notifications.c:168
 msgid "Browse images folder"
-msgstr ""
+msgstr "瀏覽圖片資料夾"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -1472,110 +1721,143 @@ msgid ""
 "You can drop any file, or web URL, or even some piece of text\n"
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
+"這個小程式可以讓您建立檔案的堆疊，就像是MacOS X上的堆疊(Stacks)小程式。\n"
+"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊小程式的圖示當中，這樣子就完成了。\n"
+"您可以放入任何的檔案，或者是網路位置，甚至是文字的一部份。\n"
+"您可以快速的拷貝 路徑/網路位置/文字 到剪貼簿，或者打開它。"
 
-#: ../stack/src/applet-notifications.c:61
+#: ../stack/src/applet-notifications.c:48
+msgid ""
+"No items in the stack.\n"
+"You can add files, URL, and even piece of text by dragging them onto the "
+"icon."
+msgstr ""
+
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
-msgstr ""
+msgstr "清除堆疊嗎？"
 
-#: ../stack/src/applet-notifications.c:78
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
-msgstr ""
+msgstr "為這個項目設置新的名字："
 
-#: ../stack/src/applet-notifications.c:136
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
-msgstr ""
-
-#: ../stack/src/applet-notifications.c:137
-msgid "Cut"
-msgstr ""
-
-#: ../stack/src/applet-notifications.c:138
-msgid "Rename this item"
-msgstr ""
-
-#: ../stack/src/applet-notifications.c:139
-msgid "Remove this item"
-msgstr ""
-
-#: ../stack/src/applet-notifications.c:143
-msgid "Open (click)"
-msgstr ""
+msgstr "拷貝(中鍵點擊)"
 
 #: ../stack/src/applet-notifications.c:145
-msgid "Open folder"
-msgstr ""
+msgid "Cut"
+msgstr "剪下"
 
-#: ../stack/src/applet-notifications.c:150
-msgid "Paste (drag'n'drop)"
-msgstr ""
+#: ../stack/src/applet-notifications.c:146
+msgid "Rename this item"
+msgstr "重命名此項目"
+
+#: ../stack/src/applet-notifications.c:147
+msgid "Remove this item"
+msgstr "移除此項目"
 
 #: ../stack/src/applet-notifications.c:151
+msgid "Open (click)"
+msgstr "開啟(點擊)"
+
+#: ../stack/src/applet-notifications.c:153
+msgid "Open folder"
+msgstr "開啟資料夾"
+
+#: ../stack/src/applet-notifications.c:158
+msgid "Paste (drag'n'drop)"
+msgstr "貼上(拖-放)"
+
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
-msgstr ""
+msgstr "清除堆疊"
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
-msgstr ""
+msgstr "重新載入堆疊"
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
-msgstr ""
+msgstr "清除本地端的目錄"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
 msgid "current"
-msgstr ""
+msgstr "目前的"
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
 msgid "desktop"
-msgstr ""
+msgstr "桌面"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
-msgstr ""
+msgstr "切換"
 
 #: ../switcher/src/applet-init.c:35
 msgid ""
-"This applet allows you to switch between your virtual desktops.\n"
-"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-"You can also quickly add/remove a desktop through the right-click menu.\n"
-"Scroll up/down on the main icon to go to the left/right desktop, middle-"
-"click to show the desktop"
+"This applet allows you to interact with your workspaces :\n"
+" - switch between your workspaces (scroll up/down with the mouse),\n"
+" - name them (in the config),\n"
+" - quickly add/remove a workspace (in the menu),\n"
+" - show the desktop (middle-click or in the menu),\n"
+" - list all windows on each workspace ((middle-click or in the menu)\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
+"這個小程式能夠讓您與工作區互動：\n"
+" - 切換您的工作區(滾動滑鼠滾輪)，\n"
+" - 重新命名(在設置裏面)，\n"
+" - 快速的 增加/刪除 工作區(在選單當中)，\n"
+" - 顯示桌面(中鍵點擊或者是選單當中)，\n"
+" - 顯示在每個工作區的全部視窗(中鍵點擊或者是選單當中)\n"
+"它有兩種模式：壓縮的(一個圖示)與延伸的(有子Dock)。"
 
 #: ../switcher/src/applet-load-icons.c:40
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:334
 msgid "Current"
-msgstr ""
+msgstr "目前"
 
 #: ../switcher/src/applet-load-icons.c:46
-#: ../switcher/src/applet-notifications.c:262
-#: ../switcher/src/applet-notifications.c:319
+#: ../switcher/src/applet-notifications.c:175
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:326
+#: ../switcher/src/applet-notifications.c:383
 msgid "Desktop"
-msgstr ""
+msgstr "桌面"
 
-#: ../switcher/src/applet-notifications.c:164
+#: ../switcher/src/applet-notifications.c:176
+#: ../switcher/src/applet-notifications.c:234
+msgid "Rename this workspace"
+msgstr "對這個工作區更名"
+
+#: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
-msgstr ""
+msgstr "增加一個桌面"
 
-#: ../switcher/src/applet-notifications.c:168
+#: ../switcher/src/applet-notifications.c:221
 msgid "Remove last desktop"
-msgstr ""
+msgstr "移除最後一個桌面"
 
-#: ../switcher/src/applet-notifications.c:172
+#: ../switcher/src/applet-notifications.c:225
 msgid "Refresh"
-msgstr ""
+msgstr "重新整理"
 
-#: ../switcher/src/applet-notifications.c:184
+#: ../switcher/src/applet-notifications.c:241
 msgid "Move current desktop to this desktop"
-msgstr ""
+msgstr "移動目前的桌面到這個桌面"
 
-#: ../switcher/src/applet-notifications.c:189
-msgid "This will move all windows from the current desktop to this one"
-msgstr ""
+#: ../switcher/src/applet-notifications.c:246
+msgid ""
+"This will move all windows from the current desktop to the one you clicked "
+"on."
+msgstr "這將會從目前的桌面移動全部的視窗到你點擊的那個上。"
 
-#: ../switcher/src/applet-notifications.c:197
+#: ../switcher/src/applet-notifications.c:252
+msgid "Show the desktop"
+msgstr "顯示桌面"
+
+#: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
-msgstr ""
+msgstr "視窗清單"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -1586,21 +1868,27 @@ msgid ""
 "But the best way to use it id to detach it from the dock, and place it "
 "somewhere, above other windows."
 msgstr ""
+"增加一個系統資訊(systray)到您的Dock上。\n"
+"左鍵點擊會以交談式視窗的方式顯示顯示系統資訊(您可以用快速鍵來做到這點)。\n"
+"中鍵點擊可以關閉這個交談視窗。\n"
+"但是最好的方式是將他與Dock分離，然後放置在桌面的任何地方，並且讓他顯示於其他視窗之上。"
 
 #: ../template/src/applet-init.c:30
 msgid "CD_APPLET_NAME"
-msgstr ""
+msgstr "CD_APPLET_NAME"
 
 #: ../template/src/applet-init.c:33
 msgid ""
 "Useful description\n"
 "and manual"
 msgstr ""
+"有用的說明\n"
+"和手冊"
 
 #: ../terminal/src/terminal-callbacks.c:84
-#: ../terminal/src/terminal-widget.c:343
+#: ../terminal/src/terminal-widget.c:346
 msgid "Copy"
-msgstr ""
+msgstr "複製"
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -1613,47 +1901,58 @@ msgid ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
+"增加一個終端機到您的Dock上！\n"
+"左鍵/中鍵 點擊可以 顯示/隱藏 終端機(您可以設定鍵盤快速鍵來做這件事)。\n"
+"您可以 拖-放 文件或檔案，然後選擇一個動作。\n"
+"您可以開啟很多的分頁，更改它們的名稱，改變它們的色彩(在分頁上面點擊滑鼠右鍵)\n"
+"要開啟新分頁：按下CTRL + t 或者是雙擊最後一個分頁標籤\n"
+"要關閉分頁：按下CTRL + w 或者是中鍵點擊分頁標籤"
 
 #: ../terminal/src/terminal-menu-functions.c:80
-#: ../terminal/src/terminal-widget.c:359
+#: ../terminal/src/terminal-widget.c:362
 msgid "New Tab"
-msgstr ""
+msgstr "新分頁"
 
 #: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
-msgstr ""
+msgstr "對目前的分頁更名"
 
 #: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
-msgstr ""
+msgstr "關閉目前的分頁"
 
 #: ../terminal/src/terminal-widget.c:45
 msgid "Terminal"
-msgstr ""
+msgstr "終端機"
 
 #: ../terminal/src/terminal-widget.c:137
 msgid "Set title for this tab :"
-msgstr ""
+msgstr "設定這個分頁的標籤"
 
 #: ../terminal/src/terminal-widget.c:191
 msgid "Select a color"
-msgstr ""
+msgstr "請選取顏色"
 
-#: ../terminal/src/terminal-widget.c:349
+#: ../terminal/src/terminal-widget.c:306
+#, c-format
+msgid "You can call back the Terminal desklet by typing %s"
+msgstr "您可以按下 %s 來喚回終端機桌面小工具"
+
+#: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
-msgstr ""
+msgstr "貼上"
 
-#: ../terminal/src/terminal-widget.c:365
+#: ../terminal/src/terminal-widget.c:368
 msgid "Rename this Tab"
-msgstr ""
+msgstr "更改這個分頁的名稱"
 
-#: ../terminal/src/terminal-widget.c:371
+#: ../terminal/src/terminal-widget.c:374
 msgid "Change this Tab's color"
-msgstr ""
+msgstr "改變這個分頁的顏色"
 
-#: ../terminal/src/terminal-widget.c:377
+#: ../terminal/src/terminal-widget.c:380
 msgid "Close this Tab"
-msgstr ""
+msgstr "關閉這個分頁"
 
 #: ../tomboy/src/tomboy-init.c:33
 msgid ""
@@ -1662,77 +1961,83 @@ msgid ""
 "Middle-click to instantly create a new note.\n"
 "You can search inside notes and display their content on the icons."
 msgstr ""
+"在Dock上面直接控制您的 Gnote 或者是 TomBoy's 筆記本。\n"
+"點擊筆記本打開它們，Escape 按鍵則是關閉。\n"
+"中鍵點擊則是馬上建立一個新的筆記。\n"
+"您可以在圖示上面搜尋已經寫好的筆記或顯示內容。"
 
 #: ../tomboy/src/tomboy-notifications.c:68
 msgid "Note name : "
-msgstr ""
+msgstr "筆記頁的名稱： "
 
 #: ../tomboy/src/tomboy-notifications.c:91
 msgid "Delete this note ?"
-msgstr ""
+msgstr "刪除這頁筆記？"
 
 #: ../tomboy/src/tomboy-notifications.c:107
 msgid "Search for :"
-msgstr ""
+msgstr "搜尋："
 
 #: ../tomboy/src/tomboy-notifications.c:123
 msgid "Search for tag :"
-msgstr ""
+msgstr "搜尋標籤："
 
 #: ../tomboy/src/tomboy-notifications.c:162
 msgid "Reload notes"
-msgstr ""
+msgstr "重新載入筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:163
 msgid "Add a note"
-msgstr ""
+msgstr "增加一頁筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:169
 msgid "Delete this note"
-msgstr ""
+msgstr "刪除這頁筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:172
 msgid "Search"
-msgstr ""
+msgstr "搜尋"
 
 #: ../tomboy/src/tomboy-notifications.c:173
 msgid "Search for tag"
-msgstr ""
+msgstr "搜尋標籤"
 
 #: ../tomboy/src/tomboy-notifications.c:175
 msgid "Search for today's note"
-msgstr ""
+msgstr "搜尋今天的筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:176
 msgid "Search for this week's note"
-msgstr ""
+msgstr "搜尋本周的筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:177
 msgid "Search for next week's note"
-msgstr ""
+msgstr "搜尋下個星期的筆記"
 
 #: ../tomboy/src/tomboy-notifications.c:187
 msgid "Clear marks"
-msgstr ""
+msgstr "清除標記"
 
 #: ../weather/src/applet-config.c:166
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
+"我得不到任何資訊\n"
+" 還有繼續連接著嗎？"
 
 #: ../weather/src/applet-config.c:179
 msgid "I couldn't find this location"
-msgstr ""
+msgstr "我沒有辦法找到這個位置"
 
 #: ../weather/src/applet-config.c:237
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
-msgstr ""
+msgstr "輸入您的位置名稱，並且按下Enter來選擇其中一個。"
 
 #: ../weather/src/applet-init.c:29
 msgid "weather"
-msgstr ""
+msgstr "天氣"
 
 #: ../weather/src/applet-init.c:32
 msgid ""
@@ -1743,143 +2048,151 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
+"這個小程式可以在您的Dock上面顯示天氣。\n"
+"資料來自 www.weather.com ，您可以在設置面板當中找到您目前所在的位置。\n"
+"它可以完整的分離變成桌面上漂亮3D小工具。\n"
+"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預報。\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr ""
+msgstr "星期一"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr ""
+msgstr "星期二"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr ""
+msgstr "星期三"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr ""
+msgstr "星期四"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr ""
+msgstr "星期五"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr ""
+msgstr "星期六"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr ""
+msgstr "星期日"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
-msgstr ""
+msgstr "一月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Feb"
-msgstr ""
+msgstr "二月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Mar"
-msgstr ""
+msgstr "三月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Apr"
-msgstr ""
+msgstr "四月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "May"
-msgstr ""
+msgstr "五月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jun"
-msgstr ""
+msgstr "六月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jui"
-msgstr ""
+msgstr "七月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Aug"
-msgstr ""
+msgstr "八月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sep"
-msgstr ""
+msgstr "九月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Oct"
-msgstr ""
+msgstr "十月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Nov"
-msgstr ""
+msgstr "十一月"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Dec"
-msgstr ""
+msgstr "十二月"
 
 #: ../weather/src/applet-notifications.c:58
 msgid "Data are being retrieved, please wait a moment."
-msgstr ""
+msgstr "資料已經開始下載，請稍候。"
 
 #: ../weather/src/applet-notifications.c:73
 msgid "Reload now"
-msgstr ""
+msgstr "現在正重新載入"
 
 #: ../weather/src/applet-notifications.c:97
 msgid ""
 "No data were available\n"
 " is connection alive ?"
 msgstr ""
+"沒有資料可用\n"
+" 連線還存在嗎？"
 
 #: ../weather/src/applet-notifications.c:116
 #: ../weather/src/applet-notifications.c:152
 msgid "Temperature"
-msgstr ""
+msgstr "氣溫"
 
 #: ../weather/src/applet-notifications.c:117
 msgid "Precipitation Probability"
-msgstr ""
+msgstr "下雨機率"
 
 #: ../weather/src/applet-notifications.c:118
 #: ../weather/src/applet-notifications.c:153
 msgid "Wind"
-msgstr ""
+msgstr "風"
 
 #: ../weather/src/applet-notifications.c:119
 #: ../weather/src/applet-notifications.c:154
 msgid "Humidity"
-msgstr ""
+msgstr "相對濕度"
 
 #: ../weather/src/applet-notifications.c:120
 #: ../weather/src/applet-notifications.c:155
 msgid "SunRise"
-msgstr ""
+msgstr "日出"
 
 #: ../weather/src/applet-notifications.c:120
 #: ../weather/src/applet-notifications.c:155
 msgid "SunSet"
-msgstr ""
+msgstr "日落"
 
 #: ../weather/src/applet-notifications.c:128
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr ""
+msgstr "正在抓取數據，請幾秒鐘後再重新嘗試。"
 
 #: ../weather/src/applet-notifications.c:138
 msgid ""
 "No data were available\n"
 "Re-trying now ..."
 msgstr ""
+"沒有數據\n"
+"現在正再重試中"
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
-msgstr ""
+msgid "felt"
+msgstr "感覺"
 
 #: ../weather/src/applet-notifications.c:154
 msgid "Pressure"
-msgstr ""
+msgstr "氣壓"
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -1888,14 +2201,17 @@ msgid ""
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
+"該weblets小程式允許您顯示一個互動的網頁在桌面上。\n"
+"你可以選擇你的網頁，再設置所需的滾動，\n"
+"並隱藏滾動條以獲得真正 \"修剪\" 過後的網頁。"
 
 #: ../weblets/src/applet-widget.c:58
 msgid "Weblets"
-msgstr ""
+msgstr "Weblets"
 
 #: ../wifi/src/applet-draw.c:151
 msgid "Wifi disabled."
-msgstr ""
+msgstr "無線網路關閉。"
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -1903,6 +2219,8 @@ msgid ""
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"這個小程式可以顯示出第一個活動的WiFi連接信號強度\n"
+"左鍵點擊彈出信息交談視窗，中鍵點擊立即重新檢查。"
 
 #: ../xfce-integration/src/applet-init.c:30
 msgid ""
@@ -1910,98 +2228,61 @@ msgid ""
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it."
 msgstr ""
+"這個小程式的功能提供了可以更好地融入XFCE桌面環境。\n"
+"這是自動啟用，所以您不需要啟用它。"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
 msgid "Global"
-msgstr ""
+msgstr "全域設定"
 
 #: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering an icon"
-msgstr ""
+msgstr "當滑鼠指標懸停在圖示上方"
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
 msgstr ""
 
-#: ../Animated-icons/data/messages:7 ../Animated-icons/data/messages:25
-#: ../Animated-icons/data/messages:43 ../Animated-icons/data/messages:61
-#: ../Animated-icons/data/messages:167
-msgid "Bounce"
-msgstr ""
-
-#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:27
-#: ../Animated-icons/data/messages:45 ../Animated-icons/data/messages:63
-msgid "Rotate"
-msgstr ""
-
-#: ../Animated-icons/data/messages:11 ../Animated-icons/data/messages:29
-#: ../Animated-icons/data/messages:47 ../Animated-icons/data/messages:65
-#: ../Animated-icons/data/messages:181
-msgid "Blink"
-msgstr ""
-
-#: ../Animated-icons/data/messages:13 ../Animated-icons/data/messages:31
-#: ../Animated-icons/data/messages:49 ../Animated-icons/data/messages:67
-#: ../Animated-icons/data/messages:155
-msgid "Pulse"
-msgstr ""
-
-#: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:33
-#: ../Animated-icons/data/messages:51 ../Animated-icons/data/messages:69
-#: ../Animated-icons/data/messages:127
-msgid "Wobbly"
-msgstr ""
-
-#: ../Animated-icons/data/messages:17 ../Animated-icons/data/messages:35
-#: ../Animated-icons/data/messages:53 ../Animated-icons/data/messages:71
-#: ../Animated-icons/data/messages:143
-msgid "Wave"
-msgstr ""
-
-#: ../Animated-icons/data/messages:19 ../Animated-icons/data/messages:93
-msgid "Spot"
-msgstr ""
-
 #: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:17
 msgid "when clicking on an launcher"
-msgstr ""
+msgstr "當點擊一個快速啟動"
 
 #: ../Animated-icons/data/messages:23 ../icon-effect/data/messages:19
 msgid "Effects used on launcher :"
-msgstr ""
+msgstr "用於快速啟動的效果："
 
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73
 msgid "Number of time the animation will play :"
-msgstr ""
+msgstr "動畫播放的時間："
 
 #: ../Animated-icons/data/messages:39 ../icon-effect/data/messages:31
 msgid "when clicking on an appli"
-msgstr ""
+msgstr "當點擊一個應用程式"
 
 #: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:33
 msgid "Effects used on applis :"
-msgstr ""
+msgstr "用於應用程式的效果："
 
 #: ../Animated-icons/data/messages:57 ../icon-effect/data/messages:45
 msgid "when clicking on an applet"
-msgstr ""
+msgstr "當點擊一個小程式"
 
 #: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:47
 msgid "Effects used on applets :"
-msgstr ""
+msgstr "用於小程式的效果："
 
 #: ../Animated-icons/data/messages:75
 msgid "Rotation"
-msgstr ""
+msgstr "旋轉"
 
 #: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:95
 #: ../Animated-icons/data/messages:145 ../Animated-icons/data/messages:157
 #: ../Animated-icons/data/messages:169 ../Animated-icons/data/messages:183
 #: ../Scooby-Do/data/messages:13 ../Scooby-Do/data/messages:17
 msgid "In ms."
-msgstr ""
+msgstr "以毫秒(ms)為單位"
 
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:147 ../icon-effect/data/messages:67
@@ -2011,7 +2292,7 @@ msgstr ""
 #: ../illusion/data/messages:55 ../illusion/data/messages:65
 #: ../illusion/data/messages:71
 msgid "Duration of the animation :"
-msgstr ""
+msgstr "動畫長短："
 
 #: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
@@ -2039,7 +2320,7 @@ msgstr ""
 #: ../showDesktop/data/messages:31 ../slider/data/messages:27
 #: ../stack/data/messages:33 ../switcher/data/messages:27
 #: ../systray/data/messages:23 ../terminal/data/messages:31
-#: ../tomboy/data/messages:41 ../weather/data/messages:29
+#: ../tomboy/data/messages:45 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:27
 msgid "Normal"
 msgstr ""
@@ -2066,7 +2347,7 @@ msgstr ""
 #: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
 #: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
 #: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:129 ../terminal/data/messages:9
+#: ../switcher/data/messages:135 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr ""
@@ -2217,15 +2498,15 @@ msgstr ""
 #: ../clock/data/messages:3 ../compiz-icon/data/messages:3
 #: ../dnd2share/data/messages:3 ../dustbin/data/messages:3
 #: ../keyboard-indicator/data/messages:3 ../logout/data/messages:3
-#: ../mail/data/messages:3 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:3 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:3 ../showDesklets/data/messages:3
-#: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../switcher/data/messages:3
-#: ../systray/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:3
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:3
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
+#: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
+#: ../slider/data/messages:3 ../stack/data/messages:3
+#: ../switcher/data/messages:3 ../systray/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
-msgid "Set to 0 to use the default applet size"
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../Cairo-Penguin/data/messages:5
@@ -2269,7 +2550,7 @@ msgstr ""
 #: ../showDesklets/data/messages:19 ../showDesktop/data/messages:85
 #: ../slider/data/messages:81 ../stack/data/messages:87
 #: ../switcher/data/messages:81 ../switcher/data/messages:83
-#: ../tomboy/data/messages:95 ../weather/data/messages:83
+#: ../tomboy/data/messages:99 ../weather/data/messages:83
 #: ../weather/data/messages:85 ../weblets/data/messages:85
 #: ../wifi/data/messages:81
 msgid "Configuration"
@@ -2277,7 +2558,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:93
 #: ../System-Monitor/data/messages:91 ../Toons/data/messages:85
-#: ../dustbin/data/messages:85 ../mail/data/messages:83
+#: ../dustbin/data/messages:85 ../mail/data/messages:91
 #: ../netspeed/data/messages:91 ../powermanager/data/messages:93
 #: ../weather/data/messages:113 ../wifi/data/messages:93
 msgid "Choose one of the available themes :"
@@ -2467,7 +2748,7 @@ msgstr ""
 #: ../shortcuts/data/messages:15 ../showDesktop/data/messages:15
 #: ../slider/data/messages:11 ../stack/data/messages:17
 #: ../switcher/data/messages:15 ../systray/data/messages:11
-#: ../terminal/data/messages:15 ../tomboy/data/messages:25
+#: ../terminal/data/messages:15 ../tomboy/data/messages:29
 #: ../weather/data/messages:13 ../weblets/data/messages:15
 #: ../wifi/data/messages:11
 msgid "Desklet"
@@ -2485,7 +2766,7 @@ msgstr ""
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:17
 #: ../slider/data/messages:13 ../stack/data/messages:19
 #: ../switcher/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:27 ../weather/data/messages:15
+#: ../tomboy/data/messages:31 ../weather/data/messages:15
 #: ../weblets/data/messages:17 ../wifi/data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
@@ -2504,7 +2785,7 @@ msgstr ""
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:19
 #: ../slider/data/messages:15 ../stack/data/messages:21
 #: ../switcher/data/messages:19 ../terminal/data/messages:19
-#: ../tomboy/data/messages:29 ../weather/data/messages:17
+#: ../tomboy/data/messages:33 ../weather/data/messages:17
 #: ../weblets/data/messages:19 ../wifi/data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr ""
@@ -2537,7 +2818,7 @@ msgstr ""
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:23
 #: ../slider/data/messages:19 ../stack/data/messages:25
 #: ../switcher/data/messages:21 ../systray/data/messages:15
-#: ../terminal/data/messages:23 ../tomboy/data/messages:33
+#: ../terminal/data/messages:23 ../tomboy/data/messages:37
 #: ../weather/data/messages:21 ../weblets/data/messages:23
 #: ../wifi/data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -2555,7 +2836,7 @@ msgstr ""
 #: ../shortcuts/data/messages:25 ../showDesktop/data/messages:25
 #: ../slider/data/messages:21 ../stack/data/messages:27
 #: ../switcher/data/messages:23 ../systray/data/messages:17
-#: ../terminal/data/messages:25 ../tomboy/data/messages:35
+#: ../terminal/data/messages:25 ../tomboy/data/messages:39
 #: ../weather/data/messages:23 ../weblets/data/messages:25
 #: ../wifi/data/messages:21
 msgid "Is detached from the dock ?"
@@ -2573,7 +2854,7 @@ msgstr ""
 #: ../shortcuts/data/messages:27 ../showDesktop/data/messages:27
 #: ../slider/data/messages:23 ../stack/data/messages:29
 #: ../systray/data/messages:19 ../terminal/data/messages:27
-#: ../tomboy/data/messages:37 ../weather/data/messages:25
+#: ../tomboy/data/messages:41 ../weather/data/messages:25
 #: ../weblets/data/messages:27 ../wifi/data/messages:23
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -2592,7 +2873,7 @@ msgstr ""
 #: ../shortcuts/data/messages:29 ../showDesktop/data/messages:29
 #: ../slider/data/messages:25 ../stack/data/messages:31
 #: ../switcher/data/messages:25 ../systray/data/messages:21
-#: ../terminal/data/messages:29 ../tomboy/data/messages:39
+#: ../terminal/data/messages:29 ../tomboy/data/messages:43
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:25
 msgid "Accessibility :"
@@ -2610,7 +2891,7 @@ msgstr ""
 #: ../shortcuts/data/messages:33 ../showDesktop/data/messages:33
 #: ../slider/data/messages:29 ../stack/data/messages:35
 #: ../switcher/data/messages:29 ../systray/data/messages:25
-#: ../terminal/data/messages:33 ../tomboy/data/messages:43
+#: ../terminal/data/messages:33 ../tomboy/data/messages:47
 #: ../weather/data/messages:31 ../weblets/data/messages:33
 #: ../wifi/data/messages:29
 msgid "Keep above"
@@ -2628,7 +2909,7 @@ msgstr ""
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:35
 #: ../slider/data/messages:31 ../stack/data/messages:37
 #: ../switcher/data/messages:31 ../systray/data/messages:27
-#: ../terminal/data/messages:35 ../tomboy/data/messages:45
+#: ../terminal/data/messages:35 ../tomboy/data/messages:49
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:31
 msgid "Keep below"
@@ -2646,7 +2927,7 @@ msgstr ""
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:37
 #: ../slider/data/messages:33 ../stack/data/messages:39
 #: ../switcher/data/messages:33 ../systray/data/messages:29
-#: ../terminal/data/messages:37 ../tomboy/data/messages:47
+#: ../terminal/data/messages:37 ../tomboy/data/messages:51
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:33
 msgid "On Widget Layer"
@@ -2664,7 +2945,7 @@ msgstr ""
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:39
 #: ../slider/data/messages:35 ../stack/data/messages:41
 #: ../switcher/data/messages:35 ../systray/data/messages:31
-#: ../terminal/data/messages:39 ../tomboy/data/messages:49
+#: ../terminal/data/messages:39 ../tomboy/data/messages:53
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:35
 msgid "Reserve space"
@@ -2682,7 +2963,7 @@ msgstr ""
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:41
 #: ../slider/data/messages:37 ../stack/data/messages:43
 #: ../switcher/data/messages:37 ../systray/data/messages:33
-#: ../terminal/data/messages:41 ../tomboy/data/messages:51
+#: ../terminal/data/messages:41 ../tomboy/data/messages:55
 #: ../weather/data/messages:39 ../weblets/data/messages:41
 #: ../wifi/data/messages:37
 msgid "Should be visible on all desktops ?"
@@ -2700,7 +2981,7 @@ msgstr ""
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:43
 #: ../slider/data/messages:39 ../stack/data/messages:45
 #: ../switcher/data/messages:39 ../systray/data/messages:35
-#: ../terminal/data/messages:43 ../tomboy/data/messages:53
+#: ../terminal/data/messages:43 ../tomboy/data/messages:57
 #: ../weather/data/messages:41 ../weblets/data/messages:43
 #: ../wifi/data/messages:39
 msgid ""
@@ -2720,7 +3001,7 @@ msgstr ""
 #: ../shortcuts/data/messages:45 ../showDesktop/data/messages:45
 #: ../slider/data/messages:41 ../stack/data/messages:47
 #: ../switcher/data/messages:41 ../systray/data/messages:37
-#: ../terminal/data/messages:45 ../tomboy/data/messages:55
+#: ../terminal/data/messages:45 ../tomboy/data/messages:59
 #: ../weather/data/messages:43 ../weblets/data/messages:45
 #: ../wifi/data/messages:41
 msgid "Lock position ?"
@@ -2738,7 +3019,7 @@ msgstr ""
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:47
 #: ../slider/data/messages:43 ../stack/data/messages:49
 #: ../switcher/data/messages:43 ../terminal/data/messages:47
-#: ../tomboy/data/messages:57 ../weather/data/messages:45
+#: ../tomboy/data/messages:61 ../weather/data/messages:45
 #: ../weblets/data/messages:47 ../wifi/data/messages:43
 msgid "in degrees."
 msgstr ""
@@ -2755,7 +3036,7 @@ msgstr ""
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:49
 #: ../slider/data/messages:45 ../stack/data/messages:51
 #: ../switcher/data/messages:45 ../terminal/data/messages:49
-#: ../tomboy/data/messages:59 ../weather/data/messages:47
+#: ../tomboy/data/messages:63 ../weather/data/messages:47
 #: ../weblets/data/messages:49 ../wifi/data/messages:45
 msgid "Rotation :"
 msgstr ""
@@ -2772,7 +3053,7 @@ msgstr ""
 #: ../shortcuts/data/messages:51 ../showDesktop/data/messages:51
 #: ../slider/data/messages:47 ../stack/data/messages:53
 #: ../switcher/data/messages:47 ../terminal/data/messages:51
-#: ../tomboy/data/messages:61 ../weather/data/messages:49
+#: ../tomboy/data/messages:65 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:47
 msgid "Decorations"
 msgstr ""
@@ -2789,7 +3070,7 @@ msgstr ""
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:53
 #: ../slider/data/messages:49 ../stack/data/messages:55
 #: ../switcher/data/messages:49 ../terminal/data/messages:53
-#: ../tomboy/data/messages:63 ../weather/data/messages:51
+#: ../tomboy/data/messages:67 ../weather/data/messages:51
 #: ../weblets/data/messages:53 ../wifi/data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr ""
@@ -2806,7 +3087,7 @@ msgstr ""
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:55
 #: ../slider/data/messages:51 ../stack/data/messages:57
 #: ../switcher/data/messages:51 ../terminal/data/messages:55
-#: ../tomboy/data/messages:65 ../weather/data/messages:53
+#: ../tomboy/data/messages:69 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr ""
@@ -2823,7 +3104,7 @@ msgstr ""
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:57
 #: ../slider/data/messages:53 ../stack/data/messages:59
 #: ../switcher/data/messages:53 ../terminal/data/messages:57
-#: ../tomboy/data/messages:67 ../weather/data/messages:55
+#: ../tomboy/data/messages:71 ../weather/data/messages:55
 #: ../weblets/data/messages:57 ../wifi/data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
@@ -2842,7 +3123,7 @@ msgstr ""
 #: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
 #: ../showDesktop/data/messages:59 ../slider/data/messages:55
 #: ../stack/data/messages:61 ../switcher/data/messages:55
-#: ../terminal/data/messages:59 ../tomboy/data/messages:69
+#: ../terminal/data/messages:59 ../tomboy/data/messages:73
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55
 msgid "Background image :"
@@ -2860,7 +3141,7 @@ msgstr ""
 #: ../shortcuts/data/messages:61 ../showDesktop/data/messages:61
 #: ../slider/data/messages:57 ../stack/data/messages:63
 #: ../switcher/data/messages:57 ../terminal/data/messages:61
-#: ../tomboy/data/messages:71 ../weather/data/messages:59
+#: ../tomboy/data/messages:75 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
 msgid "Background tansparency :"
 msgstr ""
@@ -2877,7 +3158,7 @@ msgstr ""
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:63
 #: ../slider/data/messages:59 ../stack/data/messages:65
 #: ../switcher/data/messages:59 ../terminal/data/messages:63
-#: ../tomboy/data/messages:73 ../weather/data/messages:61
+#: ../tomboy/data/messages:77 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr ""
@@ -2894,7 +3175,7 @@ msgstr ""
 #: ../shortcuts/data/messages:65 ../showDesktop/data/messages:65
 #: ../slider/data/messages:61 ../stack/data/messages:67
 #: ../switcher/data/messages:61 ../terminal/data/messages:65
-#: ../tomboy/data/messages:75 ../weather/data/messages:63
+#: ../tomboy/data/messages:79 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:61
 msgid "Left offset :"
 msgstr ""
@@ -2911,7 +3192,7 @@ msgstr ""
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:67
 #: ../slider/data/messages:63 ../stack/data/messages:69
 #: ../switcher/data/messages:63 ../terminal/data/messages:67
-#: ../tomboy/data/messages:77 ../weather/data/messages:65
+#: ../tomboy/data/messages:81 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr ""
@@ -2928,7 +3209,7 @@ msgstr ""
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:69
 #: ../slider/data/messages:65 ../stack/data/messages:71
 #: ../switcher/data/messages:65 ../terminal/data/messages:69
-#: ../tomboy/data/messages:79 ../weather/data/messages:67
+#: ../tomboy/data/messages:83 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:65
 msgid "Top offset :"
 msgstr ""
@@ -2945,7 +3226,7 @@ msgstr ""
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:71
 #: ../slider/data/messages:67 ../stack/data/messages:73
 #: ../switcher/data/messages:67 ../terminal/data/messages:71
-#: ../tomboy/data/messages:81 ../weather/data/messages:69
+#: ../tomboy/data/messages:85 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr ""
@@ -2962,7 +3243,7 @@ msgstr ""
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:73
 #: ../slider/data/messages:69 ../stack/data/messages:75
 #: ../switcher/data/messages:69 ../terminal/data/messages:73
-#: ../tomboy/data/messages:83 ../weather/data/messages:71
+#: ../tomboy/data/messages:87 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:69
 msgid "Right offset :"
 msgstr ""
@@ -2979,7 +3260,7 @@ msgstr ""
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:75
 #: ../slider/data/messages:71 ../stack/data/messages:77
 #: ../switcher/data/messages:71 ../terminal/data/messages:75
-#: ../tomboy/data/messages:85 ../weather/data/messages:73
+#: ../tomboy/data/messages:89 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr ""
@@ -2996,7 +3277,7 @@ msgstr ""
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:77
 #: ../slider/data/messages:73 ../stack/data/messages:79
 #: ../switcher/data/messages:73 ../terminal/data/messages:77
-#: ../tomboy/data/messages:87 ../weather/data/messages:75
+#: ../tomboy/data/messages:91 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:73
 msgid "Bottom offset :"
 msgstr ""
@@ -3013,7 +3294,7 @@ msgstr ""
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:79
 #: ../slider/data/messages:75 ../stack/data/messages:81
 #: ../switcher/data/messages:75 ../terminal/data/messages:79
-#: ../tomboy/data/messages:89 ../weather/data/messages:77
+#: ../tomboy/data/messages:93 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
@@ -3032,7 +3313,7 @@ msgstr ""
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:81
 #: ../slider/data/messages:77 ../stack/data/messages:83
 #: ../switcher/data/messages:77 ../terminal/data/messages:81
-#: ../tomboy/data/messages:91 ../weather/data/messages:79
+#: ../tomboy/data/messages:95 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:77
 msgid "Foreground image :"
 msgstr ""
@@ -3049,7 +3330,7 @@ msgstr ""
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:83
 #: ../slider/data/messages:79 ../stack/data/messages:85
 #: ../switcher/data/messages:79 ../terminal/data/messages:83
-#: ../tomboy/data/messages:93 ../weather/data/messages:81
+#: ../tomboy/data/messages:97 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:79
 msgid "Foreground tansparency :"
 msgstr ""
@@ -3408,7 +3689,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:135
-#: ../tomboy/data/messages:109 ../wifi/data/messages:155
+#: ../tomboy/data/messages:117 ../wifi/data/messages:155
 msgid "Parameters"
 msgstr ""
 
@@ -3501,45 +3782,147 @@ msgid "Characters"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:25
-msgid ""
-"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-"number or so."
-msgstr ""
-
-#: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:29
+#: ../Scooby-Do/data/messages:27
 msgid "Color of the text's frame  :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:31
+#: ../Scooby-Do/data/messages:29
 msgid "Font size, relatively to the dock's size :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:33
+#: ../Scooby-Do/data/messages:31
 msgid "between 1 and 9, the bigger, the heavier."
 msgstr ""
 
-#: ../Scooby-Do/data/messages:35
+#: ../Scooby-Do/data/messages:33
 msgid "Text weight :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:37
+#: ../Scooby-Do/data/messages:35
 msgid "Should the text be outlined ?"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:39
+#: ../Scooby-Do/data/messages:37
 msgid "Text color :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:41
+#: ../Scooby-Do/data/messages:39
 msgid "Color of the background of the characters :"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:43
+#: ../Scooby-Do/data/messages:41
 msgid "Write text on the top of the dock ?"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:43
+msgid "Preferred applications"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:45
+msgid "Preferred application starting with 'a' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:47
+msgid "Preferred application starting with 'b' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:49
+msgid "Preferred application starting with 'c' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:51
+msgid "Preferred application starting with 'd' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:53
+msgid "Preferred application starting with 'e' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:55
+msgid "Preferred application starting with 'f' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:57
+msgid "Preferred application starting with 'g' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:59
+msgid "Preferred application starting with 'h' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:61
+msgid "Preferred application starting with 'i' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:63
+msgid "Preferred application starting with 'j' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:65
+msgid "Preferred application starting with 'k' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:67
+msgid "Preferred application starting with 'l' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:69
+msgid "Preferred application starting with 'm' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:71
+msgid "Preferred application starting with 'n' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:73
+msgid "Preferred application starting with 'o' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:75
+msgid "Preferred application starting with 'p' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:77
+msgid "Preferred application starting with 'q' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:79
+msgid "Preferred application starting with 'r' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:81
+msgid "Preferred application starting with 's' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:83
+msgid "Preferred application starting with 't' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:85
+msgid "Preferred application starting with 'u' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:87
+msgid "Preferred application starting with 'v' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:89
+msgid "Preferred application starting with 'w' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:91
+msgid "Preferred application starting with 'x' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:93
+msgid "Preferred application starting with 'y' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:95
+msgid "Preferred application starting with 'z' :"
 msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
@@ -3740,7 +4123,7 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
-#: ../tomboy/data/messages:31
+#: ../tomboy/data/messages:35
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
@@ -3829,7 +4212,8 @@ msgid "Module"
 msgstr ""
 
 #: ../clock/data/messages:85 ../dnd2share/data/messages:95
-#: ../showDesktop/data/messages:87 ../slider/data/messages:97
+#: ../mail/data/messages:101 ../showDesktop/data/messages:87
+#: ../slider/data/messages:97
 msgid "Behaviour"
 msgstr ""
 
@@ -4017,7 +4401,7 @@ msgid ""
 "corresponding subdock's icons will then behave as launcher and an appli."
 msgstr ""
 
-#: ../compiz-icon/data/messages:117 ../mail/data/messages:117
+#: ../compiz-icon/data/messages:117 ../mail/data/messages:127
 msgid "Steal the application's icon in taskbar ?"
 msgstr ""
 
@@ -4099,14 +4483,14 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
-#: ../switcher/data/messages:133 ../tomboy/data/messages:99
+#: ../switcher/data/messages:139 ../tomboy/data/messages:103
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr ""
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
-#: ../switcher/data/messages:135 ../tomboy/data/messages:101
+#: ../switcher/data/messages:141 ../tomboy/data/messages:105
 #: ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr ""
@@ -4120,7 +4504,7 @@ msgstr ""
 #: ../compiz-icon/data/messages:175 ../compiz-icon/data/messages:179
 #: ../compiz-icon/data/messages:183 ../compiz-icon/data/messages:187
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21
+#: ../tomboy/data/messages:21 ../tomboy/data/messages:25
 msgid "Let t empty to use the default icon."
 msgstr ""
 
@@ -4679,36 +5063,6 @@ msgstr ""
 msgid "Alternative file browser used to show a trash :"
 msgstr ""
 
-#: ../icon-effect/data/messages:7 ../icon-effect/data/messages:21
-#: ../icon-effect/data/messages:35 ../icon-effect/data/messages:49
-#: ../icon-effect/data/messages:63
-msgid "Fire"
-msgstr ""
-
-#: ../icon-effect/data/messages:9 ../icon-effect/data/messages:23
-#: ../icon-effect/data/messages:37 ../icon-effect/data/messages:51
-#: ../icon-effect/data/messages:87
-msgid "Stars"
-msgstr ""
-
-#: ../icon-effect/data/messages:11 ../icon-effect/data/messages:25
-#: ../icon-effect/data/messages:39 ../icon-effect/data/messages:53
-#: ../icon-effect/data/messages:123
-msgid "Rain"
-msgstr ""
-
-#: ../icon-effect/data/messages:13 ../icon-effect/data/messages:27
-#: ../icon-effect/data/messages:41 ../icon-effect/data/messages:55
-#: ../icon-effect/data/messages:105
-msgid "Snow"
-msgstr ""
-
-#: ../icon-effect/data/messages:15 ../icon-effect/data/messages:29
-#: ../icon-effect/data/messages:43 ../icon-effect/data/messages:57
-#: ../icon-effect/data/messages:141
-msgid "Storm"
-msgstr ""
-
 #: ../icon-effect/data/messages:59
 msgid "Draw in background ?"
 msgstr ""
@@ -4879,80 +5233,93 @@ msgstr ""
 msgid "Invert buttons ?"
 msgstr ""
 
-#: ../mail/data/messages:89
+#: ../mail/data/messages:83 ../mail/data/messages:89
+msgid "Sub-Dock view"
+msgstr ""
+
+#: ../mail/data/messages:93
+msgid "Theme overriding"
+msgstr ""
+
+#: ../mail/data/messages:95
+msgid "Name of the file for the \"no mail\" image :"
+msgstr ""
+
+#: ../mail/data/messages:97
+msgid "Name of the file for the \"has mail\" image :"
+msgstr ""
+
+#: ../mail/data/messages:99
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr ""
+
+#: ../mail/data/messages:103
 msgid "Show new messages' content ?"
 msgstr ""
 
-#: ../mail/data/messages:91
+#: ../mail/data/messages:105
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 msgstr ""
 
-#: ../mail/data/messages:93
+#: ../mail/data/messages:107
 msgid "Maximum of new messages shown ?"
 msgstr ""
 
-#: ../mail/data/messages:95
+#: ../mail/data/messages:109 ../musicPlayer/data/messages:123
+#: ../tomboy/data/messages:113
+msgid "in s."
+msgstr ""
+
+#: ../mail/data/messages:111 ../tomboy/data/messages:115
+msgid "Time length of the dialog :"
+msgstr ""
+
+#: ../mail/data/messages:113
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then let the dock launch itself, and remove/modify the "
 "mail accounts you want."
 msgstr ""
 
-#: ../mail/data/messages:97
+#: ../mail/data/messages:115
 msgid "Check mail account on startup ?"
 msgstr ""
 
-#: ../mail/data/messages:99
-msgid "Theme overriding"
-msgstr ""
-
-#: ../mail/data/messages:101
-msgid "Name of the file for the \"no mail\" image :"
-msgstr ""
-
-#: ../mail/data/messages:103
-msgid "Name of the file for the \"has mail\" image :"
-msgstr ""
-
-#: ../mail/data/messages:105
-msgid "Name of the file for the \"new mail\" sound :"
-msgstr ""
-
-#: ../mail/data/messages:107
+#: ../mail/data/messages:117
 msgid "Mail application"
 msgstr ""
 
-#: ../mail/data/messages:109
+#: ../mail/data/messages:119
 msgid "Prefered mail application to launch on left-click :"
 msgstr ""
 
-#: ../mail/data/messages:111
+#: ../mail/data/messages:121
 msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
 msgstr ""
 
-#: ../mail/data/messages:113
+#: ../mail/data/messages:123
 msgid "Class of the mail application (optionnal)"
 msgstr ""
 
-#: ../mail/data/messages:115
+#: ../mail/data/messages:125
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
 
-#: ../mail/data/messages:119
+#: ../mail/data/messages:129
 msgid "Add an mail account"
 msgstr ""
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:131
 msgid "The new account will be created with specified type and name."
 msgstr ""
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:133
 msgid "Add an account with specified type and name:"
 msgstr ""
 
@@ -4962,10 +5329,6 @@ msgstr ""
 
 #: ../motion-blur/data/messages:5
 msgid "Blur amount :"
-msgstr ""
-
-#: ../musicPlayer/data/messages:3
-msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
@@ -5048,10 +5411,6 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:121
 msgid "Show an info-bubble ?"
-msgstr ""
-
-#: ../musicPlayer/data/messages:123
-msgid "in s."
 msgstr ""
 
 #: ../musicPlayer/data/messages:125
@@ -5478,10 +5837,6 @@ msgstr ""
 msgid "Effect while changing image :"
 msgstr ""
 
-#: ../slider/data/messages:111
-msgid "none"
-msgstr ""
-
 #: ../slider/data/messages:113
 msgid "fade"
 msgstr ""
@@ -5651,59 +6006,71 @@ msgid "Draw hidden windows too ?"
 msgstr ""
 
 #: ../switcher/data/messages:99
-msgid "Display options"
+msgid "Show windows list"
 msgstr ""
 
 #: ../switcher/data/messages:101
-msgid "Size of the inside lines :"
+msgid "Show desktop"
 msgstr ""
 
-#: ../switcher/data/messages:103 ../switcher/data/messages:109
-#: ../switcher/data/messages:113 ../switcher/data/messages:117
-msgid "r, v, b, a"
+#: ../switcher/data/messages:103
+msgid "Workspace names :"
 msgstr ""
 
 #: ../switcher/data/messages:105
-msgid "Color of the inside lines :"
+msgid "Display options"
 msgstr ""
 
 #: ../switcher/data/messages:107
-msgid "Size of the extern line :"
+msgid "Size of the inside lines :"
+msgstr ""
+
+#: ../switcher/data/messages:109 ../switcher/data/messages:115
+#: ../switcher/data/messages:119 ../switcher/data/messages:123
+msgid "r, v, b, a"
 msgstr ""
 
 #: ../switcher/data/messages:111
+msgid "Color of the inside lines :"
+msgstr ""
+
+#: ../switcher/data/messages:113
+msgid "Size of the extern line :"
+msgstr ""
+
+#: ../switcher/data/messages:117
 msgid "Color of the extern line :"
 msgstr ""
 
-#: ../switcher/data/messages:115
+#: ../switcher/data/messages:121
 msgid "Color of the Windows line :"
 msgstr ""
 
-#: ../switcher/data/messages:119
+#: ../switcher/data/messages:125
 msgid "Color of the current desktop :"
 msgstr ""
 
-#: ../switcher/data/messages:121
+#: ../switcher/data/messages:127
 msgid "How to draw the current desktop :"
 msgstr ""
 
-#: ../switcher/data/messages:123
+#: ../switcher/data/messages:129
 msgid "draw a frame"
 msgstr ""
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:131
 msgid "fill"
 msgstr ""
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:133
 msgid "fill others"
 msgstr ""
 
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:137
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
 
-#: ../switcher/data/messages:137
+#: ../switcher/data/messages:143
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr ""
 
@@ -5773,58 +6140,62 @@ msgstr ""
 msgid "Name of an image for the 'close' icon :"
 msgstr ""
 
-#: ../tomboy/data/messages:97
+#: ../tomboy/data/messages:27
+msgid "Name of an image for the 'empty' icon :"
+msgstr ""
+
+#: ../tomboy/data/messages:101
 msgid "View"
 msgstr ""
 
-#: ../tomboy/data/messages:103
+#: ../tomboy/data/messages:107
 msgid "Draw note's content on their icon ?"
 msgstr ""
 
-#: ../tomboy/data/messages:105
+#: ../tomboy/data/messages:109
 msgid "Text color of the content :"
 msgstr ""
 
-#: ../tomboy/data/messages:107
+#: ../tomboy/data/messages:111
 msgid "Display note's content with a dialog ?"
 msgstr ""
 
-#: ../tomboy/data/messages:111
+#: ../tomboy/data/messages:119
 msgid "Choose the note-taking application to control :"
 msgstr ""
 
-#: ../tomboy/data/messages:113
+#: ../tomboy/data/messages:121
 msgid "Gnote"
 msgstr ""
 
-#: ../tomboy/data/messages:115
+#: ../tomboy/data/messages:123
 msgid "Tomboy"
 msgstr ""
 
-#: ../tomboy/data/messages:117
+#: ../tomboy/data/messages:125
 msgid "Ask confirmation before deleting a note ?"
 msgstr ""
 
-#: ../tomboy/data/messages:119
+#: ../tomboy/data/messages:127
 msgid "Otherwise you will be asked to name it."
 msgstr ""
 
-#: ../tomboy/data/messages:121
+#: ../tomboy/data/messages:129
 msgid "Automatically name a new note ?"
 msgstr ""
 
-#: ../tomboy/data/messages:123
+#: ../tomboy/data/messages:131
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
 
-#: ../tomboy/data/messages:125
+#: ../tomboy/data/messages:133
 msgid "Date format to search for :"
 msgstr ""
 
-#: ../tomboy/data/messages:127
+#: ../tomboy/data/messages:135
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -5832,8 +6203,12 @@ msgid ""
 "terminal."
 msgstr ""
 
-#: ../tomboy/data/messages:129
+#: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
+msgstr ""
+
+#: ../weather/data/messages:3
+msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../weather/data/messages:7
