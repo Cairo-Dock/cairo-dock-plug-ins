@@ -40,6 +40,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
 	
+	if (myConfig.iShowDate != CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation != NULL)
+	{
+		gchar *cName = CD_CONFIG_GET_STRING ("Icon", "name");
+		myConfig.bSetName = (cName == NULL);
+		g_free (cName);
+	}
+	
 	//\_______________ On recupere les parametres d'apparence.
 	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "style", -1);  // dans le .conf par defaut c'est aussi -1, donc si cette cle n'existait pas, on est sur qu'elle a ete rajoutee avec la valeur -1.
 	if (iStyle == -1)

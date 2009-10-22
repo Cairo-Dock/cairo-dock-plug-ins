@@ -311,8 +311,8 @@ msgid "Network ID"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:287 ../musicPlayer/src/applet-draw.c:289
-#: ../musicPlayer/src/applet-draw.c:291
+#: ../musicPlayer/src/applet-draw.c:297 ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:301
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -686,7 +686,7 @@ msgstr "ボリューム設定 :"
 msgid "Adjsut channels"
 msgstr "チャンネル調整"
 
-#: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
+#: ../clock/src/applet-config.c:476 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
 msgstr "現在地の検索"
 
@@ -1315,43 +1315,43 @@ msgstr "モーションブラー"
 msgid "This plug-in adds a motion blur effect on docks."
 msgstr "ドックにモーションブラー効果を追加するプラグイン"
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown artist"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown title"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:194
+#: ../musicPlayer/src/applet-draw.c:204
 msgid "Track"
 msgstr "トラック"
 
-#: ../musicPlayer/src/applet-draw.c:277
+#: ../musicPlayer/src/applet-draw.c:287
 msgid "Current song"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:286
+#: ../musicPlayer/src/applet-draw.c:296
 msgid "Artist"
 msgstr "アーティスト"
 
-#: ../musicPlayer/src/applet-draw.c:288
+#: ../musicPlayer/src/applet-draw.c:298
 msgid "Album"
 msgstr "アルバム"
 
-#: ../musicPlayer/src/applet-draw.c:290
+#: ../musicPlayer/src/applet-draw.c:300
 msgid "Title"
 msgstr "タイトル"
 
-#: ../musicPlayer/src/applet-draw.c:292
+#: ../musicPlayer/src/applet-draw.c:302
 msgid "Length"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:294
+#: ../musicPlayer/src/applet-draw.c:304
 msgid "Track n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:297
+#: ../musicPlayer/src/applet-draw.c:307
 msgid "There is no media playing."
 msgstr ""
 
@@ -1573,7 +1573,7 @@ msgstr "このフォルダを開く"
 
 #: ../shortcuts/src/applet-bookmarks.c:133
 #: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:73
+#: ../shortcuts/src/applet-load-icons.c:75
 msgid "Unmounted"
 msgstr "アンマウント済み"
 
@@ -1697,43 +1697,53 @@ msgstr ""
 "従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
 "ます。"
 
-#: ../stack/src/applet-notifications.c:61
+#: ../stack/src/applet-notifications.c:48
+#, fuzzy
+msgid ""
+"No items in the stack.\n"
+"You can add files, URL, and even piece of text by dragging them onto the "
+"icon."
+msgstr ""
+"定形文の登録アイテムは有りません。\n"
+"テキストをアイコン上にドラッグ＆ドロップして追加することが可能です。"
+
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
 msgstr "スタックを消去？"
 
-#: ../stack/src/applet-notifications.c:78
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../stack/src/applet-notifications.c:136
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../stack/src/applet-notifications.c:137
+#: ../stack/src/applet-notifications.c:145
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../stack/src/applet-notifications.c:138
+#: ../stack/src/applet-notifications.c:146
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../stack/src/applet-notifications.c:139
+#: ../stack/src/applet-notifications.c:147
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../stack/src/applet-notifications.c:143
+#: ../stack/src/applet-notifications.c:151
 msgid "Open (click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:153
 msgid "Open folder"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:150
+#: ../stack/src/applet-notifications.c:158
 msgid "Paste (drag'n'drop)"
 msgstr "貼り付け（ドラッグ＆ドロップ）"
 
-#: ../stack/src/applet-notifications.c:151
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 
@@ -2443,16 +2453,16 @@ msgstr "アイコン"
 #: ../clock/data/messages:3 ../compiz-icon/data/messages:3
 #: ../dnd2share/data/messages:3 ../dustbin/data/messages:3
 #: ../keyboard-indicator/data/messages:3 ../logout/data/messages:3
-#: ../mail/data/messages:3 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:3 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:3 ../showDesklets/data/messages:3
-#: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../switcher/data/messages:3
-#: ../systray/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:3
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:3
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
+#: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
+#: ../slider/data/messages:3 ../stack/data/messages:3
+#: ../switcher/data/messages:3 ../systray/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size when the penguin is not free :"
@@ -5385,10 +5395,6 @@ msgstr "マウス動作時の挙動にもブラー効果？"
 msgid "Blur amount :"
 msgstr "ブラー量 :"
 
-#: ../musicPlayer/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
-
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
 msgstr ""
@@ -6291,6 +6297,10 @@ msgstr ""
 #: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
+
+#: ../weather/data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."

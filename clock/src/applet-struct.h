@@ -110,6 +110,7 @@ struct _AppletConfig {
 	gchar *cLocation;
 	gchar *cDigital;
 	gint iSmoothAnimationDuration;
+	gboolean bSetName;
 	} ;
 
 struct _AppletData {

@@ -566,7 +566,7 @@ static void cd_audacious_read_data (void)
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 				myData.iCurrentTime = 0;
 		}
-		else 
+		else
 		{
 			myData.iCurrentTime = 0;
 		}

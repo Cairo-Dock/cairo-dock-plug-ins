@@ -3,7 +3,7 @@
 #[gtk-about]
 [Icon]
 #j+[0;128] Icon size when the penguin is not free :
-#{Set to 0 to use the default applet size}
+#{Set to 0 to use the default applet size}
 icon size = 0;0
 
 #s Name of the icon when the penguin is not free :

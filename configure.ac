@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.1-0rc0],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.1-0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -579,7 +579,7 @@ AC_SUBST(toonsuserdirname,"Toons")
 WEATHER_PACKAGE="cd-weather"
 AC_SUBST(GETTEXT_WEATHER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_WEATHER, "1.2.6")
+AC_SUBST(VERSION_WEATHER, "1.2.7")
 AC_SUBST(PACKAGE_WEATHER, "$WEATHER_PACKAGE")
 
 AC_SUBST(weatherdatadir, "${pkgdatadir}/weather")

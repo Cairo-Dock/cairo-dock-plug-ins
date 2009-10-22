@@ -58,6 +58,15 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			bNeedRedraw = TRUE;
+			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
+			{
+				g_print ("test du lecteur\n");
+				cd_musicplayer_dbus_detect_player ();
+				if (myData.bIsRunning)
+					cd_musicplayer_set_surface (PLAYER_STOPPED);
+				else
+					cd_musicplayer_set_surface (PLAYER_NONE);
+			}
 		}
 	}
 	
@@ -149,6 +158,7 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 	if (myData.iNbCheckFile > 5)  // on abandonne au bout de 5s.
 	{
 		g_print ("on abandonne la pochette\n");
+		g_remove (myData.cCoverPath);
 		myData.iSidCheckCover = 0;
 		return FALSE;
 	}

@@ -50,7 +50,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myConfig.cLocation != NULL)
+	if (myConfig.bSetName && myConfig.cLocation != NULL)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 	
 	//\_______________ On charge notre theme.
@@ -127,7 +127,7 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_launch_animation (myContainer);
 		}
 		
-		if (myConfig.cLocation != NULL)
+		if (myConfig.bSetName && myConfig.cLocation != NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cLocation+1);
 		
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOldStyle && myConfig.bShowSeconds && myConfig.iSmoothAnimationDuration != 0)

@@ -104,7 +104,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			cairo_surface_destroy (pDateSurface);
 		}
 	}
-	if (bNewDate && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation == NULL)
+	if (bNewDate && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL)
 	{
 		CD_APPLET_SET_NAME_FOR_MY_ICON (s_cDateBuffer);
 	}

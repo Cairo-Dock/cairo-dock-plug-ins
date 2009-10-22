@@ -312,8 +312,8 @@ msgid "Network ID"
 msgstr "ID сети"
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:287 ../musicPlayer/src/applet-draw.c:289
-#: ../musicPlayer/src/applet-draw.c:291
+#: ../musicPlayer/src/applet-draw.c:297 ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:301
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -713,7 +713,7 @@ msgstr "Установка громкости:"
 msgid "Adjsut channels"
 msgstr "Настройка каналов"
 
-#: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
+#: ../clock/src/applet-config.c:476 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
 msgstr "Поиск местонахождения:"
 
@@ -1376,43 +1376,43 @@ msgstr "Размытие движения"
 msgid "This plug-in adds a motion blur effect on docks."
 msgstr "Этот плагин добавляет эффект размытия, при движении на панели."
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown artist"
 msgstr "Неизвестный исполнитель"
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown title"
 msgstr "Неизвестный заголовок"
 
-#: ../musicPlayer/src/applet-draw.c:194
+#: ../musicPlayer/src/applet-draw.c:204
 msgid "Track"
 msgstr "Дорожка"
 
-#: ../musicPlayer/src/applet-draw.c:277
+#: ../musicPlayer/src/applet-draw.c:287
 msgid "Current song"
 msgstr "Текущая композиция"
 
-#: ../musicPlayer/src/applet-draw.c:286
+#: ../musicPlayer/src/applet-draw.c:296
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: ../musicPlayer/src/applet-draw.c:288
+#: ../musicPlayer/src/applet-draw.c:298
 msgid "Album"
 msgstr "Альбом"
 
-#: ../musicPlayer/src/applet-draw.c:290
+#: ../musicPlayer/src/applet-draw.c:300
 msgid "Title"
 msgstr "Название"
 
-#: ../musicPlayer/src/applet-draw.c:292
+#: ../musicPlayer/src/applet-draw.c:302
 msgid "Length"
 msgstr "Длительность"
 
-#: ../musicPlayer/src/applet-draw.c:294
+#: ../musicPlayer/src/applet-draw.c:304
 msgid "Track n°"
 msgstr "Дорожка №"
 
-#: ../musicPlayer/src/applet-draw.c:297
+#: ../musicPlayer/src/applet-draw.c:307
 msgid "There is no media playing."
 msgstr "В данный момент ничего не проигрывается."
 
@@ -1650,7 +1650,7 @@ msgstr "Открыть этот каталог"
 
 #: ../shortcuts/src/applet-bookmarks.c:133
 #: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:73
+#: ../shortcuts/src/applet-load-icons.c:75
 msgid "Unmounted"
 msgstr "Отсоединено"
 
@@ -1775,43 +1775,53 @@ msgstr ""
 "Затем вы сможете быстро копировать путь/ссылку/текст в буфер обмена или "
 "открывать их."
 
-#: ../stack/src/applet-notifications.c:61
+#: ../stack/src/applet-notifications.c:48
+#, fuzzy
+msgid ""
+"No items in the stack.\n"
+"You can add files, URL, and even piece of text by dragging them onto the "
+"icon."
+msgstr ""
+"Нет постоянных элементов.\n"
+"Вы можете их добавить, перетащив текст на значок."
+
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
 msgstr "Очистить стэк?"
 
-#: ../stack/src/applet-notifications.c:78
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
 msgstr "Задать новое имя для элемента:"
 
-#: ../stack/src/applet-notifications.c:136
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
 msgstr "Копировать (средний щелчок)"
 
-#: ../stack/src/applet-notifications.c:137
+#: ../stack/src/applet-notifications.c:145
 msgid "Cut"
 msgstr "Вырезать"
 
-#: ../stack/src/applet-notifications.c:138
+#: ../stack/src/applet-notifications.c:146
 msgid "Rename this item"
 msgstr "Переименовать этот элемент"
 
-#: ../stack/src/applet-notifications.c:139
+#: ../stack/src/applet-notifications.c:147
 msgid "Remove this item"
 msgstr "Удалить этот элемент"
 
-#: ../stack/src/applet-notifications.c:143
+#: ../stack/src/applet-notifications.c:151
 msgid "Open (click)"
 msgstr "Открыть (щелчок)"
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:153
 msgid "Open folder"
 msgstr "Открыть каталог"
 
-#: ../stack/src/applet-notifications.c:150
+#: ../stack/src/applet-notifications.c:158
 msgid "Paste (drag'n'drop)"
 msgstr "Вставить (перетащить)"
 
-#: ../stack/src/applet-notifications.c:151
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
 msgstr "Очистить стэк"
 
@@ -2549,16 +2559,16 @@ msgstr "Значок"
 #: ../clock/data/messages:3 ../compiz-icon/data/messages:3
 #: ../dnd2share/data/messages:3 ../dustbin/data/messages:3
 #: ../keyboard-indicator/data/messages:3 ../logout/data/messages:3
-#: ../mail/data/messages:3 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:3 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:3 ../showDesklets/data/messages:3
-#: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../switcher/data/messages:3
-#: ../systray/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:3
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:3
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
+#: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
+#: ../slider/data/messages:3 ../stack/data/messages:3
+#: ../switcher/data/messages:3 ../systray/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "Установите в 0 , чтобы иметь стандартный размер апплета"
+msgid "Set to 0 to use the default applet size"
+msgstr "Установите 0, чтобы использовать стандартный размер апплета."
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size when the penguin is not free :"
@@ -5517,10 +5527,6 @@ msgstr "Также размывать при наведении мыши?"
 msgid "Blur amount :"
 msgstr "Качество размытия:"
 
-#: ../musicPlayer/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "Установите 0, чтобы использовать стандартный размер апплета."
-
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
 msgstr ""
@@ -6427,6 +6433,10 @@ msgstr ""
 #: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Эмулировать сигнал 'NoteDeleted'?"
+
+#: ../weather/data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr "Установите в 0 , чтобы иметь стандартный размер апплета"
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."
