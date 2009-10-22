@@ -85,7 +85,7 @@ AC_ARG_ENABLE(gio-in-gmenu,
         [ with_gio_in_gmenu=${enableval} ],
         [ with_gio_in_gmenu=no])
 AC_ARG_ENABLE(mail,
-	[  --enable-mail : Enable Mail applet (default=no) ],
+	[  --enable-mail : Enable Mail applet (default=yes) ],
 	[ with_mail=${enableval} ],
 	[ with_mail=yes ])
 AC_ARG_ENABLE(weblets,
@@ -371,7 +371,7 @@ AC_SUBST(logoutdatadir, "${pkgdatadir}/logout")
 MAIL_PACKAGE=cd-mail
 AC_SUBST(GETTEXT_MAIL, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_MAIL, "1.0.0-beta1")
+AC_SUBST(VERSION_MAIL, "1.0.1")
 AC_SUBST(PACKAGE_MAIL, "$MAIL_PACKAGE")
 
 AC_SUBST(maildatadir, "${pkgdatadir}/mail")
