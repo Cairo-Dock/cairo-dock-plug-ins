@@ -86,8 +86,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cSpecificWebBrowser = CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");
 	if (myConfig.cSpecificWebBrowser == NULL)
 	{
-		cd_debug ("RSSreader-debug : No defined browser  -> \"firefox\" will be used");
-		myConfig.cSpecificWebBrowser = g_strdup_printf ("firefox");
+		cd_debug ("RSSreader-debug : No browser in config  -> use the default one");
+		myConfig.cSpecificWebBrowser = g_strdup_printf ("xdg-open");
 	}
 	
 	myConfig.cMessageNoTitle = g_strdup_printf (D_("No Title"));

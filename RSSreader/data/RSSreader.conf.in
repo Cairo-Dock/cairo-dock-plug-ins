@@ -139,7 +139,7 @@ dialogs_duration=15
 left_clic_for_desklet=false
 
 #s Specify the command to launch your web browser :
-#{Let empty to use firefox (default).}
+#{Let empty to use the default one.}
 specific_web_browser= 
 
 
