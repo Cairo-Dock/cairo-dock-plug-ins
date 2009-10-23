@@ -448,7 +448,7 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 			G_TYPE_INVALID);
 	}
 	
-	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // activation faite par le dock, on verifie que le programme est lance.
+	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // le registering a ete fait auparavant, donc l'applet n'est probablement pas lancee.
 	{
 		cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
 	}

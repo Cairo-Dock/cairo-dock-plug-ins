@@ -33,6 +33,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 ******************************************************************************/
 
+#include <unistd.h>
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -73,9 +74,8 @@ static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 {
 	GError *erreur = NULL;
 	const gchar *cFileName;
-	gchar *cDir = g_strdup_printf ("%s/%s", cDirPath, "third-party");
-	GDir *dir = g_dir_open (cDir, 0, &erreur);
-	g_free (cDir);
+	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, "third-party");
+	GDir *dir = g_dir_open (cThirdPartyPath, 0, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning (erreur->message);
@@ -83,15 +83,19 @@ static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 		return ;
 	}
 	
+	GString *sPath = g_string_new ("");
 	do
 	{
 		cFileName = g_dir_read_name (dir);
 		if (cFileName == NULL)
 			break ;
-		cd_dbus_launch_distant_applet_in_dir (cFileName, cDirPath);
+		g_string_printf (sPath, "%s/%s", cThirdPartyPath, cFileName);
+		cd_dbus_launch_distant_applet_in_dir (cFileName, sPath->str);
 	}
 	while (1);
 	g_dir_close (dir);
+	g_string_free (sPath, TRUE);
+	g_free (cThirdPartyPath);
 }
 
 void cd_dbus_launch_service (void)
@@ -575,7 +579,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->cUserDataDir = g_strdup (cModuleName);
 		pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
 		pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
-		pVisitCard->cModuleVersion = g_strdup ("0.0.1");
+		pVisitCard->cModuleVersion = g_strdup (MY_APPLET_DOCK_VERSION);
 		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
 		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL;
@@ -600,10 +604,13 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	// si l'applet ne doit pas etre utilisee, on en reste la.
 	gboolean bAppletIsUsed = cd_dbus_applet_is_used (cModuleName);
 	if (! bAppletIsUsed)
+	{
+		g_print ("applet %s has been registered, but is not wanted by the user.\n", cModuleName);
 		return TRUE;
+	}
 	
 	// sinon on active le module.
-	pModule->fLastLoadingTime = -1;  // indique a la fonction d'init que c'est l'applet qui demande a s'activer, plutot que l'utilisateur.
+	pModule->fLastLoadingTime = -1;  // indique a la fonction d'init que c'est l'applet qui demande a s'activer (activation automatique ou manuelle), plutot que l'utilisateur (activation par panneau de conf).
 	GError *tmp_erreur = NULL;
 	gboolean bAlreadyInstanciated = FALSE;
 	cairo_dock_activate_module (pModule, &tmp_erreur);
@@ -614,9 +621,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		tmp_erreur = NULL;
 		bAlreadyInstanciated = TRUE;  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque de toute facon on le lance avec un delai, et l'objet distant existait deja.
 	}
-	
-	if (pModule->pInstancesList == NULL)
-		return FALSE;
+	g_return_val_if_fail (pModule->pInstancesList != NULL, FALSE);
 	
 	// on retarde l'emission du signal 'init'.
 	CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
@@ -630,13 +635,13 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	}
 	else  // cas ou l'applet etait deja instanciee, on simule un stop/init pour repartir sur de bonnes bases.
 	{
-		g_print ("on stoppe l'applet d'abord\n");
+		g_print ("applet already instanciated before, reset it\n");
 		cd_dbus_action_on_stop_module (pInstance);
-		g_print ("puis on la relance\n");
 		cd_dbus_action_on_init_module (pInstance);
 	}
 	g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.
 	
+	g_print ("applet has been successfully instanciated, will be initialized in 500ms...\n");
 	///pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf. => a priori maintenant il l'est.
 	return TRUE;
 }

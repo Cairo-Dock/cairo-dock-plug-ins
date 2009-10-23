@@ -29,18 +29,20 @@ dock = dbus.Interface(dock_object, "org.cairodock.CairoDock")
 ### let's register our applet ! ###
 applet_name=os.path.basename(os.path.abspath("."))
 applet_share_data_dir=os.path.abspath(".")
+print ">>> registering our applet..."
 dock.RegisterNewModule(applet_name,
 	"This is a distant applet\nIt simulates a counter:\n Scroll up/down to increase/decrease the counter,\n Click/middle-click to increase/decrease the counter by 10\n Drop some text to set it as the label.",
 	"Fabounet",
 	3, # category "accessories"
 	applet_share_data_dir)
+print ">>> applet registered."
 
 ### get our applet ! (if it doesn't exist, it means the user does not want to use it, so we quit) ###
 try:
 	applet_object = bus.get_object("org.cairodock.CairoDock",
 			"/org/cairodock/CairoDock/"+applet_name)
 except dbus.DBusException:
-	print "the '"+applet_name+"' module has not been started"
+	print ">>> the '"+applet_name+"' module has not been started"
 	sys.exit(2)
 myIcon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")
 
@@ -53,12 +55,12 @@ mySubIcons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet
 ### init ###
 def init():
 	# register to the notifications on our applet
-	print "init"
+	print ">>> INIT"
 	myIcon.connect_to_signal("on_click", action_on_click)
 	myIcon.connect_to_signal("on_middle_click", action_on_middle_click)
 	myIcon.connect_to_signal("on_build_menu", action_on_build_menu)
 	myIcon.connect_to_signal("on_menu_select", action_on_menu_select)
-	myIcon.connect_to_signal("on_scroll_icon", action_on_scroll)
+	myIcon.connect_to_signal("on_scroll", action_on_scroll)
 	myIcon.connect_to_signal("on_drop_data", action_on_drop_data)
 	myIcon.connect_to_signal("on_init_module", action_on_init)
 	myIcon.connect_to_signal("on_stop_module", action_on_stop)
@@ -67,7 +69,7 @@ def init():
 
 ### stop ###
 def stop():
-	print "STOP"
+	print ">>> STOP"
 	#dock.UnregisterModule(applet_name)
 	# clean up memory
 	#del dock_object
@@ -85,25 +87,25 @@ count=0
 ### callbacks ###
 def action_on_click(iState):
 	global count
-	print "clic !"
+	print ">>> clic !"
 	count += 10
 	myIcon.SetQuickInfo(format(count, "d"))
 	myIcon.RenderValues([count/100.])
 
 def action_on_middle_click():
 	global count
-	print "middle clic !"
+	print ">>> middle clic !"
 	count -= 10
 	myIcon.SetQuickInfo(format(count, "d"))
 	myIcon.RenderValues([count/100.])
 
 def action_on_build_menu():
-	print "build menu !"
+	print ">>> build menu !"
 	myIcon.PopulateMenu(["set min value", "set medium value", "set max value"])
 	
 def action_on_menu_select(iNumEntry):
 	global count
-	print "choice",iNumEntry,"has been selected !"
+	print ">>> choice",iNumEntry,"has been selected !"
 	if iNumEntry == 0:
 		count = 0
 	elif iNumEntry == 1:
@@ -114,6 +116,7 @@ def action_on_menu_select(iNumEntry):
 	myIcon.RenderValues([count/100.])
 
 def action_on_scroll(bScrollUp):
+	print ">>> scroll !"
 	global count
 	if bScrollUp:
 		count += 1
@@ -123,7 +126,7 @@ def action_on_scroll(bScrollUp):
 	myIcon.RenderValues([count/100.])
 
 def action_on_drop_data(cReceivedData):
-	print "received",cReceivedData
+	print ">>> received",cReceivedData
 	myIcon.SetLabel(cReceivedData)
 
 
@@ -134,7 +137,7 @@ def on_click_sub_icon(iState, cIconID):
 
 def action_on_init():
 	global count
-	print "our module is started"
+	print ">>> our module is started"
 	count=1
 	myIcon.ShowDialog("I'm connected to Cairo-Dock !", 4)
 	myIcon.SetQuickInfo(format(count, "d"))
@@ -149,14 +152,14 @@ def action_on_init():
 
 def action_on_stop():
 	global count
-	print "our module is stopped"
+	print ">>> our module is stopped"
 	stop()
-	sys.exit(0)
+	gtk.main_quit()
 
 def action_on_reload(bConfigHasChanged):
-	print "our module is reloaded"
+	print ">>> our module is reloaded"
 	if bConfigHasChanged:
-		print " and our config has changed"
+		print ">>>  and our config has changed"
 		myIcon.AddDataRenderer("gauge", 1, "Turbo-night")
 		myIcon.RenderValues([count/100.])
 		mySubIcons.RemoveSubIcon("any")
@@ -168,4 +171,5 @@ if __name__ == '__main__':
 	init()
 	gtk.main()
 	stop()
+	print ">>> bye"
 	sys.exit(0)

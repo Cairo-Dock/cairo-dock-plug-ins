@@ -297,8 +297,6 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 		{
 			for (i = 0; words[i] != NULL; i ++)
 			{
-				if (g_strcasecmp (words[i], "album") == 0)
-					continue;
 				g_string_append_printf (s, "\"%s\"|", words[i]);
 			}
 			g_strfreev (words);

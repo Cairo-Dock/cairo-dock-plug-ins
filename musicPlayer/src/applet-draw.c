@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <glib/gstdio.h>
 #include <cairo-dock.h>
 
 #include "applet-struct.h"

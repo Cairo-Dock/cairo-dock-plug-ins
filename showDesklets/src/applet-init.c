@@ -59,11 +59,11 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myData.bHide)
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage);
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage);
 		}
 		else
 		{
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHideImage);
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cShowImage);
 		}
 		
 		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desklet_on_keybinding_pull, (gpointer)NULL);

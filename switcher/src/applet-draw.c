@@ -134,8 +134,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
-	myData.switcher.fOneViewportHeight = (iHeight - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
-	myData.switcher.fOneViewportWidth = (iWidth - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportHeight = (double) (iHeight - 2 * myConfig.iLineSize - (myData.switcher.iNbLines - 1) * myConfig.iInLineSize) / myData.switcher.iNbLines; //hauteur d'un bureau/viewport sans compter les lignes exterieures et interieures.
+	myData.switcher.fOneViewportWidth = (double) (iWidth - 2 * myConfig.iLineSize - (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize) / myData.switcher.iNbColumns; //largeur d'un bureau/viewport sans compter les lignes exterieures et interieures.
 	double dx=0, dy=0;
 	double w = iWidth, h = iHeight;
 	if (myConfig.bPreserveScreenRatio)
@@ -145,13 +145,13 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 		if (r_ > r)  // on etire trop en largeur.
 		{
 			myData.switcher.fOneViewportWidth /= r_ / r;
-			dx = iWidth/2 * (1 - r / r_);
+			dx = (double) iWidth/2 * (1 - r / r_);
 			w /= r_ / r;
 		}
 		else
 		{
 			myData.switcher.fOneViewportHeight /= r / r_;
-			dy = iHeight/2 * (1 - r_ / r);
+			dy = (double) iHeight/2 * (1 - r_ / r);
 			h /= r / r_;
 		}
 	}
