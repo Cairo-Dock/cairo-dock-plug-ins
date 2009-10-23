@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-10-22 00:54+0000\n"
-"PO-Revision-Date: 2009-10-21 05:19+0000\n"
+"PO-Revision-Date: 2009-10-23 02:25+0000\n"
 "Last-Translator: Rossi Liu <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-22 07:27+0000\n"
+"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1732,6 +1732,8 @@ msgid ""
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
+"在堆疊區裏面沒有物件。\n"
+"您可以增加檔案、URL網址、以及任何的文字片段，用 拖-放 到圖示的方式建立。"
 
 #: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
@@ -2242,7 +2244,7 @@ msgstr "當滑鼠指標懸停在圖示上方"
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
-msgstr ""
+msgstr "已使用的效果："
 
 #: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:17
 msgid "when clicking on an launcher"
@@ -2301,11 +2303,11 @@ msgstr "動畫長短："
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:129
 #: ../icon-effect/data/messages:147
 msgid "Repeat while icon is pointed ?"
-msgstr ""
+msgstr "指到圖示上同時不停的重複顯示？"
 
 #: ../Animated-icons/data/messages:83
 msgid "Type of mesh :"
-msgstr ""
+msgstr "圖示變化的樣式："
 
 #: ../Animated-icons/data/messages:85 ../Clipper/data/messages:135
 #: ../GMenu/data/messages:31 ../Network-Monitor/data/messages:27
@@ -2323,19 +2325,19 @@ msgstr ""
 #: ../tomboy/data/messages:45 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:27
 msgid "Normal"
-msgstr ""
+msgstr "一般"
 
 #: ../Animated-icons/data/messages:87
 msgid "Cube"
-msgstr ""
+msgstr "立方體"
 
 #: ../Animated-icons/data/messages:89
 msgid "Capsule"
-msgstr ""
+msgstr "圓形膠囊"
 
 #: ../Animated-icons/data/messages:91
 msgid "color of the mesh :"
-msgstr ""
+msgstr "圖示變化的顏色："
 
 #: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
@@ -2350,83 +2352,83 @@ msgstr ""
 #: ../switcher/data/messages:135 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
-msgstr ""
+msgstr "空白來使用預設的那個設定。"
 
 #: ../Animated-icons/data/messages:103
 msgid "Image for the spot :"
-msgstr ""
+msgstr "斑紋的圖像："
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the front spot :"
-msgstr ""
+msgstr "前方的斑紋圖像："
 
 #: ../Animated-icons/data/messages:109
 msgid "color of the spot :"
-msgstr ""
+msgstr "斑紋的顏色："
 
 #: ../Animated-icons/data/messages:111
 msgid "color of the halo :"
-msgstr ""
+msgstr "聖光的顏色："
 
 #: ../Animated-icons/data/messages:113
 msgid "Rays"
-msgstr ""
+msgstr "光輝"
 
 #: ../Animated-icons/data/messages:115 ../icon-effect/data/messages:71
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:113
 #: ../icon-effect/data/messages:131 ../icon-effect/data/messages:149
 #: ../illusion/data/messages:35 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
-msgstr ""
+msgstr "第1層的顏色："
 
 #: ../Animated-icons/data/messages:117 ../icon-effect/data/messages:73
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:115
 #: ../icon-effect/data/messages:133 ../icon-effect/data/messages:151
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
-msgstr ""
+msgstr "第二層的顏色："
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:99 ../illusion/data/messages:39
 #: ../show-mouse/data/messages:31
 msgid "Random colors ?"
-msgstr ""
+msgstr "隨機顏色？"
 
 #: ../Animated-icons/data/messages:121
 msgid "Number of rays :"
-msgstr ""
+msgstr "光輝的數量："
 
 #: ../Animated-icons/data/messages:123
 msgid "Rays size :"
-msgstr ""
+msgstr "光輝的大小："
 
 #: ../Animated-icons/data/messages:125
 msgid "Rays speed :"
-msgstr ""
+msgstr "光輝的速度："
 
 #: ../Animated-icons/data/messages:129
 msgid "Initial stretch :"
-msgstr ""
+msgstr "使用的彈力："
 
 #: ../Animated-icons/data/messages:131
 msgid "Horizontal stretch"
-msgstr ""
+msgstr "橫的彈動"
 
 #: ../Animated-icons/data/messages:133
 msgid "Vertical stretch"
-msgstr ""
+msgstr "直的彈動"
 
 #: ../Animated-icons/data/messages:135
 msgid "Corner stretch"
-msgstr ""
+msgstr "四角彈動"
 
 #: ../Animated-icons/data/messages:137
 msgid "Spring constant :"
-msgstr ""
+msgstr "彈力常數："
 
 #: ../Animated-icons/data/messages:139
 msgid "Friction :"
-msgstr ""
+msgstr "摩擦係數："
 
 #: ../Animated-icons/data/messages:141
 msgid "Number of points on the grid in one direction :"

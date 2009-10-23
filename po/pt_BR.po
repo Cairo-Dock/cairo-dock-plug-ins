@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2009-10-22 00:54+0000\n"
-"PO-Revision-Date: 2009-10-22 01:07+0000\n"
-"Last-Translator: André Gondim <andregondim@ubuntu.com>\n"
+"PO-Revision-Date: 2009-10-22 16:01+0000\n"
+"Last-Translator: Auro Florentino <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-22 07:27+0000\n"
+"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -414,7 +414,7 @@ msgstr "Google"
 
 #: ../Scooby-Do/src/applet-backend-web.c:91
 msgid "Mediadico"
-msgstr ""
+msgstr "Mediadico"
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Amazon"
@@ -1796,6 +1796,9 @@ msgid ""
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
+"Sem itens na pilha (stack).\n"
+"Você pode adicionar arquivos, URL e mesmo pedaço de texto, arrastando-os "
+"para o ícone."
 
 #: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
@@ -3857,7 +3860,7 @@ msgstr "Força do sinal em porcentagem"
 
 #: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
 msgid "Raw Signal Informations"
-msgstr ""
+msgstr "Informações de Sinal Direto"
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
@@ -5219,7 +5222,7 @@ msgstr "Pedir confirmação antes de esvair a lixeira?"
 
 #: ../dustbin/data/messages:113
 msgid "Desktop-less support"
-msgstr ""
+msgstr "Suporte desktopless"
 
 #: ../dustbin/data/messages:115
 msgid ""
@@ -5544,7 +5547,7 @@ msgstr "Reprodutor de áudio"
 
 #: ../musicPlayer/data/messages:87
 msgid "Player to control:"
-msgstr ""
+msgstr "Reprodutor de áudio para controlar:"
 
 #: ../musicPlayer/data/messages:89
 msgid "Amarok 2"
@@ -5591,38 +5594,43 @@ msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
+"Ele evitrá que o ícone do reprodutor apareça na barra de tarefeas. O ícone "
+"do miniaplicativo  irá se comportar como um lançador, uma aplicação  e um "
+"miniaplicativo."
 
 #: ../musicPlayer/data/messages:111
 msgid "Steal the player's icon from taskbar ?"
-msgstr ""
+msgstr "Retirar o ícone do reprodutor da barra de tarefas?"
 
 #: ../musicPlayer/data/messages:113
 msgid "Actions on click and middle-click :"
-msgstr ""
+msgstr "Ações ao clicar e clicar com o botão do meio:"
 
 #: ../musicPlayer/data/messages:115
 msgid "Play/Pause on click, Next on middle-click"
-msgstr ""
+msgstr "Clique para reproduzir/pausar, e clique do meio para próximo"
 
 #: ../musicPlayer/data/messages:117
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
+"Clique para mostrar/ocultar o reprodutor, e clique do meio para "
+"reproduzir/pausar"
 
 #: ../musicPlayer/data/messages:119
 msgid "Action on music change"
-msgstr ""
+msgstr "Ação ao mudar a música"
 
 #: ../musicPlayer/data/messages:121
 msgid "Show an info-bubble ?"
-msgstr ""
+msgstr "Mostar um balão de informação?"
 
 #: ../musicPlayer/data/messages:125
 msgid "Time length of info-bubbles :"
-msgstr ""
+msgstr "Tempo do balão de informação:"
 
 #: ../musicPlayer/data/messages:127
 msgid "Animation when music changes :"
-msgstr ""
+msgstr "Animação quando muda de música:"
 
 #: ../musicPlayer/data/messages:133
 msgid "Nothing"
@@ -5638,101 +5646,103 @@ msgstr "Tempo restante"
 
 #: ../musicPlayer/data/messages:139
 msgid "N° of track"
-msgstr ""
+msgstr "Nº da música"
 
 #: ../musicPlayer/data/messages:141
 msgid "Display album's cover ?"
-msgstr ""
+msgstr "Exibir capa do CD ?"
 
 #: ../musicPlayer/data/messages:143
 msgid "You need to be connected to the Internet."
-msgstr ""
+msgstr "Você precisa estar conectado à Internet."
 
 #: ../musicPlayer/data/messages:145
 msgid "Allow Cairo-Dock to download missing covers ?"
-msgstr ""
+msgstr "Permitir que Cairo-Dock efetue o download da capas faltantes?"
 
 #: ../musicPlayer/data/messages:147 ../musicPlayer/data/messages:151
 msgid "requires OpenGL."
-msgstr ""
+msgstr "requer OpenGL."
 
 #: ../musicPlayer/data/messages:149
 msgid "Use 3D themes ?"
-msgstr ""
+msgstr "Usar temas 3D ?"
 
 #: ../musicPlayer/data/messages:153
 msgid "List of available 3D themes for covers :"
-msgstr ""
+msgstr "Lista dos temas disponíveis em 3D para capas:"
 
 #: ../musicPlayer/data/messages:155 ../tomboy/data/messages:11
 msgid "Personnalisation"
-msgstr ""
+msgstr "Personalisação"
 
 #: ../musicPlayer/data/messages:163
 msgid "Name of an image for the 'play' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'reproduzir':"
 
 #: ../musicPlayer/data/messages:167
 msgid "Name of an image for the 'stop' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'parar':"
 
 #: ../musicPlayer/data/messages:171
 msgid "Name of an image for the 'pause' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'pausar':"
 
 #: ../netspeed/data/messages:107
 msgid "It's the color of the graphic for high rate values."
-msgstr ""
+msgstr "É a cor do gráfico dos valores de taxa elevada."
 
 #: ../netspeed/data/messages:111
 msgid "It's the color of the graphic for low rate values."
-msgstr ""
+msgstr "É a cor do gráfico dos valores de taxa baixa."
 
 #: ../netspeed/data/messages:121
 msgid "By default it will be 'eth0'."
-msgstr ""
+msgstr "Por padrão, ele será 'eth0'."
 
 #: ../netspeed/data/messages:123
 msgid "interface :"
-msgstr ""
+msgstr "interface:"
 
 #: ../netspeed/data/messages:127
 msgid "Delay between 2 measures :"
-msgstr ""
+msgstr "Demora entre 2 medidas:"
 
 #: ../netspeed/data/messages:129
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "transition is continue."
 msgstr ""
+"Você precisa de OpenGL para esta opção. Defina como 0 para não usá-lo, 1 "
+"significa que a transição é continua."
 
 #: ../netspeed/data/messages:131
 msgid "Fluidity of the transition between 2 values :"
-msgstr ""
+msgstr "Fluidez da transição entre 2 valores:"
 
 #: ../netspeed/data/messages:133
 msgid "Display rate values :"
-msgstr ""
+msgstr "Valores de taxa de exibição:"
 
 #: ../netspeed/data/messages:141
 msgid "Let empty to use he default one."
-msgstr ""
+msgstr "Deixe em branco para que ele use o padrão."
 
 #: ../powermanager/data/messages:7
 msgid "Icon name :"
-msgstr ""
+msgstr "Nome do ícone:"
 
 #: ../powermanager/data/messages:121
 msgid "Icon's filename when on battery :"
-msgstr ""
+msgstr "Ícone do arquivo no fim da bateria:"
 
 #: ../powermanager/data/messages:123
 msgid "Icon's filename when on charge :"
-msgstr ""
+msgstr "Ícone do arquivo quando estiver carregada:"
 
 #: ../powermanager/data/messages:125
 msgid "Effect to apply on the icon according to charge :"
-msgstr ""
+msgstr "Efeito para aplicar sobre o ícone de acordo com a carga:"
 
 #: ../powermanager/data/messages:127 ../powermanager/data/messages:143
 msgid "nothing"
@@ -5748,15 +5758,15 @@ msgstr "transparência"
 
 #: ../powermanager/data/messages:133
 msgid "draw bar"
-msgstr ""
+msgstr "Desenhar barra"
 
 #: ../powermanager/data/messages:139 ../weather/data/messages:99
 msgid "Interval of time between 2 checks :"
-msgstr ""
+msgstr "Intervalo de tempo entre 2 verificações:"
 
 #: ../powermanager/data/messages:141
 msgid "Information to be displayed on the icon :"
-msgstr ""
+msgstr "Informação para ser exibida no ícone:"
 
 #: ../powermanager/data/messages:145
 msgid "charge"
@@ -5772,61 +5782,61 @@ msgstr "Alerta"
 
 #: ../powermanager/data/messages:151
 msgid "Alert when battery charged ?"
-msgstr ""
+msgstr "Alerta quando a bateria estiver carregada?"
 
 #: ../powermanager/data/messages:153 ../powermanager/data/messages:163
 #: ../powermanager/data/messages:171
 msgid "Let it empty to have no sound"
-msgstr ""
+msgstr "Deixe em branco para não ter nenhum som"
 
 #: ../powermanager/data/messages:155 ../powermanager/data/messages:165
 #: ../powermanager/data/messages:173
 msgid "Use a sound :"
-msgstr ""
+msgstr "Usar um som:"
 
 #: ../powermanager/data/messages:157
 msgid "Alert when low battery ?"
-msgstr ""
+msgstr "Alerta de bateria fraca?"
 
 #: ../powermanager/data/messages:159
 msgid "in percent."
-msgstr ""
+msgstr "em porcentagem."
 
 #: ../powermanager/data/messages:161
 msgid "Battery level :"
-msgstr ""
+msgstr "Nível de bateria:"
 
 #: ../powermanager/data/messages:167
 msgid "When battery level is under 4%"
-msgstr ""
+msgstr "Quando o nível da bateria abaixo de 4%"
 
 #: ../powermanager/data/messages:169
 msgid "Alert when battery charge is critical ?"
-msgstr ""
+msgstr "Alerta quando a carga da bateria está crítica?"
 
 #: ../powermanager/data/messages:175
 msgid "Animate icon during the alert ?"
-msgstr ""
+msgstr "Animar ícone durante o alerta?"
 
 #: ../powermanager/data/messages:177
 msgid "Animation during alert :"
-msgstr ""
+msgstr "Animação durante o alerta:"
 
 #: ../quick-browser/data/messages:7
 msgid "Let empty to use the folder's name."
-msgstr ""
+msgstr "Deixe em branco para usar o nome da pasta."
 
 #: ../quick-browser/data/messages:89
 msgid "Folder to browse :"
-msgstr ""
+msgstr "Pasta para navegar:"
 
 #: ../quick-browser/data/messages:91
 msgid "It can be quite heavy to load a lot of icons."
-msgstr ""
+msgstr "Ele pode ficar muito pesado para carregar um monte de ícones."
 
 #: ../quick-browser/data/messages:95
 msgid "Icon size :"
-msgstr ""
+msgstr "Tamanho do Ícone:"
 
 #: ../quick-browser/data/messages:97
 msgid "small"
@@ -5842,11 +5852,11 @@ msgstr "grande"
 
 #: ../quick-browser/data/messages:103
 msgid "List folders first ?"
-msgstr ""
+msgstr "Lista de pastas em primeiro lugar?"
 
 #: ../quick-browser/data/messages:105
 msgid "Ignore case ?"
-msgstr ""
+msgstr "Ignorar caixa?"
 
 #: ../quick-browser/data/messages:107
 msgid "Show hidden files ?"
@@ -5857,34 +5867,36 @@ msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
 msgstr ""
+"Número de itens carregados ao mesmo tempo. Definir um valor de alta "
+"velocidade para um pequeno carregamento, mas bloquear mais uma aplicação."
 
 #: ../quick-browser/data/messages:113
 msgid "Gradual building of the menu :"
-msgstr ""
+msgstr "Construção gradual do menu:"
 
 #: ../shortcuts/data/messages:89
 msgid "List drives and volumes ?"
-msgstr ""
+msgstr "Listar de discos e volumes?"
 
 #: ../shortcuts/data/messages:91
 msgid "List network ?"
-msgstr ""
+msgstr "Listar a rede?"
 
 #: ../shortcuts/data/messages:93
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
-msgstr ""
+msgstr "Marcadores GTK, que são utilizados pelo Nautilus, por exemplo."
 
 #: ../shortcuts/data/messages:95
 msgid "List bookmarks ?"
-msgstr ""
+msgstr "Listar marcadores?"
 
 #: ../shortcuts/data/messages:97
 msgid "Separate different shortcuts with separators ?"
-msgstr ""
+msgstr "Separar atalhos diferentes com separadores?"
 
 #: ../shortcuts/data/messages:103 ../stack/data/messages:95
 msgid "Type of view for the desklet mode :"
-msgstr ""
+msgstr "Tipo de exibição para o modo Desklet:"
 
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
 msgid "Tree"
@@ -5896,7 +5908,7 @@ msgstr "Uso de disco"
 
 #: ../shortcuts/data/messages:111
 msgid "Show disk usage :"
-msgstr ""
+msgstr "Mostrar a utilização do disco:"
 
 #: ../shortcuts/data/messages:115
 msgid "Free space"
@@ -5920,31 +5932,31 @@ msgstr "Em segudos."
 
 #: ../shortcuts/data/messages:125
 msgid "Delay between disk usage refresh :"
-msgstr ""
+msgstr "Atraso entre atualização da utilização do disco:"
 
 #: ../shortcuts/data/messages:127
 msgid "Display disk usage with a bar ?"
-msgstr ""
+msgstr "Mostrar a utilização do disco na forma de  barra?"
 
 #: ../show-mouse/data/messages:3
 msgid "Numbrer of sources :"
-msgstr ""
+msgstr "Número de fontes:"
 
 #: ../show-mouse/data/messages:5
 msgid "In round per second."
-msgstr ""
+msgstr "em voltas por segundo."
 
 #: ../show-mouse/data/messages:9
 msgid "Show mouse on :"
-msgstr ""
+msgstr "Mostrra o mouse sobre:"
 
 #: ../show-mouse/data/messages:11
 msgid "dock"
-msgstr ""
+msgstr "dock"
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
-msgstr ""
+msgstr "desklet"
 
 #: ../show-mouse/data/messages:15
 msgid "both"
@@ -5952,43 +5964,43 @@ msgstr "ambos"
 
 #: ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
-msgstr ""
+msgstr "Número de partículas por fonte:"
 
 #: ../show-mouse/data/messages:21
 msgid "Particles life time :"
-msgstr ""
+msgstr "Tempo de vida das partículas:"
 
 #: ../show-mouse/data/messages:23
 msgid "In pixels."
-msgstr ""
+msgstr "em pixels."
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr ""
+msgstr "O mais elevado, mais as partículas dispersarão de sua fonte."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
-msgstr ""
+msgstr "Dispersão:"
 
 #: ../showDesklets/data/messages:11
 msgid "Image name to show desklets :"
-msgstr ""
+msgstr "Nome da imagem para mostrar desklets:"
 
 #: ../showDesklets/data/messages:15
 msgid "Image name to hide desklets :"
-msgstr ""
+msgstr "Nome da imagem para esconder desklets:"
 
 #: ../showDesklets/data/messages:21
 msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr ""
+msgstr "Mostrar / ocultar desklets que estão na camada widget também?"
 
 #: ../showDesklets/data/messages:23
 msgid "Shortkey to show/hide the desklets :"
-msgstr ""
+msgstr "Atalho para mostrar / ocultar o desklets:"
 
 #: ../showDesktop/data/messages:89
 msgid "Swap left-click and middle-click ?"
-msgstr ""
+msgstr "Trocaro clique esquerdo e clique do meio?"
 
 #: ../slider/data/messages:83
 msgid "Directory"
@@ -5996,77 +6008,79 @@ msgstr "Diretório"
 
 #: ../slider/data/messages:85
 msgid "Directory of the images :"
-msgstr ""
+msgstr "Diretório das imagens:"
 
 #: ../slider/data/messages:87
 msgid "Scan in sub direcotries ?"
-msgstr ""
+msgstr "Analisar sub diretórios?"
 
 #: ../slider/data/messages:89
 msgid "Randomly browse files ?"
-msgstr ""
+msgstr "Procurar arquivos  aleatoriamente?"
 
 #: ../slider/data/messages:91
 msgid "Display image name as quickinfo ?"
-msgstr ""
+msgstr "Exibir nome da imagem como informação rápida?"
 
 #: ../slider/data/messages:93
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
 msgstr ""
+"Impedirá o congelamento do dock durante o carregamento da imagem, mas não "
+"funciona com o Cairo."
 
 #: ../slider/data/messages:95
 msgid "Use another thread to load the images ?"
-msgstr ""
+msgstr "Usar outro procedimento para carregar as imagens?"
 
 #: ../slider/data/messages:101
 msgid "Sliding delay :"
-msgstr ""
+msgstr "Atraso de arrasto:"
 
 #: ../slider/data/messages:103
 msgid "Action when applet is clicked :"
-msgstr ""
+msgstr "Ação quando o miniaplicativo é clicado:"
 
 #: ../slider/data/messages:105
 msgid "play/pause"
-msgstr ""
+msgstr "reproduzir/parar"
 
 #: ../slider/data/messages:107
 msgid "open image"
-msgstr ""
+msgstr "abrir imagem"
 
 #: ../slider/data/messages:109
 msgid "Effect while changing image :"
-msgstr ""
+msgstr "Efeito ao mudar de imagem:"
 
 #: ../slider/data/messages:113
 msgid "fade"
-msgstr ""
+msgstr "desvanecer"
 
 #: ../slider/data/messages:115
 msgid "blank fade"
-msgstr ""
+msgstr "desvanecer vazio"
 
 #: ../slider/data/messages:117
 msgid "fade in out"
-msgstr ""
+msgstr "desvanecer de dentro para fora"
 
 #: ../slider/data/messages:119
 msgid "side kick"
-msgstr ""
+msgstr "chute lateral"
 
 #: ../slider/data/messages:121
 msgid "diaporama"
-msgstr ""
+msgstr "diaporama"
 
 #: ../slider/data/messages:123
 msgid "grow up"
-msgstr ""
+msgstr "aumentar"
 
 #: ../slider/data/messages:125
 msgid "shrink down"
-msgstr ""
+msgstr "diminuir"
 
 #: ../slider/data/messages:127
 msgid "cube"
@@ -6078,53 +6092,55 @@ msgstr "aleatório"
 
 #: ../slider/data/messages:131
 msgid "Number of steps for a transition :"
-msgstr ""
+msgstr "Número de passos para a transição:"
 
 #: ../slider/data/messages:135
 msgid "Gives a better image rendering."
-msgstr ""
+msgstr "Dá um melhor processamento da imagem."
 
 #: ../slider/data/messages:137
 msgid "Keep widht/height ratio ?"
-msgstr ""
+msgstr "Manter a relação largura / altura?"
 
 #: ../slider/data/messages:139
 msgid "If the image is too small, it will be zoomed in."
-msgstr ""
+msgstr "Se a imagem é muito pequena, ela será ampliada"
 
 #: ../slider/data/messages:141
 msgid "Force the image to fill the icon/desklet ?"
-msgstr ""
+msgstr "Forçar a imagem para preencher o ícone / desklet?"
 
 #: ../slider/data/messages:143
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
+"Defina o canal de transparência para 0 se você simplesmente não quer ter um "
+"segundo plano."
 
 #: ../slider/data/messages:145
 msgid "Choose a background color :"
-msgstr ""
+msgstr "Escolha uma cor de fundo:"
 
 #: ../stack/data/messages:7
 msgid "Let empty to use a default name"
-msgstr ""
+msgstr "Deixe em branco para usar um nome padrão"
 
 #: ../stack/data/messages:101
 msgid "They are items created by dropping a text into the Stack."
-msgstr ""
+msgstr "Estes itens são criados ao se soltar um texto na pilha (Stack)."
 
 #: ../stack/data/messages:103
 msgid "Image for the 'text' items :"
-msgstr ""
+msgstr "Imagem para os itens ' texto' :"
 
 #: ../stack/data/messages:105
 msgid "They are items created by dropping an URL into the Stack."
-msgstr ""
+msgstr "Estes itens são criados ao se soltar uma URL na pilha (Stack)."
 
 #: ../stack/data/messages:107
 msgid "Image for the 'URL' items :"
-msgstr ""
+msgstr "Imagem para os itens ' URL' :"
 
 #: ../stack/data/messages:109
 msgid "Options"
@@ -6135,22 +6151,25 @@ msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
 msgstr ""
+"Esta opção permite que você evite que alguns arquivos sejam exibidos nas "
+"pilhas considerando seus formatos (vídeo, imagens, etc...)"
 
 #: ../stack/data/messages:113
 msgid "Filter files with their mime types ?"
-msgstr ""
+msgstr "Filtro de arquivos com formatos mime?"
 
 #: ../stack/data/messages:115
 msgid "Eg: image, text, video, audio, application, ..."
-msgstr ""
+msgstr "Ex.: imagem, texto, vídeo, áudio, aplicação,..."
 
 #: ../stack/data/messages:117
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr ""
+"Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
 
 #: ../stack/data/messages:119
 msgid "Sort items by :"
-msgstr ""
+msgstr "Ordenar artigos por:"
 
 #: ../stack/data/messages:121
 msgid "Name"
@@ -6166,51 +6185,56 @@ msgstr "Tipo"
 
 #: ../stack/data/messages:127
 msgid "Manual order"
-msgstr ""
+msgstr "Ordem manual"
 
 #: ../stack/data/messages:129
 msgid ""
 "It is the selection made by the mouse, by opposition to the usual "
 "ctrl+c/ctrl+v clipboard"
 msgstr ""
+"É a seleção feita pelo mouse, por oposição ao habitual ctrl+c / ctrl+v  área "
+"de transferência"
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr ""
+"Quando copiar / colar / cortar, usar a seleção na área de transferência?"
 
 #: ../switcher/data/messages:85
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
 msgstr ""
+"Todas as áreas de trabalho serão elaboradas no ícone principal. Caso "
+"contrário, uma sub-dock conterá todos as áreas de trabalho."
 
 #: ../switcher/data/messages:87
 msgid "Use the compact mode ?"
-msgstr ""
+msgstr "Usar o modo compacto?"
 
 #: ../switcher/data/messages:89
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
-msgstr ""
+msgstr "Ao desenhar no modo compacto, tentar preservar a proporção da tela?"
 
 #: ../switcher/data/messages:91
 msgid "Map the wallpaper on icon ?"
-msgstr ""
+msgstr "Utilizar o papel de parede no ícone?"
 
 #: ../switcher/data/messages:93
 msgid "Show desktop number on the icons ?"
-msgstr ""
+msgstr "Mostrar o número da área de trabalho sobre os ícones?"
 
 #: ../switcher/data/messages:95
 msgid "Draw the windows on icon ?"
-msgstr ""
+msgstr "Desenhar as janelas no ícone?"
 
 #: ../switcher/data/messages:97
 msgid "Draw hidden windows too ?"
-msgstr ""
+msgstr "Desenhar janelas ocultas também?"
 
 #: ../switcher/data/messages:99
 msgid "Show windows list"
-msgstr ""
+msgstr "Mostrar lista de janelas"
 
 #: ../switcher/data/messages:101
 msgid "Show desktop"
@@ -6218,7 +6242,7 @@ msgstr "Mostrar área de trabalho"
 
 #: ../switcher/data/messages:103
 msgid "Workspace names :"
-msgstr ""
+msgstr "Nomes das áreas de trabalho:"
 
 #: ../switcher/data/messages:105
 msgid "Display options"
@@ -6226,7 +6250,7 @@ msgstr "Exibir opções"
 
 #: ../switcher/data/messages:107
 msgid "Size of the inside lines :"
-msgstr ""
+msgstr "Tamanho das linhas no interior:"
 
 #: ../switcher/data/messages:109 ../switcher/data/messages:115
 #: ../switcher/data/messages:119 ../switcher/data/messages:123
@@ -6235,31 +6259,31 @@ msgstr "r, v, b, a"
 
 #: ../switcher/data/messages:111
 msgid "Color of the inside lines :"
-msgstr ""
+msgstr "Cor das linhas no interior:"
 
 #: ../switcher/data/messages:113
 msgid "Size of the extern line :"
-msgstr ""
+msgstr "Tamanho da linha externa:"
 
 #: ../switcher/data/messages:117
 msgid "Color of the extern line :"
-msgstr ""
+msgstr "Cor da linha externa:"
 
 #: ../switcher/data/messages:121
 msgid "Color of the Windows line :"
-msgstr ""
+msgstr "Cor das linha das janelas:"
 
 #: ../switcher/data/messages:125
 msgid "Color of the current desktop :"
-msgstr ""
+msgstr "Cor da área de trabalho atual:"
 
 #: ../switcher/data/messages:127
 msgid "How to draw the current desktop :"
-msgstr ""
+msgstr "Como desenhar a área de trabalho atual:"
 
 #: ../switcher/data/messages:129
 msgid "draw a frame"
-msgstr ""
+msgstr "desenhar um quadro"
 
 #: ../switcher/data/messages:131
 msgid "fill"
@@ -6267,19 +6291,21 @@ msgstr "preencher"
 
 #: ../switcher/data/messages:133
 msgid "fill others"
-msgstr ""
+msgstr "preencher os outros"
 
 #: ../switcher/data/messages:137
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
+"Ícone para utilizar no modo expandido, se você não mapear o papel de parede:"
 
 #: ../switcher/data/messages:143
 msgid "In expanded mode, render the desklet in 3D ?"
-msgstr ""
+msgstr "No modo expandido, utilizar o desklet em 3D?"
 
 #: ../systray/data/messages:7 ../terminal/data/messages:7
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr ""
+"Nome do ícone da forma como ele aparecerá em seu rótulo, no Cairo-dock:"
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
@@ -6287,11 +6313,11 @@ msgstr "Interface Gráfica do Usuário"
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"
-msgstr ""
+msgstr "Atalho para alternar a systray em modo dock:"
 
 #: ../systray/data/messages:43
 msgid "Icons packing :"
-msgstr ""
+msgstr "Pacotes de ícones:"
 
 #: ../systray/data/messages:45
 msgid "horizontal"
@@ -6303,49 +6329,51 @@ msgstr "vertical"
 
 #: ../systray/data/messages:49
 msgid "Icons size :"
-msgstr ""
+msgstr "Tamanho dos ícones:"
 
 #: ../terminal/data/messages:87
 msgid "needs to restart the applet."
-msgstr ""
+msgstr "precisa reiniciar o miniaplicativo."
 
 #: ../terminal/data/messages:89
 msgid "Terminal's transparency :"
-msgstr ""
+msgstr "Transparência do Terminal:"
 
 #: ../terminal/data/messages:91
 msgid "Foreground color (r, v, b):"
-msgstr ""
+msgstr "Cor de primeiro plano (r, v, b):"
 
 #: ../terminal/data/messages:93
 msgid "Background color (r, v, b):"
-msgstr ""
+msgstr "Cor de fundo (r, v, b):"
 
 #: ../terminal/data/messages:95
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
 msgstr ""
+"Quando o terminal está em um diálogo. Quando está em um Desklet, você pode "
+"apenas redimensionar a Desklet como de costume."
 
 #: ../terminal/data/messages:97
 msgid "Size of the terminal (line x columns) :"
-msgstr ""
+msgstr "Tamanho do terminal (linhas x colunas):"
 
 #: ../terminal/data/messages:99
 msgid "Shortkey to show the terminal :"
-msgstr ""
+msgstr "Atalho para mostrar o terminal:"
 
 #: ../tomboy/data/messages:7
 msgid "Default title :"
-msgstr ""
+msgstr "Título padrão:"
 
 #: ../tomboy/data/messages:19
 msgid "Name of an image for the 'close' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'fechar':"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone 'vazio':"
 
 #: ../tomboy/data/messages:101
 msgid "View"
@@ -6353,19 +6381,19 @@ msgstr "Ver"
 
 #: ../tomboy/data/messages:107
 msgid "Draw note's content on their icon ?"
-msgstr ""
+msgstr "Apresentar o conteúdo das notas em seu ícone?"
 
 #: ../tomboy/data/messages:109
 msgid "Text color of the content :"
-msgstr ""
+msgstr "Cor do texto do conteúdo:"
 
 #: ../tomboy/data/messages:111
 msgid "Display note's content with a dialog ?"
-msgstr ""
+msgstr "Apresentar o conteúdo das notas em uma caixa de diálogo?"
 
 #: ../tomboy/data/messages:119
 msgid "Choose the note-taking application to control :"
-msgstr ""
+msgstr "Escolha o aplicativo de anotações para controlar:"
 
 #: ../tomboy/data/messages:121
 msgid "Gnote"
@@ -6377,15 +6405,15 @@ msgstr "Tomboy"
 
 #: ../tomboy/data/messages:125
 msgid "Ask confirmation before deleting a note ?"
-msgstr ""
+msgstr "Pedir confirmação antes de excluir uma nota?"
 
 #: ../tomboy/data/messages:127
 msgid "Otherwise you will be asked to name it."
-msgstr ""
+msgstr "Caso contrário, lhe será solicitado que o nomeie."
 
 #: ../tomboy/data/messages:129
 msgid "Automatically name a new note ?"
-msgstr ""
+msgstr "Nomear automaticamente uma anotação nova?"
 
 #: ../tomboy/data/messages:131
 msgid ""
@@ -6393,10 +6421,13 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
+"Escreva no formato de data que você usa geralmente em suas anotações. A "
+"sintaxe desta ' strftime' é: %d para o dia, %m para o mês, %y para o ano (2 "
+"dígitos), etc. Deixado em brancopara usar o padrão (%d/%m/%y)."
 
 #: ../tomboy/data/messages:133
 msgid "Date format to search for :"
-msgstr ""
+msgstr "Formato de data para pesquisar:"
 
 #: ../tomboy/data/messages:135
 msgid ""
@@ -6405,10 +6436,14 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
+"Dependendo da versão do Tomboys, a supressão de anotação não pode ser "
+"notificada automaticamente. Apenas marque esta caixa se você notar alguma "
+"mensagem de erro como <<sem visulização do sinal para assinatura  'não "
+"apagado'>> no terminal."
 
 #: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
-msgstr ""
+msgstr "Emular o sinal 'não apagado'?"
 
 #: ../weather/data/messages:3
 msgid "Set to 0 to use the default applet size"
@@ -6416,129 +6451,134 @@ msgstr "Defina 0 para usar o tamanho padrão do applet"
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."
-msgstr ""
+msgstr "Deixe em branco para usar o nome da cidade."
 
 #: ../weather/data/messages:87
 msgid "Enter the name of your location in the text entry and press Enter."
 msgstr ""
+"Digite o nome da sua localização na entrada de texto e pressione Enter."
 
 #: ../weather/data/messages:89
 msgid "Code of your location :"
-msgstr ""
+msgstr "Código (CEP) de sua localização:"
 
 #: ../weather/data/messages:91
 msgid "Use International System Units ?"
-msgstr ""
+msgstr "Uso do Sistema Internacional de Medidas?"
 
 #: ../weather/data/messages:93
 msgid "in seconds. Set 0 to have never-ending dialogs."
-msgstr ""
+msgstr "em segundos. Ajuste 0 para ter diálogos intermináveis."
 
 #: ../weather/data/messages:95
 msgid "Duration of dialogs :"
-msgstr ""
+msgstr "Duração dos diálogos:"
 
 #: ../weather/data/messages:97
 msgid "in minutes."
-msgstr ""
+msgstr "em minutos."
 
 #: ../weather/data/messages:103
 msgid "Display current conditions on the icon instead of the default one ?"
-msgstr ""
+msgstr "Mostrar as condições atuais no ícone em vez de da exibição padrão?"
 
 #: ../weather/data/messages:105
 msgid "Number of days you want to forecast :"
-msgstr ""
+msgstr "Número de dias onde você quer prever:"
 
 #: ../weather/data/messages:107
 msgid "Display nights too ?"
-msgstr ""
+msgstr "Exibir noites também?"
 
 #: ../weather/data/messages:109
 msgid "Display temperature as quick info ?"
-msgstr ""
+msgstr "Exibir temperatura como informação rápida?"
 
 #: ../weather/data/messages:119
 msgid "Render desklet in 3D ?"
-msgstr ""
+msgstr "Exibir desklet em 3D?"
 
 #: ../weblets/data/messages:87
 msgid "URI to load in weblet"
-msgstr ""
+msgstr "URL para carregar um weblet"
 
 #: ../weblets/data/messages:89
 msgid "Show scrollbars ?"
-msgstr ""
+msgstr "Mostrar barras de rolagem?"
 
 #: ../weblets/data/messages:91
 msgid "Horizontal scroll of the browser in pixel"
-msgstr ""
+msgstr "Rolagem horizontal do browser em pixels"
 
 #: ../weblets/data/messages:93
 msgid "Position of horizontal scrollbar"
-msgstr ""
+msgstr "Posição da barra de rolagem horizontal"
 
 #: ../weblets/data/messages:95
 msgid "Vertical scroll of the browser in pixel"
-msgstr ""
+msgstr "Rolagem vertical do navegador em pixels"
 
 #: ../weblets/data/messages:97
 msgid "Position of vertical scrollbar in pixel"
-msgstr ""
+msgstr "Posição da barra de rolagem vertical em pixels"
 
 #: ../weblets/data/messages:99
 msgid ""
 "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
+"Isto permite que você dê um clique direito sobre o desklet  para exibir o "
+"pop-up do menu do Cairo-Dock."
 
 #: ../weblets/data/messages:101
 msgid "Right margin's width, in pixels :"
-msgstr ""
+msgstr "Largura da margem direita, em pixels:"
 
 #: ../weblets/data/messages:103
 msgid "Transparent background ?"
-msgstr ""
+msgstr "Fundo transparente?"
 
 #: ../weblets/data/messages:105
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
+"Tempo antes de recarregar a URL do weblet, em segundos. Zero significa nunca "
+"recarregar."
 
 #: ../weblets/data/messages:107
 msgid "Time between two page refreshes"
-msgstr ""
+msgstr "Tempo entre duas atualizações da página"
 
 #: ../weblets/data/messages:109
 msgid "Any valid URI should work."
-msgstr ""
+msgstr "Qualquer URI válido deve funcionar."
 
 #: ../weblets/data/messages:111
 msgid "Predefined bookmarks to show in applet's menu :"
-msgstr ""
+msgstr "Marcadores predefinidos para mostrar no menu do miniaplicativo:"
 
 #: ../wifi/data/messages:133
 msgid "Name of an image for the 'no signal' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'sem sinal':"
 
 #: ../wifi/data/messages:137
 msgid "Name of an image for the 'very low' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'muito baixo':"
 
 #: ../wifi/data/messages:141
 msgid "Name of an image for the 'low' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'baixo':"
 
 #: ../wifi/data/messages:145
 msgid "Name of an image for the 'middle' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'médio':"
 
 #: ../wifi/data/messages:149
 msgid "Name of an image for the 'good' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'bom':"
 
 #: ../wifi/data/messages:153
 msgid "Name of an image for the 'exellent' icon :"
-msgstr ""
+msgstr "Nome de uma imagem para o ícone de 'excelente':"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"

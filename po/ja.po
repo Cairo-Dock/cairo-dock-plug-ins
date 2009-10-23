@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-10-15 14:40+0000\n"
-"PO-Revision-Date: 2009-10-16 10:30+0000\n"
+"POT-Creation-Date: 2009-10-22 00:54+0000\n"
+"PO-Revision-Date: 2009-10-22 11:02+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-17 07:14+0000\n"
+"X-Launchpad-Export-Date: 2009-10-23 07:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -24,6 +24,47 @@ msgstr "動画アイコン"
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
 msgstr "アイコンの多様なアニメーションを提供するプラグイン"
+
+#: ../Animated-icons/src/applet-init.c:52 ../Animated-icons/data/messages:7
+#: ../Animated-icons/data/messages:25 ../Animated-icons/data/messages:43
+#: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:167
+msgid "Bounce"
+msgstr "バウンド"
+
+#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
+#: ../Animated-icons/data/messages:63
+msgid "Rotate"
+msgstr ""
+
+#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:181
+msgid "Blink"
+msgstr "点滅"
+
+#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:155
+msgid "Pulse"
+msgstr "パルス"
+
+#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:127
+msgid "Wobbly"
+msgstr "伸び縮み"
+
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:143
+msgid "Wave"
+msgstr "ウェーブ"
+
+#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
+#: ../Animated-icons/data/messages:93
+msgid "Spot"
+msgstr "スポット"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -95,28 +136,28 @@ msgstr ""
 msgid "For Aiur !"
 msgstr "アイアーのために！"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:121
+#: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Hey, you there !"
 msgstr "ヘイ、そこのユー！"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:125
+#: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:129
+#: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:132
+#: ../Cairo-Penguin/src/applet-notifications.c:134
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:133
+#: ../Cairo-Penguin/src/applet-notifications.c:135
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:156
 #: ../Cairo-Penguin/src/applet-notifications.c:158
+#: ../Cairo-Penguin/src/applet-notifications.c:160
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -140,7 +181,7 @@ msgstr ""
 "左クリックでクリップボードとマウス・セレクション履歴のポップアップ、\n"
 "テキストをアイコンにドロップすると定形文アイテムを作成、中クリックでそれらを呼び出します。"
 
-#: ../Clipper/src/applet-notifications.c:96
+#: ../Clipper/src/applet-notifications.c:93
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -157,7 +198,6 @@ msgstr ""
 "両者の間の通信は Dbus に基づきます。"
 
 #: ../Dbus/src/interface-applet-signals.c:343
-#: ../Dbus/src/interface-applet.c:958
 msgid "About this applet"
 msgstr ""
 
@@ -264,8 +304,8 @@ msgid "Network ID"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:294 ../musicPlayer/src/applet-draw.c:296
-#: ../musicPlayer/src/applet-draw.c:298
+#: ../musicPlayer/src/applet-draw.c:297 ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:301
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -308,54 +348,66 @@ msgstr ""
 msgid "Execute"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:155
+#: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip folder"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:163
-#: ../Scooby-Do/src/applet-backend-files.c:237
+#: ../Scooby-Do/src/applet-backend-files.c:243
+#: ../Scooby-Do/src/applet-backend-files.c:317
 msgid "Move to"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:171
-#: ../Scooby-Do/src/applet-backend-files.c:245
+#: ../Scooby-Do/src/applet-backend-files.c:251
+#: ../Scooby-Do/src/applet-backend-files.c:325
 #: ../Scooby-Do/src/applet-backend-firefox.c:110
 msgid "Copy URL"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:213
+#: ../Scooby-Do/src/applet-backend-files.c:293
 msgid "Open location"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:221
+#: ../Scooby-Do/src/applet-backend-files.c:301
 msgid "Zip file"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:229
+#: ../Scooby-Do/src/applet-backend-files.c:309
 msgid "Mail file"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-files.c:348
+#: ../Scooby-Do/src/applet-backend-files.c:461
 msgid "Pick up a directory"
+msgstr ""
+
+#: ../Scooby-Do/src/applet-backend-files.c:517
+msgid "Files"
 msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-web.c:60
-msgid "Google"
-msgstr ""
-
-#: ../Scooby-Do/src/applet-backend-web.c:68
+#: ../Scooby-Do/src/applet-backend-web.c:56
 msgid "Wikipedia"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-web.c:76
+#: ../Scooby-Do/src/applet-backend-web.c:64
 msgid "Yahoo"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-web.c:138
+#: ../Scooby-Do/src/applet-backend-web.c:72
+msgid "Google"
+msgstr ""
+
+#: ../Scooby-Do/src/applet-backend-web.c:91
+msgid "Mediadico"
+msgstr ""
+
+#: ../Scooby-Do/src/applet-backend-web.c:99
+msgid "Amazon"
+msgstr ""
+
+#: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
 msgstr ""
 
@@ -376,45 +428,45 @@ msgid ""
 "Escape or the same shortkey to cancel."
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:508
+#: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:515
+#: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:522
+#: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:529
+#: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:536
+#: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:543
+#: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:550
+#: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:669 ../Scooby-Do/src/applet-search.c:317
+#: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:317
 msgid "No result"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:673 ../Scooby-Do/src/applet-search.c:313
-#: ../tomboy/src/tomboy-draw.c:109 ../tomboy/src/tomboy-draw.c:116
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:313
+#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "results"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:673 ../Scooby-Do/src/applet-search.c:313
-#: ../tomboy/src/tomboy-draw.c:109 ../tomboy/src/tomboy-draw.c:116
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:313
+#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "result"
 msgstr ""
 
@@ -623,7 +675,7 @@ msgstr "ボリューム設定 :"
 msgid "Adjsut channels"
 msgstr "チャンネル調整"
 
-#: ../clock/src/applet-config.c:469 ../weather/src/applet-config.c:233
+#: ../clock/src/applet-config.c:476 ../weather/src/applet-config.c:233
 msgid "Search for your location :"
 msgstr "現在地の検索"
 
@@ -721,6 +773,43 @@ msgstr "ウィジェット・レイヤのオンオフ"
 msgid "Toggle Show Desktop"
 msgstr "デスクトップの表示のオンオフ"
 
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:46
+msgid "frame&reflects"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:55
+msgid "scotch"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:64
+msgid "frame with scotch"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:73
+msgid "CD box"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:81
+msgid "dark"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:89
+msgid "clear"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:97
+msgid "futuristic"
+msgstr ""
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:105
+#: ../slider/data/messages:111
+msgid "none"
+msgstr "なし"
+
+#: ../desklet-rendering/src/rendering-desklet-decorations.c:113
+msgid "board"
+msgstr ""
+
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
 msgstr ""
@@ -782,76 +871,76 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:29
+#: ../dnd2share/src/applet-notifications.c:32
 msgid "Clear the list of the recently uploaded files ?"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:45
+#: ../dnd2share/src/applet-notifications.c:48
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:67
+#: ../dnd2share/src/applet-notifications.c:70
 msgid "Sorry, couldn't find the orignial file nor a preview of it."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:88
+#: ../dnd2share/src/applet-notifications.c:91
 msgid ""
 "The URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:102
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:103
+#: ../dnd2share/src/applet-notifications.c:106
 msgid ""
 "No uploaded file available\n"
 ".Consider activating the history if you want the applet remembers previous "
 "uploads."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:120
+#: ../dnd2share/src/applet-notifications.c:123
 msgid ""
 "The current URL has been stored into the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:121
+#: ../dnd2share/src/applet-notifications.c:124
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:269
+#: ../dnd2share/src/applet-notifications.c:298
 msgid "Text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:269
+#: ../dnd2share/src/applet-notifications.c:298
 msgid "File"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:272
+#: ../dnd2share/src/applet-notifications.c:301
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:287
+#: ../dnd2share/src/applet-notifications.c:316
 msgid "Clear History"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:349
+#: ../dnd2share/src/applet-notifications.c:378
 msgid "Open file"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:351
+#: ../dnd2share/src/applet-notifications.c:380
 msgid "Get text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:353
+#: ../dnd2share/src/applet-notifications.c:382
 msgid "Remove from history"
 msgstr ""
 
@@ -1016,6 +1105,36 @@ msgstr "アイコン効果"
 msgid "This plug-in adds many special effects to your icons."
 msgstr "アイコンに多様な特殊効果を追加するプラグイン"
 
+#: ../icon-effect/src/applet-init.c:54 ../icon-effect/data/messages:7
+#: ../icon-effect/data/messages:21 ../icon-effect/data/messages:35
+#: ../icon-effect/data/messages:49 ../icon-effect/data/messages:63
+msgid "Fire"
+msgstr "炎"
+
+#: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
+#: ../icon-effect/data/messages:23 ../icon-effect/data/messages:37
+#: ../icon-effect/data/messages:51 ../icon-effect/data/messages:87
+msgid "Stars"
+msgstr "星"
+
+#: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
+#: ../icon-effect/data/messages:25 ../icon-effect/data/messages:39
+#: ../icon-effect/data/messages:53 ../icon-effect/data/messages:123
+msgid "Rain"
+msgstr "雨"
+
+#: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
+#: ../icon-effect/data/messages:27 ../icon-effect/data/messages:41
+#: ../icon-effect/data/messages:55 ../icon-effect/data/messages:105
+msgid "Snow"
+msgstr "雪"
+
+#: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
+#: ../icon-effect/data/messages:29 ../icon-effect/data/messages:43
+#: ../icon-effect/data/messages:57 ../icon-effect/data/messages:141
+msgid "Storm"
+msgstr "嵐"
+
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
 msgstr "イリュージョン"
@@ -1069,27 +1188,27 @@ msgstr ""
 msgid "Choose in how many minutes your PC will stop :"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:142
+#: ../logout/src/applet-notifications.c:140
 msgid "Program an automatic shutdown"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:171
+#: ../logout/src/applet-notifications.c:168
 msgid "Your computer will shutdown in 1 minute."
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-config.c:175
+#: ../mail/src/cd-mail-applet-config.c:184
 msgid "Please choose an account type."
 msgstr "アカウントの種類を選択してください。"
 
-#: ../mail/src/cd-mail-applet-config.c:180
+#: ../mail/src/cd-mail-applet-config.c:189
 msgid "New account's name"
 msgstr "新しいアカウントの名前 :"
 
-#: ../mail/src/cd-mail-applet-config.c:183
+#: ../mail/src/cd-mail-applet-config.c:192
 msgid "Please enter a name for this account."
 msgstr "このアカウントの名前を入力してください。"
 
-#: ../mail/src/cd-mail-applet-config.c:193
+#: ../mail/src/cd-mail-applet-config.c:202
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -1097,11 +1216,11 @@ msgstr ""
 "このアカウントはすでに存在します。\n"
 "新しいアカウント用の別の名前を選択してください。"
 
-#: ../mail/src/cd-mail-applet-config.c:321
+#: ../mail/src/cd-mail-applet-config.c:330
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr "このアカウントの名前を入力してください。任意の名前を付けることができます。"
 
-#: ../mail/src/cd-mail-applet-config.c:376
+#: ../mail/src/cd-mail-applet-config.c:385
 msgid "Remove Account"
 msgstr "アカウントの削除"
 
@@ -1174,43 +1293,43 @@ msgstr "モーションブラー"
 msgid "This plug-in adds a motion blur effect on docks."
 msgstr "ドックにモーションブラー効果を追加するプラグイン"
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown artist"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:188
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "Unknown title"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:194
+#: ../musicPlayer/src/applet-draw.c:204
 msgid "Track"
 msgstr "トラック"
 
-#: ../musicPlayer/src/applet-draw.c:284
+#: ../musicPlayer/src/applet-draw.c:287
 msgid "Current song"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:293
+#: ../musicPlayer/src/applet-draw.c:296
 msgid "Artist"
 msgstr "アーティスト"
 
-#: ../musicPlayer/src/applet-draw.c:295
+#: ../musicPlayer/src/applet-draw.c:298
 msgid "Album"
 msgstr "アルバム"
 
-#: ../musicPlayer/src/applet-draw.c:297
+#: ../musicPlayer/src/applet-draw.c:300
 msgid "Title"
 msgstr "タイトル"
 
-#: ../musicPlayer/src/applet-draw.c:299
+#: ../musicPlayer/src/applet-draw.c:302
 msgid "Length"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:301
+#: ../musicPlayer/src/applet-draw.c:304
 msgid "Track n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:304
+#: ../musicPlayer/src/applet-draw.c:307
 msgid "There is no media playing."
 msgstr ""
 
@@ -1237,43 +1356,43 @@ msgid ""
 "offer such service."
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:152
+#: ../musicPlayer/src/applet-notifications.c:157
 msgid "Find opened player"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:159
+#: ../musicPlayer/src/applet-notifications.c:164
 msgid "Previous"
 msgstr "前へ"
 
-#: ../musicPlayer/src/applet-notifications.c:161
+#: ../musicPlayer/src/applet-notifications.c:166
 msgid "Play/Pause (left-click)"
 msgstr "再生/一時停止（左クリック）"
 
-#: ../musicPlayer/src/applet-notifications.c:163
+#: ../musicPlayer/src/applet-notifications.c:168
 msgid "Next (middle-click)"
 msgstr "次へ（中クリック）"
 
-#: ../musicPlayer/src/applet-notifications.c:165
+#: ../musicPlayer/src/applet-notifications.c:170
 msgid "Stop"
 msgstr "停止"
 
-#: ../musicPlayer/src/applet-notifications.c:167
+#: ../musicPlayer/src/applet-notifications.c:172
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../musicPlayer/src/applet-notifications.c:169
+#: ../musicPlayer/src/applet-notifications.c:174
 msgid "Toggle Shuffle"
 msgstr "シャッフルのオンオフ"
 
-#: ../musicPlayer/src/applet-notifications.c:171
+#: ../musicPlayer/src/applet-notifications.c:176
 msgid "Toggle Repeat"
 msgstr "リピートのオンオフ"
 
-#: ../musicPlayer/src/applet-notifications.c:173
+#: ../musicPlayer/src/applet-notifications.c:178
 msgid "Rate this song"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:180
 msgid "Information"
 msgstr "情報"
 
@@ -1432,7 +1551,7 @@ msgstr "このフォルダを開く"
 
 #: ../shortcuts/src/applet-bookmarks.c:133
 #: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:73
+#: ../shortcuts/src/applet-load-icons.c:75
 msgid "Unmounted"
 msgstr "アンマウント済み"
 
@@ -1454,11 +1573,11 @@ msgstr ""
 "マウントポイント・アイコンの中クリックで素早い（アン）マウント。\n"
 "アプレットは、ディスクの空き容量や種類などの有益な情報も表示します。"
 
-#: ../shortcuts/src/applet-notifications.c:92
+#: ../shortcuts/src/applet-notifications.c:98
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 
-#: ../shortcuts/src/applet-notifications.c:102
+#: ../shortcuts/src/applet-notifications.c:108
 msgid "Get disk info"
 msgstr "ディスク情報取得"
 
@@ -1548,43 +1667,50 @@ msgstr ""
 "あらゆるファイルや、Web URL、さらにはテキストの一部をドロップすることも可能。\n"
 "従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができます。"
 
-#: ../stack/src/applet-notifications.c:61
+#: ../stack/src/applet-notifications.c:48
+msgid ""
+"No items in the stack.\n"
+"You can add files, URL, and even piece of text by dragging them onto the "
+"icon."
+msgstr ""
+
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
 msgstr "スタックを消去？"
 
-#: ../stack/src/applet-notifications.c:78
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
 msgstr "このアイテムに新しい名前を設定 :"
 
-#: ../stack/src/applet-notifications.c:136
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
 msgstr "コピー（中クリック）"
 
-#: ../stack/src/applet-notifications.c:137
+#: ../stack/src/applet-notifications.c:145
 msgid "Cut"
 msgstr "切り取り"
 
-#: ../stack/src/applet-notifications.c:138
+#: ../stack/src/applet-notifications.c:146
 msgid "Rename this item"
 msgstr "このアイテムをリネーム"
 
-#: ../stack/src/applet-notifications.c:139
+#: ../stack/src/applet-notifications.c:147
 msgid "Remove this item"
 msgstr "このアイテムを削除"
 
-#: ../stack/src/applet-notifications.c:143
+#: ../stack/src/applet-notifications.c:151
 msgid "Open (click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:153
 msgid "Open folder"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:150
+#: ../stack/src/applet-notifications.c:158
 msgid "Paste (drag'n'drop)"
 msgstr "貼り付け（ドラッグ＆ドロップ）"
 
-#: ../stack/src/applet-notifications.c:151
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
 msgstr "スタックをクリア"
 
@@ -1610,45 +1736,60 @@ msgstr ""
 
 #: ../switcher/src/applet-init.c:35
 msgid ""
-"This applet allows you to switch between your virtual desktops.\n"
-"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-"You can also quickly add/remove a desktop through the right-click menu.\n"
-"Scroll up/down on the main icon to go to the left/right desktop, middle-"
-"click to show the desktop"
+"This applet allows you to interact with your workspaces :\n"
+" - switch between your workspaces (scroll up/down with the mouse),\n"
+" - name them (in the config),\n"
+" - quickly add/remove a workspace (in the menu),\n"
+" - show the desktop (middle-click or in the menu),\n"
+" - list all windows on each workspace ((middle-click or in the menu)\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
 
 #: ../switcher/src/applet-load-icons.c:40
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:334
 msgid "Current"
 msgstr "現在"
 
 #: ../switcher/src/applet-load-icons.c:46
-#: ../switcher/src/applet-notifications.c:262
-#: ../switcher/src/applet-notifications.c:319
+#: ../switcher/src/applet-notifications.c:175
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:326
+#: ../switcher/src/applet-notifications.c:383
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: ../switcher/src/applet-notifications.c:164
+#: ../switcher/src/applet-notifications.c:176
+#: ../switcher/src/applet-notifications.c:234
+msgid "Rename this workspace"
+msgstr ""
+
+#: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
 msgstr "デスクトップを追加"
 
-#: ../switcher/src/applet-notifications.c:168
+#: ../switcher/src/applet-notifications.c:221
 msgid "Remove last desktop"
 msgstr "最後のデスクトップを削除"
 
-#: ../switcher/src/applet-notifications.c:172
+#: ../switcher/src/applet-notifications.c:225
 msgid "Refresh"
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:184
+#: ../switcher/src/applet-notifications.c:241
 msgid "Move current desktop to this desktop"
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:189
-msgid "This will move all windows from the current desktop to this one"
+#: ../switcher/src/applet-notifications.c:246
+msgid ""
+"This will move all windows from the current desktop to the one you clicked "
+"on."
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:197
+#: ../switcher/src/applet-notifications.c:252
+msgid "Show the desktop"
+msgstr ""
+
+#: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
 msgstr ""
 
@@ -1673,7 +1814,7 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-callbacks.c:84
-#: ../terminal/src/terminal-widget.c:343
+#: ../terminal/src/terminal-widget.c:346
 msgid "Copy"
 msgstr "コピー"
 
@@ -1690,7 +1831,7 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:80
-#: ../terminal/src/terminal-widget.c:359
+#: ../terminal/src/terminal-widget.c:362
 msgid "New Tab"
 msgstr "新しいタブ"
 
@@ -1714,19 +1855,24 @@ msgstr "このタブのタイトルを設定 :"
 msgid "Select a color"
 msgstr "色の選択"
 
-#: ../terminal/src/terminal-widget.c:349
+#: ../terminal/src/terminal-widget.c:306
+#, c-format
+msgid "You can call back the Terminal desklet by typing %s"
+msgstr ""
+
+#: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
 msgstr "貼り付け"
 
-#: ../terminal/src/terminal-widget.c:365
+#: ../terminal/src/terminal-widget.c:368
 msgid "Rename this Tab"
 msgstr "このタブの名前変更"
 
-#: ../terminal/src/terminal-widget.c:371
+#: ../terminal/src/terminal-widget.c:374
 msgid "Change this Tab's color"
 msgstr "このタブの色を変更"
 
-#: ../terminal/src/terminal-widget.c:377
+#: ../terminal/src/terminal-widget.c:380
 msgid "Close this Tab"
 msgstr "このタブを閉じる"
 
@@ -1959,7 +2105,7 @@ msgstr ""
 "現在再試行中です ..."
 
 #: ../weather/src/applet-notifications.c:152
-msgid "feeled"
+msgid "felt"
 msgstr "体感温度"
 
 #: ../weather/src/applet-notifications.c:154
@@ -2013,45 +2159,6 @@ msgstr "アイコン ホバー時"
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
 msgstr "使用する効果 :"
-
-#: ../Animated-icons/data/messages:7 ../Animated-icons/data/messages:25
-#: ../Animated-icons/data/messages:43 ../Animated-icons/data/messages:61
-#: ../Animated-icons/data/messages:167
-msgid "Bounce"
-msgstr "バウンド"
-
-#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:27
-#: ../Animated-icons/data/messages:45 ../Animated-icons/data/messages:63
-msgid "Rotate"
-msgstr ""
-
-#: ../Animated-icons/data/messages:11 ../Animated-icons/data/messages:29
-#: ../Animated-icons/data/messages:47 ../Animated-icons/data/messages:65
-#: ../Animated-icons/data/messages:181
-msgid "Blink"
-msgstr "点滅"
-
-#: ../Animated-icons/data/messages:13 ../Animated-icons/data/messages:31
-#: ../Animated-icons/data/messages:49 ../Animated-icons/data/messages:67
-#: ../Animated-icons/data/messages:155
-msgid "Pulse"
-msgstr "パルス"
-
-#: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:33
-#: ../Animated-icons/data/messages:51 ../Animated-icons/data/messages:69
-#: ../Animated-icons/data/messages:127
-msgid "Wobbly"
-msgstr "伸び縮み"
-
-#: ../Animated-icons/data/messages:17 ../Animated-icons/data/messages:35
-#: ../Animated-icons/data/messages:53 ../Animated-icons/data/messages:71
-#: ../Animated-icons/data/messages:143
-msgid "Wave"
-msgstr "ウェーブ"
-
-#: ../Animated-icons/data/messages:19 ../Animated-icons/data/messages:93
-msgid "Spot"
-msgstr "スポット"
 
 #: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:17
 msgid "when clicking on an launcher"
@@ -2129,7 +2236,7 @@ msgstr "メッシュの種類 :"
 #: ../showDesktop/data/messages:31 ../slider/data/messages:27
 #: ../stack/data/messages:33 ../switcher/data/messages:27
 #: ../systray/data/messages:23 ../terminal/data/messages:31
-#: ../tomboy/data/messages:41 ../weather/data/messages:29
+#: ../tomboy/data/messages:45 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:27
 msgid "Normal"
 msgstr "通常"
@@ -2156,7 +2263,7 @@ msgstr "メッシュの色 :"
 #: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
 #: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
 #: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:129 ../terminal/data/messages:9
+#: ../switcher/data/messages:135 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr "デフォルトのものを使用するには空欄のままに。"
@@ -2307,16 +2414,16 @@ msgstr "アイコン"
 #: ../clock/data/messages:3 ../compiz-icon/data/messages:3
 #: ../dnd2share/data/messages:3 ../dustbin/data/messages:3
 #: ../keyboard-indicator/data/messages:3 ../logout/data/messages:3
-#: ../mail/data/messages:3 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:3 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:3 ../showDesklets/data/messages:3
-#: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../switcher/data/messages:3
-#: ../systray/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:3
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:3
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
+#: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
+#: ../slider/data/messages:3 ../stack/data/messages:3
+#: ../switcher/data/messages:3 ../systray/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size when the penguin is not free :"
@@ -2359,7 +2466,7 @@ msgstr "帰属先ドックの名前 :"
 #: ../showDesklets/data/messages:19 ../showDesktop/data/messages:85
 #: ../slider/data/messages:81 ../stack/data/messages:87
 #: ../switcher/data/messages:81 ../switcher/data/messages:83
-#: ../tomboy/data/messages:95 ../weather/data/messages:83
+#: ../tomboy/data/messages:99 ../weather/data/messages:83
 #: ../weather/data/messages:85 ../weblets/data/messages:85
 #: ../wifi/data/messages:81
 msgid "Configuration"
@@ -2367,7 +2474,7 @@ msgstr "設定"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:93
 #: ../System-Monitor/data/messages:91 ../Toons/data/messages:85
-#: ../dustbin/data/messages:85 ../mail/data/messages:83
+#: ../dustbin/data/messages:85 ../mail/data/messages:91
 #: ../netspeed/data/messages:91 ../powermanager/data/messages:93
 #: ../weather/data/messages:113 ../wifi/data/messages:93
 msgid "Choose one of the available themes :"
@@ -2557,7 +2664,7 @@ msgstr "画像のファイル名 :"
 #: ../shortcuts/data/messages:15 ../showDesktop/data/messages:15
 #: ../slider/data/messages:11 ../stack/data/messages:17
 #: ../switcher/data/messages:15 ../systray/data/messages:11
-#: ../terminal/data/messages:15 ../tomboy/data/messages:25
+#: ../terminal/data/messages:15 ../tomboy/data/messages:29
 #: ../weather/data/messages:13 ../weblets/data/messages:15
 #: ../wifi/data/messages:11
 msgid "Desklet"
@@ -2575,7 +2682,7 @@ msgstr "デスクレット"
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:17
 #: ../slider/data/messages:13 ../stack/data/messages:19
 #: ../switcher/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:27 ../weather/data/messages:15
+#: ../tomboy/data/messages:31 ../weather/data/messages:15
 #: ../weblets/data/messages:17 ../wifi/data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
@@ -2594,7 +2701,7 @@ msgstr "使用中のウィンドウ・マネージャによって異なります
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:19
 #: ../slider/data/messages:15 ../stack/data/messages:21
 #: ../switcher/data/messages:19 ../terminal/data/messages:19
-#: ../tomboy/data/messages:29 ../weather/data/messages:17
+#: ../tomboy/data/messages:33 ../weather/data/messages:17
 #: ../weblets/data/messages:19 ../wifi/data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "デスクレットの寸法（幅×高さ） :"
@@ -2627,7 +2734,7 @@ msgstr "使用中のウィンドウ・マネージャによって異なります
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:23
 #: ../slider/data/messages:19 ../stack/data/messages:25
 #: ../switcher/data/messages:21 ../systray/data/messages:15
-#: ../terminal/data/messages:23 ../tomboy/data/messages:33
+#: ../terminal/data/messages:23 ../tomboy/data/messages:37
 #: ../weather/data/messages:21 ../weblets/data/messages:23
 #: ../wifi/data/messages:19
 msgid "Desklet's position (x ; y) :"
@@ -2645,7 +2752,7 @@ msgstr "デスクレットの位置（X ; Y） :"
 #: ../shortcuts/data/messages:25 ../showDesktop/data/messages:25
 #: ../slider/data/messages:21 ../stack/data/messages:27
 #: ../switcher/data/messages:23 ../systray/data/messages:17
-#: ../terminal/data/messages:25 ../tomboy/data/messages:35
+#: ../terminal/data/messages:25 ../tomboy/data/messages:39
 #: ../weather/data/messages:23 ../weblets/data/messages:25
 #: ../wifi/data/messages:21
 msgid "Is detached from the dock ?"
@@ -2663,7 +2770,7 @@ msgstr "ドックから分離？"
 #: ../shortcuts/data/messages:27 ../showDesktop/data/messages:27
 #: ../slider/data/messages:23 ../stack/data/messages:29
 #: ../systray/data/messages:19 ../terminal/data/messages:27
-#: ../tomboy/data/messages:37 ../weather/data/messages:25
+#: ../tomboy/data/messages:41 ../weather/data/messages:25
 #: ../weblets/data/messages:27 ../wifi/data/messages:23
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -2684,7 +2791,7 @@ msgstr ""
 #: ../shortcuts/data/messages:29 ../showDesktop/data/messages:29
 #: ../slider/data/messages:25 ../stack/data/messages:31
 #: ../switcher/data/messages:25 ../systray/data/messages:21
-#: ../terminal/data/messages:29 ../tomboy/data/messages:39
+#: ../terminal/data/messages:29 ../tomboy/data/messages:43
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:25
 msgid "Accessibility :"
@@ -2702,7 +2809,7 @@ msgstr "アクセシビリティ :"
 #: ../shortcuts/data/messages:33 ../showDesktop/data/messages:33
 #: ../slider/data/messages:29 ../stack/data/messages:35
 #: ../switcher/data/messages:29 ../systray/data/messages:25
-#: ../terminal/data/messages:33 ../tomboy/data/messages:43
+#: ../terminal/data/messages:33 ../tomboy/data/messages:47
 #: ../weather/data/messages:31 ../weblets/data/messages:33
 #: ../wifi/data/messages:29
 msgid "Keep above"
@@ -2720,7 +2827,7 @@ msgstr "最前面表示"
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:35
 #: ../slider/data/messages:31 ../stack/data/messages:37
 #: ../switcher/data/messages:31 ../systray/data/messages:27
-#: ../terminal/data/messages:35 ../tomboy/data/messages:45
+#: ../terminal/data/messages:35 ../tomboy/data/messages:49
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:31
 msgid "Keep below"
@@ -2738,7 +2845,7 @@ msgstr "最後面表示"
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:37
 #: ../slider/data/messages:33 ../stack/data/messages:39
 #: ../switcher/data/messages:33 ../systray/data/messages:29
-#: ../terminal/data/messages:37 ../tomboy/data/messages:47
+#: ../terminal/data/messages:37 ../tomboy/data/messages:51
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:33
 msgid "On Widget Layer"
@@ -2756,7 +2863,7 @@ msgstr "ウィジェット・レイヤ上"
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:39
 #: ../slider/data/messages:35 ../stack/data/messages:41
 #: ../switcher/data/messages:35 ../systray/data/messages:31
-#: ../terminal/data/messages:39 ../tomboy/data/messages:49
+#: ../terminal/data/messages:39 ../tomboy/data/messages:53
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:35
 msgid "Reserve space"
@@ -2774,7 +2881,7 @@ msgstr "空間確保"
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:41
 #: ../slider/data/messages:37 ../stack/data/messages:43
 #: ../switcher/data/messages:37 ../systray/data/messages:33
-#: ../terminal/data/messages:41 ../tomboy/data/messages:51
+#: ../terminal/data/messages:41 ../tomboy/data/messages:55
 #: ../weather/data/messages:39 ../weblets/data/messages:41
 #: ../wifi/data/messages:37
 msgid "Should be visible on all desktops ?"
@@ -2792,7 +2899,7 @@ msgstr "すべてのデスクトップに表示させる？"
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:43
 #: ../slider/data/messages:39 ../stack/data/messages:45
 #: ../switcher/data/messages:39 ../systray/data/messages:35
-#: ../terminal/data/messages:43 ../tomboy/data/messages:53
+#: ../terminal/data/messages:43 ../tomboy/data/messages:57
 #: ../weather/data/messages:41 ../weblets/data/messages:43
 #: ../wifi/data/messages:39
 msgid ""
@@ -2814,7 +2921,7 @@ msgstr ""
 #: ../shortcuts/data/messages:45 ../showDesktop/data/messages:45
 #: ../slider/data/messages:41 ../stack/data/messages:47
 #: ../switcher/data/messages:41 ../systray/data/messages:37
-#: ../terminal/data/messages:45 ../tomboy/data/messages:55
+#: ../terminal/data/messages:45 ../tomboy/data/messages:59
 #: ../weather/data/messages:43 ../weblets/data/messages:45
 #: ../wifi/data/messages:41
 msgid "Lock position ?"
@@ -2832,7 +2939,7 @@ msgstr "位置を固定？"
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:47
 #: ../slider/data/messages:43 ../stack/data/messages:49
 #: ../switcher/data/messages:43 ../terminal/data/messages:47
-#: ../tomboy/data/messages:57 ../weather/data/messages:45
+#: ../tomboy/data/messages:61 ../weather/data/messages:45
 #: ../weblets/data/messages:47 ../wifi/data/messages:43
 msgid "in degrees."
 msgstr "角度"
@@ -2849,7 +2956,7 @@ msgstr "角度"
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:49
 #: ../slider/data/messages:45 ../stack/data/messages:51
 #: ../switcher/data/messages:45 ../terminal/data/messages:49
-#: ../tomboy/data/messages:59 ../weather/data/messages:47
+#: ../tomboy/data/messages:63 ../weather/data/messages:47
 #: ../weblets/data/messages:49 ../wifi/data/messages:45
 msgid "Rotation :"
 msgstr "回転 :"
@@ -2866,7 +2973,7 @@ msgstr "回転 :"
 #: ../shortcuts/data/messages:51 ../showDesktop/data/messages:51
 #: ../slider/data/messages:47 ../stack/data/messages:53
 #: ../switcher/data/messages:47 ../terminal/data/messages:51
-#: ../tomboy/data/messages:61 ../weather/data/messages:49
+#: ../tomboy/data/messages:65 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:47
 msgid "Decorations"
 msgstr "装飾"
@@ -2883,7 +2990,7 @@ msgstr "装飾"
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:53
 #: ../slider/data/messages:49 ../stack/data/messages:55
 #: ../switcher/data/messages:49 ../terminal/data/messages:53
-#: ../tomboy/data/messages:63 ../weather/data/messages:51
+#: ../tomboy/data/messages:67 ../weather/data/messages:51
 #: ../weblets/data/messages:53 ../wifi/data/messages:49
 msgid "Choose the 'personnal' one to define your own decorations below."
 msgstr "以下で装飾を自分で定義していきたい場合は、「personnal」を選択してください。"
@@ -2900,7 +3007,7 @@ msgstr "以下で装飾を自分で定義していきたい場合は、「person
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:55
 #: ../slider/data/messages:51 ../stack/data/messages:57
 #: ../switcher/data/messages:51 ../terminal/data/messages:55
-#: ../tomboy/data/messages:65 ../weather/data/messages:53
+#: ../tomboy/data/messages:69 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:51
 msgid "Choose a decoration theme for this desklet :"
 msgstr "このデスクレットの装飾テーマの選択 :"
@@ -2917,7 +3024,7 @@ msgstr "このデスクレットの装飾テーマの選択 :"
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:57
 #: ../slider/data/messages:53 ../stack/data/messages:59
 #: ../switcher/data/messages:53 ../terminal/data/messages:57
-#: ../tomboy/data/messages:67 ../weather/data/messages:55
+#: ../tomboy/data/messages:71 ../weather/data/messages:55
 #: ../weblets/data/messages:57 ../wifi/data/messages:53
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
@@ -2936,7 +3043,7 @@ msgstr "例えば外枠のように、描画物の背後に表示する画像で
 #: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
 #: ../showDesktop/data/messages:59 ../slider/data/messages:55
 #: ../stack/data/messages:61 ../switcher/data/messages:55
-#: ../terminal/data/messages:59 ../tomboy/data/messages:69
+#: ../terminal/data/messages:59 ../tomboy/data/messages:73
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55
 msgid "Background image :"
@@ -2954,7 +3061,7 @@ msgstr "背景画像 :"
 #: ../shortcuts/data/messages:61 ../showDesktop/data/messages:61
 #: ../slider/data/messages:57 ../stack/data/messages:63
 #: ../switcher/data/messages:57 ../terminal/data/messages:61
-#: ../tomboy/data/messages:71 ../weather/data/messages:59
+#: ../tomboy/data/messages:75 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
 msgid "Background tansparency :"
 msgstr "背景の透明度 :"
@@ -2971,7 +3078,7 @@ msgstr "背景の透明度 :"
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:63
 #: ../slider/data/messages:59 ../stack/data/messages:65
 #: ../switcher/data/messages:59 ../terminal/data/messages:63
-#: ../tomboy/data/messages:73 ../weather/data/messages:61
+#: ../tomboy/data/messages:77 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
@@ -2988,7 +3095,7 @@ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用し
 #: ../shortcuts/data/messages:65 ../showDesktop/data/messages:65
 #: ../slider/data/messages:61 ../stack/data/messages:67
 #: ../switcher/data/messages:61 ../terminal/data/messages:65
-#: ../tomboy/data/messages:75 ../weather/data/messages:63
+#: ../tomboy/data/messages:79 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:61
 msgid "Left offset :"
 msgstr "左方向のオフセット :"
@@ -3005,7 +3112,7 @@ msgstr "左方向のオフセット :"
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:67
 #: ../slider/data/messages:63 ../stack/data/messages:69
 #: ../switcher/data/messages:63 ../terminal/data/messages:67
-#: ../tomboy/data/messages:77 ../weather/data/messages:65
+#: ../tomboy/data/messages:81 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:63
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
@@ -3022,7 +3129,7 @@ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用し
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:69
 #: ../slider/data/messages:65 ../stack/data/messages:71
 #: ../switcher/data/messages:65 ../terminal/data/messages:69
-#: ../tomboy/data/messages:79 ../weather/data/messages:67
+#: ../tomboy/data/messages:83 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:65
 msgid "Top offset :"
 msgstr "上方向のオフセット :"
@@ -3039,7 +3146,7 @@ msgstr "上方向のオフセット :"
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:71
 #: ../slider/data/messages:67 ../stack/data/messages:73
 #: ../switcher/data/messages:67 ../terminal/data/messages:71
-#: ../tomboy/data/messages:81 ../weather/data/messages:69
+#: ../tomboy/data/messages:85 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
@@ -3056,7 +3163,7 @@ msgstr "ピクセル単位。描画内容の右位置の調整に使用してく
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:73
 #: ../slider/data/messages:69 ../stack/data/messages:75
 #: ../switcher/data/messages:69 ../terminal/data/messages:73
-#: ../tomboy/data/messages:83 ../weather/data/messages:71
+#: ../tomboy/data/messages:87 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:69
 msgid "Right offset :"
 msgstr "右方向のオフセット :"
@@ -3073,7 +3180,7 @@ msgstr "右方向のオフセット :"
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:75
 #: ../slider/data/messages:71 ../stack/data/messages:77
 #: ../switcher/data/messages:71 ../terminal/data/messages:75
-#: ../tomboy/data/messages:85 ../weather/data/messages:73
+#: ../tomboy/data/messages:89 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
@@ -3090,7 +3197,7 @@ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用し
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:77
 #: ../slider/data/messages:73 ../stack/data/messages:79
 #: ../switcher/data/messages:73 ../terminal/data/messages:77
-#: ../tomboy/data/messages:87 ../weather/data/messages:75
+#: ../tomboy/data/messages:91 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:73
 msgid "Bottom offset :"
 msgstr "下方向のオフセット :"
@@ -3107,7 +3214,7 @@ msgstr "下方向のオフセット :"
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:79
 #: ../slider/data/messages:75 ../stack/data/messages:81
 #: ../switcher/data/messages:75 ../terminal/data/messages:79
-#: ../tomboy/data/messages:89 ../weather/data/messages:77
+#: ../tomboy/data/messages:93 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:75
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
@@ -3126,7 +3233,7 @@ msgstr "例えばテカリ表現のように、描画物の手前に表示する
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:81
 #: ../slider/data/messages:77 ../stack/data/messages:83
 #: ../switcher/data/messages:77 ../terminal/data/messages:81
-#: ../tomboy/data/messages:91 ../weather/data/messages:79
+#: ../tomboy/data/messages:95 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:77
 msgid "Foreground image :"
 msgstr "前景画像 :"
@@ -3143,7 +3250,7 @@ msgstr "前景画像 :"
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:83
 #: ../slider/data/messages:79 ../stack/data/messages:85
 #: ../switcher/data/messages:79 ../terminal/data/messages:83
-#: ../tomboy/data/messages:93 ../weather/data/messages:81
+#: ../tomboy/data/messages:97 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:79
 msgid "Foreground tansparency :"
 msgstr "前景の透明度 :"
@@ -3504,7 +3611,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:135
-#: ../tomboy/data/messages:109 ../wifi/data/messages:155
+#: ../tomboy/data/messages:117 ../wifi/data/messages:155
 msgid "Parameters"
 msgstr ""
 
@@ -3597,45 +3704,147 @@ msgid "Characters"
 msgstr "文字"
 
 #: ../Scooby-Do/data/messages:25
-msgid ""
-"for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-"number or so."
-msgstr "例えば Monospace, Purisa, ... 。 数字などを付さずフォント名のみを入力してください。"
-
-#: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type :"
 msgstr "入力テキストの表示に使用するフォント :"
 
-#: ../Scooby-Do/data/messages:29
+#: ../Scooby-Do/data/messages:27
 msgid "Color of the text's frame  :"
 msgstr "テキストの枠の色 :"
 
-#: ../Scooby-Do/data/messages:31
+#: ../Scooby-Do/data/messages:29
 msgid "Font size, relatively to the dock's size :"
 msgstr "ドックの大きさに相対したフォントの大きさ :"
 
-#: ../Scooby-Do/data/messages:33
+#: ../Scooby-Do/data/messages:31
 msgid "between 1 and 9, the bigger, the heavier."
 msgstr "1 から 9 の間、大きい値ほど太くなります。"
 
-#: ../Scooby-Do/data/messages:35
+#: ../Scooby-Do/data/messages:33
 msgid "Text weight :"
 msgstr "テキストの太さ :"
 
-#: ../Scooby-Do/data/messages:37
+#: ../Scooby-Do/data/messages:35
 msgid "Should the text be outlined ?"
 msgstr "テキストをアウトライン表示？"
 
-#: ../Scooby-Do/data/messages:39
+#: ../Scooby-Do/data/messages:37
 msgid "Text color :"
 msgstr "テキストの色 :"
 
-#: ../Scooby-Do/data/messages:41
+#: ../Scooby-Do/data/messages:39
 msgid "Color of the background of the characters :"
 msgstr "文字の背景色 :"
 
-#: ../Scooby-Do/data/messages:43
+#: ../Scooby-Do/data/messages:41
 msgid "Write text on the top of the dock ?"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:43
+msgid "Preferred applications"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:45
+msgid "Preferred application starting with 'a' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:47
+msgid "Preferred application starting with 'b' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:49
+msgid "Preferred application starting with 'c' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:51
+msgid "Preferred application starting with 'd' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:53
+msgid "Preferred application starting with 'e' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:55
+msgid "Preferred application starting with 'f' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:57
+msgid "Preferred application starting with 'g' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:59
+msgid "Preferred application starting with 'h' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:61
+msgid "Preferred application starting with 'i' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:63
+msgid "Preferred application starting with 'j' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:65
+msgid "Preferred application starting with 'k' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:67
+msgid "Preferred application starting with 'l' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:69
+msgid "Preferred application starting with 'm' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:71
+msgid "Preferred application starting with 'n' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:73
+msgid "Preferred application starting with 'o' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:75
+msgid "Preferred application starting with 'p' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:77
+msgid "Preferred application starting with 'q' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:79
+msgid "Preferred application starting with 'r' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:81
+msgid "Preferred application starting with 's' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:83
+msgid "Preferred application starting with 't' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:85
+msgid "Preferred application starting with 'u' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:87
+msgid "Preferred application starting with 'v' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:89
+msgid "Preferred application starting with 'w' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:91
+msgid "Preferred application starting with 'x' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:93
+msgid "Preferred application starting with 'y' :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:95
+msgid "Preferred application starting with 'z' :"
 msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
@@ -3836,7 +4045,7 @@ msgstr "スタートアップ時に自動的に適用する明るさ :"
 
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
-#: ../tomboy/data/messages:31
+#: ../tomboy/data/messages:35
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
@@ -3928,7 +4137,8 @@ msgid "Module"
 msgstr "モジュール"
 
 #: ../clock/data/messages:85 ../dnd2share/data/messages:95
-#: ../showDesktop/data/messages:87 ../slider/data/messages:97
+#: ../mail/data/messages:101 ../showDesktop/data/messages:87
+#: ../slider/data/messages:97
 msgid "Behaviour"
 msgstr "動作"
 
@@ -4122,7 +4332,7 @@ msgstr ""
 "CCSM や Emerald "
 "のアイコンがタスクバーに表示されるのを防ぎます。対応するサブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
 
-#: ../compiz-icon/data/messages:117 ../mail/data/messages:117
+#: ../compiz-icon/data/messages:117 ../mail/data/messages:127
 msgid "Steal the application's icon in taskbar ?"
 msgstr "タスクバーのアプリケーションのアイコンを奪取？"
 
@@ -4208,14 +4418,14 @@ msgstr "heliodor"
 
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
-#: ../switcher/data/messages:133 ../tomboy/data/messages:99
+#: ../switcher/data/messages:139 ../tomboy/data/messages:103
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
 msgstr "デフォルトのサブ・ドックの外観を使用するには空欄のままに。"
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
-#: ../switcher/data/messages:135 ../tomboy/data/messages:101
+#: ../switcher/data/messages:141 ../tomboy/data/messages:105
 #: ../weather/data/messages:117
 msgid "Name of the view used for the sub-dock :"
 msgstr "サブ・ドックに使用する外観の名前 :"
@@ -4229,7 +4439,7 @@ msgstr "画像"
 #: ../compiz-icon/data/messages:175 ../compiz-icon/data/messages:179
 #: ../compiz-icon/data/messages:183 ../compiz-icon/data/messages:187
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21
+#: ../tomboy/data/messages:21 ../tomboy/data/messages:25
 msgid "Let t empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -4789,36 +4999,6 @@ msgstr "アプレットがクリックでゴミ箱の中身を表示できない
 msgid "Alternative file browser used to show a trash :"
 msgstr "ゴミ箱の表示に使用する代替ファイルブラウザ :"
 
-#: ../icon-effect/data/messages:7 ../icon-effect/data/messages:21
-#: ../icon-effect/data/messages:35 ../icon-effect/data/messages:49
-#: ../icon-effect/data/messages:63
-msgid "Fire"
-msgstr "炎"
-
-#: ../icon-effect/data/messages:9 ../icon-effect/data/messages:23
-#: ../icon-effect/data/messages:37 ../icon-effect/data/messages:51
-#: ../icon-effect/data/messages:87
-msgid "Stars"
-msgstr "星"
-
-#: ../icon-effect/data/messages:11 ../icon-effect/data/messages:25
-#: ../icon-effect/data/messages:39 ../icon-effect/data/messages:53
-#: ../icon-effect/data/messages:123
-msgid "Rain"
-msgstr "雨"
-
-#: ../icon-effect/data/messages:13 ../icon-effect/data/messages:27
-#: ../icon-effect/data/messages:41 ../icon-effect/data/messages:55
-#: ../icon-effect/data/messages:105
-msgid "Snow"
-msgstr "雪"
-
-#: ../icon-effect/data/messages:15 ../icon-effect/data/messages:29
-#: ../icon-effect/data/messages:43 ../icon-effect/data/messages:57
-#: ../icon-effect/data/messages:141
-msgid "Storm"
-msgstr "嵐"
-
 #: ../icon-effect/data/messages:59
 msgid "Draw in background ?"
 msgstr "背景に描画？"
@@ -4991,80 +5171,93 @@ msgstr "シャットダウンを実行するユーザー定義コマンド :"
 msgid "Invert buttons ?"
 msgstr "左/中ボタンによる呼び出しを反転？"
 
-#: ../mail/data/messages:89
+#: ../mail/data/messages:83 ../mail/data/messages:89
+msgid "Sub-Dock view"
+msgstr ""
+
+#: ../mail/data/messages:93
+msgid "Theme overriding"
+msgstr "テーマ更新中"
+
+#: ../mail/data/messages:95
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "「メールなし」画像のファイルの名前 :"
+
+#: ../mail/data/messages:97
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "「メールあり」画像のファイルの名前 :"
+
+#: ../mail/data/messages:99
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr "「新着メール」の音ファイル :"
+
+#: ../mail/data/messages:103
 msgid "Show new messages' content ?"
 msgstr "新着メッセージの内容を表示？"
 
-#: ../mail/data/messages:91
+#: ../mail/data/messages:105
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 msgstr ""
 
-#: ../mail/data/messages:93
+#: ../mail/data/messages:107
 msgid "Maximum of new messages shown ?"
 msgstr ""
 
-#: ../mail/data/messages:95
+#: ../mail/data/messages:109 ../musicPlayer/data/messages:123
+#: ../tomboy/data/messages:113
+msgid "in s."
+msgstr ""
+
+#: ../mail/data/messages:111 ../tomboy/data/messages:115
+msgid "Time length of the dialog :"
+msgstr ""
+
+#: ../mail/data/messages:113
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then let the dock launch itself, and remove/modify the "
 "mail accounts you want."
 msgstr ""
 
-#: ../mail/data/messages:97
+#: ../mail/data/messages:115
 msgid "Check mail account on startup ?"
 msgstr ""
 
-#: ../mail/data/messages:99
-msgid "Theme overriding"
-msgstr "テーマ更新中"
-
-#: ../mail/data/messages:101
-msgid "Name of the file for the \"no mail\" image :"
-msgstr "「メールなし」画像のファイルの名前 :"
-
-#: ../mail/data/messages:103
-msgid "Name of the file for the \"has mail\" image :"
-msgstr "「メールあり」画像のファイルの名前 :"
-
-#: ../mail/data/messages:105
-msgid "Name of the file for the \"new mail\" sound :"
-msgstr "「新着メール」の音ファイル :"
-
-#: ../mail/data/messages:107
+#: ../mail/data/messages:117
 msgid "Mail application"
 msgstr "メール・アプリケーション"
 
-#: ../mail/data/messages:109
+#: ../mail/data/messages:119
 msgid "Prefered mail application to launch on left-click :"
 msgstr "左クリックで起動させる任意のメール・アプリケーション :"
 
-#: ../mail/data/messages:111
+#: ../mail/data/messages:121
 msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
 msgstr "名前とクラス名が異なる場合にのみ使用してください。Thunderbird を除いて、使用が必要となるケースは基本的に稀です。"
 
-#: ../mail/data/messages:113
+#: ../mail/data/messages:123
 msgid "Class of the mail application (optionnal)"
 msgstr "メール・アプリケーションのクラス（任意入力）"
 
-#: ../mail/data/messages:115
+#: ../mail/data/messages:125
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr "アプリケーションのアイコンがタスクバーに表示されないようにします。アプレットのアイコンがランチャーやアプリ、アプレットとして動作します。"
 
-#: ../mail/data/messages:119
+#: ../mail/data/messages:129
 msgid "Add an mail account"
 msgstr "メールアカウントの追加"
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:131
 msgid "The new account will be created with specified type and name."
 msgstr "新しいアカウントが指定の種類と名前で作成されます。"
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:133
 msgid "Add an account with specified type and name:"
 msgstr "指定の種類と名前のアカウントを追加 :"
 
@@ -5075,10 +5268,6 @@ msgstr "マウス動作時の挙動にもブラー効果？"
 #: ../motion-blur/data/messages:5
 msgid "Blur amount :"
 msgstr "ブラー量 :"
-
-#: ../musicPlayer/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
@@ -5163,10 +5352,6 @@ msgstr "音楽切り替わり時のアクション"
 #: ../musicPlayer/data/messages:121
 msgid "Show an info-bubble ?"
 msgstr "吹き出しを表示して情報通知？"
-
-#: ../musicPlayer/data/messages:123
-msgid "in s."
-msgstr ""
 
 #: ../musicPlayer/data/messages:125
 msgid "Time length of info-bubbles :"
@@ -5592,10 +5777,6 @@ msgstr "画像を開く"
 msgid "Effect while changing image :"
 msgstr "画像切り替え中の効果"
 
-#: ../slider/data/messages:111
-msgid "none"
-msgstr "なし"
-
 #: ../slider/data/messages:113
 msgid "fade"
 msgstr "fade"
@@ -5765,59 +5946,71 @@ msgid "Draw hidden windows too ?"
 msgstr "隠れた状態のウィンドウも描画？"
 
 #: ../switcher/data/messages:99
+msgid "Show windows list"
+msgstr ""
+
+#: ../switcher/data/messages:101
+msgid "Show desktop"
+msgstr ""
+
+#: ../switcher/data/messages:103
+msgid "Workspace names :"
+msgstr ""
+
+#: ../switcher/data/messages:105
 msgid "Display options"
 msgstr "表示オプション"
 
-#: ../switcher/data/messages:101
+#: ../switcher/data/messages:107
 msgid "Size of the inside lines :"
 msgstr "内側の線のサイズ :"
 
-#: ../switcher/data/messages:103 ../switcher/data/messages:109
-#: ../switcher/data/messages:113 ../switcher/data/messages:117
+#: ../switcher/data/messages:109 ../switcher/data/messages:115
+#: ../switcher/data/messages:119 ../switcher/data/messages:123
 msgid "r, v, b, a"
 msgstr "赤、緑、青、アルファ"
 
-#: ../switcher/data/messages:105
+#: ../switcher/data/messages:111
 msgid "Color of the inside lines :"
 msgstr "内側の線の色 :"
 
-#: ../switcher/data/messages:107
+#: ../switcher/data/messages:113
 msgid "Size of the extern line :"
 msgstr "外側の線のサイズ :"
 
-#: ../switcher/data/messages:111
+#: ../switcher/data/messages:117
 msgid "Color of the extern line :"
 msgstr "外側の線の色 :"
 
-#: ../switcher/data/messages:115
+#: ../switcher/data/messages:121
 msgid "Color of the Windows line :"
 msgstr "ウィンドウのラインの色 :"
 
-#: ../switcher/data/messages:119
+#: ../switcher/data/messages:125
 msgid "Color of the current desktop :"
 msgstr "現在のデスクトップの色 :"
 
-#: ../switcher/data/messages:121
+#: ../switcher/data/messages:127
 msgid "How to draw the current desktop :"
 msgstr "現在のデスクトップの描画の仕方 :"
 
-#: ../switcher/data/messages:123
+#: ../switcher/data/messages:129
 msgid "draw a frame"
 msgstr "フレームを描画"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:131
 msgid "fill"
 msgstr "塗りつぶし"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:133
 msgid "fill others"
 msgstr "その他を塗りつぶし"
 
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:137
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr "壁紙を配置しない場合に拡張モードで使用するアイコン :"
 
-#: ../switcher/data/messages:137
+#: ../switcher/data/messages:143
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "拡張モード時にデスクレットを 3D 描画？"
 
@@ -5887,47 +6080,51 @@ msgstr "デフォルトのタイトル :"
 msgid "Name of an image for the 'close' icon :"
 msgstr "「閉じる」のアイコン画像の名前 :"
 
-#: ../tomboy/data/messages:97
+#: ../tomboy/data/messages:27
+msgid "Name of an image for the 'empty' icon :"
+msgstr ""
+
+#: ../tomboy/data/messages:101
 msgid "View"
 msgstr ""
 
-#: ../tomboy/data/messages:103
+#: ../tomboy/data/messages:107
 msgid "Draw note's content on their icon ?"
 msgstr "アイコン上にノートの内容を描画？"
 
-#: ../tomboy/data/messages:105
+#: ../tomboy/data/messages:109
 msgid "Text color of the content :"
 msgstr ""
 
-#: ../tomboy/data/messages:107
+#: ../tomboy/data/messages:111
 msgid "Display note's content with a dialog ?"
 msgstr ""
 
-#: ../tomboy/data/messages:111
+#: ../tomboy/data/messages:119
 msgid "Choose the note-taking application to control :"
 msgstr ""
 
-#: ../tomboy/data/messages:113
+#: ../tomboy/data/messages:121
 msgid "Gnote"
 msgstr ""
 
-#: ../tomboy/data/messages:115
+#: ../tomboy/data/messages:123
 msgid "Tomboy"
 msgstr ""
 
-#: ../tomboy/data/messages:117
+#: ../tomboy/data/messages:125
 msgid "Ask confirmation before deleting a note ?"
 msgstr "ノートを削除する前に確認を取る？"
 
-#: ../tomboy/data/messages:119
+#: ../tomboy/data/messages:127
 msgid "Otherwise you will be asked to name it."
 msgstr "無効の場合は、名前の入力を求められます。"
 
-#: ../tomboy/data/messages:121
+#: ../tomboy/data/messages:129
 msgid "Automatically name a new note ?"
 msgstr "新しいノートに自動的に名前を付ける？"
 
-#: ../tomboy/data/messages:123
+#: ../tomboy/data/messages:131
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -5936,11 +6133,11 @@ msgstr ""
 "ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %y、月が %m、日が %d 等の 'strftime' "
 "に則ります。デフォルト（%d/%m/%y）を使用するには、空欄のままにしてください。"
 
-#: ../tomboy/data/messages:125
+#: ../tomboy/data/messages:133
 msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
-#: ../tomboy/data/messages:127
+#: ../tomboy/data/messages:135
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -5951,9 +6148,13 @@ msgstr ""
 "signature of signal 'NoteDeleted'>> "
 "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
 
-#: ../tomboy/data/messages:129
+#: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
+
+#: ../weather/data/messages:3
+msgid "Set to 0 to use the default applet size"
+msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../weather/data/messages:7
 msgid "Let it empty to use the name of the city."
@@ -6093,6 +6294,9 @@ msgstr "「最高」のアイコン画像の名前 :"
 #~ "アイコンにカバー画像(jpg)をドラッグ＆ドロップしてテーマに使用したり、\n"
 #~ "楽曲をドロップしてキューに入れることができます。"
 
+#~ msgid "feeled"
+#~ msgstr "体感温度"
+
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
 #~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
@@ -6107,6 +6311,11 @@ msgstr "「最高」のアイコン画像の名前 :"
 #~ "XMMS には、'xmms-infopipe' プラグインのインストールが必要です。\n"
 #~ "左クリックで再生/一時停止、中クリックで次の曲に進みます。曲をドラッグ＆ドロップしてキューに入れることもできます。\n"
 #~ "マウスを上下スクロールさせると、前や次の曲を再生します。"
+
+#~ msgid ""
+#~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+#~ "number or so."
+#~ msgstr "例えば Monospace, Purisa, ... 。 数字などを付さずフォント名のみを入力してください。"
 
 #~ msgid "It's the color of the graphic for high CPU values."
 #~ msgstr "CPU 高負荷値のグラフの色"
@@ -6292,6 +6501,3 @@ msgstr "「最高」のアイコン画像の名前 :"
 #~ "b+ 他ウィンドウの後面に表示？\n"
 #~ "b+ 他ウィンドウの前面に表示？\n"
 #~ "b+ ウィジェット・レイヤ上に表示？"
-
-#~ msgid "felt"
-#~ msgstr "体感温度"

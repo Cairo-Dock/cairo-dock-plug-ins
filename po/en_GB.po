@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-17 09:35+0000\n"
-"Last-Translator: Rossi Liu <Unknown>\n"
+"POT-Creation-Date: 2009-10-22 00:54+0000\n"
+"PO-Revision-Date: 2009-10-23 01:50+0000\n"
+"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-18 07:08+0000\n"
+"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -390,7 +391,7 @@ msgstr "Pick up a directory"
 
 #: ../Scooby-Do/src/applet-backend-files.c:517
 msgid "Files"
-msgstr ""
+msgstr "Files"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:102
 msgid "Open"
@@ -410,11 +411,11 @@ msgstr "Google"
 
 #: ../Scooby-Do/src/applet-backend-web.c:91
 msgid "Mediadico"
-msgstr ""
+msgstr "Mediadico"
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Amazon"
-msgstr ""
+msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
@@ -810,31 +811,31 @@ msgstr "Toggle Show Desktop"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
-msgstr ""
+msgstr "frame&reflects"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch"
-msgstr ""
+msgstr "scotch cellotapes"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with scotch"
-msgstr ""
+msgstr "frame with cellotapes"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
-msgstr ""
+msgstr "CD box"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr ""
+msgstr "dark"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr ""
+msgstr "clear"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
-msgstr ""
+msgstr "futuristic"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:111
@@ -843,7 +844,7 @@ msgstr "none"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "board"
-msgstr ""
+msgstr "board"
 
 #: ../desklet-rendering/src/rendering-init.c:33
 msgid "desklet rendering"
@@ -882,7 +883,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1681,11 +1683,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1767,14 +1769,14 @@ msgstr ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 
 #: ../stack/src/applet-notifications.c:48
-#, fuzzy
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
-"No persistent items.\n"
-"You can add some by drag and dropping some text on the icon."
+"No items in the stack.\n"
+"You can add files, URL, and even a piece of text by dragging them onto the "
+"icon."
 
 #: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
@@ -1846,6 +1848,13 @@ msgid ""
 " - list all windows on each workspace ((middle-click or in the menu)\n"
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
+"This applet allows you to interact with your workspaces :\n"
+" - switch between your workspaces (scroll up/down with the mouse),\n"
+" - name them (in the configuration panel),\n"
+" - quickly add/remove a workspace (from the menu),\n"
+" - show the desktop (middle-click or from the menu),\n"
+" - list all windows on each workspace ((middle-click or from the menu)\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:334
@@ -1863,7 +1872,7 @@ msgstr "Desktop"
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
 msgid "Rename this workspace"
-msgstr ""
+msgstr "Rename this workspace"
 
 #: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
@@ -1886,10 +1895,12 @@ msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr ""
+"This will move all windows from the current desktop to the one you clicked "
+"on."
 
 #: ../switcher/src/applet-notifications.c:252
 msgid "Show the desktop"
-msgstr ""
+msgstr "Show the desktop"
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
@@ -1976,7 +1987,7 @@ msgstr "Select a color"
 #: ../terminal/src/terminal-widget.c:306
 #, c-format
 msgid "You can call back the Terminal desklet by typing %s"
-msgstr ""
+msgstr "You can recall the Terminal desklet by typing %s"
 
 #: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
@@ -2850,7 +2861,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3888,111 +3900,111 @@ msgstr "Write text on the top of the dock?"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Preferred applications"
-msgstr ""
+msgstr "Favorite applications"
 
 #: ../Scooby-Do/data/messages:45
 msgid "Preferred application starting with 'a' :"
-msgstr ""
+msgstr "FAvorite applications starting with 'a' :"
 
 #: ../Scooby-Do/data/messages:47
 msgid "Preferred application starting with 'b' :"
-msgstr ""
+msgstr "Favorite application starting with 'b' :"
 
 #: ../Scooby-Do/data/messages:49
 msgid "Preferred application starting with 'c' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'c' :"
 
 #: ../Scooby-Do/data/messages:51
 msgid "Preferred application starting with 'd' :"
-msgstr ""
+msgstr "Favorite application(s starting with 'd' :"
 
 #: ../Scooby-Do/data/messages:53
 msgid "Preferred application starting with 'e' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'e' :"
 
 #: ../Scooby-Do/data/messages:55
 msgid "Preferred application starting with 'f' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'f' :"
 
 #: ../Scooby-Do/data/messages:57
 msgid "Preferred application starting with 'g' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'g' :"
 
 #: ../Scooby-Do/data/messages:59
 msgid "Preferred application starting with 'h' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'h' :"
 
 #: ../Scooby-Do/data/messages:61
 msgid "Preferred application starting with 'i' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'i' :"
 
 #: ../Scooby-Do/data/messages:63
 msgid "Preferred application starting with 'j' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'j' :"
 
 #: ../Scooby-Do/data/messages:65
 msgid "Preferred application starting with 'k' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'k' :"
 
 #: ../Scooby-Do/data/messages:67
 msgid "Preferred application starting with 'l' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'l' :"
 
 #: ../Scooby-Do/data/messages:69
 msgid "Preferred application starting with 'm' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'm' :"
 
 #: ../Scooby-Do/data/messages:71
 msgid "Preferred application starting with 'n' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'n' :"
 
 #: ../Scooby-Do/data/messages:73
 msgid "Preferred application starting with 'o' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'o' :"
 
 #: ../Scooby-Do/data/messages:75
 msgid "Preferred application starting with 'p' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'p' :"
 
 #: ../Scooby-Do/data/messages:77
 msgid "Preferred application starting with 'q' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'q' :"
 
 #: ../Scooby-Do/data/messages:79
 msgid "Preferred application starting with 'r' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'r' :"
 
 #: ../Scooby-Do/data/messages:81
 msgid "Preferred application starting with 's' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 's' :"
 
 #: ../Scooby-Do/data/messages:83
 msgid "Preferred application starting with 't' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 't' :"
 
 #: ../Scooby-Do/data/messages:85
 msgid "Preferred application starting with 'u' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'u' :"
 
 #: ../Scooby-Do/data/messages:87
 msgid "Preferred application starting with 'v' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'v' :"
 
 #: ../Scooby-Do/data/messages:89
 msgid "Preferred application starting with 'w' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'w' :"
 
 #: ../Scooby-Do/data/messages:91
 msgid "Preferred application starting with 'x' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'x' :"
 
 #: ../Scooby-Do/data/messages:93
 msgid "Preferred application starting with 'y' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'y' :"
 
 #: ../Scooby-Do/data/messages:95
 msgid "Preferred application starting with 'z' :"
-msgstr ""
+msgstr "Favorite application(s) starting with 'z' :"
 
 #: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
 msgid "It's the color of the graphic for high values."
@@ -5166,7 +5178,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5204,7 +5217,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -5366,7 +5380,7 @@ msgstr "Invert buttons?"
 
 #: ../mail/data/messages:83 ../mail/data/messages:89
 msgid "Sub-Dock view"
-msgstr ""
+msgstr "Sub-Dock view"
 
 #: ../mail/data/messages:93
 msgid "Theme overriding"
@@ -5407,7 +5421,7 @@ msgstr "in seconds"
 
 #: ../mail/data/messages:111 ../tomboy/data/messages:115
 msgid "Time length of the dialog :"
-msgstr ""
+msgstr "Duration of the dialogue"
 
 #: ../mail/data/messages:113
 msgid ""
@@ -5473,7 +5487,8 @@ msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
@@ -6120,8 +6135,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
@@ -6164,15 +6179,15 @@ msgstr "Draw hidden windows?"
 
 #: ../switcher/data/messages:99
 msgid "Show windows list"
-msgstr ""
+msgstr "Show windows' list"
 
 #: ../switcher/data/messages:101
 msgid "Show desktop"
-msgstr ""
+msgstr "Show desktop"
 
 #: ../switcher/data/messages:103
 msgid "Workspace names :"
-msgstr ""
+msgstr "Workspace names :"
 
 #: ../switcher/data/messages:105
 msgid "Display options"
@@ -6301,7 +6316,7 @@ msgstr "Name of the dock it belongs to:"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
-msgstr ""
+msgstr "Name of an image for the 'empty' icon :"
 
 #: ../tomboy/data/messages:101
 msgid "View"
