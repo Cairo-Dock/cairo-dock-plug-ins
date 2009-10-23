@@ -54,6 +54,26 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+
+static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMailAccount)
+{
+	if( pMailAccount )
+	{
+		if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
+		{
+			g_print ("account is being checked, wait a second\n");
+			return;
+		}
+
+		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+		Icon *pIcon = (pMailAccount->icon ? pMailAccount->icon : myIcon);
+		CairoContainer *pContainer = (pMailAccount->icon ? CD_APPLET_MY_ICONS_LIST_CONTAINER : myContainer);
+		cairo_dock_set_quick_info (myDrawContext, "...", pIcon, cairo_dock_get_max_scale (pContainer));
+		
+		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
+	}
+}
+
 static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
 {
 	guint i;
@@ -64,30 +84,18 @@ static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
 			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
 			if( pMailAccount )
 			{
-				cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
+				_cd_mail_update_account(NULL, pMailAccount);
 			}
 		}
 	}
 }
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
     _cd_mail_force_update(myApplet);
 
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-
-static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMailAccount)
-{
-	if( pMailAccount )
-	{
-		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
-		Icon *pIcon = (pMailAccount->icon ? pMailAccount->icon : myIcon);
-		CairoContainer *pContainer = (pMailAccount->icon ? CD_APPLET_MY_ICONS_LIST_CONTAINER : myContainer);
-		cairo_dock_set_quick_info (myDrawContext, "...", pIcon, cairo_dock_get_max_scale (pContainer));
-		
-		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
-	}
-}
 static void _cd_mail_launch_mail_appli (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_launch_command (myConfig.cMailApplication);

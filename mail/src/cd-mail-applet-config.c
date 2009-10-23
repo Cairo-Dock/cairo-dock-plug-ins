@@ -53,6 +53,18 @@ const int MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_ty
 static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myApplet)
 {
 	//\_______________ On remet a zero les comptes mail.
+	if( myData.pMailAccounts )
+	{
+		guint i;
+		for (i = 0; i < myData.pMailAccounts->len; i++)
+		{
+			CDMailAccount *pMailAccount;
+			pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+
+			if( pMailAccount != NULL && pMailAccount->pAccountMailTimer != NULL )
+				cairo_dock_stop_task (pMailAccount->pAccountMailTimer);
+		}
+	}
 	cd_mail_free_all_accounts (myApplet);
 	
 	myData.iPrevNbUnreadMails = 0;
