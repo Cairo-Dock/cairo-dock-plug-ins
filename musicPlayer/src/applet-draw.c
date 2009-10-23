@@ -23,6 +23,7 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-dbus.h"
 #include "3dcover-draw.h"
 #include "applet-musicplayer.h"
 #include "applet-cover.h"
