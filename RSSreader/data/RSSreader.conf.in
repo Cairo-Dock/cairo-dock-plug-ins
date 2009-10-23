@@ -1,0 +1,210 @@
+#!en;@VERSION_RSSREADER@
+
+#[gtk-about]
+[Icon]
+
+#j+[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
+#s Name of the icon as it will appear in its label in the dock :
+name = RSSreader
+
+#S+ Image's filename :
+#{Let empty to use the default one.}
+icon = 
+
+#d Name of the dock it belongs to:
+dock name = 
+
+order=
+
+#[gtk-convert]
+[Desklet]
+
+#j+[48;512] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+size = 345;135
+
+#i[-2048;2048] Desklet's position (x ; y) :
+#{Depending on your WindowManager, you can move it with ALT + left_click}
+x position=0
+#i[-2048;2048] ...
+y position=0
+
+#b Is detached from the dock ?
+initially detached=true
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
+#{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
+accessibility=0
+#b Should be visible on all desktops ?
+sticky=true
+
+#b Lock position ?
+#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+locked = false
+
+#I[-180;180] Rotation :
+#{in degrees.}
+rotation = 0
+
+use size=
+
+#F[Decorations;gtk-orientation-portrait]
+frame_deco=
+
+#o+ Choose a decoration theme for this desklet :
+#{Choose the 'personnal' one to define your own decorations below.}
+decorations = default
+
+#v
+sep_deco =
+
+#S+ Background image :
+#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+bg desklet =
+#e+[0;1] Background tansparency :
+bg alpha = 1
+#i+[0;256] Left offset :
+#{in pixels. Use this to adjust the left position of the drawings.}
+left offset = 0
+#i+[0;256] Top offset :
+#{in pixels. Use this to adjust the top position of the drawings.}
+top offset = 0
+#i+[0;256] Right offset :
+#{in pixels. Use this to adjust the right position of the drawings.}
+right offset = 0
+#i+[0;256] Bottom offset :
+#{in pixels. Use this to adjust the bottom position of the drawings.}
+bottom offset = 0
+#S+ Foreground image :
+#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+fg desklet =
+#e+[0;1] Foreground tansparency :
+fg alpha = 1
+
+
+
+
+#[gtk-preferences]
+[Configuration]
+
+#F[RSS Feed;gtk-convert]
+RSS_feed = 
+
+#s URL :
+#{Enter a valid atom/rss feed}
+url_rss_feed=
+
+#i[0;30] Number of feed lines to display :
+lines_rss_feed=5
+
+#i[0;30] Title num :
+#{Allow you to skip some lines}
+title_num_rss_feed=1
+
+#s Specify a title :
+#{Title}
+name_rss_feed=No Title
+
+#P+ Title Font :
+#{Font to be used for the title}
+title_font=Sans Bold Italic 13
+
+#C+ Title Text color :
+#{Color to be used for the title}
+title_color=1.0;1.0;0.0;1.0
+
+#P+ Feed lines Font :
+#{Font to be used for the feed lines}
+font=Sans 9
+
+#C+ Feed Lines color :
+#{Color to be used for the feed lines}
+text_color=1.0;1.0;1.0;1.0
+
+#F[Behaviour;gtk-execute]
+frame_behav= 
+
+#I0[1;30] Refresh time :
+#{In minutes.}
+refresh_time=5
+
+#I[0;30] Duration of the info-bubbles :
+#{In seconds. Set to 0 for infinite time -> click on dialog to close.}
+dialogs_duration=15
+
+#b Display the feeds lines in a dialog on left-clic even for desklet?
+#{By default, this option is deactivated}
+left_clic_for_desklet=false
+
+#s Specify the command to launch your web browser :
+#{Let empty to use firefox (default).}
+specific_web_browser= 
+
+
+
+#[gtk-dialog-info]
+[Appearance]
+
+#F[Logo;gtk-execute]
+frame_logo= 
+
+#b Display the logo ?
+#{The default logo is the applet's icon}
+display_logo=true
+
+#e+[1;4] Logo size :
+#{Adjust to increase/decrease the logo size}
+logo_size=2
+
+#F[Background;gtk-execute]
+frame_background= 
+
+#b Display a simple background ?
+#{You can have more attractive backgrounds using the Desklet decorations}
+display_background=true
+
+#C+ Background first color :
+#{Background color 1}
+background_color1=0.2;0.2;0.2;1.0
+
+#C+ Background second color :
+#{Background color 2}
+background_color2=0.7;0.7;0.7;0.8
+
+#i[0;50] Background radius corner:
+#{Set the radius corner to 0 for no radius}
+background_radius=15
+
+#i[0;20] Border thickness :
+#{Set the thickness to 0 for no border}
+border_thickness=5
+
+#C+ Border color :
+#{Border color}
+border_color=0.;0.;0.;1.;
+
+#F[Text position;gtk-execute]
+frame_text= 
+
+#i[-2048;2048] Modify the title's position (x ; y) :
+#{Title position x}
+title_position_x=0
+
+#i[-2048;2048] ...
+#{Title position y}
+title_position_y=0
+
+#i[-2048;2048] Modify the feed lines position (x ; y) :
+#{Feed lines position x}
+text_position_x=0
+
+#i[-2048;2048] ...
+#{Feed lines position y}
+text_position_y=0
+
+#i[-64;64] Increase/Decrease space between the lines :
+#{Default space between lines is set to 0}
+space_between_lines=0
+
