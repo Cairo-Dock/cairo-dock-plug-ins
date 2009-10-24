@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.1-1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.2-0alpha0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -116,6 +116,10 @@ AC_ARG_ENABLE(scooby-do,
 	[  --enable-scooby-do : Enable scooby-do applet (default=no) ],
 	[ with_scooby_do=${enableval} ],
 	[ with_scooby_do=no ])
+AC_ARG_ENABLE(rssreader,
+	[  --enable-rssreader : Enable rssreader applet (default=no) ],
+	[ with_rssreader=${enableval} ],
+	[ with_rssreader=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -207,6 +211,7 @@ AM_CONDITIONAL( [WITH_DND2SHARE], [test "$with_dnd2share" = "yes"] )
 AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
 AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
+AM_CONDITIONAL( [WITH_RSSREADER], [test "$with_rssreader" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -456,6 +461,15 @@ AC_SUBST(VERSION_QUICK_BROWSER, "1.0.4")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
+
+############# RSSREADER #################
+RSSREADER_PACKAGE=cd-rssreader
+AC_SUBST(GETTEXT_SCOOBY_DO_PACKAGE, "cairo-dock-plugins")
+
+AC_SUBST(VERSION_SCOOBY_DO_PACKAGE, "1.0.1")
+AC_SUBST(PACKAGE_SCOOBY_DO_PACKAGE, "$RSSREADER_PACKAGE_PACKAGE")
+
+AC_SUBST(scooby_dodatadir, "${pkgdatadir}/RSSreader")
 
 ############# SCOOBY_DO #################
 SCOOBY_DO_PACKAGE=cd-scooby-do
@@ -772,6 +786,11 @@ AC_CONFIG_FILES([
 	quick-browser/data/Makefile
 	quick-browser/data/quick-browser.conf
 	
+	RSSreader/Makefile
+	RSSreader/src/Makefile
+	RSSreader/data/Makefile
+	RSSreader/data/RSSreader.conf
+	
 	Scooby-Do/Makefile
 	Scooby-Do/src/Makefile
 	Scooby-Do/data/Makefile
@@ -888,4 +907,5 @@ echo " * Compil Dnd2share applet : "${with_dnd2share}
 echo " * Compil MusicPlayer applet : "${with_musicplayer}
 echo " * Compil Network-Monitor applet : "${with_network_monitor}
 echo " * Compil Scooby-Do applet : "${with_scooby_do}
+echo " * Compil RSSreader applet : "${with_rssreader}
 

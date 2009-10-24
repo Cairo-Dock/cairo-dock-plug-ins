@@ -1,0 +1,158 @@
+Modifications made on the SVN and BZR : Rev 2.0.8.1 => 2.0.9
+
+/* A bugs fixed version */
+
+Fabounet :
+ * Miscellaneous :
+   * Added dnd2share forgot on the general configure.ac
+   * changed agencement of many options in conf files for a better ergonomy.
+   * updated to fit structure changes in the core
+ * Alsamixer : fixed the listing of available channels in the config.
+ * Animated Icons : fixed Spot animation
+ * Cairo-Penguin :
+   * fixed its position within vertical docks.
+   * fixed a crash on right-click
+ * Clipper : Fixed incremental selection bug in mouse selection
+ * Clock :
+   * use gtk font selector
+   * improved numeric view
+ * Cpusage : merged in System-Monitor for code reusability and global bug fixes.
+ * DBus :
+   * correction in init/stop module
+   * bugs fixed in the DBus interface
+   * Updated functionalities
+   * Added a documentation of the DBus methods.
+   * split the interface in 2 for a easier use.
+   * rewriting for sub-icons
+ * Desklet rendering :
+   * desklet caroussel : fixed bug with non-square desklet.
+   * Rewriting of the desklet Slide view.
+   * fixed a crash on the Tree view of desklets
+ * Dock rendering :
+   * Curve view :
+     * fixed extended mode
+     * physical separator fix
+     * fixed opengl Curve view
+   * Default view : fixed extended mode
+   * 3D view :
+     * fixed extended mode
+     * physical separator fix
+   * correction in Slide view
+ * DnD2Share : Fixed the new bug with videobin.
+ * Icon-effect : fixed animation refresh
+ * Integration plug-ins : changed name
+ * Keyboard-indicator :
+   * use gtk font selector
+   * bug-fix and added a text ratio
+ * MP :
+   * made from a merge of the RB + XMMS applets.
+   * fixed support for Amarok2 and Xmms2
+   * minor bug fixes (present in RB) and support for Banshee for Karmic.
+   * correction of the MusicPlayer's icon's thumbnail bug
+   * better cover detection.
+   * correction in the 3D box theme
+   * updated some default values in config files
+   * fixed a crash when stopping MP
+ * Motion blur : fixed refresh
+ * Nvidia : merged in System-Monitor for code reusability and global bug fixes.
+ * po :
+   * added NL translations in 'potfiles'
+   * unified plug-ins translation (easier for the lp translation tool)
+ * Powermanager : fixed a bug when charge is between 99.9 and 100
+ * QB : fixed 'icon size' option
+ * Rame : merged in System-Monitor for code reusability and global bug fixes.
+ * Rhythmbox : unified in MP (there was a bit buggy)
+ * ShowDesktop : Adding possibility to swap buttons
+ * System-Monitor : merge of Cpusage, Nvidia and Rame in order to reuse the code and fix some bugs common to these 3 applets.
+ * Switcher :
+   * fixed the 'keep ratio' mode.
+   * fixed 3D picking of the selected desktop.
+ * Terminal : fixed bug to force the closing.
+ * Tomboy : imporved the desklet mode
+ * Toons : fixed Toons in vertical mode
+ * Wifi : fixed when user mode can't launch iwconfig
+ * XFCE : tried to fix the XFCE bug (nautilus open)
+ * XMMS / Audacious / Amarok / Banshee : merged in MP and updated to fit the latest versions of the players.
+
+
+Nochka85 :
+ * DBus : add missing icon + updated the demo
+ * DnD2Share : Updated the support of Uppix.
+ * MP : Fixed OSD Pause when the player isn't launched
+
+
+Mav :
+ * Each plug-ins : removed unused translations
+ * gnome-integration : removed translation
+ * MP : updated the support for the latest versions of some players.
+
+
+Tofe :
+ * fixed most of bugs in Mail but not enough stable yet to be released.
+
+ 
+ Matttbe :
+ * Each plug-ins :
+  * removed unused translations
+  * removed configure.ac of Makefile.am
+  * Updated translations
+ * QB : consider files ended with tild (*~) as hidden
+ * Tomboy :
+  * updated to support Gnote for Karmic.
+  * Reloaded the dbus connexion when the note-taking application is changed
+  * Removed the double title in the config panel
+ * Dnd2share : fixed the support of videobin.org (API change of the site) (thanks to j^)
+ 
+ ===========================
+ 
+ Modifications made on BZR : Rev 2.0.9.1 => 2.0.9.2
+
+/* A bugs fixed version */
+
+Fabounet :
+ * Miscellaneous
+   * animations and effects names are now translated
+   * fixed versionning for Dbus and Switcher
+ * Rendering :
+   * fixed a bug in rendering-caroussel
+   * fixed a bug on Slide view (wrong placement)
+   * correction on Slide view (some parameters didn't work)
+   * rewriting the equations on Slide's wave
+ * MusicPlayer :
+   * small bug-fix on MP if artist AND title is empty
+   * fixed a infinite loop when a player crash
+   * Fixed blank covers for Audacious
+   * modified the dowload of covers (Amazon has changed its API)
+   * prevent empty image from Amazon 
+ * Switcher :
+   * fixed a bug with windows list with Metacity
+ * weather :
+   * fixed the name when no connection at start
+ * Dbus :
+   * small bug fixes (stop signal)
+   * test if distant applet is not already launched
+   * fixed the DBus applet launching
+ * Cairo-Penguin :
+   * correction of a refresh bug
+ * shortcuts :
+   * handle the case of unmounted volume
+   * fixed a crash when removing the last bookmark
+ * Stack :
+   * fixed stack sub-dock on clic
+ * Clipper :
+   * fixed a crash
+
+
+Matttbe :
+ * Cairo-Penguin :
+   * Take the gtk icon as the others
+ * dnd2share :
+   * workaround for curl when a file contains a comma
+ * Update translations
+ * Rename en_GB => en
+ * Little improvement with the config panel for Note and Mail
+
+
+Tofe :
+ * Mail :
+   * Fixed crash

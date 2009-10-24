@@ -72,6 +72,10 @@ if WITH_SCOOBY_DO
 scooby_do_dir=Scooby-Do
 endif
 
+if WITH_RSSREADER
+rssreader_dir=RSSreader
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -100,6 +104,7 @@ SUBDIRS = . po\
 	$(network_monitor_dir)\
 	${powermanager_dir}\
 	quick-browser\
+	${rssreader_dir}\
 	${scooby_do_dir}\
 	shortcuts\
 	showDesklets\
@@ -124,5 +129,7 @@ EXTRA_DIST = \
 	intltool-merge.in\
 	intltool-update.in\
 	LICENSE\
+	LGPL-2\
+	ChangeLog\
 	copyright
 
