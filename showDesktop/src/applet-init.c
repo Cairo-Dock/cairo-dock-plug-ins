@@ -28,10 +28,11 @@
 CD_APPLET_DEFINITION (N_("showDesktop"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
-	N_("This is a very simple icon to show your desktop\n"
-	"Left-click to show/hide the desktop\n"
-	"Middle-click does the same but doesn't hide your desklets"),
-	"Romain PEROL")
+	N_("This applet adds an icon to show your desktop,\n"
+	"and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+	"Left-click to show/hide the desktop,\n"
+	"Middle-click to show/hide either the desktop, the desklets, the Widget Layer, or all the desktops at once."),
+	"Romain PEROL (Rom1) & Fabrice Rey (Fabounet)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -46,6 +47,8 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desktop_on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
 
 
@@ -68,5 +71,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+		
+		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desktop_on_keybinding_pull, (gpointer)NULL);
 	}
 CD_APPLET_RELOAD_END

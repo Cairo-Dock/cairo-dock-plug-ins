@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-10-22 00:54+0000\n"
 "PO-Revision-Date: 2009-10-22 18:34+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -247,10 +246,10 @@ msgstr "Voer een opdracht in om uit te voeren :"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:135 ../wifi/src/applet-draw.c:31
-#: ../Clipper/data/messages:195 ../Network-Monitor/data/messages:123
-#: ../Network-Monitor/data/messages:181 ../alsaMixer/data/messages:119
-#: ../compiz-icon/data/messages:89 ../dustbin/data/messages:95
-#: ../wifi/data/messages:123 ../wifi/data/messages:173
+#: ../Clipper/data/messages:197 ../Network-Monitor/data/messages:125
+#: ../Network-Monitor/data/messages:183 ../alsaMixer/data/messages:121
+#: ../compiz-icon/data/messages:91 ../dustbin/data/messages:97
+#: ../wifi/data/messages:125 ../wifi/data/messages:175
 msgid "None"
 msgstr "Geen"
 
@@ -313,8 +312,8 @@ msgid "Network ID"
 msgstr "Netwerk-ID"
 
 #: ../Network-Monitor/src/applet-draw.c:163
-#: ../musicPlayer/src/applet-draw.c:297 ../musicPlayer/src/applet-draw.c:299
-#: ../musicPlayer/src/applet-draw.c:301
+#: ../musicPlayer/src/applet-draw.c:307 ../musicPlayer/src/applet-draw.c:309
+#: ../musicPlayer/src/applet-draw.c:311
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -445,8 +444,8 @@ msgstr ""
 "navigeren,\n"
 "  of typ de naam van een starter en druk op Tab om automatisch naar de "
 "volgende starter te gaan\n"
-"  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, "
-"Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
+"  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, Alt"
+"+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
 "- De vindermodus : typ een opdracht om elk bestand, opdracht of berekening "
 "uit te voeren.\n"
 "  Gebruik de pijltjes om te navigeren tussen de gevonden resultaten, druk op "
@@ -612,8 +611,7 @@ msgstr "Systeemmonitor"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr ""
-"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -777,7 +775,7 @@ msgstr "Herlaad vensterbeheerder"
 msgid "Exposition"
 msgstr "Expo"
 
-#: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:93
+#: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:95
 msgid "Widget Layer"
 msgstr "Widget Layer"
 
@@ -842,7 +840,7 @@ msgid "futuristic"
 msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
-#: ../slider/data/messages:111
+#: ../slider/data/messages:113
 msgid "none"
 msgstr "Geen"
 
@@ -887,8 +885,7 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
@@ -1022,22 +1019,22 @@ msgid "3D plane"
 msgstr "3D-vlak"
 
 #: ../dock-rendering/src/rendering-init.c:35
-#: ../dock-rendering/data/messages:35
+#: ../dock-rendering/data/messages:37
 msgid "Parabolic"
 msgstr "Parabool"
 
 #: ../dock-rendering/src/rendering-init.c:36
-#: ../dock-rendering/data/messages:57
+#: ../dock-rendering/data/messages:61
 msgid "Rainbow"
 msgstr "Regenboog"
 
-#: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97
+#: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:107
+#: ../stack/data/messages:99
 msgid "Slide"
 msgstr "Diavoorstelling"
 
 #: ../dock-rendering/src/rendering-init.c:39
-#: ../dock-rendering/data/messages:121
+#: ../dock-rendering/data/messages:127
 msgid "Curve"
 msgstr "Kromming"
 
@@ -1283,19 +1280,19 @@ msgstr "Stel automatisch afsluiten in"
 msgid "Your computer will shutdown in 1 minute."
 msgstr "Uw computer zal afsluiten na 1 minuut."
 
-#: ../mail/src/cd-mail-applet-config.c:184
+#: ../mail/src/cd-mail-applet-config.c:196
 msgid "Please choose an account type."
 msgstr "Selecteer a.u.b. een accounttype."
 
-#: ../mail/src/cd-mail-applet-config.c:189
+#: ../mail/src/cd-mail-applet-config.c:201
 msgid "New account's name"
 msgstr "Naam nieuwe account"
 
-#: ../mail/src/cd-mail-applet-config.c:192
+#: ../mail/src/cd-mail-applet-config.c:204
 msgid "Please enter a name for this account."
 msgstr "Voer a.u.b. een naam in voor dit account."
 
-#: ../mail/src/cd-mail-applet-config.c:202
+#: ../mail/src/cd-mail-applet-config.c:214
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -1303,12 +1300,12 @@ msgstr ""
 "Dit account bestaat al.\n"
 "Selecteer een andere naam voor dit nieuwe account."
 
-#: ../mail/src/cd-mail-applet-config.c:330
+#: ../mail/src/cd-mail-applet-config.c:342
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 "Voer een naam in voor dit account. U kunt elke naam invoeren die u wilt."
 
-#: ../mail/src/cd-mail-applet-config.c:385
+#: ../mail/src/cd-mail-applet-config.c:397
 msgid "Remove Account"
 msgstr "Verwijder account"
 
@@ -1361,16 +1358,16 @@ msgstr ""
 "Als '%s' niet uw gebruikelijke e-mailprogramma is,\n"
 "dan kunt u dit wijzigen in het configuratiepaneel van deze module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:101
+#: ../mail/src/cd-mail-applet-notifications.c:109
 msgid "Refresh a mail account"
 msgstr "Vernieuw een e-mailaccount"
 
-#: ../mail/src/cd-mail-applet-notifications.c:112
+#: ../mail/src/cd-mail-applet-notifications.c:120
 #, c-format
 msgid "Launch %s"
 msgstr "Open %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:287
+#: ../mail/src/cd-mail-applet-notifications.c:295
 msgid "Mail"
 msgstr "E-mail"
 
@@ -1382,43 +1379,43 @@ msgstr "Bewegingsvervaging"
 msgid "This plug-in adds a motion blur effect on docks."
 msgstr "Deze plug-in voegt een bewegingsvervagingseffect toe aan het dock."
 
-#: ../musicPlayer/src/applet-draw.c:198
+#: ../musicPlayer/src/applet-draw.c:208
 msgid "Unknown artist"
 msgstr "Onbekende artiest"
 
-#: ../musicPlayer/src/applet-draw.c:198
+#: ../musicPlayer/src/applet-draw.c:208
 msgid "Unknown title"
 msgstr "Onbekende titel"
 
-#: ../musicPlayer/src/applet-draw.c:204
+#: ../musicPlayer/src/applet-draw.c:214
 msgid "Track"
 msgstr "Nummer"
 
-#: ../musicPlayer/src/applet-draw.c:287
+#: ../musicPlayer/src/applet-draw.c:297
 msgid "Current song"
 msgstr "Huidig nummer"
 
-#: ../musicPlayer/src/applet-draw.c:296
+#: ../musicPlayer/src/applet-draw.c:306
 msgid "Artist"
 msgstr "Artiest"
 
-#: ../musicPlayer/src/applet-draw.c:298
+#: ../musicPlayer/src/applet-draw.c:308
 msgid "Album"
 msgstr "Album"
 
-#: ../musicPlayer/src/applet-draw.c:300
+#: ../musicPlayer/src/applet-draw.c:310
 msgid "Title"
 msgstr "Titel"
 
-#: ../musicPlayer/src/applet-draw.c:302
+#: ../musicPlayer/src/applet-draw.c:312
 msgid "Length"
 msgstr "Tijd"
 
-#: ../musicPlayer/src/applet-draw.c:304
+#: ../musicPlayer/src/applet-draw.c:314
 msgid "Track n°"
 msgstr "n° van nummer"
 
-#: ../musicPlayer/src/applet-draw.c:307
+#: ../musicPlayer/src/applet-draw.c:317
 msgid "There is no media playing."
 msgstr "Er wordt niets afgespeeld."
 
@@ -1441,8 +1438,8 @@ msgstr ""
 "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 "nummer.\n"
 "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-"U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
-"plaatsen(afhankelijk van speler),\n"
+"U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen"
+"(afhankelijk van speler),\n"
 " en jpeg-bestanden om als albumhoes te gebruiken\n"
 "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
@@ -1697,8 +1694,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a "
-"dock/desklet."
+"This plug-in draw some animation around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -1732,6 +1729,20 @@ msgstr ""
 "Dit is een simpel icoon om uw bureaublad te tonen\n"
 "Klik met links om het bureaublad te tonen/verbergen\n"
 "Middelklik doet hetzelfde, maar verbergt uw desklets niet"
+
+#: ../showDesktop2/src/applet-init.c:28
+#, fuzzy
+msgid "showDesktop2"
+msgstr "Toon bureaublad"
+
+#: ../showDesktop2/src/applet-init.c:31
+msgid ""
+"This applet adds an icon to show your desktop,\n"
+"and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+"Left-click to show/hide the desktop,\n"
+"Middle-click to show/hide either the desktop, the desklets, the Widget "
+"Layer, or all the desktops at once."
+msgstr ""
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -1905,7 +1916,7 @@ msgstr ""
 "Hiermee verplaatst u alle vensters van het huidige bureaublad naar het "
 "bureaublad waar u op klikte."
 
-#: ../switcher/src/applet-notifications.c:252
+#: ../switcher/src/applet-notifications.c:252 ../showDesktop2/data/messages:97
 msgid "Show the desktop"
 msgstr "Bureaublad tonen"
 
@@ -2383,11 +2394,12 @@ msgstr "Soort 3D-vorm :"
 #: ../mail/data/messages:27 ../musicPlayer/data/messages:29
 #: ../netspeed/data/messages:27 ../powermanager/data/messages:27
 #: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
-#: ../showDesktop/data/messages:31 ../slider/data/messages:27
-#: ../stack/data/messages:33 ../switcher/data/messages:27
-#: ../systray/data/messages:23 ../terminal/data/messages:31
-#: ../tomboy/data/messages:45 ../weather/data/messages:29
-#: ../weblets/data/messages:31 ../wifi/data/messages:27
+#: ../showDesktop/data/messages:31 ../showDesktop2/data/messages:31
+#: ../slider/data/messages:27 ../stack/data/messages:33
+#: ../switcher/data/messages:27 ../systray/data/messages:23
+#: ../terminal/data/messages:31 ../tomboy/data/messages:45
+#: ../weather/data/messages:29 ../weblets/data/messages:31
+#: ../wifi/data/messages:27
 msgid "Normal"
 msgstr "Normaal"
 
@@ -2405,16 +2417,16 @@ msgstr "Kleur 3D-vorm :"
 
 #: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:93 ../System-Monitor/data/messages:149
-#: ../System-Monitor/data/messages:157 ../Xgamma/data/messages:9
-#: ../alsaMixer/data/messages:127 ../alsaMixer/data/messages:131
-#: ../alsaMixer/data/messages:135 ../dnd2share/data/messages:9
+#: ../GMenu/data/messages:95 ../System-Monitor/data/messages:151
+#: ../System-Monitor/data/messages:159 ../Xgamma/data/messages:9
+#: ../alsaMixer/data/messages:129 ../alsaMixer/data/messages:133
+#: ../alsaMixer/data/messages:137 ../dnd2share/data/messages:9
 #: ../logout/data/messages:9 ../quick-browser/data/messages:11
 #: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
 #: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:135 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
+#: ../showDesktop2/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../switcher/data/messages:137
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr "Laat leeg om standaardwaarde te gebruiken."
 
@@ -2549,11 +2561,11 @@ msgstr "Tijdsduur van het knipperen :"
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
 #: ../showDesklets/data/messages:1 ../showDesktop/data/messages:1
-#: ../slider/data/messages:1 ../stack/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../terminal/data/messages:1 ../tomboy/data/messages:1
-#: ../weather/data/messages:1 ../weblets/data/messages:1
-#: ../wifi/data/messages:1
+#: ../showDesktop2/data/messages:1 ../slider/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../terminal/data/messages:1
+#: ../tomboy/data/messages:1 ../weather/data/messages:1
+#: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Icoon"
 
@@ -2568,10 +2580,11 @@ msgstr "Icoon"
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
 #: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
-#: ../slider/data/messages:3 ../stack/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../terminal/data/messages:3 ../tomboy/data/messages:3
-#: ../weblets/data/messages:3 ../wifi/data/messages:3
+#: ../showDesktop2/data/messages:3 ../slider/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../terminal/data/messages:3
+#: ../tomboy/data/messages:3 ../weblets/data/messages:3
+#: ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
 msgstr "Stel in op 0 om de standaardgrootte van het applet te gebruiken"
 
@@ -2594,43 +2607,43 @@ msgstr "Naam van icoon wanneer de pinguïn niet vrij is :"
 #: ../netspeed/data/messages:9 ../powermanager/data/messages:9
 #: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
 #: ../showDesklets/data/messages:17 ../showDesktop/data/messages:13
-#: ../slider/data/messages:9 ../stack/data/messages:15
-#: ../switcher/data/messages:13 ../systray/data/messages:9
-#: ../terminal/data/messages:13 ../tomboy/data/messages:9
-#: ../weather/data/messages:11 ../weblets/data/messages:13
-#: ../wifi/data/messages:9
+#: ../showDesktop2/data/messages:13 ../slider/data/messages:9
+#: ../stack/data/messages:15 ../switcher/data/messages:13
+#: ../systray/data/messages:9 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../weather/data/messages:11
+#: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Naam van het dock waar het bijhoort:"
 
-#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:189
-#: ../Dbus/data/messages:1 ../GMenu/data/messages:85
-#: ../Network-Monitor/data/messages:81 ../Scooby-Do/data/messages:1
-#: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
-#: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:81
-#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:85
-#: ../drop-indicator/data/messages:1 ../keyboard-indicator/data/messages:81
-#: ../logout/data/messages:85 ../mail/data/messages:81
-#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:83
-#: ../netspeed/data/messages:81 ../powermanager/data/messages:81
-#: ../quick-browser/data/messages:87 ../show-mouse/data/messages:1
-#: ../showDesklets/data/messages:19 ../showDesktop/data/messages:85
-#: ../slider/data/messages:81 ../stack/data/messages:87
-#: ../switcher/data/messages:81 ../switcher/data/messages:83
-#: ../tomboy/data/messages:99 ../weather/data/messages:83
-#: ../weather/data/messages:85 ../weblets/data/messages:85
-#: ../wifi/data/messages:81
+#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:191
+#: ../Dbus/data/messages:1 ../GMenu/data/messages:87
+#: ../Network-Monitor/data/messages:83 ../Scooby-Do/data/messages:1
+#: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
+#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:83
+#: ../compiz-icon/data/messages:83 ../dnd2share/data/messages:87
+#: ../drop-indicator/data/messages:1 ../keyboard-indicator/data/messages:83
+#: ../logout/data/messages:87 ../mail/data/messages:83
+#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:85
+#: ../netspeed/data/messages:83 ../powermanager/data/messages:83
+#: ../quick-browser/data/messages:89 ../show-mouse/data/messages:1
+#: ../showDesklets/data/messages:19 ../showDesktop/data/messages:87
+#: ../showDesktop2/data/messages:87 ../slider/data/messages:83
+#: ../stack/data/messages:89 ../switcher/data/messages:83
+#: ../switcher/data/messages:85 ../tomboy/data/messages:101
+#: ../weather/data/messages:85 ../weather/data/messages:87
+#: ../weblets/data/messages:87 ../wifi/data/messages:83
 msgid "Configuration"
 msgstr "Configuratie"
 
-#: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:93
-#: ../System-Monitor/data/messages:91 ../Toons/data/messages:85
-#: ../dustbin/data/messages:85 ../mail/data/messages:91
-#: ../netspeed/data/messages:91 ../powermanager/data/messages:93
-#: ../weather/data/messages:113 ../wifi/data/messages:93
+#: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:95
+#: ../System-Monitor/data/messages:93 ../Toons/data/messages:87
+#: ../dustbin/data/messages:87 ../mail/data/messages:93
+#: ../netspeed/data/messages:93 ../powermanager/data/messages:95
+#: ../weather/data/messages:115 ../wifi/data/messages:95
 msgid "Choose one of the available themes :"
 msgstr "Selecteer één van de beschikbare thema´s :"
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:87
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "In seconden"
 
@@ -2646,8 +2659,8 @@ msgstr "Doorzichtigheid van de pinguïn :"
 msgid "Let the penguin wander everywhere in the dock ?"
 msgstr "Mag pinguïn in het hele dock rondwandelen ?"
 
-#: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:49
-#: ../dock-rendering/data/messages:127
+#: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:53
+#: ../dock-rendering/data/messages:133
 msgid "in pixels."
 msgstr "In pixels."
 
@@ -2769,11 +2782,12 @@ msgstr "Actie_6/Opdracht_4"
 #: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
 #: ../shortcuts/data/messages:5 ../showDesklets/data/messages:5
-#: ../showDesktop/data/messages:5 ../slider/data/messages:5
-#: ../stack/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../terminal/data/messages:5
-#: ../tomboy/data/messages:5 ../weather/data/messages:5
-#: ../weblets/data/messages:5 ../wifi/data/messages:5
+#: ../showDesktop/data/messages:5 ../showDesktop2/data/messages:5
+#: ../slider/data/messages:5 ../stack/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../terminal/data/messages:5 ../tomboy/data/messages:5
+#: ../weather/data/messages:5 ../weblets/data/messages:5
+#: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Gewenste icoongrootte voor dit applet"
 
@@ -2787,9 +2801,10 @@ msgstr "Gewenste icoongrootte voor dit applet"
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
 #: ../showDesklets/data/messages:7 ../showDesktop/data/messages:7
-#: ../slider/data/messages:7 ../stack/data/messages:9
-#: ../switcher/data/messages:7 ../weather/data/messages:9
-#: ../weblets/data/messages:7 ../wifi/data/messages:7
+#: ../showDesktop2/data/messages:7 ../slider/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../weather/data/messages:9 ../weblets/data/messages:7
+#: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
 
@@ -2797,8 +2812,9 @@ msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
 #: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
 #: ../logout/data/messages:11 ../quick-browser/data/messages:13
 #: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../terminal/data/messages:11 ../weblets/data/messages:11
+#: ../showDesktop2/data/messages:11 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../terminal/data/messages:11
+#: ../weblets/data/messages:11
 msgid "Image's filename :"
 msgstr "Bestandsnaaam afbeelding :"
 
@@ -2812,11 +2828,11 @@ msgstr "Bestandsnaaam afbeelding :"
 #: ../musicPlayer/data/messages:13 ../netspeed/data/messages:11
 #: ../powermanager/data/messages:11 ../quick-browser/data/messages:17
 #: ../shortcuts/data/messages:15 ../showDesktop/data/messages:15
-#: ../slider/data/messages:11 ../stack/data/messages:17
-#: ../switcher/data/messages:15 ../systray/data/messages:11
-#: ../terminal/data/messages:15 ../tomboy/data/messages:29
-#: ../weather/data/messages:13 ../weblets/data/messages:15
-#: ../wifi/data/messages:11
+#: ../showDesktop2/data/messages:15 ../slider/data/messages:11
+#: ../stack/data/messages:17 ../switcher/data/messages:15
+#: ../systray/data/messages:11 ../terminal/data/messages:15
+#: ../tomboy/data/messages:29 ../weather/data/messages:13
+#: ../weblets/data/messages:15 ../wifi/data/messages:11
 msgid "Desklet"
 msgstr "Desklet"
 
@@ -2830,10 +2846,11 @@ msgstr "Desklet"
 #: ../musicPlayer/data/messages:15 ../netspeed/data/messages:13
 #: ../powermanager/data/messages:13 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:17
-#: ../slider/data/messages:13 ../stack/data/messages:19
-#: ../switcher/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:31 ../weather/data/messages:15
-#: ../weblets/data/messages:17 ../wifi/data/messages:13
+#: ../showDesktop2/data/messages:17 ../slider/data/messages:13
+#: ../stack/data/messages:19 ../switcher/data/messages:17
+#: ../terminal/data/messages:17 ../tomboy/data/messages:31
+#: ../weather/data/messages:15 ../weblets/data/messages:17
+#: ../wifi/data/messages:13
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -2851,10 +2868,11 @@ msgstr ""
 #: ../musicPlayer/data/messages:17 ../netspeed/data/messages:15
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:19
-#: ../slider/data/messages:15 ../stack/data/messages:21
-#: ../switcher/data/messages:19 ../terminal/data/messages:19
-#: ../tomboy/data/messages:33 ../weather/data/messages:17
-#: ../weblets/data/messages:19 ../wifi/data/messages:15
+#: ../showDesktop2/data/messages:19 ../slider/data/messages:15
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:33
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:15
 msgid "Desklet's dimension (width x height) :"
 msgstr "Desklet's grootte (breedte x hoogte) :"
 
@@ -2866,12 +2884,11 @@ msgstr "Desklet's grootte (breedte x hoogte) :"
 #: ../mail/data/messages:17 ../musicPlayer/data/messages:19
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:23
 #: ../shortcuts/data/messages:21 ../showDesktop/data/messages:21
-#: ../slider/data/messages:17 ../stack/data/messages:23
-#: ../systray/data/messages:13 ../terminal/data/messages:21
-#: ../weather/data/messages:19 ../weblets/data/messages:21
-#: ../wifi/data/messages:17
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click"
+#: ../showDesktop2/data/messages:21 ../slider/data/messages:17
+#: ../stack/data/messages:23 ../systray/data/messages:13
+#: ../terminal/data/messages:21 ../weather/data/messages:19
+#: ../weblets/data/messages:21 ../wifi/data/messages:17
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Afhankelijk van uw vensterbeheerder, kunt u het verplaatsen met ALT + "
 "linkermuisknop"
@@ -2886,11 +2903,11 @@ msgstr ""
 #: ../musicPlayer/data/messages:21 ../netspeed/data/messages:19
 #: ../powermanager/data/messages:19 ../quick-browser/data/messages:25
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:23
-#: ../slider/data/messages:19 ../stack/data/messages:25
-#: ../switcher/data/messages:21 ../systray/data/messages:15
-#: ../terminal/data/messages:23 ../tomboy/data/messages:37
-#: ../weather/data/messages:21 ../weblets/data/messages:23
-#: ../wifi/data/messages:19
+#: ../showDesktop2/data/messages:23 ../slider/data/messages:19
+#: ../stack/data/messages:25 ../switcher/data/messages:21
+#: ../systray/data/messages:15 ../terminal/data/messages:23
+#: ../tomboy/data/messages:37 ../weather/data/messages:21
+#: ../weblets/data/messages:23 ../wifi/data/messages:19
 msgid "Desklet's position (x ; y) :"
 msgstr "Desklet's positie (x ; y) :"
 
@@ -2904,11 +2921,11 @@ msgstr "Desklet's positie (x ; y) :"
 #: ../musicPlayer/data/messages:23 ../netspeed/data/messages:21
 #: ../powermanager/data/messages:21 ../quick-browser/data/messages:27
 #: ../shortcuts/data/messages:25 ../showDesktop/data/messages:25
-#: ../slider/data/messages:21 ../stack/data/messages:27
-#: ../switcher/data/messages:23 ../systray/data/messages:17
-#: ../terminal/data/messages:25 ../tomboy/data/messages:39
-#: ../weather/data/messages:23 ../weblets/data/messages:25
-#: ../wifi/data/messages:21
+#: ../showDesktop2/data/messages:25 ../slider/data/messages:21
+#: ../stack/data/messages:27 ../switcher/data/messages:23
+#: ../systray/data/messages:17 ../terminal/data/messages:25
+#: ../tomboy/data/messages:39 ../weather/data/messages:23
+#: ../weblets/data/messages:25 ../wifi/data/messages:21
 msgid "Is detached from the dock ?"
 msgstr "Loskoppelen van het dock ?"
 
@@ -2922,10 +2939,11 @@ msgstr "Loskoppelen van het dock ?"
 #: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
 #: ../powermanager/data/messages:23 ../quick-browser/data/messages:29
 #: ../shortcuts/data/messages:27 ../showDesktop/data/messages:27
-#: ../slider/data/messages:23 ../stack/data/messages:29
-#: ../systray/data/messages:19 ../terminal/data/messages:27
-#: ../tomboy/data/messages:41 ../weather/data/messages:25
-#: ../weblets/data/messages:27 ../wifi/data/messages:23
+#: ../showDesktop2/data/messages:27 ../slider/data/messages:23
+#: ../stack/data/messages:29 ../systray/data/messages:19
+#: ../terminal/data/messages:27 ../tomboy/data/messages:41
+#: ../weather/data/messages:25 ../weblets/data/messages:27
+#: ../wifi/data/messages:23
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -2943,11 +2961,11 @@ msgstr ""
 #: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
 #: ../powermanager/data/messages:25 ../quick-browser/data/messages:31
 #: ../shortcuts/data/messages:29 ../showDesktop/data/messages:29
-#: ../slider/data/messages:25 ../stack/data/messages:31
-#: ../switcher/data/messages:25 ../systray/data/messages:21
-#: ../terminal/data/messages:29 ../tomboy/data/messages:43
-#: ../weather/data/messages:27 ../weblets/data/messages:29
-#: ../wifi/data/messages:25
+#: ../showDesktop2/data/messages:29 ../slider/data/messages:25
+#: ../stack/data/messages:31 ../switcher/data/messages:25
+#: ../systray/data/messages:21 ../terminal/data/messages:29
+#: ../tomboy/data/messages:43 ../weather/data/messages:27
+#: ../weblets/data/messages:29 ../wifi/data/messages:25
 msgid "Accessibility :"
 msgstr "Toegankelijkheid :"
 
@@ -2961,11 +2979,11 @@ msgstr "Toegankelijkheid :"
 #: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
 #: ../powermanager/data/messages:29 ../quick-browser/data/messages:35
 #: ../shortcuts/data/messages:33 ../showDesktop/data/messages:33
-#: ../slider/data/messages:29 ../stack/data/messages:35
-#: ../switcher/data/messages:29 ../systray/data/messages:25
-#: ../terminal/data/messages:33 ../tomboy/data/messages:47
-#: ../weather/data/messages:31 ../weblets/data/messages:33
-#: ../wifi/data/messages:29
+#: ../showDesktop2/data/messages:33 ../slider/data/messages:29
+#: ../stack/data/messages:35 ../switcher/data/messages:29
+#: ../systray/data/messages:25 ../terminal/data/messages:33
+#: ../tomboy/data/messages:47 ../weather/data/messages:31
+#: ../weblets/data/messages:33 ../wifi/data/messages:29
 msgid "Keep above"
 msgstr "Bovenop houden"
 
@@ -2979,11 +2997,11 @@ msgstr "Bovenop houden"
 #: ../musicPlayer/data/messages:33 ../netspeed/data/messages:31
 #: ../powermanager/data/messages:31 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:35
-#: ../slider/data/messages:31 ../stack/data/messages:37
-#: ../switcher/data/messages:31 ../systray/data/messages:27
-#: ../terminal/data/messages:35 ../tomboy/data/messages:49
-#: ../weather/data/messages:33 ../weblets/data/messages:35
-#: ../wifi/data/messages:31
+#: ../showDesktop2/data/messages:35 ../slider/data/messages:31
+#: ../stack/data/messages:37 ../switcher/data/messages:31
+#: ../systray/data/messages:27 ../terminal/data/messages:35
+#: ../tomboy/data/messages:49 ../weather/data/messages:33
+#: ../weblets/data/messages:35 ../wifi/data/messages:31
 msgid "Keep below"
 msgstr "Onderop houden"
 
@@ -2997,11 +3015,11 @@ msgstr "Onderop houden"
 #: ../musicPlayer/data/messages:35 ../netspeed/data/messages:33
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:37
-#: ../slider/data/messages:33 ../stack/data/messages:39
-#: ../switcher/data/messages:33 ../systray/data/messages:29
-#: ../terminal/data/messages:37 ../tomboy/data/messages:51
-#: ../weather/data/messages:35 ../weblets/data/messages:37
-#: ../wifi/data/messages:33
+#: ../showDesktop2/data/messages:37 ../slider/data/messages:33
+#: ../stack/data/messages:39 ../switcher/data/messages:33
+#: ../systray/data/messages:29 ../terminal/data/messages:37
+#: ../tomboy/data/messages:51 ../weather/data/messages:35
+#: ../weblets/data/messages:37 ../wifi/data/messages:33
 msgid "On Widget Layer"
 msgstr "Op Widget Layer"
 
@@ -3015,11 +3033,11 @@ msgstr "Op Widget Layer"
 #: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:41
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:39
-#: ../slider/data/messages:35 ../stack/data/messages:41
-#: ../switcher/data/messages:35 ../systray/data/messages:31
-#: ../terminal/data/messages:39 ../tomboy/data/messages:53
-#: ../weather/data/messages:37 ../weblets/data/messages:39
-#: ../wifi/data/messages:35
+#: ../showDesktop2/data/messages:39 ../slider/data/messages:35
+#: ../stack/data/messages:41 ../switcher/data/messages:35
+#: ../systray/data/messages:31 ../terminal/data/messages:39
+#: ../tomboy/data/messages:53 ../weather/data/messages:37
+#: ../weblets/data/messages:39 ../wifi/data/messages:35
 msgid "Reserve space"
 msgstr "Reserveer ruimte"
 
@@ -3033,11 +3051,11 @@ msgstr "Reserveer ruimte"
 #: ../musicPlayer/data/messages:39 ../netspeed/data/messages:37
 #: ../powermanager/data/messages:37 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:41
-#: ../slider/data/messages:37 ../stack/data/messages:43
-#: ../switcher/data/messages:37 ../systray/data/messages:33
-#: ../terminal/data/messages:41 ../tomboy/data/messages:55
-#: ../weather/data/messages:39 ../weblets/data/messages:41
-#: ../wifi/data/messages:37
+#: ../showDesktop2/data/messages:41 ../slider/data/messages:37
+#: ../stack/data/messages:43 ../switcher/data/messages:37
+#: ../systray/data/messages:33 ../terminal/data/messages:41
+#: ../tomboy/data/messages:55 ../weather/data/messages:39
+#: ../weblets/data/messages:41 ../wifi/data/messages:37
 msgid "Should be visible on all desktops ?"
 msgstr "Zichtbaar zijn op alle bureaubladen ?"
 
@@ -3051,11 +3069,11 @@ msgstr "Zichtbaar zijn op alle bureaubladen ?"
 #: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:45
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:43
-#: ../slider/data/messages:39 ../stack/data/messages:45
-#: ../switcher/data/messages:39 ../systray/data/messages:35
-#: ../terminal/data/messages:43 ../tomboy/data/messages:57
-#: ../weather/data/messages:41 ../weblets/data/messages:43
-#: ../wifi/data/messages:39
+#: ../showDesktop2/data/messages:43 ../slider/data/messages:39
+#: ../stack/data/messages:45 ../switcher/data/messages:39
+#: ../systray/data/messages:35 ../terminal/data/messages:43
+#: ../tomboy/data/messages:57 ../weather/data/messages:41
+#: ../weblets/data/messages:43 ../wifi/data/messages:39
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -3073,11 +3091,11 @@ msgstr ""
 #: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
 #: ../powermanager/data/messages:41 ../quick-browser/data/messages:47
 #: ../shortcuts/data/messages:45 ../showDesktop/data/messages:45
-#: ../slider/data/messages:41 ../stack/data/messages:47
-#: ../switcher/data/messages:41 ../systray/data/messages:37
-#: ../terminal/data/messages:45 ../tomboy/data/messages:59
-#: ../weather/data/messages:43 ../weblets/data/messages:45
-#: ../wifi/data/messages:41
+#: ../showDesktop2/data/messages:45 ../slider/data/messages:41
+#: ../stack/data/messages:47 ../switcher/data/messages:41
+#: ../systray/data/messages:37 ../terminal/data/messages:45
+#: ../tomboy/data/messages:59 ../weather/data/messages:43
+#: ../weblets/data/messages:45 ../wifi/data/messages:41
 msgid "Lock position ?"
 msgstr "Positie vergrendelen ?"
 
@@ -3091,10 +3109,11 @@ msgstr "Positie vergrendelen ?"
 #: ../musicPlayer/data/messages:45 ../netspeed/data/messages:43
 #: ../powermanager/data/messages:43 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:47
-#: ../slider/data/messages:43 ../stack/data/messages:49
-#: ../switcher/data/messages:43 ../terminal/data/messages:47
-#: ../tomboy/data/messages:61 ../weather/data/messages:45
-#: ../weblets/data/messages:47 ../wifi/data/messages:43
+#: ../showDesktop2/data/messages:47 ../slider/data/messages:43
+#: ../stack/data/messages:49 ../switcher/data/messages:43
+#: ../terminal/data/messages:47 ../tomboy/data/messages:61
+#: ../weather/data/messages:45 ../weblets/data/messages:47
+#: ../wifi/data/messages:43
 msgid "in degrees."
 msgstr "In graden."
 
@@ -3108,10 +3127,11 @@ msgstr "In graden."
 #: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:49
-#: ../slider/data/messages:45 ../stack/data/messages:51
-#: ../switcher/data/messages:45 ../terminal/data/messages:49
-#: ../tomboy/data/messages:63 ../weather/data/messages:47
-#: ../weblets/data/messages:49 ../wifi/data/messages:45
+#: ../showDesktop2/data/messages:49 ../slider/data/messages:45
+#: ../stack/data/messages:51 ../switcher/data/messages:45
+#: ../terminal/data/messages:49 ../tomboy/data/messages:63
+#: ../weather/data/messages:47 ../weblets/data/messages:49
+#: ../wifi/data/messages:45
 msgid "Rotation :"
 msgstr "Draaiing :"
 
@@ -3125,12 +3145,13 @@ msgstr "Draaiing :"
 #: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:53
 #: ../shortcuts/data/messages:51 ../showDesktop/data/messages:51
-#: ../slider/data/messages:47 ../stack/data/messages:53
-#: ../switcher/data/messages:47 ../terminal/data/messages:51
-#: ../tomboy/data/messages:65 ../weather/data/messages:49
-#: ../weblets/data/messages:51 ../wifi/data/messages:47
-msgid "Decorations"
-msgstr "Decoraties"
+#: ../showDesktop2/data/messages:51 ../slider/data/messages:47
+#: ../stack/data/messages:53 ../switcher/data/messages:47
+#: ../terminal/data/messages:51 ../tomboy/data/messages:65
+#: ../weather/data/messages:49 ../weblets/data/messages:51
+#: ../wifi/data/messages:47
+msgid "-180"
+msgstr ""
 
 #: ../Clipper/data/messages:157 ../GMenu/data/messages:53
 #: ../Network-Monitor/data/messages:49 ../System-Monitor/data/messages:49
@@ -3142,12 +3163,13 @@ msgstr "Decoraties"
 #: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
 #: ../powermanager/data/messages:49 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:53
-#: ../slider/data/messages:49 ../stack/data/messages:55
-#: ../switcher/data/messages:49 ../terminal/data/messages:53
-#: ../tomboy/data/messages:67 ../weather/data/messages:51
-#: ../weblets/data/messages:53 ../wifi/data/messages:49
-msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr "Selecteer ´persoonlijk´ als u uw eigen decoraties wilt bepalen."
+#: ../showDesktop2/data/messages:53 ../slider/data/messages:49
+#: ../stack/data/messages:55 ../switcher/data/messages:49
+#: ../terminal/data/messages:53 ../tomboy/data/messages:67
+#: ../weather/data/messages:51 ../weblets/data/messages:53
+#: ../wifi/data/messages:49
+msgid "Decorations"
+msgstr "Decoraties"
 
 #: ../Clipper/data/messages:159 ../GMenu/data/messages:55
 #: ../Network-Monitor/data/messages:51 ../System-Monitor/data/messages:51
@@ -3159,12 +3181,13 @@ msgstr "Selecteer ´persoonlijk´ als u uw eigen decoraties wilt bepalen."
 #: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:57
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:55
-#: ../slider/data/messages:51 ../stack/data/messages:57
-#: ../switcher/data/messages:51 ../terminal/data/messages:55
-#: ../tomboy/data/messages:69 ../weather/data/messages:53
-#: ../weblets/data/messages:55 ../wifi/data/messages:51
-msgid "Choose a decoration theme for this desklet :"
-msgstr "Selecteer een decoratiethema voor dit desklet :"
+#: ../showDesktop2/data/messages:55 ../slider/data/messages:51
+#: ../stack/data/messages:57 ../switcher/data/messages:51
+#: ../terminal/data/messages:55 ../tomboy/data/messages:69
+#: ../weather/data/messages:53 ../weblets/data/messages:55
+#: ../wifi/data/messages:51
+msgid "Choose the 'personnal' one to define your own decorations below."
+msgstr "Selecteer ´persoonlijk´ als u uw eigen decoraties wilt bepalen."
 
 #: ../Clipper/data/messages:161 ../GMenu/data/messages:57
 #: ../Network-Monitor/data/messages:53 ../System-Monitor/data/messages:53
@@ -3176,16 +3199,13 @@ msgstr "Selecteer een decoratiethema voor dit desklet :"
 #: ../musicPlayer/data/messages:55 ../netspeed/data/messages:53
 #: ../powermanager/data/messages:53 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:57
-#: ../slider/data/messages:53 ../stack/data/messages:59
-#: ../switcher/data/messages:53 ../terminal/data/messages:57
-#: ../tomboy/data/messages:71 ../weather/data/messages:55
-#: ../weblets/data/messages:57 ../wifi/data/messages:53
-msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
-msgstr ""
-"Dit is een afbeelding die getoond wordt onder de tekeningen, zoals "
-"bijvoorbeeld een frame. Laat leeg als u er geen wilt gebruiken."
+#: ../showDesktop2/data/messages:57 ../slider/data/messages:53
+#: ../stack/data/messages:59 ../switcher/data/messages:53
+#: ../terminal/data/messages:57 ../tomboy/data/messages:71
+#: ../weather/data/messages:55 ../weblets/data/messages:57
+#: ../wifi/data/messages:53
+msgid "Choose a decoration theme for this desklet :"
+msgstr "Selecteer een decoratiethema voor dit desklet :"
 
 #: ../Clipper/data/messages:163 ../GMenu/data/messages:59
 #: ../Network-Monitor/data/messages:55 ../System-Monitor/data/messages:55
@@ -3193,17 +3213,21 @@ msgstr ""
 #: ../alsaMixer/data/messages:55 ../clock/data/messages:57
 #: ../compiz-icon/data/messages:55 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:55
-#: ../keyboard-indicator/data/messages:103 ../logout/data/messages:59
-#: ../mail/data/messages:55 ../musicPlayer/data/messages:57
-#: ../netspeed/data/messages:55 ../powermanager/data/messages:55
-#: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
-#: ../showDesktop/data/messages:59 ../slider/data/messages:55
+#: ../logout/data/messages:59 ../mail/data/messages:55
+#: ../musicPlayer/data/messages:57 ../netspeed/data/messages:55
+#: ../powermanager/data/messages:55 ../quick-browser/data/messages:61
+#: ../shortcuts/data/messages:59 ../showDesktop/data/messages:59
+#: ../showDesktop2/data/messages:59 ../slider/data/messages:55
 #: ../stack/data/messages:61 ../switcher/data/messages:55
 #: ../terminal/data/messages:59 ../tomboy/data/messages:73
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55
-msgid "Background image :"
-msgstr "Achtergrondafbeelding :"
+msgid ""
+"It's an image that will be displayed below the drawings, like a frame for "
+"exemple. Let empty to not use any."
+msgstr ""
+"Dit is een afbeelding die getoond wordt onder de tekeningen, zoals "
+"bijvoorbeeld een frame. Laat leeg als u er geen wilt gebruiken."
 
 #: ../Clipper/data/messages:165 ../GMenu/data/messages:61
 #: ../Network-Monitor/data/messages:57 ../System-Monitor/data/messages:57
@@ -3211,16 +3235,17 @@ msgstr "Achtergrondafbeelding :"
 #: ../alsaMixer/data/messages:57 ../clock/data/messages:59
 #: ../compiz-icon/data/messages:57 ../dnd2share/data/messages:61
 #: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:57
-#: ../logout/data/messages:61 ../mail/data/messages:57
-#: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
-#: ../powermanager/data/messages:57 ../quick-browser/data/messages:63
-#: ../shortcuts/data/messages:61 ../showDesktop/data/messages:61
+#: ../keyboard-indicator/data/messages:105 ../logout/data/messages:61
+#: ../mail/data/messages:57 ../musicPlayer/data/messages:59
+#: ../netspeed/data/messages:57 ../powermanager/data/messages:57
+#: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
+#: ../showDesktop/data/messages:61 ../showDesktop2/data/messages:61
 #: ../slider/data/messages:57 ../stack/data/messages:63
 #: ../switcher/data/messages:57 ../terminal/data/messages:61
 #: ../tomboy/data/messages:75 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
-msgid "Background tansparency :"
-msgstr "Doorzichtigheid achtergrond :"
+msgid "Background image :"
+msgstr "Achtergrondafbeelding :"
 
 #: ../Clipper/data/messages:167 ../GMenu/data/messages:63
 #: ../Network-Monitor/data/messages:59 ../System-Monitor/data/messages:59
@@ -3232,13 +3257,13 @@ msgstr "Doorzichtigheid achtergrond :"
 #: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
 #: ../powermanager/data/messages:59 ../quick-browser/data/messages:65
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:63
-#: ../slider/data/messages:59 ../stack/data/messages:65
-#: ../switcher/data/messages:59 ../terminal/data/messages:63
-#: ../tomboy/data/messages:77 ../weather/data/messages:61
-#: ../weblets/data/messages:63 ../wifi/data/messages:59
-msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
-"In pixels. Gebruik dit om de linkerkant van de tekeningen aan te passen."
+#: ../showDesktop2/data/messages:63 ../slider/data/messages:59
+#: ../stack/data/messages:65 ../switcher/data/messages:59
+#: ../terminal/data/messages:63 ../tomboy/data/messages:77
+#: ../weather/data/messages:61 ../weblets/data/messages:63
+#: ../wifi/data/messages:59
+msgid "Background tansparency :"
+msgstr "Doorzichtigheid achtergrond :"
 
 #: ../Clipper/data/messages:169 ../GMenu/data/messages:65
 #: ../Network-Monitor/data/messages:61 ../System-Monitor/data/messages:61
@@ -3250,12 +3275,14 @@ msgstr ""
 #: ../musicPlayer/data/messages:63 ../netspeed/data/messages:61
 #: ../powermanager/data/messages:61 ../quick-browser/data/messages:67
 #: ../shortcuts/data/messages:65 ../showDesktop/data/messages:65
-#: ../slider/data/messages:61 ../stack/data/messages:67
-#: ../switcher/data/messages:61 ../terminal/data/messages:65
-#: ../tomboy/data/messages:79 ../weather/data/messages:63
-#: ../weblets/data/messages:65 ../wifi/data/messages:61
-msgid "Left offset :"
-msgstr "Linkermarge :"
+#: ../showDesktop2/data/messages:65 ../slider/data/messages:61
+#: ../stack/data/messages:67 ../switcher/data/messages:61
+#: ../terminal/data/messages:65 ../tomboy/data/messages:79
+#: ../weather/data/messages:63 ../weblets/data/messages:65
+#: ../wifi/data/messages:61
+msgid "in pixels. Use this to adjust the left position of the drawings."
+msgstr ""
+"In pixels. Gebruik dit om de linkerkant van de tekeningen aan te passen."
 
 #: ../Clipper/data/messages:171 ../GMenu/data/messages:67
 #: ../Network-Monitor/data/messages:63 ../System-Monitor/data/messages:63
@@ -3267,13 +3294,13 @@ msgstr "Linkermarge :"
 #: ../musicPlayer/data/messages:65 ../netspeed/data/messages:63
 #: ../powermanager/data/messages:63 ../quick-browser/data/messages:69
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:67
-#: ../slider/data/messages:63 ../stack/data/messages:69
-#: ../switcher/data/messages:63 ../terminal/data/messages:67
-#: ../tomboy/data/messages:81 ../weather/data/messages:65
-#: ../weblets/data/messages:67 ../wifi/data/messages:63
-msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
-"In pixels. Gebruik dit om de bovenkant van de tekeningen aan te passen."
+#: ../showDesktop2/data/messages:67 ../slider/data/messages:63
+#: ../stack/data/messages:69 ../switcher/data/messages:63
+#: ../terminal/data/messages:67 ../tomboy/data/messages:81
+#: ../weather/data/messages:65 ../weblets/data/messages:67
+#: ../wifi/data/messages:63
+msgid "Left offset :"
+msgstr "Linkermarge :"
 
 #: ../Clipper/data/messages:173 ../GMenu/data/messages:69
 #: ../Network-Monitor/data/messages:65 ../System-Monitor/data/messages:65
@@ -3285,12 +3312,14 @@ msgstr ""
 #: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
 #: ../powermanager/data/messages:65 ../quick-browser/data/messages:71
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:69
-#: ../slider/data/messages:65 ../stack/data/messages:71
-#: ../switcher/data/messages:65 ../terminal/data/messages:69
-#: ../tomboy/data/messages:83 ../weather/data/messages:67
-#: ../weblets/data/messages:69 ../wifi/data/messages:65
-msgid "Top offset :"
-msgstr "Bovenmarge :"
+#: ../showDesktop2/data/messages:69 ../slider/data/messages:65
+#: ../stack/data/messages:71 ../switcher/data/messages:65
+#: ../terminal/data/messages:69 ../tomboy/data/messages:83
+#: ../weather/data/messages:67 ../weblets/data/messages:69
+#: ../wifi/data/messages:65
+msgid "in pixels. Use this to adjust the top position of the drawings."
+msgstr ""
+"In pixels. Gebruik dit om de bovenkant van de tekeningen aan te passen."
 
 #: ../Clipper/data/messages:175 ../GMenu/data/messages:71
 #: ../Network-Monitor/data/messages:67 ../System-Monitor/data/messages:67
@@ -3302,13 +3331,13 @@ msgstr "Bovenmarge :"
 #: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
 #: ../powermanager/data/messages:67 ../quick-browser/data/messages:73
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:71
-#: ../slider/data/messages:67 ../stack/data/messages:73
-#: ../switcher/data/messages:67 ../terminal/data/messages:71
-#: ../tomboy/data/messages:85 ../weather/data/messages:69
-#: ../weblets/data/messages:71 ../wifi/data/messages:67
-msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
-"In pixels. Gebruik dit om de rechterkant van de tekeningen aan te passen."
+#: ../showDesktop2/data/messages:71 ../slider/data/messages:67
+#: ../stack/data/messages:73 ../switcher/data/messages:67
+#: ../terminal/data/messages:71 ../tomboy/data/messages:85
+#: ../weather/data/messages:69 ../weblets/data/messages:71
+#: ../wifi/data/messages:67
+msgid "Top offset :"
+msgstr "Bovenmarge :"
 
 #: ../Clipper/data/messages:177 ../GMenu/data/messages:73
 #: ../Network-Monitor/data/messages:69 ../System-Monitor/data/messages:69
@@ -3320,12 +3349,14 @@ msgstr ""
 #: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
 #: ../powermanager/data/messages:69 ../quick-browser/data/messages:75
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:73
-#: ../slider/data/messages:69 ../stack/data/messages:75
-#: ../switcher/data/messages:69 ../terminal/data/messages:73
-#: ../tomboy/data/messages:87 ../weather/data/messages:71
-#: ../weblets/data/messages:73 ../wifi/data/messages:69
-msgid "Right offset :"
-msgstr "Rechtermarge :"
+#: ../showDesktop2/data/messages:73 ../slider/data/messages:69
+#: ../stack/data/messages:75 ../switcher/data/messages:69
+#: ../terminal/data/messages:73 ../tomboy/data/messages:87
+#: ../weather/data/messages:71 ../weblets/data/messages:73
+#: ../wifi/data/messages:69
+msgid "in pixels. Use this to adjust the right position of the drawings."
+msgstr ""
+"In pixels. Gebruik dit om de rechterkant van de tekeningen aan te passen."
 
 #: ../Clipper/data/messages:179 ../GMenu/data/messages:75
 #: ../Network-Monitor/data/messages:71 ../System-Monitor/data/messages:71
@@ -3337,13 +3368,13 @@ msgstr "Rechtermarge :"
 #: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
 #: ../powermanager/data/messages:71 ../quick-browser/data/messages:77
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:75
-#: ../slider/data/messages:71 ../stack/data/messages:77
-#: ../switcher/data/messages:71 ../terminal/data/messages:75
-#: ../tomboy/data/messages:89 ../weather/data/messages:73
-#: ../weblets/data/messages:75 ../wifi/data/messages:71
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
-"In pixels. Gebruik dit om de onderkant van de tekeningen aan te passen."
+#: ../showDesktop2/data/messages:75 ../slider/data/messages:71
+#: ../stack/data/messages:77 ../switcher/data/messages:71
+#: ../terminal/data/messages:75 ../tomboy/data/messages:89
+#: ../weather/data/messages:73 ../weblets/data/messages:75
+#: ../wifi/data/messages:71
+msgid "Right offset :"
+msgstr "Rechtermarge :"
 
 #: ../Clipper/data/messages:181 ../GMenu/data/messages:77
 #: ../Network-Monitor/data/messages:73 ../System-Monitor/data/messages:73
@@ -3355,12 +3386,14 @@ msgstr ""
 #: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
 #: ../powermanager/data/messages:73 ../quick-browser/data/messages:79
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:77
-#: ../slider/data/messages:73 ../stack/data/messages:79
-#: ../switcher/data/messages:73 ../terminal/data/messages:77
-#: ../tomboy/data/messages:91 ../weather/data/messages:75
-#: ../weblets/data/messages:77 ../wifi/data/messages:73
-msgid "Bottom offset :"
-msgstr "Ondermarge :"
+#: ../showDesktop2/data/messages:77 ../slider/data/messages:73
+#: ../stack/data/messages:79 ../switcher/data/messages:73
+#: ../terminal/data/messages:77 ../tomboy/data/messages:91
+#: ../weather/data/messages:75 ../weblets/data/messages:77
+#: ../wifi/data/messages:73
+msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgstr ""
+"In pixels. Gebruik dit om de onderkant van de tekeningen aan te passen."
 
 #: ../Clipper/data/messages:183 ../GMenu/data/messages:79
 #: ../Network-Monitor/data/messages:75 ../System-Monitor/data/messages:75
@@ -3372,16 +3405,13 @@ msgstr "Ondermarge :"
 #: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
 #: ../powermanager/data/messages:75 ../quick-browser/data/messages:81
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:79
-#: ../slider/data/messages:75 ../stack/data/messages:81
-#: ../switcher/data/messages:75 ../terminal/data/messages:79
-#: ../tomboy/data/messages:93 ../weather/data/messages:77
-#: ../weblets/data/messages:79 ../wifi/data/messages:75
-msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
-msgstr ""
-"Dit is een afbeelding die getoond wordt boven de tekeningen, zoals "
-"bijvoorbeeld een reflectie. Laat leeg als u er geen wilt gebruiken."
+#: ../showDesktop2/data/messages:79 ../slider/data/messages:75
+#: ../stack/data/messages:81 ../switcher/data/messages:75
+#: ../terminal/data/messages:79 ../tomboy/data/messages:93
+#: ../weather/data/messages:77 ../weblets/data/messages:79
+#: ../wifi/data/messages:75
+msgid "Bottom offset :"
+msgstr "Ondermarge :"
 
 #: ../Clipper/data/messages:185 ../GMenu/data/messages:81
 #: ../Network-Monitor/data/messages:77 ../System-Monitor/data/messages:77
@@ -3393,12 +3423,17 @@ msgstr ""
 #: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
 #: ../powermanager/data/messages:77 ../quick-browser/data/messages:83
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:81
-#: ../slider/data/messages:77 ../stack/data/messages:83
-#: ../switcher/data/messages:77 ../terminal/data/messages:81
-#: ../tomboy/data/messages:95 ../weather/data/messages:79
-#: ../weblets/data/messages:81 ../wifi/data/messages:77
-msgid "Foreground image :"
-msgstr "Voorgrondafbeelding :"
+#: ../showDesktop2/data/messages:81 ../slider/data/messages:77
+#: ../stack/data/messages:83 ../switcher/data/messages:77
+#: ../terminal/data/messages:81 ../tomboy/data/messages:95
+#: ../weather/data/messages:79 ../weblets/data/messages:81
+#: ../wifi/data/messages:77
+msgid ""
+"It's an image that will be displayed above the drawings, like a reflect for "
+"exemple. Let empty to not use any."
+msgstr ""
+"Dit is een afbeelding die getoond wordt boven de tekeningen, zoals "
+"bijvoorbeeld een reflectie. Laat leeg als u er geen wilt gebruiken."
 
 #: ../Clipper/data/messages:187 ../GMenu/data/messages:83
 #: ../Network-Monitor/data/messages:79 ../System-Monitor/data/messages:79
@@ -3410,14 +3445,33 @@ msgstr "Voorgrondafbeelding :"
 #: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
 #: ../powermanager/data/messages:79 ../quick-browser/data/messages:85
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:83
-#: ../slider/data/messages:79 ../stack/data/messages:85
-#: ../switcher/data/messages:79 ../terminal/data/messages:83
-#: ../tomboy/data/messages:97 ../weather/data/messages:81
-#: ../weblets/data/messages:83 ../wifi/data/messages:79
+#: ../showDesktop2/data/messages:83 ../slider/data/messages:79
+#: ../stack/data/messages:85 ../switcher/data/messages:79
+#: ../terminal/data/messages:83 ../tomboy/data/messages:97
+#: ../weather/data/messages:81 ../weblets/data/messages:83
+#: ../wifi/data/messages:79
+msgid "Foreground image :"
+msgstr "Voorgrondafbeelding :"
+
+#: ../Clipper/data/messages:189 ../GMenu/data/messages:85
+#: ../Network-Monitor/data/messages:81 ../System-Monitor/data/messages:81
+#: ../Toons/data/messages:81 ../Xgamma/data/messages:85
+#: ../alsaMixer/data/messages:81 ../clock/data/messages:83
+#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:85
+#: ../dustbin/data/messages:81 ../keyboard-indicator/data/messages:81
+#: ../logout/data/messages:85 ../mail/data/messages:81
+#: ../musicPlayer/data/messages:83 ../netspeed/data/messages:81
+#: ../powermanager/data/messages:81 ../quick-browser/data/messages:87
+#: ../shortcuts/data/messages:85 ../showDesktop/data/messages:85
+#: ../showDesktop2/data/messages:85 ../slider/data/messages:81
+#: ../stack/data/messages:87 ../switcher/data/messages:81
+#: ../terminal/data/messages:85 ../tomboy/data/messages:99
+#: ../weather/data/messages:83 ../weblets/data/messages:85
+#: ../wifi/data/messages:81
 msgid "Foreground tansparency :"
 msgstr "Doorzichtigheid voorgrond :"
 
-#: ../Clipper/data/messages:191
+#: ../Clipper/data/messages:193
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
@@ -3425,27 +3479,27 @@ msgstr ""
 "Klemborditems zijn items die u krijgt met CTRL+c. Selectie-items zijn items "
 "die u krijgt door tekst te selecteren met uw muis."
 
-#: ../Clipper/data/messages:193
+#: ../Clipper/data/messages:195
 msgid "Which items should be remembered ?"
 msgstr "Welke items moeten onthouden worden ?"
 
-#: ../Clipper/data/messages:197
+#: ../Clipper/data/messages:199
 msgid "Clipboard"
 msgstr "Klembord"
 
-#: ../Clipper/data/messages:199
+#: ../Clipper/data/messages:201
 msgid "Selection"
 msgstr "Selectie"
 
-#: ../Clipper/data/messages:201
+#: ../Clipper/data/messages:203
 msgid "Both"
 msgstr "Beide"
 
-#: ../Clipper/data/messages:203
+#: ../Clipper/data/messages:205
 msgid "Number of items :"
 msgstr "Aantal items :"
 
-#: ../Clipper/data/messages:205
+#: ../Clipper/data/messages:207
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
@@ -3453,47 +3507,46 @@ msgstr ""
 "Dit is vooral handig als u vaak tekst selecteert met uw muis en u niet uw "
 "klemborditems wilt verliezen, vanwege een groot aantal selectie-items."
 
-#: ../Clipper/data/messages:207
+#: ../Clipper/data/messages:209
 msgid "Separate clipboard and selection ?"
 msgstr "Klembord en selectie scheiden ?"
 
-#: ../Clipper/data/messages:209
+#: ../Clipper/data/messages:211
 msgid "If so, number of selection items :"
 msgstr "Indien ja, aantal selectie-items :"
 
-#: ../Clipper/data/messages:211
+#: ../Clipper/data/messages:213
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met CTRL+v"
 
-#: ../Clipper/data/messages:213
+#: ../Clipper/data/messages:215
 msgid "Paste into Clipboard ?"
 msgstr "Plakken in klembord ?"
 
-#: ../Clipper/data/messages:215
+#: ../Clipper/data/messages:217
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr ""
-"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
-#: ../Clipper/data/messages:217
+#: ../Clipper/data/messages:219
 msgid "Paste into Selection ?"
 msgstr "Plakken in selectie ?"
 
-#: ../Clipper/data/messages:219
+#: ../Clipper/data/messages:221
 msgid "Shortkey to pop-up the items menu :"
 msgstr "Sneltoets voor het items-menu :"
 
-#: ../Clipper/data/messages:221
+#: ../Clipper/data/messages:223
 msgid "Pop-up menus at mouse position ?"
 msgstr "Pop-upmenu´s op muispositie ?"
 
-#: ../Clipper/data/messages:223 ../compiz-icon/data/messages:83
+#: ../Clipper/data/messages:225 ../compiz-icon/data/messages:85
 msgid "Actions"
 msgstr "Acties"
 
-#: ../Clipper/data/messages:225
+#: ../Clipper/data/messages:227
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
@@ -3501,35 +3554,35 @@ msgstr ""
 "Als sommige acties zijn gekoppeld aan een item, zullen deze aan u worden "
 "voorgesteld wanneer het item wordt aangemaakt."
 
-#: ../Clipper/data/messages:227
+#: ../Clipper/data/messages:229
 msgid "Enable actions ?"
 msgstr "Acties inschakelen ?"
 
-#: ../Clipper/data/messages:229
+#: ../Clipper/data/messages:231
 msgid "Display the actions when selecting an item in the history."
 msgstr "Toon de acties wanneer een item uit de historie wordt geselecteerd."
 
-#: ../Clipper/data/messages:231
+#: ../Clipper/data/messages:233
 msgid "Replay actions ?"
 msgstr "Acties herhalen ?"
 
-#: ../Clipper/data/messages:233 ../Network-Monitor/data/messages:165
-#: ../System-Monitor/data/messages:141 ../System-Monitor/data/messages:177
-#: ../dnd2share/data/messages:91 ../netspeed/data/messages:125
-#: ../powermanager/data/messages:137 ../slider/data/messages:99
-#: ../wifi/data/messages:157
+#: ../Clipper/data/messages:235 ../Network-Monitor/data/messages:167
+#: ../System-Monitor/data/messages:143 ../System-Monitor/data/messages:179
+#: ../dnd2share/data/messages:93 ../netspeed/data/messages:127
+#: ../powermanager/data/messages:139 ../slider/data/messages:101
+#: ../wifi/data/messages:159
 msgid "in seconds."
 msgstr "In seconden."
 
-#: ../Clipper/data/messages:235
+#: ../Clipper/data/messages:237
 msgid "Duration of the action menu :"
 msgstr "Tijdsduur van het actiemenu :"
 
-#: ../Clipper/data/messages:237
+#: ../Clipper/data/messages:239
 msgid "Persistent items"
 msgstr "Vaste items"
 
-#: ../Clipper/data/messages:239
+#: ../Clipper/data/messages:241
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "Een lijst van vaste items, die u op kunt roepen met een middelklik :"
 
@@ -3581,213 +3634,213 @@ msgstr "Mogen externe toepassingen de iconen animeren ?"
 msgid "Let extern applications register new module ?"
 msgstr "Mogen externe toepassingen een nieuwe module registreren ?"
 
-#: ../GMenu/data/messages:87 ../quick-browser/data/messages:93
+#: ../GMenu/data/messages:89 ../quick-browser/data/messages:95
 msgid "Display icons in the menu ?"
 msgstr "Iconen tonen in het menu ?"
 
-#: ../GMenu/data/messages:89 ../quick-browser/data/messages:109
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:111
 msgid "Shortkey to show/hide the menu :"
 msgstr "Sneltoets om menu te tonen/verbergen :"
 
-#: ../GMenu/data/messages:91
+#: ../GMenu/data/messages:93
 msgid "Shortkey to show/hide the quick-launch dialog :"
 msgstr "Sneltoets om de snelstartdialoog te tonen/verbergen :"
 
-#: ../GMenu/data/messages:95
+#: ../GMenu/data/messages:97
 msgid "Command to use to configure the menu :"
 msgstr "Opdracht om menu te configureren :"
 
-#: ../GMenu/data/messages:97
+#: ../GMenu/data/messages:99
 msgid "Recent documents"
 msgstr "Recente documenten"
 
-#: ../GMenu/data/messages:99
+#: ../GMenu/data/messages:101
 msgid "Show recent documents ?"
 msgstr "Recente documenten tonen ?"
 
-#: ../GMenu/data/messages:101
+#: ../GMenu/data/messages:103
 msgid "Let blank to not use this filter."
 msgstr "Laat leeg om dit filter niet te gebruiken."
 
-#: ../GMenu/data/messages:103
+#: ../GMenu/data/messages:105
 msgid "Only show files that are under this folder or its sub-folder :"
 msgstr "Toon alleen bestanden in deze map of sub-mappen :"
 
-#: ../GMenu/data/messages:105
+#: ../GMenu/data/messages:107
 msgid "in days. Set 0 to not use this filter."
 msgstr "In dagen Stel in op 0 om het filter niet te gebruiken."
 
-#: ../GMenu/data/messages:107
+#: ../GMenu/data/messages:109
 msgid "Only show files whose last modification date is less than ;"
 msgstr "Toon alleen bestanden waarvan de laatste wijzigingsdatum ligt voor ;"
 
-#: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
-#: ../netspeed/data/messages:83 ../powermanager/data/messages:83
-#: ../wifi/data/messages:83
+#: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:85
+#: ../netspeed/data/messages:85 ../powermanager/data/messages:85
+#: ../wifi/data/messages:85
 msgid "Choose the style of the display : "
 msgstr "Selecteer de stijl van de weergave : "
 
-#: ../Network-Monitor/data/messages:85 ../Network-Monitor/data/messages:91
-#: ../System-Monitor/data/messages:85 ../System-Monitor/data/messages:89
-#: ../netspeed/data/messages:85 ../netspeed/data/messages:89
-#: ../powermanager/data/messages:85 ../powermanager/data/messages:91
-#: ../wifi/data/messages:85 ../wifi/data/messages:91
+#: ../Network-Monitor/data/messages:87 ../Network-Monitor/data/messages:93
+#: ../System-Monitor/data/messages:87 ../System-Monitor/data/messages:91
+#: ../netspeed/data/messages:87 ../netspeed/data/messages:91
+#: ../powermanager/data/messages:87 ../powermanager/data/messages:93
+#: ../wifi/data/messages:87 ../wifi/data/messages:93
 msgid "Gauge"
 msgstr "Meter"
 
-#: ../Network-Monitor/data/messages:87 ../Network-Monitor/data/messages:95
-#: ../System-Monitor/data/messages:87 ../System-Monitor/data/messages:93
-#: ../netspeed/data/messages:87 ../netspeed/data/messages:93
-#: ../powermanager/data/messages:87 ../powermanager/data/messages:95
-#: ../wifi/data/messages:87 ../wifi/data/messages:95
+#: ../Network-Monitor/data/messages:89 ../Network-Monitor/data/messages:97
+#: ../System-Monitor/data/messages:89 ../System-Monitor/data/messages:95
+#: ../netspeed/data/messages:89 ../netspeed/data/messages:95
+#: ../powermanager/data/messages:89 ../powermanager/data/messages:97
+#: ../wifi/data/messages:89 ../wifi/data/messages:97
 msgid "Graph"
 msgstr "Grafiek"
 
-#: ../Network-Monitor/data/messages:89 ../Network-Monitor/data/messages:119
-#: ../powermanager/data/messages:89 ../powermanager/data/messages:119
-#: ../shortcuts/data/messages:87 ../wifi/data/messages:89
-#: ../wifi/data/messages:119
+#: ../Network-Monitor/data/messages:91 ../Network-Monitor/data/messages:121
+#: ../powermanager/data/messages:91 ../powermanager/data/messages:121
+#: ../shortcuts/data/messages:89 ../wifi/data/messages:91
+#: ../wifi/data/messages:121
 msgid "Icons"
 msgstr "Iconen"
-
-#: ../Network-Monitor/data/messages:97 ../System-Monitor/data/messages:95
-#: ../netspeed/data/messages:95 ../powermanager/data/messages:97
-#: ../wifi/data/messages:97
-msgid "Type of graphic :"
-msgstr "Soort grafiek :"
 
 #: ../Network-Monitor/data/messages:99 ../System-Monitor/data/messages:97
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:99
 #: ../wifi/data/messages:99
-msgid "Line"
-msgstr "Lijn"
+msgid "Type of graphic :"
+msgstr "Soort grafiek :"
 
 #: ../Network-Monitor/data/messages:101 ../System-Monitor/data/messages:99
 #: ../netspeed/data/messages:99 ../powermanager/data/messages:101
 #: ../wifi/data/messages:101
-msgid "Plain"
-msgstr "Simpel"
+msgid "Line"
+msgstr "Lijn"
 
 #: ../Network-Monitor/data/messages:103 ../System-Monitor/data/messages:101
 #: ../netspeed/data/messages:101 ../powermanager/data/messages:103
 #: ../wifi/data/messages:103
-msgid "Bar"
-msgstr "Kolom"
+msgid "Plain"
+msgstr "Simpel"
 
 #: ../Network-Monitor/data/messages:105 ../System-Monitor/data/messages:103
 #: ../netspeed/data/messages:103 ../powermanager/data/messages:105
 #: ../wifi/data/messages:105
-msgid "Circle"
-msgstr "Cirkel"
+msgid "Bar"
+msgstr "Kolom"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:105
 #: ../netspeed/data/messages:105 ../powermanager/data/messages:107
 #: ../wifi/data/messages:107
+msgid "Circle"
+msgstr "Cirkel"
+
+#: ../Network-Monitor/data/messages:109 ../System-Monitor/data/messages:107
+#: ../netspeed/data/messages:107 ../powermanager/data/messages:109
+#: ../wifi/data/messages:109
 msgid "Plain Circle"
 msgstr "Simpele cirkel"
 
-#: ../Network-Monitor/data/messages:109 ../wifi/data/messages:109
+#: ../Network-Monitor/data/messages:111 ../wifi/data/messages:111
 msgid "It's the color of the graphic for high quality signal."
 msgstr "Dit is de kleur voor de hoge kwaliteit signalen in de grafiek."
 
-#: ../Network-Monitor/data/messages:111 ../System-Monitor/data/messages:109
-#: ../netspeed/data/messages:109 ../powermanager/data/messages:111
-#: ../wifi/data/messages:111
+#: ../Network-Monitor/data/messages:113 ../System-Monitor/data/messages:111
+#: ../netspeed/data/messages:111 ../powermanager/data/messages:113
+#: ../wifi/data/messages:113
 msgid "High values color :"
 msgstr "Hoge waarden kleur :"
 
-#: ../Network-Monitor/data/messages:113 ../wifi/data/messages:113
+#: ../Network-Monitor/data/messages:115 ../wifi/data/messages:115
 msgid "It's the color of the graphic for low quality signal."
 msgstr "Dit is de kleur voor de lage kwaliteit signalen in de grafiek."
-
-#: ../Network-Monitor/data/messages:115 ../System-Monitor/data/messages:113
-#: ../netspeed/data/messages:113 ../powermanager/data/messages:115
-#: ../wifi/data/messages:115
-msgid "Low values color :"
-msgstr "Lage waarden kleur :"
 
 #: ../Network-Monitor/data/messages:117 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:117
 #: ../wifi/data/messages:117
+msgid "Low values color :"
+msgstr "Lage waarden kleur :"
+
+#: ../Network-Monitor/data/messages:119 ../System-Monitor/data/messages:117
+#: ../netspeed/data/messages:117 ../powermanager/data/messages:119
+#: ../wifi/data/messages:119
 msgid "Background color of the graphic :"
 msgstr "Achtergrondkleur van de grafiek :"
 
-#: ../Network-Monitor/data/messages:121 ../wifi/data/messages:121
+#: ../Network-Monitor/data/messages:123 ../wifi/data/messages:123
 msgid "Effect to apply on the icon according to strength :"
 msgstr "Effect om toe te passen op icoon, afhankelijk van sterkte :"
 
-#: ../Network-Monitor/data/messages:125 ../alsaMixer/data/messages:121
-#: ../wifi/data/messages:125
+#: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
+#: ../wifi/data/messages:127
 msgid "Zoom"
 msgstr "Vergroten"
 
-#: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
-#: ../wifi/data/messages:127
+#: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
+#: ../wifi/data/messages:129
 msgid "Transparency"
 msgstr "Doorzichtigheid"
 
-#: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
-#: ../wifi/data/messages:129
+#: ../Network-Monitor/data/messages:131 ../alsaMixer/data/messages:127
+#: ../wifi/data/messages:131
 msgid "Draw Bar"
 msgstr "Balk tekenen"
 
-#: ../Network-Monitor/data/messages:131 ../Network-Monitor/data/messages:135
-#: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:143
-#: ../Network-Monitor/data/messages:147 ../Network-Monitor/data/messages:151
-#: ../Network-Monitor/data/messages:155 ../Network-Monitor/data/messages:159
-#: ../musicPlayer/data/messages:157 ../musicPlayer/data/messages:161
-#: ../musicPlayer/data/messages:165 ../musicPlayer/data/messages:169
-#: ../musicPlayer/data/messages:173 ../wifi/data/messages:131
-#: ../wifi/data/messages:135 ../wifi/data/messages:139
-#: ../wifi/data/messages:143 ../wifi/data/messages:147
-#: ../wifi/data/messages:151
+#: ../Network-Monitor/data/messages:133 ../Network-Monitor/data/messages:137
+#: ../Network-Monitor/data/messages:141 ../Network-Monitor/data/messages:145
+#: ../Network-Monitor/data/messages:149 ../Network-Monitor/data/messages:153
+#: ../Network-Monitor/data/messages:157 ../Network-Monitor/data/messages:161
+#: ../musicPlayer/data/messages:159 ../musicPlayer/data/messages:163
+#: ../musicPlayer/data/messages:167 ../musicPlayer/data/messages:171
+#: ../musicPlayer/data/messages:175 ../wifi/data/messages:133
+#: ../wifi/data/messages:137 ../wifi/data/messages:141
+#: ../wifi/data/messages:145 ../wifi/data/messages:149
+#: ../wifi/data/messages:153
 msgid "Let it empty to use the default icon."
 msgstr "Laat leeg om standaardicoon te gebruiken."
 
-#: ../Network-Monitor/data/messages:133
+#: ../Network-Monitor/data/messages:135
 msgid "Name of an image for the 'No signal' icon :"
 msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
 
-#: ../Network-Monitor/data/messages:137
+#: ../Network-Monitor/data/messages:139
 msgid "Name of an image for the 'Very low' icon :"
 msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
 
-#: ../Network-Monitor/data/messages:141
+#: ../Network-Monitor/data/messages:143
 msgid "Name of an image for the 'Low' icon :"
 msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
 
-#: ../Network-Monitor/data/messages:145
+#: ../Network-Monitor/data/messages:147
 msgid "Name of an image for the 'Middle' icon :"
 msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
 
-#: ../Network-Monitor/data/messages:149
+#: ../Network-Monitor/data/messages:151
 msgid "Name of an image for the 'Good' icon :"
 msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
 
-#: ../Network-Monitor/data/messages:153
+#: ../Network-Monitor/data/messages:155
 msgid "Name of an image for the 'Excellent' icon :"
 msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 
-#: ../Network-Monitor/data/messages:157
+#: ../Network-Monitor/data/messages:159
 msgid "Name of an image for the 'Not connected' icon :"
 msgstr "Naam van een afbeelding voor het 'Niet verbonden' icoon :"
 
-#: ../Network-Monitor/data/messages:161
+#: ../Network-Monitor/data/messages:163
 msgid "Name of an image for the 'Wired connection' icon :"
 msgstr "Naam van een afbeelding voor het 'Verbinding met draad' icoon :"
 
-#: ../Network-Monitor/data/messages:163 ../System-Monitor/data/messages:119
-#: ../netspeed/data/messages:119 ../powermanager/data/messages:135
-#: ../tomboy/data/messages:117 ../wifi/data/messages:155
+#: ../Network-Monitor/data/messages:165 ../System-Monitor/data/messages:121
+#: ../netspeed/data/messages:121 ../powermanager/data/messages:137
+#: ../tomboy/data/messages:119 ../wifi/data/messages:157
 msgid "Parameters"
 msgstr "Opties"
 
-#: ../Network-Monitor/data/messages:167 ../wifi/data/messages:159
+#: ../Network-Monitor/data/messages:169 ../wifi/data/messages:161
 msgid "Delay between signal checks :"
 msgstr "Tijdsduur tussen signaalcontroles :"
 
-#: ../Network-Monitor/data/messages:169 ../System-Monitor/data/messages:145
-#: ../wifi/data/messages:161
+#: ../Network-Monitor/data/messages:171 ../System-Monitor/data/messages:147
+#: ../wifi/data/messages:163
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
@@ -3795,12 +3848,12 @@ msgstr ""
 "U heeft OpenGL nodig voor deze optie. Stel in op 0 om het niet te gebruiken, "
 "1 betekent dat de beweging doorgaand is."
 
-#: ../Network-Monitor/data/messages:171 ../System-Monitor/data/messages:147
-#: ../wifi/data/messages:163
+#: ../Network-Monitor/data/messages:173 ../System-Monitor/data/messages:149
+#: ../wifi/data/messages:165
 msgid "How smooth is the movement ?"
 msgstr "Hoe vloeiend is de beweging ?"
 
-#: ../Network-Monitor/data/messages:173 ../wifi/data/messages:165
+#: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
@@ -3808,33 +3861,33 @@ msgstr ""
 "Hierdoor kunt u de standaardopdrachtlijn van het applet overschrijven en uw "
 "eigen draadloze verbinding configureren."
 
-#: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
+#: ../Network-Monitor/data/messages:177 ../wifi/data/messages:169
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
 
-#: ../Network-Monitor/data/messages:177 ../weather/data/messages:101
-#: ../wifi/data/messages:169
+#: ../Network-Monitor/data/messages:179 ../weather/data/messages:103
+#: ../wifi/data/messages:171
 msgid "Info"
 msgstr "Info"
 
-#: ../Network-Monitor/data/messages:179 ../musicPlayer/data/messages:131
-#: ../wifi/data/messages:171
+#: ../Network-Monitor/data/messages:181 ../musicPlayer/data/messages:133
+#: ../wifi/data/messages:173
 msgid "Information to display on the icon :"
 msgstr "Informatie om te tonen op het icoon :"
 
-#: ../Network-Monitor/data/messages:183 ../wifi/data/messages:175
+#: ../Network-Monitor/data/messages:185 ../wifi/data/messages:177
 msgid "Signal Strength"
 msgstr "Signaalsterkte"
 
-#: ../Network-Monitor/data/messages:185 ../wifi/data/messages:177
+#: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
 msgid "Signal Strength in percent"
 msgstr "Signaalsterkte in procent"
 
-#: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
+#: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Raw Signal Informations"
 msgstr "Ruwe signaalinformatie"
 
-#: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
+#: ../Network-Monitor/data/messages:191 ../wifi/data/messages:183
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
@@ -4018,71 +4071,71 @@ msgstr "Favoriete toepassing die begint met een 'Y' :"
 msgid "Preferred application starting with 'z' :"
 msgstr "Favoriete toepassing die begint met een 'Z' :"
 
-#: ../System-Monitor/data/messages:107 ../powermanager/data/messages:109
+#: ../System-Monitor/data/messages:109 ../powermanager/data/messages:111
 msgid "It's the color of the graphic for high values."
 msgstr "Dit is de kleur voor de hoge waarden in de grafiek."
 
-#: ../System-Monitor/data/messages:111 ../powermanager/data/messages:113
+#: ../System-Monitor/data/messages:113 ../powermanager/data/messages:115
 msgid "It's the color of the graphic for low values."
 msgstr "Dit is de kleur voor de lage waarden in de grafiek."
 
-#: ../System-Monitor/data/messages:117 ../netspeed/data/messages:117
+#: ../System-Monitor/data/messages:119 ../netspeed/data/messages:119
 msgid "Show all values on same graph ?"
 msgstr "Alle waarden in dezelfde grafiek tonen ?"
 
-#: ../System-Monitor/data/messages:121
+#: ../System-Monitor/data/messages:123
 msgid "Show CPU usage ?"
 msgstr "CPU-gebruik tonen ?"
 
-#: ../System-Monitor/data/messages:123
+#: ../System-Monitor/data/messages:125
 msgid "Show RAM usage ?"
 msgstr "RAM-gebruik tonen ?"
 
-#: ../System-Monitor/data/messages:125
+#: ../System-Monitor/data/messages:127
 msgid "Show SWAP too ?"
 msgstr "SWAP ook tonen ?"
 
-#: ../System-Monitor/data/messages:127
+#: ../System-Monitor/data/messages:129
 msgid "You need an nVidia and the 'nvidia-settings' tool."
 msgstr "U heeft nVidia kaart nodig en ´nvidia-settings´."
 
-#: ../System-Monitor/data/messages:129
+#: ../System-Monitor/data/messages:131
 msgid "Show graphic card temperature ?"
 msgstr "Temperatuur grafische kaart tonen ?"
 
-#: ../System-Monitor/data/messages:131
+#: ../System-Monitor/data/messages:133
 msgid "Show free memory instead of used memory ?"
 msgstr "Vrij geheugen tonen in plaats van gebruikt geheugen ?"
 
-#: ../System-Monitor/data/messages:133
+#: ../System-Monitor/data/messages:135
 msgid "Display values :"
 msgstr "Waarden tonen :"
 
-#: ../System-Monitor/data/messages:135 ../alsaMixer/data/messages:111
-#: ../clock/data/messages:89 ../netspeed/data/messages:135
-#: ../shortcuts/data/messages:113
+#: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:113
+#: ../clock/data/messages:91 ../netspeed/data/messages:137
+#: ../shortcuts/data/messages:115
 msgid "No"
 msgstr "Nee"
 
-#: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:115
-#: ../clock/data/messages:91 ../netspeed/data/messages:137
+#: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:117
+#: ../clock/data/messages:93 ../netspeed/data/messages:139
 msgid "On icon"
 msgstr "Op icoon"
 
-#: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:113
-#: ../clock/data/messages:93 ../netspeed/data/messages:139
+#: ../System-Monitor/data/messages:141 ../alsaMixer/data/messages:115
+#: ../clock/data/messages:95 ../netspeed/data/messages:141
 msgid "On label"
 msgstr "Op label"
 
-#: ../System-Monitor/data/messages:143
+#: ../System-Monitor/data/messages:145
 msgid "Delay between refresh :"
 msgstr "Tijd tussen vernieuwen :"
 
-#: ../System-Monitor/data/messages:151 ../netspeed/data/messages:143
+#: ../System-Monitor/data/messages:153 ../netspeed/data/messages:145
 msgid "User command to show a system monitor :"
 msgstr "Gebruikersopdracht om systeemmonitor te tonen :"
 
-#: ../System-Monitor/data/messages:153
+#: ../System-Monitor/data/messages:155
 msgid ""
 "It will prevent the system monitor's icon to appear in the taskbar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
@@ -4091,19 +4144,19 @@ msgstr ""
 "taakbalk. Het icoon van het applet zal zich dan gedragen als een starter, "
 "een toepassing en applet."
 
-#: ../System-Monitor/data/messages:155
+#: ../System-Monitor/data/messages:157
 msgid "Steal the system monitor's icon in taskbar ?"
 msgstr "Icoon systeemmonitor uit taakbalk stelen ?"
 
-#: ../System-Monitor/data/messages:159
+#: ../System-Monitor/data/messages:161
 msgid "Class of the system monitor program:"
 msgstr "Klasse van systeemmonitortoepassing:"
 
-#: ../System-Monitor/data/messages:161
+#: ../System-Monitor/data/messages:163
 msgid "Top List"
 msgstr "Toplijst"
 
-#: ../System-Monitor/data/messages:163
+#: ../System-Monitor/data/messages:165
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
@@ -4111,41 +4164,41 @@ msgstr ""
 "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
 "toepassingen met het meeste CPU-gebruik."
 
-#: ../System-Monitor/data/messages:165
+#: ../System-Monitor/data/messages:167
 msgid "Number of programs to display in the top list :"
 msgstr "Aantal toepassingen om te tonen in de toplijst :"
 
-#: ../System-Monitor/data/messages:167
+#: ../System-Monitor/data/messages:169
 msgid "It's the first color of the gradation used to write the top list."
 msgstr ""
 "Dit is de eerste kleur van de gradatie om te gebruiken voor de toplijst."
 
-#: ../System-Monitor/data/messages:169
+#: ../System-Monitor/data/messages:171
 msgid "Start color of the top list :"
 msgstr "Beginkleur van de toplijst :"
 
-#: ../System-Monitor/data/messages:171
+#: ../System-Monitor/data/messages:173
 msgid "It's the second color of the gradation used to write the top list."
 msgstr ""
 "Dit is de tweede kleur van de gradatie om te gebruiken voor de toplijst."
 
-#: ../System-Monitor/data/messages:173
+#: ../System-Monitor/data/messages:175
 msgid "Stop color of the top list :"
 msgstr "Eindkleur van de toplijst :"
 
-#: ../System-Monitor/data/messages:175
+#: ../System-Monitor/data/messages:177
 msgid "Show top memory usage in % ?"
 msgstr "Hoogste geheugengebruik tonen in % ?"
 
-#: ../System-Monitor/data/messages:179
+#: ../System-Monitor/data/messages:181
 msgid "Delay between refresh of the top list :"
 msgstr "Tijd tussen vernieuwen van de toplijst :"
 
-#: ../System-Monitor/data/messages:181
+#: ../System-Monitor/data/messages:183
 msgid "Graphic Card temperature"
 msgstr "Temperatuur grafische kaart"
 
-#: ../System-Monitor/data/messages:183
+#: ../System-Monitor/data/messages:185
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
@@ -4153,11 +4206,11 @@ msgstr ""
 "In celcius. De temperatuur zal getoond worden tussen deze waarde en de "
 "bovengrens."
 
-#: ../System-Monitor/data/messages:185
+#: ../System-Monitor/data/messages:187
 msgid "Lower limit of core temperature :"
 msgstr "Ondergrens core-temperatuur :"
 
-#: ../System-Monitor/data/messages:187
+#: ../System-Monitor/data/messages:189
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
@@ -4165,63 +4218,63 @@ msgstr ""
 "In celcius. De temperatuur zal getoond worden tussen deze waarde en de "
 "ondergrens."
 
-#: ../System-Monitor/data/messages:189
+#: ../System-Monitor/data/messages:191
 msgid "Upper limit of core temperature :"
 msgstr "Bovengrens core-temperatuur :"
 
-#: ../System-Monitor/data/messages:191
+#: ../System-Monitor/data/messages:193
 msgid "Alert when core temperature is high ?"
 msgstr "Waarschuwing wanneer core-temperatuur hoog is ?"
 
-#: ../System-Monitor/data/messages:193
+#: ../System-Monitor/data/messages:195
 msgid "in celcius."
 msgstr "In celcius."
 
-#: ../System-Monitor/data/messages:195
+#: ../System-Monitor/data/messages:197
 msgid "Alert limit of core temperature :"
 msgstr "Core-waarschuwingstemperatuur :"
 
-#: ../System-Monitor/data/messages:197
+#: ../System-Monitor/data/messages:199
 msgid "Play a sound during the alert ?"
 msgstr "Geluid afspelen bij waarschuwing ?"
 
-#: ../System-Monitor/data/messages:199
+#: ../System-Monitor/data/messages:201
 msgid "Sound path :"
 msgstr "Pad geluid :"
 
-#: ../Toons/data/messages:83
+#: ../Toons/data/messages:85
 msgid "Keep ratio ?"
 msgstr "Verhouding behouden ?"
 
-#: ../Toons/data/messages:89
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr "Tijdsduur tussen het knipogen :"
 
-#: ../Toons/data/messages:91 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "In ms."
 
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
 msgstr "Tijdsduur van het knipogen :"
 
-#: ../Toons/data/messages:95
+#: ../Toons/data/messages:97
 msgid "A high refresh frequency will use more CPU."
 msgstr "Een hogere vernieuwingsfrequentie gebruikt meer processorkracht."
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:99
 msgid "High refresh frequency ?"
 msgstr "Hoge vernieuwingsfrequentie ?"
 
-#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:103
+#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:105
 msgid "Variation for 1 mouse scroll, in % :"
 msgstr "Variatie voor 1 muiswielscrol, in % :"
 
-#: ../Xgamma/data/messages:89
+#: ../Xgamma/data/messages:91
 msgid "Set 0 to not use it."
 msgstr "Stel in op 0 om niet te gebruiken."
 
-#: ../Xgamma/data/messages:91
+#: ../Xgamma/data/messages:93
 msgid "Luminosity to automatically apply on startup :"
 msgstr "Helderheid om automatisch mee op te starten :"
 
@@ -4236,23 +4289,23 @@ msgstr ""
 "linkermuisknop. Negatieve waarden worden geteld vanaf de rechteronderkant "
 "van het beeldscherm"
 
-#: ../alsaMixer/data/messages:83
+#: ../alsaMixer/data/messages:85
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../alsaMixer/data/messages:85
+#: ../alsaMixer/data/messages:87
 msgid "Let empty to use the default sound card."
 msgstr "Laat leeg om de standaardgeluidskaart te gebruiken."
 
-#: ../alsaMixer/data/messages:87
+#: ../alsaMixer/data/messages:89
 msgid "Sound card to control :"
 msgstr "Geluidskaart om te beheren :"
 
-#: ../alsaMixer/data/messages:89
+#: ../alsaMixer/data/messages:91
 msgid "Choose which channel to control :"
 msgstr "Selecteer het kanaal dat u wilt beheren :"
 
-#: ../alsaMixer/data/messages:91
+#: ../alsaMixer/data/messages:93
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -4262,95 +4315,94 @@ msgstr ""
 "hier dan een tweede kanaal aan te geven, om beide kanalen te kunnen beheren. "
 "Over het algemeen kunt u dit leeglaten."
 
-#: ../alsaMixer/data/messages:93
+#: ../alsaMixer/data/messages:95
 msgid "Optionnally, choose a second channel to control :"
 msgstr "Selecteer hier, indien noodzakelijk, een tweede kanaal :"
 
-#: ../alsaMixer/data/messages:95
+#: ../alsaMixer/data/messages:97
 msgid "Let empty to use the defaut command."
 msgstr "Laat leeg om standaardopdracht te gebruiken."
 
-#: ../alsaMixer/data/messages:97
+#: ../alsaMixer/data/messages:99
 msgid "Specific command to run to show an advanced sound mixer :"
 msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
-#: ../alsaMixer/data/messages:99
+#: ../alsaMixer/data/messages:101
 msgid "Control"
 msgstr "Beheer"
 
-#: ../alsaMixer/data/messages:101
+#: ../alsaMixer/data/messages:103
 msgid "Shortkey to show/hide the sound control dialog :"
 msgstr "Sneltoets om de geluidsbeheerdialoog te tonen/verbergen :"
 
-#: ../alsaMixer/data/messages:105
+#: ../alsaMixer/data/messages:107
 msgid "Hide the scale when mouse leaves the desklet ?"
 msgstr "Schaal verbergen, wanneer de muis het desklet verlaat ?"
 
-#: ../alsaMixer/data/messages:107 ../keyboard-indicator/data/messages:91
-#: ../musicPlayer/data/messages:129 ../slider/data/messages:133
-#: ../stack/data/messages:89 ../weather/data/messages:111
+#: ../alsaMixer/data/messages:109 ../keyboard-indicator/data/messages:93
+#: ../musicPlayer/data/messages:131 ../slider/data/messages:135
+#: ../stack/data/messages:91 ../weather/data/messages:113
 msgid "Display"
 msgstr "Weergave"
 
-#: ../alsaMixer/data/messages:109
+#: ../alsaMixer/data/messages:111
 msgid "Display volume :"
 msgstr "Weergave volume :"
 
-#: ../alsaMixer/data/messages:117
+#: ../alsaMixer/data/messages:119
 msgid "Effet to apply on the icon according to volume :"
 msgstr "Effect om toe te passen op icoon bij volumewijziging:"
 
-#: ../alsaMixer/data/messages:129
+#: ../alsaMixer/data/messages:131
 msgid "Default icon :"
 msgstr "´Standaard´ icoon :"
 
-#: ../alsaMixer/data/messages:133
+#: ../alsaMixer/data/messages:135
 msgid "Broken icon :"
 msgstr "´Gebroken´ icoon :"
 
-#: ../alsaMixer/data/messages:137
+#: ../alsaMixer/data/messages:139
 msgid "Mute icon :"
 msgstr "´Dempen´ icoon :"
 
 #: ../clock/data/messages:7
 msgid "Let it empty to use the location's name if available."
-msgstr ""
-"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
-#: ../clock/data/messages:83 ../dustbin/data/messages:81
-#: ../shortcuts/data/messages:85
+#: ../clock/data/messages:85 ../dustbin/data/messages:83
+#: ../shortcuts/data/messages:87
 msgid "Module"
 msgstr "Module"
 
-#: ../clock/data/messages:85 ../dnd2share/data/messages:95
-#: ../mail/data/messages:101 ../showDesktop/data/messages:87
-#: ../slider/data/messages:97
+#: ../clock/data/messages:87 ../dnd2share/data/messages:97
+#: ../mail/data/messages:103 ../showDesktop/data/messages:89
+#: ../showDesktop2/data/messages:89 ../slider/data/messages:99
 msgid "Behaviour"
 msgstr "Gedrag"
 
-#: ../clock/data/messages:87
+#: ../clock/data/messages:89
 msgid "Show the date :"
 msgstr "Datum tonen :"
 
-#: ../clock/data/messages:95
+#: ../clock/data/messages:97
 msgid "for numeric format only."
 msgstr "Alleen voor numeriek formaat."
 
-#: ../clock/data/messages:97
+#: ../clock/data/messages:99
 msgid "Should the time be displayed as a 24h format ?"
 msgstr "Tijd tonen in 24-uurs formaat ?"
 
-#: ../clock/data/messages:99
+#: ../clock/data/messages:101
 msgid "if not, then the applet will update time once a minute, saving CPU."
 msgstr ""
 "Indien nee, zal het applet eenmaal per minuut bijgewerkt worden om CPU-"
 "gebruik te beperken."
 
-#: ../clock/data/messages:101
+#: ../clock/data/messages:103
 msgid "Show seconds ?"
 msgstr "Seconden tonen ?"
 
-#: ../clock/data/messages:103
+#: ../clock/data/messages:105
 msgid ""
 "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
 "animation. It requires OpenGL."
@@ -4358,26 +4410,26 @@ msgstr ""
 "In ms. Stel in op 0 voor een vloeiende animatie, stel in op 1000 voor een "
 "doorgaande animatie. Dit vereist OpenGL."
 
-#: ../clock/data/messages:105
+#: ../clock/data/messages:107
 msgid "Display seconds with smooth animation of a duration of :"
 msgstr "Tijdsduur om seconden te tonen met een vloeiende animatie :"
 
-#: ../clock/data/messages:107
+#: ../clock/data/messages:109
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
 msgstr ""
 "Bijvoorbeeld :Europa/Parijs, :Japan, etc. Laat leeg om lokale tijd te "
 "gebruiken."
 
-#: ../clock/data/messages:109
+#: ../clock/data/messages:111
 msgid "Timezone :"
 msgstr "Tijdzone :"
 
-#: ../clock/data/messages:111
+#: ../clock/data/messages:113
 msgid "Style"
 msgstr "Stijl"
 
-#: ../clock/data/messages:113
+#: ../clock/data/messages:115
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
@@ -4385,102 +4437,103 @@ msgstr ""
 "De analoge weergave is gebaseerd op CairoClock; anders zal de numerieke "
 "wergave gebruikt worden."
 
-#: ../clock/data/messages:115
+#: ../clock/data/messages:117
 msgid "Choose the view :"
 msgstr "Selecteer een weergave :"
 
-#: ../clock/data/messages:117
+#: ../clock/data/messages:119
 msgid "Analogic"
 msgstr "Analoog"
 
-#: ../clock/data/messages:119
+#: ../clock/data/messages:121
 msgid "Numeric"
 msgstr "Numeriek"
 
-#: ../clock/data/messages:121
+#: ../clock/data/messages:123
 msgid "Numeric View"
 msgstr "Numerieke weergave"
 
-#: ../clock/data/messages:123
+#: ../clock/data/messages:125
 msgid "Font used for the numeric display :"
 msgstr "Lettertype voor de numerieke weergave :"
 
-#: ../clock/data/messages:125
+#: ../clock/data/messages:127
 msgid "Text color for the numeric display:"
 msgstr "Tekstkleur voor de numerieke weergave :"
 
-#: ../clock/data/messages:127
+#: ../clock/data/messages:129
 msgid "Image to draw on the background :"
 msgstr "Afbeelding om te tekenen op de achtergrond :"
 
-#: ../clock/data/messages:129
+#: ../clock/data/messages:131
 msgid "Ratio to apply on text :"
 msgstr "Verhouding om toe te passen op tekst :"
 
-#: ../clock/data/messages:131
+#: ../clock/data/messages:133
 msgid "Analogic View"
 msgstr "Analoge weergave"
 
-#: ../clock/data/messages:133
+#: ../clock/data/messages:135
 msgid "List of available themes for the analogic display :"
 msgstr "Lijst met beschikbare thema´s voor de analoge weergave :"
 
-#: ../clock/data/messages:135
+#: ../clock/data/messages:137
 msgid "Text color of the date :"
 msgstr "Tekstkleur voor de datum :"
 
-#: ../clock/data/messages:137
+#: ../clock/data/messages:139
 msgid "Setup time and date"
 msgstr "Stel tijd en datum in"
 
-#: ../clock/data/messages:139
+#: ../clock/data/messages:141
 msgid "Let empty to use default command."
 msgstr "Laat leeg om standaardopdracht te gebruiken."
 
-#: ../clock/data/messages:141
+#: ../clock/data/messages:143
 msgid "Specific command to run :"
 msgstr "Specifieke opdracht om uit te voeren :"
 
-#: ../clock/data/messages:143
+#: ../clock/data/messages:145
 msgid "Alarm"
 msgstr "Herinnering"
 
-#: ../clock/data/messages:145
+#: ../clock/data/messages:147
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "De nieuwe herinnering zal toegevoegd worden aan het eind, de laatste "
 "herinnering zal verwijderd worden."
 
-#: ../clock/data/messages:147
+#: ../clock/data/messages:149
 msgid "Add or remove an alarm :"
 msgstr "Herinnering toevoegen of verwijderen :"
 
-#: ../compiz-icon/data/messages:85
+#: ../compiz-icon/data/messages:87
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
-"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in Compiz "
-", de Dbus plug-in activeren samen met de plug-in voor de gewenste actie."
+"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in "
+"Compiz , de Dbus plug-in activeren samen met de plug-in voor de gewenste "
+"actie."
 
-#: ../compiz-icon/data/messages:87
+#: ../compiz-icon/data/messages:89
 msgid "Choose an action for the middle click on the icon :"
 msgstr "Selecteer een actie voor het middelklikken op het icoon :"
 
-#: ../compiz-icon/data/messages:91
+#: ../compiz-icon/data/messages:93
 msgid "Switch WM"
 msgstr "Vensterbeheerder wisselen"
 
-#: ../compiz-icon/data/messages:95
+#: ../compiz-icon/data/messages:97
 msgid "Expose"
 msgstr "Expo"
 
-#: ../compiz-icon/data/messages:97
+#: ../compiz-icon/data/messages:99
 msgid "Show Desktop"
 msgstr "Toon bureaublad"
 
-#: ../compiz-icon/data/messages:99
+#: ../compiz-icon/data/messages:101
 msgid ""
 "This command will be used to launch the system WM; let it blank to use the "
 "default one."
@@ -4488,11 +4541,11 @@ msgstr ""
 "Deze opdracht zal gebruikt worden om de vensterbeheerder van het systeem te "
 "starten. Laat leeg als u de standaardwaarde wilt gebruiken."
 
-#: ../compiz-icon/data/messages:101
+#: ../compiz-icon/data/messages:103
 msgid "Custom command for system's Windows Manager :"
 msgstr "Aangepaste opdracht voor vensterbeheerder van systeem :"
 
-#: ../compiz-icon/data/messages:103
+#: ../compiz-icon/data/messages:105
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
@@ -4500,11 +4553,11 @@ msgstr ""
 "Als Compiz onverwachts stopt, zal Cairo-Dock het herstarten. U moet dan "
 "Compiz afsluiten in het dock."
 
-#: ../compiz-icon/data/messages:105
+#: ../compiz-icon/data/messages:107
 msgid "Auto-reload Compiz ?"
 msgstr "Compiz automatisch herladen ?"
 
-#: ../compiz-icon/data/messages:107
+#: ../compiz-icon/data/messages:109
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
@@ -4512,19 +4565,19 @@ msgstr ""
 "Als de decorateur onverwachts stopt, zal Cairo-Dock het herstarten. U moet "
 "dan Compiz afsluiten in het dock."
 
-#: ../compiz-icon/data/messages:109
+#: ../compiz-icon/data/messages:111
 msgid "Auto-reload the Decorator ?"
 msgstr "Decorateur automatisch herladen ?"
 
-#: ../compiz-icon/data/messages:111
+#: ../compiz-icon/data/messages:113
 msgid "Load Compiz with options at applet's startup."
 msgstr "Laadt Compiz met opties tijdens starten van applet."
 
-#: ../compiz-icon/data/messages:113
+#: ../compiz-icon/data/messages:115
 msgid "Force Compiz settings at startup ?"
 msgstr "Compiz-instellingen forceren tijdens opstarten ?"
 
-#: ../compiz-icon/data/messages:115
+#: ../compiz-icon/data/messages:117
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
@@ -4533,11 +4586,11 @@ msgstr ""
 "corresponderende iconen van de sub-docks zullen zich dan gedragen als een "
 "starter en een toepassing ."
 
-#: ../compiz-icon/data/messages:117 ../mail/data/messages:127
+#: ../compiz-icon/data/messages:119 ../mail/data/messages:129
 msgid "Steal the application's icon in taskbar ?"
 msgstr "Icoon toepassing uit taakbalk stelen ?"
 
-#: ../compiz-icon/data/messages:119
+#: ../compiz-icon/data/messages:121
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
@@ -4545,11 +4598,11 @@ msgstr ""
 "Toon 2 iconen in het applet's sub-dock voor Compiz Expo & Widget Layer plug-"
 "ins. Anders zullen ze beschikbaar zijn in het menu."
 
-#: ../compiz-icon/data/messages:121
+#: ../compiz-icon/data/messages:123
 msgid "Add Exposition & Widget Layer to sub-dock ?"
 msgstr "Expo & Widget Layer aan sub-dock toevoegen ?"
 
-#: ../compiz-icon/data/messages:123
+#: ../compiz-icon/data/messages:125
 msgid ""
 "Display in the applet's sub-dock an icon for the Emerald's configuration "
 "panel."
@@ -4557,15 +4610,15 @@ msgstr ""
 "Toon een icoon in het sub-dock van het applet, voor het configuratiepaneel "
 "van Emerald."
 
-#: ../compiz-icon/data/messages:125
+#: ../compiz-icon/data/messages:127
 msgid "Add Emerald's Configuration to sub-dock ?"
 msgstr "Emerald's configuratie aan het sub-dock toevoegen ?"
 
-#: ../compiz-icon/data/messages:127
+#: ../compiz-icon/data/messages:129
 msgid "Compiz Options"
 msgstr "Compiz opties"
 
-#: ../compiz-icon/data/messages:129
+#: ../compiz-icon/data/messages:131
 msgid ""
 "With strict binding textures are bound whenever they are enabled, with loose "
 "binding they are enabled when created. The Nvidia driver seems a bit slow "
@@ -4577,109 +4630,108 @@ msgstr ""
 "driver is een beetje langzaam met het verbinden van textures, dat is waarom "
 "deze optie een grote snelheidstoename geeft met Nvidia."
 
-#: ../compiz-icon/data/messages:131
+#: ../compiz-icon/data/messages:133
 msgid "Use Loose Binding ?"
 msgstr "´Loose Binding´ gebruiken ?"
 
-#: ../compiz-icon/data/messages:133
+#: ../compiz-icon/data/messages:135
 msgid "Use thoses options only if you know them."
 msgstr "Gebruik deze opties alleen als u ze kent."
 
-#: ../compiz-icon/data/messages:135
+#: ../compiz-icon/data/messages:137
 msgid "Use Indirect Rendering ?"
 msgstr "Indirecte rendering gebruiken ?"
 
-#: ../compiz-icon/data/messages:137
+#: ../compiz-icon/data/messages:139
 msgid "Usefull when having dual or more X separate screens."
 msgstr "Bruikbaar als u twee of meer, door X gescheiden beeldschermen heeft."
 
-#: ../compiz-icon/data/messages:139
+#: ../compiz-icon/data/messages:141
 msgid "Only Current Screen ?"
 msgstr "Alleen huidig scherm ?"
 
-#: ../compiz-icon/data/messages:141
+#: ../compiz-icon/data/messages:143
 msgid "By default it will be Emerald."
 msgstr "Standaard is dit Emerald."
 
-#: ../compiz-icon/data/messages:143
+#: ../compiz-icon/data/messages:145
 msgid "Choose your Windows Decorator :"
 msgstr "Selecteer uw vensterdecorateur :"
 
-#: ../compiz-icon/data/messages:145
+#: ../compiz-icon/data/messages:147
 msgid "emerald"
 msgstr "Emerald"
 
-#: ../compiz-icon/data/messages:147
+#: ../compiz-icon/data/messages:149
 msgid "gtk-window-decorator"
 msgstr "Gtk-vensterdecorateur"
 
-#: ../compiz-icon/data/messages:149
+#: ../compiz-icon/data/messages:151
 msgid "kde-window-decorator"
 msgstr "Kde-vensterdecorateur"
 
-#: ../compiz-icon/data/messages:151
+#: ../compiz-icon/data/messages:153
 msgid "heliodor"
 msgstr "Heliodor"
-
-#: ../compiz-icon/data/messages:153 ../mail/data/messages:85
-#: ../shortcuts/data/messages:99 ../stack/data/messages:91
-#: ../switcher/data/messages:139 ../tomboy/data/messages:103
-#: ../weather/data/messages:115
-msgid "Let it empty to use default sub-dock view."
-msgstr ""
-"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
 #: ../switcher/data/messages:141 ../tomboy/data/messages:105
 #: ../weather/data/messages:117
+msgid "Let it empty to use default sub-dock view."
+msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+
+#: ../compiz-icon/data/messages:157 ../mail/data/messages:89
+#: ../shortcuts/data/messages:103 ../stack/data/messages:95
+#: ../switcher/data/messages:143 ../tomboy/data/messages:107
+#: ../weather/data/messages:119
 msgid "Name of the view used for the sub-dock :"
 msgstr "Naam van weergave gebruikt voor het sub-dock :"
 
-#: ../compiz-icon/data/messages:157
+#: ../compiz-icon/data/messages:159
 msgid "Images"
 msgstr "Weergave"
 
-#: ../compiz-icon/data/messages:159 ../compiz-icon/data/messages:163
-#: ../compiz-icon/data/messages:167 ../compiz-icon/data/messages:171
-#: ../compiz-icon/data/messages:175 ../compiz-icon/data/messages:179
-#: ../compiz-icon/data/messages:183 ../compiz-icon/data/messages:187
+#: ../compiz-icon/data/messages:161 ../compiz-icon/data/messages:165
+#: ../compiz-icon/data/messages:169 ../compiz-icon/data/messages:173
+#: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
+#: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
 #: ../tomboy/data/messages:13 ../tomboy/data/messages:17
 #: ../tomboy/data/messages:21 ../tomboy/data/messages:25
 msgid "Let t empty to use the default icon."
 msgstr "Laat leeg om standaardicoon te gebruiken."
 
-#: ../compiz-icon/data/messages:161 ../musicPlayer/data/messages:159
+#: ../compiz-icon/data/messages:163 ../musicPlayer/data/messages:161
 #: ../tomboy/data/messages:15
 msgid "Name of an image for the 'default' icon :"
 msgstr "Naam van afbeelding voor het 'Standaard' icoon :"
 
-#: ../compiz-icon/data/messages:165 ../musicPlayer/data/messages:175
+#: ../compiz-icon/data/messages:167 ../musicPlayer/data/messages:177
 #: ../tomboy/data/messages:23
 msgid "Name of an image for the 'broken' icon :"
 msgstr "Naam van afbeelding voor het 'Gebroken' icoon :"
 
-#: ../compiz-icon/data/messages:169
+#: ../compiz-icon/data/messages:171
 msgid "Name of an image for the 'other wm' icon :"
 msgstr "Naam van een afbeelding voor het 'Andere vensterbeheerder' icoon :"
 
-#: ../compiz-icon/data/messages:173
+#: ../compiz-icon/data/messages:175
 msgid "Name of an image for the 'setting' icon :"
 msgstr "Naam van een afbeelding voor het 'Instelling' icoon :"
 
-#: ../compiz-icon/data/messages:177
+#: ../compiz-icon/data/messages:179
 msgid "Name of an image for the 'emerald' icon :"
 msgstr "Naam van een afbeelding voor het 'Emerald' icoon :"
 
-#: ../compiz-icon/data/messages:181
+#: ../compiz-icon/data/messages:183
 msgid "Name of an image for the 'reload' icon :"
 msgstr "Naam van een afbeelding voor het 'Herladen' icoon :"
 
-#: ../compiz-icon/data/messages:185
+#: ../compiz-icon/data/messages:187
 msgid "Name of an image for the 'exposition' icon :"
 msgstr "Naam van een afbeelding voor het 'Expo' icoon :"
 
-#: ../compiz-icon/data/messages:189
+#: ../compiz-icon/data/messages:191
 msgid "Name of an image for the 'widget layer' icon :"
 msgstr "Naam van een afbeelding voor het 'Widget layer' icoon :"
 
@@ -4689,7 +4741,7 @@ msgstr "Stripverhaal"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
-#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:109
+#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:113
 msgid "Corner radius :"
 msgstr "Kromming hoek :"
 
@@ -4743,120 +4795,120 @@ msgstr "Kromming van de tip :"
 msgid "Curve the sides too ?"
 msgstr "De zijkanten ook krommen ?"
 
-#: ../dnd2share/data/messages:87
+#: ../dnd2share/data/messages:89
 msgid "Info-bubbles"
 msgstr "Info-ballonnen"
 
-#: ../dnd2share/data/messages:89
+#: ../dnd2share/data/messages:91
 msgid "Enable info-bubbles ?"
 msgstr "Info-ballonnen activeren ?"
 
-#: ../dnd2share/data/messages:93
+#: ../dnd2share/data/messages:95
 msgid "Duration of the info-bubbles :"
 msgstr "Tijdsduur van de info-ballonnen :"
 
-#: ../dnd2share/data/messages:97
+#: ../dnd2share/data/messages:99
 msgid "Number of items to keep in the history :"
 msgstr "Aantal items om te bewaren in de geschiedenis :"
 
-#: ../dnd2share/data/messages:99
+#: ../dnd2share/data/messages:101
 msgid "Keep a copy of each uploaded image ?"
 msgstr "Een kopie bewaren van elke geüploade afbeelding ?"
 
-#: ../dnd2share/data/messages:101
+#: ../dnd2share/data/messages:103
 msgid "This will override the image setting."
 msgstr "Dan zullen de afbeeldingsinstellingen genegeerd worden."
 
-#: ../dnd2share/data/messages:103
+#: ../dnd2share/data/messages:105
 msgid "If so, display the last image on the icon ?"
 msgstr "Indien ja, wilt u de laatste afbeelding op het icoon tonen ?"
 
-#: ../dnd2share/data/messages:105
+#: ../dnd2share/data/messages:107
 msgid "in KB/s - 0 means unlimited"
 msgstr "in KB/s - 0 betekent geen limiet"
 
-#: ../dnd2share/data/messages:107
+#: ../dnd2share/data/messages:109
 msgid "Maximum upload rate:"
 msgstr "Maximum uploadsnelheid:"
 
-#: ../dnd2share/data/messages:109
+#: ../dnd2share/data/messages:111
 msgid "Animation of the icon during upload :"
 msgstr "Animatie van icoon tijdens opladen :"
 
-#: ../dnd2share/data/messages:111
+#: ../dnd2share/data/messages:113
 msgid "Sites"
 msgstr "Websites"
 
-#: ../dnd2share/data/messages:113
+#: ../dnd2share/data/messages:115
 msgid "Preferred site for texts hosting :"
 msgstr "Geprefereerde website voor tekst-hosting :"
 
-#: ../dnd2share/data/messages:115 ../dnd2share/data/messages:121
-#: ../dnd2share/data/messages:131 ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:117 ../dnd2share/data/messages:123
+#: ../dnd2share/data/messages:133 ../dnd2share/data/messages:139
 msgid "Custom"
 msgstr "Aangepast"
 
-#: ../dnd2share/data/messages:117
+#: ../dnd2share/data/messages:119
 msgid "Pastebin.ca"
 msgstr "Pastebin.ca"
 
-#: ../dnd2share/data/messages:119
+#: ../dnd2share/data/messages:121
 msgid "Preferred site for images hosting :"
 msgstr "Geprefereerde website voor afbeeldingen-hosting :"
 
-#: ../dnd2share/data/messages:123
+#: ../dnd2share/data/messages:125
 msgid "Uppix.net"
 msgstr "Uppix.net"
 
-#: ../dnd2share/data/messages:125
+#: ../dnd2share/data/messages:127
 msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
-#: ../dnd2share/data/messages:127
+#: ../dnd2share/data/messages:129
 msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
-#: ../dnd2share/data/messages:129
+#: ../dnd2share/data/messages:131
 msgid "Preferred site for videos hosting :"
 msgstr "Geprefereerde website voor video-hosting :"
 
-#: ../dnd2share/data/messages:133
+#: ../dnd2share/data/messages:135
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:137
 msgid "Preferred site for files hosting :"
 msgstr "Geprefereerde website voor bestanden-hosting :"
 
-#: ../dnd2share/data/messages:139
+#: ../dnd2share/data/messages:141
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:141
+#: ../dnd2share/data/messages:143
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:143
+#: ../dnd2share/data/messages:145
 msgid "Custom script for text upload : "
 msgstr "Aangepast script voor uploaden tekst : "
 
-#: ../dnd2share/data/messages:145
+#: ../dnd2share/data/messages:147
 msgid "Custom script for image upload : "
 msgstr "Aangepast script voor uploaden afbeelding : "
 
-#: ../dnd2share/data/messages:147
+#: ../dnd2share/data/messages:149
 msgid "Custom script for video upload : "
 msgstr "Aangepast script voor uploaden video : "
 
-#: ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:151
 msgid "Custom script for file upload : "
 msgstr "Aangepast script voor uploaden bestand : "
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "Let empty to upload files into '~/Dropbox/Public'."
 msgstr "Laat leeg om bestanden te uploaden naar '~/Dropbox/Public'."
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "Path of the DropBox folder :"
 msgstr "Pad naar DropBox-map :"
 
@@ -4872,19 +4924,19 @@ msgstr "Hoe lager, hoe lager het gezichtspunt op het vlak."
 msgid "Height of the vanishing point :"
 msgstr "Hoogte van verdwijnpunt :"
 
-#: ../dock-rendering/data/messages:7 ../dock-rendering/data/messages:131
+#: ../dock-rendering/data/messages:7 ../dock-rendering/data/messages:137
 msgid "Choose the way separators are drawn :"
 msgstr "Selecteer de manier waarop scheidingen getekend worden :"
 
-#: ../dock-rendering/data/messages:9 ../dock-rendering/data/messages:133
+#: ../dock-rendering/data/messages:9 ../dock-rendering/data/messages:139
 msgid "Normal separator"
 msgstr "Normale scheiding"
 
-#: ../dock-rendering/data/messages:11 ../dock-rendering/data/messages:135
+#: ../dock-rendering/data/messages:11 ../dock-rendering/data/messages:141
 msgid "Flat separator"
 msgstr "Platte scheiding"
 
-#: ../dock-rendering/data/messages:13 ../dock-rendering/data/messages:137
+#: ../dock-rendering/data/messages:13 ../dock-rendering/data/messages:143
 msgid "Physical separator"
 msgstr "Fysieke scheiding"
 
@@ -4932,62 +4984,69 @@ msgid "Depth of the plane :"
 msgstr "Diepte van het vlak :"
 
 #: ../dock-rendering/data/messages:31
+msgid "-10"
+msgstr ""
+
+#: ../dock-rendering/data/messages:33
 msgid "otherwise they will turn."
 msgstr "Anders worden ze omgedraaid."
 
-#: ../dock-rendering/data/messages:33
+#: ../dock-rendering/data/messages:35
 msgid "Always show icons' face ?"
 msgstr "Altijd voorkant iconen tonen ?"
 
-#: ../dock-rendering/data/messages:37
+#: ../dock-rendering/data/messages:39
 msgid "The higher it is, the sooner the parabole will be curved."
 msgstr "Hoe hoger, hoe eerder de parabool kromt."
 
-#: ../dock-rendering/data/messages:39
+#: ../dock-rendering/data/messages:41
 msgid "Curvature :"
 msgstr "Kromming :"
 
-#: ../dock-rendering/data/messages:41
-msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr ""
-"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
-
 #: ../dock-rendering/data/messages:43
+msgid "+0.1"
+msgstr ""
+
+#: ../dock-rendering/data/messages:45
+msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+
+#: ../dock-rendering/data/messages:47
 msgid "Ratio height/width :"
 msgstr "Verhouding hoogte/breedte :"
 
-#: ../dock-rendering/data/messages:45
+#: ../dock-rendering/data/messages:49
 msgid "0 means the wave is totally flat, 1 means the wave is maximal."
 msgstr "0 betekent dat de golf plat is, 1 betekent dat de golf maximaal is."
 
-#: ../dock-rendering/data/messages:47 ../dock-rendering/data/messages:65
+#: ../dock-rendering/data/messages:51 ../dock-rendering/data/messages:69
 msgid "Magnitude of the wave :"
 msgstr "Hoogte van de golf :"
 
-#: ../dock-rendering/data/messages:51
+#: ../dock-rendering/data/messages:55
 msgid "Space between icons and their label :"
 msgstr "Ruimte tussen iconen en hun labels :"
 
-#: ../dock-rendering/data/messages:53
+#: ../dock-rendering/data/messages:57
 msgid ""
 "It may recquire more CPU during the unfolding animation, except with OpenGL."
 msgstr ""
 "Dit vraagt mogelijk meer van de processor tijdens de ontvouwanimatie, "
 "behalve met OpenGL."
 
-#: ../dock-rendering/data/messages:55
+#: ../dock-rendering/data/messages:59
 msgid "Draw labels while unfolding ?"
 msgstr "Labels tekenen tijdens ontvouwen ?"
 
-#: ../dock-rendering/data/messages:59 ../dock-rendering/data/messages:85
+#: ../dock-rendering/data/messages:63 ../dock-rendering/data/messages:89
 msgid "Space between rows :"
 msgstr "Ruimte tussen rijen :"
 
-#: ../dock-rendering/data/messages:61
+#: ../dock-rendering/data/messages:65
 msgid "Space between icons :"
 msgstr "Ruimte tussen iconen :"
 
-#: ../dock-rendering/data/messages:63
+#: ../dock-rendering/data/messages:67
 msgid ""
 "0 means the wave is totally flat, 1 means the wave is identical to other "
 "views."
@@ -4995,11 +5054,11 @@ msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
 
-#: ../dock-rendering/data/messages:67
+#: ../dock-rendering/data/messages:71
 msgid "Number of icons on the first row :"
 msgstr "Aantal iconen op de eerste rij :"
 
-#: ../dock-rendering/data/messages:69
+#: ../dock-rendering/data/messages:73
 msgid ""
 "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
 "widely opened."
@@ -5007,109 +5066,113 @@ msgstr ""
 "In graden. Hoe kleiner, hoe smaller de hoorn is. 180° betekent dat de hoorn "
 "geheel openstaat."
 
-#: ../dock-rendering/data/messages:71
+#: ../dock-rendering/data/messages:75
 msgid "Cone's width :"
 msgstr "Breedte van hoorn :"
 
-#: ../dock-rendering/data/messages:73
+#: ../dock-rendering/data/messages:77
 msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
 msgstr ""
 "Stel doorzichtigheid in op 0 om dit niet te gebruiken. Het is nogal traag "
 "met cairo."
 
-#: ../dock-rendering/data/messages:75
+#: ../dock-rendering/data/messages:79
 msgid "Bow color :"
 msgstr "Boogkleur :"
 
-#: ../dock-rendering/data/messages:77
+#: ../dock-rendering/data/messages:81
 msgid "Line color :"
 msgstr "Lijnkleur :"
 
-#: ../dock-rendering/data/messages:79
+#: ../dock-rendering/data/messages:83
 msgid "SimpleSlide"
 msgstr "Diavoorstelling"
 
-#: ../dock-rendering/data/messages:81
+#: ../dock-rendering/data/messages:85
 msgid "Grid"
 msgstr "Raster"
 
-#: ../dock-rendering/data/messages:83
+#: ../dock-rendering/data/messages:87
 msgid "Space between columns :"
 msgstr "Ruimte tussen kolommen :"
 
-#: ../dock-rendering/data/messages:87
+#: ../dock-rendering/data/messages:91
 msgid "Max size of icons :"
 msgstr "Maximum grootte iconen :"
 
-#: ../dock-rendering/data/messages:89
+#: ../dock-rendering/data/messages:93
 msgid "Sinusoidal wave radius :"
 msgstr "Radius op-en neergaande golf :"
 
-#: ../dock-rendering/data/messages:91
+#: ../dock-rendering/data/messages:95
 msgid "Use a linear wave rather than a sinusoidal one ?"
 msgstr "Liever een lineaire golf gebruiken als een op- en neergaande ?"
 
-#: ../dock-rendering/data/messages:93
+#: ../dock-rendering/data/messages:97
 msgid "Pack icons rather horizontally than vertically ?"
 msgstr "Liever horizontale als verticale iconen ?"
 
-#: ../dock-rendering/data/messages:95
+#: ../dock-rendering/data/messages:99
 msgid "Display text for all icons ?"
 msgstr "Tekst tonen voor alle iconen ?"
 
-#: ../dock-rendering/data/messages:97
+#: ../dock-rendering/data/messages:101
 msgid "Frame"
 msgstr "Frame"
 
-#: ../dock-rendering/data/messages:99
+#: ../dock-rendering/data/messages:103
 msgid "Draw a background ?"
 msgstr "Achtergrond tekenen ?"
 
-#: ../dock-rendering/data/messages:101
+#: ../dock-rendering/data/messages:105
 msgid "First gradient color :"
 msgstr "Eerste kleur van de gradatie :"
 
-#: ../dock-rendering/data/messages:103
+#: ../dock-rendering/data/messages:107
 msgid "Second gradient color :"
 msgstr "Tweede kleur van de gradatie :"
 
-#: ../dock-rendering/data/messages:105
+#: ../dock-rendering/data/messages:109
 msgid "Top to bottom gradient ?"
 msgstr "Gradatie van boven naar beneden ?"
 
-#: ../dock-rendering/data/messages:107
+#: ../dock-rendering/data/messages:111
 msgid "Left to right gradient ?"
 msgstr "Gradatie van links naar rechts ?"
 
-#: ../dock-rendering/data/messages:111
+#: ../dock-rendering/data/messages:115
 msgid "Border line width :"
 msgstr "Lijndikte rand :"
 
-#: ../dock-rendering/data/messages:113
+#: ../dock-rendering/data/messages:117
 msgid "Border line color :"
 msgstr "Lijnkleur rand :"
 
-#: ../dock-rendering/data/messages:115
+#: ../dock-rendering/data/messages:119
 msgid "Arrow width :"
 msgstr "Breedte pijl :"
 
-#: ../dock-rendering/data/messages:117
+#: ../dock-rendering/data/messages:121
 msgid "Arrow Height :"
 msgstr "Hoogte pijl :"
 
-#: ../dock-rendering/data/messages:119
+#: ../dock-rendering/data/messages:123
 msgid "Arrow shift percent :"
 msgstr "Verplaatsing pijl in procent :"
 
-#: ../dock-rendering/data/messages:123
+#: ../dock-rendering/data/messages:125
+msgid "-100"
+msgstr ""
+
+#: ../dock-rendering/data/messages:129
 msgid "The lower, the more the curve will seem flat."
 msgstr "Hoe lager, hoe minder kromming."
 
-#: ../dock-rendering/data/messages:125
+#: ../dock-rendering/data/messages:131
 msgid "Curvature of the curve in percent :"
 msgstr "Kromming van de kromming in procent :"
 
-#: ../dock-rendering/data/messages:129
+#: ../dock-rendering/data/messages:135
 msgid "Amplitude of the curve."
 msgstr "Hoogte van de kromming."
 
@@ -5150,86 +5213,84 @@ msgstr "Aantal rondjes per seconde."
 msgid "Rotation speed :"
 msgstr "Draaisnelheid :"
 
-#: ../dustbin/data/messages:83
+#: ../dustbin/data/messages:85
 msgid "Theme"
 msgstr "Thema"
 
-#: ../dustbin/data/messages:87
+#: ../dustbin/data/messages:89
 msgid "Name of an image to overwrite the theme's empty image :"
 msgstr ""
 "Naam van een afbeelding om thema´s ´Leeg´ afbeelding te overschrijven :"
 
-#: ../dustbin/data/messages:89
-msgid "Name of an image to overwrite the theme's full image :"
-msgstr ""
-"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
-
 #: ../dustbin/data/messages:91
+msgid "Name of an image to overwrite the theme's full image :"
+msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+
+#: ../dustbin/data/messages:93
 msgid "Config"
 msgstr "Configuratie"
 
-#: ../dustbin/data/messages:93
+#: ../dustbin/data/messages:95
 msgid "Display the following quick info :"
 msgstr "Toon de volgende snel-info :"
 
-#: ../dustbin/data/messages:97
+#: ../dustbin/data/messages:99
 msgid "Number of trashes"
 msgstr "Aantal prullenbakken"
 
-#: ../dustbin/data/messages:99
+#: ../dustbin/data/messages:101
 msgid "Total number of files"
 msgstr "Totaal aantal bestanden"
 
-#: ../dustbin/data/messages:101
+#: ../dustbin/data/messages:103
 msgid "Total weight"
 msgstr "Totaal gewicht"
 
-#: ../dustbin/data/messages:103 ../dustbin/data/messages:107
+#: ../dustbin/data/messages:105 ../dustbin/data/messages:109
 msgid ""
 "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 msgstr ""
 "In Mb. U wordt gewaarschuwd bij overschrijding. Stel in op 0 om dit niet te "
 "gebruiken."
 
-#: ../dustbin/data/messages:105
+#: ../dustbin/data/messages:107
 msgid "Maximum total size of all dustbins :"
 msgstr "Maximum totaalgrootte van alle prullenbakken :"
 
-#: ../dustbin/data/messages:109
+#: ../dustbin/data/messages:111
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Maximum toegewezen grootte voor elke prullenbak :"
 
-#: ../dustbin/data/messages:111
+#: ../dustbin/data/messages:113
 msgid "Ask confirmation before empty Trash ?"
 msgstr "Bevestiging vragen voor het legen van de prullenbak ?"
 
-#: ../dustbin/data/messages:113
+#: ../dustbin/data/messages:115
 msgid "Desktop-less support"
 msgstr "Bureaubladloze ondersteuning"
 
-#: ../dustbin/data/messages:115
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+#: ../dustbin/data/messages:117
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Indien de Prullenbak niet bekend is bij het dock, dan kunt u het hier "
 "aangeven :"
 
-#: ../dustbin/data/messages:117
+#: ../dustbin/data/messages:119
 msgid "in seconds, only used if you can't monitor directories."
 msgstr "In seconden, wordt alleen gebruikt als u geen mappen kunt monitoren."
 
-#: ../dustbin/data/messages:119
+#: ../dustbin/data/messages:121
 msgid "Interval of time to check if dustbin is full/empty :"
 msgstr "Tijdsinterval om te controleren of prullenbak vol/leeg is :"
 
-#: ../dustbin/data/messages:121
+#: ../dustbin/data/messages:123
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "Gebruik dit alleen als u merkt dat het applet de prullenbak niet kan tonen "
 "bij een klik."
 
-#: ../dustbin/data/messages:123
+#: ../dustbin/data/messages:125
 msgid "Alternative file browser used to show a trash :"
 msgstr "Alternatieve bestandsbeheerder om prullenbak te tonen :"
 
@@ -5341,58 +5402,57 @@ msgstr "Hoe groter, hoe sneller het icoon zal inklappen naar het midden."
 msgid "Attraction of the hole :"
 msgstr "Aantrekkingskracht van zwarte gat :"
 
-#: ../keyboard-indicator/data/messages:83
+#: ../keyboard-indicator/data/messages:85
 msgid "caps lock, num lock, etc"
 msgstr "Caps lock, num lock, etc"
 
-#: ../keyboard-indicator/data/messages:85
+#: ../keyboard-indicator/data/messages:87
 msgid "Display keyboard locks as quick-info ?"
 msgstr "Lock-toetsen van toetsenbord tonen als snel-info ?"
 
-#: ../keyboard-indicator/data/messages:87
+#: ../keyboard-indicator/data/messages:89
 msgid ""
 "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
 "In ms. Stel in op 0 als u geen animatie wilt bij wisseling van de indeling."
 
-#: ../keyboard-indicator/data/messages:89
+#: ../keyboard-indicator/data/messages:91
 msgid "Duration of the transition animation :"
 msgstr "Tijdsduur van de wisselingsanimatie :"
 
-#: ../keyboard-indicator/data/messages:93
+#: ../keyboard-indicator/data/messages:95
 msgid "Font :"
 msgstr "Lettertype :"
 
-#: ../keyboard-indicator/data/messages:95
+#: ../keyboard-indicator/data/messages:97
 msgid "Text color"
 msgstr "Tekstkleur"
 
-#: ../keyboard-indicator/data/messages:97
+#: ../keyboard-indicator/data/messages:99
 msgid "Outline text ?"
 msgstr "Tekst omlijnen ?"
 
-#: ../keyboard-indicator/data/messages:99
+#: ../keyboard-indicator/data/messages:101
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
 "hoe kleiner de tekst in het icoon is. Bij 1 zal de tekst het gehele icoon "
 "vullen."
 
-#: ../keyboard-indicator/data/messages:101
+#: ../keyboard-indicator/data/messages:103
 msgid "Relative size of the text :"
 msgstr "Relatieve grootte van de tekst :"
 
-#: ../logout/data/messages:87
+#: ../logout/data/messages:89
 msgid "Let empty to execute the default command."
 msgstr "Laat leeg als u de standaardopdracht wilt uitvoeren."
 
-#: ../logout/data/messages:89
-msgid "User-defined command to execute to log-out :"
-msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
-
 #: ../logout/data/messages:91
+msgid "User-defined command to execute to log-out :"
+msgstr "Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
+
+#: ../logout/data/messages:93
 msgid ""
 "It will be available on middle click. Let empty to execute the default "
 "command, that greatly depends on your distribution. Sometimes the command to "
@@ -5403,41 +5463,41 @@ msgstr ""
 "is de opdracht om uit te loggen hetzelfde als die om de computer af te "
 "sluiten."
 
-#: ../logout/data/messages:93
+#: ../logout/data/messages:95
 msgid "User-defined command to execute to shutdown :"
 msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te sluiten "
-":"
+"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te "
+"sluiten :"
 
-#: ../logout/data/messages:95
+#: ../logout/data/messages:97
 msgid "Invert buttons ?"
 msgstr "Knoppen omdraaien ?"
 
-#: ../mail/data/messages:83 ../mail/data/messages:89
+#: ../mail/data/messages:85 ../mail/data/messages:91
 msgid "Sub-Dock view"
 msgstr "Sub-dock weergave"
 
-#: ../mail/data/messages:93
+#: ../mail/data/messages:95
 msgid "Theme overriding"
 msgstr "Thema personaliseren"
 
-#: ../mail/data/messages:95
+#: ../mail/data/messages:97
 msgid "Name of the file for the \"no mail\" image :"
 msgstr "Naam van het bestand voor de \"Geen e-mail\" afbeelding :"
 
-#: ../mail/data/messages:97
+#: ../mail/data/messages:99
 msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
-#: ../mail/data/messages:99
+#: ../mail/data/messages:101
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr "Naam van het bestand voor het \"Nieuwe e-mail\" geluid :"
 
-#: ../mail/data/messages:103
+#: ../mail/data/messages:105
 msgid "Show new messages' content ?"
 msgstr "Inhoud nieuwe e-mails tonen ?"
 
-#: ../mail/data/messages:105
+#: ../mail/data/messages:107
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -5445,20 +5505,20 @@ msgstr ""
 "Maximum aantal e-mails dat getoond zal worden. Stel in op -1 om het grootste "
 "aantal te tonen."
 
-#: ../mail/data/messages:107
+#: ../mail/data/messages:109
 msgid "Maximum of new messages shown ?"
 msgstr "Maximum aantal te tonen nieuwe e-mails ?"
 
-#: ../mail/data/messages:109 ../musicPlayer/data/messages:123
-#: ../tomboy/data/messages:113
+#: ../mail/data/messages:111 ../musicPlayer/data/messages:125
+#: ../tomboy/data/messages:115
 msgid "in s."
 msgstr "In ms."
 
-#: ../mail/data/messages:111 ../tomboy/data/messages:115
+#: ../mail/data/messages:113 ../tomboy/data/messages:117
 msgid "Time length of the dialog :"
 msgstr "Tijdsduur van de dialoog :"
 
-#: ../mail/data/messages:113
+#: ../mail/data/messages:115
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then let the dock launch itself, and remove/modify the "
@@ -5468,19 +5528,19 @@ msgstr ""
 "de onderhoudsmodus, laat daarna het dock zichzelf starten en verwijder of "
 "pas de gewenste e-mailaccounts aan."
 
-#: ../mail/data/messages:115
+#: ../mail/data/messages:117
 msgid "Check mail account on startup ?"
 msgstr "E-mailaccount controleren tijdens opstarten ?"
 
-#: ../mail/data/messages:117
+#: ../mail/data/messages:119
 msgid "Mail application"
 msgstr "E-mailprogramma"
 
-#: ../mail/data/messages:119
+#: ../mail/data/messages:121
 msgid "Prefered mail application to launch on left-click :"
 msgstr "Geprefereerde e-mailprogramma om te starten bij linkerklik :"
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:123
 msgid ""
 "only use this if it differs from its name. Generally it is not the case, "
 "except for Thunderbird."
@@ -5488,11 +5548,11 @@ msgstr ""
 "Gebruik dit alleen wanneer de namen verschillen. In het algemeen is dit niet "
 "het geval, alleen bij Thunderbird."
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:125
 msgid "Class of the mail application (optionnal)"
 msgstr "Klasse van het e-mailprogramma (optioneel)"
 
-#: ../mail/data/messages:125
+#: ../mail/data/messages:127
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
@@ -5501,15 +5561,15 @@ msgstr ""
 "Het icoon van het applet zal zich dan gedragen als een starter, een "
 "toepassing en applet."
 
-#: ../mail/data/messages:129
+#: ../mail/data/messages:131
 msgid "Add an mail account"
 msgstr "E-mailaccount toevoegen"
 
-#: ../mail/data/messages:131
+#: ../mail/data/messages:133
 msgid "The new account will be created with specified type and name."
 msgstr "Het nieuwe account wordt aangemaakt met gespecificeerd type en naam."
 
-#: ../mail/data/messages:133
+#: ../mail/data/messages:135
 msgid "Add an account with specified type and name:"
 msgstr "Voeg nieuw e-mailaccount toe met gespecificeerd type en naam:"
 
@@ -5525,55 +5585,55 @@ msgstr "Hoeveelheid vervaging :"
 msgid "Let it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
-#: ../musicPlayer/data/messages:85
+#: ../musicPlayer/data/messages:87
 msgid "Audio Player"
 msgstr "Audiospeler"
 
-#: ../musicPlayer/data/messages:87
+#: ../musicPlayer/data/messages:89
 msgid "Player to control:"
 msgstr "Speler om te bedienen:"
 
-#: ../musicPlayer/data/messages:89
+#: ../musicPlayer/data/messages:91
 msgid "Amarok 2"
 msgstr "Amarok 2"
 
-#: ../musicPlayer/data/messages:91
+#: ../musicPlayer/data/messages:93
 msgid "Audacious"
 msgstr "Audacious"
 
-#: ../musicPlayer/data/messages:93
+#: ../musicPlayer/data/messages:95
 msgid "Banshee"
 msgstr "Banshee"
 
-#: ../musicPlayer/data/messages:95
+#: ../musicPlayer/data/messages:97
 msgid "Exaile"
 msgstr "Exaile"
 
-#: ../musicPlayer/data/messages:97
+#: ../musicPlayer/data/messages:99
 msgid "Listen"
 msgstr "Listen"
 
-#: ../musicPlayer/data/messages:99
+#: ../musicPlayer/data/messages:101
 msgid "QuodLibet"
 msgstr "QuodLibet"
 
-#: ../musicPlayer/data/messages:101
+#: ../musicPlayer/data/messages:103
 msgid "Rhythmbox"
 msgstr "Rhythmbox"
 
-#: ../musicPlayer/data/messages:103
+#: ../musicPlayer/data/messages:105
 msgid "Songbird"
 msgstr "Songbird"
 
-#: ../musicPlayer/data/messages:105
+#: ../musicPlayer/data/messages:107
 msgid "XMMS 2"
 msgstr "XMMS 2"
 
-#: ../musicPlayer/data/messages:107
+#: ../musicPlayer/data/messages:109
 msgid "XMMS"
 msgstr "XMMS"
 
-#: ../musicPlayer/data/messages:109
+#: ../musicPlayer/data/messages:111
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
@@ -5582,116 +5642,116 @@ msgstr ""
 "icoon van het applet zal zich dan gedragen als een starter, een toepassing "
 "en applet."
 
-#: ../musicPlayer/data/messages:111
+#: ../musicPlayer/data/messages:113
 msgid "Steal the player's icon from taskbar ?"
 msgstr "Icoon van speler stelen uit taakbalk ?"
 
-#: ../musicPlayer/data/messages:113
+#: ../musicPlayer/data/messages:115
 msgid "Actions on click and middle-click :"
 msgstr "Acties bij linkerklik en middelklik :"
 
-#: ../musicPlayer/data/messages:115
+#: ../musicPlayer/data/messages:117
 msgid "Play/Pause on click, Next on middle-click"
 msgstr "Afspelen/pauzeren bij linkerklik, Volgende bij middelklik"
 
-#: ../musicPlayer/data/messages:117
+#: ../musicPlayer/data/messages:119
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
 "Speler tonen/verbergen bij linkerklik, Afspelen/pauzeren bij middelklik"
 
-#: ../musicPlayer/data/messages:119
+#: ../musicPlayer/data/messages:121
 msgid "Action on music change"
 msgstr "Actie wanneer muziek verandert :"
 
-#: ../musicPlayer/data/messages:121
+#: ../musicPlayer/data/messages:123
 msgid "Show an info-bubble ?"
 msgstr "Info-ballon tonen ?"
 
-#: ../musicPlayer/data/messages:125
+#: ../musicPlayer/data/messages:127
 msgid "Time length of info-bubbles :"
 msgstr "Tijdsduur van info-ballonnen :"
 
-#: ../musicPlayer/data/messages:127
+#: ../musicPlayer/data/messages:129
 msgid "Animation when music changes :"
 msgstr "Animatie wanneer muziek verandert :"
 
-#: ../musicPlayer/data/messages:133
+#: ../musicPlayer/data/messages:135
 msgid "Nothing"
 msgstr "Niets"
 
-#: ../musicPlayer/data/messages:135
+#: ../musicPlayer/data/messages:137
 msgid "Time Elapsed"
 msgstr "Verstreken tijd"
 
-#: ../musicPlayer/data/messages:137
+#: ../musicPlayer/data/messages:139
 msgid "Time Left"
 msgstr "Resterende tijd"
 
-#: ../musicPlayer/data/messages:139
+#: ../musicPlayer/data/messages:141
 msgid "N° of track"
 msgstr "n° van nummer"
 
-#: ../musicPlayer/data/messages:141
+#: ../musicPlayer/data/messages:143
 msgid "Display album's cover ?"
 msgstr "Albumhoezen tonen ?"
 
-#: ../musicPlayer/data/messages:143
+#: ../musicPlayer/data/messages:145
 msgid "You need to be connected to the Internet."
 msgstr "Hiervoor heeft u verbinding met het internet nodig."
 
-#: ../musicPlayer/data/messages:145
+#: ../musicPlayer/data/messages:147
 msgid "Allow Cairo-Dock to download missing covers ?"
 msgstr "Cairo-Dock toestaan om ontbrekende albumhoezen te downloaden ?"
 
-#: ../musicPlayer/data/messages:147 ../musicPlayer/data/messages:151
+#: ../musicPlayer/data/messages:149 ../musicPlayer/data/messages:153
 msgid "requires OpenGL."
 msgstr "Vereist OpenGL"
 
-#: ../musicPlayer/data/messages:149
+#: ../musicPlayer/data/messages:151
 msgid "Use 3D themes ?"
 msgstr "3D-thema´s gebruiken ?"
 
-#: ../musicPlayer/data/messages:153
+#: ../musicPlayer/data/messages:155
 msgid "List of available 3D themes for covers :"
 msgstr "Lijst met beschikbare 3D-thema´s voor albumhoezen :"
 
-#: ../musicPlayer/data/messages:155 ../tomboy/data/messages:11
+#: ../musicPlayer/data/messages:157 ../tomboy/data/messages:11
 msgid "Personnalisation"
 msgstr "Personaliseren"
 
-#: ../musicPlayer/data/messages:163
+#: ../musicPlayer/data/messages:165
 msgid "Name of an image for the 'play' icon :"
 msgstr "Naam van een afbeelding voor het 'Afspelen' icoon :"
 
-#: ../musicPlayer/data/messages:167
+#: ../musicPlayer/data/messages:169
 msgid "Name of an image for the 'stop' icon :"
 msgstr "Naam van een afbeelding voor het 'Stoppen' icoon :"
 
-#: ../musicPlayer/data/messages:171
+#: ../musicPlayer/data/messages:173
 msgid "Name of an image for the 'pause' icon :"
 msgstr "Naam van een afbeelding voor het 'Pauzeren' icoon :"
 
-#: ../netspeed/data/messages:107
+#: ../netspeed/data/messages:109
 msgid "It's the color of the graphic for high rate values."
 msgstr "Dit is de kleur voor de hoge waarden in de grafiek."
 
-#: ../netspeed/data/messages:111
+#: ../netspeed/data/messages:113
 msgid "It's the color of the graphic for low rate values."
 msgstr "Dit is de kleur voor de lage waarden in de grafiek."
 
-#: ../netspeed/data/messages:121
+#: ../netspeed/data/messages:123
 msgid "By default it will be 'eth0'."
 msgstr "Standaard is dit 'eth0'."
 
-#: ../netspeed/data/messages:123
+#: ../netspeed/data/messages:125
 msgid "interface :"
 msgstr "Interface :"
 
-#: ../netspeed/data/messages:127
+#: ../netspeed/data/messages:129
 msgid "Delay between 2 measures :"
 msgstr "Tijd tussen 2 metingen :"
 
-#: ../netspeed/data/messages:129
+#: ../netspeed/data/messages:131
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "transition is continue."
@@ -5699,15 +5759,15 @@ msgstr ""
 "U heeft OpenGL nodig voor deze optie. Stel in op 0 om het niet te gebruiken, "
 "1 betekent dat de overgang continue is."
 
-#: ../netspeed/data/messages:131
+#: ../netspeed/data/messages:133
 msgid "Fluidity of the transition between 2 values :"
 msgstr "Vloeiendheid van de overgang tussen 2 waarden :"
 
-#: ../netspeed/data/messages:133
+#: ../netspeed/data/messages:135
 msgid "Display rate values :"
 msgstr "Waarden tonen :"
 
-#: ../netspeed/data/messages:141
+#: ../netspeed/data/messages:143
 msgid "Let empty to use he default one."
 msgstr "Laat leeg om de standaardwaarde te gebruiken."
 
@@ -5715,93 +5775,93 @@ msgstr "Laat leeg om de standaardwaarde te gebruiken."
 msgid "Icon name :"
 msgstr "Icoonnaam :"
 
-#: ../powermanager/data/messages:121
+#: ../powermanager/data/messages:123
 msgid "Icon's filename when on battery :"
 msgstr "Bestandsnaam icoon wanneer op accu :"
 
-#: ../powermanager/data/messages:123
+#: ../powermanager/data/messages:125
 msgid "Icon's filename when on charge :"
 msgstr "Bestandsnaam icoon wanneer op netstroom :"
 
-#: ../powermanager/data/messages:125
+#: ../powermanager/data/messages:127
 msgid "Effect to apply on the icon according to charge :"
 msgstr "Effect om toe te passen op icoon bij het laden :"
 
-#: ../powermanager/data/messages:127 ../powermanager/data/messages:143
+#: ../powermanager/data/messages:129 ../powermanager/data/messages:145
 msgid "nothing"
 msgstr "Niets"
 
-#: ../powermanager/data/messages:129
+#: ../powermanager/data/messages:131
 msgid "zoom"
 msgstr "Vergroten"
 
-#: ../powermanager/data/messages:131
+#: ../powermanager/data/messages:133
 msgid "transparency"
 msgstr "Doorzichtigheid"
 
-#: ../powermanager/data/messages:133
+#: ../powermanager/data/messages:135
 msgid "draw bar"
 msgstr "Balk tekenen"
 
-#: ../powermanager/data/messages:139 ../weather/data/messages:99
+#: ../powermanager/data/messages:141 ../weather/data/messages:101
 msgid "Interval of time between 2 checks :"
 msgstr "Interval tussen 2 controles :"
 
-#: ../powermanager/data/messages:141
+#: ../powermanager/data/messages:143
 msgid "Information to be displayed on the icon :"
 msgstr "Informatie om te tonen op het icoon :"
 
-#: ../powermanager/data/messages:145
+#: ../powermanager/data/messages:147
 msgid "charge"
 msgstr "Laden"
 
-#: ../powermanager/data/messages:147
+#: ../powermanager/data/messages:149
 msgid "time"
 msgstr "Tijd"
 
-#: ../powermanager/data/messages:149
+#: ../powermanager/data/messages:151
 msgid "Alert"
 msgstr "Waarschuwing"
 
-#: ../powermanager/data/messages:151
+#: ../powermanager/data/messages:153
 msgid "Alert when battery charged ?"
 msgstr "Waarschuwing wanneer accu opgeladen is ?"
 
-#: ../powermanager/data/messages:153 ../powermanager/data/messages:163
-#: ../powermanager/data/messages:171
+#: ../powermanager/data/messages:155 ../powermanager/data/messages:165
+#: ../powermanager/data/messages:173
 msgid "Let it empty to have no sound"
 msgstr "Laat leeg wanneer u geen geluid wilt"
 
-#: ../powermanager/data/messages:155 ../powermanager/data/messages:165
-#: ../powermanager/data/messages:173
+#: ../powermanager/data/messages:157 ../powermanager/data/messages:167
+#: ../powermanager/data/messages:175
 msgid "Use a sound :"
 msgstr "Gebruik een geluid :"
 
-#: ../powermanager/data/messages:157
+#: ../powermanager/data/messages:159
 msgid "Alert when low battery ?"
 msgstr "Waarschuwing wanneer accu bijna leeg is ?"
 
-#: ../powermanager/data/messages:159
+#: ../powermanager/data/messages:161
 msgid "in percent."
 msgstr "In procenten."
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:163
 msgid "Battery level :"
 msgstr "Acculading :"
 
-#: ../powermanager/data/messages:167
+#: ../powermanager/data/messages:169
 msgid "When battery level is under 4%"
 msgstr "Wanneer acculading onder 4% is"
 
-#: ../powermanager/data/messages:169
+#: ../powermanager/data/messages:171
 msgid "Alert when battery charge is critical ?"
 msgstr "Waarschuwing wanneer acculading kritiek is ?"
 
-#: ../powermanager/data/messages:175
+#: ../powermanager/data/messages:177
 msgid "Animate icon during the alert ?"
 msgstr "Icoon animeren tijdens waarschuwing ?"
 
-#: ../powermanager/data/messages:177
+#: ../powermanager/data/messages:179
 msgid "Animation during alert :"
 msgstr "Animatie tijdens waarschuwing :"
 
@@ -5809,43 +5869,43 @@ msgstr "Animatie tijdens waarschuwing :"
 msgid "Let empty to use the folder's name."
 msgstr "Laat leeg om mapnaam te gebruiken."
 
-#: ../quick-browser/data/messages:89
+#: ../quick-browser/data/messages:91
 msgid "Folder to browse :"
 msgstr "Map om door te bladeren :"
 
-#: ../quick-browser/data/messages:91
+#: ../quick-browser/data/messages:93
 msgid "It can be quite heavy to load a lot of icons."
 msgstr "De belasting kan groot zijn bij het laden van veel iconen."
 
-#: ../quick-browser/data/messages:95
+#: ../quick-browser/data/messages:97
 msgid "Icon size :"
 msgstr "Icoongrootte :"
 
-#: ../quick-browser/data/messages:97
+#: ../quick-browser/data/messages:99
 msgid "small"
 msgstr "Klein"
 
-#: ../quick-browser/data/messages:99
+#: ../quick-browser/data/messages:101
 msgid "medium"
 msgstr "Gemiddeld"
 
-#: ../quick-browser/data/messages:101
+#: ../quick-browser/data/messages:103
 msgid "large"
 msgstr "Groot"
 
-#: ../quick-browser/data/messages:103
+#: ../quick-browser/data/messages:105
 msgid "List folders first ?"
 msgstr "Mappen als eerste ?"
 
-#: ../quick-browser/data/messages:105
+#: ../quick-browser/data/messages:107
 msgid "Ignore case ?"
 msgstr "Hoofdletters negeren ?"
 
-#: ../quick-browser/data/messages:107
+#: ../quick-browser/data/messages:109
 msgid "Show hidden files ?"
 msgstr "Verborgen bestanden tonen ?"
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:113
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -5853,71 +5913,71 @@ msgstr ""
 "Aantal items om tegelijk te laden. Bij een hoge waarde zal het laden sneller "
 "gaan, maar het zal de toepassingen meer belemmeren."
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:115
 msgid "Gradual building of the menu :"
 msgstr "Geleidelijke opbouw van het menu :"
 
-#: ../shortcuts/data/messages:89
+#: ../shortcuts/data/messages:91
 msgid "List drives and volumes ?"
 msgstr "Schijven en volumes tonen ?"
 
-#: ../shortcuts/data/messages:91
+#: ../shortcuts/data/messages:93
 msgid "List network ?"
 msgstr "Netwerk tonen ?"
 
-#: ../shortcuts/data/messages:93
+#: ../shortcuts/data/messages:95
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "GTK-bladwijzers, die bijvoorbeeld gebruikt worden door Nautilus."
 
-#: ../shortcuts/data/messages:95
+#: ../shortcuts/data/messages:97
 msgid "List bookmarks ?"
 msgstr "Bladwijzers tonen ?"
 
-#: ../shortcuts/data/messages:97
+#: ../shortcuts/data/messages:99
 msgid "Separate different shortcuts with separators ?"
 msgstr "Verschillende snelkoppelingen scheiden met scheidingen ?"
 
-#: ../shortcuts/data/messages:103 ../stack/data/messages:95
+#: ../shortcuts/data/messages:105 ../stack/data/messages:97
 msgid "Type of view for the desklet mode :"
 msgstr "Soort weergave voor deskletmodus :"
 
-#: ../shortcuts/data/messages:107 ../stack/data/messages:99
+#: ../shortcuts/data/messages:109 ../stack/data/messages:101
 msgid "Tree"
 msgstr "Boom"
 
-#: ../shortcuts/data/messages:109
+#: ../shortcuts/data/messages:111
 msgid "Disk usage"
 msgstr "Schijfgebruik"
 
-#: ../shortcuts/data/messages:111
+#: ../shortcuts/data/messages:113
 msgid "Show disk usage :"
 msgstr "Toon schijfgebruik :"
 
-#: ../shortcuts/data/messages:115
+#: ../shortcuts/data/messages:117
 msgid "Free space"
 msgstr "Vrije ruimte"
 
-#: ../shortcuts/data/messages:117
+#: ../shortcuts/data/messages:119
 msgid "Used space"
 msgstr "Gebruikte ruimte"
 
-#: ../shortcuts/data/messages:119
+#: ../shortcuts/data/messages:121
 msgid "Free space percent"
 msgstr "Procent vrije ruimte"
 
-#: ../shortcuts/data/messages:121
+#: ../shortcuts/data/messages:123
 msgid "Used space percent"
 msgstr "Procent gebruikte ruimte"
 
-#: ../shortcuts/data/messages:123
+#: ../shortcuts/data/messages:125
 msgid "In seconds."
 msgstr "In seconden."
 
-#: ../shortcuts/data/messages:125
+#: ../shortcuts/data/messages:127
 msgid "Delay between disk usage refresh :"
 msgstr "Tijdsduur tussen vernieuwen schijfgebruik :"
 
-#: ../shortcuts/data/messages:127
+#: ../shortcuts/data/messages:129
 msgid "Display disk usage with a bar ?"
 msgstr "Schijfgebruik tonen met balk ?"
 
@@ -5981,31 +6041,63 @@ msgstr "Desklets tonen/verbergen die op de ´Widget layer´ geplaatst zijn ?"
 msgid "Shortkey to show/hide the desklets :"
 msgstr "Sneltoets om desklets te tonen/verbergen :"
 
-#: ../showDesktop/data/messages:89
+#: ../showDesktop/data/messages:91
 msgid "Swap left-click and middle-click ?"
 msgstr "Linkerklik en middelklik omdraaien ?"
 
-#: ../slider/data/messages:83
+#: ../showDesktop2/data/messages:91
+msgid "Keep the desklets visible when showing the desktop ?"
+msgstr ""
+
+#: ../showDesktop2/data/messages:93
+msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgstr ""
+
+#: ../showDesktop2/data/messages:95
+#, fuzzy
+msgid "Action on middle-click :"
+msgstr "Acties bij linkerklik en middelklik :"
+
+#: ../showDesktop2/data/messages:99
+#, fuzzy
+msgid "Show the desklets"
+msgstr "Bureaublad tonen"
+
+#: ../showDesktop2/data/messages:101
+#, fuzzy
+msgid "Show the Widget Layer (Compiz)"
+msgstr "Bureaublad tonen"
+
+#: ../showDesktop2/data/messages:103
+msgid "Expose all the desktops (Compiz)"
+msgstr ""
+
+#: ../showDesktop2/data/messages:105
+#, fuzzy
+msgid "Shortkey for the middle-click action :"
+msgstr "Selecteer een actie voor het middelklikken op het icoon :"
+
+#: ../slider/data/messages:85
 msgid "Directory"
 msgstr "Map"
 
-#: ../slider/data/messages:85
+#: ../slider/data/messages:87
 msgid "Directory of the images :"
 msgstr "Afbeeldingenmap :"
 
-#: ../slider/data/messages:87
+#: ../slider/data/messages:89
 msgid "Scan in sub direcotries ?"
 msgstr "Submappen scannen ?"
 
-#: ../slider/data/messages:89
+#: ../slider/data/messages:91
 msgid "Randomly browse files ?"
 msgstr "Bestanden willekeurig doorbladeren ?"
 
-#: ../slider/data/messages:91
+#: ../slider/data/messages:93
 msgid "Display image name as quickinfo ?"
 msgstr "Naam afbeelding tonen als snel-info ?"
 
-#: ../slider/data/messages:93
+#: ../slider/data/messages:95
 msgid ""
 "It will prevent the dock from freezing during the image loading, but does "
 "not work with cairo."
@@ -6013,94 +6105,93 @@ msgstr ""
 "Dit voorkomt dat het dock bevriest bij het laden van de afbeeldingen, maar "
 "dit werkt niet met cairo."
 
-#: ../slider/data/messages:95
+#: ../slider/data/messages:97
 msgid "Use another thread to load the images ?"
 msgstr "Een ander proces gebruiken om de afbeeldingen te laden ?"
 
-#: ../slider/data/messages:101
+#: ../slider/data/messages:103
 msgid "Sliding delay :"
 msgstr "Tijdsduur tot weergeven volgende afbeelding :"
 
-#: ../slider/data/messages:103
+#: ../slider/data/messages:105
 msgid "Action when applet is clicked :"
 msgstr "Actie bij aanklikken applet :"
 
-#: ../slider/data/messages:105
+#: ../slider/data/messages:107
 msgid "play/pause"
 msgstr "Afspelen/pauzeren"
 
-#: ../slider/data/messages:107
+#: ../slider/data/messages:109
 msgid "open image"
 msgstr "Afbeelding openen"
 
-#: ../slider/data/messages:109
+#: ../slider/data/messages:111
 msgid "Effect while changing image :"
 msgstr "Effect bij wisselen afbeelding :"
 
-#: ../slider/data/messages:113
+#: ../slider/data/messages:115
 msgid "fade"
 msgstr "Faden"
 
-#: ../slider/data/messages:115
+#: ../slider/data/messages:117
 msgid "blank fade"
 msgstr "Flits"
 
-#: ../slider/data/messages:117
+#: ../slider/data/messages:119
 msgid "fade in out"
 msgstr "In- en uitfaden"
 
-#: ../slider/data/messages:119
+#: ../slider/data/messages:121
 msgid "side kick"
 msgstr "Schop"
 
-#: ../slider/data/messages:121
+#: ../slider/data/messages:123
 msgid "diaporama"
 msgstr "Diaporama"
 
-#: ../slider/data/messages:123
+#: ../slider/data/messages:125
 msgid "grow up"
 msgstr "Groeien"
 
-#: ../slider/data/messages:125
+#: ../slider/data/messages:127
 msgid "shrink down"
 msgstr "Krimpen"
 
-#: ../slider/data/messages:127
+#: ../slider/data/messages:129
 msgid "cube"
 msgstr "Kubus"
 
-#: ../slider/data/messages:129
+#: ../slider/data/messages:131
 msgid "random"
 msgstr "Willekeurig"
 
-#: ../slider/data/messages:131
+#: ../slider/data/messages:133
 msgid "Number of steps for a transition :"
 msgstr "Aantal stappen voor een overgang :"
 
-#: ../slider/data/messages:135
+#: ../slider/data/messages:137
 msgid "Gives a better image rendering."
 msgstr "Dit geeft een mooier resultaat."
 
-#: ../slider/data/messages:137
+#: ../slider/data/messages:139
 msgid "Keep widht/height ratio ?"
 msgstr "Verhouding breedte/hoogte behouden ?"
 
-#: ../slider/data/messages:139
+#: ../slider/data/messages:141
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Wanneer de afbeelding te klein is, dan wordt de afbeelding vergroot."
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:143
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:145
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr ""
-"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:147
 msgid "Choose a background color :"
 msgstr "Selecteer achtergrondkleur :"
 
@@ -6108,29 +6199,29 @@ msgstr "Selecteer achtergrondkleur :"
 msgid "Let empty to use a default name"
 msgstr "Laat leeg om standaardnaam te gebruiken"
 
-#: ../stack/data/messages:101
+#: ../stack/data/messages:103
 msgid "They are items created by dropping a text into the Stack."
 msgstr ""
 "Deze items zijn aangemaakt na het verslepen van een tekst naar de Stapel."
 
-#: ../stack/data/messages:103
+#: ../stack/data/messages:105
 msgid "Image for the 'text' items :"
 msgstr "Afbeelding voor de 'Tekst-items' :"
 
-#: ../stack/data/messages:105
+#: ../stack/data/messages:107
 msgid "They are items created by dropping an URL into the Stack."
 msgstr ""
 "Deze items zijn aangemaakt na het verslepen van een URL naar de Stapel."
 
-#: ../stack/data/messages:107
+#: ../stack/data/messages:109
 msgid "Image for the 'URL' items :"
 msgstr "Afbeelding voor de 'URL-items' :"
 
-#: ../stack/data/messages:109
+#: ../stack/data/messages:111
 msgid "Options"
 msgstr "Opties"
 
-#: ../stack/data/messages:111
+#: ../stack/data/messages:113
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
@@ -6138,51 +6229,51 @@ msgstr ""
 "Met deze opties kunt u vermijden dat sommige bestanden, aan de hand van het "
 "soort bestand (video, afbeeldingen, etc...), getoond worden in de stapels"
 
-#: ../stack/data/messages:113
+#: ../stack/data/messages:115
 msgid "Filter files with their mime types ?"
 msgstr "Bestanden filteren op hun mime-types ?"
 
-#: ../stack/data/messages:115
+#: ../stack/data/messages:117
 msgid "Eg: image, text, video, audio, application, ..."
 msgstr "Bv: afbeelding, tekst, video, audio, toepassing, ..."
 
-#: ../stack/data/messages:117
+#: ../stack/data/messages:119
 msgid "Here you can specify a list of mime types to avoid :"
 msgstr "Hier kunt u een lijst van mime-types aangeven om te vermijden :"
 
-#: ../stack/data/messages:119
+#: ../stack/data/messages:121
 msgid "Sort items by :"
 msgstr "Items sorteren op :"
 
-#: ../stack/data/messages:121
+#: ../stack/data/messages:123
 msgid "Name"
 msgstr "Naam"
 
-#: ../stack/data/messages:123
+#: ../stack/data/messages:125
 msgid "Date"
 msgstr "Datum"
 
-#: ../stack/data/messages:125
+#: ../stack/data/messages:127
 msgid "Type"
 msgstr "Soort"
 
-#: ../stack/data/messages:127
+#: ../stack/data/messages:129
 msgid "Manual order"
 msgstr "Handmatig ordenen"
 
-#: ../stack/data/messages:129
+#: ../stack/data/messages:131
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual "
-"ctrl+c/ctrl+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
+"+v clipboard"
 msgstr ""
 "Dit is een selectie gemaakt met de muis, in tegenstelling tot het "
 "gebruikelijke CTRL+c/CTRL+v in het klembord"
 
-#: ../stack/data/messages:131
+#: ../stack/data/messages:133
 msgid "When copy/paste/cut, use the selection clipboard ?"
 msgstr "Bij het kopiëren/plakken/knippen de klembordselectie gebruiken ?"
 
-#: ../switcher/data/messages:85
+#: ../switcher/data/messages:87
 msgid ""
 "All the desktops will be drawn on the main icon. Otherwise a subdock will "
 "contain all the desktops."
@@ -6190,100 +6281,100 @@ msgstr ""
 "Alle bureaubladen zullen op het hoofdicoon getekend worden. Anders zal een "
 "sub-dock alle bureaubladen bevatten."
 
-#: ../switcher/data/messages:87
+#: ../switcher/data/messages:89
 msgid "Use the compact mode ?"
 msgstr "Compacte modus gebruiken ?"
 
-#: ../switcher/data/messages:89
+#: ../switcher/data/messages:91
 msgid "When drawing in compact mode, try to preserve the screen ratio ?"
 msgstr ""
 "Tijdens het tekenen in compacte modus, beeldschermverhouding proberen te "
 "behouden ?"
 
-#: ../switcher/data/messages:91
+#: ../switcher/data/messages:93
 msgid "Map the wallpaper on icon ?"
 msgstr "Bureaubladachtergrond afbeelden op icoon ?"
 
-#: ../switcher/data/messages:93
+#: ../switcher/data/messages:95
 msgid "Show desktop number on the icons ?"
 msgstr "Bureaubladnummer tonen op de iconen ?"
 
-#: ../switcher/data/messages:95
+#: ../switcher/data/messages:97
 msgid "Draw the windows on icon ?"
 msgstr "Vensters op icoon tekenen ?"
 
-#: ../switcher/data/messages:97
+#: ../switcher/data/messages:99
 msgid "Draw hidden windows too ?"
 msgstr "Verborgen vensters ook tekenen ?"
 
-#: ../switcher/data/messages:99
+#: ../switcher/data/messages:101
 msgid "Show windows list"
 msgstr "Vensterlijst tonen"
 
-#: ../switcher/data/messages:101
+#: ../switcher/data/messages:103
 msgid "Show desktop"
 msgstr "Bureaublad tonen"
 
-#: ../switcher/data/messages:103
+#: ../switcher/data/messages:105
 msgid "Workspace names :"
 msgstr "Bureaubladnamen :"
 
-#: ../switcher/data/messages:105
+#: ../switcher/data/messages:107
 msgid "Display options"
 msgstr "Weergave-opties"
 
-#: ../switcher/data/messages:107
+#: ../switcher/data/messages:109
 msgid "Size of the inside lines :"
 msgstr "Dikte van binnenlijnen :"
 
-#: ../switcher/data/messages:109 ../switcher/data/messages:115
-#: ../switcher/data/messages:119 ../switcher/data/messages:123
+#: ../switcher/data/messages:111 ../switcher/data/messages:117
+#: ../switcher/data/messages:121 ../switcher/data/messages:125
 msgid "r, v, b, a"
 msgstr "r, v, b, a"
 
-#: ../switcher/data/messages:111
+#: ../switcher/data/messages:113
 msgid "Color of the inside lines :"
 msgstr "Kleur van binnenlijnen :"
 
-#: ../switcher/data/messages:113
+#: ../switcher/data/messages:115
 msgid "Size of the extern line :"
 msgstr "Dikte van externe lijnen :"
 
-#: ../switcher/data/messages:117
+#: ../switcher/data/messages:119
 msgid "Color of the extern line :"
 msgstr "Kleur van externe lijnen :"
 
-#: ../switcher/data/messages:121
+#: ../switcher/data/messages:123
 msgid "Color of the Windows line :"
 msgstr "Kleur van vensterlijnen :"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:127
 msgid "Color of the current desktop :"
 msgstr "Kleur van het huidige bureaublad :"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:129
 msgid "How to draw the current desktop :"
 msgstr "Hoe wilt u het huidige bureaublad tekenen :"
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:131
 msgid "draw a frame"
 msgstr "Teken een frame"
 
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:133
 msgid "fill"
 msgstr "Vullen"
 
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:135
 msgid "fill others"
 msgstr "Andere vullen"
 
-#: ../switcher/data/messages:137
+#: ../switcher/data/messages:139
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
 msgstr ""
 "Icoon voor uitgebreide modus, als u bureaubladachtergrond niet afbeeldt op "
 "icoon :"
 
-#: ../switcher/data/messages:143
+#: ../switcher/data/messages:145
 msgid "In expanded mode, render the desklet in 3D ?"
 msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
 
@@ -6291,7 +6382,7 @@ msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
 
-#: ../systray/data/messages:39 ../terminal/data/messages:85
+#: ../systray/data/messages:39 ../terminal/data/messages:87
 msgid "GUI"
 msgstr "GUI"
 
@@ -6315,23 +6406,23 @@ msgstr "Verticaal"
 msgid "Icons size :"
 msgstr "Icoongrootte :"
 
-#: ../terminal/data/messages:87
+#: ../terminal/data/messages:89
 msgid "needs to restart the applet."
 msgstr "Vereist herstart van het applet."
 
-#: ../terminal/data/messages:89
+#: ../terminal/data/messages:91
 msgid "Terminal's transparency :"
 msgstr "Doorzichtigheid terminal :"
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "Foreground color (r, v, b):"
 msgstr "Voorgrondkleur (r, v, b):"
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Background color (r, v, b):"
 msgstr "Achtergrondkleur (r, v, b):"
 
-#: ../terminal/data/messages:95
+#: ../terminal/data/messages:97
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6339,11 +6430,11 @@ msgstr ""
 "Wanneer de terminal in een dialoog is. Wanneer het in een desklet is, kunt u "
 "de afmetingen van het desklet wijzigen zoals gebruikelijk."
 
-#: ../terminal/data/messages:97
+#: ../terminal/data/messages:99
 msgid "Size of the terminal (line x columns) :"
 msgstr "Grootte van de terminal (lijnen x kolommen) :"
 
-#: ../terminal/data/messages:99
+#: ../terminal/data/messages:101
 msgid "Shortkey to show the terminal :"
 msgstr "Sneltoets om terminal te tonen :"
 
@@ -6359,47 +6450,47 @@ msgstr "Naam van afbeelding voor het 'Afsluiten' icoon :"
 msgid "Name of an image for the 'empty' icon :"
 msgstr "Naam van afbeelding voor het 'Leeg' icoon :"
 
-#: ../tomboy/data/messages:101
+#: ../tomboy/data/messages:103
 msgid "View"
 msgstr "Weergave"
 
-#: ../tomboy/data/messages:107
+#: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon ?"
 msgstr "Inhoud notitie tekenen op hun icoon ?"
 
-#: ../tomboy/data/messages:109
+#: ../tomboy/data/messages:111
 msgid "Text color of the content :"
 msgstr "Tekstkleur van de inhoud :"
 
-#: ../tomboy/data/messages:111
+#: ../tomboy/data/messages:113
 msgid "Display note's content with a dialog ?"
 msgstr "Inhoud notitie tonen met een dialoog ?"
 
-#: ../tomboy/data/messages:119
+#: ../tomboy/data/messages:121
 msgid "Choose the note-taking application to control :"
 msgstr "Selecteer welke notitietoepassing u wilt bedienen :"
 
-#: ../tomboy/data/messages:121
+#: ../tomboy/data/messages:123
 msgid "Gnote"
 msgstr "Gnote"
 
-#: ../tomboy/data/messages:123
+#: ../tomboy/data/messages:125
 msgid "Tomboy"
 msgstr "Tomboy"
 
-#: ../tomboy/data/messages:125
+#: ../tomboy/data/messages:127
 msgid "Ask confirmation before deleting a note ?"
 msgstr "Bevestiging vragen voor het verwijderen van een notitie ?"
 
-#: ../tomboy/data/messages:127
+#: ../tomboy/data/messages:129
 msgid "Otherwise you will be asked to name it."
 msgstr "Anders dient u het zelf een naam te geven."
 
-#: ../tomboy/data/messages:129
+#: ../tomboy/data/messages:131
 msgid "Automatically name a new note ?"
 msgstr "Een nieuwe notitie automatisch een naam geven ?"
 
-#: ../tomboy/data/messages:131
+#: ../tomboy/data/messages:133
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -6409,11 +6500,11 @@ msgstr ""
 "die van 'strftime' : %d voor de dag, %m voor de maand, %y voor het jaar (2 "
 "cijfers), etc. Laat leeg om de standaardwaarde te gebruiken (%d/%m/%j)."
 
-#: ../tomboy/data/messages:133
+#: ../tomboy/data/messages:135
 msgid "Date format to search for :"
 msgstr "Datumformaat om naar te zoeken :"
 
-#: ../tomboy/data/messages:135
+#: ../tomboy/data/messages:137
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -6425,7 +6516,7 @@ msgstr ""
 "foutmeldingen krijgt zoals <<No marshaller for signature of signal "
 "'NoteDeleted'>> in de terminal."
 
-#: ../tomboy/data/messages:137
+#: ../tomboy/data/messages:139
 msgid "Emulate the 'NoteDeleted' signal ?"
 msgstr "Het 'NoteDeleted' signaal emuleren ?"
 
@@ -6437,142 +6528,143 @@ msgstr "Stel in op 0 om de standaardgrootte van het applet te gebruiken"
 msgid "Let it empty to use the name of the city."
 msgstr "Laat leeg om de naam van de stad te gebruiken."
 
-#: ../weather/data/messages:87
+#: ../weather/data/messages:89
 msgid "Enter the name of your location in the text entry and press Enter."
 msgstr "Voer de naam van uw locatie in, in het tekstveld en druk op Enter."
 
-#: ../weather/data/messages:89
+#: ../weather/data/messages:91
 msgid "Code of your location :"
 msgstr "Code van uw locatie :"
 
-#: ../weather/data/messages:91
+#: ../weather/data/messages:93
 msgid "Use International System Units ?"
 msgstr "Internationaal eenhedensysteem gebruiken ?"
 
-#: ../weather/data/messages:93
+#: ../weather/data/messages:95
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "In seconden. Stel in op 0 om doorgaande dialogen te hebben."
 
-#: ../weather/data/messages:95
+#: ../weather/data/messages:97
 msgid "Duration of dialogs :"
 msgstr "Tijdsduur van dialogen :"
 
-#: ../weather/data/messages:97
+#: ../weather/data/messages:99
 msgid "in minutes."
 msgstr "In minuten."
 
-#: ../weather/data/messages:103
+#: ../weather/data/messages:105
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr ""
 "Huidig weer tonen op het gekozen icoon in plaats van op het standaardicoon ?"
 
-#: ../weather/data/messages:105
+#: ../weather/data/messages:107
 msgid "Number of days you want to forecast :"
 msgstr "Aantal dagen voor weersvoorspelling :"
 
-#: ../weather/data/messages:107
+#: ../weather/data/messages:109
 msgid "Display nights too ?"
 msgstr "Ook de nachten tonen ?"
 
-#: ../weather/data/messages:109
+#: ../weather/data/messages:111
 msgid "Display temperature as quick info ?"
 msgstr "Temperatuur tonen als snel-info ?"
 
-#: ../weather/data/messages:119
+#: ../weather/data/messages:121
 msgid "Render desklet in 3D ?"
 msgstr "Desklet in 3D weergeven ?"
 
-#: ../weblets/data/messages:87
+#: ../weblets/data/messages:89
 msgid "URI to load in weblet"
 msgstr "URI om te laden in weblet"
 
-#: ../weblets/data/messages:89
+#: ../weblets/data/messages:91
 msgid "Show scrollbars ?"
 msgstr "Scrollbalken tonen ?"
 
-#: ../weblets/data/messages:91
+#: ../weblets/data/messages:93
 msgid "Horizontal scroll of the browser in pixel"
 msgstr "Horizontale scrol van de browser in pixel"
 
-#: ../weblets/data/messages:93
+#: ../weblets/data/messages:95
 msgid "Position of horizontal scrollbar"
 msgstr "Positie van de horizontale scrollbalk in pixel"
 
-#: ../weblets/data/messages:95
+#: ../weblets/data/messages:97
 msgid "Vertical scroll of the browser in pixel"
 msgstr "Verticale scrol van de browser in pixel"
 
-#: ../weblets/data/messages:97
+#: ../weblets/data/messages:99
 msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
-#: ../weblets/data/messages:99
+#: ../weblets/data/messages:101
 msgid ""
 "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
-#: ../weblets/data/messages:101
+#: ../weblets/data/messages:103
 msgid "Right margin's width, in pixels :"
 msgstr "Breedte rechtermarge, in pixels :"
 
-#: ../weblets/data/messages:103
+#: ../weblets/data/messages:105
 msgid "Transparent background ?"
 msgstr "Doorzichtige achtergrond ?"
 
-#: ../weblets/data/messages:105
+#: ../weblets/data/messages:107
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr ""
 "Tijd voordat de weblet URL herladen wordt, in seconden. Nul betekent nooit "
 "herladen."
 
-#: ../weblets/data/messages:107
+#: ../weblets/data/messages:109
 msgid "Time between two page refreshes"
 msgstr "Tijd tussen het vernieuwen van een pagina"
 
-#: ../weblets/data/messages:109
+#: ../weblets/data/messages:111
 msgid "Any valid URI should work."
 msgstr "Elke geldige URL zou moeten werken."
 
-#: ../weblets/data/messages:111
+#: ../weblets/data/messages:113
 msgid "Predefined bookmarks to show in applet's menu :"
 msgstr "Aangegeven bladwijzers om in applet's menu te verschijnen :"
 
-#: ../wifi/data/messages:133
+#: ../wifi/data/messages:135
 msgid "Name of an image for the 'no signal' icon :"
 msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
 
-#: ../wifi/data/messages:137
+#: ../wifi/data/messages:139
 msgid "Name of an image for the 'very low' icon :"
 msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
 
-#: ../wifi/data/messages:141
+#: ../wifi/data/messages:143
 msgid "Name of an image for the 'low' icon :"
 msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
 
-#: ../wifi/data/messages:145
+#: ../wifi/data/messages:147
 msgid "Name of an image for the 'middle' icon :"
 msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
 
-#: ../wifi/data/messages:149
+#: ../wifi/data/messages:151
 msgid "Name of an image for the 'good' icon :"
 msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
 
-#: ../wifi/data/messages:153
+#: ../wifi/data/messages:155
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
-#~ "next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
+#~ "for next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Bedien uw Rhythmbox-speler direct vanuit het dock !\n"
-#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en naar "
-#~ "beneden scrollen voor volgende nummer, omhoog scrollen voor vorige nummer.\n"
+#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en "
+#~ "naar beneden scrollen voor volgende nummer, omhoog scrollen voor vorige "
+#~ "nummer.\n"
 #~ "U kunt albumhoezen (jpg) naar het icoon slepen om ze te gebruiken,\n"
 #~ "dit kunt u ook doen met nummers om ze in de wachtrij te plaatsen."
 
@@ -6595,8 +6687,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
-#~ "still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
+#~ "is still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6608,7 +6700,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "Voor XMMS, moet u de 'xmms-infopipe' plug-in installeren.\n"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen.\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
+#~ "plaatsen.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen."
 
 #~ msgid "Let empty to use the default one.}"
@@ -6625,12 +6718,12 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr "Info-ballonnen activeren ?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Dit voorkomt dat het icoon van Rhythmbox zichtbaar is in de taakbalk. Het "
-#~ "icoon van het applet zal zich dan gedragen als een starter, een toepassing "
-#~ "en applet."
+#~ "icoon van het applet zal zich dan gedragen als een starter, een "
+#~ "toepassing en applet."
 
 #~ msgid "Steal the rhythmbox's icon in taskbar ?"
 #~ msgstr "Icoon Rhythmbox stelen uit taakbalk ?"
@@ -6675,29 +6768,31 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stapels gedraagt zich als het shortcuts applet, maar met bestanden. Om een "
-#~ "bestand aan uw stapels toe te voegen, kunt u het verslepen naar het stapels-"
-#~ "icoon"
+#~ "Stapels gedraagt zich als het shortcuts applet, maar met bestanden. Om "
+#~ "een bestand aan uw stapels toe te voegen, kunt u het verslepen naar het "
+#~ "stapels-icoon"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Alleen stapel´s lokale map gebruiken ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
+#~ "unticked."
 #~ msgstr ""
-#~ "U kunt het label '_LocalDirectory_' aanbrengen om zowel de lokale mappen van "
-#~ "de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen "
+#~ "U kunt het label '_LocalDirectory_' aanbrengen om zowel de lokale mappen "
+#~ "van de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen "
 #~ "stapel´s lokale map gebruiken' is uitgevinkt."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Gemonitoorde mappen :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it properly."
+#~ "This option with large files lists can slow down the dock, use it "
+#~ "properly."
 #~ msgstr ""
-#~ "Deze optie met lange bestandslijsten kunnen het dock vertragen, gebruik het "
-#~ "op de juiste manier."
+#~ "Deze optie met lange bestandslijsten kunnen het dock vertragen, gebruik "
+#~ "het op de juiste manier."
 
 #~ msgid "List hidden files ?"
 #~ msgstr "Verborgen bestanden bijhouden ?"
@@ -6733,7 +6828,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on "
+#~ "Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
@@ -6741,8 +6837,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
-#~ "plaatsen(afhankelijk van speler).\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen"
+#~ "(afhankelijk van speler).\n"
 #~ "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 #~ "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
 
@@ -6763,13 +6859,14 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr "Hoogte :"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
-#~ "or ALT + left_click for exemple.}\n"
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple.}\n"
 #~ "width=92\n"
 #~ "#i[48;256] ...\n"
 #~ "height=92\n"
 #~ "#i[-2048;2048] Desklet's position (x ; y) :\n"
-#~ "#{Depending on your WindowManager, you can move it with ALT + left_click}\n"
+#~ "#{Depending on your WindowManager, you can move it with ALT + "
+#~ "left_click}\n"
 #~ "x position=0\n"
 #~ "#i[-2048;2048] ...\n"
 #~ "y position=0\n"
@@ -6784,14 +6881,15 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "(name=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
+#~ "left mouse button. Of course you can still move it with ALT + "
+#~ "left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
 #~ msgstr ""
-#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld wijzigen "
-#~ "met ALT + middenklik of ALT + linkermuisklik.}\n"
+#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld "
+#~ "wijzigen met ALT + middenklik of ALT + linkermuisklik.}\n"
 #~ "Breedte=92\n"
 #~ "#i[48;256] ...\n"
 #~ "Hoogte=92\n"
@@ -6837,7 +6935,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "You can put the tag '__Player__' to display the name of the player you "
 #~ "control"
 #~ msgstr ""
-#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u bedient"
+#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u "
+#~ "bedient"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click}\n"
@@ -6855,8 +6954,9 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "(class=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
+#~ "left mouse button. Of course you can still move it with ALT + "
+#~ "left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
@@ -6900,8 +7000,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr "Gewenste icoongrootte voor dit applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-#~ "dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)"
@@ -6918,7 +7018,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgid ""
 #~ "Here you can specify a list of additionnal Trash directories to monitor :"
 #~ msgstr ""
-#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te monitoren :"
+#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te "
+#~ "monitoren :"
 
 #~ msgid "Display the cover ?"
 #~ msgstr "Albumhoes tonen ?"
@@ -6972,8 +7073,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr "Grootte van de gedownloade albumhoezen :"
 
 #~ msgid ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
-#~ "dock & type=utility)}"
+#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(class=Cairo-dock & type=utility)}"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)}"
@@ -6997,8 +7098,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr ""
 #~ "Het CPU-gebruik applet toont het huidige gebruik van de processor.\n"
 #~ "Middelklik op het icoon voor enige waardevolle informatie.\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
-#~ "CPU-gebruik."
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
+#~ "meeste CPU-gebruik."
 
 #~ msgid "Data acquisition has failed"
 #~ msgstr "Verkrijgen van data mislukt"
@@ -7013,8 +7114,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op 0 "
-#~ "om geen watermerk te gebruiken."
+#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op "
+#~ "0 om geen watermerk te gebruiken."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Afbeelding om te gebruiken als watermerk :"
@@ -7094,8 +7195,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr ""
 #~ "Dit applet toont info over uw nVidia-kaart\n"
 #~ "Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
-#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-in "
-#~ "niet."
+#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-"
+#~ "in niet."
 
 #~ msgid "Informations"
 #~ msgstr "Informatie"
@@ -7129,8 +7230,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ "Left-click to show a list of the most memory using programs"
 #~ msgstr ""
 #~ "Dit applet toont u het huidige RAM- en SWAP-gebruik\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
-#~ "geheugengebruik"
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
+#~ "meeste geheugengebruik"
 
 #~ msgid "It's the color of the graphic for high RAM values."
 #~ msgstr "Dit is de kleur voor de hoge RAM-waarden in de grafiek."
@@ -7157,8 +7258,8 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 #~ msgstr "Toon geheugengebruik waarden :"
 
 #~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most memory-"
-#~ "using programs."
+#~ "When you left-click on the icon, you will get the list of the N most "
+#~ "memory-using programs."
 #~ msgstr ""
 #~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
 #~ "toepassingen met het meeste geheugengebruik."
@@ -7168,5 +7269,5 @@ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr ""
-#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar dit "
-#~ "bureaublad"
+#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar "
+#~ "dit bureaublad"
