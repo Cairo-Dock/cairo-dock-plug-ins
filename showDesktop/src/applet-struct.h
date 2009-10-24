@@ -23,14 +23,26 @@
 
 #include <cairo-dock.h>
 
+typedef enum {
+	CD_SHOW_DESKTOP=0,
+	CD_SHOW_DESKLETS,
+	CD_SHOW_WIDGET_LAYER,
+	CD_EXPOSE,
+	CD_NB_ACTIONS
+	} CDActionOnClick;
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bswapclic;
+	gboolean bShowDesklets;
+	gboolean bShowWidgetLayerDesklet;
+	CDActionOnClick iActionOnMiddleClick;
+	gchar *cShortcut;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	int no_data_yet;
+	gboolean bDeskletsVisible;
+	Window xLastActiveWindow;
 	} ;
 
 

@@ -88,5 +88,13 @@ fg alpha = 1
 #F[Behaviour;gtk-execute]
 frame_behav =
 
-#b Swap left-click and middle-click ?
-swap clic = false
+#b Keep the desklets visible when showing the desktop ?
+#{According to your Window Manager, this may prevent the applet from hiding the desktop.}
+show desklets = true
+
+#l[Show the desktop;Show the desklets;Show the Widget Layer (Compiz);Expose all the desktops (Compiz)] Action on middle-click :
+#{You need to activate the Dbus plug-in of Compiz for the last 2 actions.}
+middle click = 1
+
+#k Shortkey for the middle-click action :
+shortkey = <Control>F4

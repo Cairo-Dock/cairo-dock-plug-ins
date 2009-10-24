@@ -27,6 +27,7 @@
 #include "3dcover-draw.h"
 #include "applet-musicplayer.h"
 #include "applet-cover.h"
+#include "applet-dbus.h"
 #include "applet-draw.h"
 
 static gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
@@ -112,8 +113,8 @@ gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
 	int iSize = cairo_dock_get_file_size (cFilePath);
 	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
 	myData.iCurrentFileSize = iSize;
-	if (iSize == 0)
-		myData.iNbCheckFile ++;
+	//if (iSize == 0)
+	//	myData.iNbCheckFile ++;
 	return bConstantSize;
 }
 
@@ -129,6 +130,13 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 		if (!bCheckSize || cd_musicplayer_check_size_is_constant (myData.cCoverPath))
 		{
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
+			if (myData.iCurrentFileSize <= 910)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
+			{
+				g_print ("cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
+				g_remove (myData.cCoverPath);
+				myData.iSidCheckCover = 0;
+				return FALSE;
+			}
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{
 				if (myData.iPrevTextureCover != 0)

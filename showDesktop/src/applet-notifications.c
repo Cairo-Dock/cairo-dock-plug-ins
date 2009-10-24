@@ -31,16 +31,82 @@ static gboolean _cd_allow_minimize (CairoDesklet *pDesklet, CairoDockModuleInsta
 	return FALSE;
 }
 
-//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-CD_APPLET_ON_CLICK_BEGIN
+static void _cd_show_hide_desktop (gboolean bShowDesklets)
+{
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	
-	if (! bDesktopIsVisible && !myConfig.bswapclic)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
+	if (! bDesktopIsVisible && ! bShowDesklets)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
 	{
 		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
 	}
 	
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+}
+
+static void _cd_show_hide_desklet (void)
+{
+	if (myData.bDeskletsVisible)
+	{
+		//myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
+		cairo_dock_set_all_desklets_visible (myConfig.bShowWidgetLayerDesklet);
+	}
+	else
+	{
+		cairo_dock_set_desklets_visibility_to_default ();
+		//cairo_dock_show_xwindow (myData.xLastActiveWindow);
+	}
+	myData.bDeskletsVisible = ! myData.bDeskletsVisible;
+}
+
+static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compiz-Icon applet, thanks ChangFu !
+{
+	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
+		cd_warning  ("Dbus plug-in must be activated in Compiz !");
+	GError *erreur = NULL;
+	gchar *cDbusCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/%s org.freedesktop.compiz.activate string:'root' int32:%d", cCommand, cairo_dock_get_root_id ());
+	g_spawn_command_line_async (cDbusCommand, &erreur);
+	g_free (cDbusCommand);
+	if (erreur != NULL)
+	{
+		cd_warning ("Compiz-icon : when trying to send '%s' : %s", cCommand, erreur->message);
+		g_error_free (erreur);
+	}
+}
+
+static void _cd_show_widget_layer (void)
+{
+	_compiz_dbus_action ("widget/allscreens/toggle_button");  // toggle avant la 0.7
+}
+
+static void _cd_expose (void)
+{
+	_compiz_dbus_action ("expo/allscreens/expo_button");  // expo avant la 0.7
+}
+
+static void _cd_action_on_middle_click (void)
+{
+	switch (myConfig.iActionOnMiddleClick)
+	{
+		case CD_SHOW_DESKTOP :
+			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
+		break ;
+		case CD_SHOW_DESKLETS :
+			_cd_show_hide_desklet ();
+		break ;
+		case CD_SHOW_WIDGET_LAYER :
+			_cd_show_widget_layer ();
+		break ;
+		case CD_EXPOSE :
+			_cd_expose ();
+		break ;
+		default:
+		break;
+	}
+}
+
+//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
+CD_APPLET_ON_CLICK_BEGIN
+	_cd_show_hide_desktop (myConfig.bShowDesklets);
 CD_APPLET_ON_CLICK_END
 
 
@@ -52,12 +118,12 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	
-	if (! bDesktopIsVisible && myConfig.bswapclic)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
-	{
-		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
-	}
-	
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	_cd_action_on_middle_click ();
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+
+void cd_show_desktop_on_keybinding_pull (const char *keystring, gpointer user_data)
+{
+	_cd_action_on_middle_click ();
+}
