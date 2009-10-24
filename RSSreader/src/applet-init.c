@@ -57,7 +57,9 @@ CD_APPLET_INIT_BEGIN
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
 	}
 	
-	myData.cLastFirstFeedLine = NULL;	
+	myData.bUpdateIsManual = FALSE;
+	myData.cLastFirstFeedLine = NULL;
+	myData.cLastSecondFeedLine = NULL;
 	myData.cFeedLine[1] = g_strdup_printf (D_("Please wait ..."));
 	myData.cFeedLine[0] = g_strdup_printf ("%s\n", myData.cFeedLine[1]);
 	
@@ -112,7 +114,9 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On relance le timer.
 	    myData.iSidAutomaticRefresh = g_timeout_add_seconds (myConfig.iRefreshTime, (GSourceFunc) cd_rssreader_automatic_refresh, (gpointer) myApplet); 
 	    
+	    myData.bUpdateIsManual = FALSE;
 		myData.cLastFirstFeedLine = NULL;	
+		myData.cLastSecondFeedLine = NULL;
 		myData.cFeedLine[1] = g_strdup_printf (D_("Please wait ..."));
 		myData.cFeedLine[0] = g_strdup_printf ("%s\n", myData.cFeedLine[1]);
 		

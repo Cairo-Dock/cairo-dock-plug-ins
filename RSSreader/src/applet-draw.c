@@ -157,23 +157,8 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 		cd_debug ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"", myData.cTaskBridge);
 		g_string_free (sCommand, TRUE);		
 		
-		// On vérifie le nombre de lignes reçues
-	 	gchar cCurrentLetter = {0};
-		gint iNbLines = 0;
-		long i=0;
-		for (i=0 ; i < strlen(myData.cTaskBridge) ; i++)
-		{
-			cCurrentLetter = myData.cTaskBridge[i];				
-			if (cCurrentLetter == '\n')
-				iNbLines++;
-		}		
-		if (iNbLines == myConfig.iLines)
-			cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = OK :-)");
-		else
-			cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = KO :-(");
-		
 		// On vérifie que la commande nous a renvoyé quelque chose de cohérent
-		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0 || iNbLines != myConfig.iLines)
+		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0) //if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0 || iNbLines != myConfig.iLines)
 		{			
 			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite		
 		}		
@@ -183,7 +168,27 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 {
 	myData.cFeedLine[0] = g_strdup_printf ("%s",myData.cTaskBridge);  // On récupère le contenu de myData.cTaskBridge -> myData.cFeedLine[0] nous servira pour les dialogues ;-)		
-	myData.cFeedLine[1] = g_strdup_printf ("%s",*(g_strsplit(myData.cFeedLine[0], "\n", 0)) ); 
+	myData.cFeedLine[1] = g_strdup_printf ("%s",*(g_strsplit(myData.cFeedLine[0], "\n", 0)) );
+	
+	
+	// On vérifie le nombre de lignes reçues
+ 	gchar cCurrentLetter = {0};
+	gint iNbLines = 0;
+	long i=0;
+	for (i=0 ; i < strlen(myData.cFeedLine[0]) ; i++)
+	{
+		cCurrentLetter = myData.cFeedLine[0][i];				
+		if (cCurrentLetter == '\n')
+			iNbLines++;
+	}		
+	if (iNbLines == myConfig.iLines)
+		cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = OK :-)");
+	else
+		cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = KO :-(");
+	
+	
+	
+	
 	
 	if (strcmp(myData.cFeedLine[0], g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
 	{
@@ -193,7 +198,7 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 		int i;
 		for (i = 5 ; i < (myConfig.iLines+1) ; i++)
 		{
-			myData.cFeedLine[i] = g_strdup_printf ("%s", " ");
+			myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
 		}
 	}	
 	else if (strcmp(myData.cFeedLine[0], g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect)) == 0 ) // Si strcmp renvoie 0 (chaînes identiques)
@@ -201,17 +206,17 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 		int i;
 		for (i = 2 ; i < (myConfig.iLines+1) ; i++)
 		{
-			myData.cFeedLine[i] = g_strdup_printf ("%s", " ");
+			myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
 		}
 	}
 	else
 	{
 		int i;			
-		for (i = 1 ; i < (myConfig.iLines+1) ; i++)
+		for (i = 1 ; i < (iNbLines+1) ; i++)
 		{
 			if (i == 1)
 				cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cFeedLine [ %i ] \"%s\"",i ,myData.cFeedLine[i]);
-			else if (i == myConfig.iLines)
+			else if (i == iNbLines)
 			{
 				myData.cTempText = g_strdup_printf ("%s", myData.cFeedLine[0]);
 				rtrim( myData.cTempText, "\n" );
@@ -239,27 +244,39 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 				g_strreverse (myData.cFeedLine[i]);
 				cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cFeedLine [ %i ] \"%s\"",i ,myData.cFeedLine[i]);
 			}
-		}		
+		}
+		if (iNbLines != myConfig.iLines)
+		{
+			int i;
+			for (i = iNbLines+1 ; i < (myConfig.iLines+1) ; i++)
+			{
+				myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
+			}
+		}	
 	}
 	
 	cd_debug ("RSSreader-debug : UPDATE ---------------> Current first line = \"%s\"",myData.cFeedLine[1]);
 	cd_debug ("RSSreader-debug : UPDATE ---------------> Last first line    = \"%s\"",myData.cLastFirstFeedLine);
-	
+	cd_debug ("RSSreader-debug : UPDATE ---------------> Current second line = \"%s\"",myData.cFeedLine[2]);
+	cd_debug ("RSSreader-debug : UPDATE ---------------> Last second line    = \"%s\"",myData.cLastSecondFeedLine);
 	
 	// On teste s'il y a eu une modification depuis le dernier update
 	if (myData.cLastFirstFeedLine == NULL)
 	{
-		myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]);
+		myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]); // On mémorise pour le prochain update
+		if (myData.cFeedLine[2] != NULL)
+			myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cFeedLine[2]); // On mémorise pour le prochain update
+		else
+			myData.cLastSecondFeedLine = NULL;
 		cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  1st START !");
 		cd_applet_update_my_icon (myApplet, myIcon, myContainer);	
 	}
 	else
 	{
-		if (strcmp(myData.cFeedLine[1], myData.cLastFirstFeedLine) != 0) // Si strcmp renvoie 0 (chaînes identiques)
+		if (strcmp(myData.cFeedLine[1], myData.cLastFirstFeedLine) != 0 || strcmp(myData.cFeedLine[2], myData.cLastSecondFeedLine) != 0) // On vérifie aussi la 2nd ligne car la première peut être le titre
 		{
 			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been modified !");	
-			cairo_dock_remove_dialog_if_any (myIcon);
-			
+			cairo_dock_remove_dialog_if_any (myIcon);			
 			
 			myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("This RSS feed has been modified...") );
 			// Si modif, on affiche une bulle de dialogue pour le signaler
@@ -270,12 +287,32 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 				
 			myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]); // On mémorise pour le prochain update
+			if (myData.cFeedLine[2] != NULL)
+				myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cFeedLine[2]); // On mémorise pour le prochain update
+			else
+				myData.cLastSecondFeedLine = NULL;
 			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been stored for next update !");
 			cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 				
 		}
 		else
+		{
 			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  No modification.");
+			if (myData.bUpdateIsManual)  // L'update a été manuel -> On affiche donc un dialogue même s'il n'y a pas eu de changement
+			{				
+				cairo_dock_remove_dialog_if_any (myIcon);
+				
+				myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("No modification"));				
+				// On signale tout de même qu'il n'y a pas de changement
+				cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
+					myIcon,
+					myContainer,
+					2000, // Suffisant vu que la MàJ est manuelle
+					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+					
+				myData.bUpdateIsManual = FALSE;				
+			}
+		}
 	}
 	
 	myData.pTask = NULL;

@@ -68,6 +68,7 @@ struct _AppletData {
 	guint iSidAutomaticRefresh;
 	gchar *cFeedLine[31]; // Nombre de flux MAX + L'ensemble en 0
 	gchar *cLastFirstFeedLine;
+	gchar *cLastSecondFeedLine;
 	gchar *cTempText;
 	gchar *cTaskBridge;
 	gchar *cTitleTaskBridge;
@@ -79,7 +80,7 @@ struct _AppletData {
 	gchar *cTitleFontSize;
 	gboolean bTitleFontIsBold;
 	gboolean bTitleFontIsItalic;
-	
+	gboolean bUpdateIsManual;
 	
 	cairo_surface_t *pLogoSurface;
 	

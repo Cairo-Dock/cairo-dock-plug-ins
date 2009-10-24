@@ -39,7 +39,7 @@ static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myA
 
 void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 {
-	if (g_strstr_len (cNewURL, -1, "http://") != NULL)  // On vérifie que l'élément glisser/copier commence bien par http://
+	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On vérifie que l'élément glisser/copier commence bien par http
 	{
 		cd_debug ("RSSreader-debug : This seems to be a valid URL -> Let's continue...");
 		myConfig.cUrl = g_strdup_printf ("%s", cNewURL);  // On modifie la variable de l'URL
@@ -49,7 +49,15 @@ void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 		cd_applet_update_my_icon (myApplet, myIcon, myContainer); 
 	}
 	else
-		cd_debug ("RSSreader-debug : This not a valid URL.");	
+	{
+		cd_debug ("RSSreader-debug : It doesn't seem to be a valid URL.");	
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("It doesn't seem to be a valid URL."),
+			myIcon,
+			myContainer,
+			2000, // Suffisant 
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);		
+	}
 }
 
 void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
@@ -81,22 +89,9 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cd_debug ("RSSreader-debug : MIDDLE-CLIC");	
-	cairo_dock_remove_dialog_if_any (myIcon);	
-	cd_rssreader_upload_feeds_TASK (myApplet);
-	
-	// L'update a été manuel -> On affiche donc un dialogue même s'il n'y a pas eu de changement
-	if (strcmp(myData.cFeedLine[1], myData.cLastFirstFeedLine) == 0) // Si strcmp renvoie 0 (chaînes identiques)
-	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("No modification"));
-		// On signale tout de même qu'il n'y a pas de changement
-		cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
-			myIcon,
-			myContainer,
-			2000, // Suffisant vu que la MàJ est manuelle
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-	}		
+	cd_debug ("RSSreader-debug : MIDDLE-CLIC");
+	myData.bUpdateIsManual = TRUE;	
+	cd_rssreader_upload_feeds_TASK (myApplet);	
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
