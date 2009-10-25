@@ -130,6 +130,10 @@ frame_behav=
 #{In minutes.}
 refresh_time=5
 
+#b Display info-bubbles when a feed has changed?
+#{By default, this option is activated}
+info_bubble=true
+
 #I[0;30] Duration of the info-bubbles :
 #{In seconds. Set to 0 for infinite time -> click on dialog to close.}
 dialogs_duration=15

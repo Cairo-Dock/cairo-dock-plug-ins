@@ -26,6 +26,7 @@
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cSpecificWebBrowser;
+	gboolean bInfoBubble;
 	gboolean bLeftClicForDesklet;
 	gboolean bDisplayLogo;
 	gboolean bDisplayBackground;

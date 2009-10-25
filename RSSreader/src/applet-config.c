@@ -80,6 +80,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_strreverse (myConfig.cFont);
 	
 	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
+	myConfig.bInfoBubble = CD_CONFIG_GET_BOOLEAN ("Configuration", "info_bubble");
 	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
 	myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
 	

@@ -279,13 +279,15 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 			cairo_dock_remove_dialog_if_any (myIcon);			
 			
 			myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("This RSS feed has been modified...") );
-			// Si modif, on affiche une bulle de dialogue pour le signaler
-			cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
-				myIcon,
-				myContainer,
-				myConfig.iDialogsDuration,
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-				
+			// Si modif et si bInfoBubble est vrai, on affiche une bulle de dialogue pour le signaler
+			if (myConfig.bInfoBubble)
+			{
+				cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
+					myIcon,
+					myContainer,
+					myConfig.iDialogsDuration,
+					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			}
 			myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]); // On mémorise pour le prochain update
 			if (myData.cFeedLine[2] != NULL)
 				myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cFeedLine[2]); // On mémorise pour le prochain update
