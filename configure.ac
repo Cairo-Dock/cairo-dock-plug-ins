@@ -463,20 +463,20 @@ AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 
 ############# RSSREADER #################
-RSSREADER_PACKAGE=cd-rssreader
-AC_SUBST(GETTEXT_SCOOBY_DO_PACKAGE, "cairo-dock-plugins")
+RSS_READER_PACKAGE=cd-rssreader
+AC_SUBST(GETTEXT_RSS_READER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SCOOBY_DO_PACKAGE, "1.0.1")
-AC_SUBST(PACKAGE_SCOOBY_DO_PACKAGE, "$RSSREADER_PACKAGE_PACKAGE")
+AC_SUBST(VERSION_RSS_READER_PACKAGE, "0.1.0")
+AC_SUBST(PACKAGE_RSS_READER_PACKAGE, "$RSS_READER_PACKAGE")
 
-AC_SUBST(scooby_dodatadir, "${pkgdatadir}/RSSreader")
+AC_SUBST(rss_readerdatadir, "${pkgdatadir}/RSSreader")
 
 ############# SCOOBY_DO #################
 SCOOBY_DO_PACKAGE=cd-scooby-do
-AC_SUBST(GETTEXT_SCOOBY_DO_PACKAGE, "cairo-dock-plugins")
+AC_SUBST(GETTEXT_SCOOBY_DO, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SCOOBY_DO_PACKAGE, "0.1.0")
-AC_SUBST(PACKAGE_SCOOBY_DO_PACKAGE, "$SCOOBY_DO_PACKAGE_PACKAGE")
+AC_SUBST(VERSION_SCOOBY_DO, "0.1.0")
+AC_SUBST(PACKAGE_SCOOBY_DO, "$SCOOBY_DO_PACKAGE")
 
 AC_SUBST(scooby_dodatadir, "${pkgdatadir}/Scooby-Do")
 

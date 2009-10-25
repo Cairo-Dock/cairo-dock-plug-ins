@@ -21,12 +21,12 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_RSSreader_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	-DMY_APPLET_SHARE_DATA_DIR=\""$(rssreaderdatadir)"\"\
+	-DMY_APPLET_SHARE_DATA_DIR=\""$(rss_readerdatadir)"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
 	-DMY_APPLET_CONF_FILE=\""RSSreader.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""RSSreader"\"\
-	-DMY_APPLET_VERSION=\""$(VERSION_RSSREADER)"\"\
-	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_RSSREADER)"\"\
+	-DMY_APPLET_VERSION=\""$(VERSION_RSS_READER)"\"\
+	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_RSS_READER)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.svg"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\

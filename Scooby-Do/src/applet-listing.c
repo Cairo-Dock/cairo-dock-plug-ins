@@ -37,7 +37,7 @@
 #define _listing_compute_width(pListing) (.4 * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL])
 #define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (myConfig.iNbLinesInListing + 5) + 2*GAP)
 #define NB_STEPS_FOR_CURRENT_ENTRY 12
-#define NB_STEPS_FOR_SCROLL 8
+#define NB_STEPS_FOR_SCROLL 4
 #define GAP 3
 
   /////////////////////////////////////////
@@ -315,7 +315,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 {
 	//g_print ("%s ()\n", __func__);
 	int iWidth = pListing->container.iWidth, iHeight = pListing->container.iHeight;
-	int iLeftMargin = myDialogs.dialogTextDescription.iSize + 2, iRightMargin = (myDialogs.dialogTextDescription.iSize + 2) / 2;
+	int iLeftMargin = myDialogs.dialogTextDescription.iSize + 4, iRightMargin = (myDialogs.dialogTextDescription.iSize + 4) / 2;
 	int iTopMargin = (myDialogs.dialogTextDescription.iSize + 2) + GAP, iBottomMargin = (myDialogs.dialogTextDescription.iSize + 2) * 4 + GAP;
 	CDEntry *pEntry;
 	
@@ -327,23 +327,23 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	cairo_save (pCairoContext);
 	cairo_translate (pCairoContext, 0, fLineWidth);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iTopMargin - GAP);
-	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
 	cairo_fill (pCairoContext);
 
 	cairo_translate (pCairoContext, 0, iTopMargin + fLineWidth);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iHeight - iTopMargin - iBottomMargin - GAP);
-	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
 	cairo_fill (pCairoContext);
 	
 	cairo_translate (pCairoContext, 0, iHeight - iTopMargin - 2*fLineWidth - iBottomMargin + GAP);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iBottomMargin - GAP - fLineWidth);
-	cairo_set_source_rgba (pCairoContext, .8, .8, 1., 1.);
+	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .7);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
 	cairo_fill (pCairoContext);
 	cairo_restore (pCairoContext);
 	
@@ -352,10 +352,9 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	
 	pango_font_description_set_absolute_size (pDesc, myDialogs.dialogTextDescription.iSize * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myDialogs.dialogTextDescription.cFont);
-	pango_font_description_set_weight (pDesc, myDialogs.dialogTextDescription.iWeight);
+	pango_font_description_set_weight (pDesc, PANGO_WEIGHT_MEDIUM);
 	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
-	pango_font_description_free (pDesc);
 	
 	// on dessine les entrees.
 	if (pListing->pEntries != NULL)
@@ -378,9 +377,9 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			if (pEntry->bHidden)
 				continue ;
 			
-			dx = myDialogs.dialogTextDescription.iSize + 2;  // marge a gauche.
+			dx = iLeftMargin;  // marge a gauche.
 			if (! pEntry->bMainEntry && myData.pListingHistory == NULL)
-				dx += myDialogs.dialogTextDescription.iSize;
+				dx += iLeftMargin;
 			//if (iOffsetX > 0 && pListing->iAppearanceAnimationCount > 0)
 			//	dx += (double) iOffsetX * (iWidth - (myDialogs.dialogTextDescription.iSize + 2)) / NB_STEPS_FOR_1_ENTRY;
 			dy += (myDialogs.dialogTextDescription.iSize + 2);
@@ -406,7 +405,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			// on dessine l'icone.
 			if (pEntry->pIconSurface != NULL)
 			{
-				cairo_set_source_surface (pCairoContext, pEntry->pIconSurface, - iLeftMargin + 1, 0.);
+				cairo_set_source_surface (pCairoContext, pEntry->pIconSurface, - iLeftMargin, 0.);
 				cairo_paint (pCairoContext);
 			}
 			
@@ -443,7 +442,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 					if (pEntry->list != NULL)
 					{
 						cairo_set_source_rgba (pCairoContext, 0., 0., 0., f);
-						cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+						cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin - (! pEntry->bMainEntry && myData.pListingHistory == NULL ? iLeftMargin : 0), myDialogs.dialogTextDescription.iSize/4);
 						cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
 						cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
 						cairo_close_path (pCairoContext);
@@ -454,9 +453,18 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			
 			// on dessine le texte.
 			cairo_set_source_rgba (pCairoContext, 0., 0., 0., 1. - (double) iOffsetX / NB_STEPS_FOR_1_ENTRY);
+			if (pEntry->bMainEntry)
+			{
+				pango_font_description_set_weight (pDesc, PANGO_WEIGHT_HEAVY);
+				pango_layout_set_font_description (pLayout, pDesc);
+			}
 			pango_layout_set_text (pLayout, pEntry->cName, -1);
 			pango_cairo_show_layout (pCairoContext, pLayout);
-			
+			if (pEntry->bMainEntry)
+			{
+				pango_font_description_set_weight (pDesc, PANGO_WEIGHT_MEDIUM);
+				pango_layout_set_font_description (pLayout, pDesc);
+			}
 			// on separe la 1ere entree de la derniere.
 			if (e->prev == NULL)
 			{
@@ -552,6 +560,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_layout_set_text (pLayout, D_("(F7) Sources"), -1);
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
+	pango_font_description_free (pDesc);
 	g_object_unref (pLayout);
 }
 

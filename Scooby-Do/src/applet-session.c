@@ -214,7 +214,7 @@ void cd_do_load_pending_caracters (void)
 	int i, iOffsetX=0;
 	for (i = myData.iNbValidCaracters-0; i < myData.sCurrentText->len; i++)
 	{
-		g_print (" on charge la lettre '%c' (%d) tex:%d\n", myData.sCurrentText->str[i], i, bLoadTexture);
+		//g_print (" on charge la lettre '%c' (%d) tex:%d\n", myData.sCurrentText->str[i], i, bLoadTexture);
 		c[0] = myData.sCurrentText->str[i];
 		
 		pChar = g_new0 (CDChar, 1);
@@ -224,7 +224,7 @@ void cd_do_load_pending_caracters (void)
 		pChar->iCurrentX = pChar->iInitialX;
 		pChar->iCurrentY = pChar->iInitialY;
 		pChar->fRotationAngle = 10. * myConfig.iAppearanceDuration / iDeltaT;
-		g_print (" on commence a x=%d\n", pChar->iInitialX);
+		//g_print (" on commence a x=%d\n", pChar->iInitialX);
 		myData.pCharList = g_list_append (myData.pCharList, pChar);
 		
 		// on cree la surface.
@@ -297,7 +297,7 @@ void cd_do_delete_invalid_caracters (void)
 	int i;
 	for (i = myData.iNbValidCaracters; i < myData.sCurrentText->len && c != NULL; i ++)
 	{
-		g_print ("on efface '%c'\n", myData.sCurrentText->str[i]);
+		//g_print ("on efface '%c'\n", myData.sCurrentText->str[i]);
 		c_prev = c->prev;
 		pChar = c->data;
 		

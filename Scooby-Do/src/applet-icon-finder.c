@@ -329,6 +329,8 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 	if (myData.pCurrentMatchingElement != pMatchingElement)  // on complete le texte et on redessine.
 	{
 		Icon *pIcon = myData.pCurrentMatchingElement->data;
+		if (pIcon->cCommand && *pIcon->cCommand != *myData.sCurrentText->str)  // cas d'une commande avec un tiret.
+			myData.iNbValidCaracters = 0;
 		cd_do_delete_invalid_caracters ();
 		
 		if (pIcon->cBaseURI != NULL)

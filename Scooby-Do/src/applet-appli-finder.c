@@ -218,6 +218,7 @@ void cd_do_find_matching_applications (void)
 		return ;
 	
 	//\_______________ On teste chaque appli qu'on rajoute a la liste si elle correspond.
+	myData.pMatchingIcons = NULL;
 	gboolean bFound = FALSE;
 	gboolean bMatch;
 	Icon *pIcon;
@@ -254,6 +255,7 @@ void cd_do_find_matching_applications (void)
 			myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
 		}
 	}
+	g_print (" -> found %d elements)\n", g_list_length (myData.pMatchingIcons));
 	myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 	
 	//\_______________ On place l'appli preferee en premier.
@@ -267,9 +269,9 @@ void cd_do_find_matching_applications (void)
 			GList *ic = g_list_find_custom (myData.pMatchingIcons, cPrefferedAppli, (GCompareFunc) _similar_command);
 			if (ic != NULL)
 			{
-				g_print (" > on la passe en permier\n");
+				g_print (" > on la passe en premier\n");
 				myData.pMatchingIcons = g_list_remove_link (myData.pMatchingIcons, ic);
-				myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, ic);
+				myData.pMatchingIcons = g_list_concat (ic, myData.pMatchingIcons);
 			}
 		}
 	}

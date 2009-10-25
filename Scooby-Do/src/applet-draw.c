@@ -89,15 +89,12 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	else
 		fAlpha = 1.;
 	
-	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
-	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
-	
 	if (myData.pCharList == NULL && myData.pListingHistory == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
 		if (! myData.bNavigationMode && myData.pPromptSurface != NULL)
 		{
-			double fFrameWidth = myData.iPromptWidth * fScale;
-			double fFrameHeight = myData.iPromptHeight * fScale;
+			double fFrameWidth = myData.iPromptWidth;
+			double fFrameHeight = myData.iPromptHeight;
 			
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
@@ -108,16 +105,14 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			if (fAlpha != 0)
 			{
 				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				if (fScale != 1)
-					cairo_scale (pCairoContext, fScale, fScale);
 				cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, fAlpha);
 			}
 		}
 		else if (myData.bNavigationMode && myData.pArrowSurface != NULL)
 		{
-			double fFrameWidth = myData.iArrowWidth * fScale;
-			double fFrameHeight = myData.iArrowHeight * fScale;
+			double fFrameWidth = myData.iArrowWidth;
+			double fFrameHeight = myData.iArrowHeight;
 			
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
@@ -128,8 +123,6 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			if (fAlpha != 0)
 			{
 				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				if (fScale != 1)
-					cairo_scale (pCairoContext, fScale, fScale);
 				cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, fAlpha);
 			}
@@ -145,8 +138,8 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			iIconsWidth = _cd_do_get_matching_icons_width (&iNbIcons);
 			
 			// dessin du fond des icones.
-			double fFrameWidth = iIconsWidth * fScale;
-			double fFrameHeight = pMainDock->container.iHeight/2 * fScale;
+			double fFrameWidth = iIconsWidth;
+			double fFrameHeight = pMainDock->container.iHeight/2;
 			double fRadius = fFrameHeight / 10;
 			double fLineWidth = 0.;
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
@@ -170,9 +163,9 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			while (iOffsetX < 0)
 				iOffsetX += iIconsWidth;
 			
-			double fIconScale = (iIconsWidth * fScale > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / (iIconsWidth * fScale) : 1.);
-			double x0 = (pMainDock->container.iWidth - iIconsWidth * fScale * fIconScale) / 2;
-			double x = x0 + iOffsetX * fIconScale * fScale;  // abscisse de l'icone courante.
+			double fIconScale = (iIconsWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / iIconsWidth : 1.);
+			double x0 = (pMainDock->container.iWidth - iIconsWidth * fIconScale) / 2;
+			double x = x0 + iOffsetX * fIconScale;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
@@ -186,7 +179,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-				fZoom = fIconScale * pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1.25 : 1.);
+				fZoom = fIconScale * pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1. : 1.);
 				cairo_save (pCairoContext);
 				
 				//if (!bRound)
@@ -194,24 +187,24 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 					if (x < x0)
 					{
 						bRound = TRUE;
-						x += iIconsWidth * fIconScale * fScale;
+						x += iIconsWidth * fIconScale;
 					}
-					else if (x > x0 + iIconsWidth * fIconScale * fScale)
+					else if (x > x0 + iIconsWidth * fIconScale)
 					{
-						x -= iIconsWidth * fIconScale * fScale;
+						x -= iIconsWidth * fIconScale;
 						bRound = TRUE;
 					}
 				}
 				cairo_translate (pCairoContext,
-					x - (iNbIcons & 1 ? iWidth * fZoom * fScale * fIconScale / 2 : 0.),
+					x - (iNbIcons & 1 ? iWidth * fZoom * fIconScale / 2 : 0.),
 					(myConfig.bTextOnTop ?
 						pMainDock->container.iHeight/2 :
 						0.));
 				cairo_scale (pCairoContext,
-					fZoom * fScale,
-					fZoom * fScale);
+					fZoom,
+					fZoom);
 				cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
-				cairo_paint_with_alpha (pCairoContext, (myData.pCurrentMatchingElement == ic ? 1. : .7));
+				cairo_paint_with_alpha (pCairoContext, (myData.pCurrentMatchingElement == ic ? 1. : .5));
 				
 				if (myData.pCurrentMatchingElement == ic)
 				{
@@ -223,14 +216,14 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 				}
 				
 				cairo_restore (pCairoContext);
-				x += iWidth * fZoom * fScale;
+				x += iWidth * fZoom;
 			}
 		}
 		
 		// dessin du fond du texte.
-		double fFrameWidth = myData.iTextWidth * fScale;
+		double fFrameWidth = myData.iTextWidth;
 		double fTextScale = (fFrameWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / fFrameWidth : 1.);
-		double fFrameHeight = myData.iTextHeight * fScale;
+		double fFrameHeight = myData.iTextHeight;
 		double fRadius = fFrameHeight / 5 * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
@@ -254,13 +247,13 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			cairo_save (pCairoContext);
 			
 			cairo_translate (pCairoContext,
-				(pChar->iCurrentX * fScale * fTextScale + pMainDock->container.iWidth/2),
+				(pChar->iCurrentX * fTextScale + pMainDock->container.iWidth/2),
 				pChar->iCurrentY + (myConfig.bTextOnTop ?
-					(myData.iTextHeight - pChar->iHeight) * fScale :
-					pMainDock->container.iHeight - pChar->iHeight * fScale));  // aligne en bas.
+					(myData.iTextHeight - pChar->iHeight) :
+					pMainDock->container.iHeight - pChar->iHeight));  // aligne en bas.
 			
-			if (fScale * fTextScale != 1)
-				cairo_scale (pCairoContext, fScale*fTextScale, fScale*fTextScale);
+			if (fTextScale != 1)
+				cairo_scale (pCairoContext, fTextScale, fTextScale);
 			cairo_set_source_surface (pCairoContext, pChar->pSurface, 0., 0.);
 			cairo_paint_with_alpha (pCairoContext, fAlpha);
 			
@@ -278,15 +271,12 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	else
 		fAlpha = 1.;
 	
-	double fDockMagnitude = cairo_dock_calculate_magnitude (pMainDock->iMagnitudeIndex);
-	double fScale = (1. + fDockMagnitude * g_fAmplitude) / (1 + g_fAmplitude);
-	
 	if (myData.pCharList == NULL && myData.pListingHistory == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
 		if (! myData.bNavigationMode && myData.iPromptTexture != 0)
 		{
-			double fFrameWidth = myData.iPromptWidth * fScale;
-			double fFrameHeight = myData.iPromptHeight * fScale;
+			double fFrameWidth = myData.iPromptWidth;
+			double fFrameHeight = myData.iPromptHeight;
 			
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
@@ -311,8 +301,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		}
 		else if (myData.bNavigationMode && myData.iArrowTexture != 0)
 		{
-			double fFrameWidth = myData.iArrowWidth * fScale;
-			double fFrameHeight = myData.iArrowHeight * fScale;
+			double fFrameWidth = myData.iArrowWidth;
+			double fFrameHeight = myData.iArrowHeight;
 						
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
@@ -346,8 +336,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			iIconsWidth = _cd_do_get_matching_icons_width (&iNbIcons);
 			
 			// dessin du fond des icones.
-			double fFrameWidth = iIconsWidth * fScale;
-			double fFrameHeight = pMainDock->container.iHeight/2 * fScale;
+			double fFrameWidth = iIconsWidth;
+			double fFrameHeight = pMainDock->container.iHeight/2;
 			double fRadius = fFrameHeight / 10;
 			double fLineWidth = 0.;
 			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
@@ -368,9 +358,9 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			while (iOffsetX < 0)
 				iOffsetX += iIconsWidth;
 			
-			double fIconScale = (iIconsWidth * fScale > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / (iIconsWidth * fScale) : 1.);
-			double x0 = (pMainDock->container.iWidth - iIconsWidth * fScale * fIconScale) / 2;
-			double x = x0 - iOffsetX * fIconScale * fScale;  // abscisse de l'icone courante.
+			double fIconScale = (iIconsWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / (iIconsWidth) : 1.);
+			double x0 = (pMainDock->container.iWidth - iIconsWidth * fIconScale) / 2;
+			double x = x0 - iOffsetX * fIconScale;  // abscisse de l'icone courante.
 			CairoDock *pParentDock;
 			Icon *pIcon;
 			int iWidth, iHeight;
@@ -388,7 +378,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 					continue;
 				pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 				cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-				fZoom = (double) pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1.25 : 1.);
+				fZoom = (double) pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1. : 1.);
 				glPushMatrix ();
 				
 				//if (!bRound)
@@ -396,45 +386,45 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 					if (x < x0)
 					{
 						bRound = TRUE;
-						x += iIconsWidth * fIconScale * fScale;
+						x += iIconsWidth * fIconScale;
 					}
-					else if (x > x0 + iIconsWidth * fIconScale * fScale)
+					else if (x > x0 + iIconsWidth * fIconScale)
 					{
-						x -= iIconsWidth * fIconScale * fScale;
+						x -= iIconsWidth * fIconScale;
 						bRound = TRUE;
 					}
 				}
-				glTranslatef (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fScale * fIconScale),
+				glTranslatef (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale),
 					(myConfig.bTextOnTop ?
 						pMainDock->container.iHeight/4 :
-						pMainDock->container.iHeight - iHeight * fZoom/2 * fScale),
+						pMainDock->container.iHeight - iHeight * fZoom/2),
 					0.);
 				_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iIconTexture,
-					iWidth * fZoom * fScale * fIconScale,
-					pMainDock->container.iHeight/2 * fScale * fIconScale,
-					(myData.pCurrentMatchingElement == ic ? 1. : .7));
+					iWidth * fZoom * fIconScale,
+					pMainDock->container.iHeight/2 * fIconScale,
+					(myData.pCurrentMatchingElement == ic ? 1. : .5));
 				
 				if (myData.pCurrentMatchingElement == ic)
 				{
 					_cairo_dock_disable_texture ();
 					fLineWidth = 4.;
 					double fFrameColor[4] = {myConfig.pFrameColor[0]+.1, myConfig.pFrameColor[1]+.1, myConfig.pFrameColor[2]+.1, 1.};
-					cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, iWidth * fZoom * fScale * fIconScale - fLineWidth, iHeight * fZoom * fScale * fIconScale - fLineWidth, -iWidth/2 * fZoom * fScale * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fScale * fIconScale - fLineWidth/2, fFrameColor);
+					cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, iWidth * fZoom * fIconScale - fLineWidth, iHeight * fZoom * fIconScale - fLineWidth, -iWidth/2 * fZoom * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fIconScale - fLineWidth/2, fFrameColor);
 					_cairo_dock_enable_texture ();
-					_cairo_dock_set_blend_over ();
-					_cairo_dock_set_alpha (1.);
+					_cairo_dock_set_blend_alpha ();
 				}
 				
 				glPopMatrix ();
-				x += iWidth * fZoom * fScale * fIconScale;
+				x += iWidth * fZoom * fIconScale;
 			}
 			_cairo_dock_disable_texture ();
 		}
+		_cairo_dock_set_alpha (1.);
 		
 		// dessin du fond du texte.
-		double fFrameWidth = myData.iTextWidth * fScale;
+		double fFrameWidth = myData.iTextWidth;
 		double fTextScale = (fFrameWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / fFrameWidth : 1.);
-		double fFrameHeight = myData.iTextHeight * fScale;
+		double fFrameHeight = myData.iTextHeight;
 		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		
@@ -463,10 +453,10 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			pChar = c->data;
 			glPushMatrix();
 			
-			glTranslatef (pChar->iCurrentX * fScale * fTextScale + pMainDock->container.iWidth/2 + pChar->iWidth/2,
+			glTranslatef (pChar->iCurrentX * fTextScale + pMainDock->container.iWidth/2 + pChar->iWidth/2,
 				(myConfig.bTextOnTop ?
-					pMainDock->container.iHeight - (myData.iTextHeight - pChar->iHeight/2) * fScale :
-					pChar->iHeight/2 * fScale),
+					pMainDock->container.iHeight - (myData.iTextHeight - pChar->iHeight/2) :
+					pChar->iHeight/2),
 				0.);  // aligne en bas.
 			
 			double fRotationAngle = pChar->fRotationAngle;
@@ -474,7 +464,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			{
 				glBindTexture (GL_TEXTURE_2D, pChar->iTexture);
 				
-				glScalef (pChar->iWidth * fScale * fTextScale, pChar->iHeight * fScale * fTextScale, 1.);
+				glScalef (pChar->iWidth * fTextScale, pChar->iHeight * fTextScale, 1.);
 				
 				glRotatef (fRotationAngle, 1., 0., 0.);
 				glRotatef (MIN (fRotationAngle/3, STATIC_ANGLE), 0., 0., 1.);

@@ -433,6 +433,11 @@ void cd_do_show_current_sub_listing (void)
 	g_print ("%s ()\n", __func__);
 	if (myData.pListing->pCurrentEntry == NULL)
 		return ;
+	if (myData.pListingHistory == NULL)  // on sauvegarde aussi le texte de la recherche principale.
+	{
+		myData.cSearchText = g_strdup (myData.sCurrentText->str);
+	}
+	
 	// on construit la liste des sous-entrees de l'entree courante.
 	CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
 	GList *pNewEntries = NULL;
@@ -448,10 +453,6 @@ void cd_do_show_current_sub_listing (void)
 	pBackup->iNbEntries = myData.pListing->iNbEntries;
 	pBackup->pCurrentEntry = myData.pListing->pCurrentEntry;
 	
-	if (myData.pListingHistory == NULL)  // on sauvegarde aussi le texte de la recherche principale.
-	{
-		myData.cSearchText = g_strdup (myData.sCurrentText->str);
-	}
 	g_string_assign (myData.sCurrentText, "");
 	myData.iNbValidCaracters = 0;
 	//cd_do_delete_invalid_caracters ();
@@ -503,9 +504,14 @@ void cd_do_show_previous_listing (void)
 	
 	if (myData.pListingHistory == NULL)  // retour a la recherche principale.
 	{
+		myData.iNbValidCaracters = 0;
+		cd_do_delete_invalid_caracters ();
+		
 		g_string_assign (myData.sCurrentText, myData.cSearchText);
 		g_free (myData.cSearchText);
 		myData.cSearchText = NULL;
+		
+		cd_do_load_pending_caracters ();
 	}
 }
 

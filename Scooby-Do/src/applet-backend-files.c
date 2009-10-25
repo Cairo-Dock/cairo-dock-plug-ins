@@ -116,8 +116,9 @@ static GList * _build_entries (gchar *cResult, int *iNbEntries)
 		pEntry->list = _cd_do_list_file_sub_entries;
 		pEntries = g_list_prepend (pEntries, pEntry);
 	}
-	g_free (pMatchingFiles);
+	g_free (pMatchingFiles);  // ses elements sont dans les entrees.
 	
+	g_print ("%d entries built\n", i);
 	*iNbEntries = i;
 	return pEntries;
 }
