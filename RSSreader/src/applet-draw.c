@@ -42,29 +42,58 @@ char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
 	return str; 
 } 
 
-char* rtrim( char* str, const char* t )  // Couper tout depuis la droite
+
+gchar *cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine)   // Un simple essai
 {
-	char* curEnd = str, *end = str;
-
-	char look[ 256 ] = { 1, 0 };
-	while( *t )
-		look[ (unsigned char)*t++ ] = 1;
-
-	while( *end )
+	cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
+	double iRatioForRealFontSize = 1.5; // ratio pour avoir un texte à peu près à la bonne dimension
+		
+	
+	myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cTempCuttedLine	
+	cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne de départ (pour info seulement)
+	int iTextWidth = (int)(textExtents.width * iRatioForRealFontSize);  // On lui applique le ratio effectué sur le texte	
+	
+	// Calcul du nombre de ligne à obtenir:
+	int iNbLines = (iTextWidth/iMaxWidth) + 1;
+	
+	// On compte le nombre de mot
+ 	gchar cCurrentLetter = {0};
+	gint iNbWords = 1;
+	long i=0;	
+	for (i=0 ; i < strlen(myData.cCuttedLine) ; i++)
 	{
-		if ( !look[ *end ] )
-			curEnd = end + 1;
-		++end;
+		cCurrentLetter = myData.cCuttedLine[i];				
+		if (cCurrentLetter == ' ')
+			iNbWords++;
 	}
-	*curEnd = '\0';
-
-	return str;
+	gchar **cWord; // On créé un tableau pour y mettre chaque mot
+	cWord = g_strsplit (myData.cCuttedLine," ",0); // On met chaque mot dans le tableau
+	
+	i = 1;	
+	myData.cTempText = g_strdup_printf ("");
+	do
+	{
+		myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On réinitilise myData.cCuttedLine (utile pour la boucle)
+		myData.cTempText = g_strdup_printf (" %s%s", cWord[iNbWords-i], myData.cTempText); // On définit ce qu'il y a à retirer	
+		myData.cCuttedLine = *g_strsplit (myData.cCuttedLine, myData.cTempText, -1); // On coupe le texte
+		cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne
+		iTextWidth = (int)(textExtents.width * iRatioForRealFontSize); // On applique le ratio pour le texte	
+		i++;
+	} while ( iTextWidth > iMaxWidth ); // Si le nouveau texte dépasse encore -> On boucle
+	
+	cairo_show_text (myDrawContext, myData.cCuttedLine); // On affiche la nouvelle ligne		
+	
+	// On renvoit le reste du texte à afficher :
+	ltrim( myData.cTempText, " " );
+	cd_debug ("RSSreader-debug : ---------------- >   End of line = \"%s\"", myData.cTempText);	
+	
+	g_free (myData.cCuttedLine);
+	return myData.cTempText;	
 }
 
 
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
-{
-	
+{	
 	if (myData.pTitleTask == NULL)
 	{
 		myData.pTitleTask = cairo_dock_new_task (0,
@@ -113,8 +142,7 @@ void cd_rssreader_update_title (CairoDockModuleInstance *myApplet)
 
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
-{
-	
+{	
 	if (myData.pTask == NULL)
 	{
 		myData.pTask = cairo_dock_new_task (0,
@@ -147,6 +175,10 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
+		g_free (myData.cSingleFeedLine);
+		myData.cSingleFeedLine = NULL;
+		
+		
 		GString *sCommand = g_string_new ("");		
 		
 		g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s %i %i", myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
@@ -158,7 +190,7 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 		g_string_free (sCommand, TRUE);		
 		
 		// On vérifie que la commande nous a renvoyé quelque chose de cohérent
-		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0) //if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0 || iNbLines != myConfig.iLines)
+		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0)
 		{			
 			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite		
 		}		
@@ -167,120 +199,60 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 
 void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 {
-	myData.cFeedLine[0] = g_strdup_printf ("%s",myData.cTaskBridge);  // On récupère le contenu de myData.cTaskBridge -> myData.cFeedLine[0] nous servira pour les dialogues ;-)		
-	myData.cFeedLine[1] = g_strdup_printf ("%s",*(g_strsplit(myData.cFeedLine[0], "\n", 0)) );
-	
+	myData.cAllFeedLines = g_strdup_printf ("%s",myData.cTaskBridge);  // On récupère le contenu de myData.cTaskBridge -> myData.cAllFeedLines nous servira pour les dialogues ;-)		
 	
 	// On vérifie le nombre de lignes reçues
  	gchar cCurrentLetter = {0};
-	gint iNbLines = 0;
+	gint iNbLines = 1;
 	long i=0;
-	for (i=0 ; i < strlen(myData.cFeedLine[0]) ; i++)
+	for (i=0 ; i < strlen(myData.cAllFeedLines) ; i++)
 	{
-		cCurrentLetter = myData.cFeedLine[0][i];				
+		cCurrentLetter = myData.cAllFeedLines[i];				
 		if (cCurrentLetter == '\n')
 			iNbLines++;
 	}		
-	if (iNbLines == myConfig.iLines)
-		cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = OK :-)");
-	else
-		cd_debug ("RSSreader-debug : TASK ---------------> Number of lines received = KO :-(");
+
+		
+	// On sépare toutes les lignes reçues
+	if (strcmp(myData.cAllFeedLines, g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
+		myData.cAllFeedLines = g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, D_("Drag'n drop a valid RSS feed URL,\nor use \"Paste a new RSS Url\" from menu\nto add one."));
 	
+	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 	
-	
-	
-	
-	if (strcmp(myData.cFeedLine[0], g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
+	i = 0;
+	do
 	{
-		myData.cFeedLine[2] = g_strdup_printf (D_("Drag'n drop a valid RSS feed URL,"));
-		myData.cFeedLine[3] = g_strdup_printf (D_("or use \"Paste a new RSS Url\" from menu"));
-		myData.cFeedLine[4] = g_strdup_printf (D_("to add one."));
-		int i;
-		for (i = 5 ; i < (myConfig.iLines+1) ; i++)
-		{
-			myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
-		}
-	}	
-	else if (strcmp(myData.cFeedLine[0], g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect)) == 0 ) // Si strcmp renvoie 0 (chaînes identiques)
-	{
-		int i;
-		for (i = 2 ; i < (myConfig.iLines+1) ; i++)
-		{
-			myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
-		}
-	}
-	else
-	{
-		int i;			
-		for (i = 1 ; i < (iNbLines+1) ; i++)
-		{
-			if (i == 1)
-				cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cFeedLine [ %i ] \"%s\"",i ,myData.cFeedLine[i]);
-			else if (i == iNbLines)
-			{
-				myData.cTempText = g_strdup_printf ("%s", myData.cFeedLine[0]);
-				rtrim( myData.cTempText, "\n" );
-				rtrim( myData.cTempText, " " );
-				myData.cTempText = strrchr(myData.cTempText, '\n');
-				ltrim( myData.cTempText, "\n" );
-				ltrim( myData.cTempText, " " );
-				myData.cFeedLine[i] = g_strdup_printf ("%s", myData.cTempText);
-				cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cFeedLine [ %i ] \"%s\"",i ,myData.cFeedLine[i]);				
-			}
-			else
-			{
-				myData.cTempText = g_strdup_printf ("%s", myData.cFeedLine[0]);
-				int j;
-				for (j = 0 ; j <  (i-1) ; j++)
-				{
-					myData.cTempText = strchr(myData.cTempText, '\n');
-					ltrim( myData.cTempText, "\n" );
-					ltrim( myData.cTempText, " " );
-				}
-				g_strreverse (myData.cTempText);
-				myData.cFeedLine[i] = strrchr(myData.cTempText, '\n');
-				ltrim( myData.cFeedLine[i], "\n" );
-				ltrim( myData.cFeedLine[i], " " );
-				g_strreverse (myData.cFeedLine[i]);
-				cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cFeedLine [ %i ] \"%s\"",i ,myData.cFeedLine[i]);
-			}
-		}
-		if (iNbLines != myConfig.iLines)
-		{
-			int i;
-			for (i = iNbLines+1 ; i < (myConfig.iLines+1) ; i++)
-			{
-				myData.cFeedLine[i] = g_strdup_printf ("%s", " "); // On efface toutes les lignes suivantes
-			}
-		}	
-	}
+		cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cSingleFeedLine[%i] \"%s\"",i ,myData.cSingleFeedLine[i]);
+		i++;
+	} while (myData.cSingleFeedLine[i] != NULL);
 	
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Current first line = \"%s\"",myData.cFeedLine[1]);
+	cd_debug ("RSSreader-debug : UPDATE ---------------> Current first line = \"%s\"",myData.cSingleFeedLine[0]);
 	cd_debug ("RSSreader-debug : UPDATE ---------------> Last first line    = \"%s\"",myData.cLastFirstFeedLine);
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Current second line = \"%s\"",myData.cFeedLine[2]);
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Last second line    = \"%s\"",myData.cLastSecondFeedLine);
+	cd_debug ("RSSreader-debug : UPDATE ---------------> Current second line = \"%s\"",myData.cSingleFeedLine[1]);
+	cd_debug ("RSSreader-debug : UPDATE ---------------> Last second line    = \"%s\"",myData.cLastSecondFeedLine);	
+	
 	
 	// On teste s'il y a eu une modification depuis le dernier update
 	if (myData.cLastFirstFeedLine == NULL)
 	{
-		myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]); // On mémorise pour le prochain update
-		if (myData.cFeedLine[2] != NULL)
-			myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cFeedLine[2]); // On mémorise pour le prochain update
+		myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[0]); // On mémorise pour le prochain update
+		if (myData.cSingleFeedLine[1] != NULL)
+			myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[1]); // On mémorise pour le prochain update
 		else
 			myData.cLastSecondFeedLine = NULL;
 		cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  1st START !");
-		cd_applet_update_my_icon (myApplet, myIcon, myContainer);	
 	}
 	else
 	{
-		if (strcmp(myData.cFeedLine[1], myData.cLastFirstFeedLine) != 0 || strcmp(myData.cFeedLine[2], myData.cLastSecondFeedLine) != 0) // On vérifie aussi la 2nd ligne car la première peut être le titre
+		if (strcmp(myData.cSingleFeedLine[0], myData.cLastFirstFeedLine) != 0 || strcmp(myData.cSingleFeedLine[1], myData.cLastSecondFeedLine) != 0) // On vérifie aussi la 2nd ligne car la première peut être le titre
 		{
 			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been modified !");	
 			cairo_dock_remove_dialog_if_any (myIcon);			
 			
 			myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("This RSS feed has been modified...") );
-			// Si modif et si bInfoBubble est vrai, on affiche une bulle de dialogue pour le signaler
-			if (myConfig.bInfoBubble)
+			
+			// Si modif ET si myConfig.bDialogIfFeedChanged est vrai, on affiche une bulle de dialogue pour le signaler
+			if (myConfig.bDialogIfFeedChanged)
 			{
 				cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
 					myIcon,
@@ -288,14 +260,14 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 					myConfig.iDialogsDuration,
 					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 			}
-			myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cFeedLine[1]); // On mémorise pour le prochain update
-			if (myData.cFeedLine[2] != NULL)
-				myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cFeedLine[2]); // On mémorise pour le prochain update
+			
+			myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[0]); // On mémorise pour le prochain update
+			
+			if (myData.cSingleFeedLine[1] != NULL)
+				myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[1]); // On mémorise pour le prochain update
 			else
 				myData.cLastSecondFeedLine = NULL;
-			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been stored for next update !");
-			cd_applet_update_my_icon (myApplet, myIcon, myContainer);
-				
+			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been stored for next update !");				
 		}
 		else
 		{
@@ -318,6 +290,7 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	myData.pTask = NULL;
+	cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 }
 
 
@@ -483,19 +456,58 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			CAIRO_FONT_WEIGHT_NORMAL);	
 	}		
 	cairo_set_font_size (myDrawContext, atol(myData.cFontSize));  
-		
-	int i;
-	for (i = 1 ; i < (myConfig.iLines+1) ; i++)
+	
+	
+	myData.bIsSameLine = FALSE;
+	int i = 0;	
+	if (iWidth != 1)
 	{
-		cairo_translate (myDrawContext, 0, atol(myData.cFontSize));
-		
-		if (i != 1)
-			cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLines);
-		
-		cairo_show_text (myDrawContext, myData.cFeedLine[i]);
-		cairo_fill (myDrawContext);
-		
-	}	
+		cd_debug ("RSSreader-debug-text_extents :  Largeur desklet -> iWidth = \"%i\"", iWidth);
+		if (myData.cSingleFeedLine[0] != NULL)
+		{
+			for (i=0 ; myData.cSingleFeedLine[i] != NULL ; i++)
+			{
+				cairo_translate (myDrawContext, 0, atol(myData.cFontSize));
+				
+				cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
+				cairo_text_extents (myDrawContext, myData.cSingleFeedLine[i], &textExtents);  // on recupere les dimensions de la ligne
+				
+				if (i != 0)
+				{
+					if (myData.bIsSameLine)
+						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLines);
+					else
+						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLines + textExtents.height );
+				}
+					
+				
+				if (textExtents.width == 0)
+					break;
+					
+				cd_debug ("RSSreader-debug-text_extents:  --------------->  %s", myData.cSingleFeedLine[i]);			
+				cd_debug ("RSSreader-debug-text_extents :          textExtents.width = \"%i\"", (int)(textExtents.width*1.56));	
+				
+				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset;
+				
+				if ((int)(textExtents.width*iRatioForRealFontSize) <= iMaxTextWidth )
+				{
+					cairo_show_text (myDrawContext, myData.cSingleFeedLine[i]);
+					myData.bIsSameLine = FALSE;
+				}
+				else
+				{
+					//~ cairo_show_text (myDrawContext, "Phrase trop longue !");
+					
+					myData.cSingleFeedLine[i] = cd_rssreader_cut_feed_lines (myApplet, iMaxTextWidth, myData.cSingleFeedLine[i]); // Un simple essai
+					cd_debug ("RSSreader-debug-text_cut:  --------------->  %s", myData.cSingleFeedLine[i]);
+					i = i-1 ;
+					myData.bIsSameLine = TRUE;
+				}
+				cairo_fill (myDrawContext);				
+			}
+		}
+	}
+	
 	cairo_restore (myDrawContext); // On restaure la position #1
 	
 	// Bordure pour le Background (optionnel)
@@ -517,7 +529,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	{
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
 		cairo_dock_update_icon_texture (myIcon);		
-	}	
+	}
 }
 
 

@@ -1,4 +1,4 @@
-#!en;@VERSION_RSSREADER@
+#!en;@VERSION_RSS_READER@
 
 #[gtk-about]
 [Icon]
@@ -24,7 +24,7 @@ order=
 
 #j+[48;512] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
-size = 300;100
+size = 280;200
 
 #i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
@@ -109,7 +109,7 @@ name_rss_feed=No Title
 
 #P+ Title Font :
 #{Font to be used for the title}
-title_font=Sans Bold Italic 8
+title_font=Sans Bold Italic 10
 
 #C+ Title Text color :
 #{Color to be used for the title}
@@ -130,9 +130,9 @@ frame_behav=
 #{In minutes.}
 refresh_time=5
 
-#b Display info-bubbles when a feed has changed?
+#b Display an info-bubble when a feed has changed?
 #{By default, this option is activated}
-info_bubble=true
+dialog_feed_changed=true
 
 #I[0;30] Duration of the info-bubbles :
 #{In seconds. Set to 0 for infinite time -> click on dialog to close.}

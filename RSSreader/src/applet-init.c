@@ -52,22 +52,17 @@ CD_APPLET_INIT_BEGIN
 	}
 	else
 	{
-			cd_rssreader_upload_feeds_TASK (myApplet);
+			
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
+			cd_rssreader_upload_feeds_TASK (myApplet);
 	}
 	
 	myData.bUpdateIsManual = FALSE;
 	myData.cLastFirstFeedLine = NULL;
 	myData.cLastSecondFeedLine = NULL;
-	myData.cFeedLine[1] = g_strdup_printf (D_("Please wait ..."));
-	myData.cFeedLine[0] = g_strdup_printf ("%s\n", myData.cFeedLine[1]);
-	
-	int i;
-	for (i = 2 ; i < (myConfig.iLines+1) ; i++)
-	{
-		myData.cFeedLine[i] = g_strdup_printf ("%s", " ");
-	}
+	myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 	
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -76,6 +71,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	if (myDesklet)
 	{
+		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 		cd_rssreader_upload_feeds_TASK (myApplet);		
 	}
 	
@@ -115,31 +111,26 @@ CD_APPLET_RELOAD_BEGIN
 	    myData.iSidAutomaticRefresh = g_timeout_add_seconds (myConfig.iRefreshTime, (GSourceFunc) cd_rssreader_automatic_refresh, (gpointer) myApplet); 
 	    
 	    myData.bUpdateIsManual = FALSE;
-		myData.cLastFirstFeedLine = NULL;	
+		myData.cLastFirstFeedLine = NULL;
 		myData.cLastSecondFeedLine = NULL;
-		myData.cFeedLine[1] = g_strdup_printf (D_("Please wait ..."));
-		myData.cFeedLine[0] = g_strdup_printf ("%s\n", myData.cFeedLine[1]);
+		myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 		
-		int i;
-		for (i = 2 ; i < (myConfig.iLines+1) ; i++)
-		{
-			myData.cFeedLine[i] = g_strdup_printf ("%s", " ");
-		}
-		
-		cd_rssreader_upload_feeds_TASK (myApplet);
-
 		
 		if (! myDesklet)
 		{
 				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
 				cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+				cd_rssreader_upload_feeds_TASK (myApplet);
 		}
 	}
 	
 	if (myDesklet)
 	{
-		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+		if (myData.pTask == NULL)
+			cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+		cd_rssreader_upload_feeds_TASK (myApplet);
 	}
 	
 CD_APPLET_RELOAD_END

@@ -45,8 +45,12 @@ void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 		myConfig.cUrl = g_strdup_printf ("%s", cNewURL);  // On modifie la variable de l'URL
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,G_TYPE_STRING, "Configuration", "url_rss_feed", myConfig.cUrl,G_TYPE_INVALID);  // On l'écrit dans le fichier de config
 		cd_rssreader_upload_title_TASK (myApplet);  // On cherche un titre (en général = la ligne 0 du flux) 
-		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
+		
+		myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 		cd_applet_update_my_icon (myApplet, myIcon, myContainer); 
+		
+		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
 	}
 	else
 	{
@@ -71,14 +75,11 @@ void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *my
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	cd_debug ("RSSreader-debug : CLIC");
-	
-	if (myDesklet)
-			cd_applet_update_my_icon (myApplet, myIcon, myContainer); // On en profite pour faire un petit refresh ... utile dans certains cas ;)
 		
 	if (! myDesklet || myConfig.bLeftClicForDesklet)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (myData.cFeedLine[0],
+		cairo_dock_show_temporary_dialog_with_icon (myData.cAllFeedLines,
 			myIcon,
 			myContainer,
 			myConfig.iDialogsDuration,

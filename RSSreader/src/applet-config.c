@@ -80,7 +80,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_strreverse (myConfig.cFont);
 	
 	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
-	myConfig.bInfoBubble = CD_CONFIG_GET_BOOLEAN ("Configuration", "info_bubble");
+	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
 	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
 	myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
 	
@@ -145,10 +145,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cLastFirstFeedLine);
 	g_free (myData.cLastSecondFeedLine);
 	g_free (myData.cTaskBridge);
-	g_free (myData.cDialogMessage);	
+	g_free (myData.cDialogMessage);
+	g_free (myData.cAllFeedLines);
+	g_free (myData.cSingleFeedLine);
+	g_free (myData.cCuttedLine);
+	
 	//g_free (myData.cTempText);  // Pourquoi çà plante ? :/
 	//g_free (myData.cFontSize);  // Pourquoi çà plante ? :/
 	//g_free (myData.cTitleFontSize);  // Pourquoi çà plante ? :/
-	//g_free (myData.cFeedLine[31]);  // A voir comment faire
+	
 	
 CD_APPLET_RESET_DATA_END

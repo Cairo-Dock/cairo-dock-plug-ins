@@ -26,7 +26,7 @@
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cSpecificWebBrowser;
-	gboolean bInfoBubble;
+	gboolean bDialogIfFeedChanged;
 	gboolean bLeftClicForDesklet;
 	gboolean bDisplayLogo;
 	gboolean bDisplayBackground;
@@ -67,7 +67,10 @@ struct _AppletData {
 	CairoDockTask *pTitleTask;
 	CairoDockTask *pAutomaticRefreshTask;
 	guint iSidAutomaticRefresh;
-	gchar *cFeedLine[31]; // Nombre de flux MAX + L'ensemble en 0
+	
+	gchar *cAllFeedLines;	
+	gchar **cSingleFeedLine;
+	
 	gchar *cLastFirstFeedLine;
 	gchar *cLastSecondFeedLine;
 	gchar *cTempText;
@@ -88,7 +91,8 @@ struct _AppletData {
 	gdouble fLogoSize;
 	gint iMyLogoIsOn;
 	
-	
+	gchar *cCuttedLine;
+	gboolean bIsSameLine;
 	
 	} ;
 
