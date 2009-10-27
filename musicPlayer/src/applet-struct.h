@@ -183,7 +183,7 @@ struct _AppletData {
 	cairo_surface_t *pCover;
 	
 	// Les pochettes
-	gchar *cCoverPath, *cPreviousCoverPath;
+	gchar *cCoverPath, *cPreviousCoverPath, *cMissingCover;
 	gint iSidGetCoverInfoTwice;
 	guint iSidCheckCover;
 	gint iNbCheckFile;

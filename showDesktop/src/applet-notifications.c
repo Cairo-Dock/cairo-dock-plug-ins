@@ -33,19 +33,17 @@ static gboolean _cd_allow_minimize (CairoDesklet *pDesklet, CairoDockModuleInsta
 
 static void _cd_show_hide_desktop (gboolean bShowDesklets)
 {
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	
-	if (! bDesktopIsVisible && ! bShowDesklets)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
+	if (! myData.bDesktopVisible && ! bShowDesklets)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
 	{
 		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
 	}
 	
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	cairo_dock_show_hide_desktop (! myData.bDesktopVisible);
 }
 
 static void _cd_show_hide_desklet (void)
 {
-	if (myData.bDeskletsVisible)
+	if (!myData.bDeskletsVisible)
 	{
 		//myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
 		cairo_dock_set_all_desklets_visible (myConfig.bShowWidgetLayerDesklet);
@@ -56,21 +54,33 @@ static void _cd_show_hide_desklet (void)
 		//cairo_dock_show_xwindow (myData.xLastActiveWindow);
 	}
 	myData.bDeskletsVisible = ! myData.bDeskletsVisible;
+	
+	if (myConfig.cVisibleImage)
+	{
+		if (myData.bDesktopVisible || myData.bDeskletsVisible)
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
+		else
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHiddenImage);
+	}
 }
 
 static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compiz-Icon applet, thanks ChangFu !
 {
 	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
+	{
 		cd_warning  ("Dbus plug-in must be activated in Compiz !");
+		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and to activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
+	}
+	
 	GError *erreur = NULL;
 	gchar *cDbusCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/%s org.freedesktop.compiz.activate string:'root' int32:%d", cCommand, cairo_dock_get_root_id ());
 	g_spawn_command_line_async (cDbusCommand, &erreur);
-	g_free (cDbusCommand);
 	if (erreur != NULL)
 	{
-		cd_warning ("Compiz-icon : when trying to send '%s' : %s", cCommand, erreur->message);
+		cd_warning ("ShowDesktop : when trying to send '%s' : %s", cDbusCommand, erreur->message);
 		g_error_free (erreur);
 	}
+	g_free (cDbusCommand);
 }
 
 static void _cd_show_widget_layer (void)
@@ -123,7 +133,22 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 
-void cd_show_desktop_on_keybinding_pull (const char *keystring, gpointer user_data)
+void on_keybinding_pull (const char *keystring, gpointer user_data)
 {
 	_cd_action_on_middle_click ();
+}
+
+
+gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
+{
+	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
+	g_print ("bDesktopVisible <- %d\n", myData.bDesktopVisible);
+	
+	if (myConfig.cVisibleImage)
+	{
+		if (myData.bDesktopVisible || myData.bDeskletsVisible)
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
+		else
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHiddenImage);
+	}
 }

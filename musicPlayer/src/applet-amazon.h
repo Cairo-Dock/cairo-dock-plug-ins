@@ -42,14 +42,6 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
  */
 gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cUri);
 
-/**
- * Recupere la pochette.
- * @param cURL URL de la pochette.
- * @param cDestPath Ou en enregistre la pochette telechargee.
- * @return succes du telechargement.
- */
-void cd_download_missing_cover (const gchar *cURL);
-
 
 G_END_DECLS
 #endif

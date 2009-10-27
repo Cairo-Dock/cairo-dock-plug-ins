@@ -54,7 +54,7 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	{
 		area.x = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX));
 		area.y = myDock->container.iHeight - MAX (iPreviousPositionY, myData.iCurrentPositionY) - pAnimation->iFrameHeight;
-		area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
+		area.width = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth + 1;  // +1 car sinon on a des trainees parfois, pas compris pourquoi :-/
 		area.height = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
 	}
 	else
@@ -69,7 +69,7 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 		{
 			area.x = MAX (iPreviousPositionY, myData.iCurrentPositionY);
 		}
-		area.height = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth;
+		area.height = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth + 1;  // meme remarque sur le +1.
 		area.width = abs (iPreviousPositionY - myData.iCurrentPositionY) + pAnimation->iFrameHeight;
 	}
 	cairo_dock_redraw_container_area (myContainer, &area);

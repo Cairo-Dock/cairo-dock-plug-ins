@@ -130,10 +130,12 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 		if (!bCheckSize || cd_musicplayer_check_size_is_constant (myData.cCoverPath))
 		{
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
-			if (myData.iCurrentFileSize <= 910)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
+			if (bCheckSize && myData.iCurrentFileSize <= 910 && myData.cMissingCover)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
 			{
 				g_print ("cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
-				g_remove (myData.cCoverPath);
+				g_remove (myData.cMissingCover);
+				g_free (myData.cMissingCover);
+				myData.cMissingCover = NULL;
 				myData.iSidCheckCover = 0;
 				return FALSE;
 			}
@@ -161,6 +163,8 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 			}
 			myData.cover_exist = TRUE;
 			myData.iSidCheckCover = 0;
+			g_free (myData.cMissingCover);
+			myData.cMissingCover = NULL;
 			return FALSE;
 		}
 	}
@@ -168,7 +172,9 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 	if (myData.iNbCheckFile > 5)  // on abandonne au bout de 5s.
 	{
 		g_print ("on abandonne la pochette\n");
-		g_remove (myData.cCoverPath);
+		g_remove (myData.cMissingCover);
+		g_free (myData.cMissingCover);
+		myData.cMissingCover = NULL;
 		myData.iSidCheckCover = 0;
 		return FALSE;
 	}

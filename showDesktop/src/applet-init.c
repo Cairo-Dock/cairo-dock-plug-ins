@@ -42,13 +42,18 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_VISIBILITY_CHANGED,
+		(CairoDockNotificationFunc) on_show_desktop,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
-	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desktop_on_keybinding_pull, (gpointer)NULL);
+	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
+	if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
+	
+	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
 
 
@@ -57,7 +62,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	
+	cairo_dock_remove_notification_func (CAIRO_DOCK_DESKTOP_VISIBILITY_CHANGED,
+		(CairoDockNotificationFunc) on_show_desktop, myApplet);
 CD_APPLET_STOP_END
 
 
@@ -70,8 +76,9 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+		if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
 		
-		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) cd_show_desktop_on_keybinding_pull, (gpointer)NULL);
+		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
 	}
 CD_APPLET_RELOAD_END
