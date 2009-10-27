@@ -366,7 +366,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		myData.iMyLogoIsOn = 1; // utile pour décaler le texte du titre
 		if (myData.pLogoSurface != NULL)
 		{
-			cairo_set_source_surface (myDrawContext, myData.pLogoSurface, iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/1.5), iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/1.5));
+			cairo_set_source_surface (myDrawContext, myData.pLogoSurface,
+					iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/iRatioForRealFontSize),
+					iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/iRatioForRealFontSize));
 			cairo_paint (myDrawContext);
 			cairo_surface_destroy (myData.pLogoSurface);
 		}		
@@ -411,7 +413,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	if (myConfig.bDisplayLogo)
 		cairo_translate (myDrawContext, myData.fLogoSize + iOffset,  myData.fLogoSize/2 - atol(myData.cTitleFontSize)/2 - iOffset);
 		
-	cairo_translate (myDrawContext, iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/1.5), atol(myData.cTitleFontSize) + iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/1.5));
+	cairo_translate (myDrawContext,
+			iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/iRatioForRealFontSize),
+			atol(myData.cTitleFontSize) + iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/iRatioForRealFontSize));
 	cairo_show_text (myDrawContext, myConfig.cName);
 	cairo_fill (myDrawContext);
 	cairo_restore (myDrawContext); // On restaure la position #3
@@ -420,9 +424,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	// On écrit les ligne du flux	
 	cairo_translate (myDrawContext, iOffset + myConfig.iTextPositionX, iOffset + myConfig.iTextPositionY);
 	if (myConfig.bDisplayLogo)
-		cairo_translate (myDrawContext, 0. + (myConfig.iBorderThickness/1.5),  myData.fLogoSize + iOffset + (myConfig.iBorderThickness/1.5));
+		cairo_translate (myDrawContext, 0. + (myConfig.iBorderThickness/iRatioForRealFontSize),  myData.fLogoSize + iOffset + (myConfig.iBorderThickness/iRatioForRealFontSize));
 	else
-		cairo_translate (myDrawContext, 0. + (myConfig.iBorderThickness/1.5),  atol(myData.cTitleFontSize) + iOffset + (myConfig.iBorderThickness/1.5));
+		cairo_translate (myDrawContext, 0. + (myConfig.iBorderThickness/iRatioForRealFontSize),  atol(myData.cTitleFontSize) + iOffset + (myConfig.iBorderThickness/iRatioForRealFontSize));
 	
 	
 	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);	
@@ -485,9 +489,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					break;
 					
 				cd_debug ("RSSreader-debug-text_extents:  --------------->  %s", myData.cSingleFeedLine[i]);			
-				cd_debug ("RSSreader-debug-text_extents :          textExtents.width = \"%i\"", (int)(textExtents.width*1.56));	
+				cd_debug ("RSSreader-debug-text_extents :          textExtents.width = \"%i\"", (int)(textExtents.width*iRatioForRealFontSize));	
 				
-				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset - (1.5*myConfig.iTextPositionX);
+				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset - (iRatioForRealFontSize*myConfig.iTextPositionX);
 				
 				if ((int)(textExtents.width*iRatioForRealFontSize) <= iMaxTextWidth )
 				{
