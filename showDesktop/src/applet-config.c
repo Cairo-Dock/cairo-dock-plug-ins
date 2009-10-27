@@ -30,14 +30,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowDesklets = CD_CONFIG_GET_BOOLEAN ("Configuration", "show desklets");
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle click", 1);
 	myConfig.cShortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Shift><Ctrl>F4");
+	myConfig.cHiddenImage = CD_CONFIG_GET_STRING ("Icon", "icon");
+	if (myConfig.cHiddenImage == NULL)
+		myConfig.cHiddenImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	myConfig.cVisibleImage = CD_CONFIG_GET_STRING ("Icon", "icon visible");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before yo get the applet's config, and when your applet is stopped.
 CD_APPLET_RESET_CONFIG_BEGIN
 	if (myConfig.cShortcut)
-		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) cd_show_desktop_on_keybinding_pull);
+		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull);
 	g_free (myConfig.cShortcut);
+	g_free (myConfig.cVisibleImage);
+	g_free (myConfig.cHiddenImage);
 CD_APPLET_RESET_CONFIG_END
 
 

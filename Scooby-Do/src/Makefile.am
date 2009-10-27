@@ -29,6 +29,8 @@ libcd_Scooby_Do_la_SOURCES = \
 	applet-backend-files.h\
 	applet-backend-web.c\
 	applet-backend-web.h\
+	applet-backend-firefox.c\
+	applet-backend-firefox.h\
 	applet-struct.h
 
 

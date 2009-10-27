@@ -37,10 +37,13 @@ struct _AppletConfig {
 	gboolean bShowWidgetLayerDesklet;
 	CDActionOnClick iActionOnMiddleClick;
 	gchar *cShortcut;
+	gchar *cVisibleImage;
+	gchar *cHiddenImage;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
+	gboolean bDesktopVisible;
 	gboolean bDeskletsVisible;
 	Window xLastActiveWindow;
 	} ;

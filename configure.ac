@@ -120,9 +120,13 @@ AC_ARG_ENABLE(rssreader,
 	[  --enable-rssreader : Enable rssreader applet (default=no) ],
 	[ with_rssreader=${enableval} ],
 	[ with_rssreader=no ])
+AC_ARG_ENABLE(,
+	[  --enable-show-desklets : Enable showDesklets applet (default=no) ],
+	[ with_showDesklets=${enableval} ],
+	[ with_showDesklets=no ])
 
 
-############# PACKAGES ADDITIONNELS #################
+############# PACKAGES ADDITIONNELS #################
 if test "$with_old_gnome_support" = "yes" ; then
 	PKG_CHECK_MODULES(OLD_GNOME_INTEGRATION,gnome-vfs-2.0 libgnomeui-2.0, ,[ with_old_gnome_support=false; AC_MSG_WARN(Could not find gnome-vfs and/or gnomeui; Cairo-Dock won\'t be built with Gnome<2.22 support.) ])
 	AC_SUBST(OLD_GNOME_INTEGRATION_CFLAGS)
@@ -212,6 +216,7 @@ AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
 AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
 AM_CONDITIONAL( [WITH_RSSREADER], [test "$with_rssreader" = "yes"] )
+AM_CONDITIONAL( [WITH_SHOWDESKLETS], [test "$with_showDesklets" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -908,4 +913,5 @@ echo " * Compil MusicPlayer applet : "${with_musicplayer}
 echo " * Compil Network-Monitor applet : "${with_network_monitor}
 echo " * Compil Scooby-Do applet : "${with_scooby_do}
 echo " * Compil RSSreader applet : "${with_rssreader}
+echo " * Compil showDesklets applet : "${with_showDesklets}
 

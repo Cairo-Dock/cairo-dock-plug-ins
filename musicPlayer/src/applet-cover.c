@@ -208,6 +208,22 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 
 
 
+static void _cd_download_missing_cover (const gchar *cURL)
+{
+	if (cURL == NULL)
+		return ;
+	g_return_if_fail (myData.cCoverPath != NULL);
+	if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
+	{
+		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 2 -T 5 > /dev/null 2>&1", cURL, myData.cCoverPath);
+		g_print ("%s\n",cCommand);
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+		g_free (myData.cMissingCover);
+		myData.cMissingCover = g_strdup (myData.cCoverPath);
+	}
+}
+
 static gboolean _check_xml_file (gpointer data)
 {
 	// on teste la presence du fichier xml.
@@ -238,7 +254,7 @@ static gboolean _check_xml_file (gpointer data)
 			}
 			
 			// on lance le dl du fichier image.
-			cd_download_missing_cover (cURL);
+			_cd_download_missing_cover (cURL);
 			g_free (cURL);
 			
 			// on teste en boucle sur la taille du fichier image.

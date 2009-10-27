@@ -55,6 +55,7 @@ CD_APPLET_INIT_BEGIN
 	cd_do_register_files_backend ();
 	cd_do_register_web_backend ();
 	cd_do_register_command_backend ();
+	cd_do_register_firefox_backend ();
 CD_APPLET_INIT_END
 
 

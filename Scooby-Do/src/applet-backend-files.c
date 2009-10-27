@@ -38,6 +38,7 @@ static gboolean _cd_do_fill_file_entry (CDEntry *pEntry);
 // actions
 static void _cd_do_launch_file (CDEntry *pEntry);
 static void _cd_do_show_file_location (CDEntry *pEntry);
+static void _cd_do_open_terminal_here (CDEntry *pEntry);
 static void _cd_do_zip_file (CDEntry *pEntry);
 static void _cd_do_zip_folder (CDEntry *pEntry);
 static void _cd_do_mail_file (CDEntry *pEntry);
@@ -212,7 +213,7 @@ static gboolean init (gpointer *pData)
  // SUB-LISTING //
 /////////////////
 
-#define NB_ACTIONS_ON_FOLDER 3
+#define NB_ACTIONS_ON_FOLDER 4
 static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cPath);
@@ -230,6 +231,14 @@ static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNb
 	// on ajoute les entrees d'actions sur le repertoire.
 	GList *pEntries = NULL;
 	CDEntry *pEntry;
+	
+	pEntry = g_new0 (CDEntry, 1);
+	pEntry->cPath = g_strdup (cPath);
+	pEntry->cName = g_strdup (D_("Open a terminal here"));
+	pEntry->cIconName = g_strdup ("terminal");
+	pEntry->fill = cd_do_fill_default_entry;
+	pEntry->execute = _cd_do_open_terminal_here;
+	pEntries = g_list_prepend (pEntries, pEntry);
 	
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
@@ -429,10 +438,10 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 	g_free (cPathUp);
 }
 
-static void _cd_do_zip_file (CDEntry *pEntry)
+static void _cd_do_open_terminal_here (CDEntry *pEntry)
 {
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	gchar *cCommand = g_strdup_printf ("zip '%s.zip' '%s'", pEntry->cPath, pEntry->cPath);
+	gchar *cCommand = g_strdup_printf ("$TERM -e \"cd '%s'\"", pEntry->cPath);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 }
@@ -441,6 +450,14 @@ static void _cd_do_zip_folder (CDEntry *pEntry)
 {
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
 	gchar *cCommand = g_strdup_printf ("tar cfz '%s.tar.gz' '%s'", pEntry->cPath, pEntry->cPath);
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
+}
+
+static void _cd_do_zip_file (CDEntry *pEntry)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	gchar *cCommand = g_strdup_printf ("zip '%s.zip' '%s'", pEntry->cPath, pEntry->cPath);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 }
@@ -513,17 +530,20 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 	GList *pEntries = _build_entries (cResult, iNbEntries);
 	g_free (cResult);
 	
-	CDEntry *pEntry = g_new0 (CDEntry, 1);
-	pEntry->cPath = g_strdup ("Files");
-	pEntry->cName = g_strdup (D_("Files"));
-	pEntry->cIconName = g_strdup ("files.png");
-	pEntry->bMainEntry = TRUE;
-	pEntry->fill = _cd_do_fill_main_entry;
-	pEntry->execute = NULL;
-	pEntry->list = _cd_do_search_all;
-	pEntries = g_list_prepend (pEntries, pEntry);
+	if (pEntries != NULL)
+	{
+		CDEntry *pEntry = g_new0 (CDEntry, 1);
+		pEntry->cPath = g_strdup ("Files");
+		pEntry->cName = g_strdup (D_("Files"));
+		pEntry->cIconName = g_strdup ("files.png");
+		pEntry->bMainEntry = TRUE;
+		pEntry->fill = _cd_do_fill_main_entry;
+		pEntry->execute = NULL;
+		pEntry->list = _cd_do_search_all;
+		pEntries = g_list_prepend (pEntries, pEntry);
+		*iNbEntries = (*iNbEntries + 1);
+	}
 	
-	*iNbEntries = (*iNbEntries + 1);
 	return pEntries;
 }
 

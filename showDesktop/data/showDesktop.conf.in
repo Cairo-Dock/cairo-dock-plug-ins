@@ -13,6 +13,11 @@ name = Show Desktop
 #{Let empty to use the default one.}
 icon = 
 
+#S+ Image when the applet is active :
+#{Let empty to use the same image.}
+icon visible = 
+
+
 #d Name of the dock it belongs to:
 dock name = 
 
