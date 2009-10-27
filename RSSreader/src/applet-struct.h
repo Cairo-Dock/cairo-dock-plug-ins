@@ -38,12 +38,13 @@ struct _AppletConfig {
 	gint iDialogsDuration;
 	gint iRefreshTime;	
 	gchar *cUrl;
-	
+
 	gchar *cName;
 	gint iLines;
 	gint iTitleNum;
-	
+	gint iMaxLines;
 	gchar *cMessageNoUrl;
+	gchar *cMessageNoUrl2;
 	gchar *cMessageNoTitle;
 	gchar *cMessageFailedToConnect;
 	
@@ -51,7 +52,8 @@ struct _AppletConfig {
 	gint iTitlePositionY;
 	gint iTextPositionX;
 	gint iTextPositionY;
-	gint iSpaceBetweenLines;
+	gint iSpaceBetweenFeedLines;
+	gint iSpaceBetweenLinesMulti;
 	
 	double fTextColor[4];
 	gchar *cFont;
@@ -70,7 +72,7 @@ struct _AppletData {
 	
 	gchar *cAllFeedLines;	
 	gchar **cSingleFeedLine;
-	
+		
 	gchar *cLastFirstFeedLine;
 	gchar *cLastSecondFeedLine;
 	gchar *cTempText;
@@ -90,9 +92,10 @@ struct _AppletData {
 	
 	gdouble fLogoSize;
 	gint iMyLogoIsOn;
-	
+	gint iCurrentLineForMaxLine;
 	gchar *cCuttedLine;
 	gboolean bIsSameLine;
+	gboolean bMessageNoUrl;
 	
 	} ;
 

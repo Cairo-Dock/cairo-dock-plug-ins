@@ -43,34 +43,37 @@ char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
 } 
 
 
-gchar *cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine)   // Un simple essai
+gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine)   // Un simple essai
 {
 	cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
-	double iRatioForRealFontSize = 1.5; // ratio pour avoir un texte à peu près à la bonne dimension
-		
+	double iRatioForRealFontSize = 1.5; // ratio pour avoir un texte à peu près à la bonne dimension		
 	
-	myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cTempCuttedLine	
+	myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cCuttedLine	
 	cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne de départ (pour info seulement)
 	int iTextWidth = (int)(textExtents.width * iRatioForRealFontSize);  // On lui applique le ratio effectué sur le texte	
 	
 	// Calcul du nombre de ligne à obtenir:
 	int iNbLines = (iTextWidth/iMaxWidth) + 1;
 	
+	// On compte le nombre de lettre 	
+	gint iNbLetters = strlen(myData.cCuttedLine);
+	
 	// On compte le nombre de mot
  	gchar cCurrentLetter = {0};
 	gint iNbWords = 1;
 	long i=0;	
-	for (i=0 ; i < strlen(myData.cCuttedLine) ; i++)
+	for (i=0 ; i < iNbLetters ; i++)
 	{
 		cCurrentLetter = myData.cCuttedLine[i];				
 		if (cCurrentLetter == ' ')
 			iNbWords++;
 	}
-	gchar **cWord; // On créé un tableau pour y mettre chaque mot
-	cWord = g_strsplit (myData.cCuttedLine," ",0); // On met chaque mot dans le tableau
 	
 	i = 1;	
 	myData.cTempText = g_strdup_printf ("");
+	
+	gchar **cWord = g_strsplit (myData.cCuttedLine," ",0);
+			
 	do
 	{
 		myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On réinitilise myData.cCuttedLine (utile pour la boucle)
@@ -81,16 +84,44 @@ gchar *cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxW
 		i++;
 	} while ( iTextWidth > iMaxWidth ); // Si le nouveau texte dépasse encore -> On boucle
 	
+	g_free (cWord);
+	ltrim( myData.cTempText, " " ); // On supprime l'espace afin de renvoyer le reste de la ligne à la fin
+	
 	cairo_show_text (myDrawContext, myData.cCuttedLine); // On affiche la nouvelle ligne		
+	g_free (myData.cCuttedLine);
 	
 	// On renvoit le reste du texte à afficher :
-	ltrim( myData.cTempText, " " );
 	cd_debug ("RSSreader-debug : ---------------- >   End of line = \"%s\"", myData.cTempText);	
-	
-	g_free (myData.cCuttedLine);
 	return myData.cTempText;	
 }
 
+
+void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine)   // Un simple essai
+{
+	cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
+	double iRatioForRealFontSize = 1.5; // ratio pour avoir un texte à peu près à la bonne dimension	
+	
+	myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cCuttedLine
+	cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne de départ
+	int iTextWidth = (int)(textExtents.width * iRatioForRealFontSize);  // On lui applique le ratio effectué sur le texte	
+	
+	// On compte le nombre de lettre 	
+	gint iNbLetters = strlen(myData.cCuttedLine);
+
+	// On enlève lettre par lettre jusqu'à être ok (et on utilise 'cairo_dock_cut_string' pour mettre '...' dans l'espace trouvé 
+	do
+	{
+		myData.cCuttedLine = cairo_dock_cut_string (myData.cCuttedLine, iNbLetters-1);
+		iNbLetters--;
+		
+		cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne
+		iTextWidth = (int)(textExtents.width * iRatioForRealFontSize); // On applique le ratio pour le texte
+	} while ( iTextWidth > iMaxWidth ); // Si le nouveau texte dépasse encore -> On boucle
+	
+	
+	cairo_show_text (myDrawContext, myData.cCuttedLine); // On affiche la nouvelle ligne		
+	g_free (myData.cCuttedLine);
+}
 
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
 {	
@@ -215,7 +246,7 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 		
 	// On sépare toutes les lignes reçues
 	if (strcmp(myData.cAllFeedLines, g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
-		myData.cAllFeedLines = g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, D_("Drag'n drop a valid RSS feed URL,\nor use \"Paste a new RSS Url\" from menu\nto add one."));
+		myData.cAllFeedLines = g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, myConfig.cMessageNoUrl2);
 	
 	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 	
@@ -463,25 +494,32 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	
 	
 	myData.bIsSameLine = FALSE;
+	myData.iCurrentLineForMaxLine = 1;
+		
+	if (strcmp(myData.cAllFeedLines, g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, myConfig.cMessageNoUrl2)) == 0)
+		myData.bMessageNoUrl = TRUE; // On forcera alors le mode Multi-lignes
+	else
+		myData.bMessageNoUrl = FALSE;	
+	
+	
 	int i = 0;	
-	if (iWidth != 1)
+	if (iWidth != 1) // nécessaire car la boucle peut attaquer avant que le desklet ne soit dessiné
 	{
-		cd_debug ("RSSreader-debug-text_extents :  Largeur desklet -> iWidth = \"%i\"", iWidth);
 		if (myData.cSingleFeedLine[0] != NULL)
-		{
+		{			
 			for (i=0 ; myData.cSingleFeedLine[i] != NULL ; i++)
-			{
+			{				
 				cairo_translate (myDrawContext, 0, atol(myData.cFontSize));
 				
 				cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
 				cairo_text_extents (myDrawContext, myData.cSingleFeedLine[i], &textExtents);  // on recupere les dimensions de la ligne
 				
-				if (i != 0)
+				if (i != 0 || myData.bIsSameLine)
 				{
 					if (myData.bIsSameLine)
-						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLines);
+						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLinesMulti);
 					else
-						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenLines + textExtents.height );
+						cairo_translate (myDrawContext, 0, myConfig.iSpaceBetweenFeedLines + textExtents.height); // Par défaut, on saute une ligne entre 2 flux (réglable en conf)
 				}
 					
 				
@@ -490,24 +528,35 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					
 				cd_debug ("RSSreader-debug-text_extents:  --------------->  %s", myData.cSingleFeedLine[i]);			
 				cd_debug ("RSSreader-debug-text_extents :          textExtents.width = \"%i\"", (int)(textExtents.width*iRatioForRealFontSize));	
+								
+				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset - (iRatioForRealFontSize*myConfig.iTextPositionX); // On réduit la limite pour garder un peu d'espace à droite
 				
-				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset - (iRatioForRealFontSize*myConfig.iTextPositionX);
 				
 				if ((int)(textExtents.width*iRatioForRealFontSize) <= iMaxTextWidth )
 				{
 					cairo_show_text (myDrawContext, myData.cSingleFeedLine[i]);
 					myData.bIsSameLine = FALSE;
+					myData.iCurrentLineForMaxLine = 1;					
 				}
 				else
 				{
-					//~ cairo_show_text (myDrawContext, "Phrase trop longue !");
-					
-					myData.cSingleFeedLine[i] = cd_rssreader_cut_feed_lines (myApplet, iMaxTextWidth, myData.cSingleFeedLine[i]); // Un simple essai
-					cd_debug ("RSSreader-debug-text_cut:  --------------->  %s", myData.cSingleFeedLine[i]);
-					i = i-1 ;
-					myData.bIsSameLine = TRUE;
+					if (  myConfig.iMaxLines == 0 || myData.iCurrentLineForMaxLine < myConfig.iMaxLines || myData.bMessageNoUrl)
+					{
+						myData.cSingleFeedLine[i] = cd_rssreader_cut_feed_lines_with_return (myApplet, iMaxTextWidth, myData.cSingleFeedLine[i]);
+						cd_debug ("RSSreader-debug-text_cut:  --------------->  %s", myData.cSingleFeedLine[i]);
+						myData.bIsSameLine = TRUE;
+						myData.iCurrentLineForMaxLine++;
+						i--;		
+					}
+					else // On doit afficher la dernière ligne autorisée pour la ligne de flux
+					{
+						cd_rssreader_cut_feed_lines (myApplet, iMaxTextWidth, myData.cSingleFeedLine[i]);
+						myData.bIsSameLine = FALSE;
+						myData.iCurrentLineForMaxLine = 1;
+					}
 				}
-				cairo_fill (myDrawContext);				
+								
+				cairo_fill (myDrawContext);	
 			}
 		}
 	}

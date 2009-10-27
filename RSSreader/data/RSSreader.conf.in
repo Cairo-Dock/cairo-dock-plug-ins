@@ -142,6 +142,10 @@ dialogs_duration=15
 #{By default, this option is deactivated}
 left_clic_for_desklet=false
 
+#i[0;30] MAX number of lines for each feed line :
+#{Set to 0 to display all the lines (default)}
+max_lines_for_feed_lines=0
+
 #s Specify the command to launch your web browser :
 #{Let empty to use the default one.}
 specific_web_browser= 
@@ -183,7 +187,7 @@ background_radius=15
 
 #i[0;20] Border thickness :
 #{Set the thickness to 0 for no border}
-border_thickness=5
+border_thickness=2
 
 #C+ Border color :
 #{Border color}
@@ -208,7 +212,11 @@ text_position_x=0
 #{Feed lines position y}
 text_position_y=0
 
-#i[-64;64] Increase/Decrease space between the lines :
+#i[-64;64] Increase/Decrease space between 2 feed lines :
 #{Default space between lines is set to 0}
-space_between_lines=0
+space_between_feed_lines=0
+
+#i[-64;64] Increase/Decrease space between 2 lines in case of multi-lines:
+#{Default space between lines is set to 0}
+space_between_lines_multilines=0
 

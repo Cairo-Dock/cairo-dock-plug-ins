@@ -83,6 +83,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
 	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
 	myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
+	myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");
 	
 	myConfig.cSpecificWebBrowser = CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");
 	if (myConfig.cSpecificWebBrowser == NULL)
@@ -93,6 +94,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cMessageNoTitle = g_strdup_printf (D_("No Title"));
 	myConfig.cMessageNoUrl = g_strdup_printf (D_("No RSS feed URL defined..."));
+	myConfig.cMessageNoUrl2 = g_strdup_printf (D_("Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu to add one."));
 	myConfig.cMessageFailedToConnect = g_strdup_printf (D_("Failed to connect..."));
 	
 	// Section Appearance
@@ -108,8 +110,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iTitlePositionY = CD_CONFIG_GET_INTEGER ("Appearance", "title_position_y");	
 	myConfig.iTextPositionX = CD_CONFIG_GET_INTEGER ("Appearance", "text_position_x");
 	myConfig.iTextPositionY = CD_CONFIG_GET_INTEGER ("Appearance", "text_position_y");	
-	myConfig.iSpaceBetweenLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines");
-
+	myConfig.iSpaceBetweenFeedLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_feed_lines");
+	myConfig.iSpaceBetweenLinesMulti = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines_multilines");
+	
 	// Other
 	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");	
 			
@@ -130,6 +133,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cLogoPath);
 	g_free (myConfig.cMessageNoTitle);
 	g_free (myConfig.cMessageNoUrl);
+	g_free (myConfig.cMessageNoUrl2);
 	g_free (myConfig.cMessageFailedToConnect);
 	// g_free (myConfig.cFont);  // Pourquoi çà plante ? :/
 	// g_free (myConfig.cTitleFont);  // Pourquoi çà plante ? :/

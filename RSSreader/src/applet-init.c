@@ -61,9 +61,8 @@ CD_APPLET_INIT_BEGIN
 	myData.bUpdateIsManual = FALSE;
 	myData.cLastFirstFeedLine = NULL;
 	myData.cLastSecondFeedLine = NULL;
-	myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+	myData.cAllFeedLines = g_strdup_printf ("%s\n", D_("Please wait ..."));
 	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
-	
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -72,11 +71,13 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
-		cd_rssreader_upload_feeds_TASK (myApplet);		
+		cd_rssreader_upload_feeds_TASK (myApplet);
 	}
 	
 	//\_______________ On lance le timer.
     myData.iSidAutomaticRefresh = g_timeout_add_seconds (myConfig.iRefreshTime, (GSourceFunc) cd_rssreader_automatic_refresh, (gpointer) myApplet); 
+	
+	CD_APPLET_REDRAW_MY_ICON; // On force un refresh
 	
 CD_APPLET_INIT_END
 
@@ -113,7 +114,7 @@ CD_APPLET_RELOAD_BEGIN
 	    myData.bUpdateIsManual = FALSE;
 		myData.cLastFirstFeedLine = NULL;
 		myData.cLastSecondFeedLine = NULL;
-		myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		myData.cAllFeedLines = g_strdup_printf ("%s\n", D_("Please wait ..."));
 		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 		
 		

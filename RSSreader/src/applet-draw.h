@@ -26,7 +26,9 @@
 
 char* ltrim( char* str, const char* t );
 
-gchar *cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
+gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
+
+void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
 
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet);
 
