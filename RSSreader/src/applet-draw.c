@@ -487,7 +487,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				cd_debug ("RSSreader-debug-text_extents:  --------------->  %s", myData.cSingleFeedLine[i]);			
 				cd_debug ("RSSreader-debug-text_extents :          textExtents.width = \"%i\"", (int)(textExtents.width*1.56));	
 				
-				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset;
+				int iMaxTextWidth = iWidth - 2*myConfig.iBorderThickness - 3*iOffset - (1.5*myConfig.iTextPositionX);
 				
 				if ((int)(textExtents.width*iRatioForRealFontSize) <= iMaxTextWidth )
 				{
