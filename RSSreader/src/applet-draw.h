@@ -30,6 +30,8 @@ gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApple
 
 void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
 
+
+
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet);
 
 void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet);
@@ -40,11 +42,10 @@ void cd_rssreader_update_title (CairoDockModuleInstance *myApplet);
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet);
 
-void cd_rssreader_automatic_refresh (CairoDockModuleInstance *myApplet);
-
 void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet);
 
 void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet);
+
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
 

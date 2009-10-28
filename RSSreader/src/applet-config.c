@@ -145,14 +145,12 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_task (myData.pTask);
 	cairo_dock_free_task (myData.pTitleTask);
-	cairo_dock_free_task (myData.pAutomaticRefreshTask);
 	g_free (myData.cLastFirstFeedLine);
 	g_free (myData.cLastSecondFeedLine);
 	g_free (myData.cTaskBridge);
 	g_free (myData.cDialogMessage);
 	g_free (myData.cAllFeedLines);
 	g_free (myData.cSingleFeedLine);
-	g_free (myData.cCuttedLine);
 	
 	//g_free (myData.cTempText);  // Pourquoi çà plante ? :/
 	//g_free (myData.cFontSize);  // Pourquoi çà plante ? :/

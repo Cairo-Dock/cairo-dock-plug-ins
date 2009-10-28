@@ -67,8 +67,6 @@ struct _AppletConfig {
 struct _AppletData {
 	CairoDockTask *pTask;
 	CairoDockTask *pTitleTask;
-	CairoDockTask *pAutomaticRefreshTask;
-	guint iSidAutomaticRefresh;
 	
 	gchar *cAllFeedLines;	
 	gchar **cSingleFeedLine;
@@ -87,6 +85,7 @@ struct _AppletData {
 	gboolean bTitleFontIsBold;
 	gboolean bTitleFontIsItalic;
 	gboolean bUpdateIsManual;
+	gboolean bLastWasDocked;
 	
 	cairo_surface_t *pLogoSurface;
 	

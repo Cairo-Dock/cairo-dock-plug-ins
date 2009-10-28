@@ -46,23 +46,25 @@ CD_APPLET_DEFINITION (N_("RSSreader"),
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
-	}
-	else
-	{
-			
-			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
-			cd_rssreader_upload_feeds_TASK (myApplet);
-	}
-	
 	myData.bUpdateIsManual = FALSE;
 	myData.cLastFirstFeedLine = NULL;
 	myData.cLastSecondFeedLine = NULL;
 	myData.cAllFeedLines = g_strdup_printf ("%s\n", D_("Please wait ..."));
 	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
+	
+	
+	if (myDesklet)
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+		myData.bLastWasDocked = FALSE;
+	}
+	else
+	{			
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
+			cd_rssreader_upload_feeds_TASK (myApplet);
+			myData.bLastWasDocked = TRUE;
+	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -73,10 +75,7 @@ CD_APPLET_INIT_BEGIN
 		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 		cd_rssreader_upload_feeds_TASK (myApplet);
 	}
-	
-	//\_______________ On lance le timer.
-    myData.iSidAutomaticRefresh = g_timeout_add_seconds (myConfig.iRefreshTime, (GSourceFunc) cd_rssreader_automatic_refresh, (gpointer) myApplet); 
-	
+		
 	CD_APPLET_REDRAW_MY_ICON; // On force un refresh
 	
 CD_APPLET_INIT_END
@@ -89,9 +88,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	//\_______________ On stoppe le timer en cours.
-		g_source_remove (myData.iSidAutomaticRefresh);
-		myData.iSidAutomaticRefresh = 0;
+	
 CD_APPLET_STOP_END
 
 
@@ -100,38 +97,40 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
-	}
+	}	
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		//\_______________ On stoppe le timer en cours.
-		g_source_remove (myData.iSidAutomaticRefresh);
-		myData.iSidAutomaticRefresh = 0;
-				
-		//\_______________ On relance le timer.
-	    myData.iSidAutomaticRefresh = g_timeout_add_seconds (myConfig.iRefreshTime, (GSourceFunc) cd_rssreader_automatic_refresh, (gpointer) myApplet); 
-	    
-	    myData.bUpdateIsManual = FALSE;
+		myData.bUpdateIsManual = FALSE;
 		myData.cLastFirstFeedLine = NULL;
 		myData.cLastSecondFeedLine = NULL;
 		myData.cAllFeedLines = g_strdup_printf ("%s\n", D_("Please wait ..."));
 		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 		
-		
 		if (! myDesklet)
 		{
 				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cName != NULL ? myConfig.cName : "RSSreader");
-				cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 				cd_rssreader_upload_feeds_TASK (myApplet);
+				myData.bLastWasDocked = TRUE;
 		}
-	}
+	}	
 	
 	if (myDesklet)
 	{
-		if (myData.pTask == NULL)
-			cd_applet_update_my_icon (myApplet, myIcon, myContainer);
-		cd_rssreader_upload_feeds_TASK (myApplet);
+		cd_applet_update_my_icon (myApplet, myIcon, myContainer);		
+		
+		// Si je ne fais pas ce qui suit, j'ai un plantage lorsqu'on détache l'applet :/
+		if (cairo_dock_task_is_active (myData.pTask))
+		{			
+			cairo_dock_stop_task (myData.pTask);
+			if (! myData.bLastWasDocked)
+				cd_rssreader_upload_feeds_TASK (myApplet);
+	    }
+	    else
+	   		cd_rssreader_upload_feeds_TASK (myApplet);
+	   		
+	   	myData.bLastWasDocked = FALSE;
 	}
 	
 CD_APPLET_RELOAD_END

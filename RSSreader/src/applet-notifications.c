@@ -48,8 +48,8 @@ void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 		
 		myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
 		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
-		cd_applet_update_my_icon (myApplet, myIcon, myContainer); 
-		
+		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+
 		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
 	}
 	else
@@ -91,8 +91,9 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	cd_debug ("RSSreader-debug : MIDDLE-CLIC");
-	myData.bUpdateIsManual = TRUE;	
-	cd_rssreader_upload_feeds_TASK (myApplet);	
+	myData.bUpdateIsManual = TRUE;
+		
+	cd_rssreader_upload_feeds_TASK (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

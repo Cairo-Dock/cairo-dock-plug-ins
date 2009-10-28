@@ -42,7 +42,6 @@ char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
 	return str; 
 } 
 
-
 gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine)   // Un simple essai
 {
 	cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
@@ -116,8 +115,7 @@ void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWid
 		
 		cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne
 		iTextWidth = (int)(textExtents.width * iRatioForRealFontSize); // On applique le ratio pour le texte
-	} while ( iTextWidth > iMaxWidth ); // Si le nouveau texte dépasse encore -> On boucle
-	
+	} while ( iTextWidth > iMaxWidth ); // Si le nouveau texte dépasse encore -> On boucle	
 	
 	cairo_show_text (myDrawContext, myData.cCuttedLine); // On affiche la nouvelle ligne		
 	g_free (myData.cCuttedLine);
@@ -126,8 +124,8 @@ void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWid
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
 {	
 	if (myData.pTitleTask == NULL)
-	{
-		myData.pTitleTask = cairo_dock_new_task (0,
+	{		
+		myData.pTitleTask = cairo_dock_new_task (0,  // One shot task
 			(CairoDockGetDataAsyncFunc) cd_rssreader_upload_title,
 			(CairoDockUpdateSyncFunc) cd_rssreader_update_title,
 			myApplet);
@@ -142,7 +140,8 @@ void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet)
 {	
 	GString *sCommand = g_string_new ("");		
 	
-	g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s 1 0", myConfig.cUrl);
+	// g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s 1 0", myConfig.cUrl);
+	g_string_printf (sCommand, "%s/rss_reader.sh %s 1 0", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl);
 							
 	cd_debug ("RSSreader-debug : TITLE TASK ---------------------->  %s",sCommand->str);
 	
@@ -159,12 +158,10 @@ void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet)
 
 void cd_rssreader_update_title (CairoDockModuleInstance *myApplet)
 {
-	myConfig.cName = g_strdup_printf ("%s",*(g_strsplit(myData.cTitleTaskBridge, "\n", 0)) );   // On récupère le contenu de myData.cTaskBridge
-	
+	myConfig.cName = g_strdup_printf ("%s",*(g_strsplit(myData.cTitleTaskBridge, "\n", 0)) );   // On récupère le contenu de myData.cTaskBridge	
 	
 	if (strcmp(myConfig.cName, "") == 0)
-		myConfig.cName = g_strdup_printf ("%s", myConfig.cMessageNoTitle);
-	
+		myConfig.cName = g_strdup_printf ("%s", myConfig.cMessageNoTitle);	
 	
 	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,G_TYPE_STRING, "Configuration", "name_rss_feed", myConfig.cName,G_TYPE_INVALID);
 		
@@ -173,29 +170,21 @@ void cd_rssreader_update_title (CairoDockModuleInstance *myApplet)
 
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
-{	
-	if (myData.pTask == NULL)
-	{
-		myData.pTask = cairo_dock_new_task (0,
-			(CairoDockGetDataAsyncFunc) cd_rssreader_upload_feeds,
-			(CairoDockUpdateSyncFunc) cd_rssreader_update_feeds,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
-	}
-	else
-		cd_debug ("RSSreader-debug : -----------------------------------------> TASK ALREADY RUNNING");
-}
-
-
-void cd_rssreader_automatic_refresh (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("RSSreader-debug : -----------------------------------------> AUTOMATIC REFRESH");
-	myData.pAutomaticRefreshTask = cairo_dock_new_task (0,
+	if (myData.pTask == NULL) // la tache n'existe pas, on la cree et on la lance.
+	{
+		myData.pTask = cairo_dock_new_task (myConfig.iRefreshTime,
 		(CairoDockGetDataAsyncFunc) cd_rssreader_upload_feeds,
 		(CairoDockUpdateSyncFunc) cd_rssreader_update_feeds,
 		myApplet);
-	cairo_dock_launch_task (myData.pAutomaticRefreshTask);
+		cairo_dock_launch_task (myData.pTask);
+	}
+	else // la tache existe, on la relance immediatement.
+	{
+		cairo_dock_relaunch_task_immediately (myData.pTask, -1); // le -1 c'est pour conserver la même fréquence.
+	}
 }
+
 
 void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 {		
@@ -207,12 +196,12 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 	else
 	{
 		g_free (myData.cSingleFeedLine);
-		myData.cSingleFeedLine = NULL;
-		
+		myData.cSingleFeedLine = NULL;		
 		
 		GString *sCommand = g_string_new ("");		
 		
-		g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s %i %i", myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
+		//~ g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s %i %i", myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
+		g_string_printf (sCommand, "%s/rss_reader.sh %s %i %i", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
 								
 		cd_debug ("RSSreader-debug : TASK ---------------------->  %s",sCommand->str);
 		
@@ -222,9 +211,7 @@ void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
 		
 		// On vérifie que la commande nous a renvoyé quelque chose de cohérent
 		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0)
-		{			
-			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite		
-		}		
+			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite	
 	}	
 }
 
@@ -241,9 +228,8 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 		cCurrentLetter = myData.cAllFeedLines[i];				
 		if (cCurrentLetter == '\n')
 			iNbLines++;
-	}		
-
-		
+	}
+	
 	// On sépare toutes les lignes reçues
 	if (strcmp(myData.cAllFeedLines, g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
 		myData.cAllFeedLines = g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, myConfig.cMessageNoUrl2);
@@ -319,8 +305,6 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 			}
 		}
 	}
-	
-	myData.pTask = NULL;
 	cd_applet_update_my_icon (myApplet, myIcon, myContainer);
 }
 
