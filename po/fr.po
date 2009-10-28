@@ -424,7 +424,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-backend-web.c:163
 msgid "Search on the web"
-msgstr "Chercher sur le Net :"
+msgstr "Chercher sur le Net"
 
 #: ../Scooby-Do/src/applet-init.c:37
 msgid ""

@@ -40,17 +40,9 @@ static void _cd_do_execute_command (CDEntry *pEntry);
 //////////
 
 
-
-  /////////////////
- // SUB-LISTING //
-/////////////////
-
-
-
   ////////////////
  // FILL ENTRY //
 ////////////////
-
 
 
   /////////////
@@ -84,11 +76,16 @@ static void _cd_do_execute_command (CDEntry *pEntry)
 }
 
 
+  /////////////////
+ // SUB-LISTING //
+/////////////////
+
+
   ////////////
  // SEARCH //
 ////////////
 
-static GList * search (const gchar *cText, gint iFilter, gpointer pData, int *iNbEntries)
+static GList * search (const gchar *cText, gint iFilter, gboolean bSearchAll, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
 	GList *pEntries = NULL;
@@ -105,8 +102,6 @@ static GList * search (const gchar *cText, gint iFilter, gpointer pData, int *iN
 	*iNbEntries = 1;
 	return pEntries;
 }
-
-
   //////////////
  // REGISTER //
 //////////////
@@ -117,7 +112,7 @@ void cd_do_register_command_backend (void)
 	pBackend->cName = "Command";
 	pBackend->bIsThreaded = FALSE;
 	pBackend->bStaticResults = TRUE;
-	pBackend->init =(CDBackendInitFunc) NULL;
+	pBackend->init = (CDBackendInitFunc) NULL;
 	pBackend->search = (CDBackendSearchFunc) search;
 	myData.pBackends = g_list_prepend (myData.pBackends, pBackend);
 }
