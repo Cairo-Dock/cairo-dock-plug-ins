@@ -471,8 +471,8 @@ AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 RSS_READER_PACKAGE=cd-rssreader
 AC_SUBST(GETTEXT_RSS_READER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_RSS_READER_PACKAGE, "0.1.0")
-AC_SUBST(PACKAGE_RSS_READER_PACKAGE, "$RSS_READER_PACKAGE")
+AC_SUBST(VERSION_RSS_READER, "0.1.0")
+AC_SUBST(PACKAGE_RSS_READER, "$RSS_READER_PACKAGE")
 
 AC_SUBST(rss_readerdatadir, "${pkgdatadir}/RSSreader")
 

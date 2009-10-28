@@ -56,8 +56,14 @@ static void _launch_async_search (CDBackend *pBackend)
 {
 	pBackend->pSearchResults = pBackend->search (pBackend->cCurrentLocateText,
 		pBackend->iLocateFilter,
-		pBackend->pData,
+		FALSE,
 		&pBackend->iNbSearchResults);
+	if (pBackend->pSearchResults != NULL)
+	{
+		CDEntry *pMainEntry = pBackend->pSearchResults->data;
+		if (pMainEntry->bMainEntry)
+			pMainEntry->pBackend = pBackend;
+	}
 }
 
 static gboolean _update_entries (CDBackend *pBackend)
@@ -145,7 +151,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 	if (pBackend->iState == 0)
 	{
 		if (pBackend->init)
-			pBackend->iState = (pBackend->init (&pBackend->pData) ? 1 : -1);
+			pBackend->iState = (pBackend->init () ? 1 : -1);
 		else
 			pBackend->iState = 1;
 		
@@ -199,8 +205,14 @@ void cd_do_launch_backend (CDBackend *pBackend)
 		int iNbEntries;
 		GList *pEntries = pBackend->search (myData.sCurrentText->str,
 			myData.iCurrentFilter,
-			pBackend->pData,
+			FALSE,
 			&iNbEntries);
+		if (pEntries != NULL)
+		{
+			CDEntry *pMainEntry = pEntries->data;
+			if (pMainEntry->bMainEntry)
+				pMainEntry->pBackend = pBackend;
+		}
 		
 		// on rajoute les nouveaux resultats.
 		cd_do_append_entries_to_listing (pEntries, iNbEntries);
@@ -219,12 +231,15 @@ void cd_do_launch_all_backends (void)
 
 void cd_do_stop_backend (CDBackend *pBackend)
 {
+	// stop activity.
 	if (pBackend->pTask != NULL)
 	{
 		cairo_dock_stop_task (pBackend->pTask);
 	}
+	// reset last result.
 	pBackend->pLastShownResults = NULL;
 	pBackend->iNbLastShownResults = 0;
+	// reset shared memory.
 	g_free (pBackend->cCurrentLocateText);
 	pBackend->cCurrentLocateText = NULL;
 	pBackend->iLocateFilter = 0;
@@ -235,6 +250,27 @@ void cd_do_stop_backend (CDBackend *pBackend)
 void cd_do_stop_all_backends (void)
 {
 	g_list_foreach (myData.pBackends, (GFunc) cd_do_stop_backend, NULL);
+}
+
+
+void cd_do_free_backend (CDBackend *pBackend)
+{
+	if (pBackend == NULL)
+		return;
+	
+	cd_do_stop_backend (pBackend);
+	
+	if (pBackend->stop)
+		pBackend->stop ();
+	
+	g_free (pBackend);
+}
+
+void cd_do_free_all_backends (void)
+{
+	g_list_foreach (myData.pBackends, (GFunc) cd_do_stop_backend, NULL);
+	g_free (myData.pBackends);
+	myData.pBackends = NULL;
 }
 
 
@@ -427,13 +463,20 @@ void cd_do_activate_filter_option (int iNumOption)
 }
 
 
+GList* cd_do_list_main_sub_entry (CDEntry *pEntry, int *iNbSubEntries)
+{
+	if (pEntry->pBackend == NULL || pEntry->pBackend->search == NULL)
+		return NULL;
+	return pEntry->pBackend->search (myData.cSearchText, myData.iCurrentFilter, TRUE, iNbSubEntries);
+}
+
 
 void cd_do_show_current_sub_listing (void)
 {
 	g_print ("%s ()\n", __func__);
 	if (myData.pListing->pCurrentEntry == NULL)
 		return ;
-	if (myData.pListingHistory == NULL)  // on sauvegarde aussi le texte de la recherche principale.
+	if (myData.pListingHistory == NULL)  // on sauvegarde le texte de la recherche principale.
 	{
 		myData.cSearchText = g_strdup (myData.sCurrentText->str);
 	}

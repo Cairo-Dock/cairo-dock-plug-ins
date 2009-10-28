@@ -27,10 +27,11 @@
 #include "applet-notifications.h"
 #include "applet-session.h"
 #include "applet-listing.h"
+#include "applet-search.h"
 #include "applet-backend-web.h"
 
 // sub-listing
-static GList *_cd_do_list_web_sub_entries (CDEntry *pEntry, int *iNbEntries);
+
 // fill entry
 static gboolean _cd_do_fill_web_entry (CDEntry *pEntry);
 // actions
@@ -39,72 +40,6 @@ static void _cd_do_web_search (CDEntry *pEntry);
   //////////
  // INIT //
 //////////
-
-
-
-  /////////////////
- // SUB-LISTING //
-/////////////////
-
-static GList *_list_main_engines (int *iNbEntries)
-{
-	GList *pEntries = NULL;
-	CDEntry *pSubEntry;
-	
-	pSubEntry = g_new0 (CDEntry, 1);
-	pSubEntry->cPath = g_strdup ("http://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%s");
-	pSubEntry->cName = g_strdup (D_("Wikipedia"));
-	pSubEntry->cIconName = g_strdup ("wikipedia.png");
-	pSubEntry->fill = _cd_do_fill_web_entry;
-	pSubEntry->execute = _cd_do_web_search;
-	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	pSubEntry = g_new0 (CDEntry, 1);
-	pSubEntry->cPath = g_strdup ("http://search.yahoo.com/search?p=%s&ie=utf-8");
-	pSubEntry->cName = g_strdup (D_("Yahoo"));
-	pSubEntry->cIconName = g_strdup ("yahoo.png");
-	pSubEntry->fill = _cd_do_fill_web_entry;
-	pSubEntry->execute = _cd_do_web_search;
-	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	pSubEntry = g_new0 (CDEntry, 1);
-	pSubEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
-	pSubEntry->cName = g_strdup (D_("Google"));
-	pSubEntry->cIconName = g_strdup ("google.png");
-	pSubEntry->fill = _cd_do_fill_web_entry;
-	pSubEntry->execute = _cd_do_web_search;
-	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	*iNbEntries = 3;
-	return pEntries;
-}
-
-static GList *_cd_do_list_web_sub_entries (CDEntry *pEntry, int *iNbEntries)
-{
-	g_print ("%s ()\n", __func__);
-	int n=0;
-	GList *pEntries = _list_main_engines (&n);
-	CDEntry *pSubEntry;
-	
-	pSubEntry = g_new0 (CDEntry, 1);
-	pSubEntry->cPath = g_strdup ("http://www.mediadico.com/dictionnaire/definition/%s/1");
-	pSubEntry->cName = g_strdup (D_("Mediadico"));
-	pSubEntry->cIconName = g_strdup ("mediadico.png");
-	pSubEntry->fill = _cd_do_fill_web_entry;
-	pSubEntry->execute = _cd_do_web_search;
-	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	pSubEntry = g_new0 (CDEntry, 1);
-	pSubEntry->cPath = g_strdup ("http://www.amazon.com/s?ie=UTF8&index=blended&link_code=qs&field-keywords=%s");
-	pSubEntry->cName = g_strdup (D_("Amazon"));
-	pSubEntry->cIconName = g_strdup ("amazon.png");
-	pSubEntry->fill = _cd_do_fill_web_entry;
-	pSubEntry->execute = _cd_do_web_search;
-	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	*iNbEntries = n+2;
-	return pEntries;
-}
 
 
   ////////////////
@@ -146,29 +81,81 @@ static void _cd_do_web_search (CDEntry *pEntry)
 }
 
 
+  /////////////////
+ // SUB-LISTING //
+/////////////////
+
+
   ////////////
  // SEARCH //
 ////////////
 
-static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbEntries)
+static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
-	int n=0;
-	GList *pEntries = _list_main_engines (&n);
 	
+	GList *pEntries = NULL;
 	CDEntry *pEntry;
 	
 	pEntry = g_new0 (CDEntry, 1);
-	pEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
-	pEntry->cName = g_strdup (D_("Search on the web"));
-	pEntry->cIconName = g_strdup ("internet.png");
-	pEntry->bMainEntry = TRUE;
-	pEntry->execute = _cd_do_web_search;
+	pEntry->cPath = g_strdup ("http://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%s");
+	pEntry->cName = g_strdup (D_("Wikipedia"));
+	pEntry->cIconName = g_strdup ("wikipedia.png");
 	pEntry->fill = _cd_do_fill_web_entry;
-	pEntry->list = _cd_do_list_web_sub_entries;
+	pEntry->execute = _cd_do_web_search;
 	pEntries = g_list_prepend (pEntries, pEntry);
 	
-	*iNbEntries = n+1;
+	pEntry = g_new0 (CDEntry, 1);
+	pEntry->cPath = g_strdup ("http://search.yahoo.com/search?p=%s&ie=utf-8");
+	pEntry->cName = g_strdup (D_("Yahoo"));
+	pEntry->cIconName = g_strdup ("yahoo.png");
+	pEntry->fill = _cd_do_fill_web_entry;
+	pEntry->execute = _cd_do_web_search;
+	pEntries = g_list_prepend (pEntries, pEntry);
+	
+	pEntry = g_new0 (CDEntry, 1);
+	pEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
+	pEntry->cName = g_strdup (D_("Google"));
+	pEntry->cIconName = g_strdup ("google.png");
+	pEntry->fill = _cd_do_fill_web_entry;
+	pEntry->execute = _cd_do_web_search;
+	pEntries = g_list_prepend (pEntries, pEntry);
+	
+	if (! bSearchAll)  // on arrete la, et gogol se retrouve en 1er.
+	{
+		pEntry = g_new0 (CDEntry, 1);
+		pEntry->cPath = g_strdup ("http://www.google.fr/search?q=%s&ie=utf-8");
+		pEntry->cName = g_strdup (D_("Search on the web"));
+		pEntry->cIconName = g_strdup ("internet.png");
+		pEntry->bMainEntry = TRUE;
+		pEntry->execute = _cd_do_web_search;
+		pEntry->fill = _cd_do_fill_web_entry;
+		pEntry->list = cd_do_list_main_sub_entry;
+		pEntries = g_list_prepend (pEntries, pEntry);
+		
+		*iNbEntries = 4;
+	}
+	else  // on liste les autres, qui se retrouvent en 1er.
+	{
+		pEntry = g_new0 (CDEntry, 1);
+		pEntry->cPath = g_strdup ("http://www.mediadico.com/dictionnaire/definition/%s/1");
+		pEntry->cName = g_strdup (D_("Mediadico"));
+		pEntry->cIconName = g_strdup ("mediadico.png");
+		pEntry->fill = _cd_do_fill_web_entry;
+		pEntry->execute = _cd_do_web_search;
+		pEntries = g_list_prepend (pEntries, pEntry);
+		
+		pEntry = g_new0 (CDEntry, 1);
+		pEntry->cPath = g_strdup ("http://www.amazon.com/s?ie=UTF8&index=blended&link_code=qs&field-keywords=%s");
+		pEntry->cName = g_strdup (D_("Amazon"));
+		pEntry->cIconName = g_strdup ("amazon.png");
+		pEntry->fill = _cd_do_fill_web_entry;
+		pEntry->execute = _cd_do_web_search;
+		pEntries = g_list_prepend (pEntries, pEntry);
+		
+		*iNbEntries = 5;
+	}
+	
 	return pEntries;
 }
 

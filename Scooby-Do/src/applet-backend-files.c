@@ -129,7 +129,7 @@ static GList * _build_entries (gchar *cResult, int *iNbEntries)
  // INIT //
 //////////
 
-static gboolean init (gpointer *pData)
+static gboolean init (void)
 {
 	gchar *cResult = cairo_dock_launch_command_sync ("which locate");
 	
@@ -207,6 +207,9 @@ static gboolean init (gpointer *pData)
 	
 	return bAvailable;
 }
+
+
+
 
 
   /////////////////
@@ -357,21 +360,6 @@ static GList *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries)
 	}
 }
 
-static GList *_cd_do_search_all (CDEntry *pEntry, int *iNbEntries)
-{
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	gchar *cResult = _locate_files (myData.cSearchText, myData.iCurrentFilter, myConfig.iNbResultMax);
-	
-	if (cResult == NULL)
-	{
-		*iNbEntries = 0;
-		return NULL;
-	}
-	GList *pEntries = _build_entries (cResult, iNbEntries);
-	g_free (cResult);
-	return pEntries;
-}
-
 
 
   ////////////////
@@ -441,9 +429,17 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 static void _cd_do_open_terminal_here (CDEntry *pEntry)
 {
 	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	gchar *cCommand = g_strdup_printf ("$TERM -e \"cd '%s'\"", pEntry->cPath);
-	cairo_dock_launch_command (cCommand);
-	g_free (cCommand);
+	gchar *cCommand = NULL;
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+		cCommand = g_strdup_printf ("gnome-terminal --working-directory=\"%s\"", pEntry->cPath);
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+		cCommand = g_strdup_printf ("konsole --workdir \"%s\"", pEntry->cPath);
+	
+	if (cCommand != NULL)
+	{
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+	}
 }
 
 static void _cd_do_zip_folder (CDEntry *pEntry)
@@ -517,10 +513,10 @@ static void _cd_do_copy_url (CDEntry *pEntry)
  // SEARCH //
 ////////////
 
-static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbEntries)
+static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
-	gchar *cResult = _locate_files (cText, iFilter, 3);
+	gchar *cResult = _locate_files (cText, iFilter, (bSearchAll ? 50 : 3));
 	
 	if (cResult == NULL)
 	{
@@ -530,7 +526,7 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 	GList *pEntries = _build_entries (cResult, iNbEntries);
 	g_free (cResult);
 	
-	if (pEntries != NULL)
+	if (!bSearchAll && pEntries != NULL)
 	{
 		CDEntry *pEntry = g_new0 (CDEntry, 1);
 		pEntry->cPath = g_strdup ("Files");
@@ -538,8 +534,7 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 		pEntry->cIconName = g_strdup ("files.png");
 		pEntry->bMainEntry = TRUE;
 		pEntry->fill = _cd_do_fill_main_entry;
-		pEntry->execute = NULL;
-		pEntry->list = _cd_do_search_all;
+		pEntry->list = cd_do_list_main_sub_entry;
 		pEntries = g_list_prepend (pEntries, pEntry);
 		*iNbEntries = (*iNbEntries + 1);
 	}

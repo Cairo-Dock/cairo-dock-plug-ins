@@ -60,6 +60,11 @@ struct _AppletConfig {
 	};
 
 typedef struct _CDEntry CDEntry;
+typedef struct _CDBackend CDBackend;
+typedef struct _CDListing CDListing;
+typedef struct _CDListingBackup CDListingBackup;
+typedef struct _CDChar CDChar;
+
 typedef gboolean (*CDFillEntryFunc) (CDEntry *pEntry);
 typedef void (*CDExecuteEntryFunc) (CDEntry *pEntry);
 typedef GList* (*CDListSubEntryFunc) (CDEntry *pEntry, int *iNbSubEntries);
@@ -72,12 +77,13 @@ struct _CDEntry {
 	cairo_surface_t *pIconSurface;
 	gboolean bHidden;
 	gboolean bMainEntry;
+	CDBackend *pBackend;
 	CDFillEntryFunc fill;
 	CDExecuteEntryFunc execute;
 	CDListSubEntryFunc list;
 	} ;
 
-typedef struct _CDListing {
+struct _CDListing {
 	CairoContainer container;
 	GList *pEntries;
 	gint iNbEntries;
@@ -94,15 +100,15 @@ typedef struct _CDListing {
 	guint iSidFillEntries;
 	GList *pEntryToFill;
 	gint iNbVisibleEntries;
-	} CDListing;
+	} ;
 
-typedef struct _CDListingBackup {
+struct _CDListingBackup {
 	GList *pEntries;
 	gint iNbEntries;
 	GList *pCurrentEntry;
-	} CDListingBackup;
+	} ;
 
-typedef struct _CDChar {
+struct _CDChar {
 	gchar c;
 	cairo_surface_t *pSurface;
 	GLuint iTexture;
@@ -112,7 +118,7 @@ typedef struct _CDChar {
 	gint iFinalX, iFinalY;
 	gint iCurrentX, iCurrentY;
 	gdouble fRotationAngle;
-	} CDChar;
+	} ;
 
 typedef enum _CDFilter {
 	DO_FILTER_NONE	=0,
@@ -125,16 +131,18 @@ typedef enum _CDFilter {
 	DO_TYPE_SOURCE	=1<<6
 	} CDFilter;
 
-typedef gboolean (*CDBackendInitFunc) (gpointer *pData);
-typedef GList * (*CDBackendSearchFunc) (const gchar *cText, gint iFilter, gpointer pData, int *iNbEntries);
+typedef gboolean (*CDBackendInitFunc) (void);
+typedef GList * (*CDBackendSearchFunc) (const gchar *cText, gint iFilter, gboolean bSearchAll, int *iNbEntries);
+typedef void (*CDBackendStopFunc) (void);
 
-typedef struct _CDBackend {
+struct _CDBackend {
 	// interface
 	const gchar *cName;
 	gboolean bIsThreaded;
 	gboolean bStaticResults;
 	CDBackendInitFunc init;
 	CDBackendSearchFunc search;
+	CDBackendStopFunc stop;
 	// private data
 	gint iState;  // 0:uninitialized; 1:ok; -1:broken
 	CairoDockTask *pTask;
@@ -143,13 +151,12 @@ typedef struct _CDBackend {
 	GList *pLastShownResults;
 	gint iNbLastShownResults;
 	// shared memory
-	gpointer pData;  // lecture/ecriture.
 	gchar *cCurrentLocateText;  // lecture seule dans le thread
 	gint iLocateFilter;  // lecture seule dans le thread
 	GList *pSearchResults;  // ecriture seule dans le thread
 	gint iNbSearchResults;  // ecriture seule dans le thread
 	// end of shared memory
-	} CDBackend;
+	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculation, etc.
 struct _AppletData {

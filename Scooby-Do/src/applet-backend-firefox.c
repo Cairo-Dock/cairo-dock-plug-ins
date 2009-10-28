@@ -39,11 +39,14 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry);
 static void _cd_do_launch_url (CDEntry *pEntry);
 static void _cd_do_copy_url (CDEntry *pEntry);
 
+static gchar *s_cBookmarksFile = NULL;
+static gchar *s_cBookmarksContent = NULL;
+
   //////////
  // INIT //
 //////////
 
-static gboolean init (gpointer *pData)
+static gboolean init (void)
 {
 	gchar *cPath = g_strdup_printf ("%s/.mozilla/firefox", g_getenv ("HOME"));
 	GError *erreur = NULL;
@@ -79,11 +82,115 @@ static gboolean init (gpointer *pData)
 	if (cBookmarks != NULL)
 	{
 		g_print ("found bookmarks '%s'\n", cBookmarks);
-		*pData = cBookmarks;  // a voir si on garde le fichier en memoire avec un moniteur dessus ...
+		
+		gsize length = 0;
+		g_file_get_contents (cBookmarks,
+			&s_cBookmarksContent,
+			&length,
+			NULL);
+		if (s_cBookmarksContent == NULL)
+		{
+			g_free (cBookmarks);
+			return FALSE;
+		}
+		
+		s_cBookmarksFile = cBookmarks;
+		/// ajouter un moniteur sur le fichier...
+		
+		
 		return TRUE;
 	}
 	else
 		return FALSE;
+}
+
+static gboolean stop (void)
+{
+	/// enlever le moniteur ...
+	if (s_cBookmarksFile != NULL)
+	{
+		
+	}
+	
+	g_free (s_cBookmarksFile);
+	s_cBookmarksFile = NULL;
+	g_free (s_cBookmarksContent);
+	s_cBookmarksContent = NULL;
+}
+
+
+  ////////////////
+ // FILL ENTRY //
+////////////////
+
+static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
+{
+	if (pEntry->cIconName != NULL && pEntry->pIconSurface == NULL)
+	{
+		gsize out_len = 0;
+		//g_print ("icon : %s\n", pEntry->cIconName);
+		guchar *icon = g_base64_decode (pEntry->cIconName, &out_len);
+		//g_print ("-> out_len : %d\n", out_len);
+		g_return_val_if_fail (icon != NULL, FALSE);
+		//g_print ("-> data : %d\n", icon);
+		
+		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+		GdkPixbuf *pixbuf = NULL;
+		/*pixbuf = gdk_pixbuf_new_from_data (icon,
+			GDK_COLORSPACE_RGB,
+			FALSE,  // has_alpha
+			8,  // bits_per_sample
+			16, 16,  // width, height
+			16*3,  // rowstride
+			NULL,
+			NULL);*/
+		GInputStream * is = g_memory_input_stream_new_from_data (icon,
+                                                         out_len,
+                                                         NULL);
+		pixbuf = gdk_pixbuf_new_from_stream (is,
+			NULL,
+			NULL);
+		g_object_unref (is);
+		double fImageWidth=0, fImageHeight=0;
+		double fZoomX=0, fZoomY=0;
+		pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
+			pSourceContext,
+			1.,
+			myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
+			0,
+			&fImageWidth, &fImageHeight,
+			&fZoomX, &fZoomY);
+		g_object_unref (pixbuf);
+		cairo_destroy (pSourceContext);
+		g_free (icon);
+		return TRUE;
+	}
+	return FALSE;
+}
+
+
+  /////////////
+ // ACTIONS //
+/////////////
+
+static void _cd_do_launch_url (CDEntry *pEntry)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	//cairo_dock_fm_launch_uri (pEntry->cPath);
+	cairo_dock_launch_command_printf ("firefox \"%s\"", NULL, pEntry->cPath);
+}
+
+static void _cd_do_launch_in_new_window (CDEntry *pEntry)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cairo_dock_launch_command_printf ("firefox -no-remote \"%s\"", NULL, pEntry->cPath);
+}
+
+static void _cd_do_copy_url (CDEntry *pEntry)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+	gtk_clipboard_set_text (pClipBoard, pEntry->cPath, -1);
 }
 
 
@@ -91,7 +198,7 @@ static gboolean init (gpointer *pData)
  // SUB-LISTING //
 /////////////////
 
-#define NB_ACTIONS_ON_BOOKMARKS 2
+#define NB_ACTIONS_ON_BOOKMARKS 3
 
 static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 {
@@ -104,6 +211,14 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry->cIconName = g_strdup (GTK_STOCK_JUMP_TO);
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pSubEntry->execute = _cd_do_launch_url;
+	pEntries = g_list_prepend (pEntries, pSubEntry);
+	
+	pSubEntry = g_new0 (CDEntry, 1);
+	pSubEntry->cPath = g_strdup (pEntry->cPath);
+	pSubEntry->cName = g_strdup (D_("Open in new window"));
+	pSubEntry->cIconName = g_strdup (GTK_STOCK_ADD);
+	pSubEntry->fill = cd_do_fill_default_entry;
+	pSubEntry->execute = _cd_do_launch_in_new_window;
 	pEntries = g_list_prepend (pEntries, pSubEntry);
 	
 	pSubEntry = g_new0 (CDEntry, 1);
@@ -132,89 +247,18 @@ static GList *_cd_do_list_all_bookmarks (CDEntry *pEntry, int *iNbEntries)
 }
 
 
-  ////////////////
- // FILL ENTRY //
-////////////////
-
-static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
-{
-	if (pEntry->cIconName != NULL && pEntry->pIconSurface == NULL)
-	{
-		gsize out_len = 0;
-		gchar *icon = g_base64_decode (pEntry->cIconName, &out_len);
-		g_return_val_if_fail (icon != NULL, FALSE);
-		
-		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
-		GdkPixbuf *pixbuf = NULL;
-		gdk_pixbuf_new_from_data (icon,
-			GDK_COLORSPACE_RGB,
-			FALSE,  // has_alpha
-			8,  // bits_per_sample
-			16, 16,  // width, height
-			16*3,  // rowstride
-			NULL,
-			NULL);
-		double fImageWidth=0, fImageHeight=0;
-		double fZoomX=0, fZoomY=0;
-		pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
-			pSourceContext,
-			1.,
-			myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
-			0,
-			&fImageWidth, &fImageHeight,
-			&fZoomX, &fZoomY);
-		g_object_unref (pixbuf);
-		cairo_destroy (pSourceContext);
-		g_free (icon);
-		return TRUE;
-	}
-	return FALSE;
-}
-
-
-  /////////////
- // ACTIONS //
-/////////////
-
-static void _cd_do_launch_url (CDEntry *pEntry)
-{
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	cairo_dock_fm_launch_uri (pEntry->cPath);
-}
-
-static void _cd_do_copy_url (CDEntry *pEntry)
-{
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
-	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-	gtk_clipboard_set_text (pClipBoard, pEntry->cPath, -1);
-}
-
-
   ////////////
  // SEARCH //
 ////////////
 
-static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbEntries)
+static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
-	g_return_val_if_fail (pData != NULL, NULL);
-	gchar *cBookmarks = pData;
-	
-	gsize length = 0;
-	gchar *cContent = NULL;
-	g_file_get_contents (cBookmarks,
-		&cContent,
-		&length,
-		NULL);
-	if (cContent == NULL)
-	{
-		*iNbEntries = 0;
-		return NULL;
-	}
 	
 	GList *pEntries = NULL;
 	CDEntry *pEntry;
-	int i = 0;
+	int i = 0, iNbMax = (bSearchAll ? 50:3);
+	gchar *cContent = g_strdup (s_cBookmarksContent);
 	gchar *str = cContent, *str2;
 	gchar *url, *icon, *name, *end_url;
 	
@@ -300,9 +344,9 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 			pEntry->cIconName = g_strdup (icon);
 		}
 		str = str2 + 1;
-	} while (str2 && i < 3);
+	} while (str2 && i < iNbMax);
 	
-	if (i != 0)
+	if (i != 0 && ! bSearchAll)
 	{
 		pEntry = g_new0 (CDEntry, 1);
 		pEntry->cPath = NULL;
@@ -310,8 +354,7 @@ static GList* search (const gchar *cText, int iFilter, gpointer pData, int *iNbE
 		pEntry->cIconName = g_strdup ("firefox");
 		pEntry->bMainEntry = TRUE;
 		pEntry->fill = cd_do_fill_default_entry;
-		pEntry->execute = NULL;
-		pEntry->list = _cd_do_list_all_bookmarks;
+		pEntry->list = cd_do_list_main_sub_entry;
 		pEntries = g_list_prepend (pEntries, pEntry);
 		i ++;
 	}
@@ -332,6 +375,7 @@ void cd_do_register_firefox_backend (void)
 	pBackend->cName = "Files";
 	pBackend->bIsThreaded = TRUE;
 	pBackend->init =(CDBackendInitFunc) init;
+	pBackend->stop = (CDBackendStopFunc) stop;
 	pBackend->search = (CDBackendSearchFunc) search;
 	myData.pBackends = g_list_prepend (myData.pBackends, pBackend);
 }

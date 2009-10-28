@@ -35,6 +35,9 @@ void cd_do_launch_all_backends (void);
 void cd_do_stop_backend (CDBackend *pBackend);
 void cd_do_stop_all_backends (void);
 
+void cd_do_free_backend (CDBackend *pBackend);
+void cd_do_free_all_backends (void);
+
 
 void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries);
 
@@ -46,6 +49,8 @@ int cd_do_filter_entries (GList *pEntries, gint iNbEntries);
 
 void cd_do_activate_filter_option (int iNumOption);
 
+
+GList* cd_do_list_main_sub_entry (CDEntry *pEntry, int *iNbSubEntries);
 
 void cd_do_show_current_sub_listing (void);
 

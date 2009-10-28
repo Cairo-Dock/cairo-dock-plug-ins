@@ -138,7 +138,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	cd_do_close_session ();
 	cd_do_exit_session ();
 	
-	cd_do_stop_all_backends ();
+	cd_do_free_all_backends ();
 	
 	cd_do_reset_applications_list ();
 	
