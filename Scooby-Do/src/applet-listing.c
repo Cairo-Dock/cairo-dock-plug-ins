@@ -767,7 +767,11 @@ void cd_do_select_prev_next_entry_in_listing (gboolean bNext)
 void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 {
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
-	GList *e = myData.pListing->pCurrentEntry, *f = e;
+	GList *e, *f;
+	e = myData.pListing->pCurrentEntry;
+	if (! e)
+		e = myData.pListing->pEntries;
+	f = e;
 	CDEntry *pEntry;
 	int k = 0;
 	if (bNext)
@@ -814,7 +818,7 @@ void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 void cd_do_select_last_first_entry_in_listing (gboolean bLast)
 {
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
-	GList *e = myData.pListing->pCurrentEntry;
+	GList *e;
 	int i;
 	if (bLast)
 	{
@@ -867,7 +871,10 @@ void cd_do_select_nth_entry_in_listing (int iNumEntry)
 void cd_do_rewind_current_entry (void)
 {
 	if (myData.pListing == NULL)
+	{
+		myData.pListing->pCurrentEntry = NULL;
 		return ;
+	}
 	int i = 0;
 	GList *e;
 	CDEntry *pEntry;

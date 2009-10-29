@@ -16,7 +16,9 @@ module_DATA = \
 	yahoo.png\
 	amazon.png\
 	mediadico.png\
-	files.png
+	files.png\
+	firefox.png\
+	recent.png
 	
 	
 dist_scooby_dodata_SCRIPTS = \

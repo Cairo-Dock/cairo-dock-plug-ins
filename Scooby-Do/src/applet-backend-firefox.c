@@ -261,7 +261,7 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 	gchar *cContent = g_strdup (s_cBookmarksContent);
 	gchar *str = cContent, *str2;
 	gchar *url, *icon, *name, *end_url;
-	
+	gchar *cLowerCaseName;
 	do
 	{
 		str2 = strchr (str, '\n');
@@ -300,11 +300,13 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 		//g_print ("name : '%s'\n", name);
 		/// gerer le filtre "match case"...
 		
-		if (g_strstr_len (name, -1, cText))  // trouve.
+		cLowerCaseName = g_ascii_strdown (name, -1);
+		if (g_strstr_len (cLowerCaseName, -1, cText))  // trouve.
 		{
 			pEntry = g_new0 (CDEntry, 1);
 			pEntry->cPath = g_strdup (url);
 			pEntry->cName = g_strdup (name);
+			pEntry->cLowerCaseName = cLowerCaseName;
 			pEntry->fill = _cd_do_fill_bookmark_entry;
 			pEntry->execute = _cd_do_launch_url;
 			pEntry->list = _cd_do_list_bookmarks_actions;
@@ -343,6 +345,8 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 			
 			pEntry->cIconName = g_strdup (icon);
 		}
+		else
+			g_free (cLowerCaseName);
 		str = str2 + 1;
 	} while (str2 && i < iNbMax);
 	
@@ -351,7 +355,7 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 		pEntry = g_new0 (CDEntry, 1);
 		pEntry->cPath = NULL;
 		pEntry->cName = g_strdup (D_("Firefox bookmarks"));
-		pEntry->cIconName = g_strdup ("firefox");
+		pEntry->cIconName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/firefox.png");
 		pEntry->bMainEntry = TRUE;
 		pEntry->fill = cd_do_fill_default_entry;
 		pEntry->list = cd_do_list_main_sub_entry;

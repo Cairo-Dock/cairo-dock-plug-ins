@@ -58,6 +58,7 @@ static void _launch_async_search (CDBackend *pBackend)
 		pBackend->iLocateFilter,
 		FALSE,
 		&pBackend->iNbSearchResults);
+	g_print (" -> %d resultats asynchrones en plus\n", pBackend->iNbSearchResults);
 	if (pBackend->pSearchResults != NULL)
 	{
 		CDEntry *pMainEntry = pBackend->pSearchResults->data;
@@ -136,7 +137,8 @@ static gboolean _update_entries (CDBackend *pBackend)
 	{
 		cd_do_remove_entries_from_listing (pBackend);
 		cd_do_append_entries_to_listing (pBackend->pSearchResults, pBackend->iNbSearchResults);
-		pBackend->bTooManyResults = (pBackend->iNbSearchResults >= myConfig.iNbResultMax);
+		///pBackend->bTooManyResults = (pBackend->iNbSearchResults >= myConfig.iNbResultMax);
+		pBackend->bTooManyResults = TRUE;
 		pBackend->pLastShownResults = pBackend->pSearchResults;
 		pBackend->iNbLastShownResults = pBackend->iNbSearchResults;
 		pBackend->pSearchResults = NULL;
@@ -181,10 +183,8 @@ void cd_do_launch_backend (CDBackend *pBackend)
 					strlen (pBackend->cCurrentLocateText)) == 0
 			&& ! pBackend->bTooManyResults))  // c'est une sous-recherche de la precedente qui etait fructueuse, ou un filtre sur un sous-listing.
 		{
-			g_print ("filtrage de la recherche\n");
+			g_print (" filtrage de la recherche\n");
 			cd_do_filter_entries (pBackend->pLastShownResults, pBackend->iNbLastShownResults);
-			
-			
 			
 			
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
@@ -207,6 +207,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 			myData.iCurrentFilter,
 			FALSE,
 			&iNbEntries);
+		g_print (" -> %d resultats en plus\n", iNbEntries);
 		if (pEntries != NULL)
 		{
 			CDEntry *pMainEntry = pEntries->data;
@@ -218,7 +219,8 @@ void cd_do_launch_backend (CDBackend *pBackend)
 		cd_do_append_entries_to_listing (pEntries, iNbEntries);
 		pBackend->pLastShownResults = pEntries;
 		pBackend->iNbLastShownResults = iNbEntries;
-		pBackend->bTooManyResults = (iNbEntries >= myConfig.iNbResultMax);
+		///pBackend->bTooManyResults = (iNbEntries >= myConfig.iNbResultMax);
+		pBackend->bTooManyResults = TRUE;
 	}
 }
 

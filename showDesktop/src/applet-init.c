@@ -52,7 +52,8 @@ CD_APPLET_INIT_BEGIN
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
 	if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
-	
+	else
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
 
@@ -78,6 +79,8 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
+		else
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
 		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
 	}

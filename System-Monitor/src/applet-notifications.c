@@ -37,7 +37,11 @@ CD_APPLET_ON_CLICK_BEGIN
 			cd_sysmonitor_start_top_dialog (myApplet);
 	}
 	else
-		cairo_dock_show_temporary_dialog_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	{
+		if (myData.pTopDialog == NULL)
+			cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 6e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	}
 CD_APPLET_ON_CLICK_END
 
 

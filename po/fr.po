@@ -1474,7 +1474,7 @@ msgstr "Trouver le lecteur ouvert"
 
 #: ../musicPlayer/src/applet-notifications.c:164
 msgid "Previous"
-msgstr "Précédant"
+msgstr "Précédent"
 
 #: ../musicPlayer/src/applet-notifications.c:166
 msgid "Play/Pause (left-click)"
