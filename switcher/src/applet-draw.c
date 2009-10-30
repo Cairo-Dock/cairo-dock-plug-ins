@@ -165,9 +165,9 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	double fZoomX, fZoomY;
 	if (myConfig.bMapWallpaper)
 	{
-		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = (double) myData.switcher.fOneViewportWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= (double) myData.switcher.fOneViewportHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		pSurface = myData.pDesktopBgMapSurface;
+		fZoomX = (double) myData.switcher.fOneViewportWidth / iWidth;
+		fZoomY= (double) myData.switcher.fOneViewportHeight / iHeight;
 	}
 	if (pSurface == NULL)
 	{
@@ -343,9 +343,9 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	{
 		cairo_dock_erase_cairo_context (myDrawContext);
 		
-		pSurface = cairo_dock_get_desktop_bg_surface ();
-		fZoomX = 1. * iWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY= 1. * iHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		pSurface = myData.pDesktopBgMapSurface;
+		fZoomX = 1. * iWidth / iWidth;
+		fZoomY= 1. * iHeight / iHeight;
 		cairo_translate (myDrawContext,
 			0.,
 			0.);

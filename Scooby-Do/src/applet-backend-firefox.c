@@ -46,7 +46,9 @@ static gchar *s_cBookmarksContent = NULL;
  // INIT //
 //////////
 
-static gboolean init (void)
+static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data);
+
+static gchar *_get_bookmarks_path (void)
 {
 	gchar *cPath = g_strdup_printf ("%s/.mozilla/firefox", g_getenv ("HOME"));
 	GError *erreur = NULL;
@@ -56,7 +58,7 @@ static gboolean init (void)
 		cd_warning (erreur->message);
 		g_error_free (erreur);
 		g_free (cPath);
-		return FALSE;
+		return NULL;
 	}
 	
 	gchar *cBookmarks = NULL;
@@ -79,29 +81,34 @@ static gboolean init (void)
 	g_dir_close (dir);
 	
 	g_free (cPath);
-	if (cBookmarks != NULL)
-	{
-		g_print ("found bookmarks '%s'\n", cBookmarks);
-		
-		gsize length = 0;
-		g_file_get_contents (cBookmarks,
-			&s_cBookmarksContent,
-			&length,
-			NULL);
-		if (s_cBookmarksContent == NULL)
-		{
-			g_free (cBookmarks);
-			return FALSE;
-		}
-		
-		s_cBookmarksFile = cBookmarks;
-		/// ajouter un moniteur sur le fichier...
-		
-		
-		return TRUE;
-	}
-	else
+	return cBookmarks;
+}
+
+static gboolean init (void)
+{
+	s_cBookmarksFile = _get_bookmarks_path ();
+	if (s_cBookmarksFile == NULL)
 		return FALSE;
+	
+	g_print ("found bookmarks '%s'\n", cBookmarks);
+	
+	gsize length = 0;
+	g_file_get_contents (cBookmarks,
+		&s_cBookmarksContent,
+		&length,
+		NULL);
+	if (s_cBookmarksContent == NULL)
+	{
+		g_free (cBookmarks);
+		return FALSE;
+	}
+	
+	s_cBookmarksFile = cBookmarks;
+	
+	// o nsurveille le fichier.
+	cairo_dock_fm_add_monitor_full (cBookmarks, FALSE, NULL, (CairoDockFMMonitorCallback) _on_file_event, NULL);
+	
+	return TRUE;
 }
 
 static gboolean stop (void)
@@ -109,7 +116,7 @@ static gboolean stop (void)
 	/// enlever le moniteur ...
 	if (s_cBookmarksFile != NULL)
 	{
-		
+		cairo_dock_fm_remove_monitor_full (s_cBookmarksFile, FALSE, NULL);
 	}
 	
 	g_free (s_cBookmarksFile);
@@ -118,6 +125,21 @@ static gboolean stop (void)
 	s_cBookmarksContent = NULL;
 }
 
+static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
+{
+	switch (iEventType)
+	{
+		case CAIRO_DOCK_FILE_DELETED :
+		case CAIRO_DOCK_FILE_CREATED :
+		case CAIRO_DOCK_FILE_MODIFIED :
+			stop ();
+			init ();
+		break;
+		
+		default :
+		break;
+	}
+}
 
   ////////////////
  // FILL ENTRY //
@@ -135,19 +157,10 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 		//g_print ("-> data : %d\n", icon);
 		
 		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
-		GdkPixbuf *pixbuf = NULL;
-		/*pixbuf = gdk_pixbuf_new_from_data (icon,
-			GDK_COLORSPACE_RGB,
-			FALSE,  // has_alpha
-			8,  // bits_per_sample
-			16, 16,  // width, height
-			16*3,  // rowstride
-			NULL,
-			NULL);*/
 		GInputStream * is = g_memory_input_stream_new_from_data (icon,
-                                                         out_len,
-                                                         NULL);
-		pixbuf = gdk_pixbuf_new_from_stream (is,
+			out_len,
+			NULL);
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_stream (is,
 			NULL,
 			NULL);
 		g_object_unref (is);

@@ -236,8 +236,8 @@ void cd_do_register_recent_backend (void)
 	CDBackend *pBackend = g_new0 (CDBackend, 1);
 	pBackend->cName = "Recent";
 	pBackend->bIsThreaded = FALSE;
-	pBackend->init =(CDBackendInitFunc) init;
-	pBackend->stop =(CDBackendStopFunc) stop;
+	pBackend->init = (CDBackendInitFunc) init;
+	pBackend->stop = (CDBackendStopFunc) stop;
 	pBackend->search = (CDBackendSearchFunc) search;
 	myData.pBackends = g_list_prepend (myData.pBackends, pBackend);
 }

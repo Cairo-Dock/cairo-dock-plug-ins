@@ -40,7 +40,7 @@ msgstr "Rotation"
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:181
 msgid "Blink"
-msgstr "Clignottement"
+msgstr "Clignotement"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
@@ -185,7 +185,7 @@ msgstr ""
 "les objets persistants sont gérés.\n"
 "Clic gauche pour ouvrir l'historique du presse-papier et des sélections par "
 "la souris.\n"
-"Déposer du texte sur l'icône pour créer des objets persistants, clique du "
+"Déposer du texte sur l'icône pour créer des objets persistants, clic du "
 "milieu pour rappeler ceux-ci."
 
 #: ../Clipper/src/applet-notifications.c:93
@@ -450,7 +450,7 @@ msgstr ""
 "  ou entre le nom d'un lanceur et appuyez sur Tab pour automatiquement "
 "passer au lanceur suivant et approprié\n"
 "  appuyez sur Enter pour cliquer sur l'icône, Shift+Enter correspond à Shift"
-"+clique, Alt+Enter pour le clique du milieu et Ctrl+Enter pour le clique "
+"+clique, Alt+Enter pour le clic du milieu et Ctrl+Enter pour le clic "
 "gauche\n"
 "- le mode de recherche : écrivez du texte pour lancer une commande, un "
 "fichier ou des calculs.\n"
@@ -765,7 +765,7 @@ msgstr ""
 "fenêtres\n"
 "Le sous-dock vous donne accès au CCSM, Emerald et d'autres raccourcis pour "
 "Compiz.\n"
-"Vous pouvez lier une des actions au clique du milieu.\n"
+"Vous pouvez lier une des actions au clic du milieu.\n"
 "Le panneau de configuration vous donne certaines options pour lancer Compiz."
 
 #: ../compiz-icon/src/applet-load-icon.c:31
@@ -989,7 +989,7 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 "L'URL courante a été stockée dans la sélection souris.\n"
-"Utilisez le clique milieu pour la coller n'importe où."
+"Utilisez le clic du milieu pour la coller n'importe où."
 
 #: ../dnd2share/src/applet-notifications.c:298
 msgid "Text"
@@ -1277,7 +1277,7 @@ msgid ""
 msgstr ""
 "Une applet très simple qui ajoute une icône pour se déconnecter de votre "
 "session\n"
-"Clic gauche pour fermer la session, clique du milieu pour éteindre.\n"
+"Clic gauche pour fermer la session, clic du milieu pour éteindre.\n"
 "Vous pouvez intervertir ces raccourcis selon vos préférences."
 
 #: ../logout/src/applet-notifications.c:118
@@ -1448,7 +1448,7 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 msgstr ""
 "Cette applet permet le contrôle de plusieurs lecteurs de musiques.\n"
-"Un clique gauche pour Play/Pause, un clique du milieu pour passer à la "
+"Un clic gauche pour Play/Pause, un clic du milieu pour passer à la "
 "musique suivant.\n"
 "Un coup de roulette vers le haut/bas pour jouer la chanson précédente/"
 "suivante.\n"
@@ -1478,11 +1478,11 @@ msgstr "Précédent"
 
 #: ../musicPlayer/src/applet-notifications.c:166
 msgid "Play/Pause (left-click)"
-msgstr "Jouer/Pause (clique gauche)"
+msgstr "Jouer/Pause (clic gauche)"
 
 #: ../musicPlayer/src/applet-notifications.c:168
 msgid "Next (middle-click)"
-msgstr "Suivant (clique du milieu)"
+msgstr "Suivant (clic du milieu)"
 
 #: ../musicPlayer/src/applet-notifications.c:170
 msgid "Stop"
@@ -3600,7 +3600,7 @@ msgstr "Rejouer les actions ?"
 #: ../powermanager/data/messages:139 ../slider/data/messages:101
 #: ../wifi/data/messages:159
 msgid "in seconds."
-msgstr "en seconde."
+msgstr "en secondes."
 
 #: ../Clipper/data/messages:237
 msgid "Duration of the action menu :"
@@ -3690,7 +3690,7 @@ msgstr "Documents récents"
 
 #: ../GMenu/data/messages:101
 msgid "Show recent documents ?"
-msgstr "Montrer les Documents récents ?"
+msgstr "Montrer les documents récents ?"
 
 #: ../GMenu/data/messages:103
 msgid "Let blank to not use this filter."
@@ -4284,7 +4284,7 @@ msgstr "Conserver le ratio ?"
 
 #: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
-msgstr "Délais entre deux clignements"
+msgstr "Délai entre deux clignements"
 
 #: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
@@ -4322,7 +4322,7 @@ msgid ""
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
-"clique gauche. Une valeur négative est comptée à partir du coin bas/droit de "
+"clic gauche. Une valeur négative est comptée à partir du coin bas/droit de "
 "l'écran"
 
 #: ../alsaMixer/data/messages:85
@@ -5688,7 +5688,7 @@ msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
 #: ../musicPlayer/data/messages:115
 msgid "Actions on click and middle-click :"
-msgstr "Actions au clique et au clique du milieu :"
+msgstr "Actions au clic et au clic du milieu :"
 
 #: ../musicPlayer/data/messages:117
 msgid "Play/Pause on click, Next on middle-click"
@@ -6087,15 +6087,15 @@ msgstr "Inverser clic gauche et clic milieu ?"
 
 #: ../showDesktop2/data/messages:91
 msgid "Keep the desklets visible when showing the desktop ?"
-msgstr ""
+msgstr "Garder les desklets visibles quand on montre le bureau ?"
 
 #: ../showDesktop2/data/messages:93
 msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
-msgstr ""
+msgstr "Vous aurez besoin d'activer le plug-in Dbus de Compiz pour les 2 dernières actions."
 
 #: ../showDesktop2/data/messages:95
 msgid "Action on middle-click :"
-msgstr "Actions au clique du milieu :"
+msgstr "Actions au clic du milieu :"
 
 #: ../showDesktop2/data/messages:99
 msgid "Show the desklets"
@@ -6687,241 +6687,3 @@ msgstr "Nom de l'image 'Bon' :"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
 
-#~ msgid "New song"
-#~ msgstr "Nouvelle chanson"
-
-#~ msgid ""
-#~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
-#~ "You can drag and drop covers (jpg) on the icon to use them,\n"
-#~ " and songs to put them in the queue."
-#~ msgstr ""
-#~ "Contrôlez votre lecteur Rhythmbox directement depuis le dock !\n"
-#~ "Play/Pause avec le clique gauche, clique du milieu pour la chanson "
-#~ "suivante.\n"
-#~ "Vous pouvez déposer des pochettes sur l'icône pour les utiliser,\n"
-#~ "ou déposer des chansons pour les ajouter à la lecture."
-
-#~ msgid ""
-#~ "This applet allows you to switch between your virtual desktops.\n"
-#~ "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
-#~ "You can also quickly add/remove a desktop through the right-click menu.\n"
-#~ "Scroll up/down on the main icon to go to the left/right desktop, middle-"
-#~ "click to show the desktop"
-#~ msgstr ""
-#~ "Cette applet vous permet de basculer entre vos bureaux virtuels.\n"
-#~ "Il y a 2 modes : compact (sur une icône) et étendu (avec un sous-dock).\n"
-#~ "Vous pouvez aussi rapidement ajouter/enlever un bureau grâce au menu "
-#~ "(clic droit).\n"
-#~ " Roulette vers le haut/bas pour aller sur le bureau de gauche/droite, "
-#~ "clic-milieu pour montrer le bureau."
-
-#~ msgid "feeled"
-#~ msgstr "ressentie"
-
-#~ msgid ""
-#~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
-#~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-#~ "Launch/Play/Pause on left click, Next song on middle click.\n"
-#~ "You can drag and drop songs on the icon to put them in the queue.\n"
-#~ "Scroll up/down to play the previous/next song."
-#~ msgstr ""
-#~ "Un applet dédié au contrôle de XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious sont complétement supportés,\n"
-#~ "mais le contrôle de Banshee et Exaile est encore expérimental.\n"
-#~ "Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
-#~ "Play/Pause avec le clique gauche, Next avec le clique du milieu.\n"
-#~ "Vous pouvez déposer vos fichiers musicaux sur cette applet pour l'ajouter "
-#~ "à la playlist.\n"
-#~ "La roulette de la souris vers le haut/bas, pour passer à la chanson "
-#~ "précédente/suivante."
-
-#~ msgid ""
-#~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-#~ "number or so."
-#~ msgstr ""
-#~ "Par exemple Monospace, Purisa, ... Ecrivez simplement le nom de la police "
-#~ "sans chiffre, etc."
-
-#~ msgid "Weight of the text :"
-#~ msgstr "Taille du texte :"
-
-#~ msgid "Activate info-bubbles ?"
-#~ msgstr "Activer les info-bulles ?"
-
-#~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
-#~ msgstr ""
-#~ "Cela empêchera l'icône de Rhythmbox d'apparaître dans la barre des "
-#~ "tâaches. L'icône de l'applet se comportera alors comme un lanceur, une "
-#~ "appli et une applet."
-
-#~ msgid "Steal the rhythmbox's icon in taskbar ?"
-#~ msgstr "Voler l'icône de la barre des tâches ?"
-
-#~ msgid "time elapsed"
-#~ msgstr "temps écoulé"
-
-#~ msgid "time left"
-#~ msgstr "temps restant"
-
-#~ msgid "time in %"
-#~ msgstr "temps en %"
-
-#~ msgid "n° of track"
-#~ msgstr "n° de piste"
-
-#~ msgid "List of available themes for covers (requires OPENGL) :"
-#~ msgstr "Liste des thèmes disponibles (nécessite l'OpenGl) :"
-
-#~ msgid ""
-#~ "Override the theme preference to not display the OSD with OpenGL themes ?"
-#~ msgstr ""
-#~ "Passez outre les préférences du thème pour ne pas afficher l'OSD avec les "
-#~ "thèmes OpenGL ?"
-
-#~ msgid "Keep below other windows ?"
-#~ msgstr "Garder en-dessous des autres fenêtres ?"
-
-#~ msgid "Keep above other windows ?"
-#~ msgstr "Garder au-dessus des autres fenêtres ?"
-
-#~ msgid "Keep on widget layer ?"
-#~ msgstr "Garder sur la couche widgets ?"
-
-#~ msgid "Activate extended desklet mode ?"
-#~ msgstr "Activer le mode desklet étendu ?"
-
-#~ msgid "Extended display mode :"
-#~ msgstr "Mode d'affichage étendu :"
-
-#~ msgid "Info and Controler"
-#~ msgstr "Info et Controleur"
-
-#~ msgid "Controler"
-#~ msgstr "Controleur"
-
-#~ msgid "With an icon ?"
-#~ msgstr "Avec une icône ?"
-
-#~ msgid "Animate icon ?"
-#~ msgstr "Animer l'icône ?"
-
-#~ msgid ""
-#~ "This applet lets you control any music player.\n"
-#~ "Left click to Play/Pause, middle-click to play Next song.\n"
-#~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
-#~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-#~ "       For SongBird, you have to install its dbus add-on.\n"
-#~ msgstr ""
-#~ "Cette applet permet le contrôle de plusieurs lecteurs de musique.\n"
-#~ "Clic gauche pour Play/Pause, clig du milieu pour la chanson suivante.\n"
-#~ "Molette vers le haut/bas pour passer à la chanson précédente/suivante.\n"
-#~ "Vous pouvez déposer vos chansons sur l'applet pour les ajouter à la "
-#~ "playlist (dépend des lecteurs).\n"
-#~ "Note : Pour XMMS, vous devez installer le plug-in 'xmms-infopipe'.\n"
-#~ "       Pour SongBird, vous devez installer le greffon DBus.\n"
-
-#~ msgid "Disconnected"
-#~ msgstr "Déconnecté"
-
-#~ msgid ""
-#~ "You can put the tag '__Player__' to display the name of the player you "
-#~ "control"
-#~ msgstr ""
-#~ "Vous pouvez mettre le tag '__Player__' pour afficher le nom du lecteur "
-#~ "que vous controler"
-
-#~ msgid "Size of the icon you wish this applet has (in pixels)"
-#~ msgstr "Taille désirée de l'icône dans le dock (en pixels)"
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
-#~ msgstr ""
-#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
-
-#~ msgid "Shortkey to toggle the systray"
-#~ msgstr "Raccourci clavier pour montrer le systray :"
-
-#~ msgid "Narrow your search"
-#~ msgstr "Affinez votre recherche"
-
-#~ msgid "They don't even need to be real trash directories."
-#~ msgstr ""
-#~ "Celà n'est pas nécessaire que ce soit de réels répertoires poubelle."
-
-#~ msgid ""
-#~ "Here you can specify a list of additionnal Trash directories to monitor :"
-#~ msgstr ""
-#~ "Vous pouvez spécifier ici une liste additionnelle de répertoire(s) "
-#~ "poubelle(s) à surveiller :"
-
-#~ msgid "Display the cover ?"
-#~ msgstr "Afficher la couverture ?"
-
-#~ msgid "Desklet display mode :"
-#~ msgstr "Mode d'affichage Desklet :"
-
-#~ msgid "With a icon ?"
-#~ msgstr "Avec une icône ?"
-
-#~ msgid "bounce"
-#~ msgstr "Rebond"
-
-#~ msgid "blink"
-#~ msgstr "Clignotement"
-
-#~ msgid "pulse"
-#~ msgstr "Pulsation"
-
-#~ msgid "upside-down"
-#~ msgstr "Sens dessus-dessous"
-
-#~ msgid "wobbly"
-#~ msgstr "Élastique"
-
-#~ msgid "False 3D Themes (OpenGL only)"
-#~ msgstr "Faux Themes 3D (nécessite l'OpenGL)"
-
-#~ msgid "List of available specific themes :/"
-#~ msgstr "Liste des thèmes spécifiques :/"
-
-#~ msgid "Downloads"
-#~ msgstr "Téléchargements"
-
-#~ msgid "Delay before checking for missing covers :"
-#~ msgstr "Délais avant de le contrôle des pochettes manquantes :"
-
-#~ msgid "The smaller image will be downloaded faster than a big one."
-#~ msgstr ""
-#~ "Une image plus petite sera téléchargée plus rapidement qu'une grande."
-
-#~ msgid "Size of the downloaded covers :"
-#~ msgstr "Taille des pochettes téléchargées :"
-
-#~ msgid ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)}"
-#~ msgstr ""
-#~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
-
-#~ msgid "Use Opengl themes (Fake 3D) ?"
-#~ msgstr "Utilisez les thèmes OpenGL (fausse 3D) ?"
-
-#~ msgid "red, blue, green, alpha"
-#~ msgstr "rougle, vert, bleu, alpha"
-
-#~ msgid "Use a wide shape ?"
-#~ msgstr "Utiliser une forme alongée ?"
-
-#~ msgid "Display speed values :"
-#~ msgstr "Afficher les valeurs de vitesse :"

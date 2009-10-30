@@ -73,6 +73,7 @@ typedef void (*CDSwitcherActionOnViewportFunc) (Icon *pIcon, int iNumDesktop, in
 struct _AppletData {
 	SwitcherApplet switcher;
 	cairo_surface_t *pDefaultMapSurface;
+	cairo_surface_t *pDesktopBgMapSurface;
 	gint iSidRedrawMainIconIdle;
 	gint iSidAutoRefresh;
 	gint iPrevIndexHovered;

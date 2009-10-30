@@ -533,7 +533,7 @@ void cd_dustbin_remove_all_dustbins (void)
 	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 	{
 		pDustbin = pElement->data;
-		cairo_dock_fm_remove_monitor_full (pDustbin->cPath, FALSE, NULL);
+		cairo_dock_fm_remove_monitor_full (pDustbin->cPath, TRUE, NULL);
 		cd_dustbin_free_dustbin (pDustbin);
 	}
 	g_list_free (myData.pDustbinsList);

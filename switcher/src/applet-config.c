@@ -72,4 +72,5 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	cairo_surface_destroy (myData.pDefaultMapSurface);
+	cairo_surface_destroy (myData.pDesktopBgMapSurface);
 CD_APPLET_RESET_DATA_END

@@ -109,20 +109,19 @@ void cd_switcher_paint_icons (void)
 	
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pFirstIcon, pContainer, &iWidth, &iHeight);
+	int _iWidth, _iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&_iWidth, &_iHeight);
 	
 	if (myConfig.bMapWallpaper)
 	{
 		cd_switcher_draw_main_icon();
-		pSurface = cairo_dock_get_desktop_bg_surface ();
-		double fMaxScale = cairo_dock_get_max_scale (pContainer);
-		fZoomX = 1. * iWidth / g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		fZoomY = 1. * iHeight / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
-
+		pSurface = myData.pDesktopBgMapSurface;
+		fZoomX = (double)iWidth / _iWidth;
+		fZoomY = (double)iHeight / _iHeight;
+	
 	}
 	if (pSurface == NULL)
 	{
-		int _iWidth, _iHeight;
-		CD_APPLET_GET_MY_ICON_EXTENT (&_iWidth, &_iHeight);
 		cd_switcher_load_default_map_surface ();
 		pSurface = myData.pDefaultMapSurface;
 		fZoomX = 1. * iWidth / _iWidth;
@@ -146,6 +145,25 @@ void cd_switcher_paint_icons (void)
 	}
 }
 
+
+void cd_switcher_load_desktop_bg_map_surface (void)
+{
+	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
+	
+	if (myData.pDesktopBgMapSurface != NULL)
+		cairo_surface_destroy (myData.pDesktopBgMapSurface);
+	
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	cairo_t *pCairoContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (db->pSurface,
+		pCairoContext,
+		g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
+		iWidth, iHeight);
+	
+	cairo_destroy (pCairoContext);
+	cairo_dock_destroy_desktop_background (db);
+}
 
 void cd_switcher_load_default_map_surface (void)
 {
