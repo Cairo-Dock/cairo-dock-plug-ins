@@ -86,6 +86,7 @@ static gchar *_get_bookmarks_path (void)
 
 static gboolean init (void)
 {
+	gchar *cBookmarks = NULL;
 	s_cBookmarksFile = _get_bookmarks_path ();
 	if (s_cBookmarksFile == NULL)
 		return FALSE;
