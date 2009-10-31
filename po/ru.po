@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-23 04:43+0000\n"
+"POT-Creation-Date: 2009-10-24 00:44+0000\n"
+"PO-Revision-Date: 2009-10-23 13:38+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-10-24 07:34+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -443,8 +444,8 @@ msgstr ""
 "панелей\n"
 "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
 "ближайший похожий\n"
-"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, Alt"
-"+Enter для среднего и Ctrl+Enter для левого\n"
+"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
+"Alt+Enter для среднего и Ctrl+Enter для левого\n"
 "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
 "или вычисление.\n"
 "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
@@ -887,7 +888,8 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1684,8 +1686,8 @@ msgstr "Показывать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
 "десклета."
@@ -1722,9 +1724,8 @@ msgstr ""
 "Средний, делает тоже самое, но не скрывает десклеты."
 
 #: ../showDesktop2/src/applet-init.c:28
-#, fuzzy
 msgid "showDesktop2"
-msgstr "Показать рабочий стол"
+msgstr ""
 
 #: ../showDesktop2/src/applet-init.c:31
 msgid ""
@@ -2887,7 +2888,8 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../stack/data/messages:23 ../systray/data/messages:13
 #: ../terminal/data/messages:21 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -3672,7 +3674,8 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:109
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr ""
+"Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:85
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:85
@@ -5160,7 +5163,8 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:129
 msgid "The lower, the more the curve will seem flat."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:131
 msgid "Curvature of the curve in percent :"
@@ -5263,7 +5267,8 @@ msgid "Desktop-less support"
 msgstr "Сквозная поддержка."
 
 #: ../dustbin/data/messages:117
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
 
 #: ../dustbin/data/messages:119
@@ -5514,8 +5519,8 @@ msgid ""
 "mail accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:117
 msgid "Check mail account on startup ?"
@@ -6010,7 +6015,8 @@ msgstr "В пикселях."
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
@@ -6041,32 +6047,29 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop2/data/messages:93
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop2/data/messages:95
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "Действие по среднему щелчку:"
+msgstr ""
 
 #: ../showDesktop2/data/messages:99
-#, fuzzy
 msgid "Show the desklets"
-msgstr "Показать рабочий стол"
+msgstr ""
 
 #: ../showDesktop2/data/messages:101
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "Показать рабочий стол"
+msgstr ""
 
 #: ../showDesktop2/data/messages:103
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop2/data/messages:105
-#, fuzzy
 msgid "Shortkey for the middle-click action :"
-msgstr "Выберите действие для среднего щелчка:"
+msgstr ""
 
 #: ../slider/data/messages:85
 msgid "Directory"
@@ -6252,11 +6255,11 @@ msgstr "Вручную"
 
 #: ../stack/data/messages:131
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Это выбор сделанный при помощи мыши, вместо обычно используемого ctrl+c/ctrl"
-"+v буфера обмена."
+"Это выбор сделанный при помощи мыши, вместо обычно используемого "
+"ctrl+c/ctrl+v буфера обмена."
 
 #: ../stack/data/messages:133
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6358,7 +6361,8 @@ msgstr "только другие"
 
 #: ../switcher/data/messages:139
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr ""
+"Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:145
 msgid "In expanded mode, render the desklet in 3D ?"
@@ -6648,8 +6652,7 @@ msgstr "Файл изображения для значка 'отличный':"
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Этот апплет позволяет переключаться между виртуальными рабочими столами.\n"
-#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-"
-#~ "панель).\n"
+#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-панель).\n"
 #~ "Вы можете быстро добавить/удалить рабочий стол через правый щелчок.\n"
 #~ "Прокручивание колесом мыши на основном значке будет переключать столы, "
 #~ "средний щелчок - показать рабочий стол"
@@ -6661,8 +6664,8 @@ msgstr "Файл изображения для значка 'отличный':"
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 #~ "number or so."
 #~ msgstr ""
-#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без "
-#~ "каких либо цифр и т.п."
+#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без каких "
+#~ "либо цифр и т.п."
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr "Все окна с текущего рабочего стола переместятся на этот"

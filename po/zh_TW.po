@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-23 02:25+0000\n"
+"POT-Creation-Date: 2009-10-24 00:44+0000\n"
+"PO-Revision-Date: 2009-10-30 17:04+0000\n"
 "Last-Translator: Rossi Liu <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-10-31 08:43+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -46,7 +47,7 @@ msgstr "閃爍(Blink)"
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:155
 msgid "Pulse"
-msgstr "Pulse"
+msgstr "脈衝光(Pulse)"
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
@@ -63,7 +64,7 @@ msgstr "波浪(Wave)"
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:93
 msgid "Spot"
-msgstr "點 (Spot)"
+msgstr "斑紋(Spot)"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -209,8 +210,7 @@ msgid ""
 msgstr ""
 "顯示常用應用程式選單與最近使用的文件檔案。\n"
 "這相容於任何XDG系列的選單(Gnome、XFCE、KDE ....)\n"
-"中鍵可以開啟交談式視窗來快速執行任何指令(你可以設定一個熱鍵給他，像是ALT + "
-"F2)\n"
+"中鍵可以開啟交談式視窗來快速執行任何指令(你可以設定一個熱鍵給他，像是ALT + F2)\n"
 "你也可以設定一個熱鍵來彈跳初選單(例如ALT + F1)"
 
 #: ../GMenu/src/applet-notifications.c:154
@@ -434,11 +434,10 @@ msgstr ""
 "有兩種模式，一個是用鍵盤熱鍵觸發：\n"
 "- 瀏覽模式：使用方向鍵來瀏覽進入Dock與子Dock，\n"
 "  或者輸入快速啟動的名稱或TAB按鍵來自動的跳到下一個快速啟動\n"
-"  在圖示上面按下Enter等同滑鼠的點擊，SHIFT + Enter等同SHIFT + 點擊，ALT + "
-"Enter 等同中鍵點擊，CTRL + Enter 等同左鍵點擊\n"
+"  在圖示上面按下Enter等同滑鼠的點擊，SHIFT + Enter等同SHIFT + 點擊，ALT + Enter 等同中鍵點擊，CTRL + "
+"Enter 等同左鍵點擊\n"
 "- 尋找模式：輸入一些文字來啟動任何一個指令、檔案或者是計算機。\n"
-"  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀看結"
-"果的顯現。\n"
+"  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀看結果的顯現。\n"
 "ESC按鍵為取消。"
 
 #: ../Scooby-Do/src/applet-listing.c:510
@@ -644,8 +643,7 @@ msgid ""
 msgstr ""
 "這個小程式可以讓您從Dock上面控制聲音的大小。\n"
 "在圖示上面捲動 上/下 來 增加/降低 聲音大小。\n"
-"在圖示上面點擊可以 顯示/隱藏 聲音控制台(您還可以設定一個鍵盤熱鍵來做相同的動"
-"作)。\n"
+"在圖示上面點擊可以 顯示/隱藏 聲音控制台(您還可以設定一個鍵盤熱鍵來做相同的動作)。\n"
 "您還可以在交談式視窗上面點擊來隱藏它。\n"
 "中鍵點擊可以使用或者是不使用靜音，雙擊圖示可以顯示出聲音頻道的混合器。\n"
 "這個小工具工作在Alsa的聲音驅動程式當中。"
@@ -836,7 +834,7 @@ msgstr "桌面小工具的渲染"
 
 #: ../desklet-rendering/src/rendering-init.c:36
 msgid "This module provides different views for your desklets."
-msgstr "這麼模組提供不同的風貌給您的桌面小工具。"
+msgstr "這麼模組提供不同的風貌給您的桌面小工具(Desklets)。"
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
@@ -867,7 +865,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "這個外掛提供一些的外框裝飾給交談式對話框。"
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "無法更新檔案，請檢查您的網際網路連線是否正常。"
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -895,10 +894,8 @@ msgstr ""
 "拖-放檔案在這個圖示上面，就能夠上傳檔案到可用的主機站台。\n"
 "他支援很多的站台，像是DropBox、Imageshack、pastebin等等。\n"
 "您可以上傳文字、圖片、影像與檔案。\n"
-"而上傳完畢的超連結網址會自動的儲存在您的剪貼簿裏面，只要按下CTRL + v 就可以貼"
-"出來。\n"
-"您可以在沒有任何帳戶的情況之下，將您的最後上傳檔案網址保存在剪貼簿的歷史紀錄"
-"當中。\n"
+"而上傳完畢的超連結網址會自動的儲存在您的剪貼簿裏面，只要按下CTRL + v 就可以貼出來。\n"
+"您可以在沒有任何帳戶的情況之下，將您的最後上傳檔案網址保存在剪貼簿的歷史紀錄當中。\n"
 "您還需要安裝 'curl' 與 'wget' 這兩個程式來上傳資料。"
 
 #: ../dnd2share/src/applet-notifications.c:32
@@ -1025,8 +1022,7 @@ msgid ""
 msgstr ""
 "這個模組增加不同的風貌到您的Dock上。\n"
 "Dock或者是子Dock可以用您選擇的新的風貌來展示。\n"
-"提供了Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, 與 Curve 風"
-"貌。"
+"提供了Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, 與 Curve 風貌。"
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
@@ -1159,19 +1155,19 @@ msgstr "這個外掛可以在您的圖示上面增加很多特殊的效果。"
 #: ../icon-effect/data/messages:21 ../icon-effect/data/messages:35
 #: ../icon-effect/data/messages:49 ../icon-effect/data/messages:63
 msgid "Fire"
-msgstr "像火"
+msgstr "火燄"
 
 #: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:37
 #: ../icon-effect/data/messages:51 ../icon-effect/data/messages:87
 msgid "Stars"
-msgstr "有星星"
+msgstr "星星"
 
 #: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:53 ../icon-effect/data/messages:123
 msgid "Rain"
-msgstr "有雨"
+msgstr "下雨"
 
 #: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:41
@@ -1183,7 +1179,7 @@ msgstr "下雪"
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:141
 msgid "Storm"
-msgstr "暴風雨"
+msgstr "旋風"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
@@ -1652,11 +1648,9 @@ msgstr "顯示滑鼠"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
-msgstr ""
-"這個外掛可以顯示出一些動畫，當你滑鼠指標進入Dock或者是桌面小工具(Desklet)的區"
-"域時，會在指標周圍顯現出來。"
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
+msgstr "這個外掛可以顯示出一些動畫，當你滑鼠指標進入Dock或者是桌面小工具(Desklet)的區域時，會在指標周圍顯現出來。"
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1689,9 +1683,8 @@ msgstr ""
 "中鍵點擊也是一樣的，但是並不會隱藏您的桌面小工具(Desklets)"
 
 #: ../showDesktop2/src/applet-init.c:28
-#, fuzzy
 msgid "showDesktop2"
-msgstr "顯示桌面"
+msgstr "顯示桌面2"
 
 #: ../showDesktop2/src/applet-init.c:31
 msgid ""
@@ -1701,6 +1694,10 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
+"這個小程式可以增加一個顯示桌面的圖示，\n"
+"並且可以：顯示桌面小工具(desklets)、桌面小工具層(Widget Layer)或者全部的桌面。\n"
+"左鍵點擊可以 顯示/隱藏 桌面，\n"
+"中鍵點擊可以 顯示/隱藏 任何一個桌面、桌面小工具、桌面小工具層，或者是全部的桌面。"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -1742,8 +1739,7 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "這個小程式可以讓您建立檔案的堆疊，就像是MacOS X上的堆疊(Stacks)小程式。\n"
-"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊小程式的圖示當中，這樣子就完成"
-"了。\n"
+"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊小程式的圖示當中，這樣子就完成了。\n"
 "您可以放入任何的檔案，或者是網路位置，甚至是文字的一部份。\n"
 "您可以快速的拷貝 路徑/網路位置/文字 到剪貼簿，或者打開它。"
 
@@ -1894,8 +1890,7 @@ msgstr ""
 "增加一個系統資訊(systray)到您的Dock上。\n"
 "左鍵點擊會以交談式視窗的方式顯示顯示系統資訊(您可以用快速鍵來做到這點)。\n"
 "中鍵點擊可以關閉這個交談視窗。\n"
-"但是最好的方式是將他與Dock分離，然後放置在桌面的任何地方，並且讓他顯示於其他"
-"視窗之上。"
+"但是最好的方式是將他與Dock分離，然後放置在桌面的任何地方，並且讓他顯示於其他視窗之上。"
 
 #: ../template/src/applet-init.c:30
 msgid "CD_APPLET_NAME"
@@ -1928,8 +1923,7 @@ msgstr ""
 "增加一個終端機到您的Dock上！\n"
 "左鍵/中鍵 點擊可以 顯示/隱藏 終端機(您可以設定鍵盤快速鍵來做這件事)。\n"
 "您可以 拖-放 文件或檔案，然後選擇一個動作。\n"
-"您可以開啟很多的分頁，更改它們的名稱，改變它們的色彩(在分頁上面點擊滑鼠右"
-"鍵)\n"
+"您可以開啟很多的分頁，更改它們的名稱，改變它們的色彩(在分頁上面點擊滑鼠右鍵)\n"
 "要開啟新分頁：按下CTRL + t 或者是雙擊最後一個分頁標籤\n"
 "要關閉分頁：按下CTRL + w 或者是中鍵點擊分頁標籤"
 
@@ -2076,8 +2070,7 @@ msgstr ""
 "這個小程式可以在您的Dock上面顯示天氣。\n"
 "資料來自 www.weather.com ，您可以在設置面板當中找到您目前所在的位置。\n"
 "它可以完整的分離變成桌面上漂亮3D小工具。\n"
-"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預"
-"報。\n"
+"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預報。\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Monday"
@@ -2301,7 +2294,7 @@ msgstr "用於小程式的效果："
 
 #: ../Animated-icons/data/messages:75
 msgid "Rotation"
-msgstr "旋轉"
+msgstr "自轉(Rotation)"
 
 #: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:95
 #: ../Animated-icons/data/messages:145 ../Animated-icons/data/messages:157
@@ -2457,47 +2450,47 @@ msgstr "摩擦係數："
 
 #: ../Animated-icons/data/messages:141
 msgid "Number of points on the grid in one direction :"
-msgstr ""
+msgstr "拉伸彈跳的方向數量："
 
 #: ../Animated-icons/data/messages:151
 msgid "Width of the wave :"
-msgstr ""
+msgstr "波狀的寬度："
 
 #: ../Animated-icons/data/messages:153
 msgid "Amplitude of the wave :"
-msgstr ""
+msgstr "波狀的振幅："
 
 #: ../Animated-icons/data/messages:159
 msgid "Duration of the pulse :"
-msgstr ""
+msgstr "脈衝光時間長度："
 
 #: ../Animated-icons/data/messages:163
 msgid "Zoom max of the pulse :"
-msgstr ""
+msgstr "最大的脈衝光大小："
 
 #: ../Animated-icons/data/messages:165
 msgid "Should the pulse follow the shape of the icon ?"
-msgstr ""
+msgstr "脈衝光要跟隨圖示的形狀嗎？"
 
 #: ../Animated-icons/data/messages:171
 msgid "Duration of the bounce :"
-msgstr ""
+msgstr "跳動的時間長度："
 
 #: ../Animated-icons/data/messages:175
 msgid "When bouncing, resize the icon of :"
-msgstr ""
+msgstr "當跳動的時候，修改圖示的大小為："
 
 #: ../Animated-icons/data/messages:177
 msgid "the smaller, the more it will flatten."
-msgstr ""
+msgstr "跳動前準備動作的大小，數字越小壓的越扁。"
 
 #: ../Animated-icons/data/messages:179
 msgid "How much the icon will flatten when hurting the ground :"
-msgstr ""
+msgstr "跳動前壓縮圖示到多小："
 
 #: ../Animated-icons/data/messages:185
 msgid "Duration of the blink :"
-msgstr ""
+msgstr "閃爍的時間長度："
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
 #: ../GMenu/data/messages:1 ../Network-Monitor/data/messages:1
@@ -2516,7 +2509,7 @@ msgstr ""
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
-msgstr ""
+msgstr "圖示"
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../GMenu/data/messages:3 ../Network-Monitor/data/messages:3
@@ -2535,15 +2528,15 @@ msgstr ""
 #: ../tomboy/data/messages:3 ../weblets/data/messages:3
 #: ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr ""
+msgstr "設定為 0 使用預設的大小。"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size when the penguin is not free :"
-msgstr ""
+msgstr "當企鵝不是自由奔跑的時候，圖示的大小："
 
 #: ../Cairo-Penguin/data/messages:7
 msgid "Name of the icon when the penguin is not free :"
-msgstr ""
+msgstr "當企鵝不是自由奔跑的時候，圖示的名稱："
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
 #: ../GMenu/data/messages:13 ../Network-Monitor/data/messages:9
@@ -2562,7 +2555,7 @@ msgstr ""
 #: ../tomboy/data/messages:9 ../weather/data/messages:11
 #: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
-msgstr ""
+msgstr "它屬於哪個Dock："
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:191
 #: ../Dbus/data/messages:1 ../GMenu/data/messages:87
@@ -2582,7 +2575,7 @@ msgstr ""
 #: ../weather/data/messages:85 ../weather/data/messages:87
 #: ../weblets/data/messages:87 ../wifi/data/messages:83
 msgid "Configuration"
-msgstr ""
+msgstr "設置"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:95
 #: ../System-Monitor/data/messages:93 ../Toons/data/messages:87
@@ -2590,136 +2583,136 @@ msgstr ""
 #: ../netspeed/data/messages:93 ../powermanager/data/messages:95
 #: ../weather/data/messages:115 ../wifi/data/messages:95
 msgid "Choose one of the available themes :"
-msgstr ""
+msgstr "選擇一個已經存在的主題："
 
 #: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
-msgstr ""
+msgstr "以秒計算"
 
 #: ../Cairo-Penguin/data/messages:17
 msgid "Delay between animation changes :"
-msgstr ""
+msgstr "動畫更換動作的間隔時間："
 
 #: ../Cairo-Penguin/data/messages:19
 msgid "Transparency of the penguin :"
-msgstr ""
+msgstr "企鵝的透明度："
 
 #: ../Cairo-Penguin/data/messages:21
 msgid "Let the penguin wander everywhere in the dock ?"
-msgstr ""
+msgstr "讓企鵝自由自在的在Dock上到處跑？"
 
 #: ../Cairo-Penguin/data/messages:23 ../dock-rendering/data/messages:53
 #: ../dock-rendering/data/messages:133
 msgid "in pixels."
-msgstr ""
+msgstr "以像素為單位。"
 
 #: ../Cairo-Penguin/data/messages:25
 msgid "Ground offset :"
-msgstr ""
+msgstr "地面的偏移量："
 
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:53
 msgid "Action_0"
-msgstr ""
+msgstr "動作_0"
 
 #: ../Clipper/data/messages:3 ../Clipper/data/messages:55
 msgid "Action_0/Command_0"
-msgstr ""
+msgstr "動作_0/指令_0"
 
 #: ../Clipper/data/messages:5 ../Clipper/data/messages:57
 msgid "Action_1"
-msgstr ""
+msgstr "動作_1"
 
 #: ../Clipper/data/messages:7 ../Clipper/data/messages:59
 msgid "Action_1/Command_0"
-msgstr ""
+msgstr "動作_1/指令_0"
 
 #: ../Clipper/data/messages:9 ../Clipper/data/messages:61
 msgid "Action_1/Command_1"
-msgstr ""
+msgstr "動作_1/指令_1"
 
 #: ../Clipper/data/messages:11 ../Clipper/data/messages:63
 msgid "Action_1/Command_2"
-msgstr ""
+msgstr "動作_1/指令_2"
 
 #: ../Clipper/data/messages:13 ../Clipper/data/messages:65
 msgid "Action_1/Command_3"
-msgstr ""
+msgstr "動作_1/指令_3"
 
 #: ../Clipper/data/messages:15 ../Clipper/data/messages:67
 msgid "Action_1/Command_4"
-msgstr ""
+msgstr "動作_1/指令_4"
 
 #: ../Clipper/data/messages:17 ../Clipper/data/messages:69
 msgid "Action_2"
-msgstr ""
+msgstr "動作_2"
 
 #: ../Clipper/data/messages:19 ../Clipper/data/messages:71
 msgid "Action_2/Command_0"
-msgstr ""
+msgstr "動作_2/指令_0"
 
 #: ../Clipper/data/messages:21 ../Clipper/data/messages:73
 msgid "Action_2/Command_1"
-msgstr ""
+msgstr "動作_2/指令_1"
 
 #: ../Clipper/data/messages:23 ../Clipper/data/messages:75
 msgid "Action_3"
-msgstr ""
+msgstr "動作_3"
 
 #: ../Clipper/data/messages:25 ../Clipper/data/messages:77
 msgid "Action_3/Command_0"
-msgstr ""
+msgstr "動作_3/指令_0"
 
 #: ../Clipper/data/messages:27 ../Clipper/data/messages:79
 msgid "Action_3/Command_1"
-msgstr ""
+msgstr "動作_3/指令_1"
 
 #: ../Clipper/data/messages:29 ../Clipper/data/messages:81
 msgid "Action_4"
-msgstr ""
+msgstr "動作_4"
 
 #: ../Clipper/data/messages:31 ../Clipper/data/messages:83
 msgid "Action_4/Command_0"
-msgstr ""
+msgstr "動作_4/指令_0"
 
 #: ../Clipper/data/messages:33 ../Clipper/data/messages:85
 msgid "Action_4/Command_1"
-msgstr ""
+msgstr "動作_4/指令_1"
 
 #: ../Clipper/data/messages:35 ../Clipper/data/messages:87
 msgid "Action_5"
-msgstr ""
+msgstr "動作_5"
 
 #: ../Clipper/data/messages:37 ../Clipper/data/messages:89
 msgid "Action_5/Command_0"
-msgstr ""
+msgstr "動作_5/指令_0"
 
 #: ../Clipper/data/messages:39 ../Clipper/data/messages:91
 msgid "Action_5/Command_1"
-msgstr ""
+msgstr "動作_5/指令_1"
 
 #: ../Clipper/data/messages:41 ../Clipper/data/messages:93
 msgid "Action_6"
-msgstr ""
+msgstr "動作_6"
 
 #: ../Clipper/data/messages:43 ../Clipper/data/messages:95
 msgid "Action_6/Command_0"
-msgstr ""
+msgstr "動作_6/指令_0"
 
 #: ../Clipper/data/messages:45 ../Clipper/data/messages:97
 msgid "Action_6/Command_1"
-msgstr ""
+msgstr "動作_6/指令_1"
 
 #: ../Clipper/data/messages:47 ../Clipper/data/messages:99
 msgid "Action_6/Command_2"
-msgstr ""
+msgstr "動作_6/指令_2"
 
 #: ../Clipper/data/messages:49 ../Clipper/data/messages:101
 msgid "Action_6/Command_3"
-msgstr ""
+msgstr "動作_6/指令_3"
 
 #: ../Clipper/data/messages:51 ../Clipper/data/messages:103
 msgid "Action_6/Command_4"
-msgstr ""
+msgstr "動作_6/指令_4"
 
 #: ../Clipper/data/messages:109 ../GMenu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../System-Monitor/data/messages:5
@@ -2738,7 +2731,7 @@ msgstr ""
 #: ../weather/data/messages:5 ../weblets/data/messages:5
 #: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
-msgstr ""
+msgstr "此小程式的圖示大小"
 
 #: ../Clipper/data/messages:111 ../GMenu/data/messages:7
 #: ../Network-Monitor/data/messages:7 ../System-Monitor/data/messages:7
@@ -2755,7 +2748,7 @@ msgstr ""
 #: ../weather/data/messages:9 ../weblets/data/messages:7
 #: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr ""
+msgstr "圖示的名稱，它將出現在Dock的標籤上："
 
 #: ../Clipper/data/messages:115 ../GMenu/data/messages:11
 #: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
@@ -2765,7 +2758,7 @@ msgstr ""
 #: ../switcher/data/messages:11 ../terminal/data/messages:11
 #: ../weblets/data/messages:11
 msgid "Image's filename :"
-msgstr ""
+msgstr "圖檔的名稱："
 
 #: ../Clipper/data/messages:119 ../GMenu/data/messages:15
 #: ../Network-Monitor/data/messages:11 ../System-Monitor/data/messages:11
@@ -2783,7 +2776,7 @@ msgstr ""
 #: ../tomboy/data/messages:29 ../weather/data/messages:13
 #: ../weblets/data/messages:15 ../wifi/data/messages:11
 msgid "Desklet"
-msgstr ""
+msgstr "桌面小工具"
 
 #: ../Clipper/data/messages:121 ../GMenu/data/messages:17
 #: ../Network-Monitor/data/messages:13 ../System-Monitor/data/messages:13
@@ -2803,7 +2796,7 @@ msgstr ""
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
+msgstr "以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 ALT + 左鍵點擊。"
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2821,7 +2814,7 @@ msgstr ""
 #: ../weather/data/messages:17 ../weblets/data/messages:19
 #: ../wifi/data/messages:15
 msgid "Desklet's dimension (width x height) :"
-msgstr ""
+msgstr "桌面小工具的尺寸(寬 x 高)："
 
 #: ../Clipper/data/messages:125 ../GMenu/data/messages:21
 #: ../Network-Monitor/data/messages:17 ../System-Monitor/data/messages:17
@@ -2835,8 +2828,9 @@ msgstr ""
 #: ../stack/data/messages:23 ../systray/data/messages:13
 #: ../terminal/data/messages:21 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
-msgstr ""
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
+msgstr "以您的視窗管理員設定為主，您也可以移動它，按下 ALT + 左鍵移動。"
 
 #: ../Clipper/data/messages:127 ../GMenu/data/messages:23
 #: ../Network-Monitor/data/messages:19 ../System-Monitor/data/messages:19
@@ -2854,7 +2848,7 @@ msgstr ""
 #: ../tomboy/data/messages:37 ../weather/data/messages:21
 #: ../weblets/data/messages:23 ../wifi/data/messages:19
 msgid "Desklet's position (x ; y) :"
-msgstr ""
+msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 
 #: ../Clipper/data/messages:129 ../GMenu/data/messages:25
 #: ../Network-Monitor/data/messages:21 ../System-Monitor/data/messages:21
@@ -2872,7 +2866,7 @@ msgstr ""
 #: ../tomboy/data/messages:39 ../weather/data/messages:23
 #: ../weblets/data/messages:25 ../wifi/data/messages:21
 msgid "Is detached from the dock ?"
-msgstr ""
+msgstr "從Dock上面分離嗎？"
 
 #: ../Clipper/data/messages:131 ../GMenu/data/messages:27
 #: ../Network-Monitor/data/messages:23 ../System-Monitor/data/messages:23
@@ -2893,6 +2887,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
+"要在 CompizFusion's 的 桌面小程式層(Widget Layer) 當中，行為(behaviour) 設置裏面設定 class=Cairo-"
+"dock & type=utility"
 
 #: ../Clipper/data/messages:133 ../GMenu/data/messages:29
 #: ../Network-Monitor/data/messages:25 ../System-Monitor/data/messages:25
@@ -2910,7 +2906,7 @@ msgstr ""
 #: ../tomboy/data/messages:43 ../weather/data/messages:27
 #: ../weblets/data/messages:29 ../wifi/data/messages:25
 msgid "Accessibility :"
-msgstr ""
+msgstr "可看到的方式："
 
 #: ../Clipper/data/messages:137 ../GMenu/data/messages:33
 #: ../Network-Monitor/data/messages:29 ../System-Monitor/data/messages:29
@@ -2928,7 +2924,7 @@ msgstr ""
 #: ../tomboy/data/messages:47 ../weather/data/messages:31
 #: ../weblets/data/messages:33 ../wifi/data/messages:29
 msgid "Keep above"
-msgstr ""
+msgstr "保持在上"
 
 #: ../Clipper/data/messages:139 ../GMenu/data/messages:35
 #: ../Network-Monitor/data/messages:31 ../System-Monitor/data/messages:31
@@ -2946,7 +2942,7 @@ msgstr ""
 #: ../tomboy/data/messages:49 ../weather/data/messages:33
 #: ../weblets/data/messages:35 ../wifi/data/messages:31
 msgid "Keep below"
-msgstr ""
+msgstr "保持在下"
 
 #: ../Clipper/data/messages:141 ../GMenu/data/messages:37
 #: ../Network-Monitor/data/messages:33 ../System-Monitor/data/messages:33
@@ -2964,7 +2960,7 @@ msgstr ""
 #: ../tomboy/data/messages:51 ../weather/data/messages:35
 #: ../weblets/data/messages:37 ../wifi/data/messages:33
 msgid "On Widget Layer"
-msgstr ""
+msgstr "在桌面小程式層(Widget Layer)"
 
 #: ../Clipper/data/messages:143 ../GMenu/data/messages:39
 #: ../Network-Monitor/data/messages:35 ../System-Monitor/data/messages:35
@@ -2982,7 +2978,7 @@ msgstr ""
 #: ../tomboy/data/messages:53 ../weather/data/messages:37
 #: ../weblets/data/messages:39 ../wifi/data/messages:35
 msgid "Reserve space"
-msgstr ""
+msgstr "保留空間"
 
 #: ../Clipper/data/messages:145 ../GMenu/data/messages:41
 #: ../Network-Monitor/data/messages:37 ../System-Monitor/data/messages:37
@@ -3000,7 +2996,7 @@ msgstr ""
 #: ../tomboy/data/messages:55 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:37
 msgid "Should be visible on all desktops ?"
-msgstr ""
+msgstr "全部的桌面都可以看得到嗎？"
 
 #: ../Clipper/data/messages:147 ../GMenu/data/messages:43
 #: ../Network-Monitor/data/messages:39 ../System-Monitor/data/messages:39
@@ -3020,7 +3016,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
+msgstr "假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + 左鍵拖動 的方式來移動。"
 
 #: ../Clipper/data/messages:149 ../GMenu/data/messages:45
 #: ../Network-Monitor/data/messages:41 ../System-Monitor/data/messages:41
@@ -3038,7 +3034,7 @@ msgstr ""
 #: ../tomboy/data/messages:59 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:41
 msgid "Lock position ?"
-msgstr ""
+msgstr "鎖定位置？"
 
 #: ../Clipper/data/messages:151 ../GMenu/data/messages:47
 #: ../Network-Monitor/data/messages:43 ../System-Monitor/data/messages:43
@@ -3056,7 +3052,7 @@ msgstr ""
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:43
 msgid "in degrees."
-msgstr ""
+msgstr "以角度。"
 
 #: ../Clipper/data/messages:153 ../GMenu/data/messages:49
 #: ../Network-Monitor/data/messages:45 ../System-Monitor/data/messages:45
@@ -3074,7 +3070,7 @@ msgstr ""
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:45
 msgid "Rotation :"
-msgstr ""
+msgstr "自轉(Rotation)："
 
 #: ../Clipper/data/messages:155 ../GMenu/data/messages:51
 #: ../Network-Monitor/data/messages:47 ../System-Monitor/data/messages:47
@@ -3092,7 +3088,7 @@ msgstr ""
 #: ../weather/data/messages:49 ../weblets/data/messages:51
 #: ../wifi/data/messages:47
 msgid "-180"
-msgstr ""
+msgstr "-180"
 
 #: ../Clipper/data/messages:157 ../GMenu/data/messages:53
 #: ../Network-Monitor/data/messages:49 ../System-Monitor/data/messages:49
@@ -3110,7 +3106,7 @@ msgstr ""
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:49
 msgid "Decorations"
-msgstr ""
+msgstr "裝飾"
 
 #: ../Clipper/data/messages:159 ../GMenu/data/messages:55
 #: ../Network-Monitor/data/messages:51 ../System-Monitor/data/messages:51
@@ -3128,7 +3124,7 @@ msgstr ""
 #: ../weather/data/messages:53 ../weblets/data/messages:55
 #: ../wifi/data/messages:51
 msgid "Choose the 'personnal' one to define your own decorations below."
-msgstr ""
+msgstr "選擇 \"個人的\" 那個設定，下面的裝飾設定就可以使用。"
 
 #: ../Clipper/data/messages:161 ../GMenu/data/messages:57
 #: ../Network-Monitor/data/messages:53 ../System-Monitor/data/messages:53
@@ -3146,7 +3142,7 @@ msgstr ""
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:53
 msgid "Choose a decoration theme for this desklet :"
-msgstr ""
+msgstr "選擇桌面小工具的裝飾主題："
 
 #: ../Clipper/data/messages:163 ../GMenu/data/messages:59
 #: ../Network-Monitor/data/messages:55 ../System-Monitor/data/messages:55
@@ -3166,7 +3162,7 @@ msgstr ""
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "這是顯示在桌面小程式下方的圖形，就像是相框一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:165 ../GMenu/data/messages:61
 #: ../Network-Monitor/data/messages:57 ../System-Monitor/data/messages:57
@@ -3184,7 +3180,7 @@ msgstr ""
 #: ../tomboy/data/messages:75 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
 msgid "Background image :"
-msgstr ""
+msgstr "背景圖片："
 
 #: ../Clipper/data/messages:167 ../GMenu/data/messages:63
 #: ../Network-Monitor/data/messages:59 ../System-Monitor/data/messages:59
@@ -3202,7 +3198,7 @@ msgstr ""
 #: ../weather/data/messages:61 ../weblets/data/messages:63
 #: ../wifi/data/messages:59
 msgid "Background tansparency :"
-msgstr ""
+msgstr "背景透明度："
 
 #: ../Clipper/data/messages:169 ../GMenu/data/messages:65
 #: ../Network-Monitor/data/messages:61 ../System-Monitor/data/messages:61
@@ -3220,7 +3216,7 @@ msgstr ""
 #: ../weather/data/messages:63 ../weblets/data/messages:65
 #: ../wifi/data/messages:61
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr ""
+msgstr "以像素為單位，可以調整位於左邊時的位置。"
 
 #: ../Clipper/data/messages:171 ../GMenu/data/messages:67
 #: ../Network-Monitor/data/messages:63 ../System-Monitor/data/messages:63
@@ -3238,7 +3234,7 @@ msgstr ""
 #: ../weather/data/messages:65 ../weblets/data/messages:67
 #: ../wifi/data/messages:63
 msgid "Left offset :"
-msgstr ""
+msgstr "左邊的位移量："
 
 #: ../Clipper/data/messages:173 ../GMenu/data/messages:69
 #: ../Network-Monitor/data/messages:65 ../System-Monitor/data/messages:65
@@ -3256,7 +3252,7 @@ msgstr ""
 #: ../weather/data/messages:67 ../weblets/data/messages:69
 #: ../wifi/data/messages:65
 msgid "in pixels. Use this to adjust the top position of the drawings."
-msgstr ""
+msgstr "以像素為單位，可以調整位於頂部時的位置。"
 
 #: ../Clipper/data/messages:175 ../GMenu/data/messages:71
 #: ../Network-Monitor/data/messages:67 ../System-Monitor/data/messages:67
@@ -3274,7 +3270,7 @@ msgstr ""
 #: ../weather/data/messages:69 ../weblets/data/messages:71
 #: ../wifi/data/messages:67
 msgid "Top offset :"
-msgstr ""
+msgstr "頂部位移量："
 
 #: ../Clipper/data/messages:177 ../GMenu/data/messages:73
 #: ../Network-Monitor/data/messages:69 ../System-Monitor/data/messages:69
@@ -3292,7 +3288,7 @@ msgstr ""
 #: ../weather/data/messages:71 ../weblets/data/messages:73
 #: ../wifi/data/messages:69
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr ""
+msgstr "以像素為單位，可以調整位於右邊時的位置。"
 
 #: ../Clipper/data/messages:179 ../GMenu/data/messages:75
 #: ../Network-Monitor/data/messages:71 ../System-Monitor/data/messages:71
@@ -3310,7 +3306,7 @@ msgstr ""
 #: ../weather/data/messages:73 ../weblets/data/messages:75
 #: ../wifi/data/messages:71
 msgid "Right offset :"
-msgstr ""
+msgstr "右邊偏移量："
 
 #: ../Clipper/data/messages:181 ../GMenu/data/messages:77
 #: ../Network-Monitor/data/messages:73 ../System-Monitor/data/messages:73
@@ -3328,7 +3324,7 @@ msgstr ""
 #: ../weather/data/messages:75 ../weblets/data/messages:77
 #: ../wifi/data/messages:73
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
-msgstr ""
+msgstr "以像素為單位，可以調整位於底部時的位置。"
 
 #: ../Clipper/data/messages:183 ../GMenu/data/messages:79
 #: ../Network-Monitor/data/messages:75 ../System-Monitor/data/messages:75
@@ -3346,7 +3342,7 @@ msgstr ""
 #: ../weather/data/messages:77 ../weblets/data/messages:79
 #: ../wifi/data/messages:75
 msgid "Bottom offset :"
-msgstr ""
+msgstr "底部偏移量："
 
 #: ../Clipper/data/messages:185 ../GMenu/data/messages:81
 #: ../Network-Monitor/data/messages:77 ../System-Monitor/data/messages:77
@@ -3366,7 +3362,7 @@ msgstr ""
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
-msgstr ""
+msgstr "這是顯示在桌面小程式之上的圖形，就像是反射一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:187 ../GMenu/data/messages:83
 #: ../Network-Monitor/data/messages:79 ../System-Monitor/data/messages:79
@@ -3384,7 +3380,7 @@ msgstr ""
 #: ../weather/data/messages:81 ../weblets/data/messages:83
 #: ../wifi/data/messages:79
 msgid "Foreground image :"
-msgstr ""
+msgstr "前景圖片："
 
 #: ../Clipper/data/messages:189 ../GMenu/data/messages:85
 #: ../Network-Monitor/data/messages:81 ../System-Monitor/data/messages:81
@@ -3402,96 +3398,96 @@ msgstr ""
 #: ../weather/data/messages:83 ../weblets/data/messages:85
 #: ../wifi/data/messages:81
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "前景透明度："
 
 #: ../Clipper/data/messages:193
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
-msgstr ""
+msgstr "剪貼簿的項目是指那些您用滑鼠標記的文字，並且用 CTRL + c 拷貝的。"
 
 #: ../Clipper/data/messages:195
 msgid "Which items should be remembered ?"
-msgstr ""
+msgstr "哪些項目應該要記憶起來？"
 
 #: ../Clipper/data/messages:199
 msgid "Clipboard"
-msgstr ""
+msgstr "剪貼簿"
 
 #: ../Clipper/data/messages:201
 msgid "Selection"
-msgstr ""
+msgstr "選擇"
 
 #: ../Clipper/data/messages:203
 msgid "Both"
-msgstr ""
+msgstr "兩者"
 
 #: ../Clipper/data/messages:205
 msgid "Number of items :"
-msgstr ""
+msgstr "項目的數量："
 
 #: ../Clipper/data/messages:207
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
-msgstr ""
+msgstr "如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有用，"
 
 #: ../Clipper/data/messages:209
 msgid "Separate clipboard and selection ?"
-msgstr ""
+msgstr "獨立的剪貼簿和選擇？"
 
 #: ../Clipper/data/messages:211
 msgid "If so, number of selection items :"
-msgstr ""
+msgstr "假如是，選擇項目的數量："
 
 #: ../Clipper/data/messages:213
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
-msgstr ""
+msgstr "當您點擊一個項目，其內容將可以用 CTRL + v 來貼出。"
 
 #: ../Clipper/data/messages:215
 msgid "Paste into Clipboard ?"
-msgstr ""
+msgstr "貼到剪貼簿？"
 
 #: ../Clipper/data/messages:217
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr ""
+msgstr "當您點擊一個項目，其內容將可以用 滑鼠中鍵 來貼出。"
 
 #: ../Clipper/data/messages:219
 msgid "Paste into Selection ?"
-msgstr ""
+msgstr "貼到選擇？"
 
 #: ../Clipper/data/messages:221
 msgid "Shortkey to pop-up the items menu :"
-msgstr ""
+msgstr "彈跳出項目選單的快速鍵："
 
 #: ../Clipper/data/messages:223
 msgid "Pop-up menus at mouse position ?"
-msgstr ""
+msgstr "以滑鼠指標的位置來彈跳初選單？"
 
 #: ../Clipper/data/messages:225 ../compiz-icon/data/messages:85
 msgid "Actions"
-msgstr ""
+msgstr "動作"
 
 #: ../Clipper/data/messages:227
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
-msgstr ""
+msgstr "如果一些動作與一個項目有關聯時，在建立一個項目的時候會向您提出。"
 
 #: ../Clipper/data/messages:229
 msgid "Enable actions ?"
-msgstr ""
+msgstr "啟用動作？"
 
 #: ../Clipper/data/messages:231
 msgid "Display the actions when selecting an item in the history."
-msgstr ""
+msgstr "在選擇一個歷史紀錄當中的項目時顯現的動作 。"
 
 #: ../Clipper/data/messages:233
 msgid "Replay actions ?"
-msgstr ""
+msgstr "重複動作？"
 
 #: ../Clipper/data/messages:235 ../Network-Monitor/data/messages:167
 #: ../System-Monitor/data/messages:143 ../System-Monitor/data/messages:179
@@ -3499,113 +3495,113 @@ msgstr ""
 #: ../powermanager/data/messages:139 ../slider/data/messages:101
 #: ../wifi/data/messages:159
 msgid "in seconds."
-msgstr ""
+msgstr "以秒為單位"
 
 #: ../Clipper/data/messages:237
 msgid "Duration of the action menu :"
-msgstr ""
+msgstr "動作選單的時間長短："
 
 #: ../Clipper/data/messages:239
 msgid "Persistent items"
-msgstr ""
+msgstr "持久性項目"
 
 #: ../Clipper/data/messages:241
 msgid "A list of persistent items that can be accessed with middle-click :"
-msgstr ""
+msgstr "持久性的項目列表，可以用中鍵點擊存取："
 
 #: ../Dbus/data/messages:3
 msgid "Let extern applications pop-up dialogs in the dock ?"
-msgstr ""
+msgstr "讓外部的應用程序可以在Dock上面彈出對話框？"
 
 #: ../Dbus/data/messages:5
 msgid "Let extern applications reboot the dock ?"
-msgstr ""
+msgstr "讓外部的應用程式可以控制重新啟動Dock？"
 
 #: ../Dbus/data/messages:7
 msgid "Let extern applications quit the dock ?"
-msgstr ""
+msgstr "讓外部的應用程式可以控制離開Dock？"
 
 #: ../Dbus/data/messages:9
 msgid "Let extern applications show/hide the desklets ?"
-msgstr ""
+msgstr "讓外部的應用程式 顯示/隱藏 桌面小工具(Desklets)？"
 
 #: ../Dbus/data/messages:11
 msgid "Let extern applications reload the applets ?"
-msgstr ""
+msgstr "讓外部的應用程式可以重新載入小程式？"
 
 #: ../Dbus/data/messages:13
 msgid "Let extern applications show/hide the docks ?"
-msgstr ""
+msgstr "讓外部的應用程式可以 顯示/隱藏 Dock？"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers into the docks ?"
-msgstr ""
+msgstr "讓外部的應用程式可以增加快速啟動到Dock上？"
 
 #: ../Dbus/data/messages:17
 msgid "Let extern applications modify the labels of icons ?"
-msgstr ""
+msgstr "讓外部的應用程式可以修改圖示的標籤名稱？"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons ?"
-msgstr ""
+msgstr "讓外部的應用程式可以修改圖示的快速資訊？"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the image of icons ?"
-msgstr ""
+msgstr "讓外部的應用程式可以修改圖示的圖形？"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate the icons ?"
-msgstr ""
+msgstr "讓外部的應用程式可以用動畫圖示？"
 
 #: ../Dbus/data/messages:25
 msgid "Let extern applications register new module ?"
-msgstr ""
+msgstr "讓外部的應用程式掛入新的模組？"
 
 #: ../GMenu/data/messages:89 ../quick-browser/data/messages:95
 msgid "Display icons in the menu ?"
-msgstr ""
+msgstr "在選單上面顯示圖示？"
 
 #: ../GMenu/data/messages:91 ../quick-browser/data/messages:111
 msgid "Shortkey to show/hide the menu :"
-msgstr ""
+msgstr "選單的 顯示/隱藏 快速鍵："
 
 #: ../GMenu/data/messages:93
 msgid "Shortkey to show/hide the quick-launch dialog :"
-msgstr ""
+msgstr "顯示/隱藏 快速執行對話框的快速鍵："
 
 #: ../GMenu/data/messages:97
 msgid "Command to use to configure the menu :"
-msgstr ""
+msgstr "設置選單的指令："
 
 #: ../GMenu/data/messages:99
 msgid "Recent documents"
-msgstr ""
+msgstr "最近使用的文件"
 
 #: ../GMenu/data/messages:101
 msgid "Show recent documents ?"
-msgstr ""
+msgstr "顯示最近使用的文件"
 
 #: ../GMenu/data/messages:103
 msgid "Let blank to not use this filter."
-msgstr ""
+msgstr "不使用此篩選器請空白。"
 
 #: ../GMenu/data/messages:105
 msgid "Only show files that are under this folder or its sub-folder :"
-msgstr ""
+msgstr "只顯示資料夾或其子資料夾之下的檔案："
 
 #: ../GMenu/data/messages:107
 msgid "in days. Set 0 to not use this filter."
-msgstr ""
+msgstr "以日為單位。設定為 0 時不使用這個篩選器。"
 
 #: ../GMenu/data/messages:109
 msgid "Only show files whose last modification date is less than ;"
-msgstr ""
+msgstr "只顯示檔案的最後修改日期小於；"
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:85
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:85
 #: ../wifi/data/messages:85
 msgid "Choose the style of the display : "
-msgstr ""
+msgstr "選擇顯示風格： "
 
 #: ../Network-Monitor/data/messages:87 ../Network-Monitor/data/messages:93
 #: ../System-Monitor/data/messages:87 ../System-Monitor/data/messages:91
@@ -3613,7 +3609,7 @@ msgstr ""
 #: ../powermanager/data/messages:87 ../powermanager/data/messages:93
 #: ../wifi/data/messages:87 ../wifi/data/messages:93
 msgid "Gauge"
-msgstr ""
+msgstr "計量表"
 
 #: ../Network-Monitor/data/messages:89 ../Network-Monitor/data/messages:97
 #: ../System-Monitor/data/messages:89 ../System-Monitor/data/messages:95
@@ -3621,95 +3617,95 @@ msgstr ""
 #: ../powermanager/data/messages:89 ../powermanager/data/messages:97
 #: ../wifi/data/messages:89 ../wifi/data/messages:97
 msgid "Graph"
-msgstr ""
+msgstr "圖表"
 
 #: ../Network-Monitor/data/messages:91 ../Network-Monitor/data/messages:121
 #: ../powermanager/data/messages:91 ../powermanager/data/messages:121
 #: ../shortcuts/data/messages:89 ../wifi/data/messages:91
 #: ../wifi/data/messages:121
 msgid "Icons"
-msgstr ""
+msgstr "圖示"
 
 #: ../Network-Monitor/data/messages:99 ../System-Monitor/data/messages:97
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:99
 #: ../wifi/data/messages:99
 msgid "Type of graphic :"
-msgstr ""
+msgstr "圖表的樣式："
 
 #: ../Network-Monitor/data/messages:101 ../System-Monitor/data/messages:99
 #: ../netspeed/data/messages:99 ../powermanager/data/messages:101
 #: ../wifi/data/messages:101
 msgid "Line"
-msgstr ""
+msgstr "線型"
 
 #: ../Network-Monitor/data/messages:103 ../System-Monitor/data/messages:101
 #: ../netspeed/data/messages:101 ../powermanager/data/messages:103
 #: ../wifi/data/messages:103
 msgid "Plain"
-msgstr ""
+msgstr "谷型"
 
 #: ../Network-Monitor/data/messages:105 ../System-Monitor/data/messages:103
 #: ../netspeed/data/messages:103 ../powermanager/data/messages:105
 #: ../wifi/data/messages:105
 msgid "Bar"
-msgstr ""
+msgstr "條型"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:105
 #: ../netspeed/data/messages:105 ../powermanager/data/messages:107
 #: ../wifi/data/messages:107
 msgid "Circle"
-msgstr ""
+msgstr "圓形"
 
 #: ../Network-Monitor/data/messages:109 ../System-Monitor/data/messages:107
 #: ../netspeed/data/messages:107 ../powermanager/data/messages:109
 #: ../wifi/data/messages:109
 msgid "Plain Circle"
-msgstr ""
+msgstr "圓谷型"
 
 #: ../Network-Monitor/data/messages:111 ../wifi/data/messages:111
 msgid "It's the color of the graphic for high quality signal."
-msgstr ""
+msgstr "當高負載時圖表訊號的顏色。"
 
 #: ../Network-Monitor/data/messages:113 ../System-Monitor/data/messages:111
 #: ../netspeed/data/messages:111 ../powermanager/data/messages:113
 #: ../wifi/data/messages:113
 msgid "High values color :"
-msgstr ""
+msgstr "高數值時的顏色："
 
 #: ../Network-Monitor/data/messages:115 ../wifi/data/messages:115
 msgid "It's the color of the graphic for low quality signal."
-msgstr ""
+msgstr "當低負載時圖表訊號的顏色。"
 
 #: ../Network-Monitor/data/messages:117 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:117
 #: ../wifi/data/messages:117
 msgid "Low values color :"
-msgstr ""
+msgstr "低數值時的顏色："
 
 #: ../Network-Monitor/data/messages:119 ../System-Monitor/data/messages:117
 #: ../netspeed/data/messages:117 ../powermanager/data/messages:119
 #: ../wifi/data/messages:119
 msgid "Background color of the graphic :"
-msgstr ""
+msgstr "圖表背景顏色："
 
 #: ../Network-Monitor/data/messages:123 ../wifi/data/messages:123
 msgid "Effect to apply on the icon according to strength :"
-msgstr ""
+msgstr "根據訊號強度改變圖示顯示效果："
 
 #: ../Network-Monitor/data/messages:127 ../alsaMixer/data/messages:123
 #: ../wifi/data/messages:127
 msgid "Zoom"
-msgstr ""
+msgstr "縮放"
 
 #: ../Network-Monitor/data/messages:129 ../alsaMixer/data/messages:125
 #: ../wifi/data/messages:129
 msgid "Transparency"
-msgstr ""
+msgstr "透明度"
 
 #: ../Network-Monitor/data/messages:131 ../alsaMixer/data/messages:127
 #: ../wifi/data/messages:131
 msgid "Draw Bar"
-msgstr ""
+msgstr "拉桿"
 
 #: ../Network-Monitor/data/messages:133 ../Network-Monitor/data/messages:137
 #: ../Network-Monitor/data/messages:141 ../Network-Monitor/data/messages:145
@@ -3722,473 +3718,473 @@ msgstr ""
 #: ../wifi/data/messages:145 ../wifi/data/messages:149
 #: ../wifi/data/messages:153
 msgid "Let it empty to use the default icon."
-msgstr ""
+msgstr "空白將會使用預設的圖示。"
 
 #: ../Network-Monitor/data/messages:135
 msgid "Name of an image for the 'No signal' icon :"
-msgstr ""
+msgstr "\"沒訊號\"的圖檔："
 
 #: ../Network-Monitor/data/messages:139
 msgid "Name of an image for the 'Very low' icon :"
-msgstr ""
+msgstr "\"訊號非常低\"的圖檔："
 
 #: ../Network-Monitor/data/messages:143
 msgid "Name of an image for the 'Low' icon :"
-msgstr ""
+msgstr "\"訊號低\"的圖檔："
 
 #: ../Network-Monitor/data/messages:147
 msgid "Name of an image for the 'Middle' icon :"
-msgstr ""
+msgstr "\"訊號中等\"的圖檔："
 
 #: ../Network-Monitor/data/messages:151
 msgid "Name of an image for the 'Good' icon :"
-msgstr ""
+msgstr "\"訊號良好\"的圖檔："
 
 #: ../Network-Monitor/data/messages:155
 msgid "Name of an image for the 'Excellent' icon :"
-msgstr ""
+msgstr "\"訊號非常好\"的圖檔："
 
 #: ../Network-Monitor/data/messages:159
 msgid "Name of an image for the 'Not connected' icon :"
-msgstr ""
+msgstr "\"沒有連線\"的圖檔："
 
 #: ../Network-Monitor/data/messages:163
 msgid "Name of an image for the 'Wired connection' icon :"
-msgstr ""
+msgstr "\"有線連結\"的圖檔："
 
 #: ../Network-Monitor/data/messages:165 ../System-Monitor/data/messages:121
 #: ../netspeed/data/messages:121 ../powermanager/data/messages:137
 #: ../tomboy/data/messages:119 ../wifi/data/messages:157
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../Network-Monitor/data/messages:169 ../wifi/data/messages:161
 msgid "Delay between signal checks :"
-msgstr ""
+msgstr "訊號檢查的間隔時間："
 
 #: ../Network-Monitor/data/messages:171 ../System-Monitor/data/messages:147
 #: ../wifi/data/messages:163
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
-msgstr ""
+msgstr "您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
 
 #: ../Network-Monitor/data/messages:173 ../System-Monitor/data/messages:149
 #: ../wifi/data/messages:165
 msgid "How smooth is the movement ?"
-msgstr ""
+msgstr "動作的平滑度？"
 
 #: ../Network-Monitor/data/messages:175 ../wifi/data/messages:167
 msgid ""
 "Allow you to overwrite applet's default command line and launch you wireless "
 "configuration interface."
-msgstr ""
+msgstr "允許您忽略小程式的內建預設指令行，以您自己設定的指令來啟動您的無線配置界面。"
 
 #: ../Network-Monitor/data/messages:177 ../wifi/data/messages:169
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr ""
+msgstr "選擇啟動無線配置的指令行："
 
 #: ../Network-Monitor/data/messages:179 ../weather/data/messages:103
 #: ../wifi/data/messages:171
 msgid "Info"
-msgstr ""
+msgstr "資訊"
 
 #: ../Network-Monitor/data/messages:181 ../musicPlayer/data/messages:133
 #: ../wifi/data/messages:173
 msgid "Information to display on the icon :"
-msgstr ""
+msgstr "在圖示上面顯示資訊："
 
 #: ../Network-Monitor/data/messages:185 ../wifi/data/messages:177
 msgid "Signal Strength"
-msgstr ""
+msgstr "訊號強度"
 
 #: ../Network-Monitor/data/messages:187 ../wifi/data/messages:179
 msgid "Signal Strength in percent"
-msgstr ""
+msgstr "訊號強度(百分比)"
 
 #: ../Network-Monitor/data/messages:189 ../wifi/data/messages:181
 msgid "Raw Signal Informations"
-msgstr ""
+msgstr "原始訊號資訊"
 
 #: ../Network-Monitor/data/messages:191 ../wifi/data/messages:183
 msgid "Overwrite the default label with the connection point name ?"
-msgstr ""
+msgstr "覆蓋預設的標籤與連接點的名稱？"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
-msgstr ""
+msgstr "使用/停用 導航模式的快速鍵:"
 
 #: ../Scooby-Do/data/messages:5
 msgid "Shortkey to activate/deactivate the finder mode :"
-msgstr ""
+msgstr "使用/停用 尋找模式的快速鍵:"
 
 #: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
-msgstr ""
+msgstr "搜尋結果的最大數量："
 
 #: ../Scooby-Do/data/messages:9
 msgid "Number of lines to display :"
-msgstr ""
+msgstr "每次顯示多少列："
 
 #: ../Scooby-Do/data/messages:11
 msgid "Animations"
-msgstr ""
+msgstr "動畫"
 
 #: ../Scooby-Do/data/messages:15
 msgid "Duration of the appearance animation :"
-msgstr ""
+msgstr "外觀動畫的時間長短："
 
 #: ../Scooby-Do/data/messages:19
 msgid "Duration of the stop animation :"
-msgstr ""
+msgstr "停止動畫的時間長短："
 
 #: ../Scooby-Do/data/messages:21
 msgid "Animation of the current icon :"
-msgstr ""
+msgstr "目前圖示的動畫："
 
 #: ../Scooby-Do/data/messages:23
 msgid "Characters"
-msgstr ""
+msgstr "字元"
 
 #: ../Scooby-Do/data/messages:25
 msgid "Font used to display what you type :"
-msgstr ""
+msgstr "您打出的字要用什麼字體："
 
 #: ../Scooby-Do/data/messages:27
 msgid "Color of the text's frame  :"
-msgstr ""
+msgstr "彩色文字的框架："
 
 #: ../Scooby-Do/data/messages:29
 msgid "Font size, relatively to the dock's size :"
-msgstr ""
+msgstr "相對於dock尺寸的字體大小："
 
 #: ../Scooby-Do/data/messages:31
 msgid "between 1 and 9, the bigger, the heavier."
-msgstr ""
+msgstr "從 1 到 9 之間，越大愈重。"
 
 #: ../Scooby-Do/data/messages:33
 msgid "Text weight :"
-msgstr ""
+msgstr "文字重量："
 
 #: ../Scooby-Do/data/messages:35
 msgid "Should the text be outlined ?"
-msgstr ""
+msgstr "文字要有外框嗎？"
 
 #: ../Scooby-Do/data/messages:37
 msgid "Text color :"
-msgstr ""
+msgstr "文字色彩："
 
 #: ../Scooby-Do/data/messages:39
 msgid "Color of the background of the characters :"
-msgstr ""
+msgstr "字元背景顏色："
 
 #: ../Scooby-Do/data/messages:41
 msgid "Write text on the top of the dock ?"
-msgstr ""
+msgstr "寫入文字在Dock頂端？"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Preferred applications"
-msgstr ""
+msgstr "喜愛的應用程式"
 
 #: ../Scooby-Do/data/messages:45
 msgid "Preferred application starting with 'a' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'a' 開始："
 
 #: ../Scooby-Do/data/messages:47
 msgid "Preferred application starting with 'b' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'b' 開始："
 
 #: ../Scooby-Do/data/messages:49
 msgid "Preferred application starting with 'c' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'c' 開始："
 
 #: ../Scooby-Do/data/messages:51
 msgid "Preferred application starting with 'd' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'd' 開始："
 
 #: ../Scooby-Do/data/messages:53
 msgid "Preferred application starting with 'e' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'e' 開始："
 
 #: ../Scooby-Do/data/messages:55
 msgid "Preferred application starting with 'f' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'f' 開始："
 
 #: ../Scooby-Do/data/messages:57
 msgid "Preferred application starting with 'g' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'g' 開始："
 
 #: ../Scooby-Do/data/messages:59
 msgid "Preferred application starting with 'h' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'h' 開始："
 
 #: ../Scooby-Do/data/messages:61
 msgid "Preferred application starting with 'i' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'i' 開始："
 
 #: ../Scooby-Do/data/messages:63
 msgid "Preferred application starting with 'j' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'j' 開始："
 
 #: ../Scooby-Do/data/messages:65
 msgid "Preferred application starting with 'k' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'k' 開始："
 
 #: ../Scooby-Do/data/messages:67
 msgid "Preferred application starting with 'l' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'l' 開始："
 
 #: ../Scooby-Do/data/messages:69
 msgid "Preferred application starting with 'm' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'm' 開始："
 
 #: ../Scooby-Do/data/messages:71
 msgid "Preferred application starting with 'n' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'n' 開始："
 
 #: ../Scooby-Do/data/messages:73
 msgid "Preferred application starting with 'o' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'o' 開始："
 
 #: ../Scooby-Do/data/messages:75
 msgid "Preferred application starting with 'p' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'p' 開始："
 
 #: ../Scooby-Do/data/messages:77
 msgid "Preferred application starting with 'q' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'q' 開始："
 
 #: ../Scooby-Do/data/messages:79
 msgid "Preferred application starting with 'r' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'r' 開始："
 
 #: ../Scooby-Do/data/messages:81
 msgid "Preferred application starting with 's' :"
-msgstr ""
+msgstr "喜愛的應用程式以 's' 開始："
 
 #: ../Scooby-Do/data/messages:83
 msgid "Preferred application starting with 't' :"
-msgstr ""
+msgstr "喜愛的應用程式以 't' 開始："
 
 #: ../Scooby-Do/data/messages:85
 msgid "Preferred application starting with 'u' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'u' 開始："
 
 #: ../Scooby-Do/data/messages:87
 msgid "Preferred application starting with 'v' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'v' 開始："
 
 #: ../Scooby-Do/data/messages:89
 msgid "Preferred application starting with 'w' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'w' 開始："
 
 #: ../Scooby-Do/data/messages:91
 msgid "Preferred application starting with 'x' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'x' 開始："
 
 #: ../Scooby-Do/data/messages:93
 msgid "Preferred application starting with 'y' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'y' 開始："
 
 #: ../Scooby-Do/data/messages:95
 msgid "Preferred application starting with 'z' :"
-msgstr ""
+msgstr "喜愛的應用程式以 'z' 開始："
 
 #: ../System-Monitor/data/messages:109 ../powermanager/data/messages:111
 msgid "It's the color of the graphic for high values."
-msgstr ""
+msgstr "這是圖形在高數值時的顏色。"
 
 #: ../System-Monitor/data/messages:113 ../powermanager/data/messages:115
 msgid "It's the color of the graphic for low values."
-msgstr ""
+msgstr "這是圖形在低數值時的顏色。"
 
 #: ../System-Monitor/data/messages:119 ../netspeed/data/messages:119
 msgid "Show all values on same graph ?"
-msgstr ""
+msgstr "在相同的圖表上顯示全部的數值？"
 
 #: ../System-Monitor/data/messages:123
 msgid "Show CPU usage ?"
-msgstr ""
+msgstr "顯示CPU使用率？"
 
 #: ../System-Monitor/data/messages:125
 msgid "Show RAM usage ?"
-msgstr ""
+msgstr "顯示RAM使用率？"
 
 #: ../System-Monitor/data/messages:127
 msgid "Show SWAP too ?"
-msgstr ""
+msgstr "也顯示SWAP嗎？"
 
 #: ../System-Monitor/data/messages:129
 msgid "You need an nVidia and the 'nvidia-settings' tool."
-msgstr ""
+msgstr "您需要有 nVidia 與 nvidia-settings 工具。"
 
 #: ../System-Monitor/data/messages:131
 msgid "Show graphic card temperature ?"
-msgstr ""
+msgstr "顯示卡溫度？"
 
 #: ../System-Monitor/data/messages:133
 msgid "Show free memory instead of used memory ?"
-msgstr ""
+msgstr "以閒置記憶體來替代已經使用的記憶體？"
 
 #: ../System-Monitor/data/messages:135
 msgid "Display values :"
-msgstr ""
+msgstr "顯示值："
 
 #: ../System-Monitor/data/messages:137 ../alsaMixer/data/messages:113
 #: ../clock/data/messages:91 ../netspeed/data/messages:137
 #: ../shortcuts/data/messages:115
 msgid "No"
-msgstr ""
+msgstr "不要"
 
 #: ../System-Monitor/data/messages:139 ../alsaMixer/data/messages:117
 #: ../clock/data/messages:93 ../netspeed/data/messages:139
 msgid "On icon"
-msgstr ""
+msgstr "在圖示"
 
 #: ../System-Monitor/data/messages:141 ../alsaMixer/data/messages:115
 #: ../clock/data/messages:95 ../netspeed/data/messages:141
 msgid "On label"
-msgstr ""
+msgstr "在標籤"
 
 #: ../System-Monitor/data/messages:145
 msgid "Delay between refresh :"
-msgstr ""
+msgstr "刷新的間隔時間："
 
 #: ../System-Monitor/data/messages:153 ../netspeed/data/messages:145
 msgid "User command to show a system monitor :"
-msgstr ""
+msgstr "顯示系統監控的使用者自訂指令："
 
 #: ../System-Monitor/data/messages:155
 msgid ""
 "It will prevent the system monitor's icon to appear in the taskbar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
+msgstr "它會阻止系統監視器的圖示出現在工具列上，此小程式的圖示會像是快速啟動一樣。"
 
 #: ../System-Monitor/data/messages:157
 msgid "Steal the system monitor's icon in taskbar ?"
-msgstr ""
+msgstr "抓取系統監視器的圖示放在工具列上？"
 
 #: ../System-Monitor/data/messages:161
 msgid "Class of the system monitor program:"
-msgstr ""
+msgstr "系統的監控程式的類型："
 
 #: ../System-Monitor/data/messages:163
 msgid "Top List"
-msgstr ""
+msgstr "最高的清單："
 
 #: ../System-Monitor/data/messages:165
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
-msgstr ""
+msgstr "當您在圖示上面點擊左鍵時，您將會看到一個 CPU / RAM 最高負載程式清單。"
 
 #: ../System-Monitor/data/messages:167
 msgid "Number of programs to display in the top list :"
-msgstr ""
+msgstr "顯示最高負載的程式數量清單："
 
 #: ../System-Monitor/data/messages:169
 msgid "It's the first color of the gradation used to write the top list."
-msgstr ""
+msgstr "這是高負載列表的上半部漸層起始顏色。"
 
 #: ../System-Monitor/data/messages:171
 msgid "Start color of the top list :"
-msgstr ""
+msgstr "高負載列表漸層起始顏色："
 
 #: ../System-Monitor/data/messages:173
 msgid "It's the second color of the gradation used to write the top list."
-msgstr ""
+msgstr "這是高負載列表的下半部漸層終止顏色。"
 
 #: ../System-Monitor/data/messages:175
 msgid "Stop color of the top list :"
-msgstr ""
+msgstr "高負載列表漸層終止顏色："
 
 #: ../System-Monitor/data/messages:177
 msgid "Show top memory usage in % ?"
-msgstr ""
+msgstr "顯示最高記憶體使用(以 % 表示)？"
 
 #: ../System-Monitor/data/messages:181
 msgid "Delay between refresh of the top list :"
-msgstr ""
+msgstr "刷新高負載列表的間隔時間："
 
 #: ../System-Monitor/data/messages:183
 msgid "Graphic Card temperature"
-msgstr ""
+msgstr "顯示卡溫度"
 
 #: ../System-Monitor/data/messages:185
 msgid ""
 "in celcius. The temperature will be displayed between this value and the "
 "upper limit."
-msgstr ""
+msgstr "以攝氏度為單位。顯示的溫度會以這個溫度到設定的最高溫度之間。"
 
 #: ../System-Monitor/data/messages:187
 msgid "Lower limit of core temperature :"
-msgstr ""
+msgstr "最低顯卡核心溫度："
 
 #: ../System-Monitor/data/messages:189
 msgid ""
 "in celcius. The temperature will be displayed between the lower limit and "
 "this value."
-msgstr ""
+msgstr "以攝氏度為單位。顯示的溫度會以這個溫度到設定的最低溫度之間。"
 
 #: ../System-Monitor/data/messages:191
 msgid "Upper limit of core temperature :"
-msgstr ""
+msgstr "最高顯卡核心溫度："
 
 #: ../System-Monitor/data/messages:193
 msgid "Alert when core temperature is high ?"
-msgstr ""
+msgstr "當顯卡核心溫度過高時警告？"
 
 #: ../System-Monitor/data/messages:195
 msgid "in celcius."
-msgstr ""
+msgstr "以攝氏度為單位。"
 
 #: ../System-Monitor/data/messages:197
 msgid "Alert limit of core temperature :"
-msgstr ""
+msgstr "顯卡核心警告極限溫度："
 
 #: ../System-Monitor/data/messages:199
 msgid "Play a sound during the alert ?"
-msgstr ""
+msgstr "警告的同時也使用聲音警告？"
 
 #: ../System-Monitor/data/messages:201
 msgid "Sound path :"
-msgstr ""
+msgstr "警告聲音檔案的路徑："
 
 #: ../Toons/data/messages:85
 msgid "Keep ratio ?"
-msgstr ""
+msgstr "保持比例？"
 
 #: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
-msgstr ""
+msgstr "眨眼之間的平均延遲時間："
 
 #: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
-msgstr ""
+msgstr "以毫秒(ms)為單位"
 
 #: ../Toons/data/messages:95
 msgid "Wink duration :"
-msgstr ""
+msgstr "眨眼時間："
 
 #: ../Toons/data/messages:97
 msgid "A high refresh frequency will use more CPU."
-msgstr ""
+msgstr "高刷新頻率將使用更多的CPU運算資源。"
 
 #: ../Toons/data/messages:99
 msgid "High refresh frequency ?"
-msgstr ""
+msgstr "高刷新頻率？"
 
 #: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:105
 msgid "Variation for 1 mouse scroll, in % :"
-msgstr ""
+msgstr "鼠標滾動1格變化量，以 ％ 表示："
 
 #: ../Xgamma/data/messages:91
 msgid "Set 0 to not use it."
-msgstr ""
+msgstr "設定 0 不使用它。"
 
 #: ../Xgamma/data/messages:93
 msgid "Luminosity to automatically apply on startup :"
-msgstr ""
+msgstr "在系統啟動時自動調整亮度："
 
 #: ../alsaMixer/data/messages:17 ../clock/data/messages:19
 #: ../dustbin/data/messages:17 ../netspeed/data/messages:17
@@ -4196,172 +4192,172 @@ msgstr ""
 msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
-msgstr ""
+msgstr "依附在您的視窗管理員當中，您可以用ALT + 左鍵來移動他。螢幕的右下方是負值。"
 
 #: ../alsaMixer/data/messages:85
 msgid "Alsa"
-msgstr ""
+msgstr "Alsa"
 
 #: ../alsaMixer/data/messages:87
 msgid "Let empty to use the default sound card."
-msgstr ""
+msgstr "使用預設的音效卡請空白。"
 
 #: ../alsaMixer/data/messages:89
 msgid "Sound card to control :"
-msgstr ""
+msgstr "要控制的音效卡："
 
 #: ../alsaMixer/data/messages:91
 msgid "Choose which channel to control :"
-msgstr ""
+msgstr "要控制哪個通道："
 
 #: ../alsaMixer/data/messages:93
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
-msgstr ""
+msgstr "有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來控制兩個聲道。大多數的狀況下您只需要讓他空白。"
 
 #: ../alsaMixer/data/messages:95
 msgid "Optionnally, choose a second channel to control :"
-msgstr ""
+msgstr "選擇第二個控制通道："
 
 #: ../alsaMixer/data/messages:97
 msgid "Let empty to use the defaut command."
-msgstr ""
+msgstr "使用預設的指令請空白。"
 
 #: ../alsaMixer/data/messages:99
 msgid "Specific command to run to show an advanced sound mixer :"
-msgstr ""
+msgstr "設定顯示進階聲音控制混音器的指令："
 
 #: ../alsaMixer/data/messages:101
 msgid "Control"
-msgstr ""
+msgstr "控制"
 
 #: ../alsaMixer/data/messages:103
 msgid "Shortkey to show/hide the sound control dialog :"
-msgstr ""
+msgstr "顯示/隱藏聲音控制對話框的快速鍵："
 
 #: ../alsaMixer/data/messages:107
 msgid "Hide the scale when mouse leaves the desklet ?"
-msgstr ""
+msgstr "當滑鼠游標離開桌面小工具時隱藏聲音調整器？"
 
 #: ../alsaMixer/data/messages:109 ../keyboard-indicator/data/messages:93
 #: ../musicPlayer/data/messages:131 ../slider/data/messages:135
 #: ../stack/data/messages:91 ../weather/data/messages:113
 msgid "Display"
-msgstr ""
+msgstr "顯示"
 
 #: ../alsaMixer/data/messages:111
 msgid "Display volume :"
-msgstr ""
+msgstr "顯示音量："
 
 #: ../alsaMixer/data/messages:119
 msgid "Effet to apply on the icon according to volume :"
-msgstr ""
+msgstr "音效調整確認之後在圖示上的特效："
 
 #: ../alsaMixer/data/messages:131
 msgid "Default icon :"
-msgstr ""
+msgstr "預設圖示："
 
 #: ../alsaMixer/data/messages:135
 msgid "Broken icon :"
-msgstr ""
+msgstr "毀損圖示："
 
 #: ../alsaMixer/data/messages:139
 msgid "Mute icon :"
-msgstr ""
+msgstr "靜音圖示："
 
 #: ../clock/data/messages:7
 msgid "Let it empty to use the location's name if available."
-msgstr ""
+msgstr "假如地區的名稱有設定，讓它空白來使用它。"
 
 #: ../clock/data/messages:85 ../dustbin/data/messages:83
 #: ../shortcuts/data/messages:87
 msgid "Module"
-msgstr ""
+msgstr "模組"
 
 #: ../clock/data/messages:87 ../dnd2share/data/messages:97
 #: ../mail/data/messages:103 ../showDesktop/data/messages:89
 #: ../showDesktop2/data/messages:89 ../slider/data/messages:99
 msgid "Behaviour"
-msgstr ""
+msgstr "動作方式"
 
 #: ../clock/data/messages:89
 msgid "Show the date :"
-msgstr ""
+msgstr "顯示日期："
 
 #: ../clock/data/messages:97
 msgid "for numeric format only."
-msgstr ""
+msgstr "只有顯示數字。"
 
 #: ../clock/data/messages:99
 msgid "Should the time be displayed as a 24h format ?"
-msgstr ""
+msgstr "要用24小時制嗎？"
 
 #: ../clock/data/messages:101
 msgid "if not, then the applet will update time once a minute, saving CPU."
-msgstr ""
+msgstr "如果不要，這小程式將會一分鐘更新時間一次，來節省CPU使用率。"
 
 #: ../clock/data/messages:103
 msgid "Show seconds ?"
-msgstr ""
+msgstr "顯示秒？"
 
 #: ../clock/data/messages:105
 msgid ""
 "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
 "animation. It requires OpenGL."
-msgstr ""
+msgstr "以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支援。"
 
 #: ../clock/data/messages:107
 msgid "Display seconds with smooth animation of a duration of :"
-msgstr ""
+msgstr "用來顯示秒，平順動畫的持續時間："
 
 #: ../clock/data/messages:109
 msgid ""
 "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
-msgstr ""
+msgstr "例如：歐洲/巴黎，：日本，等等。讓他空白來取得電腦系統時間。"
 
 #: ../clock/data/messages:111
 msgid "Timezone :"
-msgstr ""
+msgstr "時區："
 
 #: ../clock/data/messages:113
 msgid "Style"
-msgstr ""
+msgstr "樣式"
 
 #: ../clock/data/messages:115
 msgid ""
 "The analogic view is based on CairoClock; otherwise it will be displayed in "
 "a numeric way."
-msgstr ""
+msgstr "指針式風貌是基於Cairo時鐘；不然它將會以數字顯示。"
 
 #: ../clock/data/messages:117
 msgid "Choose the view :"
-msgstr ""
+msgstr "選擇風貌："
 
 #: ../clock/data/messages:119
 msgid "Analogic"
-msgstr ""
+msgstr "指針式"
 
 #: ../clock/data/messages:121
 msgid "Numeric"
-msgstr ""
+msgstr "數字式"
 
 #: ../clock/data/messages:123
 msgid "Numeric View"
-msgstr ""
+msgstr "數字式風貌"
 
 #: ../clock/data/messages:125
 msgid "Font used for the numeric display :"
-msgstr ""
+msgstr "數字式的顯示字型："
 
 #: ../clock/data/messages:127
 msgid "Text color for the numeric display:"
-msgstr ""
+msgstr "數字式顯示字的顏色："
 
 #: ../clock/data/messages:129
 msgid "Image to draw on the background :"
-msgstr ""
+msgstr "背景的圖片："
 
 #: ../clock/data/messages:131
 msgid "Ratio to apply on text :"
@@ -4393,7 +4389,7 @@ msgstr ""
 
 #: ../clock/data/messages:145
 msgid "Alarm"
-msgstr ""
+msgstr "鬧鐘"
 
 #: ../clock/data/messages:147
 msgid ""
@@ -4424,7 +4420,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:99
 msgid "Show Desktop"
-msgstr ""
+msgstr "顯示桌面"
 
 #: ../compiz-icon/data/messages:101
 msgid ""
@@ -5123,7 +5119,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:117
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:119
@@ -5872,23 +5869,21 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop2/data/messages:93
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop2/data/messages:95
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "下一個(中鍵點擊)"
+msgstr ""
 
 #: ../showDesktop2/data/messages:99
-#, fuzzy
 msgid "Show the desklets"
-msgstr "顯示桌面"
+msgstr ""
 
 #: ../showDesktop2/data/messages:101
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "顯示桌面"
+msgstr ""
 
 #: ../showDesktop2/data/messages:103
 msgid "Expose all the desktops (Compiz)"
@@ -6078,8 +6073,8 @@ msgstr ""
 
 #: ../stack/data/messages:131
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:133

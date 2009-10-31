@@ -6,13 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-22 16:01+0000\n"
-"Last-Translator: Auro Florentino <Unknown>\n"
+"POT-Creation-Date: 2009-10-24 00:44+0000\n"
+"PO-Revision-Date: 2009-10-23 13:36+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-10-24 07:34+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -444,8 +445,8 @@ msgstr ""
 "- Modo de navegação: use as setas para navegar nos docks e sub-doks,\n"
 "  ou digite o nome de um lançador e pressione Tab para saltar "
 "automaticamente para o próximo lançador adequado\n"
-"  pressione Enter para clicar no ícone, Shift+Enter para Shift+clique, Alt"
-"+Enter para um clique do meio e Ctrl+Enter para um clique esquerdo\n"
+"  pressione Enter para clicar no ícone, Shift+Enter para Shift+clique, "
+"Alt+Enter para um clique do meio e Ctrl+Enter para um clique esquerdo\n"
 "- Modo finder: digite algum texto para lançar qualquer comando, arquivo ou "
 "cálculo.\n"
 "  Use as setas para navegar entre os resultados, pressione Enter para "
@@ -888,7 +889,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
 "está ativa."
@@ -1440,8 +1442,8 @@ msgstr ""
 "Clique no botão esquerdo para Iniciar/Pausar, clique no botão do meio para a "
 "próxima música.\n"
 "Rolar para cima/para baixo para inciar  anterior/próxima música.\n"
-"Você pode arrastar e soltar as músicas no ícone para colocá-los na fila"
-"(depende do player),\n"
+"Você pode arrastar e soltar as músicas no ícone para colocá-los na "
+"fila(depende do player),\n"
 " e de imagem JPEG para usar como cobertura.\n"
 "Nota: Para o XMMS, você tem que instalar o plug-in 'xmms-infopipe'.\n"
 "       Para Songbird, você tem que instalar o dbus add-on.\n"
@@ -1702,8 +1704,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin desenha animações ao redor do cursor quando ele esta sobre um "
 "dock/desklet."
@@ -1739,9 +1741,8 @@ msgstr ""
 "Clicar com o botão do meio faz o mesmo, mas não oculta seus desklets"
 
 #: ../showDesktop2/src/applet-init.c:28
-#, fuzzy
 msgid "showDesktop2"
-msgstr "Mostrar Área de trabalho"
+msgstr ""
 
 #: ../showDesktop2/src/applet-init.c:31
 msgid ""
@@ -2875,8 +2876,8 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../System-Monitor/data/messages:15
@@ -2908,7 +2909,8 @@ msgstr "Dimensão do Desklet (largura x altura) :"
 #: ../stack/data/messages:23 ../systray/data/messages:13
 #: ../terminal/data/messages:21 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
 "do botão esquerdo"
@@ -3690,8 +3692,8 @@ msgstr "Deixe em branco para não usar esse filtro."
 #: ../GMenu/data/messages:105
 msgid "Only show files that are under this folder or its sub-folder :"
 msgstr ""
-"Mostrar apenas os arquivos que estão dentro desta pasta e sua(s) sub-pasta"
-"(s):"
+"Mostrar apenas os arquivos que estão dentro desta pasta e sua(s) sub-"
+"pasta(s):"
 
 #: ../GMenu/data/messages:107
 msgid "in days. Set 0 to not use this filter."
@@ -3699,7 +3701,8 @@ msgstr "em dia(s). Defina 0 para não usar esse filtro."
 
 #: ../GMenu/data/messages:109
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Mostrar apenas os arquivos cuja data da última modificação é inferior;"
+msgstr ""
+"Mostrar apenas os arquivos cuja data da última modificação é inferior;"
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:85
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:85
@@ -5291,7 +5294,8 @@ msgid "Desktop-less support"
 msgstr "Suporte desktopless"
 
 #: ../dustbin/data/messages:117
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Se a pasta Lixiera não é informada pelo dock, você pode especificá-la aqui:"
 
@@ -5678,8 +5682,8 @@ msgstr "Clique para reproduzir/pausar, e clique do meio para próximo"
 #: ../musicPlayer/data/messages:119
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
-"Clique para mostrar/ocultar o reprodutor, e clique do meio para reproduzir/"
-"pausar"
+"Clique para mostrar/ocultar o reprodutor, e clique do meio para "
+"reproduzir/pausar"
 
 #: ../musicPlayer/data/messages:121
 msgid "Action on music change"
@@ -6072,32 +6076,29 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop2/data/messages:93
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop2/data/messages:95
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "Ações ao clicar e clicar com o botão do meio:"
+msgstr ""
 
 #: ../showDesktop2/data/messages:99
-#, fuzzy
 msgid "Show the desklets"
-msgstr "Mostrar o ambiente de trabalho"
+msgstr ""
 
 #: ../showDesktop2/data/messages:101
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "Mostrar o ambiente de trabalho"
+msgstr ""
 
 #: ../showDesktop2/data/messages:103
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop2/data/messages:105
-#, fuzzy
 msgid "Shortkey for the middle-click action :"
-msgstr "Escolha uma ação para o clique do meio no ícone:"
+msgstr ""
 
 #: ../slider/data/messages:85
 msgid "Directory"
@@ -6261,7 +6262,8 @@ msgstr "Ex.: imagem, texto, vídeo, áudio, aplicação,..."
 
 #: ../stack/data/messages:119
 msgid "Here you can specify a list of mime types to avoid :"
-msgstr "Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
+msgstr ""
+"Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
 
 #: ../stack/data/messages:121
 msgid "Sort items by :"
@@ -6285,8 +6287,8 @@ msgstr "Ordem manual"
 
 #: ../stack/data/messages:131
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "É a seleção feita pelo mouse, por oposição ao habitual ctrl+c / ctrl+v  área "
 "de transferência"
@@ -6678,15 +6680,15 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Controle o Rhythmbox diretamente do dock !\n"
 #~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
-#~ "Clique com o botão do meio e role para baixo para ir à próxima música, "
-#~ "role para cima para a música anterior.\n"
+#~ "Clique com o botão do meio e role para baixo para ir à próxima música, role "
+#~ "para cima para a música anterior.\n"
 #~ "Você pode arrastar e soltar capas (arquivos .jpg) no ícone para usá-las,\n"
 #~ " e músicas para colocá-las na lista."
 
@@ -6698,13 +6700,11 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Este applet permite alternar entre suas Áreas de trabalho virtuais.\n"
-#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-"
-#~ "dock).\n"
-#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu "
-#~ "do botão direito.\n"
+#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-dock).\n"
+#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu do "
+#~ "botão direito.\n"
 #~ "Role para cima/baixo no ícone principal para ir à Área de trabalho "
-#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de "
-#~ "trabalho"
+#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de trabalho"
 
 #~ msgid "Control your TomBoy's notes directly in the dock !\n"
 #~ msgstr "Controle seu TomBoy Notas diretamente do dock !\n"
@@ -6714,8 +6714,8 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -6731,15 +6731,14 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 #~ "Role para cima/baixo para tocar a música anterior/posterior."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type a command to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use the arrows to navigate between the results.\n"
@@ -6747,15 +6746,15 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 #~ msgstr ""
 #~ "Um plugin similar ao Gnome-Do que permite controlar seu dock através do "
 #~ "teclado.\n"
-#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho "
-#~ "do teclado:\n"
+#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho do "
+#~ "teclado:\n"
 #~ "- modo de navegação : use as setas para navegar entre docks e sub-docks,\n"
 #~ " ou digite o nome do lançador e pressione Tab para pular automaticamente "
 #~ "para o próximo lançador apropriado.\n"
-#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, Alt"
-#~ "+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
-#~ "- modo buscador : digite um comando para chamar qualquer comando, "
-#~ "arquivo, ou cálculo.\n"
+#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, "
+#~ "Alt+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
+#~ "- modo buscador : digite um comando para chamar qualquer comando, arquivo, "
+#~ "ou cálculo.\n"
 #~ "Use as setas para navegar entre os resultados.\n"
 #~ "Esc, Retornar ou o mesmo atalho para finalizar."
 
@@ -6769,8 +6768,7 @@ msgstr "Nome de uma imagem para o ícone de 'excelente':"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""

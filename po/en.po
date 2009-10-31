@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-23 01:50+0000\n"
+"POT-Creation-Date: 2009-10-24 00:44+0000\n"
+"PO-Revision-Date: 2009-10-23 13:04+0000\n"
 "Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-10-24 07:34+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -882,7 +883,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1681,11 +1683,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1719,9 +1721,8 @@ msgstr ""
 "There is an option to reverse that behaviour"
 
 #: ../showDesktop2/src/applet-init.c:28
-#, fuzzy
 msgid "showDesktop2"
-msgstr "showDesktop"
+msgstr ""
 
 #: ../showDesktop2/src/applet-init.c:31
 msgid ""
@@ -2880,7 +2881,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../stack/data/messages:23 ../systray/data/messages:13
 #: ../terminal/data/messages:21 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -5245,7 +5247,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:117
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5283,7 +5286,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -5552,7 +5556,8 @@ msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:87
 msgid "Audio Player"
@@ -6018,32 +6023,29 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop2/data/messages:93
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop2/data/messages:95
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "Actions on click and middle-click :"
+msgstr ""
 
 #: ../showDesktop2/data/messages:99
-#, fuzzy
 msgid "Show the desklets"
-msgstr "Show the desktop"
+msgstr ""
 
 #: ../showDesktop2/data/messages:101
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "Show the desktop"
+msgstr ""
 
 #: ../showDesktop2/data/messages:103
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop2/data/messages:105
-#, fuzzy
 msgid "Shortkey for the middle-click action :"
-msgstr "Choose an action for middle click on the icon:"
+msgstr ""
 
 #: ../slider/data/messages:85
 msgid "Directory"
@@ -6231,8 +6233,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:131
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
