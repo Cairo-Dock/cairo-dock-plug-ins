@@ -162,9 +162,9 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 }
 
 
-static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gpointer *data)
+static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
-	Window xActiveWindow = GPOINTER_TO_INT (data[0]);
+	Window xActiveWindow = data[0];
 	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
 		data[1] = GINT_TO_POINTER (1);
 }
@@ -172,7 +172,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {
 	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	gpointer data[2] = {GINT_TO_POINTER (*XActiveWindow), 0};
+	Window data[2] = {*XActiveWindow, 0};
 	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
 	
 	if (data[1] == 0)
@@ -204,7 +204,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
-		cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
 		cd_do_close_session ();
 	}
 	else if (iKeyVal == GDK_space && myData.iNbValidCaracters == 0)  // pas d'espace en debut de chaine.
@@ -579,7 +578,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		myData.bNavigationMode = bNewModeNav; \
 		cd_do_open_session (); } \
 	else { \
-		cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);\
 		cd_do_close_session (); \
 		if (myData.bNavigationMode != bNewModeNav) { \
 			cd_do_open_session (); \

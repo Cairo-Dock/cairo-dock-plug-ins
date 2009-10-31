@@ -37,7 +37,7 @@
 #define _listing_compute_width(pListing) (.4 * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL])
 #define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (myConfig.iNbLinesInListing + 5) + 2*GAP)
 #define NB_STEPS_FOR_CURRENT_ENTRY 12
-#define NB_STEPS_FOR_SCROLL 4
+#define NB_STEPS_FOR_SCROLL 2
 #define GAP 3
 
   /////////////////////////////////////////
@@ -234,6 +234,7 @@ CDListing *cd_do_create_listing (void)
 	gtk_widget_show_all (pWindow);
 	gtk_window_stick (GTK_WINDOW (pWindow));
 	gtk_window_set_keep_above (GTK_WINDOW (pWindow), TRUE);
+	gtk_window_set_modal (GTK_WINDOW (g_pMainDock->container.pWidget), TRUE);
 	
 	pListing->container.iWidth = _listing_compute_width (pListing);
 	pListing->container.iHeight = _listing_compute_height (pListing);
@@ -329,21 +330,21 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iTopMargin - GAP);
 	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .8);
 	cairo_fill (pCairoContext);
 
 	cairo_translate (pCairoContext, 0, iTopMargin + fLineWidth);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iHeight - iTopMargin - iBottomMargin - GAP);
 	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .8);
 	cairo_fill (pCairoContext);
 	
 	cairo_translate (pCairoContext, 0, iHeight - iTopMargin - 2*fLineWidth - iBottomMargin + GAP);
 	cairo_dock_draw_rounded_rectangle (pCairoContext, fRadius, fLineWidth, iWidth - 2 * fRadius - fLineWidth, iBottomMargin - GAP - fLineWidth);
 	cairo_set_source_rgba (pCairoContext, .7, .7, 1., 1.);
 	cairo_stroke_preserve (pCairoContext);
-	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .75);
+	cairo_set_source_rgba (pCairoContext, 1., 1., 1., .8);
 	cairo_fill (pCairoContext);
 	cairo_restore (pCairoContext);
 	

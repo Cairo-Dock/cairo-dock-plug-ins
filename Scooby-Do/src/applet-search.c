@@ -92,6 +92,7 @@ static gboolean _update_entries (CDBackend *pBackend)
 			g_print (" c'est une sous-recherche\n");
 			if (pBackend->pSearchResults == NULL)  // on n'a rien trouve, on vide le listing et on ne la relance pas.
 			{
+				g_print ("  aucun resultat, on enleve les precedents resultats et on ne la relance pas\n");
 				pBackend->bFoundNothing = TRUE;
 				cd_do_remove_entries_from_listing (pBackend);
 				return FALSE;
@@ -100,8 +101,12 @@ static gboolean _update_entries (CDBackend *pBackend)
 			{
 				if (pBackend->iNbSearchResults < myConfig.iNbResultMax)  // on a des resultats mais pas trop, on les charge et on leur applique le filtre.
 				{
+					cd_do_remove_entries_from_listing (pBackend);
 					cd_do_filter_entries (pBackend->pSearchResults, pBackend->iNbSearchResults);
 					cd_do_append_entries_to_listing (pBackend->pSearchResults, pBackend->iNbSearchResults);
+					pBackend->bTooManyResults = TRUE;
+					pBackend->pLastShownResults = pBackend->pSearchResults;
+					pBackend->iNbLastShownResults = pBackend->iNbSearchResults;
 					return FALSE;
 				}
 				else  // on a trop de resultats, on bache tout et on relance.
@@ -289,12 +294,13 @@ void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 	myData.pListing->iNbVisibleEntries += iNbEntries;
 	
 	cd_do_fill_listing_entries (myData.pListing);
+	g_print (" => %d elements\n", g_list_length (myData.pListing->pEntries));
 }
 
 
 void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 {
-	g_print ("%s (%s)\n", __func__, pBackend->cName);
+	g_print ("%s (%s, %d)\n", __func__, pBackend->cName, pBackend->iNbLastShownResults);
 	g_return_if_fail (myData.pListing != NULL);
 	if (pBackend->pLastShownResults == NULL)
 		return ;
@@ -306,9 +312,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 			break ;
 	}
 	if (e == NULL)
-	{
 		return ;
-	}
 	
 	GList *pLeftLink = NULL, *pRightLink = NULL;
 	
@@ -329,6 +333,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 	}
 	myData.pListing->iNbEntries -= i;
 	myData.pListing->iNbVisibleEntries -= j;
+	g_print ("iNbEntries <- %d\n", myData.pListing->iNbEntries);
 	
 	pRightLink = e;
 	if (pRightLink != NULL)
@@ -339,6 +344,9 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 		}
 		pRightLink->prev = pLeftLink;
 	}
+	if (pBackend->pLastShownResults == myData.pListing->pEntries)
+		myData.pListing->pEntries = pRightLink;
+	g_print (" => %d elements\n", g_list_length (myData.pListing->pEntries));
 	
 	pBackend->pLastShownResults = NULL;
 	pBackend->iNbLastShownResults = 0;
@@ -549,14 +557,19 @@ void cd_do_show_previous_listing (void)
 	
 	if (myData.pListingHistory == NULL)  // retour a la recherche principale.
 	{
+		cd_do_free_char_list (myData.pCharList);
+		myData.pCharList = NULL;
+		myData.iTextWidth = 0;
+		myData.iTextHeight = 0;
 		myData.iNbValidCaracters = 0;
-		cd_do_delete_invalid_caracters ();
 		
 		g_string_assign (myData.sCurrentText, myData.cSearchText);
 		g_free (myData.cSearchText);
 		myData.cSearchText = NULL;
 		
 		cd_do_load_pending_caracters ();
+		cd_do_launch_appearance_animation ();
+		myData.iNbValidCaracters = myData.sCurrentText->len;
 	}
 }
 

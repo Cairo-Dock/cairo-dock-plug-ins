@@ -73,6 +73,8 @@ void cd_do_open_session (void)
 	
 	// le main dock prend le focus.
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
+	//if (cairo_dock_get_desklet_by_Xid (myData.iPreviouslyActiveWindow))
+	//	myData.iPreviouslyActiveWindow = 0;
 	gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
 	cairo_dock_freeze_docks (TRUE);
 	

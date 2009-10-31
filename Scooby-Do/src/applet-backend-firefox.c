@@ -86,28 +86,26 @@ static gchar *_get_bookmarks_path (void)
 
 static gboolean init (void)
 {
-	gchar *cBookmarks = NULL;
 	s_cBookmarksFile = _get_bookmarks_path ();
 	if (s_cBookmarksFile == NULL)
 		return FALSE;
 	
-	g_print ("found bookmarks '%s'\n", cBookmarks);
+	g_print ("found bookmarks '%s'\n", s_cBookmarksFile);
 	
 	gsize length = 0;
-	g_file_get_contents (cBookmarks,
+	g_file_get_contents (s_cBookmarksFile,
 		&s_cBookmarksContent,
 		&length,
 		NULL);
 	if (s_cBookmarksContent == NULL)
 	{
-		g_free (cBookmarks);
+		g_free (s_cBookmarksFile);
+		s_cBookmarksFile = NULL;
 		return FALSE;
 	}
 	
-	s_cBookmarksFile = cBookmarks;
-	
 	// o nsurveille le fichier.
-	cairo_dock_fm_add_monitor_full (cBookmarks, FALSE, NULL, (CairoDockFMMonitorCallback) _on_file_event, NULL);
+	cairo_dock_fm_add_monitor_full (s_cBookmarksFile, FALSE, NULL, (CairoDockFMMonitorCallback) _on_file_event, NULL);
 	
 	return TRUE;
 }
@@ -391,7 +389,7 @@ void cd_do_register_firefox_backend (void)
 {
 	CDBackend *pBackend = g_new0 (CDBackend, 1);
 	pBackend->cName = "Files";
-	pBackend->bIsThreaded = TRUE;
+	pBackend->bIsThreaded = FALSE;
 	pBackend->init =(CDBackendInitFunc) init;
 	pBackend->stop = (CDBackendStopFunc) stop;
 	pBackend->search = (CDBackendSearchFunc) search;
