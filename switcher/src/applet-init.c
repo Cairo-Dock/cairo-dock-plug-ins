@@ -95,11 +95,6 @@ CD_APPLET_INIT_BEGIN
 	//\___________________ Dans le cas ou l'applet demarre au chargement de la session, le nombre de bureaux peut etre incorrect.
 	if (cairo_dock_is_loading ())
 		myData.iSidAutoRefresh = g_timeout_add_seconds (2, (GSourceFunc) cd_switcher_refresh_desktop_values, myApplet);
-	
-	if (myConfig.bMapWallpaper)
-	{
-		cd_switcher_load_desktop_bg_map_surface ();
-	}
 CD_APPLET_INIT_END
 
 
@@ -198,17 +193,6 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		
-		if (myConfig.bMapWallpaper)
-		{
-			if (myData.pDesktopBgMapSurface == NULL)
-				cd_switcher_load_desktop_bg_map_surface ();
-		}
-		else if (myData.pDesktopBgMapSurface != NULL)
-		{
-			cairo_surface_destroy (myData.pDesktopBgMapSurface);
-			myData.pDesktopBgMapSurface = NULL;
-		}
-		
 		cd_switcher_load_icons ();
 	}
 	else
@@ -217,6 +201,8 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			cd_switcher_load_desktop_bg_map_surface ();
 		}
+		if (myData.pDesktopBgMapSurface == NULL)
+			cd_switcher_load_default_map_surface ();
 		if (! myConfig.bCompactView)
 			cd_switcher_paint_icons ();
 	}

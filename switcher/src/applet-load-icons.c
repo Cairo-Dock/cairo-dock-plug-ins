@@ -66,6 +66,20 @@ static GList * _load_icons (void)
 void cd_switcher_load_icons (void)
 {
 	CD_APPLET_DELETE_MY_ICONS_LIST;
+	cairo_surface_destroy (myData.pDesktopBgMapSurface);
+	myData.pDesktopBgMapSurface = NULL;
+	cairo_surface_destroy (myData.pDefaultMapSurface);
+	myData.pDefaultMapSurface = NULL;
+	
+	if (myConfig.bMapWallpaper)
+	{
+		cd_switcher_load_desktop_bg_map_surface ();
+	}
+	if (myData.pDesktopBgMapSurface == NULL)
+	{
+		cd_switcher_load_default_map_surface ();
+	}
+	
 	if (myConfig.bCompactView)
 	{
 		if (myIcon->pSubDock != NULL)  // si on est passe de expanded a compact, le sous-dock vide reste.
@@ -77,9 +91,6 @@ void cd_switcher_load_icons (void)
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 			myDesklet->render_bounding_box = cd_switcher_draw_desktops_bounding_box;  // pour le picking du bureau clique.
 		}
-		cd_switcher_load_default_map_surface ();
-		
-		cd_message ("SWITCHER : chargement de l'icone Switcher sans sous-dock");
 	}
 	else
 	{
@@ -122,10 +133,9 @@ void cd_switcher_paint_icons (void)
 	}
 	if (pSurface == NULL)
 	{
-		cd_switcher_load_default_map_surface ();
 		pSurface = myData.pDefaultMapSurface;
-		fZoomX = 1. * iWidth / _iWidth;
-		fZoomY = 1. * iHeight / _iHeight;
+		fZoomX = (double)iWidth / _iWidth;
+		fZoomY = (double)iHeight / _iHeight;
 	}
 	
 	cairo_t *pIconContext;
@@ -149,14 +159,24 @@ void cd_switcher_paint_icons (void)
 void cd_switcher_load_desktop_bg_map_surface (void)
 {
 	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
+	cairo_surface_t *pBgSurface = cairo_dock_get_desktop_bg_surface (db);
+	g_print ("on a recuperer le fond d'ecran (%x)\n", pBgSurface);
 	
 	if (myData.pDesktopBgMapSurface != NULL)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);
-	
+	if (pBgSurface == NULL)
+	{
+		cd_warning ("couldn't get the wallpaper");
+		myData.pDesktopBgMapSurface = NULL;
+		cairo_dock_destroy_desktop_background (db);
+		return ;
+	}
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
+	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
-	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (db->pSurface,
+	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		pCairoContext,
 		g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
 		iWidth, iHeight);
