@@ -18,11 +18,12 @@
 */
 
 
-#ifndef __RSS_DRAW__
-#define  __RSS_DRAW__
+#ifndef __APPLET_DRAW__
+#define  __APPLET_DRAW__
 
 #include <cairo-dock.h>
 #include "applet-struct.h"
+
 
 char* ltrim( char* str, const char* t );
 
@@ -31,24 +32,15 @@ gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApple
 void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
 
 
-
 void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet);
-
-void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet);
-
-void cd_rssreader_update_title (CairoDockModuleInstance *myApplet);
-
 
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet);
 
-void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet);
-
-void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet);
-
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer);
+void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet/**, Icon *pIcon, CairoContainer *pContainer*/);
+
 
 #endif

@@ -32,14 +32,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	double couleur[4] = {0., 0., 0.5, 1.};
 	
 	// Section Configuration
-	myConfig.cUrl = CD_CONFIG_GET_STRING ("Configuration", "url_rss_feed");
-	myConfig.iLines = CD_CONFIG_GET_INTEGER ("Configuration", "lines_rss_feed");
-	myConfig.iTitleNum = CD_CONFIG_GET_INTEGER ("Configuration", "title_num_rss_feed");	
-	myConfig.cName = CD_CONFIG_GET_STRING ("Configuration", "name_rss_feed");
+	myConfig.cUrl 		= CD_CONFIG_GET_STRING ("Configuration", "url_rss_feed");
+	myConfig.iLines 	= CD_CONFIG_GET_INTEGER ("Configuration", "lines_rss_feed");
+	myConfig.iTitleNum 	= CD_CONFIG_GET_INTEGER ("Configuration", "title_num_rss_feed");	
+	myConfig.cName 		= CD_CONFIG_GET_STRING ("Configuration", "name_rss_feed");
 
 	// Réglages pour le titre
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "title_color", myConfig.fTitleTextColor, couleur);
 	myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Configuration", "title_font");
+	/*myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Configuration", "title_font");
 	myData.cTitleFontSize = g_strdup_printf ("%s", myConfig.cTitleFont);
 	myData.cTitleFontSize = strrchr(myData.cTitleFontSize, ' ');  // On enlève tout ce qui se trouve avant le dernier 'espace'
 	myData.cTitleFontSize = ltrim( myData.cTitleFontSize, " " );  // On supprime l'espace -> Il ne nous reste QUE la taille ;-)	
@@ -55,11 +56,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_strreverse (myConfig.cTitleFont);
 	myConfig.cTitleFont = strchr(myConfig.cTitleFont, ' ');
 	ltrim( myConfig.cTitleFont, " " );
-	g_strreverse (myConfig.cTitleFont);
+	g_strreverse (myConfig.cTitleFont);*/
 	
 	// Réglages pour le texte du flux
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text_color", myConfig.fTextColor, couleur);
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+	/*myConfig.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
 	myData.cFontSize = g_strdup_printf ("%s", myConfig.cFont);
 	myData.cFontSize = strrchr(myData.cFontSize, ' ');  // On enlève tout ce qui se trouve avant le dernier 'espace'
 	myData.cFontSize = ltrim( myData.cFontSize, " " );  // On supprime l'espace -> Il ne nous reste QUE la taille ;-)	
@@ -77,7 +79,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_strreverse (myConfig.cFont);
 	myConfig.cFont = strrchr(myConfig.cFont, ' ');
 	ltrim( myConfig.cFont, " " );
-	g_strreverse (myConfig.cFont);
+	g_strreverse (myConfig.cFont);*/
 	
 	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
 	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
@@ -114,14 +116,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSpaceBetweenLinesMulti = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines_multilines");
 	
 	// Other
-	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");	
-			
-	cd_debug ("RSSreader-debug : myConfig.cUrl = %s",myConfig.cUrl);
-	cd_debug ("RSSreader-debug : myConfig.cName = %s",myConfig.cName);
-	cd_debug ("RSSreader-debug : myConfig.iLines = %i",myConfig.iLines);
-	cd_debug ("RSSreader-debug : myConfig.iTitleNum = %i",myConfig.iTitleNum);
-	cd_debug ("RSSreader-debug : myConfig.iDialogsDuration = %i",myConfig.iDialogsDuration);
+	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");
 	
+	
+	myData.cTitleFontSize = g_strdup ("12");
+	myData.cFontSize = g_strdup ("12");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -135,8 +134,8 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cMessageNoUrl);
 	g_free (myConfig.cMessageNoUrl2);
 	g_free (myConfig.cMessageFailedToConnect);
-	// g_free (myConfig.cFont);  // Pourquoi çà plante ? :/
-	// g_free (myConfig.cTitleFont);  // Pourquoi çà plante ? :/
+	g_free (myConfig.cFont);  // Pourquoi çà plante ? :/
+	g_free (myConfig.cTitleFont);  // Pourquoi çà plante ? :/
 		
 CD_APPLET_RESET_CONFIG_END
 
@@ -155,6 +154,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	//g_free (myData.cTempText);  // Pourquoi çà plante ? :/
 	//g_free (myData.cFontSize);  // Pourquoi çà plante ? :/
 	//g_free (myData.cTitleFontSize);  // Pourquoi çà plante ? :/
-	
 	
 CD_APPLET_RESET_DATA_END

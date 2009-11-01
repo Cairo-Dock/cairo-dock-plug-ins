@@ -543,7 +543,7 @@ AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SWITCHER, "1.0.7")
+AC_SUBST(VERSION_SWITCHER, "2.1.0")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
@@ -552,7 +552,7 @@ AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")
 SYSTEM_MONITOR_PACKAGE="cd-system-monitor"
 AC_SUBST(GETTEXT_SYSTEM_MONITOR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SYSTEM_MONITOR, "1.0.0-beta")
+AC_SUBST(VERSION_SYSTEM_MONITOR, "1.0.0")
 AC_SUBST(PACKAGE_SYSTEM_MONITOR, "$SYSTEM_MONITOR_PACKAGE")
 
 AC_SUBST(system_monitordatadir, "${pkgdatadir}/System-monitor")

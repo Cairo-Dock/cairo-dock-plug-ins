@@ -160,7 +160,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 {
 	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
 	cairo_surface_t *pBgSurface = cairo_dock_get_desktop_bg_surface (db);
-	g_print ("on a recuperer le fond d'ecran (%x)\n", pBgSurface);
+	g_print ("on a recupere le fond d'ecran (%x)\n", pBgSurface);
 	
 	if (myData.pDesktopBgMapSurface != NULL)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);

@@ -22,8 +22,8 @@
 #include <cairo-dock.h>
 #include <math.h>
 #include "applet-struct.h"
+#include "applet-rss.h"
 #include "applet-draw.h"
-
 
 
 char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
@@ -47,23 +47,24 @@ gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApple
 	cairo_text_extents_t textExtents;  // -> textExtents.height et textExtents.width
 	double iRatioForRealFontSize = 1.5; // ratio pour avoir un texte à peu près à la bonne dimension		
 	
-	myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cCuttedLine	
+	///myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On stocke la ligne dans myData.cCuttedLine
+	myData.cCuttedLine = g_strdup (cLongLine);  // On stocke la ligne dans myData.cCuttedLine	
 	cairo_text_extents (myDrawContext, myData.cCuttedLine, &textExtents);  // on recupere les dimensions de la ligne de départ (pour info seulement)
 	int iTextWidth = (int)(textExtents.width * iRatioForRealFontSize);  // On lui applique le ratio effectué sur le texte	
 	
 	// Calcul du nombre de ligne à obtenir:
-	int iNbLines = (iTextWidth/iMaxWidth) + 1;
+	///int iNbLines = (iTextWidth/iMaxWidth) + 1;  // inutilise, et faux de toute maniere.
 	
 	// On compte le nombre de lettre 	
 	gint iNbLetters = strlen(myData.cCuttedLine);
 	
 	// On compte le nombre de mot
- 	gchar cCurrentLetter = {0};
+ 	gchar cCurrentLetter = '\0';
 	gint iNbWords = 1;
 	long i=0;	
 	for (i=0 ; i < iNbLetters ; i++)
 	{
-		cCurrentLetter = myData.cCuttedLine[i];				
+		cCurrentLetter = myData.cCuttedLine[i];
 		if (cCurrentLetter == ' ')
 			iNbWords++;
 	}
@@ -72,7 +73,7 @@ gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApple
 	myData.cTempText = g_strdup_printf ("");
 	
 	gchar **cWord = g_strsplit (myData.cCuttedLine," ",0);
-			
+	
 	do
 	{
 		myData.cCuttedLine = g_strdup_printf ("%s", cLongLine); // On réinitilise myData.cCuttedLine (utile pour la boucle)
@@ -121,33 +122,16 @@ void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWid
 	g_free (myData.cCuttedLine);
 }
 
-void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
-{	
-	if (myData.pTitleTask == NULL)
-	{		
-		myData.pTitleTask = cairo_dock_new_task (0,  // One shot task
-			(CairoDockGetDataAsyncFunc) cd_rssreader_upload_title,
-			(CairoDockUpdateSyncFunc) cd_rssreader_update_title,
-			myApplet);
-		cairo_dock_launch_task (myData.pTitleTask);
-	}
-	else
-		cd_debug ("RSSreader-debug : -----------------------------------------> TITLE TASK ALREADY RUNNING");
-}
 
 
-void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet)
+static void _get_title (CairoDockModuleInstance *myApplet)
 {	
-	GString *sCommand = g_string_new ("");		
+	gchar *cCommand = g_strdup_printf ("%s/rss_reader.sh %s 1 0", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl);
+	cd_debug ("RSSreader-debug : TITLE TASK ---------------------->  %s", cCommand);
 	
-	// g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s 1 0", myConfig.cUrl);
-	g_string_printf (sCommand, "%s/rss_reader.sh %s 1 0", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl);
-							
-	cd_debug ("RSSreader-debug : TITLE TASK ---------------------->  %s",sCommand->str);
-	
-	g_spawn_command_line_sync (sCommand->str, &myData.cTitleTaskBridge, NULL, NULL, NULL);  // myData.cTitleTaskBridge = cairo_dock_launch_command_sync (sCommand->str);
+	g_spawn_command_line_sync (cCommand, &myData.cTitleTaskBridge, NULL, NULL, NULL);  // myData.cTitleTaskBridge = cairo_dock_launch_command_sync (cCommand);
 	cd_debug ("RSSreader-debug : TITLE TASK ---------------> myData.cTitleTaskBridge = \"%s\"", myData.cTitleTaskBridge);
-	g_string_free (sCommand, TRUE);		
+	g_free (cCommand);		
 	
 	// On vérifie que la commande nous a renvoyé quelque chose de cohérent
 	if (myData.cTitleTaskBridge == NULL || strcmp(myData.cTitleTaskBridge, "") == 0)
@@ -156,67 +140,71 @@ void cd_rssreader_upload_title (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_rssreader_update_title (CairoDockModuleInstance *myApplet)
+static gboolean _update_title (CairoDockModuleInstance *myApplet)
 {
-	myConfig.cName = g_strdup_printf ("%s",*(g_strsplit(myData.cTitleTaskBridge, "\n", 0)) );   // On récupère le contenu de myData.cTaskBridge	
+	gchar *str = strchr (myData.cTitleTaskBridge, '\n');
+	if (str)
+		*str = '\0';
+	myConfig.cName = g_strdup (myData.cTitleTaskBridge);
+	///myConfig.cName = g_strdup_printf ("%s",*(g_strsplit(myData.cTitleTaskBridge, "\n", 0)) );   // On récupère le contenu de myData.cTaskBridge	
 	
-	if (strcmp(myConfig.cName, "") == 0)
-		myConfig.cName = g_strdup_printf ("%s", myConfig.cMessageNoTitle);	
+	///if (strcmp(myConfig.cName, "") == 0)
+	if (*myConfig.cName == '\0')
+		myConfig.cName = g_strdup (myConfig.cMessageNoTitle);	
 	
 	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,G_TYPE_STRING, "Configuration", "name_rss_feed", myConfig.cName,G_TYPE_INVALID);
 		
-	myData.pTitleTask = NULL;
+	///myData.pTitleTask = NULL;  // on la garde, on peut la reutiliser quand on veut, on la detruira a la fin.
+	return TRUE;
+}
+
+void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
+{	
+	if (myData.pTitleTask == NULL)
+	{		
+		myData.pTitleTask = cairo_dock_new_task (0,  // One shot task
+			(CairoDockGetDataAsyncFunc) _get_title,
+			(CairoDockUpdateSyncFunc) _update_title,
+			myApplet);
+		cairo_dock_launch_task (myData.pTitleTask);
+	}
+	else
+		cd_debug ("RSSreader-debug : -----------------------------------------> TITLE TASK ALREADY RUNNING");
 }
 
 
-void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
-{
-	if (myData.pTask == NULL) // la tache n'existe pas, on la cree et on la lance.
-	{
-		myData.pTask = cairo_dock_new_task (myConfig.iRefreshTime,
-		(CairoDockGetDataAsyncFunc) cd_rssreader_upload_feeds,
-		(CairoDockUpdateSyncFunc) cd_rssreader_update_feeds,
-		myApplet);
-		cairo_dock_launch_task (myData.pTask);
-	}
-	else // la tache existe, on la relance immediatement.
-	{
-		cairo_dock_relaunch_task_immediately (myData.pTask, -1); // le -1 c'est pour conserver la même fréquence.
-	}
-}
 
 
-void cd_rssreader_upload_feeds (CairoDockModuleInstance *myApplet)
+static void _get_feeds (CairoDockModuleInstance *myApplet)
 {		
-	if (myConfig.cUrl == NULL )
+	if (myConfig.cUrl == NULL)
 	{
 		myData.cTaskBridge = g_strdup_printf ("%s\n",myConfig.cMessageNoUrl);  // Le \n est important pour la suite
 		cd_debug ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"", myData.cTaskBridge);	
 	}
 	else
 	{
-		g_free (myData.cSingleFeedLine);
-		myData.cSingleFeedLine = NULL;		
+		///g_free (myData.cSingleFeedLine);  // ici on se contente de recuperer le flux.
+		///myData.cSingleFeedLine = NULL;		
 		
-		GString *sCommand = g_string_new ("");		
+		gchar *cCommand = g_strdup_printf ("%s/rss_reader.sh %s %i %i", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
 		
-		//~ g_string_printf (sCommand, "/usr/share/cairo-dock/plug-ins/RSSreader/rss_reader.sh %s %i %i", myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
-		g_string_printf (sCommand, "%s/rss_reader.sh %s %i %i", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
-								
-		cd_debug ("RSSreader-debug : TASK ---------------------->  %s",sCommand->str);
+		g_print("RSSreader-debug : TASK ---------------------->  %s\n", cCommand);
 		
-		g_spawn_command_line_sync (sCommand->str, &myData.cTaskBridge, NULL, NULL, NULL);  // myData.cTaskBridge = cairo_dock_launch_command_sync (sCommand->str);
-		cd_debug ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"", myData.cTaskBridge);
-		g_string_free (sCommand, TRUE);		
+		//g_spawn_command_line_sync (cCommand, &myData.cTaskBridge, NULL, NULL, NULL);
+		myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
+		g_print ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"^n", myData.cTaskBridge);
+		g_free (cCommand);		
 		
 		// On vérifie que la commande nous a renvoyé quelque chose de cohérent
-		if (myData.cTaskBridge == NULL || strcmp(myData.cTaskBridge, "") == 0)
-			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite	
+		if (myData.cTaskBridge == NULL || *myData.cTaskBridge == '\0')
+			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite
 	}	
 }
 
-void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
+static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 {
+	
 	myData.cAllFeedLines = g_strdup_printf ("%s",myData.cTaskBridge);  // On récupère le contenu de myData.cTaskBridge -> myData.cAllFeedLines nous servira pour les dialogues ;-)		
 	
 	// On vérifie le nombre de lignes reçues
@@ -305,23 +293,43 @@ void cd_rssreader_update_feeds (CairoDockModuleInstance *myApplet)
 			}
 		}
 	}
-	cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+	cd_applet_update_my_icon (myApplet);
+	return TRUE;
 }
+
+void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pTask == NULL) // la tache n'existe pas, on la cree et on la lance.
+	{
+		myData.pTask = cairo_dock_new_task (myConfig.iRefreshTime,
+			(CairoDockGetDataAsyncFunc) _get_feeds,
+			(CairoDockUpdateSyncFunc) _update_from_feeds,
+			myApplet);
+		cairo_dock_launch_task (myData.pTask);
+	}
+	else // la tache existe, on la relance immediatement.
+	{
+		cairo_dock_relaunch_task_immediately (myData.pTask, -1); // le -1 c'est pour conserver la même fréquence.
+	}
+}
+
 
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
+	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	cairo_save (myDrawContext); // On sauvegarde la position #1
 	
 	int iOffset = 2;
 	double iRatioForRealFontSize = 1.5;
-	myData.fLogoSize = myConfig.fLogoSize*atol(myData.cTitleFontSize);
+	//myData.fLogoSize = myConfig.fLogoSize*atol(myData.cTitleFontSize);
+	myData.fLogoSize = myConfig.fLogoSize*12;  /// en attendant.
 	
 	// On efface la surface cairo actuelle
 	cairo_dock_erase_cairo_context (myDrawContext);	
 	
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		CD_APPLET_START_DRAWING_MY_ICON;
+	///if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	///	CD_APPLET_START_DRAWING_MY_ICON;  // ca c'est pour dessiner en opengl, ici on fait tout en cairo.
 		
 	//\______ On commence le dessin en cairo:
 	
@@ -353,21 +361,21 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		if ( (myConfig.iBackgroundRadius - (myConfig.iBorderThickness/2.)) > 0)  // On a besoin d'un rayon
 		{		
 			cairo_dock_draw_rounded_rectangle (myDrawContext,
-						myConfig.iBackgroundRadius - (myConfig.iBorderThickness/2.), 0.,
-						iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness + 0.9,
-						iHeight- (myConfig.iBorderThickness*2) +0.9);   // Ne me demandez pas pourquoi ces 2 petits recalage avec 0.9 (sinon, la bordure ne touche pas à doite et en bas) :/			
+				myConfig.iBackgroundRadius - (myConfig.iBorderThickness/2.), 0.,
+				iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness + 0.9,
+				iHeight- (myConfig.iBorderThickness*2) +0.9);   // Ne me demandez pas pourquoi ces 2 petits recalage avec 0.9 (sinon, la bordure ne touche pas à doite et en bas) :/			
 		}
 		else  // Il ne faut pas de rayon
 		{
 			cairo_rectangle (myDrawContext, 0, 0,
-						iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness + 0.9 + (2*(myConfig.iBackgroundRadius - (myConfig.iBorderThickness/2.))),
-						iHeight- (myConfig.iBorderThickness*2) +0.9);   // Ne me demandez pas pourquoi ces 2 petits recalage avec 0.9 (sinon, la bordure ne touche pas à doite et en bas) :/
+				iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness + 0.9 + (2*(myConfig.iBackgroundRadius - (myConfig.iBorderThickness/2.))),
+				iHeight- (myConfig.iBorderThickness*2) +0.9);   // Ne me demandez pas pourquoi ces 2 petits recalage avec 0.9 (sinon, la bordure ne touche pas à doite et en bas) :/
 		}
 		cairo_fill (myDrawContext);
 		cairo_pattern_destroy (pGradationPattern);
 		cairo_restore (myDrawContext); // On restaure la position #2
 	}
-		
+	
 	// On scale le dessin pour respecter l'échelle du texte.... pourquoi ??? .....Bonne question :/
 	cairo_scale (myDrawContext, iRatioForRealFontSize, iRatioForRealFontSize);
 	
@@ -382,8 +390,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		if (myData.pLogoSurface != NULL)
 		{
 			cairo_set_source_surface (myDrawContext, myData.pLogoSurface,
-					iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/iRatioForRealFontSize),
-					iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/iRatioForRealFontSize));
+				iOffset + myConfig.iTitlePositionX + (myConfig.iBorderThickness/iRatioForRealFontSize),
+				iOffset + myConfig.iTitlePositionY + (myConfig.iBorderThickness/iRatioForRealFontSize));
 			cairo_paint (myDrawContext);
 			cairo_surface_destroy (myData.pLogoSurface);
 		}		
@@ -564,29 +572,31 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
-		CD_APPLET_FINISH_DRAWING_MY_ICON;
+		///CD_APPLET_FINISH_DRAWING_MY_ICON;  // aucune compmande opengl n'a ete utilisee, on se contente de transferer la surface cairo a OpenGL.
 		cairo_dock_update_icon_texture (myIcon);		
 	}
 }
 
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer)
+void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet/**, Icon *pIcon, CairoContainer *pContainer*/)  // l'icone et le container sont accessibles par myApplet.
 {
 	if (myDesklet)
 	{
 		// taille de la texture.
-		double fMaxScale = cairo_dock_get_max_scale (pContainer);
+		/**double fMaxScale = cairo_dock_get_max_scale (pContainer);
 		double fRatio = pContainer->fRatio;
 		int iWidth = (int) pIcon->fWidth / fRatio * fMaxScale;
-		int iHeight = (int) pIcon->fHeight / fRatio * fMaxScale;
+		int iHeight = (int) pIcon->fHeight / fRatio * fMaxScale;*/
+		int iWidth, iHeight;
+		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+		/**if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // pas la peine.
 		{
 			if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
 				return ;
-		}
+		}*/
 		cd_applet_draw_my_desklet (myApplet, iWidth, iHeight);		
 		
 		CD_APPLET_REDRAW_MY_ICON;
-	}	
+	}
 }

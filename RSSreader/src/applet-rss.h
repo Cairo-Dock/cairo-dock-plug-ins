@@ -18,20 +18,16 @@
 */
 
 
-#ifndef __APPLET_NOTIFICATIONS__
-#define  __APPLET_NOTIFICATIONS__
-
+#ifndef __APPLET_RSS__
+#define  __APPLET_RSS__
 
 #include <cairo-dock.h>
+#include "applet-struct.h"
 
 
-CD_APPLET_ON_CLICK_H
+gchar **cd_rssreader_cut_text_for_icon (CairoDockModuleInstance *myApplet, const gchar *cText);
 
-CD_APPLET_ON_MIDDLE_CLICK_H
-
-CD_APPLET_ON_DROP_DATA_H
-
-CD_APPLET_ON_BUILD_MENU_H
+gchar **cd_rssreader_cut_text_for_dialog (CairoDockModuleInstance *myApplet, const gchar *cText);
 
 
 #endif

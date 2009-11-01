@@ -74,8 +74,10 @@ struct _AppletData {
 	gchar *cLastFirstFeedLine;
 	gchar *cLastSecondFeedLine;
 	gchar *cTempText;
+	// shared memory.
 	gchar *cTaskBridge;
 	gchar *cTitleTaskBridge;
+	// end of shared memory.
 	gchar *cDialogMessage;
 		
 	gchar *cFontSize;

@@ -33,7 +33,7 @@ x position=0
 y position=0
 
 #b Is detached from the dock ?
-initially detached=true
+initially detached=false
 #l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
@@ -99,14 +99,6 @@ url_rss_feed=
 #i[1;30] Number of feed lines to display :
 lines_rss_feed=5
 
-#i[0;30] Title num :
-#{Allow you to skip some lines}
-title_num_rss_feed=1
-
-#s Specify a title :
-#{Title}
-name_rss_feed=No Title
-
 #P+ Title Font :
 #{Font to be used for the title}
 title_font=Sans Bold Italic 10
@@ -126,7 +118,7 @@ text_color=1.0;1.0;1.0;1.0
 #F[Behaviour;gtk-execute]
 frame_behav= 
 
-#I0[1;30] Refresh time :
+#I[1;30] Refresh time :
 #{In minutes.}
 refresh_time=5
 
@@ -135,21 +127,30 @@ refresh_time=5
 dialog_feed_changed=true
 
 #I[0;30] Duration of the info-bubbles :
-#{In seconds. Set to 0 for infinite time -> click on dialog to close.}
+#{In seconds. Set to 0 for infinite time (click on dialog to close it).}
 dialogs_duration=15
 
+#s Open the feed with the following program :
+#{Let empty to use the default one.}
+specific_web_browser= 
+
+
+#X[Extra]
+
+#i[0;30] Title num :
+#{Allow you to skip some lines}
+title_num_rss_feed=1
+
+#s Specify a title :
+#{Title}
+name_rss_feed=No Title
+
 #b Display the feeds lines in a dialog on left-clic even for desklet?
-#{By default, this option is deactivated}
-left_clic_for_desklet=false
+left_clic_for_desklet=true
 
 #i[0;30] MAX number of lines for each feed line :
 #{Set to 0 to display all the lines (default)}
 max_lines_for_feed_lines=0
-
-#s Specify the command to launch your web browser :
-#{Let empty to use the default one.}
-specific_web_browser= 
-
 
 
 #[gtk-dialog-info]
@@ -162,7 +163,7 @@ frame_logo=
 #{The default logo is the applet's icon}
 display_logo=true
 
-#e+[1;4] Logo size :
+#e+[.5;2;small;big] Logo size :
 #{Adjust to increase/decrease the logo size}
 logo_size=2
 

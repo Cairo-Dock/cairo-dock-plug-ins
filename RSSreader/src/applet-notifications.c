@@ -23,21 +23,25 @@
 #include <string.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-draw.h"
-
+#include "applet-rss.h"
+#include "applet-notifications.h"
 
 
 static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {		
-	GString *sCommand = g_string_new ("");		
+	/**GString *sCommand = g_string_new ("");		
 	g_string_printf (sCommand, "%s %s", myConfig.cSpecificWebBrowser, myConfig.cUrl);	
 	cd_debug ("RSSreader-debug : START_BROWSER---------------------->  sCommand = \"%s\"",sCommand->str);
 	g_spawn_command_line_async (sCommand->str, NULL);
-	g_string_free (sCommand, TRUE);
+	g_string_free (sCommand, TRUE);*/
+	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
+		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
+	else
+		cairo_dock_fm_launch_uri (myConfig.cUrl);
 }
 
-void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
+static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewURL)
 {
 	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On vérifie que l'élément glisser/copier commence bien par http
 	{
@@ -46,9 +50,10 @@ void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,G_TYPE_STRING, "Configuration", "url_rss_feed", myConfig.cUrl,G_TYPE_INVALID);  // On l'écrit dans le fichier de config
 		cd_rssreader_upload_title_TASK (myApplet);  // On cherche un titre (en général = la ligne 0 du flux) 
 		
-		myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		///myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		myData.cAllFeedLines = g_strdup (D_("Please wait ..."));
 		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
-		cd_applet_update_my_icon (myApplet, myIcon, myContainer);
+		cd_applet_update_my_icon (myApplet);
 
 		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
 	}
@@ -64,7 +69,7 @@ void _new_url_to_conf (CairoDockModuleInstance *myApplet, gchar *cNewURL)
 	}
 }
 
-void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	GtkClipboard *pClipBoardSelection = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);	
 	gchar *cEntry = gtk_clipboard_wait_for_text (pClipBoardSelection);
@@ -79,14 +84,26 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (! myDesklet || myConfig.bLeftClicForDesklet)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (myData.cAllFeedLines,
+		// on limite un peu la taille du dialogue.
+		gchar **lines = cd_rssreader_cut_text_for_dialog (myApplet, myData.cAllFeedLines);
+		
+		GString *sText = g_string_new ("");
+		int i;
+		for (i = 0; lines[i] != NULL; i ++)
+		{
+			g_string_append_printf (sText, "%s\n", lines[i]);
+		}
+		g_strfreev (lines);
+		
+		// on affiche tout.
+		cairo_dock_show_temporary_dialog_with_icon (sText->str,
 			myIcon,
 			myContainer,
 			myConfig.iDialogsDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		g_string_free (sText, TRUE);
 	}
 CD_APPLET_ON_CLICK_END
-
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
@@ -97,12 +114,10 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_debug ("RSSreader-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);	
-	_new_url_to_conf (myApplet, (char *)CD_APPLET_RECEIVED_DATA);
+	_new_url_to_conf (myApplet, CD_APPLET_RECEIVED_DATA);
 CD_APPLET_ON_DROP_DATA_END
-
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.

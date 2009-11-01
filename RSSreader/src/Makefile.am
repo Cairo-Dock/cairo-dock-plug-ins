@@ -13,6 +13,8 @@ libcd_RSSreader_la_SOURCES = \
 	applet-notifications.h\
 	applet-draw.c\
 	applet-draw.h\
+	applet-rss.c\
+	applet-rss.h\
 	applet-struct.h
 
 
