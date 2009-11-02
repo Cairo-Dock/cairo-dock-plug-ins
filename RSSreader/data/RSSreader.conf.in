@@ -8,7 +8,8 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
-name = RSSreader
+#{Let empty to use the title of the RSS feed.}
+name = 
 
 #S+ Image's filename :
 #{Let empty to use the default one.}
@@ -125,6 +126,9 @@ refresh_time=5
 #b Display an info-bubble when a feed has changed?
 #{By default, this option is activated}
 dialog_feed_changed=true
+
+#a Animation of the icon when a feed has changed :
+animation_feed_changed=rotate
 
 #I[0;30] Duration of the info-bubbles :
 #{In seconds. Set to 0 for infinite time (click on dialog to close it).}

@@ -83,6 +83,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
 	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
+	myConfig.cAnimationIfFeedChanged = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
 	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
 	myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
 	myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");
@@ -117,7 +118,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	// Other
 	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");
-	
+	myConfig.bWriteFeedName = (myIcon->cName == NULL);
 	
 	myData.cTitleFontSize = g_strdup ("12");
 	myData.cFontSize = g_strdup ("12");

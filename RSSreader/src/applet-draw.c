@@ -123,7 +123,7 @@ void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWid
 }
 
 
-
+/**
 static void _get_title (CairoDockModuleInstance *myApplet)
 {	
 	gchar *cCommand = g_strdup_printf ("%s/rss_reader.sh %s 1 0", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl);
@@ -171,156 +171,106 @@ void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
 	else
 		cd_debug ("RSSreader-debug : -----------------------------------------> TITLE TASK ALREADY RUNNING");
 }
-
-
-
-
-static void _get_feeds (CairoDockModuleInstance *myApplet)
-{		
-	if (myConfig.cUrl == NULL)
-	{
-		myData.cTaskBridge = g_strdup_printf ("%s\n",myConfig.cMessageNoUrl);  // Le \n est important pour la suite
-		cd_debug ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"", myData.cTaskBridge);	
-	}
-	else
-	{
-		///g_free (myData.cSingleFeedLine);  // ici on se contente de recuperer le flux.
-		///myData.cSingleFeedLine = NULL;		
-		
-		gchar *cCommand = g_strdup_printf ("%s/rss_reader.sh %s %i %i", MY_APPLET_SHARE_DATA_DIR, myConfig.cUrl, myConfig.iLines, myConfig.iTitleNum);
-		
-		g_print("RSSreader-debug : TASK ---------------------->  %s\n", cCommand);
-		
-		//g_spawn_command_line_sync (cCommand, &myData.cTaskBridge, NULL, NULL, NULL);
-		myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
-		g_print ("RSSreader-debug : TASK ---------------> myData.cTaskBridge = \"%s\"^n", myData.cTaskBridge);
-		g_free (cCommand);		
-		
-		// On vérifie que la commande nous a renvoyé quelque chose de cohérent
-		if (myData.cTaskBridge == NULL || *myData.cTaskBridge == '\0')
-			myData.cTaskBridge = g_strdup_printf ("%s\n", myConfig.cMessageFailedToConnect);  // Le \n est important pour la suite
-	}	
-}
-
-static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
-{
-	
-	myData.cAllFeedLines = g_strdup_printf ("%s",myData.cTaskBridge);  // On récupère le contenu de myData.cTaskBridge -> myData.cAllFeedLines nous servira pour les dialogues ;-)		
-	
-	// On vérifie le nombre de lignes reçues
- 	gchar cCurrentLetter = {0};
-	gint iNbLines = 1;
-	long i=0;
-	for (i=0 ; i < strlen(myData.cAllFeedLines) ; i++)
-	{
-		cCurrentLetter = myData.cAllFeedLines[i];				
-		if (cCurrentLetter == '\n')
-			iNbLines++;
-	}
-	
-	// On sépare toutes les lignes reçues
-	if (strcmp(myData.cAllFeedLines, g_strdup_printf ("%s\n", myConfig.cMessageNoUrl) ) == 0) // Si strcmp renvoie 0 (chaînes identiques)
-		myData.cAllFeedLines = g_strdup_printf ("%s\n%s", myConfig.cMessageNoUrl, myConfig.cMessageNoUrl2);
-	
-	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
-	
-	i = 0;
-	do
-	{
-		cd_debug ("RSSreader-debug : UPDATE ---------------> myData.cSingleFeedLine[%i] \"%s\"",i ,myData.cSingleFeedLine[i]);
-		i++;
-	} while (myData.cSingleFeedLine[i] != NULL);
-	
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Current first line = \"%s\"",myData.cSingleFeedLine[0]);
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Last first line    = \"%s\"",myData.cLastFirstFeedLine);
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Current second line = \"%s\"",myData.cSingleFeedLine[1]);
-	cd_debug ("RSSreader-debug : UPDATE ---------------> Last second line    = \"%s\"",myData.cLastSecondFeedLine);	
-	
-	
-	// On teste s'il y a eu une modification depuis le dernier update
-	if (myData.cLastFirstFeedLine == NULL)
-	{
-		myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[0]); // On mémorise pour le prochain update
-		if (myData.cSingleFeedLine[1] != NULL)
-			myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[1]); // On mémorise pour le prochain update
-		else
-			myData.cLastSecondFeedLine = NULL;
-		cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  1st START !");
-	}
-	else
-	{
-		if (strcmp(myData.cSingleFeedLine[0], myData.cLastFirstFeedLine) != 0 || strcmp(myData.cSingleFeedLine[1], myData.cLastSecondFeedLine) != 0) // On vérifie aussi la 2nd ligne car la première peut être le titre
-		{
-			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been modified !");	
-			cairo_dock_remove_dialog_if_any (myIcon);			
-			
-			myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("This RSS feed has been modified...") );
-			
-			// Si modif ET si myConfig.bDialogIfFeedChanged est vrai, on affiche une bulle de dialogue pour le signaler
-			if (myConfig.bDialogIfFeedChanged)
-			{
-				cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
-					myIcon,
-					myContainer,
-					myConfig.iDialogsDuration,
-					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-			}
-			
-			myData.cLastFirstFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[0]); // On mémorise pour le prochain update
-			
-			if (myData.cSingleFeedLine[1] != NULL)
-				myData.cLastSecondFeedLine = g_strdup_printf ("%s", myData.cSingleFeedLine[1]); // On mémorise pour le prochain update
-			else
-				myData.cLastSecondFeedLine = NULL;
-			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  Feed has been stored for next update !");				
-		}
-		else
-		{
-			cd_debug ("RSSreader-debug : CONTROL MODIFICATION --------------->  No modification.");
-			if (myData.bUpdateIsManual)  // L'update a été manuel -> On affiche donc un dialogue même s'il n'y a pas eu de changement
-			{				
-				cairo_dock_remove_dialog_if_any (myIcon);
-				
-				myData.cDialogMessage = g_strdup_printf ("\"%s\"\n%s",myConfig.cName, D_("No modification"));				
-				// On signale tout de même qu'il n'y a pas de changement
-				cairo_dock_show_temporary_dialog_with_icon (myData.cDialogMessage,
-					myIcon,
-					myContainer,
-					2000, // Suffisant vu que la MàJ est manuelle
-					MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-					
-				myData.bUpdateIsManual = FALSE;				
-			}
-		}
-	}
-	cd_applet_update_my_icon (myApplet);
-	return TRUE;
-}
-
-void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
-{
-	if (myData.pTask == NULL) // la tache n'existe pas, on la cree et on la lance.
-	{
-		myData.pTask = cairo_dock_new_task (myConfig.iRefreshTime,
-			(CairoDockGetDataAsyncFunc) _get_feeds,
-			(CairoDockUpdateSyncFunc) _update_from_feeds,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
-	}
-	else // la tache existe, on la relance immediatement.
-	{
-		cairo_dock_relaunch_task_immediately (myData.pTask, -1); // le -1 c'est pour conserver la même fréquence.
-	}
-}
-
+*/
 
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
 	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	cairo_save (myDrawContext); // On sauvegarde la position #1
+	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	
-	int iOffset = 2;
+	// On efface la surface cairo actuelle
+	cairo_dock_erase_cairo_context (myDrawContext);	
+	
+	// dessin du fond (optionnel).
+	if (myConfig.bDisplayBackground)
+	{
+		cairo_save (myDrawContext); // On sauvegarde la position #2
+		cairo_translate (myDrawContext,
+				.5*myConfig.iBorderThickness,
+				.5*myConfig.iBorderThickness);		
+		cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
+			0.,
+			0.,
+			iHeight);
+		cairo_pattern_add_color_stop_rgba (pGradationPattern,
+			0.,
+			myConfig.fBackgroundColor1[0],
+			myConfig.fBackgroundColor1[1],
+			myConfig.fBackgroundColor1[2],
+			myConfig.fBackgroundColor1[3]);
+		cairo_pattern_add_color_stop_rgba (pGradationPattern,
+			1.,
+			myConfig.fBackgroundColor2[0],
+			myConfig.fBackgroundColor2[1],
+			myConfig.fBackgroundColor2[2],
+			myConfig.fBackgroundColor2[3]);
+		cairo_set_source (myDrawContext, pGradationPattern);
+		
+		if (myConfig.iBackgroundRadius != 0)  // On a besoin d'un rayon
+		{		
+			cairo_dock_draw_rounded_rectangle (myDrawContext,
+				myConfig.iBackgroundRadius,
+				0.,
+				iWidth - myConfig.iBorderThickness - 2 * myConfig.iBackgroundRadius,
+				iHeight - myConfig.iBorderThickness);			
+		}
+		else  // Il ne faut pas de rayon
+		{
+			cairo_rectangle (myDrawContext,
+				0., 0.,
+				iWidth - myConfig.iBorderThickness,
+				iHeight - myConfig.iBorderThickness);
+		}
+		cairo_fill (myDrawContext);
+		cairo_pattern_destroy (pGradationPattern);
+		cairo_restore (myDrawContext); // On restaure la position #2
+	}
+	
+	
+	// dessin du nom du flux.
+	if (myData.pItemList && myData.pItemList[0].cTitle)
+	{
+		PangoFontDescription *fd = pango_font_description_from_string (myConfig.cTitleFont);
+		pango_layout_set_font_description (pLayout, fd);
+		int iSize = pango_font_description_get_size (fd);
+		if (!pango_font_description_get_size_is_absolute (fd))
+			iSize /= PANGO_SCALE;
+		if (iSize == 0)
+			iSize = 16;
+		
+		
+		
+		
+		
+		pango_font_description_free (fd);
+		
+		// dessin des lignes.
+		fd = pango_font_description_from_string (myConfig.cFont);
+		pango_layout_set_font_description (pLayout, fd);
+		pango_font_description_free (fd);
+		
+		CDRssItem *pItem;
+		int i;
+		for (i = 0; i < myData.iNbItems; i ++)
+		{
+			pItem = &myData.pItemList[i];
+			if (pItem->cTitle == NULL)
+				continue;
+			
+			
+		}
+		
+		g_object_unref (pLayout);
+	}
+	
+	// dessin du cadre (optionnel.
+	
+	
+	
+	
+	/*int iOffset = 2;
 	double iRatioForRealFontSize = 1.5;
 	//myData.fLogoSize = myConfig.fLogoSize*atol(myData.cTitleFontSize);
 	myData.fLogoSize = myConfig.fLogoSize*12;  /// en attendant.
@@ -569,7 +519,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		cairo_stroke (myDrawContext);
 		cairo_restore (myDrawContext); // On restaure la position #4
 	}
-		
+	*/
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
 		///CD_APPLET_FINISH_DRAWING_MY_ICON;  // aucune compmande opengl n'a ete utilisee, on se contente de transferer la surface cairo a OpenGL.

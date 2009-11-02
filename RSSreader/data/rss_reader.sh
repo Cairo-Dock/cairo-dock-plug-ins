@@ -44,13 +44,12 @@ else
 	fi
 
 	curl -s --connect-timeout 300 $URL |\
-	sed -e 's/<\/title>/\n/g' |\
-	grep -o '<title>.*' |\
-	sed -e 's/<title>//' |\
+	sed "s/<\/title>/\n/g ; s/<\/description>/\n/g ; s/<\/link>/\n/g" |\
+	sed "s/<title>/\n<title>/g ; s/<description>/\n<description>/g ; s/<link>/\n<link>/g" |\
+	grep -E "title|description|link" |\
 	sed -e 's/<\!\[CDATA\[//' |\
 	sed -e 's/\]\]>//' |\
-	head -n $(($LINES + $TITLE_NUM)) |\
-	tail -n $(($LINES))
+	head -n $((3*$LINES+3))
 fi
 
 exit

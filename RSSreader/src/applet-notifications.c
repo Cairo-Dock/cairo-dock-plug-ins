@@ -46,15 +46,23 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On vérifie que l'élément glisser/copier commence bien par http
 	{
 		cd_debug ("RSSreader-debug : This seems to be a valid URL -> Let's continue...");
-		myConfig.cUrl = g_strdup_printf ("%s", cNewURL);  // On modifie la variable de l'URL
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,G_TYPE_STRING, "Configuration", "url_rss_feed", myConfig.cUrl,G_TYPE_INVALID);  // On l'écrit dans le fichier de config
-		cd_rssreader_upload_title_TASK (myApplet);  // On cherche un titre (en général = la ligne 0 du flux) 
+		// on definit la nouvelle URL en conf.
+		g_free (myConfig.cUrl);
+		myConfig.cUrl = g_strdup (cNewURL);
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING,
+			"Configuration",
+			"url_rss_feed",
+			myConfig.cUrl,
+			G_TYPE_INVALID);  // On l'écrit dans le fichier de config
 		
-		///myData.cAllFeedLines = g_strdup_printf ("%s", D_("Please wait ..."));
+		// on recupere le nouveau flux.
+		///cd_rssreader_upload_title_TASK (myApplet);  // On cherche un titre (en général = la ligne 0 du flux)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);  // pour mettre a jour le titre par la meme occasion.
 		myData.cAllFeedLines = g_strdup (D_("Please wait ..."));
 		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
 		cd_applet_update_my_icon (myApplet);
-
+		
 		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
 	}
 	else
@@ -84,18 +92,24 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (! myDesklet || myConfig.bLeftClicForDesklet)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		// on limite un peu la taille du dialogue.
-		gchar **lines = cd_rssreader_cut_text_for_dialog (myApplet, myData.cAllFeedLines);
 		
+		/// TODO : arriver a un dialogue remplacant completement l'utilisation du browser :
+		/// title + link + description
+		/// je pensais a un widget GTK a mettre dans le dialogue, et peut-etre un expander pour les descriptions.
+		/// aussi, il faudrait couper les lignes pour éviter que le dialgue soit immense en largeur.
+		
+		/// pour le moment c'est juste les titres, je n'ai rien ajoute ;-)
 		GString *sText = g_string_new ("");
+		CDRssItem *pItem;
 		int i;
-		for (i = 0; lines[i] != NULL; i ++)
+		for (i = 0; i < myData.iNbItems; i ++)
 		{
-			g_string_append_printf (sText, "%s\n", lines[i]);
+			pItem = &myData.pItemList[i];
+			if (pItem->cTitle == NULL)
+				continue;
+			
+			g_string_append_printf (sText, "%s\n", pItem->cTitle);
 		}
-		g_strfreev (lines);
-		
-		// on affiche tout.
 		cairo_dock_show_temporary_dialog_with_icon (sText->str,
 			myIcon,
 			myContainer,

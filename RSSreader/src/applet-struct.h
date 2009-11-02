@@ -27,6 +27,7 @@
 struct _AppletConfig {
 	gchar *cSpecificWebBrowser;
 	gboolean bDialogIfFeedChanged;
+	gchar *cAnimationIfFeedChanged;
 	gboolean bLeftClicForDesklet;
 	gboolean bDisplayLogo;
 	gboolean bDisplayBackground;
@@ -61,7 +62,17 @@ struct _AppletConfig {
 	gchar *cTitleFont;
 	gchar *cLogoPath;
 	gdouble fLogoSize;
+	
+	gboolean bWriteFeedName;
 	} ;
+
+typedef struct _CDRssItem {
+	gchar *cTitle;
+	gchar *cCutTitle;
+	gchar *cDescription;
+	gchar *cLink;
+	gchar *cImage;  // pas utilise pour l'instant.
+	} CDRssItem ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
@@ -98,6 +109,9 @@ struct _AppletData {
 	gboolean bIsSameLine;
 	gboolean bMessageNoUrl;
 	
+	CDRssItem *pItemList;
+	gint iNbItems;
+	gchar *PrevFirstTitle;
 	} ;
 
 
