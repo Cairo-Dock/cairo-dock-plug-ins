@@ -28,6 +28,8 @@
 #include "applet-backend-files.h"
 #include "applet-backend-web.h"
 #include "applet-backend-command.h"
+#include "applet-backend-firefox.h"
+#include "applet-backend-recent.h"
 #include "applet-init.h"
 
 
