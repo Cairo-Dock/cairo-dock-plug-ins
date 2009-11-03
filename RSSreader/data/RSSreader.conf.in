@@ -85,8 +85,6 @@ fg desklet =
 fg alpha = 1
 
 
-
-
 #[gtk-preferences]
 [Configuration]
 
@@ -100,21 +98,6 @@ url_rss_feed=
 #i[1;30] Number of feed lines to display :
 lines_rss_feed=5
 
-#P+ Title Font :
-#{Font to be used for the title}
-title_font=Sans Bold Italic 10
-
-#C+ Title Text color :
-#{Color to be used for the title}
-title_color=1.0;1.0;0.0;1.0
-
-#P+ Feed lines Font :
-#{Font to be used for the feed lines}
-font=Sans 7
-
-#C+ Feed Lines color :
-#{Color to be used for the feed lines}
-text_color=1.0;1.0;1.0;1.0
 
 #F[Behaviour;gtk-execute]
 frame_behav= 
@@ -127,12 +110,12 @@ refresh_time=5
 #{By default, this option is activated}
 dialog_feed_changed=true
 
-#a Animation of the icon when a feed has changed :
-animation_feed_changed=rotate
-
 #I[0;30] Duration of the info-bubbles :
 #{In seconds. Set to 0 for infinite time (click on dialog to close it).}
 dialogs_duration=15
+
+#a Animation of the icon when a feed has changed :
+animation_feed_changed=rotate
 
 #s Open the feed with the following program :
 #{Let empty to use the default one.}
@@ -145,13 +128,6 @@ specific_web_browser=
 #{Allow you to skip some lines}
 title_num_rss_feed=1
 
-#s Specify a title :
-#{Title}
-name_rss_feed=No Title
-
-#b Display the feeds lines in a dialog on left-clic even for desklet?
-left_clic_for_desklet=true
-
 #i[0;30] MAX number of lines for each feed line :
 #{Set to 0 to display all the lines (default)}
 max_lines_for_feed_lines=0
@@ -159,6 +135,35 @@ max_lines_for_feed_lines=0
 
 #[gtk-dialog-info]
 [Appearance]
+
+#F[Test;gtk-italic]
+text = 
+
+#P+ Title font :
+#{Font to be used for the title}
+title_font=Sans Bold Italic 10
+
+#C+ Title color :
+#{Color to be used for the title}
+title_color=1.0;1.0;0.0;1.0
+
+#P+ Feed lines font :
+#{Font to be used for the feed lines}
+font=Sans 7
+
+#C+ Feed lines color :
+#{Color to be used for the feed lines}
+text_color=1.0;1.0;1.0;1.0
+
+#I[0;48] Left margin for the title:
+title_margin=0
+
+#I[0;48] Left margin for the feed lines :
+text_margin=0
+
+#i[0;24] Space between 2 feed lines :
+space_between_feed_lines=5
+
 
 #F[Logo;gtk-execute]
 frame_logo= 
@@ -179,49 +184,21 @@ frame_background=
 display_background=true
 
 #C+ Background first color :
-#{Background color 1}
+#{first color of the gradation}
 background_color1=0.2;0.2;0.2;1.0
 
 #C+ Background second color :
-#{Background color 2}
+#{second color of the gradation}
 background_color2=0.7;0.7;0.7;0.8
 
 #i[0;50] Background radius corner:
 #{Set the radius corner to 0 for no radius}
 background_radius=15
 
-#i[0;20] Border thickness :
+#i[0;10] Border thickness :
 #{Set the thickness to 0 for no border}
 border_thickness=2
 
 #C+ Border color :
 #{Border color}
 border_color=0.;0.;0.;1.;
-
-#F[Text position;gtk-execute]
-frame_text= 
-
-#i[-2048;2048] Modify the title's position (x ; y) :
-#{Title position x}
-title_position_x=0
-
-#i[-2048;2048] ...
-#{Title position y}
-title_position_y=0
-
-#i[-2048;2048] Modify the feed lines position (x ; y) :
-#{Feed lines position x}
-text_position_x=0
-
-#i[-2048;2048] ...
-#{Feed lines position y}
-text_position_y=0
-
-#i[-64;64] Increase/Decrease space between 2 feed lines :
-#{Default space between lines is set to 0}
-space_between_feed_lines=0
-
-#i[-64;64] Increase/Decrease space between 2 lines in case of multi-lines:
-#{Default space between lines is set to 0}
-space_between_lines_multilines=0
-

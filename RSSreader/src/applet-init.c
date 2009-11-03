@@ -64,8 +64,11 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	// On met un message d'attente.
-	myData.cAllFeedLines = g_strdup (D_("Retrieving data ..."));
-	myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
+	//myData.cAllFeedLines = g_strdup (D_("Retrieving data ..."));
+	//myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
+	myData.pItemList = g_new0 (CDRssItem, 2);
+	myData.pItemList[0].cTitle = g_strdup (D_("Retrieving data ..."));
+	myData.iNbItems = 1;
 	
 	// on lance la tache periodique.
 	cd_rssreader_upload_feeds_TASK (myApplet);
@@ -108,6 +111,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		myData.fLogoSize = -1;  // pour recharger le logo.
 		// on remplace le texte actuel par un message d'attente.
 		myData.bUpdateIsManual = FALSE;
 		myData.cLastFirstFeedLine = NULL;

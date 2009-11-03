@@ -177,8 +177,8 @@ void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet)
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
 	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
-	cairo_save (myDrawContext); // On sauvegarde la position #1
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
+	PangoRectangle ink, log;
 	
 	// On efface la surface cairo actuelle
 	cairo_dock_erase_cairo_context (myDrawContext);	
@@ -225,49 +225,129 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		}
 		cairo_fill (myDrawContext);
 		cairo_pattern_destroy (pGradationPattern);
-		cairo_restore (myDrawContext); // On restaure la position #2
+		cairo_restore (myDrawContext);  // On restaure la position #2
 	}
 	
+	int iMargin = .5 * myConfig.iBorderThickness + (1. - sqrt (2) / 2) * myConfig.iBackgroundRadius;  // marge a gauche et au-dessus.
+	double fCurrentY = 0.;  // position de la ligne courante.
 	
-	// dessin du nom du flux.
-	if (myData.pItemList && myData.pItemList[0].cTitle)
+	// On affiche le logo si besoin
+	PangoFontDescription *fd = pango_font_description_from_string (myConfig.cTitleFont);
+	pango_layout_set_font_description (pLayout, fd);
+	gboolean bLogoIsOn = FALSE;  // utile pour décaler le texte du titre
+	if (myConfig.bDisplayLogo)
 	{
-		PangoFontDescription *fd = pango_font_description_from_string (myConfig.cTitleFont);
-		pango_layout_set_font_description (pLayout, fd);
+		// on recupere la taille du titre.
 		int iSize = pango_font_description_get_size (fd);
 		if (!pango_font_description_get_size_is_absolute (fd))
 			iSize /= PANGO_SCALE;
 		if (iSize == 0)
 			iSize = 16;
 		
+		// on en deduit la taille du logo.
+		double fLogoSize = myConfig.fLogoSize * iSize;
 		
+		// on cree la surface du logo si necessaire.
+		if (myData.fLogoSize != iSize || myData.pLogoSurface == NULL)
+		{
+			cairo_surface_destroy (myData.pLogoSurface);
+			myData.fLogoSize = fLogoSize;
+			myData.pLogoSurface = cairo_dock_create_surface_for_icon (myConfig.cLogoPath,
+				myDrawContext,
+				fLogoSize,
+				fLogoSize);
+		}
 		
+		// on affiche le logo.
+		if (myData.pLogoSurface != NULL)
+		{
+			bLogoIsOn = TRUE;
+			cairo_set_source_surface (myDrawContext,
+			myData.pLogoSurface,
+				iMargin + myConfig.iTitleMargin,
+				iMargin);
+			cairo_paint (myDrawContext);
+		}		
+	}
+	pango_font_description_free (fd);
+	
+	// dessin du nom du flux.
+	if (myData.pItemList && myData.pItemList[0].cTitle)
+	{
+		pango_layout_set_text (pLayout, myData.pItemList[0].cTitle, -1);
+		pango_layout_get_pixel_extents (pLayout, &ink, &log);
 		
+		cairo_set_source_rgba (myDrawContext, myConfig.fTitleTextColor[0], myConfig.fTitleTextColor[1], myConfig.fTitleTextColor[2], myConfig.fTitleTextColor[3]);	
 		
-		pango_font_description_free (fd);
+		cairo_move_to (myDrawContext,
+			iMargin + myConfig.iTitleMargin + (bLogoIsOn ? myData.fLogoSize + 5 : 0),  // 5 pixels d'ecart entre le logo et le texte.
+			iMargin + (bLogoIsOn ? MAX (0, (myData.fLogoSize - log.height)/2) : 0));
+		pango_cairo_show_layout (myDrawContext, pLayout);
+		
+		fCurrentY = iMargin + MAX (log.height, (bLogoIsOn ? myData.fLogoSize : 0)) + myConfig.iSpaceBetweenFeedLines;
 		
 		// dessin des lignes.
 		fd = pango_font_description_from_string (myConfig.cFont);
 		pango_layout_set_font_description (pLayout, fd);
 		pango_font_description_free (fd);
 		
+		cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);	
+		
 		CDRssItem *pItem;
 		int i;
-		for (i = 0; i < myData.iNbItems; i ++)
+		for (i = 1; i < myData.iNbItems; i ++)
 		{
 			pItem = &myData.pItemList[i];
 			if (pItem->cTitle == NULL)
 				continue;
 			
+			gchar *cLine = g_strdup (pItem->cTitle);
+			cd_rssreader_cut_line (cLine, pLayout, iWidth - myConfig.iBorderThickness - iMargin - myConfig.iTextMargin);
 			
+			pango_layout_set_text (pLayout, cLine, -1);
+			pango_layout_get_pixel_extents (pLayout, &ink, &log);
+			g_free (cLine);
+			
+			cairo_move_to (myDrawContext,
+				iMargin + myConfig.iTextMargin,
+				fCurrentY);
+			pango_cairo_show_layout (myDrawContext, pLayout);
+			
+			fCurrentY += log.height + myConfig.iSpaceBetweenFeedLines;
+			g_print ("fCurrentY <- %.2f\n", fCurrentY);
 		}
-		
-		g_object_unref (pLayout);
 	}
 	
-	// dessin du cadre (optionnel.
+	// dessin du cadre (optionnel).
+	if (myConfig.bDisplayBackground)
+	{
+		cairo_save (myDrawContext);  // On sauvegarde la position #5
+		cairo_set_source_rgba (myDrawContext,
+			myConfig.fBorderColor[0],
+			myConfig.fBorderColor[1],
+			myConfig.fBorderColor[2],
+			myConfig.fBorderColor[3]);
+		cairo_set_line_width (myDrawContext, myConfig.iBorderThickness);
+		cairo_translate (myDrawContext,
+			.5*myConfig.iBorderThickness,
+			.5*myConfig.iBorderThickness);
+		cairo_dock_draw_rounded_rectangle (myDrawContext,
+			myConfig.iBackgroundRadius,
+			0.,
+			iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness,
+			iHeight - myConfig.iBorderThickness);
+		cairo_stroke (myDrawContext);
+		cairo_restore (myDrawContext);  // On restaure la position #4
+	}
 	
+	g_object_unref (pLayout);
 	
+	// on met a jour la texture OpenGL.
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	{
+		///CD_APPLET_FINISH_DRAWING_MY_ICON;  // aucune compmande opengl n'a ete utilisee, on se contente de transferer la surface cairo a OpenGL.
+		cairo_dock_update_icon_texture (myIcon);		
+	}
 	
 	
 	/*int iOffset = 2;
@@ -502,29 +582,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			}
 		}
 	}
-	
 	cairo_restore (myDrawContext); // On restaure la position #1
-	
-	// Bordure pour le Background (optionnel)
-	if (myConfig.bDisplayBackground)
-	{
-		cairo_save (myDrawContext); // On sauvegarde la position #5
-		cairo_set_source_rgba (myDrawContext, myConfig.fBorderColor[0], myConfig.fBorderColor[1], myConfig.fBorderColor[2], myConfig.fBorderColor[3]);
-		cairo_set_line_width(myDrawContext, myConfig.iBorderThickness);
-		cairo_translate (myDrawContext, myConfig.iBorderThickness/1.7, myConfig.iBorderThickness/1.7);  // Ne me demandez pas pourquoi ce /1.7 :/
-		cairo_dock_draw_rounded_rectangle (myDrawContext,
-					myConfig.iBackgroundRadius, 0.,
-					iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness,
-					iHeight- myConfig.iBorderThickness);
-		cairo_stroke (myDrawContext);
-		cairo_restore (myDrawContext); // On restaure la position #4
-	}
 	*/
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-	{
-		///CD_APPLET_FINISH_DRAWING_MY_ICON;  // aucune compmande opengl n'a ete utilisee, on se contente de transferer la surface cairo a OpenGL.
-		cairo_dock_update_icon_texture (myIcon);		
-	}
 }
 
 

@@ -34,9 +34,39 @@ CD_APPLET_GET_CONFIG_BEGIN
 	// Section Configuration
 	myConfig.cUrl 		= CD_CONFIG_GET_STRING ("Configuration", "url_rss_feed");
 	myConfig.iLines 	= CD_CONFIG_GET_INTEGER ("Configuration", "lines_rss_feed");
+	
+	// superflu a mon avis.
 	myConfig.iTitleNum 	= CD_CONFIG_GET_INTEGER ("Configuration", "title_num_rss_feed");	
-	myConfig.cName 		= CD_CONFIG_GET_STRING ("Configuration", "name_rss_feed");
-
+myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");
+	
+	
+	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
+	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
+	myConfig.cAnimationIfFeedChanged = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
+	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
+	///myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
+	myConfig.cSpecificWebBrowser = CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");
+	if (myConfig.cSpecificWebBrowser == NULL)
+	{
+		cd_debug ("RSSreader-debug : No browser in config  -> use the default one");
+		myConfig.cSpecificWebBrowser = g_strdup_printf ("xdg-open");
+	}
+	
+	myConfig.cMessageNoTitle = g_strdup_printf (D_("No Title"));
+	myConfig.cMessageNoUrl = g_strdup_printf (D_("No RSS feed URL defined..."));
+	myConfig.cMessageNoUrl2 = g_strdup_printf (D_("Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu to add one."));
+	myConfig.cMessageFailedToConnect = g_strdup_printf (D_("Failed to connect..."));
+	
+	// Section Appearance
+	myConfig.bDisplayLogo = CD_CONFIG_GET_BOOLEAN ("Appearance", "display_logo");
+	myConfig.fLogoSize = CD_CONFIG_GET_DOUBLE ("Appearance", "logo_size");
+	myConfig.bDisplayBackground = CD_CONFIG_GET_BOOLEAN ("Appearance", "display_background");
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
+	myConfig.iBackgroundRadius = CD_CONFIG_GET_INTEGER ("Appearance", "background_radius");
+	myConfig.iBorderThickness = CD_CONFIG_GET_INTEGER ("Appearance", "border_thickness");
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
+	
 	// Réglages pour le titre
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "title_color", myConfig.fTitleTextColor, couleur);
 	myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Configuration", "title_font");
@@ -81,47 +111,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	ltrim( myConfig.cFont, " " );
 	g_strreverse (myConfig.cFont);*/
 	
-	myConfig.iRefreshTime = 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
-	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
-	myConfig.cAnimationIfFeedChanged = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
-	myConfig.iDialogsDuration = 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
-	myConfig.bLeftClicForDesklet = CD_CONFIG_GET_BOOLEAN ("Configuration", "left_clic_for_desklet");
-	myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");
-	
-	myConfig.cSpecificWebBrowser = CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");
-	if (myConfig.cSpecificWebBrowser == NULL)
-	{
-		cd_debug ("RSSreader-debug : No browser in config  -> use the default one");
-		myConfig.cSpecificWebBrowser = g_strdup_printf ("xdg-open");
-	}
-	
-	myConfig.cMessageNoTitle = g_strdup_printf (D_("No Title"));
-	myConfig.cMessageNoUrl = g_strdup_printf (D_("No RSS feed URL defined..."));
-	myConfig.cMessageNoUrl2 = g_strdup_printf (D_("Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu to add one."));
-	myConfig.cMessageFailedToConnect = g_strdup_printf (D_("Failed to connect..."));
-	
-	// Section Appearance
-	myConfig.bDisplayLogo = CD_CONFIG_GET_BOOLEAN ("Appearance", "display_logo");
-	myConfig.fLogoSize = CD_CONFIG_GET_DOUBLE ("Appearance", "logo_size");
-	myConfig.bDisplayBackground = CD_CONFIG_GET_BOOLEAN ("Appearance", "display_background");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
-	myConfig.iBackgroundRadius = CD_CONFIG_GET_INTEGER ("Appearance", "background_radius");
-	myConfig.iBorderThickness = CD_CONFIG_GET_INTEGER ("Appearance", "border_thickness");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
-	myConfig.iTitlePositionX = CD_CONFIG_GET_INTEGER ("Appearance", "title_position_x");
-	myConfig.iTitlePositionY = CD_CONFIG_GET_INTEGER ("Appearance", "title_position_y");	
-	myConfig.iTextPositionX = CD_CONFIG_GET_INTEGER ("Appearance", "text_position_x");
-	myConfig.iTextPositionY = CD_CONFIG_GET_INTEGER ("Appearance", "text_position_y");	
+	myConfig.iTitleMargin = CD_CONFIG_GET_INTEGER ("Appearance", "title_margin");
+	myConfig.iTextMargin = CD_CONFIG_GET_INTEGER ("Appearance", "text_margin");
 	myConfig.iSpaceBetweenFeedLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_feed_lines");
-	myConfig.iSpaceBetweenLinesMulti = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines_multilines");
 	
 	// Other
 	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");
-	myConfig.bWriteFeedName = (myIcon->cName == NULL);
-	
-	myData.cTitleFontSize = g_strdup ("12");
-	myData.cFontSize = g_strdup ("12");
 CD_APPLET_GET_CONFIG_END
 
 

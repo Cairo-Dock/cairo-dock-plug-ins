@@ -63,7 +63,8 @@ struct _AppletConfig {
 	gchar *cLogoPath;
 	gdouble fLogoSize;
 	
-	gboolean bWriteFeedName;
+	gint iTextMargin;
+	gint iTitleMargin;
 	} ;
 
 typedef struct _CDRssItem {
@@ -76,8 +77,8 @@ typedef struct _CDRssItem {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	CairoDockTask *pTask;
 	CairoDockTask *pTitleTask;
+	gchar *cTitleTaskBridge;
 	
 	gchar *cAllFeedLines;	
 	gchar **cSingleFeedLine;
@@ -85,10 +86,6 @@ struct _AppletData {
 	gchar *cLastFirstFeedLine;
 	gchar *cLastSecondFeedLine;
 	gchar *cTempText;
-	// shared memory.
-	gchar *cTaskBridge;
-	gchar *cTitleTaskBridge;
-	// end of shared memory.
 	gchar *cDialogMessage;
 		
 	gchar *cFontSize;
@@ -100,18 +97,23 @@ struct _AppletData {
 	gboolean bUpdateIsManual;
 	gboolean bLastWasDocked;
 	
-	cairo_surface_t *pLogoSurface;
-	
-	gdouble fLogoSize;
 	gint iMyLogoIsOn;
 	gint iCurrentLineForMaxLine;
 	gchar *cCuttedLine;
 	gboolean bIsSameLine;
 	gboolean bMessageNoUrl;
 	
+	
+	CairoDockTask *pTask;
+	// shared memory.
+	gchar *cTaskBridge;
+	// end of shared memory.
+	
 	CDRssItem *pItemList;
 	gint iNbItems;
 	gchar *PrevFirstTitle;
+	cairo_surface_t *pLogoSurface;
+	gdouble fLogoSize;
 	} ;
 
 

@@ -25,9 +25,13 @@
 #include "applet-struct.h"
 
 
-gchar **cd_rssreader_cut_text_for_icon (CairoDockModuleInstance *myApplet, const gchar *cText);
+void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth);
 
-gchar **cd_rssreader_cut_text_for_dialog (CairoDockModuleInstance *myApplet, const gchar *cText);
+
+void cd_rssreader_free_item (CDRssItem *pItem, gboolean bFree);
+void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet);
+
+void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet);
 
 
 #endif
