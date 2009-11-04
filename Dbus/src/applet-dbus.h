@@ -61,7 +61,7 @@ gboolean cd_dbus_main_animate (dbusMainObject *dbusMainObject, const gchar *cAni
 gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
 
 
-gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, gint iCategory, const gchar *cShareDataDir, GError **error);
+gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error);
 
 gboolean cd_dbus_main_unregister_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, GError **error);
 

@@ -70,6 +70,7 @@
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="cDescription" type="s" direction="in"/>
 			<arg name="cAuthor" type="s" direction="in"/>
+			<arg name="cVersion" type="s" direction="in"/>
 			<arg name="iCategory" type="i" direction="in"/>	
 			<arg name="cShareDataDir" type="s" direction="in"/>
 		</method>

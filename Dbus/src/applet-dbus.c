@@ -549,7 +549,7 @@ static gboolean _emit_init_module_delayed (CairoDockModuleInstance *pInstance)
 	cd_dbus_emit_init_signal (pInstance);
 	return FALSE;
 }
-gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, gint iCategory, const gchar *cShareDataDir, GError **error)
+gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
@@ -579,7 +579,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->cUserDataDir = g_strdup (cModuleName);
 		pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
 		pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
-		pVisitCard->cModuleVersion = g_strdup (MY_APPLET_DOCK_VERSION);
+		pVisitCard->cModuleVersion = g_strdup (cVersion);
 		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
 		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL;

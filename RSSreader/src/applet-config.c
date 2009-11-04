@@ -68,8 +68,8 @@ myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
 	
 	// Réglages pour le titre
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "title_color", myConfig.fTitleTextColor, couleur);
-	myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Configuration", "title_font");
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "title_color", myConfig.fTitleTextColor, couleur);
+	myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Appearance", "title_font");
 	/*myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Configuration", "title_font");
 	myData.cTitleFontSize = g_strdup_printf ("%s", myConfig.cTitleFont);
 	myData.cTitleFontSize = strrchr(myData.cTitleFontSize, ' ');  // On enlève tout ce qui se trouve avant le dernier 'espace'
@@ -89,8 +89,8 @@ myConfig.iMaxLines = CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed
 	g_strreverse (myConfig.cTitleFont);*/
 	
 	// Réglages pour le texte du flux
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text_color", myConfig.fTextColor, couleur);
-	myConfig.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "text_color", myConfig.fTextColor, couleur);
+	myConfig.cFont = CD_CONFIG_GET_STRING ("Appearance", "font");
 	/*myConfig.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
 	myData.cFontSize = g_strdup_printf ("%s", myConfig.cFont);
 	myData.cFontSize = strrchr(myData.cFontSize, ' ');  // On enlève tout ce qui se trouve avant le dernier 'espace'

@@ -149,7 +149,7 @@ title_color=1.0;1.0;0.0;1.0
 
 #P+ Feed lines font :
 #{Font to be used for the feed lines}
-font=Sans 7
+font=Sans 8
 
 #C+ Feed lines color :
 #{Color to be used for the feed lines}

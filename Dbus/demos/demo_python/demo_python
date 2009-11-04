@@ -31,10 +31,11 @@ applet_name=os.path.basename(os.path.abspath("."))
 applet_share_data_dir=os.path.abspath(".")
 print ">>> registering our applet..."
 dock.RegisterNewModule(applet_name,
-	"This is a distant applet\nIt simulates a counter:\n Scroll up/down to increase/decrease the counter,\n Click/middle-click to increase/decrease the counter by 10\n Drop some text to set it as the label.",
-	"Fabounet",
+	"This is a distant applet\nIt simulates a counter:\n Scroll up/down to increase/decrease the counter,\n Click/middle-click to increase/decrease the counter by 10\n Drop some text to set it as the label.", # description
+	"Fabounet", # author
+	"0.0.1", # version of the applet
 	3, # category "accessories"
-	applet_share_data_dir)
+	applet_share_data_dir) # folder containing the data of the applet (script, icon, preview, etc)
 print ">>> applet registered."
 
 ### get our applet ! (if it doesn't exist, it means the user does not want to use it, so we quit) ###

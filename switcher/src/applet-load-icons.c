@@ -160,7 +160,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 {
 	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
 	cairo_surface_t *pBgSurface = cairo_dock_get_desktop_bg_surface (db);
-	g_print ("on a recupere le fond d'ecran (%x)\n", pBgSurface);
+	cd_debug ("on a recupere le fond d'ecran (%x)", pBgSurface);
 	
 	if (myData.pDesktopBgMapSurface != NULL)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);
@@ -173,7 +173,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	}
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
+	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
 	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
