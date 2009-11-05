@@ -8,7 +8,4 @@ module_DATA = \
 	preview.png\
 	icon.svg
 
-dist_rss_readerdata_SCRIPTS = \
-	rss_reader.sh
-
 EXTRA_DIST = $(module_DATA)

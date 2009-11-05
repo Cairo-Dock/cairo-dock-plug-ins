@@ -144,6 +144,8 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 	{
 		if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)  /// a confirmer pour XFCE ...
 			cairo_dock_launch_command ("alacarte");
+		else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+			cairo_dock_launch_command ("kmenuedit");
 		else
 			cd_warning ("Sorry, couldn't guess what to do to configure the menu");
 	}

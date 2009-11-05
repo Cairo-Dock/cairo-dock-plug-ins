@@ -816,7 +816,7 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 void vfs_backend_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	GError *erreur = NULL;
+	/*GError *erreur = NULL;
 	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
 	cd_message ("%s (%s)", __func__, cFullURI);
 	
@@ -830,7 +830,11 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	{
 		cd_warning ("gnome_integration : couldn't launch '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
-	}
+	}*/
+	g_print ("%s (%s)", __func__, cURI);
+	gchar *cCommand = g_strdup_printf ("kfmclient exec \"%s\"", cURI);
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
 }
 
 GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)

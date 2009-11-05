@@ -30,14 +30,9 @@
 
 static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {		
-	/**GString *sCommand = g_string_new ("");		
-	g_string_printf (sCommand, "%s %s", myConfig.cSpecificWebBrowser, myConfig.cUrl);	
-	cd_debug ("RSSreader-debug : START_BROWSER---------------------->  sCommand = \"%s\"",sCommand->str);
-	g_spawn_command_line_async (sCommand->str, NULL);
-	g_string_free (sCommand, TRUE);*/
 	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
 		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
-	else
+	else  // sinon on utilise la commande par defaut.
 		cairo_dock_fm_launch_uri (myConfig.cUrl);
 }
 
@@ -57,10 +52,15 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 			G_TYPE_INVALID);  // On l'écrit dans le fichier de config
 		
 		// on recupere le nouveau flux.
-		///cd_rssreader_upload_title_TASK (myApplet);  // On cherche un titre (en général = la ligne 0 du flux)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);  // pour mettre a jour le titre par la meme occasion.
-		myData.cAllFeedLines = g_strdup (D_("Please wait ..."));
-		myData.cSingleFeedLine = g_strsplit (myData.cAllFeedLines,"\n",0);
+		
+		g_free (myData.PrevFirstTitle);
+		myData.PrevFirstTitle = NULL;
+		cd_rssreader_free_item_list (myApplet);
+		
+		CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
+		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+		pItem->cTitle = g_strdup (D_("Retrieving data ..."));
 		cd_applet_update_my_icon (myApplet);
 		
 		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
@@ -88,48 +88,20 @@ static void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInsta
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	cd_debug ("RSSreader-debug : CLIC");
-		
-	if (! myDesklet || myConfig.bLeftClicForDesklet)
-	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		
-		/// TODO : arriver a un dialogue remplacant completement l'utilisation du browser :
-		/// title + link + description
-		/// je pensais a un widget GTK a mettre dans le dialogue, et peut-etre un expander pour les descriptions.
-		/// aussi, il faudrait couper les lignes pour éviter que le dialgue soit immense en largeur.
-		
-		/// pour le moment c'est juste les titres, je n'ai rien ajoute ;-)
-		GString *sText = g_string_new ("");
-		CDRssItem *pItem;
-		int i;
-		for (i = 0; i < myData.iNbItems; i ++)
-		{
-			pItem = &myData.pItemList[i];
-			if (pItem->cTitle == NULL)
-				continue;
-			
-			g_string_append_printf (sText, "%s\n", pItem->cTitle);
-		}
-		cairo_dock_show_temporary_dialog_with_icon (sText->str,
-			myIcon,
-			myContainer,
-			myConfig.iDialogsDuration,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-		g_string_free (sText, TRUE);
-	}
+	cd_rssreader_show_dialog (myApplet);
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	cd_debug ("RSSreader-debug : MIDDLE-CLIC");
 	myData.bUpdateIsManual = TRUE;
-		
+	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
 	cd_rssreader_upload_feeds_TASK (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_debug ("RSSreader-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);	
+	cd_debug ("RSSreader-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);
 	_new_url_to_conf (myApplet, CD_APPLET_RECEIVED_DATA);
 CD_APPLET_ON_DROP_DATA_END
 

@@ -12,6 +12,10 @@ if WITH_XFCE_SUPPORT
 xfce_dir=xfce-integration
 endif
 
+if WITH_KDE_SUPPORT
+kde_dir=kde-integration
+endif
+
 if WITH_ALSA_MIXER
 alsa_mixer_dir=alsaMixer
 endif
@@ -99,6 +103,7 @@ SUBDIRS = . po\
 	${gnome_old_dir}\
 	icon-effect\
 	illusion\
+	${kde_dir}\
 	${keyboard_indicator_dir}\
 	logout\
 	${mail_dir}\

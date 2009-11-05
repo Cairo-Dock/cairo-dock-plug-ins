@@ -25,51 +25,37 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
+	// comportement
+	gchar *cUrl;
+	gint iRefreshTime;
+	gint iNbLinesInDialog;
+	gint iMaxLines;  // bof.
 	gchar *cSpecificWebBrowser;
 	gboolean bDialogIfFeedChanged;
 	gchar *cAnimationIfFeedChanged;
-	gboolean bLeftClicForDesklet;
+	gint iDialogsDuration;
+	// apparence du desklet
 	gboolean bDisplayLogo;
+	gchar *cLogoPath;
+	gdouble fLogoSize;
 	gboolean bDisplayBackground;
 	double fBackgroundColor1[4];
 	double fBackgroundColor2[4];
 	gint iBackgroundRadius;
 	double fBorderColor[4];
 	gint iBorderThickness;
-	gint iDialogsDuration;
-	gint iRefreshTime;	
-	gchar *cUrl;
-
-	gchar *cName;
-	gint iLines;
-	gint iTitleNum;
-	gint iMaxLines;
-	gchar *cMessageNoUrl;
-	gchar *cMessageNoUrl2;
-	gchar *cMessageNoTitle;
-	gchar *cMessageFailedToConnect;
-	
-	gint iTitlePositionX;
-	gint iTitlePositionY;
-	gint iTextPositionX;
-	gint iTextPositionY;
+	// apparence du texte
 	gint iSpaceBetweenFeedLines;
-	gint iSpaceBetweenLinesMulti;
-	
-	double fTextColor[4];
-	gchar *cFont;
 	double fTitleTextColor[4];
 	gchar *cTitleFont;
-	gchar *cLogoPath;
-	gdouble fLogoSize;
-	
+	double fTextColor[4];
+	gchar *cFont;
 	gint iTextMargin;
 	gint iTitleMargin;
 	} ;
 
 typedef struct _CDRssItem {
 	gchar *cTitle;
-	gchar *cCutTitle;
 	gchar *cDescription;
 	gchar *cLink;
 	gchar *cImage;  // pas utilise pour l'instant.
@@ -77,43 +63,16 @@ typedef struct _CDRssItem {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	CairoDockTask *pTitleTask;
-	gchar *cTitleTaskBridge;
-	
-	gchar *cAllFeedLines;	
-	gchar **cSingleFeedLine;
-		
-	gchar *cLastFirstFeedLine;
-	gchar *cLastSecondFeedLine;
-	gchar *cTempText;
-	gchar *cDialogMessage;
-		
-	gchar *cFontSize;
-	gboolean bFontIsBold;
-	gboolean bFontIsItalic;
-	gchar *cTitleFontSize;
-	gboolean bTitleFontIsBold;
-	gboolean bTitleFontIsItalic;
-	gboolean bUpdateIsManual;
-	gboolean bLastWasDocked;
-	
-	gint iMyLogoIsOn;
-	gint iCurrentLineForMaxLine;
-	gchar *cCuttedLine;
-	gboolean bIsSameLine;
-	gboolean bMessageNoUrl;
-	
-	
-	CairoDockTask *pTask;
+	CairoDockTask *pTask;  // tache pour recuperer le flux.
 	// shared memory.
 	gchar *cTaskBridge;
 	// end of shared memory.
+	gboolean bUpdateIsManual;  // TRUE si l'utilisateur a force le refresh.
 	
-	CDRssItem *pItemList;
-	gint iNbItems;
-	gchar *PrevFirstTitle;
-	cairo_surface_t *pLogoSurface;
-	gdouble fLogoSize;
+	GList *pItemList;  // une liste de CDRssItem.
+	gchar *PrevFirstTitle;  // 1er item du flux precedent.
+	cairo_surface_t *pLogoSurface;  // surface du logo
+	gdouble fLogoSize;  // taille a laquelle le logo a ete charge.
 	} ;
 
 

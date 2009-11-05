@@ -48,6 +48,10 @@ AC_ARG_ENABLE(xfce-integration,
 	[  --enable-xfce-integration : Enable XFCE integration (default=yes) ],
 	[ with_xfce_support=${enableval} ],
 	[ with_xfce_support=yes ])
+AC_ARG_ENABLE(kde-integration,
+	[  --enable-kde-integration : Enable KDE integration (default=yes) ],
+	[ with_kde_support=${enableval} ],
+	[ with_kde_support=yes ])
 AC_ARG_ENABLE(alsa-mixer,
 	[  --enable-alsa-mixer : Enable Alsa-Mixer applet (default=yes) ],
 	[ with_alsa_mixer=${enableval} ],
@@ -142,6 +146,11 @@ if test "$with_xfce_support" = "yes" ; then
 	AC_SUBST(XFCE_INTEGRATION_CFLAGS)
 	AC_SUBST(XFCE_INTEGRATION_LIBS)
 fi
+if test "$with_kde_support" = "yes" ; then
+	PKG_CHECK_MODULES(KDE_INTEGRATION,gio-2.0, ,[ with_kde_support=false; AC_MSG_WARN(Could not find kde libs; Cairo-Dock won\'t be built with KDE support.) ])
+	AC_SUBST(KDE_INTEGRATION_CFLAGS)
+	AC_SUBST(KDE_INTEGRATION_LIBS)
+fi
 if test "$with_alsa_mixer" = "yes" ; then
 	PKG_CHECK_MODULES(ALSA_MIXER_PACKAGE,alsa, ,[ with_alsa_mixer=false; AC_MSG_WARN(Could not find alsa; Cairo-Dock won\'t be built with AlsaMixer applet.) ])
 	AC_SUBST(ALSA_MIXER_PACKAGE_CFLAGS)
@@ -198,6 +207,7 @@ AC_PROG_CXX
 AM_CONDITIONAL( [WITH_OLD_GNOME_SUPPORT], [test "$with_old_gnome_support" = "yes"] )
 AM_CONDITIONAL( [WITH_GNOME_SUPPORT], [test "$with_gnome_support" = "yes"] )
 AM_CONDITIONAL( [WITH_XFCE_SUPPORT], [test "$with_xfce_support" = "yes"] )
+AM_CONDITIONAL( [WITH_KDE_SUPPORT], [test "$with_kde_support" = "yes"] )
 AM_CONDITIONAL( [WITH_ALSA_MIXER], [test "$with_alsa_mixer" = "yes"] )
 AM_CONDITIONAL( [WITH_TERMINAL], [test "$with_terminal" = "yes"] )
 AM_CONDITIONAL( [WITH_POWERMANAGER], [test "$with_powermanager" = "yes"] )
@@ -621,6 +631,14 @@ AC_SUBST(PACKAGE_XFCE_INTEGRATION, "$XFCE_INTEGRATION_PACKAGE")
 
 AC_SUBST(xfce_integrationdatadir, "${pkgdatadir}/xfce-integration")
 
+############# KDE-INTEGRATION #################
+KDE_INTEGRATION_PACKAGE=cd_kde-integration
+
+AC_SUBST(VERSION_KDE_INTEGRATION, "0.0.1")
+AC_SUBST(PACKAGE_KDE_INTEGRATION, "$KDE_INTEGRATION_PACKAGE")
+
+AC_SUBST(kde_integrationdatadir, "${pkgdatadir}/kde-integration")
+
 ############# XGAMMA #################
 XGAMMA_PACKAGE="cd-Xgamma"
 AC_SUBST(GETTEXT_XGAMMA, "cairo-dock-plugins")
@@ -727,6 +745,10 @@ AC_CONFIG_FILES([
 	illusion/src/Makefile
 	illusion/data/Makefile
 	illusion/data/illusion.conf
+	
+	kde-integration/Makefile
+	kde-integration/src/Makefile
+	kde-integration/data/Makefile
 	
 	keyboard-indicator/Makefile
 	keyboard-indicator/src/Makefile

@@ -88,15 +88,15 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[RSS Feed;gtk-convert]
+#F[RSS Feed;gtk-justify-left]
 RSS_feed = 
 
 #s URL :
 #{Enter a valid atom/rss feed}
 url_rss_feed=
 
-#i[1;30] Number of feed lines to display :
-lines_rss_feed=5
+#i[1;50] Number of feed lines to display in the dialog :
+lines_rss_feed=10
 
 
 #F[Behaviour;gtk-execute]
@@ -122,22 +122,11 @@ animation_feed_changed=rotate
 specific_web_browser= 
 
 
-#X[Extra]
-
-#i[0;30] Title num :
-#{Allow you to skip some lines}
-title_num_rss_feed=1
-
-#i[0;30] MAX number of lines for each feed line :
-#{Set to 0 to display all the lines (default)}
-max_lines_for_feed_lines=0
-
-
 #[gtk-dialog-info]
 [Appearance]
 
-#F[Test;gtk-italic]
-text = 
+#F[Title;gtk-bold]
+title = 
 
 #P+ Title font :
 #{Font to be used for the title}
@@ -147,6 +136,12 @@ title_font=Sans Bold Italic 10
 #{Color to be used for the title}
 title_color=1.0;1.0;0.0;1.0
 
+#I[0;99] Left margin for the title:
+title_margin=0
+
+#F[Text;gtk-italic]
+text = 
+
 #P+ Feed lines font :
 #{Font to be used for the feed lines}
 font=Sans 8
@@ -155,9 +150,6 @@ font=Sans 8
 #{Color to be used for the feed lines}
 text_color=1.0;1.0;1.0;1.0
 
-#I[0;48] Left margin for the title:
-title_margin=0
-
 #I[0;48] Left margin for the feed lines :
 text_margin=0
 
@@ -165,18 +157,19 @@ text_margin=0
 space_between_feed_lines=5
 
 
-#F[Logo;gtk-execute]
+#F[Logo;gtk-yes]
 frame_logo= 
 
 #b Display the logo ?
 #{The default logo is the applet's icon}
 display_logo=true
 
-#e+[.5;2;small;big] Logo size :
+#e+[.5;3;small;big] Logo size :
 #{Adjust to increase/decrease the logo size}
 logo_size=2
 
-#F[Background;gtk-execute]
+
+#F[Background;gtk-orientation-portrait]
 frame_background= 
 
 #b Display a simple background ?
