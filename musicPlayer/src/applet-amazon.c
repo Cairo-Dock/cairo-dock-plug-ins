@@ -339,7 +339,7 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 		return NULL;
 	}
 	
-	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 > /dev/null 2>&1", cFileToDownload, cTmpFilePath);
+	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 30 /dev/null 2>&1", cFileToDownload, cTmpFilePath);
 	//g_print ("%s\n",cCommand);
 	cairo_dock_launch_command (cCommand);
 	

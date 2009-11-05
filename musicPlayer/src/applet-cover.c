@@ -215,7 +215,7 @@ static void _cd_download_missing_cover (const gchar *cURL)
 	g_return_if_fail (myData.cCoverPath != NULL);
 	if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
-		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 2 -T 5 > /dev/null 2>&1", cURL, myData.cCoverPath);
+		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 2 -T 30 > /dev/null 2>&1", cURL, myData.cCoverPath);
 		g_print ("%s\n",cCommand);
 		cairo_dock_launch_command (cCommand);
 		g_free (cCommand);
