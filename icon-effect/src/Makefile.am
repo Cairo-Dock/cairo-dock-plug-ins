@@ -21,6 +21,8 @@ libcd_icon_effect_la_SOURCES = \
 	applet-star.h\
 	applet-storm.c\
 	applet-storm.h\
+	applet-firework.c\
+	applet-firework.h\
 	fire-tex.h\
 	applet-struct.h
 

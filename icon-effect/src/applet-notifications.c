@@ -25,6 +25,7 @@
 #include "applet-snow.h"
 #include "applet-star.h"
 #include "applet-storm.h"
+#include "applet-firework.h"
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
@@ -79,6 +80,12 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 			
 			default :
 				i = CD_ICON_EFFECT_NB_EFFECTS - 1;
+			break;
+			
+			case CD_ICON_EFFECT_FIREWORK :
+				if (pData->pFireworks == NULL)
+					cd_icon_effect_init_firework (pIcon, pDock, dt, pData);
+				r = TRUE;
 			break;
 		}
 	}
@@ -139,6 +146,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 			case CD_ICON_EFFECT_RAIN  : iRoundDuration = myConfig.iRainDuration; break;
 			case CD_ICON_EFFECT_SNOW  : iRoundDuration = myConfig.iSnowDuration; break;
 			case CD_ICON_EFFECT_SAND  : iRoundDuration = myConfig.iStormDuration; break;
+			case CD_ICON_EFFECT_FIREWORK  : iRoundDuration = myConfig.iFireworkDuration; break;
 		}
 	}
 	else
@@ -168,6 +176,11 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 		{
 			anim[0] = CD_ICON_EFFECT_SAND;
 			iRoundDuration = myConfig.iStormDuration;
+		}
+		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_FIREWORK])
+		{
+			anim[0] = CD_ICON_EFFECT_FIREWORK;
+			iRoundDuration = myConfig.iFireworkDuration;
 		}
 		else
 			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -209,6 +222,11 @@ static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIco
 	if (pData->pRainSystem != NULL)
 	{
 		cairo_dock_render_particles (pData->pRainSystem);
+	}
+	
+	if (pData->pFireworks != NULL)
+	{
+		cd_icon_effect_render_fireworks (pData);
 	}
 	
 	glPopMatrix ();
@@ -346,6 +364,17 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		}
 	}
 	
+	if (pData->pFireworks != NULL)
+	{
+		gboolean bContinueFirework = cd_icon_effect_update_fireworks (pIcon, pData, _will_continue (myConfig.bContinueFirework));
+		if (bContinueFirework)
+			*bContinueAnimation = TRUE;
+		else
+		{
+			cd_icon_effect_free_fireworks (pData);
+		}
+	}
+	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
@@ -381,7 +410,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	if (pIcon->fOrientation == 0)
 		cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &area);
 	else
-		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));  /// il faudrait gerer la diagonale ...
 	if (! *bContinueAnimation)
 		cd_icon_effect_free_data (pUserData, pIcon);
 	
@@ -410,6 +439,9 @@ gboolean cd_icon_effect_free_data (gpointer pUserData, Icon *pIcon)
 	
 	if (pData->pStormSystem != NULL)
 		cairo_dock_free_particle_system (pData->pStormSystem);
+	
+	if (pData->pFireworks != NULL)
+		cd_icon_effect_free_fireworks (pData);
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);

@@ -6,25 +6,25 @@
 #F-[when hovering an icon]
 frame_hov =
 
-#V+[Fire;Stars;Rain;Snow;Storm] Effects used :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used :
 effects = 0
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#V+[Fire;Stars;Rain;Snow;Storm] Effects used on launcher :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on launcher :
 click launchers = 0
 
 #F-[when clicking on an appli]
 frame_appli =
 
-#V+[Fire;Stars;Rain;Snow;Storm] Effects used on applis :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applis :
 click applis = 1
 
 #F-[when clicking on an applet]
 frame_applet =
 
-#V+[Fire;Stars;Rain;Snow;Storm] Effects used on applets :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applets :
 click applets = 2
 
 #v
@@ -73,8 +73,8 @@ part speed = 3.
 #[@icon_effectsdatadir@/star.png]
 [Stars]
 
-#I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
+#I[200;5000] Duration of the animation :
+#{In ms.}
 duration = 2000
 
 #b+ Repeat while icon is pointed ?
@@ -99,8 +99,8 @@ part size = 40
 #[@icon_effectsdatadir@/snow.png]
 [Snow]
 
-#I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
+#I[200;5000] Duration of the animation :
+#{In ms.}
 duration = 2000
 
 #b+ Repeat while icon is pointed ?
@@ -125,8 +125,8 @@ part speed = 1.5
 #[@icon_effectsdatadir@/rain.png]
 [Rain]
 
-#I[0;5000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
+#I[200;5000] Duration of the animation :
+#{In ms.}
 duration = 2000
 
 #b+ Repeat while icon is pointed ?
@@ -151,8 +151,8 @@ part speed = 8
 #[@icon_effectsdatadir@/icon-storm.png]
 [Storm]
 
-#I[0;8000] Duration of the animation :
-#{In ms. Set 0 to not use this effect.}
+#I[200;8000] Duration of the animation :
+#{In ms.}
 duration = 4000
 
 #b+ Repeat while icon is pointed ?
@@ -169,3 +169,39 @@ nb part = 100
 
 #I[2;40] Particle size :
 part size = 10
+
+
+#[@icon_effectsdatadir@/icon-firework.svg]
+[Firework]
+
+#I[200;8000] Duration of the animation :
+#{In ms.}
+duration = 2000
+
+#b+ Repeat while icon is pointed ?
+continue = true
+
+#c+3 Default color :
+color = 1;0;0
+
+#b+ Random colors ?
+random colors = true
+
+#b+ Add luminance ?
+luminous = true
+
+
+#i[1;5] Number of sources :
+nb sources = 2
+
+#I[10;360] Number of particles per source :
+nb part = 100
+
+#I[2;10] Particle size :
+part size = 5
+
+#b+ Show the launching ?
+launching = true
+
+#e[1;10] Particle friction :
+friction = 5

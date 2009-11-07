@@ -104,6 +104,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Storm", "color2", myConfig.pStormColor2);
 	myConfig.iNbStormParticles = CD_CONFIG_GET_INTEGER ("Storm", "nb part");
 	myConfig.iStormParticleSize = CD_CONFIG_GET_INTEGER ("Storm", "part size");  // meme remarque.
+	
+	myConfig.iFireworkDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "duration", 2000);
+	myConfig.bContinueFirework = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "continue", TRUE);
+	double col[3] = {1., 0., 0.};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Firework", "color", myConfig.pFireworkColor, col);
+	myConfig.bFireworkRandomColors = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "random colors", TRUE);
+	myConfig.bFireworkLuminance = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "luminous", TRUE);
+	myConfig.iNbFireworkParticles = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb part", 100);
+	myConfig.iFireworkParticleSize = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "part size", 5);
+	myConfig.iNbFireworks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb sources", 2);
+	myConfig.bFireworkShoot = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "launching", TRUE);
+	myConfig.fFireworkFriction = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "friction", 5);
+	
 CD_APPLET_GET_CONFIG_END
 
 

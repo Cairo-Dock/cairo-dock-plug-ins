@@ -40,6 +40,7 @@ typedef enum {
 	CD_ICON_EFFECT_RAIN,
 	CD_ICON_EFFECT_SNOW,
 	CD_ICON_EFFECT_SAND,
+	CD_ICON_EFFECT_FIREWORK,
 	CD_ICON_EFFECT_NB_EFFECTS
 	} CDIconEffects;
 
@@ -86,6 +87,17 @@ struct _AppletConfig {
 	gint iNbStormParticles;
 	gint iStormParticleSize;
 	
+	gint iFireworkDuration;
+	gboolean bContinueFirework;
+	gdouble pFireworkColor[3];
+	gboolean bFireworkRandomColors;
+	gint iNbFireworkParticles;
+	gint iFireworkParticleSize;
+	gboolean bFireworkLuminance;
+	gint iNbFireworks;
+	gboolean bFireworkShoot;
+	gdouble fFireworkFriction;
+	
 	gboolean bBackGround;
 	CDIconEffects iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
 	CDIconEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ICON_EFFECT_NB_EFFECTS];
@@ -101,12 +113,28 @@ struct _AppletData {
 	gint iAnimationID[CD_ICON_EFFECT_NB_EFFECTS];
 	} ;
 
+typedef struct _CDFirework {
+	gdouble x_expl, y_expl;
+	gdouble r_expl;
+	gdouble v_expl;
+	gdouble t_expl;
+	gdouble x_sol;
+	gdouble vx_decol;
+	gdouble vy_decol;
+	gdouble xf, yf;
+	gdouble r;
+	gdouble t;
+	CairoParticleSystem *pParticleSystem;
+	} CDFirework;
+	
 typedef struct _CDAnimationData {
 	CairoParticleSystem *pFireSystem;
 	CairoParticleSystem *pStarSystem;
 	CairoParticleSystem *pSnowSystem;
 	CairoParticleSystem *pRainSystem;
 	CairoParticleSystem *pStormSystem;
+	CDFirework *pFireworks;
+	gint iNbFireworks;
 	gint iNumRound;
 	gint iRequestTime;
 	} CDIconEffectData;
