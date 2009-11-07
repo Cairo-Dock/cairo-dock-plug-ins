@@ -353,7 +353,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	
 	pango_font_description_set_absolute_size (pDesc, myDialogs.dialogTextDescription.iSize * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myDialogs.dialogTextDescription.cFont);
-	pango_font_description_set_weight (pDesc, PANGO_WEIGHT_MEDIUM);
+	pango_font_description_set_weight (pDesc, PANGO_WEIGHT_NORMAL);
 	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
 	

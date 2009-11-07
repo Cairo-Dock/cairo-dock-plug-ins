@@ -276,7 +276,7 @@ void cd_do_free_backend (CDBackend *pBackend)
 void cd_do_free_all_backends (void)
 {
 	g_list_foreach (myData.pBackends, (GFunc) cd_do_stop_backend, NULL);
-	g_free (myData.pBackends);
+	g_list_free (myData.pBackends);
 	myData.pBackends = NULL;
 }
 
