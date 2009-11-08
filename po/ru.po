@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-23 13:38+0000\n"
+"POT-Creation-Date: 2009-11-01 04:36+0000\n"
+"PO-Revision-Date: 2009-11-01 07:55+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-24 07:34+0000\n"
+"X-Launchpad-Export-Date: 2009-11-02 08:29+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -350,36 +351,36 @@ msgid "Network Administration"
 msgstr "Администрирование сети"
 
 #: ../RSSreader/src/applet-config.c:97
-#, fuzzy
 msgid "No Title"
-msgstr "Название"
+msgstr "Нет заголовка"
 
 #: ../RSSreader/src/applet-config.c:98
 msgid "No RSS feed URL defined..."
-msgstr ""
+msgstr "Не определены ссылки RSS потоков..."
 
 #: ../RSSreader/src/applet-config.c:99
 msgid ""
 "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
 "to add one."
 msgstr ""
+"Перетащите сюда ссылку на RSS поток или используйте пункт меню \"Вставить "
+"новую ссылку RSS\"."
 
 #: ../RSSreader/src/applet-config.c:100
-#, fuzzy
 msgid "Failed to connect..."
-msgstr "Проводное подключение"
+msgstr "Не удалось соединиться..."
 
 #: ../RSSreader/src/applet-draw.c:264
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "Этот RSS поток был изменён..."
 
 #: ../RSSreader/src/applet-draw.c:291
 msgid "No modification"
-msgstr ""
+msgstr "Без изменений"
 
 #: ../RSSreader/src/applet-init.c:30
 msgid "RSSreader"
-msgstr ""
+msgstr "RSSreader"
 
 #: ../RSSreader/src/applet-init.c:33
 msgid ""
@@ -394,27 +395,36 @@ msgid ""
 "  - Use \"Open in you web browser\" from menu to display\n"
 "    the RSS feed in your browser."
 msgstr ""
+"Этот апплет предназначен для чтения RSS потоков\n"
+"(вы можете добавить столько RSS потоков, сколько пожелаете)\n"
+" Использование:\n"
+"  - Левый щелчок: Показать ленту в окне (можно показать в десклете).\n"
+"  - Средний щелчок: Обновить ленту.\n"
+"  - Добавить/Изменить RSS поток используя для этого либо Перетаскивание\n"
+"    ссылки, либо пункт меню \"Вставить новую ссылку RSS\" из меню,\n"
+"    либо панель настроек.\n"
+"  - Используйте пункт \"Открыть в веб-браузере\" из меню, чтобы показать\n"
+"    RSS поток в вашем веб-браузере"
 
 #: ../RSSreader/src/applet-init.c:67 ../RSSreader/src/applet-init.c:116
 msgid "Retrieving data ..."
-msgstr ""
+msgstr "Запрашиваю данные..."
 
 #: ../RSSreader/src/applet-notifications.c:54
 msgid "Please wait ..."
-msgstr ""
+msgstr "Ждите..."
 
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "Неверная ссылка на RSS поток."
 
 #: ../RSSreader/src/applet-notifications.c:129
-#, fuzzy
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Вставить (перетащить)"
+msgstr "Вставить новую ссылку на RSS (перетаскиванием)"
 
 #: ../RSSreader/src/applet-notifications.c:133
 msgid "Open with your web browser"
-msgstr ""
+msgstr "Открыть в веб-браузере"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -427,7 +437,7 @@ msgstr "Выполнить"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr ""
+msgstr "Открыть терминал здесь"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
@@ -471,17 +481,15 @@ msgstr "Открыть"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:230
 msgid "Open in new window"
-msgstr ""
+msgstr "Открыть в новом окне"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "Показывать закладки?"
+msgstr "Закладки Firefox"
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr "Открыть файл"
+msgstr "Недавно открытые файлы"
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -529,8 +537,8 @@ msgstr ""
 "панелей\n"
 "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
 "ближайший похожий\n"
-"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, Alt"
-"+Enter для среднего и Ctrl+Enter для левого\n"
+"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
+"Alt+Enter для среднего и Ctrl+Enter для левого\n"
 "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
 "или вычисление.\n"
 "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
@@ -973,7 +981,8 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1770,8 +1779,8 @@ msgstr "Показывать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
 "десклета."
@@ -1805,10 +1814,15 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
+"Этот апплет добавляет значок для показа рабочего стола,\n"
+"а также: всех десклетов, Слоя Виджетов или всех рабочих столов.\n"
+"Левый щелчок для показа/скрытия рабочего стола,\n"
+"Средний щелчок для показа/скрытия рабочего стола, десклетов, Слоя Виджетов "
+"или всех рабочих столов сразу."
 
 #: ../showDesktop/src/applet-notifications.c:72
 msgid "You need to run Compiz and to activate its 'DBus' plug-in."
-msgstr ""
+msgstr "Необходимо запусить Compiz и активировать модуль 'DBus'."
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -2968,7 +2982,8 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -3746,7 +3761,8 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:107
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr ""
+"Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Network-Monitor/data/messages:83 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -3970,75 +3986,64 @@ msgid "Set to 0 to use the default applet size"
 msgstr "Установите в 0 , чтобы иметь стандартный размер апплета"
 
 #: ../RSSreader/data/messages:87
-#, fuzzy
 msgid "RSS Feed"
-msgstr "Скорость"
+msgstr "Лента RSS"
 
 #: ../RSSreader/data/messages:89
 msgid "Enter a valid atom/rss feed"
-msgstr ""
+msgstr "Введите адрес ленты atom/rss"
 
 #: ../RSSreader/data/messages:91
 msgid "URL :"
-msgstr ""
+msgstr "URL:"
 
 #: ../RSSreader/data/messages:93
-#, fuzzy
 msgid "Number of feed lines to display :"
-msgstr "Количество отображаемых строк:"
+msgstr "Количество строк для показа:"
 
 #: ../RSSreader/data/messages:95
 msgid "Allow you to skip some lines"
-msgstr ""
+msgstr "Позволяет пропускать некоторые строки"
 
 #: ../RSSreader/data/messages:97
-#, fuzzy
 msgid "Title num :"
-msgstr "Название"
+msgstr "Номер заголовка:"
 
 #: ../RSSreader/data/messages:101
-#, fuzzy
 msgid "Specify a title :"
-msgstr "Стандартный заголовок:"
+msgstr "Укажите заголовок:"
 
 #: ../RSSreader/data/messages:103
-#, fuzzy
 msgid "Font to be used for the title"
-msgstr "Шрифт для цифрового дисплея:"
+msgstr "Какой шрифт использовать для заголовка"
 
 #: ../RSSreader/data/messages:105
-#, fuzzy
 msgid "Title Font :"
-msgstr "Шрифт:"
+msgstr "Шрифт заголовка:"
 
 #: ../RSSreader/data/messages:107
-#, fuzzy
 msgid "Color to be used for the title"
-msgstr "Цвет плоскости:"
+msgstr "Какой цвет использовать для заголовка"
 
 #: ../RSSreader/data/messages:109
-#, fuzzy
 msgid "Title Text color :"
-msgstr "Цвет текста:"
+msgstr "Цвет текста заголовка:"
 
 #: ../RSSreader/data/messages:111
-#, fuzzy
 msgid "Font to be used for the feed lines"
-msgstr "Шрифт для цифрового дисплея:"
+msgstr "Какой шрифт использовать для строк ленты"
 
 #: ../RSSreader/data/messages:113
 msgid "Feed lines Font :"
-msgstr ""
+msgstr "Шрифт для строк ленты:"
 
 #: ../RSSreader/data/messages:115
-#, fuzzy
 msgid "Color to be used for the feed lines"
-msgstr "Цвет внешних линий:"
+msgstr "Какой цвет щрифта использовать для строк ленты"
 
 #: ../RSSreader/data/messages:117
-#, fuzzy
 msgid "Feed Lines color :"
-msgstr "Цвет линии:"
+msgstr "Цвет шрифта в строках ленты:"
 
 #: ../RSSreader/data/messages:119 ../clock/data/messages:85
 #: ../dnd2share/data/messages:95 ../mail/data/messages:101
@@ -5298,7 +5303,8 @@ msgstr "Процент смешения стрелки:"
 
 #: ../dock-rendering/data/messages:123
 msgid "The lower, the more the curve will seem flat."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:125
 msgid "Curvature of the curve in percent :"
@@ -5401,7 +5407,8 @@ msgid "Desktop-less support"
 msgstr "Сквозная поддержка."
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
 
 #: ../dustbin/data/messages:117
@@ -5652,8 +5659,8 @@ msgid ""
 "mail accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:115
 msgid "Check mail account on startup ?"
@@ -6148,7 +6155,8 @@ msgstr "В пикселях."
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
@@ -6171,48 +6179,50 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "Клавиатурное сокращения для показа/скрытия десклета:"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "Оставьте пустым, чтобы использовать имя каталога."
+msgstr "Оставьте пустым, чтобы использовать тоже изображение."
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "Действие при щелчке на апплете:"
+msgstr "Изображение для активного апплета:"
 
 #: ../showDesktop/data/messages:93
 msgid ""
 "According to your Window Manager, this may prevent the applet from hiding "
 "the desktop."
 msgstr ""
+"В зависимости от вашего ОМ, это может предотвратить скрытие апплета с "
+"рабочего стола."
 
 #: ../showDesktop/data/messages:95
 msgid "Keep the desklets visible when showing the desktop ?"
-msgstr ""
+msgstr "Держать апплет видимым при показе рабочего стола?"
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
+"Для двух следующих действий необходимо активировать модуль DBus в Compiz."
 
 #: ../showDesktop/data/messages:99
 msgid "Action on middle-click :"
-msgstr ""
+msgstr "Действие для среднего щелчка:"
 
 #: ../showDesktop/data/messages:103
 msgid "Show the desklets"
-msgstr ""
+msgstr "Показать десклеты"
 
 #: ../showDesktop/data/messages:105
 msgid "Show the Widget Layer (Compiz)"
-msgstr ""
+msgstr "Показать Слой Виджетов (Compiz)"
 
 #: ../showDesktop/data/messages:107
 msgid "Expose all the desktops (Compiz)"
-msgstr ""
+msgstr "Показать все рабочие столы (Compiz)"
 
 #: ../showDesktop/data/messages:109
 msgid "Shortkey for the middle-click action :"
-msgstr ""
+msgstr "Клавиатурное сокращение для действия среднего щелчка:"
 
 #: ../showDesktop2/data/messages:89
 msgid "Swap left-click and middle-click ?"
@@ -6402,11 +6412,11 @@ msgstr "Вручную"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Это выбор сделанный при помощи мыши, вместо обычно используемого ctrl+c/ctrl"
-"+v буфера обмена."
+"Это выбор сделанный при помощи мыши, вместо обычно используемого "
+"ctrl+c/ctrl+v буфера обмена."
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6446,7 +6456,6 @@ msgid "Draw hidden windows too ?"
 msgstr "Отрисовывать скртые окна тоже?"
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
 msgstr "Действие по среднему щелчку:"
 
@@ -6513,7 +6522,8 @@ msgstr "только другие"
 
 #: ../switcher/data/messages:139
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr ""
+"Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:145
 msgid "In expanded mode, render the desklet in 3D ?"
@@ -6788,6 +6798,9 @@ msgstr "Файл изображения для значка 'хороший':"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Файл изображения для значка 'отличный':"
 
+#~ msgid "New song"
+#~ msgstr "Новая композиция"
+
 #~ msgid ""
 #~ "This is a very simple icon to show your desktop\n"
 #~ "Left-click to show/hide the desktop\n"
@@ -6797,9 +6810,6 @@ msgstr "Файл изображения для значка 'отличный':"
 #~ "Левый щелчок — показать/скрыть рабочий стол\n"
 #~ "Средний, делает тоже самое, но не скрывает десклеты."
 
-#~ msgid "New song"
-#~ msgstr "Новая композиция"
-
 #~ msgid ""
 #~ "This applet allows you to switch between your virtual desktops.\n"
 #~ "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
@@ -6808,8 +6818,7 @@ msgstr "Файл изображения для значка 'отличный':"
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Этот апплет позволяет переключаться между виртуальными рабочими столами.\n"
-#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-"
-#~ "панель).\n"
+#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-панель).\n"
 #~ "Вы можете быстро добавить/удалить рабочий стол через правый щелчок.\n"
 #~ "Прокручивание колесом мыши на основном значке будет переключать столы, "
 #~ "средний щелчок - показать рабочий стол"
@@ -6821,8 +6830,8 @@ msgstr "Файл изображения для значка 'отличный':"
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 #~ "number or so."
 #~ msgstr ""
-#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без "
-#~ "каких либо цифр и т.п."
+#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без каких "
+#~ "либо цифр и т.п."
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr "Все окна с текущего рабочего стола переместятся на этот"

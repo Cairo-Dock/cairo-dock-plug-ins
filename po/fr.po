@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-30 02:36+0000\n"
-"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
+"POT-Creation-Date: 2009-11-01 04:36+0000\n"
+"PO-Revision-Date: 2009-11-07 10:25+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-31 08:43+0000\n"
+"X-Launchpad-Export-Date: 2009-11-08 04:41+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -355,36 +356,36 @@ msgid "Network Administration"
 msgstr "Administration du Réseau"
 
 #: ../RSSreader/src/applet-config.c:97
-#, fuzzy
 msgid "No Title"
-msgstr "Titre"
+msgstr "Sans Titre"
 
 #: ../RSSreader/src/applet-config.c:98
 msgid "No RSS feed URL defined..."
-msgstr ""
+msgstr "Aucune URL de flux RSS défini..."
 
 #: ../RSSreader/src/applet-config.c:99
 msgid ""
 "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
 "to add one."
 msgstr ""
+"Glissez et déposez une URL de flux RSS valide ou utilisez \"Collez une "
+"adresse URL d'un flux RSS\" depuis le menu pour un ajouter une."
 
 #: ../RSSreader/src/applet-config.c:100
-#, fuzzy
 msgid "Failed to connect..."
-msgstr "Connexion filaire"
+msgstr "Tentative de connexion échouée..."
 
 #: ../RSSreader/src/applet-draw.c:264
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "Ce flux RSS a été modifié..."
 
 #: ../RSSreader/src/applet-draw.c:291
 msgid "No modification"
-msgstr ""
+msgstr "Aucune modification"
 
 #: ../RSSreader/src/applet-init.c:30
 msgid "RSSreader"
-msgstr ""
+msgstr "Lecteur de flux RSS"
 
 #: ../RSSreader/src/applet-init.c:33
 msgid ""
@@ -399,27 +400,39 @@ msgid ""
 "  - Use \"Open in you web browser\" from menu to display\n"
 "    the RSS feed in your browser."
 msgstr ""
+"Cette applet est un lecteur de flux RSS\n"
+"(vous pouvez en ajouter autant que vous le désirez)\n"
+" Usage:\n"
+"  - Clique gauche : Afficher les dernières lignes du flux dans une info-"
+"bulle (optionnel en mode desklet).\n"
+"  - Clique du milieu : Actualiser le flux.\n"
+"  - Ajouter/Modifier facilement l'URL du flux RSS à afficher par un simple "
+"glisser-déposer,\n"
+"     via le menu \"Collez une adresse URL d'un flux RSS\"\n"
+"     ou depuis le panneau de configuration.\n"
+"  - Utilisez \"Ouvrir avec votre navigateur Internet\" depuis le menu pour "
+"afficher\n"
+"     le flux RSS depuis votre navigateur."
 
 #: ../RSSreader/src/applet-init.c:67 ../RSSreader/src/applet-init.c:116
 msgid "Retrieving data ..."
-msgstr ""
+msgstr "Récupération des données ..."
 
 #: ../RSSreader/src/applet-notifications.c:54
 msgid "Please wait ..."
-msgstr ""
+msgstr "Merci de patienter ..."
 
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "Il semblerait que l'adresse URL ne soit pas valide."
 
 #: ../RSSreader/src/applet-notifications.c:129
-#, fuzzy
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Coller (glisser-déposer)"
+msgstr "Collez une adresse URL d'un flux RSS (Glisser-Déposer)"
 
 #: ../RSSreader/src/applet-notifications.c:133
 msgid "Open with your web browser"
-msgstr ""
+msgstr "Ouvrir avec votre navigateur Internet"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -432,7 +445,7 @@ msgstr "Exécuter"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr ""
+msgstr "Ouvrir un terminal ici"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
@@ -476,17 +489,15 @@ msgstr "Ouvrir"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:230
 msgid "Open in new window"
-msgstr ""
+msgstr "Ouvrir dans une nouvelle fenêtre"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "Lister les signets ?"
+msgstr "Marques-pages de Firefox"
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr "Ouvrir le fichier"
+msgstr "Fichiers récents"
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -535,8 +546,9 @@ msgstr ""
 "et sous-docks,\n"
 "  ou entre le nom d'un lanceur et appuyez sur Tab pour automatiquement "
 "passer au lanceur suivant et approprié\n"
-"  appuyez sur Enter pour cliquer sur l'icône, Shift+Enter correspond à Shift"
-"+clique, Alt+Enter pour le clic du milieu et Ctrl+Enter pour le clic gauche\n"
+"  appuyez sur Enter pour cliquer sur l'icône, Shift+Enter correspond à "
+"Shift+clique, Alt+Enter pour le clic du milieu et Ctrl+Enter pour le clic "
+"gauche\n"
 "- le mode de recherche : écrivez du texte pour lancer une commande, un "
 "fichier ou des calculs.\n"
 "  utilisez les flèches pour naviguer entre les résultats, appuyez sur Enter "
@@ -704,7 +716,8 @@ msgstr "Moniteur système"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -977,10 +990,12 @@ msgstr "Rendu des dialogues"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some dialog decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr ""
+"Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -1346,8 +1361,8 @@ msgstr ""
 "Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../logout/src/applet-init.c:28
@@ -1535,8 +1550,8 @@ msgstr ""
 "Cette applet permet le contrôle de plusieurs lecteurs de musiques.\n"
 "Un clic gauche pour Play/Pause, un clic du milieu pour passer à la musique "
 "suivant.\n"
-"Un coup de roulette vers le haut/bas pour jouer la chanson précédente/"
-"suivante.\n"
+"Un coup de roulette vers le haut/bas pour jouer la chanson "
+"précédente/suivante.\n"
 "Vous pouvez glisser/déposer des fichiers audio sur l'icône pour les ajouter "
 "à la liste en cours (ça dépend du lecteur).\n"
 " et un fichier image pour l'utiliser comme pochette.\n"
@@ -1796,8 +1811,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -1830,10 +1845,17 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
+"Cette applet ajoute une icône afin d'afficher en un clique le bureau\n"
+" et aussi : les desklets, la couche de widgets de Compiz ou tous les bureaux "
+"à la fois.\n"
+" - Clique gauche pour afficher le bureau ou revenir à son état précédent,\n"
+" - Clique du milieu pour afficher ou cacher aussi bien le bureau, les "
+"desklets,\n"
+"     la couche de widgets de Compiz ou tous les bureaux à la fois."
 
 #: ../showDesktop/src/applet-notifications.c:72
 msgid "You need to run Compiz and to activate its 'DBus' plug-in."
-msgstr ""
+msgstr "Vous devez avoir lancé Compiz et activer son plug-in 'DBus'."
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -2997,7 +3019,8 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic-gauche."
@@ -3386,7 +3409,8 @@ msgstr "Transparence du fond :"
 #: ../tomboy/data/messages:77 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:169 ../GMenu/data/messages:65
 #: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:65
@@ -3458,7 +3482,8 @@ msgstr "Décalage en haut :"
 #: ../tomboy/data/messages:85 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:177 ../GMenu/data/messages:73
 #: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:73
@@ -3621,8 +3646,8 @@ msgstr "Si oui, nombre d'items de sélection :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un item, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
@@ -3737,7 +3762,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the image of icons ?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate the icons ?"
@@ -4012,75 +4038,64 @@ msgid "Set to 0 to use the default applet size"
 msgstr "Laissez à 0 pour avoir la taille par défaut"
 
 #: ../RSSreader/data/messages:87
-#, fuzzy
 msgid "RSS Feed"
-msgstr "Vitesse"
+msgstr "Flux RSS"
 
 #: ../RSSreader/data/messages:89
 msgid "Enter a valid atom/rss feed"
-msgstr ""
+msgstr "Entrez l'adresse d'un flux ATOM/RSS valide"
 
 #: ../RSSreader/data/messages:91
 msgid "URL :"
-msgstr ""
+msgstr "URL :"
 
 #: ../RSSreader/data/messages:93
-#, fuzzy
 msgid "Number of feed lines to display :"
-msgstr "Nombre de lignes à afficher :"
+msgstr "Nombre de lignes du flux à afficher :"
 
 #: ../RSSreader/data/messages:95
 msgid "Allow you to skip some lines"
-msgstr ""
+msgstr "Vous permettre de sauter quelques lignes"
 
 #: ../RSSreader/data/messages:97
-#, fuzzy
 msgid "Title num :"
-msgstr "Titre"
+msgstr ""
 
 #: ../RSSreader/data/messages:101
-#, fuzzy
 msgid "Specify a title :"
-msgstr "Titre par défaut :"
+msgstr ""
 
 #: ../RSSreader/data/messages:103
-#, fuzzy
 msgid "Font to be used for the title"
-msgstr "Police utilisée pour l'affichage numérique :"
+msgstr "Police de caractère utilisée pour le titre"
 
 #: ../RSSreader/data/messages:105
-#, fuzzy
 msgid "Title Font :"
-msgstr "Police"
+msgstr "Police du titre :"
 
 #: ../RSSreader/data/messages:107
-#, fuzzy
 msgid "Color to be used for the title"
-msgstr "Couleur du plan :"
+msgstr "La couleur utilisée pour le titre"
 
 #: ../RSSreader/data/messages:109
-#, fuzzy
 msgid "Title Text color :"
-msgstr "Couleur du texte :"
+msgstr "Couleur du texte pour le titre"
 
 #: ../RSSreader/data/messages:111
-#, fuzzy
 msgid "Font to be used for the feed lines"
-msgstr "Police utilisée pour l'affichage numérique :"
+msgstr "Police utilisée pour les lignes du flux"
 
 #: ../RSSreader/data/messages:113
 msgid "Feed lines Font :"
-msgstr ""
+msgstr "Police pour les lignes du flux :"
 
 #: ../RSSreader/data/messages:115
-#, fuzzy
 msgid "Color to be used for the feed lines"
-msgstr "Couleur des lignes extérieures :"
+msgstr "Couleur utilisée pour les lignes du flux"
 
 #: ../RSSreader/data/messages:117
-#, fuzzy
 msgid "Feed Lines color :"
-msgstr "Couleur de la ligne :"
+msgstr "Couleur du texte pour le lignes du flux :"
 
 #: ../RSSreader/data/messages:119 ../clock/data/messages:85
 #: ../dnd2share/data/messages:95 ../mail/data/messages:101
@@ -5096,8 +5111,8 @@ msgstr "Script personnel pour l'upload des fichiers : "
 #: ../dnd2share/data/messages:151
 msgid "Let empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:153
 msgid "Path of the DropBox folder :"
@@ -5450,7 +5465,8 @@ msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Si le dossier 'Trash' n'est pas connu par le dock, vous pouvez le spécifier "
 "ici :"
@@ -6225,27 +6241,28 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "Laissez vide pour utiliser le nom du dossier."
+msgstr "Laissez vide pour utilise la même image."
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "Action au clic sur l'applet :"
+msgstr "Image lorsque l'applet est active :"
 
 #: ../showDesktop/data/messages:93
 msgid ""
 "According to your Window Manager, this may prevent the applet from hiding "
 "the desktop."
 msgstr ""
+"En fonction de votre gestionnaire de fenêtres, cette fonctionnalité peut ne "
+"pas fonctionner."
 
 #: ../showDesktop/data/messages:95
 msgid "Keep the desklets visible when showing the desktop ?"
 msgstr "Garder les desklets visibles quand on montre le bureau ?"
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 "Vous aurez besoin d'activer le plug-in Dbus de Compiz pour les 2 dernières "
 "actions."
@@ -6458,8 +6475,8 @@ msgstr "Ordre manuel"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "C'est la sélection faite à la souris, par opposition à celle de ctrl+c/ctrl+v"
 
@@ -6500,9 +6517,8 @@ msgid "Draw hidden windows too ?"
 msgstr "Dessiner les fenêtres cachées aussi ?"
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
-msgstr "Actions au clic du milieu :"
+msgstr "Action pour le clique du milieu :"
 
 #: ../switcher/data/messages:101
 msgid "Show windows list"
@@ -6694,8 +6710,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
-"m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:133
 msgid "Date format to search for :"

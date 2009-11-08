@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-23 13:04+0000\n"
-"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
+"POT-Creation-Date: 2009-11-01 04:36+0000\n"
+"PO-Revision-Date: 2009-11-04 10:36+0000\n"
+"Last-Translator: ColdFFF <coldfff@blueyonder.co.uk>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-24 07:34+0000\n"
+"X-Launchpad-Export-Date: 2009-11-05 08:42+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -349,36 +350,36 @@ msgid "Network Administration"
 msgstr "Network Administration"
 
 #: ../RSSreader/src/applet-config.c:97
-#, fuzzy
 msgid "No Title"
-msgstr "Title"
+msgstr "No Title"
 
 #: ../RSSreader/src/applet-config.c:98
 msgid "No RSS feed URL defined..."
-msgstr ""
+msgstr "No RSS feed URL defined..."
 
 #: ../RSSreader/src/applet-config.c:99
 msgid ""
 "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
 "to add one."
 msgstr ""
+"Drag and drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+"to add one."
 
 #: ../RSSreader/src/applet-config.c:100
-#, fuzzy
 msgid "Failed to connect..."
-msgstr "Wired connection"
+msgstr "Failed to connect..."
 
 #: ../RSSreader/src/applet-draw.c:264
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "This RSS feed has been modified..."
 
 #: ../RSSreader/src/applet-draw.c:291
 msgid "No modification"
-msgstr ""
+msgstr "No modification"
 
 #: ../RSSreader/src/applet-init.c:30
 msgid "RSSreader"
-msgstr ""
+msgstr "RSSreader"
 
 #: ../RSSreader/src/applet-init.c:33
 msgid ""
@@ -393,27 +394,36 @@ msgid ""
 "  - Use \"Open in you web browser\" from menu to display\n"
 "    the RSS feed in your browser."
 msgstr ""
+"This applet is a RSS feed reader\n"
+"(you can add as many instances you want)\n"
+" USAGE:\n"
+"  - Left-click : Display the feed lines in a dialog (optional in desklet).\n"
+"  - Middle-click : Refresh the feed.\n"
+"  - Add/Modify the RSS feed to display with either Drag and Drop\n"
+"    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
+"    or with the Configuration Panel.\n"
+"  - Use \"Open in you web browser\" from menu to display\n"
+"    the RSS feed in your browser."
 
 #: ../RSSreader/src/applet-init.c:67 ../RSSreader/src/applet-init.c:116
 msgid "Retrieving data ..."
-msgstr ""
+msgstr "Retrieving data ..."
 
 #: ../RSSreader/src/applet-notifications.c:54
 msgid "Please wait ..."
-msgstr ""
+msgstr "Please wait ..."
 
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "It doesn't seem to be a valid URL."
 
 #: ../RSSreader/src/applet-notifications.c:129
-#, fuzzy
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Paste (drag'n'drop)"
+msgstr "Paste a new RSS Url (drag and drop)"
 
 #: ../RSSreader/src/applet-notifications.c:133
 msgid "Open with your web browser"
-msgstr ""
+msgstr "Open with your web browser"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -426,7 +436,7 @@ msgstr "Execute"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr ""
+msgstr "Open a terminal here"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
@@ -470,17 +480,15 @@ msgstr "Open"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:230
 msgid "Open in new window"
-msgstr ""
+msgstr "Open in new window"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "List bookmarks?"
+msgstr "Firefox bookmarks"
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr "Open file"
+msgstr "Recent files"
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -900,11 +908,11 @@ msgstr "frame&reflects"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch"
-msgstr "scotch cellotapes"
+msgstr "scotch sellotape"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with scotch"
-msgstr "frame with cellotapes"
+msgstr "frame with sellotape"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
@@ -968,7 +976,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1767,11 +1776,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1801,10 +1810,15 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
+"This applet adds an icon to show your desktop,\n"
+"and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+"Left-click to show/hide the desktop,\n"
+"Middle-click to show/hide either the desktop, the desklets, the Widget "
+"Layer, or all the desktops at once."
 
 #: ../showDesktop/src/applet-notifications.c:72
 msgid "You need to run Compiz and to activate its 'DBus' plug-in."
-msgstr ""
+msgstr "You need to run Compiz and to activate its 'DBus' plug-in."
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -2960,7 +2974,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3959,75 +3974,64 @@ msgid "Set to 0 to use the default applet size"
 msgstr "Set to 0 to use the default applet size"
 
 #: ../RSSreader/data/messages:87
-#, fuzzy
 msgid "RSS Feed"
-msgstr "Speed"
+msgstr "RSS Feed"
 
 #: ../RSSreader/data/messages:89
 msgid "Enter a valid atom/rss feed"
-msgstr ""
+msgstr "Enter a valid atom/rss feed"
 
 #: ../RSSreader/data/messages:91
 msgid "URL :"
-msgstr ""
+msgstr "URL :"
 
 #: ../RSSreader/data/messages:93
-#, fuzzy
 msgid "Number of feed lines to display :"
-msgstr "Number of lines to display :"
+msgstr "Number of feed lines to display :"
 
 #: ../RSSreader/data/messages:95
 msgid "Allow you to skip some lines"
-msgstr ""
+msgstr "Allow you to skip some lines"
 
 #: ../RSSreader/data/messages:97
-#, fuzzy
 msgid "Title num :"
-msgstr "Title"
+msgstr "Title num :"
 
 #: ../RSSreader/data/messages:101
-#, fuzzy
 msgid "Specify a title :"
-msgstr "Default title:"
+msgstr "Specify a title :"
 
 #: ../RSSreader/data/messages:103
-#, fuzzy
 msgid "Font to be used for the title"
-msgstr "Font used for digital display:"
+msgstr "Font to be used for the title"
 
 #: ../RSSreader/data/messages:105
-#, fuzzy
 msgid "Title Font :"
-msgstr "Font:"
+msgstr "Title Font :"
 
 #: ../RSSreader/data/messages:107
-#, fuzzy
 msgid "Color to be used for the title"
-msgstr "Colour of the plane :"
+msgstr "Colour to be used for the title"
 
 #: ../RSSreader/data/messages:109
-#, fuzzy
 msgid "Title Text color :"
-msgstr "Text colour:"
+msgstr "Title Text colour :"
 
 #: ../RSSreader/data/messages:111
-#, fuzzy
 msgid "Font to be used for the feed lines"
-msgstr "Font used for digital display:"
+msgstr "Font to be used for the feed lines"
 
 #: ../RSSreader/data/messages:113
 msgid "Feed lines Font :"
-msgstr ""
+msgstr "Feed lines Font :"
 
 #: ../RSSreader/data/messages:115
-#, fuzzy
 msgid "Color to be used for the feed lines"
-msgstr "External line colour:"
+msgstr "Colour to be used for the feed lines"
 
 #: ../RSSreader/data/messages:117
-#, fuzzy
 msgid "Feed Lines color :"
-msgstr "Line colour:"
+msgstr "Feed Lines colour :"
 
 #: ../RSSreader/data/messages:119 ../clock/data/messages:85
 #: ../dnd2share/data/messages:95 ../mail/data/messages:101
@@ -5382,7 +5386,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5420,7 +5425,8 @@ msgstr "In ms. Set 0 to not use this effect."
 
 #: ../icon-effect/data/messages:77
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:79
 msgid "Add luminance ?"
@@ -5689,7 +5695,8 @@ msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:85
 msgid "Audio Player"
@@ -6147,48 +6154,50 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "Shortkey to show/hide the desklets :"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "Leave empty to use the folder's name."
+msgstr "Leave empty to use the same image."
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "Action when applet is clicked:"
+msgstr "Image when the applet is active :"
 
 #: ../showDesktop/data/messages:93
 msgid ""
 "According to your Window Manager, this may prevent the applet from hiding "
 "the desktop."
 msgstr ""
+"According to your Window Manager, this may prevent the applet from hiding "
+"the desktop."
 
 #: ../showDesktop/data/messages:95
 msgid "Keep the desklets visible when showing the desktop ?"
-msgstr ""
+msgstr "Keep the desklets visible when showing the desktop ?"
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 
 #: ../showDesktop/data/messages:99
 msgid "Action on middle-click :"
-msgstr ""
+msgstr "Action on middle-click :"
 
 #: ../showDesktop/data/messages:103
 msgid "Show the desklets"
-msgstr ""
+msgstr "Show the desklets"
 
 #: ../showDesktop/data/messages:105
 msgid "Show the Widget Layer (Compiz)"
-msgstr ""
+msgstr "Show the Widget Layer (Compiz)"
 
 #: ../showDesktop/data/messages:107
 msgid "Expose all the desktops (Compiz)"
-msgstr ""
+msgstr "Expose all the desktops (Compiz)"
 
 #: ../showDesktop/data/messages:109
 msgid "Shortkey for the middle-click action :"
-msgstr ""
+msgstr "Shortkey for the middle-click action :"
 
 #: ../showDesktop2/data/messages:89
 msgid "Swap left-click and middle-click ?"
@@ -6380,8 +6389,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
@@ -6423,9 +6432,8 @@ msgid "Draw hidden windows too ?"
 msgstr "Draw hidden windows?"
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
-msgstr "Actions on click and middle-click :"
+msgstr "Action on middle click :"
 
 #: ../switcher/data/messages:101
 msgid "Show windows list"
