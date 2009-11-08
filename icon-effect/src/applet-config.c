@@ -116,6 +116,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbFireworks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb sources", 2);
 	myConfig.bFireworkShoot = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "launching", TRUE);
 	myConfig.fFireworkFriction = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "friction", 5);
+	myConfig.fFireworkRadius = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "radius", .2);
 	
 CD_APPLET_GET_CONFIG_END
 

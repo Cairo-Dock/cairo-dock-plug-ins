@@ -36,7 +36,7 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 	pFirework->x_expl = 2 * g_random_double () - 1;  // entre -1 et 1;
 	pFirework->y_expl = .5 + .3 * g_random_double ();  // entre 50% et 80% de h.
 	//g_print ("expl (%.2f, %.2f)\n", pFirework->x_expl, pFirework->y_expl);
-	pFirework->r_expl = .5 + .1 - .2 * g_random_double ();  // rayon entre 10 et 30% de w.
+	pFirework->r_expl = myConfig.fFireworkRadius + .1 - .2 * g_random_double ();  // +/- 10%.
 	pFirework->v_expl = pFirework->r_expl * k / (1 - exp (-k*T));  // vitesse initiale de dispersion pour atteindre le rayon.
 	if (myConfig.bFireworkShoot)
 	{
@@ -62,10 +62,13 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 	}
 	else
 	{
-		memcpy (fColor, myConfig.pFireworkColor, 3 * sizeof (gdouble));
+		fColor[0] = myConfig.pFireworkColor[0];
+		fColor[1] = myConfig.pFireworkColor[1];
+		fColor[2] = myConfig.pFireworkColor[2];
+		//memcpy (fColor, myConfig.pFireworkColor, 3 * sizeof (gdouble));
 	}
 	
-	double angle;
+	double angle, fBlend;
 	CairoParticleSystem *pParticleSystem = pFirework->pParticleSystem;
 	CairoParticle *p;
 	int j;
@@ -85,10 +88,26 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->iInitialLife = ceil (T / dt);
 		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1
 		
-		memcpy (p->color, fColor, 3 * sizeof (gdouble));
+		//memcpy (p->color, fColor, 3 * sizeof (gdouble));
+		fBlend = g_random_double ();
+		fBlend *= fBlend;
 		p->color[0] = fColor[0];
 		p->color[1] = fColor[1];
 		p->color[2] = fColor[2];
+		
+		/*p->color[0] = fColor[0] * fBlend + 1 - fBlend;
+		p->color[1] = fColor[1] * fBlend + 1 - fBlend;
+		p->color[2] = fColor[2] * fBlend + 1 - fBlend;
+		
+		p->color[0] = fColor[0] + fBlend;
+		p->color[1] = fColor[1] + fBlend;
+		p->color[2] = fColor[2];*/
+		
+		/*{
+			p->color[0] = fColor[0] * (1 - fBlend) + fBlend;
+			p->color[1] = fColor[1] * (1 - fBlend) + fBlend;
+			p->color[2] = fColor[2] * (1 - fBlend) + fBlend;
+		}*/
 		
 		p->fOscillation = G_PI * (2 * g_random_double () - 1);
 		p->fOmega = 2*G_PI / myConfig.iFireworkDuration * dt;  // tr/s
@@ -118,7 +137,8 @@ void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDI
 		pFirework->pParticleSystem->dt = dt;
 		if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 			pFirework->pParticleSystem->bDirectionUp = FALSE;
-		pFirework->pParticleSystem->bAddLuminance = myConfig.bFireworkLuminance;
+		pFirework->pParticleSystem->bAddLuminance = TRUE;
+		pFirework->pParticleSystem->bAddLight = myConfig.bFireworkLuminance;
 		
 		_launch_one_firework (pFirework, pDock, dt);
 	}
@@ -138,13 +158,13 @@ static gboolean _cd_icon_effect_update_firework_system (CDFirework *pFirework, C
 		p = &(pParticleSystem->pParticles[i]);
 		
 		p->fOscillation += p->fOmega;
-		p->x = pFirework->x_expl + p->vx / k * (1 - exp (-k*t));
+		p->x = pFirework->x_expl + p->vx / k * (1 - exp (-k*t)) * 2;  // *2 car x varie dans [-1;1]
 		
 		a = p->vy + g / k; 
 		p->y = pFirework->y_expl - g / k * t + a / k * (1 - exp (-k*t));
 		
-		p->color[3] = (double)p->iLife / p->iInitialLife;
-		p->color[3] = 1.;
+		p->color[3] = sqrt ((double)p->iLife / p->iInitialLife);
+		//p->color[3] = 1.;
 		
 		p->x += .04 * sin (p->fOscillation) * (1 - (double)p->iLife / p->iInitialLife);
 		if (exp (-k*t) < .05)
@@ -215,12 +235,14 @@ void cd_icon_effect_render_fireworks (CDIconEffectData *pData)
 		pParticleSystem = pFirework->pParticleSystem;
 		if (pFirework->vy_decol != 0)
 		{
-			glColor4f (0., 0., 0., 1.);
-			glLineWidth (4);
-			glBegin (GL_LINES);
-			glVertex3f(pFirework->xf * pParticleSystem->fWidth / 2, pFirework->yf * pParticleSystem->fHeight-5, 0.);
-			glVertex3f(pFirework->xf * pParticleSystem->fWidth / 2, pFirework->yf * pParticleSystem->fHeight+5, 0.);
-			glEnd ();
+			_cairo_dock_enable_texture ();
+			_cairo_dock_set_blend_alpha ();
+			
+			glColor4f (1., 1., 0., 1.);
+			glBindTexture (GL_TEXTURE_2D, myData.iFireTexture);
+			_cairo_dock_apply_current_texture_at_size_with_offset (7, 13, pFirework->xf * pParticleSystem->fWidth / 2, pFirework->yf * pParticleSystem->fHeight);
+			
+			_cairo_dock_disable_texture ();
 		}
 		else
 		{

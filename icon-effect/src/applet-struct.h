@@ -97,6 +97,7 @@ struct _AppletConfig {
 	gint iNbFireworks;
 	gboolean bFireworkShoot;
 	gdouble fFireworkFriction;
+	gdouble fFireworkRadius;
 	
 	gboolean bBackGround;
 	CDIconEffects iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];

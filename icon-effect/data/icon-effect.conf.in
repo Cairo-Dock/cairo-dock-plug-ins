@@ -195,7 +195,11 @@ luminous = true
 nb sources = 2
 
 #I[10;360] Number of particles per source :
-nb part = 100
+nb part = 50
+
+#e[.1;.5] Radius of the explosion :
+#{In percentage of the icon's size.}
+radius = .2
 
 #I[2;10] Particle size :
 part size = 5
