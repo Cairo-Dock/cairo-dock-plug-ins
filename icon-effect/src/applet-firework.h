@@ -33,7 +33,7 @@
 void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData);
 
 
-gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CDIconEffectData *pData, gboolean bWillContinue);
+gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, gboolean bWillContinue);
 
 
 void cd_icon_effect_render_fireworks (CDIconEffectData *pData);

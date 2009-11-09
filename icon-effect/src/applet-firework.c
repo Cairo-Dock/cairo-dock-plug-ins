@@ -38,6 +38,7 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 	//g_print ("expl (%.2f, %.2f)\n", pFirework->x_expl, pFirework->y_expl);
 	pFirework->r_expl = myConfig.fFireworkRadius + .1 - .2 * g_random_double ();  // +/- 10%.
 	pFirework->v_expl = pFirework->r_expl * k / (1 - exp (-k*T));  // vitesse initiale de dispersion pour atteindre le rayon.
+	pFirework->t = 0;
 	if (myConfig.bFireworkShoot)
 	{
 		pFirework->t_expl = sqrt (2 * pFirework->y_expl / g_);  // temps mis pour arriver au sommet.
@@ -68,7 +69,7 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		//memcpy (fColor, myConfig.pFireworkColor, 3 * sizeof (gdouble));
 	}
 	
-	double angle, fBlend;
+	double angle;
 	CairoParticleSystem *pParticleSystem = pFirework->pParticleSystem;
 	CairoParticle *p;
 	int j;
@@ -89,25 +90,9 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1
 		
 		//memcpy (p->color, fColor, 3 * sizeof (gdouble));
-		fBlend = g_random_double ();
-		fBlend *= fBlend;
 		p->color[0] = fColor[0];
 		p->color[1] = fColor[1];
 		p->color[2] = fColor[2];
-		
-		/*p->color[0] = fColor[0] * fBlend + 1 - fBlend;
-		p->color[1] = fColor[1] * fBlend + 1 - fBlend;
-		p->color[2] = fColor[2] * fBlend + 1 - fBlend;
-		
-		p->color[0] = fColor[0] + fBlend;
-		p->color[1] = fColor[1] + fBlend;
-		p->color[2] = fColor[2];*/
-		
-		/*{
-			p->color[0] = fColor[0] * (1 - fBlend) + fBlend;
-			p->color[1] = fColor[1] * (1 - fBlend) + fBlend;
-			p->color[2] = fColor[2] * (1 - fBlend) + fBlend;
-		}*/
 		
 		p->fOscillation = G_PI * (2 * g_random_double () - 1);
 		p->fOmega = 2*G_PI / myConfig.iFireworkDuration * dt;  // tr/s
@@ -185,11 +170,11 @@ static gboolean _cd_icon_effect_update_firework_system (CDFirework *pFirework, C
 	return bAllParticlesEnded;
 }
 
-gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CDIconEffectData *pData, gboolean bWillContinue)
+gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, gboolean bWillContinue)
 {
 	double dt = mySystem.iGLAnimationDeltaT * 1e-3;
 	gboolean bAllParticlesEnded = TRUE;
-	
+	gboolean bParticlesEnded;
 	double t;
 	CDFirework *pFirework;
 	int i;
@@ -214,8 +199,13 @@ gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CDIconEffectData *pData, 
 		else
 		{
 			//g_print ("explosion\n");
-			bAllParticlesEnded = _cd_icon_effect_update_firework_system (pFirework, pFirework->pParticleSystem, t) && bAllParticlesEnded;
-			
+			bParticlesEnded = _cd_icon_effect_update_firework_system (pFirework, pFirework->pParticleSystem, t);
+			if (bParticlesEnded && bWillContinue)
+			{
+				_launch_one_firework (pFirework, pDock, mySystem.iGLAnimationDeltaT);
+				bParticlesEnded = FALSE;
+			}
+			bAllParticlesEnded &= bParticlesEnded;
 		}
 		//pFirework->pParticleSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	}

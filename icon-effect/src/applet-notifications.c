@@ -366,7 +366,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	
 	if (pData->pFireworks != NULL)
 	{
-		gboolean bContinueFirework = cd_icon_effect_update_fireworks (pIcon, pData, _will_continue (myConfig.bContinueFirework));
+		gboolean bContinueFirework = cd_icon_effect_update_fireworks (pIcon, pDock, pData, _will_continue (myConfig.bContinueFirework));
 		if (bContinueFirework)
 			*bContinueAnimation = TRUE;
 		else
