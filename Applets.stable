@@ -2,11 +2,15 @@
 ###you *should* integrate them, as they extend the dock's functionnalities.
 dock-rendering
 desklet-rendering
+dialog-rendering
 gnome-integration-old
 gnome-integration
 xfce-integration
 Dbus
 Animated-icons
+icon-effect
+illusion
+drop-indicator
 ###Stable applets, considered as finished :
 shortcuts
 clock
@@ -25,27 +29,25 @@ Clipper
 GMenu
 powermanager
 switcher
-icon-effect
-drop-indicator
 motion-blur
 show-mouse
-illusion
-keyboard-indicator
 quick-browser
 Toons
 ###Will be replaced in a near future :
 netspeed
 wifi
-###Stable as far as we know :
+###Stable but few minor bugs exist :
 tomboy
 systray
 stack
+keyboard-indicator
 ###Last addition of v2.1.0 :
 System-Monitor
 dnd2share
 Music-Player
 mail
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
-#Scooby-Do
-#Network-Manager
 #RssReader
+#Scooby-Do
+#Network-Monitor
+#kde-integration

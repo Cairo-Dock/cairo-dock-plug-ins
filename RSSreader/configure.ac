@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cd-RSSreader],[0.2.0],[Yann Dulieu (Nochka85) (nochka85@cairo-dock.org)])
+AC_INIT([cd-RSSreader],[0.3.0],[Yann Dulieu (Nochka85) (nochka85@cairo-dock.org)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 

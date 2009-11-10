@@ -23,9 +23,9 @@ order=
 #[gtk-convert]
 [Desklet]
 
-#j+[48;512] Desklet's dimension (width x height) :
+#j+[96;1024] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
-size = 280;200
+size = 300;200
 
 #i[-2048;2048] Desklet's position (x ; y) :
 #{Depending on your WindowManager, you can move it with ALT + left_click}
@@ -34,7 +34,7 @@ x position=0
 y position=0
 
 #b Is detached from the dock ?
-initially detached=false
+initially detached=true
 #l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Accessibility :
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
@@ -110,12 +110,15 @@ refresh_time=5
 #{By default, this option is activated}
 dialog_feed_changed=true
 
-#I[0;30] Duration of the info-bubbles :
+#I[0;40] Duration of the info-bubbles :
 #{In seconds. Set to 0 for infinite time (click on dialog to close it).}
-dialogs_duration=15
+dialogs_duration=20
 
 #a Animation of the icon when a feed has changed :
 animation_feed_changed=rotate
+
+#v
+sep = 
 
 #s Open the feed with the following program :
 #{Let empty to use the default one.}
@@ -136,8 +139,8 @@ title_font=Sans Bold Italic 10
 #{Color to be used for the title}
 title_color=1.0;1.0;0.0;1.0
 
-#I[0;99] Left margin for the title:
-title_margin=0
+#e[0;1;left;right] Alignment of the title:
+title_align=0
 
 #F[Text;gtk-italic]
 text = 
@@ -153,7 +156,7 @@ text_color=1.0;1.0;1.0;1.0
 #I[0;48] Left margin for the feed lines :
 text_margin=0
 
-#i[0;24] Space between 2 feed lines :
+#I[0;24] Space between 2 feed lines :
 space_between_feed_lines=5
 
 
@@ -164,9 +167,9 @@ frame_logo=
 #{The default logo is the applet's icon}
 display_logo=true
 
-#e+[.5;3;small;big] Logo size :
+#e+[1;4;normal;big] Logo size :
 #{Adjust to increase/decrease the logo size}
-logo_size=2
+logo_size=1.5
 
 
 #F[Background;gtk-orientation-portrait]

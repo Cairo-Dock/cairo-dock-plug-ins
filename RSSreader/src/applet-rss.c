@@ -144,7 +144,7 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 	g_free (cCommand);
 }
 
-static GList * _parse_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
+static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
 {
 	xmlChar *content;
 	xmlNodePtr item;
@@ -155,13 +155,16 @@ static GList * _parse_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
 			pItemList = g_list_prepend (pItemList, pNewItem);
 			
-			pItemList = _parse_item (item, pNewItem, pItemList);
+			pItemList = _parse_rss_item (item, pNewItem, pItemList);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "title") == 0)  // c'est le titre.
 		{
-			content = xmlNodeGetContent (item);
-			pItem->cTitle = g_strdup (content);
-			xmlFree (content);
+			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
+			{
+				content = xmlNodeGetContent (item);
+				pItem->cTitle = g_strdup (content);
+				xmlFree (content);
+			}
 			cd_debug ("+ titre : '%s'", pItem->cTitle);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "description") == 0)  // c'est la description.
@@ -190,11 +193,13 @@ static GList * _parse_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
 				balise2 = NULL;
 				balise = strchr (str, '<');  // debut de balise ("<")
 				if (balise)
-					balise2 = strchr (str, '>');  // fin de balise (">")
-				if (balise2)
 				{
-					strcpy (balise, balise2+1);
-					str = balise;
+					balise2 = strchr (balise+1, '>');  // fin de balise (">")
+					if (balise2)
+					{
+						strcpy (balise, balise2+1);
+						str = balise;
+					}
 				}
 			}
 			while (balise2);
@@ -211,6 +216,101 @@ static GList * _parse_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
 		// <enclosure url="http://medias.lemonde.fr/mmpub/edt/ill/2009/11/01/h_1_ill_1261356_5d02_258607.jpg" length="2514" type="image/jpeg" />  ----> bien verifier que c'est une image.
 		// ou
 		// <media:thumbnail url="http://www.france24.com/fr/files_fr/EN-interview-Gursel-m.jpg" />
+	}
+	return pItemList;
+}
+
+static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
+{
+	xmlChar *content;
+	xmlNodePtr item, author;
+	for (item = node->children; item != NULL; item = item->next)
+	{
+		if (xmlStrcmp (item->name, (const xmlChar *) "entry") == 0)  // c'est un nouvel item.
+		{
+			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
+			pItemList = g_list_prepend (pItemList, pNewItem);
+			
+			pItemList = _parse_atom_item (item, pNewItem, pItemList);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "title") == 0)  // c'est le titre.
+		{
+			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
+			{
+				content = xmlNodeGetContent (item);
+				pItem->cTitle = g_strdup (content);
+				xmlFree (content);
+			}
+			cd_debug ("+ titre : '%s'", pItem->cTitle);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "content") == 0)  // c'est la description.
+		{
+			xmlAttrPtr attr = xmlHasProp (item, "type");
+			if (attr && attr->children)
+			{
+				g_print ("content type : %s\n", attr->children->content);
+				if (strncmp (attr->children->content, "text", 4) != 0)
+				{
+					continue;
+				}
+			}
+			content = xmlNodeGetContent (item);
+			pItem->cDescription = g_strdup (content);
+			xmlFree (content);
+			
+			// on elimine les balises integrees a la description.
+			gchar *str = pItem->cDescription, *balise, *balise2;
+			do
+			{
+				balise2 = NULL;
+				balise = strchr (str, '<');  // debut de balise ("<")
+				if (balise)
+				{
+					balise2 = strchr (balise+1, '>');  // fin de balise (">")
+					if (balise2)
+					{
+						strcpy (balise, balise2+1);
+						str = balise;
+					}
+				}
+			}
+			while (balise2);
+			cd_debug ("+ description : '%s'", pItem->cDescription);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
+		{
+			xmlAttrPtr attr = xmlHasProp (item, "type");  // type="text/html" rel="alternate"
+			if (attr && attr->children)
+			{
+				g_print ("link type : %s\n", attr->children->content);
+				if (strncmp (attr->children->content, "text", 4) != 0)
+				{
+					continue;
+				}
+			}
+			attr = xmlHasProp (item, "href");
+			if (attr && attr->children)
+			{
+				content = xmlNodeGetContent (attr->children);
+				pItem->cLink = g_strdup (content);
+				xmlFree (content);
+				cd_debug ("+ link : '%s'", pItem->cLink);
+			}
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "author") == 0)  // c'est l'auteur.
+		{
+			for (author = item->children; author != NULL; author = author->next)
+			{
+				if (xmlStrcmp (author->name, (const xmlChar *) "name") == 0)  // c'est le nom de l'auteur.
+				{
+					content = xmlNodeGetContent (author);
+					pItem->cAuthor = g_strdup (content);
+					xmlFree (content);
+					cd_debug ("+ author : '%s'", pItem->cAuthor);
+				}
+			}
+		}
+		// et pour l'image je ne sais pas.
 	}
 	return pItemList;
 }
@@ -247,7 +347,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		cd_warning ("RSSresader : got invalid XML data");
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS feed ?)"));
+		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -256,7 +356,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	xmlNodePtr rss = xmlDocGetRootElement (doc);
-	if (rss == NULL || xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0)
+	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0))
 	{
 		cd_warning ("RSSresader : got invalid XML data");
 		xmlCleanupParser ();
@@ -264,7 +364,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS feed ?)"));
+		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -275,21 +375,31 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	// on extrait chaque item.
 	CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 	myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+	if (myConfig.cUserTitle != NULL)
+		pItem->cTitle = g_strdup (myConfig.cUserTitle);
 	
-	xmlAttrPtr attr = xmlHasProp (rss, "version");
-	if (attr && attr->children)
+	if (xmlStrcmp (rss->name, (const xmlChar *) "rss") == 0)  // RSS
 	{
-		g_print ("RSS version : %s\n", attr->children->content);
-	}
-	
-	xmlNodePtr channel, item;
-	for (channel = rss->children; channel != NULL; channel = channel->next)
-	{
-		if (xmlStrcmp (channel->name, (const xmlChar *) "channel") == 0)
+		xmlAttrPtr attr = xmlHasProp (rss, "version");
+		if (attr && attr->children)
 		{
-			myData.pItemList = _parse_item (channel, pItem, myData.pItemList);  // on parse le channel comme un item, ce qui fait que le titre du flux est considere comme un simple item.
-			break;  // un seul channel.
+			g_print ("RSS version : %s\n", attr->children->content);
 		}
+		
+		xmlNodePtr channel, item;
+		for (channel = rss->children; channel != NULL; channel = channel->next)
+		{
+			if (xmlStrcmp (channel->name, (const xmlChar *) "channel") == 0)
+			{
+				myData.pItemList = _parse_rss_item (channel, pItem, myData.pItemList);  // on parse le channel comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+				break;  // un seul channel.
+			}
+		}
+	}
+	else  // Atom
+	{
+		xmlNodePtr feed = rss;
+		myData.pItemList = _parse_atom_item (feed, pItem, myData.pItemList);  // on parse le feed comme un item, ce qui fait que le titre du flux est considere comme un simple item.
 	}
 	myData.pItemList = g_list_reverse (myData.pItemList);
 	
@@ -316,7 +426,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	// on met a jour le titre.
 	if (myIcon->cName == NULL)  // il faut mettre a jour le titre
 	{
-		if (myDock)  // en mode desklet inutile, le titre sera redessine avec le reste.
+		if (myDock && myConfig.cUserTitle == NULL)  // en mode desklet inutile, le titre sera redessine avec le reste.
 		{
 			pItem = (myData.pItemList ? myData.pItemList->data : NULL);
 			if (pItem != NULL && pItem->cTitle != NULL)

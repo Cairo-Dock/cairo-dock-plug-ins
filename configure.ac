@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.2-0alpha1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.2-0beta0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -355,7 +355,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 ICON_EFFECTS_PACKAGE=cd-icon-effect
 AC_SUBST(GETTEXT_ICON_EFFECTS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ICON_EFFECTS, "1.1.4")
+AC_SUBST(VERSION_ICON_EFFECTS, "1.2.1")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
@@ -481,7 +481,7 @@ AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 RSS_READER_PACKAGE=cd-rssreader
 AC_SUBST(GETTEXT_RSS_READER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_RSS_READER, "0.1.0")
+AC_SUBST(VERSION_RSS_READER, "0.3.0")
 AC_SUBST(PACKAGE_RSS_READER, "$RSS_READER_PACKAGE")
 
 AC_SUBST(rss_readerdatadir, "${pkgdatadir}/RSSreader")

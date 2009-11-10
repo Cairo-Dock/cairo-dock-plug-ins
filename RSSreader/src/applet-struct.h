@@ -27,6 +27,7 @@
 struct _AppletConfig {
 	// comportement
 	gchar *cUrl;
+	gchar *cUserTitle;
 	gint iRefreshTime;
 	gint iNbLinesInDialog;
 	gint iMaxLines;  // bof.
@@ -48,10 +49,10 @@ struct _AppletConfig {
 	gint iSpaceBetweenFeedLines;
 	double fTitleTextColor[4];
 	gchar *cTitleFont;
+	gdouble fTitleAlignment;
 	double fTextColor[4];
 	gchar *cFont;
 	gint iTextMargin;
-	gint iTitleMargin;
 	} ;
 
 typedef struct _CDRssItem {
@@ -59,6 +60,7 @@ typedef struct _CDRssItem {
 	gchar *cDescription;
 	gchar *cLink;
 	gchar *cImage;  // pas utilise pour l'instant.
+	gchar *cAuthor;  // Atom seulement.
 	} CDRssItem ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -70,9 +72,11 @@ struct _AppletData {
 	gboolean bUpdateIsManual;  // TRUE si l'utilisateur a force le refresh.
 	
 	GList *pItemList;  // une liste de CDRssItem.
-	gchar *PrevFirstTitle;  // 1er item du flux precedent.
-	cairo_surface_t *pLogoSurface;  // surface du logo
+	gchar *PrevFirstTitle;  // 1er item du flux precedent (titre du flux = item 0).
+	cairo_surface_t *pLogoSurface;  // surface du logo.
 	gdouble fLogoSize;  // taille a laquelle le logo a ete charge.
+	
+	int iFirstDisplayedItem;  // pour le scroll.
 	} ;
 
 

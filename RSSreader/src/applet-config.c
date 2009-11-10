@@ -57,7 +57,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	// titre
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "title_color", myConfig.fTitleTextColor, couleur);
 	myConfig.cTitleFont = CD_CONFIG_GET_STRING ("Appearance", "title_font");  // avec Pango il suffit de lui passer la chaine issue du GtkFontWidget.
-	myConfig.iTitleMargin = CD_CONFIG_GET_INTEGER ("Appearance", "title_margin");  // marge a gauche du titre
+	myConfig.fTitleAlignment = CD_CONFIG_GET_DOUBLE ("Appearance", "title_align");  // alignement a gauche du titre
 	
 	// texte
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "text_color", myConfig.fTextColor, couleur);
@@ -66,13 +66,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSpaceBetweenFeedLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_feed_lines");
 	
 	// Other
-	myConfig.cLogoPath = CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");
+	myConfig.cLogoPath 		= CD_CONFIG_GET_FILE_PATH ("Icon", "icon", "icon.svg");
+	myConfig.cUserTitle 		= CD_CONFIG_GET_STRING ("Icon", "name");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUrl);
+	g_free (myConfig.cUserTitle);
 	g_free (myConfig.cSpecificWebBrowser);
 	g_free (myConfig.cLogoPath);
 	g_free (myConfig.cTitleFont);

@@ -28,6 +28,8 @@
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
+	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
+		return;
 	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
@@ -38,7 +40,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	// dessin du fond (optionnel).
 	if (myConfig.bDisplayBackground)
 	{
-		cairo_save (myDrawContext); // On sauvegarde la position #2
+		cairo_save (myDrawContext);
 		cairo_translate (myDrawContext,
 				.5*myConfig.iBorderThickness,
 				.5*myConfig.iBorderThickness);		
@@ -66,7 +68,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				myConfig.iBackgroundRadius,
 				0.,
 				iWidth - myConfig.iBorderThickness - 2 * myConfig.iBackgroundRadius,
-				iHeight - myConfig.iBorderThickness);			
+				iHeight - myConfig.iBorderThickness);
 		}
 		else  // Il ne faut pas de rayon
 		{
@@ -77,16 +79,18 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		}
 		cairo_fill (myDrawContext);
 		cairo_pattern_destroy (pGradationPattern);
-		cairo_restore (myDrawContext);  // On restaure la position #2
+		cairo_restore (myDrawContext);
 	}
 	
-	int iMargin = .5 * myConfig.iBorderThickness + (1. - sqrt (2) / 2) * myConfig.iBackgroundRadius;  // marge a gauche et au-dessus, pour ne pas "manger" le rayon.
+	int iMargin = .5 * myConfig.iBorderThickness + (1. - sqrt (2) / 2) * myConfig.iBackgroundRadius;  // marge a gauche et au-dessus, pour ne pas mordre sur le coin arrondi.
 	double fCurrentY = 0.;  // position de la ligne courante.
+	double fTitleWidth = 0., fTitleHeight = 0.;
+	int iTitleX = 0;
 	
-	// On affiche le logo si besoin
+	// On charge le logo si besoin
 	PangoFontDescription *fd = pango_font_description_from_string (myConfig.cTitleFont);
 	pango_layout_set_font_description (pLayout, fd);
-	gboolean bLogoIsOn = FALSE;  // utile pour décaler le texte du titre
+	gboolean bLogoIsOn = FALSE;  // utile pour decaler le texte du titre
 	if (myConfig.bDisplayLogo)
 	{
 		// on recupere la taille du titre.
@@ -97,7 +101,10 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			iSize = 16;
 		
 		// on en deduit la taille du logo.
-		double fLogoSize = myConfig.fLogoSize * iSize;
+		double fLogoSize = MIN (iWidth/2, MIN (iHeight/2, myConfig.fLogoSize * iSize));  // on le limite un peu.
+		if (fLogoSize < 1)
+			fLogoSize = 1;
+		g_print ("fLogoSize  :%.2f\n", fLogoSize);
 		
 		// on cree la surface du logo si necessaire.
 		if (myData.fLogoSize != iSize || myData.pLogoSurface == NULL)
@@ -114,11 +121,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		if (myData.pLogoSurface != NULL)
 		{
 			bLogoIsOn = TRUE;
-			cairo_set_source_surface (myDrawContext,
-			myData.pLogoSurface,
-				iMargin + myConfig.iTitleMargin,
-				iMargin);
-			cairo_paint (myDrawContext);
+			fTitleWidth = myData.fLogoSize + 5;  // 5 pixels d'ecart entre le logo et le texte.
+			iTitleX = MAX (0, myConfig.fTitleAlignment * (iWidth - myConfig.iBorderThickness - 2*iMargin - fTitleWidth));
 		}
 	}
 	pango_font_description_free (fd);
@@ -135,11 +139,15 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			pango_layout_set_text (pLayout, pItem->cTitle, -1);
 			pango_layout_get_pixel_extents (pLayout, &ink, &log);
 			
-			cairo_set_source_rgba (myDrawContext, myConfig.fTitleTextColor[0], myConfig.fTitleTextColor[1], myConfig.fTitleTextColor[2], myConfig.fTitleTextColor[3]);	
+			fTitleWidth += log.width;
+			iTitleX = MAX (0, myConfig.fTitleAlignment * (iWidth - myConfig.iBorderThickness - 2*iMargin - fTitleWidth));
+			fTitleHeight = log.height;
+			
+			cairo_set_source_rgba (myDrawContext, myConfig.fTitleTextColor[0], myConfig.fTitleTextColor[1], myConfig.fTitleTextColor[2], myConfig.fTitleTextColor[3]);
 			
 			cairo_move_to (myDrawContext,
-				iMargin + myConfig.iTitleMargin + (bLogoIsOn ? myData.fLogoSize + 5 : 0),  // 5 pixels d'ecart entre le logo et le texte.
-				iMargin + (bLogoIsOn ? MAX (0, (myData.fLogoSize - log.height)/2) : 0));
+				iMargin + iTitleX + (bLogoIsOn ? myData.fLogoSize + 5 : 0),
+				iMargin + (bLogoIsOn ? MAX (0, (myData.fLogoSize - fTitleHeight)/2) : 0));
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
 			fCurrentY = iMargin + MAX (log.height, (bLogoIsOn ? myData.fLogoSize : 0)) + myConfig.iSpaceBetweenFeedLines;
@@ -159,10 +167,57 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				continue;
 			
 			gchar *cLine = g_strdup (pItem->cTitle);
-			cd_rssreader_cut_line (cLine, pLayout, iWidth - myConfig.iBorderThickness - iMargin - myConfig.iTextMargin);
+			cd_rssreader_cut_line (cLine, pLayout, iWidth - myConfig.iBorderThickness - 2*iMargin - myConfig.iTextMargin);
 			
 			pango_layout_set_text (pLayout, cLine, -1);
 			pango_layout_get_pixel_extents (pLayout, &ink, &log);
+			
+			if (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness)  // on deborde en hauteur.
+			{
+				g_print ("fCurrentY : %.1f + %d > %d\n", fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
+				gchar *rc;
+				do
+				{
+					rc = strrchr (cLine, '\n');  // pas tres optimise mais pratique.
+					if (!rc)
+						break;
+					*rc = '\0';
+					pango_layout_set_text (pLayout, cLine, -1);
+					pango_layout_get_pixel_extents (pLayout, &ink, &log);
+					g_print ("%s -> : %.1f + %d / %d\n", cLine, fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
+				} while (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness);
+				
+				if (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness)  // on deborde toujours => on quitte.
+				{
+					g_free (cLine);
+					break;
+				}
+				else  // on a reussi a en afficher une partie, on le signale avec des '...'.
+				{
+					gchar *cCutLine = g_strdup_printf ("%s...", cLine);
+					pango_layout_set_text (pLayout, cCutLine, -1);
+					pango_layout_get_pixel_extents (pLayout, &ink, &log);
+					if (log.width > iWidth - myConfig.iBorderThickness - 2*iMargin - myConfig.iTextMargin)  // les "..." font deborder
+					{
+						g_free (cCutLine);
+						gchar *sp = strrchr (cLine, ' ');
+						if (sp)  // on remplace le dernier mot par les "..."
+						{
+							*sp = '.';
+							*(sp+1) = '.';
+							*(sp+2) = '.';
+							*(sp+3) = '\0';
+							cCutLine = NULL;
+						}
+						else  // on coupe le dernier mot par les "..."
+							cCutLine = cairo_dock_cut_string (cLine, -3);
+						pango_layout_set_text (pLayout, cCutLine ? cCutLine : cLine, -1);
+						pango_layout_get_pixel_extents (pLayout, &ink, &log);
+					}
+					g_free (cCutLine);
+				}
+			}
+			
 			g_free (cLine);
 			
 			cairo_move_to (myDrawContext,
@@ -171,14 +226,24 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
 			fCurrentY += log.height + myConfig.iSpaceBetweenFeedLines;
-			g_print ("fCurrentY <- %.2f\n", fCurrentY);
+			//g_print ("fCurrentY <- %.2f\n", fCurrentY);
 		}
+	}
+	
+	// dessin du logo.
+	if (bLogoIsOn)
+	{
+		cairo_set_source_surface (myDrawContext,
+			myData.pLogoSurface,
+			iMargin + iTitleX,
+			iMargin + MAX (0, (fTitleHeight - myData.fLogoSize)/2));
+		cairo_paint (myDrawContext);
 	}
 	
 	// dessin du cadre (optionnel).
 	if (myConfig.bDisplayBackground)
 	{
-		cairo_save (myDrawContext);  // On sauvegarde la position #5
+		cairo_save (myDrawContext);
 		cairo_set_source_rgba (myDrawContext,
 			myConfig.fBorderColor[0],
 			myConfig.fBorderColor[1],
@@ -194,7 +259,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			iWidth - 2*myConfig.iBackgroundRadius - myConfig.iBorderThickness,
 			iHeight - myConfig.iBorderThickness);
 		cairo_stroke (myDrawContext);
-		cairo_restore (myDrawContext);  // On restaure la position #4
+		cairo_restore (myDrawContext);
 	}
 	
 	g_object_unref (pLayout);
