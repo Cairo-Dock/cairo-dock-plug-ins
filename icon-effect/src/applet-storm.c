@@ -22,6 +22,7 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-fire.h"
 #include "applet-storm.h"
 
 static double ar = .1;  // variation du rayon des particules.
@@ -29,16 +30,22 @@ static double ad = .5;  // dispersion.
 static double at = .6;  // transparence initiale des particules.
 static double n = 2;  // nbre de tours.
 
-CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, double dt)
+#define cd_icon_effect_load_storm_texture cd_icon_effect_load_fire_texture
+
+static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
+	if (pData->pStormSystem != NULL)
+		return TRUE;
+	
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_storm_texture ();
+	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
-	CairoParticleSystem *pStormParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
-	g_return_val_if_fail (pStormParticleSystem != NULL, NULL);
-	pStormParticleSystem->dt = dt;
+	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
+	pParticleSystem->dt = dt;
 	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
-		pStormParticleSystem->bDirectionUp = FALSE;
+		pParticleSystem->bDirectionUp = FALSE;
 	
 	static double epsilon = 0.1;
 	double r = myConfig.iStormParticleSize;
@@ -48,7 +55,7 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 	int i;
 	for (i = 0; i < myConfig.iNbStormParticles; i ++)
 	{
-		p = &pStormParticleSystem->pParticles[i];
+		p = &pParticleSystem->pParticles[i];
 		
 		p->x = 0.;  // on le calculera a la main.
 		p->y = -1. * i /myConfig.iNbStormParticles + .01 * (2 * g_random_double () - 1);
@@ -75,10 +82,11 @@ CairoParticleSystem *cd_icon_effect_init_storm (Icon *pIcon, CairoDock *pDock, d
 		p->fResizeSpeed = 0.;  // zoom constant.
 	}
 	
-	return pStormParticleSystem;
+	pData->pStormSystem = pParticleSystem;
+	return TRUE;
 }
 
-gboolean cd_icon_effect_update_storm_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
+static gboolean _update_storm_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
 {
 	gboolean bAllParticlesEnded = TRUE;
 	double x;
@@ -109,7 +117,7 @@ gboolean cd_icon_effect_update_storm_system (CairoParticleSystem *pParticleSyste
 	return ! bAllParticlesEnded;
 }
 
-void cd_icon_effect_rewind_storm_particle (CairoParticle *p, double dt)
+static void _rewind_storm_particle (CairoParticle *p, double dt)
 {
 	p->x = 0;
 	p->y = .03 * (2 * g_random_double () - 1);
@@ -118,4 +126,54 @@ void cd_icon_effect_rewind_storm_particle (CairoParticle *p, double dt)
 	p->color[3] = at;
 	p->iInitialLife = MIN (1. / p->vy, ceil (myConfig.iStormDuration/2 / dt));
 	p->iLife = p->iInitialLife;
+}
+
+static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
+{
+	if (pData->pStormSystem == NULL)
+		return FALSE;
+		
+	gboolean bContinue = _update_storm_system (pData->pStormSystem,
+		(bRepeat ? _rewind_storm_particle : NULL));
+	
+	pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	return bContinue;
+}
+
+
+static void render (CDIconEffectData *pData)
+{
+	if (pData->pStormSystem == NULL)
+		return ;
+	
+	cairo_dock_render_particles_full (pData->pStormSystem, -1);
+}
+
+
+static void post_render (CDIconEffectData *pData)
+{
+	if (pData->pStormSystem == NULL)
+		return ;
+	
+	cairo_dock_render_particles_full (pData->pStormSystem, 1);
+}
+
+
+static void free_effect (CDIconEffectData *pData)
+{
+	if (pData->pStormSystem != NULL)
+	{
+		cairo_dock_free_particle_system (pData->pStormSystem);
+		pData->pStormSystem = NULL;
+	}
+}
+
+
+void cd_icon_effect_register_storm (CDIconEffect *pEffect)
+{
+	pEffect->init = init;
+	pEffect->update = update;
+	pEffect->render = render;
+	pEffect->post_render = post_render;
+	pEffect->free = free_effect;
 }

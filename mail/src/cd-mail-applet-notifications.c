@@ -46,7 +46,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			if (!r)
 			{
 				cd_warning ("when couldn't execute '%s'", myConfig.cMailApplication);
-				cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cMailApplication);
+				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", myConfig.cMailApplication);
 			}
 		}
 	}
@@ -260,7 +260,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 
-	CDMailAccount *pMailAccount;
+	CDMailAccount *pMailAccount = NULL;
 	guint i;
 	int r;
 	for (i = 0; i < myData.pMailAccounts->len; i++)

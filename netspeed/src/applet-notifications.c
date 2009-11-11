@@ -30,7 +30,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);
 	if (myData.bAcquisitionOK)
 	{
-		cairo_dock_show_temporary_dialog_with_icon ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
 			myIcon, myContainer, 6e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("Total amount of data"),

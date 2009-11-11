@@ -24,17 +24,25 @@
 #include "applet-struct.h"
 #include "applet-snow.h"
 
+#define cd_icon_effect_load_snow_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("snow.png")
 
-CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, double dt)
+#define cd_icon_effect_update_snow_system cairo_dock_update_default_particle_system
+
+
+static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
+	if (pData->pSnowSystem != NULL)
+		return TRUE;
+	
 	if (myData.iSnowTexture == 0)
 		myData.iSnowTexture = cd_icon_effect_load_snow_texture ();
+	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
-	CairoParticleSystem *pSnowParticleSystem = cairo_dock_create_particle_system (myConfig.iNbSnowParticles, myData.iSnowTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
-	g_return_val_if_fail (pSnowParticleSystem != NULL, NULL);
-	pSnowParticleSystem->dt = dt;
+	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbSnowParticles, myData.iSnowTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
+	pParticleSystem->dt = dt;
 	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
-		pSnowParticleSystem->bDirectionUp = FALSE;
+		pParticleSystem->bDirectionUp = FALSE;
 	
 	double a = myConfig.fSnowParticleSpeed;
 	static double epsilon = 0.1;
@@ -45,7 +53,7 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 	int i;
 	for (i = 0; i < myConfig.iNbSnowParticles; i ++)
 	{
-		p = &(pSnowParticleSystem->pParticles[i]);
+		p = &(pParticleSystem->pParticles[i]);
 		
 		p->x = 2 * g_random_double () - 1;
 		p->y = 1.;
@@ -73,12 +81,13 @@ CairoParticleSystem *cd_icon_effect_init_snow (Icon *pIcon, CairoDock *pDock, do
 		p->fResizeSpeed = - .5 / myConfig.iSnowDuration * dt;  // zoom 0.5 a la fin.
 	}
 	
-	return pSnowParticleSystem;
+	pData->pSnowSystem = pParticleSystem;
+	return TRUE;
 }
 
 
 
-void cd_icon_effect_rewind_snow_particle (CairoParticle *p, double dt)
+static void _rewind_snow_particle (CairoParticle *p, double dt)
 {
 	static double epsilon = 0.1;
 	double a = myConfig.fSnowParticleSpeed/1;
@@ -98,4 +107,44 @@ void cd_icon_effect_rewind_snow_particle (CairoParticle *p, double dt)
 	
 	p->fSizeFactor = 1.;
 }
+
+static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
+{
+	if (pData->pSnowSystem == NULL)
+		return FALSE;
+		
+	gboolean bContinue = cairo_dock_update_default_particle_system (pData->pSnowSystem,
+		(bRepeat ? _rewind_snow_particle : NULL));
+	pData->pSnowSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	return bContinue;
+}
+
+
+static void render (CDIconEffectData *pData)
+{
+	if (pData->pSnowSystem == NULL)
+		return ;
+	
+	cairo_dock_render_particles (pData->pSnowSystem);
+}
+
+
+static void free_effect (CDIconEffectData *pData)
+{
+	if (pData->pSnowSystem != NULL)
+	{
+		cairo_dock_free_particle_system (pData->pSnowSystem);
+		pData->pSnowSystem = NULL;
+	}
+}
+
+
+void cd_icon_effect_register_snow (CDIconEffect *pEffect)
+{
+	pEffect->init = init;
+	pEffect->update = update;
+	pEffect->render = render;
+	pEffect->free = free_effect;
+}
+
 

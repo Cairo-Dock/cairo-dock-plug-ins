@@ -171,7 +171,7 @@ nb part = 100
 part size = 10
 
 
-#[@icon_effectsdatadir@/icon-firework.svg]
+#[@icon_effectsdatadir@/icon-firework.png]
 [Firework]
 
 #I[200;8000] Duration of the animation :
@@ -181,6 +181,9 @@ duration = 2000
 #b+ Repeat while icon is pointed ?
 continue = true
 
+#F[Colors]
+frame_col =
+
 #c+3 Default color :
 color = 1;0;0
 
@@ -188,14 +191,17 @@ color = 1;0;0
 random colors = true
 
 #b+ Add luminance ?
+#{It particularily fits a dark wallpaper or a dark theme.}
 luminous = true
 
+#F[Particles]
+frame_part =
 
 #i[1;5] Number of sources :
 nb sources = 2
 
 #I[10;360] Number of particles per source :
-nb part = 50
+nb part = 80
 
 #e[.1;.5] Radius of the explosion :
 #{In percentage of the icon's size.}

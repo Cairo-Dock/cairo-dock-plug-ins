@@ -291,10 +291,11 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (myConfig.bEnableDialogs)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog ("%s '%s' (n°%d):\n%s",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s '%s' (n°%d):\n%s",
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
+			"same icon",
 			(pItem->iFileType == CD_TYPE_TEXT ? D_("Text") : D_("File")),
 			pItem->cFileName,
 			myData.iCurrentItemNum,

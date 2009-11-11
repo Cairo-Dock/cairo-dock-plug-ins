@@ -295,7 +295,7 @@ void cd_musicplayer_popup_info (void)
 			str ++;
 		else
 			str = myData.cPlayingUri;
-		cairo_dock_show_temporary_dialog_with_icon ("%s : %s",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
@@ -304,7 +304,7 @@ void cd_musicplayer_popup_info (void)
 			str);
 	}
 	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,

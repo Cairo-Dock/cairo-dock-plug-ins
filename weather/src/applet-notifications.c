@@ -107,7 +107,7 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 	
 	Day *day = &myData.days[iNumDay];
 	DayPart *part = &day->part[iPart];
-	cairo_dock_show_temporary_dialog_with_icon ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
+	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s\n %s : %s  %s %s",
 		(myDock ? pIcon : myIcon),
 		(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		myConfig.cDialogDuration,
@@ -146,7 +146,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	}
 	
 	CurrentContitions *cc = &myData.currentConditions;
-	cairo_dock_show_temporary_dialog_with_icon ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
+	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
 		D_("Temperature"), _display (cc->cTemp), myData.units.cTemp, D_("felt"), _display (cc->cFeltTemp), myData.units.cTemp,

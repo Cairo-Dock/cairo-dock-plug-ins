@@ -59,14 +59,23 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		area.y = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX));
 		if (myDock->container.bDirectionUp)
 		{
+			if (!g_bUseOpenGL)
+			{
+				area.y = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MAX (iPreviousPositionX, myData.iCurrentPositionX));
+				area.y = myDock->container.iWidth - area.y;
+			}
+			else
+			{
+				area.y = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MAX (iPreviousPositionX, myData.iCurrentPositionX)) + pAnimation->iFrameWidth;
+				area.y = myDock->container.iWidth - area.y;
+			}
 			area.x = myDock->container.iHeight - MAX (iPreviousPositionY, myData.iCurrentPositionY) - pAnimation->iFrameHeight;
-			area.y = myDock->container.iWidth - area.y;
 		}
 		else
 		{
+			area.y = (int) ((myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + MIN (iPreviousPositionX, myData.iCurrentPositionX));
 			area.x = MAX (iPreviousPositionY, myData.iCurrentPositionY);
 		}
 		area.height = abs (iPreviousPositionX - myData.iCurrentPositionX) + pAnimation->iFrameWidth + 1;  // meme remarque sur le +1.

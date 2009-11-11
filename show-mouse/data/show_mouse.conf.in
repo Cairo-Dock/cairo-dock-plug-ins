@@ -3,7 +3,7 @@
 #[gtk-preferences]
 [Configuration]
 
-#i+[1;12] Numbrer of sources :
+#i+[1;12] Number of sources :
 nb sources = 2
 
 #e+[.05;1] Rotation speed :

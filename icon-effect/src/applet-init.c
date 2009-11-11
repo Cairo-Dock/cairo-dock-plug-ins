@@ -19,13 +19,23 @@
 
 #include "stdlib.h"
 
-#include "fire-tex.h"
-
 #include "applet-config.h"
 #include "applet-struct.h"
 #include "applet-notifications.h"
+#include "applet-fire.h"
+#include "applet-star.h"
+#include "applet-rain.h"
+#include "applet-snow.h"
+#include "applet-storm.h"
+#include "applet-firework.h"
 #include "applet-init.h"
 
+#define _register_effect(i, name, disp_name) do {\
+	cd_icon_effect_register_fire (&myData.pEffects[CD_ICON_EFFECT_FIRE]);\
+	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation (name, disp_name);\
+	myData.pEffects[CD_ICON_EFFECT_FIRE].iDuration = myConfig.iFireDuration;\
+	myData.pEffects[CD_ICON_EFFECT_FIRE].bRepeat = myConfig.bContinueFire; } while (0)
+	
 
 CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
 	2, 0, 0,
@@ -37,6 +47,26 @@ CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 CD_APPLET_PRE_INIT_END
 
+static inline void _set_effects_duration (void)
+{
+	myData.pEffects[CD_ICON_EFFECT_FIRE].iDuration = myConfig.iFireDuration;
+	myData.pEffects[CD_ICON_EFFECT_FIRE].bRepeat = myConfig.bContinueFire;
+	
+	myData.pEffects[CD_ICON_EFFECT_STARS].iDuration = myConfig.iStarDuration;
+	myData.pEffects[CD_ICON_EFFECT_STARS].bRepeat = myConfig.bContinueStar;
+	
+	myData.pEffects[CD_ICON_EFFECT_RAIN].iDuration = myConfig.iRainDuration;
+	myData.pEffects[CD_ICON_EFFECT_RAIN].bRepeat = myConfig.bContinueRain;
+	
+	myData.pEffects[CD_ICON_EFFECT_SNOW].iDuration = myConfig.iSnowDuration;
+	myData.pEffects[CD_ICON_EFFECT_SNOW].bRepeat = myConfig.bContinueSnow;
+	
+	myData.pEffects[CD_ICON_EFFECT_SAND].iDuration = myConfig.iStormDuration;
+	myData.pEffects[CD_ICON_EFFECT_SAND].bRepeat = myConfig.bContinueStorm;
+	
+	myData.pEffects[CD_ICON_EFFECT_FIREWORK].iDuration = myConfig.iFireworkDuration;
+	myData.pEffects[CD_ICON_EFFECT_FIREWORK].bRepeat = myConfig.bContinueFirework;
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -51,12 +81,25 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_icon_effect_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 	
+	cd_icon_effect_register_fire (&myData.pEffects[CD_ICON_EFFECT_FIRE]);
 	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire", D_("Fire"));
+	
+	cd_icon_effect_register_stars (&myData.pEffects[CD_ICON_EFFECT_STARS]);
 	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars", D_("Stars"));
+	
+	cd_icon_effect_register_rain (&myData.pEffects[CD_ICON_EFFECT_RAIN]);
 	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain", D_("Rain"));
+	
+	cd_icon_effect_register_snow (&myData.pEffects[CD_ICON_EFFECT_SNOW]);
 	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow", D_("Snow"));
+	
+	cd_icon_effect_register_storm (&myData.pEffects[CD_ICON_EFFECT_SAND]);
 	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm", D_("Storm"));
+	
+	cd_icon_effect_register_firework (&myData.pEffects[CD_ICON_EFFECT_FIREWORK]);
 	myData.iAnimationID[CD_ICON_EFFECT_FIREWORK] = cairo_dock_register_animation ("firework", D_("Firework"));
+	
+	_set_effects_duration ();
 	
 	if (! cairo_dock_is_loading ())
 		cairo_dock_update_animations_list_for_gui ();
@@ -90,7 +133,7 @@ CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
-static gboolean _effect_is_used_in_table (CDIconEffects iEffect, CDIconEffects *pEffectList)
+static gboolean _effect_is_used_in_table (CDIconEffectsEnum iEffect, CDIconEffectsEnum *pEffectList)
 {
 	int i;
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
@@ -102,7 +145,7 @@ static gboolean _effect_is_used_in_table (CDIconEffects iEffect, CDIconEffects *
 	}
 	return FALSE;
 }
-static gboolean _effect_is_used (CDIconEffects iEffect)
+static gboolean _effect_is_used (CDIconEffectsEnum iEffect)
 {
 	gboolean bUsed;
 	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsUsed);
@@ -140,5 +183,7 @@ CD_APPLET_RELOAD_BEGIN
 			glDeleteTextures (1, &myData.iRainTexture);
 			myData.iRainTexture = 0;
 		}
+		
+		_set_effects_duration ();
 	}
 CD_APPLET_RELOAD_END

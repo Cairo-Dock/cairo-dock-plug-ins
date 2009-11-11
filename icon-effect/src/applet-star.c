@@ -24,16 +24,22 @@
 #include "applet-struct.h"
 #include "applet-star.h"
 
+#define cd_icon_effect_load_star_texture(...) CD_APPLET_LOAD_LOCAL_TEXTURE ("star.png")
 
-CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, double dt)
+
+static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
+	if (pData->pStarSystem != NULL)
+		return TRUE;
+	
 	if (myData.iStarTexture == 0)
 		myData.iStarTexture = cd_icon_effect_load_star_texture ();
+	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
-	CairoParticleSystem *pStarParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
-	g_return_val_if_fail (pStarParticleSystem != NULL, NULL);
-	pStarParticleSystem->dt = dt;
-	pStarParticleSystem->bAddLuminance = TRUE;
+	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
+	pParticleSystem->dt = dt;
+	pParticleSystem->bAddLuminance = TRUE;
 	
 	static double a = .4;
 	static double epsilon = 0.1;
@@ -43,7 +49,7 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 	int i;
 	for (i = 0; i < myConfig.iNbStarParticles; i ++)
 	{
-		p = &pStarParticleSystem->pParticles[i];
+		p = &pParticleSystem->pParticles[i];
 		
 		p->x = 2 * g_random_double () - 1;
 		p->y = g_random_double ();
@@ -79,10 +85,11 @@ CairoParticleSystem *cd_icon_effect_init_stars (Icon *pIcon, CairoDock *pDock, d
 		p->fResizeSpeed = - 1. / myConfig.iStarDuration * dt;  // zoom 0 a la fin.
 	}
 	
-	return pStarParticleSystem;
+	pData->pStarSystem = pParticleSystem;
+	return TRUE;
 }
 
-gboolean cd_icon_effect_update_star_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
+static gboolean _update_star_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
 {
 	static double a = .4;
 	gboolean bAllParticlesEnded = TRUE;
@@ -116,7 +123,7 @@ gboolean cd_icon_effect_update_star_system (CairoParticleSystem *pParticleSystem
 	return ! bAllParticlesEnded;
 }
 
-void cd_icon_effect_rewind_star_particle (CairoParticle *p, double dt)
+static void _rewind_star_particle (CairoParticle *p, double dt)
 {
 	double a = .2;
 	p->x = 2 * g_random_double () - 1;
@@ -124,4 +131,44 @@ void cd_icon_effect_rewind_star_particle (CairoParticle *p, double dt)
 	p->fSizeFactor = 1.;
 	p->iInitialLife = myConfig.iStarDuration / dt;
 	p->iLife = p->iInitialLife * (g_random_double () + a) / (1 + a);
+}
+
+static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
+{
+	if (pData->pStarSystem == NULL)
+		return FALSE;
+		
+	gboolean bContinue = _update_star_system (pData->pStarSystem,
+		(bRepeat ? _rewind_star_particle : NULL));
+	
+	pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	return bContinue;
+}
+
+
+static void render (CDIconEffectData *pData)
+{
+	if (pData->pStarSystem == NULL)
+		return ;
+	
+	cairo_dock_render_particles (pData->pStarSystem);
+}
+
+
+static void free_effect (CDIconEffectData *pData)
+{
+	if (pData->pStarSystem != NULL)
+	{
+		cairo_dock_free_particle_system (pData->pStarSystem);
+		pData->pStarSystem = NULL;
+	}
+}
+
+
+void cd_icon_effect_register_stars (CDIconEffect *pEffect)
+{
+	pEffect->init = init;
+	pEffect->update = update;
+	pEffect->render = render;
+	pEffect->free = free_effect;
 }

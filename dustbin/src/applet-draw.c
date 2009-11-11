@@ -192,7 +192,7 @@ void cd_dustbin_signal_full_dustbin (void)
 		pDustbin = pElement->data;
 		if (myConfig.iSizeLimit != 0 && pDustbin->iSize > myConfig.iSizeLimit)
 		{
-			cairo_dock_show_temporary_dialog_with_icon ("%s is full !", myIcon, myContainer, CD_DUSTBIN_DIALOG_DURATION, NULL, pDustbin->cPath);
+			cairo_dock_show_temporary_dialog_with_icon_printf ("%s is full !", myIcon, myContainer, CD_DUSTBIN_DIALOG_DURATION, NULL, pDustbin->cPath);
 			bOneDustbinFull = TRUE;
 		}
 	}

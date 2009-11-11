@@ -382,54 +382,57 @@ msgid "It doesn't seem to be a valid URL."
 msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:115
-#, fuzzy
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Coller (glisser-déposer)"
+msgstr "Coller l'URL (glisser-déposer)"
 
 #: ../RSSreader/src/applet-notifications.c:119
 msgid "Open with your web browser"
-msgstr ""
+msgstr "Ouvrir avec votre navigateur"
 
-#: ../RSSreader/src/applet-rss.c:231
+#: ../RSSreader/src/applet-rss.c:331
 msgid "No URL is defined."
-msgstr ""
+msgstr "Aucune URL définie."
 
-#: ../RSSreader/src/applet-rss.c:233 ../RSSreader/src/applet-rss.c:327
+#: ../RSSreader/src/applet-rss.c:333 ../RSSreader/src/applet-rss.c:437
 #, fuzzy
 msgid "No data (no connection ?)"
 msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../RSSreader/src/applet-rss.c:250 ../RSSreader/src/applet-rss.c:267
-msgid "Invalid data (invalid RSS feed ?)"
-msgstr ""
+#: ../RSSreader/src/applet-rss.c:350 ../RSSreader/src/applet-rss.c:367
+#, fuzzy
+msgid "Invalid data (invalid RSS/Atom feed ?)"
+msgstr "Données invalides (flux RSS/Atom invalide ?)"
 
-#: ../RSSreader/src/applet-rss.c:306
+#: ../RSSreader/src/applet-rss.c:416
 msgid "No data"
-msgstr ""
+msgstr "Aucune donnée"
 
-#: ../RSSreader/src/applet-rss.c:325
+#: ../RSSreader/src/applet-rss.c:435
 msgid "No data (invalid rss ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:341
+#: ../RSSreader/src/applet-rss.c:451
 msgid "No modification"
-msgstr ""
+msgstr "Aucune modification."
 
-#: ../RSSreader/src/applet-rss.c:364
+#: ../RSSreader/src/applet-rss.c:474
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "Ce flux RSS a été modifié..."
 
-#: ../RSSreader/src/applet-rss.c:433
+#: ../RSSreader/src/applet-rss.c:543
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the RL\n"
 " in the menu."
 msgstr ""
+"Aucune URL définie\n"
+"Vous pouvez en définir une en copiant une URL dans le presse-papier,\n"
+" et en sélectionnant \"Coller l'URL\" dans le menu."
 
-#: ../RSSreader/src/applet-rss.c:439
+#: ../RSSreader/src/applet-rss.c:549
 #, fuzzy
 msgid ""
 "No data\n"
@@ -450,7 +453,7 @@ msgstr "Exécuter"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr ""
+msgstr "Ouvrir un terminal ici"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
@@ -494,17 +497,15 @@ msgstr "Ouvrir"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:230
 msgid "Open in new window"
-msgstr ""
+msgstr "Ouvrir dans une nouvelle fenêtre"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "Lister les signets ?"
+msgstr "Signets de Firefox"
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr "Ouvrir le fichier"
+msgstr "Fichiers réecnts"
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -1094,7 +1095,7 @@ msgstr ""
 "L'URL courante a été stockée dans la sélection souris.\n"
 "Utilisez le clic du milieu pour la coller n'importe où."
 
-#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:131
+#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:135
 msgid "Text"
 msgstr "Texte"
 
@@ -1289,50 +1290,49 @@ msgstr ""
 "Il s'auto-active, vous ne devez donc pas l'activer manuellement.\n"
 "Il a été conçu pour les versions récentes de Gnome (supérieures à la 2.22)."
 
-#: ../icon-effect/src/applet-init.c:30
+#: ../icon-effect/src/applet-init.c:36
 msgid "icon effects"
 msgstr "Effets d'icône"
 
-#: ../icon-effect/src/applet-init.c:33
+#: ../icon-effect/src/applet-init.c:39
 msgid "This plug-in adds many special effects to your icons."
 msgstr "Ce plug-in ajoute des effets spéciaux à vos icônes."
 
-#: ../icon-effect/src/applet-init.c:54 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:81 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr "Feu"
 
-#: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:84 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:95
 msgid "Stars"
 msgstr "Etoiles"
 
-#: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:87 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:131
 msgid "Rain"
 msgstr "Pluie"
 
-#: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:90 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:113
 msgid "Snow"
 msgstr "Neige"
 
-#: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:93 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:149
 msgid "Storm"
 msgstr "Tempête"
 
-#: ../icon-effect/src/applet-init.c:59 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:96 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:165
-#, fuzzy
 msgid "Firework"
-msgstr "Feu"
+msgstr "Feu d'artifice"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
@@ -2597,7 +2597,7 @@ msgid "2nd color of gradation :"
 msgstr "2ème couleur du dégradé :"
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
-#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:175
+#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:31
 msgid "Random colors ?"
 msgstr "Couleurs aléatoires ?"
@@ -4040,22 +4040,20 @@ msgid "Set to 0 to use the default applet size"
 msgstr "Laissez à 0 pour avoir la taille par défaut"
 
 #: ../RSSreader/data/messages:7
-#, fuzzy
 msgid "Let empty to use the title of the RSS feed."
-msgstr "Laissez vide pour utiliser le nom de la ville."
+msgstr "Laissez vide pour utiliser le titre du flux RSS."
 
 #: ../RSSreader/data/messages:89
-#, fuzzy
 msgid "RSS Feed"
-msgstr "Vitesse"
+msgstr "flux RSS"
 
 #: ../RSSreader/data/messages:91
 msgid "Enter a valid atom/rss feed"
-msgstr ""
+msgstr "Entrez une adresse de flux RSS/Atom"
 
 #: ../RSSreader/data/messages:93
 msgid "URL :"
-msgstr ""
+msgstr "URL :"
 
 #: ../RSSreader/data/messages:95
 #, fuzzy
@@ -4070,188 +4068,183 @@ msgid "Behaviour"
 msgstr "Comportement"
 
 #: ../RSSreader/data/messages:99
-#, fuzzy
 msgid "In minutes."
-msgstr "en minutes"
+msgstr "En minutes."
 
 #: ../RSSreader/data/messages:101
-#, fuzzy
 msgid "Refresh time :"
-msgstr "Rafraîchir"
+msgstr "Intervalle de rafraîchissement :"
 
 #: ../RSSreader/data/messages:103
 msgid "By default, this option is activated"
-msgstr ""
+msgstr "Par défaut, cette option est activée"
 
 #: ../RSSreader/data/messages:105
 msgid "Display an info-bubble when a feed has changed?"
-msgstr ""
+msgstr "Afficher une bulle d'info quand le flux a changé ?"
 
 #: ../RSSreader/data/messages:107
 msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
 msgstr ""
+"En secondes. Mettez 0 pour un dialgue sans fin (cliquez dessus pour le "
+"fermer)."
 
 #: ../RSSreader/data/messages:109 ../dnd2share/data/messages:93
 msgid "Duration of the info-bubbles :"
 msgstr "Durée des info-bulles :"
 
 #: ../RSSreader/data/messages:111
-#, fuzzy
 msgid "Animation of the icon when a feed has changed :"
-msgstr "Animation de l'icone durant l'upload :"
+msgstr "Animation de l'icône quand le flux a changé :"
 
 #: ../RSSreader/data/messages:115
 msgid "Open the feed with the following program :"
-msgstr ""
+msgstr "Ouvrir le flux avec le programme suivant :"
 
 #: ../RSSreader/data/messages:117
 msgid "Appearance"
-msgstr ""
+msgstr "Apparence"
 
 #: ../RSSreader/data/messages:121
-#, fuzzy
 msgid "Font to be used for the title"
-msgstr "Police utilisée pour l'affichage numérique :"
+msgstr "Police utilisée pour le titre"
 
 #: ../RSSreader/data/messages:123
-#, fuzzy
 msgid "Title font :"
-msgstr "Police"
+msgstr "Police du titre :"
 
 #: ../RSSreader/data/messages:125
-#, fuzzy
 msgid "Color to be used for the title"
-msgstr "Couleur du plan :"
+msgstr "Couleur utilisée pour le titre"
 
 #: ../RSSreader/data/messages:127
-#, fuzzy
 msgid "Title color :"
-msgstr "Couleur du texte :"
+msgstr "Couleur du titre :"
 
 #: ../RSSreader/data/messages:129
 #, fuzzy
-msgid "Left margin for the title:"
-msgstr "Image pour les objets 'textes' :"
+msgid "Alignment of the title:"
+msgstr "Durée des dialogues :"
+
+#: ../RSSreader/data/messages:131
+#, fuzzy
+msgid "left"
+msgstr "Alerte"
 
 #: ../RSSreader/data/messages:133
-#, fuzzy
-msgid "Font to be used for the feed lines"
-msgstr "Police utilisée pour l'affichage numérique :"
-
-#: ../RSSreader/data/messages:135
-#, fuzzy
-msgid "Feed lines font :"
-msgstr "Couleur de la ligne :"
+msgid "right"
+msgstr ""
 
 #: ../RSSreader/data/messages:137
-#, fuzzy
+msgid "Font to be used for the feed lines"
+msgstr "Police utilisée pour le texte :"
+
+#: ../RSSreader/data/messages:139
+msgid "Feed lines font :"
+msgstr "Police du texte :"
+
+#: ../RSSreader/data/messages:141
 msgid "Color to be used for the feed lines"
 msgstr "Couleur des lignes extérieures :"
 
-#: ../RSSreader/data/messages:139
-#, fuzzy
-msgid "Feed lines color :"
-msgstr "Couleur de la ligne :"
-
-#: ../RSSreader/data/messages:141
-#, fuzzy
-msgid "Left margin for the feed lines :"
-msgstr "Police utilisée pour l'affichage numérique :"
-
 #: ../RSSreader/data/messages:143
-#, fuzzy
-msgid "Space between 2 feed lines :"
-msgstr "Espacement entre les icônes :"
+msgid "Feed lines color :"
+msgstr "Couleur du texte :"
 
 #: ../RSSreader/data/messages:145
-#, fuzzy
-msgid "Logo"
-msgstr "Déconnexion"
+msgid "Left margin for the feed lines :"
+msgstr "Marge à gauche pour le texte :"
 
 #: ../RSSreader/data/messages:147
-msgid "The default logo is the applet's icon"
-msgstr ""
+msgid "Space between 2 feed lines :"
+msgstr "Espace entre 2 lignes :"
 
 #: ../RSSreader/data/messages:149
-#, fuzzy
-msgid "Display the logo ?"
-msgstr "Montrer les nuits aussi ?"
+msgid "Logo"
+msgstr "Logo"
 
 #: ../RSSreader/data/messages:151
+msgid "The default logo is the applet's icon"
+msgstr "Le logo par défaut est l'icône de l'applet"
+
+#: ../RSSreader/data/messages:153
+msgid "Display the logo ?"
+msgstr "Afficher le logo ?"
+
+#: ../RSSreader/data/messages:155
 msgid "Adjust to increase/decrease the logo size"
 msgstr ""
 
-#: ../RSSreader/data/messages:153
-#, fuzzy
-msgid "Logo size :"
-msgstr "Taille des icônes"
-
-#: ../RSSreader/data/messages:155 ../quick-browser/data/messages:97
-msgid "small"
-msgstr "Petites"
-
 #: ../RSSreader/data/messages:157
-msgid "big"
-msgstr ""
+msgid "Logo size :"
+msgstr "Taille du logo :"
 
 #: ../RSSreader/data/messages:159
 #, fuzzy
-msgid "Background"
-msgstr "Image de fond :"
+msgid "normal"
+msgstr "Normal"
 
 #: ../RSSreader/data/messages:161
+msgid "big"
+msgstr "grand"
+
+#: ../RSSreader/data/messages:163
+msgid "Background"
+msgstr "Fond :"
+
+#: ../RSSreader/data/messages:165
 msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
-#: ../RSSreader/data/messages:163
+#: ../RSSreader/data/messages:167
 #, fuzzy
 msgid "Display a simple background ?"
 msgstr "Dessiner un fond ?"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:169
 #, fuzzy
 msgid "first color of the gradation"
 msgstr "1ère couleur du dégradé :"
 
-#: ../RSSreader/data/messages:167
+#: ../RSSreader/data/messages:171
 #, fuzzy
 msgid "Background first color :"
 msgstr "Couleur d'arrière-plan (r, v, b):"
 
-#: ../RSSreader/data/messages:169
+#: ../RSSreader/data/messages:173
 #, fuzzy
 msgid "second color of the gradation"
 msgstr "2ème couleur du dégradé :"
 
-#: ../RSSreader/data/messages:171
+#: ../RSSreader/data/messages:175
 #, fuzzy
 msgid "Background second color :"
 msgstr "Transparence du fond :"
 
-#: ../RSSreader/data/messages:173
-msgid "Set the radius corner to 0 for no radius"
-msgstr ""
-
-#: ../RSSreader/data/messages:175
-#, fuzzy
-msgid "Background radius corner:"
-msgstr "Transparence du fond :"
-
 #: ../RSSreader/data/messages:177
-msgid "Set the thickness to 0 for no border"
+msgid "Set the radius corner to 0 for no radius"
 msgstr ""
 
 #: ../RSSreader/data/messages:179
 #, fuzzy
+msgid "Background radius corner:"
+msgstr "Transparence du fond :"
+
+#: ../RSSreader/data/messages:181
+msgid "Set the thickness to 0 for no border"
+msgstr ""
+
+#: ../RSSreader/data/messages:183
+#, fuzzy
 msgid "Border thickness :"
 msgstr "Largeur de la bordure :"
 
-#: ../RSSreader/data/messages:181
+#: ../RSSreader/data/messages:185
 #, fuzzy
 msgid "Border color"
 msgstr "Couleur de la ligne externe :"
 
-#: ../RSSreader/data/messages:183
+#: ../RSSreader/data/messages:187
 #, fuzzy
 msgid "Border color :"
 msgstr "Couleur de la ligne externe :"
@@ -5658,7 +5651,7 @@ msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
 
-#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:177
+#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:181
 msgid "Add luminance ?"
 msgstr "Ajouter de la luminosité ?"
 
@@ -5670,7 +5663,7 @@ msgstr "Nombre de particules :"
 
 #: ../icon-effect/data/messages:91 ../icon-effect/data/messages:111
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:145
-#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:187
+#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:193
 #: ../illusion/data/messages:43 ../show-mouse/data/messages:25
 msgid "Particle size :"
 msgstr "Taille des particules :"
@@ -5681,37 +5674,45 @@ msgid "Particle speed :"
 msgstr "Vitesse des particules :"
 
 #: ../icon-effect/data/messages:173
-#, fuzzy
+msgid "Colors"
+msgstr ""
+
+#: ../icon-effect/data/messages:175
 msgid "Default color :"
-msgstr "Icône 'défaut' :"
+msgstr "Couleur par défaut :"
 
 #: ../icon-effect/data/messages:179
+msgid "It particularily fits a dark wallpaper or a dark theme."
+msgstr ""
+
+#: ../icon-effect/data/messages:183
 #, fuzzy
+msgid "Particles"
+msgstr "Taille des particules :"
+
+#: ../icon-effect/data/messages:185
 msgid "Number of sources :"
 msgstr "Nombre de sources :"
 
-#: ../icon-effect/data/messages:181 ../show-mouse/data/messages:17
+#: ../icon-effect/data/messages:187 ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
 msgstr "Nombre de particules par source :"
 
-#: ../icon-effect/data/messages:183
-msgid "In percentage of the icon's size."
-msgstr ""
-
-#: ../icon-effect/data/messages:185
-#, fuzzy
-msgid "Radius of the explosion :"
-msgstr "Taille des lignes extérieures :"
-
 #: ../icon-effect/data/messages:189
-#, fuzzy
-msgid "Show the launching ?"
-msgstr "Montrer la date :"
+msgid "In percentage of the icon's size."
+msgstr "En pourcentage de la taille de l'icône."
 
 #: ../icon-effect/data/messages:191
-#, fuzzy
+msgid "Radius of the explosion :"
+msgstr "Rayon de l'explosion :"
+
+#: ../icon-effect/data/messages:195
+msgid "Show the launching ?"
+msgstr "Montrer le lancement ?"
+
+#: ../icon-effect/data/messages:197
 msgid "Particle friction :"
-msgstr "Taille des particules :"
+msgstr "Friction des particules :"
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance :"
@@ -6257,6 +6258,11 @@ msgstr "Le temps de chargement peut être assez long avec beaucoup d'icônes."
 msgid "Icon size :"
 msgstr "Taille des icônes"
 
+#: ../quick-browser/data/messages:97
+#, fuzzy
+msgid "small"
+msgstr "mail"
+
 #: ../quick-browser/data/messages:99
 msgid "medium"
 msgstr "Moyennes"
@@ -6354,6 +6360,7 @@ msgid "Display disk usage with a bar ?"
 msgstr "Afficher l'utilisation du disque avec une barre ?"
 
 #: ../show-mouse/data/messages:3
+#, fuzzy
 msgid "Numbrer of sources :"
 msgstr "Nombre de sources :"
 
@@ -6411,14 +6418,12 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "Raccourci clavier pour montrer/cacher les deklets:"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "Laissez vide pour utiliser le nom du dossier."
+msgstr "Laissez vide pour utiliser la meme image."
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "Action au clic sur l'applet :"
+msgstr "Image quand l'applet est active :"
 
 #: ../showDesktop/data/messages:93
 msgid ""
@@ -6686,9 +6691,8 @@ msgid "Draw hidden windows too ?"
 msgstr "Dessiner les fenêtres cachées aussi ?"
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
-msgstr "Actions au clic du milieu :"
+msgstr "Action au clic du milieu :"
 
 #: ../switcher/data/messages:101
 msgid "Show windows list"
@@ -7034,28 +7038,3 @@ msgstr "Nom de l'image 'Bon' :"
 #: ../wifi/data/messages:153
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "Nom de l'image 'Excellent' :"
-
-#, fuzzy
-#~ msgid "No Title"
-#~ msgstr "Titre"
-
-#, fuzzy
-#~ msgid "Failed to connect..."
-#~ msgstr "Connexion filaire"
-
-#, fuzzy
-#~ msgid "Title num :"
-#~ msgstr "Titre"
-
-#, fuzzy
-#~ msgid "Specify a title :"
-#~ msgstr "Titre par défaut :"
-
-#~ msgid ""
-#~ "This is a very simple icon to show your desktop\n"
-#~ "Left-click to show/hide the desktop\n"
-#~ "Middle-click does the same but doesn't hide your desklets"
-#~ msgstr ""
-#~ "Ceci est une icône très simple pour montrer votre bureau.\n"
-#~ "Clic gauche pour montrer/cacher le bureau,\n"
-#~ "Clic du milieu fait pareil sauf que les desklets ne sont pas cachés."

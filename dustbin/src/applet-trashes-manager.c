@@ -456,7 +456,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			cd_warning ("Dustbin : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
-			cairo_dock_show_temporary_dialog (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, myConfig.cDefaultBrowser);
+			cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", myConfig.cDefaultBrowser);
 		}
 		g_string_free (sCommand, TRUE);
 	}

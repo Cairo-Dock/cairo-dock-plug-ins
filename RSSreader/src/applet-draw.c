@@ -174,7 +174,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			
 			if (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness)  // on deborde en hauteur.
 			{
-				g_print ("fCurrentY : %.1f + %d > %d\n", fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
+				//g_print ("fCurrentY : %.1f + %d > %.1f\n", fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
 				gchar *rc;
 				do
 				{
@@ -184,7 +184,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					*rc = '\0';
 					pango_layout_set_text (pLayout, cLine, -1);
 					pango_layout_get_pixel_extents (pLayout, &ink, &log);
-					g_print ("%s -> : %.1f + %d / %d\n", cLine, fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
+					//g_print ("%s -> : %.1f + %d / %.1f\n", cLine, fCurrentY, log.height, iHeight - iMargin - .5*myConfig.iBorderThickness);
 				} while (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness);
 				
 				if (fCurrentY + log.height > iHeight - iMargin - .5*myConfig.iBorderThickness)  // on deborde toujours => on quitte.

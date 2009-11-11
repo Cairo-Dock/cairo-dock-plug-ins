@@ -24,22 +24,9 @@
 
 #include <cairo-dock.h>
 #include "applet-struct.h"
-#include "applet-fire.h"
 
 
-#define cd_icon_effect_load_firework_texture cd_icon_effect_load_fire_texture
-
-
-void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData);
-
-
-gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, gboolean bWillContinue);
-
-
-void cd_icon_effect_render_fireworks (CDIconEffectData *pData);
-
-
-void cd_icon_effect_free_fireworks (CDIconEffectData *pData);
+void cd_icon_effect_register_firework (CDIconEffect *pEffect);
 
 
 #endif

@@ -22,10 +22,13 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-fire.h"  // on charge la meme texture que fire.
 #include "applet-firework.h"
 
 const double g = 0.81;
 const double g_ = 3 * .81;
+
+#define cd_icon_effect_load_firework_texture cd_icon_effect_load_fire_texture
 
 
 static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock, double dt)
@@ -36,21 +39,21 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 	pFirework->x_expl = 2 * g_random_double () - 1;  // entre -1 et 1;
 	pFirework->y_expl = .5 + .3 * g_random_double ();  // entre 50% et 80% de h.
 	//g_print ("expl (%.2f, %.2f)\n", pFirework->x_expl, pFirework->y_expl);
-	pFirework->r_expl = myConfig.fFireworkRadius + .1 - .2 * g_random_double ();  // +/- 10%.
-	pFirework->v_expl = pFirework->r_expl * k / (1 - exp (-k*T));  // vitesse initiale de dispersion pour atteindre le rayon.
-	pFirework->t = 0;
+	pFirework->r_expl = myConfig.fFireworkRadius + .1 - .2 * g_random_double ();  // +/- 10% de dispersion.
+	pFirework->v_expl = pFirework->r_expl * k / (1 - exp (-k*T));  // vitesse initiale d'expansion pour atteindre le rayon horizontalement.
+	pFirework->t = 0;  // temps courant.
 	if (myConfig.bFireworkShoot)
 	{
-		pFirework->t_expl = sqrt (2 * pFirework->y_expl / g_);  // temps mis pour arriver au sommet.
+		pFirework->t_expl = sqrt (2 * pFirework->y_expl / g_);  // temps mis pour arriver au sommet de la trajectoire de lancement.
 		pFirework->vy_decol = g_ * pFirework->t_expl;  // vitesse verticale initiale necessaire pour atteindre exactement y_expl.
 		pFirework->x_sol = pFirework->x_expl;  // la fusee part verticalement.
-		pFirework->vx_decol = (pFirework->x_expl - pFirework->x_sol) / pFirework->t_expl;
-		pFirework->xf = pFirework->x_sol;
+		pFirework->vx_decol = (pFirework->x_expl - pFirework->x_sol) / pFirework->t_expl;  // vitesse horizontale.
+		pFirework->xf = pFirework->x_sol;  // position courante de la fusee : au sol.
 		pFirework->yf = 0.;
 	}
 	else
 	{
-		pFirework->xf = pFirework->x_expl;
+		pFirework->xf = pFirework->x_expl;  // position courante de la fusee : tout de suite au point d'explosion.
 		pFirework->yf = pFirework->y_expl;
 	}
 	
@@ -83,8 +86,8 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->fWidth = r/2 * pDock->container.fRatio;
 		p->fHeight = p->fWidth;
 		
-		angle = (double)j / pParticleSystem->iNbParticles * 2*G_PI;
-		p->vx = pFirework->v_expl * cos (angle);
+		angle = (double)j / pParticleSystem->iNbParticles * 2*G_PI;  // explosion isotrope.
+		p->vx = pFirework->v_expl * cos (angle);  // ici vx et vy sont utilises pour stocker la vitesse initiale.
 		p->vy = pFirework->v_expl * sin (angle);
 		p->iInitialLife = ceil (T / dt);
 		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1
@@ -94,15 +97,15 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->color[1] = fColor[1];
 		p->color[2] = fColor[2];
 		
-		p->fOscillation = G_PI * (2 * g_random_double () - 1);
-		p->fOmega = 2*G_PI / myConfig.iFireworkDuration * dt;  // tr/s
+		p->fOscillation = G_PI * (2 * g_random_double () - 1); // [-pi; pi]
+		p->fOmega = 2*G_PI / myConfig.iFireworkDuration * dt;  // en tr/s, soit 2 tours au total.
 		
 		p->fSizeFactor = 1.;
-		p->fResizeSpeed = 0.;
+		p->fResizeSpeed = 0.;  // taille constante.
 	}
 }
 
-void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
+static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_firework_texture ();
@@ -118,7 +121,7 @@ void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDI
 		pFirework = &pData->pFireworks[i];
 		
 		pFirework->pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireworkParticles, myData.iFireTexture, pIcon->fWidth * fMaxScale, pIcon->fHeight * fMaxScale);
-		g_return_if_fail (pFirework->pParticleSystem != NULL);
+		g_return_val_if_fail (pFirework->pParticleSystem != NULL, FALSE);
 		pFirework->pParticleSystem->dt = dt;
 		if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 			pFirework->pParticleSystem->bDirectionUp = FALSE;
@@ -127,9 +130,11 @@ void cd_icon_effect_init_firework (Icon *pIcon, CairoDock *pDock, double dt, CDI
 		
 		_launch_one_firework (pFirework, pDock, dt);
 	}
+	return TRUE;
 }
 
-static gboolean _cd_icon_effect_update_firework_system (CDFirework *pFirework, CairoParticleSystem *pParticleSystem, double t)
+
+static gboolean _update_firework_system (CDFirework *pFirework, CairoParticleSystem *pParticleSystem, double t)
 {
 	double dt = mySystem.iGLAnimationDeltaT * 1e-3;
 	double k = myConfig.fFireworkFriction;
@@ -149,14 +154,11 @@ static gboolean _cd_icon_effect_update_firework_system (CDFirework *pFirework, C
 		p->y = pFirework->y_expl - g / k * t + a / k * (1 - exp (-k*t));
 		
 		p->color[3] = sqrt ((double)p->iLife / p->iInitialLife);
-		//p->color[3] = 1.;
 		
-		p->x += .04 * sin (p->fOscillation) * (1 - (double)p->iLife / p->iInitialLife);
-		if (exp (-k*t) < .05)
+		p->x += .04 * sin (p->fOscillation) * (1 - (double)p->iLife / p->iInitialLife);  // les paillettes sont de plus en plus ballotees par le vent 
+		if (exp (-k*t) < .05)  // lorsque la vitesse horizontale devient assez faible, les paillettes scintillent.
 		{
 			p->color[3] *= (1 + sin (4*p->fOscillation)) / 2;
-			//if (i == 0)
-				//g_print ("oscillation -> %.2f\n", p->color[3]);
 		}
 		
 		p->fSizeFactor += p->fResizeSpeed;
@@ -170,7 +172,7 @@ static gboolean _cd_icon_effect_update_firework_system (CDFirework *pFirework, C
 	return bAllParticlesEnded;
 }
 
-gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, gboolean bWillContinue)
+static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
 {
 	double dt = mySystem.iGLAnimationDeltaT * 1e-3;
 	gboolean bAllParticlesEnded = TRUE;
@@ -186,7 +188,6 @@ gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconE
 		t = pFirework->t;
 		if (pFirework->vy_decol != 0)
 		{
-			//g_print ("launching : %.2fx%.2f (t=%.2f/%.2fs)\n", pFirework->xf, pFirework->yf, t, pFirework->t_expl);
 			pFirework->xf += pFirework->vx_decol * dt;
 			pFirework->yf = pFirework->vy_decol * t - .5 * g_ * t * t;
 			if (t >= pFirework->t_expl)
@@ -198,23 +199,21 @@ gboolean cd_icon_effect_update_fireworks (Icon *pIcon, CairoDock *pDock, CDIconE
 		}
 		else
 		{
-			//g_print ("explosion\n");
-			bParticlesEnded = _cd_icon_effect_update_firework_system (pFirework, pFirework->pParticleSystem, t);
-			if (bParticlesEnded && bWillContinue)
+			bParticlesEnded = _update_firework_system (pFirework, pFirework->pParticleSystem, t);
+			if (bParticlesEnded && bRepeat)
 			{
 				_launch_one_firework (pFirework, pDock, mySystem.iGLAnimationDeltaT);
 				bParticlesEnded = FALSE;
 			}
 			bAllParticlesEnded &= bParticlesEnded;
 		}
-		//pFirework->pParticleSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	}
 	
 	return ! bAllParticlesEnded;
 }
 
 
-void cd_icon_effect_render_fireworks (CDIconEffectData *pData)
+static void render (CDIconEffectData *pData)
 {
 	CDFirework *pFirework;
 	CairoParticleSystem *pParticleSystem;
@@ -242,7 +241,7 @@ void cd_icon_effect_render_fireworks (CDIconEffectData *pData)
 }
 
 
-void cd_icon_effect_free_fireworks (CDIconEffectData *pData)
+static void free_effect (CDIconEffectData *pData)
 {
 	CDFirework *pFirework;
 	int i;
@@ -254,4 +253,13 @@ void cd_icon_effect_free_fireworks (CDIconEffectData *pData)
 	g_free (pData->pFireworks);
 	pData->pFireworks = NULL;
 	pData->iNbFireworks = 0;
+}
+
+
+void cd_icon_effect_register_firework (CDIconEffect *pEffect)
+{
+	pEffect->init = init;
+	pEffect->update = update;
+	pEffect->render = render;
+	pEffect->free = free_effect;
 }

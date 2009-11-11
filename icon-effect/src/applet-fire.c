@@ -25,17 +25,21 @@
 #include "applet-fire.h"
 
 
-CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, double dt)
+static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
+	if (pData->pFireSystem != NULL)
+		return TRUE;
+	
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_fire_texture ();
+	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
-	CairoParticleSystem *pFireParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
-	g_return_val_if_fail (pFireParticleSystem != NULL, NULL);
-	pFireParticleSystem->dt = dt;
+	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
+	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
+	pParticleSystem->dt = dt;
 	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
-		pFireParticleSystem->bDirectionUp = FALSE;
-	pFireParticleSystem->bAddLuminance = myConfig.bFireLuminance;
+		pParticleSystem->bDirectionUp = FALSE;
+	pParticleSystem->bAddLuminance = myConfig.bFireLuminance;
 	
 	double a = myConfig.fFireParticleSpeed;
 	static double epsilon = 0.1;
@@ -46,7 +50,7 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 	int i;
 	for (i = 0; i < myConfig.iNbFireParticles; i ++)
 	{
-		p = &(pFireParticleSystem->pParticles[i]);
+		p = &(pParticleSystem->pParticles[i]);
 		
 		p->x = 2 * g_random_double () - 1;
 		p->x = p->x * p->x * (p->x > 0 ? 1 : -1);
@@ -82,11 +86,12 @@ CairoParticleSystem *cd_icon_effect_init_fire (Icon *pIcon, CairoDock *pDock, do
 		p->fResizeSpeed = -.5 / myConfig.iFireDuration * dt;  // zoom 0.5 a la fin.
 	}
 	
-	return pFireParticleSystem;
+	pData->pFireSystem = pParticleSystem;
+	return TRUE;
 }
 
 
-gboolean cd_icon_effect_update_fire_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
+gboolean _update_fire_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
 {
 	gboolean bAllParticlesEnded = TRUE;
 	CairoParticle *p;
@@ -116,7 +121,7 @@ gboolean cd_icon_effect_update_fire_system (CairoParticleSystem *pParticleSystem
 	return ! bAllParticlesEnded;
 }
 
-void cd_icon_effect_rewind_fire_particle (CairoParticle *p, double dt)
+static void _rewind_fire_particle (CairoParticle *p, double dt)
 {
 	static double epsilon = 0.1;
 	double a = myConfig.fFireParticleSpeed/myConfig.fFireParticleSpeed;
@@ -137,3 +142,42 @@ void cd_icon_effect_rewind_fire_particle (CairoParticle *p, double dt)
 	p->color[3] = 1.;
 }
 
+static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
+{
+	if (pData->pFireSystem == NULL)
+		return FALSE;
+		
+	gboolean bContinue = _update_fire_system (pData->pFireSystem,
+		(bRepeat ? _rewind_fire_particle : NULL));
+	
+	pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	return bContinue;
+}
+
+
+static void render (CDIconEffectData *pData)
+{
+	if (pData->pFireSystem == NULL)
+		return ;
+	
+	cairo_dock_render_particles (pData->pFireSystem);
+}
+
+
+static void free_effect (CDIconEffectData *pData)
+{
+	if (pData->pFireSystem != NULL)
+	{
+		cairo_dock_free_particle_system (pData->pFireSystem);
+		pData->pFireSystem = NULL;
+	}
+}
+
+
+void cd_icon_effect_register_fire (CDIconEffect *pEffect)
+{
+	pEffect->init = init;
+	pEffect->update = update;
+	pEffect->render = render;
+	pEffect->free = free_effect;
+}

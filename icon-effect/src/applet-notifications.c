@@ -30,7 +30,7 @@
 #include "applet-notifications.h"
 
 
-static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDIconEffects *pAnimations)
+static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDIconEffectsEnum *pWantedEffects)
 {
 	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
 		return FALSE;
@@ -42,54 +42,25 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 	}
 	double dt = mySystem.iGLAnimationDeltaT;
 	
-	gboolean r = FALSE;
-	int i;
+	CDIconEffectsEnum iEffect;
+	CDIconEffect *pEffect;
+	gboolean r, bStart = FALSE;
+	int i, j=0;
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
-		switch (pAnimations[i])
+		iEffect = pWantedEffects[i];
+		if (iEffect < 0 || iEffect > CD_ICON_EFFECT_NB_EFFECTS - 1)
+			break;
+		
+		pEffect = &myData.pEffects[iEffect];
+		r = pEffect->init (pIcon, pDock, dt, pData);
+		if (r)
 		{
-			case CD_ICON_EFFECT_FIRE :
-				if (pData->pFireSystem == NULL)
-					pData->pFireSystem = cd_icon_effect_init_fire (pIcon, pDock, dt);
-				r = TRUE;
-			break;
-			
-			case CD_ICON_EFFECT_STARS :
-				if (pData->pStarSystem == NULL)
-					pData->pStarSystem = cd_icon_effect_init_stars (pIcon, pDock, dt);
-				r = TRUE;
-			break;
-			
-			case CD_ICON_EFFECT_RAIN :
-				if (pData->pRainSystem == NULL)
-					pData->pRainSystem = cd_icon_effect_init_rain (pIcon, pDock, dt);
-				r = TRUE;
-			break;
-			
-			case CD_ICON_EFFECT_SNOW :
-				if (pData->pSnowSystem == NULL)
-					pData->pSnowSystem = cd_icon_effect_init_snow (pIcon, pDock, dt);
-				r = TRUE;
-			break;
-			
-			case CD_ICON_EFFECT_SAND :
-				if (pData->pStormSystem == NULL)
-					pData->pStormSystem = cd_icon_effect_init_storm (pIcon, pDock, dt);
-				r = TRUE;
-			break;
-			
-			default :
-				i = CD_ICON_EFFECT_NB_EFFECTS - 1;
-			break;
-			
-			case CD_ICON_EFFECT_FIREWORK :
-				if (pData->pFireworks == NULL)
-					cd_icon_effect_init_firework (pIcon, pDock, dt, pData);
-				r = TRUE;
-			break;
+			bStart = TRUE;
+			pData->pCurrentEffects[j++] = pEffect;
 		}
 	}
-	return r;
+	return bStart;
 }
 
 gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
@@ -132,59 +103,45 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	CDIconEffects anim[2] = {0, -1};
-	int iRoundDuration=0;
-	
+	CDIconEffectsEnum iEffect = -1;
 	if (strcmp (cAnimation, "default") == 0)
 	{
 		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
-		anim[0] = myConfig.iEffectsOnClick[iType][0];
-		switch (anim[0])
-		{
-			case CD_ICON_EFFECT_FIRE  : iRoundDuration = myConfig.iFireDuration; break;
-			case CD_ICON_EFFECT_STARS : iRoundDuration = myConfig.iStarDuration; break;
-			case CD_ICON_EFFECT_RAIN  : iRoundDuration = myConfig.iRainDuration; break;
-			case CD_ICON_EFFECT_SNOW  : iRoundDuration = myConfig.iSnowDuration; break;
-			case CD_ICON_EFFECT_SAND  : iRoundDuration = myConfig.iStormDuration; break;
-			case CD_ICON_EFFECT_FIREWORK  : iRoundDuration = myConfig.iFireworkDuration; break;
-		}
+		iEffect = myConfig.iEffectsOnClick[iType][0];
 	}
 	else
 	{
 		int iAnimationID = cairo_dock_get_animation_id (cAnimation);
 		if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_FIRE])
 		{
-			anim[0] = CD_ICON_EFFECT_FIRE;
-			iRoundDuration = myConfig.iFireDuration;
+			iEffect = CD_ICON_EFFECT_FIRE;
 		}
 		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_STARS])
 		{
-			anim[0] = CD_ICON_EFFECT_STARS;
-			iRoundDuration = myConfig.iStarDuration;
+			iEffect = CD_ICON_EFFECT_STARS;
 		}
 		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_RAIN])
 		{
-			anim[0] = CD_ICON_EFFECT_RAIN;
-			iRoundDuration = myConfig.iRainDuration;
+			iEffect = CD_ICON_EFFECT_RAIN;
 		}
 		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_SNOW])
 		{
-			anim[0] = CD_ICON_EFFECT_SNOW;
-			iRoundDuration = myConfig.iSnowDuration;
+			iEffect = CD_ICON_EFFECT_SNOW;
 		}
 		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_SAND])
 		{
-			anim[0] = CD_ICON_EFFECT_SAND;
-			iRoundDuration = myConfig.iStormDuration;
+			iEffect = CD_ICON_EFFECT_SAND;
 		}
 		else if (iAnimationID == myData.iAnimationID[CD_ICON_EFFECT_FIREWORK])
 		{
-			anim[0] = CD_ICON_EFFECT_FIREWORK;
-			iRoundDuration = myConfig.iFireworkDuration;
+			iEffect = CD_ICON_EFFECT_FIREWORK;
 		}
-		else
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
+	if (iEffect == -1)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	CDIconEffectsEnum anim[2] = {iEffect, -1};
+	int iRoundDuration = myData.pEffects[iEffect].iDuration;
 	
 	gboolean bStartAnimation = _cd_icon_effect_start (pUserData, pIcon, pDock, anim);
 	if (bStartAnimation)
@@ -197,55 +154,41 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 }
 
 
-static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData)
+static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, gboolean bPreRender)
 {
 	glPushMatrix ();
 	if (!pDock->container.bIsHorizontal && myConfig.bRotateEffects)
 		glRotatef (pDock->container.bDirectionUp ? 90:-90, 0., 0., 1.);
-	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
+	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);  // en bas au milieu de l'icone.
 	
-	if (pData->pFireSystem != NULL)
+	CDIconEffect *pEffect;
+	int i;
+	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
-		cairo_dock_render_particles (pData->pFireSystem);
-	}
-	
-	if (pData->pStarSystem != NULL)
-	{
-		cairo_dock_render_particles (pData->pStarSystem);
-	}
-	
-	if (pData->pSnowSystem != NULL)
-	{
-		cairo_dock_render_particles (pData->pSnowSystem);
-	}
-	
-	if (pData->pRainSystem != NULL)
-	{
-		cairo_dock_render_particles (pData->pRainSystem);
-	}
-	
-	if (pData->pFireworks != NULL)
-	{
-		cd_icon_effect_render_fireworks (pData);
+		pEffect = pData->pCurrentEffects[i];
+		if (pEffect == NULL)
+			break;
+		
+		if (bPreRender)
+		{
+			if (myConfig.bBackGround || (pEffect->render && pEffect->post_render))
+				pEffect->render (pData);
+		}
+		else
+		{
+			if (!myConfig.bBackGround || (pEffect->render && pEffect->post_render))
+			{
+				if (pEffect->post_render)
+					pEffect->post_render (pData);
+				else
+					pEffect->render (pData);
+			}
+		}
 	}
 	
 	glPopMatrix ();
 }
 
-static void _cd_icon_effect_render_effects_with_depth (Icon *pIcon, CairoDock *pDock, CDIconEffectData *pData, int iDepth)
-{
-	glPushMatrix ();
-	if (!pDock->container.bIsHorizontal && myConfig.bRotateEffects)
-		glRotatef (pDock->container.bDirectionUp ? 90:-90, 0., 0., 1.);
-	glTranslatef (0., - pIcon->fHeight * pIcon->fScale/2, 0.);
-	
-	if (pData->pStormSystem != NULL)
-	{
-		cairo_dock_render_particles_full (pData->pStormSystem, iDepth);
-	}
-	
-	glPopMatrix ();
-}
 
 gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
@@ -253,11 +196,8 @@ gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (myConfig.bBackGround)
-		_cd_icon_effect_render_effects (pIcon, pDock, pData);
+	_cd_icon_effect_render_effects (pIcon, pDock, pData, TRUE);
 	
-	if (pData->pStormSystem != NULL)
-		_cd_icon_effect_render_effects_with_depth (pIcon, pDock, pData, -1);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -269,11 +209,8 @@ gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (! myConfig.bBackGround)
-		_cd_icon_effect_render_effects (pIcon, pDock, pData);
+	_cd_icon_effect_render_effects (pIcon, pDock, pData, FALSE);
 	
-	if (pData->pStormSystem != NULL)
-		_cd_icon_effect_render_effects_with_depth (pIcon, pDock, pData, 1);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -294,85 +231,23 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 			pData->iRequestTime = 0;
 	}
 	
-	if (pData->pFireSystem != NULL)
-	{
-		gboolean bContinueFire = cd_icon_effect_update_fire_system (pData->pFireSystem,
-			(_will_continue (myConfig.bContinueFire) ? cd_icon_effect_rewind_fire_particle : NULL));
-		pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (bContinueFire)
-			*bContinueAnimation = TRUE;
-		else
-		{
-			cairo_dock_free_particle_system (pData->pFireSystem);
-			pData->pFireSystem = NULL;
-		}
-	}
+	gboolean bContinue, bRepeat;
 	
-	if (pData->pStarSystem != NULL)
+	CDIconEffect *pEffect;
+	int i;
+	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
-		gboolean bContinueStar = cd_icon_effect_update_star_system (pData->pStarSystem,
-			(_will_continue (myConfig.bContinueStar) ? cd_icon_effect_rewind_star_particle : NULL));
-		pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (bContinueStar)
+		pEffect = pData->pCurrentEffects[i];
+		if (pEffect == NULL)
+			break;
+		
+		bRepeat = _will_continue (pEffect->bRepeat);
+		bContinue = pEffect->update (pIcon, pDock, bRepeat, pData);
+		
+		if (bContinue)
 			*bContinueAnimation = TRUE;
 		else
-		{
-			cairo_dock_free_particle_system (pData->pStarSystem);
-			pData->pStarSystem = NULL;
-		}
-	}
-	
-	if (pData->pSnowSystem != NULL)
-	{
-		gboolean bContinueSnow = cd_icon_effect_update_snow_system (pData->pSnowSystem,
-			(_will_continue (myConfig.bContinueSnow) ? cd_icon_effect_rewind_snow_particle : NULL));
-		pData->pSnowSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (bContinueSnow)
-			*bContinueAnimation = TRUE;
-		else
-		{
-			cairo_dock_free_particle_system (pData->pSnowSystem);
-			pData->pSnowSystem = NULL;
-		}
-	}
-	
-	if (pData->pRainSystem != NULL)
-	{
-		gboolean bContinueRain = cd_icon_effect_update_rain_system (pData->pRainSystem,
-			(_will_continue (myConfig.bContinueRain) ? cd_icon_effect_rewind_rain_particle : NULL));
-		pData->pRainSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (bContinueRain)
-			*bContinueAnimation = TRUE;
-		else
-		{
-			cairo_dock_free_particle_system (pData->pRainSystem);
-			pData->pRainSystem = NULL;
-		}
-	}
-	
-	if (pData->pStormSystem != NULL)
-	{
-		gboolean bContinueStorm = cd_icon_effect_update_storm_system (pData->pStormSystem,
-			(_will_continue (myConfig.bContinueStorm) ? cd_icon_effect_rewind_storm_particle : NULL));
-		pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
-		if (bContinueStorm)
-			*bContinueAnimation = TRUE;
-		else
-		{
-			cairo_dock_free_particle_system (pData->pStormSystem);
-			pData->pStormSystem = NULL;
-		}
-	}
-	
-	if (pData->pFireworks != NULL)
-	{
-		gboolean bContinueFirework = cd_icon_effect_update_fireworks (pIcon, pDock, pData, _will_continue (myConfig.bContinueFirework));
-		if (bContinueFirework)
-			*bContinueAnimation = TRUE;
-		else
-		{
-			cd_icon_effect_free_fireworks (pData);
-		}
+			pEffect->free (pData);
 	}
 	
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
@@ -425,24 +300,16 @@ gboolean cd_icon_effect_free_data (gpointer pUserData, Icon *pIcon)
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (pData->pFireSystem != NULL)
-		cairo_dock_free_particle_system (pData->pFireSystem);
-	
-	if (pData->pStarSystem != NULL)
-		cairo_dock_free_particle_system (pData->pStarSystem);
-	
-	if (pData->pRainSystem != NULL)
-		cairo_dock_free_particle_system (pData->pRainSystem);
-	
-	if (pData->pSnowSystem != NULL)
-		cairo_dock_free_particle_system (pData->pSnowSystem);
-	
-	if (pData->pStormSystem != NULL)
-		cairo_dock_free_particle_system (pData->pStormSystem);
-	
-	if (pData->pFireworks != NULL)
-		cd_icon_effect_free_fireworks (pData);
-	
+	CDIconEffect *pEffect;
+	int i;
+	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
+	{
+		pEffect = pData->pCurrentEffects[i];
+		if (pEffect == NULL)
+			break;
+		
+		pEffect->free (pData);
+	}
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

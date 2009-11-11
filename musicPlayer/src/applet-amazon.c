@@ -233,9 +233,10 @@ static gchar *_compute_request_and_signature (const gchar *cKeyWords, gchar **cS
 	//g_print ("timestamp : %s\n", cTimeStamp);
 	
 	gchar *keywords = _url_encode(cKeyWords);
+	g_print ("keywords : '%s'\n", keywords);
 	gchar *time = _url_encode (cTimeStamp);
 	gchar *cRequest = g_strdup_printf (REQUEST, LICENCE_KEY, keywords, time);
-	g_free (keywords);
+	g_free (keywords);  // plante avec (Renan Luce, On N'Est Pas À Une Bêtise Près)
 	g_free (time);
 	//gchar *cRequest = g_strdup_printf (REQUEST, (cArtist), LICENCE_KEY, (cKeyWords), _url_encode (cTimeStamp));
 	

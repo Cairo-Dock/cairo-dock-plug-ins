@@ -249,55 +249,36 @@ static gboolean _cd_find_can_eject_from_drive_name (const gchar *cName)
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
 	g_return_if_fail (cBaseURI != NULL);
-	GError *erreur = NULL;
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
+	/// gerer cas d'une URL d'une icone du bureau (x-nautilus-desktop://blablabla sous Gnome)...
+	
 	gchar *cFullURI;
-	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)
-	{
-		gchar *cNautilusFile = g_strdup (cBaseURI+14);
-		memcpy (cNautilusFile, "file", 4);
-		if (g_str_has_suffix (cBaseURI, ".volume"))
-		{
-			cNautilusFile[strlen(cNautilusFile)-7] = '\0';
-		}
-		else if (g_str_has_suffix (cBaseURI, ".drive"))
-		{
-			cNautilusFile[strlen(cNautilusFile)-6] = '\0';
-		}
-		cFullURI = g_filename_from_uri (cNautilusFile, NULL, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("gnome_integration : %s", erreur->message);
-			g_error_free (erreur);
-			return ;
-		}
-		gchar *cVolumeName = cFullURI + 1;  // on saute le '/'.
-		cd_message ("cVolumeName : %s", cVolumeName);
-		
-		GMount *pMount = NULL;
-		_cd_find_mount_from_volume_name (cVolumeName, &pMount, cURI, cIconName);
-		g_return_if_fail (pMount != NULL);
-		
-		*cName = g_strdup (cVolumeName);
-		*bIsDirectory = TRUE;
-		*iVolumeID = 1;
-		*fOrder = 0;
-		//g_object_unref (pMount);
-		
-		g_free (cFullURI);
-		//g_free (cNautilusFile);
-		return;
-	}
+	if (*cBaseURI == '/')
+		cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
 	else
-	{
-		if (*cBaseURI == '/')
-			cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
-		else
-			cFullURI = g_strdup (cBaseURI);
-	}
+		cFullURI = g_strdup (cBaseURI);
 	cd_message (" -> cFullURI : %s", cFullURI);
 	
+	*cURI = cFullURI;
+	
+	*cName = g_path_get_basename (cFullURI);
+	
+	/*KURL url(cFullURI);
+	QString icon = KMimeType::iconForURL(url);
+	**cIconName = g_strdup (icon.toUtf8().constData());
+	
+	gchar *cFileName = g_filename_from_uri (cBaseURI, NULL, NULL);
+	*bIsDirectory = g_file_test (cFileName);
+	g_free (cFileName);
+	
+	*iVolumeID = 0;
+	
+	*fOrder = 0.;*/
+	
+	
+	
+	GError *erreur = NULL;
 	GFile *pFile = g_file_new_for_uri (cFullURI);
 	
 	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_TYPE","
@@ -816,25 +797,15 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 void vfs_backend_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
-	/*GError *erreur = NULL;
-	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
-	cd_message ("%s (%s)", __func__, cFullURI);
 	
-	gchar *cTargetURI = _cd_find_target_uri (cFullURI);
-	gboolean bSuccess = g_app_info_launch_default_for_uri (cTargetURI != NULL ? cTargetURI : cFullURI,
-		NULL,
-		&erreur);
-	g_free (cFullURI);
-	g_free (cTargetURI);
-	if (erreur != NULL)
-	{
-		cd_warning ("gnome_integration : couldn't launch '%s' [%s]", cURI, erreur->message);
-		g_error_free (erreur);
-	}*/
 	g_print ("%s (%s)", __func__, cURI);
 	gchar *cCommand = g_strdup_printf ("kfmclient exec \"%s\"", cURI);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
+	
+	/// tester ca :
+	//KURL url(cURI);
+	//new KRun(url);
 }
 
 GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)

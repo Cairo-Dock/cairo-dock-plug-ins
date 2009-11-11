@@ -356,36 +356,36 @@ msgstr ""
 msgid "Open with your web browser"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:231
+#: ../RSSreader/src/applet-rss.c:331
 msgid "No URL is defined."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:233 ../RSSreader/src/applet-rss.c:327
+#: ../RSSreader/src/applet-rss.c:333 ../RSSreader/src/applet-rss.c:437
 #, fuzzy
 msgid "No data (no connection ?)"
 msgstr "无数据。请检查互联网连接"
 
-#: ../RSSreader/src/applet-rss.c:250 ../RSSreader/src/applet-rss.c:267
-msgid "Invalid data (invalid RSS feed ?)"
+#: ../RSSreader/src/applet-rss.c:350 ../RSSreader/src/applet-rss.c:367
+msgid "Invalid data (invalid RSS/Atom feed ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:306
+#: ../RSSreader/src/applet-rss.c:416
 msgid "No data"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:325
+#: ../RSSreader/src/applet-rss.c:435
 msgid "No data (invalid rss ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:341
+#: ../RSSreader/src/applet-rss.c:451
 msgid "No modification"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:364
+#: ../RSSreader/src/applet-rss.c:474
 msgid "This RSS feed has been modified..."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:433
+#: ../RSSreader/src/applet-rss.c:543
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -393,7 +393,7 @@ msgid ""
 " in the menu."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:439
+#: ../RSSreader/src/applet-rss.c:549
 #, fuzzy
 msgid ""
 "No data\n"
@@ -971,7 +971,7 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:131
+#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:135
 msgid "Text"
 msgstr ""
 
@@ -1146,45 +1146,45 @@ msgid ""
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:30
+#: ../icon-effect/src/applet-init.c:36
 msgid "icon effects"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:33
+#: ../icon-effect/src/applet-init.c:39
 msgid "This plug-in adds many special effects to your icons."
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:54 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:81 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:84 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:95
 msgid "Stars"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:87 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:131
 msgid "Rain"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:90 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:113
 msgid "Snow"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:93 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:149
 msgid "Storm"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:59 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:96 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:165
 msgid "Firework"
@@ -2305,7 +2305,7 @@ msgid "2nd color of gradation :"
 msgstr ""
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
-#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:175
+#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:31
 msgid "Random colors ?"
 msgstr ""
@@ -3799,125 +3799,136 @@ msgid "Title color :"
 msgstr "直线颜色:"
 
 #: ../RSSreader/data/messages:129
-msgid "Left margin for the title:"
-msgstr ""
+#, fuzzy
+msgid "Alignment of the title:"
+msgstr "平板斜度"
+
+#: ../RSSreader/data/messages:131
+#, fuzzy
+msgid "left"
+msgstr "残り時間"
 
 #: ../RSSreader/data/messages:133
+#, fuzzy
+msgid "right"
+msgstr "高："
+
+#: ../RSSreader/data/messages:137
 #, fuzzy
 msgid "Font to be used for the feed lines"
 msgstr "用于数字显示的字体："
 
-#: ../RSSreader/data/messages:135
+#: ../RSSreader/data/messages:139
 #, fuzzy
 msgid "Feed lines font :"
 msgstr "直线颜色:"
 
-#: ../RSSreader/data/messages:137
+#: ../RSSreader/data/messages:141
 msgid "Color to be used for the feed lines"
 msgstr ""
 
-#: ../RSSreader/data/messages:139
+#: ../RSSreader/data/messages:143
 #, fuzzy
 msgid "Feed lines color :"
 msgstr "直线颜色:"
 
-#: ../RSSreader/data/messages:141
+#: ../RSSreader/data/messages:145
 #, fuzzy
 msgid "Left margin for the feed lines :"
 msgstr "用于数字显示的字体："
 
-#: ../RSSreader/data/messages:143
+#: ../RSSreader/data/messages:147
 #, fuzzy
 msgid "Space between 2 feed lines :"
 msgstr "图标间隔:"
 
-#: ../RSSreader/data/messages:145
+#: ../RSSreader/data/messages:149
 msgid "Logo"
 msgstr ""
 
-#: ../RSSreader/data/messages:147
+#: ../RSSreader/data/messages:151
 msgid "The default logo is the applet's icon"
 msgstr ""
 
-#: ../RSSreader/data/messages:149
+#: ../RSSreader/data/messages:153
 #, fuzzy
 msgid "Display the logo ?"
 msgstr "显示封面？"
 
-#: ../RSSreader/data/messages:151
+#: ../RSSreader/data/messages:155
 msgid "Adjust to increase/decrease the logo size"
 msgstr ""
 
-#: ../RSSreader/data/messages:153
+#: ../RSSreader/data/messages:157
 msgid "Logo size :"
 msgstr ""
 
-#: ../RSSreader/data/messages:155 ../quick-browser/data/messages:97
-msgid "small"
-msgstr ""
-
-#: ../RSSreader/data/messages:157
-msgid "big"
-msgstr ""
-
 #: ../RSSreader/data/messages:159
-#, fuzzy
-msgid "Background"
-msgstr "背景图片:"
+msgid "normal"
+msgstr ""
 
 #: ../RSSreader/data/messages:161
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid "big"
 msgstr ""
 
 #: ../RSSreader/data/messages:163
 #, fuzzy
+msgid "Background"
+msgstr "背景图片:"
+
+#: ../RSSreader/data/messages:165
+msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+
+#: ../RSSreader/data/messages:167
+#, fuzzy
 msgid "Display a simple background ?"
 msgstr "绘制背景?"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:169
 #, fuzzy
 msgid "first color of the gradation"
 msgstr "占用率列表的起始颜色:"
 
-#: ../RSSreader/data/messages:167
+#: ../RSSreader/data/messages:171
 #, fuzzy
 msgid "Background first color :"
 msgstr "背景色(红、绿、蓝):"
 
-#: ../RSSreader/data/messages:169
+#: ../RSSreader/data/messages:173
 #, fuzzy
 msgid "second color of the gradation"
 msgstr "图表背景色:"
 
-#: ../RSSreader/data/messages:171
+#: ../RSSreader/data/messages:175
 #, fuzzy
 msgid "Background second color :"
 msgstr "背景透明度:"
 
-#: ../RSSreader/data/messages:173
-msgid "Set the radius corner to 0 for no radius"
-msgstr ""
-
-#: ../RSSreader/data/messages:175
-#, fuzzy
-msgid "Background radius corner:"
-msgstr "背景透明度:"
-
 #: ../RSSreader/data/messages:177
-msgid "Set the thickness to 0 for no border"
+msgid "Set the radius corner to 0 for no radius"
 msgstr ""
 
 #: ../RSSreader/data/messages:179
 #, fuzzy
+msgid "Background radius corner:"
+msgstr "背景透明度:"
+
+#: ../RSSreader/data/messages:181
+msgid "Set the thickness to 0 for no border"
+msgstr ""
+
+#: ../RSSreader/data/messages:183
+#, fuzzy
 msgid "Border thickness :"
 msgstr "边线宽度:"
 
-#: ../RSSreader/data/messages:181
+#: ../RSSreader/data/messages:185
 #, fuzzy
 msgid "Border color"
 msgstr "弓形颜色:"
 
-#: ../RSSreader/data/messages:183
+#: ../RSSreader/data/messages:187
 #, fuzzy
 msgid "Border color :"
 msgstr "弓形颜色:"
@@ -5259,7 +5270,7 @@ msgstr ""
 msgid "It will slightly alter the colors, so you may have to modify them."
 msgstr ""
 
-#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:177
+#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:181
 msgid "Add luminance ?"
 msgstr ""
 
@@ -5271,7 +5282,7 @@ msgstr ""
 
 #: ../icon-effect/data/messages:91 ../icon-effect/data/messages:111
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:145
-#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:187
+#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:193
 #: ../illusion/data/messages:43 ../show-mouse/data/messages:25
 msgid "Particle size :"
 msgstr ""
@@ -5283,32 +5294,45 @@ msgstr ""
 
 #: ../icon-effect/data/messages:173
 #, fuzzy
+msgid "Colors"
+msgstr "邮件夹"
+
+#: ../icon-effect/data/messages:175
+#, fuzzy
 msgid "Default color :"
 msgstr "默认图标："
 
 #: ../icon-effect/data/messages:179
+msgid "It particularily fits a dark wallpaper or a dark theme."
+msgstr ""
+
+#: ../icon-effect/data/messages:183
+msgid "Particles"
+msgstr ""
+
+#: ../icon-effect/data/messages:185
 #, fuzzy
 msgid "Number of sources :"
 msgstr "垃圾数量"
 
-#: ../icon-effect/data/messages:181 ../show-mouse/data/messages:17
+#: ../icon-effect/data/messages:187 ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
 msgstr ""
 
-#: ../icon-effect/data/messages:183
+#: ../icon-effect/data/messages:189
 msgid "In percentage of the icon's size."
 msgstr ""
 
-#: ../icon-effect/data/messages:185
+#: ../icon-effect/data/messages:191
 msgid "Radius of the explosion :"
 msgstr ""
 
-#: ../icon-effect/data/messages:189
+#: ../icon-effect/data/messages:195
 #, fuzzy
 msgid "Show the launching ?"
 msgstr "显示日期？"
 
-#: ../icon-effect/data/messages:191
+#: ../icon-effect/data/messages:197
 #, fuzzy
 msgid "Particle friction :"
 msgstr "静音图标："
@@ -5837,6 +5861,10 @@ msgstr ""
 
 #: ../quick-browser/data/messages:95
 msgid "Icon size :"
+msgstr ""
+
+#: ../quick-browser/data/messages:97
+msgid "small"
 msgstr ""
 
 #: ../quick-browser/data/messages:99
@@ -6645,9 +6673,6 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid "time elapsed"
 #~ msgstr "経過時間"
 
-#~ msgid "time left"
-#~ msgstr "残り時間"
-
 #~ msgid "time in %"
 #~ msgstr "%之后"
 
@@ -6721,9 +6746,6 @@ msgstr "用于“信号很好”图标的图片名称:"
 
 #~ msgid "width :"
 #~ msgstr "宽："
-
-#~ msgid "height :"
-#~ msgstr "高："
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -7113,9 +7135,6 @@ msgstr "用于“信号很好”图标的图片名称:"
 
 #~ msgid "Use non-standard IMAP _port:"
 #~ msgstr "使用非标准IMAP端口:"
-
-#~ msgid "Folders"
-#~ msgstr "邮件夹"
 
 #~ msgid "IMAP server _directory:"
 #~ msgstr "IMAP服务器目录:"

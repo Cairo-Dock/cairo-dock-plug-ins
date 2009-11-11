@@ -70,7 +70,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			cd_sysmonitor_get_ram_data (myApplet);  // le thread ne passe pas par la => pas de conflit.
 		
 		// On affiche tout ca.
-		cairo_dock_show_temporary_dialog_with_icon ("%s : %s\n %s : %d MHz (%d %s)\n %s : %s / %s : %s\n%s : %d%s - %s : %d%s\n %s : %d%s - %s : %d%s%s",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n %s : %d MHz (%d %s)\n %s : %s / %s : %s\n%s : %d%s - %s : %d%s\n %s : %d%s - %s : %d%s%s",
 			myIcon, myContainer, cGCInfos ? 15e3 : 12e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("CPU model"), myData.cModelName,

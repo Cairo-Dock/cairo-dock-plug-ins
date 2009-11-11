@@ -23,17 +23,6 @@
 
 #include <cairo-dock.h>
 
-typedef struct {
-	gint iDuration;
-	gboolean bContinue;
-	gdouble pColor1[3];
-	gdouble pColor2[3];
-	gboolean bMystical;
-	gint iNbParticles;
-	gint iParticleSize;
-	gdouble fParticleSpeed;
-} CDIconEffectParticleSystemParameters;
-
 typedef enum {
 	CD_ICON_EFFECT_FIRE=0,
 	CD_ICON_EFFECT_STARS,
@@ -42,7 +31,16 @@ typedef enum {
 	CD_ICON_EFFECT_SAND,
 	CD_ICON_EFFECT_FIREWORK,
 	CD_ICON_EFFECT_NB_EFFECTS
-	} CDIconEffects;
+	} CDIconEffectsEnum;
+
+typedef struct _CDFirework CDFirework;
+
+typedef struct _CDIconEffect CDIconEffect;
+
+typedef struct _CDIconEffectData CDIconEffectData;
+
+
+
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
@@ -100,21 +98,13 @@ struct _AppletConfig {
 	gdouble fFireworkRadius;
 	
 	gboolean bBackGround;
-	CDIconEffects iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
-	CDIconEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffectsEnum iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffectsEnum iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ICON_EFFECT_NB_EFFECTS];
 	gboolean bRotateEffects;
 	} ;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {
-	GLuint iFireTexture;
-	GLuint iStarTexture;
-	GLuint iSnowTexture;
-	GLuint iRainTexture;
-	gint iAnimationID[CD_ICON_EFFECT_NB_EFFECTS];
-	} ;
-
-typedef struct _CDFirework {
+//\___________ other structures.
+struct _CDFirework {
 	gdouble x_expl, y_expl;
 	gdouble r_expl;
 	gdouble v_expl;
@@ -126,9 +116,24 @@ typedef struct _CDFirework {
 	gdouble r;
 	gdouble t;
 	CairoParticleSystem *pParticleSystem;
-	} CDFirework;
-	
-typedef struct _CDAnimationData {
+	} ;
+
+typedef gboolean (*CDIconEffectInit) (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData);
+typedef gboolean (*CDIconEffectUpdate) (Icon *pIcon, CairoDock *pDock, gboolean bWillContinue, CDIconEffectData *pData);
+typedef void (*CDIconEffectRender) (CDIconEffectData *pData);
+typedef void (*CDIconEffectFree) (CDIconEffectData *pData);
+
+struct _CDIconEffect {
+	gint iDuration;
+	gboolean bRepeat;
+	CDIconEffectInit init;
+	CDIconEffectUpdate update;
+	CDIconEffectRender render;
+	CDIconEffectRender post_render;
+	CDIconEffectFree free;
+	} ;
+
+struct _CDIconEffectData {
 	CairoParticleSystem *pFireSystem;
 	CairoParticleSystem *pStarSystem;
 	CairoParticleSystem *pSnowSystem;
@@ -138,6 +143,19 @@ typedef struct _CDAnimationData {
 	gint iNbFireworks;
 	gint iNumRound;
 	gint iRequestTime;
-	} CDIconEffectData;
+	CDIconEffect *pCurrentEffects[CD_ICON_EFFECT_NB_EFFECTS];
+	gpointer pEffectsData[CD_ICON_EFFECT_NB_EFFECTS];
+	} ;
+
+
+//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
+struct _AppletData {
+	GLuint iFireTexture;
+	GLuint iStarTexture;
+	GLuint iSnowTexture;
+	GLuint iRainTexture;
+	gint iAnimationID[CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffect pEffects[CD_ICON_EFFECT_NB_EFFECTS];
+	} ;
 
 #endif
