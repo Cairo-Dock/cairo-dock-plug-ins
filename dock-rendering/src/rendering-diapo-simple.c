@@ -692,11 +692,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				fX = icon->fDrawY - icon->fHeight * (my_diapo_simple_fScaleMax - icon->fScale)/2;
 				fY =  pDock->container.iWidth - icon->fDrawX + icon->fWidth * (my_diapo_simple_fScaleMax - icon->fScale)/2;
 			}
-			double r = my_diapo_simple_radius/2;
-			/*double fColor[4] = {(my_diapo_simple_color_frame_start[0] + my_diapo_simple_color_frame_stop[0])/2 + .1,
-				(my_diapo_simple_color_frame_start[1] + my_diapo_simple_color_frame_stop[1])/2 + .1,
-				(my_diapo_simple_color_frame_start[2] + my_diapo_simple_color_frame_stop[2])/2 + .1,
-				(my_diapo_simple_color_frame_start[3] + my_diapo_simple_color_frame_stop[3])/2 + .1};*/
+			/*double r = my_diapo_simple_radius/2;
 			double fColor[4] = {MAX (my_diapo_simple_color_frame_start[0], my_diapo_simple_color_frame_stop[0]) + .1,
 				MAX (my_diapo_simple_color_frame_start[1], my_diapo_simple_color_frame_stop[1]) + .1,
 				MAX (my_diapo_simple_color_frame_start[2], my_diapo_simple_color_frame_stop[2]) + .1,
@@ -706,7 +702,7 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				icon->fWidth * my_diapo_simple_fScaleMax - r,
 				icon->fHeight * my_diapo_simple_fScaleMax,
 				fX, fY,
-				fColor);
+				fColor);*/
 		}
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);

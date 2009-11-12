@@ -25,7 +25,7 @@
 #include "applet-fire.h"  // on charge la meme texture que fire.
 #include "applet-firework.h"
 
-const double g = 0.81;
+const double g = .81;
 const double g_ = 3 * .81;
 
 #define cd_icon_effect_load_firework_texture cd_icon_effect_load_fire_texture
@@ -72,7 +72,8 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		//memcpy (fColor, myConfig.pFireworkColor, 3 * sizeof (gdouble));
 	}
 	
-	double angle;
+	double angle, v_disp, a_disp;
+	int n = 10;
 	CairoParticleSystem *pParticleSystem = pFirework->pParticleSystem;
 	CairoParticle *p;
 	int j;
@@ -86,9 +87,26 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->fWidth = r/2 * pDock->container.fRatio;
 		p->fHeight = p->fWidth;
 		
-		angle = (double)j / pParticleSystem->iNbParticles * 2*G_PI;  // explosion isotrope.
-		p->vx = pFirework->v_expl * cos (angle);  // ici vx et vy sont utilises pour stocker la vitesse initiale.
-		p->vy = pFirework->v_expl * sin (angle);
+		if (0)
+		{
+			angle = (double)j / pParticleSystem->iNbParticles * 2*G_PI;  // explosion isotrope.
+			v_disp = sqrt (g_random_double ());  // dispersion sur la vitesse initiale pour eviter un cercle trop parfait.
+			
+			p->vx = pFirework->v_expl * cos (angle) * v_disp;  // ici vx et vy sont utilises pour stocker la vitesse initiale.
+			p->vy = pFirework->v_expl * sin (angle) * v_disp;
+		}
+		else
+		{
+			int n = sqrt (pParticleSystem->iNbParticles / 2.);
+			int k = j % n;
+			double phi = (double)k/n * G_PI - G_PI/2 + .1 * g_random_double () * G_PI;
+			k = j / n;
+			double teta = (double)k/(2*n) * 2 * G_PI - G_PI + .2 * g_random_double () * G_PI;
+			
+			p->vx = pFirework->v_expl * cos (phi) * cos (teta);
+			p->vy = pFirework->v_expl * sin (phi);
+		}
+		
 		p->iInitialLife = ceil (T / dt);
 		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1
 		

@@ -200,12 +200,12 @@ frame_part =
 #i[1;5] Number of sources :
 nb sources = 2
 
-#I[10;360] Number of particles per source :
-nb part = 80
+#I[50;360] Number of particles per source :
+nb_part = 200
 
 #e[.1;.5] Radius of the explosion :
 #{In percentage of the icon's size.}
-radius = .2
+radius = .25
 
 #I[2;10] Particle size :
 part size = 5
@@ -213,5 +213,5 @@ part size = 5
 #b+ Show the launching ?
 launching = true
 
-#e[1;10] Particle friction :
+#e[2;10] Particle friction :
 friction = 5

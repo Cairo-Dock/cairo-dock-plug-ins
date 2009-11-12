@@ -111,12 +111,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Firework", "color", myConfig.pFireworkColor, col);
 	myConfig.bFireworkRandomColors = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "random colors", TRUE);
 	myConfig.bFireworkLuminance = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "luminous", TRUE);
-	myConfig.iNbFireworkParticles = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb part", 100);
+	myConfig.iNbFireworkParticles = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb_part", 200);
 	myConfig.iFireworkParticleSize = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "part size", 5);
 	myConfig.iNbFireworks = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb sources", 2);
 	myConfig.bFireworkShoot = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "launching", TRUE);
 	myConfig.fFireworkFriction = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "friction", 5);
-	myConfig.fFireworkRadius = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "radius", .2);
+	myConfig.fFireworkRadius = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Firework", "radius", .25);
 	
 CD_APPLET_GET_CONFIG_END
 
