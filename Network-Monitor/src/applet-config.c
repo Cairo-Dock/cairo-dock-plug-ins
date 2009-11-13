@@ -55,6 +55,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	myConfig.bModeWifi	= (CD_CONFIG_GET_INTEGER ("Configuration", "mode wifi") == 0);
 CD_APPLET_GET_CONFIG_END
 
 

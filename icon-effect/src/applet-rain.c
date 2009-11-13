@@ -117,6 +117,12 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 	gboolean bContinue = cairo_dock_update_default_particle_system (pData->pRainSystem,
 		(bRepeat ? _rewind_rain_particle : NULL));
 	pData->pRainSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = pData->pRainSystem->fWidth + myConfig.iRainParticleSize * pDock->container.fRatio;  // demi-largeur des particules a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iRainParticleSize/2 * pDock->container.fRatio;
+	pData->fBottomGap = 0.;
+	
 	return bContinue;
 }
 

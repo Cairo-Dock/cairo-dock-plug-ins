@@ -79,9 +79,13 @@ struct _AppletConfig {
 	gdouble fSmoothFactor;
 	
 	gboolean bESSID;
+	gboolean bModeWifi;  // TRUE pour l'affichage Wifi, FALSE pour l'affichage Netspeed.
+	gchar *cInterface;
+	gchar *cSysMonitorCommand;
 };
 
 struct _AppletData {
+	CairoDockTask *pTask;
 	// shared memory
 	CDConnectionQuality iQuality, iPreviousQuality;
 	gint iPercent, iPrevPercent;
@@ -93,12 +97,11 @@ struct _AppletData {
 	gint iSpeed;
 	// end of shared memory
 	
-	gboolean bDbusConnection;
+	gboolean bDbusConnection;  // TRUE si on a trouve NM sur le bus.
 	
 	gboolean bWirelessExt;
 	gboolean bWiredExt;
 	
-	CairoDockTask *pTask;
 	cairo_surface_t *pSurfaces[CONNECTION_NB_QUALITY];
 	
 	DBusGProxy *dbus_proxy_ActiveConnection;

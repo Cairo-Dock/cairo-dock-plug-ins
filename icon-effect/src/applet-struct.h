@@ -143,8 +143,9 @@ struct _CDIconEffectData {
 	gint iNbFireworks;
 	gint iNumRound;
 	gint iRequestTime;
+	gdouble fAreaWidth, fAreaHeight, fBottomGap;
 	CDIconEffect *pCurrentEffects[CD_ICON_EFFECT_NB_EFFECTS];
-	gpointer pEffectsData[CD_ICON_EFFECT_NB_EFFECTS];
+	//gpointer pEffectsData[CD_ICON_EFFECT_NB_EFFECTS];
 	} ;
 
 

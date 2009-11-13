@@ -227,6 +227,11 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		}
 	}
 	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = (1. + 2 * (myConfig.fFireworkRadius + .1)) * pIcon->fWidth * fMaxScale + myConfig.iFireworkParticleSize * pDock->container.fRatio;  // rayon de l'explosion avec sa dispersion + demi-largeur des particules, a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale * (.8 + myConfig.fFireworkRadius + .1) + myConfig.iFireParticleSize * pDock->container.fRatio;
+	pData->fBottomGap = 0.;  // les particules disparaissent en touchant le sol.
+	
 	return ! bAllParticlesEnded;
 }
 

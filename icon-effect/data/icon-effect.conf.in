@@ -210,7 +210,7 @@ radius = .25
 #I[2;10] Particle size :
 part size = 5
 
-#b+ Show the launching ?
+#b Show the launching ?
 launching = true
 
 #e[2;10] Particle friction :

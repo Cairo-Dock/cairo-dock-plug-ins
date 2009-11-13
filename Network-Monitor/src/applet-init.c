@@ -81,8 +81,9 @@ CD_APPLET_INIT_BEGIN
 	
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
+	
 	if (cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
-	{	
+	{
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
 		myData.bDbusConnection = TRUE;
 		
@@ -95,15 +96,15 @@ CD_APPLET_INIT_BEGIN
 		cd_debug("Network-Monitor : Dbus Service not found, using rough connection");
 		myData.bDbusConnection = FALSE;
 		// Initialisation de la tache periodique de mesure.
-		//myData.iPreviousQuality = -2;  // force le dessin.
-		/*myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		myData.iPreviousQuality = -2;  // force le dessin.
+		myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 			(CairoDockGetDataAsyncFunc) cd_NetworkMonitor_get_data,
 			(CairoDockUpdateSyncFunc) cd_NetworkMonitor_update_from_data,
 			myApplet);
 		if (cairo_dock_is_loading ())
 			cairo_dock_launch_task_delayed (myData.pTask, 2000);
 		else
-			cairo_dock_launch_task (myData.pTask);*/
+			cairo_dock_launch_task (myData.pTask);
 	}
 	
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -115,7 +116,7 @@ CD_APPLET_INIT_END
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	cd_NetworkMonitor_disconnect_signals();
-			
+	
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;

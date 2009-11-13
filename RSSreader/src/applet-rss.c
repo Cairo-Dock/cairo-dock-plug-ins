@@ -23,12 +23,12 @@
 #include "applet-draw.h"
 #include "applet-rss.h"
 
-/* Insere des retours chariots dans une chaine de caracteres de facon à la faire tenir dans un rectangle donne.
+/* Insere des retours chariots dans une chaine de caracteres de facon a la faire tenir dans un rectangle donne.
  */
 void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 {
 	g_print ("%s (%s)\n", __func__, cLine);
-	// on convertit les caracteres internet.
+	/*// on convertit les caracteres internet.
 	gchar *str=cLine, *amp;
 	do
 	{
@@ -40,14 +40,15 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 			*amp = atoi (amp+2);
 			sprintf (amp+1, amp+6);
 		}
-	} while (1);
+		str = amp + 1;
+	} while (1);*/
 	
 	// on insere des retours chariot pour tenir dans la largeur donnee.
 	PangoRectangle ink, log;
 	gchar *sp, *last_sp=NULL;
 	double w;
 	
-	str = cLine;
+	gchar *str = cLine;
 	while (*str == ' ')  // on saute les espaces en debut de ligne.
 		str ++;
 	
@@ -533,15 +534,11 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			
 			g_string_append_printf (sText, "%s\n", pItem->cTitle);
 		}
-		g_print ("%s (%x;%x)\n", sText->str, myIcon,
-			myContainer);
 		cairo_dock_show_temporary_dialog_with_icon (sText->str,
 			myIcon,
 			myContainer,
 			myConfig.iDialogsDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-		g_print ("%s (%x;%x)\n", sText->str, myIcon,
-			myContainer);
 		g_string_free (sText, TRUE);
 	}
 	else  // on affiche un message clair a l'utilisateur.

@@ -101,7 +101,7 @@ gboolean _update_fire_system (CairoParticleSystem *pParticleSystem, CairoDockRew
 		p = &(pParticleSystem->pParticles[i]);
 		
 		p->fOscillation += p->fOmega;
-		p->x += p->vx + (p->z + 2)/3. * .02 * sin (p->fOscillation);  // 3%
+		p->x += p->vx + (p->z + 2)/3. * .02 * sin (p->fOscillation);  // 2%
 		p->y += p->vy;
 		p->color[3] = .8*p->iLife / p->iInitialLife;
 		p->fSizeFactor += p->fResizeSpeed;
@@ -151,6 +151,11 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		(bRepeat ? _rewind_fire_particle : NULL));
 	
 	pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = (1. + .02) * pData->pFireSystem->fWidth + myConfig.iFireParticleSize * pDock->container.fRatio;  // 2% d'oscillation + demi-largeur des particules a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iFireParticleSize * pDock->container.fRatio;
+	pData->fBottomGap = myConfig.iFireParticleSize * pDock->container.fRatio / 2;
 	return bContinue;
 }
 

@@ -116,6 +116,12 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 	gboolean bContinue = cairo_dock_update_default_particle_system (pData->pSnowSystem,
 		(bRepeat ? _rewind_snow_particle : NULL));
 	pData->pSnowSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = (1 + .02) * pData->pSnowSystem->fWidth + myConfig.iSnowParticleSize * pDock->container.fRatio;  // 2% d'oscillation + demi-largeur des particules a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iSnowParticleSize * pDock->container.fRatio;
+	pData->fBottomGap = myConfig.iSnowParticleSize * pDock->container.fRatio / 2;
+	
 	return bContinue;
 }
 

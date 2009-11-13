@@ -135,8 +135,13 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		
 	gboolean bContinue = _update_storm_system (pData->pStormSystem,
 		(bRepeat ? _rewind_storm_particle : NULL));
-	
 	pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = pData->pStormSystem->fWidth * (1 + ad) + myConfig.iStormParticleSize * pDock->container.fRatio;  // dispersion + demi-largeur des particules a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iStormParticleSize * pDock->container.fRatio;
+	pData->fBottomGap = myConfig.iStormParticleSize * pDock->container.fRatio / 2;
+	
 	return bContinue;
 }
 

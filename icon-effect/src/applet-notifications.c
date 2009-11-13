@@ -254,7 +254,18 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{
-		area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
+		area.x = pIcon->fDrawX + pIcon->fWidth * pIcon->fScale / 2 - pData->fAreaWidth/2;
+		area.width = pData->fAreaWidth;
+		area.height = pData->fAreaHeight;
+		if (pDock->container.bDirectionUp || ! myConfig.bRotateEffects)
+		{
+			area.y = pIcon->fDrawY + pIcon->fHeight * pIcon->fScale + pData->fBottomGap - pData->fAreaHeight;
+		}
+		else
+		{
+			area.y = pIcon->fDrawY - pData->fBottomGap;
+		}
+		/*area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.y = pIcon->fDrawY;
 		area.width = pIcon->fWidth * fMaxScale * 1.5;
 		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20 * fMaxScale;  // 20 = rayon max des particules, environ.
@@ -265,11 +276,11 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		else
 		{
 			area.y -= 20 * fMaxScale;
-		}
+		}*/
 	}
 	else
 	{
-		area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
+		/*area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.x = pIcon->fDrawY;
 		area.height = pIcon->fWidth * fMaxScale * 1.5;
 		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20 * fMaxScale;
@@ -280,6 +291,17 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		else
 		{
 			area.x -= 20 * fMaxScale;  // rayon max des particules, environ.
+		}*/
+		area.y = pIcon->fDrawX + pIcon->fWidth * pIcon->fScale / 2 - pData->fAreaWidth/2;
+		area.height = pData->fAreaWidth;
+		area.width = pData->fAreaHeight;
+		if (pDock->container.bDirectionUp || ! myConfig.bRotateEffects)
+		{
+			area.x = pIcon->fDrawY + pIcon->fHeight * pIcon->fScale + pData->fBottomGap - pData->fAreaHeight;
+		}
+		else
+		{
+			area.x = pIcon->fDrawY - pData->fBottomGap;
 		}
 	}
 	if (pIcon->fOrientation == 0)

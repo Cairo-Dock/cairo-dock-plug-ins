@@ -41,11 +41,6 @@ static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer dat
 		cairo_dock_launch_command (myConfig.cUserCommand);
 		return;
 	}
-
-	/*if (g_file_test ("/opt/wicd/daemon.py", G_FILE_TEST_EXISTS)) { //On détecte wicd
-		cairo_dock_launch_command ("/opt/wicd/gui.py");
-		return;
-	}*/
 	
 	gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
@@ -73,6 +68,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bWirelessExt && myData.bDbusConnection)
 		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), cd_NetworkMonitor_recheck_wireless_extension, pSubMenu);
 	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_NetworkMonitor_show_config, pSubMenu);
+	/// show system monitor.
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
@@ -107,7 +103,22 @@ static void cd_NetworkMonitor_toggle_wlan(void)
 	g_object_unref (dbus_proxy_nm);
 }
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	//cd_NetworkMonitor_toggle_wlan();
+	cd_NetworkMonitor_toggle_wlan();
 	//cairo_dock_launch_task (myData.pTask);
 	//cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+CD_APPLET_ON_SCROLL_BEGIN
+	// On change le mode.
+	myConfig.bModeWifi = ! myConfig.bModeWifi;
+	/// l'ecrire en conf...
+	
+	// on arrete la tache en cours.
+	cairo_dock_free_task (myData.pTask);
+	myData.pTask = NULL;
+	
+	// on lance la nouvelle tache.
+	
+	
+CD_APPLET_ON_SCROLL_END

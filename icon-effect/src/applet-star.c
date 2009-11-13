@@ -140,8 +140,13 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		
 	gboolean bContinue = _update_star_system (pData->pStarSystem,
 		(bRepeat ? _rewind_star_particle : NULL));
-	
 	pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
+	
+	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	pData->fAreaWidth = pData->pStarSystem->fWidth + myConfig.iStarParticleSize * pDock->container.fRatio;  // demi-largeur des particules a droite et a gauche.
+	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iStarParticleSize * pDock->container.fRatio;
+	pData->fBottomGap = myConfig.iStarParticleSize * pDock->container.fRatio / 2;
+	
 	return bContinue;
 }
 

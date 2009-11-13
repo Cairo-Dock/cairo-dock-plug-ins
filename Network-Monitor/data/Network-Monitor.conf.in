@@ -111,7 +111,6 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-
 #X[Icons;gtk-dialog-info]
 frame_icons =
 
@@ -151,20 +150,35 @@ frame_param =
 #{in seconds.}
 delay = 10
 
-#e[0;1] How smooth is the movement ?
+#e[0;1] Fluidity of the transition between 2 values :
 #{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
 smooth = .33
 
-#s Alternative command line to launch Wireless Configuration :
-#{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
+#l[No;On icon;On label] Display values :
+info display = 1
+
+#s User command to show Wireless Configuration :
+#{Allow you to overwrite applet's default command line and launch your preferred wireless configuration interface.}
 command = 
+
+#s User command to show a system monitor :
+#{Let empty to use he default one.}
+sys monitor =
 
 
 #F+[Info;gtk-info]
 frame_disp=
 
-#l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+#l[Wifi signal;Connexion speed] Info to display in the icon :
+#{You can quickly switch to the other mode by scrolling on the icon.}
+mode  = 0
+
+#l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] How to display the wifi signal :
 signal_type=2
 
 #b Overwrite the default label with the connection point name ?
 essid = true
+
+#s Default connexion interface :
+#{By default it will be 'eth0'.}
+interface = 
