@@ -62,7 +62,7 @@ DBusGProxy *dbus_proxy_signal_New_ActiveAccessPoint;
 			iMaxValue = atoi (str2+1);\
 		cd_debug ("%s : %d (/%d)", cValueName, iValue, iMaxValue); }
 
-void cd_wifi_get_data (gpointer data)
+void cd_NetworkMonitor_get_data (gpointer data)
 {
 	myData.iPreviousQuality = myData.iQuality;
 	myData.iQuality = -1;
@@ -166,7 +166,7 @@ void cd_wifi_get_data (gpointer data)
 }
 
 
-gboolean cd_wifi_update_from_data (gpointer data)
+gboolean cd_NetworkMonitor_update_from_data (gpointer data)
 {
 	if (myData.cInterface != NULL)
 	{

@@ -22,8 +22,8 @@
 
 #include <cairo-dock.h>
 
-void cd_wifi_get_data (gpointer data);
-gboolean cd_wifi_update_from_data (gpointer data);
+void cd_NetworkMonitor_get_data (gpointer data);
+gboolean cd_NetworkMonitor_update_from_data (gpointer data);
 
 static void cd_NetworkMonitor_quality (void);
 static void cd_NetworkMonitor_get_wired_connection_infos (void);
