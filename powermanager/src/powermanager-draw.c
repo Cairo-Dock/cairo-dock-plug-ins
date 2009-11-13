@@ -164,11 +164,11 @@ void cd_powermanager_bubble (void)
 			hms = g_strdup_printf ("%s", D_("Unknown"));
 		if(myData.on_battery)
 		{
-			g_string_printf (sInfo, "%s %.2f%%%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %.2f% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %.2f%%%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
+			g_string_printf (sInfo, "%s %.2f% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
 		}
 		g_free (hms);
 	}
