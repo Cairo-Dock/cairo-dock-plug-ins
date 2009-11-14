@@ -100,21 +100,39 @@ static void _cd_mail_launch_mail_appli (GtkMenuItem *menu_item, CairoDockModuleI
 {
 	cairo_dock_launch_command (myConfig.cMailApplication);
 }
+
+static void _cd_mail_mark_all_as_read (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	guint i;
+	if (myData.pMailAccounts != NULL)
+	{
+		for (i = 0; i < myData.pMailAccounts->len; i ++)
+		{
+			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+			if( pMailAccount )
+			{
+				cd_mail_mark_all_mails_as_read(pMailAccount);	
+			}
+		}
+	}
+	_cd_mail_force_update(myApplet);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-    if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
-    {
-        /* add a "update account" item for each mailbox */
-        GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Refresh a mail account"), pSubMenu);
-        
-        guint i;
-        for (i = 0; i < myData.pMailAccounts->len; i ++)
-        {
-			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
-        }
-    }
+	if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
+	{
+			/* add a "update account" item for each mailbox */
+			GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Refresh a mail account"), pSubMenu);
+			
+			guint i;
+			for (i = 0; i < myData.pMailAccounts->len; i ++)
+			{
+		CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
+			}
+	}
+	CD_APPLET_ADD_IN_MENU (D_("Mark all mails as read"), _cd_mail_mark_all_as_read, pSubMenu);
 	if (myConfig.cMailApplication)
 	{
 		gchar *cLabel = g_strdup_printf (D_("Launch %s"), myConfig.cMailApplication);
@@ -313,46 +331,8 @@ CD_APPLET_ON_SCROLL_BEGIN
 			}
 		}
 	}
-	
-	GList *l, *l_Uid;
-	gchar *cMessage;
-	gchar *cMessageUid;
-	mailmessage *pMessage;
-	for (i = 1, l = pMailAccount->pUnseenMessageList, l_Uid = pMailAccount->pUnseenMessageUid; l != NULL && l_Uid != NULL; l = l->next, l_Uid = l_Uid->next, i++)
-	{
-		cMessage = l->data;
-		cMessageUid = l_Uid->data;
-		pMessage = NULL;
-		
-		// on marque le compte comme lu.
-		if( !pMailAccount->bError )
-		{
-			struct mail_flags *pFlags = NULL;
 
-			// on marque le message comme lu.
-			cd_message ("Fetching message number %d...\n", i);
-			
-			r = mailfolder_get_message_by_uid (pMailAccount->folder, cMessageUid, &pMessage);  /// or result_messages - i ?...
-			if (r != MAIL_NO_ERROR || pMessage == NULL)
-			{
-				cd_warning ("couldn't get the message number %d", i);
-				continue;
-			}
-			r = mailmessage_get_flags (pMessage, &pFlags);
-			if (r != MAIL_NO_ERROR || pFlags == NULL)
-			{
-				cd_warning ("couldn't get the message flags !", i);
-				mailmessage_free (pMessage);
-				continue;
-			}
-			
-			pFlags->fl_flags &= ~MAIL_FLAG_NEW;
-			pFlags->fl_flags |= MAIL_FLAG_SEEN;
-			
-			r = mailmessage_check( pMessage );
-			mailmessage_free (pMessage);
-		}
-	}
+	cd_mail_mark_all_mails_as_read(pMailAccount);	
 	
 CD_APPLET_ON_SCROLL_END
 

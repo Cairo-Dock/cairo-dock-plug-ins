@@ -102,7 +102,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					struct mailmessage_list * msg_list = NULL;
 		      mailfolder_get_messages_list(pMailAccount->folder, &msg_list);
 	
-					guint iNbAccountsToCheck = 20;
+					guint iNbAccountsToCheck = MIN (20,pMailAccount->iNbUnseenMails);
 					if( myConfig.iNbMaxShown != -1 )
 					{
 						 iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
@@ -306,7 +306,54 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	return TRUE;
 }
 
+void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
+{
+	if( !pMailAccount ) return;
 
+	int i = 0, r = 0;
+	
+	/* Ensure the connection is alive */
+	mailfolder_connect(pMailAccount->folder);
+	GList *l, *l_Uid;
+	gchar *cMessage;
+	gchar *cMessageUid;
+	mailmessage *pMessage;
+	for (i = 1, l = pMailAccount->pUnseenMessageList, l_Uid = pMailAccount->pUnseenMessageUid; l != NULL && l_Uid != NULL; l = l->next, l_Uid = l_Uid->next, i++)
+	{
+		cMessage = l->data;
+		cMessageUid = l_Uid->data;
+		pMessage = NULL;
+		
+		// on marque le compte comme lu.
+		if( !pMailAccount->bError )
+		{
+			struct mail_flags *pFlags = NULL;
+
+			// on marque le message comme lu.
+			cd_message ("Fetching message number %d...\n", i);
+			
+			r = mailfolder_get_message_by_uid (pMailAccount->folder, cMessageUid, &pMessage);  /// or result_messages - i ?...
+			if (r != MAIL_NO_ERROR || pMessage == NULL)
+			{
+				cd_warning ("couldn't get the message number %d", i);
+				continue;
+			}
+			r = mailmessage_get_flags (pMessage, &pFlags);
+			if (r != MAIL_NO_ERROR || pFlags == NULL)
+			{
+				cd_warning ("couldn't get the message flags !", i);
+				mailmessage_free (pMessage);
+				continue;
+			}
+			
+			pFlags->fl_flags &= ~MAIL_FLAG_NEW;
+			pFlags->fl_flags |= MAIL_FLAG_SEEN;
+			
+			r = mailmessage_check( pMessage );
+			mailmessage_free (pMessage);
+		}
+	}
+}
 
 void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
