@@ -135,26 +135,26 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myConfig.iSpotDuration == 0)
 		{
-			if (myData.iSpotTexture != 0)
-			{
-				glDeleteTextures (1, &myData.iSpotTexture);
-				myData.iSpotTexture = 0;
-			}
 			if (myData.iHaloTexture != 0)
 			{
 				glDeleteTextures (1, &myData.iHaloTexture);
 				myData.iHaloTexture = 0;
-			}
-			if (myData.iSpotFrontTexture != 0)
-			{
-				glDeleteTextures (1, &myData.iSpotFrontTexture);
-				myData.iSpotFrontTexture = 0;
 			}
 			if (myData.iRaysTexture != 0)
 			{
 				glDeleteTextures (1, &myData.iRaysTexture);
 				myData.iRaysTexture = 0;
 			}
+		}
+		if (myData.iSpotFrontTexture != 0)
+		{
+			glDeleteTextures (1, &myData.iSpotFrontTexture);
+			myData.iSpotFrontTexture = 0;
+		}
+		if (myData.iSpotTexture != 0)
+		{
+			glDeleteTextures (1, &myData.iSpotTexture);
+			myData.iSpotTexture = 0;
 		}
 	}
 CD_APPLET_RELOAD_END

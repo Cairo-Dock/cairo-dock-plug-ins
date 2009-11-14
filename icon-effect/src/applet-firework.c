@@ -87,25 +87,14 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		p->fWidth = r/2 * pDock->container.fRatio;
 		p->fHeight = p->fWidth;
 		
-		if (0)
-		{
-			angle = (double)j / pParticleSystem->iNbParticles * 2*G_PI;  // explosion isotrope.
-			v_disp = sqrt (g_random_double ());  // dispersion sur la vitesse initiale pour eviter un cercle trop parfait.
-			
-			p->vx = pFirework->v_expl * cos (angle) * v_disp;  // ici vx et vy sont utilises pour stocker la vitesse initiale.
-			p->vy = pFirework->v_expl * sin (angle) * v_disp;
-		}
-		else
-		{
-			int n = sqrt (pParticleSystem->iNbParticles / 2.);
-			int k = j % n;
-			double phi = (double)k/n * G_PI - G_PI/2 + .1 * g_random_double () * G_PI;
-			k = j / n;
-			double teta = (double)k/(2*n) * 2 * G_PI - G_PI + .2 * g_random_double () * G_PI;
-			
-			p->vx = pFirework->v_expl * cos (phi) * cos (teta);
-			p->vy = pFirework->v_expl * sin (phi);
-		}
+		int n = sqrt (pParticleSystem->iNbParticles / 2.);  // l'explosion est isotropique => repartition homogene des directions initiales en latitude (phi : [-pi/2;pi/2] -> n valeurs) et longitude (teta : [-pi;pi] -> 2n valeurs).
+		int k = j % n;
+		double phi = (double)k/n * G_PI - G_PI/2 + .1 * g_random_double () * G_PI;  // on rajoute une dispersion de 10% pour eviter des alignements visibles.
+		k = j / n;
+		double teta = (double)k/(2*n) * 2 * G_PI - G_PI + .2 * g_random_double () * G_PI;  // on rajoute une dispersion de 10% pour eviter des alignements visibles.
+		
+		p->vx = pFirework->v_expl * cos (phi) * cos (teta);  // projection du vecteur vitesse sur Ox
+		p->vy = pFirework->v_expl * sin (phi);  // projection du vecteur vitesse sur Oz
 		
 		p->iInitialLife = ceil (T / dt);
 		p->iLife = p->iInitialLife * (.8+.3*g_random_double ());  // dispersion entre .8 et 1.1

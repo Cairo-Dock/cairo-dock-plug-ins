@@ -31,16 +31,14 @@
 CD_APPLET_DEFINITION (N_("RSSreader"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("This applet is a RSS feed reader\n"
-	"(you can add as many instances you want)\n"
-	" USAGE:\n"
-	"  - Left-clic : Display the feed lines in a dialog (optional in desklet).\n"
-	"  - Middle-clic : Refresh the feed.\n"
-	"  - Add/Modify the RSS feed to display with either Drag'n Drop\n"
-	"    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
-	"    or with the Configuration Panel.\n"
-	"  - Use \"Open in you web browser\" from menu to display\n"
-	"    the RSS feed in your browser."),
+	N_("This applet is an RSS/Atom feed reader.\n"
+	"You can instanciate it as many times as you want.\n"
+	"USAGE:\n"
+	" - Left-click : Display the complete feed lines in a dialog.\n"
+	" - Middle-click : Refresh the feed.\n"
+	" - Drag and drop a valid URL on the icon to use it,\n"
+	"    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+	"    or edit the Configuration Panel."),
 	"Yann Dulieu (Nochka85)")
 
 

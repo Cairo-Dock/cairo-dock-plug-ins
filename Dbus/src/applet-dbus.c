@@ -554,6 +554,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
 	
+	g_print ("%s (%s)\n", __func__, cModuleName);
 	// on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule != NULL)

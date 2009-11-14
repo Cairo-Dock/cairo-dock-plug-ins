@@ -336,6 +336,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		{
 			cd_applet_update_my_icon (myApplet);
 		}
+		myData.bUpdateIsManual = FALSE;
 		return TRUE;
 	}
 	
@@ -353,6 +354,9 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		{
 			cd_applet_update_my_icon (myApplet);
 		}
+		g_free (myData.PrevFirstTitle);
+		myData.PrevFirstTitle = NULL;
+		myData.bUpdateIsManual = FALSE;
 		return TRUE;
 	}
 	
@@ -370,6 +374,9 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		{
 			cd_applet_update_my_icon (myApplet);
 		}
+		g_free (myData.PrevFirstTitle);
+		myData.PrevFirstTitle = NULL;
+		myData.bUpdateIsManual = FALSE;
 		return TRUE;
 	}
 	
@@ -384,7 +391,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		xmlAttrPtr attr = xmlHasProp (rss, "version");
 		if (attr && attr->children)
 		{
-			g_print ("RSS version : %s\n", attr->children->content);
+			cd_debug ("RSS version : %s", attr->children->content);
 		}
 		
 		xmlNodePtr channel, item;
@@ -410,7 +417,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	// si aucune donnee, on l'affiche et on quitte.
 	if (myData.pItemList == NULL)
 	{
-		g_print ("RSS: aucune donnee\n");
+		cd_debug ("RSS: aucune donnee");
 		
 		pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
@@ -420,7 +427,9 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		{
 			cd_applet_update_my_icon (myApplet);
 		}
-		
+		g_free (myData.PrevFirstTitle);
+		myData.PrevFirstTitle = NULL;
+		myData.bUpdateIsManual = FALSE;
 		return TRUE;
 	}
 	
@@ -444,7 +453,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	gchar *cFirstTitle = (pItem ? pItem->cTitle : NULL);
 	if (! cairo_dock_strings_differ (myData.PrevFirstTitle, cFirstTitle))
 	{
-		g_print ("RSS: aucune modif\n");
+		cd_debug ("RSS: aucune modif");
 		
 		if (myData.bUpdateIsManual)  // L'update a été manuel -> On affiche donc un dialogue même s'il n'y a pas eu de changement
 		{
@@ -486,7 +495,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	
 	g_free (myData.PrevFirstTitle);
 	myData.PrevFirstTitle = g_strdup (cFirstTitle);
-	
+	myData.bUpdateIsManual = FALSE;
 	return TRUE;
 }
 

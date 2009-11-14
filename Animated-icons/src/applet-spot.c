@@ -58,7 +58,7 @@ void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 	if (! pDock->container.bDirectionUp)
 		glScalef (1., -1., 1.);
 	
-	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], fRadiusFactor * pIcon->fAlpha);
+	glColor4f (myConfig.pSpotColor[0], myConfig.pSpotColor[1], myConfig.pSpotColor[2], .9 * fRadiusFactor * pIcon->fAlpha);
 	//cairo_dock_draw_texture (myData.iSpotTexture, fRadiusFactor * pIcon->fWidth * pIcon->fScale, fRadiusFactor * CD_ANIMATIONS_SPOT_HEIGHT * pIcon->fScale);
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_over ();
@@ -107,6 +107,8 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 
 void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFactor)
 {
+	if (myData.iSpotFrontTexture == 0)
+		return ;
 	glPushMatrix ();
 	//\___________________On se place au-dessus du spot.
 	if (! pDock->container.bIsHorizontal)
@@ -166,7 +168,7 @@ gboolean cd_animations_update_spot (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 		else
 			bContinueAnimation = TRUE;
 	}
-	pData->fIconOffsetY *= cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
+	///pData->fIconOffsetY *= cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 	pIcon->fDeltaYReflection += 2 * pData->fIconOffsetY;
 	
 	pData->fHaloRotationAngle += 360. / myConfig.iSpotDuration * dt;
