@@ -18,6 +18,10 @@
 */
 
 
+#include <stdlib.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -202,11 +206,91 @@ gboolean cd_dbus_applet_is_used (const gchar *cModuleName)
 	return (str && (str[strlen(cModuleName)] == ';' || str[strlen(cModuleName)] == '\0'));
 }
 
+static inline const gchar *_strstr_len (const gchar *haystack, gint iNbChars, const gchar *needle)
+{
+	if (iNbChars <= 0)
+		iNbChars = strlen (haystack);
+	int i;
+	for (i = 0; i < iNbChars; i ++)
+	{
+		if (haystack[i] == *needle)
+		{
+			int j;
+			for (j = 1; needle[j] != '\0' && i+j < iNbChars; j ++)
+			{
+				if (haystack[i+j] != needle[j])
+					break;
+			}
+			if (needle[j] == '\0')
+				return haystack+i;
+		}
+	}
+	return NULL;
+}
+int cd_dbus_applet_is_running (const gchar *cModuleName)
+{
+	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
+	static gchar cContent[512+1];
+	gboolean bIsRunning = FALSE;
+	
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open ("/proc", 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("Dbus : %s", erreur->message);
+		g_error_free (erreur);
+		return 0;
+	}
+	
+	int iPid = 0;
+	gchar *cCommand = g_strdup_printf ("./%s", cModuleName);
+	gchar *str, *sp;
+	const gchar *cPid;
+	while ((cPid = g_dir_read_name (dir)) != NULL)
+	{
+		if (! g_ascii_isdigit (*cPid))
+			continue;
+		
+		snprintf (cFilePathBuffer, 23, "/proc/%s/cmdline", cPid);
+		int pipe = open (cFilePathBuffer, O_RDONLY);
+		if (pipe <= 0)
+			continue ;
+		
+		int iNbBytesRead;
+		if ((iNbBytesRead = read (pipe, cContent, sizeof (cContent))) <= 0)
+		{
+			close (pipe);
+			continue;
+		}
+		close (pipe);
+		
+		if (_strstr_len (cContent, iNbBytesRead, cCommand))  // g_strstr_len s'arrete aux '\0' alors qu'on lui specifie iNbBytesRead !
+		{
+			iPid = atoi (cPid);
+			break;
+		}
+	}
+	g_dir_close (dir);
+	
+	g_free (cCommand);
+	return iPid;
+}
+
 void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
 {
 	g_print ("%s (%s)\n", __func__, cModuleName);
 	// on verifie que le processus distant n'est pas deja lance.
-	gchar *cCommand = g_strdup_printf ("pgrep -f \"\\./%s\"", cModuleName);
+	int iPid = cd_dbus_applet_is_running (cModuleName);
+	if (iPid > 0)
+	{
+		g_print ("  l'applet est deja lancee, on la tue sauvagement.\n");
+		gchar *cCommand = g_strdup_printf ("kill %d", iPid);
+		int r = system (cCommand);
+		g_free (cCommand);
+	}
+	else
+		g_print ("  l'applet '%s' n'est pas en cours d'execution\n", cModuleName);
+	/*gchar *cCommand = g_strdup_printf ("pgrep -f \"\\./%s\"", cModuleName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	if (cResult != NULL)
 	{
@@ -219,10 +303,11 @@ void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar
 	}
 	else
 		g_print ("  l'applet '%s' n'est pas en cours d'execution (d'apres la commande '%s'\n", cModuleName, cCommand);
-	g_free (cCommand);
+	g_free (cCommand);*/
+	
 	
 	// on le lance.
-	cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\"", cDirPath, cModuleName);
+	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\"", cDirPath, cModuleName);
 	g_print ("on lance une applet distante : '%s'\n", cCommand);
 	cairo_dock_launch_command (cCommand);
 	g_print ("applet lancee\n");

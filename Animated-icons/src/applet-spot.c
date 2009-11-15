@@ -31,7 +31,7 @@ void cd_animations_init_spot (Icon *pIcon, CairoDock *pDock, CDAnimationData *pD
 		myData.iSpotTexture = cd_animation_load_spot_texture ();
 	if (myData.iHaloTexture == 0)
 		myData.iHaloTexture = cd_animation_load_halo_texture ();
-	if (myData.iSpotFrontTexture == 0)
+	if (myData.iSpotFrontTexture == 0 && myConfig.cSpotFrontImage != NULL)
 		myData.iSpotFrontTexture = cd_animation_load_spot_front_texture ();
 	if (myData.iRaysTexture == 0)
 		myData.iRaysTexture = cd_animations_load_rays_texture ();
