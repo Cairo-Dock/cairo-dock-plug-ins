@@ -174,7 +174,7 @@ part size = 10
 #[@icon_effectsdatadir@/icon-firework.png]
 [Firework]
 
-#I[200;8000] Duration of the animation :
+#I[200;5000] Duration of the animation :
 #{In ms.}
 duration = 2000
 

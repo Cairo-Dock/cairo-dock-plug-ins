@@ -563,6 +563,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		if (pModule->cSoFilePath != NULL)
 		{
 			cd_warning ("an installed module already exists with this name (%s).", cModuleName);
+			g_set_error (error, 1, 1, "an installed module already exists with this name (%s).", cModuleName);
 			return FALSE;  // eventuellement on pourrait prendre le controle d'une applet comme ca !
 		}
 	}
@@ -574,7 +575,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->cModuleName = g_strdup (cModuleName);
 		pVisitCard->iMajorVersionNeeded = 2;
 		pVisitCard->iMinorVersionNeeded = 1;
-		pVisitCard->iMicroVersionNeeded = 0;
+		pVisitCard->iMicroVersionNeeded = 1;
 		pVisitCard->cPreviewFilePath = cShareDataDir ? g_strdup_printf ("%s/preview", cShareDataDir) : NULL;
 		pVisitCard->cGettextDomain = g_strdup_printf ("cd-%s", cModuleName);
 		pVisitCard->cUserDataDir = g_strdup (cModuleName);
@@ -598,6 +599,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		{
 			cairo_dock_free_module (pModule);
 			cd_warning ("registration of '%s' has failed.", cModuleName);
+			g_set_error (error, 1, 1, "registration of '%s' has failed.", cModuleName);
 			return FALSE;
 		}
 	}
@@ -607,7 +609,8 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	if (! bAppletIsUsed)
 	{
 		g_print ("applet %s has been registered, but is not wanted by the user.\n", cModuleName);
-		return TRUE;
+		g_set_error (error, 1, 1, "applet %s has been registered, but is not wanted by the user.", cModuleName);
+		return FALSE;
 	}
 	
 	// sinon on active le module.

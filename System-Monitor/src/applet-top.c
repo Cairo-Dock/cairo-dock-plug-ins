@@ -24,7 +24,6 @@
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <unistd.h>
 
 #include "applet-struct.h"
 #include "applet-top.h"
