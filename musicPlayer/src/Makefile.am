@@ -32,8 +32,6 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-banshee.h\
 	applet-exaile.c\
 	applet-exaile.h\
-	applet-exaile3.c\
-	applet-exaile3.h\
 	applet-listen.c\
 	applet-listen.h\
 	applet-quodlibet.c\
