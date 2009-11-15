@@ -95,6 +95,12 @@ RSS_feed =
 #{Enter a valid atom/rss feed}
 url_rss_feed=
 
+#s0 RSS login (optional):
+RSS_login =
+
+#p0 RSS password (optional):
+RSS_password =
+
 #i[1;50] Number of feed lines to display in the dialog :
 lines_rss_feed=10
 

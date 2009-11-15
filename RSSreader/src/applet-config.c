@@ -33,6 +33,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	//\___________________ Section Configuration
 	myConfig.cUrl 			= CD_CONFIG_GET_STRING ("Configuration", "url_rss_feed");
+	myConfig.cUrlLogin 			= CD_CONFIG_GET_STRING ("Configuration", "RSS_login");
+	gchar *cEncryptedPassword  			= CD_CONFIG_GET_STRING ("Configuration", "RSS_password");
+	if( cEncryptedPassword )
+	{
+  	cairo_dock_decrypt_string( cEncryptedPassword,  &(myConfig.cUrlPassword) );
+  	g_free(cEncryptedPassword);
+	}
 	myConfig.iRefreshTime 		= 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
 	myConfig.iNbLinesInDialog 	= CD_CONFIG_GET_INTEGER ("Configuration", "lines_rss_feed");
 	myConfig.iMaxLines 		= CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");  /// pas franchement utile...
@@ -74,6 +81,8 @@ CD_APPLET_GET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUrl);
+	g_free (myConfig.cUrlLogin);
+	g_free (myConfig.cUrlPassword);
 	g_free (myConfig.cUserTitle);
 	g_free (myConfig.cSpecificWebBrowser);
 	g_free (myConfig.cLogoPath);

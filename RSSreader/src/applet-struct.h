@@ -27,6 +27,8 @@
 struct _AppletConfig {
 	// comportement
 	gchar *cUrl;
+	gchar *cUrlLogin;
+	gchar *cUrlPassword;
 	gchar *cUserTitle;
 	gint iRefreshTime;
 	gint iNbLinesInDialog;

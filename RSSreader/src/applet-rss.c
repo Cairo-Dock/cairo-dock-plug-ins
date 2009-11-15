@@ -19,6 +19,9 @@
 
 //\________________ Add your name in the copyright file (and / or modify your name here)
 
+#include <glib.h>
+#include <glib/gprintf.h>
+
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-rss.h"
@@ -138,8 +141,28 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.cUrl == NULL)
 		return ;
+
+	gchar *cUrlWithLoginPwd = NULL;
+	if( myConfig.cUrlLogin && myConfig.cUrlPassword &&
+	    strlen(myConfig.cUrlLogin)>0 &&
+	    strlen(myConfig.cUrlPassword)>0 )
+	{
+		// An URL is composed of that: "protocol://login:password@server/path"
+		// so look for the "://" string and insert "login:password@" at that place
+		gchar *location = g_strstr_len(myConfig.cUrl, 10, "://");
+		if( location )
+		{
+			gsize length_first_part = location - myConfig.cUrl + 3;
+			if( length_first_part > 0 )
+			{
+				gchar *first_part = g_strndup(myConfig.cUrl, length_first_part);
+				cUrlWithLoginPwd = g_strdup_printf("%s%s:%s@%s",first_part,myConfig.cUrlLogin,myConfig.cUrlPassword,location+3);
+				g_free(first_part);
+			}
+		}
+	}
 	
-	gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 30 \"%s\"", myConfig.cUrl);
+	gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 30 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
 	myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
 	cd_debug ("cTaskBridge : '%s'", myData.cTaskBridge);
 	g_free (cCommand);
