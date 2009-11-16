@@ -32,6 +32,7 @@
 #include "applet-xmms.h" //Support XMMS
 #include "applet-xmms2.h" //Support XMMS2
 #include "applet-exaile.h" //Support Exaile
+#include "applet-exaile3.h" //Support Exaile 0.3
 #include "applet-songbird.h" //Support Songbird
 #include "applet-banshee.h" //Support Banshee
 #include "applet-rhythmbox.h" //Support Rhythmbox
@@ -49,7 +50,8 @@ CD_APPLET_DEFINITION (N_("musicPlayer"),
 	"You can drag and drop songs on the icon to put them in the queue (depends on Player),\n"
 	" and jpeg image to use as cover.\n"
 	"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-	"       For SongBird, you have to install its dbus add-on.\n"),
+	"       For SongBird, you have to install its dbus add-on.\n"
+	"       For Exaile 0.3, you have to activate its MPRIS plug-in"),
 	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85, Fabounet")
 
 
@@ -59,6 +61,7 @@ CD_APPLET_INIT_BEGIN
 	// Don't forget to add the registered Name in ../data/musicPlayer.conf.in
 	cd_musicplayer_register_xmms_handler ();
 	cd_musicplayer_register_exaile_handler();
+	cd_musicplayer_register_exaile3_handler();
 	cd_musicplayer_register_songbird_handler();
 	cd_musicplayer_register_banshee_handler();
 	cd_musicplayer_register_rhythmbox_handler();
