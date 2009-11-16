@@ -278,6 +278,6 @@ void cd_do_find_matching_applications (void)
 	
 	//\_______________ On lance le chargement des icones en idle.
 	myData.pCurrentApplicationToLoad = myData.pMatchingIcons;
-	if (myData.iSidLoadExternAppliIdle == 0)
+	if (myData.iSidLoadExternAppliIdle == 0 && myData.pMatchingIcons != NULL)
 		myData.iSidLoadExternAppliIdle = g_idle_add (_load_applis_buffer_idle, NULL);
 }

@@ -548,7 +548,7 @@ void cd_do_register_files_backend (void)
 {
 	CDBackend *pBackend = g_new0 (CDBackend, 1);
 	pBackend->cName = "Files";
-	pBackend->bIsThreaded = FALSE;
+	pBackend->bIsThreaded = TRUE;
 	pBackend->init =(CDBackendInitFunc) init;
 	pBackend->search = (CDBackendSearchFunc) search;
 	myData.pBackends = g_list_prepend (myData.pBackends, pBackend);

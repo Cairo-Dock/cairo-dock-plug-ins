@@ -388,7 +388,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 						bRound = TRUE;
 						x += iIconsWidth * fIconScale;
 					}
-					else if (x > x0 + iIconsWidth * fIconScale)
+					else if (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale) > x0 + iIconsWidth * fIconScale)
 					{
 						x -= iIconsWidth * fIconScale;
 						bRound = TRUE;

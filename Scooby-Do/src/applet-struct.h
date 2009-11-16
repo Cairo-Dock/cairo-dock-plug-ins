@@ -144,6 +144,7 @@ struct _CDBackend {
 	CDBackendSearchFunc search;
 	CDBackendStopFunc stop;
 	// private data
+	gboolean bIsActive;
 	gint iState;  // 0:uninitialized; 1:ok; -1:broken
 	CairoDockTask *pTask;
 	gboolean bTooManyResults;

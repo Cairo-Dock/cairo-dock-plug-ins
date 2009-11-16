@@ -193,6 +193,59 @@ static void _place_menu (GtkMenu *menu,
 	*push_in = TRUE;
 }
 
+static inline int _orient_arrow (CairoContainer *pContainer, int iKeyVal)
+{
+	switch (iKeyVal)
+	{
+		case GDK_Up :
+			if (pContainer->bIsHorizontal)
+			{
+				if (!pContainer->bDirectionUp)
+					iKeyVal = GDK_Down;
+			}
+			else
+			{
+				iKeyVal = GDK_Left;
+			}
+		break;
+		
+		case GDK_Down :
+			if (pContainer->bIsHorizontal)
+			{
+				if (!pContainer->bDirectionUp)
+					iKeyVal = GDK_Up;
+			}
+			else
+			{
+				iKeyVal = GDK_Right;
+			}
+		break;
+		
+		case GDK_Left :
+			if (!pContainer->bIsHorizontal)
+			{
+				if (pContainer->bDirectionUp)
+					iKeyVal = GDK_Up;
+				else
+					iKeyVal = GDK_Down;
+			}
+		break;
+		
+		case GDK_Right :
+			if (!pContainer->bIsHorizontal)
+			{
+				if (pContainer->bDirectionUp)
+					iKeyVal = GDK_Down;
+				else
+					iKeyVal = GDK_Up;
+			}
+		break;
+		default:
+		break;
+
+	}
+	return iKeyVal;
+}
 gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
 	if (myData.sCurrentText == NULL)
@@ -264,10 +317,16 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					cd_do_search_matching_icons ();
 					if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche des entrees.
 					{
+						if (myData.iSidLoadExternAppliIdle != 0)
+						{
+							g_source_remove (myData.iSidLoadExternAppliIdle);
+							myData.iSidLoadExternAppliIdle = 0;
+						}
 						cd_do_launch_all_backends ();
 					}
 					else  // on a trouve au moins un programme, on cache le listing des fichiers.
 					{
+						
 						cd_do_hide_listing ();
 					}
 				}
@@ -359,6 +418,8 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				g_print ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
 				if (pEntry->execute)
 					pEntry->execute (pEntry);
+				else
+					return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 			}
 			else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 			{
@@ -374,6 +435,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.bNavigationMode)
 		{
+			iKeyVal = _orient_arrow (pContainer, iKeyVal);
 			if (iKeyVal == GDK_Up)
 			{
 				if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)

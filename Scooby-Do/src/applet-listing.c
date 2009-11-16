@@ -234,7 +234,8 @@ CDListing *cd_do_create_listing (void)
 	gtk_widget_show_all (pWindow);
 	gtk_window_stick (GTK_WINDOW (pWindow));
 	gtk_window_set_keep_above (GTK_WINDOW (pWindow), TRUE);
-	gtk_window_set_modal (GTK_WINDOW (g_pMainDock->container.pWidget), TRUE);
+	gtk_window_set_transient_for (GTK_WINDOW (pWindow), GTK_WINDOW (g_pMainDock->container.pWidget));
+	gtk_window_set_modal (GTK_WINDOW (pWindow), TRUE);
 	
 	pListing->container.iWidth = _listing_compute_width (pListing);
 	pListing->container.iHeight = _listing_compute_height (pListing);

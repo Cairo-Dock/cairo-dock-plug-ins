@@ -388,7 +388,7 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 void cd_do_register_firefox_backend (void)
 {
 	CDBackend *pBackend = g_new0 (CDBackend, 1);
-	pBackend->cName = "Files";
+	pBackend->cName = "Firefox";
 	pBackend->bIsThreaded = FALSE;
 	pBackend->init =(CDBackendInitFunc) init;
 	pBackend->stop = (CDBackendStopFunc) stop;

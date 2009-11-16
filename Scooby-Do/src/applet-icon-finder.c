@@ -302,7 +302,7 @@ void cd_do_search_matching_icons (void)
 			ic = next_ic;
 		}
 	}
-	myData.pCurrentMatchingElement = NULL;
+	myData.pCurrentMatchingElement = myData.pMatchingIcons;
 	myData.iMatchingGlideCount = 0;
 	myData.iPreviousMatchingOffset = 0;
 	myData.iCurrentMatchingOffset = 0;

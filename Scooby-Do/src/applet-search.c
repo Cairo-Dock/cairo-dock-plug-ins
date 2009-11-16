@@ -99,7 +99,7 @@ static gboolean _update_entries (CDBackend *pBackend)
 			}
 			else  // la recherche a ete fructueuse, on regarde si on peut la filtrer ou s'il faut la relancer.
 			{
-				if (pBackend->iNbSearchResults < myConfig.iNbResultMax)  // on a des resultats mais pas trop, on les charge et on leur applique le filtre.
+				if (pBackend->iNbSearchResults < 3+1/*myConfig.iNbResultMax*/)  // on a des resultats mais pas trop, on les charge et on leur applique le filtre.
 				{
 					cd_do_remove_entries_from_listing (pBackend);
 					cd_do_filter_entries (pBackend->pSearchResults, pBackend->iNbSearchResults);
@@ -387,6 +387,12 @@ int cd_do_filter_entries (GList *pEntries, gint iNbEntries)
 		if (pEntry->cName == NULL)
 		{
 			cd_warning ("l'entree n°%d/%d est vide !", i, iNbEntries);
+			continue ;
+		}
+		if (pEntry->bMainEntry)
+		{
+			pEntry->bHidden = FALSE;
+			j ++;
 			continue ;
 		}
 		ext = strrchr (pEntry->cName, '.');
