@@ -79,6 +79,7 @@ struct _AppletData {
 	gdouble fLogoSize;  // taille a laquelle le logo a ete charge.
 	
 	int iFirstDisplayedItem;  // pour le scroll.
+	guint iSidRedrawIdle;
 	} ;
 
 

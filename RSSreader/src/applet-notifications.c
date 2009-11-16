@@ -119,3 +119,33 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);	
 	
 CD_APPLET_ON_BUILD_MENU_END
+
+
+static gboolean _redraw_desklet_idle (CairoDockModuleInstance *myApplet)
+{
+	cd_applet_update_my_icon (myApplet);
+	myData.iSidRedrawIdle = 0;
+	return FALSE;
+}
+CD_APPLET_ON_SCROLL_BEGIN
+	if (! myDesklet)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	myData.iFirstDisplayedItem += (CD_APPLET_SCROLL_UP ? -1 : 1);
+	if (myData.iFirstDisplayedItem < 0)  // on a scrolle trop haut.
+	{
+		myData.iFirstDisplayedItem = 0;
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	else
+	{
+		int n = g_list_length (myData.pItemList) - 1;  // la 1ere ligne est le titre.
+		if (myData.iFirstDisplayedItem > n - 1)  // on a scrolle trop bas.
+		{
+			myData.iFirstDisplayedItem = n - 1;
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		}
+	}
+	if (myData.iSidRedrawIdle == 0)  // on planifie un redessin pour quand la boucle principale sera accessible, de facon a éviter de la surcharger en cas de scroll rapide.
+		myData.iSidRedrawIdle = g_idle_add (_redraw_desklet_idle, myApplet);
+CD_APPLET_ON_SCROLL_END

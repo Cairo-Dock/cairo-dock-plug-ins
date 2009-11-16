@@ -73,6 +73,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
 CD_APPLET_INIT_END
 
@@ -84,6 +85,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
+	if (myData.iSidRedrawIdle != 0)
+		g_source_remove (myData.iSidRedrawIdle);
 	
 CD_APPLET_STOP_END
 
@@ -101,6 +105,12 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fLogoSize = -1;  // pour recharger le logo.
 		// on remplace le texte actuel par un message d'attente.
 		myData.bUpdateIsManual = FALSE;
+		myData.iFirstDisplayedItem = 0;
+		if (myData.iSidRedrawIdle != 0)
+		{
+			g_source_remove (myData.iSidRedrawIdle);
+			myData.iSidRedrawIdle = 0;
+		}
 		g_free (myData.PrevFirstTitle);
 		myData.PrevFirstTitle = NULL;
 		

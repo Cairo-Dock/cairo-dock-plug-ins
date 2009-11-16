@@ -30,7 +30,7 @@
  */
 void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 {
-	g_print ("%s (%s)\n", __func__, cLine);
+	cd_debug ("%s (%s)", __func__, cLine);
 	/*// on convertit les caracteres internet.
 	gchar *str=cLine, *amp;
 	do
@@ -89,7 +89,6 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 		}
 		else  // ca rentre.
 		{
-			
 			*sp = ' ';  // on remet l'espace.
 			last_sp = sp;  // on memorise la derniere cesure qui fait tenir la ligne en largeur.
 			sp ++;  // on se place apres.
@@ -134,6 +133,7 @@ void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 	}
 	g_list_free (myData.pItemList);
 	myData.pItemList = NULL;
+	myData.iFirstDisplayedItem = 0;
 }
 
 
@@ -166,6 +166,7 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 	myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
 	cd_debug ("cTaskBridge : '%s'", myData.cTaskBridge);
 	g_free (cCommand);
+	g_free (cUrlWithLoginPwd);
 }
 
 static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
@@ -272,7 +273,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			xmlAttrPtr attr = xmlHasProp (item, "type");
 			if (attr && attr->children)
 			{
-				g_print ("content type : %s\n", attr->children->content);
+				cd_debug ("   content type : %s", attr->children->content);
 				if (strncmp (attr->children->content, "text", 4) != 0)
 				{
 					continue;
@@ -306,7 +307,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			xmlAttrPtr attr = xmlHasProp (item, "type");  // type="text/html" rel="alternate"
 			if (attr && attr->children)
 			{
-				g_print ("link type : %s\n", attr->children->content);
+				cd_debug ("   link type : %s", attr->children->content);
 				if (strncmp (attr->children->content, "text", 4) != 0)
 				{
 					continue;

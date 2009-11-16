@@ -30,7 +30,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 {
 	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
 		return;
-	g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
+	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
 	
@@ -104,7 +104,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		double fLogoSize = MIN (iWidth/2, MIN (iHeight/2, myConfig.fLogoSize * iSize));  // on le limite un peu.
 		if (fLogoSize < 1)
 			fLogoSize = 1;
-		g_print ("fLogoSize  :%.2f\n", fLogoSize);
+		cd_debug ("  fLogoSize  :%.2f", fLogoSize);
 		
 		// on cree la surface du logo si necessaire.
 		if (myData.fLogoSize != iSize || myData.pLogoSurface == NULL)
@@ -159,6 +159,17 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		pango_font_description_free (fd);
 		
 		cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
+		
+		if (myData.iFirstDisplayedItem > 0)
+		{
+			it = g_list_nth (it, myData.iFirstDisplayedItem);
+			if (it == NULL)
+			{
+				it = g_list_last (myData.pItemList);
+				if (it->prev)
+					it = it->prev;
+			}
+		}
 		
 		for (it = it->next; it != NULL; it = it->next)
 		{
