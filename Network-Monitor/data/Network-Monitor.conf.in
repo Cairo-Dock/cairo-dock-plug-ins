@@ -7,7 +7,8 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
-name = Network-Monitor
+#{Let empty to use the connection name.}
+name = 
 
 #d Name of the dock it belongs to:
 dock name = 
@@ -78,9 +79,9 @@ fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
-
 
 #l+[Gauge;Graph;Icons] Choose the style of the display : 
 renderer = 2
@@ -146,39 +147,41 @@ icon_7 =
 #F[Parameters;gtk-preferences]
 frame_param =
 
-#i[1;60] Delay between signal checks :
+#i[1;60] Delay between wifi signal checks :
 #{in seconds.}
-delay = 10
+wifi delay = 10
+
+#i[1;60] Delay between net speed checks :
+#{in seconds.}
+netspeed delay = 10
 
 #e[0;1] Fluidity of the transition between 2 values :
 #{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
 smooth = .33
 
-#l[No;On icon;On label] Display values :
-info display = 1
+#s Default connexion interface :
+#{By default the first active interface is used.}
+interface = 
 
 #s User command to show Wireless Configuration :
 #{Allow you to overwrite applet's default command line and launch your preferred wireless configuration interface.}
-command = 
+wifi command = 
 
 #s User command to show a system monitor :
 #{Let empty to use he default one.}
-sys monitor =
+netspeed command =
 
 
 #F+[Info;gtk-info]
-frame_disp=
+frame_info=
 
 #l[Wifi signal;Connexion speed] Info to display in the icon :
 #{You can quickly switch to the other mode by scrolling on the icon.}
-mode  = 0
+mode = 0
 
 #l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] How to display the wifi signal :
 signal_type=2
 
-#b Overwrite the default label with the connection point name ?
-essid = true
-
-#s Default connexion interface :
-#{By default it will be 'eth0'.}
-interface = 
+#l[No;On icon;On label] Display values :
+#{not used at the moment.}
+info display = 1

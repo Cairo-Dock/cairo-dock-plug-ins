@@ -37,7 +37,7 @@ CD_APPLET_DEFINITION (N_("Network-Monitor"),
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
-	if (myConfig.iDisplayType == CD_WIFI_GAUGE)
+	if (myConfig.iRenderType == CD_EFFECT_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
 		memset (&attr, 0, sizeof (CairoGaugeAttribute));
@@ -45,7 +45,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		pRenderAttr->cModelName = "gauge";
 		attr.cThemePath = myConfig.cGThemePath;
 	}
-	else if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+	else if (myConfig.iRenderType == CD_EFFECT_GRAPH)
 	{
 		CairoGraphAttribute attr;  // les attributs du graphe.
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
@@ -58,13 +58,13 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		attr.fLowColor = myConfig.fLowColor;
 		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
 	}
-	else if (myConfig.iDisplayType == CD_WIFI_BAR)
+	else if (myConfig.iRenderType == CD_EFFECT_ICON)
 	{
 		/// A FAIRE...
 	}
 	if (pRenderAttr != NULL)
 	{
-		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
+		pRenderAttr->iLatencyTime = MIN (myConfig.iWifiCheckInterval, myConfig.iNetspeedCheckInterval) * 1000 * myConfig.fSmoothFactor;
 		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -97,14 +97,14 @@ CD_APPLET_INIT_BEGIN
 		myData.bDbusConnection = FALSE;
 		// Initialisation de la tache periodique de mesure.
 		myData.iPreviousQuality = -2;  // force le dessin.
-		myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
+		/*myData.pTask = cairo_dock_new_task (MIN (myConfig.iWifiCheckInterval, myConfig.iNetspeedCheckInterval),
 			(CairoDockGetDataAsyncFunc) cd_NetworkMonitor_get_data,
 			(CairoDockUpdateSyncFunc) cd_NetworkMonitor_update_from_data,
 			myApplet);
 		if (cairo_dock_is_loading ())
 			cairo_dock_launch_task_delayed (myData.pTask, 2000);
 		else
-			cairo_dock_launch_task (myData.pTask);
+			cairo_dock_launch_task (myData.pTask);*/
 	}
 	
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -149,7 +149,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iPercent = -2;
 			myData.iSignalLevel = -2;
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
+			//cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
 		}
 		else
 			//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
@@ -158,7 +158,7 @@ CD_APPLET_RELOAD_BEGIN
 	else  // on redessine juste l'icone.
 	{
 		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
-		if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+		if (myConfig.iRenderType == CD_EFFECT_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
 		if (!myData.bDbusConnection)

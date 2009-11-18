@@ -37,8 +37,8 @@ static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item
 	cairo_dock_launch_task (myData.pTask);
 }
 static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data) {  /// a mettre dans les plug-ins d'integration.
-	if (myConfig.cUserCommand != NULL) {
-		cairo_dock_launch_command (myConfig.cUserCommand);
+	if (myConfig.cWifiConfigCommand != NULL) {
+		cairo_dock_launch_command (myConfig.cWifiConfigCommand);
 		return;
 	}
 	
@@ -113,10 +113,6 @@ CD_APPLET_ON_SCROLL_BEGIN
 	// On change le mode.
 	myConfig.bModeWifi = ! myConfig.bModeWifi;
 	/// l'ecrire en conf...
-	
-	// on arrete la tache en cours.
-	cairo_dock_free_task (myData.pTask);
-	myData.pTask = NULL;
 	
 	// on lance la nouvelle tache.
 	

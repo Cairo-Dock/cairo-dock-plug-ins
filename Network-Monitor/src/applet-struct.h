@@ -51,38 +51,76 @@ typedef enum {
 } CDWifiEffect;
 
 
-typedef enum _CDWifiDisplayType {
-	CD_WIFI_GAUGE=0,
-	CD_WIFI_GRAPH,
-	CD_WIFI_BAR,
+typedef enum _CDWifiRenderType {
+	CD_EFFECT_GAUGE=0,
+	CD_EFFECT_GRAPH,
+	CD_EFFECT_ICON,
 	CD_WIFI_NB_TYPES
-	} CDWifiDisplayType; 
+	} CDRenderType;
 
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[CONNECTION_NB_QUALITY];
+	gchar *cWifiConfigCommand;
+	
+	CDConnectionInfoType quickInfoType;  // unite du signal wifi.
+	
+	CDRenderType iRenderType;
+	// jauge.
 	gchar *cGThemePath;
-	gchar *cUserCommand;
-	gchar *cWatermarkImagePath;
-	gdouble fAlpha;
-	
-	CDConnectionInfoType quickInfoType;
-	CDWifiEffect iEffect;
-	CDWifiDisplayType iDisplayType;
-	
-	gint iCheckInterval;
-	
+	// graphe
 	CairoDockTypeGraph iGraphType;
 	gdouble fLowColor[3];
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
 	gdouble fSmoothFactor;
+	// icone
+	CDWifiEffect iEffect;
 	
-	gboolean bESSID;
+	// parametres
 	gboolean bModeWifi;  // TRUE pour l'affichage Wifi, FALSE pour l'affichage Netspeed.
-	gchar *cInterface;
-	gchar *cSysMonitorCommand;
+	gchar *cInterface;  // interface (eth0, etc) a surveiller
+	gchar *cSysMonitorCommand;  // command pour ouvrir un moniteur systeme.
+	
+	// wifi
+	gint iWifiCheckInterval;
+	
+	// netspeed
+	gint iNetspeedCheckInterval;
+	
 };
+
+
+typedef struct _CDNetSpeed {
+	CairoDockTask *pTask;
+	// shared memory
+	gboolean _bInitialized;
+	gboolean _bAcquisitionOK;
+	long long int _iReceivedBytes, _iTransmittedBytes;
+	gint _iDownloadSpeed, _iUploadSpeed;
+	gint _iMaxUpRate, _iMaxDownRate;
+	// end of shared memory
+	gboolean bAcquisitionOK;
+	long long int iReceivedBytes, iTransmittedBytes;
+	} CDNetSpeed;
+
+typedef struct _CDWifi {
+	CairoDockTask *pTask;
+	// shared memory
+	CDConnectionQuality _iQuality, _iPreviousQuality;
+	gint _iPercent, _iPrevPercent;
+	gint _iSignalLevel, _iPrevSignalLevel;
+	gint _iPrevNoiseLevel, _iNoiseLevel;
+	gchar *_cESSID;
+	gchar *_cInterface;
+	gchar *_cAccessPoint;
+	// end of shared memory
+	gboolean bWirelessExt;
+	CDConnectionQuality iQuality;
+	gchar *cInterface;
+	gchar *cAccessPoint;
+	gchar *cESSID;
+	} CDWifi;
 
 struct _AppletData {
 	CairoDockTask *pTask;
@@ -110,8 +148,10 @@ struct _AppletData {
 	
 	gchar *cDevice;
 	gchar *cActiveAccessPoint;
+	
+	CDNetSpeed netSpeed;
+	CDWifi wifi;
 };
-
 
 
 #endif

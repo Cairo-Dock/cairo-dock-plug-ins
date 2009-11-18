@@ -120,7 +120,7 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pDock->iDecorationsWidth  = 0;
 	
 	// On affecte ca aussi au cas ou.
-	pDock->fFlatDockWidth = pDock->iMinDockWidth;
+	pDock->fFlatDockWidth = pDock->iMinDockWidth - 2*X_BORDER_SPACE;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+g_fAmplitude);
 }
 
@@ -362,7 +362,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 }
 static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 {
-	if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 0) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))
+	if ((pDock->container.iMouseX < 0) || (pDock->container.iMouseX > pDock->iMaxDockWidth - 1) || (pDock->container.iMouseY < 0) || (pDock->container.iMouseY > pDock->iMaxDockHeight - 0))
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 	}

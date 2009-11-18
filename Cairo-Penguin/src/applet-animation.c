@@ -43,6 +43,7 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	if (pFirstDrawnIcon == NULL && myDock->icons != NULL)
 		pFirstDrawnIcon = myDock->icons->data;
 	int iXMin = (pFirstDrawnIcon != NULL ? pFirstDrawnIcon->fXAtRest : 0);
+	iXMin = 0;
 	int iXMax = iXMin + myDock->fFlatDockWidth;
 	int iHeight = myDock->container.iHeight;
 	

@@ -75,10 +75,10 @@ void cd_NetworkMonitor_draw_icon (void) {
 		break;
 	}
 	
-	if (myData.iQuality != myData.iPreviousQuality || myConfig.iDisplayType == CD_WIFI_GRAPH) {
+	if (myData.iQuality != myData.iPreviousQuality || myConfig.iRenderType == CD_EFFECT_GRAPH) {
 		myData.iPreviousQuality = myData.iQuality;
 		//cd_debug ("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
-		if (myConfig.iDisplayType == CD_WIFI_BAR) {
+		if (myConfig.iRenderType == CD_EFFECT_ICON) {
 			cd_NetworkMonitor_draw_icon_with_effect (myData.iQuality);
 		}
 		else
@@ -88,7 +88,7 @@ void cd_NetworkMonitor_draw_icon (void) {
 		}
 	}
 	
-	if (myConfig.bESSID && myData.cESSID != NULL && cairo_dock_strings_differ (myData.cESSID, myIcon->cName))
+	if (/*myConfig.bESSID && */myData.cESSID != NULL && cairo_dock_strings_differ (myData.cESSID, myIcon->cName))
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cESSID);
 	
 	if (bNeedRedraw)

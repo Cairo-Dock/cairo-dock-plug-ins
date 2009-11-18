@@ -42,8 +42,11 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)  // on prend le controle de l'icone de la fenetre.
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  // on prend le controle de l'icone de la fenetre.
+		CD_APPLET_MANAGE_APPLICATION ("gnome-session");  // en fait depuis Gnome 2.28 seulement, avant c'etait x-session-manager.
+	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 		CD_APPLET_MANAGE_APPLICATION ("x-session-manager");
+	/// trouver celui de KDE ...
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
