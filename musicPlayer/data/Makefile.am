@@ -19,7 +19,7 @@ module_DATA = \
 	1.svg\
 	2.svg\
 	3.svg\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)

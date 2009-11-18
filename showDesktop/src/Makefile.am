@@ -21,7 +21,7 @@ libcd_showDesktop_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(show_desktopdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""icon.png"\"\
 	-DMY_APPLET_CONF_FILE=\""showDesktop.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""showDesktop"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_SHOW_DESKTOP)"\"\

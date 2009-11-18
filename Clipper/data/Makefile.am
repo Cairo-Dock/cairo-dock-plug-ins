@@ -5,7 +5,7 @@ moduledir = $(Clipperdatadir)
 
 module_DATA = \
 	Clipper.conf\
-	preview.png\
+	preview.jpg\
 	icon.svg\
 	Clipper-actions-gnome.conf\
 	Clipper-actions-xfce.conf\

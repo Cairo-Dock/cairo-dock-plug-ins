@@ -25,14 +25,13 @@ libcd_stack_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(stackdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""stack.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""stack"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_STACK)"\"\
 	-DMY_APPLET_GETTEXT_DOMAIN=\""$(GETTEXT_STACK)"\"\
 	-DMY_APPLET_DOCK_VERSION=\""$(dock_version)"\"\
 	-DMY_APPLET_ICON_FILE=\""icon.png"\"\
-	-DCD_STACK_DEFAULT_ICON_FILE=\""default-icon.png"\"\
 	-DCD_STACK_DEFAULT_TEXT_ICON=\""text-icon.svg"\"\
 	-DCD_STACK_DEFAULT_URL_ICON=\""url-icon.svg"\"\
 	-DCD_APPLET_MULTI_INSTANCE=\"1\"\

@@ -22,7 +22,7 @@ libcd_show_mouse_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(show_mousedatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""show_mouse.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""show_mouse"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_SHOW_MOUSE)"\"\

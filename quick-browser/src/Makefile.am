@@ -23,7 +23,7 @@ libcd_quick_browser_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(quick_browserdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""quick-browser.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""quick-browser"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION)"\"\

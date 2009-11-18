@@ -8,7 +8,7 @@ module_DATA = \
 	default.svg\
 	mute.svg\
 	broken.svg\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)

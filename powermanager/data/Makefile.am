@@ -8,7 +8,7 @@ module_DATA = \
 	default-battery.svg\
 	default-charge.svg\
 	powermanager.conf\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)

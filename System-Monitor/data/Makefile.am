@@ -5,7 +5,7 @@ moduledir = $(system_monitordatadir)
 
 module_DATA = \
 	System-Monitor.conf\
-	preview.png\
+	preview.jpg\
 	icon.png\
 	button-cpu.png\
 	button-ram.png

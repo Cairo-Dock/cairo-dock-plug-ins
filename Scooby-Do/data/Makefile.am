@@ -5,7 +5,7 @@ moduledir = $(scooby_dodatadir)
 
 module_DATA = \
 	Scooby-Do.conf\
-	preview.png\
+	preview.jpg\
 	icon.png\
 	arrows.svg\
 	active-button.svg\

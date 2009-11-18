@@ -5,7 +5,7 @@ moduledir = $(quick_browserdatadir)
 
 module_DATA = \
 	quick-browser.conf\
-	preview.png\
+	preview.jpg\
 	icon.svg
 
 EXTRA_DIST = $(module_DATA)

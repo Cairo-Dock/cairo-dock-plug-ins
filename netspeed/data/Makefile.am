@@ -3,7 +3,7 @@ moduledir = $(netspeeddatadir)
 
 module_DATA = \
 	netspeed.conf\
-	preview.png\
+	preview.jpg\
 	default.png\
 	icon.png\
 	ok.png\

@@ -5,7 +5,7 @@ moduledir = $(webletsdatadir)
 
 module_DATA = \
 	weblets.conf\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)

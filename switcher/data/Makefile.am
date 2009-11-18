@@ -8,6 +8,6 @@ module_DATA = \
 	broken.svg\
 	default.svg\
 	workspaces.svg\
-	preview.png
+	preview.jpg
 
 EXTRA_DIST = $(module_DATA)

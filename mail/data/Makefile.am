@@ -8,6 +8,6 @@ module_DATA = \
 	cd_mail_nomail.svg \
 	cd_mail_newmail.svg \
 	cd_mail_icon.png \
-	preview.png
+	preview.jpg
 
 EXTRA_DIST = $(module_DATA)

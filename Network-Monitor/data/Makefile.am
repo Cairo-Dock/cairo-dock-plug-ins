@@ -5,7 +5,7 @@ moduledir = $(network_monitordatadir)
 
 module_DATA = \
 	Network-Monitor.conf\
-	preview.png\
+	preview.jpg\
 	icon.png\
 	link-0.svg\
 	link-1.svg\

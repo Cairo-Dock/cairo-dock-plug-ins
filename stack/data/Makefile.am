@@ -5,9 +5,8 @@ moduledir = $(stackdatadir)
 
 module_DATA = \
 	stack.conf\
-	preview.png\
+	preview.jpg\
 	icon.png\
-	default-icon.png\
 	text-icon.svg\
 	url-icon.svg
 

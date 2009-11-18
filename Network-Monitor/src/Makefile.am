@@ -28,7 +28,7 @@ libcd_Network_Monitor_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(network_monitordatadir)"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""Network-Monitor.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""Network-Monitor"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_NETWORK_MONITOR)"\"\

@@ -38,7 +38,7 @@ libcd_GMenu_la_CFLAGS = \
 	$(have_gio)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(gmenudatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""GMenu.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""GMenu"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_GMENU)"\"\

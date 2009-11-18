@@ -34,7 +34,7 @@ libcd_icon_effect_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(icon_effectsdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""icon-effect.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""icon-effect"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_ICON_EFFECTS)"\"\

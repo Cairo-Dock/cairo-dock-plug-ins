@@ -5,7 +5,7 @@ moduledir = $(weatherdatadir)
 
 module_DATA = \
 	weather.conf\
-	preview.png\
+	preview.jpg\
 	broken.png\
 	icon.png
 

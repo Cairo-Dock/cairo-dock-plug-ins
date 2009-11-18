@@ -24,7 +24,7 @@ libcd_RSSreader_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(rss_readerdatadir)"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""RSSreader.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""RSSreader"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_RSS_READER)"\"\

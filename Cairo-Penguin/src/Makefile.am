@@ -25,7 +25,7 @@ libcd_Cairo_Penguin_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(cairo_penguindatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""Cairo-Penguin.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""$(cairo_penguinuserdirname)"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_CAIRO_PENGUIN)"\"\

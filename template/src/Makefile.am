@@ -20,7 +20,7 @@ libcd_CD_LIB_NAME_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(pkgdatadir)"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""CD_APPLET_NAME.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""CD_APPLET_NAME"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_CD_PKG)"\"\

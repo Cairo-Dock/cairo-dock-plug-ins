@@ -156,3 +156,20 @@ Matttbe :
 Tofe :
  * Mail :
    * Fixed crash
+ 
+ ===========================
+ 
+ Modifications made on BZR : Rev 2.0.9.2 => 2.2.0
+ 
+ Fabounet :
+  * Il y a tellement ^^
+ 
+ 
+ Matttbe :
+  * Updated translations
+  * Added new icons
+  * Fixed dnd2share with another Public directory
+  * preview.png -> preview.jpg
+  * Added Exaile 0.3 support
+ 
+ (Faut mettre blindé :þ -> boh, ça passera même si on ne met rien en fait ^^)

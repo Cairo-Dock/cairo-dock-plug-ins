@@ -25,7 +25,7 @@ libcd_compiz_icon_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(compiz_icondatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""compiz-icon.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""compiz-icon"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_COMPIZ_ICON)"\"\

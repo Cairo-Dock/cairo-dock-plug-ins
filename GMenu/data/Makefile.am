@@ -5,7 +5,7 @@ moduledir = $(gmenudatadir)
 
 module_DATA = \
 	GMenu.conf\
-	preview.png\
+	preview.jpg\
 	icon.svg\
 	icon-recent.png
 	

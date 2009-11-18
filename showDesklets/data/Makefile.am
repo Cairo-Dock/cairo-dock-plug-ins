@@ -5,7 +5,7 @@ moduledir = $(show_deskletsdatadir)
 
 module_DATA = \
 	showDesklets.conf\
-	preview.png\
+	preview.jpg\
 	show-desklets.svg\
 	hide-desklets.svg\
 	icon.png

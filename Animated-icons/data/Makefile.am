@@ -5,7 +5,7 @@ moduledir = $(animated_iconsdatadir)
 
 module_DATA = \
 	Animated-icons.conf\
-	preview.png\
+	preview.jpg\
 	icon.svg\
 	texture-chrome.png\
 	icon-rotation.png\

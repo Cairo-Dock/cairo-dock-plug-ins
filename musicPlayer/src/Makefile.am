@@ -57,7 +57,7 @@ libcd_musicPlayer_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(musicplayerdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""musicPlayer.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""musicPlayer"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_MUSICPLAYER)"\"\

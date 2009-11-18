@@ -26,7 +26,7 @@ libcd_mail_la_CFLAGS = \
 	$(MAIL_PACKAGE_CFLAGS)\
 	-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(maildatadir)"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""mail.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""mail"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_MAIL)"\"\

@@ -5,7 +5,7 @@ moduledir = $(compiz_icondatadir)
 
 module_DATA = \
 	compiz-icon.conf\
-	preview.png\
+	preview.jpg\
 	default.svg\
 	broken.svg\
 	other.svg\

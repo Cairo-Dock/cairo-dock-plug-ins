@@ -24,7 +24,7 @@ libcd_Xgamma_la_CFLAGS = \
 	$(XGAMMA_PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(xgammadatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""Xgamma.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""Xgamma"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_XGAMMA)"\"\

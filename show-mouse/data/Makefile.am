@@ -5,7 +5,7 @@ moduledir = $(show_mousedatadir)
 
 module_DATA = \
 	show_mouse.conf\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)

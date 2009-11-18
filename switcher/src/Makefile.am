@@ -27,7 +27,7 @@ libcd_switcher_la_CFLAGS = \
 	$(PACKAGE_CFLAGS)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(switcherdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
-	-DMY_APPLET_PREVIEW_FILE=\""preview.png"\"\
+	-DMY_APPLET_PREVIEW_FILE=\""preview.jpg"\"\
 	-DMY_APPLET_CONF_FILE=\""switcher.conf"\"\
 	-DMY_APPLET_USER_DATA_DIR=\""switcher"\"\
 	-DMY_APPLET_VERSION=\""$(VERSION_SWITCHER)"\"\

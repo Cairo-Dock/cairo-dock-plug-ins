@@ -5,7 +5,7 @@ moduledir = $(systraydatadir)
 
 module_DATA = \
 	systray.conf\
-	preview.png\
+	preview.jpg\
 	icon.png
 
 EXTRA_DIST = $(module_DATA)
