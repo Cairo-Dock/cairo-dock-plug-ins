@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-22 11:05+0000\n"
+"POT-Creation-Date: 2009-11-09 00:27+0000\n"
+"PO-Revision-Date: 2009-11-08 14:15+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-11-09 04:42+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -356,36 +357,35 @@ msgstr ""
 msgid "Open with your web browser"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:331
+#: ../RSSreader/src/applet-rss.c:231
 msgid "No URL is defined."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:333 ../RSSreader/src/applet-rss.c:437
-#, fuzzy
+#: ../RSSreader/src/applet-rss.c:233 ../RSSreader/src/applet-rss.c:327
 msgid "No data (no connection ?)"
-msgstr "无数据。请检查互联网连接"
-
-#: ../RSSreader/src/applet-rss.c:350 ../RSSreader/src/applet-rss.c:367
-msgid "Invalid data (invalid RSS/Atom feed ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:416
+#: ../RSSreader/src/applet-rss.c:250 ../RSSreader/src/applet-rss.c:267
+msgid "Invalid data (invalid RSS feed ?)"
+msgstr ""
+
+#: ../RSSreader/src/applet-rss.c:306
 msgid "No data"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:435
+#: ../RSSreader/src/applet-rss.c:325
 msgid "No data (invalid rss ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:451
+#: ../RSSreader/src/applet-rss.c:341
 msgid "No modification"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:474
+#: ../RSSreader/src/applet-rss.c:364
 msgid "This RSS feed has been modified..."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:543
+#: ../RSSreader/src/applet-rss.c:433
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -393,13 +393,12 @@ msgid ""
 " in the menu."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:549
-#, fuzzy
+#: ../RSSreader/src/applet-rss.c:439
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed ?\n"
 "Is your connection alive ?"
-msgstr "无数据。请检查互联网连接"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -459,14 +458,12 @@ msgid "Open in new window"
 msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "列出书签?"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr " 文件"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -903,7 +900,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -971,7 +969,7 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:135
+#: ../dnd2share/src/applet-notifications.c:298 ../RSSreader/data/messages:131
 msgid "Text"
 msgstr ""
 
@@ -1146,45 +1144,45 @@ msgid ""
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:36
+#: ../icon-effect/src/applet-init.c:30
 msgid "icon effects"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:39
+#: ../icon-effect/src/applet-init.c:33
 msgid "This plug-in adds many special effects to your icons."
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:81 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:54 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:84 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:55 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:95
 msgid "Stars"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:87 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:56 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:131
 msgid "Rain"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:90 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:57 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:113
 msgid "Snow"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:93 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:58 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:149
 msgid "Storm"
 msgstr ""
 
-#: ../icon-effect/src/applet-init.c:96 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:59 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:165
 msgid "Firework"
@@ -1606,8 +1604,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -2305,7 +2303,7 @@ msgid "2nd color of gradation :"
 msgstr ""
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
-#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:177
+#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:31
 msgid "Random colors ?"
 msgstr ""
@@ -2698,9 +2696,7 @@ msgstr "桌面小工具"
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
-"器。"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:21
@@ -2733,7 +2729,8 @@ msgstr "桌面小工具尺寸(宽×高):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
 #: ../Clipper/data/messages:127 ../GMenu/data/messages:23
@@ -2927,9 +2924,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
-msgstr ""
-"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
-"移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../Clipper/data/messages:149 ../GMenu/data/messages:45
 #: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:47
@@ -3712,9 +3707,8 @@ msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../RSSreader/data/messages:7
-#, fuzzy
 msgid "Let empty to use the title of the RSS feed."
-msgstr "留空则使用城市名称。"
+msgstr ""
 
 #: ../RSSreader/data/messages:89
 msgid "RSS Feed"
@@ -3729,9 +3723,8 @@ msgid "URL :"
 msgstr ""
 
 #: ../RSSreader/data/messages:95
-#, fuzzy
 msgid "Number of feed lines to display in the dialog :"
-msgstr "占用率列表上显示的程序数目:"
+msgstr ""
 
 #: ../RSSreader/data/messages:97 ../clock/data/messages:85
 #: ../dnd2share/data/messages:95 ../mail/data/messages:101
@@ -3741,14 +3734,12 @@ msgid "Behaviour"
 msgstr "行为"
 
 #: ../RSSreader/data/messages:99
-#, fuzzy
 msgid "In minutes."
-msgstr "以分为单位。"
+msgstr ""
 
 #: ../RSSreader/data/messages:101
-#, fuzzy
 msgid "Refresh time :"
-msgstr "反射图片:"
+msgstr ""
 
 #: ../RSSreader/data/messages:103
 msgid "By default, this option is activated"
@@ -3767,9 +3758,8 @@ msgid "Duration of the info-bubbles :"
 msgstr ""
 
 #: ../RSSreader/data/messages:111
-#, fuzzy
 msgid "Animation of the icon when a feed has changed :"
-msgstr "音乐切换时的动画:"
+msgstr ""
 
 #: ../RSSreader/data/messages:115
 msgid "Open the feed with the following program :"
@@ -3780,158 +3770,129 @@ msgid "Appearance"
 msgstr ""
 
 #: ../RSSreader/data/messages:121
-#, fuzzy
 msgid "Font to be used for the title"
-msgstr "用于数字显示的字体："
+msgstr ""
 
 #: ../RSSreader/data/messages:123
-#, fuzzy
 msgid "Title font :"
-msgstr "时区"
+msgstr ""
 
 #: ../RSSreader/data/messages:125
 msgid "Color to be used for the title"
 msgstr ""
 
 #: ../RSSreader/data/messages:127
-#, fuzzy
 msgid "Title color :"
-msgstr "直线颜色:"
+msgstr ""
 
 #: ../RSSreader/data/messages:129
-#, fuzzy
-msgid "Alignment of the title:"
-msgstr "平板斜度"
-
-#: ../RSSreader/data/messages:131
-#, fuzzy
-msgid "left"
-msgstr "残り時間"
+msgid "Left margin for the title:"
+msgstr ""
 
 #: ../RSSreader/data/messages:133
-#, fuzzy
-msgid "right"
-msgstr "高："
+msgid "Font to be used for the feed lines"
+msgstr ""
+
+#: ../RSSreader/data/messages:135
+msgid "Feed lines font :"
+msgstr ""
 
 #: ../RSSreader/data/messages:137
-#, fuzzy
-msgid "Font to be used for the feed lines"
-msgstr "用于数字显示的字体："
-
-#: ../RSSreader/data/messages:139
-#, fuzzy
-msgid "Feed lines font :"
-msgstr "直线颜色:"
-
-#: ../RSSreader/data/messages:141
 msgid "Color to be used for the feed lines"
 msgstr ""
 
-#: ../RSSreader/data/messages:143
-#, fuzzy
+#: ../RSSreader/data/messages:139
 msgid "Feed lines color :"
-msgstr "直线颜色:"
+msgstr ""
+
+#: ../RSSreader/data/messages:141
+msgid "Left margin for the feed lines :"
+msgstr ""
+
+#: ../RSSreader/data/messages:143
+msgid "Space between 2 feed lines :"
+msgstr ""
 
 #: ../RSSreader/data/messages:145
-#, fuzzy
-msgid "Left margin for the feed lines :"
-msgstr "用于数字显示的字体："
-
-#: ../RSSreader/data/messages:147
-#, fuzzy
-msgid "Space between 2 feed lines :"
-msgstr "图标间隔:"
-
-#: ../RSSreader/data/messages:149
 msgid "Logo"
 msgstr ""
 
-#: ../RSSreader/data/messages:151
+#: ../RSSreader/data/messages:147
 msgid "The default logo is the applet's icon"
 msgstr ""
 
-#: ../RSSreader/data/messages:153
-#, fuzzy
+#: ../RSSreader/data/messages:149
 msgid "Display the logo ?"
-msgstr "显示封面？"
+msgstr ""
 
-#: ../RSSreader/data/messages:155
+#: ../RSSreader/data/messages:151
 msgid "Adjust to increase/decrease the logo size"
 msgstr ""
 
-#: ../RSSreader/data/messages:157
+#: ../RSSreader/data/messages:153
 msgid "Logo size :"
 msgstr ""
 
-#: ../RSSreader/data/messages:159
-msgid "normal"
+#: ../RSSreader/data/messages:155 ../quick-browser/data/messages:97
+msgid "small"
 msgstr ""
 
-#: ../RSSreader/data/messages:161
+#: ../RSSreader/data/messages:157
 msgid "big"
 msgstr ""
 
-#: ../RSSreader/data/messages:163
-#, fuzzy
+#: ../RSSreader/data/messages:159
 msgid "Background"
-msgstr "背景图片:"
+msgstr ""
+
+#: ../RSSreader/data/messages:161
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+
+#: ../RSSreader/data/messages:163
+msgid "Display a simple background ?"
+msgstr ""
 
 #: ../RSSreader/data/messages:165
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid "first color of the gradation"
 msgstr ""
 
 #: ../RSSreader/data/messages:167
-#, fuzzy
-msgid "Display a simple background ?"
-msgstr "绘制背景?"
+msgid "Background first color :"
+msgstr ""
 
 #: ../RSSreader/data/messages:169
-#, fuzzy
-msgid "first color of the gradation"
-msgstr "占用率列表的起始颜色:"
+msgid "second color of the gradation"
+msgstr ""
 
 #: ../RSSreader/data/messages:171
-#, fuzzy
-msgid "Background first color :"
-msgstr "背景色(红、绿、蓝):"
+msgid "Background second color :"
+msgstr ""
 
 #: ../RSSreader/data/messages:173
-#, fuzzy
-msgid "second color of the gradation"
-msgstr "图表背景色:"
-
-#: ../RSSreader/data/messages:175
-#, fuzzy
-msgid "Background second color :"
-msgstr "背景透明度:"
-
-#: ../RSSreader/data/messages:177
 msgid "Set the radius corner to 0 for no radius"
 msgstr ""
 
-#: ../RSSreader/data/messages:179
-#, fuzzy
+#: ../RSSreader/data/messages:175
 msgid "Background radius corner:"
-msgstr "背景透明度:"
+msgstr ""
 
-#: ../RSSreader/data/messages:181
+#: ../RSSreader/data/messages:177
 msgid "Set the thickness to 0 for no border"
 msgstr ""
 
-#: ../RSSreader/data/messages:183
-#, fuzzy
+#: ../RSSreader/data/messages:179
 msgid "Border thickness :"
-msgstr "边线宽度:"
+msgstr ""
 
-#: ../RSSreader/data/messages:185
-#, fuzzy
+#: ../RSSreader/data/messages:181
 msgid "Border color"
-msgstr "弓形颜色:"
+msgstr ""
 
-#: ../RSSreader/data/messages:187
-#, fuzzy
+#: ../RSSreader/data/messages:183
 msgid "Border color :"
-msgstr "弓形颜色:"
+msgstr ""
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
@@ -4521,9 +4482,7 @@ msgstr ""
 msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
-msgstr ""
-"除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插"
-"件"
+msgstr "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插件"
 
 #: ../compiz-icon/data/messages:87
 msgid "Choose an action for the middle click on the icon :"
@@ -4555,8 +4514,7 @@ msgstr "系统窗口管理器自定义命令："
 msgid ""
 "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 "Compiz from the dock then."
-msgstr ""
-"如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
+msgstr "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
 
 #: ../compiz-icon/data/messages:105
 msgid "Auto-reload Compiz ?"
@@ -4566,9 +4524,7 @@ msgstr "自动重载Compiz？"
 msgid ""
 "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
 "quit Compiz from the dock then."
-msgstr ""
-"如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出"
-"Compiz"
+msgstr "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz"
 
 #: ../compiz-icon/data/messages:109
 msgid "Auto-reload the Decorator ?"
@@ -4586,9 +4542,7 @@ msgstr "启动时强制使用Compiz设置？"
 msgid ""
 "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
 "corresponding subdock's icons will then behave as launcher and an appli."
-msgstr ""
-"这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起"
-"动器和应用程序的功能"
+msgstr "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起动器和应用程序的功能"
 
 #: ../compiz-icon/data/messages:117 ../mail/data/messages:127
 msgid "Steal the application's icon in taskbar ?"
@@ -4598,8 +4552,7 @@ msgstr ""
 msgid ""
 "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
 "Layer plug-ins. Otherwise they will be available in the menu."
-msgstr ""
-"在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
+msgstr "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
 
 #: ../compiz-icon/data/messages:121
 msgid "Add Exposition & Widget Layer to sub-dock ?"
@@ -4626,9 +4579,8 @@ msgid ""
 "when binding textures, that's why this option gives a heavy performance "
 "increase on Nvidia."
 msgstr ""
-"使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。"
-"Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户会感到性"
-"能影响。"
+"使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户"
+"会感到性能影响。"
 
 #: ../compiz-icon/data/messages:131
 msgid "Use Loose Binding ?"
@@ -4945,9 +4897,7 @@ msgid ""
 "In degrees, regarding the vertical position. It's a sort of inclination of "
 "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
 "the plane is not inclined at all (vertical)."
-msgstr ""
-"相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果"
-"设为0则意味着板面无倾斜（垂直）"
+msgstr "相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果设为0则意味着板面无倾斜（垂直）"
 
 #: ../dock-rendering/data/messages:21
 msgid "Inclination of the plane :"
@@ -4967,8 +4917,7 @@ msgstr "显示于前景的dock的宽度的百分比:"
 msgid ""
 "The greater, the deeper. It is in fact the gap between background icons' "
 "bottom and foreground icons' top (in pixels)."
-msgstr ""
-"取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
+msgstr "取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
 
 #: ../dock-rendering/data/messages:29
 msgid "Depth of the plane :"
@@ -5234,7 +5183,8 @@ msgid "Desktop-less support"
 msgstr "无桌面支持"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5270,7 +5220,7 @@ msgstr ""
 msgid "It will slightly alter the colors, so you may have to modify them."
 msgstr ""
 
-#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:181
+#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:177
 msgid "Add luminance ?"
 msgstr ""
 
@@ -5282,7 +5232,7 @@ msgstr ""
 
 #: ../icon-effect/data/messages:91 ../icon-effect/data/messages:111
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:145
-#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:193
+#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:187
 #: ../illusion/data/messages:43 ../show-mouse/data/messages:25
 msgid "Particle size :"
 msgstr ""
@@ -5293,49 +5243,32 @@ msgid "Particle speed :"
 msgstr ""
 
 #: ../icon-effect/data/messages:173
-#, fuzzy
-msgid "Colors"
-msgstr "邮件夹"
-
-#: ../icon-effect/data/messages:175
-#, fuzzy
 msgid "Default color :"
-msgstr "默认图标："
+msgstr ""
 
 #: ../icon-effect/data/messages:179
-msgid "It particularily fits a dark wallpaper or a dark theme."
-msgstr ""
-
-#: ../icon-effect/data/messages:183
-msgid "Particles"
-msgstr ""
-
-#: ../icon-effect/data/messages:185
-#, fuzzy
 msgid "Number of sources :"
-msgstr "垃圾数量"
+msgstr ""
 
-#: ../icon-effect/data/messages:187 ../show-mouse/data/messages:17
+#: ../icon-effect/data/messages:181 ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
 msgstr ""
 
-#: ../icon-effect/data/messages:189
+#: ../icon-effect/data/messages:183
 msgid "In percentage of the icon's size."
 msgstr ""
 
-#: ../icon-effect/data/messages:191
+#: ../icon-effect/data/messages:185
 msgid "Radius of the explosion :"
 msgstr ""
 
-#: ../icon-effect/data/messages:195
-#, fuzzy
+#: ../icon-effect/data/messages:189
 msgid "Show the launching ?"
-msgstr "显示日期？"
+msgstr ""
 
-#: ../icon-effect/data/messages:197
-#, fuzzy
+#: ../icon-effect/data/messages:191
 msgid "Particle friction :"
-msgstr "静音图标："
+msgstr ""
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance :"
@@ -5457,9 +5390,7 @@ msgid ""
 "It will be available on middle click. Let empty to execute the default "
 "command, that greatly depends on your distribution. Sometimes the command to "
 "shutdown is just the same as the one to log out."
-msgstr ""
-"中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和"
-"注销是同一个命令。"
+msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
 
 #: ../logout/data/messages:93
 msgid "User-defined command to execute to shutdown :"
@@ -5623,9 +5554,7 @@ msgstr "XMMS"
 msgid ""
 "It will prevent the player's icon to appear in the task bar. The applet's "
 "icon will then behave as a launcher, an appli, and an applet."
-msgstr ""
-"这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序"
-"的功能。"
+msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #: ../musicPlayer/data/messages:111
 msgid "Steal the player's icon from taskbar ?"
@@ -5863,10 +5792,6 @@ msgstr ""
 msgid "Icon size :"
 msgstr ""
 
-#: ../quick-browser/data/messages:97
-msgid "small"
-msgstr ""
-
 #: ../quick-browser/data/messages:99
 msgid "medium"
 msgstr ""
@@ -6018,14 +5943,12 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "用于显示/隐藏桌面小应用的快捷键:"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "留空则使用默认指令。"
+msgstr ""
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "当小程序被点击时执行操作:"
+msgstr ""
 
 #: ../showDesktop/data/messages:93
 msgid ""
@@ -6038,32 +5961,29 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop/data/messages:99
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "当小程序被点击时执行操作:"
+msgstr ""
 
 #: ../showDesktop/data/messages:103
-#, fuzzy
 msgid "Show the desklets"
-msgstr "显示日期："
+msgstr ""
 
 #: ../showDesktop/data/messages:105
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "切换Widget层"
+msgstr ""
 
 #: ../showDesktop/data/messages:107
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop/data/messages:109
-#, fuzzy
 msgid "Shortkey for the middle-click action :"
-msgstr "选择中间点击图标执行的行为："
+msgstr ""
 
 #: ../showDesktop2/data/messages:89
 msgid "Swap left-click and middle-click ?"
@@ -6213,8 +6133,7 @@ msgstr ""
 msgid ""
 "This options allow you to avoid some files to be displayed in the stacks "
 "considering their types (video, images, etc...)"
-msgstr ""
-"此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
 #: ../stack/data/messages:113
 msgid "Filter files with their mime types ?"
@@ -6250,8 +6169,8 @@ msgstr ""
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:131
@@ -6289,9 +6208,8 @@ msgid "Draw hidden windows too ?"
 msgstr ""
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
-msgstr "当小程序被点击时执行操作:"
+msgstr ""
 
 #: ../switcher/data/messages:101
 msgid "Show windows list"
@@ -6410,9 +6328,7 @@ msgstr "背景色(红、绿、蓝):"
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr ""
-"当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大"
-"小。"
+msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
 
 #: ../terminal/data/messages:97
 msgid "Size of the terminal (line x columns) :"
@@ -6480,8 +6396,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
-"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
+"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:133
 msgid "Date format to search for :"
@@ -6494,9 +6410,8 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
-"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
-"此项目"
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
+"signal 'NoteDeleted'>>的错误的时候，启用此项目"
 
 #: ../tomboy/data/messages:137
 msgid "Emulate the 'NoteDeleted' signal ?"
@@ -6628,26 +6543,6 @@ msgstr "用于“信号良好”图标的图片名称:"
 msgid "Name of an image for the 'exellent' icon :"
 msgstr "用于“信号很好”图标的图片名称:"
 
-#, fuzzy
-#~ msgid "No Title"
-#~ msgstr "标题"
-
-#, fuzzy
-#~ msgid "Failed to connect..."
-#~ msgstr "无法连接到服务器:%s"
-
-#, fuzzy
-#~ msgid "Please wait ..."
-#~ msgstr "请稍候……"
-
-#, fuzzy
-#~ msgid "Title num :"
-#~ msgstr "标题"
-
-#, fuzzy
-#~ msgid "Specify a title :"
-#~ msgstr "默认标题:"
-
 #~ msgid "feeled"
 #~ msgstr "体感温度"
 
@@ -6661,17 +6556,18 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "吹き出しによる情報表示を有効化?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
-#~ msgstr ""
-#~ "这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和"
-#~ "小程序的功能。"
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr "这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #~ msgid "Steal the rhythmbox's icon in taskbar ?"
 #~ msgstr "由任务栏偷取rhythmbox的图标?"
 
 #~ msgid "time elapsed"
 #~ msgstr "経過時間"
+
+#~ msgid "time left"
+#~ msgstr "残り時間"
 
 #~ msgid "time in %"
 #~ msgstr "%之后"
@@ -6694,27 +6590,21 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid ""
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
-#~ msgstr ""
-#~ "Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到"
-#~ "Stacks的图标上。"
+#~ msgstr "Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到Stacks的图标上。"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "仅使用Stacks本地目录?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
-#~ msgstr ""
-#~ "您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没"
-#~ "有选中“仅使用Stacks本地目录。"
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+#~ msgstr "您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没有选中“仅使用Stacks本地目录。"
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "监控目录:"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr "此选项在大量文件列表的情况下将降低dock的速度，请酌情使用。"
 
 #~ msgid "List hidden files ?"
@@ -6747,12 +6637,14 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid "width :"
 #~ msgstr "宽："
 
+#~ msgid "height :"
+#~ msgstr "高："
+
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock "
-#~ "& type=utility)"
+#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility)"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "期望此小应用程序的图标大小（以点为单位）"
@@ -6760,9 +6652,7 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid ""
 #~ "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
 #~ "your location from a list. Let empty to get the local time."
-#~ msgstr ""
-#~ "比如：Europe/Paris，:Japan之类。右击图标则由列表选择您的位置，留空则使用当"
-#~ "地时间"
+#~ msgstr "比如：Europe/Paris，:Japan之类。右击图标则由列表选择您的位置，留空则使用当地时间"
 
 #~ msgid "red, blue, green, alpha"
 #~ msgstr "红，蓝，绿，alpha"
@@ -7006,8 +6896,8 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -7051,9 +6941,7 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid ""
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
-#~ msgstr ""
-#~ "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反"
-#~ "应"
+#~ msgstr "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
 
 #~ msgid ""
 #~ "Unable to return socket to blocking mode.  Data may not be retreived "
@@ -7069,12 +6957,10 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "收到HTTP响应码:%d。 最可能的原因是您的Gmail用户名或密码错误。"
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
-#~ msgstr ""
-#~ "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方"
-#~ "式或新邮件推送位置做了不兼容的变更。"
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
+#~ msgstr "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式或新邮件推送位置做了不兼容的变更。"
 
 #~ msgid "_Username:"
 #~ msgstr "_用户名:"
@@ -7092,17 +6978,16 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "移除Gmail邮箱"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr "GMail插件可以连接至Google的邮件服务，并安全的取回您的新邮件数目。"
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr "安全IMAP方式不存在，而且IMAP服务器不支持纯文本登录。"
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "需要STARTTLS安全，但此服务器不予支持。"
 
 #~ msgid ""
@@ -7136,6 +7021,9 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid "Use non-standard IMAP _port:"
 #~ msgstr "使用非标准IMAP端口:"
 
+#~ msgid "Folders"
+#~ msgstr "邮件夹"
+
 #~ msgid "IMAP server _directory:"
 #~ msgstr "IMAP服务器目录:"
 
@@ -7155,10 +7043,9 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "远程IMAP邮箱"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
-#~ msgstr ""
-#~ "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
+#~ msgstr "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
 
 #~ msgid "Failed to get status of file %s: %s"
 #~ msgstr "获取文件 %s: %s 状态失败"
@@ -7225,8 +7112,8 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "远程POP3邮箱"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr "POP3插件可以连接至支持POP3协议的远程邮件服务器，并支持SSL链接保护"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: %s"
@@ -7268,10 +7155,9 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgstr "这是ChAnGFu为Cairo-Dock之做的音乐播放器插件"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
-#~ msgstr ""
-#~ "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
+#~ msgstr "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
 
 #~ msgid "Choose a decoration for the desklet mode :"
 #~ msgstr "为桌面小应用模式选择装饰:"
@@ -7421,9 +7307,7 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ msgid ""
 #~ "It's an image that will be displayed belox the slide, like a frame for "
 #~ "exemple. Let it empty to use the default one."
-#~ msgstr ""
-#~ "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのも"
-#~ "のを使用するには空欄のままにしてください。"
+#~ msgstr "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのものを使用するには空欄のままにしてください。"
 
 #~ msgid ""
 #~ "This is the stacks applet\n"
@@ -7466,10 +7350,9 @@ msgstr "用于“信号很好”图标的图片名称:"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があ"
-#~ "ります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> "
-#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れ"
-#~ "てください。"
+#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があります。端末上で <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> "
+#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "

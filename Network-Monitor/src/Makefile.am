@@ -17,8 +17,8 @@ libcd_Network_Monitor_la_SOURCES = \
 	applet-connections.h\
 	applet-wifi.c\
 	applet-wifi.h\
-	applet-netspeed.c\
-	applet-netspeed.h\
+	#applet-netspeed.c\
+	#applet-netspeed.h\
 	applet-struct.h
 
 
