@@ -19,8 +19,8 @@ module_DATA = \
 	files.png\
 	firefox.png\
 	recent.png
-	
-	
+
+
 dist_scooby_dodata_SCRIPTS = \
 	calc.sh\
 	updatedb.sh
