@@ -57,7 +57,7 @@ static void upload (const gchar *cFilePath)
 		}
 		g_return_if_fail (str != NULL);
 			
-		cCommand = g_strdup_printf ("dropbox puburl '%s/%s'", str, myConfig.cDropboxDir, cFileName);
+		cCommand = g_strdup_printf ("dropbox puburl '%s/%s'", myConfig.cDropboxDir, cFileName);
 	}
 	else
 		cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s'", cFileName); 
