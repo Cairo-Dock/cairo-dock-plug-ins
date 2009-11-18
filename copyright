@@ -141,6 +141,19 @@ Files: 	alsaMixer/*
 Copyright: Fabrice Rey <fabounet@users.berlios.de>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
+Files: terminal/data/icon.png
+	System-Monitor/data/icon.png
+	showDesktop/data/*.png
+Copyright: Alexandre Moore (from the theme nuoveXT 2)
+Licence: LGPL
+
+Files: Toons/data/icon.png
+	keyboard-indicator/data/icon.png
+	tomboy/data/icon.png
+	shortcuts/data/icon.png
+Copyright: Deviant Dark (from the theme Oxygen-Refit 2)
+Licence: LGPL
+
 Files: 	debian/*
 Copyright: Copyright (C) Julien Lavergne <julien.lavergne@gmail.com>
 Licence: GPL 2+ (See /usr/share/common-licenses/GPL-2 for complete licence)
