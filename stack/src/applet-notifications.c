@@ -45,6 +45,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
+			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
