@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-10-22 11:04+0000\n"
+"POT-Creation-Date: 2009-11-19 01:54+0000\n"
+"PO-Revision-Date: 2009-11-18 17:01+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-23 07:30+0000\n"
+"X-Launchpad-Export-Date: 2009-11-19 04:39+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-Language: Swedish\n"
@@ -385,9 +386,8 @@ msgid "It doesn't seem to be a valid URL."
 msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:115
-#, fuzzy
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Klistra in (dra-och-släpp)"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:119
 msgid "Open with your web browser"
@@ -398,11 +398,8 @@ msgid "No URL is defined."
 msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:358 ../RSSreader/src/applet-rss.c:471
-#, fuzzy
 msgid "No data (no connection ?)"
 msgstr ""
-"Inga data hittades\n"
-"Är du ansluten till Internet?"
 
 #: ../RSSreader/src/applet-rss.c:376 ../RSSreader/src/applet-rss.c:396
 msgid "Invalid data (invalid RSS/Atom feed ?)"
@@ -433,14 +430,11 @@ msgid ""
 msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:586
-#, fuzzy
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed ?\n"
 "Is your connection alive ?"
 msgstr ""
-"Inga data hittades\n"
-"Är du ansluten till Internet?"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -500,14 +494,12 @@ msgid "Open in new window"
 msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
-#, fuzzy
 msgid "Firefox bookmarks"
-msgstr "Visa bokmärken?"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
-#, fuzzy
 msgid "Recent files"
-msgstr " fil(er)"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
@@ -939,7 +931,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1007,7 +1000,7 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:299 ../RSSreader/data/messages:139
+#: ../dnd2share/src/applet-notifications.c:299
 msgid "Text"
 msgstr ""
 
@@ -1395,7 +1388,7 @@ msgstr ""
 msgid "Album"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:316 ../RSSreader/data/messages:123
+#: ../musicPlayer/src/applet-draw.c:316
 msgid "Title"
 msgstr ""
 
@@ -1631,8 +1624,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1702,50 +1695,50 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:49
+#: ../stack/src/applet-notifications.c:48
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:70
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:87
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
 msgstr "Nytt namn:"
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
 msgstr "Kopiera (mellanklick)"
 
-#: ../stack/src/applet-notifications.c:146
+#: ../stack/src/applet-notifications.c:145
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: ../stack/src/applet-notifications.c:147
+#: ../stack/src/applet-notifications.c:146
 msgid "Rename this item"
 msgstr "Byt namn"
 
-#: ../stack/src/applet-notifications.c:148
+#: ../stack/src/applet-notifications.c:147
 msgid "Remove this item"
 msgstr "Ta bort"
 
-#: ../stack/src/applet-notifications.c:152
+#: ../stack/src/applet-notifications.c:151
 msgid "Open (click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:154
+#: ../stack/src/applet-notifications.c:153
 msgid "Open folder"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:159
+#: ../stack/src/applet-notifications.c:158
 msgid "Paste (drag'n'drop)"
 msgstr "Klistra in (dra-och-släpp)"
 
-#: ../stack/src/applet-notifications.c:160
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
 msgstr "Töm stacken"
 
@@ -2284,16 +2277,16 @@ msgstr ""
 #: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
 #: ../GMenu/data/messages:93 ../RSSreader/data/messages:11
-#: ../RSSreader/data/messages:117 ../System-Monitor/data/messages:149
-#: ../System-Monitor/data/messages:157 ../Xgamma/data/messages:9
-#: ../alsaMixer/data/messages:127 ../alsaMixer/data/messages:131
-#: ../alsaMixer/data/messages:135 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
-#: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
-#: ../showDesktop2/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:137
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../System-Monitor/data/messages:149 ../System-Monitor/data/messages:157
+#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:127
+#: ../alsaMixer/data/messages:131 ../alsaMixer/data/messages:135
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesklets/data/messages:9 ../showDesklets/data/messages:13
+#: ../showDesktop/data/messages:9 ../showDesktop2/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../switcher/data/messages:137 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr ""
 
@@ -2760,7 +2753,8 @@ msgstr "Storlek på Desklet (bredd x höjd):"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
@@ -3523,9 +3517,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:7
-#, fuzzy
 msgid "Let empty to use the connection name."
-msgstr "Lämna tomt för att använda standardikonen."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -3689,14 +3682,12 @@ msgid "Parameters"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:169
-#, fuzzy
 msgid "Delay between wifi signal checks :"
-msgstr "Tid mellan uppdateringar:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:173
-#, fuzzy
 msgid "Delay between net speed checks :"
-msgstr "Tid mellan uppdateringar:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3714,9 +3705,8 @@ msgid "By default the first active interface is used."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:181
-#, fuzzy
 msgid "Default connexion interface :"
-msgstr "Standard ikon:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:183
 msgid ""
@@ -3747,23 +3737,20 @@ msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:195
-#, fuzzy
 msgid "Info to display in the icon :"
-msgstr "Information att visa på ikonen:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:197
-#, fuzzy
 msgid "Wifi signal"
-msgstr "Wifi inaktiverat."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:199
 msgid "Connexion speed"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:201
-#, fuzzy
 msgid "How to display the wifi signal :"
-msgstr "Information att visa på ikonen:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:205 ../wifi/data/messages:175
 msgid "Signal Strength"
@@ -3808,9 +3795,8 @@ msgid "Set to 0 to use the default applet size"
 msgstr ""
 
 #: ../RSSreader/data/messages:7
-#, fuzzy
 msgid "Let empty to use the title of the RSS feed."
-msgstr "Lämna tomt för att använda namnet på staden."
+msgstr ""
 
 #: ../RSSreader/data/messages:89
 msgid "RSS Feed"
@@ -3823,217 +3809,6 @@ msgstr ""
 #: ../RSSreader/data/messages:93
 msgid "URL :"
 msgstr ""
-
-#: ../RSSreader/data/messages:95
-msgid "RSS login (optional):"
-msgstr ""
-
-#: ../RSSreader/data/messages:97
-msgid "RSS password (optional):"
-msgstr ""
-
-#: ../RSSreader/data/messages:99
-#, fuzzy
-msgid "Number of feed lines to display in the dialog :"
-msgstr "Antal program att visa:"
-
-#: ../RSSreader/data/messages:101 ../clock/data/messages:85
-#: ../dnd2share/data/messages:95 ../mail/data/messages:101
-#: ../showDesktop/data/messages:91 ../showDesktop2/data/messages:87
-#: ../slider/data/messages:97
-msgid "Behaviour"
-msgstr "Beteende"
-
-#: ../RSSreader/data/messages:103
-#, fuzzy
-msgid "In minutes."
-msgstr "i minuter."
-
-#: ../RSSreader/data/messages:105
-#, fuzzy
-msgid "Refresh time :"
-msgstr "Bild för reflektion:"
-
-#: ../RSSreader/data/messages:107
-msgid "By default, this option is activated"
-msgstr ""
-
-#: ../RSSreader/data/messages:109
-msgid "Display an info-bubble when a feed has changed?"
-msgstr ""
-
-#: ../RSSreader/data/messages:111
-msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
-msgstr ""
-
-#: ../RSSreader/data/messages:113 ../dnd2share/data/messages:93
-msgid "Duration of the info-bubbles :"
-msgstr ""
-
-#: ../RSSreader/data/messages:115
-#, fuzzy
-msgid "Animation of the icon when a feed has changed :"
-msgstr "Animering när musiken ändras:"
-
-#: ../RSSreader/data/messages:119
-msgid "Open the feed with the following program :"
-msgstr ""
-
-#: ../RSSreader/data/messages:121
-msgid "Appearance"
-msgstr ""
-
-#: ../RSSreader/data/messages:125
-msgid "Font to be used for the title"
-msgstr ""
-
-#: ../RSSreader/data/messages:127
-#, fuzzy
-msgid "Title font :"
-msgstr "Tidszon:"
-
-#: ../RSSreader/data/messages:129
-msgid "Color to be used for the title"
-msgstr ""
-
-#: ../RSSreader/data/messages:131
-#, fuzzy
-msgid "Title color :"
-msgstr "Standard ikon:"
-
-#: ../RSSreader/data/messages:133
-#, fuzzy
-msgid "Alignment of the title:"
-msgstr "Planets vinkel:"
-
-#: ../RSSreader/data/messages:135
-#, fuzzy
-msgid "left"
-msgstr "Meddelande"
-
-#: ../RSSreader/data/messages:137
-#, fuzzy
-msgid "right"
-msgstr "höjd:"
-
-#: ../RSSreader/data/messages:141
-msgid "Font to be used for the feed lines"
-msgstr ""
-
-#: ../RSSreader/data/messages:143
-msgid "Feed lines font :"
-msgstr ""
-
-#: ../RSSreader/data/messages:145
-#, fuzzy
-msgid "Color to be used for the feed lines"
-msgstr "Färg på yttre linje:"
-
-#: ../RSSreader/data/messages:147
-#, fuzzy
-msgid "Feed lines color :"
-msgstr "Standard ikon:"
-
-#: ../RSSreader/data/messages:149
-#, fuzzy
-msgid "Left margin for the feed lines :"
-msgstr "Bild för textobjekt:"
-
-#: ../RSSreader/data/messages:151
-#, fuzzy
-msgid "Space between 2 feed lines :"
-msgstr "Avstånd mellan ikoner:"
-
-#: ../RSSreader/data/messages:153
-msgid "Logo"
-msgstr ""
-
-#: ../RSSreader/data/messages:155
-msgid "The default logo is the applet's icon"
-msgstr ""
-
-#: ../RSSreader/data/messages:157
-#, fuzzy
-msgid "Display the logo ?"
-msgstr "Visa även nattväder?"
-
-#: ../RSSreader/data/messages:159
-msgid "Adjust to increase/decrease the logo size"
-msgstr ""
-
-#: ../RSSreader/data/messages:161
-#, fuzzy
-msgid "Logo size :"
-msgstr "Ikonstorlek"
-
-#: ../RSSreader/data/messages:163
-msgid "normal"
-msgstr ""
-
-#: ../RSSreader/data/messages:165
-msgid "big"
-msgstr ""
-
-#: ../RSSreader/data/messages:167
-#, fuzzy
-msgid "Background"
-msgstr "Rita bakgrund?"
-
-#: ../RSSreader/data/messages:169
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr ""
-
-#: ../RSSreader/data/messages:171
-#, fuzzy
-msgid "Display a simple background ?"
-msgstr "Rita bakgrund?"
-
-#: ../RSSreader/data/messages:173
-#, fuzzy
-msgid "first color of the gradation"
-msgstr "Startfärg för topplistan:"
-
-#: ../RSSreader/data/messages:175
-#, fuzzy
-msgid "Background first color :"
-msgstr "Bakgrundsfärg (r,g.b):"
-
-#: ../RSSreader/data/messages:177
-#, fuzzy
-msgid "second color of the gradation"
-msgstr "Slutfärgen för färgtoning i topplistan."
-
-#: ../RSSreader/data/messages:179
-#, fuzzy
-msgid "Background second color :"
-msgstr "Bakgrundsfärg (r,g.b):"
-
-#: ../RSSreader/data/messages:181
-msgid "Set the radius corner to 0 for no radius"
-msgstr ""
-
-#: ../RSSreader/data/messages:183
-#, fuzzy
-msgid "Background radius corner:"
-msgstr "Bakgrundsfärg (r,g.b):"
-
-#: ../RSSreader/data/messages:185
-msgid "Set the thickness to 0 for no border"
-msgstr ""
-
-#: ../RSSreader/data/messages:187
-#, fuzzy
-msgid "Border thickness :"
-msgstr "Linjebredd för ram:"
-
-#: ../RSSreader/data/messages:189
-msgid "Border color"
-msgstr ""
-
-#: ../RSSreader/data/messages:191
-#, fuzzy
-msgid "Border color :"
-msgstr "Linjefärg (r.g.b.a):"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
@@ -4398,8 +4173,8 @@ msgid ""
 "Depending on your WindowManager, you can move it with ALT + left_click. "
 "Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Beroende på din fönsterhanterare, kan du flytta fönstret med ALT"
-"+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
+"Beroende på din fönsterhanterare, kan du flytta fönstret med "
+"ALT+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
 
 #: ../alsaMixer/data/messages:83
 msgid "Alsa"
@@ -4482,6 +4257,12 @@ msgstr ""
 #: ../shortcuts/data/messages:85
 msgid "Module"
 msgstr "Inställningar"
+
+#: ../clock/data/messages:85 ../dnd2share/data/messages:95
+#: ../mail/data/messages:101 ../showDesktop/data/messages:91
+#: ../showDesktop2/data/messages:87 ../slider/data/messages:97
+msgid "Behaviour"
+msgstr "Beteende"
 
 #: ../clock/data/messages:87
 msgid "Show the date :"
@@ -4889,6 +4670,10 @@ msgstr "Infobubblor"
 
 #: ../dnd2share/data/messages:89
 msgid "Enable info-bubbles ?"
+msgstr ""
+
+#: ../dnd2share/data/messages:93
+msgid "Duration of the info-bubbles :"
 msgstr ""
 
 #: ../dnd2share/data/messages:97
@@ -5331,7 +5116,8 @@ msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5394,9 +5180,8 @@ msgid "Colors"
 msgstr ""
 
 #: ../icon-effect/data/messages:175
-#, fuzzy
 msgid "Default color :"
-msgstr "Standard ikon:"
+msgstr ""
 
 #: ../icon-effect/data/messages:179
 msgid "It particularily fits a dark wallpaper or a dark theme."
@@ -5407,9 +5192,8 @@ msgid "Particles"
 msgstr ""
 
 #: ../icon-effect/data/messages:185 ../show-mouse/data/messages:3
-#, fuzzy
 msgid "Number of sources :"
-msgstr "Antal papperskorgar"
+msgstr ""
 
 #: ../icon-effect/data/messages:187 ../show-mouse/data/messages:17
 msgid "Number of particles per source :"
@@ -5420,19 +5204,16 @@ msgid "In percentage of the icon's size."
 msgstr ""
 
 #: ../icon-effect/data/messages:191
-#, fuzzy
 msgid "Radius of the explosion :"
-msgstr "Storlek på yttre linje:"
+msgstr ""
 
 #: ../icon-effect/data/messages:195
-#, fuzzy
 msgid "Show the launching ?"
-msgstr "Visa datum:"
+msgstr ""
 
 #: ../icon-effect/data/messages:197
-#, fuzzy
 msgid "Particle friction :"
-msgstr "Tysta ikon:"
+msgstr ""
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance :"
@@ -5691,9 +5472,8 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:97
-#, fuzzy
 msgid "Exaile 0.3"
-msgstr "Exaile"
+msgstr ""
 
 #: ../musicPlayer/data/messages:99
 msgid "Listen"
@@ -6110,14 +5890,12 @@ msgid "Shortkey to show/hide the desklets :"
 msgstr "Tangentkombination för att visa/dölja desklet:"
 
 #: ../showDesktop/data/messages:13
-#, fuzzy
 msgid "Let empty to use the same image."
-msgstr "Lämna tomt för att använda standardkommando."
+msgstr ""
 
 #: ../showDesktop/data/messages:15
-#, fuzzy
 msgid "Image when the applet is active :"
-msgstr "Aktivitet när appleten klickas:"
+msgstr ""
 
 #: ../showDesktop/data/messages:93
 msgid ""
@@ -6130,32 +5908,29 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop/data/messages:99
-#, fuzzy
 msgid "Action on middle-click :"
-msgstr "Aktivitet när appleten klickas:"
+msgstr ""
 
 #: ../showDesktop/data/messages:103
-#, fuzzy
 msgid "Show the desklets"
-msgstr "Visa datum:"
+msgstr ""
 
 #: ../showDesktop/data/messages:105
-#, fuzzy
 msgid "Show the Widget Layer (Compiz)"
-msgstr "Växla widgetlager"
+msgstr ""
 
 #: ../showDesktop/data/messages:107
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop/data/messages:109
-#, fuzzy
 msgid "Shortkey for the middle-click action :"
-msgstr "Välj aktivitet för mellanklick på ikonen:"
+msgstr ""
 
 #: ../showDesktop2/data/messages:89
 msgid "Swap left-click and middle-click ?"
@@ -6343,8 +6118,8 @@ msgstr "Manuell sortering"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
 
 #: ../stack/data/messages:131
@@ -6385,9 +6160,8 @@ msgid "Draw hidden windows too ?"
 msgstr ""
 
 #: ../switcher/data/messages:99
-#, fuzzy
 msgid "Action on middle click :"
-msgstr "Aktivitet när appleten klickas:"
+msgstr ""
 
 #: ../switcher/data/messages:101
 msgid "Show windows list"
@@ -6760,8 +6534,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -6811,9 +6585,12 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "width :"
 #~ msgstr "bredd:"
 
+#~ msgid "height :"
+#~ msgstr "höjd:"
+
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -6841,6 +6618,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "Second gradient color (r,v,b,a) :"
 #~ msgstr "Slutfärg (r,g,b,a):"
+
+#~ msgid "Border line color (r,v,b,a) :"
+#~ msgstr "Linjefärg (r.g.b.a):"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Behöver inte vara riktiga papperskorgsmappar."
@@ -6963,6 +6743,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Use a gauge instead of icons ?"
 #~ msgstr "Använd visare istället för ikon?"
 
+#~ msgid "Icon size"
+#~ msgstr "Ikonstorlek"
+
 #~ msgid "Width :"
 #~ msgstr "Bredd:"
 
@@ -6982,11 +6765,11 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Choose a decoration for the desklet mode :"
 #~ msgstr "Välj dekoration för deskletläge:"
@@ -7012,6 +6795,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "It's an image that will be displayed above the cover, like a reflect for "
 #~ "exemple."
 #~ msgstr "Bild som visas ovanför fodralet, t ex en reflex."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Bild för reflektion:"
 
 #~ msgid "Reflection tansparency :"
 #~ msgstr "Genomskinlighet för reflektion:"

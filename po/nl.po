@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-11-12 18:14+0000\n"
+"POT-Creation-Date: 2009-11-21 02:54+0000\n"
+"PO-Revision-Date: 2009-11-20 10:01+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-13 11:35+0000\n"
+"X-Launchpad-Export-Date: 2009-11-21 04:49+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -388,7 +389,6 @@ msgid "RSSreader"
 msgstr "RSSreader"
 
 #: ../RSSreader/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet is an RSS/Atom feed reader.\n"
 "You can instanciate it as many times as you want.\n"
@@ -399,17 +399,14 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
-"Dit applet is een RSS-feed lezer\n"
-"(u kunt er meerdere toevoegen)\n"
-" Gebruik:\n"
-"  - Linkerklik : De feed-lijnen weergeven in een dialoog (optioneel in een "
-"desklet).\n"
-"  - Middelklik : De feed vernieuwen.\n"
-"  - De RSS-feed weergeven door ofwel een geldige RSS-feed Url te kopiëren,\n"
-"    en daarna \"Plak een nieuwe RSS Url\" uit het menu te selecteren\n"
-"    ofwel via het configuratiepaneel.\n"
-"  - Gebruik \"Openen in uw webbrowser\" in het menu om de RSS-feed \n"
-"    weer te geven in uw browser."
+"Dit applet is een RSS/Atom -feed lezer.\n"
+"U kunt het zo vaak openen als u wilt.\n"
+"GEBRUIK:\n"
+" - Linkerklik : De gehele feed-lijnen tonen in een dialoog.\n"
+" - Middelklik : De feed vernieuwen.\n"
+" - Sleep een geldige URL naar het icoon om het te gebruiken,\n"
+"    of kopieer het en gebruik \"Een nieuwe RSS-Url plakken\" in het menu.\n"
+"    of bewerk het configuratiepaneel."
 
 #: ../RSSreader/src/applet-init.c:60 ../RSSreader/src/applet-init.c:120
 #: ../RSSreader/src/applet-notifications.c:63
@@ -422,7 +419,7 @@ msgstr "Dit lijkt geen geldige URL."
 
 #: ../RSSreader/src/applet-notifications.c:115
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Plak een nieuwe RSS Url (verslepen)"
+msgstr "Een nieuwe RSS-Url plakken (verslepen)"
 
 #: ../RSSreader/src/applet-notifications.c:119
 msgid "Open with your web browser"
@@ -590,8 +587,8 @@ msgstr ""
 "navigeren,\n"
 "  of typ de naam van een starter en druk op Tab om automatisch naar de "
 "volgende starter te gaan\n"
-"  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, Alt"
-"+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
+"  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
 "- De vindermodus : typ een opdracht om elk bestand, opdracht of berekening "
 "uit te voeren.\n"
 "  Gebruik de pijltjes om te navigeren tussen de gevonden resultaten, druk op "
@@ -752,7 +749,8 @@ msgstr "Systeemmonitor"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -1026,7 +1024,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
@@ -1511,7 +1510,7 @@ msgstr "Vernieuw een e-mailaccount"
 
 #: ../mail/src/cd-mail-applet-notifications.c:135
 msgid "Mark all mails as read"
-msgstr ""
+msgstr "Alle e-mails markeren als gelezen"
 
 #: ../mail/src/cd-mail-applet-notifications.c:138
 #, c-format
@@ -1575,7 +1574,6 @@ msgid "musicPlayer"
 msgstr "Muziekspeler"
 
 #: ../musicPlayer/src/applet-init.c:47
-#, fuzzy
 msgid ""
 "This applet lets you control any music player.\n"
 "Left click to Play/Pause, middle-click to play Next song.\n"
@@ -1588,14 +1586,15 @@ msgid ""
 "       For Exaile 0.3, you have to activate its MPRIS plug-in"
 msgstr ""
 "Dit applet laat u alle muziekspelers bedienen.\n"
-"Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
+"Klik met links om af te spelen/pauzeren, middelklik voor het volgende "
 "nummer.\n"
 "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-"U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen"
+"U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen "
 "(afhankelijk van speler),\n"
-" en jpeg-bestanden om als albumhoes te gebruiken\n"
+" en jpeg-afbeelding om als albumhoes te gebruiken.\n"
 "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
+"       Voor Exaile 0.3, dient u de MPRIS plug-in te activeren"
 
 #: ../musicPlayer/src/applet-notifications.c:66
 msgid ""
@@ -1825,8 +1824,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3030,7 +3029,8 @@ msgstr "Desklet's grootte (breedte x hoogte) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Afhankelijk van uw vensterbeheerder, kunt u het verplaatsen met ALT + "
 "linkermuisknop"
@@ -3663,7 +3663,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:217
 msgid "Paste into Selection ?"
@@ -3810,9 +3811,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr "Toon alleen bestanden waarvan de laatste wijzigingsdatum ligt voor ;"
 
 #: ../Network-Monitor/data/messages:7
-#, fuzzy
 msgid "Let empty to use the connection name."
-msgstr "Laat leeg om mapnaam te gebruiken."
+msgstr "Laat leeg om de verbindingsnaam te gebruiken."
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -3976,14 +3976,12 @@ msgid "Parameters"
 msgstr "Opties"
 
 #: ../Network-Monitor/data/messages:169
-#, fuzzy
 msgid "Delay between wifi signal checks :"
-msgstr "Tijdsduur tussen signaalcontroles :"
+msgstr "Tijdsduur tussen wifi-signaalcontroles :"
 
 #: ../Network-Monitor/data/messages:173
-#, fuzzy
 msgid "Delay between net speed checks :"
-msgstr "Tijd tussen temperatuurcontroles :"
+msgstr "Tijdsduur tussen netwerksnelheidscontroles :"
 
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3999,17 +3997,14 @@ msgid "Fluidity of the transition between 2 values :"
 msgstr "Vloeiendheid van de overgang tussen 2 waarden :"
 
 #: ../Network-Monitor/data/messages:179
-#, fuzzy
 msgid "By default the first active interface is used."
-msgstr "Deze optie is standaard ingeschakeld"
+msgstr "Standaard wordt de eerste actieve interface gebruikt."
 
 #: ../Network-Monitor/data/messages:181
-#, fuzzy
 msgid "Default connexion interface :"
-msgstr "Standaardkleur :"
+msgstr "Standaardverbindingsinterface :"
 
 #: ../Network-Monitor/data/messages:183
-#, fuzzy
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
@@ -4018,7 +4013,6 @@ msgstr ""
 "eigen draadloze verbinding configureren."
 
 #: ../Network-Monitor/data/messages:185
-#, fuzzy
 msgid "User command to show Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
 
@@ -4039,26 +4033,23 @@ msgstr "Info"
 #: ../Network-Monitor/data/messages:193
 msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
+"U kunt snel wisselen naar een andere modus door op het icoon te scrollen."
 
 #: ../Network-Monitor/data/messages:195
-#, fuzzy
 msgid "Info to display in the icon :"
-msgstr "Informatie om te tonen op het icoon :"
+msgstr "Info om op icoon te tonen :"
 
 #: ../Network-Monitor/data/messages:197
-#, fuzzy
 msgid "Wifi signal"
-msgstr "Wifi actief."
+msgstr "Wifi-signaal"
 
 #: ../Network-Monitor/data/messages:199
-#, fuzzy
 msgid "Connexion speed"
-msgstr "Draaisnelheid :"
+msgstr "Verbindingssnelheid"
 
 #: ../Network-Monitor/data/messages:201
-#, fuzzy
 msgid "How to display the wifi signal :"
-msgstr "Informatie om te tonen op het icoon :"
+msgstr "Hoe wilt u het wifi-signaal tonen :"
 
 #: ../Network-Monitor/data/messages:205 ../wifi/data/messages:175
 msgid "Signal Strength"
@@ -4074,7 +4065,7 @@ msgstr "Ruwe signaalinformatie"
 
 #: ../Network-Monitor/data/messages:211
 msgid "not used at the moment."
-msgstr ""
+msgstr "Wordt op dit moment niet gebruikt."
 
 #: ../Network-Monitor/data/messages:213 ../System-Monitor/data/messages:133
 msgid "Display values :"
@@ -4108,7 +4099,7 @@ msgstr "Leeg laten om de titel van de RSS-feed te gebruiken."
 
 #: ../RSSreader/data/messages:89
 msgid "RSS Feed"
-msgstr "RSS Feed"
+msgstr "RSS-feed"
 
 #: ../RSSreader/data/messages:91
 msgid "Enter a valid atom/rss feed"
@@ -4146,7 +4137,6 @@ msgid "Refresh time :"
 msgstr "Vernieuwingstijd :"
 
 #: ../RSSreader/data/messages:107
-#, fuzzy
 msgid "By default, this option is activated"
 msgstr "Deze optie is standaard ingeschakeld"
 
@@ -4261,7 +4251,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../RSSreader/data/messages:169
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -4766,7 +4757,8 @@ msgstr "´Dempen´ icoon :"
 
 #: ../clock/data/messages:7
 msgid "Let it empty to use the location's name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:83 ../dustbin/data/messages:81
 #: ../shortcuts/data/messages:85
@@ -4906,9 +4898,8 @@ msgid ""
 "Except for switching to another WM, you must activate the Dbus plugin in "
 "Compiz, along with the plug-in corresponding to the desired action."
 msgstr ""
-"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in "
-"Compiz , de Dbus plug-in activeren samen met de plug-in voor de gewenste "
-"actie."
+"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in Compiz "
+", de Dbus plug-in activeren samen met de plug-in voor de gewenste actie."
 
 #: ../compiz-icon/data/messages:87
 msgid "Choose an action for the middle click on the icon :"
@@ -5072,7 +5063,8 @@ msgstr "Heliodor"
 #: ../switcher/data/messages:141 ../tomboy/data/messages:103
 #: ../weather/data/messages:115
 msgid "Let it empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
@@ -5390,7 +5382,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:41
 msgid "The parabole will be conscricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:43
 msgid "Ratio height/width :"
@@ -5601,7 +5594,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:89
 msgid "Name of an image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:91
 msgid "Config"
@@ -5647,7 +5641,8 @@ msgid "Desktop-less support"
 msgstr "Bureaubladloze ondersteuning"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Indien de Prullenbak niet bekend is bij het dock, dan kunt u het hier "
 "aangeven :"
@@ -5865,7 +5860,8 @@ msgstr "Laat leeg als u de standaardopdracht wilt uitvoeren."
 
 #: ../logout/data/messages:89
 msgid "User-defined command to execute to log-out :"
-msgstr "Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
+msgstr ""
+"Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
 
 #: ../logout/data/messages:91
 msgid ""
@@ -5881,8 +5877,8 @@ msgstr ""
 #: ../logout/data/messages:93
 msgid "User-defined command to execute to shutdown :"
 msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te "
-"sluiten :"
+"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te sluiten "
+":"
 
 #: ../logout/data/messages:95
 msgid "Invert buttons ?"
@@ -6025,9 +6021,8 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:97
-#, fuzzy
 msgid "Exaile 0.3"
-msgstr "Exaile"
+msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:99
 msgid "Listen"
@@ -6470,7 +6465,8 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr "Desklets zichtbaar laten bij het tonen van het bureaublad ?"
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 "U dient de Dbus plug-in of Compiz te activeren voor de laatste 2 acties."
 
@@ -6610,7 +6606,8 @@ msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:145
 msgid "Choose a background color :"
@@ -6684,8 +6681,8 @@ msgstr "Handmatig ordenen"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "Dit is een selectie gemaakt met de muis, in tegenstelling tot het "
 "gebruikelijke CTRL+c/CTRL+v in het klembord"
@@ -7095,20 +7092,16 @@ msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
-#~ msgid "Numbrer of sources :"
-#~ msgstr "Aantal bronnen :"
-
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Bedien uw Rhythmbox-speler direct vanuit het dock !\n"
-#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en "
-#~ "naar beneden scrollen voor volgende nummer, omhoog scrollen voor vorige "
-#~ "nummer.\n"
+#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en naar "
+#~ "beneden scrollen voor volgende nummer, omhoog scrollen voor vorige nummer.\n"
 #~ "U kunt albumhoezen (jpg) naar het icoon slepen om ze te gebruiken,\n"
 #~ "dit kunt u ook doen met nummers om ze in de wachtrij te plaatsen."
 
@@ -7140,8 +7133,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -7153,8 +7146,7 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Voor XMMS, moet u de 'xmms-infopipe' plug-in installeren.\n"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
-#~ "plaatsen.\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen."
 
 #~ msgid "Let empty to use the default one.}"
@@ -7171,12 +7163,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Info-ballonnen activeren ?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Dit voorkomt dat het icoon van Rhythmbox zichtbaar is in de taakbalk. Het "
-#~ "icoon van het applet zal zich dan gedragen als een starter, een "
-#~ "toepassing en applet."
+#~ "icoon van het applet zal zich dan gedragen als een starter, een toepassing "
+#~ "en applet."
 
 #~ msgid "Steal the rhythmbox's icon in taskbar ?"
 #~ msgstr "Icoon Rhythmbox stelen uit taakbalk ?"
@@ -7197,6 +7189,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Override the theme preference to not display the OSD with OpenGL themes ?"
 #~ msgstr ""
 #~ "Themavoorkeuren, om de OSD met OpenGL niet te tonen, niet gebruiken ?"
+
+#~ msgid "Numbrer of sources :"
+#~ msgstr "Aantal bronnen :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Onder andere vensters houden ?"
@@ -7221,31 +7216,29 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stapels gedraagt zich als het shortcuts applet, maar met bestanden. Om "
-#~ "een bestand aan uw stapels toe te voegen, kunt u het verslepen naar het "
-#~ "stapels-icoon"
+#~ "Stapels gedraagt zich als het shortcuts applet, maar met bestanden. Om een "
+#~ "bestand aan uw stapels toe te voegen, kunt u het verslepen naar het stapels-"
+#~ "icoon"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Alleen stapel´s lokale map gebruiken ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "U kunt het label '_LocalDirectory_' aanbrengen om zowel de lokale mappen "
-#~ "van de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen "
+#~ "U kunt het label '_LocalDirectory_' aanbrengen om zowel de lokale mappen van "
+#~ "de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen "
 #~ "stapel´s lokale map gebruiken' is uitgevinkt."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Gemonitoorde mappen :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "Deze optie met lange bestandslijsten kunnen het dock vertragen, gebruik "
-#~ "het op de juiste manier."
+#~ "Deze optie met lange bestandslijsten kunnen het dock vertragen, gebruik het "
+#~ "op de juiste manier."
 
 #~ msgid "List hidden files ?"
 #~ msgstr "Verborgen bestanden bijhouden ?"
@@ -7281,8 +7274,7 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
@@ -7290,8 +7282,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen"
-#~ "(afhankelijk van speler).\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
+#~ "plaatsen(afhankelijk van speler).\n"
 #~ "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 #~ "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
 
@@ -7309,14 +7301,13 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Breedte :"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple.}\n"
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple.}\n"
 #~ "width=92\n"
 #~ "#i[48;256] ...\n"
 #~ "height=92\n"
 #~ "#i[-2048;2048] Desklet's position (x ; y) :\n"
-#~ "#{Depending on your WindowManager, you can move it with ALT + "
-#~ "left_click}\n"
+#~ "#{Depending on your WindowManager, you can move it with ALT + left_click}\n"
 #~ "x position=0\n"
 #~ "#i[-2048;2048] ...\n"
 #~ "y position=0\n"
@@ -7331,15 +7322,14 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "(name=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
-#~ "left mouse button. Of course you can still move it with ALT + "
-#~ "left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
 #~ msgstr ""
-#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld "
-#~ "wijzigen met ALT + middenklik of ALT + linkermuisklik.}\n"
+#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld wijzigen "
+#~ "met ALT + middenklik of ALT + linkermuisklik.}\n"
 #~ "Breedte=92\n"
 #~ "#i[48;256] ...\n"
 #~ "Hoogte=92\n"
@@ -7385,8 +7375,7 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "You can put the tag '__Player__' to display the name of the player you "
 #~ "control"
 #~ msgstr ""
-#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u "
-#~ "bedient"
+#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u bedient"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click}\n"
@@ -7404,9 +7393,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "(class=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
-#~ "left mouse button. Of course you can still move it with ALT + "
-#~ "left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
@@ -7450,8 +7438,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Gewenste icoongrootte voor dit applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)"
@@ -7468,8 +7456,7 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid ""
 #~ "Here you can specify a list of additionnal Trash directories to monitor :"
 #~ msgstr ""
-#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te "
-#~ "monitoren :"
+#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te monitoren :"
 
 #~ msgid "Desklet display mode :"
 #~ msgstr "Weergavemodus van desklet :"
@@ -7520,8 +7507,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Grootte van de gedownloade albumhoezen :"
 
 #~ msgid ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)}"
+#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
+#~ "dock & type=utility)}"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)}"
@@ -7545,8 +7532,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr ""
 #~ "Het CPU-gebruik applet toont het huidige gebruik van de processor.\n"
 #~ "Middelklik op het icoon voor enige waardevolle informatie.\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
-#~ "meeste CPU-gebruik."
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
+#~ "CPU-gebruik."
 
 #~ msgid "Data acquisition has failed"
 #~ msgstr "Verkrijgen van data mislukt"
@@ -7561,8 +7548,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op "
-#~ "0 om geen watermerk te gebruiken."
+#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op 0 "
+#~ "om geen watermerk te gebruiken."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Afbeelding om te gebruiken als watermerk :"
@@ -7642,8 +7629,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr ""
 #~ "Dit applet toont info over uw nVidia-kaart\n"
 #~ "Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
-#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-"
-#~ "in niet."
+#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-in "
+#~ "niet."
 
 #~ msgid "Informations"
 #~ msgstr "Informatie"
@@ -7674,8 +7661,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Left-click to show a list of the most memory using programs"
 #~ msgstr ""
 #~ "Dit applet toont u het huidige RAM- en SWAP-gebruik\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
-#~ "meeste geheugengebruik"
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
+#~ "geheugengebruik"
 
 #~ msgid "It's the color of the graphic for high RAM values."
 #~ msgstr "Dit is de kleur voor de hoge RAM-waarden in de grafiek."
@@ -7702,8 +7689,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Toon geheugengebruik waarden :"
 
 #~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most "
-#~ "memory-using programs."
+#~ "When you left-click on the icon, you will get the list of the N most memory-"
+#~ "using programs."
 #~ msgstr ""
 #~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
 #~ "toepassingen met het meeste geheugengebruik."
@@ -7713,8 +7700,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr ""
-#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar "
-#~ "dit bureaublad"
+#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar dit "
+#~ "bureaublad"
 
 #~ msgid "-100"
 #~ msgstr "-100"

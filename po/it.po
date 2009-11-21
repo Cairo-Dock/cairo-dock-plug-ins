@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-11-09 15:18+0000\n"
-"Last-Translator: mildy <Unknown>\n"
+"POT-Creation-Date: 2009-11-19 01:54+0000\n"
+"PO-Revision-Date: 2009-11-19 20:49+0000\n"
+"Last-Translator: Loscuby <scuby84@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-10 11:42+0000\n"
+"X-Launchpad-Export-Date: 2009-11-20 04:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -141,7 +142,7 @@ msgstr "Per Aiur !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Hey, you there !"
-msgstr ""
+msgstr "Hey, ci sei!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
@@ -204,7 +205,7 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:343
 msgid "About this applet"
-msgstr ""
+msgstr "riguardo questa applet"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -217,7 +218,7 @@ msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:156
 msgid "Quick launch"
-msgstr ""
+msgstr "Avvio veloce"
 
 #: ../GMenu/src/applet-notifications.c:157
 msgid "Configure menu"
@@ -237,7 +238,7 @@ msgstr "Cancella la lista dei documenti usati di recente"
 
 #: ../GMenu/src/applet-run-dialog.c:349
 msgid "Enter a command to launch :"
-msgstr ""
+msgstr "Inserisci un comando per avviare:"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:135 ../wifi/src/applet-draw.c:31
@@ -270,39 +271,41 @@ msgstr "Eccellente"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Not connected"
-msgstr ""
+msgstr "Non connesso"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Wired connection"
-msgstr ""
+msgstr "Connessione cablata"
 
 #: ../Network-Monitor/src/applet-draw.c:141 ../wifi/src/applet-draw.c:143
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
+"verifica connessione...\n"
+"riprova fra pochi secondi"
 
 #: ../Network-Monitor/src/applet-draw.c:149
 msgid "Wired Connection."
-msgstr ""
+msgstr "connessione cablata"
 
 #: ../Network-Monitor/src/applet-draw.c:151
 #: ../Network-Monitor/src/applet-draw.c:166 ../wifi/src/applet-draw.c:160
 msgid "Interface"
-msgstr ""
+msgstr "Interfaccia"
 
 #: ../Network-Monitor/src/applet-draw.c:152
 #: ../Network-Monitor/src/applet-draw.c:164
 msgid "Speed"
-msgstr ""
+msgstr "Velocità"
 
 #: ../Network-Monitor/src/applet-draw.c:161 ../wifi/src/applet-draw.c:156
 msgid "Wifi enabled."
-msgstr ""
+msgstr "Wifi abilitata"
 
 #: ../Network-Monitor/src/applet-draw.c:163 ../wifi/src/applet-draw.c:158
 msgid "Network ID"
-msgstr ""
+msgstr "Identificatore di rete"
 
 #: ../Network-Monitor/src/applet-draw.c:163
 #: ../musicPlayer/src/applet-draw.c:313 ../musicPlayer/src/applet-draw.c:315
@@ -314,21 +317,24 @@ msgstr "Sconosciuto"
 
 #: ../Network-Monitor/src/applet-draw.c:165 ../wifi/src/applet-draw.c:159
 msgid "Access point"
-msgstr ""
+msgstr "Punto d'accesso"
 
 #: ../Network-Monitor/src/applet-draw.c:167 ../wifi/src/applet-draw.c:161
 msgid "Signal Quality"
-msgstr ""
+msgstr "Qualità del segnale"
 
 #: ../Network-Monitor/src/applet-init.c:29
 msgid "Network-Monitor"
-msgstr ""
+msgstr "Monitor di rete"
 
 #: ../Network-Monitor/src/applet-init.c:32
 msgid ""
 "This applet shows you a monitor of your active connections\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
+"Questo applet mostra la situazione delle connessioni attive\n"
+"Clicca col tasto sinistro per avere qualche informazione,clicca col tasto "
+"centrale per ri-verificare immediatamente."
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -376,7 +382,7 @@ msgstr "Amministrazione della Rete"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr ""
+msgstr "lettore RSS"
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -389,51 +395,59 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Questo applet è un lettore di RSS/Atom\n"
+"Puoi instanziarlo quante volte vuoi.\n"
+"USO:\n"
+" -Click sinistro: Mostra i  feed completi in una finestra di dialogo.\n"
+" -Cilck centrale : Ricontrolla i feed.\n"
+" -Copia e incolla un URL valido sull'icona da usare,\n"
+"    o copialo ed usa \"copia un nuovo Url RSS\" nel menù.\n"
+"    o modifica il pannello di controllo."
 
 #: ../RSSreader/src/applet-init.c:60 ../RSSreader/src/applet-init.c:120
 #: ../RSSreader/src/applet-notifications.c:63
 msgid "Retrieving data ..."
-msgstr ""
+msgstr "Stò recuperando l'informazione..."
 
 #: ../RSSreader/src/applet-notifications.c:72
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "Non sembra essere un URL valido."
 
 #: ../RSSreader/src/applet-notifications.c:115
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr ""
+msgstr "Incolla un nuovo Url RSS (copia e incolla)"
 
 #: ../RSSreader/src/applet-notifications.c:119
 msgid "Open with your web browser"
-msgstr ""
+msgstr "Apri col tuo browser web"
 
 #: ../RSSreader/src/applet-rss.c:356
 msgid "No URL is defined."
-msgstr ""
+msgstr "Nessun URL è definito."
 
 #: ../RSSreader/src/applet-rss.c:358 ../RSSreader/src/applet-rss.c:471
 msgid "No data (no connection ?)"
-msgstr ""
+msgstr "Nessun dato(Non c'è connessione?)"
 
 #: ../RSSreader/src/applet-rss.c:376 ../RSSreader/src/applet-rss.c:396
 msgid "Invalid data (invalid RSS/Atom feed ?)"
-msgstr ""
+msgstr "Dati non validi (RSS/Atom feed invalidi?)"
 
 #: ../RSSreader/src/applet-rss.c:448
 msgid "No data"
-msgstr ""
+msgstr "Nessun dato"
 
 #: ../RSSreader/src/applet-rss.c:469
 msgid "No data (invalid rss ?)"
-msgstr ""
+msgstr "Nessun dato (RSS  non valido?)"
 
 #: ../RSSreader/src/applet-rss.c:485
 msgid "No modification"
-msgstr ""
+msgstr "Nessuna modifica"
 
 #: ../RSSreader/src/applet-rss.c:508
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "Questo RSS feed è stato modificato..."
 
 #: ../RSSreader/src/applet-rss.c:580
 msgid ""
@@ -945,7 +959,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1013,7 +1028,7 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:299 ../RSSreader/data/messages:139
+#: ../dnd2share/src/applet-notifications.c:299
 msgid "Text"
 msgstr ""
 
@@ -1404,7 +1419,7 @@ msgstr ""
 msgid "Album"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:316 ../RSSreader/data/messages:123
+#: ../musicPlayer/src/applet-draw.c:316
 msgid "Title"
 msgstr ""
 
@@ -1640,8 +1655,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1711,50 +1726,50 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:49
+#: ../stack/src/applet-notifications.c:48
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:70
+#: ../stack/src/applet-notifications.c:69
 msgid "Clear the stack ?"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:87
+#: ../stack/src/applet-notifications.c:86
 msgid "Set new name for this item :"
 msgstr "Inserire un nuovo nome per questo oggetto :"
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:144
 msgid "Copy (middle click)"
 msgstr "Copia (click centrale)"
 
-#: ../stack/src/applet-notifications.c:146
+#: ../stack/src/applet-notifications.c:145
 msgid "Cut"
 msgstr "Taglia"
 
-#: ../stack/src/applet-notifications.c:147
+#: ../stack/src/applet-notifications.c:146
 msgid "Rename this item"
 msgstr "Rinominare questo oggetto"
 
-#: ../stack/src/applet-notifications.c:148
+#: ../stack/src/applet-notifications.c:147
 msgid "Remove this item"
 msgstr "Rimuovere questo oggetto"
 
-#: ../stack/src/applet-notifications.c:152
+#: ../stack/src/applet-notifications.c:151
 msgid "Open (click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:154
+#: ../stack/src/applet-notifications.c:153
 msgid "Open folder"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:159
+#: ../stack/src/applet-notifications.c:158
 msgid "Paste (drag'n'drop)"
 msgstr "Incolla (copia-incolla)"
 
-#: ../stack/src/applet-notifications.c:160
+#: ../stack/src/applet-notifications.c:159
 msgid "Clear the stack"
 msgstr "Pulire lo stack"
 
@@ -2293,16 +2308,16 @@ msgstr ""
 #: ../Animated-icons/data/messages:101 ../Animated-icons/data/messages:105
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
 #: ../GMenu/data/messages:93 ../RSSreader/data/messages:11
-#: ../RSSreader/data/messages:117 ../System-Monitor/data/messages:149
-#: ../System-Monitor/data/messages:157 ../Xgamma/data/messages:9
-#: ../alsaMixer/data/messages:127 ../alsaMixer/data/messages:131
-#: ../alsaMixer/data/messages:135 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesklets/data/messages:9
-#: ../showDesklets/data/messages:13 ../showDesktop/data/messages:9
-#: ../showDesktop2/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:137
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../System-Monitor/data/messages:149 ../System-Monitor/data/messages:157
+#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:127
+#: ../alsaMixer/data/messages:131 ../alsaMixer/data/messages:135
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesklets/data/messages:9 ../showDesklets/data/messages:13
+#: ../showDesktop/data/messages:9 ../showDesktop2/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../switcher/data/messages:137 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Let empty to use the default one."
 msgstr ""
 
@@ -2769,7 +2784,8 @@ msgstr "Dimensione della desklet (larghezza x altezza) :"
 #: ../systray/data/messages:13 ../terminal/data/messages:21
 #: ../weather/data/messages:19 ../weblets/data/messages:21
 #: ../wifi/data/messages:17
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al vostro WindowManager, potete ridimensionarla con ALT + click "
 "sinistro"
@@ -3400,8 +3416,8 @@ msgstr "Se sì, numero degli oggetti selezionati :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con CTRL"
-"+v"
+"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con "
+"CTRL+v"
 
 #: ../Clipper/data/messages:213
 msgid "Paste into Clipboard ?"
@@ -3563,9 +3579,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:7
-#, fuzzy
 msgid "Let empty to use the connection name."
-msgstr "Lasciare vuoto per utilizzare l'icona di default."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:85 ../System-Monitor/data/messages:83
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:83
@@ -3729,14 +3744,12 @@ msgid "Parameters"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:169
-#, fuzzy
 msgid "Delay between wifi signal checks :"
-msgstr "Ritardo tra le verifiche del segnale :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:173
-#, fuzzy
 msgid "Delay between net speed checks :"
-msgstr "Ritardo tra le verifiche del segnale :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:145
 #: ../wifi/data/messages:161
@@ -3754,23 +3767,18 @@ msgid "By default the first active interface is used."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:181
-#, fuzzy
 msgid "Default connexion interface :"
-msgstr "Icona di default :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:183
-#, fuzzy
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
 msgstr ""
-"Permette di sovrascrivere la linea di comando di default dell'applet e "
-"lanciare l'interfaccia di configurazione wireless."
 
 #: ../Network-Monitor/data/messages:185
-#, fuzzy
 msgid "User command to show Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:187 ../netspeed/data/messages:141
 msgid "Let empty to use he default one."
@@ -3791,23 +3799,20 @@ msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:195
-#, fuzzy
 msgid "Info to display in the icon :"
-msgstr "Informazioni da mostrare sull'icona :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:197
-#, fuzzy
 msgid "Wifi signal"
-msgstr "Wifi disattivata."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:199
 msgid "Connexion speed"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:201
-#, fuzzy
 msgid "How to display the wifi signal :"
-msgstr "Informazioni da mostrare sull'icona :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:205 ../wifi/data/messages:175
 msgid "Signal Strength"
@@ -3866,217 +3871,6 @@ msgstr ""
 #: ../RSSreader/data/messages:93
 msgid "URL :"
 msgstr ""
-
-#: ../RSSreader/data/messages:95
-msgid "RSS login (optional):"
-msgstr ""
-
-#: ../RSSreader/data/messages:97
-msgid "RSS password (optional):"
-msgstr ""
-
-#: ../RSSreader/data/messages:99
-#, fuzzy
-msgid "Number of feed lines to display in the dialog :"
-msgstr "Numero dei programmi mostrati nella 'top list'"
-
-#: ../RSSreader/data/messages:101 ../clock/data/messages:85
-#: ../dnd2share/data/messages:95 ../mail/data/messages:101
-#: ../showDesktop/data/messages:91 ../showDesktop2/data/messages:87
-#: ../slider/data/messages:97
-msgid "Behaviour"
-msgstr "Comportamento"
-
-#: ../RSSreader/data/messages:103
-#, fuzzy
-msgid "In minutes."
-msgstr "in minuti"
-
-#: ../RSSreader/data/messages:105
-msgid "Refresh time :"
-msgstr ""
-
-#: ../RSSreader/data/messages:107
-msgid "By default, this option is activated"
-msgstr ""
-
-#: ../RSSreader/data/messages:109
-msgid "Display an info-bubble when a feed has changed?"
-msgstr ""
-
-#: ../RSSreader/data/messages:111
-msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
-msgstr ""
-
-#: ../RSSreader/data/messages:113 ../dnd2share/data/messages:93
-msgid "Duration of the info-bubbles :"
-msgstr ""
-
-#: ../RSSreader/data/messages:115
-#, fuzzy
-msgid "Animation of the icon when a feed has changed :"
-msgstr "Animazione al cambiamento della musica :"
-
-#: ../RSSreader/data/messages:119
-msgid "Open the feed with the following program :"
-msgstr ""
-
-#: ../RSSreader/data/messages:121
-msgid "Appearance"
-msgstr ""
-
-#: ../RSSreader/data/messages:125
-#, fuzzy
-msgid "Font to be used for the title"
-msgstr "Carattere usato per il display numerico :"
-
-#: ../RSSreader/data/messages:127
-#, fuzzy
-msgid "Title font :"
-msgstr "Fuso orario :"
-
-#: ../RSSreader/data/messages:129
-msgid "Color to be used for the title"
-msgstr ""
-
-#: ../RSSreader/data/messages:131
-#, fuzzy
-msgid "Title color :"
-msgstr "Colore valori alti :"
-
-#: ../RSSreader/data/messages:133
-#, fuzzy
-msgid "Alignment of the title:"
-msgstr "Inclinazione del piano :"
-
-#: ../RSSreader/data/messages:135
-#, fuzzy
-msgid "left"
-msgstr "Attenzione"
-
-#: ../RSSreader/data/messages:137
-#, fuzzy
-msgid "right"
-msgstr "altezza :"
-
-#: ../RSSreader/data/messages:141
-#, fuzzy
-msgid "Font to be used for the feed lines"
-msgstr "Carattere usato per il display numerico :"
-
-#: ../RSSreader/data/messages:143
-msgid "Feed lines font :"
-msgstr ""
-
-#: ../RSSreader/data/messages:145
-#, fuzzy
-msgid "Color to be used for the feed lines"
-msgstr "Colore delle linee esterne :"
-
-#: ../RSSreader/data/messages:147
-#, fuzzy
-msgid "Feed lines color :"
-msgstr "Colore valori bassi :"
-
-#: ../RSSreader/data/messages:149
-#, fuzzy
-msgid "Left margin for the feed lines :"
-msgstr "Immagine degli oggetti 'testo' :"
-
-#: ../RSSreader/data/messages:151
-#, fuzzy
-msgid "Space between 2 feed lines :"
-msgstr "Spazio tra le icone :"
-
-#: ../RSSreader/data/messages:153
-msgid "Logo"
-msgstr ""
-
-#: ../RSSreader/data/messages:155
-msgid "The default logo is the applet's icon"
-msgstr ""
-
-#: ../RSSreader/data/messages:157
-#, fuzzy
-msgid "Display the logo ?"
-msgstr "Mostrare anche le notti ?"
-
-#: ../RSSreader/data/messages:159
-msgid "Adjust to increase/decrease the logo size"
-msgstr ""
-
-#: ../RSSreader/data/messages:161
-msgid "Logo size :"
-msgstr ""
-
-#: ../RSSreader/data/messages:163
-msgid "normal"
-msgstr ""
-
-#: ../RSSreader/data/messages:165
-msgid "big"
-msgstr ""
-
-#: ../RSSreader/data/messages:167
-#, fuzzy
-msgid "Background"
-msgstr "Immagine dello sfondo :"
-
-#: ../RSSreader/data/messages:169
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr ""
-
-#: ../RSSreader/data/messages:171
-#, fuzzy
-msgid "Display a simple background ?"
-msgstr "Disegnare uno sfondo ?"
-
-#: ../RSSreader/data/messages:173
-#, fuzzy
-msgid "first color of the gradation"
-msgstr "Primo colore della 'top list' :"
-
-#: ../RSSreader/data/messages:175
-#, fuzzy
-msgid "Background first color :"
-msgstr "Colore di sfondo (r, v, b):"
-
-#: ../RSSreader/data/messages:177
-#, fuzzy
-msgid "second color of the gradation"
-msgstr "Colore di sfondo del grafico :"
-
-#: ../RSSreader/data/messages:179
-#, fuzzy
-msgid "Background second color :"
-msgstr "Trasparenza dello sfondo :"
-
-#: ../RSSreader/data/messages:181
-msgid "Set the radius corner to 0 for no radius"
-msgstr ""
-
-#: ../RSSreader/data/messages:183
-#, fuzzy
-msgid "Background radius corner:"
-msgstr "Trasparenza dello sfondo :"
-
-#: ../RSSreader/data/messages:185
-msgid "Set the thickness to 0 for no border"
-msgstr ""
-
-#: ../RSSreader/data/messages:187
-#, fuzzy
-msgid "Border thickness :"
-msgstr "Larghezza del contorno :"
-
-#: ../RSSreader/data/messages:189
-msgid "Border color"
-msgstr ""
-
-#: ../RSSreader/data/messages:191
-#, fuzzy
-msgid "Border color :"
-msgstr "Colore valori bassi :"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to activate/deactivate the navigation mode :"
@@ -4340,7 +4134,8 @@ msgstr "Primo colore della 'top list' :"
 
 #: ../System-Monitor/data/messages:171
 msgid "It's the second color of the gradation used to write the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+msgstr ""
+"E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
 #: ../System-Monitor/data/messages:173
 msgid "Stop color of the top list :"
@@ -4531,6 +4326,12 @@ msgstr ""
 #: ../shortcuts/data/messages:85
 msgid "Module"
 msgstr "Modulo"
+
+#: ../clock/data/messages:85 ../dnd2share/data/messages:95
+#: ../mail/data/messages:101 ../showDesktop/data/messages:91
+#: ../showDesktop2/data/messages:87 ../slider/data/messages:97
+msgid "Behaviour"
+msgstr "Comportamento"
 
 #: ../clock/data/messages:87
 msgid "Show the date :"
@@ -4949,6 +4750,10 @@ msgstr "Info-bubbles"
 
 #: ../dnd2share/data/messages:89
 msgid "Enable info-bubbles ?"
+msgstr ""
+
+#: ../dnd2share/data/messages:93
+msgid "Duration of the info-bubbles :"
 msgstr ""
 
 #: ../dnd2share/data/messages:97
@@ -5393,7 +5198,8 @@ msgid "Desktop-less support"
 msgstr "Supporto senza Desktop"
 
 #: ../dustbin/data/messages:115
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:117
@@ -5455,9 +5261,8 @@ msgid "Particle speed :"
 msgstr ""
 
 #: ../icon-effect/data/messages:173
-#, fuzzy
 msgid "Colors"
-msgstr "Cartelle"
+msgstr ""
 
 #: ../icon-effect/data/messages:175
 msgid "Default color :"
@@ -5752,9 +5557,8 @@ msgid "Exaile"
 msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:97
-#, fuzzy
 msgid "Exaile 0.3"
-msgstr "Exaile"
+msgstr ""
 
 #: ../musicPlayer/data/messages:99
 msgid "Listen"
@@ -6189,7 +5993,8 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr ""
 
 #: ../showDesktop/data/messages:97
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
 
 #: ../showDesktop/data/messages:99
@@ -6398,11 +6203,11 @@ msgstr "Ordine manuale"
 
 #: ../stack/data/messages:129
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Questa è la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl"
-"+v della tastiera"
+"Questa è la selezione fatta dal mouse, in opposizione all'usuale "
+"ctrl+c/ctrl+v della tastiera"
 
 #: ../stack/data/messages:131
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6802,7 +6607,8 @@ msgstr ""
 
 #: ../wifi/data/messages:167
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless :"
+msgstr ""
+"Linea di comando alternativa per lanciare la Configurazione Wireless :"
 
 #: ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
@@ -6818,8 +6624,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ msgstr "E' il colore del grafico per i valori bassi della CPU."
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
@@ -6852,30 +6658,28 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un "
-#~ "file basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
+#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un file "
+#~ "basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Utilizzare soltanto la cartella locale Stacks ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack "
-#~ "locale, sia tutte le cartelle monitorate. Bisogna assicurarsi di non "
-#~ "avere l'opzione 'Utilizzare la cartella locale Stacks' attiva."
+#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack locale, "
+#~ "sia tutte le cartelle monitorate. Bisogna assicurarsi di non avere l'opzione "
+#~ "'Utilizzare la cartella locale Stacks' attiva."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Cartelle sorvegliate :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "Questa opzione con una lunga lista di files può rallentare la barra, "
-#~ "perciò utilizzarla con prudenza."
+#~ "Questa opzione con una lunga lista di files può rallentare la barra, perciò "
+#~ "utilizzarla con prudenza."
 
 #~ msgid "Separate different directories with separators ?"
 #~ msgstr "Separare le differenti cartelle con separatori ?"
@@ -6901,15 +6705,18 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ msgid "width :"
 #~ msgstr "larghezza :"
 
+#~ msgid "height :"
+#~ msgstr "altezza :"
+
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -6942,8 +6749,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
-#~ "0 se si vuole alcuna filigrana."
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+#~ "se si vuole alcuna filigrana."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
@@ -7094,8 +6901,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -7149,8 +6956,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
 #~ msgstr ""
-#~ "Impossibile configurare il socket in modo da non bloccare la connessione. "
-#~ "Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+#~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+#~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
 
 #~ msgid ""
@@ -7167,17 +6974,17 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
 #~ msgstr ""
-#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-#~ "che username o password di GMail non siano corretti."
+#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+#~ "username o password di GMail non siano corretti."
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
 #~ msgstr ""
-#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci "
-#~ "un problema col server GMail, o un cambiamento nel modo di identificarsi "
-#~ "o nel modo di reperire i nuovi messaggi."
+#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+#~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+#~ "modo di reperire i nuovi messaggi."
 
 #~ msgid "_Username:"
 #~ msgstr "_Username:"
@@ -7195,28 +7002,27 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ msgstr "Mailbox GMail remota"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr ""
-#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare "
-#~ "il numero di nuovi messaggi in modo sicuro."
+#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+#~ "numero di nuovi messaggi in modo sicuro."
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr ""
-#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login "
-#~ "in modo testuale."
+#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+#~ "modo testuale."
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. "
-#~ "E' un bug !"
+#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+#~ "un bug !"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
@@ -7258,8 +7064,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ msgstr "Mailbox IMAP remoto"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
 #~ "protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
@@ -7301,8 +7107,7 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
 #~ msgid "MH plugin watches local MH folders for new mail"
 #~ msgstr ""
-#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi "
-#~ "messaggi"
+#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #~ msgid "Advanced POP3 Options"
 #~ msgstr "Opzioni POP3 avanzate"
@@ -7320,8 +7125,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ msgstr "Mailbox POP3 remota"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
 #~ "protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
@@ -7335,8 +7140,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
-#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-#~ "supporto SSL."
+#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+#~ "SSL."
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
@@ -7355,8 +7160,7 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di "
-#~ "sotto."
+#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
 #~ msgid "Add New Mailbox"
 #~ msgstr "Aggiungere una nuova Mailbox"
@@ -7429,8 +7233,8 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Titolo : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
 #~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
 #~ "decorazione; lasciate vuoto per non averne."
@@ -7603,10 +7407,10 @@ msgstr "Cancellare l'etichetta di default con il nome del punto d'accesso ?"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "In base alla vostra versione di Tomboy la soppressione della nota "
-#~ "potrebbe non essere notificata. Spuntate questa casella se ricevete "
-#~ "notifiche con questo errore  <<No marshaller for signature of signal "
-#~ "'NoteDeleted'>> con modalità Debug nel terminale."
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
+#~ "modalità Debug nel terminale."
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "
