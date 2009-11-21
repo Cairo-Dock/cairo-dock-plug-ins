@@ -89,7 +89,7 @@ frame1 =
 #l[No;On icon;On label] Show the date :
 show date = 1
 
-#b Should the time be displayed as a 24h format ?
+#b Display the time in a 24h format ?
 #{for numeric format only.}
 24h mode = true
 
@@ -108,27 +108,10 @@ location =
 #F[Style;gtk-color-picker]
 frame_style =
 
-#l+[Analogic;Numeric] Choose the view :
+old fashion style = true
+#y+[Analogic;Numeric] Choose the view :
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
 style = -1
-old fashion style = true
-
-#X[Numeric View;gtk-italic]
-numeric=
-
-#P+ Font used for the numeric display :
-font = Sans 16
-
-weight = 5
-
-#C+ Text color for the numeric display:
-text color = 0.0; 0.0; 0.5; 1.
-
-#S+ Image to draw on the background :
-numeric bg =
-
-#e+[.5;1] Ratio to apply on text :
-text ratio = 1
 
 #X[Analogic View;@clockdatadir@/icon.png]
 analogic=
@@ -139,6 +122,22 @@ theme = default
 #C+ Text color of the date :
 date color = 1.0; 0.; 0.9; 1.
 
+#X[Numeric View;gtk-italic]
+numeric=
+
+#P+ Font :
+font = Sans 16
+
+weight = 5
+
+#C+ Text color :
+text color = 0.0; 0.0; 0.5; 1.
+
+#e+[.5;1] Ratio to apply on text :
+text ratio = 1
+
+#S+ Image to draw on the background :
+numeric bg =
 
 #F[Setup time and date;gtk-file]
 frame3 =

@@ -577,10 +577,3 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	return TRUE;
 	
 }
-
-
-
-
-
-
-

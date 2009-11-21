@@ -105,8 +105,9 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			if (fAlpha != 0)
 			{
 				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
-				cairo_paint_with_alpha (pCairoContext, fAlpha);
+				cairo_dock_draw_surface (pCairoContext, myData.pArrowSurface, fFrameWidth, fFrameHeight, pMainDock->container.bDirectionUp, pMainDock->container.bIsHorizontal, fAlpha);
+				//cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
+				//cairo_paint_with_alpha (pCairoContext, fAlpha);
 			}
 		}
 		else if (myData.bNavigationMode && myData.pArrowSurface != NULL)
@@ -123,8 +124,9 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			if (fAlpha != 0)
 			{
 				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
-				cairo_paint_with_alpha (pCairoContext, fAlpha);
+				cairo_dock_draw_surface (pCairoContext, myData.pArrowSurface, fFrameWidth, fFrameHeight, pMainDock->container.bDirectionUp, pMainDock->container.bIsHorizontal, fAlpha);
+				//cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
+				//cairo_paint_with_alpha (pCairoContext, fAlpha);
 			}
 		}
 	}
@@ -195,11 +197,18 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 						bRound = TRUE;
 					}
 				}
-				cairo_translate (pCairoContext,
-					x - (iNbIcons & 1 ? iWidth * fZoom * fIconScale / 2 : 0.),
-					(myConfig.bTextOnTop ?
-						pMainDock->container.iHeight/2 :
-						0.));
+				if (pMainDock->container.bIsHorizontal)
+					cairo_translate (pCairoContext,
+						x - (iNbIcons & 1 ? iWidth * fZoom * fIconScale / 2 : 0.),
+						(myConfig.bTextOnTop ?
+							pMainDock->container.iHeight/2 :
+							0.));
+				else
+					cairo_translate (pCairoContext,
+						(myConfig.bTextOnTop ?
+							pMainDock->container.iHeight/2 :
+							0.),
+						x - (iNbIcons & 1 ? iWidth * fZoom * fIconScale / 2 : 0.));
 				cairo_scale (pCairoContext,
 					fZoom,
 					fZoom);
@@ -287,6 +296,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			if (fAlpha != 0)
 			{
 				glPushMatrix ();
+				if (! pMainDock->container.bIsHorizontal)
+					glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
 				glTranslatef (pMainDock->container.iWidth/2, pMainDock->container.iHeight/2, 0.);
 				
 				_cairo_dock_enable_texture ();
@@ -313,6 +324,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			if (fAlpha != 0)
 			{
 				glPushMatrix ();
+				if (! pMainDock->container.bIsHorizontal)
+					glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
 				glTranslatef (pMainDock->container.iWidth/2, pMainDock->container.iHeight/2, 0.);
 				
 				_cairo_dock_enable_texture ();
@@ -345,6 +358,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			fDockOffsetY = (!myConfig.bTextOnTop ? pMainDock->container.iHeight : fFrameHeight);
 			double fFrameColor[4] = {myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha};
 			glPushMatrix ();
+			if (! pMainDock->container.bIsHorizontal)
+				glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
 			cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, fFrameColor);
 			glPopMatrix ();
 			
@@ -394,11 +409,18 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 						bRound = TRUE;
 					}
 				}
-				glTranslatef (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale),
-					(myConfig.bTextOnTop ?
-						pMainDock->container.iHeight/4 :
-						pMainDock->container.iHeight - iHeight * fZoom/2),
-					0.);
+				if (pMainDock->container.bIsHorizontal)
+					glTranslatef (x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale),
+						(myConfig.bTextOnTop ?
+							pMainDock->container.iHeight/4 :
+							pMainDock->container.iHeight - iHeight * fZoom/2),
+						0.);
+				else
+					glTranslatef ((myConfig.bTextOnTop ?
+							pMainDock->container.iHeight/4 :
+							pMainDock->container.iHeight - iHeight * fZoom/2),
+						x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale),
+						0.);
 				_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iIconTexture,
 					iWidth * fZoom * fIconScale,
 					pMainDock->container.iHeight/2 * fIconScale,
@@ -434,6 +456,9 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		
 		glPushMatrix ();
 		double fFrameColor[4] = {myConfig.pFrameColor[0], myConfig.pFrameColor[1], myConfig.pFrameColor[2], myConfig.pFrameColor[3] * fAlpha};
+		
+		if (! pMainDock->container.bIsHorizontal)
+			glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
 		cairo_dock_draw_rounded_rectangle_opengl (fRadius, 0, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, fFrameColor);
 		glPopMatrix();
 		
@@ -442,8 +467,16 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		_cairo_dock_set_blend_alpha ();
 		_cairo_dock_set_alpha (fAlpha);
 		
-		cairo_dock_set_perspective_view (pMainDock->container.iWidth, pMainDock->container.iHeight);
-		glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
+		if (pMainDock->container.bIsHorizontal)
+		{
+			cairo_dock_set_perspective_view (pMainDock->container.iWidth, pMainDock->container.iHeight);
+			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
+		}
+		else
+		{
+			cairo_dock_set_perspective_view (pMainDock->container.iHeight, pMainDock->container.iWidth);
+			glTranslatef (-pMainDock->container.iHeight/2, -pMainDock->container.iWidth/2, 0.);
+		}
 		glEnable (GL_DEPTH_TEST);
 		
 		CDChar *pChar;
@@ -453,11 +486,18 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			pChar = c->data;
 			glPushMatrix();
 			
-			glTranslatef (pChar->iCurrentX * fTextScale + pMainDock->container.iWidth/2 + pChar->iWidth/2,
-				(myConfig.bTextOnTop ?
-					pMainDock->container.iHeight - (myData.iTextHeight - pChar->iHeight/2) :
-					pChar->iHeight/2),
-				0.);  // aligne en bas.
+			if (pMainDock->container.bIsHorizontal)
+				glTranslatef (pChar->iCurrentX * fTextScale + pMainDock->container.iWidth/2 + pChar->iWidth/2,
+					(myConfig.bTextOnTop ?
+						pMainDock->container.iHeight - (myData.iTextHeight - pChar->iHeight/2) :
+						pChar->iHeight/2),
+					0.);  // aligne en bas.
+			else
+				glTranslatef ((myConfig.bTextOnTop ?
+						pMainDock->container.iHeight - (myData.iTextHeight - pChar->iHeight/2) :
+						pChar->iHeight/2),
+					pChar->iCurrentX * fTextScale + pMainDock->container.iWidth/2 + pChar->iWidth/2,
+					0.);  // aligne en bas.
 			
 			double fRotationAngle = pChar->fRotationAngle;
 			if (myConfig.iAppearanceDuration != 0)
@@ -518,8 +558,16 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			
 			glPopMatrix();
 		}
-		cairo_dock_set_ortho_view (pMainDock->container.iWidth, pMainDock->container.iHeight);
-		glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
+		if (pMainDock->container.bIsHorizontal)
+		{
+			cairo_dock_set_ortho_view (pMainDock->container.iWidth, pMainDock->container.iHeight);
+			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
+		}
+		else
+		{
+			cairo_dock_set_ortho_view (pMainDock->container.iHeight, pMainDock->container.iWidth);
+			glTranslatef (-pMainDock->container.iHeight/2, -pMainDock->container.iWidth/2, 0.);
+		}
 		glDisable (GL_DEPTH_TEST);
 	}
 }

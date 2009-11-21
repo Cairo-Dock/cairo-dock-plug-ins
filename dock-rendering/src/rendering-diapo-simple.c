@@ -373,7 +373,7 @@ static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 }
 static void _cd_rendering_check_can_drop_linear (CairoDock *pDock)
 {
-	pDock->bCanDrop = TRUE;  /// caluler bCanDrop ...
+	pDock->bCanDrop = pDock->bIsDragging;  /// calculer bCanDrop ...
 }
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {

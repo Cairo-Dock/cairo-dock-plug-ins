@@ -27,7 +27,7 @@ change delay = 8
 #e[0;1] Transparency of the penguin :
 alpha = 1.
 
-#b Let the penguin wander everywhere in the dock ?
+#B Let the penguin wander everywhere in the dock ?
 free = true
 
 #i+[0;50] Ground offset :

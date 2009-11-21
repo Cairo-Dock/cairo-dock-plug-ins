@@ -159,7 +159,7 @@ duration = 800
 #b+ Repeat while icon is pointed ?
 continue = false
 
-#e+[.2;1] When bouncing, resize the icon of :
+#e+[.4;1] When bouncing, resize the icon of :
 resize = .8
 
 #e+[.2;1] How much the icon will flatten when hurting the ground :

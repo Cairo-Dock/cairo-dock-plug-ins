@@ -490,13 +490,13 @@ Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
-		if (pDock->bIsDragging)
-			pDock->bCanDrop = TRUE;
+		pDock->bCanDrop = FALSE;
 	}
 	else
 	{
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
-		pDock->bCanDrop = FALSE;
+		if (pDock->bIsDragging)
+			pDock->bCanDrop = TRUE;
 	}
 	
 	return pPointedIcon;
