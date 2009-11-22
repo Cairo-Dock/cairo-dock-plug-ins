@@ -34,8 +34,9 @@ CD_APPLET_DEFINITION (N_("RSSreader"),
 	N_("This applet is an RSS/Atom feed reader.\n"
 	"You can instanciate it as many times as you want.\n"
 	"USAGE:\n"
-	" - Left-click : Display the complete feed lines in a dialog.\n"
-	" - Middle-click : Refresh the feed.\n"
+	" - Left-click : display the complete feed lines in a dialog.\n"
+	" - Middle-click : refresh the feed.\n"
+	" - Scroll on the desklet : make the feed lines scroll\.n"
 	" - Drag and drop a valid URL on the icon to use it,\n"
 	"    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 	"    or edit the Configuration Panel."),

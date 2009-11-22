@@ -714,9 +714,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 						//	icon->fAlpha = .25;
 						
 						cairo_save (pCairoContext);
-						
 						cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
-						
 						cairo_restore (pCairoContext);
 					}
 				}
@@ -759,9 +757,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 					//	icon->fAlpha = .25;
 					
 					cairo_save (pCairoContext);
-					
 					cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
-					
 					cairo_restore (pCairoContext);
 				}
 				ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -877,7 +873,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-	glLoadIdentity ();
+	///glLoadIdentity ();
  	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
 	{
 		do
@@ -935,9 +931,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			icon = ic->data;
 			
 			glPushMatrix ();
-			
 			cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
-			
 			glPopMatrix ();
 			
 			ic = cairo_dock_get_next_element (ic, pDock->icons);

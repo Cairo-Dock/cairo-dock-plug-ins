@@ -677,38 +677,13 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	{
 		icon = ic->data;
 		
-		glPushMatrix ();
-		
-		if (icon->bPointed)
-		{
-			double fX, fY;
-			if (pDock->container.bIsHorizontal)
-			{
-				fY = pDock->container.iHeight - icon->fDrawY + icon->fHeight * (my_diapo_simple_fScaleMax - icon->fScale)/2;
-				fX = icon->fDrawX - icon->fWidth * (my_diapo_simple_fScaleMax - icon->fScale)/2;
-			}
-			else
-			{
-				fX = icon->fDrawY - icon->fHeight * (my_diapo_simple_fScaleMax - icon->fScale)/2;
-				fY =  pDock->container.iWidth - icon->fDrawX + icon->fWidth * (my_diapo_simple_fScaleMax - icon->fScale)/2;
-			}
-			/*double r = my_diapo_simple_radius/2;
-			double fColor[4] = {MAX (my_diapo_simple_color_frame_start[0], my_diapo_simple_color_frame_stop[0]) + .1,
-				MAX (my_diapo_simple_color_frame_start[1], my_diapo_simple_color_frame_stop[1]) + .1,
-				MAX (my_diapo_simple_color_frame_start[2], my_diapo_simple_color_frame_stop[2]) + .1,
-				MAX (my_diapo_simple_color_frame_start[3], my_diapo_simple_color_frame_stop[3]) + .1};
-			cairo_dock_draw_rounded_rectangle_opengl (r,
-				0,
-				icon->fWidth * my_diapo_simple_fScaleMax - r,
-				icon->fHeight * my_diapo_simple_fScaleMax,
-				fX, fY,
-				fColor);*/
-		}
-		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		
 		if(icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
 		{
+			glPushMatrix ();
+			cairo_dock_translate_on_icon_opengl (icon, CAIRO_CONTAINER (pDock), 1.);
+			
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
 			double fOffsetX = 0.;
 			if (icon->fDrawX + icon->fWidth * icon->fScale/2 - icon->iTextWidth/2 < 0)
@@ -716,8 +691,8 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 			else if (icon->fDrawX + icon->fWidth * icon->fScale/2 + icon->iTextWidth/2 > pDock->container.iWidth)
 				fOffsetX = pDock->container.iWidth - (icon->fDrawX + icon->fWidth * icon->fScale/2 + icon->iTextWidth/2);
 			
-			glTranslatef (fOffsetX,
-				(pDock->container.bDirectionUp ? 1:-1) * (icon->fHeight * icon->fScale/2 + myLabels.iLabelSize - icon->iTextHeight / 2),
+			glTranslatef (floor (fOffsetX) + .5 * (icon->iTextWidth & 1),
+				floor ((pDock->container.bDirectionUp ? 1:-1) * (icon->fHeight * icon->fScale/2 + myLabels.iLabelSize - icon->iTextHeight / 2)) + .5 * (icon->iTextWidth & 1),
 				0.);
 			
 			if (icon->iTextWidth > icon->fWidth * icon->fScale + my_diapo_simple_iconGapX && ! icon->bPointed)
@@ -741,9 +716,8 @@ void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 					icon->iTextHeight,
 					fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
 			}
+			glPopMatrix ();
 		}
-		
-		glPopMatrix ();
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	}

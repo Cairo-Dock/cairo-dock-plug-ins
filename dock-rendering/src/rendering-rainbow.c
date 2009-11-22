@@ -203,9 +203,7 @@ void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 		icon = ic->data;
 
 		cairo_save (pCairoContext);
-		
 		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
-		
 		cairo_restore (pCairoContext);
 
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
