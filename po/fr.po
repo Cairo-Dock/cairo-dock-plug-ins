@@ -6546,7 +6546,7 @@ msgstr "Dessiner le fond d'écran sur l'icône ?"
 
 #: ../switcher/data/messages:93
 msgid "Show desktop number on the icons ?"
-msgstr "Afficher le nombre de bureaux sur les icônes ?"
+msgstr "Afficher le numéro du bureau sur les icônes ?"
 
 #: ../switcher/data/messages:95
 msgid "Draw the windows on icon ?"
