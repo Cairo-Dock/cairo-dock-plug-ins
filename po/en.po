@@ -201,7 +201,7 @@ msgstr ""
 "This plug-in lets external applications interact with the dock.\n"
 "The communication between both sides is based on Dbus"
 
-#: ../Dbus/src/interface-applet-signals.c:343
+#: ../Dbus/src/interface-applet-signals.c:346
 msgid "About this applet"
 msgstr "About this applet"
 
@@ -391,59 +391,60 @@ msgid ""
 "This applet is an RSS/Atom feed reader.\n"
 "You can instanciate it as many times as you want.\n"
 "USAGE:\n"
-" - Left-click : Display the complete feed lines in a dialog.\n"
-" - Middle-click : Refresh the feed.\n"
-" - Drag and drop a valid URL on the icon to use it,\n"
+" - Left-click : display the complete feed lines in a dialog.\n"
+" - Middle-click : refresh the feed.\n"
+" - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop a "
+"valid URL on the icon to use it,\n"
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
 
-#: ../RSSreader/src/applet-init.c:60 ../RSSreader/src/applet-init.c:120
-#: ../RSSreader/src/applet-notifications.c:63
+#: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
+#: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data ..."
 msgstr ""
 
-#: ../RSSreader/src/applet-notifications.c:72
+#: ../RSSreader/src/applet-notifications.c:77
 msgid "It doesn't seem to be a valid URL."
 msgstr ""
 
-#: ../RSSreader/src/applet-notifications.c:115
+#: ../RSSreader/src/applet-notifications.c:120
 msgid "Paste a new RSS Url (drag'n'drop)"
 msgstr "Paste a new RSS Url (drag and drop)"
 
-#: ../RSSreader/src/applet-notifications.c:119
+#: ../RSSreader/src/applet-notifications.c:123
 msgid "Open with your web browser"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:356
+#: ../RSSreader/src/applet-rss.c:352
+msgid "Warning : couldn't retrieve data last time we tried."
+msgstr ""
+
+#: ../RSSreader/src/applet-rss.c:386
 msgid "No URL is defined."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:358 ../RSSreader/src/applet-rss.c:471
+#: ../RSSreader/src/applet-rss.c:387
 msgid "No data (no connection ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:376 ../RSSreader/src/applet-rss.c:396
+#: ../RSSreader/src/applet-rss.c:417 ../RSSreader/src/applet-rss.c:439
 msgid "Invalid data (invalid RSS/Atom feed ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:448
+#: ../RSSreader/src/applet-rss.c:494
 msgid "No data"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:469
-msgid "No data (invalid rss ?)"
-msgstr ""
-
-#: ../RSSreader/src/applet-rss.c:485
+#: ../RSSreader/src/applet-rss.c:535
 msgid "No modification"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:508
+#: ../RSSreader/src/applet-rss.c:558
 msgid "This RSS feed has been modified..."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:580
+#: ../RSSreader/src/applet-rss.c:630
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -451,7 +452,7 @@ msgid ""
 " in the menu."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:586
+#: ../RSSreader/src/applet-rss.c:636
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed ?\n"
@@ -2071,16 +2072,16 @@ msgstr ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 
-#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:362
 msgid "New Tab"
 msgstr "New Tab"
 
-#: ../terminal/src/terminal-menu-functions.c:81
+#: ../terminal/src/terminal-menu-functions.c:79
 msgid "Rename current Tab"
 msgstr "Rename current Tab"
 
-#: ../terminal/src/terminal-menu-functions.c:82
+#: ../terminal/src/terminal-menu-functions.c:80
 msgid "Close current Tab"
 msgstr "Close current Tab"
 
@@ -2738,7 +2739,7 @@ msgstr "Configuration"
 #: ../System-Monitor/data/messages:91 ../Toons/data/messages:85
 #: ../dustbin/data/messages:85 ../mail/data/messages:91
 #: ../netspeed/data/messages:91 ../powermanager/data/messages:93
-#: ../weather/data/messages:113 ../wifi/data/messages:93
+#: ../weather/data/messages:115 ../wifi/data/messages:93
 msgid "Choose one of the available themes :"
 msgstr "Choose one of the available themes:"
 
@@ -3987,7 +3988,7 @@ msgstr "Leave empty to use the default."
 msgid "User command to show a system monitor :"
 msgstr "User command to display a system monitor:"
 
-#: ../Network-Monitor/data/messages:191 ../weather/data/messages:101
+#: ../Network-Monitor/data/messages:191 ../weather/data/messages:103
 #: ../wifi/data/messages:169
 msgid "Info"
 msgstr "Info"
@@ -4346,7 +4347,7 @@ msgstr "Text size:"
 msgid "Should the text be outlined ?"
 msgstr "Outline text?"
 
-#: ../Scooby-Do/data/messages:37
+#: ../Scooby-Do/data/messages:37 ../clock/data/messages:131
 msgid "Text color :"
 msgstr "Text colour:"
 
@@ -4713,7 +4714,7 @@ msgstr "Hide the scale when mouse leaves the desklet?"
 
 #: ../alsaMixer/data/messages:107 ../keyboard-indicator/data/messages:91
 #: ../musicPlayer/data/messages:131 ../slider/data/messages:133
-#: ../stack/data/messages:89 ../weather/data/messages:111
+#: ../stack/data/messages:89 ../weather/data/messages:113
 msgid "Display"
 msgstr "Display"
 
@@ -4755,7 +4756,8 @@ msgid "for numeric format only."
 msgstr "for digital format only."
 
 #: ../clock/data/messages:97
-msgid "Should the time be displayed as a 24h format ?"
+#, fuzzy
+msgid "Display the time in a 24h format ?"
 msgstr "Display time in 24 hour format?"
 
 #: ../clock/data/messages:99
@@ -4813,36 +4815,32 @@ msgid "Numeric"
 msgstr "Digital"
 
 #: ../clock/data/messages:121
-msgid "Numeric View"
-msgstr "Digital View"
-
-#: ../clock/data/messages:123
-msgid "Font used for the numeric display :"
-msgstr "Font used for digital display:"
-
-#: ../clock/data/messages:125
-msgid "Text color for the numeric display:"
-msgstr "Text colour for digital display:"
-
-#: ../clock/data/messages:127
-msgid "Image to draw on the background :"
-msgstr "Background image:"
-
-#: ../clock/data/messages:129
-msgid "Ratio to apply on text :"
-msgstr "Ratio to apply on text :"
-
-#: ../clock/data/messages:131
 msgid "Analogic View"
 msgstr "Analogue View"
 
-#: ../clock/data/messages:133
+#: ../clock/data/messages:123
 msgid "List of available themes for the analogic display :"
 msgstr "List of available themes for analogue display:"
 
-#: ../clock/data/messages:135
+#: ../clock/data/messages:125
 msgid "Text color of the date :"
 msgstr "Date text colour:"
+
+#: ../clock/data/messages:127
+msgid "Numeric View"
+msgstr "Digital View"
+
+#: ../clock/data/messages:129 ../keyboard-indicator/data/messages:93
+msgid "Font :"
+msgstr "Font:"
+
+#: ../clock/data/messages:133
+msgid "Ratio to apply on text :"
+msgstr "Ratio to apply on text :"
+
+#: ../clock/data/messages:135
+msgid "Image to draw on the background :"
+msgstr "Background image:"
 
 #: ../clock/data/messages:137
 msgid "Setup time and date"
@@ -5037,14 +5035,14 @@ msgstr "heliodor"
 #: ../compiz-icon/data/messages:153 ../mail/data/messages:85
 #: ../shortcuts/data/messages:99 ../stack/data/messages:91
 #: ../switcher/data/messages:141 ../tomboy/data/messages:103
-#: ../weather/data/messages:115
+#: ../weather/data/messages:117
 msgid "Let it empty to use default sub-dock view."
 msgstr "Leave empty to use default sub-dock view."
 
 #: ../compiz-icon/data/messages:155 ../mail/data/messages:87
 #: ../shortcuts/data/messages:101 ../stack/data/messages:93
 #: ../switcher/data/messages:143 ../tomboy/data/messages:105
-#: ../weather/data/messages:117
+#: ../weather/data/messages:119
 msgid "Name of the view used for the sub-dock :"
 msgstr "Sub-dock view name:"
 
@@ -5797,10 +5795,6 @@ msgstr ""
 msgid "Duration of the transition animation :"
 msgstr "Duration of the transition animation:"
 
-#: ../keyboard-indicator/data/messages:93
-msgid "Font :"
-msgstr "Font:"
-
 #: ../keyboard-indicator/data/messages:95
 msgid "Text color"
 msgstr "Text colour"
@@ -6173,7 +6167,7 @@ msgstr "transparency"
 msgid "draw bar"
 msgstr "draw bar"
 
-#: ../powermanager/data/messages:139 ../weather/data/messages:99
+#: ../powermanager/data/messages:139 ../weather/data/messages:101
 msgid "Interval of time between 2 checks :"
 msgstr "Interval of time between 2 checks :"
 
@@ -6906,38 +6900,42 @@ msgid "Code of your location :"
 msgstr "Code for your location:"
 
 #: ../weather/data/messages:91
+msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+
+#: ../weather/data/messages:93
 msgid "Use International System Units ?"
 msgstr "Use International System Units?"
 
-#: ../weather/data/messages:93
+#: ../weather/data/messages:95
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in seconds. Set 0 to have never-ending dialogs."
 
-#: ../weather/data/messages:95
+#: ../weather/data/messages:97
 msgid "Duration of dialogs :"
 msgstr "Dialog duration:"
 
-#: ../weather/data/messages:97
+#: ../weather/data/messages:99
 msgid "in minutes."
 msgstr "in minutes."
 
-#: ../weather/data/messages:103
+#: ../weather/data/messages:105
 msgid "Display current conditions on the icon instead of the default one ?"
 msgstr "Display current conditions on the icon instead of the default one?"
 
-#: ../weather/data/messages:105
+#: ../weather/data/messages:107
 msgid "Number of days you want to forecast :"
 msgstr "Number of days to forecast:"
 
-#: ../weather/data/messages:107
+#: ../weather/data/messages:109
 msgid "Display nights too ?"
 msgstr "Display nights?"
 
-#: ../weather/data/messages:109
+#: ../weather/data/messages:111
 msgid "Display temperature as quick info ?"
 msgstr "Display temperature as quick info?"
 
-#: ../weather/data/messages:119
+#: ../weather/data/messages:121
 msgid "Render desklet in 3D ?"
 msgstr "Render desklet in 3D?"
 
@@ -7040,6 +7038,12 @@ msgstr "Alternative command line to launch Wireless Configuration :"
 #: ../wifi/data/messages:181
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Overwrite the default label with the connection point name?"
+
+#~ msgid "Font used for the numeric display :"
+#~ msgstr "Font used for digital display:"
+
+#~ msgid "Text color for the numeric display:"
+#~ msgstr "Text colour for digital display:"
 
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Number of particles per source:"

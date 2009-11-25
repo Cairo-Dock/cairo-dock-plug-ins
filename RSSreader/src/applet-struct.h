@@ -80,8 +80,8 @@ struct _AppletData {
 	
 	int iFirstDisplayedItem;  // pour le scroll.
 	guint iSidRedrawIdle;
-	gboolean bError;
-	gboolean bInit;
+	gboolean bError;  // true si une erreur a ete inseree dans le flux.
+	gboolean bInit;  // true si on a deja recupere au moins une fois le flux.
 	} ;
 
 

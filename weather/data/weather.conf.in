@@ -91,6 +91,7 @@ frame_conf =
 location code = FRXX0076
 
 #b Use International System Units ?
+#{If so, degrees will be displayed in Celsius, otherwise in Fahrenheit.}
 IS units = true
 
 #i[0;40] Duration of dialogs :

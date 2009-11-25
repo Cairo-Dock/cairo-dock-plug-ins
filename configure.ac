@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.2-0beta1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.2-0beta2],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -15,7 +15,7 @@ AC_SUBST(ALL_LINGUAS)
 AM_GLIB_GNU_GETTEXT
 
 
-############# PACKAGE CAIRO-DOCK #################
+############# PACKAGE CAIRO-DOCK #################
 GETTEXT_PACKAGE=cairo-dock-plugins
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
@@ -32,7 +32,7 @@ AC_SUBST(top_srcdir)
 top_builddir=".."
 AC_SUBST(top_builddir)
 
-PKG_CHECK_MODULES(PACKAGE, "cairo-dock gtk+-2.0 gthread-2.0 cairo librsvg-2.0 dbus-1 dbus-glib-1 libxml-2.0")
+PKG_CHECK_MODULES(PACKAGE, "gtk+-2.0 gthread-2.0 cairo librsvg-2.0 dbus-1 dbus-glib-1 libxml-2.0 gtkglext-1.0 cairo-dock")
 
 
 ############# COMPILATION CONDITIONNELLE #################
@@ -580,7 +580,7 @@ AC_SUBST(systraydatadir, "${pkgdatadir}/systray")
 TERMINAL_PACKAGE="cd-terminal"
 AC_SUBST(GETTEXT_TERMINAL, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_TERMINAL, "1.0.6")
+AC_SUBST(VERSION_TERMINAL, "1.0.7")
 AC_SUBST(PACKAGE_TERMINAL, "$TERMINAL_PACKAGE")
 
 AC_SUBST(terminaldatadir, "${pkgdatadir}/terminal")
@@ -655,7 +655,7 @@ AC_DEFINE(HAVE_WEBKIT,1,[Defined if we want to use webkit.])
 
 AC_SUBST(GETTEXT_WEBLETS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_WEBLETS, "0.3.3")
+AC_SUBST(VERSION_WEBLETS, "0.0.7")
 AC_SUBST(PACKAGE_WEBLETS, "$WEBLETS_PACKAGE")
 
 AC_SUBST(webletsdatadir, "${pkgdatadir}/weblets")

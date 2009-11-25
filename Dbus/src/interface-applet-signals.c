@@ -280,13 +280,14 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 	
 	g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
+	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (pClickedIcon == pAppletIcon)
 	{
 		g_print ("emit clic on main icon\n");
 		g_signal_emit (pDbusApplet, s_iSignals[CLIC], 0, iButtonState);
 	}
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 	{
 		g_print ("emit clic on sub icon\n");
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[CLIC], 0, iButtonState, pClickedIcon->cCommand);
@@ -302,10 +303,11 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 	
 	g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
+	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[MIDDLE_CLIC], 0, NULL);
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[MIDDLE_CLIC], 0, pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
@@ -318,10 +320,11 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 	
 	g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iDirection);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
+	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP));
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP), pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
@@ -353,12 +356,13 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	
 	g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
+	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	myData.pCurrentMenuDbusApplet = pDbusApplet;
 	myData.pCurrentMenuIcon = pClickedIcon;
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[BUILD_MENU], 0);
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[BUILD_MENU], 0, pClickedIcon->cCommand);
 	return (pClickedIcon == pAppletIcon ? CAIRO_DOCK_LET_PASS_NOTIFICATION : CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 }
@@ -370,7 +374,7 @@ void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 	gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
 	if (cIconID == NULL)
 		g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);
 }
 
@@ -382,10 +386,11 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 	
 	cd_message (" %s --> sur le bus !", cReceivedData);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
+	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[DROP_DATA], 0, cReceivedData);
-	else
+	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[DROP_DATA], 0, cReceivedData, pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }

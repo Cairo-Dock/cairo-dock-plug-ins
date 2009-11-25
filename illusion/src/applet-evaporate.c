@@ -29,7 +29,7 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 {
 	if (myData.iEvaporateTexture == 0)
 		myData.iEvaporateTexture = cd_illusion_load_evaporate_texture ();
-	double fMaxScale = (pDock->bAtBottom ? 1. : cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock)));
+	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	CairoParticleSystem *pEvaporateParticleSystem = cairo_dock_create_particle_system (myConfig.iNbEvaporateParticles, myData.iEvaporateTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
 	double dt = pData->fDeltaT;
