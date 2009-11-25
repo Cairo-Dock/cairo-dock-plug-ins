@@ -374,7 +374,7 @@ void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 	gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
 	if (cIconID == NULL)
 		g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
-	else if (pDbusApplet->pSubApplet != NULL)
+	else if (myData.pCurrentMenuDbusApplet->pSubApplet != NULL)
 		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);
 }
 
