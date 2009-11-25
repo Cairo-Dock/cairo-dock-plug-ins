@@ -36,8 +36,6 @@
 #include "terminal-menu-functions.h"
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
 {
 	if (! myData.tab)

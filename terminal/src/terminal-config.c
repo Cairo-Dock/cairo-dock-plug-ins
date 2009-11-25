@@ -27,8 +27,6 @@
 #include "terminal-widget.h"
 #include "terminal-config.h"
 
-
-
 static void set_color(GdkColor *color, double src[3]) {
   color->red = (guint16)(src[0] * 65535.);
   color->green = (guint16)(src[1] * 65535.);
@@ -36,28 +34,28 @@ static void set_color(GdkColor *color, double src[3]) {
 }
 
 CD_APPLET_GET_CONFIG_BEGIN
-  //0 means completely transparent and 65535 opaque
-  myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("GUI", "terminal transparency", .84) * 65535);  // 55000
+	//0 means completely transparent and 65535 opaque
+	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("GUI", "terminal transparency", .84) * 65535);  // 55000
 
-  double color_back[3] = {1., 1., 1.};
-  CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "background color", color_back, color_back);
-  set_color(&myConfig.backcolor, color_back);
+	double color_back[3] = {1., 1., 1.};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "background color", color_back, color_back);
+	set_color(&myConfig.backcolor, color_back);
 
-  double color_fore[3] = {0., 0., 0.};
-  CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "foreground color", color_fore, color_fore);
-  set_color(&myConfig.forecolor, color_fore);
+	double color_fore[3] = {0., 0., 0.};
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "foreground color", color_fore, color_fore);
+	set_color(&myConfig.forecolor, color_fore);
 
-  myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
-  myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
-  myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 70);
+	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
+	myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
+	myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 70);
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
-  if (myConfig.shortcut)
-    cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull);
-  g_free (myConfig.shortcut);
-  myConfig.shortcut = NULL;
+	if (myConfig.shortcut)
+		cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull);
+	g_free (myConfig.shortcut);
+	myConfig.shortcut = NULL;
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -69,7 +67,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	else if (myData.tab)
 	{
-		gtk_widget_destroy (myData.tab);
+		cairo_dock_steal_interactive_widget_from_desklet (myDesklet);
+		g_object_unref (G_OBJECT (myData.tab));
+		///gtk_widget_destroy (myData.tab);
 	}
 	myData.tab = NULL;
 CD_APPLET_RESET_DATA_END

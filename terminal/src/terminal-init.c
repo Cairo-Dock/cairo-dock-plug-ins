@@ -41,7 +41,6 @@ CD_APPLET_DEFINITION ("terminal",
 
 
 CD_APPLET_INIT_BEGIN
-{
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -55,43 +54,46 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
-}
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-{
-  CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-  CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-  CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-}
+	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-{
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if (! myData.tab)
 		{
-			if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+			if (myDesklet)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
 				terminal_build_and_show_tab ();
 		}
 		else if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
 		{
-			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
+			if (myDesklet)  // il faut passer du dialogue au desklet.
 			{
-				myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
+				// on retire le terminal du dialogue.
+				myData.tab = cairo_dock_steal_interactive_widget_from_dialog (myData.dialog);
 				cairo_dock_dialog_unreference (myData.dialog);
 				myData.dialog = NULL;
+				
+				// on l'insere dans le desklet.
 				cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
+				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
+				// on retire le terminal du desklet.
+				myData.tab = cairo_dock_steal_interactive_widget_from_desklet (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
+				///myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
 				myData.dialog = cd_terminal_build_dialog ();
+				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
 				cairo_dock_hide_dialog (myData.dialog);
 			}
 		}
@@ -106,5 +108,4 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
 	}
-}
 CD_APPLET_RELOAD_END

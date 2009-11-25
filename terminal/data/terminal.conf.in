@@ -94,10 +94,10 @@ foreground color= 1.; 1.; 1.
 #c+ Background color (r, v, b):
 background color= 0.; 0.; 0.
 
-#I[5;999] Size of the terminal (line x columns) :
+#I[5;50] Size of the terminal (line x columns) :
 #{When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual.}
-nb lines = 25
-#I[5;999] ...
+nb lines = 20
+#I[40;160] ...
 nb columns = 70
 
 #k Shortkey to show the terminal :
