@@ -119,6 +119,8 @@ CD_APPLET_RELOAD_BEGIN
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
 		pItem->cTitle = g_strdup (D_("Retrieving data ..."));
+		myData.bInit = FALSE;
+		myData.bError = FALSE;
 		
 		// on relance la tache periodique.
 		cd_rssreader_upload_feeds_TASK (myApplet);

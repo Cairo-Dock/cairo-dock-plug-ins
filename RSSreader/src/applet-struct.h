@@ -80,6 +80,8 @@ struct _AppletData {
 	
 	int iFirstDisplayedItem;  // pour le scroll.
 	guint iSidRedrawIdle;
+	gboolean bError;
+	gboolean bInit;
 	} ;
 
 

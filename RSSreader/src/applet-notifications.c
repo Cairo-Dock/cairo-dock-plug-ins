@@ -29,7 +29,7 @@
 
 
 static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
-{		
+{
 	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
 		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
 	else  // sinon on utilise la commande par defaut.
@@ -38,7 +38,7 @@ static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myA
 
 static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewURL)
 {
-	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On vérifie que l'élément glisser/copier commence bien par http
+	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On verifie que l'element glisser/copier commence bien par http
 	{
 		cd_debug ("RSSreader-debug : This seems to be a valid URL -> Let's continue...");
 		// on definit la nouvelle URL en conf.
@@ -49,21 +49,26 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 			"Configuration",
 			"url_rss_feed",
 			myConfig.cUrl,
-			G_TYPE_INVALID);  // On l'écrit dans le fichier de config
+			G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 		
-		// on recupere le nouveau flux.
+		// on remet a zero les items actuels.
 		CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);  // pour mettre a jour le titre par la meme occasion.
 		
 		g_free (myData.PrevFirstTitle);
 		myData.PrevFirstTitle = NULL;
 		cd_rssreader_free_item_list (myApplet);
 		
+		// on recupere le nouveau flux.
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
 		pItem->cTitle = g_strdup (D_("Retrieving data ..."));
-		cd_applet_update_my_icon (myApplet);
+		myData.bInit = FALSE;
+		myData.bError = FALSE;
 		
-		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre à jour notre applet
+		if (myDesklet)
+			cd_applet_update_my_icon (myApplet);
+		
+		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre a jour notre applet
 	}
 	else
 	{
@@ -72,7 +77,7 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 		cairo_dock_show_temporary_dialog_with_icon (D_("It doesn't seem to be a valid URL."),
 			myIcon,
 			myContainer,
-			2000, // Suffisant 
+			3000, // Suffisant 
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);		
 	}
 }
@@ -96,7 +101,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	cd_debug ("RSSreader-debug : MIDDLE-CLIC");
 	myData.bUpdateIsManual = TRUE;
 	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
-	cd_rssreader_upload_feeds_TASK (myApplet);
+	if (! cairo_dock_task_is_running (myData.pTask))  // sinon on va bloquer jusqu'a ce que la tache courante se termine, pour la relancer aussitot, ce qui n'a aucun interet.
+		cd_rssreader_upload_feeds_TASK (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -111,9 +117,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 		
-		
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag'n'drop)"), GTK_STOCK_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
-	
 	
 	if (myConfig.cUrl != NULL) // On ajoute une entrée dans le menu SI il y a une url seulement
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);	

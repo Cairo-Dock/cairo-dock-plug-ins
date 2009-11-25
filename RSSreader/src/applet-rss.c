@@ -162,7 +162,7 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 30 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
+	gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 3 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
 	myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
 	cd_debug ("cTaskBridge : '%s'", myData.cTaskBridge);
 	g_free (cCommand);
@@ -340,22 +340,65 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 	return pItemList;
 }
 
+static void _insert_error_message (CairoDockModuleInstance *myApplet, const gchar *cErrorMessage)
+{
+	g_print ("%s (%s, %d)\n", __func__, cErrorMessage, myData.bError);
+	CDRssItem *pItem;
+	if (myData.pItemList != NULL)  // on garde la liste courante, mais on insere un message.
+	{
+		if (! myData.bError)  // pas encore de message d'erreur, on en insere un.
+		{
+			pItem = g_new0 (CDRssItem, 1);
+			pItem->cTitle = g_strdup (D_("Warning : couldn't retrieve data last time we tried."));
+			myData.pItemList = g_list_insert (myData.pItemList, pItem, 1);
+		}
+	}
+	else  // aucune liste : c'est la 1ere recuperation.
+	{
+		pItem = g_new0 (CDRssItem, 1);
+		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+		if (myConfig.cUserTitle != NULL && myConfig.cUrl != NULL)  // si le titre est connu on l'utilise (si aucun URL n'est defini ce n'est pas pertinent par contre).
+		{
+			pItem->cTitle = g_strdup (myConfig.cUserTitle);
+			pItem = g_new0 (CDRssItem, 1);
+			myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+		}
+		pItem->cTitle = g_strdup (cErrorMessage);
+	}
+	
+	myData.bError = TRUE;
+}
+
 static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 {
-	// on vide l'ancienne liste d'items.
-	cd_rssreader_free_item_list (myApplet);
-	myData.pItemList = NULL;
-	
+	if (! myData.bInit)  // pas encore initialise, on vire le message d'attente.
+	{
+		cd_rssreader_free_item_list (myApplet);
+		myData.pItemList = NULL;
+		myData.bInit = TRUE;
+	}
+		
 	// On parse le flux XML.
 	if (myData.cTaskBridge == NULL || *myData.cTaskBridge == '\0')
 	{
 		cd_warning ("RSSresader : no data");
-		CDRssItem *pItem = g_new0 (CDRssItem, 1);
+		const gchar *cErrorMessage = (myConfig.cUrl == NULL ?
+			D_("No URL is defined.") :
+			D_("No data (no connection ?)"));
+		_insert_error_message (myApplet, cErrorMessage);
+		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+		
+		if (myConfig.cUserTitle != NULL)  // si un titre
+		{
+			pItem->cTitle = g_strdup (myConfig.cUserTitle);
+			pItem = g_new0 (CDRssItem, 1);
+			myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+		}
 		if (myConfig.cUrl == NULL)
 			pItem->cTitle = g_strdup (D_("No URL is defined."));
 		else
-			pItem->cTitle = g_strdup (D_("No data (no connection ?)"));
+			pItem->cTitle = g_strdup (D_("No data (no connection ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -371,9 +414,11 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	if (doc == NULL)
 	{
 		cd_warning ("RSSresader : got invalid XML data");
-		CDRssItem *pItem = g_new0 (CDRssItem, 1);
+		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
+		_insert_error_message (myApplet, cErrorMessage);
+		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));
+		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -391,9 +436,11 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		xmlCleanupParser ();
 		xmlFreeDoc (doc);
 		
-		CDRssItem *pItem = g_new0 (CDRssItem, 1);
+		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
+		_insert_error_message (myApplet, cErrorMessage);
+		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));
+		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -405,10 +452,11 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	// on extrait chaque item.
+	GList *pNewItemList = NULL;
 	CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
-	myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+	pNewItemList = g_list_prepend (pNewItemList, pItem);
 	if (myConfig.cUserTitle != NULL)
-		pItem->cTitle = g_strdup (myConfig.cUserTitle);
+		pItem->cTitle = g_strdup (myConfig.cUserTitle);  // ne sera pas ecrase par les donnees du flux.
 	
 	if (xmlStrcmp (rss->name, (const xmlChar *) "rss") == 0)  // RSS
 	{
@@ -423,7 +471,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		{
 			if (xmlStrcmp (channel->name, (const xmlChar *) "channel") == 0)
 			{
-				myData.pItemList = _parse_rss_item (channel, pItem, myData.pItemList);  // on parse le channel comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+				pNewItemList = _parse_rss_item (channel, pItem, pNewItemList);  // on parse le channel comme un item, ce qui fait que le titre du flux est considere comme un simple item.
 				break;  // un seul channel.
 			}
 		}
@@ -431,22 +479,23 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	else  // Atom
 	{
 		xmlNodePtr feed = rss;
-		myData.pItemList = _parse_atom_item (feed, pItem, myData.pItemList);  // on parse le feed comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+		pNewItemList = _parse_atom_item (feed, pItem, pNewItemList);  // on parse le feed comme un item, ce qui fait que le titre du flux est considere comme un simple item.
 	}
-	myData.pItemList = g_list_reverse (myData.pItemList);
+	pNewItemList = g_list_reverse (pNewItemList);
 	
 	xmlCleanupParser ();
 	xmlFreeDoc (doc);
 	
 	// si aucune donnee, on l'affiche et on quitte.
-	if (myData.pItemList == NULL)
+	if (pNewItemList == NULL)
 	{
 		cd_debug ("RSS: aucune donnee");
 		
-		pItem = g_new0 (CDRssItem, 1);
+		const gchar *cErrorMessage = D_("No data");
+		_insert_error_message (myApplet, cErrorMessage);
+		/**pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("No data"));
-		
+		pItem->cTitle = g_strdup (D_("No data"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -457,18 +506,19 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		return TRUE;
 	}
 	
+	myData.bError = FALSE;  // si on est arrive a ce point, c'est qu'il n'y a pas eu d'erreur.
+	// on vide l'ancienne liste d'items.
+	cd_rssreader_free_item_list (myApplet);
+	myData.pItemList = pNewItemList;
+	
 	// on met a jour le titre.
 	if (myIcon->cName == NULL)  // il faut mettre a jour le titre
 	{
 		if (myDock && myConfig.cUserTitle == NULL)  // en mode desklet inutile, le titre sera redessine avec le reste.
 		{
-			pItem = (myData.pItemList ? myData.pItemList->data : NULL);
+			pItem = myData.pItemList->data;
 			if (pItem != NULL && pItem->cTitle != NULL)
 				CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cTitle);
-			else if (myData.cTaskBridge)
-				CD_APPLET_SET_NAME_FOR_MY_ICON (D_("No data (invalid rss ?)"));
-			else
-				CD_APPLET_SET_NAME_FOR_MY_ICON (D_("No data (no connection ?)"));
 		}
 	}
 	
