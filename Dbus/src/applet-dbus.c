@@ -588,6 +588,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
 		pVisitCard->cDescription = g_strdup (cDescription);
+		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
 		//pVisitCard->bMultiInstance = TRUE;
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = cd_dbus_emit_on_init_module;

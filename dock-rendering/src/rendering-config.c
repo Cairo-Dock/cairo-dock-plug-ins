@@ -46,6 +46,7 @@ extern double my_fParaboleRatio;
 extern double my_fParaboleMagnitude;
 extern int my_iParaboleTextGap;
 extern gboolean my_bDrawTextWhileUnfolding;
+extern gboolean my_bParaboleCurveOutside;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
@@ -123,6 +124,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
 	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
 	my_bDrawTextWhileUnfolding = cairo_dock_get_boolean_key_value (pKeyFile, "Parabolic", "draw text", &bFlushConfFileNeeded, TRUE, NULL, NULL);
+	my_bParaboleCurveOutside = cairo_dock_get_boolean_key_value (pKeyFile, "Parabolic", "curve outside", &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	
 	
 	my_iSpaceBetweenRows = cairo_dock_get_integer_key_value (pKeyFile, "Rainbow", "space between rows", &bFlushConfFileNeeded, 10, NULL, NULL);

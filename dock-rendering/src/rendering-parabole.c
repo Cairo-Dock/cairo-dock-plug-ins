@@ -57,6 +57,7 @@ extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la 
 extern double my_fParaboleMagnitude;
 extern int my_iParaboleTextGap;
 extern gboolean my_bDrawTextWhileUnfolding;
+extern gboolean my_bParaboleCurveOutside;
 
 static double *s_pReferenceParaboleS = NULL;
 static double *s_pReferenceParaboleX = NULL;
@@ -78,7 +79,7 @@ void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *
 	//int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
 	int iX = iMouseX;
 	
-	if (pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_iScreenWidth[pDock->container.bIsHorizontal] / 2)
+	if ((pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_iScreenWidth[pDock->container.bIsHorizontal] / 2) ^ my_bParaboleCurveOutside)
 	{
 		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);

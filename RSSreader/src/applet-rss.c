@@ -134,6 +134,9 @@ void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 	g_list_free (myData.pItemList);
 	myData.pItemList = NULL;
 	myData.iFirstDisplayedItem = 0;
+	
+	cairo_dock_dialog_unreference (myData.pDialog);  // un peu bourrin mais bon ... on pourrait le reafficher s'il etait present ...
+	myData.pDialog = NULL;
 }
 
 
@@ -592,18 +595,86 @@ void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
 
 void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_remove_dialog_if_any (myIcon);
-	
-	if (myData.pItemList != NULL)
+	if (myData.pDialog != NULL)  // on detruit le dialogue actuel.
 	{
-		/// TODO : arriver a un dialogue remplacant completement l'utilisation du browser :
-		/// title + link + description
-		/// je pensais a un widget GTK a mettre dans le dialogue, et peut-etre un expander pour les descriptions.
-		/// aussi, il faudrait couper les lignes pour éviter que le dialgue soit immense en largeur.
+		cairo_dock_dialog_unreference (myData.pDialog);
+		myData.pDialog = NULL;
+		return;
+	}
+	cairo_dock_remove_dialog_if_any (myIcon);  // on enleve tout autre dialogue (message d'erreur).
+	
+	if (myData.pItemList != NULL)  // on construit le dialogue contenant toutes les infos.
+	{
+		GtkWidget *pVBox = gtk_vbox_new (FALSE, 0);  // le widget qu'on va inserer dans le dialogue.
+		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
+		gtk_widget_set (pScrolledWindow, "height-request", 250, NULL);
+		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+		gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pVBox);
 		
-		/// pour le moment c'est juste les titres, je n'ai rien ajoute ;-)
-		GString *sText = g_string_new ("");
+		PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
+		PangoFontDescription *fd = pango_font_description_from_string (NULL);
+		pango_layout_set_font_description (pLayout, fd);
+		
+		int w = MIN (600, g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]/2);
+		gchar *cLine;
+		GtkWidget *pLinkButton, *pAlign;
 		CDRssItem *pItem;
+		GList *it;
+		for (it = myData.pItemList->next; it != NULL; it = it->next)
+		{
+			pItem = it->data;
+			if (pItem->cTitle == NULL)
+				continue;
+			
+			cLine = g_strdup (pItem->cTitle);
+			cd_rssreader_cut_line (cLine, pLayout, w);
+			
+			if (pItem->cLink != NULL)
+				pLinkButton = gtk_link_button_new_with_label (pItem->cLink, cLine);
+			else
+				pLinkButton = gtk_label_new (cLine);
+			g_free (cLine);
+			
+			pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
+			gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
+			gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
+			
+			if (pItem->cDescription != NULL)
+			{
+				cLine = g_strdup (pItem->cDescription);
+				cd_rssreader_cut_line (cLine, pLayout, w);
+				pLinkButton = gtk_label_new (cLine);
+				g_free (cLine);
+				
+				pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
+				gtk_alignment_set_padding (pAlign, 0, 0, 20, 0);
+				gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
+				gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
+			}
+			
+			if (pItem->cAuthor != NULL)
+			{
+				gchar *by = g_strdup_printf ("  [by %s]", pItem->cAuthor);
+				pLinkButton = gtk_label_new (by);
+				g_free (by);
+				
+				pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
+				gtk_alignment_set_padding (pAlign, 0, 0, 40, 0);
+				gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
+				gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
+			}
+		}
+		pango_font_description_free (fd);
+		
+		pItem = myData.pItemList->data;  // le nom du flux en titre du dialogue.
+		myData.pDialog = cairo_dock_show_dialog_full (pItem->cTitle,
+			myIcon, myContainer,
+			0,
+			"same icon",
+			pScrolledWindow,
+			NULL, NULL, NULL);
+		/**GString *sText = g_string_new ("");
+		CDRssItem *pItem;cDescription
 		GList *it;
 		int i;
 		for (it = myData.pItemList, i = 0; it != NULL && i < myConfig.iNbLinesInDialog + 1; it = it->next, i ++)
@@ -622,7 +693,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			myContainer,
 			myConfig.iDialogsDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-		g_string_free (sText, TRUE);
+		g_string_free (sText, TRUE);*/
 	}
 	else  // on affiche un message clair a l'utilisateur.
 	{

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.2-0beta3],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.2-0rc1],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -242,7 +242,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 ANIMATED_ICONS_PACKAGE=cd-Animated-icons
 AC_SUBST(GETTEXT_ANIMATED_ICONS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.4")
+AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.5")
 AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
 
 AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
@@ -355,7 +355,7 @@ AC_SUBST(gnome_integration_olddatadir, "${pkgdatadir}/gnome-integration-old")
 ICON_EFFECTS_PACKAGE=cd-icon-effect
 AC_SUBST(GETTEXT_ICON_EFFECTS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ICON_EFFECTS, "1.2.1")
+AC_SUBST(VERSION_ICON_EFFECTS, "1.2.2")
 AC_SUBST(PACKAGE_ICON_EFFECTS, "$ICON_EFFECTS_PACKAGE")
 
 AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
@@ -364,7 +364,7 @@ AC_SUBST(icon_effectsdatadir, "${pkgdatadir}/icon-effect")
 ILLUSION_PACKAGE=cd-illusion
 AC_SUBST(GETTEXT_ILLUSION, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ILLUSION, "1.0.3")
+AC_SUBST(VERSION_ILLUSION, "1.0.4")
 AC_SUBST(PACKAGE_ILLUSION, "$ILLUSION_PACKAGE")
 
 AC_SUBST(illusiondatadir, "${pkgdatadir}/illusion")

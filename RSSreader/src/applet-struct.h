@@ -82,6 +82,8 @@ struct _AppletData {
 	guint iSidRedrawIdle;
 	gboolean bError;  // true si une erreur a ete inseree dans le flux.
 	gboolean bInit;  // true si on a deja recupere au moins une fois le flux.
+	
+	CairoDialog *pDialog;
 	} ;
 
 

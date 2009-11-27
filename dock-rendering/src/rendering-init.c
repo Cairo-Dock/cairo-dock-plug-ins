@@ -58,6 +58,7 @@ double my_fParaboleRatio;  // hauteur/largeur.
 double my_fParaboleMagnitude;
 int my_iParaboleTextGap;
 gboolean my_bDrawTextWhileUnfolding;
+gboolean my_bParaboleCurveOutside;
 
 int my_iSpaceBetweenRows;
 int my_iSpaceBetweenIcons;

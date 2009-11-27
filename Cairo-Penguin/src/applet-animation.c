@@ -113,7 +113,7 @@ void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContai
 		return ;
 	
 	glPushMatrix ();
-	glLoadIdentity ();
+	///glLoadIdentity ();
 	
 	if (! myDock->container.bIsHorizontal)
 	{

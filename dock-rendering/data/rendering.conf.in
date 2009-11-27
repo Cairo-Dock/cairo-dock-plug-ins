@@ -46,6 +46,9 @@ ratio = 5
 #{0 means the wave is totally flat, 1 means the wave is maximal.}
 wave magnitude= .2
 
+#b+ Curve towards the outside ?
+curve outside = true
+
 #i+[0;20] Space between icons and their label :
 #{in pixels.}
 text gap = 3

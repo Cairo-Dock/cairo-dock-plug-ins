@@ -36,7 +36,7 @@ CD_APPLET_DEFINITION (N_("RSSreader"),
 	"USAGE:\n"
 	" - Left-click : display the complete feed lines in a dialog.\n"
 	" - Middle-click : refresh the feed.\n"
-	" - Scroll on the desklet : make the feed lines scroll\.n"
+	" - Scroll on the desklet : make the feed lines scroll.\n"
 	" - Drag and drop a valid URL on the icon to use it,\n"
 	"    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 	"    or edit the Configuration Panel."),
