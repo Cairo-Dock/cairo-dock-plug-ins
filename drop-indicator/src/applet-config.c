@@ -26,10 +26,11 @@
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.fRotationSpeed = CD_CONFIG_GET_DOUBLE ("Configuration", "rotation speed");
-	myConfig.iSpeed = CD_CONFIG_GET_INTEGER ("Configuration", "speed");
-	myConfig.cDropIndicatorImageName = CD_CONFIG_GET_STRING ("Configuration", "drop indicator");
-	myConfig.cHoverIndicatorImageName = CD_CONFIG_GET_STRING ("Configuration", "hover indicator");
+	CD_CONFIG_RENAME_GROUP ("Configuration", "Drag and drop indicator");
+	myConfig.fRotationSpeed = CD_CONFIG_GET_DOUBLE ("Drag and drop indicator", "rotation speed");
+	myConfig.iSpeed = CD_CONFIG_GET_INTEGER ("Drag and drop indicator", "speed");
+	myConfig.cDropIndicatorImageName = CD_CONFIG_GET_STRING ("Drag and drop indicator", "drop indicator");
+	myConfig.cHoverIndicatorImageName = CD_CONFIG_GET_STRING ("Drag and drop indicator", "hover indicator");
 CD_APPLET_GET_CONFIG_END
 
 

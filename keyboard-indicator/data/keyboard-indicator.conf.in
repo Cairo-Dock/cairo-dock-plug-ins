@@ -97,8 +97,6 @@ disp=
 #P+ Font :
 font = Sans 12
 
-text weight = 3
-
 #c+ Text color
 text color =
 

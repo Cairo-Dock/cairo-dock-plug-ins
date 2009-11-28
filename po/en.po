@@ -6751,7 +6751,7 @@ msgstr "Name of the icon as it will appear in its label in cairo-dock :"
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
-msgstr "GUI"
+msgstr "Configuration"
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"

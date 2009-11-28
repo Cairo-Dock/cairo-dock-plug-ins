@@ -673,27 +673,6 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			"same icon",
 			pScrolledWindow,
 			NULL, NULL, NULL);
-		/**GString *sText = g_string_new ("");
-		CDRssItem *pItem;cDescription
-		GList *it;
-		int i;
-		for (it = myData.pItemList, i = 0; it != NULL && i < myConfig.iNbLinesInDialog + 1; it = it->next, i ++)
-		{
-			pItem = it->data;
-			if (pItem->cTitle == NULL)
-			{
-				i --;
-				continue;
-			}
-			
-			g_string_append_printf (sText, "%s\n", pItem->cTitle);
-		}
-		cairo_dock_show_temporary_dialog_with_icon (sText->str,
-			myIcon,
-			myContainer,
-			myConfig.iDialogsDuration,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-		g_string_free (sText, TRUE);*/
 	}
 	else  // on affiche un message clair a l'utilisateur.
 	{

@@ -82,6 +82,7 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
+
 #F[Directory;gtk-file]
 frame_td=
 #D Directory of the images :
@@ -119,4 +120,4 @@ no stretch=true
 fill icon = false
 #C+ Choose a background color :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
-background color = 1.0; 1.0; 1.0; 1.0
+background color = 1.0; 1.0; 1.0; 0.

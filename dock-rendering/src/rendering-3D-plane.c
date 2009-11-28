@@ -37,8 +37,8 @@ extern GLuint my_iFlatSeparatorTexture;
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;\
-	double h0max = (1 + g_fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX (myLabels.iLabelSize, myBackground.iFrameMargin + myBackground.iDockLineWidth);\
-	double h0 = pDock->iMaxIconHeight * pDock->container.fRatio;\
+	double h0max = (1 + g_fAmplitude) * pDock->iMaxIconHeight/** * pDock->container.fRatio*/ + MAX (myLabels.iLabelSize, myBackground.iFrameMargin + myBackground.iDockLineWidth);\
+	double h0 = pDock->iMaxIconHeight/** * pDock->container.fRatio*/;\
 	double H = iVanishingPointY;\
 	double l = myBackground.iDockLineWidth;\
 	double r = MIN (myBackground.iDockRadius, (hi + h0) / 2);\

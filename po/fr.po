@@ -6800,7 +6800,7 @@ msgstr "Nom de l'icône qui apparaîtra dans son étiquette dans le dock ;"
 
 #: ../systray/data/messages:39 ../terminal/data/messages:85
 msgid "GUI"
-msgstr "IHM"
+msgstr "Configuration"
 
 #: ../systray/data/messages:41
 msgid "Shortkey to toggle the systray in dock mode :"

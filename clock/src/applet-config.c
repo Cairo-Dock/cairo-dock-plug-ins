@@ -48,13 +48,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	
 	//\_______________ On recupere les parametres d'apparence.
-	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "style", -1);  // dans le .conf par defaut c'est aussi -1, donc si cette cle n'existait pas, on est sur qu'elle a ete rajoutee avec la valeur -1.
+	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "style", -1);  // si cette cle n'existait pas, elle a ete rajoutee avec la valeur -1.
 	if (iStyle == -1)
 	{
 		g_print ("*** pas de cle 'style'\n");
 		myConfig.bOldStyle = CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
 		g_key_file_set_integer (pKeyFile, "Module", "style", myConfig.bOldStyle ? 0 : 1);
-		bFlushConfFileNeeded = TRUE;  // petit hack pas mechant, en effet si il y a eu changement de version, le fichier a deja ete mis a jour.
 	}
 	else
 	{
@@ -93,7 +92,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 			g_free (cFontDescription);
 			cFontDescription = pango_font_description_to_string (fd);
 			g_key_file_set_string (pKeyFile, "Module", "font", cFontDescription);
-			bFlushConfFileNeeded = TRUE;
 		}
 		pango_font_description_free (fd);
 		g_free (cFontDescription);

@@ -260,7 +260,7 @@ AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")
 CAIRO_PENGUIN_PACKAGE="cd-Cairo-Penguin"
 AC_SUBST(GETTEXT_CAIRO_PENGUIN, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CAIRO_PENGUIN, "1.2.0")
+AC_SUBST(VERSION_CAIRO_PENGUIN, "1.1.5")
 AC_SUBST(PACKAGE_CAIRO_PENGUIN, "$CAIRO_PENGUIN_PACKAGE")
 cairo_penguinuserdirname="Cairo-Penguin"
 AC_SUBST(cairo_penguinuserdirname)
@@ -271,7 +271,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CLOCK, "2.0.5")
+AC_SUBST(VERSION_CLOCK, "2.0.6")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 clockuserdirname="clock"
 AC_SUBST(clockuserdirname, "clock")
@@ -309,7 +309,7 @@ AC_SUBST(dnd2sharedatadir, "${pkgdatadir}/dnd2share")
 DROP_INDICATOR_PACKAGE=cd-drop_indicator
 AC_SUBST(GETTEXT_DROP_INDICATOR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_DROP_INDICATOR, "1.1.1")
+AC_SUBST(VERSION_DROP_INDICATOR, "1.1.2")
 AC_SUBST(PACKAGE_DROP_INDICATOR, "$DROP_INDICATOR_PACKAGE")
 
 AC_SUBST(drop_indicatordatadir, "${pkgdatadir}/drop-indicator")
@@ -472,7 +472,7 @@ AC_SUBST(dialog_renderingdatadir, "${pkgdatadir}/dialog-rendering")
 QUICK_BROWSER_PACKAGE=cd-quick-browser
 AC_SUBST(GETTEXT_QUICK_BROWSER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_QUICK_BROWSER, "1.0.4")
+AC_SUBST(VERSION_QUICK_BROWSER, "1.0.5")
 AC_SUBST(PACKAGE_QUICK_BROWSER, "$QUICK_BROWSER_PACKAGE")
 
 AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
@@ -481,7 +481,7 @@ AC_SUBST(quick_browserdatadir, "${pkgdatadir}/quick_browser")
 RSS_READER_PACKAGE=cd-rssreader
 AC_SUBST(GETTEXT_RSS_READER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_RSS_READER, "0.3.0")
+AC_SUBST(VERSION_RSS_READER, "1.0.0")
 AC_SUBST(PACKAGE_RSS_READER, "$RSS_READER_PACKAGE")
 
 AC_SUBST(rss_readerdatadir, "${pkgdatadir}/RSSreader")
@@ -499,7 +499,7 @@ AC_SUBST(scooby_dodatadir, "${pkgdatadir}/Scooby-Do")
 SHORTCUTS_PACKAGE=cd-shortcuts
 AC_SUBST(GETTEXT_SHORTCUTS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHORTCUTS, "1.3.0")
+AC_SUBST(VERSION_SHORTCUTS, "1.2.2")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
@@ -553,7 +553,7 @@ AC_SUBST(stackdatadir, "${pkgdatadir}/stack")
 SWITCHER_PACKAGE="cd-switcher"
 AC_SUBST(GETTEXT_SWITCHER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SWITCHER, "2.1.0")
+AC_SUBST(VERSION_SWITCHER, "2.1.1")
 AC_SUBST(PACKAGE_SWITCHER, "$SWITCHER_PACKAGE")
 
 AC_SUBST(switcherdatadir, "${pkgdatadir}/switcher")

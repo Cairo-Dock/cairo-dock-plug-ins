@@ -53,16 +53,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_free (cFontDescription);
 		cFontDescription = pango_font_description_to_string (fd);
 		g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
-		bFlushConfFileNeeded = TRUE;
 	}
 	pango_font_description_free (fd);
 	g_free (cFontDescription);
 	
-	int iWeight = CD_CONFIG_GET_INTEGER ("Configuration", "text weight");
-	myConfig.textDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
-	myConfig.textDescription.iStyle = PANGO_STYLE_NORMAL;
 	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
-	myConfig.textDescription.cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
 	
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 CD_APPLET_GET_CONFIG_END

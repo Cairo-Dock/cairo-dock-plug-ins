@@ -31,8 +31,6 @@ struct _AppletConfig {
 	gchar *cUrlPassword;
 	gchar *cUserTitle;
 	gint iRefreshTime;
-	gint iNbLinesInDialog;
-	gint iMaxLines;  // bof.
 	gchar *cSpecificWebBrowser;
 	gboolean bDialogIfFeedChanged;
 	gchar *cAnimationIfFeedChanged;

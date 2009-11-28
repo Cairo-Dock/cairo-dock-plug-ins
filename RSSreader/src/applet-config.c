@@ -41,8 +41,6 @@ CD_APPLET_GET_CONFIG_BEGIN
   	g_free(cEncryptedPassword);
 	}
 	myConfig.iRefreshTime 		= 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
-	myConfig.iNbLinesInDialog 	= CD_CONFIG_GET_INTEGER ("Configuration", "lines_rss_feed");
-	myConfig.iMaxLines 		= CD_CONFIG_GET_INTEGER ("Configuration", "max_lines_for_feed_lines");  /// pas franchement utile...
 	myConfig.cSpecificWebBrowser 	= CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");  // si NULL, on ouvrira l'URL avec les fonctions du dock, xdg-open est loin d'etre installe partout.
 	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
 	myConfig.cAnimationIfFeedChanged = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");

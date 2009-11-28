@@ -64,6 +64,9 @@ duration = 1000
 #b+ Repeat while icon is pointed ?
 continue = true
 
+#F-[Spot;gtk-dialog-info]
+frame_spot =
+
 #S+ Image for the spot :
 #{Let empty to use the default one.}
 spot image =
@@ -148,6 +151,7 @@ zoom = 2
 
 #b+ Should the pulse follow the shape of the icon ?
 same shape = true
+
 
 #[@animated_iconsdatadir@/icon-bounce.png]
 [Bounce]

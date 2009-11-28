@@ -86,6 +86,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#F[Items;gtk-convert]
+frame_item =
+
 #l[None;Clipboard;Selection;Both] Which items should be remembered ?
 #{Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse.}
 item type = 3
@@ -93,7 +96,7 @@ item type = 3
 #I[1;50] Number of items :
 nb items = 10
 
-#b Separate clipboard and selection ?
+#B Separate clipboard and selection ?
 #{It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items.}
 separate = false
 
@@ -129,6 +132,7 @@ replay action = false
 #I[1;12] Duration of the action menu :
 #{in seconds.}
 action duration = 4
+
 
 #F[Persistent items;gtk-dnd-multiple]
 frame_per =

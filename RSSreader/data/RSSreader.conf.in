@@ -101,9 +101,6 @@ RSS_login =
 #p0 RSS password (optional):
 RSS_password =
 
-#i[1;50] Number of feed lines to display in the dialog :
-lines_rss_feed=10
-
 
 #F[Behaviour;gtk-execute]
 frame_behav= 

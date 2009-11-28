@@ -85,7 +85,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Module]
 
-#F[Icons]
+#F[Items]
 frame_icon=
 
 #b List drives and volumes ?
@@ -98,8 +98,11 @@ list network = false
 #{GTK bookmarks, that are used by Nautilus for exemple.}
 list bookmarks = true
 
+#F[Display]
+frame_icon=
+
 #b Separate different shortcuts with separators ?
-use separator = true
+use separator = false
 
 #n+ Name of the view used for the sub-dock :
 #{Let it empty to use default sub-dock view.}/

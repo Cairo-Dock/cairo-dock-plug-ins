@@ -108,10 +108,9 @@ location =
 #F[Style;gtk-color-picker]
 frame_style =
 
-old fashion style = true
-#y+[Analogic;Numeric] Choose the view :
+#l+[Analogic;Numeric] Choose the view :
 #{The analogic view is based on CairoClock; otherwise it will be displayed in a numeric way.}
-style = -1
+style = 1
 
 #X[Analogic View;@clockdatadir@/icon.png]
 analogic=
@@ -127,8 +126,6 @@ numeric=
 
 #P+ Font :
 font = Sans 16
-
-weight = 5
 
 #C+ Text color :
 text color = 0.0; 0.0; 0.5; 1.

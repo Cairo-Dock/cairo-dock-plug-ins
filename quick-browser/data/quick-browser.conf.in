@@ -84,18 +84,25 @@ fg desklet =
 #e+[0;1] Foreground tansparency :
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
 #D Folder to browse :
 dir path = ~
 
-#b Display icons in the menu ?
+#B Display icons in the menu ?
 #{It can be quite heavy to load a lot of icons.}
 has icons=true
 
 #l[small;medium;large] Icon size :
 icon size=0
+
+#k Shortkey to show/hide the menu :
+menu shortkey = <Control>F6
+
+#v
+sep_opt =
 
 #b List folders first ?
 folders first = true
@@ -105,9 +112,6 @@ case unsensitive = true
 
 #b Show hidden files ?
 show hidden = false
-
-#k Shortkey to show/hide the menu :
-menu shortkey = <Control>F6
 
 #i[1;20] Gradual building of the menu :
 #{Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more.}

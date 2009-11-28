@@ -7,7 +7,7 @@
 #{The lower, the more the point of view is low on the plane.}
 vanishing point y = 200
 
-#l+[Normal separator;Flat separator;Physical separator] Choose the way separators are drawn :
+#Y+[Normal separator;0;0;Flat separator;1;1;Physical separator;0;0] Choose the way separators are drawn :
 draw separator = 0
 
 #C+ For flat separators, you can specify their color:
@@ -160,7 +160,7 @@ simple_arrowShift = 0
 
 #I+[0;100] Curvature of the curve in percent :
 #{The lower, the more the curve will seem flat.}
-curvature = 50
+curvature = 60
 
 #i+[0;50] Amplitude of the curve.
 #{in pixels.}

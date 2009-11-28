@@ -220,7 +220,6 @@ static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 	}
 }
 
-
 CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
 {
 	CDQuickBrowserItem *pRootItem = g_new0 (CDQuickBrowserItem, 1);
