@@ -47,10 +47,13 @@ duration = 1500
 #b+ Repeat while icon is pointed ?
 continue = false
 
+#v
+sep =
+
 #l+ [Normal;Cube;Capsule] Type of mesh :
 mesh = 2
 
-#c+4 color of the mesh :
+#c+4 Color of the sheen :
 color = 1;1;1;1
 
 
@@ -129,6 +132,9 @@ duration = 290
 #b+ Repeat while icon is pointed ?
 continue = false
 
+#v
+sep =
+
 #e+[0.1;2] Width of the wave :
 width = 1.7
 
@@ -146,6 +152,9 @@ duration = 500
 #b+ Repeat while icon is pointed ?
 continue = false
 
+#v
+sep =
+
 #e+[1.2;4] Zoom max of the pulse :
 zoom = 2
 
@@ -162,6 +171,9 @@ duration = 800
 
 #b+ Repeat while icon is pointed ?
 continue = false
+
+#v
+sep =
 
 #e+[.4;1] When bouncing, resize the icon of :
 resize = .8

@@ -27,8 +27,9 @@ frame_applet =
 #V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applets :
 click applets = 2
 
-#v
-sep =
+#F-
+frame_appli_ =
+
 
 #b+ Draw in background ?
 background = false
@@ -44,10 +45,10 @@ rotate = false
 duration = 1000
 
 #b+ Repeat while icon is pointed ?
-continue = false
+continue = 
 
-#v
-sep_col = 
+#F[Colors]
+frame_col =
 
 #c+3 1st color of gradation :
 color1 = 1;0.12;0
@@ -62,8 +63,8 @@ mystical = false
 #{It will slightly alter the colors, so you may have to modify them.}
 luminous = true
 
-#v
-sep_part =
+#F[Particles]
+frame_part =
 
 #I[10;500] Number of particles :
 nb part = 150
@@ -85,8 +86,8 @@ duration = 2000
 #b+ Repeat while icon is pointed ?
 continue = true
 
-#v
-sep_col = 
+#F[Colors]
+frame_col =
 
 #c+3 1st color of gradation :
 color1 = 1;1;.7
@@ -97,8 +98,8 @@ color2 = .9;.9;.9
 #b+ Random colors ?
 mystical = false
 
-#v
-sep_part =
+#F[Particles]
+frame_part =
 
 #I[10;300] Number of particles :
 nb part = 25
@@ -117,8 +118,8 @@ duration = 2000
 #b+ Repeat while icon is pointed ?
 continue = false
 
-#v
-sep_col = 
+#F[Colors]
+frame_col =
 
 #c+3 1st color of gradation :
 color1 = 1.;1.;1.
@@ -126,8 +127,8 @@ color1 = 1.;1.;1.
 #c+3 2nd color of gradation :
 color2 = .8;.9;.9
 
-#v
-sep_part =
+#F[Particles]
+frame_part =
 
 #I[10;300] Number of particles :
 nb part = 50
@@ -149,8 +150,8 @@ duration = 2000
 #b+ Repeat while icon is pointed ?
 continue = true
 
-#v
-sep_col = 
+#F[Colors]
+frame_col =
 
 #c+3 1st color of gradation :
 color1 = .5;.9;1.
@@ -158,8 +159,8 @@ color1 = .5;.9;1.
 #c+3 2nd color of gradation :
 color2 = .9;.9;.9
 
-#v
-sep_part =
+#F[Particles]
+frame_part =
 
 #I[10;300] Number of particles :
 nb part = 70
@@ -181,8 +182,8 @@ duration = 4000
 #b+ Repeat while icon is pointed ?
 continue = true
 
-#v
-sep_col = 
+#F[Colors]
+frame_col =
 
 #c+3 1st color of gradation :
 color1 = .6;.6;.6
@@ -190,8 +191,8 @@ color1 = .6;.6;.6
 #c+3 2nd color of gradation :
 color2 = .0;.4;.6
 
-#v
-sep_part =
+#F[Particles]
+frame_part =
 
 #I[10;400] Number of particles :
 nb part = 100

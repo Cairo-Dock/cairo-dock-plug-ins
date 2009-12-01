@@ -50,6 +50,7 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 	PangoRectangle ink, log;
 	gchar *sp, *last_sp=NULL;
 	double w;
+	int iNbLines = 0;
 	
 	gchar *str = cLine;
 	while (*str == ' ')  // on saute les espaces en debut de ligne.
@@ -74,11 +75,13 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 			{
 				*sp = ' ';  // on remet l'espace.
 				*last_sp = '\n';  // on coupe.
+				iNbLines ++;
 				str = last_sp + 1;  // on place le debut de ligne apres la coupure.
 			}
 			else  // aucun espace, c'est un mot entier.
 			{
 				*sp = '\n';  // on coupe apres le mot.
+				iNbLines ++;
 				str = sp + 1;  // on place le debut de ligne apres la coupure.
 			}
 			
@@ -356,7 +359,7 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 			myData.pItemList = g_list_insert (myData.pItemList, pItem, 1);
 		}
 	}
-	else  // aucune liste : c'est la 1ere recuperation.
+	else  // aucune liste : c'est la 1ere recuperation => on met le titre si possible, suivi du message d'erreur.
 	{
 		pItem = g_new0 (CDRssItem, 1);
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
@@ -364,7 +367,7 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 		{
 			pItem->cTitle = g_strdup (myConfig.cUserTitle);
 			pItem = g_new0 (CDRssItem, 1);
-			myData.pItemList = g_list_prepend (myData.pItemList, pItem);
+			myData.pItemList = g_list_append (myData.pItemList, pItem);
 		}
 		pItem->cTitle = g_strdup (cErrorMessage);
 	}
@@ -389,19 +392,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 			D_("No URL is defined.") :
 			D_("No data (no connection ?)"));
 		_insert_error_message (myApplet, cErrorMessage);
-		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
-		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		
-		if (myConfig.cUserTitle != NULL)  // si un titre
-		{
-			pItem->cTitle = g_strdup (myConfig.cUserTitle);
-			pItem = g_new0 (CDRssItem, 1);
-			myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		}
-		if (myConfig.cUrl == NULL)
-			pItem->cTitle = g_strdup (D_("No URL is defined."));
-		else
-			pItem->cTitle = g_strdup (D_("No data (no connection ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -419,9 +409,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		cd_warning ("RSSresader : got invalid XML data");
 		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
 		_insert_error_message (myApplet, cErrorMessage);
-		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
-		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -441,9 +428,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		
 		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
 		_insert_error_message (myApplet, cErrorMessage);
-		/**CDRssItem *pItem = g_new0 (CDRssItem, 1);
-		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Invalid data (invalid RSS/Atom feed ?)"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -496,9 +480,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		
 		const gchar *cErrorMessage = D_("No data");
 		_insert_error_message (myApplet, cErrorMessage);
-		/**pItem = g_new0 (CDRssItem, 1);
-		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("No data"));*/
 		if (myDesklet)
 		{
 			cd_applet_update_my_icon (myApplet);
@@ -539,7 +520,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 				myIcon,
 				myContainer,
 				2000, // Suffisant vu que la MaJ est manuelle
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 				
 			myData.bUpdateIsManual = FALSE;
 		}
@@ -562,7 +543,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 				myIcon,
 				myContainer,
 				myConfig.iDialogsDuration,
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
 		if (myConfig.cAnimationIfFeedChanged)
 		{
@@ -603,8 +584,9 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 	}
 	cairo_dock_remove_dialog_if_any (myIcon);  // on enleve tout autre dialogue (message d'erreur).
 	
-	if (myData.pItemList != NULL)  // on construit le dialogue contenant toutes les infos.
+	if (myData.pItemList != NULL && myData.pItemList->next != NULL && (myData.pItemList->next->next != NULL || ! myData.bError))  // on construit le dialogue contenant toutes les infos.
 	{
+		// On construit le widget GTK qui contient les lignes avec les liens.
 		GtkWidget *pVBox = gtk_vbox_new (FALSE, 0);  // le widget qu'on va inserer dans le dialogue.
 		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 		gtk_widget_set (pScrolledWindow, "height-request", 250, NULL);
@@ -667,10 +649,12 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 		pango_font_description_free (fd);
 		
 		pItem = myData.pItemList->data;  // le nom du flux en titre du dialogue.
+		
+		// on affiche le dialogue.
 		myData.pDialog = cairo_dock_show_dialog_full (pItem->cTitle,
 			myIcon, myContainer,
 			0,
-			"same icon",
+			myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			pScrolledWindow,
 			NULL, NULL, NULL);
 	}
@@ -681,12 +665,12 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 				myIcon,
 				myContainer,
 				myConfig.iDialogsDuration,
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		else
 			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed ?\nIs your connection alive ?"),
 				myIcon,
 				myContainer,
 				myConfig.iDialogsDuration,
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }

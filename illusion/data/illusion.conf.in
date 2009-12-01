@@ -16,6 +16,9 @@ appearance = 4
 #I[100;5000] Duration of the animation :
 duration = 1000
 
+#F[Colors]
+frame_col =
+
 #c+3 1st color of gradation :
 color1 = 0;0.7;1
 
@@ -24,6 +27,9 @@ color2 = 1;1;0
 
 #b+ Random colors ?
 mystical = false
+
+#F[Particles]
+frame_part =
 
 #I[10;500] Number of particles :
 nb part = 75
@@ -51,6 +57,9 @@ duration = 1000
 #I[100;5000] Duration of the animation :
 duration = 800
 
+#v
+sep =
+
 #i[4;100] Number of pieces :
 nb pieces = 49
 
@@ -67,6 +76,9 @@ cubes = true
 #I[100;2000] Duration of the animation :
 duration = 650
 
+#v
+sep =
+
 #i[5;21] Number of pieces :
 nb pieces = 11
 
@@ -75,6 +87,9 @@ nb pieces = 11
 
 #I[100;5000] Duration of the animation :
 duration = 1300
+
+#v
+sep =
 
 #e[.2;2.] Rotation speed :
 #{in round per second.}

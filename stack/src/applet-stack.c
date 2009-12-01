@@ -100,7 +100,12 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');
 			if (str != NULL)
+			{
 				*str = '\0';
+				str ++;
+			}
+			else
+				str = buf;
 			if (str[strlen(str)-1] == '/')
 				str[strlen(str)-1] = '\0';
 			str = strrchr (buf, '/');
