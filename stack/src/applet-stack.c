@@ -95,7 +95,7 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	
 	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
 	{
-		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0)
+		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');

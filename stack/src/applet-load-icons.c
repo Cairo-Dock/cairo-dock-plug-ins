@@ -56,7 +56,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	Icon *pIcon = NULL;
 	if (cairo_dock_string_is_adress (cContent))
 	{
-		if (strncmp (cContent, "http://", 7) == 0)
+		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{
 			pIcon = g_new0 (Icon, 1);
 			pIcon->cCommand = cContent;
