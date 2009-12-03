@@ -91,7 +91,7 @@ fg alpha = 1
 #F[Info-bubbles;gtk-dialog-info]
 frame_info =
 
-#b Enable info-bubbles ?
+#B Enable info-bubbles ?
 enable_dialogs = true
 
 #i[1;15] Duration of the info-bubbles :
@@ -104,20 +104,19 @@ frame_behav =
 #I[0;100] Number of items to keep in the history :
 nb_items = 10
 
-#b Keep a copy of each uploaded image ?
+#B Keep a copy of each uploaded image ?
 keep copy = false
 
 #b If so, display the last image on the icon ?
 #{This will override the image setting.}
 display last image = false
 
-#i[0;1000] Maximum upload rate:
-#{in KB/s - 0 means unlimited}
-limit rate = 0
-
 #a+ Animation of the icon during upload :
 animation=pulse
 
+#i[0;1000] Maximum upload rate:
+#{in KB/s - 0 means unlimited}
+limit rate = 0
 
 #F[Sites;gtk-convert]
 frame_site =

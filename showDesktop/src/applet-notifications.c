@@ -93,9 +93,9 @@ static void _cd_expose (void)
 	_compiz_dbus_action ("expo/allscreens/expo_button");  // expo avant la 0.7
 }
 
-static void _cd_action_on_middle_click (void)
+static void _cd_action (CDActionOnClick iAction)
 {
-	switch (myConfig.iActionOnMiddleClick)
+	switch (iAction)
 	{
 		case CD_SHOW_DESKTOP :
 			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
@@ -128,14 +128,14 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	_cd_action_on_middle_click ();
+	_cd_action (myConfig.iActionOnMiddleClick);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 
 void on_keybinding_pull (const char *keystring, gpointer user_data)
 {
-	_cd_action_on_middle_click ();
+	_cd_action (myConfig.iActionOnMiddleClick);
 }
 
 

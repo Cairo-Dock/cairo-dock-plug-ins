@@ -38,9 +38,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.criticalBatteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "critical battery", TRUE);
 	
-	myConfig.batteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "battery witness", TRUE);
-	
 	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_STRING ("Configuration", "battery_animation");
+	myConfig.batteryWitness = (myConfig.batteryWitnessAnimation != NULL);
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
 	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");

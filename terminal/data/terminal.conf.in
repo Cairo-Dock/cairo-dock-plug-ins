@@ -92,15 +92,22 @@ fg alpha = 1
 
 #[gtk-preferences]
 [GUI]
-#e[0;1] Terminal's transparency :
-#{needs to restart the applet.}
-terminal transparency=.5
 
-#c+ Foreground color (r, v, b):
+#F[Colors]
+frame_col =
+
+#e[0;1;transparent;opaque] Terminal's transparency :
+#{needs to restart the applet.}
+terminal transparency=.6
+
+#c+ Foreground color :
 foreground color= 1.; 1.; 1.
 
-#c+ Background color (r, v, b):
+#c+ Background color :
 background color= 0.; 0.; 0.
+
+#F[Terminal]
+frame_term =
 
 #I[5;50] Size of the terminal (line x columns) :
 #{When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual.}

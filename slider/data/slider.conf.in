@@ -91,9 +91,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Directory;gtk-file]
+#F[Folder;gtk-directory]
 frame_td=
-#D Directory of the images :
+#D Folder of the images :
 directory= 
 #b Scan in sub direcotries ?
 sub directories=false
@@ -108,17 +108,21 @@ use_thread = true
 
 #F[Behaviour;gtk-execute]
 frame_ops=
+
 #i[1;500] Sliding delay :
 #{in seconds.}
 slide time=30
+
 #l[play/pause;open image] Action when applet is clicked :
 click=0
+
 #l[none;fade;blank fade;fade in out;side kick;diaporama;grow up;shrink down;cube;random] Effect while changing image :
 change animation=1
-#i[8;60] Number of steps for a transition :
+
+#I[8;60;fast;slow] Number of steps for a transition :
 nb step = 20
 
-#F[Display;gtk-dnd-multiple]
+#F[Display;gtk-orientation-portrait]
 frame_disp=
 #b Keep widht/height ratio ?
 #{Gives a better image rendering.}

@@ -111,7 +111,7 @@ text color =
 #b+ Outline text ?
 outlined = true
 
-#e[.3;1] Relative size of the text :
+#e[.3;1;smaller;normal] Relative size of the text :
 #{the smaller is the text in the icon. 1 means the text fills all the icon.}
 text ratio = 1
 

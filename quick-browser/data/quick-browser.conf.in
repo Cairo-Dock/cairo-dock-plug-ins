@@ -96,18 +96,11 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#F[Folder;gtk-directory]
+frame_fold =
+
 #D Folder to browse :
 dir path = ~
-
-#B Display icons in the menu ?
-#{It can be quite heavy to load a lot of icons.}
-has icons=true
-
-#l[small;medium;large] Icon size :
-icon size=0
-
-#k Shortkey to show/hide the menu :
-menu shortkey = <Control>F6
 
 #v
 sep_opt =
@@ -120,6 +113,19 @@ case unsensitive = true
 
 #b Show hidden files ?
 show hidden = false
+
+#F[Menu;gtk-indent]
+frame_menu =
+
+#B Display icons in the menu ?
+#{It can be quite heavy to load a lot of icons.}
+has icons=true
+
+#l[small;medium;large] Icon size :
+icon size=0
+
+#k Shortkey to show/hide the menu :
+menu shortkey = <Control>F6
 
 #i[1;20] Gradual building of the menu :
 #{Number of items loaded at once. Setting a high value speeds up a little the loading, but blocks the appli more.}

@@ -94,9 +94,6 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b Keep ratio ?
-keep ratio = true
-
 #h+[@toonsdatadir@/themes;@toonsuserdirname@;@toonsuserdirname@] Choose one of the available themes :/
 theme = Classic
 
@@ -107,6 +104,9 @@ wink delay = 20
 #i[50;500] Wink duration :
 #{in ms.}
 wink duration = 150
+
+#b Keep ratio ?
+keep ratio = true
 
 #b High refresh frequency ?
 #{A high refresh frequency will use more CPU.}

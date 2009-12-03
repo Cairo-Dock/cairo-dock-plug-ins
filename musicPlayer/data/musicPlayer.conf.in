@@ -103,14 +103,18 @@ inhibate appli = true
 #l[Play/Pause on click, Next on middle-click;Show/Hide player on click, Play/Pause on middle-click] Actions on click and middle-click :
 pause on click = 0
 
+
 #F[Action on music change;gtk-preferences]
 frame_info=
-#b Show an info-bubble ?
+
+#B Show an info-bubble ?
 enable_dialogs=true
+
 #i[1;30] Time length of info-bubbles :
 #{in s.}
 time_dialog = 4
-#a Animation when music changes :
+
+#a+ Animation when music changes :
 change_animation = wobbly
 
 
@@ -120,14 +124,14 @@ frame_disp =
 #l[Nothing;Time Elapsed;Time Left;N° of track] Information to display on the icon :
 quick-info_type=1
 
-#b Display album's cover ?
+#B Display album's cover ?
 enable_cover = true
 
 #b Allow Cairo-Dock to download missing covers ?
 #{You need to be connected to the Internet.}
 DOWNLOAD=true
 
-#b Use 3D themes ?
+#B+ Use 3D themes ?
 #{requires OpenGL.}
 enable_opengl_themes = true
 
