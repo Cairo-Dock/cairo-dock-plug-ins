@@ -1870,7 +1870,7 @@ msgstr "Byt namn på flik"
 msgid "Close current Tab"
 msgstr "Stäng flik"
 
-#: ../terminal/src/terminal-widget.c:45
+#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -2498,14 +2498,14 @@ msgid "Configuration"
 msgstr "Konfiguration"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr "Välj ett tema:"
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "i sekunder"
 
@@ -3122,7 +3122,7 @@ msgstr ""
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3513,11 +3513,11 @@ msgstr ""
 msgid "Let extern applications register new module ?"
 msgstr ""
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
 msgid "Display icons in the menu ?"
 msgstr ""
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu :"
 msgstr ""
 
@@ -3978,7 +3978,7 @@ msgstr ""
 msgid "Logo size :"
 msgstr "Ikonstorlek"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
 msgid "normal"
 msgstr ""
 
@@ -4367,20 +4367,20 @@ msgstr ""
 msgid "Sound path :"
 msgstr ""
 
-#: ../Toons/data/messages:87
-msgid "Keep ratio ?"
-msgstr ""
-
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr ""
 
-#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "i ms."
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
+msgstr ""
+
+#: ../Toons/data/messages:97
+msgid "Keep ratio ?"
 msgstr ""
 
 #: ../Toons/data/messages:99
@@ -4462,8 +4462,9 @@ msgstr "Dölj skalan när musen lämnar deskleten?"
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:137
-#: ../stack/data/messages:93 ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:141
+#: ../stack/data/messages:93 ../tomboy/data/messages:105
+#: ../weather/data/messages:117
 msgid "Display"
 msgstr "Uteseende"
 
@@ -4922,15 +4923,15 @@ msgid "If so, display the last image on the icon ?"
 msgstr ""
 
 #: ../dnd2share/data/messages:105
-msgid "in KB/s - 0 means unlimited"
+msgid "Animation of the icon during upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:107
-msgid "Maximum upload rate:"
+msgid "in KB/s - 0 means unlimited"
 msgstr ""
 
 #: ../dnd2share/data/messages:109
-msgid "Animation of the icon during upload :"
+msgid "Maximum upload rate:"
 msgstr ""
 
 #: ../dnd2share/data/messages:111
@@ -5393,7 +5394,7 @@ msgstr ""
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35
+#: ../illusion/data/messages:35 ../terminal/data/messages:91
 msgid "Colors"
 msgstr ""
 
@@ -5563,6 +5564,10 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Relative size of the text :"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:107
+msgid "smaller"
 msgstr ""
 
 #: ../logout/data/messages:91
@@ -5959,10 +5964,6 @@ msgid "Alert when battery charge is critical ?"
 msgstr "Meddela när batterinivån är kritisk?"
 
 #: ../powermanager/data/messages:179
-msgid "Animate icon during the alert ?"
-msgstr "Animera ikonen vid meddelande?"
-
-#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "Animering:"
 
@@ -5970,49 +5971,57 @@ msgstr "Animering:"
 msgid "Let empty to use the folder's name."
 msgstr ""
 
-#: ../quick-browser/data/messages:93
-msgid "Folder to browse :"
+#: ../quick-browser/data/messages:93 ../slider/data/messages:87
+msgid "Folder"
 msgstr ""
 
 #: ../quick-browser/data/messages:95
-msgid "It can be quite heavy to load a lot of icons."
+msgid "Folder to browse :"
 msgstr ""
 
-#: ../quick-browser/data/messages:99
-msgid "Icon size :"
-msgstr ""
-
-#: ../quick-browser/data/messages:101
-msgid "small"
-msgstr ""
-
-#: ../quick-browser/data/messages:103
-msgid "medium"
-msgstr ""
-
-#: ../quick-browser/data/messages:105
-msgid "large"
-msgstr ""
-
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:97
 msgid "List folders first ?"
 msgstr ""
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:99
 msgid "Ignore case ?"
 msgstr ""
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:101
 msgid "Show hidden files ?"
 msgstr ""
 
+#: ../quick-browser/data/messages:103
+msgid "Menu"
+msgstr ""
+
+#: ../quick-browser/data/messages:105
+msgid "It can be quite heavy to load a lot of icons."
+msgstr ""
+
+#: ../quick-browser/data/messages:109
+msgid "Icon size :"
+msgstr ""
+
+#: ../quick-browser/data/messages:111
+msgid "small"
+msgstr ""
+
+#: ../quick-browser/data/messages:113
+msgid "medium"
+msgstr ""
+
 #: ../quick-browser/data/messages:115
+msgid "large"
+msgstr ""
+
+#: ../quick-browser/data/messages:119
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
 msgstr ""
 
-#: ../quick-browser/data/messages:117
+#: ../quick-browser/data/messages:121
 msgid "Gradual building of the menu :"
 msgstr ""
 
@@ -6190,12 +6199,9 @@ msgstr ""
 msgid "Swap left-click and middle-click ?"
 msgstr ""
 
-#: ../slider/data/messages:87
-msgid "Directory"
-msgstr "Katalog"
-
 #: ../slider/data/messages:89
-msgid "Directory of the images :"
+#, fuzzy
+msgid "Folder of the images :"
 msgstr "Bildkatalog:"
 
 #: ../slider/data/messages:91
@@ -6280,29 +6286,38 @@ msgstr "slumpmässig"
 msgid "Number of steps for a transition :"
 msgstr ""
 
+#: ../slider/data/messages:137
+#, fuzzy
+msgid "fast"
+msgstr "Klistra in"
+
 #: ../slider/data/messages:139
+msgid "slow"
+msgstr ""
+
+#: ../slider/data/messages:143
 msgid "Gives a better image rendering."
 msgstr "Ger bättre bildrendering."
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:145
 msgid "Keep widht/height ratio ?"
 msgstr "Behåll ursprungligt bildförhållande?"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:147
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Om bilden är för liten, förstoras den automatiskt."
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:149
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Repetera bilden för att fylla hela dockan?"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:151
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Sätt alfakanalen till 0 om du inte vill visa någon bakgrund."
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:153
 msgid "Choose a background color :"
 msgstr "Välj bakgrundsfärg:"
 
@@ -6516,23 +6531,34 @@ msgstr ""
 msgid "Icons size :"
 msgstr ""
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "needs to restart the applet."
 msgstr "behöver starta om appleten."
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Terminal's transparency :"
 msgstr "Genomskinlighet för terminalfönstret:"
 
-#: ../terminal/data/messages:95
-msgid "Foreground color (r, v, b):"
-msgstr "Förgrundsfärg (r,g.b):"
-
 #: ../terminal/data/messages:97
-msgid "Background color (r, v, b):"
-msgstr "Bakgrundsfärg (r,g.b):"
+#, fuzzy
+msgid "transparent"
+msgstr "genomskinlighet"
 
 #: ../terminal/data/messages:99
+msgid "opaque"
+msgstr ""
+
+#: ../terminal/data/messages:101
+#, fuzzy
+msgid "Foreground color :"
+msgstr "Förgrundsfärg (r,g.b):"
+
+#: ../terminal/data/messages:103
+#, fuzzy
+msgid "Background color :"
+msgstr "Bakgrundsfärg (r,g.b):"
+
+#: ../terminal/data/messages:107
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6540,11 +6566,11 @@ msgstr ""
 "När terminalen visas i ett fönster. När den är i en desklet, kan du ändra "
 "storlek som vanligt."
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns) :"
 msgstr "Storlek på terminal (rader x kolumner):"
 
-#: ../terminal/data/messages:103
+#: ../terminal/data/messages:111
 msgid "Shortkey to show the terminal :"
 msgstr ""
 
@@ -6558,10 +6584,6 @@ msgstr "Bild för stäng:"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
-msgstr ""
-
-#: ../tomboy/data/messages:105
-msgid "View"
 msgstr ""
 
 #: ../tomboy/data/messages:111
@@ -6781,6 +6803,15 @@ msgstr ""
 #: ../wifi/data/messages:185
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Visa anslutningsnamnet på etiketten?"
+
+#~ msgid "Animate icon during the alert ?"
+#~ msgstr "Animera ikonen vid meddelande?"
+
+#~ msgid "Directory"
+#~ msgstr "Katalog"
+
+#~ msgid "Background color (r, v, b):"
+#~ msgstr "Bakgrundsfärg (r,g.b):"
 
 #, fuzzy
 #~ msgid "Number of feed lines to display in the dialog :"

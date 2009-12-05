@@ -163,10 +163,10 @@ color2 = .9;.9;.9
 frame_part =
 
 #I[10;300] Number of particles :
-nb part = 70
+nb part = 90
 
 #I[2;30] Particle size :
-part size = 18
+part size = 14
 
 #e[2;20] Particle speed :
 part speed = 8

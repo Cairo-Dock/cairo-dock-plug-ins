@@ -1983,7 +1983,7 @@ msgstr "現在のタブの名前変更"
 msgid "Close current Tab"
 msgstr "現在のタブを閉じる"
 
-#: ../terminal/src/terminal-widget.c:45
+#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
 msgid "Terminal"
 msgstr "端末"
 
@@ -2625,14 +2625,14 @@ msgid "Configuration"
 msgstr "設定"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "秒単位"
 
@@ -3259,7 +3259,7 @@ msgstr ""
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3662,11 +3662,11 @@ msgstr ""
 msgid "Let extern applications register new module ?"
 msgstr ""
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
 msgid "Display icons in the menu ?"
 msgstr "メニューにアイコンを表示？"
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu :"
 msgstr "メニューを表示/隠すショートカットキー :"
 
@@ -4130,7 +4130,7 @@ msgstr ""
 msgid "Logo size :"
 msgstr "光線の大きさ :"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
 #, fuzzy
 msgid "normal"
 msgstr "通常"
@@ -4521,21 +4521,21 @@ msgstr ""
 msgid "Sound path :"
 msgstr ""
 
-#: ../Toons/data/messages:87
-msgid "Keep ratio ?"
-msgstr "比率を維持？"
-
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr "ウィンク間の平均遅延時間 :"
 
-#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "ミリ秒単位"
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
 msgstr "ウィンクの継続時間 :"
+
+#: ../Toons/data/messages:97
+msgid "Keep ratio ?"
+msgstr "比率を維持？"
 
 #: ../Toons/data/messages:99
 msgid "A high refresh frequency will use more CPU."
@@ -4619,8 +4619,9 @@ msgstr "マウスがデスクレットから離れた際に目盛りを隠す？
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:137
-#: ../stack/data/messages:93 ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:141
+#: ../stack/data/messages:93 ../tomboy/data/messages:105
+#: ../weather/data/messages:117
 msgid "Display"
 msgstr "表示"
 
@@ -5085,15 +5086,15 @@ msgid "If so, display the last image on the icon ?"
 msgstr ""
 
 #: ../dnd2share/data/messages:105
-msgid "in KB/s - 0 means unlimited"
+msgid "Animation of the icon during upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:107
-msgid "Maximum upload rate:"
+msgid "in KB/s - 0 means unlimited"
 msgstr ""
 
 #: ../dnd2share/data/messages:109
-msgid "Animation of the icon during upload :"
+msgid "Maximum upload rate:"
 msgstr ""
 
 #: ../dnd2share/data/messages:111
@@ -5565,7 +5566,7 @@ msgstr "ミリ秒単位。0 に設定すると効果は使用されません。"
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35
+#: ../illusion/data/messages:35 ../terminal/data/messages:91
 msgid "Colors"
 msgstr ""
 
@@ -5740,6 +5741,11 @@ msgstr ""
 #: ../keyboard-indicator/data/messages:105
 msgid "Relative size of the text :"
 msgstr ""
+
+#: ../keyboard-indicator/data/messages:107
+#, fuzzy
+msgid "smaller"
+msgstr "スライダー"
 
 #: ../logout/data/messages:91
 msgid "Let empty to execute the default command."
@@ -6144,10 +6150,6 @@ msgid "Alert when battery charge is critical ?"
 msgstr "バッテリー充電が警告？"
 
 #: ../powermanager/data/messages:179
-msgid "Animate icon during the alert ?"
-msgstr "通告中にアイコンをアニメーション化？"
-
-#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "通告中のアニメーション :"
 
@@ -6155,43 +6157,53 @@ msgstr "通告中のアニメーション :"
 msgid "Let empty to use the folder's name."
 msgstr "フォルダ名を使用するには空欄のままに。"
 
-#: ../quick-browser/data/messages:93
+#: ../quick-browser/data/messages:93 ../slider/data/messages:87
+#, fuzzy
+msgid "Folder"
+msgstr "スライダー"
+
+#: ../quick-browser/data/messages:95
 msgid "Folder to browse :"
 msgstr "参照するフォルダ :"
 
-#: ../quick-browser/data/messages:95
-msgid "It can be quite heavy to load a lot of icons."
-msgstr "多数のアイコンを読み込む場合は重くなる可能性があります。"
-
-#: ../quick-browser/data/messages:99
-msgid "Icon size :"
-msgstr ""
-
-#: ../quick-browser/data/messages:101
-msgid "small"
-msgstr ""
-
-#: ../quick-browser/data/messages:103
-msgid "medium"
-msgstr ""
-
-#: ../quick-browser/data/messages:105
-msgid "large"
-msgstr ""
-
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:97
 msgid "List folders first ?"
 msgstr "フォルダを先にリスト？"
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:99
 msgid "Ignore case ?"
 msgstr "大文字小文字を区別しない？"
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:101
 msgid "Show hidden files ?"
 msgstr "隠しファイルを表示？"
 
+#: ../quick-browser/data/messages:103
+#, fuzzy
+msgid "Menu"
+msgstr "Modern"
+
+#: ../quick-browser/data/messages:105
+msgid "It can be quite heavy to load a lot of icons."
+msgstr "多数のアイコンを読み込む場合は重くなる可能性があります。"
+
+#: ../quick-browser/data/messages:109
+msgid "Icon size :"
+msgstr ""
+
+#: ../quick-browser/data/messages:111
+msgid "small"
+msgstr ""
+
+#: ../quick-browser/data/messages:113
+msgid "medium"
+msgstr ""
+
 #: ../quick-browser/data/messages:115
+msgid "large"
+msgstr ""
+
+#: ../quick-browser/data/messages:119
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -6199,7 +6211,7 @@ msgstr ""
 "一度に読み込むアイテムの数。高い値に設定すると読み込み速度が若干上がります"
 "が、その分アプリをブロックします。"
 
-#: ../quick-browser/data/messages:117
+#: ../quick-browser/data/messages:121
 msgid "Gradual building of the menu :"
 msgstr "メニューの段階的な構築 :"
 
@@ -6378,12 +6390,9 @@ msgstr ""
 msgid "Swap left-click and middle-click ?"
 msgstr ""
 
-#: ../slider/data/messages:87
-msgid "Directory"
-msgstr "ディレクトリ"
-
 #: ../slider/data/messages:89
-msgid "Directory of the images :"
+#, fuzzy
+msgid "Folder of the images :"
 msgstr "画像のディレクトリ :"
 
 #: ../slider/data/messages:91
@@ -6470,30 +6479,39 @@ msgstr "ランダム"
 msgid "Number of steps for a transition :"
 msgstr "画像切り替え時の描画刻み :"
 
+#: ../slider/data/messages:137
+#, fuzzy
+msgid "fast"
+msgstr "貼り付け"
+
 #: ../slider/data/messages:139
+msgid "slow"
+msgstr ""
+
+#: ../slider/data/messages:143
 msgid "Gives a better image rendering."
 msgstr "画像の描画をより良くします"
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:145
 msgid "Keep widht/height ratio ?"
 msgstr "縦横比を保つ？"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:147
 msgid "If the image is too small, it will be zoomed in."
 msgstr "画像が小さすぎる場合にズームインします。"
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:149
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:151
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 "背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:153
 msgid "Choose a background color :"
 msgstr "背景色の選択 :"
 
@@ -6706,23 +6724,34 @@ msgstr ""
 msgid "Icons size :"
 msgstr ""
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "needs to restart the applet."
 msgstr "アプレットの再起動が必要です。"
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Terminal's transparency :"
 msgstr "端末の透明度 :"
 
-#: ../terminal/data/messages:95
-msgid "Foreground color (r, v, b):"
-msgstr "前面の色（赤、緑、青） :"
-
 #: ../terminal/data/messages:97
-msgid "Background color (r, v, b):"
-msgstr "背景の色（赤、緑、青） :"
+#, fuzzy
+msgid "transparent"
+msgstr "透過"
 
 #: ../terminal/data/messages:99
+msgid "opaque"
+msgstr ""
+
+#: ../terminal/data/messages:101
+#, fuzzy
+msgid "Foreground color :"
+msgstr "前面の色（赤、緑、青） :"
+
+#: ../terminal/data/messages:103
+#, fuzzy
+msgid "Background color :"
+msgstr "背景の色（赤、緑、青） :"
+
+#: ../terminal/data/messages:107
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6730,11 +6759,11 @@ msgstr ""
 "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
 "のサイズ変更が可能です。"
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns) :"
 msgstr "端末の大きさ（行×列） :"
 
-#: ../terminal/data/messages:103
+#: ../terminal/data/messages:111
 msgid "Shortkey to show the terminal :"
 msgstr "端末を表示するショートカットキー :"
 
@@ -6748,10 +6777,6 @@ msgstr "「閉じる」のアイコン画像の名前 :"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
-msgstr ""
-
-#: ../tomboy/data/messages:105
-msgid "View"
 msgstr ""
 
 #: ../tomboy/data/messages:111
@@ -6977,6 +7002,15 @@ msgstr "無線設定を起動する代替のコマンドライン :"
 #: ../wifi/data/messages:185
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
+
+#~ msgid "Animate icon during the alert ?"
+#~ msgstr "通告中にアイコンをアニメーション化？"
+
+#~ msgid "Directory"
+#~ msgstr "ディレクトリ"
+
+#~ msgid "Background color (r, v, b):"
+#~ msgstr "背景の色（赤、緑、青） :"
 
 #, fuzzy
 #~ msgid "Number of feed lines to display in the dialog :"
