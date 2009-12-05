@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-11-18 17:01+0000\n"
+"POT-Creation-Date: 2009-12-01 01:27+0000\n"
+"PO-Revision-Date: 2009-12-01 14:54+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-19 04:39+0000\n"
+"X-Launchpad-Export-Date: 2009-12-02 04:58+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -399,6 +400,16 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Апплет чтения RSS/Atom лент.\n"
+"Можно запускать несколько копий.\n"
+"Использование:\n"
+" - Левый щелчок: Показать всю ленту в окне.\n"
+" - Средний щелчок: Обновить ленту.\n"
+" - Прокручивание: Пролистать ленту.\n"
+" - Чтобы начать чтение лент, перетащите её URL на значок\n"
+"    или скопируйте его в буфер обмена, а затем используйте пункт меню "
+"\"Вставить URL ленты\"\n"
+"    или воспользуйтесь панелью настроек."
 
 #: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
 #: ../RSSreader/src/applet-notifications.c:64
@@ -419,7 +430,7 @@ msgstr "Открыть в веб-браузере"
 
 #: ../RSSreader/src/applet-rss.c:358
 msgid "Warning : couldn't retrieve data last time we tried."
-msgstr ""
+msgstr "Внимание: не удалось получить данные"
 
 #: ../RSSreader/src/applet-rss.c:392
 msgid "No URL is defined."
@@ -578,8 +589,8 @@ msgstr ""
 "панелей\n"
 "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
 "ближайший похожий\n"
-"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, Alt"
-"+Enter для среднего и Ctrl+Enter для левого\n"
+"  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
+"Alt+Enter для среднего и Ctrl+Enter для левого\n"
 "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
 "или вычисление.\n"
 "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
@@ -1017,7 +1028,8 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:129
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:240
@@ -1492,7 +1504,7 @@ msgstr "Обновить все почтовые ящики"
 
 #: ../mail/src/cd-mail-applet-notifications.c:135
 msgid "Mark all mails as read"
-msgstr ""
+msgstr "Пометить все письма прочтёнными"
 
 #: ../mail/src/cd-mail-applet-notifications.c:138
 #, c-format
@@ -1567,6 +1579,15 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 "       For Exaile 0.3, you have to activate its MPRIS plug-in"
 msgstr ""
+"Этот апплет позволяет управлять любым проигрывателем.\n"
+"Левый щелчок - Играть/Пауза, средний - Следующий трек.\n"
+"Прокрутка колёсика - смена трека.\n"
+"Вы можете перетаскивать фалы прямо на значок, чтобы добавить их к очереди "
+"(Зависит от проигрывателя),\n"
+" а также jpeg изображения, для обложек альбомов.\n"
+"Совет: Для XMMS потребуется установить плагин 'xmms-infopipe'.\n"
+"       Для SongBird потребуется установить дополнение dbus.\n"
+"       Для Exaile 0.3 потребуется активировать плагин MPRIS."
 
 #: ../musicPlayer/src/applet-notifications.c:66
 msgid ""
@@ -1795,8 +1816,8 @@ msgstr "Показывать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
 "десклета."
@@ -1838,7 +1859,7 @@ msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:72
 msgid "You need to run Compiz and to activate its 'DBus' plug-in."
-msgstr "Необходимо запусить Compiz и активировать модуль 'DBus'."
+msgstr "Необходимо запусить Compiz и активировать плагин 'DBus'."
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -2095,7 +2116,7 @@ msgstr "Переименовать вкладку"
 msgid "Close current Tab"
 msgstr "Закрыть текущую вкладку"
 
-#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
+#: ../terminal/src/terminal-widget.c:45
 msgid "Terminal"
 msgstr "Терминал"
 
@@ -2519,9 +2540,8 @@ msgid "Capsule"
 msgstr "Капсула"
 
 #: ../Animated-icons/data/messages:91
-#, fuzzy
 msgid "Color of the sheen :"
-msgstr "Цвет сетки:"
+msgstr "Цвет сияния:"
 
 #: ../Animated-icons/data/messages:103 ../Animated-icons/data/messages:107
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
@@ -2747,14 +2767,14 @@ msgid "Configuration"
 msgstr "Настройки"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr "Выберите одну из доступных тем:"
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
 msgid "in seconds"
 msgstr "в секундах"
 
@@ -2963,9 +2983,8 @@ msgstr "Десклет"
 #: ../systray/data/messages:13 ../terminal/data/messages:17
 #: ../tomboy/data/messages:31 ../weather/data/messages:15
 #: ../weblets/data/messages:17 ../wifi/data/messages:13
-#, fuzzy
 msgid "Position"
-msgstr "Экспозиция"
+msgstr "Позиция"
 
 #: ../Clipper/data/messages:123 ../GMenu/data/messages:19
 #: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:21
@@ -3061,7 +3080,8 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../systray/data/messages:15 ../terminal/data/messages:27
 #: ../weather/data/messages:25 ../weblets/data/messages:27
 #: ../wifi/data/messages:23
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -3103,6 +3123,8 @@ msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
 msgstr ""
+"Вы можете с лёгкостью вращать любой десклет, используйте для этого маленькие "
+"кнопки по сторонам десклета."
 
 #: ../Clipper/data/messages:137 ../GMenu/data/messages:33
 #: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:35
@@ -3137,9 +3159,8 @@ msgstr "Вращение:"
 #: ../systray/data/messages:23 ../terminal/data/messages:35
 #: ../tomboy/data/messages:49 ../weather/data/messages:33
 #: ../weblets/data/messages:35 ../wifi/data/messages:31
-#, fuzzy
 msgid "Visibility"
-msgstr "Доступность:"
+msgstr "Видимость"
 
 #: ../Clipper/data/messages:141 ../GMenu/data/messages:37
 #: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:39
@@ -3197,9 +3218,8 @@ msgstr ""
 #: ../systray/data/messages:29 ../terminal/data/messages:41
 #: ../tomboy/data/messages:55 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:37
-#, fuzzy
 msgid "Visibility :"
-msgstr "Доступность:"
+msgstr "Видимость:"
 
 #: ../Clipper/data/messages:149 ../GMenu/data/messages:45
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:47
@@ -3329,9 +3349,9 @@ msgstr "Оформление"
 #: ../terminal/data/messages:57 ../tomboy/data/messages:71
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:53
-#, fuzzy
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Выберите 'собственное', чтобы настроить своё оформление."
+msgstr ""
+"Выберите 'Собственное оформление', чтобы настроить своё оформление ниже."
 
 #: ../Clipper/data/messages:163 ../GMenu/data/messages:59
 #: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:61
@@ -3380,7 +3400,7 @@ msgstr ""
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3613,9 +3633,8 @@ msgid "Foreground tansparency :"
 msgstr "Прозрачность переднего плана:"
 
 #: ../Clipper/data/messages:195
-#, fuzzy
 msgid "Items"
-msgstr "Сайты"
+msgstr "Элементы"
 
 #: ../Clipper/data/messages:197
 msgid ""
@@ -3784,11 +3803,11 @@ msgstr "Позволить внешним приложениям анимиро�
 msgid "Let extern applications register new module ?"
 msgstr "Позволить сторонним приложениям регистрировать новые модули?"
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
 msgid "Display icons in the menu ?"
 msgstr "Показывать значки в меню?"
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
 msgid "Shortkey to show/hide the menu :"
 msgstr "Клавиатурное сокращение для показа/скрытия меню:"
 
@@ -3822,11 +3841,12 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:111
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr ""
+"Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Let empty to use the connection name."
-msgstr ""
+msgstr "Оставьте пустым, чтобы использовать имя соединения."
 
 #: ../Network-Monitor/data/messages:89 ../System-Monitor/data/messages:87
 #: ../netspeed/data/messages:87 ../powermanager/data/messages:87
@@ -3990,11 +4010,11 @@ msgstr "Параметры"
 
 #: ../Network-Monitor/data/messages:173
 msgid "Delay between wifi signal checks :"
-msgstr ""
+msgstr "Интервал проверки сигнала:"
 
 #: ../Network-Monitor/data/messages:177
 msgid "Delay between net speed checks :"
-msgstr ""
+msgstr "Интервал проверки скорости:"
 
 #: ../Network-Monitor/data/messages:179 ../System-Monitor/data/messages:149
 #: ../wifi/data/messages:165
@@ -4011,21 +4031,23 @@ msgstr "Плавность перехода между 2 значениями:"
 
 #: ../Network-Monitor/data/messages:183
 msgid "By default the first active interface is used."
-msgstr ""
+msgstr "По умолчанию используется первый активный интерфейс."
 
 #: ../Network-Monitor/data/messages:185
 msgid "Default connexion interface :"
-msgstr ""
+msgstr "Интерфейс по умолчанию:"
 
 #: ../Network-Monitor/data/messages:187
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
 msgstr ""
+"Позволит вам перезаписывать стандартную командную строку апплета и запускать "
+"ваш собственный интерфейс настроек беспроводного соединения."
 
 #: ../Network-Monitor/data/messages:189
 msgid "User command to show Wireless Configuration :"
-msgstr ""
+msgstr "Пользовательская команда для Настроек Беспроводной сети:"
 
 #: ../Network-Monitor/data/messages:191 ../netspeed/data/messages:145
 msgid "Let empty to use he default one."
@@ -4044,22 +4066,24 @@ msgstr "Информация"
 #: ../Network-Monitor/data/messages:197
 msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
+"Вы можете быстро переключиться на другой режим, просто прокрутив колёсико "
+"мыши на значке."
 
 #: ../Network-Monitor/data/messages:199
 msgid "Info to display in the icon :"
-msgstr ""
+msgstr "Информация на значке:"
 
 #: ../Network-Monitor/data/messages:201
 msgid "Wifi signal"
-msgstr ""
+msgstr "WIFI Сигнал"
 
 #: ../Network-Monitor/data/messages:203
 msgid "Connexion speed"
-msgstr ""
+msgstr "Скорость соединения"
 
 #: ../Network-Monitor/data/messages:205
 msgid "How to display the wifi signal :"
-msgstr ""
+msgstr "Как отображать WIFI сигнал:"
 
 #: ../Network-Monitor/data/messages:209 ../wifi/data/messages:179
 msgid "Signal Strength"
@@ -4075,7 +4099,7 @@ msgstr "Служебная информация о сигнале"
 
 #: ../Network-Monitor/data/messages:215
 msgid "not used at the moment."
-msgstr ""
+msgstr "пока не использовать"
 
 #: ../Network-Monitor/data/messages:217 ../System-Monitor/data/messages:137
 msgid "Display values :"
@@ -4117,11 +4141,11 @@ msgstr "URL:"
 
 #: ../RSSreader/data/messages:99
 msgid "RSS login (optional):"
-msgstr ""
+msgstr "Учётная запись RSS (опционально)"
 
 #: ../RSSreader/data/messages:101
 msgid "RSS password (optional):"
-msgstr ""
+msgstr "Пароль RSS (опционально)"
 
 #: ../RSSreader/data/messages:103 ../clock/data/messages:89
 #: ../dnd2share/data/messages:95 ../mail/data/messages:105
@@ -4140,7 +4164,7 @@ msgstr "Интервал обновлений:"
 
 #: ../RSSreader/data/messages:109
 msgid "By default, this option is activated"
-msgstr ""
+msgstr "По умолчанию, эта опция активирована."
 
 #: ../RSSreader/data/messages:111
 msgid "Display an info-bubble when a feed has changed?"
@@ -4153,7 +4177,6 @@ msgstr ""
 "его)."
 
 #: ../RSSreader/data/messages:115
-#, fuzzy
 msgid "Duration of the info-bubble :"
 msgstr "Продолжительность инфо-облачка:"
 
@@ -4241,7 +4264,7 @@ msgstr "Изменить размер логотипа"
 msgid "Logo size :"
 msgstr "Размер логотипа:"
 
-#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
+#: ../RSSreader/data/messages:165
 msgid "normal"
 msgstr "обычный"
 
@@ -4254,7 +4277,8 @@ msgid "Background"
 msgstr "Задний фон"
 
 #: ../RSSreader/data/messages:171
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Вы можете получить более привлекательный задний фон при использовании "
 "Оформления декслетов"
@@ -4631,21 +4655,21 @@ msgstr "Звуковой сигнал при уведомлении?"
 msgid "Sound path :"
 msgstr "Путь до звукового файла:"
 
-#: ../Toons/data/messages:91
+#: ../Toons/data/messages:87
+msgid "Keep ratio ?"
+msgstr "Сохранять масштаб?"
+
+#: ../Toons/data/messages:93
 msgid "Mean delay between winks :"
 msgstr "Средний интервал миганий:"
 
-#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "в мсек."
 
-#: ../Toons/data/messages:95
+#: ../Toons/data/messages:97
 msgid "Wink duration :"
 msgstr "Интервал миганий:"
-
-#: ../Toons/data/messages:97
-msgid "Keep ratio ?"
-msgstr "Сохранять масштаб?"
 
 #: ../Toons/data/messages:99
 msgid "A high refresh frequency will use more CPU."
@@ -4729,9 +4753,8 @@ msgstr "Скрывать шкалу, когда курсор покидает д
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:141
-#: ../stack/data/messages:93 ../tomboy/data/messages:105
-#: ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:137
+#: ../stack/data/messages:93 ../weather/data/messages:117
 msgid "Display"
 msgstr "Отображение"
 
@@ -4774,9 +4797,8 @@ msgid "for numeric format only."
 msgstr "Только для цифрового вида."
 
 #: ../clock/data/messages:101
-#, fuzzy
 msgid "Display the time in a 24h format ?"
-msgstr "Использовать 24ч формат времени?"
+msgstr "Отображать в 24-часовом формате?"
 
 #: ../clock/data/messages:103
 msgid "if not, then the applet will update time once a minute, saving CPU."
@@ -5204,16 +5226,16 @@ msgid "If so, display the last image on the icon ?"
 msgstr "Если так, то отображать последнее изображение на значке?"
 
 #: ../dnd2share/data/messages:105
-msgid "Animation of the icon during upload :"
-msgstr "Анимировать значок при загрузке:"
-
-#: ../dnd2share/data/messages:107
 msgid "in KB/s - 0 means unlimited"
 msgstr "в КБ/с - 0 значит без ограничений"
 
-#: ../dnd2share/data/messages:109
+#: ../dnd2share/data/messages:107
 msgid "Maximum upload rate:"
 msgstr "Ограничение скорости отдачи:"
+
+#: ../dnd2share/data/messages:109
+msgid "Animation of the icon during upload :"
+msgstr "Анимировать значок при загрузке:"
 
 #: ../dnd2share/data/messages:111
 msgid "Sites"
@@ -5396,9 +5418,8 @@ msgid "Magnitude of the wave :"
 msgstr "Высота волны:"
 
 #: ../dock-rendering/data/messages:49
-#, fuzzy
 msgid "Curve towards the outside ?"
-msgstr "Изгибать и стороны тоже?"
+msgstr "Изгибать в обратную сторону?"
 
 #: ../dock-rendering/data/messages:53
 msgid "Space between icons and their label :"
@@ -5538,7 +5559,8 @@ msgstr "Процент смешения стрелки:"
 
 #: ../dock-rendering/data/messages:125
 msgid "The lower, the more the curve will seem flat."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:127
 msgid "Curvature of the curve in percent :"
@@ -5549,9 +5571,8 @@ msgid "Amplitude of the curve."
 msgstr "Амлитуда кривой."
 
 #: ../drop-indicator/data/messages:1
-#, fuzzy
 msgid "Drag and drop indicator"
-msgstr "Индикатор сброса"
+msgstr "Индикатор перетаскивания"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
@@ -5578,7 +5599,6 @@ msgid "Image when hovering an icon :"
 msgstr "Изображение при наведении на значок:"
 
 #: ../drop-indicator/data/messages:13
-#, fuzzy
 msgid "Animation"
 msgstr "Анимация"
 
@@ -5651,7 +5671,8 @@ msgid "Desktop-less support"
 msgstr "Сквозная поддержка."
 
 #: ../dustbin/data/messages:119
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
 
 #: ../dustbin/data/messages:121
@@ -5688,7 +5709,7 @@ msgstr "в мсек. Установите 0, чтобы не использов�
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35 ../terminal/data/messages:91
+#: ../illusion/data/messages:35
 msgid "Colors"
 msgstr "Цвета"
 
@@ -5864,11 +5885,6 @@ msgstr ""
 msgid "Relative size of the text :"
 msgstr "Относительный размер текста:"
 
-#: ../keyboard-indicator/data/messages:107
-#, fuzzy
-msgid "smaller"
-msgstr "маленькие"
-
 #: ../logout/data/messages:91
 msgid "Let empty to execute the default command."
 msgstr "Оставьте пустым, чтобы использовать стандартную."
@@ -5947,8 +5963,8 @@ msgid ""
 "mail accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:119
 msgid "Check mail account on startup ?"
@@ -6035,7 +6051,7 @@ msgstr "Exaile"
 
 #: ../musicPlayer/data/messages:101
 msgid "Exaile 0.3"
-msgstr ""
+msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:103
 msgid "Listen"
@@ -6281,6 +6297,10 @@ msgid "Alert when battery charge is critical ?"
 msgstr "Уведомлять при критическом разряде батареи?"
 
 #: ../powermanager/data/messages:179
+msgid "Animate icon during the alert ?"
+msgstr "Анимировать значок во время уведомления?"
+
+#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "Использовать анимацию:"
 
@@ -6288,54 +6308,44 @@ msgstr "Использовать анимацию:"
 msgid "Let empty to use the folder's name."
 msgstr "Оставьте пустым, чтобы использовать имя каталога."
 
-#: ../quick-browser/data/messages:93 ../slider/data/messages:87
-#, fuzzy
-msgid "Folder"
-msgstr "модерн"
-
-#: ../quick-browser/data/messages:95
+#: ../quick-browser/data/messages:93
 msgid "Folder to browse :"
 msgstr "Каталог для просмотра:"
 
-#: ../quick-browser/data/messages:97
-msgid "List folders first ?"
-msgstr "Каталоги в начале?"
-
-#: ../quick-browser/data/messages:99
-msgid "Ignore case ?"
-msgstr "Игнорировать регистр?"
-
-#: ../quick-browser/data/messages:101
-msgid "Show hidden files ?"
-msgstr "Показывать скрытые файлы?"
-
-#: ../quick-browser/data/messages:103
-#, fuzzy
-msgid "Menu"
-msgstr "Современный"
-
-#: ../quick-browser/data/messages:105
+#: ../quick-browser/data/messages:95
 msgid "It can be quite heavy to load a lot of icons."
 msgstr ""
 "Может потребоваться много времени для загрузки большого количества значков."
 
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:99
 msgid "Icon size :"
 msgstr "Размер значка:"
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:101
 msgid "small"
 msgstr "маленькие"
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:103
 msgid "medium"
 msgstr "средние"
 
-#: ../quick-browser/data/messages:115
+#: ../quick-browser/data/messages:105
 msgid "large"
 msgstr "большие"
 
-#: ../quick-browser/data/messages:119
+#: ../quick-browser/data/messages:109
+msgid "List folders first ?"
+msgstr "Каталоги в начале?"
+
+#: ../quick-browser/data/messages:111
+msgid "Ignore case ?"
+msgstr "Игнорировать регистр?"
+
+#: ../quick-browser/data/messages:113
+msgid "Show hidden files ?"
+msgstr "Показывать скрытые файлы?"
+
+#: ../quick-browser/data/messages:115
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -6343,7 +6353,7 @@ msgstr ""
 "Количество элементов для одновременной загрузки. Установка высоких значений "
 "немного ускоряет загрузку, но дольше блокирует приложение."
 
-#: ../quick-browser/data/messages:121
+#: ../quick-browser/data/messages:117
 msgid "Gradual building of the menu :"
 msgstr "Последовательное построение меню:"
 
@@ -6441,7 +6451,8 @@ msgstr "В пикселях."
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
@@ -6484,9 +6495,10 @@ msgid "Keep the desklets visible when showing the desktop ?"
 msgstr "Держать апплет видимым при показе рабочего стола?"
 
 #: ../showDesktop/data/messages:101
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+msgid ""
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions."
 msgstr ""
-"Для двух следующих действий необходимо активировать модуль DBus в Compiz."
+"Для двух следующих действий необходимо активировать плагин DBus в Compiz."
 
 #: ../showDesktop/data/messages:103
 msgid "Action on middle-click :"
@@ -6524,9 +6536,12 @@ msgstr "Выберите 'собственное', чтобы настроить
 msgid "Swap left-click and middle-click ?"
 msgstr "Поменять местами левый и средний щелчки?"
 
+#: ../slider/data/messages:87
+msgid "Directory"
+msgstr "Каталог"
+
 #: ../slider/data/messages:89
-#, fuzzy
-msgid "Folder of the images :"
+msgid "Directory of the images :"
 msgstr "Каталог с изображениями:"
 
 #: ../slider/data/messages:91
@@ -6613,38 +6628,29 @@ msgstr "случайно"
 msgid "Number of steps for a transition :"
 msgstr "Количество шагов перехода:"
 
-#: ../slider/data/messages:137
-#, fuzzy
-msgid "fast"
-msgstr "Вставить"
-
 #: ../slider/data/messages:139
-msgid "slow"
-msgstr ""
-
-#: ../slider/data/messages:143
 msgid "Gives a better image rendering."
 msgstr "Даёт лучшие результаты отрисовки."
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:141
 msgid "Keep widht/height ratio ?"
 msgstr "Сохранять пропорции?"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:143
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Если изображение слишком мало, оно будет приближено."
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:145
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Заполнять весь значок изображением?"
 
-#: ../slider/data/messages:151
+#: ../slider/data/messages:147
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Установите прозрачность канала в 0, если не хотите иметь задний фон."
 
-#: ../slider/data/messages:153
+#: ../slider/data/messages:149
 msgid "Choose a background color :"
 msgstr "Выберите цвет заднего фона:"
 
@@ -6714,11 +6720,11 @@ msgstr "Вручную"
 
 #: ../stack/data/messages:133
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
-"Это выбор сделанный при помощи мыши, вместо обычно используемого ctrl+c/ctrl"
-"+v буфера обмена."
+"Это выбор сделанный при помощи мыши, вместо обычно используемого "
+"ctrl+c/ctrl+v буфера обмена."
 
 #: ../stack/data/messages:135
 msgid "When copy/paste/cut, use the selection clipboard ?"
@@ -6824,7 +6830,8 @@ msgstr "только другие"
 
 #: ../switcher/data/messages:139
 msgid "Icon to use in expanded mode if you don't map the wallpaper :"
-msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr ""
+"Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:145
 msgid "In expanded mode, render the desklet in 3D ?"
@@ -6858,34 +6865,23 @@ msgstr "вертикальная"
 msgid "Icons size :"
 msgstr "Размер значков:"
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:91
 msgid "needs to restart the applet."
 msgstr "необходимо перезапустить апплет."
 
-#: ../terminal/data/messages:95
+#: ../terminal/data/messages:93
 msgid "Terminal's transparency :"
 msgstr "Прозрачность терминала:"
 
-#: ../terminal/data/messages:97
-#, fuzzy
-msgid "transparent"
-msgstr "прозрачность"
-
-#: ../terminal/data/messages:99
-msgid "opaque"
-msgstr ""
-
-#: ../terminal/data/messages:101
-#, fuzzy
-msgid "Foreground color :"
+#: ../terminal/data/messages:95
+msgid "Foreground color (r, v, b):"
 msgstr "Цвет переднего фона (к, з, с):"
 
-#: ../terminal/data/messages:103
-#, fuzzy
-msgid "Background color :"
-msgstr "Начальный цвет фона:"
+#: ../terminal/data/messages:97
+msgid "Background color (r, v, b):"
+msgstr "Цвет заднего фона (к, з, с):"
 
-#: ../terminal/data/messages:107
+#: ../terminal/data/messages:99
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6893,11 +6889,11 @@ msgstr ""
 "Когда терминал в окне. Когда он в декслете, то вы можете изменять его размер "
 "как обычно."
 
-#: ../terminal/data/messages:109
+#: ../terminal/data/messages:101
 msgid "Size of the terminal (line x columns) :"
 msgstr "Размер терминала (строк х столбцов):"
 
-#: ../terminal/data/messages:111
+#: ../terminal/data/messages:103
 msgid "Shortkey to show the terminal :"
 msgstr "Клавиатурное сокращение для показа терминала:"
 
@@ -6912,6 +6908,10 @@ msgstr "Файл изображения для значка 'закрыть':"
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
 msgstr "Файл изображения для значка 'пустой':"
+
+#: ../tomboy/data/messages:105
+msgid "View"
+msgstr "Вид"
 
 #: ../tomboy/data/messages:111
 msgid "Draw note's content on their icon ?"
@@ -6997,6 +6997,8 @@ msgstr "Код местонахождения:"
 #: ../weather/data/messages:95
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 msgstr ""
+"Если так, то градусы будут показаны по Цельсию, в противном случае по "
+"Фаренгейту."
 
 #: ../weather/data/messages:97
 msgid "Use International System Units ?"
@@ -7134,30 +7136,6 @@ msgstr "Альтернативная команда запуска Настро�
 msgid "Overwrite the default label with the connection point name ?"
 msgstr "Заменить стандартную подпись, на имя точки доступа?"
 
-#~ msgid "Animate icon during the alert ?"
-#~ msgstr "Анимировать значок во время уведомления?"
-
-#~ msgid "Directory"
-#~ msgstr "Каталог"
-
-#~ msgid "Background color (r, v, b):"
-#~ msgstr "Цвет заднего фона (к, з, с):"
-
-#~ msgid "View"
-#~ msgstr "Вид"
-
-#~ msgid "Number of feed lines to display in the dialog :"
-#~ msgstr "Количество строк отображаемых в окне:"
-
-#~ msgid "No data (invalid rss ?)"
-#~ msgstr "Нет данных (ошибочный RSS?)"
-
-#~ msgid "Font used for the numeric display :"
-#~ msgstr "Шрифт для цифрового дисплея:"
-
-#~ msgid "Text color for the numeric display:"
-#~ msgstr "Цвет текста для цифрового дисплея:"
-
 #~ msgid "New song"
 #~ msgstr "Новая композиция"
 
@@ -7178,8 +7156,7 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Этот апплет позволяет переключаться между виртуальными рабочими столами.\n"
-#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-"
-#~ "панель).\n"
+#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-панель).\n"
 #~ "Вы можете быстро добавить/удалить рабочий стол через правый щелчок.\n"
 #~ "Прокручивание колесом мыши на основном значке будет переключать столы, "
 #~ "средний щелчок - показать рабочий стол"
@@ -7191,8 +7168,14 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 #~ "number or so."
 #~ msgstr ""
-#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без "
-#~ "каких либо цифр и т.п."
+#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без каких "
+#~ "либо цифр и т.п."
+
+#~ msgid "Font used for the numeric display :"
+#~ msgstr "Шрифт для цифрового дисплея:"
+
+#~ msgid "Text color for the numeric display:"
+#~ msgstr "Цвет текста для цифрового дисплея:"
 
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Количество источников:"
@@ -7211,3 +7194,9 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Title num :"
 #~ msgstr "Номер заголовка:"
+
+#~ msgid "No data (invalid rss ?)"
+#~ msgstr "Нет данных (ошибочный RSS?)"
+
+#~ msgid "Number of feed lines to display in the dialog :"
+#~ msgstr "Количество строк отображаемых в окне:"
