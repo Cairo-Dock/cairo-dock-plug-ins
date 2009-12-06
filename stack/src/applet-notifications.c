@@ -34,7 +34,8 @@ static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, myConfig.cTextIcon);
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, "same icon");
 		
 		cairo_dock_stop_icon_animation (pIcon);
 	}
@@ -46,7 +47,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
 		}
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
 	}
@@ -101,7 +102,7 @@ static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
-	g_print ("text : '%s'\n => has been copied into the clipboard)\n", pIcon->cCommand);
+	g_print ("stack : '%s' has been copied into the clipboard\n", pIcon->cCommand);
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 }
 static void _cd_stack_paste_content (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)

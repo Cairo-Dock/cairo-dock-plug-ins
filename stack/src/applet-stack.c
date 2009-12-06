@@ -171,6 +171,7 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 			g_string_printf (sConfFilePath, "%s/%s", cStackDirectory, cName);
 		else
 			g_string_printf (sConfFilePath, "%s/%s.%d", cStackDirectory, cName, i);
+		i ++;
 	} while (g_file_test (sConfFilePath->str, G_FILE_TEST_EXISTS));
 	
 	cairo_dock_write_keys_to_file (pKeyFile, sConfFilePath->str);
