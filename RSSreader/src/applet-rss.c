@@ -120,6 +120,7 @@ void cd_rssreader_free_item (CDRssItem *pItem)
 	g_free (pItem->cTitle);
 	g_free (pItem->cDescription);
 	g_free (pItem->cLink);
+	g_free (pItem->cDate);
 	g_free (pItem);
 }
 
@@ -234,6 +235,17 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 				}
 			}
 			while (balise2);
+			str = pItem->cDescription;
+			do
+			{
+				balise = g_strstr_len (str, -1, "&nbsp;");
+				if (balise)
+				{
+					memset (balise, ' ', 6);
+					str = balise+6;
+				}
+			}
+			while (balise);
 			cd_debug ("+ description : '%s'", pItem->cDescription);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
@@ -242,6 +254,12 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 			pItem->cLink = g_strdup (content);
 			xmlFree (content);
 			cd_debug ("+ link : '%s'", pItem->cLink);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "pubDate") == 0)  // c'est la date.
+		{
+			content = xmlNodeGetContent (item);
+			pItem->cDate = g_strdup (content);
+			xmlFree (content);
 		}
 		// pour recuperer l'image, on dirait qu'on a plusieurs cas, entre autre :
 		// <enclosure url="http://medias.lemonde.fr/mmpub/edt/ill/2009/11/01/h_1_ill_1261356_5d02_258607.jpg" length="2514" type="image/jpeg" />  ----> bien verifier que c'est une image.
@@ -279,7 +297,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			xmlAttrPtr attr = xmlHasProp (item, "type");
 			if (attr && attr->children)
 			{
-				cd_debug ("   content type : %s", attr->children->content);
+				cd_debug ("   description type : %s", attr->children->content);
 				if (strncmp (attr->children->content, "text", 4) != 0)
 				{
 					continue;
@@ -327,6 +345,13 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 				xmlFree (content);
 				cd_debug ("+ link : '%s'", pItem->cLink);
 			}
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "updated") == 0)  // c'est la date.
+		{
+			content = xmlNodeGetContent (item);
+			pItem->cDate = g_strdup (content);
+			xmlFree (content);
+			cd_debug ("+ date : '%s'", pItem->cDate);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "author") == 0)  // c'est l'auteur.
 		{
@@ -490,7 +515,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		return TRUE;
 	}
 	
-	myData.bError = FALSE;  // si on est arrive a ce point, c'est qu'il n'y a pas eu d'erreur.
+	// si on est arrive a ce point, c'est qu'il n'y a pas eu d'erreur.
 	// on vide l'ancienne liste d'items.
 	cd_rssreader_free_item_list (myApplet);
 	myData.pItemList = pNewItemList;
@@ -506,14 +531,14 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	// si aucun changement, on quitte.
+	// si aucun changement, on le signale, et si aucune erreur precedente, on quitte.
 	pItem = (myData.pItemList && myData.pItemList->next ? myData.pItemList->next->data : NULL);
 	gchar *cFirstTitle = (pItem ? pItem->cTitle : NULL);
 	if (! cairo_dock_strings_differ (myData.PrevFirstTitle, cFirstTitle))
 	{
 		cd_debug ("RSS: aucune modif");
 		
-		if (myData.bUpdateIsManual)  // L'update a été manuel -> On affiche donc un dialogue même s'il n'y a pas eu de changement
+		if (myData.bUpdateIsManual)  // L'update a ete manuel -> On affiche donc un dialogue meme s'il n'y a pas eu de changement
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("No modification"),
@@ -525,8 +550,10 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 			myData.bUpdateIsManual = FALSE;
 		}
 		
-		return TRUE;
+		if (! myData.bError)
+			return TRUE;
 	}
+	
 	// on dessine le texte.
 	if (myDesklet)
 	{
@@ -554,6 +581,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	g_free (myData.PrevFirstTitle);
 	myData.PrevFirstTitle = g_strdup (cFirstTitle);
 	myData.bUpdateIsManual = FALSE;
+	myData.bError = FALSE;
 	return TRUE;
 }
 
@@ -572,6 +600,7 @@ void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
 		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iRefreshTime);
 	}
 }
+
 
 
 void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
@@ -594,7 +623,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 		gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pVBox);
 		
 		PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
-		PangoFontDescription *fd = pango_font_description_from_string (NULL);
+		PangoFontDescription *fd = pango_font_description_from_string ("");
 		pango_layout_set_font_description (pLayout, fd);
 		
 		int w = MIN (600, g_iScreenWidth[CAIRO_DOCK_HORIZONTAL]/2);
@@ -629,7 +658,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 				g_free (cLine);
 				
 				pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
-				gtk_alignment_set_padding (pAlign, 0, 0, 20, 0);
+				gtk_alignment_set_padding (GTK_ALIGNMENT (pAlign), 0, 0, 20, 0);
 				gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
 				gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
 			}
@@ -641,7 +670,17 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 				g_free (by);
 				
 				pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
-				gtk_alignment_set_padding (pAlign, 0, 0, 40, 0);
+				gtk_alignment_set_padding (GTK_ALIGNMENT (pAlign), 0, 0, 40, 0);
+				gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
+				gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
+			}
+			
+			if (pItem->cDate != NULL)
+			{
+				pLinkButton = gtk_label_new (pItem->cDate);
+				
+				pAlign = gtk_alignment_new (1., 0.5, 0., 0.);
+				gtk_alignment_set_padding (GTK_ALIGNMENT (pAlign), 0, 0, 40, 0);
 				gtk_container_add (GTK_CONTAINER (pAlign), pLinkButton);
 				gtk_box_pack_start (GTK_BOX (pVBox), pAlign, FALSE, FALSE, 0);
 			}

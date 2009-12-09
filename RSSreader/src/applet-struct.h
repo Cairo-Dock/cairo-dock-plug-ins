@@ -61,6 +61,7 @@ typedef struct _CDRssItem {
 	gchar *cLink;
 	gchar *cImage;  // pas utilise pour l'instant.
 	gchar *cAuthor;  // Atom seulement.
+	gchar *cDate;
 	} CDRssItem ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
