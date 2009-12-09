@@ -535,11 +535,11 @@ void terminal_new_tab(void)
 	int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, pHBox);
 	GtkWidget *pNewTab = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), num_new_tab);
 	
-  gtk_widget_show(vterm);
-  cd_message ("num_new_tab : %d", num_new_tab);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
-  
-  term_apply_settings_on_vterm (vterm);
+	gtk_widget_show(vterm);
+	cd_message ("num_new_tab : %d", num_new_tab);
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
+	
+	term_apply_settings_on_vterm (vterm);
 }
 
 
@@ -607,13 +607,12 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 }
 static gboolean on_button_press_tab (GtkWidget* pWidget,
 	GdkEventButton* pButton,
-	GtkWidget *vterm)
+	gpointer data)
 {
-	//g_print ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
+	g_print ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
+	GtkWidget *vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
 	if (pButton->type == GDK_2BUTTON_PRESS)
 	{
-		if (vterm == NULL)
-			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
 		if (vterm == NULL)
 			terminal_new_tab ();
 		else
@@ -621,8 +620,6 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 	}
 	else if (pButton->button == 3)
 	{
-		if (vterm == NULL)
-			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
 		if (vterm != NULL)
 		{
 			GtkWidget *menu = _terminal_build_menu_tab (vterm);
@@ -641,14 +638,22 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 	}
 	else if (pButton->button == 2)
 	{
-		if (vterm == NULL)
-			vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
 		if (vterm != NULL)
 		{
 			terminal_close_tab (vterm);
 		}
 	}
-	return FALSE;
+	return TRUE;
+}
+
+
+static gboolean on_button_press_dialog (GtkWidget *widget,
+	GdkEventButton *pButton,
+	CairoDialog *pDialog)
+{
+	g_print ("POUET\n");
+	cairo_dock_hide_dialog (pDialog);
+	return TRUE;
 }
 void terminal_build_and_show_tab (void)
 {
@@ -674,7 +679,10 @@ void terminal_build_and_show_tab (void)
 	if (myDock)
 	{
 		myData.dialog = cd_terminal_build_dialog ();
-		//myData.dialog = cairo_dock_build_dialog (D_("Terminal"), myIcon, myContainer, NULL, myData.tab, GTK_BUTTONS_NONE, NULL, NULL, NULL);
+		g_signal_connect (G_OBJECT (myData.dialog->container.pWidget),
+			"button-press-event",
+			G_CALLBACK (on_button_press_dialog),
+			myData.dialog);  // on le cache quand on clique dessus.
 	}
 	else
 	{

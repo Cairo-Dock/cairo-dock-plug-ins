@@ -5,7 +5,7 @@
 
 #I+[50;1000] Height of the vanishing point :
 #{The lower, the more the point of view is low on the plane.}
-vanishing point y = 200
+vanishing point y = 300
 
 #Y+[Normal separator;0;0;Flat separator;1;1;Physical separator;0;0] Choose the way separators are drawn :
 draw separator = 0
