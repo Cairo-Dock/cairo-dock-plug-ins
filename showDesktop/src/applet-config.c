@@ -27,9 +27,9 @@
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.bShowDesklets = CD_CONFIG_GET_BOOLEAN ("Configuration", "show desklets");
-	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle click", 1);
-	myConfig.cShortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Shift><Ctrl>F4");
+	myConfig.iActionOnLeftClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "left click", CD_SHOW_DESKTOP);
+	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle click", CD_SHOW_DESKLETS);
+	myConfig.cShortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F4");
 	myConfig.cHiddenImage = CD_CONFIG_GET_STRING ("Icon", "icon");
 	if (myConfig.cHiddenImage == NULL)
 		myConfig.cHiddenImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);

@@ -46,7 +46,7 @@ static void _cd_show_hide_desklet (void)
 	if (!myData.bDeskletsVisible)
 	{
 		//myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
-		cairo_dock_set_all_desklets_visible (myConfig.bShowWidgetLayerDesklet);
+		cairo_dock_set_all_desklets_visible (TRUE);  // TRUE <=> les desklets de la couche widget aussi.
 	}
 	else
 	{
@@ -98,10 +98,13 @@ static void _cd_action (CDActionOnClick iAction)
 	switch (iAction)
 	{
 		case CD_SHOW_DESKTOP :
-			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
+			_cd_show_hide_desktop (FALSE);
 		break ;
 		case CD_SHOW_DESKLETS :
 			_cd_show_hide_desklet ();
+		break ;
+		case CD_SHOW_DESKTOP_AND_DESKLETS :
+			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
 		break ;
 		case CD_SHOW_WIDGET_LAYER :
 			_cd_show_widget_layer ();
@@ -116,7 +119,7 @@ static void _cd_action (CDActionOnClick iAction)
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	_cd_show_hide_desktop (myConfig.bShowDesklets);
+	_cd_action (myConfig.iActionOnLeftClick);
 CD_APPLET_ON_CLICK_END
 
 
@@ -130,7 +133,6 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_action (myConfig.iActionOnMiddleClick);
 CD_APPLET_ON_MIDDLE_CLICK_END
-
 
 
 void on_keybinding_pull (const char *keystring, gpointer user_data)

@@ -56,7 +56,7 @@ size=50;24
 #[gtk-preferences]
 [GUI]
 #k Shortkey to toggle the systray in dock mode :
-shortkey = <Control>F4
+shortkey = <Control>F7
 
 #l[horizontal;vertical] Icons packing :
 icon packing = 0

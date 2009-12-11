@@ -26,6 +26,7 @@
 typedef enum {
 	CD_SHOW_DESKTOP=0,
 	CD_SHOW_DESKLETS,
+	CD_SHOW_DESKTOP_AND_DESKLETS,
 	CD_SHOW_WIDGET_LAYER,
 	CD_EXPOSE,
 	CD_NB_ACTIONS
@@ -33,8 +34,7 @@ typedef enum {
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bShowDesklets;
-	gboolean bShowWidgetLayerDesklet;
+	CDActionOnClick iActionOnLeftClick;
 	CDActionOnClick iActionOnMiddleClick;
 	gchar *cShortcut;
 	gchar *cVisibleImage;
