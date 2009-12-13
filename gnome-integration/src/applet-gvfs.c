@@ -61,8 +61,9 @@ void stop_vfs_backend (void)
 }
 
 
-static gchar *_cd_get_icon_path (GIcon *pIcon)
+static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTargetURI est l'URI que represente l'icone, pour les cas ou l'icone est contenue dans le repertoire lui-meme (CD ou DVD de jeux notamment)
 {
+	g_print ("%s ()\n", __func__);
 	gchar *cIconPath = NULL;
 	if (G_IS_THEMED_ICON (pIcon))
 	{
@@ -71,16 +72,29 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 		int i;
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
-			//cd_message (" une icone possible est : %s\n", cFileNames[i]);
+			//g_print (" une icone possible est : %s\n", cFileNames[i]);
 			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
-			//cd_message ("  chemin trouve : %s\n", cIconPath);
+			//g_print ("  chemin trouve : %s\n", cIconPath);
 		}
 	}
 	else if (G_IS_FILE_ICON (pIcon))
 	{
 		GFile *pFile = g_file_icon_get_file (G_FILE_ICON (pIcon));
 		cIconPath = g_file_get_basename (pFile);
-		//cd_message (" file_icon => %s\n", cIconPath);
+		//g_print (" file_icon => %s\n", cIconPath);
+		
+		if (cTargetURI && cIconPath && g_str_has_suffix (cIconPath, ".ico"))  // cas des montages de CD ou d'iso
+		{
+			gchar *tmp = cIconPath;
+			cIconPath = g_strdup_printf ("%s/%s", cTargetURI, tmp);
+			g_free (tmp);
+			if (strncmp (cIconPath, "file://", 7) == 0)
+			{
+				tmp = cIconPath;
+				cIconPath = g_filename_from_uri (tmp, NULL, NULL);
+				g_free (tmp);
+			}
+		}
 	}
 	return cIconPath;
 }
@@ -150,7 +164,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 						*pFoundMount = pMount;
 						*cURI = g_strconcat ("computer:///", cFileName, NULL);
 						GIcon *pSystemIcon = g_mount_get_icon (pMount);
-						*cIconName = _cd_get_icon_path (pSystemIcon);
+						*cIconName = _cd_get_icon_path (pSystemIcon, NULL);
 						g_free (cName);
 						break ;
 					}
@@ -350,12 +364,12 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
 	cd_message (" => '%s' (mime:%s ; bIsDirectory:%d)", cFileName, cMimeType, *bIsDirectory);
 	
+	const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
 	if (iFileType == G_FILE_TYPE_MOUNTABLE)
 	{
 		*cName = NULL;
 		*iVolumeID = 1;
 		
-		const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
 		cd_message ("  cTargetURI:%s", cTargetURI);
 		GMount *pMount = NULL;
 		if (cTargetURI != NULL)
@@ -428,7 +442,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
 		if (pSystemIcon != NULL)
 		{
-			*cIconName = _cd_get_icon_path (pSystemIcon);
+			*cIconName = _cd_get_icon_path (pSystemIcon, cTargetURI ? cTargetURI : *cURI);
 		}
 	}
 	cd_message ("cIconName : %s", *cIconName);
@@ -459,7 +473,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		//g_object_unref (pRootDir);
 		
 		pIcon = g_mount_get_icon (pMount);
-		pNewIcon->cFileName = _cd_get_icon_path (pIcon);
+		pNewIcon->cFileName = _cd_get_icon_path (pIcon, NULL);
 		//g_object_unref (pIcon);
 		
 		//g_object_unref (pMount);
@@ -470,7 +484,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		pNewIcon->cName = g_volume_get_name (pVolume);
 		
 		pIcon = g_volume_get_icon (pVolume);
-		pNewIcon->cFileName = _cd_get_icon_path (pIcon);
+		pNewIcon->cFileName = _cd_get_icon_path (pIcon, NULL);
 		//g_object_unref (pIcon);
 		
 		pNewIcon->cCommand = g_strdup (pNewIcon->cName);
@@ -745,8 +759,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			}
 			if (icon->cFileName == NULL)
 			{
-				icon->cFileName = _cd_get_icon_path (pFileIcon);
-				cd_message ("icon->cFileName : %s", icon->cFileName);
+				icon->cFileName = _cd_get_icon_path (pFileIcon, icon->cCommand);
+				g_print ("icon->cFileName : %s\n", icon->cFileName);
 			}
 			
 			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
@@ -813,7 +827,7 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 	g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
+		cd_warning ("gnome-integration (%s) : %s", cBaseURI, erreur->message);
 		g_error_free (erreur);
 		return NULL;
 	}
