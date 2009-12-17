@@ -243,7 +243,7 @@ static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myA
 	g_key_file_free (pKeyFile);
 	
 	//\____________ On recharge le panneau de config.
-	cairo_dock_reload_current_group_widget (myApplet);
+	CD_APPLET_RELOAD_CONFIG_PANEL;
 }
 static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *myApplet)
 {
@@ -287,7 +287,7 @@ static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *
 	g_key_file_free (pKeyFile);
 	
 	//\____________ On recharge le panneau de config.
-	cairo_dock_reload_current_group_widget (myApplet);
+	CD_APPLET_RELOAD_CONFIG_PANEL;
 }
 
   /////////////////

@@ -63,7 +63,7 @@ void stop_vfs_backend (void)
 
 static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTargetURI est l'URI que represente l'icone, pour les cas ou l'icone est contenue dans le repertoire lui-meme (CD ou DVD de jeux notamment)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	gchar *cIconPath = NULL;
 	if (G_IS_THEMED_ICON (pIcon))
 	{
@@ -760,7 +760,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			if (icon->cFileName == NULL)
 			{
 				icon->cFileName = _cd_get_icon_path (pFileIcon, icon->cCommand);
-				g_print ("icon->cFileName : %s\n", icon->cFileName);
+				//g_print ("icon->cFileName : %s\n", icon->cFileName);
 			}
 			
 			if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)

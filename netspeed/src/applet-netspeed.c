@@ -104,7 +104,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		erreur = NULL;
 		myData.bAcquisitionOK = FALSE;
 	}
-	else
+	else if (cContent && *cContent != '\0')
 	{
 		int iNumLine = 1;
 		gchar *tmp = cContent;
@@ -142,17 +142,17 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 					break ;
 				}
 			}
-			tmp = strchr (tmp+1, '\n');
+			tmp = strchr (tmp, '\n');
 			if (tmp == NULL)
 				break;
 			tmp ++;
 			iNumLine ++;
 		}
 		myData.bAcquisitionOK = (tmp != NULL);
-		g_free (cContent);
 		if (! myData.bInitialized)
 			myData.bInitialized = TRUE;
 	}
+	g_free (cContent);
 }
 
 gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)

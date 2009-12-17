@@ -40,6 +40,7 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	//\________________ On recupere l'heure courante.
 	time_t epoch = (time_t) time (NULL);
 	if (myConfig.cLocation != NULL)
@@ -211,6 +212,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
+	CD_APPLET_LEAVE;
 	return TRUE;
 }
 

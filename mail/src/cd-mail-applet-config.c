@@ -229,7 +229,7 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	g_strfreev (pGroupList);
 	
-	cairo_dock_reload_current_group_widget_full (myApplet, length-1);  // on se place sur le dernier onglet, qui est celui du nouveau compte.
+	CD_APPLET_RELOAD_CONFIG_PANEL_WITH_PAGE (length-1);  // on se place sur le dernier onglet, qui est celui du nouveau compte.
 	
 	g_key_file_free (pKeyFile);
 }
@@ -266,7 +266,7 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 	g_key_file_free (pKeyFile);
 	
 	//\____________ On recharge le panneau de config.
-	cairo_dock_reload_current_group_widget (myApplet);
+	CD_APPLET_RELOAD_CONFIG_PANEL;
 	
 	//\____________ On supprime le compte et son icone de la liste.
 	CDMailAccount *pMailAccount;
