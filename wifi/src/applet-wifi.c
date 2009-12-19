@@ -35,7 +35,7 @@
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
 	if (str) {\
 		str += strlen (cValueName) + 1;\
-		if (*str == ' ')\
+		while (*str == ' ')\
 			str ++;\
 		if (*str == '"') {\
 			str ++;\
@@ -43,8 +43,10 @@
 		else {\
 			str2 = strchr (str, ' '); }\
 		if (str2) {\
-			cValue = g_strndup (str, str2 - str);\
-			cd_debug ("%s : %s", cValueName, cValue); } }
+			cValue = g_strndup (str, str2 - str); }\
+		else {\
+			cValue = g_strdup (str); }\
+		cd_debug ("%s : %s", cValueName, cValue); }
 #define _pick_value(cValueName, iValue, iMaxValue)\
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
 	if (str) {\
@@ -84,6 +86,18 @@ void cd_wifi_get_data (gpointer data)
 		return ;
 	}
 	
+	//eth0 no wireless extensions.
+	//eth2 IEEE 802.11 Nickname:""
+	//Access Point: Not-Associated
+	//wlan0 IEEE 802.11abg ESSID:"NETXHO"
+	//Mode:Managed Frequency:2.452 GHz Access Point: 00:24:2B:48:07:21
+	//Bit Rate=54 Mb/s Tx-Power=15 dBm
+	//Retry long limit:7 RTS thr:off Fragment thr:off
+	//Encryption key:C6DA-6974-1612-DA99-3049-FDC0-1399-23BA-894E-67B0-9C8B-72C7-EE5B-5876-5C58-331B [2]
+	//Power Management:off
+	//Link Quality=52/70 Signal level=-58 dBm Noise level=-127 dBm
+	//Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0
+	//Tx excessive retries:0 Invalid misc:0 Missed beacon:0
 	gchar **cInfopipesList = g_strsplit (cResult, "\n", -1);
 	g_free (cResult);
 	gchar *cOneInfopipe, *str, *str2;
@@ -91,21 +105,28 @@ void cd_wifi_get_data (gpointer data)
 	for (i = 0; cInfopipesList[i] != NULL; i ++)
 	{
 		cOneInfopipe = cInfopipesList[i];
-		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )
-			continue;
-		
-		if (myData.cInterface != NULL && *cOneInfopipe != ' ')  // nouvelle interface, on n'en veut qu'une.
-			break ;
-		
-		if (myData.cInterface == NULL && *cOneInfopipe != ' ')
+		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )  // saut de ligne signalant une nouvelle interface.
 		{
-			str = cOneInfopipe;  // le nom de l'interface est en debut de ligne.
-			str2 = strchr (str, ' ');
-			if (str2)
+			if (myData.cInterface != NULL)  // comme on n'en veut qu'une on quitte.
+				break;
+			else
+				continue;
+		}
+		
+		if (myData.cInterface == NULL)  // on n'a pas encore d'interface valable.
+		{
+			str = strchr (cOneInfopipe, ' ');  // le nom de l'interface est en debut de ligne.
+			if (str)
 			{
-				myData.cInterface = g_strndup (cOneInfopipe, str2 - str);
-				cd_debug ("interface : %s", myData.cInterface);
+				str2 = str + 1;
+				while (*str2 == ' ')
+					str2 ++;
+				if (strncmp (str2, "no wireless", 11) != 0)
+					myData.cInterface = g_strndup (cOneInfopipe, str - cOneInfopipe);
 			}
+			cd_debug ("interface : %s", myData.cInterface);
+			if (myData.cInterface == NULL)  // cette ligne ne nous a rien apporte, on passe a la suivante.
+				continue;
 		}
 		
 		if (myData.cESSID == NULL)
