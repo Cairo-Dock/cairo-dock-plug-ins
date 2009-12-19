@@ -128,7 +128,7 @@ AC_ARG_ENABLE(xrandr-in-show-desktop,
         [  --enable-xrandr-in-show-desktop : Add screen resolution abilities to Show-Desktop (default=yes) ],
         [ with_xrandr_in_show_desktop=${enableval} ],
         [ with_xrandr_in_show_desktop=yes])
-AC_ARG_ENABLE(,
+AC_ARG_ENABLE(show-desklets,
 	[  --enable-show-desklets : Enable showDesklets applet (default=no) ],
 	[ with_showDesklets=${enableval} ],
 	[ with_showDesklets=no ])

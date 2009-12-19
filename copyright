@@ -109,6 +109,7 @@ Copyright: Rémy Robertson, Yann Sladek and Fabrice Rey <fabounet@users.berlios.
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: dnd2share/*
+	RSSreader/*
 Copyright: Yann Dulieu and Fabrice Rey <fabounet@users.berlios.de>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
