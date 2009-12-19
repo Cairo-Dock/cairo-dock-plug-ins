@@ -29,7 +29,8 @@ CD_APPLET_DEFINITION (N_("showDesktop"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet adds an icon to show your desktop,\n"
-	"and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+	" and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+	"It can also be used to quickly change the screen's resolution from the right-click menu.\n"
 	"Left-click to show/hide the desktop,\n"
 	"Middle-click to show/hide either the desktop, the desklets, the Widget Layer, or all the desktops at once."),
 	"Romain PEROL (Rom1) & Fabrice Rey (Fabounet)")

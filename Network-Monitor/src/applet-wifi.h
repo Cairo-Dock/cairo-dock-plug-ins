@@ -23,9 +23,10 @@
 #include <cairo-dock.h>
 
 
-void cd_wifi_get_data (gpointer data);
+void cd_netmonitor_launch_wifi_task (CairoDockModuleInstance *myApplet);
 
-gboolean cd_wifi_update_from_data (gpointer data);
+
+void cd_netmonitor_free_wifi_task (CairoDockModuleInstance *myApplet);
 
 
 #endif

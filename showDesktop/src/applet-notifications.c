@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#include<X11/Xlib.h>
+#include<X11/extensions/Xrandr.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -124,9 +126,79 @@ CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
+#ifdef HAVE_XRANDR
+static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
+{
+	CD_APPLET_ENTER;
+	int 				    iNumRes = GPOINTER_TO_INT (data);
+	Display                 *dpy;
+	Window                  root;
+	XRRScreenConfiguration  *conf;
+	short                   *rates;
+	int                     num_rates;
+	dpy = gdk_x11_get_default_xdisplay ();
+	root = RootWindow(dpy, 0);
+	
+	conf = XRRGetScreenInfo(dpy, root);
+	g_return_if_fail (conf != NULL);
+	
+	rates = XRRRates(dpy, 0, iNumRes, &num_rates);
+	g_return_if_fail (num_rates > 0);
+	g_print ("available rates : from %d to %d Hz\n", rates[0], rates[num_rates-1]);
+	
+	XRRSetScreenConfigAndRate(dpy, conf, root, iNumRes, RR_Rotate_0, rates[0], CurrentTime);
+	XRRFreeScreenConfigInfo (conf);
+	
+	// restore original conf :  XRRSetScreenConfigAndRate(dpy, conf, root, original_size_id, original_rotation, original_rate, CurrentTime);
+	CD_APPLET_LEAVE();
+}
+#endif
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	
+	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
+	
+	#ifdef HAVE_XRANDR
+	Display                 *dpy;
+	Window                  root;
+	int                     num_sizes;
+	XRRScreenSize           *xrrs;
+	XRRScreenConfiguration  *conf;
+	short                   original_rate;
+	Rotation                original_rotation;
+	SizeID                  original_size_id;
+	
+	dpy = gdk_x11_get_default_xdisplay ();
+	root = RootWindow(dpy, 0);
+	
+	conf = XRRGetScreenInfo(dpy, root);  // config  courante.
+	if (conf != NULL)
+	{
+		original_rate = XRRConfigCurrentRate(conf);
+		original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
+		
+		// resolutions possibles.
+		int num_sizes = 0;
+		XRRScreenSize *xrrs = XRRSizes(dpy, 0, &num_sizes);
+		// add to the menu
+		GString *pResString = g_string_new ("");
+		int i;
+		for (i = 0; i < num_sizes; i ++)
+		{
+			g_string_printf (pResString, "%s%dx%d", (i == original_size_id ? "=>" : ""), xrrs[i].width, xrrs[i].height);
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
+			/*short   *rates;
+			int     num_rates;
+			rates = XRRRates(dpy, 0, i, &num_rates);
+			for(int j = 0; j < num_rates; j ++) {
+				possible_frequencies[i][j] = rates[j];
+				printf("%4i ", rates[j]); }*/
+		}
+		g_string_free (pResString, TRUE);
+		XRRFreeScreenConfigInfo (conf);
+	}
+	#endif
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -137,12 +209,15 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 void on_keybinding_pull (const char *keystring, gpointer user_data)
 {
+	CD_APPLET_ENTER;
 	_cd_action (myConfig.iActionOnMiddleClick);
+	CD_APPLET_LEAVE();
 }
 
 
 gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
 	g_print ("bDesktopVisible <- %d\n", myData.bDesktopVisible);
 	
@@ -153,4 +228,5 @@ gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 		else
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHiddenImage);
 	}
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }

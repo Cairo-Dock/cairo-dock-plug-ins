@@ -778,7 +778,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			pIconList = g_list_insert_sorted (pIconList,
 				icon,
 				(GCompareFunc) cairo_dock_compare_icons_order);
-			//g_list_prepend (pIconList, icon);
+			cd_debug (" + %s (%s)", icon->cName, icon->cFileName);
 			iOrder ++;
 		}
 	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.

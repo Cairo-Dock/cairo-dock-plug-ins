@@ -28,6 +28,7 @@
 #include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-draw.h"
+#include "applet-netspeed.h"
 #include "applet-wifi.h"
 
 
@@ -193,7 +194,9 @@ gboolean cd_wifi_update_from_data (gpointer data)
 
 void cd_netmonitor_launch_wifi_task (CairoDockModuleInstance *myApplet)
 {
-	if (myData.netSpeed.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
+	cd_netmonitor_free_netspeed_task (myApplet);
+	
+	if (myData.wifi.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
 	{
 		myData.wifi.pTask = cairo_dock_new_task (myConfig.iWifiCheckInterval,
 			(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
@@ -204,5 +207,14 @@ void cd_netmonitor_launch_wifi_task (CairoDockModuleInstance *myApplet)
 	else  // la tache existe, on la relance immediatement, avec la nouvelle frequence eventuellement.
 	{
 		cairo_dock_relaunch_task_immediately (myData.wifi.pTask, myConfig.iWifiCheckInterval);
+	}
+}
+
+void cd_netmonitor_free_wifi_task (CairoDockModuleInstance *myApplet)
+{
+	if (myData.wifi.pTask != NULL)
+	{
+		cairo_dock_free_task (myData.wifi.pTask);
+		myData.wifi.pTask = NULL;
 	}
 }

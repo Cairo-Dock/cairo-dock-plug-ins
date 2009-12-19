@@ -23,6 +23,8 @@
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-draw.h"
+#include "applet-netspeed.h"
+#include "applet-wifi.h"
 #include "applet-init.h"
 
 
@@ -97,6 +99,11 @@ CD_APPLET_INIT_BEGIN
 		myData.bDbusConnection = FALSE;
 		// Initialisation de la tache periodique de mesure.
 		myData.iPreviousQuality = -2;  // force le dessin.
+		
+		if (myConfig.bModeWifi)
+			cd_netmonitor_launch_wifi_task (myApplet);
+		else
+			cd_netmonitor_launch_netspeed_task (myApplet);
 		/*myData.pTask = cairo_dock_new_task (MIN (myConfig.iWifiCheckInterval, myConfig.iNetspeedCheckInterval),
 			(CairoDockGetDataAsyncFunc) cd_NetworkMonitor_get_data,
 			(CairoDockUpdateSyncFunc) cd_NetworkMonitor_update_from_data,

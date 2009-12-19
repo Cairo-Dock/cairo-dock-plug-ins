@@ -33,6 +33,7 @@ CD_APPLET_ON_CLICK_END
 
 static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 {
+	CD_APPLET_ENTER;
 	GError *erreur = NULL;
 	if (myConfig.cShowAdvancedMixerCommand != NULL)
 	{
@@ -48,6 +49,7 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 		cd_warning ("Attention : when trying to execute '%s' : %s", myConfig.cShowAdvancedMixerCommand, erreur->message);
 		g_error_free (erreur);
 	}
+	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
@@ -68,7 +70,9 @@ CD_APPLET_ON_DOUBLE_CLICK_END
 
 void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 {
+	CD_APPLET_ENTER;
 	mixer_show_hide_dialog ();
+	CD_APPLET_LEAVE();
 }
 
 CD_APPLET_ON_SCROLL_BEGIN

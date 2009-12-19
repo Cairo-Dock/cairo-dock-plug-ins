@@ -23,6 +23,8 @@
 
 #include <cairo-dock.h>
 
+#define CD_NETSPEED_NB_MAX_VALUES 2
+
 typedef enum {
 	CONNECTION_INFO_NONE = 0,
 	CONNECTION_INFO_SIGNAL_STRENGTH_LEVEL,
@@ -80,6 +82,7 @@ struct _AppletConfig {
 	// parametres
 	gboolean bModeWifi;  // TRUE pour l'affichage Wifi, FALSE pour l'affichage Netspeed.
 	gchar *cInterface;  // interface (eth0, etc) a surveiller
+	gint iStringLen;
 	gchar *cSysMonitorCommand;  // command pour ouvrir un moniteur systeme.
 	
 	// wifi

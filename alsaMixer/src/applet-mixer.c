@@ -219,9 +219,11 @@ void mixer_switch_mute (void)
 
 static void on_change_volume (GtkRange *range, gpointer data)
 {
+	CD_APPLET_ENTER;
 	int iNewVolume = (int) gtk_range_get_value (GTK_RANGE (range));
 	cd_debug ("%s (%d)", __func__, iNewVolume);
 	mixer_set_volume (iNewVolume);
+	CD_APPLET_LEAVE();
 }
 GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
@@ -258,9 +260,11 @@ static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDialog *pDialog)
 {
+	CD_APPLET_ENTER;
 	cairo_dock_dialog_unreference (pDialog);
 	myData.pDialog = NULL;
-	return FALSE;
+	CD_APPLET_LEAVE(FALSE);
+	//return FALSE;
 }
 static gboolean _on_key_press_dialog (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
 {

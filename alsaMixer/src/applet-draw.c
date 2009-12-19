@@ -29,6 +29,7 @@
 
 int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("%s (%d)", __func__, mask);
 	
 	if (mask != 0)
@@ -97,6 +98,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
 	}
 	
+	CD_APPLET_LEAVE();
 	return 0;
 }
 

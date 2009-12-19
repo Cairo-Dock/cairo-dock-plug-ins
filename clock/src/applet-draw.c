@@ -212,7 +212,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	CD_APPLET_LEAVE;
+	CD_APPLET_LEAVE();
 	return TRUE;
 }
 

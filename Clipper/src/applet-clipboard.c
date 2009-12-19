@@ -57,6 +57,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 {
 	if (text == NULL)
 		return ;
+	CD_APPLET_ENTER;
 	CDClipperItemType iType = GPOINTER_TO_INT (user_data);
 	cd_message ("%s (%s, %d)", __func__, text, iType);
 	
@@ -75,7 +76,8 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 	if (bTextEmpty)
 	{
 		cd_message ("blank text, will be ignored");
-		return ;
+		CD_APPLET_LEAVE();
+		//return ;
 	}
 	
 	//\________________ On recherche l'existence du texte dans les precedents items.
@@ -138,7 +140,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		{
 			cd_debug ("Clipper : %s remplace le dernier de l'autre selection", text);
 			pElement = _cd_clipper_get_last_item (iType);
-			g_return_if_fail (pElement != NULL);
+			CD_APPLET_LEAVE_IF_FAIL (pElement != NULL);
 			cd_clipper_free_item (pElement->data);
 			myData.pItems = g_list_delete_link (myData.pItems, pElement);
 			myData.iNbItems[iType] --;
@@ -154,7 +156,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		{
 			cd_debug ("Clipper : %s remplace le dernier", text);
 			pElement = _cd_clipper_get_last_item (iType);
-			g_return_if_fail (pElement != NULL);
+			CD_APPLET_LEAVE_IF_FAIL (pElement != NULL);
 			cd_clipper_free_item (pElement->data);
 			myData.pItems = g_list_delete_link (myData.pItems, pElement);
 			myData.iNbItems[iType] --;
@@ -211,9 +213,11 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		}
 	}
 	myData.bActionBlocked = FALSE;
+	CD_APPLET_LEAVE();
 }
 void cd_clipper_selection_owner_changed (GtkClipboard *pClipBoard, GdkEvent *event, gpointer user_data)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("%s ()", __func__);
 	CDClipperItemType iItemType;
 	if (! myConfig.bSeparateSelections)
@@ -224,6 +228,7 @@ void cd_clipper_selection_owner_changed (GtkClipboard *pClipBoard, GdkEvent *eve
 		iItemType = (pClipBoard == pClipBoardSelection ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_PRIMARY);
 	}
 	gtk_clipboard_request_text (pClipBoard, (GtkClipboardTextReceivedFunc) _on_text_received, GINT_TO_POINTER (iItemType));
+	CD_APPLET_LEAVE();
 }
 
 
@@ -371,16 +376,19 @@ void cd_clipper_free_action (CDClipperAction *pAction)
 
 static gboolean _cd_clipper_auto_destroy_action_menu (GtkWidget *pMenu)
 {
+	CD_APPLET_ENTER;
 	if (pMenu == myData.pActionMenu)
 	{
 		g_print ("auto-destruction\n");
 		gtk_widget_destroy (myData.pActionMenu);  // n'appellera pas le 'delete_menu'
 		myData.pActionMenu = NULL;
 	}
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 static void _on_delete_action_menu (GtkMenuShell *menu, CairoDock *pDock)
 {
+	CD_APPLET_ENTER;
 	if (menu == (GtkMenuShell *)myData.pActionMenu)
 	{
 		cd_debug ("on oublie le menu actuel");
@@ -388,14 +396,16 @@ static void _on_delete_action_menu (GtkMenuShell *menu, CairoDock *pDock)
 	}
 	else
 		cd_debug ("un ancien menu est detruit");
+	CD_APPLET_LEAVE();
 }
 static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand *pCommand)
 {
+	CD_APPLET_ENTER;
 	cd_message ("%s (%s)", __func__, pCommand->cDescription);
 	CDClipperItem *pItem = NULL;
 	if (myData.pItems != NULL)
 		pItem = myData.pItems->data;
-	g_return_if_fail (pItem != NULL);
+	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
 	
 	gchar *cCommand = g_strdup_printf (pCommand->cFormat, pItem->cText, pItem->cText);
 	gchar *cBGCommand = g_strconcat (cCommand, " &", NULL);
@@ -403,6 +413,7 @@ static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand 
 	int r = system (cBGCommand);
 	g_free (cBGCommand);
 	g_free (cCommand);
+	CD_APPLET_LEAVE();
 }
 GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 {
@@ -463,6 +474,7 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 
 static void _cd_clipper_activate_text_in_clipboard (GtkMenuItem *pMenuItem, gchar *cText)
 {
+	CD_APPLET_ENTER;
 	cd_message ("%s (%s)", __func__, cText);
 	GtkClipboard *pClipBoard;
 	
@@ -481,9 +493,11 @@ static void _cd_clipper_activate_text_in_clipboard (GtkMenuItem *pMenuItem, gcha
 	{
 		myData.bActionBlocked = TRUE;
 	}
+	CD_APPLET_LEAVE();
 }
 static void _cd_clipper_activate_text_in_selection (GtkMenuItem *pMenuItem, gchar *cText)
 {
+	CD_APPLET_ENTER;
 	cd_message ("%s (%s)", __func__, cText);
 	GtkClipboard *pClipBoard;
 	
@@ -502,9 +516,11 @@ static void _cd_clipper_activate_text_in_selection (GtkMenuItem *pMenuItem, gcha
 	{
 		myData.bActionBlocked = TRUE;
 	}
+	CD_APPLET_LEAVE();
 }
 static void _cd_clipper_activate_item (GtkMenuItem *pMenuItem, CDClipperItem *pItem)
 {
+	CD_APPLET_ENTER;
 	if (pItem->iType == CD_CLIPPER_CLIPBOARD)
 	{
 		_cd_clipper_activate_text_in_clipboard (pMenuItem, pItem->cText);
@@ -513,6 +529,7 @@ static void _cd_clipper_activate_item (GtkMenuItem *pMenuItem, CDClipperItem *pI
 	{
 		_cd_clipper_activate_text_in_selection (pMenuItem, pItem->cText);
 	}
+	CD_APPLET_LEAVE();
 }
 static void _cd_clipper_add_item_in_menu (CDClipperItem *pItem, GtkWidget *pMenu)
 {

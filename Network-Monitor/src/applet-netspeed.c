@@ -26,8 +26,8 @@
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
+#include "applet-wifi.h"
 #include "applet-netspeed.h"
-#include "cairo-dock.h"
 
 #define NETSPEED_DATA_PIPE "/proc/net/dev"
 
@@ -166,9 +166,9 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 	
 	if ( ! myData.netSpeed._bAcquisitionOK)
 	{
-		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+		/*if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)*/
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		
 		memset (s_fValues, 0, sizeof (s_fValues));
@@ -182,25 +182,25 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		
 		if (! myData.netSpeed._bInitialized)
 		{
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+			//if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			memset (s_fValues, 0, sizeof (s_fValues));
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
 		else
 		{
-			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
+			//if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
 				cd_netspeed_formatRate (myApplet, myData.netSpeed._iUploadSpeed, s_upRateFormatted);
 				cd_netspeed_formatRate (myApplet, myData.netSpeed._iDownloadSpeed, s_downRateFormatted);
-				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				//if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
 					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
 				}
-				else
+				/*else
 				{
 					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
-				}
+				}*/
 			}
 			
 			if(myData.netSpeed._iUploadSpeed > myData.netSpeed._iMaxUpRate) {
@@ -231,6 +231,8 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 
 void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet)
 {
+	cd_netmonitor_free_wifi_task (myApplet);
+	
 	if (myData.netSpeed.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
 	{
 		myData.netSpeed.pTask = cairo_dock_new_task (myConfig.iNetspeedCheckInterval,
@@ -244,3 +246,13 @@ void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet)
 		cairo_dock_relaunch_task_immediately (myData.netSpeed.pTask, myConfig.iNetspeedCheckInterval);
 	}
 }
+
+void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet)
+{
+	if (myData.netSpeed.pTask != NULL)
+	{
+		cairo_dock_free_task (myData.netSpeed.pTask);
+		myData.netSpeed.pTask = NULL;
+	}
+}
+

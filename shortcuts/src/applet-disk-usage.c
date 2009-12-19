@@ -54,7 +54,7 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 
 void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	//cd_message ("%s ()", __func__);
 	const gchar *cMountPath;
 	GList *pElement = myData.pDiskUsageList;
 	CDDiskUsage *pDiskUsage;
@@ -91,6 +91,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myData.pDiskUsageList != NULL, TRUE);
 	
+	CD_APPLET_ENTER;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	cairo_t *ctx = (0 ? myDrawContext : cairo_dock_create_context_from_container (pContainer));
 	GList *pElement = myData.pDiskUsageList;
@@ -151,6 +152,7 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 	if (ctx != myDrawContext)
 		cairo_destroy (ctx);
 	
+	CD_APPLET_LEAVE();
 	return TRUE;
 }
 

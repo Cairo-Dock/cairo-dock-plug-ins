@@ -30,6 +30,7 @@
 
 
 static void _cd_slider_toogle_pause(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	//cd_message("Toggeling pause: %d", myData.bPause);
 	if (!myData.bPause) {
 		myData.bPause = TRUE;  // coupera le timer.
@@ -38,9 +39,11 @@ static void _cd_slider_toogle_pause(GtkMenuItem *menu_item, CairoDockModuleInsta
 		myData.bPause = FALSE;
 		cd_slider_next_slide(myApplet); //on relance le diapo
 	}
+	CD_APPLET_LEAVE();
 }
 
 static void _cd_slider_open_current_slide (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	if (myData.pElement != NULL && myData.pElement->data != NULL) {
 		SliderImage *pImage = myData.pElement->data;
 		gchar *cImagePath = pImage->cPath;
@@ -54,6 +57,7 @@ static void _cd_slider_open_current_slide (GtkMenuItem *menu_item, CairoDockModu
 		}*/
 		cairo_dock_fm_launch_uri (cImagePath);  /// proposer un editeur d'image dans le panneau de conf ou une liste dans le menu...
 	}
+	CD_APPLET_LEAVE();
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -69,6 +73,7 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 static void _cd_slider_run_dir(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
+	CD_APPLET_LEAVE();
 	/*GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
 	if (erreur != NULL) {
@@ -78,23 +83,20 @@ static void _cd_slider_run_dir(GtkMenuItem *menu_item, CairoDockModuleInstance *
 	}*/
 	//cd_debug("Slider: will show '%s'", cURI);
 	cairo_dock_fm_launch_uri(myConfig.cDirectory);
+	CD_APPLET_LEAVE();
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_cd_slider_run_dir(NULL, myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-static void _cd_slider_previous_slide(CairoDockModuleInstance *myApplet) {
-	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
-	myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
-	cd_slider_next_slide(myApplet);
-}
-
 
 static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	if (myData.iNbScroll == 0)
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	
 	if (myConfig.bUseThread)
 		cairo_dock_stop_task (myData.pMeasureImage);
@@ -136,7 +138,8 @@ static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
 	myData.iNbScroll = 0;
 	myData.iScrollID = 0;
 	cd_slider_next_slide (myApplet);
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.iScrollID != 0)

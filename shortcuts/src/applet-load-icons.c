@@ -30,6 +30,7 @@
 
 static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	//\________________ On gere l'evenement sur le point de montage.
 	cd_shortcuts_stop_disk_periodic_task (myApplet);
 	
@@ -39,9 +40,15 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 	
 	//\________________ On met a jour les signets qui pointeraient sur un repertoire du point de montage nouvellement (de)monte.
 	if (!myConfig.bListBookmarks)
+	{
+		CD_APPLET_LEAVE();
 		return;
+	}
 	if (! myIcon->pSubDock && (!myDesklet || !myDesklet->icons))
+	{
+		CD_APPLET_LEAVE();
 		return;
+	}
 	GList *ic;
 	Icon *icon;
 	gboolean bIsMounted;
@@ -87,6 +94,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 		}
 		g_free (cTargetURI);
 	}
+	CD_APPLET_LEAVE();
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {

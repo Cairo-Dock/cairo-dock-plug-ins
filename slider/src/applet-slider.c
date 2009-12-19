@@ -146,11 +146,13 @@ static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolea
 }
 
 void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	if (myConfig.cDirectory == NULL) {
 	  ///Et si on scannait le dossier image du home a la place? => bonne idee, mais comment trouver son nom ? il depend de la locale.
 	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
 		cd_warning ("Slider : No directory to scan, halt.");
-		return;
+		CD_APPLET_LEAVE();
+		//return;
 	}
 	
 	myData.pList = cd_slider_task_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
@@ -161,10 +163,12 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
 		g_rand_free (pRandomGenerator);
 	}
+	CD_APPLET_LEAVE();
 }
 
 
 void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	cd_debug ("  Slider - loading %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
@@ -197,10 +201,12 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	myData.slideArea.fImgW = fImgW;
 	myData.slideArea.fImgH = fImgH;
 	cd_debug ("  %s loaded", cImagePath);
+	CD_APPLET_LEAVE();
 }
 
 
 gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	//\_______________ On cree la texture (en-dehors du thread).
 	if (g_bUseOpenGL)
 	{
@@ -231,15 +237,17 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 		CD_APPLET_REDRAW_MY_ICON;
 		cd_slider_schedule_next_slide (myApplet);
 	}
-	
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 
 gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
+	CD_APPLET_ENTER;
 	if (myData.bPause)  // on est en pause.
 	{
 		myData.iTimerID = 0;
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
 	//\___________________________ On recupere la nouvelle image a afficher.
 	if (myData.pElement == NULL)  // debut
@@ -251,7 +259,8 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		
 		cd_warning ("Slider stopped, list broken");
 		myData.iTimerID = 0;
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
 	SliderImage *pImage = myData.pElement->data;
 	cd_message (" >> %s", pImage->cPath);
@@ -290,7 +299,8 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		cd_debug ("Slider - on threade");
 		cairo_dock_launch_task (myData.pMeasureImage);
 		myData.iTimerID = 0;
-		return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
 	}
 	else {
 		cd_slider_read_image (myApplet);
@@ -298,12 +308,14 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		
 		if (myConfig.iAnimation == SLIDER_DEFAULT)
 		{
-			return TRUE;  // pas d'animation => on ne quitte pas la boucle d'attente.
+			CD_APPLET_LEAVE (TRUE);
+			//return TRUE;  // pas d'animation => on ne quitte pas la boucle d'attente.
 		}
 		else
 		{
 			myData.iTimerID = 0;
-			return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+			CD_APPLET_LEAVE (FALSE);
+			//return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
 		}
 	}
 }

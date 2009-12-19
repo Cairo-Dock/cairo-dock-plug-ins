@@ -124,6 +124,10 @@ AC_ARG_ENABLE(rssreader,
 	[  --enable-rssreader : Enable rssreader applet (default=no) ],
 	[ with_rssreader=${enableval} ],
 	[ with_rssreader=no ])
+AC_ARG_ENABLE(xrandr-in-show-desktop,
+        [  --enable-xrandr-in-show-desktop : Add screen resolution abilities to Show-Desktop (default=yes) ],
+        [ with_xrandr_in_show_desktop=${enableval} ],
+        [ with_xrandr_in_show_desktop=yes])
 AC_ARG_ENABLE(,
 	[  --enable-show-desklets : Enable showDesklets applet (default=no) ],
 	[ with_showDesklets=${enableval} ],
@@ -201,6 +205,11 @@ if test "$with_keyboard_indicator" = "yes" ; then
 	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_CFLAGS)
 	AC_SUBST(KEYBOARD_INDICATOR_PACKAGE_LIBS)
 fi
+if test "$with_xrandr_in_show_desktop" = "yes" ; then
+	PKG_CHECK_MODULES(SHOW_DESKTOP_XRANDR, xrandr, ,[ with_xrandr_in_show_desktop=false; AC_MSG_WARN(Could not find xrandr; ShowDesktop won't be built with screen resolution abilities.) ])
+	AC_SUBST(SHOW_DESKTOP_XRANDR_CFLAGS)
+	AC_SUBST(SHOW_DESKTOP_XRANDR_LIBS)
+fi
 
 AC_PROG_CXX
 
@@ -226,6 +235,7 @@ AM_CONDITIONAL( [WITH_MUSICPLAYER], [test "$with_musicplayer" = "yes"] )
 AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
 AM_CONDITIONAL( [WITH_RSSREADER], [test "$with_rssreader" = "yes"] )
+AM_CONDITIONAL( [WITH_XRANDR_IN_SHOW_DESKTOP], [test "$with_xrandr_in_show_desktop" = "yes"] )
 AM_CONDITIONAL( [WITH_SHOWDESKLETS], [test "$with_showDesklets" = "yes"] )
 
 
@@ -517,7 +527,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHOW_DESKTOP, "1.1.1")
+AC_SUBST(VERSION_SHOW_DESKTOP, "1.2.0")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
@@ -935,5 +945,6 @@ echo " * Compil MusicPlayer applet : "${with_musicplayer}
 echo " * Compil Network-Monitor applet : "${with_network_monitor}
 echo " * Compil Scooby-Do applet : "${with_scooby_do}
 echo " * Compil RSSreader applet : "${with_rssreader}
+echo " * Enable xrandr in Show-Desktop applet : "${with_xrandr_in_show_desktop}
 echo " * Compil showDesklets applet : "${with_showDesklets}
 

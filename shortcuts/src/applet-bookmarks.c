@@ -48,6 +48,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 {
 	cd_message ("%s (%d)", __func__, iEventType);
 	g_return_if_fail (myIcon->pSubDock != NULL || myDesklet);
+	CD_APPLET_ENTER;
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
 	{
@@ -201,6 +202,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 			gtk_widget_queue_draw (myDesklet->container.pWidget);
 		}
 	}
+	CD_APPLET_LEAVE();
 }
 
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI)

@@ -23,9 +23,10 @@
 #include <cairo-dock.h>
 
 
-void cd_netspeed_get_data (CairoDockModuleInstance *myApplet);
+void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet);
 
-gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet);
+
+void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet);
 
 
 #endif

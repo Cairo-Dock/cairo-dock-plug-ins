@@ -366,7 +366,21 @@ void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, g
 {
 	GValue *value;
 	
-	value = g_hash_table_lookup (properties, "ActiveConnections");
+	value = g_hash_table_lookup (properties, "ActiveConnections");  // device path, qui donnera un device object, qui contient des proprietes.
+	/*for device_path in props['ActiveConnections']:
+        device = bus.get_object('org.freedesktop.NetworkManager', device_path)
+        device_props = device.GetAll("org.freedesktop.NetworkManager.Connection.Active", dbus_interface="org.freedesktop.DBus.Properties")
+        if device_props['Default']:
+            return
+        ap_path = device_props['SpecificObject']
+        if ap_path.startswith('/org/freedesktop/NetworkManager/AccessPoint/'):
+            ap = bus.get_object('org.freedesktop.NetworkManager', ap_path)
+            ssid = ap.Get("org.freedesktop.NetworkManager.AccessPoint", "Ssid", dbus_interface="org.freedesktop.DBus.Properties")
+            ssid = ''.join([chr(c) for c in ssid])
+            if ssid not in config.sections():
+                return
+            print ssid
+            device.connect_to_signal("PropertiesChanged", device_properties_changed_signal_handler(ssid), dbus_interface="org.freedesktop.NetworkManager.Connection.Active")*/
 	cd_debug("Network-Monitor :  Changement des connexions detectes");
 	if (value != NULL && G_VALUE_HOLDS_BOXED (value))
 	{
@@ -488,85 +502,84 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	paActiveConnections = g_value_get_boxed (&vConnections);
 	
 	/* Parcours de la liste des connexions actives */	
-	for (j=0; j<paActiveConnections->len; j++) 
+	for (j=0; j<paActiveConnections->len; j++)
 	{
-			/* Recuperation de la liste des Devices (HAL) */
+		/* Recuperation de la liste des Devices (HAL) */
 
-			cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
-			//cd_debug("Network-Monitor : Active Connection : %s",cActiveConnection);
+		cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
+		g_print ("Network-Monitor : Active Connection : %s\n", cActiveConnection);
 
-			dbus_proxy_ActiveConnection_temp = cairo_dock_create_new_system_proxy (
+		dbus_proxy_ActiveConnection_temp = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			cActiveConnection,
+			"org.freedesktop.DBus.Properties");
+		
+		cairo_dock_dbus_get_properties(dbus_proxy_ActiveConnection_temp, "Get", "org.freedesktop.NetworkManager.Connection.Active", "Devices", &vDevices);
+		
+		paDevices = g_value_get_boxed (&vDevices);
+		/* Parcours de la liste des Devices */
+		for (k=0; k<paDevices->len; k++) 
+		{
+			cDevice = (gchar *)g_ptr_array_index(paDevices,k);
+			//cd_debug("Network-Monitor : Path associe : %s",cDevice);
+			dbus_proxy_Device_temp = cairo_dock_create_new_system_proxy (
 				"org.freedesktop.NetworkManager",
-				cActiveConnection,
+				cDevice,
 				"org.freedesktop.DBus.Properties");
-			
-			cairo_dock_dbus_get_properties(dbus_proxy_ActiveConnection_temp, "Get", "org.freedesktop.NetworkManager.Connection.Active", "Devices", &vDevices);
-			
-			paDevices = g_value_get_boxed (&vDevices);
-			/* Parcours de la liste des Devices */
-			for (k=0; k<paDevices->len; k++) 
-			{
-				cDevice = (gchar *)g_ptr_array_index(paDevices,k);
-				//cd_debug("Network-Monitor : Path associe : %s",cDevice);
-				dbus_proxy_Device_temp = cairo_dock_create_new_system_proxy (
-					"org.freedesktop.NetworkManager",
-					cDevice,
-					"org.freedesktop.DBus.Properties");
 
-				cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "Interface", &vInterface);
-				cInterface = g_strdup(g_value_get_string (&vInterface));
+			cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "Interface", &vInterface);
+			cInterface = g_strdup(g_value_get_string (&vInterface));
+			
+			cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "DeviceType", &vType);				
+			iDeviceType = g_value_get_uint (&vType);
+			
+			/* Action selon le type de carte detectee */
+			g_print ("Network-Monitor : Device : %s, cInterface : %s\n",cDevice, cInterface);
+			if (iDeviceType == 1)
+			{
+				g_print ("=> Network-Monitor : Connexion filaire\n");
+				myData.bWiredExt = TRUE;
+				myData.cInterface = cInterface;
+				myData.cDevice = g_strdup(cDevice);
 				
-				cairo_dock_dbus_get_properties(dbus_proxy_Device_temp, "Get", "org.freedesktop.NetworkManager.Device", "DeviceType", &vType);				
-				iDeviceType = g_value_get_uint (&vType);
+				/* On recupere le path de la connection active ainsi que du device */
+				myData.dbus_proxy_ActiveConnection = dbus_proxy_ActiveConnection_temp;
+				myData.dbus_proxy_Device = dbus_proxy_Device_temp;
 				
-				/* Action selon le type de carte detectee */
-				if (iDeviceType == 1)
-				{
-					cd_debug("Network-Monitor : Connexion filaire detectee");
-					cd_debug("Network-Monitor : Device : %s",cDevice);
-					myData.bWiredExt = TRUE;
-					myData.cInterface = cInterface;
-					myData.cDevice = g_strdup(cDevice);
-					
-					/* On recupere le path de la connection active ainsi que du device */
-					myData.dbus_proxy_ActiveConnection = dbus_proxy_ActiveConnection_temp;
-					myData.dbus_proxy_Device = dbus_proxy_Device_temp;
-					
-					/* Recuperation de l'AP active */
-					cd_NetworkMonitor_get_wired_connection_infos();
-					
-					/* Calcul de la qualite du signal */	
-					cd_NetworkMonitor_quality();
-					
-					cd_NetworkMonitor_draw_icon ();
-				}
-				else if (iDeviceType == 2)
-				{
-					cd_debug("Network-Monitor : Connexion sans fil detectee");
-					cd_debug("Network-Monitor : Device : %s",cDevice);
-					myData.bWirelessExt = TRUE;
-					myData.cInterface = g_strdup(cInterface);
-					myData.cDevice = g_strdup(cDevice);
-					
-					/* On recupere le path de la connection active ainsi que du device */
-					myData.dbus_proxy_ActiveConnection = dbus_proxy_ActiveConnection_temp;
-					myData.dbus_proxy_Device = dbus_proxy_Device_temp;
-					
-					/* Recuperation de l'AP active */
-					cd_NetworkMonitor_get_wireless_connection_infos();
-					/* Calcul de la qualite du signal */					
-					cd_NetworkMonitor_quality();						
-				}
-				else
-				{
-					cd_debug("Network-Monitor : Unknown card type ?");
-					// Dessin pour aucune connexion trouvee à faire
-				}
+				/* Recuperation de l'AP active */
+				cd_NetworkMonitor_get_wired_connection_infos();
+				
+				/* Calcul de la qualite du signal */	
+				cd_NetworkMonitor_quality();
+				
+				cd_NetworkMonitor_draw_icon ();
 			}
-			g_object_unref (dbus_proxy_Device_temp);
-			g_object_unref (dbus_proxy_ActiveConnection_temp);
-			g_ptr_array_free(paDevices,TRUE);
+			else if (iDeviceType == 2)
+			{
+				g_print ("Network-Monitor : Connexion sans fil\n");
+				myData.bWirelessExt = TRUE;
+				myData.cInterface = g_strdup(cInterface);
+				myData.cDevice = g_strdup(cDevice);
+				
+				/* On recupere le path de la connection active ainsi que du device */
+				myData.dbus_proxy_ActiveConnection = dbus_proxy_ActiveConnection_temp;
+				myData.dbus_proxy_Device = dbus_proxy_Device_temp;
+				
+				/* Recuperation de l'AP active */
+				cd_NetworkMonitor_get_wireless_connection_infos();
+				/* Calcul de la qualite du signal */					
+				cd_NetworkMonitor_quality();						
+			}
+			else
+			{
+				cd_debug("Network-Monitor : Unknown card type ?");
+				// Dessin pour aucune connexion trouvee à faire
+			}
 		}
+		g_object_unref (dbus_proxy_Device_temp);
+		g_object_unref (dbus_proxy_ActiveConnection_temp);
+		g_ptr_array_free(paDevices,TRUE);
+	}
 	
 	if (myData.bWiredExt && myData.bWirelessExt)
 		myData.bWiredExt = FALSE; // Dans le cas où on a 2 connections, on force le wireless
@@ -575,5 +588,147 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	g_object_unref (dbus_proxy_NM);
 	
 	return TRUE;
-	
 }
+
+/*
+#!/usr/bin/env python
+
+################################################################################
+# OpenWifiAutoConnect - Stephane PUYBAREAU (puyb <at> puyb <dot> net) - 2008   # 
+# Fully automated authentication to capture portal based wifi networks.        # 
+# Config file: ~/.OpenWifiAutoConnect - Format: ini                            #
+# Section are network SSID (names)                                             #
+# key / value pair define user submited information (based on the html form)   #
+#                                                                              # 
+# This software is provided under the terms of the GPL v3 licence.             # 
+# See http://www.gnu.org/licenses/gpl.html for more information                # 
+#                                                                              # 
+# This software use python dbus bindings, pynotify and BeautifulSoup modules   #
+################################################################################
+
+
+# The url the program will try to open hoping to be redirected to the portal
+URL = 'http://perdu.com/'
+
+import sys
+import gobject
+import dbus
+import dbus.mainloop.glib
+import urllib2, urllib
+from BeautifulSoup import BeautifulSoup
+import re
+import ConfigParser
+import os
+import pynotify
+
+def properties_changed_signal_handler(props):
+    if not props.has_key('ActiveConnections'):
+        return
+    for device_path in props['ActiveConnections']:
+        device = bus.get_object('org.freedesktop.NetworkManager', device_path)
+        device_props = device.GetAll("org.freedesktop.NetworkManager.Connection.Active", dbus_interface="org.freedesktop.DBus.Properties")
+        if device_props['Default']:
+            return
+        ap_path = device_props['SpecificObject']
+        if ap_path.startswith('/org/freedesktop/NetworkManager/AccessPoint/'):
+            ap = bus.get_object('org.freedesktop.NetworkManager', ap_path)
+            ssid = ap.Get("org.freedesktop.NetworkManager.AccessPoint", "Ssid", dbus_interface="org.freedesktop.DBus.Properties")
+            ssid = ''.join([chr(c) for c in ssid])
+            if ssid not in config.sections():
+                return
+            print ssid
+            device.connect_to_signal("PropertiesChanged", device_properties_changed_signal_handler(ssid), dbus_interface="org.freedesktop.NetworkManager.Connection.Active")
+
+def device_properties_changed_signal_handler(ssid):
+    def handler(props):
+        if not props.has_key('State'):
+            return
+        if props['State'] != 2:
+            return
+        print ssid
+        section = dict(config.items(ssid))
+
+        if login(section):
+            txt = "Successfully logged on " + ssid
+        else:
+            txt = "Failled to log on " + ssid
+        n = pynotify.Notification("Open Wifi Auto Connect", txt, "dialog-warning")
+        n.set_urgency(pynotify.URGENCY_NORMAL)
+        n.set_timeout(10)
+        #n.add_action("clicked","Button text", callback_function, None)
+        n.show()
+    return handler
+
+
+def login(values):
+    # build an http fetcher that support cookies
+    opener = urllib2.build_opener( urllib2.HTTPCookieProcessor() )
+    urllib2.install_opener(opener)
+
+    # try to open the portal page
+    f = opener.open(URL)
+    data = f.read()
+    redirect_url = f.geturl().split('?')[0]
+    f.close()
+    if redirect_url == URL:
+        return # Our request wasn't hijacked by the portal (maybe the wifi network isn't the default connection)
+
+    # parse the portal page
+    soup = BeautifulSoup(data)
+    form = soup.find('form')
+    if not form:
+        return # There's no form on this page
+    
+    # creating the post values
+    login_post = {}
+    for input in form.findAll('input'):
+        if input.has_key('name'):
+            default = ''
+            if input.has_key('type') and input['type'] == 'checkbox':
+                default = 'on'
+            login_post[input['name']] = input.has_key('value') and input['value'] or default
+
+    login_post.update(values)
+
+    # guessing the post url
+    if not form.has_key('action'):
+        url = redirect_url
+    elif not form['action'].startswith('/'):
+        url = '/'.join(redirect_url.split('/')[:-1]) + '/' + form['action']
+    else:
+        url = '/'.join(redirect_url.split('/')[:3]) + form['action']
+
+    # GET ou POST ?
+    postBody = None
+    if form.has_key('method') and form['method'].lower() == 'post':
+        postBody = urllib.urlencode(login_post)
+    else:
+        url += '?' + urllib.urlencode(login_post).replace(' ', '+')
+
+    # submit the form
+    f = opener.open(url, postBody)
+    data = f.read()
+    f.close()
+
+    # Test if the login was a success
+    f = opener.open(URL)
+    data = f.read()
+    status = f.geturl() == URL
+    f.close()
+    return status
+
+if __name__ == '__main__':
+    config = ConfigParser.RawConfigParser()
+    config.read(os.path.expanduser('~/.OpenWifiAutoConnect'))
+
+    pynotify.init( "Open Wifi Auto Connect" )
+
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+    bus = dbus.SystemBus()
+    nm = bus.get_object("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager")
+    nm.connect_to_signal("PropertiesChanged", properties_changed_signal_handler, dbus_interface="org.freedesktop.NetworkManager")
+
+    loop = gobject.MainLoop()
+    loop.run()
+*/

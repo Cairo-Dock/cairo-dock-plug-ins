@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNetspeedCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "netspeed delay", 10);
 	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	myConfig.cInterface = CD_CONFIG_GET_STRING ("Configuration", "interface");
+	myConfig.iStringLen = (myConfig.cInterface ? strlen (myConfig.cInterface) : 0);
 	myConfig.cWifiConfigCommand = CD_CONFIG_GET_STRING ("Configuration", "wifi command");
 	myConfig.cSysMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "netspeed command");
 	

@@ -4,6 +4,10 @@ lib_LTLIBRARIES = \
 	libcd-showDesktop.la
 
 
+if WITH_XRANDR_IN_SHOW_DESKTOP
+have_xrandr=-DHAVE_XRANDR="1"
+endif
+
 libcd_showDesktop_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
@@ -19,6 +23,8 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_showDesktop_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
+	$(SHOW_DESKTOP_XRANDR_CFLAGS) \
+	$(have_xrandr)\
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(show_desktopdatadir)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\""icon.png"\"\
@@ -35,7 +41,9 @@ libcd_showDesktop_la_CFLAGS = \
 
 
 libcd_showDesktop_la_LIBADD = \
-	$(PACKAGE_LIBS) -lm
+	$(PACKAGE_LIBS) -lm\
+	$(SHOW_DESKTOP_XRANDR_LIBS)
+	
 
 
 libcd_showDesktop_la_LDFLAGS =\
