@@ -167,7 +167,7 @@ netspeed delay = 10
 #{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
 smooth = .33
 
-#s Default connexion interface :
+#E[] Default connexion interface :
 #{By default the first active interface is used.}
 interface = 
 

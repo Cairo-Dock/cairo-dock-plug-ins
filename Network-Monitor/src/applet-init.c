@@ -28,13 +28,19 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Network-Monitor"),
+CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("This applet shows you a monitor of your active connections\n"
+	N_("This applet allows you to monitor your active connections.\n"
+	"It can display the download/upload speeds and the wifi signal quality.\n"
+	"If you have network-manager running, it can also let you choose the current wifi network.\n"
 	"Left-click to pop-up some info,"
 	"Middle-click to re-check immediately."),
 	"Yann Sladek (Mav) & Remy Robertson (ChanGFu)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	pInterface->load_custom_widget = cd_netmonitor_load_custom_widget;
+CD_APPLET_PRE_INIT_END
+
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
@@ -84,7 +90,7 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
 	
-	if (cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
+	if (0 && cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
 	{
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
 		myData.bDbusConnection = TRUE;
@@ -117,6 +123,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 CD_APPLET_INIT_END
 
 
@@ -128,6 +135,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 CD_APPLET_STOP_END
 
 

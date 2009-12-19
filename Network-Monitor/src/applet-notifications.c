@@ -23,6 +23,8 @@
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
+#include "applet-wifi.h"
+#include "applet-netspeed.h"
 #include "applet-draw.h"
 
 
@@ -110,11 +112,24 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN
-	// On change le mode.
+	//\____________ On change le mode.
 	myConfig.bModeWifi = ! myConfig.bModeWifi;
-	/// l'ecrire en conf...
 	
-	// on lance la nouvelle tache.
+	//\____________ On l'ecrit en conf.
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+		G_TYPE_INT, "Configuration", "mode", myConfig.bModeWifi,
+		G_TYPE_INVALID);
 	
-	
+	//\____________ On lance la nouvelle tache.
+	if (! myData.bDbusConnection)
+	{
+		if (myConfig.bModeWifi)
+		{
+			cd_netmonitor_launch_wifi_task (myApplet);
+		}
+		else
+		{
+			cd_netmonitor_launch_netspeed_task (myApplet);
+		}
+	}
 CD_APPLET_ON_SCROLL_END

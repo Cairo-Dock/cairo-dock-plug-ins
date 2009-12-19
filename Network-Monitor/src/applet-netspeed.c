@@ -108,14 +108,25 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		long long int iReceivedBytes, iTransmittedBytes;
 		do
 		{
-			if (iNumLine > 3)  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
+			if (iNumLine > 3 && *tmp != '\0')  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
 			{
 				while (*tmp == ' ')  // on saute les espaces.
 					tmp ++;
 				
-				if (strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
+				if (!myConfig.cInterface || strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
 				{
-					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
+					if (myConfig.cInterface)
+					{
+						tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
+					}
+					else
+					{
+						gchar *str = strchr (tmp, ':');
+						if (str)
+							tmp = str+1;
+					}
+					while (*tmp == ' ')  // on saute les espaces.
+						tmp ++;
 					iReceivedBytes = atoll (tmp);
 					
 					int i = 0;
@@ -128,18 +139,21 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 					}
 					iTransmittedBytes = atoll (tmp);
 					
-					if (myData.netSpeed._bInitialized && fTimeElapsed > .1)  // la 1ere iteration on ne peut pas calculer le debit.
+					if (myConfig.cInterface || iReceivedBytes != 0 || iTransmittedBytes != 0)  // c'est l'interface voulue ou c'est une interface avec du debit => on prend.
 					{
-						myData.netSpeed._iDownloadSpeed = (iReceivedBytes - myData.netSpeed._iReceivedBytes) / fTimeElapsed;
-						myData.netSpeed._iUploadSpeed = (iTransmittedBytes - myData.netSpeed._iTransmittedBytes) / fTimeElapsed;
+						if (myData.netSpeed._bInitialized && fTimeElapsed > .1)  // la 1ere iteration on ne peut pas calculer le debit.
+						{
+							myData.netSpeed._iDownloadSpeed = (iReceivedBytes - myData.netSpeed._iReceivedBytes) / fTimeElapsed;
+							myData.netSpeed._iUploadSpeed = (iTransmittedBytes - myData.netSpeed._iTransmittedBytes) / fTimeElapsed;
+						}
+						
+						myData.netSpeed._iReceivedBytes = iReceivedBytes;
+						myData.netSpeed._iTransmittedBytes = iTransmittedBytes;
+						break ;
 					}
-					
-					myData.netSpeed._iReceivedBytes = iReceivedBytes;
-					myData.netSpeed._iTransmittedBytes = iTransmittedBytes;
-					break ;
 				}
 			}
-			tmp = strchr (tmp+1, '\n');
+			tmp = strchr (tmp, '\n');
 			if (tmp == NULL)
 				break;
 			tmp ++;
@@ -256,3 +270,49 @@ void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet)
 	}
 }
 
+GList *cd_netmonitor_get_available_interfaces (void)
+{
+	GList *pList = NULL;
+	gchar *cContent = NULL;
+	gsize length=0;
+	GError *erreur = NULL;
+	g_file_get_contents (NETSPEED_DATA_PIPE, &cContent, &length, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning("NetSpeed : %s", erreur->message);
+		g_error_free(erreur);
+		return NULL;
+	}
+	else
+	{
+		int iNumLine = 1;
+		gchar *tmp = cContent, *str;
+		gchar *cInterface;
+		long long int iReceivedBytes, iTransmittedBytes;
+		do
+		{
+			if (iNumLine > 3 && *tmp != '\0')  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
+			{
+				while (*tmp == ' ')  // on saute les espaces.
+					tmp ++;
+				
+				str = strchr (tmp, ':');
+				if (str)
+				{
+					*str = '\0';
+					cInterface = g_strdup (tmp);
+					pList = g_list_prepend (pList, cInterface);
+					tmp = str+1;
+				}
+			}
+			tmp = strchr (tmp, '\n');
+			if (tmp == NULL)
+				break;
+			tmp ++;
+			iNumLine ++;
+		}
+		while (1);
+		g_free (cContent);
+	}
+	return pList;
+}

@@ -36,7 +36,7 @@
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
 	if (str) {\
 		str += strlen (cValueName) + 1;\
-		if (*str == ' ')\
+		while (*str == ' ')\
 			str ++;\
 		if (*str == '"') {\
 			str ++;\
@@ -44,8 +44,10 @@
 		else {\
 			str2 = strchr (str, ' '); }\
 		if (str2) {\
-			cValue = g_strndup (str, str2 - str);\
-			cd_debug ("%s : %s", cValueName, cValue); } }
+			cValue = g_strndup (str, str2 - str); }\
+		else {\
+			cValue = g_strdup (str); }\
+		cd_debug ("%s : %s", cValueName, cValue); }
 #define _pick_value(cValueName, iValue, iMaxValue)\
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
 	if (str) {\
@@ -83,8 +85,40 @@ void cd_wifi_get_data (gpointer data)
 	{
 		g_free (cResult);
 		return ;
+		/*cResult = g_strdup ("lo no wireless extensions.\n\
+\n\
+eth0 no wireless extensions.\n\
+\n\
+wlan0 IEEE 802.11abg ESSID:\"NETXHO\"\n\
+Mode:Managed Frequency:2.452 GHz Access Point: 00:24:2B:48:07:21\n\
+Bit Rate=54 Mb/s Tx-Power=15 dBm\n\
+Retry long limit:7 RTS thr:off Fragment thr:off\n\
+Encryption key:C6DA-6974-1612-DA99-3049-FDC0-1399-23BA-894E-67B0-9C8B-72C7-EE5B-5876-5C58-331B [2]\n\
+Power Management:off\n\
+Link Quality=52/70 Signal level=-58 dBm Noise level=-127 dBm\n\
+Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0\n\
+Tx excessive retries:0 Invalid misc:0 Missed beacon:0\n\
+\n\
+vboxnet0 no wireless extensions.\n\
+\n\
+pan0 no wireless extensions.");*/
 	}
 	
+	// types de sortie possibles :
+	//eth0 no wireless extensions.
+	//
+	//eth2 IEEE 802.11 Nickname:""
+	//Access Point: Not-Associated
+	//
+	//wlan0 IEEE 802.11abg ESSID:"NETXHO"
+	//Mode:Managed Frequency:2.452 GHz Access Point: 00:24:2B:48:07:21
+	//Bit Rate=54 Mb/s Tx-Power=15 dBm
+	//Retry long limit:7 RTS thr:off Fragment thr:off
+	//Encryption key:C6DA-6974-1612-DA99-3049-FDC0-1399-23BA-894E-67B0-9C8B-72C7-EE5B-5876-5C58-331B [2]
+	//Power Management:off
+	//Link Quality=52/70 Signal level=-58 dBm Noise level=-127 dBm
+	//Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0
+	//Tx excessive retries:0 Invalid misc:0 Missed beacon:0
 	gchar **cInfopipesList = g_strsplit (cResult, "\n", -1);
 	g_free (cResult);
 	gchar *cOneInfopipe, *str, *str2;
@@ -92,21 +126,29 @@ void cd_wifi_get_data (gpointer data)
 	for (i = 0; cInfopipesList[i] != NULL; i ++)
 	{
 		cOneInfopipe = cInfopipesList[i];
-		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )
-			continue;
-		
-		if (myData.wifi._cInterface != NULL && *cOneInfopipe != ' ')  // nouvelle interface, on n'en veut qu'une.
-			break ;  /// il faudra prendre celle en conf...
-		
-		if (myData.wifi._cInterface == NULL && *cOneInfopipe != ' ')
+		//g_print (" > %s\n", cOneInfopipe);
+		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )  // saut de ligne signalant une nouvelle interface.
 		{
-			str = cOneInfopipe;  // le nom de l'interface est en debut de ligne.
-			str2 = strchr (str, ' ');
-			if (str2)
+			if (myData.wifi._cInterface != NULL)  // comme on n'en veut qu'une on quitte.
+				break;  /// il faudra prendre celle en conf...
+			else
+				continue;
+		}
+		
+		if (myData.wifi._cInterface == NULL)  // on n'a pas encore d'interface valable.
+		{
+			str = strchr (cOneInfopipe, ' ');  // le nom de l'interface est en debut de ligne.
+			if (str)
 			{
-				myData.wifi._cInterface = g_strndup (cOneInfopipe, str2 - str);
-				cd_debug ("interface : %s", myData.wifi._cInterface);
+				str2 = str + 1;
+				while (*str2 == ' ')
+					str2 ++;
+				if (strncmp (str2, "no wireless", 11) != 0)
+					myData.wifi._cInterface = g_strndup (cOneInfopipe, str - cOneInfopipe);
 			}
+			cd_debug ("interface : %s", myData.wifi._cInterface);
+			if (myData.wifi._cInterface == NULL)  // cette ligne ne nous a rien apporte, on passe a la suivante.
+				continue;
 		}
 		
 		if (myData.wifi._cESSID == NULL)
@@ -176,14 +218,16 @@ gboolean cd_wifi_update_from_data (gpointer data)
 	myData.wifi.cESSID = myData.wifi._cESSID;
 	myData.wifi.cESSID = NULL;
 	
-	if (myData.wifi._cInterface != NULL)
+	if (myData.wifi.cInterface != NULL)
 	{
+		g_print ("wifi sur %s\n", myData.wifi.cInterface);
 		myData.wifi.bWirelessExt = TRUE;
 		cd_wifi_draw_icon ();
 		cairo_dock_set_normal_task_frequency (myData.wifi.pTask);
 	}
 	else
 	{
+		g_print ("no wifi\n");
 		myData.wifi.bWirelessExt = FALSE;
 		cd_wifi_draw_no_wireless_extension ();
 		cairo_dock_downgrade_task_frequency (myData.wifi.pTask);
@@ -195,6 +239,7 @@ gboolean cd_wifi_update_from_data (gpointer data)
 void cd_netmonitor_launch_wifi_task (CairoDockModuleInstance *myApplet)
 {
 	cd_netmonitor_free_netspeed_task (myApplet);
+	myData.iPreviousQuality = -2;
 	
 	if (myData.wifi.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
 	{

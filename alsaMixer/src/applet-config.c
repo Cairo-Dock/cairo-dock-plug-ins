@@ -27,7 +27,6 @@
 #include "applet-config.h"
 
 
-
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.card_id = CD_CONFIG_GET_STRING ("Configuration", "card id");
@@ -96,18 +95,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.mixer_device_name);
 CD_APPLET_RESET_DATA_END
 
-
-/*void mixer_write_elements_list (gchar *cConfFilePath, GKeyFile *pKeyFile)
-{
-	gchar *cElements = mixer_get_elements_list ();
-	
-	cairo_dock_update_conf_file_with_list (pKeyFile, cConfFilePath, cElements, "Configuration", "mixer element", NULL);
-	gchar *cElements2 = g_strconcat (";", cElements, NULL);
-	cairo_dock_update_conf_file_with_list (pKeyFile, cConfFilePath, cElements2, "Configuration", "mixer element 2", NULL);
-	
-	g_free (cElements);
-	g_free (cElements2);
-}*/
 
 void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {

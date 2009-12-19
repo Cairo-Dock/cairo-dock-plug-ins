@@ -21,6 +21,7 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-netspeed.h"
 #include "applet-config.h"
 
 
@@ -94,3 +95,21 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cAccessPoint);
 	
 CD_APPLET_RESET_DATA_END
+
+
+void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+{
+	g_print ("%s (%s)\n", __func__, myIcon->cName);
+	//\____________ On recupere la combo.
+	GtkWidget *pCombo = cairo_dock_get_widget_from_name ("Configuration", "interface");
+	g_return_if_fail (pCombo != NULL);
+	
+	//\____________ On construit la liste interfaces disponibles.
+	GList *pList = cd_netmonitor_get_available_interfaces ();
+	
+	//\____________ On remplit la combo.
+	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cInterface);
+	
+	g_list_foreach (pList, g_free, NULL);
+	g_list_free (pList);
+}
