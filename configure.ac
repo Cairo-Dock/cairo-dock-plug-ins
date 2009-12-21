@@ -527,7 +527,7 @@ AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
 AC_SUBST(GETTEXT_SHOW_DESKTOP, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_SHOW_DESKTOP, "1.2.0")
+AC_SUBST(VERSION_SHOW_DESKTOP, "1.2.1")
 AC_SUBST(PACKAGE_SHOW_DESKTOP, "$SHOW_DESKTOP_PACKAGE")
 
 AC_SUBST(show_desktopdatadir, "${pkgdatadir}/showDesktop")
