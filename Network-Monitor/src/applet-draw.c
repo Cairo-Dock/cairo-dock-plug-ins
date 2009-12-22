@@ -136,7 +136,7 @@ void cd_NetworkMonitor_draw_icon_with_effect (CDConnectionQuality iQuality) {
 }
 
 void cd_NetworkMonitor_bubble (void) {
-	if (cairo_dock_task_is_running (myData.pTask))
+	if (cairo_dock_task_is_running (myData.wifi.pTask) || cairo_dock_task_is_running (myData.netSpeed.pTask))
 	{
 		cairo_dock_show_temporary_dialog  (D_("Checking connection...\nPlease retry in a few seconds"), myIcon, myContainer, 3000);
 		return ;

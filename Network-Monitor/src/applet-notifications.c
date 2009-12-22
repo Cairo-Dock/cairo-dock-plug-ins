@@ -22,21 +22,31 @@
 #include <glib/gi18n.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-wifi.h"
 #include "applet-netspeed.h"
+#include "applet-connections.h"
 #include "applet-draw.h"
+#include "applet-notifications.h"
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cd_NetworkMonitor_bubble();
+	if (myData.bDbusConnection && myData.bWirelessExt)
+	{
+		GtkWidget *pMenu = cd_NetworkMonitor_build_menu_with_access_points ();
+		if (pMenu)
+			cairo_dock_popup_menu_on_container (pMenu, myContainer);
+	}
+	else
+	{
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cd_NetworkMonitor_bubble();
+	}
 CD_APPLET_ON_CLICK_END
 
 
 static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data) {
-	cairo_dock_stop_task (myData.pTask);
-	cairo_dock_launch_task (myData.pTask);
+	cairo_dock_stop_task (myData.netSpeed.pTask);
+	cairo_dock_launch_task (myData.netSpeed.pTask);
 }
 static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data) {  /// a mettre dans les plug-ins d'integration.
 	if (myConfig.cWifiConfigCommand != NULL) {

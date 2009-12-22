@@ -157,11 +157,11 @@ frame_param =
 
 #i[1;60] Delay between wifi signal checks :
 #{in seconds.}
-wifi delay = 10
+wifi delay = 5
 
 #i[1;60] Delay between net speed checks :
 #{in seconds.}
-netspeed delay = 10
+netspeed delay = 2
 
 #e[0;1] Fluidity of the transition between 2 values :
 #{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}

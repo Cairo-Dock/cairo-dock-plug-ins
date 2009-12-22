@@ -82,8 +82,6 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pTask);
-	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 	int i;
@@ -110,6 +108,6 @@ void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFi
 	//\____________ On remplit la combo.
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cInterface);
 	
-	g_list_foreach (pList, g_free, NULL);
+	g_list_foreach (pList, (GFunc)g_free, NULL);
 	g_list_free (pList);
 }

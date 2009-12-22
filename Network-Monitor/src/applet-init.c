@@ -90,13 +90,13 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
 	
-	if (0 && cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
+	if (cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
 	{
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
 		myData.bDbusConnection = TRUE;
 		
 		cd_NetworkMonitor_get_active_connection_info();
-		cd_NetworkMonitor_draw_icon (); // Dessin initial (ensuite tout passera au travers des signaux)
+		cd_NetworkMonitor_draw_icon ();  // Dessin initial (ensuite tout passera au travers des signaux)
 		cd_NetworkMonitor_connect_signals();
 	}
 	else
@@ -110,14 +110,6 @@ CD_APPLET_INIT_BEGIN
 			cd_netmonitor_launch_wifi_task (myApplet);
 		else
 			cd_netmonitor_launch_netspeed_task (myApplet);
-		/*myData.pTask = cairo_dock_new_task (MIN (myConfig.iWifiCheckInterval, myConfig.iNetspeedCheckInterval),
-			(CairoDockGetDataAsyncFunc) cd_NetworkMonitor_get_data,
-			(CairoDockUpdateSyncFunc) cd_NetworkMonitor_update_from_data,
-			myApplet);
-		if (cairo_dock_is_loading ())
-			cairo_dock_launch_task_delayed (myData.pTask, 2000);
-		else
-			cairo_dock_launch_task (myData.pTask);*/
 	}
 	
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -164,7 +156,10 @@ CD_APPLET_RELOAD_BEGIN
 			myData.iPercent = -2;
 			myData.iSignalLevel = -2;
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			//cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
+			if (myConfig.bModeWifi)
+				cd_netmonitor_launch_wifi_task (myApplet);
+			else
+				cd_netmonitor_launch_netspeed_task (myApplet);
 		}
 		else
 			//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
@@ -172,25 +167,10 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on redessine juste l'icone.
 	{
-		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
-		if (myConfig.iRenderType == CD_EFFECT_GRAPH)
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);  // on le recharge aux nouvelles dimensions de l'icone.
+		if (myConfig.iRenderType == CD_EFFECT_GRAPH)  // si c'est un graphe, la taille de l'historique depend de la largeur de l'icone, donc on le prend en compte.
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		if (!myData.bDbusConnection)
-		{
-			myData.iQuality = -2;  // force le redessin.
-			if (! cairo_dock_task_is_running (myData.pTask))
-			{
-				if (myData.bWirelessExt)
-					cd_NetworkMonitor_draw_icon ();
-				else
-					cd_NetworkMonitor_draw_no_wireless_extension ();
-			}
-		}
-		else
-		{
-			_set_data_renderer (myApplet, TRUE);
-			cd_NetworkMonitor_draw_icon ();
-		}
+		CD_APPLET_REFRESH_MY_DATA_RENDERER;  // on rafraichit le dessin.
 	}
 CD_APPLET_RELOAD_END

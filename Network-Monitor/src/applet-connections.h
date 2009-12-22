@@ -37,5 +37,6 @@ void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties,
 void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data);
 void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data);
 
+GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void);
 
 #endif

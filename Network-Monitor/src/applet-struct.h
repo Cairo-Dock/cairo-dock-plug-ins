@@ -105,6 +105,7 @@ typedef struct _CDNetSpeed {
 	// end of shared memory
 	gboolean bAcquisitionOK;
 	long long int iReceivedBytes, iTransmittedBytes;
+	CairoDataRenderer *pDataRenderer;
 	} CDNetSpeed;
 
 typedef struct _CDWifi {
@@ -123,20 +124,35 @@ typedef struct _CDWifi {
 	gchar *cInterface;
 	gchar *cAccessPoint;
 	gchar *cESSID;
+	CairoDataRenderer *pDataRenderer;
 	} CDWifi;
 
+typedef struct _CDNetworkManager {
+	gint iPercent, iPrevPercent;
+	gchar *cActiveAccessPoint;
+	gchar *cAccessPointHwAdress;
+	gchar *cESSID;
+	gint iSpeed;  // max bit rate
+	
+	DBusGProxy *dbus_proxy_ActiveConnection;
+	DBusGProxy *dbus_proxy_Device;
+	DBusGProxy *dbus_proxy_ActiveAccessPoint;
+	DBusGProxy *dbus_proxy_NM;
+	DBusGProxy *dbus_proxy_WirelessDevice;
+	DBusGProxy *dbus_proxy_WiredDevice;
+	
+	
+	CairoDataRenderer *pDataRenderer;
+	} CDNetworkManager;
+
 struct _AppletData {
-	CairoDockTask *pTask;
-	// shared memory
 	CDConnectionQuality iQuality, iPreviousQuality;
 	gint iPercent, iPrevPercent;
 	gint iSignalLevel, iPrevSignalLevel;
 	gint iPrevNoiseLevel, iNoiseLevel;
 	gchar *cESSID;
 	gchar *cInterface;
-	gchar *cAccessPoint;
-	gint iSpeed;
-	// end of shared memory
+	gint iSpeed;  // max bit rate
 	
 	gboolean bDbusConnection;  // TRUE si on a trouve NM sur le bus.
 	
@@ -148,12 +164,20 @@ struct _AppletData {
 	DBusGProxy *dbus_proxy_ActiveConnection;
 	DBusGProxy *dbus_proxy_Device;
 	DBusGProxy *dbus_proxy_ActiveAccessPoint;
+	DBusGProxy *dbus_proxy_NM;
+	DBusGProxy *dbus_proxy_WirelessDevice;
+	DBusGProxy *dbus_proxy_WiredDevice;
 	
+	gchar *cActiveConnection;
 	gchar *cDevice;
-	gchar *cActiveAccessPoint;
+	gchar *cServiceName;
+	gchar *cAccessPoint;
+	gchar *cAccessPointHwAdress;
+	GPtrArray *pMenuAccessPoints;
 	
 	CDNetSpeed netSpeed;
 	CDWifi wifi;
+	CDNetworkManager nm;
 };
 
 
