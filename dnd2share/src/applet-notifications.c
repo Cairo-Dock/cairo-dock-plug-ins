@@ -130,28 +130,24 @@ static void _store_last_url (gboolean bIntoClipboard)
 	}
 }
 
-//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-CD_APPLET_ON_CLICK_BEGIN
-	_store_last_url (TRUE);
-CD_APPLET_ON_CLICK_END
-
-
-CD_APPLET_ON_DROP_DATA_BEGIN
-	g_print  ("DND2SHARE : drop de '%s'\n", CD_APPLET_RECEIVED_DATA);
+static void _on_drop_data (const gchar *cMyData)
+{
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
-	
 	gchar *cFilePath = NULL;
 	int iWithComma = 0;
 	gchar *cLogFileWithComma = NULL;
-	if( strncmp(CD_APPLET_RECEIVED_DATA, "file://", 7) == 0)
+	if( strncmp(cMyData, "file://", 7) == 0)
 	{
 		// Les formats supportés par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
 		// ... mais l'applet ne prendra en charge que les plus utilisés :
 		
-		cFilePath = g_filename_from_uri (CD_APPLET_RECEIVED_DATA, NULL, NULL);  // on passe en encodage UTF-8.
+		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // on passe en encodage UTF-8.
 		if (cFilePath == NULL)
-			return 	CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		{
+			CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return;
+		}
 		
 		
 		if ( strchr(cFilePath, ',') != NULL) // S'il y une virgule, curl n'aime pas
@@ -161,7 +157,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			if (fds == -1)
 			{
 				g_free (cLogFileWithComma);
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+				CAIRO_DOCK_LET_PASS_NOTIFICATION;
+				return;
 			}
 			close(fds);
 			gchar *cCommandCopyFileWithComma;
@@ -176,11 +173,11 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		time_t iLastModificationTime;
 		gchar *cMimeType = NULL;
 		int iUID, iGID, iPermissionsMask;
-		if (cairo_dock_fm_get_file_properties (CD_APPLET_RECEIVED_DATA, &iSize, &iLastModificationTime, &cMimeType, &iUID, &iGID, &iPermissionsMask))
+		if (cairo_dock_fm_get_file_properties (cMyData, &iSize, &iLastModificationTime, &cMimeType, &iUID, &iGID, &iPermissionsMask))
 		{
 			if (cMimeType != NULL)
 			{
-				g_print ("cMimeType : %s (%s)\n", cMimeType, CD_APPLET_RECEIVED_DATA);
+				g_print ("cMimeType : %s (%s)\n", cMimeType, cMyData);
 				if (strncmp (cMimeType, "image", 5) == 0)
 					iFileType = CD_TYPE_IMAGE;
 				else if (strncmp (cMimeType, "video", 5) == 0)
@@ -191,30 +188,35 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		
 		if (iFileType == CD_UNKNOWN_TYPE)
 		{
-			if (g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpg") 
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPG")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"jpeg")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"JPEG")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"GIF")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"gif")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"PNG")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"png")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"BMP")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"bmp")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"TIFF")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"tiff"))
+			if (g_str_has_suffix(cMyData,"jpg") 
+				|| g_str_has_suffix(cMyData,"JPG")
+				|| g_str_has_suffix(cMyData,"png")
+				|| g_str_has_suffix(cMyData,"PNG")
+				|| g_str_has_suffix(cMyData,"jpeg")
+				|| g_str_has_suffix(cMyData,"JPEG")
+				|| g_str_has_suffix(cMyData,"gif")
+				|| g_str_has_suffix(cMyData,"GIF")
+				|| g_str_has_suffix(cMyData,"bmp")
+				|| g_str_has_suffix(cMyData,"BMP")
+				|| g_str_has_suffix(cMyData,"TIFF")
+				|| g_str_has_suffix(cMyData,"tiff"))
 				iFileType = CD_TYPE_IMAGE;
-			else if (g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"avi") 
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"AVI")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"mov")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"ogg")
-				|| g_str_has_suffix(CD_APPLET_RECEIVED_DATA,"mp4"))
+			else if (g_str_has_suffix(cMyData,"avi") 
+				|| g_str_has_suffix(cMyData,"AVI")
+				|| g_str_has_suffix(cMyData,"ogg")
+				|| g_str_has_suffix(cMyData,"OGG")
+				|| g_str_has_suffix(cMyData,"ogv")
+				|| g_str_has_suffix(cMyData,"OGV")
+				|| g_str_has_suffix(cMyData,"mp4")
+				|| g_str_has_suffix(cMyData,"MP4")
+				|| g_str_has_suffix(cMyData,"mov")
+				|| g_str_has_suffix(cMyData,"MOV"))
 				iFileType = CD_TYPE_VIDEO;
 		}
 	}
 	else  // c'est du texte.
 	{
-		g_print ("TEXT\n");
+		// g_print ("TEXT\n");
 		iFileType = CD_TYPE_TEXT;
 	}
 	
@@ -223,11 +225,33 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		iFileType = CD_TYPE_FILE;
 		g_print ("we'll consider this as an archive.");
 	}
-	cd_dnd2share_launch_upload (cFilePath ? cFilePath : CD_APPLET_RECEIVED_DATA, iFileType);
+	cd_dnd2share_launch_upload (cFilePath ? cFilePath : cMyData, iFileType);
 	g_free (cFilePath);
 	if (iWithComma)
 		g_remove (cFilePath); // fichier tmp
-	
+}
+
+static void _paste_new_item (GtkMenuItem *menu_item)
+{
+	GtkClipboard *pClipBoardSelection = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+	gchar *cEntry = gtk_clipboard_wait_for_text (pClipBoardSelection);
+	cd_debug ("DND2SHARE-debug : Paste from clipboard -> \"%s\"", cEntry);
+	if ( g_file_test (cEntry, G_FILE_TEST_EXISTS) )
+		_on_drop_data (g_strdup_printf ("file://%s", cEntry));
+	else
+		_on_drop_data (cEntry);
+	g_free (cEntry);
+}
+
+//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
+CD_APPLET_ON_CLICK_BEGIN
+	_store_last_url (TRUE);
+CD_APPLET_ON_CLICK_END
+
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	g_print  ("DND2SHARE : drop de '%s'\n", CD_APPLET_RECEIVED_DATA);
+	_on_drop_data (CD_APPLET_RECEIVED_DATA);
 CD_APPLET_ON_DROP_DATA_END
 
 
@@ -314,7 +338,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	if (myData.pUpoadedItems != NULL)
-		CD_APPLET_ADD_IN_MENU (D_("Clear History"), _clear_history, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, CD_APPLET_MY_MENU);
 	
 	CDSiteBackend *pBackend;
 	CDUploadedItem *pItem;
@@ -382,6 +406,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 	}
-	
+
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a file or a text (drag'n'drop)"), GTK_STOCK_PASTE, _paste_new_item, CD_APPLET_MY_MENU);
+
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
