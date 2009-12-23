@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-12-01 01:27+0000\n"
-"PO-Revision-Date: 2009-12-02 18:27+0000\n"
+"POT-Creation-Date: 2009-12-05 13:46+0000\n"
+"PO-Revision-Date: 2009-12-18 15:18+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-03 04:48+0000\n"
+"X-Launchpad-Export-Date: 2009-12-19 04:35+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -400,6 +400,16 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Dit applet is een RSS/Atom-feed lezer.\n"
+"U kunt er zoveel openen als u wit.\n"
+"GEBRUIK:\n"
+" - Linkerklik : de complete feed-lijnen tonen in een dialoog.\n"
+" - Middelklik : de feed vernieuwen.\n"
+" - Scrollen op het desklet : laat de feed-lijnen scrollen.\n"
+" - Versleep een geldige url plakken naar het icoon om die te gebruiken,\n"
+"    of kopieer de url en gebruik \"Een nieuwe RSS-Url plakken\" in het "
+"menu.\n"
+"    of bewerk het Configuratiepaneel."
 
 #: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
 #: ../RSSreader/src/applet-notifications.c:64
@@ -2060,7 +2070,7 @@ msgid ""
 msgstr ""
 "Voeg een systeemvak toe aan uw dock.\n"
 "Klik met linkermuisknop om het systeemvak in een dialoog te tonen (u kunt "
-"hier een sneltoets voor instellen.)\n"
+"hier een sneltoets voor instellen)\n"
 "Middelklik om de dialoog te sluiten.\n"
 "Maar de beste manier om het te gebruiken is het los te koppelen van het dock "
 "en het ergens te plaatsen, boven andere vensters."
@@ -2093,9 +2103,9 @@ msgid ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
-"Voeg een terminal aan uw dock !\n"
+"Voeg een terminal toe aan uw dock !\n"
 "Linkerklik/middelklik om de terminal te tonen/verbergen (u kunt hier een "
-"sneltoets voor instellen.)\n"
+"sneltoets voor instellen)\n"
 "U kunt er bestanden of tekst naartoe slepen en een actie selecteren.\n"
 "U kunt meerdere tabbladen openen, ze hernoemen en hun kleur wijzigen (via de "
 "rechtermuisknop)\n"
@@ -2116,7 +2126,7 @@ msgstr "Huidig tabblad hernoemen"
 msgid "Close current Tab"
 msgstr "Huidig tabblad sluiten"
 
-#: ../terminal/src/terminal-widget.c:45
+#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
 msgid "Terminal"
 msgstr "Terminal"
 
@@ -2767,14 +2777,14 @@ msgid "Configuration"
 msgstr "Configuratie"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr "Selecteer één van de beschikbare thema´s :"
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "In seconden"
 
@@ -3400,7 +3410,7 @@ msgstr ""
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3804,11 +3814,11 @@ msgstr "Mogen externe toepassingen de iconen animeren ?"
 msgid "Let extern applications register new module ?"
 msgstr "Mogen externe toepassingen een nieuwe module registreren ?"
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
 msgid "Display icons in the menu ?"
 msgstr "Iconen tonen in het menu ?"
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu :"
 msgstr "Sneltoets om menu te tonen/verbergen :"
 
@@ -4263,7 +4273,7 @@ msgstr "Aanpassen om de afmetingen van het logo te vergroten/verkleinen"
 msgid "Logo size :"
 msgstr "Afmeting logo :"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
 msgid "normal"
 msgstr "Normaal"
 
@@ -4657,21 +4667,21 @@ msgstr "Geluid afspelen bij waarschuwing ?"
 msgid "Sound path :"
 msgstr "Pad geluid :"
 
-#: ../Toons/data/messages:87
-msgid "Keep ratio ?"
-msgstr "Verhouding behouden ?"
-
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr "Tijdsduur tussen het knipogen :"
 
-#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "In ms."
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
 msgstr "Tijdsduur van het knipogen :"
+
+#: ../Toons/data/messages:97
+msgid "Keep ratio ?"
+msgstr "Verhouding behouden ?"
 
 #: ../Toons/data/messages:99
 msgid "A high refresh frequency will use more CPU."
@@ -4756,8 +4766,9 @@ msgstr "Schaal verbergen, wanneer de muis het desklet verlaat ?"
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:137
-#: ../stack/data/messages:93 ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:141
+#: ../stack/data/messages:93 ../tomboy/data/messages:105
+#: ../weather/data/messages:117
 msgid "Display"
 msgstr "Weergave"
 
@@ -5231,16 +5242,16 @@ msgid "If so, display the last image on the icon ?"
 msgstr "Indien ja, wilt u de laatste afbeelding op het icoon tonen ?"
 
 #: ../dnd2share/data/messages:105
+msgid "Animation of the icon during upload :"
+msgstr "Animatie van icoon tijdens opladen :"
+
+#: ../dnd2share/data/messages:107
 msgid "in KB/s - 0 means unlimited"
 msgstr "in KB/s - 0 betekent geen limiet"
 
-#: ../dnd2share/data/messages:107
+#: ../dnd2share/data/messages:109
 msgid "Maximum upload rate:"
 msgstr "Maximum uploadsnelheid:"
-
-#: ../dnd2share/data/messages:109
-msgid "Animation of the icon during upload :"
-msgstr "Animatie van icoon tijdens opladen :"
 
 #: ../dnd2share/data/messages:111
 msgid "Sites"
@@ -5653,7 +5664,7 @@ msgstr "Totaal aantal bestanden"
 
 #: ../dustbin/data/messages:105
 msgid "Total weight"
-msgstr "Totaal gewicht"
+msgstr "Totale inhoud"
 
 #: ../dustbin/data/messages:107 ../dustbin/data/messages:111
 msgid ""
@@ -5719,7 +5730,7 @@ msgstr "In ms. Stel in op 0 om dit effect niet te gebruiken."
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35
+#: ../illusion/data/messages:35 ../terminal/data/messages:91
 msgid "Colors"
 msgstr "Kleuren"
 
@@ -5893,6 +5904,10 @@ msgstr ""
 #: ../keyboard-indicator/data/messages:105
 msgid "Relative size of the text :"
 msgstr "Relatieve grootte van de tekst :"
+
+#: ../keyboard-indicator/data/messages:107
+msgid "smaller"
+msgstr "Kleiner"
 
 #: ../logout/data/messages:91
 msgid "Let empty to execute the default command."
@@ -6309,10 +6324,6 @@ msgid "Alert when battery charge is critical ?"
 msgstr "Waarschuwing wanneer acculading kritiek is ?"
 
 #: ../powermanager/data/messages:179
-msgid "Animate icon during the alert ?"
-msgstr "Icoon animeren tijdens waarschuwing ?"
-
-#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "Animatie tijdens waarschuwing :"
 
@@ -6320,43 +6331,51 @@ msgstr "Animatie tijdens waarschuwing :"
 msgid "Let empty to use the folder's name."
 msgstr "Laat leeg om mapnaam te gebruiken."
 
-#: ../quick-browser/data/messages:93
+#: ../quick-browser/data/messages:93 ../slider/data/messages:87
+msgid "Folder"
+msgstr "Map"
+
+#: ../quick-browser/data/messages:95
 msgid "Folder to browse :"
 msgstr "Map om door te bladeren :"
 
-#: ../quick-browser/data/messages:95
-msgid "It can be quite heavy to load a lot of icons."
-msgstr "De belasting kan groot zijn bij het laden van veel iconen."
-
-#: ../quick-browser/data/messages:99
-msgid "Icon size :"
-msgstr "Icoongrootte :"
-
-#: ../quick-browser/data/messages:101
-msgid "small"
-msgstr "Klein"
-
-#: ../quick-browser/data/messages:103
-msgid "medium"
-msgstr "Gemiddeld"
-
-#: ../quick-browser/data/messages:105
-msgid "large"
-msgstr "Groot"
-
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:97
 msgid "List folders first ?"
 msgstr "Mappen als eerste ?"
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:99
 msgid "Ignore case ?"
 msgstr "Hoofdletters negeren ?"
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:101
 msgid "Show hidden files ?"
 msgstr "Verborgen bestanden tonen ?"
 
+#: ../quick-browser/data/messages:103
+msgid "Menu"
+msgstr "Menu"
+
+#: ../quick-browser/data/messages:105
+msgid "It can be quite heavy to load a lot of icons."
+msgstr "De belasting kan groot zijn bij het laden van veel iconen."
+
+#: ../quick-browser/data/messages:109
+msgid "Icon size :"
+msgstr "Icoongrootte :"
+
+#: ../quick-browser/data/messages:111
+msgid "small"
+msgstr "Klein"
+
+#: ../quick-browser/data/messages:113
+msgid "medium"
+msgstr "Gemiddeld"
+
 #: ../quick-browser/data/messages:115
+msgid "large"
+msgstr "Groot"
+
+#: ../quick-browser/data/messages:119
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -6364,7 +6383,7 @@ msgstr ""
 "Aantal items om tegelijk te laden. Bij een hoge waarde zal het laden sneller "
 "gaan, maar het zal de toepassingen meer belemmeren."
 
-#: ../quick-browser/data/messages:117
+#: ../quick-browser/data/messages:121
 msgid "Gradual building of the menu :"
 msgstr "Geleidelijke opbouw van het menu :"
 
@@ -6546,12 +6565,8 @@ msgstr "Selecteer ´persoonlijk´ als u uw eigen decoraties wilt bepalen."
 msgid "Swap left-click and middle-click ?"
 msgstr "Linkerklik en middelklik omdraaien ?"
 
-#: ../slider/data/messages:87
-msgid "Directory"
-msgstr "Map"
-
 #: ../slider/data/messages:89
-msgid "Directory of the images :"
+msgid "Folder of the images :"
 msgstr "Afbeeldingenmap :"
 
 #: ../slider/data/messages:91
@@ -6638,30 +6653,38 @@ msgstr "Willekeurig"
 msgid "Number of steps for a transition :"
 msgstr "Aantal stappen voor een overgang :"
 
+#: ../slider/data/messages:137
+msgid "fast"
+msgstr "Snel"
+
 #: ../slider/data/messages:139
+msgid "slow"
+msgstr "Langzaam"
+
+#: ../slider/data/messages:143
 msgid "Gives a better image rendering."
 msgstr "Dit geeft een mooier resultaat."
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:145
 msgid "Keep widht/height ratio ?"
 msgstr "Verhouding breedte/hoogte behouden ?"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:147
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Wanneer de afbeelding te klein is, dan wordt de afbeelding vergroot."
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:149
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:151
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:153
 msgid "Choose a background color :"
 msgstr "Selecteer achtergrondkleur :"
 
@@ -6880,23 +6903,31 @@ msgstr "Verticaal"
 msgid "Icons size :"
 msgstr "Icoongrootte :"
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "needs to restart the applet."
 msgstr "Vereist herstart van het applet."
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Terminal's transparency :"
 msgstr "Doorzichtigheid terminal :"
 
-#: ../terminal/data/messages:95
-msgid "Foreground color (r, v, b):"
-msgstr "Voorgrondkleur (r, v, b):"
-
 #: ../terminal/data/messages:97
-msgid "Background color (r, v, b):"
-msgstr "Achtergrondkleur (r, v, b):"
+msgid "transparent"
+msgstr "Doorzichtig"
 
 #: ../terminal/data/messages:99
+msgid "opaque"
+msgstr "Ondoorzichtig"
+
+#: ../terminal/data/messages:101
+msgid "Foreground color :"
+msgstr "Voorgrondkleur :"
+
+#: ../terminal/data/messages:103
+msgid "Background color :"
+msgstr "Achtergrondkleur :"
+
+#: ../terminal/data/messages:107
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6904,11 +6935,11 @@ msgstr ""
 "Wanneer de terminal in een dialoog is. Wanneer het in een desklet is, kunt u "
 "de afmetingen van het desklet wijzigen zoals gebruikelijk."
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns) :"
 msgstr "Grootte van de terminal (lijnen x kolommen) :"
 
-#: ../terminal/data/messages:103
+#: ../terminal/data/messages:111
 msgid "Shortkey to show the terminal :"
 msgstr "Sneltoets om terminal te tonen :"
 
@@ -6923,10 +6954,6 @@ msgstr "Naam van afbeelding voor het 'Afsluiten' icoon :"
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
 msgstr "Naam van afbeelding voor het 'Leeg' icoon :"
-
-#: ../tomboy/data/messages:105
-msgid "View"
-msgstr "Weergave"
 
 #: ../tomboy/data/messages:111
 msgid "Draw note's content on their icon ?"
@@ -7226,6 +7253,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Lettertype voor de numerieke weergave :"
 
+#~ msgid "Animate icon during the alert ?"
+#~ msgstr "Icoon animeren tijdens waarschuwing ?"
+
 #~ msgid "Activate info-bubbles ?"
 #~ msgstr "Info-ballonnen activeren ?"
 
@@ -7259,6 +7289,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Aantal bronnen :"
+
+#~ msgid "Directory"
+#~ msgstr "Map"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Afbeeldingenmap :"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Onder andere vensters houden ?"
@@ -7315,6 +7351,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Eg: image, text, video, audio, application..."
 #~ msgstr "Bv: afbeelding, tekst, video, audio, toepassing, ..."
+
+#~ msgid "Foreground color (r, v, b):"
+#~ msgstr "Voorgrondkleur (r, v, b):"
+
+#~ msgid "Background color (r, v, b):"
+#~ msgstr "Achtergrondkleur (r, v, b):"
 
 #~ msgid "Activate extended desklet mode ?"
 #~ msgstr "Uitgebreide deskletmodus activeren ?"
@@ -7764,6 +7806,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Display SWAP too ?"
 #~ msgstr "SWAP ook tonen ?"
+
+#~ msgid "View"
+#~ msgstr "Weergave"
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr ""

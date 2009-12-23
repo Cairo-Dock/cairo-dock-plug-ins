@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-12-01 01:27+0000\n"
-"PO-Revision-Date: 2009-12-01 14:54+0000\n"
+"POT-Creation-Date: 2009-12-05 13:46+0000\n"
+"PO-Revision-Date: 2009-12-06 05:22+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-02 04:58+0000\n"
+"X-Launchpad-Export-Date: 2009-12-07 04:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -2116,7 +2116,7 @@ msgstr "Переименовать вкладку"
 msgid "Close current Tab"
 msgstr "Закрыть текущую вкладку"
 
-#: ../terminal/src/terminal-widget.c:45
+#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
 msgid "Terminal"
 msgstr "Терминал"
 
@@ -2767,14 +2767,14 @@ msgid "Configuration"
 msgstr "Настройки"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr "Выберите одну из доступных тем:"
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "в секундах"
 
@@ -3400,7 +3400,7 @@ msgstr ""
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3803,11 +3803,11 @@ msgstr "Позволить внешним приложениям анимиро�
 msgid "Let extern applications register new module ?"
 msgstr "Позволить сторонним приложениям регистрировать новые модули?"
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
 msgid "Display icons in the menu ?"
 msgstr "Показывать значки в меню?"
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu :"
 msgstr "Клавиатурное сокращение для показа/скрытия меню:"
 
@@ -4264,7 +4264,7 @@ msgstr "Изменить размер логотипа"
 msgid "Logo size :"
 msgstr "Размер логотипа:"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
 msgid "normal"
 msgstr "обычный"
 
@@ -4655,21 +4655,21 @@ msgstr "Звуковой сигнал при уведомлении?"
 msgid "Sound path :"
 msgstr "Путь до звукового файла:"
 
-#: ../Toons/data/messages:87
-msgid "Keep ratio ?"
-msgstr "Сохранять масштаб?"
-
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr "Средний интервал миганий:"
 
-#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "в мсек."
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
 msgstr "Интервал миганий:"
+
+#: ../Toons/data/messages:97
+msgid "Keep ratio ?"
+msgstr "Сохранять масштаб?"
 
 #: ../Toons/data/messages:99
 msgid "A high refresh frequency will use more CPU."
@@ -4753,8 +4753,9 @@ msgstr "Скрывать шкалу, когда курсор покидает д
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:137
-#: ../stack/data/messages:93 ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:141
+#: ../stack/data/messages:93 ../tomboy/data/messages:105
+#: ../weather/data/messages:117
 msgid "Display"
 msgstr "Отображение"
 
@@ -5226,16 +5227,16 @@ msgid "If so, display the last image on the icon ?"
 msgstr "Если так, то отображать последнее изображение на значке?"
 
 #: ../dnd2share/data/messages:105
+msgid "Animation of the icon during upload :"
+msgstr "Анимировать значок при загрузке:"
+
+#: ../dnd2share/data/messages:107
 msgid "in KB/s - 0 means unlimited"
 msgstr "в КБ/с - 0 значит без ограничений"
 
-#: ../dnd2share/data/messages:107
+#: ../dnd2share/data/messages:109
 msgid "Maximum upload rate:"
 msgstr "Ограничение скорости отдачи:"
-
-#: ../dnd2share/data/messages:109
-msgid "Animation of the icon during upload :"
-msgstr "Анимировать значок при загрузке:"
 
 #: ../dnd2share/data/messages:111
 msgid "Sites"
@@ -5709,7 +5710,7 @@ msgstr "в мсек. Установите 0, чтобы не использов�
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35
+#: ../illusion/data/messages:35 ../terminal/data/messages:91
 msgid "Colors"
 msgstr "Цвета"
 
@@ -5884,6 +5885,10 @@ msgstr ""
 #: ../keyboard-indicator/data/messages:105
 msgid "Relative size of the text :"
 msgstr "Относительный размер текста:"
+
+#: ../keyboard-indicator/data/messages:107
+msgid "smaller"
+msgstr "меньше"
 
 #: ../logout/data/messages:91
 msgid "Let empty to execute the default command."
@@ -6297,10 +6302,6 @@ msgid "Alert when battery charge is critical ?"
 msgstr "Уведомлять при критическом разряде батареи?"
 
 #: ../powermanager/data/messages:179
-msgid "Animate icon during the alert ?"
-msgstr "Анимировать значок во время уведомления?"
-
-#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "Использовать анимацию:"
 
@@ -6308,44 +6309,52 @@ msgstr "Использовать анимацию:"
 msgid "Let empty to use the folder's name."
 msgstr "Оставьте пустым, чтобы использовать имя каталога."
 
-#: ../quick-browser/data/messages:93
+#: ../quick-browser/data/messages:93 ../slider/data/messages:87
+msgid "Folder"
+msgstr "Каталог"
+
+#: ../quick-browser/data/messages:95
 msgid "Folder to browse :"
 msgstr "Каталог для просмотра:"
 
-#: ../quick-browser/data/messages:95
+#: ../quick-browser/data/messages:97
+msgid "List folders first ?"
+msgstr "Каталоги в начале?"
+
+#: ../quick-browser/data/messages:99
+msgid "Ignore case ?"
+msgstr "Игнорировать регистр?"
+
+#: ../quick-browser/data/messages:101
+msgid "Show hidden files ?"
+msgstr "Показывать скрытые файлы?"
+
+#: ../quick-browser/data/messages:103
+msgid "Menu"
+msgstr "Меню"
+
+#: ../quick-browser/data/messages:105
 msgid "It can be quite heavy to load a lot of icons."
 msgstr ""
 "Может потребоваться много времени для загрузки большого количества значков."
 
-#: ../quick-browser/data/messages:99
+#: ../quick-browser/data/messages:109
 msgid "Icon size :"
 msgstr "Размер значка:"
 
-#: ../quick-browser/data/messages:101
+#: ../quick-browser/data/messages:111
 msgid "small"
 msgstr "маленькие"
 
-#: ../quick-browser/data/messages:103
+#: ../quick-browser/data/messages:113
 msgid "medium"
 msgstr "средние"
 
-#: ../quick-browser/data/messages:105
+#: ../quick-browser/data/messages:115
 msgid "large"
 msgstr "большие"
 
-#: ../quick-browser/data/messages:109
-msgid "List folders first ?"
-msgstr "Каталоги в начале?"
-
-#: ../quick-browser/data/messages:111
-msgid "Ignore case ?"
-msgstr "Игнорировать регистр?"
-
-#: ../quick-browser/data/messages:113
-msgid "Show hidden files ?"
-msgstr "Показывать скрытые файлы?"
-
-#: ../quick-browser/data/messages:115
+#: ../quick-browser/data/messages:119
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
@@ -6353,7 +6362,7 @@ msgstr ""
 "Количество элементов для одновременной загрузки. Установка высоких значений "
 "немного ускоряет загрузку, но дольше блокирует приложение."
 
-#: ../quick-browser/data/messages:117
+#: ../quick-browser/data/messages:121
 msgid "Gradual building of the menu :"
 msgstr "Последовательное построение меню:"
 
@@ -6536,12 +6545,8 @@ msgstr "Выберите 'собственное', чтобы настроить
 msgid "Swap left-click and middle-click ?"
 msgstr "Поменять местами левый и средний щелчки?"
 
-#: ../slider/data/messages:87
-msgid "Directory"
-msgstr "Каталог"
-
 #: ../slider/data/messages:89
-msgid "Directory of the images :"
+msgid "Folder of the images :"
 msgstr "Каталог с изображениями:"
 
 #: ../slider/data/messages:91
@@ -6628,29 +6633,37 @@ msgstr "случайно"
 msgid "Number of steps for a transition :"
 msgstr "Количество шагов перехода:"
 
+#: ../slider/data/messages:137
+msgid "fast"
+msgstr "быстро"
+
 #: ../slider/data/messages:139
+msgid "slow"
+msgstr "медленно"
+
+#: ../slider/data/messages:143
 msgid "Gives a better image rendering."
 msgstr "Даёт лучшие результаты отрисовки."
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:145
 msgid "Keep widht/height ratio ?"
 msgstr "Сохранять пропорции?"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:147
 msgid "If the image is too small, it will be zoomed in."
 msgstr "Если изображение слишком мало, оно будет приближено."
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:149
 msgid "Force the image to fill the icon/desklet ?"
 msgstr "Заполнять весь значок изображением?"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:151
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Установите прозрачность канала в 0, если не хотите иметь задний фон."
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:153
 msgid "Choose a background color :"
 msgstr "Выберите цвет заднего фона:"
 
@@ -6865,23 +6878,31 @@ msgstr "вертикальная"
 msgid "Icons size :"
 msgstr "Размер значков:"
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "needs to restart the applet."
 msgstr "необходимо перезапустить апплет."
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Terminal's transparency :"
 msgstr "Прозрачность терминала:"
 
-#: ../terminal/data/messages:95
-msgid "Foreground color (r, v, b):"
-msgstr "Цвет переднего фона (к, з, с):"
-
 #: ../terminal/data/messages:97
-msgid "Background color (r, v, b):"
-msgstr "Цвет заднего фона (к, з, с):"
+msgid "transparent"
+msgstr "прозрачный"
 
 #: ../terminal/data/messages:99
+msgid "opaque"
+msgstr "непрозрачный"
+
+#: ../terminal/data/messages:101
+msgid "Foreground color :"
+msgstr "Цвет переднего фона:"
+
+#: ../terminal/data/messages:103
+msgid "Background color :"
+msgstr "Цвет фона:"
+
+#: ../terminal/data/messages:107
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -6889,11 +6910,11 @@ msgstr ""
 "Когда терминал в окне. Когда он в декслете, то вы можете изменять его размер "
 "как обычно."
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns) :"
 msgstr "Размер терминала (строк х столбцов):"
 
-#: ../terminal/data/messages:103
+#: ../terminal/data/messages:111
 msgid "Shortkey to show the terminal :"
 msgstr "Клавиатурное сокращение для показа терминала:"
 
@@ -6908,10 +6929,6 @@ msgstr "Файл изображения для значка 'закрыть':"
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
 msgstr "Файл изображения для значка 'пустой':"
-
-#: ../tomboy/data/messages:105
-msgid "View"
-msgstr "Вид"
 
 #: ../tomboy/data/messages:111
 msgid "Draw note's content on their icon ?"
@@ -7177,8 +7194,26 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "Цвет текста для цифрового дисплея:"
 
+#~ msgid "Animate icon during the alert ?"
+#~ msgstr "Анимировать значок во время уведомления?"
+
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Количество источников:"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Каталог с изображениями:"
+
+#~ msgid "Directory"
+#~ msgstr "Каталог"
+
+#~ msgid "Background color (r, v, b):"
+#~ msgstr "Цвет заднего фона (к, з, с):"
+
+#~ msgid "Foreground color (r, v, b):"
+#~ msgstr "Цвет переднего фона (к, з, с):"
+
+#~ msgid "View"
+#~ msgstr "Вид"
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr "Все окна с текущего рабочего стола переместятся на этот"

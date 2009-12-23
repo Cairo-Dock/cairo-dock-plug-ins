@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"POT-Creation-Date: 2009-12-01 01:27+0000\n"
-"PO-Revision-Date: 2009-12-02 11:14+0000\n"
+"POT-Creation-Date: 2009-12-05 13:46+0000\n"
+"PO-Revision-Date: 2009-12-12 14:18+0000\n"
 "Last-Translator: Rossi Liu <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-03 04:48+0000\n"
+"X-Launchpad-Export-Date: 2009-12-13 04:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -412,23 +412,23 @@ msgstr "以您的瀏覽器開啟"
 
 #: ../RSSreader/src/applet-rss.c:358
 msgid "Warning : couldn't retrieve data last time we tried."
-msgstr ""
+msgstr "警告：我們最後一次嘗試仍無法恢復數據。"
 
 #: ../RSSreader/src/applet-rss.c:392
 msgid "No URL is defined."
-msgstr ""
+msgstr "沒有定義網址"
 
 #: ../RSSreader/src/applet-rss.c:393
 msgid "No data (no connection ?)"
-msgstr ""
+msgstr "沒有資料(沒有連線嗎？)"
 
 #: ../RSSreader/src/applet-rss.c:410 ../RSSreader/src/applet-rss.c:429
 msgid "Invalid data (invalid RSS/Atom feed ?)"
-msgstr ""
+msgstr "無效的數據（無效的RSS / Atom條目？）"
 
 #: ../RSSreader/src/applet-rss.c:481
 msgid "No data"
-msgstr ""
+msgstr "沒有資料"
 
 #: ../RSSreader/src/applet-rss.c:519
 msgid "No modification"
@@ -2035,7 +2035,7 @@ msgstr "對目前的分頁更名"
 msgid "Close current Tab"
 msgstr "關閉目前的分頁"
 
-#: ../terminal/src/terminal-widget.c:45
+#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:105
 msgid "Terminal"
 msgstr "終端機"
 
@@ -2679,14 +2679,14 @@ msgid "Configuration"
 msgstr "設置"
 
 #: ../Cairo-Penguin/data/messages:13 ../Network-Monitor/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:89
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:87
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../weather/data/messages:119 ../wifi/data/messages:97
 msgid "Choose one of the available themes :"
 msgstr "選擇一個已經存在的主題："
 
-#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:91
+#: ../Cairo-Penguin/data/messages:15 ../Toons/data/messages:89
 msgid "in seconds"
 msgstr "以秒計算"
 
@@ -3300,7 +3300,7 @@ msgstr "這是顯示在桌面小程式下方的圖形，就像是相框一樣。
 #: ../clock/data/messages:61 ../compiz-icon/data/messages:59
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
 #: ../keyboard-indicator/data/messages:59
-#: ../keyboard-indicator/data/messages:107 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:111 ../logout/data/messages:63
 #: ../mail/data/messages:59 ../musicPlayer/data/messages:61
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -3691,11 +3691,11 @@ msgstr "讓外部的應用程式可以用動畫圖示？"
 msgid "Let extern applications register new module ?"
 msgstr "讓外部的應用程式掛入新的模組？"
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:97
+#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
 msgid "Display icons in the menu ?"
 msgstr "在選單上面顯示圖示？"
 
-#: ../GMenu/data/messages:93 ../quick-browser/data/messages:107
+#: ../GMenu/data/messages:93 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu :"
 msgstr "選單的 顯示/隱藏 快速鍵："
 
@@ -4143,7 +4143,7 @@ msgstr ""
 msgid "Logo size :"
 msgstr ""
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:165 ../keyboard-indicator/data/messages:109
 msgid "normal"
 msgstr ""
 
@@ -4524,21 +4524,21 @@ msgstr "警告的同時也使用聲音警告？"
 msgid "Sound path :"
 msgstr "警告聲音檔案的路徑："
 
-#: ../Toons/data/messages:87
-msgid "Keep ratio ?"
-msgstr "保持比例？"
-
-#: ../Toons/data/messages:93
+#: ../Toons/data/messages:91
 msgid "Mean delay between winks :"
 msgstr "眨眼之間的平均延遲時間："
 
-#: ../Toons/data/messages:95 ../show-mouse/data/messages:19
+#: ../Toons/data/messages:93 ../show-mouse/data/messages:19
 msgid "in ms."
 msgstr "以毫秒(ms)為單位"
 
-#: ../Toons/data/messages:97
+#: ../Toons/data/messages:95
 msgid "Wink duration :"
 msgstr "眨眼時間："
+
+#: ../Toons/data/messages:97
+msgid "Keep ratio ?"
+msgstr "保持比例？"
 
 #: ../Toons/data/messages:99
 msgid "A high refresh frequency will use more CPU."
@@ -4617,8 +4617,9 @@ msgstr "當滑鼠游標離開桌面小工具時隱藏聲音調整器？"
 
 #: ../alsaMixer/data/messages:111 ../keyboard-indicator/data/messages:95
 #: ../musicPlayer/data/messages:135 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:137
-#: ../stack/data/messages:93 ../weather/data/messages:117
+#: ../shortcuts/data/messages:101 ../slider/data/messages:141
+#: ../stack/data/messages:93 ../tomboy/data/messages:105
+#: ../weather/data/messages:117
 msgid "Display"
 msgstr "顯示"
 
@@ -5061,15 +5062,15 @@ msgid "If so, display the last image on the icon ?"
 msgstr ""
 
 #: ../dnd2share/data/messages:105
-msgid "in KB/s - 0 means unlimited"
+msgid "Animation of the icon during upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:107
-msgid "Maximum upload rate:"
+msgid "in KB/s - 0 means unlimited"
 msgstr ""
 
 #: ../dnd2share/data/messages:109
-msgid "Animation of the icon during upload :"
+msgid "Maximum upload rate:"
 msgstr ""
 
 #: ../dnd2share/data/messages:111
@@ -5520,7 +5521,7 @@ msgstr ""
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:107
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
-#: ../illusion/data/messages:35
+#: ../illusion/data/messages:35 ../terminal/data/messages:91
 msgid "Colors"
 msgstr ""
 
@@ -5690,6 +5691,10 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Relative size of the text :"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:107
+msgid "smaller"
 msgstr ""
 
 #: ../logout/data/messages:91
@@ -6084,10 +6089,6 @@ msgid "Alert when battery charge is critical ?"
 msgstr ""
 
 #: ../powermanager/data/messages:179
-msgid "Animate icon during the alert ?"
-msgstr ""
-
-#: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr ""
 
@@ -6095,49 +6096,57 @@ msgstr ""
 msgid "Let empty to use the folder's name."
 msgstr ""
 
-#: ../quick-browser/data/messages:93
-msgid "Folder to browse :"
+#: ../quick-browser/data/messages:93 ../slider/data/messages:87
+msgid "Folder"
 msgstr ""
 
 #: ../quick-browser/data/messages:95
-msgid "It can be quite heavy to load a lot of icons."
+msgid "Folder to browse :"
 msgstr ""
 
-#: ../quick-browser/data/messages:99
-msgid "Icon size :"
-msgstr ""
-
-#: ../quick-browser/data/messages:101
-msgid "small"
-msgstr ""
-
-#: ../quick-browser/data/messages:103
-msgid "medium"
-msgstr ""
-
-#: ../quick-browser/data/messages:105
-msgid "large"
-msgstr ""
-
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:97
 msgid "List folders first ?"
 msgstr ""
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:99
 msgid "Ignore case ?"
 msgstr ""
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:101
 msgid "Show hidden files ?"
 msgstr ""
 
+#: ../quick-browser/data/messages:103
+msgid "Menu"
+msgstr ""
+
+#: ../quick-browser/data/messages:105
+msgid "It can be quite heavy to load a lot of icons."
+msgstr ""
+
+#: ../quick-browser/data/messages:109
+msgid "Icon size :"
+msgstr ""
+
+#: ../quick-browser/data/messages:111
+msgid "small"
+msgstr ""
+
+#: ../quick-browser/data/messages:113
+msgid "medium"
+msgstr ""
+
 #: ../quick-browser/data/messages:115
+msgid "large"
+msgstr ""
+
+#: ../quick-browser/data/messages:119
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up a little the "
 "loading, but blocks the appli more."
 msgstr ""
 
-#: ../quick-browser/data/messages:117
+#: ../quick-browser/data/messages:121
 msgid "Gradual building of the menu :"
 msgstr ""
 
@@ -6316,12 +6325,8 @@ msgstr "選擇 \"個人的\" 那個設定，下面的裝飾設定就可以使用
 msgid "Swap left-click and middle-click ?"
 msgstr ""
 
-#: ../slider/data/messages:87
-msgid "Directory"
-msgstr ""
-
 #: ../slider/data/messages:89
-msgid "Directory of the images :"
+msgid "Folder of the images :"
 msgstr ""
 
 #: ../slider/data/messages:91
@@ -6406,29 +6411,37 @@ msgstr ""
 msgid "Number of steps for a transition :"
 msgstr ""
 
-#: ../slider/data/messages:139
-msgid "Gives a better image rendering."
+#: ../slider/data/messages:137
+msgid "fast"
 msgstr ""
 
-#: ../slider/data/messages:141
-msgid "Keep widht/height ratio ?"
+#: ../slider/data/messages:139
+msgid "slow"
 msgstr ""
 
 #: ../slider/data/messages:143
-msgid "If the image is too small, it will be zoomed in."
+msgid "Gives a better image rendering."
 msgstr ""
 
 #: ../slider/data/messages:145
-msgid "Force the image to fill the icon/desklet ?"
+msgid "Keep widht/height ratio ?"
 msgstr ""
 
 #: ../slider/data/messages:147
+msgid "If the image is too small, it will be zoomed in."
+msgstr ""
+
+#: ../slider/data/messages:149
+msgid "Force the image to fill the icon/desklet ?"
+msgstr ""
+
+#: ../slider/data/messages:151
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr ""
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:153
 msgid "Choose a background color :"
 msgstr ""
 
@@ -6635,33 +6648,41 @@ msgstr ""
 msgid "Icons size :"
 msgstr ""
 
-#: ../terminal/data/messages:91
+#: ../terminal/data/messages:93
 msgid "needs to restart the applet."
 msgstr ""
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:95
 msgid "Terminal's transparency :"
 msgstr ""
 
-#: ../terminal/data/messages:95
-msgid "Foreground color (r, v, b):"
-msgstr ""
-
 #: ../terminal/data/messages:97
-msgid "Background color (r, v, b):"
+msgid "transparent"
 msgstr ""
 
 #: ../terminal/data/messages:99
+msgid "opaque"
+msgstr ""
+
+#: ../terminal/data/messages:101
+msgid "Foreground color :"
+msgstr ""
+
+#: ../terminal/data/messages:103
+msgid "Background color :"
+msgstr ""
+
+#: ../terminal/data/messages:107
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
 msgstr ""
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns) :"
 msgstr ""
 
-#: ../terminal/data/messages:103
+#: ../terminal/data/messages:111
 msgid "Shortkey to show the terminal :"
 msgstr ""
 
@@ -6675,10 +6696,6 @@ msgstr ""
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
-msgstr ""
-
-#: ../tomboy/data/messages:105
-msgid "View"
 msgstr ""
 
 #: ../tomboy/data/messages:111
