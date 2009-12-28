@@ -107,10 +107,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	
 	cairo_dock_set_perspective_view (iWidth, iHeight);
 	glScalef (1., -1., 1.);
-
-	double fTheta = - 45. + f * 90.;  // -45 -> 45
-	glTranslatef (0., 0., - iWidth * sqrt(2)/2 * cos (fTheta/180.*G_PI));  // pour faire tenir le cube dans la fenetre.
-	glEnable (GL_DEPTH_TEST);
+	
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
@@ -118,6 +115,10 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	// fond
 	if (myData.iBackgroundTexture != 0)
 		cairo_dock_apply_texture_at_size (myData.iBackgroundTexture, iWidth, iHeight);
+	
+	double fTheta = - 45. + f * 90.;  // -45 -> 45
+	glTranslatef (0., 0., - iWidth * sqrt(2)/2 * cos (fTheta/180.*G_PI));  // pour faire tenir le cube dans la fenetre.
+	glEnable (GL_DEPTH_TEST);
 	
 	// image precedente.
 	if (fTheta < 25 && myData.iOldTexture != 0)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).

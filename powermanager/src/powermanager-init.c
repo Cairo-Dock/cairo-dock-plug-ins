@@ -80,35 +80,36 @@ CD_APPLET_INIT_BEGIN
 	
 	// on ne charge pas toutes les surfaces, ce qui economise de la memoire, et du temps au chargement, car ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 5 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
-	myData.dbus_enable = dbus_connect_to_bus ();
-	if (myData.dbus_enable)
+	if (cd_powermanager_find_battery())
 	{
-		if(myData.battery_present)
+		myData.dbus_enable = dbus_connect_to_bus ();  // pour le changement d'etat.
+		///get_on_battery();
+		
+		// Initialisation du rendu.
+		_set_data_renderer (myApplet, FALSE);
+		
+		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+		cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
+		
+		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 		{
-			///get_on_battery();
-			
-			// Initialisation du rendu.
-			_set_data_renderer (myApplet, FALSE);
-			
-			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
-			{
-				double x=0;
-				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&x);
-			}
-			
-			myData.previous_battery_charge = -1;
-			myData.previous_battery_time = -1;
-			myData.alerted = TRUE;
-			myData.bCritical = TRUE;
-			update_stats();
-			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
+			double x=0;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&x);
 		}
-		else
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
-
+		
+		// initialisation des parametres pour le 1er redessin.
+		myData.prev_battery_present = TRUE;
+		myData.previous_battery_charge = -1;
+		myData.previous_battery_time = -1;
+		myData.alerted = TRUE;
+		myData.bCritical = TRUE;
+		update_stats();
+		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats, (gpointer) NULL);
 	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg");
+	else
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
+	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -134,6 +135,10 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	
+	cairo_dock_free_emblem (myData.pEmblem);
+	myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
+	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		_set_data_renderer (myApplet, TRUE);
@@ -150,41 +155,38 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On redessine notre icone.
-	if (myData.dbus_enable)
+	if (myData.cBatteryStateFilePath)
 	{
-		if(myData.battery_present)
+		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
 		{
-			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
-			{
-				double fPercent = (double) myData.battery_charge / 100.;
-				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
-				
-				//Embleme sur notre icône
-				CD_APPLET_DRAW_EMBLEM ((myData.on_battery ? CAIRO_DOCK_EMBLEM_BLANK : CAIRO_DOCK_EMBLEM_CHARGE), CAIRO_DOCK_EMBLEM_MIDDLE);
-			}
-			else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
-				cd_powermanager_draw_icon_with_effect (myData.on_battery);
+			double fPercent = (double) myData.battery_charge / 100.;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			
-			if (!myData.on_battery && myData.battery_charge < 100)
-				myData.alerted = FALSE; //We will alert when battery charge reach 100%
-			if (myData.on_battery)
-			{
-				if (myData.battery_charge > myConfig.lowBatteryValue)
-					myData.alerted = FALSE; //We will alert when battery charge is under myConfig.lowBatteryValue
-				
-				if (myData.battery_charge > 4)
-					myData.bCritical = FALSE; //We will alert when battery charge is critical (under 4%)
-			}
-			
-			myData.previous_battery_charge = -1;
-			myData.previous_battery_time = -1;
-			update_icon();
+			//Embleme sur notre icône
+			//CD_APPLET_DRAW_EMBLEM ((myData.on_battery ? CAIRO_DOCK_EMBLEM_BLANK : CAIRO_DOCK_EMBLEM_CHARGE), CAIRO_DOCK_EMBLEM_MIDDLE);
+			if (! myData.on_battery)
+				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 		}
-		else
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
+		else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+			cd_powermanager_draw_icon_with_effect (myData.on_battery);
+		
+		if (!myData.on_battery && myData.battery_charge < 100)
+			myData.alerted = FALSE; //We will alert when battery charge reach 100%
+		if (myData.on_battery)
+		{
+			if (myData.battery_charge > myConfig.lowBatteryValue)
+				myData.alerted = FALSE; //We will alert when battery charge is under myConfig.lowBatteryValue
+			
+			if (myData.battery_charge > 4)
+				myData.bCritical = FALSE; //We will alert when battery charge is critical (under 4%)
+		}
+		
+		myData.previous_battery_charge = -1;
+		myData.previous_battery_time = -1;
+		update_icon();
 
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("broken.svg");
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
 	
 CD_APPLET_RELOAD_END

@@ -132,7 +132,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CUBE_MESH]);
-	
+
 	glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_GEN_S);
@@ -205,7 +205,7 @@ static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData 
 		break;
 		case CD_CUBE_MESH :
 			glRotatef (fabs (pData->fRotationAngle/4), 1., 0., 0.);
-			cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), (1. + pData->fAdjustFactor * (sqrt (2) - 1)) * fScaleFactor);
+			cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), (1. + pData->fAdjustFactor * (sqrt (2.5) - 1)) * fScaleFactor);
 			cd_animation_render_cube (pIcon, pDock, bInvisibleBackground);
 		break;
 		case CD_CAPSULE_MESH :
@@ -306,22 +306,23 @@ void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimati
 	pIcon->fWidthFactor /= fWidthFactor;
 }
 
-
+double alpha_brake = 30.;
 gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bUseOpenGL, gboolean bWillContinue)
 {
-	if (pData->fRotationAngle < 40)
+	pData->fAdjustFactor = 0.;
+	if (pData->fRotationAngle < alpha_brake)
 	{
 		if (pData->bRotationBeginning)
-			pData->fAdjustFactor = (40 - pData->fRotationAngle) / (40. - 0.);
+			pData->fAdjustFactor = (alpha_brake - pData->fRotationAngle) / (alpha_brake - 0.);
 	}
 	else if (pData->bRotationBeginning)
 		pData->bRotationBeginning = FALSE;
-	if (pData->fRotationAngle > 320)
+	if (pData->fRotationAngle > 360 - alpha_brake)
 	{
 		if (! bWillContinue)
 		{
-			pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (360. - 320.));
-			pData->fAdjustFactor = (pData->fRotationAngle - 320) / (360. - 320.);
+			pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (alpha_brake));
+			pData->fAdjustFactor = (pData->fRotationAngle - (360 - alpha_brake)) / (alpha_brake);
 		}
 	}
 	pData->fRotationAngle += pData->fRotationSpeed * pData->fRotationBrake;
@@ -344,7 +345,13 @@ gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimati
 		}
 	}
 	else
+	{
+		//if (myConfig.iMeshType == CD_CUBE_MESH)
+			//pIcon->fWidth *= (1 + .2 * 1);  // pour prendre en compte la rotation du cube au depart et a l'arrivee (transition), lorsque le cube n'est pas assez zoome et deborde legerement sur les icones voisines.
 		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
-	 
+		//if (myConfig.iMeshType == CD_CUBE_MESH)
+			//pIcon->fWidth /= (1 + .2 * 1);
+	}
+	
 	return (pData->fRotationAngle < 360);
 }

@@ -86,7 +86,7 @@ struct _AppletData {
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
 	gboolean dbus_enable;
-	gboolean battery_present;
+	gboolean battery_present, prev_battery_present;
 	gint iCapacity;
 	gboolean on_battery, previously_on_battery;
 	gdouble battery_time, previous_battery_time;
@@ -108,6 +108,8 @@ struct _AppletData {
 	gint iNbDischargeMeasures;
 	gdouble fLastDischargeMeanRate;
 	gdouble fLastChargeMeanRate;
+	
+	CairoEmblem *pEmblem;
 	} ;
 
 

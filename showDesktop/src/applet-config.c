@@ -34,6 +34,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.cHiddenImage == NULL)
 		myConfig.cHiddenImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	myConfig.cVisibleImage = CD_CONFIG_GET_STRING ("Icon", "icon visible");
+	if (myConfig.cVisibleImage == NULL)
+		myConfig.cVisibleImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/icon-active.png");
 CD_APPLET_GET_CONFIG_END
 
 

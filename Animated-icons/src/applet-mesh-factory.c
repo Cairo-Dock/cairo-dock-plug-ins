@@ -271,7 +271,7 @@ GLuint cairo_dock_load_cube_calllist (void)
 	glNewList(iCallList, GL_COMPILE); // Go pour la compilation de la display list
 	glPolygonMode (GL_FRONT, GL_FILL);
 	
-	double a = .5 / sqrt (2);
+	double a = .5 / sqrt (2.5);  // approximation de la distance max au centre du cube de la projection sur le plan de l'ecran d'un des coins, sachant que phi = teta/4.
 	glBegin(GL_QUADS);
 	// Front Face (note that the texture's corners have to match the quad's corners)
 	glNormal3f(0,0,1);

@@ -95,9 +95,9 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 		g_free (cCommand);
 	
 	if (erreur != NULL) {
-		cd_warning ("Attention : when trying to execute command : %s", erreur->message);
+		cd_warning ("MP : when trying to execute command : %s", erreur->message);
 		g_error_free (erreur);
-		CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_ERROR, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
+		//CD_APPLET_MAKE_TEMPORARY_EMBLEM_CLASSIC (CAIRO_DOCK_EMBLEM_ERROR, CAIRO_DOCK_EMBLEM_UPPER_LEFT, 5000);
 	}
 }
 

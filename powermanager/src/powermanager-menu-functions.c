@@ -26,11 +26,6 @@
 #include "powermanager-menu-functions.h"
 
 
-
-//*********************************************************************************
-// Informations sur l'applet et l'auteur.
-//*********************************************************************************
-
 CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);
 	cd_powermanager_bubble();
@@ -53,10 +48,7 @@ void power_config(void) {  /// a mettre dans les plug-ins d'integration.
 	}
 }
 
-//*********************************************************************************
-// Fonction appelée a la construction du menu.
-// Cette fonction remplit le menu principal avec les actions previous, next, et information.
-//*********************************************************************************
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	//on rajoute un sous menu, sinon ce n'est pas esthétique
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

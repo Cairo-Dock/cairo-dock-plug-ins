@@ -24,11 +24,11 @@
 #include <glib/gstdio.h>
 
 #include "applet-struct.h"
-#include "applet-notifications.h"
 #include "applet-dnd2share.h"
+#include "applet-notifications.h"
 
-static void _clear_history (GtkMenuItem *menu_item, gpointer *data)
-{	
+static void _clear_history (GtkMenuItem *menu_item, gpointer data)
+{
 	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files ?"), myIcon, myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 	{
@@ -134,39 +134,32 @@ static void _on_drop_data (const gchar *cMyData)
 {
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
 	gchar *cFilePath = NULL;
-	int iWithComma = 0;
-	gchar *cLogFileWithComma = NULL;
 	if( strncmp(cMyData, "file://", 7) == 0)
 	{
-		// Les formats supportés par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
+		// Les formats supportÃ©s par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
-		// ... mais l'applet ne prendra en charge que les plus utilisés :
+		// ... mais l'applet ne prendra en charge que les plus utilisÃ©s :
 		
 		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // on passe en encodage UTF-8.
-		if (cFilePath == NULL)
-		{
-			CAIRO_DOCK_LET_PASS_NOTIFICATION;
-			return;
-		}
-		
+		g_return_if_fail (cFilePath != NULL);
 		
 		if ( strchr(cFilePath, ',') != NULL) // S'il y une virgule, curl n'aime pas
 		{
-			cLogFileWithComma = g_strdup ("/tmp/dnd2share-file_with_comma.XXXXXX");
-			int fds = mkstemp (cLogFileWithComma);
+			myData.cTmpFilePath = g_strdup ("/tmp/dnd2share-file_with_comma.XXXXXX");
+			int fds = mkstemp (myData.cTmpFilePath);
 			if (fds == -1)
 			{
-				g_free (cLogFileWithComma);
-				CAIRO_DOCK_LET_PASS_NOTIFICATION;
+				g_free (myData.cTmpFilePath);
+				myData.cTmpFilePath = NULL;
 				return;
 			}
 			close(fds);
-			gchar *cCommandCopyFileWithComma;
-			cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, cLogFileWithComma); // copie du fichier dans les tmp
+			
+			gchar *cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, myData.cTmpFilePath); // copie du fichier dans tmp.
 			int r = system (cCommandCopyFileWithComma);
-			iWithComma = 1;
 			g_free (cCommandCopyFileWithComma);
-			cFilePath = cLogFileWithComma; // on utilise le fichier tmp
+			g_free (cFilePath);
+			cFilePath = g_strdup (myData.cTmpFilePath);  // on utilise le fichier tmp, il sera efface a la fin de l'upload.
 		}
 		
 		guint64 iSize;
@@ -227,8 +220,64 @@ static void _on_drop_data (const gchar *cMyData)
 	}
 	cd_dnd2share_launch_upload (cFilePath ? cFilePath : cMyData, iFileType);
 	g_free (cFilePath);
-	if (iWithComma)
-		g_remove (cFilePath); // fichier tmp
+}
+
+static void _get_image (GtkClipboard *clipboard, GdkPixbuf *pixbuf, gpointer data)
+{
+	g_return_if_fail (pixbuf != NULL);
+	if (myData.cTmpFilePath != NULL)
+	{
+		cd_warning ("Please wait the current upload is finished before starting a new one.");
+		return ;
+	}
+	myData.cTmpFilePath = g_strdup ("/tmp/dnd2share-tmp-file.XXXXXX");
+	int fds = mkstemp (myData.cTmpFilePath);
+	if (fds == -1)
+	{
+		g_free (myData.cTmpFilePath);
+		myData.cTmpFilePath = NULL;
+		return ;
+	}
+	close(fds);
+	
+	gboolean bSaved = gdk_pixbuf_save (pixbuf,
+		myData.cTmpFilePath,
+		"png",
+		NULL,
+		NULL);
+	g_return_if_fail (bSaved);
+	
+	cd_dnd2share_launch_upload (myData.cTmpFilePath, CD_TYPE_IMAGE);
+}
+static void _get_text (GtkClipboard *clipboard, const gchar *cText, gpointer data)
+{
+	g_return_if_fail (cText != NULL);
+	gchar *cFilePath = NULL;
+	const gchar *cDropData = NULL;
+	if ( *cText == '/' && g_file_test (cText, G_FILE_TEST_EXISTS) )
+		cFilePath = g_strdup_printf ("file://%s", cText);
+	else
+		cDropData = cText;
+	
+	_on_drop_data (cFilePath ? cFilePath : cDropData);
+}
+static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
+{
+	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+	gboolean bDataAvailable = gtk_clipboard_wait_is_image_available (pClipBoard);
+	g_return_if_fail (myIcon != NULL);  // protection, car cette fonction bloque mais laisse tourner la main loop.
+	if (bDataAvailable)
+	{
+		gtk_clipboard_request_image (pClipBoard, (GtkClipboardImageReceivedFunc) _get_image, data);
+		return;
+	}
+	bDataAvailable = gtk_clipboard_wait_is_text_available (pClipBoard);
+	g_return_if_fail (myIcon != NULL);
+	if (bDataAvailable)
+	{
+		gtk_clipboard_request_text (pClipBoard, (GtkClipboardTextReceivedFunc) _get_text, data);
+		return;
+	}
 }
 
 static void _paste_new_item (GtkMenuItem *menu_item)
@@ -337,6 +386,8 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
+	CD_APPLET_ADD_IN_MENU (D_("Send the clipboard's content"), _send_clipboard, CD_APPLET_MY_MENU);
+	
 	if (myData.pUpoadedItems != NULL)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, CD_APPLET_MY_MENU);
 	
@@ -406,8 +457,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 	}
-
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a file or a text (drag'n'drop)"), GTK_STOCK_PASTE, _paste_new_item, CD_APPLET_MY_MENU);
-
+	
 	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END

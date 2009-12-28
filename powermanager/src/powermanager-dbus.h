@@ -23,6 +23,8 @@
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 
+gboolean cd_powermanager_find_battery (void);
+
 gboolean dbus_connect_to_bus(void);
 void dbus_disconnect_from_bus (void);
 

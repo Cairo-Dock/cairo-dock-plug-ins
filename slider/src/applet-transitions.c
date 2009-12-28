@@ -384,6 +384,9 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		_cairo_dock_disable_texture ();
 		
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
+		
+		if (myDock)
+			cairo_dock_set_ortho_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
 	}
 	else
 	{
@@ -557,6 +560,9 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		glDisable (GL_TEXTURE_2D);
 		glDisable (GL_BLEND);
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
+		
+		if (myDock)
+			cairo_dock_set_ortho_view (myData.iSurfaceWidth, myData.iSurfaceHeight);
 	}
 	else
 	{

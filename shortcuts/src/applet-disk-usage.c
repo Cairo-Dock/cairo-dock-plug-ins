@@ -65,7 +65,7 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		g_print ("%s (%s, %d)\n", __func__, pIcon->cCommand, pIcon->iType);
+		//g_print ("%s (%s, %d)\n", __func__, pIcon->cCommand, pIcon->iType);
 		if (pIcon->iType != 6)
 			break;
 		if (pIcon->cCommand != NULL)

@@ -266,6 +266,12 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	if (myData.cResultUrls)
 		g_strfreev (myData.cResultUrls);
 	myData.cResultUrls = NULL;
+	if (myData.cTmpFilePath != NULL)
+	{
+		g_remove (myData.cTmpFilePath);
+		g_free (myData.cTmpFilePath);
+		myData.cTmpFilePath = NULL;
+	}
 	return FALSE;
 }
 void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
@@ -273,6 +279,12 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	if (myData.pTask != NULL)
 	{
 		cd_warning ("Please wait the current upload is finished before starting a new one.");
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("Please wait the current upload is finished before starting a new one."),
+			myIcon,
+			myContainer,
+			myConfig.dTimeDialogs,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		return ;
 	}
 	

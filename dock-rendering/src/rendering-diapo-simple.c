@@ -120,7 +120,7 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pDock->iDecorationsWidth  = 0;
 	
 	// On affecte ca aussi au cas ou.
-	pDock->fFlatDockWidth = pDock->iMinDockWidth - 2*X_BORDER_SPACE;
+	pDock->fFlatDockWidth = pDock->iMaxDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+g_fAmplitude);
 }
 
@@ -302,9 +302,10 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		
 		// on en deduit la position au repos.
 		icon->fX = X_BORDER_SPACE + .5*my_diapo_simple_iconGapX + (icon->fWidth + my_diapo_simple_iconGapX) * x;
-		icon->fY = iOffsetY + (icon->fHeight + my_diapo_simple_iconGapY) * y;
-		if (!pDock->container.bDirectionUp)
-			icon->fY = pDock->container.iHeight - icon->fY - icon->fHeight;
+		if (pDock->container.bDirectionUp)
+			icon->fY = iOffsetY + (icon->fHeight + my_diapo_simple_iconGapY) * y;
+		else
+			icon->fY = pDock->container.iHeight - iOffsetY - icon->fHeight - (nRowsY - 1 - y) * (icon->fHeight + my_diapo_simple_iconGapY);  // la ligne du haut quand le dock est en bas, reste en haut quand le dock est en haut.
 		
 		// on en deduit le zoom par rapport a la position de la souris.
 		gdouble distanceE = sqrt ((icon->fX + icon->fWidth/2 - Mx) * (icon->fX + icon->fWidth/2 - Mx) + (icon->fY + icon->fHeight/2 - My) * (icon->fY + icon->fHeight/2 - My));

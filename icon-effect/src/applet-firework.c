@@ -114,6 +114,9 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 
 static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData *pData)
 {
+	if (pData->pFireworks != NULL)
+		return TRUE;
+	
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_firework_texture ();
 	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;

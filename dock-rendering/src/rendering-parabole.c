@@ -256,7 +256,6 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		cd_rendering_calculate_reference_parabole (my_fParaboleCurvature);
 	}
 	
-	///pDock->container.bIsHorizontal = CAIRO_DOCK_VERTICAL;
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	

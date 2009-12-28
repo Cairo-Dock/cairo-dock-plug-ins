@@ -35,6 +35,7 @@ void update_icon(void)
 	cd_message ("%s (time:%.2f -> %.2f ; charge:%.2f -> %.2f)", __func__, myData.previous_battery_time, myData.battery_time, myData.previous_battery_charge, myData.battery_charge);
 	if(myData.battery_present)
 	{
+		// on reactualise le temps restant en info rapide.
 		if (myData.previous_battery_time != myData.battery_time)
 		{
 			if(myConfig.quickInfoType == POWER_MANAGER_TIME)
@@ -59,6 +60,7 @@ void update_icon(void)
 			myData.previous_battery_time = myData.battery_time;
 		}
 		
+		// on prend en compte la nouvelle charge.
 		if (myData.previously_on_battery != myData.on_battery || myData.previous_battery_charge != myData.battery_charge)
 		{
 			if (myData.previously_on_battery != myData.on_battery)
@@ -68,6 +70,7 @@ void update_icon(void)
 				myData.bCritical = FALSE;
 			}
 			
+			// on redessine l'icone.
 			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 			{
 				double fPercent = (double) myData.battery_charge / 100.;
@@ -80,6 +83,7 @@ void update_icon(void)
 				bNeedRedraw = FALSE;
 			}
 			
+			// on declenche les alarmes.
 			if(myData.on_battery)
 			{
 				//Alert when battery charge is under a configured value in %
@@ -98,7 +102,7 @@ void update_icon(void)
 						cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
 				}
 				//Embleme sur notre icône
-				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
+				//CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
 			}
 			else
 			{
@@ -106,17 +110,19 @@ void update_icon(void)
 				if(myData.battery_charge == 100 && ! myData.alerted)
 					cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
 					
-				CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
+				//CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
+				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 			}
 			
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;
 		}
 	}
-	else
+	else if (myData.prev_battery_present)
 	{
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
 		bNeedRedraw = TRUE;
+		myData.prev_battery_present = FALSE;
 	}
 	
 	if (bNeedRedraw)
@@ -164,11 +170,11 @@ void cd_powermanager_bubble (void)
 			hms = g_strdup_printf ("%s", D_("Unknown"));
 		if(myData.on_battery)
 		{
-			g_string_printf (sInfo, "%s %.2f% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %.2f% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
+			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
 		}
 		g_free (hms);
 	}
@@ -190,17 +196,17 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	if (myData.battery_time > 0.)
 		hms = get_hours_minutes (myData.battery_time);
 	else
-		hms = g_strdup_printf ("%s", D_("Unknown"));
+		hms = g_strdup (D_("Unknown"));
 		
 	if ((alert == POWER_MANAGER_CHARGE_LOW && myConfig.lowBatteryWitness) || (alert == POWER_MANAGER_CHARGE_CRITICAL && myConfig.criticalBatteryWitness))
 	{
-		g_string_printf (sInfo, "%s (%.2f%%%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
 		_cd_powermanager_dialog (sInfo);
 	}
 	
 	else if (alert == POWER_MANAGER_CHARGE_FULL && myConfig.highBatteryWitness)
 	{
-		g_string_printf (sInfo, "%s (%.2f%%%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
 		_cd_powermanager_dialog (sInfo);
 		if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL] != NULL)
 			cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL]);
@@ -223,7 +229,7 @@ void cd_powermanager_draw_icon_with_effect (gboolean bOnBattery)
 	{
 		gchar *cImagePath;
 		if (myConfig.cUserBatteryIconName == NULL)
-			cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default-battery.svg");
+			cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/default-battery.svg");
 		else
 			cImagePath = cairo_dock_generate_file_path (myConfig.cUserBatteryIconName);
 		
@@ -234,7 +240,7 @@ void cd_powermanager_draw_icon_with_effect (gboolean bOnBattery)
 	{
 		gchar *cImagePath;
 		if (myConfig.cUserChargeIconName == NULL)
-			cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default-charge.svg");
+			cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/default-charge.svg");
 		else
 			cImagePath = cairo_dock_generate_file_path (myConfig.cUserChargeIconName);
 		

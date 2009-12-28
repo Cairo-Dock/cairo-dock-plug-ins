@@ -168,7 +168,7 @@ msgid ""
 "them."
 msgstr ""
 
-#: ../Clipper/src/applet-notifications.c:95
+#: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -217,8 +217,16 @@ msgstr ""
 msgid "Enter a command to launch :"
 msgstr ""
 
+#: ../Network-Monitor/src/applet-connections.c:440
+msgid "A cable has been pluged"
+msgstr ""
+
+#: ../Network-Monitor/src/applet-connections.c:440
+msgid "A cable has been unpluged"
+msgstr ""
+
 #: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:135 ../wifi/src/applet-draw.c:31
+#: ../powermanager/src/powermanager-draw.c:141 ../wifi/src/applet-draw.c:31
 #: ../Clipper/data/messages:201 ../Network-Monitor/data/messages:129
 #: ../Network-Monitor/data/messages:207 ../alsaMixer/data/messages:123
 #: ../compiz-icon/data/messages:93 ../dustbin/data/messages:99
@@ -285,8 +293,8 @@ msgstr ""
 #: ../Network-Monitor/src/applet-draw.c:163
 #: ../musicPlayer/src/applet-draw.c:313 ../musicPlayer/src/applet-draw.c:315
 #: ../musicPlayer/src/applet-draw.c:317
-#: ../powermanager/src/powermanager-draw.c:164
-#: ../powermanager/src/powermanager-draw.c:193
+#: ../powermanager/src/powermanager-draw.c:170
+#: ../powermanager/src/powermanager-draw.c:199
 msgid "Unknown"
 msgstr ""
 
@@ -298,13 +306,16 @@ msgstr ""
 msgid "Signal Quality"
 msgstr ""
 
-#: ../Network-Monitor/src/applet-init.c:29
+#: ../Network-Monitor/src/applet-init.c:31
 msgid "Network-Monitor"
 msgstr ""
 
-#: ../Network-Monitor/src/applet-init.c:32
+#: ../Network-Monitor/src/applet-init.c:34
 msgid ""
-"This applet shows you a monitor of your active connections\n"
+"This applet allows you to monitor your active connections.\n"
+"It can display the download/upload speeds and the wifi signal quality.\n"
+"If you have network-manager running, it can also let you choose the current "
+"wifi network.\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
@@ -336,18 +347,18 @@ msgstr ""
 msgid "TB"
 msgstr ""
 
-#: ../Network-Monitor/src/applet-netspeed.c:186
+#: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:81
 #: ../netspeed/src/applet-netspeed.c:182
 msgid "Loading"
 msgstr ""
 
-#: ../Network-Monitor/src/applet-notifications.c:69
+#: ../Network-Monitor/src/applet-notifications.c:81
 #: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
 msgstr ""
 
-#: ../Network-Monitor/src/applet-notifications.c:70
+#: ../Network-Monitor/src/applet-notifications.c:82
 #: ../wifi/src/applet-notifications.c:76
 msgid "Network Administration"
 msgstr ""
@@ -386,35 +397,35 @@ msgstr ""
 msgid "Open with your web browser"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:358
+#: ../RSSreader/src/applet-rss.c:383
 msgid "Warning : couldn't retrieve data last time we tried."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:392
+#: ../RSSreader/src/applet-rss.c:417
 msgid "No URL is defined."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:393
+#: ../RSSreader/src/applet-rss.c:418
 msgid "No data (no connection ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:410 ../RSSreader/src/applet-rss.c:429
+#: ../RSSreader/src/applet-rss.c:435 ../RSSreader/src/applet-rss.c:454
 msgid "Invalid data (invalid RSS/Atom feed ?)"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:481
+#: ../RSSreader/src/applet-rss.c:506
 msgid "No data"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:519
+#: ../RSSreader/src/applet-rss.c:544
 msgid "No modification"
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:542
+#: ../RSSreader/src/applet-rss.c:569
 msgid "This RSS feed has been modified..."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:664
+#: ../RSSreader/src/applet-rss.c:703
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -422,7 +433,7 @@ msgid ""
 " in the menu."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:670
+#: ../RSSreader/src/applet-rss.c:709
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed ?\n"
@@ -755,11 +766,11 @@ msgid ""
 " and select the proper audio channel you want to control."
 msgstr ""
 
-#: ../alsaMixer/src/applet-mixer.c:281
+#: ../alsaMixer/src/applet-mixer.c:285
 msgid "Set up volume :"
 msgstr ""
 
-#: ../alsaMixer/src/applet-notifications.c:54
+#: ../alsaMixer/src/applet-notifications.c:56
 msgid "Adjsut channels"
 msgstr ""
 
@@ -933,6 +944,10 @@ msgid ""
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
 
+#: ../dnd2share/src/applet-dnd2share.c:283
+msgid "Please wait the current upload is finished before starting a new one."
+msgstr ""
+
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
 "This applet lets you share files easily :\n"
@@ -992,31 +1007,35 @@ msgid ""
 "Just middle-click to paste it anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:299 ../RSSreader/data/messages:141
+#: ../dnd2share/src/applet-notifications.c:372 ../RSSreader/data/messages:141
 msgid "Text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:299
+#: ../dnd2share/src/applet-notifications.c:372
 msgid "File"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:302
+#: ../dnd2share/src/applet-notifications.c:375
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:317
+#: ../dnd2share/src/applet-notifications.c:389
+msgid "Send the clipboard's content"
+msgstr ""
+
+#: ../dnd2share/src/applet-notifications.c:392
 msgid "Clear History"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:379
+#: ../dnd2share/src/applet-notifications.c:454
 msgid "Open file"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:381
+#: ../dnd2share/src/applet-notifications.c:456
 msgid "Get text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:383
+#: ../dnd2share/src/applet-notifications.c:458
 msgid "Remove from history"
 msgstr ""
 
@@ -1489,43 +1508,43 @@ msgstr ""
 msgid "Re-check interface"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:167
+#: ../powermanager/src/powermanager-draw.c:173
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:167
-#: ../powermanager/src/powermanager-draw.c:197
+#: ../powermanager/src/powermanager-draw.c:173
 #: ../powermanager/src/powermanager-draw.c:203
+#: ../powermanager/src/powermanager-draw.c:209
 msgid "Estimated time with Charge:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:171
+#: ../powermanager/src/powermanager-draw.c:177
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:171
+#: ../powermanager/src/powermanager-draw.c:177
 msgid "Estimated Charge time:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:177
+#: ../powermanager/src/powermanager-draw.c:183
 msgid "No Battery found."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:197
+#: ../powermanager/src/powermanager-draw.c:203
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:197
+#: ../powermanager/src/powermanager-draw.c:203
 msgid "Please put your Laptop on charge."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:203
+#: ../powermanager/src/powermanager-draw.c:209
 msgid ""
 "PowerManager.\n"
 "Your battery is now Charged"
@@ -1535,23 +1554,23 @@ msgstr ""
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
 msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:63
+#: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
 msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:66
+#: ../powermanager/src/powermanager-menu-functions.c:58
 msgid "Halt"
 msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:67
+#: ../powermanager/src/powermanager-menu-functions.c:59
 msgid "Hibernate"
 msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:68
+#: ../powermanager/src/powermanager-menu-functions.c:60
 msgid "Suspend"
 msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:69
+#: ../powermanager/src/powermanager-menu-functions.c:61
 msgid "Reboot"
 msgstr ""
 
@@ -1573,9 +1592,9 @@ msgstr ""
 msgid "Open this folder"
 msgstr ""
 
-#: ../shortcuts/src/applet-bookmarks.c:133
-#: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:75
+#: ../shortcuts/src/applet-bookmarks.c:134
+#: ../shortcuts/src/applet-bookmarks.c:348
+#: ../shortcuts/src/applet-load-icons.c:82
 msgid "Unmounted"
 msgstr ""
 
@@ -1625,17 +1644,32 @@ msgstr ""
 msgid "showDesktop"
 msgstr ""
 
-#: ../showDesktop/src/applet-init.c:31 ../showDesktop2/src/applet-init.c:31
+#: ../showDesktop/src/applet-init.c:31
+msgid ""
+"This applet adds an icon to show your desktop,\n"
+" and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+"It can also be used to quickly change the screen's resolution from the right-"
+"click menu.\n"
+"Left-click to show/hide the desktop,\n"
+"Middle-click to show/hide either the desktop, the desklets, the Widget "
+"Layer, or all the desktops at once."
+msgstr ""
+
+#: ../showDesktop/src/applet-notifications.c:74
+msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+msgstr ""
+
+#: ../showDesktop/src/applet-notifications.c:160
+msgid "Change screen resolution"
+msgstr ""
+
+#: ../showDesktop2/src/applet-init.c:31
 msgid ""
 "This applet adds an icon to show your desktop,\n"
 "and also : the desklets, the Widget Layer, or all the desktops at once.\n"
 "Left-click to show/hide the desktop,\n"
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
-msgstr ""
-
-#: ../showDesktop/src/applet-notifications.c:72
-msgid "You need to run Compiz and to activate its 'DBus' plug-in."
 msgstr ""
 
 #: ../slider/src/applet-init.c:29
@@ -1650,19 +1684,19 @@ msgid ""
 "Middle-click to open the images folder."
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:163
+#: ../slider/src/applet-notifications.c:166
 msgid "Play"
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:163
+#: ../slider/src/applet-notifications.c:166
 msgid "Pause"
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:166
+#: ../slider/src/applet-notifications.c:169
 msgid "Open current image"
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:168
+#: ../slider/src/applet-notifications.c:171
 msgid "Browse images folder"
 msgstr ""
 
@@ -1676,50 +1710,50 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:49
+#: ../stack/src/applet-notifications.c:50
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even piece of text by dragging them onto the "
 "icon."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:70
+#: ../stack/src/applet-notifications.c:71
 msgid "Clear the stack ?"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:87
+#: ../stack/src/applet-notifications.c:88
 msgid "Set new name for this item :"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:145
+#: ../stack/src/applet-notifications.c:146
 msgid "Copy (middle click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:146
+#: ../stack/src/applet-notifications.c:147
 msgid "Cut"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:147
+#: ../stack/src/applet-notifications.c:148
 msgid "Rename this item"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:148
+#: ../stack/src/applet-notifications.c:149
 msgid "Remove this item"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:152
+#: ../stack/src/applet-notifications.c:153
 msgid "Open (click)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:154
+#: ../stack/src/applet-notifications.c:155
 msgid "Open folder"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:159
+#: ../stack/src/applet-notifications.c:160
 msgid "Paste (drag'n'drop)"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:160
+#: ../stack/src/applet-notifications.c:161
 msgid "Clear the stack"
 msgstr ""
 
@@ -1794,7 +1828,8 @@ msgid ""
 "on."
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:105
+#: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:101
+#: ../showDesktop/data/messages:115
 msgid "Show the desktop"
 msgstr ""
 
@@ -6065,37 +6100,37 @@ msgstr ""
 msgid "Image when the applet is active :"
 msgstr ""
 
-#: ../showDesktop/data/messages:97
+#: ../showDesktop/data/messages:97 ../showDesktop/data/messages:111
 msgid ""
-"According to your Window Manager, this may prevent the applet from hiding "
-"the desktop."
+"You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
+"Showing desktop and desklets can fail on some Window Manager, like Metacity."
 msgstr ""
 
 #: ../showDesktop/data/messages:99
-msgid "Keep the desklets visible when showing the desktop ?"
+msgid "Action on left-click :"
 msgstr ""
 
-#: ../showDesktop/data/messages:101
-msgid "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
-msgstr ""
-
-#: ../showDesktop/data/messages:103
-msgid "Action on middle-click :"
-msgstr ""
-
-#: ../showDesktop/data/messages:107
+#: ../showDesktop/data/messages:103 ../showDesktop/data/messages:117
 msgid "Show the desklets"
 msgstr ""
 
-#: ../showDesktop/data/messages:109
+#: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
+msgid "Show desktop and desklets"
+msgstr ""
+
+#: ../showDesktop/data/messages:107 ../showDesktop/data/messages:121
 msgid "Show the Widget Layer (Compiz)"
 msgstr ""
 
-#: ../showDesktop/data/messages:111
+#: ../showDesktop/data/messages:109 ../showDesktop/data/messages:123
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
 #: ../showDesktop/data/messages:113
+msgid "Action on middle-click :"
+msgstr ""
+
+#: ../showDesktop/data/messages:125
 msgid "Shortkey for the middle-click action :"
 msgstr ""
 

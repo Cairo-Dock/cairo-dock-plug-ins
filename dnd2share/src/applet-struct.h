@@ -89,6 +89,7 @@ struct _AppletData {
 	GList *pUpoadedItems;  // une liste de CDUploadedItem*
 	gchar *cLastURL;  // la derniere URL a avoir ete copiee dans le clipboard; on pourra y acceder par clic gauche sur l'icone.
 	gint iCurrentItemNum;  // le numero de l'item correspondant dans la liste. C'est plus sur que de pointer directement dans la liste, au cas ou elle changerait.
+	gchar *cTmpFilePath;
 	} ;
 
 
