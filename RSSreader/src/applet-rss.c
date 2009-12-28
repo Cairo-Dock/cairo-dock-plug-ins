@@ -26,12 +26,14 @@
 #include "applet-draw.h"
 #include "applet-rss.h"
 
+const gchar *cExtendedAscii[128] = {"€", "�", "‚", "ƒ", "„", "…", "†", "‡", "ˆ", "‰", "Š", "<", "Œ", "�", "Ž", "�", "�", "‘", "’", "“", "”", "•", "–", "—", "˜", "™", "š", "›", "œ", "�", "ž", "Ÿ", " ", "¡", "¢", "£", "¤", "¥", "¦", "§", "¨", "©", "ª", "«", "¬", " ", "®", "¯", "°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "÷", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "Ÿ"};
+
 /* Insere des retours chariots dans une chaine de caracteres de facon a la faire tenir dans un rectangle donne.
  */
 void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 {
 	cd_debug ("%s (%s)", __func__, cLine);
-	/*// on convertit les caracteres internet.
+	// on convertit les caracteres internet.
 	gchar *str=cLine, *amp;
 	do
 	{
@@ -40,11 +42,15 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 			break;
 		if (amp[1] == '#' && g_ascii_isdigit (amp[2]) && g_ascii_isdigit (amp[3]) && g_ascii_isdigit (amp[4]) && amp[5] == ';')  // &#039;
 		{
-			*amp = atoi (amp+2);
-			sprintf (amp+1, amp+6);
+			int i = atoi (amp+2) - 128;
+			if (i >= 0 && i < 128)
+			{
+				sprintf (amp, cExtendedAscii[i]);
+				strcpy (amp+strlen (cExtendedAscii[i]), amp+6);
+			}
 		}
 		str = amp + 1;
-	} while (1);*/
+	} while (1);
 	
 	// on insere des retours chariot pour tenir dans la largeur donnee.
 	PangoRectangle ink, log;
@@ -52,7 +58,7 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 	double w;
 	int iNbLines = 0;
 	
-	gchar *str = cLine;
+	str = cLine;
 	while (*str == ' ')  // on saute les espaces en debut de ligne.
 		str ++;
 	

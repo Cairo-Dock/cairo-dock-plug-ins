@@ -313,7 +313,10 @@ gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimati
 	if (pData->fRotationAngle < alpha_brake)
 	{
 		if (pData->bRotationBeginning)
+		{
 			pData->fAdjustFactor = (alpha_brake - pData->fRotationAngle) / (alpha_brake - 0.);
+			pData->fRotationBrake = MAX (.2, (pData->fRotationAngle) / (alpha_brake));
+		}
 	}
 	else if (pData->bRotationBeginning)
 		pData->bRotationBeginning = FALSE;
