@@ -51,7 +51,7 @@ continue = false
 sep =
 
 #l+ [Normal;Cube;Capsule] Type of mesh :
-mesh = 2
+mesh = 1
 
 #c+4 Color of the sheen :
 color = 1;1;1;1

@@ -41,7 +41,7 @@ void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bU
 		pData->fRotateWidthFactor = 1.;
 	pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 	pData->fRotationBrake = 1.;
-	pData->fAdjustFactor = 0.;
+	pData->fAdjustFactor = 1.;
 	pData->bRotationBeginning = TRUE;
 }
 
