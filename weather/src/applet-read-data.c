@@ -40,7 +40,7 @@ gchar *cd_weather_get_location_data (const gchar *cLocation)
 		g_free (cLocationFilePath);
 		return NULL;
 	}
-	gchar *cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/search/search?where=%s\" -O %s -o /dev/null -t 3 -T 30", cLocation, cLocationFilePath);
+	gchar *cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/search/search?where=%s\" -O %s -o /dev/null -t 2 -T 20", cLocation, cLocationFilePath);
 	cd_debug ("weather : %s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
@@ -306,7 +306,7 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			g_free (cCCDataFilePath);
 			return;
 		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 3 -T 30", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 2 -T 20", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		cd_debug ("weather : %s", cCommand);
 		r = system (cCommand);
 		g_free (cCommand);
@@ -324,7 +324,7 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			g_free (cForecastDataFilePath);
 			return;
 		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 3 -T 30", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
+		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 2 -T 20", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
 		cd_debug ("weather : %s", cCommand);
 		r = system (cCommand);
 		g_free (cCommand);

@@ -30,19 +30,22 @@ static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est l
 
 void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
-	if (bUseOpenGL)
-	{
-		if (myData.iChromeTexture == 0)
-			myData.iChromeTexture = cd_animation_load_chrome_texture ();
-		if (myData.iCallList[myConfig.iMeshType] == 0)
-			myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
-	}
-	else
-		pData->fRotateWidthFactor = 1.;
 	pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
-	pData->fRotationBrake = 1.;
-	pData->fAdjustFactor = 1.;
-	pData->bRotationBeginning = TRUE;
+	if (pData->fRotationAngle == 0)
+	{
+		if (bUseOpenGL)
+		{
+			if (myData.iChromeTexture == 0)
+				myData.iChromeTexture = cd_animation_load_chrome_texture ();
+			if (myData.iCallList[myConfig.iMeshType] == 0)
+				myData.iCallList[myConfig.iMeshType] = cd_animations_load_mesh (myConfig.iMeshType);
+		}
+		else
+			pData->fRotateWidthFactor = 1.;
+		pData->fRotationBrake = 1.;
+		pData->fAdjustFactor = 1.;
+		pData->bRotationBeginning = TRUE;
+	}
 }
 
 
