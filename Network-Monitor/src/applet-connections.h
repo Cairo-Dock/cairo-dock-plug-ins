@@ -22,12 +22,11 @@
 
 #include <cairo-dock.h>
 
-void cd_NetworkMonitor_get_data (gpointer data);
-gboolean cd_NetworkMonitor_update_from_data (gpointer data);
+gboolean cd_NetworkMonitor_connect_to_bus (void);
 
-static void cd_NetworkMonitor_quality (void);
-static void cd_NetworkMonitor_get_wired_connection_infos (void);
-static void cd_NetworkMonitor_get_wireless_connection_infos (void);
+void cd_NetworkMonitor_quality (void);
+void cd_NetworkMonitor_get_wired_connection_infos (void);
+void cd_NetworkMonitor_get_wireless_connection_infos (void);
 
 gboolean cd_NetworkMonitor_get_active_connection_info (void);
 void cd_NetworkMonitor_connect_signals ();

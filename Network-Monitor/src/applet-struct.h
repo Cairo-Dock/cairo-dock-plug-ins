@@ -60,6 +60,20 @@ typedef enum _CDWifiRenderType {
 	CD_WIFI_NB_TYPES
 	} CDRenderType;
 
+typedef struct _CDRenderer {
+	CDRenderType iRenderType;
+	// jauge.
+	gchar *cGThemePath;
+	// graphe
+	CairoDockTypeGraph iGraphType;
+	gdouble fLowColor[3];
+	gdouble fHigholor[3];
+	gdouble fBgColor[4];
+	gdouble fSmoothFactor;
+	// icone
+	CDWifiEffect iEffect;
+	} CDRenderer;
+
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cUserImage[CONNECTION_NB_QUALITY];
@@ -87,10 +101,11 @@ struct _AppletConfig {
 	
 	// wifi
 	gint iWifiCheckInterval;
+	CDRenderer wifiRenderer;
 	
 	// netspeed
 	gint iNetspeedCheckInterval;
-	
+	CDRenderer netSpeedRenderer;
 };
 
 
@@ -161,10 +176,14 @@ struct _AppletData {
 	
 	cairo_surface_t *pSurfaces[CONNECTION_NB_QUALITY];
 	
-	DBusGProxy *dbus_proxy_ActiveConnection;
-	DBusGProxy *dbus_proxy_Device;
-	DBusGProxy *dbus_proxy_ActiveAccessPoint;
 	DBusGProxy *dbus_proxy_NM;
+	DBusGProxy *dbus_proxy_NM_prop;
+	DBusGProxy *dbus_proxy_ActiveConnection;
+	DBusGProxy *dbus_proxy_ActiveConnection_prop;
+	DBusGProxy *dbus_proxy_Device;
+	DBusGProxy *dbus_proxy_Device_prop;
+	DBusGProxy *dbus_proxy_ActiveAccessPoint;
+	DBusGProxy *dbus_proxy_ActiveAccessPoint_prop;
 	DBusGProxy *dbus_proxy_WirelessDevice;
 	DBusGProxy *dbus_proxy_WiredDevice;
 	

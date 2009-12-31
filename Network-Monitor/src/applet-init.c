@@ -31,12 +31,12 @@
 CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("This applet allows you to monitor your active connections.\n"
+	N_("This applet allows you to monitor your network connection(s).\n"
 	"It can display the download/upload speeds and the wifi signal quality.\n"
 	"If you have network-manager running, it can also let you choose the current wifi network.\n"
 	"Left-click to pop-up some info,"
-	"Middle-click to re-check immediately."),
-	"Yann Sladek (Mav) & Remy Robertson (ChanGFu)")
+	"Scroll on the icon to switch the display between net speed and wifi."),
+	"Yann Sladek (Mav), Remy Robertson (ChanGFu), and Fabrice Rey (Fabounet)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_netmonitor_load_custom_widget;
 CD_APPLET_PRE_INIT_END
@@ -90,19 +90,21 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
 	
-	if (cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
+	myData.bDbusConnection = cd_NetworkMonitor_connect_to_bus ();
+	if (myData.bDbusConnection)
 	{
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
-		myData.bDbusConnection = TRUE;
 		
 		cd_NetworkMonitor_get_active_connection_info();
-		cd_NetworkMonitor_draw_icon ();  // Dessin initial (ensuite tout passera au travers des signaux)
+	}
+	if (myData.cActiveConnection != NULL)  // il se peut que NM n'ait aucune connexion active.
+	{
 		cd_NetworkMonitor_connect_signals();
+		cd_NetworkMonitor_draw_icon ();  // Dessin initial (ensuite tout passera au travers des signaux)
 	}
 	else
 	{
 		cd_debug("Network-Monitor : Dbus Service not found, using rough connection");
-		myData.bDbusConnection = FALSE;
 		// Initialisation de la tache periodique de mesure.
 		myData.iPreviousQuality = -2;  // force le dessin.
 		

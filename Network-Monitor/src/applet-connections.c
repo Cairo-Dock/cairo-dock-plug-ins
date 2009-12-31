@@ -16,7 +16,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// http://projects.gnome.org/NetworkManager/developers/spec.html#org.freedesktop.NetworkManagerSettings
+// http://projects.gnome.org/NetworkManager/developers/spec.html
 
 #define _BSD_SOURCE
 
@@ -39,16 +39,116 @@
 	g_object_unref (p);\
 	p = NULL; }
 
+
+// NetworkManager's properties changed.
+// Les proprietes de l'objet NetworkManager sont :
+// WirelessEnabled - b - (readwrite)
+//     Indicates if wireless is currently enabled or not. 
+// WirelessHardwareEnabled - b - (read)
+//     Indicates if the wireless hardware is currently enabled, i.e. the state of the RF kill switch. 
+// ActiveConnections - ao - (read)
+//     List of active connection object paths. (<-- devices)
+// State - u - (read) (NM_STATE)
+//     The overall state of the NetworkManager daemon.
+static void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
+{
+	g_print ("%s ()\n", __func__);
+	GValue *value;
+	
+	// on regarde quelles proprietes ont change.
+	value = g_hash_table_lookup (properties, "ActiveConnections");  // device path, qui donnera un device object, qui contient des proprietes.
+	if (value && G_VALUE_HOLDS (value, DBUS_TYPE_G_OBJECT_PATH))
+	{
+		g_print (" -> changement dans les connections actives\n");
+		cd_NetworkMonitor_get_active_connection_info();
+		cd_NetworkMonitor_draw_icon ();
+	}
+	
+	value = g_hash_table_lookup (properties, "State");  // NM_STATE_UNKNOWN = 0, NM_STATE_ASLEEP = 1, NM_STATE_CONNECTING = 2, NM_STATE_CONNECTED = 3, NM_STATE_DISCONNECTED = 4
+	if (value && G_VALUE_HOLDS_UINT (value))
+	{
+		g_print (" -> changement dans l'etat de NM : %d\n", g_value_get_uint (value));
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_stop_icon_animation (myIcon);
+		switch (g_value_get_uint (value))
+		{
+			case 0:  // NM_STATE_UNKNOWN
+			default:
+			break;
+			
+			case 1:  // NM_STATE_ASLEEP
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection has become inactive."), myIcon, myContainer, 4000, "same icon");
+			break;
+			
+			case 2:  // NM_STATE_CONNECTING
+				cairo_dock_show_temporary_dialog_with_icon (D_("Connecting..."), myIcon, myContainer, 6000, "same icon");
+				cairo_dock_request_icon_animation (myIcon, myContainer, "rotate", 1e3);
+			break;
+			
+			case 3:  // NM_STATE_CONNECTED
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection has been established."), myIcon, myContainer, 4000, "same icon");
+			break;
+			
+			case 4:  // NM_STATE_DISCONNECTED
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network has been disconnected."), myIcon, myContainer, 4000, "same icon");
+			break;
+		}
+	}
+	/*for device_path in props['ActiveConnections']:
+        device = bus.get_object('org.freedesktop.NetworkManager', device_path)
+        device_props = device.GetAll("org.freedesktop.NetworkManager.Connection.Active", dbus_interface="org.freedesktop.DBus.Properties")
+        if device_props['Default']:
+            return
+        ap_path = device_props['SpecificObject']
+        if ap_path.startswith('/org/freedesktop/NetworkManager/AccessPoint/'):
+            ap = bus.get_object('org.freedesktop.NetworkManager', ap_path)
+            ssid = ap.Get("org.freedesktop.NetworkManager.AccessPoint", "Ssid", dbus_interface="org.freedesktop.DBus.Properties")
+            ssid = ''.join([chr(c) for c in ssid])
+            if ssid not in config.sections():
+                return
+            print ssid
+            device.connect_to_signal("PropertiesChanged", device_properties_changed_signal_handler(ssid), dbus_interface="org.freedesktop.NetworkManager.Connection.Active")*/
+}
+gboolean cd_NetworkMonitor_connect_to_bus (void)
+{
+	g_print ("%s ()\n", __func__);
+	//\_____________ On verifie la presence de NM sur le bus.
+	if (! cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
+		return FALSE;
+	
+	//\_____________ On recupere l'objet principal de NM.
+	myData.dbus_proxy_NM = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.NetworkManager",
+		"/org/freedesktop/NetworkManager",
+		"org.freedesktop.NetworkManager");
+	g_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM), FALSE);
+	myData.dbus_proxy_NM_prop = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.NetworkManager",
+		"/org/freedesktop/NetworkManager",
+		"org.freedesktop.DBus.Properties");
+	g_return_val_if_fail (DBUS_IS_G_PROXY (myData.dbus_proxy_NM_prop), FALSE);
+	
+	//\_____________ On se connecte aux signaux de base : wifi active (WirelessEnabled && WirelessHardwareEnabled ), etat de NM (State).
+	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOXED,
+		G_TYPE_NONE, G_TYPE_VALUE ,G_TYPE_INVALID);  // enregistrement d'un marshaller specifique au signal (sinon impossible de le recuperer ni de le voir
+	
+	dbus_g_proxy_add_signal(myData.dbus_proxy_NM, "PropertiesChanged", CD_DBUS_TYPE_HASH_TABLE, G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_NM, "PropertiesChanged",
+		G_CALLBACK(onChangeNMProperties), NULL, NULL);
+	
+	return TRUE;
+}
+
+
 gboolean cd_NetworkMonitor_get_active_connection_info (void)
 {
 	g_print ("%s ()\n", __func__);
-	// on reset tout.
+	//\_____________ on reset tout.
 	myData.bWiredExt = myData.bWirelessExt = FALSE;
 	g_free (myData.cDevice);
 	myData.cDevice = NULL;
 	g_free (myData.cAccessPoint);
 	myData.cAccessPoint = NULL;
-	_reset_proxy (myData.dbus_proxy_NM);
 	_reset_proxy (myData.dbus_proxy_ActiveConnection);
 	_reset_proxy (myData.dbus_proxy_Device);
 	_reset_proxy (myData.dbus_proxy_ActiveAccessPoint);
@@ -66,13 +166,8 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	GPtrArray *paDevices = NULL;
 	gchar *cActiveConnection, *cDevice;
 	
-	myData.dbus_proxy_NM = cairo_dock_create_new_system_proxy (
-		"org.freedesktop.NetworkManager",
-		"/org/freedesktop/NetworkManager",
-		"org.freedesktop.DBus.Properties");
-	
 	//\_____________ On recupere la liste des connexions disponibles (ce sont les configs tout-en-un de NM).
-	paActiveConnections = (GPtrArray*) cairo_dock_dbus_get_property_as_boxed (myData.dbus_proxy_NM, "org.freedesktop.NetworkManager", "ActiveConnections");
+	paActiveConnections = (GPtrArray*) cairo_dock_dbus_get_property_as_boxed (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "ActiveConnections");
 	g_print ("%d connections\n", paActiveConnections->len);
 	for (j=0; j<paActiveConnections->len; j++)
 	{
@@ -85,12 +180,18 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 			cActiveConnection,
 			"org.freedesktop.DBus.Properties");
 		GHashTable *props = cairo_dock_dbus_get_all_properties (dbus_proxy_ActiveConnection_temp, "org.freedesktop.NetworkManager.Connection.Active");
+		if (props == NULL)
+		{
+			g_object_unref (dbus_proxy_ActiveConnection_temp);
+			continue;
+		}
 		
 		// on regarde si c'est la connexion par defaut.
 		GValue *v = g_hash_table_lookup (props, "Default");
-		if (!G_VALUE_HOLDS_BOOLEAN (v) || ! g_value_get_boolean (v))  // c'est la connexion par defaut.
+		if (!v || !G_VALUE_HOLDS_BOOLEAN (v) || ! g_value_get_boolean (v))
 		{
 			g_hash_table_unref (props);
+			g_object_unref (dbus_proxy_ActiveConnection_temp);
 			continue;
 		}
 		g_print (" c'est la connexion par defaut\n");
@@ -99,7 +200,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		// on recupere le SpecificObject qui contient le point d'acces courant.
 		gchar *cAccessPointPath=NULL;
 		v = g_hash_table_lookup (props, "SpecificObject");
-		if (G_VALUE_HOLDS_BOXED (v))
+		if (v && G_VALUE_HOLDS_BOXED (v))
 		{
 			cAccessPointPath = g_value_get_boxed (v);
 			g_print (" cAccessPointPath : %s\n", cAccessPointPath);
@@ -112,9 +213,10 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 			}
 		}
 		
-		gchar *cServiceName=NULL;
+		// on recupere le nom du service.
+		const gchar *cServiceName=NULL;
 		v = g_hash_table_lookup (props, "ServiceName");
-		if (G_VALUE_HOLDS_STRING (v))
+		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cServiceName = g_value_get_string (v);
 			g_print (" cServiceName : %s\n", cServiceName);
@@ -122,7 +224,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		
 		// on parcourt la liste des devices associes.
 		v = g_hash_table_lookup (props, "Devices");
-		if (G_VALUE_HOLDS_BOXED (v))
+		if (v && G_VALUE_HOLDS_BOXED (v))
 		{
 			GPtrArray *paDevices = g_value_get_boxed (v);
 			g_print (" %d devices\n", paDevices->len);
@@ -178,6 +280,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					
 					/* Recuperation de l'AP active */
 					cd_NetworkMonitor_get_wireless_connection_infos();
+					
 					/* Calcul de la qualite du signal */
 					cd_NetworkMonitor_quality();
 				}
@@ -193,7 +296,6 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	}
 	
 	g_ptr_array_free(paActiveConnections,TRUE);
-	g_print ("pouet\n");
 	return (myData.bWiredExt || myData.bWirelessExt);
 }
 
@@ -318,7 +420,7 @@ void cd_NetworkMonitor_get_wired_connection_infos (void)
 }
 
 
-static void cd_NetworkMonitor_quality (void)
+void cd_NetworkMonitor_quality (void)
 {
 	if (myData.bWirelessExt)
 	{
@@ -346,46 +448,6 @@ void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 	g_print ("%s ()\n", __func__);
 	_get_access_point_properties (hProperties);
 	
-	cd_NetworkMonitor_draw_icon ();
-}
-
-// NetworkManager's properties changed.
-// Les proprietes de l'objet NetworkManager sont :
-// WirelessEnabled - b - (readwrite)
-//     Indicates if wireless is currently enabled or not. 
-// WirelessHardwareEnabled - b - (read)
-//     Indicates if the wireless hardware is currently enabled, i.e. the state of the RF kill switch. 
-// ActiveConnections - ao - (read)
-//     List of active connection object paths. (<-- devices)
-// State - u - (read) (NM_STATE)
-//     The overall state of the NetworkManager daemon.
-void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
-{
-	g_print ("%s ()\n", __func__);
-	GValue *value;
-	
-	// on regarde quelles proprietes ont change.
-	value = g_hash_table_lookup (properties, "ActiveConnections");  // device path, qui donnera un device object, qui contient des proprietes.
-	if (value && G_VALUE_HOLDS (value, DBUS_TYPE_G_OBJECT_PATH))
-	{
-		g_print (" -> changement dans les connections actives\n");
-	}
-	/*for device_path in props['ActiveConnections']:
-        device = bus.get_object('org.freedesktop.NetworkManager', device_path)
-        device_props = device.GetAll("org.freedesktop.NetworkManager.Connection.Active", dbus_interface="org.freedesktop.DBus.Properties")
-        if device_props['Default']:
-            return
-        ap_path = device_props['SpecificObject']
-        if ap_path.startswith('/org/freedesktop/NetworkManager/AccessPoint/'):
-            ap = bus.get_object('org.freedesktop.NetworkManager', ap_path)
-            ssid = ap.Get("org.freedesktop.NetworkManager.AccessPoint", "Ssid", dbus_interface="org.freedesktop.DBus.Properties")
-            ssid = ''.join([chr(c) for c in ssid])
-            if ssid not in config.sections():
-                return
-            print ssid
-            device.connect_to_signal("PropertiesChanged", device_properties_changed_signal_handler(ssid), dbus_interface="org.freedesktop.NetworkManager.Connection.Active")*/
-	
-	cd_NetworkMonitor_get_active_connection_info();
 	cd_NetworkMonitor_draw_icon ();
 }
 
@@ -422,10 +484,6 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *AP_pr
 			cd_NetworkMonitor_get_wireless_connection_infos ();
 		}
 	}
-	/**cd_NetworkMonitor_get_active_connection_info();
-	cd_NetworkMonitor_disconnect_signals();
-	cd_NetworkMonitor_connect_signals();
-	//cd_NetworkMonitor_draw_icon ();*/
 }
 
 void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data)
@@ -447,18 +505,10 @@ void cd_NetworkMonitor_connect_signals ()
 {
 	g_print ("%s ()\n", __func__);
 	
-	//\_____________ On se connecte aux signaux de base : wifi active (WirelessEnabled && WirelessHardwareEnabled ), etat de NM (State).
-	// enregistrement d'un marshaller specifique au signal (sinon impossible de le recuperer ni de le voir
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOXED,
-		G_TYPE_NONE, G_TYPE_VALUE ,G_TYPE_INVALID);
-	
-	dbus_g_proxy_add_signal(myData.dbus_proxy_NM, "PropertiesChanged", CD_DBUS_TYPE_HASH_TABLE, G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(myData.dbus_proxy_NM, "PropertiesChanged",
-		G_CALLBACK(onChangeNMProperties), NULL, NULL);
-	
 	//\_____________ On se connecte aux signaux du wifi/cable.
 	if (myData.bWirelessExt)
 	{
+		g_print (" on se connecte au wifi\n");
 		// qualite du signal : Strength.
 		if (myData.dbus_proxy_ActiveAccessPoint != NULL)
 		{
@@ -476,8 +526,9 @@ void cd_NetworkMonitor_connect_signals ()
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_WirelessDevice, "PropertiesChanged",
 			G_CALLBACK(onChangeWirelessDeviceProperties), NULL, NULL);
 	}
-	else
+	else if (myData.cDevice != NULL)
 	{
+		g_print (" on se connecte a l'ethernet\n");
 		// cable branche ou pas : Carrier
 		myData.dbus_proxy_WiredDevice = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.NetworkManager",
@@ -492,8 +543,8 @@ void cd_NetworkMonitor_connect_signals ()
 void cd_NetworkMonitor_disconnect_signals()
 {
 	g_print ("%s ()\n", __func__);
-	dbus_g_proxy_disconnect_signal(myData.dbus_proxy_NM, "PropertiesChanged",
-		G_CALLBACK(onChangeNMProperties), NULL);
+	//dbus_g_proxy_disconnect_signal(myData.dbus_proxy_NM, "PropertiesChanged",
+	//	G_CALLBACK(onChangeNMProperties), NULL);
 	if (myData.bWirelessExt)
 	{
 		if (myData.dbus_proxy_ActiveAccessPoint != NULL)
@@ -523,14 +574,16 @@ static void _on_select_access_point (GtkMenuItem *menu_item, gpointer data)
 	
 	//ActivateConnection ( s: service_name, o: connection, o: device, o: specific_object )o
 	GValue conn = {0};
+	GValue dev = {0};
+	GValue so = {0};
 	
 	GError *erreur = NULL;
 	gchar *cConnection = NULL;
-	dbus_g_proxy_call (myData.dbus_proxy_NM, "ActivateConnection", &erreur,
+	dbus_g_proxy_call (myData.dbus_proxy_NM_prop, "ActivateConnection", &erreur,
 		G_TYPE_STRING, myData.cServiceName,
-		G_TYPE_STRING, myData.cActiveConnection,
-		G_TYPE_STRING, myData.cDevice,
-		G_TYPE_STRING, cAccessPointPath,
+		DBUS_TYPE_G_OBJECT_PATH, myData.cActiveConnection,
+		DBUS_TYPE_G_OBJECT_PATH, myData.cDevice,
+		DBUS_TYPE_G_OBJECT_PATH, cAccessPointPath,
 		G_TYPE_INVALID,
 		G_TYPE_STRING, &cConnection,
 		G_TYPE_INVALID);

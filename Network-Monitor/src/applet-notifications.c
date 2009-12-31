@@ -44,11 +44,29 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data) {
+static void _cd_NetworkMonitor_activate_network (GtkMenuItem *menu_item, gpointer data)
+{
+	guint iState = cairo_dock_dbus_get_property_as_uint (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "State");
+	gboolean bSleep;
+	bSleep = (iState != 1);  // 1 = NM_STATE_ASLEEP
+	
+	dbus_g_proxy_call_no_reply (myData.dbus_proxy_NM, "Sleep",
+		G_TYPE_BOOLEAN, bSleep,
+		G_TYPE_INVALID);
+}
+static void _cd_NetworkMonitor_activate_wifi (GtkMenuItem *menu_item, gpointer data)
+{
+	gboolean bWirelessEnabled = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_NM, "org.freedesktop.NetworkManager", "WirelessEnabled");
+	
+	cairo_dock_dbus_set_boolean_property (myData.dbus_proxy_NM, "org.freedesktop.NetworkManager", "WirelessEnabled", ! bWirelessEnabled);
+}
+static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data)
+{
 	cairo_dock_stop_task (myData.netSpeed.pTask);
 	cairo_dock_launch_task (myData.netSpeed.pTask);
 }
-static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data) {  /// a mettre dans les plug-ins d'integration.
+static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data)
+{  /// a mettre dans les plug-ins d'integration.
 	if (myConfig.cWifiConfigCommand != NULL) {
 		cairo_dock_launch_command (myConfig.cWifiConfigCommand);
 		return;
@@ -80,44 +98,19 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bWirelessExt && myData.bDbusConnection)
 		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), cd_NetworkMonitor_recheck_wireless_extension, pSubMenu);
 	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_NetworkMonitor_show_config, pSubMenu);
-	/// show system monitor.
+	if (myData.bDbusConnection)
+	{
+		guint iState = cairo_dock_dbus_get_property_as_uint (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "State");
+		CD_APPLET_ADD_IN_MENU (iState == 1 ? D_("Activate network") : D_("Deactivate network"), _cd_NetworkMonitor_activate_network, pSubMenu);
+		if (myData.bWirelessExt)
+			CD_APPLET_ADD_IN_MENU (D_("Activate wifi"), _cd_NetworkMonitor_activate_wifi, pSubMenu);
+	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
-static void cd_NetworkMonitor_toggle_wlan(void)
-{
-	DBusGProxy *dbus_proxy_nm = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.NetworkManager",
-			"/org/freedesktop/NetworkManager",
-			"org.freedesktop.NetworkManager");
-	g_return_if_fail (dbus_proxy_nm != NULL);
-	
-	guint state = 0;
-	dbus_g_proxy_call (dbus_proxy_nm, "state", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_UINT, &state,
-		G_TYPE_INVALID);
-	cd_debug ("current network state : %d", state);
-	if (state == 3)  // actif
-	{
-		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "sleep",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
-	else if (state == 1)  // inactif
-	{
-		dbus_g_proxy_call_no_reply (dbus_proxy_nm, "wake",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
-	
-	g_object_unref (dbus_proxy_nm);
-}
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cd_NetworkMonitor_toggle_wlan();
-	//cairo_dock_launch_task (myData.pTask);
-	//cairo_dock_remove_dialog_if_any (myIcon);
+	/// trouver une action utile ...
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
