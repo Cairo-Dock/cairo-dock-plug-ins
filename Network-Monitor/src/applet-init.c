@@ -89,24 +89,22 @@ CD_APPLET_INIT_BEGIN
 	
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
+	myData.iPreviousQuality = -1;  // force le dessin.
 	
 	myData.bDbusConnection = cd_NetworkMonitor_connect_to_bus ();
 	if (myData.bDbusConnection)
 	{
 		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
-		
-		cd_NetworkMonitor_get_active_connection_info();
+		if (! cd_NetworkMonitor_get_active_connection_info())  // si aucune connexion courante, on parcourt la liste des devices connus, et on choisit dedans.
+		{
+			cd_NetworkMonitor_get_device ();
+		}
+		cd_NetworkMonitor_draw_icon ();
 	}
-	if (myData.cActiveConnection != NULL)  // il se peut que NM n'ait aucune connexion active.
+	if (myData.cDevice == NULL)  // on passe a la methode manuelle
 	{
-		cd_NetworkMonitor_connect_signals();
-		cd_NetworkMonitor_draw_icon ();  // Dessin initial (ensuite tout passera au travers des signaux)
-	}
-	else
-	{
-		cd_debug("Network-Monitor : Dbus Service not found, using rough connection");
+		cd_debug("Network-Monitor : Dbus service or device not found, using rough connection");
 		// Initialisation de la tache periodique de mesure.
-		myData.iPreviousQuality = -2;  // force le dessin.
 		
 		if (myConfig.bModeWifi)
 			cd_netmonitor_launch_wifi_task (myApplet);
@@ -123,7 +121,6 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cd_NetworkMonitor_disconnect_signals();
 	
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
@@ -152,11 +149,11 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		_set_data_renderer (myApplet, TRUE);
 		
+		myData.iPreviousQuality = -1;  // force le redessin.
 		if (!myData.bDbusConnection)
 		{
-			myData.iQuality = -2;  // force le redessin.
-			myData.iPercent = -2;
-			myData.iSignalLevel = -2;
+			myData.iPercent = -1;
+			myData.iSignalLevel = -1;
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			if (myConfig.bModeWifi)
 				cd_netmonitor_launch_wifi_task (myApplet);

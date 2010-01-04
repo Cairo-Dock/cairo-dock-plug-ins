@@ -21,6 +21,7 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-wifi.h"
 #include "applet-netspeed.h"
 #include "applet-config.h"
 
@@ -36,6 +37,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iStringLen = (myConfig.cInterface ? strlen (myConfig.cInterface) : 0);
 	myConfig.cWifiConfigCommand = CD_CONFIG_GET_STRING ("Configuration", "wifi command");
 	myConfig.cSysMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "netspeed command");
+	myConfig.cAnimation = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "conn animation", "rotate");
 	
 	myConfig.iRenderType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "renderer", 0);
 	if (myConfig.iRenderType == CD_EFFECT_ICON)
@@ -82,6 +84,9 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
+	cd_netmonitor_free_wifi_task (myApplet);
+	cd_netmonitor_free_netspeed_task (myApplet);
+	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 	int i;

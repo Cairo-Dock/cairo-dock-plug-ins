@@ -37,7 +37,7 @@ static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("I want to be a pirate !"),
 	N_("You shall not pass !"),
 	N_("I'm your father !"),
-	N_("- What will we do tonight Cortex ?\n- The same thing as every nights, Minus. Try to take over the Dock !"),
+	N_("- Gee, Brain, what do you want to do tonight?\n- The same thing we do every night, Pinky : try to take over the Dock!"),
 	N_("For Aiur !")};
 
 

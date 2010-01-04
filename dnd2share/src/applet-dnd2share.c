@@ -17,8 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <string.h>
 #include <stdlib.h>
-#include <math.h>
 #include <glib/gstdio.h>
 
 #include "applet-struct.h"
@@ -251,12 +251,13 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
 			else
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-			CD_APPLET_REDRAW_MY_ICON;
+			//CD_APPLET_REDRAW_MY_ICON;
 		}
 	}
 	
 	// On arrete son animation.
 	cairo_dock_stop_icon_animation (myIcon);
+	CD_APPLET_REDRAW_MY_ICON;  // pour ne pas s'arreter au milieu de l'animation.
 	
 	// On nettoie la memoire partagee.
 	cairo_dock_free_task (myData.pTask);

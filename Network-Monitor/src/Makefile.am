@@ -15,6 +15,10 @@ libcd_Network_Monitor_la_SOURCES = \
 	applet-notifications.h\
 	applet-connections.c\
 	applet-connections.h\
+	applet-dbus-callbacks.c\
+	applet-dbus-callbacks.h\
+	applet-menu.c\
+	applet-menu.h\
 	applet-wifi.c\
 	applet-wifi.h\
 	applet-netspeed.c\

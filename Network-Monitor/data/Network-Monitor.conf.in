@@ -171,6 +171,9 @@ smooth = .33
 #{By default the first active interface is used.}
 interface = 
 
+#a Animation of the icon when connecting :
+conn animation = rotate
+
 #s User command to show Wireless Configuration :
 #{Allow you to overwrite applet's default command line and launch your preferred wireless configuration interface.}
 wifi command = 

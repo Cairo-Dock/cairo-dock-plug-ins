@@ -155,7 +155,7 @@ def action_on_stop():
 	global count
 	print ">>> our module is stopped"
 	stop()
-	gtk.main_quit()
+	loop.quit()
 
 def action_on_reload(bConfigHasChanged):
 	print ">>> our module is reloaded"
@@ -170,7 +170,8 @@ def action_on_reload(bConfigHasChanged):
 ### main ###
 if __name__ == '__main__':
 	init()
-	gtk.main()
+	loop = gobject.MainLoop()
+    loop.run()
 	stop()
 	print ">>> bye"
 	sys.exit(0)

@@ -18,23 +18,35 @@
 */
 
 #ifndef __APPLET_CONNECTIONS__
-#define  __APPLET_CONNECTIONS__
+#define __APPLET_CONNECTIONS__
 
 #include <cairo-dock.h>
 
+#define CD_DBUS_TYPE_HASH_TABLE dbus_g_type_get_map("GHashTable", G_TYPE_STRING, G_TYPE_VALUE)
+
+#define CD_DBUS_TYPE_HASH_TABLE_OF_HASH_TABLE dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE))
+
 gboolean cd_NetworkMonitor_connect_to_bus (void);
 
-void cd_NetworkMonitor_quality (void);
+gboolean cd_NetworkMonitor_get_device (void);
+
+gboolean cd_NetworkMonitor_get_connection (void);
+
 void cd_NetworkMonitor_get_wired_connection_infos (void);
 void cd_NetworkMonitor_get_wireless_connection_infos (void);
 
-gboolean cd_NetworkMonitor_get_active_connection_info (void);
-void cd_NetworkMonitor_connect_signals ();
-void cd_NetworkMonitor_disconnect_signals();
 
-void onChangeWirelessProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data);
-void onChangeDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data);
-void onChangeActiveAccessPoint (DBusGProxy *dbus_proxy, GHashTable *AP_properties, gpointer data);
+void cd_NetworkMonitor_quality (void);
+
+void cd_NetworkMonitor_fetch_access_point_properties (GHashTable *hProperties);
+
+void cd_NetworkMonitor_get_access_point_properties (void);
+
+void cd_NetworkMonitor_get_new_access_point (void);
+
+
+gboolean cd_NetworkMonitor_get_active_connection_info (void);
+
 
 GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void);
 

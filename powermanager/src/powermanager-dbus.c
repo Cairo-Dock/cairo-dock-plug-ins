@@ -318,7 +318,7 @@ gboolean update_stats(void)
 	int iPresentVoltage = atoi (cCurVal);  // 15000 mV
 	
 	myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
-	g_print ("myData.battery_charge : %.2f (%d / %d)\n", myData.battery_charge, iRemainingCapacity, myData.iCapacity);
+	cd_debug ("myData.battery_charge : %.2f (%d / %d)", myData.battery_charge, iRemainingCapacity, myData.iCapacity);
 	if (myData.battery_charge > 100)
 		myData.battery_charge = 100;
 	if (myData.battery_charge < 0)

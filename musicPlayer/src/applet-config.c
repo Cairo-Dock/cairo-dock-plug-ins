@@ -53,6 +53,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	myConfig.bDownload   = CD_CONFIG_GET_BOOLEAN ("Configuration", "DOWNLOAD");
 	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 0) == 0);  // c'est une liste numerotee de 2 elements.
+	if (!myConfig.bPauseOnClick)  // pour pouvoir agir sur la fenetre, il faut voler l'appli.
+		myConfig.bStealTaskBarIcon = TRUE;
 	
 	//\_______________ On on recupere le theme choisi.
 	if (myConfig.bOpenglThemes)

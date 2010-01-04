@@ -125,8 +125,8 @@ msgstr "靠北喔！挖是你老杯啦！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
-"- What will we do tonight Cortex ?\n"
-"- The same thing as every nights, Minus. Try to take over the Dock !"
+"- Gee, Brain, what do you want to do tonight?\n"
+"- The same thing we do every night, Pinky : try to take over the Dock!"
 msgstr ""
 "- 我們今晚要做什麼Cortex?\n"
 "- 就像每一個晚上一樣，Minus。試著接管Dock ！"

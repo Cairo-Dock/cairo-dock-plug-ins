@@ -212,8 +212,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	CD_APPLET_LEAVE();
-	return TRUE;
+	CD_APPLET_LEAVE(TRUE);
+	//return TRUE;
 }
 
 /*void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int width, int height, double fMaxScale, struct tm *pTime) {

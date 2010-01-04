@@ -98,6 +98,7 @@ struct _AppletConfig {
 	gchar *cInterface;  // interface (eth0, etc) a surveiller
 	gint iStringLen;
 	gchar *cSysMonitorCommand;  // command pour ouvrir un moniteur systeme.
+	gchar *cAnimation;  // animation de connexion.
 	
 	// wifi
 	gint iWifiCheckInterval;
@@ -160,6 +161,14 @@ typedef struct _CDNetworkManager {
 	CairoDataRenderer *pDataRenderer;
 	} CDNetworkManager;
 
+typedef struct _CDMenuItemData {
+	gchar *cConnection;
+	gchar *cDevice;
+	gchar *cAccessPoint;
+	gint iPercent;
+	} CDMenuItemData;  // le service name est fixe une fois pour toutes dans myData.
+
+
 struct _AppletData {
 	CDConnectionQuality iQuality, iPreviousQuality;
 	gint iPercent, iPrevPercent;
@@ -185,14 +194,18 @@ struct _AppletData {
 	DBusGProxy *dbus_proxy_ActiveAccessPoint;
 	DBusGProxy *dbus_proxy_ActiveAccessPoint_prop;
 	DBusGProxy *dbus_proxy_WirelessDevice;
+	DBusGProxy *dbus_proxy_WirelessDevice_prop;
 	DBusGProxy *dbus_proxy_WiredDevice;
+	DBusGProxy *dbus_proxy_WiredDevice_prop;
 	
 	gchar *cActiveConnection;
 	gchar *cDevice;
 	gchar *cServiceName;
+	gchar *cConnection;
 	gchar *cAccessPoint;
 	gchar *cAccessPointHwAdress;
 	GPtrArray *pMenuAccessPoints;
+	GPtrArray *pMenuSettings;
 	
 	CDNetSpeed netSpeed;
 	CDWifi wifi;
