@@ -243,7 +243,7 @@ AM_CONDITIONAL( [WITH_SHOWDESKLETS], [test "$with_showDesklets" = "yes"] )
 ALSA_MIXER_PACKAGE="cd-AlsaMixer"
 AC_SUBST(GETTEXT_ALSA_MIXER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ALSA_MIXER, "1.0.9")
+AC_SUBST(VERSION_ALSA_MIXER, "1.0.10")
 AC_SUBST(PACKAGE_ALSA_MIXER, "$ALSA_MIXER_PACKAGE")
 
 AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
