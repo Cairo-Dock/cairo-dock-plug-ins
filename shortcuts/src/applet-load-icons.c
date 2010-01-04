@@ -42,12 +42,12 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 	if (!myConfig.bListBookmarks)
 	{
 		CD_APPLET_LEAVE();
-		return;
+		//return;
 	}
 	if (! myIcon->pSubDock && (!myDesklet || !myDesklet->icons))
 	{
 		CD_APPLET_LEAVE();
-		return;
+		//return;
 	}
 	GList *ic;
 	Icon *icon;
@@ -98,7 +98,9 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 }
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 8);
+	CD_APPLET_LEAVE();
 }
 
 

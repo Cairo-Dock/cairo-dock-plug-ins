@@ -88,7 +88,7 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	}
 	
 	myData.mixer_card_name = g_strdup (snd_ctl_card_info_get_name(hw_info));
-	myData.mixer_device_name= g_strdup (snd_ctl_card_info_get_mixername(hw_info));
+	myData.mixer_device_name = g_strdup (snd_ctl_card_info_get_mixername(hw_info));
 	cd_debug ("myData.mixer_card_name : %s ; myData.mixer_device_name : %s", myData.mixer_card_name, myData.mixer_device_name);
 }
 

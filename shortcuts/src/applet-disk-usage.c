@@ -152,8 +152,8 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 	if (ctx != myDrawContext)
 		cairo_destroy (ctx);
 	
-	CD_APPLET_LEAVE();
-	return TRUE;
+	CD_APPLET_LEAVE(TRUE);
+	//return TRUE;
 }
 
 

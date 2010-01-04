@@ -98,8 +98,8 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
 	}
 	
-	CD_APPLET_LEAVE();
-	return 0;
+	CD_APPLET_LEAVE(0);
+	//return 0;
 }
 
 

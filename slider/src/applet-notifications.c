@@ -73,7 +73,7 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 static void _cd_slider_run_dir(GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
-	CD_APPLET_LEAVE();
+	CD_APPLET_ENTER;
 	/*GError *erreur = NULL;
 	gchar *cURI = g_filename_to_uri (myConfig.cDirectory, NULL, &erreur);
 	if (erreur != NULL) {
