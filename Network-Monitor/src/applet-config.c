@@ -29,9 +29,6 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
-	
-	myConfig.iWifiCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "wifi delay", 10);
-	myConfig.iNetspeedCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "netspeed delay", 10);
 	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	myConfig.cInterface = CD_CONFIG_GET_STRING ("Configuration", "interface");
 	myConfig.iStringLen = (myConfig.cInterface ? strlen (myConfig.cInterface) : 0);
@@ -39,47 +36,62 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cSysMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "netspeed command");
 	myConfig.cAnimation = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "conn animation", "rotate");
 	
-	myConfig.iRenderType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "renderer", 0);
-	if (myConfig.iRenderType == CD_EFFECT_ICON)
+	myConfig.bModeWifi = (CD_CONFIG_GET_INTEGER ("Configuration", "mode") == 0);
+	myConfig.iWifiCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Wifi", "wifi delay", 10);
+	myConfig.iNetspeedCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Net Speed", "netspeed delay", 10);
+	
+	myConfig.wifiRenderer.iRenderType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Wifi", "renderer", 0);
+	if (myConfig.wifiRenderer.iRenderType == CD_EFFECT_ICON)
 	{
 		GString *sKeyName = g_string_new ("");
 		int i;
 		for (i = 0; i < CONNECTION_NB_QUALITY; i ++)
 		{
 			g_string_printf (sKeyName, "icon_%d", i);
-			myConfig.cUserImage[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
+			myConfig.wifiRenderer.cUserImage[i] = CD_CONFIG_GET_STRING ("Wifi", sKeyName->str);
 		}
 		g_string_free (sKeyName, TRUE);
-		myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
+		myConfig.wifiRenderer.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Wifi", "effect", 0);
 	}
-	else if (myConfig.iRenderType == CD_EFFECT_GAUGE)
+	else if (myConfig.wifiRenderer.iRenderType == CD_EFFECT_GAUGE)
 	{
-		myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+		myConfig.wifiRenderer.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Wifi", "theme");
 	}
 	else
 	{
-		myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
-		CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
-		CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
-		CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+		myConfig.wifiRenderer.iGraphType = CD_CONFIG_GET_INTEGER ("Wifi", "graphic type");
+		CD_CONFIG_GET_COLOR_RVB ("Wifi", "low color", myConfig.wifiRenderer.fLowColor);
+		CD_CONFIG_GET_COLOR_RVB ("Wifi", "high color", myConfig.wifiRenderer.fHigholor);
+		CD_CONFIG_GET_COLOR ("Wifi", "bg color", myConfig.wifiRenderer.fBgColor);
 	}
 	
-	myConfig.bModeWifi = (CD_CONFIG_GET_INTEGER ("Configuration", "mode") == 0);
-	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", CONNECTION_INFO_SIGNAL_STRENGTH_LEVEL);
-	
+	myConfig.netSpeedRenderer.iRenderType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Net Speed", "renderer", 0);
+	if (myConfig.netSpeedRenderer.iRenderType == CD_EFFECT_GAUGE)
+	{
+		myConfig.netSpeedRenderer.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Net Speed", "theme");
+	}
+	else
+	{
+		myConfig.netSpeedRenderer.iGraphType = CD_CONFIG_GET_INTEGER ("Net Speed", "graphic type");
+		CD_CONFIG_GET_COLOR_RVB ("Net Speed", "low color", myConfig.netSpeedRenderer.fLowColor);
+		CD_CONFIG_GET_COLOR_RVB ("Net Speed", "high color", myConfig.netSpeedRenderer.fHigholor);
+		CD_CONFIG_GET_COLOR ("Net Speed", "bg color", myConfig.netSpeedRenderer.fBgColor);
+	}
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
-	g_free (myConfig.cGThemePath);
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cWifiConfigCommand);
 	g_free (myConfig.cInterface);
 	
+	g_free (myConfig.wifiRenderer.cGThemePath);
+	g_free (myConfig.netSpeedRenderer.cGThemePath);
 	int i;
 	for (i = 0; i < CONNECTION_NB_QUALITY; i ++)
-		g_free (myConfig.cUserImage[i]);
-	
+	{
+		g_free (myConfig.wifiRenderer.cUserImage[i]);
+	}
 CD_APPLET_RESET_CONFIG_END
 
 

@@ -409,6 +409,7 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 
 static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	if (! myData.bInit)  // pas encore initialise, on vire le message d'attente.
 	{
 		cd_rssreader_free_item_list (myApplet);
@@ -429,7 +430,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 			cd_applet_update_my_icon (myApplet);
 		}
 		myData.bUpdateIsManual = FALSE;
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	}
 	
 	xmlDocPtr doc = xmlParseMemory (myData.cTaskBridge, strlen (myData.cTaskBridge));
@@ -448,7 +450,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		g_free (myData.PrevFirstTitle);
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	}
 	
 	xmlNodePtr rss = xmlDocGetRootElement (doc);
@@ -467,7 +470,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		g_free (myData.PrevFirstTitle);
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	}
 	
 	// on extrait chaque item.
@@ -519,7 +523,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		g_free (myData.PrevFirstTitle);
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	}
 	
 	// si on est arrive a ce point, c'est qu'il n'y a pas eu d'erreur.
@@ -558,7 +563,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		}
 		
 		if (! myData.bError)
-			return TRUE;
+			CD_APPLET_LEAVE (TRUE);
+			//return TRUE;
 	}
 	
 	// on dessine le texte.
@@ -589,7 +595,8 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	myData.PrevFirstTitle = g_strdup (cFirstTitle);
 	myData.bUpdateIsManual = FALSE;
 	myData.bError = FALSE;
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)

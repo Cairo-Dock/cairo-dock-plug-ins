@@ -39,9 +39,11 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 
 static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_sysmonitor_get_data (myApplet);
 	cd_sysmonitor_update_from_data (myApplet);
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)

@@ -226,6 +226,7 @@ static void _cd_download_missing_cover (const gchar *cURL)
 
 static gboolean _check_xml_file (gpointer data)
 {
+	CD_APPLET_ENTER;
 	// on teste la presence du fichier xml.
 	if (g_file_test (myData.cCurrentXmlFile, G_FILE_TEST_EXISTS))
 	{
@@ -267,7 +268,8 @@ static gboolean _check_xml_file (gpointer data)
 			g_free (myData.cCurrentXmlFile);
 			myData.cCurrentXmlFile = NULL;
 			myData.iSidCheckXmlFile = 0;
-			return FALSE;
+			CD_APPLET_LEAVE (FALSE);
+			//return FALSE;
 		}
 	}
 	// si non present ou non complet, on continue a tester qques secondes.
@@ -280,9 +282,11 @@ static gboolean _check_xml_file (gpointer data)
 		myData.cCurrentXmlFile = NULL;
 		myData.iSidCheckXmlFile = 0;
 		myData.iNbCheckFile = 0;
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 void cd_musicplayer_dl_cover (void)
 {

@@ -44,9 +44,10 @@ static void _cd_musicplayer_get_data_async (gpointer data) {
 }
 
 static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
+	CD_APPLET_ENTER;
 	if (myData.pCurrentHandeler->read_data)
 		myData.pCurrentHandeler->read_data();
-	return cd_musicplayer_draw_icon (data);
+	return cd_musicplayer_draw_icon (data);  // cette fonction sort.
 }
 
 /* Initialise le backend et lance la tache periodique si necessaire.

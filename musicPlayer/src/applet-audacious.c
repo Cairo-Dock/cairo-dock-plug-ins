@@ -334,6 +334,7 @@ static void cd_audacious_getSongInfos ()
  */
 static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s ()\n", __func__);
 	
 	if (metadata != NULL)
@@ -360,12 +361,14 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
+	CD_APPLET_LEAVE ();
 }
 
 /* Fonction executée à chaque changement play/pause
  */
 static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	_extract_playing_status_mpris (status);
@@ -378,9 +381,11 @@ static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%d)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	//_extract_playing_status (status);
@@ -397,6 +402,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 

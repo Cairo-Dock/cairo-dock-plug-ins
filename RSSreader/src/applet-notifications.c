@@ -84,10 +84,12 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 
 static void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoardSelection = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);	
 	gchar *cEntry = gtk_clipboard_wait_for_text (pClipBoardSelection);
 	cd_debug ("RSSreader-debug : Paste from clipboard -> \"%s\"", cEntry);	
 	_new_url_to_conf (myApplet, cEntry);
+	CD_APPLET_LEAVE ();
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -127,9 +129,11 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static gboolean _redraw_desklet_idle (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_applet_update_my_icon (myApplet);
 	myData.iSidRedrawIdle = 0;
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 CD_APPLET_ON_SCROLL_BEGIN
 	if (! myDesklet)

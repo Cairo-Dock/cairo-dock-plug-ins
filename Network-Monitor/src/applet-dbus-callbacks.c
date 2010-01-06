@@ -182,3 +182,10 @@ void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hPr
 	}
 	
 }
+
+void onNewConnection (DBusGProxy *dbus_proxy, const GValue *pNewConnectionPath, gpointer data)
+{
+	g_print ("%s (%s)\n", __func__, g_value_get_boxed (pNewConnectionPath));
+	
+	
+}

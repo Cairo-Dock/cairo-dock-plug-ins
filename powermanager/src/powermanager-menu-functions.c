@@ -31,7 +31,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_powermanager_bubble();
 CD_APPLET_ON_CLICK_END
 
-void power_config(void) {  /// a mettre dans les plug-ins d'integration.
+static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 	GError *erreur = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{

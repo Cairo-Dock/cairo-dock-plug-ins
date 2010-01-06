@@ -285,6 +285,15 @@ GList *cd_netmonitor_get_available_interfaces (void)
 	}
 	else
 	{
+		//Inter-|sta|  Quality       |  Discarded packets
+		//face |tus|link level noise| nwid crypt  misc
+		//eth2: f0   15.  24.    4.   181     0     0
+		gchar *cWireless = NULL;
+		gchar **cWirelessInterfaces = NULL;
+		g_file_get_contents ("/proc/net/wireless", &cWireless, &length, NULL);
+		if (cWireless != NULL);
+			cWirelessInterfaces = g_strsplit (cWireless, "\n", -1);
+		
 		int iNumLine = 1;
 		gchar *tmp = cContent, *str;
 		gchar *cInterface;
@@ -300,6 +309,7 @@ GList *cd_netmonitor_get_available_interfaces (void)
 				if (str)
 				{
 					*str = '\0';
+					/// chercher si c'est du filaire ou pas, en regardant dans /proc/net/wireless ...
 					cInterface = g_strdup (tmp);
 					pList = g_list_prepend (pList, cInterface);
 					tmp = str+1;

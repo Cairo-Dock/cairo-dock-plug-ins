@@ -28,7 +28,7 @@
 void cd_switcher_get_current_desktop (void)
 {
 	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
-	cd_debug ("%s () -> %d;%d;%d", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	g_print ("%s () -> %d;%d;%d\n", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
 	
@@ -39,6 +39,7 @@ void cd_switcher_get_current_desktop (void)
 
 static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLines, int *iBestNbColumns)
 {
+	g_print ("%s (%d)\n", __func__, iNbViewports);
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
 	
@@ -108,7 +109,7 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 
 void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
 {
-	cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
+	//cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
 	if (g_iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{
 		if (g_iNbViewportX * g_iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).

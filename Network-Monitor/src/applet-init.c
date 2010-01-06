@@ -42,37 +42,44 @@ CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
 CD_APPLET_PRE_INIT_END
 
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, CDRenderer *pRendererParams)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
-	if (myConfig.iRenderType == CD_EFFECT_GAUGE)
+	if (pRendererParams->iRenderType == CD_EFFECT_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
 		memset (&attr, 0, sizeof (CairoGaugeAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
-		attr.cThemePath = myConfig.cGThemePath;
+		attr.cThemePath = pRendererParams->cGThemePath;
 	}
-	else if (myConfig.iRenderType == CD_EFFECT_GRAPH)
+	else if (pRendererParams->iRenderType == CD_EFFECT_GRAPH)
 	{
 		CairoGraphAttribute attr;  // les attributs du graphe.
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
-		attr.iType = myConfig.iGraphType;
+		attr.iType = pRendererParams->iGraphType;
 		attr.iRadius = 10;
-		attr.fHighColor = myConfig.fHigholor;
-		attr.fLowColor = myConfig.fLowColor;
-		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		attr.fHighColor = pRendererParams->fHigholor;
+		attr.fLowColor = pRendererParams->fLowColor;
+		memcpy (attr.fBackGroundColor, pRendererParams->fBgColor, 4*sizeof (double));
 	}
-	else if (myConfig.iRenderType == CD_EFFECT_ICON)
+	else if (pRendererParams->iRenderType == CD_EFFECT_ICON)
 	{
 		/// A FAIRE...
 	}
+	return pRenderAttr;
+}
+
+static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+{
+	CairoDataRendererAttribute *pRenderAttr = make_data_renderer_attribute (myIcon, (myConfig.bModeWifi ? &myConfig.wifiRenderer : &myConfig.netSpeedRenderer));  // les attributs du data-renderer global.
+	
 	if (pRenderAttr != NULL)
 	{
-		pRenderAttr->iLatencyTime = MIN (myConfig.iWifiCheckInterval, myConfig.iNetspeedCheckInterval) * 1000 * myConfig.fSmoothFactor;
+		pRenderAttr->iLatencyTime = (myConfig.bModeWifi ? myConfig.iWifiCheckInterval : myConfig.iNetspeedCheckInterval) * 1000 * myConfig.fSmoothFactor;
 		//pRenderAttr->bWriteValues = TRUE;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -101,15 +108,14 @@ CD_APPLET_INIT_BEGIN
 		}
 		cd_NetworkMonitor_draw_icon ();
 	}
-	if (myData.cDevice == NULL)  // on passe a la methode manuelle
+	if (myConfig.bModeWifi)
 	{
-		cd_debug("Network-Monitor : Dbus service or device not found, using rough connection");
-		// Initialisation de la tache periodique de mesure.
-		
-		if (myConfig.bModeWifi)
-			cd_netmonitor_launch_wifi_task (myApplet);
-		else
-			cd_netmonitor_launch_netspeed_task (myApplet);
+		if (myData.cDevice == NULL)  // on passe a la methode manuelle
+			cd_netmonitor_launch_wifi_task (myApplet);  // sinon les signaux sont connectes.
+	}
+	else
+	{
+		cd_netmonitor_launch_netspeed_task (myApplet);  // NM ne nous donne pas la vitesse de la connexion.
 	}
 	
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -147,27 +153,33 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		cd_netmonitor_free_netspeed_task (myApplet);
+		cd_netmonitor_free_wifi_task (myApplet);
+		
 		_set_data_renderer (myApplet, TRUE);
 		
 		myData.iPreviousQuality = -1;  // force le redessin.
-		if (!myData.bDbusConnection)
+		myData.iPercent = WIFI_QUALITY_NO_SIGNAL;
+		myData.iSignalLevel = WIFI_QUALITY_NO_SIGNAL;
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		
+		if (myConfig.bModeWifi)
 		{
-			myData.iPercent = -1;
-			myData.iSignalLevel = -1;
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			if (myConfig.bModeWifi)
-				cd_netmonitor_launch_wifi_task (myApplet);
+			if (myData.cDevice == NULL)  // on passe a la methode manuelle
+				cd_netmonitor_launch_wifi_task (myApplet);  // sinon les signaux sont connectes.
 			else
-				cd_netmonitor_launch_netspeed_task (myApplet);
+				cd_NetworkMonitor_draw_icon();
 		}
 		else
-			//CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			cd_NetworkMonitor_draw_icon();
+		{
+			cd_netmonitor_launch_netspeed_task (myApplet);  // NM ne nous donne pas la vitesse de la connexion.
+		}
 	}
 	else  // on redessine juste l'icone.
 	{
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);  // on le recharge aux nouvelles dimensions de l'icone.
-		if (myConfig.iRenderType == CD_EFFECT_GRAPH)  // si c'est un graphe, la taille de l'historique depend de la largeur de l'icone, donc on le prend en compte.
+		CDRenderType iRenderType = (myConfig.bModeWifi ? myConfig.wifiRenderer.iRenderType : myConfig.netSpeedRenderer.iRenderType);
+		if (iRenderType == CD_EFFECT_GRAPH)  // si c'est un graphe, la taille de l'historique depend de la largeur de l'icone, donc on le prend en compte.
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
 		CD_APPLET_REFRESH_MY_DATA_RENDERER;  // on rafraichit le dessin.

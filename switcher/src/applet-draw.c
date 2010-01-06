@@ -434,6 +434,7 @@ void cd_switcher_draw_main_icon (void)
 
 void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 {
+	CD_APPLET_ENTER;
 	//g_print ("%s ()\n", __func__);
 	double x, y, w, h;
 	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
@@ -467,6 +468,7 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 				break;
 		}
 	}
+	CD_APPLET_LEAVE ();
 }
 
 void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesklet, int *iCoordX, int *iCoordY)
@@ -495,11 +497,14 @@ void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesk
 
 static void _show_window (GtkMenuItem *menu_item, Icon *pIcon)
 {
+	CD_APPLET_ENTER;
 	cairo_dock_show_xwindow (pIcon->Xid);
+	CD_APPLET_LEAVE ();
 }
 
 static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 {
+	CD_APPLET_ENTER;
 	int iIndex = GPOINTER_TO_INT (data);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
@@ -507,6 +512,7 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 		cairo_dock_set_current_desktop (iNumDesktop);
 	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
 {

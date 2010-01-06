@@ -76,6 +76,7 @@ void cd_xkbd_set_group (int iNumGroup)
 
 gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("%s (window:%ld)", __func__, (pWindow ? *pWindow : 0));
 	///if (pWindow == NULL)
 	///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -97,13 +98,15 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		cd_debug ("group : %d -> %d ; indic : %d -> %d", myData.iCurrentGroup, state.group, myData.iCurrentIndic, state.indicators);
 		
 		if (myData.iCurrentGroup == state.group && myData.iCurrentIndic == state.indicators)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		if (myData.iCurrentGroup == state.group)
 			bRedrawSurface = FALSE;
 		
 		// on recupere le groupe courant.
 		int n = xkl_engine_get_num_groups (pEngine);
-		g_return_val_if_fail (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE_IF_FAIL (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		//g_return_val_if_fail (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 		const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
 		
@@ -181,5 +184,6 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 	g_free (cShortGroupName);
 	if (sCurrentIndicator != NULL)
 		g_string_free (sCurrentIndicator, TRUE);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

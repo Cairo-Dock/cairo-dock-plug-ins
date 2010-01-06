@@ -137,7 +137,53 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 	{
 		/// il faut creer une connection ...
 		g_print ("aucune des connexions existantes ne convient pour ce point d'acces\n");
-		 
+		
+		GHashTable *pSettings = g_hash_table_new_full (g_str_hash,
+			g_str_equal,
+			g_free,
+			g_hash_table_destroy);
+		
+		GHashTable *pSubSettings = g_hash_table_new_full (g_str_hash,
+			g_str_equal,
+			g_free,
+			g_free);
+		g_hash_table_insert (pSettings, "connection", pSubSettings);
+		g_hash_table_insert (pSubSettings, "type", g_strdup ("802-11-wireless"));
+		g_hash_table_insert (pSettings, "id", g_strdup_printf ("CD - %s", pItemData->cSsid));
+		
+		pSubSettings = g_hash_table_new_full (g_str_hash,
+			g_str_equal,
+			g_free,
+			g_free);
+		g_hash_table_insert (pSubSettings, "ssid", g_strdup (pItemData->cSsid));
+		g_hash_table_insert (pSubSettings, "mode", g_strdup ("infrastructure"));
+		
+		// AddConnection
+		DBusGProxy *dbus_proxy_Settings = cairo_dock_create_new_system_proxy (
+			myData.cServiceName,
+			"/org/freedesktop/NetworkManagerSettings",
+			"org.freedesktop.NetworkManagerSettings");
+		
+		GError *erreur = NULL;
+		dbus_g_proxy_call (dbus_proxy_Settings, "AddConnection", &erreur,
+			CD_DBUS_TYPE_HASH_TABLE_OF_HASH_TABLE, pSettings,
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+		if (erreur != NULL)
+		{
+			cd_warning (erreur->message);
+			g_error_free (erreur);
+			return ;
+		}
+		
+		/// on attend le signal NewConnection ...
+		
+		
+		
+		/// on active la connexion...
+		
+		
+		
 	}
 	else
 	{
@@ -428,6 +474,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 					pItemData->cDevice = g_strdup (cDevice);
 					pItemData->iPercent = iPercent;
 					pItemData->cAccessPoint = g_strdup (cAccessPointPath);
+					pItemData->cSsid = g_strdup (cSsid);
 					if (pConnList)
 					{
 						int n = GPOINTER_TO_INT (pConnList->data);

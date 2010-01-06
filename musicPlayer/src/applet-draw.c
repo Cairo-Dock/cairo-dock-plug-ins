@@ -40,6 +40,7 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
 	//g_print ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	
+	CD_APPLET_ENTER;
 	gboolean bNeedRedraw = FALSE;
 	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
 	{
@@ -104,7 +105,8 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	return (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+	CD_APPLET_LEAVE (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+	//return (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
 }
 
 
@@ -122,6 +124,7 @@ gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
  */
 gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 {
+	CD_APPLET_ENTER;
 	g_print ("%s (%s)\n", __func__, myData.cCoverPath);
 	if (g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
@@ -137,7 +140,8 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 				g_free (myData.cMissingCover);
 				myData.cMissingCover = NULL;
 				myData.iSidCheckCover = 0;
-				return FALSE;
+				CD_APPLET_LEAVE (FALSE);
+				//return FALSE;
 			}
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 			{
@@ -165,7 +169,8 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 			myData.iSidCheckCover = 0;
 			g_free (myData.cMissingCover);
 			myData.cMissingCover = NULL;
-			return FALSE;
+			CD_APPLET_LEAVE (FALSE);
+			//return FALSE;
 		}
 	}
 	myData.iNbCheckFile ++;
@@ -176,18 +181,22 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 		g_free (myData.cMissingCover);
 		myData.cMissingCover = NULL;
 		myData.iSidCheckCover = 0;
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 
 static gboolean _cd_musicplayer_check_distant_cover_twice (gpointer data)
 {
+	CD_APPLET_ENTER;
 	myData.pCurrentHandeler->get_cover ();  // on ne recupere que la couverture.
 	cd_musicplayer_update_icon (FALSE);
 	myData.iSidGetCoverInfoTwice = 0;
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 /* Met entierement a jour l'icone au changement d'etat ou de chanson.
  */

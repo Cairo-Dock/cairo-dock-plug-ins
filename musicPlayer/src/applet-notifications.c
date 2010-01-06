@@ -60,6 +60,7 @@ static void _cd_musicplayer_info (GtkMenuItem *menu_item, gpointer *data)
 
 static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 {
+	CD_APPLET_ENTER;
 	MusicPlayerHandeler *pHandler = cd_musicplayer_dbus_find_opened_player ();
 	if (pHandler == NULL)
 	{
@@ -81,6 +82,7 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 		if (myConfig.bStealTaskBarIcon)
 			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
 	}
+	CD_APPLET_LEAVE ();
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -303,6 +305,7 @@ CD_APPLET_ON_UPDATE_ICON_END
 
 gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
+	CD_APPLET_ENTER;
 	int iPrevButtonState = myData.iButtonState;
 	myData.iButtonState = cd_opengl_check_buttons_state (myApplet);
 	
@@ -310,5 +313,6 @@ gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, C
 	{
 		*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

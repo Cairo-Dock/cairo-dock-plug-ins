@@ -136,6 +136,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
+	CD_APPLET_ENTER;
 	
 	//\_______________________ On etablit le nom de l'icone.
 	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
@@ -173,5 +174,6 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
 	}
 	
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }

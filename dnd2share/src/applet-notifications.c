@@ -29,16 +29,19 @@
 
 static void _clear_history (GtkMenuItem *menu_item, gpointer data)
 {
+	CD_APPLET_ENTER;
 	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files ?"), myIcon, myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 	{
 		cd_dnd2share_clear_working_directory ();
 		cd_dnd2share_clear_history ();
 	}
+	CD_APPLET_LEAVE ();
 }
 
 static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 {
+	CD_APPLET_ENTER;
 	if (pItem->iFileType == CD_TYPE_TEXT)
 	{
 		cd_dnd2share_copy_url_to_clipboard (pItem->cLocalPath);
@@ -76,14 +79,18 @@ static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 			g_free (cPreviewPath);
 		}
 	}
+	CD_APPLET_LEAVE ();
 }
 static void _remove_from_history (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 {
+	CD_APPLET_ENTER;
 	cd_dnd2share_remove_one_item (pItem);
+	CD_APPLET_LEAVE ();
 }
 
 static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 {
+	CD_APPLET_ENTER;
 	cd_dnd2share_copy_url_to_clipboard (cURL);
 	if (myConfig.bEnableDialogs)
 	{
@@ -94,7 +101,8 @@ static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 			myConfig.dTimeDialogs,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
-} 
+	CD_APPLET_LEAVE ();
+}
 
 static void _store_last_url (gboolean bIntoClipboard)
 {
@@ -240,18 +248,22 @@ static void _get_image (GtkClipboard *clipboard, GdkPixbuf *pixbuf, gpointer dat
 	}
 	close(fds);
 	
+	CD_APPLET_ENTER;
 	gboolean bSaved = gdk_pixbuf_save (pixbuf,
 		myData.cTmpFilePath,
 		"png",
 		NULL,
 		NULL);
-	g_return_if_fail (bSaved);
+	CD_APPLET_LEAVE_IF_FAIL (bSaved);
+	//g_return_if_fail (bSaved);
 	
 	cd_dnd2share_launch_upload (myData.cTmpFilePath, CD_TYPE_IMAGE);
+	CD_APPLET_LEAVE ();
 }
 static void _get_text (GtkClipboard *clipboard, const gchar *cText, gpointer data)
 {
 	g_return_if_fail (cText != NULL);
+	CD_APPLET_ENTER;
 	gchar *cFilePath = NULL;
 	const gchar *cDropData = NULL;
 	if ( *cText == '/' && g_file_test (cText, G_FILE_TEST_EXISTS) )
@@ -260,37 +272,31 @@ static void _get_text (GtkClipboard *clipboard, const gchar *cText, gpointer dat
 		cDropData = cText;
 	
 	_on_drop_data (cFilePath ? cFilePath : cDropData);
+	CD_APPLET_LEAVE ();
 }
 static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
 {
+	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gboolean bDataAvailable = gtk_clipboard_wait_is_image_available (pClipBoard);
 	g_return_if_fail (myIcon != NULL);  // protection, car cette fonction bloque mais laisse tourner la main loop.
 	if (bDataAvailable)
 	{
 		gtk_clipboard_request_image (pClipBoard, (GtkClipboardImageReceivedFunc) _get_image, data);
-		return;
+		CD_APPLET_LEAVE ();
+		//return;
 	}
 	bDataAvailable = gtk_clipboard_wait_is_text_available (pClipBoard);
 	g_return_if_fail (myIcon != NULL);
 	if (bDataAvailable)
 	{
 		gtk_clipboard_request_text (pClipBoard, (GtkClipboardTextReceivedFunc) _get_text, data);
-		return;
+		CD_APPLET_LEAVE ();
+		//return;
 	}
+	CD_APPLET_LEAVE ();
 }
 
-static void _paste_new_item (GtkMenuItem *menu_item)
-{
-	GtkClipboard *pClipBoardSelection = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-	gchar *cEntry = gtk_clipboard_wait_for_text (pClipBoardSelection);
-	cd_debug ("DND2SHARE-debug : Paste from clipboard -> \"%s\"", cEntry);
-	if ( g_file_test (cEntry, G_FILE_TEST_EXISTS) )
-		_on_drop_data (g_strdup_printf ("file://%s", cEntry));
-	else
-		_on_drop_data (cEntry);
-	g_free (cEntry);
-}
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN

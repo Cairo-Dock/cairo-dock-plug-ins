@@ -31,7 +31,8 @@ void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *AP_prope
 
 void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data);
 
-void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data);;
+void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data);
 
+void onNewConnection (DBusGProxy *dbus_proxy, const GValue *pNewConnectionPath, gpointer data);
 
 #endif

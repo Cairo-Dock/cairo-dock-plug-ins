@@ -16,7 +16,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// http://projects.gnome.org/NetworkManager/developers/spec.html
+// http://projects.gnome.org/NetworkManager/developers/spec-08.html
 
 #define _BSD_SOURCE
 
@@ -67,7 +67,17 @@ gboolean cd_NetworkMonitor_connect_to_bus (void)
 	dbus_g_proxy_connect_signal(myData.dbus_proxy_NM, "PropertiesChanged",
 		G_CALLBACK(onChangeNMProperties), NULL, NULL);
 	
+	//\_____________ On recupere l'objet des connections.
 	myData.cServiceName = g_strdup ("org.freedesktop.NetworkManagerUserSettings");
+	
+	myData.dbus_proxy_Settings = cairo_dock_create_new_system_proxy (
+		myData.cServiceName,
+		"/org/freedesktop/NetworkManagerSettings",
+		"org.freedesktop.NetworkManagerSettings");
+	dbus_g_proxy_add_signal(myData.dbus_proxy_Settings, "NewConnection", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_Settings, "NewConnection",
+		G_CALLBACK(onNewConnection), NULL, NULL);
+	
 	
 	return TRUE;
 }

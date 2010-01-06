@@ -177,6 +177,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 {
 	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	CD_APPLET_ENTER;
 	if (pItem->pLocalItemList == NULL)
 	{
 		_init_fill_menu_from_dir (pItem);
@@ -195,14 +196,17 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 		CairoDockModuleInstance *myApplet = pItem->pApplet;
 		myData.iSidFillDirIdle = 0;
 		gtk_widget_show_all (pItem->pSubMenu);
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 {
 	//g_print ("%s (%s, %x)\n", __func__, pItem->cPath, pItem->pSubMenu);
 	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	CD_APPLET_ENTER;
 	if (pItem->pSubMenu != NULL)
 	{
 		if (! pItem->bMenuBuilt)
@@ -218,6 +222,7 @@ static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 		cairo_dock_fm_launch_uri (pItem->cPath);
 		cd_quick_browser_destroy_menu (myApplet);
 	}
+	CD_APPLET_LEAVE ();
 }
 
 CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)

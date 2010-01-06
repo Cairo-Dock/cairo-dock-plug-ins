@@ -48,6 +48,8 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 void cd_quick_browser_on_shortkey_menu (const char *keystring, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_quick_browser_show_menu (myApplet);
+	CD_APPLET_LEAVE ();
 }
 

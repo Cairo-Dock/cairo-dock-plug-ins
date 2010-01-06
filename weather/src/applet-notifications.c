@@ -53,6 +53,7 @@ CD_APPLET_ON_CLICK_END
 
 static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
@@ -67,6 +68,7 @@ static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance 
 		
 		cairo_dock_launch_task (myData.pTask);
 	}
+	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

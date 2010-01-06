@@ -133,6 +133,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
  */
 static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
+	CD_APPLET_ENTER;
 	cd_message ("MP : %s (%s)",__func__,uri);
 	
 	g_free (myData.cPlayingUri);
@@ -161,12 +162,14 @@ static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer dat
 		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
+	CD_APPLET_LEAVE ();
 }
 
 /* Fonction executée à chaque changement play/pause
  */
 static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
+	CD_APPLET_ENTER;
 	if (playing)
 		myData.iPlayingStatus = PLAYER_PLAYING;
 	else
@@ -180,6 +183,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 
@@ -187,6 +191,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
  */
 static void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
 {
+	CD_APPLET_ENTER;
 	myData.iCurrentTime = elapsed;
 	if(elapsed > 0)
 	{
@@ -207,11 +212,13 @@ static void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer dat
 			CD_APPLET_REDRAW_MY_ICON;
 		}
 	}
+	CD_APPLET_LEAVE ();
 }
 
 
 static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
 {
+	CD_APPLET_ENTER;
 	g_print ("\n%s (%s)\n\n",__func__,cImageURI);
 	g_free (myData.cCoverPath);
 	myData.cCoverPath = g_strdup (cImageURI);
@@ -224,6 +231,7 @@ static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, g
 		g_source_remove (myData.iSidCheckCover);
 		myData.iSidCheckCover = 0;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 

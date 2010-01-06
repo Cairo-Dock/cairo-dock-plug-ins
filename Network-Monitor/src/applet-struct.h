@@ -25,13 +25,6 @@
 
 #define CD_NETSPEED_NB_MAX_VALUES 2
 
-typedef enum {
-	CONNECTION_INFO_NONE = 0,
-	CONNECTION_INFO_SIGNAL_STRENGTH_LEVEL,
-	CONNECTION_INFO_SIGNAL_STRENGTH_PERCENT,
-	CONNECTION_INFO_SIGNAL_STRENGTH_DB,
-	CONNECTION_NB_INFO_TYPE
-} CDConnectionInfoType;
 
 typedef enum {
 	WIFI_QUALITY_NO_SIGNAL = 0,
@@ -50,10 +43,10 @@ typedef enum {
 	WIFI_EFFECT_ZOOM,
 	WIFI_EFFECT_TRANSPARENCY,
 	WIFI_EFFECT_BAR,
-} CDWifiEffect;
+} CDIconEffect;
 
 
-typedef enum _CDWifiRenderType {
+typedef enum {
 	CD_EFFECT_GAUGE=0,
 	CD_EFFECT_GRAPH,
 	CD_EFFECT_ICON,
@@ -69,29 +62,14 @@ typedef struct _CDRenderer {
 	gdouble fLowColor[3];
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
-	gdouble fSmoothFactor;
 	// icone
-	CDWifiEffect iEffect;
+	CDIconEffect iEffect;
+	gchar *cUserImage[CONNECTION_NB_QUALITY];
 	} CDRenderer;
 
 struct _AppletConfig {
 	gchar *defaultTitle;
-	gchar *cUserImage[CONNECTION_NB_QUALITY];
 	gchar *cWifiConfigCommand;
-	
-	CDConnectionInfoType quickInfoType;  // unite du signal wifi.
-	
-	CDRenderType iRenderType;
-	// jauge.
-	gchar *cGThemePath;
-	// graphe
-	CairoDockTypeGraph iGraphType;
-	gdouble fLowColor[3];
-	gdouble fHigholor[3];
-	gdouble fBgColor[4];
-	gdouble fSmoothFactor;
-	// icone
-	CDWifiEffect iEffect;
 	
 	// parametres
 	gboolean bModeWifi;  // TRUE pour l'affichage Wifi, FALSE pour l'affichage Netspeed.
@@ -100,6 +78,7 @@ struct _AppletConfig {
 	gchar *cSysMonitorCommand;  // command pour ouvrir un moniteur systeme.
 	gchar *cAnimation;  // animation de connexion.
 	
+	gdouble fSmoothFactor;
 	// wifi
 	gint iWifiCheckInterval;
 	CDRenderer wifiRenderer;
@@ -166,6 +145,7 @@ typedef struct _CDMenuItemData {
 	gchar *cDevice;
 	gchar *cAccessPoint;
 	gint iPercent;
+	gchar *cSsid;
 	} CDMenuItemData;  // le service name est fixe une fois pour toutes dans myData.
 
 
@@ -197,6 +177,7 @@ struct _AppletData {
 	DBusGProxy *dbus_proxy_WirelessDevice_prop;
 	DBusGProxy *dbus_proxy_WiredDevice;
 	DBusGProxy *dbus_proxy_WiredDevice_prop;
+	DBusGProxy *dbus_proxy_Settings;
 	
 	gchar *cActiveConnection;
 	gchar *cDevice;

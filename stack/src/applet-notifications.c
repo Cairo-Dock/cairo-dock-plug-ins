@@ -64,30 +64,38 @@ CD_APPLET_ON_CLICK_END
 static void _on_text_received (GtkClipboard *clipboard, const gchar *text, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (text != NULL);
+	CD_APPLET_ENTER;
 	cd_stack_create_and_load_item (myApplet, text);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the stack ?"), myIcon,  myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 		cd_stack_clear_stack (myApplet);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	cd_stack_remove_item (myApplet, pIcon);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
 	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item :"), pIcon, pContainer, pIcon->cName);
 	if (cNewName == NULL)
-		return ;
+		CD_APPLET_LEAVE ();
+		//return ;
 	
 	gchar *cDesktopFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
 	cd_stack_set_item_name (cDesktopFilePath, cNewName);
@@ -95,45 +103,56 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 	
 	cairo_dock_set_icon_name (myDrawContext, cNewName, pIcon, pContainer);
 	g_free (cNewName);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
 	g_print ("stack : '%s' has been copied into the clipboard\n", pIcon->cCommand);
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_paste_content (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
 	gtk_clipboard_request_text (pClipBoard, (GtkClipboardTextReceivedFunc) _on_text_received, myApplet);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_cut_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 	cd_stack_remove_item (myApplet, pIcon);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_open_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	_launch_item (pIcon, myApplet);
+	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_open_item_folder (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
 	gchar *cFolderPath = g_path_get_dirname (pIcon->cCommand);
 	cairo_dock_fm_launch_uri (cFolderPath);
 	g_free (cFolderPath);
+	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer data[2] = {NULL, NULL};

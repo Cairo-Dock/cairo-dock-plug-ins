@@ -437,7 +437,7 @@ AC_SUBST(netspeeddatadir, "${pkgdatadir}/netspeed")
 NETWORK_MONITOR_PACKAGE=cd-network-monitor
 AC_SUBST(GETTEXT_NETWORK_MONITOR, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_NETWORK_MONITOR, "1.2.2")
+AC_SUBST(VERSION_NETWORK_MONITOR, "0.2.0")
 AC_SUBST(PACKAGE_NETWORK_MONITOR, "$NETWORK_MONITOR_PACKAGE")
 
 AC_SUBST(network_monitordatadir, "${pkgdatadir}/Network-Monitor")

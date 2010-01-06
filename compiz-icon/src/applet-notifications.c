@@ -30,7 +30,6 @@
 #include "applet-compiz.h"
 
 
-
 static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;

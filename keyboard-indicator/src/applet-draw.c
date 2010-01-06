@@ -99,6 +99,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 
 gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
 	//g_print ("%s (%.2f)\n", __func__, f);
 	
@@ -145,12 +146,14 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 		cairo_dock_set_ortho_view (iWidth, iHeight);
 	}
 	
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 
 gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
 	
 	//g_print ("%s (%.2f)\n", __func__, f);
@@ -210,5 +213,6 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 			cairo_restore (myDrawContext);
 	}
 	
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }

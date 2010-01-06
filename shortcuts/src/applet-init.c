@@ -28,7 +28,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("shortcuts",
+CD_APPLET_DEFINITION (N_("shortcuts"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("An applet that let you access quickly to all of your shortcuts.\n"

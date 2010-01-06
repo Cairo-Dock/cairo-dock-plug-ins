@@ -115,9 +115,11 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 {
+	CD_APPLET_ENTER;
 	int iDeltaT = (int) (cairo_dock_show_value_and_wait (D_("Choose in how many minutes your PC will stop :"), myIcon, myContainer, 30, 150) * 60);
 	if (iDeltaT == -1)  // cancel
-		return ;
+		CD_APPLET_LEAVE ();
+		//return ;
 	
 	time_t t_cur = (time_t) time (NULL);
 	if (iDeltaT > 0)
@@ -133,6 +135,7 @@ static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 		G_TYPE_INT, "Configuration", "shutdown time", myConfig.iShutdownTime,
 		G_TYPE_INVALID);
 	cd_logout_set_timer ();
+	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
@@ -146,6 +149,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static gboolean _timer (gpointer data)
 {
+	CD_APPLET_ENTER;
 	time_t t_cur = (time_t) time (NULL);
 	if (t_cur >= myConfig.iShutdownTime)
 	{
@@ -157,7 +161,8 @@ static gboolean _timer (gpointer data)
 			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.freedesktop.PowerManagement /org/freedesktop/PowerManagement org.freedesktop.PowerManagement.Shutdown");  // --print-reply --reply-timeout=2000
 		
 		myData.iSidTimer = 0;
-		return FALSE;  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
+		CD_APPLET_LEAVE (FALSE);  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
+		//return FALSE;  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
 	}
 	else
 	{
@@ -167,7 +172,8 @@ static gboolean _timer (gpointer data)
 		if (t_cur >= myConfig.iShutdownTime - 60)
 			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shutdown in 1 minute."), myIcon, myContainer, 8000, "same icon");
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 	
 }
 void cd_logout_set_timer (void)

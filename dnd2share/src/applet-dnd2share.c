@@ -123,6 +123,7 @@ static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 }
 static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 {
+	CD_APPLET_ENTER;
 	if (myData.cResultUrls == NULL)  // une erreur s'est produite.
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
@@ -273,7 +274,8 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		g_free (myData.cTmpFilePath);
 		myData.cTmpFilePath = NULL;
 	}
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 {

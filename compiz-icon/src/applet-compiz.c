@@ -144,6 +144,7 @@ void cd_compiz_read_data(void) {
 }
 
 gboolean cd_compiz_update_from_data (void) {
+	CD_APPLET_ENTER;
 	cd_compiz_update_main_icon ();
 	cd_debug ("Compiz: %d - Decorator: %d", myData.bCompizIsRunning, myData.bDecoratorIsRunning);
 	if (! myData.bCompizIsRunning && myConfig.bAutoReloadCompiz) {
@@ -163,5 +164,6 @@ gboolean cd_compiz_update_from_data (void) {
 		myData.bCompizRestarted = FALSE;  // Compiz tourne, on le relancera s'il plante.
 	if (myData.bDecoratorIsRunning)
 		myData.bDecoratorRestarted = FALSE;  // le decorateur tourne, on le relancera s'il plante.
-	return myData.bAcquisitionOK;
+	CD_APPLET_LEAVE (myData.bAcquisitionOK);
+	//return myData.bAcquisitionOK;
 }

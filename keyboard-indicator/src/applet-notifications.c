@@ -35,8 +35,10 @@ CD_APPLET_ON_CLICK_END
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 static void _select_group (GtkMenuItem *menu_item, gpointer *data)
 {
+	CD_APPLET_ENTER;
 	int iNumGroup = GPOINTER_TO_INT (data);
 	cd_xkbd_set_group (iNumGroup);
+	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

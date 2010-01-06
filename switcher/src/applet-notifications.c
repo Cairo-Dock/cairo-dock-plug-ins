@@ -267,9 +267,11 @@ CD_APPLET_ON_BUILD_MENU_END
 
 static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_switcher_draw_main_icon ();
 	myData.iSidRedrawMainIconIdle = 0;
-	return FALSE;
+	CD_APPLET_LEAVE (FALSE);
+	//return FALSE;
 }
 static void _cd_switcher_queue_draw (CairoDockModuleInstance *myApplet)
 {
@@ -281,13 +283,16 @@ static void _cd_switcher_queue_draw (CairoDockModuleInstance *myApplet)
 
 gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
 {
+	CD_APPLET_ENTER;
 	_cd_switcher_queue_draw (myApplet);
 	//cd_switcher_draw_main_icon ();
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("");
 	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
@@ -306,7 +311,8 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 	else
 	{
 		CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-		g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		//g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		
 		if (myDock && myConfig.bDisplayNumDesk)
 			CD_APPLET_REDRAW_MY_ICON;
@@ -342,32 +348,40 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			gtk_widget_queue_draw (myDesklet->container.pWidget);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("");
 	cd_switcher_update_from_screen_geometry ();
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure)
 {
+	CD_APPLET_ENTER;
 	cd_debug ("");
 	_cd_switcher_queue_draw (myApplet);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
+	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
 	if (iIndex != myData.iPrevIndexHovered)
@@ -387,11 +401,13 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		else
 			*bStartAnimation = TRUE;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
+	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
 	{
 		myData.fDesktopNameAlpha -= .07;
@@ -409,11 +425,13 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 			*bContinueAnimation = TRUE;
 	}
 	CAIRO_DOCK_REDRAW_MY_CONTAINER;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
+	CD_APPLET_ENTER;
 	int x, y;  // centre du texte.
 	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;
 	y = myIcon->fDrawY + myIcon->fHeight * myIcon->fScale / 2;
@@ -424,7 +442,8 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 	if (pCairoContext != NULL)
 	{
 		if (myIcon->pTextBuffer == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		cairo_save (pCairoContext);
 		cairo_translate (pCairoContext, x, y);
 		cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
@@ -434,7 +453,8 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 	else
 	{
 		if (myIcon->iLabelTexture == 0)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		glPushMatrix ();
 		if (myDesklet)
 			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
@@ -442,7 +462,8 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 		cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);
 		glPopMatrix ();
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)

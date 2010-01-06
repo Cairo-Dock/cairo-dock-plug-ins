@@ -209,6 +209,7 @@ void cd_quodlibet_getSongInfos (void)
  */
 static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s ()\n", __func__);
 	
 	if (metadata != NULL)
@@ -235,12 +236,14 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
+	CD_APPLET_LEAVE ();
 }
 
 /* Fonction executée à chaque changement "paused".
  */
 static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s ()\n", __func__);
 	myData.bIsRunning = TRUE;
 	
@@ -261,11 +264,13 @@ static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 /* Fonction executée à chaque changement "unpaused".
  */
 static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpaused
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s ()\n", __func__);
 	myData.bIsRunning = TRUE;
 	
@@ -280,6 +285,7 @@ static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpau
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 ////////////////////////////

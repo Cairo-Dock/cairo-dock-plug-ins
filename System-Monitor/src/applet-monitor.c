@@ -63,6 +63,7 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 {
 	static double s_fValues[CD_SYSMONITOR_NB_MAX_VALUES];
+	CD_APPLET_ENTER;
 	
 	if ( ! myData.bAcquisitionOK)
 	{
@@ -154,7 +155,9 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 			}
 		}
 	}
-	return myData.bAcquisitionOK;
+	
+	CD_APPLET_LEAVE (myData.bAcquisitionOK);
+	//return myData.bAcquisitionOK;
 }
 
 

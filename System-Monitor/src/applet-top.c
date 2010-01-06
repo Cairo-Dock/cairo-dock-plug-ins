@@ -233,6 +233,7 @@ static void _cd_sysmonitor_get_top_list (CairoDockModuleInstance *myApplet)
 static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApplet)
 {
 	// On ecrit les processus dans l'ordre.
+	CD_APPLET_ENTER;
 	CDProcess *pProcess;
 	int i, iNameLength=0;
 	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
@@ -290,7 +291,8 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 	if (i == 0)  // liste vide.
 	{
 		g_string_free (sTopInfo, TRUE);
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	}
 	sTopInfo->str[sTopInfo->len-1] = '\0';
 	
@@ -306,7 +308,8 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 		cairo_dock_set_dialog_message (myData.pTopDialog, cTitle);
 		g_free (cTitle);
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 

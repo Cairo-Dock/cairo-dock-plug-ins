@@ -192,12 +192,14 @@ void dbus_disconnect_from_bus (void)
 
 void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("Dbus : battery changed\n");
 	if (myData.on_battery != onBattery)
 	{
 		update_stats();
 		update_icon();
 	}
+	CD_APPLET_LEAVE ();
 }
 
 
@@ -224,11 +226,13 @@ void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 
 gboolean update_stats(void)
 {
+	CD_APPLET_ENTER;
 	//\_______________ On recupere le contenu du buffer de la batterie.
 	if (myData.cBatteryStateFilePath == NULL)
 		cd_powermanager_find_battery ();
 	if (myData.cBatteryStateFilePath == NULL)
-		return TRUE;
+		CD_APPLET_LEAVE (TRUE);
+		//return TRUE;
 	int k;
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -239,9 +243,11 @@ gboolean update_stats(void)
 		cd_warning ("powermanager : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
-		return FALSE;
+		CD_APPLET_LEAVE (FALSE);
+		//return FALSE;
 	}
-	g_return_val_if_fail (cContent, FALSE);
+	CD_APPLET_LEAVE_IF_FAIL (cContent, FALSE);
+	//g_return_val_if_fail (cContent, FALSE);
 	gchar *cCurLine = cContent, *cCurVal = cContent;
 	
 	//\_______________ On gere la presence de la batterie.
@@ -255,7 +261,8 @@ gboolean update_stats(void)
 			g_print ("la batterie a ete enlevee\n");
 			g_free (cContent);
 			update_icon();
-			return TRUE;
+			CD_APPLET_LEAVE (TRUE);
+			//return TRUE;
 		}
 		
 		// on remet a zero l'historique.
@@ -440,7 +447,8 @@ gboolean update_stats(void)
 	present rate: 15000 mW
 	remaining capacity: 47040 mWh
 	present voltage: 15000 mV*/
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 int get_stats(gchar *dataType)  // code repris de Gnome-power-manager.

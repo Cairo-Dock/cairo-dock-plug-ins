@@ -50,40 +50,17 @@ void cd_NetworkMonitor_draw_icon (void)
 		return ;
 	}
 	gboolean bNeedRedraw = FALSE;
-	switch (myConfig.quickInfoType) {
-		case CONNECTION_INFO_NONE :
-			if (myIcon->cQuickInfo != NULL) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-				bNeedRedraw = TRUE;
-			}
-		break;
-		case CONNECTION_INFO_SIGNAL_STRENGTH_LEVEL :
-			if (myData.iQuality != myData.iPreviousQuality && myData.iQuality < CONNECTION_NB_QUALITY) {
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (D_(s_cLevelQualityName[myData.iQuality]));
-				bNeedRedraw = TRUE;
-			}
-		break;
-		case CONNECTION_INFO_SIGNAL_STRENGTH_PERCENT :
-			if (myData.iPrevPercent != myData.iPercent) {
-				myData.iPrevPercent = myData.iPercent;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iPercent);
-				bNeedRedraw = TRUE;
-			}
-		break;
-		case CONNECTION_INFO_SIGNAL_STRENGTH_DB :
-			if (myData.iPrevSignalLevel != myData.iSignalLevel || myData.iPrevNoiseLevel != myData.iNoiseLevel) {
-				myData.iPrevSignalLevel = myData.iSignalLevel;
-				myData.iPrevNoiseLevel = myData.iNoiseLevel;
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d/%d", myData.iSignalLevel, myData.iNoiseLevel);
-				bNeedRedraw = TRUE;
-			}
-		break;
+	if (myData.iPrevPercent != myData.iPercent) {
+		myData.iPrevPercent = myData.iPercent;
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iPercent);
+		bNeedRedraw = TRUE;
 	}
 	
-	if (myData.iQuality != myData.iPreviousQuality || myConfig.iRenderType == CD_EFFECT_GRAPH) {
+	CDRenderType iRenderType = (myConfig.bModeWifi ? myConfig.wifiRenderer.iRenderType : myConfig.netSpeedRenderer.iRenderType);
+	if (myData.iQuality != myData.iPreviousQuality || iRenderType == CD_EFFECT_GRAPH) {
 		myData.iPreviousQuality = myData.iQuality;
 		//cd_debug ("Wifi - Value have changed, redraw. (Use Gauge: %d)", myConfig.bUseGauge);
-		if (myConfig.iRenderType == CD_EFFECT_ICON) {
+		if (iRenderType == CD_EFFECT_ICON) {
 			cd_NetworkMonitor_draw_icon_with_effect (myData.iQuality);
 		}
 		else
@@ -106,8 +83,8 @@ void cd_NetworkMonitor_draw_icon_with_effect (CDConnectionQuality iQuality) {
 	
 	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
 	if (pSurface == NULL) {
-		if (myConfig.cUserImage[iQuality] != NULL) {
-			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iQuality]);
+		if (myConfig.wifiRenderer.cUserImage[iQuality] != NULL) {
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.wifiRenderer.cUserImage[iQuality]);
 			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
 			g_free (cUserImagePath);
 		}
@@ -119,7 +96,7 @@ void cd_NetworkMonitor_draw_icon_with_effect (CDConnectionQuality iQuality) {
 		pSurface = myData.pSurfaces[iQuality];
 	}
 	
-	switch (myConfig.iEffect) {
+	switch (myConfig.wifiRenderer.iEffect) {
 		double fAlpha, fScale;
 	  case WIFI_EFFECT_NONE:
 	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);

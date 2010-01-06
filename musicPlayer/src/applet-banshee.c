@@ -249,6 +249,7 @@ static void cd_banshee_getCoverPath (void)
  */
 static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gchar *cMessage, double fBufferingPercent, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%s, %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
 	if (cMessage != NULL)
 	{
@@ -264,10 +265,12 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 				cd_banshee_getCoverPath ();
 			}
 			else
-				return ;
+				CD_APPLET_LEAVE ();
+				//return ;
 		}
 		else
-			return ;
+			CD_APPLET_LEAVE ();
+			//return ;
 	}
 	else
 	{
@@ -289,6 +292,7 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
+	CD_APPLET_LEAVE ();
 }
 static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 	GValue *return_value,
@@ -329,11 +333,13 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
  */
 static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatus, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%s)\n", __func__, cCurrentStatus);
 	myData.bIsRunning = TRUE;
 	gboolean bStateChanged = _extract_playing_status (cCurrentStatus);
 	if (! bStateChanged)
-		return ;
+		CD_APPLET_LEAVE ();
+		//return ;
 	
 	if (myData.iPlayingStatus == PLAYER_PLAYING)
 		cd_musicplayer_relaunch_handler ();
@@ -345,6 +351,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 

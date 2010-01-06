@@ -373,6 +373,7 @@ void cd_mpris_getSongInfos ()
  */
 void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s ()\n", __func__);
 	
 	if (metadata != NULL)
@@ -400,12 +401,14 @@ void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
+	CD_APPLET_LEAVE ();
 }
 
 /* Fonction executée à chaque changement play/pause
  */
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	int iStatus = _extract_status_mpris (status, 0);
@@ -423,15 +426,18 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
+	CD_APPLET_LEAVE ();
 }
 
 /* Fonction executée à chaque changement dans la TrackList.
  */
 void onChangeTrackList (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
 {
+	CD_APPLET_ENTER;
 	g_print ("MP : %s (%d)\n", __func__, iNewTrackListLength);
 	myData.iTrackListLength = iNewTrackListLength;
 	cd_mpris_get_track_index ();
+	CD_APPLET_LEAVE ();
 }
 
 ////////////////////////////
