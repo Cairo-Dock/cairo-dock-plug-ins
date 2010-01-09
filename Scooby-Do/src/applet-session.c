@@ -75,7 +75,8 @@ void cd_do_open_session (void)
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
 	//if (cairo_dock_get_desklet_by_Xid (myData.iPreviouslyActiveWindow))
 	//	myData.iPreviouslyActiveWindow = 0;
-	gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
+	///gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
+	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (g_pMainDock->container.pWidget->window));  // pour eviter la prevention du vol de focus.
 	cairo_dock_freeze_docks (TRUE);
 	
 	// On lance l'animation d'attente.

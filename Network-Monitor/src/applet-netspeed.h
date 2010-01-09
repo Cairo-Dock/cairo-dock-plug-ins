@@ -29,7 +29,11 @@ void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet);
 void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet);
 
 
-GList *cd_netmonitor_get_available_interfaces (void);
+GList *cd_netmonitor_get_wireless_interfaces (void);
+
+GList *cd_netmonitor_get_available_interfaces (GList *pWirelessInterfaces);
+
+int cd_netmonitor_check_interface (const gchar *cInterface);
 
 
 #endif

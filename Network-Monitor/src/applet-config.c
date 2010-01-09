@@ -31,6 +31,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	myConfig.cInterface = CD_CONFIG_GET_STRING ("Configuration", "interface");
+	if (myConfig.cInterface != NULL)
+	{
+		gchar *str = strrchr (myConfig.cInterface, ' ');  // on a rajoute (wifi) ou (ethernet).
+		if (str)
+			*str = '\0';
+	}
 	myConfig.iStringLen = (myConfig.cInterface ? strlen (myConfig.cInterface) : 0);
 	myConfig.cWifiConfigCommand = CD_CONFIG_GET_STRING ("Configuration", "wifi command");
 	myConfig.cSysMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "netspeed command");
@@ -120,7 +126,10 @@ void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFi
 	g_return_if_fail (pCombo != NULL);
 	
 	//\____________ On construit la liste interfaces disponibles.
-	GList *pList = cd_netmonitor_get_available_interfaces ();
+	GList *pWirelessInterfaces = cd_netmonitor_get_wireless_interfaces ();
+	GList *pList = cd_netmonitor_get_available_interfaces (pWirelessInterfaces);
+	g_list_foreach (pWirelessInterfaces, (GFunc)g_free, NULL);
+	g_list_free (pWirelessInterfaces);
 	
 	//\____________ On remplit la combo.
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cInterface);

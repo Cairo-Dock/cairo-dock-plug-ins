@@ -94,15 +94,15 @@ fg alpha = 1
 #F[Parameters;gtk-info]
 frame_param =
 
-#l[Wifi signal;Connexion speed] Info to display in the icon :
+#l[Wifi signal;Connexion speed] Info displayed by the icon :
 #{You can quickly switch to the other mode by scrolling on the icon.}
 mode = 0
 
-#E[] Default connexion interface :
+#E[] Connexion interface to monitor :
 #{By default the first active interface is used.}
 interface = 
 
-#l[No;On icon;On label] Display values :
+#l[No;On icon;On label] Display numeric values :
 info display = 1
 
 #e[0;1] Fluidity of the transition animation between 2 values :
@@ -124,20 +124,17 @@ wifi command =
 netspeed command =
 
 
-
 #[gtk-preferences]
 [Net Speed]
 
 #l+[Gauge;Graph] Choose the style of the display : 
-renderer = 2
-
+renderer = 0
 
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = 
-
+theme = turbo-night-fuel
 
 #X[Graph;gtk-dialog-info]
 frame_graph=
@@ -157,7 +154,6 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-
 #F[Parameters;gtk-preferences]
 frame_param =
 
@@ -169,7 +165,7 @@ netspeed delay = 2
 #[gtk-preferences]
 [Wifi]
 
-#l+[Gauge;Graph;Icons] Choose the style of the display : 
+#l+[Gauge;Graph;Icons] Choose the style of the display :
 renderer = 2
 
 
@@ -177,7 +173,7 @@ renderer = 2
 frame_gauge=
 
 #h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
-theme = 
+theme = turbo-night-fuel
 
 
 #X[Graph;gtk-dialog-info]

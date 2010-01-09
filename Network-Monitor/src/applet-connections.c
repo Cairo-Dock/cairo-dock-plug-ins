@@ -78,7 +78,6 @@ gboolean cd_NetworkMonitor_connect_to_bus (void)
 	dbus_g_proxy_connect_signal(myData.dbus_proxy_Settings, "NewConnection",
 		G_CALLBACK(onNewConnection), NULL, NULL);
 	
-	
 	return TRUE;
 }
 
@@ -132,7 +131,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 				g_object_unref (myData.dbus_proxy_Device_prop);
 				myData.dbus_proxy_Device_prop = NULL;
 			}
-			else if (iDeviceType == 2 && myData.bWiredExt)  // c'est un wifi alors que celui qu'on a dezja est un ethernet, on le prend a sa place.
+			else if (iDeviceType == 2 && myData.bWiredExt)  // c'est un wifi alors que celui qu'on a deja est un ethernet, on le prend a sa place.
 			{
 				g_free (myData.cDevice);
 				myData.cDevice = NULL;
@@ -402,11 +401,8 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 					dbus_g_proxy_connect_signal(myData.dbus_proxy_WiredDevice, "PropertiesChanged",
 						G_CALLBACK(onChangeWiredDeviceProperties), NULL, NULL);
 					
-					// Recuperation de l'AP active.
+					// on recupere les proprietes de la carte reseau, et de son etat connecte ou non.
 					cd_NetworkMonitor_get_wired_connection_infos();
-					
-					// Calcul de la qualite du signal.
-					cd_NetworkMonitor_quality();
 				}
 				else
 				{
@@ -500,7 +496,7 @@ void cd_NetworkMonitor_get_wired_connection_infos (void)
 	GHashTable *hProperties;
 	GValue *v;
 	
-	//\_____________ On recupere les proprietes du device "wired" (ici il n'y en a qu'un seul, donc pas besoin de recuperer le courant d'abord.
+	//\_____________ On recupere les proprietes du device "wired"
 	hProperties = cairo_dock_dbus_get_all_properties (myData.dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device.Wired");
 	g_return_if_fail (hProperties != NULL);
 	

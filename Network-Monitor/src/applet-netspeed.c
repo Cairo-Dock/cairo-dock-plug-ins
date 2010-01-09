@@ -270,8 +270,46 @@ void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet)
 	}
 }
 
-GList *cd_netmonitor_get_available_interfaces (void)
+
+GList *cd_netmonitor_get_wireless_interfaces (void)
 {
+	//Inter-|sta|  Quality       |  Discarded packets
+	//face |tus|link level noise| nwid crypt  misc
+	//eth2: f0   15.  24.    4.   181     0     0
+	gchar *cWireless = NULL;
+	gsize length=0;
+	gchar **cWirelessInterfaces = NULL;
+	g_file_get_contents ("/proc/net/wireless", &cWireless, &length, NULL);
+	if (cWireless == NULL)
+		return NULL;
+	
+	cWirelessInterfaces = g_strsplit (cWireless, "\n", -1);
+	g_free (cWireless);
+	if (cWirelessInterfaces == NULL)
+		return NULL;
+	
+	GList *pWirelessInterfaces = NULL;
+	int i;
+	for (i = 0; cWirelessInterfaces[i] != NULL; i ++)
+	{
+		if (i < 2)
+			continue;
+		gchar *str = cWirelessInterfaces[i];
+		while (*str == ' ')
+			str ++;
+		gchar *str2 = strchr (str, ' ');
+		if (str2)
+			*str2 = '\0';
+		pWirelessInterfaces = g_list_prepend (pWirelessInterfaces, g_strdup (str));
+	}
+	g_strfreev (cWirelessInterfaces);
+	
+	return pWirelessInterfaces;
+}
+
+GList *cd_netmonitor_get_available_interfaces (GList *pWirelessInterfaces)
+{
+	// on recupere le contenu du pipe.
 	GList *pList = NULL;
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -283,46 +321,75 @@ GList *cd_netmonitor_get_available_interfaces (void)
 		g_error_free(erreur);
 		return NULL;
 	}
-	else
+	g_return_val_if_fail (cContent != NULL, NULL);
+	
+	// on extrait les interfaces de chaque ligne.
+	GList *wi;
+	gboolean bIsWireless;
+	int iNumLine = 1;
+	gchar *tmp = cContent, *str;
+	gchar *cInterface;
+	long long int iReceivedBytes, iTransmittedBytes;
+	do
 	{
-		//Inter-|sta|  Quality       |  Discarded packets
-		//face |tus|link level noise| nwid crypt  misc
-		//eth2: f0   15.  24.    4.   181     0     0
-		gchar *cWireless = NULL;
-		gchar **cWirelessInterfaces = NULL;
-		g_file_get_contents ("/proc/net/wireless", &cWireless, &length, NULL);
-		if (cWireless != NULL);
-			cWirelessInterfaces = g_strsplit (cWireless, "\n", -1);
-		
-		int iNumLine = 1;
-		gchar *tmp = cContent, *str;
-		gchar *cInterface;
-		long long int iReceivedBytes, iTransmittedBytes;
-		do
+		if (iNumLine > 3 && *tmp != '\0')  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
 		{
-			if (iNumLine > 3 && *tmp != '\0')  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
+			while (*tmp == ' ')  // on saute les espaces.
+				tmp ++;
+			
+			str = strchr (tmp, ':');
+			if (str)
 			{
-				while (*tmp == ' ')  // on saute les espaces.
-					tmp ++;
-				
-				str = strchr (tmp, ':');
-				if (str)
+				*str = '\0';
+				bIsWireless = FALSE;
+				// on cherche si c'est du sans fil.
+				for (wi = pWirelessInterfaces; wi != NULL; wi = wi->next)
 				{
-					*str = '\0';
-					/// chercher si c'est du filaire ou pas, en regardant dans /proc/net/wireless ...
-					cInterface = g_strdup (tmp);
-					pList = g_list_prepend (pList, cInterface);
-					tmp = str+1;
+					if (strcmp (wi->data, tmp) == 0)
+					{
+						bIsWireless = TRUE;
+						break;
+					}
 				}
+				
+				if (bIsWireless)
+					cInterface = g_strdup_printf ("%s (wifi)", tmp);
+				else if (pWirelessInterfaces != NULL)
+					cInterface = g_strdup_printf ("%s (ethernet)", tmp);
+				else
+					cInterface = g_strdup (tmp);
+				
+				pList = g_list_prepend (pList, cInterface);
+				tmp = str+1;
 			}
-			tmp = strchr (tmp, '\n');
-			if (tmp == NULL)
-				break;
-			tmp ++;
-			iNumLine ++;
 		}
-		while (1);
-		g_free (cContent);
+		tmp = strchr (tmp, '\n');
+		if (tmp == NULL)
+			break;
+		tmp ++;
+		iNumLine ++;
 	}
+	while (1);
+	g_free (cContent);
+	
 	return pList;
+}
+
+int cd_netmonitor_check_interface (const gchar *cInterface)
+{
+	GList *pList = cd_netmonitor_get_available_interfaces (NULL);
+	gpointer s = g_list_find_custom (pList, cInterface, (GCompareFunc)strcmp);
+	g_list_foreach (pList, (GFunc)g_free, NULL);
+	g_list_free (pList);
+	if (s == NULL)
+		return 0;
+	
+	GList *pWirelessInterfaces = cd_netmonitor_get_wireless_interfaces ();
+	s = g_list_find_custom (pList, cInterface, (GCompareFunc)strcmp);
+	g_list_foreach (pWirelessInterfaces, (GFunc)g_free, NULL);
+	g_list_free (pWirelessInterfaces);
+	if (s == NULL)
+		return 1;
+	else
+		return 2;
 }

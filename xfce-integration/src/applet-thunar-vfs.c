@@ -147,7 +147,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	ThunarVfsPath *pThunarPath = thunar_vfs_path_new(cBaseURI, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : couldn't read %s (%s)", cBaseURI, erreur->message);
+		cd_warning ("couldn't read %s (%s)", cBaseURI, erreur->message);
 		g_error_free (erreur);
 		return;
 	}
@@ -155,7 +155,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	// distinguer les mounts points du reste
 	ThunarVfsVolume *pThunarVolume = thunar_find_volume_from_path (pThunarPath);
 	if (pThunarVolume != NULL)
-		cd_message (" correspond a un volume");
+		cd_debug (" correspond a un volume");
 	
 	ThunarVfsInfo *pThunarVfsInfo = thunar_vfs_info_new_for_path(pThunarPath, &erreur);
 	thunar_vfs_path_unref(pThunarPath);
@@ -164,9 +164,8 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 		/* Si on a trouve un volume, le chemin peut ne pas exister et donc cette erreur peut etre acceptable */
 		if (pThunarVolume == NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("couldn't get info about %s : %s", cBaseURI, erreur->message);
 			g_error_free (erreur);
-			thunar_vfs_info_unref(pThunarVfsInfo);
 			return;
 		}
 		g_error_free (erreur);
@@ -204,7 +203,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
         if( pThunarMimeInfo )
         {
             const gchar *cMimeType = thunar_vfs_mime_info_get_name (pThunarMimeInfo);
-            cd_message ("  cMimeType : %s", cMimeType);
+            cd_debug ("  cMimeType : %s", cMimeType);
             if ( *cIconName == NULL && cMimeType && strcmp (cMimeType, "application/x-desktop") == 0)
             {
                 thunar_vfs_info_unref(pThunarVfsInfo);

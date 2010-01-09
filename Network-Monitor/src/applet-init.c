@@ -98,24 +98,54 @@ CD_APPLET_INIT_BEGIN
 	_set_data_renderer (myApplet, FALSE);
 	myData.iPreviousQuality = -1;  // force le dessin.
 	
+	//\___________ Avant toute chose on se connecte a NM sur le bus (signaux Wifi actif et reseau actif)
 	myData.bDbusConnection = cd_NetworkMonitor_connect_to_bus ();
+	
 	if (myData.bDbusConnection)
 	{
-		cd_debug("Network-Monitor : Dbus Service found, using Dbus connection");
+		// on recupere la connection active sur l'interface souhaitée, ou la 1ere connexion active si aucune interface n'est specifiee.
 		if (! cd_NetworkMonitor_get_active_connection_info())  // si aucune connexion courante, on parcourt la liste des devices connus, et on choisit dedans.
 		{
 			cd_NetworkMonitor_get_device ();
 		}
-		cd_NetworkMonitor_draw_icon ();
 	}
-	if (myConfig.bModeWifi)
+	
+	if (myData.cDevice == NULL)  // soit NM n'est pas present, soit on a specifie une interface qui n'existe pas.
 	{
-		if (myData.cDevice == NULL)  // on passe a la methode manuelle
-			cd_netmonitor_launch_wifi_task (myApplet);  // sinon les signaux sont connectes.
+		if (myConfig.cInterface != NULL)  // on a specifie une interface.
+		{
+			// on verifie que cette interface existe.
+			int iType = cd_netmonitor_check_interface (myConfig.cInterface);
+			if (iType == 0)  // l'interface n'existe pas.
+			{
+				cd_NetworkMonitor_draw_no_wireless_extension ();
+				
+				/// rajouter une embleme de warning ...
+				
+			}
+			else  // l'interface existe.
+			{
+				if (iType == 2 && myConfig.bModeWifi)  // sans fil.
+				{
+					cd_netmonitor_launch_wifi_task (myApplet);
+				}
+				else
+				{
+					cd_netmonitor_launch_netspeed_task (myApplet);
+				}
+			}
+		}
+		else  // aucune interface n'est specifiee.
+		{
+			
+		}
 	}
 	else
 	{
-		cd_netmonitor_launch_netspeed_task (myApplet);  // NM ne nous donne pas la vitesse de la connexion.
+		if (myData.bWiredExt || ! myConfig.bModeWifi)  // NM ne nous donne pas la vitesse de la connexion.
+			cd_netmonitor_launch_netspeed_task (myApplet);
+		else
+			cd_NetworkMonitor_draw_icon ();
 	}
 	
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
