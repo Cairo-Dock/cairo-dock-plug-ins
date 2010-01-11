@@ -636,10 +636,10 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 
 
 
-gboolean cd_dbus_main_start_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gchar **cModuleInstancePath, GError **error)
+/*gboolean cd_dbus_main_start_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gchar **cModuleInstancePath, GError **error)
 {
 	
-}
+}*/
 
 gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error)
 {
