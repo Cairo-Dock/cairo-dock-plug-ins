@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:BOXED,POINTER (/tmp/dbus-binding-tool-c-marshallers.SY722U:1) */
+/* BOOLEAN:BOXED,POINTER (/tmp/dbus-binding-tool-c-marshallers.DTM15U:1) */
 extern void dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__BOXED_POINTER (GClosure     *closure,
                                                                          GValue       *return_value,
                                                                          guint         n_param_values,
@@ -100,7 +100,7 @@ dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__BOXED_POINTER (GClosure     *closu
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.SY722U:2) */
+/* BOOLEAN:STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.DTM15U:2) */
 extern void dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_STRING_POINTER (GClosure     *closure,
                                                                                  GValue       *return_value,
                                                                                  guint         n_param_values,
@@ -149,7 +149,7 @@ dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_STRING_POINTER (GClosure   
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,INT,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.SY722U:3) */
+/* BOOLEAN:STRING,INT,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.DTM15U:3) */
 extern void dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER (GClosure     *closure,
                                                                                      GValue       *return_value,
                                                                                      guint         n_param_values,
@@ -200,7 +200,7 @@ dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER (GClosur
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.SY722U:4) */
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.DTM15U:4) */
 extern void dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                                           GValue       *return_value,
                                                                           guint         n_param_values,
@@ -256,17 +256,18 @@ static const DBusGMethodInfo dbus_glib_cd_dbus_sub_applet_methods[] = {
   { (GCallback) cd_dbus_sub_applet_set_quick_info, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_STRING_POINTER, 0 },
   { (GCallback) cd_dbus_sub_applet_set_label, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_STRING_POINTER, 77 },
   { (GCallback) cd_dbus_sub_applet_set_icon, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_STRING_POINTER, 146 },
-  { (GCallback) cd_dbus_sub_applet_animate, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER, 214 },
-  { (GCallback) cd_dbus_sub_applet_show_dialog, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER, 300 },
-  { (GCallback) cd_dbus_sub_applet_add_sub_icons, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__BOXED_POINTER, 386 },
-  { (GCallback) cd_dbus_sub_applet_remove_sub_icon, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_POINTER, 452 },
+  { (GCallback) cd_dbus_sub_applet_set_emblem, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER, 214 },
+  { (GCallback) cd_dbus_sub_applet_animate, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER, 298 },
+  { (GCallback) cd_dbus_sub_applet_show_dialog, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_INT_STRING_POINTER, 384 },
+  { (GCallback) cd_dbus_sub_applet_add_sub_icons, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__BOXED_POINTER, 470 },
+  { (GCallback) cd_dbus_sub_applet_remove_sub_icon, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_POINTER, 536 },
 };
 
 const DBusGObjectInfo dbus_glib_cd_dbus_sub_applet_object_info = {
   0,
   dbus_glib_cd_dbus_sub_applet_methods,
-  7,
-"org.cairodock.CairoDock.subapplet\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetLabel\0S\0cLabel\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetIcon\0S\0cImage\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0ShowDialog\0S\0message\0I\0s\0iDuration\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AddSubIcons\0S\0pIconFields\0I\0as\0\0org.cairodock.CairoDock.subapplet\0RemoveSubIcon\0S\0cIconID\0I\0s\0\0\0",
+  8,
+"org.cairodock.CairoDock.subapplet\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetLabel\0S\0cLabel\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetIcon\0S\0cImage\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetEmblem\0S\0cImage\0I\0s\0iPosition\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0ShowDialog\0S\0message\0I\0s\0iDuration\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AddSubIcons\0S\0pIconFields\0I\0as\0\0org.cairodock.CairoDock.subapplet\0RemoveSubIcon\0S\0cIconID\0I\0s\0\0\0",
 "org.cairodock.CairoDock.subapplet\0on_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_middle_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_scroll_sub_icon\0org.cairodock.CairoDock.subapplet\0on_build_menu_sub_icon\0org.cairodock.CairoDock.subapplet\0on_menu_select_sub_icon\0org.cairodock.CairoDock.subapplet\0on_drop_data_sub_icon\0\0",
 "\0"
 };

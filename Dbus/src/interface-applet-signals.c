@@ -274,6 +274,8 @@ static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContaine
 
 gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
 {
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -297,6 +299,8 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 
 gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer)
 {
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -314,6 +318,8 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 
 gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection)
 {
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -335,6 +341,8 @@ static void _delete_menu (GtkMenuShell *menu, CairoDockModuleInstance *myApplet)
 }
 gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
 {
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -420,26 +428,47 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 	}
 }
 
-void cd_dbus_emit_init_signal (CairoDockModuleInstance *pModuleInstance)
+
+gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet)
 {
 	g_print ("%s ()\n", __func__);
-	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	if (pDbusApplet == NULL)
-		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
+	g_signal_emit (pDbusApplet,
+		s_iSignals[INIT_MODULE],
+		0,
+		NULL);
+	return FALSE;
+}
+gboolean cd_dbus_emit_init_module_when_launched (dbusApplet *pDbusApplet)
+{
+	g_print ("%s ()\n", __func__);
+	if (pDbusApplet->iInitDelay == 0)
+	{
+		int iPid = cd_dbus_applet_is_running (pDbusApplet->cModuleName);
+		if (iPid == 0)
+		{
+			pDbusApplet->iNbInitTries ++;
+			return (pDbusApplet->iNbInitTries < 10);  // ca fait 5s.
+		}
+	}
+	
+	pDbusApplet->iInitDelay ++;
+	if (pDbusApplet->iInitDelay < 3)  // 1.5s de tempo.
+		return TRUE;
 	
 	g_signal_emit (pDbusApplet,
 		s_iSignals[INIT_MODULE],
 		0,
 		NULL);
+	return FALSE;
 }
-
 void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
 	g_print ("%s ()\n", __func__);
-	cd_dbus_emit_init_signal (pModuleInstance);
 	
+	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
 	
+	//\_____________ On se souvient qu'il faut lancer cette applet au demarrage.
 	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))
 	{
 		gchar *str = myData.cActiveModules;
@@ -453,9 +482,36 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 			G_TYPE_INVALID);
 	}
 	
-	if (pModuleInstance->pModule->fLastLoadingTime != -1)  // le registering a ete fait auparavant, donc l'applet n'est probablement pas lancee.
+	//\_____________ On cree l'objet sur le bus.
+	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
+	if (pDbusApplet == NULL)
+		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
+	g_return_if_fail (pDbusApplet != NULL);
+	
+	//\_____________ On lance le script distant s'il n'est pas deja lance (notamment si on vient d'un chargement auto).
+	gboolean bAppletHasBeenLaunched = FALSE;
+	if (pModuleInstance->pModule->fLastLoadingTime == -2)  // on vient d'un Register lance par l'applet, donc inutile de la lancer.
 	{
-		cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
+		pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // cf cd_dbus_main_register_new_module() pour les explications.
+	}
+	else
+	{
+		if (pModuleInstance->pModule->fLastLoadingTime == -1)
+			pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // cf cd_dbus_main_register_new_module() pour les explications.
+		bAppletHasBeenLaunched = cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
+	}
+	
+	//\_____________ On emet le signal d'init.
+	if (pDbusApplet->iSidEmitInit == 0)
+	{
+		if (bAppletHasBeenLaunched)
+		{
+			pDbusApplet->iNbInitTries = 0;
+			pDbusApplet->iInitDelay = 0;
+			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_when_launched, pDbusApplet);
+		}
+		else
+			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);  // soit on vient d'un appel a la methode Register par l'applet, qui est donc en train d'attendre le retour de cette fonction, soit on vient d'un chargement automatique, auquel cas l'applet distante n'est meme pas encore lancee. On laisse donc une tempo pour lancer l'applet et lui laisser le temps de recuperer l'objet associe sur le bus.
 	}
 }
 

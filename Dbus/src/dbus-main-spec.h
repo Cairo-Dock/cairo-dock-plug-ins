@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:STRING,INT,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:1) */
+/* BOOLEAN:STRING,INT,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:1) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER (GClosure     *closure,
                                                                                              GValue       *return_value,
                                                                                              guint         n_param_values,
@@ -108,7 +108,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER 
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:2) */
+/* BOOLEAN:STRING,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:2) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
                                                                             GValue       *return_value,
                                                                             guint         n_param_values,
@@ -157,7 +157,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *cl
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,STRING,STRING,STRING,INT,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:3) */
+/* BOOLEAN:STRING,STRING,STRING,STRING,INT,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:3) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_INT_STRING_POINTER (GClosure     *closure,
                                                                                                     GValue       *return_value,
                                                                                                     guint         n_param_values,
@@ -214,7 +214,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_INT_STRING_P
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:4) */
+/* BOOLEAN:POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:4) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__POINTER (GClosure     *closure,
                                                              GValue       *return_value,
                                                              guint         n_param_values,
@@ -259,7 +259,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:5) */
+/* BOOLEAN:BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:5) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__BOOLEAN_POINTER (GClosure     *closure,
                                                                      GValue       *return_value,
                                                                      guint         n_param_values,
@@ -306,7 +306,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__BOOLEAN_POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:6) */
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:6) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                                     GValue       *return_value,
                                                                     guint         n_param_values,
@@ -353,7 +353,7 @@ dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOLEAN:STRING,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.WN0Y2U:7) */
+/* BOOLEAN:STRING,STRING,STRING,STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.H9705U:7) */
 extern void dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_POINTER (GClosure     *closure,
                                                                                          GValue       *return_value,
                                                                                          guint         n_param_values,
@@ -425,17 +425,18 @@ static const DBusGMethodInfo dbus_glib_cd_dbus_main_methods[] = {
   { (GCallback) cd_dbus_main_set_quick_info, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 588 },
   { (GCallback) cd_dbus_main_set_label, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 690 },
   { (GCallback) cd_dbus_main_set_icon, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_POINTER, 784 },
-  { (GCallback) cd_dbus_main_animate, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER, 877 },
-  { (GCallback) cd_dbus_main_show_dialog, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER, 988 },
-  { (GCallback) cd_dbus_main_register_new_module, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_INT_STRING_POINTER, 1099 },
-  { (GCallback) cd_dbus_main_unregister_module, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_POINTER, 1234 },
+  { (GCallback) cd_dbus_main_set_emblem, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER, 877 },
+  { (GCallback) cd_dbus_main_animate, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER, 986 },
+  { (GCallback) cd_dbus_main_show_dialog, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_INT_STRING_STRING_STRING_POINTER, 1097 },
+  { (GCallback) cd_dbus_main_register_new_module, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_STRING_STRING_STRING_INT_STRING_POINTER, 1208 },
+  { (GCallback) cd_dbus_main_unregister_module, dbus_glib_marshal_cd_dbus_main_BOOLEAN__STRING_POINTER, 1343 },
 };
 
 const DBusGObjectInfo dbus_glib_cd_dbus_main_object_info = {
   0,
   dbus_glib_cd_dbus_main_methods,
-  17,
-"org.cairodock.CairoDock\0Reboot\0S\0\0org.cairodock.CairoDock\0Quit\0S\0\0org.cairodock.CairoDock\0ShowDesklet\0S\0widgetLayer\0I\0b\0\0org.cairodock.CairoDock\0ReloadModule\0S\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ActivateModule\0S\0cModuleName\0I\0s\0bActivate\0I\0b\0\0org.cairodock.CairoDock\0ShowDock\0S\0show\0I\0b\0\0org.cairodock.CairoDock\0CreateLauncherFromScratch\0S\0cIconFile\0I\0s\0cLabel\0I\0s\0cCommand\0I\0s\0cParentDockName\0I\0s\0\0org.cairodock.CairoDock\0LoadLauncherFromFile\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0ReloadLauncher\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0RemoveLauncher\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetLabel\0S\0cLabel\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetIcon\0S\0cImage\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ShowDialog\0S\0message\0I\0s\0iDuration\0I\0i\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0RegisterNewModule\0S\0cModuleName\0I\0s\0cDescription\0I\0s\0cAuthor\0I\0s\0cVersion\0I\0s\0iCategory\0I\0i\0cShareDataDir\0I\0s\0\0org.cairodock.CairoDock\0UnregisterModule\0S\0cModuleName\0I\0s\0\0\0",
+  18,
+"org.cairodock.CairoDock\0Reboot\0S\0\0org.cairodock.CairoDock\0Quit\0S\0\0org.cairodock.CairoDock\0ShowDesklet\0S\0widgetLayer\0I\0b\0\0org.cairodock.CairoDock\0ReloadModule\0S\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ActivateModule\0S\0cModuleName\0I\0s\0bActivate\0I\0b\0\0org.cairodock.CairoDock\0ShowDock\0S\0show\0I\0b\0\0org.cairodock.CairoDock\0CreateLauncherFromScratch\0S\0cIconFile\0I\0s\0cLabel\0I\0s\0cCommand\0I\0s\0cParentDockName\0I\0s\0\0org.cairodock.CairoDock\0LoadLauncherFromFile\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0ReloadLauncher\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0RemoveLauncher\0S\0cDesktopFile\0I\0s\0\0org.cairodock.CairoDock\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetLabel\0S\0cLabel\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetIcon\0S\0cImage\0I\0s\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0SetEmblem\0S\0cImage\0I\0s\0iPosition\0I\0i\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0ShowDialog\0S\0message\0I\0s\0iDuration\0I\0i\0cIconName\0I\0s\0cIconCommand\0I\0s\0cModuleName\0I\0s\0\0org.cairodock.CairoDock\0RegisterNewModule\0S\0cModuleName\0I\0s\0cDescription\0I\0s\0cAuthor\0I\0s\0cVersion\0I\0s\0iCategory\0I\0i\0cShareDataDir\0I\0s\0\0org.cairodock.CairoDock\0UnregisterModule\0S\0cModuleName\0I\0s\0\0\0",
 "\0",
 "\0"
 };

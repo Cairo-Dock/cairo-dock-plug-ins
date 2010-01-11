@@ -32,6 +32,8 @@ gboolean cd_dbus_sub_applet_set_label (dbusSubApplet *pDbusSubApplet, const gcha
 
 gboolean cd_dbus_sub_applet_set_icon (dbusSubApplet *pDbusSubApplet, const gchar *cImage, const gchar *cIconID, GError **error);
 
+gboolean cd_dbus_sub_applet_set_emblem (dbusSubApplet *pDbusSubApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error);
+
 gboolean cd_dbus_sub_applet_animate (dbusSubApplet *pDbusSubApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error);
 
 gboolean cd_dbus_sub_applet_show_dialog (dbusSubApplet *pDbusSubApplet, const gchar *message, gint iDuration, const gchar *cIconID, GError **error);
@@ -48,9 +50,18 @@ gboolean cd_dbus_applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 
 gboolean cd_dbus_applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, GError **error);
 
+gboolean cd_dbus_applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, GError **error);
+
 gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, GError **error);
 
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error);
+
+gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, gint *iDemandID, GError **error);
+
+gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message, gdouble fInitialValue, gint *iDemandID, GError **error);
+
+gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, gint *iDemandID, GError **error);
+
 
 gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error);
 

@@ -36,7 +36,9 @@ void cd_dbus_unregister_notifications (void);
 
 gboolean cd_dbus_applet_is_used (const gchar *cModuleName);
 
-void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath);
+int cd_dbus_applet_is_running (const gchar *cModuleName);
+
+gboolean cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath);
 
 
 #endif

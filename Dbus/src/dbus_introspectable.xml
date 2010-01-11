@@ -52,6 +52,13 @@
 			<arg name="cIconCommand" type="s" direction="in"/>
 			<arg name="cModuleName" type="s" direction="in"/>
 		</method>
+		<method name="SetEmblem">
+			<arg name="cImage" type="s" direction="in"/>
+			<arg name="iPosition" type="i" direction="in"/>
+			<arg name="cIconName" type="s" direction="in"/>
+			<arg name="cIconCommand" type="s" direction="in"/>
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
 		<method name="Animate">
 			<arg name="cAnimation" type="s" direction="in"/>
 			<arg name="iNbRounds" type="i" direction="in"/>

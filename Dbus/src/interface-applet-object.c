@@ -168,6 +168,8 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 	
 	if (pDbusApplet != NULL)
 	{
+		if (pDbusApplet->iSidEmitInit != 0)
+			g_source_remove (pDbusApplet->iSidEmitInit);
 		if (pDbusApplet->pSubApplet != NULL)
 		{
 			g_object_unref (pDbusApplet->pSubApplet);
@@ -276,13 +278,15 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 	return iPid;
 }
 
-void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
+gboolean cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
 {
 	g_print ("%s (%s)\n", __func__, cModuleName);
 	// on verifie que le processus distant n'est pas deja lance.
 	int iPid = cd_dbus_applet_is_running (cModuleName);
 	if (iPid > 0)
 	{
+		/*g_print ("  l'applet est deja lancee\n");
+		return FALSE;*/
 		g_print ("  l'applet est deja lancee, on la tue sauvagement.\n");
 		gchar *cCommand = g_strdup_printf ("kill %d", iPid);
 		int r = system (cCommand);
@@ -290,21 +294,6 @@ void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar
 	}
 	else
 		g_print ("  l'applet '%s' n'est pas en cours d'execution\n", cModuleName);
-	/*gchar *cCommand = g_strdup_printf ("pgrep -f \"\\./%s\"", cModuleName);
-	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-	if (cResult != NULL)
-	{
-		g_print ("  l'applet est deja lancee, on la tue sauvagement.\n");
-		g_free (cCommand);
-		cCommand = g_strdup_printf ("kill %s", cResult);
-		g_free (cResult);
-		cResult = NULL;
-		int r = system (cCommand);
-	}
-	else
-		g_print ("  l'applet '%s' n'est pas en cours d'execution (d'apres la commande '%s'\n", cModuleName, cCommand);
-	g_free (cCommand);*/
-	
 	
 	// on le lance.
 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\"", cDirPath, cModuleName);
@@ -312,4 +301,5 @@ void cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar
 	cairo_dock_launch_command (cCommand);
 	g_print ("applet lancee\n");
 	g_free (cCommand);
+	return TRUE;
 }

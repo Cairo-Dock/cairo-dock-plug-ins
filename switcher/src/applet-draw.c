@@ -516,7 +516,7 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 }
 static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
 {
-	g_print (" + %s\n", pIcon->cName);
+	//g_print (" + %s\n", pIcon->cName);
 	// on recupere la taille de l'icone.
 	CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 	if (pParentDock == NULL)
@@ -634,7 +634,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			g_object_set (pMenuItem, "height-request", 3, NULL);
 			
 			// on ajoute les fenetres du viewport au menu.
-			g_print (" listing des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
+			//g_print (" listing des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
 			cd_switcher_foreach_window_on_viewport (iNumDesktop,
 				iNumViewportX,
 				iNumViewportY,

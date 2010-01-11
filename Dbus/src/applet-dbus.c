@@ -70,6 +70,61 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 	dbus_g_connection_register_g_object(pMainObject->connection, "/org/cairodock/CairoDock", G_OBJECT(pMainObject));
 }
 
+static gboolean _cd_dbus_auto_load_distant_applet_in_dir (const gchar *cModuleName, const gchar *cFilePath, const gchar *cThirdPartyPath)
+{
+	g_print ("%s (%s)\n", __func__, cModuleName);
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFilePath);
+	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	
+	GError *error = NULL;
+	
+	gchar *cDescription = g_key_file_get_string (pKeyFile, "Register", "description", &error);
+	if (error != NULL)
+	{
+		cd_warning (error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	gchar *cAuthor = g_key_file_get_string (pKeyFile, "Register", "author", &error);
+	if (error != NULL)
+	{
+		cd_warning (error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	gchar *cVersion = g_key_file_get_string (pKeyFile, "Register", "version", &error);
+	if (error != NULL)
+	{
+		cd_warning (error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	int iCategory = g_key_file_get_integer (pKeyFile, "Register", "category", &error);
+	if (error != NULL)
+	{
+		cd_warning (error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	
+	gchar *cShareDataDir = g_strdup_printf ("%s/%s", cThirdPartyPath, cModuleName);
+	
+	g_key_file_free (pKeyFile);
+	
+	cd_dbus_main_register_new_module (NULL, cModuleName, cDescription, cAuthor, cVersion, iCategory, cShareDataDir, &error);
+	g_free (cDescription);
+	g_free (cAuthor);
+	g_free (cVersion);
+	g_free (cShareDataDir);
+	if (error != NULL)
+	{
+		cd_warning (error->message);
+		g_error_free (error);
+		return FALSE;
+	}
+	return TRUE;
+}
+
 static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 {
 	GError *erreur = NULL;
@@ -89,8 +144,17 @@ static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 		cFileName = g_dir_read_name (dir);
 		if (cFileName == NULL)
 			break ;
-		g_string_printf (sPath, "%s/%s", cThirdPartyPath, cFileName);
-		cd_dbus_launch_distant_applet_in_dir (cFileName, sPath->str);
+		
+		g_string_printf (sPath, "%s/%s/auto-load.conf", cThirdPartyPath, cFileName);
+		if (g_file_test (sPath->str, G_FILE_TEST_EXISTS))
+		{
+			_cd_dbus_auto_load_distant_applet_in_dir (cFileName, sPath->str, cThirdPartyPath);
+		}
+		else
+		{
+			g_string_printf (sPath, "%s/%s", cThirdPartyPath, cFileName);
+			cd_dbus_launch_distant_applet_in_dir (cFileName, sPath->str);
+		}
 	}
 	while (1);
 	g_dir_close (dir);
@@ -494,6 +558,34 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 	return TRUE;
 }
 
+gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cImage, gint iPosition, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
+{
+	if (! myConfig.bEnableSetIcon)
+		return FALSE;
+	
+	nullify_argument (cIconName);
+	nullify_argument (cIconCommand);
+	nullify_argument (cModuleName);
+	
+	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
+	if (pIcon == NULL)
+		return FALSE;
+	
+	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
+	g_return_val_if_fail (pContainer != NULL, FALSE);
+	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	
+	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer, pIconContext);
+	pEmblem->iPosition = iPosition;
+	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
+	cairo_dock_free_emblem (pEmblem);
+	
+	cairo_destroy (pIconContext);
+	cairo_dock_redraw_icon (pIcon, pContainer);
+	return TRUE;
+}
+
 gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnimation, gint iNbRounds, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error)
 {
 	if (! myConfig.bEnableAnimateIcon || cAnimation == NULL)
@@ -544,18 +636,18 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 
 
 
-static gboolean _emit_init_module_delayed (CairoDockModuleInstance *pInstance)
+gboolean cd_dbus_main_start_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gchar **cModuleInstancePath, GError **error)
 {
-	cd_dbus_emit_init_signal (pInstance);
-	return FALSE;
+	
 }
+
 gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
-	
 	g_print ("%s (%s)\n", __func__, cModuleName);
-	// on cree et on enregistre un nouveau module s'il n'existe pas deja.
+	
+	//\____________ on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule != NULL)
 	{
@@ -594,9 +686,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		pModule->pInterface->initModule = cd_dbus_emit_on_init_module;
 		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
 		pModule->pInterface->reloadModule = cd_dbus_emit_on_reload_module;
-		cairo_dock_load_manual_module (pModule);
-		
-		if (pModule->pVisitCard->cDockVersionOnCompilation == NULL)
+		if (! cairo_dock_register_module (pModule))
 		{
 			cairo_dock_free_module (pModule);
 			cd_warning ("registration of '%s' has failed.", cModuleName);
@@ -605,54 +695,58 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		}
 	}
 	
-	// si l'applet ne doit pas etre utilisee, on en reste la.
+	//\____________ si l'applet n'est pas activee en conf, on en reste la.
 	gboolean bAppletIsUsed = cd_dbus_applet_is_used (cModuleName);
 	if (! bAppletIsUsed)
 	{
 		g_print ("applet %s has been registered, but is not wanted by the user.\n", cModuleName);
-		g_set_error (error, 1, 1, "applet %s has been registered, but is not wanted by the user.", cModuleName);
-		return FALSE;
+		//g_set_error (error, 1, 1, "applet %s has been registered, but is not wanted by the user.", cModuleName);
+		//return FALSE;
+		return TRUE;
 	}
 	
-	// sinon on active le module.
-	pModule->fLastLoadingTime = -1;  // indique a la fonction d'init que c'est l'applet qui demande a s'activer (activation automatique ou manuelle), plutot que l'utilisateur (activation par panneau de conf).
+	//\____________ sinon on active le module.
+	if (pDbusCallback != NULL)  // register par appel de la methode Register lancee par l'applet distante.
+		pModule->fLastLoadingTime = -2;  // indique a la fonction d'init qu'il est inutile de lancer le script.
+	else  // register par chargement auto.
+		pModule->fLastLoadingTime = -1;   // juste pour dire qu'il faut mettre le fLastLoadingTime a une vler grande, car au lancement du dock, on passe ici en etant dans la fonction cairo_dock_activate_modules_from_list(). Or celle-ci desactive aussi tous les "vieux" modules.. 
 	GError *tmp_erreur = NULL;
-	gboolean bAlreadyInstanciated = FALSE;
 	cairo_dock_activate_module (pModule, &tmp_erreur);
-	if (tmp_erreur != NULL)
+	
+	CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
+	g_return_val_if_fail (pModule->pInstancesList != NULL, FALSE);
+	
+	if (tmp_erreur != NULL)  // l'applet n'a pas ete activee, car elle l'etait deja (cas ou on relance a la main une applet distante qui aurait plante, ou cas ou une applet appelle la methode Register alors qu'on l'avait activee/desactivee avant.).
 	{
 		cd_warning ("%s (maybe the applet didn't stop correctly before)", tmp_erreur->message);
 		g_error_free (tmp_erreur);
 		tmp_erreur = NULL;
-		bAlreadyInstanciated = TRUE;  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque de toute facon on le lance avec un delai, et l'objet distant existait deja.
-	}
-	g_return_val_if_fail (pModule->pInstancesList != NULL, FALSE);
-	
-	// on retarde l'emission du signal 'init'.
-	CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
-	if (! bAlreadyInstanciated)
-	{
-		if (pInstance->pDock)
-		{
-			cairo_dock_update_dock_size (pInstance->pDock);
-			cairo_dock_redraw_container (pInstance->pContainer);
-		}
-	}
-	else  // cas ou l'applet etait deja instanciee, on simule un stop/init pour repartir sur de bonnes bases.
-	{
-		g_print ("applet already instanciated before, reset it\n");
-		cd_dbus_action_on_stop_module (pInstance);
+		
+		cd_dbus_action_on_stop_module (pInstance);  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque l'icone est l'objet distant existent deja. On se contente de la nettoyer, et on emmettra un signal d'init dans qques temps.
 		cd_dbus_action_on_init_module (pInstance);
+		
+		dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pInstance);
+		g_return_val_if_fail (pDbusApplet != NULL, FALSE);
+		if (pDbusApplet->iSidEmitInit == 0)
+			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);
+		return TRUE;
 	}
-	g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.
+	
+	if (pInstance->pDock)  // la fonction cairo_dock_activate_module() ne fait pas ca.
+	{
+		cairo_dock_update_dock_size (pInstance->pDock);
+		cairo_dock_redraw_container (pInstance->pContainer);
+	}
+	
+	///g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.
 	
 	g_print ("applet has been successfully instanciated, will be initialized in 500ms...\n");
-	///pModule->fLastLoadingTime = time (NULL) + 1e6;  // pour ne pas qu'il soit desactive lors d'un reload general, car il n'est pas dans la liste des modules actifs du fichier de conf. => a priori maintenant il l'est.
 	return TRUE;
 }
 
 gboolean cd_dbus_main_unregister_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, GError **error)
 {
+	g_print ("%s (%s)\n", __func__, cModuleName);
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	g_return_val_if_fail (pModule != NULL, FALSE);
 	

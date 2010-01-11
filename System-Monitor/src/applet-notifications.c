@@ -70,6 +70,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			cd_sysmonitor_get_ram_data (myApplet);  // le thread ne passe pas par la => pas de conflit.
 		
 		// On affiche tout ca.
+		unsigned long long ram = myData.ramFree + myData.ramCached + myData.ramBuffers;
 		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n %s : %d MHz (%d %s)\n %s : %s / %s : %s\n%s : %d%s - %s : %d%s\n %s : %d%s - %s : %d%s%s",
 			myIcon, myContainer, cGCInfos ? 15e3 : 12e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
@@ -79,7 +80,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			D_("Up time"), cUpTime,
 			D_("Activity time"), cActivityTime,
 			D_("Memory"), _convert_from_kb (myData.ramTotal), _unit (myData.ramTotal),
-			D_("Free"), _convert_from_kb (myData.ramFree), _unit (myData.ramFree),
+			D_("Available"), _convert_from_kb (ram), _unit (ram),
 			D_("Cached"), _convert_from_kb (myData.ramCached), _unit (myData.ramCached),
 			D_("Buffers"), _convert_from_kb (myData.ramBuffers), _unit (myData.ramBuffers),
 			cGCInfos ? cGCInfos : "");

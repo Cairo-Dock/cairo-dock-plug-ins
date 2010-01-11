@@ -28,7 +28,7 @@
 void cd_switcher_get_current_desktop (void)
 {
 	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
-	g_print ("%s () -> %d;%d;%d\n", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	//g_print ("%s () -> %d;%d;%d\n", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
 	
@@ -39,7 +39,7 @@ void cd_switcher_get_current_desktop (void)
 
 static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLines, int *iBestNbColumns)
 {
-	g_print ("%s (%d)\n", __func__, iNbViewports);
+	//g_print ("%s (%d)\n", __func__, iNbViewports);
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
 	
@@ -54,7 +54,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 			fZoomY = myIcon->fHeight / (iNbLines * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
-			cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
+			//cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
 			if (fRatio < fMinRatio)
 			{
 				fMinRatio = fRatio;

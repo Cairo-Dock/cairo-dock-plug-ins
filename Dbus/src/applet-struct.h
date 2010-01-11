@@ -61,6 +61,9 @@ struct _dbusApplet {
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
+	gint iNbInitTries;
+	gint iInitDelay;
+	guint iSidEmitInit;
 	dbusSubApplet *pSubApplet;
 };
 typedef struct {

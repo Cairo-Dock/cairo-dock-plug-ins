@@ -107,6 +107,27 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
+
+static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	
+	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer, pIconContext);
+	pEmblem->iPosition = iPosition;
+	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
+	cairo_dock_free_emblem (pEmblem);
+	
+	cairo_destroy (pIconContext);
+	cairo_dock_redraw_icon (pIcon, pContainer);
+	return TRUE;
+}
+
 static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
@@ -151,6 +172,11 @@ gboolean cd_dbus_sub_applet_set_label (dbusSubApplet *pDbusSubApplet, const gcha
 gboolean cd_dbus_sub_applet_set_icon (dbusSubApplet *pDbusSubApplet, const gchar *cImage, const gchar *cIconID, GError **error)
 {
 	return _applet_set_icon (pDbusSubApplet->pApplet, cImage, cIconID, error);
+}
+
+gboolean cd_dbus_sub_applet_set_emblem (dbusSubApplet *pDbusSubApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
+{
+	return _applet_set_emblem (pDbusSubApplet->pApplet, cImage, iPosition, cIconID, error);
 }
 
 gboolean cd_dbus_sub_applet_animate (dbusSubApplet *pDbusSubApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error)
@@ -317,6 +343,11 @@ gboolean cd_dbus_applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	return _applet_set_icon (pDbusApplet, cImage, NULL, error);
 }
 
+gboolean cd_dbus_applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, GError **error)
+{
+	return _applet_set_emblem (pDbusApplet, cImage, iPosition, NULL, error);
+}
+
 gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, GError **error)
 {
 	return _applet_animate (pDbusApplet, cAnimation, iNbRounds, NULL, error);
@@ -324,6 +355,7 @@ gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error)
 {
+	g_print ("%s (%s)\n", __func__, message);
 	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
 }
 
