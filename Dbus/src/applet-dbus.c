@@ -162,6 +162,13 @@ static void _cd_dbus_launch_third_party_applets (const gchar *cDirPath)
 	g_free (cThirdPartyPath);
 }
 
+gboolean _launch_third_party_applets (gpointer data)
+{
+	_cd_dbus_launch_third_party_applets (MY_APPLET_SHARE_DATA_DIR);
+	
+	_cd_dbus_launch_third_party_applets (g_cCairoDockDataDir);
+	return FALSE;
+}
 void cd_dbus_launch_service (void)
 {
 	g_return_if_fail (myData.pMainObject == NULL);
@@ -175,9 +182,7 @@ void cd_dbus_launch_service (void)
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 	
 	// on lance les applets distantes.
-	_cd_dbus_launch_third_party_applets (MY_APPLET_SHARE_DATA_DIR);
-	
-	_cd_dbus_launch_third_party_applets (g_cCairoDockDataDir);
+	g_idle_add ((GSourceFunc) _launch_third_party_applets, NULL);  // on les lance avec un delai, car si l'applet DBus est lancee au demarrage du dock, on est dans la fonction cairo_dock_activate_modules_from_list(), et donc si on enregistre des applets pendant ce temps, le dock risque de recharger certaines des applets distantes (celles qui seront actives en conf et qui viendront apres DBus).
 }
 
 void cd_dbus_stop_service (void)
@@ -635,12 +640,6 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 }
 
 
-
-/*gboolean cd_dbus_main_start_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, gchar **cModuleInstancePath, GError **error)
-{
-	
-}*/
-
 gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error)
 {
 	if (! myConfig.bEnableNewModule)
@@ -709,7 +708,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 	if (pDbusCallback != NULL)  // register par appel de la methode Register lancee par l'applet distante.
 		pModule->fLastLoadingTime = -2;  // indique a la fonction d'init qu'il est inutile de lancer le script.
 	else  // register par chargement auto.
-		pModule->fLastLoadingTime = -1;   // juste pour dire qu'il faut mettre le fLastLoadingTime a une vler grande, car au lancement du dock, on passe ici en etant dans la fonction cairo_dock_activate_modules_from_list(). Or celle-ci desactive aussi tous les "vieux" modules.. 
+		pModule->fLastLoadingTime = -1;  // indique a la fonction d'init qu'il est inutile d'emettre un signal d'init.
 	GError *tmp_erreur = NULL;
 	cairo_dock_activate_module (pModule, &tmp_erreur);
 	
@@ -722,13 +721,16 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		g_error_free (tmp_erreur);
 		tmp_erreur = NULL;
 		
-		cd_dbus_action_on_stop_module (pInstance);  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque l'icone est l'objet distant existent deja. On se contente de la nettoyer, et on emmettra un signal d'init dans qques temps.
-		cd_dbus_action_on_init_module (pInstance);
-		
-		dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pInstance);
-		g_return_val_if_fail (pDbusApplet != NULL, FALSE);
-		if (pDbusApplet->iSidEmitInit == 0)
-			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);
+		if (pDbusCallback != NULL)
+		{
+			cd_dbus_action_on_stop_module (pInstance);  // donc on n'est pas passe dans l'init, ce qui n'est pas grave puisque l'icone est l'objet distant existent deja. On se contente de la nettoyer, et on emmettra un signal d'init dans qques temps.
+			cd_dbus_action_on_init_module (pInstance);
+			
+			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pInstance);
+			g_return_val_if_fail (pDbusApplet != NULL, FALSE);
+			if (pDbusApplet->iSidEmitInit == 0)
+				pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);
+		}
 		return TRUE;
 	}
 	
@@ -738,9 +740,7 @@ gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const 
 		cairo_dock_redraw_container (pInstance->pContainer);
 	}
 	
-	///g_timeout_add (500, (GSourceFunc)_emit_init_module_delayed, pInstance);  // petit hack car l'applet est en train d'attendre le retour de cette fonction. Elle ne peut donc pas recuperer l'objet maintenant. On laisse une tempo pour cela.
-	
-	g_print ("applet has been successfully instanciated, will be initialized in 500ms...\n");
+	g_print ("applet has been successfully instanciated\n");
 	return TRUE;
 }
 

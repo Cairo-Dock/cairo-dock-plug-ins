@@ -28,7 +28,23 @@
 			<arg name="message" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
 			<arg name="cIconID" type="s" direction="in"/>
+		</method>>
+		<method name="AskQuestion">
+			<arg name="cMessage" type="s" direction="in"/>
+			<arg name="cIconID" type="s" direction="in"/>
 		</method>
+		<method name="AskValue">
+			<arg name="cMessage" type="s" direction="in"/>
+			<arg name="fInitialValue" type="d" direction="in"/>
+			<arg name="fMaxlValue" type="d" direction="in"/>
+			<arg name="cIconID" type="s" direction="in"/>
+		</method>
+		<method name="AskText">
+			<arg name="cMessage" type="s" direction="in"/>
+			<arg name="cInitialText" type="s" direction="in"/>
+			<arg name="cIconID" type="s" direction="in"/>
+		</method>
+
 		<method name="AddSubIcons">
 			<arg name="pIconFields" type="as" direction="in"/>
 		</method>
@@ -56,6 +72,10 @@
 		</signal>
 		<signal name="on_drop_data_sub_icon">
 			<arg name="cReceivedData" type="s"/>
+			<arg name="cIconID" type="s"/>
+		</signal>
+		<signal name="on_answer_sub_icon">
+			<arg name="answer" type="v"/>
 			<arg name="cIconID" type="s"/>
 		</signal>
 	</interface>

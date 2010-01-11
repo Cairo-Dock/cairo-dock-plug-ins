@@ -154,6 +154,45 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	return TRUE;
 }
 
+static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	if (pDbusApplet->pDialog)
+		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
+	pDbusApplet->pDialog = cairo_dock_show_dialog_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, NULL);
+	return TRUE;
+}
+
+static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	if (pDbusApplet->pDialog)
+		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
+	pDbusApplet->pDialog = cairo_dock_show_dialog_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, NULL);
+	return TRUE;
+}
+
+static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	if (pDbusApplet->pDialog)
+		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
+	pDbusApplet->pDialog = cairo_dock_show_dialog_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
+	return TRUE;
+}
+
 
   ///////////////////////////////////////////////////
  ////////// sub-applet interface methods ///////////
@@ -184,10 +223,26 @@ gboolean cd_dbus_sub_applet_animate (dbusSubApplet *pDbusSubApplet, const gchar 
 	return _applet_animate (pDbusSubApplet->pApplet, cAnimation, iNbRounds, cIconID, error);
 }
 
-gboolean cd_dbus_sub_applet_show_dialog (dbusSubApplet *pDbusSubApplet, const gchar *message, gint iDuration, const gchar *cIconID, GError **error)
+gboolean cd_dbus_sub_applet_show_dialog (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, gint iDuration, const gchar *cIconID, GError **error)
 {
-	return _applet_show_dialog (pDbusSubApplet->pApplet, message, iDuration, cIconID, error);
+	return _applet_show_dialog (pDbusSubApplet->pApplet, cMessage, iDuration, cIconID, error);
 }
+
+gboolean cd_dbus_sub_applet_ask_question (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
+{
+	return _applet_ask_question (pDbusSubApplet->pApplet, cMessage, cIconID, error);
+}
+
+gboolean cd_dbus_sub_applet_ask_value (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID, GError **error)
+{
+	return _applet_ask_value (pDbusSubApplet->pApplet, cMessage, fInitialValue, fMaxValue, cIconID, error);
+}
+
+gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
+{
+	return _applet_ask_text (pDbusSubApplet->pApplet, cMessage, cInitialText, cIconID, error);
+}
+
 
 gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const gchar **pIconFields, GError **error)
 {
@@ -358,6 +413,25 @@ gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	g_print ("%s (%s)\n", __func__, message);
 	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
 }
+
+gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error)
+{
+	g_print ("%s (%s)\n", __func__, message);
+	return _applet_ask_question (pDbusApplet, message, NULL, error);
+}
+
+gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message, gdouble fInitialValue, gdouble fMaxValue, GError **error)
+{
+	g_print ("%s (%s)\n", __func__, message);
+	return _applet_ask_value (pDbusApplet, message, fInitialValue, fMaxValue, NULL, error);
+}
+
+gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, GError **error)
+{
+	g_print ("%s (%s)\n", __func__, message);
+	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
+}
+
 
 gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error)
 {

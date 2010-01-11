@@ -20,8 +20,20 @@
 			<arg name="iNbRounds" type="i" direction="in"/>
 		</method>
 		<method name="ShowDialog">
-			<arg name="message" type="s" direction="in"/>
+			<arg name="cMessage" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
+		</method>
+		<method name="AskQuestion">
+			<arg name="cMessage" type="s" direction="in"/>
+		</method>
+		<method name="AskValue">
+			<arg name="cMessage" type="s" direction="in"/>
+			<arg name="fInitialValue" type="d" direction="in"/>
+			<arg name="fMaxlValue" type="d" direction="in"/>
+		</method>
+		<method name="AskText">
+			<arg name="cMessage" type="s" direction="in"/>
+			<arg name="cInitialText" type="s" direction="in"/>
 		</method>
 		<method name="AddDataRenderer">
 			<arg name="cType" type="s" direction="in"/>
@@ -53,6 +65,9 @@
 		</signal>
 		<signal name="on_drop_data">
 			<arg name="cReceivedData" type="s"/>
+		</signal>
+		<signal name="on_answer">
+			<arg name="answer" type="v"/>
 		</signal>
 		
 		<signal name="on_init_module">

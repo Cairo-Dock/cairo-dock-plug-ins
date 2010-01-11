@@ -61,10 +61,11 @@ struct _dbusApplet {
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
-	gint iNbInitTries;
-	gint iInitDelay;
-	guint iSidEmitInit;
+	gint iNbInitTries;  // obsolete
+	gint iInitDelay;  // obsolete
+	guint iSidEmitInit;  // obsolete
 	dbusSubApplet *pSubApplet;
+	CairoDialog *pDialog;
 };
 typedef struct {
 	GObjectClass parent_class;
@@ -90,6 +91,7 @@ typedef enum {
 	RELOAD_MODULE,
 	INIT_MODULE,
 	STOP_MODULE,
+	ANSWER,
 	NB_SIGNALS
 } CDSignalEnum;
 

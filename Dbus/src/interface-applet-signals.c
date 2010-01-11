@@ -57,6 +57,25 @@ static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
 	g_print ("%s ()\n", __func__);
 }
 
+static void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+}
+static void g_cclosure_marshal_VOID__VALUE_STRING (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+}
+
 void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 {
 	static gboolean bFirst = TRUE;
@@ -65,6 +84,8 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
+	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE,
+		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_INVALID);  // answer
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSignals[CLIC] =
@@ -115,6 +136,14 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			NULL, NULL,
 			g_cclosure_marshal_VOID__STRING,
 			G_TYPE_NONE, 1, G_TYPE_STRING);
+	s_iSignals[ANSWER] =
+		g_signal_new("on_answer",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VALUE,
+			G_TYPE_NONE, 1, G_TYPE_VALUE);
 	s_iSignals[INIT_MODULE] =
 		g_signal_new("on_init_module",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -156,6 +185,8 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_TYPE_INT, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_drop_data",
 			G_TYPE_STRING, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_answer",
+			G_TYPE_VALUE, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_init_module",
 			G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_stop_module",
@@ -179,6 +210,8 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 		G_TYPE_NONE, G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_INVALID);  // scroll
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_STRING,
 		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);  // drop
+	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE_STRING,
+		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_STRING, G_TYPE_INVALID);  // answer
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSubSignals[CLIC] =
@@ -229,6 +262,14 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				NULL, NULL,
 				g_cclosure_marshal_VOID__STRING_STRING,
 				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
+	s_iSubSignals[ANSWER] =
+		g_signal_new("on_answer_sub_icon",
+			G_OBJECT_CLASS_TYPE(klass),
+				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+				0,
+				NULL, NULL,
+				g_cclosure_marshal_VOID__VALUE_STRING,
+				G_TYPE_NONE, 2, G_TYPE_VALUE, G_TYPE_STRING);
 	
 	// Add signals
 	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
@@ -246,6 +287,8 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 			G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_drop_data_sub_icon",
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_answer_sub_icon",
+			G_TYPE_VALUE, G_TYPE_STRING, G_TYPE_INVALID);
 	}
 }
 
@@ -404,6 +447,47 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 }
 
 
+static inline void _emit_answer (dbusApplet *pDbusApplet, CairoDialog *pDialog, GValue *v)
+{
+	Icon *pClickedIcon = pDialog->pIcon;
+	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
+	
+	if (pClickedIcon == pAppletIcon)
+		g_signal_emit (pDbusApplet, s_iSignals[ANSWER], 0, v);
+	else if (pDbusApplet->pSubApplet != NULL)
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, v, pClickedIcon->cCommand);
+	
+	pDbusApplet->pDialog = NULL;
+}
+void cd_dbus_applet_emit_on_answer_question (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	gboolean bYes = (iClickedButton == 0 || iClickedButton == -1);
+	GValue v = {0,};
+	g_value_init (&v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (&v, bYes);
+	
+	_emit_answer (pDbusApplet, pDialog, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_value (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	double fValue = (iClickedButton == 0 || iClickedButton == -1 ? gtk_range_get_value (GTK_RANGE (pInteractiveWidget)) : -1);
+	GValue v = {0,};
+	g_value_init (&v, G_TYPE_DOUBLE);
+	g_value_set_double (&v, fValue);
+	
+	_emit_answer (pDbusApplet, pDialog, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	const gchar *cAnswer = (iClickedButton == 0 || iClickedButton == -1 ? gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget)) : NULL);
+	GValue v = {0,};
+	g_value_init (&v, G_TYPE_STRING);
+	g_value_set_string (&v, cAnswer);
+	
+	_emit_answer (pDbusApplet, pDialog, &v);
+}
 
 
 void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
@@ -429,7 +513,7 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 }
 
 
-gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet)
+gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet)  // obsolete
 {
 	g_print ("%s ()\n", __func__);
 	g_signal_emit (pDbusApplet,
@@ -438,7 +522,7 @@ gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet)
 		NULL);
 	return FALSE;
 }
-gboolean cd_dbus_emit_init_module_when_launched (dbusApplet *pDbusApplet)
+gboolean cd_dbus_emit_init_module_when_launched (dbusApplet *pDbusApplet)  // obsolete
 {
 	g_print ("%s ()\n", __func__);
 	if (pDbusApplet->iInitDelay == 0)
@@ -463,13 +547,13 @@ gboolean cd_dbus_emit_init_module_when_launched (dbusApplet *pDbusApplet)
 }
 void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
-	g_print ("%s ()\n", __func__);
+	g_print ("%s (%d)\n", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
 	
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
 	
 	//\_____________ On se souvient qu'il faut lancer cette applet au demarrage.
-	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))
+	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))  // precaution pour eviter de le rajouter 2 fois.
 	{
 		gchar *str = myData.cActiveModules;
 		if (myData.cActiveModules)
@@ -488,21 +572,22 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
 	g_return_if_fail (pDbusApplet != NULL);
 	
-	//\_____________ On lance le script distant s'il n'est pas deja lance (notamment si on vient d'un chargement auto).
-	gboolean bAppletHasBeenLaunched = FALSE;
-	if (pModuleInstance->pModule->fLastLoadingTime == -2)  // on vient d'un Register lance par l'applet, donc inutile de la lancer.
+	//\____________ On met a jour le fichier de conf si necessaire, c'est plus simple pour les applets.
+	if (pKeyFile != NULL)
 	{
-		pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // cf cd_dbus_main_register_new_module() pour les explications.
+		if (cairo_dock_conf_file_needs_update (pKeyFile, pModuleInstance->pModule->pVisitCard->cModuleVersion))
+			cairo_dock_flush_conf_file (pKeyFile, pModuleInstance->cConfFilePath, pModuleInstance->pModule->pVisitCard->cShareDataDir, pModuleInstance->pModule->pVisitCard->cConfFileName);
 	}
-	else
+	
+	//\_____________ On (re)lance le script distant.
+	gboolean bAppletHasBeenLaunched = FALSE;
+	if (pModuleInstance->pModule->fLastLoadingTime != -2)  // si on vient d'un Register lance par l'applet, inutile de la lancer.
 	{
-		if (pModuleInstance->pModule->fLastLoadingTime == -1)
-			pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // cf cd_dbus_main_register_new_module() pour les explications.
 		bAppletHasBeenLaunched = cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
 	}
 	
-	//\_____________ On emet le signal d'init.
-	if (pDbusApplet->iSidEmitInit == 0)
+	//\_____________ On emet le signal d'init [Obsolete]
+	if (pDbusApplet->iSidEmitInit == 0 && pModuleInstance->pModule->fLastLoadingTime != -1 && pModuleInstance->pModule->fLastLoadingTime != 0)
 	{
 		if (bAppletHasBeenLaunched)
 		{
@@ -513,6 +598,9 @@ void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKey
 		else
 			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);  // soit on vient d'un appel a la methode Register par l'applet, qui est donc en train d'attendre le retour de cette fonction, soit on vient d'un chargement automatique, auquel cas l'applet distante n'est meme pas encore lancee. On laisse donc une tempo pour lancer l'applet et lui laisser le temps de recuperer l'objet associe sur le bus.
 	}
+	
+	//if (pModuleInstance->pModule->fLastLoadingTime < 0)
+	//	pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // il faut mettre le fLastLoadingTime a une valeur grande, car au lancement du dock, on passe ici en etant dans la fonction cairo_dock_activate_modules_from_list(). Or celle-ci desactive aussi tous les "vieux" modules.
 }
 
 void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
