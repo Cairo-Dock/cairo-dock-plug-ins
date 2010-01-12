@@ -590,3 +590,146 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 	
 	return TRUE;
 }
+
+
+gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
+{
+	g_print ("%s (%s)\n", __func__, cProperty);
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	Icon *pIcon = pInstance->pIcon;
+	g_return_val_if_fail (pIcon != NULL, FALSE);
+	
+	CairoContainer *pContainer = pInstance->pContainer;
+	g_return_val_if_fail (pContainer != NULL, FALSE);
+	
+	// x, y, orientation, type, width, height
+	if (strcmp (cProperty, "x") == 0)
+	{
+		int x;
+		if (pContainer->bIsHorizontal)
+		{
+			x = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
+		}
+		else
+		{
+			x = pContainer->iWindowPositionY + pIcon->fDrawY + pIcon->fHeight * pIcon->fScale/2;
+		}
+		g_value_init (v, G_TYPE_INT);
+		g_value_set_int (v, x);
+	}
+	else if (strcmp (cProperty, "y") == 0)
+	{
+		int y;
+		if (pContainer->bIsHorizontal)
+		{
+			y = pContainer->iWindowPositionY + pIcon->fDrawY + pIcon->fHeight * pIcon->fScale/2;
+		}
+		else
+		{
+			y = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
+		}
+		g_value_init (v, G_TYPE_INT);
+		g_value_set_int (v, y);
+	}
+	else if (strcmp (cProperty, "orientation") == 0)
+	{
+		CairoDockPositionType iScreenBorder = (g_pMainDock ? ((! g_pMainDock->container.bIsHorizontal) << 1) | (! g_pMainDock->container.bDirectionUp) : 0);
+		g_value_init (v, G_TYPE_UINT);
+		g_value_set_uint (v, iScreenBorder);
+	}
+	else if (strcmp (cProperty, "container") == 0)
+	{
+		g_value_init (v, G_TYPE_UINT);
+		g_value_set_uint (v, pContainer->iType);
+	}
+	else if (strcmp (cProperty, "width") == 0)
+	{
+		int iWidth, iHeight;
+		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		g_value_init (v, G_TYPE_INT);
+		g_value_set_int (v, iWidth);
+	}
+	else if (strcmp (cProperty, "height") == 0)
+	{
+		int iWidth, iHeight;
+		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		g_value_init (v, G_TYPE_INT);
+		g_value_set_int (v, iHeight);
+	}
+	else
+	{
+		g_set_error (error, 1, 1, "the property %s doesn't exist", cProperty);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperties, GError **error)
+{
+	g_print ("%s ()\n", __func__);
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	Icon *pIcon = pInstance->pIcon;
+	g_return_val_if_fail (pIcon != NULL, FALSE);
+	
+	CairoContainer *pContainer = pInstance->pContainer;
+	g_return_val_if_fail (pContainer != NULL, FALSE);
+	
+	int x, y;
+	if (pContainer->bIsHorizontal)
+	{
+		x = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
+		y = pContainer->iWindowPositionY + pIcon->fDrawY + pIcon->fHeight * pIcon->fScale/2;
+	}
+	else
+	{
+		y = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
+		x = pContainer->iWindowPositionY + pIcon->fDrawY + pIcon->fHeight * pIcon->fScale/2;
+	}
+	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
+	int iWidth, iHeight;
+	cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+	
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,
+		g_free); 
+	*hProperties = h;
+	//GHashTable *h = hProperties;
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, x);
+	g_hash_table_insert (h, g_strdup ("x"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, y);
+	g_hash_table_insert (h, g_strdup ("y"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, iScreenBorder);
+	g_hash_table_insert (h, g_strdup ("orientation"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, pContainer->iType);
+	g_hash_table_insert (h, g_strdup ("container"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, iWidth);
+	g_hash_table_insert (h, g_strdup ("width"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, iHeight);
+	g_hash_table_insert (h, g_strdup ("height"), v);
+	
+	return TRUE;
+}

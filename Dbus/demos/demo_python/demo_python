@@ -70,8 +70,8 @@ def get_config():
 	print ">>> '",cTheme,"' ; '",iMaxValue,"' ; '",yesno,"'"
 
 def init():
-	# register to the notifications on our applet.
 	print ">>> INIT"
+	# register to the notifications on our applet.
 	myIcon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
 	myIcon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
 	myIcon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)

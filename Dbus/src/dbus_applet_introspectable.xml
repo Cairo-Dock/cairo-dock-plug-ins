@@ -2,6 +2,14 @@
 "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
 <node name="/org/cairodock/CairoDock">
 	<interface name="org.cairodock.CairoDock.applet">
+		<method name="Get">
+			<arg name="cProperty" direction="in" type="s"/>
+			<arg name="value" direction="out" type="v"/>
+		</method>
+		<method name="GetAll">
+			<arg name="hProperties" direction="out" type="a{sv}"/>
+		</method>
+		
 		<method name="SetQuickInfo">
 			<arg name="cQuickInfo" type="s" direction="in"/>
 		</method>
