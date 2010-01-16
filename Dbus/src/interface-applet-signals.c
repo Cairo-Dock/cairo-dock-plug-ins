@@ -21,9 +21,10 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 
-#include "interface-applet-signals.h"
+#include "applet-dbus.h"
 #include "interface-applet-methods.h"
 #include "interface-applet-object.h"
+#include "interface-applet-signals.h"
 
 static guint s_iSignals[NB_SIGNALS] = { 0 };
 static guint s_iSubSignals[NB_SIGNALS] = { 0 };
@@ -431,6 +432,31 @@ void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
 {
+	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && g_strstr_len (cReceivedData, -1, "cairo-dock"))
+	{
+		GError *erreur = NULL;
+		g_print ("dropped a distant applet\n");
+		gchar *cServerAdress = g_path_get_dirname (cReceivedData);
+		gchar *cDistantFileName = g_path_get_basename (cReceivedData);
+		gchar *cExtractTo = g_strdup_printf ("%s/third-party", g_cCairoDockDataDir);
+		gchar *cAppletDirPath = cairo_dock_download_file (cServerAdress, "", cDistantFileName, 0, cExtractTo, &erreur);
+		g_free (cServerAdress);
+		g_free (cDistantFileName);
+		if (erreur != NULL)
+		{
+			cd_warning (erreur->message);
+			g_error_free (erreur);
+		}
+		else
+		{
+			gchar *cAppletName = g_path_get_basename (cAppletDirPath);
+			cd_dbus_register_module_in_dir (cAppletName, cExtractTo);
+			g_free (cAppletName);
+		}
+		g_free (cExtractTo);
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -512,96 +538,6 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 	}
 }
 
-
-gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet)  // obsolete
-{
-	g_print ("%s ()\n", __func__);
-	g_signal_emit (pDbusApplet,
-		s_iSignals[INIT_MODULE],
-		0,
-		NULL);
-	return FALSE;
-}
-gboolean cd_dbus_emit_init_module_when_launched (dbusApplet *pDbusApplet)  // obsolete
-{
-	g_print ("%s ()\n", __func__);
-	if (pDbusApplet->iInitDelay == 0)
-	{
-		int iPid = cd_dbus_applet_is_running (pDbusApplet->cModuleName);
-		if (iPid == 0)
-		{
-			pDbusApplet->iNbInitTries ++;
-			return (pDbusApplet->iNbInitTries < 10);  // ca fait 5s.
-		}
-	}
-	
-	pDbusApplet->iInitDelay ++;
-	if (pDbusApplet->iInitDelay < 3)  // 1.5s de tempo.
-		return TRUE;
-	
-	g_signal_emit (pDbusApplet,
-		s_iSignals[INIT_MODULE],
-		0,
-		NULL);
-	return FALSE;
-}
-void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
-{
-	g_print ("%s (%d)\n", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
-	
-	//\_____________ On initialise l'icone.
-	cd_dbus_action_on_init_module (pModuleInstance);
-	
-	//\_____________ On se souvient qu'il faut lancer cette applet au demarrage.
-	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))  // precaution pour eviter de le rajouter 2 fois.
-	{
-		gchar *str = myData.cActiveModules;
-		if (myData.cActiveModules)
-			myData.cActiveModules = g_strdup_printf ("%s;%s", myData.cActiveModules, pModuleInstance->pModule->pVisitCard->cModuleName);
-		else
-			myData.cActiveModules = g_strdup (pModuleInstance->pModule->pVisitCard->cModuleName);
-		g_free (str);
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
-			G_TYPE_INVALID);
-	}
-	
-	//\_____________ On cree l'objet sur le bus.
-	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	if (pDbusApplet == NULL)
-		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
-	g_return_if_fail (pDbusApplet != NULL);
-	
-	//\____________ On met a jour le fichier de conf si necessaire, c'est plus simple pour les applets.
-	if (pKeyFile != NULL)
-	{
-		if (cairo_dock_conf_file_needs_update (pKeyFile, pModuleInstance->pModule->pVisitCard->cModuleVersion))
-			cairo_dock_flush_conf_file (pKeyFile, pModuleInstance->cConfFilePath, pModuleInstance->pModule->pVisitCard->cShareDataDir, pModuleInstance->pModule->pVisitCard->cConfFileName);
-	}
-	
-	//\_____________ On (re)lance le script distant.
-	gboolean bAppletHasBeenLaunched = FALSE;
-	if (pModuleInstance->pModule->fLastLoadingTime != -2)  // si on vient d'un Register lance par l'applet, inutile de la lancer.
-	{
-		bAppletHasBeenLaunched = cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
-	}
-	
-	//\_____________ On emet le signal d'init [Obsolete]
-	if (pDbusApplet->iSidEmitInit == 0 && pModuleInstance->pModule->fLastLoadingTime != -1 && pModuleInstance->pModule->fLastLoadingTime != 0)
-	{
-		if (bAppletHasBeenLaunched)
-		{
-			pDbusApplet->iNbInitTries = 0;
-			pDbusApplet->iInitDelay = 0;
-			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_when_launched, pDbusApplet);
-		}
-		else
-			pDbusApplet->iSidEmitInit = g_timeout_add (500, (GSourceFunc)cd_dbus_emit_init_module_delayed, pDbusApplet);  // soit on vient d'un appel a la methode Register par l'applet, qui est donc en train d'attendre le retour de cette fonction, soit on vient d'un chargement automatique, auquel cas l'applet distante n'est meme pas encore lancee. On laisse donc une tempo pour lancer l'applet et lui laisser le temps de recuperer l'objet associe sur le bus.
-	}
-	
-	//if (pModuleInstance->pModule->fLastLoadingTime < 0)
-	//	pModuleInstance->pModule->fLastLoadingTime = time (NULL) + 1e7;  // il faut mettre le fLastLoadingTime a une valeur grande, car au lancement du dock, on passe ici en etant dans la fonction cairo_dock_activate_modules_from_list(). Or celle-ci desactive aussi tous les "vieux" modules.
-}
 
 void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {

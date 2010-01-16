@@ -19,6 +19,11 @@ dock name =
 icon=
 order=
 
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=systray
+
 #[gtk-convert]
 [Desklet]
 

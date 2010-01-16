@@ -23,19 +23,10 @@ import glib
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
-###################
-### global vars ###
-###################
-count		= 0  # the counter from 0 to iMaxValue
-applet_name	= os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
-### some parameters that we'll read in our conf file ###
-cTheme		= ''
-iMaxValue	= 0
-yesno 		= False
-
 ##################################
 ### get our applet on the bus ###
 ##################################
+applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
 applet_path = "/org/cairodock/CairoDock/"+applet_name  # path where our object is stored on the bus.
 DBusGMainLoop(set_as_default=True)
 bus = dbus.SessionBus()
@@ -50,113 +41,45 @@ myIcon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this
 sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
 mySubIcons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
 
-
-#############################
-### initialize our applet ###
-#############################
-def get_config():
-	global cTheme
-	global iMaxValue
-	global yesno
-	conf_file = "~/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf"  # path to the conf file of our applet.
-	print ">>> GET CONFIG ("+os.path.expanduser(conf_file)+")"
-	
-	keyfile = ConfigParser.RawConfigParser()
-	keyfile.read(os.path.expanduser(conf_file))
-	
-	cTheme 		= keyfile.get('Configuration', 'theme')
-	iMaxValue 	= keyfile.getint('Configuration', 'max value')
-	yesno 		= keyfile.getboolean('Configuration', 'yesno')
-	print ">>> '",cTheme,"' ; '",iMaxValue,"' ; '",yesno,"'"
-
-def init():
-	print ">>> INIT"
-	# register to the notifications on our applet.
-	myIcon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
-	myIcon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
-	myIcon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
-	myIcon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
-	myIcon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
-	myIcon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
-	#myIcon.connect_to_signal("on_init_module", action_on_init)
-	myIcon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
-	myIcon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
-	myIcon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
-	mySubIcons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
-	
-	# initialize our applet.
-	global count
-	global iMaxValue
-	count=1
-	myIcon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
-	myIcon.SetQuickInfo(format(count, "d"))  # write the counter value on the icon.
-	myIcon.AddDataRenderer("gauge", 1, cTheme)  # set a gauge with the theme read in config to display the value of the counter.
-	myIcon.RenderValues([float(count)/iMaxValue])  # draw the gauge with an initial value.
-	mySubIcons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
-	mySubIcons.RemoveSubIcon("id2")  # remove the 2nd icon of our sub-dock.
-	mySubIcons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
-	mySubIcons.SetQuickInfo("2", "id2")
-	mySubIcons.SetQuickInfo("3", "id3")
-	mySubIcons.SetQuickInfo("4", "id4")
-
-
 ##################################
 ### callbacks on the main icon ###
 ##################################
 def action_on_click(iState):
-	global count
-	global iMaxValue
 	print ">>> clic !"
-	count = random.randint(0,iMaxValue)
-	myIcon.SetQuickInfo(format(count, "d"))
-	myIcon.RenderValues([float(count)/iMaxValue])
+	set_counter(random.randint(0,myApplet.config['iMaxValue']))
 
 def action_on_middle_click():
-	global count
-	global iMaxValue
 	print ">>> middle clic !"
-	myIcon.AskValue("Set the value you want", count, iMaxValue);
+	myIcon.AskValue("Set the value you want", myApplet.count, myApplet.config['iMaxValue']);
 
 def action_on_build_menu():
 	print ">>> build menu !"
 	myIcon.PopulateMenu(["set min value", "set medium value", "set max value"])
 	
 def action_on_menu_select(iNumEntry):
-	global count
-	global iMaxValue
 	print ">>> choice",iNumEntry,"has been selected !"
 	if iNumEntry == 0:
-		count = 0
+		myApplet.set_counter(0)
 	elif iNumEntry == 1:
-		count = 50
+		myApplet.set_counter(myApplet.config['iMaxValue']/2)
 	elif iNumEntry == 2:
-		count = iMaxValue
-	myIcon.SetQuickInfo(format(count, "d"))
-	myIcon.RenderValues([float(count)/iMaxValue])
+		myApplet.set_counter(myApplet.config['iMaxValue'])
 
 def action_on_scroll(bScrollUp):
-	global count
-	global iMaxValue
 	print ">>> scroll !"
 	if bScrollUp:
-		count += 1
+		count = min(myApplet.config['iMaxValue'], myApplet.count+1)
 	else:
-		count -= 1
-	count = min(iMaxValue, max(0, count))
-	myIcon.SetQuickInfo(format(count, "d"))
-	myIcon.RenderValues([float(count)/iMaxValue])
+		count = max(0, myApplet.count-1)
+	myApplet.set_counter(count)
 
 def action_on_drop_data(cReceivedData):
 	print ">>> received",cReceivedData
-	myIcon.SetLabel(cReceivedData)
+	myApplet.icon.SetLabel(cReceivedData)
 
 def action_on_answer(answer):
-	global count
-	global iMaxValue
 	print ">>> answer :",answer
-	count = int (answer)
-	myIcon.SetQuickInfo(format(count, "d"))
-	myIcon.RenderValues([float(count)/iMaxValue])
+	myApplet.set_counter(int (answer))
 
 ##################################
 ### callbacks on the sub-icons ###
@@ -172,23 +95,70 @@ def action_on_stop():
 	loop.quit()
 
 def action_on_reload(bConfigHasChanged):
-	global count
-	global iMaxValue
 	print ">>> our module is reloaded"
 	if bConfigHasChanged:
 		print ">>>  and our config has changed"
-		get_config()
-		myIcon.AddDataRenderer("gauge", 1, cTheme)
-		myIcon.RenderValues([float(count)/iMaxValue])
-		mySubIcons.RemoveSubIcon("any")
-		mySubIcons.AddSubIcons(["icon 1", "firefox-3.0", "echo pouet", "icon 2", "trash", "abc", "icon 3", "thunderbird", "def"])
+		myApplet.get_config()
+		myApplet.icon.AddDataRenderer("gauge", 1, myApplet.config['cTheme'])
+		myApplet.icon.RenderValues([float(myApplet.count)/myApplet.config['iMaxValue']])
+		myApplet.sub_icons.RemoveSubIcon("any")
+		myApplet.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"])
+
+##########################
+### connect to signals ###
+##########################
+myIcon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
+myIcon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
+myIcon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
+myIcon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
+myIcon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
+myIcon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
+#myIcon.connect_to_signal("on_init_module", action_on_init)
+myIcon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
+myIcon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
+myIcon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
+mySubIcons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
+
+class Applet:
+	def __init__(self,icon,sub_icons):
+		self.icon = icon
+		self.sub_icons = sub_icons
+		self.config = {}
+		self.conf_file = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf")  # path to the conf file of our applet.
+		self.count = 0
+	
+	def get_config(self):
+		keyfile = ConfigParser.RawConfigParser()
+		keyfile.read(self.conf_file)
+		self.config['cTheme'] 		= keyfile.get('Configuration', 'theme')
+		self.config['iMaxValue'] 	= keyfile.getint('Configuration', 'max value')
+		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
+	
+	def load(self):
+		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
+		self.icon.SetQuickInfo(format(self.count, "d"))  # write the counter value on the icon.
+		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
+		self.icon.RenderValues([float(self.count)/self.config['iMaxValue']])  # draw the gauge with an initial value.
+		mySubIcons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
+		self.sub_icons.RemoveSubIcon("id2")  # remove the 2nd icon of our sub-dock.
+		self.sub_icons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
+		self.sub_icons.SetQuickInfo("2", "id2")
+		self.sub_icons.SetQuickInfo("3", "id3")
+		self.sub_icons.SetQuickInfo("4", "id4")
+	
+	def set_counter(self,count):
+		self.count = count
+		percent = float(self.count)/self.config['iMaxValue']
+		self.icon.RenderValues([percent])
+		self.icon.SetQuickInfo(format(self.count, "d"))
 
 ############
 ### main ###
 ############
 if __name__ == '__main__':
-	get_config()
-	init()
+	myApplet = Applet(myIcon, mySubIcons)
+	myApplet.get_config()
+	myApplet.load()
 	loop = gobject.MainLoop()
 	loop.run()
 	print ">>> bye"

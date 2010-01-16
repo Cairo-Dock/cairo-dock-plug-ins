@@ -138,3 +138,8 @@ y = yast
 
 #s Preferred application starting with 'z' :
 z = 
+
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=Scooby-Do

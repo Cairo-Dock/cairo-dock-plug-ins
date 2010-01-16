@@ -30,6 +30,11 @@ empty icon =
 order=
 icon=
 
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=Note-Taking
+
 
 #[gtk-convert]
 [Desklet]

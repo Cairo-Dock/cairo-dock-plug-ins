@@ -148,7 +148,7 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 	//g_return_if_fail (num_rates > 0);
 	g_print ("available rates : from %d to %d Hz\n", rates[0], rates[num_rates-1]);
 	
-	XRRSetScreenConfigAndRate(dpy, conf, root, iNumRes, RR_Rotate_0, rates[0], CurrentTime);
+	XRRSetScreenConfigAndRate(dpy, conf, root, iNumRes, RR_Rotate_0, rates[num_rates-1], CurrentTime);
 	XRRFreeScreenConfigInfo (conf);
 	
 	// restore original conf :  XRRSetScreenConfigAndRate(dpy, conf, root, original_size_id, original_rotation, original_rate, CurrentTime);

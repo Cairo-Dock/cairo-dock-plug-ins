@@ -15,6 +15,11 @@ dock name =
 icon=
 order=
 
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=wifi
+
 #[gtk-convert]
 [Desklet]
 

@@ -17,6 +17,10 @@ dock name =
 
 order=
 
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=Toons
 
 #[gtk-convert]
 [Desklet]

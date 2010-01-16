@@ -16,6 +16,11 @@ dock name =
 order=
 icon=
 
+#F[Applet's Handbook]
+frame_hand=
+#A
+handbook=clock
+
 #[gtk-convert]
 [Desklet]
 

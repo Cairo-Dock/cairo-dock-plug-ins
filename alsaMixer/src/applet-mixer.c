@@ -306,6 +306,8 @@ void mixer_show_hide_dialog (void)
 
 gboolean mixer_check_events (gpointer data)
 {
+	CD_APPLET_ENTER;
 	snd_mixer_handle_events (myData.mixer_handle);  // ne renvoie pas d'evenements pour nos actions !
-	return TRUE;
+	CD_APPLET_LEAVE(TRUE);
+	//return TRUE;
 }

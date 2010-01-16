@@ -93,7 +93,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
 	// taille min.
-	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->container.fRatio + pDock->iMaxIconHeight;
+	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize * pDock->container.fRatio + pDock->iMaxIconHeight * pDock->container.fRatio;
 	
 	double gamma_min = pDock->fFlatDockWidth / 2 / H;
 	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);

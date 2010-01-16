@@ -78,8 +78,6 @@
 			<arg name="answer" type="v"/>
 		</signal>
 		
-		<signal name="on_init_module">
-		</signal>
 		<signal name="on_stop_module">
 		</signal>
 		<signal name="on_reload_module">
