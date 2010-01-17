@@ -60,7 +60,11 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	// -> h
 	h = hi + h0 / (1 + gamma);  // en fait, sqrt (1 + gamma * gamma), mais on simplifie pour diminuer l'ordre de 2. pDock->iDecorationsHeight
 	// -> dw
-	dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);  // en fait, h*gamma + r*(1-sin)/cos, or (1-sin)/cos <= 1, on majore pour simplifier. on aurait r + gamma * (h - 2 * r) si on utilisait des cercles au lieu de courbes de Bezier.
+	dw = h * gamma + 0*r + (l+(r==0)*2)*sqrt(1+gamma*gamma);  // en fait, h*gamma + r*(1-sin)/cos, or (1-sin)/cos <= 1, on majore pour simplifier. on aurait r + gamma * (h - 2 * r) si on utilisait des cercles au lieu de courbes de Bezier.
+	
+	r = MIN (myBackground.iDockRadius, h / 2);
+	dw = r + gamma * (h - r) + (l+(r==0)*2)*sqrt(1+gamma*gamma);  // h-2r si on utilisait des cercles au lieu de courbes de Bezier.
+	//g_print ("r:%.1f, h:%.1f => dw=%.1f (%.1f)\n", r, h, dw, h * gamma + 0*r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
 	
 	/*double Ws = w+2*dw;
 	double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
@@ -624,7 +628,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 		double fRadius = myBackground.iDockRadius;
 		if (2*fRadius > pDock->iDecorationsHeight + fLineWidth)
 			fRadius = (pDock->iDecorationsHeight + fLineWidth) / 2 - 1;
-		double fDeltaXForLoop = fInclinationOnHorizon * (pDock->iDecorationsHeight + fLineWidth - (myBackground.bRoundedBottomCorner ? 2 : 1) * fRadius);
+		double fDeltaXForLoop = fInclinationOnHorizon * (pDock->iDecorationsHeight + fLineWidth - (/**myBackground.bRoundedBottomCorner*/TRUE ? 2 : 1) * fRadius);
 		
 		double cosa = 1. / sqrt (1 + fInclinationOnHorizon * fInclinationOnHorizon);
 		fDeltaXTrapeze = fDeltaXForLoop + fRadius * cosa;
@@ -840,7 +844,7 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	int iNbVertex;
 	double fDeltaXTrapeze;
-	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (w - (myBackground.bRoundedBottomCorner ? 0 : 2*l/gamma), h+l, r, myBackground.bRoundedBottomCorner, gamma, &fDeltaXTrapeze, &iNbVertex);
+	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (w - (/**myBackground.bRoundedBottomCorner*/TRUE ? 0 : 2*l/gamma), h+l, r, /**myBackground.bRoundedBottomCorner*/TRUE, gamma, &fDeltaXTrapeze, &iNbVertex);
 	
 	if (! pDock->container.bIsHorizontal)
 		dx = pDock->container.iWidth - dx + fDeltaXTrapeze;

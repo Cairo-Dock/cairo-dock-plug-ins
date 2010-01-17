@@ -186,5 +186,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		cairo_dock_set_all_views_to_default (0);
+		cairo_dock_redraw_root_docks (FALSE);  // FALSE <=> main dock inclus.
+		cairo_dock_reserve_space_for_all_root_docks (myAccessibility.bReserveSpace);
 	}
 CD_APPLET_RELOAD_END

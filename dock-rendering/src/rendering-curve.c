@@ -56,7 +56,7 @@ extern GLuint my_iFlatSeparatorTexture;
 
 #define _define_parameters(h, hi, ti, xi, w, dw)\
 	double h = 4./3 * (pDock->iDecorationsHeight + myBackground.iDockLineWidth);  /* hauteur de controle de la courbe de Bezier, de telle facon qu'elle atteigne 'iDecorationsHeight'.*/\
-	double hi = .5 * pDock->iMaxIconHeight + myBackground.iFrameMargin - 1;  /* hauteur de la courbe a la 1ere icone.*/\
+	double hi = .5 * pDock->iMaxIconHeight * pDock->container.fRatio + myBackground.iFrameMargin - 1;  /* hauteur de la courbe a la 1ere icone.*/\
 	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0.01)));\
 	double xi = xCurve (my_fCurveCurvature, ti);\
 	double w, dw = 0
@@ -75,9 +75,9 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	pDock->iDecorationsHeight = myBackground.iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
-	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myLabels.iLabelSize;  // de bas en haut.
+	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + (1 + g_fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + myLabels.iLabelSize;  // de bas en haut.
 	
-	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight;  // de bas en haut.
+	pDock->iMinDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight * pDock->container.fRatio;  // de bas en haut.
 	
 	_define_parameters (h, hi, ti, xi, w, dw);
 	
@@ -90,6 +90,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	double tan_theta = (my_fCurveCurvature != 1 ? h / ((1 - my_fCurveCurvature) * (w + 2 * dw) / 2) : 1e6);  // la tangente a une courbe de Bezier en son origine est la droite reliant les deux premiers points de controle.
 	double fDeltaTip = .5 * myBackground.iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
 	dw += fDeltaTip;
+	g_print ("dw : %.2f (ratio : %.2f, w : %.2f) -> W = %.2f\n", dw, pDock->container.fRatio, w, w+2*dw);
 	
 	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
 	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
@@ -543,7 +544,6 @@ void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
-	
 	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
