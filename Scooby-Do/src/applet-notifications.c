@@ -166,7 +166,7 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 {
 	Window xActiveWindow = data[0];
 	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
-		data[1] = GINT_TO_POINTER (1);
+		data[1] = 1;
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {

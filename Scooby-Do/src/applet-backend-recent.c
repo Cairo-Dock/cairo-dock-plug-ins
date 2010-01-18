@@ -67,8 +67,8 @@ static gboolean _cd_do_fill_recent_entry (CDEntry *pEntry)
 				pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
 					pSourceContext,
 					1.,
-					0,  // width
-					0,  // height
+					myDialogs.dialogTextDescription.iSize,  // width
+					myDialogs.dialogTextDescription.iSize,  // height
 					0,  // modifier
 					&fImageWidth, &fImageHeight,
 					NULL, NULL);

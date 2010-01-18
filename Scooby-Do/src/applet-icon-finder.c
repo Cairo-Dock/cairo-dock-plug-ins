@@ -27,20 +27,29 @@
 
 static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPrefix, int length)
 {
-	gboolean bFound = FALSE;
+	gboolean bMatch = FALSE;
 	if (pIcon->cBaseURI != NULL)
 	{
 		gchar *cFile = g_path_get_basename (pIcon->cCommand);
-		bFound = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
+		bMatch = (cFile && g_ascii_strncasecmp (cCommandPrefix, cFile, length) == 0);
 		g_free (cFile);
 	}
 	else if (pIcon->cCommand)
 	{
-		bFound = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cCommand, length) == 0);
-		if (pIcon->cName)
-			bFound |= (g_ascii_strncasecmp (cCommandPrefix, pIcon->cName, length) == 0);
+		bMatch = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cCommand, length) == 0);
+		if (!bMatch)
+		{
+			gchar *str = strchr (pIcon->cCommand, '-');  // on se limite au 1er tiret.
+			if (str && *(str-1) != ' ')  // on verifie qu'il n'est pas un tiret d'option
+			{
+				str ++;
+				bMatch = (g_strncasecmp (str, cCommandPrefix, length) == 0);
+			}
+			if (!bMatch && pIcon->cName)
+				bMatch = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cName, length) == 0);
+		}
 	}
-	return bFound;
+	return bMatch;
 }
 
 static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpointer *data)
