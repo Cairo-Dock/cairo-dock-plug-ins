@@ -416,9 +416,10 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 	nullify_argument (cModuleName);
 	
 	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
+	g_print ("TOT01\n");
 	if (pIcon == NULL)
 		return FALSE;
-	
+	g_print ("TOT02\n");
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);

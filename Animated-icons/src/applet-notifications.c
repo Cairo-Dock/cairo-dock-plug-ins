@@ -45,7 +45,6 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	}
 	else
 	{
-		pData->fRotationSpeed = 0;
 		pData->fRadiusFactor = 0;
 		pData->bIsWobblying = FALSE;
 		pData->bIsWaving = FALSE;
@@ -107,6 +106,8 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			break;
 		}
 	}
+	if (pData->fRadiusFactor == 0)
+		pData->fIconOffsetY = 0;
 }
 
 gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
