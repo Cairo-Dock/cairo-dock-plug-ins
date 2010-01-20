@@ -46,54 +46,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	gchar *cName = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.bSetName = (cName == NULL);
 	g_free (cName);
-	///myConfig.iDeskletRenderer = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "current desklet", 0);
 CD_APPLET_GET_CONFIG_END
 
-
-static void _reset_units (Unit *pUnits)
-{
-	g_free (pUnits->cTemp);
-	g_free (pUnits->cDistance);
-	g_free (pUnits->cSpeed);
-	g_free (pUnits->cPressure);
-}
-
-static void _reset_current_conditions (CurrentContitions *pCurrentContitions)
-{
-	g_free (pCurrentContitions->cSunRise);
-	g_free (pCurrentContitions->cSunSet);
-	g_free (pCurrentContitions->cDataAcquisitionDate);
-	g_free (pCurrentContitions->cObservatory);
-	g_free (pCurrentContitions->cTemp);
-	g_free (pCurrentContitions->cFeltTemp);
-	g_free (pCurrentContitions->cWeatherDescription);
-	g_free (pCurrentContitions->cIconNumber);
-	g_free (pCurrentContitions->cWindSpeed);
-	g_free (pCurrentContitions->cWindDirection);
-	g_free (pCurrentContitions->cPressure);
-	g_free (pCurrentContitions->cHumidity);
-	g_free (pCurrentContitions->cMoonIconNumber);
-}
-
-static void _reset_current_one_day (Day *pDay)
-{
-	g_free (pDay->cName);
-	g_free (pDay->cDate);
-	g_free (pDay->cTempMax);
-	g_free (pDay->cTempMin);
-	g_free (pDay->cSunRise);
-	g_free (pDay->cSunSet);
-	int j;
-	for (j = 0; j < 2; j ++)
-	{
-		g_free (pDay->part[j].cIconNumber);
-		g_free (pDay->part[j].cWeatherDescription);
-		g_free (pDay->part[j].cWindSpeed);
-		g_free (pDay->part[j].cWindDirection);
-		g_free (pDay->part[j].cHumidity);
-		g_free (pDay->part[j].cPrecipitationProba);
-	}
-}
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cLocationCode);
@@ -106,15 +60,7 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_free_task (myData.pTask);
 	
-	g_free (myData.cLon);
-	g_free (myData.cLat);
-	_reset_units (&myData.units);
-	_reset_current_conditions (&myData.currentConditions);
-	int i;
-	for (i = 0; i < myConfig.iNbDays; i ++)
-	{
-		_reset_current_one_day (&myData.days[i]);
-	}
+	cd_weather_reset_data (myApplet);
 	
 	cd_weather_free_location_list ();
 	

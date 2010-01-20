@@ -28,6 +28,15 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
+	if (cairo_dock_task_is_running (myData.pTask))
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
+			myIcon,
+			myContainer,
+			3000,
+			"same icon");
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
 	if (myDock)
 	{
 		if (pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL)  // on a clique sur une icone du sous-dock.

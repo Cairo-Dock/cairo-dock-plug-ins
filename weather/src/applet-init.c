@@ -47,12 +47,6 @@ CD_APPLET_INIT_BEGIN
 		myApplet);
 	cairo_dock_launch_task (myData.pTask);
 	
-	/**if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
-	{
-		gpointer data[3] = {"Loading...", NULL, FALSE};
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
-	}*/
-	
 	// On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -82,16 +76,8 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
 	  	{
-	  	  ///if (myConfig.iDeskletRenderer == MY_DESKLET_CAROUSSEL)
-	  	  {
-	  		  gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-	  		  CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-	  		}
-	  		/**else if (myConfig.iDeskletRenderer == MY_DESKLET_MAIN_ICON)
-	  		{
-	  		  gpointer data[3] = {"Loading...", NULL, FALSE};
-	  			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Mediaplayer", data);
-	  		}*/
+	  		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+	  		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 	  	}
 	
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.

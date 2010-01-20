@@ -293,7 +293,11 @@ static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gch
 
 void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 {
+	//\____________________ On efface toutes les donnees.
+	cd_weather_reset_data (myApplet);
+	
 	//\____________________ On recupere les conditions courantes sur le serveur.
+	myData.bErrorInThread = FALSE;
 	int r;
 	gchar *cCommand;
 	gchar *cCCDataFilePath = NULL;
@@ -343,8 +347,6 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			erreur = NULL;
 			myData.bErrorInThread = TRUE;
 		}
-		else
-			myData.bErrorInThread = FALSE;
 		g_remove (cCCDataFilePath);
 		g_free (cCCDataFilePath);
 	}
@@ -360,9 +362,73 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			erreur = NULL;
 			myData.bErrorInThread = TRUE;
 		}
-		else
-			myData.bErrorInThread = FALSE;
 		g_remove (cForecastDataFilePath);
 		g_free (cForecastDataFilePath);
 	}
+}
+
+
+
+static void _reset_units (Unit *pUnits)
+{
+	g_free (pUnits->cTemp);
+	g_free (pUnits->cDistance);
+	g_free (pUnits->cSpeed);
+	g_free (pUnits->cPressure);
+}
+static void _reset_current_conditions (CurrentContitions *pCurrentContitions)
+{
+	g_free (pCurrentContitions->cSunRise);
+	g_free (pCurrentContitions->cSunSet);
+	g_free (pCurrentContitions->cDataAcquisitionDate);
+	g_free (pCurrentContitions->cObservatory);
+	g_free (pCurrentContitions->cTemp);
+	g_free (pCurrentContitions->cFeltTemp);
+	g_free (pCurrentContitions->cWeatherDescription);
+	g_free (pCurrentContitions->cIconNumber);
+	g_free (pCurrentContitions->cWindSpeed);
+	g_free (pCurrentContitions->cWindDirection);
+	g_free (pCurrentContitions->cPressure);
+	g_free (pCurrentContitions->cHumidity);
+	g_free (pCurrentContitions->cMoonIconNumber);
+}
+static void _reset_current_one_day (Day *pDay)
+{
+	g_free (pDay->cName);
+	g_free (pDay->cDate);
+	g_free (pDay->cTempMax);
+	g_free (pDay->cTempMin);
+	g_free (pDay->cSunRise);
+	g_free (pDay->cSunSet);
+	int j;
+	for (j = 0; j < 2; j ++)
+	{
+		g_free (pDay->part[j].cIconNumber);
+		g_free (pDay->part[j].cWeatherDescription);
+		g_free (pDay->part[j].cWindSpeed);
+		g_free (pDay->part[j].cWindDirection);
+		g_free (pDay->part[j].cHumidity);
+		g_free (pDay->part[j].cPrecipitationProba);
+	}
+}
+
+void cd_weather_reset_data (CairoDockModuleInstance *myApplet)
+{
+	// on libere toutes les ressources de la memoire partagee.
+	g_free (myData.cLon);
+	g_free (myData.cLat);
+	_reset_units (&myData.units);
+	_reset_current_conditions (&myData.currentConditions);
+	int i;
+	for (i = 0; i < myConfig.iNbDays; i ++)
+	{
+		_reset_current_one_day (&myData.days[i]);
+	}
+	
+	// on remet tout a 0.
+	myData.cLon = NULL;
+	myData.cLat = NULL;
+	memset (&myData.currentConditions, 0, sizeof (CurrentContitions));
+	memset (&myData.units, 0, sizeof (Unit));
+	memset (&myData.days, 0, WEATHER_NB_DAYS_MAX * sizeof (Day));
 }

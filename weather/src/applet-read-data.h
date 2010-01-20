@@ -31,5 +31,6 @@ GList *cd_weather_parse_location_data  (const gchar *cDataFilePath, GError **err
 
 void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet);
 
+void cd_weather_reset_data (CairoDockModuleInstance *myApplet);
 
 #endif

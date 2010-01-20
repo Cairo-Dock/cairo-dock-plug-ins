@@ -159,6 +159,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			g_string_append_printf (sInfo, "\n  %d elements in %s", pDustbin->iNbTrashes, pDustbin->cPath);
 	}
 	
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);
 	
 	g_string_free (sInfo, TRUE);
