@@ -1,9 +1,28 @@
 #!/bin/bash
 
+# This is a part of the external demo applet for Cairo-Dock
+#
+# Copyright : (C) 2010 by Nochka85
+#                      modified by matttbe for the new API
+#                      (based on the demo.py by Fabounet)
+# E-mail : nochka85@cairo-dock.org
+#
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# http://www.gnu.org/licenses/licenses.html#GPL
+
 ### This is a part of the external applet demo_bash.py for cairo-dock
 ### Author : Nochka85
 ### Contact : nochka85@cairo-dock.org
-### Rev : 09/09/06
+### Rev : 21/01/2010
 
 DBUS_NAME="org.cairodock.CairoDock"
 DBUS_PATH="/org/cairodock/CairoDock"
@@ -16,19 +35,6 @@ DROP_DATA=$2
 MENU_SELECT=$2
 SCROLL_UP=$2
 CONF_FILE="/home/$USER/.config/cairo-dock/current_theme/plug-ins/$APP_NAME/$APP_NAME.conf"
-
-
-DESCRIPTION="This is a distant applet in bash"
-AUTHOR="Nochka85"
-VERSION="0.0.1"
-CATEGORY="2"
-APP_FOLDER=$(pwd)
-
-#############################################################################################################
-register_the_applet() {
-dbus-send --session --dest=$DBUS_NAME $DBUS_PATH $DBUS_INTERFACE.RegisterNewModule string:"$APP_NAME" string:"$DESCRIPTION" string:"$AUTHOR" string:"$VERSION" int32:$CATEGORY string:"$APP_FOLDER"
-exit
-}
 
 #############################################################################################################
 get_conf_param() {

@@ -1,4 +1,22 @@
 #!/usr/bin/python
+
+# This is a part of the external demo applet for Cairo-Dock
+#
+# Copyright : (C) 2010 by Fabounet
+# E-mail : fabounet@users.berlios.de
+#
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# http://www.gnu.org/licenses/licenses.html#GPL
+
 ### The name of this applet is "demo_python"; it is placed in a folder named "demo_python", with a file named "auto-load.conf" which describes it.
 ### Copy this folder into ~/.config/cairo-dock/third-party to let the dock register it automatically.
 ### In the folder we have :
