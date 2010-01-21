@@ -103,24 +103,6 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	
-	/**if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
-	{
-		//g_print ("extended\n");
-		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
-	}
-	else
-	{
-		pDock->iMinDockWidth = pDock->fFlatDockWidth + 2 * dw_min;
-	}
-	//g_print ("pDock->iMinDockWidth : %d\n", pDock->iMinDockWidth);
-	
-	// input shape
-	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
-	pDock->inputArea.y = 0;
-	pDock->inputArea.width = pDock->fFlatDockWidth;
-	pDock->inputArea.height = pDock->iMinDockHeight;
-	//g_print ("input area : %d + %d\n", pDock->inputArea.x, pDock->inputArea.width);*/
-	
 	// on charge les separateurs plat.
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));

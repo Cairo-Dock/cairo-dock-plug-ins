@@ -66,7 +66,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 
 gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *cThirdPartyPath)
 {
-	g_print ("%s (%s, %s)\n", __func__, cModuleName, cThirdPartyPath);
+	cd_debug ("%s (%s, %s)", __func__, cModuleName, cThirdPartyPath);
 	gchar *cFilePath = g_strdup_printf ("%s/%s/auto-load.conf", cThirdPartyPath, cModuleName);
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFilePath);
 	g_return_val_if_fail (pKeyFile != NULL, FALSE);
@@ -209,7 +209,7 @@ void cd_dbus_stop_service (void)
 
 static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
-	g_print ("%s (%d)\n", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
+	cd_debug ("%s (%d)", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
 	
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
@@ -248,13 +248,13 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
-	g_print ("%s (%s)\n", __func__, cModuleName);
+	cd_debug ("%s (%s)", __func__, cModuleName);
 	
 	//\____________ on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule != NULL)  // le module existe deja, rien a faire.
 	{
-		g_print ("this module (%s) is already registered\n", cModuleName);
+		cd_warning ("this module (%s) is already registered", cModuleName);
 		if (pModule->cSoFilePath != NULL)
 		{
 			cd_warning ("an installed module already exists with this name (%s).", cModuleName);
@@ -300,7 +300,7 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 	gboolean bAppletIsUsed = cd_dbus_applet_is_used (cModuleName);
 	if (! bAppletIsUsed)
 	{
-		g_print ("applet %s has been registered, but is not wanted by the user.\n", cModuleName);
+		cd_debug ("applet %s has been registered, but is not wanted by the user.", cModuleName);
 		return TRUE;
 	}
 	
@@ -322,6 +322,6 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 		cairo_dock_redraw_container (pInstance->pContainer);
 	}
 	
-	g_print ("applet has been successfully instanciated\n");
+	cd_debug ("applet has been successfully instanciated");
 	return TRUE;
 }

@@ -90,7 +90,7 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	double tan_theta = (my_fCurveCurvature != 1 ? h / ((1 - my_fCurveCurvature) * (w + 2 * dw) / 2) : 1e6);  // la tangente a une courbe de Bezier en son origine est la droite reliant les deux premiers points de controle.
 	double fDeltaTip = .5 * myBackground.iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
 	dw += fDeltaTip;
-	g_print ("dw : %.2f (ratio : %.2f, w : %.2f) -> W = %.2f\n", dw, pDock->container.fRatio, w, w+2*dw);
+	//g_print ("dw : %.2f (ratio : %.2f, w : %.2f) -> W = %.2f\n", dw, pDock->container.fRatio, w, w+2*dw);
 	
 	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
 	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
@@ -104,22 +104,6 @@ void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	}
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;  // 4 car 2*(interieur+exterieur).
-	
-	// taille min.
-	/**if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
-	{
-		pDock->iMinDockWidth = cairo_dock_get_max_authorized_dock_width (pDock);
-	}
-	else
-	{
-		pDock->iMinDockWidth = pDock->fFlatDockWidth / (1 - 2 * xi) + 2 * fDeltaTip;
-	}
-	
-	// input shape
-	pDock->inputArea.x = (pDock->iMinDockWidth - pDock->fFlatDockWidth) / 2;
-	pDock->inputArea.y = 0;
-	pDock->inputArea.width = pDock->fFlatDockWidth;
-	pDock->inputArea.height = pDock->iMinDockHeight;*/
 	
 	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_curve_iDrawSeparator3D == CD_FLAT_SEPARATOR)
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
