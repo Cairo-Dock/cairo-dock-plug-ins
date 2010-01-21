@@ -184,7 +184,7 @@ void cd_dbus_stop_service (void)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
 			{
-				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIcons.bSeparateIcons);
+				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIcons.iSeparateIcons);
 				cairo_dock_free_icon (pIcon);
 				cairo_dock_redraw_container (pContainer);
 			}

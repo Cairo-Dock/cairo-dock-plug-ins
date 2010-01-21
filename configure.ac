@@ -121,9 +121,9 @@ AC_ARG_ENABLE(scooby-do,
 	[ with_scooby_do=${enableval} ],
 	[ with_scooby_do=no ])
 AC_ARG_ENABLE(rssreader,
-	[  --enable-rssreader : Enable rssreader applet (default=no) ],
+	[  --enable-rssreader : Enable rssreader applet (default=yes) ],
 	[ with_rssreader=${enableval} ],
-	[ with_rssreader=no ])
+	[ with_rssreader=yes ])
 AC_ARG_ENABLE(xrandr-in-show-desktop,
         [  --enable-xrandr-in-show-desktop : Add screen resolution abilities to Show-Desktop (default=yes) ],
         [ with_xrandr_in_show_desktop=${enableval} ],
@@ -933,6 +933,7 @@ echo "Cairo-Dock-plugins will be compiled with the following options :"
 echo " * Compil gnome-integration plug-in : "${with_gnome_support}
 echo " * Compil gnome-integration-old plug-in : "${with_old_gnome_support}
 echo " * Compil xfce-integration plug-in : "${with_xfce_support}
+echo " * Compil kde-integration plug-in : "${with_kde_support}
 echo " * Compil AlsaMixer applet : "${with_alsa_mixer}
 echo " * Compil Terminal applet : "${with_terminal}
 echo " * Compil PowerManager applet : "${with_powermanager}
