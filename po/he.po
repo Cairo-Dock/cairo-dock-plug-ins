@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-12-05 13:46+0000\n"
-"PO-Revision-Date: 2009-12-10 15:36+0000\n"
-"Last-Translator: idovmagal <Unknown>\n"
+"PO-Revision-Date: 2009-12-23 21:37+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-11 04:37+0000\n"
+"X-Launchpad-Export-Date: 2009-12-24 04:42+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -122,8 +122,8 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
-"- Gee, Brain, what do you want to do tonight?\n"
-"- The same thing we do every night, Pinky : try to take over the Dock!"
+"- What will we do tonight Cortex ?\n"
+"- The same thing as every nights, Minus. Try to take over the Dock !"
 msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41

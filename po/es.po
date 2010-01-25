@@ -7,16 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-12-05 14:49+0000\n"
+"POT-Creation-Date: 2010-01-25 01:09+0000\n"
+"PO-Revision-Date: 2010-01-25 01:58+0000\n"
 "Last-Translator: Carlos Joel Delgado Pizarro <carlosj2585@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-06 04:46+0000\n"
+"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
+#: ../Animated-icons/data/messages:63
+msgid "Rotate"
+msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -31,12 +38,6 @@ msgstr "Este complemento proporciona diferentes animaciones para los iconos."
 #: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:169
 msgid "Bounce"
 msgstr "Rebote"
-
-#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63
-msgid "Rotate"
-msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
@@ -222,8 +223,8 @@ msgstr ""
 "Es compatible con cualquier menú XDG (Gnome, XFCE, KDE...)\n"
 "Clic central para abrir un diálogo para iniciar rápidamente cualquier "
 "comando (Puede establecer un atajo de teclado para ello, como ALT+F2)\n"
-"También puede establecer un atajo de teclado para aparecer el menú (como ALT"
-"+F1)"
+"También puede establecer un atajo de teclado para aparecer el menú (como "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-notifications.c:156
 msgid "Quick launch"
@@ -254,9 +255,8 @@ msgid "Network connection has become inactive."
 msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
-#, fuzzy
 msgid "Connecting..."
-msgstr "Conexión cableada."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
@@ -268,7 +268,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
-msgstr ""
+msgstr "Un cable ha sido enchufado"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been unpluged"
@@ -428,9 +428,8 @@ msgid "Deactivate wifi"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:109
-#, fuzzy
 msgid "Activate wifi"
-msgstr "Tiempo de actividad"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -624,8 +623,8 @@ msgstr ""
 "subdocks.\n"
 "  o se escribe el nombre de un lanzador y se presiona tabulador para saltar "
 "automáticamente al siguiente lanzador posible.\n"
-"  se presiona intro para para pulsar en el icono. Mayús+Intro para Mayús"
-"+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
+"  se presiona intro para para pulsar en el icono. Mayús+Intro para "
+"Mayús+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
 "izquierdo\n"
 "- modo de búsqueda: se escribe un texto para lanzar una orden, archivo o "
 "cálculo.\n"
@@ -1064,7 +1063,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "No se pudo subir el archivo, compruebe que su conexión de internet este "
 "activa."
@@ -1783,8 +1783,8 @@ msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1851,9 +1851,8 @@ msgid "Browse images folder"
 msgstr "Explorar la carpeta de imágenes"
 
 #: ../stack/src/applet-init.c:31
-#, fuzzy
 msgid "stack"
-msgstr "Pista"
+msgstr ""
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2992,7 +2991,8 @@ msgstr ""
 #: ../stack/data/messages:31 ../systray/data/messages:17
 #: ../terminal/data/messages:29 ../weather/data/messages:27
 #: ../weblets/data/messages:29 ../wifi/data/messages:25
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
 #: ../Clipper/data/messages:135 ../GMenu/data/messages:31
@@ -3666,7 +3666,8 @@ msgstr "¿Permitir que aplicaciones externas muestren/escondan las barras?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers into the docks ?"
-msgstr "¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
+msgstr ""
+"¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
 
 #: ../Dbus/data/messages:17
 msgid "Let extern applications modify the labels of icons ?"
@@ -3748,9 +3749,8 @@ msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:95
-#, fuzzy
 msgid "Info displayed by the icon :"
-msgstr "Información a mistrar en el icono:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:97
 msgid "Wifi signal"
@@ -3765,14 +3765,12 @@ msgid "By default the first active interface is used."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:103
-#, fuzzy
 msgid "Connexion interface to monitor :"
-msgstr "Interfaz por defecto para la conexión:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:105
-#, fuzzy
 msgid "Display numeric values :"
-msgstr "Mostrar valores:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
 #: ../alsaMixer/data/messages:117 ../clock/data/messages:95
@@ -3806,9 +3804,8 @@ msgid "Fluidity of the transition animation between 2 values :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:117
-#, fuzzy
 msgid "Animation of the icon when connecting :"
-msgstr "Animación cuando cambie la música:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:119
 msgid ""
@@ -3830,9 +3827,8 @@ msgid "User command to show a system monitor :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:127
-#, fuzzy
 msgid "Net Speed"
-msgstr "Velocidad"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
@@ -4163,7 +4159,8 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../RSSreader/data/messages:175
@@ -5495,7 +5492,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
@@ -6299,9 +6297,8 @@ msgid ""
 msgstr ""
 
 #: ../showDesktop/data/messages:101
-#, fuzzy
 msgid "Action on left-click :"
-msgstr "Accinoes con clic izquierdo y clic central:"
+msgstr ""
 
 #: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
 msgid "Show the desklets"
@@ -6511,8 +6508,8 @@ msgstr ""
 
 #: ../stack/data/messages:135
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 
 #: ../stack/data/messages:137
@@ -6858,7 +6855,7 @@ msgstr ""
 
 #: ../weblets/data/messages:109
 msgid "Transparent background ?"
-msgstr ""
+msgstr "¿Fondo transparente?"
 
 #: ../weblets/data/messages:111
 msgid ""
@@ -6931,25 +6928,8 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name ?"
 msgstr ""
 
-#~ msgid ""
-#~ "This applet shows you a monitor of your active connections\n"
-#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
-#~ msgstr ""
-#~ "Esta mini aplicación monitoriza las conexiones activas.\n"
-#~ "Clic izquierdo para mostrar información, clic central para actualizarla "
-#~ "inmediatamente."
-
 #~ msgid "Free"
 #~ msgstr "Libre"
-
-#~ msgid "not used at the moment."
-#~ msgstr "No usar por ahora."
-
-#~ msgid "Accessibility :"
-#~ msgstr "Accesibilidad:"
-
-#~ msgid "in degrees."
-#~ msgstr "En ángulos."
 
 #~ msgid "No Title"
 #~ msgstr "Sin título"
@@ -6961,14 +6941,31 @@ msgstr ""
 #~ msgstr "No se definió una dirección URL para un canal RSS..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
-#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar "
-#~ "una nueva dirección URL de RSS\" desde el menú para agregar una."
+#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar una "
+#~ "nueva dirección URL de RSS\" desde el menú para agregar una."
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Error al conectar..."
 
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Sin datos (¿RSS inválido?)"
+
+#~ msgid ""
+#~ "This applet shows you a monitor of your active connections\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+#~ msgstr ""
+#~ "Esta mini aplicación monitoriza las conexiones activas.\n"
+#~ "Clic izquierdo para mostrar información, clic central para actualizarla "
+#~ "inmediatamente."
+
+#~ msgid "in degrees."
+#~ msgstr "En ángulos."
+
+#~ msgid "not used at the moment."
+#~ msgstr "No usar por ahora."
+
+#~ msgid "Accessibility :"
+#~ msgstr "Accesibilidad:"

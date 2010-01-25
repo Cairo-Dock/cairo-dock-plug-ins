@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
-"PO-Revision-Date: 2009-12-05 14:34+0000\n"
+"POT-Creation-Date: 2010-01-25 01:09+0000\n"
+"PO-Revision-Date: 2010-01-25 01:59+0000\n"
 "Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-06 04:46+0000\n"
+"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -248,9 +249,8 @@ msgid "Network connection has become inactive."
 msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
-#, fuzzy
 msgid "Connecting..."
-msgstr "Wired Connection."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
@@ -262,11 +262,11 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
-msgstr ""
+msgstr "A cable has been plugged"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been unpluged"
-msgstr ""
+msgstr "A cable has been unplugged"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:141 ../wifi/src/applet-draw.c:31
@@ -410,23 +410,20 @@ msgid "Network Administration"
 msgstr "Network Administration"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
-#, fuzzy
 msgid "Activate network"
-msgstr "List networks?"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:105
-#, fuzzy
 msgid "Deactivate network"
-msgstr "List networks?"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:109
-#, fuzzy
 msgid "Activate wifi"
-msgstr "Activity time"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -444,6 +441,15 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"This applet is an RSS/Atom feed reader.\n"
+"You can instantiate it as many times as you want.\n"
+"USAGE:\n"
+" - Left-click: display the complete feed lines in a dialogue.\n"
+" - Middle-click: refresh the feed.\n"
+" - Scroll on the desklet: make the feed lines scroll.\n"
+" - Drag and drop a valid URL on the icon to use it,\n"
+"    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+"    or edit the Configuration Panel."
 
 #: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
 #: ../RSSreader/src/applet-notifications.c:64
@@ -1057,7 +1063,8 @@ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Couldn't upload the file, check that your internet connexion is active."
 
@@ -1072,6 +1079,7 @@ msgstr ""
 #: ../dnd2share/src/applet-dnd2share.c:286
 msgid "Please wait the current upload is finished before starting a new one."
 msgstr ""
+"Please wait for the current upload to finish before starting a new one."
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -1169,7 +1177,7 @@ msgstr "Click on the icon to copy the URL into the clipboard."
 
 #: ../dnd2share/src/applet-notifications.c:395
 msgid "Send the clipboard's content"
-msgstr ""
+msgstr "Send the clipboard's content"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
@@ -1860,11 +1868,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
-"desklet."
+"This plug-in draw some animation around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesklets/src/applet-init.c:28
 msgid "showDesklets"
@@ -1887,7 +1895,6 @@ msgid "showDesktop"
 msgstr "showDesktop"
 
 #: ../showDesktop/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "This applet adds an icon to show your desktop,\n"
 " and also : the desklets, the Widget Layer, or all the desktops at once.\n"
@@ -1898,7 +1905,9 @@ msgid ""
 "Layer, or all the desktops at once."
 msgstr ""
 "This applet adds an icon to show your desktop,\n"
-"and also: the desklets, the Widget Layer, or all the desktops at once.\n"
+" and also : the desklets, the Widget Layer, or all the Desktops at once.\n"
+"It can also be used to quickly change the screen's resolution from the right-"
+"click menu.\n"
 "Left-click to show/hide the desktop,\n"
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
@@ -1909,7 +1918,7 @@ msgstr "You need to run Compiz and activate its 'DBus' plug-in."
 
 #: ../showDesktop/src/applet-notifications.c:162
 msgid "Change screen resolution"
-msgstr ""
+msgstr "Change screen resolution"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -1944,9 +1953,8 @@ msgid "Browse images folder"
 msgstr "Browse images folder"
 
 #: ../stack/src/applet-init.c:31
-#, fuzzy
 msgid "stack"
-msgstr "Track"
+msgstr ""
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2594,7 +2602,7 @@ msgstr "Capsule"
 
 #: ../Animated-icons/data/messages:91
 msgid "Color of the sheen :"
-msgstr ""
+msgstr "Colour of the sheen:"
 
 #: ../Animated-icons/data/messages:103 ../Animated-icons/data/messages:107
 #: ../Clipper/data/messages:113 ../GMenu/data/messages:9
@@ -3054,7 +3062,7 @@ msgstr "Desklet"
 #: ../tomboy/data/messages:33 ../weather/data/messages:17
 #: ../weblets/data/messages:19 ../wifi/data/messages:15
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
 #: ../Clipper/data/messages:125 ../GMenu/data/messages:21
 #: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:23
@@ -3148,7 +3156,8 @@ msgstr "Desklet dimensions (width x height):"
 #: ../stack/data/messages:31 ../systray/data/messages:17
 #: ../terminal/data/messages:29 ../weather/data/messages:27
 #: ../weblets/data/messages:29 ../wifi/data/messages:25
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3189,6 +3198,8 @@ msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
 msgstr ""
+"You can quickly rotate the desklet with the mouse, by dragging the little "
+"buttons on its left and top sides."
 
 #: ../Clipper/data/messages:139 ../GMenu/data/messages:35
 #: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:37
@@ -3223,7 +3234,7 @@ msgstr "Rotation:"
 #: ../tomboy/data/messages:51 ../weather/data/messages:35
 #: ../weblets/data/messages:37 ../wifi/data/messages:33
 msgid "Visibility"
-msgstr ""
+msgstr "Visibility"
 
 #: ../Clipper/data/messages:143 ../GMenu/data/messages:39
 #: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:41
@@ -3281,7 +3292,7 @@ msgstr ""
 #: ../tomboy/data/messages:57 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:39
 msgid "Visibility :"
-msgstr ""
+msgstr "Visibility:"
 
 #: ../Clipper/data/messages:151 ../GMenu/data/messages:47
 #: ../Network-Monitor/data/messages:45 ../RSSreader/data/messages:49
@@ -3407,7 +3418,7 @@ msgstr "Decorations"
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:55
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr ""
+msgstr "Choose 'Custom decorations' to define your own decorations below."
 
 #: ../Clipper/data/messages:165 ../GMenu/data/messages:61
 #: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:63
@@ -3689,7 +3700,7 @@ msgstr "Foreground tansparency:"
 
 #: ../Clipper/data/messages:197
 msgid "Items"
-msgstr ""
+msgstr "Items"
 
 #: ../Clipper/data/messages:199
 msgid ""
@@ -3913,9 +3924,8 @@ msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr "You can quickly switch to the other mode by scrolling on the icon."
 
 #: ../Network-Monitor/data/messages:95
-#, fuzzy
 msgid "Info displayed by the icon :"
-msgstr "Info to display in the icon:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:97
 msgid "Wifi signal"
@@ -3930,14 +3940,12 @@ msgid "By default the first active interface is used."
 msgstr "By default the first active interface is used."
 
 #: ../Network-Monitor/data/messages:103
-#, fuzzy
 msgid "Connexion interface to monitor :"
-msgstr "Default connexion interface:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:105
-#, fuzzy
 msgid "Display numeric values :"
-msgstr "Display values :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
 #: ../alsaMixer/data/messages:117 ../clock/data/messages:95
@@ -3967,14 +3975,12 @@ msgstr ""
 "movement is continue."
 
 #: ../Network-Monitor/data/messages:115
-#, fuzzy
 msgid "Fluidity of the transition animation between 2 values :"
-msgstr "Fluidity of the transition between 2 values :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:117
-#, fuzzy
 msgid "Animation of the icon when connecting :"
-msgstr "Animation of the icon when a feed has changed:"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:119
 msgid ""
@@ -3998,9 +4004,8 @@ msgid "User command to show a system monitor :"
 msgstr "User command to display a system monitor:"
 
 #: ../Network-Monitor/data/messages:127
-#, fuzzy
 msgid "Net Speed"
-msgstr "Speed"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
@@ -4099,9 +4104,8 @@ msgid "Wifi"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:171
-#, fuzzy
 msgid "Choose the style of the display :"
-msgstr "Choose the style of the display : "
+msgstr ""
 
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:207
 #: ../powermanager/data/messages:95 ../powermanager/data/messages:125
@@ -4234,7 +4238,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:117
 msgid "Duration of the info-bubble :"
-msgstr ""
+msgstr "Duration of the info-bubble:"
 
 #: ../RSSreader/data/messages:119
 msgid "Animation of the icon when a feed has changed :"
@@ -4333,8 +4337,10 @@ msgid "Background"
 msgstr "Background"
 
 #: ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"You can have more attractive backgrounds using the Desklet decorations"
 
 #: ../RSSreader/data/messages:175
 msgid "Display a simple background ?"
@@ -5472,7 +5478,7 @@ msgstr "Magnitude of the wave:"
 
 #: ../dock-rendering/data/messages:49
 msgid "Curve towards the outside ?"
-msgstr ""
+msgstr "Curve towards the outside?"
 
 #: ../dock-rendering/data/messages:53
 msgid "Space between icons and their label :"
@@ -5622,7 +5628,7 @@ msgstr "Amplitude of the curve:"
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
-msgstr ""
+msgstr "Drag and drop indicator"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
@@ -5650,7 +5656,7 @@ msgstr "Image when hovering an icon :"
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
-msgstr ""
+msgstr "Animation"
 
 #: ../drop-indicator/data/messages:15
 msgid "Speed :"
@@ -5720,7 +5726,8 @@ msgid "Desktop-less support"
 msgstr "Desktop-less support"
 
 #: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "If the Trash folder is not known by the dock, you can specify it here :"
 
@@ -5763,7 +5770,8 @@ msgstr "Colours"
 
 #: ../icon-effect/data/messages:87
 msgid "It will slightly alter the colors, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
 msgid "Add luminance ?"
@@ -5934,7 +5942,7 @@ msgstr "Relative size of the text :"
 
 #: ../keyboard-indicator/data/messages:109
 msgid "smaller"
-msgstr ""
+msgstr "smaller"
 
 #: ../logout/data/messages:93
 msgid "Let empty to execute the default command."
@@ -6071,7 +6079,8 @@ msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
 msgid "Let it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:91
 msgid "Audio Player"
@@ -6357,7 +6366,7 @@ msgstr "Leave empty to use the folder's name."
 
 #: ../quick-browser/data/messages:95 ../slider/data/messages:89
 msgid "Folder"
-msgstr ""
+msgstr "Folder"
 
 #: ../quick-browser/data/messages:97
 msgid "Folder to browse :"
@@ -6377,7 +6386,7 @@ msgstr "Show hidden files?"
 
 #: ../quick-browser/data/messages:105
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: ../quick-browser/data/messages:107
 msgid "It can be quite heavy to load a lot of icons."
@@ -6537,26 +6546,24 @@ msgid "Image when the applet is active :"
 msgstr "Image when the applet is active :"
 
 #: ../showDesktop/data/messages:99 ../showDesktop/data/messages:113
-#, fuzzy
 msgid ""
 "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
 "Showing desktop and desklets can fail on some Window Manager, like Metacity."
 msgstr ""
-"You need to activate the Dbus plug-in in Compiz for the last 2 actions."
+"You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
+"Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 
 #: ../showDesktop/data/messages:101
-#, fuzzy
 msgid "Action on left-click :"
-msgstr "Action on middle-click:"
+msgstr "Action on left-click:"
 
 #: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
 msgid "Show the desklets"
 msgstr "Show the desklets"
 
 #: ../showDesktop/data/messages:107 ../showDesktop/data/messages:121
-#, fuzzy
 msgid "Show desktop and desklets"
-msgstr "Show the desklets"
+msgstr "Show desktop and desklets"
 
 #: ../showDesktop/data/messages:109 ../showDesktop/data/messages:123
 msgid "Show the Widget Layer (Compiz)"
@@ -6576,7 +6583,7 @@ msgstr "Shortkey for the middle-click action:"
 
 #: ../slider/data/messages:91
 msgid "Folder of the images :"
-msgstr ""
+msgstr "Folder for the images:"
 
 #: ../slider/data/messages:93
 msgid "Scan in sub direcotries ?"
@@ -6664,11 +6671,11 @@ msgstr "Number of steps for transitions:"
 
 #: ../slider/data/messages:139
 msgid "fast"
-msgstr ""
+msgstr "fast"
 
 #: ../slider/data/messages:141
 msgid "slow"
-msgstr ""
+msgstr "slow"
 
 #: ../slider/data/messages:145
 msgid "Gives a better image rendering."
@@ -6764,8 +6771,8 @@ msgstr "Manual order"
 
 #: ../stack/data/messages:135
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, by opposition to the usual "
+"ctrl+c/ctrl+v clipboard"
 msgstr ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
@@ -6917,19 +6924,19 @@ msgstr "Terminal transparency:"
 
 #: ../terminal/data/messages:99
 msgid "transparent"
-msgstr ""
+msgstr "transparent"
 
 #: ../terminal/data/messages:101
 msgid "opaque"
-msgstr ""
+msgstr "opaque"
 
 #: ../terminal/data/messages:103
 msgid "Foreground color :"
-msgstr ""
+msgstr "Foreground colour:"
 
 #: ../terminal/data/messages:105
 msgid "Background color :"
-msgstr ""
+msgstr "Background colour:"
 
 #: ../terminal/data/messages:109
 msgid ""
@@ -7043,7 +7050,8 @@ msgstr "Code for your location:"
 
 #: ../weather/data/messages:97
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+"If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 
 #: ../weather/data/messages:99
 msgid "Use International System Units ?"
@@ -7207,22 +7215,6 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Free"
 #~ msgstr "Free"
 
-#~ msgid "How to display the wifi signal :"
-#~ msgstr "How to display the wifi signal:"
-
-#~ msgid "not used at the moment."
-#~ msgstr "not used for the moment."
-
-#~ msgid ""
-#~ "According to your Window Manager, this may prevent the applet from hiding "
-#~ "the desktop."
-#~ msgstr ""
-#~ "Depending on your Window Manager, this may prevent the applet from hiding "
-#~ "the desktop."
-
-#~ msgid "Keep the desklets visible when showing the desktop ?"
-#~ msgstr "Keep the desklets visible when showing the desktop?"
-
 #~ msgid "Accessibility :"
 #~ msgstr "Accessibility:"
 
@@ -7231,9 +7223,6 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr "Select 'Personal' to define your own decorations below."
-
-#~ msgid "Swap left-click and middle-click ?"
-#~ msgstr "Swap left-click and middle-click?"
 
 #~ msgid ""
 #~ "This is a very simple icon to show your desktop\n"
@@ -7275,6 +7264,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animate icon during the alert?"
 
+#~ msgid "Swap left-click and middle-click ?"
+#~ msgstr "Swap left-click and middle-click?"
+
 #~ msgid "No Title"
 #~ msgstr "No Title"
 
@@ -7290,8 +7282,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "USAGE:\n"
 #~ " - Left-click : display the complete feed lines in a dialog.\n"
 #~ " - Middle-click : refresh the feed.\n"
-#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop "
-#~ "a valid URL on the icon to use it,\n"
+#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
 #~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 #~ "    or edit the Configuration Panel."
 #~ msgstr ""
@@ -7300,10 +7292,26 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "USAGE:\n"
 #~ " - Left-click: display the complete feed lines in a dialog.\n"
 #~ " - Middle-click: refresh the feed.\n"
-#~ " - Scroll on the desklet: make the feed lines scroll\\.n - Drag and drop "
-#~ "a valid URL on the icon to use it,\n"
+#~ " - Scroll on the desklet: make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
 #~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 #~ "    or edit the Configuration Panel."
 
 #~ msgid "Number of feed lines to display in the dialog :"
 #~ msgstr "Number of feed lines to display in the dialog:"
+
+#~ msgid "not used at the moment."
+#~ msgstr "not used for the moment."
+
+#~ msgid "How to display the wifi signal :"
+#~ msgstr "How to display the wifi signal:"
+
+#~ msgid ""
+#~ "According to your Window Manager, this may prevent the applet from hiding "
+#~ "the desktop."
+#~ msgstr ""
+#~ "Depending on your Window Manager, this may prevent the applet from hiding "
+#~ "the desktop."
+
+#~ msgid "Keep the desklets visible when showing the desktop ?"
+#~ msgstr "Keep the desklets visible when showing the desktop?"
