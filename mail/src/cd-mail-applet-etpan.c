@@ -275,7 +275,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	if (pUpdatedMailAccount->bError)
 	{
-		cairo_dock_set_quick_info (myDrawContext, "N/A", pIcon, cairo_dock_get_max_scale (pContainer));
+		cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "N/A");
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
@@ -287,7 +287,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	}
 	else
 	{
-		cairo_dock_set_quick_info (myDrawContext, "0", pIcon, cairo_dock_get_max_scale (pContainer));
+		cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "0");
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}

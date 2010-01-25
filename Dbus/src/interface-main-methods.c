@@ -354,9 +354,9 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
 	g_return_val_if_fail (pContainer != NULL, FALSE);
-	double fMaxScale = cairo_dock_get_max_scale (pContainer);
+	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_quick_info (pCairoContext, cQuickInfo, pIcon, fMaxScale);
+	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo);
 	cairo_destroy (pCairoContext);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;

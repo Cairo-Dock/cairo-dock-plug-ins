@@ -72,9 +72,8 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	double fMaxScale = cairo_dock_get_max_scale (pContainer);
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_quick_info (pCairoContext, cQuickInfo, pIcon, fMaxScale);
+	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo);
 	cairo_destroy (pCairoContext);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
@@ -246,7 +245,7 @@ gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusSubApplet, const gchar
 
 gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const gchar **pIconFields, GError **error)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	

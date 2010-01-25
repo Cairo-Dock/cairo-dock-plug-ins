@@ -68,7 +68,7 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 		Icon *pIcon = (pMailAccount->icon ? pMailAccount->icon : myIcon);
 		CairoContainer *pContainer = (pMailAccount->icon ? CD_APPLET_MY_ICONS_LIST_CONTAINER : myContainer);
-		cairo_dock_set_quick_info (myDrawContext, "...", pIcon, cairo_dock_get_max_scale (pContainer));
+		cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "...");
 		
 		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
 	}

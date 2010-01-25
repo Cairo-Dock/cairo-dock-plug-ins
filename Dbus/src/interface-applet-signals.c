@@ -557,6 +557,15 @@ void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 	}
 }
 
+static gboolean _update_active_applets_in_conf (gpointer data)
+{
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+		G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
+		G_TYPE_INVALID);
+	myData.iSidRemoveAppletFromConf = 0;
+	return FALSE;
+}
+
 void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {
 	g_print ("%s (%s, %d)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName, myData.bServiceIsStopping);
@@ -578,15 +587,13 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 			*str = '\0';
 			gchar *ptr = myData.cActiveModules;
 			myData.cActiveModules = g_strdup_printf ("%s%s", myData.cActiveModules, str + strlen (pModuleInstance->pModule->pVisitCard->cModuleName));
-			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-				G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
-				G_TYPE_INVALID);
-			
 			g_free (ptr);
+			if (myData.iSidRemoveAppletFromConf == 0)
+				myData.iSidRemoveAppletFromConf = g_idle_add ((GSourceFunc) _update_active_applets_in_conf, NULL);  // on differe la mise a jour du fichier de conf, pour le cas ou l'applet serait desactivee par le dock a la fermeture, avant la desactivation de Dbus.
 		}
 	}
 	
-	if (! myData.bServiceIsStopping)
+	if (! myData.bServiceIsStopping)  // on detruit l'objet a la fin.
 		cd_dbus_delete_remote_applet_object (pModuleInstance);
 }
 

@@ -104,6 +104,7 @@ struct _AppletData {
 	dbusApplet *pCurrentMenuDbusApplet;
 	gchar *cActiveModules;
 	gboolean bServiceIsStopping;
+	guint iSidRemoveAppletFromConf;
 	} ;
 
 

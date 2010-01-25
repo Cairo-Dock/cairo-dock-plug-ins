@@ -41,6 +41,8 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
+	if (myData.iSidRemoveAppletFromConf != 0)
+		g_source_remove (myData.iSidRemoveAppletFromConf);
 	cd_dbus_stop_service ();
 CD_APPLET_STOP_END
 
