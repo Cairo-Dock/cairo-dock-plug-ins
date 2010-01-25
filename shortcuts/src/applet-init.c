@@ -70,7 +70,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On charge les icones dans un sous-dock.
-		cd_shortcuts_reset_all_datas (myApplet);  // stoppe les mesures.
+		cd_shortcuts_reset_all_datas (myApplet);  // stoppe toutes les mesures et remet myData a 0.
 		
 		if (myDock)
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.

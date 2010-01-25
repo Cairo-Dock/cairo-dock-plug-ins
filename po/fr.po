@@ -6146,7 +6146,7 @@ msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
 "applet's icon will then behave as a launcher, an appli, and an applet."
 msgstr ""
-"Ceci préviendra l'icône de l'application à apparaitre dans la barre des "
+"Ceci empêchera l'icône de l'application d'apparaitre dans la barre des "
 "tâches. L'icône de l'applet se comportera comme un lanceur, une application "
 "et une applet."
 
@@ -6156,11 +6156,11 @@ msgstr "Ajouter un nouveau compte e-mail"
 
 #: ../mail/data/messages:137
 msgid "The new account will be created with specified type and name."
-msgstr "Le nouveau compte pourra être créé avec un type et un nom spécifiés."
+msgstr "Le nouveau compte sera créé avec le type et le nom spécifiés."
 
 #: ../mail/data/messages:139
 msgid "Add an account with specified type and name:"
-msgstr "Ajouter un compte avec un type et un nom spécifiés"
+msgstr "Ajouter un compte avec un type et un nom spécifiés:"
 
 #: ../motion-blur/data/messages:3
 msgid "Also blur on mouse movement ?"

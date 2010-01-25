@@ -199,6 +199,8 @@ static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
 */
 static gchar *_url_encode (const gchar * str)
 {
+	g_return_val_if_fail (str != NULL, NULL);
+	cd_debug ("%s (%s)\n", __func__, str);
 	const gchar * s = str;
 	char * t = NULL;
 	char * ret;
@@ -214,6 +216,7 @@ static gchar *_url_encode (const gchar * str)
 			lenght++;  // sinon un seul
 	}while(*++s); // avance d'un cran dans la chaine. Si on est pas à la fin, on continue...
 	s = str;
+	/// la ligne suivane peut planter ...
 	t = g_new (gchar, lenght + 1); // Allocation à la bonne taille
 	ret = t;
 	//encodage

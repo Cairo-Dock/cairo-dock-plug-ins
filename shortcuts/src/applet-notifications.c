@@ -31,7 +31,6 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDock))  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
 	{
 		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-		g_print ("bDesktopIsVisible : %d\n", bDesktopIsVisible);
 		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iType == 6 || CD_APPLET_CLICKED_ICON->iVolumeID != 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
@@ -64,26 +63,11 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	CairoDockModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	CairoContainer *pContainer = data[2];
-	g_print ("%s (%s)\n", __func__, pIcon->cCommand);
+	//g_print ("%s (%s)\n", __func__, pIcon->cCommand);
 	
-	GString *sInfo = g_string_new ("");
-	CDDiskUsage diskUsage;
-	cd_shortcuts_get_fs_stat (pIcon->cCommand, &diskUsage);
-	if (diskUsage.iTotal > 0)
-	{
-		gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
-		gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
-		g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", pIcon->cName, cCapacity, cFreeSpace);
-		g_free (cCapacity);
-		g_free (cFreeSpace);
-		cd_shortcuts_get_fs_info (pIcon->cCommand, sInfo);
-	}
-	else
-	{
-		g_string_append_printf (sInfo, "Name : %s\nNot mounted", pIcon->cName);
-	}
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, pIcon, pContainer, 15000, "same icon");
-	g_string_free (sInfo, TRUE);
+	gchar *cInfo = cd_shortcuts_get_disk_info (pIcon->cCommand, pIcon->cName);
+	cairo_dock_show_temporary_dialog_with_icon (cInfo, pIcon, pContainer, 15000, "same icon");
+	g_free (cInfo);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer *data = NULL;

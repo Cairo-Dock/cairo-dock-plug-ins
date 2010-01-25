@@ -200,7 +200,6 @@ public class Applet : GLib.Object
 		this.sub_icons.AddSubIcons(subicons);  // add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
 		this.sub_icons.RemoveSubIcon("id2");  // remove the 2nd icon of our sub-dock.
 		this.sub_icons.SetQuickInfo("1", "id1");  // write the ID on each icon of the sub-dock.
-		this.sub_icons.SetQuickInfo("2", "id2");
 		this.sub_icons.SetQuickInfo("3", "id3");
 		this.sub_icons.SetQuickInfo("4", "id4");
 	}

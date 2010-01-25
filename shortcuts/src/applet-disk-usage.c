@@ -29,7 +29,7 @@
 #include "applet-disk-usage.h"
 
 
-void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
+static void _cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 {
 	static struct statfs sts;
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
@@ -52,7 +52,7 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 	}
 }
 
-void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
+static void _cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 {
 	//cd_message ("%s ()", __func__);
 	const gchar *cMountPath;
@@ -82,12 +82,12 @@ void cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
 				myData.pDiskUsageList = g_list_append (myData.pDiskUsageList, pDiskUsage);
 			}
 			
-			cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
+			_cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
 		}
 	}
 }
 
-gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
+static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myData.pDiskUsageList != NULL, TRUE);
 	
@@ -157,33 +157,39 @@ gboolean cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_shortcuts_stop_disk_periodic_task (CairoDockModuleInstance *myApplet)
-{
-	cairo_dock_stop_task (myData.pDiskTask);
-	myData.pDiskTask = NULL;
-	g_list_foreach (myData.pDiskUsageList, (GFunc) g_free, NULL);
-	g_list_free (myData.pDiskUsageList);
-	myData.pDiskUsageList = NULL;
-}
-
 void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 {
-	if (myConfig.iDisplayType != CD_SHOW_NOTHING)
+	if (myConfig.iDisplayType != CD_SHOW_NOTHING && myConfig.bListDrives)
 	{
 		if (myData.pDiskTask == NULL)
 		{
 			myData.pDiskTask = cairo_dock_new_task (myConfig.iCheckInterval,
-				(CairoDockGetDataAsyncFunc) cd_shortcuts_get_disk_usage,
-				(CairoDockUpdateSyncFunc) cd_shortcuts_update_disk_usage,
+				(CairoDockGetDataAsyncFunc) _cd_shortcuts_get_disk_usage,
+				(CairoDockUpdateSyncFunc) _cd_shortcuts_update_disk_usage,
 				myApplet);
 		}
 		cairo_dock_launch_task (myData.pDiskTask);
 	}
 }
 
+void cd_shortcuts_stop_disk_periodic_task (CairoDockModuleInstance *myApplet)
+{
+	cairo_dock_stop_task (myData.pDiskTask);
+	g_list_foreach (myData.pDiskUsageList, (GFunc) g_free, NULL);
+	g_list_free (myData.pDiskUsageList);
+	myData.pDiskUsageList = NULL;
+}
+
+void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
+{
+	cd_shortcuts_stop_disk_periodic_task (myApplet);
+	cairo_dock_free_task (myData.pDiskTask);
+	myData.pDiskTask = NULL;
+}
 
 
-void cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
+
+static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 {
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
 	struct mntent *me;
@@ -215,4 +221,31 @@ void cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 	}
 	
 	endmntent (mtab);
+}
+
+gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName)
+{
+	GString *sInfo = g_string_new ("");
+	// on recupere les infos de taille.
+	CDDiskUsage diskUsage;
+	_cd_shortcuts_get_fs_stat (cDiskURI, &diskUsage);
+	
+	// on recupere les infos du file system.
+	if (diskUsage.iTotal > 0)  // le disque est monte.
+	{
+		gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
+		gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
+		g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", cDiskName, cCapacity, cFreeSpace);
+		g_free (cCapacity);
+		g_free (cFreeSpace);
+		_cd_shortcuts_get_fs_info (cDiskURI, sInfo);
+	}
+	else  // disque non monte.
+	{
+		g_string_append_printf (sInfo, "Name : %s\nNot mounted", cDiskName);
+	}
+	
+	gchar *cInfo = sInfo->str;
+	g_string_free (sInfo, FALSE);
+	return cInfo;
 }

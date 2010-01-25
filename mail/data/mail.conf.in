@@ -96,7 +96,7 @@ fg alpha = 1
 [Configuration]
 
 
-#F[Sub-Dock view] 
+#X[Sub-Dock view] 
 frame_sub-dock =
 
 #n+ Name of the view used for the sub-dock :
@@ -104,15 +104,11 @@ frame_sub-dock =
 renderer = 
 
 
-#F[Sub-Dock view] 
+#X[Theme] 
 frame_them =
 
 #h+[@maildatadir@/themes;mail] Choose one of the available themes :
 theme = Default
-
-
-#X[Theme overriding;gtk-about] 
-frame_over =
 
 #S+ Name of the file for the "no mail" image :
 no mail image = 
@@ -124,7 +120,7 @@ has mail image =
 new mail sound = 
 
 
-#F[Behaviour] 
+#X[Behaviour] 
 frame_config_mail =
 
 #b Show new messages' content ?
@@ -143,13 +139,13 @@ time_dialog = 5
 check = true
 
 
-#F[Mail application] 
+#X[Mail application] 
 frame_appli =
 
 #s Prefered mail application to launch on left-click :
 mail application = thunderbird
 
-#s Class of the mail application (optionnal)
+#K Class of the mail application (optionnal)
 #{only use this if it differs from its name. Generally it is not the case, except for Thunderbird.}
 mail class = Thunderbird-bin
 
