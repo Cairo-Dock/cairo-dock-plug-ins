@@ -209,7 +209,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 			
 			GtkWidget *pMenu = cd_clipper_build_action_menu (pAction);
 			
-			cd_clipper_show_menu (pMenu, 0);
+			cd_clipper_popup_menu (pMenu);
 		}
 	}
 	myData.bActionBlocked = FALSE;
@@ -540,15 +540,6 @@ GtkWidget *cd_clipper_build_items_menu (void)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
 	
-	if (myDock)
-	{
-		myDock->bMenuVisible = TRUE;
-		g_signal_connect (G_OBJECT (pMenu),
-			"deactivate",
-			G_CALLBACK (cairo_dock_delete_menu),
-			myDock);
-	}
-	
 	GtkWidget *pMenuItem;
 	CDClipperItem *pItem;
 	GList *pElement;
@@ -567,15 +558,6 @@ GtkWidget *cd_clipper_build_items_menu (void)
 GtkWidget *cd_clipper_build_persistent_items_menu (void)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
-	
-	if (myDock)
-	{
-		myDock->bMenuVisible = TRUE;
-		g_signal_connect (G_OBJECT (pMenu),
-			"deactivate",
-			G_CALLBACK (cairo_dock_delete_menu),
-			myDock);
-	}
 	
 	gchar *cText;
 	GtkWidget *pMenuItem;
@@ -596,15 +578,15 @@ static void _place_menu (GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpo
 	*y = myContainer->iWindowPositionY + myIcon->fDrawY + myIcon->fHeight * myIcon->fScale/2;
 	*push_in = TRUE;  // pour que le menu se redimensionne.
 }
-void cd_clipper_show_menu (GtkWidget *pMenu, gint iButton)
+void cd_clipper_popup_menu (GtkWidget *pMenu)
 {
 	gtk_widget_show_all (pMenu);
 	gtk_menu_popup (GTK_MENU (pMenu),
 		NULL,
 		NULL,
-		((myConfig.bMenuOnMouse || (iButton == 1)) ? NULL : (GtkMenuPositionFunc) _place_menu),
+		(GtkMenuPositionFunc) (myConfig.bMenuOnMouse ? NULL : _place_menu),
 		NULL,
-		iButton,
+		0,
 		gtk_get_current_event_time ());
 }
 

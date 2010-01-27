@@ -112,7 +112,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		if (pClickedIcon != myIcon && ! (CAIRO_DOCK_IS_APPLET (pClickedIcon) && pClickedIcon->pModuleInstance->pModule == myIcon->pModuleInstance->pModule))
 		{
 			g_print ("%s\n", myApplet->cConfFilePath);
-			cairo_dock_notify (CAIRO_DOCK_BUILD_MENU, myIcon, myContainer, CD_APPLET_MY_MENU);
+			cairo_dock_notify (CAIRO_DOCK_BUILD_ICON_MENU, myIcon, myContainer, CD_APPLET_MY_MENU);
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
 		

@@ -692,11 +692,7 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	GtkWidget *main_menu;
 
 	main_menu = create_applications_menu ("applications.menu", NULL, NULL);
-	g_signal_connect (G_OBJECT (main_menu),
-		"deactivate",
-		G_CALLBACK (cairo_dock_delete_menu),
-		myContainer);
-
+	
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback",
 		main_menu_append);

@@ -26,20 +26,11 @@
 #include "applet-notifications.h"
 
 
-
 static void cd_menu_show_menu (void)
 {
 	if (myData.pMenu != NULL)
 	{
-		if (myDock)
-			myDock->bMenuVisible = TRUE;
-		gtk_menu_popup (GTK_MENU (myData.pMenu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
+		cairo_dock_popup_menu_on_container (myData.pMenu, myContainer);
 	}
 }
 

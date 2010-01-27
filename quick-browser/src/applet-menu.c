@@ -271,18 +271,5 @@ void cd_quick_browser_show_menu (CairoDockModuleInstance *myApplet)
 	myData.pRootItem = cd_quick_browser_make_menu_from_dir (myConfig.cDirPath, myApplet);
 	g_return_if_fail (myData.pRootItem != NULL && myData.pRootItem->pSubMenu != NULL);
 	
-	g_signal_connect (G_OBJECT (myData.pRootItem->pSubMenu),
-		"deactivate",
-		G_CALLBACK (cairo_dock_delete_menu),
-		myContainer);
-	
-	if (myDock)
-		myDock->bMenuVisible = TRUE;
-	gtk_menu_popup (GTK_MENU (myData.pRootItem->pSubMenu),
-		NULL,
-		NULL,
-		NULL,
-		NULL,
-		1,
-		gtk_get_current_event_time ());
+	cairo_dock_popup_menu_on_container (myData.pRootItem->pSubMenu, myContainer);
 }

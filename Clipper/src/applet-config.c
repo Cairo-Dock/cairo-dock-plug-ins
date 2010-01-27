@@ -36,7 +36,8 @@ static void _cd_clipper_on_keybinding_pull (const char *keystring, gpointer user
 	else
 	{
 		GtkWidget *pMenu = cd_clipper_build_items_menu ();
-		cd_clipper_show_menu (pMenu, 0);
+		
+		cd_clipper_popup_menu (pMenu);
 	}
 }
 
