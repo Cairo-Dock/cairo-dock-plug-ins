@@ -28,7 +28,6 @@
 #include "rendering-commons.h"
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
-extern double my_fSeparatorColor[4];
 extern GLuint my_iFlatSeparatorTexture;
 
 cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight)
@@ -62,17 +61,17 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 			0.);
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			y,
-			my_fSeparatorColor[0],
-			my_fSeparatorColor[1],
-			my_fSeparatorColor[2],
-			my_fSeparatorColor[3]);
+			myIcons.fSeparatorColor[0],
+			myIcons.fSeparatorColor[1],
+			myIcons.fSeparatorColor[2],
+			myIcons.fSeparatorColor[3]);
 		y += 1.*hk / iHeight;
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			y,
-			my_fSeparatorColor[0],
-			my_fSeparatorColor[1],
-			my_fSeparatorColor[2],
-			my_fSeparatorColor[3]);
+			myIcons.fSeparatorColor[0],
+			myIcons.fSeparatorColor[1],
+			myIcons.fSeparatorColor[2],
+			myIcons.fSeparatorColor[3]);
 		hk -= fStep;
 	}
 	

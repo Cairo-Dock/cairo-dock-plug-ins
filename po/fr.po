@@ -5702,7 +5702,7 @@ msgstr "Décalage de la flèche au centre en pourcent :"
 
 #: ../dock-rendering/data/messages:125
 msgid "The lower, the more the curve will seem flat."
-msgstr "Plus la valeur est faible, plus la courbure semblera flasque."
+msgstr "Plus la valeur est faible, plus la courbure semblera aplatie."
 
 #: ../dock-rendering/data/messages:127
 msgid "Curvature of the curve in percent :"

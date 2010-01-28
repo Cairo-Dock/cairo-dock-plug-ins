@@ -40,12 +40,10 @@
 
 
 int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
-CDSpeparatorType my_iDrawSeparator3D;
 
 double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
-double my_fSeparatorColor[4];
-GLuint my_iFlatSeparatorTexture;
+GLuint my_iFlatSeparatorTexture = 0;
 
 double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
 double my_iGapOnEllipse;  // regle la profondeur du caroussel.
@@ -110,10 +108,11 @@ guint    my_diapo_simple_radius;
 gdouble  my_diapo_simple_color_border_line[4];
 gboolean my_diapo_simple_draw_background;
 
-
 gdouble my_fCurveCurvature;
 gint my_iCurveAmplitude;
-CDSpeparatorType my_curve_iDrawSeparator3D;
+
+gint my_iDrawSeparator3D = 0;
+gdouble my_fSeparatorColor[4];
 
 
 CD_APPLET_PRE_INIT_BEGIN ("dock rendering",

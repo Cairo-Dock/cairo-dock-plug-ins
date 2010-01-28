@@ -27,8 +27,6 @@
 
 extern int iVanishingPointY;double my_fRainbowColor[4];
 double my_fRainbowLineColor[4];
-extern CDSpeparatorType my_iDrawSeparator3D;
-extern GLuint my_iFlatSeparatorTexture;
 
 extern double my_fInclinationOnHorizon;
 extern double my_fForegroundRatio;
@@ -39,7 +37,6 @@ extern double my_fScrollSpeed;
 
 extern double my_fParabolePower;
 extern double my_fParaboleFactor;
-extern double my_fSeparatorColor[4];
 
 extern double my_fParaboleCurvature;
 extern double my_fParaboleRatio;
@@ -49,6 +46,7 @@ extern gboolean my_bDrawTextWhileUnfolding;
 extern gboolean my_bParaboleCurveOutside;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
+extern GLuint my_iFlatSeparatorTexture;
 
 extern int my_iSpaceBetweenRows;
 extern int my_iSpaceBetweenIcons;
@@ -101,15 +99,11 @@ extern gboolean my_diapo_simple_display_all_icons;
 
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
-extern CDSpeparatorType my_curve_iDrawSeparator3D;
 
+extern CDSpeparatorType my_iDrawSeparator3D;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	iVanishingPointY = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "vanishing point y", &bFlushConfFileNeeded, 0, NULL, NULL);
-	my_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "draw separator", &bFlushConfFileNeeded, 0, NULL, NULL);
-	double couleur[4] = {0.9,0.9,1.0,1.0};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Inclinated Plane", "separator color", &bFlushConfFileNeeded, my_fSeparatorColor, 4, couleur, NULL, NULL);
-
 
 	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
@@ -119,7 +113,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fScrollSpeed = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll speed", &bFlushConfFileNeeded, 10., NULL, NULL);
 	my_fScrollAcceleration = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll accel", &bFlushConfFileNeeded, .9, NULL, NULL);
 	
-	my_fParaboleCurvature = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "curvature", &bFlushConfFileNeeded, .5, NULL, NULL);
+	my_fParaboleCurvature = sqrt (cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "curvature", &bFlushConfFileNeeded, .7, NULL, NULL));  // c'est mieux proche de 1.
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);
 	my_fParaboleMagnitude = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "wave magnitude", &bFlushConfFileNeeded, .2, NULL, NULL);
 	my_iParaboleTextGap = cairo_dock_get_integer_key_value (pKeyFile, "Parabolic", "text gap", &bFlushConfFileNeeded, 3, NULL, NULL);
@@ -194,7 +188,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
-	my_curve_iDrawSeparator3D = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "draw curve separator", &bFlushConfFileNeeded, 0, NULL, NULL);
 	
 	if (g_key_file_has_group (pKeyFile, "Slide"))
 	{
@@ -225,5 +218,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		glDeleteTextures (1, &my_iFlatSeparatorTexture);
 		my_iFlatSeparatorTexture = 0;
 	}
+	my_iDrawSeparator3D = 0;
 CD_APPLET_RESET_DATA_END
 

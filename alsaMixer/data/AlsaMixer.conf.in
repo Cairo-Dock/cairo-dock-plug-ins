@@ -7,6 +7,7 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its label in the dock :
+#{Let empty to write the name of the sound card.}
 name = 
 
 #d Name of the dock it belongs to:

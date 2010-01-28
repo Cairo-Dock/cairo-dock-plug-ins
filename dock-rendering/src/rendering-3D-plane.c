@@ -30,9 +30,11 @@
 #include "rendering-3D-plane.h"
 
 extern int iVanishingPointY;
+
 extern CDSpeparatorType my_iDrawSeparator3D;
-extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern double my_fSeparatorColor[4];
+
+extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern GLuint my_iFlatSeparatorTexture;
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
@@ -104,8 +106,16 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	
 	// on charge les separateurs plat.
-	if (my_pFlatSeparatorSurface[0] == NULL && my_iFlatSeparatorTexture == 0 && my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
-		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+	g_print ("%d / %d\n", my_iDrawSeparator3D, myIcons.iSeparatorType);
+	if (my_iDrawSeparator3D != myIcons.iSeparatorType || my_fSeparatorColor[0] != myIcons.fSeparatorColor[0] || my_fSeparatorColor[1] != myIcons.fSeparatorColor[1] || my_fSeparatorColor[2] != myIcons.fSeparatorColor[2] || my_fSeparatorColor[3] != myIcons.fSeparatorColor[3])
+	{
+		my_iDrawSeparator3D = myIcons.iSeparatorType;
+		memcpy (my_fSeparatorColor, myIcons.fSeparatorColor, 4*sizeof(double));
+		if (myIcons.iSeparatorType == CD_FLAT_SEPARATOR)
+		{
+			cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
+		}
+	}
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 }
