@@ -439,7 +439,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 		gchar *cServerAdress = g_path_get_dirname (cReceivedData);
 		gchar *cDistantFileName = g_path_get_basename (cReceivedData);
 		gchar *cExtractTo = g_strdup_printf ("%s/third-party", g_cCairoDockDataDir);
-		gchar *cAppletDirPath = cairo_dock_download_file (cServerAdress, "", cDistantFileName, 0, cExtractTo, &erreur);
+		gchar *cAppletDirPath = cairo_dock_download_file (cServerAdress, "", cDistantFileName, cExtractTo, &erreur);
 		g_free (cServerAdress);
 		g_free (cDistantFileName);
 		if (erreur != NULL)

@@ -106,7 +106,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myBackground.iDockRadius, myBackground.iDockLineWidth);
 	
 	// on charge les separateurs plat.
-	g_print ("%d / %d\n", my_iDrawSeparator3D, myIcons.iSeparatorType);
+	//g_print ("%d / %d\n", my_iDrawSeparator3D, myIcons.iSeparatorType);
 	if (my_iDrawSeparator3D != myIcons.iSeparatorType || my_fSeparatorColor[0] != myIcons.fSeparatorColor[0] || my_fSeparatorColor[1] != myIcons.fSeparatorColor[1] || my_fSeparatorColor[2] != myIcons.fSeparatorColor[2] || my_fSeparatorColor[3] != myIcons.fSeparatorColor[3])
 	{
 		my_iDrawSeparator3D = myIcons.iSeparatorType;
