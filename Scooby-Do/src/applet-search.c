@@ -290,11 +290,13 @@ void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 	cd_do_show_listing ();
 	
 	myData.pListing->pEntries = g_list_concat (myData.pListing->pEntries, pEntries);
+	if (myData.pListing->pCurrentEntry == NULL)
+		cd_do_rewind_current_entry ();
 	myData.pListing->iNbEntries += iNbEntries;
 	myData.pListing->iNbVisibleEntries += iNbEntries;
 	
 	cd_do_fill_listing_entries (myData.pListing);
-	g_print (" => %d elements\n", g_list_length (myData.pListing->pEntries));
+	g_print (" => %d elements (%d/%d)\n", g_list_length (myData.pListing->pEntries), myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
 }
 
 
@@ -333,7 +335,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 	}
 	myData.pListing->iNbEntries -= i;
 	myData.pListing->iNbVisibleEntries -= j;
-	g_print ("iNbEntries <- %d\n", myData.pListing->iNbEntries);
+	g_print ("iNbEntries <- %d/%d\n", myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
 	
 	pRightLink = e;
 	if (pRightLink != NULL)

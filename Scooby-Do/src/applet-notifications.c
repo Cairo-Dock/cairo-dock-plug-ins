@@ -365,6 +365,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Return)
 	{
+		g_print ("Enter (%s)\n", myData.cSearchText);
 		if (myData.bNavigationMode)
 		{
 			if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)

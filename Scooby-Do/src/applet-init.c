@@ -36,14 +36,21 @@
 CD_APPLET_DEFINITION ("Scooby-Do",
 	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
-	N_("A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
-	"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-	"- the navigation mode : use the arrows to navigate into the docks and sub-docks,\n"
-	"  or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
-	"  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
-	"- the finder mode : type some text to launch any command, file or calculation.\n"
-	"  use the arrows to navigate between the results, press Enter to validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
-	"Escape or the same shortkey to cancel."),
+	N_("This plug-in allows you to make different actions directly from the keyboard.\n"
+	"It has 2 modes, each one being triggered by a keyboard shortcut:\n\n"
+	"- the finder mode (default shortcut : CTRL + Enter) :\n"
+	"    It lets you find and launch applications, files, recent files, firefox bookmarks, commands, and even calculations.\n"
+	"    Type what you want to search, the results will be displayed in real time.\n"
+	"    The first results of each category are displayed in the main listing.\n"
+	"    Use the up/down arrows to navigate inside the list,\n"
+	"    and use the left/right arrows to enter into a category, or to display more actions (when a little arrow is drawn next to text).\n"
+	"    Once inside a category, you can filter the results by typing some letters.\n"
+	"    Press Enter to validate, maintain CTRL, ALT or SHIFT to keep the list of results opened.\n\n"
+	"- the navigation mode (default shortcut : CTRL + F9) :\n"
+	"    use the arrows to navigate into the docks and sub-docks,\n"
+	"    or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
+	"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
+	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
 
 

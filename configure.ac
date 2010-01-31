@@ -112,14 +112,6 @@ AC_ARG_ENABLE(musicplayer,
 	[  --enable-musicplayer : Enable musicplayer applet (default=yes) ],
 	[ with_musicplayer=${enableval} ],
 	[ with_musicplayer=yes ])
-AC_ARG_ENABLE(network-monitor,
-	[  --enable-network-monitor : Enable network-monitor applet (default=no) ],
-	[ with_network_monitor=${enableval} ],
-	[ with_network_monitor=no ])
-AC_ARG_ENABLE(scooby-do,
-	[  --enable-scooby-do : Enable scooby-do applet (default=no) ],
-	[ with_scooby_do=${enableval} ],
-	[ with_scooby_do=no ])
 AC_ARG_ENABLE(rssreader,
 	[  --enable-rssreader : Enable rssreader applet (default=yes) ],
 	[ with_rssreader=${enableval} ],
@@ -128,14 +120,14 @@ AC_ARG_ENABLE(xrandr-in-show-desktop,
         [  --enable-xrandr-in-show-desktop : Add screen resolution abilities to Show-Desktop (default=yes) ],
         [ with_xrandr_in_show_desktop=${enableval} ],
         [ with_xrandr_in_show_desktop=yes])
-AC_ARG_ENABLE(show-desklets,
-	[  --enable-show-desklets : Enable showDesklets applet (default=no) ],
-	[ with_showDesklets=${enableval} ],
-	[ with_showDesklets=no ])
 AC_ARG_ENABLE(network-monitor,
 	[  --enable-network-monitor : Enable Network-Monitor applet (default=no) ],
-	[ with_NetworkMonitor=${enableval} ],
-	[ with_NetworkMonitor=no ])
+	[ with_network_monitor=${enableval} ],
+	[ with_network_monitor=no ])
+AC_ARG_ENABLE(scooby-do,
+	[  --enable-scooby-do : Enable Scooby-Do applet (default=no) ],
+	[ with_scooby_do=${enableval} ],
+	[ with_scooby_do=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -240,7 +232,6 @@ AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
 AM_CONDITIONAL( [WITH_RSSREADER], [test "$with_rssreader" = "yes"] )
 AM_CONDITIONAL( [WITH_XRANDR_IN_SHOW_DESKTOP], [test "$with_xrandr_in_show_desktop" = "yes"] )
-AM_CONDITIONAL( [WITH_SHOWDESKLETS], [test "$with_showDesklets" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -517,15 +508,6 @@ AC_SUBST(VERSION_SHORTCUTS, "1.2.4")
 AC_SUBST(PACKAGE_SHORTCUTS, "$SHORTCUTS_PACKAGE")
 
 AC_SUBST(shortcutsdatadir, "${pkgdatadir}/shortcuts")
-
-############# SHOW DESKLETS #################
-SHOW_DESKLETS_PACKAGE=cd-showDesklets
-AC_SUBST(GETTEXT_SHOW_DESKLETS, "cairo-dock-plugins")
-
-AC_SUBST(VERSION_SHOW_DESKLETS, "1.0.6")
-AC_SUBST(PACKAGE_SHOW_DESKLETS, "$SHOW_DESKLETS_PACKAGE")
-
-AC_SUBST(show_deskletsdatadir, "${pkgdatadir}/showDesklets")
 
 ############# SHOW DESKTOP #################
 SHOW_DESKTOP_PACKAGE=cd-showDesktop
@@ -842,11 +824,6 @@ AC_CONFIG_FILES([
 	shortcuts/data/Makefile
 	shortcuts/data/shortcuts.conf
 	
-	showDesklets/Makefile
-	showDesklets/src/Makefile
-	showDesklets/data/Makefile
-	showDesklets/data/showDesklets.conf
-	
 	showDesktop/Makefile
 	showDesktop/src/Makefile
 	showDesktop/data/Makefile
@@ -947,10 +924,7 @@ echo " * Compil Weblets applet : "${with_weblets}
 echo " * Compil keyboard-indicator applet : "${with_keyboard_indicator}
 echo " * Compil Dnd2share applet : "${with_dnd2share}
 echo " * Compil MusicPlayer applet : "${with_musicplayer}
-echo " * Compil Network-Monitor applet : "${with_network_monitor}
-echo " * Compil Scooby-Do applet : "${with_scooby_do}
 echo " * Compil RSSreader applet : "${with_rssreader}
 echo " * Enable xrandr in Show-Desktop applet : "${with_xrandr_in_show_desktop}
-echo " * Compil showDesklets applet : "${with_showDesklets}
-echo " * Compil NetworkMonitor applet : "${with_NetworkMonitor}
-
+echo " * Compil Network-Monitor applet : "${with_network_monitor}
+echo " * Compil Scooby-Do applet : "${with_scooby_do}

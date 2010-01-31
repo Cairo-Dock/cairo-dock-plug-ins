@@ -80,10 +80,6 @@ if WITH_RSSREADER
 rssreader_dir=RSSreader
 endif
 
-if WITH_SHOWDESKLETS
-showDesklets_dir=showDesklets
-endif
-
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -116,7 +112,6 @@ SUBDIRS = . po\
 	${rssreader_dir}\
 	${scooby_do_dir}\
 	shortcuts\
-	$(showDesklets_dir)\
 	showDesktop\
 	show-mouse\
 	slider\

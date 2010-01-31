@@ -3,16 +3,18 @@
 #[gtk-preferences]
 [Configuration]
 
-#k Shortkey to activate/deactivate the navigation mode :
-shortkey = <Control>F9
-
 #k Shortkey to activate/deactivate the finder mode :
 shortkey search = <Control>Return
 
+#k Shortkey to activate/deactivate the navigation mode :
+shortkey = <Control>F9
+
 #i[10;100] Maximum number of results :
+#{Maximum number of results tat will be displayed when you select a category with the right arrow.}
 nb results = 50
 
 #i[5;30] Number of lines to display :
+#{Number of lines of the listing. If there are more results, the listing will scroll when you go up or down with the arrows.}
 nb lines = 20
 
 #F[Animations]
@@ -30,7 +32,7 @@ stop duration = 800
 animation=pulse
 
 
-#F[Characters]
+#X[Text on the dock]
 char=
 
 #P+ Font used to display what you type :

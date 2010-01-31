@@ -70,7 +70,7 @@ static gboolean _cd_do_fill_web_entry (CDEntry *pEntry)
 
 static void _cd_do_web_search (CDEntry *pEntry)
 {
-	gchar *cEscapedText = g_uri_escape_string (myData.cSearchText,
+	gchar *cEscapedText = g_uri_escape_string (myData.cSearchText ? myData.cSearchText : myData.sCurrentText->str,
 		"",
 		TRUE);
 	g_print ("cEscapedText : %s\n", cEscapedText);
