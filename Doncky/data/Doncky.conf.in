@@ -1,0 +1,150 @@
+#!en;@VERSION_WRITETHIS@
+
+#[gtk-about]
+[Icon]
+
+#j+[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
+#s Name of the icon as it will appear in its label in the dock :
+name = Doncky
+
+#S+ Image's filename :
+#{Let empty to use the default one.}
+icon = 
+
+#d Name of the dock it belongs to:
+dock name = 
+
+order=
+
+#[gtk-convert]
+[Desklet]
+
+#X[Position]
+frame_pos =
+
+#b Lock position ?
+#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+locked = false
+
+#j+[50;1200] Desklet's dimension (width x height) :
+#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+size = 250;185
+
+#i[-2048;2048] Desklet's position (x ; y) :
+#{Depending on your WindowManager, you can move it with ALT + left_click}
+x position=0
+#i[-2048;2048] ...
+y position=0
+
+#I[-180;180] Rotation :
+#{You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides.}
+rotation = 0
+
+#X[Visibility]
+frame_visi =
+
+#b Is detached from the dock ?
+initially detached=true
+#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Visibility :
+#{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
+accessibility=0
+#b Should be visible on all desktops ?
+sticky=true
+
+
+
+use size=
+
+#F[Decorations;gtk-orientation-portrait]
+frame_deco=
+
+#o+ Choose a decoration theme for this desklet :
+#{Choose 'Custom decorations' to define your own decorations below.}
+decorations = default
+
+#v
+sep_deco =
+
+#S+ Background image :
+#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+bg desklet =
+#e+[0;1] Background tansparency :
+bg alpha = 1
+#i+[0;256] Left offset :
+#{in pixels. Use this to adjust the left position of the drawings.}
+left offset = 0
+#i+[0;256] Top offset :
+#{in pixels. Use this to adjust the top position of the drawings.}
+top offset = 0
+#i+[0;256] Right offset :
+#{in pixels. Use this to adjust the right position of the drawings.}
+right offset = 0
+#i+[0;256] Bottom offset :
+#{in pixels. Use this to adjust the bottom position of the drawings.}
+bottom offset = 0
+#S+ Foreground image :
+#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+fg desklet =
+#e+[0;1] Foreground tansparency :
+fg alpha = 1
+
+
+#[gtk-preferences]
+[Configuration]
+
+#S+ Specify the xml file :
+#{Let empty to use the default one}
+xml_filepath =
+
+#[gtk-dialog-info]
+[Appearance]
+
+#F[Text;gtk-italic]
+text = 
+
+#P+ Default text font :
+#{Font to be used by default if none is specify in the .xml}
+default_font=Sans 8
+
+#C+ Default text color :
+#{Color to be used by default if none is specify in the .xml}
+default_text_color=1.0;1.0;1.0;1.0
+
+#I+[0;48] Margin for the text :
+#{Margin to be used on left, right and top of the desklet}
+text_margin=0
+
+#I+[0;24] Space between lines :
+#{Use this to increase the space between the lines}
+space_between_lines=0
+
+#F[Background;gtk-orientation-portrait]
+frame_background= 
+
+#B+[5] Display a simple background ?
+#{You can have more attractive backgrounds using the Desklet decorations}
+display_background=true
+
+#C+ Background first color :
+#{first color of the gradation}
+background_color1=0.16;0.16;0.16;1.0
+
+#C+ Background second color :
+#{second color of the gradation}
+background_color2=0.52;0.35;1.0;0.91
+
+#i+[0;50] Background radius corner:
+#{Set the radius corner to 0 for no radius}
+background_radius=15
+
+#i+[0;10] Border thickness :
+#{Set the thickness to 0 for no border}
+border_thickness=2
+
+#C+ Border color :
+#{Border color}
+border_color=0.;0.;0.;1.;
+

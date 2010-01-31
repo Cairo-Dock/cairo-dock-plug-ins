@@ -1,0 +1,293 @@
+<!-- Sample code -->
+<!-- Author : Yann Dulieu (nochka85) -->
+<!--
+This file is a part of the Cairo-Dock project
+
+Copyright : (C) see the 'copyright' file.
+E-mail    : see the 'copyright' file.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 3
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
+
+<code>
+
+
+	<!--  Time -->
+	<zone>
+		<align>center</align>
+		<font>Terminal Bitstream Vera Sans Mono 20</font>
+		<red>1.0</red>
+		<green>1,0</green>
+		<blue>1,0</blue>
+		<alpha>1,0</alpha>
+		<echo>`uptime | cut -d" " -f2`</echo>
+		<refresh>1</refresh>
+		<br/>
+	</zone>
+
+
+	<!--  Uptime (en cours) -->
+	<zone>
+		<align>center</align>
+		<font>1Terminal Bitstream Vera Sans Mono 12</font>
+		<red>1.0</red>
+		<green>1,0</green>
+		<blue>1,0</blue>
+		<alpha>1,0</alpha>
+		<txt>UPTIME: </txt>
+	</zone>
+	<zone>
+		<font>1Terminal Bitstream Vera Sans Mono 12</font>
+		<red>1.0</red>
+		<green>1,0</green>
+		<blue>1,0</blue>
+		<alpha>1,0</alpha>
+		<internal>uptime</internal>
+		<refresh>1</refresh>
+		<br/>
+	</zone>
+
+	<!--  Saut de ligne -->
+	<zone>
+		<font>Sans 5</font>
+		<br/> 
+	</zone>
+
+	<!--  Version GNU/Linux  -->
+	<zone>
+		<align>center</align>
+		<font>Terminal Bitstream Vera Sans Mono 8</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<echo>`uname -o` version : </echo>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<echo>`cat /etc/issue.net` $(lsb_release -sc)</echo>
+		<br/>
+	</zone>
+	<!--  Version du Noyau  -->
+	<zone>
+		<align>center</align>
+		<font>Terminal Bitstream Vera Sans Mono 8</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Version du Noyau : </txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<cmd>uname -r</cmd>		
+		<br/>
+	</zone>
+
+	<!--  Saut de ligne -->
+	<zone>
+		<font>Sans 5</font>
+		<br/> 
+	</zone>
+
+
+	<!--  CPU Usage -->
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>CPU Usage : </txt> 
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>cpuperc</internal>
+		<refresh>1</refresh>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>%</txt>
+	</zone>
+	<zone>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<bar>cpuperc;10</bar>
+		<refresh>1</refresh>
+		<br/> 
+	</zone>
+
+	<!--  Saut de ligne -->
+	<zone>
+		<font>Sans 5</font>
+		<br/>
+	</zone>
+
+
+	<!--  Mem  -->
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>RAM : </txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>mem</internal>
+		<refresh>3</refresh>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Mo/</txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>memmaxg</internal>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Go - </txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>memperc</internal>
+		<refresh>3</refresh>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>%</txt>
+	</zone>
+	<zone>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<bar>memperc;10</bar>
+		<refresh>3</refresh>
+		<br/> 
+	</zone>
+
+	<!--  Swap Perc -->
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Swap : </txt>
+	</zone>
+
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>swap</internal>
+		<refresh>3</refresh>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Mo/</txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>swapmaxg</internal>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono 10</font>
+		<red>0,0</red>
+		<green>0,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>Go - </txt>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<internal>swapperc</internal>
+		<refresh>3</refresh>
+	</zone>
+	<zone>
+		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<txt>%</txt>
+	</zone>
+	<zone>
+		<red>1,0</red>
+		<green>1,0</green>
+		<blue>0,0</blue>
+		<alpha>1,0</alpha>
+		<bar>swapperc;10</bar>
+		<refresh>3</refresh>
+		<br/> 
+	</zone>
+
+</code>
