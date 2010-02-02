@@ -31,6 +31,13 @@
 #include "applet-search.h"
 #include "applet-backend-files.h"
 
+typedef struct _CDBookmarkItem{
+	gchar *cName;
+	gchar *cAddress;
+	gchar *cComment;
+	GList *pSubItems;
+	} CDBookmarkItem;
+
 // sub-listing
 static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries);
 // fill entry
@@ -41,6 +48,7 @@ static void _cd_do_copy_url (CDEntry *pEntry);
 
 static gchar *s_cBookmarksFile = NULL;
 static gchar *s_cBookmarksContent = NULL;
+static CDBookmarkItem *s_pRootItems;
 
   //////////
  // INIT //
@@ -84,6 +92,68 @@ static gchar *_get_bookmarks_path (void)
 	return cBookmarks;
 }
 
+static GList *_parse_folder (xmlNodePtr node)
+{
+	GList *pList = NULL;
+	xmlChar *content;
+	xmlNodePtr item;
+	CDBookmarkItem *pItem = NULL;
+	for (item = node->children; item != NULL; item = item->next)
+	{
+		if (xmlStrcmp (item->name, (const xmlChar *) "H3") == 0)  // nouveau repertoire.
+		{
+			pItem = g_new0 (CDBookmarkItem, 1);
+			content = xmlNodeGetContent (item);
+			pItem->cName = g_strdup (content);
+			xmlFree (content);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "DL") == 0 && pItem != NULL)
+		{
+			g_print ("new folder : %s\n", pItem->cName);
+			pItem->pSubItems = _parse_folder (item);
+			pList = g_list_prepend (pList, pItem);
+			pItem = NULL;
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "A") == 0)  // nouvelle adresse.
+		{
+			CDBookmarkItem *pItem = g_new0 (CDBookmarkItem, 1);
+			content = xmlNodeGetContent (item);
+			pItem->cName = g_strdup (content);
+			xmlFree (content);
+			xmlAttrPtr attr = xmlHasProp (item, "HREF");
+			if (attr && attr->children)
+			{
+				pItem->cAddress = g_strdup (attr->children->content);
+			}
+			g_print ("  new adress : %s\n", pItem->cName);
+			pList = g_list_prepend (pList, pItem);
+		}
+		else if (xmlStrcmp (item->name, (const xmlChar *) "DD") == 0 && pItem != NULL)  // commentaire
+		{
+			
+		}
+	}
+	return pList;
+}
+
+CDBookmarkItem *_parse_bookmarks (const gchar *cFilePath)
+{
+	xmlNodePtr root_node = NULL;
+	xmlInitParser ();
+	xmlDocPtr doc = xmlParseFile (cFilePath);
+	//xmlDocPtr doc = cairo_dock_open_xml_file (cFilePath, "DL", &root_node, NULL);
+	if (doc == NULL/** || root_node == NULL*/)
+	{
+		cd_warning ("can't read bookmarks");
+		return NULL;
+	}
+	
+	CDBookmarkItem *pRootItem = g_new0 (CDBookmarkItem, 1);
+	pRootItem->pSubItems = _parse_folder (root_node);
+	
+	cairo_dock_close_xml_file (doc);
+	return pRootItem;
+}
 static gboolean init (void)
 {
 	s_cBookmarksFile = _get_bookmarks_path ();
@@ -104,7 +174,7 @@ static gboolean init (void)
 		return FALSE;
 	}
 	
-	// o nsurveille le fichier.
+	// on surveille le fichier.
 	cairo_dock_fm_add_monitor_full (s_cBookmarksFile, FALSE, NULL, (CairoDockFMMonitorCallback) _on_file_event, NULL);
 	
 	return TRUE;
@@ -112,7 +182,6 @@ static gboolean init (void)
 
 static gboolean stop (void)
 {
-	/// enlever le moniteur ...
 	if (s_cBookmarksFile != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (s_cBookmarksFile, FALSE, NULL);
@@ -240,19 +309,6 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pSubEntry->execute = _cd_do_copy_url;
 	pEntries = g_list_prepend (pEntries, pSubEntry);
-	
-	*iNbEntries = NB_ACTIONS_ON_BOOKMARKS;
-	return pEntries;
-}
-
-
-static GList *_cd_do_list_all_bookmarks (CDEntry *pEntry, int *iNbEntries)
-{
-	GList *pEntries = NULL;
-	CDEntry *pSubEntry;
-	
-	//gchar *cResult = _locate_files (myData.cSearchText, myData.iCurrentFilter, myConfig.iNbResultMax);
-	
 	
 	*iNbEntries = NB_ACTIONS_ON_BOOKMARKS;
 	return pEntries;
