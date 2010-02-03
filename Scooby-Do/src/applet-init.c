@@ -34,7 +34,7 @@
 
 
 CD_APPLET_DEFINITION ("Scooby-Do",
-	2, 1, 0,
+	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plug-in allows you to make different actions directly from the keyboard.\n"
 	"It has 2 modes, each one being triggered by a keyboard shortcut:\n\n"
@@ -45,7 +45,7 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 	"    Use the up/down arrows to navigate inside the list,\n"
 	"    and use the left/right arrows to enter into a category, or to display more actions (when a little arrow is drawn next to text).\n"
 	"    Once inside a category, you can filter the results by typing some letters.\n"
-	"    Press Enter to validate, maintain CTRL, ALT or SHIFT to keep the list of results opened.\n\n"
+	"    Press Enter to validate, maintain SHIFT or ALT to keep the list of results opened.\n\n"
 	"- the navigation mode (default shortcut : CTRL + F9) :\n"
 	"    use the arrows to navigate into the docks and sub-docks,\n"
 	"    or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
@@ -53,7 +53,17 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
 
-
+#define _register_backends(...) do {\
+	if (myConfig.bUseFiles)\
+		cd_do_register_files_backend ();\
+	if (myConfig.bUseWeb)\
+		cd_do_register_web_backend ();\
+	if (myConfig.bUseCommand)\
+		cd_do_register_command_backend ();\
+	if (myConfig.bUseFirefox)\
+		cd_do_register_firefox_backend ();\
+	if (myConfig.bUseRecent)\
+		cd_do_register_recent_backend (); } while (0)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
@@ -61,11 +71,7 @@ CD_APPLET_INIT_BEGIN
 	cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);
 	cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);
 	
-	cd_do_register_files_backend ();
-	cd_do_register_web_backend ();
-	cd_do_register_command_backend ();
-	cd_do_register_firefox_backend ();
-	cd_do_register_recent_backend ();
+	_register_backends ();
 CD_APPLET_INIT_END
 
 
@@ -82,18 +88,23 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);  // shortkey were unbinded during reset_config.
-		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
+		cd_do_stop_all_backends ();
+		
+		cd_do_free_all_backends ();
 		
 		cd_do_destroy_listing (myData.pListing);
 		myData.pListing = NULL;
 		
-		if (myData.sCurrentText != NULL)
+		cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
+		
+		if (myData.sCurrentText != NULL)  // peu probable.
 		{
 			/// recharger surfaces / textures
 			
-			
 			cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		}
+		
+		_register_backends ();
 	}
 CD_APPLET_RELOAD_END

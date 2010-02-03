@@ -115,6 +115,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 		sprintf (key, "%c", 'a'+i);
 		myConfig.cPreferredApplis[i] = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", key, s_DefaultApplis[i]);
 	}
+	
+	myConfig.bUseFiles = CD_CONFIG_GET_BOOLEAN ("Search Engines", "files");
+	myConfig.bUseFirefox = CD_CONFIG_GET_BOOLEAN ("Search Engines", "firefox");
+	myConfig.bUseRecent = CD_CONFIG_GET_BOOLEAN ("Search Engines", "recent");
+	myConfig.bUseWeb = CD_CONFIG_GET_BOOLEAN ("Search Engines", "web");
+	myConfig.bUseCommand = CD_CONFIG_GET_BOOLEAN ("Search Engines", "cmd");
 CD_APPLET_GET_CONFIG_END
 
 

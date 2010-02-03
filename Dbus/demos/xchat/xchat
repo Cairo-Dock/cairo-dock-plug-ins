@@ -1,0 +1,262 @@
+#!/usr/bin/python
+
+# This is a part of the external demo applet for Cairo-Dock
+#
+# Copyright : (C) 2010 by Fabounet
+# E-mail : fabounet@users.berlios.de
+#
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# http://www.gnu.org/licenses/licenses.html#GPL
+
+####################
+### dependancies ###
+####################
+import sys
+import os
+import subprocess
+import ConfigParser
+import random
+import gobject
+import glib
+import time
+import dbus
+from dbus.mainloop.glib import DBusGMainLoop
+
+##################################
+### get our applet on the bus ###
+##################################
+applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
+applet_path = "/org/cairodock/CairoDock/"+applet_name  # path where our object is stored on the bus.
+DBusGMainLoop(set_as_default=True)
+bus = dbus.SessionBus()
+try:
+	applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
+except dbus.DBusException:
+	print ">>> module '"+applet_name+"' can't be found on the bus, exit."
+	sys.exit(2)
+myIcon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our applet and also our icon. It can be either in a dock or in a desklet, we don't have to care.
+
+### we'll have a sub-dock, so we also get the sub-icons object ###
+sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
+mySubIcons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
+
+##################################
+### callbacks on the main icon ###
+##################################
+def action_on_click(iState):
+	print ">>>>> clic !"
+	if myApplet.xchat == None:
+		print "launch xchat"
+		subprocess.Popen("xchat")
+		print "sleep 5"
+		time.sleep(5)
+		print "try to connect"
+		myApplet.connect_to_xchat()
+	else:
+		print "show GUI"
+		myApplet.xchat.Command("GUI SHOW")
+
+def action_on_middle_click():
+	print ">>> middle clic !"
+	if myApplet.xchat == None:
+		return
+	myApplet.icon.AskText("Enter your message on "+myApplet.xchat.GetInfo("channel"), "");
+
+def action_on_build_menu():
+	print ">>> build menu !"
+	if myApplet.xchat == None:
+		return
+	chans = myApplet.list_channels()
+	myApplet.icon.PopulateMenu(chans)
+
+def action_on_menu_select(iNumEntry):
+	print ">>> choice",iNumEntry,"has been selected !"
+	chans = myApplet.list_channels()
+	print ">>> channel" + chans[iNumEntry]
+	channel=''
+	channel=chans[iNumEntry]
+	ctx = myApplet.xchat.FindContext('', channel)
+	if ctx == 0:
+		return
+	myApplet.xchat.SetContext(ctx)
+	myApplet.xchat.Command("GUI FOCUS")
+	myApplet.xchat.Command("GUI SHOW")
+
+def action_on_answer(answer):
+	print ">>> answer :",answer
+	myApplet.xchat.EmitPrint("Channel Message", [myApplet.xchat.GetInfo("nick"), answer, "@"])
+
+##################################
+### callbacks on the sub-icons ###
+##################################
+
+
+###############################
+### callbacks on the applet ###
+###############################
+def action_on_stop():
+	print ">>> our module is stopped"
+	myApplet.xchat.Disconnect()
+	loop.quit()
+
+def action_on_reload(bConfigHasChanged):
+	print ">>> our module is reloaded"
+	if bConfigHasChanged:
+		print ">>>  and our config has changed"
+		myApplet.get_config()
+		myApplet.register_to_server_events()
+
+############################
+### callbacks from xchat ###
+############################
+def action_on_command_catched(words, words_eol, hook_id, ctx_id):
+	print ">>> CMD :" + words_eol[1]
+	myApplet.icon.ShowDialog("Yes, Master ?",4)
+
+def action_on_server_event(words, words_eol, hook_id, ctx_id):
+	print ">>> EVENT :" + words_eol[1]
+	if myApplet.config['duration'] == 0:
+		coef = 20
+	elif myApplet.config['duration'] == 0:
+		coef = 10
+	else:
+		coef = 5
+	myApplet.icon.ShowDialog(words_eol[1],max(1,len(words_eol[1])/coef))
+
+def action_on_print_event(words, hook_id, ctx_id):
+	print ">>> PRINT :" + words[1]
+	if myApplet.config['duration'] == 0:
+		coef = 20
+	elif myApplet.config['duration'] == 0:
+		coef = 10
+	else:
+		coef = 5
+	myApplet.icon.ShowDialog(words[1],max(1,len(words[1])/coef))
+
+##########################
+### connect to signals ###
+##########################
+myIcon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
+myIcon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
+myIcon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
+myIcon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
+#myIcon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
+#myIcon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
+#myIcon.connect_to_signal("on_init_module", action_on_init)
+myIcon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
+myIcon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
+myIcon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
+#mySubIcons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
+
+class Applet:
+	def __init__(self,icon,sub_icons):
+		self.icon = icon
+		self.sub_icons = sub_icons
+		self.config = {}
+		self.conf_file = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf")  # path to the conf file of our applet.
+		self.xchat = None
+		iSidConnect = 0
+		self.HookServerId = 0
+		self.HookCmdId = 0
+		self.HookPrintId = 0
+	
+	def get_config(self):
+		keyfile = ConfigParser.RawConfigParser()
+		keyfile.read(self.conf_file)
+		self.config['channel message'] = keyfile.getboolean('Configuration', 'channel message')
+		self.config['duration'] = keyfile.getint('Configuration', 'duration')
+	
+	def load(self):
+		self.connect_to_xchat()
+		self.icon.ControlAppli("xchat")
+		if self.xchat == None:
+			print "no dbus object"
+		#	self.icon.SetEmblem("/usr/share/smplayer/themes/Tango/close.png", 1)
+		
+	def connect_to_xchat(self):
+		bus = dbus.SessionBus()
+		print ">> connecting to xchat..."
+		try:
+			proxy = bus.get_object('org.xchat.service', '/org/xchat/Remote')
+		except dbus.DBusException:
+			print ">>> xchat not available on the bus"
+			return
+		remote = dbus.Interface(proxy, 'org.xchat.connection')
+		path = remote.Connect ("cd-bridge",
+			"Cairo-Dock applet",
+			"Cairo-Dock applet",
+			"1.0")
+		print ">>> path :" + path
+		proxy = bus.get_object('org.xchat.service', path)
+		self.xchat = dbus.Interface(proxy, 'org.xchat.plugin')
+		print ">>> connected to " + self.xchat.GetInfo("network") + " (" + self.xchat.GetInfo("server") + ") as " + self.xchat.GetInfo("nick")
+		self.register_to_server_events()
+		self.xchat.connect_to_signal("ServerSignal", action_on_server_event)
+		self.xchat.connect_to_signal("CommandSignal", action_on_command_catched)
+		self.xchat.connect_to_signal("PrintSignal", action_on_print_event)
+	
+	def register_to_server_events(self):
+		# Registers a procedure to be called when a certain server event occurs. You can use this to trap PRIVMSG, NOTICE, PART, a server numeric etc... If you want to hook every line that comes from the IRC server, you may use the special name of "RAW LINE".
+		if self.HookServerId != 0:
+			self.xchat.Unhook(self.HookServerId)
+			self.HookServerId = 0
+		self.HookServerId = self.xchat.HookServer('PRIVMSG', 0, 0)  # 0 <=> normal priority, 0 <=> let it pass
+		
+		if self.HookCmdId != 0:
+			self.xchat.Unhook(self.HookCmdId)
+			self.HookCmdId = 0
+		self.HookCmdId = self.xchat.HookCommand("cairo-dock", 0, "pouic pouic", 0)  # 0 <=> normal priority, 0 <=> let it pass
+		
+		if self.HookPrintId != 0:
+			self.xchat.Unhook(self.HookPrintId)
+			self.HookPrintId = 0
+		if self.config['channel message']:
+			self.HookPrintId = self.xchat.HookPrint("Channel Message", 0, 0)  # 0 <=> normal priority, 0 <=> let it pass
+	
+	def list_channels(self):
+		i = 0
+		chans=['','','','','','','','','','']
+		channels = self.xchat.ListGet ("channels")
+		while self.xchat.ListNext (channels):
+			name = self.xchat.ListStr (channels, "channel")
+			chans[i] = name
+			i = i+1
+			if i == 10:
+				break
+		self.xchat.ListFree (channels)
+		return chans
+	
+	def list_channels_and_users(self):
+		channels = self.xchat.ListGet ("channels")
+		while self.xchat.ListNext (channels):
+			name = self.xchat.ListStr (channels, "channel")
+			print "------- " + name + " -------"
+			self.xchat.SetContext (xchat.ListInt (channels, "context"))
+			#xchat.EmitPrint ("Channel Message", ["John", "Hi there", "@"])
+			users = self.xchat.ListGet ("users")
+			while xchat.ListNext (users):
+				print "   Nick: " + self.xchat.ListStr (users, "nick")
+			self.xchat.ListFree (users)
+		self.xchat.ListFree (channels)
+
+
+############
+### main ###
+############
+if __name__ == '__main__':
+	myApplet = Applet(myIcon, mySubIcons)
+	myApplet.get_config()
+	myApplet.load()
+	loop = gobject.MainLoop()
+	loop.run()
+	print ">>> bye"
+	sys.exit(0)

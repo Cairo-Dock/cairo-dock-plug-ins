@@ -57,6 +57,11 @@ struct _AppletConfig {
 	CairoDockLabelDescription infoDescription;
 	gint iNbLinesInListing;
 	gchar **cPreferredApplis;
+	gboolean bUseFiles;
+	gboolean bUseFirefox;
+	gboolean bUseRecent;
+	gboolean bUseWeb;
+	gboolean bUseCommand;
 	};
 
 typedef struct _CDEntry CDEntry;
@@ -75,6 +80,7 @@ struct _CDEntry {
 	gchar *cLowerCaseName;
 	gchar *cIconName;
 	cairo_surface_t *pIconSurface;
+	gpointer data;
 	gboolean bHidden;
 	gboolean bMainEntry;
 	CDBackend *pBackend;

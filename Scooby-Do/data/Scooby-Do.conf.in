@@ -9,9 +9,9 @@ shortkey search = <Control>Return
 #k Shortkey to activate/deactivate the navigation mode :
 shortkey = <Control>F9
 
-#i[10;100] Maximum number of results :
+#i[10;200] Maximum number of results :
 #{Maximum number of results tat will be displayed when you select a category with the right arrow.}
-nb results = 50
+nb results = 80
 
 #i[5;30] Number of lines to display :
 #{Number of lines of the listing. If there are more results, the listing will scroll when you go up or down with the arrows.}
@@ -140,6 +140,30 @@ y = yast
 
 #s Preferred application starting with 'z' :
 z = 
+
+
+#[gtk-find]
+[Search Engines]
+
+#b Search in files ?
+files = true
+
+#b Search in Firefox bookmarks ?
+firefox = true
+
+#b Search in Recent files ?
+recent = true
+
+#b Propose some web search engines ?
+web = true
+
+#b Include a command launcher ?
+#{It can launch commands and even do some calculations.}
+cmd = true
+
+
+#[gtk-help]
+[Help]
 
 #F[Applet's Handbook]
 frame_hand=

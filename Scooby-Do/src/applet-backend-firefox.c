@@ -33,13 +33,16 @@
 
 typedef struct _CDBookmarkItem{
 	gchar *cName;
+	gchar *cLowerCaseName;
 	gchar *cAddress;
 	gchar *cComment;
+	gchar *cIcon64;
 	GList *pSubItems;
 	} CDBookmarkItem;
 
 // sub-listing
 static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries);
+static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries);
 // fill entry
 static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry);
 // actions
@@ -48,13 +51,25 @@ static void _cd_do_copy_url (CDEntry *pEntry);
 
 static gchar *s_cBookmarksFile = NULL;
 static gchar *s_cBookmarksContent = NULL;
-static CDBookmarkItem *s_pRootItems;
+static CDBookmarkItem *s_pRootItem = NULL;
 
   //////////
  // INIT //
 //////////
 
 static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data);
+
+static void _free_item (CDBookmarkItem *pItem)
+{
+	if (pItem == NULL)
+		return ;
+	g_free (pItem->cName);
+	g_free (pItem->cLowerCaseName);
+	g_free (pItem->cComment);
+	g_free (pItem->cAddress);
+	g_list_foreach (pItem->pSubItems, (GFunc)_free_item, NULL);
+	g_free (pItem);
+}
 
 static gchar *_get_bookmarks_path (void)
 {
@@ -92,87 +107,138 @@ static gchar *_get_bookmarks_path (void)
 	return cBookmarks;
 }
 
-static GList *_parse_folder (xmlNodePtr node)
+static GList *_parse_folder (gchar *cContent, gchar **cNewPosition)
 {
 	GList *pList = NULL;
-	xmlChar *content;
-	xmlNodePtr item;
-	CDBookmarkItem *pItem = NULL;
-	for (item = node->children; item != NULL; item = item->next)
+	CDBookmarkItem *pItem = NULL, *pFolderItem = NULL;
+	gchar *str, *str2, *ptr=cContent;
+	
+	do
 	{
-		if (xmlStrcmp (item->name, (const xmlChar *) "H3") == 0)  // nouveau repertoire.
+		str = strchr (ptr, '<');
+		if (!str)
+			break;
+		str ++;
+		if (*str == 'H' && *(str+1) == '3')  // nouveau repertoire. <H3 ...>nom</H3>
 		{
-			pItem = g_new0 (CDBookmarkItem, 1);
-			content = xmlNodeGetContent (item);
-			pItem->cName = g_strdup (content);
-			xmlFree (content);
-		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "DL") == 0 && pItem != NULL)
-		{
-			g_print ("new folder : %s\n", pItem->cName);
-			pItem->pSubItems = _parse_folder (item);
-			pList = g_list_prepend (pList, pItem);
-			pItem = NULL;
-		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "A") == 0)  // nouvelle adresse.
-		{
-			CDBookmarkItem *pItem = g_new0 (CDBookmarkItem, 1);
-			content = xmlNodeGetContent (item);
-			pItem->cName = g_strdup (content);
-			xmlFree (content);
-			xmlAttrPtr attr = xmlHasProp (item, "HREF");
-			if (attr && attr->children)
-			{
-				pItem->cAddress = g_strdup (attr->children->content);
-			}
-			g_print ("  new adress : %s\n", pItem->cName);
-			pList = g_list_prepend (pList, pItem);
-		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "DD") == 0 && pItem != NULL)  // commentaire
-		{
+			str = strchr (str+2, '>');  // fin de la balise <H3>
+			str ++;
 			
+			str2 = strchr (str, '<');  // debut de la balise fermante </H3>
+			if (str2 != str)
+			{
+				pFolderItem = g_new0 (CDBookmarkItem, 1);
+				pFolderItem->cName = g_strndup (str, str2-str);
+				pFolderItem->cLowerCaseName = g_ascii_strdown (pFolderItem->cName, -1);
+				pList = g_list_prepend (pList, pFolderItem);
+			}
+			ptr = str2 + 5;
 		}
-	}
+		else if (*str == 'D' && *(str+1) == 'L')  // debut de contenu du repertoire. <DL> sub-items </DL>
+		{
+			pFolderItem->pSubItems = _parse_folder (str+4, &ptr);  // la fonction nous place apres le </DL> correspondant.
+			pFolderItem = NULL;
+		}
+		else if (*str == 'A')  // nouvelle adresse. <A HREF="adresse"> nom </A>
+		{
+			str = g_strstr_len (str+2, -1, "HREF=\"");  // debut d'adresse.
+			str += 6;
+			str2 = strchr (str, '"');  // fin de l'adresse.
+			pItem = g_new0 (CDBookmarkItem, 1);
+			pItem->cAddress = g_strndup (str, str2-str);
+			pList = g_list_prepend (pList, pItem);
+			
+			str = str2 + 1;
+			str2 = strchr (str, '>');  // fin de la balise <A>
+			gchar *icon = g_strstr_len (str, str2 - str, "ICON=\"data:");  // ICON="data:image/x-icon;base64,ABCEDF..."
+			if (icon)
+			{
+				icon += 11;
+				if (*icon != '"')  // sinon aucune donnee.
+				{
+					icon = strchr (icon+1, ',');
+					if (icon)
+					{
+						icon ++;
+						str = strchr (icon, '"');
+						pItem->cIcon64 = g_strndup (icon, str-icon);
+					}
+				}
+			}
+			
+			str = str2 + 1;
+			str2 = strchr (str, '<');  // debut de la balise fermante </A>
+			pItem->cName = g_strndup (str, str2-str);
+			pItem->cLowerCaseName = g_ascii_strdown (pItem->cName, -1);
+			
+			ptr = str2 + 4;
+		}
+		else if (*str == '/' && *(str+1) == 'D' && *(str+2) == 'L')  // fin du repertoire. <DL> sub-items </DL>
+		{
+			ptr = str + 4;
+			break;
+		}
+		else if (*str == 'D' && *(str+1) == 'D')  // balise de commentaire. <DD> commentaire
+		{
+			str += 4;
+			str2 = strchr (str, '<');  // debut d'une autre balise.
+			if (pFolderItem != NULL)
+				pFolderItem->cComment = g_strndup (str, str2-str);
+			else if (pItem != NULL)
+				pItem->cComment = g_strndup (str, str2-str);
+			ptr = str2;
+		}
+		else  // balise ininteressante, on la saute.
+		{
+			str2 = str2 = strchr (str, '>');  // fin de la balise.
+			ptr = str2 + 1;
+		}
+	} while (1);
+	
+	*cNewPosition = ptr;
 	return pList;
 }
 
-CDBookmarkItem *_parse_bookmarks (const gchar *cFilePath)
+static CDBookmarkItem *_parse_bookmarks (const gchar *cFilePath)
 {
-	xmlNodePtr root_node = NULL;
-	xmlInitParser ();
-	xmlDocPtr doc = xmlParseFile (cFilePath);
-	//xmlDocPtr doc = cairo_dock_open_xml_file (cFilePath, "DL", &root_node, NULL);
-	if (doc == NULL/** || root_node == NULL*/)
+	gsize length = 0;
+	gchar *cBookmarksContent = NULL;
+	g_file_get_contents (cFilePath,
+		&cBookmarksContent,
+		&length,
+		NULL);
+	if (cBookmarksContent == NULL)
 	{
 		cd_warning ("can't read bookmarks");
 		return NULL;
 	}
 	
+	gchar *str = g_strstr_len (cBookmarksContent, -1, "<DL>");
+	if (!str)
+	{
+		cd_warning ("empty bookmarks");
+		return NULL;
+	}
 	CDBookmarkItem *pRootItem = g_new0 (CDBookmarkItem, 1);
-	pRootItem->pSubItems = _parse_folder (root_node);
+	pRootItem->pSubItems = _parse_folder (str+4, &str);
 	
-	cairo_dock_close_xml_file (doc);
+	g_free (cBookmarksContent);
 	return pRootItem;
 }
+
 static gboolean init (void)
 {
+	// on trouve le fichier des bookmarks.
 	s_cBookmarksFile = _get_bookmarks_path ();
 	if (s_cBookmarksFile == NULL)
-		return FALSE;
-	
-	g_print ("found bookmarks '%s'\n", s_cBookmarksFile);
-	
-	gsize length = 0;
-	g_file_get_contents (s_cBookmarksFile,
-		&s_cBookmarksContent,
-		&length,
-		NULL);
-	if (s_cBookmarksContent == NULL)
 	{
-		g_free (s_cBookmarksFile);
-		s_cBookmarksFile = NULL;
+		cd_warning ("no bookmarks");
 		return FALSE;
 	}
+	g_print ("found bookmarks '%s'\n", s_cBookmarksFile);
+	
+	// on parse le fichier.
+	s_pRootItem = _parse_bookmarks (s_cBookmarksFile);
 	
 	// on surveille le fichier.
 	cairo_dock_fm_add_monitor_full (s_cBookmarksFile, FALSE, NULL, (CairoDockFMMonitorCallback) _on_file_event, NULL);
@@ -180,21 +246,21 @@ static gboolean init (void)
 	return TRUE;
 }
 
-static gboolean stop (void)
+static void stop (void)
 {
-	if (s_cBookmarksFile != NULL)
-	{
-		cairo_dock_fm_remove_monitor_full (s_cBookmarksFile, FALSE, NULL);
-	}
+	if (s_cBookmarksFile == NULL)
+		return ;
 	
+	cairo_dock_fm_remove_monitor_full (s_cBookmarksFile, FALSE, NULL);
 	g_free (s_cBookmarksFile);
 	s_cBookmarksFile = NULL;
-	g_free (s_cBookmarksContent);
-	s_cBookmarksContent = NULL;
+	_free_item (s_pRootItem);
+	s_pRootItem = NULL;
 }
 
 static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
+	g_print ("bookmarks have changed\n");
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_DELETED :
@@ -215,38 +281,38 @@ static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, 
 
 static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 {
-	if (pEntry->cIconName != NULL && pEntry->pIconSurface == NULL)
-	{
-		gsize out_len = 0;
-		//g_print ("icon : %s\n", pEntry->cIconName);
-		guchar *icon = g_base64_decode (pEntry->cIconName, &out_len);
-		//g_print ("-> out_len : %d\n", out_len);
-		g_return_val_if_fail (icon != NULL, FALSE);
-		//g_print ("-> data : %d\n", icon);
-		
-		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
-		GInputStream * is = g_memory_input_stream_new_from_data (icon,
-			out_len,
-			NULL);
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_stream (is,
-			NULL,
-			NULL);
-		g_object_unref (is);
-		double fImageWidth=0, fImageHeight=0;
-		double fZoomX=0, fZoomY=0;
-		pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
-			pSourceContext,
-			1.,
-			myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
-			0,
-			&fImageWidth, &fImageHeight,
-			&fZoomX, &fZoomY);
-		g_object_unref (pixbuf);
-		cairo_destroy (pSourceContext);
-		g_free (icon);
-		return TRUE;
-	}
-	return FALSE;
+	if (pEntry->pIconSurface != NULL || pEntry->cIconName == NULL)
+		return FALSE;
+	
+	gsize out_len = 0;
+	//g_print ("icon : %s\n", pEntry->cIconName);
+	guchar *icon = g_base64_decode (pEntry->cIconName, &out_len);
+	//g_print ("-> out_len : %d\n", out_len);
+	g_return_val_if_fail (icon != NULL, FALSE);
+	//g_print ("-> data : %d\n", icon);
+	
+	cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+	GInputStream * is = g_memory_input_stream_new_from_data (icon,
+		out_len,
+		NULL);
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_stream (is,
+		NULL,
+		NULL);
+	g_object_unref (is);
+	double fImageWidth=0, fImageHeight=0;
+	double fZoomX=0, fZoomY=0;
+	pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
+		pSourceContext,
+		1.,
+		myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
+		0,
+		&fImageWidth, &fImageHeight,
+		&fZoomX, &fZoomY);
+	g_object_unref (pixbuf);
+	cairo_destroy (pSourceContext);
+	g_free (icon);
+	
+	return TRUE;
 }
 
 
@@ -274,11 +340,15 @@ static void _cd_do_copy_url (CDEntry *pEntry)
 	gtk_clipboard_set_text (pClipBoard, pEntry->cPath, -1);
 }
 
+static void _cd_do_launch_all_url (CDEntry *pEntry)
+{
+	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cairo_dock_launch_command_printf ("firefox %s", NULL, pEntry->cPath);
+}
 
   /////////////////
  // SUB-LISTING //
 /////////////////
-
 #define NB_ACTIONS_ON_BOOKMARKS 3
 
 static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
@@ -314,109 +384,113 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	return pEntries;
 }
 
+static CDEntry *_make_entry_from_item (CDBookmarkItem *pItem)
+{
+	CDEntry *pEntry = g_new0 (CDEntry, 1);
+	pEntry->cPath = g_strdup (pItem->cAddress);
+	pEntry->cName = g_strdup (pItem->cName);
+	pEntry->cLowerCaseName = g_strdup (pItem->cLowerCaseName);
+	if (pItem->pSubItems == NULL)  // adresse
+	{
+		pEntry->cIconName = g_strdup (pItem->cIcon64);
+		pEntry->fill = _cd_do_fill_bookmark_entry;
+		pEntry->execute = _cd_do_launch_url;
+		pEntry->list = _cd_do_list_bookmarks_actions;
+	}
+	else
+	{
+		pEntry->cIconName = g_strdup ("folder");
+		pEntry->fill = cd_do_fill_default_entry;
+		pEntry->execute = NULL;
+		pEntry->list = _cd_do_list_bookmarks_folder;
+		pEntry->data = pItem;
+	}
+	return pEntry;
+}
+
+static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries)
+{
+	int i = 0;
+	GList *pEntries = NULL;
+	CDBookmarkItem *pFolderItem = pEntry->data;
+	g_return_val_if_fail (pFolderItem != NULL, NULL);
+	
+	CDBookmarkItem *pItem;
+	CDEntry *pSubEntry;
+	GString *sAllUrls = g_string_new ("");
+	GList *it;
+	for (it = pFolderItem->pSubItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		pSubEntry = _make_entry_from_item (pItem);
+		i ++;
+		pEntries = g_list_prepend (pEntries, pSubEntry);
+		
+		g_string_append_printf (sAllUrls, "\"%s\" ", pItem->cAddress);
+	}
+	
+	if (pEntries != NULL)
+	{
+		pSubEntry = g_new0 (CDEntry, 1);
+		pSubEntry->cPath = sAllUrls->str;
+		pSubEntry->cName = g_strdup (D_("Open all"));
+		pSubEntry->cIconName = g_strdup (GTK_STOCK_OPEN);
+		pSubEntry->fill = cd_do_fill_default_entry;
+		pSubEntry->execute = _cd_do_launch_all_url;
+		pEntries = g_list_prepend (pEntries, pSubEntry);
+		i ++;
+		g_string_free (sAllUrls, FALSE);
+	}
+	else
+		g_string_free (sAllUrls, TRUE);
+	
+	*iNbEntries = i;
+	return pEntries;
+}
+
 
   ////////////
  // SEARCH //
 ////////////
 
+static GList* _search_in_item (CDBookmarkItem *pFolderItem, const gchar *cText, int iFilter, int iNbMax, int *iNbEntries)
+{
+	GList *pEntries = NULL;
+	int i = 0;
+	CDBookmarkItem *pItem;
+	CDEntry *pEntry;
+	GList *it;
+	for (it = pFolderItem->pSubItems; it != NULL && iNbMax > 0; it = it->next)
+	{
+		pItem = it->data;
+		if (g_strstr_len (pItem->cLowerCaseName, -1, cText))
+		{
+			pEntry = _make_entry_from_item (pItem);
+			pEntries = g_list_prepend (pEntries, pEntry);
+			i ++;
+			iNbMax --;
+		}
+		if (pItem->pSubItems != NULL)
+		{
+			int j = 0;
+			GList *pSubList = _search_in_item (pItem, cText, iFilter, iNbMax, &j);
+			i += j;
+			iNbMax -= j;
+			pEntries = g_list_concat (pEntries, pSubList);
+		}
+	}
+	*iNbEntries = i;
+	return pEntries;
+}
 static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
 	g_print ("%s (%s)\n", __func__, cText);
+	if (s_pRootItem == NULL)
+		return NULL;
 	
-	GList *pEntries = NULL;
-	CDEntry *pEntry;
 	int i = 0, iNbMax = (bSearchAll ? 50:3);
-	gchar *cContent = g_strdup (s_cBookmarksContent);
-	gchar *str = cContent, *str2;
-	gchar *url, *icon, *name, *end_url;
-	gchar *cLowerCaseName;
-	do
-	{
-		str2 = strchr (str, '\n');
-		if (str2)
-		{
-			*str2 = '\0';
-		}
-		
-		url = g_strstr_len (str, -1, "<A HREF=\"");
-		if (!url)
-		{
-			str = str2 + 1;
-			continue;
-		}
-		url += 9;
-		
-		str = strchr (url, '"');
-		if (!str)
-		{
-			str = str2 + 1;
-			continue;
-		}
-		*str = '\0';
-		end_url = str + 1;
-		//g_print ("url : '%s'\n", url);
-		
-		name = strchr (end_url+1, '>');  // <A a="x" b="y">name</A>
-		if (!name)
-		{
-			str = str2 + 1;
-			continue;
-		}
-		*name = '\0';
-		name ++;
-		*(str2 - 4) = '\0';
-		//g_print ("name : '%s'\n", name);
-		/// gerer le filtre "match case"...
-		
-		cLowerCaseName = g_ascii_strdown (name, -1);
-		if (g_strstr_len (cLowerCaseName, -1, cText))  // trouve.
-		{
-			pEntry = g_new0 (CDEntry, 1);
-			pEntry->cPath = g_strdup (url);
-			pEntry->cName = g_strdup (name);
-			pEntry->cLowerCaseName = cLowerCaseName;
-			pEntry->fill = _cd_do_fill_bookmark_entry;
-			pEntry->execute = _cd_do_launch_url;
-			pEntry->list = _cd_do_list_bookmarks_actions;
-			pEntries = g_list_prepend (pEntries, pEntry);
-			i ++;
-			
-			icon = g_strstr_len (end_url, -1, "ICON=\"data:");  // ICON="data:image/x-icon;base64,ABCEDF..."
-			if (!icon)
-			{
-				str = str2 + 1;
-				continue;
-			}
-			icon += 11;
-			
-			if (*icon == '"')  // aucune donnee.
-			{
-				str = str2 + 1;
-				continue;
-			}
-			
-			icon = strchr (icon+1, ',');
-			if (!icon)
-			{
-				str = str2 + 1;
-				continue;
-			}
-			icon ++;
-			
-			str = strchr (icon, '"');
-			if (!str)
-			{
-				str = str2 + 1;
-				continue;
-			}
-			*str = '\0';
-			
-			pEntry->cIconName = g_strdup (icon);
-		}
-		else
-			g_free (cLowerCaseName);
-		str = str2 + 1;
-	} while (str2 && i < iNbMax);
+	CDEntry *pEntry;
+	GList *pEntries = _search_in_item (s_pRootItem, cText, iFilter, iNbMax, &i);
 	
 	if (i != 0 && ! bSearchAll)
 	{
@@ -431,7 +505,6 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 		i ++;
 	}
 	
-	g_free (cContent);
 	*iNbEntries = i;
 	return pEntries;
 }

@@ -442,10 +442,12 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				{
 					cairo_set_source_rgba (pCairoContext, 0., 0., 0., f);
 					cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin - (! pEntry->bMainEntry && myData.pListingHistory == NULL ? iLeftMargin : 0), myDialogs.dialogTextDescription.iSize/4);
-					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/4);
-					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/4);
+					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/3);
+					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/3);
 					cairo_close_path (pCairoContext);
-					cairo_stroke (pCairoContext);
+					cairo_stroke_preserve (pCairoContext);
+					cairo_set_source_rgba (pCairoContext, 0.1, 0.3, 0.5, f*.7);
+					cairo_fill (pCairoContext);
 				}
 			}
 			

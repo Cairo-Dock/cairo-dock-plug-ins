@@ -29,7 +29,7 @@
 
 
 CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
-	2, 0, 0,
+	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet allows you to monitor your network connection(s).\n"
 	"It can display the download/upload speeds and the wifi signal quality.\n"

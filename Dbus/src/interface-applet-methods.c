@@ -149,6 +149,9 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
+	/// detruire les dialogues non interactifs ...
+	///cairo_dock_remove_dialog_if_any (pIcon);
+	
 	cairo_dock_show_temporary_dialog_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
 	return TRUE;
 }
