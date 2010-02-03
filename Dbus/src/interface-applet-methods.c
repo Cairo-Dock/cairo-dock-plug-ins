@@ -149,8 +149,8 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	/// detruire les dialogues non interactifs ...
-	///cairo_dock_remove_dialog_if_any (pIcon);
+	// On empeche l'accumulation de dialogues informatifs.
+	cairo_dock_remove_dialog_if_any_full (pIcon, FALSE);  // hors dialogues interactifs.
 	
 	cairo_dock_show_temporary_dialog_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
 	return TRUE;
@@ -163,7 +163,7 @@ static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMes
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	if (pDbusApplet->pDialog)
+	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
 	pDbusApplet->pDialog = cairo_dock_show_dialog_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, NULL);
 	return TRUE;
@@ -176,7 +176,7 @@ static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessag
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	if (pDbusApplet->pDialog)
+	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
 	pDbusApplet->pDialog = cairo_dock_show_dialog_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, NULL);
 	return TRUE;
@@ -189,7 +189,7 @@ static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	if (pDbusApplet->pDialog)
+	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
 		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
 	pDbusApplet->pDialog = cairo_dock_show_dialog_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
 	return TRUE;

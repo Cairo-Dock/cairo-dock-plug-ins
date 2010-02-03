@@ -99,7 +99,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
 {
 	if (myDock != NULL)
-		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any, NULL);
+		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any_full, GINT_TO_POINTER (TRUE));
 	else
 		cairo_dock_remove_dialog_if_any (myIcon);
 	
