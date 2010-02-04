@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 01:57+0000\n"
+"PO-Revision-Date: 2010-01-28 11:36+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
+"X-Launchpad-Export-Date: 2010-01-29 04:54+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -240,19 +240,19 @@ msgstr "起動コマンドを入力 :"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection has become inactive."
-msgstr ""
+msgstr "ネットワーク接続が無効になりました。"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "接続中..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
-msgstr ""
+msgstr "ネットワーク接続が確立しました。"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network has been disconnected."
-msgstr ""
+msgstr "ネットワークが切断されました。"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
@@ -358,6 +358,10 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"ネットワーク接続を監視するためのアプレット。\n"
+"ダウンロード/アップロード速度や Wifi 信号の強さを表示できます。\n"
+"ネットワーク・マネージャを現在稼働させている場合は、Wifi ネットワークの接続先の選択も可能です。\n"
+"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と Wifi との表示の切り替えを行います。"
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -405,19 +409,19 @@ msgstr "ネットワーク管理"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "ネットワーク有効化"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "ネットワーク無効化"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Wifi 無効化"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Wifi 有効化"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -1796,7 +1800,7 @@ msgstr "アンマウント済み"
 
 #: ../shortcuts/src/applet-init.c:31
 msgid "shortcuts"
-msgstr ""
+msgstr "ショートカット"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1912,7 +1916,7 @@ msgstr "画像フォルダを参照"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "スタック"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2763,7 +2767,7 @@ msgstr "帰属先ドックの名前 :"
 #: ../tomboy/data/messages:29 ../weather/data/messages:13
 #: ../weblets/data/messages:15 ../wifi/data/messages:11
 msgid "Applet's Handbook"
-msgstr ""
+msgstr "アプレットの手引き"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../GMenu/data/messages:91

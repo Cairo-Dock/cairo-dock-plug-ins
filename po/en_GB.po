@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 01:59+0000\n"
-"Last-Translator: Philippe Le Toquin <philippe@ppmt.org>\n"
+"PO-Revision-Date: 2010-02-03 17:38+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
+"X-Launchpad-Export-Date: 2010-02-04 04:50+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -246,19 +246,19 @@ msgstr "Enter a command to launch:"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection has become inactive."
-msgstr ""
+msgstr "Network connection state changed to inactive."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Connecting..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
-msgstr ""
+msgstr "Network connection is established."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network has been disconnected."
-msgstr ""
+msgstr "Network connection state changed to disconnected."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
@@ -364,6 +364,13 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"This applet allows you to monitor your network connection(s).\n"
+"It can display the download/upload speeds as well as the wifi signal "
+"quality.\n"
+"If you have network-manager running, it can also let you choose the current "
+"wifi network.\n"
+"Left-click to display some info,Scroll on the icon to switch the display "
+"between net speed and wifi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -411,19 +418,19 @@ msgstr "Network Administration"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "Activate network"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "Deactivate network"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Deactivate wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Activate wifi"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -772,7 +779,7 @@ msgstr "Memory"
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
-msgstr ""
+msgstr "Available"
 
 #: ../System-Monitor/src/applet-notifications.c:84
 msgid "Cached"
@@ -995,11 +1002,11 @@ msgstr "frame&reflects"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch"
-msgstr "scotch cellotapes"
+msgstr "scotch sellotape"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with scotch"
-msgstr "frame with cellotapes"
+msgstr "frame with sellotape"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
@@ -1287,7 +1294,7 @@ msgstr "Show Trash"
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
 msgid "Delete Trash"
-msgstr "Delete Trash"
+msgstr "Empty Trash"
 
 #: ../dustbin/src/applet-notifications.c:51
 #, c-format
@@ -1831,7 +1838,7 @@ msgstr "Unmounted"
 
 #: ../shortcuts/src/applet-init.c:31
 msgid "shortcuts"
-msgstr ""
+msgstr "shortcuts"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1954,7 +1961,7 @@ msgstr "Browse images folder"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "stack"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2822,7 +2829,7 @@ msgstr "Name of the dock it belongs to:"
 #: ../tomboy/data/messages:29 ../weather/data/messages:13
 #: ../weblets/data/messages:15 ../wifi/data/messages:11
 msgid "Applet's Handbook"
-msgstr ""
+msgstr "Applet's Handbook"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../GMenu/data/messages:91
@@ -3925,7 +3932,7 @@ msgstr "You can quickly switch to the other mode by scrolling on the icon."
 
 #: ../Network-Monitor/data/messages:95
 msgid "Info displayed by the icon :"
-msgstr ""
+msgstr "Info displayed by the icon:"
 
 #: ../Network-Monitor/data/messages:97
 msgid "Wifi signal"
@@ -3941,11 +3948,11 @@ msgstr "By default the first active interface is used."
 
 #: ../Network-Monitor/data/messages:103
 msgid "Connexion interface to monitor :"
-msgstr ""
+msgstr "Connection interface to monitor:"
 
 #: ../Network-Monitor/data/messages:105
 msgid "Display numeric values :"
-msgstr ""
+msgstr "Display numeric values:"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
 #: ../alsaMixer/data/messages:117 ../clock/data/messages:95
@@ -3976,11 +3983,11 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:115
 msgid "Fluidity of the transition animation between 2 values :"
-msgstr ""
+msgstr "Fluidity of the transition animation between 2 values:"
 
 #: ../Network-Monitor/data/messages:117
 msgid "Animation of the icon when connecting :"
-msgstr ""
+msgstr "Animation of the icon when connecting:"
 
 #: ../Network-Monitor/data/messages:119
 msgid ""
@@ -4005,7 +4012,7 @@ msgstr "User command to display a system monitor:"
 
 #: ../Network-Monitor/data/messages:127
 msgid "Net Speed"
-msgstr ""
+msgstr "Net Speed"
 
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
@@ -4101,11 +4108,11 @@ msgstr "Delays between net speed checks:"
 
 #: ../Network-Monitor/data/messages:169
 msgid "Wifi"
-msgstr ""
+msgstr "Wifi"
 
 #: ../Network-Monitor/data/messages:171
 msgid "Choose the style of the display :"
-msgstr ""
+msgstr "Choose the style of the display:"
 
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:207
 #: ../powermanager/data/messages:95 ../powermanager/data/messages:125
@@ -4179,7 +4186,7 @@ msgstr "Name of the image for the 'Wired connection' icon :"
 
 #: ../Network-Monitor/data/messages:253
 msgid "in seconds, if you don't have Network-Manager."
-msgstr ""
+msgstr "in seconds, if you don't have Network-Manager."
 
 #: ../Network-Monitor/data/messages:255
 msgid "Delay between wifi signal checks :"
@@ -4862,7 +4869,7 @@ msgstr "for digital format only."
 
 #: ../clock/data/messages:103
 msgid "Display the time in a 24h format ?"
-msgstr "Display the time in a 24h format ?"
+msgstr "Display the time in a 24h format?"
 
 #: ../clock/data/messages:105
 msgid "if not, then the applet will update time once a minute, saving CPU."

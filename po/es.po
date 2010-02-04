@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 01:58+0000\n"
-"Last-Translator: Carlos Joel Delgado Pizarro <carlosj2585@gmail.com>\n"
+"PO-Revision-Date: 2010-02-02 10:21+0000\n"
+"Last-Translator: alfredo <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
+"X-Launchpad-Export-Date: 2010-02-03 04:50+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -94,11 +94,12 @@ msgstr "Lo siento pero estoy ocupado ahora."
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"No tengo tiempo para jugar contigo, tengo que cavar y explotar estos iconos."
+"No tengo tiempo para jugar contigo, tengo que cavar y minar todos estos "
+"iconos."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "¡La barra está llena! Déjame limpiarla."
+msgstr "¡Tu barra está tan desordenada! Déjame limpiarla."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin !"
@@ -122,7 +123,7 @@ msgstr "¡Quiero ser un pirata!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass !"
-msgstr "¡No pasaras por aquí!"
+msgstr "¡No pasarás por aquí!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father !"
@@ -256,7 +257,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Conectando..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
@@ -417,19 +418,19 @@ msgstr "Administración de red"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "Activar la red"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "Desactivar la red"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Activar la red wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Desactivar la red wifi"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -770,7 +771,7 @@ msgstr "Memoria"
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: ../System-Monitor/src/applet-notifications.c:84
 msgid "Cached"
@@ -1755,7 +1756,7 @@ msgstr "Desmontado"
 
 #: ../shortcuts/src/applet-init.c:31
 msgid "shortcuts"
-msgstr ""
+msgstr "Accesos directos"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1820,11 +1821,11 @@ msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:162
 msgid "Change screen resolution"
-msgstr ""
+msgstr "Cambiar la resolución de la pantalla"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr ""
+msgstr "Diapositivas"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -1852,7 +1853,7 @@ msgstr "Explorar la carpeta de imágenes"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "Pila"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -1881,11 +1882,11 @@ msgstr ""
 
 #: ../stack/src/applet-notifications.c:165
 msgid "Copy (middle click)"
-msgstr ""
+msgstr "Copiar (botón central de ratón)"
 
 #: ../stack/src/applet-notifications.c:166
 msgid "Cut"
-msgstr ""
+msgstr "Cortar"
 
 #: ../stack/src/applet-notifications.c:167
 msgid "Rename this item"
@@ -1897,7 +1898,7 @@ msgstr "Eliminar este artículo"
 
 #: ../stack/src/applet-notifications.c:172
 msgid "Open (click)"
-msgstr ""
+msgstr "Abrir (botón izquierdo del ratón)"
 
 #: ../stack/src/applet-notifications.c:174
 msgid "Open folder"
@@ -1905,15 +1906,15 @@ msgstr "Abrir carpeta"
 
 #: ../stack/src/applet-notifications.c:179
 msgid "Paste (drag'n'drop)"
-msgstr ""
+msgstr "Pegar (Arrastre y suelte)"
 
 #: ../stack/src/applet-notifications.c:180
 msgid "Clear the stack"
-msgstr ""
+msgstr "Limpiar la pila"
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
-msgstr ""
+msgstr "Recargar pilas"
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
@@ -1921,15 +1922,15 @@ msgstr ""
 
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
 msgid "current"
-msgstr ""
+msgstr "actual"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
 msgid "desktop"
-msgstr ""
+msgstr "escritorio"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
-msgstr ""
+msgstr "cambiador"
 
 #: ../switcher/src/applet-init.c:35
 msgid ""
@@ -1945,7 +1946,7 @@ msgstr ""
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:340
 msgid "Current"
-msgstr ""
+msgstr "Actual"
 
 #: ../switcher/src/applet-load-icons.c:46
 #: ../switcher/src/applet-notifications.c:175
@@ -1953,7 +1954,7 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:332
 #: ../switcher/src/applet-notifications.c:397
 msgid "Desktop"
-msgstr ""
+msgstr "Escritorio"
 
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
@@ -1962,7 +1963,7 @@ msgstr ""
 
 #: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
-msgstr ""
+msgstr "Agregar un escritorio"
 
 #: ../switcher/src/applet-notifications.c:221
 msgid "Remove last desktop"
@@ -1985,11 +1986,11 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
-msgstr ""
+msgstr "Mostrar el escritorio"
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
-msgstr ""
+msgstr "Lista de ventanas"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3504,7 +3505,7 @@ msgstr ""
 #: ../weather/data/messages:85 ../weblets/data/messages:87
 #: ../wifi/data/messages:83
 msgid "Foreground image :"
-msgstr ""
+msgstr "Imagen de frente:"
 
 #: ../Clipper/data/messages:193 ../GMenu/data/messages:89
 #: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:91
@@ -3522,11 +3523,11 @@ msgstr ""
 #: ../weather/data/messages:87 ../weblets/data/messages:89
 #: ../wifi/data/messages:85
 msgid "Foreground tansparency :"
-msgstr ""
+msgstr "Transparencia del texto:"
 
 #: ../Clipper/data/messages:197
 msgid "Items"
-msgstr ""
+msgstr "Elementos"
 
 #: ../Clipper/data/messages:199
 msgid ""
@@ -4696,11 +4697,11 @@ msgstr ""
 
 #: ../clock/data/messages:115
 msgid "Timezone :"
-msgstr ""
+msgstr "Zona horaria:"
 
 #: ../clock/data/messages:117
 msgid "Style"
-msgstr ""
+msgstr "Estilo"
 
 #: ../clock/data/messages:119
 msgid ""
@@ -4710,19 +4711,19 @@ msgstr ""
 
 #: ../clock/data/messages:121
 msgid "Choose the view :"
-msgstr ""
+msgstr "Elija la vista:"
 
 #: ../clock/data/messages:123
 msgid "Analogic"
-msgstr ""
+msgstr "Analógico"
 
 #: ../clock/data/messages:125
 msgid "Numeric"
-msgstr ""
+msgstr "Numérico"
 
 #: ../clock/data/messages:127
 msgid "Analogic View"
-msgstr ""
+msgstr "Vista analógica"
 
 #: ../clock/data/messages:129
 msgid "List of available themes for the analogic display :"
@@ -4734,11 +4735,11 @@ msgstr ""
 
 #: ../clock/data/messages:133
 msgid "Numeric View"
-msgstr ""
+msgstr "Vista numérica"
 
 #: ../clock/data/messages:135 ../keyboard-indicator/data/messages:99
 msgid "Font :"
-msgstr ""
+msgstr "Fuente:"
 
 #: ../clock/data/messages:139
 msgid "Ratio to apply on text :"
@@ -4762,7 +4763,7 @@ msgstr ""
 
 #: ../clock/data/messages:149
 msgid "Alarm"
-msgstr ""
+msgstr "Alarma"
 
 #: ../clock/data/messages:151
 msgid ""
@@ -4793,7 +4794,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:103
 msgid "Show Desktop"
-msgstr ""
+msgstr "Mostrar escritorio"
 
 #: ../compiz-icon/data/messages:105
 msgid ""
@@ -5175,15 +5176,15 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:9 ../dock-rendering/data/messages:135
 msgid "Normal separator"
-msgstr ""
+msgstr "Separador normal"
 
 #: ../dock-rendering/data/messages:11 ../dock-rendering/data/messages:137
 msgid "Flat separator"
-msgstr ""
+msgstr "Separador plano"
 
 #: ../dock-rendering/data/messages:13 ../dock-rendering/data/messages:139
 msgid "Physical separator"
-msgstr ""
+msgstr "Separador físico"
 
 #: ../dock-rendering/data/messages:15
 msgid "For flat separators, you can specify their color:"
@@ -5198,7 +5199,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:21
 msgid "Inclination of the plane :"
-msgstr ""
+msgstr "Inclinación en el plano:"
 
 #: ../dock-rendering/data/messages:23
 msgid ""
@@ -5218,7 +5219,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:29
 msgid "Depth of the plane :"
-msgstr ""
+msgstr "Profundidad del plano:"
 
 #: ../dock-rendering/data/messages:31
 msgid "otherwise they will turn."
@@ -5234,7 +5235,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Curvature :"
-msgstr ""
+msgstr "Curvatura:"
 
 #: ../dock-rendering/data/messages:41
 msgid "The parabole will be conscricted to a rectangle of this proportion."
@@ -5250,7 +5251,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:47 ../dock-rendering/data/messages:67
 msgid "Magnitude of the wave :"
-msgstr ""
+msgstr "Magnitud de la onda:"
 
 #: ../dock-rendering/data/messages:49
 msgid "Curve towards the outside ?"
@@ -5271,11 +5272,11 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:61 ../dock-rendering/data/messages:87
 msgid "Space between rows :"
-msgstr ""
+msgstr "Espacio entre columnas:"
 
 #: ../dock-rendering/data/messages:63
 msgid "Space between icons :"
-msgstr ""
+msgstr "Espacio entre iconos:"
 
 #: ../dock-rendering/data/messages:65
 msgid ""
@@ -5285,7 +5286,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:69
 msgid "Number of icons on the first row :"
-msgstr ""
+msgstr "Número de iconos en la primera columna:"
 
 #: ../dock-rendering/data/messages:71
 msgid ""
@@ -5315,7 +5316,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:83
 msgid "Grid"
-msgstr ""
+msgstr "Cuadrícula"
 
 #: ../dock-rendering/data/messages:85
 msgid "Space between columns :"
@@ -5323,7 +5324,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:89
 msgid "Max size of icons :"
-msgstr ""
+msgstr "Tamaño máximo de los iconos"
 
 #: ../dock-rendering/data/messages:91
 msgid "Sinusoidal wave radius :"
@@ -5343,7 +5344,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:99
 msgid "Frame"
-msgstr ""
+msgstr "Cuadro"
 
 #: ../dock-rendering/data/messages:101
 msgid "Draw a background ?"
@@ -5367,11 +5368,11 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:113
 msgid "Border line width :"
-msgstr ""
+msgstr "Ancho de la linea de borde:"
 
 #: ../dock-rendering/data/messages:115
 msgid "Border line color :"
-msgstr ""
+msgstr "Color de la linea de borde:"
 
 #: ../dock-rendering/data/messages:117
 msgid "Arrow width :"
@@ -5423,11 +5424,11 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
-msgstr ""
+msgstr "Animación"
 
 #: ../drop-indicator/data/messages:15
 msgid "Speed :"
-msgstr ""
+msgstr "Velocidad:"
 
 #: ../drop-indicator/data/messages:17
 msgid "Number of round per second."
@@ -5436,11 +5437,11 @@ msgstr ""
 #: ../drop-indicator/data/messages:19 ../illusion/data/messages:79
 #: ../show-mouse/data/messages:7
 msgid "Rotation speed :"
-msgstr ""
+msgstr "Velocidad de rotación:"
 
 #: ../dustbin/data/messages:89
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: ../dustbin/data/messages:93
 msgid "Name of an image to overwrite the theme's empty image :"
@@ -5452,7 +5453,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:97
 msgid "Config"
-msgstr ""
+msgstr "Configurar"
 
 #: ../dustbin/data/messages:99
 msgid "Display the following quick info :"
@@ -5530,7 +5531,7 @@ msgstr ""
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
 #: ../illusion/data/messages:35 ../terminal/data/messages:93
 msgid "Colors"
-msgstr ""
+msgstr "Colores"
 
 #: ../icon-effect/data/messages:87
 msgid "It will slightly alter the colors, so you may have to modify them."
@@ -5545,7 +5546,7 @@ msgstr ""
 #: ../icon-effect/data/messages:179 ../icon-effect/data/messages:203
 #: ../illusion/data/messages:43
 msgid "Particles"
-msgstr ""
+msgstr "Partículas"
 
 #: ../icon-effect/data/messages:93 ../icon-effect/data/messages:117
 #: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
@@ -5558,16 +5559,16 @@ msgstr ""
 #: ../icon-effect/data/messages:183 ../icon-effect/data/messages:213
 #: ../illusion/data/messages:47 ../show-mouse/data/messages:25
 msgid "Particle size :"
-msgstr ""
+msgstr "Tamaño de las partículas:"
 
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:141
 #: ../icon-effect/data/messages:163 ../illusion/data/messages:49
 msgid "Particle speed :"
-msgstr ""
+msgstr "Velocidad de las partículas:"
 
 #: ../icon-effect/data/messages:195
 msgid "Default color :"
-msgstr ""
+msgstr "Color predeterminado:"
 
 #: ../icon-effect/data/messages:199
 msgid "It particularily fits a dark wallpaper or a dark theme."
@@ -5595,43 +5596,43 @@ msgstr ""
 
 #: ../icon-effect/data/messages:217
 msgid "Particle friction :"
-msgstr ""
+msgstr "Fricción de las partículas:"
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance :"
-msgstr ""
+msgstr "Animación al desaparecer:"
 
 #: ../illusion/data/messages:5 ../illusion/data/messages:19
 #: ../illusion/data/messages:31
 msgid "Evaporate"
-msgstr ""
+msgstr "Evaporar"
 
 #: ../illusion/data/messages:7 ../illusion/data/messages:21
 #: ../illusion/data/messages:53
 msgid "Fade out"
-msgstr ""
+msgstr "Desaparecer"
 
 #: ../illusion/data/messages:9 ../illusion/data/messages:23
 #: ../illusion/data/messages:57
 msgid "Explode"
-msgstr ""
+msgstr "Explotar"
 
 #: ../illusion/data/messages:11 ../illusion/data/messages:25
 #: ../illusion/data/messages:67
 msgid "Break"
-msgstr ""
+msgstr "Romper"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 msgid "BlackHole"
-msgstr ""
+msgstr "Agujero negro"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance :"
-msgstr ""
+msgstr "Animación al aparecer:"
 
 #: ../illusion/data/messages:51
 msgid "Evaporate upward ?"
@@ -5651,7 +5652,7 @@ msgstr ""
 
 #: ../illusion/data/messages:73
 msgid "Black Hole"
-msgstr ""
+msgstr "Agujero negro"
 
 #: ../illusion/data/messages:77
 msgid "in round per second."
@@ -5663,7 +5664,7 @@ msgstr ""
 
 #: ../illusion/data/messages:83
 msgid "Attraction of the hole :"
-msgstr ""
+msgstr "Atracción del agujero:"
 
 #: ../keyboard-indicator/data/messages:89
 msgid "caps lock, num lock, etc"
@@ -5685,7 +5686,7 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:101
 msgid "Text color"
-msgstr ""
+msgstr "Color del texto"
 
 #: ../keyboard-indicator/data/messages:103
 msgid "Outline text ?"
@@ -5702,7 +5703,7 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:109
 msgid "smaller"
-msgstr ""
+msgstr "más pequeño"
 
 #: ../logout/data/messages:93
 msgid "Let empty to execute the default command."
@@ -5729,7 +5730,7 @@ msgstr ""
 
 #: ../mail/data/messages:89 ../mail/data/messages:95
 msgid "Sub-Dock view"
-msgstr ""
+msgstr "Vista de la sub-barra"
 
 #: ../mail/data/messages:99
 msgid "Theme overriding"
@@ -5764,7 +5765,7 @@ msgstr ""
 #: ../mail/data/messages:115 ../musicPlayer/data/messages:131
 #: ../tomboy/data/messages:119
 msgid "in s."
-msgstr ""
+msgstr "en segundos"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
 msgid "Time length of the dialog :"
@@ -5958,11 +5959,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:155 ../musicPlayer/data/messages:159
 msgid "requires OpenGL."
-msgstr ""
+msgstr "Necesita OpenGL."
 
 #: ../musicPlayer/data/messages:157
 msgid "Use 3D themes ?"
-msgstr ""
+msgstr "¿Usar temas 3D?"
 
 #: ../musicPlayer/data/messages:161
 msgid "List of available 3D themes for covers :"
@@ -6032,81 +6033,81 @@ msgstr "Nombre del archivo para el icono de 'cargando':"
 
 #: ../powermanager/data/messages:131
 msgid "Effect to apply on the icon according to charge :"
-msgstr ""
+msgstr "Aplicar efecto al icono de acuerdo a la carga:"
 
 #: ../powermanager/data/messages:133 ../powermanager/data/messages:149
 msgid "nothing"
-msgstr ""
+msgstr "nada"
 
 #: ../powermanager/data/messages:135
 msgid "zoom"
-msgstr ""
+msgstr "acercamiento"
 
 #: ../powermanager/data/messages:137
 msgid "transparency"
-msgstr ""
+msgstr "transparencia"
 
 #: ../powermanager/data/messages:139
 msgid "draw bar"
-msgstr ""
+msgstr "dibujar barra"
 
 #: ../powermanager/data/messages:145 ../weather/data/messages:107
 msgid "Interval of time between 2 checks :"
-msgstr ""
+msgstr "Intervalo de tiempo entre 2 revisiones:"
 
 #: ../powermanager/data/messages:147
 msgid "Information to be displayed on the icon :"
-msgstr ""
+msgstr "Información que se mostrará en el icono:"
 
 #: ../powermanager/data/messages:151
 msgid "charge"
-msgstr ""
+msgstr "carga"
 
 #: ../powermanager/data/messages:153
 msgid "time"
-msgstr ""
+msgstr "tiempo"
 
 #: ../powermanager/data/messages:155
 msgid "Alert"
-msgstr ""
+msgstr "Alerta"
 
 #: ../powermanager/data/messages:157
 msgid "Alert when battery charged ?"
-msgstr ""
+msgstr "¿Avisar cuando la batería esté cargada?"
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
 msgid "Let it empty to have no sound"
-msgstr ""
+msgstr "Deje en blanco para no reproducir ningún sonido"
 
 #: ../powermanager/data/messages:161 ../powermanager/data/messages:171
 #: ../powermanager/data/messages:179
 msgid "Use a sound :"
-msgstr ""
+msgstr "Utilizar un sonido"
 
 #: ../powermanager/data/messages:163
 msgid "Alert when low battery ?"
-msgstr ""
+msgstr "¿Avisar cuando la carga de la batería esté baja?"
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
-msgstr ""
+msgstr "en porcentaje."
 
 #: ../powermanager/data/messages:167
 msgid "Battery level :"
-msgstr ""
+msgstr "Nivel de la batería:"
 
 #: ../powermanager/data/messages:173
 msgid "When battery level is under 4%"
-msgstr ""
+msgstr "Cuando la batería esté debajo del 4%"
 
 #: ../powermanager/data/messages:175
 msgid "Alert when battery charge is critical ?"
-msgstr ""
+msgstr "Avisar cuando la carga de la batería sea crítica."
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"
-msgstr ""
+msgstr "Animación durante la alerta:"
 
 #: ../quick-browser/data/messages:7
 msgid "Let empty to use the folder's name."
@@ -6466,7 +6467,7 @@ msgstr ""
 
 #: ../stack/data/messages:115
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #: ../stack/data/messages:117
 msgid ""
@@ -6488,23 +6489,23 @@ msgstr ""
 
 #: ../stack/data/messages:125
 msgid "Sort items by :"
-msgstr ""
+msgstr "Ordenar elementos por:"
 
 #: ../stack/data/messages:127
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: ../stack/data/messages:129
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: ../stack/data/messages:131
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: ../stack/data/messages:133
 msgid "Manual order"
-msgstr ""
+msgstr "Orden manual"
 
 #: ../stack/data/messages:135
 msgid ""
@@ -6601,7 +6602,7 @@ msgstr ""
 
 #: ../switcher/data/messages:133
 msgid "draw a frame"
-msgstr ""
+msgstr "Dibujar un marco"
 
 #: ../switcher/data/messages:135
 msgid "fill"
@@ -6625,7 +6626,7 @@ msgstr ""
 
 #: ../systray/data/messages:45 ../terminal/data/messages:91
 msgid "GUI"
-msgstr ""
+msgstr "IGU"
 
 #: ../systray/data/messages:47
 msgid "Shortkey to toggle the systray in dock mode :"
@@ -6637,15 +6638,15 @@ msgstr ""
 
 #: ../systray/data/messages:51
 msgid "horizontal"
-msgstr ""
+msgstr "horizintal"
 
 #: ../systray/data/messages:53
 msgid "vertical"
-msgstr ""
+msgstr "vertical"
 
 #: ../systray/data/messages:55
 msgid "Icons size :"
-msgstr ""
+msgstr "Tamaño de los iconos:"
 
 #: ../terminal/data/messages:95
 msgid "needs to restart the applet."
@@ -6657,11 +6658,11 @@ msgstr ""
 
 #: ../terminal/data/messages:99
 msgid "transparent"
-msgstr ""
+msgstr "transparente"
 
 #: ../terminal/data/messages:101
 msgid "opaque"
-msgstr ""
+msgstr "opaco"
 
 #: ../terminal/data/messages:103
 msgid "Foreground color :"
@@ -6715,11 +6716,11 @@ msgstr ""
 
 #: ../tomboy/data/messages:127
 msgid "Gnote"
-msgstr ""
+msgstr "Gnote"
 
 #: ../tomboy/data/messages:129
 msgid "Tomboy"
-msgstr ""
+msgstr "Tomboy"
 
 #: ../tomboy/data/messages:131
 msgid "Ask confirmation before deleting a note ?"

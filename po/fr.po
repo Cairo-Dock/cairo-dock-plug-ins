@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 01:58+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"PO-Revision-Date: 2010-01-31 13:18+0000\n"
+"Last-Translator: Raphaël <Unknown>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-25 04:51+0000\n"
+"X-Launchpad-Export-Date: 2010-02-01 04:51+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -251,19 +251,19 @@ msgstr "Entrez une commande à lancer :"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection has become inactive."
-msgstr ""
+msgstr "La confection réseau est devenue inactive"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Connexion..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
-msgstr ""
+msgstr "La connexion réseau a été établie."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network has been disconnected."
-msgstr ""
+msgstr "Le réseau a été déconnecté."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
@@ -369,6 +369,14 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"Cette applet vous permet de contrôler votre connexion (vos connexions) "
+"réseau.\n"
+"Elle peut afficher les vitesse d'envoi et de téléchargement ainsi que la "
+"qualité du signal Wifi.\n"
+"Si Network-Manager est lancé, elle vous permet aussi de choisir le réseau "
+"Wifi.\n"
+"Au clique gauche une pop-up vous donnera quelques infos, le défilement sur "
+"l'icône affichera la vitesse ou le wifi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -416,19 +424,19 @@ msgstr "Administration du Réseau"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "Activer le réseau"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "Désactiver le réseau"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Désactiver le wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Activer le wifi"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -785,7 +793,7 @@ msgstr "Mémoire"
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: ../System-Monitor/src/applet-notifications.c:84
 msgid "Cached"
@@ -1865,7 +1873,7 @@ msgstr "Non monté"
 
 #: ../shortcuts/src/applet-init.c:31
 msgid "shortcuts"
-msgstr ""
+msgstr "Raccourcis"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1994,7 +2002,7 @@ msgstr "Parcourir le dossier d'images"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "Pile"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2869,7 +2877,7 @@ msgstr "Nom du dock auquel il appartient :"
 #: ../tomboy/data/messages:29 ../weather/data/messages:13
 #: ../weblets/data/messages:15 ../wifi/data/messages:11
 msgid "Applet's Handbook"
-msgstr ""
+msgstr "Appelet Manuel"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../GMenu/data/messages:91
@@ -3995,7 +4003,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:95
 msgid "Info displayed by the icon :"
-msgstr ""
+msgstr "Informations afficher par l'icône :"
 
 #: ../Network-Monitor/data/messages:97
 msgid "Wifi signal"
@@ -4011,11 +4019,11 @@ msgstr "Par défaut, la première interface active est utilisée."
 
 #: ../Network-Monitor/data/messages:103
 msgid "Connexion interface to monitor :"
-msgstr ""
+msgstr "Interface de la connexion à contrôler :"
 
 #: ../Network-Monitor/data/messages:105
 msgid "Display numeric values :"
-msgstr ""
+msgstr "Afficher des valeurs numériques :"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
 #: ../alsaMixer/data/messages:117 ../clock/data/messages:95
@@ -4046,11 +4054,11 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:115
 msgid "Fluidity of the transition animation between 2 values :"
-msgstr ""
+msgstr "Fluidité de l'animation de transition entre deux valeurs:"
 
 #: ../Network-Monitor/data/messages:117
 msgid "Animation of the icon when connecting :"
-msgstr ""
+msgstr "Animation de l'icône en lors de la connexion :"
 
 #: ../Network-Monitor/data/messages:119
 msgid ""
@@ -4076,7 +4084,7 @@ msgstr "Commande utilisateur pour afficher un moniteur système :"
 
 #: ../Network-Monitor/data/messages:127
 msgid "Net Speed"
-msgstr ""
+msgstr "Vitesse réseau"
 
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
@@ -4172,11 +4180,11 @@ msgstr "Durée entre les relevés de la vitesse de connexion :"
 
 #: ../Network-Monitor/data/messages:169
 msgid "Wifi"
-msgstr ""
+msgstr "Wifi"
 
 #: ../Network-Monitor/data/messages:171
 msgid "Choose the style of the display :"
-msgstr ""
+msgstr "Choisir le style de l'affichage :"
 
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:207
 #: ../powermanager/data/messages:95 ../powermanager/data/messages:125
@@ -4250,7 +4258,7 @@ msgstr "Nom ou chemin de l'image pour l'icône \"Connexion filaire\" :"
 
 #: ../Network-Monitor/data/messages:253
 msgid "in seconds, if you don't have Network-Manager."
-msgstr ""
+msgstr "ou, si vous n'avez pas Network-Manager"
 
 #: ../Network-Monitor/data/messages:255
 msgid "Delay between wifi signal checks :"
