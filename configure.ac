@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT([cairo-dock-plugins],[2.1.3-1],[Fabrice Rey (fabounet@users.berlios.de)])
+AC_INIT([cairo-dock-plugins],[2.1.4-0alpha0],[Fabrice Rey (fabounet@users.berlios.de)])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -128,6 +128,10 @@ AC_ARG_ENABLE(scooby-do,
 	[  --enable-scooby-do : Enable Scooby-Do applet (default=no) ],
 	[ with_scooby_do=${enableval} ],
 	[ with_scooby_do=no ])
+AC_ARG_ENABLE(doncky,
+	[  --enable-doncky : Enable Doncky applet (default=no) ],
+	[ with_doncky=${enableval} ],
+	[ with_doncky=no ])
 
 
 ############# PACKAGES ADDITIONNELS #################
@@ -232,6 +236,7 @@ AM_CONDITIONAL( [WITH_NETWORK_MONITOR], [test "$with_network_monitor" = "yes"] )
 AM_CONDITIONAL( [WITH_SCOOBY_DO], [test "$with_scooby_do" = "yes"] )
 AM_CONDITIONAL( [WITH_RSSREADER], [test "$with_rssreader" = "yes"] )
 AM_CONDITIONAL( [WITH_XRANDR_IN_SHOW_DESKTOP], [test "$with_xrandr_in_show_desktop" = "yes"] )
+AM_CONDITIONAL( [WITH_DONCKY], [test "$with_doncky" = "yes"] )
 
 
 ############# ALSA_MIXER #################
@@ -300,6 +305,15 @@ AC_SUBST(VERSION_DBUS, "1.0.0")
 AC_SUBST(PACKAGE_DBUS, "$DBUS_PACKAGE")
 
 AC_SUBST(dbusdatadir, "${pkgdatadir}/Dbus")
+
+############# DONCKY #################
+DND2SHARE_PACKAGE="cd-doncky"
+AC_SUBST(GETTEXT_DONCKY, "cairo-dock-plugins")
+
+AC_SUBST(VERSION_DONCKY, "0.0.1")
+AC_SUBST(PACKAGE_DONCKY, "$DONCKY_PACKAGE")
+
+AC_SUBST(donckydatadir, "${pkgdatadir}/Doncky")
 
 ############# DND2SHARE #################
 DND2SHARE_PACKAGE="cd-dnd2share"
@@ -702,6 +716,11 @@ AC_CONFIG_FILES([
 	Dbus/data/Makefile
 	Dbus/data/Dbus.conf
 	
+	Doncky/Makefile
+	Doncky/src/Makefile
+	Doncky/data/Makefile
+	Doncky/data/Doncky.conf
+	
 	dnd2share/Makefile
 	dnd2share/src/Makefile
 	dnd2share/data/Makefile
@@ -928,3 +947,4 @@ echo " * Compil RSSreader applet : "${with_rssreader}
 echo " * Enable xrandr in Show-Desktop applet : "${with_xrandr_in_show_desktop}
 echo " * Compil Network-Monitor applet : "${with_network_monitor}
 echo " * Compil Scooby-Do applet : "${with_scooby_do}
+echo " * Compil Doncky applet : "${with_doncky}

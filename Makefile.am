@@ -80,6 +80,10 @@ if WITH_RSSREADER
 rssreader_dir=RSSreader
 endif
 
+if WITH_DONCKY
+doncky_dir=Doncky
+endif
+
 SUBDIRS = . po\
 	${alsa_mixer_dir}\
 	Animated-icons\
@@ -90,6 +94,7 @@ SUBDIRS = . po\
 	Dbus\
 	desklet-rendering\
 	dialog-rendering\
+	${doncky_dir}\
 	${dnd2share_dir}\
 	dock-rendering\
 	drop-indicator\
