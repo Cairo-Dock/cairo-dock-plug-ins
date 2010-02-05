@@ -88,6 +88,7 @@ typedef enum {
 	BUILD_MENU,
 	MENU_SELECT,
 	DROP_DATA,
+	CHANGE_FOCUS,
 	RELOAD_MODULE,
 	INIT_MODULE,
 	STOP_MODULE,
@@ -105,6 +106,7 @@ struct _AppletData {
 	gchar *cActiveModules;
 	gboolean bServiceIsStopping;
 	guint iSidRemoveAppletFromConf;
+	Window xActiveWindow;
 	} ;
 
 

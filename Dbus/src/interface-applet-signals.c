@@ -137,6 +137,14 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			NULL, NULL,
 			g_cclosure_marshal_VOID__STRING,
 			G_TYPE_NONE, 1, G_TYPE_STRING);
+	s_iSignals[CHANGE_FOCUS] =
+		g_signal_new("on_change_focus",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__BOOLEAN,
+			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 	s_iSignals[ANSWER] =
 		g_signal_new("on_answer",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -186,6 +194,8 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_TYPE_INT, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_drop_data",
 			G_TYPE_STRING, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_change_focus",
+			G_TYPE_BOOLEAN, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_answer",
 			G_TYPE_VALUE, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_init_module",
@@ -470,6 +480,42 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[DROP_DATA], 0, cReceivedData, pClickedIcon->cCommand);
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+}
+
+
+gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveWindow)
+{
+	g_print ("%s (%d)\n", __func__, *xNewActiveWindow);
+	// on emet le signal sur l'icone qui avait le focus.
+	if (myData.xActiveWindow != 0)
+	{
+		Icon *pPrevActiveIcon = cairo_dock_get_icon_with_Xid (myData.xActiveWindow);
+		if (pPrevActiveIcon && pPrevActiveIcon->cParentDockName == NULL)
+			pPrevActiveIcon = cairo_dock_get_inhibator (pPrevActiveIcon, FALSE);
+		if (CAIRO_DOCK_IS_MANUAL_APPLET (pPrevActiveIcon))
+		{
+			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pPrevActiveIcon->pModuleInstance);
+			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_signal_emit (pDbusApplet, s_iSignals[CHANGE_FOCUS], 0, FALSE);
+		}
+	}
+	
+	// on emet le signal sur l'icone qui a desormais le focus.
+	if (*xNewActiveWindow != 0)
+	{
+		Icon *pNewActiveIcon = cairo_dock_get_icon_with_Xid (*xNewActiveWindow);
+		if (pNewActiveIcon && pNewActiveIcon->cParentDockName == NULL)
+			pNewActiveIcon = cairo_dock_get_inhibator (pNewActiveIcon, FALSE);
+		if (CAIRO_DOCK_IS_MANUAL_APPLET (pNewActiveIcon))
+		{
+			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance);
+			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_signal_emit (pDbusApplet, s_iSignals[CHANGE_FOCUS], 0, TRUE);
+		}
+	}
+	
+	myData.xActiveWindow = *xNewActiveWindow;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 

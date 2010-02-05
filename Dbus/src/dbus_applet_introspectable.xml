@@ -74,6 +74,9 @@
 		<signal name="on_drop_data">
 			<arg name="cReceivedData" type="s"/>
 		</signal>
+		<signal name="on_change_focus">
+			<arg name="is_active" type="b"/>
+		</signal>
 		<signal name="on_answer">
 			<arg name="answer" type="v"/>
 		</signal>

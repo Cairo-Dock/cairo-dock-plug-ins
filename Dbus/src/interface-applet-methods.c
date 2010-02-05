@@ -660,6 +660,18 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 		g_value_init (v, G_TYPE_INT);
 		g_value_set_int (v, iHeight);
 	}
+	else if (strcmp (cProperty, "Xid") == 0)
+	{
+		Window Xid = pIcon->Xid;
+		g_value_init (v, G_TYPE_UINT64);
+		g_value_set_uint64 (v, Xid);
+	}
+	else if (strcmp (cProperty, "has_focus") == 0)
+	{
+		gboolean bHasFocus = (pIcon->Xid != 0 && pIcon->Xid == cairo_dock_get_current_active_window ());
+		g_value_init (v, G_TYPE_BOOLEAN);
+		g_value_set_boolean (v, bHasFocus);
+	}
 	else
 	{
 		g_set_error (error, 1, 1, "the property %s doesn't exist", cProperty);
@@ -695,12 +707,14 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
 	
+	Window Xid = pIcon->Xid;
+	gboolean bHasFocus = (pIcon->Xid != 0 && pIcon->Xid == cairo_dock_get_current_active_window ());
+	
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
 		g_free,
 		g_free); 
 	*hProperties = h;
-	//GHashTable *h = hProperties;
 	GValue *v;
 	
 	v = g_new0 (GValue, 1);
@@ -732,6 +746,16 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, iHeight);
 	g_hash_table_insert (h, g_strdup ("height"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT64);
+	g_value_set_uint64(v, Xid);
+	g_hash_table_insert (h, g_strdup ("Xid"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (v, bHasFocus);
+	g_hash_table_insert (h, g_strdup ("has_focus"), v);
 	
 	return TRUE;
 }
