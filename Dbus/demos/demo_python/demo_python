@@ -41,23 +41,8 @@ import glib
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
-##################################
-### get our applet on the bus ###
-##################################
 applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
-applet_path = "/org/cairodock/CairoDock/"+applet_name  # path where our object is stored on the bus.
 DBusGMainLoop(set_as_default=True)
-bus = dbus.SessionBus()
-try:
-	applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
-except dbus.DBusException:
-	print ">>> module '"+applet_name+"' can't be found on the bus, exit."
-	sys.exit(2)
-myIcon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our applet and also our icon. It can be either in a dock or in a desklet, we don't have to care.
-
-### we'll have a sub-dock, so we also get the sub-icons object ###
-sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
-mySubIcons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
 
 ##################################
 ### callbacks on the main icon ###
@@ -110,6 +95,7 @@ def on_click_sub_icon(iState, cIconID):
 ###############################
 def action_on_stop():
 	print ">>> our module is stopped"
+	myApplet.end()
 	loop.quit()
 
 def action_on_reload(bConfigHasChanged):
@@ -122,25 +108,13 @@ def action_on_reload(bConfigHasChanged):
 		myApplet.sub_icons.RemoveSubIcon("any")
 		myApplet.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"])
 
-##########################
-### connect to signals ###
-##########################
-myIcon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
-myIcon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
-myIcon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
-myIcon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
-myIcon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
-myIcon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
-#myIcon.connect_to_signal("on_init_module", action_on_init)
-myIcon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
-myIcon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
-myIcon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
-mySubIcons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
-
+####################
+### Applet class ###
+####################
 class Applet:
 	def __init__(self,icon,sub_icons):
-		self.icon = icon
-		self.sub_icons = sub_icons
+		self.icon = None
+		self.sub_icons = None
 		self.config = {}
 		self.conf_file = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf")  # path to the conf file of our applet.
 		self.count = 0
@@ -152,7 +126,7 @@ class Applet:
 		self.config['iMaxValue'] 	= keyfile.getint('Configuration', 'max value')
 		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
 	
-	def load(self):
+	def begin(self):
 		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
 		self.icon.SetQuickInfo(format(self.count, "d"))  # write the counter value on the icon.
 		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
@@ -162,6 +136,31 @@ class Applet:
 		self.sub_icons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
 		self.sub_icons.SetQuickInfo("3", "id3")
 		self.sub_icons.SetQuickInfo("4", "id4")
+	
+	def end(self):
+		pass
+	
+	def connect_to_dock(self):
+		# get our applet on the bus.
+		applet_path = "/org/cairodock/CairoDock/"+applet_name  # path where our object is stored on the bus.
+		bus = dbus.SessionBus()
+		applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
+		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our applet and also our icon inside the dock or a desklet.
+		# we'll have a sub-dock, so we also get the sub-icons object
+		sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
+		self.sub_icons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
+		# connect to signals.
+		self.icon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
+		self.icon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
+		self.icon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
+		self.icon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
+		self.icon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
+		self.icon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
+		#myIcon.connect_to_signal("on_init_module", action_on_init)
+		self.icon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
+		self.icon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
+		self.icon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
+		self.sub_icons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
 	
 	def set_counter(self,count):
 		self.count = count
@@ -173,9 +172,9 @@ class Applet:
 ### main ###
 ############
 if __name__ == '__main__':
-	myApplet = Applet(myIcon, mySubIcons)
+	myApplet = Applet()
 	myApplet.get_config()
-	myApplet.load()
+	myApplet.begin()
 	loop = gobject.MainLoop()
 	loop.run()
 	print ">>> bye"
