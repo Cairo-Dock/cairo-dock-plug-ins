@@ -53,11 +53,11 @@ def action_on_click(iState):
 
 def action_on_middle_click():
 	print ">>> middle clic !"
-	myIcon.AskValue("Set the value you want", myApplet.count, myApplet.config['iMaxValue']);
+	myApplet.icon.AskValue("Set the value you want", myApplet.count, myApplet.config['iMaxValue']);
 
 def action_on_build_menu():
 	print ">>> build menu !"
-	myIcon.PopulateMenu(["set min value", "set medium value", "set max value"])
+	myApplet.icon.PopulateMenu(["set min value", "set medium value", "set max value"])
 	
 def action_on_menu_select(iNumEntry):
 	print ">>> choice",iNumEntry,"has been selected !"
@@ -112,7 +112,7 @@ def action_on_reload(bConfigHasChanged):
 ### Applet class ###
 ####################
 class Applet:
-	def __init__(self,icon,sub_icons):
+	def __init__(self):
 		self.icon = None
 		self.sub_icons = None
 		self.config = {}
@@ -127,11 +127,12 @@ class Applet:
 		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
 	
 	def begin(self):
+		self.connect_to_dock()
 		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
 		self.icon.SetQuickInfo(format(self.count, "d"))  # write the counter value on the icon.
 		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
 		self.icon.RenderValues([float(self.count)/self.config['iMaxValue']])  # draw the gauge with an initial value.
-		mySubIcons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
+		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
 		self.sub_icons.RemoveSubIcon("id2")  # remove the 2nd icon of our sub-dock.
 		self.sub_icons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
 		self.sub_icons.SetQuickInfo("3", "id3")
@@ -156,7 +157,7 @@ class Applet:
 		self.icon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
 		self.icon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
 		self.icon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
-		#myIcon.connect_to_signal("on_init_module", action_on_init)
+		#myApplet.icon.connect_to_signal("on_init_module", action_on_init)
 		self.icon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
 		self.icon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
 		self.icon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
