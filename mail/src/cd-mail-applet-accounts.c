@@ -35,7 +35,7 @@
 		pIcon->fAlpha = 1.;\
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
-		pIcon->cCommand = g_strdup ("none");\
+		pIcon->cCommand = g_strdup (pMailAccount->cMailApp);\
 		pIcon->cParentDockName = g_strdup (myIcon->cName);\
 		cd_debug (" + %s (%s)\n", pIcon->cName, pIcon->cFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
@@ -63,6 +63,9 @@ void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -129,6 +132,9 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -187,6 +193,9 @@ void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -221,6 +230,9 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -254,6 +266,9 @@ void cd_mail_create_maildir_params( GKeyFile *pKeyFile, gchar *pMailAccountName 
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -296,6 +311,9 @@ void cd_mail_create_gmail_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -397,6 +415,9 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
@@ -561,6 +582,7 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 	g_free( pMailAccount->user );
 	g_free( pMailAccount->password );
 	g_free( pMailAccount->path );
+	g_free( pMailAccount->cMailApp );
 
 	if( pMailAccount->folder )
 		mailfolder_free(pMailAccount->folder);

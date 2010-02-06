@@ -110,6 +110,9 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		
 		pMailAccount->pAppletInstance = myApplet;
 		(storage_tab[account_type].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
+
+		/* get a specific mail application to launch for this account, if any */
+		pMailAccount->cMailApp = g_strdup(g_key_file_get_string (pKeyFile, cMailAccountName, "mail application", NULL));
 	}
 	g_strfreev (pGroupList);
 }

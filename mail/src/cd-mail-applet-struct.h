@@ -96,6 +96,8 @@ typedef struct {
     GList *pUnseenMessageList;  // liste de gchar*
     GList *pUnseenMessageUid;  // liste de gchar*
 
+    gchar *cMailApp;
+
     gboolean bError;
 } CDMailAccount;
 
