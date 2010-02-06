@@ -52,6 +52,7 @@ struct _AppletConfig {
 	gboolean bCheckOnStartup;
 	guint iNbMaxShown;
 	gint iDialogDuration;
+	gboolean bAlwaysShowMailCount;
 } ;
 
 struct _AppletData {

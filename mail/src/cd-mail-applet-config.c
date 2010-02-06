@@ -132,6 +132,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bStealTaskBarIcon = myConfig.cMailApplication && CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "inhibate appli", TRUE);
 	myConfig.bShowMessageContent = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show content", TRUE);
 	myConfig.iNbMaxShown = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "max shown mails", -1);
+	myConfig.bAlwaysShowMailCount = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show zero mail", TRUE);
 	//myConfig.bShowMessageContent = FALSE;
 	
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "Default");
