@@ -52,6 +52,7 @@ struct _AppletConfig {
 	gboolean bCheckOnStartup;
 	guint iNbMaxShown;
 	gint iDialogDuration;
+	gboolean bAlwaysShowMailCount;
 } ;
 
 struct _AppletData {
@@ -94,6 +95,8 @@ typedef struct {
     gboolean bInitialized;
     GList *pUnseenMessageList;  // liste de gchar*
     GList *pUnseenMessageUid;  // liste de gchar*
+
+    gchar *cMailApp;
 
     gboolean bError;
 } CDMailAccount;

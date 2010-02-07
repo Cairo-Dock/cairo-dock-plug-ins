@@ -41,12 +41,19 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else
 		{
-			gboolean r = cairo_dock_launch_command (myConfig.cMailApplication);
+			/* if a specific mail application has been specified for this account, use this one */
+			gchar *cMailAppToLaunch = myConfig.cMailApplication;
+			if( CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->cCommand &&
+			    strlen(CD_APPLET_CLICKED_ICON->cCommand)>0)
+			{
+				cMailAppToLaunch = CD_APPLET_CLICKED_ICON->cCommand;
+			}
+			gboolean r = cairo_dock_launch_command (cMailAppToLaunch);
 			
 			if (!r)
 			{
-				cd_warning ("when couldn't execute '%s'", myConfig.cMailApplication);
-				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", myConfig.cMailApplication);
+				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);
+				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
 			}
 		}
 	}
