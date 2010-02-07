@@ -49,13 +49,13 @@ public delegate void OnBuildMenuEvent ();
 public delegate void OnMenuSelectEvent (int i);
 public delegate void OnDropDataEvent (string s);
 public delegate void OnChangeFocusEvent (bool b);
-public delegate void OnAnswerEvent (GLib.Value v);
+public delegate void OnAnswerEvent (System.Object v);
 public delegate void OnStopModuleEvent ();
 public delegate void OnReloadModuleEvent (bool b);
 [NDesk.DBus.Interface ("org.cairodock.CairoDock.applet")]
 public interface IIcon
 {
-	GLib.Value Get (string s);
+	System.Object Get (string s);
 	void GetAll ();
 	void SetLabel (string s);
 	void SetIcon (string s);
@@ -82,44 +82,58 @@ public interface IIcon
 	event OnReloadModuleEvent on_reload_module; 
 }
 
-  ////////////////////////////////////////
- ////// callbacks on the sub-icons //////
-////////////////////////////////////////
-
-
-  /////////////////////////////////////
- ////// callbacks on the applet //////
-/////////////////////////////////////
-
+public struct Config {
+	public bool yesno;
+	public int iMaxValue;
+	public string cTheme;
+}
 
 public class Applet
 {
 	public static string applet_name = "demo_mono";  // the name of the applet must the same as the folder.
 	public static string applet_path = "/org/cairodock/CairoDock/"+applet_name;  // path where our object is stored on the bus.
-	public IIcon icon = null;
+	public static string conf_file = Environment.GetEnvironmentVariable("HOME")+"/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf";  // path to the conf file of our applet.
+	public IIcon myIcon = null;
+	public Config myConfig;
+	private GLib.MainLoop loop = null;
 	private int count = 0;
 	
 	public void begin()
 	{
 		connect_to_dock ();
-		this.icon.ShowDialog ("pouet pouet", 5);
-		this.icon.SetQuickInfo ("123");
+		get_config ();
+		myIcon.ShowDialog ("I'm connected to Cairo-Dock !", 4);
+		myIcon.AddDataRenderer("gauge", 1, myConfig.cTheme);
+		this.set_counter (0);
+		loop = new GLib.MainLoop();
+		loop.Run();
+	}
+	public void end()
+	{
+		loop.Quit();
 	}
 	public void connect_to_dock()
 	{
 		BusG.Init ();
 		Bus bus = Bus.Session;
-		this.icon = bus.GetObject<IIcon> ("org.cairodock.CairoDock", new ObjectPath (applet_path));
-		this.icon.on_click 			+= new OnClickEvent (action_on_click);
-		this.icon.on_middle_click 	+= new OnMiddleClickEvent (action_on_middle_click);
-		this.icon.on_scroll 		+= new OnScrollEvent (action_on_scroll);
-		this.icon.on_build_menu 	+= new OnBuildMenuEvent (action_on_build_menu);
-		this.icon.on_menu_select 	+= new OnMenuSelectEvent (action_on_menu_select);
-		this.icon.on_drop_data 		+= new OnDropDataEvent (action_on_drop_data);
-		this.icon.on_change_focus 	+= new OnChangeFocusEvent (action_on_change_focus);
-		this.icon.on_answer 		+= new OnAnswerEvent (action_on_answer);
+		myIcon = bus.GetObject<IIcon> ("org.cairodock.CairoDock", new ObjectPath (applet_path));
+		myIcon.on_click 			+= new OnClickEvent (action_on_click);
+		myIcon.on_middle_click 	+= new OnMiddleClickEvent (action_on_middle_click);
+		myIcon.on_scroll 		+= new OnScrollEvent (action_on_scroll);
+		myIcon.on_build_menu 	+= new OnBuildMenuEvent (action_on_build_menu);
+		myIcon.on_menu_select 	+= new OnMenuSelectEvent (action_on_menu_select);
+		myIcon.on_drop_data 		+= new OnDropDataEvent (action_on_drop_data);
+		myIcon.on_answer 		+= new OnAnswerEvent (action_on_answer);
+		myIcon.on_stop_module 	+= new OnStopModuleEvent (action_on_stop_module);
+		myIcon.on_reload_module 	+= new OnReloadModuleEvent (action_on_reload_module);
 	}
-	
+	public void get_config ()
+	{
+		/// read this.conf_file ...
+		myConfig.iMaxValue = 100;
+		myConfig.cTheme = "Turbo-night";
+		myConfig.yesno = true;
+	}
 	  ////////////////////////////////////////
 	 ////// callbacks on the main icon //////
 	////////////////////////////////////////
@@ -130,7 +144,7 @@ public class Applet
 	private void action_on_middle_click ()
 	{
 		Console.WriteLine(">>> middle click");
-		this.icon.AskValue("Set the value you want", this.count, 100);
+		myIcon.AskValue("Set the value you want", this.count, 100);
 	}
 	private void action_on_scroll (bool bScrollUp)
 	{
@@ -145,6 +159,7 @@ public class Applet
 	private void action_on_build_menu ()
 	{
 		Console.WriteLine(">>> build menu");
+		myIcon.PopulateMenu(new string [] {"set min value", "set medium value", "set max value"});
 	}
 	private void action_on_menu_select (int iNumEntry)
 	{
@@ -159,23 +174,42 @@ public class Applet
 	private void action_on_drop_data (string cReceivedData)
 	{
 		Console.WriteLine(">>> drop : "+cReceivedData);
-		this.icon.SetLabel(cReceivedData);
+		myIcon.SetLabel(cReceivedData);
 	}
-	private void action_on_change_focus (bool b)
+	private void action_on_answer (System.Object answer)
 	{
-		Console.WriteLine(">>> focus changed : ",b);
+		Console.WriteLine(">>> answer : "+(double)answer);
+		double x = (double)answer;
+		this.set_counter((int) x);
 	}
-	private void action_on_answer (GLib.Value answer)
+	  /////////////////////////////////////
+	 ////// callbacks on the applet //////
+	/////////////////////////////////////
+	private void action_on_stop_module ()
 	{
-		Console.WriteLine(">>> answer : ");
+		Console.WriteLine(">>> stop");
+		this.end();
 	}
+	private void action_on_reload_module (bool bConfigHasChanged)
+	{
+		Console.WriteLine(">>> our module is reloaded");
+		if (bConfigHasChanged)
+		{
+			Console.WriteLine (">>>  and our config has changed");
+			this.get_config();
+			myIcon.AddDataRenderer("gauge", 1, this.myConfig.cTheme);
+			this.set_counter (Math.Min (this.count, this.myConfig.iMaxValue));
+		}
+	}
+	
+	  ////////////////////////////
+	 ////// applet methods //////
+	////////////////////////////
 	public void set_counter(int n)
 	{
 		this.count = n;
-		double[] percent = new double [1];
-		percent[0] = n/100.0;
-		this.icon.RenderValues(percent);
-		this.icon.SetQuickInfo(String.Format(n.ToString()));
+		myIcon.RenderValues(new double[] {(double)n/myConfig.iMaxValue});
+		myIcon.SetQuickInfo(String.Format(n.ToString()));
 	}
 	
 	  //////////////////
@@ -183,11 +217,8 @@ public class Applet
 	//////////////////
 	public static void Main ()
 	{
-		Console.WriteLine(">>> main");
-		GLib.MainLoop loop = new GLib.MainLoop();
 		Applet myApplet = new Applet ();
 		myApplet.begin();
-		loop.Run();
 		Console.WriteLine(">>> bye");
 	}
 }
