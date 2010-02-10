@@ -116,6 +116,8 @@ struct _AppletData {
 	gchar *cCurrentText;	
 	double fCurrentX; // Position du curseur dans le desklet
 	double fCurrentY;
+	double fCurrentYalign;
+	gchar *cLastAlignHeight;
 	
 	cairo_surface_t *pImgSurface;
 

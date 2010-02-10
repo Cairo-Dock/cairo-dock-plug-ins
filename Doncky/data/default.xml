@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
 	<!--  Time -->
 	<zone>
-		<align>center</align>
+		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 20</font>
 		<red>1.0</red>
 		<green>1,0</green>
@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
 	<!--  Uptime (en cours) -->
 	<zone>
-		<align>center</align>
+		<alignW>center</alignW>
 		<font>1Terminal Bitstream Vera Sans Mono 12</font>
 		<red>1.0</red>
 		<green>1,0</green>
@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
 	<!--  Version GNU/Linux  -->
 	<zone>
-		<align>center</align>
+		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 8</font>
 		<red>1,0</red>
 		<green>1,0</green>
@@ -83,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 	</zone>
 	<!--  Version du Noyau  -->
 	<zone>
-		<align>center</align>
+		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 8</font>
 		<red>1,0</red>
 		<green>1,0</green>

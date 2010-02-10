@@ -25,13 +25,15 @@
 
 typedef struct {
 	gchar *cFont;
-	gint iFontSize;
+	gint iFontSizeWidth;
+	gint iFontSizeHeight;
 	double fTextColor[4];
 	gchar *cText;
 	gchar *cCommand;
 	gchar *cInternal;	
 	gchar *cResult;
-	gchar *cAlign;
+	gchar *cAlignWidth;
+	gchar *cAlignHeight;
 	gboolean bRefresh;
 	gint iRefresh;  // Refresh souhaité
 	gint iTimer;  // S'incrémente jusqu'au refresh

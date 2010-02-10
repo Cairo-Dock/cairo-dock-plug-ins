@@ -167,6 +167,8 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 	{
 		pTextZone = it->data;
 		
+		
+		
 		if (!pTextZone->bImgDraw && pTextZone->cImgPath != NULL) // L'image n'a pas encore été chargée
 		{
 			
@@ -191,7 +193,9 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 							
 				//\_______________ On garde l'aire de la surface/texture.			
 				pTextZone->iWidth = (int)fImgW;
+				cd_debug ("Doncky-debug ------------> pTextZone->iWidth = %i", pTextZone->iWidth);
 				pTextZone->iHeight = (int)fImgH;
+				cd_debug ("Doncky-debug ------------> pTextZone->iHeight = %i", pTextZone->iHeight);
 			}
 						
 			pTextZone->pImgSurface = cairo_dock_create_surface_for_icon (pTextZone->cImgPath, myDrawContext,
@@ -199,6 +203,9 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					
 			pTextZone->bImgDraw = TRUE; // L'image est désormais chargée -> On peut la dessiner
 		}
+		
+		
+		
 		
 		
 		if (pTextZone->iRefresh != 0)
@@ -494,7 +501,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	// ############ DEBUT DU DESSIN DU TEXTE
 	// ################################################################################################################################################################
 	
-	int iMargin = .5 * myConfig.iBorderThickness + (1. - sqrt (2) / 2) * myConfig.iBackgroundRadius;  // marge a gauche et au-dessus, pour ne pas mordre sur le coin arrondi.
+	int iMargin = .5 * myConfig.iBorderThickness + (1. - sqrt (2) / 2) * myConfig.iBackgroundRadius;  // marge a gauche et au-dessus, pour ne pas mordre sur le coin arrondi.	
+	int iSpaceBetweenElements = 8; // Décalage horizontal entre les barres et les autres éléments <- Sinon, tout est collé et c'est pô bô ! :-D
 	
 	myData.fCurrentX = iMargin + myConfig.iTextMargin;  // position du curseur sur la ligne.
 	myData.fCurrentY = iMargin + myConfig.iTextMargin;  // position de la ligne courante.
@@ -518,66 +526,141 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	do
 	{
 		it1=it;
-		do // boucle sur it de it1 jusqu'à retour chariot => line_width
+		
+		//\_______ boucle sur it de it1 jusqu'à retour chariot => LINE_WIDTH & LINE_HEIGHT
+		do 
 		{
 			pTextZone = it->data;
 			
 			if (pTextZone->cFont == NULL || pTextZone->cFont =="") // Si aucune font -> on prend celle de la config
-				pTextZone->cFont = g_strdup_printf("%s", myConfig.cDefaultFont);
-			
-			
-			if (pTextZone->cText != NULL) // On récupère la largeur d'un espace pour caler le texte à droite
+				pTextZone->cFont = g_strdup_printf("%s", myConfig.cDefaultFont);			
+						
+			if (pTextZone->cText != NULL && ! (pTextZone->bBar || pTextZone->bLimitedBar || pTextZone->bImgDraw))
 			{
 				PangoFontDescription *fd = pango_font_description_from_string (pTextZone->cFont);
 				pango_layout_set_font_description (pLayout, fd);
 				pango_font_description_free (fd);
 				
+				// On récupère la largeur d'un espace pour caler le texte à droite
 				pango_layout_set_text (pLayout, " ", -1);
 				pango_layout_get_pixel_extents (pLayout, &ink, &log);
-
-				pTextZone->iFontSize = (int)log.width;
-			}
-
-			
-			PangoFontDescription *fd = pango_font_description_from_string (pTextZone->cFont);
-			pango_layout_set_font_description (pLayout, fd);
-			pango_font_description_free (fd);
-			
-			pango_layout_set_text (pLayout, pTextZone->cText, -1);
-			pango_layout_get_pixel_extents (pLayout, &ink, &log);
-			
-			if (pTextZone->cText != NULL)
+				pTextZone->iFontSizeWidth = (int)log.width;
+				pTextZone->iFontSizeHeight = (int)log.height;
+				
+				// On récupère la largeur du texte à afficher
+				pango_layout_set_text (pLayout, pTextZone->cText, -1);
+				pango_layout_get_pixel_extents (pLayout, &ink, &log);				
 				fCurrentLineWidth += log.width;
-			else if (pTextZone->bLimitedBar || pTextZone->bImgDraw)
-				fCurrentLineWidth += pTextZone->iWidth;
-			
-			
-			
-			// A voir comment définir l'alignement en Z
-			if (bFirstTextInLine)
-				fCurrentLineHeight = log.height;
-			else
-			{
+				
 				if (log.height > fCurrentLineHeight)
-					fCurrentLineHeight = log.height;				
+					fCurrentLineHeight = log.height;
+			}			
+			else if (pTextZone->bLimitedBar || pTextZone->bImgDraw)
+			{
+				fCurrentLineWidth += pTextZone->iWidth;
+				
+				if (pTextZone->iHeight > fCurrentLineHeight)
+					fCurrentLineHeight = (double)pTextZone->iHeight;
 			}
-			
-			
-			
-			
+			else if (pTextZone->bBar)
+			{				
+				if (pTextZone->iHeight > fCurrentLineHeight)
+					fCurrentLineHeight = (double)pTextZone->iHeight;
+			}
+						
 			it = it->next;
 		} while (it != NULL && ! pTextZone->bEndOfLine);
 		
 		
-		// boucle sur it de it1 jusqu'à retour chariot => dessin
+		
+		
+		//\_______ boucle sur it de it1 jusqu'à retour chariot => DESSIN
 		it = it1;
 		do
 		{
 	
-			pTextZone = it->data;
+			pTextZone = it->data;			
 			
 			if (pTextZone->cFont == NULL || pTextZone->cFont =="") // Si aucune font -> on prend celle de la config
 				pTextZone->cFont = g_strdup_printf("%s", myConfig.cDefaultFont);
+			
+			
+			 // On calcule le décalage WIDTH nécéssaire pour respecter l'alignement sur la largeur souhaité
+			if (bFirstTextInLine)
+			{
+				int iWidth, iHeight;
+				CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+				
+				if (strcmp (pTextZone->cAlignWidth, "left") == 0)
+					myData.fCurrentX = iMargin + myConfig.iTextMargin;
+				else if (strcmp (pTextZone->cAlignWidth, "center") == 0)
+				{
+					if (pTextZone->cImgPath != NULL)
+						myData.fCurrentX = (iWidth/2) - (pTextZone->iWidth/2);
+					else
+						myData.fCurrentX = (iWidth/2)- (fCurrentLineWidth/2);
+				}
+				else if (strcmp (pTextZone->cAlignWidth, "right") == 0)
+				{
+					if (pTextZone->cImgPath != NULL)
+						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - pTextZone->iWidth - pTextZone->iFontSizeWidth;
+					else
+						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - fCurrentLineWidth - pTextZone->iFontSizeWidth;
+				}
+			}
+			
+			
+			if (! bFirstTextInLine)
+				pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cLastAlignHeight); // On récupère l'alignement de la ligne (=l'alignement du 1er élément)
+			else
+				myData.cLastAlignHeight = g_strdup_printf("%s", pTextZone->cAlignHeight); // On mémorise l'aligenement du 1er élément de la ligne
+				
+			// On calcule le décalage HEIGHT nécéssaire pour respecter l'alignement sur la hauteur souhaité		
+			if (strcmp (pTextZone->cAlignHeight, "middle") == 0)
+			{
+				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
+					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight/2 - pTextZone->iHeight/2; 
+				else // C'est un texte -> On décale un peu pour aligner
+					myData.fCurrentYalign = myData.fCurrentY  + fCurrentLineHeight/2 - pTextZone->iFontSizeHeight/2;
+			}
+			
+			
+			
+			else if (strcmp (pTextZone->cAlignHeight, "low") == 0)
+			{
+				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
+					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight*.81 - pTextZone->iHeight;   // Le *.81 permet de caler pas trop mal les images en bas des textes
+				else // C'est un texte -> On décale un peu pour aligner
+					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight*.81 - pTextZone->iFontSizeHeight*.81;
+			}
+			
+			
+			
+			
+			else if (strcmp (pTextZone->cAlignHeight, "top") == 0)
+			{
+				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
+					myData.fCurrentYalign = myData.fCurrentY; // On laisse à la position courante
+				else // C'est un texte -> On décale un peu pour aligner
+					myData.fCurrentYalign = myData.fCurrentY - pTextZone->iFontSizeHeight/6.5; // Le /6.5 permet de caler pas trop mal les textes en haut
+					
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			PangoFontDescription *fd = pango_font_description_from_string (pTextZone->cFont);
 			pango_layout_set_font_description (pLayout, fd);
@@ -589,45 +672,21 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			else // sinon, on utilise la couleur du .xml
 				cairo_set_source_rgba (myDrawContext, pTextZone->fTextColor[0], pTextZone->fTextColor[1], pTextZone->fTextColor[2], pTextZone->fTextColor[3]);
 			
-			myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText);
-			
-			pango_layout_set_text (pLayout, myData.cCurrentText, -1);
+			pango_layout_set_text (pLayout, pTextZone->cText, -1);
 			pango_layout_get_pixel_extents (pLayout, &ink, &log);
 
 			
-			if (bFirstTextInLine) // On calcule le décalage nécéssaire pour respecter l'alignement souhaité
-			{
-				int iWidth, iHeight;
-				CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-				
-				if (strcmp (pTextZone->cAlign, "left") == 0)
-					myData.fCurrentX = iMargin + myConfig.iTextMargin;
-				else if (strcmp (pTextZone->cAlign, "center") == 0)
-				{
-					if (pTextZone->cImgPath != NULL)
-						myData.fCurrentX = (iWidth/2) - (pTextZone->iWidth/2);
-					else
-						myData.fCurrentX = (iWidth/2)- (fCurrentLineWidth/2);
-				}
-				else if (strcmp (pTextZone->cAlign, "right") == 0)
-				{
-					if (pTextZone->cImgPath != NULL)
-						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - pTextZone->iWidth - pTextZone->iFontSize;
-					else
-						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - fCurrentLineWidth - pTextZone->iFontSize;
-				}
-			}
+			
 			
 			if (pTextZone->bBar || pTextZone->bLimitedBar) // On dessine la barre
 			{
-				int value;
-				myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText);
+				int value;				
 				
 				if (pTextZone->bBar)
 				{
 					int iWidth, iHeight;
 					CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + 8);
+					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + iSpaceBetweenElements); 
 				}
 				
 					
@@ -636,7 +695,10 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				for (i=0 ; i < 2 ; i++)
 				{
 					if (i==0)
+					{
+						myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
 						value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);
+					}
 					else
 						value = pTextZone->iWidth;						
 					
@@ -657,9 +719,18 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 							pTextZone->fTextColor[3]);
 											
 					cairo_set_line_width (myDrawContext, 0.5);
-					cairo_translate (myDrawContext,
-						myData.fCurrentX + 8, // On décale légèrement la barre du texte
-						myData.fCurrentY + log.height*4/5  - pTextZone->iHeight);
+					
+					
+					if (pTextZone->bBar)
+						cairo_translate (myDrawContext,
+							myData.fCurrentX + iSpaceBetweenElements, // On décale légèrement la barre du texte
+							myData.fCurrentYalign);
+					else
+						cairo_translate (myDrawContext,
+							myData.fCurrentX, // On décale légèrement la barre du texte
+							myData.fCurrentYalign);
+					
+					
 					cairo_dock_draw_rounded_rectangle (myDrawContext,
 						0,
 						0.,
@@ -679,40 +750,40 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				{
 					cairo_set_source_surface (myDrawContext, pTextZone->pImgSurface,
 							myData.fCurrentX,
-							myData.fCurrentY);
+							myData.fCurrentYalign);
 					cairo_paint (myDrawContext);
 				}			
 			}
 			else // C'est un texte !
 			{
+				//~ cairo_move_to (myDrawContext,
+					//~ myData.fCurrentX,
+					//~ myData.fCurrentYalign + (fCurrentLineHeight *4/5) - (log.height * 4/5)); // *4/5 pour se caler sur le bas du texte avec la font la plus grosse
+				
+				
+				
 				cairo_move_to (myDrawContext,
 					myData.fCurrentX,
-					myData.fCurrentY + (fCurrentLineHeight *4/5) - (log.height * 4/5)); // *4/5 pour se caler sur le bas du texte avec la font la plus grosse
+					myData.fCurrentYalign );
 				pango_cairo_show_layout (myDrawContext, pLayout); // On dessine la ligne sur notre desklet
 			}
 				
 			if (pTextZone->bEndOfLine) // On passe à la ligne du dessous
 			{
 				if (pTextZone->bNextNewLine) // Sinon, on reste sur la même ligne -> Utile pour avoir 1 zone alignée à gauche et 1 zone alignée à droite par exemple ;-)
-				{
-					if (pTextZone->bImgDraw)
-						myData.fCurrentY += pTextZone->iHeight + myConfig.iSpaceBetweenLines;
-					else
-						myData.fCurrentY += log.height + myConfig.iSpaceBetweenLines;
-				}
-				//~ else if (pTextZone->bNextNewLine && (pTextZone->bBar || pTextZone->bLimitedBar) )
-					//~ myData.fCurrentY += myConfig.iSpaceBetweenLines + pTextZone->iHeight;
-								
+					myData.fCurrentY += fCurrentLineHeight + myConfig.iSpaceBetweenLines;
+												
 				myData.fCurrentX = iMargin + myConfig.iTextMargin;
 				
 				bFirstTextInLine = TRUE;
-				fCurrentLineWidth = 0;
+				fCurrentLineWidth = 0; // On remet la largeur de ligne à 0 pour le prochain calcul
+				fCurrentLineHeight = 0; // On remet la hauteur de ligne à 0 pour le prochain calcul
 			}
 			else // On laisse le curseur à la position actuelle
 			{
-				if (pTextZone->bBar || pTextZone->bLimitedBar)  // On prend en compte un éventuelle barre
-					myData.fCurrentX += pTextZone->iWidth + 16 ;
-				else  // valable pour les textes et les images
+				if (pTextZone->bBar || pTextZone->bLimitedBar || pTextZone->bImgDraw)  // On prend en compte un éventuelle barre ou une image
+					myData.fCurrentX += pTextZone->iWidth;				
+				else  // valable pour les textes
 				{
 					double w;
 					pango_layout_get_pixel_extents (pLayout, &ink, &log);
@@ -726,7 +797,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			
 			it = it->next;
 		} while (it != NULL && ! pTextZone->bEndOfLine);
-
+		
+		
+		
 	} while (it != NULL);
 	
 	// ################################################################################################################################################################

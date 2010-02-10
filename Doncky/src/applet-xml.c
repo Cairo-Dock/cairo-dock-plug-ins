@@ -119,21 +119,45 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					}
 				}				
 				
-				// On gère l'alignement à part pour lui imposer à 'left' si rien n'est renseigné (ou si mal renseigné)
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "align") == 0)
+				// On gère l'alignement du Width à part pour lui imposer à 'left' si rien n'est renseigné (ou si mal renseigné)
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "alignW") == 0)
 				{
-					pTextZone->cAlign = xmlNodeGetContent (pXmlSubNode);					
-					if (strcmp (pTextZone->cAlign, "left") == 0)
-						pTextZone->cAlign = g_strdup_printf("left");
-					else if (strcmp (pTextZone->cAlign, "center") == 0)
-						pTextZone->cAlign = g_strdup_printf("center");
-					else if (strcmp (pTextZone->cAlign, "right") == 0)
-						pTextZone->cAlign = g_strdup_printf("right");
+					pTextZone->cAlignWidth = xmlNodeGetContent (pXmlSubNode);					
+					if (strcmp (pTextZone->cAlignWidth, "left") == 0)
+						pTextZone->cAlignWidth = g_strdup_printf("left");
+					else if (strcmp (pTextZone->cAlignWidth, "center") == 0)
+						pTextZone->cAlignWidth = g_strdup_printf("center");
+					else if (strcmp (pTextZone->cAlignWidth, "right") == 0)
+						pTextZone->cAlignWidth = g_strdup_printf("right");
 					else
-						pTextZone->cAlign = g_strdup_printf("left");
+						pTextZone->cAlignWidth = g_strdup_printf("left");
 				}
-				else if (pTextZone->cAlign == NULL)
-					pTextZone->cAlign = g_strdup_printf("left");		
+				else if (pTextZone->cAlignWidth == NULL)
+					pTextZone->cAlignWidth = g_strdup_printf("left");
+				
+				
+				
+				
+				// On gère l'alignement du Height à part pour lui imposer à 'middle' si rien n'est renseigné (ou si mal renseigné)
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "alignH") == 0)
+				{
+					pTextZone->cAlignHeight = xmlNodeGetContent (pXmlSubNode);					
+					if (strcmp (pTextZone->cAlignHeight, "top") == 0)
+						pTextZone->cAlignHeight = g_strdup_printf("top");
+						
+						
+					else if (strcmp (pTextZone->cAlignHeight, "middle") == 0)
+						pTextZone->cAlignHeight = g_strdup_printf("middle");
+					
+					
+					else if (strcmp (pTextZone->cAlignHeight, "low") == 0)
+						pTextZone->cAlignHeight = g_strdup_printf("low");
+					else
+						pTextZone->cAlignHeight = g_strdup_printf("middle");
+				}
+				else if (pTextZone->cAlignHeight == NULL)
+					pTextZone->cAlignHeight = g_strdup_printf("middle");	
+					
 				
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "font") == 0)
