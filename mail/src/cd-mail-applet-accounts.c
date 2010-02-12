@@ -410,7 +410,7 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "feed");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
-	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://www.cairo-dock.org/rss/cd_svn.xml");
+	g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://www.glx-dock.org/rss/cd_svn.xml");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 address of feed:", NULL);
 
 	g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);

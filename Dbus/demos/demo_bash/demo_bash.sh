@@ -5,7 +5,7 @@
 # Copyright : (C) 2010 by Nochka85
 #                      modified by matttbe for the new API
 #                      (based on the demo.py by Fabounet)
-# E-mail : nochka85@cairo-dock.org
+# E-mail : nochka85@glx-dock.org
 #
 #
 # This program is free software; you can redistribute it and/or
@@ -21,7 +21,7 @@
 
 ### This is a part of the external applet demo_bash.py for cairo-dock
 ### Author : Nochka85
-### Contact : nochka85@cairo-dock.org
+### Contact : nochka85@glx-dock.org
 ### Rev : 21/01/2010
 
 DBUS_NAME="org.cairodock.CairoDock"
