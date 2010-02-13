@@ -91,7 +91,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	}
 	else
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cIndicatorName);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
 		CD_APPLET_REDRAW_MY_ICON;
 	}
 }

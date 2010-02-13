@@ -524,3 +524,32 @@ void cd_do_register_firefox_backend (void)
 	pBackend->search = (CDBackendSearchFunc) search;
 	myData.pBackends = g_list_prepend (myData.pBackends, pBackend);
 }
+
+
+
+/* Chromium :
+ * {
+    "checksum": "f09d99e389bb87e956c8e4b083647898",
+    "roots": {
+       "bookmark_bar": {
+          "children": [ {
+             "date_added": "12905638722230845",
+             "id": "2",
+             "name": "Packages in \u201Cmatttbe\u201D : matttbe : Matthieu Baerts",
+             "type": "url",
+             "url": "https://launchpad.net/~matttbe/+archive/ppa/+packages"
+          }, {
+             "date_added": "12905638722232804",
+             "id": "3",
+             "name": "Packages in \u201Cexperimental-build\u201D : experimental-build : Matthieu Baerts",
+             "type": "url",
+             "url": "https://launchpad.net/~matttbe/+archive/experimental/+packages"
+          }, {
+             "date_added": "12905638722234798",
+             "id": "5",
+             "name": "Wireless Active Client MAC List",
+             "type": "url",
+             "url": "http://192.168.1.1/WClient.htm"
+          }, {
+	* 
+	* /

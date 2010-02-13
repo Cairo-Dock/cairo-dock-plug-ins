@@ -73,7 +73,7 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 		return FALSE;
 	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo);
+	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo && *cQuickInfo != '\0' ? cQuickInfo : NULL);
 	cairo_destroy (pCairoContext);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
@@ -665,6 +665,26 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 		Window Xid = pIcon->Xid;
 		g_value_init (v, G_TYPE_UINT64);
 		g_value_set_uint64 (v, Xid);
+	}
+	else if (strcmp (cProperty, "Xids") == 0)
+	{
+		GList *pApplis = cairo_dock_list_existing_appli_with_class (pIcon->cClass);
+		g_value_init (v, G_TYPE_ARRAY);
+		///if (pApplis != NULL)
+		{
+			GArray *tab = g_array_sized_new (TRUE, TRUE, sizeof (guint64), g_list_length (pApplis)+1);
+			Icon *icon;
+			int i;
+			GList *a;
+			for (a = pApplis, i = 0; a != NULL; a = a->next, i ++)
+			{
+				icon = a->data;
+				tab->data[i] = icon->Xid;
+			}
+			g_value_set_boxed (v, tab);
+		}
+		///else
+		///	g_value_set_boxed (v, NULL);
 	}
 	else if (strcmp (cProperty, "has_focus") == 0)
 	{

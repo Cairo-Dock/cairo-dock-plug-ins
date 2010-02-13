@@ -1,11 +1,4 @@
 #!/bin/bash
-
-# Compiz check for Cairo-Dock
-#
-# Copyright : (C) 2009 by Rémy Robertson
-# E-mail    : fabounet@users.berlios.de
-#
-#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2

@@ -154,7 +154,7 @@ simple_arrowShift = 0
 
 #I+[0;100] Curvature of the curve in percent :
 #{The lower, the more the curve will seem flat.}
-curvature = 75
+curvature = 70
 
 #i+[0;50] Amplitude of the curve.
 #{in pixels.}

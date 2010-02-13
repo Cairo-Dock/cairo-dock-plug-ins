@@ -485,7 +485,6 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 
 gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveWindow)
 {
-	g_print ("%s (%d)\n", __func__, *xNewActiveWindow);
 	// on emet le signal sur l'icone qui avait le focus.
 	if (myData.xActiveWindow != 0)
 	{
