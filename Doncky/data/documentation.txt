@@ -1,0 +1,104 @@
+DOCUMENTATION DONCKY
+
+This file is a part of the Cairo-Dock project
+
+Copyright : (C) see the 'copyright' file.
+E-mail    : see the 'copyright' file.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 3
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/ >
+
+
+
+DESCRIPTION DES BALISES :
+
+code		: Balise principale contenant le code
+
+zone		: Balise pour la zone de texte ( = 1 balise zone par fonction/font/couleur,etc...).
+		  /!\ Une ligne peut contenir plusieurs zones !
+
+txt		: Zone de texte simple
+		  Ex:  <txt>Hello World</txt>
+
+cmd		: Commande bash "simple"
+		  Ex:  <cmd>uname -r</cmd>
+
+echo		: Commande bash "avancée" identique à un sh -c 'echo "..."' dans un terminal
+		  Ex:  <echo>`cat /etc/issue.net` $(lsb_release -sc)</echo>
+
+alignW		: Alignement horizontal du texte sur le desklet (left, center ou right ... left par défaut)
+
+alignH		: Alignement vertical du texte sur le desklet (top, middle ou low ... middle par défaut)
+
+font		: Force la font définie par défaut en config pour la zone en cours
+		  Ex:  <font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+
+color		: Force la couleur définie par défaut en config pour la zone en cours (valeurs de 0 à 255)
+		  Utilisation : <color>red;green;blue;alpha</color>
+		  Ex: <color>255;255;255;255</color>
+
+br		: Retour chariot -> Fin de la ligne
+		  Ex1:  <br/>  (pour un retour chariot classique)
+		  Ex2:  <br>30</br>  (pour un retour chariot avec décalage forcé)  
+
+nbr		: idem br mais en restant sur la même ligne
+		  (utilisé pour avoir plusieurs alignements différents sur une même ligne)
+		  Ex1:  <nbr/>  (pour un retour chariot classique)
+		  Ex2:  <nbr>-5</nbr>  (pour un retour chariot avec décalage forcé)
+
+internal	: Commande interne (voir liste ci-dessous)
+		  Ex:  <internal>uptime</internal>
+
+bar		: Affiche une barre sur tout le reste de la ligne qui renvoit la valeur
+		  d'une commande interne (% uniquement).
+		  Ex:  <bar>cpuperc;8</bar>   (8 étant la hauteur de la barre)
+
+lbar		: idem bar mais avec une largeur définie
+		  Ex:  <lbar>cpuperc;150;8</lbar>   (150 étant la largeur et 8 la hauteur)
+
+refresh		: Durée entre 2 raffraichissements en s (pour les balises cmd, echo et bar uniquement)
+
+img		: Affiche une image - Utilisation : <img>chemin_complet_de_l_image</img>
+
+imgsize		: Définit la taille de l'image en spécifiant la largeur souhaitée (en conservant le ratio)
+
+imgsizeW	: Largeur de l'image (nécéssite de renseigner imgsizeH) pour forcer le ratio
+
+imgsizeH	: Hauteur de l'image (nécéssite de renseigner imgsizeW) pour forcer le ratio
+
+override	: Permet de forcer le positionnement d'une zone sans influencer la taille de la ligne
+		  afin de recaler la zone très précisément.
+		  Utilisation :  <override>Height;Width</override>
+		  Ex:  <override>7;0</override>
+
+
+LISTE DES COMMANDES INTERNES :
+
+cpuperc		: Utilisation CPU en %
+cpuperc2f	: Idem cpuperc mais avec 2 chiffres (de 00 à 99)
+memperc		: Utilisation RAM en %
+memperc2f	: Idem memperc mais avec 2 chiffres (de 00 à 99)
+mem		: RAM utilisée en Mo
+memg		: Idem mem mais en Go
+memmax		: Taille totale RAM en Mo
+memmaxg		: Idem memmax mais en Go
+swapperc	: Utilisation SWAP en %
+swapperc2f	: Idem swapperc mais avec 2 chiffres (de 00 à 99)
+swap		: SWAP utilisé en Mo
+swapg		: Idem swap mais en Go
+swapmax		: Taille totale SWAP en Mo
+swapmaxg	: Idem swapmax mais en Go
+nvtemp		: Température CG en °C (cartes NVIDIA uniquement)
+nvname		: Nom de la carte graphique (cartes NVIDIA uniquement)
+nvdriver	: Version du driver (cartes NVIDIA uniquement)
+nvram		: RAM CG (cartes NVIDIA uniquement)
+uptime		: Temps de connexion

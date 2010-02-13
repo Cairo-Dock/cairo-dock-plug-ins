@@ -163,23 +163,43 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "font") == 0)
 				{
 					pTextZone->cFont = xmlNodeGetContent (pXmlSubNode);					
-				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "red") == 0)
+				}				
+				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "color") == 0)
 				{
-					pTextZone->fTextColor[0] = g_strtod (cNodeContent, NULL);					
-				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "green") == 0)
-				{
-					pTextZone->fTextColor[1] = g_strtod (cNodeContent, NULL);					
-				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "blue") == 0)
-				{
-					pTextZone->fTextColor[2] = g_strtod (cNodeContent, NULL);					
-				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "alpha") == 0)
-				{
-					pTextZone->fTextColor[3] = g_strtod (cNodeContent, NULL);					
-				}
+					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
+					
+					// On récupère le 1er champ -> red
+					g_strreverse (cTempo);
+					cTempo = strrchr(cTempo, ';') ;
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);
+					pTextZone->fTextColor[0] = atof(cTempo) / 255;
+					
+					// On récupère le 2ème champ -> = green
+					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);					
+					cTempo = strchr(cTempo, ';') ;			
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);										
+					pTextZone->fTextColor[1] = atof(cTempo) / 255;
+					
+					// On récupère le 3ème champ -> = blue
+					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+					ltrim( cTempo, ";" );
+					cTempo = strchr(cTempo, ';') ;
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);					
+					cTempo = strchr(cTempo, ';') ;			
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);										
+					pTextZone->fTextColor[2] = atof(cTempo) / 255;
+					
+					// On récupère le dernier champ -> alpha
+					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+					ltrim( cTempo, ";" );					
+					pTextZone->fTextColor[3] = atof(cTempo) / 255;
+				}	
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "txt") == 0)
 				{
 					pTextZone->cText = xmlNodeGetContent (pXmlSubNode);					
@@ -202,21 +222,21 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					pTextZone->cCommand = xmlNodeGetContent (pXmlSubNode);															
 				}			
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "br") == 0)
-				{
+				{			
+					pTextZone->iSpaceBetweenLines= g_strtod (cNodeContent, NULL);
 					pTextZone->bEndOfLine = TRUE;
 					pTextZone->bNextNewLine = TRUE;														
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "nbr") == 0)
 				{
+					pTextZone->iSpaceBetweenLines= g_strtod (cNodeContent, NULL);
 					pTextZone->bEndOfLine = TRUE;
-					pTextZone->bNextNewLine = FALSE;														
+					pTextZone->bNextNewLine = FALSE;													
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "internal") == 0)
 					pTextZone->cInternal = xmlNodeGetContent (pXmlSubNode);
 				
-				
-				
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0)
+				else if ((xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0) || (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bar") == 0))
 				{
 					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
 
@@ -227,41 +247,27 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					g_strreverse (cTempo);
 					pTextZone->cInternal = g_strdup_printf("%s", cTempo);
 					
-					// On récupère le 2ème champ -> = Largeur
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';') ;
-					ltrim( cTempo, ";" );
-					g_strreverse (cTempo);					
-					cTempo = strchr(cTempo, ';') ;			
-					ltrim( cTempo, ";" );
-					g_strreverse (cTempo);										
-					pTextZone->iWidth = atoi(cTempo); 
-					
-					// On récupère le 3ème champ -> = Hauteur
+					// On récupère le dernier champ -> = Hauteur
 					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
 					ltrim( cTempo, ";" );					
-					pTextZone->iHeight = atoi(cTempo); 
+					pTextZone->iHeight = atoi(cTempo);
 					
-					pTextZone->bLimitedBar = TRUE;					
-				}
-				
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bar") == 0)
-				{
-					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
-
-					// On récupère le 1er champ -> = commande interne
-					g_strreverse (cTempo);
-					cTempo = strrchr(cTempo, ';') ;
-					ltrim( cTempo, ";" );
-					g_strreverse (cTempo);
-					pTextZone->cInternal = g_strdup_printf("%s", cTempo);
-										
-					// On récupère le 3ème champ -> = Hauteur
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
-					ltrim( cTempo, ";" );					
-					pTextZone->iHeight = atoi(cTempo); 
-					
-					pTextZone->bBar = TRUE;					
-				}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0)
+					{					
+						// On récupère le 2ème champ -> = Largeur
+						cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+						ltrim( cTempo, ";" );
+						g_strreverse (cTempo);					
+						cTempo = strchr(cTempo, ';') ;			
+						ltrim( cTempo, ";" );
+						g_strreverse (cTempo);										
+						pTextZone->iWidth = atoi(cTempo);
+						
+						pTextZone->bLimitedBar = TRUE;
+					}
+					else
+						pTextZone->bBar = TRUE;					
+				}				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "img") == 0)
 				{
 					pTextZone->cImgPath = xmlNodeGetContent (pXmlSubNode);
@@ -279,8 +285,22 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				{
 					pTextZone->iHeight = g_strtod (cNodeContent, NULL);				
 				}
-						
-				
+				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "override") == 0)
+				{
+					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
+					
+					// On récupère le 1er champ -> = overrideH
+					g_strreverse (cTempo);
+					cTempo = strrchr(cTempo, ';') ;
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);
+					pTextZone->iOverrideH = atoi(cTempo);
+					
+					// On récupère le dernier champ -> = overrideW
+					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+					ltrim( cTempo, ";" );					
+					pTextZone->iOverrideW = atoi(cTempo);								
+				}
 				xmlFree (cNodeContent);				
 			}			
 		}

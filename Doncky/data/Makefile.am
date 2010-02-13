@@ -7,6 +7,7 @@ module_DATA = \
 	Doncky.conf\
 	preview.jpg\
 	icon.png\
+	documentation.txt\
 	default.xml
 
 dist_donckydata_SCRIPTS = \

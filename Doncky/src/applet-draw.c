@@ -552,20 +552,27 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				pango_layout_get_pixel_extents (pLayout, &ink, &log);				
 				fCurrentLineWidth += log.width;
 				
-				if (log.height > fCurrentLineHeight)
+				if (log.height > fCurrentLineHeight && ! myData.bLastWasSameLine)
 					fCurrentLineHeight = log.height;
+				else if (myData.bLastWasSameLine)
+					fCurrentLineHeight = (double)myData.iLastLineHeight;
+				
 			}			
 			else if (pTextZone->bLimitedBar || pTextZone->bImgDraw)
 			{
 				fCurrentLineWidth += pTextZone->iWidth;
 				
-				if (pTextZone->iHeight > fCurrentLineHeight)
+				if ( (pTextZone->iHeight > fCurrentLineHeight) && ! myData.bLastWasSameLine)
 					fCurrentLineHeight = (double)pTextZone->iHeight;
+				else if (myData.bLastWasSameLine)
+					fCurrentLineHeight = (double)myData.iLastLineHeight;
 			}
 			else if (pTextZone->bBar)
 			{				
-				if (pTextZone->iHeight > fCurrentLineHeight)
+				if ( (pTextZone->iHeight > fCurrentLineHeight) && ! myData.bLastWasSameLine)
 					fCurrentLineHeight = (double)pTextZone->iHeight;
+				else if (myData.bLastWasSameLine)
+					fCurrentLineHeight = (double)myData.iLastLineHeight;
 			}
 						
 			it = it->next;
@@ -579,8 +586,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		do
 		{
 	
-			pTextZone = it->data;			
+			pTextZone = it->data;
 			
+						
 			if (pTextZone->cFont == NULL || pTextZone->cFont =="") // Si aucune font -> on prend celle de la config
 				pTextZone->cFont = g_strdup_printf("%s", myConfig.cDefaultFont);
 			
@@ -607,6 +615,10 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					else
 						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - fCurrentLineWidth - pTextZone->iFontSizeWidth;
 				}
+				
+				if (pTextZone->bBar)
+					 myData.fCurrentX -= iSpaceBetweenElements ; // Il y a un élément avant la barre -> On supprime l'espace
+				
 			}
 			
 			
@@ -629,9 +641,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			else if (strcmp (pTextZone->cAlignHeight, "low") == 0)
 			{
 				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
-					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight*.81 - pTextZone->iHeight;   // Le *.81 permet de caler pas trop mal les images en bas des textes
+					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight - pTextZone->iHeight;
 				else // C'est un texte -> On décale un peu pour aligner
-					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight*.81 - pTextZone->iFontSizeHeight*.81;
+					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight - pTextZone->iFontSizeHeight;
 			}
 			
 			
@@ -642,7 +654,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
 					myData.fCurrentYalign = myData.fCurrentY; // On laisse à la position courante
 				else // C'est un texte -> On décale un peu pour aligner
-					myData.fCurrentYalign = myData.fCurrentY - pTextZone->iFontSizeHeight/6.5; // Le /6.5 permet de caler pas trop mal les textes en haut
+					myData.fCurrentYalign = myData.fCurrentY;
 					
 			}
 			
@@ -686,7 +698,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				{
 					int iWidth, iHeight;
 					CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + iSpaceBetweenElements); 
+					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + iSpaceBetweenElements);
+					
 				}
 				
 					
@@ -723,12 +736,12 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					
 					if (pTextZone->bBar)
 						cairo_translate (myDrawContext,
-							myData.fCurrentX + iSpaceBetweenElements, // On décale légèrement la barre du texte
-							myData.fCurrentYalign);
+							myData.fCurrentX + iSpaceBetweenElements + pTextZone->iOverrideW,
+							myData.fCurrentYalign + pTextZone->iOverrideH);
 					else
 						cairo_translate (myDrawContext,
-							myData.fCurrentX, // On décale légèrement la barre du texte
-							myData.fCurrentYalign);
+							myData.fCurrentX + pTextZone->iOverrideW,
+							myData.fCurrentYalign + pTextZone->iOverrideH);
 					
 					
 					cairo_dock_draw_rounded_rectangle (myDrawContext,
@@ -749,8 +762,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				if (pTextZone->pImgSurface != NULL)
 				{
 					cairo_set_source_surface (myDrawContext, pTextZone->pImgSurface,
-							myData.fCurrentX,
-							myData.fCurrentYalign);
+							myData.fCurrentX + pTextZone->iOverrideW,
+							myData.fCurrentYalign + pTextZone->iOverrideH);
 					cairo_paint (myDrawContext);
 				}			
 			}
@@ -763,15 +776,23 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				
 				
 				cairo_move_to (myDrawContext,
-					myData.fCurrentX,
-					myData.fCurrentYalign );
+					myData.fCurrentX + pTextZone->iOverrideW,
+					myData.fCurrentYalign + pTextZone->iOverrideH);
 				pango_cairo_show_layout (myDrawContext, pLayout); // On dessine la ligne sur notre desklet
 			}
 				
 			if (pTextZone->bEndOfLine) // On passe à la ligne du dessous
 			{
-				if (pTextZone->bNextNewLine) // Sinon, on reste sur la même ligne -> Utile pour avoir 1 zone alignée à gauche et 1 zone alignée à droite par exemple ;-)
-					myData.fCurrentY += fCurrentLineHeight + myConfig.iSpaceBetweenLines;
+				if (pTextZone->bNextNewLine) // C'est un <br/> (ou un <br>0</br> )-> On passe à la ligne d'en dessous
+				{
+					myData.fCurrentY += fCurrentLineHeight + myConfig.iSpaceBetweenLines + pTextZone->iSpaceBetweenLines;
+					myData.bLastWasSameLine = FALSE;
+				}
+				else  // C'est un <nbr/> -> on reste sur la même ligne -> Utile pour avoir 1 zone alignée à gauche et 1 zone alignée à droite par exemple ;-)
+				{
+					myData.iLastLineHeight = (int)fCurrentLineHeight + pTextZone->iSpaceBetweenLines;					
+					myData.bLastWasSameLine = TRUE;
+				}
 												
 				myData.fCurrentX = iMargin + myConfig.iTextMargin;
 				
