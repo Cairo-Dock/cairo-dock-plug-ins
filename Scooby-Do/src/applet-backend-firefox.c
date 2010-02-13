@@ -552,4 +552,4 @@ void cd_do_register_firefox_backend (void)
              "url": "http://192.168.1.1/WClient.htm"
           }, {
 	* 
-	* /
+	*/

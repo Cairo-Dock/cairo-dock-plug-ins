@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-27 12:05+0000\n"
-"Last-Translator: MixCool <lars.thoms@mixcool.de>\n"
+"PO-Revision-Date: 2010-02-12 11:02+0000\n"
+"Last-Translator: dominic <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-28 04:38+0000\n"
+"X-Launchpad-Export-Date: 2010-02-13 05:01+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -24,7 +24,7 @@ msgstr "Animierte Symbole"
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
 msgstr ""
-"Diese Erweiterung stellt viele unterschiedliche Animationen für die Dock-"
+"Diese Erweiterung stellt viele unterschiedliche Animationen für Ihre Dock-"
 "Symbole zur Verfügung."
 
 #: ../Animated-icons/src/applet-init.c:52 ../Animated-icons/data/messages:7
