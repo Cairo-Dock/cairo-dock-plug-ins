@@ -47,6 +47,9 @@ typedef struct {
 	gchar *cImgPath;
 	cairo_surface_t *pImgSurface;
 	gboolean bImgDraw;
+	gint iOverrideH;
+	gint iOverrideW;
+	gint iSpaceBetweenLines;
 } TextZone;
 
 

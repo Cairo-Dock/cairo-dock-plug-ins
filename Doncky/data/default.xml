@@ -25,10 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 	<zone>
 		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 20</font>
-		<red>1.0</red>
-		<green>1,0</green>
-		<blue>1,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;255;255</color>
 		<echo>`uptime | cut -d" " -f2`</echo>
 		<refresh>1</refresh>
 		<br/>
@@ -38,46 +35,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 	<!--  Uptime (en cours) -->
 	<zone>
 		<alignW>center</alignW>
-		<font>1Terminal Bitstream Vera Sans Mono 12</font>
-		<red>1.0</red>
-		<green>1,0</green>
-		<blue>1,0</blue>
-		<alpha>1,0</alpha>
+		<font>Terminal Bitstream Vera Sans Mono 12</font>
+		<color>255;255;255;255</color>
 		<txt>UPTIME: </txt>
 	</zone>
 	<zone>
 		<font>1Terminal Bitstream Vera Sans Mono 12</font>
-		<red>1.0</red>
-		<green>1,0</green>
-		<blue>1,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;255;255</color>
 		<internal>uptime</internal>
 		<refresh>1</refresh>
-		<br/>
-	</zone>
-
-	<!--  Saut de ligne -->
-	<zone>
-		<font>Sans 5</font>
-		<br/> 
+		<br>5</br>
 	</zone>
 
 	<!--  Version GNU/Linux  -->
 	<zone>
 		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 8</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<echo>`uname -o` version : </echo>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<echo>`cat /etc/issue.net` $(lsb_release -sc)</echo>
 		<br/>
 	</zone>
@@ -85,136 +64,84 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 	<zone>
 		<alignW>center</alignW>
 		<font>Terminal Bitstream Vera Sans Mono 8</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<txt>Version du Noyau : </txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<cmd>uname -r</cmd>		
-		<br/>
+		<br>5</br>
 	</zone>
 
-	<!--  Saut de ligne -->
-	<zone>
-		<font>Sans 5</font>
-		<br/> 
-	</zone>
 
 
 	<!--  CPU Usage -->
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>CPU Usage : </txt> 
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<internal>cpuperc</internal>
 		<refresh>1</refresh>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<txt>%</txt>
 	</zone>
 	<zone>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<bar>cpuperc;10</bar>
 		<refresh>1</refresh>
-		<br/> 
+		<br>5</br> 
 	</zone>
 
-	<!--  Saut de ligne -->
-	<zone>
-		<font>Sans 5</font>
-		<br/>
-	</zone>
 
 
 	<!--  Mem  -->
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>RAM : </txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<internal>mem</internal>
 		<refresh>3</refresh>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>Mo/</txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<internal>memmaxg</internal>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>Go - </txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<internal>memperc</internal>
 		<refresh>3</refresh>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<txt>%</txt>
 	</zone>
 	<zone>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<bar>memperc;10</bar>
 		<refresh>3</refresh>
 		<br/> 
@@ -223,68 +150,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 	<!--  Swap Perc -->
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>Swap : </txt>
 	</zone>
 
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<internal>swap</internal>
 		<refresh>3</refresh>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>Mo/</txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<internal>swapmaxg</internal>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<red>0,0</red>
-		<green>0,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>0;0;0;255</color>
 		<txt>Go - </txt>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<internal>swapperc</internal>
 		<refresh>3</refresh>
 	</zone>
 	<zone>
 		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<txt>%</txt>
 	</zone>
 	<zone>
-		<red>1,0</red>
-		<green>1,0</green>
-		<blue>0,0</blue>
-		<alpha>1,0</alpha>
+		<color>255;255;0;255</color>
 		<bar>swapperc;10</bar>
 		<refresh>3</refresh>
 		<br/> 

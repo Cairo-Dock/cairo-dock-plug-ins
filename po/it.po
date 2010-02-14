@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-29 10:35+0000\n"
+"PO-Revision-Date: 2010-02-05 07:01+0000\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-30 04:44+0000\n"
+"X-Launchpad-Export-Date: 2010-02-06 04:55+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -4755,7 +4755,7 @@ msgstr "Limite massimo di temperatura del core :"
 
 #: ../System-Monitor/data/messages:197
 msgid "Alert when core temperature is high ?"
-msgstr "Allertare quando la temperatura del core è alta ?"
+msgstr "Allerta quando la temperatura del core è alta ?"
 
 #: ../System-Monitor/data/messages:199
 msgid "in celcius."
@@ -6395,7 +6395,7 @@ msgstr "Attenzione"
 
 #: ../powermanager/data/messages:157
 msgid "Alert when battery charged ?"
-msgstr "Allertare quando la batteria è carica?"
+msgstr "Allerta quando la batteria è carica?"
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
@@ -6409,7 +6409,7 @@ msgstr "Utilizza un suono :"
 
 #: ../powermanager/data/messages:163
 msgid "Alert when low battery ?"
-msgstr "Allertare quando la batteria è scarica?"
+msgstr "Allerta quando la batteria è scarica?"
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
@@ -6425,7 +6425,7 @@ msgstr "Quando la carica è al di sotto del 4%"
 
 #: ../powermanager/data/messages:175
 msgid "Alert when battery charge is critical ?"
-msgstr "Allertare quando la carica è critica?"
+msgstr "Allerta quando la carica è critica?"
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"

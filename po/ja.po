@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-28 11:36+0000\n"
+"PO-Revision-Date: 2010-02-08 08:19+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-29 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-02-09 05:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -194,7 +194,7 @@ msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"外部アプリケーションがドックとやり取りできるようにするためのプラグイン。\n"
+"外部アプリケーションからドックとやり取りできるようにするためのプラグイン。\n"
 "両者の間の通信は Dbus に基づきます。"
 
 #: ../Dbus/src/interface-applet-signals.c:398
@@ -211,7 +211,7 @@ msgid ""
 msgstr ""
 "一般的なアプリケーションメニューと最近使用したファイルを表示します。\n"
 "XDG に準拠したメニュー (Gnome, XFCE, KDE, ...) と互換性があります。\n"
-"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 のようなショートキーの設定も可能）。\n"
+"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 のようなショートキーも設定可能）。\n"
 "メニューをポップアップさせるショートキー（ALT+F1 のような)を設定することができます。"
 
 #: ../GMenu/src/applet-notifications.c:156
@@ -359,9 +359,9 @@ msgid ""
 "between net speed and wifi."
 msgstr ""
 "ネットワーク接続を監視するためのアプレット。\n"
-"ダウンロード/アップロード速度や Wifi 信号の強さを表示できます。\n"
-"ネットワーク・マネージャを現在稼働させている場合は、Wifi ネットワークの接続先の選択も可能です。\n"
-"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と Wifi との表示の切り替えを行います。"
+"ダウンロード/アップロード速度や WiFi 信号の強さを表示できます。\n"
+"ネットワーク・マネージャを現在稼働させている場合は、WiFi ネットワークの接続先の選択も可能です。\n"
+"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と WiFi との表示の切り替えを行います。"
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -417,11 +417,11 @@ msgstr "ネットワーク無効化"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr "Wifi 無効化"
+msgstr "WiFi 無効化"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr "Wifi 有効化"
+msgstr "WiFi 有効化"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -621,13 +621,13 @@ msgid ""
 "Escape or the same shortkey to cancel."
 msgstr ""
 "キーボードによるドック制御を可能にする Gnome-Do 風のプラグイン。\n"
-"プラグインには、キーボードショートから呼び出されるモードが２種類有り：\n"
+"プラグインには、キーボードショートカットから呼び出されるモードが２種類あります。：\n"
 "- ナビゲーション・モード： カーソルキーを使用してドックやサブ・ドック内を移動、\n"
 "   またはコマンドを入力して対応するランチャーを探したり、Tab キーを押して次の適切なランチャーに自動的にジャンプ。\n"
 "   Enter キーを押してアイコンのクリックまたはコマンドの実行、Shift+Enter で Shift+クリック、Alt+Enter "
 "で中クリック、Ctrl+Enter で左クリック。\n"
-"- ファインダー・モード： コマンドを入力して、対応するランチャーを探したりコマンドやファイルの実行、または数値計算。\n"
-"   カーソルキーを使用して検索結果同士での移動。Enter で決定、検索結果を表示させたままにするには CTRL や ALT または SHIFT "
+"- ファインダー・モード： コマンドを入力して対応するランチャーを探したり、コマンドやファイルの実行、または数値計算。\n"
+"   カーソルキーを使用して検索結果同士間の移動。Enter で決定、検索結果を表示させたままにするには CTRL や ALT または SHIFT "
 "を押しながら Enter。\n"
 "モード自体を終了するには、Escape または呼び出しと同じショートキーを押します。"
 
@@ -828,9 +828,9 @@ msgid ""
 "This applet works with the Alsa sound driver."
 msgstr ""
 "ドックから音量制御を行うためのアプレット。\n"
-"アイコン上の上下スクロールで音量の上げ下げ、\n"
+"アイコン上での上下スクロールで音量の上げ下げ、\n"
 "アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの割り当て可能）、\n"
-"ダイアログを隠すにはそのダイアログをクリックします。\n"
+"ダイアログを隠すには当該ダイアログをクリックします。\n"
 "中クリックでミュートとその解除、ダブルクリックでチャンネルミキサーを呼び出します。\n"
 "このアプレットは、Alsa サウンド・ドライバに対して働きます。"
 
@@ -897,7 +897,7 @@ msgid ""
 "date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 msgstr ""
-"日付や時間をドックに表示するアプレット。\n"
+"日付や時刻をドックに表示するアプレット。\n"
 "利用可能な表示形式は Cairo-Clock を元にしたデジタルとアナログの２種類。\n"
 "Cairo-Clock のテーマと互換性を持ち、ドックから分離させれば Cairo-Clock の完全クローンに。\n"
 "アラーム機能と基本的なカレンダー機能に対応し、日付や時刻の設定を行うことができます。\n"
@@ -1427,9 +1427,9 @@ msgid ""
 "Left click to log out, middle click to shutdown\n"
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
-"セッションからログアウトするアイコンを追加する非常にシンプルなアプレット。\n"
+"セッションからログアウトするためのアイコンを追加する非常にシンプルなアプレット。\n"
 "左クリックでログアウト、中クリックでシャットダウンします。\n"
-"この組み合わせを逆にして、左クリックでシャットダウンさせることもできます。"
+"この組み合わせを逆にして、左クリックでシャットダウンさせる変更も可能です。"
 
 #: ../logout/src/applet-notifications.c:119
 msgid "Choose in how many minutes your PC will stop :"
@@ -1503,8 +1503,8 @@ msgid ""
 "Left-click to launch the prefered mail application,\n"
 "Middle-click to refresh all the mailboxes."
 msgstr ""
-"Eメール新着時の通知に非常に役立つアプレット。\n"
-"様々な種類のメールボックスのチェックが可能 (yahoo, gmail, etc)\n"
+"電子メール新着時の通知に非常に役立つアプレット。\n"
+"様々な種類のメールボックス（yahoo, gmail, etc）をチェックできます。\n"
 "左クリックで任意のメール・アプリケーションの起動、\n"
 "中クリックですべてのメールボックスについて更新を行います。"
 
@@ -1603,11 +1603,11 @@ msgstr ""
 "あらゆる音楽プレイヤーを制御するアプレット。\n"
 "左クリックで再生/一時停止、中クリックで次の曲の再生、\n"
 "上下のスクロールで前/次の曲を再生します。\n"
-"アイコンに曲をドラッグ＆ドロップしてキューに入れたり（プレイヤーによります）、\n"
+"アイコンに曲をドラッグ＆ドロップしてキューに入れたり（プレイヤーに依存）、\n"
 "jpeg 画像をドロップしてカバー画像に使用することができます。\n"
-"備考：XMMS には、'xmms-infopipe' プラグイン、\n"
-"       Songbird には その DBus アドオン、\n"
-"       Exaile 0.3 には、その MPRIS プラグインをインストールする必要があります。"
+"注意：XMMS には、'xmms-infopipe' プラグイン、\n"
+"        Songbird には、その DBus アドオン、\n"
+"        Exaile 0.3 には、その MPRIS プラグインをインストールする必要があります。"
 
 #: ../musicPlayer/src/applet-notifications.c:67
 msgid ""
@@ -1616,11 +1616,11 @@ msgid ""
 "offer such service."
 msgstr ""
 "残念ながらプレイヤーの検出ができませんでした。\n"
-"プレイヤーを実際に利用中の場合、そのバージョンが古いためサービスに対応していないことが原因かもしれません。"
+"プレイヤーを実際に利用中の場合、そのバージョンが古いためサービス未提供なことが原因かもしれません。"
 
 #: ../musicPlayer/src/applet-notifications.c:159
 msgid "Find opened player"
-msgstr "実行中のプレイヤーの検索"
+msgstr "実行中のプレイヤーの検出"
 
 #: ../musicPlayer/src/applet-notifications.c:166
 msgid "Previous"
@@ -1652,7 +1652,7 @@ msgstr "リピートのオンオフ"
 
 #: ../musicPlayer/src/applet-notifications.c:180
 msgid "Rate this song"
-msgstr ""
+msgstr "この曲の評価付け"
 
 #: ../musicPlayer/src/applet-notifications.c:182
 msgid "Information"
@@ -1814,7 +1814,7 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "すべてのショートカットに素早くアクセスできるアプレット。\n"
-"ディスクやネットワークポイント、Nautilus ブックマーク（Nautilus を必要とはしません）の管理が可能です。\n"
+"ディスクやネットワークポイント、Nautilus ブックマーク（Nautilus がインストールされていなくとも）の管理が可能です。\n"
 "メイン・アイコンまたはサブ・ドックにフォルダをドラッグ＆ドロップするとブックマークの追加、\n"
 "メイン・アイコンの中クリックでデスクトップに簡単アクセス、\n"
 "マウントポイント・アイコンの中クリックで素早い（アン）マウント。\n"
@@ -1871,8 +1871,8 @@ msgstr ""
 "デスクトップを表示するためのアイコンを追加するアプレット。\n"
 "デスクレットやウィジェット・レイヤを表示したり、デスクトップを展開させることも可能です。\n"
 "右クリック・メニューから画面の解像度を素早く変更するためにも利用できます。\n"
-"左クリックでデスクトップの表示/隠す、\n"
-"中クリックでデスクトップやデスクレット、ウィジェット・レイヤの表示/隠す、またはデスクトップの展開。"
+"左クリックでデスクトップを表示/隠す、\n"
+"中クリックでデスクトップやデスクレット、ウィジェット・レイヤを表示/隠す、またはデスクトップを展開します。"
 
 #: ../showDesktop/src/applet-notifications.c:74
 msgid "You need to run Compiz and to activate its 'DBus' plug-in."
@@ -1928,8 +1928,8 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "MacOS X のスタック・アプレット風にファイルのスタックの構築を行うためのアプレット。\n"
-"スタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップするだけ。\n"
-"あらゆるファイルや、Web URL、さらにはテキストの一部をドロップすることも可能。\n"
+"スタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップするだけです。\n"
+"ファイル全般や、Web URL、さらにはテキストの一部をドロップすることも可能です。\n"
 "従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができます。"
 
 #: ../stack/src/applet-notifications.c:50
@@ -2078,9 +2078,9 @@ msgid ""
 "somewhere, above other windows."
 msgstr ""
 "ドックにシステムトレイを追加。\n"
-"左クリックでダイアログにシステムトレイを表示（キーボード・ショートカットの割り当て可能）。\n"
+"左クリックでダイアログにシステムトレイを表示（キーボード・ショートカットの割り当て可能）、\n"
 "ダイアログを閉じるには中クリック。\n"
-"しかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの最良の使用方法。"
+"しかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの最良の使用方法です。"
 
 #: ../template/src/applet-init.c:30
 msgid "CD_APPLET_NAME"
@@ -2091,6 +2091,8 @@ msgid ""
 "Useful description\n"
 "and manual"
 msgstr ""
+"有用な説明と\n"
+"マニュアル"
 
 #: ../terminal/src/terminal-callbacks.c:84
 #: ../terminal/src/terminal-widget.c:346
@@ -2143,7 +2145,7 @@ msgstr "色の選択"
 #: ../terminal/src/terminal-widget.c:306
 #, c-format
 msgid "You can call back the Terminal desklet by typing %s"
-msgstr ""
+msgstr "%s をタイプ入力すると、端末デスクレットを呼び戻すことができます。"
 
 #: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
@@ -2339,7 +2341,7 @@ msgstr "12月"
 #: ../weather/src/applet-notifications.c:33
 #: ../weather/src/applet-notifications.c:68
 msgid "Data are being retrieved, please wait a moment."
-msgstr ""
+msgstr "データを取得しています。少々お待ちください。"
 
 #: ../weather/src/applet-notifications.c:84
 msgid "Reload now"
@@ -2384,7 +2386,7 @@ msgstr "日の入り"
 
 #: ../weather/src/applet-notifications.c:139
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr ""
+msgstr "データを取得しています。数秒後に再度試してください。"
 
 #: ../weather/src/applet-notifications.c:149
 msgid ""
@@ -2427,7 +2429,7 @@ msgid ""
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
-"最初にアクティブとなった無線接続の信号の強さを表示するアプレット。\n"
+"最初にアクティブとなった WiFi 接続の信号の強さを表示するアプレット。\n"
 "左クリックで情報を表示、中クリックで直ちに再チェックを行います。"
 
 #: ../xfce-integration/src/applet-init.c:30
@@ -3839,7 +3841,7 @@ msgstr "最終変更日が指定日数内のファイルのみ表示 :"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Let empty to use the connection name."
-msgstr ""
+msgstr "接続の名前を使用するには空欄のままに。"
 
 #: ../Network-Monitor/data/messages:91 ../Network-Monitor/data/messages:163
 #: ../Network-Monitor/data/messages:251 ../System-Monitor/data/messages:125
@@ -3854,7 +3856,7 @@ msgstr "アイコン上でのスクロールによって、別モードに素早
 
 #: ../Network-Monitor/data/messages:95
 msgid "Info displayed by the icon :"
-msgstr ""
+msgstr "アイコンに表示する情報 :"
 
 #: ../Network-Monitor/data/messages:97
 msgid "Wifi signal"
@@ -3870,11 +3872,11 @@ msgstr "何も指定しない場合は、最初に有効になったインター
 
 #: ../Network-Monitor/data/messages:103
 msgid "Connexion interface to monitor :"
-msgstr ""
+msgstr "モニタ対象にする接続インターフェイス :"
 
 #: ../Network-Monitor/data/messages:105
 msgid "Display numeric values :"
-msgstr ""
+msgstr "数値の表示 :"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
 #: ../alsaMixer/data/messages:117 ../clock/data/messages:95
@@ -3899,15 +3901,15 @@ msgstr "ラベル上"
 msgid ""
 "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 "movement is continue."
-msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、1 に設定すると継続動作になります。"
+msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、1 に設定すると連続動作になります。"
 
 #: ../Network-Monitor/data/messages:115
 msgid "Fluidity of the transition animation between 2 values :"
-msgstr ""
+msgstr "２値間の遷移アニメーションの滑らかさ :"
 
 #: ../Network-Monitor/data/messages:117
 msgid "Animation of the icon when connecting :"
-msgstr ""
+msgstr "接続試行中時のアイコンのアニメーション :"
 
 #: ../Network-Monitor/data/messages:119
 msgid ""
@@ -3930,7 +3932,7 @@ msgstr "システム・モニタを表示するためのユーザー定義コマ
 
 #: ../Network-Monitor/data/messages:127
 msgid "Net Speed"
-msgstr ""
+msgstr "ネット速度"
 
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
@@ -4026,11 +4028,11 @@ msgstr "ネット速度チェックの間隔時間 :"
 
 #: ../Network-Monitor/data/messages:169
 msgid "Wifi"
-msgstr ""
+msgstr "WiFi"
 
 #: ../Network-Monitor/data/messages:171
 msgid "Choose the style of the display :"
-msgstr ""
+msgstr "表示スタイルの選択 :"
 
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:207
 #: ../powermanager/data/messages:95 ../powermanager/data/messages:125
@@ -4104,11 +4106,11 @@ msgstr "「有線接続」のアイコン画像の名前 :"
 
 #: ../Network-Monitor/data/messages:253
 msgid "in seconds, if you don't have Network-Manager."
-msgstr ""
+msgstr "秒単位。"
 
 #: ../Network-Monitor/data/messages:255
 msgid "Delay between wifi signal checks :"
-msgstr "Wifi 信号チェックの間隔時間 :"
+msgstr "WiFi 信号チェックの間隔時間 :"
 
 #: ../RSSreader/data/messages:7
 msgid "Let empty to use the title of the RSS feed."
@@ -4162,7 +4164,7 @@ msgstr "秒単位。0 に設定すると時間制限なし（ダイアログを�
 
 #: ../RSSreader/data/messages:117
 msgid "Duration of the info-bubble :"
-msgstr ""
+msgstr "情報吹き出しの表示継続時間 :"
 
 #: ../RSSreader/data/messages:119
 msgid "Animation of the icon when a feed has changed :"
@@ -4702,8 +4704,8 @@ msgid ""
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just let it empty."
 msgstr ""
-"カードのなかには、1チャンネルが右または左の1サイドだけ制御するものがあります。そのときは、両側の制御のために第2チャンネルの指定が必要になります。大抵の"
-"場合、ここは空欄のままにしてください。"
+"カードのなかには、1チャンネルが右または左の片側のみ制御するものがあります。その際は両側の制御のために第2チャンネルの指定が必要になります。大抵の場合、空"
+"欄のままにしてください。"
 
 #: ../alsaMixer/data/messages:99
 msgid "Optionnally, choose a second channel to control :"
@@ -5380,7 +5382,7 @@ msgstr "アイコンとそのラベル同士の隙間 :"
 #: ../dock-rendering/data/messages:55
 msgid ""
 "It may recquire more CPU during the unfolding animation, except with OpenGL."
-msgstr ""
+msgstr "OpenGL を利用していない場合、展開アニメーション中に CPU の使用がより必要になる可能性があります。"
 
 #: ../dock-rendering/data/messages:57
 msgid "Draw labels while unfolding ?"
@@ -5612,7 +5614,7 @@ msgstr "デスクトップレスのサポート"
 #: ../dustbin/data/messages:121
 msgid ""
 "If the Trash folder is not known by the dock, you can specify it here :"
-msgstr "ゴミ箱のフォルダがドックに不明な場合はここで指定 :"
+msgstr "ゴミ箱のフォルダがドックに検知されない場合はここで指定 :"
 
 #: ../dustbin/data/messages:123
 msgid "in seconds, only used if you can't monitor directories."
@@ -5689,7 +5691,7 @@ msgstr "デフォルトの色 :"
 
 #: ../icon-effect/data/messages:199
 msgid "It particularily fits a dark wallpaper or a dark theme."
-msgstr ""
+msgstr "特に暗い色の壁紙または暗い色のテーマに合います。"
 
 #: ../icon-effect/data/messages:205 ../show-mouse/data/messages:3
 msgid "Number of sources :"
@@ -6131,7 +6133,7 @@ msgstr "このオプションには OpenGL が必要です。0 に設定する�
 
 #: ../netspeed/data/messages:137
 msgid "Fluidity of the transition between 2 values :"
-msgstr ""
+msgstr "２値間の遷移の滑らかさ :"
 
 #: ../netspeed/data/messages:139
 msgid "Display rate values :"
@@ -6379,11 +6381,11 @@ msgstr "ピクセル単位"
 
 #: ../show-mouse/data/messages:33
 msgid "The higher, the more particles will scatter from their source."
-msgstr "高い数値ほど、より広範囲に各源泉から粒子が散乱します。"
+msgstr "高い数値ほど、より広範囲に各源泉から粒子が拡散します。"
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering :"
-msgstr "散乱 :"
+msgstr "拡散 :"
 
 #: ../showDesklets/data/messages:11
 msgid "Image name to show desklets :"

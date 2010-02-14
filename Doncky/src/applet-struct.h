@@ -112,12 +112,14 @@ struct _AppletData {
 	
 	GList *pTextZoneList;
 	
-	
+	gchar *cTempoText;
 	gchar *cCurrentText;	
 	double fCurrentX; // Position du curseur dans le desklet
 	double fCurrentY;
 	double fCurrentYalign;
 	gchar *cLastAlignHeight;
+	gint iLastLineHeight;
+	gboolean bLastWasSameLine;
 	
 	cairo_surface_t *pImgSurface;
 

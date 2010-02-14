@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 18:02+0000\n"
-"Last-Translator: Kuvaly [LCT] <kuvaly@seznam.cz>\n"
+"PO-Revision-Date: 2010-02-04 11:10+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-26 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-02-05 05:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -2540,7 +2540,7 @@ msgstr "Maximální zoom pulsu"
 
 #: ../Animated-icons/data/messages:167
 msgid "Should the pulse follow the shape of the icon ?"
-msgstr "Má puls následuvat tvar ikony ?"
+msgstr "Má puls následovat tvar ikony ?"
 
 #: ../Animated-icons/data/messages:173
 msgid "Duration of the bounce :"
@@ -2552,7 +2552,7 @@ msgstr "Při poskočení změnit velikost ikony o :"
 
 #: ../Animated-icons/data/messages:179
 msgid "the smaller, the more it will flatten."
-msgstr "čím menší, tím víc nude pložší."
+msgstr "čím menší, tím víc bude pložší."
 
 #: ../Animated-icons/data/messages:181
 msgid "How much the icon will flatten when hurting the ground :"
