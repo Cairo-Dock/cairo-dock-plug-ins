@@ -100,7 +100,10 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					guint i = 1;
 
 					struct mailmessage_list * msg_list = NULL;
-		      mailfolder_get_messages_list(pMailAccount->folder, &msg_list);
+		      if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
+		      {
+						cd_error("Error while getting list of messages for account %s!", pMailAccount->name); 
+					}
 	
 					guint iNbAccountsToCheck = MIN (20,pMailAccount->iNbUnseenMails);
 					if( myConfig.iNbMaxShown != -1 )
@@ -120,7 +123,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 
 						cd_message ("Fetching message number %d...\n", i);
 
-						if (!msg_list || carray_count(msg_list->msg_tab) < i) {
+						if (!msg_list || !msg_list->msg_tab || carray_count(msg_list->msg_tab) < i) {
 							break;
 						}
 
