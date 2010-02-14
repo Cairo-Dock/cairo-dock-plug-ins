@@ -208,6 +208,21 @@ void cd_dbus_stop_service (void)
 }
 
 
+void cd_dbus_add_applet_to_startup (const gchar *cModuleName)
+{
+	if (! cd_dbus_applet_is_used (cModuleName))  // precaution pour eviter de le rajouter 2 fois.
+	{
+		gchar *str = myData.cActiveModules;
+		if (myData.cActiveModules)
+			myData.cActiveModules = g_strdup_printf ("%s;%s", myData.cActiveModules, cModuleName);
+		else
+			myData.cActiveModules = g_strdup (cModuleName);
+		g_free (str);
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
+			G_TYPE_INVALID);
+	}
+}
 static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
 	cd_debug ("%s (%d)", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
@@ -216,18 +231,7 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	cd_dbus_action_on_init_module (pModuleInstance);
 	
 	//\_____________ On se souvient qu'il faut lancer cette applet au demarrage.
-	if (! cd_dbus_applet_is_used (pModuleInstance->pModule->pVisitCard->cModuleName))  // precaution pour eviter de le rajouter 2 fois.
-	{
-		gchar *str = myData.cActiveModules;
-		if (myData.cActiveModules)
-			myData.cActiveModules = g_strdup_printf ("%s;%s", myData.cActiveModules, pModuleInstance->pModule->pVisitCard->cModuleName);
-		else
-			myData.cActiveModules = g_strdup (pModuleInstance->pModule->pVisitCard->cModuleName);
-		g_free (str);
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
-			G_TYPE_INVALID);
-	}
+	cd_dbus_add_applet_to_startup (pModuleInstance->pModule->pVisitCard->cModuleName);
 	
 	//\_____________ On cree l'objet sur le bus.
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);

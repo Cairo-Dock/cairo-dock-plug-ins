@@ -660,7 +660,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 		g_value_init (v, G_TYPE_INT);
 		g_value_set_int (v, iHeight);
 	}
-	else if (strcmp (cProperty, "Xid") == 0)
+	else if (strncmp (cProperty, "Xid", 3) == 0)
 	{
 		Window Xid = pIcon->Xid;
 		g_value_init (v, G_TYPE_UINT64);

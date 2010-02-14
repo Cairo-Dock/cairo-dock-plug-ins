@@ -442,8 +442,10 @@ void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data)
 
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
 {
-	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && g_strstr_len (cReceivedData, -1, "cairo-dock"))
+	//\________________ On gere le cas d'une applet tierce-partie en provenance de nos depots.
+	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "cairo-dock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
 	{
+		//\________________ On telecharge l'archive de l'applet et on l'installe/la met a jour.
 		GError *erreur = NULL;
 		g_print ("dropped a distant applet\n");
 		gchar *cServerAdress = g_path_get_dirname (cReceivedData);
@@ -459,14 +461,60 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 		}
 		else
 		{
+			//\________________ On la supprime totalement si elle existe deja (mise a jour).
 			gchar *cAppletName = g_path_get_basename (cAppletDirPath);
+			gchar *str = strchr (cAppletName, '_');
+			if (str)  // on enleve les numeros de version (launchpad, solution temporaire).
+			{
+				if (g_ascii_isdigit (*(str+1)))
+					*str = '\0';
+			}
+			
+			CairoDockModule *pModule = cairo_dock_find_module_from_name (cAppletName);
+			gboolean bUpdate = FALSE;
+			if (pModule != NULL)  // on va totalement supprimer le module pour le recharger de zero.
+			{
+				bUpdate = TRUE;
+				cairo_dock_deactivate_module_and_unload (cAppletName);
+				cairo_dock_unregister_module (cAppletName);
+			}
+			
+			//\________________ On l'enregistre et on la (re)lance.
+			cd_dbus_add_applet_to_startup (cAppletName);
 			cd_dbus_register_module_in_dir (cAppletName, cExtractTo);
+			
+			//\________________ On balance un petit message a l'utilisateur.
+			pModule = cairo_dock_find_module_from_name (cAppletName);
+			if (!pModule)
+			{
+				cairo_dock_show_general_message (_("Sorry, this module couldn't be added."), 10000);
+			}
+			else if (!pModule->pInstancesList)
+			{
+				cairo_dock_show_general_message (_("The module has been added, but couldn't be launched."), 10000);
+			}
+			else
+			{
+				CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
+				if (!pInstance->pIcon || !pInstance->pContainer)
+					cairo_dock_show_general_message (_("The module has been added, but couldn't be launched."), 10000);
+				else
+				{
+					cairo_dock_show_temporary_dialog_with_icon_printf (bUpdate ? _("The applet '%s' has been succefully updated and automatically reloaded") : _("The applet '%s' has been succefully installed and automatically launched"),
+						pInstance->pIcon,
+						pInstance->pContainer,
+						10000,
+						"same icon",
+						cAppletName);
+				}
+			}
 			g_free (cAppletName);
 		}
 		g_free (cExtractTo);
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
 	
+	//\________________ Sinon on notifie l'applet du drop.
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
