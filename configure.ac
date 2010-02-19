@@ -252,7 +252,7 @@ AC_SUBST(alsa_mixerdatadir, "${pkgdatadir}/AlsaMixer")
 ANIMATED_ICONS_PACKAGE=cd-Animated-icons
 AC_SUBST(GETTEXT_ANIMATED_ICONS, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.5")
+AC_SUBST(VERSION_ANIMATED_ICONS, "1.0.7")
 AC_SUBST(PACKAGE_ANIMATED_ICONS, "$ANIMATED_ICONS_PACKAGE")
 
 AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")

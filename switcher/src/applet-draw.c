@@ -31,7 +31,7 @@ gboolean my_bRotateIconsOnEllipse = TRUE;
 
 static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 {
-	if (pIcon == NULL || pIcon->fPersonnalScale > 0)
+	if (pIcon == NULL || pIcon->fInsertRemoveFactor > 0)
 		return ;
 	if (pIcon->bIsHidden && ! myConfig.bDisplayHiddenWindows)
 		return ;

@@ -564,6 +564,22 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 	return TRUE;
 }
 
+gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GError **error)
+{
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	Icon *pIcon = pInstance->pIcon;
+	g_return_val_if_fail (pIcon != NULL && pIcon->Xid != 0, FALSE);
+	
+	if (bShow)
+		cairo_dock_show_xwindow (pIcon->Xid);
+	else
+		cairo_dock_minimize_xwindow (pIcon->Xid);
+	
+	return TRUE;
+}
+
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)
 {
 	if (myData.pModuleSubMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)

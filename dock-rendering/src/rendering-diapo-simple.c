@@ -190,7 +190,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);
 			cairo_save (pCairoContext);
 			
-			double fOffsetX = -icon->fTextXOffset + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
+			double fOffsetX = -icon->iTextWidth/2 + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
 			if (fOffsetX < 0)
 				fOffsetX = 0;
 			else if (0 + fOffsetX + icon->iTextWidth > pDock->container.iWidth)

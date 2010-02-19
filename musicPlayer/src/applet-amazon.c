@@ -202,10 +202,10 @@ static gchar *_url_encode (const gchar * str)
 	g_return_val_if_fail (str != NULL, NULL);
 	cd_debug ("%s (%s)\n", __func__, str);
 	const gchar * s = str;
-	char * t = NULL;
-	char * ret;
-	char * validChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_.!~*'()";
-	char * isValidChar;
+	gchar * t = NULL;
+	gchar * ret;
+	const gchar * validChars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_.!~*'()";
+	gchar * isValidChar;
 	int lenght = 0;
 	// calcul de la taille de la chaine urlEncodée
 	do{
@@ -217,6 +217,7 @@ static gchar *_url_encode (const gchar * str)
 	}while(*++s); // avance d'un cran dans la chaine. Si on est pas à la fin, on continue...
 	s = str;
 	/// la ligne suivane peut planter ...
+	cd_debug ("allocation of %d bytes...\n", lenght + 1);
 	t = g_new (gchar, lenght + 1); // Allocation à la bonne taille
 	ret = t;
 	//encodage

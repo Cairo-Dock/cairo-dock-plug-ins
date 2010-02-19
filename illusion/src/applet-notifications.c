@@ -33,14 +33,14 @@
 
 gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
-	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || fabs (pIcon->fPersonnalScale) < .1)  // gere le cas ou pDock est NULL. On ne demarre pas l'animation si elle est deja sur la fin.
+	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || fabs (pIcon->fInsertRemoveFactor) < .1)  // gere le cas ou pDock est NULL. On ne demarre pas l'animation si elle est deja sur la fin.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 	{
 		pData = g_new0 (CDIllusionData, 1);
 		pData->fDeltaT = (double) mySystem.iGLAnimationDeltaT;
-		pData->sens = (pIcon->fPersonnalScale > .05 ? 1 : -1);
+		pData->sens = (pIcon->fInsertRemoveFactor > .05 ? 1 : -1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 		
 		gboolean bSartAnimation = FALSE;
@@ -102,7 +102,7 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	}
 	else  // si on a un pData, c'est qu'on etait deja en pleine animation, on garde la meme, qui partira en sens inverse a partir du temps actuel.
 	{
-		pData->sens = (pIcon->fPersonnalScale > .05 ? 1 : -1);
+		pData->sens = (pIcon->fInsertRemoveFactor > .05 ? 1 : -1);
 		cairo_dock_mark_icon_as_inserting_removing (pIcon);
 	}
 	
@@ -185,12 +185,12 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	}	
 	
 	if ((pData->sens == 1 && pData->fTime > pData->fTimeLimitPercent * pData->iEffectDuration) ||
-		(pData->sens == -1 && pIcon->fPersonnalScale < -.05))
+		(pData->sens == -1 && pIcon->fInsertRemoveFactor < -.05))
 		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
 	
 	if ((pData->sens == 1 && pData->fTime < pData->iEffectDuration) ||
 		(pData->sens == -1 && pData->fTime > 0) ||
-		fabs (pIcon->fPersonnalScale) > .05)
+		fabs (pIcon->fInsertRemoveFactor) > .05)
 	{
 		*bContinueAnimation = TRUE;
 	}

@@ -40,7 +40,7 @@ nb rounds applets = 1
 #[@animated_iconsdatadir@/icon-rotation.png]
 [Rotation]
 
-#I+[0;5000] Duration of the animation :
+#I+[100;5000] Duration of the animation :
 #{In ms.}
 duration = 1500
 
@@ -60,7 +60,7 @@ color = 1;1;1;1
 #[@animated_iconsdatadir@/spot.png]
 [Spot]
 
-#I+[0;5000] Duration of the animation :
+#I+[100;5000] Duration of the animation :
 #{In ms.}
 duration = 1000
 
@@ -125,7 +125,7 @@ grid nodes = 10
 #[@animated_iconsdatadir@/icon-wave.png]
 [Wave]
 
-#I+[0;1000] Duration of the animation :
+#I+[100;1000] Duration of the animation :
 #{In ms.}
 duration = 290
 
@@ -145,7 +145,7 @@ amplitude = .14
 #[@animated_iconsdatadir@/icon-pulse.png]
 [Pulse]
 
-#I+[0;1000] Duration of the pulse :
+#I+[100;1000] Duration of the pulse :
 #{In ms.}
 duration = 500
 
@@ -165,7 +165,7 @@ same shape = true
 #[@animated_iconsdatadir@/icon-bounce.png]
 [Bounce]
 
-#I+[0;1000] Duration of the bounce :
+#I+[100;1000] Duration of the bounce :
 #{In ms.}
 duration = 800
 
@@ -185,7 +185,7 @@ flatten = .4
 #[@animated_iconsdatadir@/icon-blink.png]
 [Blink]
 
-#I+[0;2000] Duration of the blink :
+#I+[100;2000] Duration of the blink :
 #{In ms.}
 duration = 800
 
