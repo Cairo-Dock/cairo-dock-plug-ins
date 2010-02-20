@@ -26,6 +26,7 @@
 #include "applet-xml.h"
 #include "applet-nvidia.h"
 #include "applet-cpusage.h"
+#include "applet-disk-usage.h"
 
 
 char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
@@ -76,74 +77,6 @@ double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
 	fValueInKo = _Ko_to_Mo (myApplet ,fValueInKo);
 	fValueInKo = _Ko_to_Mo (myApplet ,fValueInKo);
 	return fValueInKo;
-}
-
-
-gchar* _AdjustPrecision0 (CairoDockModuleInstance *myApplet , double fValue)
-{
-	gchar *cReturnValue;
-	gint iInteger;
-	gint iDecimal;
-	
-	iInteger = (int)fValue;
-	iDecimal = (int)((fValue-iInteger)*10);
-	
-	if (iDecimal >= 5)
-		iInteger++;
-	
-	cReturnValue =  g_strdup_printf ("%i", iInteger);
-	
-	return cReturnValue;
-	g_free (cReturnValue);
-}
-
-gchar* _AdjustPrecision1 (CairoDockModuleInstance *myApplet , double fValue)
-{
-	gchar *cReturnValue;
-	gint iInteger;
-	gint iDecimal;
-	gint iAfterDecimal;
-	
-	iAfterDecimal = (int)(((fValue*10)-(int)(fValue*10))*10);
-	iInteger = (int)fValue;
-	iDecimal = (int)((fValue-iInteger)*10);
-	
-	if (iAfterDecimal >= 5)
-		iDecimal++;
-	if (iDecimal == 10)
-		cReturnValue =  g_strdup_printf ("%i.0", iInteger+1);
-	else
-		cReturnValue =  g_strdup_printf ("%i.%i", iInteger, iDecimal);
-	
-	return cReturnValue;
-	g_free (cReturnValue);
-}
-
-gchar* _AdjustPrecision2 (CairoDockModuleInstance *myApplet , double fValue)
-{
-	gchar *cReturnValue;
-	gint iInteger;
-	gint iDecimal;
-	gint iAfterDecimal;
-	
-	iAfterDecimal = (int)(((fValue*100)-(int)(fValue*100))*10);
-	iInteger = (int)fValue;
-	iDecimal = (int)((fValue-iInteger)*100);
-	
-	if (iAfterDecimal >= 5)
-		iDecimal++;
-	if (iDecimal == 100)
-		cReturnValue =  g_strdup_printf ("%i.00", iInteger+1);
-	else
-	{
-		if (iDecimal < 10)
-			cReturnValue =  g_strdup_printf ("%i.0%i", iInteger, iDecimal);
-		else
-			cReturnValue =  g_strdup_printf ("%i.%i", iInteger, iDecimal);
-	}
-	
-	return cReturnValue;
-	g_free (cReturnValue);
 }
 
 
@@ -253,94 +186,94 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 										
 				else if (strcmp (pTextZone->cInternal, "cpuperc") == 0)
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fCpuPercent));
-					
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
+										
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision1 (myApplet, myData.fCpuPercent));
+						pTextZone->cResult = g_strdup_printf ("%.1f", myData.fCpuPercent);
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fCpuPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "cpuperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fCpuPercent));
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("0%s", _AdjustPrecision0 (myApplet, myData.fCpuPercent));
+						pTextZone->cResult = g_strdup_printf ("0%.0f", myData.fCpuPercent);
 					else if (atof(pTextZone->cResult) == 100)
 						pTextZone->cResult = g_strdup_printf ("99");
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fCpuPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 				}
 					
 				else if (strcmp (pTextZone->cInternal, "memperc") == 0)
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fRamPercent));
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("0%s", _AdjustPrecision1 (myApplet, myData.fRamPercent));
+						pTextZone->cResult = g_strdup_printf ("0%.0f", myData.fRamPercent);
 					else if (atof(pTextZone->cResult) == 100)
 						pTextZone->cResult = g_strdup_printf ("99");						
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fRamPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "memperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fRamPercent));
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision1 (myApplet, myData.fRamPercent));
+						pTextZone->cResult = g_strdup_printf ("%.1f", myData.fRamPercent);
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fRamPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 				}
 	
 										
 				else if (strcmp (pTextZone->cInternal, "mem") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.ramTotal /100. * myData.fRamPercent));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "memg") == 0) // Identique à mem mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.ramTotal /100. * myData.fRamPercent));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision2 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 
 				else if (strcmp (pTextZone->cInternal, "memmax") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.ramTotal));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "memmaxg") == 0) // Identique à memmax mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.ramTotal));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision2 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
 								
 				else if (strcmp (pTextZone->cInternal, "swapperc") == 0)
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fSwapPercent));
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision1 (myApplet, myData.fSwapPercent));
+						pTextZone->cResult = g_strdup_printf ("%.1f", myData.fSwapPercent);
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fSwapPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);				
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "swapperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fSwapPercent));
+					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("0%s", _AdjustPrecision0 (myApplet, myData.fSwapPercent));
+						pTextZone->cResult = g_strdup_printf ("0%.0f", myData.fSwapPercent);
 					else if (atof(pTextZone->cResult) == 100)
 						pTextZone->cResult = g_strdup_printf ("99");
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, myData.fSwapPercent));
+						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "swap") == 0) // en Mo
@@ -348,29 +281,29 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.swapUsed));
 					
 					if (atof(pTextZone->cResult) < 10)
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision2 (myApplet, atof(pTextZone->cResult)));
+						pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 					else if (atof(pTextZone->cResult) < 100)
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision1 (myApplet, atof(pTextZone->cResult)));
+						pTextZone->cResult = g_strdup_printf ("%.1f", atof(pTextZone->cResult));
 					else
-						pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, atof(pTextZone->cResult)));
+						pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "swapg") == 0) // Identique à swap mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.swapUsed));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision2 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "swapmax") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.swapTotal));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision0 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "swapmaxg") == 0) // Identique à swapmax mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.swapTotal));
-					pTextZone->cResult = g_strdup_printf ("%s", _AdjustPrecision2 (myApplet, atof(pTextZone->cResult)));
+					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "nvtemp") == 0)
@@ -400,6 +333,35 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					cd_sysmonitor_get_uptime (&cUpTime, &cActivityTime);		
 					pTextZone->cResult = g_strdup_printf ("%s", cUpTime);			
 				}
+				
+				else if (strcmp (pTextZone->cInternal, "fs_size") == 0)
+				{
+					if (strcmp (pTextZone->cMountPoint, "") != 0)
+						pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 0));
+				}
+				
+				else if (strcmp (pTextZone->cInternal, "fs_free") == 0)
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 1));
+					
+				else if (strcmp (pTextZone->cInternal, "fs_used") == 0)
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 2));
+				
+				else if (strcmp (pTextZone->cInternal, "fs_freeperc") == 0)
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 3));
+				
+				else if (strcmp (pTextZone->cInternal, "fs_usedperc") == 0)
+				{
+					if (strcmp (pTextZone->cMountPoint, "") == 0 || pTextZone->cMountPoint == NULL)
+						pTextZone->cMountPoint = g_strdup_printf ("/");	
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 4));
+				}
+				
+				else if (strcmp (pTextZone->cInternal, "fs_type") == 0)
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 5));
+				
+				else if (strcmp (pTextZone->cInternal, "fs_device") == 0)
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 6));				
+				
 			}			
 		}
 	}	
@@ -427,10 +389,16 @@ void cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 				pTextZone->bRefresh = TRUE;
 				pTextZone->iTimer = 0; // On remet le timer à 0
 			}
-			else
-				pTextZone->bRefresh = FALSE;
-		}
-	}	
+			else // Pas de refresh de spécifié
+			{
+				
+				if (pTextZone->cText == NULL || strcmp (pTextZone->cText, "") == 0) // La récupération s'est mal passé -> On relance !
+					pTextZone->bRefresh = TRUE;
+				else			
+					pTextZone->bRefresh = FALSE; // On a récupéré l'info -> On arrête là !
+			}
+		}	
+	}
 	cd_applet_update_my_icon (myApplet); // Quand tous les textes sont chargés, on peut dessiner
 	myData.pPeriodicRefreshTask = NULL;
 }
@@ -452,8 +420,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	{
 		cairo_save (myDrawContext);
 		cairo_translate (myDrawContext,
-				.5*myConfig.iBorderThickness,
-				.5*myConfig.iBorderThickness);		
+			.5*myConfig.iBorderThickness,
+			.5*myConfig.iBorderThickness);		
 		cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
 			0.,
 			0.,
@@ -494,9 +462,6 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	
 	
 	
-	
-	
-	
 	// ################################################################################################################################################################
 	// ############ DEBUT DU DESSIN DU TEXTE
 	// ################################################################################################################################################################
@@ -516,9 +481,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	double fCurrentLineWidth = 0; // Dimension de la ligne complète (= avec plusieurs zones de textes)
 	double fCurrentLineHeight = 0;
 	gboolean bFirstTextInLine = TRUE;
-		
-		
-		
+	
+	
 	if (myData.pTextZoneList == NULL)
 		return;
 	
@@ -634,10 +598,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight/2 - pTextZone->iHeight/2; 
 				else // C'est un texte -> On décale un peu pour aligner
 					myData.fCurrentYalign = myData.fCurrentY  + fCurrentLineHeight/2 - pTextZone->iFontSizeHeight/2;
-			}
-			
-			
-			
+			}			
 			else if (strcmp (pTextZone->cAlignHeight, "low") == 0)
 			{
 				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
@@ -645,33 +606,13 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				else // C'est un texte -> On décale un peu pour aligner
 					myData.fCurrentYalign = myData.fCurrentY + fCurrentLineHeight - pTextZone->iFontSizeHeight;
 			}
-			
-			
-			
-			
 			else if (strcmp (pTextZone->cAlignHeight, "top") == 0)
 			{
 				if (pTextZone->cImgPath != NULL || pTextZone->bBar || pTextZone->bLimitedBar )
 					myData.fCurrentYalign = myData.fCurrentY; // On laisse à la position courante
 				else // C'est un texte -> On décale un peu pour aligner
 					myData.fCurrentYalign = myData.fCurrentY;
-					
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			PangoFontDescription *fd = pango_font_description_from_string (pTextZone->cFont);
@@ -699,10 +640,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					int iWidth, iHeight;
 					CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + iSpaceBetweenElements);
-					
 				}
-				
-					
 				
 				int i;
 				for (i=0 ; i < 2 ; i++)
@@ -710,7 +648,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					if (i==0)
 					{
 						myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
-						value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);
+						value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);						
 					}
 					else
 						value = pTextZone->iWidth;						
@@ -769,12 +707,6 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			}
 			else // C'est un texte !
 			{
-				//~ cairo_move_to (myDrawContext,
-					//~ myData.fCurrentX,
-					//~ myData.fCurrentYalign + (fCurrentLineHeight *4/5) - (log.height * 4/5)); // *4/5 pour se caler sur le bas du texte avec la font la plus grosse
-				
-				
-				
 				cairo_move_to (myDrawContext,
 					myData.fCurrentX + pTextZone->iOverrideW,
 					myData.fCurrentYalign + pTextZone->iOverrideH);

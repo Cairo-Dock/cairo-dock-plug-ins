@@ -25,6 +25,8 @@ libcd_Doncky_la_SOURCES = \
 	applet-nvidia.h\
 	applet-top.c\
 	applet-top.h\
+	applet-disk-usage.c\
+	applet-disk-usage.h\
 	applet-struct.h
 
 

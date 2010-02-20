@@ -50,6 +50,11 @@ typedef struct {
 	gint iOverrideH;
 	gint iOverrideW;
 	gint iSpaceBetweenLines;
+	// Disk usage
+	gchar *cMountPoint;
+	// Graph:
+	double graphHistory[300];
+	
 } TextZone;
 
 

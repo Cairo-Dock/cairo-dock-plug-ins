@@ -33,11 +33,22 @@ typedef enum _CDSysmonitorDisplayType {
 	CD_SYSMONITOR_BAR,
 	CD_SYSMONITOR_NB_TYPES
 	} CDSysmonitorDisplayType;
+	
+
+
+typedef struct _CDDiskUsage {
+	long long iPrevAvail;
+	long long iAvail;
+	long long iFree;
+	long long iTotal;
+	long long iUsed;
+	int iType;
+	} CDDiskUsage;
+
+
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	
-	gint iRefreshTime;   // A NETTOYER
 	
 	gboolean bDisplayBackground;
 	double fBackgroundColor1[4];
@@ -45,12 +56,11 @@ struct _AppletConfig {
 	gint iBackgroundRadius;
 	gint iBorderThickness;
 	double fBorderColor[4];
-	double fDefaultTextColor[4];   // A NETTOYER
-	gchar *cDefaultFont;   // A NETTOYER
+	double fDefaultTextColor[4];
+	gchar *cDefaultFont;
 	gint iTextMargin;
-	gint iSpaceBetweenLines;
-	
-	gchar *cXmlFilePath;   // A NETTOYER
+	gint iSpaceBetweenLines;	
+	gchar *cXmlFilePath;
 	
 	
 	// REPRIS DE SYSTEM-MONITOR :
@@ -120,9 +130,11 @@ struct _AppletData {
 	gchar *cLastAlignHeight;
 	gint iLastLineHeight;
 	gboolean bLastWasSameLine;
+	gint iMaxGraphHistory;
 	
 	cairo_surface_t *pImgSurface;
-
+	
+	
 	
 	// REPRIS DE SYSTEM-MONITOR :
 	

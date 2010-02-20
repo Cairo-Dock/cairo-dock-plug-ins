@@ -47,19 +47,6 @@ CD_APPLET_ON_SCROLL_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-
-	//~ // On recupere les donnees de la CG.
-		//~ if (myData.cGPUName == NULL)  // nvidia-config n'a encore jamais ete appele.
-			//~ cd_sysmonitor_get_nvidia_info (myApplet);
-		//~ if (myData.cGPUName && strcmp (myData.cGPUName, "none") != 0)  // nvidia-config est passe.
-		//~ {
-			//~ if (!myConfig.bShowNvidia)
-				//~ cd_sysmonitor_get_nvidia_data (myApplet);  // le thread ne passe pas par la => pas de conflit.
-			//~ cGCInfos = g_strdup_printf ("\n%s : %s\n %s : %d%s \n %s : %s\n %s : %d°C", D_("GPU model"), myData.cGPUName, D_("Video Ram"), myData.iVideoRam, D_("Mb"), D_("Driver Version"), myData.cDriverVersion, D_("Core Temperature"), myData.iGPUTemp);
-		//~ }
-
-
-
 	cd_doncky_free_item_list (myApplet);
 	cd_doncky_readxml (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END

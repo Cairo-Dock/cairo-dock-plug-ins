@@ -103,6 +103,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			{				
 				cNodeContent = xmlNodeGetContent (pXmlSubNode);
 				
+				
 				// On gère le refresh à part pour lui imposer à 0 si rien n'est renseigné
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "refresh") == 0)
 				{
@@ -159,6 +160,13 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					pTextZone->cAlignHeight = g_strdup_printf("middle");	
 					
 				
+				// On gère le mount_point à part pour lui imposer à '/' si rien n'est renseigné 
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "mount_point") == 0)
+					pTextZone->cMountPoint = xmlNodeGetContent (pXmlSubNode);
+				else if (pTextZone->cMountPoint == NULL)
+					pTextZone->cMountPoint = g_strdup_printf ("/");
+				
+				
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "font") == 0)
 				{
@@ -206,6 +214,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "echo") == 0)
 				{
+					pTextZone->cText = g_strdup_printf (" "); // On initialise le 1er texte à afficher à " "
 					// On insère sh -c 'echo " AVANT la commande et "' APRES
 					gchar *cXmlCommand;
 					cXmlCommand = xmlNodeGetContent (pXmlSubNode);			
@@ -219,6 +228,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "cmd") == 0)
 				{
+					pTextZone->cText = g_strdup_printf (" "); // On initialise le 1er texte à afficher à " "
 					pTextZone->cCommand = xmlNodeGetContent (pXmlSubNode);															
 				}			
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "br") == 0)
@@ -234,8 +244,10 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					pTextZone->bNextNewLine = FALSE;													
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "internal") == 0)
+				{
+					pTextZone->cText = g_strdup_printf (" "); // On initialise le 1er texte à afficher à " "
 					pTextZone->cInternal = xmlNodeGetContent (pXmlSubNode);
-				
+				}
 				else if ((xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0) || (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bar") == 0))
 				{
 					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
@@ -301,6 +313,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					ltrim( cTempo, ";" );					
 					pTextZone->iOverrideW = atoi(cTempo);								
 				}
+				
 				xmlFree (cNodeContent);				
 			}			
 		}

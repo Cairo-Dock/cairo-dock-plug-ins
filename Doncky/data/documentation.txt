@@ -80,6 +80,10 @@ override	: Permet de forcer le positionnement d'une zone sans influencer la tail
 		  Utilisation :  <override>Height;Width</override>
 		  Ex:  <override>7;0</override>
 
+mount_point	: Permet de spécifier un point de montage à utiliser pour les commandes internes fs
+		  Si aucun point de montage n'est spécifié -> utilisation de / par défaut.
+		  Ex: <mount_point>/home</mount_point>
+
 
 LISTE DES COMMANDES INTERNES :
 
@@ -102,3 +106,12 @@ nvname		: Nom de la carte graphique (cartes NVIDIA uniquement)
 nvdriver	: Version du driver (cartes NVIDIA uniquement)
 nvram		: RAM CG (cartes NVIDIA uniquement)
 uptime		: Temps de connexion
+fs_size		: Taille totale du disque spécifié grace à la balise <mount_point> (en Go)
+fs_free		: Espace libre du disque spécifié grace à la balise <mount_point> (en Go)
+fs_used		: Espace utilisé du disque spécifié grace à la balise <mount_point> (en Go)
+fs_freeperc	: Espace libre du disque spécifié grace à la balise <mount_point> en %
+fs_usedperc	: Espace utilisé du disque spécifié grace à la balise <mount_point> en %
+fs_type		: Type du disque spécifié grace à la balise <mount_point> (ex: ext4)
+fs_device	: Nom du disque spécifié grace à la balise <mount_point> (ex: sda1)
+
+

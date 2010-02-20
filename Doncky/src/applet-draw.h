@@ -28,9 +28,6 @@ char* ltrim( char* str, const char* t );
 char* rtrim( char* str, const char* t );
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
 double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
-gchar* _AdjustPrecision0 (CairoDockModuleInstance *myApplet , double fValue);
-gchar* _AdjustPrecision1 (CairoDockModuleInstance *myApplet , double fValue);
-gchar* _AdjustPrecision2 (CairoDockModuleInstance *myApplet , double fValue);
 
 void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet);
 

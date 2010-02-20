@@ -33,7 +33,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	double couleur[4] = {0., 0., 0.5, 1.};
 	
 	//\___________________ Section Configuration
-	myConfig.iRefreshTime 		= CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");   // A NETTOYER
+	myConfig.cXmlFilePath = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "xml_filepath", "");
+	if (myConfig.cXmlFilePath == NULL)
+		myConfig.cXmlFilePath = g_strdup_printf ("%s/default.xml", MY_APPLET_SHARE_DATA_DIR);
 	
 	//\___________________ Section Appearance	
 	// decoration
@@ -49,15 +51,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDefaultFont = CD_CONFIG_GET_STRING ("Appearance", "default_font");  // avec Pango il suffit de lui passer la chaine issue du GtkFontWidget.
 	myConfig.iTextMargin = CD_CONFIG_GET_INTEGER ("Appearance", "text_margin");  // marge du texte en haut et à gauche/droite suivant l'alignement.
 	myConfig.iSpaceBetweenLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines");
-	
-	
-	//\___________________ POUR ESSAIS UNIQUEMENT (A SUPPRIMER QUAND OK)
-	myConfig.cXmlFilePath = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "xml_filepath", "");
-	if (myConfig.cXmlFilePath == NULL)
-		myConfig.cXmlFilePath = g_strdup_printf ("%s/default.xml", MY_APPLET_SHARE_DATA_DIR);
-	
-	
-	
+		
 	
 	// REPRIS DE SYSTEM-MONITOR: (on impose les valeurs)
 	myConfig.iCheckInterval = 1;
@@ -74,6 +68,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbDisplayedProcesses = 4; // nb top
 	myConfig.iProcessCheckInterval = 1; // top delay en s
 	
+	myData.iMaxGraphHistory = 300; // -> 5 minutes de graph
 	
 	
 CD_APPLET_GET_CONFIG_END
