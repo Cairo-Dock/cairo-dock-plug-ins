@@ -45,13 +45,12 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		int iWidth, iHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		double fMaxScale = cairo_dock_get_max_scale (myContainer);
-		double fTextXOffset, fTextYOffset;
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			myDrawContext,
 			&myConfig.textDescription,
 			fMaxScale,
 			iWidth,
-			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight, &fTextXOffset, &fTextYOffset);
+			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight, NULL, NULL);
 		myData.iCurrentTextWidth *= fMaxScale;
 		myData.iCurrentTextHeight *= fMaxScale;
 		if (g_bUseOpenGL)

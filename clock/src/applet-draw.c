@@ -90,14 +90,13 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			labelDescription.fBackgroundColor[3] = 0;
 			labelDescription.bOutlined = FALSE;
 			labelDescription.iMargin = 0;
-			double fTextXOffset, fTextYOffset;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
 				myDrawContext,
 				&labelDescription,
 				fScale,
 				iWidth,
 				&myData.iDateWidth, &myData.iDateHeight,
-				&fTextXOffset, &fTextYOffset);
+				NULL, NULL);
 			myData.iDateWidth *= fScale;
 			myData.iDateHeight *= fScale;
 			//g_print ("date : %dx%d\n", myData.iDateWidth, myData.iDateHeight);

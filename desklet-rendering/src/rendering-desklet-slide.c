@@ -380,11 +380,11 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
-			if (pIcon->bHasIndicator && g_iIndicatorTexture != 0)
+			if (pIcon->bHasIndicator && g_pIndicatorBuffer.iTexture != 0)
 			{
 				glPushMatrix ();
-				glTranslatef (0., - pIcon->fHeight/2 + g_fIndicatorHeight/2 * pIcon->fWidth / g_fIndicatorWidth, 0.);
-				_cairo_dock_apply_texture_at_size (g_iIndicatorTexture, pIcon->fWidth, g_fIndicatorHeight * pIcon->fWidth / g_fIndicatorWidth);
+				glTranslatef (0., - pIcon->fHeight/2 + g_pIndicatorBuffer.iHeight/2 * pIcon->fWidth / g_pIndicatorBuffer.iWidth, 0.);
+				_cairo_dock_apply_texture_at_size (g_pIndicatorBuffer.iTexture, pIcon->fWidth, g_pIndicatorBuffer.iHeight * pIcon->fWidth / g_pIndicatorBuffer.iWidth);
 				glPopMatrix ();
 			}
 			

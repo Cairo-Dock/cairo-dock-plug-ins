@@ -1165,7 +1165,7 @@ void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine les decorations dedans.
 	glPushMatrix ();
-	cairo_dock_draw_frame_background_opengl (g_iBackgroundTexture,
+	cairo_dock_draw_frame_background_opengl (g_pDockBackgroundBuffer.iTexture,
 		w + 2 * dw, fFrameHeight,
 		dx, dy,
 		pVertexTab, iNbVertex,
