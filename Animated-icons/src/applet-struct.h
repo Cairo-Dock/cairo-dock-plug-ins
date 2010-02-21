@@ -161,6 +161,8 @@ typedef struct _CDAnimationData {
 	gint iBlinkCount;
 	gdouble fBlinkAlpha;
 	
+	gboolean bIsUnfolding;
+	
 	gint iReflectShadeCount;
 	} CDAnimationData;
 

@@ -48,8 +48,8 @@ extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_icons;
 
-const  gint X_BORDER_SPACE = 40;
-const  gint ARROW_TIP = 10;  // pour gerer la pointe de la fleche.
+const gint X_BORDER_SPACE = 40;
+const gint ARROW_TIP = 5;  // pour gerer la pointe de la fleche.
 
 /// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom.
 
@@ -101,8 +101,8 @@ void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	{
 		int iMaxIconWidth = ((Icon*)pDock->icons->data)->fWidth;  // approximation un peu bof.
 		pDock->iMaxDockWidth = nRowsX * (iMaxIconWidth + my_diapo_simple_iconGapX) + 2*X_BORDER_SPACE;
-		pDock->iMaxDockHeight = (nRowsY - 1) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) +  // les icones
-			pDock->iMaxIconHeight * my_diapo_simple_fScaleMax +  // les icones des bords zooment
+		pDock->iMaxDockHeight = (nRowsY - 1) * (pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY) +  // les icones
+			pDock->iMaxIconHeight * pDock->container.fRatio * my_diapo_simple_fScaleMax +  // les icones des bords zooment
 			myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
 			my_diapo_simple_lineWidth + // les demi-lignes du haut et du bas
 			my_diapo_simple_arrowHeight + ARROW_TIP;  // la fleche etendue
@@ -284,7 +284,7 @@ void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, guint nRowsX, guint nRowsY, gint Mx, gint My)
 {
 	// On calcule la position de base pour toutes les icones
-	int iOffsetY = .5 * pDock->iMaxIconHeight * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
+	int iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
 		myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
 		.5 * my_diapo_simple_lineWidth;  // demi-ligne du haut;
 	
@@ -420,9 +420,9 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	const gdouble arrow_dec = 2;
-	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE;
+	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE - 2 * my_diapo_simple_radius;
 	gdouble fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-	gdouble fDockOffsetX = X_BORDER_SPACE;
+	gdouble fDockOffsetX = X_BORDER_SPACE + my_diapo_simple_radius;
 	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight + ARROW_TIP);
 	
 	cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
@@ -485,9 +485,9 @@ static void cairo_dock_draw_frame_horizontal_for_diapo_simple (cairo_t *pCairoCo
 static void cairo_dock_draw_frame_vertical_for_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	const gdouble arrow_dec = 2;
-	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE;
+	gdouble fFrameWidth  = pDock->iMaxDockWidth - 2 * X_BORDER_SPACE - 2 * my_diapo_simple_radius;
 	gdouble fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-	gdouble fDockOffsetX = X_BORDER_SPACE;
+	gdouble fDockOffsetX = X_BORDER_SPACE + my_diapo_simple_radius;
 	gdouble fDockOffsetY = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight + ARROW_TIP);
 	
 	cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);

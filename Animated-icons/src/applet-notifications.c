@@ -114,6 +114,13 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 {
 	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3 && !myAccessibility.bShowSubDockOnClick)
+	{
+		cd_animations_free_data (pUserData, pIcon);
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
 	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
 	
 	if (bStartAnimation)
@@ -129,6 +136,12 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 {
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3)
+	{
+		cd_animations_free_data (pUserData, pIcon);
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
 	
 	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
@@ -211,7 +224,7 @@ static void _cd_animations_render_rays (Icon *pIcon, CairoDock *pDock, CDAnimati
 gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	if (pData == NULL)
+	if (pData == NULL || pData->bIsUnfolding)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	if (pData->bIsBouncing)
@@ -248,6 +261,12 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pData->bIsUnfolding)
+	{
+		
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
 	
 	gboolean bHasBeenPulsed = FALSE;
 	if (*bHasBeenRendered)
