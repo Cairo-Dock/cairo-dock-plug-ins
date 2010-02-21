@@ -34,7 +34,7 @@
 static double *s_pReferenceCurveS = NULL;
 static double *s_pReferenceCurveX = NULL;
 static double *s_pReferenceCurveY = NULL;
-int iVanishingPointY = 200;
+extern int iVanishingPointY;
 
 extern CDSpeparatorType my_iDrawSeparator3D;
 extern double my_fSeparatorColor[4];
@@ -61,8 +61,47 @@ extern GLuint my_iFlatSeparatorTexture;
 	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0.01)));\
 	double xi = xCurve (my_fCurveCurvature, ti);\
 	double w, dw = 0
+
+static void cd_rendering_calculate_reference_curve (double alpha)
+{
+	if (s_pReferenceCurveS == NULL)
+	{
+		s_pReferenceCurveS = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
+	}
 	
-void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
+	if (s_pReferenceCurveX == NULL)
+	{
+		s_pReferenceCurveX = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
+	}
+	
+	if (s_pReferenceCurveY == NULL)
+	{
+		s_pReferenceCurveY = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
+	}
+	
+	double s, x, y;
+	int i;
+	for (i = 0; i < RENDERING_INTERPOLATION_NB_PTS+1; i ++)
+	{
+		s = (double) i / RENDERING_INTERPOLATION_NB_PTS;
+		
+		s_pReferenceCurveS[i] = s;
+		s_pReferenceCurveX[i] = xCurve (my_fCurveCurvature, s);
+		s_pReferenceCurveY[i] = yCurve (s);
+	}
+}
+
+static double cd_rendering_interpol_curve_parameter (double x)
+{
+	return cd_rendering_interpol (x, s_pReferenceCurveX, s_pReferenceCurveS);
+}
+
+static double cd_rendering_interpol_curve_height (double x)
+{
+	return cd_rendering_interpol (x, s_pReferenceCurveX, s_pReferenceCurveY);
+}
+
+static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 {
 	static double fCurveCurvature = 0;
 	if (s_pReferenceCurveS == NULL || my_fCurveCurvature != fCurveCurvature)
@@ -464,7 +503,7 @@ static void cairo_dock_draw_curved_frame_vertical (cairo_t *pCairoContext, doubl
 	// on trace la ligne du bas
 	cairo_rel_line_to (pCairoContext, 0, - fFrameWidth);
 }
-void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameWidth, double fControlHeight, double fDockOffsetX, double fDockOffsetY, gboolean bHorizontal, int sens)
+static void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameWidth, double fControlHeight, double fDockOffsetX, double fDockOffsetY, gboolean bHorizontal, int sens)
 {
 	if (bHorizontal)
 		cairo_dock_draw_curved_frame_horizontal (pCairoContext, fFrameWidth, fControlHeight, fDockOffsetX, fDockOffsetY, sens);
@@ -472,48 +511,7 @@ void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameWidth, d
 		cairo_dock_draw_curved_frame_vertical (pCairoContext, fFrameWidth, fControlHeight, fDockOffsetX, fDockOffsetY, sens);
 }
 
-
-void cd_rendering_calculate_reference_curve (double alpha)
-{
-	if (s_pReferenceCurveS == NULL)
-	{
-		s_pReferenceCurveS = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
-	}
-	
-	if (s_pReferenceCurveX == NULL)
-	{
-		s_pReferenceCurveX = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
-	}
-	
-	if (s_pReferenceCurveY == NULL)
-	{
-		s_pReferenceCurveY = g_new (double, RENDERING_INTERPOLATION_NB_PTS+1);
-	}
-	
-	double s, x, y;
-	int i;
-	for (i = 0; i < RENDERING_INTERPOLATION_NB_PTS+1; i ++)
-	{
-		s = (double) i / RENDERING_INTERPOLATION_NB_PTS;
-		
-		s_pReferenceCurveS[i] = s;
-		s_pReferenceCurveX[i] = xCurve (my_fCurveCurvature, s);
-		s_pReferenceCurveY[i] = yCurve (s);
-	}
-}
-
-double cd_rendering_interpol_curve_parameter (double x)
-{
-	return cd_rendering_interpol (x, s_pReferenceCurveX, s_pReferenceCurveS);
-}
-
-double cd_rendering_interpol_curve_height (double x)
-{
-	return cd_rendering_interpol (x, s_pReferenceCurveX, s_pReferenceCurveY);
-}
-
-
-void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
+static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On definit la position du cadre.
 	double fLineWidth = myBackground.iDockLineWidth;
@@ -739,7 +737,7 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 	return (fXLeft <= fXMax && floor (fXRight) > fXMin);
 }
 
-void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
+static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
 {
 	//\____________________ On trace le cadre.
 	double fLineWidth = myBackground.iDockLineWidth;
@@ -1105,7 +1103,9 @@ GLfloat *cairo_dock_generate_curve_path (double fRelativeControlHeight, int *iNb
 	_cairo_dock_return_vertex_tab ();
 }
 
-void cd_rendering_render_curve_opengl (CairoDock *pDock)
+
+
+static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 {
 	//\____________________ On definit la position du cadre.
 	double fLineWidth = myBackground.iDockLineWidth;

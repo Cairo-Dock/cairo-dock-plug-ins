@@ -46,7 +46,7 @@ extern GLuint my_iFlatSeparatorTexture;
 	double r = MIN (myBackground.iDockRadius, (hi + h0) / 2);\
 	double gamma = 0, h, w, dw = 0
 
-void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
+static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
@@ -120,7 +120,7 @@ void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 }
 
-void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)
+static void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)
 {
 	icon->fDrawX = icon->fX;
 	icon->fDrawY = icon->fY + fReflectionOffsetY;
@@ -330,7 +330,7 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 }
 
 
-void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
+static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
 	h = pDock->iDecorationsHeight;
@@ -572,7 +572,7 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 	return (fXLeft <= fXMax && floor (fXRight) > fXMin);
 }
 
-void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
+static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
 {
 	//g_print ("%s ((%d;%d) x (%d;%d) / (%dx%d))\n", __func__, pArea->x, pArea->y, pArea->width, pArea->height, pDock->container.iWidth, pDock->container.iHeight);
 	double fLineWidth = myBackground.iDockLineWidth;
@@ -763,7 +763,7 @@ void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, CairoDock *
 }
 
 
-Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
+static Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 {
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
@@ -785,7 +785,8 @@ Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 }
 
 
-void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
+
+static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 {
 	//\____________________ On genere le cadre.
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
@@ -933,172 +934,6 @@ void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 	}
-}
-
-
-void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
-{
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
-	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
-	
-	double fHeight = pDock->iDecorationsHeight;
-	double fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
-	double fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
-	
-	double fDeltaXLeft = fHeight * fLeftInclination;
-	double fDeltaXRight = fHeight * fRightInclination;
-	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
-	
-	double fDockOffsetX, fDockOffsetY;
-	fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
-	fDockOffsetY = fHeight + myBackground.iDockLineWidth;
-	
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4f (1., 1., 1., 1.);
-	
-	glEnable (GL_TEXTURE_2D);
-	glBindTexture (GL_TEXTURE_2D, my_iFlatSeparatorTexture);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	
-	glPolygonMode (GL_FRONT, GL_FILL);
-	
-	if (pDock->container.bIsHorizontal)
-	{
-		if (! pDock->container.bDirectionUp)
-			fDockOffsetY = pDock->container.iHeight - fDockOffsetY;
-		
-		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);  // coin haut gauche.
-		if (! pDock->container.bDirectionUp)
-			glScalef (1., -1., 1.);
-	}
-	else
-	{
-		if (pDock->container.bDirectionUp)
-			fDockOffsetY = pDock->container.iHeight - fDockOffsetY;
-		fDockOffsetX = pDock->container.iWidth - fDockOffsetX;
-		
-		glTranslatef (fDockOffsetY, fDockOffsetX, 0.);
-		glRotatef (-90., 0., 0., 1.);
-		if (pDock->container.bDirectionUp)
-			glScalef (1., -1., 1.);
-	}
-	
-	glBegin(GL_QUADS);
-	glTexCoord2f(0., 0.);
-	glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
-	glTexCoord2f(1., 0.);
-	glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
-	glTexCoord2f(1., 1.);
-	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
-	glTexCoord2f(0., 1.);
-	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
-	glEnd();
-	
-	glDisable (GL_TEXTURE_2D);
-	glDisable (GL_BLEND);
-}
-
-void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround, Icon *prev_icon, Icon *next_icon)
-{
-	if (prev_icon == NULL)
-		prev_icon = icon;
-	if (next_icon == NULL)
-		next_icon = icon;
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
-	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
-	//g_print ("%s : hi = %.2f/%.2f\n", icon->cName, myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin, pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale));
-	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
-	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
-	
-	double fHeight, fBigWidth, fLittleWidth;
-	if (bBackGround)
-	{
-		fHeight = pDock->iDecorationsHeight + myBackground.iDockLineWidth - hi;
-		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0);
-		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0 - fHeight);
-	}
-	else
-	{
-		fHeight = hi + myBackground.iDockLineWidth;
-		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
-		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
-	}
-	double fDeltaXLeft = fHeight * fLeftInclination;
-	double fDeltaXRight = fHeight * fRightInclination;
-	
-	double fDockOffsetX, fDockOffsetY;
-	if (bBackGround)
-	{
-		fDockOffsetX = icon->fDrawX - fHeight * fLeftInclination;
-		fDockOffsetY = pDock->iDecorationsHeight + 2*myBackground.iDockLineWidth;
-	}
-	else
-	{
-		fDockOffsetX = icon->fDrawX;
-		fDockOffsetY = fHeight;
-	}
-	//g_print ("X : %.2f + %.2f/%.2f ; Y : %.2f + %.2f\n", fDockOffsetX, fBigWidth, fLittleWidth, fDockOffsetY, fHeight);
-	
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_ONE, GL_ZERO);
-	glColor4f (0., 0., 0., 0.);
-	
-	glPolygonMode (GL_FRONT, GL_FILL);
-	
-	if (pDock->container.bIsHorizontal)
-	{
-		if (! pDock->container.bDirectionUp)
-			fDockOffsetY = pDock->container.iHeight - fDockOffsetY;
-		
-		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);  // coin haut gauche.
-		if (! pDock->container.bDirectionUp)
-			glScalef (1., -1., 1.);
-	}
-	else
-	{
-		if (pDock->container.bDirectionUp)
-			fDockOffsetY = pDock->container.iHeight - fDockOffsetY;
-		fDockOffsetX = pDock->container.iWidth - fDockOffsetX;
-		
-		glTranslatef (fDockOffsetY, fDockOffsetX, 0.);
-		glRotatef (-90., 0., 0., 1.);
-		if (pDock->container.bDirectionUp)
-			glScalef (1., -1., 1.);
-	}
-	
-	glBegin(GL_QUADS);
-	glVertex3f(0., 0., 0.);  // Bottom Left Of The Texture and Quad
-	glVertex3f(fLittleWidth, 0., 0.);  // Bottom Right Of The Texture and Quad
-	glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);  // Top Right Of The Texture and Quad
-	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
-	glEnd();
-	
-	if (myBackground.iDockLineWidth != 0)
-	{
-		glPolygonMode (GL_FRONT, GL_LINE);
-		glEnable (GL_LINE_SMOOTH);
-		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
-		glLineWidth (myBackground.iDockLineWidth);
-		glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
-		
-		glBegin(GL_LINES);
-		glVertex3f(fLittleWidth, 0., 0.);
-		glVertex3f(fLittleWidth + fDeltaXRight, - fHeight, 0.);
-		glEnd();
-		
-		glBegin(GL_LINES);
-		glVertex3f(0., 0., 0.);
-		glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);
-		glEnd();
-		
-		glDisable(GL_LINE_SMOOTH);
-	}
-	
-	glDisable (GL_BLEND);
 }
 
 

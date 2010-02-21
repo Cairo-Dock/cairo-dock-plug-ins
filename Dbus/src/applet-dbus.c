@@ -190,9 +190,9 @@ void cd_dbus_stop_service (void)
 				cairo_dock_redraw_container (pContainer);
 			}
 		}
-		g_object_unref (pDbusApplet);
 		if (pDbusApplet->pSubApplet != NULL)
 			g_object_unref (pDbusApplet->pSubApplet);
+		g_object_unref (pDbusApplet);
 	}
 	g_list_free (myData.pAppletList);
 	myData.pAppletList = NULL;

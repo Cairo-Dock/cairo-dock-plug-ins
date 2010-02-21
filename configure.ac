@@ -281,7 +281,7 @@ AC_SUBST(cairo_penguindatadir, "${pkgdatadir}/Cairo-Penguin")
 CLOCK_PACKAGE="cd-clock"
 AC_SUBST(GETTEXT_CLOCK, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CLOCK, "2.0.8")
+AC_SUBST(VERSION_CLOCK, "2.0.9")
 AC_SUBST(PACKAGE_CLOCK, "$CLOCK_PACKAGE")
 clockuserdirname="clock"
 AC_SUBST(clockuserdirname, "clock")

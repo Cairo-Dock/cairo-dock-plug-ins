@@ -72,7 +72,7 @@ static double *s_pReferenceParaboleT = NULL;
 #define PARABOLE_DISTANCE_OUT2 4900
 #define PARABOLE_DISTANCE_EDGE2 2500
 
-void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pDock)
+static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, CairoDock *pDock)
 {
 	CairoDock *pSubDock = pPointedIcon->pSubDock;
 	int iMouseX = pDock->container.iMouseX;
@@ -176,7 +176,7 @@ static void cd_rendering_calculate_next_point (double xn, double yn, double ds, 
 }
 
 
-void cd_rendering_calculate_reference_parabole (double alpha)
+static void cd_rendering_calculate_reference_parabole (double alpha)
 {
 	if (s_pReferenceParaboleS == NULL)
 	{
@@ -247,7 +247,7 @@ double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lamb
 }
 
 
-void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
+static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 {
 	static double fParaboleCurvature= 0;
 	if (s_pReferenceParaboleS == NULL || my_fParaboleCurvature != fParaboleCurvature)
@@ -313,7 +313,7 @@ void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 }
 
 
-void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
+static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
@@ -658,24 +658,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 }
 
 
-void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
-{
-	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-parabolic.jpg", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_parabole;
-	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;
-	pRenderer->render = cd_rendering_render_parabole;
-	pRenderer->render_optimized = NULL;
-	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
-	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
-	pRenderer->cDisplayedName = D_ (cRendererName);
-	
-	cairo_dock_register_renderer (cRendererName, pRenderer);
-}
-
-
-void cd_rendering_render_parabole_opengl (CairoDock *pDock)
+static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	
@@ -761,4 +744,21 @@ void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
 	glPopMatrix ();
+}
+
+
+void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
+{
+	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
+	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-parabolic.jpg", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_parabole;
+	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;
+	pRenderer->render = cd_rendering_render_parabole;
+	pRenderer->render_optimized = NULL;
+	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
+	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
+	pRenderer->cDisplayedName = D_ (cRendererName);
+	
+	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

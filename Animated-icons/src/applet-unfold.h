@@ -18,13 +18,16 @@
 */
 
 
-#ifndef __RENDERING_PARABOLE__
-#define  __RENDERING_PARABOLE__
-
-#include "cairo-dock.h"
+#ifndef __APPLET_UNFOLD__
+#define  __APPLET_UNFOLD__
 
 
-void cd_rendering_register_parabole_renderer (const gchar *cRendererName);
+#include <cairo-dock.h>
+
+
+void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext);
+
+void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData);
 
 
 #endif

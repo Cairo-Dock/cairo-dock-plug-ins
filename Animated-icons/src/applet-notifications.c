@@ -31,28 +31,29 @@
 #include "applet-pulse.h"
 #include "applet-bounce.h"
 #include "applet-blink.h"
+#include "applet-unfold.h"
 #include "applet-notifications.h"
 
 #define _REFLECT_FADE_NB_STEP 12
 
+#define _set_new_data(icon) \
+	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);\
+	if (pData == NULL) {\
+		pData = g_new0 (CDAnimationData, 1);\
+		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData); }\
+	else {\
+		pData->fRadiusFactor = 0;\
+		pData->bIsWobblying = FALSE;\
+		pData->bIsWaving = FALSE;\
+		pData->fPulseAlpha = 0;\
+		pData->bIsBouncing = FALSE;\
+		pData->bIsBlinking = FALSE;\
+		pData->iNumRound = 0;\
+		pData->bIsUnfolding = FALSE; }
+
 static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pDock, CDAnimationsEffects *pAnimations, gboolean *bStartAnimation)
 {
-	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	if (pData == NULL)
-	{
-		pData = g_new0 (CDAnimationData, 1);
-		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
-	}
-	else
-	{
-		pData->fRadiusFactor = 0;
-		pData->bIsWobblying = FALSE;
-		pData->bIsWaving = FALSE;
-		pData->fPulseAlpha = 0;
-		pData->bIsBouncing = FALSE;
-		pData->bIsBlinking = FALSE;
-		pData->iNumRound = 0;
-	}
+	_set_new_data (pIcon);
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
@@ -117,7 +118,7 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 	
 	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3 && !myAccessibility.bShowSubDockOnClick)
 	{
-		cd_animations_free_data (pUserData, pIcon);
+		//cd_animations_free_data (pUserData, pIcon);
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
@@ -262,9 +263,13 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (pData->bIsUnfolding)
+	if (pData->bIsUnfolding && pIcon->pSubDock)
 	{
-		
+		if (pCairoContext != NULL)
+			cd_animations_draw_unfolding_icon_cairo (pIcon, pDock, pData, pCairoContext);
+		else
+			cd_animations_draw_unfolding_icon (pIcon, pDock, pData);
+		*bHasBeenRendered = TRUE;
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
@@ -355,6 +360,12 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
 	
+	if (pData->bIsUnfolding)
+	{
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
 	if (pData->bIsWobblying)
 	{
 		if (bUseOpenGL)
@@ -440,61 +451,6 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 				pData->iNumRound --;
 			}
 		}
-		/*if (pIcon->bPointed && pDock->container.bInside)
-		{
-			pData->fRadiusFactor += 1./myConfig.iSpotDuration * dt;
-			if (pData->fRadiusFactor > 1)
-				pData->fRadiusFactor = 1.;
-			else
-				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY += 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * dt;
-			if (pData->fIconOffsetY > myLabels.iconTextDescription.iSize)
-				pData->fIconOffsetY = myLabels.iconTextDescription.iSize;
-			else
-				*bContinueAnimation = TRUE;
-		}
-		else
-		{
-			pData->fRadiusFactor -= 1./myConfig.iSpotDuration * dt;
-			if (pData->fRadiusFactor < 0)
-				pData->fRadiusFactor = 0.;
-			else
-				*bContinueAnimation = TRUE;
-			pData->fIconOffsetY -= 1.*myLabels.iconTextDescription.iSize / myConfig.iSpotDuration * dt;
-			if (pData->fIconOffsetY < 0)
-				pData->fIconOffsetY = 0.;
-			else
-				*bContinueAnimation = TRUE;
-		}
-		pIcon->fDeltaYReflection += 2 * pData->fIconOffsetY;
-		
-		pData->fHaloRotationAngle += 360. / myConfig.iSpotDuration * dt;
-		if (pData->fHaloRotationAngle < 360)
-		{
-			*bContinueAnimation = TRUE;
-		}
-		else
-		{
-			pData->fHaloRotationAngle = 0;
-			if (myConfig.bContinueSpot)
-			{
-				*bContinueAnimation = TRUE;
-			}
-		}
-		
-		if (pData->pRaysSystem != NULL)
-		{
-			gboolean bContinueSpot = cd_animations_update_rays_system (pData->pRaysSystem,
-			(myConfig.bContinueSpot));
-			pData->pRaysSystem->fWidth = pIcon->fWidth * pIcon->fScale * pData->fRadiusFactor;
-			if (bContinueSpot)
-				*bContinueAnimation = TRUE;
-			else
-			{
-				cairo_dock_free_particle_system (pData->pRaysSystem);
-				pData->pRaysSystem = NULL;
-			}
-		}*/
 	}
 	
 	if (pData->fPulseAlpha != 0)
@@ -533,6 +489,18 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		if (pData->bIsBlinking)
 			*bContinueAnimation = TRUE;
 	}
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)
+{
+	if (pIcon == NULL || pIcon->iSubdockViewType != 3)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	_set_new_data (pIcon);
+	pData->bIsUnfolding = TRUE;
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

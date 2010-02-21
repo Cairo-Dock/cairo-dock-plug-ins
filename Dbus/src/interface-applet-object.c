@@ -173,8 +173,6 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 	
 	if (pDbusApplet != NULL)
 	{
-		if (pDbusApplet->iSidEmitInit != 0)
-			g_source_remove (pDbusApplet->iSidEmitInit);
 		if (pDbusApplet->pSubApplet != NULL)
 		{
 			g_object_unref (pDbusApplet->pSubApplet);

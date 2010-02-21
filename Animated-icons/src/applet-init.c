@@ -48,6 +48,7 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_UNFOLD_SUBDOCK, (CairoDockNotificationFunc) cd_animations_unfold_subdock, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce", D_("Bounce"));
 	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate", D_("Rotate"));
@@ -74,6 +75,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_UNFOLD_SUBDOCK, (CairoDockNotificationFunc) cd_animations_unfold_subdock, NULL);
 	
 	cairo_dock_unregister_animation ("bounce");
 	cairo_dock_unregister_animation ("rotate");

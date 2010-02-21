@@ -61,9 +61,6 @@ struct _dbusApplet {
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
-	gint iNbInitTries;  // obsolete
-	gint iInitDelay;  // obsolete
-	guint iSidEmitInit;  // obsolete
 	dbusSubApplet *pSubApplet;
 	CairoDialog *pDialog;
 };

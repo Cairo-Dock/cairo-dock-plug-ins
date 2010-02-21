@@ -42,4 +42,9 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer);
 double cd_rendering_interpol (double x, double *fXValues, double *fYValues);
 
 
+void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, gboolean bBackGround, Icon *prev_icon, Icon *next_icon);
+
+void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock);
+
+
 #endif

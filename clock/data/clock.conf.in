@@ -31,7 +31,7 @@ frame_pos =
 #{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
 locked = false
 
-#j+[48;512] Desklet's dimension (width x height) :
+#j+[24;512] Desklet's dimension (width x height) :
 #{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
 size = 96;96
 

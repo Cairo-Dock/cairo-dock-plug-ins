@@ -36,6 +36,8 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 
 gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation);
 
+gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon);
+
 
 gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon);
 

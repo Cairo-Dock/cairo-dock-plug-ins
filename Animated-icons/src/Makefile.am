@@ -30,6 +30,8 @@ libcd_Animated_icons_la_SOURCES = \
 	applet-bounce.h\
 	applet-blink.c\
 	applet-blink.h\
+	applet-unfold.c\
+	applet-unfold.h\
 	chrome-tex.h
 
 

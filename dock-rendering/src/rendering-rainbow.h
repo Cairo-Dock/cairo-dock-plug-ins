@@ -24,23 +24,10 @@
 #include "cairo-dock.h"
 
 
-void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock);
-
-void cd_rendering_calculate_construction_parameters_rainbow (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY);
-
-cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight);
-
-
-void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock);
-
-
-Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock);
+void cd_rendering_reload_rainbow_buffers (void);
 
 
 void cd_rendering_register_rainbow_renderer (const gchar *cRendererName);
-
-
-void cd_rendering_reload_rainbow_buffers (void);
 
 
 #endif

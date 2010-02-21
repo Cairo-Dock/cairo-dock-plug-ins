@@ -36,7 +36,11 @@ extern double my_fRainbowConeOffset;
 extern double my_fRainbowColor[4];
 extern double my_fRainbowLineColor[4];
 
-void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
+static double *pCosSinTab = NULL;
+static GLfloat *pVertexTab = NULL;
+static GLfloat* pColorTab = NULL;
+
+static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 {
 	pDock->fMagnitudeMax = my_fRainbowMagnitude;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
@@ -61,7 +65,7 @@ void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 }
 
 
-void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
+static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
@@ -371,7 +375,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 	return iPointedRow;
 }
 
-Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
+static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 {
 	if (pDock->icons == NULL)
 		return NULL;
@@ -538,18 +542,7 @@ static GLfloat *_generate_sector_path (double fConeOffset, double fRadius1, doub
 	return pTabValues;
 }
 
-static double *pCosSinTab = NULL;
-static GLfloat *pVertexTab = NULL;
-static GLfloat* pColorTab = NULL;
-void cd_rendering_reload_rainbow_buffers (void)
-{
-	g_free (pColorTab);
-	pColorTab = NULL;
-	g_free (pCosSinTab);
-	pCosSinTab = NULL;
-}
-
-void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
+static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 {
 	static double fDelta = 1.;
 	if (pCosSinTab == NULL)
@@ -720,6 +713,16 @@ void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
+}
+
+
+
+void cd_rendering_reload_rainbow_buffers (void)
+{
+	g_free (pColorTab);
+	pColorTab = NULL;
+	g_free (pCosSinTab);
+	pCosSinTab = NULL;
 }
 
 
