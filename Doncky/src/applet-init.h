@@ -24,10 +24,6 @@
 
 #include <cairo-dock.h>
 
-
-static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet);
-
 CD_APPLET_H
-
 
 #endif

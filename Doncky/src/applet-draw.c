@@ -27,7 +27,7 @@
 #include "applet-nvidia.h"
 #include "applet-cpusage.h"
 #include "applet-disk-usage.h"
-
+#include "applet-rame.h"
 
 char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
 {
@@ -80,22 +80,47 @@ double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
 }
 
 
-void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet)
-{
-	cd_debug ("Doncky-debug ---------------> REFRESH");
-	
-	
-	myData.pPeriodicRefreshTask = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) cd_launch_command,
-		(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
-		myApplet);
-	cairo_dock_launch_task (myData.pPeriodicRefreshTask);
-}
+//~ void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet)
+//~ {
+	//~ cd_debug ("Doncky-debug ---------------> REFRESH");
+	//~ 
+	//~ 
+	//~ myData.pPeriodicRefreshTask = cairo_dock_new_task (0,
+		//~ (CairoDockGetDataAsyncFunc) cd_launch_command,
+		//~ (CairoDockUpdateSyncFunc) cd_retrieve_command_result,
+		//~ myApplet);
+	//~ cairo_dock_launch_task (myData.pPeriodicRefreshTask);
+//~ }
 
 
 void cd_launch_command (CairoDockModuleInstance *myApplet)
 {
 	
+	// SYSTEM-MONITOR
+	myData.bNeedsUpdate = FALSE;	
+	if (myConfig.bShowCpu)
+	{
+		cd_sysmonitor_get_cpu_data (myApplet);
+	}
+	if (myConfig.bShowRam || myConfig.bShowSwap)
+	{
+		cd_sysmonitor_get_ram_data (myApplet);
+	}
+	if (myConfig.bShowNvidia)
+	{
+		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lours, on decide donc de ne mettre a jour qu'une fois sur 3.
+			cd_sysmonitor_get_nvidia_data (myApplet);
+	}	
+	if (! myData.bInitialized)
+	{
+		cd_sysmonitor_get_cpu_info (myApplet);
+		myData.bInitialized = TRUE;
+	}
+	myData.iTimerCount ++;
+	
+	
+	
+	// Autre :
 	GList *it;
 	TextZone *pTextZone;
 	
@@ -140,10 +165,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 			pTextZone->bImgDraw = TRUE; // L'image est désormais chargée -> On peut la dessiner
 		}
 		
-		
-		
-		
-		
+				
 		if (pTextZone->iRefresh != 0)
 				pTextZone->iTimer++;
 			
@@ -309,26 +331,37 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
+				
+				
 				else if (strcmp (pTextZone->cInternal, "nvtemp") == 0)
+				{
+					myConfig.bShowNvidia = TRUE;
 					pTextZone->cResult = g_strdup_printf ("%i", myData.iGPUTemp);
+				}
 					
 				else if (strcmp (pTextZone->cInternal, "nvname") == 0)
 				{
+					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%s", myData.cGPUName);					
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "nvdriver") == 0)
 				{
+					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%s", myData.cDriverVersion);					
 				}
 				
 				else if (strcmp (pTextZone->cInternal, "nvram") == 0)
 				{
+					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%i", myData.iVideoRam);					
 				}
+				
+				
+				
 				
 				else if (strcmp (pTextZone->cInternal, "uptime") == 0)
 				{
@@ -370,8 +403,108 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 	}	
 }
 
-void cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
+gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 {
+	
+	// SYSTEM-MONITOR
+	static double s_fValues[CD_SYSMONITOR_NB_MAX_VALUES];
+	CD_APPLET_ENTER;
+	
+	if ( ! myData.bAcquisitionOK)
+	{
+		cd_warning ("One or more datas couldn't be retrieved");
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
+		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		memset (s_fValues, 0, sizeof (s_fValues));
+		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
+	}
+	else
+	{
+		if (! myData.bInitialized)
+		{
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
+			memset (s_fValues, 0, sizeof (s_fValues));
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
+		}
+		else
+		{
+			// Copier les donnes en memoire partagee...
+			
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || (myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
+			{
+				gboolean bOneLine = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL);
+				GString *sInfo = g_string_new ("");
+				if (myConfig.bShowCpu)
+				{
+					g_string_printf (sInfo, (myData.fCpuPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						(myDesklet ? "CPU:" : ""),
+						myData.fCpuPercent,
+						(bOneLine ? " - " : "\n"));
+				}
+				if (myConfig.bShowRam)
+				{
+					g_string_append_printf (sInfo, (myData.fRamPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						(myDesklet ? "RAM:" : ""),
+						myData.fRamPercent,
+						(bOneLine ? " - " : "\n"));
+				}
+				if (myConfig.bShowSwap)
+				{
+					g_string_append_printf (sInfo, (myData.fSwapPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						(myDesklet ? "SWAP:" : ""),
+						myData.fSwapPercent,
+						(bOneLine ? " - " : "\n"));
+				}
+				if (myConfig.bShowNvidia)
+				{
+					g_string_append_printf (sInfo, "%s%dÂ°C%s",
+						(myDesklet ? "GPU:" : ""),
+						myData.iGPUTemp,
+						(bOneLine ? " - " : "\n"));
+				}
+				sInfo->str[sInfo->len-(bOneLine?3:1)] = '\0';
+				if (bOneLine)
+					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
+				else
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str);
+				g_string_free (sInfo, TRUE);
+			}
+			
+			if (myData.bNeedsUpdate || myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
+			{
+				int i = 0;
+				if (myConfig.bShowCpu)
+				{
+					s_fValues[i++] = myData.fCpuPercent / 100.;
+				}
+				if (myConfig.bShowRam)
+				{
+					s_fValues[i++] = myData.fRamPercent / 100.;
+				}
+				if (myConfig.bShowSwap)
+				{
+					s_fValues[i++] = (myData.swapTotal ? (myConfig.bShowFreeMemory ? (double)myData.swapFree : (double)myData.swapUsed) / myData.swapTotal : 0.);
+				}
+				if (myConfig.bShowNvidia)
+				{
+					s_fValues[i++] = myData.fGpuTempPercent / 100.;
+					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
+						myData.bAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessou de la limite.
+					
+					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
+						cd_nvidia_alert (myApplet);
+				}
+				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
+			}
+		}
+	}
+	
+	
+	
+	// Autre :
+	
 	GList *it;
 	TextZone *pTextZone;
 	
@@ -404,6 +537,8 @@ void cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	}
 	cd_applet_update_my_icon (myApplet); // Quand tous les textes sont chargés, on peut dessiner
 	myData.pPeriodicRefreshTask = NULL;
+		
+	CD_APPLET_LEAVE (myData.bAcquisitionOK);
 }
 
 

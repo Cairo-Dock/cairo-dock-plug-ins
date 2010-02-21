@@ -33,7 +33,7 @@ void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet);
 
 void cd_launch_command (CairoDockModuleInstance *myApplet);
 
-void cd_retrieve_command_result (CairoDockModuleInstance *myApplet);
+gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet);
 
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);

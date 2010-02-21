@@ -23,9 +23,9 @@
 
 #include <cairo-dock.h>
 
-void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet);
-
-gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet);
+//~ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet);
+//~ 
+//~ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet);
 
 void cd_sysmonitor_format_value (double fValue, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet);
 

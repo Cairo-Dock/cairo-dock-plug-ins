@@ -119,7 +119,6 @@ typedef struct {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {	
 	CairoDockTask *pPeriodicRefreshTask;
-	guint iSidPeriodicRefresh;
 	
 	GList *pTextZoneList;
 	
@@ -148,7 +147,6 @@ struct _AppletData {
 	gint iVideoRam;
 	gchar *cDriverVersion;
 	
-	CairoDockTask *pPeriodicTask;
 	// shared memory for the main thread.
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;

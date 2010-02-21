@@ -45,19 +45,6 @@ CD_APPLET_DEFINITION (N_("Doncky"),
 	"Yann Dulieu (Nochka85)")
 
 
-// REPRIS DE SYSTEM-MONITOR:
-static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
-{
-	cd_sysmonitor_get_data (myApplet);
-	cd_sysmonitor_update_from_data (myApplet);
-	return TRUE;
-}
-
-
-
-
-
-
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -74,31 +61,11 @@ CD_APPLET_INIT_BEGIN
 	cd_doncky_free_item_list (myApplet);	
 	cd_doncky_readxml (myApplet);
 	
-	
-	
-	
 	// REPRIS DE SYSTEM-MONITOR:
-	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
-	if (myConfig.bShowNvidia || (myConfig.bShowCpu && myConfig.bShowRam))
-		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_sysmonitor_get_data,
-			(CairoDockUpdateSyncFunc) cd_sysmonitor_update_from_data,  // _unthreaded_task
-			myApplet);
-	else
-		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) NULL,
-			(CairoDockUpdateSyncFunc) _unthreaded_task,
-			myApplet);
-	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_task (myData.pPeriodicTask);
-	
-	// On gere l'appli "moniteur systeme".
+
 	if (myConfig.cSystemMonitorClass)
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
-	
-	
-	
 	
 	// en mode desklet on redessine l'icone avec le message d'attente.
 	if (myDesklet)
@@ -110,13 +77,15 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
-	//\_______________ On lance le timer.
-    //~ myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+	//\_______________ On lance le timer.   
     myData.pPeriodicRefreshTask = cairo_dock_new_task (myConfig.iCheckInterval,
 			(CairoDockGetDataAsyncFunc) cd_launch_command,
 			(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
 			myApplet);
 	cairo_dock_launch_task (myData.pPeriodicRefreshTask);
+	
+	
+	myData.bAcquisitionOK = TRUE;
 	
 CD_APPLET_INIT_END
 
@@ -128,12 +97,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
-	//\_______________ On stoppe le timer en cours.
-	//~ g_source_remove (myData.iSidPeriodicRefresh);
-	//~ myData.iSidPeriodicRefresh = 0;
-
-	CD_APPLET_MANAGE_APPLICATION (NULL);
-	
+	CD_APPLET_MANAGE_APPLICATION (NULL);	
 	
 CD_APPLET_STOP_END
 
@@ -154,7 +118,6 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevSwapPercent = 0;
 		myData.fPrevGpuTempPercent = 0;
 		myData.iTimerCount = 0;
-		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 		
 		g_free (myData.pTopList);
 		myData.pTopList = NULL;
@@ -162,19 +125,9 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iCheckInterval);
 		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
-		
-		//\_______________ On stoppe le timer en cours.
-		//g_source_remove (myData.iSidPeriodicRefresh);
-		//myData.iSidPeriodicRefresh = 0;
-		//\_______________ On relance le timer.
-	    // myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
-		
+				
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
-		
-		
-		
-		
-		
+				
 		cd_doncky_free_item_list (myApplet);	
 		cd_doncky_readxml (myApplet);
 		
@@ -186,15 +139,10 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else 
 	{
-		// REPRIS DE SYSTEM-MONITOR:			
-		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
-		{
-			myData.fPrevCpuPercent = 0;
-			myData.fPrevRamPercent = 0;
-			myData.fPrevSwapPercent = 0;
-			myData.fPrevGpuTempPercent = 0;
-			cd_sysmonitor_update_from_data (myApplet);
-		}
+		myData.fPrevCpuPercent = 0;
+		myData.fPrevRamPercent = 0;
+		myData.fPrevSwapPercent = 0;
+		myData.fPrevGpuTempPercent = 0;
 	}
 	
 	// en mode desklet on redessine l'icone aux nouvelles dimensions.

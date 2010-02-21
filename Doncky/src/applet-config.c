@@ -29,7 +29,6 @@
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-
 	double couleur[4] = {0., 0., 0.5, 1.};
 	
 	//\___________________ Section Configuration
@@ -62,12 +61,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowCpu = TRUE;
 	myConfig.bShowRam = TRUE;
 	myConfig.bShowSwap = TRUE;
-	myConfig.bShowNvidia = TRUE;
+	myConfig.bShowNvidia = FALSE;
 	myConfig.bShowFreeMemory = FALSE;
 	myConfig.iInfoDisplay = 0; // No;On icon;On label
-	myConfig.iNbDisplayedProcesses = 4; // nb top
-	
-	
+	myConfig.iNbDisplayedProcesses = 4; // nb top	
 CD_APPLET_GET_CONFIG_END
 
 
@@ -82,10 +79,8 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cd_doncky_free_item_list (myApplet);
 	cairo_dock_free_task (myData.pPeriodicRefreshTask);
-	
-	
+		
 	// REPRIS DE SYSTEM-MONITOR:
-	cairo_dock_free_task (myData.pPeriodicTask);
 	g_timer_destroy (myData.pClock);	
 	//~ CD_APPLET_REMOVE_MY_DATA_RENDERER;	
 	cairo_dock_free_task (myData.pTopTask);
@@ -98,6 +93,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cModelName);
 	g_free (myData.cGPUName);
 	g_free (myData.cDriverVersion);
-	g_free (myData.cCurrentText);
-	
+	g_free (myData.cCurrentText);	
 CD_APPLET_RESET_DATA_END
