@@ -413,7 +413,7 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	if ( ! myData.bAcquisitionOK)
 	{
 		cd_warning ("One or more datas couldn't be retrieved");
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
+		// CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		memset (s_fValues, 0, sizeof (s_fValues));
@@ -423,8 +423,8 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	{
 		if (! myData.bInitialized)
 		{
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
+			//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				//~ CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			memset (s_fValues, 0, sizeof (s_fValues));
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
@@ -432,45 +432,45 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 		{
 			// Copier les donnes en memoire partagee...
 			
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || (myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
-			{
-				gboolean bOneLine = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL);
-				GString *sInfo = g_string_new ("");
-				if (myConfig.bShowCpu)
-				{
-					g_string_printf (sInfo, (myData.fCpuPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "CPU:" : ""),
-						myData.fCpuPercent,
-						(bOneLine ? " - " : "\n"));
-				}
-				if (myConfig.bShowRam)
-				{
-					g_string_append_printf (sInfo, (myData.fRamPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "RAM:" : ""),
-						myData.fRamPercent,
-						(bOneLine ? " - " : "\n"));
-				}
-				if (myConfig.bShowSwap)
-				{
-					g_string_append_printf (sInfo, (myData.fSwapPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "SWAP:" : ""),
-						myData.fSwapPercent,
-						(bOneLine ? " - " : "\n"));
-				}
-				if (myConfig.bShowNvidia)
-				{
-					g_string_append_printf (sInfo, "%s%dÂ°C%s",
-						(myDesklet ? "GPU:" : ""),
-						myData.iGPUTemp,
-						(bOneLine ? " - " : "\n"));
-				}
-				sInfo->str[sInfo->len-(bOneLine?3:1)] = '\0';
-				if (bOneLine)
-					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
-				else
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str);
-				g_string_free (sInfo, TRUE);
-			}
+			//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || (myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
+			//~ {
+				//~ gboolean bOneLine = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL);
+				//~ GString *sInfo = g_string_new ("");
+				//~ if (myConfig.bShowCpu)
+				//~ {
+					//~ g_string_printf (sInfo, (myData.fCpuPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						//~ (myDesklet ? "CPU:" : ""),
+						//~ myData.fCpuPercent,
+						//~ (bOneLine ? " - " : "\n"));
+				//~ }
+				//~ if (myConfig.bShowRam)
+				//~ {
+					//~ g_string_append_printf (sInfo, (myData.fRamPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						//~ (myDesklet ? "RAM:" : ""),
+						//~ myData.fRamPercent,
+						//~ (bOneLine ? " - " : "\n"));
+				//~ }
+				//~ if (myConfig.bShowSwap)
+				//~ {
+					//~ g_string_append_printf (sInfo, (myData.fSwapPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
+						//~ (myDesklet ? "SWAP:" : ""),
+						//~ myData.fSwapPercent,
+						//~ (bOneLine ? " - " : "\n"));
+				//~ }
+				//~ if (myConfig.bShowNvidia)
+				//~ {
+					//~ g_string_append_printf (sInfo, "%s%dÂ°C%s",
+						//~ (myDesklet ? "GPU:" : ""),
+						//~ myData.iGPUTemp,
+						//~ (bOneLine ? " - " : "\n"));
+				//~ }
+				//~ sInfo->str[sInfo->len-(bOneLine?3:1)] = '\0';
+				//~ if (bOneLine)
+					//~ CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
+				//~ else
+					//~ CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str);
+				//~ g_string_free (sInfo, TRUE);
+			//~ }
 			
 			if (myData.bNeedsUpdate || myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 			{
