@@ -127,7 +127,7 @@ void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	cd_debug ("nVidia %s %dMB %sV %d°C", myData.cGPUName, myData.iVideoRam, myData.cDriverVersion, myData.iGPUTemp);
+	cd_debug ("Doncky-debug --> nVidia %s %dMB %sV %d°C", myData.cGPUName, myData.iVideoRam, myData.cDriverVersion, myData.iGPUTemp);
 	
 	g_strfreev (cInfopipesList);
 }

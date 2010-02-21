@@ -111,7 +111,13 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	//\_______________ On lance le timer.
-    myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+    //~ myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+    myData.pPeriodicRefreshTask = cairo_dock_new_task (myConfig.iCheckInterval,
+			(CairoDockGetDataAsyncFunc) cd_launch_command,
+			(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
+			myApplet);
+	cairo_dock_launch_task (myData.pPeriodicRefreshTask);
+	
 CD_APPLET_INIT_END
 
 
@@ -123,8 +129,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	//\_______________ On stoppe le timer en cours.
-	g_source_remove (myData.iSidPeriodicRefresh);
-	myData.iSidPeriodicRefresh = 0;
+	//~ g_source_remove (myData.iSidPeriodicRefresh);
+	//~ myData.iSidPeriodicRefresh = 0;
 
 	CD_APPLET_MANAGE_APPLICATION (NULL);
 	
@@ -158,10 +164,16 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 		
 		//\_______________ On stoppe le timer en cours.
-		g_source_remove (myData.iSidPeriodicRefresh);
-		myData.iSidPeriodicRefresh = 0;
+		//g_source_remove (myData.iSidPeriodicRefresh);
+		//myData.iSidPeriodicRefresh = 0;
 		//\_______________ On relance le timer.
-	    myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+	    // myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+		
+		cairo_dock_relaunch_task_immediately (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
+		
+		
+		
+		
 		
 		cd_doncky_free_item_list (myApplet);	
 		cd_doncky_readxml (myApplet);

@@ -82,6 +82,9 @@ double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
 
 void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet)
 {
+	cd_debug ("Doncky-debug ---------------> REFRESH");
+	
+	
 	myData.pPeriodicRefreshTask = cairo_dock_new_task (0,
 		(CairoDockGetDataAsyncFunc) cd_launch_command,
 		(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
@@ -408,7 +411,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 {
 	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
 		return;
-	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
+	//cd_debug ("Doncky-debug --> %s (%dx%d)", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
 	
@@ -625,8 +628,30 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			else // sinon, on utilise la couleur du .xml
 				cairo_set_source_rgba (myDrawContext, pTextZone->fTextColor[0], pTextZone->fTextColor[1], pTextZone->fTextColor[2], pTextZone->fTextColor[3]);
 			
-			pango_layout_set_text (pLayout, pTextZone->cText, -1);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			if (pTextZone->cText != NULL)
+				pango_layout_set_text (pLayout, pTextZone->cText, -1);
+			else
+				pango_layout_set_text (pLayout,"", -1);
 			pango_layout_get_pixel_extents (pLayout, &ink, &log);
+
+
+
+
 
 			
 			
