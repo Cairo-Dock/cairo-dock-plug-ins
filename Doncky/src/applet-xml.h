@@ -41,6 +41,7 @@ typedef struct {
 	gboolean bNextNewLine;
 	gboolean bBar;
 	gboolean bLimitedBar;
+	gboolean bStroke;
 	gint iHeight;
 	gint iWidth;
 	gint iImgSize;

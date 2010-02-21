@@ -345,7 +345,7 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 		memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));  // on re-trie tout suivant le nouvel ordre.
 		g_hash_table_foreach (myData.pProcessTable, (GHFunc) _sort_one_process, myApplet);
 		_cd_sysmonitor_update_top_list (myApplet);  // on redessine.
-		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
+		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
 	}
 	cairo_dock_dialog_reference (pDialog);
 }
@@ -388,7 +388,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	myData.pTopClock = g_timer_new ();
 	myData.iNbProcesses = 0;
 	if (myData.pTopTask == NULL)
-		myData.pTopTask = cairo_dock_new_task (myConfig.iProcessCheckInterval,
+		myData.pTopTask = cairo_dock_new_task (myConfig.iCheckInterval,
 			(CairoDockGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
 			(CairoDockUpdateSyncFunc) _cd_sysmonitor_update_top_list,
 			myApplet);

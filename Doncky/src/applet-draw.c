@@ -647,8 +647,13 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				{
 					if (i==0)
 					{
-						myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
-						value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);						
+						if (pTextZone->bStroke)
+							value = pTextZone->iWidth; // Une "stroke" (=trait) est une barre toujours pleine ;-) 
+						else
+						{
+							myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
+							value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);
+						}					
 					}
 					else
 						value = pTextZone->iWidth;						

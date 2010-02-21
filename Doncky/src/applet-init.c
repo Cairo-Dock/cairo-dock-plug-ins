@@ -111,7 +111,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	
 	//\_______________ On lance le timer.
-    myData.iSidPeriodicRefresh = g_timeout_add_seconds (1, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+    myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
 CD_APPLET_INIT_END
 
 
@@ -153,7 +153,7 @@ CD_APPLET_RELOAD_BEGIN
 		g_free (myData.pTopList);
 		myData.pTopList = NULL;
 		if (myData.pTopTask != NULL)
-			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iProcessCheckInterval);
+			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iCheckInterval);
 		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 		
@@ -161,7 +161,7 @@ CD_APPLET_RELOAD_BEGIN
 		g_source_remove (myData.iSidPeriodicRefresh);
 		myData.iSidPeriodicRefresh = 0;
 		//\_______________ On relance le timer.
-	    myData.iSidPeriodicRefresh = g_timeout_add_seconds (1, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
+	    myData.iSidPeriodicRefresh = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) cd_doncky_periodic_refresh, (gpointer) myApplet);  // On raffraichit toutes les secondes au MAX
 		
 		cd_doncky_free_item_list (myApplet);	
 		cd_doncky_readxml (myApplet);

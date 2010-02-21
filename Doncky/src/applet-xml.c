@@ -276,10 +276,42 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 						pTextZone->iWidth = atoi(cTempo);
 						
 						pTextZone->bLimitedBar = TRUE;
+						pTextZone->bStroke = FALSE;	
 					}
 					else
-						pTextZone->bBar = TRUE;					
-				}				
+					{
+						pTextZone->bBar = TRUE;
+						pTextZone->bStroke = FALSE;
+					}			
+				}
+				
+				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lstroke") == 0)
+				{
+					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
+
+					// On récupère le 1er champ -> = Largeur
+					g_strreverse (cTempo);
+					cTempo = strrchr(cTempo, ';') ;
+					ltrim( cTempo, ";" );
+					g_strreverse (cTempo);
+					pTextZone->iWidth = atoi(cTempo);
+					
+					// On récupère le 2ème champ -> = Hauteur
+					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
+					ltrim( cTempo, ";" );
+					pTextZone->iHeight = atoi(cTempo);
+					
+					pTextZone->bLimitedBar = TRUE;
+					pTextZone->bStroke = TRUE;
+				}
+				
+				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "stroke") == 0)
+				{
+					pTextZone->iHeight = g_strtod (cNodeContent, NULL);
+					pTextZone->bBar = TRUE;
+					pTextZone->bStroke = TRUE;
+				}
+				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "img") == 0)
 				{
 					pTextZone->cImgPath = xmlNodeGetContent (pXmlSubNode);

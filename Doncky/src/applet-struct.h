@@ -62,10 +62,12 @@ struct _AppletConfig {
 	gint iSpaceBetweenLines;	
 	gchar *cXmlFilePath;
 	
+	gint iCheckInterval;
+	
+	
 	
 	// REPRIS DE SYSTEM-MONITOR :
 	gchar *defaultTitle;
-	gint iCheckInterval;
 	gdouble fSmoothFactor;
 	gboolean bShowCpu;
 	gboolean bShowRam;
@@ -83,7 +85,6 @@ struct _AppletConfig {
 	gdouble fBgColor[4];
 	gboolean bMixGraph;	
 	gint iNbDisplayedProcesses;
-	gint iProcessCheckInterval;
 	gboolean bTopInPercent;
 	CairoDockLabelDescription *pTopTextDescription;	
 	gchar *cSystemMonitorCommand;

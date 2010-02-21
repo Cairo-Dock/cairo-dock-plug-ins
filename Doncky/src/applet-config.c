@@ -52,13 +52,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iTextMargin = CD_CONFIG_GET_INTEGER ("Appearance", "text_margin");  // marge du texte en haut et à gauche/droite suivant l'alignement.
 	myConfig.iSpaceBetweenLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines");
 		
+	myConfig.iCheckInterval = 1; // Delay en en seconde
+	myData.iMaxGraphHistory = 300; // -> 5 minutes de graph
 	
-	// REPRIS DE SYSTEM-MONITOR: (on impose les valeurs)
-	myConfig.iCheckInterval = 1;
-	myConfig.fSmoothFactor = 1.0;
 	
-	myConfig.fUserHZ = 100;
-	
+	// REPRIS DE SYSTEM-MONITOR: (on impose les valeurs)	
+	myConfig.fSmoothFactor = 1.0;	
+	myConfig.fUserHZ = 100;	
 	myConfig.bShowCpu = TRUE;
 	myConfig.bShowRam = TRUE;
 	myConfig.bShowSwap = TRUE;
@@ -66,9 +66,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowFreeMemory = FALSE;
 	myConfig.iInfoDisplay = 0; // No;On icon;On label
 	myConfig.iNbDisplayedProcesses = 4; // nb top
-	myConfig.iProcessCheckInterval = 1; // top delay en s
-	
-	myData.iMaxGraphHistory = 300; // -> 5 minutes de graph
 	
 	
 CD_APPLET_GET_CONFIG_END
