@@ -1,70 +1,70 @@
-# Turkish translation for cairo-dock-plug-ins
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Belarusian translation for cairo-dock-plug-ins
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-02-13 12:12+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
-"Language-Team: Turkish <tr@li.org>\n"
+"PO-Revision-Date: 2010-02-19 11:58+0000\n"
+"Last-Translator: danvyr <Unknown>\n"
+"Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-14 05:04+0000\n"
+"X-Launchpad-Export-Date: 2010-02-20 04:47+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
-msgstr "Canlandırmalı simgeler"
+msgstr "Аніміраваныя значкі"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Bu eklenti simgeleriniz için bir çok farklı canlandırma ekler."
+msgstr "Гэта плагін дае шмат прыгожых эфектаў для вашых значкоў."
 
 #: ../Animated-icons/src/applet-init.c:52 ../Animated-icons/data/messages:7
 #: ../Animated-icons/data/messages:25 ../Animated-icons/data/messages:43
 #: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:169
 msgid "Bounce"
-msgstr "Zıplatma"
+msgstr "Отскакивать ад краёў"
 
 #: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63
 msgid "Rotate"
-msgstr "Döndür"
+msgstr "Кручэнне"
 
 #: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:183
 msgid "Blink"
-msgstr "Parla"
+msgstr "Мігатаньне"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:157
 msgid "Pulse"
-msgstr "Darbe"
+msgstr ""
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:129
 msgid "Wobbly"
-msgstr "Titrek"
+msgstr "Жэле"
 
 #: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:145
 msgid "Wave"
-msgstr "Dalga"
+msgstr ""
 
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:93 ../Animated-icons/data/messages:101
 msgid "Spot"
-msgstr "benek"
+msgstr "Пражэктар"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -74,97 +74,99 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Dock'unuz için hareketli bir penguen ekleyin !\n"
-"Animasyonları değiştirmek için sol tıkla\n"
-"Onu karıştırmak için orta-tıkla ^ ^\n"
-"Tux şekilleri pingus'tan alınır,eldeki bazı diğer karakterler kolayca "
-"eklenebilir."
+"Дадайце сымпатычнага пингвинчыка да сабе на панэль!\n"
+"Левы пстрычка змяняе анімацыю,\n"
+"Сярэдні, каб патурбаваць яго ^ _ ^\n"
+"Выявы Тукса ўзятыя з Pingus, ёсць і іншыя персанажы, а таксама можна з "
+"лёгкасцю падлучыць сваіх."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here !"
-msgstr "Hey, buradayım !"
+msgstr "Гэй, я тут!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "Üzgünüm ama şu anda meşgulüm."
+msgstr "Прабачце, але я зараз заняты."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Gösteriniz için süre ayarlamadım, gözatmak zorundayım ve bunlar simgelerin "
-"hepsi."
+"У мяне няма часу з табой гуляць, я павінен капаць, каб здабыць ўсе гэтыя "
+"значкі."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy ! Let me clean it."
-msgstr "Dock'unuz o kadar dağınık ki ! Onu temizlemem için izin ver."
+msgstr "Твая панэль такая брудная! Дай я яе приберу."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin !"
-msgstr "Penguen gibi  üstünlüklerimin olduğunu kabul et !"
+msgstr "Адчуй маю пінгвінаву перавагу над табой!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me ?!"
-msgstr "Bekle, beni öldürmek mi istiyorsun?!"
+msgstr "Стой, ты што, хочаш мяне забіць?!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how much painful it is to be clicked on ??"
-msgstr "Üzerinde tıklamanın ne kadar acı olduğunu bilir misin ??"
+msgstr "Ты ўвогуле ўяўляеш, як гэта балюча быць пстрыкнутым??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha !"
-msgstr "O şimdi benim dock'um,mwahahaha !"
+msgstr "Цяпер гэта мая панэль, муаххахаа!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate !"
-msgstr "Korsan olmak istiyorum !"
+msgstr "Я хачу быць піратам!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass !"
-msgstr "Buradan geçemezsin !"
+msgstr "Ты не пройдзеш!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father !"
-msgstr "Ben senin babanım !"
+msgstr "Я твой бацька!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
-msgstr "-Vay be,zeka,bu gece ne yapmayı istedin?"
+msgstr ""
+"- Што мы будзем рабіць сёння, Мозг?\n"
+"- Тое ж, што і кожную ноч, Пінкі. Будзем спрабаваць змыцца з панэлі!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur !"
-msgstr "Aiur için !"
+msgstr "За Aiur!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Hey, you there !"
-msgstr "Hey, orda mısın !"
+msgstr "Гэй, ты там!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
-msgstr "Uyan"
+msgstr "Абудзіць"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
-msgstr "Sessiz ol"
+msgstr "Усыпіць"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:134
 msgid "Start XPenguins"
-msgstr "XPenguins'i çalıştır"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:135
 msgid "Stop XPenguins"
-msgstr "XPenguins'i durdur"
+msgstr "Запусціць XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:158
 #: ../Cairo-Penguin/src/applet-notifications.c:160
 msgid "Zzzzz"
-msgstr "Zzzzz"
+msgstr "Хрхрхррр"
 
 #: ../Clipper/src/applet-config.c:33 ../Clipper/src/applet-notifications.c:33
 msgid "No items yet."
-msgstr "Henüz öğe yok."
+msgstr "Няма элементаў."
 
 #: ../Clipper/src/applet-init.c:32
 msgid ""
@@ -176,22 +178,34 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"Гэты аплет адсочвае буфер абмену і выдзялення зробленыя мышшу, \n"
+"для таго, каб вы ў любы момант маглі іх выклікаць. Клон папулярнага Klipper. "
+"\n"
+"Падтрымлівае буфер абмену і выдзялення мышшу, прадусталяваных дзеянні і "
+"пастаянныя элементы. \n"
+"Левы пстрычка, каб паказаць гісторыю буфера абмену і выдзялення мышшу, \n"
+"Перацягнуў тэкст на значок, каб стварыць пастаянны элемент, сярэдні пстрычка "
+"для яго выкліку."
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
+"Няма пастаянных элементаў.\n"
+"Вы можаце іх дадаць, перацягнуў тэкст на значок."
 
 #: ../Dbus/src/applet-init.c:31
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
+"Гэты плагін дазваляе знешнім  прылаженням узаемадзейнічаць з панэллю.\n"
+"Камунікацыя заснаваная на Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:398
 msgid "About this applet"
-msgstr "Bu uygulamacık hakkında"
+msgstr "Аб аплеце"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -204,43 +218,43 @@ msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:156
 msgid "Quick launch"
-msgstr "Hızlı başlat"
+msgstr "Хуткі запуск"
 
 #: ../GMenu/src/applet-notifications.c:157
 msgid "Configure menu"
-msgstr "Yapılandırma menüsü"
+msgstr "Наладзіць меню"
 
 #: ../GMenu/src/applet-notifications.c:158
 msgid "Clear recent"
-msgstr "Son kullanılanı temizle"
+msgstr "Ачысціць"
 
 #: ../GMenu/src/applet-recent.c:56
 msgid "Recent Documents"
-msgstr "Son Kullanılan Belgeler"
+msgstr "Апошнія дакументы"
 
 #: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents ?"
-msgstr "Son kullanılan belgelerin listesi temizlensin mi ?"
+msgstr "Ачысціць спіс апошніх дакументаў?"
 
 #: ../GMenu/src/applet-run-dialog.c:349
 msgid "Enter a command to launch :"
-msgstr "Çalıştırmak istediğiniz komutu giriniz :"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection has become inactive."
-msgstr "Ağ bağlantısı aktif değil."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr "Bağlanıyor..."
+msgstr "Падключэнне"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
-msgstr "Ağ bağlantısı kuruldu."
+msgstr "Сеткавае злучэнне было ўстаноўлена."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network has been disconnected."
-msgstr ""
+msgstr "Сетка была адключаная."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
@@ -257,65 +271,63 @@ msgstr ""
 #: ../dustbin/data/messages:101 ../wifi/data/messages:129
 #: ../wifi/data/messages:179
 msgid "None"
-msgstr "Hiçbiri"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Very Low"
-msgstr "Çok Düşük"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Low"
-msgstr "Düşük"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Middle"
-msgstr "Orta"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Good"
-msgstr "İyi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Excellent"
-msgstr "Mükemmel"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Not connected"
-msgstr "Bağlı değil"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Wired connection"
-msgstr "Kablolu bağlantı"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
-"Bağlantıyı kontrol ediyor...\n"
-"Lütfen birkaç saniye sonra tekrar deneyiniz"
 
 #: ../Network-Monitor/src/applet-draw.c:131
 msgid "Wired Connection."
-msgstr "Kablolu bağlantı."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:133
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:160
 msgid "Interface"
-msgstr "Arayüz"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:134
 #: ../Network-Monitor/src/applet-draw.c:146
 msgid "Speed"
-msgstr "Hız"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:143 ../wifi/src/applet-draw.c:156
 msgid "Wifi enabled."
-msgstr "Kablosuz bağlantı ektinleştirildi."
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:145 ../wifi/src/applet-draw.c:158
 msgid "Network ID"
-msgstr "Ağ Kimliği"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:145
 #: ../musicPlayer/src/applet-draw.c:322 ../musicPlayer/src/applet-draw.c:324
@@ -323,19 +335,19 @@ msgstr "Ağ Kimliği"
 #: ../powermanager/src/powermanager-draw.c:170
 #: ../powermanager/src/powermanager-draw.c:199
 msgid "Unknown"
-msgstr "Bilinmeyen"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:159
 msgid "Access point"
-msgstr "Erişim noktası"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:149 ../wifi/src/applet-draw.c:161
 msgid "Signal Quality"
-msgstr "Sinyal Kalitesi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-init.c:31
 msgid "Network-Monitor"
-msgstr "Ağ-Gözlemci"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
@@ -356,48 +368,48 @@ msgstr ""
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:58
 msgid "KB"
-msgstr "KB"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:66
 #: ../netspeed/src/applet-netspeed.c:66
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr "MB"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:74
 #: ../netspeed/src/applet-netspeed.c:74
 msgid "GB"
-msgstr "GB"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:82
 #: ../netspeed/src/applet-netspeed.c:82
 msgid "TB"
-msgstr "TB"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:82
 #: ../netspeed/src/applet-netspeed.c:182
 msgid "Loading"
-msgstr "Yükleniyor"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:100
 #: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
-msgstr "Kablosuz Bağlantı Eklentisini Kontrol Et"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:101
 #: ../wifi/src/applet-notifications.c:76
 msgid "Network Administration"
-msgstr "Ağ Yönetimi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr "Ağı Etkinleştir"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr "Ağı etkisizleştir"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
@@ -409,7 +421,7 @@ msgstr ""
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr "Akış okuyucu"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -427,19 +439,19 @@ msgstr ""
 #: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data ..."
-msgstr "Veri alınıyor ..."
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:77
 msgid "It doesn't seem to be a valid URL."
-msgstr "Geçerli bir URL görünmüyor."
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:122
 msgid "Paste a new RSS Url (drag'n'drop)"
-msgstr "Yeni bir RSS web adresi yapıştır (sürükle ve bırak)"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:125
 msgid "Open with your web browser"
-msgstr "Web tarayıcınız ile açınız"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:390
 msgid "Warning : couldn't retrieve data last time we tried."
@@ -447,11 +459,11 @@ msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:425
 msgid "No URL is defined."
-msgstr "Tanımlı URL yok."
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:426
 msgid "No data (no connection ?)"
-msgstr "Veri yok (bağlantı yok ?)"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:444 ../RSSreader/src/applet-rss.c:464
 msgid "Invalid data (invalid RSS/Atom feed ?)"
@@ -459,15 +471,15 @@ msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:517
 msgid "No data"
-msgstr "Veri yok"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:556
 msgid "No modification"
-msgstr "Değişiklik yok"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:582
 msgid "This RSS feed has been modified..."
-msgstr "Bu akış kaynağı değiştirildi..."
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:717
 msgid ""
@@ -487,43 +499,43 @@ msgstr ""
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr "%s değeri panoya kopyalandı."
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:95
 msgid "Execute"
-msgstr "Çalıştır"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr "Burada uçbirim aç"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
-msgstr "Zip dizini"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:177
 #: ../Scooby-Do/src/applet-backend-files.c:251
 msgid "Move to"
-msgstr "Taşı"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:185
 #: ../Scooby-Do/src/applet-backend-files.c:259
 #: ../Scooby-Do/src/applet-backend-firefox.c:238
 msgid "Copy URL"
-msgstr "Web Adresini Kopyala"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:227
 #: ../Scooby-Do/src/applet-backend-recent.c:148
 msgid "Open location"
-msgstr "Konumu aç"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip file"
-msgstr "Zip dosyası"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:243
 msgid "Mail file"
-msgstr "Dosyayı postala"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:396
 msgid "Pick up a directory"
@@ -531,39 +543,39 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:530
 msgid "Files"
-msgstr "Dosyalar"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:222
 msgid "Open"
-msgstr "Aç"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:230
 msgid "Open in new window"
-msgstr "Yeni pencerede aç"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:369
 msgid "Firefox bookmarks"
-msgstr "Firefox yer imleri"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-recent.c:215
 msgid "Recent files"
-msgstr "Son dosyalar"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:102
 msgid "Wikipedia"
-msgstr "Vikipedi"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:110
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:118
 msgid "Google"
-msgstr "Google"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:128
 msgid "Search on the web"
-msgstr "İnternette ara"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:142
 msgid "Mediadico"
@@ -571,7 +583,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:150
 msgid "Amazon"
-msgstr "Amazon"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-init.c:39
 msgid ""
@@ -596,58 +608,58 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:527
 msgid "(F2) Music"
-msgstr "(F2) Müzik"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:534
 msgid "(F3) Image"
-msgstr "(F3) Resim"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:541
 msgid "(F4) Video"
-msgstr "(F4) Video"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:548
 msgid "(F5) Text"
-msgstr "(F5) Metin"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:555
 msgid "(F6) Html"
-msgstr "(F6) Html"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:562
 msgid "(F7) Sources"
-msgstr "Kaynaklar"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:682 ../Scooby-Do/src/applet-search.c:363
 msgid "No result"
-msgstr "Sonuç yok"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:686 ../Scooby-Do/src/applet-search.c:359
 #: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "results"
-msgstr "sonuçlar"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:686 ../Scooby-Do/src/applet-search.c:359
 #: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "result"
-msgstr "sonuç"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-search.c:135
 msgid "Searching ..."
-msgstr "Aranıyor..."
+msgstr ""
 
 #: ../Scooby-Do/src/applet-session.c:50
 msgid "Enter your search"
-msgstr "Aramanızı girin"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
 msgid "day(s)"
-msgstr "gün(ler)"
+msgstr ""
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
-msgstr "Sistem Gözlemcisi"
+msgstr ""
 
 #: ../System-Monitor/src/applet-init.c:33
 msgid ""
@@ -670,39 +682,39 @@ msgstr ""
 #: ../System-Monitor/src/applet-notifications.c:66
 #: ../System-Monitor/src/applet-top.c:287
 msgid "Mb"
-msgstr "Mb"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:49
 msgid "Gb"
-msgstr "Gb"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "GPU model"
-msgstr "Ekran kartı modeli"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Video Ram"
-msgstr "Video Belleği"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Driver Version"
-msgstr "Sürücü Versiyonu"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Core Temperature"
-msgstr "Çekirdek Sıcaklığı"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:77
 msgid "CPU model"
-msgstr "İşlemci modeli"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:78
 msgid "Frequency"
-msgstr "Sıklık"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:79
 msgid "core(s)"
-msgstr "çekirdek(ler)"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:80
 msgid "Up time"
@@ -710,11 +722,11 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:81
 msgid "Activity time"
-msgstr "Faaliyet süresi"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:82
 msgid "Memory"
-msgstr "Bellek"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
@@ -736,7 +748,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert ! Graphic Card core temperature has reached %d°C"
-msgstr "Uyarı ! Grafik Kartı çekirdek sıcaklığı %d°C 'ye ulaştı"
+msgstr ""
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -758,11 +770,11 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
-msgstr "Başlangıçta son parlaklığı uygula"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:31
 msgid "AlsaMixer"
-msgstr "AlsaMixer"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -779,7 +791,7 @@ msgstr ""
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr "'%s' kartı açamadım"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
@@ -796,7 +808,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
-msgstr "Seçenekleri kayıt edemedim"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
@@ -809,13 +821,10 @@ msgid ""
 "You should try to open the configuration panel of the applet,\n"
 " and select the proper audio channel you want to control."
 msgstr ""
-"'%s' olarak adlandırılmış herhangi bir ses kanalı bulamadım\n"
-"Uygulamanın yapılandırma panelini açarak\n"
-" kontrol etmek istediğiniz uygun ses kanalını seçmeyi denemelisiniz."
 
 #: ../alsaMixer/src/applet-mixer.c:285
 msgid "Set up volume :"
-msgstr "Sesi ayarla :"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:56
 msgid "Adjsut channels"
@@ -823,11 +832,11 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:179
 msgid "Search for your location :"
-msgstr "Konumunuzu arayın :"
+msgstr ""
 
 #: ../clock/src/applet-init.c:32
 msgid "clock"
-msgstr "saat"
+msgstr ""
 
 #: ../clock/src/applet-init.c:35
 msgid ""
@@ -842,11 +851,11 @@ msgstr ""
 
 #: ../clock/src/applet-notifications.c:64
 msgid "Calendar"
-msgstr "Takvim"
+msgstr ""
 
 #: ../clock/src/applet-notifications.c:76
 msgid "Set up time and date"
-msgstr "Saat ve tarihi ayarla"
+msgstr ""
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -859,20 +868,20 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Configure Compiz"
-msgstr "Compiz Yapılandırması"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 #: ../compiz-icon/src/applet-notifications.c:178
 msgid "Emerald Manager"
-msgstr "Emerald Yönetici"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Reload WM"
-msgstr "WM'yi yeniden yükle"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
-msgstr "Sergi"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:99
 msgid "Widget Layer"
@@ -886,11 +895,11 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Reload Emerald"
-msgstr "Emerald'ı yeniden yükle"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:183
 msgid "Switch Windows Manager"
-msgstr "Pencere Yöneticisini Değiştir"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Decorator"
@@ -926,7 +935,7 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr "koyu"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
@@ -939,7 +948,7 @@ msgstr ""
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:117
 msgid "none"
-msgstr "hiçbiri"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "board"
@@ -967,7 +976,7 @@ msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
-msgstr "çağdaş"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
@@ -1012,7 +1021,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:33
 msgid "Clear the list of the recently uploaded files ?"
-msgstr "Son gönderilen dosyaların listesi temizlensin mi?"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:51
 msgid ""
@@ -1069,15 +1078,15 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:395
 msgid "Send the clipboard's content"
-msgstr "Panonun içeriğini gönder"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
-msgstr "Geçmişi Temizle"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:460
 msgid "Open file"
-msgstr "Dosya aç"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:462
 msgid "Get text"
@@ -1085,7 +1094,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:464
 msgid "Remove from history"
-msgstr "Geçmişten çıkar"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:33
 #: ../dock-rendering/data/messages:17
@@ -1105,7 +1114,7 @@ msgstr ""
 #: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:59
 msgid "Rainbow"
-msgstr "Gökkuşağı"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:113
 #: ../stack/data/messages:103
@@ -1137,7 +1146,7 @@ msgstr ""
 
 #: ../dustbin/src/applet-draw.c:155
 msgid "calculating"
-msgstr "hesaplanıyor"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:165
 msgid " trashe(s)"
@@ -1145,11 +1154,11 @@ msgstr ""
 
 #: ../dustbin/src/applet-draw.c:169
 msgid " file(s)"
-msgstr " dosya(lar)"
+msgstr ""
 
 #: ../dustbin/src/applet-init.c:31
 msgid "dustbin"
-msgstr "çöp"
+msgstr ""
 
 #: ../dustbin/src/applet-init.c:34
 msgid ""
@@ -1163,49 +1172,49 @@ msgstr ""
 #: ../dustbin/src/applet-notifications.c:42
 #: ../dustbin/src/applet-notifications.c:47
 msgid "Show Trash"
-msgstr "Çöpü Göster"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
 msgid "Delete Trash"
-msgstr "Çöpü Sil"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:51
 #, c-format
 msgid "Show %s"
-msgstr "%s'i göster"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:54
 msgid "Show All"
-msgstr "Tümünü Göster"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:60
 #, c-format
 msgid "Delete %s"
-msgstr "%s'i sil"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:63
 msgid "Delete All"
-msgstr "Tümünü Sil"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:78
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s şimdi bağlı değil"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:82
 #, c-format
 msgid "failed to unmount %s"
-msgstr "%s'in bağını kaldırma başarısız"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:380
 #, c-format
 msgid "You're about to delete all files in %s. Sure ?"
-msgstr "%s içindeki tüm dosyaları silmek üzeresiniz. Emin misiniz?"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:382
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr "Tüm çöplerdeki tüm dosyaları silmek üzeresiniz. Emin misiniz?"
+msgstr ""
 
 #: ../dustbin/src/applet-trashes-manager.c:459
 #, c-format
@@ -1233,7 +1242,7 @@ msgstr ""
 
 #: ../icon-effect/src/applet-init.c:40
 msgid "icon effects"
-msgstr "simge canlandırmaları"
+msgstr ""
 
 #: ../icon-effect/src/applet-init.c:43
 msgid "This plug-in adds many special effects to your icons."
@@ -1249,25 +1258,25 @@ msgstr ""
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
-msgstr "Yıldızlar"
+msgstr ""
 
 #: ../icon-effect/src/applet-init.c:91 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
-msgstr "Yağmur"
+msgstr ""
 
 #: ../icon-effect/src/applet-init.c:94 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
-msgstr "Kar"
+msgstr ""
 
 #: ../icon-effect/src/applet-init.c:97 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
-msgstr "Fırtına"
+msgstr ""
 
 #: ../icon-effect/src/applet-init.c:100 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
@@ -1294,7 +1303,7 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
-msgstr "klavye göstergesi"
+msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid ""
@@ -1326,61 +1335,58 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:173
 msgid "Your computer will shutdown in 1 minute."
-msgstr "Bilgisayarınız 1 dakika içerisinde kapanacak."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:196
 msgid "Please choose an account type."
-msgstr "Lütfen bir hesap türü seçiniz."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:201
 msgid "New account's name"
-msgstr "Yeni hesabın adı"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:204
 msgid "Please enter a name for this account."
-msgstr "Lütfen bu hesap için bir ad giriniz."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:214
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
-"Bu hesap zaten var.\n"
-"Lütfen yeni hesap için başka ad seçiniz."
 
 #: ../mail/src/cd-mail-applet-config.c:342
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
-"Bu hesap için bir ad giriniz. İstediğiniz herhangi bir ad verebilirsiniz."
 
 #: ../mail/src/cd-mail-applet-config.c:397
 msgid "Remove Account"
-msgstr "Hesabı Sil"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
-msgstr "bilinmeyen"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
-msgstr "konu yok"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:369
 msgid "No unread mail in your mailboxes"
-msgstr "posta kutularınızda okunmamış posta yok"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:391
 #, c-format
 msgid "You have %d new mails :"
-msgstr "%d yeni postanız var :"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:393
 msgid "You have a new mail :"
-msgstr "Bir yeni postanız var :"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr "e-posta"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -1404,7 +1410,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:135
 msgid "Mark all mails as read"
-msgstr "Tüm postaları okundu olarak işaretle"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:138
 #, c-format
@@ -1413,7 +1419,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:313
 msgid "Mail"
-msgstr "Posta"
+msgstr ""
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1425,11 +1431,11 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:223
 msgid "Unknown artist"
-msgstr "Bilinmeyen sanatçı"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:223
 msgid "Unknown title"
-msgstr "Bilinmeyen başlık"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:229
 msgid "Track"
@@ -1437,19 +1443,19 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:312
 msgid "Current song"
-msgstr "Geçerli şarkı"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:321
 msgid "Artist"
-msgstr "Sanatçı"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:323
 msgid "Album"
-msgstr "Albüm"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:325 ../RSSreader/data/messages:127
 msgid "Title"
-msgstr "Başlık"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:327
 msgid "Length"
@@ -1537,7 +1543,7 @@ msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
-msgstr "Toplam veri miktarı"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:37
 msgid "downloaded"
@@ -1545,7 +1551,7 @@ msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:38
 msgid "uploaded"
-msgstr "gönderilen"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:43
 #, c-format
@@ -1773,31 +1779,31 @@ msgstr ""
 
 #: ../stack/src/applet-notifications.c:95
 msgid "Set new name for this item :"
-msgstr "Bu öğe için yeni ad ayarlayın :"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:165
 msgid "Copy (middle click)"
-msgstr "Kopyala (Orta tık)"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:166
 msgid "Cut"
-msgstr "Kes"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:167
 msgid "Rename this item"
-msgstr "Bu öğeyi yeniden adlandrırın"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:168
 msgid "Remove this item"
-msgstr "Bu ögeyi kaldır"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:172
 msgid "Open (click)"
-msgstr "Aç (Tıkla)"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:174
 msgid "Open folder"
-msgstr "Dizin aç"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:179
 msgid "Paste (drag'n'drop)"
@@ -1813,15 +1819,15 @@ msgstr ""
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
-msgstr "Yerel dizini temizle"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
 msgid "current"
-msgstr "geçerli"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
 msgid "desktop"
-msgstr "masaüstü"
+msgstr ""
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -1841,7 +1847,7 @@ msgstr ""
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:340
 msgid "Current"
-msgstr "Geçerli"
+msgstr ""
 
 #: ../switcher/src/applet-load-icons.c:46
 #: ../switcher/src/applet-notifications.c:175
@@ -1849,20 +1855,20 @@ msgstr "Geçerli"
 #: ../switcher/src/applet-notifications.c:332
 #: ../switcher/src/applet-notifications.c:397
 msgid "Desktop"
-msgstr "Masaüstü"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
 msgid "Rename this workspace"
-msgstr "Bu çalışma alanını yeniden adlandırın"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:217
 msgid "Add a desktop"
-msgstr "Bir masaüstü ekleyin"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:221
 msgid "Remove last desktop"
-msgstr "Son masaüstünü kaldır"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:225
 msgid "Refresh"
@@ -1870,7 +1876,7 @@ msgstr ""
 
 #: ../switcher/src/applet-notifications.c:241
 msgid "Move current desktop to this desktop"
-msgstr "Geçerli masaüstünü bu masasütüne taşı"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:246
 msgid ""
@@ -1881,11 +1887,11 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
-msgstr "Masaüstünü göster"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Windows List"
-msgstr "Pencereler Listesi"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -1927,27 +1933,27 @@ msgstr ""
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:362
 msgid "New Tab"
-msgstr "Yeni Sekme"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:79
 msgid "Rename current Tab"
-msgstr "Geçerli Sekmeyi yeniden adlandır"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:80
 msgid "Close current Tab"
-msgstr "Geçerli Sekmeyi kapat"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:107
 msgid "Terminal"
-msgstr "Uçbirim"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:137
 msgid "Set title for this tab :"
-msgstr "Bu sekme için başlık ayarla :"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:191
 msgid "Select a color"
-msgstr "Bir renk seç"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:306
 #, c-format
@@ -1956,19 +1962,19 @@ msgstr ""
 
 #: ../terminal/src/terminal-widget.c:352
 msgid "Paste"
-msgstr "Yapıştır"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:368
 msgid "Rename this Tab"
-msgstr "Bu Sekmeyi yeniden adlandır"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:374
 msgid "Change this Tab's color"
-msgstr "Bu Sekmen'nin rengini değiştir"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:380
 msgid "Close this Tab"
-msgstr "Bu sekmeyi kapat"
+msgstr ""
 
 #: ../tomboy/src/tomboy-init.c:33
 msgid ""
@@ -1980,31 +1986,31 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:68
 msgid "Note name : "
-msgstr "Notun adı : "
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:91
 msgid "Delete this note ?"
-msgstr "Bu notu sil?"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:107
 msgid "Search for :"
-msgstr "Ara :"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:123
 msgid "Search for tag :"
-msgstr "Etiket için ara :"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:162
 msgid "Reload notes"
-msgstr "Notları yeniden yükle"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:163
 msgid "Add a note"
-msgstr "Bir not ekle"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:169
 msgid "Delete this note"
-msgstr "Bu notu sil"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:172
 msgid "Search"
@@ -2028,7 +2034,7 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:187
 msgid "Clear marks"
-msgstr "İşaretleri temizle"
+msgstr ""
 
 #: ../weather/src/applet-config.c:112
 msgid ""
@@ -2038,7 +2044,7 @@ msgstr ""
 
 #: ../weather/src/applet-config.c:125
 msgid "I couldn't find this location"
-msgstr "Bu konumu bulamadım"
+msgstr ""
 
 #: ../weather/src/applet-config.c:183
 msgid ""
@@ -2047,7 +2053,7 @@ msgstr ""
 
 #: ../weather/src/applet-init.c:29
 msgid "weather"
-msgstr "hava"
+msgstr ""
 
 #: ../weather/src/applet-init.c:32
 msgid ""
@@ -2061,88 +2067,88 @@ msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr "Pazartesi"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr "Salı"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr "Çarşamba"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr "Perşembe"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr "Cuma"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr "Cumartesi"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr "Pazar"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
-msgstr "Oca"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Feb"
-msgstr "Şub"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Mar"
-msgstr "Mar"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Apr"
-msgstr "Nis"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "May"
-msgstr "May"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jun"
-msgstr "Haz"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jui"
-msgstr "Tem"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Aug"
-msgstr "Ağu"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sep"
-msgstr "Eyl"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Oct"
-msgstr "Eki"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Nov"
-msgstr "Kas"
+msgstr ""
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Dec"
-msgstr "Ara"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:33
 #: ../weather/src/applet-notifications.c:68
 msgid "Data are being retrieved, please wait a moment."
-msgstr "Veri alınıyor, lütfen biraz bekleyin."
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:84
 msgid "Reload now"
-msgstr "Şimdi yeniden yükle"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:108
 msgid ""
@@ -2162,22 +2168,22 @@ msgstr ""
 #: ../weather/src/applet-notifications.c:129
 #: ../weather/src/applet-notifications.c:164
 msgid "Wind"
-msgstr "Rüzgar"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:130
 #: ../weather/src/applet-notifications.c:165
 msgid "Humidity"
-msgstr "Nem"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
 msgid "SunRise"
-msgstr "GünDoğumu"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
 msgid "SunSet"
-msgstr "GünBatımı"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:139
 msgid "Data are being fetched, please re-try in a few seconds."
@@ -2188,8 +2194,6 @@ msgid ""
 "No data were available\n"
 "Re-trying now ..."
 msgstr ""
-"Mevcut veri yok\n"
-"Şimdi yeniden deneniyor ..."
 
 #: ../weather/src/applet-notifications.c:163
 msgid "felt"
@@ -2197,7 +2201,7 @@ msgstr ""
 
 #: ../weather/src/applet-notifications.c:165
 msgid "Pressure"
-msgstr "Basınç"
+msgstr ""
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -2213,7 +2217,7 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:151
 msgid "Wifi disabled."
-msgstr "Kablosuz devredışı."
+msgstr ""
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -2232,7 +2236,7 @@ msgstr ""
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
 msgid "Global"
-msgstr "Evrensel"
+msgstr ""
 
 #: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering an icon"
@@ -2240,7 +2244,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used :"
-msgstr "Kullanılan canlandırmalar :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:19
 msgid "when clicking on an launcher"
@@ -2293,7 +2297,7 @@ msgstr ""
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
 msgid "Duration of the animation :"
-msgstr "Canlandırmanın süresi :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
 #: ../Animated-icons/data/messages:151 ../Animated-icons/data/messages:163
@@ -2329,7 +2333,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:87
 msgid "Cube"
-msgstr "Küp"
+msgstr ""
 
 #: ../Animated-icons/data/messages:89
 msgid "Capsule"
@@ -2373,7 +2377,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:115
 msgid "Rays"
-msgstr "Işınlar"
+msgstr ""
 
 #: ../Animated-icons/data/messages:117 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
@@ -2393,11 +2397,11 @@ msgstr ""
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colors ?"
-msgstr "Rastgele renkler ?"
+msgstr ""
 
 #: ../Animated-icons/data/messages:123
 msgid "Number of rays :"
-msgstr "Işınların sayısı :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:125
 msgid "Rays size :"
@@ -2492,7 +2496,7 @@ msgstr ""
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
-msgstr "Simge"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../GMenu/data/messages:3 ../Network-Monitor/data/messages:3

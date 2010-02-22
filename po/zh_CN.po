@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-01-25 12:47+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"PO-Revision-Date: 2010-02-18 05:58+0000\n"
+"Last-Translator: Saturn <Unknown>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-26 04:55+0000\n"
+"X-Launchpad-Export-Date: 2010-02-19 04:39+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -29,37 +29,37 @@ msgstr "本插件提供了多种不同的图标动态效果"
 #: ../Animated-icons/data/messages:25 ../Animated-icons/data/messages:43
 #: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:169
 msgid "Bounce"
-msgstr ""
+msgstr "弹跳"
 
 #: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63
 msgid "Rotate"
-msgstr ""
+msgstr "旋转"
 
 #: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:183
 msgid "Blink"
-msgstr ""
+msgstr "闪烁"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:157
 msgid "Pulse"
-msgstr ""
+msgstr "脉动"
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:129
 msgid "Wobbly"
-msgstr ""
+msgstr "颤动"
 
 #: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:145
 msgid "Wave"
-msgstr ""
+msgstr "波动特效"
 
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:93 ../Animated-icons/data/messages:101

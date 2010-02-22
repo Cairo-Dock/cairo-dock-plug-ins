@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-25 01:09+0000\n"
-"PO-Revision-Date: 2010-02-12 11:02+0000\n"
-"Last-Translator: dominic <Unknown>\n"
+"PO-Revision-Date: 2010-02-20 21:28+0000\n"
+"Last-Translator: Alexander Hausmann <alexander-hausmann@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-13 05:01+0000\n"
+"X-Launchpad-Export-Date: 2010-02-21 05:00+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -251,19 +251,19 @@ msgstr "Auszuführender Befehl:"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection has become inactive."
-msgstr ""
+msgstr "Die Netzwerkverbindung wurde deaktiviert."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Verbinde..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection has been established."
-msgstr ""
+msgstr "Netzwerkverbindung wurder hergestellt"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network has been disconnected."
-msgstr ""
+msgstr "Verbindung zum Netzwerk wurde getrennt."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been pluged"
@@ -369,6 +369,13 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"Dieses Applet erlaubt es Ihnen ihre Netzwerkverbindung(en) zu überwachen.\n"
+"Es zeigt die Download/Upload Geschwindigkeiten und die Signalqualität der "
+"kabellosen Verbindung.\n"
+"Wenn Sie einen Netzwerk-Manager benutzen, können Sie auch das kabellose "
+"Netzwerk festlegen.\n"
+"Links-Klicken Sie um mehr Informationen zu zeigen, Scrollen Sie über das "
+"Icon, um zwischen der Netzgeschwindigkeit und der Signalstärke zu wechseln"
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -416,19 +423,19 @@ msgstr "Netzwerk Administration"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "Aktiviere Netzwerkverbindung"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "Deaktiviere Netzwerkverbindung"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Deaktiviere WiFi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Aktiviere WiFi"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -446,6 +453,16 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Dieses Applet ist ein RSS/Atom Feed-Reader.\n"
+"Sie können es so oft öffnen, wie Sie wollen.\n"
+"BENUTZUNG:\n"
+" - Linke Maustaste : Zeigt alle Feeds in einem Dialogfenster\n"
+" - Mittlere Maustaste : Erneuert alle Feeds.\n"
+" - Scrollrad auf dem Desklet : Wechselt durch die Feeds.\n"
+" - Ziehen und legen Sie eine gültige URL auf dem Icon ab um sie auszulesen\n"
+"    oder kopieren Sie sie und benutzen Sie \"Neue RSS Url hinzufügen\" im "
+"Menü\n"
+"    oder bearbeiten Sie das Einstellungs-Panel"
 
 #: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
 #: ../RSSreader/src/applet-notifications.c:64
@@ -773,7 +790,7 @@ msgstr "Speicher"
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
-msgstr ""
+msgstr "Verfügbar"
 
 #: ../System-Monitor/src/applet-notifications.c:84
 msgid "Cached"
@@ -958,7 +975,7 @@ msgstr "Lade den Fesntermanager neu"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
-msgstr ""
+msgstr "Darstellung"
 
 #: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:99
 msgid "Widget Layer"
@@ -987,7 +1004,7 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:193
 msgid "Toggle Exposition Mode"
-msgstr ""
+msgstr "Ändern des Darstellungsmodus"
 
 #: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Widgets Layer"
@@ -1052,7 +1069,7 @@ msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 msgid "curly"
-msgstr ""
+msgstr "gewellt"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
@@ -1206,7 +1223,7 @@ msgstr "Karussell"
 #: ../dock-rendering/src/rendering-init.c:34
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
-msgstr ""
+msgstr "3D Fläche"
 
 #: ../dock-rendering/src/rendering-init.c:35
 #: ../dock-rendering/data/messages:35
@@ -1226,7 +1243,7 @@ msgstr "Gleiten"
 #: ../dock-rendering/src/rendering-init.c:39
 #: ../dock-rendering/data/messages:123
 msgid "Curve"
-msgstr ""
+msgstr "Kurve"
 
 #: ../dock-rendering/src/rendering-init.c:122
 msgid ""
@@ -1276,6 +1293,12 @@ msgid ""
 "The applet can warn you if you use too much space\n"
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
+"Dieses Applet verwaltet den Mülleimer\n"
+"Du kannst Dateien in den Mülleimer verschieben und Medien auswerfen, indem "
+"du sie auf das Icon ziehst.\n"
+"Das Applet kann dich darüber hinaus warnen, wenn du zu viel Speicher "
+"verbraucht hast.\n"
+"Ein Mittel-Klick zeigt nützliche Informationen über den Mülleimer."
 
 #: ../dustbin/src/applet-notifications.c:42
 #: ../dustbin/src/applet-notifications.c:47
@@ -1285,7 +1308,7 @@ msgstr "Zeige Mülleimer"
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
 msgid "Delete Trash"
-msgstr "Lösche Mülleimer"
+msgstr "Leere Mülleimer"
 
 #: ../dustbin/src/applet-notifications.c:51
 #, c-format
@@ -1417,7 +1440,7 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
-msgstr ""
+msgstr "Tastatur-Layout-Anzeige"
 
 #: ../keyboard-indicator/src/applet-init.c:32
 msgid ""
@@ -1752,6 +1775,7 @@ msgstr ""
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop's battery. It works with ACPI and DBus."
 msgstr ""
+"Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -1767,11 +1791,11 @@ msgstr "Ruhezustand"
 
 #: ../powermanager/src/powermanager-menu-functions.c:60
 msgid "Suspend"
-msgstr ""
+msgstr "Bereitschaft"
 
 #: ../powermanager/src/powermanager-menu-functions.c:61
 msgid "Reboot"
-msgstr ""
+msgstr "Neustart"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -1799,7 +1823,7 @@ msgstr "Nicht eingebunden"
 
 #: ../shortcuts/src/applet-init.c:31
 msgid "shortcuts"
-msgstr ""
+msgstr "Schnellzugriff"
 
 #: ../shortcuts/src/applet-init.c:34
 msgid ""
@@ -1877,7 +1901,7 @@ msgstr "Bildschirmauflösung ändern"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr ""
+msgstr "Schieberegler"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -1905,7 +1929,7 @@ msgstr ""
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr ""
+msgstr "Zwischenablage"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
