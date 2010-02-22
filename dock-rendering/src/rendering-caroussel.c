@@ -339,37 +339,6 @@ void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }
 
-
-static void _scroll_dock_icons (CairoDock *pDock, int iScrollAmount)
-{
-	if (iScrollAmount == 0)  // fin de scroll
-	{
-		cairo_dock_trigger_set_WM_icons_geometry (pDock);
-		return ;
-	}
-	
-	//\_______________ On fait tourner les icones.
-	pDock->iScrollOffset += iScrollAmount;
-	if (pDock->iScrollOffset >= pDock->fFlatDockWidth)
-		pDock->iScrollOffset -= pDock->fFlatDockWidth;
-	if (pDock->iScrollOffset < 0)
-		pDock->iScrollOffset += pDock->fFlatDockWidth;
-	
-	pDock->pRenderer->compute_size (pDock);  // recalcule le pFirstDrawnElement.
-	
-	//\_______________ On recalcule toutes les icones.
-	Icon *pLastPointedIcon = cairo_dock_get_pointed_icon (pDock->icons);
-	Icon *pPointedIcon = cairo_dock_calculate_dock_icons (pDock);
-	gtk_widget_queue_draw (pDock->container.pWidget);
-	
-	//\_______________ On gere le changement d'icone.
-	if (pPointedIcon != pLastPointedIcon)
-	{
-		cairo_dock_on_change_icon (pLastPointedIcon, pPointedIcon, pDock);
-	}
-}
-
-
 gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
 	if (! CAIRO_DOCK_IS_DOCK (pContainer))
@@ -382,7 +351,7 @@ gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer 
 	{
 		double fRotationSpeed = _cd_rendering_get_rotation_speed (pDock);
 		int iScrollAmount = ceil (my_fScrollSpeed * fRotationSpeed);
-		_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
+		cairo_dock_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
 		*bContinueAnimation |= (fRotationSpeed != 0);
 	}
 	else if (my_fScrollAcceleration != 0 && pDock->iScrollOffset != 0)  // on de-scrolle.
@@ -396,7 +365,7 @@ gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer 
 		{
 			iScrollAmount = MAX (2, ceil ((pDock->fFlatDockWidth - pDock->iScrollOffset) * my_fScrollAcceleration));
 		}
-		_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
+		cairo_dock_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
 		*bContinueAnimation |= (pDock->iScrollOffset != 0);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

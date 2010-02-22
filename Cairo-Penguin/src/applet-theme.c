@@ -211,7 +211,12 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 	if (pAnimation->cFilePath == NULL)
 		return;
 	
-	double fImageWidth=0, fImageHeight=0;
+	CairoDockImageBuffer *pImageBuffer = cairo_dock_create_image_buffer (pAnimation->cFilePath,
+		0,
+		0,
+		0);  // on charge l'image a sa taille naturelle.
+	
+	/**double fImageWidth=0, fImageHeight=0;
 	cairo_surface_t *pBigSurface = cairo_dock_load_image (
 		pSourceContext,
 		pAnimation->cFilePath,
@@ -219,41 +224,40 @@ void penguin_load_animation_buffer (PenguinAnimation *pAnimation, cairo_t *pSour
 		&fImageHeight,
 		0.,
 		fAlpha,
-		FALSE);
-	pAnimation->iFrameWidth = (int) fImageWidth / pAnimation->iNbFrames, pAnimation->iFrameHeight = (int) fImageHeight / pAnimation->iNbDirections;
-	if (pBigSurface != NULL)
+		FALSE);*/
+	pAnimation->iFrameWidth = (int) pImageBuffer->iWidth / pAnimation->iNbFrames;
+	pAnimation->iFrameHeight = (int) pImageBuffer->iHeight / pAnimation->iNbDirections;
+	cd_debug ("  surface chargee (%dx%d)", pAnimation->iFrameWidth, pAnimation->iFrameHeight);
+	if (bLoadTexture)
 	{
-		cd_debug ("  surface chargee (%dx%d)", pAnimation->iFrameWidth, pAnimation->iFrameHeight);
-		if (bLoadTexture)
+		pAnimation->iTexture = pImageBuffer->iTexture;
+		pImageBuffer->iTexture = 0;  // on ne veut pas detruire la texture.
+	}
+	else if (pImageBuffer->pSurface != NULL)
+	{
+		pAnimation->pSurfaces = g_new (cairo_surface_t **, pAnimation->iNbDirections);
+		int i, j;
+		for (i = 0; i < pAnimation->iNbDirections; i ++)
 		{
-			pAnimation->iTexture = cairo_dock_create_texture_from_surface (pBigSurface);
-		}
-		else
-		{
-			pAnimation->pSurfaces = g_new (cairo_surface_t **, pAnimation->iNbDirections);
-			int i, j;
-			for (i = 0; i < pAnimation->iNbDirections; i ++)
+			pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
+			for (j = 0; j < pAnimation->iNbFrames; j ++)
 			{
-				pAnimation->pSurfaces[i] = g_new (cairo_surface_t *, pAnimation->iNbFrames);
-				for (j = 0; j < pAnimation->iNbFrames; j ++)
-				{
-					//cd_debug ("    dir %d, frame %d)", i, j);
-					pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
-						CAIRO_CONTENT_COLOR_ALPHA,
-						pAnimation->iFrameWidth,
-						pAnimation->iFrameHeight);
-					cairo_t *pCairoContext = cairo_create (pAnimation->pSurfaces[i][j]);
-					
-					cairo_set_source_surface (pCairoContext,
-						pBigSurface,
-						- j * pAnimation->iFrameWidth,
-						- i * pAnimation->iFrameHeight);
-					cairo_paint (pCairoContext);
-					
-					cairo_destroy (pCairoContext);
-				}
+				//cd_debug ("    dir %d, frame %d)", i, j);
+				pAnimation->pSurfaces[i][j] = cairo_surface_create_similar (cairo_get_target (pSourceContext),
+					CAIRO_CONTENT_COLOR_ALPHA,
+					pAnimation->iFrameWidth,
+					pAnimation->iFrameHeight);
+				cairo_t *pCairoContext = cairo_create (pAnimation->pSurfaces[i][j]);
+				
+				cairo_set_source_surface (pCairoContext,
+					pImageBuffer->pSurface,
+					- j * pAnimation->iFrameWidth,
+					- i * pAnimation->iFrameHeight);
+				cairo_paint (pCairoContext);
+				
+				cairo_destroy (pCairoContext);
 			}
 		}
-		cairo_surface_destroy (pBigSurface);
 	}
+	cairo_dock_free_image_buffer (pImageBuffer);
 }

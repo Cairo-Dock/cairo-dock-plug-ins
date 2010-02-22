@@ -69,14 +69,24 @@ void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 	
 	double fImageWidth = TREE_WIDTH * pTree->fTreeWidthFactor, fImageHeight = TREE_HEIGHT * pTree->fTreeHeightFactor;
 	gchar *cImageFilePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/branche1.svg", NULL);
-	pTree->pBrancheSurface[0] = cairo_dock_load_image (pSourceContext,
+	
+	pTree->pBrancheSurface[0] = cairo_dock_create_surface_from_image_simple (cImageFilePath,
+		pSourceContext,
+		fImageWidth,
+		fImageHeight);
+	
+	cImageFilePath[strlen(cImageFilePath)-5] = '2';
+	pTree->pBrancheSurface[0] = cairo_dock_create_surface_from_image_simple (cImageFilePath,
+		pSourceContext,
+		fImageWidth,
+		fImageHeight);
+	/**pTree->pBrancheSurface[0] = cairo_dock_load_image (pSourceContext,
 		cImageFilePath,
 		&fImageWidth,
 		&fImageHeight,
 		0.,
 		1.,
 		FALSE);
-	
 	cImageFilePath[strlen(cImageFilePath)-5] = '2';
 	pTree->pBrancheSurface[1] = cairo_dock_load_image (pSourceContext,
 		cImageFilePath,
@@ -84,7 +94,7 @@ void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 		&fImageHeight,
 		0.,
 		1.,
-		FALSE);
+		FALSE);*/
 	g_free (cImageFilePath);
 }
 

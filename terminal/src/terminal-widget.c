@@ -408,7 +408,32 @@ static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *ev
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
 {
-  cd_debug ("youkata EOF");
+	cd_debug ("youkata EOF");
+}
+static void _terminal_switch_tab(int iDelta)
+{
+	int iNbPages = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
+	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+	iCurrentNumPage += iDelta;
+	if (iCurrentNumPage < 0)
+		iCurrentNumPage = iNbPages - 1;
+	else if (iCurrentNumPage >= iNbPages)
+		iCurrentNumPage = 0;
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), iCurrentNumPage);
+}
+static void _terminal_move_tab(int iDelta)
+{
+	int iNbPages = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
+	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+	GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	iCurrentNumPage += iDelta;
+	if (iCurrentNumPage < 0)
+		iCurrentNumPage = iNbPages - 1;
+	else if (iCurrentNumPage >= iNbPages)
+		iCurrentNumPage = 0;
+	gtk_notebook_reorder_child (GTK_NOTEBOOK(myData.tab),
+		vterm,
+		iCurrentNumPage);
 }
 static gboolean on_key_press_term (GtkWidget *pWidget,
 	GdkEventKey *pKey,
@@ -423,6 +448,18 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 			break ;
 			case GDK_w :
 				terminal_close_tab (NULL);
+			break ;
+			case GDK_Page_Down :
+				if (pKey->state & GDK_SHIFT_MASK)
+					_terminal_move_tab (+1);
+				else
+					_terminal_switch_tab (+1);
+			break ;
+			case GDK_Page_Up :
+				if (pKey->state & GDK_SHIFT_MASK)
+					_terminal_move_tab (-1);
+				else
+					_terminal_switch_tab (-1);
 			break ;
 			default :
 			break ;
