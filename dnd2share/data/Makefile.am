@@ -7,7 +7,7 @@ module_DATA = \
 	dnd2share.conf\
 	readme\
 	preview.jpg\
-	icon.png
+	icon.svg
 
 dist_dnd2sharedata_SCRIPTS = \
 	upload2free.sh
