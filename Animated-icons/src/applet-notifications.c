@@ -362,7 +362,9 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	
 	if (pData->bIsUnfolding)
 	{
-		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
+		if (pIcon->pSubDock->fFoldingFactor == 1 || pIcon->pSubDock == NULL || pIcon->pSubDock->icons == NULL)  // fin du pliage.
+			pData->bIsUnfolding = FALSE;
+		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));  // un peu bourrin ...
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
@@ -494,7 +496,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 }
 
 
-gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)
+gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)  // called on start (un)folding.
 {
 	if (pIcon == NULL || pIcon->iSubdockViewType != 3)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

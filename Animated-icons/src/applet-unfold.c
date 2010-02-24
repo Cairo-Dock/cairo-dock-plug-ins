@@ -32,7 +32,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
-	double z = pIcon->fScale / fMaxScale;
+	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	
 	//\______________ On dessine la boite derriere.
 	cairo_scale(pCairoContext, z, z);
@@ -95,9 +95,6 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 		0.,
 		0.);
 	cairo_paint (pCairoContext);
-	
-	if (pIcon->pSubDock->fFoldingFactor == 1)
-		pData->bIsUnfolding = FALSE;
 }
 
 
@@ -108,7 +105,7 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
-	double z = pIcon->fScale / fMaxScale;
+	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	
 	//\______________ On dessine la boite derriere.
 	glScalef (z, z, 1.);
@@ -145,7 +142,4 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	//\______________ On dessine la boite devant.
 	_cairo_dock_set_alpha (1.);
 	_cairo_dock_apply_texture_at_size (g_pBoxAboveBuffer.iTexture, w, h);
-	
-	if (pIcon->pSubDock->fFoldingFactor == 1)
-		pData->bIsUnfolding = FALSE;
 }

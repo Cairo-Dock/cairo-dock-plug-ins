@@ -439,33 +439,38 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	gpointer data)
 {
+	gboolean bIntercept = FALSE;
 	if (pKey->type == GDK_KEY_PRESS && (pKey->state & GDK_CONTROL_MASK))
 	{
 		switch (pKey->keyval)
 		{
 			case GDK_t :
 				terminal_new_tab();
+				bIntercept = TRUE;
 			break ;
 			case GDK_w :
 				terminal_close_tab (NULL);
+				bIntercept = TRUE;
 			break ;
 			case GDK_Page_Down :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (+1);
 				else
 					_terminal_switch_tab (+1);
+				bIntercept = TRUE;
 			break ;
 			case GDK_Page_Up :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (-1);
 				else
 					_terminal_switch_tab (-1);
+				bIntercept = TRUE;
 			break ;
 			default :
 			break ;
 		}
 	}
-	return FALSE;
+	return bIntercept;
 }
 static gchar * _terminal_get_tab_name (int iNumPage)
 {

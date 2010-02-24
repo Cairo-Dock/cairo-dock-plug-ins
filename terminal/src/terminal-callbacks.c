@@ -24,7 +24,6 @@
 #include "terminal-callbacks.h"
 
 
-
 static void _terminal_write_command_with_data (GtkWidget *pWidget, gchar *cCommand, gchar *cData)
 {
 	gchar *cCommandLine = g_strdup_printf ("%s \"%s\"", cCommand, cData);
@@ -140,7 +139,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		cReceivedData = g_filename_from_uri (cReceivedData, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_message ("Attention : %s\n", erreur->message);
+			cd_message ("Terminal : %s\n", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
@@ -159,12 +158,4 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		NULL,
 		1,
 		gtk_get_current_event_time ());
-}
-
-
-gboolean on_terminal_button_press_dialog (GtkWidget* pWidget, GdkEventButton* pButton, gpointer data)  // a connecter au dialog->pWidget.
-{
-	if (myData.dialog)
-		cairo_dock_hide_dialog (myData.dialog);
-	return FALSE;
 }

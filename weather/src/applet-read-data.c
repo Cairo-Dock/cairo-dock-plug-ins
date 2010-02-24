@@ -51,14 +51,31 @@ gchar *cd_weather_get_location_data (const gchar *cLocation)
 
 static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
-	if (cairo_dock_get_file_size (cDataFilePath) == 0)
+	gsize length = 0;
+	gchar *cContent = NULL;
+	g_file_get_contents (cDataFilePath,
+		&cContent,
+		&length,
+		NULL);
+	if (cContent == NULL || length == 0)
 	{
-		g_set_error (erreur, 1, 1, "file '%s' doesn't exist (no connection ?)", cDataFilePath);
+		g_set_error (erreur, 1, 1, "file '%s' doesn't exist or is empty (no connection ?)", cDataFilePath);
 		return NULL;
 	}
+	
+	gchar *cRootNode = g_strdup_printf ("<%s ", cRootNodeName);
+	if (g_strstr_len (cContent, length, cRootNode) == NULL)  // on intercepte le cas ou une connexion a un hotspot nous renvoie une page meme quand la connexion a weather.com n'a pas pu se faire, car ca fait planter libxml.
+	{
+		g_set_error (erreur, 1, 1, "file '%s' is uncorrect (no connection ?)", cDataFilePath);
+		g_free (cContent);
+		g_free (cRootNode);
+		return NULL;
+	}
+	g_free (cRootNode);
 	xmlInitParser ();
 	
-	xmlDocPtr doc = xmlParseFile (cDataFilePath);
+	xmlDocPtr doc = xmlParseMemory (cContent, length);
+	g_free (cContent);
 	if (doc == NULL)
 	{
 		g_set_error (erreur, 1, 1, "file '%s' is uncorrect (no connection ?)", cDataFilePath);
@@ -77,7 +94,8 @@ static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodeP
 static void _cd_weather_close_xml_file (xmlDocPtr doc)
 {
 	xmlCleanupParser ();
-	xmlFreeDoc (doc);
+	if (doc != NULL)
+		xmlFreeDoc (doc);
 }
 
 

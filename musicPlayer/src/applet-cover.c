@@ -189,7 +189,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 				myData.cCoverPath = g_strdup_printf ("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
 			}
 			
-			if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))  // la couverture n'est pas en cache, on la telecharge nous-memes.
+			if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS) && myConfig.bDownload)  // la couverture n'est pas en cache, on la telecharge nous-memes.
 			{
 				cd_musicplayer_dl_cover ();
 				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
