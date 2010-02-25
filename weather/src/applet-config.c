@@ -63,6 +63,7 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 	cd_weather_reset_data (myApplet);
 	
 	cd_weather_free_location_list ();
+	g_free (myData.cLocation);
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	

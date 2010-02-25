@@ -458,7 +458,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0))
 	{
 		cd_warning ("RSSresader : got invalid XML data");
-		xmlCleanupParser ();
+		///xmlCleanupParser ();
 		xmlFreeDoc (doc);
 		
 		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
@@ -506,8 +506,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	pNewItemList = g_list_reverse (pNewItemList);
 	
-	xmlCleanupParser ();
-	xmlFreeDoc (doc);
+	xmlFreeDoc (doc);  // ne pas utiliser xmlCleanupParser dans un thread !
 	
 	// si aucune donnee, on l'affiche et on quitte.
 	if (pNewItemList == NULL)

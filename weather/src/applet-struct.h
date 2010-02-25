@@ -31,11 +31,6 @@
 
 #define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
 
-/**typedef enum {
-  MY_DESKLET_CAROUSSEL = 0,
-  MY_DESKLET_MAIN_ICON
-  } MyDeskletRender ;*/
-
 struct _AppletConfig {
 	gchar *cLocationCode;
 	gboolean bISUnits;
@@ -49,61 +44,61 @@ struct _AppletConfig {
 	gchar *cThemePath;
 	gboolean bDesklet3D;
 	gboolean bSetName;
-	///MyDeskletRender iDeskletRenderer;
 	} ;
 
 typedef struct {
-	gchar *cTemp;
-	gchar *cDistance;
-	gchar *cSpeed;
-	gchar *cPressure;
+	xmlChar *cTemp;
+	xmlChar *cDistance;
+	xmlChar *cSpeed;
+	xmlChar *cPressure;
 	} Unit;
 
 typedef struct {
-	gchar *cSunRise;
-	gchar *cSunSet;
-	gchar *cDataAcquisitionDate;
-	gchar *cObservatory;
-	gchar *cTemp;
-	gchar *cFeltTemp;
-	gchar *cWeatherDescription;
-	gchar *cIconNumber;
-	gchar *cWindSpeed;
-	gchar *cWindDirection;
-	gchar *cPressure;
-	gchar *cHumidity;
-	gchar *cMoonIconNumber;
+	xmlChar *cSunRise;
+	xmlChar *cSunSet;
+	xmlChar *cDataAcquisitionDate;
+	xmlChar *cObservatory;
+	xmlChar *cTemp;
+	xmlChar *cFeltTemp;
+	xmlChar *cWeatherDescription;
+	xmlChar *cIconNumber;
+	xmlChar *cWindSpeed;
+	xmlChar *cWindDirection;
+	xmlChar *cPressure;
+	xmlChar *cHumidity;
+	xmlChar *cMoonIconNumber;
 	} CurrentContitions;
 
 typedef struct {
-	gchar *cIconNumber;
-	gchar *cWeatherDescription;
-	gchar *cWindSpeed;
-	gchar *cWindDirection;
-	gchar *cHumidity;
-	gchar *cPrecipitationProba;
+	xmlChar *cIconNumber;
+	xmlChar *cWeatherDescription;
+	xmlChar *cWindSpeed;
+	xmlChar *cWindDirection;
+	xmlChar *cHumidity;
+	xmlChar *cPrecipitationProba;
 	} DayPart;
 
 typedef struct {
-	gchar *cName;
-	gchar *cDate;
-	gchar *cTempMax;
-	gchar *cTempMin;
-	gchar *cSunRise;
-	gchar *cSunSet;
+	xmlChar *cName;
+	xmlChar *cDate;
+	xmlChar *cTempMax;
+	xmlChar *cTempMin;
+	xmlChar *cSunRise;
+	xmlChar *cSunSet;
 	DayPart part[2];
 	} Day;
 
 struct _AppletData {
 	// shared memory.
-	gchar *cLocation;
+	xmlChar *cLocation_;
+	xmlChar *cLon;
+	xmlChar *cLat;
 	Unit units;
-	gchar *cLon;
-	gchar *cLat;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
 	gboolean bErrorInThread;
-	// shared memory.
+	// end of shared memory.
+	xmlChar *cLocation;
 	CairoDockTask *pTask;
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;
