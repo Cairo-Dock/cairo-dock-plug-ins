@@ -189,13 +189,13 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
 
 /* Fonction executée à chaque changement de temps joué
  */
-static void onElapsedChanged (DBusGProxy *player_proxy,int elapsed, gpointer data)
+static void onElapsedChanged (DBusGProxy *player_proxy, int elapsed, gpointer data)
 {
 	CD_APPLET_ENTER;
 	myData.iCurrentTime = elapsed;
 	if(elapsed > 0)
 	{
-		//g_print ("%s () : %ds\n", __func__, elapsed);
+		cd_debug ("%s (%ds/%ds)", __func__, elapsed, myData.iSongLength);
 		if(myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
 		{
 			CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (elapsed);

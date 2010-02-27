@@ -93,9 +93,9 @@ static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodeP
 }
 static void _cd_weather_close_xml_file (xmlDocPtr doc)
 {
-	xmlCleanupParser ();
 	if (doc != NULL)
 		xmlFreeDoc (doc);
+	///xmlCleanupParser ();
 }
 
 
@@ -104,7 +104,7 @@ GList *cd_weather_parse_location_data (const gchar *cDataFilePath, GError **erre
 	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
 	GError *tmp_erreur = NULL;
-	xmlNodePtr noeud;
+	xmlNodePtr noeud = NULL;
 	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "search", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
@@ -133,7 +133,7 @@ static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gch
 	cd_message ("%s (%s)", __func__, cDataFilePath);
 	
 	GError *tmp_erreur = NULL;
-	xmlNodePtr noeud;
+	xmlNodePtr noeud = NULL;
 	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "weather", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
@@ -179,7 +179,7 @@ static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gch
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
 				if (xmlStrcmp (fils->name, (const xmlChar *) "dnam") == 0)
-					myData.cLocation = xmlNodeGetContent (fils);
+					myData.cLocation_ = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "lat") == 0)
 					myData.cLat = xmlNodeGetContent (fils);
 				else if (xmlStrcmp (fils->name, (const xmlChar *) "lon") == 0)
@@ -389,52 +389,53 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 
 static void _reset_units (Unit *pUnits)
 {
-	g_free (pUnits->cTemp);
-	g_free (pUnits->cDistance);
-	g_free (pUnits->cSpeed);
-	g_free (pUnits->cPressure);
+	xmlFree (pUnits->cTemp);
+	xmlFree (pUnits->cDistance);
+	xmlFree (pUnits->cSpeed);
+	xmlFree (pUnits->cPressure);
 }
 static void _reset_current_conditions (CurrentContitions *pCurrentContitions)
 {
-	g_free (pCurrentContitions->cSunRise);
-	g_free (pCurrentContitions->cSunSet);
-	g_free (pCurrentContitions->cDataAcquisitionDate);
-	g_free (pCurrentContitions->cObservatory);
-	g_free (pCurrentContitions->cTemp);
-	g_free (pCurrentContitions->cFeltTemp);
-	g_free (pCurrentContitions->cWeatherDescription);
-	g_free (pCurrentContitions->cIconNumber);
-	g_free (pCurrentContitions->cWindSpeed);
-	g_free (pCurrentContitions->cWindDirection);
-	g_free (pCurrentContitions->cPressure);
-	g_free (pCurrentContitions->cHumidity);
-	g_free (pCurrentContitions->cMoonIconNumber);
+	xmlFree (pCurrentContitions->cSunRise);
+	xmlFree (pCurrentContitions->cSunSet);
+	xmlFree (pCurrentContitions->cDataAcquisitionDate);
+	xmlFree (pCurrentContitions->cObservatory);
+	xmlFree (pCurrentContitions->cTemp);
+	xmlFree (pCurrentContitions->cFeltTemp);
+	xmlFree (pCurrentContitions->cWeatherDescription);
+	xmlFree (pCurrentContitions->cIconNumber);
+	xmlFree (pCurrentContitions->cWindSpeed);
+	xmlFree (pCurrentContitions->cWindDirection);
+	xmlFree (pCurrentContitions->cPressure);
+	xmlFree (pCurrentContitions->cHumidity);
+	xmlFree (pCurrentContitions->cMoonIconNumber);
 }
 static void _reset_current_one_day (Day *pDay)
 {
-	g_free (pDay->cName);
-	g_free (pDay->cDate);
-	g_free (pDay->cTempMax);
-	g_free (pDay->cTempMin);
-	g_free (pDay->cSunRise);
-	g_free (pDay->cSunSet);
+	xmlFree (pDay->cName);
+	xmlFree (pDay->cDate);
+	xmlFree (pDay->cTempMax);
+	xmlFree (pDay->cTempMin);
+	xmlFree (pDay->cSunRise);
+	xmlFree (pDay->cSunSet);
 	int j;
 	for (j = 0; j < 2; j ++)
 	{
-		g_free (pDay->part[j].cIconNumber);
-		g_free (pDay->part[j].cWeatherDescription);
-		g_free (pDay->part[j].cWindSpeed);
-		g_free (pDay->part[j].cWindDirection);
-		g_free (pDay->part[j].cHumidity);
-		g_free (pDay->part[j].cPrecipitationProba);
+		xmlFree (pDay->part[j].cIconNumber);
+		xmlFree (pDay->part[j].cWeatherDescription);
+		xmlFree (pDay->part[j].cWindSpeed);
+		xmlFree (pDay->part[j].cWindDirection);
+		xmlFree (pDay->part[j].cHumidity);
+		xmlFree (pDay->part[j].cPrecipitationProba);
 	}
 }
 
 void cd_weather_reset_data (CairoDockModuleInstance *myApplet)
 {
 	// on libere toutes les ressources de la memoire partagee.
-	g_free (myData.cLon);
-	g_free (myData.cLat);
+	xmlFree (myData.cLon);
+	xmlFree (myData.cLat);
+	xmlFree (myData.cLocation_);
 	_reset_units (&myData.units);
 	_reset_current_conditions (&myData.currentConditions);
 	int i;
@@ -446,6 +447,7 @@ void cd_weather_reset_data (CairoDockModuleInstance *myApplet)
 	// on remet tout a 0.
 	myData.cLon = NULL;
 	myData.cLat = NULL;
+	myData.cLocation_ = NULL;
 	memset (&myData.currentConditions, 0, sizeof (CurrentContitions));
 	memset (&myData.units, 0, sizeof (Unit));
 	memset (&myData.days, 0, WEATHER_NB_DAYS_MAX * sizeof (Day));

@@ -23,7 +23,7 @@
 #include "applet-read-data.h"
 #include "applet-load-icons.h"
 
-char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };
+char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };  // pour qu'ils soient listes dans le .pot.
 
 #define _add_icon(i, j)\
 	if (myData.days[i].cName != NULL)\
@@ -121,6 +121,8 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_ENTER;
 	
 	//\_______________________ On etablit le nom de l'icone.
+	myData.cLocation = myData.cLocation_;
+	myData.cLocation_ = NULL;
 	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
 	{
 		myData.bSetName = (myData.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
