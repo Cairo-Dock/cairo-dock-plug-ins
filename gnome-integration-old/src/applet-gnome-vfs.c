@@ -235,7 +235,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 
 
 
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -267,9 +267,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	cd_message ("  dirUri : %s", dirUri->text);
 	GnomeVFSURI* fileUri;
 	gchar *cFileURI;
+	int iNbFiles = 0;
 	GnomeIconLookupResultFlags iconLookupResultFlags;
 	Icon *icon;
-	while(1)
+	while(iNbFiles < iNbMaxFiles)
 	{
 		r = gnome_vfs_directory_read_next (handle, info);
 		if (r == GNOME_VFS_ERROR_EOF)
@@ -346,6 +347,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE && (valid & GNOME_VFS_FILE_INFO_FIELDS_TYPE))
 				icon->fOrder = info->type;
 			pIconList = g_list_prepend (pIconList, icon);
+			iNbFiles ++;
 			
 			gnome_vfs_uri_unref (fileUri);
 		}

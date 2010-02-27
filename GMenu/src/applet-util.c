@@ -85,17 +85,114 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 }
 #endif
 
+#define CD_EXPAND_FIELD_CODES //comment this line to switch off the arguments parsing.
+static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  // Thanks to ... for this patch !
+{
+	gchar* cCommandExpanded = NULL;
+#ifdef CD_EXPAND_FIELD_CODES
+	gchar* cField = strchr (cCommand, '%');
+	gchar* cFieldLast;
+	gchar* cFieldCodeToken = NULL;
+	GError* erreur;
+
+	// Break out immediately if there are no field codes
+	if( cField == NULL )
+	{
+		cCommandExpanded = g_strdup(cCommand);
+		return cCommandExpanded;
+	}
+	
+	// parse all the %x tokens, replacing them with the value they represent.
+	GString *sExpandedcCommand = g_string_new ("");
+	g_string_append_len (sExpandedcCommand, cCommand, cField - cCommand);  // take the command until the first % (not included).
+	while ( cField != NULL )
+	{
+		cField ++;  // jump to the code.
+		switch ( *cField ) // Make sure field code is valid
+		{
+			case 'f':
+			case 'F':
+			case 'u':
+			case 'U':  //Is there any reason to expect these codes in a launcher for the main menu?
+				cd_warning("Unexpected field code %%%c in exec string '%s' : cannot handle file or url codes in the menu.", *cField, cCommand);
+				break;
+			case 'd':
+			case 'D':
+			case 'n':
+			case 'N':
+			case 'w':
+			case 'm':  //Deprecated field codes ignored and stripped, per freedesktop spec
+				cd_warning("Deprecated field code %%%c ignored in exec string '%s'.", *cField, cCommand);
+				break;
+			case 'c':
+				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Name", NULL, erreur);
+				if (erreur != NULL)
+				{
+					cd_warning ("Error while expanding %%%c in exec string '%s' : %s", *cField, cCommand, erreur->message);
+					g_error_free (erreur);
+					erreur = NULL;
+				}
+				break;
+			case 'i':
+				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Icon", NULL, NULL);  // Icon key not required.  If not found, no error message necessary.
+				if (cFieldCodeToken != NULL)
+				{
+					gchar *tmp = cFieldCodeToken;
+					cFieldCodeToken = g_strconcat("--icon ", cFieldCodeToken, NULL);
+					g_free (tmp);
+				}
+				break;
+			case 'k':
+				cd_warning("Field code %%k not handled yet");
+				break;
+			case '%': // %% is a literal % sign.
+				cFieldCodeToken = g_strdup("%");
+				//cField ++; // to avoid capturing this %-sign as the beginning of the next field code
+	                        break;
+			default:
+				cd_warning("Invalid field code %%%c in exec string '%s'", *cField, cCommand);
+				break;  // we'll try to launch it anyway.
+		}
+		
+		if (cFieldCodeToken != NULL)  // there is a token to add to the command.
+		{
+			g_string_append_printf (sExpandedcCommand, "%s ", cFieldCodeToken);
+			g_free (cFieldCodeToken);
+			cFieldCodeToken = NULL;
+		}
+		cFieldLast = cField;
+		cField = strchr(cField + 1, '%');  // next field.
+		// we append everything between the current filed and the next field.
+		if (cField != NULL)
+			g_string_append_len (sExpandedcCommand, cFieldLast+1, cField - cFieldLast - 1);
+		else
+			g_string_append (sExpandedcCommand, cFieldLast+1);
+	}
+	cCommandExpanded = sExpandedcCommand->str;
+	g_string_free (sExpandedcCommand, FALSE);
+#else 
+	gchar *str = strchr (cCommand, '%');
+	if (str != NULL)
+		cCommandExpanded = g_strndup (cCommand, str - cCommand);
+	else
+		cCommandExpanded = g_strdup (cCommand,);
+#endif //CD_EXPAND_FIELD_CODES
+	
+	return cCommandExpanded;
+}
 static void _launch_from_file (const gchar *cDesktopFilePath)
 {
+	//\____________ On ouvre le .desktop
 	GError *erreur = NULL;
 	GKeyFile* keyfile = g_key_file_new();
-	g_key_file_load_from_file (keyfile, cDesktopFilePath, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &erreur);
+	g_key_file_load_from_file (keyfile, cDesktopFilePath, 0, &erreur);  //skip comments and translations.
 	if (erreur != NULL)
 	{
 		cd_warning ("while trying to read %s : %s", cDesktopFilePath, erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
+	//\____________ On recupere la commande.
 	gchar *cCommand = g_key_file_get_string (keyfile, "Desktop Entry", "Exec", &erreur);
 	if (erreur != NULL)
 	{
@@ -103,22 +200,29 @@ static void _launch_from_file (const gchar *cDesktopFilePath)
 		g_error_free (erreur);
 		erreur = NULL;
 	}
-	gchar *cWorkingDirectory = NULL;
-	if (cCommand != NULL)
+	g_return_if_fail (cCommand != NULL);
+	
+	//\____________ On gere les arguments de la forme %x.
+	gchar *cCommandExpanded = NULL;
+#ifdef CD_EXPAND_FIELD_CODES
+	cCommandExpanded = cd_expand_field_codes(cCommand, keyfile);
+#else 
+	gchar *str = strchr (cCommand, '%');
+	if (str != NULL)
+		*str = '\0';
+#endif //CD_EXPAND_FIELD_CODES
+	
+	//\____________ On recupere le repertoire d'execution.
+	gchar *cWorkingDirectory = g_key_file_get_string (keyfile, "Desktop Entry", "Path", NULL);
+	if (cWorkingDirectory != NULL && *cWorkingDirectory == '\0')
 	{
-		gchar *str = strchr (cCommand, '%');
-		if (str != NULL)
-			*str = '\0';
 		g_free (cWorkingDirectory);
-		cWorkingDirectory = g_key_file_get_string (keyfile, "Desktop Entry", "Path", NULL);
-		if (cWorkingDirectory != NULL && *cWorkingDirectory == '\0')
-		{
-			g_free (cWorkingDirectory);
-			cWorkingDirectory = NULL;
+		cWorkingDirectory = NULL;
 	}
-	}
-	cairo_dock_launch_command_full (cCommand, cWorkingDirectory);
+	//\____________ On lance le tout.
+	cairo_dock_launch_command_full (cCommandExpanded, cWorkingDirectory);
 	g_free (cCommand);
+	g_free (cCommandExpanded);
 	g_free (cWorkingDirectory);
 } 
 static void _launch_from_basename (const gchar *cDesktopFileName)

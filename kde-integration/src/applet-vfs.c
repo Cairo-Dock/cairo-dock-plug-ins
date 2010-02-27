@@ -550,7 +550,7 @@ GList *vfs_backend_list_volumes (void)
 	return pIconsList;
 }
 
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -740,7 +740,10 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			//g_list_prepend (pIconList, icon);
 			iOrder ++;
 		}
-	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
+	} while (iOrder < iNbMaxFiles);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
+	if (iOrder == iNbMaxFiles)
+		g_file_enumerator_close (pFileEnum, NULL, NULL);  // g_file_enumerator_close() est appelee lors du dernier 'g_file_enumerator_next_file'.
+	
 	
 	if (bAddHome && pIconList != NULL)
 	{

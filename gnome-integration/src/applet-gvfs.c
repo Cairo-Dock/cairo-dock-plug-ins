@@ -591,7 +591,7 @@ GList *vfs_backend_list_volumes (void)
 	return pIconsList;
 }
 
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -628,7 +628,8 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	//g_object_unref (pFile);
+	g_object_unref (pFile);
+	pFile = NULL;
 	if (erreur != NULL)
 	{
 		cd_warning ("gnome_integration : %s", erreur->message);
@@ -637,6 +638,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 	}
 	
 	int iOrder = 0;
+	int iNbFiles = 0;
 	GList *pIconList = NULL;
 	Icon *icon;
 	GFileInfo *pFileInfo;
@@ -780,8 +782,11 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				(GCompareFunc) cairo_dock_compare_icons_order);
 			cd_debug (" + %s (%s)", icon->cName, icon->cFileName);
 			iOrder ++;
+			iNbFiles ++;
 		}
-	} while (TRUE);  // 'g_file_enumerator_close' est appelee lors du dernier 'g_file_enumerator_next_file'.
+	} while (iNbFiles < iNbMaxFiles);
+	if (iNbFiles == iNbMaxFiles)
+		g_file_enumerator_close (pFileEnum, NULL, NULL);  // g_file_enumerator_close() est appelee lors du dernier 'g_file_enumerator_next_file'.
 	
 	if (bAddHome && pIconList != NULL)
 	{
