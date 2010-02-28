@@ -130,6 +130,7 @@ Steps to Sign the Example Request
 
 static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
 {
+	cd_debug ("%s (%s)\n", __func__, text);
 	unsigned char k_ipad[65];    // inner padding - key XORd with ipad
 	unsigned char k_opad[65];    // outer padding - key XORd with opad
 	
@@ -142,6 +143,7 @@ static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
 		key = tmp_key;
 		key_len = strlen (key);  // 16
 	}
+	cd_debug ("  key_len:%d bytes\n", key_len);
 
 	/* the HMAC_MD5 transform looks like:
 	*
@@ -247,13 +249,13 @@ static gchar *_compute_request_and_signature (const gchar *cKeyWords, gchar **cS
 	gchar *cRequest = g_strdup_printf (REQUEST, LICENCE_KEY, keywords, time);
 	g_free (keywords);  // plante avec (Renan Luce, On N'Est Pas À Une Bêtise Près)
 	g_free (time);
+	cd_debug ("cRequest : '%s'\n", cRequest);
 	//gchar *cRequest = g_strdup_printf (REQUEST, (cArtist), LICENCE_KEY, (cKeyWords), _url_encode (cTimeStamp));
 	
 	gchar *cBuffer = g_strconcat (HEADER, cRequest, NULL);
-	//g_print ("cBuffer : %s\n", cBuffer);
 	
 	*cSignature = _hmac_crypt (cBuffer, PRIVATE_KEY, G_CHECKSUM_SHA256);
-	//g_print ("cSignature : %s\n", *cSignature);
+	cd_debug ("cSignature : '%s'", *cSignature);
 	
 	g_free (cBuffer);
 	return cRequest;
@@ -321,6 +323,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 
 static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar *cUri)
 {
+	cd_debug ("%s (%s; %s; %s)\n", __func__, cArtist,cAlbum, cUri);
 	gchar *cKeyWords = _make_keywords (cArtist, cAlbum, cUri);
 	
 	gchar *cSignature = NULL;
@@ -350,7 +353,7 @@ gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cU
 	}
 	
 	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 30 /dev/null 2>&1", cFileToDownload, cTmpFilePath);
-	//g_print ("%s\n",cCommand);
+	cd_debug ("WGET : '%s'", cCommand);
 	cairo_dock_launch_command (cCommand);
 	
 	g_free (cCommand);

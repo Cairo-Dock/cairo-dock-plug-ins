@@ -276,7 +276,7 @@ static void thunar_folder_finished (ThunarVfsJob *job, ThunarFolder *folder)
  * Attention: si l'URI demandee est CAIRO_DOCK_FM_VFS_ROOT, alors il faut retourner la liste des volumes !
  *    En effet dans ThunarVFS "root://" correspond simplement à "/"
  */
-GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, gchar **cFullURI)
+GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	GError *erreur = NULL;
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
@@ -298,8 +298,9 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		ThunarVfsVolumeManager *pThunarVolumeManager = thunar_vfs_volume_manager_get_default();
 		const GList *pListVolumes = thunar_vfs_volume_manager_get_volumes(pThunarVolumeManager);
 		int lVolumeFakeID = 1;
-
-		for( ; pListVolumes != NULL; pListVolumes = pListVolumes->next, lVolumeFakeID++ )
+		int iNbFiles = 0;
+		
+		for( ; pListVolumes != NULL && iNbFiles < iNbMaxFiles; pListVolumes = pListVolumes->next, lVolumeFakeID++ )
 		{
 			ThunarVfsVolume *pThunarVfsVolume = (ThunarVfsVolume *)pListVolumes->data;
 
@@ -349,6 +350,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			}
 
 			pIconList = g_list_prepend (pIconList, icon);
+			iNbFiles ++;
 		}
 
 		return pIconList;

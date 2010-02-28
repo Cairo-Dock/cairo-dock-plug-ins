@@ -301,7 +301,7 @@ static void _find_icon_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
 	gchar *cName = (pIcon->cInitialName != NULL ? pIcon->cInitialName : pIcon->cName);
 	//g_print ("%s (%s/%s, %s/%s)\n", __func__, cName, cIconName, pIcon->cCommand, cIconCommand);
 	if ((cIconName == NULL || (cName && g_ascii_strncasecmp (cIconName, cName, strlen (cIconName)) == 0)) &&
-		(cIconCommand == NULL || (pIcon->cCommand && g_ascii_strncasecmp (cIconCommand, pIcon->cCommand, strlen (cIconCommand)) == 0)))
+		(cIconCommand == NULL || (pIcon->cCommand && g_ascii_strncasecmp (cIconCommand, pIcon->cCommand, strlen (cIconCommand)) == 0) || (pIcon->cClass && g_ascii_strncasecmp (cIconCommand, pIcon->cClass, strlen (cIconCommand)) == 0)))
 	{
 		Icon *icon = *pFoundIcon;
 		if (icon != NULL)  // on avait deja trouve une icone avant.
