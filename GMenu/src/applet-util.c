@@ -86,7 +86,7 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 #endif
 
 #define CD_EXPAND_FIELD_CODES //comment this line to switch off the arguments parsing.
-static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  // Thanks to ... for this patch !
+static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  // Thanks to Tristan Moody for this patch !
 {
 	gchar* cCommandExpanded = NULL;
 #ifdef CD_EXPAND_FIELD_CODES

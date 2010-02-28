@@ -71,7 +71,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 					int iVolumeID = 0;
 					gboolean bIsDirectory = FALSE;
 					double fOrder;
-					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, mySystem.iFileSortType))
+					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						g_print (" -> %s (%d)\n", cIconName, bIsMounted);
 						g_free (icon->cName);
