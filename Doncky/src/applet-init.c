@@ -52,6 +52,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	else
 	{
@@ -107,6 +108,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)

@@ -77,7 +77,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
@@ -110,7 +113,10 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	
 	int i; // reset surfaces utilisateurs.
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {

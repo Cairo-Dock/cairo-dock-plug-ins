@@ -78,6 +78,7 @@ CD_APPLET_RELOAD_BEGIN
 	  	{
 	  		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 	  		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+	  		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	  	}
 	
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.

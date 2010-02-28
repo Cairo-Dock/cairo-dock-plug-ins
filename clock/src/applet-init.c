@@ -48,6 +48,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
 	if (myConfig.bSetName && myConfig.cLocation != NULL)
@@ -104,6 +105,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
 	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.

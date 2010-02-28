@@ -92,8 +92,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
-	
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	// Initialisation du rendu.
 	_set_data_renderer (myApplet, FALSE);
 	myData.iPreviousQuality = -1;  // force le dessin.
@@ -170,7 +172,10 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (myDesklet != NULL)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	
 	int i; // reset surfaces utilisateurs.
 	for (i = 0; i < CONNECTION_NB_QUALITY; i ++) {
