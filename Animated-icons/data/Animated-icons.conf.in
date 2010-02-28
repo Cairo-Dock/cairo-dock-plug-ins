@@ -53,7 +53,7 @@ sep =
 #l+ [Normal;Cube;Capsule] Type of mesh :
 mesh = 1
 
-#c+4 Color of the sheen :
+#C Color of the sheen :
 color = 1;1;1;1
 
 
@@ -78,19 +78,19 @@ spot image =
 #{Let empty to use the default one.}
 spot front image =
 
-#c+3 color of the spot :
+#c color of the spot :
 spot-color = 1;1;1
 
-#c+4 color of the halo :
+#C color of the halo :
 halo-color = 1;1;1
 
 #F-[Rays;gtk-fullscreen]
 frame_ray =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = 0,675;1;1
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = 1;1;0
 
 #b+ Random colors ?

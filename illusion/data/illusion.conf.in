@@ -19,10 +19,10 @@ duration = 1000
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = 0;0.7;1
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = 1;1;0
 
 #b+ Random colors ?
@@ -105,10 +105,10 @@ attraction = 4
 #I[500;5000] Duration of the animation :
 #duration = 3000
 
-#c+3 Color 1 of the lightnings :
+#c Color 1 of the lightnings :
 #color1 = 0;1;1
 
-#c+3 Color 2 of the lightnings :
+#c Color 2 of the lightnings :
 #color2 = 1;1;0
 
 #i[1;7] Number of sources :

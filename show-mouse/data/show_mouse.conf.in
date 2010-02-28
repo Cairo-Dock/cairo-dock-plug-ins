@@ -27,9 +27,9 @@ life = 900
 #{In pixels.}
 part size = 8
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = .2;1;.7
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = .5;.3;.9
 
 #b+ Random colors ?

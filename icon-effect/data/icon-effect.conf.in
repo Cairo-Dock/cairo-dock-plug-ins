@@ -50,10 +50,10 @@ continue =
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = 1;0.12;0
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = 1;.95;0
 
 #b+ Random colors ?
@@ -89,10 +89,10 @@ continue = true
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = 1;1;.7
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = .9;.9;.9
 
 #b+ Random colors ?
@@ -121,10 +121,10 @@ continue = false
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = 1.;1.;1.
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = .8;.9;.9
 
 #F[Particles]
@@ -153,10 +153,10 @@ continue = true
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = .5;.9;1.
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = .9;.9;.9
 
 #F[Particles]
@@ -185,10 +185,10 @@ continue = true
 #F[Colors]
 frame_col =
 
-#c+3 1st color of gradation :
+#c 1st color of gradation :
 color1 = .6;.6;.6
 
-#c+3 2nd color of gradation :
+#c 2nd color of gradation :
 color2 = .0;.4;.6
 
 #F[Particles]
@@ -214,7 +214,7 @@ continue = true
 #F[Colors]
 frame_col =
 
-#c+3 Default color :
+#c Default color :
 color = 1;0;0
 
 #b+ Random colors ?
