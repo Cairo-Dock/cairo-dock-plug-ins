@@ -264,7 +264,8 @@ gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gb
 		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
 	}
 	
-	*bStartAnimation = (pData != NULL);
+	if (pData != NULL)
+		*bStartAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
