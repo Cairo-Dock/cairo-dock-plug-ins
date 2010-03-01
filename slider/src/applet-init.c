@@ -39,6 +39,7 @@ CD_APPLET_DEFINITION (N_("slider"),
 CD_APPLET_INIT_BEGIN
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
@@ -97,6 +98,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myDesklet) {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.

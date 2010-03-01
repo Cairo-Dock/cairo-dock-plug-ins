@@ -76,7 +76,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 CD_APPLET_INIT_BEGIN
 	
 	if (myDesklet)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	
 	// on ne charge pas toutes les surfaces, ce qui economise de la memoire, et du temps au chargement, car ce n'est pas necessaire. En effet, on ne redessine que si il y'a changement. Or la batterie se vide lentement, et la recharge n'est pas non plus fulgurante, donc au total on redesine reellement l'icone 1 fois toutes les 5 minutes peut-etre, ce qui ne justifie pas de pre-charger les surfaces.
 	
@@ -133,7 +136,10 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)
+	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+	}
 	
 	cairo_dock_free_emblem (myData.pEmblem);
 	myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
