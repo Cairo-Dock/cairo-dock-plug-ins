@@ -261,7 +261,7 @@ AC_SUBST(animated_iconsdatadir, "${pkgdatadir}/Animated-icons")
 CLIPPER_PACKAGE="cd-Clipper"
 AC_SUBST(GETTEXT_CLIPPER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_CLIPPER, "1.1.2")
+AC_SUBST(VERSION_CLIPPER, "1.1.3")
 AC_SUBST(PACKAGE_CLIPPER, "$CLIPPER_PACKAGE")
 
 AC_SUBST(Clipperdatadir, "${pkgdatadir}/Clipper")

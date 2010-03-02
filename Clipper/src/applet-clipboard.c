@@ -590,7 +590,7 @@ void cd_clipper_popup_menu (GtkWidget *pMenu)
 		gtk_get_current_event_time ());
 }
 
-gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType)
+gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType, const gchar *cSeparator)
 {
 	GString *sText = g_string_new ("");
 	CDClipperItem *pItem;
@@ -600,9 +600,26 @@ gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType)
 		pItem = it->data;
 		if ((pItem->iType & iType) == 0)
 			continue;
-		g_string_append_printf (sText, "%s\n", pItem->cText);
+		g_string_append_printf (sText, "%s%s", pItem->cText, it->next ? cSeparator : "");
 	}
 	gchar *cText = sText->str;
 	g_string_free (sText, FALSE);
 	return cText;
+}
+
+void cd_clipper_load_items (const gchar *cItems)
+{
+	CDClipperItem *pItem;
+	gchar **cItemList = g_strsplit (cItems, CD_ITEMS_DELIMITER, -1);
+	int i;
+	for (i = 0; cItemList[i] != NULL; i ++)
+	{
+		pItem = g_new0 (CDClipperItem, 1);
+		pItem->iType = CD_CLIPPER_CLIPBOARD;
+		pItem->cText = cItemList[i];
+		pItem->cDisplayedText = cairo_dock_cut_string (pItem->cText, 50);
+		myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
+		myData.iNbItems[pItem->iType] ++;
+	}
+	g_free (cItemList);
 }

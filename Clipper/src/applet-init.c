@@ -62,8 +62,11 @@ CD_APPLET_INIT_BEGIN
 		myData.iSidPrimaryOwnerChange = g_signal_connect (G_OBJECT (pClipBoard), "owner-change", G_CALLBACK(cd_clipper_selection_owner_changed), NULL);
 	}
 	
-	//_on_text_received (NULL, "http://test.fr", NULL);
-	//_on_text_received (NULL, "http://truc.fr", NULL);
+	if (myConfig.cRememberedItems != NULL)
+	{
+		cd_clipper_load_items (myConfig.cRememberedItems);
+	}
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -88,6 +91,15 @@ CD_APPLET_STOP_BEGIN
 	{
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 		g_signal_handler_disconnect (pClipBoard, myData.iSidPrimaryOwnerChange);
+	}
+	
+	if (myConfig.bRememberItems)  // on se souvient des items courants.
+	{
+		gchar *cRememberedItems = cd_clipper_concat_items_of_type (CD_CLIPPER_CLIPBOARD, CD_ITEMS_DELIMITER);  // on prend que les CTRL+c.
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING, "Configuration", "last items", cRememberedItems,
+			G_TYPE_INVALID);
+		g_free (cRememberedItems);
 	}
 CD_APPLET_STOP_END
 
@@ -148,6 +160,15 @@ CD_APPLET_RELOAD_BEGIN
 				g_signal_handler_disconnect (pClipBoard, myData.iSidPrimaryOwnerChange);
 				myData.iSidPrimaryOwnerChange = 0;
 			}
+		}
+		
+		if (myConfig.cRememberedItems != NULL && ! myConfig.bRememberItems)  // on ne veut plus s'en souvenir.
+		{
+			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+				G_TYPE_STRING, "Configuration", "last items", "",
+				G_TYPE_INVALID);
+			g_free (myConfig.cRememberedItems);
+			myConfig.cRememberedItems = NULL;
 		}
 	}
 CD_APPLET_RELOAD_END

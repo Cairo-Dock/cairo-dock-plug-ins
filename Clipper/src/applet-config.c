@@ -70,6 +70,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	gsize length = 0;
 	myConfig.pPersistentItems = CD_CONFIG_GET_STRING_LIST("Configuration", "persistent", &length);
+	
+	myConfig.bRememberItems = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "remember", FALSE);
+	myConfig.cRememberedItems = CD_CONFIG_GET_STRING ("Configuration", "last items");  // on les recupere meme si on ne veut psa s'en souvenir, pour pouvoir effacer le contenu de la cle si on desactive l'option.
 CD_APPLET_GET_CONFIG_END
 
 
@@ -81,6 +84,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 		g_free (myConfig.cShortCut);
 	}
 	g_strfreev (myConfig.pPersistentItems);
+	g_free (myConfig.cRememberedItems);
 CD_APPLET_RESET_CONFIG_END
 
 
