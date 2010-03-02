@@ -109,6 +109,11 @@ item type = 3
 #I[1;50] Number of items :
 nb items = 10
 
+#b Remember items between 2 sessions ?
+remember = false
+
+last items =
+
 #B Separate clipboard and selection ?
 #{It is especially usefull if you often select text with mouse and don't want to lose your clipboard items because of a great number of selection items.}
 separate = false

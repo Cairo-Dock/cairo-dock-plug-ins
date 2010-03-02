@@ -24,6 +24,8 @@
 #include <cairo-dock.h>
 #include <cairo-dock-applet-single-instance.h>
 
+#define CD_ITEMS_DELIMITER "=-+-="
+
 typedef enum {
 	CD_CLIPPER_NONE=0,
 	CD_CLIPPER_CLIPBOARD,
@@ -62,6 +64,8 @@ struct _AppletConfig {
 	gint iActionMenuDuration;
 	gchar *cShortCut;
 	gchar **pPersistentItems;
+	gboolean bRememberItems;
+	gchar *cRememberedItems;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

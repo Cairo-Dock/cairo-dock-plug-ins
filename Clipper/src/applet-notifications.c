@@ -69,7 +69,7 @@ static void _cd_clipper_clear_history (GtkMenuItem *menu_item, gpointer data)
 static void _cd_clipper_paste_all (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	gchar *cText = cd_clipper_concat_items_of_type ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_PRIMARY);  // on prend que les CTRL+c si possible.
+	gchar *cText = cd_clipper_concat_items_of_type ((myConfig.iItemType & CD_CLIPPER_CLIPBOARD) ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_PRIMARY, "\n");  // on prend que les CTRL+c si possible.
 	GtkClipboard *pClipBoard;
 	if (myConfig.bPasteInPrimary)
 	{

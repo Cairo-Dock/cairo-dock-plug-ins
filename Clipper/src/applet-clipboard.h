@@ -49,6 +49,9 @@ GtkWidget *cd_clipper_build_persistent_items_menu (void);
 void cd_clipper_popup_menu (GtkWidget *pMenu);
 
 
-gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType);
+gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType, const gchar *cSeparator);
+
+void cd_clipper_load_items (const gchar *cItems);
+
 
 #endif
