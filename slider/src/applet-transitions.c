@@ -341,7 +341,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view (myContainer->iWidth, myContainer->iHeight);
+		cairo_dock_set_perspective_view (myContainer);
 		glScalef (1., -1., 1.);
 		
 		if (myData.iPrevTexture != 0 && myData.fAnimAlpha < a)
@@ -386,7 +386,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
 		
 		if (myDock)
-			cairo_dock_set_ortho_view (myContainer->iWidth, myContainer->iHeight);
+			cairo_dock_set_ortho_view (myContainer);
 	}
 	else
 	{
@@ -510,9 +510,9 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view (myContainer->iWidth, myContainer->iHeight);
-		glTranslatef (-myContainer->iWidth, -0*myContainer->iHeight/2, 0.);
-		//glTranslatef (myData.slideArea.fImgW, -0*myData.slideArea.fImgH/2, 0.);
+		cairo_dock_set_perspective_view (myContainer);
+		glTranslatef (-myContainer->iWidth/2, -myContainer->iHeight/2, 0.);
+		glTranslatef (myData.slideArea.fImgW/2, myData.slideArea.fImgH/2, 0.);
 		glScalef (1., -1., 1.);
 		
 		double fTheta = - 45. + myData.fAnimAlpha * 90.;  // -45 -> 45
@@ -564,7 +564,7 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
 		
 		if (myDock)
-			cairo_dock_set_ortho_view (myContainer->iWidth, myContainer->iHeight);
+			cairo_dock_set_ortho_view (myContainer);
 	}
 	else
 	{

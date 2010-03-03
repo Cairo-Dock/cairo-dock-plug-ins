@@ -467,14 +467,13 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		_cairo_dock_set_blend_alpha ();
 		_cairo_dock_set_alpha (fAlpha);
 		
+		cairo_dock_set_perspective_view (pMainDock);
 		if (pMainDock->container.bIsHorizontal)
 		{
-			cairo_dock_set_perspective_view (pMainDock->container.iWidth, pMainDock->container.iHeight);
 			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
 		}
 		else
 		{
-			cairo_dock_set_perspective_view (pMainDock->container.iHeight, pMainDock->container.iWidth);
 			glTranslatef (-pMainDock->container.iHeight/2, -pMainDock->container.iWidth/2, 0.);
 		}
 		glEnable (GL_DEPTH_TEST);
