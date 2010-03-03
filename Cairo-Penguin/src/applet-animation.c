@@ -195,8 +195,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
-		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
-			return ;
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 		
 		int iIconWidth, iIconHeight;
 		cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
@@ -218,7 +217,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 			x, - iIconHeight/2 + y);
 		_cairo_dock_disable_texture ();
 		
-		cairo_dock_end_draw_icon (myIcon, myContainer);
+		CD_APPLET_FINISH_DRAWING_MY_ICON;
 	}
 	else
 	{

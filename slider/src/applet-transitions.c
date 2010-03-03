@@ -57,8 +57,7 @@ void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
 {
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
-		if (! cairo_dock_begin_draw_icon (myIcon, myContainer))
-			return ;
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 		
 		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., 1.);
 		
@@ -510,9 +509,7 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view (myContainer);
-		glTranslatef (-myContainer->iWidth/2, -myContainer->iHeight/2, 0.);
-		glTranslatef (myData.slideArea.fImgW/2, myData.slideArea.fImgH/2, 0.);
+		cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
 		glScalef (1., -1., 1.);
 		
 		double fTheta = - 45. + myData.fAnimAlpha * 90.;  // -45 -> 45
@@ -520,7 +517,7 @@ gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
 		glEnable (GL_DEPTH_TEST);
 		
 		// image precedente.
-		///if (fTheta < 25)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
+		if (fTheta < 25)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
 		{
 			glPushMatrix ();
 			glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
