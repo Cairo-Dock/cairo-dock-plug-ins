@@ -340,7 +340,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view (myContainer);
+		cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
 		glScalef (1., -1., 1.);
 		
 		if (myData.iPrevTexture != 0 && myData.fAnimAlpha < a)
