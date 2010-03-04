@@ -1,4 +1,4 @@
-/**
+!eme/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
@@ -53,7 +53,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "effects", CD_ICON_EFFECT_NB_EFFECTS, (int *)myConfig.iEffectsUsed);
-	g_print ("%s -> %d;%d\n", CD_CONFIG_GET_STRING ("Global", "effects"), myConfig.iEffectsUsed[0], myConfig.iEffectsUsed[1]);
+	//g_print ("%s -> %d;%d\n", CD_CONFIG_GET_STRING ("Global", "effects"), myConfig.iEffectsUsed[0], myConfig.iEffectsUsed[1]);
 	
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "click launchers", CD_ICON_EFFECT_NB_EFFECTS,
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_LAUNCHER]);
