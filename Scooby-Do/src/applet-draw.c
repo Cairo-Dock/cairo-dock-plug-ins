@@ -557,7 +557,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			
 			glPopMatrix();
 		}
-		cairo_dock_set_ortho_view (CAIRO_CONTAINER (pMainDock);
+		cairo_dock_set_ortho_view (CAIRO_CONTAINER (pMainDock));
 		if (pMainDock->container.bIsHorizontal)
 		{
 			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
