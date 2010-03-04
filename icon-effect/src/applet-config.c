@@ -1,4 +1,4 @@
-!eme/**
+/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
