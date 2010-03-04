@@ -105,7 +105,8 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
-	cairo_dock_set_perspective_view (iWidth, iHeight);
+	///cairo_dock_set_perspective_view (iWidth, iHeight);
+	cairo_dock_set_perspective_view (myContainer);
 	glScalef (1., -1., 1.);
 	
 	_cairo_dock_enable_texture ();
@@ -142,7 +143,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	
 	if (myDock)
 	{
-		cairo_dock_set_ortho_view (iWidth, iHeight);
+		cairo_dock_set_ortho_view (myContainer);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);

@@ -151,7 +151,7 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 			
 			glViewport(0, 0, w, h);
 			
-			cairo_dock_set_ortho_view (w, h);
+			cairo_dock_set_ortho_view (CAIRO_CONTAINER (pListing));
 			
 			gdk_gl_drawable_gl_end (pGlDrawable);
 		}

@@ -20,6 +20,9 @@ GETTEXT_PACKAGE=cairo-dock-plugins
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"GETTEXT_PACKAGE", [Gettext package.])
 AC_SUBST(GETTEXT_PACKAGE)
 
+prefix=[`pkg-config cairo-dock --variable=prefix`]
+exec_prefix=[`pkg-config cairo-dock --variable=exec_prefix`]
+
 pkgdatadir=[`pkg-config cairo-dock --variable=pluginsdatadir`]
 AC_SUBST(pkgdatadir)
 libdir=[`pkg-config cairo-dock --variable=pluginsdir`]
@@ -33,6 +36,12 @@ top_builddir=".."
 AC_SUBST(top_builddir)
 
 PKG_CHECK_MODULES(PACKAGE, "gtk+-2.0 gthread-2.0 cairo librsvg-2.0 dbus-1 dbus-glib-1 libxml-2.0 gtkglext-1.0 cairo-dock")
+
+dock_version=[`pkg-config --modversion cairo-dock`]
+if test "$dock_version" != "$VERSION" ; then
+	echo "warning : version mismatch"
+	exit
+fi
 
 
 ############# COMPILATION CONDITIONNELLE #################
