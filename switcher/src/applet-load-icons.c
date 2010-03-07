@@ -178,7 +178,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	cairo_t *pCairoContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		pCairoContext,
-		g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
+		g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
 		iWidth, iHeight);
 	
 	cairo_destroy (pCairoContext);

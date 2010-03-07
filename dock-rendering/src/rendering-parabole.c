@@ -79,7 +79,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 	//int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
 	int iX = iMouseX;
 	
-	if ((pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_iScreenWidth[pDock->container.bIsHorizontal] / 2) ^ my_bParaboleCurveOutside)
+	if ((pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2) ^ my_bParaboleCurveOutside)
 	{
 		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
@@ -92,7 +92,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 		iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
-		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
+		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
 	}
 	//cd_debug ("pSubDock->iGapY : %d\n", pSubDock->iGapY);
 }
@@ -202,7 +202,7 @@ static void cd_rendering_calculate_reference_parabole (double alpha)
 		s_pReferenceParaboleT[0] = 0;
 	}
 	
-	double w = g_iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;
+	double w = g_desktopGeometry.iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;
 	double lambda = my_fParaboleRatio * pow (w, 1 - alpha);
 	double s=0, ds = 1;
 	double x = 0, y = 0, theta = 0;
@@ -229,7 +229,7 @@ static void cd_rendering_calculate_reference_parabole (double alpha)
 
 double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lambda, double alpha)
 {
-	double w = g_iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;  // aie, au changement de resolution ...
+	double w = g_desktopGeometry.iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;  // aie, au changement de resolution ...
 	double lambda_reference = my_fParaboleRatio * pow (w, 1 - alpha);
 	//cd_debug ("%s (%.2f / %.2f)\n", __func__, lambda, lambda_reference);
 	if (my_fParaboleRatio < 1)

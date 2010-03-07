@@ -509,7 +509,7 @@ msgstr ""
 "menu.\n"
 "    of bewerk het Configuratiepaneel."
 
-#: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
+#: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data ..."
 msgstr "Data ophalen..."
@@ -2705,14 +2705,16 @@ msgstr "Stralen"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-msgid "1st color of gradation :"
+#, fuzzy
+msgid "st color of gradation :"
 msgstr "1ste kleur van gradatie :"
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-msgid "2nd color of gradation :"
+#, fuzzy
+msgid "nd color of gradation :"
 msgstr "2e kleur van gradatie :"
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:85
@@ -3814,6 +3816,10 @@ msgid "Number of items :"
 msgstr "Aantal items :"
 
 #: ../Clipper/data/messages:213
+msgid "Remember items between 2 sessions ?"
+msgstr ""
+
+#: ../Clipper/data/messages:215
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
@@ -3821,46 +3827,46 @@ msgstr ""
 "Dit is vooral handig als u vaak tekst selecteert met uw muis en u niet uw "
 "klemborditems wilt verliezen, vanwege een groot aantal selectie-items."
 
-#: ../Clipper/data/messages:215
+#: ../Clipper/data/messages:217
 msgid "Separate clipboard and selection ?"
 msgstr "Klembord en selectie scheiden ?"
 
-#: ../Clipper/data/messages:217
+#: ../Clipper/data/messages:219
 msgid "If so, number of selection items :"
 msgstr "Indien ja, aantal selectie-items :"
 
-#: ../Clipper/data/messages:219
+#: ../Clipper/data/messages:221
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met CTRL+v"
 
-#: ../Clipper/data/messages:221
+#: ../Clipper/data/messages:223
 msgid "Paste into Clipboard ?"
 msgstr "Plakken in klembord ?"
 
-#: ../Clipper/data/messages:223
+#: ../Clipper/data/messages:225
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
-#: ../Clipper/data/messages:225
+#: ../Clipper/data/messages:227
 msgid "Paste into Selection ?"
 msgstr "Plakken in selectie ?"
 
-#: ../Clipper/data/messages:227
+#: ../Clipper/data/messages:229
 msgid "Shortkey to pop-up the items menu :"
 msgstr "Sneltoets voor het items-menu :"
 
-#: ../Clipper/data/messages:229
+#: ../Clipper/data/messages:231
 msgid "Pop-up menus at mouse position ?"
 msgstr "Pop-upmenu´s op muispositie ?"
 
-#: ../Clipper/data/messages:231 ../compiz-icon/data/messages:89
+#: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
 msgid "Actions"
 msgstr "Acties"
 
-#: ../Clipper/data/messages:233
+#: ../Clipper/data/messages:235
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
@@ -3868,19 +3874,19 @@ msgstr ""
 "Als sommige acties zijn gekoppeld aan een item, zullen deze aan u worden "
 "voorgesteld wanneer het item wordt aangemaakt."
 
-#: ../Clipper/data/messages:235
+#: ../Clipper/data/messages:237
 msgid "Enable actions ?"
 msgstr "Acties inschakelen ?"
 
-#: ../Clipper/data/messages:237
+#: ../Clipper/data/messages:239
 msgid "Display the actions when selecting an item in the history."
 msgstr "Toon de acties wanneer een item uit de historie wordt geselecteerd."
 
-#: ../Clipper/data/messages:239
+#: ../Clipper/data/messages:241
 msgid "Replay actions ?"
 msgstr "Acties herhalen ?"
 
-#: ../Clipper/data/messages:241 ../Network-Monitor/data/messages:165
+#: ../Clipper/data/messages:243 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:147 ../System-Monitor/data/messages:183
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
@@ -3888,15 +3894,15 @@ msgstr "Acties herhalen ?"
 msgid "in seconds."
 msgstr "In seconden."
 
-#: ../Clipper/data/messages:243
+#: ../Clipper/data/messages:245
 msgid "Duration of the action menu :"
 msgstr "Tijdsduur van het actiemenu :"
 
-#: ../Clipper/data/messages:245
+#: ../Clipper/data/messages:247
 msgid "Persistent items"
 msgstr "Vaste items"
 
-#: ../Clipper/data/messages:247
+#: ../Clipper/data/messages:249
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "Een lijst van vaste items, die u op kunt roepen met een middelklik :"
 

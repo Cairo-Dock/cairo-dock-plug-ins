@@ -37,7 +37,7 @@
 #define NB_STEPS_FOR_1_ENTRY 6
 #define NB_STEPS_LATE 1
 #define _listing_compute_nb_steps(pListing) (NB_STEPS_FOR_1_ENTRY + NB_STEPS_LATE * (MIN (myConfig.iNbLinesInListing, pListing->iNbEntries) - 1))
-#define _listing_compute_width(pListing) (.4 * g_iScreenWidth[CAIRO_DOCK_HORIZONTAL])
+#define _listing_compute_width(pListing) (.4 * g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL])
 #define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (myConfig.iNbLinesInListing + 5) + 2*GAP)
 #define NB_STEPS_FOR_CURRENT_ENTRY 8
 #define NB_STEPS_FOR_SCROLL 2

@@ -509,7 +509,7 @@ msgstr ""
 "    コピーしてメニューにある「新しい RSS URL を貼り付け」を使用したり、\n"
 "    設定パネルで編集します。"
 
-#: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
+#: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data ..."
 msgstr "データ取得中…"
@@ -2691,14 +2691,16 @@ msgstr "光線"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-msgid "1st color of gradation :"
+#, fuzzy
+msgid "st color of gradation :"
 msgstr "グラデーションの１番色 :"
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-msgid "2nd color of gradation :"
+#, fuzzy
+msgid "nd color of gradation :"
 msgstr "グラデーションの２番色 :"
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:85
@@ -3796,6 +3798,10 @@ msgid "Number of items :"
 msgstr "アイテム数 :"
 
 #: ../Clipper/data/messages:213
+msgid "Remember items between 2 sessions ?"
+msgstr ""
+
+#: ../Clipper/data/messages:215
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
@@ -3803,25 +3809,25 @@ msgstr ""
 "マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
 "ボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
 
-#: ../Clipper/data/messages:215
+#: ../Clipper/data/messages:217
 msgid "Separate clipboard and selection ?"
 msgstr "クリップボードとセレクションを分離？"
 
-#: ../Clipper/data/messages:217
+#: ../Clipper/data/messages:219
 msgid "If so, number of selection items :"
 msgstr "分離させる場合のセレクション・アイテム数 :"
 
-#: ../Clipper/data/messages:219
+#: ../Clipper/data/messages:221
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 "アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
 
-#: ../Clipper/data/messages:221
+#: ../Clipper/data/messages:223
 msgid "Paste into Clipboard ?"
 msgstr "クリップボードに貼り付け？"
 
-#: ../Clipper/data/messages:223
+#: ../Clipper/data/messages:225
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
@@ -3829,23 +3835,23 @@ msgstr ""
 "アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
 "す。"
 
-#: ../Clipper/data/messages:225
+#: ../Clipper/data/messages:227
 msgid "Paste into Selection ?"
 msgstr "セレクションに貼り付け？"
 
-#: ../Clipper/data/messages:227
+#: ../Clipper/data/messages:229
 msgid "Shortkey to pop-up the items menu :"
 msgstr "アイテム・メニュー表示のショートカット :"
 
-#: ../Clipper/data/messages:229
+#: ../Clipper/data/messages:231
 msgid "Pop-up menus at mouse position ?"
 msgstr "マウス位置にポップアップ表示？"
 
-#: ../Clipper/data/messages:231 ../compiz-icon/data/messages:89
+#: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
 msgid "Actions"
 msgstr "アクション"
 
-#: ../Clipper/data/messages:233
+#: ../Clipper/data/messages:235
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
@@ -3853,19 +3859,19 @@ msgstr ""
 "アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
 "アクションを提示します。"
 
-#: ../Clipper/data/messages:235
+#: ../Clipper/data/messages:237
 msgid "Enable actions ?"
 msgstr "アクションを有効化？"
 
-#: ../Clipper/data/messages:237
+#: ../Clipper/data/messages:239
 msgid "Display the actions when selecting an item in the history."
 msgstr "履歴にあるアイテムを選択したときにアクションを表示します。"
 
-#: ../Clipper/data/messages:239
+#: ../Clipper/data/messages:241
 msgid "Replay actions ?"
 msgstr "アクションを再提示？"
 
-#: ../Clipper/data/messages:241 ../Network-Monitor/data/messages:165
+#: ../Clipper/data/messages:243 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:147 ../System-Monitor/data/messages:183
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
@@ -3873,15 +3879,15 @@ msgstr "アクションを再提示？"
 msgid "in seconds."
 msgstr "秒単位"
 
-#: ../Clipper/data/messages:243
+#: ../Clipper/data/messages:245
 msgid "Duration of the action menu :"
 msgstr "アクション・メニューの継続時間 :"
 
-#: ../Clipper/data/messages:245
+#: ../Clipper/data/messages:247
 msgid "Persistent items"
 msgstr "定形文登録アイテム"
 
-#: ../Clipper/data/messages:247
+#: ../Clipper/data/messages:249
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr "中クリックでアクセス可能な定形文として登録されたアイテムのリスト :"
 

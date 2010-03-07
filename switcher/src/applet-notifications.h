@@ -38,7 +38,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet);
 
 gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet);
 
-gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure);
+gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure);
 
 
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);

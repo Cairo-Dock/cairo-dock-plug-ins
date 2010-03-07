@@ -361,7 +361,7 @@ gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
 	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean on_window_configured (CairoDockModuleInstance *myApplet, XConfigureEvent *xconfigure)
+gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");

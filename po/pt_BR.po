@@ -494,7 +494,7 @@ msgid ""
 "    or edit the Configuration Panel."
 msgstr ""
 
-#: ../RSSreader/src/applet-init.c:61 ../RSSreader/src/applet-init.c:121
+#: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data ..."
 msgstr "Recuperando dados ..."
@@ -2687,14 +2687,16 @@ msgstr "Raios"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-msgid "1st color of gradation :"
+#, fuzzy
+msgid "st color of gradation :"
 msgstr "1ª de gradação de cor :"
 
 #: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-msgid "2nd color of gradation :"
+#, fuzzy
+msgid "nd color of gradation :"
 msgstr "2ª de gradação de cor :"
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:85
@@ -3793,6 +3795,10 @@ msgid "Number of items :"
 msgstr "Número de itens:"
 
 #: ../Clipper/data/messages:213
+msgid "Remember items between 2 sessions ?"
+msgstr ""
+
+#: ../Clipper/data/messages:215
 msgid ""
 "It is especially usefull if you often select text with mouse and don't want "
 "to lose your clipboard items because of a great number of selection items."
@@ -3801,25 +3807,25 @@ msgstr ""
 "não quer perder seus itens da área de transferência por causa de um grande "
 "número de itens de seleção."
 
-#: ../Clipper/data/messages:215
+#: ../Clipper/data/messages:217
 msgid "Separate clipboard and selection ?"
 msgstr "Separar área de tranferância e seleção ?"
 
-#: ../Clipper/data/messages:217
+#: ../Clipper/data/messages:219
 msgid "If so, number of selection items :"
 msgstr "Em caso afirmativo, número de artigos da seleção:"
 
-#: ../Clipper/data/messages:219
+#: ../Clipper/data/messages:221
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 "Quando você clica em um item, o seu conteúdo se torna acessível com CTRL + V"
 
-#: ../Clipper/data/messages:221
+#: ../Clipper/data/messages:223
 msgid "Paste into Clipboard ?"
 msgstr "Colar na área de transferência ?"
 
-#: ../Clipper/data/messages:223
+#: ../Clipper/data/messages:225
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
@@ -3827,23 +3833,23 @@ msgstr ""
 "Quando você clica em um item, o seu conteúdo se torna acessível com o clique "
 "do meio"
 
-#: ../Clipper/data/messages:225
+#: ../Clipper/data/messages:227
 msgid "Paste into Selection ?"
 msgstr "Colar na seleção?"
 
-#: ../Clipper/data/messages:227
+#: ../Clipper/data/messages:229
 msgid "Shortkey to pop-up the items menu :"
 msgstr "Atalho para o menu de itens pop-up:"
 
-#: ../Clipper/data/messages:229
+#: ../Clipper/data/messages:231
 msgid "Pop-up menus at mouse position ?"
 msgstr "Menus pop-up na posição do mouse?"
 
-#: ../Clipper/data/messages:231 ../compiz-icon/data/messages:89
+#: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
 msgid "Actions"
 msgstr "Ações"
 
-#: ../Clipper/data/messages:233
+#: ../Clipper/data/messages:235
 msgid ""
 "If some actions are associated with an item, they will be proposed to you "
 "when the item is created."
@@ -3851,19 +3857,19 @@ msgstr ""
 "Se algumas ações estão associadas a um item, elas serão propostas para você "
 "quando o item é criado."
 
-#: ../Clipper/data/messages:235
+#: ../Clipper/data/messages:237
 msgid "Enable actions ?"
 msgstr "Ativar ações?"
 
-#: ../Clipper/data/messages:237
+#: ../Clipper/data/messages:239
 msgid "Display the actions when selecting an item in the history."
 msgstr "Exibe as ações ao selecionar um item no histórico."
 
-#: ../Clipper/data/messages:239
+#: ../Clipper/data/messages:241
 msgid "Replay actions ?"
 msgstr "Ações de repetição?"
 
-#: ../Clipper/data/messages:241 ../Network-Monitor/data/messages:165
+#: ../Clipper/data/messages:243 ../Network-Monitor/data/messages:165
 #: ../System-Monitor/data/messages:147 ../System-Monitor/data/messages:183
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
@@ -3871,15 +3877,15 @@ msgstr "Ações de repetição?"
 msgid "in seconds."
 msgstr "em segundos."
 
-#: ../Clipper/data/messages:243
+#: ../Clipper/data/messages:245
 msgid "Duration of the action menu :"
 msgstr "Duração do menu de ação:"
 
-#: ../Clipper/data/messages:245
+#: ../Clipper/data/messages:247
 msgid "Persistent items"
 msgstr "Itens persistentes"
 
-#: ../Clipper/data/messages:247
+#: ../Clipper/data/messages:249
 msgid "A list of persistent items that can be accessed with middle-click :"
 msgstr ""
 "Uma lista de itens persistentes que podem ser acessados com um clique de "

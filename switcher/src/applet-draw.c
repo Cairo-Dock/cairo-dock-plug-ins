@@ -44,22 +44,22 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 	
 	// On calcule les coordonnees en repere absolu.
 	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
-	x += myData.switcher.iCurrentViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
+	x += myData.switcher.iCurrentViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
 	if (x < 0)
-		x += g_iNbViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
 	int y = pIcon->windowGeometry.y;
-	y += myData.switcher.iCurrentViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	y += myData.switcher.iCurrentViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	if (y < 0)
-		y += g_iNbViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
 	
 	// test d'intersection avec le viewport donne.
 	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
 	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
-		x + w <= iNumViewportX * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		x >= (iNumViewportX + 1) * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		y + h <= iNumViewportY * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
-		y >= (iNumViewportY + 1) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
+		x + w <= iNumViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		x >= (iNumViewportX + 1) * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
+		y + h <= iNumViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
+		y >= (iNumViewportY + 1) * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
 		return ;
 	//g_print (" > on la dessine (%x)\n", pIcon->pIconBuffer);
 	
@@ -68,10 +68,10 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 	
 	cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 	cairo_rectangle (pCairoContext,
-		(1.*x/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth,
-		(1.*y/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight,
-		1.*w/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth,
-		1.*h/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight);
+		(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth,
+		(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight,
+		1.*w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth,
+		1.*h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight);
 	if (pIcon->Xid == cairo_dock_get_current_active_window ())
 	{
 		//g_print (" %s est la fenetre active\n", pIcon->cName);
@@ -90,13 +90,13 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 			pParentDock = g_pMainDock;
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
-		double fZoomX = (double) w/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
-		double fZoomY = (double) h/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
+		double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
+		double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
 		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
 		
 		cairo_translate (pCairoContext,
-			(1.*x/g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * iWidth/2,
-			(1.*y/g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * iHeight/2);
+			(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * iWidth/2,
+			(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * iHeight/2);
 		cairo_scale (pCairoContext,
 			fZoom,
 			fZoom);
@@ -140,7 +140,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	double w = iWidth, h = iHeight;
 	if (myConfig.bPreserveScreenRatio)
 	{
-		double r = (double) g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		double r = (double) g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 		double r_ = myData.switcher.fOneViewportWidth / myData.switcher.fOneViewportHeight;
 		if (r_ > r)  // on etire trop en largeur.
 		{
@@ -216,7 +216,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
-	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
+	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 	for (j = 0; j < myData.switcher.iNbLines; j ++)
 	{
 		for (i = 0; i < myData.switcher.iNbColumns; i ++)
@@ -279,11 +279,11 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			}
 			
 			iNumViewportX ++;
-			if (iNumViewportX == g_iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
 			{
 				iNumViewportX = 0;
 				iNumViewportY ++;
-				if (iNumViewportY == g_iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
 				{
 					iNumViewportY = 0;
 					iNumDesktop ++;
@@ -403,10 +403,10 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, data);
 			
 			iNumViewportX ++;
-			if (iNumViewportX == g_iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
 			{
 				iNumViewportY ++;
-				if (iNumViewportY == g_iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
 					iNumDesktop ++;
 			}
 			cairo_destroy (pCairoContext);
@@ -442,7 +442,7 @@ void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 	w = myData.switcher.fOneViewportWidth/2;
 	h = myData.switcher.fOneViewportHeight/2;
 	int i, j;
-	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
+	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 	
 	for (j = 0; j < myData.switcher.iNbLines; j ++)  // lignes horizontales.
 	{
@@ -594,7 +594,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 	
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
-	int k = 0, N = g_iNbDesktops * g_iNbViewportX * g_iNbViewportY;
+	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	GString *sDesktopName = g_string_new ("");
 	int i, j;
@@ -643,11 +643,11 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			
 			// on passe au viewport suivant.
 			iNumViewportX ++;
-			if (iNumViewportX == g_iNbViewportX)
+			if (iNumViewportX == g_desktopGeometry.iNbViewportX)
 			{
 				iNumViewportX = 0;
 				iNumViewportY ++;
-				if (iNumViewportY == g_iNbViewportY)
+				if (iNumViewportY == g_desktopGeometry.iNbViewportY)
 				{
 					iNumViewportY = 0;
 					iNumDesktop ++;
@@ -671,8 +671,8 @@ static void _cd_switcher_move_window_to_viewport (Icon *pIcon, int iNumDesktop, 
 	
 	cairo_dock_move_xwindow_to_nth_desktop (pIcon->Xid,
 		iDestNumDesktop,
-		(iDestNumViewportX - myData.switcher.iCurrentViewportX) * g_iXScreenWidth[CAIRO_DOCK_HORIZONTAL],
-		(iDestNumViewportY - myData.switcher.iCurrentViewportY) * g_iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+		(iDestNumViewportX - myData.switcher.iCurrentViewportX) * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL],
+		(iDestNumViewportY - myData.switcher.iCurrentViewportY) * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 }
 void cd_switcher_move_current_desktop_to (int iNumDesktop, int iNumViewportX, int iNumViewportY)
 {
