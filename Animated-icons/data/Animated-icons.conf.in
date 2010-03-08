@@ -4,6 +4,7 @@
 [Global]
 
 #F-[when hovering an icon]
+#{Animations are triggered when hovering an icon only in OpenGL mode.}
 frame_hov =
 
 #V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used :

@@ -543,7 +543,7 @@ void cd_musicplayer_register_banshee_handler (void)
 	pBanshee->get_cover = NULL;
 	pBanshee->cCoverDir = g_strdup_printf ("%s/.cache/album-art", g_getenv ("HOME"));
 	
-	pBanshee->appclass = "banshee-1";  // pffff
+	pBanshee->appclass = "banshee";  // pffff
 	pBanshee->launch = "banshee";
 	pBanshee->name = "Banshee";
 	pBanshee->cMprisService = "org.bansheeproject.Banshee";
