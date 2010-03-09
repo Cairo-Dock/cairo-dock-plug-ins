@@ -100,7 +100,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 	//\_______________ On les montre.
 	if (myDock)
 	{
-		cairo_dock_show_subdock (myIcon, myDock, FALSE);
+		cairo_dock_show_subdock (myIcon, myDock);
 		cairo_dock_redraw_container (CAIRO_CONTAINER (myIcon->pSubDock));
 	}
 	else
