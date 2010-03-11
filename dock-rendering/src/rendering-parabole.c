@@ -631,7 +631,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	} while (ic != pFirstDrawnElement);
 	
 	//cd_debug ("  derniere icone : %.2f (s:%.2f)", icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX, fCurvilignAbscisse);
-	if (! pDock->container.bInside || fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : 0) || fCurvilignAbscisse <= 0)
+	if (! pDock->container.bInside || fCurvilignAbscisse > icon->fX + icon->fHeight * icon->fScale - pFirstIcon->fX - (pDock->fFoldingFactor > 0 ? 20 : -30) || fCurvilignAbscisse <= 0)  // on laisse 30 pixels de rab pour ne pas etre trop sensible a l'extremite du dock.
 	{
 		//cd_debug ("<<< on sort de la parabole >>>");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;

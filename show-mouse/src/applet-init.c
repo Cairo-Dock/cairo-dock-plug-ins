@@ -82,7 +82,7 @@ static void _free_dock_data (gchar *cDockName, CairoDock *pDock, gpointer data)
 {
 	cd_show_mouse_free_data (data, CAIRO_CONTAINER (pDock));
 }
-static gboolean _free_desklet_data (CairoDesklet *pDesklet, CairoDockModuleInstance *pInstance, gpointer data)
+static gboolean _free_desklet_data (CairoDesklet *pDesklet, gpointer data)
 {
 	cd_show_mouse_free_data (data, CAIRO_CONTAINER (pDesklet));
 	return FALSE;

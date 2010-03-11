@@ -1077,7 +1077,7 @@ static void _on_monitor_changed (GFileMonitor *monitor,
 	CairoDockFMEventType iEventType;
 	switch (event_type)
 	{
-		case G_FILE_MONITOR_EVENT_CHANGED :
+		///case G_FILE_MONITOR_EVENT_CHANGED :  // ignorer celui-ci devrait permettre d'eviter la moitie des signaux inutiles que gvfs emet.
 		case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT :
 		//case G_FILE_MONITOR_EVENT_UNMOUNTED : // pertinent ?...
 			iEventType = CAIRO_DOCK_FILE_MODIFIED;

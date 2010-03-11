@@ -27,7 +27,7 @@
 #include "applet-notifications.h"
 
 
-static gboolean _cd_allow_minimize (CairoDesklet *pDesklet, CairoDockModuleInstance *pInstance, gpointer data)
+static gboolean _cd_allow_minimize (CairoDesklet *pDesklet, gpointer data)
 {
 	pDesklet->bAllowMinimize = TRUE;
 	return FALSE;
