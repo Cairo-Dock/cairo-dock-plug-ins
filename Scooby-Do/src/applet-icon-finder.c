@@ -159,7 +159,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 				Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, &pParentDock);
 				if (pPointingIcon != NULL)
 				{
-					cairo_dock_show_subdock (pPointingIcon, pParentDock, FALSE);  // utile pour le montrage des sous-docks au clic.
+					cairo_dock_show_subdock (pPointingIcon, pParentDock);  // utile pour le montrage des sous-docks au clic.
 				}
 			}
 			else

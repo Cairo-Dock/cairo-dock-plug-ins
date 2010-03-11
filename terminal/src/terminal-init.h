@@ -24,7 +24,6 @@
 
 
 #include <cairo-dock.h>
-#include "cairo-dock-desklet.h"
 
 CD_APPLET_H
 
