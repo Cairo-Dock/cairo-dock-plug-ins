@@ -73,15 +73,23 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 			}
 			else
 			{
-				cairo_dock_show_desklet(myDesklet);
-				int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
-				GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
-				gtk_widget_grab_focus (vterm);
+				cairo_dock_show_desklet (myDesklet);
+				
 			}
 		}
 		else if (myData.dialog)
 		{
-			cairo_dock_toggle_dialog_visibility (myData.dialog);
+			if (GTK_WIDGET_VISIBLE (myData.dialog->container.pWidget))
+			{
+				cairo_dock_hide_dialog (myData.dialog);
+			}
+			else
+			{
+				cairo_dock_unhide_dialog (myData.dialog);
+				int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+				GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+				gtk_widget_grab_focus (vterm);
+			}
 		}
 	}
 	else
@@ -388,22 +396,22 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 
 static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *event, gpointer user_data)
 {
-  g_print ("%s ()\n", __func__);
-  if (event->button == 3)
-    {
-      GtkWidget *menu = _terminal_build_menu_tab (vterm);
+	g_print ("%s ()\n", __func__);
+	if (event->button == 3)
+	{
+		GtkWidget *menu = _terminal_build_menu_tab (vterm);
 
-      gtk_widget_show_all (menu);
+		gtk_widget_show_all (menu);
 
-      gtk_menu_popup (GTK_MENU (menu),
-                      NULL,
-                      NULL,
-                      NULL,
-                      NULL,
-                      1,
-                      gtk_get_current_event_time ());
-    }
-  return FALSE;
+		gtk_menu_popup (GTK_MENU (menu),
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			1,
+			gtk_get_current_event_time ());
+	}
+	return FALSE;
 }
 static void applet_on_terminal_eof(VteTerminal *vteterminal,
                                    gpointer     user_data)
@@ -675,7 +683,7 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 				NULL,
 				1,
 				gtk_get_current_event_time ());
-			return TRUE;  // on empeche le menu de cairo-dock d'apparaitre par-dessus.
+			return TRUE;  // on empeche le menu de cairo-dock d'apparaitre par-dessus dans le cas d'un desklet.
 		}
 	}
 	else if (pButton->button == 2)
@@ -685,6 +693,8 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 			terminal_close_tab (vterm);
 		}
 	}
+	else
+		return FALSE;
 	return TRUE;
 }
 

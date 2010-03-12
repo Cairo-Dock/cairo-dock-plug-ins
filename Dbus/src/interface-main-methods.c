@@ -173,7 +173,7 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	if (pParentDock == NULL)
 	{
 		cd_message ("le dock parent (%s) n'existe pas, on le cree", cParentDockName);
-		pParentDock = cairo_dock_create_new_dock (cParentDockName, NULL);
+		pParentDock = cairo_dock_create_dock (cParentDockName, NULL);
 	}
 	
 	Icon *pIcon = g_new0 (Icon, 1);
@@ -281,7 +281,7 @@ gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gcha
 	
 	if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
 	{
-		cairo_dock_destroy_dock (pIcon->pSubDock, (pIcon->cClass != NULL ? pIcon->cClass : pIcon->cName), NULL, NULL);
+		cairo_dock_destroy_dock (pIcon->pSubDock, (pIcon->cClass != NULL ? pIcon->cClass : pIcon->cName));
 		pIcon->pSubDock = NULL;
 	}
 	
