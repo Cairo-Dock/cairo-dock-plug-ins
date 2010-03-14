@@ -314,7 +314,7 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 	{
 		if (pIcon->pSubDock != NULL)  // precaution.
 		{
-			cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName, NULL, NULL);
+			cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName);
 			pIcon->pSubDock = NULL;
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
@@ -348,7 +348,7 @@ gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, cons
 		{
 			if (pInstance->pDesklet)
 			{
-				cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName, NULL, NULL);
+				cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName);
 				pIcon->pSubDock = NULL;
 			}
 			else

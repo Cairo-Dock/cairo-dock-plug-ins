@@ -106,7 +106,7 @@ void cd_stacks_build_icons (void) {
 void cd_stacks_destroy_icons (void) {
 	cd_debug ("");
 	if (myDock && myIcon->pSubDock != NULL) {
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName, NULL, NULL);
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
 		myIcon->pSubDock = NULL;
 	}
 	else if (myDesklet && myDesklet->icons != NULL) {

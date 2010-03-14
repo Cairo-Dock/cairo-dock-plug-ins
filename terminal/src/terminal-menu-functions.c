@@ -64,7 +64,6 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-
 static void on_new_tab(GtkMenuItem *menu_item, gpointer *data)
 {
 	terminal_new_tab();

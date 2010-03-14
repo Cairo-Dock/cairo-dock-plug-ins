@@ -636,7 +636,7 @@ void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {
 	if (pModuleInstance->pIcon->pSubDock != NULL)
 	{
-		cairo_dock_destroy_dock (pModuleInstance->pIcon->pSubDock, pModuleInstance->pIcon->cName, NULL, NULL);
+		cairo_dock_destroy_dock (pModuleInstance->pIcon->pSubDock, pModuleInstance->pIcon->cName);
 		pModuleInstance->pIcon->pSubDock = NULL;
 	}
 	
