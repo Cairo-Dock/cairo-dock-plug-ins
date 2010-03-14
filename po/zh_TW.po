@@ -544,8 +544,7 @@ msgstr "這個 RSS 提要已被修改..."
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
-" and selecting \"Paste the RL\n"
-" in the menu."
+" and selecting \"Paste the URL\" in the menu."
 msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:722

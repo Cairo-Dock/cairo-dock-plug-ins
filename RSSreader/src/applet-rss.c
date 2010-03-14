@@ -713,7 +713,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 	else  // on affiche un message clair a l'utilisateur.
 	{
 		if (myConfig.cUrl == NULL)
-			cairo_dock_show_temporary_dialog_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the RL\n in the menu."),
+			cairo_dock_show_temporary_dialog_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the URL\" in the menu."),
 				myIcon,
 				myContainer,
 				myConfig.iDialogsDuration,
