@@ -7,8 +7,6 @@ lib_LTLIBRARIES = \
 libcd_gnome_integration_la_SOURCES = \
 	applet-init.c\
 	applet-init.h\
-	applet-gvfs.c\
-	applet-gvfs.h\
 	applet-utils.c\
 	applet-utils.h
 

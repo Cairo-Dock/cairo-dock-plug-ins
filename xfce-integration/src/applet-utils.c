@@ -27,6 +27,11 @@ void env_backend_logout (void)
 	cairo_dock_launch_command ("xfce4-session-logout");
 }
 
+void env_backend_shutdown (void)
+{
+	cairo_dock_launch_command ("xfce4-session-logout --halt");
+}
+
 void env_backend_setup_time (void)
 {
 	cairo_dock_launch_command ("gksu time-admin");

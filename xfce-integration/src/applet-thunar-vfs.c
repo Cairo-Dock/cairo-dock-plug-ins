@@ -18,7 +18,6 @@
 */
 
 #include <string.h>
-
 #include <thunar-vfs/thunar-vfs.h>
 
 #include "applet-thunar-vfs.h"

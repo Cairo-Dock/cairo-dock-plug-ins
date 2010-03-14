@@ -19,6 +19,8 @@
 
 #include "stdlib.h"
 
+#include "cairo-dock-gio-vfs.h"
+
 #include "applet-thunar-vfs.h"
 #include "applet-utils.h"
 #include "applet-init.h"
@@ -32,10 +34,16 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 	"Tofe (Christophe Chapuis")
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{
-		if (init_vfs_backend ())
+		CairoDockDesktopEnvBackend *pVFSBackend = NULL;
+		if (cairo_dock_gio_vfs_init ())
 		{
-			CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-			
+			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
+
+			cairo_dock_gio_vfs_fill_backend(pVFSBackend);
+		}
+		else if (init_vfs_backend ())
+		{
+			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;
@@ -50,8 +58,11 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 			pVFSBackend->move = vfs_backend_move_file;
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
+		}
+		if(NULL != pVFSBackend)
+		{
 			pVFSBackend->logout = env_backend_logout;
-			pVFSBackend->shutdown = env_backend_logout;  /// a confirmer ...
+			pVFSBackend->shutdown = env_backend_shutdown;
 			pVFSBackend->setup_time = env_backend_setup_time;
 			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);
