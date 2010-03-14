@@ -134,7 +134,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
 		
-		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab :"), NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet)), cUsefulLabel);
+		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab:"), NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet)), cUsefulLabel);
 		g_free (cUsefulLabel);
 		
 		if (cNewName != NULL)
@@ -303,7 +303,7 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
 			cairo_dock_hide_desklet (myDesklet);
 			Icon *icon = cairo_dock_get_dialogless_icon ();
 			g_return_if_fail (icon != NULL);
-			cairo_dock_show_temporary_dialog_with_icon_printf (D_("You can call back the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
+			cairo_dock_show_temporary_dialog_with_icon_printf (D_("You can recall the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
 		}
 	}
 }
@@ -371,7 +371,7 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
   g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_rename_tab), vterm);
 
-  menu_item = gtk_image_menu_item_new_with_label (D_("Change this Tab's color"));
+  menu_item = gtk_image_menu_item_new_with_label (D_("Change this Tab's colour"));
   image = gtk_image_new_from_stock (GTK_STOCK_COLOR_PICKER, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
   gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);

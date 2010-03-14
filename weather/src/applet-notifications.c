@@ -105,7 +105,7 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 	
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No data were available\n is connection alive ?"), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\n is your connection alive?"), 
 			(myDock ? pIcon : myIcon),
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
@@ -125,10 +125,10 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 		"same icon",
 		day->cName, day->cDate, part->cWeatherDescription,
 		D_("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
-		D_("Precipitation Probability"), _display (part->cPrecipitationProba),
+		D_("Precipitation probability"), _display (part->cPrecipitationProba),
 		D_("Wind"), _display (part->cWindSpeed), myData.units.cSpeed, _display (part->cWindDirection),
 		D_("Humidity"), _display (part->cHumidity),  // unite ?...
-		D_("SunRise"), _display (day->cSunRise), _("SunSet"), _display (day->cSunSet));
+		D_("Sunrise"), _display (day->cSunRise), _("Sunset"), _display (day->cSunSet));
 }
 
 CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
@@ -146,7 +146,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	}
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No data were available\nRe-trying now ..."), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\nRetrying now..."), 
 			myIcon,
 			myContainer,
 			3000,
@@ -160,8 +160,8 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
-		D_("Temperature"), _display (cc->cTemp), myData.units.cTemp, D_("felt"), _display (cc->cFeltTemp), myData.units.cTemp,
+		D_("Temperature"), _display (cc->cTemp), myData.units.cTemp, D_("Feels like"), _display (cc->cFeltTemp), myData.units.cTemp,
 		D_("Wind"), _display (cc->cWindSpeed), myData.units.cSpeed, _display (cc->cWindDirection),
 		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.units.cPressure,  // unite ?...
-		D_("SunRise"), _display (cc->cSunRise), D_("SunSet"), _display (cc->cSunSet));
+		D_("Sunrise"), _display (cc->cSunRise), D_("Sunset"), _display (cc->cSunSet));
 }

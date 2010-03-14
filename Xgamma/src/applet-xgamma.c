@@ -156,7 +156,7 @@ CairoDialog *xgamma_build_dialog (void)
 {
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
-	attr.cText = D_("Set up gamma :");
+	attr.cText = D_("Set up gamma:");
 	attr.pInteractiveWidget = myData.pWidget;
 	gchar *cButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cButtons;

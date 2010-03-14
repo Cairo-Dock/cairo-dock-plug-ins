@@ -170,17 +170,17 @@ void cd_powermanager_bubble (void)
 			hms = g_strdup_printf ("%s", D_("Unknown"));
 		if(myData.on_battery)
 		{
-			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), myData.battery_charge, D_("Estimated time with charge:"), hms);
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated Charge time:"), hms);
+			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated charge time:"), hms);
 		}
 		g_free (hms);
 	}
 	else
 	{
-		g_string_printf (sInfo, "%s", D_("No Battery found."));
+		g_string_printf (sInfo, "%s", D_("No battery found."));
 	}
 	
 	_cd_powermanager_dialog (sInfo);
@@ -200,13 +200,13 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 		
 	if ((alert == POWER_MANAGER_CHARGE_LOW && myConfig.lowBatteryWitness) || (alert == POWER_MANAGER_CHARGE_CRITICAL && myConfig.criticalBatteryWitness))
 	{
-		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with Charge:"), hms, D_("Please put your Laptop on charge."));
+		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with charge:"), hms, D_("Please put your laptop on charge."));
 		_cd_powermanager_dialog (sInfo);
 	}
 	
 	else if (alert == POWER_MANAGER_CHARGE_FULL && myConfig.highBatteryWitness)
 	{
-		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now Charged"), myData.battery_charge, D_("Estimated time with Charge:"), hms);
+		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now charged"), myData.battery_charge, D_("Estimated time with charge:"), hms);
 		_cd_powermanager_dialog (sInfo);
 		if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL] != NULL)
 			cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL]);

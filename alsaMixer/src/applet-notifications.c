@@ -53,7 +53,7 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU(_("Adjsut channels"), _mixer_show_advanced_mixer, pSubMenu);
+		CD_APPLET_ADD_IN_MENU(_("Adjust channels"), _mixer_show_advanced_mixer, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

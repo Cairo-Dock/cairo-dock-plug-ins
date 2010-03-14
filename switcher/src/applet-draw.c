@@ -610,16 +610,16 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			if (k < myConfig.iNbNames)
 			{
 				if (k == iIndex)
-					g_string_printf (sDesktopName, "<b>%s (%s)</b>", myConfig.cDesktopNames[k], D_("current"));
+					g_string_printf (sDesktopName, "<b>%s (%s)</b>", myConfig.cDesktopNames[k], D_("Current"));
 				else
 					g_string_printf (sDesktopName, "<b>%s</b>", myConfig.cDesktopNames[k]);
 			}
 			else
 			{
 				if (k == iIndex)
-					g_string_printf (sDesktopName, "<b>%s %d (%s)</b>", D_("desktop"), k+1, D_("current"));
+					g_string_printf (sDesktopName, "<b>%s %d (%s)</b>", D_("Desktop"), k+1, D_("Current"));
 				else
-					g_string_printf (sDesktopName, "<b>%s %d</b>", D_("desktop"), k+1);
+					g_string_printf (sDesktopName, "<b>%s %d</b>", D_("Desktop"), k+1);
 			}  // les noms des bureaux : _NET_DESKTOP_NAMES, UTF8_STRING
 			pMenuItem = gtk_menu_item_new ();
 			GtkWidget *pLabel = gtk_label_new (sDesktopName->str);

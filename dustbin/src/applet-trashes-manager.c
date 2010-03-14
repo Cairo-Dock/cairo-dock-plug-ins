@@ -377,9 +377,9 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	{
 		gchar *cQuestion;
 		if (cDirectory != NULL)
-			cQuestion = g_strdup_printf (D_("You're about to delete all files in %s. Sure ?"), cDirectory);
+			cQuestion = g_strdup_printf (D_("You are about to delete all files in %s. Continue?"), cDirectory);
 		else if (myData.pDustbinsList != NULL)
-			cQuestion = g_strdup_printf (D_("You're about to delete all files in all dustbins. Sure ?"));
+			cQuestion = g_strdup_printf (D_("You are about to delete all files in all dustbins. Continue?"));
 		else
 			return;
 		iAnswer = cairo_dock_ask_question_and_wait (cQuestion, myIcon, myContainer);
@@ -456,7 +456,7 @@ void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 		{
 			cd_warning ("Dustbin : when trying to execute '%s' : %s", sCommand->str, erreur->message);
 			g_error_free (erreur);
-			cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", myConfig.cDefaultBrowser);
+			cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual file browser,\nyou can change this in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon", myConfig.cDefaultBrowser);
 		}
 		g_string_free (sCommand, TRUE);
 	}

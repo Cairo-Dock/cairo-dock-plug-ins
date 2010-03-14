@@ -40,7 +40,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	else
 	{
 		Icon *pIcon = cairo_dock_get_dialogless_icon ();
-		gchar *cQuestion = g_strdup_printf (D_("Interface '%s' seems to not exist or is not readable.\n You may have to set up the interface you wish to monitor.\n Do you want to do it now ?"), myConfig.cInterface);
+		gchar *cQuestion = g_strdup_printf (D_("Interface '%s' doesn't seem to exist or is not readable.\n You may have to set up the interface you wish to monitor.\n Do you want to do it now?"), myConfig.cInterface);
 		cairo_dock_show_dialog_with_question (cQuestion, pIcon, CAIRO_CONTAINER (g_pMainDock), MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, (CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand, myApplet, NULL);
 		g_free (cQuestion);
 	}

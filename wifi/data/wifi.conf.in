@@ -6,7 +6,7 @@
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#s Name of the icon as it will appear in its label in the dock :
+#s Name of the icon as it will appear in its caption in the dock:
 name = Wifi
 
 #d Name of the dock it belongs to:
@@ -25,33 +25,33 @@ handbook=wifi
 
 #X[Position]
 frame_pos =
-#b Lock position ?
-#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+#b Lock position?
+#{If locked, the desklet cannot be moved by simply dragging it with the left mouse button. It can still be moved with ALT + left-click.}
 locked = false
 
-#j+[48;512] Desklet's dimension (width x height) :
-#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+#j+[48;512] Desklet dimensions (width x height):
+#{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
 size = 96;96
 
-#i[-2048;2048] Desklet's position (x ; y) :
-#{Depending on your WindowManager, you can move it with ALT + left_click}
+#i[-2048;2048] Desklet position (x, y):
+#{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
 x position=0
 #i[-2048;2048] ...
 y position=0
 
-#I[-180;180] Rotation :
+#I[-180;180] Rotation:
 #{You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides.}
 rotation = 0
 
 #X[Visibility]
 frame_visi =
 
-#b+ Is detached from the dock ?
+#b+ Is detached from the dock
 initially detached=false
-#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Visibility :
+#l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
-#b Should be visible on all desktops ?
+#b Should be visible on all desktops?
 sticky=true
 
 
@@ -61,48 +61,48 @@ use size=
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
-#o+ Choose a decoration theme for this desklet :
+#o+ Choose a decoration theme for this desklet:
 #{Choose 'Custom decorations' to define your own decorations below.}
 decorations = default
 
 #v
 sep_deco =
 
-#S+ Background image :
-#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+#S+ Background image:
+#{Image to be displayed below drawings, e.g. a frame. Leave empty for no image.}
 bg desklet =
-#e+[0;1] Background tansparency :
+#e+[0;1] Background transparency:
 bg alpha = 1
-#i+[0;256] Left offset :
-#{in pixels. Use this to adjust the left position of the drawings.}
+#i+[0;256] Left offset:
+#{in pixels. Use this to adjust the left position of drawings.}
 left offset = 0
-#i+[0;256] Top offset :
-#{in pixels. Use this to adjust the top position of the drawings.}
+#i+[0;256] Top offset:
+#{in pixels. Use this to adjust the top position of drawings.}
 top offset = 0
-#i+[0;256] Right offset :
-#{in pixels. Use this to adjust the right position of the drawings.}
+#i+[0;256] Right offset:
+#{in pixels. Use this to adjust the right position of drawings.}
 right offset = 0
-#i+[0;256] Bottom offset :
-#{in pixels. Use this to adjust the bottom position of the drawings.}
+#i+[0;256] Bottom offset:
+#{in pixels. Use this to adjust the bottom position of drawings.}
 bottom offset = 0
-#S+ Foreground image :
-#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+#S+ Foreground image:
+#{Image to be displayed above the drawings, e.g. a reflection. Leave empty for no image.}
 fg desklet =
-#e+[0;1] Foreground tansparency :
+#e+[0;1] Foreground tansparency:
 fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
 
 
-#l+[Gauge;Graph;Icons] Choose the style of the display : 
+#l+[Gauge;Graph;Icons] Choose the style of the display: 
 renderer = 0
 
 
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes:/
 theme = Turbo-night-fuel
 
 
@@ -112,15 +112,15 @@ frame_graph=
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
-#c+ High values color :
-#{It's the color of the graphic for high quality signal.}
+#c+ High value's colour :
+#{It's the colour of the graphic for high quality signal.}
 high color = 1;0;0
 
-#c+ Low values color :
-#{It's the color of the graphic for low quality signal.}
+#c+ Low value's colour :
+#{It's the colour of the graphic for low quality signal.}
 low color = 1;1;0
 
-#C+ Background color of the graphic :
+#C+ Background colour of the graphic :
 bg color = .5;.5;1.;.4
 
 
@@ -131,23 +131,23 @@ frame_icons =
 #l+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
 effect=0
 
-#S+ Name of an image for the 'no signal' icon :
-#{Let it empty to use the default icon.}
+#S+ 'No signal' icon filename:
+#{Leave empty to use the default icon.}
 icon_0 = 
-#S+ Name of an image for the 'very low' icon :
-#{Let it empty to use the default icon.}
+#S+ 'Very low' icon filename:
+#{Leave empty to use the default icon.}
 icon_1 = 
-#S+ Name of an image for the 'low' icon :
-#{Let it empty to use the default icon.}
+#S+ 'Low' icon filename:
+#{Leave empty to use the default icon.}
 icon_2 = 
-#S+ Name of an image for the 'middle' icon :
-#{Let it empty to use the default icon.}
+#S+ 'Average' icon filename:
+#{Leave empty to use the default icon.}
 icon_3 = 
-#S+ Name of an image for the 'good' icon :
-#{Let it empty to use the default icon.}
+#S+ 'Good' icon filename:
+#{Leave empty to use the default icon.}
 icon_4 = 
-#S+ Name of an image for the 'exellent' icon :
-#{Let it empty to use the default icon.}
+#S+ 'Excellent' icon filename:
+#{Leave empty to use the default icon.}
 icon_5 = 
 
 
@@ -155,15 +155,15 @@ icon_5 =
 frame_param =
 
 #i[1;60] Delay between signal checks :
-#{in seconds.}
+#{in secondsconds.}
 delay = 10
 
-#e[0;1] How smooth is the movement ?
-#{You need OpenGL for this option. Set it to 0 to not use it, 1 means the movement is continue.}
+#e[0;1] How smooth is the movement?
+#{You need OpenGL for this option. Set it to 0 means not used, 1 means the movement is continue.}
 smooth = .33
 
 #s Alternative command line to launch Wireless Configuration :
-#{Allow you to overwrite applet's default command line and launch you wireless configuration interface.}
+#{Allow you to overwrite applet's default command line and launch your wireless configuration interface.}
 command = 
 
 
@@ -173,5 +173,5 @@ frame_disp=
 #l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
 signal_type=2
 
-#b Overwrite the default label with the connection point name ?
+#b Overwrite the default label with the connection point name?
 essid = true

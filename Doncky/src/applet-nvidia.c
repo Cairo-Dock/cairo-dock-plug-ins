@@ -146,7 +146,7 @@ void cd_nvidia_alert (CairoDockModuleInstance *myApplet)
 		if (myData.bAlerted || ! myConfig.bAlert)
 			return;
 		
-		cairo_dock_show_temporary_dialog_with_icon_printf (D_("Alert ! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
+		cairo_dock_show_temporary_dialog_with_icon_printf (D_("Alert! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
 		
 		if (myConfig.bAlertSound)
 			cairo_dock_play_sound (myConfig.cSoundPath);

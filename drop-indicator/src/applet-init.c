@@ -25,10 +25,10 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("drop indicator"),
+CD_APPLET_PRE_INIT_BEGIN (N_("Drop Indicator"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
-	N_("This plug-in displays an animated indicator when you drop something in the dock."),
+	N_("This plug-in displays an animated indicator when you drop something into the dock."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Indicators");

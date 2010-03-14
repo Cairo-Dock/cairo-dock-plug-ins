@@ -116,7 +116,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	int iDeltaT = (int) (cairo_dock_show_value_and_wait (D_("Choose in how many minutes your PC will stop :"), myIcon, myContainer, 30, 150) * 60);
+	int iDeltaT = (int) (cairo_dock_show_value_and_wait (D_("Choose in how many minutes your PC will stop:"), myIcon, myContainer, 30, 150) * 60);
 	if (iDeltaT == -1)  // cancel
 		CD_APPLET_LEAVE ();
 		//return ;
@@ -140,7 +140,7 @@ static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shutdown"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
@@ -170,7 +170,7 @@ static gboolean _timer (gpointer data)
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%dmn", (int) ceil ((double)(myConfig.iShutdownTime - t_cur) / 60.));
 		CD_APPLET_REDRAW_MY_ICON;
 		if (t_cur >= myConfig.iShutdownTime - 60)
-			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shutdown in 1 minute."), myIcon, myContainer, 8000, "same icon");
+			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
 	}
 	CD_APPLET_LEAVE (TRUE);
 	//return TRUE;

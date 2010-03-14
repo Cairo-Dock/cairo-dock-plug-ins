@@ -7,12 +7,12 @@
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#s Name of the icon as it will appear in its label in the dock :
-#{Let empty to use the title of the RSS feed.}
+#s Name of the icon as it will appear in its caption in the dock:
+#{Leave empty to use the title of the RSS feed.}
 name = 
 
-#S+ Image's filename :
-#{Let empty to use the default one.}
+#S+ Image filename:
+#{Leave empty to use the default one.}
 icon = 
 
 #d Name of the dock it belongs to:
@@ -31,33 +31,33 @@ handbook=RSSreader
 #X[Position]
 frame_pos =
 
-#b Lock position ?
-#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+#b Lock position?
+#{If locked, the desklet cannot be moved by simply dragging it with the left mouse button. It can still be moved with ALT + left-click.}
 locked = false
 
-#j+[96;1024] Desklet's dimension (width x height) :
-#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+#j+[96;1024] Desklet dimensions (width x height):
+#{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
 size = 300;200
 
-#i[-2048;2048] Desklet's position (x ; y) :
-#{Depending on your WindowManager, you can move it with ALT + left_click}
+#i[-2048;2048] Desklet position (x, y):
+#{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
 x position=0
 #i[-2048;2048] ...
 y position=0
 
-#I[-180;180] Rotation :
+#I[-180;180] Rotation:
 #{You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides.}
 rotation = 0
 
 #X[Visibility]
 frame_visi =
 
-#b Is detached from the dock ?
+#b Is detached from the dock
 initially detached=true
-#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Visibility :
+#l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
-#b Should be visible on all desktops ?
+#b Should be visible on all desktops?
 sticky=true
 
 
@@ -67,34 +67,34 @@ use size=
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
-#o+ Choose a decoration theme for this desklet :
+#o+ Choose a decoration theme for this desklet:
 #{Choose 'Custom decorations' to define your own decorations below.}
 decorations = default
 
 #v
 sep_deco =
 
-#S+ Background image :
-#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+#S+ Background image:
+#{Image to be displayed below drawings, e.g. a frame. Leave empty for no image.}
 bg desklet =
-#e+[0;1] Background tansparency :
+#e+[0;1] Background transparency:
 bg alpha = 1
-#i+[0;256] Left offset :
-#{in pixels. Use this to adjust the left position of the drawings.}
+#i+[0;256] Left offset:
+#{in pixels. Use this to adjust the left position of drawings.}
 left offset = 0
-#i+[0;256] Top offset :
-#{in pixels. Use this to adjust the top position of the drawings.}
+#i+[0;256] Top offset:
+#{in pixels. Use this to adjust the top position of drawings.}
 top offset = 0
-#i+[0;256] Right offset :
-#{in pixels. Use this to adjust the right position of the drawings.}
+#i+[0;256] Right offset:
+#{in pixels. Use this to adjust the right position of drawings.}
 right offset = 0
-#i+[0;256] Bottom offset :
-#{in pixels. Use this to adjust the bottom position of the drawings.}
+#i+[0;256] Bottom offset:
+#{in pixels. Use this to adjust the bottom position of drawings.}
 bottom offset = 0
-#S+ Foreground image :
-#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+#S+ Foreground image:
+#{Image to be displayed above the drawings, e.g. a reflection. Leave empty for no image.}
 fg desklet =
-#e+[0;1] Foreground tansparency :
+#e+[0;1] Foreground tansparency:
 fg alpha = 1
 
 
@@ -104,7 +104,7 @@ fg alpha = 1
 #F[RSS Feed;gtk-justify-left]
 RSS_feed = 
 
-#s URL :
+#s URL:
 #{Enter a valid atom/rss feed}
 url_rss_feed=
 
@@ -118,26 +118,26 @@ RSS_password =
 #F[Behaviour;gtk-execute]
 frame_behav= 
 
-#I[1;30] Refresh time :
+#I[1;30] Refresh time:
 #{In minutes.}
 refresh_time=5
 
-#B Display an info-bubble when a feed has changed?
+#B Display an info bubble when a feed has changed?
 #{By default, this option is activated}
 dialog_feed_changed=true
 
-#I[0;40] Duration of the info-bubble :
-#{In seconds. Set to 0 for infinite time (click on dialog to close it).}
+#I[0;40] Duration of the info-bubble:
+#{In seconds. Set to 0 for infinite time (need to click on dialog to close it).}
 dialogs_duration=20
 
-#a+ Animation of the icon when a feed has changed :
+#a+ Animation of the icon when a feed has changed:
 animation_feed_changed=rotate
 
 #v
 sep = 
 
-#s Open the feed with the following program :
-#{Let empty to use the default one.}
+#s Open the feed with the following program:
+#{Leave empty to use the default one.}
 specific_web_browser= 
 
 
@@ -147,12 +147,12 @@ specific_web_browser=
 #F[Title;gtk-bold]
 title = 
 
-#P+ Title font :
+#P+ Title font:
 #{Font to be used for the title}
 title_font=Sans Bold Italic 10
 
-#C+ Title color :
-#{Color to be used for the title}
+#C+ Title colour:
+#{Colour to be used for the title}
 title_color=1.0;1.0;0.0;1.0
 
 #e+[0;1;left;right] Alignment of the title:
@@ -161,56 +161,56 @@ title_align=0
 #F[Text;gtk-italic]
 text = 
 
-#P+ Feed lines font :
+#P+ Feed lines font:
 #{Font to be used for the feed lines}
 font=Sans 8
 
-#C+ Feed lines color :
-#{Color to be used for the feed lines}
+#C+ Feed lines colour:
+#{Colour to be used for the feed lines}
 text_color=1.0;1.0;1.0;1.0
 
-#I+[0;48] Left margin for the feed lines :
+#I+[0;48] Left margin for the feed lines:
 text_margin=0
 
-#I+[0;24] Space between 2 feed lines :
+#I+[0;24] Space between 2 feed lines:
 space_between_feed_lines=5
 
 
 #F[Logo;gtk-yes]
 frame_logo= 
 
-#B+ Display the logo ?
+#B+ Display the logo?
 #{The default logo is the applet's icon}
 display_logo=true
 
-#e+[1;4;normal;big] Logo size :
-#{Adjust to increase/decrease the logo size}
+#e+[1;4;normal;big] Logo size:
+#{Adjust to increase/decrease the logo's size}
 logo_size=1.5
 
 
 #F[Background;gtk-orientation-portrait]
 frame_background= 
 
-#B+[5] Display a simple background ?
+#B+[5] Display a simple background?
 #{You can have more attractive backgrounds using the Desklet decorations}
 display_background=true
 
-#C+ Background first color :
-#{first color of the gradation}
+#C+ Background first colour :
+#{first colour of the gradation}
 background_color1=0.2;0.2;0.2;1.0
 
-#C+ Background second color :
-#{second color of the gradation}
+#C+ Background second colour:
+#{second colour of the gradation}
 background_color2=0.7;0.7;0.7;0.8
 
 #i+[0;50] Background radius corner:
 #{Set the radius corner to 0 for no radius}
 background_radius=15
 
-#i+[0;10] Border thickness :
+#i+[0;10] Border thickness:
 #{Set the thickness to 0 for no border}
 border_thickness=2
 
-#C+ Border color :
-#{Border color}
+#C+ Border colour :
+#{Border colour}
 border_color=0.;0.;0.;1.;

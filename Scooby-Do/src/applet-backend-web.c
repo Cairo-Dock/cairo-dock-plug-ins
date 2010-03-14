@@ -107,7 +107,7 @@ static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int 
 	
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup ("http://search.yahoo.com/search?p=%s&ie=utf-8");
-	pEntry->cName = g_strdup (D_("Yahoo"));
+	pEntry->cName = g_strdup (D_("Yahoo!"));
 	pEntry->cIconName = g_strdup ("yahoo.png");
 	pEntry->fill = _cd_do_fill_web_entry;
 	pEntry->execute = _cd_do_web_search;

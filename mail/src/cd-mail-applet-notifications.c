@@ -53,7 +53,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			if (!r)
 			{
 				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);
-				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the conf panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
+				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
 			}
 		}
 	}
@@ -139,7 +139,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
 			}
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Mark all mails as read"), _cd_mail_mark_all_as_read, pSubMenu);
+	CD_APPLET_ADD_IN_MENU (D_("Mark all emails as read"), _cd_mail_mark_all_as_read, pSubMenu);
 	if (myConfig.cMailApplication)
 	{
 		gchar *cLabel = g_strdup_printf (D_("Launch %s"), myConfig.cMailApplication);

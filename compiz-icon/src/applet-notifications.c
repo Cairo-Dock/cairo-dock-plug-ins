@@ -191,7 +191,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 	if (!myConfig.bScriptSubDock) {
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_activate_expo, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Toggle Widgets Layer"), _compiz_menu_toggle_wlayer, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Toggle Widget Layer"), _compiz_menu_toggle_wlayer, pSubMenu);
 	}
 	CD_APPLET_ADD_IN_MENU (D_("Toggle Show Desktop"), _compiz_menu_show_desktop, pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);

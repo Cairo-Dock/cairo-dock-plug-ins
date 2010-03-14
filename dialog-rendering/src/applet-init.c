@@ -32,7 +32,7 @@
 CD_APPLET_PRE_INIT_BEGIN (N_("dialog rendering"),
 	2,0,0,
 	CAIRO_DOCK_CATEGORY_THEME,
-	N_("This plug-in provides some dialog decorators for dialog bubbles."),
+	N_("This plug-in provides some decorators for dialog bubbles."),
 	"Fabrice Rey (Fabounet)")
 	//\_______________ On definit notre interface.
 	//pInterface->reloadModule = reload;

@@ -26,7 +26,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("slider"),
+CD_APPLET_DEFINITION (N_("Slider"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet is a basic image slider\n"

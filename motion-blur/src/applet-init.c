@@ -25,10 +25,10 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN(N_("motion blur"),
+CD_APPLET_PRE_INIT_BEGIN(N_("Motion Blur"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
-	N_("This plug-in adds a motion blur effect on docks."),
+	N_("This plugin adds a motion blur effect to docks."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;

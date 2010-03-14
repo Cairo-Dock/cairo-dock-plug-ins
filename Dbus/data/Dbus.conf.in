@@ -3,40 +3,40 @@
 #[gtk-preferences]
 [Configuration]
 
-#b Let extern applications pop-up dialogs in the dock ?
+#b Let external applications pop up dialogs in the dock?
 enable pop-up = true
 
-#b Let extern applications reboot the dock ?
+#b Let external applications reboot the dock?
 enable reboot = true
 
-#b Let extern applications quit the dock ?
+#b Let external applications quit the dock?
 enable quit = true
 
-#b Let extern applications show/hide the desklets ?
+#b Let external applications show/hide desklets?
 enable desklets = true
 
-#b Let extern applications reload the applets ?
+#b Let external applications reload applets?
 enable reload module = true
 
-#b Let extern applications show/hide the docks ?
+#b Let external applications show/hide docks?
 enable show dock = true
 
-#b Let extern applications add launchers into the docks ?
+#b Let extern applications add launchers to the docks?
 enable add launcher = true
 
-#b Let extern applications modify the labels of icons ?
+#b Let external applications modify the labels of icons?
 enable set label = true
 
-#b Let extern applications modify the quick-infos on icons ?
+#b Let extern applications modify the quick-infos on icons?
 enable set quickinfo = true
 
-#b Let extern applications modify the image of icons ?
+#b Let extern applications modify the icons' image?
 enable set icon = true
 
-#b Let extern applications animate the icons ?
+#b Let extern applications animate icons?
 enable animate icon = true
 
-#b Let extern applications register new module ?
+#b Let extern applications register new module?
 enable new module = true
 
 modules=

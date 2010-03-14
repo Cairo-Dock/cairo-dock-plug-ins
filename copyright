@@ -1,5 +1,5 @@
 X-Source-Downloaded-From: http://developer.berlios.de/projects/cairo-dock/
-X-Upstream-Author: Fabrice Rey <fabounet@users.berlios.de>.
+X-Upstream-Author: Fabrice Rey <fabounet@glx-dock.org>.
 
 Files: systray/src/cd-tray.c: LGPL (v2 or later)
 Copyright: 2007 Neil Jagdish Patel
@@ -101,16 +101,16 @@ Copyright: Romain PEROL
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: 	switcher/*
-Copyright: Cchumi and Fabrice Rey <fabounet@users.berlios.de>
+Copyright: Cchumi and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: 	musicPlayer/*
-Copyright: Rémy Robertson, Yann Sladek and Fabrice Rey <fabounet@users.berlios.de>
+Copyright: Rémy Robertson, Yann Sladek and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: dnd2share/*
 	RSSreader/*
-Copyright: Yann Dulieu and Fabrice Rey <fabounet@users.berlios.de>
+Copyright: Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 
@@ -139,7 +139,7 @@ Files: 	alsaMixer/*
 	Toons/*
 	weather/*
 	Xgamma/*
-Copyright: Fabrice Rey <fabounet@users.berlios.de>
+Copyright: Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Icons inspired of the Humanity Icons theme and recolorized by Matthieu Baerts

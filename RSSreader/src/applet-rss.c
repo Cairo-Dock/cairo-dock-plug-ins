@@ -387,7 +387,7 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 		if (! myData.bError)  // pas encore de message d'erreur, on en insere un.
 		{
 			pItem = g_new0 (CDRssItem, 1);
-			pItem->cTitle = g_strdup (D_("Warning : couldn't retrieve data last time we tried."));
+			pItem->cTitle = g_strdup (D_("Warning: couldn't retrieve data last time we tried."));
 			myData.pItemList = g_list_insert (myData.pItemList, pItem, 1);
 		}
 	}
@@ -423,7 +423,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		cd_warning ("RSSresader : no data");
 		const gchar *cErrorMessage = (myConfig.cUrl == NULL ?
 			D_("No URL is defined.") :
-			D_("No data (no connection ?)"));
+			D_("No data (no connection?)"));
 		_insert_error_message (myApplet, cErrorMessage);
 		if (myDesklet)
 		{
@@ -441,7 +441,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	if (doc == NULL)
 	{
 		cd_warning ("RSSresader : got invalid XML data");
-		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
+		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed?)");
 		_insert_error_message (myApplet, cErrorMessage);
 		if (myDesklet)
 		{
@@ -461,7 +461,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		///xmlCleanupParser ();
 		xmlFreeDoc (doc);
 		
-		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed ?)");
+		const gchar *cErrorMessage = D_("Invalid data (invalid RSS/Atom feed?)");
 		_insert_error_message (myApplet, cErrorMessage);
 		if (myDesklet)
 		{
@@ -719,7 +719,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 				myConfig.iDialogsDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		else
-			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed ?\nIs your connection alive ?"),
+			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed?\nIs your connection alive?"),
 				myIcon,
 				myContainer,
 				myConfig.iDialogsDuration,

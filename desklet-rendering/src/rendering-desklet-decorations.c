@@ -52,7 +52,7 @@ void cd_rendering_register_desklet_decorations (void)
 		5);  // 200x200
 	
 	_register_desklet_decorations ("scotch",
-		D_("scotch"),
+		D_("scotch sellotape"),
 		NULL,
 		"scotch.svg",
 		40,
@@ -61,7 +61,7 @@ void cd_rendering_register_desklet_decorations (void)
 		0);  // 550x500
 	
 	_register_desklet_decorations ("frame with scotch",
-		D_("frame with scotch"),
+		D_("frame with sellotape"),
 		NULL,
 		"scotch+frame.svg",
 		87,

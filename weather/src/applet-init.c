@@ -26,7 +26,7 @@
 #include "applet-read-data.h"
 #include "applet-init.h"
 
-CD_APPLET_PRE_INIT_BEGIN (N_("weather"),
+CD_APPLET_PRE_INIT_BEGIN (N_("Weather"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet displays weather into your dock.\n"

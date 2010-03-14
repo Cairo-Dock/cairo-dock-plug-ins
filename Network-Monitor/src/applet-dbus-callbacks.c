@@ -66,7 +66,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 			break;
 			
 			case 1:  // NM_STATE_ASLEEP
-				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection has become inactive."), myIcon, myContainer, 4000, "same icon");
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection state changed to inactive."), myIcon, myContainer, 4000, "same icon");
 				myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
 				cd_NetworkMonitor_draw_no_wireless_extension ();
 			break;
@@ -79,13 +79,13 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 			break;
 			
 			case 3:  // NM_STATE_CONNECTED
-				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection has been established."), myIcon, myContainer, 4000, "same icon");
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection is established."), myIcon, myContainer, 4000, "same icon");
 				myData.iPreviousQuality = 0;
 				cd_NetworkMonitor_draw_icon ();
 			break;
 			
 			case 4:  // NM_STATE_DISCONNECTED
-				cairo_dock_show_temporary_dialog_with_icon (D_("Network has been disconnected."), myIcon, myContainer, 4000, "same icon");
+				cairo_dock_show_temporary_dialog_with_icon (D_("Network connection state changed to disconnected."), myIcon, myContainer, 4000, "same icon");
 				myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
 				cd_NetworkMonitor_draw_no_wireless_extension ();
 			break;
@@ -147,7 +147,7 @@ void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 	{
 		gboolean bCablePlugged = g_value_get_boolean (v);
 		g_print (">>> Network-Monitor :  cable branche : %d", bCablePlugged);
-		cairo_dock_show_temporary_dialog_with_icon (bCablePlugged ? D_("A cable has been pluged") : D_("A cable has been unpluged"), myIcon, myContainer, 3000, "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (bCablePlugged ? D_("A cable has been plugged") : D_("A cable has been unplugged"), myIcon, myContainer, 3000, "same icon");
 	}
 }
 

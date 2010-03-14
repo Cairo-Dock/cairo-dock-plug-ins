@@ -17,7 +17,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+// Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, please mail me to fabounet@glx-dock.org)
 
 #include "applet-struct.h"
 #include "applet-run-dialog.h"
@@ -346,7 +346,7 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 }
 CairoDialog *cd_menu_create_quick_launch_dialog (CairoDockModuleInstance *myApplet)
 {
-	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch :"),
+	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
 		myIcon, myContainer,
 		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 		NULL,

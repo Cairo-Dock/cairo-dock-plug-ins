@@ -3,51 +3,51 @@
 #[gtk-preferences]
 [Global]
 
-#F-[when hovering an icon]
+#F-[when hovering over an icon]
 frame_hov =
 
-#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used:
 effects = 0
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on launcher :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on launcher:
 click launchers = 0
 
-#F-[when clicking on an appli]
+#F-[when clicking on an application]
 frame_appli =
 
-#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applis :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applications:
 click applis = 1
 
 #F-[when clicking on an applet]
 frame_applet =
 
-#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applets :
+#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applets:
 click applets = 2
 
 #F-
 frame_appli_ =
 
 
-#b+ Draw in background ?
+#b+ Draw in background?
 background = false
 
-#b+ Rotate effects with dock ?
+#b+ Rotate effects with dock?
 rotate = false
 
 #[@icon_effectsdatadir@/icon-fire.svg]
 [Fire]
 
-#I[0;5000] Duration of the animation :
+#I[0;5000] Duration of the animation:
 #{In ms. Set 0 to not use this effect.}
 duration = 1000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = 
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -56,37 +56,37 @@ color1 = 1;0.12;0
 #c 2nd color of gradation :
 color2 = 1;.95;0
 
-#b+ Random colors ?
+#b+ Random colours?
 mystical = false
 
-#b+ Add luminance ?
-#{It will slightly alter the colors, so you may have to modify them.}
+#b+ Add luminance?
+#{This will slightly alter your colours, so you may have to modify them.}
 luminous = true
 
 #F[Particles]
 frame_part =
 
-#I[10;500] Number of particles :
+#I[10;500] Number of particles:
 nb part = 150
 
-#I[10;60] Particle size :
+#I[10;60] Particle size:
 part size = 32
 
-#e[1;10] Particle speed :
+#e[1;10] Particle speed:
 part speed = 3.
 
 
 #[@icon_effectsdatadir@/star.png]
 [Stars]
 
-#I[200;5000] Duration of the animation :
+#I[200;5000] Duration of the animation:
 #{In ms.}
 duration = 2000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = true
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -95,30 +95,30 @@ color1 = 1;1;.7
 #c 2nd color of gradation :
 color2 = .9;.9;.9
 
-#b+ Random colors ?
+#b+ Random colours?
 mystical = false
 
 #F[Particles]
 frame_part =
 
-#I[10;300] Number of particles :
+#I[10;300] Number of particles:
 nb part = 25
 
-#I[10;90] Particle size :
+#I[10;90] Particle size:
 part size = 40
 
 
 #[@icon_effectsdatadir@/snow.png]
 [Snow]
 
-#I[200;5000] Duration of the animation :
+#I[200;5000] Duration of the animation:
 #{In ms.}
 duration = 2000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -130,27 +130,27 @@ color2 = .8;.9;.9
 #F[Particles]
 frame_part =
 
-#I[10;300] Number of particles :
+#I[10;300] Number of particles:
 nb part = 50
 
-#I[2;40] Particle size :
+#I[2;40] Particle size:
 part size = 26
 
-#e[.5;3] Particle speed :
+#e[.5;3] Particle speed:
 part speed = 1.5
 
 
 #[@icon_effectsdatadir@/rain.png]
 [Rain]
 
-#I[200;5000] Duration of the animation :
+#I[200;5000] Duration of the animation:
 #{In ms.}
 duration = 2000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = true
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -162,27 +162,27 @@ color2 = .9;.9;.9
 #F[Particles]
 frame_part =
 
-#I[10;300] Number of particles :
+#I[10;300] Number of particles:
 nb part = 90
 
-#I[2;30] Particle size :
+#I[2;30] Particle size:
 part size = 14
 
-#e[2;20] Particle speed :
+#e[2;20] Particle speed:
 part speed = 8
 
 
 #[@icon_effectsdatadir@/icon-storm.png]
 [Storm]
 
-#I[200;8000] Duration of the animation :
+#I[200;8000] Duration of the animation:
 #{In ms.}
 duration = 4000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = true
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -194,54 +194,54 @@ color2 = .0;.4;.6
 #F[Particles]
 frame_part =
 
-#I[10;400] Number of particles :
+#I[10;400] Number of particles:
 nb part = 100
 
-#I[2;40] Particle size :
+#I[2;40] Particle size:
 part size = 10
 
 
 #[@icon_effectsdatadir@/icon-firework.png]
 [Firework]
 
-#I[200;5000] Duration of the animation :
+#I[200;5000] Duration of the animation:
 #{In ms.}
 duration = 2000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = true
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
-#c Default color :
+#c Default colour:
 color = 1;0;0
 
-#b+ Random colors ?
+#b+ Random colours?
 random colors = true
 
-#b+ Add luminance ?
+#b+ Add luminance?
 #{It particularily fits a dark wallpaper or a dark theme.}
 luminous = true
 
 #F[Particles]
 frame_part =
 
-#i[1;5] Number of sources :
+#i[1;5] Number of sources:
 nb sources = 2
 
-#I[50;360] Number of particles per source :
+#I[50;360] Number of particles per source:
 nb_part = 200
 
-#e[.1;.5] Radius of the explosion :
+#e[.1;.5] Radius of the explosion:
 #{In percentage of the icon's size.}
 radius = .25
 
-#I[2;10] Particle size :
+#I[2;10] Particle size:
 part size = 5
 
-#b Show the launching ?
+#b Show the launching?
 launching = true
 
-#e[2;10] Particle friction :
+#e[2;10] Particle friction:
 friction = 5
