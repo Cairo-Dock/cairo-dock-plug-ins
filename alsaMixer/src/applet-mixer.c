@@ -282,7 +282,7 @@ void mixer_show_hide_dialog (void)
 			cMessage = myData.cErrorMessage;
 		else
 		{
-			cMessage = D_("Set up volume :");
+			cMessage = D_("Set up volume:");
 			pScale = mixer_build_widget (TRUE);
 		}
 		

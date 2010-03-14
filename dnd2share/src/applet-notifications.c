@@ -30,7 +30,7 @@
 static void _clear_history (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files ?"), myIcon, myContainer);
+	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files?"), myIcon, myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 	{
 		cd_dnd2share_clear_working_directory ();
@@ -70,7 +70,7 @@ static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 			{
 				cd_warning ("couldn't find the orignial file nor a preview of it");
 				cairo_dock_remove_dialog_if_any (myIcon);
-				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the orignial file nor a preview of it."),
+				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the original file nor a preview of it."),
 					myIcon,
 					myContainer,
 					myConfig.dTimeDialogs,
@@ -95,7 +95,7 @@ static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 	if (myConfig.bEnableDialogs)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("The URL has been stored into the clipboard.\nJust use 'CTRL+v' to paste it anywhere."),
+		cairo_dock_show_temporary_dialog_with_icon (D_("The URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
@@ -111,7 +111,7 @@ static void _store_last_url (gboolean bIntoClipboard)
 		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_show_temporary_dialog_with_icon (myConfig.iNbItems != 0 ?
 			D_("No uploaded file available\n.Just drag'n drop a file on the icon to upload it") :
-			D_("No uploaded file available\n.Consider activating the history if you want the applet remembers previous uploads."),
+			D_("No uploaded file available.\nConsider activating the history if you want the applet to remember previous uploads."),
 		myIcon,
 		myContainer,
 		myConfig.dTimeDialogs,
@@ -128,7 +128,7 @@ static void _store_last_url (gboolean bIntoClipboard)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (bIntoClipboard ? 
-					D_("The current URL has been stored into the clipboard.\nJust use 'CTRL+v' to paste it anywhere.") :
+					D_("The current URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere.") :
 					D_("The current URL has been stored into the selection.\nJust middle-click to paste it anywhere."),
 				myIcon,
 				myContainer,

@@ -17,7 +17,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, please mail me to fabounet@users.berlios.de)
+// Adapted from the Gnome-panel for Cairo-Dock by Fabrice Rey (for any bug report, please mail me to fabounet@glx-dock.org)
 
 #include "applet-struct.h"
 #include "applet-recent.h"
@@ -105,7 +105,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 
 void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently used documents ?"), myIcon, myContainer);
+	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently used documents?"), myIcon, myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 	{
 		gtk_recent_manager_purge_items (myData.pRecentManager, NULL);

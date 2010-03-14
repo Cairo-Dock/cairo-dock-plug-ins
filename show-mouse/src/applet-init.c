@@ -25,10 +25,10 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN(N_("show mouse"),
+CD_APPLET_PRE_INIT_BEGIN(N_("Show Mouse"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
-	N_("This plug-in draw some animation around the cursor when it's inside a dock/desklet."),
+	N_("This plugin draws some animations around the cursor when it's inside a dock/desklet."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)
 		return FALSE;

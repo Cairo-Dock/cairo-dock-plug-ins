@@ -23,7 +23,7 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DECORATOR_TOOLTIP_NAME N_("tooltip")
+#define MY_APPLET_DECORATOR_TOOLTIP_NAME N_("ToolTip")
 
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog);

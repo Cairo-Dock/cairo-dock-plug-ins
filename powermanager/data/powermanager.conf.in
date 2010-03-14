@@ -7,7 +7,7 @@
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#s Icon name :
+#s Icon name:
 name = Battery
 
 #d Name of the dock it belongs to:
@@ -27,33 +27,33 @@ handbook=PowerManager
 #X[Position]
 frame_pos =
 
-#b Lock position ?
-#{If locked, the desklet can't be moved by simply dragging it with the left mouse button. Of course you can still move it with ALT + left_click.}
+#b Lock position?
+#{If locked, the desklet cannot be moved by simply dragging it with the left mouse button. It can still be moved with ALT + left-click.}
 locked = false
 
-#j+[48;512] Desklet's dimension (width x height) :
-#{Depending on your WindowManager, you can resize it with ALT + middle_click or ALT + left_click for exemple.}
+#j+[48;512] Desklet dimensions (width x height):
+#{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
 size = 96;96
 
-#i[-2048;2048] Desklet's position (x ; y) :
-#{Depending on your WindowManager, you can move it with ALT + left_click}
+#i[-2048;2048] Desklet position (x, y):
+#{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
 x position=0
 #i[-2048;2048] ...
 y position=0
 
-#I[-180;180] Rotation :
+#I[-180;180] Rotation:
 #{You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides.}
 rotation = 0
 
 #X[Visibility]
 frame_visi =
 
-#b Is detached from the dock ?
+#b Is detached from the dock
 initially detached=false
-#l[Normal;Keep above;Keep below;On Widget Layer;Reserve space] Visibility :
+#l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
-#b Should be visible on all desktops ?
+#b Should be visible on all desktops?
 sticky=true
 
 
@@ -63,47 +63,47 @@ use size=
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
-#o+ Choose a decoration theme for this desklet :
+#o+ Choose a decoration theme for this desklet:
 #{Choose 'Custom decorations' to define your own decorations below.}
 decorations = default
 
 #v
 sep_deco =
 
-#S+ Background image :
-#{It's an image that will be displayed below the drawings, like a frame for exemple. Let empty to not use any.}
+#S+ Background image:
+#{Image to be displayed below drawings, e.g. a frame. Leave empty for no image.}
 bg desklet =
-#e+[0;1] Background tansparency :
+#e+[0;1] Background transparency:
 bg alpha = 1
-#i+[0;256] Left offset :
-#{in pixels. Use this to adjust the left position of the drawings.}
+#i+[0;256] Left offset:
+#{in pixels. Use this to adjust the left position of drawings.}
 left offset = 0
-#i+[0;256] Top offset :
-#{in pixels. Use this to adjust the top position of the drawings.}
+#i+[0;256] Top offset:
+#{in pixels. Use this to adjust the top position of drawings.}
 top offset = 0
-#i+[0;256] Right offset :
-#{in pixels. Use this to adjust the right position of the drawings.}
+#i+[0;256] Right offset:
+#{in pixels. Use this to adjust the right position of drawings.}
 right offset = 0
-#i+[0;256] Bottom offset :
-#{in pixels. Use this to adjust the bottom position of the drawings.}
+#i+[0;256] Bottom offset:
+#{in pixels. Use this to adjust the bottom position of drawings.}
 bottom offset = 0
-#S+ Foreground image :
-#{It's an image that will be displayed above the drawings, like a reflect for exemple. Let empty to not use any.}
+#S+ Foreground image:
+#{Image to be displayed above the drawings, e.g. a reflection. Leave empty for no image.}
 fg desklet =
-#e+[0;1] Foreground tansparency :
+#e+[0;1] Foreground tansparency:
 fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
 
-#l+[Gauge;Graph;Icons] Choose the style of the display : 
+#l+[Gauge;Graph;Icons] Choose the style of the display: 
 renderer = 0
 
 
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes :/
+#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes:/
 theme = Battery
 
 
@@ -113,26 +113,26 @@ frame_graph=
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
 graphic type = 0
 
-#c+ High values color :
-#{It's the color of the graphic for high values.}
+#c+ High value's colour :
+#{It's the colour of the graphic for high values.}
 high color = 1;0;0
 
-#c+ Low values color :
-#{It's the color of the graphic for low values.}
+#c+ Low value's colour :
+#{It's the colour of the graphic for low values.}
 low color = 1;1;0
 
-#C+ Background color of the graphic :
+#C+ Background colour of the graphic :
 bg color = .5;.5;1.;.4
 
 
 #X[Icons;gtk-dialog-info]
 frame_icons=
 
-#S+ Icon's filename when on battery :
+#S+ 'On-battery' icon filename:
 battery icon = 
 #S+ Icon's filename when on charge :
 charge icon = 
-#l+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to charge :
+#l+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to the charge :
 effect=0
 
 
@@ -141,7 +141,7 @@ effect=0
 frame_param =
 
 #i[20;180] Interval of time between 2 checks :
-#{in seconds.}
+#{in secondsconds.}
 check interval = 30
 
 #l+[nothing;charge;time] Information to be displayed on the icon :
@@ -157,39 +157,39 @@ discharge rate = 0
 charge rate = 0
 
 
-#F[Alert;gtk-dialog-info]
+#F[Notification;gtk-dialog-info]
 frame_alert=
 
-#B Alert when battery charged ?
+#B Notification when battery charged ?
 high battery=true
 
-#u Use a sound :
-#{Let it empty to have no sound}
+#u Play a sound:
+#{Leave it empty for no sound}
 sound_2 =
 
 #v
 sep_alert1 =
 
-#B[2] Alert when low battery ?
+#B[2] Notification when low battery ?
 low battery=true
 
-#i[1;50] Battery level :
+#i[1;50] Battery level:
 #{in percent.}
 low value = 15
 
-#u Use a sound :
-#{Let it empty to have no sound}
+#u Play a sound:
+#{Leave it empty for no sound}
 sound_1 =
 
 #v
 sep_alert2 =
 
-#B Alert when battery charge is critical ?
+#B Notification when battery charge is critical ?
 #{When battery level is under 4%}
 critical battery=true
 
-#u Use a sound :
-#{Let it empty to have no sound}
+#u Play a sound:
+#{Leave it empty for no sound}
 sound_0 =
 
 #v

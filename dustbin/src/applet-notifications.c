@@ -40,7 +40,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (g_list_length (myData.pDustbinsList) == 1)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show Trash"), cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Empty Trash"), cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
 	}
 	else
 	{
@@ -53,7 +53,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show All"), cd_dustbin_show_trash, pShowSubMenu, NULL);
 	
-		GtkWidget *pDeleteSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Delete Trash"), pModuleSubMenu);
+		GtkWidget *pDeleteSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Empty Trash"), pModuleSubMenu);
 		for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
 		{
 			pDustbin = pElement->data;
@@ -75,7 +75,7 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 	gchar *cMessage;
 	if (bSuccess)
 	{
-		cMessage = g_strdup_printf (_("%s is now unmounted"), cName);
+		cMessage = g_strdup_printf (_("%s successfully unmounted"), cName);
 	}
 	else
 	{

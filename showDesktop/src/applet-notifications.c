@@ -71,7 +71,7 @@ static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compi
 	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
 	{
 		cd_warning  ("Dbus plug-in must be activated in Compiz !");
-		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and to activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
 	}
 	
 	GError *erreur = NULL;

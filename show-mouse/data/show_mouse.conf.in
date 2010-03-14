@@ -3,27 +3,27 @@
 #[gtk-preferences]
 [Configuration]
 
-#i+[1;12] Number of sources :
+#i+[1;12] Number of sources:
 nb sources = 2
 
 #e+[.05;1] Rotation speed :
-#{In round per second.}
+#{In rotations per second.}
 rotation speed = .5
 
-#l[dock;desklet;both] Show mouse on :
+#l[dock;desklet;both] Show mouse on:
 container = 2
 
 #v 
 sep =
 
-#i+[10;100] Number of particles per source :
+#i+[10;100] Number of particles per source:
 nb part = 50
 
-#I+[200;2000] Particles life time :
+#I+[200;2000] Particle life time:
 #{in ms.}
 life = 900
 
-#i+[1;20] Particle size :
+#i+[1;20] Particle size:
 #{In pixels.}
 part size = 8
 
@@ -32,9 +32,9 @@ color1 = .2;1;.7
 #c 2nd color of gradation :
 color2 = .5;.3;.9
 
-#b+ Random colors ?
+#b+ Random colours?
 mystical = false
 
-#e+[.1;1] Scattering :
-#{The higher, the more particles will scatter from their source.}
+#e+[.1;1] Scattering:
+#{The higher the value, the more particles will scatter from their source.}
 scattering = .2

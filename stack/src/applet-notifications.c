@@ -47,7 +47,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
+			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even a piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
 		}
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
 	}
@@ -71,7 +71,7 @@ static void _on_text_received (GtkClipboard *clipboard, const gchar *text, Cairo
 static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the stack ?"), myIcon,  myContainer);
+	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the stack?"), myIcon,  myContainer);
 	if (iAnswer == GTK_RESPONSE_YES)
 		cd_stack_clear_stack (myApplet);
 	CD_APPLET_LEAVE ();
@@ -92,7 +92,7 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item :"), pIcon, pContainer, pIcon->cName);
+	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item:"), pIcon, pContainer, pIcon->cName);
 	if (cNewName == NULL)
 		CD_APPLET_LEAVE ();
 		//return ;

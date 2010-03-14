@@ -59,7 +59,7 @@ CD_APPLET_INIT_BEGIN
 	// On met un message d'attente.
 	CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 	myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-	pItem->cTitle = g_strdup (D_("Retrieving data ..."));
+	pItem->cTitle = g_strdup (D_("Retrieving data..."));
 	
 	// on lance la tache periodique.
 	cd_rssreader_upload_feeds_TASK (myApplet);
@@ -120,7 +120,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_rssreader_free_item_list (myApplet);
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Retrieving data ..."));
+		pItem->cTitle = g_strdup (D_("Retrieving data..."));
 		myData.bInit = FALSE;
 		myData.bError = FALSE;
 		

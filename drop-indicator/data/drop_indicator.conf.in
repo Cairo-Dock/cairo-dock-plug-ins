@@ -6,18 +6,18 @@
 #F[Images]
 images =
 
-#S+ Image for the drag'n'drop animation :
-#{Typically an arrow, that will be displayed when you try to drop a new launcher into the dock. Let empty to use the default one.}
+#S+ Image for the drag & drop animation:
+#{Typically an arrow, this will be displayed when you try to drop a new launcher into the dock. Leave this empty to use the default.}
 drop indicator =
 
 #S+ Image when hovering an icon :
-#{An emblem that will be displayed when you try to drop something onto an icon. Let empty to use the default one.}
+#{An emblem that will be displayed when you try to drop something on an icon. Leave empty to use the default one.}
 hover indicator =
 
 #F[Animation]
 animation =
 
-#I+[1;5] Speed :
+#I+[1;5] Speed:
 speed = 1
 
 #e+[0;1] Rotation speed :

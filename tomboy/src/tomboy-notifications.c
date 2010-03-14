@@ -88,7 +88,7 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 		return ;
 	if (myConfig.bAskBeforeDelete)
 	{
-		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note ?"), pIcon->cName);
+		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note?"), pIcon->cName);
 		int iAnswer = cairo_dock_ask_question_and_wait (cQuestion, pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
 		g_free (cQuestion);
 		if (iAnswer != GTK_RESPONSE_YES)
@@ -104,7 +104,7 @@ static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, gpointer data)
 }
 static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, gpointer data)
 {
-	gchar *cContent = cairo_dock_show_demand_and_wait (D_("Search for :"),
+	gchar *cContent = cairo_dock_show_demand_and_wait (D_("Search for:"),
 		myIcon,
 		myContainer,
 		NULL);
@@ -120,7 +120,7 @@ static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, gpointer data
 }
 static void _cd_tomboy_search_for_tag (GtkMenuItem *menu_item, gpointer data)
 {
-	gchar *cTag = cairo_dock_show_demand_and_wait (D_("Search for tag :"),
+	gchar *cTag = cairo_dock_show_demand_and_wait (D_("Search for tag:"),
 		myIcon,
 		myContainer,
 		NULL);
@@ -184,7 +184,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			icon = ic->data;
 			if (icon->bHasIndicator)
 			{
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear marks"), GTK_STOCK_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reset marks"), GTK_STOCK_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
 				break ;
 			}
 		}

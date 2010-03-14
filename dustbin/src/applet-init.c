@@ -28,7 +28,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("dustbin"),
+CD_APPLET_DEFINITION (N_("Trash"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet manages the dustbin\n"

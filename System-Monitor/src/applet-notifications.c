@@ -77,7 +77,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			D_("CPU model"), myData.cModelName,
 			D_("Frequency"), myData.iFrequency,
 			myData.iNbCPU, D_("core(s)"),
-			D_("Up time"), cUpTime,
+			D_("Uptime"), cUpTime,
 			D_("Activity time"), cActivityTime,
 			D_("Memory"), _convert_from_kb (myData.ramTotal), _unit (myData.ramTotal),
 			D_("Available"), _convert_from_kb (ram), _unit (ram),

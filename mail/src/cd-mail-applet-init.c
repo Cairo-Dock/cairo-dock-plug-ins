@@ -30,7 +30,7 @@
 #include "cd-mail-applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
+CD_APPLET_PRE_INIT_BEGIN (N_("Mail"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet is very useful to warn you when you get new e-mails\n"

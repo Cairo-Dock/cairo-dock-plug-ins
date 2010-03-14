@@ -3,14 +3,14 @@
 #[gtk-preferences]
 [Configuration]
 
-#k Shortkey to activate/deactivate the finder mode :
+#k Shortkey to enable/disable the finder mode:
 shortkey search = <Control>Return
 
-#k Shortkey to activate/deactivate the navigation mode :
+#k Shortkey to enable/disable the navigation mode:
 shortkey = <Control>F9
 
 #i[10;200] Maximum number of results :
-#{Maximum number of results tat will be displayed when you select a category with the right arrow.}
+#{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
 nb results = 80
 
 #i[5;30] Number of lines to display :
@@ -32,132 +32,132 @@ stop duration = 800
 animation=pulse
 
 
-#X[Text on the dock]
+#X[Is detached from the dock]
 char=
 
-#P+ Font used to display what you type :
+#P+ Font used to display what you type:
 font = Monospace 16
 
 #C+ Color of the text's frame  :
 frame color = 0.9; 0.9; 0.95; .8
 
-#e+[.1;.5] Font size, relatively to the dock's size :
+#e+[.1;.5] Font size, relative to the dock size:
 font size = .5
 
-#i+[1;9] Text weight :
-#{between 1 and 9, the bigger, the heavier.}
+#i+[1;9] Text size:
+#{between 1 and 9, the higher, the bigger.}
 text weight = 5
 
-#b+ Should the text be outlined ?
+#b+ Outline text?
 text outlined = true
 
-#c+ Text color :
+#c+ Text colour:
 text color = 1.;1.;1.
 
-#C+ Color of the background of the characters :
+#C+ Character background colour:
 bg color = 0.0; 0.0; 0.1; .8
 
-#b Write text on the top of the dock ?
+#b Write text on the top of the dock?
 text on top = true
 
-#X[Preferred applications]
+#X[Favorite applications]
 pref=
 
-#s Preferred application starting with 'a' :
+#s FAvorite applications starting with 'a' :
 a = abiword
 
-#s Preferred application starting with 'b' :
+#s Favorite application starting with 'b' :
 b = gnome-background-properties
 
-#s Preferred application starting with 'c' :
+#s Favorite application(s) starting with 'c' :
 c = gnome-calculator
 
-#s Preferred application starting with 'd' :
+#s Favorite application(s starting with 'd' :
 d = gnome-dictionary
 
-#s Preferred application starting with 'e' :
+#s Favorite application(s) starting with 'e' :
 e = evince
 
-#s Preferred application starting with 'f' :
+#s Favorite application(s) starting with 'f' :
 f = firefox
 
-#s Preferred application starting with 'g' :
+#s Favorite application(s) starting with 'g' :
 g = gjiten
 
-#s Preferred application starting with 'h' :
+#s Favorite application(s) starting with 'h' :
 h = 
 
-#s Preferred application starting with 'i' :
+#s Favorite application(s) starting with 'i' :
 i = inkscape
 
-#s Preferred application starting with 'j' :
+#s Favorite application(s) starting with 'j' :
 j = 
 
-#s Preferred application starting with 'k' :
+#s Favorite application(s) starting with 'k' :
 k = kate
 
-#s Preferred application starting with 'l' :
+#s Favorite application(s) starting with 'l' :
 l = 
 
-#s Preferred application starting with 'm' :
+#s Favorite application(s) starting with 'm' :
 m = 
 
-#s Preferred application starting with 'n' :
+#s Favorite application(s) starting with 'n' :
 n = nautilus --browser
 
-#s Preferred application starting with 'o' :
+#s Favorite application(s) starting with 'o' :
 o = ooffice
 
-#s Preferred application starting with 'p' :
+#s Favorite application(s) starting with 'p' :
 p = pan
 
-#s Preferred application starting with 'q' :
+#s Favorite application(s) starting with 'q' :
 q = 
 
-#s Preferred application starting with 'r' :
+#s Favorite application(s) starting with 'r' :
 r = rhythmbox
 
-#s Preferred application starting with 's' :
+#s Favorite application(s) starting with 's' :
 s = synaptic
 
-#s Preferred application starting with 't' :
+#s Favorite application(s) starting with 't' :
 t = gnome-terminal
 
-#s Preferred application starting with 'u' :
+#s Favorite application(s) starting with 'u' :
 u = 
 
-#s Preferred application starting with 'v' :
+#s Favorite application(s) starting with 'v' :
 v = vlc
 
-#s Preferred application starting with 'w' :
+#s Favorite application(s) starting with 'w' :
 w = 
 
-#s Preferred application starting with 'x' :
+#s Favorite application(s) starting with 'x' :
 x = 
 
-#s Preferred application starting with 'y' :
+#s Favorite application(s) starting with 'y' :
 y = yast
 
-#s Preferred application starting with 'z' :
+#s Favorite application(s) starting with 'z' :
 z = 
 
 
 #[gtk-find]
-[Search Engines]
+[Start XPenguins]
 
-#b Search in files ?
+#b Show hidden files?
 files = true
 
-#b Search in Firefox bookmarks ?
+#b Firefox bookmarks
 firefox = true
 
-#b Search in Recent files ?
+#b Recent files
 recent = true
 
 #b Propose some web search engines ?
 web = true
 
-#b Include a command launcher ?
+#b Enter a command to launch:
 #{It can launch commands and even do some calculations.}
 cmd = true
 

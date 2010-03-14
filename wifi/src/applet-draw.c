@@ -148,7 +148,7 @@ void cd_wifi_bubble (void) {
 	if (! myData.bWirelessExt)
 	{
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/link-0.svg";
-		g_string_assign (sInfo, D_("Wifi disabled."));
+		g_string_assign (sInfo, D_("WiFi disabled."));
 	}
 	else
 	{

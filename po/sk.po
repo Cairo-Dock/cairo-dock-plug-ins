@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
-"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "PO-Revision-Date: 2010-02-21 13:05+0000\n"
 "Last-Translator: milboy <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
@@ -24,48 +24,49 @@ msgstr "Animované ikony"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "Tento zásuvný modul ponúka množstvo rôzných animácií pre vaše ikony."
 
-#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:7
-#: ../Animated-icons/data/messages:25 ../Animated-icons/data/messages:43
-#: ../Animated-icons/data/messages:61 ../Animated-icons/data/messages:169
+#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
+#: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Skákať"
 
-#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63
+#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65
 msgid "Rotate"
 msgstr "Otáčať"
 
-#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:183
+#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
 msgstr "Blikať"
 
-#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:157
+#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
 msgstr "Pulz"
 
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:129
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
 msgstr "Trasenie"
 
-#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:145
+#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
 msgstr "Vlnenie"
 
-#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:93 ../Animated-icons/data/messages:101
+#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:21
+#: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "Bodový"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
+#, fuzzy
 msgid ""
 "Add a lively Penguin in your dock !\n"
 "Left click to change the animation,\n"
@@ -80,7 +81,7 @@ msgstr ""
 "dajú ľahko pridať."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
-msgid "Hey, I'm here !"
+msgid "Hey, I'm here!"
 msgstr "Hej, tu som !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
@@ -93,38 +94,39 @@ msgid ""
 msgstr "Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
-msgid "Your dock is so messy ! Let me clean it."
+msgid "Your dock is so messy! Let me clean it."
 msgstr "Váš dok je taký špinavý ! Dovoľte mi, aby som ho vyčistil."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
-msgid "Admit my superiority on you as a penguin !"
+msgid "Admit my superiority on you as a penguin!"
 msgstr "Som tvoj nadriadený pretože som tučniak !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
-msgid "Wait, do you want to kill me ?!"
+msgid "Wait, do you want to kill me?!"
 msgstr "Počkaj, ty ma chceš zabiť ?!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
-msgid "Do you know how much painful it is to be clicked on ??"
+msgid "Do you know how painful it is to be clicked on??"
 msgstr "Ty vieš ako to bolí, keď na mňa klikáš ??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
-msgid "It's my dock now, mwahahaha !"
+msgid "It's my dock now, mwahahaha!"
 msgstr "Toto je teraz môj dok, hahaha !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
-msgid "I want to be a pirate !"
+msgid "I want to be a pirate!"
 msgstr "Chcem byť pirátom !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
-msgid "You shall not pass !"
+msgid "You shall not pass!"
 msgstr "Nemôžeš prejsť !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
-msgid "I'm your father !"
+msgid "I'm your father!"
 msgstr "Som tvoj otec !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
+#, fuzzy
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
@@ -133,11 +135,11 @@ msgstr ""
 "- To isté čo robíme každý večer, Pinky: pokús sa prevziať Dok!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
-msgid "For Aiur !"
+msgid "For Aiur!"
 msgstr "Pre Aiur !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:123
-msgid "Hey, you there !"
+msgid "Hey, you there!"
 msgstr "Hej, ty tam !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:127
@@ -149,6 +151,7 @@ msgid "Keep quiet"
 msgstr "Buď ticho"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:134
+#: ../Scooby-Do/data/messages:101
 msgid "Start XPenguins"
 msgstr "Spustiť XPenguinov"
 
@@ -166,6 +169,7 @@ msgid "No items yet."
 msgstr "Zatiaľ žiadne položky."
 
 #: ../Clipper/src/applet-init.c:32
+#, fuzzy
 msgid ""
 "This applet keeps a trace of the clipboard and mouse selection,\n"
 "so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
@@ -192,6 +196,7 @@ msgstr ""
 "Môžete pridať pomocou pretiahnutia a hodenia nejakého textu na ikonu."
 
 #: ../Dbus/src/applet-init.c:31
+#, fuzzy
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -228,9 +233,8 @@ msgstr ""
 msgid "day(s)"
 msgstr "deň(dní)"
 
-#: ../Doncky/src/applet-init.c:37
-#, fuzzy
-msgid "Doncky"
+#: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
+msgid "dock"
 msgstr "panel"
 
 #: ../Doncky/src/applet-init.c:40
@@ -244,7 +248,7 @@ msgstr ""
 
 #: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
-msgid "Alert ! Graphic Card core temperature has reached %d°C"
+msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr "Výstraha ! Teplota jadra grafickej karty dosiahla %d°C"
 
 #: ../Doncky/src/applet-top.c:287
@@ -285,15 +289,15 @@ msgid "Recent Documents"
 msgstr "Nedávne dokumenty"
 
 #: ../GMenu/src/applet-recent.c:108
-msgid "Clear the list of the recently used documents ?"
+msgid "Clear the list of the recently used documents?"
 msgstr "Vyčistiť zoznam nedávno použitých dokumentov ?"
 
-#: ../GMenu/src/applet-run-dialog.c:349
-msgid "Enter a command to launch :"
+#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
+msgid "Enter a command to launch:"
 msgstr "Vložte príkaz pre spustenie :"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
-msgid "Network connection has become inactive."
+msgid "Network connection state changed to inactive."
 msgstr "Sieťové pripojenie nie je aktívne."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
@@ -301,19 +305,19 @@ msgid "Connecting..."
 msgstr "Pripájanie..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
-msgid "Network connection has been established."
+msgid "Network connection is established."
 msgstr "Sieťové pripojenie je nadviazané."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
-msgid "Network has been disconnected."
+msgid "Network connection state changed to disconnected."
 msgstr "Sieť bola odpojená."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
-msgid "A cable has been pluged"
+msgid "A cable has been plugged"
 msgstr "Kábel bol pripojený"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
-msgid "A cable has been unpluged"
+msgid "A cable has been unplugged"
 msgstr "Kábel bol odpojený"
 
 #: ../Network-Monitor/src/applet-draw.c:30
@@ -404,6 +408,7 @@ msgid "Network-Monitor"
 msgstr "Sieťový-monitor"
 
 #: ../Network-Monitor/src/applet-init.c:34
+#, fuzzy
 msgid ""
 "This applet allows you to monitor your network connection(s).\n"
 "It can display the download/upload speeds and the wifi signal quality.\n"
@@ -498,7 +503,7 @@ msgstr ""
 
 #: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
-msgid "Retrieving data ..."
+msgid "Retrieving data..."
 msgstr "Získavam údaje ..."
 
 #: ../RSSreader/src/applet-notifications.c:77
@@ -506,7 +511,7 @@ msgid "It doesn't seem to be a valid URL."
 msgstr "To sa nezdá byť platná adresa URL."
 
 #: ../RSSreader/src/applet-notifications.c:122
-msgid "Paste a new RSS Url (drag'n'drop)"
+msgid "Paste a new RSS Url (drag and drop)"
 msgstr "Vložiť novú RSS adresu (chyť a vlož)"
 
 #: ../RSSreader/src/applet-notifications.c:125
@@ -514,7 +519,7 @@ msgid "Open with your web browser"
 msgstr "Otvoriť vo vašom webovom prehliadači"
 
 #: ../RSSreader/src/applet-rss.c:390
-msgid "Warning : couldn't retrieve data last time we tried."
+msgid "Warning: couldn't retrieve data last time we tried."
 msgstr "Varovanie : pri poslednom pokuse sa neprijali žiadne údaje."
 
 #: ../RSSreader/src/applet-rss.c:425
@@ -522,11 +527,11 @@ msgid "No URL is defined."
 msgstr "Žiadna URL nie je definovaná."
 
 #: ../RSSreader/src/applet-rss.c:426
-msgid "No data (no connection ?)"
+msgid "No data (no connection?)"
 msgstr "Žiadne údaje (nie ste pripojený ?)"
 
 #: ../RSSreader/src/applet-rss.c:444 ../RSSreader/src/applet-rss.c:464
-msgid "Invalid data (invalid RSS/Atom feed ?)"
+msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Nesprávne údaje (neplatný RSS/Atom zdroj ?)"
 
 #: ../RSSreader/src/applet-rss.c:516
@@ -545,8 +550,7 @@ msgstr "Tento RSS zdroj bol zmenený..."
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
-" and selecting \"Paste the RL\n"
-" in the menu."
+" and selecting \"Paste the URL\" in the menu."
 msgstr ""
 "Nie je definovaná URL\n"
 "Môžete ju definovať skopírovaním URL do schránky\n"
@@ -556,8 +560,8 @@ msgstr ""
 #: ../RSSreader/src/applet-rss.c:722
 msgid ""
 "No data\n"
-"Did you set a valid RSS feed ?\n"
-"Is your connection alive ?"
+"Did you set a valid RSS feed?\n"
+"Is your connection alive?"
 msgstr ""
 "Žiadne údaje\n"
 "Nastavili ste správny RSS zdroj ?\n"
@@ -621,15 +625,16 @@ msgid "Open in new window"
 msgstr "Otvoriť v novom okne"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:436
-#, fuzzy
-msgid "Open all"
+#: ../dnd2share/src/applet-notifications.c:460
+msgid "Open file"
 msgstr "Otvoriť súbor"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:499
+#: ../Scooby-Do/data/messages:105
 msgid "Firefox bookmarks"
 msgstr "Záložky Firefox"
 
-#: ../Scooby-Do/src/applet-backend-recent.c:215
+#: ../Scooby-Do/src/applet-backend-recent.c:215 ../Scooby-Do/data/messages:107
 msgid "Recent files"
 msgstr "Nedávne súbory"
 
@@ -638,8 +643,8 @@ msgid "Wikipedia"
 msgstr "Wikipédia"
 
 #: ../Scooby-Do/src/applet-backend-web.c:110
-msgid "Yahoo"
-msgstr "Yahoo"
+msgid "Yahoo!"
+msgstr "Yahoo!"
 
 #: ../Scooby-Do/src/applet-backend-web.c:118
 msgid "Google"
@@ -736,23 +741,12 @@ msgstr "Hľadanie ..."
 msgid "Enter your search"
 msgstr "Vložte svoje hľadanie"
 
-#: ../StatusNotifier/src/applet-init.c:31
-msgid "StatusNotifier"
-msgstr ""
-
-#: ../StatusNotifier/src/applet-init.c:34 ../template/src/applet-init.c:33
-msgid ""
-"Useful description\n"
-"and manual"
-msgstr ""
-"Použiteľný opis\n"
-"a manuál"
-
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
 msgstr "Sledovanie systému"
 
 #: ../System-Monitor/src/applet-init.c:33
+#, fuzzy
 msgid ""
 "This applet shows you the CPU load, RAM usage, graphic card temperature, "
 "etc.\n"
@@ -810,7 +804,7 @@ msgid "core(s)"
 msgstr "jadro(á)"
 
 #: ../System-Monitor/src/applet-notifications.c:80
-msgid "Up time"
+msgid "Uptime"
 msgstr "Uplynulý čas"
 
 #: ../System-Monitor/src/applet-notifications.c:81
@@ -859,7 +853,7 @@ msgstr ""
 "pri štarte."
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
-msgid "Set up gamma :"
+msgid "Set up gamma:"
 msgstr "Nastaviť gamma :"
 
 #: ../Xgamma/src/applet-notifications.c:61
@@ -871,6 +865,7 @@ msgid "AlsaMixer"
 msgstr "AlsaZmiešavač"
 
 #: ../alsaMixer/src/applet-init.c:34
+#, fuzzy
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -928,14 +923,15 @@ msgstr ""
 " a vyberte správny zvukový kanál, ktorý chcete ovládať."
 
 #: ../alsaMixer/src/applet-mixer.c:285
-msgid "Set up volume :"
+msgid "Set up volume:"
 msgstr "Nastaviť hlasitosť :"
 
 #: ../alsaMixer/src/applet-notifications.c:56
-msgid "Adjsut channels"
+msgid "Adjust channels"
 msgstr "Nastaviť kanály"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
+#, fuzzy
 msgid "Search for your location :"
 msgstr "Hľadanie pre vaše umiestnenie :"
 
@@ -944,6 +940,7 @@ msgid "clock"
 msgstr "hodiny"
 
 #: ../clock/src/applet-init.c:35
+#, fuzzy
 msgid ""
 "This applet displays time and date in your dock.\n"
 "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
@@ -971,6 +968,7 @@ msgid "Set up time and date"
 msgstr "Nastaviť čas a dátum"
 
 #: ../compiz-icon/src/applet-init.c:34
+#, fuzzy
 msgid ""
 "This applet allows you to manage compiz and other windows manager\n"
 "The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
@@ -1030,7 +1028,7 @@ msgid "Toggle Exposition Mode"
 msgstr "Prepínač módu expozície"
 
 #: ../compiz-icon/src/applet-notifications.c:194
-msgid "Toggle Widgets Layer"
+msgid "Toggle Widget Layer"
 msgstr "Prepnúť vrstvu widgetov"
 
 #: ../compiz-icon/src/applet-notifications.c:196
@@ -1042,11 +1040,11 @@ msgid "frame&reflects"
 msgstr "rám&zrkadlenie"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
-msgid "scotch"
+msgid "scotch sellotape"
 msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
-msgid "frame with scotch"
+msgid "frame with sellotape"
 msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
@@ -1083,23 +1081,41 @@ msgid "This module provides different views for your desklets."
 msgstr "Tento modul poskytuje rôzne pohľady na vaše desklety."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3Dplane"
+msgid "3DPlan"
 msgstr "3D rovina"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-msgid "comics"
-msgstr "komiks"
+#: ../dialog-rendering/data/messages:1
+#, fuzzy
+msgid "Comics"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"komiks\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Komiks"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-msgid "curly"
-msgstr "vlnitý"
+#: ../dialog-rendering/data/messages:39
+#, fuzzy
+msgid "Curly"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"vlnitý\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Vlnitý"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-msgid "modern"
-msgstr "moderný"
+#: ../dialog-rendering/data/messages:9
+#, fuzzy
+msgid "Modern"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"moderný\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Moderná"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
-msgid "tooltip"
+msgid "ToolTip"
 msgstr "panel s nápovedou"
 
 #: ../dialog-rendering/src/applet-init.c:32
@@ -1107,7 +1123,7 @@ msgid "dialog rendering"
 msgstr "Vykreslenie dialógu"
 
 #: ../dialog-rendering/src/applet-init.c:35
-msgid "This plug-in provides some dialog decorators for dialog bubbles."
+msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Tento plugin poskytuje dekorácie dialógov pre dialógy v bublinách."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
@@ -1124,7 +1140,7 @@ msgstr ""
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait the current upload is finished before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1142,7 +1158,7 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:33
-msgid "Clear the list of the recently uploaded files ?"
+msgid "Clear the list of the recently uploaded files?"
 msgstr "Vymazať zoznam nedávno nahratých súborov?"
 
 #: ../dnd2share/src/applet-notifications.c:51
@@ -1154,12 +1170,12 @@ msgstr ""
 "Môžete ho načítať pomocou CTRL + V."
 
 #: ../dnd2share/src/applet-notifications.c:73
-msgid "Sorry, couldn't find the orignial file nor a preview of it."
+msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr "Prepáčte, nemôžem nájsť originál súbor, ani náhľad naň."
 
 #: ../dnd2share/src/applet-notifications.c:98
 msgid ""
-"The URL has been stored into the clipboard.\n"
+"The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
 "URL bola uložená do schránky.\n"
@@ -1175,8 +1191,8 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:114
 msgid ""
-"No uploaded file available\n"
-".Consider activating the history if you want the applet remembers previous "
+"No uploaded file available.\n"
+"Consider activating the history if you want the applet to remember previous "
 "uploads."
 msgstr ""
 "Nie je k dispozícii nahraný súbor \n"
@@ -1185,7 +1201,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:131
 msgid ""
-"The current URL has been stored into the clipboard.\n"
+"The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
 "Súčasná URL bola uložená do schránky.\n"
@@ -1219,10 +1235,6 @@ msgstr "Poslať obsah schránky"
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
 msgstr "Vyčistiť históriu"
-
-#: ../dnd2share/src/applet-notifications.c:460
-msgid "Open file"
-msgstr "Otvoriť súbor"
 
 #: ../dnd2share/src/applet-notifications.c:462
 msgid "Get text"
@@ -1274,12 +1286,12 @@ msgstr ""
 "poskytované ako pohľady."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "drop indicator"
+msgid "Drop Indicator"
 msgstr "pokles indikátora"
 
 #: ../drop-indicator/src/applet-init.c:31
 msgid ""
-"This plug-in displays an animated indicator when you drop something in the "
+"This plug-in displays an animated indicator when you drop something into the "
 "dock."
 msgstr ""
 "Tento plug-in zobrazuje animovaný indikátor, keď hodíte niečo do docku."
@@ -1297,10 +1309,11 @@ msgid " file(s)"
 msgstr " súbor(y)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "dustbin"
+msgid "Trash"
 msgstr "nádoba na odpadky"
 
 #: ../dustbin/src/applet-init.c:34
+#, fuzzy
 msgid ""
 "This applet manages the dustbin\n"
 "You can threw files and unmount disks by drag andn droping them on the "
@@ -1321,7 +1334,7 @@ msgstr "Zobrazovať Kôš"
 
 #: ../dustbin/src/applet-notifications.c:43
 #: ../dustbin/src/applet-notifications.c:56
-msgid "Delete Trash"
+msgid "Empty Trash"
 msgstr "Vyprázdniť kôš"
 
 #: ../dustbin/src/applet-notifications.c:51
@@ -1344,7 +1357,7 @@ msgstr "Odstrániť všetko"
 
 #: ../dustbin/src/applet-notifications.c:78
 #, c-format
-msgid "%s is now unmounted"
+msgid "%s successfully unmounted"
 msgstr "%s je teraz odpojený"
 
 #: ../dustbin/src/applet-notifications.c:82
@@ -1354,11 +1367,11 @@ msgstr "zlyhalo pripojenie %s"
 
 #: ../dustbin/src/applet-trashes-manager.c:380
 #, c-format
-msgid "You're about to delete all files in %s. Sure ?"
+msgid "You are about to delete all files in %s. Continue?"
 msgstr "Ste si istí, že chcete odstrániť všetky sbory v %s. Určite?"
 
 #: ../dustbin/src/applet-trashes-manager.c:382
-msgid "You're about to delete all files in all dustbins. Sure ?"
+msgid "You are about to delete all files in all dustbins. Continue?"
 msgstr "Chystáte sa vymazať všetky súbory vo všetkých košov. Určite ?"
 
 #: ../dustbin/src/applet-trashes-manager.c:459
@@ -1366,13 +1379,14 @@ msgstr "Chystáte sa vymazať všetky súbory vo všetkých košov. Určite ?"
 msgid ""
 "A problem occured\n"
 "If '%s' is not your usual file browser,\n"
-"you can change it in the conf panel of this module"
+"you can change this in the configuration panel of this module"
 msgstr ""
 "Našiel sa problém\n"
 "Ak '%s' nie je váš obvyklý prehliadač súborov,\n"
 "môžete to zmeniť v conf paneli tohto modulu"
 
 #: ../gnome-integration-old/src/applet-init.c:30
+#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1384,6 +1398,7 @@ msgstr ""
 "Je určený pre staršiu verziu GNOME (pred 2.22)."
 
 #: ../gnome-integration/src/applet-init.c:30
+#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1395,11 +1410,11 @@ msgstr ""
 "Je určený pre verziu GNOME > = 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "icon effects"
+msgid "Icon Effects"
 msgstr "efekty ikôn"
 
 #: ../icon-effect/src/applet-init.c:43
-msgid "This plug-in adds many special effects to your icons."
+msgid "This plugin adds many special effects to your icons."
 msgstr "Tento plug-in pridáva mnoho špeciálnych efektov do vašich ikôn."
 
 #: ../icon-effect/src/applet-init.c:85 ../icon-effect/data/messages:7
@@ -1439,15 +1454,16 @@ msgid "Firework"
 msgstr "Ohňostroj"
 
 #: ../illusion/src/applet-init.c:30
-msgid "illusion"
+msgid "Illusion"
 msgstr "ilúzie"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
-"This plug-in provides animations for appearance & disappearance of icons."
+"This plugin provides animations for appearance & disappearance of icons."
 msgstr "Tento plug-in umožňuje animácie pre vzhľad & miznutie ikôn."
 
 #: ../kde-integration/src/applet-init.c:30
+#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
@@ -1459,7 +1475,7 @@ msgstr ""
 "Je určený pre verziu KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "keyboard indicator"
+msgid "Keyboard Indicator"
 msgstr "indikátor klávesnice"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1477,7 +1493,7 @@ msgstr ""
 "\t Pravé-kliknutie vám umožní prístup k zoznamu dostupných rozložení."
 
 #: ../logout/src/applet-init.c:28
-msgid "logout"
+msgid "Log-out"
 msgstr "odhlásiť sa"
 
 #: ../logout/src/applet-init.c:31
@@ -1491,15 +1507,15 @@ msgstr ""
 "Môžete prehadzovať poradie, ak chcete vypnúť ľavým kliknutím"
 
 #: ../logout/src/applet-notifications.c:119
-msgid "Choose in how many minutes your PC will stop :"
+msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 
 #: ../logout/src/applet-notifications.c:143
-msgid "Program an automatic shutdown"
+msgid "Program an automatic shut-down"
 msgstr "Program na automatické vypnutie"
 
 #: ../logout/src/applet-notifications.c:173
-msgid "Your computer will shutdown in 1 minute."
+msgid "Your computer will shut-down in 1 minute."
 msgstr "Váš počítač bude vypnutý za jednu minútu."
 
 #: ../mail/src/cd-mail-applet-config.c:200
@@ -1544,18 +1560,25 @@ msgstr "Žiadna neprečítaná správa vo vašej schránke"
 
 #: ../mail/src/cd-mail-applet-etpan.c:401
 #, c-format
-msgid "You have %d new mails :"
+msgid "You have %d new mails:"
 msgstr "Máte %d nových mailov :"
 
 #: ../mail/src/cd-mail-applet-etpan.c:403
-msgid "You have a new mail :"
+msgid "You have a new mail:"
 msgstr "Máte nový e-mail :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
-msgid "mail"
-msgstr "pošta"
+#: ../mail/src/cd-mail-applet-notifications.c:320
+#, fuzzy
+msgid "Mail"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"pošta\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Pošta"
 
 #: ../mail/src/cd-mail-applet-init.c:36
+#, fuzzy
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)\n"
@@ -1572,7 +1595,7 @@ msgstr ""
 msgid ""
 "A problem occured\n"
 "If '%s' is not your usual mail application,\n"
-"you can change it in the conf panel of this module"
+"you can change it in the configuration panel of this module"
 msgstr ""
 "Nastal problém\n"
 "Ak '%s' nie je obvyklou aplikáciou na spracovanie pošty,\n"
@@ -1583,7 +1606,7 @@ msgid "Refresh a mail account"
 msgstr "Obnoviť poštový účet"
 
 #: ../mail/src/cd-mail-applet-notifications.c:142
-msgid "Mark all mails as read"
+msgid "Mark all emails as read"
 msgstr "Označiť všetku poštu ako prečítanú"
 
 #: ../mail/src/cd-mail-applet-notifications.c:145
@@ -1591,16 +1614,12 @@ msgstr "Označiť všetku poštu ako prečítanú"
 msgid "Launch %s"
 msgstr "Spustiť %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
-msgstr "Pošta"
-
 #: ../motion-blur/src/applet-init.c:28
-msgid "motion blur"
+msgid "Motion Blur"
 msgstr "rozmazanie pohybom"
 
 #: ../motion-blur/src/applet-init.c:31
-msgid "This plug-in adds a motion blur effect on docks."
+msgid "This plugin adds a motion blur effect to docks."
 msgstr "Tento plugin pridá efekt rozmazania pohybom do docku."
 
 #: ../musicPlayer/src/applet-draw.c:223
@@ -1711,6 +1730,7 @@ msgid "Information"
 msgstr "Informácia"
 
 #: ../netspeed/src/applet-init.c:32
+#, fuzzy
 msgid ""
 "This applet shows you the bit rate of your internet connection and some "
 "stats about it.\n"
@@ -1737,9 +1757,9 @@ msgstr "nahrané"
 #: ../netspeed/src/applet-notifications.c:43
 #, c-format
 msgid ""
-"Interface '%s' seems to not exist or is not readable.\n"
+"Interface '%s' doesn't seem to exist or is not readable.\n"
 " You may have to set up the interface you wish to monitor.\n"
-" Do you want to do it now ?"
+" Do you want to do it now?"
 msgstr ""
 "Zdá sa, že rozhranie '%s'  neexistuje alebo nie je čitateľné.\n"
 " Možno budete musieť nastaviť rozhranie, ktoré chcete sledovať.\n"
@@ -1760,7 +1780,7 @@ msgstr ""
 #: ../powermanager/src/powermanager-draw.c:173
 #: ../powermanager/src/powermanager-draw.c:203
 #: ../powermanager/src/powermanager-draw.c:209
-msgid "Estimated time with Charge:"
+msgid "Estimated time with charge:"
 msgstr "Zostávajúci čas do nabitia:"
 
 #: ../powermanager/src/powermanager-draw.c:177
@@ -1772,11 +1792,11 @@ msgstr ""
 " Batéria nabitá na:"
 
 #: ../powermanager/src/powermanager-draw.c:177
-msgid "Estimated Charge time:"
+msgid "Estimated charge time:"
 msgstr "Zostávajúci čas nabíjania:"
 
 #: ../powermanager/src/powermanager-draw.c:183
-msgid "No Battery found."
+msgid "No battery found."
 msgstr "Batéria nenájdená"
 
 #: ../powermanager/src/powermanager-draw.c:203
@@ -1788,19 +1808,19 @@ msgstr ""
 "Nabitia batérie je nízke"
 
 #: ../powermanager/src/powermanager-draw.c:203
-msgid "Please put your Laptop on charge."
+msgid "Please put your laptop on charge."
 msgstr "Prosím pripojte váš laptop na nabíjanie."
 
 #: ../powermanager/src/powermanager-draw.c:209
 msgid ""
 "PowerManager.\n"
-"Your battery is now Charged"
+"Your battery is now charged"
 msgstr ""
 "Správa napájania.\n"
 "Vaša batéria sa teraz nabíja"
 
 #: ../powermanager/src/powermanager-init.c:34
-msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+msgid "A power manager for laptop batteries. Works with ACPI and DBus."
 msgstr "Správca napájania pre batérie laptopov. Spolupracuje s ACPI a DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
@@ -1828,6 +1848,7 @@ msgid "Quick Browser"
 msgstr "Rýchly prehliadač"
 
 #: ../quick-browser/src/applet-init.c:32
+#, fuzzy
 msgid ""
 "This applet lets you browse a folder and its sub-folders very quickly.\n"
 "You can set up a shortkey to pop up the menu.\n"
@@ -1877,32 +1898,17 @@ msgid "Get disk info"
 msgstr "Získať info o disku"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "show mouse"
+msgid "Show Mouse"
 msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
+#, fuzzy
 msgid ""
-"This plug-in draw some animation around the cursor when it's inside a dock/"
+"This plugin draws some animations around the cursor when it's inside a dock/"
 "desklet."
 msgstr ""
 "Tento zásuvný modul vykresľuje rôzné animácie okolu kurzoru, keď je v docku/"
 "desklete."
-
-#: ../showDesklets/src/applet-init.c:28
-msgid "showDesklets"
-msgstr "zobraziťDesklety"
-
-#: ../showDesklets/src/applet-init.c:31
-msgid ""
-"This applet let you access quickly to your desklets.\n"
-"Left click to show/hide your desklets.\n"
-"Basically, if you run under Compiz, you don't need this applet;\n"
-" you should just use the 'Widget Layer' capabilities of desklets."
-msgstr ""
-"Tento applet vám umožní rýchly prístup k vašim deskletom.\n"
-"Ľavé tlačidlo pre zobrazenie/skrytie vašich deskletov.\n"
-"V podstate, ak spustíte pod Compiz, nepotrebujete tento applet;\n"
-" Tie by mali iba využiť možnosti ' Widget Layer'  deskletmi."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -1920,7 +1926,7 @@ msgid ""
 msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:74
-msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+msgid "You need to run Compiz and activate its 'DBus' plug-in."
 msgstr "Musíte spustiť Compiz ak chcete aktivovať 'DBus' plug-in."
 
 #: ../showDesktop/src/applet-notifications.c:162
@@ -1928,10 +1934,11 @@ msgid "Change screen resolution"
 msgstr "Zmeniť rozlíšenie obrazovky"
 
 #: ../slider/src/applet-init.c:29
-msgid "slider"
+msgid "Slider"
 msgstr "posuvník"
 
 #: ../slider/src/applet-init.c:32
+#, fuzzy
 msgid ""
 "This applet is a basic image slider\n"
 " You just have to select a directory and a display effect and you're done\n"
@@ -1976,18 +1983,18 @@ msgstr ""
 #: ../stack/src/applet-notifications.c:50
 msgid ""
 "No items in the stack.\n"
-"You can add files, URL, and even piece of text by dragging them onto the "
+"You can add files, URL, and even a piece of text by dragging them onto the "
 "icon."
 msgstr ""
 "Žiadne položky v zásobníku.\n"
 "Môžete pridať súbory, URL, a dokonca aj kúsok textu presunutím na ikonu."
 
 #: ../stack/src/applet-notifications.c:74
-msgid "Clear the stack ?"
+msgid "Clear the stack?"
 msgstr "Vyčistiť zásobník ?"
 
 #: ../stack/src/applet-notifications.c:95
-msgid "Set new name for this item :"
+msgid "Set new name for this item:"
 msgstr "Nastaviť nový názov pre túto položku :"
 
 #: ../stack/src/applet-notifications.c:165
@@ -2031,18 +2038,36 @@ msgid "Clean local directory"
 msgstr "Vyčistiť miestny adresár"
 
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
-msgid "current"
-msgstr "aktuálny"
+#: ../switcher/src/applet-load-icons.c:40
+#: ../switcher/src/applet-notifications.c:340
+#, fuzzy
+msgid "Current"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"aktuálny\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Aktuálny"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
-msgid "desktop"
-msgstr "plocha"
+#: ../switcher/src/applet-load-icons.c:46
+#: ../switcher/src/applet-notifications.c:175
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:397
+#, fuzzy
+msgid "Desktop"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"plocha\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Plocha"
 
 #: ../switcher/src/applet-init.c:32
-msgid "switcher"
+msgid "Switcher"
 msgstr "prepínač"
 
 #: ../switcher/src/applet-init.c:35
+#, fuzzy
 msgid ""
 "This applet allows you to interact with your workspaces :\n"
 " - switch between your workspaces (scroll up/down with the mouse),\n"
@@ -2062,19 +2087,6 @@ msgstr ""
 "tlačidlo, alebo v menu)\n"
 "To má 2 režimy: kompaktné (na 1 ikonu) a rozšírená (s sub-dock)."
 
-#: ../switcher/src/applet-load-icons.c:40
-#: ../switcher/src/applet-notifications.c:340
-msgid "Current"
-msgstr "Aktuálny"
-
-#: ../switcher/src/applet-load-icons.c:46
-#: ../switcher/src/applet-notifications.c:175
-#: ../switcher/src/applet-notifications.c:187
-#: ../switcher/src/applet-notifications.c:332
-#: ../switcher/src/applet-notifications.c:397
-msgid "Desktop"
-msgstr "Plocha"
-
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
 msgid "Rename this workspace"
@@ -2093,7 +2105,7 @@ msgid "Refresh"
 msgstr "Aktualizovať"
 
 #: ../switcher/src/applet-notifications.c:241
-msgid "Move current desktop to this desktop"
+msgid "Move current Desktop to this Desktop"
 msgstr "Premiestniť súčasnú plochu na túto plochu"
 
 #: ../switcher/src/applet-notifications.c:246
@@ -2112,6 +2124,7 @@ msgid "Windows List"
 msgstr "Zoznam okien"
 
 #: ../systray/src/systray-init.c:35
+#, fuzzy
 msgid ""
 "Add a systray to your dock.\n"
 "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
@@ -2131,12 +2144,21 @@ msgstr ""
 msgid "CD_APPLET_NAME"
 msgstr "CD_APPLET_NAME"
 
+#: ../template/src/applet-init.c:33
+msgid ""
+"Useful description\n"
+"and manual"
+msgstr ""
+"Použiteľný opis\n"
+"a manuál"
+
 #: ../terminal/src/terminal-callbacks.c:83
-#: ../terminal/src/terminal-widget.c:346
+#: ../terminal/src/terminal-widget.c:354
 msgid "Copy"
 msgstr "Kopírovať"
 
 #: ../terminal/src/terminal-init.c:34
+#, fuzzy
 msgid ""
 "Add a terminal to your dock !\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
@@ -2158,16 +2180,16 @@ msgstr ""
 "Ak chcete zatvoriť záložku: stlačte 'CTRL + w' alebo stredným-kliknutím na "
 "ňu."
 
-#: ../terminal/src/terminal-menu-functions.c:83
-#: ../terminal/src/terminal-widget.c:362
+#: ../terminal/src/terminal-menu-functions.c:82
+#: ../terminal/src/terminal-widget.c:370
 msgid "New Tab"
 msgstr "Nová karta"
 
-#: ../terminal/src/terminal-menu-functions.c:84
+#: ../terminal/src/terminal-menu-functions.c:83
 msgid "Rename current Tab"
 msgstr "Odstrániť aktuálnu kartu"
 
-#: ../terminal/src/terminal-menu-functions.c:85
+#: ../terminal/src/terminal-menu-functions.c:84
 msgid "Close current Tab"
 msgstr "Zavrieť aktuálnu kartu"
 
@@ -2175,36 +2197,37 @@ msgstr "Zavrieť aktuálnu kartu"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:137
-msgid "Set title for this tab :"
+#: ../terminal/src/terminal-widget.c:145
+msgid "Set title for this tab:"
 msgstr "Nastaviť názov pre túto kartu :"
 
-#: ../terminal/src/terminal-widget.c:191
+#: ../terminal/src/terminal-widget.c:199
 msgid "Select a color"
 msgstr "Vyberte farbu"
 
-#: ../terminal/src/terminal-widget.c:306
+#: ../terminal/src/terminal-widget.c:314
 #, c-format
-msgid "You can call back the Terminal desklet by typing %s"
+msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Môžete vrátiť späť v Termináli napísaním %s"
 
-#: ../terminal/src/terminal-widget.c:352
+#: ../terminal/src/terminal-widget.c:360
 msgid "Paste"
 msgstr "Vložiť"
 
-#: ../terminal/src/terminal-widget.c:368
+#: ../terminal/src/terminal-widget.c:376
 msgid "Rename this Tab"
 msgstr "Premenovať"
 
-#: ../terminal/src/terminal-widget.c:374
-msgid "Change this Tab's color"
+#: ../terminal/src/terminal-widget.c:382
+msgid "Change this Tab's colour"
 msgstr "Zmeniť farbu kariet"
 
-#: ../terminal/src/terminal-widget.c:380
+#: ../terminal/src/terminal-widget.c:388
 msgid "Close this Tab"
 msgstr "Zatvoriť túto kartu"
 
 #: ../tomboy/src/tomboy-init.c:33
+#, fuzzy
 msgid ""
 "Control your Gnote or TomBoy's notes directly in the dock !\n"
 "Click on a note to open it, Escape to close it.\n"
@@ -2221,15 +2244,15 @@ msgid "Note name : "
 msgstr "Názov poznámky : "
 
 #: ../tomboy/src/tomboy-notifications.c:91
-msgid "Delete this note ?"
+msgid "Delete this note?"
 msgstr "Odstrániť túto poznámku ?"
 
 #: ../tomboy/src/tomboy-notifications.c:107
-msgid "Search for :"
+msgid "Search for:"
 msgstr "Hľadať :"
 
 #: ../tomboy/src/tomboy-notifications.c:123
-msgid "Search for tag :"
+msgid "Search for tag:"
 msgstr "Hľadať značku :"
 
 #: ../tomboy/src/tomboy-notifications.c:162
@@ -2265,10 +2288,11 @@ msgid "Search for next week's note"
 msgstr "Vyhľadať poznámku na nasledujúci týždeň"
 
 #: ../tomboy/src/tomboy-notifications.c:187
-msgid "Clear marks"
+msgid "Reset marks"
 msgstr "Vymazať označenia"
 
 #: ../weather/src/applet-config.c:113
+#, fuzzy
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -2277,10 +2301,12 @@ msgstr ""
 " je pripojenie aktívne ?"
 
 #: ../weather/src/applet-config.c:126
+#, fuzzy
 msgid "I couldn't find this location"
-msgstr "Nemôžem nájsť umiestnenie"
+msgstr "Nemohol som sa zaregistrovať voľby"
 
 #: ../weather/src/applet-config.c:184
+#, fuzzy
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -2288,7 +2314,7 @@ msgstr ""
 "výsledkami."
 
 #: ../weather/src/applet-init.c:29
-msgid "weather"
+msgid "Weather"
 msgstr "počasie"
 
 #: ../weather/src/applet-init.c:32
@@ -2394,8 +2420,8 @@ msgstr "Znova načítať"
 
 #: ../weather/src/applet-notifications.c:108
 msgid ""
-"No data were available\n"
-" is connection alive ?"
+"No data available\n"
+" is your connection alive?"
 msgstr ""
 "Nie sú k dispozícii žiadne údaje\n"
 " je spojenie aktívne ?"
@@ -2406,7 +2432,7 @@ msgid "Temperature"
 msgstr "Teplota"
 
 #: ../weather/src/applet-notifications.c:128
-msgid "Precipitation Probability"
+msgid "Precipitation probability"
 msgstr "Pravdepodobnosť zrážok"
 
 #: ../weather/src/applet-notifications.c:129
@@ -2421,12 +2447,12 @@ msgstr "Vlhkosť"
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
-msgid "SunRise"
+msgid "Sunrise"
 msgstr "Východ slnka"
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
-msgid "SunSet"
+msgid "Sunset"
 msgstr "Západ slnka"
 
 #: ../weather/src/applet-notifications.c:139
@@ -2435,14 +2461,14 @@ msgstr "Dáta sú pritiahnuté za vlasy, prosím opakujte o niekoľko sekúnd."
 
 #: ../weather/src/applet-notifications.c:149
 msgid ""
-"No data were available\n"
-"Re-trying now ..."
+"No data available\n"
+"Retrying now..."
 msgstr ""
 "Žiadne údaje nie sú k dispozícii\n"
 "Snažím sa znova ..."
 
 #: ../weather/src/applet-notifications.c:163
-msgid "felt"
+msgid "Feels like"
 msgstr "pocit"
 
 #: ../weather/src/applet-notifications.c:165
@@ -2466,10 +2492,11 @@ msgid "Weblets"
 msgstr "Weblety"
 
 #: ../wifi/src/applet-draw.c:151
-msgid "Wifi disabled."
+msgid "WiFi disabled."
 msgstr "Wifi zakázaná."
 
 #: ../wifi/src/applet-init.c:33
+#, fuzzy
 msgid ""
 "This applet shows you the signal strength of the first active wifi "
 "connection\n"
@@ -2479,6 +2506,7 @@ msgstr ""
 "Ľavý klik zobrazí nejaké info, Stredný klik to ihneď prekontroluje."
 
 #: ../xfce-integration/src/applet-init.c:30
+#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -2492,50 +2520,54 @@ msgstr ""
 msgid "Global"
 msgstr "Všeobecné"
 
-#: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
-msgid "when hovering an icon"
+#: ../Animated-icons/data/messages:3
+msgid "Animations are triggered when hovering an icon only in OpenGL mode."
+msgstr ""
+
+#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:3
+msgid "when hovering over an icon"
 msgstr "keď je nad ikonou"
 
-#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
-msgid "Effects used :"
+#: ../Animated-icons/data/messages:7 ../icon-effect/data/messages:5
+msgid "Effects used:"
 msgstr "Použité efekty  :"
 
-#: ../Animated-icons/data/messages:21 ../icon-effect/data/messages:19
+#: ../Animated-icons/data/messages:23 ../icon-effect/data/messages:19
 msgid "when clicking on an launcher"
 msgstr "keď kliknem na spúšťač"
 
-#: ../Animated-icons/data/messages:23 ../icon-effect/data/messages:21
-msgid "Effects used on launcher :"
+#: ../Animated-icons/data/messages:25 ../icon-effect/data/messages:21
+msgid "Effects used on launcher:"
 msgstr "Použité efekty na spúšťači :"
 
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:73
-msgid "Number of time the animation will play :"
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
+#: ../Animated-icons/data/messages:75
+msgid "Number of times the animation will play:"
 msgstr "Čas pokiaľ bude prehrávaná animácia :"
 
-#: ../Animated-icons/data/messages:39 ../icon-effect/data/messages:35
-msgid "when clicking on an appli"
+#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
+msgid "when clicking on an application"
 msgstr "keď kliknem na appli"
 
-#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:37
-msgid "Effects used on applis :"
+#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
+msgid "Effects used on applications:"
 msgstr "Použité efekty na applis :"
 
-#: ../Animated-icons/data/messages:57 ../icon-effect/data/messages:51
+#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
 msgstr "keď kliknem na applet"
 
-#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:53
-msgid "Effects used on applets :"
+#: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
+msgid "Effects used on applets:"
 msgstr "Použité efekty na appletoch :"
 
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:77
 msgid "Rotation"
 msgstr "Otočenie"
 
-#: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:95
-#: ../Animated-icons/data/messages:147 ../Animated-icons/data/messages:159
-#: ../Animated-icons/data/messages:171 ../Animated-icons/data/messages:185
+#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
+#: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
+#: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
 #: ../Scooby-Do/data/messages:17 ../Scooby-Do/data/messages:21
 #: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
 #: ../icon-effect/data/messages:145 ../icon-effect/data/messages:167
@@ -2543,30 +2575,30 @@ msgstr "Otočenie"
 msgid "In ms."
 msgstr "V Ms."
 
-#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
-#: ../Animated-icons/data/messages:149 ../icon-effect/data/messages:75
+#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
+#: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:103 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:147 ../icon-effect/data/messages:169
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
-msgid "Duration of the animation :"
+msgid "Duration of the animation:"
 msgstr "Doba trvania animácie:"
 
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
-#: ../Animated-icons/data/messages:151 ../Animated-icons/data/messages:163
-#: ../Animated-icons/data/messages:175 ../Animated-icons/data/messages:189
+#: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
+#: ../Animated-icons/data/messages:177 ../Animated-icons/data/messages:191
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:149
 #: ../icon-effect/data/messages:171 ../icon-effect/data/messages:191
-msgid "Repeat while icon is pointed ?"
+msgid "Repeat while icon is pointed to?"
 msgstr "Opakovať, pri namierení na ikonu ?"
 
-#: ../Animated-icons/data/messages:83
-msgid "Type of mesh :"
+#: ../Animated-icons/data/messages:85
+msgid "Type of mesh:"
 msgstr "Typ sľučky :"
 
-#: ../Animated-icons/data/messages:85 ../Clipper/data/messages:149
+#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
 #: ../Doncky/data/messages:43 ../GMenu/data/messages:45
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:47
 #: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
@@ -2585,154 +2617,154 @@ msgstr "Typ sľučky :"
 msgid "Normal"
 msgstr "Normálna"
 
-#: ../Animated-icons/data/messages:87
+#: ../Animated-icons/data/messages:89
 msgid "Cube"
 msgstr "Kocka"
 
-#: ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:91
 msgid "Capsule"
 msgstr "Tobolka"
 
-#: ../Animated-icons/data/messages:91
-msgid "Color of the sheen :"
+#: ../Animated-icons/data/messages:93
+msgid "Colour of the sheen:"
 msgstr "Farba lesku :"
 
-#: ../Animated-icons/data/messages:103 ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
 #: ../Clipper/data/messages:113 ../Doncky/data/messages:9
-#: ../GMenu/data/messages:9 ../GMenu/data/messages:99
-#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:121
-#: ../System-Monitor/data/messages:155 ../System-Monitor/data/messages:163
-#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:135
-#: ../alsaMixer/data/messages:139 ../alsaMixer/data/messages:143
-#: ../dnd2share/data/messages:9 ../logout/data/messages:9
-#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
-#: ../showDesklets/data/messages:9 ../showDesklets/data/messages:13
-#: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:139
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
-msgid "Let empty to use the default one."
+#: ../Doncky/data/messages:91 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:99 ../RSSreader/data/messages:11
+#: ../RSSreader/data/messages:121 ../System-Monitor/data/messages:155
+#: ../System-Monitor/data/messages:163 ../Xgamma/data/messages:9
+#: ../alsaMixer/data/messages:135 ../alsaMixer/data/messages:139
+#: ../alsaMixer/data/messages:143 ../dnd2share/data/messages:9
+#: ../logout/data/messages:9 ../quick-browser/data/messages:11
+#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../switcher/data/messages:139 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
+msgid "Leave empty to use the default one."
 msgstr "Nechať prázdne a použiť predvolené."
 
-#: ../Animated-icons/data/messages:105
-msgid "Image for the spot :"
+#: ../Animated-icons/data/messages:107
+msgid "Image for the spotlight:"
 msgstr "Farba pre umiestnenie :"
 
-#: ../Animated-icons/data/messages:109
-msgid "Image for the front spot :"
+#: ../Animated-icons/data/messages:111
+msgid "Image for the front spotlight:"
 msgstr "Obrázok pre predné miesto :"
 
-#: ../Animated-icons/data/messages:111
-msgid "color of the spot :"
+#: ../Animated-icons/data/messages:113
+msgid "Spot colour:"
 msgstr "farba umiestnenia :"
 
-#: ../Animated-icons/data/messages:113
-msgid "color of the halo :"
+#: ../Animated-icons/data/messages:115
+msgid "Halo colour:"
 msgstr "farba okolia kruhu :"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:117
 msgid "Rays"
 msgstr "Lúče"
 
-#: ../Animated-icons/data/messages:117 ../icon-effect/data/messages:81
+#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 #, fuzzy
 msgid "st color of gradation :"
-msgstr "Prvá farba postupného prechodu :"
+msgstr "prvá farba stupňovania"
 
-#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:83
+#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 #, fuzzy
 msgid "nd color of gradation :"
-msgstr "Druhá farba postupného prechodu :"
+msgstr "Druhá farba stupňovania"
 
-#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:85
+#: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
-msgid "Random colors ?"
+msgid "Random colours?"
 msgstr "Náhodné farby ?"
 
-#: ../Animated-icons/data/messages:123
-msgid "Number of rays :"
+#: ../Animated-icons/data/messages:125
+msgid "Number of rays:"
 msgstr "Počet lúčov :"
 
-#: ../Animated-icons/data/messages:125
-msgid "Rays size :"
+#: ../Animated-icons/data/messages:127
+msgid "Ray size:"
 msgstr "Veľkosť lúčov :"
 
-#: ../Animated-icons/data/messages:127
-msgid "Rays speed :"
+#: ../Animated-icons/data/messages:129
+msgid "Ray speed:"
 msgstr "Rýchlosť lúčov :"
 
-#: ../Animated-icons/data/messages:131
-msgid "Initial stretch :"
+#: ../Animated-icons/data/messages:133
+msgid "Initial stretch:"
 msgstr "Počiatočné roztiahnutie :"
 
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/data/messages:135
 msgid "Horizontal stretch"
 msgstr "Vodorovné roztiahnutie"
 
-#: ../Animated-icons/data/messages:135
+#: ../Animated-icons/data/messages:137
 msgid "Vertical stretch"
 msgstr "Zvislé roztiahnutie"
 
-#: ../Animated-icons/data/messages:137
+#: ../Animated-icons/data/messages:139
 msgid "Corner stretch"
 msgstr "Roztiahnutie rohu"
 
-#: ../Animated-icons/data/messages:139
-msgid "Spring constant :"
+#: ../Animated-icons/data/messages:141
+msgid "Spring constant:"
 msgstr "Konštanta rastu :"
 
-#: ../Animated-icons/data/messages:141
-msgid "Friction :"
+#: ../Animated-icons/data/messages:143
+msgid "Friction:"
 msgstr "Trenia :"
 
-#: ../Animated-icons/data/messages:143
-msgid "Number of points on the grid in one direction :"
+#: ../Animated-icons/data/messages:145
+msgid "Number of points on the grid in each direction:"
 msgstr "Počet bodov v mriežke v jednom smere :"
 
-#: ../Animated-icons/data/messages:153
-msgid "Width of the wave :"
+#: ../Animated-icons/data/messages:155
+msgid "Wave width:"
 msgstr "Šírka vlny :"
 
-#: ../Animated-icons/data/messages:155
-msgid "Amplitude of the wave :"
+#: ../Animated-icons/data/messages:157
+msgid "Wave amplitude:"
 msgstr "Amplitúda vlny :"
 
-#: ../Animated-icons/data/messages:161
-msgid "Duration of the pulse :"
+#: ../Animated-icons/data/messages:163
+msgid "Pulse duration:"
 msgstr "Doba trvania pulzu :"
 
-#: ../Animated-icons/data/messages:165
-msgid "Zoom max of the pulse :"
+#: ../Animated-icons/data/messages:167
+msgid "Pulse max zoom:"
 msgstr "Maximálne priblíženie pulzu :"
 
-#: ../Animated-icons/data/messages:167
-msgid "Should the pulse follow the shape of the icon ?"
+#: ../Animated-icons/data/messages:169
+msgid "Pulse follows icon shape?"
 msgstr "Má pulz nasledovať pulz ikony ?"
 
-#: ../Animated-icons/data/messages:173
-msgid "Duration of the bounce :"
+#: ../Animated-icons/data/messages:175
+msgid "Bounce duration:"
 msgstr "Doba trvania poskočenia :"
 
-#: ../Animated-icons/data/messages:177
-msgid "When bouncing, resize the icon of :"
+#: ../Animated-icons/data/messages:179
+msgid "When bouncing, resize the icon by:"
 msgstr "Pri poskočení, zmeniť veľkosť ikony o :"
 
-#: ../Animated-icons/data/messages:179
-msgid "the smaller, the more it will flatten."
+#: ../Animated-icons/data/messages:181
+msgid "the lower the value, the more it will flatten."
 msgstr "čím menšia, tým bude plochejšia"
 
-#: ../Animated-icons/data/messages:181
-msgid "How much the icon will flatten when hurting the ground :"
+#: ../Animated-icons/data/messages:183
+msgid "How much the icon will flatten when hitting the ground:"
 msgstr "Ako veľa sa ikony spošští pri priblížení k okraju :"
 
-#: ../Animated-icons/data/messages:187
-msgid "Duration of the blink :"
+#: ../Animated-icons/data/messages:189
+msgid "Blink duration:"
 msgstr "Doba trvania blikania :"
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
@@ -2746,12 +2778,11 @@ msgstr "Doba trvania blikania :"
 #: ../mail/data/messages:1 ../musicPlayer/data/messages:1
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
-#: ../showDesklets/data/messages:1 ../showDesktop/data/messages:1
-#: ../slider/data/messages:1 ../stack/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../terminal/data/messages:1 ../tomboy/data/messages:1
-#: ../weather/data/messages:1 ../weblets/data/messages:1
-#: ../wifi/data/messages:1
+#: ../showDesktop/data/messages:1 ../slider/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../terminal/data/messages:1
+#: ../tomboy/data/messages:1 ../weather/data/messages:1
+#: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Ikona"
 
@@ -2766,20 +2797,25 @@ msgstr "Ikona"
 #: ../mail/data/messages:3 ../musicPlayer/data/messages:3
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
-#: ../showDesklets/data/messages:3 ../showDesktop/data/messages:3
-#: ../slider/data/messages:3 ../stack/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../terminal/data/messages:3 ../tomboy/data/messages:3
+#: ../showDesktop/data/messages:3 ../slider/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../terminal/data/messages:3
+#: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
+#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "Nastavte na 0 pre použitie predvolenej veľkosti appletu"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Nastavte na 0 pre použitie predvolenej veľkosti appletu\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Nastavte na 0   pre použitie predvolenej veľkosti apletu"
 
 #: ../Cairo-Penguin/data/messages:5
-msgid "Icon size when the penguin is not free :"
+msgid "Icon size for busy penguin:"
 msgstr "Veľkosť ikony, keď tučniak nie je uvolnený :"
 
 #: ../Cairo-Penguin/data/messages:7
-msgid "Name of the icon when the penguin is not free :"
+msgid "Icon name for busy penguin:"
 msgstr "Názov ikony, keď tučniak nie je uvolnený :"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
@@ -2793,14 +2829,19 @@ msgstr "Názov ikony, keď tučniak nie je uvolnený :"
 #: ../mail/data/messages:9 ../musicPlayer/data/messages:11
 #: ../netspeed/data/messages:9 ../powermanager/data/messages:9
 #: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
-#: ../showDesklets/data/messages:17 ../showDesktop/data/messages:17
-#: ../slider/data/messages:9 ../stack/data/messages:15
-#: ../switcher/data/messages:13 ../systray/data/messages:9
-#: ../terminal/data/messages:13 ../tomboy/data/messages:9
+#: ../showDesktop/data/messages:17 ../slider/data/messages:9
+#: ../stack/data/messages:15 ../switcher/data/messages:13
+#: ../systray/data/messages:9 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../tomboy/data/messages:19
 #: ../weather/data/messages:11 ../weblets/data/messages:13
 #: ../wifi/data/messages:9
+#, fuzzy
 msgid "Name of the dock it belongs to:"
-msgstr "Názov doku ku ktorému patrí :"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Názov doku ku ktorému patrí :\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Názov obrázka pre ikonu 'zatvorený' :"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
 #: ../GMenu/data/messages:15 ../Network-Monitor/data/messages:13
@@ -2832,14 +2873,20 @@ msgstr "Príručka appletov"
 #: ../mail/data/messages:87 ../motion-blur/data/messages:1
 #: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
 #: ../powermanager/data/messages:87 ../quick-browser/data/messages:93
-#: ../show-mouse/data/messages:1 ../showDesklets/data/messages:19
-#: ../showDesktop/data/messages:95 ../slider/data/messages:87
-#: ../stack/data/messages:93 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../tomboy/data/messages:105
-#: ../weather/data/messages:89 ../weather/data/messages:91
-#: ../weblets/data/messages:91 ../wifi/data/messages:87
+#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
+#: ../slider/data/messages:87 ../stack/data/messages:93
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:45 ../terminal/data/messages:91
+#: ../tomboy/data/messages:105 ../weather/data/messages:89
+#: ../weather/data/messages:91 ../weblets/data/messages:91
+#: ../wifi/data/messages:87
+#, fuzzy
 msgid "Configuration"
-msgstr "Konfigurácia"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Konfigurácia\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Grafické"
 
 #: ../Cairo-Penguin/data/messages:15 ../Network-Monitor/data/messages:137
 #: ../Network-Monitor/data/messages:181 ../System-Monitor/data/messages:97
@@ -2847,23 +2894,30 @@ msgstr "Konfigurácia"
 #: ../mail/data/messages:97 ../netspeed/data/messages:97
 #: ../powermanager/data/messages:99 ../weather/data/messages:121
 #: ../wifi/data/messages:99
-msgid "Choose one of the available themes :"
+msgid "Choose one of the available themes:"
 msgstr "Vyberte jeden z dostupných motívov :"
 
-#: ../Cairo-Penguin/data/messages:17 ../Toons/data/messages:91
-msgid "in seconds"
-msgstr "v sekundách"
+#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:243
+#: ../Network-Monitor/data/messages:165 ../System-Monitor/data/messages:147
+#: ../System-Monitor/data/messages:183 ../Toons/data/messages:91
+#: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
+#: ../powermanager/data/messages:143 ../slider/data/messages:105
+#: ../wifi/data/messages:163
+#, fuzzy
+msgid "in secondsconds."
+msgstr "v sekundách."
 
 #: ../Cairo-Penguin/data/messages:19
+#, fuzzy
 msgid "Delay between animation changes :"
 msgstr "Oneskorenie medzi zmenou animácie :"
 
 #: ../Cairo-Penguin/data/messages:21
-msgid "Transparency of the penguin :"
+msgid "Penguin transparency:"
 msgstr "Priehľadnosť tučniaka :"
 
 #: ../Cairo-Penguin/data/messages:23
-msgid "Let the penguin wander everywhere in the dock ?"
+msgid "Let the penguin wander everywhere in the dock?"
 msgstr "Nechať tučniaka, nech behá po celom docku ?"
 
 #: ../Cairo-Penguin/data/messages:25 ../dock-rendering/data/messages:41
@@ -2872,7 +2926,7 @@ msgid "in pixels."
 msgstr "v pixeloch."
 
 #: ../Cairo-Penguin/data/messages:27
-msgid "Ground offset :"
+msgid "Ground offset:"
 msgstr "Oblasť odsadenia:"
 
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:53
@@ -2989,12 +3043,12 @@ msgstr "Krok_6/Príkaz_4"
 #: ../logout/data/messages:5 ../mail/data/messages:5
 #: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
-#: ../shortcuts/data/messages:5 ../showDesklets/data/messages:5
-#: ../showDesktop/data/messages:5 ../slider/data/messages:5
-#: ../stack/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../terminal/data/messages:5
-#: ../tomboy/data/messages:5 ../weather/data/messages:5
-#: ../weblets/data/messages:5 ../wifi/data/messages:5
+#: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
+#: ../slider/data/messages:5 ../stack/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../terminal/data/messages:5 ../tomboy/data/messages:5
+#: ../weather/data/messages:5 ../weblets/data/messages:5
+#: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Požadovaná veľkosť ikony pre tento applet"
 
@@ -3008,11 +3062,11 @@ msgstr "Požadovaná veľkosť ikony pre tento applet"
 #: ../logout/data/messages:7 ../mail/data/messages:7
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
-#: ../showDesklets/data/messages:7 ../showDesktop/data/messages:7
-#: ../slider/data/messages:7 ../stack/data/messages:9
-#: ../switcher/data/messages:7 ../weather/data/messages:9
-#: ../weblets/data/messages:7 ../wifi/data/messages:7
-msgid "Name of the icon as it will appear in its label in the dock :"
+#: ../showDesktop/data/messages:7 ../slider/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../weather/data/messages:9 ../weblets/data/messages:7
+#: ../wifi/data/messages:7
+msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 
 #: ../Clipper/data/messages:115 ../Doncky/data/messages:11
@@ -3022,7 +3076,7 @@ msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 #: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
 #: ../stack/data/messages:13 ../switcher/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
-msgid "Image's filename :"
+msgid "Image filename:"
 msgstr "Názov súboru obrázku :"
 
 #: ../Clipper/data/messages:121 ../Doncky/data/messages:15
@@ -3079,8 +3133,8 @@ msgstr "Pozícia"
 #: ../tomboy/data/messages:35 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
 msgid ""
-"If locked, the desklet can't be moved by simply dragging it with the left "
-"mouse button. Of course you can still move it with ALT + left_click."
+"If locked, the desklet cannot be moved by simply dragging it with the left "
+"mouse button. It can still be moved with ALT + left-click."
 msgstr ""
 "Ak je je zamknutý, nedá deskletom pohnúť ťahaním ľavým tlačítkom myši. "
 "Samozrejme s ním stále môžete pohybovaťkombináciou ALT + ľavé tlačítko myši."
@@ -3100,7 +3154,7 @@ msgstr ""
 #: ../switcher/data/messages:23 ../terminal/data/messages:23
 #: ../tomboy/data/messages:37 ../weather/data/messages:21
 #: ../weblets/data/messages:23 ../wifi/data/messages:19
-msgid "Lock position ?"
+msgid "Lock position?"
 msgstr "Zamknúť pozíciu ?"
 
 #: ../Clipper/data/messages:129 ../Doncky/data/messages:23
@@ -3119,8 +3173,8 @@ msgstr "Zamknúť pozíciu ?"
 #: ../tomboy/data/messages:39 ../weather/data/messages:23
 #: ../weblets/data/messages:25 ../wifi/data/messages:21
 msgid ""
-"Depending on your WindowManager, you can resize it with ALT + middle_click "
-"or ALT + left_click for exemple."
+"Depending on your WindowManager, you may be able to resize this with ALT + "
+"middle-click or ALT + left-click."
 msgstr ""
 "V závislosti na manažérovi vašich okien, môžete zmeniť jeho veľkosť s ALT + "
 "stredné_klik alebo  ALT + ľavé_klik napr."
@@ -3140,7 +3194,7 @@ msgstr ""
 #: ../switcher/data/messages:27 ../terminal/data/messages:27
 #: ../tomboy/data/messages:41 ../weather/data/messages:25
 #: ../weblets/data/messages:27 ../wifi/data/messages:23
-msgid "Desklet's dimension (width x height) :"
+msgid "Desklet dimensions (width x height):"
 msgstr "Rozmery deskletov (šírka x výška) :"
 
 #: ../Clipper/data/messages:133 ../Doncky/data/messages:27
@@ -3156,7 +3210,9 @@ msgstr "Rozmery deskletov (šírka x výška) :"
 #: ../systray/data/messages:17 ../terminal/data/messages:29
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:25
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you may be able to move this with ALT + "
+"left-click."
 msgstr ""
 "V závislosti na manažérovi vašich okien, môžete pohybovať pomocou ALT + "
 "ľavý_klik"
@@ -3177,7 +3233,7 @@ msgstr ""
 #: ../terminal/data/messages:31 ../tomboy/data/messages:45
 #: ../weather/data/messages:29 ../weblets/data/messages:31
 #: ../wifi/data/messages:27
-msgid "Desklet's position (x ; y) :"
+msgid "Desklet position (x, y):"
 msgstr "Pozícia deskletu (x ; y) :"
 
 #: ../Clipper/data/messages:137 ../Doncky/data/messages:31
@@ -3217,7 +3273,7 @@ msgstr ""
 #: ../terminal/data/messages:35 ../tomboy/data/messages:49
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:31
-msgid "Rotation :"
+msgid "Rotation:"
 msgstr "Otáčanie :"
 
 #: ../Clipper/data/messages:141 ../Doncky/data/messages:35
@@ -3241,21 +3297,21 @@ msgstr "Viditeľnosť"
 
 #: ../Clipper/data/messages:143 ../Doncky/data/messages:37
 #: ../GMenu/data/messages:39 ../Network-Monitor/data/messages:37
-#: ../RSSreader/data/messages:41 ../System-Monitor/data/messages:35
-#: ../Toons/data/messages:35 ../Xgamma/data/messages:39
-#: ../alsaMixer/data/messages:37 ../clock/data/messages:37
-#: ../compiz-icon/data/messages:35 ../dnd2share/data/messages:35
-#: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:35
-#: ../logout/data/messages:39 ../mail/data/messages:35
-#: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
-#: ../powermanager/data/messages:35 ../quick-browser/data/messages:41
-#: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
-#: ../slider/data/messages:35 ../stack/data/messages:41
-#: ../switcher/data/messages:33 ../systray/data/messages:27
-#: ../terminal/data/messages:39 ../tomboy/data/messages:53
-#: ../weather/data/messages:37 ../weblets/data/messages:39
-#: ../wifi/data/messages:35
-msgid "Is detached from the dock ?"
+#: ../RSSreader/data/messages:41 ../Scooby-Do/data/messages:27
+#: ../System-Monitor/data/messages:35 ../Toons/data/messages:35
+#: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:37
+#: ../clock/data/messages:37 ../compiz-icon/data/messages:35
+#: ../dnd2share/data/messages:35 ../dustbin/data/messages:35
+#: ../keyboard-indicator/data/messages:35 ../logout/data/messages:39
+#: ../mail/data/messages:35 ../musicPlayer/data/messages:37
+#: ../netspeed/data/messages:35 ../powermanager/data/messages:35
+#: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
+#: ../showDesktop/data/messages:43 ../slider/data/messages:35
+#: ../stack/data/messages:41 ../switcher/data/messages:33
+#: ../systray/data/messages:27 ../terminal/data/messages:39
+#: ../tomboy/data/messages:53 ../weather/data/messages:37
+#: ../weblets/data/messages:39 ../wifi/data/messages:35
+msgid "Is detached from the dock"
 msgstr "Je oddelený od docku ?"
 
 #: ../Clipper/data/messages:145 ../Doncky/data/messages:39
@@ -3296,7 +3352,7 @@ msgstr ""
 #: ../terminal/data/messages:43 ../tomboy/data/messages:57
 #: ../weather/data/messages:41 ../weblets/data/messages:43
 #: ../wifi/data/messages:39
-msgid "Visibility :"
+msgid "Visibility:"
 msgstr "Viditeľnosť :"
 
 #: ../Clipper/data/messages:151 ../Doncky/data/messages:45
@@ -3353,7 +3409,7 @@ msgstr "Ponechať na pozadí"
 #: ../terminal/data/messages:51 ../tomboy/data/messages:65
 #: ../weather/data/messages:49 ../weblets/data/messages:51
 #: ../wifi/data/messages:47
-msgid "On Widget Layer"
+msgid "Keep on widget layer"
 msgstr ""
 
 #: ../Clipper/data/messages:157 ../Doncky/data/messages:51
@@ -3391,7 +3447,7 @@ msgstr "Vyhradiť miesto"
 #: ../terminal/data/messages:55 ../tomboy/data/messages:69
 #: ../weather/data/messages:53 ../weblets/data/messages:55
 #: ../wifi/data/messages:51
-msgid "Should be visible on all desktops ?"
+msgid "Should be visible on all desktops?"
 msgstr "Má byť viditeľný na všetkých plochách ?"
 
 #: ../Clipper/data/messages:161 ../Doncky/data/messages:55
@@ -3446,7 +3502,7 @@ msgstr ""
 #: ../switcher/data/messages:53 ../terminal/data/messages:61
 #: ../tomboy/data/messages:75 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:57
-msgid "Choose a decoration theme for this desklet :"
+msgid "Choose a decoration theme for this desklet:"
 msgstr "Vyberte ozdobu témy pre tento desklet :"
 
 #: ../Clipper/data/messages:167 ../Doncky/data/messages:61
@@ -3465,8 +3521,7 @@ msgstr "Vyberte ozdobu témy pre tento desklet :"
 #: ../tomboy/data/messages:77 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
 msgid ""
-"It's an image that will be displayed below the drawings, like a frame for "
-"exemple. Let empty to not use any."
+"Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
 "Je to obrázok, ktorý se zobrazí pod kresbami, ako napríklad rámček. Ak "
 "žiadny nechcete, nechajte nevyplnené."
@@ -3476,8 +3531,9 @@ msgstr ""
 #: ../RSSreader/data/messages:67 ../System-Monitor/data/messages:61
 #: ../Toons/data/messages:61 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:63 ../clock/data/messages:63
-#: ../compiz-icon/data/messages:61 ../dnd2share/data/messages:61
-#: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:61
+#: ../clock/data/messages:141 ../compiz-icon/data/messages:61
+#: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
+#: ../keyboard-indicator/data/messages:61
 #: ../keyboard-indicator/data/messages:113 ../logout/data/messages:65
 #: ../mail/data/messages:61 ../musicPlayer/data/messages:63
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:61
@@ -3487,8 +3543,13 @@ msgstr ""
 #: ../terminal/data/messages:65 ../tomboy/data/messages:79
 #: ../weather/data/messages:63 ../weblets/data/messages:65
 #: ../wifi/data/messages:61
-msgid "Background image :"
-msgstr "Obrázok pozadia :"
+#, fuzzy
+msgid "Background image:"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Obrázok pozadia :\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Obrázok vykreslený na pozadí :"
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
 #: ../GMenu/data/messages:67 ../Network-Monitor/data/messages:65
@@ -3505,7 +3566,7 @@ msgstr "Obrázok pozadia :"
 #: ../switcher/data/messages:59 ../terminal/data/messages:67
 #: ../tomboy/data/messages:81 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:63
-msgid "Background tansparency :"
+msgid "Background transparency:"
 msgstr "Priehľadnosť pozadia :"
 
 #: ../Clipper/data/messages:173 ../Doncky/data/messages:67
@@ -3523,7 +3584,7 @@ msgstr "Priehľadnosť pozadia :"
 #: ../switcher/data/messages:61 ../terminal/data/messages:69
 #: ../tomboy/data/messages:83 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:65
-msgid "in pixels. Use this to adjust the left position of the drawings."
+msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie ľavej polohy vykreslenia."
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
@@ -3541,7 +3602,7 @@ msgstr "v pixeloch. Použite pre nastavenie ľavej polohy vykreslenia."
 #: ../switcher/data/messages:63 ../terminal/data/messages:71
 #: ../tomboy/data/messages:85 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:67
-msgid "Left offset :"
+msgid "Left offset:"
 msgstr "Odsadenie zľava :"
 
 #: ../Clipper/data/messages:177 ../Doncky/data/messages:71
@@ -3559,7 +3620,7 @@ msgstr "Odsadenie zľava :"
 #: ../switcher/data/messages:65 ../terminal/data/messages:73
 #: ../tomboy/data/messages:87 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:69
-msgid "in pixels. Use this to adjust the top position of the drawings."
+msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie hornej polohy vykreslenia."
 
 #: ../Clipper/data/messages:179 ../Doncky/data/messages:73
@@ -3577,7 +3638,7 @@ msgstr "v pixeloch. Použite pre nastavenie hornej polohy vykreslenia."
 #: ../switcher/data/messages:67 ../terminal/data/messages:75
 #: ../tomboy/data/messages:89 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:71
-msgid "Top offset :"
+msgid "Top offset:"
 msgstr "Odsadenie zhora :"
 
 #: ../Clipper/data/messages:181 ../Doncky/data/messages:75
@@ -3595,7 +3656,7 @@ msgstr "Odsadenie zhora :"
 #: ../switcher/data/messages:69 ../terminal/data/messages:77
 #: ../tomboy/data/messages:91 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:73
-msgid "in pixels. Use this to adjust the right position of the drawings."
+msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie pravej polohy vykreslenia."
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
@@ -3613,7 +3674,7 @@ msgstr "v pixeloch. Použite pre nastavenie pravej polohy vykreslenia."
 #: ../switcher/data/messages:71 ../terminal/data/messages:79
 #: ../tomboy/data/messages:93 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:75
-msgid "Right offset :"
+msgid "Right offset:"
 msgstr "Odsadenie vpravo :"
 
 #: ../Clipper/data/messages:185 ../Doncky/data/messages:79
@@ -3631,7 +3692,7 @@ msgstr "Odsadenie vpravo :"
 #: ../switcher/data/messages:73 ../terminal/data/messages:81
 #: ../tomboy/data/messages:95 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:77
-msgid "in pixels. Use this to adjust the bottom position of the drawings."
+msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie dolnej polohy vykreslenia."
 
 #: ../Clipper/data/messages:187 ../Doncky/data/messages:81
@@ -3649,7 +3710,7 @@ msgstr "v pixeloch. Použite pre nastavenie dolnej polohy vykreslenia."
 #: ../switcher/data/messages:75 ../terminal/data/messages:83
 #: ../tomboy/data/messages:97 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:79
-msgid "Bottom offset :"
+msgid "Bottom offset:"
 msgstr "Odsadenie zdola"
 
 #: ../Clipper/data/messages:189 ../Doncky/data/messages:83
@@ -3668,8 +3729,8 @@ msgstr "Odsadenie zdola"
 #: ../tomboy/data/messages:99 ../weather/data/messages:83
 #: ../weblets/data/messages:85 ../wifi/data/messages:81
 msgid ""
-"It's an image that will be displayed above the drawings, like a reflect for "
-"exemple. Let empty to not use any."
+"Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
+"no image."
 msgstr ""
 "Je to obrázok, ktorý sa zobrazí nad kresbami, ako napríklad odraz. Ak žiadny "
 "nechcete, ponechajte nevyplnené."
@@ -3689,7 +3750,7 @@ msgstr ""
 #: ../switcher/data/messages:79 ../terminal/data/messages:87
 #: ../tomboy/data/messages:101 ../weather/data/messages:85
 #: ../weblets/data/messages:87 ../wifi/data/messages:83
-msgid "Foreground image :"
+msgid "Foreground image:"
 msgstr "Obrázok popredia :"
 
 #: ../Clipper/data/messages:193 ../Doncky/data/messages:87
@@ -3707,7 +3768,7 @@ msgstr "Obrázok popredia :"
 #: ../switcher/data/messages:81 ../terminal/data/messages:89
 #: ../tomboy/data/messages:103 ../weather/data/messages:87
 #: ../weblets/data/messages:89 ../wifi/data/messages:85
-msgid "Foreground tansparency :"
+msgid "Foreground tansparency:"
 msgstr "Priehľadné popredie :"
 
 #: ../Clipper/data/messages:197
@@ -3723,7 +3784,7 @@ msgstr ""
 "sú tie, ktoré dostanete označením nejakého textu myšou."
 
 #: ../Clipper/data/messages:201
-msgid "Which items should be remembered ?"
+msgid "Which items should be remembered?"
 msgstr "Ktoré položky si mám zapamätať ?"
 
 #: ../Clipper/data/messages:205
@@ -3739,7 +3800,7 @@ msgid "Both"
 msgstr "Obidve"
 
 #: ../Clipper/data/messages:211
-msgid "Number of items :"
+msgid "Number of items:"
 msgstr "POčet položiek :"
 
 #: ../Clipper/data/messages:213
@@ -3748,18 +3809,18 @@ msgstr ""
 
 #: ../Clipper/data/messages:215
 msgid ""
-"It is especially usefull if you often select text with mouse and don't want "
-"to lose your clipboard items because of a great number of selection items."
+"It is especially useful if you often select text with the mouse and don't "
+"want to loose your clipboard items due to too many items in the selection."
 msgstr ""
 "To je obzvlášť užitočné, ak si často vybráte text pomocou myši, a nechcete "
 "prísť o svoje položky v schránke , pretože máte veľké množstvo položiek."
 
 #: ../Clipper/data/messages:217
-msgid "Separate clipboard and selection ?"
+msgid "Separate clipboard and selection?"
 msgstr "Oddeliť schránku a výber ?"
 
 #: ../Clipper/data/messages:219
-msgid "If so, number of selection items :"
+msgid "If so, number of selection items:"
 msgstr "Ak áno, počet vybraných položiek :"
 
 #: ../Clipper/data/messages:221
@@ -3768,7 +3829,7 @@ msgid ""
 msgstr "Ak kliknete na položku, jej obsah je dostupný stlačením CTRL+v"
 
 #: ../Clipper/data/messages:223
-msgid "Paste into Clipboard ?"
+msgid "Paste into Clipboard?"
 msgstr "Vložiť do schránky ?"
 
 #: ../Clipper/data/messages:225
@@ -3780,15 +3841,15 @@ msgstr ""
 "myši"
 
 #: ../Clipper/data/messages:227
-msgid "Paste into Selection ?"
+msgid "Paste into Selection?"
 msgstr "Vložiť do vybraného ?"
 
 #: ../Clipper/data/messages:229
-msgid "Shortkey to pop-up the items menu :"
+msgid "Shortkey to pop-up the items menu:"
 msgstr "Klávesová skratka pre vyskakovacie okno s položkami menu :"
 
 #: ../Clipper/data/messages:231
-msgid "Pop-up menus at mouse position ?"
+msgid "Pop-up menus at mouse position?"
 msgstr "Vyskakovacie menu na pozícii myši ?"
 
 #: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
@@ -3797,34 +3858,26 @@ msgstr "Akcie"
 
 #: ../Clipper/data/messages:235
 msgid ""
-"If some actions are associated with an item, they will be proposed to you "
-"when the item is created."
+"If some actions are associated with an item, they will be proposed when the "
+"item is created."
 msgstr ""
 "Ak sú niektoré akcie asociované s položkou, budú navrhnuté pre vás, ak "
 "vytvoríte položku."
 
 #: ../Clipper/data/messages:237
-msgid "Enable actions ?"
+msgid "Enable actions?"
 msgstr "Povoliť akciu ?"
 
 #: ../Clipper/data/messages:239
-msgid "Display the actions when selecting an item in the history."
+msgid "Display actions when selecting an item in the history."
 msgstr "Zobraziť akcie pri výbere položky v histórii."
 
 #: ../Clipper/data/messages:241
-msgid "Replay actions ?"
+msgid "Replay actions?"
 msgstr "Opakovať akciu ?"
 
-#: ../Clipper/data/messages:243 ../Network-Monitor/data/messages:165
-#: ../System-Monitor/data/messages:147 ../System-Monitor/data/messages:183
-#: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
-#: ../powermanager/data/messages:143 ../slider/data/messages:105
-#: ../wifi/data/messages:163
-msgid "in seconds."
-msgstr "v sekundách."
-
 #: ../Clipper/data/messages:245
-msgid "Duration of the action menu :"
+msgid "Duration of the action menu:"
 msgstr "Doba trvania akcie menu :"
 
 #: ../Clipper/data/messages:247
@@ -3832,66 +3885,61 @@ msgid "Persistent items"
 msgstr "Perzistentné položky"
 
 #: ../Clipper/data/messages:249
-msgid "A list of persistent items that can be accessed with middle-click :"
+msgid "A list of persistent items which can be accessed with middle-click:"
 msgstr ""
 "Zoznam perzistentných položiek, ku ktorým možno pristupovať pomocou "
 "kliknutia stredným tlačítkom :"
 
 #: ../Dbus/data/messages:3
-msgid "Let extern applications pop-up dialogs in the dock ?"
+msgid "Let external applications pop up dialogs in the dock?"
 msgstr "Povolit externým aplikáciam zobrazovať dialógy v docku ?"
 
 #: ../Dbus/data/messages:5
-msgid "Let extern applications reboot the dock ?"
+msgid "Let external applications reboot the dock?"
 msgstr "Povolit externým aplikáciam reštartovať dock ?"
 
 #: ../Dbus/data/messages:7
-msgid "Let extern applications quit the dock ?"
+msgid "Let external applications quit the dock?"
 msgstr "Povolit externým aplikáciam ukončovať dock ?"
 
 #: ../Dbus/data/messages:9
-msgid "Let extern applications show/hide the desklets ?"
+msgid "Let external applications show/hide desklets?"
 msgstr "Povolit externým aplikáciam zobrazovať/schovávať desklety ?"
 
 #: ../Dbus/data/messages:11
-msgid "Let extern applications reload the applets ?"
+msgid "Let external applications reload applets?"
 msgstr "Povolit externým aplikáciam obnoviť desklety ?"
 
 #: ../Dbus/data/messages:13
-msgid "Let extern applications show/hide the docks ?"
+msgid "Let external applications show/hide docks?"
 msgstr "Povolit externým aplikáciam zobrazovať/schovávať docky ?"
 
 #: ../Dbus/data/messages:15
-msgid "Let extern applications add launchers into the docks ?"
+msgid "Let extern applications add launchers to the docks?"
 msgstr "Povolit externým aplikáciam pridávať spúšťače v dockoch ?"
 
 #: ../Dbus/data/messages:17
-msgid "Let extern applications modify the labels of icons ?"
+msgid "Let external applications modify the labels of icons?"
 msgstr "Povolit externým aplikáciam upravovať označenie ikôn ?"
 
 #: ../Dbus/data/messages:19
-msgid "Let extern applications modify the quick-infos on icons ?"
+msgid "Let extern applications modify the quick-infos on icons?"
 msgstr "Povoliť externým aplikáciam upravovať info na ikonách ?"
 
 #: ../Dbus/data/messages:21
-msgid "Let extern applications modify the image of icons ?"
+msgid "Let extern applications modify the icons' image?"
 msgstr "Povoliť externým aplikáciam upravovať obrázky ikôn ?"
 
 #: ../Dbus/data/messages:23
-msgid "Let extern applications animate the icons ?"
+msgid "Let extern applications animate icons?"
 msgstr "Povoliť externým aplikáciam animovať ikony ?"
 
 #: ../Dbus/data/messages:25
-msgid "Let extern applications register new module ?"
+msgid "Let extern applications register new module?"
 msgstr "Povoliť externým aplikáciam registráciu nových modulov ?"
 
-#: ../Doncky/data/messages:91
-#, fuzzy
-msgid "Let empty to use the default one"
-msgstr "Nechať prázdne a použiť predvolené."
-
 #: ../Doncky/data/messages:93
-msgid "Specify the xml file :"
+msgid "Specify a title :"
 msgstr ""
 
 #: ../Doncky/data/messages:95 ../RSSreader/data/messages:125
@@ -3902,36 +3950,32 @@ msgstr "Vzhľad"
 msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:101
-#, fuzzy
-msgid "Default text font :"
+#: ../Doncky/data/messages:101 ../alsaMixer/data/messages:137
+msgid "Default icon:"
 msgstr "Predvolená ikona :"
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:105
-#, fuzzy
-msgid "Default text color :"
+#: ../Doncky/data/messages:105 ../icon-effect/data/messages:195
+msgid "Default colour:"
 msgstr "Predvolená farba :"
 
 #: ../Doncky/data/messages:107
 msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
-#: ../Doncky/data/messages:109
-#, fuzzy
-msgid "Margin for the text :"
+#: ../Doncky/data/messages:109 ../stack/data/messages:109
+msgid "Image for 'text' items:"
 msgstr "Obrázok pre položky 'text' :"
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
 msgstr ""
 
-#: ../Doncky/data/messages:113
-#, fuzzy
-msgid "Space between lines :"
+#: ../Doncky/data/messages:113 ../dock-rendering/data/messages:53
+msgid "Space between icons:"
 msgstr "Priestor medzi ikonami :"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:171
@@ -3943,23 +3987,23 @@ msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr "Môžete mať viac atraktívnych prostredí pomocou dekorácie Deskletov"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
-msgid "Display a simple background ?"
+msgid "Display a simple background?"
 msgstr "Zobraziť jednoduché pozadie ?"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:177
-msgid "first color of the gradation"
+msgid "first colour of the gradation"
 msgstr "prvá farba stupňovania"
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:179
-msgid "Background first color :"
+msgid "Background first colour :"
 msgstr "Prvá farba pozadia"
 
 #: ../Doncky/data/messages:125 ../RSSreader/data/messages:181
-msgid "second color of the gradation"
+msgid "second colour of the gradation"
 msgstr "Druhá farba stupňovania"
 
 #: ../Doncky/data/messages:127 ../RSSreader/data/messages:183
-msgid "Background second color :"
+msgid "Background second colour:"
 msgstr "Druhá farba pozadia :"
 
 #: ../Doncky/data/messages:129 ../RSSreader/data/messages:185
@@ -3975,31 +4019,32 @@ msgid "Set the thickness to 0 for no border"
 msgstr ""
 
 #: ../Doncky/data/messages:135 ../RSSreader/data/messages:191
-msgid "Border thickness :"
+msgid "Border thickness:"
 msgstr "Hrúbka okraja"
 
 #: ../Doncky/data/messages:137 ../RSSreader/data/messages:193
-msgid "Border color"
+msgid "Border colour"
 msgstr "Farba okraja"
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:195
-msgid "Border color :"
+#, fuzzy
+msgid "Border colour :"
 msgstr "Farba okraja :"
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
-msgid "Display icons in the menu ?"
+msgid "Display icons in the menu?"
 msgstr "Zobraziť ikony v menu ?"
 
 #: ../GMenu/data/messages:95 ../quick-browser/data/messages:119
-msgid "Shortkey to show/hide the menu :"
+msgid "Shortkey to show/hide the menu:"
 msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
 
 #: ../GMenu/data/messages:97
-msgid "Shortkey to show/hide the quick-launch dialog :"
+msgid "Shortkey to show/hide the quick-launch dialog:"
 msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
 
 #: ../GMenu/data/messages:101
-msgid "Command to use to configure the menu :"
+msgid "Command to use for configuring the menu:"
 msgstr "Príkaz k nastaveniu menu :"
 
 #: ../GMenu/data/messages:103
@@ -4007,21 +4052,21 @@ msgid "Recent documents"
 msgstr "Nedávne dokumenty"
 
 #: ../GMenu/data/messages:105
-msgid "Show recent documents ?"
+msgid "Show recent documents?"
 msgstr "Zobraziť nedávne dokumenty ?"
 
 #: ../GMenu/data/messages:107
-msgid "Let blank to not use this filter."
+msgid "Leave blank if filter is not needed."
 msgstr "Nechať prázdne nepoužívať tento filter."
 
 #: ../GMenu/data/messages:109
-msgid "Only show files that are under this folder or its sub-folder :"
+msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
 "Zobraziť iba súbory,  ktoré sú v rámci tohoto priečinka alebo jeho pod-"
 "priečinka :"
 
 #: ../GMenu/data/messages:111
-msgid "in days. Set 0 to not use this filter."
+msgid "in days. Set 0 if unsued."
 msgstr "v dňoch. Nastaviť 0 pre vypnutie tohto filtra."
 
 #: ../GMenu/data/messages:113
@@ -4029,7 +4074,7 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr "Zobrazovat iba súbory, ktorých dátum poslednej úpravy je menej ako :"
 
 #: ../Network-Monitor/data/messages:7
-msgid "Let empty to use the connection name."
+msgid "Leave empty to use the connection name."
 msgstr "Nechajte prázdne pre názov pripojenia."
 
 #: ../Network-Monitor/data/messages:91 ../Network-Monitor/data/messages:163
@@ -4044,7 +4089,7 @@ msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr "Môžete rýchlo prepnúť do iného režimu posúvaním na ikonu."
 
 #: ../Network-Monitor/data/messages:95
-msgid "Info displayed by the icon :"
+msgid "Info displayed by the icon:"
 msgstr "Informácie zobrazené ikonou :"
 
 #: ../Network-Monitor/data/messages:97
@@ -4060,11 +4105,11 @@ msgid "By default the first active interface is used."
 msgstr "V predvolenom nastavení je použité prvé aktívne rozhranie."
 
 #: ../Network-Monitor/data/messages:103
-msgid "Connexion interface to monitor :"
+msgid "Connection interface to monitor:"
 msgstr "Sledovanie rozhrania pripojenia :"
 
 #: ../Network-Monitor/data/messages:105
-msgid "Display numeric values :"
+msgid "Display numeric values:"
 msgstr "Zobraziť číselné hodnoty :"
 
 #: ../Network-Monitor/data/messages:107 ../System-Monitor/data/messages:141
@@ -4088,18 +4133,18 @@ msgstr "Na štítku"
 #: ../Network-Monitor/data/messages:113 ../System-Monitor/data/messages:151
 #: ../wifi/data/messages:167
 msgid ""
-"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"You need OpenGL for this option. Set it to 0 means not used, 1 means the "
 "movement is continue."
 msgstr ""
 "Potrebujete OpenGL pre túto možnosť. Nastavte ju na 0 ako nepoužiť, 1 "
 "znamená, že pohyb pokračuje."
 
 #: ../Network-Monitor/data/messages:115
-msgid "Fluidity of the transition animation between 2 values :"
+msgid "Fluidity of the transition animation between 2 values:"
 msgstr "Plynulosť animácie prechodu medzi 2 hodnotami :"
 
 #: ../Network-Monitor/data/messages:117
-msgid "Animation of the icon when connecting :"
+msgid "Animation of the icon when connecting:"
 msgstr "Animácia ikony pri pripojení"
 
 #: ../Network-Monitor/data/messages:119
@@ -4111,16 +4156,16 @@ msgstr ""
 "preferované nastavenia bezdrôtového rozhrania."
 
 #: ../Network-Monitor/data/messages:121
-msgid "User command to show Wireless Configuration :"
+msgid "User command to show Wireless Configuration:"
 msgstr "Užívateľský prḱaz pre zobrazenie konfigurácie wireless :"
 
 #: ../Network-Monitor/data/messages:123 ../netspeed/data/messages:147
-msgid "Let empty to use he default one."
+msgid "Leave empty to use the default."
 msgstr "Nechať prázdne a použiť predvolené."
 
 #: ../Network-Monitor/data/messages:125 ../System-Monitor/data/messages:157
 #: ../netspeed/data/messages:149
-msgid "User command to show a system monitor :"
+msgid "User command to display a system monitor:"
 msgstr "Užívateľský prḱaz pre zobrazenie sledovania systému :"
 
 #: ../Network-Monitor/data/messages:127
@@ -4130,7 +4175,8 @@ msgstr "Rýchlosť siete"
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
 #: ../wifi/data/messages:89
-msgid "Choose the style of the display : "
+#, fuzzy
+msgid "Choose the style of the display: "
 msgstr "Vybrať štýl zobrazenia : "
 
 #: ../Network-Monitor/data/messages:131 ../Network-Monitor/data/messages:135
@@ -4189,34 +4235,34 @@ msgstr "Jednoduchý kruh"
 
 #: ../Network-Monitor/data/messages:153 ../Network-Monitor/data/messages:197
 #: ../wifi/data/messages:115
-msgid "It's the color of the graphic for high quality signal."
+msgid "It's the colour of the graphic for high quality signal."
 msgstr "Je to farba grafiky pre vysokú kvalitu signálu."
 
 #: ../Network-Monitor/data/messages:155 ../Network-Monitor/data/messages:199
 #: ../System-Monitor/data/messages:115 ../netspeed/data/messages:115
 #: ../powermanager/data/messages:117 ../wifi/data/messages:117
-msgid "High values color :"
+msgid "High value's colour :"
 msgstr "Vysoké hodnoty farieb:"
 
 #: ../Network-Monitor/data/messages:157 ../Network-Monitor/data/messages:201
 #: ../wifi/data/messages:119
-msgid "It's the color of the graphic for low quality signal."
+msgid "It's the colour of the graphic for low quality signal."
 msgstr "Je to farba grafiky pre nízku kvalitu signálu."
 
 #: ../Network-Monitor/data/messages:159 ../Network-Monitor/data/messages:203
 #: ../System-Monitor/data/messages:119 ../netspeed/data/messages:119
 #: ../powermanager/data/messages:121 ../wifi/data/messages:121
-msgid "Low values color :"
+msgid "Low value's colour :"
 msgstr "Nízke hodnoty farieb:"
 
 #: ../Network-Monitor/data/messages:161 ../Network-Monitor/data/messages:205
 #: ../System-Monitor/data/messages:121 ../netspeed/data/messages:121
 #: ../powermanager/data/messages:123 ../wifi/data/messages:123
-msgid "Background color of the graphic :"
+msgid "Background colour of the graphic :"
 msgstr "Farba pozadia grafiky :"
 
 #: ../Network-Monitor/data/messages:167
-msgid "Delay between net speed checks :"
+msgid "Delays between net speed checks:"
 msgstr "Oneskorenie medzi kontrolami rýchlosti siete :"
 
 #: ../Network-Monitor/data/messages:169
@@ -4224,7 +4270,7 @@ msgid "Wifi"
 msgstr "Wifi"
 
 #: ../Network-Monitor/data/messages:171
-msgid "Choose the style of the display :"
+msgid "Choose the style of the display:"
 msgstr "Vyberte si štýl zobrazenia:"
 
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:207
@@ -4256,29 +4302,40 @@ msgstr ""
 #: ../Network-Monitor/data/messages:227 ../Network-Monitor/data/messages:231
 #: ../Network-Monitor/data/messages:235 ../Network-Monitor/data/messages:239
 #: ../Network-Monitor/data/messages:243 ../Network-Monitor/data/messages:247
+#: ../compiz-icon/data/messages:165 ../compiz-icon/data/messages:169
+#: ../compiz-icon/data/messages:173 ../compiz-icon/data/messages:177
+#: ../compiz-icon/data/messages:181 ../compiz-icon/data/messages:185
+#: ../compiz-icon/data/messages:189 ../compiz-icon/data/messages:193
 #: ../musicPlayer/data/messages:165 ../musicPlayer/data/messages:169
 #: ../musicPlayer/data/messages:173 ../musicPlayer/data/messages:177
-#: ../musicPlayer/data/messages:181 ../wifi/data/messages:137
+#: ../musicPlayer/data/messages:181 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:25 ../wifi/data/messages:137
 #: ../wifi/data/messages:141 ../wifi/data/messages:145
 #: ../wifi/data/messages:149 ../wifi/data/messages:153
 #: ../wifi/data/messages:157
-msgid "Let it empty to use the default icon."
-msgstr "Ponechajte prázdne pre použitie predvolenej ikony."
+#, fuzzy
+msgid "Leave empty to use the default icon."
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Ponechajte prázdne pre použitie predvolenej ikony.\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Nechať prázdne pre použitie predvolenej ikony."
 
 #: ../Network-Monitor/data/messages:221
-msgid "Name of an image for the 'No signal' icon :"
+msgid "Name of the image for the 'No signal' icon :"
 msgstr "Názov obrázku pre ikonu 'Žiadny signál' :"
 
 #: ../Network-Monitor/data/messages:225
-msgid "Name of an image for the 'Very low' icon :"
+msgid "Name of the image for the 'Very low' icon :"
 msgstr "Názov obrázku pre ikonu 'Veľmi slabý' :"
 
 #: ../Network-Monitor/data/messages:229
-msgid "Name of an image for the 'Low' icon :"
+msgid "Name of the image for the 'Low' icon :"
 msgstr "Názov obrázku pre ikonu 'Slabý' :"
 
 #: ../Network-Monitor/data/messages:233
-msgid "Name of an image for the 'Middle' icon :"
+msgid "Name of the image for the 'Middle' icon :"
 msgstr "Názov obrázku pre ikonu 'Stredný' :"
 
 #: ../Network-Monitor/data/messages:237
@@ -4286,27 +4343,28 @@ msgid "Name of an image for the 'Good' icon :"
 msgstr "Názov obrázku pre ikonu 'Dobrý' :"
 
 #: ../Network-Monitor/data/messages:241
-msgid "Name of an image for the 'Excellent' icon :"
+msgid "Name of the image for the 'Excellent' icon :"
 msgstr "Názov obrázku pre ikonu 'Veľmi dobrý' :"
 
 #: ../Network-Monitor/data/messages:245
-msgid "Name of an image for the 'Not connected' icon :"
+msgid "Name of the image for the 'Not connected' icon :"
 msgstr "Názov obrázku pre ikonu 'Nepripojený' :"
 
 #: ../Network-Monitor/data/messages:249
-msgid "Name of an image for the 'Wired connection' icon :"
+msgid "Name of the image for the 'Wired connection' icon :"
 msgstr "Názov obrázku pre ikonu 'Pripojený káblom' :"
 
 #: ../Network-Monitor/data/messages:253
-msgid "in seconds, if you don't have Network-Manager."
+#, fuzzy
+msgid "in secondsconds. if you don't have Network-Manager."
 msgstr "v sekundách, ak nemáte sieťového manažéra."
 
 #: ../Network-Monitor/data/messages:255
-msgid "Delay between wifi signal checks :"
+msgid "Delays between wifi signal checks:"
 msgstr "Oneskorenie medzi kontrolami wifi signálu :"
 
 #: ../RSSreader/data/messages:7
-msgid "Let empty to use the title of the RSS feed."
+msgid "Leave empty to use the title of the RSS feed."
 msgstr "Ponechať prázdne pre použitie názvu kanála RSS."
 
 #: ../RSSreader/data/messages:95
@@ -4318,8 +4376,8 @@ msgid "Enter a valid atom/rss feed"
 msgstr "Vložiť platný atom/rss kanál"
 
 #: ../RSSreader/data/messages:99
-msgid "URL :"
-msgstr "URL :"
+msgid "URL:"
+msgstr "URL:"
 
 #: ../RSSreader/data/messages:101
 msgid "RSS login (optional):"
@@ -4340,7 +4398,7 @@ msgid "In minutes."
 msgstr "v minútach."
 
 #: ../RSSreader/data/messages:109
-msgid "Refresh time :"
+msgid "Refresh time:"
 msgstr "Obnoviť čas :"
 
 #: ../RSSreader/data/messages:111
@@ -4348,24 +4406,25 @@ msgid "By default, this option is activated"
 msgstr "Predvolene je toto nastavenie aktivované"
 
 #: ../RSSreader/data/messages:113
-msgid "Display an info-bubble when a feed has changed?"
+msgid "Display an info bubble when a feed has changed?"
 msgstr "Zobraziť info-bublinu, keď je feed zmenený?"
 
 #: ../RSSreader/data/messages:115
-msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+msgid ""
+"In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr ""
 "V sekundách. Nastavte na 0 pre nekonečný čas (kliknutím sa dialóg zatvorí)."
 
 #: ../RSSreader/data/messages:117
-msgid "Duration of the info-bubble :"
+msgid "Duration of the info-bubble:"
 msgstr "Doba trvania info-bubliny :"
 
 #: ../RSSreader/data/messages:119
-msgid "Animation of the icon when a feed has changed :"
+msgid "Animation of the icon when a feed has changed:"
 msgstr "Animácia ikony keď sa feed zmenil :"
 
 #: ../RSSreader/data/messages:123
-msgid "Open the feed with the following program :"
+msgid "Open the feed with the following program:"
 msgstr "Otvoriť feed v nasledujúcom programe :"
 
 #: ../RSSreader/data/messages:129
@@ -4373,15 +4432,15 @@ msgid "Font to be used for the title"
 msgstr "Písmo, ktoré bude použité pre názov"
 
 #: ../RSSreader/data/messages:131
-msgid "Title font :"
+msgid "Title font:"
 msgstr "Písmo názvu :"
 
 #: ../RSSreader/data/messages:133
-msgid "Color to be used for the title"
+msgid "Colour to be used for the title"
 msgstr "Farba, ktorá bude použitá pre názov"
 
 #: ../RSSreader/data/messages:135
-msgid "Title color :"
+msgid "Title colour:"
 msgstr "Farba názvu :"
 
 #: ../RSSreader/data/messages:137
@@ -4401,23 +4460,23 @@ msgid "Font to be used for the feed lines"
 msgstr "Písmo, ktoré bude použité pre feed linky"
 
 #: ../RSSreader/data/messages:147
-msgid "Feed lines font :"
+msgid "Feed lines font:"
 msgstr "Písmo pre feed linky :"
 
 #: ../RSSreader/data/messages:149
-msgid "Color to be used for the feed lines"
+msgid "Colour to be used for the feed lines"
 msgstr "Farba použitá pre feed linky"
 
 #: ../RSSreader/data/messages:151
-msgid "Feed lines color :"
+msgid "Feed lines colour:"
 msgstr "Farba feed liniek :"
 
 #: ../RSSreader/data/messages:153
-msgid "Left margin for the feed lines :"
+msgid "Left margin for the feed lines:"
 msgstr ""
 
 #: ../RSSreader/data/messages:155
-msgid "Space between 2 feed lines :"
+msgid "Space between 2 feed lines:"
 msgstr "Miesto medzi 2 feed linkami :"
 
 #: ../RSSreader/data/messages:157
@@ -4429,15 +4488,15 @@ msgid "The default logo is the applet's icon"
 msgstr "Predvolené loga je ikony appletov"
 
 #: ../RSSreader/data/messages:161
-msgid "Display the logo ?"
+msgid "Display the logo?"
 msgstr "Zobraziť logo ?"
 
 #: ../RSSreader/data/messages:163
-msgid "Adjust to increase/decrease the logo size"
+msgid "Adjust to increase/decrease the logo's size"
 msgstr "Prispôsobenie zväčšenia/zmenšenia veľkosti loga"
 
 #: ../RSSreader/data/messages:165
-msgid "Logo size :"
+msgid "Logo size:"
 msgstr "Veľkosť loga :"
 
 #: ../RSSreader/data/messages:167 ../keyboard-indicator/data/messages:111
@@ -4449,18 +4508,17 @@ msgid "big"
 msgstr "veľký"
 
 #: ../Scooby-Do/data/messages:3
-msgid "Shortkey to activate/deactivate the finder mode :"
+msgid "Shortkey to enable/disable the finder mode:"
 msgstr "Klávesová skratka na aktivovanie/deaktivovanie módu vyhľadávač :"
 
 #: ../Scooby-Do/data/messages:5
-msgid "Shortkey to activate/deactivate the navigation mode :"
+msgid "Shortkey to enable/disable the navigation mode:"
 msgstr "Klávesová skratka na aktivovanie/deaktivovanie módu navigovania :"
 
-#: ../Scooby-Do/data/messages:7
-#, fuzzy
+#: ../Scooby-Do/data/messages:7 ../mail/data/messages:109
 msgid ""
-"Maximum number of results tat will be displayed when you select a category "
-"with the right arrow."
+"Maximum number of mails that will be previewed. Put -1 to show the maximum "
+"possible."
 msgstr ""
 "Maximálny počet mailov, ktoré budú v ukážke. Dajte -1 zobrazí maximum "
 "možných."
@@ -4495,13 +4553,8 @@ msgstr "Doba trvania po zastavenie animácie :"
 msgid "Animation of the current icon :"
 msgstr "Animácia aktuálnej ikony :"
 
-#: ../Scooby-Do/data/messages:27
-#, fuzzy
-msgid "Text on the dock"
-msgstr "Je oddelený od docku ?"
-
 #: ../Scooby-Do/data/messages:29
-msgid "Font used to display what you type :"
+msgid "Font used to display what you type:"
 msgstr "Písmo použité na zobrazenie toho, čo napíšete :"
 
 #: ../Scooby-Do/data/messages:31
@@ -4509,160 +4562,144 @@ msgid "Color of the text's frame  :"
 msgstr "Farba textu v rámčeku :"
 
 #: ../Scooby-Do/data/messages:33
-msgid "Font size, relatively to the dock's size :"
+msgid "Font size, relative to the dock size:"
 msgstr "Veľkosť písma pomerná k veľkosti docku :"
 
 #: ../Scooby-Do/data/messages:35
-msgid "between 1 and 9, the bigger, the heavier."
+msgid "between 1 and 9, the higher, the bigger."
 msgstr "medzi 1 a 9, väčšie, ťažšie."
 
 #: ../Scooby-Do/data/messages:37
-msgid "Text weight :"
+msgid "Text size:"
 msgstr "Hmotnosť textu :"
 
-#: ../Scooby-Do/data/messages:39
-msgid "Should the text be outlined ?"
+#: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
+msgid "Outline text?"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:41 ../clock/data/messages:137
-msgid "Text color :"
+msgid "Text colour:"
 msgstr "Farba textu :"
 
 #: ../Scooby-Do/data/messages:43
-msgid "Color of the background of the characters :"
+msgid "Character background colour:"
 msgstr "Farba pozadia znakov :"
 
 #: ../Scooby-Do/data/messages:45
-msgid "Write text on the top of the dock ?"
+msgid "Write text on the top of the dock?"
 msgstr "Písanie textu na hornej časti doku ?"
 
 #: ../Scooby-Do/data/messages:47
-msgid "Preferred applications"
+msgid "Favorite applications"
 msgstr "Štandardné aplikácie"
 
 #: ../Scooby-Do/data/messages:49
-msgid "Preferred application starting with 'a' :"
+msgid "FAvorite applications starting with 'a' :"
 msgstr "Štandardné aplikácie začínajúce na 'a' :"
 
 #: ../Scooby-Do/data/messages:51
-msgid "Preferred application starting with 'b' :"
+msgid "Favorite application starting with 'b' :"
 msgstr "Štandardné aplikácie začínajúce na 'b' :"
 
 #: ../Scooby-Do/data/messages:53
-msgid "Preferred application starting with 'c' :"
+msgid "Favorite application(s) starting with 'c' :"
 msgstr "Štandardné aplikácie začínajúce na 'c' :"
 
 #: ../Scooby-Do/data/messages:55
-msgid "Preferred application starting with 'd' :"
+msgid "Favorite application(s starting with 'd' :"
 msgstr "Štandardné aplikácie začínajúce na 'd' :"
 
 #: ../Scooby-Do/data/messages:57
-msgid "Preferred application starting with 'e' :"
+msgid "Favorite application(s) starting with 'e' :"
 msgstr "Štandardné aplikácie začínajúce na 'e' :"
 
 #: ../Scooby-Do/data/messages:59
-msgid "Preferred application starting with 'f' :"
+msgid "Favorite application(s) starting with 'f' :"
 msgstr "Štandardné aplikácie začínajúce na 'f' :"
 
 #: ../Scooby-Do/data/messages:61
-msgid "Preferred application starting with 'g' :"
+msgid "Favorite application(s) starting with 'g' :"
 msgstr "Štandardné aplikácie začínajúce na 'g' :"
 
 #: ../Scooby-Do/data/messages:63
-msgid "Preferred application starting with 'h' :"
+msgid "Favorite application(s) starting with 'h' :"
 msgstr "Štandardné aplikácie začínajúce na 'h' :"
 
 #: ../Scooby-Do/data/messages:65
-msgid "Preferred application starting with 'i' :"
+msgid "Favorite application(s) starting with 'i' :"
 msgstr "Štandardné aplikácie začínajúce na 'i' :"
 
 #: ../Scooby-Do/data/messages:67
-msgid "Preferred application starting with 'j' :"
+msgid "Favorite application(s) starting with 'j' :"
 msgstr "Štandardné aplikácie začínajúce na 'j' :"
 
 #: ../Scooby-Do/data/messages:69
-msgid "Preferred application starting with 'k' :"
+msgid "Favorite application(s) starting with 'k' :"
 msgstr "Štandardné aplikácie začínajúce na 'k' :"
 
 #: ../Scooby-Do/data/messages:71
-msgid "Preferred application starting with 'l' :"
+msgid "Favorite application(s) starting with 'l' :"
 msgstr "Štandardné aplikácie začínajúce na 'l' :"
 
 #: ../Scooby-Do/data/messages:73
-msgid "Preferred application starting with 'm' :"
+msgid "Favorite application(s) starting with 'm' :"
 msgstr "Štandardné aplikácie začínajúce na 'm' :"
 
 #: ../Scooby-Do/data/messages:75
-msgid "Preferred application starting with 'n' :"
+msgid "Favorite application(s) starting with 'n' :"
 msgstr "Štandardné aplikácie začínajúce na 'n' :"
 
 #: ../Scooby-Do/data/messages:77
-msgid "Preferred application starting with 'o' :"
+msgid "Favorite application(s) starting with 'o' :"
 msgstr "Štandardné aplikácie začínajúce na 'o' :"
 
 #: ../Scooby-Do/data/messages:79
-msgid "Preferred application starting with 'p' :"
+msgid "Favorite application(s) starting with 'p' :"
 msgstr "Štandardné aplikácie začínajúce na 'p' :"
 
 #: ../Scooby-Do/data/messages:81
-msgid "Preferred application starting with 'q' :"
+msgid "Favorite application(s) starting with 'q' :"
 msgstr "Štandardné aplikácie začínajúce na 'q' :"
 
 #: ../Scooby-Do/data/messages:83
-msgid "Preferred application starting with 'r' :"
+msgid "Favorite application(s) starting with 'r' :"
 msgstr "Štandardné aplikácie začínajúce na 'r' :"
 
 #: ../Scooby-Do/data/messages:85
-msgid "Preferred application starting with 's' :"
+msgid "Favorite application(s) starting with 's' :"
 msgstr "Štandardné aplikácie začínajúce na 's' :"
 
 #: ../Scooby-Do/data/messages:87
-msgid "Preferred application starting with 't' :"
+msgid "Favorite application(s) starting with 't' :"
 msgstr "Štandardné aplikácie začínajúce na 't' :"
 
 #: ../Scooby-Do/data/messages:89
-msgid "Preferred application starting with 'u' :"
+msgid "Favorite application(s) starting with 'u' :"
 msgstr "Štandardné aplikácie začínajúce na 'u' :"
 
 #: ../Scooby-Do/data/messages:91
-msgid "Preferred application starting with 'v' :"
+msgid "Favorite application(s) starting with 'v' :"
 msgstr "Štandardné aplikácie začínajúce na 'v' :"
 
 #: ../Scooby-Do/data/messages:93
-msgid "Preferred application starting with 'w' :"
+msgid "Favorite application(s) starting with 'w' :"
 msgstr "Štandardné aplikácie začínajúce na 'w' :"
 
 #: ../Scooby-Do/data/messages:95
-msgid "Preferred application starting with 'x' :"
+msgid "Favorite application(s) starting with 'x' :"
 msgstr "Štandardné aplikácie začínajúce na 'x' :"
 
 #: ../Scooby-Do/data/messages:97
-msgid "Preferred application starting with 'y' :"
+msgid "Favorite application(s) starting with 'y' :"
 msgstr "Štandardné aplikácie začínajúce na 'y' :"
 
 #: ../Scooby-Do/data/messages:99
-msgid "Preferred application starting with 'z' :"
+msgid "Favorite application(s) starting with 'z' :"
 msgstr "Štandardné aplikácie začínajúce na 'z' :"
 
-#: ../Scooby-Do/data/messages:101
-#, fuzzy
-msgid "Search Engines"
-msgstr "Spustiť XPenguinov"
-
-#: ../Scooby-Do/data/messages:103
-#, fuzzy
-msgid "Search in files ?"
+#: ../Scooby-Do/data/messages:103 ../quick-browser/data/messages:103
+msgid "Show hidden files?"
 msgstr "Zobraziť skryté súbory ?"
-
-#: ../Scooby-Do/data/messages:105
-#, fuzzy
-msgid "Search in Firefox bookmarks ?"
-msgstr "Záložky Firefox"
-
-#: ../Scooby-Do/data/messages:107
-#, fuzzy
-msgid "Search in Recent files ?"
-msgstr "Nedávne súbory"
 
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
@@ -4672,29 +4709,24 @@ msgstr ""
 msgid "It can launch commands and even do some calculations."
 msgstr ""
 
-#: ../Scooby-Do/data/messages:113
-#, fuzzy
-msgid "Include a command launcher ?"
-msgstr "Vložte príkaz pre spustenie :"
-
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
 msgstr ""
 
 #: ../System-Monitor/data/messages:113 ../powermanager/data/messages:115
-msgid "It's the color of the graphic for high values."
+msgid "It's the colour of the graphic for high values."
 msgstr "Je to farba grafiky pre vysoké hodnoty."
 
 #: ../System-Monitor/data/messages:117 ../powermanager/data/messages:119
-msgid "It's the color of the graphic for low values."
+msgid "It's the colour of the graphic for low values."
 msgstr "Je to farba grafiky pre nízke hodnoty."
 
 #: ../System-Monitor/data/messages:123 ../netspeed/data/messages:123
-msgid "Show all values on same graph ?"
+msgid "Show all values on same graph?"
 msgstr "Zobraziť všetky hodnoty, na rovnakom grafe?"
 
 #: ../System-Monitor/data/messages:127
-msgid "Show CPU usage ?"
+msgid "Show CPU usage?"
 msgstr "Zobraziť využitie CPU ?"
 
 #: ../System-Monitor/data/messages:129
@@ -4702,19 +4734,19 @@ msgid "Show RAM usage ?"
 msgstr "Zobraziť využitie RAM ?"
 
 #: ../System-Monitor/data/messages:131
-msgid "Show SWAP too ?"
+msgid "Show SWAP too?"
 msgstr "Zobraziť aj SWAP ?"
 
 #: ../System-Monitor/data/messages:133
-msgid "You need an nVidia and the 'nvidia-settings' tool."
+msgid "You need an nVidia card and the 'nvidia-settings' tool."
 msgstr "Budete potrebovať nVidia a 'nvidia-settings' nástroj."
 
 #: ../System-Monitor/data/messages:135
-msgid "Show graphic card temperature ?"
+msgid "Show graphic card's temperature?"
 msgstr "Zobraziť teplotu grafickej karty ?"
 
 #: ../System-Monitor/data/messages:137
-msgid "Show free memory instead of used memory ?"
+msgid "Show free memory instead of used memory?"
 msgstr "Ukázať voľnú pamäť miesto použitej pamäte ?"
 
 #: ../System-Monitor/data/messages:139
@@ -4722,21 +4754,21 @@ msgid "Display values :"
 msgstr "Zobraziť hodnoty :"
 
 #: ../System-Monitor/data/messages:149
-msgid "Delay between refresh :"
+msgid "Delay between refreshes:"
 msgstr "Oneskorenie medzi obnovením :"
 
 #: ../System-Monitor/data/messages:153 ../wifi/data/messages:169
-msgid "How smooth is the movement ?"
+msgid "How smooth is the movement?"
 msgstr "Je pohyb plynulý ?"
 
 #: ../System-Monitor/data/messages:159
 msgid ""
-"It will prevent the system monitor's icon to appear in the taskbar. The "
-"applet's icon will then behave as a launcher, an appli, and an applet."
+"It will prevent the system monitor's icon to show in the taskbar. The "
+"applet's icon will then behave as a launcher, an application, and an applet."
 msgstr ""
 
 #: ../System-Monitor/data/messages:161
-msgid "Steal the system monitor's icon in taskbar ?"
+msgid "Steal the system monitor's icon from the taskbar?"
 msgstr "Prevziať ikonu sledovania systému v hlavnom paneli ?"
 
 #: ../System-Monitor/data/messages:165
@@ -4748,70 +4780,70 @@ msgid "Top List"
 msgstr ""
 
 #: ../System-Monitor/data/messages:169
+#, fuzzy
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
-"using programs."
+"intensive programs."
 msgstr ""
 "Keď kliknite ľavým tlačítkom na ikonu, dostanete zoznam programov najviac "
 "využívajúcich CPU/RAM."
 
 #: ../System-Monitor/data/messages:171
-msgid "Number of programs to display in the top list :"
+msgid "Number of programs to display in the top list:"
 msgstr "Počet programov zobrazených v top zozname :"
 
 #: ../System-Monitor/data/messages:173
-msgid "It's the first color of the gradation used to write the top list."
+msgid "The first colour of the gradient used to display the top list."
 msgstr ""
 
 #: ../System-Monitor/data/messages:175
-msgid "Start color of the top list :"
+msgid "Top list start colour:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:177
-msgid "It's the second color of the gradation used to write the top list."
+msgid "The second colour of the gradient used to display the top list."
 msgstr ""
 
 #: ../System-Monitor/data/messages:179
-msgid "Stop color of the top list :"
+msgid "Top list stop colour:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:181
-msgid "Show top memory usage in % ?"
+msgid "Show top memory usage in %?"
 msgstr "Zobraziť najvyššie použitie pamäte v % ?"
 
 #: ../System-Monitor/data/messages:185
-msgid "Delay between refresh of the top list :"
+msgid "Delay between top list refreshes:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:187
 msgid "Graphic Card temperature"
 msgstr "Teplota grafickej karty"
 
-#: ../System-Monitor/data/messages:189
+#: ../System-Monitor/data/messages:189 ../System-Monitor/data/messages:193
+#, fuzzy
 msgid ""
-"in celcius. The temperature will be displayed between this value and the "
+"in Celsius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr ""
-"v stupňoch celzia. Teplota sa zobrazí medzi touto hodnotou a horným limitom."
-
-#: ../System-Monitor/data/messages:191
-msgid "Lower limit of core temperature :"
-msgstr "Dolný limit teploty jadra :"
-
-#: ../System-Monitor/data/messages:193
-msgid ""
-"in celcius. The temperature will be displayed between the lower limit and "
-"this value."
-msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"v stupňoch celzia. Teplota sa zobrazí medzi touto hodnotou a horným "
+"limitom.\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "v stupňoch celzia. Teplota sa zobrazí medzi dolnou hranicou, a touto "
 "hodnotou."
 
+#: ../System-Monitor/data/messages:191
+msgid "Lower limit of graphic card temperature:"
+msgstr "Dolný limit teploty jadra :"
+
 #: ../System-Monitor/data/messages:195
-msgid "Upper limit of core temperature :"
+msgid "Upper limit of graphic card temperature:"
 msgstr "Horná hranica teploty v jadre:"
 
 #: ../System-Monitor/data/messages:197
-msgid "Alert when core temperature is high ?"
+#, fuzzy
+msgid "Notification when graphic card temperature is high?"
 msgstr "Upozorniť pri vysokej teplote jadra ?"
 
 #: ../System-Monitor/data/messages:199
@@ -4819,19 +4851,20 @@ msgid "in celcius."
 msgstr "v stupňoch celzia."
 
 #: ../System-Monitor/data/messages:201
-msgid "Alert limit of core temperature :"
-msgstr "Upozorniť na limit teploty jadra :"
+#, fuzzy
+msgid "Notification limit of graphic card temperature:"
+msgstr "Dolný limit teploty jadra :"
 
 #: ../System-Monitor/data/messages:203
-msgid "Play a sound during the alert ?"
+msgid "Play a sound when displaying warning?"
 msgstr "Prehrať zvuk pri výstrahe ?"
 
 #: ../System-Monitor/data/messages:205
-msgid "Sound path :"
+msgid "Path to sound file:"
 msgstr "Cesta k zvuku :"
 
 #: ../Toons/data/messages:93
-msgid "Mean delay between winks :"
+msgid "Mean delay between winks:"
 msgstr "Priemerná oneskorenie medzi mrknutím :"
 
 #: ../Toons/data/messages:95 ../show-mouse/data/messages:19
@@ -4839,11 +4872,11 @@ msgid "in ms."
 msgstr "v ms."
 
 #: ../Toons/data/messages:97
-msgid "Wink duration :"
+msgid "Wink duration:"
 msgstr "Doba mrknutia :"
 
 #: ../Toons/data/messages:99
-msgid "Keep ratio ?"
+msgid "Keep ratio?"
 msgstr "Zachovať pomer?"
 
 #: ../Toons/data/messages:101
@@ -4851,32 +4884,32 @@ msgid "A high refresh frequency will use more CPU."
 msgstr "Vysoká obnovovacia frekvencia bude používať viac CPU."
 
 #: ../Toons/data/messages:103
-msgid "High refresh frequency ?"
+msgid "High refresh frequency?"
 msgstr "Vysoká obnovovacia frekvencia ?"
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:111
-msgid "Variation for 1 mouse scroll, in % :"
+msgid "Variation for 1 mouse scroll, in %:"
 msgstr "Variácia pre 1 posun kolieskom myši, v%:"
 
 #: ../Xgamma/data/messages:95
-msgid "Set 0 to not use it."
+msgid "Use 0 for none."
 msgstr "Nastaviť 0 pre nepoužívanie."
 
 #: ../Xgamma/data/messages:97
-msgid "Luminosity to automatically apply on startup :"
+msgid "Brightness to apply automatically on startup:"
 msgstr "Svetelnosť sa automaticky použije pri štarte:"
 
-#: ../alsaMixer/data/messages:7
-#, fuzzy
-msgid "Let empty to write the name of the sound card."
+#: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:93
+msgid "Leave empty to use the default sound card."
 msgstr "Nechať prázdne chcete použiť predvolenú zvukovú kartu."
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
 #: ../tomboy/data/messages:43
+#, fuzzy
 msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click. "
-"Negative values are counted from the right/bottom of the screen"
+"Depending on your WindowManager, you may be able to move this with ALT + "
+"left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "V závislosti na vašom správcovi okien, môžete presúvať pomocou ALT+ľavé "
 "kliknutie. Záporné hodnoty sú počítané z pravej/dolnej časti obrazovky"
@@ -4885,38 +4918,34 @@ msgstr ""
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../alsaMixer/data/messages:93
-msgid "Let empty to use the default sound card."
-msgstr "Nechať prázdne chcete použiť predvolenú zvukovú kartu."
-
 #: ../alsaMixer/data/messages:95
-msgid "Sound card to control :"
+msgid "Sound card:"
 msgstr "Ovládanie zvukovej karty :"
 
 #: ../alsaMixer/data/messages:97
-msgid "Choose which channel to control :"
+msgid "Select channel:"
 msgstr "Vyberte, ktorý kanál chcete ovládať :"
 
 #: ../alsaMixer/data/messages:99
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
-"time, you should just let it empty."
+"time, you should just leave this empty."
 msgstr ""
 "Na niektorých kartách, ovládate kanál 1 strany (vpravo alebo vľavo). Potom "
 "bude nutné zadať pre druhý kanál, kontrolu na oboch stranách. Pre viac času, "
 "ho ponechajte prázdny."
 
 #: ../alsaMixer/data/messages:101
-msgid "Optionnally, choose a second channel to control :"
+msgid "Choose a second channel to control (optional):"
 msgstr "Voliteľne, vyberte ovládanie pre druhý kanál  :"
 
 #: ../alsaMixer/data/messages:103
-msgid "Let empty to use the defaut command."
+msgid "Leave empty to use the defaut command."
 msgstr "Ponechať prázdne pre použitie predvoleného príkazu."
 
 #: ../alsaMixer/data/messages:105
-msgid "Specific command to run to show an advanced sound mixer :"
+msgid "Specific command to run to show an advanced sound mixer:"
 msgstr "Konkrétny príkaz na spustenie ukážky zdokonaleného mixovaného zvuku:"
 
 #: ../alsaMixer/data/messages:107
@@ -4924,11 +4953,11 @@ msgid "Control"
 msgstr "Ovládanie"
 
 #: ../alsaMixer/data/messages:109
-msgid "Shortkey to show/hide the sound control dialog :"
+msgid "Shortkey to show/hide the sound control dialog:"
 msgstr "Klávesová skratka pre zobraziť/schovať pre dialóg ovládanie zvuku :"
 
 #: ../alsaMixer/data/messages:113
-msgid "Hide the scale when mouse leaves the desklet ?"
+msgid "Hide the scale when mouse leaves the desklet?"
 msgstr "Skryť stupnicu, keď myš opustí desklety ?"
 
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
@@ -4944,23 +4973,19 @@ msgid "Display volume :"
 msgstr "Zobraziť hlasitosť :"
 
 #: ../alsaMixer/data/messages:125
-msgid "Effet to apply on the icon according to volume :"
+msgid "Effect to apply to the icon when adjusting volume:"
 msgstr "Effet aplikovať na ikonu v závislosti na hlasitosti :"
 
-#: ../alsaMixer/data/messages:137
-msgid "Default icon :"
-msgstr "Predvolená ikona :"
-
 #: ../alsaMixer/data/messages:141
-msgid "Broken icon :"
+msgid "Broken icon:"
 msgstr "Rozbitá ikona :"
 
 #: ../alsaMixer/data/messages:145
-msgid "Mute icon :"
+msgid "Mute icon:"
 msgstr "Ikona bez zvuku :"
 
 #: ../clock/data/messages:7
-msgid "Let it empty to use the location's name if available."
+msgid "Leave empty to use the location name if available."
 msgstr "Nechajte prázdne pre použitie názvu miesta ak je k dispozícii."
 
 #: ../clock/data/messages:89 ../dustbin/data/messages:87
@@ -4969,47 +4994,47 @@ msgid "Module"
 msgstr "Modul"
 
 #: ../clock/data/messages:93
-msgid "Show the date :"
+msgid "Show the date:"
 msgstr "Zobraziť dátum :"
 
 #: ../clock/data/messages:101
-msgid "for numeric format only."
+msgid "for digital format only."
 msgstr "len na číselnom formáte."
 
 #: ../clock/data/messages:103
-msgid "Display the time in a 24h format ?"
+msgid "Display the time in a 24h format?"
 msgstr "Zobraziť čas v 24h formáte ?"
 
 #: ../clock/data/messages:105
-msgid "if not, then the applet will update time once a minute, saving CPU."
+msgid ""
+"if not, then the applet will update the time once a minute, saving CPU power."
 msgstr ""
 "ak nie, potom sa bude aktualizovať applet čas raz za minútu, čo šetrí CPU."
 
 #: ../clock/data/messages:107
-msgid "Show seconds ?"
+msgid "Show seconds?"
 msgstr "Zobraziť sekundy ?"
 
 #: ../clock/data/messages:109
 msgid ""
-"In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
-"animation. It requires OpenGL."
+"In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
+"animation. Requires OpenGL."
 msgstr ""
 "V ms. Nastaviť 0 ak nebude mať plynulú animáciu, nastaviť 1000 pre trvalú "
 "animácie. Vyžaduje OpenGL."
 
 #: ../clock/data/messages:111
-msgid "Display seconds with smooth animation of a duration of :"
+msgid "Display seconds with smooth animation for a duration of:"
 msgstr "Zobraziť dĺžku v sekundách s plynulou animáciou:"
 
 #: ../clock/data/messages:113
-msgid ""
-"For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
+msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
 msgstr ""
 "Napríklad: Európa / Paríž, :Japonsko, atď. Nechajte prázdne, a vložte "
 "miestny čas."
 
 #: ../clock/data/messages:115
-msgid "Timezone :"
+msgid "Timezone:"
 msgstr "Časová zóna :"
 
 #: ../clock/data/messages:117
@@ -5018,62 +5043,58 @@ msgstr "Štýl"
 
 #: ../clock/data/messages:119
 msgid ""
-"The analogic view is based on CairoClock; otherwise it will be displayed in "
-"a numeric way."
+"The analogue view is based on CairoClock; otherwise it will be displayed in "
+"digital format."
 msgstr ""
 "Analogický pohľad je založený na CairoClock; inak bude zobrazený numerickým "
 "spôsobom."
 
 #: ../clock/data/messages:121
-msgid "Choose the view :"
+msgid "Select the view :"
 msgstr "Vyberte ohľad :"
 
 #: ../clock/data/messages:123
-msgid "Analogic"
+msgid "Analogue"
 msgstr "Analógové"
 
 #: ../clock/data/messages:125
-msgid "Numeric"
+msgid "Digital"
 msgstr "Číselné"
 
 #: ../clock/data/messages:127
-msgid "Analogic View"
+msgid "Analogue View"
 msgstr "Analógový pohľad"
 
 #: ../clock/data/messages:129
-msgid "List of available themes for the analogic display :"
+msgid "List of available themes for analogue display:"
 msgstr "Zoznam dostupných tém analógové zobraenie :"
 
 #: ../clock/data/messages:131
-msgid "Text color of the date :"
+msgid "Date text colour:"
 msgstr "Farba textu dátumu :"
 
 #: ../clock/data/messages:133
-msgid "Numeric View"
+msgid "Digital View"
 msgstr "Číselný pohľad"
 
 #: ../clock/data/messages:135 ../keyboard-indicator/data/messages:99
-msgid "Font :"
+msgid "Font:"
 msgstr "Písmo :"
 
 #: ../clock/data/messages:139
 msgid "Ratio to apply on text :"
 msgstr "Pomer použitý na text :"
 
-#: ../clock/data/messages:141
-msgid "Image to draw on the background :"
-msgstr "Obrázok vykreslený na pozadí :"
-
 #: ../clock/data/messages:143
-msgid "Setup time and date"
+msgid "Configure time and date"
 msgstr "Nastaviť čas a dátum"
 
 #: ../clock/data/messages:145
-msgid "Let empty to use default command."
+msgid "Leave empty to use the default command."
 msgstr "Nechajte prázdne pre predvolený príkaz."
 
 #: ../clock/data/messages:147
-msgid "Specific command to run :"
+msgid "Specific command to run:"
 msgstr "Konkrétny príkaz na spustenie :"
 
 #: ../clock/data/messages:149
@@ -5086,19 +5107,19 @@ msgid ""
 msgstr "Nový alarm bude pridaný na koniec/posledný alarm, bude odstránený."
 
 #: ../clock/data/messages:153
-msgid "Add or remove an alarm :"
+msgid "Add or remove an alarm:"
 msgstr "Pridať alebo odstrániť alarm"
 
 #: ../compiz-icon/data/messages:91
 msgid ""
-"Except for switching to another WM, you must activate the Dbus plugin in "
-"Compiz, along with the plug-in corresponding to the desired action."
+"Except when switching to another WM, you must activate the Dbus plugin in "
+"Compiz along with the plugin corresponding to the desired action."
 msgstr ""
 "S výnimkou prechodu na iný WM, musíte aktivovať dbus plugin v Compize, spolu "
 "s plug-inom zodpovedajúcim požadovanej akcii."
 
 #: ../compiz-icon/data/messages:93
-msgid "Choose an action for the middle click on the icon :"
+msgid "Choose an action for middle click on the icon:"
 msgstr "Vyberte akciu pre klik na ikonu stredným tlačítkom :"
 
 #: ../compiz-icon/data/messages:97
@@ -5115,80 +5136,80 @@ msgstr "Zobraziť Plochu"
 
 #: ../compiz-icon/data/messages:105
 msgid ""
-"This command will be used to launch the system WM; let it blank to use the "
-"default one."
+"This command will be used to launch the system WM. Leave blank to use the "
+"default."
 msgstr ""
 "Tento príkaz bude použitý na spustenie systému WM; ponechajte prázdne pre "
 "použitie predvoleného."
 
 #: ../compiz-icon/data/messages:107
-msgid "Custom command for system's Windows Manager :"
+msgid "Custom command for system's Windows Manager:"
 msgstr "Vlastný príkaz pre systém Windows Manager :"
 
 #: ../compiz-icon/data/messages:109
 msgid ""
-"If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
-"Compiz from the dock then."
+"If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+"Compiz from the dock."
 msgstr ""
 "Ak Compiz neočakkávane skončí, Cairo-Dock bude reštartovaný. Musíte potom "
 "ukončiť Compiz v doku."
 
 #: ../compiz-icon/data/messages:111
-msgid "Auto-reload Compiz ?"
+msgid "Auto-reload Compiz?"
 msgstr "Automatické obnovenie compizu ?"
 
 #: ../compiz-icon/data/messages:113
 msgid ""
-"If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
-"quit Compiz from the dock then."
+"If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
+"then quit Compiz from the dock."
 msgstr ""
 "Ak došlo k nečakanému ukončeniu dekoratéra, Cairo-Dock bude reštartovaný. "
 "Musíte zároveň ukončiť Compiz v docku."
 
 #: ../compiz-icon/data/messages:115
-msgid "Auto-reload the Decorator ?"
+msgid "Auto-reload the Decorator?"
 msgstr "Automatické obnovenie Dekorátora ?"
 
 #: ../compiz-icon/data/messages:117
-msgid "Load Compiz with options at applet's startup."
+msgid "Load Compiz with options on startup."
 msgstr "Spustiť Compiz s nastavením appletu pri spustení."
 
 #: ../compiz-icon/data/messages:119
-msgid "Force Compiz settings at startup ?"
+msgid "Force Compiz settings on startup?"
 msgstr "Vynútiť nastavenia compiz pri štarte ?"
 
 #: ../compiz-icon/data/messages:121
 msgid ""
-"It will prevent the CSSM or Emerald icon to appear in the task bar. The "
-"corresponding subdock's icons will then behave as launcher and an appli."
+"This will prevent the CSSM or Emerald icons appearing in the taskbar. The "
+"corresponding sub-dock's icons will then behave as a launcher and an "
+"application."
 msgstr ""
 "Zabráni zobrazeniu ikony CSSM alebo Emerald v hlavnom paneli. Príslušné "
 "ikony subdoku sa budú správať ako spúšťače a aplikácie."
 
 #: ../compiz-icon/data/messages:123 ../mail/data/messages:135
-msgid "Steal the application's icon in taskbar ?"
+msgid "Steal the application's icon from the taskbar?"
 msgstr "Prevziať ikonu aplikácie v hlavnom paneli ?"
 
 #: ../compiz-icon/data/messages:125
 msgid ""
-"Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
-"Layer plug-ins. Otherwise they will be available in the menu."
+"Display two icons for Compiz Exposition & Widget Layer plug-ins in the "
+"applet's sub-dock. Otherwise they will be available in the menu."
 msgstr ""
 "Zobraziť na aplete sub-docku 2 ikony pre rozšírenia Compiz Expozícia & "
 "Widget Layer. V opačnom prípade budú k dispozícii v menu."
 
 #: ../compiz-icon/data/messages:127
-msgid "Add Exposition & Widget Layer to sub-dock ?"
+msgid "Add Exposition & Widget Layer to sub-dock?"
 msgstr "Pridať Expozíciu & Widget Layer do sub doku ?"
 
 #: ../compiz-icon/data/messages:129
 msgid ""
-"Display in the applet's sub-dock an icon for the Emerald's configuration "
-"panel."
+"Display an icon for the Emerald configuration panel in the applet's sub-dock."
 msgstr ""
 
 #: ../compiz-icon/data/messages:131
-msgid "Add Emerald's Configuration to sub-dock ?"
+msgid "Add Emerald Configuration to sub-dock?"
 msgstr "Pridať konfiguráciu Emerald do sub-doku ?"
 
 #: ../compiz-icon/data/messages:133
@@ -5197,38 +5218,38 @@ msgstr "Nastavenia Compiz"
 
 #: ../compiz-icon/data/messages:135
 msgid ""
-"With strict binding textures are bound whenever they are enabled, with loose "
-"binding they are enabled when created. The Nvidia driver seems a bit slow "
-"when binding textures, that's why this option gives a heavy performance "
-"increase on Nvidia."
+"With strict binding, textures are bound whenever they are enabled. With "
+"loose binding they are enabled when created. The Nvidia driver seems a bit "
+"slow when binding textures, that's why this option gives a heavy performance "
+"increase with Nvidia cards."
 msgstr ""
 
 #: ../compiz-icon/data/messages:137
-msgid "Use Loose Binding ?"
+msgid "Use Loose Binding?"
 msgstr "Použiť voľnú väzbu ?"
 
 #: ../compiz-icon/data/messages:139
-msgid "Use thoses options only if you know them."
+msgid "Only use these options if you know what you're doing.?"
 msgstr "Použite tieto možnosti len ak ich poznáte."
 
 #: ../compiz-icon/data/messages:141
-msgid "Use Indirect Rendering ?"
+msgid "Use Indirect Rendering?"
 msgstr "Použiť nepriame využitie vykresľovania ?"
 
 #: ../compiz-icon/data/messages:143
-msgid "Usefull when having dual or more X separate screens."
+msgid "Useful when using two or more separate X screens."
 msgstr "Užitočné, keď máte dve alebo viac X samostatných obrazoviek."
 
 #: ../compiz-icon/data/messages:145
-msgid "Only Current Screen ?"
+msgid "Only Current Screen?"
 msgstr "Iba súčasnú oberazovku ?"
 
 #: ../compiz-icon/data/messages:147
-msgid "By default it will be Emerald."
+msgid "By default this will be Emerald."
 msgstr "V predvolenom nastavení bude Emerald."
 
 #: ../compiz-icon/data/messages:149
-msgid "Choose your Windows Decorator :"
+msgid "Choose your Window Decorator:"
 msgstr "Vyberte váš aranžér okien :"
 
 #: ../compiz-icon/data/messages:151
@@ -5251,86 +5272,69 @@ msgstr "heliodor"
 #: ../shortcuts/data/messages:107 ../stack/data/messages:97
 #: ../switcher/data/messages:143 ../tomboy/data/messages:109
 #: ../weather/data/messages:123
-msgid "Let it empty to use default sub-dock view."
+msgid "Leave empty to use default sub-dock view."
 msgstr "Ponechajte prázdne pre použitie predvoleného vzhľadu sub-doku"
 
 #: ../compiz-icon/data/messages:161 ../mail/data/messages:93
 #: ../shortcuts/data/messages:109 ../stack/data/messages:99
 #: ../switcher/data/messages:145 ../tomboy/data/messages:111
 #: ../weather/data/messages:125
-msgid "Name of the view used for the sub-dock :"
+msgid "Sub-dock view name:"
 msgstr "Názov zobrazenia používaných pre sub-dock :"
 
 #: ../compiz-icon/data/messages:163 ../drop-indicator/data/messages:3
 msgid "Images"
 msgstr "Obrázky"
 
-#: ../compiz-icon/data/messages:165 ../compiz-icon/data/messages:169
-#: ../compiz-icon/data/messages:173 ../compiz-icon/data/messages:177
-#: ../compiz-icon/data/messages:181 ../compiz-icon/data/messages:185
-#: ../compiz-icon/data/messages:189 ../compiz-icon/data/messages:193
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:25
-msgid "Let t empty to use the default icon."
-msgstr "Nechať prázdne pre použitie predvolenej ikony."
-
 #: ../compiz-icon/data/messages:167 ../musicPlayer/data/messages:167
 #: ../tomboy/data/messages:15
-msgid "Name of an image for the 'default' icon :"
+msgid "'Default' icon image name:"
 msgstr "Názov obrázku pre ikonu 'predvolená' :"
 
 #: ../compiz-icon/data/messages:171 ../musicPlayer/data/messages:183
 #: ../tomboy/data/messages:23
-msgid "Name of an image for the 'broken' icon :"
+msgid "'Broken' icon image name:"
 msgstr "Názov obrázku pre ikonu 'poškodená' :"
 
 #: ../compiz-icon/data/messages:175
-msgid "Name of an image for the 'other wm' icon :"
+msgid "'Other WM' icon image name:"
 msgstr "Názov obrázku pre ikonu 'iná wm' :"
 
 #: ../compiz-icon/data/messages:179
-msgid "Name of an image for the 'setting' icon :"
+msgid "'Settings' icon image name:"
 msgstr "Názov obrázku pre ikonu 'nastavenie' :"
 
 #: ../compiz-icon/data/messages:183
-msgid "Name of an image for the 'emerald' icon :"
+msgid "'Emerald' icon image name:"
 msgstr "Názov obrázku pre ikonu 'emerald' :"
 
 #: ../compiz-icon/data/messages:187
-msgid "Name of an image for the 'reload' icon :"
+msgid "'Reload' icon image name:"
 msgstr "Názov obrázku pre ikonu 'obnovené' :"
 
 #: ../compiz-icon/data/messages:191
-msgid "Name of an image for the 'exposition' icon :"
+msgid "'Exhibition' icon image name:"
 msgstr "Názov obrázku pre ikonu 'expozícia' :"
 
 #: ../compiz-icon/data/messages:195
-msgid "Name of an image for the 'widget layer' icon :"
+msgid "'Widget Layer' icon image name:"
 msgstr "Názov obrázku pre ikonu 'widget layer' :"
-
-#: ../dialog-rendering/data/messages:1
-msgid "Comics"
-msgstr "Komiks"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
-msgid "Corner radius :"
+msgid "Corner radius:"
 msgstr "Rohový rádius:"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
-msgid "Border width :"
+msgid "Border width:"
 msgstr "Šírka okraja :"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
-msgid "Line color of the bubble :"
+msgid "Bubble's line colour:"
 msgstr "Farba ohraničenia bubliny :"
-
-#: ../dialog-rendering/data/messages:9
-msgid "Modern"
-msgstr "Moderná"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5341,11 +5345,11 @@ msgid "Border width of the plane :"
 msgstr "Šírka okraja roviny :"
 
 #: ../dialog-rendering/data/messages:25
-msgid "Line color of the plane :"
+msgid "Colour of the plane's line :"
 msgstr "Farba ohraničenia roviny :"
 
 #: ../dialog-rendering/data/messages:27
-msgid "Color of the plane :"
+msgid "Colour of the plane :"
 msgstr "Farba roviny :"
 
 #: ../dialog-rendering/data/messages:29
@@ -5353,19 +5357,15 @@ msgid "Tooltip"
 msgstr "Bublinová nápoveda"
 
 #: ../dialog-rendering/data/messages:37
-msgid "Color of the margin :"
+msgid "Colour of the margin :"
 msgstr "Farba okraja :"
-
-#: ../dialog-rendering/data/messages:39
-msgid "Curly"
-msgstr "Vlnitý"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
 msgstr "Tip pre zakrivenie :"
 
 #: ../dialog-rendering/data/messages:49
-msgid "Curve the sides too ?"
+msgid "Curve the sides too?"
 msgstr "Silne zakriviť po stranách ?"
 
 #: ../dnd2share/data/messages:89
@@ -5373,7 +5373,7 @@ msgid "Info-bubbles"
 msgstr "bublinková nápoveda"
 
 #: ../dnd2share/data/messages:91
-msgid "Enable info-bubbles ?"
+msgid "Enable info-bubbles?"
 msgstr "Povoliť bublinkovú nápovedu"
 
 #: ../dnd2share/data/messages:95
@@ -5385,7 +5385,7 @@ msgid "Number of items to keep in the history :"
 msgstr "Počet položiek ponechaných v histórii :"
 
 #: ../dnd2share/data/messages:101
-msgid "Keep a copy of each uploaded image ?"
+msgid "Keep a copy of each uploaded image?"
 msgstr "Ponechať kópiu každého obrázku ?"
 
 #: ../dnd2share/data/messages:103
@@ -5393,7 +5393,7 @@ msgid "This will override the image setting."
 msgstr "Tým sa prepíše nastavenie obrázku."
 
 #: ../dnd2share/data/messages:105
-msgid "If so, display the last image on the icon ?"
+msgid "If so, display the last image on the icon?"
 msgstr "Ak áno, zobraziť posledný obrázok na ikone ?"
 
 #: ../dnd2share/data/messages:107
@@ -5478,7 +5478,7 @@ msgid "Custom script for file upload : "
 msgstr "Vlastný skript pre upload súboru : "
 
 #: ../dnd2share/data/messages:153
-msgid "Let empty to upload files into '~/Dropbox/Public'."
+msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr "Nechať prázdne pre odosielanie súborov do '~/Dropbox/Verejné'."
 
 #: ../dnd2share/data/messages:155
@@ -5486,46 +5486,46 @@ msgid "Path of the DropBox folder :"
 msgstr "Cesta do priečinka DropBox :"
 
 #: ../dock-rendering/data/messages:1
-msgid "Inclinated Plane"
+msgid "Inclined Plane"
 msgstr "Naklonená rovina"
 
 #: ../dock-rendering/data/messages:3
-msgid "The lower, the more the point of view is low on the plane."
+msgid "The lower the value, the lower the point of view on the plane."
 msgstr "Čím nižšia, tým viac je nižší pohľad na rovinu."
 
 #: ../dock-rendering/data/messages:5
-msgid "Height of the vanishing point :"
+msgid "Height of the vanishing point:"
 msgstr "Výška miznúceho bodu :"
 
 #: ../dock-rendering/data/messages:9
 msgid ""
-"In degrees, regarding the vertical position. It's a sort of inclination of "
-"the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
-"the plane is not inclined at all (vertical)."
+"In degrees, relative to the vertical. This is a sort of inclination of the "
+"plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+"that the plane is not inclined at all (vertical)."
 msgstr ""
 
 #: ../dock-rendering/data/messages:11
-msgid "Inclination of the plane :"
+msgid "Inclination of the plane:"
 msgstr "Naklonenie roviny :"
 
 #: ../dock-rendering/data/messages:13
 msgid ""
-"0.5 means the dock is half-folded, so half the icons are on the foreground, "
+"0.5 means the dock is half-folded, so half the icons are on the foreground "
 "and half are on the background."
 msgstr ""
 
 #: ../dock-rendering/data/messages:15
-msgid "Percentage of the dock's width that appears on the foreground :"
+msgid "Percentage of the dock's width that appears on the foreground:"
 msgstr "Percento zo šírky docku, ktorá sa objaví na výstupe:"
 
 #: ../dock-rendering/data/messages:17
 msgid ""
-"The greater, the deeper. It is in fact the gap between background icons' "
-"bottom and foreground icons' top (in pixels)."
+"The greater, the deeper. This represents the gap between the bottoms "
+"ofbackground icons and the tops of foreground icons (in pixels)."
 msgstr ""
 
 #: ../dock-rendering/data/messages:19
-msgid "Depth of the plane :"
+msgid "Depth of the plane:"
 msgstr "Hĺbka roviny :"
 
 #: ../dock-rendering/data/messages:21
@@ -5533,93 +5533,88 @@ msgid "otherwise they will turn."
 msgstr "Inak sa bude otáčať."
 
 #: ../dock-rendering/data/messages:23
-msgid "Always show icons' face ?"
+msgid "Always show the fronts of icons?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:27
-msgid "The higher it is, the sooner the parabole will be curved."
+msgid "The higher this value, the sooner the parabola will be curved."
 msgstr "Čím je vyššia, tým skôr bude parabola zakrivená."
 
 #: ../dock-rendering/data/messages:29
-msgid "Curvature :"
+msgid "Curvature:"
 msgstr "Zakrivenie :"
 
 #: ../dock-rendering/data/messages:31
-msgid "The parabole will be conscricted to a rectangle of this proportion."
+msgid "The parabola will be restricted to a rectangle of this proportion."
 msgstr ""
 
 #: ../dock-rendering/data/messages:33
-msgid "Ratio height/width :"
+msgid "Height/width ratio:"
 msgstr "Pomer výška/šírka :"
 
 #: ../dock-rendering/data/messages:35
-msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+msgid "0 represents a flat wave, 1 represents maximum wave curvature."
 msgstr ""
 "0 znamená, že vlnenie je nevýrazné, 1 znamená, že vlnenie je maximálne."
 
 #: ../dock-rendering/data/messages:37 ../dock-rendering/data/messages:57
-msgid "Magnitude of the wave :"
+msgid "Magnitude of the wave:"
 msgstr "Veľkosť vlnenia :"
 
 #: ../dock-rendering/data/messages:39
-msgid "Curve towards the outside ?"
+msgid "Curve towards the outside?"
 msgstr "Zakriviť smerom von?"
 
 #: ../dock-rendering/data/messages:43
-msgid "Space between icons and their label :"
+msgid "Space between icons and their captions:"
 msgstr "Priestor medzi ikonami a ich názvom :"
 
 #: ../dock-rendering/data/messages:45
 msgid ""
-"It may recquire more CPU during the unfolding animation, except with OpenGL."
+"This may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with OpenGL."
 msgstr ""
 "Môže vyžadovať viac CPU počas rozvíjajúcej sa animácie, s výnimkou OpenGL."
 
 #: ../dock-rendering/data/messages:47
-msgid "Draw labels while unfolding ?"
+msgid "Draw captions while unfolding?"
 msgstr "Vykresľovanie popisiek pri rozvíjaní ?"
 
 #: ../dock-rendering/data/messages:51 ../dock-rendering/data/messages:77
-msgid "Space between rows :"
+msgid "Space between rows:"
 msgstr "Medzera medzi riadkami :"
 
-#: ../dock-rendering/data/messages:53
-msgid "Space between icons :"
-msgstr "Priestor medzi ikonami :"
-
 #: ../dock-rendering/data/messages:55
-msgid ""
-"0 means the wave is totally flat, 1 means the wave is identical to other "
-"views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 znamená úplne plochú vlnu, 1 znamená, že vlna je totožná s inými pohľadmi."
 
 #: ../dock-rendering/data/messages:59
-msgid "Number of icons on the first row :"
+msgid "Number of icons on the first row:"
 msgstr "Počet ikon na prvý riadok :"
 
 #: ../dock-rendering/data/messages:61
 msgid ""
-"in degree. The smaller, the more the cone is narrow. 180° means the cone is "
-"widely opened."
+"in degrees. The lower the value, the narrower the cone. 180° represents a "
+"wide open cone."
 msgstr ""
 "v stupňoch. Čím menšie, tým viac je kužeľ užší. 180 ° znamená, že kužeľ je "
 "široko otvorený."
 
 #: ../dock-rendering/data/messages:63
-msgid "Cone's width :"
+msgid "Cone width:"
 msgstr "Šírka kužeľov :"
 
 #: ../dock-rendering/data/messages:65
-msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
 msgstr "Nastaviť priehľadnosť na 0   nepoužívajte. Je veľmi spomaľujúce."
 
 #: ../dock-rendering/data/messages:67
-msgid "Bow color :"
+msgid "Bow colour:"
 msgstr "Farba oblúka :"
 
 #: ../dock-rendering/data/messages:69
-msgid "Line color :"
+msgid "Line colour:"
 msgstr "Farba linky :"
 
 #: ../dock-rendering/data/messages:71
@@ -5631,27 +5626,27 @@ msgid "Grid"
 msgstr "Mriežka"
 
 #: ../dock-rendering/data/messages:75
-msgid "Space between columns :"
+msgid "Space between columns:"
 msgstr "Priestor medzi stĺpmi :"
 
 #: ../dock-rendering/data/messages:79
-msgid "Max size of icons :"
+msgid "Max icon size:"
 msgstr "Maximálna veľkosť ikôn :"
 
 #: ../dock-rendering/data/messages:81
-msgid "Sinusoidal wave radius :"
+msgid "Sinusoidal wave radius:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:83
-msgid "Use a linear wave rather than a sinusoidal one ?"
+msgid "Use a linear wave rather than a sinusoidal wave?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:85
-msgid "Pack icons rather horizontally than vertically ?"
+msgid "Pack icons horizontally rather than vertically?"
 msgstr "Balík ikôn skôr horizontálne ako vertikálne?"
 
 #: ../dock-rendering/data/messages:87
-msgid "Display text for all icons ?"
+msgid "Display text for all icons?"
 msgstr "Zobraziť text pre všetky ikony ?"
 
 #: ../dock-rendering/data/messages:89
@@ -5659,23 +5654,23 @@ msgid "Frame"
 msgstr "Rám"
 
 #: ../dock-rendering/data/messages:91
-msgid "Draw a background ?"
+msgid "Draw a background?"
 msgstr "Vykresliť pozadie ?"
 
 #: ../dock-rendering/data/messages:93
-msgid "First gradient color :"
+msgid "First gradient colour :"
 msgstr "Prvá vzostupná farba :"
 
 #: ../dock-rendering/data/messages:95
-msgid "Second gradient color :"
+msgid "Second gradient colour :"
 msgstr "Druhá vzostupná farba :"
 
 #: ../dock-rendering/data/messages:97
-msgid "Top to bottom gradient ?"
+msgid "Top to bottom gradient?"
 msgstr "Vzostup zhora nadol ?"
 
 #: ../dock-rendering/data/messages:99
-msgid "Left to right gradient ?"
+msgid "Left to right gradient?"
 msgstr "Vzostup zľava doprava ?"
 
 #: ../dock-rendering/data/messages:103
@@ -5683,7 +5678,7 @@ msgid "Border line width :"
 msgstr "Šírka čiary ohraničenia :"
 
 #: ../dock-rendering/data/messages:105
-msgid "Border line color :"
+msgid "Border line colour :"
 msgstr "Farba čiary ohraničenia :"
 
 #: ../dock-rendering/data/messages:107
@@ -5691,23 +5686,23 @@ msgid "Arrow width :"
 msgstr "Šírka šípky"
 
 #: ../dock-rendering/data/messages:109
-msgid "Arrow Height :"
+msgid "Arrow height:"
 msgstr "Výška šípky :"
 
 #: ../dock-rendering/data/messages:111
-msgid "Arrow shift percent :"
+msgid "Arrow shift percentage:"
 msgstr "Posun ukazovateľa v percentách :"
 
 #: ../dock-rendering/data/messages:115
-msgid "The lower, the more the curve will seem flat."
+msgid "The lower the value, the flatter the curve will appear."
 msgstr "Čím nižšia, tým viac sa bude zdať krivka plochá."
 
 #: ../dock-rendering/data/messages:117
-msgid "Curvature of the curve in percent :"
+msgid "Curvature of the curve in percent:"
 msgstr "Zakrivenie krivky v percentách :"
 
 #: ../dock-rendering/data/messages:121
-msgid "Amplitude of the curve."
+msgid "Amplitude of the curve:"
 msgstr "Amplitúda krivky."
 
 #: ../drop-indicator/data/messages:1
@@ -5716,20 +5711,20 @@ msgstr "Ťahať a pustiť ukazovateľ"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
-"Typically an arrow, that will be displayed when you try to drop a new "
-"launcher into the dock. Let empty to use the default one."
+"Typically an arrow, this will be displayed when you try to drop a new "
+"launcher into the dock. Leave this empty to use the default."
 msgstr ""
 "Typický ukazovateľ, ktorý bude zobrazený pri pokuse o spustenie nových "
 "spúšťačov do docku. Ponechať prázdne pre použitie predvoleného."
 
 #: ../drop-indicator/data/messages:7
-msgid "Image for the drag'n'drop animation :"
+msgid "Image for the drag & drop animation:"
 msgstr "Obrátok pre animáciu ťahaj a pusti :"
 
 #: ../drop-indicator/data/messages:9
 msgid ""
-"An emblem that will be displayed when you try to drop something onto an "
-"icon. Let empty to use the default one."
+"An emblem that will be displayed when you try to drop something on an icon. "
+"Leave empty to use the default one."
 msgstr ""
 "Znak, ktorý sa zobrazí pri pokuse pustiť niečo na ikonu. Nechať prázdne pre "
 "použitie predvoleného."
@@ -5743,7 +5738,7 @@ msgid "Animation"
 msgstr "Animácia"
 
 #: ../drop-indicator/data/messages:15
-msgid "Speed :"
+msgid "Speed:"
 msgstr "Rýchlosť :"
 
 #: ../drop-indicator/data/messages:17
@@ -5760,11 +5755,11 @@ msgid "Theme"
 msgstr "Téma vzhľadu"
 
 #: ../dustbin/data/messages:93
-msgid "Name of an image to overwrite the theme's empty image :"
+msgid "Name of the image to overwrite the theme's empty image :"
 msgstr ""
 
 #: ../dustbin/data/messages:95
-msgid "Name of an image to overwrite the theme's full image :"
+msgid "Name of the image to overwrite the theme's full image :"
 msgstr ""
 
 #: ../dustbin/data/messages:97
@@ -5776,10 +5771,10 @@ msgid "Display the following quick info :"
 msgstr "Zobraziť nasledujúcu rýchlu informáciu :"
 
 #: ../dustbin/data/messages:103
-msgid "Number of trashes"
+msgid "Number of Dustbins"
 msgstr "Počet košov"
 
-#: ../dustbin/data/messages:105
+#: ../dustbin/data/messages:105 ../mail/data/messages:123
 msgid "Total number of files"
 msgstr "Celkový počet súborov"
 
@@ -5789,7 +5784,7 @@ msgstr "Celková hmotnosť"
 
 #: ../dustbin/data/messages:109 ../dustbin/data/messages:113
 msgid ""
-"in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+"in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 msgstr ""
 "v Mb. Budete upozornený, keď prekročíte tento limit. Nastavte 0 pre jeho "
 "nepoužívanie."
@@ -5799,11 +5794,12 @@ msgid "Maximum total size of all dustbins :"
 msgstr "Maximálna celková veľkosť vo všetkých košoch :"
 
 #: ../dustbin/data/messages:115
+#, fuzzy
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Maximálna veľkosť povolená pre každý kôš :"
 
 #: ../dustbin/data/messages:117
-msgid "Ask confirmation before empty Trash ?"
+msgid "Ask confirmation before emptying Dustbin?"
 msgstr "Vypýtať si potvrdenie pred vyprázdnením koša ?"
 
 #: ../dustbin/data/messages:119
@@ -5815,11 +5811,12 @@ msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Ak priečinok Kôš nie je docku známy, môžete ho špecifikovať tu:"
 
 #: ../dustbin/data/messages:123
-msgid "in seconds, only used if you can't monitor directories."
+#, fuzzy
+msgid "in secondsconds. only used if you can't monitor directories."
 msgstr "v sekundách, len ak nie je možné sledovať adresáre."
 
 #: ../dustbin/data/messages:125
-msgid "Interval of time to check if dustbin is full/empty :"
+msgid "Time interval to check if dustbin is full/empty :"
 msgstr "Odstup času kontroly, či je kôš plný/prázdny :"
 
 #: ../dustbin/data/messages:127
@@ -5832,11 +5829,11 @@ msgid "Alternative file browser used to show a trash :"
 msgstr "Alternatívny prehliadač súborov použitý na prehliadku koša:"
 
 #: ../icon-effect/data/messages:67
-msgid "Draw in background ?"
+msgid "Draw in background?"
 msgstr "Vykresliť v pozadí ?"
 
 #: ../icon-effect/data/messages:69
-msgid "Rotate effects with dock ?"
+msgid "Rotate effects with dock?"
 msgstr "Efekt otáčania s dockom ?"
 
 #: ../icon-effect/data/messages:73
@@ -5847,15 +5844,15 @@ msgstr "v ms. Nastavte 0 pre nepoužitie tohto efektu."
 #: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
 #: ../illusion/data/messages:35 ../terminal/data/messages:93
-msgid "Colors"
+msgid "Colours"
 msgstr "Farby"
 
 #: ../icon-effect/data/messages:87
-msgid "It will slightly alter the colors, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "Bude mierne meniť farby, takže možno budete potrebná úprava."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
-msgid "Add luminance ?"
+msgid "Add luminance?"
 msgstr "Pridať svietivosť ?"
 
 #: ../icon-effect/data/messages:91 ../icon-effect/data/messages:115
@@ -5868,35 +5865,31 @@ msgstr "Častice"
 #: ../icon-effect/data/messages:93 ../icon-effect/data/messages:117
 #: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
 #: ../icon-effect/data/messages:181 ../illusion/data/messages:45
-msgid "Number of particles :"
+msgid "Number of particles:"
 msgstr "Počet častíc :"
 
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:119
 #: ../icon-effect/data/messages:139 ../icon-effect/data/messages:161
 #: ../icon-effect/data/messages:183 ../icon-effect/data/messages:213
 #: ../illusion/data/messages:47 ../show-mouse/data/messages:25
-msgid "Particle size :"
+msgid "Particle size:"
 msgstr "Veľkosť častice :"
 
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:141
 #: ../icon-effect/data/messages:163 ../illusion/data/messages:49
-msgid "Particle speed :"
+msgid "Particle speed:"
 msgstr "Rýchlosť častice"
-
-#: ../icon-effect/data/messages:195
-msgid "Default color :"
-msgstr "Predvolená farba :"
 
 #: ../icon-effect/data/messages:199
 msgid "It particularily fits a dark wallpaper or a dark theme."
 msgstr "To sa hodí najmä ku tmavej tapete alebo tmavej téme."
 
 #: ../icon-effect/data/messages:205 ../show-mouse/data/messages:3
-msgid "Number of sources :"
+msgid "Number of sources:"
 msgstr "POčet zdrojov :"
 
 #: ../icon-effect/data/messages:207 ../show-mouse/data/messages:17
-msgid "Number of particles per source :"
+msgid "Number of particles per source:"
 msgstr "Počet častíc na zdroj :"
 
 #: ../icon-effect/data/messages:209
@@ -5904,19 +5897,19 @@ msgid "In percentage of the icon's size."
 msgstr "Veľkosť ikony v percentách."
 
 #: ../icon-effect/data/messages:211
-msgid "Radius of the explosion :"
+msgid "Radius of the explosion:"
 msgstr "Polomer explózie :"
 
 #: ../icon-effect/data/messages:215
-msgid "Show the launching ?"
+msgid "Show the launching?"
 msgstr "Zobraziť spustenie ?"
 
 #: ../icon-effect/data/messages:217
-msgid "Particle friction :"
+msgid "Particle friction:"
 msgstr ""
 
 #: ../illusion/data/messages:3
-msgid "Animation on disappearance :"
+msgid "Animation on disappearance:"
 msgstr "Animácia miznutím :"
 
 #: ../illusion/data/messages:5 ../illusion/data/messages:19
@@ -5940,75 +5933,73 @@ msgid "Break"
 msgstr "Prerušiť"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
-msgid "BlackHole"
-msgstr "ČiernaDiera"
+#: ../illusion/data/messages:73
+#, fuzzy
+msgid "Black Hole"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"ČiernaDiera\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Čierna diera"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
 msgstr "Náhodné"
 
 #: ../illusion/data/messages:17
-msgid "Animation on appearance :"
+msgid "Animation on appearance:"
 msgstr "Animácie na vzhľad :"
 
 #: ../illusion/data/messages:51
-msgid "Evaporate upward ?"
+msgid "Evaporate upwards?"
 msgstr "Vypariť smerom hore?"
 
 #: ../illusion/data/messages:61 ../illusion/data/messages:71
-msgid "Number of pieces :"
+msgid "Number of pieces:"
 msgstr "Počet kusov :"
 
 #: ../illusion/data/messages:63
-msgid "Explosion radius :"
+msgid "Explosion radius:"
 msgstr "Rádius explózie :"
 
 #: ../illusion/data/messages:65
-msgid "Break the icon in cubes ?"
+msgid "Break the icon into cubes?"
 msgstr "Rozbiť ikonu v kockách ?"
-
-#: ../illusion/data/messages:73
-msgid "Black Hole"
-msgstr "Čierna diera"
 
 #: ../illusion/data/messages:77
 msgid "in round per second."
 msgstr "v kruhu za sekundu."
 
 #: ../illusion/data/messages:81
-msgid "The greatest, the fastest the icon will collapse to the center."
+msgid "The greater, the faster the icon will collapse to the center."
 msgstr "Najväčšia, najrýchlejšia ikona sa zrúti do centra."
 
 #: ../illusion/data/messages:83
-msgid "Attraction of the hole :"
+msgid "Attraction of the Black Hole:"
 msgstr "Príťažlivosť diery :"
 
 #: ../keyboard-indicator/data/messages:89
-msgid "caps lock, num lock, etc"
+msgid "caps lock, num lock, etc."
 msgstr "caps lock, num lock, atď"
 
 #: ../keyboard-indicator/data/messages:91
-msgid "Display keyboard locks as quick-info ?"
+msgid "Display keyboard locks as quick-info?"
 msgstr "Zobraziť zamknuie klávesnice ako rýchle-info ?"
 
 #: ../keyboard-indicator/data/messages:93
 msgid ""
-"in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+"in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
 "v ms. Nastavte ju na 0, ak nechcete animáciu pri zmene rozloženia klávesnice."
 
 #: ../keyboard-indicator/data/messages:95
-msgid "Duration of the transition animation :"
+msgid "Duration of the transition animation:"
 msgstr "Doba trvania prechodu animácie :"
 
 #: ../keyboard-indicator/data/messages:101
-msgid "Text color"
+msgid "Text colour"
 msgstr "Farba textu"
-
-#: ../keyboard-indicator/data/messages:103
-msgid "Outline text ?"
-msgstr ""
 
 #: ../keyboard-indicator/data/messages:105
 msgid ""
@@ -6024,29 +6015,29 @@ msgid "smaller"
 msgstr "menší"
 
 #: ../logout/data/messages:93
-msgid "Let empty to execute the default command."
+msgid "Leave empty to execute the default command."
 msgstr "Ponechať prázdne pre vykonanie predvoleného príkazu."
 
 #: ../logout/data/messages:95
-msgid "User-defined command to execute to log-out :"
+msgid "User-defined command to execute for logout:"
 msgstr "Užívateľom definovaný príkaz na odhlásenie :"
 
 #: ../logout/data/messages:97
 msgid ""
-"It will be available on middle click. Let empty to execute the default "
-"command, that greatly depends on your distribution. Sometimes the command to "
-"shutdown is just the same as the one to log out."
+"This will be available when middle-clicking. Leave empty to execute the "
+"default command, which depends on your distribution. In some cases the "
+"command to shutdown is the same as the one to log out."
 msgstr ""
 "K dispozícii bude stredné tlačidlo. Nechajte prázdne pre vykonanie "
 "štandardného príkazu, záleží na vašej distribúcii. Niekedy je príkaz na "
 "vypnutie rovnaký, ako ten pre odhlásenie."
 
 #: ../logout/data/messages:99
-msgid "User-defined command to execute to shutdown :"
+msgid "User-defined command to execute for shutdown:"
 msgstr "Užívateľom definovaný príkaz na vypnutie :"
 
 #: ../logout/data/messages:101
-msgid "Invert buttons ?"
+msgid "Invert buttons?"
 msgstr "Obrátiť tlačidlá ?"
 
 #: ../mail/data/messages:89
@@ -6066,58 +6057,50 @@ msgid "Name of the file for the \"new mail\" sound :"
 msgstr "Názov súboru pre obrázok \"nový mail\" :"
 
 #: ../mail/data/messages:107
-msgid "Show new messages' content ?"
+msgid "Show new messages' content?"
 msgstr "Zobraziť obsah nových správ ?"
 
-#: ../mail/data/messages:109
-msgid ""
-"Maximum number of mails that will be previewed. Put -1 to show the maximum "
-"possible."
-msgstr ""
-"Maximálny počet mailov, ktoré budú v ukážke. Dajte -1 zobrazí maximum "
-"možných."
-
 #: ../mail/data/messages:111
-msgid "Maximum of new messages shown ?"
+msgid "Maximum of new messages shown?"
 msgstr "Maximum nových zobrazených správ ?"
 
 #: ../mail/data/messages:113 ../musicPlayer/data/messages:131
 #: ../tomboy/data/messages:119
-msgid "in s."
-msgstr "v s."
+#, fuzzy
+msgid "in seconds"
+msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"v sekundách\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"v s."
 
 #: ../mail/data/messages:115 ../tomboy/data/messages:121
-msgid "Time length of the dialog :"
+msgid "Duration of the dialogue"
 msgstr "Čas dĺžky dialógu :"
 
 #: ../mail/data/messages:117
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
-"maintenance mode, then let the dock launch itself, and remove/modify the "
-"mail accounts you want."
+"maintenance mode, then after the dock has relaunched, remove/modify the mail "
+"accounts you want."
 msgstr ""
 "Ak máte nejaké problémy s appletom, vypnite túto voľbu počas režimu údržby, "
 "nech dock sám spustí, a odstráni/upraví poštové účty, ktoré chcete."
 
 #: ../mail/data/messages:119
-msgid "Check mail account on startup ?"
+msgid "Check mail account on startup?"
 msgstr "Skontrolovať poštový účet pri spustení ?"
 
 #: ../mail/data/messages:121
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
-#: ../mail/data/messages:123
-#, fuzzy
-msgid "Always show number of mails"
-msgstr "Celkový počet súborov"
-
 #: ../mail/data/messages:125
 msgid "Mail application"
 msgstr "Poštová aplikácia"
 
 #: ../mail/data/messages:127
-msgid "Prefered mail application to launch on left-click :"
+msgid "Preferred mail application to launch on left-click :"
 msgstr "Preferovanú mailovú aplikáciu spustíte na ľavým-kliknutím :"
 
 #: ../mail/data/messages:129
@@ -6129,23 +6112,23 @@ msgstr ""
 "výnimkou pre Thunderbird."
 
 #: ../mail/data/messages:131
-msgid "Class of the mail application (optionnal)"
+msgid "Class of the mail application (optional)"
 msgstr "Trieda mailovej aplikácie (voliteľné)"
 
 #: ../mail/data/messages:133
 msgid ""
 "It will prevent the application's icon to appear in the task bar. The "
-"applet's icon will then behave as a launcher, an appli, and an applet."
+"applet's icon will then behave as a launcher, an application, and an applet."
 msgstr ""
 "To zabráni ikone aplikácie aby bola zobrazená v hlavnom paneli. Ikona "
 "appletu sa bude správať ako spúšťač, aplikácia a ako applet."
 
 #: ../mail/data/messages:137
-msgid "Add an mail account"
+msgid "Add a mail account"
 msgstr "Pridať poštový účet"
 
 #: ../mail/data/messages:139
-msgid "The new account will be created with specified type and name."
+msgid "The new account will be created with the specified type and name."
 msgstr "Nový účet bude vytvorený s zadaním typu a názvu."
 
 #: ../mail/data/messages:141
@@ -6153,15 +6136,15 @@ msgid "Add an account with specified type and name:"
 msgstr "Pridať účet s uvedeným typom a názvom:"
 
 #: ../motion-blur/data/messages:3
-msgid "Also blur on mouse movement ?"
+msgid "Also blur on mouse movement?"
 msgstr "Rozmazanie pri pohybe myšou ?"
 
 #: ../motion-blur/data/messages:5
-msgid "Blur amount :"
+msgid "Blur amount:"
 msgstr "Sila rozmazania :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Let it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
 
 #: ../musicPlayer/data/messages:91
@@ -6218,14 +6201,14 @@ msgstr "XMMS"
 
 #: ../musicPlayer/data/messages:117
 msgid ""
-"It will prevent the player's icon to appear in the task bar. The applet's "
-"icon will then behave as a launcher, an appli, and an applet."
+"This will prevent the player icon appearing in the taskbar. The applet's "
+"icon will then behave as a launcher, an application and an applet."
 msgstr ""
 "To zabráni ikone prehrávača aby bola zobrazená v hlavnom paneli. Ikona "
 "appletu sa bude správať ako spúšťač, aplikácia a ako applet."
 
 #: ../musicPlayer/data/messages:119
-msgid "Steal the player's icon from taskbar ?"
+msgid "Steal the player's icon from the taskbar?"
 msgstr "Prevziať ikonu hráčov z hlavného panela ?"
 
 #: ../musicPlayer/data/messages:121
@@ -6247,15 +6230,15 @@ msgid "Action on music change"
 msgstr "Akcia pri zmene hudby"
 
 #: ../musicPlayer/data/messages:129
-msgid "Show an info-bubble ?"
+msgid "Show tooltips?"
 msgstr "Zobraziť bublinu s nápovedou ?"
 
 #: ../musicPlayer/data/messages:133
-msgid "Time length of info-bubbles :"
+msgid "Time length of tooltips:"
 msgstr "Čas zobrazenia info-bubliny :"
 
 #: ../musicPlayer/data/messages:135
-msgid "Animation when music changes :"
+msgid "Animation when music changes:"
 msgstr "Animácia keď sa zmení hudba :"
 
 #: ../musicPlayer/data/messages:139 ../wifi/data/messages:177
@@ -6271,15 +6254,15 @@ msgid "Time Elapsed"
 msgstr "Uplynulý čas"
 
 #: ../musicPlayer/data/messages:145
-msgid "Time Left"
+msgid "Time Remaining"
 msgstr "Zostávajúci čas"
 
 #: ../musicPlayer/data/messages:147
-msgid "N° of track"
+msgid "Track number"
 msgstr "Číslo stopy"
 
 #: ../musicPlayer/data/messages:149
-msgid "Display album's cover ?"
+msgid "Display album's cover?"
 msgstr "Zobraziť obal albumu ?"
 
 #: ../musicPlayer/data/messages:151
@@ -6287,7 +6270,7 @@ msgid "You need to be connected to the Internet."
 msgstr "Musíte byť pripojený na internet."
 
 #: ../musicPlayer/data/messages:153
-msgid "Allow Cairo-Dock to download missing covers ?"
+msgid "Allow Cairo-Dock to download missing covers?"
 msgstr "Povoliť Cairo-Docku stiahnuť stratené obaly ?"
 
 #: ../musicPlayer/data/messages:155 ../musicPlayer/data/messages:159
@@ -6295,7 +6278,7 @@ msgid "requires OpenGL."
 msgstr "vyžaduje OpenGL."
 
 #: ../musicPlayer/data/messages:157
-msgid "Use 3D themes ?"
+msgid "Use 3D themes?"
 msgstr "Použiť 3D témy ?"
 
 #: ../musicPlayer/data/messages:161
@@ -6303,44 +6286,44 @@ msgid "List of available 3D themes for covers :"
 msgstr "Zoznam dostupných 3D tém pre obaly :"
 
 #: ../musicPlayer/data/messages:163 ../tomboy/data/messages:11
-msgid "Personnalisation"
+msgid "Customisation"
 msgstr "Personalizácia"
 
 #: ../musicPlayer/data/messages:171
-msgid "Name of an image for the 'play' icon :"
+msgid "Name of the image for the 'play' icon :"
 msgstr "Názov obrázku pre ikonu 'prehrať' :"
 
 #: ../musicPlayer/data/messages:175
-msgid "Name of an image for the 'stop' icon :"
+msgid "Name of the image for the 'stop' icon :"
 msgstr "Názov obrázku pre ikonu 'stop' :"
 
 #: ../musicPlayer/data/messages:179
-msgid "Name of an image for the 'pause' icon :"
+msgid "Name of the image for the 'pause' icon :"
 msgstr "Názov obrázku pre ikonu 'pauza' :"
 
 #: ../netspeed/data/messages:113
-msgid "It's the color of the graphic for high rate values."
+msgid "It's the colour of the graphic for high rate values."
 msgstr "Je to farba grafiky pre vysokú mieru hodnoty."
 
 #: ../netspeed/data/messages:117
-msgid "It's the color of the graphic for low rate values."
+msgid "Graph colour for low rate vaues:"
 msgstr "Je to farba grafiky pre nízku mieru hodnoty."
 
 #: ../netspeed/data/messages:127
-msgid "By default it will be 'eth0'."
+msgid "By default this will be 'eth0'."
 msgstr "V predvolenom nastavení to bude 'eth0'."
 
 #: ../netspeed/data/messages:129
-msgid "interface :"
+msgid "interface:"
 msgstr "rozhranie :"
 
 #: ../netspeed/data/messages:133
-msgid "Delay between 2 measures :"
+msgid "Delay between measurements:"
 msgstr "Oneskorenie medzi 2 opatreniami :"
 
 #: ../netspeed/data/messages:135
 msgid ""
-"You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+"You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
 "transition is continue."
 msgstr ""
 "Pre túto možnosť potrebujete OpenGL. Nastavte ju na 0 pre nepoužiť, 1 "
@@ -6355,11 +6338,11 @@ msgid "Display rate values :"
 msgstr "Zobrazenie hodnotenia :"
 
 #: ../powermanager/data/messages:7
-msgid "Icon name :"
+msgid "Icon name:"
 msgstr "Názov ikony :"
 
 #: ../powermanager/data/messages:127
-msgid "Icon's filename when on battery :"
+msgid "'On-battery' icon filename:"
 msgstr "Názov ikony pri napájaní batériou :"
 
 #: ../powermanager/data/messages:129
@@ -6367,7 +6350,7 @@ msgid "Icon's filename when on charge :"
 msgstr "Názov ikony pri nabíjaní :"
 
 #: ../powermanager/data/messages:131
-msgid "Effect to apply on the icon according to charge :"
+msgid "Effect to apply on the icon according to the charge :"
 msgstr "Uplatňovať vplyv na ikonu podľa nabitia :"
 
 #: ../powermanager/data/messages:133 ../powermanager/data/messages:149
@@ -6403,33 +6386,35 @@ msgid "time"
 msgstr "čas"
 
 #: ../powermanager/data/messages:155
-msgid "Alert"
+msgid "Notification"
 msgstr "Varovanie"
 
 #: ../powermanager/data/messages:157
-msgid "Alert when battery charged ?"
+#, fuzzy
+msgid "Notification when battery charged ?"
 msgstr "Upozornenie, keď je batéria nabitá ?"
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
-msgid "Let it empty to have no sound"
+msgid "Leave it empty for no sound"
 msgstr "Ponechajte prázdne ak nie je zvuk"
 
 #: ../powermanager/data/messages:161 ../powermanager/data/messages:171
 #: ../powermanager/data/messages:179
-msgid "Use a sound :"
+msgid "Play a sound:"
 msgstr "Použi zvuk :"
 
 #: ../powermanager/data/messages:163
-msgid "Alert when low battery ?"
-msgstr "Upozornenie, keď je batéria slabá ?"
+#, fuzzy
+msgid "Notification when low battery ?"
+msgstr "Upozornenie, keď je batéria nabitá ?"
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
 msgstr "v percentách."
 
 #: ../powermanager/data/messages:167
-msgid "Battery level :"
+msgid "Battery level:"
 msgstr "Stav batérie :"
 
 #: ../powermanager/data/messages:173
@@ -6437,15 +6422,16 @@ msgid "When battery level is under 4%"
 msgstr "Ak je stav batérie menej ako 4%"
 
 #: ../powermanager/data/messages:175
-msgid "Alert when battery charge is critical ?"
-msgstr "Upozornenie, keď je stav batérie kritický ?"
+#, fuzzy
+msgid "Notification when battery charge is critical ?"
+msgstr "Upozornenie, keď je batéria nabitá ?"
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"
 msgstr "Anamácia počas výzvy :"
 
 #: ../quick-browser/data/messages:7
-msgid "Let empty to use the folder's name."
+msgid "Leave empty to use the folder's name."
 msgstr "Nechať prázdne pre použitie názvu priečinka."
 
 #: ../quick-browser/data/messages:95 ../slider/data/messages:89
@@ -6457,23 +6443,19 @@ msgid "Folder to browse :"
 msgstr "Prehliadať priečinok :"
 
 #: ../quick-browser/data/messages:99
-msgid "List folders first ?"
+msgid "List folders first?"
 msgstr "Najprv zoznam priečinkov ?"
 
 #: ../quick-browser/data/messages:101
-msgid "Ignore case ?"
+msgid "Ignore case?"
 msgstr "Ignorovať udalosť ?"
-
-#: ../quick-browser/data/messages:103
-msgid "Show hidden files ?"
-msgstr "Zobraziť skryté súbory ?"
 
 #: ../quick-browser/data/messages:105
 msgid "Menu"
 msgstr "Menu"
 
 #: ../quick-browser/data/messages:107
-msgid "It can be quite heavy to load a lot of icons."
+msgid "It can be CPU intense to load a lot of icons."
 msgstr "To môže byť dosť ťažké spustiť tak veľa ikôn."
 
 #: ../quick-browser/data/messages:111
@@ -6494,20 +6476,20 @@ msgstr "veľký"
 
 #: ../quick-browser/data/messages:121
 msgid ""
-"Number of items loaded at once. Setting a high value speeds up a little the "
-"loading, but blocks the appli more."
+"Number of items loaded at once. Setting a high value speeds up loading a "
+"little but will hang the application for longer."
 msgstr ""
 
 #: ../quick-browser/data/messages:123
-msgid "Gradual building of the menu :"
+msgid "uild menu gradually:"
 msgstr "Postupné budovanie menu :"
 
 #: ../shortcuts/data/messages:95
-msgid "List drives and volumes ?"
+msgid "List drives and volumes?"
 msgstr "Zoznam jednotiek a zväzkov ?"
 
 #: ../shortcuts/data/messages:97
-msgid "List network ?"
+msgid "List networks?"
 msgstr "Zoznam sietí ?"
 
 #: ../shortcuts/data/messages:99
@@ -6515,11 +6497,11 @@ msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "GTK záložky, ktoré využíva napríklad Nautilus."
 
 #: ../shortcuts/data/messages:101
-msgid "List bookmarks ?"
+msgid "List bookmarks?"
 msgstr "Zoznam záložiek ?"
 
 #: ../shortcuts/data/messages:105
-msgid "Separate different shortcuts with separators ?"
+msgid "Separate different shortcuts with separators?"
 msgstr "Oddeliť rôzne odkazy oddeľovačmi ?"
 
 #: ../shortcuts/data/messages:111 ../stack/data/messages:101
@@ -6547,11 +6529,11 @@ msgid "Used space"
 msgstr "Použité miesto"
 
 #: ../shortcuts/data/messages:127
-msgid "Free space percent"
+msgid "Free space (in percent)"
 msgstr "Voľné miesto v percentách"
 
 #: ../shortcuts/data/messages:129
-msgid "Used space percent"
+msgid "Used space (in percent)"
 msgstr "Použité miesto v percentách"
 
 #: ../shortcuts/data/messages:131
@@ -6563,20 +6545,16 @@ msgid "Delay between disk usage refresh :"
 msgstr "Oneskorenie medzi obnovením využitia disku :"
 
 #: ../shortcuts/data/messages:135
-msgid "Display disk usage with a bar ?"
+msgid "Display disk usage with a bar?"
 msgstr "Zobraziť využitie disku s barom ?"
 
 #: ../show-mouse/data/messages:5
-msgid "In round per second."
+msgid "In rotations per second."
 msgstr "v otočení za sekundu."
 
 #: ../show-mouse/data/messages:9
-msgid "Show mouse on :"
+msgid "Show mouse on:"
 msgstr "Zobraziť myš na :"
-
-#: ../show-mouse/data/messages:11
-msgid "dock"
-msgstr "panel"
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -6587,7 +6565,7 @@ msgid "both"
 msgstr "oba"
 
 #: ../show-mouse/data/messages:21
-msgid "Particles life time :"
+msgid "Particle life time:"
 msgstr "Čas trvania častíc :"
 
 #: ../show-mouse/data/messages:23
@@ -6595,31 +6573,16 @@ msgid "In pixels."
 msgstr "v pixeloch."
 
 #: ../show-mouse/data/messages:33
-msgid "The higher, the more particles will scatter from their source."
+msgid ""
+"The higher the value, the more particles will scatter from their source."
 msgstr "Čím vyššia, tým viac sa častice rozptýlia od zdroja."
 
 #: ../show-mouse/data/messages:35
-msgid "Scattering :"
+msgid "Scattering:"
 msgstr "Rozptyl :"
 
-#: ../showDesklets/data/messages:11
-msgid "Image name to show desklets :"
-msgstr "Názov obrázku zobraziť desklety :"
-
-#: ../showDesklets/data/messages:15
-msgid "Image name to hide desklets :"
-msgstr "Názov obrázku skryť desklety :"
-
-#: ../showDesklets/data/messages:21
-msgid "Show/hide desklets that are on the widget layer too ?"
-msgstr ""
-
-#: ../showDesklets/data/messages:23
-msgid "Shortkey to show/hide the desklets :"
-msgstr "Klávesová skratka pre zobraziť/schovať desklety :"
-
 #: ../showDesktop/data/messages:13
-msgid "Let empty to use the same image."
+msgid "Leave empty to use the same image."
 msgstr "Ponechajte prázdne pre použitie rovnakého obrázku."
 
 #: ../showDesktop/data/messages:15
@@ -6628,14 +6591,14 @@ msgstr "Obrázok keď je applet aktívny :"
 
 #: ../showDesktop/data/messages:99 ../showDesktop/data/messages:113
 msgid ""
-"You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
-"Showing desktop and desklets can fail on some Window Manager, like Metacity."
+"You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
+"Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 msgstr ""
 "Musíte aktivovať rozšírenie dbus Compiz pre posledné 2 akcie. Zobrazenie "
 "plochu a deskletov môže zlyhať na niektorých správcoch okien, ako Metacity."
 
 #: ../showDesktop/data/messages:101
-msgid "Action on left-click :"
+msgid "Action on left-click:"
 msgstr "Akcia na ľavé kliknutie :"
 
 #: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
@@ -6655,47 +6618,47 @@ msgid "Expose all the desktops (Compiz)"
 msgstr "Vystavovať všetky počítače (Compiz)"
 
 #: ../showDesktop/data/messages:115
-msgid "Action on middle-click :"
+msgid "Action on middle-click:"
 msgstr "Akcia na stredné kliknutie :"
 
 #: ../showDesktop/data/messages:127
-msgid "Shortkey for the middle-click action :"
+msgid "Shortkey for the middle-click action:"
 msgstr "Klávesová skratka pre stredné kliknutie :"
 
 #: ../slider/data/messages:91
-msgid "Folder of the images :"
+msgid "Folder for the images:"
 msgstr "Priečinok s obrázkami :"
 
 #: ../slider/data/messages:93
-msgid "Scan in sub direcotries ?"
+msgid "Scan sub direcotries?"
 msgstr "Prehľadať v pod priečinkoch ?"
 
 #: ../slider/data/messages:95
-msgid "Randomly browse files ?"
+msgid "Randomly browse files?"
 msgstr "Náhodne prechádzať súbory ?"
 
 #: ../slider/data/messages:97
-msgid "Display image name as quickinfo ?"
+msgid "Display image name as quickinfo?"
 msgstr "Zobraziť názov obrázku ako rýchle info ?"
 
 #: ../slider/data/messages:99
 msgid ""
-"It will prevent the dock from freezing during the image loading, but does "
-"not work with cairo."
+"This will prevent the dock from freezing during image loading, but works "
+"only with OpenGL."
 msgstr ""
 "Môže ochrániť dock pred zamrznutím počas načítania obrázkov, ale nefunguje s "
 "cairo."
 
 #: ../slider/data/messages:101
-msgid "Use another thread to load the images ?"
+msgid "Use another thread to load images?"
 msgstr "Použiť iné vlákno na načítanie obrázkov ?"
 
 #: ../slider/data/messages:107
-msgid "Sliding delay :"
+msgid "Sliding delay:"
 msgstr "Omeškanie posunutia :"
 
 #: ../slider/data/messages:109
-msgid "Action when applet is clicked :"
+msgid "Action when applet is clicked:"
 msgstr "Akcia keď kliknem na appplet :"
 
 #: ../slider/data/messages:111
@@ -6707,7 +6670,7 @@ msgid "open image"
 msgstr "otvoriť obrázok"
 
 #: ../slider/data/messages:115
-msgid "Effect while changing image :"
+msgid "Effect while changing image:"
 msgstr "Efekt pri zmene obrázka :"
 
 #: ../slider/data/messages:119
@@ -6719,7 +6682,7 @@ msgid "blank fade"
 msgstr ""
 
 #: ../slider/data/messages:123
-msgid "fade in out"
+msgid "fade in/out"
 msgstr ""
 
 #: ../slider/data/messages:125
@@ -6727,7 +6690,7 @@ msgid "side kick"
 msgstr "kopnutie do boku"
 
 #: ../slider/data/messages:127
-msgid "diaporama"
+msgid "slideshow"
 msgstr ""
 
 #: ../slider/data/messages:129
@@ -6735,7 +6698,7 @@ msgid "grow up"
 msgstr "vyrásť"
 
 #: ../slider/data/messages:131
-msgid "shrink down"
+msgid "shrink"
 msgstr "zmenšiť"
 
 #: ../slider/data/messages:133
@@ -6747,7 +6710,7 @@ msgid "random"
 msgstr "náhodné"
 
 #: ../slider/data/messages:137
-msgid "Number of steps for a transition :"
+msgid "Number of steps for transitions:"
 msgstr "Počet krokov pri prechode :"
 
 #: ../slider/data/messages:139
@@ -6759,19 +6722,19 @@ msgid "slow"
 msgstr "pomaly"
 
 #: ../slider/data/messages:145
-msgid "Gives a better image rendering."
+msgid "Gives better image rendering."
 msgstr "Poskytuje lepšie vykresľovanie obrazu."
 
 #: ../slider/data/messages:147
-msgid "Keep widht/height ratio ?"
+msgid "Keep width/height ratio?"
 msgstr "Udržujte pomer šírka/výška ?"
 
 #: ../slider/data/messages:149
-msgid "If the image is too small, it will be zoomed in."
+msgid "If the image is too small, it will be stretched."
 msgstr "Ak je obraz príliš malý, bude priblížený."
 
 #: ../slider/data/messages:151
-msgid "Force the image to fill the icon/desklet ?"
+msgid "Force the image to fill the icon/desklet?"
 msgstr ""
 
 #: ../slider/data/messages:153
@@ -6781,27 +6744,23 @@ msgid ""
 msgstr "Nastavte transparentnosť kanála na 0 len ak nechcete mať pozadia."
 
 #: ../slider/data/messages:155
-msgid "Choose a background color :"
+msgid "Choose a background colour :"
 msgstr "Vyberte farbu pozadia :"
 
 #: ../stack/data/messages:7
-msgid "Let empty to use a default name"
+msgid "Leave empty to use a default name"
 msgstr "Nechajte prázdne pre použitie predvoleného názvu"
 
 #: ../stack/data/messages:107
 msgid "They are items created by dropping a text into the Stack."
 msgstr "Toto sú položky vytvorené pretiahnutím textu do zásobníka."
 
-#: ../stack/data/messages:109
-msgid "Image for the 'text' items :"
-msgstr "Obrázok pre položky 'text' :"
-
 #: ../stack/data/messages:111
-msgid "They are items created by dropping an URL into the Stack."
+msgid "These are items created by dropping a URL into the Stack."
 msgstr "Toto sú položky vytvorené pretiahnutím URL do zásobníka."
 
 #: ../stack/data/messages:113
-msgid "Image for the 'URL' items :"
+msgid "Image for 'URL' items:"
 msgstr "Obrázok pre 'URL' položky :"
 
 #: ../stack/data/messages:115
@@ -6810,26 +6769,26 @@ msgstr "Nastavenia"
 
 #: ../stack/data/messages:117
 msgid ""
-"This options allow you to avoid some files to be displayed in the stacks "
-"considering their types (video, images, etc...)"
+"These options allow you to prevent some files from displaying in stacks "
+"based on their type (video, image, etc.)"
 msgstr ""
 "Táto voľba vám umožní vyhnúť sa niektorým súborom, ktoré majú byť zobrazené "
 "v depozitárovi so zreteľom na ich typy (video, obrázky, atď ..)"
 
 #: ../stack/data/messages:119
-msgid "Filter files with their mime types ?"
+msgid "Filter files on MIME type?"
 msgstr "Filtrovanie súborov s typom mime?"
 
 #: ../stack/data/messages:121
-msgid "Eg: image, text, video, audio, application, ..."
+msgid "E.g. image, text, video, audio, application..."
 msgstr "Napr.: Obrázok, text, video, audio, aplikácie, ..."
 
 #: ../stack/data/messages:123
-msgid "Here you can specify a list of mime types to avoid :"
+msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "Tu môžete zadať zoznam mime typov, ktorým sa chcete vyhnúť :"
 
 #: ../stack/data/messages:125
-msgid "Sort items by :"
+msgid "Sort items by:"
 msgstr "Zoradiť položky podľa :"
 
 #: ../stack/data/messages:127
@@ -6849,46 +6808,47 @@ msgid "Manual order"
 msgstr "Manuálne zoradenie"
 
 #: ../stack/data/messages:135
+#, fuzzy
 msgid ""
-"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
-"+v clipboard"
+"It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+"clipboard"
 msgstr "Ide o výber myšou, protiklad k bežnej schránke ctrl+c/ctrl+v"
 
 #: ../stack/data/messages:137
-msgid "When copy/paste/cut, use the selection clipboard ?"
+msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr "Pri kopŕovať/vložiť/vystrinúť, použiť schránku ?"
 
 #: ../switcher/data/messages:87
 msgid ""
-"All the desktops will be drawn on the main icon. Otherwise a subdock will "
-"contain all the desktops."
+"All desktops will be drawn on the main icon. Otherwise a sub-dock will "
+"contain all desktops."
 msgstr ""
 "Všetky plochy sa zobrazia na hlavnej ikone. Inak bude subdock obsahovať "
 "všetky plochy."
 
-#: ../switcher/data/messages:89
-msgid "Use the compact mode ?"
-msgstr "Použiť kompaktný mód ?"
-
-#: ../switcher/data/messages:91
-msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#: ../switcher/data/messages:89 ../switcher/data/messages:91
+#, fuzzy
+msgid "Use the compact mode?"
 msgstr ""
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
+"Použiť kompaktný mód ?\n"
+"#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "Pri vykresľovaní v kompaktnom režime, sa snažiť zachovať pomer obrazovky?"
 
 #: ../switcher/data/messages:93
-msgid "Map the wallpaper on icon ?"
+msgid "Map wallpaper to icons?"
 msgstr "Mapa tapety na ikone ?"
 
 #: ../switcher/data/messages:95
-msgid "Show desktop number on the icons ?"
+msgid "Show desktop number on icons?"
 msgstr "Použiť číslo plochy na ikonách ?"
 
 #: ../switcher/data/messages:97
-msgid "Draw the windows on icon ?"
+msgid "Draw windows on icons?"
 msgstr "Vykresliť okná na ikone ?"
 
 #: ../switcher/data/messages:99
-msgid "Draw hidden windows too ?"
+msgid "Draw hidden windows?"
 msgstr "Vykresliť aj skryté okná ?"
 
 #: ../switcher/data/messages:101
@@ -6896,7 +6856,7 @@ msgid "Action on middle click :"
 msgstr "Akcia pri strednom kliknutí :"
 
 #: ../switcher/data/messages:103
-msgid "Show windows list"
+msgid "Show windows' list"
 msgstr "Zobraziť zoznam okien"
 
 #: ../switcher/data/messages:105
@@ -6917,31 +6877,31 @@ msgstr "Veľkosť vo vnútri riadkov:"
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:119
 #: ../switcher/data/messages:123 ../switcher/data/messages:127
-msgid "r, v, b, a"
-msgstr "r, v, b, a"
+msgid "r, g, b, a"
+msgstr "r, g, b, a"
 
 #: ../switcher/data/messages:115
-msgid "Color of the inside lines :"
+msgid "Internal line colour:"
 msgstr "Farba vnútri riadkov :"
 
 #: ../switcher/data/messages:117
-msgid "Size of the extern line :"
+msgid "External line size:"
 msgstr "Veľkosť externého okraja  :"
 
 #: ../switcher/data/messages:121
-msgid "Color of the extern line :"
+msgid "External line colour:"
 msgstr "Farba externého okraja  :"
 
 #: ../switcher/data/messages:125
-msgid "Color of the Windows line :"
+msgid "Window line colour:"
 msgstr "Farba okraja okien :"
 
 #: ../switcher/data/messages:129
-msgid "Color of the current desktop :"
+msgid "Current desktop colour:"
 msgstr "Farba súčasnej plochy :"
 
 #: ../switcher/data/messages:131
-msgid "How to draw the current desktop :"
+msgid "How to draw the current desktop:"
 msgstr "Ako vykresliť aktuálnu plochu :"
 
 #: ../switcher/data/messages:133
@@ -6957,23 +6917,19 @@ msgid "fill others"
 msgstr "vyplniť všetko"
 
 #: ../switcher/data/messages:141
-msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr "Ikona na použitie v rozšírenom režime, ak nemáte mapu tapety :"
 
 #: ../switcher/data/messages:147
-msgid "In expanded mode, render the desklet in 3D ?"
+msgid "In expanded mode, render the desklet in 3D?"
 msgstr "V rozšírenom režime vykresliť desklety v 3D?"
 
 #: ../systray/data/messages:7 ../terminal/data/messages:7
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Názov ikony, ako bude vyzerať jeho označenie v cairo-dock :"
 
-#: ../systray/data/messages:45 ../terminal/data/messages:91
-msgid "GUI"
-msgstr "Grafické"
-
 #: ../systray/data/messages:47
-msgid "Shortkey to toggle the systray in dock mode :"
+msgid "Shortkey to toggle the systray in dock mode:"
 msgstr "Klávesová skratka na prepínanie systray v dock režime :"
 
 #: ../systray/data/messages:49
@@ -6997,7 +6953,7 @@ msgid "needs to restart the applet."
 msgstr "je potrebné reštartovať applet."
 
 #: ../terminal/data/messages:97
-msgid "Terminal's transparency :"
+msgid "Terminal transparency:"
 msgstr "Priehľadnosť terminálov :"
 
 #: ../terminal/data/messages:99
@@ -7009,11 +6965,11 @@ msgid "opaque"
 msgstr "nepriehľadný"
 
 #: ../terminal/data/messages:103
-msgid "Foreground color :"
+msgid "Foreground colour:"
 msgstr "Farba popredia :"
 
 #: ../terminal/data/messages:105
-msgid "Background color :"
+msgid "Background colour:"
 msgstr "Farba pozadia :"
 
 #: ../terminal/data/messages:109
@@ -7025,35 +6981,31 @@ msgstr ""
 "deskletov ako zvyčajne."
 
 #: ../terminal/data/messages:111
-msgid "Size of the terminal (line x columns) :"
+msgid "Size of the terminal (line x columns):"
 msgstr "Veľkosť terminálu (riadky x stĺpce) :"
 
 #: ../terminal/data/messages:113
-msgid "Shortkey to show the terminal :"
+msgid "Shortkey to show the terminal:"
 msgstr "Klávesová skratka pre zobrazenie terminálu :"
 
 #: ../tomboy/data/messages:7
-msgid "Default title :"
+msgid "Default title:"
 msgstr "Predvolený názov :"
-
-#: ../tomboy/data/messages:19
-msgid "Name of an image for the 'close' icon :"
-msgstr "Názov obrázka pre ikonu 'zatvorený' :"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
 msgstr "Názov obrázka pre ikonu 'prázdny' :"
 
 #: ../tomboy/data/messages:113
-msgid "Draw note's content on their icon ?"
+msgid "Draw note's content on their icon?"
 msgstr "Nakresliť obsah poznámok na ich ikonu ?"
 
 #: ../tomboy/data/messages:115
-msgid "Text color of the content :"
+msgid "Text colour of the content :"
 msgstr "Farba textu obsahu :"
 
 #: ../tomboy/data/messages:117
-msgid "Display note's content with a dialog ?"
+msgid "Display note's content with a dialog?"
 msgstr "Zobraziť poznámky obsahujúce dialóg ?"
 
 #: ../tomboy/data/messages:125
@@ -7069,7 +7021,7 @@ msgid "Tomboy"
 msgstr "Tomboy"
 
 #: ../tomboy/data/messages:131
-msgid "Ask confirmation before deleting a note ?"
+msgid "Ask for confirmation before deleting a note?"
 msgstr "Vypýtať potvrdenie pred odstránením poznámky ?"
 
 #: ../tomboy/data/messages:133
@@ -7077,14 +7029,14 @@ msgid "Otherwise you will be asked to name it."
 msgstr "V opačnom prípade budete vyzvaní k jej pomenovaniu."
 
 #: ../tomboy/data/messages:135
-msgid "Automatically name a new note ?"
+msgid "Automatically name a new note?"
 msgstr "Automatický názov pre novú poznámku ?"
 
 #: ../tomboy/data/messages:137
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
-"digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+"digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
 "Napíšte formát dátumu, ktoré bežne používate v poznámkach. Syntax je jedným "
 "z 'strftime':%d pre deň, m% pre mesiac,%y pre rok  (2 číslice), atď. "
@@ -7106,15 +7058,11 @@ msgstr ""
 "ako je <<No marshaller for signature of signal 'NoteDeleted'>> v termináli."
 
 #: ../tomboy/data/messages:143
-msgid "Emulate the 'NoteDeleted' signal ?"
+msgid "Emulate the 'NoteDeleted' signal?"
 msgstr "Emulovať signál 'poznámka odstránená' ?"
 
-#: ../weather/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "Nastavte na 0   pre použitie predvolenej veľkosti apletu"
-
 #: ../weather/data/messages:7
-msgid "Let it empty to use the name of the city."
+msgid "Leave empty to use the name of the city."
 msgstr "Ponechajte prázdne pre použitie názvu mesta."
 
 #: ../weather/data/messages:93
@@ -7122,7 +7070,7 @@ msgid "Enter the name of your location in the text entry and press Enter."
 msgstr "Vložte názov vášho umiestnenia do textového poľa a stlačte Enter."
 
 #: ../weather/data/messages:95
-msgid "Code of your location :"
+msgid "Code for your location:"
 msgstr "Kód vášho umiestnenia :"
 
 #: ../weather/data/messages:97
@@ -7130,15 +7078,16 @@ msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 msgstr "Ak áno, stupne budú zobrazené v Celzia, inak vo Fahrenheit."
 
 #: ../weather/data/messages:99
-msgid "Use International System Units ?"
+msgid "Use International System Units?"
 msgstr "Použiť medzinárodné Jednotky ?"
 
 #: ../weather/data/messages:101
-msgid "in seconds. Set 0 to have never-ending dialogs."
+#, fuzzy
+msgid "in secondsconds. Set 0 to have never-ending dialogs."
 msgstr "v sekundách. Nastavte 0 pre nikdy nekončiace dialógy."
 
 #: ../weather/data/messages:103
-msgid "Duration of dialogs :"
+msgid "Dialog duration:"
 msgstr "Doba trvania dialógov :"
 
 #: ../weather/data/messages:105
@@ -7150,23 +7099,23 @@ msgid "Info"
 msgstr "Informácia"
 
 #: ../weather/data/messages:111
-msgid "Display current conditions on the icon instead of the default one ?"
+msgid "Display current conditions on the icon instead of the default one?"
 msgstr "Zobraziť aktuálne podmienky na ikone miesto predvolených ?"
 
 #: ../weather/data/messages:113
-msgid "Number of days you want to forecast :"
+msgid "Number of days to forecast:"
 msgstr "Počet dní, na ktoré chcete mať predpoveď :"
 
 #: ../weather/data/messages:115
-msgid "Display nights too ?"
+msgid "Display nights?"
 msgstr "Zobraziť aj nočné ?"
 
 #: ../weather/data/messages:117
-msgid "Display temperature as quick info ?"
+msgid "Display temperature as quick info?"
 msgstr "Zobraziť teplotu ako rýchle info ?"
 
 #: ../weather/data/messages:127
-msgid "Render desklet in 3D ?"
+msgid "Render desklet in 3D?"
 msgstr "Vykresliť desklet v 3D ?"
 
 #: ../weblets/data/messages:93
@@ -7174,11 +7123,11 @@ msgid "URI to load in weblet"
 msgstr ""
 
 #: ../weblets/data/messages:95
-msgid "Show scrollbars ?"
+msgid "Show scrollbars?"
 msgstr "Zobraziť vysúvací panel ?"
 
 #: ../weblets/data/messages:97
-msgid "Horizontal scroll of the browser in pixel"
+msgid "Horizontal scroll of the browser in pixels"
 msgstr "Zvislé vysunutie prehliadača v pixeloch"
 
 #: ../weblets/data/messages:99
@@ -7186,26 +7135,26 @@ msgid "Position of horizontal scrollbar"
 msgstr "Pozícia zvislého vysúvacieho panela ?"
 
 #: ../weblets/data/messages:101
-msgid "Vertical scroll of the browser in pixel"
+msgid "Vertical scroll of the browser in pixels"
 msgstr "Vodorovné vysunutie prehliadača v pixeloch"
 
 #: ../weblets/data/messages:103
+#, fuzzy
 msgid "Position of vertical scrollbar in pixel"
 msgstr "Pozícia vodorového vysúvacieho panela v pixeloch"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "To vám umožní pravé-kliknutie na desklety pre vyskakovacie okno Cairo-Dock "
 "menu."
 
 #: ../weblets/data/messages:107
-msgid "Right margin's width, in pixels :"
+msgid "Right margin width, in pixels:"
 msgstr "Šírka pravého okraja, v pixeloch:"
 
 #: ../weblets/data/messages:109
-msgid "Transparent background ?"
+msgid "Transparent background?"
 msgstr "Priehľadné pozadie ?"
 
 #: ../weblets/data/messages:111
@@ -7214,6 +7163,7 @@ msgid ""
 msgstr "Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
 
 #: ../weblets/data/messages:113
+#, fuzzy
 msgid "Time between two page refreshes"
 msgstr "Čas medzi obnovením dvoch stránok"
 
@@ -7222,31 +7172,31 @@ msgid "Any valid URI should work."
 msgstr "Akékoľvek platná URI by mala fungovať."
 
 #: ../weblets/data/messages:117
-msgid "Predefined bookmarks to show in applet's menu :"
+msgid "Predefined bookmarks to show in applet menu:"
 msgstr "Prednastavené záložky zobrazené v zozname appletov :"
 
 #: ../wifi/data/messages:139
-msgid "Name of an image for the 'no signal' icon :"
+msgid "'No signal' icon filename:"
 msgstr "Názov obrázky pre ikonu 'žiaden signál' :"
 
 #: ../wifi/data/messages:143
-msgid "Name of an image for the 'very low' icon :"
+msgid "'Very low' icon filename:"
 msgstr "Názov obrázky pre ikonu 'veľmi slabé' :"
 
 #: ../wifi/data/messages:147
-msgid "Name of an image for the 'low' icon :"
+msgid "'Low' icon filename:"
 msgstr "Názov obrázky pre ikonu 'slabé' :"
 
 #: ../wifi/data/messages:151
-msgid "Name of an image for the 'middle' icon :"
+msgid "'Average' icon filename:"
 msgstr "Názov obrázky pre ikonu 'stredné' :"
 
 #: ../wifi/data/messages:155
-msgid "Name of an image for the 'good' icon :"
+msgid "'Good' icon filename:"
 msgstr "Názov obrázky pre ikonu 'dobrý' :"
 
 #: ../wifi/data/messages:159
-msgid "Name of an image for the 'exellent' icon :"
+msgid "'Excellent' icon filename:"
 msgstr "Názov obrázky pre ikonu 'vynikajúci' :"
 
 #: ../wifi/data/messages:165
@@ -7255,8 +7205,8 @@ msgstr "Oneskorenie medzi skúškami signálu :"
 
 #: ../wifi/data/messages:171
 msgid ""
-"Allow you to overwrite applet's default command line and launch you wireless "
-"configuration interface."
+"Allow you to overwrite applet's default command line and launch your "
+"wireless configuration interface."
 msgstr ""
 "Umožňuje prepísať appletu predvolený príkazový riadok a začne sa "
 "konfigurácia bezdrôtových rozhraní."
@@ -7279,8 +7229,51 @@ msgid "Raw Signal Informations"
 msgstr "Oznámenia o čistote signálu"
 
 #: ../wifi/data/messages:187
-msgid "Overwrite the default label with the connection point name ?"
+msgid "Overwrite the default label with the connection point name?"
 msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"
+
+#~ msgid "showDesklets"
+#~ msgstr "zobraziťDesklety"
+
+#~ msgid ""
+#~ "This applet lets you access your desklets quickly.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you're running Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "Tento applet vám umožní rýchly prístup k vašim deskletom.\n"
+#~ "Ľavé tlačidlo pre zobrazenie/skrytie vašich deskletov.\n"
+#~ "V podstate, ak spustíte pod Compiz, nepotrebujete tento applet;\n"
+#~ " Tie by mali iba využiť možnosti ' Widget Layer'  deskletmi."
+
+#~ msgid "Location not found"
+#~ msgstr "Nemôžem nájsť umiestnenie"
+
+#, fuzzy
+#~ msgid "First colour of gradient:"
+#~ msgstr "Prvá farba postupného prechodu :"
+
+#, fuzzy
+#~ msgid "Second colour of gradient:"
+#~ msgstr "Druhá farba postupného prechodu :"
+
+#~ msgid "Alert limit of graphic card temperature:"
+#~ msgstr "Upozorniť na limit teploty jadra :"
+
+#~ msgid "Alert when battery low?"
+#~ msgstr "Upozornenie, keď je batéria slabá ?"
+
+#~ msgid "Alert when battery charge is critical?"
+#~ msgstr "Upozornenie, keď je stav batérie kritický ?"
+
+#~ msgid "Image name to show desklets :"
+#~ msgstr "Názov obrázku zobraziť desklety :"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Názov obrázku skryť desklety :"
+
+#~ msgid "Shortkey to show/hide the desklets :"
+#~ msgstr "Klávesová skratka pre zobraziť/schovať desklety :"
 
 #~ msgid "Characters"
 #~ msgstr "Znaky"

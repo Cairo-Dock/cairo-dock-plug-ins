@@ -26,19 +26,19 @@
 
 #define PENGUIN_NB_MESSAGES 13
 static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
-	N_("Hey, I'm here !"),
+	N_("Hey, I'm here!"),
 	N_("Sorry but I'm busy right now."),
 	N_("I don't have time to play with you, I have to dig and mine all these icons."),
-	N_("Your dock is so messy ! Let me clean it."),
-	N_("Admit my superiority on you as a penguin !"),
-	N_("Wait, do you want to kill me ?!"),
-	N_("Do you know how much painful it is to be clicked on ??"),
-	N_("It's my dock now, mwahahaha !"),
-	N_("I want to be a pirate !"),
-	N_("You shall not pass !"),
-	N_("I'm your father !"),
+	N_("Your dock is so messy! Let me clean it."),
+	N_("Admit my superiority on you as a penguin!"),
+	N_("Wait, do you want to kill me?!"),
+	N_("Do you know how painful it is to be clicked on??"),
+	N_("It's my dock now, mwahahaha!"),
+	N_("I want to be a pirate!"),
+	N_("You shall not pass!"),
+	N_("I'm your father!"),
 	N_("- Gee, Brain, what do you want to do tonight?\n- The same thing we do every night, Pinky : try to take over the Dock!"),
-	N_("For Aiur !")};
+	N_("For Aiur!")};
 
 
 CD_APPLET_ON_CLICK_PROTO
@@ -120,7 +120,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
-		GtkWidget *pModuleSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Hey, you there !"), CD_APPLET_MY_MENU);
+		GtkWidget *pModuleSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Hey, you there!"), CD_APPLET_MY_MENU);
 		//GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		if (penguin_is_resting (pAnimation))
 		{

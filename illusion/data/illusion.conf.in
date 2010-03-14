@@ -3,20 +3,20 @@
 #[gtk-preferences]
 [Global]
 
-#l+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on disappearance :
+#l+[Evaporate;Fade out;Explode;Break;Black Hole;Random] Animation on disappearance:
 disappearance = 2
 
-#l+[Evaporate;Fade out;Explode;Break;BlackHole;Random] Animation on appearance :
+#l+[Evaporate;Fade out;Explode;Break;Black Hole;Random] Animation on appearance:
 appearance = 4
 
 
 #[@illusiondatadir@/icon-evaporate.svg]
 [Evaporate]
 
-#I[100;5000] Duration of the animation :
+#I[100;5000] Duration of the animation:
 duration = 1000
 
-#F[Colors]
+#F[Colours]
 frame_col =
 
 #c 1st color of gradation :
@@ -25,67 +25,67 @@ color1 = 0;0.7;1
 #c 2nd color of gradation :
 color2 = 1;1;0
 
-#b+ Random colors ?
+#b+ Random colours?
 mystical = false
 
 #F[Particles]
 frame_part =
 
-#I[10;500] Number of particles :
+#I[10;500] Number of particles:
 nb part = 75
 
-#I[5;40] Particle size :
+#I[5;40] Particle size:
 part size = 6
 
-#e[0;10] Particle speed :
+#e[0;10] Particle speed:
 part speed = 3.
 
-#b+ Evaporate upward ?
+#b+ Evaporate upwards?
 from bottom = true
 
 
 #[@illusiondatadir@/icon-fade-out.svg]
 [Fade out]
 
-#I[100;5000] Duration of the animation :
+#I[100;5000] Duration of the animation:
 duration = 1000
 
 
 #[@illusiondatadir@/icon-explode.svg]
 [Explode]
 
-#I[100;5000] Duration of the animation :
+#I[100;5000] Duration of the animation:
 duration = 800
 
 #v
 sep =
 
-#i[4;100] Number of pieces :
+#i[4;100] Number of pieces:
 nb pieces = 49
 
-#e[1;10] Explosion radius :
+#e[1;10] Explosion radius:
 radius = 2
 
-#b Break the icon in cubes ?
+#b Break the icon into cubes?
 cubes = true
 
 
 #[@illusiondatadir@/icon-break.svg]
 [Break]
 
-#I[100;2000] Duration of the animation :
+#I[100;2000] Duration of the animation:
 duration = 650
 
 #v
 sep =
 
-#i[5;21] Number of pieces :
+#i[5;21] Number of pieces:
 nb pieces = 11
 
 #[@illusiondatadir@/icon-black-hole.svg]
 [Black Hole]
 
-#I[100;5000] Duration of the animation :
+#I[100;5000] Duration of the animation:
 duration = 1300
 
 #v
@@ -95,14 +95,14 @@ sep =
 #{in round per second.}
 omega = 1.5
 
-#I[0;10] Attraction of the hole :
-#{The greatest, the fastest the icon will collapse to the center.}
+#I[0;10] Attraction of the Black Hole:
+#{The greater, the faster the icon will collapse to the center.}
 attraction = 4
 
 #[@illusiondatadir@/icon-lightning.svg]
 #[Lightning]
 
-#I[500;5000] Duration of the animation :
+#I[500;5000] Duration of the animation:
 #duration = 3000
 
 #c Color 1 of the lightnings :
@@ -111,7 +111,7 @@ attraction = 4
 #c Color 2 of the lightnings :
 #color2 = 1;1;0
 
-#i[1;7] Number of sources :
+#i[1;7] Number of sources:
 #nb sources = 3
 
 #i[4;25] Number of control points :

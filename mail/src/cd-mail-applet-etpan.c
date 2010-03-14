@@ -398,9 +398,9 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			}
 
 			if (myData.iNbUnreadMails > 1)
-				g_string_append_printf( ttip_str, D_("You have %d new mails :"), myData.iNbUnreadMails);
+				g_string_append_printf( ttip_str, D_("You have %d new mails:"), myData.iNbUnreadMails);
 			else
-				g_string_append_printf( ttip_str, D_("You have a new mail :"));
+				g_string_append_printf( ttip_str, D_("You have a new mail:"));
 
 			if (myData.pMailAccounts != NULL)
 			{

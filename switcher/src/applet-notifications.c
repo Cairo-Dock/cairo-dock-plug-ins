@@ -238,7 +238,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
-			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current desktop to this desktop"),
+			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current Desktop to this Desktop"),
 				GTK_STOCK_JUMP_TO,
 				_cd_switcher_move_to_desktop,
 				pSubMenu,

@@ -2,11 +2,11 @@
 
 #[gtk-about]
 [Icon]
-#j+[0;128] Icon size when the penguin is not free :
+#j+[0;128] Icon size for busy penguin:
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#s Name of the icon when the penguin is not free :
+#s Icon name for busy penguin:
 name = Tux
 
 #d Name of the dock it belongs to:
@@ -22,19 +22,19 @@ handbook=Cairo-Penguin
 
 #[gtk-preferences]
 [Configuration]
-#h+[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@;Cairo-Penguin] Choose one of the available themes :/
+#h+[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@;Cairo-Penguin] Choose one of the available themes:/
 theme = Classic
 
 #i Delay between animation changes :
-#{in seconds}
+#{in secondsconds.
 change delay = 8
 
-#e[0;1] Transparency of the penguin :
+#e[0;1] Penguin transparency:
 alpha = 1.
 
-#B Let the penguin wander everywhere in the dock ?
+#B Let the penguin wander everywhere in the dock?
 free = true
 
-#i+[0;50] Ground offset :
+#i+[0;50] Ground offset:
 #{in pixels.}
 ground = 0

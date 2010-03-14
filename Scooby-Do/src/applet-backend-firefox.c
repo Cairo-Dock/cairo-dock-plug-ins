@@ -433,7 +433,7 @@ static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries)
 	{
 		pSubEntry = g_new0 (CDEntry, 1);
 		pSubEntry->cPath = sAllUrls->str;
-		pSubEntry->cName = g_strdup (D_("Open all"));
+		pSubEntry->cName = g_strdup (D_("Open file"));
 		pSubEntry->cIconName = g_strdup (GTK_STOCK_OPEN);
 		pSubEntry->fill = cd_do_fill_default_entry;
 		pSubEntry->execute = _cd_do_launch_all_url;

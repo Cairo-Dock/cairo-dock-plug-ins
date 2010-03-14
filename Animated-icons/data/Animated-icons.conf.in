@@ -3,86 +3,86 @@
 #[gtk-preferences]
 [Global]
 
-#F-[when hovering an icon]
+#F-[when hovering over an icon]
 #{Animations are triggered when hovering an icon only in OpenGL mode.}
 frame_hov =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used:
 hover effects = 1
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on launcher :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on launcher:
 click launchers = 0
 
-#i+[1;5] Number of time the animation will play :
+#i+[1;5] Number of times the animation will play:
 nb rounds launchers = 1
 
-#F-[when clicking on an appli]
+#F-[when clicking on an application]
 frame_appli =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applis :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applications:
 click applis = 0
 
-#i+[1;5] Number of time the animation will play :
+#i+[1;5] Number of times the animation will play:
 nb rounds applis = 1
 
 #F-[when clicking on an applet]
 frame_applet =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applets :
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave] Effects used on applets:
 click applets = 0
 
-#i+[1;5] Number of time the animation will play :
+#i+[1;5] Number of times the animation will play:
 nb rounds applets = 1
 
 
 #[@animated_iconsdatadir@/icon-rotation.png]
 [Rotation]
 
-#I+[100;5000] Duration of the animation :
+#I+[100;5000] Duration of the animation:
 #{In ms.}
 duration = 1500
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false
 
 #v
 sep =
 
-#l+ [Normal;Cube;Capsule] Type of mesh :
+#l+ [Normal;Cube;Capsule] Type of mesh:
 mesh = 1
 
-#C Color of the sheen :
+#C Colour of the sheen:
 color = 1;1;1;1
 
 
 #[@animated_iconsdatadir@/spot.png]
 [Spot]
 
-#I+[100;5000] Duration of the animation :
+#I+[100;5000] Duration of the animation:
 #{In ms.}
 duration = 1000
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = true
 
 #F-[Spot;gtk-dialog-info]
 frame_spot =
 
-#S+ Image for the spot :
-#{Let empty to use the default one.}
+#S+ Image for the spotlight:
+#{Leave empty to use the default one.}
 spot image =
 
-#S+ Image for the front spot :
-#{Let empty to use the default one.}
+#S+ Image for the front spotlight:
+#{Leave empty to use the default one.}
 spot front image =
 
-#c color of the spot :
+#c Spot colour:
 spot-color = 1;1;1
 
-#C color of the halo :
+#C Halo colour:
 halo-color = 1;1;1
 
 #F-[Rays;gtk-fullscreen]
@@ -94,101 +94,101 @@ color1 = 0,675;1;1
 #c 2nd color of gradation :
 color2 = 1;1;0
 
-#b+ Random colors ?
+#b+ Random colours?
 mystical = false
 
-#I+[0;500] Number of rays :
+#I+[0;500] Number of rays:
 nb part = 100
 
-#I+[10;60] Rays size :
+#I+[10;60] Ray size:
 part size = 20
 
-#e+[2;15] Rays speed :
+#e+[2;15] Ray speed:
 part speed = 10
 
 
 #[@animated_iconsdatadir@/icon-wobbly.png]
 [Wobbly]
 
-#l+[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch :
+#l+[Horizontal stretch;Vertical stretch;Corner stretch] Initial stretch:
 stretch = 0
 
-#i+[200;350] Spring constant :
+#i+[200;350] Spring constant:
 spring cst = 300
 
-#e+[7;12] Friction :
+#e+[7;12] Friction:
 friction = 8
 
-#I+[2;20] Number of points on the grid in one direction :
+#I+[2;20] Number of points on the grid in each direction:
 grid nodes = 10
 
 
 #[@animated_iconsdatadir@/icon-wave.png]
 [Wave]
 
-#I+[100;1000] Duration of the animation :
+#I+[100;1000] Duration of the animation:
 #{In ms.}
 duration = 290
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false
 
 #v
 sep =
 
-#e+[0.1;2] Width of the wave :
+#e+[0.1;2] Wave width:
 width = 1.7
 
-#e+[0.01;.4] Amplitude of the wave :
+#e+[0.01;.4] Wave amplitude:
 amplitude = .14
 
 
 #[@animated_iconsdatadir@/icon-pulse.png]
 [Pulse]
 
-#I+[100;1000] Duration of the pulse :
+#I+[100;1000] Pulse duration:
 #{In ms.}
 duration = 500
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false
 
 #v
 sep =
 
-#e+[1.2;4] Zoom max of the pulse :
+#e+[1.2;4] Pulse max zoom:
 zoom = 2
 
-#b+ Should the pulse follow the shape of the icon ?
+#b+ Pulse follows icon shape?
 same shape = true
 
 
 #[@animated_iconsdatadir@/icon-bounce.png]
 [Bounce]
 
-#I+[100;1000] Duration of the bounce :
+#I+[100;1000] Bounce duration:
 #{In ms.}
 duration = 800
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false
 
 #v
 sep =
 
-#e+[.4;1] When bouncing, resize the icon of :
+#e+[.4;1] When bouncing, resize the icon by:
 resize = .8
 
-#e+[.2;1] How much the icon will flatten when hurting the ground :
-#{the smaller, the more it will flatten.}
+#e+[.2;1] How much the icon will flatten when hitting the ground:
+#{the lower the value, the more it will flatten.}
 flatten = .4
 
 #[@animated_iconsdatadir@/icon-blink.png]
 [Blink]
 
-#I+[100;2000] Duration of the blink :
+#I+[100;2000] Blink duration:
 #{In ms.}
 duration = 800
 
-#b+ Repeat while icon is pointed ?
+#b+ Repeat while icon is pointed to?
 continue = false

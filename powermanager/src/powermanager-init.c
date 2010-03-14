@@ -31,7 +31,7 @@
 CD_APPLET_DEFINITION ("PowerManager",
 	2, 0, 6,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("A power manager for laptop's battery. It works with ACPI and DBus."),
+	N_("A power manager for laptop batteries. Works with ACPI and DBus."),
 	"Necropotame (Adrien Pilleboue)")
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)

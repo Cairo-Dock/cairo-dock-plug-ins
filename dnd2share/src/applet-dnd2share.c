@@ -283,7 +283,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	{
 		cd_warning ("Please wait the current upload is finished before starting a new one.");
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Please wait the current upload is finished before starting a new one."),
+		cairo_dock_show_temporary_dialog_with_icon (D_("Please wait for the current upload to finish before starting a new one."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,

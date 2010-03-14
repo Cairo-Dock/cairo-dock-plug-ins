@@ -61,7 +61,7 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 		// on recupere le nouveau flux.
 		CDRssItem *pItem = g_new0 (CDRssItem, 1);  // on commence au debut de la liste (c'est le titre).
 		myData.pItemList = g_list_prepend (myData.pItemList, pItem);
-		pItem->cTitle = g_strdup (D_("Retrieving data ..."));
+		pItem->cTitle = g_strdup (D_("Retrieving data..."));
 		myData.bInit = FALSE;
 		myData.bError = FALSE;
 		
@@ -119,7 +119,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 		
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag'n'drop)"), GTK_STOCK_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag and drop)"), GTK_STOCK_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
 	
 	if (myConfig.cUrl != NULL) // On ajoute une entrée dans le menu SI il y a une url seulement
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);	
