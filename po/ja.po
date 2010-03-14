@@ -4,7 +4,17 @@
 # Fabrice Rey <fabounet@glx-dock.org>, 2007.
 #
 msgid ""
-msgstr "Project-Id-Version: 1.0.0\nReport-Msgid-Bugs-To: fabounet@glx-dock.org\nPO-Revision-Date: 2010-02-13 12:24+0000\nLast-Translator: kawaji <jiro.kawada@gmail.com>\nLanguage-Team: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Launchpad-Export-Date: 2010-02-14 05:03+0000\nX-Generator: Launchpad (build Unknown)\n"
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"PO-Revision-Date: 2010-02-13 12:24+0000\n"
+"Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-14 05:03+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -56,8 +66,17 @@ msgid "Spot"
 msgstr "スポット"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
-msgid "Add a lively Penguin in your dock!\nLeft click to change the animation,\nMiddle-click to annoy him ^_^\nTux images are taken from Pingus, some other characters are available or can be added easily."
-msgstr "ドックに動くペンギンを追加！\n左クリックでアニメーションの変更。\n中クリックでペンギンにちょっかい。^_^\nTux 画像は Pingus から取得したもの。他のキャラクタを使用したり、簡単に追加す"
+msgid ""
+"Add a lively Penguin in your dock!\n"
+"Left click to change the animation,\n"
+"Middle-click to annoy him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+"ドックに動くペンギンを追加！\n"
+"左クリックでアニメーションの変更。\n"
+"中クリックでペンギンにちょっかい。^_^\n"
+"Tux 画像は Pingus から取得したもの。他のキャラクタを使用したり、簡単に追加す"
 "ることも可能です。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
@@ -69,8 +88,10 @@ msgid "Sorry but I'm busy right now."
 msgstr "申し訳ないが今ちょうど忙しいんで。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
-msgid "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "君に付き合ってる暇なんかないよ。ここいらのアイコンを全部掘ったり埋めたりしな"
+msgid ""
+"I don't have time to play with you, I have to dig and mine all these icons."
+msgstr ""
+"君に付き合ってる暇なんかないよ。ここいらのアイコンを全部掘ったり埋めたりしな"
 "きゃいかんから。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
@@ -106,8 +127,12 @@ msgid "I'm your father!"
 msgstr "私がお前の父親なのだ！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
-msgid "- What will we do tonight Cortex?\n- The same thing as every other nights, Minus. Try to take over the Dock!"
-msgstr "- ねぇ、ブレイン。今夜は何するの？\n- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
+msgid ""
+"- What will we do tonight Cortex?\n"
+"- The same thing as every other nights, Minus. Try to take over the Dock!"
+msgstr ""
+"- ねぇ、ブレイン。今夜は何するの？\n"
+"- いつもと同じさ、ピンキー。ドック征服を狙うのさ！"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
@@ -143,19 +168,40 @@ msgid "No items yet."
 msgstr "アイテムはまだ有りません。"
 
 #: ../Clipper/src/applet-init.c:32
-msgid "This applet keeps a trace of the clipboard and mouse selection,\nso that you can recall them quickly. It's a clone of the well-known Klipper.\nIt supports clipboard and mouse selection, predefined actions, and persistent items.\nLeft-click to popup the clipboard and mouse selection history,\nDrop text on the icon to create persistent items, and middle-click to recall them."
-msgstr "クリップボードとマウスによる選択を監視して、\nそれらを素早く呼び出せるようにするアプレット。有名な Klipper のクローンで"
-"す。\nクリップボードやマウス・セレクション、既定のアクション、定形文アイテムに対応"
-"しています。\n左クリックでクリップボードとマウス・セレクション履歴のポップアップ、\nテキストをアイコンにドロップすると定形文アイテムを作成、中クリックでそれらを"
+msgid ""
+"This applet keeps a trace of the clipboard and mouse selection,\n"
+"so that you can recall them quickly. It's a clone of the well-known "
+"Klipper.\n"
+"It supports clipboard and mouse selection, predefined actions, and "
+"persistent items.\n"
+"Left-click to popup the clipboard and mouse selection history,\n"
+"Drop text on the icon to create persistent items, and middle-click to recall "
+"them."
+msgstr ""
+"クリップボードとマウスによる選択を監視して、\n"
+"それらを素早く呼び出せるようにするアプレット。有名な Klipper のクローンで"
+"す。\n"
+"クリップボードやマウス・セレクション、既定のアクション、定形文アイテムに対応"
+"しています。\n"
+"左クリックでクリップボードとマウス・セレクション履歴のポップアップ、\n"
+"テキストをアイコンにドロップすると定形文アイテムを作成、中クリックでそれらを"
 "呼び出します。"
 
 #: ../Clipper/src/applet-notifications.c:99
-msgid "No persistent items.\nYou can add some by drag and dropping some text on the icon."
-msgstr "定形文の登録アイテムは有りません。\nテキストをアイコン上にドラッグ＆ドロップして追加することが可能です。"
+msgid ""
+"No persistent items.\n"
+"You can add some by drag and dropping some text on the icon."
+msgstr ""
+"定形文の登録アイテムは有りません。\n"
+"テキストをアイコン上にドラッグ＆ドロップして追加することが可能です。"
 
 #: ../Dbus/src/applet-init.c:31
-msgid "This plug-in lets external applications interact with the dock.\nThe communication between both sides is based on Dbus"
-msgstr "外部アプリケーションからドックとやり取りできるようにするためのプラグイン。\n両者の間の通信は Dbus に基づきます。"
+msgid ""
+"This plug-in lets external applications interact with the dock.\n"
+"The communication between both sides is based on Dbus"
+msgstr ""
+"外部アプリケーションからドックとやり取りできるようにするためのプラグイン。\n"
+"両者の間の通信は Dbus に基づきます。"
 
 #: ../Dbus/src/interface-applet-signals.c:408
 msgid "About this applet"
@@ -177,7 +223,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully installed and automatically launched"
+msgid ""
+"The applet '%s' has been succefully installed and automatically launched"
 msgstr ""
 
 #: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:56
@@ -185,13 +232,17 @@ msgstr ""
 msgid "day(s)"
 msgstr "日"
 
-#: ../Doncky/src/applet-init.c:37
-#, fuzzy
+#: ../show-mouse/data/messages:11
 msgid "dock"
 msgstr "ドック"
 
 #: ../Doncky/src/applet-init.c:40
-msgid "This applet allows you to write texts and monitor your system\nwith a \"text style desklet\".\nUSAGE:\n  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n  - Middle-clic to reload values"
+msgid ""
+"This applet allows you to write texts and monitor your system\n"
+"with a \"text style desklet\".\n"
+"USAGE:\n"
+"  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
+"  - Middle-clic to reload values"
 msgstr ""
 
 #: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
@@ -207,8 +258,18 @@ msgid "Mb"
 msgstr "Mb"
 
 #: ../GMenu/src/applet-init.c:33
-msgid "Displays the common Applications menu and the Recently used files.\nIt is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\nMiddle-click to open a dialog to quickly launch any command (you can set up a shortkey for it, like ALT+F2)\nYou can also set up a shortkey to pop up the menu (like ALT+F1)"
-msgstr "一般的なアプリケーションメニューと最近使用したファイルを表示します。\nXDG に準拠したメニュー (Gnome, XFCE, KDE, ...) と互換性があります。\n中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 のようなショートキーも設定可能）。\nメニューをポップアップさせるショートキー（ALT+F1 のような)を設定することがで"
+msgid ""
+"Displays the common Applications menu and the Recently used files.\n"
+"It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
+"Middle-click to open a dialog to quickly launch any command (you can set up "
+"a shortkey for it, like ALT+F2)\n"
+"You can also set up a shortkey to pop up the menu (like ALT+F1)"
+msgstr ""
+"一般的なアプリケーションメニューと最近使用したファイルを表示します。\n"
+"XDG に準拠したメニュー (Gnome, XFCE, KDE, ...) と互換性があります。\n"
+"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 "
+"のようなショートキーも設定可能）。\n"
+"メニューをポップアップさせるショートキー（ALT+F1 のような)を設定することがで"
 "きます。"
 
 #: ../GMenu/src/applet-notifications.c:147
@@ -297,8 +358,12 @@ msgid "Wired connection"
 msgstr "有線接続回線"
 
 #: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
-msgid "Checking connection...\nPlease retry in a few seconds"
-msgstr "接続をチェックしています…\n数秒後に再試行してください。"
+msgid ""
+"Checking connection...\n"
+"Please retry in a few seconds"
+msgstr ""
+"接続をチェックしています…\n"
+"数秒後に再試行してください。"
 
 #: ../Network-Monitor/src/applet-draw.c:131
 msgid "Wired Connection."
@@ -343,9 +408,21 @@ msgid "Network-Monitor"
 msgstr "ネットワーク・モニタ"
 
 #: ../Network-Monitor/src/applet-init.c:34
-msgid "This applet allows you to monitor your network connection(s).\nIt can display the download/upload speeds as well as the wifi signal quality.\nIf you have network-manager running, it can also let you choose the current wifi network.\nLeft-click to display some info,Scroll on the icon to switch the display between net speed and wifi."
-msgstr "ネットワーク接続を監視するためのアプレット。\nダウンロード/アップロード速度や WiFi 信号の強さを表示できます。\nネットワーク・マネージャを現在稼働させている場合は、WiFi ネットワークの接続先"
-"の選択も可能です。\nアイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と WiFi との表示の切り替えを行います。"
+msgid ""
+"This applet allows you to monitor your network connection(s).\n"
+"It can display the download/upload speeds as well as the wifi signal "
+"quality.\n"
+"If you have network-manager running, it can also let you choose the current "
+"wifi network.\n"
+"Left-click to display some info,Scroll on the icon to switch the display "
+"between net speed and wifi."
+msgstr ""
+"ネットワーク接続を監視するためのアプレット。\n"
+"ダウンロード/アップロード速度や WiFi 信号の強さを表示できます。\n"
+"ネットワーク・マネージャを現在稼働させている場合は、WiFi ネットワークの接続先"
+"の選択も可能です。\n"
+"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と "
+"WiFi との表示の切り替えを行います。"
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -412,8 +489,26 @@ msgid "RSSreader"
 msgstr "RSS リーダー"
 
 #: ../RSSreader/src/applet-init.c:34
-msgid "This applet is an RSS/Atom feed reader.\nYou can instanciate it as many times as you want.\nUSAGE:\n - Left-click : display the complete feed lines in a dialog.\n - Middle-click : refresh the feed.\n - Scroll on the desklet : make the feed lines scroll.\n - Drag and drop a valid URL on the icon to use it,\n    or copy it and use \"Paste a new RSS Url\" in the menu.\n    or edit the Configuration Panel."
-msgstr "RSS/Atom フィード・リーダー機能を提供するアプレット。\n任意の数だけアプレットを同時起動させることができます。\n利用法:\n - 左クリック : ダイアログにすべてのフィード・ラインを表示。\n - 中クリック : フィードの更新。\n - デスクレット上でのスクロール : フィード・ラインをスクロール。\n  - URL を使用するにはアイコン上にドラッグ＆ドロップするか、\n    コピーしてメニューにある「新しい RSS URL を貼り付け」を使用したり、\n    設定パネルで編集します。"
+msgid ""
+"This applet is an RSS/Atom feed reader.\n"
+"You can instanciate it as many times as you want.\n"
+"USAGE:\n"
+" - Left-click : display the complete feed lines in a dialog.\n"
+" - Middle-click : refresh the feed.\n"
+" - Scroll on the desklet : make the feed lines scroll.\n"
+" - Drag and drop a valid URL on the icon to use it,\n"
+"    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+"    or edit the Configuration Panel."
+msgstr ""
+"RSS/Atom フィード・リーダー機能を提供するアプレット。\n"
+"任意の数だけアプレットを同時起動させることができます。\n"
+"利用法:\n"
+" - 左クリック : ダイアログにすべてのフィード・ラインを表示。\n"
+" - 中クリック : フィードの更新。\n"
+" - デスクレット上でのスクロール : フィード・ラインをスクロール。\n"
+"  - URL を使用するにはアイコン上にドラッグ＆ドロップするか、\n"
+"    コピーしてメニューにある「新しい RSS URL を貼り付け」を使用したり、\n"
+"    設定パネルで編集します。"
 
 #: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
@@ -461,12 +556,25 @@ msgid "This RSS feed has been modified..."
 msgstr "この RSS フィードは更新されています…"
 
 #: ../RSSreader/src/applet-rss.c:716
-msgid "No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the RL\n in the menu."
-msgstr "URL が指定されていません。\nURL をクリップボードにコピーして、\nメニューにある「URL を貼り付け」を選択することで指定できます。"
+msgid ""
+"No URL is defined\n"
+"You can define one by copying the URL in the clipboard,\n"
+" and selecting \"Paste the RL\n"
+" in the menu."
+msgstr ""
+"URL が指定されていません。\n"
+"URL をクリップボードにコピーして、\n"
+"メニューにある「URL を貼り付け」を選択することで指定できます。"
 
 #: ../RSSreader/src/applet-rss.c:722
-msgid "No data\nDid you set a valid RSS feed?\nIs your connection alive?"
-msgstr "データなし\n有効な RSS フィードを設定しましたか？\n回線に接続していますか？"
+msgid ""
+"No data\n"
+"Did you set a valid RSS feed?\n"
+"Is your connection alive?"
+msgstr ""
+"データなし\n"
+"有効な RSS フィードを設定しましたか？\n"
+"回線に接続していますか？"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -525,8 +633,7 @@ msgstr "開く"
 msgid "Open in new window"
 msgstr "新しいウィンドウで開く"
 
-#: ../Scooby-Do/src/applet-backend-firefox.c:436
-#, fuzzy
+#: ../dnd2share/src/applet-notifications.c:460
 msgid "Open file"
 msgstr "ファイルを開く"
 
@@ -563,7 +670,32 @@ msgid "Amazon"
 msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:39
-msgid "This plug-in allows you to make different actions directly from the keyboard.\nIt has 2 modes, each one being triggered by a keyboard shortcut:\n\n- the finder mode (default shortcut : CTRL + Enter) :\n    It lets you find and launch applications, files, recent files, firefox bookmarks, commands, and even calculations.\n    Type what you want to search, the results will be displayed in real time.\n    The first results of each category are displayed in the main listing.\n    Use the up/down arrows to navigate inside the list,\n    and use the left/right arrows to enter into a category, or to display more actions (when a little arrow is drawn next to text).\n    Once inside a category, you can filter the results by typing some letters.\n    Press Enter to validate, maintain SHIFT or ALT to keep the list of results opened.\n\n- the navigation mode (default shortcut : CTRL + F9) :\n    use the arrows to navigate into the docks and sub-docks,\n    or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\nEscape or the same shortkey will cancel."
+msgid ""
+"This plug-in allows you to make different actions directly from the "
+"keyboard.\n"
+"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+"\n"
+"- the finder mode (default shortcut : CTRL + Enter) :\n"
+"    It lets you find and launch applications, files, recent files, firefox "
+"bookmarks, commands, and even calculations.\n"
+"    Type what you want to search, the results will be displayed in real "
+"time.\n"
+"    The first results of each category are displayed in the main listing.\n"
+"    Use the up/down arrows to navigate inside the list,\n"
+"    and use the left/right arrows to enter into a category, or to display "
+"more actions (when a little arrow is drawn next to text).\n"
+"    Once inside a category, you can filter the results by typing some "
+"letters.\n"
+"    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+"results opened.\n"
+"\n"
+"- the navigation mode (default shortcut : CTRL + F9) :\n"
+"    use the arrows to navigate into the docks and sub-docks,\n"
+"    or type the name of a launcher and press Tab to automatically jump to "
+"the next suitable launcher\n"
+"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+"for middle click, and Ctrl+Enter for left click\n"
+"Escape or the same shortkey will cancel."
 msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:512
@@ -621,23 +753,41 @@ msgid "StatusNotifier"
 msgstr ""
 
 #: ../StatusNotifier/src/applet-init.c:34 ../template/src/applet-init.c:33
-msgid "Useful description\nand manual"
-msgstr "有用な説明と\nマニュアル"
+msgid ""
+"Useful description\n"
+"and manual"
+msgstr ""
+"有用な説明と\n"
+"マニュアル"
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
 msgstr "システム・モニタ"
 
 #: ../System-Monitor/src/applet-init.c:33
-msgid "This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\nMiddle click on the icon to get some valuable info.\nLeft click on the icon to get a list of the most resources using programs.\nYou can instantiate this applet several times to show different values each time."
-msgstr "CPU の負荷や RAM 使用率、グラフィックカードの温度などを表示するアプレット。\nアイコンの中クリックで情報表示、\nアイコンの左クリックでリソースを最も使用しているプログラムのリストを表示しま"
-"す。\nアプレットを複数起動させて、モニター対象をそれぞれ別にした表示をさせることも"
+msgid ""
+"This applet shows you the CPU load, RAM usage, graphic card temperature, "
+"etc.\n"
+"Middle click on the icon to get some valuable info.\n"
+"Left click on the icon to get a list of the most resources using programs.\n"
+"You can instantiate this applet several times to show different values each "
+"time."
+msgstr ""
+"CPU の負荷や RAM 使用率、グラフィックカードの温度などを表示するアプレット。\n"
+"アイコンの中クリックで情報表示、\n"
+"アイコンの左クリックでリソースを最も使用しているプログラムのリストを表示しま"
+"す。\n"
+"アプレットを複数起動させて、モニター対象をそれぞれ別にした表示をさせることも"
 "できます。"
 
 #: ../System-Monitor/src/applet-notifications.c:43
 #: ../System-Monitor/src/applet-notifications.c:93
-msgid "The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."
-msgstr "１個以上のデータの取得に失敗しました。\n取得できなかったデータを削除する必要があります。"
+msgid ""
+"The acquisition of one or more data has failed.\n"
+"You should remove the data that couldn't be fetched."
+msgstr ""
+"１個以上のデータの取得に失敗しました。\n"
+"取得できなかったデータを削除する必要があります。"
 
 #: ../System-Monitor/src/applet-notifications.c:49
 msgid "Gb"
@@ -705,8 +855,19 @@ msgid "This applet displays a toon that will look at your mouse."
 msgstr "マウスを見続ける漫画絵を表示するアプレット"
 
 #: ../Xgamma/src/applet-init.c:43
-msgid "Setup the luminosity of your screen directly from your dock.\nScroll up/down to increase/decrease the luminosity\nLeft-click to open a dialog to setup the luminosity\nMiddle-click to set it up for each color.\nYou can also define a luminosity value that will be applied automatically on startup."
-msgstr "ドックからスクリーンの明るさを直接設定。\n上下のスクロールで明るさの上げ下げ、\n左クリックで明るさを設定するダイアログを開き、\n中クリックで各色ごとの設定を行います。\nスタートアップ時に自動的に適用する明るさの値を設定することも可能です。"
+msgid ""
+"Setup the luminosity of your screen directly from your dock.\n"
+"Scroll up/down to increase/decrease the luminosity\n"
+"Left-click to open a dialog to setup the luminosity\n"
+"Middle-click to set it up for each color.\n"
+"You can also define a luminosity value that will be applied automatically on "
+"startup."
+msgstr ""
+"ドックからスクリーンの明るさを直接設定。\n"
+"上下のスクロールで明るさの上げ下げ、\n"
+"左クリックで明るさを設定するダイアログを開き、\n"
+"中クリックで各色ごとの設定を行います。\n"
+"スタートアップ時に自動的に適用する明るさの値を設定することも可能です。"
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
@@ -721,10 +882,23 @@ msgid "AlsaMixer"
 msgstr "Alsa ミキサー"
 
 #: ../alsaMixer/src/applet-init.c:34
-msgid "This applet lets you control the sound volume from the dock.\nScroll up/down on the icon to increase/decrease the volume.\nClick on icon to show/hide volume control (you can bind a keyboard shortcut for it)\nYou can also hide the dialog by clicking on it.\nMiddle-click to mute/unmute, double-click to raise the channels mixer.\nThis applet works with the Alsa sound driver."
-msgstr "ドックから音量制御を行うためのアプレット。\nアイコン上での上下スクロールで音量の上げ下げ、\nアイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの"
-"割り当て可能）、\nダイアログを隠すには当該ダイアログをクリックします。\n中クリックでミュートとその解除、ダブルクリックでチャンネルミキサーを呼び出し"
-"ます。\nこのアプレットは、Alsa サウンド・ドライバに対して働きます。"
+msgid ""
+"This applet lets you control the sound volume from the dock.\n"
+"Scroll up/down on the icon to increase/decrease the volume.\n"
+"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
+"for it)\n"
+"You can also hide the dialog by clicking on it.\n"
+"Middle-click to mute/unmute, double-click to raise the channels mixer.\n"
+"This applet works with the Alsa sound driver."
+msgstr ""
+"ドックから音量制御を行うためのアプレット。\n"
+"アイコン上での上下スクロールで音量の上げ下げ、\n"
+"アイコンのクリックで、音量コントロールを表示/隠す（キーボードショートカットの"
+"割り当て可能）、\n"
+"ダイアログを隠すには当該ダイアログをクリックします。\n"
+"中クリックでミュートとその解除、ダブルクリックでチャンネルミキサーを呼び出し"
+"ます。\n"
+"このアプレットは、Alsa サウンド・ドライバに対して働きます。"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -754,8 +928,14 @@ msgstr "ミキサーを読み込めません"
 
 #: ../alsaMixer/src/applet-mixer.c:137
 #, c-format
-msgid "I couldn't find any audio channel named '%s'\nYou should try to open the configuration panel of the applet,\n and select the proper audio channel you want to control."
-msgstr "'%s' という名のオーディオ・チャンネルを見つけられませんでした。\nアプレットの設定パネルを開いて、\n制御したいオーディオ・チャンネルを正しく選択してください。"
+msgid ""
+"I couldn't find any audio channel named '%s'\n"
+"You should try to open the configuration panel of the applet,\n"
+" and select the proper audio channel you want to control."
+msgstr ""
+"'%s' という名のオーディオ・チャンネルを見つけられませんでした。\n"
+"アプレットの設定パネルを開いて、\n"
+"制御したいオーディオ・チャンネルを正しく選択してください。"
 
 #: ../alsaMixer/src/applet-mixer.c:285
 msgid "Set up volume:"
@@ -774,10 +954,22 @@ msgid "clock"
 msgstr "時計"
 
 #: ../clock/src/applet-init.c:35
-msgid "This applet displays the time and date in your dock.\nTwo views are available: digital and analogue, based on Cairo-Clock.\nThis is compatible with Cairo-Clock themes and can be detached itself to make a perfect clone of Cairo-Clock.\nIt supports alarms and a basic calendar and allows you to configure the time and date.\nLeft-click to show/hide the calendar, Middle-click to stop an alarm."
-msgstr "日付や時刻をドックに表示するアプレット。\n利用可能な表示形式は Cairo-Clock を元にしたデジタルとアナログの２種類。\nCairo-Clock のテーマと互換性を持ち、ドックから分離させれば Cairo-Clock の完全"
-"クローンに。\nアラーム機能と基本的なカレンダー機能に対応し、日付や時刻の設定を行うことがで"
-"きます。\n左クリックでカレンダーを表示/隠す、中クリックでアラームを停止させます。"
+msgid ""
+"This applet displays the time and date in your dock.\n"
+"Two views are available: digital and analogue, based on Cairo-Clock.\n"
+"This is compatible with Cairo-Clock themes and can be detached itself to "
+"make a perfect clone of Cairo-Clock.\n"
+"It supports alarms and a basic calendar and allows you to configure the time "
+"and date.\n"
+"Left-click to show/hide the calendar, Middle-click to stop an alarm."
+msgstr ""
+"日付や時刻をドックに表示するアプレット。\n"
+"利用可能な表示形式は Cairo-Clock を元にしたデジタルとアナログの２種類。\n"
+"Cairo-Clock のテーマと互換性を持ち、ドックから分離させれば Cairo-Clock の完全"
+"クローンに。\n"
+"アラーム機能と基本的なカレンダー機能に対応し、日付や時刻の設定を行うことがで"
+"きます。\n"
+"左クリックでカレンダーを表示/隠す、中クリックでアラームを停止させます。"
 
 #: ../clock/src/applet-notifications.c:64
 msgid "Calendar"
@@ -788,9 +980,18 @@ msgid "Set up time and date"
 msgstr "時刻と日付の設定"
 
 #: ../compiz-icon/src/applet-init.c:34
-msgid "This applet allows you to manage compiz and other windows manager\nThe sub-dock gives you to access to CCSM, Emerald and some basic Compiz actions.\nYou can bind one of these actions with the middle-click.\nThe configuration panel gives you some options to launch Compiz."
-msgstr "Compiz とその他のウィンドウ・マネージャを管理するアプレット。\nサブ・ドックから CCSM や Emerald、Compiz の基本アクションにアクセス。\nそれらのアクションをメイン・アイコンの中クリックに割り当てることもできま"
-"す。\n設定パネルには Compiz を起動させるオプションもあります。"
+msgid ""
+"This applet allows you to manage compiz and other windows manager\n"
+"The sub-dock gives you to access to CCSM, Emerald and some basic Compiz "
+"actions.\n"
+"You can bind one of these actions with the middle-click.\n"
+"The configuration panel gives you some options to launch Compiz."
+msgstr ""
+"Compiz とその他のウィンドウ・マネージャを管理するアプレット。\n"
+"サブ・ドックから CCSM や Emerald、Compiz の基本アクションにアクセス。\n"
+"それらのアクションをメイン・アイコンの中クリックに割り当てることもできま"
+"す。\n"
+"設定パネルには Compiz を起動させるオプションもあります。"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Configure Compiz"
@@ -814,9 +1015,13 @@ msgid "Widget Layer"
 msgstr "ウィジェット・レイヤ"
 
 #: ../compiz-icon/src/applet-notifications.c:94
-msgid "To configure Compiz, you need to install CCSM\n through your package manager (Synaptic, YasT, etc)"
-msgstr "Compiz の設定を行うには、パッケージマネージャ（Synaptic や YasT 等）を通じ"
-"て\nCCSM をインストールする必要があります。"
+msgid ""
+"To configure Compiz, you need to install CCSM\n"
+" through your package manager (Synaptic, YasT, etc)"
+msgstr ""
+"Compiz の設定を行うには、パッケージマネージャ（Synaptic や YasT 等）を通じ"
+"て\n"
+"CCSM をインストールする必要があります。"
 
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Reload Emerald"
@@ -892,14 +1097,22 @@ msgid "3DPlan"
 msgstr "3Dプレーン"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
+#: ../dialog-rendering/data/messages:1
+#, fuzzy
 msgid "Comics"
-msgstr "コミック"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"コミック\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"コミックス"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
+#: ../dialog-rendering/data/messages:39
 msgid "Curly"
 msgstr "カーリー"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
+#: ../dialog-rendering/data/messages:9
 msgid "Modern"
 msgstr "モダン"
 
@@ -917,23 +1130,46 @@ msgstr "吹き出し状のダイアログの装飾を提供するプラグイン
 
 #: ../dnd2share/src/applet-dnd2share.c:130
 msgid "Couldn't upload the file, check that your internet connexion is active."
-msgstr "ファイルのアップロードができませんでした。インターネット回線が機能しているか"
+msgstr ""
+"ファイルのアップロードができませんでした。インターネット回線が機能しているか"
 "確かめてください。"
 
 #: ../dnd2share/src/applet-dnd2share.c:241
-msgid "File has been uploaded.\nJust press CTRL+v to paste its URL anywhere."
-msgstr "ファイルがアップロードされました。\nCTRL+v を押すと、このファイルの URL を任意の場所に貼り付けられます。"
+msgid ""
+"File has been uploaded.\n"
+"Just press CTRL+v to paste its URL anywhere."
+msgstr ""
+"ファイルがアップロードされました。\n"
+"CTRL+v を押すと、このファイルの URL を任意の場所に貼り付けられます。"
 
 #: ../dnd2share/src/applet-dnd2share.c:286
 msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "新しいアップロードの開始は、現在のアップロードが完了するまでお待ちください。"
+msgstr ""
+"新しいアップロードの開始は、現在のアップロードが完了するまでお待ちください。"
 
 #: ../dnd2share/src/applet-init.c:41
-msgid "This applet lets you share files easily:\nDrag-and-drop a file on the icon to upload it to one of the available hosting sites.\nIt supports many sites, like DropBox, Imageshack, pastebin, etc\nYou can upload text, image, video, and files.\nThe resulting URL is automatically stored in the clipboard to be directly copied with CTRL+v.\nIt can keep an history of your last uploads to retrieve them without any account.\nYou'll need to install 'curl' and 'wget' to upload the data."
-msgstr "自分のファイルを簡単に共有できるようにするためのアプレット :\nファイルをアイコン上にドラッグ＆ドロップすると、利用可能なホスティング・サイ"
-"トの内の１つにそれをアップロード。\nDropBox や Imageshack、pastebin など多くのサイトに対応していて、\nテキストや画像、動画、ファイルをアップロードすることができます。\n結果として得られる URL は、CTRL+v で直接コピーできるように自動的にクリップ"
-"ボードに保存されます。\nアカウントを必要とせずにファイルを取り出せるようにするために、アップロードの"
-"履歴を保持することができます。\nデータをアップロードするには、'curl' と 'wget' をインストールする必要がありま"
+msgid ""
+"This applet lets you share files easily:\n"
+"Drag-and-drop a file on the icon to upload it to one of the available "
+"hosting sites.\n"
+"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+"You can upload text, image, video, and files.\n"
+"The resulting URL is automatically stored in the clipboard to be directly "
+"copied with CTRL+v.\n"
+"It can keep an history of your last uploads to retrieve them without any "
+"account.\n"
+"You'll need to install 'curl' and 'wget' to upload the data."
+msgstr ""
+"自分のファイルを簡単に共有できるようにするためのアプレット :\n"
+"ファイルをアイコン上にドラッグ＆ドロップすると、利用可能なホスティング・サイ"
+"トの内の１つにそれをアップロード。\n"
+"DropBox や Imageshack、pastebin など多くのサイトに対応していて、\n"
+"テキストや画像、動画、ファイルをアップロードすることができます。\n"
+"結果として得られる URL は、CTRL+v で直接コピーできるように自動的にクリップ"
+"ボードに保存されます。\n"
+"アカウントを必要とせずにファイルを取り出せるようにするために、アップロードの"
+"履歴を保持することができます。\n"
+"データをアップロードするには、'curl' と 'wget' をインストールする必要がありま"
 "す。"
 
 #: ../dnd2share/src/applet-notifications.c:33
@@ -941,33 +1177,58 @@ msgid "Clear the list of the recently uploaded files?"
 msgstr "最近アップロードしたファイルのリストを消去しますか？"
 
 #: ../dnd2share/src/applet-notifications.c:51
-msgid "The text has been pasted in the clipboard.\nYou can retrieve it with CTRL+v."
-msgstr "テキストがクリップボードに貼り付けられました。\nCTRL+v でそれを取得できます。"
+msgid ""
+"The text has been pasted in the clipboard.\n"
+"You can retrieve it with CTRL+v."
+msgstr ""
+"テキストがクリップボードに貼り付けられました。\n"
+"CTRL+v でそれを取得できます。"
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr "残念ですが、元のファイルやそのプレビューを見つけられませんでした。"
 
 #: ../dnd2share/src/applet-notifications.c:98
-msgid "The URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere."
-msgstr "URL がクリップボードに保存されました。\nそれを任意の場所に貼り付けるには 'CTRL+v' を使用します。"
+msgid ""
+"The URL has been stored in the clipboard.\n"
+"Just use 'CTRL+v' to paste it anywhere."
+msgstr ""
+"URL がクリップボードに保存されました。\n"
+"それを任意の場所に貼り付けるには 'CTRL+v' を使用します。"
 
 #: ../dnd2share/src/applet-notifications.c:113
-msgid "No uploaded file available\n.Just drag'n drop a file on the icon to upload it"
-msgstr "利用可能なアップロード済みファイルはありません。\nファイルをアイコン上にドラッグ＆ドロップするだけでアップロードできます。"
+msgid ""
+"No uploaded file available\n"
+".Just drag'n drop a file on the icon to upload it"
+msgstr ""
+"利用可能なアップロード済みファイルはありません。\n"
+"ファイルをアイコン上にドラッグ＆ドロップするだけでアップロードできます。"
 
 #: ../dnd2share/src/applet-notifications.c:114
-msgid "No uploaded file available.\nConsider activating the history if you want the applet to remember previous uploads."
-msgstr "利用可能なアップロード済みファイルはありません。\n以前のアップロードをアプレットに記憶させたい場合は、履歴の有効化を検討してく"
+msgid ""
+"No uploaded file available.\n"
+"Consider activating the history if you want the applet to remember previous "
+"uploads."
+msgstr ""
+"利用可能なアップロード済みファイルはありません。\n"
+"以前のアップロードをアプレットに記憶させたい場合は、履歴の有効化を検討してく"
 "ださい。"
 
 #: ../dnd2share/src/applet-notifications.c:131
-msgid "The current URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere."
-msgstr "現在の URL はクリップボードに保存されています。\n'CTRL+v' を使用するだけで任意の場所に貼り付けられます。"
+msgid ""
+"The current URL has been stored in the clipboard.\n"
+"Just use 'CTRL+v' to paste it anywhere."
+msgstr ""
+"現在の URL はクリップボードに保存されています。\n"
+"'CTRL+v' を使用するだけで任意の場所に貼り付けられます。"
 
 #: ../dnd2share/src/applet-notifications.c:132
-msgid "The current URL has been stored into the selection.\nJust middle-click to paste it anywhere."
-msgstr "現在の URL はセレクションに保存されています。\n中クリックするだけで任意の場所に貼り付けられます。"
+msgid ""
+"The current URL has been stored into the selection.\n"
+"Just middle-click to paste it anywhere."
+msgstr ""
+"現在の URL はセレクションに保存されています。\n"
+"中クリックするだけで任意の場所に貼り付けられます。"
 
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:143
@@ -989,10 +1250,6 @@ msgstr "クリップボードの内容を送信"
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
 msgstr "履歴を消去"
-
-#: ../dnd2share/src/applet-notifications.c:460
-msgid "Open file"
-msgstr "ファイルを開く"
 
 #: ../dnd2share/src/applet-notifications.c:462
 msgid "Get text"
@@ -1032,9 +1289,16 @@ msgid "Curve"
 msgstr "カーブ"
 
 #: ../dock-rendering/src/rendering-init.c:121
-msgid "This module adds different views to your dock.\nAny dock or sub-dock can be displayed with the view of your choice.\nCurrently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided."
-msgstr "このモジュールは、ドックに様々なビュー形式を追加します。\nあらゆるドックやサブ・ドックを選択したビュー形式で表示させることが可能で"
-"す。\n現在のところ、3D-plane, Caroussel, Parabolic, Rainbow, Slide, Curve 形式が提"
+msgid ""
+"This module adds different views to your dock.\n"
+"Any dock or sub-dock can be displayed with the view of your choice.\n"
+"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
+"are provided."
+msgstr ""
+"このモジュールは、ドックに様々なビュー形式を追加します。\n"
+"あらゆるドックやサブ・ドックを選択したビュー形式で表示させることが可能で"
+"す。\n"
+"現在のところ、3D-plane, Caroussel, Parabolic, Rainbow, Slide, Curve 形式が提"
 "供されています。"
 
 #: ../drop-indicator/src/applet-init.c:28
@@ -1042,7 +1306,9 @@ msgid "Drop Indicator"
 msgstr "ドロップ標示"
 
 #: ../drop-indicator/src/applet-init.c:31
-msgid "This plug-in displays an animated indicator when you drop something into the dock."
+msgid ""
+"This plug-in displays an animated indicator when you drop something into the "
+"dock."
 msgstr "ドックにドラッグしてドロップするときに動画の目印を表示するプラグイン"
 
 #: ../dustbin/src/applet-draw.c:155
@@ -1062,9 +1328,17 @@ msgid "Trash"
 msgstr "ゴミ箱"
 
 #: ../dustbin/src/applet-init.c:34
-msgid "This applet manages the dustbin\nYou can discard files and unmount disks by dragging and dropping them on the icon.\nThe applet can warn you if you use too much space\nMiddle-click to display useful info about the dustbin."
-msgstr "ゴミ箱を管理するアプレット。\nアイコンへのドラッグ＆ドロップで、ファイルをゴミ箱に移したりディスクのアンマ"
-"ウントが行えます。\nゴミがスペースを取りすぎる場合の警告も可能です。中クリックでゴミ箱に関する有"
+msgid ""
+"This applet manages the dustbin\n"
+"You can discard files and unmount disks by dragging and dropping them on the "
+"icon.\n"
+"The applet can warn you if you use too much space\n"
+"Middle-click to display useful info about the dustbin."
+msgstr ""
+"ゴミ箱を管理するアプレット。\n"
+"アイコンへのドラッグ＆ドロップで、ファイルをゴミ箱に移したりディスクのアンマ"
+"ウントが行えます。\n"
+"ゴミがスペースを取りすぎる場合の警告も可能です。中クリックでゴミ箱に関する有"
 "益な情報を表示します。"
 
 #: ../dustbin/src/applet-notifications.c:42
@@ -1116,16 +1390,36 @@ msgstr "全ゴミ箱の全ファイルを削除しようとしています。よ
 
 #: ../dustbin/src/applet-trashes-manager.c:459
 #, c-format
-msgid "A problem occured\nIf '%s' is not your usual file browser,\nyou can change this in the configuration panel of this module"
-msgstr "問題が発生しました。\n普段使用しているブラウザが '%s' ではない場合、\nこのモジュールの設定パネルで変更することができます。"
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual file browser,\n"
+"you can change this in the configuration panel of this module"
+msgstr ""
+"問題が発生しました。\n"
+"普段使用しているブラウザが '%s' ではない場合、\n"
+"このモジュールの設定パネルで変更することができます。"
 
 #: ../gnome-integration-old/src/applet-init.c:30
-msgid "This applet provides functions for a better integration into a GNOME environment.\nIt is auto-activated, so you don't need to activate it.\nIt is designed for old Gnome version (prior to 2.22)."
-msgstr "Gnome 環境とのより良い統合のための機能を提供するアプレット。\n必要な場合に自動的に有効になるので、手動で有効にする必要はありません。\nこれは、Gnome の古いバージョン（2.22 よりも前）向けにデザインされたものです。"
+msgid ""
+"This applet provides functions for a better integration into a GNOME "
+"environment.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+"It is designed for old Gnome version (prior to 2.22)."
+msgstr ""
+"Gnome 環境とのより良い統合のための機能を提供するアプレット。\n"
+"必要な場合に自動的に有効になるので、手動で有効にする必要はありません。\n"
+"これは、Gnome の古いバージョン（2.22 よりも前）向けにデザインされたものです。"
 
 #: ../gnome-integration/src/applet-init.c:30
-msgid "This applet provides functions for a better integration into a GNOME environnement.\nIt is auto-activated, so you don't need to activate it.\nIt is designed for GNOME version >= 2.22"
-msgstr "Gnome 環境へのより良い統合のための機能を提供するアプレット。\n必要な場合に自動的に有効になるので、手動で有効にする必要はありません。\nこれは、Gnome 2.22.以上のバージョン向けにデザインされたものです。"
+msgid ""
+"This applet provides functions for a better integration into a GNOME "
+"environnement.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+"It is designed for GNOME version >= 2.22"
+msgstr ""
+"Gnome 環境へのより良い統合のための機能を提供するアプレット。\n"
+"必要な場合に自動的に有効になるので、手動で有効にする必要はありません。\n"
+"これは、Gnome 2.22.以上のバージョン向けにデザインされたものです。"
 
 #: ../icon-effect/src/applet-init.c:40
 msgid "Icon Effects"
@@ -1176,12 +1470,19 @@ msgid "Illusion"
 msgstr "イリュージョン"
 
 #: ../illusion/src/applet-init.c:33
-msgid "This plugin provides animations for appearance & disappearance of icons."
+msgid ""
+"This plugin provides animations for appearance & disappearance of icons."
 msgstr "アイコンの出現と消失のアニメーションを提供するプラグイン"
 
 #: ../kde-integration/src/applet-init.c:30
-msgid "This applet provides functions for a better integration in a KDE environment.\nIt is auto-activated, so you don't need to activate it.\nIt is designed for KDE4"
-msgstr "KDE 環境との統合のための機能を提供するアプレット。\nこのアプレットは必要に応じて自動的に有効になるので、手動で有効にする必要はあ"
+msgid ""
+"This applet provides functions for a better integration in a KDE "
+"environment.\n"
+"It is auto-activated, so you don't need to activate it.\n"
+"It is designed for KDE4"
+msgstr ""
+"KDE 環境との統合のための機能を提供するアプレット。\n"
+"このアプレットは必要に応じて自動的に有効になるので、手動で有効にする必要はあ"
 "りません。これは KDE4 用にデザインされています。"
 
 #: ../keyboard-indicator/src/applet-init.c:29
@@ -1189,17 +1490,33 @@ msgid "Keyboard Indicator"
 msgstr "キーボード・インジケータ"
 
 #: ../keyboard-indicator/src/applet-init.c:32
-msgid "This applet lets you control the keyboard layout.\n\tIt can also display the current num and caps lock.\n\tLeft-click to switch to the next layout\n\tScroll up/down to select the previous/next layout\n\tRight-click gives you access to the list of available layouts."
-msgstr "キーボードのレイアウトを制御するアプレット。\n\t現在の Num Lock と Caps Lock の表示もできます。\n\t左クリックで次のレイアウトに切り替え、\n\tスクロールの上下で前/次のレイアウトの選択、\n\t右クリックで利用可能なレイアウトのリストにアクセスします。"
+msgid ""
+"This applet lets you control the keyboard layout.\n"
+"\tIt can also display the current num and caps lock.\n"
+"\tLeft-click to switch to the next layout\n"
+"\tScroll up/down to select the previous/next layout\n"
+"\tRight-click gives you access to the list of available layouts."
+msgstr ""
+"キーボードのレイアウトを制御するアプレット。\n"
+"\t現在の Num Lock と Caps Lock の表示もできます。\n"
+"\t左クリックで次のレイアウトに切り替え、\n"
+"\tスクロールの上下で前/次のレイアウトの選択、\n"
+"\t右クリックで利用可能なレイアウトのリストにアクセスします。"
 
 #: ../logout/src/applet-init.c:28
 msgid "Log-out"
 msgstr "ログアウト"
 
 #: ../logout/src/applet-init.c:31
-msgid "A very simple applet that adds an icon to log out from your session\nLeft click to log out, middle click to shutdown\nYou can invert this order if you prefer to shutdown on left-click."
-msgstr "セッションからログアウトするためのアイコンを追加する非常にシンプルなアプレッ"
-"ト。\n左クリックでログアウト、中クリックでシャットダウンします。\nこの組み合わせを逆にして、左クリックでシャットダウンさせる変更も可能です。"
+msgid ""
+"A very simple applet that adds an icon to log out from your session\n"
+"Left click to log out, middle click to shutdown\n"
+"You can invert this order if you prefer to shutdown on left-click."
+msgstr ""
+"セッションからログアウトするためのアイコンを追加する非常にシンプルなアプレッ"
+"ト。\n"
+"左クリックでログアウト、中クリックでシャットダウンします。\n"
+"この組み合わせを逆にして、左クリックでシャットダウンさせる変更も可能です。"
 
 #: ../logout/src/applet-notifications.c:119
 msgid "Choose in how many minutes your PC will stop:"
@@ -1226,12 +1543,17 @@ msgid "Please enter a name for this account."
 msgstr "このアカウントの名前を入力してください。"
 
 #: ../mail/src/cd-mail-applet-config.c:218
-msgid "This account already exists.\nPlease choose another name for the new account."
-msgstr "このアカウントはすでに存在します。\n新しいアカウント用の別の名前を選択してください。"
+msgid ""
+"This account already exists.\n"
+"Please choose another name for the new account."
+msgstr ""
+"このアカウントはすでに存在します。\n"
+"新しいアカウント用の別の名前を選択してください。"
 
 #: ../mail/src/cd-mail-applet-config.c:346
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "このアカウントの名前を入力してください。任意の名前を付けることができます。"
+msgstr ""
+"このアカウントの名前を入力してください。任意の名前を付けることができます。"
 
 #: ../mail/src/cd-mail-applet-config.c:401
 msgid "Remove Account"
@@ -1259,17 +1581,32 @@ msgid "You have a new mail:"
 msgstr "新着メールが 1 通あります :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
+#: ../mail/src/cd-mail-applet-notifications.c:320
 msgid "Mail"
 msgstr "メール"
 
 #: ../mail/src/cd-mail-applet-init.c:36
-msgid "This applet is very useful to inform you about new e-mails\nIt can check any kind of mailbox (yahoo, gmail, etc)\nLeft-click to launch the prefered mail application,\nMiddle-click to refresh all the mailboxes."
-msgstr "電子メール新着時の通知に非常に役立つアプレット。\n様々な種類のメールボックス（yahoo, gmail, etc）をチェックできます。\n左クリックで任意のメール・アプリケーションの起動、\n中クリックですべてのメールボックスについて更新を行います。"
+msgid ""
+"This applet is very useful to inform you about new e-mails\n"
+"It can check any kind of mailbox (yahoo, gmail, etc)\n"
+"Left-click to launch the prefered mail application,\n"
+"Middle-click to refresh all the mailboxes."
+msgstr ""
+"電子メール新着時の通知に非常に役立つアプレット。\n"
+"様々な種類のメールボックス（yahoo, gmail, etc）をチェックできます。\n"
+"左クリックで任意のメール・アプリケーションの起動、\n"
+"中クリックですべてのメールボックスについて更新を行います。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:56
 #, c-format
-msgid "A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the configuration panel of this module"
-msgstr "問題が発生しました。\n'%s' が普段使用している標準のメーラーでない場合は、\nこのモジュールの設定パネルで変更可能です。"
+msgid ""
+"A problem occured\n"
+"If '%s' is not your usual mail application,\n"
+"you can change it in the configuration panel of this module"
+msgstr ""
+"問題が発生しました。\n"
+"'%s' が普段使用している標準のメーラーでない場合は、\n"
+"このモジュールの設定パネルで変更可能です。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:133
 msgid "Refresh a mail account"
@@ -1283,10 +1620,6 @@ msgstr "メールをすべて既読にする"
 #, c-format
 msgid "Launch %s"
 msgstr "%s を起動"
-
-#: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
-msgstr "メール"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "Motion Blur"
@@ -1341,13 +1674,35 @@ msgid "musicPlayer"
 msgstr "音楽プレイヤー"
 
 #: ../musicPlayer/src/applet-init.c:47
-msgid "This applet lets you control any music player.\nLeft click to Play/Pause, middle-click to play Next song.\nScroll up/down to play previous/next song.\nYou can drag and drop songs on the icon to put them in the queue (depends on Player),\n and jpeg image to use as cover.\nNote : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n       For SongBird, you have to install its dbus add-on.\n       For Exaile 0.3, you have to activate its MPRIS plug-in"
-msgstr "あらゆる音楽プレイヤーを制御するアプレット。\n左クリックで再生/一時停止、中クリックで次の曲の再生、\n上下のスクロールで前/次の曲を再生します。\nアイコンに曲をドラッグ＆ドロップしてキューに入れたり（プレイヤーに依存）、\njpeg 画像をドロップしてカバー画像に使用することができます。\n注意：XMMS には、'xmms-infopipe' プラグイン、\n        Songbird には、その DBus アドオン、\n        Exaile 0.3 には、その MPRIS プラグインをインストールする必要がありま"
+msgid ""
+"This applet lets you control any music player.\n"
+"Left click to Play/Pause, middle-click to play Next song.\n"
+"Scroll up/down to play previous/next song.\n"
+"You can drag and drop songs on the icon to put them in the queue (depends on "
+"Player),\n"
+" and jpeg image to use as cover.\n"
+"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+"       For SongBird, you have to install its dbus add-on.\n"
+"       For Exaile 0.3, you have to activate its MPRIS plug-in"
+msgstr ""
+"あらゆる音楽プレイヤーを制御するアプレット。\n"
+"左クリックで再生/一時停止、中クリックで次の曲の再生、\n"
+"上下のスクロールで前/次の曲を再生します。\n"
+"アイコンに曲をドラッグ＆ドロップしてキューに入れたり（プレイヤーに依存）、\n"
+"jpeg 画像をドロップしてカバー画像に使用することができます。\n"
+"注意：XMMS には、'xmms-infopipe' プラグイン、\n"
+"        Songbird には、その DBus アドオン、\n"
+"        Exaile 0.3 には、その MPRIS プラグインをインストールする必要がありま"
 "す。"
 
 #: ../musicPlayer/src/applet-notifications.c:67
-msgid "Sorry, I couldn't detect any player.\nIf it is running, it is maybe because its version is too old and does not offer such service."
-msgstr "残念ながらプレイヤーの検出ができませんでした。\nプレイヤーを実際に利用中の場合、そのバージョンが古いためサービス未提供なこと"
+msgid ""
+"Sorry, I couldn't detect any player.\n"
+"If it is running, it is maybe because its version is too old and does not "
+"offer such service."
+msgstr ""
+"残念ながらプレイヤーの検出ができませんでした。\n"
+"プレイヤーを実際に利用中の場合、そのバージョンが古いためサービス未提供なこと"
 "が原因かもしれません。"
 
 #: ../musicPlayer/src/applet-notifications.c:159
@@ -1391,8 +1746,15 @@ msgid "Information"
 msgstr "情報"
 
 #: ../netspeed/src/applet-init.c:32
-msgid "This applet shows you the bit rate of your internet connection and some stats about it.\nLeft-click on the icon to have the total amount of data transfered\nMiddle-click to (de)activate the network (needs Network Manager)"
-msgstr "インターネット接続のビットレートや統計を表示するアプレット。\nアイコンの左クリックで転送データの総量の表示、\n中クリックでネットワーク（要 ネットワーク・マネージャ）の有効化/無効化。"
+msgid ""
+"This applet shows you the bit rate of your internet connection and some "
+"stats about it.\n"
+"Left-click on the icon to have the total amount of data transfered\n"
+"Middle-click to (de)activate the network (needs Network Manager)"
+msgstr ""
+"インターネット接続のビットレートや統計を表示するアプレット。\n"
+"アイコンの左クリックで転送データの総量の表示、\n"
+"中クリックでネットワーク（要 ネットワーク・マネージャ）の有効化/無効化。"
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
@@ -1408,16 +1770,26 @@ msgstr "アップロード"
 
 #: ../netspeed/src/applet-notifications.c:43
 #, c-format
-msgid "Interface '%s' doesn't seem to exist or is not readable.\n You may have to set up the interface you wish to monitor.\n Do you want to do it now?"
-msgstr "インターフェイス '%s' は存在しないか、読み込みことができません。\n監視したいインターフェイスのセットアップが必要な可能性があります。\n直ちに行いますか？"
+msgid ""
+"Interface '%s' doesn't seem to exist or is not readable.\n"
+" You may have to set up the interface you wish to monitor.\n"
+" Do you want to do it now?"
+msgstr ""
+"インターフェイス '%s' は存在しないか、読み込みことができません。\n"
+"監視したいインターフェイスのセットアップが必要な可能性があります。\n"
+"直ちに行いますか？"
 
 #: ../netspeed/src/applet-notifications.c:73
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
 #: ../powermanager/src/powermanager-draw.c:173
-msgid "Laptop on Battery.\n Battery charged at:"
-msgstr "ラップトップはバッテリー放電中。\nバッテリー充電量:"
+msgid ""
+"Laptop on Battery.\n"
+" Battery charged at:"
+msgstr ""
+"ラップトップはバッテリー放電中。\n"
+"バッテリー充電量:"
 
 #: ../powermanager/src/powermanager-draw.c:173
 #: ../powermanager/src/powermanager-draw.c:203
@@ -1426,8 +1798,12 @@ msgid "Estimated time with charge:"
 msgstr "およその充電残量時間:"
 
 #: ../powermanager/src/powermanager-draw.c:177
-msgid "Laptop on Charge.\n Battery charged at:"
-msgstr "ラップトップはバッテリー充電中。\nバッテリー充電量:"
+msgid ""
+"Laptop on Charge.\n"
+" Battery charged at:"
+msgstr ""
+"ラップトップはバッテリー充電中。\n"
+"バッテリー充電量:"
 
 #: ../powermanager/src/powermanager-draw.c:177
 msgid "Estimated charge time:"
@@ -1438,16 +1814,24 @@ msgid "No battery found."
 msgstr "バッテリーが見つかりません。"
 
 #: ../powermanager/src/powermanager-draw.c:203
-msgid "PowerManager.\nBattery charge seems to be low"
-msgstr "PowerManager.\nバッテリーの充電量が少ないようです。"
+msgid ""
+"PowerManager.\n"
+"Battery charge seems to be low"
+msgstr ""
+"PowerManager.\n"
+"バッテリーの充電量が少ないようです。"
 
 #: ../powermanager/src/powermanager-draw.c:203
 msgid "Please put your laptop on charge."
 msgstr "ラップトップを充電してください。"
 
 #: ../powermanager/src/powermanager-draw.c:209
-msgid "PowerManager.\nYour battery is now charged"
-msgstr "PowerManager.\nバッテリーの充電が完了しました。"
+msgid ""
+"PowerManager.\n"
+"Your battery is now charged"
+msgstr ""
+"PowerManager.\n"
+"バッテリーの充電が完了しました。"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
@@ -1478,8 +1862,16 @@ msgid "Quick Browser"
 msgstr "クイック・ブラウザ"
 
 #: ../quick-browser/src/applet-init.c:32
-msgid "This applet lets you browse a folder and its sub-folders very quickly.\nYou can set up a shortkey to pop up the menu.\nMidlle-click will open the main folder.\nThis applet supports multiple instances, so you can browse several folders."
-msgstr "フォルダとそのサブ・フォルダを素早く参照するためのアプレット。\nメニューをポップアップ表示させるショートキーを設定することが可能です。\n中クリックでメイン・フォルダを開きます。\n別フォルダを参照したい場合は、このアプレットを複数起動させることもできます。"
+msgid ""
+"This applet lets you browse a folder and its sub-folders very quickly.\n"
+"You can set up a shortkey to pop up the menu.\n"
+"Midlle-click will open the main folder.\n"
+"This applet supports multiple instances, so you can browse several folders."
+msgstr ""
+"フォルダとそのサブ・フォルダを素早く参照するためのアプレット。\n"
+"メニューをポップアップ表示させるショートキーを設定することが可能です。\n"
+"中クリックでメイン・フォルダを開きます。\n"
+"別フォルダを参照したい場合は、このアプレットを複数起動させることもできます。"
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:113
@@ -1497,10 +1889,25 @@ msgid "shortcuts"
 msgstr "ショートカット"
 
 #: ../shortcuts/src/applet-init.c:34
-msgid "An applet that lets you access all your shortcuts quickly.\nIt can manage disks, network points and Nautilus bookmarks, even if you don't have Nautilus installed.\nYou can add or remove bookmarks via drag & drop on the main icon or the sub-dock.\nMiddle-click on the main icon to access your desktop easily.\nMiddle-click on a mounting point icon to (un)mount is quickly.\nThe applet can also display valuable informations about your disks, like free space, type, etc."
-msgstr "すべてのショートカットに素早くアクセスできるアプレット。\nディスクやネットワークポイント、Nautilus ブックマーク（Nautilus がインストー"
-"ルされていなくとも）の管理が可能です。\nメイン・アイコンまたはサブ・ドックにフォルダをドラッグ＆ドロップするとブック"
-"マークの追加、\nメイン・アイコンの中クリックでデスクトップに簡単アクセス、\nマウントポイント・アイコンの中クリックで素早い（アン）マウント。\nアプレットは、ディスクの空き容量や種類などの有益な情報も表示します。"
+msgid ""
+"An applet that lets you access all your shortcuts quickly.\n"
+"It can manage disks, network points and Nautilus bookmarks, even if you "
+"don't have Nautilus installed.\n"
+"You can add or remove bookmarks via drag & drop on the main icon or the sub-"
+"dock.\n"
+"Middle-click on the main icon to access your desktop easily.\n"
+"Middle-click on a mounting point icon to (un)mount is quickly.\n"
+"The applet can also display valuable informations about your disks, like "
+"free space, type, etc."
+msgstr ""
+"すべてのショートカットに素早くアクセスできるアプレット。\n"
+"ディスクやネットワークポイント、Nautilus ブックマーク（Nautilus がインストー"
+"ルされていなくとも）の管理が可能です。\n"
+"メイン・アイコンまたはサブ・ドックにフォルダをドラッグ＆ドロップするとブック"
+"マークの追加、\n"
+"メイン・アイコンの中クリックでデスクトップに簡単アクセス、\n"
+"マウントポイント・アイコンの中クリックで素早い（アン）マウント。\n"
+"アプレットは、ディスクの空き容量や種類などの有益な情報も表示します。"
 
 #: ../shortcuts/src/applet-notifications.c:82
 msgid "Remove this bookmark"
@@ -1515,9 +1922,11 @@ msgid "Show Mouse"
 msgstr "マウス表示"
 
 #: ../show-mouse/src/applet-init.c:31
-msgid "This plug-in draw some animation around the cursor when it's inside a dock/"
+msgid ""
+"This plug-in draw some animation around the cursor when it's inside a dock/"
 "desklet."
-msgstr "ドック/デスクレット内のマウスカーソルの周囲にアニメーションを描画するプラグイ"
+msgstr ""
+"ドック/デスクレット内のマウスカーソルの周囲にアニメーションを描画するプラグイ"
 "ン"
 
 #: ../showDesklets/src/applet-init.c:28
@@ -1525,18 +1934,37 @@ msgid "showDesklets"
 msgstr "デスクレット表示"
 
 #: ../showDesklets/src/applet-init.c:31
-msgid "This applet lets you access your desklets quickly.\nLeft click to show/hide your desklets.\nBasically, if you're running Compiz, you don't need this applet;\n you should just use the 'Widget Layer' capabilities of desklets."
-msgstr "デスクレットに素早くアクセスするためのアプレット。\n左クリックでデスクレットを表示/隠します。\nCompiz を稼働させている場合、このアプレットは基本的に必要なく、\nデスクレットの「Widget Layer」機能を使用するだけで済みます。"
+msgid ""
+"This applet lets you access your desklets quickly.\n"
+"Left click to show/hide your desklets.\n"
+"Basically, if you're running Compiz, you don't need this applet;\n"
+" you should just use the 'Widget Layer' capabilities of desklets."
+msgstr ""
+"デスクレットに素早くアクセスするためのアプレット。\n"
+"左クリックでデスクレットを表示/隠します。\n"
+"Compiz を稼働させている場合、このアプレットは基本的に必要なく、\n"
+"デスクレットの「Widget Layer」機能を使用するだけで済みます。"
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
 msgstr "デスクトップ表示"
 
 #: ../showDesktop/src/applet-init.c:31
-msgid "This applet adds an icon to show your desktop,\n and also : the desklets, the Widget Layer, or all the desktops at once.\nIt can also be used to quickly change the screen's resolution from the right-"
-"click menu.\nLeft-click to show/hide the desktop,\nMiddle-click to show/hide either the desktop, the desklets, the Widget Layer, or all the desktops at once."
-msgstr "デスクトップを表示するためのアイコンを追加するアプレット。\nデスクレットやウィジェット・レイヤを表示したり、デスクトップを展開させること"
-"も可能です。\n右クリック・メニューから画面の解像度を素早く変更するためにも利用できます。\n左クリックでデスクトップを表示/隠す、\n中クリックでデスクトップやデスクレット、ウィジェット・レイヤを表示/隠す、また"
+msgid ""
+"This applet adds an icon to show your desktop,\n"
+" and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+"It can also be used to quickly change the screen's resolution from the right-"
+"click menu.\n"
+"Left-click to show/hide the desktop,\n"
+"Middle-click to show/hide either the desktop, the desklets, the Widget "
+"Layer, or all the desktops at once."
+msgstr ""
+"デスクトップを表示するためのアイコンを追加するアプレット。\n"
+"デスクレットやウィジェット・レイヤを表示したり、デスクトップを展開させること"
+"も可能です。\n"
+"右クリック・メニューから画面の解像度を素早く変更するためにも利用できます。\n"
+"左クリックでデスクトップを表示/隠す、\n"
+"中クリックでデスクトップやデスクレット、ウィジェット・レイヤを表示/隠す、また"
 "はデスクトップを展開します。"
 
 #: ../showDesktop/src/applet-notifications.c:74
@@ -1552,8 +1980,16 @@ msgid "Slider"
 msgstr "スライダー"
 
 #: ../slider/src/applet-init.c:32
-msgid "This applet is a basic image slider\n Simply select a directory and a display effect and you're done\nClick to play/pause or to edit the current image.\nMiddle-click to open the images folder."
-msgstr "画像をスライド表示するシンプルなアプレット。\nディレクトリを指定して、表示に関する視覚効果を選択します。\nクリックで再生/一時停止、または現在の画像の編集、\n中クリックで画像フォルダを開きます。"
+msgid ""
+"This applet is a basic image slider\n"
+" Simply select a directory and a display effect and you're done\n"
+"Click to play/pause or to edit the current image.\n"
+"Middle-click to open the images folder."
+msgstr ""
+"画像をスライド表示するシンプルなアプレット。\n"
+"ディレクトリを指定して、表示に関する視覚効果を選択します。\n"
+"クリックで再生/一時停止、または現在の画像の編集、\n"
+"中クリックで画像フォルダを開きます。"
 
 #: ../slider/src/applet-notifications.c:166
 msgid "Play"
@@ -1576,16 +2012,31 @@ msgid "stack"
 msgstr "スタック"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
-msgid "This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\nTo add files into your stacks, simply drag and drop them on the Stacks icon and you're done.\nYou can drop any file or web URL or even some piece of text\nYou can quickly copy the path/url/text to the clipboard, or open it."
-msgstr "MacOS X のスタック・アプレット風にファイルのスタックの構築を行うためのアプ"
-"レット。\nスタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップする"
-"だけです。\nファイル全般や、Web URL、さらにはテキストの一部をドロップすることも可能で"
-"す。\n従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
+msgid ""
+"This applet allows you to build a stack of files, just like the Stacks "
+"applet of MacOS X.\n"
+"To add files into your stacks, simply drag and drop them on the Stacks icon "
+"and you're done.\n"
+"You can drop any file or web URL or even some piece of text\n"
+"You can quickly copy the path/url/text to the clipboard, or open it."
+msgstr ""
+"MacOS X のスタック・アプレット風にファイルのスタックの構築を行うためのアプ"
+"レット。\n"
+"スタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップする"
+"だけです。\n"
+"ファイル全般や、Web URL、さらにはテキストの一部をドロップすることも可能で"
+"す。\n"
+"従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
 "ます。"
 
 #: ../stack/src/applet-notifications.c:50
-msgid "No items in the stack.\nYou can add files, URL, and even a piece of text by dragging them onto the icon."
-msgstr "スタックにアイテムは有りません。\nファイルや URL、テキストをアイコン上にドラッグして追加することが可能です。"
+msgid ""
+"No items in the stack.\n"
+"You can add files, URL, and even a piece of text by dragging them onto the "
+"icon."
+msgstr ""
+"スタックにアイテムは有りません。\n"
+"ファイルや URL、テキストをアイコン上にドラッグして追加することが可能です。"
 
 #: ../stack/src/applet-notifications.c:74
 msgid "Clear the stack?"
@@ -1636,10 +2087,17 @@ msgid "Clean local directory"
 msgstr "ローカルディレクトリをクリーン"
 
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
+#: ../switcher/src/applet-load-icons.c:40
+#: ../switcher/src/applet-notifications.c:340
 msgid "Current"
 msgstr "現在"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
+#: ../switcher/src/applet-load-icons.c:46
+#: ../switcher/src/applet-notifications.c:175
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:397
 msgid "Desktop"
 msgstr "デスクトップ"
 
@@ -1648,22 +2106,23 @@ msgid "Switcher"
 msgstr "スイッチャー"
 
 #: ../switcher/src/applet-init.c:35
-msgid "This applet allows you to interact with your workspaces:\n - switch between your workspaces (scroll up/down with the mouse),\n - name them (in the configuration panel),\n - quickly add/remove a workspace (from the menu),\n - show the desktop (from the menu),\n - list all windows on each workspace (middle-click or from the menu)\nIt has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
-msgstr "ワークスペースに関する操作のためのアプレット :\n - ワークスペースの切り替え（マウスの上/下スクロール）\n - ワークスペース名の登録（設定画面から）\n - ワークスペースの素早い追加や削除（メニューから）\n - デスクトップの表示（中クリックまたはメニューから）\n - 各ワークスペースの全ウィンドウの一覧（中クリックまたはメニューから）\nアプレットには、コンパクト（アイコン１つ）と拡張（サブ・ドックあり）の２モー"
+msgid ""
+"This applet allows you to interact with your workspaces:\n"
+" - switch between your workspaces (scroll up/down with the mouse),\n"
+" - name them (in the configuration panel),\n"
+" - quickly add/remove a workspace (from the menu),\n"
+" - show the desktop (from the menu),\n"
+" - list all windows on each workspace (middle-click or from the menu)\n"
+"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
+msgstr ""
+"ワークスペースに関する操作のためのアプレット :\n"
+" - ワークスペースの切り替え（マウスの上/下スクロール）\n"
+" - ワークスペース名の登録（設定画面から）\n"
+" - ワークスペースの素早い追加や削除（メニューから）\n"
+" - デスクトップの表示（中クリックまたはメニューから）\n"
+" - 各ワークスペースの全ウィンドウの一覧（中クリックまたはメニューから）\n"
+"アプレットには、コンパクト（アイコン１つ）と拡張（サブ・ドックあり）の２モー"
 "ドがあります。"
-
-#: ../switcher/src/applet-load-icons.c:40
-#: ../switcher/src/applet-notifications.c:340
-msgid "Current"
-msgstr "現在"
-
-#: ../switcher/src/applet-load-icons.c:46
-#: ../switcher/src/applet-notifications.c:175
-#: ../switcher/src/applet-notifications.c:187
-#: ../switcher/src/applet-notifications.c:332
-#: ../switcher/src/applet-notifications.c:397
-msgid "Desktop"
-msgstr "デスクトップ"
 
 #: ../switcher/src/applet-notifications.c:176
 #: ../switcher/src/applet-notifications.c:234
@@ -1687,8 +2146,11 @@ msgid "Move current Desktop to this Desktop"
 msgstr "現在のデスクトップからこのデスクトップへ移動"
 
 #: ../switcher/src/applet-notifications.c:246
-msgid "This will move all windows from the current desktop to the one you clicked on."
-msgstr "すべてのウィンドウを現在のデスクトップからクリックしたデスクトップへ移動させ"
+msgid ""
+"This will move all windows from the current desktop to the one you clicked "
+"on."
+msgstr ""
+"すべてのウィンドウを現在のデスクトップからクリックしたデスクトップへ移動させ"
 "ます。"
 
 #: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:103
@@ -1701,9 +2163,19 @@ msgid "Windows List"
 msgstr "ウィンドウ・リスト"
 
 #: ../systray/src/systray-init.c:35
-msgid "Add a systray to your dock.\nLeft-click to show the systray in a dialog (you can bind a keyboard shortcut for it.)\nMiddle-click to close the dalog.\nFor best results, detach it from the dock and place it somewhere above other windows."
-msgstr "ドックにシステムトレイを追加。\n左クリックでダイアログにシステムトレイを表示（キーボード・ショートカットの割"
-"り当て可能）、\nダイアログを閉じるには中クリック。\nしかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの"
+msgid ""
+"Add a systray to your dock.\n"
+"Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+"for it.)\n"
+"Middle-click to close the dalog.\n"
+"For best results, detach it from the dock and place it somewhere above other "
+"windows."
+msgstr ""
+"ドックにシステムトレイを追加。\n"
+"左クリックでダイアログにシステムトレイを表示（キーボード・ショートカットの割"
+"り当て可能）、\n"
+"ダイアログを閉じるには中クリック。\n"
+"しかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの"
 "最良の使用方法です。"
 
 #: ../template/src/applet-init.c:30
@@ -1716,10 +2188,24 @@ msgid "Copy"
 msgstr "コピー"
 
 #: ../terminal/src/terminal-init.c:34
-msgid "Add a terminal to your dock!\nLeft/middle click to show/hide terminal (you can bind a keyboard shortcut to it.)\nYou can drag & drop files or text and select an action.\nYou can open multiple tabs, rename them and change their colours (right-click on a tab to interact on it).\nTo open a new tab : type 'CTRL+t' or double-click next to the last tab\nTo close a tab : type 'CTRL+w' or middle-click on it."
-msgstr "ドックに端末を追加！\n左/中クリックで端末の表示/隠す。（キーボード・ショートカットの割り当てもでき"
-"ます。）\nファイルやテキストをドラッグ＆ドロップしてアクションを選択することが可能。\nタブを数多く開いたり、それらをリネームしたり、色を変更することができます。"
-"（タブを右クリックして操作）\n新しいタブを開くには、'CTRL+t' または最後のタブのとなりをダブル・クリック。\nタブを閉じるには、'CTRL+w' またはそのタブを中クリックします。"
+msgid ""
+"Add a terminal to your dock!\n"
+"Left/middle click to show/hide terminal (you can bind a keyboard shortcut to "
+"it.)\n"
+"You can drag & drop files or text and select an action.\n"
+"You can open multiple tabs, rename them and change their colours (right-"
+"click on a tab to interact on it).\n"
+"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+"To close a tab : type 'CTRL+w' or middle-click on it."
+msgstr ""
+"ドックに端末を追加！\n"
+"左/中クリックで端末の表示/隠す。（キーボード・ショートカットの割り当てもでき"
+"ます。）\n"
+"ファイルやテキストをドラッグ＆ドロップしてアクションを選択することが可能。\n"
+"タブを数多く開いたり、それらをリネームしたり、色を変更することができます。"
+"（タブを右クリックして操作）\n"
+"新しいタブを開くには、'CTRL+t' または最後のタブのとなりをダブル・クリック。\n"
+"タブを閉じるには、'CTRL+w' またはそのタブを中クリックします。"
 
 #: ../terminal/src/terminal-menu-functions.c:83
 #: ../terminal/src/terminal-widget.c:362
@@ -1768,8 +2254,16 @@ msgid "Close this Tab"
 msgstr "このタブを閉じる"
 
 #: ../tomboy/src/tomboy-init.c:33
-msgid "Control your Gnote or TomBoy's notes directly from the dock!\nClick on a note to open it, Escape to close it.\nMiddle-click to instantly create a new note.\nYou can search inside notes and display their content on the icons."
-msgstr "Gnote あるいは TomBoy のノートをドックから直接操作！\nノートをクリックして開き、Escape で閉じる。\n新しいノートを素早く作成するには中クリック。\nノート内の検索をしたり、アイコンにノート内容を表示することもできます。"
+msgid ""
+"Control your Gnote or TomBoy's notes directly from the dock!\n"
+"Click on a note to open it, Escape to close it.\n"
+"Middle-click to instantly create a new note.\n"
+"You can search inside notes and display their content on the icons."
+msgstr ""
+"Gnote あるいは TomBoy のノートをドックから直接操作！\n"
+"ノートをクリックして開き、Escape で閉じる。\n"
+"新しいノートを素早く作成するには中クリック。\n"
+"ノート内の検索をしたり、アイコンにノート内容を表示することもできます。"
 
 #: ../tomboy/src/tomboy-notifications.c:68
 msgid "Note name : "
@@ -1824,15 +2318,20 @@ msgid "Reset marks"
 msgstr "マークを消去"
 
 #: ../weather/src/applet-config.c:113
-msgid "Could not retrieve information\n Is your connection alive?"
-msgstr "情報の取得が出来ませんでした。\n回線接続に問題はありませんか？"
+msgid ""
+"Could not retrieve information\n"
+" Is your connection alive?"
+msgstr ""
+"情報の取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
 
 #: ../weather/src/applet-config.c:126
 msgid "Location not found"
 msgstr "この場所を見つけることはできませんでした。"
 
 #: ../weather/src/applet-config.c:184
-msgid "Enter the name of your location and press Enter to select amongst results."
+msgid ""
+"Enter the name of your location and press Enter to select amongst results."
 msgstr "現在地の名前を入力して、検索結果の中から Enter を押して選択します。"
 
 #: ../weather/src/applet-init.c:29
@@ -1840,10 +2339,19 @@ msgid "Weather"
 msgstr "天気予報"
 
 #: ../weather/src/applet-init.c:32
-msgid "This applet displays weather into your dock.\nData are provided by www.weather.com, you can find your location in the config panel.\nIt can detach itself to be a totally eye-candy 3D deskelt.\nMiddle-click on the main icon to have current conditions information, left-"
+msgid ""
+"This applet displays weather into your dock.\n"
+"Data are provided by www.weather.com, you can find your location in the "
+"config panel.\n"
+"It can detach itself to be a totally eye-candy 3D deskelt.\n"
+"Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
-msgstr "ドックに天気を表示するアプレット。\nデータは www.weather.com から提供されていて、設定パネルから現在地の検索を行う"
-"ことができます。\n目を楽しませる 3D デスクレットとしてドックから分離させることが可能です。\nメインのアイコンを中クリックすると現在の気象情報が、サブのアイコンを左クリッ"
+msgstr ""
+"ドックに天気を表示するアプレット。\n"
+"データは www.weather.com から提供されていて、設定パネルから現在地の検索を行う"
+"ことができます。\n"
+"目を楽しませる 3D デスクレットとしてドックから分離させることが可能です。\n"
+"メインのアイコンを中クリックすると現在の気象情報が、サブのアイコンを左クリッ"
 "クすると予報が表示されます。\n"
 
 #: ../weather/src/applet-load-icons.c:26
@@ -1932,8 +2440,12 @@ msgid "Reload now"
 msgstr "直ちに再読み込み"
 
 #: ../weather/src/applet-notifications.c:108
-msgid "No data available\n is your connection alive?"
-msgstr "データの取得が出来ませんでした。\n回線接続に問題はありませんか？"
+msgid ""
+"No data available\n"
+" is your connection alive?"
+msgstr ""
+"データの取得が出来ませんでした。\n"
+"回線接続に問題はありませんか？"
 
 #: ../weather/src/applet-notifications.c:127
 #: ../weather/src/applet-notifications.c:163
@@ -1969,8 +2481,12 @@ msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "データを取得しています。数秒後に再度試してください。"
 
 #: ../weather/src/applet-notifications.c:149
-msgid "No data available\nRetrying now..."
-msgstr "データが取得できませんでした。\n現在再試行中です…"
+msgid ""
+"No data available\n"
+"Retrying now..."
+msgstr ""
+"データが取得できませんでした。\n"
+"現在再試行中です…"
 
 #: ../weather/src/applet-notifications.c:163
 msgid "Feels like"
@@ -1981,9 +2497,16 @@ msgid "Pressure"
 msgstr "気圧"
 
 #: ../weblets/src/applet-init.c:31
-msgid "The weblets applet allows you to show an interactive web page on your desktop.\nYou can select your web page, set the desired scrolling,\nand hide the scrollbars to get a real 'crop' of the page."
-msgstr "デスクトップにインタラクティブなウェブページを表示できるウェブレット・アプ"
-"レット。\n任意のウェブページを選択して、好みのスクロール位置を設定したり、\nスクロールバーを隠してページの本当の”切り抜き”にすることができます。"
+msgid ""
+"The weblets applet allows you to show an interactive web page on your "
+"desktop.\n"
+"You can select your web page, set the desired scrolling,\n"
+"and hide the scrollbars to get a real 'crop' of the page."
+msgstr ""
+"デスクトップにインタラクティブなウェブページを表示できるウェブレット・アプ"
+"レット。\n"
+"任意のウェブページを選択して、好みのスクロール位置を設定したり、\n"
+"スクロールバーを隠してページの本当の”切り抜き”にすることができます。"
 
 #: ../weblets/src/applet-widget.c:58
 msgid "Weblets"
@@ -1994,12 +2517,22 @@ msgid "WiFi disabled."
 msgstr "WiFi は無効です。"
 
 #: ../wifi/src/applet-init.c:33
-msgid "This applet shows you the signal strength of the first active WiFi connection\nLeft-click to pop-up some info, middle-click to re-check immediately."
-msgstr "最初にアクティブとなった WiFi 接続の信号の強さを表示するアプレット。\n左クリックで情報を表示、中クリックで直ちに再チェックを行います。"
+msgid ""
+"This applet shows you the signal strength of the first active WiFi "
+"connection\n"
+"Left-click to pop-up some info, middle-click to re-check immediately."
+msgstr ""
+"最初にアクティブとなった WiFi 接続の信号の強さを表示するアプレット。\n"
+"左クリックで情報を表示、中クリックで直ちに再チェックを行います。"
 
 #: ../xfce-integration/src/applet-init.c:30
-msgid "This applet provides functions for a better integration into a XFCE environment.\nIt is auto-activated, so you don't need to activate it."
-msgstr "XFCE 環境との統合のための機能を提供するアプレット。\nこのアプレットは必要に応じて自動的に有効になるので、手動で有効にする必要はあ"
+msgid ""
+"This applet provides functions for a better integration into a XFCE "
+"environment.\n"
+"It is auto-activated, so you don't need to activate it."
+msgstr ""
+"XFCE 環境との統合のための機能を提供するアプレット。\n"
+"このアプレットは必要に応じて自動的に有効になるので、手動で有効にする必要はあ"
 "りません。"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
@@ -2286,8 +2819,14 @@ msgstr "アイコン"
 #: ../switcher/data/messages:3 ../systray/data/messages:3
 #: ../terminal/data/messages:3 ../tomboy/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
+#: ../weather/data/messages:3
+#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"デフォルトのアプレット・サイズを使用するには 0 に設定してください。\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size for busy penguin:"
@@ -2313,9 +2852,14 @@ msgstr "ペンギンが徘徊状態ではないときのアイコンの名前 :"
 #: ../switcher/data/messages:13 ../systray/data/messages:9
 #: ../terminal/data/messages:13 ../tomboy/data/messages:9
 #: ../weather/data/messages:11 ../weblets/data/messages:13
-#: ../wifi/data/messages:9
+#: ../wifi/data/messages:9 ../tomboy/data/messages:19
+#, fuzzy
 msgid "Name of the dock it belongs to:"
-msgstr "帰属先ドックの名前 :"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"帰属先ドックの名前 :\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"「閉じる」のアイコン画像の名前 :"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
 #: ../GMenu/data/messages:15 ../Network-Monitor/data/messages:13
@@ -2353,8 +2897,14 @@ msgstr "アプレットの手引き"
 #: ../switcher/data/messages:85 ../tomboy/data/messages:105
 #: ../weather/data/messages:89 ../weather/data/messages:91
 #: ../weblets/data/messages:91 ../wifi/data/messages:87
+#: ../systray/data/messages:45 ../terminal/data/messages:91
+#, fuzzy
 msgid "Configuration"
-msgstr "設定"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"設定\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"Configuration"
 
 #: ../Cairo-Penguin/data/messages:15 ../Network-Monitor/data/messages:137
 #: ../Network-Monitor/data/messages:181 ../System-Monitor/data/messages:97
@@ -2366,6 +2916,8 @@ msgid "Choose one of the available themes:"
 msgstr "利用可能なテーマから1つ選択 :"
 
 #: ../Cairo-Penguin/data/messages:17 ../Toons/data/messages:91
+#: ../mail/data/messages:113 ../musicPlayer/data/messages:131
+#: ../tomboy/data/messages:119
 msgid "in seconds"
 msgstr "秒単位"
 
@@ -2593,8 +3145,11 @@ msgstr "位置"
 #: ../switcher/data/messages:21 ../terminal/data/messages:21
 #: ../tomboy/data/messages:35 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:17
-msgid "If locked, the desklet cannot be moved by simply dragging it with the left mouse button. It can still be moved with ALT + left-click."
-msgstr "固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+msgid ""
+"If locked, the desklet cannot be moved by simply dragging it with the left "
+"mouse button. It can still be moved with ALT + left-click."
+msgstr ""
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
 "動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
 "す。"
 
@@ -2631,8 +3186,11 @@ msgstr "位置を固定？"
 #: ../switcher/data/messages:25 ../terminal/data/messages:25
 #: ../tomboy/data/messages:39 ../weather/data/messages:23
 #: ../weblets/data/messages:25 ../wifi/data/messages:21
-msgid "Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+msgid ""
+"Depending on your WindowManager, you may be able to resize this with ALT + "
+"middle-click or ALT + left-click."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
 "または ALT + 左クリックでサイズ変更できます。"
 
 #: ../Clipper/data/messages:131 ../Doncky/data/messages:25
@@ -2666,8 +3224,11 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 #: ../systray/data/messages:17 ../terminal/data/messages:29
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:25
-msgid "Depending on your WindowManager, you may be able to move this with ALT + left-click."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+msgid ""
+"Depending on your WindowManager, you may be able to move this with ALT + "
+"left-click."
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。"
 
 #: ../Clipper/data/messages:135 ../Doncky/data/messages:29
@@ -2704,8 +3265,11 @@ msgstr "デスクレットの位置（X ; Y） :"
 #: ../terminal/data/messages:33 ../tomboy/data/messages:47
 #: ../weather/data/messages:31 ../weblets/data/messages:33
 #: ../wifi/data/messages:29
-msgid "You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides."
-msgstr "デスクレットの左側や上側にある小さなボタンをマウスでドラッグして、デスクレッ"
+msgid ""
+"You can quickly rotate the desklet with the mouse, by dragging the little "
+"buttons on its left and top sides."
+msgstr ""
+"デスクレットの左側や上側にある小さなボタンをマウスでドラッグして、デスクレッ"
 "トを素早く回転させることができます。"
 
 #: ../Clipper/data/messages:139 ../Doncky/data/messages:33
@@ -2779,8 +3343,11 @@ msgstr "ドックから分離？"
 #: ../systray/data/messages:29 ../terminal/data/messages:41
 #: ../tomboy/data/messages:55 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:37
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
-msgstr "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
+msgid ""
+"for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+"(class=Cairo-dock & type=utility)"
+msgstr ""
+"CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
 "動作設定での指定法 : (Class=Cairo-dock & type=utility)"
 
 #: ../Clipper/data/messages:147 ../Doncky/data/messages:41
@@ -2931,7 +3498,8 @@ msgstr "装飾"
 #: ../tomboy/data/messages:73 ../weather/data/messages:57
 #: ../weblets/data/messages:59 ../wifi/data/messages:55
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "自分の装飾を定義するには以下で 'Custom decorations' を選択してください。"
+msgstr ""
+"自分の装飾を定義するには以下で 'Custom decorations' を選択してください。"
 
 #: ../Clipper/data/messages:165 ../Doncky/data/messages:59
 #: ../GMenu/data/messages:61 ../Network-Monitor/data/messages:59
@@ -2966,8 +3534,10 @@ msgstr "このデスクレットの装飾テーマの選択 :"
 #: ../switcher/data/messages:55 ../terminal/data/messages:63
 #: ../tomboy/data/messages:77 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:59
-msgid "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+msgid ""
+"Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
 "欄のままにしてください。"
 
 #: ../Clipper/data/messages:169 ../Doncky/data/messages:63
@@ -2985,9 +3555,14 @@ msgstr "例えば外枠のように、描画物の背後に表示する画像で
 #: ../stack/data/messages:67 ../switcher/data/messages:57
 #: ../terminal/data/messages:65 ../tomboy/data/messages:79
 #: ../weather/data/messages:63 ../weblets/data/messages:65
-#: ../wifi/data/messages:61
+#: ../wifi/data/messages:61 ../clock/data/messages:141
+#, fuzzy
 msgid "Background image:"
-msgstr "背景画像 :"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"背景画像 :\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"背景に描画する画像 :"
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
 #: ../GMenu/data/messages:67 ../Network-Monitor/data/messages:65
@@ -3166,8 +3741,11 @@ msgstr "下方向のオフセット :"
 #: ../switcher/data/messages:77 ../terminal/data/messages:85
 #: ../tomboy/data/messages:99 ../weather/data/messages:83
 #: ../weblets/data/messages:85 ../wifi/data/messages:81
-msgid "Image to be displayed above the drawings, e.g. a reflection. Leave empty for no image."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+msgid ""
+"Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
+"no image."
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
 "合は空欄のままにしてください。"
 
 #: ../Clipper/data/messages:191 ../Doncky/data/messages:85
@@ -3211,8 +3789,11 @@ msgid "Items"
 msgstr "アイテム"
 
 #: ../Clipper/data/messages:199
-msgid "Clipboard items are those you get with CTRL+c. Selection items are those you get by selecting some text with the mouse."
-msgstr "クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイ"
+msgid ""
+"Clipboard items are those you get with CTRL+c. Selection items are those you "
+"get by selecting some text with the mouse."
+msgstr ""
+"クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイ"
 "テムは、マウスでテキストを選択することで取得するアイテムです。"
 
 #: ../Clipper/data/messages:201
@@ -3240,8 +3821,11 @@ msgid "Remember items between 2 sessions ?"
 msgstr ""
 
 #: ../Clipper/data/messages:215
-msgid "It is especially useful if you often select text with the mouse and don't want to loose your clipboard items due to too many items in the selection."
-msgstr "マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
+msgid ""
+"It is especially useful if you often select text with the mouse and don't "
+"want to loose your clipboard items due to too many items in the selection."
+msgstr ""
+"マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
 "ボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
 
 #: ../Clipper/data/messages:217
@@ -3253,16 +3837,21 @@ msgid "If so, number of selection items:"
 msgstr "分離させる場合のセレクション・アイテム数 :"
 
 #: ../Clipper/data/messages:221
-msgid "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
+msgid ""
+"When you click on an item, its content will become accessible with CTRL+v"
+msgstr ""
+"アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
 
 #: ../Clipper/data/messages:223
 msgid "Paste into Clipboard?"
 msgstr "クリップボードに貼り付け？"
 
 #: ../Clipper/data/messages:225
-msgid "When you click on an item, its content will become accessible with the middle-click"
-msgstr "アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
+msgid ""
+"When you click on an item, its content will become accessible with the "
+"middle-click"
+msgstr ""
+"アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
 "す。"
 
 #: ../Clipper/data/messages:227
@@ -3282,8 +3871,11 @@ msgid "Actions"
 msgstr "アクション"
 
 #: ../Clipper/data/messages:235
-msgid "If some actions are associated with an item, they will be proposed when the item is created."
-msgstr "アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
+msgid ""
+"If some actions are associated with an item, they will be proposed when the "
+"item is created."
+msgstr ""
+"アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
 "アクションを提示します。"
 
 #: ../Clipper/data/messages:237
@@ -3320,7 +3912,8 @@ msgstr "中クリックでアクセス可能な定形文として登録された
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
-msgstr "外部アプリケーションからドック上にダイアログをポップアップできるようにする？"
+msgstr ""
+"外部アプリケーションからドック上にダイアログをポップアップできるようにする？"
 
 #: ../Dbus/data/messages:5
 msgid "Let external applications reboot the dock?"
@@ -3352,7 +3945,8 @@ msgstr "外部アプリケーションからアイコンのラベルを変更で
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "外部アプリケーションからアイコン上のクイック情報を変更できるようにする？"
+msgstr ""
+"外部アプリケーションからアイコン上のクイック情報を変更できるようにする？"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -3366,11 +3960,6 @@ msgstr "外部アプリケーションからアイコンをアニメーション
 msgid "Let extern applications register new module?"
 msgstr "外部アプリケーションから新しいモジュールを登録できるようにする？"
 
-#: ../Doncky/data/messages:91
-#, fuzzy
-msgid "Leave empty to use the default one."
-msgstr "デフォルトのものを使用するには空欄のままに。"
-
 #: ../Doncky/data/messages:93
 msgid "Specify a title :"
 msgstr ""
@@ -3383,8 +3972,7 @@ msgstr "外観"
 msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:101
-#, fuzzy
+#: ../alsaMixer/data/messages:137
 msgid "Default icon:"
 msgstr "デフォルトのアイコン :"
 
@@ -3392,8 +3980,7 @@ msgstr "デフォルトのアイコン :"
 msgid "Color to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:105
-#, fuzzy
+#: ../icon-effect/data/messages:195
 msgid "Default colour:"
 msgstr "デフォルトの色 :"
 
@@ -3401,8 +3988,7 @@ msgstr "デフォルトの色 :"
 msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
-#: ../Doncky/data/messages:109
-#, fuzzy
+#: ../stack/data/messages:109
 msgid "Image for 'text' items:"
 msgstr "テキスト・アイテム用の画像 :"
 
@@ -3410,8 +3996,7 @@ msgstr "テキスト・アイテム用の画像 :"
 msgid "Use this to increase the space between the lines"
 msgstr ""
 
-#: ../Doncky/data/messages:113
-#, fuzzy
+#: ../dock-rendering/data/messages:53
 msgid "Space between icons:"
 msgstr "同列アイコン同士の間隔 :"
 
@@ -3421,7 +4006,8 @@ msgstr "背景"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
 msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "デスクレットの装飾を使用して、より魅力的な背景を持たせることができます。"
+msgstr ""
+"デスクレットの装飾を使用して、より魅力的な背景を持たせることができます。"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
 msgid "Display a simple background?"
@@ -3536,7 +4122,8 @@ msgstr "接続速度"
 
 #: ../Network-Monitor/data/messages:101
 msgid "By default the first active interface is used."
-msgstr "何も指定しない場合は、最初に有効になったインターフェイスが使用されます。"
+msgstr ""
+"何も指定しない場合は、最初に有効になったインターフェイスが使用されます。"
 
 #: ../Network-Monitor/data/messages:103
 msgid "Connection interface to monitor:"
@@ -3566,8 +4153,11 @@ msgstr "ラベル上"
 
 #: ../Network-Monitor/data/messages:113 ../System-Monitor/data/messages:151
 #: ../wifi/data/messages:167
-msgid "You need OpenGL for this option. Set it to 0 means not used, 1 means the movement is continue."
-msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
+msgid ""
+"You need OpenGL for this option. Set it to 0 means not used, 1 means the "
+"movement is continue."
+msgstr ""
+"このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
 "1 に設定すると連続動作になります。"
 
 #: ../Network-Monitor/data/messages:115
@@ -3579,8 +4169,11 @@ msgid "Animation of the icon when connecting:"
 msgstr "接続試行中時のアイコンのアニメーション :"
 
 #: ../Network-Monitor/data/messages:119
-msgid "Allow you to overwrite applet's default command line and launch your preferred wireless configuration interface."
-msgstr "アプレットのデフォルトのコマンドラインを上書きして、任意の無線設定インタ"
+msgid ""
+"Allow you to overwrite applet's default command line and launch your "
+"preferred wireless configuration interface."
+msgstr ""
+"アプレットのデフォルトのコマンドラインを上書きして、任意の無線設定インタ"
 "フェースを起動することができます。"
 
 #: ../Network-Monitor/data/messages:121
@@ -3734,7 +4327,13 @@ msgstr "バーの描画"
 #: ../musicPlayer/data/messages:181 ../wifi/data/messages:137
 #: ../wifi/data/messages:141 ../wifi/data/messages:145
 #: ../wifi/data/messages:149 ../wifi/data/messages:153
-#: ../wifi/data/messages:157
+#: ../wifi/data/messages:157 ../compiz-icon/data/messages:165
+#: ../compiz-icon/data/messages:169 ../compiz-icon/data/messages:173
+#: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
+#: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
+#: ../compiz-icon/data/messages:193 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:25
 msgid "Leave empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -3825,8 +4424,10 @@ msgid "Display an info bubble when a feed has changed?"
 msgstr "フィードに更新があるとき吹き出しの情報通知を表示？"
 
 #: ../RSSreader/data/messages:115
-msgid "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
-msgstr "秒単位。0 に設定すると時間制限なし（ダイアログをクリックして閉じる）になりま"
+msgid ""
+"In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
+msgstr ""
+"秒単位。0 に設定すると時間制限なし（ダイアログをクリックして閉じる）になりま"
 "す。"
 
 #: ../RSSreader/data/messages:117
@@ -3929,17 +4530,21 @@ msgstr "ファインダー・モードを開始/停止するショートキー :
 msgid "Shortkey to enable/disable the navigation mode:"
 msgstr "ナビゲーション・モードを開始/停止するショートキー :"
 
-#: ../Scooby-Do/data/messages:7
-#, fuzzy
-msgid "Maximum number of mails that will be previewed. Put -1 to show the maximum possible."
-msgstr "プレビューするメール数の上限です。-1 に設定すると最大限多く表示します。"
+#: ../mail/data/messages:109
+msgid ""
+"Maximum number of mails that will be previewed. Put -1 to show the maximum "
+"possible."
+msgstr ""
+"プレビューするメール数の上限です。-1 に設定すると最大限多く表示します。"
 
 #: ../Scooby-Do/data/messages:9
 msgid "Maximum number of results :"
 msgstr "検索結果の最大数 :"
 
 #: ../Scooby-Do/data/messages:11
-msgid "Number of lines of the listing. If there are more results, the listing will scroll when you go up or down with the arrows."
+msgid ""
+"Number of lines of the listing. If there are more results, the listing will "
+"scroll when you go up or down with the arrows."
 msgstr ""
 
 #: ../Scooby-Do/data/messages:13
@@ -3962,11 +4567,6 @@ msgstr "停止時のアニメーションの持続時間 :"
 msgid "Animation of the current icon :"
 msgstr "現在のアイコンのアニメーション :"
 
-#: ../Scooby-Do/data/messages:27
-#, fuzzy
-msgid "Is detached from the dock"
-msgstr "ドックから分離？"
-
 #: ../Scooby-Do/data/messages:29
 msgid "Font used to display what you type:"
 msgstr "入力文字の表示に使用するフォント :"
@@ -3987,9 +4587,14 @@ msgstr "1 から 9 の間、大きい値ほど太くなります。"
 msgid "Text size:"
 msgstr "文字の太さ :"
 
-#: ../Scooby-Do/data/messages:39
+#: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
+#, fuzzy
 msgid "Outline text?"
-msgstr "文字をアウトライン表示？"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"文字をアウトライン表示？\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"文字を強調表示？"
 
 #: ../Scooby-Do/data/messages:41 ../clock/data/messages:137
 msgid "Text colour:"
@@ -4111,25 +4716,9 @@ msgstr "'y' で始まる優先アプリケーション :"
 msgid "Favorite application(s) starting with 'z' :"
 msgstr "'z' で始まる優先アプリケーション :"
 
-#: ../Scooby-Do/data/messages:101
-#, fuzzy
-msgid "Start XPenguins"
-msgstr "XPenguins 開始"
-
-#: ../Scooby-Do/data/messages:103
-#, fuzzy
+#: ../quick-browser/data/messages:103
 msgid "Show hidden files?"
 msgstr "隠しファイルを表示？"
-
-#: ../Scooby-Do/data/messages:105
-#, fuzzy
-msgid "Firefox bookmarks"
-msgstr "Firefox ブックマーク"
-
-#: ../Scooby-Do/data/messages:107
-#, fuzzy
-msgid "Recent files"
-msgstr "最近開いたファイル"
 
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
@@ -4138,11 +4727,6 @@ msgstr ""
 #: ../Scooby-Do/data/messages:111
 msgid "It can launch commands and even do some calculations."
 msgstr ""
-
-#: ../Scooby-Do/data/messages:113
-#, fuzzy
-msgid "Enter a command to launch:"
-msgstr "起動コマンドを入力 :"
 
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
@@ -4197,8 +4781,11 @@ msgid "How smooth is the movement?"
 msgstr "動作の滑らかさの度合いは？"
 
 #: ../System-Monitor/data/messages:159
-msgid "It will prevent the system monitor's icon to show in the taskbar. The applet's icon will then behave as a launcher, an application, and an applet."
-msgstr "タスクバーにシステム・モニタのアイコンが表示されないようにします。これによ"
+msgid ""
+"It will prevent the system monitor's icon to show in the taskbar. The "
+"applet's icon will then behave as a launcher, an application, and an applet."
+msgstr ""
+"タスクバーにシステム・モニタのアイコンが表示されないようにします。これによ"
 "り、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作"
 "するようになります。"
 
@@ -4215,9 +4802,11 @@ msgid "Top List"
 msgstr "トップ・リスト"
 
 #: ../System-Monitor/data/messages:169
-msgid "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+msgid ""
+"When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "using programs."
-msgstr "アイコンを左クリックすると、CPU/RAM を最も使用している上位 N のプログラムのリ"
+msgstr ""
+"アイコンを左クリックすると、CPU/RAM を最も使用している上位 N のプログラムのリ"
 "ストが得られます。"
 
 #: ../System-Monitor/data/messages:171
@@ -4252,17 +4841,20 @@ msgstr "トップ・リストの更新間隔 :"
 msgid "Graphic Card temperature"
 msgstr "グラフィックカードの温度"
 
-#: ../System-Monitor/data/messages:189
-msgid "in Celsius. The temperature will be displayed between this value and the upper limit."
-msgstr "摂氏。温度はこの値と上限値との間で表示されます。"
+#: ../System-Monitor/data/messages:189 ../System-Monitor/data/messages:193
+#, fuzzy
+msgid ""
+"in Celsius. The temperature will be displayed between this value and the "
+"upper limit."
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"摂氏。温度はこの値と上限値との間で表示されます。\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"摂氏。温度は下限値とこの値との間で表示されます。"
 
 #: ../System-Monitor/data/messages:191
 msgid "Lower limit of graphic card temperature:"
 msgstr "コアの温度の下限 :"
-
-#: ../System-Monitor/data/messages:193
-msgid "in Celsius. The temperature will be displayed between this value and the upper limit."
-msgstr "摂氏。温度は下限値とこの値との間で表示されます。"
 
 #: ../System-Monitor/data/messages:195
 msgid "Upper limit of graphic card temperature:"
@@ -4324,25 +4916,24 @@ msgstr "使用しない場合は 0 に設定してください。"
 msgid "Brightness to apply automatically on startup:"
 msgstr "スタートアップ時に自動的に適用する明るさ :"
 
-#: ../alsaMixer/data/messages:7
-#, fuzzy
+#: ../alsaMixer/data/messages:93
 msgid "Leave empty to use the default sound card."
 msgstr "デフォルトのサウンドカードを使用するには空欄のままに。"
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
 #: ../tomboy/data/messages:43
-msgid "Depending on your WindowManager, you may be able to move this with ALT + left-click. Negative values are calculated from the right/bottom of the screen"
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+msgid ""
+"Depending on your WindowManager, you may be able to move this with ALT + "
+"left-click. Negative values are calculated from the right/bottom of the "
+"screen"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
 "せることができます。負の値の場合は、画面の右下から数えられます。"
 
 #: ../alsaMixer/data/messages:91
 msgid "Alsa"
 msgstr "Alsa"
-
-#: ../alsaMixer/data/messages:93
-msgid "Leave empty to use the default sound card."
-msgstr "デフォルトのサウンドカードを使用するには空欄のままに。"
 
 #: ../alsaMixer/data/messages:95
 msgid "Sound card:"
@@ -4353,8 +4944,12 @@ msgid "Select channel:"
 msgstr "制御するチャンネルの選択 :"
 
 #: ../alsaMixer/data/messages:99
-msgid "On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just leave this empty."
-msgstr "カードのなかには、1チャンネルが右または左の片側のみ制御するものがあります。そ"
+msgid ""
+"On some cards, a channel only controls 1 side (right or left). You will then "
+"need to specify a second channel here, to control both sides. Most of the "
+"time, you should just leave this empty."
+msgstr ""
+"カードのなかには、1チャンネルが右または左の片側のみ制御するものがあります。そ"
 "の際は両側の制御のために第2チャンネルの指定が必要になります。大抵の場合、空欄"
 "のままにしてください。"
 
@@ -4398,10 +4993,6 @@ msgstr "ボリューム表示 :"
 msgid "Effect to apply to the icon when adjusting volume:"
 msgstr "音量に合わせてアイコンに適用する効果 :"
 
-#: ../alsaMixer/data/messages:137
-msgid "Default icon:"
-msgstr "デフォルトのアイコン :"
-
 #: ../alsaMixer/data/messages:141
 msgid "Broken icon:"
 msgstr "リンク切れ時のアイコン :"
@@ -4432,7 +5023,8 @@ msgid "Display the time in a 24h format?"
 msgstr "時刻を24時間形式で表示？"
 
 #: ../clock/data/messages:105
-msgid "if not, then the applet will update the time once a minute, saving CPU power."
+msgid ""
+"if not, then the applet will update the time once a minute, saving CPU power."
 msgstr "CPU の使用を抑えて、アプレットを 1 分置きに更新します。"
 
 #: ../clock/data/messages:107
@@ -4440,8 +5032,11 @@ msgid "Show seconds?"
 msgstr "秒を表示？"
 
 #: ../clock/data/messages:109
-msgid "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous animation. Requires OpenGL."
-msgstr "ミリ秒単位。滑らかなアニメーションにしない場合は 0 に設定、1000 に設定すると"
+msgid ""
+"In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
+"animation. Requires OpenGL."
+msgstr ""
+"ミリ秒単位。滑らかなアニメーションにしない場合は 0 に設定、1000 に設定すると"
 "連続したアニメーションになります。要 OpenGL。"
 
 #: ../clock/data/messages:111
@@ -4450,7 +5045,8 @@ msgstr "滑らかなアニメーションによる秒針表示の継続時間 :"
 
 #: ../clock/data/messages:113
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
-msgstr "例えば、 :Europe/Paris、 :Japan、等々。ローカルの時間を取得するには空欄のまま"
+msgstr ""
+"例えば、 :Europe/Paris、 :Japan、等々。ローカルの時間を取得するには空欄のまま"
 "にしてください。"
 
 #: ../clock/data/messages:115
@@ -4462,8 +5058,11 @@ msgid "Style"
 msgstr "スタイル"
 
 #: ../clock/data/messages:119
-msgid "The analogue view is based on CairoClock; otherwise it will be displayed in digital format."
-msgstr "アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
+msgid ""
+"The analogue view is based on CairoClock; otherwise it will be displayed in "
+"digital format."
+msgstr ""
+"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
 "示されます。"
 
 #: ../clock/data/messages:121
@@ -4502,10 +5101,6 @@ msgstr "フォント :"
 msgid "Ratio to apply on text :"
 msgstr "文字に適用する比率 :"
 
-#: ../clock/data/messages:141
-msgid "Background image:"
-msgstr "背景に描画する画像 :"
-
 #: ../clock/data/messages:143
 msgid "Configure time and date"
 msgstr "時刻と日付の設定"
@@ -4523,7 +5118,8 @@ msgid "Alarm"
 msgstr "アラーム"
 
 #: ../clock/data/messages:151
-msgid "The new alarm will be added to the end / the last alarm will be removed."
+msgid ""
+"The new alarm will be added to the end / the last alarm will be removed."
 msgstr "新しいアラームを最後に追加、または最後のアラームが削除されます。"
 
 #: ../clock/data/messages:153
@@ -4531,8 +5127,11 @@ msgid "Add or remove an alarm:"
 msgstr "アラームの追加または削除 :"
 
 #: ../compiz-icon/data/messages:91
-msgid "Except when switching to another WM, you must activate the Dbus plugin in Compiz along with the plugin corresponding to the desired action."
-msgstr "別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグイ"
+msgid ""
+"Except when switching to another WM, you must activate the Dbus plugin in "
+"Compiz along with the plugin corresponding to the desired action."
+msgstr ""
+"別のWMへの切り替え以外を選択した場合、Compiz の各アクションに対応するプラグイ"
 "ンの他に、Dbus プラグインも有効にする必要があります。"
 
 #: ../compiz-icon/data/messages:93
@@ -4552,8 +5151,11 @@ msgid "Show Desktop"
 msgstr "デスクトップの表示"
 
 #: ../compiz-icon/data/messages:105
-msgid "This command will be used to launch the system WM. Leave blank to use the default."
-msgstr "このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用する"
+msgid ""
+"This command will be used to launch the system WM. Leave blank to use the "
+"default."
+msgstr ""
+"このコマンドはシステムの WM を起動するのに使用されます。デフォルトを使用する"
 "には空欄のままに。"
 
 #: ../compiz-icon/data/messages:107
@@ -4561,16 +5163,23 @@ msgid "Custom command for system's Windows Manager:"
 msgstr "システムのウィンドウ・マネージャを呼び出す任意コマンド"
 
 #: ../compiz-icon/data/messages:109
-msgid "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit Compiz from the dock."
-msgstr "Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 Compiz の終了はドックから行う必要があります。"
+msgid ""
+"If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+"Compiz from the dock."
+msgstr ""
+"Compiz が予期せず終了した場合、Cairo-Dock が Compiz を再起動します。この場合 "
+"Compiz の終了はドックから行う必要があります。"
 
 #: ../compiz-icon/data/messages:111
 msgid "Auto-reload Compiz?"
 msgstr "Compiz を自動再読み込み？"
 
 #: ../compiz-icon/data/messages:113
-msgid "If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must then quit Compiz from the dock."
-msgstr "デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この"
+msgid ""
+"If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
+"then quit Compiz from the dock."
+msgstr ""
+"デコレータが予期せず終了した場合、Cairo-Dock がデコレータを再起動します。この"
 "場合 Compiz の終了はドックから行う必要があります。"
 
 #: ../compiz-icon/data/messages:115
@@ -4586,8 +5195,12 @@ msgid "Force Compiz settings on startup?"
 msgstr "スタートアップ時に Compiz の設定を適用？"
 
 #: ../compiz-icon/data/messages:121
-msgid "This will prevent the CSSM or Emerald icons appearing in the taskbar. The corresponding sub-dock's icons will then behave as a launcher and an application."
-msgstr "CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサ"
+msgid ""
+"This will prevent the CSSM or Emerald icons appearing in the taskbar. The "
+"corresponding sub-dock's icons will then behave as a launcher and an "
+"application."
+msgstr ""
+"CCSM や Emerald のアイコンがタスクバーに表示されるのを防ぎます。対応するサ"
 "ブ・ドックのアイコンがランチャーやアプリケーションとして動作します。"
 
 #: ../compiz-icon/data/messages:123 ../mail/data/messages:135
@@ -4595,8 +5208,11 @@ msgid "Steal the application's icon from the taskbar?"
 msgstr "タスクバーのアプリケーションのアイコンを奪取？"
 
 #: ../compiz-icon/data/messages:125
-msgid "Display two icons for Compiz Exposition & Widget Layer plug-ins in the applet's sub-dock. Otherwise they will be available in the menu."
-msgstr "Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
+msgid ""
+"Display two icons for Compiz Exposition & Widget Layer plug-ins in the "
+"applet's sub-dock. Otherwise they will be available in the menu."
+msgstr ""
+"Compiz のウィジェット・レイヤと展開のプラグインの2つのアイコンをアプレットの"
 "サブ・ドックに表示します。無効の場合でも、メニュー上から利用可能です。"
 
 #: ../compiz-icon/data/messages:127
@@ -4604,8 +5220,10 @@ msgid "Add Exposition & Widget Layer to sub-dock?"
 msgstr "展開とウィジェット・レイヤをサブ・ドックに追加？"
 
 #: ../compiz-icon/data/messages:129
-msgid "Display an icon for the Emerald configuration panel in the applet's sub-dock."
-msgstr "アプレットのサブ・ドックに Emerald の設定パネルのアイコンを表示します。"
+msgid ""
+"Display an icon for the Emerald configuration panel in the applet's sub-dock."
+msgstr ""
+"アプレットのサブ・ドックに Emerald の設定パネルのアイコンを表示します。"
 
 #: ../compiz-icon/data/messages:131
 msgid "Add Emerald Configuration to sub-dock?"
@@ -4616,8 +5234,14 @@ msgid "Compiz Options"
 msgstr "Compiz のオプション"
 
 #: ../compiz-icon/data/messages:135
-msgid "With strict binding, textures are bound whenever they are enabled. With loose binding they are enabled when created. The Nvidia driver seems a bit slow when binding textures, that's why this option gives a heavy performance increase with Nvidia cards."
-msgstr "Strict binding では、テクスチャが有効のとき常にバインドされますが、Loose binding では、テクスチャ生成時のみ有効になります。Nvidia ドライバはテクスチャ"
+msgid ""
+"With strict binding, textures are bound whenever they are enabled. With "
+"loose binding they are enabled when created. The Nvidia driver seems a bit "
+"slow when binding textures, that's why this option gives a heavy performance "
+"increase with Nvidia cards."
+msgstr ""
+"Strict binding では、テクスチャが有効のとき常にバインドされますが、Loose "
+"binding では、テクスチャ生成時のみ有効になります。Nvidia ドライバはテクスチャ"
 "のバインディング処理が若干遅いようなので、Nvidia カードではこのオプションに"
 "よってパフォーマンスが著しく向上します。"
 
@@ -4683,15 +5307,6 @@ msgstr "サブ・ドックに使用する外観の名前 :"
 msgid "Images"
 msgstr "画像"
 
-#: ../compiz-icon/data/messages:165 ../compiz-icon/data/messages:169
-#: ../compiz-icon/data/messages:173 ../compiz-icon/data/messages:177
-#: ../compiz-icon/data/messages:181 ../compiz-icon/data/messages:185
-#: ../compiz-icon/data/messages:189 ../compiz-icon/data/messages:193
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:25
-msgid "Leave empty to use the default icon."
-msgstr "デフォルトのアイコンを使用するには空欄のままに。"
-
 #: ../compiz-icon/data/messages:167 ../musicPlayer/data/messages:167
 #: ../tomboy/data/messages:15
 msgid "'Default' icon image name:"
@@ -4726,10 +5341,6 @@ msgstr "「展開」のアイコン画像の名前 :"
 msgid "'Widget Layer' icon image name:"
 msgstr "「ウィジェット・レイヤ」のアイコン画像の名前 :"
 
-#: ../dialog-rendering/data/messages:1
-msgid "Comics"
-msgstr "コミックス"
-
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
@@ -4745,10 +5356,6 @@ msgstr "境界の幅 :"
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Bubble's line colour:"
 msgstr "吹き出しの線の色 :"
-
-#: ../dialog-rendering/data/messages:9
-msgid "Modern"
-msgstr "モダン"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -4773,10 +5380,6 @@ msgstr "ツールチップ"
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
 msgstr "マージンの色 :"
-
-#: ../dialog-rendering/data/messages:39
-msgid "Curly"
-msgstr "カーリー"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -4916,8 +5519,12 @@ msgid "Height of the vanishing point:"
 msgstr "消尽点の高さ :"
 
 #: ../dock-rendering/data/messages:9
-msgid "In degrees, relative to the vertical. This is a sort of inclination of the plane to the horizontal, giving a 3D impression. Setting this to 0 means that the plane is not inclined at all (vertical)."
-msgstr "垂直に対する角度。3D 風にするための水平の地面の傾きです。従って 0 に設定する"
+msgid ""
+"In degrees, relative to the vertical. This is a sort of inclination of the "
+"plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+"that the plane is not inclined at all (vertical)."
+msgstr ""
+"垂直に対する角度。3D 風にするための水平の地面の傾きです。従って 0 に設定する"
 "と地面は全く傾斜しません（垂直）。"
 
 #: ../dock-rendering/data/messages:11
@@ -4925,8 +5532,11 @@ msgid "Inclination of the plane:"
 msgstr "地面の傾斜 :"
 
 #: ../dock-rendering/data/messages:13
-msgid "0.5 means the dock is half-folded, so half the icons are on the foreground and half are on the background."
-msgstr "0.5 ではドックが半分に畳まれた状態になります。つまり、アイコンの半分が前方に"
+msgid ""
+"0.5 means the dock is half-folded, so half the icons are on the foreground "
+"and half are on the background."
+msgstr ""
+"0.5 ではドックが半分に畳まれた状態になります。つまり、アイコンの半分が前方に"
 "配置され、もう半分が後方に配置されます。"
 
 #: ../dock-rendering/data/messages:15
@@ -4934,8 +5544,11 @@ msgid "Percentage of the dock's width that appears on the foreground:"
 msgstr "前方に表示するドックの幅の割合 :"
 
 #: ../dock-rendering/data/messages:17
-msgid "The greater, the deeper. This represents the gap between the bottoms ofbackground icons and the tops of foreground icons (in pixels)."
-msgstr "数値が大きいほど奥行きが深くなります。正確には、後方のアイコンの下端と前方の"
+msgid ""
+"The greater, the deeper. This represents the gap between the bottoms "
+"ofbackground icons and the tops of foreground icons (in pixels)."
+msgstr ""
+"数値が大きいほど奥行きが深くなります。正確には、後方のアイコンの下端と前方の"
 "アイコンの上端との隙間の大きさです（ピクセル単位）。"
 
 #: ../dock-rendering/data/messages:19
@@ -4968,7 +5581,8 @@ msgstr "高さ/幅 の割合 :"
 
 #: ../dock-rendering/data/messages:35
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
-msgstr "0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが"
+msgstr ""
+"0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが"
 "最大になります。"
 
 #: ../dock-rendering/data/messages:37 ../dock-rendering/data/messages:57
@@ -4984,8 +5598,11 @@ msgid "Space between icons and their captions:"
 msgstr "アイコンとそのラベル同士の隙間 :"
 
 #: ../dock-rendering/data/messages:45
-msgid "This may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with OpenGL."
-msgstr "OpenGL を利用していない場合、展開アニメーション中に CPU の使用がより必要にな"
+msgid ""
+"This may recquire more CPU during the unfolding animation, except if you "
+"launch Cairo-Dock with OpenGL."
+msgstr ""
+"OpenGL を利用していない場合、展開アニメーション中に CPU の使用がより必要にな"
 "る可能性があります。"
 
 #: ../dock-rendering/data/messages:47
@@ -4996,13 +5613,10 @@ msgstr "展開中にラベルを描画？"
 msgid "Space between rows:"
 msgstr "横列同士の間隔 :"
 
-#: ../dock-rendering/data/messages:53
-msgid "Space between icons:"
-msgstr "同列アイコン同士の間隔 :"
-
 #: ../dock-rendering/data/messages:55
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
-msgstr "0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他"
+msgstr ""
+"0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他"
 "の外観と同一になります。"
 
 #: ../dock-rendering/data/messages:59
@@ -5010,8 +5624,11 @@ msgid "Number of icons on the first row:"
 msgstr "最初の横列のアイコンの数 :"
 
 #: ../dock-rendering/data/messages:61
-msgid "in degrees. The lower the value, the narrower the cone. 180° represents a wide open cone."
-msgstr "円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開し"
+msgid ""
+"in degrees. The lower the value, the narrower the cone. 180° represents a "
+"wide open cone."
+msgstr ""
+"円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開し"
 "ます。"
 
 #: ../dock-rendering/data/messages:63
@@ -5020,7 +5637,8 @@ msgstr "円錐の幅 :"
 
 #: ../dock-rendering/data/messages:65
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
-msgstr "弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画"
+msgstr ""
+"弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画"
 "が遅くなります。"
 
 #: ../dock-rendering/data/messages:67
@@ -5124,8 +5742,11 @@ msgid "Drag and drop indicator"
 msgstr "ドロップ&ドロップ標示"
 
 #: ../drop-indicator/data/messages:5
-msgid "Typically an arrow, this will be displayed when you try to drop a new launcher into the dock. Leave this empty to use the default."
-msgstr "ドックに新規ランチャーをドロップしようとするときなどに表示されるもので、典型"
+msgid ""
+"Typically an arrow, this will be displayed when you try to drop a new "
+"launcher into the dock. Leave this empty to use the default."
+msgstr ""
+"ドックに新規ランチャーをドロップしようとするときなどに表示されるもので、典型"
 "なのは矢印です。デフォルトの画像を使用するには空欄のままにしてください。"
 
 #: ../drop-indicator/data/messages:7
@@ -5133,8 +5754,11 @@ msgid "Image for the drag & drop animation:"
 msgstr "ドラッグ＆ドロップ・アニメーションの画像 :"
 
 #: ../drop-indicator/data/messages:9
-msgid "An emblem that will be displayed when you try to drop something on an icon. Leave empty to use the default one."
-msgstr "アイコン上にファイル等をドロップしようとする際に表示されるエンブレムです。デ"
+msgid ""
+"An emblem that will be displayed when you try to drop something on an icon. "
+"Leave empty to use the default one."
+msgstr ""
+"アイコン上にファイル等をドロップしようとする際に表示されるエンブレムです。デ"
 "フォルトのものを使用するには空欄のままに。"
 
 #: ../drop-indicator/data/messages:11
@@ -5191,8 +5815,10 @@ msgid "Total weight"
 msgstr "総量"
 
 #: ../dustbin/data/messages:109 ../dustbin/data/messages:113
-msgid "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
-msgstr "Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
+msgid ""
+"in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+msgstr ""
+"Mb 単位。この上限値を越えた際に通知を行います。0 に設定すると通知を使用しませ"
 "ん。"
 
 #: ../dustbin/data/messages:111
@@ -5224,8 +5850,10 @@ msgid "Time interval to check if dustbin is full/empty :"
 msgstr "ゴミ箱の満杯/空をチェックする間隔時間 :"
 
 #: ../dustbin/data/messages:127
-msgid "Only use this if you notice that the applet can't display the trash on click."
-msgstr "アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
+msgid ""
+"Only use this if you notice that the applet can't display the trash on click."
+msgstr ""
+"アプレットがクリックでゴミ箱の中身を表示できない場合にのみ使用してください。"
 
 #: ../dustbin/data/messages:129
 msgid "Alternative file browser used to show a trash :"
@@ -5252,7 +5880,8 @@ msgstr "色"
 
 #: ../icon-effect/data/messages:87
 msgid "This will slightly alter your colours, so you may have to modify them."
-msgstr "これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるか"
+msgstr ""
+"これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるか"
 "もしれません。"
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5283,10 +5912,6 @@ msgstr "粒子の大きさ :"
 #: ../icon-effect/data/messages:163 ../illusion/data/messages:49
 msgid "Particle speed:"
 msgstr "粒子の速度 :"
-
-#: ../icon-effect/data/messages:195
-msgid "Default colour:"
-msgstr "デフォルトの色 :"
 
 #: ../icon-effect/data/messages:199
 msgid "It particularily fits a dark wallpaper or a dark theme."
@@ -5341,6 +5966,7 @@ msgid "Break"
 msgstr "破砕"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
+#: ../illusion/data/messages:73
 msgid "Black Hole"
 msgstr "ブラックホール"
 
@@ -5368,10 +5994,6 @@ msgstr "爆発の半径 :"
 msgid "Break the icon into cubes?"
 msgstr "キューブ状にアイコンを破砕？"
 
-#: ../illusion/data/messages:73
-msgid "Black Hole"
-msgstr "ブラックホール"
-
 #: ../illusion/data/messages:77
 msgid "in round per second."
 msgstr "秒当たりの回転数"
@@ -5393,8 +6015,12 @@ msgid "Display keyboard locks as quick-info?"
 msgstr "キーボードの Lock をクイック情報として表示？"
 
 #: ../keyboard-indicator/data/messages:93
-msgid "in ms. Set to 0 if you don't want an animation when the keyboard layout changes."
-msgstr "ミリ秒単位。キーボード・レイアウト変更時にアニメーションさせたくない場合は 0 に設定してください。"
+msgid ""
+"in ms. Set to 0 if you don't want an animation when the keyboard layout "
+"changes."
+msgstr ""
+"ミリ秒単位。キーボード・レイアウト変更時にアニメーションさせたくない場合は 0 "
+"に設定してください。"
 
 #: ../keyboard-indicator/data/messages:95
 msgid "Duration of the transition animation:"
@@ -5404,13 +6030,11 @@ msgstr "レイアウト変更時のアニメーション持続時間 :"
 msgid "Text colour"
 msgstr "文字の色 :"
 
-#: ../keyboard-indicator/data/messages:103
-msgid "Outline text?"
-msgstr "文字を強調表示？"
-
 #: ../keyboard-indicator/data/messages:105
-msgid "the smaller is the text in the icon. 1 means the text fills all the icon."
-msgstr "小さい数値ほどアイコン上の文字が小さくなり、1 に設定するとアイコン全体を埋め"
+msgid ""
+"the smaller is the text in the icon. 1 means the text fills all the icon."
+msgstr ""
+"小さい数値ほどアイコン上の文字が小さくなり、1 に設定するとアイコン全体を埋め"
 "る大きさになります。"
 
 #: ../keyboard-indicator/data/messages:107
@@ -5430,8 +6054,12 @@ msgid "User-defined command to execute for logout:"
 msgstr "ログアウトを実行するユーザー定義コマンド :"
 
 #: ../logout/data/messages:97
-msgid "This will be available when middle-clicking. Leave empty to execute the default command, which depends on your distribution. In some cases the command to shutdown is the same as the one to log out."
-msgstr "中クリックによって利用できます。使用しているディストリビューションに大きく依"
+msgid ""
+"This will be available when middle-clicking. Leave empty to execute the "
+"default command, which depends on your distribution. In some cases the "
+"command to shutdown is the same as the one to log out."
+msgstr ""
+"中クリックによって利用できます。使用しているディストリビューションに大きく依"
 "存しますが、デフォルトのコマンドを実行するには空欄のままにしてください。"
 "シャットダウンするコマンドがログアウトするためのものと同じ場合がしばしばあり"
 "ます。"
@@ -5464,26 +6092,21 @@ msgstr "「新着メール」の音ファイル :"
 msgid "Show new messages' content?"
 msgstr "新着メッセージの内容を表示？"
 
-#: ../mail/data/messages:109
-msgid "Maximum number of mails that will be previewed. Put -1 to show the maximum possible."
-msgstr "プレビューするメール数の上限です。-1 に設定すると最大限多く表示します。"
-
 #: ../mail/data/messages:111
 msgid "Maximum of new messages shown?"
 msgstr "新着メッセージの最大表示数？"
-
-#: ../mail/data/messages:113 ../musicPlayer/data/messages:131
-#: ../tomboy/data/messages:119
-msgid "in seconds"
-msgstr "秒単位"
 
 #: ../mail/data/messages:115 ../tomboy/data/messages:121
 msgid "Duration of the dialogue"
 msgstr "プレビュー・ダイアログの表示継続時間 :"
 
 #: ../mail/data/messages:117
-msgid "If you have any problem with the applet, uncheck this option during the maintenance mode, then after the dock has relaunched, remove/modify the mail accounts you want."
-msgstr "このアプレットに何か問題があった場合、メンテナンス・モードでこのオプションの"
+msgid ""
+"If you have any problem with the applet, uncheck this option during the "
+"maintenance mode, then after the dock has relaunched, remove/modify the mail "
+"accounts you want."
+msgstr ""
+"このアプレットに何か問題があった場合、メンテナンス・モードでこのオプションの"
 "チェックを外してからドックを起動させ、メール・アカウントの設定変更や削除を"
 "行ってください。"
 
@@ -5495,11 +6118,6 @@ msgstr "スタート時にメール・アカウントをチェック？"
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
-#: ../mail/data/messages:123
-#, fuzzy
-msgid "Total number of files"
-msgstr "ファイルの総数"
-
 #: ../mail/data/messages:125
 msgid "Mail application"
 msgstr "メール・アプリケーション"
@@ -5509,8 +6127,11 @@ msgid "Preferred mail application to launch on left-click :"
 msgstr "左クリックで起動させる任意のメール・アプリケーション :"
 
 #: ../mail/data/messages:129
-msgid "only use this if it differs from its name. Generally it is not the case, except for Thunderbird."
-msgstr "名前とクラス名が異なる場合にのみ使用してください。Thunderbird を除いて、使用"
+msgid ""
+"only use this if it differs from its name. Generally it is not the case, "
+"except for Thunderbird."
+msgstr ""
+"名前とクラス名が異なる場合にのみ使用してください。Thunderbird を除いて、使用"
 "が必要となるケースは基本的に稀です。"
 
 #: ../mail/data/messages:131
@@ -5518,8 +6139,11 @@ msgid "Class of the mail application (optional)"
 msgstr "メール・アプリケーションのクラス（任意入力）"
 
 #: ../mail/data/messages:133
-msgid "It will prevent the application's icon to appear in the task bar. The applet's icon will then behave as a launcher, an application, and an applet."
-msgstr "アプリケーションのアイコンがタスクバーに表示されないようにします。アプレット"
+msgid ""
+"It will prevent the application's icon to appear in the task bar. The "
+"applet's icon will then behave as a launcher, an application, and an applet."
+msgstr ""
+"アプリケーションのアイコンがタスクバーに表示されないようにします。アプレット"
 "のアイコンがランチャーやアプリ、アプレットとして動作します。"
 
 #: ../mail/data/messages:137
@@ -5599,8 +6223,11 @@ msgid "XMMS"
 msgstr "XMMS"
 
 #: ../musicPlayer/data/messages:117
-msgid "This will prevent the player icon appearing in the taskbar. The applet's icon will then behave as a launcher, an application and an applet."
-msgstr "タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプ"
+msgid ""
+"This will prevent the player icon appearing in the taskbar. The applet's "
+"icon will then behave as a launcher, an application and an applet."
+msgstr ""
+"タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプ"
 "レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
 "になります。"
 
@@ -5717,8 +6344,11 @@ msgid "Delay between measurements:"
 msgstr "計測の間隔時間 :"
 
 #: ../netspeed/data/messages:135
-msgid "You need OpenGL for this option. Set it to 0 to disable it, 1 means the transition is continue."
-msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
+msgid ""
+"You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
+"transition is continue."
+msgstr ""
+"このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
 "1 に設定すると継続動作になります。"
 
 #: ../netspeed/data/messages:137
@@ -5839,10 +6469,6 @@ msgstr "フォルダを先にリスト？"
 msgid "Ignore case?"
 msgstr "大文字小文字を区別しない？"
 
-#: ../quick-browser/data/messages:103
-msgid "Show hidden files?"
-msgstr "隠しファイルを表示？"
-
 #: ../quick-browser/data/messages:105
 msgid "Menu"
 msgstr "メニュー"
@@ -5868,8 +6494,11 @@ msgid "large"
 msgstr "大"
 
 #: ../quick-browser/data/messages:121
-msgid "Number of items loaded at once. Setting a high value speeds up loading a little but will hang the application for longer."
-msgstr "一度に読み込むアイテムの数。高い値に設定すると読み込み速度が若干上がります"
+msgid ""
+"Number of items loaded at once. Setting a high value speeds up loading a "
+"little but will hang the application for longer."
+msgstr ""
+"一度に読み込むアイテムの数。高い値に設定すると読み込み速度が若干上がります"
 "が、その分アプリをブロックします。"
 
 #: ../quick-browser/data/messages:123
@@ -5948,10 +6577,6 @@ msgstr "秒当りの回転数"
 msgid "Show mouse on:"
 msgstr "マウス表示効果対象 :"
 
-#: ../show-mouse/data/messages:11
-msgid "dock"
-msgstr "ドック"
-
 #: ../show-mouse/data/messages:13
 msgid "desklet"
 msgstr "デスクレット"
@@ -5969,7 +6594,8 @@ msgid "In pixels."
 msgstr "ピクセル単位"
 
 #: ../show-mouse/data/messages:33
-msgid "The higher the value, the more particles will scatter from their source."
+msgid ""
+"The higher the value, the more particles will scatter from their source."
 msgstr "高い数値ほど、より広範囲に各源泉から粒子が拡散します。"
 
 #: ../show-mouse/data/messages:35
@@ -6001,8 +6627,11 @@ msgid "Image when the applet is active :"
 msgstr "アプレットがアクティブなときの画像 :"
 
 #: ../showDesktop/data/messages:99 ../showDesktop/data/messages:113
-msgid "You need to activate the Dbus plug-in in Compiz for the last 2 actions. Showing desktop and desklets can fail on some Window Manager (like Metacity)."
-msgstr "最後の２つのアクションには、Compiz の Dbus プラグインの有効化が必要です。例え"
+msgid ""
+"You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
+"Showing desktop and desklets can fail on some Window Manager (like Metacity)."
+msgstr ""
+"最後の２つのアクションには、Compiz の Dbus プラグインの有効化が必要です。例え"
 "ば Metacity など、ウィンドウ・マネージャによっては「デスクトップとデスクレッ"
 "トの表示」が正しく働きません。"
 
@@ -6051,8 +6680,11 @@ msgid "Display image name as quickinfo?"
 msgstr "画像の名前をクイック情報として表示？"
 
 #: ../slider/data/messages:99
-msgid "This will prevent the dock from freezing during image loading, but works only with OpenGL."
-msgstr "画像読み込み中にドックがフリーズすることを防ぎますが、Cairo バックエンド使用"
+msgid ""
+"This will prevent the dock from freezing during image loading, but works "
+"only with OpenGL."
+msgstr ""
+"画像読み込み中にドックがフリーズすることを防ぎますが、Cairo バックエンド使用"
 "時には働きません。"
 
 #: ../slider/data/messages:101
@@ -6144,8 +6776,11 @@ msgid "Force the image to fill the icon/desklet?"
 msgstr "画像がアイコン/デスクレットを埋めるように引き伸ばす？"
 
 #: ../slider/data/messages:153
-msgid "Set the transparency channel to 0 if you just don't want to have a background."
-msgstr "背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
+msgid ""
+"Set the transparency channel to 0 if you just don't want to have a "
+"background."
+msgstr ""
+"背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
 
 #: ../slider/data/messages:155
 msgid "Choose a background colour :"
@@ -6158,10 +6793,6 @@ msgstr "デフォルトの名前を使用するには空欄のままに。"
 #: ../stack/data/messages:107
 msgid "They are items created by dropping a text into the Stack."
 msgstr "テキストをスタックにドロップして作成されたアイテムを指します。"
-
-#: ../stack/data/messages:109
-msgid "Image for 'text' items:"
-msgstr "テキスト・アイテム用の画像 :"
 
 #: ../stack/data/messages:111
 msgid "These are items created by dropping a URL into the Stack."
@@ -6176,8 +6807,11 @@ msgid "Options"
 msgstr "オプション"
 
 #: ../stack/data/messages:117
-msgid "These options allow you to prevent some files from displaying in stacks based on their type (video, image, etc.)"
-msgstr "このオプションを使用すると、特定の種類（動画、画像、等々）のファイルをスタッ"
+msgid ""
+"These options allow you to prevent some files from displaying in stacks "
+"based on their type (video, image, etc.)"
+msgstr ""
+"このオプションを使用すると、特定の種類（動画、画像、等々）のファイルをスタッ"
 "クに表示しないようにすることができます。"
 
 #: ../stack/data/messages:119
@@ -6213,9 +6847,11 @@ msgid "Manual order"
 msgstr "手動の順番"
 
 #: ../stack/data/messages:135
-msgid "It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
+msgid ""
+"It is the selection made by the mouse, by opposition to the usual ctrl+c/ctrl"
 "+v clipboard"
-msgstr "通常の Ctrl+c/Ctrl+v クリップボードとは異なる、マウスによる選択の方のクリップ"
+msgstr ""
+"通常の Ctrl+c/Ctrl+v クリップボードとは異なる、マウスによる選択の方のクリップ"
 "ボードです。"
 
 #: ../stack/data/messages:137
@@ -6223,17 +6859,21 @@ msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr "コピー/貼り付け/切り取りの際にセレクションの方のクリップボードを使用？"
 
 #: ../switcher/data/messages:87
-msgid "All desktops will be drawn on the main icon. Otherwise a sub-dock will contain all desktops."
-msgstr "全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サ"
+msgid ""
+"All desktops will be drawn on the main icon. Otherwise a sub-dock will "
+"contain all desktops."
+msgstr ""
+"全てのデスクトップがメイン・アイコン上に描画されます。これが無効の場合は、サ"
 "ブ・ドックに含まれるようになります。"
 
-#: ../switcher/data/messages:89
+#: ../switcher/data/messages:89 ../switcher/data/messages:91
+#, fuzzy
 msgid "Use the compact mode?"
-msgstr "コンパクト・モードを使用？"
-
-#: ../switcher/data/messages:91
-msgid "Use the compact mode?"
-msgstr "コンパクト・モードでの描画の際に画面縦横比の保持を試行？"
+msgstr ""
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"コンパクト・モードを使用？\n"
+"#-#-#-#-#  ja.po (1.0.0)  #-#-#-#-#\n"
+"コンパクト・モードでの描画の際に画面縦横比の保持を試行？"
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"
@@ -6328,10 +6968,6 @@ msgstr "拡張モード時にデスクレットを 3D 描画？"
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr "Cairo-Dock のラベル上に表示するアイコンの名前 :"
 
-#: ../systray/data/messages:45 ../terminal/data/messages:91
-msgid "Configuration"
-msgstr "Configuration"
-
 #: ../systray/data/messages:47
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr "システムトレイのドック・モードの切り替えショートキー :"
@@ -6377,8 +7013,11 @@ msgid "Background colour:"
 msgstr "背景の色 :"
 
 #: ../terminal/data/messages:109
-msgid "When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual."
-msgstr "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
+msgid ""
+"When the terminal is in a dialog. When it is in a desklet, you can just "
+"resize the desklet as usual."
+msgstr ""
+"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
 "のサイズ変更が可能です。"
 
 #: ../terminal/data/messages:111
@@ -6392,10 +7031,6 @@ msgstr "端末を表示するショートカットキー :"
 #: ../tomboy/data/messages:7
 msgid "Default title:"
 msgstr "デフォルトのタイトル :"
-
-#: ../tomboy/data/messages:19
-msgid "Name of the dock it belongs to:"
-msgstr "「閉じる」のアイコン画像の名前 :"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
@@ -6438,8 +7073,12 @@ msgid "Automatically name a new note?"
 msgstr "新しいノートに自動的に名前を付ける？"
 
 #: ../tomboy/data/messages:137
-msgid "Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Leave it blank to use the default one (%d/%m/%y)."
-msgstr "ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %"
+msgid ""
+"Write the date format you usually use in your notes. The syntax is the one "
+"of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+"digits), etc. Leave it blank to use the default one (%d/%m/%y)."
+msgstr ""
+"ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %"
 "y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用"
 "するには、空欄のままにしてください。"
 
@@ -6448,18 +7087,20 @@ msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
 #: ../tomboy/data/messages:141
-msgid "Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal."
-msgstr "使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
-"い可能性があります。端末上で <<No marshaller for signature of signal 'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみ、このオプション"
+msgid ""
+"Depending on your tomboy's version, the note deletion may not be "
+"automatically notified to us. Only check this box if you notice some error "
+"message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
+"terminal."
+msgstr ""
+"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
+"い可能性があります。端末上で <<No marshaller for signature of signal "
+"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみ、このオプション"
 "にチェックを入れてください。"
 
 #: ../tomboy/data/messages:143
 msgid "Emulate the 'NoteDeleted' signal?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
-
-#: ../weather/data/messages:3
-msgid "Set to 0 to use the default applet size"
-msgstr "デフォルトのアプレット・サイズを使用するには空欄のままに。"
 
 #: ../weather/data/messages:7
 msgid "Leave empty to use the name of the city."
@@ -6543,7 +7184,8 @@ msgstr "縦スクロールバーの位置（ピクセル単位）"
 
 #: ../weblets/data/messages:105
 msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
-msgstr "これにより、デスクレットの右クリック可能エリアを確保し、Cairo-Dock メニューを"
+msgstr ""
+"これにより、デスクレットの右クリック可能エリアを確保し、Cairo-Dock メニューを"
 "ポップアップさせることができます。"
 
 #: ../weblets/data/messages:107
@@ -6555,8 +7197,10 @@ msgid "Transparent background?"
 msgstr "透明な背景？"
 
 #: ../weblets/data/messages:111
-msgid "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしま"
+msgid ""
+"Time before reloading the weblet URI, in seconds. Zero means never reload."
+msgstr ""
+"Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしま"
 "せん。"
 
 #: ../weblets/data/messages:113
@@ -6600,8 +7244,11 @@ msgid "Delay between signal checks :"
 msgstr "信号チェックの間隔時間 :"
 
 #: ../wifi/data/messages:171
-msgid "Allow you to overwrite applet's default command line and launch your wireless configuration interface."
-msgstr "アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
+msgid ""
+"Allow you to overwrite applet's default command line and launch your "
+"wireless configuration interface."
+msgstr ""
+"アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
 "ンタフェースを起動することができます。"
 
 #: ../wifi/data/messages:173
