@@ -2945,7 +2945,7 @@ msgstr "Selecteer één van de beschikbare thema´s :"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "In seconden."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4395,7 +4395,7 @@ msgstr "Naam van een afbeelding voor het 'Verbinding met draad' icoon :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "In seconden, wanneer u geen netwerkbeheerder heeft."
 
 #: ../Network-Monitor/data/messages:255
@@ -5888,7 +5888,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "In seconden, wordt alleen gebruikt als u geen mappen kunt monitoren."
 
 #: ../dustbin/data/messages:125
@@ -7180,7 +7180,7 @@ msgstr "Internationaal eenhedensysteem gebruiken ?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "In seconden. Stel in op 0 om doorgaande dialogen te hebben."
 
 #: ../weather/data/messages:103

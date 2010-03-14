@@ -2980,7 +2980,7 @@ msgstr "Choisissez l'un des thèmes disponibles :"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "en secondes."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4450,7 +4450,7 @@ msgstr "Nom ou chemin de l'image pour l'icône \"Connexion filaire\" :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "ou, si vous n'avez pas Network-Manager"
 
 #: ../Network-Monitor/data/messages:255
@@ -5943,7 +5943,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
 "disponible."
@@ -7231,7 +7231,7 @@ msgstr "Utiliser les unités du Système International ?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
 
 #: ../weather/data/messages:103

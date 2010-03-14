@@ -2904,7 +2904,7 @@ msgstr "Escolha um dos temas disponíveis :"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "em segundos."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4346,7 +4346,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "em segundos. Só é usado se não for possível monitorizar pastas."
 
 #: ../Network-Monitor/data/messages:255
@@ -5759,7 +5759,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "em segundos. Só é usado se não for possível monitorizar pastas."
 
 #: ../dustbin/data/messages:125
@@ -6981,7 +6981,7 @@ msgid "Use International System Units?"
 msgstr ""
 
 #: ../weather/data/messages:101
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr ""
 
 #: ../weather/data/messages:103

@@ -150,7 +150,7 @@ show free = false
 info display = 1
 
 #i[1;30] Delay between refreshes:
-#{in secondsconds.}
+#{in seconds.}
 delay = 2
 
 #e[0;1] How smooth is the movement?
@@ -192,7 +192,7 @@ top color stop = 1;1;0
 top in percent = false
 
 #i[1;30] Delay between top list refreshes:
-#{in secondsconds.}
+#{in seconds.}
 top delay = 2
 
 HZ = 100

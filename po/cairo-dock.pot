@@ -2549,7 +2549,7 @@ msgstr ""
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr ""
 
 #: ../Cairo-Penguin/data/messages:19
@@ -3930,7 +3930,7 @@ msgid "Name of the image for the 'Wired connection' icon :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:253
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:255
@@ -5277,7 +5277,7 @@ msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr ""
 
 #: ../dustbin/data/messages:125
@@ -6454,7 +6454,7 @@ msgid "Use International System Units?"
 msgstr ""
 
 #: ../weather/data/messages:101
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr ""
 
 #: ../weather/data/messages:103

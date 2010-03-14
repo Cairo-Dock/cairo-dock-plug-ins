@@ -108,7 +108,7 @@ location code = FRXX0076
 IS units = true
 
 #i[0;40] Dialog duration:
-#{in secondsconds. Set 0 to have never-ending dialogs.}
+#{in seconds. Set 0 to have never-ending dialogs.}
 dialog duration = 7
 
 #i[5;60] Interval of time between 2 checks :

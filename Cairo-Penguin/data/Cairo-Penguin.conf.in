@@ -26,7 +26,7 @@ handbook=Cairo-Penguin
 theme = Classic
 
 #i Delay between animation changes :
-#{in secondsconds.
+#{in seconds.
 change delay = 8
 
 #e[0;1] Penguin transparency:

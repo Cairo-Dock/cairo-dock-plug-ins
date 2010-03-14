@@ -2963,7 +2963,7 @@ msgstr "Виберіть одну з доступних тем:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "в секундах."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4410,7 +4410,7 @@ msgstr "Зображення для значка 'Кабельне з'єднан
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "в сек., якщо у вас відсутній Network-Manager."
 
 #: ../Network-Monitor/data/messages:255
@@ -5894,7 +5894,7 @@ msgstr "Якщо смітник не відомий панелі, ви може�
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "в секундах, корисно тільки, якщо ви не можете бачити каталоги."
 
 #: ../dustbin/data/messages:125
@@ -7181,7 +7181,7 @@ msgstr "Використовувати міжнародну систему од�
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "в секундах. Встановіть 0, щоб вікна ніколи не зникали."
 
 #: ../weather/data/messages:103

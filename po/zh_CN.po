@@ -2645,7 +2645,7 @@ msgstr "选择主题:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "以秒为单位。"
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4067,7 +4067,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "以秒为单位，仅用于无法监视目录的情况。"
 
 #: ../Network-Monitor/data/messages:255
@@ -5492,7 +5492,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "以秒为单位，仅用于无法监视目录的情况。"
 
 #: ../dustbin/data/messages:125
@@ -6724,7 +6724,7 @@ msgstr "使用国际单位?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "以秒为单位。设为0则对话框不自动消失。"
 
 #: ../weather/data/messages:103

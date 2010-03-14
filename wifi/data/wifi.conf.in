@@ -155,7 +155,7 @@ icon_5 =
 frame_param =
 
 #i[1;60] Delay between signal checks :
-#{in secondsconds.}
+#{in seconds.}
 delay = 10
 
 #e[0;1] How smooth is the movement?

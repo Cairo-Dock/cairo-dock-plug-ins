@@ -148,7 +148,7 @@ enable actions = true
 replay action = false
 
 #I[1;12] Duration of the action menu:
-#{in secondsconds.}
+#{in seconds.}
 action duration = 4
 
 

@@ -163,7 +163,7 @@ bg color = .5;.5;1.;.4
 frame_param =
 
 #i[1;10] Delays between net speed checks:
-#{in secondsconds.}
+#{in seconds.}
 netspeed delay = 2
 
 
@@ -235,5 +235,5 @@ icon_7 =
 frame_param =
 
 #i[1;20] Delays between wifi signal checks:
-#{in secondsconds. if you don't have Network-Manager.}
+#{in seconds. if you don't have Network-Manager.}
 wifi delay = 5

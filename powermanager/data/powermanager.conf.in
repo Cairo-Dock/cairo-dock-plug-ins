@@ -141,7 +141,7 @@ effect=0
 frame_param =
 
 #i[20;180] Interval of time between 2 checks :
-#{in secondsconds.}
+#{in seconds.}
 check interval = 30
 
 #l+[nothing;charge;time] Information to be displayed on the icon :

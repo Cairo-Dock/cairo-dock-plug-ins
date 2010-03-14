@@ -115,7 +115,7 @@ use_thread = true
 frame_ops=
 
 #i[1;500] Sliding delay:
-#{in secondsconds.}
+#{in seconds.}
 slide time=30
 
 #l[play/pause;open image] Action when applet is clicked:

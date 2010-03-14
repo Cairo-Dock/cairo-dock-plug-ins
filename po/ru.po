@@ -2962,7 +2962,7 @@ msgstr "Выберите одну из доступных тем:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "в секундах."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4418,7 +4418,7 @@ msgstr "Изображение для значка 'Проводное соед�
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "в сек, если у вас нет Network-Manager."
 
 #: ../Network-Monitor/data/messages:255
@@ -5897,7 +5897,7 @@ msgstr "Если корзина не известна панели, вы мож�
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "в секундах, полезно только если вы не можете видеть каталоги."
 
 #: ../dustbin/data/messages:125
@@ -7184,7 +7184,7 @@ msgstr "Использовать систему СИ?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "в секундах. Установите 0, чтобы окна никогда не исчезали."
 
 #: ../weather/data/messages:103

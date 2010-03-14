@@ -133,7 +133,7 @@ frame_param =
 interface = 
 
 #i[1;30] Delay between measurements:
-#{in secondsconds.}
+#{in seconds.}
 delay = 3
 
 #e[0;1] Fluidity of the transition between 2 values :

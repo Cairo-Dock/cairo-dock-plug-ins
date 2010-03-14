@@ -100,7 +100,7 @@ frame_info =
 enable_dialogs = true
 
 #i[1;15] Duration of the info-bubbles :
-#{in secondsconds.}
+#{in seconds.}
 dialogs_duration = 5
 
 #F[Behaviour;gtk-execute]

@@ -2657,7 +2657,7 @@ msgstr "Välj ett tema:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "i sekunder."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4081,7 +4081,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
 
 #: ../Network-Monitor/data/messages:255
@@ -5521,7 +5521,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
 
 #: ../dustbin/data/messages:125
@@ -6768,7 +6768,7 @@ msgstr "Använd internationella enheter?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "i sekunder. Ange 0 om du vill stänga dialoger manuellt."
 
 #: ../weather/data/messages:103

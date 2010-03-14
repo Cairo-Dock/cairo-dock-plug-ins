@@ -2904,7 +2904,7 @@ msgstr "Vyberte jeden z dostupných motívov :"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "v sekundách."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4356,7 +4356,7 @@ msgstr "Názov obrázku pre ikonu 'Pripojený káblom' :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "v sekundách, ak nemáte sieťového manažéra."
 
 #: ../Network-Monitor/data/messages:255
@@ -5812,7 +5812,7 @@ msgstr "Ak priečinok Kôš nie je docku známy, môžete ho špecifikovať tu:"
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "v sekundách, len ak nie je možné sledovať adresáre."
 
 #: ../dustbin/data/messages:125
@@ -7083,7 +7083,7 @@ msgstr "Použiť medzinárodné Jednotky ?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "v sekundách. Nastavte 0 pre nikdy nekončiace dialógy."
 
 #: ../weather/data/messages:103

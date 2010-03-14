@@ -2981,7 +2981,7 @@ msgstr "Scegli uno tra i temi disponibili:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "in secondi."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4449,7 +4449,7 @@ msgstr "Percorso dell'immagine per l'icona 'Connessione cablata' :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "in secondi, se non hai Network-Manager."
 
 #: ../Network-Monitor/data/messages:255
@@ -5937,7 +5937,7 @@ msgstr "Se la cartella Cestino non è nota alla dock, puoi specificarla qui :"
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr ""
 "in secondi. Da utilizzare solo se non si possono monitorare direttamente le "
 "cartelle."
@@ -7223,7 +7223,7 @@ msgstr "Utilizza le unità del Sistema Internazionale ?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in secondi. Mettere 0 per avere dialoghi ininterrotti."
 
 #: ../weather/data/messages:103

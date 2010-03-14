@@ -131,7 +131,7 @@ frame3 =
 additionnal directories = 
 
 #f[0.5;10.0] Time interval to check if dustbin is full/empty :
-#{in secondsconds. only used if you can't monitor directories.}
+#{in seconds. only used if you can't monitor directories.}
 check interval = 2.0
 
 #s Alternative file browser used to show a trash :

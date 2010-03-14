@@ -2918,7 +2918,7 @@ msgstr "Choose one of the available themes:"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "in seconds."
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4356,7 +4356,7 @@ msgstr "Name of the image for the 'Wired connection' icon :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "in seconds, if you don't have Network-Manager."
 
 #: ../Network-Monitor/data/messages:255
@@ -5822,7 +5822,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "in seconds, only used if you can't monitor directories."
 
 #: ../dustbin/data/messages:125
@@ -7088,7 +7088,7 @@ msgstr "Use International System Units?"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "in seconds. Set 0 to have never-ending dialogs."
 
 #: ../weather/data/messages:103

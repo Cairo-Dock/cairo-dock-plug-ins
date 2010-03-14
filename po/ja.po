@@ -2936,7 +2936,7 @@ msgstr "利用可能なテーマから1つ選択 :"
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
 #, fuzzy
-msgid "in secondsconds."
+msgid "in seconds."
 msgstr "秒単位"
 
 #: ../Cairo-Penguin/data/messages:19
@@ -4385,7 +4385,7 @@ msgstr "「有線接続」のアイコン画像の名前 :"
 
 #: ../Network-Monitor/data/messages:253
 #, fuzzy
-msgid "in secondsconds. if you don't have Network-Manager."
+msgid "in seconds. if you don't have Network-Manager."
 msgstr "秒単位。"
 
 #: ../Network-Monitor/data/messages:255
@@ -5862,7 +5862,7 @@ msgstr "ゴミ箱のフォルダがドックに検知されない場合はここ
 
 #: ../dustbin/data/messages:123
 #, fuzzy
-msgid "in secondsconds. only used if you can't monitor directories."
+msgid "in seconds. only used if you can't monitor directories."
 msgstr "秒単位。ディレクトリを監視できない場合にのみ使用されます。"
 
 #: ../dustbin/data/messages:125
@@ -7137,7 +7137,7 @@ msgstr "国際単位系を使用？"
 
 #: ../weather/data/messages:101
 #, fuzzy
-msgid "in secondsconds. Set 0 to have never-ending dialogs."
+msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "秒単位。ダイアログを表示させたままにするには 0 に設定。"
 
 #: ../weather/data/messages:103

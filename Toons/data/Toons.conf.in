@@ -102,7 +102,7 @@ fg alpha = 1
 theme = Classic
 
 #i[1;60] Mean delay between winks:
-#{in secondsconds.
+#{in seconds.}
 wink delay = 20
 
 #i[50;500] Wink duration:
