@@ -236,8 +236,8 @@ msgid "day(s)"
 msgstr "giorno/i"
 
 #: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
-msgid "dock"
-msgstr "dock"
+msgid "Doncky"
+msgstr "Doncky"
 
 #: ../Doncky/src/applet-init.c:40
 msgid ""

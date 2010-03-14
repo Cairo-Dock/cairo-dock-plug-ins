@@ -6083,7 +6083,7 @@ msgid "Show mouse on:"
 msgstr ""
 
 #: ../show-mouse/data/messages:11
-msgid "dock"
+msgid "Doncky"
 msgstr ""
 
 #: ../show-mouse/data/messages:13
