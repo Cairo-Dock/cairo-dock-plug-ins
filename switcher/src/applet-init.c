@@ -29,7 +29,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Switcher"),
+CD_APPLET_DEFINITION (N_("switcher"),
 	2, 0, 9,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet allows you to interact with your workspaces :\n"

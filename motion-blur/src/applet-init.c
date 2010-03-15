@@ -25,7 +25,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN(N_("Motion Blur"),
+CD_APPLET_PRE_INIT_BEGIN(N_("motion blur"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plugin adds a motion blur effect to docks."),

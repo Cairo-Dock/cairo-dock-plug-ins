@@ -1095,13 +1095,13 @@ msgid "This module provides different views for your desklets."
 msgstr "Questo modulo fornisce viste differenti per le tue desklet."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr "piano 3D"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
 #, fuzzy
-msgid "Comics"
+msgid "comics"
 msgstr ""
 "#-#-#-#-#  it.po (1.0.0)  #-#-#-#-#\n"
 "fumetto\n"
@@ -1111,7 +1111,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
 #, fuzzy
-msgid "Curly"
+msgid "curly"
 msgstr ""
 "#-#-#-#-#  it.po (1.0.0)  #-#-#-#-#\n"
 "ricciuto\n"
@@ -1121,7 +1121,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
 #, fuzzy
-msgid "Modern"
+msgid "modern"
 msgstr ""
 "#-#-#-#-#  it.po (1.0.0)  #-#-#-#-#\n"
 "moderno\n"
@@ -1313,8 +1313,8 @@ msgstr ""
 "Curva sono disponibili."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
-msgstr "Drop Indicator"
+msgid "drop indicator"
+msgstr "drop indicator"
 
 #: ../drop-indicator/src/applet-init.c:31
 msgid ""
@@ -1337,7 +1337,7 @@ msgid " file(s)"
 msgstr " file(s)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "cestino"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1439,7 +1439,7 @@ msgstr ""
 "E' designata per le versioni di Gnome >= 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "effetti icone"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1483,7 +1483,7 @@ msgid "Firework"
 msgstr "Fuochi d'artificio"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "Illusione"
 
 #: ../illusion/src/applet-init.c:33
@@ -1506,7 +1506,7 @@ msgstr ""
 "E' designata per KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "indicatore di tastiera"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1524,7 +1524,7 @@ msgstr ""
 "\tClick destro dà l'accesso alla lista dei layout disponibili."
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "Termina la sessione"
 
 #: ../logout/src/applet-init.c:31
@@ -1602,8 +1602,8 @@ msgstr "Hai una nuova mail :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
-msgstr "Mail"
+msgid "mail"
+msgstr "mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 #, fuzzy
@@ -1643,7 +1643,7 @@ msgid "Launch %s"
 msgstr "Lancia %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "Sfuocatura in movimento"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1951,7 +1951,7 @@ msgid "Get disk info"
 msgstr "Ottieni info sul disco"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "mostra mouse"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1995,7 +1995,7 @@ msgid "Change screen resolution"
 msgstr "Cambia la risoluzione dello schermo"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "scorritore"
 
 #: ../slider/src/applet-init.c:32
@@ -2131,7 +2131,7 @@ msgstr ""
 "Scrivania"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "CambiaScrivania"
 
 #: ../switcher/src/applet-init.c:35
@@ -5467,7 +5467,7 @@ msgid "Colour of the plane :"
 msgstr "Colore del piano :"
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr "Suggerimento"
 
 #: ../dialog-rendering/data/messages:37

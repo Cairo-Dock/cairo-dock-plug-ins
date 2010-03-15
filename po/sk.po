@@ -1081,13 +1081,13 @@ msgid "This module provides different views for your desklets."
 msgstr "Tento modul poskytuje rôzne pohľady na vaše desklety."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr "3D rovina"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
 #, fuzzy
-msgid "Comics"
+msgid "comics"
 msgstr ""
 "#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "komiks\n"
@@ -1097,7 +1097,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
 #, fuzzy
-msgid "Curly"
+msgid "curly"
 msgstr ""
 "#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "vlnitý\n"
@@ -1107,7 +1107,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
 #, fuzzy
-msgid "Modern"
+msgid "modern"
 msgstr ""
 "#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "moderný\n"
@@ -1286,7 +1286,7 @@ msgstr ""
 "poskytované ako pohľady."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr "pokles indikátora"
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1309,7 +1309,7 @@ msgid " file(s)"
 msgstr " súbor(y)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "nádoba na odpadky"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1410,7 +1410,7 @@ msgstr ""
 "Je určený pre verziu GNOME > = 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "efekty ikôn"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1454,7 +1454,7 @@ msgid "Firework"
 msgstr "Ohňostroj"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "ilúzie"
 
 #: ../illusion/src/applet-init.c:33
@@ -1475,7 +1475,7 @@ msgstr ""
 "Je určený pre verziu KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "indikátor klávesnice"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1493,7 +1493,7 @@ msgstr ""
 "\t Pravé-kliknutie vám umožní prístup k zoznamu dostupných rozložení."
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "odhlásiť sa"
 
 #: ../logout/src/applet-init.c:31
@@ -1570,7 +1570,7 @@ msgstr "Máte nový e-mail :"
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
 #, fuzzy
-msgid "Mail"
+msgid "mail"
 msgstr ""
 "#-#-#-#-#  sk.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "pošta\n"
@@ -1615,7 +1615,7 @@ msgid "Launch %s"
 msgstr "Spustiť %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "rozmazanie pohybom"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1898,7 +1898,7 @@ msgid "Get disk info"
 msgstr "Získať info o disku"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1934,7 +1934,7 @@ msgid "Change screen resolution"
 msgstr "Zmeniť rozlíšenie obrazovky"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "posuvník"
 
 #: ../slider/src/applet-init.c:32
@@ -2063,7 +2063,7 @@ msgstr ""
 "Plocha"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "prepínač"
 
 #: ../switcher/src/applet-init.c:35
@@ -5353,7 +5353,7 @@ msgid "Colour of the plane :"
 msgstr "Farba roviny :"
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr "Bublinová nápoveda"
 
 #: ../dialog-rendering/data/messages:37

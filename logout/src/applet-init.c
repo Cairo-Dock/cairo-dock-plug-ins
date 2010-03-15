@@ -25,7 +25,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Log-out"),
+CD_APPLET_DEFINITION (N_("logout"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("A very simple applet that adds an icon to log out from your session\n"

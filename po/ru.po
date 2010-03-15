@@ -1095,13 +1095,13 @@ msgid "This module provides different views for your desklets."
 msgstr "Этот модуль предоставляет несколько видов для ваших десклетов."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
-msgstr "3DPlan"
+msgid "3Dplane"
+msgstr "3Dplane"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
 #, fuzzy
-msgid "Comics"
+msgid "comics"
 msgstr ""
 "#-#-#-#-#  ru.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "комиксы\n"
@@ -1111,7 +1111,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
 #, fuzzy
-msgid "Curly"
+msgid "curly"
 msgstr ""
 "#-#-#-#-#  ru.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "изгиб\n"
@@ -1121,7 +1121,7 @@ msgstr ""
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
 #, fuzzy
-msgid "Modern"
+msgid "modern"
 msgstr ""
 "#-#-#-#-#  ru.po (PACKAGE VERSION)  #-#-#-#-#\n"
 "модерн\n"
@@ -1311,7 +1311,7 @@ msgstr ""
 "Скользящий и Кривая."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr "Индикатор сброса"
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1335,7 +1335,7 @@ msgid " file(s)"
 msgstr " файл(ов)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "Мусорная корзина"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1436,7 +1436,7 @@ msgstr ""
 "Спроектирован для работы с версиями Gnome >= 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "Эффекты значков"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1480,7 +1480,7 @@ msgid "Firework"
 msgstr "Фейрверк"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "Иллюзии"
 
 #: ../illusion/src/applet-init.c:33
@@ -1501,7 +1501,7 @@ msgstr ""
 "Спроектирован для KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "Индикатор раскладки"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1519,7 +1519,7 @@ msgstr ""
 "\tПравый щелчок выведет список доступных раскладок."
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "Завершение сеанса"
 
 #: ../logout/src/applet-init.c:31
@@ -1595,7 +1595,7 @@ msgstr "Есть новые сообщения:"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
+msgid "mail"
 msgstr "Почта"
 
 #: ../mail/src/cd-mail-applet-init.c:36
@@ -1636,7 +1636,7 @@ msgid "Launch %s"
 msgstr "Запустить %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "Размытие движения"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1938,7 +1938,7 @@ msgid "Get disk info"
 msgstr "Получить информацию о диске"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "Анимировать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1981,7 +1981,7 @@ msgid "Change screen resolution"
 msgstr "Изменить разрешение экрана"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "Слайд-шоу"
 
 #: ../slider/src/applet-init.c:32
@@ -2118,7 +2118,7 @@ msgstr ""
 "Рабочий стол"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "Переключатель"
 
 #: ../switcher/src/applet-init.c:35
@@ -5428,7 +5428,7 @@ msgid "Colour of the plane :"
 msgstr "Цвет плоскости:"
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr "Подсказка"
 
 #: ../dialog-rendering/data/messages:37

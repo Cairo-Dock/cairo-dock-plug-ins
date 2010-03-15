@@ -1092,23 +1092,23 @@ msgid "This module provides different views for your desklets."
 msgstr "Deze module bevat diverse weergaves voor uw desklets."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr "3D-vlak"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
-msgid "Comics"
+msgid "comics"
 msgstr "Stripverhaal"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
-msgid "Curly"
+msgid "curly"
 msgstr "Gekruld"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
-msgid "Modern"
-msgstr "Modern"
+msgid "modern"
+msgstr "modern"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "ToolTip"
@@ -1296,7 +1296,7 @@ msgstr ""
 "en Kromming beschikbaar."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr "Sleepindicator"
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1320,7 +1320,7 @@ msgid " file(s)"
 msgstr " Bestand(en)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "Prullenbak"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1424,7 +1424,7 @@ msgstr ""
 "Het is gemaakt voor de Gnome-versie >= 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "Icooneffecten"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1468,7 +1468,7 @@ msgid "Firework"
 msgstr "Vuurwerk"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "Illusie"
 
 #: ../illusion/src/applet-init.c:33
@@ -1491,7 +1491,7 @@ msgstr ""
 "Het is gemaakt voor KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "Toetsenbordindeling"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1509,7 +1509,7 @@ msgstr ""
 "\tMet een rechtermuisklik krijgt u een lijst met beschikbare indelingen."
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "Uitloggen"
 
 #: ../logout/src/applet-init.c:31
@@ -1587,7 +1587,7 @@ msgstr "U heeft een nieuwe e-mail gekregen :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
+msgid "mail"
 msgstr "E-mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
@@ -1629,7 +1629,7 @@ msgid "Launch %s"
 msgstr "Open %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "Bewegingsvervaging"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1933,7 +1933,7 @@ msgid "Get disk info"
 msgstr "Schijfinfo ophalen"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1975,7 +1975,7 @@ msgid "Change screen resolution"
 msgstr "Schermresolutie wijzigen"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "Diavoorstelling"
 
 #: ../slider/src/applet-init.c:32
@@ -2108,7 +2108,7 @@ msgid "Desktop"
 msgstr "Bureaublad"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "Wisselaar"
 
 #: ../switcher/src/applet-init.c:35
@@ -5415,7 +5415,7 @@ msgid "Colour of the plane :"
 msgstr "Kleur van het vlak :"
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr "Tip"
 
 #: ../dialog-rendering/data/messages:37
