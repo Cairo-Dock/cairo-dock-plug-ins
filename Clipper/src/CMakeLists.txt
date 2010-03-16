@@ -12,13 +12,13 @@ SET(cd-Clipper_LIB_SRCS
 add_library(${PACKAGE_CLIPPER} SHARED ${cd-Clipper_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(Clipperdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${Clipperdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="Clipper.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="Clipper")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_CLIPPER)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_CLIPPER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_CLIPPER}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_CLIPPER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -63,13 +63,13 @@ install(TARGETS ${PACKAGE_CLIPPER} DESTINATION ${pluginsdir})
 #libcd_Clipper_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(Clipperdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${Clipperdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""Clipper.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""Clipper""
-#	-DMY_APPLET_VERSION=""$(VERSION_CLIPPER)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_CLIPPER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_CLIPPER)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_CLIPPER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

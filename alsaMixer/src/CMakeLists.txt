@@ -12,13 +12,13 @@ set (cd-AlsaMixer_LIB_SRCS
 add_library (${PACKAGE_ALSA_MIXER} SHARED ${cd-AlsaMixer_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(alsa_mixerdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${alsa_mixerdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="AlsaMixer.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="AlsaMixer")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_ALSA_MIXER)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_ALSA_MIXER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_ALSA_MIXER}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ALSA_MIXER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -66,13 +66,13 @@ install(TARGETS ${PACKAGE_ALSA_MIXER} DESTINATION ${pluginsdir})
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
 #	$(ALSA_MIXER_PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(alsa_mixerdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${alsa_mixerdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""AlsaMixer.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""AlsaMixer""
-#	-DMY_APPLET_VERSION=""$(VERSION_ALSA_MIXER)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_ALSA_MIXER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_ALSA_MIXER)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_ALSA_MIXER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

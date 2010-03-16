@@ -20,13 +20,13 @@ SET(cd-systray_LIB_SRCS
 add_library(${PACKAGE_SYSTRAY} SHARED ${cd-systray_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(systraydatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${systraydatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="systray.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="systray")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_SYSTRAY)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_SYSTRAY)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_SYSTRAY}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SYSTRAY}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -71,13 +71,13 @@ install(TARGETS ${PACKAGE_SYSTRAY} DESTINATION ${pluginsdir})
 #libcd_systray_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(systraydatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${systraydatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""systray.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""systray""
-#	-DMY_APPLET_VERSION=""$(VERSION_SYSTRAY)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_SYSTRAY)""
-#        -DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_SYSTRAY)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SYSTRAY)""
+#        -DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

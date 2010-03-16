@@ -18,13 +18,13 @@ SET(cd-terminal_LIB_SRCS
 add_library(${PACKAGE_TERMINAL} SHARED ${cd-terminal_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(terminaldatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${terminaldatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="terminal.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="terminal")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_TERMINAL)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_TERMINAL)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_TERMINAL}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_TERMINAL}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -71,13 +71,13 @@ install(TARGETS ${PACKAGE_TERMINAL} DESTINATION ${pluginsdir})
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
 #	$(TERMINAL_PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(terminaldatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${terminaldatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""terminal.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""terminal""
-#	-DMY_APPLET_VERSION=""$(VERSION_TERMINAL)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_TERMINAL)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_TERMINAL)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_TERMINAL)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

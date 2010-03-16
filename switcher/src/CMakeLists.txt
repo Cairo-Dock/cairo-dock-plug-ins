@@ -20,13 +20,13 @@ SET(cd-switcher_LIB_SRCS
 add_library(${PACKAGE_SWITCHER} SHARED ${cd-switcher_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(switcherdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${switcherdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="switcher.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="switcher")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_SWITCHER)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_SWITCHER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_SWITCHER}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SWITCHER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="workspaces.svg")
 
 include_directories (
@@ -72,13 +72,13 @@ install(TARGETS ${PACKAGE_SWITCHER} DESTINATION ${pluginsdir})
 #libcd_switcher_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(switcherdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${switcherdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""switcher.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""switcher""
-#	-DMY_APPLET_VERSION=""$(VERSION_SWITCHER)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_SWITCHER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_SWITCHER)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SWITCHER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""workspaces.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

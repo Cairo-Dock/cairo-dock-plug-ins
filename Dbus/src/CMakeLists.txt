@@ -18,13 +18,13 @@ SET (cd-Dbus_LIB_SRCS
 add_library (${PACKAGE_DBUS} SHARED ${cd-Dbus_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(dbusdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${dbusdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="Dbus.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="Dbus")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_DBUS)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_DBUS)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_DBUS}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DBUS}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -75,13 +75,13 @@ install (TARGETS ${PACKAGE_DBUS} DESTINATION ${pluginsdir})
 #libcd_Dbus_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(dbusdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${dbusdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""none""
 #	-DMY_APPLET_CONF_FILE=""Dbus.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""Dbus""
-#	-DMY_APPLET_VERSION=""$(VERSION_DBUS)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_DBUS)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_DBUS)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_DBUS)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

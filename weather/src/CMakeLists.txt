@@ -18,13 +18,13 @@ SET(cd-weather_LIB_SRCS
 add_library(${PACKAGE_WEATHER} SHARED ${cd-weather_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(weatherdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${weatherdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="weather.conf")
-add_definitions (-DMY_APPLET_USER_DATA_DIR="$(weatheruserdirname)")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_WEATHER)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_WEATHER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_USER_DATA_DIR="${weatheruserdirname}")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_WEATHER}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_WEATHER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
@@ -68,13 +68,13 @@ install(TARGETS ${PACKAGE_WEATHER} DESTINATION ${pluginsdir})
 #libcd_weather_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(weatherdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${weatherdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""weather.conf""
-#	-DMY_APPLET_USER_DATA_DIR=""$(weatheruserdirname)""
-#	-DMY_APPLET_VERSION=""$(VERSION_WEATHER)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_WEATHER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_USER_DATA_DIR=""${weatheruserdirname)""
+#	-DMY_APPLET_VERSION=""${VERSION_WEATHER)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_WEATHER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-std=c99

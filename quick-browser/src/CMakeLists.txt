@@ -12,13 +12,13 @@ SET(cd-quick-browser_LIB_SRCS
 add_library(${PACKAGE_QUICK_BROWSER} SHARED ${cd-quick-browser_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(quick_browserdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${quick_browserdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="quick-browser.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="quick-browser")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_QUICK_BROWSER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_QUICK_BROWSER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
@@ -61,13 +61,13 @@ install(TARGETS ${PACKAGE_QUICK_BROWSER} DESTINATION ${pluginsdir})
 #libcd_quick_browser_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(quick_browserdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${quick_browserdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""quick-browser.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""quick-browser""
-#	-DMY_APPLET_VERSION=""$(VERSION)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_QUICK_BROWSER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_QUICK_BROWSER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-std=c99

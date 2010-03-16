@@ -24,13 +24,13 @@ SET(cd-GMenu_LIB_SRCS
 add_library(${PACKAGE_GMENU} SHARED ${cd-GMenu_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(gmenudatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${gmenudatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="GMenu.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="GMenu")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_GMENU)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_GMENU)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_GMENU}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_GMENU}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -91,13 +91,13 @@ install(TARGETS ${PACKAGE_GMENU} DESTINATION ${pluginsdir})
 #	$(GMENU_PACKAGE_CFLAGS)
 #	$(GMENU_GIO_CFLAGS) 
 #	$(have_gio)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(gmenudatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${gmenudatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""GMenu.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""GMenu""
-#	-DMY_APPLET_VERSION=""$(VERSION_GMENU)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_GMENU)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_GMENU)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_GMENU)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

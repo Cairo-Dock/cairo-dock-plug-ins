@@ -14,13 +14,13 @@ SET(cd-logout_LIB_SRCS
 add_library(${PACKAGE_LOGOUT} SHARED ${cd-logout_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(logoutdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${logoutdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="icon.svg")
 add_definitions (-DMY_APPLET_CONF_FILE="logout.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="logout")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_LOGOUT)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_LOGOUT)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_LOGOUT}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_LOGOUT}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -59,13 +59,13 @@ install(TARGETS ${PACKAGE_LOGOUT} DESTINATION ${pluginsdir})
 #libcd_logout_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(logoutdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${logoutdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""icon.svg""
 #	-DMY_APPLET_CONF_FILE=""logout.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""logout""
-#	-DMY_APPLET_VERSION=""$(VERSION_LOGOUT)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_LOGOUT)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_LOGOUT)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_LOGOUT)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

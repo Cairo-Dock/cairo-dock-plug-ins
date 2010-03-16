@@ -24,13 +24,13 @@ SET(cd-dialog-rendering_LIB_SRCS
 add_library(${PACKAGE_DIALOG_RENDERING} SHARED ${cd-dialog-rendering_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(dialog_renderingdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${dialog_renderingdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="dialog-rendering.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="dialog-rendering")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_DIALOG_RENDERING)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_DIALOG_RENDERING)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_DIALOG_RENDERING}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DIALOG_RENDERING}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -80,13 +80,13 @@ install(TARGETS ${PACKAGE_DIALOG_RENDERING} DESTINATION ${pluginsdir})
 #libcd_dialog_rendering_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(dialog_renderingdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${dialog_renderingdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""none""
 #	-DMY_APPLET_CONF_FILE=""dialog-rendering.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""dialog-rendering""
-#	-DMY_APPLET_VERSION=""$(VERSION_DIALOG_RENDERING)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_DIALOG_RENDERING)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_DIALOG_RENDERING)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_DIALOG_RENDERING)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

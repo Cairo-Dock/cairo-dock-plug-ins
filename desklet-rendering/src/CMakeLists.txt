@@ -26,10 +26,10 @@ SET(cd-desklet-rendering_LIB_SRCS
 add_library(${PACKAGE_DESKLET_RENDERING} SHARED ${cd-desklet-rendering_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(desklet_renderingdatadir)")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_DESKLET_RENDERING)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_DESKLET_RENDERING)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${desklet_renderingdatadir}")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_DESKLET_RENDERING}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DESKLET_RENDERING}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="none")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="desklet-rendering")
@@ -86,10 +86,10 @@ install(TARGETS ${PACKAGE_DESKLET_RENDERING} DESTINATION ${pluginsdir})
 #	$(PACKAGE_CFLAGS)
 #	$(glitz_cflags) 
 #	$(include_glitz)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(desklet_renderingdatadir)""
-#	-DMY_APPLET_VERSION=""$(VERSION_DESKLET_RENDERING)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_DESKLET_RENDERING)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${desklet_renderingdatadir)""
+#	-DMY_APPLET_VERSION=""${VERSION_DESKLET_RENDERING)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_DESKLET_RENDERING)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_PREVIEW_FILE=""none""
 #	-DMY_APPLET_CONF_FILE=""none""
 #	-DMY_APPLET_USER_DATA_DIR=""desklet-rendering""

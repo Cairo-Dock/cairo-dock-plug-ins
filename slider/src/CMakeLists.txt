@@ -18,13 +18,13 @@ SET(cd-slider_LIB_SRCS
 add_library(${PACKAGE_SLIDER} SHARED ${cd-slider_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(sliderdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${sliderdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="slider.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="slider")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_SLIDER)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_SLIDER)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_SLIDER}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SLIDER}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
@@ -79,13 +79,13 @@ install(TARGETS ${PACKAGE_SLIDER} DESTINATION ${pluginsdir})
 #	$(PACKAGE_CFLAGS)
 #	$(EXIF_CFLAGS) 
 #	$(have_exif)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(sliderdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${sliderdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""slider.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""slider""
-#	-DMY_APPLET_VERSION=""$(VERSION_SLIDER)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_SLIDER)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_SLIDER)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SLIDER)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-DGL_GLEXT_PROTOTYPES=""1""

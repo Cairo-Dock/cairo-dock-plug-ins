@@ -32,13 +32,13 @@ SET(cd-dnd2share_LIB_SRCS
 add_library(${PACKAGE_DND2SHARE} SHARED ${cd-dnd2share_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(dnd2sharedatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${dnd2sharedatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="dnd2share.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="dnd2share")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_DND2SHARE)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DND2SHARE}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
@@ -96,13 +96,13 @@ install(TARGETS ${PACKAGE_DND2SHARE} DESTINATION ${pluginsdir})
 #libcd_dnd2share_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(dnd2sharedatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${dnd2sharedatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""dnd2share.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""dnd2share""
-#	-DMY_APPLET_VERSION=""$(VERSION)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_DND2SHARE)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_DND2SHARE)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
 #	-Werror-implicit-function-declaration

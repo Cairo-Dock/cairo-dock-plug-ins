@@ -18,13 +18,13 @@ SET(cd-Cairo-Penguin_LIB_SRCS
 add_library(${PACKAGE_CAIRO_PENGUIN} SHARED ${cd-Cairo-Penguin_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(cairo_penguindatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${cairo_penguindatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="Cairo-Penguin.conf")
-add_definitions (-DMY_APPLET_USER_DATA_DIR="$(cairo_penguinuserdirname)")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_CAIRO_PENGUIN)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_CAIRO_PENGUIN)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_USER_DATA_DIR="${cairo_penguinuserdirname}")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_CAIRO_PENGUIN}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_CAIRO_PENGUIN}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
@@ -69,13 +69,13 @@ install(TARGETS ${PACKAGE_CAIRO_PENGUIN} DESTINATION ${pluginsdir})
 #libcd_Cairo_Penguin_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(cairo_penguindatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${cairo_penguindatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""Cairo-Penguin.conf""
-#	-DMY_APPLET_USER_DATA_DIR=""$(cairo_penguinuserdirname)""
-#	-DMY_APPLET_VERSION=""$(VERSION_CAIRO_PENGUIN)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_CAIRO_PENGUIN)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_USER_DATA_DIR=""${cairo_penguinuserdirname)""
+#	-DMY_APPLET_VERSION=""${VERSION_CAIRO_PENGUIN)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_CAIRO_PENGUIN)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-DGL_GLEXT_PROTOTYPES=""1""

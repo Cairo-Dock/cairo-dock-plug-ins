@@ -18,13 +18,13 @@ SET(cd-compiz-icon_LIB_SRCS
 add_library(${PACKAGE_COMPIZ_ICON} SHARED ${cd-compiz-icon_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(compiz_icondatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${compiz_icondatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="compiz-icon.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="compiz-icon")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_COMPIZ_ICON)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_COMPIZ_ICON)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_COMPIZ_ICON}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_COMPIZ_ICON}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -68,13 +68,13 @@ install(TARGETS ${PACKAGE_COMPIZ_ICON} DESTINATION ${pluginsdir})
 #libcd_compiz_icon_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(compiz_icondatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${compiz_icondatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""compiz-icon.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""compiz-icon""
-#	-DMY_APPLET_VERSION=""$(VERSION_COMPIZ_ICON)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_COMPIZ_ICON)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_COMPIZ_ICON)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_COMPIZ_ICON)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

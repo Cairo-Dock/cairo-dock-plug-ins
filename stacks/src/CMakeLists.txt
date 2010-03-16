@@ -54,13 +54,13 @@ install(TARGETS cd-stacks DESTINATION ${pluginsdir})
 #libcd_stacks_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(stacksdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${stacksdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""stacks.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""stacks""
-#	-DMY_APPLET_VERSION=""$(VERSION_STACKS)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_STACKS)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_STACKS)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_STACKS)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

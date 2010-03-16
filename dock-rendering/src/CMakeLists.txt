@@ -26,10 +26,10 @@ SET(cd-rendering_LIB_SRCS
 add_library(${PACKAGE_RENDERING} SHARED ${cd-rendering_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(renderingdatadir)")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_RENDERING)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_RENDERING)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${renderingdatadir}")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_RENDERING}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_RENDERING}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="rendering.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="rendering")
@@ -86,10 +86,10 @@ install(TARGETS ${PACKAGE_RENDERING} DESTINATION ${pluginsdir})
 #	$(PACKAGE_CFLAGS)
 #	$(glitz_cflags) 
 #	$(include_glitz)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(renderingdatadir)""
-#	-DMY_APPLET_VERSION=""$(VERSION_RENDERING)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_RENDERING)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${renderingdatadir)""
+#	-DMY_APPLET_VERSION=""${VERSION_RENDERING)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_RENDERING)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_PREVIEW_FILE=""none""
 #	-DMY_APPLET_CONF_FILE=""rendering.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""rendering""

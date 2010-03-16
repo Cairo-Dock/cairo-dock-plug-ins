@@ -14,13 +14,13 @@ SET(cd-showDesktop_LIB_SRCS
 add_library(${PACKAGE_SHOW_DESKTOP} SHARED ${cd-showDesktop_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(show_desktopdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${show_desktopdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="icon.png")
 add_definitions (-DMY_APPLET_CONF_FILE="showDesktop.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="showDesktop")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_SHOW_DESKTOP)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_SHOW_DESKTOP)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_SHOW_DESKTOP}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SHOW_DESKTOP}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -69,13 +69,13 @@ install(TARGETS ${PACKAGE_SHOW_DESKTOP} DESTINATION ${pluginsdir})
 #	$(PACKAGE_CFLAGS)
 #	$(SHOW_DESKTOP_XRANDR_CFLAGS) 
 #	$(have_xrandr)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(show_desktopdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${show_desktopdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""icon.png""
 #	-DMY_APPLET_CONF_FILE=""showDesktop.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""showDesktop""
-#	-DMY_APPLET_VERSION=""$(VERSION_SHOW_DESKTOP)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_SHOW_DESKTOP)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_SHOW_DESKTOP)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SHOW_DESKTOP)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

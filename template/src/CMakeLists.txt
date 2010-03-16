@@ -14,13 +14,13 @@ SET(cd-CD_APPLET_NAME_LIB_SRCS
 add_library(cd-CD_APPLET_NAME SHARED ${cd-CD_APPLET_NAME_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(pkgdatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${pkgdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="CD_APPLET_NAME.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="CD_APPLET_NAME")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_CD_PKG)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_CD_PKG)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_CD_PKG}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_CD_PKG}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
@@ -60,13 +60,13 @@ install(TARGETS cd-CD_APPLET_NAME DESTINATION ${pluginsdir})
 #libcd_CD_LIB_NAME_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(pkgdatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${pkgdatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""CD_APPLET_NAME.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""CD_APPLET_NAME""
-#	-DMY_APPLET_VERSION=""$(VERSION_CD_PKG)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_CD_PKG)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_CD_PKG)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_CD_PKG)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-std=c99
 #	-Werror-implicit-function-declaration

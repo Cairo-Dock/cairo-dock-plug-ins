@@ -19,13 +19,13 @@ add_library(${PACKAGE_MAIL} SHARED ${cd-mail_LIB_SRCS})
 
 ########### compil ###############
 add_definitions (-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1)
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(maildatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${maildatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="mail.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="mail")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_MAIL)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_MAIL)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_MAIL}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_MAIL}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="cd_mail_icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
@@ -74,13 +74,13 @@ install(TARGETS ${PACKAGE_MAIL} DESTINATION ${pluginsdir})
 #	$(PACKAGE_CFLAGS)
 #	$(MAIL_PACKAGE_CFLAGS)
 #	-D_POSIX_SOURCE=1 -DHAVE_SSL_SUPPORT=1
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(maildatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${maildatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""mail.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""mail""
-#	-DMY_APPLET_VERSION=""$(VERSION_MAIL)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_MAIL)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_MAIL)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_MAIL)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""cd_mail_icon.png""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-DGL_GLEXT_PROTOTYPES=""1""

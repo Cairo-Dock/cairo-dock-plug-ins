@@ -16,13 +16,13 @@ SET(cd-System-Monitor_LIB_SRCS
 add_library(${PACKAGE_SYSTEM_MONITOR} SHARED ${cd-System-Monitor_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(system_monitordatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${system_monitordatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="System-Monitor.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="System-Monitor")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_SYSTEM_MONITOR)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_SYSTEM_MONITOR)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_SYSTEM_MONITOR}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SYSTEM_MONITOR}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
@@ -73,13 +73,13 @@ install(TARGETS ${PACKAGE_SYSTEM_MONITOR} DESTINATION ${pluginsdir})
 #libcd_System_Monitor_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(system_monitordatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${system_monitordatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""System-Monitor.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""System-Monitor""
-#	-DMY_APPLET_VERSION=""$(VERSION_SYSTEM_MONITOR)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_SYSTEM_MONITOR)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_SYSTEM_MONITOR)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SYSTEM_MONITOR)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DMY_APPLET_ICON_FILE=""icon.png""
 #	-DCD_APPLET_MULTI_INSTANCE="1"
 #	-std=c99

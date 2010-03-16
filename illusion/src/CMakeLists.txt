@@ -27,13 +27,13 @@ SET(cd-illusion_LIB_SRCS
 add_library(${PACKAGE_ILLUSION} SHARED ${cd-illusion_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="$(illusiondatadir)")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${illusiondatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="illusion.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="illusion")
-add_definitions (-DMY_APPLET_VERSION="$(VERSION_ILLUSION)")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="$(GETTEXT_ILLUSION)")
-add_definitions (-DMY_APPLET_DOCK_VERSION="$(dock_version)")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_ILLUSION}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ILLUSION}")
+add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
@@ -86,13 +86,13 @@ install(TARGETS ${PACKAGE_ILLUSION} DESTINATION ${pluginsdir})
 #libcd_illusion_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""$(illusiondatadir)""
+#	-DMY_APPLET_SHARE_DATA_DIR=""${illusiondatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""illusion.conf""
 #	-DMY_APPLET_USER_DATA_DIR=""illusion""
-#	-DMY_APPLET_VERSION=""$(VERSION_ILLUSION)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""$(GETTEXT_ILLUSION)""
-#	-DMY_APPLET_DOCK_VERSION=""$(dock_version)""
+#	-DMY_APPLET_VERSION=""${VERSION_ILLUSION)""
+#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_ILLUSION)""
+#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
 #	-DGL_GLEXT_PROTOTYPES=""1""
 #	-DMY_APPLET_ICON_FILE=""icon.svg""
 #	-std=c99
