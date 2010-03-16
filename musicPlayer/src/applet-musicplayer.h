@@ -23,7 +23,7 @@
 
 #include <cairo-dock.h>
 
-#include <applet-struct.h>
+#include "applet-struct.h"
 
 
 MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName);

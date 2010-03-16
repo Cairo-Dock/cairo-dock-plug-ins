@@ -23,7 +23,7 @@
 
 
 #include <cairo-dock.h>
-#include <applet-struct.h>
+#include "applet-struct.h"
 
 
 GLuint cairo_dock_load_capsule_calllist (void);

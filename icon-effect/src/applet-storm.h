@@ -23,7 +23,7 @@
 
 
 #include <cairo-dock.h>
-#include <applet-struct.h>
+#include "applet-struct.h"
 
 
 void cd_icon_effect_register_storm (CDIconEffect *pEffect);

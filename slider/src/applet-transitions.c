@@ -21,7 +21,7 @@
 #include <string.h>
 #include <math.h>
 
-#include <applet-transitions.h>
+#include "applet-transitions.h"
 
 #define _cd_slider_erase_surface(myApplet) do { \
 	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);\

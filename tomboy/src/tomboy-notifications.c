@@ -18,9 +18,9 @@
 */
 
 #include <stdlib.h>
-#include <glib/gi18n.h>
 #define __USE_POSIX
 #include <time.h>
+#include <signal.h>
 
 #include "tomboy-dbus.h"
 #include "tomboy-draw.h"

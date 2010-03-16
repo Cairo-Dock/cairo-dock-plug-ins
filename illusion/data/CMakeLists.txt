@@ -1,0 +1,25 @@
+
+########### install files ###############
+
+install(FILES  illusion.conf 	preview.jpg 	icon.svg 	icon-black-hole.svg 	icon-break.svg 	icon-evaporate.svg 	icon-explode.svg 	icon-fade-out.svg DESTINATION ${illusiondatadir})
+
+
+
+#original Makefile.am contents follow:
+
+#
+#SUBDIRS = .
+#
+#moduledir = $(illusiondatadir)
+#
+#module_DATA = \
+#	illusion.conf\
+#	preview.jpg\
+#	icon.svg\
+#	icon-black-hole.svg\
+#	icon-break.svg\
+#	icon-evaporate.svg\
+#	icon-explode.svg\
+#	icon-fade-out.svg
+#
+#EXTRA_DIST = $(module_DATA)
