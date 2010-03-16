@@ -235,7 +235,7 @@ add_subdirectory (illusion)
 ############# KDE-INTEGRATION #################
 if (NOT "${enable_kde_integration}" STREQUAL "no")
 	pkg_check_modules (KDE_INTEGRATION gio-2.0)
-	if (NOT ${XFCE_INTEGRATION_FOUND})
+	if (NOT ${KDE_INTEGRATION_FOUND})
 		message (STATUS "Could not find kde libs; Cairo-Dock won't be built with KDE support.")
 	else()
 		set (VERSION_KDE_INTEGRATION "0.0.1")

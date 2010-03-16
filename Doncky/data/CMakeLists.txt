@@ -1,8 +1,12 @@
 
 ########### install files ###############
 
-install(FILES  Doncky.conf 	preview.jpg 	icon.png 	documentation.txt 	default.xml DESTINATION ${donckydatadir})
-install(SCRIPT  nvidia-config DESTINATION ${donckydatadir})
+install (FILES Doncky.conf preview.jpg icon.png documentation.txt default.xml
+	DESTINATION ${donckydatadir})
+
+install (FILES nvidia-config
+	DESTINATION ${donckydatadir}
+	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
 
 

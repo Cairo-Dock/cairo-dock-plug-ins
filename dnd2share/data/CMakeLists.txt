@@ -1,10 +1,12 @@
 
 ########### install files ###############
 
-install (FILES  dnd2share.conf 	readme 	preview.jpg 	icon.svg DESTINATION ${dnd2sharedatadir})
-install (SCRIPT  upload2free.sh DESTINATION ${dnd2sharedatadir})
+install (FILES dnd2share.conf readme preview.jpg icon.svg
+	DESTINATION ${dnd2sharedatadir})
 
-
+install (FILES upload2free.sh
+	DESTINATION ${dnd2sharedatadir}
+	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
 #original Makefile.am contents follow:
 

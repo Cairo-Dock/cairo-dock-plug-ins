@@ -54,6 +54,13 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
+	
+	gboolean bKeyBinded = cd_keybinder_bind (myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
+	if (! bKeyBinded)  // si le bind n'a pas eu lieu, on s'en souvient. En effet, on a besoin de savoir si on pourra rappeler le desklet lors d'un 'exit' dans le dernier onglet pour cacher ou non le desklet.
+	{
+		g_free (myConfig.shortcut);
+		myConfig.shortcut = NULL;
+	}
 CD_APPLET_INIT_END
 
 
