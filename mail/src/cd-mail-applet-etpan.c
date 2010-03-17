@@ -100,16 +100,13 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					guint i = 1;
 
 					struct mailmessage_list * msg_list = NULL;
-		      if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
-		      {
-						cd_error("Error while getting list of messages for account %s!", pMailAccount->name); 
+					if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
+					{
+						cd_error ("Error while getting list of messages for account %s!", pMailAccount->name);  /// On ne sort pas ?
 					}
 	
-					guint iNbAccountsToCheck = MIN (20,pMailAccount->iNbUnseenMails);
-					if( myConfig.iNbMaxShown != -1 )
-					{
-						 iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
-					}
+					guint iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
+					
 					for (i = 1; iNbAccountsToCheck > 0; i ++)
 					{
 						cFrom = NULL;
@@ -405,6 +402,7 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			if (myData.pMailAccounts != NULL)
 			{
 				GList *l;
+				guint n = 0;
 				gchar *cMessage;
 				CDMailAccount *pMailAccount;
 				for (i = 0; i < myData.pMailAccounts->len; i++)
@@ -416,16 +414,19 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 						g_string_append_printf(ttip_str, "\n   %d in %s", pMailAccount->iNbUnseenMails, pMailAccount->name);
 						if (myConfig.bShowMessageContent)
 						{
-							for (l = pMailAccount->pUnseenMessageList; l != NULL; l = l->next)
+							cMessage = NULL;
+							for (l = pMailAccount->pUnseenMessageList; l != NULL && n < myConfig.iNbMaxShown; l = l->next)
 							{
 								cMessage = l->data;
-								g_string_append_printf(ttip_str, "\n      %s", cMessage);
-							}
-							if( myConfig.iNbMaxShown != -1 && myConfig.iNbMaxShown < pMailAccount->iNbUnseenMails )
-							{
-								g_string_append_printf(ttip_str, "\n(more...)", cMessage);
+								g_string_append_printf (ttip_str, "\n      %s", cMessage);
+								n ++;
 							}
 						}
+					}
+					if( n == myConfig.iNbMaxShown )
+					{
+						g_string_append (ttip_str, "\n(more...)");
+						break;
 					}
 				}
 			}

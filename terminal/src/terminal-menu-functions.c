@@ -46,9 +46,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	else if (myData.dialog)
 		cairo_dock_unhide_dialog(myData.dialog);
 	// on donne le focus au terminal de l'onglet courant.
-	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
-	GtkWidget *term = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
-	gtk_widget_grab_focus (term);
+	cd_terminal_grab_focus ();
 }
 CD_APPLET_ON_CLICK_END
 

@@ -28,11 +28,11 @@
 #define MY_NB_ICON_STATE 3
 #define MY_NB_SUB_ICONS 5
 
-static gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM"), N_("Exposition"), N_("Widget Layer")};
+static const gchar *s_iconName[MY_NB_SUB_ICONS] = {N_("Configure Compiz"), N_("Emerald Manager"), N_("Reload WM"), N_("Exposition"), N_("Widget Layer")};
 
-static gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL, NULL, NULL};
+static const gchar *s_iconClass[MY_NB_SUB_ICONS] = {"ccsm", "emerald-theme-manager", NULL, NULL, NULL};
 
-static gchar *s_iconFile[MY_NB_ICON_STATE] = {"default.svg", "broken.svg", "other.svg"};
+static const gchar *s_iconFile[MY_NB_ICON_STATE] = {"default.svg", "broken.svg", "other.svg"};
 
 
 static GList * _list_icons (void) {

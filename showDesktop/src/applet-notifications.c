@@ -21,7 +21,9 @@
 #include <string.h>
 #include <glib/gi18n.h>
 #include<X11/Xlib.h>
+#ifdef HAVE_XRANDR
 #include<X11/extensions/Xrandr.h>
+#endif
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -159,9 +161,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	
+	#ifdef HAVE_XRANDR
 	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
 	
-	#ifdef HAVE_XRANDR
 	Display                 *dpy;
 	Window                  root;
 	int                     num_sizes;

@@ -22,6 +22,9 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_SHOW_DESKTOP}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SHOW_DESKTOP}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+if (${SHOW_DESKTOP_XRANDR_FOUND})
+	add_definitions (-DHAVE_XRANDR="1")
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}

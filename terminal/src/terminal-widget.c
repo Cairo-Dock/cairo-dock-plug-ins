@@ -37,6 +37,12 @@
 #include "terminal-menu-functions.h"
 #include "terminal-widget.h"
 
+void cd_terminal_grab_focus (void)
+{
+	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+	GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	gtk_widget_grab_focus (vterm);
+}
 
 CairoDialog *cd_terminal_build_dialog (void)
 {
@@ -86,9 +92,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 			else
 			{
 				cairo_dock_unhide_dialog (myData.dialog);
-				int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
-				GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
-				gtk_widget_grab_focus (vterm);
+				cd_terminal_grab_focus ();
 			}
 		}
 	}
@@ -500,13 +504,13 @@ void terminal_new_tab(void)
 	#endif
 	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
 	vte_terminal_fork_command(VTE_TERMINAL(vterm),
-					NULL,
-					NULL,
-					NULL,
-					"~/",
-					FALSE,
-					FALSE,
-					FALSE);
+		NULL,
+		NULL,
+		NULL,
+		"~/",
+		FALSE,
+		FALSE,
+		FALSE);
 	g_signal_connect (G_OBJECT (vterm), "child-exited",
 				G_CALLBACK (on_terminal_child_exited), NULL);
 	g_signal_connect (G_OBJECT (vterm), "button-release-event",
@@ -732,6 +736,7 @@ void terminal_build_and_show_tab (void)
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
 			myData.dialog);  // on le cache quand on clique dessus.
+		cd_terminal_grab_focus ();
 	}
 	else
 	{

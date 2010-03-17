@@ -33,7 +33,7 @@ void cd_animations_init_wave (CDAnimationData *pData)
 	pData->pVertices[0] = 0.;
 	pData->pVertices[1] = 0.;
 	pData->pVertices[2] = 0.;
-	pData->fWavePosition = - myConfig.fWaveWidth / 2;
+	pData->fWavePosition = - myConfig.fWaveWidth / 2 + .01;  // on rajoute epsilon pour commencer avec 2 points.
 	
 	pData->iNumActiveNodes = 6;
 	pData->pVertices[3*1+0] = -.5;
@@ -66,20 +66,23 @@ gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, do
 	GLfloat *pCoords = &pData->pCoords[2];
 	double x, y, a, a_, x_;
 	double p = pData->fWavePosition, w = myConfig.fWaveWidth;
-	int n = (CD_WAVE_NB_POINTS - 1) / 2;  // nbre de points pour une demi-vague.
+	int n = CD_WAVE_NB_POINTS / 2;  // nbre de points pour une demi-vague (N est impair).
 	int i, j=0, k;
-	for (i = 0; i < CD_WAVE_NB_POINTS; i ++)
+	for (i = 0; i < CD_WAVE_NB_POINTS; i ++)  // on discretise la vague.
 	{
-		if (i == 0)
+		a = 1. * (i-n) / (n);  // position sur la vague, dans [-1, 1].
+		x = p + a * w/2;  // abscisse correspondante.
+		if (i == 0)  // 1er point.
 		{
-			if (p - w/2 < 0)
+			if (p - w/2 < 0)  // la vague depasse du bas.
 			{
-				a_ = 1. * (i+1-n) / (n-1);
+				a_ = 1. * (i+1-n) / (n);
 				x_ = p + a_ * w/2;
 				if (x_ > 0)  // le point suivant est dedans.
 				{
 					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a + x / (w/2) * G_PI/2);
 					x = 0.;
+					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
 				else
 					continue ;
@@ -90,16 +93,17 @@ gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, do
 				y = 0.;
 			}
 		}
-		else if (i == CD_WAVE_NB_POINTS-1)
+		else if (i == CD_WAVE_NB_POINTS-1)  // dernier point.
 		{
-			if (p + w/2 > 1)
+			if (p + w/2 > 1)  // la vague depasse du haut.
 			{
-				a_ = 1. * (i-1-n) / (n-1);
+				a_ = 1. * (i-1-n) / (n);
 				x_ = p + a_ * w/2;
 				if (x_ < 1)  // le point precedent est dedans.
 				{
 					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - (x-1) / (w/2) * G_PI/2);
 					x = 1.;
+					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
 				else
 					continue;
@@ -110,35 +114,37 @@ gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, do
 				y = 0.;
 			}
 		}
-		else
+		else  // dedans.
 		{
-			a = 1. * (i-n) / (n-1);
+			a = 1. * (i-n) / (n);
 			x = p + a * w/2;
-			if (x < 0)
+			if (x < 0)  // le point sort par le bas.
 			{
-				a_ = 1. * (i+1-n) / (n-1);
+				a_ = 1. * (i+1-n) / (n);
 				x_ = p + a_ * w/2;
 				if (x_ > 0)  // le point suivant est dedans.
 				{
 					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - x / (w/2) * G_PI/2);
-					x = 0.;
+					x = 0.;  // coin de la texture.
+					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
-				else
+				else  // tout le segment est dehors, on zappe.
 					continue ;
 			}
-			else if (x > 1)
+			else if (x > 1)  // le point sort par le haut.
 			{
-				a_ = 1. * (i-1-n) / (n-1);
+				a_ = 1. * (i-1-n) / (n);
 				x_ = p + a_ * w/2;
 				if (x_ < 1)  // le point precedent est dedans.
 				{
 					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - (x-1) / (w/2) * G_PI/2);
-					x = 1.;
+					x = 1.;  // coin de la texture.
+					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
-				else
+				else  // tout le segment est dehors, on zappe.
 					continue;
 			}
-			else
+			else  // le point est dans l'icone.
 				y = myConfig.fWaveAmplitude * cos (G_PI/2 * a);
 		}
 		
@@ -288,8 +294,8 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 		glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 		glEnableClientState (GL_VERTEX_ARRAY);
 		
-	glTexCoordPointer (2, GL_FLOAT, 0, pData->pCoords);
-	glVertexPointer (3, GL_FLOAT, 0, pData->pVertices);
+		glTexCoordPointer (2, GL_FLOAT, 0, pData->pCoords);
+		glVertexPointer (3, GL_FLOAT, 0, pData->pVertices);
 		
 		glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
 		
