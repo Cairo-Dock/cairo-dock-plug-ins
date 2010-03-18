@@ -67,3 +67,7 @@ weblets/data/messages
 wifi/data/messages
 Xgamma/data/messages
 demo_vala/demo_vala
+*.cmake
+CMakeFiles/
+install_manifest.txt
+CMakeCache.txt
