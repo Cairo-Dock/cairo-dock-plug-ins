@@ -26,7 +26,7 @@
 
 #include <cairo.h>
 
-#include <rendering-caroussel.h>
+#include "rendering-caroussel.h"
 
 extern double my_fInclinationOnHorizon;
 

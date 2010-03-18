@@ -126,9 +126,9 @@ frame_config_mail =
 #b Show new messages' content?
 show content = true
 
-#i[-1;20] Maximum of new messages shown?
-#{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
-max shown mails = -1
+#i[0;30] Maximum of new messages shown?
+#{Maximum number of mails that will be previewed.}
+max shown mails = 0
 
 #i[3;30] Duration of the dialogue
 #{in seconds}

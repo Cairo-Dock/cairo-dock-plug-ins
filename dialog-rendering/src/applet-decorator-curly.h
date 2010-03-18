@@ -23,7 +23,7 @@
 
 #include "cairo-dock.h"
 
-#define MY_APPLET_DECORATOR_CURLY_NAME N_("Curly")
+#define MY_APPLET_DECORATOR_CURLY_NAME N_("curly")
 
 
 void cd_decorator_set_frame_size_curly (CairoDialog *pDialog);

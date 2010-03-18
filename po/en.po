@@ -1091,26 +1091,26 @@ msgid "This module provides different views for your desklets."
 msgstr "This module provides different views for your desklets."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr "3DPlan"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
-msgid "Comics"
+msgid "comics"
 msgstr "Comics"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
-msgid "Curly"
+msgid "curly"
 msgstr "Curly"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
-msgid "Modern"
+msgid "modern"
 msgstr "Modern"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
-msgid "ToolTip"
+msgid "tooltip"
 msgstr "ToolTip"
 
 #: ../dialog-rendering/src/applet-init.c:32
@@ -1293,7 +1293,7 @@ msgstr ""
 "are provided."
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr "Drop Indicator"
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1317,7 +1317,7 @@ msgid " file(s)"
 msgstr " file(s)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "Trash"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1420,7 +1420,7 @@ msgstr ""
 "It is designed for GNOME version >= 2.22"
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "Icon Effects"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1464,7 +1464,7 @@ msgid "Firework"
 msgstr "Firework"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "Illusion"
 
 #: ../illusion/src/applet-init.c:33
@@ -1487,7 +1487,7 @@ msgstr ""
 "It is designed for KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "Keyboard Indicator"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1505,7 +1505,7 @@ msgstr ""
 "\tRight-click gives you access to the list of available layouts."
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "Log-out"
 
 #: ../logout/src/applet-init.c:31
@@ -1581,7 +1581,7 @@ msgstr "You have a new mail:"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-msgid "Mail"
+msgid "mail"
 msgstr "Mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
@@ -1622,7 +1622,7 @@ msgid "Launch %s"
 msgstr "Launch %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "Motion Blur"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1923,7 +1923,7 @@ msgid "Get disk info"
 msgstr "Get disk info"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1966,7 +1966,7 @@ msgid "Change screen resolution"
 msgstr "Change screen resolution"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "Slider"
 
 #: ../slider/src/applet-init.c:32
@@ -2093,7 +2093,7 @@ msgid "Desktop"
 msgstr "Desktop"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "Switcher"
 
 #: ../switcher/src/applet-init.c:35
@@ -2341,7 +2341,7 @@ msgstr ""
 "Enter the name of your location and press Enter to select amongst results."
 
 #: ../weather/src/applet-init.c:29
-msgid "Weather"
+msgid "weather"
 msgstr "Weather"
 
 #: ../weather/src/applet-init.c:32

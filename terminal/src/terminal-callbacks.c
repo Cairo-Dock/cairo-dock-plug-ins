@@ -24,7 +24,7 @@
 #include "terminal-callbacks.h"
 
 
-static void _terminal_write_command_with_data (GtkWidget *pWidget, gchar *cCommand, gchar *cData)
+static void _terminal_write_command_with_data (GtkWidget *pWidget, const gchar *cCommand, gchar *cData)
 {
 	gchar *cCommandLine = g_strdup_printf ("%s \"%s\"", cCommand, cData);
 	vte_terminal_feed_child (VTE_TERMINAL (pWidget), cCommandLine, strlen (cCommandLine));
@@ -67,7 +67,6 @@ static void _terminal_rm (GtkMenuItem *menu_item, gpointer *data)
 	cd_message ("%s (%s)\n", __func__, cReceivedData);
 	_terminal_write_command_with_data (pWidget, "rm -r", cReceivedData);
 }
-
 
 
 static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData)

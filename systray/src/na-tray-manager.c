@@ -20,7 +20,6 @@
  * Used to be: eggtraymanager.c
  */
 
-#include <config.h>
 #include <string.h>
 #include <libintl.h>
 

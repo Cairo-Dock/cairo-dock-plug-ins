@@ -49,8 +49,8 @@ Voila pour la petite explication :-)
 #include <cairo-glitz.h>
 #endif
 
-#include <rendering-commons.h>
-#include <rendering-parabole.h>
+#include "rendering-commons.h"
+#include "rendering-parabole.h"
 
 extern double my_fParaboleCurvature;  // puissance de x (alpha).
 extern double my_fParaboleRatio;  // ratio hauteur / largeur fixe => coef de la parabole (lambda).

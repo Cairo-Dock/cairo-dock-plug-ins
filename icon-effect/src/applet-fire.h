@@ -23,7 +23,7 @@
 
 
 #include <cairo-dock.h>
-#include <applet-struct.h>
+#include "applet-struct.h"
 #include "fire-tex.h"
 
 

@@ -424,8 +424,6 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
-  extern int mailstream_debug;
-  mailstream_debug = 1;
 
   gboolean bFlushConfFileNeeded = FALSE;
 

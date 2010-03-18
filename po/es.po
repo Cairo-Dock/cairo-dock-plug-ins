@@ -1080,22 +1080,22 @@ msgstr ""
 "Este módulo provee diferentes vistas para los complementos de escritorio."
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr "Plano 3D"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
-msgid "Comics"
-msgstr "Comics"
+msgid "comics"
+msgstr "comics"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
-msgid "Curly"
+msgid "curly"
 msgstr "espiral"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
-msgid "Modern"
+msgid "modern"
 msgstr "moderno"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
@@ -1262,7 +1262,7 @@ msgid ""
 msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr "Indicador de suelte."
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1285,7 +1285,7 @@ msgid " file(s)"
 msgstr " archivo(s)"
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr "cubo de la basura"
 
 #: ../dustbin/src/applet-init.c:34
@@ -1369,7 +1369,7 @@ msgid ""
 msgstr ""
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr "efectos de icono"
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1413,7 +1413,7 @@ msgid "Firework"
 msgstr "Fuegos artificiales"
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr "Ilusión"
 
 #: ../illusion/src/applet-init.c:33
@@ -1432,7 +1432,7 @@ msgid ""
 msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr "Indicador de teclado"
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1445,7 +1445,7 @@ msgid ""
 msgstr ""
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr "finalizar sesión"
 
 #: ../logout/src/applet-init.c:31
@@ -1519,7 +1519,7 @@ msgstr "Tiene un nuevo correo :"
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
 #, fuzzy
-msgid "Mail"
+msgid "mail"
 msgstr ""
 "#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 "correo\n"
@@ -1556,7 +1556,7 @@ msgid "Launch %s"
 msgstr "Lanzar %s"
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr "Desenfoque de movimiento"
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1823,7 +1823,7 @@ msgid "Get disk info"
 msgstr "Obtener información del disco"
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1856,7 +1856,7 @@ msgid "Change screen resolution"
 msgstr "Cambiar la resolución de la pantalla"
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr "Diapositivas"
 
 #: ../slider/src/applet-init.c:32
@@ -1978,7 +1978,7 @@ msgstr ""
 "Escritorio"
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr "cambiador"
 
 #: ../switcher/src/applet-init.c:35
@@ -5148,7 +5148,7 @@ msgid "Colour of the plane :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:37

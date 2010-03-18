@@ -22,7 +22,7 @@
 #define  __APPLET_ICON_ROTATION__
 
 #include <cairo-dock.h>
-#include <applet-struct.h>
+#include "applet-struct.h"
 
 
 void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bUseOpenGL);

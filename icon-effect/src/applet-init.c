@@ -37,7 +37,7 @@
 	myData.pEffects[CD_ICON_EFFECT_FIRE].bRepeat = myConfig.bContinueFire; } while (0)
 	
 
-CD_APPLET_PRE_INIT_BEGIN (N_("Icon Effects"),
+CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plugin adds many special effects to your icons."),

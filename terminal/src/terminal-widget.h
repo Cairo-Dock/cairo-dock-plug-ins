@@ -26,6 +26,8 @@
 #include <cairo-dock.h>
 
 
+void cd_terminal_grab_focus (void);
+
 CairoDialog *cd_terminal_build_dialog (void);
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data);

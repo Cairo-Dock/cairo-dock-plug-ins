@@ -963,22 +963,22 @@ msgid "This module provides different views for your desklets."
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
-msgid "3DPlan"
+msgid "3Dplane"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 #: ../dialog-rendering/data/messages:1
-msgid "Comics"
+msgid "comics"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 #: ../dialog-rendering/data/messages:39
-msgid "Curly"
+msgid "curly"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 #: ../dialog-rendering/data/messages:9
-msgid "Modern"
+msgid "modern"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
@@ -1137,7 +1137,7 @@ msgid ""
 msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:28
-msgid "Drop Indicator"
+msgid "drop indicator"
 msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:31
@@ -1159,7 +1159,7 @@ msgid " file(s)"
 msgstr ""
 
 #: ../dustbin/src/applet-init.c:31
-msgid "Trash"
+msgid "dustbin"
 msgstr ""
 
 #: ../dustbin/src/applet-init.c:34
@@ -1243,7 +1243,7 @@ msgid ""
 msgstr ""
 
 #: ../icon-effect/src/applet-init.c:40
-msgid "Icon Effects"
+msgid "icon effects"
 msgstr ""
 
 #: ../icon-effect/src/applet-init.c:43
@@ -1287,7 +1287,7 @@ msgid "Firework"
 msgstr ""
 
 #: ../illusion/src/applet-init.c:30
-msgid "Illusion"
+msgid "illusion"
 msgstr ""
 
 #: ../illusion/src/applet-init.c:33
@@ -1304,7 +1304,7 @@ msgid ""
 msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:29
-msgid "Keyboard Indicator"
+msgid "keyboard indicator"
 msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:32
@@ -1317,7 +1317,7 @@ msgid ""
 msgstr ""
 
 #: ../logout/src/applet-init.c:28
-msgid "Log-out"
+msgid "logout"
 msgstr ""
 
 #: ../logout/src/applet-init.c:31
@@ -1388,7 +1388,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:313
-msgid "Mail"
+msgid "mail"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:36
@@ -1421,7 +1421,7 @@ msgid "Launch %s"
 msgstr ""
 
 #: ../motion-blur/src/applet-init.c:28
-msgid "Motion Blur"
+msgid "motion blur"
 msgstr ""
 
 #: ../motion-blur/src/applet-init.c:31
@@ -1679,7 +1679,7 @@ msgid "Get disk info"
 msgstr ""
 
 #: ../show-mouse/src/applet-init.c:28
-msgid "Show Mouse"
+msgid "show mouse"
 msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
@@ -1724,7 +1724,7 @@ msgid "Change screen resolution"
 msgstr ""
 
 #: ../slider/src/applet-init.c:29
-msgid "Slider"
+msgid "slider"
 msgstr ""
 
 #: ../slider/src/applet-init.c:32
@@ -1836,7 +1836,7 @@ msgid "Desktop"
 msgstr ""
 
 #: ../switcher/src/applet-init.c:32
-msgid "Switcher"
+msgid "switcher"
 msgstr ""
 
 #: ../switcher/src/applet-init.c:35
@@ -4888,7 +4888,7 @@ msgid "Colour of the plane :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:29
-msgid "Tooltip"
+msgid "tooltip"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:37

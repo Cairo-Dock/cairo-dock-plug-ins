@@ -58,7 +58,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		s_bVideoExtensionChecked = TRUE;
 		
-		const Display *dpy = cairo_dock_get_Xdisplay ();
+	        Display *dpy = gdk_x11_get_default_xdisplay ();
 		if (dpy == NULL)
 		{
 			cd_warning ("Xgamma : unable to get X display");

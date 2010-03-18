@@ -49,7 +49,7 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
 		iEffect = pWantedEffects[i];
-		if (iEffect < 0 || iEffect > CD_ICON_EFFECT_NB_EFFECTS - 1)
+		if (iEffect > CD_ICON_EFFECT_NB_EFFECTS - 1)
 			break;
 		
 		pEffect = &myData.pEffects[iEffect];

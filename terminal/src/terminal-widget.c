@@ -37,6 +37,12 @@
 #include "terminal-menu-functions.h"
 #include "terminal-widget.h"
 
+void cd_terminal_grab_focus (void)
+{
+	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
+	GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
+	gtk_widget_grab_focus (vterm);
+}
 
 CairoDialog *cd_terminal_build_dialog (void)
 {
@@ -86,9 +92,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 			else
 			{
 				cairo_dock_unhide_dialog (myData.dialog);
-				int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK(myData.tab));
-				GtkWidget *vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
-				gtk_widget_grab_focus (vterm);
+				cd_terminal_grab_focus ();
 			}
 		}
 	}
@@ -235,7 +239,7 @@ void terminal_close_tab (GtkWidget *vterm)
 }
 
 
-static void term_apply_settings_on_vterm(GtkWidget *vterm)
+static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
   g_return_if_fail (vterm != NULL);
   vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
@@ -274,15 +278,9 @@ void term_apply_settings (void)
 		sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
 		for (int i = 0; i < sz; ++i) {
 			vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
-			term_apply_settings_on_vterm(vterm);
+			_term_apply_settings_on_vterm(vterm);
 		}
 	}
-	gboolean bKeyBinded = cd_keybinder_bind (myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
-	if (! bKeyBinded)
-	{
-		g_free (myConfig.shortcut);
-		myConfig.shortcut = NULL;
-	}	
 }
 
 static void on_terminal_child_exited(VteTerminal *vteterminal,
@@ -497,39 +495,38 @@ static gchar * _terminal_get_tab_name (int iNumPage)
 }
 void terminal_new_tab(void)
 {
-  GtkWidget *vterm = NULL;
-
-  vterm = vte_terminal_new();
-  //transparency enable, otherwise we cant change value after
-  //vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
-#if GTK_MINOR_VERSION >= 12
-  vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
-#endif
-  vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
-  vte_terminal_fork_command(VTE_TERMINAL(vterm),
-                            NULL,
-                            NULL,
-                            NULL,
-                            "~/",
-                            FALSE,
-                            FALSE,
-                            FALSE);
-  g_signal_connect (G_OBJECT (vterm), "child-exited",
-                    G_CALLBACK (on_terminal_child_exited), NULL);
-  g_signal_connect (G_OBJECT (vterm), "button-release-event",
-                    G_CALLBACK (applet_on_terminal_press_cb), NULL);
-  g_signal_connect (G_OBJECT (vterm),
-		"key-press-event",
-		G_CALLBACK (on_key_press_term),
-		NULL);
-  g_signal_connect (G_OBJECT (vterm), "eof",
-                    G_CALLBACK (applet_on_terminal_eof), NULL);
-
-  cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
+	//\_________________ On cree un nouveau terminal.
+	GtkWidget *vterm = vte_terminal_new();
+	//transparency enable, otherwise we cant change value after
+	//vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
+	#if GTK_MINOR_VERSION >= 12
+	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+	#endif
+	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
+	vte_terminal_fork_command(VTE_TERMINAL(vterm),
+		NULL,
+		NULL,
+		NULL,
+		"~/",
+		FALSE,
+		FALSE,
+		FALSE);
+	g_signal_connect (G_OBJECT (vterm), "child-exited",
+				G_CALLBACK (on_terminal_child_exited), NULL);
+	g_signal_connect (G_OBJECT (vterm), "button-release-event",
+				G_CALLBACK (applet_on_terminal_press_cb), NULL);
+	g_signal_connect (G_OBJECT (vterm),
+			"key-press-event",
+			G_CALLBACK (on_key_press_term),
+			NULL);
+	g_signal_connect (G_OBJECT (vterm), "eof",
+				G_CALLBACK (applet_on_terminal_eof), NULL);
+	
+	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
 	GtkWidget *pHBox = gtk_hbox_new (FALSE, 0);
 	
-	//\_________________On choisit un nom qui ne soit pas deja present, de la forme " # n ".
+	//\_________________ On choisit un nom qui ne soit pas deja present, de la forme " # n ".
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab));
 	GList *pTabNameList = NULL;
 	for (i = 0; i < iNbPages; i ++)
@@ -549,11 +546,11 @@ void terminal_new_tab(void)
 		{
 			g_free (cLabel);
 			iChoosedNum ++;
-			cLabel = g_strdup_printf (" # %d ", iChoosedNum);
+			cLabel = g_strdup_printf (" # %d ", iChoosedNum); // on passe au nom suivant.
 			
 			g_free (cTabName);
 			pElement->data = NULL;
-			pElement = pTabNameList;
+			pElement = pTabNameList;  // on recommence a parcourir la liste avec notre nouveau nom.
 		}
 		else
 			pElement = pElement->next;
@@ -561,6 +558,7 @@ void terminal_new_tab(void)
 	g_list_foreach (pTabNameList, (GFunc) g_free, NULL);
 	g_list_free (pTabNameList);
 	
+	//\_________________ On cree un onglet avec le label et un bouton 'fermer' et on y place le terminal.
 	GtkWidget *pLabel = gtk_label_new (cLabel);
 	g_free (cLabel);
 	gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
@@ -589,7 +587,7 @@ void terminal_new_tab(void)
 	cd_message ("num_new_tab : %d", num_new_tab);
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
 	
-	term_apply_settings_on_vterm (vterm);
+	_term_apply_settings_on_vterm (vterm);
 }
 
 
@@ -703,12 +701,13 @@ static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDialog *pDialog)
 {
-	g_print ("POUET\n");
+	cd_message ("hide the dialog when clicking on it");
 	cairo_dock_hide_dialog (pDialog);
 	return TRUE;
 }
 void terminal_build_and_show_tab (void)
 {
+	//\_________________ On cree un notebook.
 	myData.tab = gtk_notebook_new();
 	g_signal_connect (G_OBJECT (myData.tab),
 		"switch-page",
@@ -723,11 +722,13 @@ void terminal_build_and_show_tab (void)
 		G_CALLBACK (on_key_press_term),
 		NULL);
 	
+	//\_________________ On ajoute un onglet avec un terminal.
 	terminal_new_tab();
 	gtk_widget_show(myData.tab);
 
 	term_apply_settings();
 
+	//\_________________ On insere le notebook dans le container.
 	if (myDock)
 	{
 		myData.dialog = cd_terminal_build_dialog ();
@@ -735,6 +736,7 @@ void terminal_build_and_show_tab (void)
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
 			myData.dialog);  // on le cache quand on clique dessus.
+		cd_terminal_grab_focus ();
 	}
 	else
 	{

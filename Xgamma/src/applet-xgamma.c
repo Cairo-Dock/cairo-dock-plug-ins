@@ -26,7 +26,7 @@
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_val_if_fail (pGamma != NULL, 1);
-	const Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = gdk_x11_get_default_xdisplay ();
 	
 	g_return_val_if_fail (XF86VidModeGetGamma != NULL, 1.);
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
@@ -41,7 +41,7 @@ double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_if_fail (pGamma != NULL);
-	const Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = cairo_dock_get_Xdisplay ();
 	
 	g_return_if_fail (XF86VidModeSetGamma != NULL);
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
@@ -101,7 +101,7 @@ static void on_scale_value_changed (GtkRange *range, gpointer data)
 	}
 	xgamma_set_gamma (&myData.Xgamma);
 }
-static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, gchar *cLabel, int iChannelNumber, guint *iSignalID, double fChannelGamma)
+static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, const gchar *cLabel, int iChannelNumber, guint *iSignalID, double fChannelGamma)
 {
 	GtkWidget *pLabel = gtk_label_new (cLabel);
 	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget), pLabel, 0, 1, iChannelNumber, iChannelNumber+1);
@@ -158,7 +158,7 @@ CairoDialog *xgamma_build_dialog (void)
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
 	attr.cText = D_("Set up gamma:");
 	attr.pInteractiveWidget = myData.pWidget;
-	gchar *cButtons[3] = {"ok", "cancel", NULL};
+	const gchar *cButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) xgamma_apply_values;
 	attr.pUserData = myApplet;
