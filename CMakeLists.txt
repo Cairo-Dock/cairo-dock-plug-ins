@@ -488,9 +488,10 @@ add_subdirectory (wifi)
 
 ############# XFCE-INTEGRATION #################
 if (NOT "${enable_xfce_integration}" STREQUAL "no")
-	pkg_check_modules (XFCE_INTEGRATION thunar-vfs-1)
-	if (NOT ${XFCE_INTEGRATION_FOUND})
-		message (STATUS "Could not find thunar-vfs; Cairo-Dock won't be built with XFCE support.")
+	pkg_check_modules (XFCE_INTEGRATION_THUNAR thunar-vfs-1)
+	pkg_check_modules (XFCE_INTEGRATION_GVFS gio-2.0)
+	if (NOT ${XFCE_INTEGRATION_THUNAR_FOUND} AND NOT ${XFCE_INTEGRATION_GVFS_FOUND})
+		message (STATUS "Could find neither thunar-vfs or libgio-2.0; Cairo-Dock won't be built with XFCE support.")
 	else()
 		set (VERSION_XFCE_INTEGRATION "1.0.2")
 		set (PACKAGE_XFCE_INTEGRATION "cd_xfce-integration")
