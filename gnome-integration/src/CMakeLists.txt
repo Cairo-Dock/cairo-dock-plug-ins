@@ -4,8 +4,6 @@
 SET(cd_gnome-integration_LIB_SRCS
 	applet-init.c
 	applet-init.h
-	applet-gvfs.c
-	applet-gvfs.h
 	applet-utils.c
 	applet-utils.h
 )

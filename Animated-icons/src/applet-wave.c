@@ -24,162 +24,131 @@
 #include "applet-struct.h"
 #include "applet-wave.h"
 
+static inline void _init_wave (GLfloat *pVertices, GLfloat *pCoords)
+{
+	// point bas gauche.
+	pVertices[0] = -.5;
+	pVertices[1] = -.5;
+	pCoords[0] = 0.;
+	pCoords[1] = 1.;
+	
+	// point bas droit.
+	pVertices[2] = .5;
+	pVertices[3] = -.5;
+	pCoords[2] = 1.;
+	pCoords[3] = 1.;
+	
+	// point haut gauche.
+	pVertices[4] = -.5;
+	pVertices[5] = .5;
+	pCoords[4] = 0.;
+	pCoords[5] = 0.;
+	
+	// point haut droit.
+	pVertices[6] = .5;
+	pVertices[7] = .5;
+	pCoords[6] = 1;
+	pCoords[7] = 0.;
+}
 
 void cd_animations_init_wave (CDAnimationData *pData)
 {
-	pData->pCoords[0] = .5;
-	pData->pCoords[1] = .5;
+	_init_wave (pData->pVertices, pData->pCoords);
 	
-	pData->pVertices[0] = 0.;
-	pData->pVertices[1] = 0.;
-	pData->pVertices[2] = 0.;
+	pData->iNumActiveNodes = 4;
 	pData->fWavePosition = - myConfig.fWaveWidth / 2 + .01;  // on rajoute epsilon pour commencer avec 2 points.
-	
-	pData->iNumActiveNodes = 6;
-	pData->pVertices[3*1+0] = -.5;
-	pData->pVertices[3*1+1] = -.5;
-	pData->pVertices[3*2+0] = .5;
-	pData->pVertices[3*2+1] = -.5;
-	pData->pVertices[3*3+0] = .5;
-	pData->pVertices[3*3+1] = .5;
-	pData->pVertices[3*4+0] = -.5;
-	pData->pVertices[3*4+1] = .5;
-	pData->pVertices[3*5+0] = -.5;
-	pData->pVertices[3*5+1] = -.5;
-	pData->pCoords[2*1+0] = 0.;
-	pData->pCoords[2*1+1] = 1.;
-	pData->pCoords[2*2+0] = 1.;
-	pData->pCoords[2*2+1] = 1.;
-	pData->pCoords[2*3+0] = 1.;
-	pData->pCoords[2*3+1] = 0.;
-	pData->pCoords[2*4+0] = 0.;
-	pData->pCoords[2*4+1] = 0.;
-	pData->pCoords[2*5+0] = 0.;
-	pData->pCoords[2*5+1] = 1.;
 	pData->bIsWaving = TRUE;
 }
 
 
 gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, double dt)
 {
-	GLfloat *pVertices = &pData->pVertices[3];
-	GLfloat *pCoords = &pData->pCoords[2];
-	double x, y, a, a_, x_;
+	GLfloat *pVertices = pData->pVertices;
+	GLfloat *pCoords = pData->pCoords;
+	
 	double p = pData->fWavePosition, w = myConfig.fWaveWidth;
-	int n = CD_WAVE_NB_POINTS / 2;  // nbre de points pour une demi-vague (N est impair).
-	int i, j=0, k;
-	for (i = 0; i < CD_WAVE_NB_POINTS; i ++)  // on discretise la vague.
+	if (p + w/2 < 0 || p - w/2 > 1)  // la vague est entierement en-dehors du cote.
 	{
-		a = 1. * (i-n) / (n);  // position sur la vague, dans [-1, 1].
-		x = p + a * w/2;  // abscisse correspondante.
-		if (i == 0)  // 1er point.
+		_init_wave (pVertices, pCoords);  // on s'assure d'avoir au moins un carre.
+		pData->iNumActiveNodes = 4;
+	}
+	else
+	{
+		int j = 0;  // nombre de points calcules.
+		if (p - w/2 > 0)  // la vague n'englobe pas le point du bas.
 		{
-			if (p - w/2 < 0)  // la vague depasse du bas.
-			{
-				a_ = 1. * (i+1-n) / (n);
-				x_ = p + a_ * w/2;
-				if (x_ > 0)  // le point suivant est dedans.
-				{
-					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a + x / (w/2) * G_PI/2);
-					x = 0.;
-					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
-				}
-				else
-					continue ;
-			}
-			else
-			{
-				x = 0.;
-				y = 0.;
-			}
+			pVertices[0] = -.5;
+			pVertices[1] = -.5;
+			pCoords[0] = 0.;
+			pCoords[1] = 1.;
+			j ++;
 		}
-		else if (i == CD_WAVE_NB_POINTS-1)  // dernier point.
+		
+		double x, x_, y;  // position du point et du point precedent.
+		double a, a_;  // position sur la vague dans [-1, 1].
+		int n = CD_WAVE_NB_POINTS / 2;  // nbre de points pour une demi-vague (N est impair).
+		int i;
+		for (i = 0; i < CD_WAVE_NB_POINTS; i ++)  // on discretise la vague.
 		{
-			if (p + w/2 > 1)  // la vague depasse du haut.
-			{
-				a_ = 1. * (i-1-n) / (n);
-				x_ = p + a_ * w/2;
-				if (x_ < 1)  // le point precedent est dedans.
-				{
-					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - (x-1) / (w/2) * G_PI/2);
-					x = 1.;
-					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
-				}
-				else
-					continue;
-			}
-			else
-			{
-				x = 1.;
-				y = 0.;
-			}
-		}
-		else  // dedans.
-		{
-			a = 1. * (i-n) / (n);
-			x = p + a * w/2;
+			a = 1. * (i-n) / (n);  // position courante sur la vague, dans [-1, 1].
+			x = p + a * w/2;  // abscisse correspondante.
+			
+			a = 1. * (i-n) / n;  // position courante sur la vague, dans [-1, 1].
+			x = p + a * w/2;  // abscisse correspondante.
 			if (x < 0)  // le point sort par le bas.
 			{
-				a_ = 1. * (i+1-n) / (n);
+				a_ = 1. * (i+1-n) / n;
 				x_ = p + a_ * w/2;
 				if (x_ > 0)  // le point suivant est dedans.
 				{
-					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - x / (w/2) * G_PI/2);
+					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - x / (w/2) * G_PI/2);  // on depasse de x, donc on dephase d'autant.
 					x = 0.;  // coin de la texture.
-					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
 				else  // tout le segment est dehors, on zappe.
 					continue ;
 			}
 			else if (x > 1)  // le point sort par le haut.
 			{
-				a_ = 1. * (i-1-n) / (n);
+				a_ = 1. * (i-1-n) / n;
 				x_ = p + a_ * w/2;
 				if (x_ < 1)  // le point precedent est dedans.
 				{
-					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - (x-1) / (w/2) * G_PI/2);
+					y = myConfig.fWaveAmplitude * cos (G_PI/2 * a - (x-1) / (w/2) * G_PI/2);  // on depasse de x-1, donc on dephase d'autant.
 					x = 1.;  // coin de la texture.
-					//y = myConfig.fWaveAmplitude * cos (G_PI/2 * (a+a_)/2);
 				}
 				else  // tout le segment est dehors, on zappe.
 					continue;
 			}
 			else  // le point est dans l'icone.
 				y = myConfig.fWaveAmplitude * cos (G_PI/2 * a);
+			
+			pVertices[4*j] = -.5 - y;
+			pVertices[4*j+1] = x - .5;
+			pCoords[4*j] = 0.;
+			pCoords[4*j+1] = 1. - x;
+			j ++;
 		}
 		
-		pCoords[2*j] = 0.;
-		pCoords[2*j+1] = x;
+		if (p + w/2 < 1)  // la vague n'englobe pas le point du haut.
+		{
+			pVertices[4*j] = -.5;
+			pVertices[4*j+1] = .5;
+			pCoords[4*j] = 0.;
+			pCoords[4*j+1] = 0.;
+			j ++;
+		}
 		
-		pVertices[3*j] = -.5 - y;
-		pVertices[3*j+1] = .5 - x;
-		pVertices[3*j+2] = 0.;
-		
-		j ++;
+		for (i = 0; i < j; i ++)  // on complete l'autre cote symetriquement.
+		{
+			pVertices[4*i+2] = - pVertices[4*i];
+			pVertices[4*i+3] = pVertices[4*i+1];
+			pCoords[4*i+2] = 1.;
+			pCoords[4*i+3] = pCoords[4*i+1];
+		}
+		pData->iNumActiveNodes = 2*j;
 	}
-	
-	for (i = 0; i < j; i ++)
-	{
-		k = 2 * j - 1 - i;
-		pCoords[2*k] = 1.;
-		pCoords[2*k+1] = pCoords[2*i+1];
-		
-		pVertices[3*k] = - pVertices[3*i];
-		pVertices[3*k+1] = pVertices[3*i+1];
-		pVertices[3*k+2] = 0.;
-	}
-	
-	// on boucle.
-	j = 2 * j;
-	pCoords[2*j] = pCoords[0];
-	pCoords[2*j+1] = pCoords[1];
-	
-	pVertices[3*j] = pVertices[0];
-	pVertices[3*j+1] = pVertices[1];
-	pVertices[3*j+2] = 0.;
 	
 	pData->fWavePosition += dt / myConfig.iWaveDuration;
-	pData->iNumActiveNodes = j + 2;
 	
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	return (pData->fWavePosition - w/2 < 1);
@@ -207,9 +176,9 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 	glEnableClientState (GL_VERTEX_ARRAY);
 	
 	glTexCoordPointer (2, GL_FLOAT, 0, pData->pCoords);
-	glVertexPointer (3, GL_FLOAT, 0, pData->pVertices);
+	glVertexPointer (2, GL_FLOAT, 0, pData->pVertices);
 
-	glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
+	glDrawArrays (GL_QUAD_STRIP, 0, pData->iNumActiveNodes);
 	
 	glPopMatrix ();
 	
@@ -262,13 +231,6 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 				y1 = 1.;
 			}
 		}
-		//glEnableClientState(GL_COLOR_ARRAY);
-		
-		//glColorPointer(4, GL_FLOAT, 0, pData->pColors);
-		//glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
-		
-		//glDisableClientState(GL_COLOR_ARRAY);
-		
 		
 		glActiveTexture(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
@@ -295,9 +257,9 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 		glEnableClientState (GL_VERTEX_ARRAY);
 		
 		glTexCoordPointer (2, GL_FLOAT, 0, pData->pCoords);
-		glVertexPointer (3, GL_FLOAT, 0, pData->pVertices);
+		glVertexPointer (2, GL_FLOAT, 0, pData->pVertices);
 		
-		glDrawArrays (GL_TRIANGLE_FAN, 0, pData->iNumActiveNodes);
+		glDrawArrays (GL_QUAD_STRIP, 0, pData->iNumActiveNodes);
 		
 		glActiveTexture(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);

@@ -142,9 +142,8 @@ typedef struct _CDAnimationData {
 	gboolean bIsWaving;
 	gdouble fWavePosition;
 	gint iNumActiveNodes;
-	GLfloat pVertices[3*(2*CD_WAVE_NB_POINTS+2)];
-	GLfloat pCoords[2*(2*CD_WAVE_NB_POINTS+2)];
-	GLfloat pColors[4*(2*CD_WAVE_NB_POINTS+2)];
+	GLfloat pVertices[4*(CD_WAVE_NB_POINTS+2)];
+	GLfloat pCoords[4*(CD_WAVE_NB_POINTS+2)];
 	
 	gdouble fPulseSpeed;
 	gdouble fPulseAlpha;
