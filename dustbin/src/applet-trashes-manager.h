@@ -34,21 +34,21 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin);
 gboolean cd_dustbin_is_calculating (void);
 
 
-int cd_dustbin_count_trashes (gchar *cDirectory);
+int cd_dustbin_count_trashes (const gchar *cDirectory);
 
-void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize);
+void cd_dustbin_measure_directory (const gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize);
 
-void cd_dustbin_measure_one_file (gchar *cFilePath, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize);
+void cd_dustbin_measure_one_file (const gchar *cFilePath, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize);
 
 void cd_dustbin_measure_all_dustbins (int *iNbFiles, int *iSize);
 
 
-void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory);
+void cd_dustbin_delete_trash (GtkMenuItem *menu_item, const gchar *cDirectory);
 
-void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory);
+void cd_dustbin_show_trash (GtkMenuItem *menu_item, const gchar *cDirectory);
 
 
-gboolean cd_dustbin_is_monitored (gchar *cDustbinPath);
+gboolean cd_dustbin_is_monitored (const gchar *cDustbinPath);
 
 gboolean cd_dustbin_add_one_dustbin (gchar *cDustbinPath, int iAuthorizedWeight);
 

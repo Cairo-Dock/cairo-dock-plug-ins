@@ -43,6 +43,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iGlobalSizeLimit = CD_CONFIG_GET_INTEGER ("Module", "global size limit") << 20;  // en Mo.
 	myConfig.iQuickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "quick info", CD_DUSTBIN_INFO_NB_TRASHES);
 	myConfig.bAskBeforeDelete = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Module", "confirm", TRUE);
+	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Module", "middle click");
 	
 	myConfig.fCheckInterval = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Module", "check interval", 2.);
 	

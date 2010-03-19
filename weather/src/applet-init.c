@@ -74,13 +74,13 @@ CD_APPLET_RELOAD_BEGIN
 			g_free (myIcon->cName);
 			myIcon->cName = NULL;
 		}
-		if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
+		/**if (myDesklet) //Placé avant pour être sur d'avoir les infos affichées au redraw.
 	  	{
 	  		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 	  		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 	  		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	  	}
-	
+	  	}*/
+		
 		cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		
 		myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
@@ -90,7 +90,7 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_launch_task (myData.pTask);
 
 	}
-	else
+	else if (myDesklet)
 	{
 		// rien a faire, cairo-dock va recharger notre sous-dock.
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};

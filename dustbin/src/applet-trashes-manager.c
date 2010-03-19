@@ -222,7 +222,7 @@ void cd_dustbin_add_message (gchar *cURI, CdDustbin *pDustbin)
 
 
 
-int cd_dustbin_count_trashes (gchar *cDirectory)
+int cd_dustbin_count_trashes (const gchar *cDirectory)
 {
 	//g_print ("%s (%s)\n", __func__, cDirectory);
 	GError *erreur = NULL;
@@ -244,7 +244,7 @@ int cd_dustbin_count_trashes (gchar *cDirectory)
 	return iNbTrashes;
 }
 
-void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_measure_directory (const gchar *cDirectory, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 	g_atomic_int_set (iNbFiles, 0);
@@ -303,7 +303,7 @@ void cd_dustbin_measure_directory (gchar *cDirectory, CdDustbinInfotype iInfoTyp
 	g_dir_close (dir);
 }
 
-void cd_dustbin_measure_one_file (gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
+void cd_dustbin_measure_one_file (const gchar *cURI, CdDustbinInfotype iInfoType, CdDustbin *pDustbin, int *iNbFiles, int *iSize)
 {
 	cd_debug ("%s (%s)", __func__, cURI);
 	
@@ -370,7 +370,7 @@ static void _cd_dustbin_empty_dir (const gchar *cDirectory)
 	g_free (cCommand);
 }
 
-void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
+void cd_dustbin_delete_trash (GtkMenuItem *menu_item, const gchar *cDirectory)
 {
 	int iAnswer;
 	if (myConfig.bAskBeforeDelete)
@@ -428,7 +428,7 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, gchar *cDirectory)
 	}
 }
 
-void cd_dustbin_show_trash (GtkMenuItem *menu_item, gchar *cDirectory)
+void cd_dustbin_show_trash (GtkMenuItem *menu_item, const gchar *cDirectory)
 {
 	if (myConfig.cDefaultBrowser != NULL)
 	{
@@ -481,7 +481,7 @@ void cd_dustbin_sum_all_tasks (int *iNbFiles, int *iSize)
 
 
 
-gboolean cd_dustbin_is_monitored (gchar *cDustbinPath)
+gboolean cd_dustbin_is_monitored (const gchar *cDustbinPath)
 {
 	g_return_val_if_fail (cDustbinPath != NULL, FALSE);
 	CdDustbin *pDustbin;

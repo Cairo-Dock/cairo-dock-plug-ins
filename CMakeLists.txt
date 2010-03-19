@@ -169,7 +169,7 @@ add_subdirectory (drop-indicator)
 
 ############# DUSTBIN #################
 set (GETTEXT_DUSTBIN ${GETTEXT_PLUGINS})
-set (VERSION_DUSTBIN "2.2.6")
+set (VERSION_DUSTBIN "2.2.7")
 set (PACKAGE_DUSTBIN "cd-dustbin")
 set (dustbinuserdirname "dustbin")
 set (dustbindatadir "${pluginsdatadir}/dustbin")

@@ -124,6 +124,9 @@ global size limit = 0
 #b Ask confirmation before emptying Dustbin?
 confirm = true
 
+#l[Display dustbins information;Empty all dustbins] Action on middle click :
+middle click = 0
+
 #X[Desktop-less support]
 frame3 =
 

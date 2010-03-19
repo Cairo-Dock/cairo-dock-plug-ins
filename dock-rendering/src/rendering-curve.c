@@ -155,7 +155,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 		}
 	}
 	
-	pDock->iMinDockWidth = pDock->fFlatDockWidth;
+	pDock->iMinDockWidth = MAX (1, pDock->fFlatDockWidth);  // fFlatDockWidth peut etre meme negatif avec un dock vide.
 }
 
 

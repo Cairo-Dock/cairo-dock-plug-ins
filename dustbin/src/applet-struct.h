@@ -53,6 +53,7 @@ struct _AppletConfig {
 	int iGlobalSizeLimit;
 	int iSizeLimit;
 	gboolean bAskBeforeDelete;
+	gint iActionOnMiddleClick;
 	
 	double fCheckInterval;
 	gchar *cDefaultBrowser;

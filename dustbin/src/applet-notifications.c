@@ -30,6 +30,31 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+static void _cd_dustbin_show_info (void)
+{
+	GString *sInfo = g_string_new ("");
+	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
+	else
+		g_string_printf (sInfo, "%d elements in all dustbins :", myData.iNbTrashes);
+	
+	CdDustbin *pDustbin;
+	GList *pElement;
+	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+	{
+		pDustbin = pElement->data;
+		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+			g_string_append_printf (sInfo, "\n  %.2fM for %d files in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
+		else
+			g_string_append_printf (sInfo, "\n  %d elements in %s", pDustbin->iNbTrashes, pDustbin->cPath);
+	}
+	
+	cairo_dock_remove_dialog_if_any (myIcon);
+	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);
+	
+	g_string_free (sInfo, TRUE);
+}
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
@@ -62,6 +87,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Delete All"), cd_dustbin_delete_trash, pDeleteSubMenu, NULL);
 	}
+	
+	if (myConfig.iActionOnMiddleClick != 0)
+		CD_APPLET_ADD_IN_MENU (D_("Display dustbins information"), _cd_dustbin_show_info, CD_APPLET_MY_MENU);
 	
 	g_string_free (sLabel, TRUE);
 	
@@ -129,7 +157,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		{
 			CdDustbin *pDustbin = myData.pDustbinsList->data;
 			gchar *cCommand = g_strdup_printf ("mv %s %s", cFileName, pDustbin->cPath);
-			system (cCommand);
+			int r = system (cCommand);
 			g_free (cCommand);
 		}
 		g_free (cFileName);
@@ -142,25 +170,12 @@ CD_APPLET_ON_DROP_DATA_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	GString *sInfo = g_string_new ("");
-	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-		g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
-	else
-		g_string_printf (sInfo, "%d elements in all dustbins :", myData.iNbTrashes);
-	
-	CdDustbin *pDustbin;
-	GList *pElement;
-	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+	if (myConfig.iActionOnMiddleClick == 0)  // display info
 	{
-		pDustbin = pElement->data;
-		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-			g_string_append_printf (sInfo, "\n  %.2fM for %d files in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
-		else
-			g_string_append_printf (sInfo, "\n  %d elements in %s", pDustbin->iNbTrashes, pDustbin->cPath);
+		_cd_dustbin_show_info ();
 	}
-	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);
-	
-	g_string_free (sInfo, TRUE);
+	else  // empty trash.
+	{
+		cd_dustbin_delete_trash (NULL, NULL);
+	}
 CD_APPLET_ON_MIDDLE_CLICK_END
