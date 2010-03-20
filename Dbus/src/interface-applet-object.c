@@ -147,10 +147,6 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 			CAIRO_DOCK_RUN_FIRST,
 			NULL);
-		cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
-			CAIRO_DOCK_RUN_AFTER,
-			NULL);
 		cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 			CAIRO_DOCK_RUN_AFTER,
@@ -195,9 +191,6 @@ void cd_dbus_unregister_notifications (void)
 		NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_ICON_MENU,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
-		NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_DROP_DATA,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
 		NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
