@@ -66,7 +66,6 @@ msgid "Spot"
 msgstr "Spot"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "Add a lively Penguin in your dock !\n"
 "Left click to change the animation,\n"
@@ -128,7 +127,6 @@ msgid "I'm your father!"
 msgstr "Je suis ton père !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
-#, fuzzy
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
@@ -171,7 +169,6 @@ msgid "No items yet."
 msgstr "Encore aucun élément."
 
 #: ../Clipper/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet keeps a trace of the clipboard and mouse selection,\n"
 "so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
@@ -183,7 +180,7 @@ msgid ""
 msgstr ""
 "Cette applet garde un historique du presse-papier et des objets sélectionnés "
 "avec la souris,\n"
-"afin que vous puissiez les rappeler rapidement. C'est un clône du fameux "
+" afin que vous puissiez les rappeler rapidement. C'est un clône du fameux "
 "Klipper.\n"
 "Le presse-papier, les sélections avec la souris, les actions prédéfinies et "
 "les objets persistants sont gérés.\n"
@@ -201,7 +198,6 @@ msgstr ""
 "Vous pouvez en rajouter en glissant-déposant du texte sur l'icône."
 
 #: ../Dbus/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -415,7 +411,6 @@ msgid "Network-Monitor"
 msgstr "Network-Monitor"
 
 #: ../Network-Monitor/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet allows you to monitor your network connection(s).\n"
 "It can display the download/upload speeds and the wifi signal quality.\n"
@@ -424,8 +419,7 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
-"Cette applet vous permet de contrôler votre connexion (vos connexions) "
-"réseau.\n"
+"Cette applet vous permet de contrôler votre/vos connexion(s) réseau.\n"
 "Elle peut afficher les vitesse d'envoi et de téléchargement ainsi que la "
 "qualité du signal Wifi.\n"
 "Si Network-Manager est lancé, elle vous permet aussi de choisir le réseau "
@@ -767,7 +761,6 @@ msgid "System Monitor"
 msgstr "Moniteur Système"
 
 #: ../System-Monitor/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet shows you the CPU load, RAM usage, graphic card temperature, "
 "etc.\n"
@@ -887,7 +880,6 @@ msgid "AlsaMixer"
 msgstr "AlsaMixer"
 
 #: ../alsaMixer/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -953,7 +945,6 @@ msgid "Adjust channels"
 msgstr "Ajustez les canaux"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
-#, fuzzy
 msgid "Search for your location :"
 msgstr "Cherchez votre emplacement :"
 
@@ -962,7 +953,6 @@ msgid "clock"
 msgstr "Horloge"
 
 #: ../clock/src/applet-init.c:35
-#, fuzzy
 msgid ""
 "This applet displays time and date in your dock.\n"
 "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
@@ -990,7 +980,6 @@ msgid "Set up time and date"
 msgstr "Régler la date et l'heure"
 
 #: ../compiz-icon/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet allows you to manage compiz and other windows manager\n"
 "The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
@@ -1155,7 +1144,6 @@ msgstr ""
 "commencer un nouveau."
 
 #: ../dnd2share/src/applet-init.c:41
-#, fuzzy
 msgid ""
 "This applet lets you share files easily :\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -1337,7 +1325,6 @@ msgid "dustbin"
 msgstr "Poubelle"
 
 #: ../dustbin/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet manages the dustbin\n"
 "You can threw files and unmount disks by drag andn droping them on the "
@@ -1411,7 +1398,6 @@ msgstr ""
 "vous pouvez le changer dans le panneau de conf de cette applet."
 
 #: ../gnome-integration-old/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1424,7 +1410,6 @@ msgstr ""
 "Il a été conçu pour les anciennes versions de Gnome (avant 2.22)."
 
 #: ../gnome-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1492,7 +1477,6 @@ msgstr ""
 "icônes."
 
 #: ../kde-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
@@ -1501,7 +1485,8 @@ msgid ""
 msgstr ""
 "Cette applet fournit des fonctions pour une meilleur intégration avec "
 "l'environnement KDE4.\n"
-"Il s'auto-active, vous ne devez donc pas l'activer manuellement."
+"Il s'auto-active, vous ne devez donc pas l'activer manuellement.\n"
+"Il a été conçu pour KDE4"
 
 #: ../keyboard-indicator/src/applet-init.c:29
 msgid "keyboard indicator"
@@ -1605,7 +1590,6 @@ msgid "mail"
 msgstr "mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
-#, fuzzy
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)\n"
@@ -1771,7 +1755,6 @@ msgid "Information"
 msgstr "Information"
 
 #: ../netspeed/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet shows you the bit rate of your internet connection and some "
 "stats about it.\n"
@@ -1781,7 +1764,7 @@ msgstr ""
 "Cette applet vous indique le débit de votre connexion Internet et quelques "
 "statistiques en relation.\n"
 "Clic gauche sur l'icône pour avoir la valeur totale des données transférées\n"
-"Clic du milieu pour (dés)activer le réseau (nécessite NetworManager)"
+"Clic du milieu pour (dés)activer le réseau (nécessite NetworkManager)"
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
@@ -1891,7 +1874,6 @@ msgid "Quick Browser"
 msgstr "Navigateur rapide"
 
 #: ../quick-browser/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet lets you browse a folder and its sub-folders very quickly.\n"
 "You can set up a shortkey to pop up the menu.\n"
@@ -1922,7 +1904,6 @@ msgid "shortcuts"
 msgstr "Raccourcis"
 
 #: ../shortcuts/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
 "It can manage disks, network points, and Nautilus bookmarks (even if you "
@@ -1957,7 +1938,6 @@ msgid "show mouse"
 msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "This plugin draws some animations around the cursor when it's inside a dock/"
 "desklet."
@@ -2004,7 +1984,6 @@ msgid "slider"
 msgstr "Visionneur d'images"
 
 #: ../slider/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet is a basic image slider\n"
 " You just have to select a directory and a display effect and you're done\n"
@@ -2038,7 +2017,6 @@ msgid "stack"
 msgstr "Pile"
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet allows you to build a stack of files, just like the Stacks "
 "applet of MacOS X.\n"
@@ -2048,7 +2026,7 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "Cette applet vous permet de construire une 'pile' de fichiers, tout comme "
-"l'applet Stacks de MacOs X.\n"
+"l'applet Stacks de MacOS X.\n"
 "Pour ajouter des fichiers dans votre pile, vous avez juste à les déposer sur "
 "l'icône de l'applet et c'est fait.\n"
 "Vous pouvez déposer des fichiers, des URL web, ou meme des portions de "
@@ -2117,13 +2095,8 @@ msgstr "Nettoyer le dossier local"
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:340
-#, fuzzy
 msgid "Current"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"courant\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Courant"
+msgstr "Courant"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
 #: ../switcher/src/applet-load-icons.c:46
@@ -2131,20 +2104,14 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:187
 #: ../switcher/src/applet-notifications.c:332
 #: ../switcher/src/applet-notifications.c:397
-#, fuzzy
 msgid "Desktop"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"bureau\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Bureau"
+msgstr "Bureau"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
 msgstr "Sélecteur de bureau"
 
 #: ../switcher/src/applet-init.c:35
-#, fuzzy
 msgid ""
 "This applet allows you to interact with your workspaces :\n"
 " - switch between your workspaces (scroll up/down with the mouse),\n"
@@ -2201,7 +2168,6 @@ msgid "Windows List"
 msgstr "Liste des fenêtres"
 
 #: ../systray/src/systray-init.c:35
-#, fuzzy
 msgid ""
 "Add a systray to your dock.\n"
 "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
@@ -2235,7 +2201,6 @@ msgid "Copy"
 msgstr "Copier"
 
 #: ../terminal/src/terminal-init.c:34
-#, fuzzy
 msgid ""
 "Add a terminal to your dock !\n"
 "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
@@ -2304,7 +2269,6 @@ msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
 #: ../tomboy/src/tomboy-init.c:33
-#, fuzzy
 msgid ""
 "Control your Gnote or TomBoy's notes directly in the dock !\n"
 "Click on a note to open it, Escape to close it.\n"
@@ -2369,7 +2333,6 @@ msgid "Reset marks"
 msgstr "Effacer les marques"
 
 #: ../weather/src/applet-config.c:113
-#, fuzzy
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -2378,12 +2341,10 @@ msgstr ""
 " la connexion est-elle établie ?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "I couldn't find this location"
-msgstr "Impossible d'enregistrer les options"
+msgstr "Impossible de déterminer l'emplacement"
 
 #: ../weather/src/applet-config.c:184
-#, fuzzy
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -2575,7 +2536,6 @@ msgid "WiFi disabled."
 msgstr "Wifi désactivé."
 
 #: ../wifi/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet shows you the signal strength of the first active wifi "
 "connection\n"
@@ -2586,7 +2546,6 @@ msgstr ""
 "l'actualisation des informations."
 
 #: ../xfce-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -2750,17 +2709,15 @@ msgstr "Rayons"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-#, fuzzy
 msgid "st color of gradation :"
-msgstr "Première couleur du dégradé"
+msgstr "ère couleur du dégradé"
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-#, fuzzy
 msgid "nd color of gradation :"
-msgstr "Seconde couleur du dégradé"
+msgstr "ème couleur du dégradé"
 
 #: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
@@ -2883,13 +2840,8 @@ msgstr "Icône"
 #: ../systray/data/messages:3 ../terminal/data/messages:3
 #: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
-#, fuzzy
 msgid "Set to 0 to use the default applet size"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Laisser vide pour avoir l'icône par défaut\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Laissez à 0 pour avoir la taille par défaut"
+msgstr "Laissez à 0 pour avoir la taille par défaut des applets"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size for busy penguin:"
@@ -2916,13 +2868,8 @@ msgstr "Nom de l'icône quand le pingouin n'est pas libre :"
 #: ../tomboy/data/messages:9 ../tomboy/data/messages:19
 #: ../weather/data/messages:11 ../weblets/data/messages:13
 #: ../wifi/data/messages:9
-#, fuzzy
 msgid "Name of the dock it belongs to:"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Nom du dock auquel il appartient :\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Nom d'une image pour l'icône 'fermer' :"
+msgstr "Nom du dock auquel il appartient :"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
 #: ../GMenu/data/messages:15 ../Network-Monitor/data/messages:13
@@ -2979,12 +2926,10 @@ msgstr "Choisissez l'un des thèmes disponibles :"
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
-#, fuzzy
 msgid "in seconds."
 msgstr "en secondes."
 
 #: ../Cairo-Penguin/data/messages:19
-#, fuzzy
 msgid "Delay between animation changes :"
 msgstr "Délai entre les changements d'animation :"
 
@@ -3621,13 +3566,8 @@ msgstr ""
 #: ../terminal/data/messages:65 ../tomboy/data/messages:79
 #: ../weather/data/messages:63 ../weblets/data/messages:65
 #: ../wifi/data/messages:61
-#, fuzzy
 msgid "Background image:"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Image de fond :\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Image à dessiner en arrière-plan :"
+msgstr "Image à dessiner en arrière-plan :"
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
 #: ../GMenu/data/messages:67 ../Network-Monitor/data/messages:65
@@ -4116,7 +4056,6 @@ msgid "Border colour"
 msgstr "Couleur de la bordure"
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:195
-#, fuzzy
 msgid "Border colour :"
 msgstr "Couleur de la bordure :"
 
@@ -4269,7 +4208,6 @@ msgstr "Vitesse réseau"
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
 #: ../wifi/data/messages:89
-#, fuzzy
 msgid "Choose the style of the display: "
 msgstr "Choisissez le style d'affichage : "
 
@@ -4408,13 +4346,8 @@ msgstr "Dessiner une barre"
 #: ../wifi/data/messages:141 ../wifi/data/messages:145
 #: ../wifi/data/messages:149 ../wifi/data/messages:153
 #: ../wifi/data/messages:157
-#, fuzzy
 msgid "Leave empty to use the default icon."
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Laisser vide pour avoir l'icône par défaut\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Laissez vide pour utiliser l'icône par défaut."
+msgstr "Laissez vide pour utiliser l'icône par défaut."
 
 #: ../Network-Monitor/data/messages:221
 msgid "Name of the image for the 'No signal' icon :"
@@ -4449,9 +4382,8 @@ msgid "Name of the image for the 'Wired connection' icon :"
 msgstr "Nom ou chemin de l'image pour l'icône \"Connexion filaire\" :"
 
 #: ../Network-Monitor/data/messages:253
-#, fuzzy
 msgid "in seconds. if you don't have Network-Manager."
-msgstr "ou, si vous n'avez pas Network-Manager"
+msgstr "en secondes, si vous n'avez pas Network-Manager"
 
 #: ../Network-Monitor/data/messages:255
 msgid "Delays between wifi signal checks:"
@@ -4669,13 +4601,8 @@ msgid "Text size:"
 msgstr "Poids du texte :"
 
 #: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
-#, fuzzy
 msgid "Outline text?"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Surligner les traits des caractères ?\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Tracer le contour du texte ?"
+msgstr "Tracer le contour du texte ?"
 
 #: ../Scooby-Do/data/messages:41 ../clock/data/messages:137
 msgid "Text colour:"
@@ -4884,7 +4811,6 @@ msgid "Top List"
 msgstr "Liste Top"
 
 #: ../System-Monitor/data/messages:169
-#, fuzzy
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
@@ -4925,17 +4851,11 @@ msgid "Graphic Card temperature"
 msgstr "Température de la carte graphique"
 
 #: ../System-Monitor/data/messages:189 ../System-Monitor/data/messages:193
-#, fuzzy
 msgid ""
 "in Celsius. The temperature will be displayed between this value and the "
 "upper limit."
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"en celcius. La température sera affichée entre cette valeur et la limite "
-"haute.\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"en celcius. La température sera affichée entre cette valeur et la limite "
-"basse."
+msgstr "en degrés Celcius. La température sera affichée entre cette valeur et la limite "
+"haute."
 
 #: ../System-Monitor/data/messages:191
 msgid "Lower limit of graphic card temperature:"
@@ -4946,7 +4866,6 @@ msgid "Upper limit of graphic card temperature:"
 msgstr "Limite haute de température :"
 
 #: ../System-Monitor/data/messages:197
-#, fuzzy
 msgid "Notification when graphic card temperature is high?"
 msgstr "Alerter lorsque la température devient haute ?"
 
@@ -4955,7 +4874,6 @@ msgid "in celcius."
 msgstr "en celsius."
 
 #: ../System-Monitor/data/messages:201
-#, fuzzy
 msgid "Notification limit of graphic card temperature:"
 msgstr "Limite basse de température :"
 
@@ -5010,7 +4928,6 @@ msgstr "Laisser vide pour utiliser la carte son par défaut."
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
 #: ../tomboy/data/messages:43
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
@@ -5923,7 +5840,6 @@ msgid "Maximum total size of all dustbins :"
 msgstr "Taille maximale totale des poubelles :"
 
 #: ../dustbin/data/messages:115
-#, fuzzy
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Taille maximale autorisée pour chaque poubelle :"
 
@@ -5942,7 +5858,6 @@ msgstr ""
 "ici :"
 
 #: ../dustbin/data/messages:123
-#, fuzzy
 msgid "in seconds. only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
@@ -6203,13 +6118,8 @@ msgstr "Nombre maximal de nouveaux messages montrés ?"
 
 #: ../mail/data/messages:113 ../musicPlayer/data/messages:131
 #: ../tomboy/data/messages:119
-#, fuzzy
 msgid "in seconds"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"en secondes\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"en s."
+msgstr "en secondes"
 
 #: ../mail/data/messages:115 ../tomboy/data/messages:121
 msgid "Duration of the dialogue"
@@ -6528,7 +6438,6 @@ msgid "Notification"
 msgstr "Alerte"
 
 #: ../powermanager/data/messages:157
-#, fuzzy
 msgid "Notification when battery charged ?"
 msgstr "M'alerter quand la batterie est chargée ?"
 
@@ -6543,9 +6452,8 @@ msgid "Play a sound:"
 msgstr "Utiliser un son :"
 
 #: ../powermanager/data/messages:163
-#, fuzzy
 msgid "Notification when low battery ?"
-msgstr "M'alerter quand la batterie est chargée ?"
+msgstr "M'alerter quand la batterie est faible ?"
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
@@ -6560,9 +6468,8 @@ msgid "When battery level is under 4%"
 msgstr "Quand la charge est en dessous de 4%"
 
 #: ../powermanager/data/messages:175
-#, fuzzy
 msgid "Notification when battery charge is critical ?"
-msgstr "M'alerter quand la batterie est chargée ?"
+msgstr "M'alerter quand la charge de la batterie est critique ?"
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"
@@ -6950,7 +6857,6 @@ msgid "Manual order"
 msgstr "Ordre manuel"
 
 #: ../stack/data/messages:135
-#, fuzzy
 msgid ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
@@ -6971,13 +6877,8 @@ msgstr ""
 "contiendra tous les bureaux."
 
 #: ../switcher/data/messages:89 ../switcher/data/messages:91
-#, fuzzy
 msgid "Use the compact mode?"
-msgstr ""
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Utiliser le mode compact ?\n"
-"#-#-#-#-#  fr.po (1.0.0)  #-#-#-#-#\n"
-"Quand le mode compact est dessiné, essayer de préserver le ratio ?"
+msgstr "Utiliser le mode compact ?"
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"
@@ -7230,7 +7131,6 @@ msgid "Use International System Units?"
 msgstr "Utiliser les unités du Système International ?"
 
 #: ../weather/data/messages:101
-#, fuzzy
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
 
@@ -7288,7 +7188,6 @@ msgid "Vertical scroll of the browser in pixels"
 msgstr "Défilement vertical du navigateur en pixel"
 
 #: ../weblets/data/messages:103
-#, fuzzy
 msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
@@ -7314,7 +7213,6 @@ msgstr ""
 "recharger."
 
 #: ../weblets/data/messages:113
-#, fuzzy
 msgid "Time between two page refreshes"
 msgstr "Temps entre deux actualisations de la page"
 
