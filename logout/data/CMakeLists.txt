@@ -1,7 +1,7 @@
 
 ########### install files ###############
 
-install(FILES  logout.conf 	icon.svg 	icon-scheduling.png DESTINATION ${logoutdatadir})
+install(FILES  logout.conf 	icon.svg 	icon-scheduling.png icon-lock.png DESTINATION ${logoutdatadir})
 
 
 

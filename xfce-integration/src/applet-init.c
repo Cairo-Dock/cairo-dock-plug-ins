@@ -63,6 +63,7 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 		{
 			pVFSBackend->logout = env_backend_logout;
 			pVFSBackend->shutdown = env_backend_shutdown;
+			pVFSBackend->lock_screen = env_backend_lock_screen;
 			pVFSBackend->setup_time = env_backend_setup_time;
 			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);

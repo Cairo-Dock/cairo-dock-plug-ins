@@ -51,6 +51,11 @@ void env_backend_shutdown (void)
 	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout -1 2 -1");
 }
 
+void env_backend_lock_screen (void)
+{
+	cairo_dock_launch_command ("qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock");
+}
+
 void env_backend_setup_time (void)
 {
 	cairo_dock_launch_command ("kcmshell kde-clock.desktop");  /// kdesu avant ?...
