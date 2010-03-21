@@ -19,6 +19,7 @@
 
 #include "stdlib.h"
 
+#include "config.h"
 #include "cairo-dock-gio-vfs.h"
 
 #include "applet-thunar-vfs.h"

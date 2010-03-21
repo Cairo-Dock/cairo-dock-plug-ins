@@ -149,15 +149,20 @@ if test "$with_old_gnome_support" = "yes" ; then
 	AC_SUBST(OLD_GNOME_INTEGRATION_CFLAGS)
 	AC_SUBST(OLD_GNOME_INTEGRATION_LIBS)
 fi
-if test "$with_gnome_support" = "yes" ; then
-	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ with_gnome_support=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won\'t be built with Gnome>=2.22 support.) ])
-	AC_SUBST(GNOME_INTEGRATION_CFLAGS)
-	AC_SUBST(GNOME_INTEGRATION_LIBS)
-fi
 if test "$with_xfce_support" = "yes" ; then
 	PKG_CHECK_MODULES(XFCE_INTEGRATION,thunar-vfs-1, ,[ with_xfce_support=false; AC_MSG_WARN(Could not find thunar-vfs; Cairo-Dock won\'t be built with XFCE support.) ])
+	if test "$with_xfce_support" = "yes"; then
+		THUNAR_VFS_CFLAGS="-DHAVE_THUNAR=\"1\""
+		AC_SUBST(THUNAR_VFS_CFLAGS)
+	fi
 	AC_SUBST(XFCE_INTEGRATION_CFLAGS)
 	AC_SUBST(XFCE_INTEGRATION_LIBS)
+fi
+if test "$with_gnome_support" = "yes" ; then
+	PKG_CHECK_MODULES(GNOME_INTEGRATION,gio-2.0, ,[ with_gnome_support=false; AC_MSG_WARN(Could not find gio; Cairo-Dock won\'t be built with Gnome>=2.22 support.) ])
+	with_xfce_support="yes"
+	AC_SUBST(GNOME_INTEGRATION_CFLAGS)
+	AC_SUBST(GNOME_INTEGRATION_LIBS)
 fi
 if test "$with_kde_support" = "yes" ; then
 	PKG_CHECK_MODULES(KDE_INTEGRATION,gio-2.0, ,[ with_kde_support=false; AC_MSG_WARN(Could not find kde libs; Cairo-Dock won\'t be built with KDE support.) ])
@@ -219,6 +224,7 @@ if test "$with_xrandr_in_show_desktop" = "yes" ; then
 	AC_SUBST(SHOW_DESKTOP_XRANDR_CFLAGS)
 	AC_SUBST(SHOW_DESKTOP_XRANDR_LIBS)
 fi
+
 
 AC_PROG_CXX
 

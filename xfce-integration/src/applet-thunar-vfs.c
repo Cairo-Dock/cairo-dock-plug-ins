@@ -17,6 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef HAVE_THUNAR
+
 #include <string.h>
 #include <thunar-vfs/thunar-vfs.h>
 
@@ -1269,3 +1271,5 @@ gchar *vfs_backend_get_desktop_path (void)
 
 	return desktopPath;
 }
+
+#endif
