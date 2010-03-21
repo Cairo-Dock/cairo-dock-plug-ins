@@ -171,18 +171,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (my_pFlatSeparatorSurface[0] != NULL)
-		{
-			cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
-			cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
-			my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = NULL;
-			my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = NULL;
-		}
-		if (my_iFlatSeparatorTexture != 0)
-		{
-			_cairo_dock_delete_texture (my_iFlatSeparatorTexture);
-			my_iFlatSeparatorTexture = 0;
-		}
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 		
 		cairo_dock_set_all_views_to_default (0);
 		cairo_dock_redraw_root_docks (FALSE);  // FALSE <=> main dock inclus.

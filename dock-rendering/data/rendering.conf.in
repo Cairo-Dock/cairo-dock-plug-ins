@@ -132,7 +132,7 @@ sep_border=
 simple_radius = 15
 
 #i+[0;10] Border line width :
-simple_lineWidth = 5
+simple_lineWidth = 3
 
 #C+ Border line colour :
 simple_color_border_line = 1;1;1;0.5;
@@ -141,10 +141,10 @@ simple_color_border_line = 1;1;1;0.5;
 sep_arrow= 
 
 #i+[10;100] Arrow width :
-simple_arrowWidth = 50
+simple_arrowWidth = 40
 
 #i+[0;100] Arrow height:
-simple_arrowHeight = 25
+simple_arrowHeight = 20
 
 #e+[-100;100] Arrow shift percentage:
 simple_arrowShift = 0

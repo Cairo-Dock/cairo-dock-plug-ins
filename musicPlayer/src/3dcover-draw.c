@@ -82,7 +82,7 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	if (iVersion != 2)
 	{
 		/// effacer le theme et le recuperer sur le serveur...
-		g_print ("theme en version inferieure => sera mis a jour...\n");
+		cd_message ("theme en version inferieure => sera mis a jour...");
 		// on ferme la config de l'actuel theme.
 		g_key_file_free (pKeyFile);
 		pKeyFile = NULL;

@@ -28,14 +28,15 @@
 #define _CAIRO_DIALOG_TOOLTIP_MIN_GAP 10
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH 20
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT 5
+#define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
 
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
 	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
-	pDialog->iTopMargin = 0;
-	pDialog->iBottomMargin = 0;
+	pDialog->iTopMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
+	pDialog->iBottomMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
 	pDialog->iMinBottomGap = _CAIRO_DIALOG_TOOLTIP_MIN_GAP;
 	pDialog->iMinFrameWidth = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH;
 	pDialog->fAlign = .5;

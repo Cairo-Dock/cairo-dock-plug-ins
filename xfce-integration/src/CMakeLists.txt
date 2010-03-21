@@ -9,11 +9,11 @@ SET(cd_xfce-integration_LIB_SRCS
 	applet-utils.h
 )
 if(${XFCE_INTEGRATION_GVFS_FOUND})
-   MESSAGE("    --> gvfs found: source file applet-thunar-vfs.c NOT included for compilation.")
+	MESSAGE("    --> gvfs found: source file applet-thunar-vfs.c NOT included for compilation.")
 else()
-   LIST(APPEND cd_xfce-integration_LIB_SRCS applet-thunar-vfs.c)
-#   set (libthunarvfs_required "libthunar-vfs-1")  # pour le .pc
-   MESSAGE("    --> gvfs not found: source file applet-thunar-vfs.c included for compilation.")
+	LIST(APPEND cd_xfce-integration_LIB_SRCS applet-thunar-vfs.c)
+	add_definitions (-DHAVE_THUNAR="1")
+	MESSAGE("    --> gvfs not found: source file applet-thunar-vfs.c included for compilation.")
 endif()
 
 add_library(${PACKAGE_XFCE_INTEGRATION} SHARED ${cd_xfce-integration_LIB_SRCS})

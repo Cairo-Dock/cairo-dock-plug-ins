@@ -100,7 +100,7 @@ extern gboolean my_diapo_simple_display_all_icons;
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 
-extern CDSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSpeparatorType my_iDrawSeparator3D;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	iVanishingPointY = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "vanishing point y", &bFlushConfFileNeeded, 0, NULL, NULL);

@@ -31,11 +31,10 @@
 
 extern int iVanishingPointY;
 
-extern CDSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSpeparatorType my_iDrawSeparator3D;
 extern double my_fSeparatorColor[4];
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
-extern GLuint my_iFlatSeparatorTexture;
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
 	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;\
@@ -111,7 +110,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	{
 		my_iDrawSeparator3D = myIcons.iSeparatorType;
 		memcpy (my_fSeparatorColor, myIcons.fSeparatorColor, 4*sizeof(double));
-		if (myIcons.iSeparatorType == CD_FLAT_SEPARATOR)
+		if (myIcons.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 		}
@@ -200,7 +199,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		cairo_rel_line_to (pCairoContext, - fBigWidth, 0);
 		cairo_rel_line_to (pCairoContext, - fDeltaXLeft, - sens * fHeight);
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			if (! bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
@@ -217,7 +216,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
 		cairo_rel_line_to (pCairoContext, - sens * fHeight, - fDeltaXLeft);
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			if (! bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
@@ -305,9 +304,9 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 			
 		}
 	}
-	cd_rendering_make_3D_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);
+	cd_rendering_make_3D_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR), bBackGround);
 	
-	if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OUT);
 		cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
@@ -403,7 +402,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -414,7 +413,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 	
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
-	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 		do
@@ -445,7 +444,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{
@@ -674,7 +673,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 			do
@@ -683,7 +682,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 				
 				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 				{
-					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 					{
 						cairo_save (pCairoContext);
 						cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
@@ -717,7 +716,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 				ic = cairo_dock_get_next_element (ic, pDock->icons);
 			} while (ic != pFirstDrawnElement);
 			
-			if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+			if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 			{
 				do
 				{
@@ -725,7 +724,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 					
 					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 					{
-						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 						{
 							cairo_save (pCairoContext);
 							cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
@@ -859,7 +858,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -871,7 +870,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	GList *ic = pFirstDrawnElement;
 	
 	///glLoadIdentity ();
- 	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+ 	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		do
 		{
@@ -880,7 +879,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
-				if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+				if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
 					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, NULL, NULL);
@@ -904,7 +903,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{

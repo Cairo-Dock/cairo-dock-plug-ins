@@ -41,6 +41,7 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 
 			cairo_dock_gio_vfs_fill_backend(pVFSBackend);
 		}
+#ifdef HAVE_THUNAR
 		else if (init_vfs_backend ())
 		{
 			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
@@ -59,6 +60,7 @@ CD_APPLET_PRE_INIT_BEGIN ("xfce integration",
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
 		}
+#endif
 		if(NULL != pVFSBackend)
 		{
 			pVFSBackend->logout = env_backend_logout;

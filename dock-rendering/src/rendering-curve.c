@@ -36,14 +36,13 @@ static double *s_pReferenceCurveX = NULL;
 static double *s_pReferenceCurveY = NULL;
 extern int iVanishingPointY;
 
-extern CDSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSpeparatorType my_iDrawSeparator3D;
 extern double my_fSeparatorColor[4];
 
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
-extern GLuint my_iFlatSeparatorTexture;
 
 
 //const guint curveOffsetX = 75;
@@ -149,7 +148,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	{
 		my_iDrawSeparator3D = myIcons.iSeparatorType;
 		memcpy (my_fSeparatorColor, myIcons.fSeparatorColor, 4*sizeof(double));
-		if (myIcons.iSeparatorType == CD_FLAT_SEPARATOR)
+		if (myIcons.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 		}
@@ -358,7 +357,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		cairo_rel_line_to (pCairoContext, - fBigWidth, 0);
 		cairo_rel_line_to (pCairoContext, - fDeltaXLeft, - sens * fHeight);
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
@@ -375,7 +374,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		cairo_rel_line_to (pCairoContext, 0, - fBigWidth);
 		cairo_rel_line_to (pCairoContext, - sens * fHeight, - fDeltaXLeft);
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 		{
 			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
@@ -459,9 +458,9 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 
 static void cd_rendering_draw_3D_curve_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bHorizontal, gboolean bBackGround)
 {
-	cd_rendering_make_3D_curve_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR), bBackGround);
+	cd_rendering_make_3D_curve_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR), bBackGround);
 	
-	if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OUT);
 		cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
@@ -567,7 +566,7 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -578,7 +577,7 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_BUTT);
 		do
@@ -609,7 +608,7 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{
@@ -891,7 +890,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
 		
-		if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_BUTT);
 			do
@@ -900,7 +899,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 				
 				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 				{
-					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 					{
 						cairo_save (pCairoContext);
 						cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
@@ -936,7 +935,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 				ic = cairo_dock_get_next_element (ic, pDock->icons);
 			} while (ic != pFirstDrawnElement);
 			
-			if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+			if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 			{
 				do
 				{
@@ -944,7 +943,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 					
 					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 					{
-						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)))
+						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 						{
 							cairo_save (pCairoContext);
 							cd_rendering_draw_3D_curve_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
@@ -1149,7 +1148,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	glStencilOp (GL_KEEP, GL_KEEP, GL_REPLACE);  // on remplace tout ce qui est dedans.
 	glColorMask (FALSE, FALSE, FALSE, FALSE);  // desactive l'ecriture dans toutes les composantes du Tampon Chromatique.
 	
-	double fEpsilon = (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR ? 2. : 0);  // erreur d'arrondi quand tu nous tiens.
+	double fEpsilon = (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR ? 2. : 0);  // erreur d'arrondi quand tu nous tiens.
 	glPushMatrix ();
 	cairo_dock_draw_frame_background_opengl (0,
 		w + 2 * dw, fFrameHeight + fLineWidth + fEpsilon,
@@ -1179,7 +1178,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -1190,7 +1189,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	
-	if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR || my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		do
 		{
@@ -1203,7 +1202,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 				glStencilOp (GL_KEEP, GL_KEEP, GL_KEEP);
 				
 				glPushMatrix ();
-				if (my_iDrawSeparator3D == CD_FLAT_SEPARATOR)
+				if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
 					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, (ic->prev ? ic->prev->data : NULL), (ic->next ? ic->next->data : NULL));
@@ -1229,7 +1228,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CD_PHYSICAL_SEPARATOR)
+		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{
