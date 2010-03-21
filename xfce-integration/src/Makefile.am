@@ -18,8 +18,8 @@ dock_version = `pkg-config --modversion cairo-dock`
 libcd_xfce_integration_la_CFLAGS = \
 	-I$(top_srcdir)/src\
 	$(PACKAGE_CFLAGS)\
-	$(LIBGIO_CFLAGS)\
 	$(THUNAR_VFS_CFLAGS)\
+	$(XFCE_INTEGRATION_CFLAGS) \
 	-DMY_APPLET_SHARE_DATA_DIR=\""$(xfce_integration)"\"\
 	-DMY_APPLET_README_FILE=\""readme"\"\
 	-DMY_APPLET_PREVIEW_FILE=\"none""\"\
@@ -37,8 +37,8 @@ libcd_xfce_integration_la_CFLAGS = \
 
 libcd_xfce_integration_la_LIBADD = \
 	$(PACKAGE_LIBS)\
-	$(LIBGIO_LIBS)\
 	$(THUNAR_VFS_LIBS)\
+	$(XFCE_INTEGRATION_LIBS) \
 	-lm
 
 
