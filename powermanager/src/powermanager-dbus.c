@@ -33,6 +33,8 @@ static DBusGProxy *dbus_proxy_power = NULL;
 static DBusGProxy *dbus_proxy_stats = NULL;
 static DBusGProxy *dbus_proxy_battery = NULL;
 
+static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
+
 
 gboolean cd_powermanager_find_battery (void)
 {
@@ -190,7 +192,7 @@ void dbus_disconnect_from_bus (void)
 }
 
 
-void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
+static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 {
 	CD_APPLET_ENTER;
 	g_print ("Dbus : battery changed\n");
@@ -224,6 +226,59 @@ void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 		G_TYPE_INVALID);
 }*/
 
+
+static int get_stats(const gchar *dataType)  // code repris de Gnome-power-manager.
+{
+	if (dbus_proxy_stats == NULL)
+		dbus_proxy_stats = cairo_dock_create_new_session_proxy (
+			"org.freedesktop.PowerManagement",
+			"/org/freedesktop/PowerManagement/Statistics",
+			"org.freedesktop.PowerManagement.Statistics"
+		);
+	g_return_val_if_fail (dbus_proxy_stats != NULL, 0);
+	
+	GValueArray *gva;
+	GValue *gv;
+	GPtrArray *ptrarray = NULL;
+	GType g_type_ptrarray;
+	guint i;
+	int x, y=0, col;  /// mettre des nom comprehensibles...
+	gint time = 0;
+
+	g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
+		dbus_g_type_get_struct("GValueArray",
+			G_TYPE_INT,
+			G_TYPE_INT,
+			G_TYPE_INT,
+			G_TYPE_INVALID));
+	
+	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
+		G_TYPE_INT, time,
+		G_TYPE_STRING, dataType,
+		G_TYPE_INVALID,
+		g_type_ptrarray, &ptrarray,
+		G_TYPE_INVALID);
+	g_return_val_if_fail (ptrarray != NULL, 0);
+	
+	for (i=0; i< ptrarray->len; i++)  /// il semble que seule la derniere valeur ait de l'interet ....
+	{
+		gva = (GValueArray *) g_ptr_array_index (ptrarray, i);
+		gv = g_value_array_get_nth (gva, 0);
+		x = g_value_get_int (gv);
+		g_value_unset (gv);
+		gv = g_value_array_get_nth (gva, 1);
+		y = g_value_get_int (gv);
+		g_value_unset (gv);
+		gv = g_value_array_get_nth (gva, 2);
+		col = g_value_get_int (gv);
+		g_value_unset (gv);
+		g_value_array_free (gva);
+	}
+	g_ptr_array_free (ptrarray, TRUE);
+	
+	cd_message ("PowerManager [%s]: %d", dataType, y);
+	return y;  /// a quoi servent x et col alors ??
+}
 gboolean update_stats(void)
 {
 	CD_APPLET_ENTER;
@@ -449,59 +504,6 @@ gboolean update_stats(void)
 	present voltage: 15000 mV*/
 	CD_APPLET_LEAVE (TRUE);
 	//return TRUE;
-}
-
-int get_stats(gchar *dataType)  // code repris de Gnome-power-manager.
-{
-	if (dbus_proxy_stats == NULL)
-		dbus_proxy_stats = cairo_dock_create_new_session_proxy (
-			"org.freedesktop.PowerManagement",
-			"/org/freedesktop/PowerManagement/Statistics",
-			"org.freedesktop.PowerManagement.Statistics"
-		);
-	g_return_val_if_fail (dbus_proxy_stats != NULL, 0);
-	
-	GValueArray *gva;
-	GValue *gv;
-	GPtrArray *ptrarray = NULL;
-	GType g_type_ptrarray;
-	int i;
-	int x, y, col;  /// mettre des nom comprehensibles...
-	gint time = 0;
-
-	g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
-		dbus_g_type_get_struct("GValueArray",
-			G_TYPE_INT,
-			G_TYPE_INT,
-			G_TYPE_INT,
-			G_TYPE_INVALID));
-	
-	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
-		G_TYPE_INT, time,
-		G_TYPE_STRING, dataType,
-		G_TYPE_INVALID,
-		g_type_ptrarray, &ptrarray,
-		G_TYPE_INVALID);
-	g_return_val_if_fail (ptrarray != NULL, 0);
-	
-	for (i=0; i< ptrarray->len; i++)  /// il semble que seule la derniere valeur ait de l'interet ....
-	{
-		gva = (GValueArray *) g_ptr_array_index (ptrarray, i);
-		gv = g_value_array_get_nth (gva, 0);
-		x = g_value_get_int (gv);
-		g_value_unset (gv);
-		gv = g_value_array_get_nth (gva, 1);
-		y = g_value_get_int (gv);
-		g_value_unset (gv);
-		gv = g_value_array_get_nth (gva, 2);
-		col = g_value_get_int (gv);
-		g_value_unset (gv);
-		g_value_array_free (gva);
-	}
-	g_ptr_array_free (ptrarray, TRUE);
-	
-	cd_message ("PowerManager [%s]: %d", dataType, y);
-	return y;  /// a quoi servent x et col alors ??
 }
 
 /**void detect_battery(void)

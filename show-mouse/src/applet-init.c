@@ -78,7 +78,7 @@ CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
-static void _free_dock_data (gchar *cDockName, CairoDock *pDock, gpointer data)
+static void _free_dock_data (const gchar *cDockName, CairoDock *pDock, gpointer data)
 {
 	cd_show_mouse_free_data (data, CAIRO_CONTAINER (pDock));
 }
@@ -93,7 +93,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
 	
-	cairo_dock_foreach_docks (_free_dock_data, NULL);
+	cairo_dock_foreach_docks ((GHFunc)_free_dock_data, NULL);
 	cairo_dock_foreach_desklet (_free_desklet_data, NULL);
 CD_APPLET_STOP_END
 

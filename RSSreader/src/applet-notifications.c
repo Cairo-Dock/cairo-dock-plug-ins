@@ -155,5 +155,5 @@ CD_APPLET_ON_SCROLL_BEGIN
 		}
 	}
 	if (myData.iSidRedrawIdle == 0)  // on planifie un redessin pour quand la boucle principale sera accessible, de facon a éviter de la surcharger en cas de scroll rapide.
-		myData.iSidRedrawIdle = g_idle_add (_redraw_desklet_idle, myApplet);
+		myData.iSidRedrawIdle = g_idle_add ((GSourceFunc)_redraw_desklet_idle, myApplet);
 CD_APPLET_ON_SCROLL_END
