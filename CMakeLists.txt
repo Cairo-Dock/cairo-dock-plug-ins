@@ -9,11 +9,11 @@ include (CheckSymbolExists)
 
 ########### project ###############
 
-project ("cairo-dock-plug-ins")
+project ("cairo-dock-plugins")
 set (VERSION "2.1.4-0beta0")
-set (CPACK_SOURCE_GENERATOR "TBZ2")
+set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION}")
-set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;~$;${CPACK_SOURCE_IGNORE_FILES}")
+set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;/.deps/;/Makefile$;/Makefile.in$;.conf$;.gmo$;/.libs/;.lo$;.la$;/POTFILES$;/stamp-it$;/aclocal.m4$;/config.guess$;/config.h$;/config.h.in$;/config.log$;/config.status$;/config.sub$;/configure$;/depcomp$;/install-sh$;/libtool$;/ltmain.sh$;/missing$;/stamp-h1$;^compile;/CMakeFiles/;/_CPack_Packages/;/autom4te.cache/;/install_manifest.txt$;.tar.gz$;/CMakeCache.txt$;.o$;.cmake$;~$;${CPACK_SOURCE_IGNORE_FILES}")
 include (CPack)  # a inclure apres les set.
 add_custom_target( dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)  # pour pouvoir l'appeler avec "make dist"
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
@@ -62,7 +62,7 @@ if (NOT "${enable_alsa_mixer}" STREQUAL "no")
 		set (VERSION_ALSA_MIXER "1.0.11")
 		set (PACKAGE_ALSA_MIXER "cd-AlsaMixer")
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
-		configure_file (alsaMixer/data/AlsaMixer.conf.in alsaMixerdata/data/AlsaMixer.conf)
+		configure_file (alsaMixer/data/AlsaMixer.conf.in alsaMixer/data/AlsaMixer.conf)
 		add_subdirectory ("alsaMixer")
 	endif()
 endif()

@@ -71,3 +71,4 @@ demo_vala/demo_vala
 CMakeFiles/
 install_manifest.txt
 CMakeCache.txt
+_CPack_Packages/
