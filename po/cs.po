@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-02-13 12:31+0000\n"
+"POT-Creation-Date: 2010-03-15 23:45+0000\n"
+"PO-Revision-Date: 2010-03-16 00:28+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-14 05:03+0000\n"
+"X-Launchpad-Export-Date: 2010-03-17 04:44+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -66,7 +67,6 @@ msgid "Spot"
 msgstr "Bodové"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "Add a lively Penguin in your dock !\n"
 "Left click to change the animation,\n"
@@ -127,13 +127,10 @@ msgid "I'm your father!"
 msgstr "Jsem tvůj otec !"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
-#, fuzzy
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
 msgstr ""
-"- Co dnes budem dělat ?\n"
-"- To samé jako každý večer. Snažit se dostat za okraj Docku!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
@@ -187,7 +184,6 @@ msgid ""
 msgstr ""
 
 #: ../Dbus/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -210,7 +206,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
@@ -288,7 +285,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Připojování…"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
@@ -883,7 +880,6 @@ msgid "Adjust channels"
 msgstr "Upravit kanály"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
-#, fuzzy
 msgid "Search for your location :"
 msgstr "Hledat vaši lokaci :"
 
@@ -1049,7 +1045,8 @@ msgstr ""
 "bubliny."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Nelze nahrát soubor, zkontrolujte jestli je vaše připojení k internetu "
 "aktivní."
@@ -1063,7 +1060,8 @@ msgstr ""
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1290,28 +1288,20 @@ msgid ""
 msgstr ""
 
 #: ../gnome-integration-old/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
-"Tento applet poskytuje funkce pro lepší integrování do prostředí KDE.\n"
-"Je již automaticky aktivovaný, takže ho není třeba aktivovat.\n"
-"Je navržený pro KDE4"
 
 #: ../gnome-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
-"Tento applet poskytuje funkce pro lepší integrování do prostředí KDE.\n"
-"Je již automaticky aktivovaný, takže ho není třeba aktivovat.\n"
-"Je navržený pro KDE4"
 
 #: ../icon-effect/src/applet-init.c:40
 msgid "icon effects"
@@ -1367,7 +1357,6 @@ msgid ""
 msgstr "Tento zásuvný modul poskytuje animace pro objevování a mizení ikon."
 
 #: ../kde-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a KDE "
 "environnement.\n"
@@ -1477,16 +1466,10 @@ msgstr "Máte nový email :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "mail"
-msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"email\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Email"
+msgstr "email"
 
 #: ../mail/src/cd-mail-applet-init.c:36
-#, fuzzy
 msgid ""
 "This applet is very useful to warn you when you get new e-mails\n"
 "It can check in any kind of mailbox (yahoo, gmail, etc)\n"
@@ -1529,7 +1512,8 @@ msgstr "pohybové rozmazání obrazu"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
+msgstr ""
+"Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
 
 #: ../musicPlayer/src/applet-draw.c:223
 msgid "Unknown artist"
@@ -1648,7 +1632,6 @@ msgid "Information"
 msgstr "Informace"
 
 #: ../netspeed/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet shows you the bit rate of your internet connection and some "
 "stats about it.\n"
@@ -1765,7 +1748,6 @@ msgid "Quick Browser"
 msgstr "Rychlý prohlížeč"
 
 #: ../quick-browser/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet lets you browse a folder and its sub-folders very quickly.\n"
 "You can set up a shortkey to pop up the menu.\n"
@@ -1819,13 +1801,10 @@ msgid "show mouse"
 msgstr "ukázat myš"
 
 #: ../show-mouse/src/applet-init.c:31
-#, fuzzy
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"Tento zásuvný modul vykresluje různé animace okolu kurzoru, když je v docku/"
-"deskletu."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -1950,13 +1929,8 @@ msgstr "Vyčistit místní adresář"
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:340
-#, fuzzy
 msgid "Current"
-msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"současný\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Současný"
+msgstr "Současný"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
 #: ../switcher/src/applet-load-icons.c:46
@@ -1964,13 +1938,8 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:187
 #: ../switcher/src/applet-notifications.c:332
 #: ../switcher/src/applet-notifications.c:397
-#, fuzzy
 msgid "Desktop"
-msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"plocha\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Plocha"
+msgstr "Plocha"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -2012,7 +1981,8 @@ msgstr "Přesunout současnou plochu na tuto plochu"
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
+msgstr ""
+"Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
 
 #: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
@@ -2169,7 +2139,6 @@ msgid "Reset marks"
 msgstr "Vyčistit značky"
 
 #: ../weather/src/applet-config.c:113
-#, fuzzy
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -2178,12 +2147,10 @@ msgstr ""
 " je připojení v pořádku ?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "I couldn't find this location"
-msgstr "Nemohu registrovat nastavení"
+msgstr "Nemohu najít tuto lokaci"
 
 #: ../weather/src/applet-config.c:184
-#, fuzzy
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr "Vložte název své lokace a stiskněte Enter pro vybrání mezi výsledky."
@@ -2361,7 +2328,6 @@ msgid "WiFi disabled."
 msgstr "Wifi zakázána"
 
 #: ../wifi/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet shows you the signal strength of the first active wifi "
 "connection\n"
@@ -2372,7 +2338,6 @@ msgstr ""
 "myši provedete překontrolování."
 
 #: ../xfce-integration/src/applet-init.c:30
-#, fuzzy
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -2535,17 +2500,15 @@ msgstr "Paprsky"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-#, fuzzy
 msgid "st color of gradation :"
-msgstr "První barva postupného přechodu :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-#, fuzzy
 msgid "nd color of gradation :"
-msgstr "Druhá barva postupného přechodu :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
@@ -2754,12 +2717,10 @@ msgstr "Vyberte jedno z dostupných motivů :"
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
-#, fuzzy
 msgid "in seconds."
 msgstr "v sekundách."
 
 #: ../Cairo-Penguin/data/messages:19
-#, fuzzy
 msgid "Delay between animation changes :"
 msgstr "Prodleva mezi změnami animací :"
 
@@ -3805,12 +3766,8 @@ msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
 #: ../Doncky/data/messages:109 ../stack/data/messages:109
-#, fuzzy
 msgid "Image for 'text' items:"
 msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Obrázek pro bod :\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
@@ -3825,7 +3782,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -3869,9 +3827,8 @@ msgid "Border colour"
 msgstr ""
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:195
-#, fuzzy
 msgid "Border colour :"
-msgstr "barva bodu :"
+msgstr ""
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
@@ -3904,8 +3861,8 @@ msgstr ""
 #: ../GMenu/data/messages:109
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-"podsložkou :"
+"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její podsložkou "
+":"
 
 #: ../GMenu/data/messages:111
 msgid "in days. Set 0 if unsued."
@@ -3913,7 +3870,8 @@ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
 
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
+msgstr ""
+"Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -4013,9 +3971,8 @@ msgstr ""
 #: ../Network-Monitor/data/messages:129 ../System-Monitor/data/messages:89
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:89
 #: ../wifi/data/messages:89
-#, fuzzy
 msgid "Choose the style of the display: "
-msgstr "Zvolte styl zobrazení : "
+msgstr ""
 
 #: ../Network-Monitor/data/messages:131 ../Network-Monitor/data/messages:135
 #: ../Network-Monitor/data/messages:173 ../Network-Monitor/data/messages:179
@@ -4527,12 +4484,8 @@ msgid "Favorite application(s) starting with 'z' :"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:103 ../quick-browser/data/messages:103
-#, fuzzy
 msgid "Show hidden files?"
 msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Hledat na internetu\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
@@ -4721,12 +4674,8 @@ msgid "Brightness to apply automatically on startup:"
 msgstr ""
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:93
-#, fuzzy
 msgid "Leave empty to use the default sound card."
 msgstr ""
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Nechat prázdné použít implicitní.\n"
-"#-#-#-#-#  cs.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
@@ -5383,7 +5332,8 @@ msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5595,7 +5545,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
@@ -5635,7 +5586,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5863,7 +5815,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5911,7 +5864,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6151,11 +6105,8 @@ msgid "Notification"
 msgstr ""
 
 #: ../powermanager/data/messages:157
-#, fuzzy
 msgid "Notification when battery charged ?"
 msgstr ""
-"Laptop na Nabíjení.\n"
-" Baterie nabita na:"
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
@@ -6881,7 +6832,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6963,14 +6915,11 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "showDesklets"
-#~ msgstr "ukázatDesklety"
-
-#~ msgid "Location not found"
-#~ msgstr "Nemohu najít tuto lokaci"
-
 #~ msgid "Free"
 #~ msgstr "Volné"
+
+#~ msgid "showDesklets"
+#~ msgstr "ukázatDesklety"
 
 #~ msgid "color of the mesh :"
 #~ msgstr "barva záběru :"
@@ -6983,3 +6932,6 @@ msgstr ""
 
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr "Níže vyberte tu 'osobní' pro definování vašich vlastních dekorací."
+
+#~ msgid "Location not found"
+#~ msgstr "Nemohu najít tuto lokaci"

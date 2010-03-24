@@ -7,16 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-02-13 12:27+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2010-03-20 14:52+0000\n"
+"PO-Revision-Date: 2010-03-22 17:47+0000\n"
+"Last-Translator: Jonay <jonay.santana@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-02-14 05:04+0000\n"
+"X-Launchpad-Export-Date: 2010-03-23 04:51+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65
+msgid "Rotate"
+msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -31,12 +38,6 @@ msgstr "Este complemento proporciona diferentes animaciones para los iconos."
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Rebote"
-
-#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
-msgid "Rotate"
-msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
@@ -68,7 +69,6 @@ msgid "Spot"
 msgstr "Punto"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "Add a lively Penguin in your dock !\n"
 "Left click to change the animation,\n"
@@ -130,7 +130,6 @@ msgid "I'm your father!"
 msgstr "¡Soy tu padre!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
-#, fuzzy
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
@@ -174,7 +173,6 @@ msgid "No items yet."
 msgstr "No hay elementos todavía."
 
 #: ../Clipper/src/applet-init.c:32
-#, fuzzy
 msgid ""
 "This applet keeps a trace of the clipboard and mouse selection,\n"
 "so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
@@ -203,7 +201,6 @@ msgstr ""
 "Puede agregar algunos arrastrando texto sobre este icono."
 
 #: ../Dbus/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -217,23 +214,28 @@ msgstr "Acerca de esta aplicación"
 
 #: ../Dbus/src/interface-applet-signals.c:490
 msgid "Sorry, this module couldn't be added."
-msgstr ""
+msgstr "Lo sentimos, este modulo no pudo ser añadido"
 
 #: ../Dbus/src/interface-applet-signals.c:494
 #: ../Dbus/src/interface-applet-signals.c:500
 msgid "The module has been added, but couldn't be launched."
-msgstr ""
+msgstr "El modulo ha sido añadido, pero no se pudo ser lanzado"
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
+"La mini-aplicación '%s' ha sido actualizada con éxito y automaticamente "
+"relanzada."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
 msgstr ""
+"La mini-aplicación '%s' ha sido instalada con éxito y automaticamente "
+"lanzada."
 
 #: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
@@ -278,8 +280,8 @@ msgstr ""
 "Es compatible con cualquier menú XDG (Gnome, XFCE, KDE...)\n"
 "Clic central para abrir un diálogo para iniciar rápidamente cualquier "
 "comando (Puede establecer un atajo de teclado para ello, como ALT+F2)\n"
-"También puede establecer un atajo de teclado para aparecer el menú (como ALT"
-"+F1)"
+"También puede establecer un atajo de teclado para aparecer el menú (como "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
@@ -307,7 +309,7 @@ msgstr "Introduce un comando a lanzar :"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
-msgstr ""
+msgstr "Estado de la conexión de red cambiado a inactivo."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
@@ -315,11 +317,11 @@ msgstr "Conectando..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
-msgstr ""
+msgstr "Conexión de red establecida."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network connection state changed to disconnected."
-msgstr ""
+msgstr "El estado de la conexión de red ha cambiado a desconectado"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been plugged"
@@ -327,7 +329,7 @@ msgstr "Un cable ha sido enchufado"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been unplugged"
-msgstr ""
+msgstr "Un cable ha sido desconectado"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:141 ../wifi/src/applet-draw.c:31
@@ -522,7 +524,7 @@ msgstr "Abrir con el navegador de Internet"
 
 #: ../RSSreader/src/applet-rss.c:390
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr ""
+msgstr "Atención: no se pudo obtener datos la última vez que se intentó."
 
 #: ../RSSreader/src/applet-rss.c:425
 msgid "No URL is defined."
@@ -554,6 +556,9 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
+"No hay ninguna URL definida.\n"
+"Puede definir una copiando la URL en el portapapeles,\n"
+"y eligiendo \"Pegar la URL\" en el menú."
 
 #: ../RSSreader/src/applet-rss.c:722
 msgid ""
@@ -744,7 +749,6 @@ msgid "System Monitor"
 msgstr "Monitor del sistema"
 
 #: ../System-Monitor/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet shows you the CPU load, RAM usage, graphic card temperature, "
 "etc.\n"
@@ -866,7 +870,6 @@ msgid "AlsaMixer"
 msgstr "AlsaMixer"
 
 #: ../alsaMixer/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -934,7 +937,6 @@ msgid "Adjust channels"
 msgstr "Ajustar canales"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
-#, fuzzy
 msgid "Search for your location :"
 msgstr "Busque su ubucación:"
 
@@ -943,7 +945,6 @@ msgid "clock"
 msgstr "reloj"
 
 #: ../clock/src/applet-init.c:35
-#, fuzzy
 msgid ""
 "This applet displays time and date in your dock.\n"
 "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
@@ -1108,10 +1109,11 @@ msgstr "Renderizando diálogo"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some decorators for dialog bubbles."
-msgstr ""
+msgstr "Este plug-in proporciona decoradores para ventanas de diálogo."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "No se pudo subir el archivo, compruebe que su conexión de internet este "
 "activa."
@@ -1125,8 +1127,9 @@ msgstr ""
 "Tan solo presione CTRL+V para pegar su URL en cualquier lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr ""
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr "Espere a que termine la subida de datos antes de empezar otra nueva."
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -1180,6 +1183,9 @@ msgid ""
 "Consider activating the history if you want the applet to remember previous "
 "uploads."
 msgstr ""
+"No hay disponible ningún fichero subido.\n"
+"Considere activar el historial si quiere que el applet recuerde subidas "
+"anteriores."
 
 #: ../dnd2share/src/applet-notifications.c:131
 msgid ""
@@ -1194,6 +1200,8 @@ msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
 msgstr ""
+"La URL actual ha sido almacenada en la selección.\n"
+"Pulse el botón del medio de su ratón para pegarlo donde desee."
 
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:143
@@ -1210,7 +1218,7 @@ msgstr "Click en el icono para copiar la URL en el portapapeles."
 
 #: ../dnd2share/src/applet-notifications.c:395
 msgid "Send the clipboard's content"
-msgstr ""
+msgstr "Envía el contenido del portapapeles"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
@@ -1518,13 +1526,8 @@ msgstr "Tiene un nuevo correo :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "mail"
-msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"correo\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Correo"
+msgstr "correo"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -1561,7 +1564,7 @@ msgstr "Desenfoque de movimiento"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr ""
+msgstr "Este plugin añade un efecto de desenfoque de movimiento a los docks."
 
 #: ../musicPlayer/src/applet-draw.c:223
 msgid "Unknown artist"
@@ -1626,6 +1629,9 @@ msgid ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
+"No se ha detectado ningún reproductor.\n"
+"Si está en ejecución, tal vez se deba a que es muy antiguo y no soporta tal "
+"servicio."
 
 #: ../musicPlayer/src/applet-notifications.c:159
 msgid "Find opened player"
@@ -1828,9 +1834,11 @@ msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
+"Este plugin dibuja alguna animación alrededor del cursor cuando está dentro "
+"de un dock o desklet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -1955,13 +1963,8 @@ msgstr ""
 #: ../switcher/src/applet-draw.c:613 ../switcher/src/applet-draw.c:620
 #: ../switcher/src/applet-load-icons.c:40
 #: ../switcher/src/applet-notifications.c:340
-#, fuzzy
 msgid "Current"
-msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"actual\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Actual"
+msgstr "Actual"
 
 #: ../switcher/src/applet-draw.c:620 ../switcher/src/applet-draw.c:622
 #: ../switcher/src/applet-load-icons.c:46
@@ -1969,13 +1972,8 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:187
 #: ../switcher/src/applet-notifications.c:332
 #: ../switcher/src/applet-notifications.c:397
-#, fuzzy
 msgid "Desktop"
-msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"escritorio\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Escritorio"
+msgstr "Escritorio"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
@@ -2178,16 +2176,13 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "I couldn't find this location"
-msgstr "No se pueden registrar las opciones"
+msgstr ""
 
 #: ../weather/src/applet-config.c:184
-#, fuzzy
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
-"Entre el nombre de su localizacion en el espacio provisto y presione Enter."
 
 #: ../weather/src/applet-init.c:29
 msgid "Weather"
@@ -2360,15 +2355,11 @@ msgid "WiFi disabled."
 msgstr "Conexión inalámbrica no disponible."
 
 #: ../wifi/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet shows you the signal strength of the first active wifi "
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
-"Esta mini aplicación monitoriza las conexiones activas.\n"
-"Clic izquierdo para mostrar información, clic central para actualizarla "
-"inmediatamente."
 
 #: ../xfce-integration/src/applet-init.c:30
 msgid ""
@@ -2531,17 +2522,15 @@ msgstr "Rayos"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-#, fuzzy
 msgid "st color of gradation :"
-msgstr "Primer color de la gradiente"
+msgstr ""
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-#, fuzzy
 msgid "nd color of gradation :"
-msgstr "segundo color de la gradiente"
+msgstr ""
 
 #: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
@@ -2732,13 +2721,8 @@ msgstr ""
 #: ../tomboy/data/messages:105 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:87
-#, fuzzy
 msgid "Configuration"
-msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Configuración:\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"IGU"
+msgstr "Configuración:"
 
 #: ../Cairo-Penguin/data/messages:15 ../Network-Monitor/data/messages:137
 #: ../Network-Monitor/data/messages:181 ../System-Monitor/data/messages:97
@@ -2755,14 +2739,12 @@ msgstr ""
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
-#, fuzzy
 msgid "in seconds."
 msgstr "En segundos."
 
 #: ../Cairo-Penguin/data/messages:19
-#, fuzzy
 msgid "Delay between animation changes :"
-msgstr "Demora entre cada verificación de señal:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:21
 msgid "Penguin transparency:"
@@ -3741,7 +3723,8 @@ msgstr "¿Permitir que aplicaciones externas muestren/escondan las barras?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
-msgstr "¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
+msgstr ""
+"¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
@@ -3780,12 +3763,8 @@ msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
 
 #: ../Doncky/data/messages:101 ../alsaMixer/data/messages:137
-#, fuzzy
 msgid "Default icon:"
 msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Color predeterminado:\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
@@ -3800,12 +3779,8 @@ msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
 #: ../Doncky/data/messages:109 ../stack/data/messages:109
-#, fuzzy
 msgid "Image for 'text' items:"
 msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Magnitud de la onda:\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
@@ -3820,7 +3795,8 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -3864,9 +3840,8 @@ msgid "Border colour"
 msgstr "Color del borde"
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:195
-#, fuzzy
 msgid "Border colour :"
-msgstr "Color del borde:"
+msgstr ""
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
@@ -4521,12 +4496,8 @@ msgid "Favorite application(s) starting with 'z' :"
 msgstr "Aplicaciones preferidas que empiecen con 'z' :"
 
 #: ../Scooby-Do/data/messages:103 ../quick-browser/data/messages:103
-#, fuzzy
 msgid "Show hidden files?"
 msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Buscar en internet\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
@@ -4659,9 +4630,8 @@ msgid "Upper limit of graphic card temperature:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:197
-#, fuzzy
 msgid "Notification when graphic card temperature is high?"
-msgstr "¿Avisar cuando la batería esté cargada?"
+msgstr ""
 
 #: ../System-Monitor/data/messages:199
 msgid "in celcius."
@@ -4716,12 +4686,8 @@ msgid "Brightness to apply automatically on startup:"
 msgstr ""
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:93
-#, fuzzy
 msgid "Leave empty to use the default sound card."
 msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"Dejar vacío para usar el predeterminado.\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
@@ -5149,7 +5115,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:29
 msgid "tooltip"
-msgstr ""
+msgstr "sugerencia"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
@@ -5378,7 +5344,8 @@ msgid "Space between rows:"
 msgstr "Espacio entre columnas:"
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5590,7 +5557,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
@@ -5630,7 +5598,8 @@ msgid "Colours"
 msgstr "Colores"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5839,13 +5808,8 @@ msgstr ""
 
 #: ../mail/data/messages:113 ../musicPlayer/data/messages:131
 #: ../tomboy/data/messages:119
-#, fuzzy
 msgid "in seconds"
-msgstr ""
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"En segundos\n"
-"#-#-#-#-#  es.po (cairo-dock-plug-ins)  #-#-#-#-#\n"
-"en segundos"
+msgstr "En segundos"
 
 #: ../mail/data/messages:115 ../tomboy/data/messages:121
 msgid "Duration of the dialogue"
@@ -5863,7 +5827,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5911,7 +5876,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6156,9 +6122,8 @@ msgid "Notification"
 msgstr "Alerta"
 
 #: ../powermanager/data/messages:157
-#, fuzzy
 msgid "Notification when battery charged ?"
-msgstr "¿Avisar cuando la batería esté cargada?"
+msgstr ""
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
@@ -6171,9 +6136,8 @@ msgid "Play a sound:"
 msgstr "Utilizar un sonido"
 
 #: ../powermanager/data/messages:163
-#, fuzzy
 msgid "Notification when low battery ?"
-msgstr "¿Avisar cuando la batería esté cargada?"
+msgstr ""
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
@@ -6188,9 +6152,8 @@ msgid "When battery level is under 4%"
 msgstr "Cuando la batería esté debajo del 4%"
 
 #: ../powermanager/data/messages:175
-#, fuzzy
 msgid "Notification when battery charge is critical ?"
-msgstr "¿Avisar cuando la batería esté cargada?"
+msgstr ""
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"
@@ -6830,7 +6793,6 @@ msgid "Use International System Units?"
 msgstr "Usar el Sistema Internacional de Unidades?"
 
 #: ../weather/data/messages:101
-#, fuzzy
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "en segundos. Marque 0 para dialogos sin fin."
 
@@ -6891,7 +6853,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6909,7 +6872,7 @@ msgstr ""
 
 #: ../weblets/data/messages:113
 msgid "Time between two page refreshes"
-msgstr ""
+msgstr "Tiempo entre dos refrescos de página"
 
 #: ../weblets/data/messages:115
 msgid "Any valid URI should work."
@@ -6972,38 +6935,24 @@ msgstr ""
 #: ../wifi/data/messages:187
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
+"¿Sobreescribir la etiqueta por defecto con el nombre del punto de conexión?"
 
-#~ msgid "showDesklets"
-#~ msgstr "MostrarComplementosDelEscritorio"
-
-#, fuzzy
-#~ msgid "First colour of gradient:"
-#~ msgstr "Primer colo de la gradiente:"
-
-#, fuzzy
-#~ msgid "Second colour of gradient:"
-#~ msgstr "Segundo color de la gradiente:"
-
-#~ msgid "Alert when battery low?"
-#~ msgstr "¿Avisar cuando la carga de la batería esté baja?"
-
-#~ msgid "Alert when battery charge is critical?"
-#~ msgstr "Avisar cuando la carga de la batería sea crítica."
+#~ msgid "Free"
+#~ msgstr "Libre"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Un complemento similar a Gnome-Do con el que se puede controlar el dock "
@@ -7011,29 +6960,16 @@ msgstr ""
 #~ "Tiene dos modos, cada uno de ellos convocado mediante atajos de teclado:\n"
 #~ "- modo navigación: se usan las flechas para navegar en los docks y "
 #~ "subdocks.\n"
-#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para "
-#~ "saltar automáticamente al siguiente lanzador posible.\n"
-#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para Mayús"
-#~ "+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
+#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para saltar "
+#~ "automáticamente al siguiente lanzador posible.\n"
+#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para "
+#~ "Mayús+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
 #~ "izquierdo\n"
 #~ "- modo de búsqueda: se escribe un texto para lanzar una orden, archivo o "
 #~ "cálculo.\n"
-#~ "  se usan las flechas para navegar entre los resultados y se presiona "
-#~ "intro para validar, se pulsa Ctrl, Alt o Mayús para mantener los "
-#~ "resultados.\n"
+#~ "  se usan las flechas para navegar entre los resultados y se presiona intro "
+#~ "para validar, se pulsa Ctrl, Alt o Mayús para mantener los resultados.\n"
 #~ "Escape o la misma tecla de atajo cancelan."
-
-#~ msgid "Normal separator"
-#~ msgstr "Separador normal"
-
-#~ msgid "Flat separator"
-#~ msgstr "Separador plano"
-
-#~ msgid "Physical separator"
-#~ msgstr "Separador físico"
-
-#~ msgid "Free"
-#~ msgstr "Libre"
 
 #~ msgid "No Title"
 #~ msgstr "Sin título"
@@ -7045,17 +6981,20 @@ msgstr ""
 #~ msgstr "No se definió una dirección URL para un canal RSS..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
-#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar "
-#~ "una nueva dirección URL de RSS\" desde el menú para agregar una."
+#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar una "
+#~ "nueva dirección URL de RSS\" desde el menú para agregar una."
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Error al conectar..."
 
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Sin datos (¿RSS inválido?)"
+
+#~ msgid "showDesklets"
+#~ msgstr "MostrarComplementosDelEscritorio"
 
 #~ msgid "in degrees."
 #~ msgstr "En ángulos."
@@ -7065,3 +7004,18 @@ msgstr ""
 
 #~ msgid "Accessibility :"
 #~ msgstr "Accesibilidad:"
+
+#~ msgid "Normal separator"
+#~ msgstr "Separador normal"
+
+#~ msgid "Flat separator"
+#~ msgstr "Separador plano"
+
+#~ msgid "Physical separator"
+#~ msgstr "Separador físico"
+
+#~ msgid "Alert when battery low?"
+#~ msgstr "¿Avisar cuando la carga de la batería esté baja?"
+
+#~ msgid "Alert when battery charge is critical?"
+#~ msgstr "Avisar cuando la carga de la batería sea crítica."

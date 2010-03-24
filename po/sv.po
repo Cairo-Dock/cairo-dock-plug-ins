@@ -1,71 +1,74 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2007 Cairo-Dock project
 # This file is distributed under the same license as the Cairo-Dock package.
-# Fabrice Rey <fabounet@glx-dock.org>, 2007.
-#
+# Fabrice Rey <fabounet@users.berlios.de>, 2007.
+# Joel Sjögren <joel.sjogren@telia.com>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-01-25 12:42+0000\n"
+"Report-Msgid-Bugs-To: fabounet@users.berlios.de\n"
+"POT-Creation-Date: 2010-03-20 14:52+0000\n"
+"PO-Revision-Date: 2010-03-20 15:16+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-01-26 04:55+0000\n"
+"X-Launchpad-Export-Date: 2010-03-21 04:47+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
-msgstr ""
+msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
 msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
-msgstr ""
+msgstr "Studsa"
 
 #: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
-msgstr ""
+msgstr "Rotera"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
-msgstr ""
+msgstr "Blinka"
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
-msgstr ""
+msgstr "Pulsera"
 
 #: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
-msgstr ""
+msgstr "Vackla"
 
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
-msgstr ""
+msgstr "Våg"
 
 #: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
-msgstr ""
+msgstr "Spot"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -75,6 +78,11 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
+"Lägg till en livfull Pingvin till din docka!\n"
+"Vänsterklicka för att ändra animering,\n"
+"Mittenklicka för att störa honom ^_^\n"
+"Bilder på tux är tagna från Pingus, några andra karaktärer\n"
+"finns tillgängliga eller kan enkelt bli tillagda."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -88,7 +96,7 @@ msgstr "Tyvärr, jag är upptagen nu."
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Jag har inte tid att leka med dig. Jag måste gräva och utvinna alla dessa "
+"Jag har inte tid att leka med dig. Jag måste gräva och bryta alla dessa "
 "ikoner."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
@@ -124,7 +132,6 @@ msgid "I'm your father!"
 msgstr "Jag är din fader!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
-#, fuzzy
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
@@ -146,7 +153,7 @@ msgstr "Vakna"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
-msgstr "Tyst"
+msgstr "Var tyst"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:134
 #: ../Scooby-Do/data/messages:101
@@ -164,7 +171,7 @@ msgstr "Zzzzz"
 
 #: ../Clipper/src/applet-config.c:33 ../Clipper/src/applet-notifications.c:33
 msgid "No items yet."
-msgstr ""
+msgstr "Inga urklipp än."
 
 #: ../Clipper/src/applet-init.c:32
 msgid ""
@@ -176,42 +183,57 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"Detta applet håller koll på dina urklipp och markeringar,\n"
+"så att du kan återkalla dem fort. Det är en kopia av det välkända programmet "
+"Klipper.\n"
+"Det stödjer urklipp och markeringar, förinställda handlingar, och ihållande "
+"punkter.\n"
+"Vänsterklicka för en lista med historik,\n"
+"Släpp text på ikonen för att skapa ihållande punkter, och mittenklicka för "
+"att återkalla dem."
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
+"Inga ihållande punkter.\n"
+"Du kan lägga till punkter genom att dra och släppa lite text på ikonen."
 
 #: ../Dbus/src/applet-init.c:31
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
+"Detta plugin låter externa program interagera på dockan.\n"
+"Kommunikationen mellan båda sidorna baseras på Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:408
 msgid "About this applet"
-msgstr ""
+msgstr "Om Detta applet"
 
 #: ../Dbus/src/interface-applet-signals.c:490
 msgid "Sorry, this module couldn't be added."
-msgstr ""
+msgstr "Tyvärr, denna modul kunde inte läggas till."
 
 #: ../Dbus/src/interface-applet-signals.c:494
 #: ../Dbus/src/interface-applet-signals.c:500
 msgid "The module has been added, but couldn't be launched."
-msgstr ""
+msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
+"Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
 msgstr ""
+"Appleten '%s' har blivit framgångsrikt installerat och automatiskt startat."
 
 #: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
@@ -220,7 +242,7 @@ msgstr "dag(ar)"
 
 #: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
 msgid "Doncky"
-msgstr ""
+msgstr "Doncky"
 
 #: ../Doncky/src/applet-init.c:40
 msgid ""
@@ -230,6 +252,11 @@ msgid ""
 "  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
 "  - Middle-clic to reload values"
 msgstr ""
+"Detta applet låter dig skriva texter och övervaka ditt\n"
+"system med ett \"text style desklet\".\n"
+"ANVÄNDNING:\n"
+"  - BEHÖVER FRÅNSKILJAS FRÅN DOCKAN FÖR ATT FUNGERA!\n"
+"  - Mittenklicka för att läsa om värden"
 
 #: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
@@ -241,7 +268,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-notifications.c:66
 #: ../System-Monitor/src/applet-top.c:287
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -251,22 +278,27 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"Visar den vanliga Program listan och de tidigare använda filerna.\n"
+"Det är kompatibelt med alla XDG kompatibla menyer (Gnome, XFCE, KDE, ...)\n"
+"Mittenklicka för att öppna en dialog för att snabbt köra ett kommando(du kan "
+"sätta upp en tangentkombination för det, t ex Alt+F2)\n"
+"Du kan också sätta upp en tangentkombination för att visa menyn(t ex Alt+F1)"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
-msgstr ""
+msgstr "Snabbstart"
 
 #: ../GMenu/src/applet-notifications.c:148
 msgid "Configure menu"
-msgstr ""
+msgstr "Konfigurera menyn"
 
 #: ../GMenu/src/applet-notifications.c:149
 msgid "Clear recent"
-msgstr ""
+msgstr "Rensa Tidigare"
 
 #: ../GMenu/src/applet-recent.c:56
 msgid "Recent Documents"
-msgstr ""
+msgstr "Tidigare använda dokument"
 
 #: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents?"
@@ -282,7 +314,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "Ansluter..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
@@ -319,7 +351,7 @@ msgstr "Låg"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Middle"
-msgstr "Mitten"
+msgstr "Sådär"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Good"
@@ -331,39 +363,41 @@ msgstr "Mycket bra"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Not connected"
-msgstr ""
+msgstr "Inte ansluten"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Wired connection"
-msgstr ""
+msgstr "Kabelburen anslutning"
 
 #: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
+"Testar anslutning...\n"
+"Var god försök igen om ett par sekunder"
 
 #: ../Network-Monitor/src/applet-draw.c:131
 msgid "Wired Connection."
-msgstr ""
+msgstr "Kabelburen anslutning."
 
 #: ../Network-Monitor/src/applet-draw.c:133
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:160
 msgid "Interface"
-msgstr ""
+msgstr "Gränssnitt"
 
 #: ../Network-Monitor/src/applet-draw.c:134
 #: ../Network-Monitor/src/applet-draw.c:146
 msgid "Speed"
-msgstr ""
+msgstr "Hastighet"
 
 #: ../Network-Monitor/src/applet-draw.c:143 ../wifi/src/applet-draw.c:156
 msgid "Wifi enabled."
-msgstr ""
+msgstr "Wifi aktiverat"
 
 #: ../Network-Monitor/src/applet-draw.c:145 ../wifi/src/applet-draw.c:158
 msgid "Network ID"
-msgstr ""
+msgstr "Nätverks ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
 #: ../musicPlayer/src/applet-draw.c:322 ../musicPlayer/src/applet-draw.c:324
@@ -375,15 +409,15 @@ msgstr "Okänt"
 
 #: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:159
 msgid "Access point"
-msgstr ""
+msgstr "Accesspunkt"
 
 #: ../Network-Monitor/src/applet-draw.c:149 ../wifi/src/applet-draw.c:161
 msgid "Signal Quality"
-msgstr ""
+msgstr "Signalstyrka"
 
 #: ../Network-Monitor/src/applet-init.c:31
 msgid "Network-Monitor"
-msgstr ""
+msgstr "Nätverksövervakare"
 
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
@@ -394,6 +428,11 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"Detta applet låter dig övervaka dina närverksanslutningar.\n"
+"Det kan visa nerladdnings/uppladdnings hastigheterna och signalstyrkan på "
+"det trådlösa nätverket.\n"
+"Vänsterklicka för att visa lite information, scrolla på ikonen för att "
+"skifta mellan hastighet och wifi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
@@ -432,7 +471,7 @@ msgstr "Laddar"
 #: ../Network-Monitor/src/applet-notifications.c:100
 #: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
-msgstr "Sök efter trådlösa nätverk"
+msgstr "Leta efter trådlösa nätverk"
 
 #: ../Network-Monitor/src/applet-notifications.c:101
 #: ../wifi/src/applet-notifications.c:76
@@ -441,23 +480,23 @@ msgstr "Nätverksadministration"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr ""
+msgstr "Aktivera nätverk"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr ""
+msgstr "Avaktivera nätverk"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr ""
+msgstr "Avaktivera wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr ""
+msgstr "Aktivera wifi"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr ""
+msgstr "RSSläsare"
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -590,12 +629,8 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:436
 #: ../dnd2share/src/applet-notifications.c:460
-#, fuzzy
 msgid "Open file"
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"På etikett\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:499
 #: ../Scooby-Do/data/messages:105
@@ -872,9 +907,8 @@ msgid "Adjust channels"
 msgstr "Justera kanaler"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
-#, fuzzy
 msgid "Search for your location :"
-msgstr "Sök efter geografisk plats:"
+msgstr ""
 
 #: ../clock/src/applet-init.c:32
 msgid "clock"
@@ -1036,7 +1070,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1046,7 +1081,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1733,8 +1769,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2067,7 +2103,6 @@ msgid "Reset marks"
 msgstr "Återställ markeringar"
 
 #: ../weather/src/applet-config.c:113
-#, fuzzy
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -2076,9 +2111,8 @@ msgstr ""
 "Är du ansluten till Internet?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "I couldn't find this location"
-msgstr "Kunde inte registrera alternativ"
+msgstr ""
 
 #: ../weather/src/applet-config.c:184
 msgid ""
@@ -2396,12 +2430,8 @@ msgstr ""
 #: ../stack/data/messages:11 ../switcher/data/messages:9
 #: ../switcher/data/messages:139 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
-#, fuzzy
 msgid "Leave empty to use the default one."
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Lämna tomt för att använda standardikonen."
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the spotlight:"
@@ -2427,17 +2457,15 @@ msgstr ""
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-#, fuzzy
 msgid "st color of gradation :"
-msgstr "Kod för din geografiska plats:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-#, fuzzy
 msgid "nd color of gradation :"
-msgstr "Kod för din geografiska plats:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
@@ -2588,13 +2616,8 @@ msgstr ""
 #: ../tomboy/data/messages:9 ../tomboy/data/messages:19
 #: ../weather/data/messages:11 ../weblets/data/messages:13
 #: ../wifi/data/messages:9
-#, fuzzy
 msgid "Name of the dock it belongs to:"
-msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Docka som appleten tillhör:\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Bild för stäng:"
+msgstr "Docka som appleten tillhör:"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
 #: ../GMenu/data/messages:15 ../Network-Monitor/data/messages:13
@@ -2633,13 +2656,8 @@ msgstr ""
 #: ../tomboy/data/messages:105 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:87
-#, fuzzy
 msgid "Configuration"
-msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Konfiguration\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Gränssnitt"
+msgstr "Konfiguration"
 
 #: ../Cairo-Penguin/data/messages:15 ../Network-Monitor/data/messages:137
 #: ../Network-Monitor/data/messages:181 ../System-Monitor/data/messages:97
@@ -2656,12 +2674,10 @@ msgstr "Välj ett tema:"
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
 #: ../powermanager/data/messages:143 ../slider/data/messages:105
 #: ../wifi/data/messages:163
-#, fuzzy
 msgid "in seconds."
 msgstr "i sekunder."
 
 #: ../Cairo-Penguin/data/messages:19
-#, fuzzy
 msgid "Delay between animation changes :"
 msgstr "Tid mellan animeringsändringar:"
 
@@ -3687,12 +3703,8 @@ msgid "Color to be used by default if none is specify in the .xml"
 msgstr ""
 
 #: ../Doncky/data/messages:105 ../icon-effect/data/messages:195
-#, fuzzy
 msgid "Default colour:"
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Standardtitel:\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
 
 #: ../Doncky/data/messages:107
 msgid "Margin to be used on left, right and top of the desklet"
@@ -3715,7 +3727,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -3759,9 +3772,8 @@ msgid "Border colour"
 msgstr ""
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:195
-#, fuzzy
 msgid "Border colour :"
-msgstr "Linjefärg (r.g.b.a):"
+msgstr ""
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
@@ -4039,13 +4051,8 @@ msgstr "Visa stapel"
 #: ../wifi/data/messages:141 ../wifi/data/messages:145
 #: ../wifi/data/messages:149 ../wifi/data/messages:153
 #: ../wifi/data/messages:157
-#, fuzzy
 msgid "Leave empty to use the default icon."
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Lämna tomt för att använda standardkortet.\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Lämna tomt för att använda standardikonen."
 
 #: ../Network-Monitor/data/messages:221
 msgid "Name of the image for the 'No signal' icon :"
@@ -4080,9 +4087,8 @@ msgid "Name of the image for the 'Wired connection' icon :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:253
-#, fuzzy
 msgid "in seconds. if you don't have Network-Manager."
-msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:255
 msgid "Delays between wifi signal checks:"
@@ -4420,12 +4426,8 @@ msgid "Favorite application(s) starting with 'z' :"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:103 ../quick-browser/data/messages:103
-#, fuzzy
 msgid "Show hidden files?"
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Sök efter:\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
 
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
@@ -4558,9 +4560,8 @@ msgid "Upper limit of graphic card temperature:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:197
-#, fuzzy
 msgid "Notification when graphic card temperature is high?"
-msgstr "Meddela när batteriet är laddat?"
+msgstr ""
 
 #: ../System-Monitor/data/messages:199
 msgid "in celcius."
@@ -4621,13 +4622,10 @@ msgstr "Lämna tomt för att använda standardkortet."
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:27
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
 #: ../tomboy/data/messages:43
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"Beroende på din fönsterhanterare, kan du flytta fönstret med ALT"
-"+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
 
 #: ../alsaMixer/data/messages:91
 msgid "Alsa"
@@ -5297,7 +5295,8 @@ msgid "Space between rows:"
 msgstr "Avstånd mellan rader:"
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -5503,7 +5502,6 @@ msgid "Maximum total size of all dustbins :"
 msgstr "Maximal storlek för alla papperskorgar:"
 
 #: ../dustbin/data/messages:115
-#, fuzzy
 msgid "Maximum size authorized for each dustbin :"
 msgstr "Maximal storlek för enskild papperskorg:"
 
@@ -5516,13 +5514,13 @@ msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
 #: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
-#, fuzzy
 msgid "in seconds. only used if you can't monitor directories."
-msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
+msgstr ""
 
 #: ../dustbin/data/messages:125
 msgid "Time interval to check if dustbin is full/empty :"
@@ -5557,7 +5555,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5785,7 +5784,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5833,7 +5833,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6075,9 +6076,8 @@ msgid "Notification"
 msgstr "Meddelande"
 
 #: ../powermanager/data/messages:157
-#, fuzzy
 msgid "Notification when battery charged ?"
-msgstr "Meddela när batteriet är laddat?"
+msgstr ""
 
 #: ../powermanager/data/messages:159 ../powermanager/data/messages:169
 #: ../powermanager/data/messages:177
@@ -6090,9 +6090,8 @@ msgid "Play a sound:"
 msgstr "Använd ljud:"
 
 #: ../powermanager/data/messages:163
-#, fuzzy
 msgid "Notification when low battery ?"
-msgstr "Meddela när batteriet är laddat?"
+msgstr ""
 
 #: ../powermanager/data/messages:165
 msgid "in percent."
@@ -6107,9 +6106,8 @@ msgid "When battery level is under 4%"
 msgstr "När laddningsnivån är under 4%"
 
 #: ../powermanager/data/messages:175
-#, fuzzy
 msgid "Notification when battery charge is critical ?"
-msgstr "Meddela när batteriet är laddat?"
+msgstr ""
 
 #: ../powermanager/data/messages:181
 msgid "Animation during alert :"
@@ -6489,11 +6487,10 @@ msgid "Manual order"
 msgstr "Manuell sortering"
 
 #: ../stack/data/messages:135
-#, fuzzy
 msgid ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
-msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
+msgstr ""
 
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
@@ -6509,13 +6506,8 @@ msgstr ""
 "skrivbord i en sub-docka."
 
 #: ../switcher/data/messages:89 ../switcher/data/messages:91
-#, fuzzy
 msgid "Use the compact mode?"
 msgstr ""
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Använd kompakt läge?\n"
-"#-#-#-#-#  sv.po (1.0.0)  #-#-#-#-#\n"
-"Försök bibehålla storleksförhållande i kompakt läge?"
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"
@@ -6767,7 +6759,6 @@ msgid "Use International System Units?"
 msgstr "Använd internationella enheter?"
 
 #: ../weather/data/messages:101
-#, fuzzy
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "i sekunder. Ange 0 om du vill stänga dialoger manuellt."
 
@@ -6828,7 +6819,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6845,9 +6837,8 @@ msgid ""
 msgstr ""
 
 #: ../weblets/data/messages:113
-#, fuzzy
 msgid "Time between two page refreshes"
-msgstr "Tid mellan uppdateringar:"
+msgstr ""
 
 #: ../weblets/data/messages:115
 msgid "Any valid URI should work."
@@ -6911,30 +6902,18 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
+#~ msgid "feeled"
+#~ msgstr "upplevd"
+
 #~ msgid ""
-#~ "- What will we do tonight Cortex?\n"
-#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
+#~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+#~ "number or so."
 #~ msgstr ""
-#~ "- Vad ska vi göra ikväll Cortex?\n"
-#~ "- Samma om varje kväll, Minus. Försöka ta över dockan!"
+#~ "T ex Monospace, Purisa, sans... Ange endast namnet utan storlek eller "
+#~ "liknande"
 
-#~ msgid "Alert when battery low?"
-#~ msgstr "Meddela vid låg batterinivå?"
-
-#~ msgid "Alert when battery charge is critical?"
-#~ msgstr "Meddela när batterinivån är kritisk?"
-
-#~ msgid "Image name to show desklets :"
-#~ msgstr "Bild för att visa desklet:"
-
-#~ msgid "Image name to hide desklets :"
-#~ msgstr "Bild för att dölja desklet:"
-
-#~ msgid "Show/hide desklets that are on the widget layer too?"
-#~ msgstr "Visa/dölj desklets på widgetlagret också?"
-
-#~ msgid "Shortkey to show/hide the desklets :"
-#~ msgstr "Tangentkombination för att visa/dölja desklet:"
+#~ msgid "Should the time be displayed as a 24h format ?"
+#~ msgstr "Visa i 24h format?"
 
 #~ msgid "Choose the way separators are drawn :"
 #~ msgstr "Välj hur avgränsare visas:"
@@ -6951,19 +6930,6 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "För platta avgränsare kan du ange en färg:"
 
-#~ msgid "feeled"
-#~ msgstr "upplevd"
-
-#~ msgid ""
-#~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
-#~ "number or so."
-#~ msgstr ""
-#~ "T ex Monospace, Purisa, sans... Ange endast namnet utan storlek eller "
-#~ "liknande"
-
-#~ msgid "Should the time be displayed as a 24h format ?"
-#~ msgstr "Visa i 24h format?"
-
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animera ikonen vid meddelande?"
 
@@ -6971,8 +6937,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -6991,6 +6957,15 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "n° of track"
 #~ msgstr "spårnummer"
+
+#~ msgid "Image name to show desklets :"
+#~ msgstr "Bild för att visa desklet:"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Bild för att dölja desklet:"
+
+#~ msgid "Shortkey to show/hide the desklets :"
+#~ msgstr "Tangentkombination för att visa/dölja desklet:"
 
 #~ msgid "Directory"
 #~ msgstr "Katalog"
@@ -7038,8 +7013,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "höjd:"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -7163,13 +7138,6 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Visa text endast på aktiv ikon?"
 
 #~ msgid ""
-#~ "This is the dustbin applet for Cairo-Dock\n"
-#~ " made by Fabrice Rey (fabounet@glx-dock.org)"
-#~ msgstr ""
-#~ "dustbin applet för Cairo-Dock\n"
-#~ " skapad av Fabrice Rey (fabounet@glx-dock.org)"
-
-#~ msgid ""
 #~ "This is a very simple logout applet\n"
 #~ " made by Fabrice Rey for Cairo-Dock"
 #~ msgstr ""
@@ -7211,11 +7179,11 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Choose a decoration for the desklet mode :"
 #~ msgstr "Välj dekoration för deskletläge:"
@@ -7367,3 +7335,26 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr ""
 #~ "xmms applet\n"
 #~ " skapad av ChAnGFu för Cairo-Dock"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex?\n"
+#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
+#~ msgstr ""
+#~ "- Vad ska vi göra ikväll Cortex?\n"
+#~ "- Samma om varje kväll, Minus. Försöka ta över dockan!"
+
+#~ msgid "Alert when battery low?"
+#~ msgstr "Meddela vid låg batterinivå?"
+
+#~ msgid "Alert when battery charge is critical?"
+#~ msgstr "Meddela när batterinivån är kritisk?"
+
+#~ msgid "Show/hide desklets that are on the widget layer too?"
+#~ msgstr "Visa/dölj desklets på widgetlagret också?"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@glx-dock.org)"
+#~ msgstr ""
+#~ "dustbin applet för Cairo-Dock\n"
+#~ " skapad av Fabrice Rey (fabounet@glx-dock.org)"
