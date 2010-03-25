@@ -39,7 +39,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dbus_launch_service ();
 	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
-		CAIRO_DOCK_RUN_AFTER,
+		CAIRO_DOCK_RUN_FIRST,
 		NULL);  // on enregistre cette notification ici car elle gere le drop d'applets.
 CD_APPLET_INIT_END
 

@@ -268,7 +268,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 	{
 		cKeyWords = g_strdup_printf ("%s,%s", artist, album);
 		g_strdelimit (cKeyWords, "-_~", ' ');
-		gchar *str = cKeyWords;
+		/**gchar *str = cKeyWords;
 		for (str = cKeyWords; *str != '\0'; str ++)
 		{
 			if (*str == ' ')
@@ -283,7 +283,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 				for (ptr = str; *ptr != '\0'; ptr ++)
 					*ptr = *(ptr+1);
 			}
-		}
+		}*/
 	}
 	else  // on essaie de se baser sur le nom du fichier.
 	{
@@ -301,8 +301,8 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 		gchar *str = strrchr (cKeyWords, '.');
 		if (str)
 			*str = '\0';
-		g_strdelimit (cKeyWords, "-_~", '|');
-		gchar **words = g_strsplit (cKeyWords, "|", -1);
+		g_strdelimit (cKeyWords, "-_~", ' ');
+		/**gchar **words = g_strsplit (cKeyWords, "|", -1);
 		int i;
 		GString *s = g_string_new ("");
 		if (words)
@@ -315,7 +315,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 		}
 		g_free (cKeyWords);
 		cKeyWords = s->str;
-		g_string_free (s, FALSE);
+		g_string_free (s, FALSE);*/
 	}
 	g_print ("cKeyWords : '%s'\n", cKeyWords);
 	return cKeyWords;

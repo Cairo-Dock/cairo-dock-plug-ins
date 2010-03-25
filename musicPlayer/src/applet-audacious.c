@@ -624,7 +624,7 @@ void cd_musicplayer_register_audacious_handler (void)
 	pAudacious->get_cover = NULL;
 	pAudacious->cCoverDir = NULL;  /// a confirmer...
 	
-	pAudacious->appclass = "audacious";  // en fait Audacious.
+	pAudacious->appclass = "audacious";  // les classes sont passees en minuscule par le dock.
 	pAudacious->name = "Audacious";
 	pAudacious->launch = "audacious2";
 	pAudacious->cMprisService = "org.mpris.audacious";

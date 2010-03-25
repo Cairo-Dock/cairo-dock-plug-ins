@@ -29,8 +29,10 @@ CD_APPLET_DEFINITION (N_("logout"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("A very simple applet that adds an icon to log out from your session\n"
-	"Left click to log out, middle click to shutdown\n"
-	"You can invert this order if you prefer to shutdown on left-click."),
+	"Left click to log out or change the user, middle click to shutdown or restart\n"
+	"  (you can invert the buttons if you prefer to shutdown on left-click)."),
+	"You can also lock the screen from the menu on right-click,\n"
+	"  and program an automatic shutdown at a given time.\n"
 	"Fabounet (Fabrice Rey)")
 
 

@@ -258,6 +258,35 @@ void cd_mpris_get_track_index (void)
 	//g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
 }
 
+static inline int _get_integer_value (GValue *value)
+{
+	if (G_VALUE_HOLDS_INT(value))
+	{
+		return g_value_get_int(value);
+	}
+	else if (G_VALUE_HOLDS_UINT(value))
+	{
+		return g_value_get_uint(value);
+	}
+	else if (G_VALUE_HOLDS_INT64(value))
+	{
+		return g_value_get_int64(value);
+	}
+	else if (G_VALUE_HOLDS_UINT64(value))
+	{
+		return g_value_get_uint64(value);
+	}
+	else if (G_VALUE_HOLDS_LONG(value))
+	{
+		return g_value_get_long(value);
+	}
+	else if (G_VALUE_HOLDS_ULONG(value))
+	{
+		return g_value_get_ulong(value);
+	}
+	else
+		return 0;
+}
 static inline void _extract_metadata (GHashTable *data_list)
 {
 	GValue *value;
@@ -304,13 +333,24 @@ static inline void _extract_metadata (GHashTable *data_list)
 		myData.iTrackNumber = 0;
 	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
 	
-	value = (GValue *) g_hash_table_lookup(data_list, "length");
-	if (value == NULL)
-		value = (GValue *) g_hash_table_lookup(data_list, "time");
-	if (value != NULL && G_VALUE_HOLDS_INT(value))
-		myData.iSongLength = g_value_get_int(value) / 1000;
+	myData.iSongLength = 0;
+	value = (GValue *) g_hash_table_lookup(data_list, "mtime");  // duree en ms.
+	if (value != NULL)
+	{
+		myData.iSongLength = _get_integer_value (value) / 1000;
+	}
 	else
-		myData.iSongLength = 0;
+	{
+		value = (GValue *) g_hash_table_lookup(data_list, "length");
+		if (value == NULL)
+			value = (GValue *) g_hash_table_lookup(data_list, "time");
+		if (value != NULL)
+		{
+			myData.iSongLength = _get_integer_value (value);
+			if (myData.iSongLength > 7200)  // on est dans le cas ou "mtime" n'existe pas, donc on n'est pas totalement sur que le lecteur ne nous ai pas refile le temps en ms. On considere qu'une chanson de plus de 2h ca n'existe pas.
+				myData.iSongLength /= 1000;
+		}
+	}
 	cd_message ("  iSongLength <- %ds", myData.iSongLength);
 	
 	g_free (myData.cPlayingUri);

@@ -379,7 +379,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 	//\____________________ On trace le cadre.
 	cairo_save (pCairoContext);
 	
-	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, r, l, w, pDock->iDecorationsHeight, dx, dy, sens, gamma, pDock->container.bIsHorizontal);
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, r, l, w, pDock->iDecorationsHeight, dx, dy, sens, gamma, pDock->container.bIsHorizontal, myBackground.bRoundedBottomCorner);
 	
 	//\____________________ On dessine les decorations dedans.
 	dy = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - l : l);

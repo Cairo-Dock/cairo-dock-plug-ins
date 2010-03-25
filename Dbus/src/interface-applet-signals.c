@@ -314,7 +314,7 @@ static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContaine
 	}
 	else if (CAIRO_DOCK_IS_DOCK (pContainer))
 	{
-		if (CAIRO_DOCK (pContainer)->iRefCount == 0)
+		if (CAIRO_DOCK (pContainer)->iRefCount == 0 || CAIRO_DOCK_IS_APPLET (pIcon))  // gere donc le cas ou l'applet est placee dans un sous-dock.
 		{
 			pMainIcon = pIcon;
 		}

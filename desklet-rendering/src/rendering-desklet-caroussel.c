@@ -322,7 +322,7 @@ void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		fDockOffsetY = (pDesklet->container.iHeight - iEllipseHeight) / 2 + myLabels.iconTextDescription.iSize;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->container.bIsHorizontal);
+		cairo_dock_draw_frame (pCairoContext, g_iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, fInclinationOnHorizon, pDesklet->container.bIsHorizontal, TRUE);
 		
 		//\____________________ On dessine les decorations dedans.
 		cairo_set_source_rgba (pCairoContext, .8, .8, .8, .75);

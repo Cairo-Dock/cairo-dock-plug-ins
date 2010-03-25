@@ -264,9 +264,12 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 				g_print ("  aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
 				cd_banshee_getCoverPath ();
 			}
-			else
+			else if (!myData.cover_exist) // le lecteur nous avait deja refile l'adresse en avance, on regarde si le fichier est desormais present.
+			{
+				cd_musiplayer_set_cover_if_present (FALSE);
 				CD_APPLET_LEAVE ();
 				//return ;
+			}
 		}
 		else
 			CD_APPLET_LEAVE ();

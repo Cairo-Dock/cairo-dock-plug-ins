@@ -34,9 +34,9 @@
 void cd_musicplayer_register_exaile3_handler (void)
 {
 	MusicPlayerHandeler *pExaile3 = cd_mpris_new_handler ();
-	pExaile3->cMprisService = "org.mpris.exaile";  /// trouver le nom ...
-	pExaile3->appclass = "Exaile.py";  /// idem...
-	pExaile3->launch = "exaile";  /// idem...
+	pExaile3->cMprisService = "org.mpris.exaile";
+	pExaile3->appclass = "exaile.py";  // les classes sont passees en minuscule par le dock.
+	pExaile3->launch = "exaile";
 	pExaile3->name = "Exaile 0.3";
 	pExaile3->iPlayer = MP_EXAILE3;
 	cd_musicplayer_register_my_handler (pExaile3, "Exaile 0.3");

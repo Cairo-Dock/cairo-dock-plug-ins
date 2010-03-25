@@ -60,7 +60,7 @@ void cd_decorator_draw_decorations_3Dplane (cairo_t *pCairoContext, CairoDialog 
 	double fOffsetX = pDialog->iLeftMargin;
 	double fOffsetY = pDialog->iTopMargin + pDialog->iBubbleHeight - 10;
 	
-	cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fOffsetX, fOffsetY, sens, fInclination, pDialog->container.bIsHorizontal);
+	cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fFrameWidth, fFrameHeight, fOffsetX, fOffsetY, sens, fInclination, pDialog->container.bIsHorizontal, FALSE);
 	
 	cairo_set_source_rgba (pCairoContext, myConfig.fPlaneColor[0], myConfig.fPlaneColor[1], myConfig.fPlaneColor[2], myConfig.fPlaneColor[3]);
 	cairo_fill_preserve (pCairoContext);

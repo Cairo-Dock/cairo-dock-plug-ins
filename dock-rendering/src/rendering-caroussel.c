@@ -238,7 +238,7 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 	
 	cairo_save (pCairoContext);
-	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, myBackground.iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->container.bIsHorizontal);
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, myBackground.iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->container.bIsHorizontal, myBackground.bRoundedBottomCorner);
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->container.bDirectionUp ? pDock->iMaxIconHeight - fMargin : fLineWidth);

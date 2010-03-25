@@ -30,8 +30,8 @@
 #include "applet-dbus.h"
 #include "applet-draw.h"
 
-static gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
-static gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
+static const gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
+static const gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
 
 /* redessine l'icone chaque seconde.
  */
@@ -352,7 +352,7 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus)
 {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	gboolean bUse3DTheme = (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes);
-	gchar **cIconName = (bUse3DTheme ? s_cDefaultIconName3D : s_cDefaultIconName);
+	const gchar **cIconName = (bUse3DTheme ? s_cDefaultIconName3D : s_cDefaultIconName);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	
 	if (pSurface == NULL)  // surface pas encore chargee.
