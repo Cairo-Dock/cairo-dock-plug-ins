@@ -24,9 +24,9 @@
 #include "rendering-desklet-simple.h"
 
 
-void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
 {
-	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
+	g_return_if_fail (pDesklet != NULL);
 	
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
@@ -40,7 +40,7 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	pIcon->fAlpha = 1.;
 	pIcon->fDrawX = 0.;
 	pIcon->fDrawY = 0.;
-	cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+	cairo_dock_fill_icon_buffers_for_desklet (pIcon);
 }
 
 

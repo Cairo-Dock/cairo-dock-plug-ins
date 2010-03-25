@@ -111,7 +111,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	double fZoomX = 1., fZoomY = 1.;
 	g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cToonImage);
 	myData.pToonSurface = cairo_dock_create_surface_from_image (sPath->str,
-		myDrawContext,
 		1.,
 		iWidth, iHeight,
 		myConfig.iLoadingModifier,
@@ -129,7 +128,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 		if (bEyeVisible[i])
 		{
 			myData.pPupilSurface[i] = cairo_dock_create_surface_from_image (sPath->str,
-				myDrawContext,
 				1.,
 				iPupilWidth[i] * fZoomX, iPupilHeight[i] * fZoomY,
 				myConfig.iLoadingModifier,
@@ -148,7 +146,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	
 	g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cEyelidImage);
 	myData.pEyelidSurface = cairo_dock_create_surface_from_image (sPath->str,
-		myDrawContext,
 		1.,
 		iEyelidWidth * fZoomX, iEyelidHeight * fZoomY,
 		myConfig.iLoadingModifier,
@@ -164,7 +161,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	{
 		g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cBgImage);
 		myData.pBgSurface = cairo_dock_create_surface_from_image (sPath->str,
-			myDrawContext,
 			1.,
 			iBgWidth * fZoomX, iBgHeight * fZoomY,
 			myConfig.iLoadingModifier,

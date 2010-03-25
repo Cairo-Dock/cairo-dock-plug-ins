@@ -110,7 +110,7 @@ void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 	//\____________ Idem pour la 2eme, avec une entree vide au debut.
 	pCombo = cairo_dock_get_widget_from_name ("Configuration", "mixer element 2");
 	g_return_if_fail (pCombo != NULL);
-	pList = g_list_prepend (pList, "");
+	pList = g_list_prepend (pList, (gpointer)"");  // on peut caster ici car tous les elements sont des const pour nous.
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);
 	
 	g_list_free (pList);  // les elements appartiennent au mixer_handle.

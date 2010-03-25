@@ -34,14 +34,6 @@ typedef struct {
 	} CDTextParameters;
 
 
-CDTextParameters *rendering_configure_text (CairoDialog *pDialog, cairo_t *pSourceContext, gpointer *pConfig);
-
-void rendering_free_text_data (CairoDialog *pDialog);
-
-void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog, double fAlpha);
-
-void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData);
-
 void rendering_register_text_dialog_renderer (void);
 
 

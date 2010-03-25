@@ -72,9 +72,7 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo && *cQuickInfo != '\0' ? cQuickInfo : NULL);
-	cairo_destroy (pCairoContext);
+	cairo_dock_set_quick_info (pIcon, pContainer, cQuickInfo && *cQuickInfo != '\0' ? cQuickInfo : NULL);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
@@ -86,9 +84,7 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_icon_name (pCairoContext, cLabel, pIcon, pContainer);
-	cairo_destroy (pCairoContext);
+	cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
 	return TRUE;
 }
 
@@ -115,14 +111,12 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 		return FALSE;
 	
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	
-	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer, pIconContext);
+	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer);
 	pEmblem->iPosition = iPosition;
 	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 	cairo_dock_free_emblem (pEmblem);
 	
-	cairo_destroy (pIconContext);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
@@ -287,12 +281,10 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 	{
 		if (pIcon->pSubDock == NULL)
 		{
-			cairo_t *pDrawContext = cairo_dock_create_context_from_container (pContainer);
 			if (pIcon->cName == NULL)
-				cairo_dock_set_icon_name (pDrawContext, pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
+				cairo_dock_set_icon_name (pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
 			if (cairo_dock_check_unique_subdock_name (pIcon))
-				cairo_dock_set_icon_name (pDrawContext, pIcon->cName, pIcon, pContainer);
-			cairo_destroy (pDrawContext);
+				cairo_dock_set_icon_name (pIcon->cName, pIcon, pContainer);
 			pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconsList, pIcon->cName, pInstance->pDock);
 			//cairo_dock_set_renderer (pIcon->pSubDock, cRenderer);
 			cairo_dock_update_dock_size (pIcon->pSubDock);
@@ -319,7 +311,7 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
 		gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, (CairoDeskletRendererConfigPtr) data);
+		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, (CairoDeskletRendererConfigPtr) data);
 	}
 	
 	return TRUE;
@@ -446,7 +438,7 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	CairoContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
-	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
 	if (strcmp (cType, "gauge") == 0)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
@@ -507,12 +499,10 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	//pRenderAttr->bUpdateMinMax = TRUE;
 	//pRenderAttr->bWriteValues = TRUE;
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 	if (pIcon->pDataRenderer == NULL)
-		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pDrawContext, pRenderAttr);
+		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
 	else
-		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pDrawContext, pRenderAttr);
-	cairo_destroy (pDrawContext);
+		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
 	
 	return TRUE;
 }

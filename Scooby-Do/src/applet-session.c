@@ -47,7 +47,7 @@ void cd_do_open_session (void)
 	if (! myData.bNavigationMode && myData.pPromptSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), pCairoContext, &myConfig.labelDescription, &myData.iPromptWidth, &myData.iPromptHeight);
+		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), &myConfig.labelDescription, &myData.iPromptWidth, &myData.iPromptHeight);
 		cairo_destroy (pCairoContext);
 		if (g_bUseOpenGL)
 		{
@@ -57,7 +57,7 @@ void cd_do_open_session (void)
 	else if (myData.bNavigationMode && myData.pArrowSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-		myData.pArrowSurface = cairo_dock_create_surface_for_icon (MY_APPLET_SHARE_DATA_DIR"/arrows.svg", pCairoContext, g_pMainDock->iMaxDockHeight, g_pMainDock->iMaxDockHeight);
+		myData.pArrowSurface = cairo_dock_create_surface_for_icon (MY_APPLET_SHARE_DATA_DIR"/arrows.svg", g_pMainDock->iMaxDockHeight, g_pMainDock->iMaxDockHeight);
 		myData.iArrowWidth = g_pMainDock->iMaxDockHeight;
 		myData.iArrowHeight = g_pMainDock->iMaxDockHeight;
 		cairo_destroy (pCairoContext);
@@ -231,7 +231,7 @@ void cd_do_load_pending_caracters (void)
 		myData.pCharList = g_list_append (myData.pCharList, pChar);
 		
 		// on cree la surface.
-		pSurface = cairo_dock_create_surface_from_text (c, pCairoContext, &myConfig.labelDescription, &pChar->iWidth, &pChar->iHeight);
+		pSurface = cairo_dock_create_surface_from_text (c, &myConfig.labelDescription, &pChar->iWidth, &pChar->iHeight);
 		if (g_pMainDock->container.bIsHorizontal)
 		{
 			myData.iTextWidth += pChar->iWidth;

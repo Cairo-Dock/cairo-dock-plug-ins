@@ -37,7 +37,7 @@
 	_check_error(erreur);\
 	if (cImageName != NULL) {\
 		g_string_printf (sImagePath, "%s/%s", cThemePath, cImageName);\
-		pSurface = cairo_dock_create_surface_for_icon (sImagePath->str, myDrawContext, w, h);\
+		pSurface = cairo_dock_create_surface_for_icon (sImagePath->str, w, h);\
 		texture = cairo_dock_create_texture_from_surface (pSurface);\
 		cairo_surface_destroy (pSurface);\
 		g_free (cImageName); }
@@ -128,7 +128,6 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	{
 		g_string_printf (sImagePath, "%s/%s", cThemePath, cImageName);
 		pSurface = cairo_dock_create_surface_from_image (sImagePath->str,
-			myDrawContext,
 			1.,
 			iWidth, iHeight,
 			CAIRO_DOCK_FILL_SPACE,
@@ -146,7 +145,6 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	{
 		g_string_printf (sImagePath, "%s/%s", cThemePath, cImageName);
 		pSurface = cairo_dock_create_surface_from_image (sImagePath->str,
-			myDrawContext,
 			1.,
 			iWidth, iHeight,
 			CAIRO_DOCK_FILL_SPACE,

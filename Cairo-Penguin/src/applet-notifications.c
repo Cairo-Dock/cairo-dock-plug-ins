@@ -25,7 +25,7 @@
 #include "applet-notifications.h"
 
 #define PENGUIN_NB_MESSAGES 13
-static gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
+static const gchar *s_pMessage[PENGUIN_NB_MESSAGES] = {
 	N_("Hey, I'm here!"),
 	N_("Sorry but I'm busy right now."),
 	N_("I don't have time to play with you, I have to dig and mine all these icons."),

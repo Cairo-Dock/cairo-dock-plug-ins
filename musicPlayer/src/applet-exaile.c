@@ -190,7 +190,7 @@ static void cd_exaile_free_data (void)
  */
 static void cd_exaile_control (MyPlayerControl pControl, const char* file)
 {
-	gchar *cCommand = NULL;
+	const gchar *cCommand = NULL;
 	
 	switch (pControl) {
 		case PLAYER_PREVIOUS :

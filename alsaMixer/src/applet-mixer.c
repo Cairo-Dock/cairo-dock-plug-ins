@@ -116,7 +116,7 @@ GList *mixer_get_elements_list (void)
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
 		if (snd_mixer_selem_is_active (elem) && snd_mixer_selem_has_playback_volume (elem))
-			pList = g_list_prepend (pList, snd_mixer_selem_get_name (elem));
+			pList = g_list_prepend (pList, (gpointer)snd_mixer_selem_get_name (elem));  // la liste ne contiendra que des const, on ne supprimera pas ses elements lors du g_list_free.
 	}
 	return pList;
 }

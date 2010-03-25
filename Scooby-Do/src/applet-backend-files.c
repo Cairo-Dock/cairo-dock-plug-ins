@@ -291,13 +291,10 @@ static gboolean _cd_do_fill_main_entry (CDEntry *pEntry)
 {
 	if (pEntry->cIconName && pEntry->pIconSurface == NULL)
 	{
-		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 		gchar *cImagePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/", pEntry->cIconName, NULL);
 		pEntry->pIconSurface = cairo_dock_create_surface_from_icon (cImagePath,
-			pSourceContext,
 			myDialogs.dialogTextDescription.iSize + 2,
 			myDialogs.dialogTextDescription.iSize + 2);
-		cairo_destroy (pSourceContext);
 		g_free (cImagePath);
 		return TRUE;
 	}
@@ -315,13 +312,10 @@ static gboolean _cd_do_fill_file_entry (CDEntry *pEntry)
 	g_free (cURI);
 	if (cIconName != NULL && pEntry->pIconSurface == NULL)
 	{
-		cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 		pEntry->pIconSurface = cairo_dock_create_surface_from_icon (cIconName,
-			pSourceContext,
 			myDialogs.dialogTextDescription.iSize,
 			myDialogs.dialogTextDescription.iSize);
 		g_free (cIconName);
-		cairo_destroy (pSourceContext);
 		return TRUE;
 	}
 	return FALSE;

@@ -227,7 +227,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 		g_free (pIcon->cName);
 		pIcon->cName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cairo_dock_fill_one_text_buffer (pIcon, pCairoContext, &myLabels.iconTextDescription);
+		cairo_dock_fill_one_text_buffer (pIcon, &myLabels.iconTextDescription);
 		cairo_destroy (pCairoContext);
 	}
 	else
@@ -246,7 +246,6 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 				cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &iWidth, &iHeight);
 				g_print ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
 				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cIconEmpty != NULL ? myConfig.cIconEmpty : MY_APPLET_SHARE_DATA_DIR"/note.svg",
-					pIconContext,
 					iWidth,
 					iHeight);
 			}
@@ -292,7 +291,7 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 		G_TYPE_STRV,&cNotes,
 		G_TYPE_INVALID))
 	{
-		int i = 0;
+		guint i = 0;
 		while (cNotes[i] != NULL)
 			i ++;
 		if (i < g_hash_table_size (myData.hNoteTable))  // il y'a eu suppression.

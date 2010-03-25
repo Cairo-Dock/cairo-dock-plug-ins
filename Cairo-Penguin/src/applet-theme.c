@@ -24,7 +24,7 @@
 #include "applet-theme.h"
 
 
-static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, gchar *cAnimationName, PenguinAnimation *pAnimation, PenguinAnimation *pDefaultAnimation)
+static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, const gchar *cAnimationName, PenguinAnimation *pAnimation, PenguinAnimation *pDefaultAnimation)
 {
 	if (! g_key_file_has_group (pKeyFile, cAnimationName))
 		return NULL;

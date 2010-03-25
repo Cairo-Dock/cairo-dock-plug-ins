@@ -129,10 +129,10 @@ static void paint_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawi
 	if (myData.pSvgHandles[CLOCK_FRAME] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FRAME], pDrawingContext);
 }
-static cairo_surface_t* cd_clock_create_bg_surface (CairoDockModuleInstance *myApplet, cairo_t* pSourceContext, int iWidth, int iHeight, SurfaceKind kind)
+static cairo_surface_t* cd_clock_create_bg_surface (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, SurfaceKind kind)
 {
 	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
-	cairo_surface_t* pNewSurface =_cairo_dock_create_blank_surface (pSourceContext, iWidth, iHeight);
+	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (iWidth, iHeight);
 	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_t* pDrawingContext = cairo_create (pNewSurface);
@@ -204,7 +204,7 @@ static void paint_second (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCo
 }
 static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet, cairo_t* pSourceContext, SurfaceKind kind)
 {
-	cairo_surface_t* pNewSurface =_cairo_dock_create_blank_surface (pSourceContext, myData.iNeedleWidth, myData.iNeedleHeight + 0);  // +1 pour les ombres.
+	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (myData.iNeedleWidth, myData.iNeedleHeight + 0);  // +1 pour les ombres.
 	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
 	
 	cairo_t* pDrawingContext = cairo_create (pNewSurface);
@@ -249,12 +249,10 @@ void cd_clock_load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 	if (myConfig.bOldStyle)
 	{
 		myData.pBackgroundSurface = cd_clock_create_bg_surface (myApplet,
-			myDrawContext,
 			iWidth,
 			iHeight,
 			KIND_BACKGROUND);
 		myData.pForegroundSurface = cd_clock_create_bg_surface (myApplet,
-			myDrawContext,
 			iWidth,
 			iHeight,
 			KIND_FOREGROUND);

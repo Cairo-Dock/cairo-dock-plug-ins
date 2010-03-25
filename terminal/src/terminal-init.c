@@ -91,7 +91,7 @@ CD_APPLET_RELOAD_BEGIN
 				// on l'insere dans le desklet.
 				cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
 				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
-				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue

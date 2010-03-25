@@ -291,7 +291,6 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 	g_return_val_if_fail (icon != NULL, FALSE);
 	//g_print ("-> data : %d\n", icon);
 	
-	cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 	GInputStream * is = g_memory_input_stream_new_from_data (icon,
 		out_len,
 		NULL);
@@ -302,14 +301,12 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 	double fImageWidth=0, fImageHeight=0;
 	double fZoomX=0, fZoomY=0;
 	pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
-		pSourceContext,
 		1.,
 		myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
 		0,
 		&fImageWidth, &fImageHeight,
 		&fZoomX, &fZoomY);
 	g_object_unref (pixbuf);
-	cairo_destroy (pSourceContext);
 	g_free (icon);
 	
 	return TRUE;

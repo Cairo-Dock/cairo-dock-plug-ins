@@ -319,7 +319,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	else myData.cPlayingUri = NULL;
 	cd_message ("  cUri <- %s", myData.cPlayingUri);
 	
-	gchar *cCoverPath = NULL;
+	const gchar *cCoverPath = NULL;
 	value = (GValue *) g_hash_table_lookup(data_list, "arturl");
 	if (value != NULL && G_VALUE_HOLDS_STRING(value))
 	{
@@ -409,11 +409,11 @@ void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s (%x)\n", __func__, status);
+	//g_print ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	int iStatus = _extract_status_mpris (status, 0);
 	_extract_playing_status_mpris (iStatus);
-	g_print ("-> myData.iPlayingStatus : %d\n", myData.iPlayingStatus);
+	cd_debug ("myData.iPlayingStatus <- %d\n", myData.iPlayingStatus);
 	
 	if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 		cd_musicplayer_relaunch_handler ();
@@ -434,7 +434,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 void onChangeTrackList (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s (%d)\n", __func__, iNewTrackListLength);
+	cd_debug ("MP : %s (%d)\n", __func__, iNewTrackListLength);
 	myData.iTrackListLength = iNewTrackListLength;
 	cd_mpris_get_track_index ();
 	CD_APPLET_LEAVE ();

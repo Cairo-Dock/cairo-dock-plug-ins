@@ -275,13 +275,13 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	if (pUpdatedMailAccount->bError)
 	{
-		cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "N/A");
+		cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
 	else if (pUpdatedMailAccount->iNbUnseenMails > 0)
 	{
-		cairo_dock_set_quick_info_full (myDrawContext, pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
+		cairo_dock_set_quick_info_full (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
 	}
@@ -289,7 +289,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	{
 		if( myConfig.bAlwaysShowMailCount )
 		{
-			cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "0");
+			cairo_dock_set_quick_info (pIcon, pContainer, "0");
 		}
 		else
 		{

@@ -26,13 +26,16 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
-	${PACKAGE_INCLUDE_DIRS})
+	${PACKAGE_INCLUDE_DIRS}
+	${XGAMMA_PACKAGE_INCLUDE_DIRS})
 
 link_directories (
-	${PACKAGE_LIBRARY_DIRS})
+	${PACKAGE_LIBRARY_DIRS}
+	${XGAMMA_PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_XGAMMA}
-	${PACKAGE_LIBRARIES})
+	${PACKAGE_LIBRARIES}
+	${XGAMMA_PACKAGE_LIBRARIES})
 
 ########### install files ###############
 

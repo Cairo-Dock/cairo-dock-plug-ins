@@ -36,7 +36,7 @@ CD_APPLET_DEFINITION ("PowerManager",
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
 	if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.

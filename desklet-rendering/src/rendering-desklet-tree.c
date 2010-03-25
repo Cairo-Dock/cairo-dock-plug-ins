@@ -28,7 +28,7 @@
 static int s_iLeafPosition[2][3*3] = {{-30,30,1 , 60,107,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, gpointer *pConfig)
 {
 	cd_message ("");
 	GList *pIconsList = pDesklet->icons;
@@ -61,7 +61,7 @@ CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, cairo_t *pSo
 }
 
 
-void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_tree_data (CairoDesklet *pDesklet)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
@@ -71,30 +71,13 @@ void rendering_load_tree_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
 	gchar *cImageFilePath = g_strconcat (MY_APPLET_SHARE_DATA_DIR, "/branche1.svg", NULL);
 	
 	pTree->pBrancheSurface[0] = cairo_dock_create_surface_from_image_simple (cImageFilePath,
-		pSourceContext,
 		fImageWidth,
 		fImageHeight);
 	
 	cImageFilePath[strlen(cImageFilePath)-5] = '2';
 	pTree->pBrancheSurface[0] = cairo_dock_create_surface_from_image_simple (cImageFilePath,
-		pSourceContext,
 		fImageWidth,
 		fImageHeight);
-	/**pTree->pBrancheSurface[0] = cairo_dock_load_image (pSourceContext,
-		cImageFilePath,
-		&fImageWidth,
-		&fImageHeight,
-		0.,
-		1.,
-		FALSE);
-	cImageFilePath[strlen(cImageFilePath)-5] = '2';
-	pTree->pBrancheSurface[1] = cairo_dock_load_image (pSourceContext,
-		cImageFilePath,
-		&fImageWidth,
-		&fImageHeight,
-		0.,
-		1.,
-		FALSE);*/
 	g_free (cImageFilePath);
 }
 
@@ -114,9 +97,9 @@ void rendering_free_tree_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_tree (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_tree (CairoDesklet *pDesklet)
 {
-	g_return_if_fail (pDesklet != NULL && pSourceContext != NULL);
+	g_return_if_fail (pDesklet != NULL);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;
@@ -129,7 +112,7 @@ void rendering_load_icons_for_tree (CairoDesklet *pDesklet, cairo_t *pSourceCont
 		icon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		icon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		
-		cairo_dock_fill_icon_buffers_for_desklet (icon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (icon);
 	}
 }
 

@@ -190,7 +190,7 @@ static void _cd_icon_effect_render_effects (Icon *pIcon, CairoDock *pDock, CDIco
 }
 
 
-gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
+gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, cairo_t *ctx)
 {
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)

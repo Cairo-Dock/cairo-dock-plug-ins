@@ -82,7 +82,7 @@ void cd_stacks_build_icons (void) {
 	}
 	else {
 		myDesklet->icons = pIconList;
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_widget_queue_draw (myDesklet->container.pWidget);  // utile ?
 	}
 	

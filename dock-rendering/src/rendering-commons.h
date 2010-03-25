@@ -26,7 +26,7 @@
 #define RENDERING_INTERPOLATION_NB_PTS 1000
 
 
-cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight);
+cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHeight);
 
 void cd_rendering_load_flat_separator (CairoContainer *pContainer);
 

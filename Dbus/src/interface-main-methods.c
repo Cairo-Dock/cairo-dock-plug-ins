@@ -187,7 +187,7 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	cairo_dock_set_launcher_class (pIcon, NULL);
 	
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pParentDock));
-	cairo_dock_fill_icon_buffers_for_dock (pIcon, pCairoContext, pParentDock);
+	cairo_dock_fill_icon_buffers_for_dock (pIcon, pParentDock);
 	cairo_destroy (pCairoContext);
 	
 	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
@@ -210,9 +210,7 @@ gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, co
 		return FALSE;
 	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile, pCairoContext);
-	cairo_destroy (pCairoContext);
+	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile);
 	
 	if (pIcon == NULL)
 	{
@@ -355,9 +353,7 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_quick_info (pCairoContext, pIcon, pContainer, cQuickInfo);
-	cairo_destroy (pCairoContext);
+	cairo_dock_set_quick_info (pIcon, pContainer, cQuickInfo);
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
@@ -377,9 +373,7 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 	
 	CairoContainer *pContainer = cairo_dock_search_container_from_icon (pIcon);
 	g_return_val_if_fail (pContainer != NULL, FALSE);
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (pContainer);
-	cairo_dock_set_icon_name (pCairoContext, cLabel, pIcon, pContainer);
-	cairo_destroy (pCairoContext);
+	cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
 	return TRUE;
 }
 
@@ -424,7 +418,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	
-	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer, pIconContext);
+	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer);
 	pEmblem->iPosition = iPosition;
 	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 	cairo_dock_free_emblem (pEmblem);

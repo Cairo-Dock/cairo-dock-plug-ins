@@ -7,8 +7,6 @@ applet-init.c
 applet-init.h
 applet-draw.c
 applet-draw.h
-applet-digital.c
-applet-digital.h
 applet-config.c
 applet-config.h
 applet-notifications.c

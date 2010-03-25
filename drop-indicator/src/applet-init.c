@@ -37,7 +37,6 @@ CD_APPLET_PRE_INIT_END
 
 static void _load_drop_indicator (void)
 {
-	cairo_t* pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
 	double iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
 	double iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
@@ -52,7 +51,6 @@ static void _load_drop_indicator (void)
 		cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_DEFAULT_DROP_INDICATOR_NAME);
 	}
 	cd_drop_indicator_load_drop_indicator (cImagePath,
-		pCairoContext,
 		iInitialWidth,
 		iInitialHeight);
 	g_free (cImagePath);
@@ -66,12 +64,9 @@ static void _load_drop_indicator (void)
 		cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_DEFAULT_HOVER_INDICATOR_NAME);
 	}
 	cd_drop_indicator_load_hover_indicator (cImagePath,
-		pCairoContext,
 		iInitialWidth/3,
 		iInitialHeight*2/3);
 	g_free (cImagePath);
-	
-	cairo_destroy (pCairoContext);
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

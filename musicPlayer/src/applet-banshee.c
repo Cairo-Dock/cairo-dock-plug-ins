@@ -311,7 +311,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 	const GValue *value;
 	const gchar *cEvent = NULL;
 	const gchar *cMessage = NULL;
-	double fBufferingPercent;
+	double fBufferingPercent=0.;
 	
 	value = &param_values[0];
 	if (value != NULL && G_VALUE_HOLDS_STRING (value))

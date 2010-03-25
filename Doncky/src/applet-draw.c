@@ -142,16 +142,13 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				CairoDockLoadImageModifier iLoadingModifier = 0;  /// CAIRO_DOCK_FILL_SPACE
 				iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
 				
-				cairo_t *pCairoContext = cairo_dock_create_context_from_container (myContainer);
 				pTextZone->pImgSurface = cairo_dock_create_surface_from_image (pTextZone->cImgPath,
-					pCairoContext, // myDrawContext,
 					1.,
 					pTextZone->iImgSize, pTextZone->iImgSize,
-					iLoadingModifier,					
+					iLoadingModifier,
 					&fImgW, &fImgH,
 					NULL, NULL);
-				cairo_destroy (pCairoContext);
-							
+				
 				//\_______________ On garde l'aire de la surface/texture.			
 				pTextZone->iWidth = (int)fImgW;
 				cd_debug ("Doncky-debug ------------> pTextZone->iWidth = %i", pTextZone->iWidth);
@@ -159,7 +156,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				cd_debug ("Doncky-debug ------------> pTextZone->iHeight = %i", pTextZone->iHeight);
 			}
 						
-			pTextZone->pImgSurface = cairo_dock_create_surface_for_icon (pTextZone->cImgPath, myDrawContext,
+			pTextZone->pImgSurface = cairo_dock_create_surface_for_icon (pTextZone->cImgPath,
 					pTextZone->iWidth, pTextZone->iHeight);
 					
 			pTextZone->bImgDraw = TRUE; // L'image est désormais chargée -> On peut la dessiner

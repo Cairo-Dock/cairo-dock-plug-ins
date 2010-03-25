@@ -31,7 +31,7 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern GLuint my_iFlatSeparatorTexture;
 extern int iVanishingPointY;
 
-cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceContext, int iWidth, int iHeight)
+cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHeight)
 {
 	cairo_pattern_t *pStripesPattern = cairo_pattern_create_linear (0.0f,
 		iHeight,
@@ -76,7 +76,7 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (cairo_t *pSourceCon
 		hk -= fStep;
 	}
 	
-	cairo_surface_t *pNewSurface = _cairo_dock_create_blank_surface (pSourceContext,
+	cairo_surface_t *pNewSurface = cairo_dock_create_blank_surface (
 		iWidth,
 		iHeight);
 	cairo_t *pImageContext = cairo_create (pNewSurface);
@@ -94,8 +94,7 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	
-	cairo_t *pSourceContext = cairo_dock_create_context_from_window (pContainer);
-	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (pSourceContext, 300, 150);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (300, 150);
 	
 	if (g_bUseOpenGL)
 	{
@@ -108,9 +107,8 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	}
 	else
 	{
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], pSourceContext, 300, 150, -G_PI / 2);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 300, 150, -G_PI / 2);
 	}
-	cairo_destroy (pSourceContext);
 }
 
 

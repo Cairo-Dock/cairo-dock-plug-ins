@@ -132,7 +132,7 @@ static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gbool
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, gpointer *pConfig)
 {
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
 	if (pConfig != NULL)
@@ -151,7 +151,7 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, ca
 	return pCaroussel;
 }
 
-void rendering_load_caroussel_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_caroussel_data (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -212,7 +212,7 @@ void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -240,7 +240,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
 	}
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -263,7 +263,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
 		
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
 	}
 }
 

@@ -57,7 +57,7 @@ void cd_listen_free_data (void) {
 void cd_listen_control (MyPlayerControl pControl, const char *file) { //Permet d'effectuer les actions de bases sur le lecteur
 	cd_debug ("");
 	
-	static gchar *cCommand = NULL;
+	const gchar *cCommand = NULL;
 	/* Conseil de ChangFu pour redetecter le titre à coup sûr */
 	g_free (myData.cRawTitle);
 	myData.cRawTitle = NULL;

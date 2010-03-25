@@ -101,7 +101,7 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 	cd_stack_set_item_name (cDesktopFilePath, cNewName);
 	g_free (cDesktopFilePath);
 	
-	cairo_dock_set_icon_name (myDrawContext, cNewName, pIcon, pContainer);
+	cairo_dock_set_icon_name (cNewName, pIcon, pContainer);
 	g_free (cNewName);
 	CD_APPLET_LEAVE ();
 }

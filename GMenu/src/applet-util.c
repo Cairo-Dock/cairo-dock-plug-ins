@@ -125,7 +125,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 				cd_warning("Deprecated field code %%%c ignored in exec string '%s'.", *cField, cCommand);
 				break;
 			case 'c':
-				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Name", NULL, erreur);
+				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Name", NULL, &erreur);
 				if (erreur != NULL)
 				{
 					cd_warning ("Error while expanding %%%c in exec string '%s' : %s", *cField, cCommand, erreur->message);

@@ -114,7 +114,7 @@ struct _AppletData {
 	gboolean bAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	
-	gint iNbProcesses;
+	guint iNbProcesses;
 	CairoDialog *pTopDialog;
 	cairo_surface_t *pTopSurface;
 	CairoDockTask *pTopTask;

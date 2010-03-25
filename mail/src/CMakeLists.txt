@@ -32,13 +32,15 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${MAIL_PACKAGE_CFLAGS})
+	${MAIL_PACKAGE_INCLUDE_DIRS})
 
 link_directories (
-	${PACKAGE_LIBRARY_DIRS})
-add_definitions (${MAIL_PACKAGE_LIBS})
+	${PACKAGE_LIBRARY_DIRS}
+	${MAIL_PACKAGE_LIBS})
+
 target_link_libraries (${PACKAGE_MAIL}
-	${PACKAGE_LIBRARIES})
+	${PACKAGE_LIBRARIES}
+	${MAIL_PACKAGE_LIBS})
 
 ########### install files ###############
 

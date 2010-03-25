@@ -100,7 +100,6 @@ void cd_clock_digital_load_frames (CairoDockModuleInstance *myApplet) {
 		cd_debug ("Clock: Loading %s frame (%.02fx%.02f)", cImagePath, fFrameWidth, fFrameHeight);
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
 		myData.pDigitalClock.pFrame[i].pFrameSurface = cairo_dock_create_surface_from_image (cImagePath,
-			pCairoContext,  // myDrawContext
 			1.,
 			fFrameWidth, fFrameHeight,
 			FALSE,

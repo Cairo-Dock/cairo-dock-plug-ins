@@ -79,24 +79,24 @@ typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, r
 
 //A remplir lors du configure pour les players utilisant DBus.
 typedef struct {
-	gchar *service;
-	gchar *path;
-	gchar *interface;
-	gchar *path2;
-	gchar *interface2;
-	gchar *play;
-	gchar *pause;
-	gchar *play_pause;
-	gchar *stop;
-	gchar *next;
-	gchar *previous;
-	gchar *get_status;
-	gchar *get_title;
-	gchar *get_artist;
-	gchar *get_album;
-	gchar *get_cover_path;
-	gchar *duration;
-	gchar *current_position;
+	const gchar *service;
+	const gchar *path;
+	const gchar *interface;
+	const gchar *path2;
+	const gchar *interface2;
+	const gchar *play;
+	const gchar *pause;
+	const gchar *play_pause;
+	const gchar *stop;
+	const gchar *next;
+	const gchar *previous;
+	const gchar *get_status;
+	const gchar *get_title;
+	const gchar *get_artist;
+	const gchar *get_album;
+	const gchar *get_cover_path;
+	const gchar *duration;
+	const gchar *current_position;
 } MusicPlayerDBus;
 
 struct _MusicPlayerHandeler {
@@ -105,10 +105,10 @@ struct _MusicPlayerHandeler {
 	MusicPlayerConfigureFunc		configure;
 	MusicPlayerControlerFunc		control;
 	MusicPlayerGetCoverFunc			get_cover;
-	gchar *cMprisService;  // nom du service DBus si le lecteur respecte la norme MPRIS.
-	gchar *appclass;  // classe de l'appli.
-	gchar *name;  // nom du backend.
-	gchar *launch;  // commande lancant le lecteur.
+	const gchar *cMprisService;  // nom du service DBus si le lecteur respecte la norme MPRIS.
+	const gchar *appclass;  // classe de l'appli.
+	const gchar *name;  // nom du backend.
+	const gchar *launch;  // commande lancant le lecteur.
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
 	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = activé; False = désactivé)
 	MySupportedPlayers iPlayer;  // ID du backend.

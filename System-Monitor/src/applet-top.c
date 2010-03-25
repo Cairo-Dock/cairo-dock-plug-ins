@@ -235,7 +235,8 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 	// On ecrit les processus dans l'ordre.
 	CD_APPLET_ENTER;
 	CDProcess *pProcess;
-	int i, iNameLength=0;
+	int i;
+	guint iNameLength = 0;
 	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
 	{
 		pProcess = myData.pTopList[i];
@@ -299,7 +300,6 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 	// on affiche ca sur le dialogue.
 	cairo_dock_render_dialog_with_new_data (myData.pTopDialog, (CairoDialogRendererDataPtr) sTopInfo->str);
 	g_string_free (sTopInfo, TRUE);
-	
 	
 	if (myData.iNbProcesses != g_hash_table_size (myData.pProcessTable))
 	{
@@ -374,7 +374,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	attr.pInteractiveWidget = pInteractiveWidget;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_change_order;
 	attr.pUserData = myApplet;
-	gchar *cButtons[3] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.png", MY_APPLET_SHARE_DATA_DIR"/button-ram.png", NULL};
+	const gchar *cButtons[3] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.png", MY_APPLET_SHARE_DATA_DIR"/button-ram.png", NULL};
 	attr.cButtonsImage = cButtons;
 	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon,	myContainer);
 	
@@ -382,7 +382,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
 	gpointer pConfig[2] = {myConfig.pTopTextDescription, "Loading ..."};
-	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", myDrawContext, (CairoDialogRendererConfigPtr) pConfig);
+	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", (CairoDialogRendererConfigPtr) pConfig);
 	
 	// on lance la mesure.
 	myData.pTopClock = g_timer_new ();

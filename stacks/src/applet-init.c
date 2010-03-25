@@ -67,7 +67,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_stacks_check_local();
 	}
 	else if (myDesklet != NULL) {
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", NULL, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL); 
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Tree", CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL); 
 	}
 	else {
 		//cairo_dock_glander();

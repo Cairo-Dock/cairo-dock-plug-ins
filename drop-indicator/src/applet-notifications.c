@@ -329,7 +329,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 }
 
 
-void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceContext, int iWidth, int iHeight)
+void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, int iWidth, int iHeight)
 {
 	cd_message ("%s (%s)\n", __func__, cImagePath);
 	if (myData.pDropIndicatorSurface != NULL)
@@ -340,7 +340,6 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 		myData.iDropIndicatorTexture = 0;
 	}
 	myData.pDropIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
-		pSourceContext,
 		1.,
 		iWidth,
 		iHeight,
@@ -356,7 +355,7 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, cairo_t* pSourceC
 	}
 }
 
-void cd_drop_indicator_load_hover_indicator (gchar *cImagePath, cairo_t* pSourceContext, int iWidth, int iHeight)
+void cd_drop_indicator_load_hover_indicator (gchar *cImagePath, int iWidth, int iHeight)
 {
 	cd_message ("%s (%s)\n", __func__, cImagePath);
 	if (myData.pHoverIndicatorSurface != NULL)
@@ -367,7 +366,6 @@ void cd_drop_indicator_load_hover_indicator (gchar *cImagePath, cairo_t* pSource
 		myData.iHoverIndicatorTexture = 0;
 	}
 	myData.pHoverIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
-		pSourceContext,
 		1.,
 		iWidth,
 		iHeight,

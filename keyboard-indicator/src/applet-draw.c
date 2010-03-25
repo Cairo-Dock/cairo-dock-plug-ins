@@ -46,7 +46,6 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		double fMaxScale = cairo_dock_get_max_scale (myContainer);
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
-			myDrawContext,
 			&myConfig.textDescription,
 			fMaxScale,
 			iWidth,
@@ -106,7 +105,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
 	///cairo_dock_set_perspective_view (iWidth, iHeight);
-	cairo_dock_set_perspective_view (myContainer);
+	cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
 	glScalef (1., -1., 1.);
 	
 	_cairo_dock_enable_texture ();

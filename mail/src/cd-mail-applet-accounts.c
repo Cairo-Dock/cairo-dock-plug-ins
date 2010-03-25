@@ -547,7 +547,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		{
 			cd_warning ("mail : the mail account %s couldn't be initialized !", pMailAccount->name);
 			CairoContainer *pContainer = (myData.pMailAccounts->len == 1 ? myContainer : CD_APPLET_MY_ICONS_LIST_CONTAINER);
-			cairo_dock_set_quick_info (myDrawContext, pIcon, pContainer, "N/A");
+			cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
 		}
 	}
 	

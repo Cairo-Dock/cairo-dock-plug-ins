@@ -171,7 +171,6 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 	}
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	GList *a;
 	for (a = myData.pCurrentApplicationToLoad; a != NULL && iNbAppliLoaded < 3; a = a->next)  // on en charge 3 d'un coup.
@@ -183,14 +182,13 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 			pIcon->fHeight = 48.;
 			pIcon->fScale = 1.;
 			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
-			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, pCairoContext, 48., 48);
+			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, 48., 48);
 			g_free (cIconPath);
 			if (bLoadTexture)
 				pIcon->iIconTexture = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);
 			iNbAppliLoaded ++;
 		}
 	}
-	cairo_destroy (pCairoContext);
 	g_print (" %d de plus chargee(s)\n", iNbAppliLoaded);
 	myData.pCurrentApplicationToLoad = a;
 	if (a == NULL)  // on est arrive au bout de la liste.

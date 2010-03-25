@@ -327,9 +327,9 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
 			{
 				if (iPreviousIndex < myConfig.iNbNames)
-					cairo_dock_set_icon_name (myDrawContext, myConfig.cDesktopNames[iPreviousIndex], icon, pContainer);
+					cairo_dock_set_icon_name (myConfig.cDesktopNames[iPreviousIndex], icon, pContainer);
 				else
-					cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
+					cairo_dock_set_icon_name_printf (icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
 				icon->bHasIndicator = FALSE;
 				icon->fAlpha = 1.;
 				if (myDock)
@@ -337,7 +337,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			}
 			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
 			{
-				cairo_dock_set_icon_name_full (myDrawContext, icon, pContainer, "%s (%d)", D_("Current"), iIndex+1);
+				cairo_dock_set_icon_name_printf (icon, pContainer, "%s (%d)", D_("Current"), iIndex+1);
 				icon->bHasIndicator = TRUE;
 				icon->fAlpha = .7;
 				if (myDock)

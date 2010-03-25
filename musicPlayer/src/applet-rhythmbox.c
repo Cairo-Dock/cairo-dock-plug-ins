@@ -307,7 +307,7 @@ void cd_rhythmbox_free_data (void) {
 void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
 {
 	cd_debug ("");
-	gchar *cCommand = NULL;
+	const gchar *cCommand = NULL;
 		
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
@@ -323,10 +323,11 @@ void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
 		break;
 		
 		case PLAYER_ENQUEUE :
-			cCommand = g_strdup_printf ("rhythmbox-client --enqueue %s", song);
-			g_spawn_command_line_async (cCommand, NULL);
-			g_free (cCommand);
-			cCommand = NULL;
+		{
+			gchar *cCommand2 = g_strdup_printf ("rhythmbox-client --enqueue %s", song);
+			g_spawn_command_line_async (cCommand2, NULL);
+			g_free (cCommand2);
+		}
 		break;
 		
 		default :

@@ -112,7 +112,6 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			cairo_surface_destroy (myData.pLogoSurface);
 			myData.fLogoSize = fLogoSize;
 			myData.pLogoSurface = cairo_dock_create_surface_for_icon (myConfig.cLogoPath,
-				myDrawContext,
 				fLogoSize,
 				fLogoSize);
 		}

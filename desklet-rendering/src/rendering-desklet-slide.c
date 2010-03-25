@@ -33,7 +33,7 @@ static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, Cai
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)  // gboolean, int, gdouble[4]
+CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, gpointer *pConfig)  // gboolean, int, gdouble[4]
 {
 	CDSlideParameters *pSlide = g_new0 (CDSlideParameters, 1);
 	if (pConfig != NULL)
@@ -84,7 +84,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	}
 }
 
-void rendering_load_slide_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_slide_data (CairoDesklet *pDesklet)
 {
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
@@ -107,7 +107,7 @@ void rendering_free_slide_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_slide (CairoDesklet *pDesklet)
 {
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
@@ -130,7 +130,7 @@ void rendering_load_icons_for_slide (CairoDesklet *pDesklet, cairo_t *pSourceCon
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
 		
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
 	}
 }
 

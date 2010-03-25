@@ -63,14 +63,12 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 		pMediaplayer->cTitle = pConfig[1];
 		if (pMediaplayer->cArtist != NULL)
 			pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cArtist,
-			pSourceContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 		if (pMediaplayer->cTitle != NULL)
 			pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
-			pSourceContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
@@ -270,23 +268,18 @@ void rendering_update_text_for_mediaplayer (CairoDesklet *pDesklet, gpointer *pN
 	pMediaplayer->cArtist = pNewData[0];
 	pMediaplayer->cTitle = pNewData[1];
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDesklet));
 	if (pMediaplayer->cArtist != NULL)
 		pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cArtist,
-			pCairoContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 	if (pMediaplayer->cTitle != NULL)
 		pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
-			pCairoContext,
 			&myLabels.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
-			
-	cairo_destroy (pCairoContext);
 	
 	cd_debug ("");
 }

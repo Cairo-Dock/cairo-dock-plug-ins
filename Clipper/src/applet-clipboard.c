@@ -102,7 +102,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		pItem = myData.pItems->data;
 		if (pItem->iType & CD_CLIPPER_PRIMARY)  // le dernier item est aussi une selection souris
 		{
-			int len = strlen (pItem->cText);
+			guint len = strlen (pItem->cText);
 			if (len < strlen (text) && strncmp (pItem->cText, text, len) == 0)  // on ne peut pas dire len == strlen (text) - 1 avec l'UTF-8.
 			{
 				cd_debug ("incremental selection, drop previous one");

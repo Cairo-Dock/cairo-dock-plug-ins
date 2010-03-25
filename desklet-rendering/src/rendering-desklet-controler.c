@@ -56,7 +56,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 	return FALSE;
 }
 
-CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig)
+CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, gpointer *pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = g_new0 (CDControlerParameters, 1);
@@ -73,7 +73,7 @@ CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, ca
 	return pControler;
 }
 
-void rendering_load_controler_data (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_controler_data (CairoDesklet *pDesklet)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
@@ -126,7 +126,7 @@ void rendering_free_controler_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourceContext)
+void rendering_load_icons_for_controler (CairoDesklet *pDesklet)
 {
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
@@ -157,7 +157,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
-		cairo_dock_fill_icon_buffers_for_desklet (pDesklet->pIcon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (pDesklet->pIcon);
 	}
 	
 	//\_________________ On charge les boutons.
@@ -176,7 +176,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet, cairo_t *pSourc
 			pIcon->fWidth = MAX (1, (pDesklet->container.iWidth - g_iDockRadius) * (1 - CONTROLER_RATIO_ICON_DESKLET));
 			pIcon->fHeight = MAX (1, (pDesklet->container.iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) *(1 - CONTROLER_RATIO_ICON_DESKLET));
 		}
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon, pSourceContext);
+		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
 		
 		pIcon->fDrawX = fX - pIcon->fWidth / 2;
 		pIcon->fDrawY = fY;

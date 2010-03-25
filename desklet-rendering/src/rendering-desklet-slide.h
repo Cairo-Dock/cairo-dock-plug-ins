@@ -38,16 +38,6 @@ typedef struct {
 	gint iNbLines, iNbColumns;
 	} CDSlideParameters;
 
-CDSlideParameters *rendering_configure_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext, gpointer *pConfig);
-
-void rendering_load_slide_data (CairoDesklet *pDesklet, cairo_t *pSourceContext);
-
-void rendering_free_slide_data (CairoDesklet *pDesklet);
-
-void rendering_load_icons_for_slide (CairoDesklet *pDesklet, cairo_t *pSourceContext);
-
-
-void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 void rendering_register_slide_desklet_renderer (void);
 

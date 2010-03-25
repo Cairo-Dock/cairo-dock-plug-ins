@@ -24,7 +24,7 @@
 #include "applet-renderer-text.h"
 
 
-CDTextParameters *rendering_configure_text (CairoDialog *pDialog, cairo_t *pSourceContext, gpointer *pConfig)
+CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pConfig)
 {
 	cd_debug ("");
 	CDTextParameters *pText = g_new0 (CDTextParameters, 1);
@@ -41,7 +41,6 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, cairo_t *pSour
 	if (cInitialText != NULL)
 	{
 		pText->pTextSurface = cairo_dock_create_surface_from_text (cInitialText,
-			pSourceContext,
 			&pText->textDescription,
 			&iTextWidth, &iTextHeight);
 	}
@@ -97,13 +96,9 @@ void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData)
 	cairo_surface_destroy (pText->pTextSurface);
 	pText->pTextSurface = NULL;
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pDialog));
-	g_return_if_fail (cairo_status (pCairoContext) == CAIRO_STATUS_SUCCESS);
 	pText->pTextSurface = cairo_dock_create_surface_from_text (cNewText,
-		pCairoContext,
 		&pText->textDescription,
 		&iTextWidth, &iTextHeight);
-	cairo_destroy (pCairoContext);
 	
 	if (iTextWidth > pDialog->iInteractiveWidth || iTextHeight > pDialog->iInteractiveHeight)
 		gtk_widget_set_size_request (pDialog->pInteractiveWidget, iTextWidth, iTextHeight);
@@ -114,7 +109,7 @@ void rendering_register_text_dialog_renderer (void)
 {
 	CairoDialogRenderer *pRenderer = g_new0 (CairoDialogRenderer, 1);
 	pRenderer->render = rendering_draw_text_in_dialog ;
-	pRenderer->configure = rendering_configure_text;
+	pRenderer->configure = (CairoDialogConfigureRendererFunc)rendering_configure_text;
 	pRenderer->free_data = rendering_free_text_data;
 	pRenderer->update = rendering_update_text;
 	

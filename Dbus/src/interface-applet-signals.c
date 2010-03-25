@@ -616,7 +616,6 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 	{
 		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 			"Simple",
-			NULL,
 			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 			(CairoDeskletRendererConfigPtr) NULL);
 	}
@@ -707,7 +706,6 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 		{
 			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 				"Simple",
-				NULL,
 				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 				(CairoDeskletRendererConfigPtr) NULL);
 		}
@@ -716,7 +714,6 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 				"Caroussel",
-				NULL,
 				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 				(CairoDeskletRendererConfigPtr) data);
 		}
@@ -735,8 +732,7 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	{
 		if (pIcon && pIcon->pDataRenderer != NULL)
 		{
-			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, pDrawContext, NULL);
+			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, NULL);
 			
 			CairoDataRenderer *pRenderer = pIcon->pDataRenderer;
 			CairoDataToRenderer *pData = cairo_data_renderer_get_data (pRenderer);
@@ -744,6 +740,7 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 			if (pData->iMemorySize > 2)
 				cairo_dock_resize_data_renderer_history (pIcon, pIcon->fWidth);
 			
+			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 			cairo_dock_refresh_data_renderer (pIcon, pModuleInstance->pContainer, pDrawContext);
 			cairo_destroy (pDrawContext);
 		}

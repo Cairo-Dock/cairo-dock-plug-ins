@@ -41,10 +41,8 @@ CD_APPLET_ON_CLICK_BEGIN
 	// on cree ou montre le dialogue/desklet
 	if (! myData.tab)
 		terminal_build_and_show_tab ();
-	else if (myDesklet)
-		cairo_dock_show_desklet (myDesklet);
 	else if (myData.dialog)
-		cairo_dock_unhide_dialog(myData.dialog);
+		cairo_dock_toggle_dialog_visibility (myData.dialog);
 	// on donne le focus au terminal de l'onglet courant.
 	cd_terminal_grab_focus ();
 }

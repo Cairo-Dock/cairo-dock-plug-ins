@@ -10,12 +10,10 @@ SET(cd-desklet-rendering_LIB_SRCS
 	rendering-desklet-caroussel.h
 	rendering-desklet-tree.c
 	rendering-desklet-tree.h
+	rendering-desklet-controler.c
+	rendering-desklet-controler.h
 	rendering-desklet-simple.h
 	rendering-desklet-simple.c
-	rendering-desklet-controler.h
-	rendering-desklet-controler.c
-	rendering-desklet-mediaplayer.c
-	rendering-desklet-mediaplayer.h
 	rendering-desklet-decorations.c
 	rendering-desklet-decorations.h
 	rendering-desklet-slide.c

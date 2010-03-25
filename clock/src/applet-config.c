@@ -161,7 +161,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cNumericBackgroundImage);
 	
 	CDClockAlarm *pAlarm;
-	int i;
+	guint i;
 	if (myConfig.pAlarms != NULL)
 	{
 		for (i = 0; i < myConfig.pAlarms->len; i ++)

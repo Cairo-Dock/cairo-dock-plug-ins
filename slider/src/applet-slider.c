@@ -183,15 +183,12 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
 	
 	//\_______________ On cree la surface cairo.
-	cairo_t *pCairoContext = cairo_dock_create_context_from_container (myContainer);
 	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
-		pCairoContext,  // myDrawContext
 		1.,
 		myData.iSurfaceWidth, myData.iSurfaceHeight,
 		iLoadingModifier,
 		&fImgW, &fImgH,
 		NULL, NULL);
-	cairo_destroy (pCairoContext);
 	
 	//\_______________ On garde l'aire de la surface/texture.
 	fImgX = (myData.iSurfaceWidth - fImgW) / 2;

@@ -80,7 +80,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			double fScale = (double) iWidth / (double) myData.DimensionData.width;
 			CairoDockLabelDescription labelDescription;
 			labelDescription.iSize = 10;
-			labelDescription.cFont = "Sans";
+			labelDescription.cFont = (gchar*)"Sans";  // on peut caster car on ne liberera rien.
 			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
 			labelDescription.iStyle = PANGO_STYLE_NORMAL;
 			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
@@ -91,7 +91,6 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			labelDescription.bOutlined = FALSE;
 			labelDescription.iMargin = 0;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
-				myDrawContext,
 				&labelDescription,
 				fScale,
 				iWidth,
@@ -138,7 +137,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	{
 		myData.iLastCheckedMinute = myData.currentTime.tm_min;
 		CDClockAlarm *pAlarm;
-		int i;
+		guint i;
 		for (i = 0; i < myConfig.pAlarms->len; i ++)
 		{
 			pAlarm = g_ptr_array_index (myConfig.pAlarms, i);

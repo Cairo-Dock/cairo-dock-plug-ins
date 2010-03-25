@@ -577,23 +577,18 @@ void cd_do_show_listing (void)
 			NULL);
 		if (myData.pScoobySurface == NULL)
 		{
-			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 			myData.pScoobySurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-				pSourceContext,
 				2 * (myDialogs.dialogTextDescription.iSize + 2),
 				2 * (myDialogs.dialogTextDescription.iSize + 2));
-			cairo_destroy (pSourceContext);
 		}
 		if (myData.pActiveButtonSurface == NULL)
 		{
 			g_print ("load button : %dx%d\n", myDialogs.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
 			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 			myData.pActiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/active-button.svg",
-				pSourceContext,
 				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 3) / 3,
 				myDialogs.dialogTextDescription.iSize + 2);
 			myData.pInactiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/inactive-button.svg",
-				pSourceContext,
 				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 3) / 3,
 				myDialogs.dialogTextDescription.iSize + 2);
 			cairo_destroy (pSourceContext);

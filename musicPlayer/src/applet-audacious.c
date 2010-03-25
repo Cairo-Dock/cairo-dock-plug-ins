@@ -294,7 +294,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 
 /* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
  */
-static void cd_audacious_getSongInfos ()
+static void cd_audacious_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
 	const gchar *data;
@@ -369,7 +369,7 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s (%x)\n", __func__, status);
+	//g_print ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	_extract_playing_status_mpris (status);
 	

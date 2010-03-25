@@ -128,7 +128,7 @@ Steps to Sign the Example Request
 #define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"  // if you reuse the code below, please take the time to make your own key !
 #define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"  // please do not use this key ! It is reserved for Cairo-Dock.
 
-static gchar *_hmac_crypt (const gchar *text, gchar* key, GChecksumType iType)
+static gchar *_hmac_crypt (const gchar *text, const gchar* key, GChecksumType iType)
 {
 	cd_debug ("%s (%s)\n", __func__, text);
 	unsigned char k_ipad[65];    // inner padding - key XORd with ipad

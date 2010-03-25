@@ -91,7 +91,7 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet_full (myData.pGtkMozEmbed, myDesklet, myConfig.iRightMargin);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 	}
 }
 
