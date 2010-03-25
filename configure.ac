@@ -443,7 +443,7 @@ AC_SUBST(motion_blurdatadir, "${pkgdatadir}/motion-blur")
 MUSICPLAYER_PACKAGE=cd-musicplayer
 AC_SUBST(GETTEXT_MUSICPLAYER, "cairo-dock-plugins")
 
-AC_SUBST(VERSION_MUSICPLAYER, "1.0.3")
+AC_SUBST(VERSION_MUSICPLAYER, "1.0.4")
 AC_SUBST(PACKAGE_MUSICPLAYER, "$MUSICPLAYER_PACKAGE")
 
 AC_SUBST(musicplayerdatadir, "${pkgdatadir}/musicPlayer")

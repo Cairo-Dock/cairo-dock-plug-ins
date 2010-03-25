@@ -36,6 +36,8 @@ libcd_musicPlayer_la_SOURCES = \
 	applet-exaile3.h\
 	applet-listen.c\
 	applet-listen.h\
+	applet-qmmp.c\
+	applet-qmmp.h\
 	applet-quodlibet.c\
 	applet-quodlibet.h\
 	applet-rhythmbox.c\

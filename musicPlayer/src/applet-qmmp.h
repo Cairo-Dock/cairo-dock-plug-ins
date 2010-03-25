@@ -17,27 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <glib/gi18n.h>
+#ifndef __APPLET_QMMP__
+#define  __APPLET_QMMP__
+
+
 #include <cairo-dock.h>
 
-#include "applet-struct.h"
-#include "applet-musicplayer.h"
-#include "applet-mpris.h"
-#include "applet-exaile3.h"
 
-/* On enregistre notre lecteur.
- * Par matttbe
- */
-void cd_musicplayer_register_exaile3_handler (void)
-{
-	MusicPlayerHandeler *pExaile3 = cd_mpris_new_handler ();
-	pExaile3->cMprisService = "org.mpris.exaile";  /// trouver le nom ...
-	pExaile3->appclass = "Exaile.py";  /// idem...
-	pExaile3->launch = "exaile";  /// idem...
-	pExaile3->name = "Exaile 0.3";
-	pExaile3->iPlayer = MP_EXAILE3;
-	cd_musicplayer_register_my_handler (pExaile3, "Exaile 0.3");
-}
+void cd_musicplayer_register_qmmp_handler (void);
+
+
+#endif
+
+

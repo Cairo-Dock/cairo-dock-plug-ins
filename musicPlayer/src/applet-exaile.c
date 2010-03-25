@@ -292,7 +292,7 @@ void cd_musicplayer_register_exaile_handler (void) { //On enregistre notre lecte
 	pExaile->cCoverDir = NULL;  /// visiblement il sait gerer les covers, sauf que je l'ai jamais vu en afficher une...
 	
 	pExaile->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
-	pExaile->appclass = "exaile.py";
+	pExaile->appclass = "Exaile.py";
 	pExaile->name = "Exaile";
 	pExaile->launch = "exaile";
 	pExaile->cMprisService = "org.exaile.DBusInterface";

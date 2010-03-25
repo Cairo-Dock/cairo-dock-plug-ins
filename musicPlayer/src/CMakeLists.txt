@@ -33,6 +33,8 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-exaile3.h
 	applet-listen.c
 	applet-listen.h
+	applet-qmmp.c
+	applet-qmmp.h
 	applet-quodlibet.c
 	applet-quodlibet.h
 	applet-rhythmbox.c

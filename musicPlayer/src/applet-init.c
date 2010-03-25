@@ -36,6 +36,7 @@
 #include "applet-songbird.h" //Support Songbird
 #include "applet-banshee.h" //Support Banshee
 #include "applet-rhythmbox.h" //Support Rhythmbox
+#include "applet-qmmp.h" //Support Qmmp
 #include "applet-quodlibet.h" //Support QuodLibet
 #include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
@@ -65,6 +66,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_songbird_handler();
 	cd_musicplayer_register_banshee_handler();
 	cd_musicplayer_register_rhythmbox_handler();
+	cd_musicplayer_register_qmmp_handler();
 	cd_musicplayer_register_quodlibet_handler();
 	cd_musicplayer_register_listen_handler();
 	cd_musicplayer_register_amarok2_handler();

@@ -26,18 +26,18 @@
 #include "applet-struct.h"
 #include "applet-musicplayer.h"
 #include "applet-mpris.h"
-#include "applet-exaile3.h"
+#include "applet-qmmp.h"
 
 /* On enregistre notre lecteur.
- * Par matttbe
+ * Par matttbe => pour déresponsabiliser fab ça ^^
  */
-void cd_musicplayer_register_exaile3_handler (void)
+void cd_musicplayer_register_qmmp_handler (void)
 {
-	MusicPlayerHandeler *pExaile3 = cd_mpris_new_handler ();
-	pExaile3->cMprisService = "org.mpris.exaile";  /// trouver le nom ...
-	pExaile3->appclass = "Exaile.py";  /// idem...
-	pExaile3->launch = "exaile";  /// idem...
-	pExaile3->name = "Exaile 0.3";
-	pExaile3->iPlayer = MP_EXAILE3;
-	cd_musicplayer_register_my_handler (pExaile3, "Exaile 0.3");
+	MusicPlayerHandeler *pQmmp = cd_mpris_new_handler ();
+	pQmmp->cMprisService = "org.mpris.qmmp";  /// trouver le nom ...
+	pQmmp->appclass = "Qmmp";  /// idem...
+	pQmmp->launch = "qmmp";  /// idem...
+	pQmmp->name = "Qmmp";
+	pQmmp->iPlayer = MP_QMMP;
+	cd_musicplayer_register_my_handler (pQmmp, "Qmmp");
 }
