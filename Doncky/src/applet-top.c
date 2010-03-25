@@ -382,7 +382,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
 	gpointer pConfig[2] = {myConfig.pTopTextDescription, "Loading ..."};
-	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", myDrawContext, (CairoDialogRendererConfigPtr) pConfig);
+	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", (CairoDialogRendererConfigPtr) pConfig);
 	
 	// on lance la mesure.
 	myData.pTopClock = g_timer_new ();
