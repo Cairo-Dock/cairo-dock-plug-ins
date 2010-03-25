@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-03-20 14:52+0000\n"
 "PO-Revision-Date: 2010-03-22 17:47+0000\n"
 "Last-Translator: Jonay <jonay.santana@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -18,12 +17,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
-msgid "Rotate"
-msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -38,6 +31,12 @@ msgstr "Este complemento proporciona diferentes animaciones para los iconos."
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Rebote"
+
+#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65
+msgid "Rotate"
+msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
@@ -200,7 +199,7 @@ msgstr ""
 "No hay artículos persistentes aún.\n"
 "Puede agregar algunos arrastrando texto sobre este icono."
 
-#: ../Dbus/src/applet-init.c:31
+#: ../Dbus/src/applet-init.c:32
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -223,8 +222,7 @@ msgstr "El modulo ha sido añadido, pero no se pudo ser lanzado"
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "La mini-aplicación '%s' ha sido actualizada con éxito y automaticamente "
 "relanzada."
@@ -242,7 +240,7 @@ msgstr ""
 msgid "day(s)"
 msgstr "día(s)"
 
-#: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
+#: ../Doncky/src/applet-init.c:37
 msgid "Doncky"
 msgstr ""
 
@@ -280,8 +278,8 @@ msgstr ""
 "Es compatible con cualquier menú XDG (Gnome, XFCE, KDE...)\n"
 "Clic central para abrir un diálogo para iniciar rápidamente cualquier "
 "comando (Puede establecer un atajo de teclado para ello, como ALT+F2)\n"
-"También puede establecer un atajo de teclado para aparecer el menú (como "
-"ALT+F1)"
+"También puede establecer un atajo de teclado para aparecer el menú (como ALT"
+"+F1)"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
@@ -550,7 +548,7 @@ msgstr "Sin modificacion"
 msgid "This RSS feed has been modified..."
 msgstr "Este canal RSS a sido modificado..."
 
-#: ../RSSreader/src/applet-rss.c:716
+#: ../RSSreader/src/applet-rss.c:730
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -560,7 +558,7 @@ msgstr ""
 "Puede definir una copiando la URL en el portapapeles,\n"
 "y eligiendo \"Pegar la URL\" en el menú."
 
-#: ../RSSreader/src/applet-rss.c:722
+#: ../RSSreader/src/applet-rss.c:736
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -1085,17 +1083,14 @@ msgid "3Dplane"
 msgstr "Plano 3D"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#: ../dialog-rendering/data/messages:1
 msgid "comics"
 msgstr "comics"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#: ../dialog-rendering/data/messages:39
 msgid "curly"
 msgstr "espiral"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#: ../dialog-rendering/data/messages:9
 msgid "modern"
 msgstr "moderno"
 
@@ -1112,8 +1107,7 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Este plug-in proporciona decoradores para ventanas de diálogo."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "No se pudo subir el archivo, compruebe que su conexión de internet este "
 "activa."
@@ -1127,8 +1121,7 @@ msgstr ""
 "Tan solo presione CTRL+V para pegar su URL en cualquier lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Espere a que termine la subida de datos antes de empezar otra nueva."
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1305,40 +1298,44 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:42
-#: ../dustbin/src/applet-notifications.c:47
+#: ../dustbin/src/applet-notifications.c:67
+#: ../dustbin/src/applet-notifications.c:72
 msgid "Show Trash"
 msgstr "Mostrar papelera"
 
-#: ../dustbin/src/applet-notifications.c:43
-#: ../dustbin/src/applet-notifications.c:56
+#: ../dustbin/src/applet-notifications.c:68
+#: ../dustbin/src/applet-notifications.c:81
 msgid "Empty Trash"
 msgstr "Eliminar la papelera"
 
-#: ../dustbin/src/applet-notifications.c:51
+#: ../dustbin/src/applet-notifications.c:76
 #, c-format
 msgid "Show %s"
 msgstr "Mostrar %s"
 
-#: ../dustbin/src/applet-notifications.c:54
+#: ../dustbin/src/applet-notifications.c:79
 msgid "Show All"
 msgstr "Mostrar Todo"
 
-#: ../dustbin/src/applet-notifications.c:60
+#: ../dustbin/src/applet-notifications.c:85
 #, c-format
 msgid "Delete %s"
 msgstr "Borrar %s"
 
-#: ../dustbin/src/applet-notifications.c:63
+#: ../dustbin/src/applet-notifications.c:88
 msgid "Delete All"
 msgstr "Eliminar Todo"
 
-#: ../dustbin/src/applet-notifications.c:78
+#: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
+msgid "Display dustbins information"
+msgstr ""
+
+#: ../dustbin/src/applet-notifications.c:106
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s esta ahora desmontado"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:110
 #, c-format
 msgid "failed to unmount %s"
 msgstr "no se pudo desmontar %s"
@@ -1368,7 +1365,7 @@ msgid ""
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
 
-#: ../gnome-integration/src/applet-init.c:30
+#: ../gnome-integration/src/applet-init.c:31
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1463,15 +1460,19 @@ msgid ""
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:119
+#: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Seleccione en cuantos minutos su pc se detendrá :"
 
-#: ../logout/src/applet-notifications.c:143
+#: ../logout/src/applet-notifications.c:150
+msgid "Lock screen"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:151
 msgid "Program an automatic shut-down"
 msgstr "Programar un apagado automatico"
 
-#: ../logout/src/applet-notifications.c:173
+#: ../logout/src/applet-notifications.c:181
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Su computador se apagara en un minuto"
 
@@ -1503,29 +1504,28 @@ msgstr "Ingrese el nombre para esta cuenta. Puede darle el nombre que desee."
 msgid "Remove Account"
 msgstr "Eliminar cuenta"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233
+#: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
 msgstr "sin asunto"
 
-#: ../mail/src/cd-mail-applet-etpan.c:379
+#: ../mail/src/cd-mail-applet-etpan.c:376
 msgid "No unread mail in your mailboxes"
 msgstr "No hay correo no leido en tus buzones de correo"
 
-#: ../mail/src/cd-mail-applet-etpan.c:401
+#: ../mail/src/cd-mail-applet-etpan.c:398
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Tiene %d nuevos correos :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:403
+#: ../mail/src/cd-mail-applet-etpan.c:400
 msgid "You have a new mail:"
 msgstr "Tiene un nuevo correo :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
-#: ../mail/src/cd-mail-applet-notifications.c:320
 msgid "mail"
 msgstr "correo"
 
@@ -1557,6 +1557,11 @@ msgstr "Marcar todos los correos como leídos"
 #, c-format
 msgid "Launch %s"
 msgstr "Lanzar %s"
+
+#: ../mail/src/cd-mail-applet-notifications.c:320
+#, fuzzy
+msgid "Mail"
+msgstr "correo"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1834,8 +1839,8 @@ msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Este plugin dibuja alguna animación alrededor del cursor cuando está dentro "
 "de un dock o desklet."
@@ -1855,11 +1860,11 @@ msgid ""
 "Layer, or all the desktops at once."
 msgstr ""
 
-#: ../showDesktop/src/applet-notifications.c:74
+#: ../showDesktop/src/applet-notifications.c:76
 msgid "You need to run Compiz and activate its 'DBus' plug-in."
 msgstr ""
 
-#: ../showDesktop/src/applet-notifications.c:162
+#: ../showDesktop/src/applet-notifications.c:165
 msgid "Change screen resolution"
 msgstr "Cambiar la resolución de la pantalla"
 
@@ -2046,8 +2051,8 @@ msgid ""
 "and manual"
 msgstr ""
 
-#: ../terminal/src/terminal-callbacks.c:83
-#: ../terminal/src/terminal-widget.c:354
+#: ../terminal/src/terminal-callbacks.c:82
+#: ../terminal/src/terminal-widget.c:352
 msgid "Copy"
 msgstr "Copiar"
 
@@ -2063,49 +2068,49 @@ msgid ""
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:82
-#: ../terminal/src/terminal-widget.c:370
+#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-widget.c:368
 msgid "New Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:83
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:84
+#: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:107
+#: ../terminal/src/terminal-widget.c:51 ../terminal/data/messages:107
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../terminal/src/terminal-widget.c:145
+#: ../terminal/src/terminal-widget.c:149
 msgid "Set title for this tab:"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:199
+#: ../terminal/src/terminal-widget.c:203
 msgid "Select a color"
 msgstr "Seleccionar un color"
 
-#: ../terminal/src/terminal-widget.c:314
+#: ../terminal/src/terminal-widget.c:312
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:360
+#: ../terminal/src/terminal-widget.c:358
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../terminal/src/terminal-widget.c:376
+#: ../terminal/src/terminal-widget.c:374
 msgid "Rename this Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:382
+#: ../terminal/src/terminal-widget.c:380
 msgid "Change this Tab's colour"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:388
+#: ../terminal/src/terminal-widget.c:386
 msgid "Close this Tab"
 msgstr ""
 
@@ -2185,7 +2190,8 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-init.c:29
-msgid "Weather"
+#, fuzzy
+msgid "weather"
 msgstr "Clima"
 
 #: ../weather/src/applet-init.c:32
@@ -2361,7 +2367,7 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../xfce-integration/src/applet-init.c:30
+#: ../xfce-integration/src/applet-init.c:32
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -3723,8 +3729,7 @@ msgstr "¿Permitir que aplicaciones externas muestren/escondan las barras?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
-msgstr ""
-"¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
+msgstr "¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
@@ -3795,8 +3800,7 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -4315,7 +4319,7 @@ msgstr ""
 msgid "Shortkey to enable/disable the navigation mode:"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:7 ../mail/data/messages:109
+#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -5081,6 +5085,11 @@ msgstr "Nombre de la imagen para el icono 'exposición':"
 msgid "'Widget Layer' icon image name:"
 msgstr "Nombre de la imagen para el icono 'capa de complementos':"
 
+#: ../dialog-rendering/data/messages:1
+#, fuzzy
+msgid "Comics"
+msgstr "comics"
+
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
@@ -5096,6 +5105,11 @@ msgstr ""
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Bubble's line colour:"
 msgstr ""
+
+#: ../dialog-rendering/data/messages:9
+#, fuzzy
+msgid "Modern"
+msgstr "moderno"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5114,12 +5128,18 @@ msgid "Colour of the plane :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:29
-msgid "tooltip"
+#, fuzzy
+msgid "Tooltip"
 msgstr "sugerencia"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
 msgstr ""
+
+#: ../dialog-rendering/data/messages:39
+#, fuzzy
+msgid "Curly"
+msgstr "espiral"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -5247,8 +5267,9 @@ msgid "Path of the DropBox folder :"
 msgstr ""
 
 #: ../dock-rendering/data/messages:1
-msgid "Inclined Plane"
-msgstr ""
+#, fuzzy
+msgid "Inclinated Plane"
+msgstr "Inclinación en el plano:"
 
 #: ../dock-rendering/data/messages:3
 msgid "The lower the value, the lower the point of view on the plane."
@@ -5344,8 +5365,7 @@ msgid "Space between rows:"
 msgstr "Espacio entre columnas:"
 
 #: ../dock-rendering/data/messages:55
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5552,29 +5572,36 @@ msgstr ""
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr ""
 
-#: ../dustbin/data/messages:119
-msgid "Desktop-less support"
-msgstr ""
-
-#: ../dustbin/data/messages:121
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+#: ../dustbin/data/messages:119 ../switcher/data/messages:101
+msgid "Action on middle click :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
-msgid "in seconds. only used if you can't monitor directories."
+msgid "Empty all dustbins"
 msgstr ""
 
 #: ../dustbin/data/messages:125
-msgid "Time interval to check if dustbin is full/empty :"
+msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgstr ""
+
+#: ../dustbin/data/messages:129
+msgid "in seconds. only used if you can't monitor directories."
+msgstr ""
+
+#: ../dustbin/data/messages:131
+msgid "Time interval to check if dustbin is full/empty :"
+msgstr ""
+
+#: ../dustbin/data/messages:133
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 
-#: ../dustbin/data/messages:129
+#: ../dustbin/data/messages:135
 msgid "Alternative file browser used to show a trash :"
 msgstr ""
 
@@ -5598,8 +5625,7 @@ msgid "Colours"
 msgstr "Colores"
 
 #: ../icon-effect/data/messages:87
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5802,6 +5828,10 @@ msgstr "Nombre del archivo para la imagen de \"nuevo correo\":"
 msgid "Show new messages' content?"
 msgstr ""
 
+#: ../mail/data/messages:109
+msgid "Maximum number of mails that will be previewed."
+msgstr ""
+
 #: ../mail/data/messages:111
 msgid "Maximum of new messages shown?"
 msgstr ""
@@ -5827,8 +5857,7 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5876,8 +5905,7 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6285,6 +6313,11 @@ msgstr ""
 msgid "Show mouse on:"
 msgstr ""
 
+#: ../show-mouse/data/messages:11
+#, fuzzy
+msgid "dock"
+msgstr "reloj"
+
 #: ../show-mouse/data/messages:13
 msgid "desklet"
 msgstr ""
@@ -6564,10 +6597,6 @@ msgstr ""
 
 #: ../switcher/data/messages:99
 msgid "Draw hidden windows?"
-msgstr ""
-
-#: ../switcher/data/messages:101
-msgid "Action on middle click :"
 msgstr ""
 
 #: ../switcher/data/messages:103
@@ -6853,8 +6882,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6937,22 +6965,26 @@ msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 "¿Sobreescribir la etiqueta por defecto con el nombre del punto de conexión?"
 
+#~ msgid "tooltip"
+#~ msgstr "sugerencia"
+
 #~ msgid "Free"
 #~ msgstr "Libre"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
+#~ "keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to the "
-#~ "next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
+#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to validate, "
-#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to "
+#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Un complemento similar a Gnome-Do con el que se puede controlar el dock "
@@ -6960,15 +6992,16 @@ msgstr ""
 #~ "Tiene dos modos, cada uno de ellos convocado mediante atajos de teclado:\n"
 #~ "- modo navigación: se usan las flechas para navegar en los docks y "
 #~ "subdocks.\n"
-#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para saltar "
-#~ "automáticamente al siguiente lanzador posible.\n"
-#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para "
-#~ "Mayús+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
+#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para "
+#~ "saltar automáticamente al siguiente lanzador posible.\n"
+#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para Mayús"
+#~ "+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
 #~ "izquierdo\n"
 #~ "- modo de búsqueda: se escribe un texto para lanzar una orden, archivo o "
 #~ "cálculo.\n"
-#~ "  se usan las flechas para navegar entre los resultados y se presiona intro "
-#~ "para validar, se pulsa Ctrl, Alt o Mayús para mantener los resultados.\n"
+#~ "  se usan las flechas para navegar entre los resultados y se presiona "
+#~ "intro para validar, se pulsa Ctrl, Alt o Mayús para mantener los "
+#~ "resultados.\n"
 #~ "Escape o la misma tecla de atajo cancelan."
 
 #~ msgid "No Title"
@@ -6981,11 +7014,11 @@ msgstr ""
 #~ msgstr "No se definió una dirección URL para un canal RSS..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
-#~ "to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
+#~ "menu to add one."
 #~ msgstr ""
-#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar una "
-#~ "nueva dirección URL de RSS\" desde el menú para agregar una."
+#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar "
+#~ "una nueva dirección URL de RSS\" desde el menú para agregar una."
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Error al conectar..."

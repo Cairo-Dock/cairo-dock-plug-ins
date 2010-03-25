@@ -171,7 +171,7 @@ msgid ""
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
 
-#: ../Dbus/src/applet-init.c:31
+#: ../Dbus/src/applet-init.c:32
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -205,7 +205,7 @@ msgstr ""
 msgid "day(s)"
 msgstr ""
 
-#: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
+#: ../Doncky/src/applet-init.c:37
 msgid "Doncky"
 msgstr ""
 
@@ -501,14 +501,14 @@ msgstr ""
 msgid "This RSS feed has been modified..."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:716
+#: ../RSSreader/src/applet-rss.c:730
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:722
+#: ../RSSreader/src/applet-rss.c:736
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -972,17 +972,14 @@ msgid "3Dplane"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#: ../dialog-rendering/data/messages:1
 msgid "comics"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#: ../dialog-rendering/data/messages:39
 msgid "curly"
 msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#: ../dialog-rendering/data/messages:9
 msgid "modern"
 msgstr ""
 
@@ -1164,40 +1161,44 @@ msgid ""
 "Middle-click to display usefull info about the dustbin."
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:42
-#: ../dustbin/src/applet-notifications.c:47
+#: ../dustbin/src/applet-notifications.c:67
+#: ../dustbin/src/applet-notifications.c:72
 msgid "Show Trash"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:43
-#: ../dustbin/src/applet-notifications.c:56
+#: ../dustbin/src/applet-notifications.c:68
+#: ../dustbin/src/applet-notifications.c:81
 msgid "Empty Trash"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:51
+#: ../dustbin/src/applet-notifications.c:76
 #, c-format
 msgid "Show %s"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:54
+#: ../dustbin/src/applet-notifications.c:79
 msgid "Show All"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:60
+#: ../dustbin/src/applet-notifications.c:85
 #, c-format
 msgid "Delete %s"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:63
+#: ../dustbin/src/applet-notifications.c:88
 msgid "Delete All"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:78
+#: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
+msgid "Display dustbins information"
+msgstr ""
+
+#: ../dustbin/src/applet-notifications.c:106
 #, c-format
 msgid "%s successfully unmounted"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:110
 #, c-format
 msgid "failed to unmount %s"
 msgstr ""
@@ -1226,7 +1227,7 @@ msgid ""
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
 
-#: ../gnome-integration/src/applet-init.c:30
+#: ../gnome-integration/src/applet-init.c:31
 msgid ""
 "This applet provides functions for a better integration into a GNOME environnement.\n"
 "It is auto-activated, so you don't need to activate it.\n"
@@ -1316,15 +1317,19 @@ msgid ""
 "You can invert this order if you prefer to shutdown on left-click."
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:119
+#: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:143
+#: ../logout/src/applet-notifications.c:150
+msgid "Lock screen"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:151
 msgid "Program an automatic shut-down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:173
+#: ../logout/src/applet-notifications.c:181
 msgid "Your computer will shut-down in 1 minute."
 msgstr ""
 
@@ -1354,29 +1359,28 @@ msgstr ""
 msgid "Remove Account"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-etpan.c:233 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-etpan.c:233
+#: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-etpan.c:379
+#: ../mail/src/cd-mail-applet-etpan.c:376
 msgid "No unread mail in your mailboxes"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-etpan.c:401
+#: ../mail/src/cd-mail-applet-etpan.c:398
 #, c-format
 msgid "You have %d new mails:"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-etpan.c:403
+#: ../mail/src/cd-mail-applet-etpan.c:400
 msgid "You have a new mail:"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:33
-#: ../mail/src/cd-mail-applet-notifications.c:320
 msgid "mail"
 msgstr ""
 
@@ -1407,6 +1411,10 @@ msgstr ""
 #: ../mail/src/cd-mail-applet-notifications.c:145
 #, c-format
 msgid "Launch %s"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-notifications.c:320
+msgid "Mail"
 msgstr ""
 
 #: ../motion-blur/src/applet-init.c:28
@@ -1682,11 +1690,11 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget Layer, or all the desktops at once."
 msgstr ""
 
-#: ../showDesktop/src/applet-notifications.c:74
+#: ../showDesktop/src/applet-notifications.c:76
 msgid "You need to run Compiz and activate its 'DBus' plug-in."
 msgstr ""
 
-#: ../showDesktop/src/applet-notifications.c:162
+#: ../showDesktop/src/applet-notifications.c:165
 msgid "Change screen resolution"
 msgstr ""
 
@@ -1866,8 +1874,8 @@ msgid ""
 "and manual"
 msgstr ""
 
-#: ../terminal/src/terminal-callbacks.c:83
-#: ../terminal/src/terminal-widget.c:354
+#: ../terminal/src/terminal-callbacks.c:82
+#: ../terminal/src/terminal-widget.c:352
 msgid "Copy"
 msgstr ""
 
@@ -1881,49 +1889,49 @@ msgid ""
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:82
-#: ../terminal/src/terminal-widget.c:370
+#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-widget.c:368
 msgid "New Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:83
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:84
+#: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:107
+#: ../terminal/src/terminal-widget.c:51 ../terminal/data/messages:107
 msgid "Terminal"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:145
+#: ../terminal/src/terminal-widget.c:149
 msgid "Set title for this tab:"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:199
+#: ../terminal/src/terminal-widget.c:203
 msgid "Select a color"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:314
+#: ../terminal/src/terminal-widget.c:312
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:360
+#: ../terminal/src/terminal-widget.c:358
 msgid "Paste"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:376
+#: ../terminal/src/terminal-widget.c:374
 msgid "Rename this Tab"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:382
+#: ../terminal/src/terminal-widget.c:380
 msgid "Change this Tab's colour"
 msgstr ""
 
-#: ../terminal/src/terminal-widget.c:388
+#: ../terminal/src/terminal-widget.c:386
 msgid "Close this Tab"
 msgstr ""
 
@@ -2002,7 +2010,7 @@ msgid "Enter the name of your location and press Enter to choose amongst results
 msgstr ""
 
 #: ../weather/src/applet-init.c:29
-msgid "Weather"
+msgid "weather"
 msgstr ""
 
 #: ../weather/src/applet-init.c:32
@@ -2172,7 +2180,7 @@ msgid ""
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
 
-#: ../xfce-integration/src/applet-init.c:30
+#: ../xfce-integration/src/applet-init.c:32
 msgid ""
 "This applet provides functions for a better integration into a XFCE environnement.\n"
 "It is auto-activated, so you don't need to activate it."
@@ -4087,7 +4095,7 @@ msgstr ""
 msgid "Shortkey to enable/disable the navigation mode:"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:7 ../mail/data/messages:109
+#: ../Scooby-Do/data/messages:7
 msgid "Maximum number of mails that will be previewed. Put -1 to show the maximum possible."
 msgstr ""
 
@@ -4814,6 +4822,10 @@ msgstr ""
 msgid "'Widget Layer' icon image name:"
 msgstr ""
 
+#: ../dialog-rendering/data/messages:1
+msgid "Comics"
+msgstr ""
+
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
@@ -4828,6 +4840,10 @@ msgstr ""
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Bubble's line colour:"
+msgstr ""
+
+#: ../dialog-rendering/data/messages:9
+msgid "Modern"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:17
@@ -4847,11 +4863,15 @@ msgid "Colour of the plane :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:29
-msgid "tooltip"
+msgid "Tooltip"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
+msgstr ""
+
+#: ../dialog-rendering/data/messages:39
+msgid "Curly"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:47
@@ -4980,7 +5000,7 @@ msgid "Path of the DropBox folder :"
 msgstr ""
 
 #: ../dock-rendering/data/messages:1
-msgid "Inclined Plane"
+msgid "Inclinated Plane"
 msgstr ""
 
 #: ../dock-rendering/data/messages:3
@@ -5268,27 +5288,35 @@ msgstr ""
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr ""
 
-#: ../dustbin/data/messages:119
-msgid "Desktop-less support"
-msgstr ""
-
-#: ../dustbin/data/messages:121
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+#: ../dustbin/data/messages:119 ../switcher/data/messages:101
+msgid "Action on middle click :"
 msgstr ""
 
 #: ../dustbin/data/messages:123
-msgid "in seconds. only used if you can't monitor directories."
+msgid "Empty all dustbins"
 msgstr ""
 
 #: ../dustbin/data/messages:125
-msgid "Time interval to check if dustbin is full/empty :"
+msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid "Only use this if you notice that the applet can't display the trash on click."
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
+msgid "in seconds. only used if you can't monitor directories."
+msgstr ""
+
+#: ../dustbin/data/messages:131
+msgid "Time interval to check if dustbin is full/empty :"
+msgstr ""
+
+#: ../dustbin/data/messages:133
+msgid "Only use this if you notice that the applet can't display the trash on click."
+msgstr ""
+
+#: ../dustbin/data/messages:135
 msgid "Alternative file browser used to show a trash :"
 msgstr ""
 
@@ -5507,6 +5535,10 @@ msgstr ""
 
 #: ../mail/data/messages:107
 msgid "Show new messages' content?"
+msgstr ""
+
+#: ../mail/data/messages:109
+msgid "Maximum number of mails that will be previewed."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -5972,6 +6004,10 @@ msgstr ""
 msgid "Show mouse on:"
 msgstr ""
 
+#: ../show-mouse/data/messages:11
+msgid "dock"
+msgstr ""
+
 #: ../show-mouse/data/messages:13
 msgid "desklet"
 msgstr ""
@@ -6238,10 +6274,6 @@ msgstr ""
 
 #: ../switcher/data/messages:99
 msgid "Draw hidden windows?"
-msgstr ""
-
-#: ../switcher/data/messages:101
-msgid "Action on middle click :"
 msgstr ""
 
 #: ../switcher/data/messages:103

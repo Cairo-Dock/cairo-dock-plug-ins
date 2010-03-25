@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-03-20 14:52+0000\n"
 "PO-Revision-Date: 2010-03-22 00:19+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
@@ -198,7 +197,7 @@ msgstr ""
 "Encore aucun élément présentt.\n"
 "Vous pouvez en rajouter en glissant-déposant du texte sur l'icône."
 
-#: ../Dbus/src/applet-init.c:31
+#: ../Dbus/src/applet-init.c:32
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -221,8 +220,7 @@ msgstr "Le module a été ajouté, mais n'a pas pu être exécuté"
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "L'applet '%s' a été mise a jour et rechargée avec succès."
 
 #: ../Dbus/src/interface-applet-signals.c:503
@@ -236,7 +234,7 @@ msgstr "L'applet '%s' a été mise a jour et exécuté avec succès."
 msgid "day(s)"
 msgstr "jour(s)"
 
-#: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
+#: ../Doncky/src/applet-init.c:37
 msgid "Doncky"
 msgstr "Doncky"
 
@@ -257,8 +255,7 @@ msgstr ""
 #: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr ""
-"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../Doncky/src/applet-top.c:287
 #: ../System-Monitor/src/applet-notifications.c:49
@@ -570,7 +567,7 @@ msgstr "Aucune modification."
 msgid "This RSS feed has been modified..."
 msgstr "Ce flux RSS a été modifié…"
 
-#: ../RSSreader/src/applet-rss.c:716
+#: ../RSSreader/src/applet-rss.c:730
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -580,7 +577,7 @@ msgstr ""
 "Vous pouvez en définir une en copiant une URL dans le presse-papier\n"
 "et en sélectionnant « Coller l'URL » dans le menu."
 
-#: ../RSSreader/src/applet-rss.c:722
+#: ../RSSreader/src/applet-rss.c:736
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -1105,17 +1102,14 @@ msgid "3Dplane"
 msgstr "Plan 3D"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#: ../dialog-rendering/data/messages:1
 msgid "comics"
 msgstr "Bande-dessinée"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#: ../dialog-rendering/data/messages:39
 msgid "curly"
 msgstr "Courbé"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#: ../dialog-rendering/data/messages:9
 msgid "modern"
 msgstr "Moderne"
 
@@ -1129,12 +1123,10 @@ msgstr "Rendu des dialogues"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some decorators for dialog bubbles."
-msgstr ""
-"Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -1148,8 +1140,7 @@ msgstr ""
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
@@ -1350,40 +1341,45 @@ msgstr ""
 "Clic du milieu pour afficher des informations utiles à propos de la "
 "corbeille."
 
-#: ../dustbin/src/applet-notifications.c:42
-#: ../dustbin/src/applet-notifications.c:47
+#: ../dustbin/src/applet-notifications.c:67
+#: ../dustbin/src/applet-notifications.c:72
 msgid "Show Trash"
 msgstr "Ouvrir la poubelle"
 
-#: ../dustbin/src/applet-notifications.c:43
-#: ../dustbin/src/applet-notifications.c:56
+#: ../dustbin/src/applet-notifications.c:68
+#: ../dustbin/src/applet-notifications.c:81
 msgid "Empty Trash"
 msgstr "Vider la poubelle"
 
-#: ../dustbin/src/applet-notifications.c:51
+#: ../dustbin/src/applet-notifications.c:76
 #, c-format
 msgid "Show %s"
 msgstr "Ouvrir %s"
 
-#: ../dustbin/src/applet-notifications.c:54
+#: ../dustbin/src/applet-notifications.c:79
 msgid "Show All"
 msgstr "Ouvrir toutes"
 
-#: ../dustbin/src/applet-notifications.c:60
+#: ../dustbin/src/applet-notifications.c:85
 #, c-format
 msgid "Delete %s"
 msgstr "Vider %s"
 
-#: ../dustbin/src/applet-notifications.c:63
+#: ../dustbin/src/applet-notifications.c:88
 msgid "Delete All"
 msgstr "Vider toutes"
 
-#: ../dustbin/src/applet-notifications.c:78
+#: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
+#, fuzzy
+msgid "Display dustbins information"
+msgstr "Afficher l'heure au format 24h ?"
+
+#: ../dustbin/src/applet-notifications.c:106
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s est maintenant démonté"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:110
 #, c-format
 msgid "failed to unmount %s"
 msgstr "échec au démontage de %s"
@@ -1420,7 +1416,7 @@ msgstr ""
 "Il s'auto-active, vous ne devez donc pas l'activer manuellement.\n"
 "Il a été conçu pour les anciennes versions de Gnome (avant 2.22)."
 
-#: ../gnome-integration/src/applet-init.c:30
+#: ../gnome-integration/src/applet-init.c:31
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1514,8 +1510,8 @@ msgstr ""
 "Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement "
-"précédent/suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
+"suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../logout/src/applet-init.c:28
@@ -1533,15 +1529,19 @@ msgstr ""
 "Clic gauche pour fermer la session, clic du milieu pour éteindre.\n"
 "Vous pouvez intervertir ces raccourcis selon vos préférences."
 
-#: ../logout/src/applet-notifications.c:119
+#: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Choisissez dans combien de minutes votre PC s'arrêtera :"
 
-#: ../logout/src/applet-notifications.c:143
+#: ../logout/src/applet-notifications.c:150
+msgid "Lock screen"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:151
 msgid "Program an automatic shut-down"
 msgstr "programmez une extinction automatique"
 
-#: ../logout/src/applet-notifications.c:173
+#: ../logout/src/applet-notifications.c:181
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Votre ordinateur s'eteindra dans 1 minute"
 
@@ -1574,29 +1574,28 @@ msgstr ""
 msgid "Remove Account"
 msgstr "Supprimer ce compte"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
 msgstr "Inconnu"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233
+#: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
 msgstr "Pas de sujet"
 
-#: ../mail/src/cd-mail-applet-etpan.c:379
+#: ../mail/src/cd-mail-applet-etpan.c:376
 msgid "No unread mail in your mailboxes"
 msgstr "Aucun message non lu dans votre boîte de réception"
 
-#: ../mail/src/cd-mail-applet-etpan.c:401
+#: ../mail/src/cd-mail-applet-etpan.c:398
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Vous avez %d nouveaux messages"
 
-#: ../mail/src/cd-mail-applet-etpan.c:403
+#: ../mail/src/cd-mail-applet-etpan.c:400
 msgid "You have a new mail:"
 msgstr "Vous avez un nouveau message"
 
 #: ../mail/src/cd-mail-applet-init.c:33
-#: ../mail/src/cd-mail-applet-notifications.c:320
 msgid "mail"
 msgstr "mail"
 
@@ -1637,6 +1636,11 @@ msgstr "Marquer tous les messages comme lus."
 #, c-format
 msgid "Launch %s"
 msgstr "Lancer %s"
+
+#: ../mail/src/cd-mail-applet-notifications.c:320
+#, fuzzy
+msgid "Mail"
+msgstr "mail"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1705,8 +1709,8 @@ msgstr ""
 "Cette applet vous permet de contrôler une multitude de lecteurs de musique.\n"
 "Clic gauche pour Jouer/Pause, clic du milieu pour passer à la prochaine "
 "chanson.\n"
-"Un coup de roulette vers le haut/bas pour jouer la chanson "
-"précédente/suivante.\n"
+"Un coup de roulette vers le haut/bas pour jouer la chanson précédente/"
+"suivante.\n"
 "Vous pouvez glisser et déposer vos fichiers musicaux sur l'icône pour les "
 "ajouter à la fin de la liste\n"
 " en cours (ceci dépend des lecteurs) ou des fichiers d'images pour les "
@@ -1950,8 +1954,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -1982,11 +1986,11 @@ msgstr ""
 "couche\n"
 " de Wigdets Compiz ou tous les bureaux d'un coup."
 
-#: ../showDesktop/src/applet-notifications.c:74
+#: ../showDesktop/src/applet-notifications.c:76
 msgid "You need to run Compiz and activate its 'DBus' plug-in."
 msgstr "Vous devez avoir lancé Compiz et activer son plug-in 'DBus'."
 
-#: ../showDesktop/src/applet-notifications.c:162
+#: ../showDesktop/src/applet-notifications.c:165
 msgid "Change screen resolution"
 msgstr "Modifier la résolution de l'écran"
 
@@ -2206,8 +2210,8 @@ msgstr ""
 "Description utile\n"
 "et manuel"
 
-#: ../terminal/src/terminal-callbacks.c:83
-#: ../terminal/src/terminal-widget.c:354
+#: ../terminal/src/terminal-callbacks.c:82
+#: ../terminal/src/terminal-widget.c:352
 msgid "Copy"
 msgstr "Copier"
 
@@ -2233,49 +2237,49 @@ msgstr ""
 "onglet\n"
 "Pour fermer un onglet, tapez 'CTRL+w' ou clic milieu dessus."
 
-#: ../terminal/src/terminal-menu-functions.c:82
-#: ../terminal/src/terminal-widget.c:370
+#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-widget.c:368
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
-#: ../terminal/src/terminal-menu-functions.c:83
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
 msgstr "Rennomer l'onglet courant"
 
-#: ../terminal/src/terminal-menu-functions.c:84
+#: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
 msgstr "Fermer l'onglet courant"
 
-#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:107
+#: ../terminal/src/terminal-widget.c:51 ../terminal/data/messages:107
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../terminal/src/terminal-widget.c:145
+#: ../terminal/src/terminal-widget.c:149
 msgid "Set title for this tab:"
 msgstr "Définissez un titre pour cet onglet :"
 
-#: ../terminal/src/terminal-widget.c:199
+#: ../terminal/src/terminal-widget.c:203
 msgid "Select a color"
 msgstr "Sélectionner une couleur"
 
-#: ../terminal/src/terminal-widget.c:314
+#: ../terminal/src/terminal-widget.c:312
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Vous pouvez rappeler le desklet Terminal en tapant %s"
 
-#: ../terminal/src/terminal-widget.c:360
+#: ../terminal/src/terminal-widget.c:358
 msgid "Paste"
 msgstr "Coller"
 
-#: ../terminal/src/terminal-widget.c:376
+#: ../terminal/src/terminal-widget.c:374
 msgid "Rename this Tab"
 msgstr "Renommer cet onglet"
 
-#: ../terminal/src/terminal-widget.c:382
+#: ../terminal/src/terminal-widget.c:380
 msgid "Change this Tab's colour"
 msgstr "Changer la couleur de cet onglet"
 
-#: ../terminal/src/terminal-widget.c:388
+#: ../terminal/src/terminal-widget.c:386
 msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
@@ -2363,7 +2367,8 @@ msgstr ""
 "les résultats."
 
 #: ../weather/src/applet-init.c:29
-msgid "Weather"
+#, fuzzy
+msgid "weather"
 msgstr "Météo"
 
 #: ../weather/src/applet-init.c:32
@@ -2556,7 +2561,7 @@ msgstr ""
 "Clic gauche pour obtenir des informations, clic du milieu pour forcer "
 "l'actualisation des informations."
 
-#: ../xfce-integration/src/applet-init.c:30
+#: ../xfce-integration/src/applet-init.c:32
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -3616,8 +3621,7 @@ msgstr "Transparence du fond :"
 #: ../tomboy/data/messages:83 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:65
 msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr ""
-"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
 #: ../GMenu/data/messages:71 ../Network-Monitor/data/messages:69
@@ -3689,8 +3693,7 @@ msgstr "Décalage en haut :"
 #: ../tomboy/data/messages:91 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:73
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr ""
-"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
 #: ../GMenu/data/messages:79 ../Network-Monitor/data/messages:77
@@ -3862,8 +3865,8 @@ msgstr "Si oui, nombre de sélection d'objets :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec "
-"CTRL+v"
+"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec CTRL"
+"+v"
 
 #: ../Clipper/data/messages:223
 msgid "Paste into Clipboard?"
@@ -3970,8 +3973,7 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr ""
-"Autoriser les applications externes à modifier les images des icônes ?"
+msgstr "Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -4026,8 +4028,7 @@ msgid "Background"
 msgstr "Fond :"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Vous pouvez avoir plus d'arrières plan attractifs en utilisant les "
 "décorations des Desklets"
@@ -4559,7 +4560,7 @@ msgstr "Raccourci pour activer/désactiver le mode recherche :"
 msgid "Shortkey to enable/disable the navigation mode:"
 msgstr "Raccourci pour activer/désactiver le mode navigation :"
 
-#: ../Scooby-Do/data/messages:7 ../mail/data/messages:109
+#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -4753,8 +4754,7 @@ msgstr "Proposer des moteurs de recherche du web?"
 
 #: ../Scooby-Do/data/messages:111
 msgid "It can launch commands and even do some calculations."
-msgstr ""
-"Il est possible d'exécuter des commandes et même des faire des calculs"
+msgstr "Il est possible d'exécuter des commandes et même des faire des calculs"
 
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
@@ -5372,6 +5372,11 @@ msgstr "Nom de l'image 'Exposé' :"
 msgid "'Widget Layer' icon image name:"
 msgstr "Nom de l'image 'Couche Widgets' :"
 
+#: ../dialog-rendering/data/messages:1
+#, fuzzy
+msgid "Comics"
+msgstr "Bande-dessinée"
+
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
@@ -5387,6 +5392,11 @@ msgstr "Largeur de la bordure :"
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Bubble's line colour:"
 msgstr "Couleur du contour de la bulle :"
+
+#: ../dialog-rendering/data/messages:9
+#, fuzzy
+msgid "Modern"
+msgstr "Moderne"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5405,12 +5415,18 @@ msgid "Colour of the plane :"
 msgstr "Couleur du plan :"
 
 #: ../dialog-rendering/data/messages:29
-msgid "tooltip"
+#, fuzzy
+msgid "Tooltip"
 msgstr "Info-bulle"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
 msgstr "Couleur de la marge :"
+
+#: ../dialog-rendering/data/messages:39
+#, fuzzy
+msgid "Curly"
+msgstr "Courbé"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -5532,15 +5548,16 @@ msgstr "Script personnel pour l'upload des fichiers : "
 #: ../dnd2share/data/messages:153
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire "
-"'~/Dropbox/Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
+"Public'."
 
 #: ../dnd2share/data/messages:155
 msgid "Path of the DropBox folder :"
 msgstr "Chemin du dossier DropBox :"
 
 #: ../dock-rendering/data/messages:1
-msgid "Inclined Plane"
+#, fuzzy
+msgid "Inclinated Plane"
 msgstr "Plan incliné"
 
 #: ../dock-rendering/data/messages:3
@@ -5648,8 +5665,7 @@ msgid "Space between rows:"
 msgstr "Espacement entre les lignes :"
 
 #: ../dock-rendering/data/messages:55
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -5869,36 +5885,43 @@ msgstr "Taille maximale autorisée pour chaque poubelle :"
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr "Demander confirmation avant de vider la corbeille ?"
 
-#: ../dustbin/data/messages:119
+#: ../dustbin/data/messages:119 ../switcher/data/messages:101
+msgid "Action on middle click :"
+msgstr "Action au clic du milieu :"
+
+#: ../dustbin/data/messages:123
+msgid "Empty all dustbins"
+msgstr ""
+
+#: ../dustbin/data/messages:125
 msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
-#: ../dustbin/data/messages:121
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+#: ../dustbin/data/messages:127
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Si le dossier 'Trash' n'est pas connu par le dock, vous pouvez le spécifier "
 "ici :"
 
-#: ../dustbin/data/messages:123
+#: ../dustbin/data/messages:129
 msgid "in seconds. only used if you can't monitor directories."
 msgstr ""
 "en secondes, seulement utilisé si la surveillance de fichiers n'est pas "
 "disponible."
 
-#: ../dustbin/data/messages:125
+#: ../dustbin/data/messages:131
 msgid "Time interval to check if dustbin is full/empty :"
 msgstr ""
 "Intervalle de temps pour la vérification de la poubelle (vide/pleine) :"
 
-#: ../dustbin/data/messages:127
+#: ../dustbin/data/messages:133
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr ""
 "N'utilisez cela que si vous notez que l'applet de peut pas afficher la "
 "poubelle au clic."
 
-#: ../dustbin/data/messages:129
+#: ../dustbin/data/messages:135
 msgid "Alternative file browser used to show a trash :"
 msgstr "Ouvrir la poubelle avec :"
 
@@ -5922,8 +5945,7 @@ msgid "Colours"
 msgstr "Couleurs"
 
 #: ../icon-effect/data/messages:87
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
@@ -6136,6 +6158,13 @@ msgstr "Nom du fichier son pour les nouveaux e-mails :"
 msgid "Show new messages' content?"
 msgstr "Montrer le contenu des nouveaux messages ?"
 
+#: ../mail/data/messages:109
+#, fuzzy
+msgid "Maximum number of mails that will be previewed."
+msgstr ""
+"Nombre maximum de mails qui seront visibles. Indiquez -1 pour en montrer un "
+"maximum."
+
 #: ../mail/data/messages:111
 msgid "Maximum of new messages shown?"
 msgstr "Nombre maximal de nouveaux messages montrés ?"
@@ -6164,10 +6193,8 @@ msgid "Check mail account on startup?"
 msgstr "Vérifier le compte mail au démarrage ?"
 
 #: ../mail/data/messages:121
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
-msgstr ""
-"Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
+msgid "If checked, the number of mails will be shown even if there is no mail."
+msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
 #: ../mail/data/messages:125
 msgid "Mail application"
@@ -6219,8 +6246,7 @@ msgid "Blur amount:"
 msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "Laissez vide pour afficher le nom du lecteur courant."
 
 #: ../musicPlayer/data/messages:91
@@ -6630,6 +6656,11 @@ msgstr "En tours par seconde"
 msgid "Show mouse on:"
 msgstr "Montrer la souris sur :"
 
+#: ../show-mouse/data/messages:11
+#, fuzzy
+msgid "dock"
+msgstr "Horloge"
+
 #: ../show-mouse/data/messages:13
 msgid "desklet"
 msgstr "Desklet"
@@ -6888,8 +6919,8 @@ msgid ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
 msgstr ""
-"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / "
-"Ctrl+V"
+"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / Ctrl"
+"+V"
 
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
@@ -6922,10 +6953,6 @@ msgstr "Dessiner les fenêtres sur l'icône ?"
 #: ../switcher/data/messages:99
 msgid "Draw hidden windows?"
 msgstr "Dessiner les fenêtres cachées aussi ?"
-
-#: ../switcher/data/messages:101
-msgid "Action on middle click :"
-msgstr "Action au clic du milieu :"
 
 #: ../switcher/data/messages:103
 msgid "Show windows' list"
@@ -7113,8 +7140,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
-"(%d/%m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
+"m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -7219,8 +7246,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
@@ -7307,6 +7333,9 @@ msgstr "Infos Brutes du Signal"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
+#~ msgid "tooltip"
+#~ msgstr "Info-bulle"
+
 #~ msgid "Free"
 #~ msgstr "Libre"
 
@@ -7391,8 +7420,8 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ "According to your Window Manager, this may prevent the applet from hiding "
 #~ "the desktop."
 #~ msgstr ""
-#~ "En fonction de votre gestionnaire de fenêtres, cette fonctionnalité peut ne "
-#~ "pas fonctionner."
+#~ "En fonction de votre gestionnaire de fenêtres, cette fonctionnalité peut "
+#~ "ne pas fonctionner."
 
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Aucune donnée (flux invalide ?)"

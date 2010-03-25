@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-03-15 23:45+0000\n"
 "PO-Revision-Date: 2010-03-17 12:55+0000\n"
 "Last-Translator: milboy <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
@@ -91,8 +90,7 @@ msgstr "Prepáč, teraz som zaneprázdnený."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr ""
-"Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
+msgstr "Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -194,7 +192,7 @@ msgstr ""
 "Žiadne perzistentné položky.\n"
 "Môžete pridať pomocou pretiahnutia a hodenia nejakého textu na ikonu."
 
-#: ../Dbus/src/applet-init.c:31
+#: ../Dbus/src/applet-init.c:32
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
@@ -217,8 +215,7 @@ msgstr "Modul bol pridaný, ale nemohol byť spustený."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Applet '%s' bol úspešne aktualizovaný a automaticky načítaný"
 
 #: ../Dbus/src/interface-applet-signals.c:503
@@ -232,7 +229,7 @@ msgstr "Applet '%s' bol úspešne nainštalovaný a automaticky spustený"
 msgid "day(s)"
 msgstr "deň(dní)"
 
-#: ../Doncky/src/applet-init.c:37 ../show-mouse/data/messages:11
+#: ../Doncky/src/applet-init.c:37
 msgid "Doncky"
 msgstr "panel"
 
@@ -557,7 +554,7 @@ msgstr "Žiadna zmena"
 msgid "This RSS feed has been modified..."
 msgstr "Tento RSS zdroj bol zmenený..."
 
-#: ../RSSreader/src/applet-rss.c:716
+#: ../RSSreader/src/applet-rss.c:730
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -568,7 +565,7 @@ msgstr ""
 " a vybrať \"Vložiť RL\n"
 " v menu."
 
-#: ../RSSreader/src/applet-rss.c:722
+#: ../RSSreader/src/applet-rss.c:736
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -1114,17 +1111,14 @@ msgid "3Dplane"
 msgstr "3D rovina"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
-#: ../dialog-rendering/data/messages:1
 msgid "comics"
 msgstr "komiks"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
-#: ../dialog-rendering/data/messages:39
 msgid "curly"
 msgstr "vlnitý"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
-#: ../dialog-rendering/data/messages:9
 msgid "modern"
 msgstr "moderný"
 
@@ -1141,8 +1135,7 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Tento plugin poskytuje dekorácie dialógov pre dialógy v bublinách."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
 
@@ -1155,8 +1148,7 @@ msgstr ""
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1352,40 +1344,45 @@ msgstr ""
 "Applet môže varovať, ak použijete príliš veľa miesta\n"
 "Po kliknutí stredným tlačítkom sa zobrazia užitočné informácie o koši."
 
-#: ../dustbin/src/applet-notifications.c:42
-#: ../dustbin/src/applet-notifications.c:47
+#: ../dustbin/src/applet-notifications.c:67
+#: ../dustbin/src/applet-notifications.c:72
 msgid "Show Trash"
 msgstr "Zobrazovať Kôš"
 
-#: ../dustbin/src/applet-notifications.c:43
-#: ../dustbin/src/applet-notifications.c:56
+#: ../dustbin/src/applet-notifications.c:68
+#: ../dustbin/src/applet-notifications.c:81
 msgid "Empty Trash"
 msgstr "Vyprázdniť kôš"
 
-#: ../dustbin/src/applet-notifications.c:51
+#: ../dustbin/src/applet-notifications.c:76
 #, c-format
 msgid "Show %s"
 msgstr "Zobraziť %s"
 
-#: ../dustbin/src/applet-notifications.c:54
+#: ../dustbin/src/applet-notifications.c:79
 msgid "Show All"
 msgstr "Zobraziť všetko"
 
-#: ../dustbin/src/applet-notifications.c:60
+#: ../dustbin/src/applet-notifications.c:85
 #, c-format
 msgid "Delete %s"
 msgstr "Odstrániť %s"
 
-#: ../dustbin/src/applet-notifications.c:63
+#: ../dustbin/src/applet-notifications.c:88
 msgid "Delete All"
 msgstr "Odstrániť všetko"
 
-#: ../dustbin/src/applet-notifications.c:78
+#: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
+#, fuzzy
+msgid "Display dustbins information"
+msgstr "Zobraziť čas v 24h formáte ?"
+
+#: ../dustbin/src/applet-notifications.c:106
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s je teraz odpojený"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:110
 #, c-format
 msgid "failed to unmount %s"
 msgstr "zlyhalo pripojenie %s"
@@ -1421,7 +1418,7 @@ msgstr ""
 "Je to aktivovaný automaticky, takže nie je potrebné ho aktivovať.\n"
 "Je určený pre staršiu verziu GNOME (pred 2.22)."
 
-#: ../gnome-integration/src/applet-init.c:30
+#: ../gnome-integration/src/applet-init.c:31
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
 "environnement.\n"
@@ -1528,15 +1525,19 @@ msgstr ""
 "Ľavé tlačidlo na odhlásenie, stredné tlačidlo pre vypnutie\n"
 "Môžete prehadzovať poradie, ak chcete vypnúť ľavým kliknutím"
 
-#: ../logout/src/applet-notifications.c:119
+#: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 
-#: ../logout/src/applet-notifications.c:143
+#: ../logout/src/applet-notifications.c:150
+msgid "Lock screen"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:151
 msgid "Program an automatic shut-down"
 msgstr "Program na automatické vypnutie"
 
-#: ../logout/src/applet-notifications.c:173
+#: ../logout/src/applet-notifications.c:181
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Váš počítač bude vypnutý za jednu minútu."
 
@@ -1562,36 +1563,34 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:346
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr ""
-"Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
+msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
 #: ../mail/src/cd-mail-applet-config.c:401
 msgid "Remove Account"
 msgstr "Odstrániť účet"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:230 ../wifi/src/applet-draw.c:158
 msgid "unknown"
 msgstr "neznámy"
 
-#: ../mail/src/cd-mail-applet-etpan.c:233
+#: ../mail/src/cd-mail-applet-etpan.c:230
 msgid "no subject"
 msgstr "bez predmetu"
 
-#: ../mail/src/cd-mail-applet-etpan.c:379
+#: ../mail/src/cd-mail-applet-etpan.c:376
 msgid "No unread mail in your mailboxes"
 msgstr "Žiadna neprečítaná správa vo vašej schránke"
 
-#: ../mail/src/cd-mail-applet-etpan.c:401
+#: ../mail/src/cd-mail-applet-etpan.c:398
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Máte %d nových mailov :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:403
+#: ../mail/src/cd-mail-applet-etpan.c:400
 msgid "You have a new mail:"
 msgstr "Máte nový e-mail :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
-#: ../mail/src/cd-mail-applet-notifications.c:320
 msgid "mail"
 msgstr "pošta"
 
@@ -1630,6 +1629,11 @@ msgstr "Označiť všetku poštu ako prečítanú"
 #, c-format
 msgid "Launch %s"
 msgstr "Spustiť %s"
+
+#: ../mail/src/cd-mail-applet-notifications.c:320
+#, fuzzy
+msgid "Mail"
+msgstr "pošta"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1936,11 +1940,11 @@ msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
-"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri "
-"doku/deskletu."
+"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri doku/"
+"deskletu."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -1964,11 +1968,11 @@ msgstr ""
 "Stredné kliknutie zobrazí/skryje na ploche, desklety, Widget Layer, alebo "
 "súčasne všetky plochy."
 
-#: ../showDesktop/src/applet-notifications.c:74
+#: ../showDesktop/src/applet-notifications.c:76
 msgid "You need to run Compiz and activate its 'DBus' plug-in."
 msgstr "Musíte spustiť Compiz ak chcete aktivovať 'DBus' plug-in."
 
-#: ../showDesktop/src/applet-notifications.c:162
+#: ../showDesktop/src/applet-notifications.c:165
 msgid "Change screen resolution"
 msgstr "Zmeniť rozlíšenie obrazovky"
 
@@ -2185,8 +2189,8 @@ msgstr ""
 "Použiteľný opis\n"
 "a manuál"
 
-#: ../terminal/src/terminal-callbacks.c:83
-#: ../terminal/src/terminal-widget.c:354
+#: ../terminal/src/terminal-callbacks.c:82
+#: ../terminal/src/terminal-widget.c:352
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -2212,49 +2216,49 @@ msgstr ""
 "Ak chcete zatvoriť záložku: stlačte 'CTRL + w' alebo stredným-kliknutím na "
 "ňu."
 
-#: ../terminal/src/terminal-menu-functions.c:82
-#: ../terminal/src/terminal-widget.c:370
+#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-widget.c:368
 msgid "New Tab"
 msgstr "Nová karta"
 
-#: ../terminal/src/terminal-menu-functions.c:83
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Rename current Tab"
 msgstr "Odstrániť aktuálnu kartu"
 
-#: ../terminal/src/terminal-menu-functions.c:84
+#: ../terminal/src/terminal-menu-functions.c:82
 msgid "Close current Tab"
 msgstr "Zavrieť aktuálnu kartu"
 
-#: ../terminal/src/terminal-widget.c:45 ../terminal/data/messages:107
+#: ../terminal/src/terminal-widget.c:51 ../terminal/data/messages:107
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:145
+#: ../terminal/src/terminal-widget.c:149
 msgid "Set title for this tab:"
 msgstr "Nastaviť názov pre túto kartu :"
 
-#: ../terminal/src/terminal-widget.c:199
+#: ../terminal/src/terminal-widget.c:203
 msgid "Select a color"
 msgstr "Vyberte farbu"
 
-#: ../terminal/src/terminal-widget.c:314
+#: ../terminal/src/terminal-widget.c:312
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Môžete vrátiť späť v Termináli napísaním %s"
 
-#: ../terminal/src/terminal-widget.c:360
+#: ../terminal/src/terminal-widget.c:358
 msgid "Paste"
 msgstr "Vložiť"
 
-#: ../terminal/src/terminal-widget.c:376
+#: ../terminal/src/terminal-widget.c:374
 msgid "Rename this Tab"
 msgstr "Premenovať"
 
-#: ../terminal/src/terminal-widget.c:382
+#: ../terminal/src/terminal-widget.c:380
 msgid "Change this Tab's colour"
 msgstr "Zmeniť farbu kariet"
 
-#: ../terminal/src/terminal-widget.c:388
+#: ../terminal/src/terminal-widget.c:386
 msgid "Close this Tab"
 msgstr "Zatvoriť túto kartu"
 
@@ -2342,7 +2346,8 @@ msgstr ""
 "výsledkami."
 
 #: ../weather/src/applet-init.c:29
-msgid "Weather"
+#, fuzzy
+msgid "weather"
 msgstr "počasie"
 
 #: ../weather/src/applet-init.c:32
@@ -2532,7 +2537,7 @@ msgstr ""
 "Tento aplet vám ukáže silu signálu prvého aktívneho wifi pripojenia\n"
 "Ľavý klik zobrazí nejaké info, Stredný klik to ihneď prekontroluje."
 
-#: ../xfce-integration/src/applet-init.c:30
+#: ../xfce-integration/src/applet-init.c:32
 msgid ""
 "This applet provides functions for a better integration into a XFCE "
 "environnement.\n"
@@ -3986,8 +3991,7 @@ msgid "Background"
 msgstr "Pozadie"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr "Môžete mať viac atraktívnych prostredí pomocou dekorácie Deskletov"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -4044,8 +4048,7 @@ msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
 
 #: ../GMenu/data/messages:97
 msgid "Shortkey to show/hide the quick-launch dialog:"
-msgstr ""
-"Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
+msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
 
 #: ../GMenu/data/messages:101
 msgid "Command to use for configuring the menu:"
@@ -4512,7 +4515,7 @@ msgstr "Klávesová skratka na aktivovanie/deaktivovanie módu vyhľadávač :"
 msgid "Shortkey to enable/disable the navigation mode:"
 msgstr "Klávesová skratka na aktivovanie/deaktivovanie módu navigovania :"
 
-#: ../Scooby-Do/data/messages:7 ../mail/data/messages:109
+#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -5315,6 +5318,11 @@ msgstr "Názov obrázku pre ikonu 'expozícia' :"
 msgid "'Widget Layer' icon image name:"
 msgstr "Názov obrázku pre ikonu 'widget layer' :"
 
+#: ../dialog-rendering/data/messages:1
+#, fuzzy
+msgid "Comics"
+msgstr "komiks"
+
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
 #: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
@@ -5330,6 +5338,11 @@ msgstr "Šírka okraja :"
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
 msgid "Bubble's line colour:"
 msgstr "Farba ohraničenia bubliny :"
+
+#: ../dialog-rendering/data/messages:9
+#, fuzzy
+msgid "Modern"
+msgstr "moderný"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5348,12 +5361,18 @@ msgid "Colour of the plane :"
 msgstr "Farba roviny :"
 
 #: ../dialog-rendering/data/messages:29
-msgid "tooltip"
-msgstr "Bublinová nápoveda"
+#, fuzzy
+msgid "Tooltip"
+msgstr "panel s nápovedou"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
 msgstr "Farba okraja :"
+
+#: ../dialog-rendering/data/messages:39
+#, fuzzy
+msgid "Curly"
+msgstr "vlnitý"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -5481,7 +5500,8 @@ msgid "Path of the DropBox folder :"
 msgstr "Cesta do priečinka DropBox :"
 
 #: ../dock-rendering/data/messages:1
-msgid "Inclined Plane"
+#, fuzzy
+msgid "Inclinated Plane"
 msgstr "Naklonená rovina"
 
 #: ../dock-rendering/data/messages:3
@@ -5587,8 +5607,7 @@ msgid "Space between rows:"
 msgstr "Medzera medzi riadkami :"
 
 #: ../dock-rendering/data/messages:55
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 znamená úplne plochú vlnu, 1 znamená, že vlna je totožná s inými pohľadmi."
 
@@ -5804,29 +5823,36 @@ msgstr "Maximálna veľkosť povolená pre každý kôš :"
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr "Vypýtať si potvrdenie pred vyprázdnením koša ?"
 
-#: ../dustbin/data/messages:119
+#: ../dustbin/data/messages:119 ../switcher/data/messages:101
+msgid "Action on middle click :"
+msgstr "Akcia pri strednom kliknutí :"
+
+#: ../dustbin/data/messages:123
+msgid "Empty all dustbins"
+msgstr ""
+
+#: ../dustbin/data/messages:125
 msgid "Desktop-less support"
 msgstr "Uľahčenie podpory na ploche"
 
-#: ../dustbin/data/messages:121
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+#: ../dustbin/data/messages:127
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Ak priečinok Kôš nie je docku známy, môžete ho špecifikovať tu:"
 
-#: ../dustbin/data/messages:123
+#: ../dustbin/data/messages:129
 msgid "in seconds. only used if you can't monitor directories."
 msgstr "v sekundách. používať, len ak nemôžete sledovať adresáre."
 
-#: ../dustbin/data/messages:125
+#: ../dustbin/data/messages:131
 msgid "Time interval to check if dustbin is full/empty :"
 msgstr "Odstup času kontroly, či je kôš plný/prázdny :"
 
-#: ../dustbin/data/messages:127
+#: ../dustbin/data/messages:133
 msgid ""
 "Only use this if you notice that the applet can't display the trash on click."
 msgstr "Použiť iba, ak si všimnete, že applet nezobrazuje kôš pri kliknutí."
 
-#: ../dustbin/data/messages:129
+#: ../dustbin/data/messages:135
 msgid "Alternative file browser used to show a trash :"
 msgstr "Alternatívny prehliadač súborov použitý na prehliadku koša:"
 
@@ -5850,8 +5876,7 @@ msgid "Colours"
 msgstr "Farby"
 
 #: ../icon-effect/data/messages:87
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "Bude mierne meniť farby, takže možno budete potrebná úprava."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6058,6 +6083,13 @@ msgstr "Názov súboru pre obrázok \"nový mail\" :"
 msgid "Show new messages' content?"
 msgstr "Zobraziť obsah nových správ ?"
 
+#: ../mail/data/messages:109
+#, fuzzy
+msgid "Maximum number of mails that will be previewed."
+msgstr ""
+"Maximálny počet mailov, ktoré budú v ukážke. Dajte -1 zobrazí maximum "
+"možných."
+
 #: ../mail/data/messages:111
 msgid "Maximum of new messages shown?"
 msgstr "Maximum nových zobrazených správ ?"
@@ -6085,8 +6117,7 @@ msgid "Check mail account on startup?"
 msgstr "Skontrolovať poštový účet pri spustení ?"
 
 #: ../mail/data/messages:121
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Ak je začiarknuté, bude zobrazený počet mailov, aj keď nie je žiadny mail."
 
@@ -6139,10 +6170,8 @@ msgid "Blur amount:"
 msgstr "Sila rozmazania :"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
-msgstr ""
-"Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
+msgid "Leave it empty to display the name of the player currently controlled."
+msgstr "Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
 
 #: ../musicPlayer/data/messages:91
 msgid "Audio Player"
@@ -6552,6 +6581,11 @@ msgstr "v otočení za sekundu."
 msgid "Show mouse on:"
 msgstr "Zobraziť myš na :"
 
+#: ../show-mouse/data/messages:11
+#, fuzzy
+msgid "dock"
+msgstr "hodiny"
+
 #: ../show-mouse/data/messages:13
 msgid "desklet"
 msgstr "desklet"
@@ -6842,10 +6876,6 @@ msgstr "Vykresliť okná na ikone ?"
 msgid "Draw hidden windows?"
 msgstr "Vykresliť aj skryté okná ?"
 
-#: ../switcher/data/messages:101
-msgid "Action on middle click :"
-msgstr "Akcia pri strednom kliknutí :"
-
 #: ../switcher/data/messages:103
 msgid "Show windows' list"
 msgstr "Zobraziť zoznam okien"
@@ -7133,8 +7163,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Pozícia vodorového vysúvacieho panela v pixeloch"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "To vám umožní pravé-kliknutie na desklety pre vyskakovacie okno Cairo-Dock "
 "menu."
@@ -7150,8 +7179,7 @@ msgstr "Priehľadné pozadie ?"
 #: ../weblets/data/messages:111
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr ""
-"Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
+msgstr "Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
 
 #: ../weblets/data/messages:113
 msgid "Time between two page refreshes"
@@ -7221,6 +7249,9 @@ msgstr "Oznámenia o čistote signálu"
 #: ../wifi/data/messages:187
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"
+
+#~ msgid "tooltip"
+#~ msgstr "Bublinová nápoveda"
 
 #~ msgid "showDesklets"
 #~ msgstr "zobraziťDesklety"
