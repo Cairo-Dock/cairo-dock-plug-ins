@@ -24,6 +24,8 @@ if (NOT ${CMAKE_BUILD_TYPE})
 	add_definitions (-O3)
 endif()
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
+configure_file ("cmake_uninstall.cmake.in" "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake" IMMEDIATE @ONLY)
+add_custom_target (uninstall "${CMAKE_COMMAND}" -P "cmake_uninstall.cmake")
 
 ########### global variables ###############
 
