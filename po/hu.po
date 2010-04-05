@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-17 06:57+0000\n"
-"Last-Translator: Ulysses <Unknown>\n"
+"POT-Creation-Date: 2010-03-25 00:18+0000\n"
+"PO-Revision-Date: 2010-03-24 22:09+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-18 04:39+0000\n"
+"X-Launchpad-Export-Date: 2010-03-25 04:59+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -219,7 +220,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
@@ -829,7 +831,8 @@ msgstr "Jelzőrendszer"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr "Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
+msgstr ""
+"Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -1100,7 +1103,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1112,7 +1116,8 @@ msgstr ""
 "A CTRL+v megnyomásával illesztheti be az URL-címét."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1565,9 +1570,8 @@ msgid "Launch %s"
 msgstr "%s indítása"
 
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "Mail"
-msgstr "levél"
+msgstr "Levél"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1835,8 +1839,8 @@ msgstr "Egér mutatása"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2184,7 +2188,6 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-init.c:29
-#, fuzzy
 msgid "weather"
 msgstr "időjárás"
 
@@ -3790,7 +3793,8 @@ msgid "Background"
 msgstr "Háttér"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -5122,9 +5126,8 @@ msgid "Colour of the margin :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:39
-#, fuzzy
 msgid "Curly"
-msgstr "Görbe"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -5349,7 +5352,8 @@ msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5569,7 +5573,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
@@ -5609,7 +5614,8 @@ msgid "Colours"
 msgstr "Színek"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5841,7 +5847,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5889,7 +5896,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6293,9 +6301,8 @@ msgid "Show mouse on:"
 msgstr ""
 
 #: ../show-mouse/data/messages:11
-#, fuzzy
 msgid "dock"
-msgstr "óra"
+msgstr ""
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -6857,7 +6864,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6946,8 +6954,7 @@ msgstr ""
 #~ "This applet is a RSS feed reader\n"
 #~ "(you can add as many instances you want)\n"
 #~ " USAGE:\n"
-#~ "  - Left-clic : Display the feed lines in a dialog (optional in "
-#~ "desklet).\n"
+#~ "  - Left-clic : Display the feed lines in a dialog (optional in desklet).\n"
 #~ "  - Middle-clic : Refresh the feed.\n"
 #~ "  - Add/Modify the RSS feed to display with either Drag'n Drop\n"
 #~ "    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
@@ -6961,27 +6968,26 @@ msgstr ""
 #~ "  - Bal kattintásra megjeleníti a hírvonalakat egy párbeszédablakban "
 #~ "(opcionálisan deskletként).\n"
 #~ "  - Középső kattintásra frissíti a híreket.\n"
-#~ "  - Adja hozzá/módosítsa a megjelenítendő hírforráshoz tartozó érvényes "
-#~ "URL-címet\n"
+#~ "  - Adja hozzá/módosítsa a megjelenítendő hírforráshoz tartozó érvényes URL-"
+#~ "címet\n"
 #~ "    az \"Új hírforrás URL-címének beillesztése\" menüponttal\n"
 #~ "    vagy a Beállító Panellel.\n"
 #~ "  - Használja a \"Megnyitás webböngészővel\" menüpontot\n"
 #~ "   a hírforrás megnyitásához webböngészőben."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "A Gnome-Do-like beépülő modul lehetővé teszi a dokk irányítását "
@@ -6992,14 +6998,13 @@ msgstr ""
 #~ "  vagy gépelje be egy indító nevét és nyomja meg a Tab billentyűt a "
 #~ "következő megfelelő indítóra ugráshoz\n"
 #~ "  nyomja meg az Enter billentyűt az ikonon kattintáshoz, Shift+Enter "
-#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső "
-#~ "gombbal kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal "
-#~ "kattintáshoz\n"
-#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás "
-#~ "egy részét,\n"
-#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, "
-#~ "nyomja meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy "
-#~ "SHIFT billentyűk egyikét az eredmény megtartásához.\n"
+#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső gombbal "
+#~ "kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal kattintáshoz\n"
+#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás egy "
+#~ "részét,\n"
+#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, nyomja "
+#~ "meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy SHIFT "
+#~ "billentyűk egyikét az eredmény megtartásához.\n"
 #~ "Használja az Escape-et vagy más hasonló gyorsbillentyűt a visszavonáshoz."
 
 #~ msgid "Free"
@@ -7021,12 +7026,10 @@ msgstr ""
 #~ "Hírolvasó kisalkalmazás (RSS/Atom).\n"
 #~ "Több példányt is létrehozhat belőle.\n"
 #~ "Használat:\n"
-#~ " - Bal kattintásra megjeleníti a teljes hírvonalat egy "
-#~ "párbeszédablakban.\n"
+#~ " - Bal kattintásra megjeleníti a teljes hírvonalat egy párbeszédablakban.\n"
 #~ " - Középső kattintásra frissíti a hírforrásokat.\n"
 #~ " - Új hírforrás felvételéhez húzzon egy érvényes URL-címet az ikonra,\n"
-#~ "    vagy használja az \"Új hírforrás URL-címének beillesztése\" "
-#~ "menüpontot.\n"
+#~ "    vagy használja az \"Új hírforrás URL-címének beillesztése\" menüpontot.\n"
 #~ "    vagy szerkessze a beállítópanelt."
 
 #~ msgid "showDesklets"
@@ -7043,5 +7046,5 @@ msgstr ""
 #~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
 #~ msgstr ""
 #~ "- Mit csinálunk ma este Cortex?\n"
-#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a "
-#~ "dokk felett!"
+#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a dokk "
+#~ "felett!"

@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-14 15:44+0000\n"
+"POT-Creation-Date: 2010-03-25 00:18+0000\n"
+"PO-Revision-Date: 2010-03-24 22:47+0000\n"
 "Last-Translator: Yannis Kaskamanidis <ttnfy17@yahoo.gr>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-15 04:52+0000\n"
+"X-Launchpad-Export-Date: 2010-03-25 04:59+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -206,7 +207,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:503
@@ -1030,7 +1032,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1040,7 +1043,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1727,8 +1731,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3676,7 +3680,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -5234,7 +5239,8 @@ msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5454,7 +5460,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
@@ -5494,7 +5501,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5726,7 +5734,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5774,7 +5783,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6741,7 +6751,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6827,8 +6838,8 @@ msgstr ""
 #~ "Add a lively Penguin in your dock!\n"
 #~ "Left click to change the animation,\n"
 #~ "Middle-click to annoy him ^_^\n"
-#~ "Tux images are taken from Pingus, some other characters are available or "
-#~ "can be added easily."
+#~ "Tux images are taken from Pingus, some other characters are available or can "
+#~ "be added easily."
 #~ msgstr ""
 #~ "Προσθέστε έναν ζωηρό πιγκουίνο στο dock σας!\n"
 #~ "Αριστερό κλικ για αλλαγή της κινούμενης απεικόνισης.\n"

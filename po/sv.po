@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-20 15:16+0000\n"
+"POT-Creation-Date: 2010-03-25 00:18+0000\n"
+"PO-Revision-Date: 2010-03-25 01:16+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-21 04:47+0000\n"
+"X-Launchpad-Export-Date: 2010-03-26 04:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: sv\n"
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
@@ -221,7 +223,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -1064,7 +1067,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1074,7 +1078,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1266,9 +1271,8 @@ msgid "Delete All"
 msgstr "Ta bort alla"
 
 #: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
-#, fuzzy
 msgid "Display dustbins information"
-msgstr "Visa text för alla ikoner?"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:106
 #, c-format
@@ -1498,9 +1502,8 @@ msgid "Launch %s"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "Mail"
-msgstr "Sådär"
+msgstr ""
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1774,8 +1777,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3732,7 +3735,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -5051,9 +5055,8 @@ msgid "Bubble's line colour:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:9
-#, fuzzy
 msgid "Modern"
-msgstr "Inställningar"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5080,9 +5083,8 @@ msgid "Colour of the margin :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:39
-#, fuzzy
 msgid "Curly"
-msgstr "Kurva"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -5210,7 +5212,6 @@ msgid "Path of the DropBox folder :"
 msgstr ""
 
 #: ../dock-rendering/data/messages:1
-#, fuzzy
 msgid "Inclinated Plane"
 msgstr "Sluttande plan"
 
@@ -5314,7 +5315,8 @@ msgid "Space between rows:"
 msgstr "Avstånd mellan rader:"
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -5540,7 +5542,8 @@ msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
@@ -5580,7 +5583,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5812,7 +5816,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5860,7 +5865,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6266,9 +6272,8 @@ msgid "Show mouse on:"
 msgstr ""
 
 #: ../show-mouse/data/messages:11
-#, fuzzy
 msgid "dock"
-msgstr "Doncky"
+msgstr ""
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -6846,7 +6851,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6963,8 +6969,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -7039,8 +7045,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "höjd:"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -7205,11 +7211,11 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Choose a decoration for the desklet mode :"
 #~ msgstr "Välj dekoration för deskletläge:"

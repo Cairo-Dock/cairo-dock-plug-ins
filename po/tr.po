@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-21 08:42+0000\n"
-"Last-Translator: aktash <aktash@live.com>\n"
+"POT-Creation-Date: 2010-03-25 00:18+0000\n"
+"PO-Revision-Date: 2010-04-01 21:07+0000\n"
+"Last-Translator: ubuntuki <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-22 04:50+0000\n"
+"X-Launchpad-Export-Date: 2010-04-02 03:46+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -204,7 +205,8 @@ msgstr "Kip eklendi, fakat başlatılamadı."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "'%s' ugulamacığı başarıyla güncellendi ve otomatik olarak yeniden yüklendi."
 
@@ -221,7 +223,7 @@ msgstr "gün(ler)"
 
 #: ../Doncky/src/applet-init.c:37
 msgid "Doncky"
-msgstr ""
+msgstr "Doncky"
 
 #: ../Doncky/src/applet-init.c:40
 msgid ""
@@ -252,6 +254,12 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
+"Genel Uygulamalar menüsünü ve Son kullanılan dosyaları gösterir.\n"
+"Herhangi XDG uyumlu menü ile uyumludur (Gnome, XFCE, KDE, ...)\n"
+"Herhangi bir komutu kolayca başlatmak üzere iletişim kutusunu açmak için "
+"orta-tuşa tıklayın (bunun için bir kısayol tuşu atayabilirsiniz, ALT+F2 "
+"gibi)\n"
+"Ayrıca açılır menü için de kısayol tuşu atayabilirsiniz (ALT+F1 gibi)"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
@@ -397,12 +405,18 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
+"Bu uygulamacık ağ bağlantı(ları)nızı göstermeye yarar.\n"
+"İndirme/yükleme hızlarını ve wifi sinyal kalitesini de gösterebilir.\n"
+"Eğer ağ- yöneticiniz çalışıyorsa, size mevcut wifi ağını seçmenize de olanak "
+"sağlar.\n"
+"Açılır pencereye bazı bilgiler için sol-tıklayın, net net ve wifi hızlarını "
+"birlikte göstermek için simge üzerine sürükleyin."
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
 #: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:58
@@ -494,7 +508,7 @@ msgstr "Web tarayıcınız ile açınız"
 
 #: ../RSSreader/src/applet-rss.c:390
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr ""
+msgstr "Uyarı: son deneyişimizde veriye ulaşılamadı."
 
 #: ../RSSreader/src/applet-rss.c:425
 msgid "No URL is defined."
@@ -506,7 +520,7 @@ msgstr "Veri yok (bağlantı yok ?)"
 
 #: ../RSSreader/src/applet-rss.c:444 ../RSSreader/src/applet-rss.c:464
 msgid "Invalid data (invalid RSS/Atom feed?)"
-msgstr ""
+msgstr "Geçersiz veri (geçersiz RSS/Atom beslemesi?)"
 
 #: ../RSSreader/src/applet-rss.c:516
 msgid "No data"
@@ -526,6 +540,9 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
+"Hiçbir URL belirlenmedi\n"
+"URL'yi panoya kopyalayarak ve menüden \"URL'yi yapıştır\"ı\n"
+" seçerek bir tane belirleyebilirsiniz,"
 
 #: ../RSSreader/src/applet-rss.c:736
 msgid ""
@@ -533,6 +550,9 @@ msgid ""
 "Did you set a valid RSS feed?\n"
 "Is your connection alive?"
 msgstr ""
+"Veri yok\n"
+"Geçerli bir RSS beslemesi ayarladınız mı?\n"
+"Bağlantınız sağlam mı?"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -623,7 +643,7 @@ msgstr "İnternette ara"
 
 #: ../Scooby-Do/src/applet-backend-web.c:142
 msgid "Mediadico"
-msgstr ""
+msgstr "Mediadico"
 
 #: ../Scooby-Do/src/applet-backend-web.c:150
 msgid "Amazon"
@@ -721,6 +741,13 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
+"Bu uygulamacık size CPU yükü, RAM kullanımı, grafik kartları sıcaklığı, vb "
+"gösterir.\n"
+"Bazı önemli bilgileri almak için simgeye orta tuşla tıklayın.\n"
+"En çok kaynak kullanan programların bir listesini almak için simgeye sol "
+"tıklayın.\n"
+"Bu uygulamacığı her seferinde farklı değerler göstermesi için birçok kez "
+"yineleyebilirsiniz."
 
 #: ../System-Monitor/src/applet-notifications.c:43
 #: ../System-Monitor/src/applet-notifications.c:93
@@ -783,7 +810,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:85
 msgid "Buffers"
-msgstr ""
+msgstr "Arabellekler"
 
 #: ../System-Monitor/src/applet-notifications.c:115
 #: ../netspeed/src/applet-notifications.c:71
@@ -806,7 +833,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
-msgstr ""
+msgstr "Gama ayarla:"
 
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
@@ -871,7 +898,7 @@ msgstr "Sesi ayarla :"
 
 #: ../alsaMixer/src/applet-notifications.c:56
 msgid "Adjust channels"
-msgstr ""
+msgstr "Kanalları ayarla"
 
 #: ../clock/src/applet-config.c:474 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
@@ -935,6 +962,8 @@ msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
+"Compiz'i yapılandırmak için CCSM'yi kurmanız gerekir.\n"
+" paket yöneticinizden (Synaptic, YasT, vb)"
 
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Reload Emerald"
@@ -986,7 +1015,7 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
-msgstr ""
+msgstr "yenilikçi"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:117
@@ -1034,7 +1063,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1044,8 +1074,11 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
+"Yeni bir tanesini başlatmadan önce lütfen mevcut veri yüklemenin bitmesini "
+"bekleyin."
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -1070,6 +1103,8 @@ msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
+"Metin panoya yapıştırılmış.\n"
+"Onu CTRL+v ile geri alabilirsiniz."
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
@@ -1080,6 +1115,8 @@ msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
+"URL panoda kayıt altına alınmış.\n"
+"Onu herhangi bir yere yapıştırmak için sadece 'CTRL+v'."
 
 #: ../dnd2share/src/applet-notifications.c:113
 msgid ""
@@ -1101,6 +1138,8 @@ msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
+"Mevcut URL panoda kayıt altına alınmış.\n"
+"Onu herhangi bir yere yapıştırmak için sadece 'CTRL+v'."
 
 #: ../dnd2share/src/applet-notifications.c:132
 msgid ""
@@ -1111,7 +1150,7 @@ msgstr ""
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:143
 msgid "Text"
-msgstr ""
+msgstr "Metin"
 
 #: ../dnd2share/src/applet-notifications.c:378
 msgid "File"
@@ -1190,7 +1229,7 @@ msgstr "hesaplanıyor"
 
 #: ../dustbin/src/applet-draw.c:165
 msgid " trashe(s)"
-msgstr ""
+msgstr " çöp(ler)"
 
 #: ../dustbin/src/applet-draw.c:169
 msgid " file(s)"
@@ -1239,7 +1278,7 @@ msgstr "Tümünü Sil"
 
 #: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
 msgid "Display dustbins information"
-msgstr ""
+msgstr "Çöp kovası bilgisini göster"
 
 #: ../dustbin/src/applet-notifications.c:106
 #, c-format
@@ -1330,7 +1369,7 @@ msgstr ""
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
-msgstr ""
+msgstr "yanılsama"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
@@ -1371,11 +1410,11 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
-msgstr ""
+msgstr "Kaç dakika içinde PC'nzin duracağını seçin:"
 
 #: ../logout/src/applet-notifications.c:150
 msgid "Lock screen"
-msgstr ""
+msgstr "Ekranı kilitle"
 
 #: ../logout/src/applet-notifications.c:151
 msgid "Program an automatic shut-down"
@@ -1466,12 +1505,11 @@ msgstr "Tüm postaları okundu olarak işaretle"
 #: ../mail/src/cd-mail-applet-notifications.c:145
 #, c-format
 msgid "Launch %s"
-msgstr ""
+msgstr "%s başlat"
 
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "Mail"
-msgstr "e-posta"
+msgstr "Posta"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -1511,7 +1549,7 @@ msgstr "Başlık"
 
 #: ../musicPlayer/src/applet-draw.c:327
 msgid "Length"
-msgstr ""
+msgstr "Uzunluk"
 
 #: ../musicPlayer/src/applet-draw.c:329
 msgid "Track n°"
@@ -1567,7 +1605,7 @@ msgstr "Durdur"
 
 #: ../musicPlayer/src/applet-notifications.c:174
 msgid "Show JumpBox"
-msgstr ""
+msgstr "JumpBox Göster"
 
 #: ../musicPlayer/src/applet-notifications.c:176
 msgid "Toggle Shuffle"
@@ -1583,7 +1621,7 @@ msgstr "Bu şarkıyı derecelendir"
 
 #: ../musicPlayer/src/applet-notifications.c:182
 msgid "Information"
-msgstr ""
+msgstr "Bilgi"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -1615,7 +1653,7 @@ msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:73
 msgid "Re-check interface"
-msgstr ""
+msgstr "Arayüzü tekrar-kontrol et"
 
 #: ../powermanager/src/powermanager-draw.c:173
 msgid ""
@@ -1737,8 +1775,8 @@ msgstr "fareyi göster"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2088,7 +2126,6 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-init.c:29
-#, fuzzy
 msgid "weather"
 msgstr "hava"
 
@@ -3691,7 +3728,8 @@ msgid "Background"
 msgstr "Arkaplan"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -4995,7 +5033,6 @@ msgid "Bubble's line colour:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:9
-#, fuzzy
 msgid "Modern"
 msgstr "çağdaş"
 
@@ -5250,7 +5287,8 @@ msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5470,7 +5508,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
@@ -5510,7 +5549,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -5742,7 +5782,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -5790,7 +5831,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6194,9 +6236,8 @@ msgid "Show mouse on:"
 msgstr ""
 
 #: ../show-mouse/data/messages:11
-#, fuzzy
 msgid "dock"
-msgstr "saat"
+msgstr ""
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -6758,7 +6799,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -6844,8 +6886,8 @@ msgstr ""
 #~ "Add a lively Penguin in your dock!\n"
 #~ "Left click to change the animation,\n"
 #~ "Middle-click to annoy him ^_^\n"
-#~ "Tux images are taken from Pingus, some other characters are available or "
-#~ "can be added easily."
+#~ "Tux images are taken from Pingus, some other characters are available or can "
+#~ "be added easily."
 #~ msgstr ""
 #~ "Dock'unuz için hareketli bir penguen ekleyin !\n"
 #~ "Animasyonları değiştirmek için sol tıkla\n"

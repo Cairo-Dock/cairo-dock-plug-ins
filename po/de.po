@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-23 10:27+0000\n"
+"POT-Creation-Date: 2010-03-25 00:18+0000\n"
+"PO-Revision-Date: 2010-03-25 01:46+0000\n"
 "Last-Translator: MixCool <lars.thoms@mixcool.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-24 04:58+0000\n"
+"X-Launchpad-Export-Date: 2010-03-26 04:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -221,7 +222,8 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:503
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -1133,7 +1135,8 @@ msgstr ""
 "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
 "Internetverbindung aktiv ist."
@@ -1147,7 +1150,8 @@ msgstr ""
 "Drücken Sie Strg+v um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
@@ -1544,7 +1548,8 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:125
 msgid "Choose in how many minutes your PC will stop:"
-msgstr "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
+msgstr ""
+"Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
 
 #: ../logout/src/applet-notifications.c:150
 msgid "Lock screen"
@@ -1651,7 +1656,6 @@ msgid "Launch %s"
 msgstr "Lade %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:320
-#, fuzzy
 msgid "Mail"
 msgstr "E-Mail"
 
@@ -1871,7 +1875,8 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+msgstr ""
+"Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -1963,8 +1968,8 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2336,7 +2341,6 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-init.c:29
-#, fuzzy
 msgid "weather"
 msgstr "Wetter"
 
@@ -3957,7 +3961,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:173
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:175
@@ -5241,9 +5246,8 @@ msgid "'Widget Layer' icon image name:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:1
-#, fuzzy
 msgid "Comics"
-msgstr "Comics"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
@@ -5262,9 +5266,8 @@ msgid "Bubble's line colour:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:9
-#, fuzzy
 msgid "Modern"
-msgstr "modern"
+msgstr "Modern"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -5283,16 +5286,14 @@ msgid "Colour of the plane :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:29
-#, fuzzy
 msgid "Tooltip"
-msgstr "tooltip"
+msgstr ""
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:39
-#, fuzzy
 msgid "Curly"
 msgstr "gewellt"
 
@@ -5519,7 +5520,8 @@ msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:55
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:59
@@ -5739,7 +5741,8 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier angeben:"
 
@@ -5780,7 +5783,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6012,7 +6016,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:121
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -6060,7 +6065,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6464,9 +6470,8 @@ msgid "Show mouse on:"
 msgstr ""
 
 #: ../show-mouse/data/messages:11
-#, fuzzy
 msgid "dock"
-msgstr "Uhr"
+msgstr ""
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -7028,7 +7033,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7110,15 +7116,12 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "tooltip"
-#~ msgstr "Tooltip"
-
 #~ msgid "Failed to connect..."
 #~ msgstr "Verbindung fehlgeschlagen..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
 #~ "Füge eine gültige RSS-Feed URL nach dem Drag'n drop-Prinzip hinzu oder "
 #~ "benutze den Menüpunkt \"Einfügen einer neuen RSS URL\"."
@@ -7130,8 +7133,7 @@ msgstr ""
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
-#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen "
-#~ "ab.\n"
+#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen ab.\n"
 #~ "Linke Maustaste für weitere Informationen, mittlere Maustaste zum "
 #~ "aktualisieren."
 
@@ -7147,46 +7149,46 @@ msgstr ""
 #~ msgid "Free"
 #~ msgstr "Frei"
 
+#~ msgid "tooltip"
+#~ msgstr "Tooltip"
+
 #~ msgid "showDesklets"
 #~ msgstr "Zeige Desklets"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der "
-#~ "Tastatur gesteuert werden kann.\n"
-#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel "
-#~ "ausgelöst.\n"
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
+#~ "gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
 #~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
 #~ "Unterdocks navigiert werden.\n"
 #~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
 #~ "passenden zu springen.\n"
-#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt"
-#~ "+Enter für Klick mit der mittleren Maustaste sowie STRG+Enter zum "
-#~ "Linksklick.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
+#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
 #~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
 #~ "Rechnung zu starten\n"
-#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke "
-#~ "Enter zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die "
-#~ "Ergebnisse beizubehalten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
+#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
+#~ "beizubehalten\n"
 #~ "Escape zum Abbrechen"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
 #~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
 #~ msgstr ""
-#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden "
-#~ "Tag, Pinky: Wir versuchen, das Dock an uns zu reißen!"
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
+#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
