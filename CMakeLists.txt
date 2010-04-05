@@ -253,7 +253,7 @@ endif()
 
 ############# KEYBOARD_INDICATOR #################
 pkg_check_modules (KEYBOARD_INDICATOR_PACKAGE libxklavier)
-if ("${KEYBOARD_INDICATOR_FOUND}" STREQUAL "")
+if ("${KEYBOARD_INDICATOR_PACKAGE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libxklavier; Cairo-Dock won't be built with keyboard-indicator applet.")
 else()
 	set (GETTEXT_KEYBOARD_INDICATOR ${GETTEXT_PLUGINS})
@@ -437,7 +437,7 @@ add_subdirectory (systray)
 
 ############# TERMINAL #################
 pkg_check_modules (TERMINAL_PACKAGE vte)
-if ("${TERMINAL_FOUND}" STREQUAL "")
+if ("${TERMINAL_PACKAGE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libvte; Cairo-Dock won't be built with terminal applet.")
 else()
 	set (GETTEXT_TERMINAL ${GETTEXT_PLUGINS})
