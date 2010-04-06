@@ -296,6 +296,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
  */
 void cd_musicplayer_popup_info (void)
 {
+	g_timeout_source_new (250); // seems that it can take some time
 	cairo_dock_remove_dialog_if_any (myIcon);
 	if ((!myData.cArtist || !myData.cAlbum) && myData.cPlayingUri)
 	{
