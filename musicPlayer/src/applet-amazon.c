@@ -241,10 +241,10 @@ static gchar *_compute_request_and_signature (const gchar *cKeyWords, gchar **cS
 	localtime_r (&t, &currentTime);
 	gchar cTimeStamp[50+1];
 	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
-	//g_print ("timestamp : %s\n", cTimeStamp);
+	//cd_debug ("timestamp : %s\n", cTimeStamp);
 	
 	gchar *keywords = _url_encode(cKeyWords);
-	g_print ("keywords : '%s'\n", keywords);
+	cd_debug ("keywords : '%s'\n", keywords);
 	gchar *time = _url_encode (cTimeStamp);
 	gchar *cRequest = g_strdup_printf (REQUEST, LICENCE_KEY, keywords, time);
 	g_free (keywords);  // plante avec (Renan Luce, On N'Est Pas À Une Bêtise Près)
@@ -317,7 +317,7 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 		cKeyWords = s->str;
 		g_string_free (s, FALSE);*/
 	}
-	g_print ("cKeyWords : '%s'\n", cKeyWords);
+	cd_debug ("cKeyWords : '%s'\n", cKeyWords);
 	return cKeyWords;
 }
 
@@ -330,7 +330,7 @@ static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar
 	gchar *cRequest = _compute_request_and_signature (cKeyWords, &cSignature);
 	
 	gchar *cUrl = g_strdup_printf ("%s?%s&Signature=%s", BASE_URL, cRequest, _url_encode (cSignature));
-	g_print ("==> URL : %s\n", cUrl);
+	cd_debug ("==> URL : %s\n", cUrl);
 	
 	g_free (cKeyWords);
 	g_free (cSignature);
@@ -374,7 +374,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 	g_return_val_if_fail (cContent != NULL, NULL);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	//g_print ("cover size : %d\n", iWidth);
+	//cd_debug ("cover size : %d\n", iWidth);
 	const gchar *cImageSize = (iWidth > 1 && iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
 	gchar *str = g_strstr_len (cContent, -1, cImageSize);
 	gchar *cResult = NULL;
@@ -401,7 +401,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 			if (str2)
 			{
 				*artist = g_strndup (str, str2 - str);
-				g_print ("artist <- %s\n", *artist);
+				cd_debug ("artist <- %s\n", *artist);
 			}
 		}
 	}
@@ -415,7 +415,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 			if (str2)
 			{
 				*album = g_strndup (str, str2 - str);
-				g_print ("album <- %s\n", *album);
+				cd_debug ("album <- %s\n", *album);
 			}
 		}
 	}
@@ -435,7 +435,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 					if (str)
 					{
 						*album = g_strndup (cTitle, str - cTitle);
-						g_print ("album <- %s\n", *album);
+						cd_debug ("album <- %s\n", *album);
 						if (title != NULL && *title == NULL)
 							*title = g_strndup (str+1, str2 - str - 1);
 						g_free (cTitle);
@@ -445,7 +445,7 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 				if (album != NULL && *album == NULL)
 				{
 					*album = cTitle;
-					g_print ("album <- %s\n", *album);
+					cd_debug ("album <- %s\n", *album);
 				}
 				else
 					g_free (cTitle);

@@ -106,7 +106,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
 			cString = g_value_get_string(value);
 		cd_musicplayer_get_cover_path (cString, ! bGetAll);  // la 2eme fois on ne recupere que la couverture et donc on cherche aussi en cache.
-		g_print ("MP :  cCoverPath <- %s\n", myData.cCoverPath);
+		cd_debug ("MP :  cCoverPath <- %s\n", myData.cCoverPath);
 		
 		g_hash_table_destroy (data_list);
 	}
@@ -219,7 +219,7 @@ static void onElapsedChanged (DBusGProxy *player_proxy, int elapsed, gpointer da
 static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
 {
 	CD_APPLET_ENTER;
-	g_print ("\n%s (%s)\n\n",__func__,cImageURI);
+	cd_debug ("\n%s (%s)\n\n",__func__,cImageURI);
 	g_free (myData.cCoverPath);
 	myData.cCoverPath = g_strdup (cImageURI);
 	
@@ -377,7 +377,7 @@ void cd_rhythmbox_configure (void)
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de RB sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
-			g_print ("MP : RB is running");
+			cd_debug ("MP : RB is running");
 			_rhythmbox_getPlaying();
 			_rhythmbox_getPlayingUri();
 			cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all

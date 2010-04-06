@@ -38,7 +38,7 @@ static const gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "pl
 gboolean cd_musicplayer_draw_icon (gpointer data)
 {
 	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
-	//g_print ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
+	//cd_debug ("%s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	
 	CD_APPLET_ENTER;
 	gboolean bNeedRedraw = FALSE;
@@ -64,7 +64,7 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 			bNeedRedraw = TRUE;
 			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
 			{
-				g_print ("test du lecteur\n");
+				cd_debug ("test du lecteur\n");
 				cd_musicplayer_dbus_detect_player ();
 				if (myData.bIsRunning)
 					cd_musicplayer_set_surface (PLAYER_STOPPED);
@@ -125,7 +125,7 @@ gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
 gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s (%s)\n", __func__, myData.cCoverPath);
+	cd_debug ("%s (%s)\n", __func__, myData.cCoverPath);
 	if (g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("MP : la couverture '%s' est presente sur le disque", myData.cCoverPath);
@@ -135,7 +135,7 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
 			if (bCheckSize && myData.iCurrentFileSize <= 910 && myData.cMissingCover)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
 			{
-				g_print ("cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
+				cd_debug ("cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
 				g_remove (myData.cMissingCover);
 				g_free (myData.cMissingCover);
 				myData.cMissingCover = NULL;
@@ -176,7 +176,7 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 	myData.iNbCheckFile ++;
 	if (myData.iNbCheckFile > 5)  // on abandonne au bout de 5s.
 	{
-		g_print ("on abandonne la pochette\n");
+		cd_debug ("on abandonne la pochette\n");
 		g_remove (myData.cMissingCover);
 		g_free (myData.cMissingCover);
 		myData.cMissingCover = NULL;
@@ -254,7 +254,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		}
 		if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandeler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
 		{
-			g_print ("on reviendra dans 2s\n");
+			cd_debug ("on reviendra dans 2s\n");
 			myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
 		}
 		else if (myData.cCoverPath != NULL && ! myData.cover_exist && myConfig.bEnableCover)  // couverture connue mais pas encore chargee.
@@ -274,7 +274,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			}
 		}
 		
-		g_print ("cover_exist : %d\n", myData.cover_exist);
+		cd_debug ("cover_exist : %d\n", myData.cover_exist);
 		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
 		{
 			cd_musicplayer_set_surface (myData.iPlayingStatus);

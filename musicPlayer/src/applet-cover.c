@@ -86,11 +86,11 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	if (cGivenCoverPath != NULL)  // le lecteur nous donne une adresse, eventuellement distante.
 	{
 		const gchar *cString = cGivenCoverPath;
-		g_print ("MP : le lecteur nous a refile cette adresse : %s\n", cString);
+		cd_debug ("MP : le lecteur nous a refile cette adresse : %s\n", cString);
 		
 		if (strncmp(cString, "http://", 7) == 0)  // fichier distant, on decide de le telecharger nous-memes.
 		{
-			g_print ("MP : Le fichier est distant\n");
+			cd_debug ("MP : Le fichier est distant\n");
 			
 			if (myData.pCurrentHandeler->cCoverDir)
 			{
@@ -122,7 +122,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	}
 	else if (bHandleCover)  // le lecteur ne nous a rien file => on va etablir une adresse locale qu'on testera dans le update_icon.
 	{
-		g_print ("MP : Pas d'adresse de la part du lecteur ... on regarde si elle n'existe pas deja en local\n");
+		cd_debug ("MP : Pas d'adresse de la part du lecteur ... on regarde si elle n'existe pas deja en local\n");
 		gchar *cSongPath = (myData.cPlayingUri ? g_filename_from_uri (myData.cPlayingUri, NULL, NULL) : NULL);  // on teste d'abord dans le repertoire de la chanson.
 		if (cSongPath != NULL)  // c'est une chanson en local.
 		{
@@ -197,11 +197,11 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 		}
 	}
 	
-	g_print ("MP :  cCoverPath <- %s (%d)\n", myData.cCoverPath, bHandleCover);
+	cd_debug ("MP :  cCoverPath <- %s (%d)\n", myData.cCoverPath, bHandleCover);
 
 	if (myData.cCoverPath == NULL || cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))  // la couverture a change, son existence est incertaine et il faudra charger la surface/texture avec une transition. Sinon son existence ne change pas et il n'y a rien a faire.
 	{
-		g_print (" c'est une nouvelle couverture (%s -> %s)\n", myData.cPreviousCoverPath, myData.cCoverPath);
+		cd_debug (" c'est une nouvelle couverture (%s -> %s)\n", myData.cPreviousCoverPath, myData.cCoverPath);
 		myData.cover_exist = FALSE;
 	}
 }
@@ -216,7 +216,7 @@ static void _cd_download_missing_cover (const gchar *cURL)
 	if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
 		gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 2 -T 30 > /dev/null 2>&1", cURL, myData.cCoverPath);
-		g_print ("%s\n",cCommand);
+		cd_debug ("%s\n",cCommand);
 		cairo_dock_launch_command (cCommand);
 		g_free (cCommand);
 		g_free (myData.cMissingCover);
@@ -236,13 +236,13 @@ static gboolean _check_xml_file (gpointer data)
 		{
 			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
 			
-			g_print ("avant extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
+			cd_debug ("avant extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
 			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile, &myData.cArtist, &myData.cAlbum, &myData.cTitle);
-			g_print ("apres extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
-			g_print ("on s'apprete a telecharger la pochette : %s -> %s\n", cURL, myData.cCoverPath);
+			cd_debug ("apres extraction : %s / %s\n", myData.cArtist, myData.cAlbum);
+			cd_debug ("on s'apprete a telecharger la pochette : %s -> %s\n", cURL, myData.cCoverPath);
 			if (g_strstr_len (myData.cCoverPath, -1, "(null)") != NULL && myData.cArtist && myData.cAlbum)
 			{
-				g_print ("on corrige cCoverPath\n");
+				cd_debug ("on corrige cCoverPath\n");
 				g_free (myData.cCoverPath);
 				if (myData.pCurrentHandeler->cCoverDir)
 				{
@@ -276,7 +276,7 @@ static gboolean _check_xml_file (gpointer data)
 	myData.iNbCheckFile ++;
 	if (myData.iNbCheckFile > 12)  // on abandonne au bout de 3s.
 	{
-		g_print ("on abandonne le XML\n");
+		cd_debug ("on abandonne le XML\n");
 		g_remove (myData.cCurrentXmlFile);
 		g_free (myData.cCurrentXmlFile);
 		myData.cCurrentXmlFile = NULL;
@@ -290,7 +290,7 @@ static gboolean _check_xml_file (gpointer data)
 }
 void cd_musicplayer_dl_cover (void)
 {
-	g_print ("%s (%s, %s, %s)\n", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
+	cd_debug ("%s (%s, %s, %s)\n", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	// on oublie ce qu'on etait en train de recuperer.
 	g_free (myData.cCurrentXmlFile);
 	myData.cCurrentXmlFile = NULL;

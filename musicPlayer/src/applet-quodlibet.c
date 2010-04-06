@@ -61,7 +61,7 @@ tracknumber=1
 
 static inline void _extract_playing_status (gboolean status)
 {
-	g_print ("%s (%d)\n", __func__, status);
+	cd_debug ("%s (%d)\n", __func__, status);
 	
 	if (status)
 		myData.iPlayingStatus = PLAYER_PLAYING;
@@ -71,7 +71,7 @@ static inline void _extract_playing_status (gboolean status)
 
 static void _quodlibet_getPlaying (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GError *erreur = NULL;
 	gboolean status;
 	dbus_g_proxy_call (myData.dbus_proxy_player, "IsPlaying", &erreur,
@@ -110,7 +110,7 @@ gint64 cairo_dock_dbus_get_integer64 (DBusGProxy *pDbusProxy, const gchar *cAcce
 static void _quodlibet_get_time_elapsed (void)
 {
 	myData.iCurrentTime = cairo_dock_dbus_get_integer64 (myData.dbus_proxy_player, "GetPosition")/1000;
-	g_print ("MP : current_position <- %i\n", myData.iCurrentTime);
+	cd_debug ("MP : current_position <- %i\n", myData.iCurrentTime);
 }
 
 static inline void _extract_metadata (GHashTable *data_list)  // album, date, discnumber, discsubtitle, tracknumber, location, organization, labelid, producer, ~filename, ~#length, ~#bitrate, ~#track, ~#disc
@@ -122,7 +122,7 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 		myData.cArtist = g_strdup (value);
 	else
 		myData.cArtist = NULL;
-	g_print ("  MP : playing_artist <- '%s'\n", myData.cArtist);
+	cd_debug ("  MP : playing_artist <- '%s'\n", myData.cArtist);
 	
 	g_free (myData.cAlbum);
 	value = (const char *) g_hash_table_lookup (data_list, "album");
@@ -130,7 +130,7 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 		myData.cAlbum = g_strdup (value);
 	else
 		myData.cAlbum = NULL;
-	g_print ("  MP : playing_album <- '%s'\n", myData.cAlbum);
+	cd_debug ("  MP : playing_album <- '%s'\n", myData.cAlbum);
 	
 	g_free (myData.cTitle);
 	value = (const char *) g_hash_table_lookup (data_list, "title");
@@ -138,23 +138,23 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 		myData.cTitle = g_strdup (value);
 	else
 		myData.cTitle = NULL;
-	g_print ("  MP : playing_title <- '%s'\n", myData.cTitle);
+	cd_debug ("  MP : playing_title <- '%s'\n", myData.cTitle);
 	
 	value = (const char *) g_hash_table_lookup (data_list, "tracknumber");  // ~#track ?
-	g_print ("MP : tracknumber : '%s'\n", value);
+	cd_debug ("MP : tracknumber : '%s'\n", value);
 	if (value != NULL)
 		myData.iTrackNumber = atoll (value);
 	else
 		myData.iTrackNumber = 0;
-	g_print ("  MP : playing_track <- %d\n", myData.iTrackNumber);
+	cd_debug ("  MP : playing_track <- %d\n", myData.iTrackNumber);
 	
 	value = (const char *) g_hash_table_lookup (data_list, "~#length");
-	g_print ("MP : ~#length : '%s'\n", value);
+	cd_debug ("MP : ~#length : '%s'\n", value);
 	if (value != NULL) 
 		myData.iSongLength = atoll (value);
 	else 
 		myData.iSongLength = 0;
-	g_print ("  MP : playing_duration <- %d\n", myData.iSongLength);
+	cd_debug ("  MP : playing_duration <- %d\n", myData.iSongLength);
 	
 	g_free (myData.cPlayingUri);
 	value = (const char *) g_hash_table_lookup (data_list, "~filename");   // location ?
@@ -162,7 +162,7 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 		myData.cPlayingUri = g_strdup (value);
 	else
 		myData.cPlayingUri = NULL;
-	g_print ("  cUri <- %s\n", myData.cPlayingUri);
+	cd_debug ("  cUri <- %s\n", myData.cPlayingUri);
 	
 	cd_musicplayer_get_cover_path (NULL, TRUE);
 }
@@ -210,7 +210,7 @@ void cd_quodlibet_getSongInfos (void)
 static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()\n", __func__);
 	
 	if (metadata != NULL)
 	{
@@ -244,7 +244,7 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()\n", __func__);
 	myData.bIsRunning = TRUE;
 	
 	myData.iPlayingStatus = PLAYER_PAUSED;
@@ -271,7 +271,7 @@ static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
 static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpaused
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()\n", __func__);
 	myData.bIsRunning = TRUE;
 	
 	myData.iPlayingStatus = PLAYER_PLAYING;
@@ -410,7 +410,7 @@ static void cd_quodlibet_configure (void)
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de QL sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
-			g_print ("MP : QL is running\n");
+			cd_debug ("MP : QL is running\n");
 			_quodlibet_getPlaying ();
 			cd_quodlibet_getSongInfos ();
 			cd_musicplayer_update_icon (TRUE);

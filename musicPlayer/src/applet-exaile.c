@@ -67,7 +67,7 @@ static void cd_exaile_getSongInfos(void)
 	gint uValue;	
 	
 	gchar *cQuery = cairo_dock_dbus_get_string (myData.dbus_proxy_player, "query");
-	g_print ("MP : query : %s\n", cQuery);  // status: playing self: Jiken artist: Yoshihisa Hirano, Hideki Taniuchi album: Death Note Original Soundtrack length: 2:49 position: %4 [0:07]
+	cd_debug ("MP : query : %s\n", cQuery);  // status: playing self: Jiken artist: Yoshihisa Hirano, Hideki Taniuchi album: Death Note Original Soundtrack length: 2:49 position: %4 [0:07]
 	if (cQuery == NULL)
 	{
 		myData.iPlayingStatus = PLAYER_STOPPED;
@@ -95,10 +95,10 @@ static void cd_exaile_getSongInfos(void)
 		myData.iPlayingStatus = PLAYER_PAUSED;
 	else
 		myData.iPlayingStatus = PLAYER_STOPPED;
-	g_print ("  iPlayingStatus <- %d\n", myData.iPlayingStatus);
+	cd_debug ("  iPlayingStatus <- %d\n", myData.iPlayingStatus);
 	if (myData.iPlayingStatus != PLAYER_PLAYING)
 	{
-		g_print ("exaile ne joue rien, on quitte\n");
+		cd_debug ("exaile ne joue rien, on quitte\n");
 		g_free (cQuery);
 		return ;
 	}
@@ -110,33 +110,33 @@ static void cd_exaile_getSongInfos(void)
 	g_return_if_fail (str2 != NULL);
 	g_free (myData.cTitle);
 	myData.cTitle = g_strndup (str, str2 - str);
-	g_print ("  cTitle <- %s\n", myData.cTitle);
+	cd_debug ("  cTitle <- %s\n", myData.cTitle);
 	
 	str = str2 + 8;
 	str2 = g_strstr_len (str, -1, "album:");
 	g_return_if_fail (str2 != NULL);
 	g_free (myData.cArtist);
 	myData.cArtist = g_strndup (str, str2 - str);
-	g_print ("  cArtist <- %s\n", myData.cArtist);
+	cd_debug ("  cArtist <- %s\n", myData.cArtist);
 	
 	str = str2 + 7;
 	str2 = g_strstr_len (str, -1, "length:");
 	g_return_if_fail (str2 != NULL);
 	g_free (myData.cAlbum);
 	myData.cAlbum = g_strndup (str, str2 - str);
-	g_print ("  cAlbum <- %s\n", myData.cAlbum);
+	cd_debug ("  cAlbum <- %s\n", myData.cAlbum);
 	
 	str = str2 + 8;
 	str2 = g_strstr_len (str, -1, "position:");
 	g_return_if_fail (str2 != NULL);
 	myData.iSongLength = _get_time_from_string (str);
-	g_print ("  iSongLength <- %d\n", myData.iSongLength);
+	cd_debug ("  iSongLength <- %d\n", myData.iSongLength);
 	
 	str = str2 + 10;
 	str = strchr (str, '[');
 	g_return_if_fail (str != NULL);
 	myData.iCurrentTime = _get_time_from_string (str+1);
-	g_print ("  iCurrentTime <- %d\n", myData.iCurrentTime);
+	cd_debug ("  iCurrentTime <- %d\n", myData.iCurrentTime);
 	
 	g_free (cQuery);
 	
@@ -154,9 +154,9 @@ static void cd_exaile_getCoverPath (void)
 		cCoverPath = NULL;
 	}
 	if (cCoverPath != NULL)
-		g_print ("MP : Couverture de exaile : %s\n", cCoverPath);  /// gerer le cas "nocover.jpg" ...
+		cd_debug ("MP : Couverture de exaile : %s\n", cCoverPath);  /// gerer le cas "nocover.jpg" ...
 	else
-		g_print ("MP : Pas de couverture chez exaile\n");
+		cd_debug ("MP : Pas de couverture chez exaile\n");
 	cd_musicplayer_get_cover_path (cCoverPath, TRUE);
 	g_free (cCoverPath);
 }
@@ -232,7 +232,7 @@ static void cd_exaile_read_data (void)
 	
 	if (myData.bIsRunning)
 	{
-		g_print ("Exaile is running\n");
+		cd_debug ("Exaile is running\n");
 		cd_exaile_getSongInfos ();
 		if (myData.iPlayingStatus == PLAYER_PLAYING && cairo_dock_strings_differ (myData.cRawTitle, myData.cPreviousRawTitle))
 			cd_exaile_getCoverPath ();
@@ -263,7 +263,7 @@ static void cd_exaile_configure (void)
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de EX sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
-			g_print ("MP : EX is running\n");
+			cd_debug ("MP : EX is running\n");
 			cd_exaile_getSongInfos ();
 			cd_exaile_getCoverPath ();
 			cd_musicplayer_update_icon (TRUE);

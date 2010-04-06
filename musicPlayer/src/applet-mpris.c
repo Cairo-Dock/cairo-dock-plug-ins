@@ -217,7 +217,7 @@ static int _mpris_get_status (int i)
  */
 void cd_mpris_getPlaying (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (0);
 	_extract_playing_status_mpris (iStatus);
 }
@@ -226,7 +226,7 @@ void cd_mpris_getPlaying (void)
  */
 gboolean cd_mpris_is_loop (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (3);  // Fourth integer: 0 = Stop playing once the last element has been played, 1 = Never give up playing.
 	g_return_val_if_fail (iStatus != -1, FALSE);
 	return iStatus;
@@ -236,7 +236,7 @@ gboolean cd_mpris_is_loop (void)
  */
 gboolean cd_mpris_is_shuffle (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (1);  // Second interger: 0 = Playing linearly , 1 = Playing randomly.
 	g_return_val_if_fail (iStatus != -1, FALSE);
 	return iStatus;
@@ -247,7 +247,7 @@ gboolean cd_mpris_is_shuffle (void)
 void cd_mpris_get_time_elapsed (void)
 {
 	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet") / 1000;
-	//g_print ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
+	//cd_debug ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
 }
 
 /* Renvoie le temps ecoule en secondes..
@@ -255,7 +255,7 @@ void cd_mpris_get_time_elapsed (void)
 void cd_mpris_get_track_index (void)
 {
 	myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
-	//g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
+	//cd_debug ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
 }
 
 static inline int _get_integer_value (GValue *value)
@@ -414,7 +414,7 @@ void cd_mpris_getSongInfos ()
 void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()\n", __func__);
 	
 	if (metadata != NULL)
 	{
@@ -449,7 +449,7 @@ void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
 {
 	CD_APPLET_ENTER;
-	//g_print ("MP : %s (%x)\n", __func__, status);
+	//cd_debug ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
 	int iStatus = _extract_status_mpris (status, 0);
 	_extract_playing_status_mpris (iStatus);
@@ -571,7 +571,7 @@ void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_SHUFFLE :
 			bToggleValue = cd_mpris_is_shuffle ();
-			g_print ("SetRandom <- %d\n", !bToggleValue);
+			cd_debug ("SetRandom <- %d\n", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRandom",
 				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
@@ -580,7 +580,7 @@ void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_REPEAT :
 			bToggleValue = cd_mpris_is_loop ();
-			g_print ("SetLoop <- %d\n", !bToggleValue);
+			cd_debug ("SetLoop <- %d\n", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetLoop",
 				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
@@ -588,7 +588,7 @@ void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		break;
 		
 		case PLAYER_ENQUEUE :
-			g_print ("enqueue %s\n", song);
+			cd_debug ("enqueue %s\n", song);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "AddTrack",
 				G_TYPE_INVALID,
 				G_TYPE_STRING, song,
@@ -642,7 +642,7 @@ void cd_mpris_configure (void)
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
-			g_print ("MP : MP is running\n");
+			cd_debug ("MP : MP is running\n");
 			cd_mpris_getPlaying ();
 			cd_mpris_getSongInfos ();
 			cd_musicplayer_update_icon (TRUE);

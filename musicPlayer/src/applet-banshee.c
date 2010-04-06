@@ -173,8 +173,13 @@ static inline void _extract_metadata (GHashTable *data_list)
 	value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
 	if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		cString = g_value_get_string(value);
-	g_print ("MP : got cover path from Banshee : '%s'\n", cString);
+	cd_debug ("MP : got cover path from Banshee : '%s'\n", cString);
 	gchar *cCoverPath = (cString ? g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString) : NULL);
+	if (cString && ! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // path has changed :-/
+	{
+		g_free (cCoverPath);
+		cCoverPath = g_strdup_printf ("%s/.cache/media-art/%s.jpg", g_getenv ("HOME"), cString);
+	}
 	cd_musicplayer_get_cover_path (cCoverPath, FALSE);
 	g_free (cCoverPath);
 }
@@ -212,7 +217,7 @@ static void cd_banshee_getSongInfos (void)
 
 static void cd_banshee_getCoverPath (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GHashTable *data_list = NULL;
 	GValue *value;
 	GError *erreur = NULL;
@@ -233,12 +238,22 @@ static void cd_banshee_getCoverPath (void)
 		value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 			cString = g_value_get_string(value);
-		g_print (" => got cover path from Banshee : '%s'\n", cString);
+		cd_debug (" => got cover path from Banshee : '%s'\n", cString);
 		gchar *cCoverPath = g_strdup_printf ("%s/.cache/album-art/300/%s.jpg", g_getenv ("HOME"), cString);
 		if (! g_file_test  (cCoverPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (cCoverPath);
 			cCoverPath = g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString);
+				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // path has changed :-/
+				{
+					g_free (cCoverPath);
+					cCoverPath = g_strdup_printf ("%s/.cache/media-art/300/%s.jpg", g_getenv ("HOME"), cString);
+					if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+					{
+						g_free (cCoverPath);
+						cCoverPath = g_strdup_printf ("%s/.cache/media-art/%s.jpg", g_getenv ("HOME"), cString);
+					}
+				}
 		}
 		cd_musicplayer_get_cover_path (cString, TRUE);  // TRUE <=> on cherche nous-meme si aucune fournie.
 		g_free (cCoverPath);
@@ -250,7 +265,7 @@ static void cd_banshee_getCoverPath (void)
 static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gchar *cMessage, double fBufferingPercent, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s (%s, %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
+	cd_debug ("MP : %s (%s, %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
 	if (cMessage != NULL)
 	{
 		myData.bIsRunning = TRUE;
@@ -258,10 +273,10 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 			cd_banshee_getSongInfos ();
 		else if (strcmp (cMessage, "trackinfoupdated") == 0)
 		{
-			g_print (" trackinfoupdated\n");
+			cd_debug (" trackinfoupdated\n");
 			if (myData.cCoverPath == NULL)
 			{
-				g_print ("  aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
+				cd_debug ("  aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
 				cd_banshee_getCoverPath ();
 			}
 			else if (!myData.cover_exist) // le lecteur nous avait deja refile l'adresse en avance, on regarde si le fichier est desormais present.
@@ -277,7 +292,7 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 	}
 	else
 	{
-		g_print ("message vide !\n");
+		cd_debug ("message vide !\n");
 		g_free (myData.cPlayingUri);
 		myData.cPlayingUri = NULL;
 		g_free (myData.cArtist);
@@ -310,7 +325,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	const GValue *value;
 	const gchar *cEvent = NULL;
 	const gchar *cMessage = NULL;
@@ -337,7 +352,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatus, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("MP : %s (%s)\n", __func__, cCurrentStatus);
+	cd_debug ("MP : %s (%s)\n", __func__, cCurrentStatus);
 	myData.bIsRunning = TRUE;
 	gboolean bStateChanged = _extract_playing_status (cCurrentStatus);
 	if (! bStateChanged)
@@ -440,7 +455,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_SHUFFLE :
 		{
 			gboolean bShuffle = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetShuffleMode");
-			g_print ("bShuffle : %d\n", bShuffle);
+			cd_debug ("bShuffle : %d\n", bShuffle);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetShuffleMode", 
 				G_TYPE_INT, ! bShuffle,
 				G_TYPE_INVALID,
@@ -451,7 +466,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_REPEAT :
 		{
 			int iRepeat = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetRepeatMode");
-			g_print ("iRepeat : %d\n", iRepeat);
+			cd_debug ("iRepeat : %d\n", iRepeat);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRepeatMode", 
 				G_TYPE_INT, (iRepeat+1)%3,
 				G_TYPE_INVALID,
@@ -484,7 +499,7 @@ static void cd_banshee_read_data (void)
 				myData.iCurrentTime = 0;
 				if (myData.iPlayingStatus == PLAYER_STOPPED && myData.pPreviousPlayingStatus != PLAYER_STOPPED)  /// utile ?...
 				{
-					g_print ("LECTEUR STOPPE\n");
+					cd_debug ("LECTEUR STOPPE\n");
 					myData.pPreviousPlayingStatus = PLAYER_STOPPED;
 					//cd_musicplayer_dbus_detect_player ();  // ca fait redemarrer le lecteur ?!
 					//if (! myData.bIsRunning)
@@ -520,7 +535,7 @@ void cd_banshee_configure (void)
 		cd_musicplayer_dbus_detect_player ();  // on teste la presence de BA sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
-			g_print ("MP : BA is running\n");
+			cd_message ("MP : BA is running\n");
 			_banshee_getPlaying();
 			cd_banshee_getSongInfos ();
 			cd_musicplayer_update_icon (TRUE);
@@ -544,7 +559,9 @@ void cd_musicplayer_register_banshee_handler (void)
 	pBanshee->configure = cd_banshee_configure;  // renseigne les proprietes DBus et se connecte au bus.
 	pBanshee->control = cd_banshee_control;
 	pBanshee->get_cover = NULL;
-	pBanshee->cCoverDir = g_strdup_printf ("%s/.cache/album-art", g_getenv ("HOME"));
+	gchar *cCoverDirMedia = g_strdup_printf ("%s/.cache/media-art", g_getenv ("HOME"));
+	pBanshee->cCoverDir = g_file_test (cCoverDirMedia, G_FILE_TEST_EXISTS) ? cCoverDirMedia : g_strdup_printf ("%s/.cache/album-art", g_getenv ("HOME"));
+	g_free (cCoverDirMedia);
 	
 	pBanshee->appclass = "banshee";  // pffff
 	pBanshee->launch = "banshee";
