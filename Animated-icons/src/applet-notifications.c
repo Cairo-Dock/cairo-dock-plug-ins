@@ -510,7 +510,7 @@ gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)  // call
 	{
 		_set_new_data (pIcon);
 		pData->bIsUnfolding = TRUE;
-		cairo_dock_launch_animation (pDock);
+		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

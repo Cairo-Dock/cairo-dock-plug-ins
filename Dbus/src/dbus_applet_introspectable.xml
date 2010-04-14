@@ -60,6 +60,9 @@
 		<method name="PopulateMenu">
 			<arg name="pLabels" type="as" direction="in"/>
 		</method>
+		<method name="AddMenuItems">
+			<arg name="pItems" type="aa{sv}" direction="in"/>
+		</method>
 		
 		<signal name="on_click">
 			<arg name="iButtonState" type="i"/>

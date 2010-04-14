@@ -27,8 +27,8 @@
 #include "applet-draw.h"
 
 
-static gchar *s_cIconName[WIFI_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg"};
-static gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};
+static const gchar *s_cIconName[WIFI_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg"};
+static const gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};
 
 
 void cd_wifi_draw_no_wireless_extension (void) {
@@ -144,7 +144,7 @@ void cd_wifi_bubble (void) {
 		return ;
 	}
 	GString *sInfo = g_string_new ("");
-	gchar *cIconPath;
+	const gchar *cIconPath;
 	if (! myData.bWirelessExt)
 	{
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/link-0.svg";

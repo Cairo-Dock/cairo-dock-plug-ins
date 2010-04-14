@@ -79,6 +79,8 @@ gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GEr
 
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error);
 
+gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error);
+
 
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error);
 

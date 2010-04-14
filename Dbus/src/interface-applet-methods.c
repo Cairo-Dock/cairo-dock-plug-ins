@@ -599,6 +599,185 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 	return TRUE;
 }
 
+gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error)
+{
+	if (myData.pModuleMainMenu == NULL || myData.pModuleSubMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
+	{
+		cd_warning ("the 'AddMenuItems' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
+		return FALSE;
+	}
+	
+	// on recupere la position du sous-menu par defaut, afin d'inserer les items apres lui dans le menu principal.
+	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (myData.pModuleMainMenu));
+	GList *c = g_list_find (pChildren, myData.pModuleSubMenu);
+	GtkMenuItem *item;
+	for (c = pChildren; c != NULL; c = c->next)
+	{
+		item = c->data;
+		if (gtk_menu_item_get_submenu (item) == myData.pModuleSubMenu)
+			break;
+	}
+	g_return_val_if_fail (c, FALSE);
+	int iPosition = g_list_position (pChildren, c) + 1;
+	g_list_free (pChildren);
+	
+	// table des menus et groupes de radio-boutons.
+	GHashTable *pSubMenus = g_hash_table_new_full (g_int_hash,
+		g_int_equal,
+		g_free,
+		NULL);
+	GHashTable *pGroups = g_hash_table_new_full (g_int_hash,
+		g_int_equal,
+		g_free,
+		NULL);
+	
+	// on parcours la liste des items.
+	GHashTable *pItem;
+	GtkWidget *pMenuItem, *pMenu;
+	GSList *group = NULL;
+	GValue *v;
+	guint i;
+	for (i = 0; i < pItems->len; i ++)
+	{
+		pItem = g_ptr_array_index (pItems, i);
+		
+		// on recupere ses proprietes.
+		const gchar *cLabel = NULL, *cIcon = NULL, *cToolTip = NULL;
+		int iType = 0, iMenuID = -1, id = i, iGroupID = 0;
+		gboolean bState = FALSE;
+		gpointer data;
+		
+		v = g_hash_table_lookup (pItem, "type");
+		if (v && G_VALUE_HOLDS_INT (v))
+			iType = g_value_get_int (v);
+		
+		v = g_hash_table_lookup (pItem, "label");
+		if (v && G_VALUE_HOLDS_STRING (v))
+			cLabel = g_value_get_string (v);
+		
+		v = g_hash_table_lookup (pItem, "id");
+		if (v && G_VALUE_HOLDS_INT (v))
+			id = g_value_get_int (v);
+		data = GINT_TO_POINTER (id);
+		
+		v = g_hash_table_lookup (pItem, "state");
+		if (v && G_VALUE_HOLDS_BOOLEAN (v))
+			bState = g_value_get_boolean (v);
+		
+		v = g_hash_table_lookup (pItem, "group");
+		if (v && G_VALUE_HOLDS_INT (v))
+		{
+			iGroupID = g_value_get_int (v);
+			group = g_hash_table_lookup (pGroups, &iGroupID);  // si NULL, ca fera un nouveau groupe.
+		}
+		else  // si on ne definit pas le groupe, c'est donc le groupe en cours qui est utilise, ou un nouveau groupe si encore aucun n'est en cours.
+			iGroupID = id;  // utilise seulement si le groupe est nouvellement cree, pour l'enregistrer.
+		
+		// on cree l'item suivant son type.
+		switch (iType)
+		{
+			case 0 :  // normal entry
+				pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+				g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (cd_dbus_emit_on_menu_select), data);
+			break;
+			case 1:  // sub-menu
+				pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+				GtkWidget *pSubMenu = gtk_menu_new ();
+				gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
+				int *pID = g_new (int, 1);
+				*pID = id;
+				g_hash_table_insert (pSubMenus, pID, pSubMenu);
+			break;
+			case 2:  // separator
+				pMenuItem = gtk_separator_menu_item_new ();
+			break;
+			case 3:  // check-box
+				pMenuItem = gtk_check_menu_item_new_with_label (cLabel);
+				if (bState)
+					gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(pMenuItem), bState);
+				g_signal_connect(G_OBJECT(pMenuItem), "toggled", G_CALLBACK(cd_dbus_emit_on_menu_select), data);
+			break;
+			case 4:  // group-box
+				pMenuItem = gtk_radio_menu_item_new_with_label (group, cLabel);
+				if (group == NULL)  // le groupe ne change plus par la suite (g_list_append).
+				{
+					group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM(pMenuItem));
+					int *pID = g_new (int, 1);
+					*pID = iGroupID;
+					g_hash_table_insert (pGroups, pID, group);
+				}
+				gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(pMenuItem), bState);
+				g_signal_connect(G_OBJECT(pMenuItem), "toggled", G_CALLBACK(cd_dbus_emit_on_menu_select), data);
+			break;
+			default:
+				continue;
+		}
+		
+		// on lui rajoute son icone et son tooltip.
+		if (iType == 0 || iType == 1)
+		{
+			v = g_hash_table_lookup (pItem, "icon");
+			if (v && G_VALUE_HOLDS_STRING (v))
+			{
+				cIcon = g_value_get_string (v);
+				if (cIcon)
+				{
+					GtkWidget *image = NULL;
+					if (*cIcon == '/')
+					{
+						GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIcon, 16, 16, NULL);
+						if (pixbuf)
+						{
+							image = gtk_image_new_from_pixbuf (pixbuf);
+							g_object_unref (pixbuf);
+						}
+					}
+					else
+					{
+						g_print ("image %s\n", cIcon);
+						image = gtk_image_new_from_stock (cIcon, GTK_ICON_SIZE_MENU);
+						g_print (" -> %x\n", image);
+					}
+					gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+				}
+			}
+		}
+		
+		v = g_hash_table_lookup (pItem, "tooltip");
+		if (v && G_VALUE_HOLDS_STRING (v))
+		{
+			cToolTip = g_value_get_string (v);
+			gtk_widget_set_tooltip_text (pMenuItem, cToolTip);
+		}
+		
+		// on l'insere dans son menu.
+		v = g_hash_table_lookup (pItem, "menu");
+		if (v && G_VALUE_HOLDS_INT (v))
+			iMenuID = g_value_get_int (v);
+		if (iMenuID == 0)
+			pMenu = myData.pModuleMainMenu;
+		else if (iMenuID == -1)
+			pMenu = myData.pModuleSubMenu;
+		else
+		{
+			pMenu = g_hash_table_lookup (pSubMenus, &iMenuID);
+			if (pMenu == NULL)
+				pMenu = myData.pModuleSubMenu;
+		}
+		
+		if (pMenu == myData.pModuleMainMenu)
+			gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
+		else
+			gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pMenuItem);
+	}
+	
+	g_hash_table_destroy (pSubMenus);
+	g_hash_table_destroy (pGroups);
+	gtk_widget_show_all (myData.pModuleMainMenu);
+	
+	return TRUE;
+}
+
 
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
 {
@@ -719,7 +898,7 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
 		g_free,
-		g_free); 
+		g_free);
 	*hProperties = h;
 	GValue *v;
 	

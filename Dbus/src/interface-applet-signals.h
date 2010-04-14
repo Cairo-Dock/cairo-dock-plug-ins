@@ -36,7 +36,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 
 gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu);
 
-void cd_dbus_emit_on_menu_select (GtkMenuShell *menu, gpointer data);
+void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data);
 
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer);
 

@@ -28,7 +28,7 @@
 static int s_iLeafPosition[2][3*3] = {{-30,30,1 , 60,107,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, gpointer *pConfig)
+CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, CairoDeskletRendererConfigPtr pConfig)
 {
 	cd_message ("");
 	GList *pIconsList = pDesklet->icons;
@@ -179,7 +179,7 @@ void rendering_register_tree_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_tree_in_desklet ;
-	pRenderer->configure = rendering_configure_tree;
+	pRenderer->configure = (CairoDeskletConfigureRendererFunc)rendering_configure_tree;
 	pRenderer->load_data = rendering_load_tree_data;
 	pRenderer->free_data = rendering_free_tree_data;
 	pRenderer->load_icons = rendering_load_icons_for_tree;

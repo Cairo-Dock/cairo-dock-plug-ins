@@ -46,20 +46,21 @@ static char  *s_cTmpFile = NULL;
 static int s_pLineNumber[NB_INFO] = {2,4,5,6,7,8,12};
 
 //Les Fonctions
-void cd_xmms_free_data (void) { //Permet de libéré la mémoire prise par notre controleur
+static void cd_xmms_free_data (void) { //Permet de libéré la mémoire prise par notre controleur
 	cd_debug ("");
 	g_free (s_cTmpFile);
 	s_cTmpFile = NULL;
 }
 
-void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effectuer les actions de bases sur le lecteur
+static void cd_xmms_control (MyPlayerControl pControl, const gchar *cFile) { //Permet d'effectuer les actions de bases sur le lecteur
 	GError *erreur = NULL;
 	
 	if (pControl != PLAYER_JUMPBOX && pControl != PLAYER_SHUFFLE && pControl != PLAYER_REPEAT && pControl != PLAYER_ENQUEUE) {
 		g_free (myData.cRawTitle);
 		myData.cRawTitle = NULL; //Reset the title to detect it for sure ;)
 	}
-	gchar *cCommand = NULL;
+	const gchar *cCommand = NULL;
+	gchar *cCommand2 = NULL;
 	
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
@@ -85,14 +86,13 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 		break;
 		case PLAYER_ENQUEUE :
 			if (cFile != NULL)
-				cCommand = g_strdup_printf ("xmms -e %s", cFile);
+				cCommand2 = g_strdup_printf ("xmms -e %s", cFile);
 		break;
 	}
 	
-	cd_debug ("Handeler XMMS: will use '%s'", cCommand);
-	g_spawn_command_line_async (cCommand, &erreur);
-	if (pControl == PLAYER_ENQUEUE)
-		g_free (cCommand);
+	cd_debug ("Handeler XMMS: will use '%s'", cCommand?cCommand:cCommand2);
+	g_spawn_command_line_async (cCommand?cCommand:cCommand2, &erreur);
+	g_free (cCommand2);
 	
 	if (erreur != NULL) {
 		cd_warning ("MP : when trying to execute command : %s", erreur->message);
@@ -102,7 +102,7 @@ void cd_xmms_control (MyPlayerControl pControl, gchar *cFile) { //Permet d'effec
 }
 
 //Fonction de lecture du tuyau.
-void cd_xmms_read_data (void) {
+static void cd_xmms_read_data (void) {
 	s_cTmpFile = g_strdup_printf("/tmp/xmms-info_%s.0",g_getenv ("USER"));
 		
 	gchar *cContent = NULL;

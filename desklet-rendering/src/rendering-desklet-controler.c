@@ -56,7 +56,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 	return FALSE;
 }
 
-CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, gpointer *pConfig)
+CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, CairoDeskletRendererConfigPtr pConfig)
 {
 	g_print ("%s ()\n", __func__);
 	CDControlerParameters *pControler = g_new0 (CDControlerParameters, 1);
@@ -314,7 +314,7 @@ void rendering_register_controler_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render = rendering_draw_controler_in_desklet;
-	pRenderer->configure = rendering_configure_controler;
+	pRenderer->configure = (CairoDeskletConfigureRendererFunc)rendering_configure_controler;
 	pRenderer->load_data = rendering_load_controler_data;
 	pRenderer->free_data = rendering_free_controler_data;
 	pRenderer->load_icons = rendering_load_icons_for_controler;

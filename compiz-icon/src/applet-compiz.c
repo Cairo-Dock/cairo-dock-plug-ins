@@ -61,7 +61,7 @@ void cd_compiz_start_system_wm (void) {
 void cd_compiz_start_compiz (void) {
 	GString *sCommand = g_string_new ("");
 	
-	gchar *cCompizBin = NULL; //On cherche
+	const gchar *cCompizBin = NULL; //On cherche
 	if (g_file_test ("/usr/bin/compiz.real", G_FILE_TEST_EXISTS))
 		cCompizBin = "compiz.real";
 	else
@@ -113,7 +113,7 @@ void cd_compiz_start_favorite_decorator (void) {
 
 void cd_compiz_start_decorator (compizDecorator iDecorator) {
 	cd_debug ("%s (%d)", __func__, iDecorator);
-	g_return_if_fail (iDecorator >= 0 && iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
+	g_return_if_fail (iDecorator < COMPIZ_NB_DECORATORS && myConfig.cDecorators[iDecorator] != NULL);
 	gchar *cCommand = g_strdup_printf ("%s --replace", myConfig.cDecorators[iDecorator]);
 	myData.bDecoratorRestarted = TRUE;
 	cairo_dock_launch_command (cCommand);

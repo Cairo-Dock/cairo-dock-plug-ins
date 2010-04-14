@@ -105,7 +105,7 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 {
 	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);  // l'interface principale a deja enregistre notre domaine, etc.
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
-	g_print ("%s (%s)\n", __func__, cModuleName);
+	cd_debug ("%s (%s)", __func__, cModuleName);
 	
 	// on assure l'unicite.
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
@@ -279,26 +279,23 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 
 gboolean cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
 {
-	g_print ("%s (%s)\n", __func__, cModuleName);
+	cd_message ("%s (%s)", __func__, cModuleName);
 	// on verifie que le processus distant n'est pas deja lance.
 	int iPid = cd_dbus_applet_is_running (cModuleName);
 	if (iPid > 0)
 	{
 		/*g_print ("  l'applet est deja lancee\n");
 		return FALSE;*/
-		g_print ("  l'applet est deja lancee, on la tue sauvagement.\n");
+		cd_debug ("  l'applet est deja lancee, on la tue sauvagement.");
 		gchar *cCommand = g_strdup_printf ("kill %d", iPid);
 		int r = system (cCommand);
 		g_free (cCommand);
 	}
-	else
-		g_print ("  l'applet '%s' n'est pas en cours d'execution\n", cModuleName);
 	
 	// on le lance.
 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\"", cDirPath, cModuleName);
-	g_print ("on lance une applet distante : '%s'\n", cCommand);
+	cd_debug ("on lance une applet distante : '%s'", cCommand);
 	cairo_dock_launch_command (cCommand);
-	g_print ("applet lancee\n");
 	g_free (cCommand);
 	return TRUE;
 }

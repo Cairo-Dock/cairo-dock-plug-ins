@@ -35,21 +35,25 @@ void cd_xkbd_set_prev_next_group (int iDelta)
 	if (Xid == 0)
 		Xid = DefaultRootWindow (dsp);
 	XklState state;
-	xkl_engine_get_state (pEngine, Xid, &state);
+	gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
+	g_return_if_fail (bSuccess);
 	cd_debug ("keyboard current state : %d;%d +%d", state.group, state.indicators, iDelta);
 	
 	int i=0, n = xkl_engine_get_num_groups (pEngine);
+	g_return_if_fail (n > 0);
+	int iCurrentGroup = MAX (0, MIN (n-1, state.group));  // on blinde car libxklavier peut bugger en 64bits.
 	const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 	do  // on passe au groupe suivant/precedent en sautant les faux (-).
 	{
 		i ++;
-		state.group += iDelta;  // xkl_engine_get_next_group ne marche pas.
-		if (state.group == n)
-			state.group = 0;
-		else if (state.group < 0)
-			state.group = n - 1;
-	} while (i < n && (pGroupNames[state.group] == NULL || *pGroupNames[state.group] == '-'));
+		iCurrentGroup += iDelta;  // xkl_engine_get_next_group ne marche pas.
+		if (iCurrentGroup == n)
+			iCurrentGroup = 0;
+		else if (iCurrentGroup < 0)
+			iCurrentGroup = n - 1;
+	} while (i < n && (pGroupNames[iCurrentGroup] == NULL || *pGroupNames[iCurrentGroup] == '-'));
 	
+	state.group = iCurrentGroup;
 	cd_debug ("keyboard new state : %d", state.group);
 	xkl_engine_allow_one_switch_to_secondary_group (pEngine);  // sert a quoi ??
 	xkl_engine_save_state (pEngine, Xid, &state);
@@ -64,7 +68,8 @@ void cd_xkbd_set_group (int iNumGroup)
 	if (Xid == 0)
 		Xid = DefaultRootWindow (dsp);
 	XklState state;
-	xkl_engine_get_state (pEngine, Xid, &state);
+	gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
+	g_return_if_fail (bSuccess);
 	cd_debug ("keyboard current state : %d;%d", state.group, state.indicators);
 	
 	state.group = iNumGroup;

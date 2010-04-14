@@ -117,32 +117,26 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 
 static void _cd_dbus_launch_third_party_applets_in_dir (const gchar *cDirPath)
 {
-	GError *erreur = NULL;
 	const gchar *cFileName;
 	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, "third-party");
-	if (g_file_test (cThirdPartyPath, G_FILE_TEST_EXISTS)) // just to not have the warning
-	{
-		GDir *dir = g_dir_open (cThirdPartyPath, 0, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning (erreur->message);
-			g_error_free (erreur);
-			return ;
-		}
 	
-		do
-		{
-			cFileName = g_dir_read_name (dir);
-			if (cFileName == NULL)
-				break ;
-		
-			cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
-		}
-		while (1);
-		g_dir_close (dir);
+	GDir *dir = g_dir_open (cThirdPartyPath, 0, NULL);  // si le repertoire n'existe pas, on ne veut de warning.
+	if (dir == NULL)
+	{
+		g_free (cThirdPartyPath);
+		return ;
 	}
-	else
-		cd_debug ("'%s' doesn't exist", cThirdPartyPath);
+
+	do
+	{
+		cFileName = g_dir_read_name (dir);
+		if (cFileName == NULL)
+			break ;
+	
+		cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
+	}
+	while (1);
+	g_dir_close (dir);
 	g_free (cThirdPartyPath);
 }
 

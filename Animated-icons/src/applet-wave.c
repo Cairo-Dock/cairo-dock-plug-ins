@@ -157,7 +157,7 @@ gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, do
 void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
 {
 	glPushMatrix ();
-	cairo_dock_set_icon_scale (pIcon, pDock, 1.);
+	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);
 	
 	glColor4f (1., 1., 1., pIcon->fAlpha);
 	glEnable(GL_BLEND);

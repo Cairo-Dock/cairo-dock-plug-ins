@@ -30,7 +30,7 @@ static unsigned int height = 48;
   pixel[2] = ((((data[2] - 33) & 0x3) << 6) | ((data[3] - 33))); \
   data += 4; \
 }
-static char *header_data =
+static const char *header_data =
 	"2U>(56&245V.5&\"12U>(2E:'3%B)3EJ+3EJ+256&256&3EJ+3%B)2E:'4U^04U^0"
 	"2%2%2U>(35F*2E:'4%R-3%B)3EJ+1%\"!2U>(1E*#1U.$3EJ+4EZ/45V.3EJ+256&"
 	"2%2%1U.$3EJ+4U^05&\"13UN,7&B97FJ;9G*C8V^@7FJ;4%R-4%R-2U>(6&258FZ?"
