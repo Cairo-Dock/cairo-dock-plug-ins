@@ -130,6 +130,10 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 	
 	if (CAIRO_DOCK_IS_DOCK (pContainer) && cAnimation != NULL)
 	{
+		if (CAIRO_DOCK_IS_APPLI (pIcon) && cIconID == NULL)  // icone d'applet controlant une appli.
+		{
+			pIcon->bIsDemandingAttention = TRUE;
+		}
 		cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
 		return TRUE;
 	}
@@ -734,9 +738,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 					}
 					else
 					{
-						g_print ("image %s\n", cIcon);
 						image = gtk_image_new_from_stock (cIcon, GTK_ICON_SIZE_MENU);
-						g_print (" -> %x\n", image);
 					}
 					gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 				}

@@ -132,7 +132,6 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
 	snd_mixer_elem_t *elem;
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
-		g_print ("test de %s\n", snd_mixer_selem_get_name (elem));
 		if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
 			return elem;
 	}
