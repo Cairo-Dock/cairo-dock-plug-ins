@@ -122,20 +122,25 @@ GList *mixer_get_elements_list (void)
 }
 
 
-static snd_mixer_elem_t *_mixer_get_element_by_name (gchar *cName)
+static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
 {
 	if (myData.mixer_handle == NULL)
 		return NULL;
 	g_return_val_if_fail (cName != NULL, NULL);
 	
+	int i = 0;
 	snd_mixer_elem_t *elem;
 	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
+		g_print ("test de %s\n", snd_mixer_selem_get_name (elem));
 		if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
 			return elem;
 	}
-	myData.cErrorMessage = g_strdup_printf (D_("I couldn't find any audio channel named '%s'\nYou should try to open the configuration panel of the applet,\n and select the proper audio channel you want to control."), cName);
-	return NULL;
+	
+	cd_debug ("no channel matches '%s', we take the first available channel by default", cName);
+	return snd_mixer_first_elem(myData.mixer_handle);
+	/**myData.cErrorMessage = g_strdup_printf (D_("I couldn't find any audio channel named '%s'\nYou should try to open the configuration panel of the applet,\n and select the proper audio channel you want to control."), cName);
+	return NULL;*/
 }
 
 void mixer_get_controlled_element (void)
