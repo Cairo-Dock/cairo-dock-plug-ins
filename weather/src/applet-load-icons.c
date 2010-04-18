@@ -23,13 +23,13 @@
 #include "applet-read-data.h"
 #include "applet-load-icons.h"
 
-char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };  // pour qu'ils soient listes dans le .pot.
+const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };  // pour qu'ils soient listes dans le .pot.
 
 #define _add_icon(i, j)\
 	if (myData.days[i].cName != NULL)\
 	{\
 		pIcon = g_new0 (Icon, 1);\
-		pIcon->cName = g_strdup_printf ("%s", myData.days[i].cName);\
+		pIcon->cName = g_strdup (myData.days[i].cName);\
 		pIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
 		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
@@ -44,7 +44,6 @@ char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("
 		pIcon->fWidthFactor = 1.;\
 		pIcon->fHeightFactor = 1.;\
 		pIcon->cCommand = g_strdup ("none");\
-		cd_debug (" + %s (%s , %s)", pIcon->cName, myData.days[i].part[j].cWeatherDescription, pIcon->cFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
@@ -126,7 +125,7 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
 	{
 		myData.bSetName = (myData.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? myData.cLocation : WEATHER_DEFAULT_NAME);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? (const gchar*)myData.cLocation : WEATHER_DEFAULT_NAME);
 	}
 	
 	//\_______________________ On cree la liste des icones de prevision.

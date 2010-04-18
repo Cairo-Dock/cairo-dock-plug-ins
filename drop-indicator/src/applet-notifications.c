@@ -322,7 +322,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	{
 		Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
 		if (pIcon != NULL)
-			cairo_dock_redraw_icon (pIcon, pDock);
+			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

@@ -48,7 +48,7 @@ static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data) {  /// 
 		return;
 	}*/
 	
-	gchar *cCommand = NULL;
+	const gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
 		int iMajor, iMinor, iMicro;
 		cairo_dock_get_gnome_version (&iMajor, &iMinor, &iMicro);

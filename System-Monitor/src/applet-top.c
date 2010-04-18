@@ -381,7 +381,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	g_free (cTitle);
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
-	gpointer pConfig[2] = {myConfig.pTopTextDescription, "Loading ..."};
+	const gpointer pConfig[2] = {myConfig.pTopTextDescription, (const gpointer)"Loading ..."};
 	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", (CairoDialogRendererConfigPtr) pConfig);
 	
 	// on lance la mesure.

@@ -29,7 +29,7 @@
 
 #define WEATHER_DEFAULT_NAME "weather"
 
-#define _display(cValue) (cValue == NULL || *cValue == 'N' ? "?" : cValue)
+#define _display(cValue) ((cValue) == NULL || *((gchar*)cValue) == 'N' ? "?" : (const gchar*)(cValue))
 
 struct _AppletConfig {
 	gchar *cLocationCode;

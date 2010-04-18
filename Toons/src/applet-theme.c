@@ -29,7 +29,7 @@
 		g_error_free (erreur);\
 		erreur = NULL; }
 
-static gchar *group[2] = {"Left eye", "Right eye"};
+static const gchar *group[2] = {"Left eye", "Right eye"};
 
 gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 {

@@ -101,7 +101,7 @@ void cd_wifi_get_data (gpointer data)
 	gchar **cInfopipesList = g_strsplit (cResult, "\n", -1);
 	g_free (cResult);
 	gchar *cOneInfopipe, *str, *str2;
-	int i, iMaxValue;
+	int i, iMaxValue=1;  // gcc rale si on n'initialise pas.
 	for (i = 0; cInfopipesList[i] != NULL; i ++)
 	{
 		cOneInfopipe = cInfopipesList[i];
@@ -142,7 +142,7 @@ void cd_wifi_get_data (gpointer data)
 			_pick_string ("Access Point", myData.cAccessPoint);
 		}
 		
-		if (myData.iQuality == -1)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
+		if (myData.iQuality >= WIFI_NB_QUALITY)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
 		{
 			iMaxValue = 0;
 			_pick_value ("Link Quality", myData.iQuality, iMaxValue);
