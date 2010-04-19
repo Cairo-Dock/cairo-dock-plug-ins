@@ -631,12 +631,16 @@ void cd_mpris_read_data (void)
  */
 static void _on_detect_player (void)
 {
+	if (myApplet == NULL)  // precaution.
+		return ;
+	g_print ("myData.bIsRunning : %d\n", myData.bIsRunning);
 	if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 	{
 		cd_debug ("MP : MP is running\n");
 		cd_mpris_getPlaying ();
 		cd_mpris_getSongInfos ();
 		cd_musicplayer_update_icon (TRUE);
+		cd_musicplayer_relaunch_handler ();
 	}
 }
 
