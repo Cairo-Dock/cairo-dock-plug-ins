@@ -409,7 +409,7 @@ void cd_mpris_getSongInfos ()
 // Les callbacks des signaux DBus. //
 /////////////////////////////////////
 
-/* Fonction executée à chaque changement de musique.
+/* Fonction executee a chaque changement de musique.
  */
 void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
@@ -629,6 +629,17 @@ void cd_mpris_read_data (void)
 
 /* Initialise le backend de MP.
  */
+static void _on_detect_player (void)
+{
+	if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
+	{
+		cd_debug ("MP : MP is running\n");
+		cd_mpris_getPlaying ();
+		cd_mpris_getSongInfos ();
+		cd_musicplayer_update_icon (TRUE);
+	}
+}
+
 void cd_mpris_configure (void)
 {
 	myData.DBus_commands.path = "/Player";
@@ -639,7 +650,9 @@ void cd_mpris_configure (void)
 	myData.dbus_enable = cd_mpris_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de MP.
 	if (myData.dbus_enable)
 	{
-		cd_musicplayer_dbus_detect_player ();  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
+		cd_musicplayer_dbus_detect_player_async (_on_detect_player);  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
+		cd_musicplayer_set_surface (PLAYER_NONE);  // en attendant de le savoir, on considere qu'il est eteint.
+		/**cd_musicplayer_dbus_detect_player ();  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
 			cd_debug ("MP : MP is running\n");
@@ -650,7 +663,7 @@ void cd_mpris_configure (void)
 		else  // player eteint.
 		{
 			cd_musicplayer_set_surface (PLAYER_NONE);
-		}
+		}*/
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{

@@ -60,6 +60,8 @@ gboolean cd_dbus_applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 
 gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, GError **error);
 
+gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bStart, const gchar *cAnimation, GError **error);
+
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error);
 
 gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error);

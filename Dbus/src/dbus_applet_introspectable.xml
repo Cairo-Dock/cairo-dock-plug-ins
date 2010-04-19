@@ -27,6 +27,10 @@
 			<arg name="cAnimation" type="s" direction="in"/>
 			<arg name="iNbRounds" type="i" direction="in"/>
 		</method>
+		<method name="DemandsAttention">
+			<arg name="bStart" type="b" direction="in"/>
+			<arg name="cAnimation" type="s" direction="in"/>
+		</method>
 		<method name="ShowDialog">
 			<arg name="cMessage" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>

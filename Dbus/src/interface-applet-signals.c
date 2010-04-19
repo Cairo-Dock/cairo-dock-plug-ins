@@ -341,7 +341,6 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 	if (pClickedIcon == pAppletIcon)
 	{
 		//g_print ("emit clic on main icon\n");
-		pClickedIcon->bIsDemandingAttention = FALSE;
 		g_signal_emit (pDbusApplet, s_iSignals[CLIC], 0, iButtonState);
 	}
 	else if (pDbusApplet->pSubApplet != NULL)
@@ -565,11 +564,6 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 			pNewActiveIcon = cairo_dock_get_inhibator (pNewActiveIcon, FALSE);
 		if (CAIRO_DOCK_IS_MANUAL_APPLET (pNewActiveIcon))
 		{
-			if (pNewActiveIcon->bIsDemandingAttention)
-			{
-				cairo_dock_redraw_icon (pNewActiveIcon, pNewActiveIcon->pModuleInstance->pContainer);
-				pNewActiveIcon->bIsDemandingAttention = FALSE;  // on met a FALSE apres pour que le redessin se fasse bien (vu que le dock est cache).
-			}
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance);
 			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 			g_signal_emit (pDbusApplet, s_iSignals[CHANGE_FOCUS], 0, TRUE);

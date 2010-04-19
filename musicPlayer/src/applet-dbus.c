@@ -71,6 +71,17 @@ void musicplayer_dbus_disconnect_from_bus_Shell (void)
 	}
 }
 
+static void _on_detect_player (gboolean bPresent, GVoidFunc pCallback)
+{
+	myData.bIsRunning = bPresent;
+	pCallback ();
+}
+void cd_musicplayer_dbus_detect_player_async (GVoidFunc pCallback)
+{
+	myData.bIsRunning = FALSE;
+	DBusGProxyCall *call_id = cairo_dock_dbus_detect_application_async (myData.DBus_commands.service, (CairoDockOnAppliPresentOnDbus) _on_detect_player, pCallback);
+}
+
 void cd_musicplayer_dbus_detect_player (void)
 {
 	myData.bIsRunning = cairo_dock_dbus_detect_application (myData.DBus_commands.service);

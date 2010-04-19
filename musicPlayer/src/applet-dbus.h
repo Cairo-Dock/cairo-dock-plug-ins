@@ -31,6 +31,7 @@ gboolean cd_musicplayer_dbus_connect_to_bus(void);
 gboolean musicplayer_dbus_connect_to_bus_Shell (void);
 void musicplayer_dbus_disconnect_from_bus (void);
 void musicplayer_dbus_disconnect_from_bus_Shell (void);
+void cd_musicplayer_dbus_detect_player_async (GVoidFunc pCallback);
 void cd_musicplayer_dbus_detect_player (void);
 
 

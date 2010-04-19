@@ -130,10 +130,6 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 	
 	if (CAIRO_DOCK_IS_DOCK (pContainer) && cAnimation != NULL)
 	{
-		if (CAIRO_DOCK_IS_APPLI (pIcon) && cIconID == NULL)  // icone d'applet controlant une appli.
-		{
-			pIcon->bIsDemandingAttention = TRUE;
-		}
 		cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
 		return TRUE;
 	}
@@ -404,6 +400,38 @@ gboolean cd_dbus_applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, GError **error)
 {
 	return _applet_animate (pDbusApplet, cAnimation, iNbRounds, NULL, error);
+}
+
+gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bStart, const gchar *cAnimation, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, NULL, &pIcon, &pContainer))
+		return FALSE;
+	
+	if (bStart)
+	{
+		if (CAIRO_DOCK_IS_DOCK (pContainer))
+		{
+			pIcon->bIsDemandingAttention = TRUE;
+			if (cAnimation == NULL || *cAnimation == '\0' || strcmp (cAnimation, "default") == 0)
+			{
+				if (myTaskBar.cAnimationOnDemandsAttention != NULL)
+					cAnimation = myTaskBar.cAnimationOnDemandsAttention;
+				else
+					cAnimation = "rotate";
+			}
+			cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, 1e6);
+			cairo_dock_mark_icon_as_clicked (pIcon);  // pour eviter qu'un simple survol ne stoppe l'animation.
+		}
+	}
+	else if (pIcon->bIsDemandingAttention)
+	{
+		pIcon->bIsDemandingAttention = FALSE;
+		cairo_dock_stop_icon_animation (pIcon);
+		cairo_dock_redraw_icon (pIcon, pContainer);
+	}
+	return TRUE;
 }
 
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error)

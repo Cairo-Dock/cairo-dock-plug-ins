@@ -118,7 +118,7 @@ frame_term =
 #{When the terminal is in a dialog. When it is in a desklet, you can just resize the desklet as usual.}
 nb lines = 20
 #I[40;160] ...
-nb columns = 70
+nb columns = 80
 
 #k Shortkey to show the terminal:
 shortkey = <Control>F5

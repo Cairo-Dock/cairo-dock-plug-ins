@@ -34,20 +34,21 @@ static void set_color(GdkColor *color, double src[3]) {
 }
 
 CD_APPLET_GET_CONFIG_BEGIN
+	CD_CONFIG_RENAME_GROUP ("GUI", "Configuration");
 	//0 means completely transparent and 65535 opaque
-	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("GUI", "terminal transparency", .84) * 65535);  // 55000
+	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "terminal transparency", .84) * 65535);  // 55000
 
 	double color_back[3] = {1., 1., 1.};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "background color", color_back, color_back);
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "background color", color_back, color_back);
 	set_color(&myConfig.backcolor, color_back);
 
 	double color_fore[3] = {0., 0., 0.};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("GUI", "foreground color", color_fore, color_fore);
+	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "foreground color", color_fore, color_fore);
 	set_color(&myConfig.forecolor, color_fore);
 
-	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F1");
-	myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb lines", 25);
-	myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "nb columns", 70);
+	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F1");
+	myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 25);
+	myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb columns", 80);
 CD_APPLET_GET_CONFIG_END
 
 

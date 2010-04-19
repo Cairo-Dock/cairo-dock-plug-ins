@@ -244,16 +244,16 @@ static void cd_banshee_getCoverPath (void)
 		{
 			g_free (cCoverPath);
 			cCoverPath = g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString);
-				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // path has changed :-/
+			if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // path has changed :-/
+			{
+				g_free (cCoverPath);
+				cCoverPath = g_strdup_printf ("%s/.cache/media-art/300/%s.jpg", g_getenv ("HOME"), cString);
+				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
 				{
 					g_free (cCoverPath);
-					cCoverPath = g_strdup_printf ("%s/.cache/media-art/300/%s.jpg", g_getenv ("HOME"), cString);
-					if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-					{
-						g_free (cCoverPath);
-						cCoverPath = g_strdup_printf ("%s/.cache/media-art/%s.jpg", g_getenv ("HOME"), cString);
-					}
+					cCoverPath = g_strdup_printf ("%s/.cache/media-art/%s.jpg", g_getenv ("HOME"), cString);
 				}
+			}
 		}
 		cd_musicplayer_get_cover_path (cString, TRUE);  // TRUE <=> on cherche nous-meme si aucune fournie.
 		g_free (cCoverPath);
