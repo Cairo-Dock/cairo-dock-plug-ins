@@ -98,7 +98,7 @@ fg alpha = 1
 
 #F[Audio Player;gtk-cdrom]
 frame_player =
-#L[Amarok 2;Audacious;Banshee;Exaile;Exaile 0.3;Listen;Qmmp;QuodLibet;Rhythmbox;Songbird;XMMS 2;XMMS] Player to control:
+#L[Amarok 2;Audacious;Banshee;Exaile;Exaile 0.3;Guayadeque;Listen;Qmmp;QuodLibet;Rhythmbox;Songbird;XMMS 2;XMMS] Player to control:
 current-player=Rhythmbox
 
 #b Steal the player's icon from the taskbar?

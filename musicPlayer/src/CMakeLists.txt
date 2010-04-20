@@ -31,6 +31,8 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-exaile.h
 	applet-exaile3.c
 	applet-exaile3.h
+	applet-guayadeque.c
+	applet-guayadeque.h
 	applet-listen.c
 	applet-listen.h
 	applet-qmmp.c
