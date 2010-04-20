@@ -310,7 +310,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	cairo_dock_launch_task (myData.pTask);
 	
 	// On lance une animation.
-	cairo_dock_request_icon_animation (myIcon, myContainer, myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
+	CD_APPLET_ANIMATE_MY_ICON (myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
 	cairo_dock_mark_icon_as_clicked (myIcon);  // pour ne pas se faire interrompre par un survol.
 	cairo_dock_launch_animation (myContainer);
 }
@@ -343,7 +343,7 @@ void cd_dnd2share_clear_copies_in_working_directory (void)
 	g_free (cCommand);
 }
 
-void cd_dnd2share_set_working_directory_size (int iNbItems)
+void cd_dnd2share_set_working_directory_size (guint iNbItems)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
@@ -359,7 +359,7 @@ void cd_dnd2share_set_working_directory_size (int iNbItems)
 	{
 		gchar *cItemName;
 		GString *sPreviewPath = g_string_new ("");
-		int i;
+		guint i;
 		for (i = 0; pGroupList[i] != NULL && i < length - iNbItems; i ++)  // on supprime les n premiers groupes en trop, ainsi que leurs eventuelles prevues.
 		{
 			cItemName = pGroupList[i];

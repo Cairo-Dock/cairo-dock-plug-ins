@@ -24,11 +24,6 @@
 #include "powermanager-draw.h"
 
 
-void iconWitness(int animationLenght)
-{
-	CD_APPLET_ANIMATE_MY_ICON (myConfig.batteryWitnessAnimation, animationLenght);
-}
-
 void update_icon(void)
 {
 	gboolean bNeedRedraw = FALSE;
@@ -143,23 +138,22 @@ gchar *get_hours_minutes (int iTimeInSeconds)
 	return cTimeString;
 }
 
-static void _cd_powermanager_dialog (GString *sInfo) {
-	cd_debug ("%s", __func__);
-	gchar *cIconPath = NULL;
+static void _cd_powermanager_dialog (const gchar *cInfo, int iDuration)
+{
+	cairo_dock_remove_dialog_if_any (myIcon);
 	
+	const gchar *cIconPath;
 	if (!myData.on_battery || !myData.battery_present)
-		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "sector.svg");
+		cIconPath = MY_APPLET_SHARE_DATA_DIR"/sector.svg";
 	else
-		cIconPath = g_strdup_printf("%s/%s", MY_APPLET_SHARE_DATA_DIR, "default-battery.svg");
-		
-	cd_debug ("%s (%s)", sInfo->str, cIconPath);
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
-	g_free(cIconPath);
+		cIconPath = MY_APPLET_SHARE_DATA_DIR"/default-battery.svg";
+	
+	cd_debug ("%s (%s)", cInfo, cIconPath);
+	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 1000*iDuration, cIconPath);
 }
 
 void cd_powermanager_bubble (void)
 {
-	cd_debug ("%s", __func__);
 	GString *sInfo = g_string_new ("");
 	if(myData.battery_present)
 	{
@@ -183,7 +177,7 @@ void cd_powermanager_bubble (void)
 		g_string_printf (sInfo, "%s", D_("No battery found."));
 	}
 	
-	_cd_powermanager_dialog (sInfo);
+	_cd_powermanager_dialog (sInfo->str, 6000);
 	g_string_free (sInfo, TRUE);
 }
 
@@ -200,20 +194,31 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 		
 	if ((alert == POWER_MANAGER_CHARGE_LOW && myConfig.lowBatteryWitness) || (alert == POWER_MANAGER_CHARGE_CRITICAL && myConfig.criticalBatteryWitness))
 	{
-		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with charge:"), hms, D_("Please put your laptop on charge."));
-		_cd_powermanager_dialog (sInfo);
+		if (myConfig.iNotificationType != 1)
+		{
+			g_string_printf (sInfo, "%s (%.2f%%) \n %s %s \n %s", D_("PowerManager.\nBattery charge seems to be low"), myData.battery_charge, D_("Estimated time with charge:"), hms, D_("Please put your laptop on charge."));
+			_cd_powermanager_dialog (sInfo->str, myConfig.iNotificationDuration);
+		}
+		if (myConfig.iNotificationType != 2)
+		{
+			CD_APPLET_DEMANDS_ATTENTION (myConfig.cNotificationAnimation, myConfig.iNotificationDuration);
+		}
+		if (myConfig.cSoundPath[alert] != NULL)
+			cairo_dock_play_sound (myConfig.cSoundPath[alert]);
 	}
-	
 	else if (alert == POWER_MANAGER_CHARGE_FULL && myConfig.highBatteryWitness)
 	{
-		g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now charged"), myData.battery_charge, D_("Estimated time with charge:"), hms);
-		_cd_powermanager_dialog (sInfo);
-		if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL] != NULL)
-			cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_FULL]);
-	}
-	if (myConfig.batteryWitness) 
-	{
-		CD_APPLET_ANIMATE_MY_ICON ("rotate", 3);
+		if (myConfig.iNotificationType != 1)
+		{
+			g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now charged"), myData.battery_charge, D_("Estimated time with charge:"), hms);
+			_cd_powermanager_dialog (sInfo->str, myConfig.iNotificationDuration);
+		}
+		if (myConfig.iNotificationType != 2)
+		{
+			CD_APPLET_DEMANDS_ATTENTION (myConfig.cNotificationAnimation, myConfig.iNotificationDuration);
+		}
+		if (myConfig.cSoundPath[alert] != NULL)
+			cairo_dock_play_sound (myConfig.cSoundPath[alert]);
 	}
 	
 	g_free (hms);

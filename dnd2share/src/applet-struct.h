@@ -61,7 +61,7 @@ typedef struct _CDSiteBackend {
 struct _AppletConfig {
 	gboolean bEnableDialogs;
 	gdouble dTimeDialogs;
-	gint iNbItems;
+	guint iNbItems;
 	gint iLimitRate;
 	gboolean bkeepCopy;
 	gboolean bDisplayLastImage;

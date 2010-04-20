@@ -62,12 +62,13 @@ struct _AppletConfig {
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
 	
-	gboolean batteryWitness;
+	gint iNotificationType;
+	gchar *cNotificationAnimation;
+	gint iNotificationDuration;
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean criticalBatteryWitness;
 	gboolean bUseApprox;
-	gchar *batteryWitnessAnimation;
 	gint lowBatteryValue;
 	const gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];

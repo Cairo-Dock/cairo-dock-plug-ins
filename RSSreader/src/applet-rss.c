@@ -573,20 +573,20 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	// on avertit l'utilisateur.
-	if (myData.PrevFirstTitle != NULL)
+	if (myData.PrevFirstTitle != NULL && myConfig.iNotificationType != 0)
 	{
-		if (myConfig.bDialogIfFeedChanged)
+		if (myConfig.iNotificationType != 1)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("This RSS feed has been modified..."),
 				myIcon,
 				myContainer,
-				myConfig.iDialogsDuration,
+				1000*myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
-		if (myConfig.cAnimationIfFeedChanged)
+		if (myConfig.iNotificationType != 2)
 		{
-			CD_APPLET_ANIMATE_MY_ICON (myConfig.cAnimationIfFeedChanged, 3);  // 3 tours.
+			CD_APPLET_DEMANDS_ATTENTION (myConfig.cNotificationAnimation, 3);  /// myConfig.iNotificationDuration ?...
 		}
 	}
 	
@@ -730,13 +730,13 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			cairo_dock_show_temporary_dialog_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the URL\" in the menu."),
 				myIcon,
 				myContainer,
-				myConfig.iDialogsDuration,
+				myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		else
 			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed?\nIs your connection alive?"),
 				myIcon,
 				myContainer,
-				myConfig.iDialogsDuration,
+				myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }

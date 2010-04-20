@@ -99,7 +99,7 @@ add_subdirectory (Clipper)
 
 ############# CLOCK #################
 set (GETTEXT_CLOCK ${GETTEXT_PLUGINS})
-set (VERSION_CLOCK "2.0.9")
+set (VERSION_CLOCK "2.0.10")
 set (PACKAGE_CLOCK "cd-clock")
 set (clockuserdirname "clock")
 set (clockdatadir "${pluginsdatadir}/clock")
@@ -140,7 +140,7 @@ add_subdirectory (dialog-rendering)
 
 ############# DND2SHARE #################
 set (GETTEXT_DND2SHARE ${GETTEXT_PLUGINS})
-set (VERSION_DND2SHARE "1.0.2")
+set (VERSION_DND2SHARE "1.0.3")
 set (PACKAGE_DND2SHARE "cd-dnd2share")
 set (dnd2sharedatadir "${pluginsdatadir}/dnd2share")
 configure_file (dnd2share/data/dnd2share.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/dnd2share/data/dnd2share.conf)
@@ -347,7 +347,7 @@ add_subdirectory (quick-browser)
 
 ############# RSSREADER #################
 set (GETTEXT_RSS_READER ${GETTEXT_PLUGINS})
-set (VERSION_RSS_READER "1.0.1")
+set (VERSION_RSS_READER "1.0.2")
 set (PACKAGE_RSS_READER "cd-rssreader")
 set (rss_readerdatadir "${pluginsdatadir}/RSSreader")
 configure_file (RSSreader/data/RSSreader.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/RSSreader/data/RSSreader.conf)
@@ -397,7 +397,7 @@ if ("${EXIF_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libexif; Slider won't be able to rotate the images accordingly to their exif data.")
 endif()
 set (GETTEXT_SLIDER ${GETTEXT_PLUGINS})
-set (VERSION_SLIDER "2.0.5")
+set (VERSION_SLIDER "2.0.6")
 set (PACKAGE_SLIDER "cd-slider")
 set (sliderdatadir "${pluginsdatadir}/slider")
 configure_file (slider/data/slider.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf)
@@ -421,7 +421,7 @@ add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
 set (GETTEXT_SYSTEM_MONITOR ${GETTEXT_PLUGINS})
-set (VERSION_SYSTEM_MONITOR "1.0.2")
+set (VERSION_SYSTEM_MONITOR "1.0.3")
 set (PACKAGE_SYSTEM_MONITOR "cd-system-monitor")
 set (system_monitordatadir "${pluginsdatadir}/System-monitor")
 configure_file (System-Monitor/data/System-Monitor.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/System-Monitor/data/System-Monitor.conf)
@@ -458,7 +458,7 @@ add_subdirectory (tomboy)
 
 ############# TOONS #################
 set (GETTEXT_TOONS ${GETTEXT_PLUGINS})
-set (VERSION_TOONS "1.0.6")
+set (VERSION_TOONS "1.0.7")
 set (PACKAGE_TOONS "cd-Toons")
 set (toonsdatadir "${pluginsdatadir}/Toons")
 set (toonsuserdirname "Toons")
@@ -491,7 +491,7 @@ endif()
 
 ############# WIFI #################
 set (GETTEXT_WIFI ${GETTEXT_PLUGINS})
-set (VERSION_WIFI "1.2.3")
+set (VERSION_WIFI "1.2.4")
 set (PACKAGE_WIFI "cd-wifi")
 set (wifidatadir "${pluginsdatadir}/wifi")
 configure_file (wifi/data/wifi.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/wifi/data/wifi.conf)

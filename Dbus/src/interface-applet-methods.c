@@ -413,23 +413,12 @@ gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bSt
 	{
 		if (CAIRO_DOCK_IS_DOCK (pContainer))
 		{
-			pIcon->bIsDemandingAttention = TRUE;
-			if (cAnimation == NULL || *cAnimation == '\0' || strcmp (cAnimation, "default") == 0)
-			{
-				if (myTaskBar.cAnimationOnDemandsAttention != NULL)
-					cAnimation = myTaskBar.cAnimationOnDemandsAttention;
-				else
-					cAnimation = "rotate";
-			}
-			cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, 1e6);
-			cairo_dock_mark_icon_as_clicked (pIcon);  // pour eviter qu'un simple survol ne stoppe l'animation.
+			cairo_dock_request_icon_attention (pIcon, CAIRO_DOCK (pContainer), cAnimation, 0);  // 0 <=> sans arret.
 		}
 	}
 	else if (pIcon->bIsDemandingAttention)
 	{
-		pIcon->bIsDemandingAttention = FALSE;
-		cairo_dock_stop_icon_animation (pIcon);
-		cairo_dock_redraw_icon (pIcon, pContainer);
+		cairo_dock_stop_icon_attention (pIcon, CAIRO_DOCK (pContainer));
 	}
 	return TRUE;
 }

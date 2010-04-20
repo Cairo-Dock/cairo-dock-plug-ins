@@ -32,9 +32,10 @@ struct _AppletConfig {
 	gchar *cUserTitle;
 	gint iRefreshTime;
 	gchar *cSpecificWebBrowser;
-	gboolean bDialogIfFeedChanged;
-	gchar *cAnimationIfFeedChanged;
-	gint iDialogsDuration;
+	///gboolean bDialogIfFeedChanged;
+	gint iNotificationType;
+	gchar *cNotificationAnimation;
+	gint iNotificationDuration;
 	// apparence du desklet
 	gboolean bDisplayLogo;
 	gchar *cLogoPath;

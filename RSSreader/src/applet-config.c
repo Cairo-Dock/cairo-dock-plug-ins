@@ -28,7 +28,6 @@
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-
 	double couleur[4] = {0., 0., 0.5, 1.};
 	
 	//\___________________ Section Configuration
@@ -37,14 +36,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	gchar *cEncryptedPassword  	= CD_CONFIG_GET_STRING ("Configuration", "RSS_password");
 	if( cEncryptedPassword )
 	{
-  	cairo_dock_decrypt_string( cEncryptedPassword,  &(myConfig.cUrlPassword) );
-  	g_free(cEncryptedPassword);
+		cairo_dock_decrypt_string( cEncryptedPassword,  &(myConfig.cUrlPassword) );
+		g_free(cEncryptedPassword);
 	}
 	myConfig.iRefreshTime 		= 60 * CD_CONFIG_GET_INTEGER ("Configuration", "refresh_time");
 	myConfig.cSpecificWebBrowser 	= CD_CONFIG_GET_STRING ("Configuration", "specific_web_browser");  // si NULL, on ouvrira l'URL avec les fonctions du dock, xdg-open est loin d'etre installe partout.
-	myConfig.bDialogIfFeedChanged = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
-	myConfig.cAnimationIfFeedChanged = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
-	myConfig.iDialogsDuration 	= 1000 * CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
+	myConfig.iNotificationType 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "notifications", -1);
+	myConfig.cNotificationAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
+	myConfig.iNotificationDuration = CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
+	if (myConfig.iNotificationType == -1)  // anciens parametres.
+	{
+		gboolean bShowDialog = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
+		myConfig.iNotificationType = (bShowDialog ? (myConfig.cNotificationAnimation ? 3 : 2) : (myConfig.cNotificationAnimation ? 1 : 0));
+		g_key_file_set_integer (CD_APPLET_MY_KEY_FILE, "Configuration", "notifications", myConfig.iNotificationType);
+	}
 	
 	//\___________________ Section Appearance
 	// logo
@@ -78,6 +83,7 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
+	g_free (myConfig.cNotificationAnimation);
 	g_free (myConfig.cUrl);
 	g_free (myConfig.cUrlLogin);
 	g_free (myConfig.cUrlPassword);

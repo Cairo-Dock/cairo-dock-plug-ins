@@ -13,6 +13,9 @@ name = Battery
 #d Name of the dock it belongs to:
 dock name = 
 
+#b Always display the icon, even when the dock is hidden?
+always visi = true
+
 icon=
 order=
 
@@ -173,7 +176,7 @@ sep_alert1 =
 #B[2] Notification when low battery ?
 low battery=true
 
-#i[1;50] Battery level:
+#i[5;50] Battery level:
 #{in percent.}
 low value = 15
 
@@ -195,5 +198,14 @@ sound_0 =
 #v
 sep_anim =
 
-#a+ Animation during alert :
-battery_animation=pulse
+#Y-[Icon animation;1;1;Dialog bubble;0;0;Icon animation + Dialog bubble;1;1] Notification type:
+notifications = 2
+
+#a+ Animation of the icon:
+#{Let empty to use the default notification animation.}
+battery_animation=
+
+#I[0;60] Duration of the notification:
+#{In seconds. Set to 0 for infinite time (need to click on dialog to close it).}
+notif_duration=10
+

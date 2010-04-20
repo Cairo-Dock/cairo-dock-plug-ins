@@ -122,16 +122,16 @@ frame_behav=
 #{In minutes.}
 refresh_time=5
 
-#B Display an info bubble when a feed has changed?
-#{By default, this option is activated}
-dialog_feed_changed=true
+#Y-[No;0;0;Icon animation;1;2;Dialog bubble;2;1;Icon animation + Dialog bubble;1;2] Notify about feed updates:
+notifications = 3
 
-#I[0;40] Duration of the info-bubble:
+#a+ Animation of the icon:
+#{Let empty to use the default notification animation.}
+animation_feed_changed=
+
+#I[0;60] Duration of the notification:
 #{In seconds. Set to 0 for infinite time (need to click on dialog to close it).}
-dialogs_duration=20
-
-#a+ Animation of the icon when a feed has changed:
-animation_feed_changed=rotate
+dialogs_duration=10
 
 #v
 sep = 

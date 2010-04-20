@@ -38,8 +38,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.criticalBatteryWitness = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "critical battery", TRUE);
 	
-	myConfig.batteryWitnessAnimation = CD_CONFIG_GET_STRING ("Configuration", "battery_animation");
-	myConfig.batteryWitness = (myConfig.batteryWitnessAnimation != NULL);
+	myConfig.iNotificationType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "notifications", 2) + 1;
+	myConfig.cNotificationAnimation = CD_CONFIG_GET_STRING ("Configuration", "battery_animation");
+	myConfig.iNotificationDuration = CD_CONFIG_GET_INTEGER ("Configuration", "notif_duration");
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
 	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");
@@ -86,7 +87,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cUserBatteryIconName);
 	g_free (myConfig.cUserChargeIconName);
-	g_free (myConfig.batteryWitnessAnimation);
+	g_free (myConfig.cNotificationAnimation);
 	
 	int i;
 	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {

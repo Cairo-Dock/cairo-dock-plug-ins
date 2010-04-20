@@ -38,7 +38,7 @@ void cd_dnd2share_clear_working_directory (void);
 
 void cd_dnd2share_clear_copies_in_working_directory (void);
 
-void cd_dnd2share_set_working_directory_size (int iNbItems);
+void cd_dnd2share_set_working_directory_size (guint iNbItems);
 
 void cd_dnd2share_clean_working_directory (void);
 

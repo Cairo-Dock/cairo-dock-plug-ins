@@ -15,6 +15,9 @@ icon =
 #d Name of the dock it belongs to:
 dock name = 
 
+#b Always display the icon, even when the dock is hidden?
+always visi = true
+
 order=
 
 #F[Applet's Handbook]
