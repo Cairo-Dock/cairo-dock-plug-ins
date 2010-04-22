@@ -44,7 +44,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 		
-		const XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());
+		XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());  // singleton.
 		const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 		int i;
 		for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)

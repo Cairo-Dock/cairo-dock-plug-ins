@@ -238,7 +238,7 @@ static gboolean _entry_event (GtkEditable *entry,
 	char             *nospace_prefix;
 	char             *nprefix;
 	char             *temp;
-	int               pos, tmp;
+	guint               pos, tmp;
 
 	if (event->type != GDK_KEY_PRESS)
 		return FALSE;

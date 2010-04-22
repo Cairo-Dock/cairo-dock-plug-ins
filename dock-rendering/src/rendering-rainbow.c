@@ -418,7 +418,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	Icon *pFirstIcon = pFirstDrawnElement->data;
 	
 	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0;
-	double fCurrentRadius=0, fNormalRadius=0, fCurrentTheta, fThetaStart, fDeltaTheta, fCurrentScale;
+	double fCurrentRadius=0, fNormalRadius=0, fCurrentTheta, fThetaStart=0, fDeltaTheta=0, fCurrentScale=1;
 	do
 	{
 		icon = ic->data;

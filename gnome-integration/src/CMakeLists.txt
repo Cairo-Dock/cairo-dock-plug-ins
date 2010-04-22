@@ -22,15 +22,18 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${GNOME_INTEGRATION_INCLUDE_DIRS})
+	${GNOME_INTEGRATION_INCLUDE_DIRS}
+	${CMAKE_SOURCE_DIR}/gvfs-integration)
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${GNOME_INTEGRATION_LIBRARY_DIRS})
+	${GNOME_INTEGRATION_LIBRARY_DIRS}
+	${CMAKE_SOURCE_DIR}/gvfs-integration)
 
 target_link_libraries (${PACKAGE_GNOME_INTEGRATION}
 	${PACKAGE_LIBRARIES}
-	${GNOME_INTEGRATION_LIBRARIES})
+	${GNOME_INTEGRATION_LIBRARIES}
+	gvfs-integration)
 
 ########### install files ###############
 
