@@ -5,6 +5,7 @@ SET(impl_SRCS
 
 if (${LIBGIO_FOUND})
 	add_definitions (-DHAVE_LIBGIO="1")
+	add_definitions (-fPIC)
 endif()
 
 add_library(gvfs-integration STATIC ${impl_SRCS})

@@ -182,6 +182,7 @@ configure_file (dustbin/data/dustbin.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/dustbin
 add_subdirectory (dustbin)
 
 
+############# GVFS-INTEGRATION #################
 pkg_check_modules ("LIBGIO" "gio-2.0")
 add_subdirectory (gvfs-integration)
 
