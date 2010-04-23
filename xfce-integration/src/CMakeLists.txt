@@ -13,7 +13,6 @@ if(${XFCE_INTEGRATION_GVFS_FOUND})
 else()
 	LIST(APPEND cd_xfce-integration_LIB_SRCS applet-thunar-vfs.c)
 	add_definitions (-DHAVE_THUNAR="1")
-	add_definitions (-fPIC)
 	MESSAGE("    --> gvfs not found: source file applet-thunar-vfs.c included for compilation.")
 endif()
 
