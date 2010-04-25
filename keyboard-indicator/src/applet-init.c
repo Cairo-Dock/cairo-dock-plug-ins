@@ -23,6 +23,7 @@
 #include "applet-xklavier.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
+#include "applet-draw.h"
 #include "applet-init.h"
 
 
@@ -114,5 +115,10 @@ CD_APPLET_RELOAD_BEGIN
 		//\_____________ On declenche le redessin de l'icone.
 		Window Xid = cairo_dock_get_current_active_window ();
 		cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+	}
+	else
+	{
+		myData.iCurrentGroup = -1;
+		cd_xkbd_keyboard_state_changed (myApplet, NULL);
 	}
 CD_APPLET_RELOAD_END

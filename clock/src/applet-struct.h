@@ -82,14 +82,22 @@ typedef enum _SurfaceKind
 
 
 typedef struct {
-	int iHour;
-	int iMinute;
-	int iDayOfWeek;
-	int iDayOfMonth;
+	gint iHour;
+	gint iMinute;
+	gint iDayOfWeek;
+	gint iDayOfMonth;
 	gchar *cMessage;
 	gchar *cCommand;
 	} CDClockAlarm;
 
+typedef struct {
+	guint iHour;
+	guint iMinute;
+	guint iDay;
+	guint iMonth;
+	guint iYear;
+	gchar *cText;
+	} CDClockTask;
 
 struct _AppletConfig {
 	CairoDockInfoDisplay iShowDate;
@@ -111,6 +119,7 @@ struct _AppletConfig {
 	gchar *cDigital;
 	gint iSmoothAnimationDuration;
 	gboolean bSetName;
+	gboolean bNormalDate;
 	} ;
 
 struct _AppletData {
@@ -124,7 +133,6 @@ struct _AppletData {
 	RsvgHandle *pSvgHandles[CLOCK_ELEMENTS];
 	guint iSidUpdateClock;
 	GPid iAlarmPID;
-	CairoDialog *pCalendarDialog;
 	gchar *cSystemLocation;
 	gint iLastCheckedMinute, iLastCheckedDay, iLastCheckedMonth, iLastCheckedYear;
 	struct tm currentTime;
@@ -136,6 +144,10 @@ struct _AppletData {
 	gint iNeedleWidth, iNeedleHeight;
 	gint iDateWidth, iDateHeight;
 	gint iSmoothAnimationStep;
+	
+	GList *pTasks;
+	CairoDialog *pCalendarDialog;
+	GtkWidget *pTaskWindow;
 	} ;
 
 #endif

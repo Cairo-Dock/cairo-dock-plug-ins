@@ -24,6 +24,7 @@
 
 #include "applet-struct.h"
 #include "applet-draw.h"
+#include "applet-calendar.h"
 #include "applet-notifications.h"
 
 
@@ -50,24 +51,8 @@ static void _cd_clock_launch_time_admin (GtkMenuItem *menu_item, CairoDockModule
 }
 
 
-
-
 CD_APPLET_ON_CLICK_BEGIN
-	if (myData.pCalendarDialog != NULL)
-	{
-		cairo_dock_dialog_unreference (myData.pCalendarDialog);
-		myData.pCalendarDialog = NULL;
-	}
-	else
-	{
-		GtkWidget *pCalendar = gtk_calendar_new ();
-		myData.pCalendarDialog = cairo_dock_show_dialog_full (D_("Calendar"),
-			myIcon, myContainer,
-			0,
-			MY_APPLET_SHARE_DATA_DIR"/dates.svg",
-			pCalendar,
-			NULL, NULL, NULL);
-	}
+	cd_clock_show_hide_calendar (myApplet);
 CD_APPLET_ON_CLICK_END
 
 

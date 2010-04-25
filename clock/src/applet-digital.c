@@ -217,23 +217,23 @@ void cd_clock_put_text_on_frames (CairoDockModuleInstance *myApplet, int width, 
 }
 
 void cd_clock_draw_ampm (CairoDockModuleInstance *myApplet, gchar *cMark) {
-	cd_debug ("Adding %s to the last frame\n", cMark);
+	g_print ("Adding %s to the last frame\n", cMark);
 	//Ca s'est gérer dans la config.
 	//Vérifier les structures necessaires.
 }
 
 void cd_clock_draw_text_from_surface (CairoDockModuleInstance *myApplet, int iNumber) {
-	cd_debug ("Printing text #%d on corresponding frame\n", iNumber);
+	g_print ("Printing text #%d on corresponding frame\n", iNumber);
 	//Il faudra surment scale down la surface avant de cairo_print
 	//TODO prendre le code sur slider.
 }
 
 void cd_clock_fill_text_surface (CairoDockModuleInstance *myApplet, gchar *cStr, int iNumber) {
-	cd_debug ("Filling the #%d surface with %s\n", iNumber, cStr);
+	g_print ("Filling the #%d surface with %s\n", iNumber, cStr);
 	//Aucune idée de comment faire!
 	//TODO demander a fabounet des indices ici.
 }
 
 void cd_clock_draw_date_on_frame (CairoDockModuleInstance *myApplet) {
-	cd_debug ("Add date on frame\n");
+	g_print ("Add date on frame\n");
 }

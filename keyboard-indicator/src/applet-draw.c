@@ -44,6 +44,10 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		//\__________________ On cree la nouvelle surface (la taille du texte peut avoir change).
 		int iWidth, iHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+		if (iWidth <= 1 && iHeight <= 1)  // peut arriver au lancement en mode desklet.
+		{
+			return;
+		}
 		double fMaxScale = cairo_dock_get_max_scale (myContainer);
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			&myConfig.textDescription,
@@ -99,7 +103,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
-	//g_print ("%s (%.2f)\n", __func__, f);
+	g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
 	
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
