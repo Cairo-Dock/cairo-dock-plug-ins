@@ -85,19 +85,19 @@ static gboolean _cd_do_fill_recent_entry (CDEntry *pEntry)
 
 static void _cd_do_launch_file (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	cairo_dock_fm_launch_uri (pEntry->cPath);
 }
 
 static void _cd_do_launch_file_with_given_app (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	cairo_dock_launch_command (pEntry->cPath);
 }
 
 static void _cd_do_show_file_location (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	gchar *cPathUp = g_path_get_dirname (pEntry->cPath);
 	g_return_if_fail (cPathUp != NULL);
 	cairo_dock_fm_launch_uri (cPathUp);
@@ -111,7 +111,7 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 
 static GList *_cd_do_list_recent_sub_entries (CDEntry *pEntry, int *iNbEntries)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	CDEntry *pSubEntry;
 	GList *pEntries = NULL;
 	int i = 0;
@@ -159,7 +159,7 @@ static GList *_cd_do_list_recent_sub_entries (CDEntry *pEntry, int *iNbEntries)
 
 static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_debug ("%s (%s)\n", __func__, cText);
 	
 	GList *pEntries = NULL;
 	CDEntry *pEntry;

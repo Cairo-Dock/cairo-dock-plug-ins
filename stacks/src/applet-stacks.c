@@ -79,7 +79,7 @@ void cd_stacks_mklink (const gchar *cURI) {
 	gchar *cCommand = g_strdup_printf("ln -s \"%s\" \"%s/stacks\"", cFilePath, g_cCairoDockDataDir);
 	cd_debug("Stacks: will use '%s'", cCommand);
 	int r = system (cCommand);  // c'est une commande quasi-immediate donc pas vraiment besoin de le lancer en asynchrone.
-	g_print ("retour : %d\n", r);  // quel est le retour en cas d'erreur ?
+	cd_debug ("retour : %d\n", r);  // quel est le retour en cas d'erreur ?
 	g_free (cCommand);
 }
 

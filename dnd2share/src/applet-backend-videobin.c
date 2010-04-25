@@ -36,7 +36,7 @@ static void upload (const gchar *cFilePath)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@'%s' -F api=1", myConfig.iLimitRate, cFilePath);
-	g_print ("%s\n", cCommand);
+	cd_debug ("%s\n", cCommand);
 	gchar *cURL = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 

@@ -40,7 +40,7 @@ static void upload (const gchar *cFilePath)
 		cCommand= g_strdup_printf ("cp '%s' '%s'", cFilePath, myConfig.cDropboxDir);
 	else
 		cCommand= g_strdup_printf ("cp '%s' ~/Dropbox/Public", cFilePath);
-	g_print ("commande dropbox1 : %s\n", cCommand);
+	cd_debug ("commande dropbox1 : %s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
@@ -62,7 +62,7 @@ static void upload (const gchar *cFilePath)
 	else
 		cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s'", cFileName); 
 	
-	g_print ("commande dropbox2 : %s\n", cCommand);
+	cd_debug ("commande dropbox2 : %s\n", cCommand);
 	g_free (cFileName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);

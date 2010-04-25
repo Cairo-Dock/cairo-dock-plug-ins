@@ -67,7 +67,7 @@ static int _compare_appli (Icon *pIcon1, Icon *pIcon2)
 }
 static void _cd_do_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
-	g_print ("la liste des applis a change dans %s!\n", cURI);
+	cd_debug ("la liste des applis a change dans %s!\n", cURI);
 	// on reconstruit la liste des applis.
 	cd_do_reset_applications_list ();
 	_browse_dir ("/usr/share/applications");  // oui c'est bourrin, ca ne doit pas arriver tres souvent?
@@ -133,7 +133,7 @@ static void _browse_dir (const gchar *cDirPath)
 			str = strchr (pIcon->cCommand, '%');
 			if (str != NULL)
 				*str = '\0';
-			g_print (" + %s\n", pIcon->cCommand);
+			cd_debug (" + %s\n", pIcon->cCommand);
 			pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Path", NULL);
 			myData.pApplications = g_list_prepend (myData.pApplications, pIcon);
 			g_key_file_free (pKeyFile);
@@ -189,11 +189,11 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 			iNbAppliLoaded ++;
 		}
 	}
-	g_print (" %d de plus chargee(s)\n", iNbAppliLoaded);
+	cd_debug (" %d de plus chargee(s)\n", iNbAppliLoaded);
 	myData.pCurrentApplicationToLoad = a;
 	if (a == NULL)  // on est arrive au bout de la liste.
 	{
-		g_print ("toutes les applis sont chargees !\n");
+		cd_debug ("toutes les applis sont chargees !\n");
 		cairo_dock_redraw_container (CAIRO_CONTAINER (g_pMainDock));
 		myData.iSidLoadExternAppliIdle = 0;
 		return FALSE;
@@ -249,11 +249,11 @@ void cd_do_find_matching_applications (void)
 		}
 		if (g_list_find_custom (myData.pMatchingIcons, pIcon, (GCompareFunc)_same_command) == NULL)
 		{
-			g_print (" on ajoute %s\n", pIcon->cCommand);
+			cd_debug (" on ajoute %s\n", pIcon->cCommand);
 			myData.pMatchingIcons = g_list_prepend (myData.pMatchingIcons, pIcon);
 		}
 	}
-	g_print (" -> found %d elements)\n", g_list_length (myData.pMatchingIcons));
+	cd_debug (" -> found %d elements)\n", g_list_length (myData.pMatchingIcons));
 	myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 	
 	//\_______________ On place l'appli preferee en premier.
@@ -263,11 +263,11 @@ void cd_do_find_matching_applications (void)
 		gchar *cPrefferedAppli = myConfig.cPreferredApplis[i];
 		if (cPrefferedAppli != NULL && *cPrefferedAppli != '\0')
 		{
-			g_print (" > une appli preferee est definie : '%s'\n", cPrefferedAppli);
+			cd_debug (" > une appli preferee est definie : '%s'\n", cPrefferedAppli);
 			GList *ic = g_list_find_custom (myData.pMatchingIcons, cPrefferedAppli, (GCompareFunc) _similar_command);
 			if (ic != NULL)
 			{
-				g_print (" > on la passe en premier\n");
+				cd_debug (" > on la passe en premier\n");
 				myData.pMatchingIcons = g_list_remove_link (myData.pMatchingIcons, ic);
 				myData.pMatchingIcons = g_list_concat (ic, myData.pMatchingIcons);
 			}

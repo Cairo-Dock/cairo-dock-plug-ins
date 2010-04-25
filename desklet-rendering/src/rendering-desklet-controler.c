@@ -58,7 +58,7 @@ static gboolean on_button_press_controler (GtkWidget *widget,
 
 CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, CairoDeskletRendererConfigPtr pConfig)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	CDControlerParameters *pControler = g_new0 (CDControlerParameters, 1);
 	
 	if (pConfig != NULL)
@@ -75,7 +75,7 @@ CDControlerParameters *rendering_configure_controler (CairoDesklet *pDesklet, Ca
 
 void rendering_load_controler_data (CairoDesklet *pDesklet)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
 		return ;
@@ -115,7 +115,7 @@ void rendering_load_controler_data (CairoDesklet *pDesklet)
 
 void rendering_free_controler_data (CairoDesklet *pDesklet)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	CDControlerParameters *pControler = (CDControlerParameters *) pDesklet->pRendererData;
 	if (pControler == NULL)
 		return ;
@@ -186,7 +186,7 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet)
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
-		g_print (" + %dx%d\n", (int)pIcon->fWidth, (int) pIcon->fHeight);
+		cd_debug (" + %dx%d\n", (int)pIcon->fWidth, (int) pIcon->fHeight);
 	}
 }
 

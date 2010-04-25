@@ -34,10 +34,10 @@ CD_APPLET_PRE_INIT_BEGIN ("gnome integration",
 	"Fabounet (Fabrice Rey)")
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
 	{
-		g_print ("GNOME");
+		cd_debug ("GNOME");
 		if (cairo_dock_gio_vfs_init ())
 		{
-			g_print ("GVFS");
+			cd_debug ("GVFS");
 			CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
 			
 			cairo_dock_gio_vfs_fill_backend(pVFSBackend);

@@ -178,7 +178,7 @@ static void _on_drop_data (const gchar *cMyData)
 		{
 			if (cMimeType != NULL)
 			{
-				g_print ("cMimeType : %s (%s)\n", cMimeType, cMyData);
+				cd_debug ("cMimeType : %s (%s)\n", cMimeType, cMyData);
 				if (strncmp (cMimeType, "image", 5) == 0)
 					iFileType = CD_TYPE_IMAGE;
 				else if (strncmp (cMimeType, "video", 5) == 0)
@@ -217,14 +217,14 @@ static void _on_drop_data (const gchar *cMyData)
 	}
 	else  // c'est du texte.
 	{
-		// g_print ("TEXT\n");
+		// cd_debug ("TEXT\n");
 		iFileType = CD_TYPE_TEXT;
 	}
 	
 	if (iFileType == CD_UNKNOWN_TYPE)
 	{
 		iFileType = CD_TYPE_FILE;
-		g_print ("we'll consider this as an archive.");
+		cd_debug ("we'll consider this as an archive.");
 	}
 	cd_dnd2share_launch_upload (cFilePath ? cFilePath : cMyData, iFileType);
 	g_free (cFilePath);
@@ -332,7 +332,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 		if (pItem == NULL)
 		{
 			pItem = g_list_last (myData.pUpoadedItems)->data;
-			g_print ("dernier item\n");
+			cd_debug ("dernier item\n");
 			myData.iCurrentItemNum = g_list_length (myData.pUpoadedItems) - 1;
 		}
 	}

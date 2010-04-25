@@ -63,7 +63,7 @@ CD_APPLET_STOP_BEGIN
 	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS) && myConfig.cStackDir)  // on a efface notre instance, on efface donc aussi le repertoire.
 	{
 		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", myConfig.cStackDir);
-		g_print ("Stack : %s\n", myConfig.cStackDir);
+		cd_debug ("Stack : %s\n", myConfig.cStackDir);
 		int r = system (cCommand);
 		g_free (cCommand);
 	}

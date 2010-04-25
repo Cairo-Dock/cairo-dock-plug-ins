@@ -105,7 +105,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 CD_APPLET_ON_SCROLL_BEGIN
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	g_print ("%.2f;%.2f;%.2f\n", myData.Xgamma.red, myData.Xgamma.green, myData.Xgamma.blue);
+	cd_debug ("%.2f;%.2f;%.2f\n", myData.Xgamma.red, myData.Xgamma.green, myData.Xgamma.blue);
 	double f;
 	if (CD_APPLET_SCROLL_UP)
 	{

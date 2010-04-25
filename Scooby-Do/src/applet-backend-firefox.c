@@ -235,7 +235,7 @@ static gboolean init (void)
 		cd_warning ("no bookmarks");
 		return FALSE;
 	}
-	g_print ("found bookmarks '%s'\n", s_cBookmarksFile);
+	cd_debug ("found bookmarks '%s'\n", s_cBookmarksFile);
 	
 	// on parse le fichier.
 	s_pRootItem = _parse_bookmarks (s_cBookmarksFile);
@@ -260,7 +260,7 @@ static void stop (void)
 
 static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
 {
-	g_print ("bookmarks have changed\n");
+	cd_debug ("bookmarks have changed\n");
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_DELETED :
@@ -319,27 +319,27 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 
 static void _cd_do_launch_url (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	//cairo_dock_fm_launch_uri (pEntry->cPath);
 	cairo_dock_launch_command_printf ("firefox \"%s\"", NULL, pEntry->cPath);
 }
 
 static void _cd_do_launch_in_new_window (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	cairo_dock_launch_command_printf ("firefox -no-remote \"%s\"", NULL, pEntry->cPath);
 }
 
 static void _cd_do_copy_url (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gtk_clipboard_set_text (pClipBoard, pEntry->cPath, -1);
 }
 
 static void _cd_do_launch_all_url (CDEntry *pEntry)
 {
-	g_print ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
 	cairo_dock_launch_command_printf ("firefox %s", NULL, pEntry->cPath);
 }
 
@@ -481,7 +481,7 @@ static GList* _search_in_item (CDBookmarkItem *pFolderItem, const gchar *cText, 
 }
 static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_debug ("%s (%s)\n", __func__, cText);
 	if (s_pRootItem == NULL)
 		return NULL;
 	

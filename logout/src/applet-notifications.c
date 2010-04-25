@@ -161,7 +161,7 @@ static gboolean _timer (gpointer data)
 	time_t t_cur = (time_t) time (NULL);
 	if (t_cur >= myConfig.iShutdownTime)
 	{
-		g_print ("shutdown !\n");
+		cd_debug ("shutdown !\n");
 		
 		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
@@ -174,7 +174,7 @@ static gboolean _timer (gpointer data)
 	}
 	else
 	{
-		g_print ("shutdown in %d minutes\n", (int) (myConfig.iShutdownTime - t_cur) / 60);
+		cd_debug ("shutdown in %d minutes\n", (int) (myConfig.iShutdownTime - t_cur) / 60);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%dmn", (int) ceil ((double)(myConfig.iShutdownTime - t_cur) / 60.));
 		CD_APPLET_REDRAW_MY_ICON;
 		if (t_cur >= myConfig.iShutdownTime - 60)

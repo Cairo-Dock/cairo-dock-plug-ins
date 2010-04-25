@@ -284,7 +284,7 @@ gboolean cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const g
 	int iPid = cd_dbus_applet_is_running (cModuleName);
 	if (iPid > 0)
 	{
-		/*g_print ("  l'applet est deja lancee\n");
+		/*cd_debug ("  l'applet est deja lancee\n");
 		return FALSE;*/
 		cd_debug ("  l'applet est deja lancee, on la tue sauvagement.");
 		gchar *cCommand = g_strdup_printf ("kill %d", iPid);

@@ -60,7 +60,7 @@ static void upload (const gchar *cFilePath)
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("wget -O \"%s\" --tries=2 --timeout=5 --limit-rate=%dk --post-data \"content=%s&api=%s&description=cairo-dock&type=1&expiry=1%%20month&name=%s\" http://pastebin.ca/quiet-paste.php", cLogFile, myConfig.iLimitRate, sContent->str, API_KEY, g_getenv ("USER"));  // apparemment plus facile a faire avec wget qu'avec curl, qui retourne une erreur 417 a chaque fois.
 	g_string_free (sContent, TRUE);
-	g_print ("%s\n", cCommand);
+	cd_debug ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	

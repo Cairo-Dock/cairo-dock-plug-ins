@@ -219,7 +219,7 @@ void cd_do_search_current_icon (gboolean bLoopSearch)
 	//\_________________ on cherche un lanceur correspondant.
 	CairoDock *pDock;
 	Icon *pIcon = cd_do_search_icon_by_command (myData.sCurrentText->str, (bLoopSearch ? myData.pCurrentIcon : NULL), &pDock);
-	g_print ("found icon : %s\n", pIcon ? pIcon->cName : "none");
+	cd_debug ("found icon : %s\n", pIcon ? pIcon->cName : "none");
 	
 	//\_________________ on gere le changement d'icone/dock.
 	cd_do_change_current_icon (pIcon, pDock);
@@ -268,26 +268,26 @@ void cd_do_search_matching_icons (void)
 {
 	if (myData.sCurrentText->len == 0)
 		return;
-	g_print ("%s (%s)\n", __func__, myData.sCurrentText->str);
+	cd_debug ("%s (%s)\n", __func__, myData.sCurrentText->str);
 	gchar *str = strchr (myData.sCurrentText->str, ' ');  // on ne compte pas les arguments d'une eventuelle commande deja tapee.
 	int length = myData.sCurrentText->len;
 	if (str != NULL)
 	{
 		g_string_set_size (myData.sCurrentText, str - myData.sCurrentText->str + 1);
-		g_print (" on ne cherchera que '%s' (len=%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
+		cd_debug (" on ne cherchera que '%s' (len=%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
 	}
 		
 	if (myData.pMatchingIcons == NULL)
 	{
 		if (myData.bSessionStartedAutomatically)  // on cherche dans le dock courant.
 		{
-			g_print ("on cherche dans le dock\n");
+			cd_debug ("on cherche dans le dock\n");
 			_cd_do_search_matching_icons_in_dock (myData.pCurrentDock);
 			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 		}
 		else
 		{
-			g_print ("on cherche tout\n");
+			cd_debug ("on cherche tout\n");
 			// on parcours tous les docks.
 			cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _cd_do_search_in_one_dock, NULL);
 			myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
@@ -298,7 +298,7 @@ void cd_do_search_matching_icons (void)
 	}
 	else  // optimisation : on peut se contenter de chercher parmi les icones deja trouvees.
 	{
-		g_print ("on se contente d'enlever celles en trop\n");
+		cd_debug ("on se contente d'enlever celles en trop\n");
 		GList *ic, *next_ic;
 		Icon *pIcon;
 		ic = myData.pMatchingIcons;

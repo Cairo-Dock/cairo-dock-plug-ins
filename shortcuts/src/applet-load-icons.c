@@ -73,7 +73,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 					double fOrder;
 					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
-						g_print (" -> %s (%d)\n", cIconName, bIsMounted);
+						cd_debug (" -> %s (%d)\n", cIconName, bIsMounted);
 						g_free (icon->cName);
 						if (bIsMounted || cIconName == NULL)
 							icon->cName = cName;
@@ -183,7 +183,7 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	/*if (myIcon == NULL)
 	{
-		g_print ("annulation du chargement des raccourcis\n");
+		cd_debug ("annulation du chargement des raccourcis\n");
 		g_list_foreach (myData.pIconList, (GFunc) cairo_dock_free_icon, NULL);
 		g_list_free (myData.pIconList);
 		myData.pIconList = NULL;

@@ -68,7 +68,7 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 	{
 		if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 		{
-			g_print ("account is being checked, wait a second\n");
+			cd_debug ("account is being checked, wait a second\n");
 			return;
 		}
 
@@ -299,7 +299,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	
 	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
-		g_print ("account is being checked, wait a second\n");
+		cd_debug ("account is being checked, wait a second\n");
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	

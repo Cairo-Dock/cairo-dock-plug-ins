@@ -155,7 +155,7 @@ static void _cd_tomboy_unregister_note (Icon *pIcon)
 
 void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /*const gchar *note_title, */gpointer data)
 {
-	g_print ("%s (%s)\n", __func__, note_uri);
+	cd_debug ("%s (%s)\n", __func__, note_uri);
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	
@@ -244,7 +244,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 			{
 				int iWidth, iHeight;
 				cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &iWidth, &iHeight);
-				g_print ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
+				cd_debug ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
 				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cIconEmpty != NULL ? myConfig.cIconEmpty : MY_APPLET_SHARE_DATA_DIR"/note.svg",
 					iWidth,
 					iHeight);
@@ -332,9 +332,9 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 	else
 	{
 		if (myConfig.iAppControlled)
-			g_print ("Tomboy is not running\n");
+			cd_debug ("Tomboy is not running\n");
 		else
-			g_print ("Gnote is not running\n");
+			cd_debug ("Gnote is not running\n");
 	}
 	return TRUE;
 }
@@ -503,7 +503,7 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 		int i = 0;
 		while (cContents[i] != NULL)
 		{
-			g_print (" %s : %s\n", cNoteName, cContents[i]);
+			cd_debug (" %s : %s\n", cNoteName, cContents[i]);
 			if (g_strstr_len (cNoteContent, strlen (cNoteContent), cContents[i]) != NULL)
 			{
 				g_free (cNoteContent);
@@ -553,7 +553,7 @@ GList *cd_tomboy_find_note_for_this_week (void)
 	static struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
-	g_print ("epoch_tm.tm_wday : %d\n", epoch_tm.tm_wday);
+	cd_debug ("epoch_tm.tm_wday : %d\n", epoch_tm.tm_wday);
 	int i, iNbDays = (8 - epoch_tm.tm_wday) % 7;  // samedi <=> 6, dimanche <=> 0.
 	
 	gchar **cDays = g_new0 (gchar *, iNbDays + 1);

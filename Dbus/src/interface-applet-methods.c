@@ -425,25 +425,25 @@ gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bSt
 
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error)
 {
-	g_print ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
 }
 
 gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error)
 {
-	g_print ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_ask_question (pDbusApplet, message, NULL, error);
 }
 
 gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message, gdouble fInitialValue, gdouble fMaxValue, GError **error)
 {
-	g_print ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_ask_value (pDbusApplet, message, fInitialValue, fMaxValue, NULL, error);
 }
 
 gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, GError **error)
 {
-	g_print ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
 }
 
@@ -800,7 +800,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
 {
-	g_print ("%s (%s)\n", __func__, cProperty);
+	cd_debug ("%s (%s)\n", __func__, cProperty);
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
@@ -886,7 +886,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 
 gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperties, GError **error)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	

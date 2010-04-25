@@ -633,7 +633,7 @@ static void _on_detect_player (void)
 {
 	if (myApplet == NULL)  // precaution.
 		return ;
-	g_print ("myData.bIsRunning : %d\n", myData.bIsRunning);
+	cd_debug ("myData.bIsRunning : %d\n", myData.bIsRunning);
 	if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 	{
 		cd_debug ("MP : MP is running\n");

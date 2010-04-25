@@ -46,7 +46,7 @@ static void upload (const gchar *cFilePath)
 	
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://imagebin.ca/upload.php -F f=@'%s' -F t=file -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);
-	g_print ("%s\n", cCommand);
+	cd_debug ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	

@@ -224,7 +224,7 @@ gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, co
 		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 		cairo_dock_start_icon_animation (pIcon, pParentDock);
 	}
-	g_print (" => cDesktopFileName : %s\n", pIcon->cDesktopFileName);
+	cd_debug (" => cDesktopFileName : %s\n", pIcon->cDesktopFileName);
 	
 	return TRUE;
 }

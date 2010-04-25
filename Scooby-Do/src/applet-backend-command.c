@@ -56,7 +56,7 @@ static void _cd_do_execute_command (CDEntry *pEntry)
 	g_free (cCommand);
 	if (cResult != NULL && strcmp (cResult, "0") != 0)
 	{
-		g_print (" resultat du calcul : '%s'\n", cResult);
+		cd_debug (" resultat du calcul : '%s'\n", cResult);
 		GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 		gtk_clipboard_set_text (pClipBoard, cResult, -1);
 		Icon *pIcon = cairo_dock_get_dialogless_icon ();
@@ -69,7 +69,7 @@ static void _cd_do_execute_command (CDEntry *pEntry)
 	}
 	else  // le calcul n'a rien donne, on execute sans chercher.
 	{
-		g_print (" pas un calcul => on execute '%s'\n", myData.sCurrentText->str);
+		cd_debug (" pas un calcul => on execute '%s'\n", myData.sCurrentText->str);
 		cairo_dock_launch_command (myData.sCurrentText->str);
 	}
 	g_free (cResult);
@@ -87,7 +87,7 @@ static void _cd_do_execute_command (CDEntry *pEntry)
 
 static GList * search (const gchar *cText, gint iFilter, gboolean bSearchAll, int *iNbEntries)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_debug ("%s (%s)\n", __func__, cText);
 	GList *pEntries = NULL;
 	CDEntry *pEntry;
 	

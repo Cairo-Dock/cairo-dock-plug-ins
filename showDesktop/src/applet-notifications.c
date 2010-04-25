@@ -148,7 +148,7 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 	rates = XRRRates(dpy, 0, iNumRes, &num_rates);
 	CD_APPLET_LEAVE_IF_FAIL (num_rates > 0);
 	//g_return_if_fail (num_rates > 0);
-	g_print ("available rates : from %d to %d Hz\n", rates[0], rates[num_rates-1]);
+	cd_debug ("available rates : from %d to %d Hz\n", rates[0], rates[num_rates-1]);
 	
 	XRRSetScreenConfigAndRate(dpy, conf, root, iNumRes, RR_Rotate_0, rates[num_rates-1], CurrentTime);
 	XRRFreeScreenConfigInfo (conf);
@@ -223,7 +223,7 @@ gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
-	g_print ("bDesktopVisible <- %d\n", myData.bDesktopVisible);
+	cd_debug ("bDesktopVisible <- %d\n", myData.bDesktopVisible);
 	
 	if (myConfig.cVisibleImage)
 	{

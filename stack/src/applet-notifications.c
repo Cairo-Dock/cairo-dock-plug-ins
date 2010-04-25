@@ -112,7 +112,7 @@ static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
-	g_print ("stack : '%s' has been copied into the clipboard\n", pIcon->cCommand);
+	cd_debug ("stack : '%s' has been copied into the clipboard\n", pIcon->cCommand);
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 	CD_APPLET_LEAVE ();
 }

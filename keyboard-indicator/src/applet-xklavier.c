@@ -165,7 +165,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		
 		/*for (i = 0; i < n; i ++)
 		{
-			g_print ("kbd group name %d : %s - %s\n", i, pGroupNames[i], pIndicatorNames[i]);
+			cd_debug ("kbd group name %d : %s - %s\n", i, pGroupNames[i], pIndicatorNames[i]);
 		}
 		XklConfigRec *pConfigRec = xkl_config_rec_new ();
 		xkl_config_rec_get_from_server (pConfigRec, pEngine);

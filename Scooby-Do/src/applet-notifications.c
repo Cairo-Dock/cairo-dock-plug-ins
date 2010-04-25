@@ -141,7 +141,7 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 {
 	if (pIcon == myData.pCurrentIcon && ! myData.bIgnoreIconState)
 	{
-		g_print ("notre icone vient de se faire stopper\n");
+		cd_debug ("notre icone vient de se faire stopper\n");
 		myData.pCurrentIcon = NULL;
 		myData.pCurrentDock = NULL;
 		
@@ -253,7 +253,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
-	g_print ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
+	cd_debug ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
 	
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
@@ -295,7 +295,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
-			g_print ("on efface la derniere lettre de %s %d/%d\n", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
+			cd_debug ("on efface la derniere lettre de %s %d/%d\n", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
 			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
 				myData.iNbValidCaracters --;
 			
@@ -365,12 +365,12 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Return)
 	{
-		g_print ("Enter (%s)\n", myData.cSearchText);
+		cd_debug ("Enter (%s)\n", myData.cSearchText);
 		if (myData.bNavigationMode)
 		{
 			if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
 			{
-				g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
+				cd_debug ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
 				
 				myData.bIgnoreIconState = TRUE;
 				if (iModifierType & GDK_MOD1_MASK)  // ALT
@@ -416,7 +416,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
 			{
 				CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
-				g_print ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
+				cd_debug ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
 				if (pEntry->execute)
 					pEntry->execute (pEntry);
 				else
@@ -424,7 +424,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 			{
-				g_print ("on execute '%s'\n", myData.sCurrentText->str);
+				cd_debug ("on execute '%s'\n", myData.sCurrentText->str);
 				cairo_dock_launch_command (myData.sCurrentText->str);
 			}
 			
@@ -441,7 +441,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			{
 				if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)
 				{
-					g_print ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->cName);
+					cd_debug ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->cName);
 					Icon *pIcon = cairo_dock_get_first_icon (myData.pCurrentIcon->pSubDock->icons);
 					cd_do_change_current_icon (pIcon, myData.pCurrentIcon->pSubDock);
 				}
@@ -454,7 +454,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (myData.pCurrentDock, &pParentDock);
 					if (pPointingIcon != NULL)
 					{
-						g_print ("on redescend dans le dock parent via %s\n", pPointingIcon->cName);
+						cd_debug ("on redescend dans le dock parent via %s\n", pPointingIcon->cName);
 						cd_do_change_current_icon (pPointingIcon, pParentDock);
 					}
 				}
@@ -482,7 +482,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						pPrevIcon = cairo_dock_get_last_icon (myData.pCurrentDock->icons);
 					}
 					
-					g_print ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->cName : "none");
+					cd_debug ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->cName : "none");
 					cd_do_change_current_icon (pPrevIcon, myData.pCurrentDock);
 				}
 			}
@@ -509,7 +509,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 						pNextIcon = cairo_dock_get_first_icon (myData.pCurrentDock->icons);
 					}
 					
-					g_print ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->cName : "none");
+					cd_debug ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->cName : "none");
 					cd_do_change_current_icon (pNextIcon, myData.pCurrentDock);
 				}
 			}
@@ -545,7 +545,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
 				myData.pCurrentDock = g_pMainDock;
 			Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
-			g_print ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
+			cd_debug ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
 			cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 		}
 		else if (myData.pListing != NULL)
@@ -560,23 +560,23 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (! myData.bNavigationMode && myData.pListing != NULL && GTK_WIDGET_VISIBLE (myData.pListing->container.pWidget))
 		{
-			g_print ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
+			cd_debug ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
 			cd_do_activate_filter_option (iKeyVal - GDK_F1);
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 		}
 	}
 	else if (string)  /// utiliser l'unichar ...
 	{
-		g_print ("string:'%s'\n", string);
+		cd_debug ("string:'%s'\n", string);
 		int iNbNewChar = 0;
 		if ((iModifierType & GDK_CONTROL_MASK) && iUnicodeChar == 'v')  // CTRL+v
 		{
-			g_print ("CTRL+v\n");
+			cd_debug ("CTRL+v\n");
 			GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 			gchar *cText = gtk_clipboard_wait_for_text (pClipBoard);  // la main loop s'execute pendant ce temps.
 			if (cText != NULL)
 			{
-				g_print ("clipboard : '%s'\n", cText);
+				cd_debug ("clipboard : '%s'\n", cText);
 				iNbNewChar = strlen (cText);  /// penser a l'UTF-8 ...
 				gchar *str = strchr (cText, '\r');
 				if (str)

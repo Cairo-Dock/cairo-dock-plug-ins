@@ -32,7 +32,7 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 	int i=0;
 	gchar *tmp=NULL;
 	while (cString[i] != NULL) {
-		g_print ("   %s\n", cString[i]);
+		cd_debug ("   %s\n", cString[i]);
 		tmp = g_strstr_len (cCompar, -1, cString[i]);
 		if (tmp != NULL)
 			return TRUE; //We found what we want

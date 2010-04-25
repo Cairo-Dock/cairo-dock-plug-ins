@@ -41,14 +41,14 @@
 //     The overall state of the NetworkManager daemon.
 void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GValue *value;
 	
 	// on regarde quelles proprietes ont change.
 	value = g_hash_table_lookup (properties, "ActiveConnections");  // device path, qui donnera un device object, qui contient des proprietes.
 	if (value && G_VALUE_HOLDS (value, DBUS_TYPE_G_OBJECT_PATH))
 	{
-		g_print (" -> changement dans les connections actives\n");
+		cd_debug (" -> changement dans les connections actives\n");
 		cd_NetworkMonitor_get_active_connection_info();
 		cd_NetworkMonitor_draw_icon ();
 	}
@@ -56,7 +56,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 	value = g_hash_table_lookup (properties, "State");  // NM_STATE_UNKNOWN = 0, NM_STATE_ASLEEP = 1, NM_STATE_CONNECTING = 2, NM_STATE_CONNECTED = 3, NM_STATE_DISCONNECTED = 4
 	if (value && G_VALUE_HOLDS_UINT (value))
 	{
-		g_print (" -> changement de l'etat de NM : %d\n", g_value_get_uint (value));
+		cd_debug (" -> changement de l'etat de NM : %d\n", g_value_get_uint (value));
 		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_stop_icon_animation (myIcon);
 		switch (g_value_get_uint (value))
@@ -111,7 +111,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 
 void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GValue *value;
 	
 	value = g_hash_table_lookup (hProperties, "ActiveAccessPoint");
@@ -121,7 +121,7 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProp
 		myData.cAccessPoint = NULL;
 		
 		gchar *cAccessPointPath = g_value_get_boxed (value);
-		g_print ("Network-Monitor : New active point : %s\n", cAccessPointPath);
+		cd_debug ("Network-Monitor : New active point : %s\n", cAccessPointPath);
 		
 		if (cAccessPointPath && strncmp (cAccessPointPath, "/org/freedesktop/NetworkManager/AccessPoint/", 44) == 0)
 		{
@@ -132,7 +132,7 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProp
 		}
 		else
 		{
-			g_print ("plus de point d'acces !\n");
+			cd_debug ("plus de point d'acces !\n");
 			/// que faire ?...
 		}
 	}
@@ -140,13 +140,13 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProp
 
 void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GValue *v;
 	v = g_hash_table_lookup (hProperties, "Carrier");
 	if (G_VALUE_HOLDS_BOOLEAN (v))
 	{
 		gboolean bCablePlugged = g_value_get_boolean (v);
-		g_print (">>> Network-Monitor :  cable branche : %d", bCablePlugged);
+		cd_debug (">>> Network-Monitor :  cable branche : %d", bCablePlugged);
 		cairo_dock_show_temporary_dialog_with_icon (bCablePlugged ? D_("A cable has been plugged") : D_("A cable has been unplugged"), myIcon, myContainer, 3000, "same icon");
 	}
 }
@@ -154,7 +154,7 @@ void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 
 void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	cd_NetworkMonitor_fetch_access_point_properties (hProperties);
 	
 	cd_NetworkMonitor_draw_icon ();
@@ -163,29 +163,29 @@ void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 
 void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GValue *v;
 	v = g_hash_table_lookup (hProperties, "Connection");
 	if (G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 	{
-		g_print (">>> Network-Monitor : new connection path : %s", (gchar*)g_value_get_boxed (v));
+		cd_debug (">>> Network-Monitor : new connection path : %s", (gchar*)g_value_get_boxed (v));
 	}
 	v = g_hash_table_lookup (hProperties, "SpecificObject");
 	if (G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 	{
-		g_print (">>> Network-Monitor : new SpecificObject : %s", (gchar*)g_value_get_boxed (v));
+		cd_debug (">>> Network-Monitor : new SpecificObject : %s", (gchar*)g_value_get_boxed (v));
 	}
 	v = g_hash_table_lookup (hProperties, "State");
 	if (G_VALUE_HOLDS_UINT (v))
 	{
-		g_print (">>> Network-Monitor : new state : %d", g_value_get_uint (v));
+		cd_debug (">>> Network-Monitor : new state : %d", g_value_get_uint (v));
 	}
 	
 }
 
 void onNewConnection (DBusGProxy *dbus_proxy, const GValue *pNewConnectionPath, gpointer data)
 {
-	g_print ("%s (%s)\n", __func__, g_value_get_boxed (pNewConnectionPath));
+	cd_debug ("%s (%s)\n", __func__, g_value_get_boxed (pNewConnectionPath));
 	
 	
 }

@@ -64,7 +64,7 @@ CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
 void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
 , CairoDockModuleInstance *myApplet)
 {
-	g_print ("weblets : (re)load finished\n");
+	cd_debug ("weblets : (re)load finished\n");
 	// update scrollbars status
 	show_hide_scrollbars(myApplet);
 }

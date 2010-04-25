@@ -70,7 +70,7 @@ static void _cd_do_web_search (CDEntry *pEntry)
 	gchar *cEscapedText = g_uri_escape_string (myData.cSearchText ? myData.cSearchText : myData.sCurrentText->str,
 		"",
 		TRUE);
-	g_print ("cEscapedText : %s\n", cEscapedText);
+	cd_debug ("cEscapedText : %s\n", cEscapedText);
 	gchar *cURI = g_strdup_printf (pEntry->cPath, cEscapedText);
 	cairo_dock_fm_launch_uri (cURI);
 	g_free (cURI);
@@ -89,7 +89,7 @@ static void _cd_do_web_search (CDEntry *pEntry)
 
 static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
-	g_print ("%s (%s)\n", __func__, cText);
+	cd_debug ("%s (%s)\n", __func__, cText);
 	
 	GList *pEntries = NULL;
 	CDEntry *pEntry;

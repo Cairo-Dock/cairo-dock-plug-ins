@@ -39,7 +39,7 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 			else
 				g_string_printf (sDirPath, "%s/stack-%d", g_cCairoDockDataDir, i);
 			i ++;
-			g_print ("stack : test de %s\n", sDirPath->str);
+			cd_debug ("stack : test de %s\n", sDirPath->str);
 		} while (g_file_test (sDirPath->str, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE));
 		
 		myConfig.cStackDir = sDirPath->str;

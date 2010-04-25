@@ -462,7 +462,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 {	
 	if (myData.pMailAccounts == NULL)
 		return ;
-	g_print ("%s (%d comptes)\n", __func__, myData.pMailAccounts->len);
+	cd_debug ("%s (%d comptes)\n", __func__, myData.pMailAccounts->len);
 	
 	//\_______________________ On initialise chaque compte.
 	CDMailAccount *pMailAccount;

@@ -42,12 +42,12 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
 		if (! bIsMounted)
 		{
-			g_print ("ON MONTE\n");
+			cd_debug ("ON MONTE\n");
 			cairo_dock_fm_mount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 		}
 		else
 		{
-			g_print ("ON DEMONTE\n");
+			cd_debug ("ON DEMONTE\n");
 			cairo_dock_fm_unmount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 		}
 	}

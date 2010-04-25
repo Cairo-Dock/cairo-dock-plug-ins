@@ -758,7 +758,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		if (pRootIcon == NULL)
 		{
 			pRootIcon = cairo_dock_get_first_icon (pIconList);
-			g_print ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
+			cd_debug ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
 		}
 		icon->cFileName = g_strdup (pRootIcon->cFileName);
 		icon->fOrder = iOrder++;
@@ -801,7 +801,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
 	
-	g_print ("%s (%s)", __func__, cURI);
+	cd_debug ("%s (%s)", __func__, cURI);
 	gchar *cCommand = g_strdup_printf ("kfmclient exec \"%s\"", cURI);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);

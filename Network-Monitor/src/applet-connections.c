@@ -40,7 +40,7 @@ static void g_cclosure_marshal_VOID__GHashTable_GHashTable (GClosure *c, GValue 
 
 gboolean cd_NetworkMonitor_connect_to_bus (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	//\_____________ On verifie la presence de NM sur le bus.
 	if (! cairo_dock_dbus_detect_system_application("org.freedesktop.NetworkManager"))
 		return FALSE;
@@ -83,13 +83,13 @@ gboolean cd_NetworkMonitor_connect_to_bus (void)
 
 gboolean cd_NetworkMonitor_get_device (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	//\_____________ On recupere la liste des devices.
 	GPtrArray *paDevices = cairo_dock_dbus_get_array (myData.dbus_proxy_NM, "GetDevices");
 	g_return_val_if_fail (paDevices != NULL, FALSE);
 	
 	//\_____________ On choisit celui defini en conf, ou un par defaut (wifi de preference).
-	g_print ("%d devices\n", paDevices->len);
+	cd_debug ("%d devices\n", paDevices->len);
 	DBusGProxy *dbus_proxy_Device, *dbus_proxy_Device_prop;
 	gchar *cDevice;
 	int i;
@@ -103,21 +103,21 @@ gboolean cd_NetworkMonitor_get_device (void)
 			"org.freedesktop.DBus.Properties");
 		if (!DBUS_IS_G_PROXY (dbus_proxy_Device_prop))
 			continue;
-		g_print (" device %s\n", cDevice);
+		cd_debug (" device %s\n", cDevice);
 		
 		// on regarde son type.
 		guint iDeviceType = cairo_dock_dbus_get_property_as_uint (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device", "DeviceType");  // 1 : ethernet, 2 : wifi
-		g_print (" device type : %d\n", iDeviceType);
+		cd_debug (" device type : %d\n", iDeviceType);
 		if (iDeviceType != 1 && iDeviceType != 2)  // ne nous insteresse pas.
 		{
-			g_print (" useless device type\n");
+			cd_debug (" useless device type\n");
 			g_object_unref (dbus_proxy_Device_prop);
 			continue;
 		}
 		
 		// on recupere son interface.
 		gchar *cInterface = cairo_dock_dbus_get_property_as_string (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device", "Interface");
-		g_print (" interface :%s\n", cInterface);
+		cd_debug (" interface :%s\n", cInterface);
 		
 		// on regarde si on doit le selectionner ou pas.
 		if (myData.cDevice != NULL)  // on a deja trouve un device, on regarde si celui-ci convient mieux.
@@ -143,7 +143,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 		}
 		if (myData.cDevice == NULL)  // aucun autre device, on selectionne celui-la.
 		{
-			g_print (" on selectionne ce device\n");
+			cd_debug (" on selectionne ce device\n");
 			myData.dbus_proxy_Device_prop = dbus_proxy_Device_prop;
 			myData.cInterface = cInterface;
 			myData.cDevice = g_strdup (cDevice);
@@ -151,7 +151,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 			myData.bWirelessExt = (iDeviceType == 2);
 			if (myConfig.cInterface && cInterface && strcmp (cInterface, myConfig.cInterface) == 0)
 			{
-				g_print ("  c'est l'interface qu'on veut\n");
+				cd_debug ("  c'est l'interface qu'on veut\n");
 				break;
 			}
 		}
@@ -203,7 +203,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 
 gboolean cd_NetworkMonitor_get_connection (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	
 	myData.cServiceName = g_strdup ("org.freedesktop.NetworkManagerUserSettings");
 	
@@ -213,7 +213,7 @@ gboolean cd_NetworkMonitor_get_connection (void)
 		"/org/freedesktop/NetworkManagerSettings",
 		"org.freedesktop.NetworkManagerSettings");
 	GPtrArray *paConnections = cairo_dock_dbus_get_array (dbus_proxy_Settings, "ListConnections");
-	g_print ("%d connections\n", paConnections->len);
+	cd_debug ("%d connections\n", paConnections->len);
 	
 	//\_____________ On en choisit une.
 	gchar *cConnection;
@@ -221,7 +221,7 @@ gboolean cd_NetworkMonitor_get_connection (void)
 	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
-		g_print (" Connection path : %s\n", cConnection);
+		cd_debug (" Connection path : %s\n", cConnection);
 		
 		myData.cConnection = g_strdup (cConnection);
 	}
@@ -234,7 +234,7 @@ gboolean cd_NetworkMonitor_get_connection (void)
 
 gboolean cd_NetworkMonitor_get_active_connection_info (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	//\_____________ on reset tout.
 	myData.bWiredExt = myData.bWirelessExt = FALSE;
 	g_free (myData.cDevice);
@@ -266,11 +266,11 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	
 	//\_____________ On recupere la liste des connexions actives (ce sont les configs tout-en-un de NM qui sont actuellement utilisees).
 	paActiveConnections = (GPtrArray*) cairo_dock_dbus_get_property_as_boxed (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "ActiveConnections");
-	g_print ("%d connections\n", paActiveConnections->len);
+	cd_debug ("%d connections\n", paActiveConnections->len);
 	for (j=0; j<paActiveConnections->len; j++)
 	{
 		cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
-		g_print ("Network-Monitor : Active Connection path : %s\n", cActiveConnection);
+		cd_debug ("Network-Monitor : Active Connection path : %s\n", cActiveConnection);
 		
 		// on recupere les proprietes de la connexion.
 		dbus_proxy_ActiveConnection_prop = cairo_dock_create_new_system_proxy (
@@ -292,7 +292,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 			g_object_unref (dbus_proxy_ActiveConnection_prop);
 			continue;
 		}
-		g_print (" c'est la connexion par defaut\n");
+		cd_debug (" c'est la connexion par defaut\n");
 		myData.cActiveConnection = g_strdup (cActiveConnection);
 		
 		// on recupere le SpecificObject qui contient le point d'acces courant.
@@ -301,7 +301,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		if (v && G_VALUE_HOLDS_BOXED (v))
 		{
 			cAccessPointPath = g_value_get_boxed (v);
-			g_print (" cAccessPointPath : %s\n", cAccessPointPath);
+			cd_debug (" cAccessPointPath : %s\n", cAccessPointPath);
 		}
 		
 		// on recupere le nom du service qui fournit cette connexion.
@@ -310,7 +310,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cServiceName = g_value_get_string (v);
-			g_print (" cServiceName : %s\n", cServiceName);
+			cd_debug (" cServiceName : %s\n", cServiceName);
 		}
 		
 		// on recupere le chemin de la connection.
@@ -319,7 +319,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		if (v && G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 		{
 			cConnection = g_value_get_boxed (v);
-			g_print (" cConnectionPath : %s\n", cConnection);
+			cd_debug (" cConnectionPath : %s\n", cConnection);
 		}
 		
 		// on parcourt la liste des devices associes.
@@ -327,12 +327,12 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		if (v && G_VALUE_HOLDS_BOXED (v))
 		{
 			GPtrArray *paDevices = g_value_get_boxed (v);
-			g_print (" %d devices\n", paDevices->len);
+			cd_debug (" %d devices\n", paDevices->len);
 			for (k=0; k<paDevices->len; k++)
 			{
 				// on recupere le device.
 				cDevice = (gchar *)g_ptr_array_index(paDevices,k);
-				g_print (" device path : %s\n", cDevice);
+				cd_debug (" device path : %s\n", cDevice);
 				dbus_proxy_Device_prop = cairo_dock_create_new_system_proxy (
 					"org.freedesktop.NetworkManager",
 					cDevice,
@@ -340,7 +340,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 				
 				// on regarde son type.
 				guint iDeviceType = cairo_dock_dbus_get_property_as_uint (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device", "DeviceType");  // 1 : ethernet, 2 : wifi
-				g_print (" device type : %d\n", iDeviceType);
+				cd_debug (" device type : %d\n", iDeviceType);
 				if (iDeviceType != 1 && iDeviceType != 2)  // ne nous insteresse pas.
 				{
 					g_object_unref (dbus_proxy_Device_prop);
@@ -349,7 +349,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 				
 				// on recupere son interface.
 				gchar *cInterface = cairo_dock_dbus_get_property_as_string (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device", "Interface");
-				g_print (" interface :%s\n", cInterface);
+				cd_debug (" interface :%s\n", cInterface);
 				
 				// on garde toutes les infos en memoire.
 				myData.cInterface = cInterface;
@@ -389,7 +389,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 				
 				if (iDeviceType == 1)
 				{
-					g_print (" => Network-Monitor : Connexion filaire\n");
+					cd_debug (" => Network-Monitor : Connexion filaire\n");
 					myData.bWiredExt = TRUE;
 					
 					// on se connecte au changement de la propriete Carrier.
@@ -406,7 +406,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 				}
 				else
 				{
-					g_print (" => Network-Monitor : Connexion sans fil\n");
+					cd_debug (" => Network-Monitor : Connexion sans fil\n");
 					myData.bWirelessExt = TRUE;
 					
 					// on se connecte au changement de la propriete ActiveAccessPoint.
@@ -442,7 +442,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 
 void cd_NetworkMonitor_get_wireless_connection_infos (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GHashTable *hProperties;
 	GValue *v;
 	
@@ -458,21 +458,21 @@ void cd_NetworkMonitor_get_wireless_connection_infos (void)
 	if (v && G_VALUE_HOLDS_UINT (v))
 	{
 		myData.iSpeed = g_value_get_uint (v);
-		g_print ("  Bitrate : %d\n",myData.iSpeed);
+		cd_debug ("  Bitrate : %d\n",myData.iSpeed);
 	}
 	
 	v = (GValue *)g_hash_table_lookup (hProperties, "HwAddress");
 	if (v && G_VALUE_HOLDS_STRING (v))
 	{
 		myData.cAccessPointHwAdress = g_strdup(g_value_get_string (v));
-		g_print ("  Adresse physique : %s\n",myData.cAccessPointHwAdress);
+		cd_debug ("  Adresse physique : %s\n",myData.cAccessPointHwAdress);
 	}
 	
 	v = (GValue *)g_hash_table_lookup (hProperties, "ActiveAccessPoint");
 	if (v && G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 	{
 		gchar *cAccessPoint = g_value_get_boxed (v);
-		g_print ("  Access point : %s\n", cAccessPoint);
+		cd_debug ("  Access point : %s\n", cAccessPoint);
 		if (cAccessPoint && strncmp (cAccessPoint, "/org/freedesktop/NetworkManager/AccessPoint/", 44) == 0)
 		{
 			g_free (myData.cAccessPoint);
@@ -492,7 +492,7 @@ void cd_NetworkMonitor_get_wireless_connection_infos (void)
 
 void cd_NetworkMonitor_get_wired_connection_infos (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	GHashTable *hProperties;
 	GValue *v;
 	
@@ -578,7 +578,7 @@ void cd_NetworkMonitor_fetch_access_point_properties (GHashTable *hProperties)
 	if (v != NULL && G_VALUE_HOLDS_UCHAR (v))
 	{
 		myData.iPercent = MIN (100, (gint) g_value_get_uchar (v));  // pas clair si c'est deja des % ou s'il faut convertir par 100/255, des fois on se chope des 255 ...
-		g_print ("Network-Monitor : Force du signal : %d %%\n", myData.iPercent);
+		cd_debug ("Network-Monitor : Force du signal : %d %%\n", myData.iPercent);
 		cd_NetworkMonitor_quality ();
 		cd_NetworkMonitor_draw_icon ();
 	}
@@ -587,7 +587,7 @@ void cd_NetworkMonitor_fetch_access_point_properties (GHashTable *hProperties)
 	if (v != NULL && G_VALUE_HOLDS_STRING (v))
 	{
 		myData.cAccessPointHwAdress = g_strdup(g_value_get_string (v));
-		g_print ("Network-Monitor : Adresse physique de l'AP active : %s\n", myData.cAccessPointHwAdress);
+		cd_debug ("Network-Monitor : Adresse physique de l'AP active : %s\n", myData.cAccessPointHwAdress);
 	}
 	
 	v = (GValue *)g_hash_table_lookup (hProperties, "Ssid");
@@ -599,7 +599,7 @@ void cd_NetworkMonitor_fetch_access_point_properties (GHashTable *hProperties)
 		{
 			myData.cESSID[i] = a->data[i];
 		}
-		g_print ("Network-Monitor : SSID : %s\n", myData.cESSID);
+		cd_debug ("Network-Monitor : SSID : %s\n", myData.cESSID);
 	}
 
 	v = (GValue *)g_hash_table_lookup (hProperties, "MaxBitrate");  // in kilobits/second (Kb/s).
@@ -626,7 +626,7 @@ void cd_NetworkMonitor_get_new_access_point (void)
 	myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
 	if (myData.cAccessPoint != NULL)
 	{
-		g_print (" on recupere le nouveau point d'acces...\n");
+		cd_debug (" on recupere le nouveau point d'acces...\n");
 		if (myData.dbus_proxy_ActiveAccessPoint)
 		{
 			dbus_g_proxy_disconnect_signal(myData.dbus_proxy_ActiveAccessPoint, "PropertiesChanged",

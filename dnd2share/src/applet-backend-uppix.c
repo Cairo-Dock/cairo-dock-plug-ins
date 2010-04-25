@@ -45,7 +45,7 @@ static void upload (const gchar *cFilePath)
 	
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -F myimage=@'%s' -F submit=Upload -F formup=1 -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
-	g_print ("%s\n", cCommand);
+	cd_debug ("%s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	

@@ -379,7 +379,7 @@ static gboolean _cd_clipper_auto_destroy_action_menu (GtkWidget *pMenu)
 	CD_APPLET_ENTER;
 	if (pMenu == myData.pActionMenu)
 	{
-		g_print ("auto-destruction\n");
+		cd_debug ("auto-destruction\n");
 		gtk_widget_destroy (myData.pActionMenu);  // n'appellera pas le 'delete_menu'
 		myData.pActionMenu = NULL;
 	}

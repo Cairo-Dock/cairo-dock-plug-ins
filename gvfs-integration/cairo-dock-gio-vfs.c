@@ -853,7 +853,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		if (pRootIcon == NULL)
 		{
 			pRootIcon = cairo_dock_get_first_icon (pIconList);
-			g_print ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
+			cd_debug ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
 		}
 		icon->cFileName = g_strdup (pRootIcon->cFileName);
 		icon->fOrder = iOrder++;

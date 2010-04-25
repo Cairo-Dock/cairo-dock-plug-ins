@@ -193,7 +193,7 @@ static inline void _place_listing (CDListing *pListing)
 		iX = g_pMainDock->container.iWindowPositionY + (g_pMainDock->container.bDirectionUp ? - pListing->container.iWidth : g_pMainDock->container.iHeight);
 		iY = g_pMainDock->container.iWindowPositionX + g_pMainDock->container.iWidth/2 - pListing->container.iHeight/2;
 	}
-	g_print ("(%d;%d) %dx%d\n", iX, iY, pListing->container.iWidth, pListing->container.iHeight);
+	cd_debug ("(%d;%d) %dx%d\n", iX, iY, pListing->container.iWidth, pListing->container.iHeight);
 	gtk_window_move (GTK_WINDOW (pListing->container.pWidget), iX, iY);
 }
 CDListing *cd_do_create_listing (void)
@@ -583,7 +583,7 @@ void cd_do_show_listing (void)
 		}
 		if (myData.pActiveButtonSurface == NULL)
 		{
-			g_print ("load button : %dx%d\n", myDialogs.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
+			cd_debug ("load button : %dx%d\n", myDialogs.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
 			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 			myData.pActiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/active-button.svg",
 				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 3) / 3,
@@ -660,7 +660,7 @@ void cd_do_load_entries_into_listing (GList *pEntries, int iNbEntries)
 	
 	if (myData.pListing->pEntries != NULL)
 	{
-		g_print ("%d entrees precedemment\n", myData.pListing->iNbEntries);
+		cd_debug ("%d entrees precedemment\n", myData.pListing->iNbEntries);
 		g_list_foreach (myData.pListing->pEntries, (GFunc)cd_do_free_entry, NULL);
 		g_list_free (myData.pListing->pEntries);
 	}
@@ -696,7 +696,7 @@ void cd_do_load_entries_into_listing (GList *pEntries, int iNbEntries)
 
 static gboolean _fill_entry_icon_idle (CDListing *pListing)
 {
-	g_print ("%s (%x)", __func__, pListing->pEntryToFill);
+	cd_debug ("%s (%x)", __func__, pListing->pEntryToFill);
 	
 	CDEntry *pEntry;
 	gboolean bHasBeenFilled = FALSE;
@@ -794,7 +794,7 @@ void cd_do_select_prev_next_entry_in_listing (gboolean bNext)
 
 void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 {
-	g_print ("%s (%d/%d)", __func__, myData.pListing->iNbVisibleEntries, myConfig.iNbLinesInListing);
+	cd_debug ("%s (%d/%d)", __func__, myData.pListing->iNbVisibleEntries, myConfig.iNbLinesInListing);
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
 	GList *e, *f;
 	e = myData.pListing->pCurrentEntry;
@@ -855,7 +855,7 @@ void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 
 void cd_do_select_last_first_entry_in_listing (gboolean bLast)
 {
-	g_print ("%s (%d/%d)", __func__, myData.pListing->iNbVisibleEntries, myConfig.iNbLinesInListing);
+	cd_debug ("%s (%d/%d)", __func__, myData.pListing->iNbVisibleEntries, myConfig.iNbLinesInListing);
 	myData.pListing->fPreviousOffset = myData.pListing->fCurrentOffset;
 	GList *e;
 	int k;

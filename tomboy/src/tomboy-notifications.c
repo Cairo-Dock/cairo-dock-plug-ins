@@ -55,7 +55,7 @@ static void _cd_tomboy_create_new_note (void)
 	gchar *note_title;
 	if (myConfig.bAutoNaming)
 	{
-		g_print ("on nomme automatiquement cette note\n");
+		cd_debug ("on nomme automatiquement cette note\n");
 		note_title = g_new0 (gchar, 50+1);
 		time_t epoch = (time_t) time (NULL);
 		struct tm currentTime;
@@ -64,12 +64,12 @@ static void _cd_tomboy_create_new_note (void)
 	}
 	else
 	{
-		g_print ("on demande le nom de la nouvelle note ...\n");
+		cd_debug ("on demande le nom de la nouvelle note ...\n");
 		note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
 			myIcon,
 			myContainer,
 			NULL);
-		g_print ("on a recu '%s'\n", note_title);
+		cd_debug ("on a recu '%s'\n", note_title);
 	}
 	cd_message ("%s (%s)", __func__, note_title);
 	gchar *note_name = addNote(note_title);

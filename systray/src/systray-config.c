@@ -45,7 +45,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	g_print ("CD_APPLET_RESET_DATA_BEGIN\n");
+	cd_debug ("CD_APPLET_RESET_DATA_BEGIN\n");
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
@@ -59,5 +59,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	/// detruire la invisible window et la liste des icones ...
 	g_object_unref (myData.tray->manager);
-	g_print ("bye bye\n");
+	cd_debug ("bye bye\n");
 CD_APPLET_RESET_DATA_END

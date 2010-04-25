@@ -193,7 +193,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 
 void cd_tomboy_draw_content_on_all_icons (void)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	Icon *icon;
 	GList *ic, *pList = CD_APPLET_MY_ICONS_LIST;
 	for (ic = pList; ic != NULL; ic = ic->next)

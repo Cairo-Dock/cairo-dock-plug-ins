@@ -68,7 +68,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 		//if( MAIL_NO_ERROR == mailsession_unseen_number(pMailAccount->folder->fld_session, pMailAccount->name, &result_unseen) )
 		if( MAIL_NO_ERROR == mailfolder_status(pMailAccount->folder, &result_messages, &result_recent, &result_unseen) )
 		{
-			g_print ("mail : %d/%d/%d\n", result_messages, result_recent, result_unseen);
+			cd_debug ("mail : %d/%d/%d\n", result_messages, result_recent, result_unseen);
 			pMailAccount->iPrevNbUnseenMails = pMailAccount->iNbUnseenMails;
 			if( pMailAccount->iNbUnseenMails != (guint)result_unseen )  // nombre de messages non lus a change, on va supposer que cela provient soit de leur lecture, soit de leur arrivee, en excluant le cas ou arrivee = lecture, qui laisserait inchange le nombre de mails non lus.
 			{
@@ -79,7 +79,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 				CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 				if (myConfig.bShowMessageContent)
 				{
-					g_print ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
+					cd_debug ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
 					g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
 					g_list_free (pMailAccount->pUnseenMessageList);
 					g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
@@ -176,7 +176,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 							  cBodyText = g_strdup(cRawBodyText);
 							}
 							
-							g_print (" -> '%s'\n", cBodyText);
+							cd_debug (" -> '%s'\n", cBodyText);
 						}
 						r = mailmessage_fetch_envelope(pMessage, &pFields);
 						if (r != MAIL_NO_ERROR)
@@ -225,14 +225,14 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						{
 							cUid = pUid->mid_value;
 						}
-						g_print ("    cUid : %s\n", cUid);
+						cd_debug ("    cUid : %s\n", cUid);
 						
 						cMessage = g_strdup_printf ("From : %s\nSubject : %s\n%s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
 						pMailAccount->pUnseenMessageList = g_list_append (pMailAccount->pUnseenMessageList, cMessage);
 
 						pMailAccount->pUnseenMessageUid = g_list_append (pMailAccount->pUnseenMessageUid, g_strdup(pMessage->msg_uid));
 
-						g_print ("  Message preview: \n%s", cMessage);
+						cd_debug ("  Message preview: \n%s", cMessage);
 						
 						mailmessage_fetch_result_free (pMessage, cRawBodyText);
 						mailimf_single_fields_free (pSingleFields);
@@ -365,7 +365,7 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
 	g_return_if_fail (myDrawContext != NULL);
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()\n", __func__);
 	
 	gchar *cNewImage = NULL;
 	if (myData.iNbUnreadMails <= 0)  // plus de mail.

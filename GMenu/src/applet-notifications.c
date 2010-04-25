@@ -89,11 +89,11 @@ static void _fill_menu_with_dir (gchar *cDirPath, GtkWidget *pMenu)
 static void _on_activate_item (GtkWidget *pMenuItem, gpointer *data)
 {
 	gchar *cPath = data[0];
-	g_print ("%s (%s)\n", __func__, cPath);
+	cd_debug ("%s (%s)\n", __func__, cPath);
 	
 	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))
 	{
-		g_print ("c'est un repertoire\n");
+		cd_debug ("c'est un repertoire\n");
 		GtkWidget *pSubMenu = data[1];
 		_fill_menu_with_dir (cPath, pSubMenu);
 		gtk_widget_show_all (pSubMenu);

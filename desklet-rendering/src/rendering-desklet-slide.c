@@ -114,7 +114,7 @@ void rendering_load_icons_for_slide (CairoDesklet *pDesklet)
 		return ;
 	
 	_compute_icons_grid (pDesklet, pSlide);
-	g_print ("pSlide->iIconSize : %d\n", pSlide->iIconSize);
+	cd_debug ("pSlide->iIconSize : %d\n", pSlide->iIconSize);
 	
 	Icon *pIcon;
 	GList* ic;

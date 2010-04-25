@@ -86,7 +86,7 @@ gboolean cd_powermanager_find_battery (void)
 					{
 						str2 ++;
 						myData.iCapacity = atoi (str2);
-						g_print ("Design capacity : %d mWsh\n", myData.iCapacity);
+						cd_debug ("Design capacity : %d mWsh\n", myData.iCapacity);
 					}
 					
 					gchar *str3 = strchr (str2, ':');
@@ -94,12 +94,12 @@ gboolean cd_powermanager_find_battery (void)
 					{
 						str3 ++;
 						myData.iCapacity = atoi (str3);
-						g_print ("Last full capacity : %d mWsh\n", myData.iCapacity);
+						cd_debug ("Last full capacity : %d mWsh\n", myData.iCapacity);
 					}
 				}
 				else
 				{
-					g_print ("cette batterie (%s) n'est pas presente.\n", cBatteryName);
+					cd_debug ("cette batterie (%s) n'est pas presente.\n", cBatteryName);
 				}
 			}
 		}
@@ -135,7 +135,7 @@ gboolean dbus_connect_to_bus (void)
 			
 		dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
 			G_CALLBACK(on_battery_changed), NULL, NULL);
-		g_print ("connected to OnBatteryChanged\n");
+		cd_debug ("connected to OnBatteryChanged\n");
 		
 		/*gboolean bBatteryFound = cd_powermanager_find_battery();
 		if (! bBatteryFound)  // on n'a pas trouve de batterie nous-meme.
@@ -160,7 +160,7 @@ gboolean dbus_connect_to_bus (void)
 		else
 		{
 			myData.battery_present = TRUE;  // a verifier mais ca parait logique.
-			g_print ("batterie presente\n");
+			cd_debug ("batterie presente\n");
 		}*/
 		
 		return TRUE;
@@ -195,7 +195,7 @@ void dbus_disconnect_from_bus (void)
 static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
 {
 	CD_APPLET_ENTER;
-	g_print ("Dbus : battery changed\n");
+	cd_debug ("Dbus : battery changed\n");
 	if (myData.on_battery != onBattery)
 	{
 		update_stats();
@@ -313,7 +313,7 @@ gboolean update_stats(void)
 		myData.battery_present = bBatteryPresent;
 		if (! bBatteryPresent)
 		{
-			g_print ("la batterie a ete enlevee\n");
+			cd_debug ("la batterie a ete enlevee\n");
 			g_free (cContent);
 			update_icon();
 			CD_APPLET_LEAVE (TRUE);
@@ -321,7 +321,7 @@ gboolean update_stats(void)
 		}
 		
 		// on remet a zero l'historique.
-		g_print ("la batterie a ete connectee\n");
+		cd_debug ("la batterie a ete connectee\n");
 		myData.previous_battery_time = 0;
 		myData.previous_battery_charge = 0;
 		
@@ -444,7 +444,7 @@ gboolean update_stats(void)
 		{
 			myData.fDischargeMeanRate = (myData.fDischargeMeanRate * myData.iNbDischargeMeasures + fPresentRate) / (myData.iNbDischargeMeasures + 1);
 			myData.iNbDischargeMeasures ++;
-			g_print ("fDischargeMeanRate : %.2f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
+			cd_debug ("fDischargeMeanRate : %.2f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
 			
 			if (fabs (myData.fLastDischargeMeanRate - myData.fDischargeMeanRate) > 30)
 			{
@@ -458,7 +458,7 @@ gboolean update_stats(void)
 		{
 			myData.fChargeMeanRate = (myData.fChargeMeanRate * myData.iNbChargeMeasures + fPresentRate) / (myData.iNbChargeMeasures + 1);
 			myData.iNbChargeMeasures ++;
-			g_print ("fChargeMeanRate : %.2f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
+			cd_debug ("fChargeMeanRate : %.2f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
 			if (fabs (myData.fLastChargeMeanRate - myData.fChargeMeanRate) > 30)
 			{
 				myData.fLastChargeMeanRate = myData.fChargeMeanRate;
@@ -470,7 +470,7 @@ gboolean update_stats(void)
 	}
 	else if (myData.on_battery || myData.battery_charge < 99.9)
 	{
-		g_print ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
+		cd_debug ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
 		fPresentRate = (myData.on_battery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
 	}
 	

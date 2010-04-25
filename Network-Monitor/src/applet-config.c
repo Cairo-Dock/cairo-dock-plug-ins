@@ -120,7 +120,7 @@ CD_APPLET_RESET_DATA_END
 
 void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->cName);
+	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere la combo.
 	GtkWidget *pCombo = cairo_dock_get_widget_from_name ("Configuration", "interface");
 	g_return_if_fail (pCombo != NULL);
