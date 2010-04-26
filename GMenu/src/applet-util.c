@@ -175,7 +175,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 	if (str != NULL)
 		cCommandExpanded = g_strndup (cCommand, str - cCommand);
 	else
-		cCommandExpanded = g_strdup (cCommand,);
+		cCommandExpanded = g_strdup (cCommand);
 #endif //CD_EXPAND_FIELD_CODES
 	
 	return cCommandExpanded;
