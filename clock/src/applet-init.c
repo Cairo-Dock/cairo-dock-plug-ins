@@ -18,13 +18,15 @@
 */
 
 #include <string.h>
-#include "stdlib.h"
+#include <stdlib.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-digital.h" //Digital html like renderer
 #include "applet-config.h"
 #include "applet-theme.h"
+#include "applet-calendar.h"
+#include "applet-backend-default.h"
 #include "applet-notifications.h"
 #include "applet-init.h"
 
@@ -32,11 +34,13 @@
 CD_APPLET_PRE_INIT_BEGIN (N_("clock"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("This applet displays time and date in your dock.\n"
-	"2 view are available : numeric and analogic, based on Cairo-Clock.\n"
-	"It is compatible with the Cairo-Clock's themes, and you can detach itself to be a perfect clone of Cairo-Clock.\n"
-	"It supports alarms, and a basic calendar, and allows you to setup time and date.\n"
-	"Left-click to show/hide the calendar, Middle-click to stop an alarm."),
+	N_("This applet displays time, date and a calandar.\n"
+	"2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
+	" Analogic view is compatible with the Cairo-Clock's themes, and you can detach the applet to be a perfect clone of Cairo-Clock.\n"
+	"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</b>.\n"
+	"It also supports alarms, and allows you to setup time and date.\n"
+	"Left-click to show/hide the calendar, Middle-click to stop an alarm,\n"
+	"Double-click on a day to edit the tasks for this day."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_clock_load_custom_widget;
@@ -77,6 +81,11 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_launch_animation (myContainer);
 	}
+	
+	//\_______________ On enregistre les backends de gestion des taches.
+	cd_clock_register_backend_default (myApplet);
+	
+	cd_clock_set_current_backend (myApplet);
 	
 	//\_______________ On lance le timer.
 	if (! myConfig.bShowSeconds)  // pour ne pas attendre 1 mn avant d'avoir le dessin.
@@ -137,6 +146,8 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			cairo_dock_launch_animation (myContainer);
 		}
+		
+		cd_clock_set_current_backend (myApplet);
 		
 		//\_______________ On relance le timer.
 		myData.iLastCheckedMinute = -1;

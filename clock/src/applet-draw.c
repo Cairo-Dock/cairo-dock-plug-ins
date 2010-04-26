@@ -252,9 +252,9 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	else
 	{
 		if (myConfig.bShowSeconds)
-			g_string_printf (sFormat, "%%r%s", pTime->tm_hour > 12 ? "PM" : "AM");
+			g_string_assign (sFormat, "%r");  // equivalent a %I:%M:%S %p
 		else
-			g_string_printf (sFormat, "%%I:%%M%s", pTime->tm_hour > 12 ? "PM" : "AM");
+			g_string_printf (sFormat, "%%I:%%M %%p");
 	}
 	
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);

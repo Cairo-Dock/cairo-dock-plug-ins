@@ -121,6 +121,9 @@ smooth = 500
 #{E.g. :Europe/Paris, :Japan, etc. Leave empty for local time.}
 location =
 
+#L[Default] Use the tasks from the task manager:
+task mgr = Default
+
 #F[Style;gtk-color-picker]
 frame_style =
 

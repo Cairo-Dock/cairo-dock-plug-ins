@@ -23,6 +23,7 @@
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-theme.h"
+#include "applet-calendar.h"
 #include "applet-config.h"
 
 #define CD_CLOCK_TIMEZONE_DIR "/usr/share/zoneinfo"
@@ -39,6 +40,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
 	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
 	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
+	myConfig.cTaskMgrName	 	= CD_CONFIG_GET_STRING ("Module", "task mgr");
 	
 	if (myConfig.iShowDate != CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation != NULL)
 	{
@@ -150,6 +152,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 		}
 	} while (1);
 	g_string_free (sKeyName, TRUE);
+	
+	//\_______________ On recupere les parametres des taches.
+	myConfig.bNormalDate = myConfig.b24Mode;
 CD_APPLET_GET_CONFIG_END
 
 
@@ -174,7 +179,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	
 	g_free (myConfig.cSetupTimeCommand);
 	
-	myConfig.bNormalDate = myConfig.b24Mode;
+	g_free (myConfig.cTaskMgrName);
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -191,6 +196,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	
 	g_free (myData.cSystemLocation);
+	
+	cd_clock_reset_tasks_list (myApplet);
+	g_hash_table_destroy (myData.pBackends);
 CD_APPLET_RESET_DATA_END
 
 

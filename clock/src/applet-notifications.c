@@ -55,10 +55,33 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_clock_show_hide_calendar (myApplet);
 CD_APPLET_ON_CLICK_END
 
-
+static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cTasks = cd_clock_get_tasks_for_today (myApplet);
+	if (cTasks == NULL)
+		cTasks = g_strdup (D_("No task is sheduled for today."));
+	
+	cd_clock_hide_dialogs (myApplet);
+	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, 30e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
+	
+	g_free (cTasks);
+}
+static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cTasks = cd_clock_get_tasks_for_this_week (myApplet);
+	if (cTasks == NULL)
+		cTasks = g_strdup (D_("No task is sheduled for this week."));
+	
+	cd_clock_hide_dialogs (myApplet);
+	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, 30e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
+	
+	g_free (cTasks);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_IN_MENU (D_("Set up time and date"), _cd_clock_launch_time_admin, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Show today's tasks"), _cd_clock_show_tasks_today, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Show this week's tasks"), _cd_clock_show_tasks_week, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
@@ -69,8 +92,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		kill (myData.iAlarmPID, 1);
 		myData.iAlarmPID = 0;
 	}
-	cairo_dock_remove_dialog_if_any (myIcon);
-	myData.pCalendarDialog = NULL;
+	cd_clock_hide_dialogs (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

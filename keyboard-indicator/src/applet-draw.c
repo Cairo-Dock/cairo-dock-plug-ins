@@ -103,7 +103,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
-	g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
+	//g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
 	
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);

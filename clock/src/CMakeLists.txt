@@ -2,19 +2,14 @@
 ########### sources ###############
 
 SET(cd-clock_LIB_SRCS
-applet-struct.h
-applet-init.c
-applet-init.h
-applet-draw.c
-applet-draw.h
-applet-config.c
-applet-config.h
-applet-notifications.c
-applet-notifications.h
-applet-theme.c
-applet-theme.h
-applet-calendar.c
-applet-calendar.h
+	applet-struct.h
+	applet-init.c 			applet-init.h
+	applet-draw.c 			applet-draw.h
+	applet-config.c 			applet-config.h
+	applet-notifications.c 		applet-notifications.h
+	applet-theme.c 			applet-theme.h
+	applet-calendar.c 		applet-calendar.h
+	applet-backend-default.c 	applet-backend-default.h
 )
 
 add_library(${PACKAGE_CLOCK} SHARED ${cd-clock_LIB_SRCS})

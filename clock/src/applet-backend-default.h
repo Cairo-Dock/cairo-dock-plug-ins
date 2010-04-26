@@ -18,34 +18,14 @@
 */
 
 
-#ifndef __CD_CLOCK_CALENDAR__
-#define  __CD_CLOCK_CALENDAR__
+#ifndef __CD_CLOCK_BACKEND_DEFAULT__
+#define  __CD_CLOCK_BACKEND_DEFAULT__
 
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
 
-void cd_clock_register_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName, CDClockTaskBackend *pBackend);
-CDClockTaskBackend *cd_clock_get_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName);
-void cd_clock_set_current_backend (CairoDockModuleInstance *myApplet);
-
-
-GList *cd_clock_list_tasks (CairoDockModuleInstance *myApplet);
-
-void cd_clock_free_task (CDClockTask *pTask);
-
-void cd_clock_reset_tasks_list (CairoDockModuleInstance *myApplet);
-
-
-void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet);
-
-void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet);
-
-
-gchar *cd_clock_get_tasks_for_today (CairoDockModuleInstance *myApplet);
-
-gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet);
+void cd_clock_register_backend_default (CairoDockModuleInstance *myApplet);
 
 
 #endif
-

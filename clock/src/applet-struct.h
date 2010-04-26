@@ -90,14 +90,37 @@ typedef struct {
 	gchar *cCommand;
 	} CDClockAlarm;
 
+typedef enum _CDClockTaskFrequency
+{
+	CD_TASK_DONT_REPEAT = 0,
+	CD_TASK_EACH_MONTH,
+	CD_TASK_EACH_YEAR,
+	CD_TASK_NB_FREQUENCIES
+} CDClockTaskFrequency;
+
 typedef struct {
-	guint iHour;
-	guint iMinute;
+	gchar *cID;
 	guint iDay;
 	guint iMonth;
 	guint iYear;
+	gchar *cTitle;
 	gchar *cText;
+	gboolean bActive;  // = not done.
+	gchar *cTags;  // ',' separated
+	guint iHour;
+	guint iMinute;
+	CDClockTaskFrequency iFrequency;
 	} CDClockTask;
+
+typedef struct {
+	void (*init) (CairoDockModuleInstance *myApplet);
+	void (*stop) (CairoDockModuleInstance *myApplet);
+	GList * (*get_tasks) (CairoDockModuleInstance *myApplet);
+	gboolean (*create_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
+	gboolean (*delete_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
+	gboolean (*update_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
+	gpointer pData;
+	} CDClockTaskBackend;
 
 struct _AppletConfig {
 	CairoDockInfoDisplay iShowDate;
@@ -120,6 +143,7 @@ struct _AppletConfig {
 	gint iSmoothAnimationDuration;
 	gboolean bSetName;
 	gboolean bNormalDate;
+	gchar *cTaskMgrName;
 	} ;
 
 struct _AppletData {
@@ -148,6 +172,11 @@ struct _AppletData {
 	GList *pTasks;
 	CairoDialog *pCalendarDialog;
 	GtkWidget *pTaskWindow;
+	GHashTable *pBackends;
+	CDClockTaskBackend *pBackend;
+	GtkListStore *pModel;
+	guint iButtonPressTime;
+	GtkWidget *pTreeView;
 	} ;
 
 #endif
