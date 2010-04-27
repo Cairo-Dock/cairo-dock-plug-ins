@@ -26,25 +26,36 @@
 
 
 void cd_clock_register_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName, CDClockTaskBackend *pBackend);
+
 CDClockTaskBackend *cd_clock_get_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName);
+
 void cd_clock_set_current_backend (CairoDockModuleInstance *myApplet);
 
 
-GList *cd_clock_list_tasks (CairoDockModuleInstance *myApplet);
+void cd_clock_list_tasks (CairoDockModuleInstance *myApplet);
+
+void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
+
+void cd_clock_remove_task_from_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
 
 void cd_clock_free_task (CDClockTask *pTask);
 
 void cd_clock_reset_tasks_list (CairoDockModuleInstance *myApplet);
 
-
-void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet);
-
-void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet);
-
+CDClockTask *cd_clock_get_task_by_id (const gchar *cID, CairoDockModuleInstance *myApplet);
 
 gchar *cd_clock_get_tasks_for_today (CairoDockModuleInstance *myApplet);
 
 gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet);
+
+CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet);
+
+
+void cd_clock_update_calendar_marks (CairoDockModuleInstance *myApplet);
+
+void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet);
+
+void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet);
 
 
 #endif

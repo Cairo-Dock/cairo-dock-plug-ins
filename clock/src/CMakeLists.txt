@@ -9,6 +9,7 @@ SET(cd-clock_LIB_SRCS
 	applet-notifications.c 		applet-notifications.h
 	applet-theme.c 			applet-theme.h
 	applet-calendar.c 		applet-calendar.h
+	applet-task-editor.c 		applet-task-editor.h
 	applet-backend-default.c 	applet-backend-default.h
 )
 

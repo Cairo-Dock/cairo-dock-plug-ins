@@ -21,10 +21,12 @@
 #define __USE_POSIX
 #include <time.h>
 #include <signal.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-digital.h" //Digital html like renderer
+#include "applet-calendar.h"
 #include "applet-draw.h"
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
@@ -37,12 +39,50 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 	g_free (pAlarm);
 }
 
-
-gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
+static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog);
+static gboolean _task_warning (CDClockTask *pTask)
 {
-	CD_APPLET_ENTER;
-	//\________________ On recupere l'heure courante.
-	time_t epoch = (time_t) time (NULL);
+	g_print ("%s ()\n", __func__);
+	CairoDockModuleInstance *myApplet = pTask->pApplet;
+	gchar *cText = g_strdup_printf ("%s %d:%02d\n<b>%s</b>\n %s\n\n%s", D_("The following task was scheduled at"), pTask->iHour, pTask->iMinute, pTask->cTitle, pTask->cText, D_("Repeat this message every:"));
+	pTask->pWarningDialog = cairo_dock_show_dialog_with_value (cText, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", pTask->iWarningDelay, 60, (CairoDockActionOnAnswerFunc) _set_warning_repetition, pTask, NULL);
+	g_free (cText);
+	CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
+	return TRUE;
+}
+static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog)
+{
+	g_print ("%s ()\n", __func__);
+	double fDelay = gtk_range_get_value (GTK_RANGE (pInteractiveWidget));
+	int dt = round (fDelay);
+	if (dt == 0 || (iClickedButton != 0 && iClickedButton != -1))
+	{
+		if (pTask->iSidWarning != 0)
+		{
+			g_source_remove (pTask->iSidWarning);
+			pTask->iSidWarning = 0;
+		}
+	}
+	else
+	{
+		if (pTask->iSidWarning != 0 && dt != pTask->iWarningDelay)
+		{
+			g_source_remove (pTask->iSidWarning);
+			pTask->iSidWarning = 0;
+		}
+		if (pTask->iSidWarning == 0)
+		{
+			pTask->iSidWarning = g_timeout_add_seconds (dt*60, (GSourceFunc) _task_warning, pTask);
+			pTask->iWarningDelay = dt;
+		}
+	}
+	pTask->pWarningDialog = NULL;
+	CairoDockModuleInstance *myApplet = pTask->pApplet;
+	CD_APPLET_STOP_DEMANDING_ATTENTION;
+}
+
+static inline void _get_current_time (time_t epoch, CairoDockModuleInstance *myApplet)
+{
 	if (myConfig.cLocation != NULL)
 	{
 		g_setenv ("TZ", myConfig.cLocation, TRUE);
@@ -56,6 +96,18 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		else
 			g_unsetenv ("TZ");
 	}
+}
+void cd_clock_init_time (CairoDockModuleInstance *myApplet)
+{
+	time_t epoch = (time_t) time (NULL);
+	_get_current_time (epoch, myApplet);
+}
+gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	//\________________ On recupere l'heure courante.
+	time_t epoch = (time_t) time (NULL);
+	_get_current_time (epoch, myApplet);
 	
 	//\________________ On change la date si necessaire.
 	int iWidth, iHeight;
@@ -132,10 +184,12 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	//\________________ On redessine notre icone.
 	CD_APPLET_REDRAW_MY_ICON;
 	
-	//\________________ On teste les alarmes.
-	if (!myConfig.bShowSeconds || myData.currentTime.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement à exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
+	//\________________ On teste les alarmes et les taches.
+	if (!myConfig.bShowSeconds || myData.currentTime.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement a exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.
 	{
 		myData.iLastCheckedMinute = myData.currentTime.tm_min;
+		
+		// les alarmes.
 		CDClockAlarm *pAlarm;
 		guint i;
 		for (i = 0; i < myConfig.pAlarms->len; i ++)
@@ -190,7 +244,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 							&erreur);
 						if (erreur != NULL)
 						{
-							cd_warning ("Attention : when trying to execute '%s' : %s", pAlarm->cCommand, erreur->message);
+							cd_warning ("clock : when trying to execute '%s' : %s", pAlarm->cCommand, erreur->message);
 							g_error_free (erreur);
 							myData.iAlarmPID = 0;
 						}
@@ -201,10 +255,52 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				
 				if (bRemoveAlarm)
 				{
-					cd_message ("Cette alarme ne sera pas répétée");
+					cd_message ("Cette alarme ne sera pas repetee");
 					g_ptr_array_remove_index (myConfig.pAlarms, i);
 					cd_clock_free_alarm (pAlarm);
 					/// A FAIRE : effacer l'heure dans le fichier de conf pour cette alarme.
+				}
+			}
+		}
+		
+		// les taches.
+		if (myData.pNextTask != NULL)
+		{
+			g_print ("next task : %s\n", myData.pNextTask->cTitle);
+			struct tm st;
+			st.tm_min = myData.pNextTask->iMinute;
+			st.tm_hour = myData.pNextTask->iHour;
+			st.tm_mday = myData.pNextTask->iDay;
+			st.tm_mon = myData.pNextTask->iMonth;
+			st.tm_year = myData.pNextTask->iYear - 1900;
+			st.tm_sec = 0;
+			st.tm_isdst = myData.currentTime.tm_isdst;
+			time_t t = mktime (&st);
+			g_print ("time : %ld, task : %ld\n", epoch, t);
+			if (t < epoch)  // la tache est depassee.
+			{
+				myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
+			}
+			else if (t < epoch + 15*60 && t >= epoch)
+			{
+				if (! myData.pNextTask->b15mnWarning)
+				{
+					g_print ("15 mn warning\n");
+					myData.pNextTask->b15mnWarning = TRUE;
+					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s", myIcon, myContainer, 60e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", D_("This task will begin in 15 minutes:"), myData.pNextTask->cTitle, myData.pNextTask->cText);
+					CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
+				}
+				else if (t < epoch + 60)
+				{
+					if (! myData.pNextTask->bFirstWarning)
+					{
+						g_print ("first warning\n");
+						myData.pNextTask->bFirstWarning = TRUE;
+						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s", D_("It's time for the following task:"), myData.pNextTask->cTitle, myData.pNextTask->cText, D_("Repeat this message every:"));
+						cairo_dock_show_dialog_with_value (cText, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", 15, 60, (CairoDockActionOnAnswerFunc) _set_warning_repetition, myData.pNextTask, NULL);
+						g_free (cText);
+						CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
+					}
 				}
 			}
 		}

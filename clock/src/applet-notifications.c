@@ -93,6 +93,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		myData.iAlarmPID = 0;
 	}
 	cd_clock_hide_dialogs (myApplet);
+	CD_APPLET_STOP_DEMANDING_ATTENTION;
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

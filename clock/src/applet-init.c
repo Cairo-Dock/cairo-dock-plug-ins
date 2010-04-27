@@ -85,7 +85,11 @@ CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les backends de gestion des taches.
 	cd_clock_register_backend_default (myApplet);
 	
+	//\_______________ On liste les taches (apres avoir le temps courant).
 	cd_clock_set_current_backend (myApplet);
+	
+	cd_clock_init_time (myApplet);
+	cd_clock_list_tasks (myApplet);
 	
 	//\_______________ On lance le timer.
 	if (! myConfig.bShowSeconds)  // pour ne pas attendre 1 mn avant d'avoir le dessin.
@@ -147,7 +151,9 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_launch_animation (myContainer);
 		}
 		
+		//\_______________ On reliste les taches avec le nouveau backend.
 		cd_clock_set_current_backend (myApplet);
+		cd_clock_list_tasks (myApplet);
 		
 		//\_______________ On relance le timer.
 		myData.iLastCheckedMinute = -1;

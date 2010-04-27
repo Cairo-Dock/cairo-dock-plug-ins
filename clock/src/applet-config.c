@@ -197,6 +197,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	g_free (myData.cSystemLocation);
 	
+	if (myData.pCalendarDialog != NULL)
+		cairo_dock_dialog_unreference (myData.pCalendarDialog);
+	if (myData.pTaskWindow != NULL)
+		gtk_widget_destroy (myData.pTaskWindow);
+	
 	cd_clock_reset_tasks_list (myApplet);
 	g_hash_table_destroy (myData.pBackends);
 CD_APPLET_RESET_DATA_END

@@ -88,12 +88,13 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 #define CD_EXPAND_FIELD_CODES //comment this line to switch off the arguments parsing.
 static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  // Thanks to Tristan Moody for this patch !
 {
+	//g_print ("%s (%s)\n", __func__, cCommand);
 	gchar* cCommandExpanded = NULL;
 #ifdef CD_EXPAND_FIELD_CODES
 	gchar* cField = strchr (cCommand, '%');
 	gchar* cFieldLast;
 	gchar* cFieldCodeToken = NULL;
-	GError* erreur;
+	GError* erreur = NULL;
 
 	// Break out immediately if there are no field codes
 	if( cField == NULL )
@@ -103,8 +104,9 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 	}
 	
 	// parse all the %x tokens, replacing them with the value they represent.
+	// Exec=krusader -caption "%c" %i %m 
 	GString *sExpandedcCommand = g_string_new ("");
-	g_string_append_len (sExpandedcCommand, cCommand, cField - cCommand);  // take the command until the first % (not included).
+	g_string_append_len (sExpandedcCommand, cCommand, cField - cCommand - (*(cField-1) != ' '));  // take the command until the first % (not included). remove possible '"'.
 	while ( cField != NULL )
 	{
 		cField ++;  // jump to the code.
@@ -128,7 +130,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Name", NULL, &erreur);
 				if (erreur != NULL)
 				{
-					cd_warning ("Error while expanding %%%c in exec string '%s' : %s", *cField, cCommand, erreur->message);
+					cd_warning ("Error while expanding %c in exec string '%s' : %s", *cField, cCommand, erreur->message);
 					g_error_free (erreur);
 					erreur = NULL;
 				}
@@ -138,7 +140,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 				if (cFieldCodeToken != NULL)
 				{
 					gchar *tmp = cFieldCodeToken;
-					cFieldCodeToken = g_strconcat("--icon ", cFieldCodeToken, NULL);
+					cFieldCodeToken = g_strdup_printf ("--icon \"%s\"", cFieldCodeToken);
 					g_free (tmp);
 				}
 				break;
@@ -161,6 +163,8 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 			cFieldCodeToken = NULL;
 		}
 		cFieldLast = cField;
+		if (*(cField+1) != ' ')  // on gere les eventuels '"'.
+			cFieldLast ++;
 		cField = strchr(cField + 1, '%');  // next field.
 		// we append everything between the current filed and the next field.
 		if (cField != NULL)
@@ -177,7 +181,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 	else
 		cCommandExpanded = g_strdup (cCommand);
 #endif //CD_EXPAND_FIELD_CODES
-	
+	g_print ("cCommandExpanded : %s\n", cCommandExpanded);
 	return cCommandExpanded;
 }
 static void _launch_from_file (const gchar *cDesktopFilePath)

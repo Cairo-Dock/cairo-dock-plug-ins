@@ -99,10 +99,11 @@ typedef enum _CDClockTaskFrequency
 } CDClockTaskFrequency;
 
 typedef struct {
+	// definition
 	gchar *cID;
-	guint iDay;
-	guint iMonth;
-	guint iYear;
+	guint iDay;  // 1-31
+	guint iMonth;  // 0-11
+	guint iYear;  // par exemple 2010
 	gchar *cTitle;
 	gchar *cText;
 	gboolean bActive;  // = not done.
@@ -110,6 +111,13 @@ typedef struct {
 	guint iHour;
 	guint iMinute;
 	CDClockTaskFrequency iFrequency;
+	// private data
+	CairoDockModuleInstance *pApplet;
+	gboolean b15mnWarning;
+	gboolean bFirstWarning;
+	gint iWarningDelay;  // en minutes.
+	guint iSidWarning;
+	CairoDialog *pWarningDialog;
 	} CDClockTask;
 
 typedef struct {
@@ -176,7 +184,7 @@ struct _AppletData {
 	CDClockTaskBackend *pBackend;
 	GtkListStore *pModel;
 	guint iButtonPressTime;
-	GtkWidget *pTreeView;
+	CDClockTask *pNextTask;
 	} ;
 
 #endif
