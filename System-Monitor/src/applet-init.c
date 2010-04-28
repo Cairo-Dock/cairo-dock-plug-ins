@@ -34,7 +34,7 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	"Middle click on the icon to get some valuable info.\n"
 	"Left click on the icon to get a list of the most ressources using programs.\n"
 	"You can instanciate this applet several times to show different values each time."),
-	"parAdOxxx_ZeRo & Fabounet")
+	"parAdOxxx_ZeRo &amp; Fabounet")
 
 
 static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)

@@ -39,7 +39,7 @@ CD_APPLET_DEFINITION (N_("switcher"),
 	" - show the desktop (middle-click or in the menu),\n"
 	" - list all windows on each workspace ((middle-click or in the menu)\n"
 	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."),
-	"Cchumi & Fabounet")
+	"Cchumi &amp; Fabounet")
 
 
 CD_APPLET_INIT_BEGIN

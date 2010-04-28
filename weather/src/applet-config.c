@@ -102,11 +102,11 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 	if (cLocationName == NULL || *cLocationName == '\0')
 		return;
 	
-	gchar *cFilePath = cd_weather_get_location_data (cLocationName);
+	gchar *cLocationData = cd_weather_get_location_data (cLocationName);
 	
 	GError *erreur = NULL;
 	cd_weather_free_location_list ();
-	s_pLocationsList = cd_weather_parse_location_data (cFilePath, &erreur);
+	s_pLocationsList = cd_weather_parse_location_data (cLocationData, &erreur);
 	if (erreur != NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
@@ -165,8 +165,8 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			gtk_get_current_event_time ());
 	}
 	
-	g_remove (cFilePath);
-	g_free (cFilePath);
+	///g_remove (cFilePath);
+	g_free (cLocationData);
 }
 void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {

@@ -37,7 +37,7 @@ CD_APPLET_DEFINITION ("terminal",
 	"You can open many tabs, rename them, change their color (right-click on a tab to interact on it)\n"
 	"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 	"To close a tab : type 'CTRL+w' or middle-click on it."),
-	"Ctaf (Cedric Gestes) & Fabounet (Fabrice Rey)")
+	"Ctaf (Cedric Gestes) &amp; Fabounet (Fabrice Rey)")
 
 
 CD_APPLET_INIT_BEGIN

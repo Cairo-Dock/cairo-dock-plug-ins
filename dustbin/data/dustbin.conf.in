@@ -98,7 +98,7 @@ fg alpha = 1
 #F[Theme;gtk-dialog-info]
 frame1 =
 
-#h+[@dustbindatadir@/themes;@dustbinuserdirname@;Trash] Choose one of the available themes:/
+#h+[@dustbindatadir@/themes;@dustbinuserdirname@;dustbin] Choose one of the available themes:/
 theme = default
 
 #S+ Name of the image to overwrite the theme's empty image :

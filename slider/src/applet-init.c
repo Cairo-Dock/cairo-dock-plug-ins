@@ -33,7 +33,7 @@ CD_APPLET_DEFINITION (N_("slider"),
 	" You just have to select a directory and a display effect and you're done\n"
 	"Click to play/pause or to edit the current image.\n"
 	"Middle-click to open the images folder."),
-	"ChAnGFu (Rémy Robertson) & Fabounet (Fabrice Rey)")
+	"ChAnGFu (Rémy Robertson) &amp; Fabounet (Fabrice Rey)")
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN

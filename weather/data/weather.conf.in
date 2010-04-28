@@ -133,7 +133,7 @@ display temperature = false
 #F[Display;gtk-dialog-info]
 frame_disp =
 
-#h+[@weatherdatadir@/themes;@weatheruserdirname@;Weather] Choose one of the available themes:/
+#h+[@weatherdatadir@/themes;@weatheruserdirname@;weather] Choose one of the available themes:/
 theme = Classic
 
 #n+ Sub-dock view name:

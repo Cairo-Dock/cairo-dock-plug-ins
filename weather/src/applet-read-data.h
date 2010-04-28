@@ -26,7 +26,7 @@
 
 gchar *cd_weather_get_location_data (const gchar *cLocation);
 
-GList *cd_weather_parse_location_data  (const gchar *cDataFilePath, GError **erreur);
+GList *cd_weather_parse_location_data  (const gchar *cData, GError **erreur);
 
 
 void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet);

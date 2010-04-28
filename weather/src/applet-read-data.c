@@ -33,7 +33,7 @@
 
 gchar *cd_weather_get_location_data (const gchar *cLocation)
 {
-	gchar *cLocationFilePath = g_strdup ("/tmp/weather-location.XXXXXX");
+	/**gchar *cLocationFilePath = g_strdup ("/tmp/weather-location.XXXXXX");
 	int fds = mkstemp (cLocationFilePath);
 	if (fds == -1)
 	{
@@ -45,10 +45,55 @@ gchar *cd_weather_get_location_data (const gchar *cLocation)
 	int r = system (cCommand);
 	g_free (cCommand);
 	close(fds);
-	return cLocationFilePath;
+	return cLocationFilePath;*/
+	
+	GError *erreur = NULL;
+	gchar *cFile = g_strdup_printf ("search?where=%s", cLocation);
+	gchar *cData = cairo_dock_get_distant_file_content (CD_WEATHER_BASE_URL, "search", cFile, &erreur);
+	g_free (cFile);
+	if (erreur != NULL)
+	{
+		cd_warning ("while downlading location data : %s", erreur->message);
+		g_error_free (erreur);
+	}
+	return cData;
 }
 
-
+static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
+{
+	if (cData == NULL || *cData == '\0')
+	{
+		g_set_error (erreur, 1, 1, "empty data (no connection ?)");
+		return NULL;
+	}
+	int length = strlen (cData);
+	
+	gchar *cRootNode = g_strdup_printf ("<%s ", cRootNodeName);
+	if (g_strstr_len (cData, length, cRootNode) == NULL)  // on intercepte le cas ou une connexion a un hotspot nous renvoie une page meme quand la connexion a weather.com n'a pas pu se faire, car ca fait planter libxml.
+	{
+		g_set_error (erreur, 1, 1, "uncorrect data (no connection ?)");
+		g_free (cRootNode);
+		return NULL;
+	}
+	g_free (cRootNode);
+	xmlInitParser ();
+	
+	xmlDocPtr doc = xmlParseMemory (cData, length);
+	if (doc == NULL)
+	{
+		g_set_error (erreur, 1, 1, "uncorrect data (no connection ?)");
+		return NULL;
+	}
+	
+	xmlNodePtr noeud = xmlDocGetRootElement (doc);
+	if (noeud == NULL || xmlStrcmp (noeud->name, (const xmlChar *) cRootNodeName) != 0)
+	{
+		g_set_error (erreur, 1, 2, "xml data is not well formed (weather.com may have changed its data format)");
+		return doc;
+	}
+	*root_node = noeud;
+	return doc;
+}
 static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
 	gsize length = 0;
@@ -57,38 +102,8 @@ static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodeP
 		&cContent,
 		&length,
 		NULL);
-	if (cContent == NULL || length == 0)
-	{
-		g_set_error (erreur, 1, 1, "file '%s' doesn't exist or is empty (no connection ?)", cDataFilePath);
-		return NULL;
-	}
-	
-	gchar *cRootNode = g_strdup_printf ("<%s ", cRootNodeName);
-	if (g_strstr_len (cContent, length, cRootNode) == NULL)  // on intercepte le cas ou une connexion a un hotspot nous renvoie une page meme quand la connexion a weather.com n'a pas pu se faire, car ca fait planter libxml.
-	{
-		g_set_error (erreur, 1, 1, "file '%s' is uncorrect (no connection ?)", cDataFilePath);
-		g_free (cContent);
-		g_free (cRootNode);
-		return NULL;
-	}
-	g_free (cRootNode);
-	xmlInitParser ();
-	
-	xmlDocPtr doc = xmlParseMemory (cContent, length);
+	xmlDocPtr doc = _cd_weather_open_xml_buffer (cContent, root_node, cRootNodeName, erreur);
 	g_free (cContent);
-	if (doc == NULL)
-	{
-		g_set_error (erreur, 1, 1, "file '%s' is uncorrect (no connection ?)", cDataFilePath);
-		return NULL;
-	}
-	
-	xmlNodePtr noeud = xmlDocGetRootElement (doc);
-	if (noeud == NULL || xmlStrcmp (noeud->name, (const xmlChar *) cRootNodeName) != 0)
-	{
-		g_set_error (erreur, 1, 2, "xml file '%s' is not well formed (weather.com may have changed its data format)", cDataFilePath);
-		return doc;
-	}
-	*root_node = noeud;
 	return doc;
 }
 static void _cd_weather_close_xml_file (xmlDocPtr doc)
@@ -99,13 +114,13 @@ static void _cd_weather_close_xml_file (xmlDocPtr doc)
 }
 
 
-GList *cd_weather_parse_location_data (const gchar *cDataFilePath, GError **erreur)
+GList *cd_weather_parse_location_data (const gchar *cData, GError **erreur)
 {
-	cd_message ("%s (%s)", __func__, cDataFilePath);
+	cd_message ("%s (%s)", __func__, cData);
 	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud = NULL;
-	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "search", &tmp_erreur);
+	xmlDocPtr doc = _cd_weather_open_xml_buffer (cData, &noeud, "search", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);

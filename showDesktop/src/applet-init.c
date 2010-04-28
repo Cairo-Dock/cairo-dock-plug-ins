@@ -33,7 +33,7 @@ CD_APPLET_DEFINITION (N_("showDesktop"),
 	"It can also be used to quickly change the screen's resolution from the right-click menu.\n"
 	"Left-click to show/hide the desktop,\n"
 	"Middle-click to show/hide either the desktop, the desklets, the Widget Layer, or all the desktops at once."),
-	"Romain PEROL (Rom1) & Fabrice Rey (Fabounet)")
+	"Rom1 (Romain PEROL) &amp; Fabounet (Fabrice Rey)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

@@ -250,6 +250,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 				y = iYear;
 				g_date_set_dmy (pDate, d, m, y);
 				iDelta = g_date_days_between (pCurrentDate, pDate);
+				g_print ("iDelta : %d/%d/%d -> %d (%s)\n", d, m, y, iDelta, pTask->cTitle);
 				if (iDelta < 0)  // pDate est avant pCurrentDate => on teste l'annee d'apres.
 				{
 					y = iYear + 1;
@@ -268,9 +269,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 				(myConfig.bNormalDate ? d : y), m, (myConfig.bNormalDate ? y : d),
 				pTask->iHour, pTask->iMinute,
 				pTask->cText);
-		}
-		else if (iDelta >= 7)
-			break;
+		}  // on n'arrete pas le parcours si iDelta > 7 pour prendre en compte aussi les anniv.
 	}
 	g_date_free (pCurrentDate);
 	
