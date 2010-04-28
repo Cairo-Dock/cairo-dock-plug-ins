@@ -166,10 +166,9 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 		return ;
 	}
 	
-	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
-	g_return_if_fail (fTimeElapsed > 0.1);  // en conf, c'est 1s minimum.
+	g_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);  // en conf, c'est 1s minimum.
 	
 	long long int new_cpu_user = 0, new_cpu_user_nice = 0, new_cpu_system = 0, new_cpu_idle = 0;
 	tmp += 3;  // on saute 'cpu'.

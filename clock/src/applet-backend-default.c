@@ -21,6 +21,7 @@
 #include <math.h>
 #define __USE_POSIX
 #include <signal.h>
+#include <glib/gstdio.h>
 
 #include "applet-struct.h"
 #include "applet-calendar.h"
@@ -30,9 +31,24 @@ static int s_iCounter = 0;
 
 static GList *get_tasks (CairoDockModuleInstance *myApplet)
 {
-	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
-	GKeyFile*pKeyFile = cairo_dock_open_key_file (cFile);
+	gchar *cDirPath = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, "clock");
+	if (! g_file_test (cDirPath, G_FILE_TEST_EXISTS))
+	{
+		if (g_mkdir (cDirPath, 7*8*8+7*8+5) != 0)
+		{
+			cd_warning ("couldn't create directory %s", cDirPath);
+			g_free (cDirPath);
+			return NULL;
+		}
+		g_free (cDirPath);
+		return NULL;
+	}
+	gchar *cFile = g_strdup_printf ("%s/%s", cDirPath, "tasks.conf");
+	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
 	g_free (cFile);
+	g_free (cDirPath);
+	if (pKeyFile == NULL)  // encore aucune taches.
+		return NULL;
 	
 	gsize length=0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
@@ -77,8 +93,8 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	g_print ("%s (%d/%d/%d)\n", __func__, pTask->iDay, pTask->iMonth, pTask->iYear);
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
-	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
-	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	GKeyFile *pKeyFile = g_key_file_new ();  // on veut un key_file meme s'il n'existe pas encore.
+	g_key_file_load_from_file (pKeyFile, cFile, G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, NULL);
 	
 	pTask->cID = g_strdup_printf ("%d", ++s_iCounter);
 	
@@ -121,9 +137,9 @@ static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
 	g_return_val_if_fail (pKeyFile != NULL, FALSE);
 	
-	g_key_file_set_string (pKeyFile, pTask->cID, "title", pTask->cTitle);
-	g_key_file_set_string (pKeyFile, pTask->cID, "text", pTask->cText);
-	g_key_file_set_string (pKeyFile, pTask->cID, "tags", pTask->cTags);
+	g_key_file_set_string (pKeyFile, pTask->cID, "title", pTask->cTitle?pTask->cTitle:"");
+	g_key_file_set_string (pKeyFile, pTask->cID, "text", pTask->cText?pTask->cText:"");
+	g_key_file_set_string (pKeyFile, pTask->cID, "tags", pTask->cTags?pTask->cTags:"");
 	g_key_file_set_integer (pKeyFile, pTask->cID, "hour", pTask->iHour);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "minute", pTask->iMinute);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "freq", pTask->iFrequency);

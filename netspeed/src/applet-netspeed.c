@@ -91,7 +91,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
-	g_return_if_fail (fTimeElapsed > 0.1);
+	g_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);
 	
 	gchar *cContent = NULL;
 	gsize length=0;

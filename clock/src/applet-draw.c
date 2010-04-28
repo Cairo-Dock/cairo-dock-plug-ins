@@ -40,21 +40,60 @@ void cd_clock_free_alarm (CDClockAlarm *pAlarm)
 }
 
 static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog);
-static gboolean _task_warning (CDClockTask *pTask)
+static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s (%s)", __func__, cMessage);
 	CairoDockModuleInstance *myApplet = pTask->pApplet;
-	gchar *cText = g_strdup_printf ("%s %d:%02d\n<b>%s</b>\n %s\n\n%s", D_("The following task was scheduled at"), pTask->iHour, pTask->iMinute, pTask->cTitle, pTask->cText, D_("Repeat this message every:"));
-	pTask->pWarningDialog = cairo_dock_show_dialog_with_value (cText, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", pTask->iWarningDelay, 60, (CairoDockActionOnAnswerFunc) _set_warning_repetition, pTask, NULL);
+	
+	GtkWidget *pScale = gtk_hscale_new_with_range (1, 60, 1);  // 1mn-60mn et 1 cran/mn.
+	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
+	gtk_range_set_value (GTK_RANGE (pScale), pTask->iWarningDelay != 0 ? pTask->iWarningDelay : 15);  // 15mn par defaut.
+	gtk_widget_set (pScale, "width-request", CAIRO_DIALOG_MIN_SCALE_WIDTH, NULL);
+	
+	GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
+	GtkWidget *label = gtk_label_new (D_("1mn"));
+	GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
+	gtk_container_add (GTK_CONTAINER (pAlign), label);
+	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
+	label = gtk_label_new (D_("1h"));
+	pAlign = gtk_alignment_new (1., 1., 0., 0.);
+	gtk_container_add (GTK_CONTAINER (pAlign), label);
+	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+	
+	cairo_dock_dialog_unreference (pTask->pWarningDialog);
+	pTask->pWarningDialog = cairo_dock_show_dialog_full (cMessage,
+		myIcon, myContainer,
+		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) * 60e3 : 15e3),  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
+		MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
+		pExtendedWidget,
+		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
+		pTask,
+		NULL);
+	
+	CD_APPLET_DEMANDS_ATTENTION (NULL, 3600);  // ~ 1h, pour si on loupe le dialogue.
+	return TRUE;
+}
+static gboolean _task_warning_repeat (CDClockTask *pTask, const gchar *cMessage)
+{
+	gchar *cText = g_strdup_printf ("%s %d:%02d\n<b>%s</b>\n %s\n\n%s",
+		D_("The following task was scheduled at"), pTask->iHour, pTask->iMinute,
+		pTask->cTitle,
+		pTask->cText,
+		D_("Repeat this message every:"));
+	_task_warning (pTask, cText);
 	g_free (cText);
-	CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
 	return TRUE;
 }
 static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog)
 {
-	g_print ("%s ()\n", __func__);
-	double fDelay = gtk_range_get_value (GTK_RANGE (pInteractiveWidget));
-	int dt = round (fDelay);
+	g_print ("%s (%d)\n", __func__, iClickedButton);
+	GList *cl = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
+	g_return_if_fail (cl != NULL && cl->next != NULL);
+	GtkWidget *pScale = cl->next->data;
+	g_return_if_fail (pScale != NULL);
+	
+	int dt = gtk_range_get_value (GTK_RANGE (pScale));
 	if (dt == 0 || (iClickedButton != 0 && iClickedButton != -1))
 	{
 		if (pTask->iSidWarning != 0)
@@ -72,7 +111,7 @@ static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractive
 		}
 		if (pTask->iSidWarning == 0)
 		{
-			pTask->iSidWarning = g_timeout_add_seconds (dt*60, (GSourceFunc) _task_warning, pTask);
+			pTask->iSidWarning = g_timeout_add_seconds (dt*60, (GSourceFunc) _task_warning_repeat, pTask);
 			pTask->iWarningDelay = dt;
 		}
 	}
@@ -97,11 +136,13 @@ static inline void _get_current_time (time_t epoch, CairoDockModuleInstance *myA
 			g_unsetenv ("TZ");
 	}
 }
+
 void cd_clock_init_time (CairoDockModuleInstance *myApplet)
 {
 	time_t epoch = (time_t) time (NULL);
 	_get_current_time (epoch, myApplet);
 }
+
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
@@ -288,7 +329,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 					g_print ("15 mn warning\n");
 					myData.pNextTask->b15mnWarning = TRUE;
 					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s", myIcon, myContainer, 60e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", D_("This task will begin in 15 minutes:"), myData.pNextTask->cTitle, myData.pNextTask->cText);
-					CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
+					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
 				}
 				else if (t < epoch + 60)
 				{
@@ -297,9 +338,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 						g_print ("first warning\n");
 						myData.pNextTask->bFirstWarning = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s", D_("It's time for the following task:"), myData.pNextTask->cTitle, myData.pNextTask->cText, D_("Repeat this message every:"));
-						cairo_dock_show_dialog_with_value (cText, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", 15, 60, (CairoDockActionOnAnswerFunc) _set_warning_repetition, myData.pNextTask, NULL);
+						_task_warning (myData.pNextTask, cText);
 						g_free (cText);
-						CD_APPLET_DEMANDS_ATTENTION (NULL, 60e3);
 					}
 				}
 			}

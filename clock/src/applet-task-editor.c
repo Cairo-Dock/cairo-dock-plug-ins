@@ -293,6 +293,8 @@ static void _on_change_time (GtkCellRendererText * cell, gchar * path_string, gc
 	gboolean bUpdated = myData.pBackend->update_task (pTask, myApplet);
 	if (bUpdated)
 	{
+		pTask->bFirstWarning = FALSE;
+		pTask->b15mnWarning = FALSE;
 		gtk_list_store_set (GTK_LIST_STORE (model), &it, CD_TASK_TIME, pTask->iHour*60+pTask->iMinute, -1);
 		myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
 	}
@@ -328,6 +330,8 @@ static void _on_change_frequency (GtkCellRendererText * cell, gchar * path_strin
 	
 	if (bUpdated)
 	{
+		pTask->bFirstWarning = FALSE;
+		pTask->b15mnWarning = FALSE;
 		gtk_list_store_set (GTK_LIST_STORE (model), &it, CD_TASK_FREQ, pTask->iFrequency, -1);
 		myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
 	}

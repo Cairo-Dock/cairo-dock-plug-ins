@@ -39,7 +39,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("clock"),
 	" Analogic view is compatible with the Cairo-Clock's themes, and you can detach the applet to be a perfect clone of Cairo-Clock.\n"
 	"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</b>.\n"
 	"It also supports alarms, and allows you to setup time and date.\n"
-	"Left-click to show/hide the calendar, Middle-click to stop an alarm,\n"
+	"Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 	"Double-click on a day to edit the tasks for this day."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
