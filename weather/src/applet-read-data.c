@@ -33,24 +33,10 @@
 
 gchar *cd_weather_get_location_data (const gchar *cLocation)
 {
-	/**gchar *cLocationFilePath = g_strdup ("/tmp/weather-location.XXXXXX");
-	int fds = mkstemp (cLocationFilePath);
-	if (fds == -1)
-	{
-		g_free (cLocationFilePath);
-		return NULL;
-	}
-	gchar *cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/search/search?where=%s\" -O %s -o /dev/null -t 2 -T 20", cLocation, cLocationFilePath);
-	cd_debug ("weather : %s", cCommand);
-	int r = system (cCommand);
-	g_free (cCommand);
-	close(fds);
-	return cLocationFilePath;*/
-	
 	GError *erreur = NULL;
-	gchar *cFile = g_strdup_printf ("search?where=%s", cLocation);
-	gchar *cData = cairo_dock_get_distant_file_content (CD_WEATHER_BASE_URL, "search", cFile, &erreur);
-	g_free (cFile);
+	gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/search/search?where=%s", cLocation);
+	gchar *cData = cairo_dock_get_url_data (cURL, &erreur);
+	g_free (cURL);
 	if (erreur != NULL)
 	{
 		cd_warning ("while downlading location data : %s", erreur->message);
@@ -109,15 +95,12 @@ static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodeP
 static void _cd_weather_close_xml_file (xmlDocPtr doc)
 {
 	if (doc != NULL)
-		xmlFreeDoc (doc);
-	///xmlCleanupParser ();
+		xmlFreeDoc (doc);  // pas de xmlCleanupParser, ca fout le boxon.
 }
 
 
 GList *cd_weather_parse_location_data (const gchar *cData, GError **erreur)
 {
-	cd_message ("%s (%s)", __func__, cData);
-	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud = NULL;
 	xmlDocPtr doc = _cd_weather_open_xml_buffer (cData, &noeud, "search", &tmp_erreur);
@@ -143,13 +126,11 @@ GList *cd_weather_parse_location_data (const gchar *cData, GError **erreur)
 }
 
 
-static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gchar *cDataFilePath, gboolean bParseHeader, GError **erreur)
+static void _cd_weather_parse_data (CairoDockModuleInstance *myApplet, const gchar *cData, gboolean bParseHeader, GError **erreur)
 {
-	cd_message ("%s (%s)", __func__, cDataFilePath);
-	
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud = NULL;
-	xmlDocPtr doc = _cd_weather_open_xml_file (cDataFilePath, &noeud, "weather", &tmp_erreur);
+	xmlDocPtr doc = _cd_weather_open_xml_buffer (cData, &noeud, "weather", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
@@ -331,48 +312,44 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 	
 	//\____________________ On recupere les conditions courantes sur le serveur.
 	myData.bErrorInThread = FALSE;
-	int r;
+	GError *erreur = NULL;
 	gchar *cCommand;
-	gchar *cCCDataFilePath = NULL;
+	gchar *cCCData = NULL;
 	if (myConfig.bCurrentConditions)
 	{
-		cCCDataFilePath = g_strdup ("/tmp/weather-cc.XXXXXX");
-		int fds = mkstemp (cCCDataFilePath);
-		if (fds == -1)
+		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""));
+		cCCData = cairo_dock_get_url_data (cURL, &erreur);
+		g_free (cURL);
+		if (erreur != NULL)
 		{
-			g_free (cCCDataFilePath);
-			return;
+			cd_warning ("while downlading current conditions data:\n%s -> %s", cURL, erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorInThread = TRUE;
+			return;  // a la 1ere erreur on quitte.
 		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s\" -O %s -o /dev/null -t 2 -T 20", myConfig.cLocationCode, (myConfig.bISUnits ? "&unit=m" : ""), cCCDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		cd_debug ("weather : %s", cCommand);
-		r = system (cCommand);
-		g_free (cCommand);
-		close(fds);
 	}
 	
 	//\____________________ On recupere les previsions a N jours sur le serveur.
-	gchar *cForecastDataFilePath = NULL;
+	gchar *cForecastData = NULL;
 	if (myConfig.iNbDays > 0)
 	{
-		cForecastDataFilePath = g_strdup ("/tmp/weather-forecast.XXXXXX");
-		int fds = mkstemp (cForecastDataFilePath);
-		if (fds == -1)
+		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""));
+		cForecastData = cairo_dock_get_url_data (cURL, &erreur);
+		g_free (cURL);
+		if (erreur != NULL)
 		{
-			g_free (cForecastDataFilePath);
-			return;
+			cd_warning ("while downlading forecast data:\n%s ->  %s", cURL, erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			myData.bErrorInThread = TRUE;
 		}
-		cCommand = g_strdup_printf ("wget \""CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s\" -O %s -o /dev/null -t 2 -T 20", myConfig.cLocationCode, myConfig.iNbDays, (myConfig.bISUnits ? "&unit=m" : ""), cForecastDataFilePath);  // &prod=xoap&par=1048871467&key=12daac2f3a67cb39
-		cd_debug ("weather : %s", cCommand);
-		r = system (cCommand);
-		g_free (cCommand);
-		close(fds);
 	}
 	
 	//\____________________ On extrait les donnees des conditions courantes.
-	GError *erreur = NULL;
-	if (cCCDataFilePath != NULL)
+	if (cCCData != NULL)
 	{
-		_cd_weather_parse_data (myApplet, cCCDataFilePath, TRUE, &erreur);
+		_cd_weather_parse_data (myApplet, cCCData, TRUE, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("weather : %s", erreur->message);
@@ -380,14 +357,13 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			erreur = NULL;
 			myData.bErrorInThread = TRUE;
 		}
-		g_remove (cCCDataFilePath);
-		g_free (cCCDataFilePath);
+		g_free (cCCData);
 	}
 	
 	//\____________________ On extrait les donnees des previsions a N jours.
-	if (cForecastDataFilePath != NULL)
+	if (cForecastData != NULL)
 	{
-		_cd_weather_parse_data (myApplet, cForecastDataFilePath, FALSE, &erreur);
+		_cd_weather_parse_data (myApplet, cForecastData, FALSE, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("weather : %s", erreur->message);
@@ -395,8 +371,7 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			erreur = NULL;
 			myData.bErrorInThread = TRUE;
 		}
-		g_remove (cForecastDataFilePath);
-		g_free (cForecastDataFilePath);
+		g_free (cForecastData);
 	}
 }
 

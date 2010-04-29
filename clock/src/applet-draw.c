@@ -78,8 +78,8 @@ static gboolean _task_warning_repeat (CDClockTask *pTask, const gchar *cMessage)
 {
 	gchar *cText = g_strdup_printf ("%s %d:%02d\n<b>%s</b>\n %s\n\n%s",
 		D_("The following task was scheduled at"), pTask->iHour, pTask->iMinute,
-		pTask->cTitle,
-		pTask->cText,
+		pTask->cTitle?pTask->cTitle:D_("No title"),
+		pTask->cText?pTask->cText:"",
 		D_("Repeat this message every:"));
 	_task_warning (pTask, cText);
 	g_free (cText);
@@ -328,7 +328,13 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				{
 					g_print ("15 mn warning\n");
 					myData.pNextTask->b15mnWarning = TRUE;
-					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s", myIcon, myContainer, 60e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png", D_("This task will begin in 15 minutes:"), myData.pNextTask->cTitle, myData.pNextTask->cText);
+					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
+						myIcon, myContainer,
+						60e3,
+						MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
+						D_("This task will begin in 15 minutes:"),
+						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
+						myData.pNextTask->cText?myData.pNextTask->cText:"");
 					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
 				}
 				else if (t < epoch + 60)
@@ -337,7 +343,11 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 					{
 						g_print ("first warning\n");
 						myData.pNextTask->bFirstWarning = TRUE;
-						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s", D_("It's time for the following task:"), myData.pNextTask->cTitle, myData.pNextTask->cText, D_("Repeat this message every:"));
+						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
+							D_("It's time for the following task:"),
+							myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
+							myData.pNextTask->cText?myData.pNextTask->cText:"",
+							D_("Repeat this message every:"));
 						_task_warning (myData.pNextTask, cText);
 						g_free (cText);
 					}

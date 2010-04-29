@@ -184,7 +184,7 @@ gchar *cd_clock_get_tasks_for_today (CairoDockModuleInstance *myApplet)
 		{
 			if (sTaskString == NULL)
 				sTaskString = g_string_new ("");
-			g_string_append_printf (sTaskString, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"), pTask->iHour, pTask->iMinute, pTask->cText);
+			g_string_append_printf (sTaskString, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"), pTask->iHour, pTask->iMinute, pTask->cText?pTask->cText:"");
 		}
 	}
 	
@@ -268,7 +268,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 				pTask->cTitle ? pTask->cTitle : D_("No title"),
 				(myConfig.bNormalDate ? d : y), m, (myConfig.bNormalDate ? y : d),
 				pTask->iHour, pTask->iMinute,
-				pTask->cText);
+				pTask->cText?pTask->cText:"");
 		}  // on n'arrete pas le parcours si iDelta > 7 pour prendre en compte aussi les anniv.
 	}
 	g_date_free (pCurrentDate);

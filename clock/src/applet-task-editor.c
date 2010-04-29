@@ -100,7 +100,7 @@ static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint i
 				CD_TASK_ACTIVE, TRUE,
 				CD_TASK_TITLE, pTask->cTitle,
 				CD_TASK_TEXT, pTask->cText,
-				CD_TASK_TAGS, 	 pTask->cTags,
+				CD_TASK_TAGS, pTask->cTags,
 				CD_TASK_TIME, pTask->iHour*60 + pTask->iMinute,
 				CD_TASK_FREQ, pTask->iFrequency, -1);
 		}
@@ -406,13 +406,6 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 		col = gtk_tree_view_column_new_with_attributes (D_("Text"), rend, "text", CD_TASK_TEXT, NULL);
 		gtk_tree_view_column_set_sort_column_id (col, CD_TASK_TEXT);
 		gtk_tree_view_append_column (GTK_TREE_VIEW (pTreeView), col);
-		// tags
-		rend = gtk_cell_renderer_text_new ();
-		g_object_set (G_OBJECT (rend), "editable", TRUE, NULL);
-		g_signal_connect (G_OBJECT (rend), "edited", (GCallback) _on_change_tags, myApplet);
-		col = gtk_tree_view_column_new_with_attributes (D_("Tags"), rend, "text", CD_TASK_TAGS, NULL);
-		gtk_tree_view_column_set_sort_column_id (col, CD_TASK_TAGS);
-		gtk_tree_view_append_column (GTK_TREE_VIEW (pTreeView), col);
 		// time
 		rend = gtk_cell_renderer_text_new ();
 		g_object_set (G_OBJECT (rend), "editable", TRUE, NULL);
@@ -433,6 +426,13 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 		g_signal_connect (G_OBJECT (rend), "edited", (GCallback) _on_change_frequency, myApplet);
 		col = gtk_tree_view_column_new_with_attributes (D_("Freq."), rend, "text", CD_TASK_FREQ, NULL);
 		gtk_tree_view_column_set_cell_data_func (col, rend, (GtkTreeCellDataFunc)_cd_clock_render_frequency, myApplet, NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (pTreeView), col);
+		// tags
+		rend = gtk_cell_renderer_text_new ();
+		g_object_set (G_OBJECT (rend), "editable", TRUE, NULL);
+		g_signal_connect (G_OBJECT (rend), "edited", (GCallback) _on_change_tags, myApplet);
+		col = gtk_tree_view_column_new_with_attributes (D_("Tags"), rend, "text", CD_TASK_TAGS, NULL);
+		gtk_tree_view_column_set_sort_column_id (col, CD_TASK_TAGS);
 		gtk_tree_view_append_column (GTK_TREE_VIEW (pTreeView), col);
 		
 		GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pTreeView));
