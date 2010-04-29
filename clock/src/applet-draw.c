@@ -62,6 +62,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
 	
 	cairo_dock_dialog_unreference (pTask->pWarningDialog);
+	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
 	pTask->pWarningDialog = cairo_dock_show_dialog_full (cMessage,
 		myIcon, myContainer,
 		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) * 60e3 : 15e3),  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
@@ -70,6 +71,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
 		pTask,
 		NULL);
+	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
 	
 	CD_APPLET_DEMANDS_ATTENTION (NULL, 3600);  // ~ 1h, pour si on loupe le dialogue.
 	return TRUE;

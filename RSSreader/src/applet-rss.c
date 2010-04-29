@@ -176,10 +176,11 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 3 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
+	myData.cTaskBridge = cairo_dock_get_url_data (cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl, NULL);
+	/**gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 3 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
 	myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
 	cd_debug ("cTaskBridge : '%s'", myData.cTaskBridge);
-	g_free (cCommand);
+	g_free (cCommand);*/
 	g_free (cUrlWithLoginPwd);
 }
 
