@@ -559,9 +559,7 @@ void cd_musicplayer_register_banshee_handler (void)
 	pBanshee->configure = cd_banshee_configure;  // renseigne les proprietes DBus et se connecte au bus.
 	pBanshee->control = cd_banshee_control;
 	pBanshee->get_cover = NULL;
-	gchar *cCoverDirMedia = g_strdup_printf ("%s/.cache/media-art", g_getenv ("HOME"));
-	pBanshee->cCoverDir = g_file_test (cCoverDirMedia, G_FILE_TEST_EXISTS) ? cCoverDirMedia : g_strdup_printf ("%s/.cache/album-art", g_getenv ("HOME"));
-	g_free (cCoverDirMedia);
+	pBanshee->cCoverDir = g_strdup_printf ("%s/.cache/media-art", g_getenv ("HOME"));
 	
 	pBanshee->appclass = "banshee";  // pffff
 	pBanshee->launch = "banshee";

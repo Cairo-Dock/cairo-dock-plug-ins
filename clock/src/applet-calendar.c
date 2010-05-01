@@ -388,7 +388,14 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 		{
 			if (sDetail == NULL)
 				sDetail = g_string_new ("");
-			g_string_append_printf (sDetail, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"), pTask->iHour, pTask->iMinute, pTask->cText);
+			if (pTask->iFrequency == CD_TASK_EACH_YEAR && iYear > pTask->iYear)
+				g_string_append_printf (sDetail, "<b><u>%s</u> (%d %s)</b>\n <i>at %d:%02d</i>\n %s\n",
+					pTask->cTitle ? pTask->cTitle : D_("No title"),
+					iYear - pTask->iYear, D_("years"),
+					pTask->iHour, pTask->iMinute,
+					pTask->cText);
+			else
+				g_string_append_printf (sDetail, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"), pTask->iHour, pTask->iMinute, pTask->cText);
 		}
 	}
 	
