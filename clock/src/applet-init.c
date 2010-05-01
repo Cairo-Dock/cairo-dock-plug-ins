@@ -152,8 +152,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_______________ On reliste les taches avec le nouveau backend.
+		CDClockTaskBackend *pOldBackend = myData.pBackend;
 		cd_clock_set_current_backend (myApplet);
-		cd_clock_list_tasks (myApplet);
+		if (pOldBackend != myData.pBackend)
+			cd_clock_list_tasks (myApplet);
 		
 		//\_______________ On relance le timer.
 		myData.iLastCheckedMinute = -1;

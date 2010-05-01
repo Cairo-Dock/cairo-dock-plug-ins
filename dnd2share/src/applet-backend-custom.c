@@ -17,11 +17,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _BSD_SOURCE
 #include <stdlib.h>
-#include <math.h>
-#include <unistd.h>
-#include <glib/gstdio.h>
 #include <string.h>
 
 #include "applet-struct.h"

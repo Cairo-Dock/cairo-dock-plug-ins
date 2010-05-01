@@ -458,7 +458,9 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 		glPushMatrix ();
 		if (myDesklet)
 			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
-		glTranslatef (x, y, 0);
+		glTranslatef (x - ((myIcon->iTextWidth & 1) ? 0.5 : 0.),
+			y - ((myIcon->iTextHeight & 1) ? 0.5 : 0.),
+			0);
 		cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);
 		glPopMatrix ();
 	}

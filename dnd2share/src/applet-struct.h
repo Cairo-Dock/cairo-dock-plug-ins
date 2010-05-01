@@ -69,6 +69,7 @@ struct _AppletConfig {
 	gchar *cIconAnimation;
 	gchar *cCustomScripts[CD_NB_FILE_TYPES];
 	gchar *cDropboxDir;
+	gboolean bAnonymous;
 	} ;
 
 

@@ -34,7 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cAdditionnalDirectoriesList = CD_CONFIG_GET_STRING_LIST ("Module", "additionnal directories", &length);
 	
 	//\_______________ On liste les themes disponibles et on recupere celui choisi.
-	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "Gion");
+	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "default");
 	
 	myConfig.cEmptyUserImage = CD_CONFIG_GET_STRING ("Module", "empty image");
 	myConfig.cFullUserImage = CD_CONFIG_GET_STRING ("Module", "full image");

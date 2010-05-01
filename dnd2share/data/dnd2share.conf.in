@@ -153,6 +153,12 @@ video script =
 #S Custom script for file upload : 
 file script =
 
+#v
+sep_params=
+
 #D Path of the DropBox folder :
 #{Leave empty to upload files into '~/Dropbox/Public'.}
 dropbox dir =
+
+#b Post text as Anonymous ?
+anonymous = false

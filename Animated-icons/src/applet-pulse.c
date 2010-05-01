@@ -63,7 +63,6 @@ void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 	if (pData->fPulseAlpha == 0 || pData->fPulseAlpha == 1 || pIcon->iIconTexture == 0)
 		return ;
 	
-	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 	glPushMatrix ();
 	double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
 	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
@@ -73,6 +72,7 @@ void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDa
 	_cairo_dock_apply_texture (pIcon->iIconTexture);
 	_cairo_dock_disable_texture ();
 	glPopMatrix ();
+	///pIcon->fAlpha = 1. - .5 * pData->fPulseAlpha;
 }
 
 void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
@@ -92,5 +92,5 @@ void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);
 	cairo_restore (pCairoContext);
 	
-	pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
+	///pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
 }

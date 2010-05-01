@@ -275,6 +275,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 		}  // on n'arrete pas le parcours si iDelta > 7 pour prendre en compte aussi les anniv.
 	}
 	g_date_free (pCurrentDate);
+	g_date_free (pDate);
 	
 	if (sTaskString == NULL)
 		return NULL;

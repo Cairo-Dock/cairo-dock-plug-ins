@@ -87,7 +87,7 @@ static void _load_theme (GError **erreur)
 	}
 	if (myData.pFullBinSurface == NULL || myData.pFullBinSurface == NULL)
 	{
-		cd_warning ("dustbin : couldn't find images, check the existence of te files in %s", myConfig.cThemePath);
+		cd_warning ("dustbin : couldn't find images, check the existence of the files in %s", myConfig.cThemePath);
 	}
 }
 

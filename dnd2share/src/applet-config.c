@@ -52,6 +52,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDropboxDir = CD_CONFIG_GET_STRING ("Configuration", "dropbox dir");
 	if (myConfig.cDropboxDir && myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] == '/')
 		myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] = '\0';
+	myConfig.bAnonymous = CD_CONFIG_GET_BOOLEAN ("Configuration", "anonymous");
 CD_APPLET_GET_CONFIG_END
 
 

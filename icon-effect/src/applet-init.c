@@ -30,12 +30,6 @@
 #include "applet-firework.h"
 #include "applet-init.h"
 
-#define _register_effect(i, name, disp_name) do {\
-	cd_icon_effect_register_fire (&myData.pEffects[CD_ICON_EFFECT_FIRE]);\
-	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation (name, disp_name);\
-	myData.pEffects[CD_ICON_EFFECT_FIRE].iDuration = myConfig.iFireDuration;\
-	myData.pEffects[CD_ICON_EFFECT_FIRE].bRepeat = myConfig.bContinueFire; } while (0)
-	
 
 CD_APPLET_PRE_INIT_BEGIN (N_("icon effects"),
 	2, 0, 0,
@@ -82,22 +76,22 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_icon_effect_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	cd_icon_effect_register_fire (&myData.pEffects[CD_ICON_EFFECT_FIRE]);
-	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire", D_("Fire"));
+	myData.iAnimationID[CD_ICON_EFFECT_FIRE] = cairo_dock_register_animation ("fire", D_("Fire"), TRUE);
 	
 	cd_icon_effect_register_stars (&myData.pEffects[CD_ICON_EFFECT_STARS]);
-	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars", D_("Stars"));
+	myData.iAnimationID[CD_ICON_EFFECT_STARS] = cairo_dock_register_animation ("stars", D_("Stars"), TRUE);
 	
 	cd_icon_effect_register_rain (&myData.pEffects[CD_ICON_EFFECT_RAIN]);
-	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain", D_("Rain"));
+	myData.iAnimationID[CD_ICON_EFFECT_RAIN] = cairo_dock_register_animation ("rain", D_("Rain"), TRUE);
 	
 	cd_icon_effect_register_snow (&myData.pEffects[CD_ICON_EFFECT_SNOW]);
-	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow", D_("Snow"));
+	myData.iAnimationID[CD_ICON_EFFECT_SNOW] = cairo_dock_register_animation ("snow", D_("Snow"), TRUE);
 	
 	cd_icon_effect_register_storm (&myData.pEffects[CD_ICON_EFFECT_SAND]);
-	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm", D_("Storm"));
+	myData.iAnimationID[CD_ICON_EFFECT_SAND] = cairo_dock_register_animation ("storm", D_("Storm"), TRUE);
 	
 	cd_icon_effect_register_firework (&myData.pEffects[CD_ICON_EFFECT_FIREWORK]);
-	myData.iAnimationID[CD_ICON_EFFECT_FIREWORK] = cairo_dock_register_animation ("firework", D_("Firework"));
+	myData.iAnimationID[CD_ICON_EFFECT_FIREWORK] = cairo_dock_register_animation ("firework", D_("Firework"), TRUE);
 	
 	_set_effects_duration ();
 	

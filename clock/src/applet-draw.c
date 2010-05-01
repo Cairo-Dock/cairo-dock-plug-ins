@@ -360,18 +360,24 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			{
 				if (!myData.pNextAnniversary->b1DayWarning && ! myData.pNextAnniversary->bFirstWarning && ! myData.pNextTask->b15mnWarning)
 				{
-					myData.pNextAnniversary->b1DayWarning = TRUE;
-					gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
-						D_("Tomorrow is the following anniversary:"),
-						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
-						myData.pNextTask->cText?myData.pNextTask->cText:"",
-						D_("Repeat this message every:"));
-					_task_warning (myData.pNextTask, cText);
-					g_free (cText);
-					myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
+					GDate* pCurrentDate = g_date_new_dmy (myData.currentTime.tm_mday, myData.currentTime.tm_mon + 1, myData.currentTime.tm_year+1900);
+					GDate* pAnnivDate = g_date_new_dmy (myData.pNextAnniversary->iDay, myData.pNextAnniversary->iMonth + 1, myData.pNextAnniversary->iYear);
+					if (g_date_days_between (pCurrentDate, pAnnivDate) <= 1)
+					{
+						myData.pNextAnniversary->b1DayWarning = TRUE;
+						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
+							D_("Tomorrow is the following anniversary:"),
+							myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
+							myData.pNextTask->cText?myData.pNextTask->cText:"",
+							D_("Repeat this message every:"));
+						_task_warning (myData.pNextTask, cText);
+						g_free (cText);
+						myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
+					}
+					g_date_free (pCurrentDate);
+					g_date_free (pAnnivDate);
 				}
 			}
-			
 		}
 	}
 	
