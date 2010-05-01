@@ -50,6 +50,8 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet);
 
 CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet);
 
+CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet);
+
 
 void cd_clock_update_calendar_marks (CairoDockModuleInstance *myApplet);
 

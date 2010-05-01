@@ -117,6 +117,7 @@ void cd_clock_list_tasks (CairoDockModuleInstance *myApplet)
 		(GCompareDataFunc) _compare_task,
 		NULL);
 	myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
+	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
 
 void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
@@ -124,12 +125,14 @@ void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myA
 	pTask->pApplet = myApplet;
 	myData.pTasks = g_list_insert_sorted (myData.pTasks, pTask, (GCompareFunc)_compare_task);
 	myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
+	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
 
 void cd_clock_remove_task_from_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
 	myData.pTasks = g_list_remove (myData.pTasks, pTask);
 	myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
+	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
 
 void cd_clock_free_task (CDClockTask *pTask)
@@ -302,13 +305,13 @@ CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet
 	for (t = myData.pTasks; t != NULL; t = t->next)
 	{
 		pTask = t->data;
-		g_print ("test de %s (%d/%d/%d)\n", pTask->cTitle, pTask->iDay, pTask->iMonth, pTask->iYear);
+		//g_print ("test de %s (%d/%d/%d)\n", pTask->cTitle, pTask->iDay, pTask->iMonth, pTask->iYear);
 		switch (pTask->iFrequency)
 		{
 			case CD_TASK_DONT_REPEAT:
 			default:
 				i = _compute_index (pTask->iYear, pTask->iMonth, pTask->iDay, pTask->iHour, pTask->iMinute);
-				g_print (" normal : %ld\n", i);
+				//g_print (" normal : %ld\n", i);
 			break;
 			
 			case CD_TASK_EACH_MONTH:
@@ -320,25 +323,65 @@ CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet
 					else
 						i = _compute_index (iYear+1, 0, pTask->iDay, pTask->iHour, pTask->iMinute);
 				}
-				g_print (" mensuel : %ld\n", i);
+				//g_print (" mensuel : %ld\n", i);
 			break;
 			
 			case CD_TASK_EACH_YEAR:
 				i = _compute_index (iYear, pTask->iMonth, pTask->iDay, pTask->iHour, pTask->iMinute);
 				if (i < iIndex)  // on tombe avant, on calcule l'index pour l'annee suivante.
 					i = _compute_index (iYear+1, pTask->iMonth, pTask->iDay, pTask->iHour, pTask->iMinute);
-				g_print (" annuel : %ld\n", i);
+				//g_print (" annuel : %ld\n", i);
 			break;
 		}
 		if (i >= iIndex && (iNextIndex == 0 || i < iNextIndex))
 		{
 			iNextIndex = i;
 			pNextTask = pTask;
-			g_print ("pNextTask <- %s, index <- %ld\n", pNextTask->cTitle, iNextIndex);
+			//g_print ("pNextTask <- %s, index <- %ld\n", pNextTask->cTitle, iNextIndex);
 		}
 	}
 	return pNextTask;
 }
+
+CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pTasks == NULL)
+		return NULL;
+	
+	guint iDay = myData.currentTime.tm_mday;
+	guint iMonth = myData.currentTime.tm_mon;
+	guint iYear = myData.currentTime.tm_year + 1900;
+	guint iHour = myData.currentTime.tm_hour;
+	guint iMinute = myData.currentTime.tm_min;
+	gulong iIndex = _compute_index (iYear, iMonth, iDay, iHour, iMinute);
+	gulong i, iNextIndex=0;
+	//g_print ("%s (%d/%d/%d -> %ld)\n", __func__, iDay, iMonth, iYear, iIndex);
+	
+	CDClockTask *pNextAnniversary = NULL;
+	CDClockTask *pTask;
+	GList *t;
+	for (t = myData.pTasks; t != NULL; t = t->next)
+	{
+		pTask = t->data;
+		if (pTask->iFrequency != CD_TASK_EACH_YEAR)
+			continue;
+		//g_print ("test de %s (%d/%d/%d)\n", pTask->cTitle, pTask->iDay, pTask->iMonth, pTask->iYear);
+		
+		i = _compute_index (iYear, pTask->iMonth, pTask->iDay, pTask->iHour, pTask->iMinute);
+		if (i < iIndex)  // on tombe avant, on calcule l'index pour l'annee suivante.
+			i = _compute_index (iYear+1, pTask->iMonth, pTask->iDay, pTask->iHour, pTask->iMinute);
+		//g_print (" annuel : %ld\n", i);
+		
+		if (i > iIndex && (iNextIndex == 0 || i < iNextIndex))
+		{
+			iNextIndex = i;
+			pNextAnniversary = pTask;
+			//g_print ("pNextTask <- %s, index <- %ld\n", pNextTask->cTitle, iNextIndex);
+		}
+	}
+	return pNextAnniversary;
+}
+
 
   //////////////
  // CALENDAR //
@@ -393,9 +436,11 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 					pTask->cTitle ? pTask->cTitle : D_("No title"),
 					iYear - pTask->iYear, D_("years"),
 					pTask->iHour, pTask->iMinute,
-					pTask->cText);
+					pTask->cText?pTask->cText:"");
 			else
-				g_string_append_printf (sDetail, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"), pTask->iHour, pTask->iMinute, pTask->cText);
+				g_string_append_printf (sDetail, "<b><u>%s</u></b>\n <i>at %d:%02d</i>\n %s\n", pTask->cTitle ? pTask->cTitle : D_("No title"),
+				pTask->iHour, pTask->iMinute,
+				pTask->cText?pTask->cText:"");
 		}
 	}
 	

@@ -65,7 +65,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
 	pTask->pWarningDialog = cairo_dock_show_dialog_full (cMessage,
 		myIcon, myContainer,
-		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) * 60e3 : 15e3),  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
+		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) : 15) * 60e3,  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
 		MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
 		pExtendedWidget,
 		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
@@ -355,6 +355,23 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 					}
 				}
 			}
+			
+			if (myData.pNextAnniversary != NULL)
+			{
+				if (!myData.pNextAnniversary->b1DayWarning && ! myData.pNextAnniversary->bFirstWarning && ! myData.pNextTask->b15mnWarning)
+				{
+					myData.pNextAnniversary->b1DayWarning = TRUE;
+					gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
+						D_("Tomorrow is the following anniversary:"),
+						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
+						myData.pNextTask->cText?myData.pNextTask->cText:"",
+						D_("Repeat this message every:"));
+					_task_warning (myData.pNextTask, cText);
+					g_free (cText);
+					myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
+				}
+			}
+			
 		}
 	}
 	

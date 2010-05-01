@@ -113,6 +113,7 @@ typedef struct {
 	CDClockTaskFrequency iFrequency;
 	// private data
 	CairoDockModuleInstance *pApplet;
+	gboolean b1DayWarning;
 	gboolean b15mnWarning;
 	gboolean bFirstWarning;
 	gint iWarningDelay;  // en minutes.
@@ -185,6 +186,7 @@ struct _AppletData {
 	GtkListStore *pModel;
 	guint iButtonPressTime;
 	CDClockTask *pNextTask;
+	CDClockTask *pNextAnniversary;
 	} ;
 
 #endif
