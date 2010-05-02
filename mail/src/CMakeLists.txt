@@ -36,11 +36,11 @@ include_directories (
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${MAIL_PACKAGE_LIBS})
+	${MAIL_PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_MAIL}
 	${PACKAGE_LIBRARIES}
-	${MAIL_PACKAGE_LIBS})
+	${MAIL_PACKAGE_LIBRARIES})
 
 ########### install files ###############
 

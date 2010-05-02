@@ -140,9 +140,10 @@ static void _cd_clock_delete_task (GtkMenuItem *pMenuItem, gpointer *data)
 	if (bDeleted)
 	{
 		cd_clock_remove_task_from_list (pTask, myApplet);
-		cd_clock_free_task (pTask);
 		
 		_cd_clock_create_model_for_current_day (pTask->iDay, pTask->iMonth, pTask->iYear, myApplet);  // on pourrait n'effacer que la ligne concernee mais inutile de compliquer pour si peu.
+		cd_clock_free_task (pTask);
+		
 		gtk_widget_show_all (myData.pTaskWindow);
 		
 		cd_clock_update_calendar_marks (myApplet);

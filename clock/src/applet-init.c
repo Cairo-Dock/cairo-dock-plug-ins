@@ -27,6 +27,7 @@
 #include "applet-theme.h"
 #include "applet-calendar.h"
 #include "applet-backend-default.h"
+#include "applet-backend-ical.h"
 #include "applet-notifications.h"
 #include "applet-init.h"
 
@@ -84,6 +85,7 @@ CD_APPLET_INIT_BEGIN
 	
 	//\_______________ On enregistre les backends de gestion des taches.
 	cd_clock_register_backend_default (myApplet);
+	cd_clock_register_backend_ical (myApplet);
 	
 	//\_______________ On liste les taches (apres avoir le temps courant).
 	cd_clock_set_current_backend (myApplet);

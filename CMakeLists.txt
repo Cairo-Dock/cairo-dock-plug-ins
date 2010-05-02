@@ -101,8 +101,12 @@ configure_file (Clipper/data/Clipper.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Clipper
 add_subdirectory (Clipper)
 
 ############# CLOCK #################
+pkg_check_modules (LIBICAL_PACKAGE libical)
+if ("${LIBICAL_PACKAGE_FOUND}" STREQUAL "")
+	message (STATUS "Could not find libical; Clock plugin won't be built with iCal support.")
+endif()
 set (GETTEXT_CLOCK ${GETTEXT_PLUGINS})
-set (VERSION_CLOCK "2.0.10")
+set (VERSION_CLOCK "2.1.0")
 set (PACKAGE_CLOCK "cd-clock")
 set (clockuserdirname "clock")
 set (clockdatadir "${pluginsdatadir}/clock")
@@ -280,20 +284,35 @@ configure_file (logout/data/logout.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/logout/da
 add_subdirectory (logout)
 
 ############# MAIL #################
+# find the compilation flags
 execute_process(
 	COMMAND libetpan-config --cflags
 	OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
-STRING (REGEX REPLACE "-I" "" MAIL_PACKAGE_INCLUDE_DIRS "${MAIL_PACKAGE_CFLAGS}")  # salete de libetpan ...
+STRING (REGEX MATCHALL "-I[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # first extract the "-I" options
+STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
+STRING (REGEX REPLACE "-I([^ ]+)" "\\1" MAIL_PACKAGE_INCLUDE_DIRS "${TMP_VARIABLE}")  # then remove the "-I" string
+# find the link flags
 execute_process(
 	COMMAND libetpan-config --libs
 	OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
-STRING (REGEX REPLACE "\n" "" MAIL_PACKAGE_LIBS "${MAIL_PACKAGE_LIBS}")
-#STRING (REGEX REPLACE "-L([^ ]+).*" "-L\\1" MAIL_PACKAGE_LIBRARY_DIRS ${MAIL_PACKAGE_LIBS})
-#STRING (REGEX REPLACE "${MAIL_PACKAGE_LIBRARY_DIRS} " "" MAIL_PACKAGE_LIBRAIRIES ${MAIL_PACKAGE_LIBS})
+#   find the link libraries
+STRING (REGEX MATCHALL "-l[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-l" options
+STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+STRING (REGEX REPLACE " $" "" MAIL_PACKAGE_LIBRARIES "${TMP_VARIABLE}")
+#   find the link directories
+STRING (REGEX MATCHALL "-L[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-L" options
+STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
+STRING (REGEX REPLACE "-L([^ ]+)" "\\1" MAIL_PACKAGE_LIBRARY_DIRS "${TMP_VARIABLE}")  # then remove the "-L" string
 
 if ("${MAIL_PACKAGE_LIBS}" STREQUAL "")
 	message (STATUS "warning : Could not find libetpan; Cairo-Dock won't be built with Mail applet.")
 else()
+	message (STATUS "libetpan found. Using the following options:")
+	message (STATUS "  Include directories: ${MAIL_PACKAGE_INCLUDE_DIRS}")
+	message (STATUS "  Link directories: ${MAIL_PACKAGE_LIBRARY_DIRS}")
+	message (STATUS "  Link libraries: ${MAIL_PACKAGE_LIBRARIES}")
 	set (GETTEXT_MAIL ${GETTEXT_PLUGINS})
 	set (VERSION_MAIL "1.0.3")
 	set (PACKAGE_MAIL "cd-mail")

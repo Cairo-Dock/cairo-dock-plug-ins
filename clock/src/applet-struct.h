@@ -111,6 +111,7 @@ typedef struct {
 	guint iHour;
 	guint iMinute;
 	CDClockTaskFrequency iFrequency;
+	GList *pSubTaskList;
 	// private data
 	CairoDockModuleInstance *pApplet;
 	gboolean b1DayWarning;
