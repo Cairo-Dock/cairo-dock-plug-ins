@@ -34,8 +34,8 @@ CD_APPLET_ON_CLICK_BEGIN
 			myIcon, myContainer, 6e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("Total amount of data"),
-			D_("downloaded"), (double) myData.iReceivedBytes / (1024*1204), D_("MB"),
-			D_("uploaded"), (double) myData.iTransmittedBytes / (1024*1204), D_("MB"));
+			D_("downloaded"), (double) myData.iReceivedBytes / (1024*1024), D_("MB"),
+			D_("uploaded"), (double) myData.iTransmittedBytes / (1024*1024), D_("MB"));
 	}
 	else
 	{

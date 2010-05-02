@@ -39,19 +39,7 @@ static void _logout (void)
 		gboolean bLoggedOut = cairo_dock_fm_logout ();
 		if (! bLoggedOut)
 		{
-			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			{
-				int answer = cairo_dock_ask_question_and_wait ("Log out ?", myIcon, myContainer);
-				if (answer == GTK_RESPONSE_YES)
-				{
-					int r = system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
-					r = system ("qdbus org.kde.ksmserver /KSMServer logout 0 3 0");
-				}
-			}
-			else
-			{
-				cd_warning ("couldn't guess what to do to log out.");
-			}
+			cd_warning ("couldn't guess what to do to log out, you may try to specify the command in the config.");
 		}
 	}
 }
@@ -66,19 +54,7 @@ static void _shutdown (void)
 		gboolean bShutdowned = cairo_dock_fm_shutdown ();
 		if (! bShutdowned)
 		{
-			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			{
-				int answer = cairo_dock_ask_question_and_wait ("Shutdown ?", myIcon, myContainer);
-				if (answer == GTK_RESPONSE_YES)
-				{
-					int r = system ("dcop ksmserver default logout 0 0 0");  // kdmctl shutdown reboot forcenow  // kdeinit_shutdown
-					r = system ("qdbus org.kde.ksmserver /KSMServer logout 0 2 0");
-				}
-			}
-			else
-			{
-				cd_warning ("couldn't guess what to do to shutdown.");
-			}
+			cd_warning ("couldn't guess what to do to shutdown, you may try to specify the command in the config.");
 		}
 	}
 }

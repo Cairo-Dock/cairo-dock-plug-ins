@@ -124,6 +124,7 @@ static int _compare_icons_stack_order (Icon *icon1, Icon *icon2)
 }
 void cd_switcher_draw_main_icon_compact_mode (void)
 {
+	g_return_if_fail (myData.switcher.iNbColumns != 0 && myData.switcher.iNbLines != 0);
 	//cd_debug ("%s (%d;%d)", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
 	cairo_dock_erase_cairo_context (myDrawContext);

@@ -31,7 +31,6 @@ add_custom_target (uninstall "${CMAKE_COMMAND}" -P "cmake_uninstall.cmake")
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
-set (localedir ${CMAKE_INSTALL_PREFIX}/share/locale)
 execute_process(
     COMMAND pkg-config cairo-dock --variable=pluginsdir
     OUTPUT_VARIABLE pluginsdir)
@@ -51,7 +50,11 @@ set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
 if (NOT "${pluginsdir}" STREQUAL "${CMAKE_INSTALL_PREFIX}/lib/cairo-dock")
 	message (STATUS "Warning : plug-ins should be installed in the same place asthe dock, that is to say in ${pluginsdir}")
+	STRING (REGEX REPLACE "/lib/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
 endif()
+set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
+set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
+
 
 ########### dependencies ###############
 
@@ -180,7 +183,6 @@ set (dustbinuserdirname "dustbin")
 set (dustbindatadir "${pluginsdatadir}/dustbin")
 configure_file (dustbin/data/dustbin.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/dustbin/data/dustbin.conf)
 add_subdirectory (dustbin)
-
 
 ############# GVFS-INTEGRATION #################
 pkg_check_modules ("LIBGIO" "gio-2.0")
@@ -318,7 +320,7 @@ add_subdirectory (musicPlayer)
 
 ############# NETSPEED #################
 set (GETTEXT_NETSPEED ${GETTEXT_PLUGINS})
-set (VERSION_NETSPEED "1.2.3")
+set (VERSION_NETSPEED "1.2.4")
 set (PACKAGE_NETSPEED "cd-netspeed")
 set (netspeeddatadir "${pluginsdatadir}/netspeed")
 configure_file (netspeed/data/netspeed.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/netspeed/data/netspeed.conf)
@@ -327,7 +329,7 @@ add_subdirectory (netspeed)
 ############# NETWORK_MONITOR #################
 if ("${enable-network-monitor}" STREQUAL "yes")
 	set (GETTEXT_NETWORK_MONITOR ${GETTEXT_PLUGINS})
-	set (VERSION_NETWORK_MONITOR "0.2.1")
+	set (VERSION_NETWORK_MONITOR "0.2.2")
 	set (PACKAGE_NETWORK_MONITOR "cd-network-monitor")
 	set (network_monitordatadir "${pluginsdatadir}/Network-Monitor")
 	configure_file (Network-Monitor/data/Network-Monitor.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Network-Monitor/data/Network-Monitor.conf)
@@ -336,7 +338,7 @@ endif()
 
 ############# POWERMANAGER #################
 set (GETTEXT_POWERMANAGER ${GETTEXT_PLUGINS})
-set (VERSION_POWERMANAGER "1.3.2")
+set (VERSION_POWERMANAGER "1.3.3")
 set (PACKAGE_POWERMANAGER "cd-powermanager")
 set (powermanagerdatadir "${pluginsdatadir}/powermanager")
 configure_file (powermanager/data/powermanager.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/powermanager/data/powermanager.conf)
@@ -426,7 +428,7 @@ add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
 set (GETTEXT_SYSTEM_MONITOR ${GETTEXT_PLUGINS})
-set (VERSION_SYSTEM_MONITOR "1.0.3")
+set (VERSION_SYSTEM_MONITOR "1.0.4")
 set (PACKAGE_SYSTEM_MONITOR "cd-system-monitor")
 set (system_monitordatadir "${pluginsdatadir}/System-monitor")
 configure_file (System-Monitor/data/System-Monitor.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/System-Monitor/data/System-Monitor.conf)
@@ -496,7 +498,7 @@ endif()
 
 ############# WIFI #################
 set (GETTEXT_WIFI ${GETTEXT_PLUGINS})
-set (VERSION_WIFI "1.2.4")
+set (VERSION_WIFI "1.2.5")
 set (PACKAGE_WIFI "cd-wifi")
 set (wifidatadir "${pluginsdatadir}/wifi")
 configure_file (wifi/data/wifi.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/wifi/data/wifi.conf)

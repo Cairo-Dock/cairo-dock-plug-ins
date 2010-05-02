@@ -268,6 +268,11 @@ CD_APPLET_ON_BUILD_MENU_END
 static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
+	if (myData.switcher.iNbColumns == 0)
+	{
+		cd_switcher_compute_nb_lines_and_columns ();
+		cd_switcher_get_current_desktop ();
+	}
 	cd_switcher_draw_main_icon ();
 	myData.iSidRedrawMainIconIdle = 0;
 	CD_APPLET_LEAVE (FALSE);
@@ -285,7 +290,6 @@ gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XAc
 {
 	CD_APPLET_ENTER;
 	_cd_switcher_queue_draw (myApplet);
-	//cd_switcher_draw_main_icon ();
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

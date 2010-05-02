@@ -42,13 +42,13 @@ enum    KWorkSpace::ShutdownMode {
 	KWorkSpace::ShutdownModeInteractive = 3}*/
 void env_backend_logout (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout -1 3 -1");  // ShutdownConfirm; ShutdownType; ShutdownMode
+	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 3 -1");  // ShutdownConfirm; ShutdownType; ShutdownMode
 	// usr/bin/dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:2 int32:0
 }
 
 void env_backend_shutdown (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout -1 2 -1");
+	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 2 -1");
 }
 
 void env_backend_lock_screen (void)

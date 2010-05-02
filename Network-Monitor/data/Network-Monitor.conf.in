@@ -141,7 +141,7 @@ renderer = 0
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges] Choose one of the available themes:/
 theme = turbo-night-fuel
 
 #X[Graph;gtk-dialog-info]
@@ -180,7 +180,7 @@ renderer = 2
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@prefix@/@DATADIRNAME@/cairo-dock/gauges;gauges;gauges] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges] Choose one of the available themes:/
 theme = turbo-night-fuel
 
 

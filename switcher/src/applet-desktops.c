@@ -39,9 +39,11 @@ void cd_switcher_get_current_desktop (void)
 
 static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLines, int *iBestNbColumns)
 {
+	g_return_if_fail (iNbViewports != 0);
 	//g_print ("%s (%d)\n", __func__, iNbViewports);
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
+	int Nx, Ny;
 	
 	if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
 	{
@@ -76,6 +78,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			*iBestNbColumns = (int) ceil ((double)iNbViewports / (*iBestNbLines));
 		}
 	}
+	
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
 {
@@ -109,6 +112,7 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 
 void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
 {
+	g_return_if_fail (myData.switcher.iNbColumns != 0);
 	//cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
 	if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{
