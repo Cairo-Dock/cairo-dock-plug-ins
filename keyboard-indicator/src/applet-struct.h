@@ -42,7 +42,8 @@ struct _AppletData {
 	GLuint iBackgroundTexture;
 	GLuint iOldTexture;
 	GLuint iCurrentTexture;
-	gint iCurrentGroup, iCurrentIndic;
+	gint iCurrentGroup;
+	guint iCurrentIndic;
 	} ;
 
 

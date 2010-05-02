@@ -38,7 +38,7 @@ CairoDialog *cd_systray_build_dialog (void);
 
 void systray_on_keybinding_pull(const char *keystring, gpointer user_data);
 
-void systray_apply_settings();
+void systray_apply_settings(void);
 
 void systray_build_and_show (void);
 

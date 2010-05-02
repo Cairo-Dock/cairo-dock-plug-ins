@@ -137,7 +137,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 			iEffect = CD_ICON_EFFECT_FIREWORK;
 		}
 	}
-	if (iEffect == -1)
+	if (iEffect >= CD_ICON_EFFECT_NB_EFFECTS)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CDIconEffectsEnum anim[2] = {iEffect, -1};

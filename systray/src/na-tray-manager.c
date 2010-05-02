@@ -338,7 +338,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
 	Visual *vis = GDK_VISUAL_XVISUAL (pVisual);
 	VisualID visualid = vis->visualid;
 	
-	Window Xid = GDK_DRAWABLE_XID (socket);
+	Window Xid = GDK_DRAWABLE_XID (socket->window);
 	Atom aNetVisualID = XInternAtom (cairo_dock_get_Xdisplay (), "_NET_SYSTEM_TRAY_VISUAL", False);
 	XChangeProperty (cairo_dock_get_Xdisplay (),
 		Xid,

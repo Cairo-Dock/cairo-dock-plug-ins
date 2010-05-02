@@ -134,7 +134,7 @@ static gboolean _effect_is_used_in_table (CDIconEffectsEnum iEffect, CDIconEffec
 	{
 		if (pEffectList[i] == iEffect)
 			return TRUE;
-		else if (myConfig.iEffectsUsed[i] == -1)
+		else if (myConfig.iEffectsUsed[i] >= CD_ICON_EFFECT_NB_EFFECTS)
 			break ;
 	}
 	return FALSE;

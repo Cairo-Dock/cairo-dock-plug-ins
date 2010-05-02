@@ -38,7 +38,7 @@ CairoDialog *cd_systray_build_dialog (void)
 	attr.pInteractiveWidget = myData.tray->widget;
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }
-static void systray_build_new_dialog();
+static void systray_build_new_dialog(void);
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
 
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data)
