@@ -29,27 +29,34 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-
-	if( myConfig.cMailApplication )
+	/**if (myIcon->Xid != 0)
 	{
-		if (myIcon->Xid != 0)
-		{
-			if (cairo_dock_get_current_active_window () == myIcon->Xid && myTaskBar.bMinimizeOnClick)
-				cairo_dock_minimize_xwindow (myIcon->Xid);
-			else
-				cairo_dock_show_xwindow (myIcon->Xid);
-		}
+		if (cairo_dock_get_current_active_window () == myIcon->Xid && myTaskBar.bMinimizeOnClick)
+			cairo_dock_minimize_xwindow (myIcon->Xid);
 		else
+			cairo_dock_show_xwindow (myIcon->Xid);
+	}
+	else*/
+	{
+		/* if a specific mail application has been specified for this account, use this one */
+		gchar *cMailAppToLaunch = NULL;
+		if (myData.pMailAccounts->len == 1) // 1 seul compte => pas de sous-dock, donc pas d'icone sur laquelle recuperer la commande.
 		{
-			/* if a specific mail application has been specified for this account, use this one */
-			gchar *cMailAppToLaunch = myConfig.cMailApplication;
-			if( CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->cCommand &&
-			    strlen(CD_APPLET_CLICKED_ICON->cCommand)>0)
-			{
-				cMailAppToLaunch = CD_APPLET_CLICKED_ICON->cCommand;
-			}
-			gboolean r = cairo_dock_launch_command (cMailAppToLaunch);
-			
+			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, 0);
+			if (pMailAccount)
+				cMailAppToLaunch = pMailAccount->cMailApp;
+		}
+		else if( CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->cCommand &&
+			strlen(CD_APPLET_CLICKED_ICON->cCommand)>0)
+		{
+			cMailAppToLaunch = CD_APPLET_CLICKED_ICON->cCommand;
+		}
+		if (cMailAppToLaunch == NULL)
+			cMailAppToLaunch = myConfig.cMailApplication;
+		
+		if (cMailAppToLaunch != NULL)
+		{
+			gboolean r = cairo_dock_launch_command (cMailAppToLaunch ? cMailAppToLaunch : myConfig.cMailApplication);
 			if (!r)
 			{
 				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);
@@ -57,7 +64,6 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 		}
 	}
-
 CD_APPLET_ON_CLICK_END
 
 
