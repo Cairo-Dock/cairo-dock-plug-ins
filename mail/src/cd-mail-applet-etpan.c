@@ -266,13 +266,14 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 	}
 	
 	mailfolder_disconnect(pMailAccount->folder);
-	mailstorage_disconnect(pMailAccount->storage);  /// utile ?? il n'y a pas de mailstorage_connect ...
+	mailstorage_disconnect(pMailAccount->storage);
 }
 
 gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 {
 	if( !pUpdatedMailAccount ) return TRUE;
 	CairoDockModuleInstance *myApplet = pUpdatedMailAccount->pAppletInstance;
+	CD_APPLET_ENTER;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	Icon *pIcon = pUpdatedMailAccount->icon;
 	if (pIcon == NULL)  // cas d'un seul compte.
@@ -280,7 +281,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		pIcon = myIcon;
 		pContainer = myContainer;
 	}
-	g_return_val_if_fail (pIcon != NULL, TRUE);
+	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL, TRUE);
 	
 	//\_______________________ On met a jour l'icone du compte.
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
@@ -321,7 +322,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	
 	pUpdatedMailAccount->bInitialized = TRUE;
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
 }
 
 void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
@@ -376,19 +377,22 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
 	g_return_if_fail (myDrawContext != NULL);
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	
 	gchar *cNewImage = NULL;
 	if (myData.iNbUnreadMails <= 0)  // plus de mail.
 	{
+		//Chargement de l'image "pas de mail"
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
+		if( myConfig.bAlwaysShowMailCount )
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("0");
+		else
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (bSignalNewMessages)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("No unread mail in your mailboxes"), myIcon, myContainer, 1500, "same icon");
 		}
-		//Chargement de l'image "pas de mail"
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("0");
 	}
 	else if (myData.iNbUnreadMails > myData.iPrevNbUnreadMails)  // de nouveaux mails.
 	{
@@ -459,6 +463,8 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage);
 		}
+		if (myDock)
+			CD_APPLET_DEMANDS_ATTENTION ("rotate", 5);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails);
 	}
 	CD_APPLET_REDRAW_MY_ICON;
