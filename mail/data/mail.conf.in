@@ -148,15 +148,6 @@ frame_appli =
 #s Preferred mail application to launch on left-click :
 mail application = thunderbird
 
-#K Class of the mail application (optional)
-#{only use this if it differs from its name. Generally it is not the case, except for Thunderbird.}
-mail class = Thunderbird-bin
-
-
-#b Steal the application's icon from the taskbar?
-#{It will prevent the application's icon to appear in the task bar. The applet's icon will then behave as a launcher, an application, and an applet.}
-inhibate appli = true
-
 #F[Add a mail account]
 frame_mail =
 

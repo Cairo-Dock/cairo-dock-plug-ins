@@ -25,30 +25,32 @@
 #include "cd-mail-applet-accounts.h"
 #include "cd-mail-applet-etpan.h"
 
+typedef void (*cd_mail_fill_account)(CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+typedef void (*cd_mail_create_account)( GKeyFile *pKeyFile, const gchar *pMailAccountName );
 
 struct storage_type_def {
-  char * name;
-  char * description;
+  const gchar * name;
+  const gchar * description;
   cd_mail_fill_account pfillFunc;
   cd_mail_create_account pcreateFunc;
 };
 
 static struct storage_type_def storage_tab[] = {
-  {"pop3", "POP3", cd_mail_retrieve_pop3_params, cd_mail_create_pop3_params },
-  {"imap", "IMAP", cd_mail_retrieve_imap_params, cd_mail_create_imap_params },
-  {"mbox", "MBox", cd_mail_retrieve_mbox_params, cd_mail_create_mbox_params },
-  {"mh", "MH", cd_mail_retrieve_mh_params, cd_mail_create_mh_params },
-  {"maildir", "MailDir", cd_mail_retrieve_maildir_params , cd_mail_create_maildir_params},
-  {"gmail", "GMail", cd_mail_retrieve_gmail_params, cd_mail_create_gmail_params },
+	{"pop3", "POP3", cd_mail_retrieve_pop3_params, cd_mail_create_pop3_params },
+	{"imap", "IMAP", cd_mail_retrieve_imap_params, cd_mail_create_imap_params },
+	{"mbox", "MBox", cd_mail_retrieve_mbox_params, cd_mail_create_mbox_params },
+	{"mh", "MH", cd_mail_retrieve_mh_params, cd_mail_create_mh_params },
+	{"maildir", "MailDir", cd_mail_retrieve_maildir_params , cd_mail_create_maildir_params},
+	{"gmail", "GMail", cd_mail_retrieve_gmail_params, cd_mail_create_gmail_params }
 #if ( __WORDSIZE == 64 )
 /* in 64bit libetpan crashes with RSS, so... avoid it. */
 #warning "Compilation 64bits: avoiding RSS accounts"
 #else
-  {"feed", "RSS/Feed", cd_mail_retrieve_feed_params, cd_mail_create_feed_params },
+	,{"feed", "RSS/Feed", cd_mail_retrieve_feed_params, cd_mail_create_feed_params }
 #endif
 };
 
-const int MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
+const guint MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
 
 static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myApplet)
 {
@@ -73,9 +75,10 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	//\_______________ On recupere les comptes mail dans le fichier de conf.
 	CDMailAccount *pMailAccount;
 	gchar *cMailAccountName;
-	int j, account_type;
+	guint j;
 	gsize i, length = 0;
-	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	gboolean bFlushConfFileNeeded = FALSE;
+		gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	myData.pMailAccounts = g_ptr_array_sized_new (length - 3);
 	
 	cd_debug ("recuperons les comptes ...\n");
@@ -84,35 +87,37 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		cMailAccountName = pGroupList[i];
 		cd_debug ("+ on recupere le compte '%s'\n", cMailAccountName);
 		
-		/* Get the type of the account */
+		// Get the type of the account.
 		if (! g_key_file_has_key (pKeyFile, cMailAccountName, "type", NULL))
 			continue ;
 		
 		gchar *cMailAccountType = g_key_file_get_string (pKeyFile, cMailAccountName, "type", NULL);
-
+		if (cMailAccountType == NULL)
+			continue;
+		
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
 		{
 			if (g_strcasecmp(storage_tab[j].name, cMailAccountType) == 0)
 			{
-				account_type = j;
 				break;
 			}
 		}
-		/* in case the account type is unknown, just ignore... */
+		g_free (cMailAccountType);
+		
+		// in case the account type is unknown, just ignore.
 		if( j >= MAIL_NB_STORAGE_TYPES )
 			continue;
 		cd_debug ("  mail type : %d\n", j);
 		
+		// create a new mail account.
 		pMailAccount = g_new0 (CDMailAccount, 1);
 		g_ptr_array_add (myData.pMailAccounts, pMailAccount);
 
 		pMailAccount->name = g_strdup (cMailAccountName);
-		
+		pMailAccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (cMailAccountName, "timeout mn", 10);
 		pMailAccount->pAppletInstance = myApplet;
-		(storage_tab[account_type].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
-
-		/* get a specific mail application to launch for this account, if any */
-		pMailAccount->cMailApp = g_strdup(g_key_file_get_string (pKeyFile, cMailAccountName, "mail application", NULL));
+		pMailAccount->cMailApp = g_key_file_get_string (pKeyFile, cMailAccountName, "mail application", NULL);  // a specific mail application to launch for this account, if any.
+		(storage_tab[j].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
 	}
 	g_strfreev (pGroupList);
 }
@@ -131,8 +136,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_free (path);
 
 	myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
-	myConfig.cMailClass = CD_CONFIG_GET_STRING ("Configuration", "mail class");
-	myConfig.bStealTaskBarIcon = myConfig.cMailApplication && CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "inhibate appli", TRUE);
+	/**myConfig.cMailClass = CD_CONFIG_GET_STRING ("Configuration", "mail class");
+	myConfig.bStealTaskBarIcon = myConfig.cMailApplication && CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "inhibate appli", TRUE);*/
 	myConfig.bShowMessageContent = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show content", TRUE);
 	myConfig.iNbMaxShown = MIN (30, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "max shown mails", 10));
 	myConfig.bAlwaysShowMailCount = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show zero mail", TRUE);
@@ -157,7 +162,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free( myConfig.cHasMailUserImage );
 	g_free( myConfig.cNewMailUserSound );
 	g_free( myConfig.cMailApplication );
-	g_free( myConfig.cMailClass );
+	///g_free( myConfig.cMailClass );
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cRenderer);
 
@@ -193,8 +198,8 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	cd_debug ("");
 	
 	//\____________ On recupere le type et le nom du nouveau compte.
-	gint iChosenAccountType = gtk_combo_box_get_active(pMailTypesCombo);
-	if( iChosenAccountType < 0 || iChosenAccountType >= MAIL_NB_STORAGE_TYPES )
+	guint iChosenAccountType = gtk_combo_box_get_active(pMailTypesCombo);
+	if( iChosenAccountType >= MAIL_NB_STORAGE_TYPES )
 	{
 		cd_warning ("while trying get chosen account type (%d) : out of range.", iChosenAccountType);
 		cairo_dock_show_temporary_dialog_with_icon (D_("Please choose an account type."), myIcon, myContainer, 3000, "same icon");
@@ -328,7 +333,8 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 	GtkWidget *pMailTypesCombo = gtk_combo_box_new_text();
 	if( pMailTypesCombo )
 	{
-        for( int j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
+       guint j;
+        for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
         {
           gtk_combo_box_append_text( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
           //gtk_widget_set_tooltip_text (pMenuItem, D_("description du type de compte"));

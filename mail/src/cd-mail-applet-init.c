@@ -37,7 +37,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
 	"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
 	"Left-click to launch the prefered mail application,\n"
 	"Middle-click to refresh all the mailboxes."),
-	"Tofe (Christophe Chapuis) &amp; Fabounet (Fabrice Rey)")
+	"Tofe (Christophe Chapuis) & Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mail_load_custom_widget;
 	pInterface->save_custom_widget = cd_mail_save_custom_widget;
@@ -190,10 +190,10 @@ CD_APPLET_INIT_BEGIN
 		g_error_free (erreur);
 		return;
 	}
-	
+	/**
 	//\_______________ On gere l'appli 'mail'
 	if (myConfig.bStealTaskBarIcon)
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);
+		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);*/
 	
 	//\_______________ On initialise tous les comptes et on lance un timer pour chacun.
 	cd_mail_init_accounts(myApplet);
@@ -219,7 +219,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
-	CD_APPLET_MANAGE_APPLICATION (NULL);
+	///CD_APPLET_MANAGE_APPLICATION (NULL);
 CD_APPLET_STOP_END
 
 
@@ -235,10 +235,10 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 		
-		if (myConfig.bStealTaskBarIcon)
+		/**if (myConfig.bStealTaskBarIcon)
 			CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);
 		else
-			CD_APPLET_MANAGE_APPLICATION (NULL);
+			CD_APPLET_MANAGE_APPLICATION (NULL);*/
 		
 		GError *erreur = NULL;
 		_load_theme (myApplet, &erreur);

@@ -37,11 +37,10 @@
 		pIcon->fHeightFactor = 1.;\
 		pIcon->cCommand = g_strdup (pMailAccount->cMailApp);\
 		pIcon->cParentDockName = g_strdup (myIcon->cName);\
-		cd_debug (" + %s (%s)\n", pIcon->cName, pIcon->cFileName);\
 		pIconList = g_list_append (pIconList, pIcon);\
 		pMailAccount->icon = pIcon;
 
-void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_pop3_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "pop3");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);  // on lui met un widget pour ne pas que la cle se fasse bazarder lors d'une mise a jour du fichier de conf.
@@ -68,7 +67,7 @@ void cd_mail_create_pop3_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
@@ -103,11 +102,9 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   }
   mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
   mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
-
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 }
 
-void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_imap_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "imap");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -137,7 +134,7 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
@@ -170,7 +167,6 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
     if( encryptedPassword ) g_free(encryptedPassword);
   }
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
   mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
 
   mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
@@ -183,7 +179,7 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   }
 }
 
-void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_mbox_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mbox");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -198,7 +194,7 @@ void cd_mail_create_mbox_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
 	if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
@@ -218,12 +214,11 @@ void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 		mailaccount->path = CD_CONFIG_GET_STRING_WITH_DEFAULT (mailbox_name, "filename", "/");
 	if (mailaccount->path == NULL)
 		mailaccount->path = g_strdup("/");
-	mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 
 	//{"filename", "ctime", "size", "interval", NULL, NULL}
 }
 
-void cd_mail_create_mh_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_mh_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "mh");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -235,11 +230,9 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
-
-  gboolean bFlushConfFileNeeded = FALSE;
 
   mailaccount->driver = MH_STORAGE;
   mailaccount->storage = mailstorage_new(NULL);
@@ -252,11 +245,9 @@ void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile,
   mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
   mailaccount->path = g_strdup("/");
   mailaccount->timeout = 0;
-
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 }
 
-void cd_mail_create_maildir_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_maildir_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "maildir");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -271,34 +262,32 @@ void cd_mail_create_maildir_params( GKeyFile *pKeyFile, gchar *pMailAccountName 
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
-  if( !mailaccount || !pKeyFile || !mailbox_name ) return;
+	if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
-  gboolean bFlushConfFileNeeded = FALSE;
+	gboolean bFlushConfFileNeeded = FALSE;
 
-  mailaccount->driver = MAILDIR_STORAGE;
-  mailaccount->storage = mailstorage_new(NULL);
-  mailaccount->folder = NULL;
-  mailaccount->server = NULL;
-  mailaccount->port = 0;
-  mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-  mailaccount->user = NULL;
-  mailaccount->password = NULL;
-  mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
-  mailaccount->path = g_strdup("/");
-  mailaccount->timeout = 0;
+	mailaccount->driver = MAILDIR_STORAGE;
+	mailaccount->storage = mailstorage_new(NULL);
+	mailaccount->folder = NULL;
+	mailaccount->server = NULL;
+	mailaccount->port = 0;
+	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
+	mailaccount->user = NULL;
+	mailaccount->password = NULL;
+	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
+	mailaccount->path = g_strdup("/");
+	mailaccount->timeout = 0;
 
-  if (g_key_file_has_key (pKeyFile, mailbox_name, "path", NULL))
-  {
-    mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "path");
-  }
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
-
-  //{"path", "mtime", "interval", NULL, NULL, NULL, NULL}
+	if (g_key_file_has_key (pKeyFile, mailbox_name, "path", NULL))
+	{
+	mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "path");
+	}
+	//{"path", "mtime", "interval", NULL, NULL, NULL, NULL}
 }
 
-void cd_mail_create_gmail_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_gmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "gmail");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -316,7 +305,7 @@ void cd_mail_create_gmail_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
@@ -348,7 +337,6 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
     if( encryptedPassword ) g_free(encryptedPassword);
   }
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 #else
   mailaccount->driver = FEED_STORAGE;
   mailaccount->storage = mailstorage_new(NULL);
@@ -398,14 +386,13 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
   {
     mailaccount->path = g_strdup( "https://mail.google.com/mail/feed/atom" );
   }
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 
   g_free( user_without_column );
   g_free( password_without_column );
 #endif
 }
 
-void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
+void cd_mail_create_feed_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "feed");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
@@ -420,7 +407,7 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, gchar *pMailAccountName )
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
 }
 
-void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, gchar *mailbox_name)
+void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
 {
   if( !mailaccount || !pKeyFile || !mailbox_name ) return;
 
@@ -443,7 +430,6 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   {
     mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "path");
   }
-  mailaccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "timeout mn", 10);
 }
 
 /*{
@@ -470,6 +456,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	Icon *pIcon;
 	int iNbIcons = 0;
 	int r;
+	gboolean bIsGettingMail = FALSE;
 	guint i;
 	for (i = 0; i < myData.pMailAccounts->len; i ++)
 	{
@@ -542,6 +529,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
 				pMailAccount);
 			cairo_dock_launch_task (pMailAccount->pAccountMailTimer);
+			bIsGettingMail = TRUE;
 		}
 		else
 		{
@@ -555,15 +543,15 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	if (myData.pMailAccounts->len > 1)
+	if (iNbIcons > 1)
 	{
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, (iNbIcons > 1 ? "Caroussel" : "Simple"), (iNbIcons > 1 ? pConfig : NULL));
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
 	}
 	
 	//\_______________ On dessine l'icone principale initialement.
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
-	if (iNbIcons > 0)
+	if (bIsGettingMail)
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
 }
 

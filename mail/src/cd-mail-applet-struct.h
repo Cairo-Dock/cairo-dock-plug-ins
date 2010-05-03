@@ -75,6 +75,7 @@ struct _AppletData {
 	gint iCurrentlyShownMail;
 } ;
 
+
 typedef struct {
     CairoDockModuleInstance *pAppletInstance;
     gchar *name;
@@ -86,7 +87,7 @@ typedef struct {
     int port;
     int connection_type;
     gchar *user;
-    guchar *password;
+    gchar *password;
     int auth_type;
     gchar *path;
     guint timeout;

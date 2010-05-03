@@ -154,7 +154,7 @@ void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 {
 	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 	GList *l = pMailAccount->pUnseenMessageList;
-	gchar *cMessage = "";
+	const gchar *cMessage = "";
 	gint i = myData.iCurrentlyShownMail;
 
 	if( myData.iCurrentlyShownMail < 0 )
@@ -171,7 +171,7 @@ void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 	}
 	if( l )
 		cMessage = l->data;
-  gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
+	gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
 
 	if( myData.iCurrentlyShownMail == 0 )
 	{
@@ -265,11 +265,11 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	gtk_signal_connect( GTK_OBJECT(pCloseButton),       "clicked", G_CALLBACK(_cd_mail_close_preview_cb), (gpointer)pMailAccount );
 
 	GList *l = pMailAccount->pUnseenMessageList;
-	gchar *cMessage = "";
+	const gchar *cMessage = "";
 	if( l )
 		cMessage = l->data;
 
-  gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
+	gtk_text_buffer_set_text(myData.pTextBuffer, cMessage, -1);
 	myData.iCurrentlyShownMail = 0;
 
 	gtk_widget_set_sensitive( myData.pPrevButton, FALSE );
