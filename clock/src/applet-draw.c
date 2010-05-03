@@ -361,8 +361,9 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				if (!myData.pNextAnniversary->b1DayWarning && ! myData.pNextAnniversary->bFirstWarning && ! myData.pNextTask->b15mnWarning)
 				{
 					GDate* pCurrentDate = g_date_new_dmy (myData.currentTime.tm_mday, myData.currentTime.tm_mon + 1, myData.currentTime.tm_year+1900);
-					GDate* pAnnivDate = g_date_new_dmy (myData.pNextAnniversary->iDay, myData.pNextAnniversary->iMonth + 1, myData.pNextAnniversary->iYear);
-					if (g_date_days_between (pCurrentDate, pAnnivDate) <= 1)
+					GDate* pAnnivDate = g_date_new_dmy (myData.pNextAnniversary->iDay, myData.pNextAnniversary->iMonth + 1, myData.currentTime.tm_year+1900);
+					gint iDaysToNextAnniversary = g_date_days_between (pCurrentDate, pAnnivDate);
+					if (iDaysToNextAnniversary >= 0 && iDaysToNextAnniversary <= 1)
 					{
 						myData.pNextAnniversary->b1DayWarning = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",

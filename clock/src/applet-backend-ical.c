@@ -183,7 +183,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		switch( recur.freq )
 		{
 			case ICAL_MONTHLY_RECURRENCE:pTask->iFrequency = CD_TASK_EACH_MONTH; break;
-			case ICAL_YEARLY_RECURRENCE:pTask->iFrequency = CD_TASK_EACH_MONTH; break;
+			case ICAL_YEARLY_RECURRENCE:pTask->iFrequency = CD_TASK_EACH_YEAR; break;
 			default:pTask->iFrequency = CD_TASK_DONT_REPEAT; break;
 		}
 

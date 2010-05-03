@@ -455,7 +455,7 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 		gtk_window_resize (GTK_WINDOW (myData.pTaskWindow), 640, 300);
 	}
 	
-	gchar *cTitle = g_strdup_printf ("%d/%d/%d", (myConfig.bNormalDate ? iDay : iYear), iMonth, (myConfig.bNormalDate ? iYear : iDay));
+	gchar *cTitle = g_strdup_printf ("%d/%d/%d", (myConfig.bNormalDate ? iDay : iYear), iMonth+1 /*et oui, ca commence a 1 dans la vraie vie :)*/, (myConfig.bNormalDate ? iYear : iDay));
 	gtk_window_set_title (GTK_WINDOW (myData.pTaskWindow), cTitle);
 	g_free (cTitle);
 	g_object_set_data (G_OBJECT (myData.pTaskWindow), "day", GINT_TO_POINTER (iDay));
