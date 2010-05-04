@@ -220,7 +220,7 @@ static gchar *_url_encode (const gchar * str)
 	s = str;
 	/// la ligne suivane peut planter ...
 	cd_debug ("allocation of %d bytes...\n", lenght + 1);
-	t = g_new (gchar, lenght + 1); // Allocation à la bonne taille
+	t = g_new (gchar, 4*(lenght + 1)); // Allocation à la bonne taille
 	ret = t;
 	//encodage
 	do{

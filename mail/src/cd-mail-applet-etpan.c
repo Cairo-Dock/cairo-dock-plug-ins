@@ -105,7 +105,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 				struct mailmessage_list * msg_list = NULL;
 				if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
 				{
-					cd_error ("Error while getting list of messages for account %s!", pMailAccount->name);
+					cd_warning ("Error while getting list of messages for account %s!", pMailAccount->name);
 				}
 				else if (msg_list != NULL)
 				{
