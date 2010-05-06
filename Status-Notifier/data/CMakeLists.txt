@@ -1,7 +1,7 @@
 
 ########### install files ###############
 
-install(FILES  StatusNotifier.conf 	preview.jpg 	icon.png DESTINATION ${statusnotifierdatadir})
+install(FILES  Status-Notifier.conf 	preview.jpg 	icon.png DESTINATION ${status_notifierdatadir})
 
 
 

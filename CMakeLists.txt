@@ -437,6 +437,16 @@ set (stackdatadir "${pluginsdatadir}/stack")
 configure_file (stack/data/stack.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/stack/data/stack.conf)
 add_subdirectory (stack)
 
+############# STATUS NOTIFIER #################
+if ("${enable-scooby-do}" STREQUAL "yes")
+	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
+	set (VERSION_STATUS_NOTIFIER "0.0.1")
+	set (PACKAGE_STATUS_NOTIFIER "cd-status-notifier")
+	set (status_notifierdatadir "${pluginsdatadir}/Status-Notifier")
+	configure_file (Status-Notifier/data/Status-Notifier.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Status-Notifier/data/Status-Notifier.conf)
+	add_subdirectory (Status-Notifier)
+endif()
+
 ############# SWITCHER #################
 set (GETTEXT_SWITCHER ${GETTEXT_PLUGINS})
 set (VERSION_SWITCHER "2.1.3")

@@ -160,6 +160,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 	static double s_fValues[CD_NETSPEED_NB_MAX_VALUES];
 	static gchar s_upRateFormatted[11];
 	static gchar s_downRateFormatted[11];
+	CD_APPLET_ENTER;
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
@@ -221,5 +222,5 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
 	}
-	return TRUE;
+	CD_APPLET_LEAVE (TRUE);
 }

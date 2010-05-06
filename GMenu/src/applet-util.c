@@ -163,7 +163,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 			cFieldCodeToken = NULL;
 		}
 		cFieldLast = cField;
-		if (*(cField+1) != ' ')  // on gere les eventuels '"'.
+		if (*(cField+1) != ' ' && *(cField+1) != '\0')  // on gere les eventuels '"'.
 			cFieldLast ++;
 		cField = strchr(cField + 1, '%');  // next field.
 		// we append everything between the current filed and the next field.

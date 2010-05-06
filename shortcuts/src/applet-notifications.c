@@ -80,7 +80,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		//cd_message (" menu sur %s(%s)", CD_APPLET_CLICKED_ICON->cName, CD_APPLET_CLICKED_ICON->cBaseURI);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Remove this bookmark"), _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 	}
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == 6 && CD_APPLET_CLICKED_ICON->cCommand != NULL)
 	{
@@ -96,7 +96,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	if (myDock && myIcon->pSubDock == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	cd_message ("  nouveau signet : %s", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
