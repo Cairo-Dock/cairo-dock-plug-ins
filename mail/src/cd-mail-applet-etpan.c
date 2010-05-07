@@ -148,8 +148,8 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 							{
 								continue;
 							}
+							iNbAccountsToCheck--;
 						}
-						iNbAccountsToCheck--;
 						/**r = mailmessage_get_bodystructure (pMessage, &pMailMime);
 						if (r != MAIL_NO_ERROR)
 						{
