@@ -30,8 +30,7 @@
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDock))  // clic sur l'icone principale dans le dock CD_APPLET_CLICKED_CONTAINER n'est jamais NULL).
 	{
-		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+		cairo_dock_fm_launch_uri (g_getenv ("HOME"));
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iType == 6 || CD_APPLET_CLICKED_ICON->iVolumeID != 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
 	{

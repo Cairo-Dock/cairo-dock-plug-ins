@@ -34,7 +34,7 @@ CD_APPLET_DEFINITION (N_("shortcuts"),
 	N_("An applet that let you access quickly to all of your shortcuts.\n"
 	"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"
 	"Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
-	"Middle-click on the main icon to acces your desktop easily.\n"
+	"Middle-click on the main icon to show your home folder.\n"
 	"Middle-click on a mounting point icon to (un)mount is quickly.\n"
 	"The applet can also display valuable information about your disks, like free space, type, etc."),
 	"Fabounet (Fabrice Rey) &amp; Jackass (Benjamin SANS)")
