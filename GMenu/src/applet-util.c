@@ -106,10 +106,11 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 	// parse all the %x tokens, replacing them with the value they represent.
 	// Exec=krusader -caption "%c" %i %m 
 	GString *sExpandedcCommand = g_string_new ("");
-	g_string_append_len (sExpandedcCommand, cCommand, cField - cCommand - (*(cField-1) != ' '));  // take the command until the first % (not included). remove possible '"'.
+	g_string_append_len (sExpandedcCommand, cCommand, cField - cCommand - (*(cField-1) != ' '));  // take the command until the first % (not included). remove possible '"' (we manege them ourselves, since some applications forget them.
 	while ( cField != NULL )
 	{
 		cField ++;  // jump to the code.
+		gboolean bAddQuote = FALSE;
 		switch ( *cField ) // Make sure field code is valid
 		{
 			case 'f':
@@ -134,6 +135,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 					g_error_free (erreur);
 					erreur = NULL;
 				}
+				bAddQuote = TRUE;
 				break;
 			case 'i':
 				cFieldCodeToken = g_key_file_get_locale_string (keyfile, "Desktop Entry", "Icon", NULL, NULL);  // Icon key not required.  If not found, no error message necessary.
@@ -158,12 +160,12 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 		
 		if (cFieldCodeToken != NULL)  // there is a token to add to the command.
 		{
-			g_string_append_printf (sExpandedcCommand, "%s ", cFieldCodeToken);
+			g_string_append_printf (sExpandedcCommand, "%c%s%c ", bAddQuote?'"':' ', cFieldCodeToken, bAddQuote?'"':' ');
 			g_free (cFieldCodeToken);
 			cFieldCodeToken = NULL;
 		}
 		cFieldLast = cField;
-		if (*(cField+1) != ' ' && *(cField+1) != '\0')  // on gere les eventuels '"'.
+		if (*(cField+1) != ' ' && *(cField+1) != '\0')  // on enleve les eventuels '"'.
 			cFieldLast ++;
 		cField = strchr(cField + 1, '%');  // next field.
 		// we append everything between the current filed and the next field.
