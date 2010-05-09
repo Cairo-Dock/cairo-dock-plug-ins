@@ -66,7 +66,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 	{
 		cTaskID = pGroupList[i];
 		pTask = g_new0 (CDClockTask, 1);
-		g_print ("+ task %s\n", cTaskID);
+		//g_print ("+ task %s\n", cTaskID);
 		
 		pTask->cID = cTaskID;
 		pTask->iDay = g_key_file_get_integer (pKeyFile, cTaskID, "day", NULL);

@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//\________________ Add your name in the copyright file (and / or modify your name here)
-
 #include <string.h>
 #include <cairo-dock.h>
 

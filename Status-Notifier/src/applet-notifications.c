@@ -135,7 +135,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName);
 		}
 		
-		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 4000, cIconPath ? cIconPath : "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");
 		g_free (cText);
 		myDialogs.dialogTextDescription.bUseMarkup = FALSE;
 		pItemData->iSidPopupTooltip = 0;

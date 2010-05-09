@@ -121,11 +121,11 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 					break ;
 					case CD_SHOW_FREE_SPACE_PERCENT :
 						fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						cairo_dock_set_quick_info_full (pIcon, pContainer, "%.1f%%", 100.*fValue);
+						cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
 					break ;
 					case CD_SHOW_USED_SPACE_PERCENT :
 						fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
-						cairo_dock_set_quick_info_full (pIcon, pContainer, "%.1f%%", -100.*fValue);
+						cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", -100.*fValue);
 					break ;
 					default:
 						fValue = 0.;

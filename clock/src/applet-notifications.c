@@ -71,12 +71,16 @@ static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleI
 static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	gchar *cTasks = cd_clock_get_tasks_for_this_week (myApplet);
+	double fDelay = 30e3;
 	if (cTasks == NULL)
-		cTasks = g_strdup (D_("No task is sheduled for this week."));
+	{
+		cTasks = g_strdup (D_("No task is sheduled for the next 7 days."));
+		fDelay = 4e3;
+	}
 	
 	cd_clock_hide_dialogs (myApplet);
 	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
-	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, 30e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
+	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, fDelay, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
 	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
 	
 	g_free (cTasks);

@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//\________________ Add your name in the copyright file (and / or modify your name here)
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -26,13 +24,25 @@
 #include "applet-notifications.h"
 
 
-
-
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
 	
 	
 CD_APPLET_ON_CLICK_END
+
+
+//\___________ Same as ON_CLICK, but with middle-click.
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	
+	
+CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+//\___________ Same as ON_CLICK, but with scroll. Moreover, CD_APPLET_SCROLL_UP tels you is the user scrolled up, CD_APPLET_SCROLL_DOWN the opposite.
+CD_APPLET_ON_SCROLL_BEGIN
+	
+	
+CD_APPLET_ON_SCROLL_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.

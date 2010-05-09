@@ -10,63 +10,56 @@ export UpperName=`echo $LibName | tr "[a-z]" "[A-Z]"`
 export LowerName=`echo $LibName | tr "[A-Z]" "[a-z]"`
 
 read -p "Enter your name : " MyName
-read -p "Enter an e-mail adress to contact you for bugs or congratulations : " MyMail
-read -p "Enter the default label of your applet (Just type enter to leave it empty for the moment) :" AppletLabel
 read -p "Will your applet draw its icon dynamically (like the clock or dustbin applets for exemple) [y/N] ?" AppletIcon
 
 
 echo "creation de l'arborescence de l'applet $AppletName ..."
 cp -r template "$AppletName"
-find "$AppletName" -name ".svn" -execdir rm -rf .svn \; > /dev/null
+find "$AppletName" -name ".bzr" -execdir rm -rf .bzr \; > /dev/null
 
 
 cd "$AppletName"
-sed -i "s/CD_APPLET_NAME/$AppletName/g" configure.ac
-sed -i "s/CD_MY_NAME/$MyName/g" configure.ac
-sed -i "s/CD_MY_MAIL/$MyMail/g" configure.ac
-sed -i "s/CD_PKG/$UpperName/g" configure.ac
-sed -i "s/pkgdatadir/${LowerName}datadir/g" configure.ac
-sed -i "s/pkguserdirname/${LowerName}userdirname/g" configure.ac
-
 
 cd data
-if test "x$AppletLabel" = "x"; then
-	sed -i "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in
-else
-	sed -i "s/CD_APPLET_LABEL/$AppletLabel/g" template.conf.in
-fi
+sed -i "s/CD_APPLET_NAME/$AppletName/g" CMakeLists.txt
+sed -i "s/pkgdatadir/${LowerName}datadir/g" CMakeLists.txt
+
+sed -i "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in
 if test "x$AppletIcon" = "xy" -o "x$AppletIcon" = "xY"; then
-	sed -i "/Icon's name/{N;N;d}" template.conf.in
+	sed -i "/Image filename/{N;N;d}" template.conf.in
 fi
 sed -i "s/CD_PKG/$UpperName/g" template.conf.in
+sed -i "s/CD_APPLET_NAME/$AppletName/g" template.conf.in
 mv template.conf.in "$AppletName.conf.in"
-
-sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
-sed -i "s/pkgdatadir/${LowerName}datadir/g" Makefile.am
 
 
 cd ../src
-sed -i "s/CD_APPLET_NAME/$AppletName/g" Makefile.am
-sed -i "s/CD_LIB_NAME/$LibName/g" Makefile.am
-sed -i "s/CD_PKG/$UpperName/g" Makefile.am
-sed -i "s/pkgdatadir/${LowerName}datadir/g" Makefile.am
+sed -i "s/CD_PKG/$UpperName/g" CMakeLists.txt
+sed -i "s/pkgdatadir/${LowerName}datadir/g" CMakeLists.txt
+sed -i "s/pkguserdirname/${LowerName}userdirname/g" CMakeLists.txt
 
-sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
-
-sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-notifications.c
-sed -i "s/CD_MY_NAME/$MyName/g" applet-notifications.c
-
-
-cd ../po
-sed -i "s/CD_APPLET_NAME/$AppletName/g" fr.po
-sed -i "s/CD_MY_NAME/$MyName/g" fr.po
-sed -i "s/CD_PKG/$UpperName/g" Makevars
-sed -i "s/CD_PKG/$UpperName/g" Makefile.in.in
+sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
+if test "x$AppletIcon" = "xy" -o "x$AppletIcon" = "xY"; then
+	sed -i "/CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE/d" applet-init.c
+fi
 
 
-cd ..
+cd ../..
 
-autoreconf -isvf && ./configure --prefix=/usr && make
+echo "" >> CMakeLists.txt
+echo "############# $UpperName #################" >> CMakeLists.txt
+echo "if (\"\${enable-${LowerName}}\" STREQUAL \"yes\")" >> CMakeLists.txt
+echo "set (GETTEXT_$UpperName \${GETTEXT_PLUGINS})" >> CMakeLists.txt
+echo "set (VERSION_$UpperName \"0.0.1\")" >> CMakeLists.txt
+echo "set (PACKAGE_$UpperName \"cd-$AppletName\")" >> CMakeLists.txt
+echo "set (logoutdatadir \"\${pluginsdatadir}/$AppletName\")" >> CMakeLists.txt
+echo "configure_file ($AppletName/data/$AppletName.conf.in \${CMAKE_CURRENT_SOURCE_DIR}/$AppletName/data/$AppletName.conf)" >> CMakeLists.txt
+echo "add_subdirectory ($AppletName)" >> CMakeLists.txt
+echo "endif()" >> CMakeLists.txt
 
-echo "now it's your turn ! type 'sudo make install' to install it."
+cmake -DCMAKE_INSTALL_PREFIX=/usr -D$AppletName=yes
+make
+
+echo "Applet $AppletName has been generated."
+echo "Now its' your turn ! type 'sudo make install' to install your applet."

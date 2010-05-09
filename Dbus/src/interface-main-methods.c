@@ -133,13 +133,13 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 	gboolean bShow = GPOINTER_TO_INT (data);
 	if (bShow)
 	{
-		cairo_dock_pop_up (pDock);
+		///cairo_dock_pop_up (pDock);
 		if (pDock->bAutoHide)
 			cairo_dock_emit_enter_signal (pDock);
 	}
 	else
 	{
-		cairo_dock_pop_down (pDock);  // ne fait rien s'il n'etait pas "popped".
+		///cairo_dock_pop_down (pDock);  // ne fait rien s'il n'etait pas "popped".
 		if (pDock->bAutoHide)
 			cairo_dock_emit_leave_signal (pDock);
 	}

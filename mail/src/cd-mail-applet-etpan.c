@@ -293,7 +293,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	}
 	else if (pUpdatedMailAccount->iNbUnseenMails > 0)
 	{
-		cairo_dock_set_quick_info_full (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
+		cairo_dock_set_quick_info_printf (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
 	}

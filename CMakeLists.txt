@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.1.4-0beta1")
+set (VERSION "2.2.0-0beta0")
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION}")
 set (CPACK_SOURCE_IGNORE_FILES "/build/;/.bzr/;/.deps/;/Makefile$;/Makefile.in$;.conf$;.gmo$;/.libs/;.lo$;.la$;/POTFILES$;/stamp-it$;/aclocal.m4$;/config.guess$;/config.h$;/config.h.in$;/config.log$;/config.status$;/config.sub$;/configure$;/depcomp$;/install-sh$;/libtool$;/ltmain.sh$;/missing$;/stamp-h1$;^compile;/CMakeFiles/;/_CPack_Packages/;/autom4te.cache/;/install_manifest.txt$;.tar.gz$;/CMakeCache.txt$;.cmake$;~$;${CPACK_SOURCE_IGNORE_FILES}")
@@ -709,3 +709,23 @@ add_subdirectory (po)
 #	ChangeLog\
 #	copyright
 #
+
+############# TOTO #################
+if ("${enable-toto}" STREQUAL "yes")
+set (GETTEXT_TOTO ${GETTEXT_PLUGINS})
+set (VERSION_TOTO "0.0.1")
+set (PACKAGE_TOTO "cd-Toto")
+set (logoutdatadir "${pluginsdatadir}/Toto")
+configure_file (Toto/data/Toto.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Toto/data/Toto.conf)
+add_subdirectory (Toto)
+endif()
+
+############# INDICATOR_MENUS #################
+if ("${enable-indicator_menus}" STREQUAL "yes")
+set (GETTEXT_INDICATOR_MENUS ${GETTEXT_PLUGINS})
+set (VERSION_INDICATOR_MENUS "0.0.1")
+set (PACKAGE_INDICATOR_MENUS "cd-Indicator-Menus")
+set (logoutdatadir "${pluginsdatadir}/Indicator-Menus")
+configure_file (Indicator-Menus/data/Indicator-Menus.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Indicator-Menus/data/Indicator-Menus.conf)
+add_subdirectory (Indicator-Menus)
+endif()

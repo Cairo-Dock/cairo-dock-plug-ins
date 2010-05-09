@@ -164,7 +164,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 			}
 			else
 			{
-				cairo_dock_pop_up (pDock);
+				///cairo_dock_pop_up (pDock);
 			}
 			cairo_dock_emit_enter_signal (pDock);
 		}

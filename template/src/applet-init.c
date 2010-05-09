@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//\________________ Add your name in the copyright file (and / or modify your name here)
-
 #include "stdlib.h"
 
 #include "applet-config.h"
@@ -28,7 +26,7 @@
 
 
 CD_APPLET_DEFINITION (N_("CD_APPLET_NAME"),
-	2, 0, 0,
+	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("Useful description\n"
 	"and manual"),
@@ -42,10 +40,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	if (myIcon->cFileName == NULL)  // set a default icon if none is specified.
-	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	/// To be continued ...
 	
@@ -76,10 +71,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->cFileName == NULL)
-		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);  // set a default icon if none is specified.
-		}
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
 		/// To be continued ...
 		
