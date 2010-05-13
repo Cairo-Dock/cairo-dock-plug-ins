@@ -42,6 +42,7 @@
 #include "applet-listen.h" //Support Listen
 #include "applet-amarok2.h" //Support Amarok 2
 #include "applet-audacious.h" //Support Audacious
+#include "applet-clementine.h" // Support Clementine
 
 CD_APPLET_DEFINITION (N_("musicPlayer"),
 	2,0,0,
@@ -74,6 +75,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_xmms2_handler();
 	cd_musicplayer_register_audacious_handler();
 	cd_musicplayer_register_guayadeque_handler();
+	cd_musicplayer_register_clementine_handler();
 	
 	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
 	if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))

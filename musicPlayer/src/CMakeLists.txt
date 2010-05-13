@@ -27,6 +27,8 @@ SET(cd-musicPlayer_LIB_SRCS
 	applet-amazon.h
 	applet-banshee.c
 	applet-banshee.h
+	applet-clementine.c
+	applet-clementine.h
 	applet-exaile.c
 	applet-exaile.h
 	applet-exaile3.c
