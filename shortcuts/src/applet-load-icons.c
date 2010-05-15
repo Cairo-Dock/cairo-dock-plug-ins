@@ -87,7 +87,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 						g_free (icon->cFileName);
 						icon->cFileName = cIconName;
 						icon->iVolumeID = iVolumeID;
-						cairo_dock_load_one_icon_from_scratch (icon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
+						cairo_dock_load_icon_buffers (icon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
 					}
 				}
 			}
@@ -130,8 +130,7 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		
 		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
 		{
-			Icon *pSeparatorIcon = g_new0 (Icon, 1);
-			pSeparatorIcon->iType = 7;
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (7, NULL);
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		
@@ -155,8 +154,7 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		
 		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
 		{
-			Icon *pSeparatorIcon = g_new0 (Icon, 1);
-			pSeparatorIcon->iType = 9;
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (9, NULL);
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		

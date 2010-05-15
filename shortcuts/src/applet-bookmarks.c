@@ -119,9 +119,6 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						cd_message (" + 1 signet : %s", cOneBookmark);
-						pNewIcon = g_new0 (Icon, 1);
-						pNewIcon->iType = 10;
-						pNewIcon->cBaseURI = cOneBookmark;
 						if (cUserName != NULL)
 						{
 							g_free (cName);
@@ -136,18 +133,22 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						}
 						if (cRealURI == NULL)
 							cRealURI = g_strdup ("none");
-						pNewIcon->cName = cName;
-						pNewIcon->cCommand = cRealURI;
-						pNewIcon->cFileName = cIconName;
+						
+						pNewIcon = cairo_dock_create_dummy_launcher (cName,
+							cIconName,
+							cRealURI,
+							NULL,
+							fCurrentOrder ++);
+						pNewIcon->iType = 10;
+						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
-						pNewIcon->fOrder = fCurrentOrder ++;
 						if (myDesklet)
 						{
 							pNewIcon->fWidth = 48;
 							pNewIcon->fHeight = 48;
 						}
 						
-						cairo_dock_load_one_icon_from_scratch (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
+						cairo_dock_load_icon_buffers (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
 						if (myDock)
 							cairo_dock_insert_icon_in_dock_full (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, myConfig.bUseSeparator, NULL);
 						else
@@ -333,9 +334,6 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 			{
 				cd_message (" + 1 signet : %s", cOneBookmark);
-				pNewIcon = g_new0 (Icon, 1);
-				pNewIcon->iType = 10;
-				pNewIcon->cBaseURI = cOneBookmark;
 				if (cUserName != NULL)
 				{
 					g_free (cName);
@@ -350,11 +348,15 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 				}
 				if (cRealURI == NULL)
 					cRealURI = g_strdup ("none");
-				pNewIcon->cName = cName;
-				pNewIcon->cCommand = cRealURI;
-				pNewIcon->cFileName = cIconName;
+				
+				pNewIcon = pNewIcon = cairo_dock_create_dummy_launcher (cName,
+					cIconName,
+					cRealURI,
+					NULL,
+					fCurrentOrder ++);
+				pNewIcon->iType = 10;
+				pNewIcon->cBaseURI = cOneBookmark;
 				pNewIcon->iVolumeID = iVolumeID;
-				pNewIcon->fOrder = fCurrentOrder ++;
 				pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 			}
 			else

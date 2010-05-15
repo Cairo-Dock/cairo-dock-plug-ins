@@ -33,8 +33,11 @@ static GList * _load_icons (void)
 	int i;
 	for (i = 0; i < myData.switcher.iNbViewportTotal; i ++)
 	{
-		pIcon = g_new0 (Icon, 1);
-		
+		pIcon = cairo_dock_create_dummy_launcher (NULL,
+			(myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup (MY_APPLET_SHARE_DATA_DIR"/default.svg"))),
+			NULL,
+			g_strdup_printf ("%d",i+1),
+			i);
 		if (i == iIndex)
 		{
 			pIcon->cName = g_strdup_printf ("%s (%d)", D_("Current"), i+1);
@@ -47,13 +50,7 @@ static GList * _load_icons (void)
 			pIcon->bHasIndicator = FALSE;
 			pIcon->fAlpha = 1.;
 		}
-		pIcon->cQuickInfo = g_strdup_printf ("%d",i+1);
-		pIcon->fOrder = i;
-		pIcon->fWidthFactor = 1.;
-		pIcon->fHeightFactor = 1.;
-		pIcon->cCommand = g_strdup ("none");
 		pIcon->cParentDockName = g_strdup (myIcon->cName);
-		pIcon->cFileName = (myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup (MY_APPLET_SHARE_DATA_DIR"/default.svg")));
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}

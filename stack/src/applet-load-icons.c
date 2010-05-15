@@ -58,10 +58,12 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{
-			pIcon = g_new0 (Icon, 1);
-			pIcon->cCommand = cContent;
+			pIcon = cairo_dock_create_dummy_launcher (NULL,
+				g_strdup (myConfig.cUrlIcon),
+				cContent,
+				NULL,
+				0);
 			pIcon->iVolumeID = 1;
-			pIcon->cFileName = g_strdup (myConfig.cUrlIcon);
 		}
 		else
 		{
@@ -81,22 +83,22 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				return NULL;
 			}
 			
-			pIcon = g_new0 (Icon, 1);
-			pIcon->cCommand = cContent;
+			pIcon = cairo_dock_create_dummy_launcher (NULL,
+				cIconName,
+				cContent,
+				NULL,
+				0);
 			pIcon->iVolumeID = 1;  // on l'utilisera comme un flag.
-			if (pIcon->cName == NULL)
-				pIcon->cName = cCanonicName;
-			else
-				g_free (cCanonicName);
-			
-			pIcon->cFileName = cIconName;
+			g_free (cCanonicName);
 		}
 	}
 	else
 	{
-		pIcon = g_new0 (Icon, 1);
-		pIcon->cCommand = cContent;
-		pIcon->cFileName = g_strdup (myConfig.cTextIcon);
+		pIcon = cairo_dock_create_dummy_launcher (NULL,
+				g_strdup (myConfig.cTextIcon),
+				cContent,
+				NULL,
+				0);
 	}
 	
 	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);

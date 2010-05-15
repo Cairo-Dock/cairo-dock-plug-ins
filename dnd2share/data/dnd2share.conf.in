@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Name of the icon as it will appear in its caption in the dock:
-name = Dnd2Share
+name = Drop to share
 
 #S+ Image filename:
 #{Leave empty to use the default one.}

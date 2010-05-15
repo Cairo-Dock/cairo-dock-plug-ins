@@ -100,15 +100,15 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 }
 
 CD_APPLET_INIT_BEGIN
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
 		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
-		myIcon->fDrawX = 0*g_iDockRadius/2;
+		myIcon->fDrawX = 0;
 		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
 		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		cairo_dock_load_icon_buffers (myIcon, myContainer);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on charge l'icone nous-memes.
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 		if (myConfig.bHideScaleOnLeave)
@@ -189,15 +189,15 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet != NULL)
+	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
 		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
-		myIcon->fDrawX = 0*g_iDockRadius/2;
+		myIcon->fDrawX = 0;
 		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
 		myIcon->fScale = 1;
-		cairo_dock_load_one_icon_from_scratch (myIcon, myContainer);
+		cairo_dock_load_icon_buffers (myIcon, myContainer);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		myDrawContext = cairo_create (myIcon->pIconBuffer);
 	}

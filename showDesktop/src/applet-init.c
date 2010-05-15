@@ -26,7 +26,7 @@
 
 
 CD_APPLET_DEFINITION (N_("showDesktop"),
-	1, 6, 2,
+	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("This applet adds an icon to show your desktop,\n"
 	" and also : the desklets, the Widget Layer, or all the desktops at once.\n"
@@ -36,6 +36,10 @@ CD_APPLET_DEFINITION (N_("showDesktop"),
 	"Rom1 (Romain PEROL) &amp; Fabounet (Fabrice Rey)")
 
 
+static void _show_desktop_for_drop (Icon *pIcon)
+{
+	cairo_dock_show_hide_desktop (! myData.bDesktopVisible);
+}
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -49,6 +53,8 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_DESKTOP_VISIBILITY_CHANGED,
 		(CairoDockNotificationFunc) on_show_desktop,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
+	
+	myIcon->action_on_drag_hover = _show_desktop_for_drop;
 	
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
 	if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)

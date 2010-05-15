@@ -27,6 +27,11 @@
 
 void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile) {
 	
+	if (! g_file_test (myConfig.cStackDir, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE))
+	{
+		g_free (myConfig.cStackDir);
+		myConfig.cStackDir = NULL;
+	}
 	if (myConfig.cStackDir == NULL)  // applet nouvellement instanciee.
 	{
 		GString *sDirPath = g_string_new ("");
@@ -203,7 +208,7 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 		}
 		else
 		{
-			cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+			cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 			GCompareFunc pCompareFunc = NULL;
 			switch (myConfig.iSortType)
 			{

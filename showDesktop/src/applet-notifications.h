@@ -32,6 +32,8 @@ CD_APPLET_ON_BUILD_MENU_H
 
 CD_APPLET_ON_MIDDLE_CLICK_H
 
+CD_APPLET_ON_DROP_DATA_H
+
 
 void on_keybinding_pull (const char *keystring, gpointer user_data);
 

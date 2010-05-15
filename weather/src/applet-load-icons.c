@@ -28,22 +28,16 @@ const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") 
 #define _add_icon(i, j)\
 	if (myData.days[i].cName != NULL)\
 	{\
-		pIcon = g_new0 (Icon, 1);\
-		pIcon->cName = g_strdup (myData.days[i].cName);\
-		pIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+		pIcon = cairo_dock_create_dummy_launcher (g_strdup (myData.days[i].cName),\
+			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber),\
+			NULL,\
+			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax)) : NULL),\
+			2*i+j);\
 		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
 			g_free (pIcon->cFileName);\
 			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
 		}\
-		if (myConfig.bDisplayTemperature)\
-			pIcon->cQuickInfo = g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax));\
-		pIcon->fOrder = 2*i+j;\
-		pIcon->fScale = 1.;\
-		pIcon->fAlpha = 1.;\
-		pIcon->fWidthFactor = 1.;\
-		pIcon->fHeightFactor = 1.;\
-		pIcon->cCommand = g_strdup ("none");\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 

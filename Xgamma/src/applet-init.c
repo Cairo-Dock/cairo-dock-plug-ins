@@ -37,7 +37,7 @@
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_DEFINITION ("Xgamma",
+CD_APPLET_PRE_INIT_BEGIN ("Xgamma",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("Setup the luminosity of your screen directly from your dock.\n"
@@ -46,6 +46,9 @@ CD_APPLET_DEFINITION ("Xgamma",
 	"Middle-click to set it up for each color.\n"
 	"You can also define a luminosity value that will be applied automatically on startup."),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE ("Screen Luminosity")
+CD_APPLET_PRE_INIT_END
 
 
 CD_APPLET_INIT_BEGIN
@@ -58,7 +61,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		s_bVideoExtensionChecked = TRUE;
 		
-	        Display *dpy = gdk_x11_get_default_xdisplay ();
+		Display *dpy = gdk_x11_get_default_xdisplay ();
 		if (dpy == NULL)
 		{
 			cd_warning ("Xgamma : unable to get X display");

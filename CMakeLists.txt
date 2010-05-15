@@ -241,6 +241,20 @@ set (icon_effectsdatadir "${pluginsdatadir}/icon-effect")
 configure_file (icon-effect/data/icon-effect.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf)
 add_subdirectory (icon-effect)
 
+if ("${enable-indicator-menus}" STREQUAL "yes")
+	pkg_check_modules (INDICATOR_MENUS_PACKAGE indicator)
+	if ("${INDICATOR_MENUS_PACKAGE_FOUND}" STREQUAL "")
+		message (STATUS "Could not find lidindicator; Cairo-Dock won't be built with Indicator-Menus applet.")
+	else()
+		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
+		set (VERSION_INDICATOR_MENUS "0.0.1")
+		set (PACKAGE_INDICATOR_MENUS "cd-Indicator-Menus")
+		set (indicator_menusdatadir "${pluginsdatadir}/Indicator-Menus")
+		configure_file (Indicator-Menus/data/Indicator-Menus.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Indicator-Menus/data/Indicator-Menus.conf)
+		add_subdirectory ("Indicator-Menus")
+	endif()
+endif()
+
 ############# ILLUSION #################
 set (GETTEXT_ILLUSION ${GETTEXT_PLUGINS})
 set (VERSION_ILLUSION "1.0.6")
@@ -561,171 +575,3 @@ else()
 endif()
 
 add_subdirectory (po)
-
-
-#original Makefile.am contents follow:
-
-##dnl Process this file with automake to produce Makefile.in
-#
-#if WITH_OLD_GNOME_SUPPORT
-#gnome_old_dir=gnome-integration-old
-#endif
-#
-#if WITH_GNOME_SUPPORT
-#gnome_dir=gnome-integration
-#endif
-#
-#if WITH_XFCE_SUPPORT
-#xfce_dir=xfce-integration
-#endif
-#
-#if WITH_KDE_SUPPORT
-#kde_dir=kde-integration
-#endif
-#
-#if WITH_ALSA_MIXER
-#alsa_mixer_dir=alsaMixer
-#endif
-#
-#if WITH_TERMINAL
-#terminal_dir=terminal
-#endif
-#
-#if WITH_POWERMANAGER
-#powermanager_dir=powermanager
-#endif
-#
-#if WITH_WIFI
-#wifi_dir=wifi
-#endif
-#
-#if WITH_TOMBOY
-#tomboy_dir=tomboy
-#endif
-#
-#if WITH_COMPIZ_ICON
-#compiz_icon_dir=compiz-icon
-#endif
-#
-#if WITH_XGAMMA
-#xgamma_dir=Xgamma
-#endif
-#
-#if WITH_GMENU
-#gmenu_dir=GMenu
-#endif
-#
-#if WITH_MAIL
-#mail_dir=mail
-#endif
-#
-#if WITH_WEBLETS
-#weblets_dir=weblets
-#endif
-#
-#if WITH_KEYBOARD_INDICATOR
-#keyboard_indicator_dir=keyboard-indicator
-#endif
-#
-#if WITH_DND2SHARE
-#dnd2share_dir=dnd2share
-#endif
-#
-#if WITH_MUSICPLAYER
-#musicplayer_dir=musicPlayer
-#endif
-#
-#if WITH_NETWORK_MONITOR
-#network_monitor_dir=Network-Monitor
-#endif
-#
-#if WITH_SCOOBY_DO
-#scooby_do_dir=Scooby-Do
-#endif
-#
-#if WITH_RSSREADER
-#rssreader_dir=RSSreader
-#endif
-#
-#if WITH_DONCKY
-#doncky_dir=Doncky
-#endif
-#
-#SUBDIRS = . po\
-#	${alsa_mixer_dir}\
-#	Animated-icons\
-#	Cairo-Penguin\
-#	Clipper\
-#	clock\
-#	${compiz_icon_dir}\
-#	Dbus\
-#	desklet-rendering\
-#	dialog-rendering\
-#	${doncky_dir}\
-#	${dnd2share_dir}\
-#	dock-rendering\
-#	drop-indicator\
-#	dustbin\
-#	${gmenu_dir}\
-#	${gnome_dir}\
-#	${gnome_old_dir}\
-#	icon-effect\
-#	illusion\
-#	${kde_dir}\
-#	${keyboard_indicator_dir}\
-#	logout\
-#	${mail_dir}\
-#	motion-blur\
-#	$(musicplayer_dir)\
-#	netspeed\
-#	$(network_monitor_dir)\
-#	${powermanager_dir}\
-#	quick-browser\
-#	${rssreader_dir}\
-#	${scooby_do_dir}\
-#	shortcuts\
-#	showDesktop\
-#	show-mouse\
-#	slider\
-#	stack\
-#	switcher\
-#	System-Monitor\
-#	systray\
-#	${terminal_dir}\
-#	${tomboy_dir}\
-#	Toons\
-#	weather\
-#	${weblets_dir}\
-#	${wifi_dir}\
-#	${xfce_dir}\
-#	${xgamma_dir}
-#
-#EXTRA_DIST = \
-#	intltool-extract.in\
-#	intltool-merge.in\
-#	intltool-update.in\
-#	LICENSE\
-#	LGPL-2\
-#	ChangeLog\
-#	copyright
-#
-
-############# TOTO #################
-if ("${enable-toto}" STREQUAL "yes")
-set (GETTEXT_TOTO ${GETTEXT_PLUGINS})
-set (VERSION_TOTO "0.0.1")
-set (PACKAGE_TOTO "cd-Toto")
-set (logoutdatadir "${pluginsdatadir}/Toto")
-configure_file (Toto/data/Toto.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Toto/data/Toto.conf)
-add_subdirectory (Toto)
-endif()
-
-############# INDICATOR_MENUS #################
-if ("${enable-indicator_menus}" STREQUAL "yes")
-set (GETTEXT_INDICATOR_MENUS ${GETTEXT_PLUGINS})
-set (VERSION_INDICATOR_MENUS "0.0.1")
-set (PACKAGE_INDICATOR_MENUS "cd-Indicator-Menus")
-set (logoutdatadir "${pluginsdatadir}/Indicator-Menus")
-configure_file (Indicator-Menus/data/Indicator-Menus.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Indicator-Menus/data/Indicator-Menus.conf)
-add_subdirectory (Indicator-Menus)
-endif()

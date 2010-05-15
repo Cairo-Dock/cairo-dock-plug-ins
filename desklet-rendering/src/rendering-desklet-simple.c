@@ -33,6 +33,8 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
 	
 	pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
 	pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
+	pIcon->iImageWidth = pIcon->fWidth;
+	pIcon->iImageHeight = pIcon->fHeight;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->fScale = 1.;
@@ -40,7 +42,7 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
 	pIcon->fAlpha = 1.;
 	pIcon->fDrawX = 0.;
 	pIcon->fDrawY = 0.;
-	cairo_dock_fill_icon_buffers_for_desklet (pIcon);
+	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 }
 
 

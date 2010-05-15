@@ -123,10 +123,10 @@ new mail sound =
 #X[Behaviour] 
 frame_config_mail =
 
-#b Show new messages' content?
+#B Show new messages' content?
 show content = true
 
-#i[0;30] Maximum of new messages shown?
+#i[1;30] Maximum of new messages shown?
 #{Maximum number of mails that will be previewed.}
 max shown mails = 0
 

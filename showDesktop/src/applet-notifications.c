@@ -211,6 +211,106 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
+static gchar *_get_desktop_path (void)
+{
+	gchar *cDesktopDir = cairo_dock_launch_command_sync ("xdg-user-dir DESKTOP");
+	if (cDesktopDir == NULL)
+		cDesktopDir = g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
+	return cDesktopDir;
+}
+static void _move_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cDesktopDir = _get_desktop_path ();
+	if (cDesktopDir != NULL)
+	{
+		cairo_dock_launch_command_printf ("mv \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
+		g_free (cDesktopDir);
+	}
+}
+static void _copy_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cDesktopDir = _get_desktop_path ();
+	if (cDesktopDir != NULL)
+	{
+		cairo_dock_launch_command_printf ("cp -r \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
+		g_free (cDesktopDir);
+	}
+}
+static void _link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cDesktopDir = _get_desktop_path ();
+	if (cDesktopDir != NULL)
+	{
+		cairo_dock_launch_command_printf ("ln -s \"%s\" \"%s\"", NULL, myData.cPendingFile, cDesktopDir);
+		g_free (cDesktopDir);
+	}
+}
+static void _make_link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cDesktopDir = _get_desktop_path ();
+	if (cDesktopDir != NULL)
+	{
+		gchar *cName = g_path_get_basename (myData.cPendingFile);
+		gchar *cContent = g_strdup_printf ("[Desktop Entry]\n"
+			"Encoding=UTF-8\n"
+			"Name=%s\n"
+			"URL=%s\n"
+			"Icon=file\n"
+			"Type=Link\n",
+			cName, myData.cPendingFile);
+		
+		gchar *cLinkPath = g_strdup_printf ("%s/Link to %s", cDesktopDir, cName);
+		g_file_set_contents (cLinkPath,
+			cContent,
+			-1,
+			NULL);
+		
+		g_free (cLinkPath);
+		g_free (cContent);
+		g_free (cName);
+		g_free (cDesktopDir);
+	}
+}
+static void _dl_finished (gpointer data)
+{
+	g_print ("DL IS FINISHED\n");
+}
+static void _download_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	gchar *cDesktopDir = _get_desktop_path ();
+	if (cDesktopDir != NULL)
+	{
+		
+		CairoDockTask *pTask = cairo_dock_download_file_async (NULL, NULL, myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
+		
+		
+		
+		g_free (cDesktopDir);
+	}
+}
+
+CD_APPLET_ON_DROP_DATA_BEGIN
+	GtkWidget *pMenu = gtk_menu_new ();
+	g_free (myData.cPendingFile);
+	myData.cPendingFile = g_strdup (CD_APPLET_RECEIVED_DATA);
+	
+	if (*CD_APPLET_RECEIVED_DATA == '/' || strncmp (CD_APPLET_RECEIVED_DATA, "file://", 7))  // fichier local
+	{
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Move to the Desktop"), GTK_STOCK_CUT, (GFunc) _move_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Copy to the Desktop"), GTK_STOCK_COPY, (GFunc) _copy_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _link_to_desktop, pMenu, myApplet);
+	}
+	else  // fichier a telecharger.
+	{
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _make_link_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Download onto the Desktop"), GTK_STOCK_COPY, (GFunc) _download_to_desktop, pMenu, myApplet);
+	}
+	cairo_dock_popup_menu_on_container (pMenu, myContainer);
+	
+	
+CD_APPLET_ON_DROP_DATA_END
+
+
 void on_keybinding_pull (const char *keystring, gpointer user_data)
 {
 	CD_APPLET_ENTER;

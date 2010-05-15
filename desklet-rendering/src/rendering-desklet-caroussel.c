@@ -232,6 +232,8 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, pDesklet->container.iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 			pIcon->fHeight = MAX (1, pDesklet->container.iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		}
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
 		
 		pIcon->fDrawX = (pDesklet->container.iWidth - pIcon->fWidth) / 2;
 		pIcon->fDrawY = (pDesklet->container.iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? myLabels.iconTextDescription.iSize : 0);
@@ -240,7 +242,7 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -256,14 +258,16 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, .2 * pDesklet->container.iWidth - myLabels.iconTextDescription.iSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->container.iHeight - myLabels.iconTextDescription.iSize);
 		}
-
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
+		
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
 		
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 }
 

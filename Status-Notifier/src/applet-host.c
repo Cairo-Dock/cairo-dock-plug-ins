@@ -161,7 +161,7 @@ static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cService, Cairo
 	CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	CD_APPLET_LEAVE_IF_FAIL (pItemData != NULL);
 	
-	cairo_dock_fill_icon_buffers (pIcon, cairo_dock_get_max_scale (myIcon->pSubDock), myIcon->pSubDock->container.bIsHorizontal, myIcon->pSubDock->container.bDirectionUp);
+	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 	
 	if (myIcon->pSubDock)
 		cairo_dock_insert_icon_in_dock (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
@@ -459,15 +459,11 @@ static Icon *cd_satus_notifier_create_item_icon (const gchar *cService)
 	}
 	
 	//\_________________ create a new associated icon.
-	Icon *pIcon = g_new0 (Icon, 1);
-	pIcon->cName = g_strdup (cTitle);
-	pIcon->cFileName = g_strdup (cIconName);
-	pIcon->fOrder = pItemData->iCategory;
-	pIcon->fScale = 1.;
-	pIcon->fAlpha = 1.;
-	pIcon->fWidthFactor = 1.;
-	pIcon->fHeightFactor = 1.;
-	pIcon->cCommand = g_strdup ("none");
+	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (cTitle),
+		g_strdup (cIconName),
+		g_strdup ("none"),
+		NULL,
+		pItemData->iCategory);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, pItemData);
 	
 	myData.pIcons = g_list_insert_sorted (myData.pIcons, pIcon, (GCompareFunc)_compare_items);

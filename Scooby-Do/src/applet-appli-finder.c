@@ -126,10 +126,12 @@ static void _browse_dir (const gchar *cDirPath)
 				g_free (cPath);
 				continue;
 			}
-			pIcon = g_new0 (Icon, 1);
+			pIcon = cairo_dock_create_dummy_launcher (NULL,
+				cIconName,
+				cCommand,
+				NULL,
+				0);
 			pIcon->cDesktopFileName = cPath;
-			pIcon->cFileName = cIconName;
-			pIcon->cCommand = cCommand;
 			str = strchr (pIcon->cCommand, '%');
 			if (str != NULL)
 				*str = '\0';

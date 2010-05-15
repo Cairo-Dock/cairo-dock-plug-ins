@@ -111,21 +111,15 @@ void dbus_detect_tomboy(void)
 
 static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 {
-	Icon *pIcon = g_new0 (Icon, 1);
-	pIcon->cName = getNoteTitle (cNoteURI);
-	pIcon->fScale = 1.;
-	pIcon->fAlpha = 1.;
-	pIcon->fWidth = 48;  /// inutile je pense ...
-	pIcon->fHeight = 48;
-	pIcon->fWidthFactor = 1.;
-	pIcon->fHeightFactor = 1.;
-	pIcon->cCommand = g_strdup (cNoteURI);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca deviendrait un vrai lanceur.
+	Icon *pIcon = cairo_dock_create_dummy_launcher (getNoteTitle (cNoteURI),
+		(myConfig.cIconEmpty == NULL ?
+			g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg") :
+			g_strdup (myConfig.cIconEmpty)),
+		g_strdup (cNoteURI),
+		NULL,
+		0);  /// avec g_strdup_printf ("tomboy --open-note %s", pNote->name), ca pourrait faire un vrai lanceur.
 	if (myDock)
 		pIcon->cParentDockName = g_strdup (myIcon->cName);  // a priori inutile, la macro le fait ... a tester.
-	if (myConfig.cIconEmpty == NULL)
-		pIcon->cFileName = g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg");
-	else
-		pIcon->cFileName = g_strdup (myConfig.cIconEmpty);
 	if (myConfig.bDrawContent)
 	{
 		pIcon->cClass = getNoteContent (cNoteURI);
@@ -194,7 +188,7 @@ void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 			CD_APPLET_CREATE_MY_SUBDOCK (NULL, myConfig.cRenderer);
 		}
 		
-		cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 		cairo_dock_insert_icon_in_dock_full (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, ! CAIRO_DOCK_INSERT_SEPARATOR, NULL);
 	}
 	else
@@ -227,7 +221,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 		g_free (pIcon->cName);
 		pIcon->cName = cTitle;
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (myContainer);
-		cairo_dock_fill_one_text_buffer (pIcon, &myLabels.iconTextDescription);
+		cairo_dock_load_icon_text (pIcon, &myLabels.iconTextDescription);
 		cairo_destroy (pCairoContext);
 	}
 	else

@@ -150,6 +150,8 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 		pIcon->fWidth = MAX (1, pDesklet->container.iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
 		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - g_iDockRadius); //Icône de taille normal
 	}
+	pIcon->iImageWidth = pIcon->fWidth;
+	pIcon->iImageHeight = pIcon->fHeight;
 	pIcon->fDrawX = .5 * g_iDockRadius;
 	pIcon->fDrawY = .5 * g_iDockRadius;
 	pIcon->fScale = 1;

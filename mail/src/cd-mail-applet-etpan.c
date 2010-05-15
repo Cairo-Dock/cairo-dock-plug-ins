@@ -80,181 +80,175 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 			// On recupere les messages non lus.
 			//if (myConfig.bShowMessageContent && pMailAccount->bInitialized)  // && pMailAccount->iNbUnseenMails > pMailAccount->iPrevNbUnseenMails
 			CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
-			if (myConfig.bShowMessageContent)
+			cd_debug ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
+			g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
+			g_list_free (pMailAccount->pUnseenMessageList);
+			g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
+			g_list_free (pMailAccount->pUnseenMessageUid);
+			pMailAccount->pUnseenMessageList = NULL;
+			pMailAccount->pUnseenMessageUid = NULL;
+			
+			mailmessage *pMessage;
+			///struct mailmime *pMailMime;
+			struct mailimf_fields *pFields;
+			struct mailimf_single_fields *pSingleFields;
+			struct mailimf_from *pFrom;
+			struct mailimf_subject *pSubject;
+			struct mailimf_message_id *pUid;
+			struct mailimf_mailbox *pFromMailBox;
+			char *cRawBodyText, *cBodyText, *cFrom, *cSubject, *cMessage/**, *cUid*/;
+			size_t length;
+
+			struct mailmessage_list * msg_list = NULL;
+			if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
 			{
-				cd_debug ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
-				g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
-				g_list_free (pMailAccount->pUnseenMessageList);
-				g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
-				g_list_free (pMailAccount->pUnseenMessageUid);
-				pMailAccount->pUnseenMessageList = NULL;
-				pMailAccount->pUnseenMessageUid = NULL;
+				cd_warning ("Error while getting list of messages for account %s!", pMailAccount->name);
+			}
+			else if (msg_list != NULL)
+			{
+				guint i, iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
 				
-				mailmessage *pMessage;
-				///struct mailmime *pMailMime;
-				struct mailimf_fields *pFields;
-				struct mailimf_single_fields *pSingleFields;
-				struct mailimf_from *pFrom;
-				struct mailimf_subject *pSubject;
-				struct mailimf_message_id *pUid;
-				struct mailimf_mailbox *pFromMailBox;
-				char *cRawBodyText, *cBodyText, *cFrom, *cSubject, *cMessage/**, *cUid*/;
-				size_t length;
-				guint i = 1;
-
-				struct mailmessage_list * msg_list = NULL;
-				if( MAIL_NO_ERROR != mailfolder_get_messages_list(pMailAccount->folder, &msg_list) )
+				for (i = 0; i < iNbAccountsToCheck; i ++)
 				{
-					cd_warning ("Error while getting list of messages for account %s!", pMailAccount->name);
-				}
-				else if (msg_list != NULL)
-				{
-					guint iNbAccountsToCheck = MIN (myConfig.iNbMaxShown, pMailAccount->iNbUnseenMails);
+					cFrom = NULL;
+					cSubject = NULL;
+					cBodyText = NULL;
+					cRawBodyText = NULL;
+					///cUid = NULL;
+					pMessage = NULL;
+					pSingleFields = NULL;
+					struct mail_flags *pFlags = NULL;
 					
-					for (i = 1; iNbAccountsToCheck > 0; i ++)
-					{
-						cFrom = NULL;
-						cSubject = NULL;
-						cBodyText = NULL;
-						cRawBodyText = NULL;
-						///cUid = NULL;
-						pMessage = NULL;
-						pSingleFields = NULL;
-						struct mail_flags *pFlags = NULL;
-						
-						// get message number i.
-						cd_debug ("Fetching message number %d...\n", i);
-						if (!msg_list || !msg_list->msg_tab || carray_count(msg_list->msg_tab) < i) {
-							break;
-						}
+					// get message number i.
+					cd_debug ("Fetching message number %d...", i);
+					if (!msg_list || !msg_list->msg_tab || carray_count(msg_list->msg_tab) < i+1) {
+						break;
+					}
 
-						pMessage = carray_get(msg_list->msg_tab, i-1);
-						if (pMessage == NULL)
+					pMessage = carray_get(msg_list->msg_tab, i);
+					if (pMessage == NULL)
+					{
+						cd_warning ("empty message number %d", i);
+						continue;
+					}
+					
+					r = mailmessage_get_flags (pMessage, &pFlags);
+					if (r != MAIL_NO_ERROR || pFlags == NULL)
+					{
+						cd_warning ("couldn't get the message flags");
+					}
+					else
+					{
+						if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
+							(pFlags->fl_flags & MAIL_FLAG_SEEN) != 0 )  // old unseen message.
 						{
-							cd_warning ("empty message number %d", i);
-							iNbAccountsToCheck--;
 							continue;
 						}
-						
-						r = mailmessage_get_flags (pMessage, &pFlags);
-						if (r != MAIL_NO_ERROR || pFlags == NULL)
+					}
+					/**r = mailmessage_get_bodystructure (pMessage, &pMailMime);
+					if (r != MAIL_NO_ERROR)
+					{
+						cd_warning ("couldn't parse the message structure");
+						continue;
+					}*/  // inutile si on ne se sert pas de pMailMime non ?
+					
+					// get message content.
+					r = mailmessage_fetch_body (pMessage, &cRawBodyText, &length);
+					if (r != MAIL_NO_ERROR)
+					{
+						cd_warning ("couldn't fetch the body");
+						continue;
+					}
+					if( pMailAccount->driver == FEED_STORAGE )
+					{
+						size_t cur_token = 0;
+						r = mailmime_encoded_phrase_parse("UTF-8",
+							cRawBodyText, length,
+							&cur_token, "UTF-8",
+							&cBodyText);
+						if (r != MAILIMF_NO_ERROR)
+							cBodyText = NULL;
+					}
+					if (cBodyText == NULL)
+					{
+						cBodyText = g_strdup(cRawBodyText);
+					}
+					cd_debug (" -> '%s'", cBodyText);
+					
+					// get message headers.
+					r = mailmessage_fetch_envelope(pMessage, &pFields);
+					if (r != MAIL_NO_ERROR)
+					{
+						cd_warning ("couldn't fetch the headers");
+						continue;
+					}
+					pSingleFields = mailimf_single_fields_new (pFields);  // put the list of fields inside a single structure.
+					if (pSingleFields == NULL)
+						continue;
+					
+					// from.
+					pFrom = pSingleFields->fld_from;
+					if (pFrom != NULL && pFrom->frm_mb_list != NULL)
+					{
+						pFromMailBox = (struct mailimf_mailbox *) clist_content(clist_begin (pFrom->frm_mb_list->mb_list));
+						if (pFromMailBox == NULL)
+							continue;
+						if (pFromMailBox->mb_display_name == NULL)
 						{
-							cd_warning ("couldn't get the message flags");
+							cFrom = g_strdup(pFromMailBox->mb_addr_spec);
 						}
 						else
 						{
-							if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
-								(pFlags->fl_flags & MAIL_FLAG_SEEN) != 0 )  // old unseen message.
-							{
-								continue;
-							}
-							iNbAccountsToCheck--;
-						}
-						/**r = mailmessage_get_bodystructure (pMessage, &pMailMime);
-						if (r != MAIL_NO_ERROR)
-						{
-							cd_warning ("couldn't parse the message structure");
-							continue;
-						}*/  // inutile si on ne se sert pas de pMailMime non ?
-						
-						// get message content.
-						r = mailmessage_fetch_body (pMessage, &cRawBodyText, &length);
-						if (r != MAIL_NO_ERROR)
-						{
-							cd_warning ("couldn't fetch the body");
-							continue;
-						}
-						if( pMailAccount->driver == FEED_STORAGE )
-						{
 							size_t cur_token = 0;
-							r = mailmime_encoded_phrase_parse("UTF-8",
-								cRawBodyText, length,
-								&cur_token, "UTF-8",
-								&cBodyText);
-							if (r != MAILIMF_NO_ERROR)
-								cBodyText = NULL;
-						}
-						if (cBodyText == NULL)
-						{
-							cBodyText = g_strdup(cRawBodyText);
-						}
-						cd_debug (" -> '%s'\n", cBodyText);
-						
-						// get message headers.
-						r = mailmessage_fetch_envelope(pMessage, &pFields);
-						if (r != MAIL_NO_ERROR)
-						{
-							cd_warning ("couldn't fetch the headers");
-							continue;
-						}
-						pSingleFields = mailimf_single_fields_new (pFields);  // put the list of fields inside a single structure.
-						if (pSingleFields == NULL)
-							continue;
-						
-						// from.
-						pFrom = pSingleFields->fld_from;
-						if (pFrom != NULL && pFrom->frm_mb_list != NULL)
-						{
-							pFromMailBox = (struct mailimf_mailbox *) clist_content(clist_begin (pFrom->frm_mb_list->mb_list));
-							if (pFromMailBox == NULL)
-								continue;
-							if (pFromMailBox->mb_display_name == NULL)
-							{
-								cFrom = g_strdup(pFromMailBox->mb_addr_spec);
-							}
-							else
-							{
-								size_t cur_token = 0;
-								r = mailmime_encoded_phrase_parse("iso-8859-1",
-									pFromMailBox->mb_display_name, strlen(pFromMailBox->mb_display_name),
-									&cur_token, "UTF-8",
-									&cFrom);
-								if (r != MAILIMF_NO_ERROR) {
-									cFrom = g_strdup(pFromMailBox->mb_display_name);
-								}
-							}
-						}
-						
-						// subject.
-						pSubject = pSingleFields->fld_subject;
-						if (pSubject != NULL)
-						{
-							size_t cur_token = 0;
-
 							r = mailmime_encoded_phrase_parse("iso-8859-1",
-								pSubject->sbj_value, strlen(pSubject->sbj_value),
+								pFromMailBox->mb_display_name, strlen(pFromMailBox->mb_display_name),
 								&cur_token, "UTF-8",
-								&cSubject);
+								&cFrom);
 							if (r != MAILIMF_NO_ERROR) {
-								cSubject = g_strdup(pSubject->sbj_value);
+								cFrom = g_strdup(pFromMailBox->mb_display_name);
 							}
 						}
-						
-						/**pUid = pSingleFields->fld_message_id;
-						if (pUid != NULL)
-						{
-							cUid = pUid->mid_value;
-						}
-						cd_debug ("    cUid : %s\n", cUid);*/
-						
-						// finally, append the message to display to the list of unseen messages.
-						cMessage = g_strdup_printf ("From : %s\nSubject : %s\n%s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
-						pMailAccount->pUnseenMessageList = g_list_append (pMailAccount->pUnseenMessageList, cMessage);
-
-						pMailAccount->pUnseenMessageUid = g_list_append (pMailAccount->pUnseenMessageUid, g_strdup(pMessage->msg_uid));
-
-						cd_debug ("  Message preview: \n%s", cMessage);
-						
-						mailimf_single_fields_free (pSingleFields);
-						mailmessage_fetch_result_free (pMessage, cRawBodyText);
-						
-						if( cFrom ) g_free(cFrom);
-						if( cSubject ) g_free(cSubject);
-						if( cBodyText ) g_free(cBodyText);
 					}
 					
-					mailmessage_list_free(msg_list);  // free the list and its messages.
+					// subject.
+					pSubject = pSingleFields->fld_subject;
+					if (pSubject != NULL)
+					{
+						size_t cur_token = 0;
+
+						r = mailmime_encoded_phrase_parse("iso-8859-1",
+							pSubject->sbj_value, strlen(pSubject->sbj_value),
+							&cur_token, "UTF-8",
+							&cSubject);
+						if (r != MAILIMF_NO_ERROR) {
+							cSubject = g_strdup(pSubject->sbj_value);
+						}
+					}
+					
+					/**pUid = pSingleFields->fld_message_id;
+					if (pUid != NULL)
+					{
+						cUid = pUid->mid_value;
+					}
+					cd_debug ("    cUid : %s\n", cUid);*/
+					
+					// finally, append the message to display to the list of unseen messages.
+					cMessage = g_strdup_printf ("From : %s\nSubject : %s\n%s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
+					pMailAccount->pUnseenMessageList = g_list_append (pMailAccount->pUnseenMessageList, cMessage);
+
+					pMailAccount->pUnseenMessageUid = g_list_append (pMailAccount->pUnseenMessageUid, g_strdup(pMessage->msg_uid));
+
+					cd_debug ("  Message preview: \n%s", cMessage);
+					
+					mailimf_single_fields_free (pSingleFields);
+					mailmessage_fetch_result_free (pMessage, cRawBodyText);
+					
+					if( cFrom ) g_free(cFrom);
+					if( cSubject ) g_free(cSubject);
+					if( cBodyText ) g_free(cBodyText);
 				}
+				
+				mailmessage_list_free(msg_list);  // free the list and its messages.
 			}
 		}
 		cd_debug( "result_messages = %d, result_recent = %d, result_unseen = %d", result_messages, result_recent, result_unseen );
@@ -349,7 +343,7 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 			struct mail_flags *pFlags = NULL;
 
 			// on marque le message comme lu.
-			cd_message ("Fetching message number %d...\n", i);
+			g_print ("Fetching message number %d (uid %s)...", i, cMessageUid);
 			
 			r = mailfolder_get_message_by_uid (pMailAccount->folder, cMessageUid, &pMessage);  /// or result_messages - i ?...
 			if (r != MAIL_NO_ERROR || pMessage == NULL)
@@ -418,7 +412,7 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			{
 				GList *l;
 				guint n = 0;
-				gchar *cMessage;
+				gchar *cMessage, *cShortMessage = NULL;
 				CDMailAccount *pMailAccount;
 				for (i = 0; i < myData.pMailAccounts->len; i++)
 				{
@@ -433,7 +427,11 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 							for (l = pMailAccount->pUnseenMessageList; l != NULL && n < myConfig.iNbMaxShown; l = l->next)
 							{
 								cMessage = l->data;
-								g_string_append_printf (ttip_str, "\n      %s", cMessage);
+								if (cMessage && strlen (cMessage) > 150)  // 150 = 50 pour envoyeur+objet et 100 pour le corps.
+									cShortMessage = cairo_dock_cut_string (cMessage, 150);
+								g_string_append_printf (ttip_str, "\n *    %s", cShortMessage ? cShortMessage : cMessage);
+								g_free (cShortMessage);
+								cShortMessage = NULL;
 								n ++;
 							}
 						}

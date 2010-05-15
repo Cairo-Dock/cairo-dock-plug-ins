@@ -43,27 +43,21 @@ static GList * _list_icons (void) {
 	if (myConfig.bScriptSubDock)
 		j = 5;
   
-	for (i = 0; i < j; i ++) {
+	for (i = 0; i < j; i ++)
+	{
 		if (i == 1 && ! myConfig.bEmeraldIcon)
 			continue;
-		pIcon = g_new0 (Icon, 1);
-		pIcon->cName = g_strdup (D_(s_iconName[i]));
-		if (myConfig.cUserImage[i+MY_NB_ICON_STATE] != NULL) {
-			pIcon->cFileName = cairo_dock_generate_file_path (myConfig.cUserImage[i+MY_NB_ICON_STATE]);
-		}
-		else {
-			pIcon->cFileName = g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i);
-		}
-		pIcon->fOrder = 2*i;
-		pIcon->iType = 2*i;
-		pIcon->fScale = 1.;
-		pIcon->fAlpha = 1.;
-		pIcon->fWidthFactor = 1.;
-		pIcon->fHeightFactor = 1.;
-		pIcon->cCommand = (s_iconClass[i] != NULL ? g_strdup (s_iconClass[i]) : g_strdup ("none"));
+		pIcon = cairo_dock_create_dummy_launcher (g_strdup (D_(s_iconName[i])),
+			(myConfig.cUserImage[i+MY_NB_ICON_STATE] != NULL ?
+				cairo_dock_generate_file_path (myConfig.cUserImage[i+MY_NB_ICON_STATE]) :
+				g_strdup_printf ("%s/%d.svg", MY_APPLET_SHARE_DATA_DIR, i)),
+			(s_iconClass[i] != NULL ? g_strdup (s_iconClass[i]) : g_strdup ("none")),
+			NULL,
+			2*i);
 		pIcon->cParentDockName = g_strdup (myIcon->cName);
 		pIconList = g_list_append (pIconList, pIcon);
-		if (myConfig.bStealTaskBarIcon && s_iconClass[i] != NULL) {
+		if (myConfig.bStealTaskBarIcon && s_iconClass[i] != NULL)
+		{
 			cairo_dock_inhibate_class (s_iconClass[i], pIcon);
 		}
 	}

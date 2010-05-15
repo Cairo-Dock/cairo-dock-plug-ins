@@ -34,7 +34,7 @@ static void _compiz_get_version (void) {
 	if (myData.iCompizMajor != 0 || myData.iCompizMinor != 0 || myData.iCompizMicro != 0)
 		return ;
 	
-	gchar *cCommand = g_strdup_printf ("compiz.real --version | awk '{print $2}'");
+	gchar *cCommand = g_strdup_printf ("compiz --version | awk '{print $2}'");
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	
@@ -79,7 +79,7 @@ static void _compiz_menu_activate_expo (void) {
 static void _compiz_menu_toggle_wlayer (void) {
 	_compiz_get_version ();
 	if (myData.iCompizMajor > 0 || (myData.iCompizMajor == 0 && myData.iCompizMinor > 6))
-	_compiz_dbus_action ("widget/allscreens/toggle_button");
+		_compiz_dbus_action ("widget/allscreens/toggle_button");
 	else
 		_compiz_dbus_action ("widget/allscreens/toggle");
 }

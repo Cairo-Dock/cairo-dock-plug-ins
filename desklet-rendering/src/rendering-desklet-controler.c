@@ -151,13 +151,15 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet)
 	{
 		pIcon->fWidth = fCentralSphereWidth;
 		pIcon->fHeight = fCentralSphereHeight;
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
 		pIcon->fDrawX = (pDesklet->container.iWidth - pDesklet->pIcon->fWidth) / 2;
 		pIcon->fDrawY = myLabels.iconTextDescription.iSize + g_iDockRadius/2;
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
-		cairo_dock_fill_icon_buffers_for_desklet (pDesklet->pIcon);
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 	
 	//\_________________ On charge les boutons.
@@ -176,7 +178,10 @@ void rendering_load_icons_for_controler (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, (pDesklet->container.iWidth - g_iDockRadius) * (1 - CONTROLER_RATIO_ICON_DESKLET));
 			pIcon->fHeight = MAX (1, (pDesklet->container.iHeight - g_iDockRadius - myLabels.iconTextDescription.iSize) *(1 - CONTROLER_RATIO_ICON_DESKLET));
 		}
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
+		
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 		
 		pIcon->fDrawX = fX - pIcon->fWidth / 2;
 		pIcon->fDrawY = fY;

@@ -111,8 +111,10 @@ void rendering_load_icons_for_tree (CairoDesklet *pDesklet)
 		icon = ic->data;
 		icon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		icon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+		icon->iImageWidth = icon->fWidth;
+		icon->iImageHeight = icon->fHeight;
 		
-		cairo_dock_fill_icon_buffers_for_desklet (icon);
+		cairo_dock_load_icon_buffers (icon, CAIRO_CONTAINER (pDesklet));
 	}
 }
 

@@ -17,7 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdlib.h"
+#include <stdlib.h>
+#include <libxklavier/xklavier.h>
 
 #include "applet-config.h"
 #include "applet-xklavier.h"
@@ -79,6 +80,10 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.iCurrentGroup = -1;  // pour forcer le redessin.
 	
+	Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
+	XklEngine *pEngine = xkl_engine_get_instance (dsp);
+	xkl_engine_start_listen (pEngine, XKLL_MANAGE_WINDOW_STATES | XKLL_MANAGE_LAYOUTS);
+	
 	Window Xid = cairo_dock_get_current_active_window ();
 	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
 CD_APPLET_INIT_END
@@ -86,6 +91,9 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
+	Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
+	XklEngine *pEngine = xkl_engine_get_instance (dsp);
+	xkl_engine_stop_listen (pEngine, XKLL_MANAGE_WINDOW_STATES | XKLL_MANAGE_LAYOUTS);
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;

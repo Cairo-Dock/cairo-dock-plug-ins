@@ -26,19 +26,14 @@
 #include "cd-mail-applet-accounts.h"
 
 #define _add_icon(pMailAccount)\
-                pIcon = g_new0 (Icon, 1);\
-                pIcon->cName = g_strdup (pMailAccount->name);\
-                pIcon->cFileName = g_strdup (myConfig.cNoMailUserImage);\
-                pIcon->cQuickInfo = g_strdup ("...");\
-                pIcon->fOrder = i;\
-                pIcon->fScale = 1.;\
-                pIcon->fAlpha = 1.;\
-                pIcon->fWidthFactor = 1.;\
-                pIcon->fHeightFactor = 1.;\
-                pIcon->cCommand = g_strdup (pMailAccount->cMailApp);\
-                pIcon->cParentDockName = g_strdup (myIcon->cName);\
-                pIconList = g_list_append (pIconList, pIcon);\
-                pMailAccount->icon = pIcon;
+	pIcon = cairo_dock_create_dummy_launcher (g_strdup (pMailAccount->name),\
+		g_strdup (myConfig.cNoMailUserImage),\
+		g_strdup (pMailAccount->cMailApp),\
+		g_strdup ("..."),\
+		i);\
+	pIcon->cParentDockName = g_strdup (myIcon->cName);\
+	pIconList = g_list_append (pIconList, pIcon);\
+	pMailAccount->icon = pIcon;
 
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {

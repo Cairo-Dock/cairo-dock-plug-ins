@@ -46,6 +46,7 @@ struct _AppletData {
 	gboolean bDesktopVisible;
 	gboolean bDeskletsVisible;
 	Window xLastActiveWindow;
+	gchar *cPendingFile;
 	} ;
 
 

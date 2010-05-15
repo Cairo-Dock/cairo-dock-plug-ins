@@ -176,19 +176,15 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 		pParentDock = cairo_dock_create_dock (cParentDockName, NULL);
 	}
 	
-	Icon *pIcon = g_new0 (Icon, 1);
-	pIcon->iType = CAIRO_DOCK_LAUNCHER;
-	pIcon->cFileName = g_strdup (cIconFile);
-	pIcon->cName = g_strdup (cLabel);
-	pIcon->cCommand = g_strdup (cCommand);
+	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (cLabel),
+		g_strdup (cIconFile),
+		g_strdup (cCommand),
+		NULL,
+		CAIRO_DOCK_LAST_ORDER);
 	pIcon->cParentDockName = g_strdup (cParentDockName);
-	pIcon->cDesktopFileName = g_strdup ("none");
-	pIcon->fOrder = CAIRO_DOCK_LAST_ORDER;
 	cairo_dock_set_launcher_class (pIcon, NULL);
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (pParentDock));
-	cairo_dock_fill_icon_buffers_for_dock (pIcon, pParentDock);
-	cairo_destroy (pCairoContext);
+	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
 	
 	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 	cairo_dock_launch_animation (CAIRO_CONTAINER (pParentDock));

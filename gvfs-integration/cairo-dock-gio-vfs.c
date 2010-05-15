@@ -505,10 +505,9 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 
 static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 {
-	Icon *pNewIcon = NULL;
 	GIcon *pIcon;
 	GFile *pRootDir;
-	
+	gchar *cName, *cCommand, *cFileName;
 	if (pVolume != NULL)
 		pMount = g_volume_get_mount (pVolume);
 	else if (pMount == NULL)
@@ -516,30 +515,35 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 	
 	if (pMount != NULL)  // ce volume est monte.
 	{
-		pNewIcon = g_new0 (Icon, 1);
-		pNewIcon->cName = g_mount_get_name (pMount);
+		cName = g_mount_get_name (pMount);
 		
 		pRootDir = g_mount_get_root (pMount);
-		pNewIcon->cCommand = g_file_get_uri (pRootDir);
-		//g_object_unref (pRootDir);
+		cCommand = g_file_get_uri (pRootDir);
 		
 		pIcon = g_mount_get_icon (pMount);
-		pNewIcon->cFileName = _cd_get_icon_path (pIcon, NULL);
-		//g_object_unref (pIcon);
+		cFileName = _cd_get_icon_path (pIcon, NULL);
 		
-		//g_object_unref (pMount);
+		g_object_unref (pRootDir);
+		g_object_unref (pIcon);
+		g_object_unref (pMount);
 	}
 	else  // ce volume est demonte, on le montre quand meme (l'automount peut etre off).
 	{
-		pNewIcon = g_new0 (Icon, 1);
-		pNewIcon->cName = g_volume_get_name (pVolume);
+		cName = g_volume_get_name (pVolume);
 		
 		pIcon = g_volume_get_icon (pVolume);
-		pNewIcon->cFileName = _cd_get_icon_path (pIcon, NULL);
-		//g_object_unref (pIcon);
+		cFileName = _cd_get_icon_path (pIcon, NULL);
 		
-		pNewIcon->cCommand = g_strdup (pNewIcon->cName);
+		cCommand = g_strdup (cName);
+		
+		g_object_unref (pIcon);
 	}
+	
+	Icon *pNewIcon = cairo_dock_create_dummy_launcher (cName,
+		cFileName,
+		cCommand,
+		NULL,
+		0);
 	pNewIcon->iVolumeID = 1;
 	pNewIcon->cBaseURI = g_strdup (pNewIcon->cCommand);
 	cd_message (" => %s", pNewIcon->cCommand);
@@ -720,7 +724,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 			gchar *cName = NULL;
 			
-			icon = g_new0 (Icon, 1);
+			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->iType = iNewIconsType;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
 			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
@@ -842,21 +846,22 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	
 	if (bAddHome && pIconList != NULL)
 	{
-		icon = g_new0 (Icon, 1);
-		icon->iType = iNewIconsType;
-		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
-		icon->cCommand = g_strdup ("/home");
-		//icon->cCommand = g_strdup (icon->cBaseURI);
-		icon->iVolumeID = 0;
-		icon->cName = g_strdup ("home");
 		Icon *pRootIcon = cairo_dock_get_icon_with_name (pIconList, "/");
 		if (pRootIcon == NULL)
 		{
 			pRootIcon = cairo_dock_get_first_icon (pIconList);
 			cd_debug ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
 		}
-		icon->cFileName = g_strdup (pRootIcon->cFileName);
-		icon->fOrder = iOrder++;
+		
+		icon = cairo_dock_create_dummy_launcher (g_strdup ("home"),
+			g_strdup (pRootIcon->cFileName),
+			g_strdup ("/home"),
+			NULL,
+			iOrder++);
+		icon->iType = iNewIconsType;
+		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
+		icon->iVolumeID = 0;
+		
 		pIconList = g_list_insert_sorted (pIconList,
 			icon,
 			(GCompareFunc) cairo_dock_compare_icons_order);

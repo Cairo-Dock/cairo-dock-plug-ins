@@ -90,7 +90,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 50);
 	myConfig.iNbLinesInListing = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 10);
 	
-	myConfig.infoDescription.cFont = "Sans";
+	myConfig.infoDescription.cFont = g_strdup ("Sans");
 	myConfig.infoDescription.iSize = 14;
 	myConfig.infoDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
 	myConfig.infoDescription.bOutlined = FALSE;

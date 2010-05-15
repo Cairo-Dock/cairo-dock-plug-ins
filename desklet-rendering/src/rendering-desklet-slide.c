@@ -123,14 +123,16 @@ void rendering_load_icons_for_slide (CairoDesklet *pDesklet)
 		pIcon = ic->data;
 		pIcon->fWidth = pSlide->iIconSize;
 		pIcon->fHeight = pSlide->iIconSize;
-
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
+	
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
 		
-		cairo_dock_fill_icon_buffers_for_desklet (pIcon);
+		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 }
 

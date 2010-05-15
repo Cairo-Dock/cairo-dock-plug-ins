@@ -261,15 +261,11 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 	int i;
 	for (i = 0; pIconFields[3*i] && pIconFields[3*i+1] && pIconFields[3*i+2]; i ++)
 	{
-		pOneIcon = g_new0 (Icon, 1);
-		pOneIcon->cName = g_strdup (pIconFields[3*i]);
-		pOneIcon->cFileName = g_strdup (pIconFields[3*i+1]);
-		pOneIcon->fOrder = i + n;
-		pOneIcon->fScale = 1.;
-		pOneIcon->fAlpha = 1.;
-		pOneIcon->fWidthFactor = 1.;
-		pOneIcon->fHeightFactor = 1.;
-		pOneIcon->cCommand = g_strdup (pIconFields[3*i+2]);
+		pOneIcon = cairo_dock_create_dummy_launcher (g_strdup (pIconFields[3*i]),
+			g_strdup (pIconFields[3*i+1]),
+			g_strdup (pIconFields[3*i+2]),
+			NULL,
+			i + n);
 		pIconsList = g_list_append (pIconsList, pOneIcon);
 	}
 	if (pIconFields[3*i] != NULL)
@@ -295,7 +291,7 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 			for (ic = pIconsList; ic != NULL; ic = ic->next)
 			{
 				pOneIcon = ic->data;
-				cairo_dock_load_one_icon_from_scratch (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
+				cairo_dock_load_icon_buffers (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
 				cairo_dock_insert_icon_in_dock (pOneIcon, pIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
 			}
 			cairo_dock_update_dock_size (pIcon->pSubDock);

@@ -297,7 +297,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				}
 			}
 			
-			icon = g_new0 (Icon, 1);
+			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->cBaseURI = cFileURI;
 			icon->iType = iNewIconsType;
 			if ( (valid & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) && strcmp (info->mime_type, "application/x-desktop") == 0)
