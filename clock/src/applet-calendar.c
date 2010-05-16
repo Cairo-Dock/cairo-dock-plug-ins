@@ -552,7 +552,7 @@ void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
 		GtkWidget *pCalendar = cd_clock_build_calendar (myApplet);
-		myData.pCalendarDialog = cairo_dock_show_dialog_full (D_("Calendar"),
+		myData.pCalendarDialog = cairo_dock_show_dialog_full (D_("Calendar and tasks"),
 			myIcon, myContainer,
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/dates.svg",

@@ -59,7 +59,7 @@ static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleI
 {
 	gchar *cTasks = cd_clock_get_tasks_for_today (myApplet);
 	if (cTasks == NULL)
-		cTasks = g_strdup (D_("No task is sheduled for today."));
+		cTasks = g_strdup (D_("No task is sheduled for today.\n\nYou can add tasks by clicking on the applet to open the calendar, and then double-clicking on a day."));
 	
 	cd_clock_hide_dialogs (myApplet);
 	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
@@ -74,7 +74,7 @@ static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleIn
 	double fDelay = 30e3;
 	if (cTasks == NULL)
 	{
-		cTasks = g_strdup (D_("No task is sheduled for the next 7 days."));
+		cTasks = g_strdup (D_("No task is sheduled for the next 7 days.\n\nYou can add tasks by clicking on the applet to open the calendar, and then double-clicking on a day."));
 		fDelay = 4e3;
 	}
 	

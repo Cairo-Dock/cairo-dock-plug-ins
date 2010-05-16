@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include <glib/gi18n.h>
 
 #include "applet-struct.h"
@@ -77,13 +78,16 @@ void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 
 CD_APPLET_ON_SCROLL_BEGIN
 	int iVolume = mixer_get_mean_volume ();  // [0;100]
+	double delta = myConfig.iScrollVariation;
+	if (myData.iVolumeMax > myData.iVolumeMin)
+		delta = MAX (delta, ceil (100. / (myData.iVolumeMax - myData.iVolumeMin)));
 	if (CD_APPLET_SCROLL_DOWN)
 	{
-		iVolume = MAX (iVolume - myConfig.iScrollVariation, 0);
+		iVolume = MAX (iVolume - delta, 0);
 	}
 	else if (CD_APPLET_SCROLL_UP)
 	{
-		iVolume = MIN (iVolume + myConfig.iScrollVariation, 100);
+		iVolume = MIN (iVolume + delta, 100);
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
