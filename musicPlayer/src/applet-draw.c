@@ -66,9 +66,9 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
 			{
-				cd_debug ("test du lecteur");
+				cd_debug ("test of the player ...");
 				cd_musicplayer_dbus_detect_player ();
-				cd_debug (" -> bIsRunning : %d\n", myData.bIsRunning);
+				cd_debug (" -> is running : %d\n", myData.bIsRunning);
 				if (myData.bIsRunning)
 					cd_musicplayer_set_surface (PLAYER_STOPPED);
 				else

@@ -249,7 +249,6 @@ void cd_mpris_get_time_elapsed (void)
 	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet");
 	if (myData.iCurrentTime > 0)  // -1 signifie que la valeur n'a pas pu etre retrouvee (lecteur ferme).
 		myData.iCurrentTime /= 1000;
-	g_print ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
 }
 
 /* Renvoie le temps ecoule en secondes..
@@ -619,9 +618,10 @@ void cd_mpris_read_data (void)
 				if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
 				{
 					myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
-					g_print ("myData.iGetTimeFailed : %d\n", myData.iGetTimeFailed);
+					cd_debug ("failed to get time %d time(s)", myData.iGetTimeFailed);
 					if (myData.iGetTimeFailed > 2)
 					{
+						cd_debug (" => player is likely closed");
 						myData.iPlayingStatus = PLAYER_NONE;
 						myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
 						myData.bIsRunning = FALSE;
@@ -641,7 +641,7 @@ void cd_mpris_read_data (void)
 			myData.iCurrentTime = 0;
 			myData.iGetTimeFailed = 0;
 		}
-		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
+		//cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
 	}
 }
 
