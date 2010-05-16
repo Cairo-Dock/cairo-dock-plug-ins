@@ -170,7 +170,7 @@ struct _AppletData {
 	gchar* cPlayingUri;
 	MyPlayerStatus iPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;
-	gint iCurrentTime, iPreviousCurrentTime;
+	gint iCurrentTime, iPreviousCurrentTime, iGetTimeFailed;
 	gint iSongLength;
 	gint iRating;
 	gint iTrackListLength;

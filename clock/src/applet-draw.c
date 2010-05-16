@@ -71,7 +71,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
 		pTask,
 		NULL);
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogs.dialogTextDescription.bUseMarkup = FALSE;
 	
 	CD_APPLET_DEMANDS_ATTENTION (NULL, 3600);  // ~ 1h, pour si on loupe le dialogue.
 	return TRUE;

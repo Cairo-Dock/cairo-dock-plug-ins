@@ -1907,7 +1907,7 @@ msgstr "Noter cette chanson"
 
 #: ../musicPlayer/src/applet-notifications.c:182
 msgid "Information"
-msgstr "Information"
+msgstr "Informations"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""

@@ -65,8 +65,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iProcessCheckInterval = CD_CONFIG_GET_INTEGER ("Configuration", "top delay");
 	
 	myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogs.dialogTextDescription);
-	g_free (myDialogs.dialogTextDescription.cFont);
-	myDialogs.dialogTextDescription.cFont = g_strdup ("Mono");  // on prend une police a chasse fixe.
+	g_free (myConfig.pTopTextDescription->cFont);
+	myConfig.pTopTextDescription->cFont = g_strdup ("Mono");  // on prend une police a chasse fixe.
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color stop", myConfig.pTopTextDescription->fColorStop);
 	myConfig.pTopTextDescription->bVerticalPattern = TRUE;

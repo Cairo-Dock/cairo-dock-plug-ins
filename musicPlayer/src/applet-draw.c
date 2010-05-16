@@ -47,31 +47,35 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 		myData.iPreviousCurrentTime = myData.iCurrentTime;
 		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
 		{
-			if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+			if (myData.iCurrentTime >= 0)  // peut etre -1 si le lecteur a demarre mais ne fournit pas encore de temps.
 			{
-				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
-				bNeedRedraw = TRUE;
+				if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+				{
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
+				}
+				else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
+				{
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
+				}
 			}
-			else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
-			{
-				CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
-				bNeedRedraw = TRUE;
-			}
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		}
 		else
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			bNeedRedraw = TRUE;
 			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
 			{
-				cd_debug ("test du lecteur\n");
+				cd_debug ("test du lecteur");
 				cd_musicplayer_dbus_detect_player ();
+				cd_debug (" -> bIsRunning : %d\n", myData.bIsRunning);
 				if (myData.bIsRunning)
 					cd_musicplayer_set_surface (PLAYER_STOPPED);
 				else
 					cd_musicplayer_set_surface (PLAYER_NONE);
 			}
 		}
+		bNeedRedraw = TRUE;
 	}
 	
 	if (myData.pCurrentHandeler->iLevel == PLAYER_BAD)

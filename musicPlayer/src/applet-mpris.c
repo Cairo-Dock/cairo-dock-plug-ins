@@ -246,8 +246,10 @@ gboolean cd_mpris_is_shuffle (void)
  */
 void cd_mpris_get_time_elapsed (void)
 {
-	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet") / 1000;
-	//cd_debug ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
+	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet");
+	if (myData.iCurrentTime > 0)  // -1 signifie que la valeur n'a pas pu etre retrouvee (lecteur ferme).
+		myData.iCurrentTime /= 1000;
+	g_print ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
 }
 
 /* Renvoie le temps ecoule en secondes..
@@ -451,9 +453,10 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	CD_APPLET_ENTER;
 	//cd_debug ("MP : %s (%x)\n", __func__, status);
 	myData.bIsRunning = TRUE;
+	myData.iGetTimeFailed = 0;
 	int iStatus = _extract_status_mpris (status, 0);
 	_extract_playing_status_mpris (iStatus);
-	cd_debug ("myData.iPlayingStatus <- %d\n", myData.iPlayingStatus);
+	g_print ("myData.iPlayingStatus <- %d\n", myData.iPlayingStatus);
 	
 	if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 		cd_musicplayer_relaunch_handler ();
@@ -613,15 +616,30 @@ void cd_mpris_read_data (void)
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_mpris_get_time_elapsed ();
-				if (myData.iCurrentTime < 0)
-					myData.iPlayingStatus = PLAYER_STOPPED;
+				if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
+				{
+					myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
+					g_print ("myData.iGetTimeFailed : %d\n", myData.iGetTimeFailed);
+					if (myData.iGetTimeFailed > 2)
+					{
+						myData.iPlayingStatus = PLAYER_NONE;
+						myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
+						myData.bIsRunning = FALSE;
+					}
+				}
+				else
+					myData.iGetTimeFailed = 0;
 			}
 			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
+			{
 				myData.iCurrentTime = 0;
+				myData.iGetTimeFailed = 0;
+			}
 		}
 		else 
 		{
 			myData.iCurrentTime = 0;
+			myData.iGetTimeFailed = 0;
 		}
 		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
 	}
