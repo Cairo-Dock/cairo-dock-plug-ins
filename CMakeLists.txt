@@ -335,6 +335,33 @@ else()
 	add_subdirectory ("mail")
 endif()
 
+############# MEMENU #################
+if ("${enable-memenu}" STREQUAL "yes")
+	pkg_check_modules (DBUSMENU dbusmenu-glib)
+	pkg_check_modules (MEMENU_PACKAGE indicator libido-0.1 dbusmenu-gtk)
+	if (NOT "${MEMENU_PACKAGE_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+		message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
+		
+		STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
+		message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
+		
+		STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
+		STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
+		message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
+		
+		STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
+		STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
+		message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
+		
+		set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
+		set (VERSION_MEMENU "0.0.1")
+		set (PACKAGE_MEMENU "cd-MeMenu")
+		set (memenudatadir "${pluginsdatadir}/MeMenu")
+		configure_file (MeMenu/data/MeMenu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/MeMenu/data/MeMenu.conf)
+		add_subdirectory (MeMenu)
+	endif()
+endif()
+
 ############# MOTION BLUR #################
 set (GETTEXT_MOTION_BLUR ${GETTEXT_PLUGINS})
 set (VERSION_MOTION_BLUR "1.0.3")

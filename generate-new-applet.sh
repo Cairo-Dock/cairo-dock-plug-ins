@@ -26,7 +26,7 @@ sed -i "s/pkgdatadir/${LowerName}datadir/g" CMakeLists.txt
 
 sed -i "s/CD_APPLET_LABEL/$AppletName/g" template.conf.in
 if test "x$AppletIcon" = "xy" -o "x$AppletIcon" = "xY"; then
-	sed -i "/Image filename/{N;N;d}" template.conf.in
+	sed -i "/Image filename/{N;d}" template.conf.in
 fi
 sed -i "s/CD_PKG/$UpperName/g" template.conf.in
 sed -i "s/CD_APPLET_NAME/$AppletName/g" template.conf.in
@@ -50,12 +50,12 @@ cd ../..
 echo "" >> CMakeLists.txt
 echo "############# $UpperName #################" >> CMakeLists.txt
 echo "if (\"\${enable-${LowerName}}\" STREQUAL \"yes\")" >> CMakeLists.txt
-echo "set (GETTEXT_$UpperName \${GETTEXT_PLUGINS})" >> CMakeLists.txt
-echo "set (VERSION_$UpperName \"0.0.1\")" >> CMakeLists.txt
-echo "set (PACKAGE_$UpperName \"cd-$AppletName\")" >> CMakeLists.txt
-echo "set (logoutdatadir \"\${pluginsdatadir}/$AppletName\")" >> CMakeLists.txt
-echo "configure_file ($AppletName/data/$AppletName.conf.in \${CMAKE_CURRENT_SOURCE_DIR}/$AppletName/data/$AppletName.conf)" >> CMakeLists.txt
-echo "add_subdirectory ($AppletName)" >> CMakeLists.txt
+echo "	set (GETTEXT_$UpperName \${GETTEXT_PLUGINS})" >> CMakeLists.txt
+echo "	set (VERSION_$UpperName \"0.0.1\")" >> CMakeLists.txt
+echo "	set (PACKAGE_$UpperName \"cd-$AppletName\")" >> CMakeLists.txt
+echo "	set (${LowerName}datadir \"\${pluginsdatadir}/$AppletName\")" >> CMakeLists.txt
+echo "	configure_file ($AppletName/data/$AppletName.conf.in \${CMAKE_CURRENT_SOURCE_DIR}/$AppletName/data/$AppletName.conf)" >> CMakeLists.txt
+echo "	add_subdirectory ($AppletName)" >> CMakeLists.txt
 echo "endif()" >> CMakeLists.txt
 
 cmake -DCMAKE_INSTALL_PREFIX=/usr -D$AppletName=yes
