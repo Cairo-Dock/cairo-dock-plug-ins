@@ -241,6 +241,7 @@ set (icon_effectsdatadir "${pluginsdatadir}/icon-effect")
 configure_file (icon-effect/data/icon-effect.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf)
 add_subdirectory (icon-effect)
 
+############# INDICATOR-MENUS #################
 if ("${enable-indicator-menus}" STREQUAL "yes")
 	pkg_check_modules (INDICATOR_MENUS_PACKAGE indicator)
 	if ("${INDICATOR_MENUS_PACKAGE_FOUND}" STREQUAL "")
@@ -479,7 +480,7 @@ configure_file (stack/data/stack.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/stack/data/
 add_subdirectory (stack)
 
 ############# STATUS NOTIFIER #################
-if ("${enable-scooby-do}" STREQUAL "yes")
+if ("${enable-status-notifier}" STREQUAL "yes")
 	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
 	set (VERSION_STATUS_NOTIFIER "0.0.1")
 	set (PACKAGE_STATUS_NOTIFIER "cd-status-notifier")
