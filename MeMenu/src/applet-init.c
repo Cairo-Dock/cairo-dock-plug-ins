@@ -26,8 +26,8 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("MeMenu"),
-	2, 1, 4,
+CD_APPLET_DEFINITION (N_("Me Menu"),
+	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("A menu that lets you access quickly to your information, your online status, your friends."),
 	"Fabounet")
@@ -74,6 +74,8 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
+	
+	cd_me_set_status_icon (myData.cStatusIcon);  // on remet l'icone (si avant on n'avait pas d'icone, on a mis un chemin. Il ne prendra pas en compte un changement de theme d'icone, donc on remet l'icone originale).
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

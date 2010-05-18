@@ -128,9 +128,9 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, 8, FALSE, 100, &cFullURI);
 		cd_message ("  cFullURI : %s", cFullURI);
 		
-		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
+		if (myConfig.bUseSeparator && myDock && pIconList2 != NULL && pIconList != NULL)
 		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (7, NULL);
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (7, NULL);  // NULL => ne charge pas l'icone, car on est dans un thread.
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		
@@ -152,9 +152,9 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		
 		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
 		
-		if (myConfig.bUseSeparator && pIconList2 != NULL && pIconList != NULL)
+		if (myConfig.bUseSeparator && myDock && pIconList2 != NULL && pIconList != NULL)
 		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (9, NULL);
+			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (9, NULL);  // NULL => ne charge pas l'icone, car on est dans un thread.
 			pIconList = g_list_append (pIconList, pSeparatorIcon);
 		}
 		

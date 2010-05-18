@@ -37,6 +37,7 @@ struct _AppletData {
 	DBusGProxy * status_proxy;
 	DbusmenuGtkMenu *pMenu;
 	guint iSidGetMenuOnce;
+	gchar *cStatusIcon;
 	} ;
 
 

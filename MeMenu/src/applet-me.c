@@ -79,14 +79,9 @@ status_icon_cb (DBusGProxy * proxy, const char * icons, GError *error, CairoDock
 	g_return_if_fail(icons[0] != '\0');
 	g_print (" + new icon: '%s'\n", icons);
 	
-	gchar *cIconPath = cairo_dock_search_icon_s_path (icons);
-	if (cIconPath == NULL)
-		cIconPath = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, icons);
-	
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPath);
+	cd_me_set_status_icon (icons);
 	CD_APPLET_REDRAW_MY_ICON;
 	
-	g_free (cIconPath);
 	return;
 }
 
@@ -147,13 +142,32 @@ void cd_me_connect_to_service (CairoDockModuleInstance *myApplet)
 	g_signal_connect (G_OBJECT(myData.service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), myApplet);  // on sera appele une fois la connexion etablie.
 }
 
-
 void cd_me_disconnect_from_service (CairoDockModuleInstance *myApplet)
 {
 	if (myData.service)
 		g_object_unref (myData.service);
 	if (myData.status_proxy)
 		g_object_unref (myData.status_proxy);
+}
+
+void cd_me_set_status_icon (const gchar *cStatusIcon)
+{
+	if (cStatusIcon != myData.cStatusIcon)
+	{
+		g_free (myData.cStatusIcon);
+		myData.cStatusIcon = g_strdup (cStatusIcon);
+	}
+	
+	gchar *cIconPath = cairo_dock_search_icon_s_path (cStatusIcon);
+	gchar *cIconPathFallback = NULL;
+	if (cIconPath == NULL)  // l'icone ne sera pas trouvee, on met une icone par defaut.
+		cIconPathFallback = g_strdup_printf ("%s/%s.svg", MY_APPLET_SHARE_DATA_DIR, cStatusIcon);
+	
+	g_print ("set %s\n", cIconPathFallback ? cIconPathFallback : cStatusIcon);
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cStatusIcon);
+	
+	g_free (cIconPath);
+	g_free (cIconPathFallback);
 }
 
   ////////////////

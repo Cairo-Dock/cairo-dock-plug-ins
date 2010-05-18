@@ -28,6 +28,8 @@ void cd_me_connect_to_service (CairoDockModuleInstance *myApplet);
 
 void cd_me_disconnect_from_service (CairoDockModuleInstance *myApplet);
 
+void cd_me_set_status_icon (const gchar *cStatusIcon);
+
 
 GtkMenu *cd_me_get_menu (CairoDockModuleInstance *myApplet);
 
