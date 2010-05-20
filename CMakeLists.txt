@@ -479,7 +479,7 @@ configure_file (stack/data/stack.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/stack/data/
 add_subdirectory (stack)
 
 ############# STATUS NOTIFIER #################
-if ("${enable-scooby-do}" STREQUAL "yes")
+if ("${enable-status-notifier}" STREQUAL "yes")
 	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
 	set (VERSION_STATUS_NOTIFIER "0.0.1")
 	set (PACKAGE_STATUS_NOTIFIER "cd-status-notifier")
