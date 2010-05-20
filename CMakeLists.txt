@@ -241,6 +241,7 @@ set (icon_effectsdatadir "${pluginsdatadir}/icon-effect")
 configure_file (icon-effect/data/icon-effect.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf)
 add_subdirectory (icon-effect)
 
+############# INDICATOR-MENUS #################
 if ("${enable-indicator-menus}" STREQUAL "yes")
 	pkg_check_modules (INDICATOR_MENUS_PACKAGE indicator)
 	if ("${INDICATOR_MENUS_PACKAGE_FOUND}" STREQUAL "")
