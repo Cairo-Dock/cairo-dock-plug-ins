@@ -590,6 +590,18 @@ static GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *p
 	int iPrecision = DELTA_ROUND_DEGREE;
 	double x,y;  // 1ere coordonnee de la pointe.
 	
+	if (!pDock->container.bIsHorizontal)
+	{
+		double tmp;
+		tmp = w;
+		w = h;
+		h = tmp;
+		
+		tmp = rw;
+		rw = rh;
+		rh = tmp;
+	}
+	
 	for (t = 0;t <= 90;t += iPrecision, i++) // cote haut droit.
 	{
 		_cairo_dock_set_vertex_xy (i,
@@ -738,6 +750,17 @@ static GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl_without_arrow
 		pTopRightColor = my_diapo_simple_color_frame_start;
 	}
 	
+	if (!pDock->container.bIsHorizontal)
+	{
+		double tmp;
+		tmp = w;
+		w = h;
+		h = tmp;
+		
+		tmp = rw;
+		rw = rh;
+		rh = tmp;
+	}
 	for (t = 0;t <= 90;t += iPrecision, i++) // cote haut droit.
 	{
 		_cairo_dock_set_vertex_xy (i,
@@ -945,7 +968,11 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	{
 		glPushMatrix ();
 		glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
-		glScalef (fFrameWidth, fFrameHeight, 1.);
+		if (!pDock->container.bIsHorizontal)
+			glScalef (fFrameWidth, fFrameHeight, 1.);
+		else
+			glScalef (fFrameHeight, fFrameWidth, 1.);
+		g_print ("cadre : %2.fx%.2f\n", fFrameWidth, fFrameHeight);
 		
 		glEnable (GL_BLEND); // On active le blend
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -972,7 +999,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		pVertexTab = cd_rendering_generate_arrow_path_for_diapo_simple_opengl (pDock, fAlpha, color);
 		glColor4fv (color);
 		
-		//glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
+		glVertexPointer (_CAIRO_DOCK_PATH_DIM, GL_FLOAT, 0, pVertexTab);
 		_cairo_dock_set_vertex_pointer (pVertexTab);
 		glDrawArrays (GL_POLYGON, 0, 4);
 		

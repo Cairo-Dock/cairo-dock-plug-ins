@@ -341,6 +341,7 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	nullify_argument (cIconName);
 	nullify_argument (cIconCommand);
 	nullify_argument (cModuleName);
+	nullify_argument (cQuickInfo);
 	
 	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
 	if (pIcon == NULL)
@@ -362,6 +363,7 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 	nullify_argument (cIconName);
 	nullify_argument (cIconCommand);
 	nullify_argument (cModuleName);
+	nullify_argument (cLabel);
 	
 	Icon *pIcon = cd_dbus_find_icon (cIconName, cIconCommand, cModuleName);
 	if (pIcon == NULL)

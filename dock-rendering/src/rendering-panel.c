@@ -133,6 +133,7 @@ static void cd_compute_size (CairoDock *pDock)
 	g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
 	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight * pDock->container.fRatio + MAX (myLabels.iLabelSize, myBackground.iDockLineWidth + myBackground.iFrameMargin);
+	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIcons.fAmplitude));  // au moins la taille du FBO.
 
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	pDock->iMinDockHeight = 2 * (myBackground.iDockLineWidth + myBackground.iFrameMargin) + pDock->iMaxIconHeight * pDock->container.fRatio;
@@ -427,7 +428,6 @@ static void cd_render_opengl (CairoDock *pDock)
 	if (pFirstDrawnElement == NULL)
 		return;
 	
-	glPushMatrix ();
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
 	do
@@ -440,7 +440,6 @@ static void cd_render_opengl (CairoDock *pDock)
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
-	glPopMatrix ();
 	//glDisable (GL_LIGHTING);
 }
 
