@@ -968,11 +968,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	{
 		glPushMatrix ();
 		glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
-		if (!pDock->container.bIsHorizontal)
-			glScalef (fFrameWidth, fFrameHeight, 1.);
-		else
-			glScalef (fFrameHeight, fFrameWidth, 1.);
-		g_print ("cadre : %2.fx%.2f\n", fFrameWidth, fFrameHeight);
+		glScalef (fFrameWidth, fFrameHeight, 1.);
 		
 		glEnable (GL_BLEND); // On active le blend
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

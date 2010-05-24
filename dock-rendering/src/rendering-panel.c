@@ -132,7 +132,7 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);
 	g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
-	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight * pDock->container.fRatio + MAX (myLabels.iLabelSize, myBackground.iDockLineWidth + myBackground.iFrameMargin);
+	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight * pDock->container.fRatio + myBackground.iFrameMargin + myBackground.iDockLineWidth + myLabels.iLabelSize;
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIcons.fAmplitude));  // au moins la taille du FBO.
 
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
