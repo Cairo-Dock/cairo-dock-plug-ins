@@ -27,6 +27,7 @@
 //#include "rendering-diapo.h"
 #include "rendering-diapo-simple.h"
 #include "rendering-curve.h"
+#include "rendering-panel.h"
 #include "rendering-commons.h"
 #include "rendering-init.h"
 
@@ -37,6 +38,7 @@
 //#define CD_RENDERING_DIAPO_VIEW_NAME "Slide"
 #define CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME N_("Slide")
 #define CD_RENDERING_CURVE_VIEW_NAME N_("Curve")
+#define CD_RENDERING_PANEL_VIEW_NAME N_("Panel")
 
 
 int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
@@ -143,6 +145,8 @@ CD_APPLET_INIT_BEGIN
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
+	cd_rendering_register_panel_renderer 			(CD_RENDERING_PANEL_VIEW_NAME);
+	
 	if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
 	{
 		cairo_dock_set_all_views_to_default (0);
@@ -161,6 +165,7 @@ CD_APPLET_STOP_BEGIN
 	//cairo_dock_remove_renderer (CD_RENDERING_DIAPO_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
+	cairo_dock_remove_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	
 	cairo_dock_reset_all_views ();
 	cairo_dock_update_renderer_list_for_gui ();
@@ -175,6 +180,5 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cairo_dock_set_all_views_to_default (0);
 		cairo_dock_redraw_root_docks (FALSE);  // FALSE <=> main dock inclus.
-		///cairo_dock_reserve_space_for_all_root_docks (myAccessibility.bReserveSpace);
 	}
 CD_APPLET_RELOAD_END

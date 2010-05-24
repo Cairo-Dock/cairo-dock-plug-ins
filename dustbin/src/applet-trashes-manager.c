@@ -398,33 +398,36 @@ void cd_dustbin_delete_trash (GtkMenuItem *menu_item, const gchar *cDirectory)
 		}
 		else
 		{
-			CdDustbin *pDustbin;
-			GList *pElement;
-			for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+			if (g_iDesktopEnv == CAIRO_DOCK_KDE)  // apparemment la commande bash ne marche pas toujours sous KDE :-/
 			{
-				pDustbin = pElement->data;
-				///g_string_append_printf (sCommand, "\"%s\"/* \"%s\"/.* ", pDustbin->cPath, pDustbin->cPath);
-				_cd_dustbin_empty_dir (pDustbin->cPath);
+				cairo_dock_launch_command ("ktrash --empty");
+			}
+			else
+			{
+				CdDustbin *pDustbin;
+				GList *pElement;
+				for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+				{
+					pDustbin = pElement->data;
+					_cd_dustbin_empty_dir (pDustbin->cPath);
+				}
 			}
 		}
-		///cd_message (">>> %s", sCommand->str);
-		///system (sCommand->str);  // g_spawn_command_line_async() ne marche pas pour celle-la.
 		
-		gchar *cFileInfoPath= NULL;
-		gchar *cDefaultTrash = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), &cFileInfoPath);
-		if (cDefaultTrash != NULL && cFileInfoPath != NULL)  // il faut aussi effacer les infos.
+		if (g_iDesktopEnv != CAIRO_DOCK_KDE)
 		{
-			if (cDirectory == NULL || strcmp (cDirectory, cDefaultTrash) == 0)
+			gchar *cFileInfoPath = NULL;
+			gchar *cDefaultTrash = cairo_dock_fm_get_trash_path (g_getenv ("HOME"), &cFileInfoPath);
+			if (cDefaultTrash != NULL && cFileInfoPath != NULL)  // il faut aussi effacer les infos.
 			{
-				///g_string_printf (sCommand, "rm -rf \"%s\"/*info \"%s\"/.*info", cFileInfoPath, cFileInfoPath);
-				_cd_dustbin_empty_dir (cFileInfoPath);
-				///cd_message (">>> %s", sCommand->str);
-				///system (sCommand->str);
+				if (cDirectory == NULL || strcmp (cDirectory, cDefaultTrash) == 0)
+				{
+					_cd_dustbin_empty_dir (cFileInfoPath);
+				}
 			}
+			g_free (cDefaultTrash);
+			g_free (cFileInfoPath);
 		}
-		g_free (cDefaultTrash);
-		g_free (cFileInfoPath);
-		///g_string_free (sCommand, TRUE);
 	}
 }
 

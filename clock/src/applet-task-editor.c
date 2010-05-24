@@ -42,7 +42,6 @@ typedef enum _CDClockTaskColumns
 } CDClockTaskColumns;
 
 
-
 static gboolean on_delete_task_window (GtkWidget *pWidget, GdkEvent *event, CairoDockModuleInstance *myApplet)
 {
 	g_print ("%s ()\n", __func__);
@@ -231,8 +230,6 @@ static GtkListStore *_make_frequency_list_store (void)
 }
 
 #define _get_task_from_path(new_text, path_string)\
-	if (new_text == NULL || *new_text == '\0')\
-		return;\
 	GtkListStore *model = myData.pModel;\
 	GtkTreeIter it;\
 	if (! gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (model), &it, path_string))\
@@ -245,6 +242,8 @@ static GtkListStore *_make_frequency_list_store (void)
 	
 static void _on_change_title (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
 {
+	if (new_text == NULL || *new_text == '\0')\
+		return;
 	_get_task_from_path (new_text, path_string);
 	
 	g_free (pTask->cTitle);

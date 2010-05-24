@@ -2,24 +2,16 @@
 ########### sources ###############
 
 SET(cd-rendering_LIB_SRCS
-	rendering-init.c
-	rendering-init.h
-	rendering-config.c
-	rendering-config.h
-	rendering-caroussel.c
-	rendering-caroussel.h
-	rendering-parabole.c
-	rendering-parabole.h
-	rendering-3D-plane.c
-	rendering-3D-plane.h
-	rendering-rainbow.c
-	rendering-rainbow.h
-	rendering-diapo-simple.c
-	rendering-diapo-simple.h
-	rendering-curve.c
-	rendering-curve.h
-	rendering-commons.c
-	rendering-commons.h
+	rendering-init.c 		rendering-init.h
+	rendering-config.c 		rendering-config.h
+	rendering-caroussel.c 		rendering-caroussel.h
+	rendering-parabole.c 		rendering-parabole.h
+	rendering-3D-plane.c 		rendering-3D-plane.h
+	rendering-rainbow.c 		rendering-rainbow.h
+	rendering-diapo-simple.c 	rendering-diapo-simple.h
+	rendering-curve.c 		rendering-curve.h
+	rendering-panel.c 		rendering-panel.h
+	rendering-commons.c		rendering-commons.h
 	rendering-struct.h
 )
 

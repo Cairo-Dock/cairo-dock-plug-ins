@@ -1,0 +1,4 @@
+<b>Panel view</b>
+This view will display your dock like a gnome-panel or a KDE-panel.
+Icons are not zoomed on mouse over.
+Separators are rendered as spaces between the different groups of icons.
