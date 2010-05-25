@@ -101,7 +101,7 @@ configure_file (Clipper/data/Clipper.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Clipper
 add_subdirectory (Clipper)
 
 ############# CLOCK #################
-pkg_check_modules (LIBICAL_PACKAGE libical)
+pkg_check_modules ("LIBICAL_PACKAGE" "libical")
 if ("${LIBICAL_PACKAGE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libical; Clock plugin won't be built with iCal support.")
 endif()
@@ -206,7 +206,7 @@ if (NOT "${enable_gnome_integration}" STREQUAL "no")
 endif()
 
 ############# GNOME-INTEGRATION-OLD #################
-if (NOT "${enable_old_gnome_integration}" STREQUAL "no")
+if ("${enable_old_gnome_integration}" STREQUAL "yes")
 	pkg_check_modules (OLD_GNOME_INTEGRATION gnome-vfs-2.0 libgnomeui-2.0)
 	if ("${OLD_GNOME_INTEGRATION_FOUND}" STREQUAL "")
 		message (STATUS "Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.")
