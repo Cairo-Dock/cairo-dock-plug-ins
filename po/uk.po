@@ -7,13 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-03-30 20:46+0000\n"
+"PO-Revision-Date: 2010-05-21 20:15+0000\n"
 "Last-Translator: Maks Mokriev <mcree@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-31 03:59+0000\n"
+"X-Launchpad-Export-Date: 2010-05-22 04:03+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -298,14 +298,6 @@ msgstr "Очистити список недавніх документів?"
 #: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
 msgid "Enter a command to launch:"
 msgstr "Введіть команду для запуску:"
-
-#: ../Indicator-Menus/src/applet-init.c:29
-msgid "Indicator-Menus"
-msgstr ""
-
-#: ../Indicator-Menus/src/applet-init.c:32
-msgid "Menus to control your session, connection state, etc."
-msgstr ""
 
 #: ../MeMenu/src/applet-init.c:29
 #, fuzzy
@@ -800,7 +792,7 @@ msgstr "Введіть запит"
 
 #: ../Status-Notifier/src/applet-init.c:31
 msgid "Status Notifier"
-msgstr ""
+msgstr "Повідомлення про статус"
 
 #: ../Status-Notifier/src/applet-init.c:34
 msgid ""
@@ -809,6 +801,10 @@ msgid ""
 "It is designed to work on any desktop that supports the latest systray "
 "specifications (KDE, Gnome, etc)"
 msgstr ""
+"<b>Область повідомлень</b> для вашої панелі\n"
+"Також відома як 'системний трей'.\n"
+"Спроектована для роботи зі всіма робочими середовищами з врахуванням їх "
+"останніх специфікацій (KDE, Gnome та інші)"
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
@@ -906,19 +902,6 @@ msgstr ""
 "Цей аплет представляє собою мультяшні очі, які будуть слідкувати за вашим "
 "курсором."
 
-#: ../Toto/src/applet-init.c:28
-#, fuzzy
-msgid "Toto"
-msgstr "Tomboy"
-
-#: ../Toto/src/applet-init.c:31 ../template/src/applet-init.c:31
-msgid ""
-"Useful description\n"
-"and manual"
-msgstr ""
-"Корисний опис\n"
-"та інструкції"
-
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
 "Setup the luminosity of your screen directly from your dock.\n"
@@ -1005,15 +988,13 @@ msgstr "Налаштування каналів"
 #: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
 #: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:338
 #: ../clock/src/applet-draw.c:350 ../clock/src/applet-draw.c:371
-#: ../clock/src/applet-task-editor.c:120
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:119
 msgid "No title"
-msgstr "Невідома назва"
+msgstr "Немає заголовку"
 
 #: ../clock/src/applet-calendar.c:438
-#, fuzzy
 msgid "years"
-msgstr "чистый"
+msgstr "років"
 
 #: ../clock/src/applet-calendar.c:555
 #, fuzzy
@@ -1026,40 +1007,38 @@ msgstr "Пошук місцязнаходження:"
 
 #: ../clock/src/applet-draw.c:54
 msgid "1mn"
-msgstr ""
+msgstr "1хв"
 
 #: ../clock/src/applet-draw.c:59
 msgid "1h"
-msgstr ""
+msgstr "1г"
 
 #: ../clock/src/applet-draw.c:82
 msgid "The following task was scheduled at"
-msgstr ""
+msgstr "Наступна подія запланована на"
 
 #: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:352
 #: ../clock/src/applet-draw.c:373
 msgid "Repeat this message every:"
-msgstr ""
+msgstr "Повторювати подію кожні:"
 
 #: ../clock/src/applet-draw.c:337
 msgid "This task will begin in 15 minutes:"
-msgstr ""
+msgstr "Ця подія почнеться через 15 хвилин:"
 
 #: ../clock/src/applet-draw.c:349
-#, fuzzy
 msgid "It's time for the following task:"
-msgstr "Колір прожектору:"
+msgstr "Підійшов час для таких подій:"
 
 #: ../clock/src/applet-draw.c:370
 msgid "Tomorrow is the following anniversary:"
-msgstr ""
+msgstr "Завтра наступає річниця:"
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
 msgstr "Годинник"
 
 #: ../clock/src/applet-init.c:38
-#, fuzzy
 msgid ""
 "This applet displays time, date and a calandar.\n"
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
@@ -1071,14 +1050,15 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
-"Цей аплет відображає дату та час на вашій панелі.\n"
-"Доступно 2 вида: електронні та аналогові, що базуються на Cairo-Clock.\n"
-"Сумісний з темами Cairo-Clock та, якщо відкріпити, може виглядати не гірше "
-"ніж власне Cairo-Clock.\n"
-"Підтримує нагадування, має вбудований календар, дозволяє встановлювати дату "
-"та час.\n"
-"Ліве клацання, щоб показати/приховати календар, середнє - щоб встановити "
-"сигнал нагадування."
+"Цей аплет показує час, дату та календар.\n"
+"Доступно два види:<b>цифровий</b> та <b>аналоговий</b>.\n"
+"Аналоговий вид сумісний з темами від Cairo-Dock і ви можете від'єднати аплет "
+"від панелі, отримуючи не гірше за Cairo-Clock.\n"
+"На ліве клацання відображається <b>календар</b>, де ви можете <b>управляти "
+"подіями</b>.\n"
+"Також підтримується нагадування та установка дати і часу.\n"
+"Ліве клацання показує/приховує календар, середнє клацання зупиняє "
+"нагадування, подвійне клацання на дні тижня встановлює подію."
 
 #: ../clock/src/applet-notifications.c:62
 msgid ""
@@ -1101,76 +1081,67 @@ msgid "Set up time and date"
 msgstr "Встановити дату і час"
 
 #: ../clock/src/applet-notifications.c:91
-#, fuzzy
 msgid "Show today's tasks"
-msgstr "Знайти сьогоднішні нотатки"
+msgstr "Показати сьогоднішні події"
 
 #: ../clock/src/applet-notifications.c:92
-#, fuzzy
 msgid "Show this week's tasks"
-msgstr "Знайти тижневі нотатки"
+msgstr "Показати події цього тижня"
 
-#: ../clock/src/applet-task-editor.c:157
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:156
 msgid "Add a new task"
-msgstr "Додати стільницю"
+msgstr "Додати нову подію"
 
-#: ../clock/src/applet-task-editor.c:178
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:177
 msgid "Delete this task"
-msgstr "Видалити цю нотатку"
+msgstr "Видалити цю подію"
 
-#: ../clock/src/applet-task-editor.c:216
+#: ../clock/src/applet-task-editor.c:215
 msgid "Don't repeat"
-msgstr ""
+msgstr "Не повторювати"
 
-#: ../clock/src/applet-task-editor.c:222
+#: ../clock/src/applet-task-editor.c:221
 msgid "Each month"
-msgstr ""
+msgstr "Кожного місяця"
 
-#: ../clock/src/applet-task-editor.c:228
+#: ../clock/src/applet-task-editor.c:227
 msgid "Each year"
-msgstr ""
+msgstr "Кожного року"
 
-#: ../clock/src/applet-task-editor.c:352
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:351
 msgid "each month"
-msgstr "Шукати в Інтернеті"
+msgstr "кожного місяця"
 
-#: ../clock/src/applet-task-editor.c:355
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:354
 msgid "each year"
-msgstr "Погода"
+msgstr "кожного року"
 
-#: ../clock/src/applet-task-editor.c:393
+#: ../clock/src/applet-task-editor.c:392
 msgid "Right-click to add a new task."
-msgstr ""
+msgstr "Праве клацання для додавання події."
 
-#: ../clock/src/applet-task-editor.c:399 ../musicPlayer/src/applet-draw.c:329
+#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:329
 #: ../RSSreader/data/messages:135
 msgid "Title"
 msgstr "Назва"
 
-#: ../clock/src/applet-task-editor.c:406
+#: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:151
 msgid "Text"
 msgstr "Текст"
 
-#: ../clock/src/applet-task-editor.c:413
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:412
 msgid "Time"
-msgstr "час"
+msgstr "Час"
 
-#: ../clock/src/applet-task-editor.c:427
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:426
 msgid "Freq."
-msgstr "Вогонь"
+msgstr "Частота"
 
-#: ../clock/src/applet-task-editor.c:434
-#, fuzzy
+#: ../clock/src/applet-task-editor.c:433
 msgid "Tags"
-msgstr "Зображення"
+msgstr "Мітки"
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -1434,36 +1405,41 @@ msgstr "Отримати текст"
 msgid "Remove from history"
 msgstr "Видалити з історії"
 
-#: ../dock-rendering/src/rendering-init.c:33 ../dock-rendering/data/messages:7
+#: ../dock-rendering/src/rendering-init.c:34 ../dock-rendering/data/messages:7
 msgid "Caroussel"
 msgstr "Карусель"
 
-#: ../dock-rendering/src/rendering-init.c:34
+#: ../dock-rendering/src/rendering-init.c:35
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
 msgstr "3D проекція"
 
-#: ../dock-rendering/src/rendering-init.c:35
+#: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:25
 msgid "Parabolic"
 msgstr "Парабола"
 
-#: ../dock-rendering/src/rendering-init.c:36
+#: ../dock-rendering/src/rendering-init.c:37
 #: ../dock-rendering/data/messages:49
 msgid "Rainbow"
 msgstr "Веселка"
 
-#: ../dock-rendering/src/rendering-init.c:38 ../shortcuts/data/messages:113
+#: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:113
 #: ../stack/data/messages:103
 msgid "Slide"
 msgstr "Ковзання"
 
-#: ../dock-rendering/src/rendering-init.c:39
+#: ../dock-rendering/src/rendering-init.c:40
 #: ../dock-rendering/data/messages:113
 msgid "Curve"
 msgstr "Крива"
 
-#: ../dock-rendering/src/rendering-init.c:121
+#: ../dock-rendering/src/rendering-init.c:41
+#, fuzzy
+msgid "Panel"
+msgstr "Пауза"
+
+#: ../dock-rendering/src/rendering-init.c:123
 msgid ""
 "This module adds different views to your dock.\n"
 "Any dock or sub-dock can be displayed with the view of your choice.\n"
@@ -1568,7 +1544,7 @@ msgstr "Ви збираєтеся видалити всі файли з %s. Вп
 msgid "You are about to delete all files in all dustbins. Continue?"
 msgstr "Ви збираєтеся видалити всі файли зі всіх смітників. Впевнені?"
 
-#: ../dustbin/src/applet-trashes-manager.c:459
+#: ../dustbin/src/applet-trashes-manager.c:462
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -1688,16 +1664,16 @@ msgid "logout"
 msgstr "Завершення сеансу"
 
 #: ../logout/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "A very simple applet that adds an icon to log out from your session\n"
 "Left click to log out or change the user, middle click to shutdown or "
 "restart\n"
 "  (you can invert the buttons if you prefer to shutdown on left-click)."
 msgstr ""
-"Дуже простий аплет, який додає значок завершення сеансу\n"
-"Ліве клацання для завершення сеансу, середнє для виключення системи\n"
-"Якщо захочете, можете поміняти місцями виконання команд."
+"Дуже простий аплет, який додає кнопку виходу з сеансу\n"
+"Ліве клацання, для виходу або зміни користувача, середнє клацання, для "
+"вимкнення або перезавантаження\n"
+"(якщо хочете, можете поміняти ці дії місцями)."
 
 #: ../logout/src/applet-notifications.c:101
 msgid "Choose in how many minutes your PC will stop:"
@@ -2075,7 +2051,6 @@ msgid "shortcuts"
 msgstr "ярлики"
 
 #: ../shortcuts/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
 "It can manage disks, network points, and Nautilus bookmarks (even if you "
@@ -2086,15 +2061,13 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
-"Цей аплет забезпечує швидкий доступ до ваших ярликів.\n"
-"Може містити посилання на диски, мережеві з'єднання та закладки Nautilus "
-"(навіть, якщо у вас немає Nautilus).\n"
-"Перетягніть каталог на панель або суб-панель, щоб створити закладку.\n"
-"Середнє клацання на головному значку, щоб швидко перемикнутися на "
-"стільницю.\n"
-"Середнє клацання на приєднаному томі, щоб швидко приєднати/від'єднати його.\n"
-"Цей аплет такоє відображає корисну інформацію про ваші диски: вільне місце, "
-"тип, тощо."
+"Аплет, який дозволяє швидко дістатися ваших ярликів.\n"
+"Підтримує управління дисками, мережевими ресурсами та закладками Nautilus "
+"(навіть, якщо ви його не використовуєте).\n"
+"Перетягніть каталог на головний значок або суб-панель, щоб додати ярлик.\n"
+"Середнє клацання на головному значку показує ваш домашній каталог.\n"
+"Середнє клацання на приєднаному томі швидко його від'єднує/приєднує.\n"
+"Аплет показує важливу інформацію про ваші диски: вільне місце, тип, тощо."
 
 #: ../shortcuts/src/applet-notifications.c:81
 msgid "Remove this bookmark"
@@ -2146,25 +2119,21 @@ msgid "Change screen resolution"
 msgstr "Зміна розміру екрану"
 
 #: ../showDesktop/src/applet-notifications.c:299
-#, fuzzy
 msgid "Move to the Desktop"
-msgstr "Показати стільницю"
+msgstr "Перемістити до Стільниці"
 
 #: ../showDesktop/src/applet-notifications.c:300
-#, fuzzy
 msgid "Copy to the Desktop"
-msgstr "Показати стільницю"
+msgstr "Скопіювати до Стільниці"
 
 #: ../showDesktop/src/applet-notifications.c:301
 #: ../showDesktop/src/applet-notifications.c:305
-#, fuzzy
 msgid "Link to the Desktop"
-msgstr "Показати стільницю"
+msgstr "Створити посилання на Стільниці"
 
 #: ../showDesktop/src/applet-notifications.c:306
-#, fuzzy
 msgid "Download onto the Desktop"
-msgstr "Показати стільницю"
+msgstr "Завантажити на Стільницю"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -2370,6 +2339,14 @@ msgstr ""
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
 msgstr "CD_APPLET_NAME"
+
+#: ../template/src/applet-init.c:31
+msgid ""
+"Useful description\n"
+"and manual"
+msgstr ""
+"Корисний опис\n"
+"та інструкції"
 
 #: ../terminal/src/terminal-callbacks.c:82
 #: ../terminal/src/terminal-widget.c:352
@@ -2814,22 +2791,21 @@ msgstr "Тип сітки:"
 
 #: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
 #: ../Doncky/data/messages:43 ../GMenu/data/messages:45
-#: ../Indicator-Menus/data/messages:45 ../MeMenu/data/messages:39
-#: ../Network-Monitor/data/messages:45 ../RSSreader/data/messages:47
-#: ../Status-Notifier/data/messages:45 ../System-Monitor/data/messages:43
-#: ../Toons/data/messages:43 ../Xgamma/data/messages:45
-#: ../alsaMixer/data/messages:43 ../clock/data/messages:45
-#: ../compiz-icon/data/messages:41 ../dnd2share/data/messages:41
-#: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:41
-#: ../logout/data/messages:45 ../mail/data/messages:41
-#: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
-#: ../powermanager/data/messages:43 ../quick-browser/data/messages:47
-#: ../shortcuts/data/messages:45 ../showDesktop/data/messages:49
-#: ../slider/data/messages:43 ../stack/data/messages:47
-#: ../switcher/data/messages:37 ../systray/data/messages:33
-#: ../terminal/data/messages:45 ../tomboy/data/messages:59
-#: ../weather/data/messages:43 ../weblets/data/messages:45
-#: ../wifi/data/messages:43
+#: ../MeMenu/data/messages:39 ../Network-Monitor/data/messages:45
+#: ../RSSreader/data/messages:47 ../Status-Notifier/data/messages:45
+#: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
+#: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:43
+#: ../clock/data/messages:45 ../compiz-icon/data/messages:41
+#: ../dnd2share/data/messages:41 ../dustbin/data/messages:41
+#: ../keyboard-indicator/data/messages:41 ../logout/data/messages:45
+#: ../mail/data/messages:41 ../musicPlayer/data/messages:43
+#: ../netspeed/data/messages:41 ../powermanager/data/messages:43
+#: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
+#: ../showDesktop/data/messages:49 ../slider/data/messages:43
+#: ../stack/data/messages:47 ../switcher/data/messages:37
+#: ../systray/data/messages:33 ../terminal/data/messages:45
+#: ../tomboy/data/messages:59 ../weather/data/messages:43
+#: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
 msgstr "Звичайна"
 
@@ -2848,16 +2824,16 @@ msgstr "Колір сяяння"
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
 #: ../Clipper/data/messages:113 ../Doncky/data/messages:9
 #: ../Doncky/data/messages:91 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:99 ../Indicator-Menus/data/messages:9
-#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
-#: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:165
-#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:135
-#: ../alsaMixer/data/messages:139 ../alsaMixer/data/messages:143
-#: ../dnd2share/data/messages:9 ../logout/data/messages:9
-#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
-#: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:139
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../GMenu/data/messages:99 ../RSSreader/data/messages:11
+#: ../RSSreader/data/messages:129 ../System-Monitor/data/messages:157
+#: ../System-Monitor/data/messages:165 ../Xgamma/data/messages:9
+#: ../alsaMixer/data/messages:135 ../alsaMixer/data/messages:139
+#: ../alsaMixer/data/messages:143 ../dnd2share/data/messages:9
+#: ../logout/data/messages:9 ../quick-browser/data/messages:11
+#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../switcher/data/messages:139 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Залиште порожнім, щоб використовувати типове."
 
@@ -2983,43 +2959,41 @@ msgstr "Термін миготіння:"
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
 #: ../Doncky/data/messages:1 ../GMenu/data/messages:1
-#: ../Indicator-Menus/data/messages:1 ../MeMenu/data/messages:1
-#: ../Network-Monitor/data/messages:1 ../RSSreader/data/messages:1
-#: ../Status-Notifier/data/messages:1 ../System-Monitor/data/messages:1
-#: ../Toons/data/messages:1 ../Xgamma/data/messages:1
-#: ../alsaMixer/data/messages:1 ../clock/data/messages:1
-#: ../compiz-icon/data/messages:1 ../dnd2share/data/messages:1
-#: ../dustbin/data/messages:1 ../keyboard-indicator/data/messages:1
-#: ../logout/data/messages:1 ../mail/data/messages:1
-#: ../musicPlayer/data/messages:1 ../netspeed/data/messages:1
-#: ../powermanager/data/messages:1 ../quick-browser/data/messages:1
-#: ../shortcuts/data/messages:1 ../showDesktop/data/messages:1
-#: ../slider/data/messages:1 ../stack/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../terminal/data/messages:1 ../tomboy/data/messages:1
-#: ../weather/data/messages:1 ../weblets/data/messages:1
-#: ../wifi/data/messages:1
+#: ../MeMenu/data/messages:1 ../Network-Monitor/data/messages:1
+#: ../RSSreader/data/messages:1 ../Status-Notifier/data/messages:1
+#: ../System-Monitor/data/messages:1 ../Toons/data/messages:1
+#: ../Xgamma/data/messages:1 ../alsaMixer/data/messages:1
+#: ../clock/data/messages:1 ../compiz-icon/data/messages:1
+#: ../dnd2share/data/messages:1 ../dustbin/data/messages:1
+#: ../keyboard-indicator/data/messages:1 ../logout/data/messages:1
+#: ../mail/data/messages:1 ../musicPlayer/data/messages:1
+#: ../netspeed/data/messages:1 ../powermanager/data/messages:1
+#: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
+#: ../showDesktop/data/messages:1 ../slider/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../terminal/data/messages:1
+#: ../tomboy/data/messages:1 ../weather/data/messages:1
+#: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Значок"
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../Doncky/data/messages:3 ../GMenu/data/messages:3
-#: ../Indicator-Menus/data/messages:3 ../MeMenu/data/messages:3
-#: ../Network-Monitor/data/messages:3 ../RSSreader/data/messages:3
-#: ../Status-Notifier/data/messages:3 ../System-Monitor/data/messages:3
-#: ../Toons/data/messages:3 ../Xgamma/data/messages:3
-#: ../alsaMixer/data/messages:3 ../clock/data/messages:3
-#: ../compiz-icon/data/messages:3 ../dnd2share/data/messages:3
-#: ../dustbin/data/messages:3 ../keyboard-indicator/data/messages:3
-#: ../logout/data/messages:3 ../mail/data/messages:3
-#: ../musicPlayer/data/messages:3 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:3 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:3 ../showDesktop/data/messages:3
-#: ../slider/data/messages:3 ../stack/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../terminal/data/messages:3 ../tomboy/data/messages:3
-#: ../weather/data/messages:3 ../weblets/data/messages:3
-#: ../wifi/data/messages:3
+#: ../MeMenu/data/messages:3 ../Network-Monitor/data/messages:3
+#: ../RSSreader/data/messages:3 ../Status-Notifier/data/messages:3
+#: ../System-Monitor/data/messages:3 ../Toons/data/messages:3
+#: ../Xgamma/data/messages:3 ../alsaMixer/data/messages:3
+#: ../clock/data/messages:3 ../compiz-icon/data/messages:3
+#: ../dnd2share/data/messages:3 ../dustbin/data/messages:3
+#: ../keyboard-indicator/data/messages:3 ../logout/data/messages:3
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:3
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:3
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
+#: ../showDesktop/data/messages:3 ../slider/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../terminal/data/messages:3
+#: ../tomboy/data/messages:3 ../weather/data/messages:3
+#: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
 msgstr "Встановіть 0, щоб використовувати стандартний розмір аплету."
 
@@ -3033,65 +3007,64 @@ msgstr "Ім'я значка, коли пінгвін не вільний:"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
 #: ../Doncky/data/messages:13 ../GMenu/data/messages:13
-#: ../Indicator-Menus/data/messages:13 ../MeMenu/data/messages:7
-#: ../Network-Monitor/data/messages:11 ../RSSreader/data/messages:15
-#: ../Status-Notifier/data/messages:13 ../System-Monitor/data/messages:9
-#: ../Toons/data/messages:9 ../Xgamma/data/messages:13
-#: ../alsaMixer/data/messages:11 ../clock/data/messages:11
-#: ../compiz-icon/data/messages:9 ../dnd2share/data/messages:13
-#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
-#: ../logout/data/messages:13 ../mail/data/messages:9
-#: ../musicPlayer/data/messages:11 ../netspeed/data/messages:9
-#: ../powermanager/data/messages:9 ../quick-browser/data/messages:15
-#: ../shortcuts/data/messages:13 ../showDesktop/data/messages:17
-#: ../slider/data/messages:9 ../stack/data/messages:15
-#: ../switcher/data/messages:13 ../systray/data/messages:9
-#: ../terminal/data/messages:13 ../tomboy/data/messages:9
-#: ../tomboy/data/messages:19 ../weather/data/messages:11
-#: ../weblets/data/messages:13 ../wifi/data/messages:9
+#: ../MeMenu/data/messages:7 ../Network-Monitor/data/messages:11
+#: ../RSSreader/data/messages:15 ../Status-Notifier/data/messages:13
+#: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
+#: ../Xgamma/data/messages:13 ../alsaMixer/data/messages:11
+#: ../clock/data/messages:11 ../compiz-icon/data/messages:9
+#: ../dnd2share/data/messages:13 ../dustbin/data/messages:9
+#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:13
+#: ../mail/data/messages:9 ../musicPlayer/data/messages:11
+#: ../netspeed/data/messages:9 ../powermanager/data/messages:9
+#: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
+#: ../showDesktop/data/messages:17 ../slider/data/messages:9
+#: ../stack/data/messages:15 ../switcher/data/messages:13
+#: ../systray/data/messages:9 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../tomboy/data/messages:19
+#: ../weather/data/messages:11 ../weblets/data/messages:13
+#: ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Ім'я панелі, до якої він належить:"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
-#: ../GMenu/data/messages:15 ../Indicator-Menus/data/messages:15
-#: ../MeMenu/data/messages:9 ../Network-Monitor/data/messages:15
-#: ../RSSreader/data/messages:17 ../Scooby-Do/data/messages:117
-#: ../Status-Notifier/data/messages:15 ../System-Monitor/data/messages:13
-#: ../Toons/data/messages:13 ../Xgamma/data/messages:15
-#: ../alsaMixer/data/messages:13 ../clock/data/messages:15
-#: ../compiz-icon/data/messages:11 ../dnd2share/data/messages:15
-#: ../dustbin/data/messages:11 ../keyboard-indicator/data/messages:11
-#: ../logout/data/messages:15 ../mail/data/messages:11
-#: ../musicPlayer/data/messages:13 ../netspeed/data/messages:11
-#: ../powermanager/data/messages:13 ../quick-browser/data/messages:17
-#: ../shortcuts/data/messages:15 ../showDesktop/data/messages:19
-#: ../slider/data/messages:13 ../stack/data/messages:17
-#: ../switcher/data/messages:15 ../systray/data/messages:11
-#: ../terminal/data/messages:15 ../tomboy/data/messages:29
-#: ../weather/data/messages:13 ../weblets/data/messages:15
-#: ../wifi/data/messages:13
+#: ../GMenu/data/messages:15 ../MeMenu/data/messages:9
+#: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
+#: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
+#: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
+#: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:13
+#: ../clock/data/messages:15 ../compiz-icon/data/messages:11
+#: ../dnd2share/data/messages:15 ../dustbin/data/messages:11
+#: ../keyboard-indicator/data/messages:11 ../logout/data/messages:15
+#: ../mail/data/messages:11 ../musicPlayer/data/messages:13
+#: ../netspeed/data/messages:11 ../powermanager/data/messages:13
+#: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
+#: ../showDesktop/data/messages:19 ../slider/data/messages:13
+#: ../stack/data/messages:17 ../switcher/data/messages:15
+#: ../systray/data/messages:11 ../terminal/data/messages:15
+#: ../tomboy/data/messages:29 ../weather/data/messages:13
+#: ../weblets/data/messages:15 ../wifi/data/messages:13
 msgid "Applet's Handbook"
 msgstr "Інструкція з аплетів"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
-#: ../GMenu/data/messages:91 ../Indicator-Menus/data/messages:91
-#: ../MeMenu/data/messages:85 ../Network-Monitor/data/messages:91
-#: ../RSSreader/data/messages:93 ../Scooby-Do/data/messages:1
-#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:89
-#: ../Toons/data/messages:89 ../Xgamma/data/messages:91
-#: ../alsaMixer/data/messages:89 ../compiz-icon/data/messages:87
-#: ../dnd2share/data/messages:87 ../keyboard-indicator/data/messages:87
-#: ../logout/data/messages:91 ../mail/data/messages:87
-#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:89
-#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
-#: ../quick-browser/data/messages:93 ../show-mouse/data/messages:1
-#: ../showDesktop/data/messages:95 ../slider/data/messages:89
-#: ../stack/data/messages:93 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:45
-#: ../terminal/data/messages:91 ../tomboy/data/messages:105
-#: ../weather/data/messages:89 ../weather/data/messages:91
-#: ../weblets/data/messages:91 ../wifi/data/messages:89
+#: ../GMenu/data/messages:91 ../MeMenu/data/messages:85
+#: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
+#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
+#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
+#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:89
+#: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:87
+#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:91
+#: ../mail/data/messages:87 ../motion-blur/data/messages:1
+#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
+#: ../powermanager/data/messages:89 ../quick-browser/data/messages:93
+#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
+#: ../slider/data/messages:89 ../stack/data/messages:93
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:45 ../terminal/data/messages:91
+#: ../tomboy/data/messages:105 ../weather/data/messages:89
+#: ../weather/data/messages:91 ../weblets/data/messages:91
+#: ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Налаштування"
 
@@ -3239,109 +3212,108 @@ msgid "Action_6/Command_4"
 msgstr "Дія_6/Команда_4"
 
 #: ../Clipper/data/messages:109 ../Doncky/data/messages:5
-#: ../GMenu/data/messages:5 ../Indicator-Menus/data/messages:5
-#: ../MeMenu/data/messages:5 ../Network-Monitor/data/messages:5
-#: ../RSSreader/data/messages:5 ../Status-Notifier/data/messages:5
-#: ../System-Monitor/data/messages:5 ../Toons/data/messages:5
-#: ../Xgamma/data/messages:5 ../alsaMixer/data/messages:5
-#: ../clock/data/messages:5 ../compiz-icon/data/messages:5
-#: ../dnd2share/data/messages:5 ../dustbin/data/messages:5
-#: ../keyboard-indicator/data/messages:5 ../logout/data/messages:5
-#: ../mail/data/messages:5 ../musicPlayer/data/messages:5
-#: ../netspeed/data/messages:5 ../powermanager/data/messages:5
-#: ../quick-browser/data/messages:5 ../shortcuts/data/messages:5
-#: ../showDesktop/data/messages:5 ../slider/data/messages:5
-#: ../stack/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../terminal/data/messages:5
-#: ../tomboy/data/messages:5 ../weather/data/messages:5
-#: ../weblets/data/messages:5 ../wifi/data/messages:5
+#: ../GMenu/data/messages:5 ../MeMenu/data/messages:5
+#: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
+#: ../Status-Notifier/data/messages:5 ../System-Monitor/data/messages:5
+#: ../Toons/data/messages:5 ../Xgamma/data/messages:5
+#: ../alsaMixer/data/messages:5 ../clock/data/messages:5
+#: ../compiz-icon/data/messages:5 ../dnd2share/data/messages:5
+#: ../dustbin/data/messages:5 ../keyboard-indicator/data/messages:5
+#: ../logout/data/messages:5 ../mail/data/messages:5
+#: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
+#: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
+#: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
+#: ../slider/data/messages:5 ../stack/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../terminal/data/messages:5 ../tomboy/data/messages:5
+#: ../weather/data/messages:5 ../weblets/data/messages:5
+#: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Визначте розмір значка для цього аплету"
 
 #: ../Clipper/data/messages:111 ../Doncky/data/messages:7
-#: ../GMenu/data/messages:7 ../Indicator-Menus/data/messages:7
-#: ../Network-Monitor/data/messages:9 ../RSSreader/data/messages:9
-#: ../System-Monitor/data/messages:7 ../Toons/data/messages:7
-#: ../Xgamma/data/messages:7 ../alsaMixer/data/messages:9
-#: ../clock/data/messages:9 ../compiz-icon/data/messages:7
-#: ../dnd2share/data/messages:7 ../dustbin/data/messages:7
-#: ../keyboard-indicator/data/messages:7 ../logout/data/messages:7
-#: ../mail/data/messages:7 ../musicPlayer/data/messages:9
-#: ../netspeed/data/messages:7 ../quick-browser/data/messages:9
-#: ../shortcuts/data/messages:7 ../showDesktop/data/messages:7
-#: ../slider/data/messages:7 ../stack/data/messages:9
-#: ../switcher/data/messages:7 ../weather/data/messages:9
-#: ../weblets/data/messages:7 ../wifi/data/messages:7
+#: ../GMenu/data/messages:7 ../Network-Monitor/data/messages:9
+#: ../RSSreader/data/messages:9 ../System-Monitor/data/messages:7
+#: ../Toons/data/messages:7 ../Xgamma/data/messages:7
+#: ../alsaMixer/data/messages:9 ../clock/data/messages:9
+#: ../compiz-icon/data/messages:7 ../dnd2share/data/messages:7
+#: ../dustbin/data/messages:7 ../keyboard-indicator/data/messages:7
+#: ../logout/data/messages:7 ../mail/data/messages:7
+#: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
+#: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
+#: ../showDesktop/data/messages:7 ../slider/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../weather/data/messages:9 ../weblets/data/messages:7
+#: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Ім'я значка, як воно буде відображено в підписі на панелі:"
 
 #: ../Clipper/data/messages:115 ../Doncky/data/messages:11
-#: ../GMenu/data/messages:11 ../Indicator-Menus/data/messages:11
-#: ../RSSreader/data/messages:13 ../Xgamma/data/messages:11
-#: ../dnd2share/data/messages:11 ../logout/data/messages:11
-#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
-#: ../showDesktop/data/messages:11 ../stack/data/messages:13
-#: ../switcher/data/messages:11 ../terminal/data/messages:11
-#: ../weblets/data/messages:11
+#: ../GMenu/data/messages:11 ../RSSreader/data/messages:13
+#: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
+#: ../logout/data/messages:11 ../quick-browser/data/messages:13
+#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
+#: ../stack/data/messages:13 ../switcher/data/messages:11
+#: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "Назва файлу зображення:"
 
 #: ../Clipper/data/messages:121 ../Doncky/data/messages:15
-#: ../GMenu/data/messages:17 ../Indicator-Menus/data/messages:17
-#: ../MeMenu/data/messages:11 ../Network-Monitor/data/messages:17
-#: ../RSSreader/data/messages:19 ../Status-Notifier/data/messages:17
-#: ../System-Monitor/data/messages:15 ../Toons/data/messages:15
-#: ../Xgamma/data/messages:17 ../alsaMixer/data/messages:15
-#: ../clock/data/messages:17 ../compiz-icon/data/messages:13
-#: ../dnd2share/data/messages:17 ../dustbin/data/messages:13
-#: ../keyboard-indicator/data/messages:13 ../logout/data/messages:17
-#: ../mail/data/messages:13 ../musicPlayer/data/messages:15
-#: ../netspeed/data/messages:13 ../powermanager/data/messages:15
-#: ../quick-browser/data/messages:19 ../shortcuts/data/messages:17
-#: ../showDesktop/data/messages:21 ../slider/data/messages:15
-#: ../stack/data/messages:19 ../switcher/data/messages:17
-#: ../systray/data/messages:13 ../terminal/data/messages:17
-#: ../tomboy/data/messages:31 ../weather/data/messages:15
-#: ../weblets/data/messages:17 ../wifi/data/messages:15
+#: ../GMenu/data/messages:17 ../MeMenu/data/messages:11
+#: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
+#: ../Status-Notifier/data/messages:17 ../System-Monitor/data/messages:15
+#: ../Toons/data/messages:15 ../Xgamma/data/messages:17
+#: ../alsaMixer/data/messages:15 ../clock/data/messages:17
+#: ../compiz-icon/data/messages:13 ../dnd2share/data/messages:17
+#: ../dustbin/data/messages:13 ../keyboard-indicator/data/messages:13
+#: ../logout/data/messages:17 ../mail/data/messages:13
+#: ../musicPlayer/data/messages:15 ../netspeed/data/messages:13
+#: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
+#: ../shortcuts/data/messages:17 ../showDesktop/data/messages:21
+#: ../slider/data/messages:15 ../stack/data/messages:19
+#: ../switcher/data/messages:17 ../systray/data/messages:13
+#: ../terminal/data/messages:17 ../tomboy/data/messages:31
+#: ../weather/data/messages:15 ../weblets/data/messages:17
+#: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "Десклет"
 
 #: ../Clipper/data/messages:123 ../Doncky/data/messages:17
-#: ../GMenu/data/messages:19 ../Indicator-Menus/data/messages:19
-#: ../MeMenu/data/messages:13 ../Network-Monitor/data/messages:19
-#: ../RSSreader/data/messages:21 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:19 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
-#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
-#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
-#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../powermanager/data/messages:17
-#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
-#: ../showDesktop/data/messages:23 ../slider/data/messages:17
-#: ../stack/data/messages:21 ../switcher/data/messages:19
-#: ../systray/data/messages:15 ../terminal/data/messages:19
-#: ../tomboy/data/messages:33 ../weather/data/messages:17
-#: ../weblets/data/messages:19 ../wifi/data/messages:17
+#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
+#: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:17
+#: ../Toons/data/messages:17 ../Xgamma/data/messages:19
+#: ../alsaMixer/data/messages:17 ../clock/data/messages:19
+#: ../compiz-icon/data/messages:15 ../dnd2share/data/messages:19
+#: ../dustbin/data/messages:15 ../keyboard-indicator/data/messages:15
+#: ../logout/data/messages:19 ../mail/data/messages:15
+#: ../musicPlayer/data/messages:17 ../netspeed/data/messages:15
+#: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
+#: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
+#: ../slider/data/messages:17 ../stack/data/messages:21
+#: ../switcher/data/messages:19 ../systray/data/messages:15
+#: ../terminal/data/messages:19 ../tomboy/data/messages:33
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:17
 msgid "Position"
 msgstr "Позиція"
 
 #: ../Clipper/data/messages:125 ../Doncky/data/messages:19
-#: ../GMenu/data/messages:21 ../Indicator-Menus/data/messages:21
-#: ../MeMenu/data/messages:15 ../Network-Monitor/data/messages:21
-#: ../RSSreader/data/messages:23 ../System-Monitor/data/messages:19
-#: ../Toons/data/messages:19 ../Xgamma/data/messages:21
-#: ../alsaMixer/data/messages:19 ../clock/data/messages:21
-#: ../compiz-icon/data/messages:17 ../dnd2share/data/messages:21
-#: ../dustbin/data/messages:17 ../keyboard-indicator/data/messages:17
-#: ../logout/data/messages:21 ../mail/data/messages:17
-#: ../musicPlayer/data/messages:19 ../netspeed/data/messages:17
-#: ../powermanager/data/messages:19 ../quick-browser/data/messages:23
-#: ../shortcuts/data/messages:21 ../showDesktop/data/messages:25
-#: ../slider/data/messages:19 ../stack/data/messages:23
-#: ../switcher/data/messages:21 ../terminal/data/messages:21
-#: ../tomboy/data/messages:35 ../weather/data/messages:19
-#: ../weblets/data/messages:21 ../wifi/data/messages:19
+#: ../GMenu/data/messages:21 ../MeMenu/data/messages:15
+#: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
+#: ../System-Monitor/data/messages:19 ../Toons/data/messages:19
+#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:19
+#: ../clock/data/messages:21 ../compiz-icon/data/messages:17
+#: ../dnd2share/data/messages:21 ../dustbin/data/messages:17
+#: ../keyboard-indicator/data/messages:17 ../logout/data/messages:21
+#: ../mail/data/messages:17 ../musicPlayer/data/messages:19
+#: ../netspeed/data/messages:17 ../powermanager/data/messages:19
+#: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
+#: ../showDesktop/data/messages:25 ../slider/data/messages:19
+#: ../stack/data/messages:23 ../switcher/data/messages:21
+#: ../terminal/data/messages:21 ../tomboy/data/messages:35
+#: ../weather/data/messages:19 ../weblets/data/messages:21
+#: ../wifi/data/messages:19
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
@@ -3351,40 +3323,40 @@ msgstr ""
 "клацання."
 
 #: ../Clipper/data/messages:127 ../Doncky/data/messages:21
-#: ../GMenu/data/messages:23 ../Indicator-Menus/data/messages:23
-#: ../MeMenu/data/messages:17 ../Network-Monitor/data/messages:23
-#: ../RSSreader/data/messages:25 ../System-Monitor/data/messages:21
-#: ../Toons/data/messages:21 ../Xgamma/data/messages:23
-#: ../alsaMixer/data/messages:21 ../clock/data/messages:23
-#: ../compiz-icon/data/messages:19 ../dnd2share/data/messages:23
-#: ../dustbin/data/messages:19 ../keyboard-indicator/data/messages:19
-#: ../logout/data/messages:23 ../mail/data/messages:19
-#: ../musicPlayer/data/messages:21 ../netspeed/data/messages:19
-#: ../powermanager/data/messages:21 ../quick-browser/data/messages:25
-#: ../shortcuts/data/messages:23 ../showDesktop/data/messages:27
-#: ../slider/data/messages:21 ../stack/data/messages:25
-#: ../switcher/data/messages:23 ../terminal/data/messages:23
-#: ../tomboy/data/messages:37 ../weather/data/messages:21
-#: ../weblets/data/messages:23 ../wifi/data/messages:21
+#: ../GMenu/data/messages:23 ../MeMenu/data/messages:17
+#: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
+#: ../System-Monitor/data/messages:21 ../Toons/data/messages:21
+#: ../Xgamma/data/messages:23 ../alsaMixer/data/messages:21
+#: ../clock/data/messages:23 ../compiz-icon/data/messages:19
+#: ../dnd2share/data/messages:23 ../dustbin/data/messages:19
+#: ../keyboard-indicator/data/messages:19 ../logout/data/messages:23
+#: ../mail/data/messages:19 ../musicPlayer/data/messages:21
+#: ../netspeed/data/messages:19 ../powermanager/data/messages:21
+#: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
+#: ../showDesktop/data/messages:27 ../slider/data/messages:21
+#: ../stack/data/messages:25 ../switcher/data/messages:23
+#: ../terminal/data/messages:23 ../tomboy/data/messages:37
+#: ../weather/data/messages:21 ../weblets/data/messages:23
+#: ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "Заблокувати позицію"
 
 #: ../Clipper/data/messages:129 ../Doncky/data/messages:23
-#: ../GMenu/data/messages:25 ../Indicator-Menus/data/messages:25
-#: ../MeMenu/data/messages:19 ../Network-Monitor/data/messages:25
-#: ../RSSreader/data/messages:27 ../System-Monitor/data/messages:23
-#: ../Toons/data/messages:23 ../Xgamma/data/messages:25
-#: ../alsaMixer/data/messages:23 ../clock/data/messages:25
-#: ../compiz-icon/data/messages:21 ../dnd2share/data/messages:25
-#: ../dustbin/data/messages:21 ../keyboard-indicator/data/messages:21
-#: ../logout/data/messages:25 ../mail/data/messages:21
-#: ../musicPlayer/data/messages:23 ../netspeed/data/messages:21
-#: ../powermanager/data/messages:23 ../quick-browser/data/messages:27
-#: ../shortcuts/data/messages:25 ../showDesktop/data/messages:29
-#: ../slider/data/messages:23 ../stack/data/messages:27
-#: ../switcher/data/messages:25 ../terminal/data/messages:25
-#: ../tomboy/data/messages:39 ../weather/data/messages:23
-#: ../weblets/data/messages:25 ../wifi/data/messages:23
+#: ../GMenu/data/messages:25 ../MeMenu/data/messages:19
+#: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
+#: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
+#: ../Xgamma/data/messages:25 ../alsaMixer/data/messages:23
+#: ../clock/data/messages:25 ../compiz-icon/data/messages:21
+#: ../dnd2share/data/messages:25 ../dustbin/data/messages:21
+#: ../keyboard-indicator/data/messages:21 ../logout/data/messages:25
+#: ../mail/data/messages:21 ../musicPlayer/data/messages:23
+#: ../netspeed/data/messages:21 ../powermanager/data/messages:23
+#: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
+#: ../showDesktop/data/messages:29 ../slider/data/messages:23
+#: ../stack/data/messages:27 ../switcher/data/messages:25
+#: ../terminal/data/messages:25 ../tomboy/data/messages:39
+#: ../weather/data/messages:23 ../weblets/data/messages:25
+#: ../wifi/data/messages:23
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -3393,38 +3365,37 @@ msgstr ""
 "ALT+середнє клацання або ALT+ліве клацання."
 
 #: ../Clipper/data/messages:131 ../Doncky/data/messages:25
-#: ../GMenu/data/messages:27 ../Indicator-Menus/data/messages:27
-#: ../MeMenu/data/messages:21 ../Network-Monitor/data/messages:27
-#: ../RSSreader/data/messages:29 ../System-Monitor/data/messages:25
-#: ../Toons/data/messages:25 ../Xgamma/data/messages:27
-#: ../alsaMixer/data/messages:25 ../clock/data/messages:27
-#: ../compiz-icon/data/messages:23 ../dnd2share/data/messages:27
-#: ../dustbin/data/messages:23 ../keyboard-indicator/data/messages:23
-#: ../logout/data/messages:27 ../mail/data/messages:23
-#: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
-#: ../powermanager/data/messages:25 ../quick-browser/data/messages:29
-#: ../shortcuts/data/messages:27 ../showDesktop/data/messages:31
-#: ../slider/data/messages:25 ../stack/data/messages:29
-#: ../switcher/data/messages:27 ../terminal/data/messages:27
-#: ../tomboy/data/messages:41 ../weather/data/messages:25
-#: ../weblets/data/messages:27 ../wifi/data/messages:25
+#: ../GMenu/data/messages:27 ../MeMenu/data/messages:21
+#: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
+#: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
+#: ../Xgamma/data/messages:27 ../alsaMixer/data/messages:25
+#: ../clock/data/messages:27 ../compiz-icon/data/messages:23
+#: ../dnd2share/data/messages:27 ../dustbin/data/messages:23
+#: ../keyboard-indicator/data/messages:23 ../logout/data/messages:27
+#: ../mail/data/messages:23 ../musicPlayer/data/messages:25
+#: ../netspeed/data/messages:23 ../powermanager/data/messages:25
+#: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
+#: ../showDesktop/data/messages:31 ../slider/data/messages:25
+#: ../stack/data/messages:29 ../switcher/data/messages:27
+#: ../terminal/data/messages:27 ../tomboy/data/messages:41
+#: ../weather/data/messages:25 ../weblets/data/messages:27
+#: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "Розмір десклету (ширина Х висота)"
 
 #: ../Clipper/data/messages:133 ../Doncky/data/messages:27
-#: ../GMenu/data/messages:29 ../Indicator-Menus/data/messages:29
-#: ../MeMenu/data/messages:23 ../Network-Monitor/data/messages:29
-#: ../RSSreader/data/messages:31 ../System-Monitor/data/messages:27
-#: ../Toons/data/messages:27 ../Xgamma/data/messages:29
-#: ../compiz-icon/data/messages:25 ../dnd2share/data/messages:29
-#: ../keyboard-indicator/data/messages:25 ../logout/data/messages:29
-#: ../mail/data/messages:25 ../musicPlayer/data/messages:27
-#: ../powermanager/data/messages:27 ../quick-browser/data/messages:31
-#: ../shortcuts/data/messages:29 ../showDesktop/data/messages:33
-#: ../slider/data/messages:27 ../stack/data/messages:31
-#: ../systray/data/messages:17 ../terminal/data/messages:29
-#: ../weather/data/messages:27 ../weblets/data/messages:29
-#: ../wifi/data/messages:27
+#: ../GMenu/data/messages:29 ../MeMenu/data/messages:23
+#: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
+#: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
+#: ../Xgamma/data/messages:29 ../compiz-icon/data/messages:25
+#: ../dnd2share/data/messages:29 ../keyboard-indicator/data/messages:25
+#: ../logout/data/messages:29 ../mail/data/messages:25
+#: ../musicPlayer/data/messages:27 ../powermanager/data/messages:27
+#: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
+#: ../showDesktop/data/messages:33 ../slider/data/messages:27
+#: ../stack/data/messages:31 ../systray/data/messages:17
+#: ../terminal/data/messages:29 ../weather/data/messages:27
+#: ../weblets/data/messages:29 ../wifi/data/messages:27
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3433,41 +3404,40 @@ msgstr ""
 "+ліве клацання."
 
 #: ../Clipper/data/messages:135 ../Doncky/data/messages:29
-#: ../GMenu/data/messages:31 ../Indicator-Menus/data/messages:31
-#: ../MeMenu/data/messages:25 ../Network-Monitor/data/messages:31
-#: ../RSSreader/data/messages:33 ../System-Monitor/data/messages:29
-#: ../Toons/data/messages:29 ../Xgamma/data/messages:31
-#: ../alsaMixer/data/messages:29 ../clock/data/messages:31
-#: ../compiz-icon/data/messages:27 ../dnd2share/data/messages:31
-#: ../dustbin/data/messages:27 ../keyboard-indicator/data/messages:27
-#: ../logout/data/messages:31 ../mail/data/messages:27
-#: ../musicPlayer/data/messages:29 ../netspeed/data/messages:27
-#: ../powermanager/data/messages:29 ../quick-browser/data/messages:33
-#: ../shortcuts/data/messages:31 ../showDesktop/data/messages:35
-#: ../slider/data/messages:29 ../stack/data/messages:33
-#: ../switcher/data/messages:29 ../systray/data/messages:19
-#: ../terminal/data/messages:31 ../tomboy/data/messages:45
-#: ../weather/data/messages:29 ../weblets/data/messages:31
-#: ../wifi/data/messages:29
+#: ../GMenu/data/messages:31 ../MeMenu/data/messages:25
+#: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:33
+#: ../System-Monitor/data/messages:29 ../Toons/data/messages:29
+#: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:29
+#: ../clock/data/messages:31 ../compiz-icon/data/messages:27
+#: ../dnd2share/data/messages:31 ../dustbin/data/messages:27
+#: ../keyboard-indicator/data/messages:27 ../logout/data/messages:31
+#: ../mail/data/messages:27 ../musicPlayer/data/messages:29
+#: ../netspeed/data/messages:27 ../powermanager/data/messages:29
+#: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
+#: ../showDesktop/data/messages:35 ../slider/data/messages:29
+#: ../stack/data/messages:33 ../switcher/data/messages:29
+#: ../systray/data/messages:19 ../terminal/data/messages:31
+#: ../tomboy/data/messages:45 ../weather/data/messages:29
+#: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "Позиція десклету (x ; y) :"
 
 #: ../Clipper/data/messages:137 ../Doncky/data/messages:31
-#: ../GMenu/data/messages:33 ../Indicator-Menus/data/messages:33
-#: ../MeMenu/data/messages:27 ../Network-Monitor/data/messages:33
-#: ../RSSreader/data/messages:35 ../Status-Notifier/data/messages:33
-#: ../System-Monitor/data/messages:31 ../Toons/data/messages:31
-#: ../Xgamma/data/messages:33 ../alsaMixer/data/messages:31
-#: ../clock/data/messages:33 ../compiz-icon/data/messages:29
-#: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:29
-#: ../logout/data/messages:33 ../mail/data/messages:29
-#: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
-#: ../powermanager/data/messages:31 ../quick-browser/data/messages:35
-#: ../shortcuts/data/messages:33 ../showDesktop/data/messages:37
-#: ../slider/data/messages:31 ../stack/data/messages:35
-#: ../systray/data/messages:21 ../terminal/data/messages:33
-#: ../tomboy/data/messages:47 ../weather/data/messages:31
-#: ../weblets/data/messages:33 ../wifi/data/messages:31
+#: ../GMenu/data/messages:33 ../MeMenu/data/messages:27
+#: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
+#: ../Status-Notifier/data/messages:33 ../System-Monitor/data/messages:31
+#: ../Toons/data/messages:31 ../Xgamma/data/messages:33
+#: ../alsaMixer/data/messages:31 ../clock/data/messages:33
+#: ../compiz-icon/data/messages:29 ../dustbin/data/messages:29
+#: ../keyboard-indicator/data/messages:29 ../logout/data/messages:33
+#: ../mail/data/messages:29 ../musicPlayer/data/messages:31
+#: ../netspeed/data/messages:29 ../powermanager/data/messages:31
+#: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
+#: ../showDesktop/data/messages:37 ../slider/data/messages:31
+#: ../stack/data/messages:35 ../systray/data/messages:21
+#: ../terminal/data/messages:33 ../tomboy/data/messages:47
+#: ../weather/data/messages:31 ../weblets/data/messages:33
+#: ../wifi/data/messages:31
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -3476,81 +3446,79 @@ msgstr ""
 "маленькі кнопки по бокам десклету."
 
 #: ../Clipper/data/messages:139 ../Doncky/data/messages:33
-#: ../GMenu/data/messages:35 ../Indicator-Menus/data/messages:35
-#: ../MeMenu/data/messages:29 ../Network-Monitor/data/messages:35
-#: ../RSSreader/data/messages:37 ../System-Monitor/data/messages:33
-#: ../Toons/data/messages:33 ../Xgamma/data/messages:35
-#: ../alsaMixer/data/messages:33 ../clock/data/messages:35
-#: ../compiz-icon/data/messages:31 ../dustbin/data/messages:31
-#: ../keyboard-indicator/data/messages:31 ../logout/data/messages:35
-#: ../mail/data/messages:31 ../musicPlayer/data/messages:33
-#: ../netspeed/data/messages:31 ../powermanager/data/messages:33
-#: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
-#: ../showDesktop/data/messages:39 ../slider/data/messages:33
-#: ../stack/data/messages:37 ../systray/data/messages:23
-#: ../terminal/data/messages:35 ../tomboy/data/messages:49
-#: ../weather/data/messages:33 ../weblets/data/messages:35
-#: ../wifi/data/messages:33
+#: ../GMenu/data/messages:35 ../MeMenu/data/messages:29
+#: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
+#: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
+#: ../Xgamma/data/messages:35 ../alsaMixer/data/messages:33
+#: ../clock/data/messages:35 ../compiz-icon/data/messages:31
+#: ../dustbin/data/messages:31 ../keyboard-indicator/data/messages:31
+#: ../logout/data/messages:35 ../mail/data/messages:31
+#: ../musicPlayer/data/messages:33 ../netspeed/data/messages:31
+#: ../powermanager/data/messages:33 ../quick-browser/data/messages:37
+#: ../shortcuts/data/messages:35 ../showDesktop/data/messages:39
+#: ../slider/data/messages:33 ../stack/data/messages:37
+#: ../systray/data/messages:23 ../terminal/data/messages:35
+#: ../tomboy/data/messages:49 ../weather/data/messages:33
+#: ../weblets/data/messages:35 ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "Повертання:"
 
 #: ../Clipper/data/messages:141 ../Doncky/data/messages:35
-#: ../GMenu/data/messages:37 ../Indicator-Menus/data/messages:37
-#: ../MeMenu/data/messages:31 ../Network-Monitor/data/messages:37
-#: ../RSSreader/data/messages:39 ../Status-Notifier/data/messages:37
-#: ../System-Monitor/data/messages:35 ../Toons/data/messages:35
-#: ../Xgamma/data/messages:37 ../alsaMixer/data/messages:35
-#: ../clock/data/messages:37 ../compiz-icon/data/messages:33
-#: ../dnd2share/data/messages:33 ../dustbin/data/messages:33
-#: ../keyboard-indicator/data/messages:33 ../logout/data/messages:37
-#: ../mail/data/messages:33 ../musicPlayer/data/messages:35
-#: ../netspeed/data/messages:33 ../powermanager/data/messages:35
-#: ../quick-browser/data/messages:39 ../shortcuts/data/messages:37
-#: ../showDesktop/data/messages:41 ../slider/data/messages:35
-#: ../stack/data/messages:39 ../switcher/data/messages:31
-#: ../systray/data/messages:25 ../terminal/data/messages:37
-#: ../tomboy/data/messages:51 ../weather/data/messages:35
-#: ../weblets/data/messages:37 ../wifi/data/messages:35
+#: ../GMenu/data/messages:37 ../MeMenu/data/messages:31
+#: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
+#: ../Status-Notifier/data/messages:37 ../System-Monitor/data/messages:35
+#: ../Toons/data/messages:35 ../Xgamma/data/messages:37
+#: ../alsaMixer/data/messages:35 ../clock/data/messages:37
+#: ../compiz-icon/data/messages:33 ../dnd2share/data/messages:33
+#: ../dustbin/data/messages:33 ../keyboard-indicator/data/messages:33
+#: ../logout/data/messages:37 ../mail/data/messages:33
+#: ../musicPlayer/data/messages:35 ../netspeed/data/messages:33
+#: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
+#: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
+#: ../slider/data/messages:35 ../stack/data/messages:39
+#: ../switcher/data/messages:31 ../systray/data/messages:25
+#: ../terminal/data/messages:37 ../tomboy/data/messages:51
+#: ../weather/data/messages:35 ../weblets/data/messages:37
+#: ../wifi/data/messages:35
 msgid "Visibility"
 msgstr "Видимість"
 
 #: ../Clipper/data/messages:143 ../Doncky/data/messages:37
-#: ../GMenu/data/messages:39 ../Indicator-Menus/data/messages:39
-#: ../MeMenu/data/messages:33 ../Network-Monitor/data/messages:39
-#: ../RSSreader/data/messages:41 ../Scooby-Do/data/messages:27
-#: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
-#: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:37
-#: ../clock/data/messages:39 ../compiz-icon/data/messages:35
-#: ../dnd2share/data/messages:35 ../dustbin/data/messages:35
-#: ../keyboard-indicator/data/messages:35 ../logout/data/messages:39
-#: ../mail/data/messages:35 ../musicPlayer/data/messages:37
-#: ../netspeed/data/messages:35 ../powermanager/data/messages:37
-#: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
-#: ../showDesktop/data/messages:43 ../slider/data/messages:37
-#: ../stack/data/messages:41 ../switcher/data/messages:33
-#: ../systray/data/messages:27 ../terminal/data/messages:39
-#: ../tomboy/data/messages:53 ../weather/data/messages:37
-#: ../weblets/data/messages:39 ../wifi/data/messages:37
+#: ../GMenu/data/messages:39 ../MeMenu/data/messages:33
+#: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
+#: ../Scooby-Do/data/messages:27 ../System-Monitor/data/messages:37
+#: ../Toons/data/messages:37 ../Xgamma/data/messages:39
+#: ../alsaMixer/data/messages:37 ../clock/data/messages:39
+#: ../compiz-icon/data/messages:35 ../dnd2share/data/messages:35
+#: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:35
+#: ../logout/data/messages:39 ../mail/data/messages:35
+#: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
+#: ../powermanager/data/messages:37 ../quick-browser/data/messages:41
+#: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
+#: ../slider/data/messages:37 ../stack/data/messages:41
+#: ../switcher/data/messages:33 ../systray/data/messages:27
+#: ../terminal/data/messages:39 ../tomboy/data/messages:53
+#: ../weather/data/messages:37 ../weblets/data/messages:39
+#: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "Від'єднати від панелі?"
 
 #: ../Clipper/data/messages:145 ../Doncky/data/messages:39
-#: ../GMenu/data/messages:41 ../Indicator-Menus/data/messages:41
-#: ../MeMenu/data/messages:35 ../Network-Monitor/data/messages:41
-#: ../RSSreader/data/messages:43 ../Status-Notifier/data/messages:41
-#: ../System-Monitor/data/messages:39 ../Toons/data/messages:39
-#: ../Xgamma/data/messages:41 ../alsaMixer/data/messages:39
-#: ../clock/data/messages:41 ../compiz-icon/data/messages:37
-#: ../dnd2share/data/messages:37 ../dustbin/data/messages:37
-#: ../keyboard-indicator/data/messages:37 ../logout/data/messages:41
-#: ../mail/data/messages:37 ../musicPlayer/data/messages:39
-#: ../netspeed/data/messages:37 ../powermanager/data/messages:39
-#: ../quick-browser/data/messages:43 ../shortcuts/data/messages:41
-#: ../showDesktop/data/messages:45 ../slider/data/messages:39
-#: ../stack/data/messages:43 ../systray/data/messages:29
-#: ../terminal/data/messages:41 ../tomboy/data/messages:55
-#: ../weather/data/messages:39 ../weblets/data/messages:41
-#: ../wifi/data/messages:39
+#: ../GMenu/data/messages:41 ../MeMenu/data/messages:35
+#: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
+#: ../Status-Notifier/data/messages:41 ../System-Monitor/data/messages:39
+#: ../Toons/data/messages:39 ../Xgamma/data/messages:41
+#: ../alsaMixer/data/messages:39 ../clock/data/messages:41
+#: ../compiz-icon/data/messages:37 ../dnd2share/data/messages:37
+#: ../dustbin/data/messages:37 ../keyboard-indicator/data/messages:37
+#: ../logout/data/messages:41 ../mail/data/messages:37
+#: ../musicPlayer/data/messages:39 ../netspeed/data/messages:37
+#: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
+#: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
+#: ../slider/data/messages:39 ../stack/data/messages:43
+#: ../systray/data/messages:29 ../terminal/data/messages:41
+#: ../tomboy/data/messages:55 ../weather/data/messages:39
+#: ../weblets/data/messages:41 ../wifi/data/messages:39
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -3559,122 +3527,119 @@ msgstr ""
 "(клас=Cairo-dock та тип=utility)"
 
 #: ../Clipper/data/messages:147 ../Doncky/data/messages:41
-#: ../GMenu/data/messages:43 ../Indicator-Menus/data/messages:43
-#: ../MeMenu/data/messages:37 ../Network-Monitor/data/messages:43
-#: ../RSSreader/data/messages:45 ../System-Monitor/data/messages:41
-#: ../Toons/data/messages:41 ../Xgamma/data/messages:43
-#: ../alsaMixer/data/messages:41 ../clock/data/messages:43
-#: ../compiz-icon/data/messages:39 ../dnd2share/data/messages:39
-#: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:39
-#: ../logout/data/messages:43 ../mail/data/messages:39
-#: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
-#: ../powermanager/data/messages:41 ../quick-browser/data/messages:45
-#: ../shortcuts/data/messages:43 ../showDesktop/data/messages:47
-#: ../slider/data/messages:41 ../stack/data/messages:45
-#: ../switcher/data/messages:35 ../systray/data/messages:31
-#: ../terminal/data/messages:43 ../tomboy/data/messages:57
-#: ../weather/data/messages:41 ../weblets/data/messages:43
-#: ../wifi/data/messages:41
+#: ../GMenu/data/messages:43 ../MeMenu/data/messages:37
+#: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
+#: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
+#: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:41
+#: ../clock/data/messages:43 ../compiz-icon/data/messages:39
+#: ../dnd2share/data/messages:39 ../dustbin/data/messages:39
+#: ../keyboard-indicator/data/messages:39 ../logout/data/messages:43
+#: ../mail/data/messages:39 ../musicPlayer/data/messages:41
+#: ../netspeed/data/messages:39 ../powermanager/data/messages:41
+#: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
+#: ../showDesktop/data/messages:47 ../slider/data/messages:41
+#: ../stack/data/messages:45 ../switcher/data/messages:35
+#: ../systray/data/messages:31 ../terminal/data/messages:43
+#: ../tomboy/data/messages:57 ../weather/data/messages:41
+#: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr "Видимість:"
 
 #: ../Clipper/data/messages:151 ../Doncky/data/messages:45
-#: ../GMenu/data/messages:47 ../Indicator-Menus/data/messages:47
-#: ../MeMenu/data/messages:41 ../Network-Monitor/data/messages:47
-#: ../RSSreader/data/messages:49 ../Status-Notifier/data/messages:47
-#: ../System-Monitor/data/messages:45 ../Toons/data/messages:45
-#: ../Xgamma/data/messages:47 ../alsaMixer/data/messages:45
-#: ../clock/data/messages:47 ../compiz-icon/data/messages:43
-#: ../dnd2share/data/messages:43 ../dustbin/data/messages:43
-#: ../keyboard-indicator/data/messages:43 ../logout/data/messages:47
-#: ../mail/data/messages:43 ../musicPlayer/data/messages:45
-#: ../netspeed/data/messages:43 ../powermanager/data/messages:45
-#: ../quick-browser/data/messages:49 ../shortcuts/data/messages:47
-#: ../showDesktop/data/messages:51 ../slider/data/messages:45
-#: ../stack/data/messages:49 ../switcher/data/messages:39
-#: ../systray/data/messages:35 ../terminal/data/messages:47
-#: ../tomboy/data/messages:61 ../weather/data/messages:45
-#: ../weblets/data/messages:47 ../wifi/data/messages:45
+#: ../GMenu/data/messages:47 ../MeMenu/data/messages:41
+#: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
+#: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:45
+#: ../Toons/data/messages:45 ../Xgamma/data/messages:47
+#: ../alsaMixer/data/messages:45 ../clock/data/messages:47
+#: ../compiz-icon/data/messages:43 ../dnd2share/data/messages:43
+#: ../dustbin/data/messages:43 ../keyboard-indicator/data/messages:43
+#: ../logout/data/messages:47 ../mail/data/messages:43
+#: ../musicPlayer/data/messages:45 ../netspeed/data/messages:43
+#: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
+#: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
+#: ../slider/data/messages:45 ../stack/data/messages:49
+#: ../switcher/data/messages:39 ../systray/data/messages:35
+#: ../terminal/data/messages:47 ../tomboy/data/messages:61
+#: ../weather/data/messages:45 ../weblets/data/messages:47
+#: ../wifi/data/messages:45
 msgid "Keep above"
 msgstr "Тримати згори"
 
 #: ../Clipper/data/messages:153 ../Doncky/data/messages:47
-#: ../GMenu/data/messages:49 ../Indicator-Menus/data/messages:49
-#: ../MeMenu/data/messages:43 ../Network-Monitor/data/messages:49
-#: ../RSSreader/data/messages:51 ../Status-Notifier/data/messages:49
-#: ../System-Monitor/data/messages:47 ../Toons/data/messages:47
-#: ../Xgamma/data/messages:49 ../alsaMixer/data/messages:47
-#: ../clock/data/messages:49 ../compiz-icon/data/messages:45
-#: ../dnd2share/data/messages:45 ../dustbin/data/messages:45
-#: ../keyboard-indicator/data/messages:45 ../logout/data/messages:49
-#: ../mail/data/messages:45 ../musicPlayer/data/messages:47
-#: ../netspeed/data/messages:45 ../powermanager/data/messages:47
-#: ../quick-browser/data/messages:51 ../shortcuts/data/messages:49
-#: ../showDesktop/data/messages:53 ../slider/data/messages:47
-#: ../stack/data/messages:51 ../switcher/data/messages:41
-#: ../systray/data/messages:37 ../terminal/data/messages:49
-#: ../tomboy/data/messages:63 ../weather/data/messages:47
-#: ../weblets/data/messages:49 ../wifi/data/messages:47
+#: ../GMenu/data/messages:49 ../MeMenu/data/messages:43
+#: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
+#: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:47
+#: ../Toons/data/messages:47 ../Xgamma/data/messages:49
+#: ../alsaMixer/data/messages:47 ../clock/data/messages:49
+#: ../compiz-icon/data/messages:45 ../dnd2share/data/messages:45
+#: ../dustbin/data/messages:45 ../keyboard-indicator/data/messages:45
+#: ../logout/data/messages:49 ../mail/data/messages:45
+#: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
+#: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
+#: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
+#: ../slider/data/messages:47 ../stack/data/messages:51
+#: ../switcher/data/messages:41 ../systray/data/messages:37
+#: ../terminal/data/messages:49 ../tomboy/data/messages:63
+#: ../weather/data/messages:47 ../weblets/data/messages:49
+#: ../wifi/data/messages:47
 msgid "Keep below"
 msgstr "Тримати знизу"
 
 #: ../Clipper/data/messages:155 ../Doncky/data/messages:49
-#: ../GMenu/data/messages:51 ../Indicator-Menus/data/messages:51
-#: ../MeMenu/data/messages:45 ../Network-Monitor/data/messages:51
-#: ../RSSreader/data/messages:53 ../System-Monitor/data/messages:49
-#: ../Toons/data/messages:49 ../Xgamma/data/messages:51
-#: ../alsaMixer/data/messages:49 ../clock/data/messages:51
-#: ../compiz-icon/data/messages:47 ../dnd2share/data/messages:47
-#: ../dustbin/data/messages:47 ../keyboard-indicator/data/messages:47
-#: ../logout/data/messages:51 ../mail/data/messages:47
-#: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
-#: ../powermanager/data/messages:49 ../quick-browser/data/messages:53
-#: ../shortcuts/data/messages:51 ../showDesktop/data/messages:55
-#: ../slider/data/messages:49 ../stack/data/messages:53
-#: ../switcher/data/messages:43 ../systray/data/messages:39
-#: ../terminal/data/messages:51 ../tomboy/data/messages:65
-#: ../weather/data/messages:49 ../weblets/data/messages:51
-#: ../wifi/data/messages:49
+#: ../GMenu/data/messages:51 ../MeMenu/data/messages:45
+#: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
+#: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
+#: ../Xgamma/data/messages:51 ../alsaMixer/data/messages:49
+#: ../clock/data/messages:51 ../compiz-icon/data/messages:47
+#: ../dnd2share/data/messages:47 ../dustbin/data/messages:47
+#: ../keyboard-indicator/data/messages:47 ../logout/data/messages:51
+#: ../mail/data/messages:47 ../musicPlayer/data/messages:49
+#: ../netspeed/data/messages:47 ../powermanager/data/messages:49
+#: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
+#: ../showDesktop/data/messages:55 ../slider/data/messages:49
+#: ../stack/data/messages:53 ../switcher/data/messages:43
+#: ../systray/data/messages:39 ../terminal/data/messages:51
+#: ../tomboy/data/messages:65 ../weather/data/messages:49
+#: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr "На шарі віджетів"
 
 #: ../Clipper/data/messages:157 ../Doncky/data/messages:51
-#: ../GMenu/data/messages:53 ../Indicator-Menus/data/messages:53
-#: ../MeMenu/data/messages:47 ../Network-Monitor/data/messages:53
-#: ../RSSreader/data/messages:55 ../Status-Notifier/data/messages:53
-#: ../System-Monitor/data/messages:51 ../Toons/data/messages:51
-#: ../Xgamma/data/messages:53 ../alsaMixer/data/messages:51
-#: ../clock/data/messages:53 ../compiz-icon/data/messages:49
-#: ../dnd2share/data/messages:49 ../dustbin/data/messages:49
-#: ../keyboard-indicator/data/messages:49 ../logout/data/messages:53
-#: ../mail/data/messages:49 ../musicPlayer/data/messages:51
-#: ../netspeed/data/messages:49 ../powermanager/data/messages:51
-#: ../quick-browser/data/messages:55 ../shortcuts/data/messages:53
-#: ../showDesktop/data/messages:57 ../slider/data/messages:51
-#: ../stack/data/messages:55 ../switcher/data/messages:45
-#: ../systray/data/messages:41 ../terminal/data/messages:53
-#: ../tomboy/data/messages:67 ../weather/data/messages:51
-#: ../weblets/data/messages:53 ../wifi/data/messages:51
+#: ../GMenu/data/messages:53 ../MeMenu/data/messages:47
+#: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
+#: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:51
+#: ../Toons/data/messages:51 ../Xgamma/data/messages:53
+#: ../alsaMixer/data/messages:51 ../clock/data/messages:53
+#: ../compiz-icon/data/messages:49 ../dnd2share/data/messages:49
+#: ../dustbin/data/messages:49 ../keyboard-indicator/data/messages:49
+#: ../logout/data/messages:53 ../mail/data/messages:49
+#: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
+#: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
+#: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
+#: ../slider/data/messages:51 ../stack/data/messages:55
+#: ../switcher/data/messages:45 ../systray/data/messages:41
+#: ../terminal/data/messages:53 ../tomboy/data/messages:67
+#: ../weather/data/messages:51 ../weblets/data/messages:53
+#: ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr "Резервувати місце"
 
 #: ../Clipper/data/messages:159 ../Doncky/data/messages:53
-#: ../GMenu/data/messages:55 ../Indicator-Menus/data/messages:55
-#: ../MeMenu/data/messages:49 ../Network-Monitor/data/messages:55
-#: ../RSSreader/data/messages:57 ../System-Monitor/data/messages:53
-#: ../Toons/data/messages:53 ../Xgamma/data/messages:55
-#: ../alsaMixer/data/messages:53 ../clock/data/messages:55
-#: ../compiz-icon/data/messages:51 ../dnd2share/data/messages:51
-#: ../dustbin/data/messages:51 ../keyboard-indicator/data/messages:51
-#: ../logout/data/messages:55 ../mail/data/messages:51
-#: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
-#: ../powermanager/data/messages:53 ../quick-browser/data/messages:57
-#: ../shortcuts/data/messages:55 ../showDesktop/data/messages:59
-#: ../slider/data/messages:53 ../stack/data/messages:57
-#: ../switcher/data/messages:47 ../systray/data/messages:43
-#: ../terminal/data/messages:55 ../tomboy/data/messages:69
-#: ../weather/data/messages:53 ../weblets/data/messages:55
-#: ../wifi/data/messages:53
+#: ../GMenu/data/messages:55 ../MeMenu/data/messages:49
+#: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
+#: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
+#: ../Xgamma/data/messages:55 ../alsaMixer/data/messages:53
+#: ../clock/data/messages:55 ../compiz-icon/data/messages:51
+#: ../dnd2share/data/messages:51 ../dustbin/data/messages:51
+#: ../keyboard-indicator/data/messages:51 ../logout/data/messages:55
+#: ../mail/data/messages:51 ../musicPlayer/data/messages:53
+#: ../netspeed/data/messages:51 ../powermanager/data/messages:53
+#: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
+#: ../showDesktop/data/messages:59 ../slider/data/messages:53
+#: ../stack/data/messages:57 ../switcher/data/messages:47
+#: ../systray/data/messages:43 ../terminal/data/messages:55
+#: ../tomboy/data/messages:69 ../weather/data/messages:53
+#: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr "Показувати на всіх стільницях?"
 
@@ -3697,60 +3662,59 @@ msgid "Decorations"
 msgstr "Оформлення"
 
 #: ../Clipper/data/messages:163 ../Doncky/data/messages:57
-#: ../GMenu/data/messages:59 ../Indicator-Menus/data/messages:59
-#: ../MeMenu/data/messages:53 ../Network-Monitor/data/messages:59
-#: ../RSSreader/data/messages:61 ../Status-Notifier/data/messages:59
-#: ../System-Monitor/data/messages:57 ../Toons/data/messages:57
-#: ../Xgamma/data/messages:59 ../alsaMixer/data/messages:57
-#: ../clock/data/messages:59 ../compiz-icon/data/messages:55
-#: ../dnd2share/data/messages:55 ../dustbin/data/messages:55
-#: ../keyboard-indicator/data/messages:55 ../logout/data/messages:59
-#: ../mail/data/messages:55 ../musicPlayer/data/messages:57
-#: ../netspeed/data/messages:55 ../powermanager/data/messages:57
-#: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
-#: ../showDesktop/data/messages:63 ../slider/data/messages:57
-#: ../stack/data/messages:61 ../switcher/data/messages:51
-#: ../terminal/data/messages:59 ../tomboy/data/messages:73
-#: ../weather/data/messages:57 ../weblets/data/messages:59
-#: ../wifi/data/messages:57
+#: ../GMenu/data/messages:59 ../MeMenu/data/messages:53
+#: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
+#: ../Status-Notifier/data/messages:59 ../System-Monitor/data/messages:57
+#: ../Toons/data/messages:57 ../Xgamma/data/messages:59
+#: ../alsaMixer/data/messages:57 ../clock/data/messages:59
+#: ../compiz-icon/data/messages:55 ../dnd2share/data/messages:55
+#: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:55
+#: ../logout/data/messages:59 ../mail/data/messages:55
+#: ../musicPlayer/data/messages:57 ../netspeed/data/messages:55
+#: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
+#: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
+#: ../slider/data/messages:57 ../stack/data/messages:61
+#: ../switcher/data/messages:51 ../terminal/data/messages:59
+#: ../tomboy/data/messages:73 ../weather/data/messages:57
+#: ../weblets/data/messages:59 ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:165 ../Doncky/data/messages:59
-#: ../GMenu/data/messages:61 ../Indicator-Menus/data/messages:61
-#: ../MeMenu/data/messages:55 ../Network-Monitor/data/messages:61
-#: ../RSSreader/data/messages:63 ../System-Monitor/data/messages:59
-#: ../Toons/data/messages:59 ../Xgamma/data/messages:61
-#: ../alsaMixer/data/messages:59 ../clock/data/messages:61
-#: ../compiz-icon/data/messages:57 ../dnd2share/data/messages:57
-#: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:57
-#: ../logout/data/messages:61 ../mail/data/messages:57
-#: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
-#: ../powermanager/data/messages:59 ../quick-browser/data/messages:63
-#: ../shortcuts/data/messages:61 ../showDesktop/data/messages:65
-#: ../slider/data/messages:59 ../stack/data/messages:63
-#: ../switcher/data/messages:53 ../terminal/data/messages:61
-#: ../tomboy/data/messages:75 ../weather/data/messages:59
-#: ../weblets/data/messages:61 ../wifi/data/messages:59
+#: ../GMenu/data/messages:61 ../MeMenu/data/messages:55
+#: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
+#: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
+#: ../Xgamma/data/messages:61 ../alsaMixer/data/messages:59
+#: ../clock/data/messages:61 ../compiz-icon/data/messages:57
+#: ../dnd2share/data/messages:57 ../dustbin/data/messages:57
+#: ../keyboard-indicator/data/messages:57 ../logout/data/messages:61
+#: ../mail/data/messages:57 ../musicPlayer/data/messages:59
+#: ../netspeed/data/messages:57 ../powermanager/data/messages:59
+#: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
+#: ../showDesktop/data/messages:65 ../slider/data/messages:59
+#: ../stack/data/messages:63 ../switcher/data/messages:53
+#: ../terminal/data/messages:61 ../tomboy/data/messages:75
+#: ../weather/data/messages:59 ../weblets/data/messages:61
+#: ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "Виберіть тему оформлення для цього десклету:"
 
 #: ../Clipper/data/messages:167 ../Doncky/data/messages:61
-#: ../GMenu/data/messages:63 ../Indicator-Menus/data/messages:63
-#: ../MeMenu/data/messages:57 ../Network-Monitor/data/messages:63
-#: ../RSSreader/data/messages:65 ../System-Monitor/data/messages:61
-#: ../Toons/data/messages:61 ../Xgamma/data/messages:63
-#: ../alsaMixer/data/messages:61 ../clock/data/messages:63
-#: ../compiz-icon/data/messages:59 ../dnd2share/data/messages:59
-#: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:59
-#: ../logout/data/messages:63 ../mail/data/messages:59
-#: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
-#: ../powermanager/data/messages:61 ../quick-browser/data/messages:65
-#: ../shortcuts/data/messages:63 ../showDesktop/data/messages:67
-#: ../slider/data/messages:61 ../stack/data/messages:65
-#: ../switcher/data/messages:55 ../terminal/data/messages:63
-#: ../tomboy/data/messages:77 ../weather/data/messages:61
-#: ../weblets/data/messages:63 ../wifi/data/messages:61
+#: ../GMenu/data/messages:63 ../MeMenu/data/messages:57
+#: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
+#: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
+#: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:61
+#: ../clock/data/messages:63 ../compiz-icon/data/messages:59
+#: ../dnd2share/data/messages:59 ../dustbin/data/messages:59
+#: ../keyboard-indicator/data/messages:59 ../logout/data/messages:63
+#: ../mail/data/messages:59 ../musicPlayer/data/messages:61
+#: ../netspeed/data/messages:59 ../powermanager/data/messages:61
+#: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
+#: ../showDesktop/data/messages:67 ../slider/data/messages:61
+#: ../stack/data/messages:65 ../switcher/data/messages:55
+#: ../terminal/data/messages:63 ../tomboy/data/messages:77
+#: ../weather/data/messages:61 ../weblets/data/messages:63
+#: ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
@@ -3758,14 +3722,13 @@ msgstr ""
 "використовувати."
 
 #: ../Clipper/data/messages:169 ../Doncky/data/messages:63
-#: ../GMenu/data/messages:65 ../Indicator-Menus/data/messages:65
-#: ../MeMenu/data/messages:59 ../Network-Monitor/data/messages:65
-#: ../RSSreader/data/messages:67 ../System-Monitor/data/messages:63
-#: ../Toons/data/messages:63 ../Xgamma/data/messages:65
-#: ../alsaMixer/data/messages:63 ../clock/data/messages:65
-#: ../clock/data/messages:149 ../compiz-icon/data/messages:61
-#: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
-#: ../keyboard-indicator/data/messages:61
+#: ../GMenu/data/messages:65 ../MeMenu/data/messages:59
+#: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
+#: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
+#: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:63
+#: ../clock/data/messages:65 ../clock/data/messages:149
+#: ../compiz-icon/data/messages:61 ../dnd2share/data/messages:61
+#: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:61
 #: ../keyboard-indicator/data/messages:113 ../logout/data/messages:65
 #: ../mail/data/messages:61 ../musicPlayer/data/messages:63
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
@@ -3779,192 +3742,192 @@ msgid "Background image:"
 msgstr "Зображення тла:"
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
-#: ../GMenu/data/messages:67 ../Indicator-Menus/data/messages:67
-#: ../MeMenu/data/messages:61 ../Network-Monitor/data/messages:67
-#: ../RSSreader/data/messages:69 ../System-Monitor/data/messages:65
-#: ../Toons/data/messages:65 ../Xgamma/data/messages:67
-#: ../alsaMixer/data/messages:65 ../clock/data/messages:67
-#: ../compiz-icon/data/messages:63 ../dnd2share/data/messages:63
-#: ../dustbin/data/messages:63 ../keyboard-indicator/data/messages:63
-#: ../logout/data/messages:67 ../mail/data/messages:63
-#: ../musicPlayer/data/messages:65 ../netspeed/data/messages:63
-#: ../powermanager/data/messages:65 ../quick-browser/data/messages:69
-#: ../shortcuts/data/messages:67 ../showDesktop/data/messages:71
-#: ../slider/data/messages:65 ../stack/data/messages:69
-#: ../switcher/data/messages:59 ../terminal/data/messages:67
-#: ../tomboy/data/messages:81 ../weather/data/messages:65
-#: ../weblets/data/messages:67 ../wifi/data/messages:65
+#: ../GMenu/data/messages:67 ../MeMenu/data/messages:61
+#: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
+#: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
+#: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:65
+#: ../clock/data/messages:67 ../compiz-icon/data/messages:63
+#: ../dnd2share/data/messages:63 ../dustbin/data/messages:63
+#: ../keyboard-indicator/data/messages:63 ../logout/data/messages:67
+#: ../mail/data/messages:63 ../musicPlayer/data/messages:65
+#: ../netspeed/data/messages:63 ../powermanager/data/messages:65
+#: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
+#: ../showDesktop/data/messages:71 ../slider/data/messages:65
+#: ../stack/data/messages:69 ../switcher/data/messages:59
+#: ../terminal/data/messages:67 ../tomboy/data/messages:81
+#: ../weather/data/messages:65 ../weblets/data/messages:67
+#: ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "Прозорість тла:"
 
 #: ../Clipper/data/messages:173 ../Doncky/data/messages:67
-#: ../GMenu/data/messages:69 ../Indicator-Menus/data/messages:69
-#: ../MeMenu/data/messages:63 ../Network-Monitor/data/messages:69
-#: ../RSSreader/data/messages:71 ../System-Monitor/data/messages:67
-#: ../Toons/data/messages:67 ../Xgamma/data/messages:69
-#: ../alsaMixer/data/messages:67 ../clock/data/messages:69
-#: ../compiz-icon/data/messages:65 ../dnd2share/data/messages:65
-#: ../dustbin/data/messages:65 ../keyboard-indicator/data/messages:65
-#: ../logout/data/messages:69 ../mail/data/messages:65
-#: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
-#: ../powermanager/data/messages:67 ../quick-browser/data/messages:71
-#: ../shortcuts/data/messages:69 ../showDesktop/data/messages:73
-#: ../slider/data/messages:67 ../stack/data/messages:71
-#: ../switcher/data/messages:61 ../terminal/data/messages:69
-#: ../tomboy/data/messages:83 ../weather/data/messages:67
-#: ../weblets/data/messages:69 ../wifi/data/messages:67
+#: ../GMenu/data/messages:69 ../MeMenu/data/messages:63
+#: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
+#: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
+#: ../Xgamma/data/messages:69 ../alsaMixer/data/messages:67
+#: ../clock/data/messages:69 ../compiz-icon/data/messages:65
+#: ../dnd2share/data/messages:65 ../dustbin/data/messages:65
+#: ../keyboard-indicator/data/messages:65 ../logout/data/messages:69
+#: ../mail/data/messages:65 ../musicPlayer/data/messages:67
+#: ../netspeed/data/messages:65 ../powermanager/data/messages:67
+#: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
+#: ../showDesktop/data/messages:73 ../slider/data/messages:67
+#: ../stack/data/messages:71 ../switcher/data/messages:61
+#: ../terminal/data/messages:69 ../tomboy/data/messages:83
+#: ../weather/data/messages:67 ../weblets/data/messages:69
+#: ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "в пікселях. Визначає ліву позицію рисунка."
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
-#: ../GMenu/data/messages:71 ../Indicator-Menus/data/messages:71
-#: ../MeMenu/data/messages:65 ../Network-Monitor/data/messages:71
-#: ../RSSreader/data/messages:73 ../System-Monitor/data/messages:69
-#: ../Toons/data/messages:69 ../Xgamma/data/messages:71
-#: ../alsaMixer/data/messages:69 ../clock/data/messages:71
-#: ../compiz-icon/data/messages:67 ../dnd2share/data/messages:67
-#: ../dustbin/data/messages:67 ../keyboard-indicator/data/messages:67
-#: ../logout/data/messages:71 ../mail/data/messages:67
-#: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
-#: ../powermanager/data/messages:69 ../quick-browser/data/messages:73
-#: ../shortcuts/data/messages:71 ../showDesktop/data/messages:75
-#: ../slider/data/messages:69 ../stack/data/messages:73
-#: ../switcher/data/messages:63 ../terminal/data/messages:71
-#: ../tomboy/data/messages:85 ../weather/data/messages:69
-#: ../weblets/data/messages:71 ../wifi/data/messages:69
+#: ../GMenu/data/messages:71 ../MeMenu/data/messages:65
+#: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
+#: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
+#: ../Xgamma/data/messages:71 ../alsaMixer/data/messages:69
+#: ../clock/data/messages:71 ../compiz-icon/data/messages:67
+#: ../dnd2share/data/messages:67 ../dustbin/data/messages:67
+#: ../keyboard-indicator/data/messages:67 ../logout/data/messages:71
+#: ../mail/data/messages:67 ../musicPlayer/data/messages:69
+#: ../netspeed/data/messages:67 ../powermanager/data/messages:69
+#: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
+#: ../showDesktop/data/messages:75 ../slider/data/messages:69
+#: ../stack/data/messages:73 ../switcher/data/messages:63
+#: ../terminal/data/messages:71 ../tomboy/data/messages:85
+#: ../weather/data/messages:69 ../weblets/data/messages:71
+#: ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "Ліве зміщення:"
 
 #: ../Clipper/data/messages:177 ../Doncky/data/messages:71
-#: ../GMenu/data/messages:73 ../Indicator-Menus/data/messages:73
-#: ../MeMenu/data/messages:67 ../Network-Monitor/data/messages:73
-#: ../RSSreader/data/messages:75 ../System-Monitor/data/messages:71
-#: ../Toons/data/messages:71 ../Xgamma/data/messages:73
-#: ../alsaMixer/data/messages:71 ../clock/data/messages:73
-#: ../compiz-icon/data/messages:69 ../dnd2share/data/messages:69
-#: ../dustbin/data/messages:69 ../keyboard-indicator/data/messages:69
-#: ../logout/data/messages:73 ../mail/data/messages:69
-#: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
-#: ../powermanager/data/messages:71 ../quick-browser/data/messages:75
-#: ../shortcuts/data/messages:73 ../showDesktop/data/messages:77
-#: ../slider/data/messages:71 ../stack/data/messages:75
-#: ../switcher/data/messages:65 ../terminal/data/messages:73
-#: ../tomboy/data/messages:87 ../weather/data/messages:71
-#: ../weblets/data/messages:73 ../wifi/data/messages:71
+#: ../GMenu/data/messages:73 ../MeMenu/data/messages:67
+#: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
+#: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
+#: ../Xgamma/data/messages:73 ../alsaMixer/data/messages:71
+#: ../clock/data/messages:73 ../compiz-icon/data/messages:69
+#: ../dnd2share/data/messages:69 ../dustbin/data/messages:69
+#: ../keyboard-indicator/data/messages:69 ../logout/data/messages:73
+#: ../mail/data/messages:69 ../musicPlayer/data/messages:71
+#: ../netspeed/data/messages:69 ../powermanager/data/messages:71
+#: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
+#: ../showDesktop/data/messages:77 ../slider/data/messages:71
+#: ../stack/data/messages:75 ../switcher/data/messages:65
+#: ../terminal/data/messages:73 ../tomboy/data/messages:87
+#: ../weather/data/messages:71 ../weblets/data/messages:73
+#: ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "в пікселях. Визначає верхню позицію рисунка."
 
 #: ../Clipper/data/messages:179 ../Doncky/data/messages:73
-#: ../GMenu/data/messages:75 ../Indicator-Menus/data/messages:75
-#: ../MeMenu/data/messages:69 ../Network-Monitor/data/messages:75
-#: ../RSSreader/data/messages:77 ../System-Monitor/data/messages:73
-#: ../Toons/data/messages:73 ../Xgamma/data/messages:75
-#: ../alsaMixer/data/messages:73 ../clock/data/messages:75
-#: ../compiz-icon/data/messages:71 ../dnd2share/data/messages:71
-#: ../dustbin/data/messages:71 ../keyboard-indicator/data/messages:71
-#: ../logout/data/messages:75 ../mail/data/messages:71
-#: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
-#: ../powermanager/data/messages:73 ../quick-browser/data/messages:77
-#: ../shortcuts/data/messages:75 ../showDesktop/data/messages:79
-#: ../slider/data/messages:73 ../stack/data/messages:77
-#: ../switcher/data/messages:67 ../terminal/data/messages:75
-#: ../tomboy/data/messages:89 ../weather/data/messages:73
-#: ../weblets/data/messages:75 ../wifi/data/messages:73
+#: ../GMenu/data/messages:75 ../MeMenu/data/messages:69
+#: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
+#: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
+#: ../Xgamma/data/messages:75 ../alsaMixer/data/messages:73
+#: ../clock/data/messages:75 ../compiz-icon/data/messages:71
+#: ../dnd2share/data/messages:71 ../dustbin/data/messages:71
+#: ../keyboard-indicator/data/messages:71 ../logout/data/messages:75
+#: ../mail/data/messages:71 ../musicPlayer/data/messages:73
+#: ../netspeed/data/messages:71 ../powermanager/data/messages:73
+#: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
+#: ../showDesktop/data/messages:79 ../slider/data/messages:73
+#: ../stack/data/messages:77 ../switcher/data/messages:67
+#: ../terminal/data/messages:75 ../tomboy/data/messages:89
+#: ../weather/data/messages:73 ../weblets/data/messages:75
+#: ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "Верхнє зміщення:"
 
 #: ../Clipper/data/messages:181 ../Doncky/data/messages:75
-#: ../GMenu/data/messages:77 ../Indicator-Menus/data/messages:77
-#: ../MeMenu/data/messages:71 ../Network-Monitor/data/messages:77
-#: ../RSSreader/data/messages:79 ../System-Monitor/data/messages:75
-#: ../Toons/data/messages:75 ../Xgamma/data/messages:77
-#: ../alsaMixer/data/messages:75 ../clock/data/messages:77
-#: ../compiz-icon/data/messages:73 ../dnd2share/data/messages:73
-#: ../dustbin/data/messages:73 ../keyboard-indicator/data/messages:73
-#: ../logout/data/messages:77 ../mail/data/messages:73
-#: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
-#: ../powermanager/data/messages:75 ../quick-browser/data/messages:79
-#: ../shortcuts/data/messages:77 ../showDesktop/data/messages:81
-#: ../slider/data/messages:75 ../stack/data/messages:79
-#: ../switcher/data/messages:69 ../terminal/data/messages:77
-#: ../tomboy/data/messages:91 ../weather/data/messages:75
-#: ../weblets/data/messages:77 ../wifi/data/messages:75
+#: ../GMenu/data/messages:77 ../MeMenu/data/messages:71
+#: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
+#: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
+#: ../Xgamma/data/messages:77 ../alsaMixer/data/messages:75
+#: ../clock/data/messages:77 ../compiz-icon/data/messages:73
+#: ../dnd2share/data/messages:73 ../dustbin/data/messages:73
+#: ../keyboard-indicator/data/messages:73 ../logout/data/messages:77
+#: ../mail/data/messages:73 ../musicPlayer/data/messages:75
+#: ../netspeed/data/messages:73 ../powermanager/data/messages:75
+#: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
+#: ../showDesktop/data/messages:81 ../slider/data/messages:75
+#: ../stack/data/messages:79 ../switcher/data/messages:69
+#: ../terminal/data/messages:77 ../tomboy/data/messages:91
+#: ../weather/data/messages:75 ../weblets/data/messages:77
+#: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "в пікселях. Визначає праву позицію рисунка."
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
-#: ../GMenu/data/messages:79 ../Indicator-Menus/data/messages:79
-#: ../MeMenu/data/messages:73 ../Network-Monitor/data/messages:79
-#: ../RSSreader/data/messages:81 ../System-Monitor/data/messages:77
-#: ../Toons/data/messages:77 ../Xgamma/data/messages:79
-#: ../alsaMixer/data/messages:77 ../clock/data/messages:79
-#: ../compiz-icon/data/messages:75 ../dnd2share/data/messages:75
-#: ../dustbin/data/messages:75 ../keyboard-indicator/data/messages:75
-#: ../logout/data/messages:79 ../mail/data/messages:75
-#: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
-#: ../powermanager/data/messages:77 ../quick-browser/data/messages:81
-#: ../shortcuts/data/messages:79 ../showDesktop/data/messages:83
-#: ../slider/data/messages:77 ../stack/data/messages:81
-#: ../switcher/data/messages:71 ../terminal/data/messages:79
-#: ../tomboy/data/messages:93 ../weather/data/messages:77
-#: ../weblets/data/messages:79 ../wifi/data/messages:77
+#: ../GMenu/data/messages:79 ../MeMenu/data/messages:73
+#: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
+#: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
+#: ../Xgamma/data/messages:79 ../alsaMixer/data/messages:77
+#: ../clock/data/messages:79 ../compiz-icon/data/messages:75
+#: ../dnd2share/data/messages:75 ../dustbin/data/messages:75
+#: ../keyboard-indicator/data/messages:75 ../logout/data/messages:79
+#: ../mail/data/messages:75 ../musicPlayer/data/messages:77
+#: ../netspeed/data/messages:75 ../powermanager/data/messages:77
+#: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
+#: ../showDesktop/data/messages:83 ../slider/data/messages:77
+#: ../stack/data/messages:81 ../switcher/data/messages:71
+#: ../terminal/data/messages:79 ../tomboy/data/messages:93
+#: ../weather/data/messages:77 ../weblets/data/messages:79
+#: ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "Праве зміщення:"
 
 #: ../Clipper/data/messages:185 ../Doncky/data/messages:79
-#: ../GMenu/data/messages:81 ../Indicator-Menus/data/messages:81
-#: ../MeMenu/data/messages:75 ../Network-Monitor/data/messages:81
-#: ../RSSreader/data/messages:83 ../System-Monitor/data/messages:79
-#: ../Toons/data/messages:79 ../Xgamma/data/messages:81
-#: ../alsaMixer/data/messages:79 ../clock/data/messages:81
-#: ../compiz-icon/data/messages:77 ../dnd2share/data/messages:77
-#: ../dustbin/data/messages:77 ../keyboard-indicator/data/messages:77
-#: ../logout/data/messages:81 ../mail/data/messages:77
-#: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
-#: ../powermanager/data/messages:79 ../quick-browser/data/messages:83
-#: ../shortcuts/data/messages:81 ../showDesktop/data/messages:85
-#: ../slider/data/messages:79 ../stack/data/messages:83
-#: ../switcher/data/messages:73 ../terminal/data/messages:81
-#: ../tomboy/data/messages:95 ../weather/data/messages:79
-#: ../weblets/data/messages:81 ../wifi/data/messages:79
+#: ../GMenu/data/messages:81 ../MeMenu/data/messages:75
+#: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
+#: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
+#: ../Xgamma/data/messages:81 ../alsaMixer/data/messages:79
+#: ../clock/data/messages:81 ../compiz-icon/data/messages:77
+#: ../dnd2share/data/messages:77 ../dustbin/data/messages:77
+#: ../keyboard-indicator/data/messages:77 ../logout/data/messages:81
+#: ../mail/data/messages:77 ../musicPlayer/data/messages:79
+#: ../netspeed/data/messages:77 ../powermanager/data/messages:79
+#: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
+#: ../showDesktop/data/messages:85 ../slider/data/messages:79
+#: ../stack/data/messages:83 ../switcher/data/messages:73
+#: ../terminal/data/messages:81 ../tomboy/data/messages:95
+#: ../weather/data/messages:79 ../weblets/data/messages:81
+#: ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "в пікселях. Визначає нижню позицію рисунка."
 
 #: ../Clipper/data/messages:187 ../Doncky/data/messages:81
-#: ../GMenu/data/messages:83 ../Indicator-Menus/data/messages:83
-#: ../MeMenu/data/messages:77 ../Network-Monitor/data/messages:83
-#: ../RSSreader/data/messages:85 ../System-Monitor/data/messages:81
-#: ../Toons/data/messages:81 ../Xgamma/data/messages:83
-#: ../alsaMixer/data/messages:81 ../clock/data/messages:83
-#: ../compiz-icon/data/messages:79 ../dnd2share/data/messages:79
-#: ../dustbin/data/messages:79 ../keyboard-indicator/data/messages:79
-#: ../logout/data/messages:83 ../mail/data/messages:79
-#: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
-#: ../powermanager/data/messages:81 ../quick-browser/data/messages:85
-#: ../shortcuts/data/messages:83 ../showDesktop/data/messages:87
-#: ../slider/data/messages:81 ../stack/data/messages:85
-#: ../switcher/data/messages:75 ../terminal/data/messages:83
-#: ../tomboy/data/messages:97 ../weather/data/messages:81
-#: ../weblets/data/messages:83 ../wifi/data/messages:81
+#: ../GMenu/data/messages:83 ../MeMenu/data/messages:77
+#: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
+#: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
+#: ../Xgamma/data/messages:83 ../alsaMixer/data/messages:81
+#: ../clock/data/messages:83 ../compiz-icon/data/messages:79
+#: ../dnd2share/data/messages:79 ../dustbin/data/messages:79
+#: ../keyboard-indicator/data/messages:79 ../logout/data/messages:83
+#: ../mail/data/messages:79 ../musicPlayer/data/messages:81
+#: ../netspeed/data/messages:79 ../powermanager/data/messages:81
+#: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
+#: ../showDesktop/data/messages:87 ../slider/data/messages:81
+#: ../stack/data/messages:85 ../switcher/data/messages:75
+#: ../terminal/data/messages:83 ../tomboy/data/messages:97
+#: ../weather/data/messages:81 ../weblets/data/messages:83
+#: ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "Нижнє зміщення:"
 
 #: ../Clipper/data/messages:189 ../Doncky/data/messages:83
-#: ../GMenu/data/messages:85 ../Indicator-Menus/data/messages:85
-#: ../MeMenu/data/messages:79 ../Network-Monitor/data/messages:85
-#: ../RSSreader/data/messages:87 ../System-Monitor/data/messages:83
-#: ../Toons/data/messages:83 ../Xgamma/data/messages:85
-#: ../alsaMixer/data/messages:83 ../clock/data/messages:85
-#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:81
-#: ../dustbin/data/messages:81 ../keyboard-indicator/data/messages:81
-#: ../logout/data/messages:85 ../mail/data/messages:81
-#: ../musicPlayer/data/messages:83 ../netspeed/data/messages:81
-#: ../powermanager/data/messages:83 ../quick-browser/data/messages:87
-#: ../shortcuts/data/messages:85 ../showDesktop/data/messages:89
-#: ../slider/data/messages:83 ../stack/data/messages:87
-#: ../switcher/data/messages:77 ../terminal/data/messages:85
-#: ../tomboy/data/messages:99 ../weather/data/messages:83
-#: ../weblets/data/messages:85 ../wifi/data/messages:83
+#: ../GMenu/data/messages:85 ../MeMenu/data/messages:79
+#: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
+#: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
+#: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:83
+#: ../clock/data/messages:85 ../compiz-icon/data/messages:81
+#: ../dnd2share/data/messages:81 ../dustbin/data/messages:81
+#: ../keyboard-indicator/data/messages:81 ../logout/data/messages:85
+#: ../mail/data/messages:81 ../musicPlayer/data/messages:83
+#: ../netspeed/data/messages:81 ../powermanager/data/messages:83
+#: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
+#: ../showDesktop/data/messages:89 ../slider/data/messages:83
+#: ../stack/data/messages:87 ../switcher/data/messages:77
+#: ../terminal/data/messages:85 ../tomboy/data/messages:99
+#: ../weather/data/messages:83 ../weblets/data/messages:85
+#: ../wifi/data/messages:83
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
@@ -3973,40 +3936,40 @@ msgstr ""
 "використовувати."
 
 #: ../Clipper/data/messages:191 ../Doncky/data/messages:85
-#: ../GMenu/data/messages:87 ../Indicator-Menus/data/messages:87
-#: ../MeMenu/data/messages:81 ../Network-Monitor/data/messages:87
-#: ../RSSreader/data/messages:89 ../System-Monitor/data/messages:85
-#: ../Toons/data/messages:85 ../Xgamma/data/messages:87
-#: ../alsaMixer/data/messages:85 ../clock/data/messages:87
-#: ../compiz-icon/data/messages:83 ../dnd2share/data/messages:83
-#: ../dustbin/data/messages:83 ../keyboard-indicator/data/messages:83
-#: ../logout/data/messages:87 ../mail/data/messages:83
-#: ../musicPlayer/data/messages:85 ../netspeed/data/messages:83
-#: ../powermanager/data/messages:85 ../quick-browser/data/messages:89
-#: ../shortcuts/data/messages:87 ../showDesktop/data/messages:91
-#: ../slider/data/messages:85 ../stack/data/messages:89
-#: ../switcher/data/messages:79 ../terminal/data/messages:87
-#: ../tomboy/data/messages:101 ../weather/data/messages:85
-#: ../weblets/data/messages:87 ../wifi/data/messages:85
+#: ../GMenu/data/messages:87 ../MeMenu/data/messages:81
+#: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
+#: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
+#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:85
+#: ../clock/data/messages:87 ../compiz-icon/data/messages:83
+#: ../dnd2share/data/messages:83 ../dustbin/data/messages:83
+#: ../keyboard-indicator/data/messages:83 ../logout/data/messages:87
+#: ../mail/data/messages:83 ../musicPlayer/data/messages:85
+#: ../netspeed/data/messages:83 ../powermanager/data/messages:85
+#: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
+#: ../showDesktop/data/messages:91 ../slider/data/messages:85
+#: ../stack/data/messages:89 ../switcher/data/messages:79
+#: ../terminal/data/messages:87 ../tomboy/data/messages:101
+#: ../weather/data/messages:85 ../weblets/data/messages:87
+#: ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "Зображення переднього плану:"
 
 #: ../Clipper/data/messages:193 ../Doncky/data/messages:87
-#: ../GMenu/data/messages:89 ../Indicator-Menus/data/messages:89
-#: ../MeMenu/data/messages:83 ../Network-Monitor/data/messages:89
-#: ../RSSreader/data/messages:91 ../System-Monitor/data/messages:87
-#: ../Toons/data/messages:87 ../Xgamma/data/messages:89
-#: ../alsaMixer/data/messages:87 ../clock/data/messages:89
-#: ../compiz-icon/data/messages:85 ../dnd2share/data/messages:85
-#: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:85
-#: ../logout/data/messages:89 ../mail/data/messages:85
-#: ../musicPlayer/data/messages:87 ../netspeed/data/messages:85
-#: ../powermanager/data/messages:87 ../quick-browser/data/messages:91
-#: ../shortcuts/data/messages:89 ../showDesktop/data/messages:93
-#: ../slider/data/messages:87 ../stack/data/messages:91
-#: ../switcher/data/messages:81 ../terminal/data/messages:89
-#: ../tomboy/data/messages:103 ../weather/data/messages:87
-#: ../weblets/data/messages:89 ../wifi/data/messages:87
+#: ../GMenu/data/messages:89 ../MeMenu/data/messages:83
+#: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
+#: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
+#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:87
+#: ../clock/data/messages:89 ../compiz-icon/data/messages:85
+#: ../dnd2share/data/messages:85 ../dustbin/data/messages:85
+#: ../keyboard-indicator/data/messages:85 ../logout/data/messages:89
+#: ../mail/data/messages:85 ../musicPlayer/data/messages:87
+#: ../netspeed/data/messages:85 ../powermanager/data/messages:87
+#: ../quick-browser/data/messages:91 ../shortcuts/data/messages:89
+#: ../showDesktop/data/messages:93 ../slider/data/messages:87
+#: ../stack/data/messages:91 ../switcher/data/messages:81
+#: ../terminal/data/messages:89 ../tomboy/data/messages:103
+#: ../weather/data/messages:87 ../weblets/data/messages:89
+#: ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "Прозорість переднього плану:"
 
@@ -4311,27 +4274,10 @@ msgstr "в днях. Вкажіть 0, щоб не використовуват�
 msgid "Only show files whose last modification date is less than ;"
 msgstr "Показувати тільки файли, час останньої зміни яких менше ніж:"
 
-#: ../Indicator-Menus/data/messages:57 ../MeMenu/data/messages:51
-#: ../Status-Notifier/data/messages:57
+#: ../MeMenu/data/messages:51 ../Status-Notifier/data/messages:57
 msgid ""
 "e size=true\n"
 "F[Decorations;gtk-orientation-portrait]"
-msgstr ""
-
-#: ../Indicator-Menus/data/messages:93 ../Status-Notifier/data/messages:93
-msgid "This is a tooltip for this parameter."
-msgstr ""
-
-#: ../Indicator-Menus/data/messages:95 ../Status-Notifier/data/messages:95
-msgid "This is a boolean parameter. Y/N ?"
-msgstr ""
-
-#: ../Indicator-Menus/data/messages:97 ../Status-Notifier/data/messages:97
-msgid "This integer can go from 0 to 10 :"
-msgstr ""
-
-#: ../Indicator-Menus/data/messages:99 ../Status-Notifier/data/messages:99
-msgid "Enter some text here :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:7
@@ -4343,7 +4289,7 @@ msgstr "Залиште порожнім, щоб використовувати �
 #: ../powermanager/data/messages:11 ../slider/data/messages:11
 #: ../wifi/data/messages:11
 msgid "Always display the icon, even when the dock is hidden?"
-msgstr ""
+msgstr "Завжди показувати значок, навіть якщо панель прихована"
 
 #: ../Network-Monitor/data/messages:93 ../Network-Monitor/data/messages:165
 #: ../Network-Monitor/data/messages:253 ../System-Monitor/data/messages:127
@@ -4667,30 +4613,27 @@ msgstr "Інтервал оновлення:"
 
 #: ../RSSreader/data/messages:111
 msgid "Notify about feed updates:"
-msgstr ""
+msgstr "Повідомляти про оновлення стрічки:"
 
 #: ../RSSreader/data/messages:115 ../powermanager/data/messages:185
-#, fuzzy
 msgid "Icon animation"
-msgstr "Анімація"
+msgstr "Анімація значка"
 
 #: ../RSSreader/data/messages:117 ../powermanager/data/messages:187
 msgid "Dialog bubble"
-msgstr ""
+msgstr "Хмарка повідомлень"
 
 #: ../RSSreader/data/messages:119 ../powermanager/data/messages:189
 msgid "Icon animation + Dialog bubble"
-msgstr ""
+msgstr "Анімація значка + Хмарка повідомлень"
 
 #: ../RSSreader/data/messages:121 ../powermanager/data/messages:191
-#, fuzzy
 msgid "Let empty to use the default notification animation."
-msgstr "Залишіть порожнім, щоб використовувати типовий."
+msgstr "Залиште порожнім, щоб використовувати типове повідомлення."
 
 #: ../RSSreader/data/messages:123 ../powermanager/data/messages:193
-#, fuzzy
 msgid "Animation of the icon:"
-msgstr "Анімація поточного значка:"
+msgstr "Анімація значка:"
 
 #: ../RSSreader/data/messages:125 ../powermanager/data/messages:195
 msgid ""
@@ -4700,9 +4643,8 @@ msgstr ""
 "його)."
 
 #: ../RSSreader/data/messages:127 ../powermanager/data/messages:197
-#, fuzzy
 msgid "Duration of the notification:"
-msgstr "Час анімації:"
+msgstr "Термін анімації:"
 
 #: ../RSSreader/data/messages:131
 msgid "Open the feed with the following program:"
@@ -4997,22 +4939,18 @@ msgid "Help"
 msgstr "Довідка"
 
 #: ../Status-Notifier/data/messages:7
-#, fuzzy
 msgid "Name of the icon as it will appear in its label in the dock :"
-msgstr "Ім'я значка, яким воно буде підписуватися на Cairo-Dock:"
+msgstr "Ім'я значка, як воно буде відображено в підписі на панелі:"
 
 #: ../Status-Notifier/data/messages:9
-#, fuzzy
 msgid "Let empty to use the default one."
 msgstr "Залиште порожнім, щоб використовувати типове."
 
 #: ../Status-Notifier/data/messages:11
-#, fuzzy
 msgid "Image's filename :"
 msgstr "Назва файлу зображення:"
 
 #: ../Status-Notifier/data/messages:21
-#, fuzzy
 msgid ""
 "If locked, the desklet can't be moved by simply dragging it with the left "
 "mouse button. Of course you can still move it with ALT + left_click."
@@ -5022,12 +4960,10 @@ msgstr ""
 "клацання."
 
 #: ../Status-Notifier/data/messages:23
-#, fuzzy
 msgid "Lock position ?"
 msgstr "Заблокувати позицію"
 
 #: ../Status-Notifier/data/messages:25
-#, fuzzy
 msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
@@ -5036,54 +4972,44 @@ msgstr ""
 "ALT+середнє клацання або ALT+ліве клацання."
 
 #: ../Status-Notifier/data/messages:27
-#, fuzzy
 msgid "Desklet's dimension (width x height) :"
 msgstr "Розмір десклету (ширина Х висота)"
 
 #: ../Status-Notifier/data/messages:29
-#, fuzzy
 msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
 "+ліве клацання."
 
 #: ../Status-Notifier/data/messages:31
-#, fuzzy
 msgid "Desklet's position (x ; y) :"
 msgstr "Позиція десклету (x ; y) :"
 
 #: ../Status-Notifier/data/messages:35
-#, fuzzy
 msgid "Rotation :"
 msgstr "Повертання:"
 
 #: ../Status-Notifier/data/messages:39
-#, fuzzy
 msgid "Is detached from the dock ?"
 msgstr "Від'єднати від панелі?"
 
 #: ../Status-Notifier/data/messages:43
-#, fuzzy
 msgid "Visibility :"
 msgstr "Видимість:"
 
 #: ../Status-Notifier/data/messages:51
-#, fuzzy
 msgid "On Widget Layer"
-msgstr "Шар віджетів"
+msgstr "На шарі віджетів"
 
 #: ../Status-Notifier/data/messages:55
-#, fuzzy
 msgid "Should be visible on all desktops ?"
 msgstr "Показувати на всіх стільницях?"
 
 #: ../Status-Notifier/data/messages:61
-#, fuzzy
 msgid "Choose a decoration theme for this desklet :"
 msgstr "Виберіть тему оформлення для цього десклету:"
 
 #: ../Status-Notifier/data/messages:63
-#, fuzzy
 msgid ""
 "It's an image that will be displayed below the drawings, like a frame for "
 "exemple. Let empty to not use any."
@@ -5092,57 +5018,46 @@ msgstr ""
 "використовувати."
 
 #: ../Status-Notifier/data/messages:65
-#, fuzzy
 msgid "Background image :"
 msgstr "Зображення тла:"
 
 #: ../Status-Notifier/data/messages:67
-#, fuzzy
 msgid "Background tansparency :"
 msgstr "Прозорість тла:"
 
 #: ../Status-Notifier/data/messages:69
-#, fuzzy
 msgid "in pixels. Use this to adjust the left position of the drawings."
 msgstr "в пікселях. Визначає ліву позицію рисунка."
 
 #: ../Status-Notifier/data/messages:71
-#, fuzzy
 msgid "Left offset :"
 msgstr "Ліве зміщення:"
 
 #: ../Status-Notifier/data/messages:73
-#, fuzzy
 msgid "in pixels. Use this to adjust the top position of the drawings."
 msgstr "в пікселях. Визначає верхню позицію рисунка."
 
 #: ../Status-Notifier/data/messages:75
-#, fuzzy
 msgid "Top offset :"
 msgstr "Верхнє зміщення:"
 
 #: ../Status-Notifier/data/messages:77
-#, fuzzy
 msgid "in pixels. Use this to adjust the right position of the drawings."
 msgstr "в пікселях. Визначає праву позицію рисунка."
 
 #: ../Status-Notifier/data/messages:79
-#, fuzzy
 msgid "Right offset :"
 msgstr "Праве зміщення:"
 
 #: ../Status-Notifier/data/messages:81
-#, fuzzy
 msgid "in pixels. Use this to adjust the bottom position of the drawings."
 msgstr "в пікселях. Визначає нижню позицію рисунка."
 
 #: ../Status-Notifier/data/messages:83
-#, fuzzy
 msgid "Bottom offset :"
 msgstr "Нижнє зміщення:"
 
 #: ../Status-Notifier/data/messages:85
-#, fuzzy
 msgid ""
 "It's an image that will be displayed above the drawings, like a reflect for "
 "exemple. Let empty to not use any."
@@ -5151,14 +5066,28 @@ msgstr ""
 "використовувати."
 
 #: ../Status-Notifier/data/messages:87
-#, fuzzy
 msgid "Foreground image :"
 msgstr "Зображення переднього плану:"
 
 #: ../Status-Notifier/data/messages:89
-#, fuzzy
 msgid "Foreground tansparency :"
 msgstr "Прозорість переднього плану:"
+
+#: ../Status-Notifier/data/messages:93
+msgid "This is a tooltip for this parameter."
+msgstr "Підказка для цього параметра."
+
+#: ../Status-Notifier/data/messages:95
+msgid "This is a boolean parameter. Y/N ?"
+msgstr "Це бульовий параметр? Y/N?"
+
+#: ../Status-Notifier/data/messages:97
+msgid "This integer can go from 0 to 10 :"
+msgstr "Ціле число від 0 до 10:"
+
+#: ../Status-Notifier/data/messages:99
+msgid "Enter some text here :"
+msgstr "Введіть текст:"
 
 #: ../System-Monitor/data/messages:115 ../powermanager/data/messages:117
 msgid "It's the colour of the graphic for high values."
@@ -5481,16 +5410,15 @@ msgstr "Часовий пояс:"
 
 #: ../clock/data/messages:119
 msgid "Use the tasks from the following task-manager:"
-msgstr ""
+msgstr "Використовувати події з планувальника:"
 
 #: ../clock/data/messages:121
-#, fuzzy
 msgid "Default"
-msgstr "Стандартний значок:"
+msgstr "Типовий"
 
 #: ../clock/data/messages:123
 msgid "iCal"
-msgstr ""
+msgstr "iCal"
 
 #: ../clock/data/messages:125
 msgid "Style"
@@ -5961,7 +5889,7 @@ msgstr "Шлях до каталогу DropBox:"
 
 #: ../dnd2share/data/messages:157
 msgid "Post text as Anonymous ?"
-msgstr ""
+msgstr "Надсилати текст анонімно?"
 
 #: ../dock-rendering/data/messages:1
 msgid "Inclinated Plane"
@@ -6660,7 +6588,7 @@ msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:107
 msgid "Guayadeque"
-msgstr ""
+msgstr "Guayadeque"
 
 #: ../musicPlayer/data/messages:109
 msgid "Listen"
@@ -6668,7 +6596,7 @@ msgstr "Прослухати"
 
 #: ../musicPlayer/data/messages:111
 msgid "Qmmp"
-msgstr ""
+msgstr "Qmmp"
 
 #: ../musicPlayer/data/messages:113
 msgid "QuodLibet"
@@ -6913,9 +6841,8 @@ msgid "Notification when battery charge is critical ?"
 msgstr "Повідомляти про критичний заряд батареї?"
 
 #: ../powermanager/data/messages:183
-#, fuzzy
 msgid "Notification type:"
-msgstr "Попередження"
+msgstr "Тип сповіщення:"
 
 #: ../quick-browser/data/messages:7
 msgid "Leave empty to use the folder's name."
@@ -7721,50 +7648,20 @@ msgstr "Стужбова інформація про сигнал"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Змінити типовий підпис на назву точки доступу?"
 
-#~ msgid ""
-#~ "I couldn't find any audio channel named '%s'\n"
-#~ "You should try to open the configuration panel of the applet,\n"
-#~ " and select the proper audio channel you want to control."
-#~ msgstr ""
-#~ "Не вдалося виявити канал з іменем '%s'\n"
-#~ "Спробуйте відкрити панель налаштувань аплету\n"
-#~ "та вибрати правильний аудіо-канал для управління."
+#~ msgid "Indicator-Menus"
+#~ msgstr "Індикатор-меню"
 
-#~ msgid "ToolTip"
-#~ msgstr "підказка"
+#~ msgid "Menus to control your session, connection state, etc."
+#~ msgstr "Меню для управління вашою сесією, станом з'єднання та іншим."
 
-#~ msgid "By default, this option is activated"
-#~ msgstr "Типово, ця опція активована."
+#~ msgid "Toto"
+#~ msgstr "Toto"
 
-#~ msgid "Display an info bubble when a feed has changed?"
-#~ msgstr "Показувати хмарку повідомлень при зміні стрічки?"
+#~ msgid "No task is sheduled for today."
+#~ msgstr "Сьогодні подій немає."
 
-#~ msgid "Duration of the info-bubble:"
-#~ msgstr "Термін хмарки повідомлень:"
-
-#~ msgid "Animation of the icon when a feed has changed:"
-#~ msgstr "Анімація значка при зміні стрічки:"
-
-#~ msgid ""
-#~ "only use this if it differs from its name. Generally it is not the case, "
-#~ "except for Thunderbird."
-#~ msgstr ""
-#~ "використовуйте, тільки якщо відрізняється від його імені. Взагалі-то, не "
-#~ "має значення окрім як для Thunderbird."
-
-#~ msgid "Class of the mail application (optional)"
-#~ msgstr "Клас поштової програми (опційно)"
-
-#~ msgid ""
-#~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
-#~ msgstr ""
-#~ "Попередить появу значка поштової програми на панелі задач. Значок аплету "
-#~ "буде вести себе і як значок запуску, і як програма, і як аплет."
-
-#~ msgid "Animation during alert :"
-#~ msgstr "Використовувати анімацію:"
+#~ msgid "No task is sheduled for the next 7 days."
+#~ msgstr "Немає подій на наступні 7 днів."
 
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
@@ -7775,6 +7672,15 @@ msgstr "Змінити типовий підпис на назву точки д
 
 #~ msgid "Free"
 #~ msgstr "Вільно"
+
+#~ msgid ""
+#~ "I couldn't find any audio channel named '%s'\n"
+#~ "You should try to open the configuration panel of the applet,\n"
+#~ " and select the proper audio channel you want to control."
+#~ msgstr ""
+#~ "Не вдалося виявити канал з іменем '%s'\n"
+#~ "Спробуйте відкрити панель налаштувань аплету\n"
+#~ "та вибрати правильний аудіо-канал для управління."
 
 #~ msgid ""
 #~ "A Gnome-Do-like plug-in that lets you control your dock from the "
@@ -7835,6 +7741,9 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "Info to display in the icon :"
 #~ msgstr "Інформація на значку:"
 
+#~ msgid "By default, this option is activated"
+#~ msgstr "Типово, ця опція активована."
+
 #~ msgid "Characters"
 #~ msgstr "Символи"
 
@@ -7871,6 +7780,16 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "Theme overriding"
 #~ msgstr "Заміщення тем"
 
+#~ msgid ""
+#~ "only use this if it differs from its name. Generally it is not the case, "
+#~ "except for Thunderbird."
+#~ msgstr ""
+#~ "використовуйте, тільки якщо відрізняється від його імені. Взагалі-то, не "
+#~ "має значення окрім як для Thunderbird."
+
+#~ msgid "Animation during alert :"
+#~ msgstr "Використовувати анімацію:"
+
 #~ msgid "Image name to hide desklets :"
 #~ msgstr "Файл зображення для приховування десклету:"
 
@@ -7891,6 +7810,29 @@ msgstr "Змінити типовий підпис на назву точки д
 
 #~ msgid "Choose the 'personnal' one to define your own decorations below."
 #~ msgstr "Оберіть 'власне', щоб налаштувати свої оформлення."
+
+#~ msgid "ToolTip"
+#~ msgstr "підказка"
+
+#~ msgid "Display an info bubble when a feed has changed?"
+#~ msgstr "Показувати хмарку повідомлень при зміні стрічки?"
+
+#~ msgid "Duration of the info-bubble:"
+#~ msgstr "Термін хмарки повідомлень:"
+
+#~ msgid "Animation of the icon when a feed has changed:"
+#~ msgstr "Анімація значка при зміні стрічки:"
+
+#~ msgid "Class of the mail application (optional)"
+#~ msgstr "Клас поштової програми (опційно)"
+
+#~ msgid ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an application, and an "
+#~ "applet."
+#~ msgstr ""
+#~ "Попередить появу значка поштової програми на панелі задач. Значок аплету "
+#~ "буде вести себе і як значок запуску, і як програма, і як аплет."
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
