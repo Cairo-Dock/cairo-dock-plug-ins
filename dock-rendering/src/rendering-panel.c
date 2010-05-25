@@ -210,10 +210,12 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	{
 		icon = ic->data;
 
-		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, icon->bPointed);
-		cairo_restore (pCairoContext);
-
+		if (!CAIRO_DOCK_IS_SEPARATOR (icon))
+		{
+			cairo_save (pCairoContext);
+			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, icon->bPointed);
+			cairo_restore (pCairoContext);
+		}
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
 }
