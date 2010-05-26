@@ -1,11 +1,12 @@
 ########### subdirs if any ###############
-add_subdirectory (status-icons)
+
 
 ########### install files ###############
 
 install (FILES
-	MeMenu.conf
+	Messaging-Menu.conf
 	preview.jpg
 	icon.svg
-	DESTINATION ${memenudatadir})
-
+	indicator-messages.svg
+	indicator-messages-new.svg
+	DESTINATION ${messaging_menudatadir})

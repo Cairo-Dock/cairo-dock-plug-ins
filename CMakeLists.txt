@@ -188,6 +188,21 @@ set (dustbindatadir "${pluginsdatadir}/dustbin")
 configure_file (dustbin/data/dustbin.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/dustbin/data/dustbin.conf)
 add_subdirectory (dustbin)
 
+############# GMENU #################
+if (NOT "${enable_gmenu}" STREQUAL "no")
+	pkg_check_modules (GMENU_PACKAGE libgnome-menu)
+	if ("${GMENU_PACKAGE_FOUND}" STREQUAL "")
+		message (STATUS "Could not find libgnome-menu; Cairo-Dock won't be built with GMenu applet.")
+	else()
+		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
+		set (VERSION_GMENU "1.1.5")
+		set (PACKAGE_GMENU "cd-GMenu")
+		set (gmenudatadir "${pluginsdatadir}/GMenu")
+		configure_file (GMenu/data/GMenu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/GMenu/data/GMenu.conf)
+		add_subdirectory ("GMenu")
+	endif()
+endif()
+
 ############# GVFS-INTEGRATION #################
 pkg_check_modules ("LIBGIO" "gio-2.0")
 add_subdirectory (gvfs-integration)
@@ -218,21 +233,6 @@ if ("${enable_old_gnome_integration}" STREQUAL "yes")
 	endif()
 endif()
 
-############# GMENU #################
-if (NOT "${enable_gmenu}" STREQUAL "no")
-	pkg_check_modules (GMENU_PACKAGE libgnome-menu)
-	if ("${GMENU_PACKAGE_FOUND}" STREQUAL "")
-		message (STATUS "Could not find libgnome-menu; Cairo-Dock won't be built with GMenu applet.")
-	else()
-		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
-		set (VERSION_GMENU "1.1.5")
-		set (PACKAGE_GMENU "cd-GMenu")
-		set (gmenudatadir "${pluginsdatadir}/GMenu")
-		configure_file (GMenu/data/GMenu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/GMenu/data/GMenu.conf)
-		add_subdirectory ("GMenu")
-	endif()
-endif()
-
 ############# ICON EFFECT #################
 set (GETTEXT_ICON_EFFECTS ${GETTEXT_PLUGINS})
 set (VERSION_ICON_EFFECTS "1.2.3")
@@ -241,19 +241,11 @@ set (icon_effectsdatadir "${pluginsdatadir}/icon-effect")
 configure_file (icon-effect/data/icon-effect.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf)
 add_subdirectory (icon-effect)
 
-############# INDICATOR-MENUS #################
-if ("${enable-indicator-menus}" STREQUAL "yes")
-	pkg_check_modules (INDICATOR_MENUS_PACKAGE indicator)
-	if ("${INDICATOR_MENUS_PACKAGE_FOUND}" STREQUAL "")
-		message (STATUS "Could not find lidindicator; Cairo-Dock won't be built with Indicator-Menus applet.")
-	else()
-		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
-		set (VERSION_INDICATOR_MENUS "0.0.1")
-		set (PACKAGE_INDICATOR_MENUS "cd-Indicator-Menus")
-		set (indicator_menusdatadir "${pluginsdatadir}/Indicator-Menus")
-		configure_file (Indicator-Menus/data/Indicator-Menus.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Indicator-Menus/data/Indicator-Menus.conf)
-		add_subdirectory ("Indicator-Menus")
-	endif()
+############# INDICATOR-APPLET #################
+pkg_check_modules (DBUSMENU dbusmenu-glib)
+pkg_check_modules (INDICATOR_APPLET indicator libido-0.1 dbusmenu-gtk)
+if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+	add_subdirectory (Indicator-applet)
 endif()
 
 ############# ILLUSION #################
@@ -337,9 +329,7 @@ else()
 endif()
 
 ############# MEMENU #################
-pkg_check_modules (DBUSMENU dbusmenu-glib)
-pkg_check_modules (MEMENU_PACKAGE indicator libido-0.1 dbusmenu-gtk)
-if (NOT "${MEMENU_PACKAGE_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
 	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
 	
 	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
@@ -354,11 +344,21 @@ if (NOT "${MEMENU_PACKAGE_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQU
 	message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
 	
 	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
-	set (VERSION_MEMENU "0.0.1")
+	set (VERSION_MEMENU "1.0.0")
 	set (PACKAGE_MEMENU "cd-MeMenu")
 	set (memenudatadir "${pluginsdatadir}/MeMenu")
 	configure_file (MeMenu/data/MeMenu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/MeMenu/data/MeMenu.conf)
 	add_subdirectory (MeMenu)
+endif()
+
+############# MESSAGING_MENU #################
+if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
+	set (VERSION_MESSAGING_MENU "0.0.1")
+	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")
+	set (messaging_menudatadir "${pluginsdatadir}/Messaging-Menu")
+	configure_file (Messaging-Menu/data/Messaging-Menu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Messaging-Menu/data/Messaging-Menu.conf)
+	add_subdirectory (Messaging-Menu)
 endif()
 
 ############# MOTION BLUR #################

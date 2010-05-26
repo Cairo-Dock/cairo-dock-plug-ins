@@ -17,30 +17,25 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
+#include "stdlib.h"
 
-#include "dbus-shared-names.h"
+#include "dbus-data.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-struct.h"
-#include "applet-me.h"
+#include "applet-messaging.h"
 #include "applet-menu.h"
+#include "applet-struct.h"
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Me Menu"),
+CD_APPLET_DEFINITION (N_("Messaging Menu"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
-	N_("A menu that lets you access quickly to your information, your online status, your friends."),
+	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
+	"It handles Evolution, Pidgin, Empathy, etc"),
 	"Fabounet")
 
 
-/**static gboolean _get_menu_once (CairoDockModuleInstance *myApplet)
-{
-	cd_me_get_menu (myApplet);
-	myData.iSidGetMenuOnce = 0;
-	return FALSE;
-}*/
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -49,14 +44,14 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	myData.pIndicator = cd_indicator_new (myApplet,
-		INDICATOR_ME_DBUS_NAME,
-		INDICATOR_ME_SERVICE_DBUS_OBJECT,
-		INDICATOR_ME_SERVICE_DBUS_INTERFACE,
-		INDICATOR_ME_DBUS_OBJECT);	
-	myData.pIndicator->on_connect 			= cd_me_on_connect;
-	myData.pIndicator->on_disconnect 		= cd_me_on_disconnect;
-	myData.pIndicator->get_initial_values 	= cd_me_get_initial_values;
-	myData.pIndicator->add_menu_handler 	= cd_me_add_menu_handler;
+		INDICATOR_MESSAGES_DBUS_NAME,
+		INDICATOR_MESSAGES_SERVICE_DBUS_OBJECT,
+		INDICATOR_MESSAGES_SERVICE_DBUS_INTERFACE,
+		INDICATOR_MESSAGES_DBUS_OBJECT);	
+	myData.pIndicator->on_connect 			= cd_messaging_on_connect;
+	myData.pIndicator->on_disconnect 		= cd_messaging_on_disconnect;
+	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
+	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -69,7 +64,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_indicator_destroy (myData.pIndicator);
-	
 CD_APPLET_STOP_END
 
 

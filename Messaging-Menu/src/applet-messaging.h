@@ -18,22 +18,17 @@
 */
 
 
-#ifndef __CD_APPLET_STRUCT__
-#define  __CD_APPLET_STRUCT__
+#ifndef __APPLET_MESSAGING__
+#define  __APPLET_MESSAGING__
 
 #include <cairo-dock.h>
-#include "indicator-applet.h"
 
-//\___________ structure containing the applet's configuration parameters.
-struct _AppletConfig {
-	gint nothing;
-	
-	} ;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {
-	CDAppletIndicator *pIndicator;
-	} ;
+void cd_messaging_on_connect (CairoDockModuleInstance *myApplet);
+
+void cd_messaging_on_disconnect (CairoDockModuleInstance *myApplet);
+
+void cd_messaging_get_initial_values (CairoDockModuleInstance *myApplet);
 
 
 #endif

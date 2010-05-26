@@ -18,22 +18,14 @@
 */
 
 
-#ifndef __CD_APPLET_STRUCT__
-#define  __CD_APPLET_STRUCT__
+#ifndef __APPLET_MENU__
+#define  __APPLET_MENU__
 
 #include <cairo-dock.h>
-#include "indicator-applet.h"
+#include <libdbusmenu-gtk/menu.h>
 
-//\___________ structure containing the applet's configuration parameters.
-struct _AppletConfig {
-	gint nothing;
-	
-	} ;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {
-	CDAppletIndicator *pIndicator;
-	} ;
+void cd_messaging_add_menu_handler (DbusmenuGtkClient * client);
 
 
 #endif

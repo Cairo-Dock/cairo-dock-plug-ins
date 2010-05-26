@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="/">
+	<interface name="org.ayatana.indicator.messages.service">
+
+<!-- Methods -->
+		<method name="Watch">
+			<annotation name="org.freedesktop.DBus.GLib.Async" value="true" />
+		</method>
+		<method name="AttentionRequested">
+			<arg type="b" name="dot" direction="out" />
+		</method>
+		<method name="IconShown">
+			<arg type="b" name="hidden" direction="out" />
+		</method>
+
+<!-- Signals -->
+		<signal name="AttentionChanged">
+			<arg type="b" name="dot" direction="out" />
+		</signal>
+		<signal name="IconChanged">
+			<arg type="b" name="hidden" direction="out" />
+		</signal>
+
+	</interface>
+</node>

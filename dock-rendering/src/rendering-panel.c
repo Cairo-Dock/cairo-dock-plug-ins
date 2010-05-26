@@ -209,8 +209,8 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	do
 	{
 		icon = ic->data;
-
-		if (!CAIRO_DOCK_IS_SEPARATOR (icon))
+		
+		if (! CAIRO_DOCK_IS_SEPARATOR (icon))
 		{
 			cairo_save (pCairoContext);
 			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, icon->bPointed);

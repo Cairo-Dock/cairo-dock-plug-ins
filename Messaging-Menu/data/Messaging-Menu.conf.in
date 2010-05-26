@@ -1,4 +1,4 @@
-#!en;@VERSION_MEMENU@
+#!en;@VERSION_MESSAGING_MENU@
 
 #[gtk-about]
 [Icon]
@@ -7,18 +7,20 @@
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-name = 
+#s Name of the icon as it will appear in its caption in the dock:
+name = Messages
+
+icon = 
 
 #d Name of the dock it belongs to:
 dock name = 
 
 order=
-icon=
 
 #F[Applet's Handbook]
 frame_hand=
 #A
-handbook=Me Menu
+handbook=Messaging Menu
 
 #[gtk-convert]
 [Desklet]
@@ -95,3 +97,6 @@ fg alpha = 1
 
 #[gtk-preferences]
 [Configuration]
+
+#a Animation of the icon when one of the application demands your attention :
+animation = rotate

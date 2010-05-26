@@ -3,28 +3,24 @@
 
 SET(MODULE_SRCS
 	applet-struct.h
-	applet-init.c 			applet-init.h
+	applet-init.c 				applet-init.h
 	applet-config.c 			applet-config.h
-	applet-me.c 			applet-me.h
-	applet-menu.c 			applet-menu.h
-	about-me-menu-item.c		about-me-menu-item.h
+	applet-messaging.c 			applet-messaging.h
+	applet-menu.c 				applet-menu.h
 	applet-notifications.c 		applet-notifications.h
 )
 
-add_library(${PACKAGE_MEMENU} SHARED ${MODULE_SRCS})
+add_library(${PACKAGE_MESSAGING_MENU} SHARED ${MODULE_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${memenudatadir}")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${messaging_menudatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
-add_definitions (-DMY_APPLET_CONF_FILE="MeMenu.conf")
-add_definitions (-DMY_APPLET_USER_DATA_DIR="MeMenu")
-add_definitions (-DMY_APPLET_VERSION="${VERSION_MEMENU}")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_MEMENU}")
+add_definitions (-DMY_APPLET_CONF_FILE="Messaging-Menu.conf")
+add_definitions (-DMY_APPLET_USER_DATA_DIR="Messaging-Menu")
+add_definitions (-DMY_APPLET_VERSION="${VERSION_MESSAGING_MENU}")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_MESSAGING_MENU}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
-add_definitions (-DDBUSMENU_MAJOR=${DBUSMENU_MAJOR})
-add_definitions (-DDBUSMENU_MINOR=${DBUSMENU_MINOR})
-add_definitions (-DDBUSMENU_NANO=${DBUSMENU_NANO})
 ### uncomment the following line to allow multi-instance applet.
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
@@ -42,12 +38,11 @@ link_directories (
 	${INDICATOR_APPLET_LIBRARY_DIRS}
 	${CMAKE_SOURCE_DIR}/Indicator-applet)
 
-target_link_libraries (${PACKAGE_MEMENU}
+target_link_libraries (${PACKAGE_MESSAGING_MENU}
 	${PACKAGE_LIBRARIES}
 	${DBUSMENU_LIBRARIES}
 	${INDICATOR_APPLET_LIBRARIES}
 	indicator-applet)
-
 ########### install files ###############
 
-install(TARGETS ${PACKAGE_MEMENU} DESTINATION ${pluginsdir})
+install(TARGETS ${PACKAGE_MESSAGING_MENU} DESTINATION ${pluginsdir})

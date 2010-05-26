@@ -37,6 +37,7 @@ cd ../src
 sed -i "s/CD_PKG/$UpperName/g" CMakeLists.txt
 sed -i "s/pkgdatadir/${LowerName}datadir/g" CMakeLists.txt
 sed -i "s/pkguserdirname/${LowerName}userdirname/g" CMakeLists.txt
+sed -i "s/CD_APPLET_NAME/$AppletName/g" CMakeLists.txt
 
 sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
 sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
