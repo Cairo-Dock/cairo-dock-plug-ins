@@ -28,6 +28,11 @@
 
 #include "rendering-panel.h"
 
+extern gdouble my_fPanelRadius;
+extern gdouble my_fPanelInclination;
+const int iNbCurveSteps = 10;
+
+
 static void cd_compute_size (CairoDock *pDock)
 {
 	//\_____________ On calcule le nombre de groupes et la place qu'ils occupent.
@@ -194,7 +199,26 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 		cairo_new_path (pCairoContext);
 	cairo_restore (pCairoContext);
 	
-	double x1, x2, dx, h = pDock->iDecorationsHeight;
+	//\____________________ On dessine les separateurs physiques.
+	cairo_save (pCairoContext);
+	if (pDock->container.bIsHorizontal)
+	{
+		if (! pDock->container.bDirectionUp)
+		{
+			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
+			cairo_scale (pCairoContext, 1., -1.);
+		}
+	}
+	else
+	{
+		cairo_translate (pCairoContext, pDock->container.iHeight/2., pDock->container.iWidth/2.);
+		cairo_rotate (pCairoContext, G_PI/2);
+		if (pDock->container.bDirectionUp)
+			cairo_scale (pCairoContext, 1., -1.);
+		cairo_translate (pCairoContext, -pDock->container.iWidth/2., -pDock->container.iHeight/2.);
+	}
+	
+	double x1, x2, dx, delta, h = pDock->iDecorationsHeight + 2*fLineWidth, h_ = h - fLineWidth;
 	GList *ic;
 	Icon *pIcon;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
@@ -219,20 +243,22 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 			else
 				break;
 			
-			g_print ("separator from %.2f to %.2f\n", x1, x2);
-			dx = MIN (fRadius, (x2 - x1) / 2);
+			dx = MIN (my_fPanelRadius, (x2 - x1) / 2);
+			delta = dx + h*tan(my_fPanelInclination)/2;
+			if (delta > (x2 - x1) / 2)
+				delta = (x2 - x1) / 2;
 			
-			cairo_move_to (pCairoContext, x1, 0.);
+			cairo_move_to (pCairoContext, x1, pDock->iMaxDockHeight - h);
 			cairo_rel_curve_to (pCairoContext,
 				dx, 0.,
-				0., h,
-				dx, 0.);
-			cairo_rel_move_to (pCairoContext,
-				x2 - x1 - 2*dx, 0.);
+				delta - dx, h,
+				delta, h);
+			cairo_rel_line_to (pCairoContext,
+				x2 - x1 - 2*delta, 0.);
 			cairo_rel_curve_to (pCairoContext,
 				dx, 0.,
-				0., -h,
-				dx, 0.);
+				delta - dx, -h,
+				delta, -h);
 			cairo_close_path (pCairoContext);
 			
 			cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OUT);
@@ -241,17 +267,17 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 			
 			if (fLineWidth > 0)
 			{
-				cairo_move_to (pCairoContext, x1, 0.);
+				cairo_move_to (pCairoContext, x1, pDock->iMaxDockHeight - h_ - fLineWidth/2);
 				cairo_rel_curve_to (pCairoContext,
 					dx, 0.,
-					0., h,
-					dx, 0.);
-				cairo_rel_move_to (pCairoContext,
-					x2 - x1 - 2*dx, 0.);
+					delta - dx, h_,
+					delta, h_);
+				cairo_rel_line_to (pCairoContext,
+					x2 - x1 - 2*delta, 0.);
 				cairo_rel_curve_to (pCairoContext,
 					dx, 0.,
-					0., -h,
-					dx, 0.);
+					delta - dx, -h_,
+					delta, -h_);
 				
 				cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 				cairo_set_line_width (pCairoContext, fLineWidth);
@@ -260,6 +286,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 			}
 		}
 	}
+	cairo_restore (pCairoContext);
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
@@ -410,32 +437,10 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 }
 
 
-/*const int iNbCurveSteps = 20;
-static void _draw_physical_separator (double x1, double x2, CairoDock *pDock)
-{
-	_cairo_dock_define_static_vertex_tab (2*(iNbCurveSteps+1) + 1);  // +1 pour boucler
-	
-	double fLineWidth = myBackground.iDockLineWidth;
-	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
-	double dx = MIN (fRadius, (x2 - x1) / 2);
-	double h = pDock->iDecorationsHeight;
-	
-	int i;
-	for (i = 0; i <= iNbCurveSteps; i ++)
-	{
-		t = 1.*i/NB_VERTEX_PER_ICON_PAIR;  // [0;1]
-		_cairo_dock_set_vertex_xy (n,
-			Bezier (x1, x1 + dx,x1_,x1,t),
-			Bezier (y1, y0_,y1_,y1,t));
-	}
-	
-	_cairo_dock_set_vertex_xy(_i, _x, _y)
-}
-*/
 static void cd_render_opengl (CairoDock *pDock)
 {
-	GLsizei w = pDock->container.iWidth;
-	GLsizei h = pDock->container.iHeight;
+	///GLsizei w = pDock->container.iWidth;
+	///GLsizei h = pDock->container.iHeight;
 	
 	//\_____________ On definit notre rectangle.
 	double fLineWidth = myBackground.iDockLineWidth;
@@ -492,11 +497,98 @@ static void cd_render_opengl (CairoDock *pDock)
 	glPopMatrix ();
 	
 	
+	//\_____________ On trace les separateurs physiques.
+	glPushMatrix ();
+	if (pDock->container.bIsHorizontal)
 	{
-		glEnable (GL_BLEND);
-		glBlendFunc (GL_ONE, GL_ZERO);
-		glColor4f (0., 0., 0., 0.);
+		if (! pDock->container.bDirectionUp)
+		{
+			glTranslatef (0., pDock->container.iHeight, 0.);
+			glScalef (1., -1., 1.);
+		}
 	}
+	else
+	{
+		glTranslatef (pDock->container.iHeight/2, pDock->container.iWidth/2, 0.);
+		glRotatef (-90., 0., 0., 1.);
+		if (pDock->container.bDirectionUp)
+			glScalef (1., -1., 1.);
+		glTranslatef (-pDock->container.iWidth/2, -pDock->container.iHeight/2, 0.);
+	}
+	
+	double x1, x2, dx, delta, h = pDock->iDecorationsHeight + 2*fLineWidth, h_ = h - fLineWidth;
+	GList *ic;
+	Icon *pIcon;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		{
+			x1 = pIcon->fDrawX = pIcon->fX;
+			
+			pIcon = NULL;
+			for (ic = ic->next; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				if (!CAIRO_DOCK_IS_SEPARATOR (pIcon))
+					break;
+			}
+			if (ic != NULL)
+			{
+				pIcon = ic->data;
+				x2 = pIcon->fDrawX;
+			}
+			else
+				break;
+			
+			CairoDockGLPath *pPath = cairo_dock_new_gl_path (2*(iNbCurveSteps+1) + 1, (x1+x2)/2, h);  // on part du milieu en haut pour que les triangles soient contenus dans l'enveloppe.
+			
+			dx = MIN (my_fPanelRadius, (x2 - x1) / 2);
+			delta = dx + h*tan(my_fPanelInclination)/2;
+			if (delta > (x2 - x1) / 2)
+				delta = (x2 - x1) / 2;
+			
+			cairo_dock_gl_path_rel_line_to (pPath,
+				-(x2-x1)/2, 0.);
+			cairo_dock_gl_path_rel_curve_to (pPath, iNbCurveSteps,
+				dx, 0.,
+				delta - dx, -h,
+				delta, -h);
+			cairo_dock_gl_path_rel_line_to (pPath,
+				x2 - x1 - 2*delta, 0.);
+			cairo_dock_gl_path_rel_curve_to (pPath, iNbCurveSteps,
+				dx, 0.,
+				delta - dx, h,
+				delta, h);
+			
+			glBlendFunc (GL_ONE, GL_ZERO);
+			glColor4f (0., 0., 0., 0.);
+			cairo_dock_stroke_gl_path (pPath, TRUE);
+			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			
+			if (fLineWidth > 0)
+			{
+				cairo_dock_gl_path_move_to (pPath, x1, h - fLineWidth/2);  // on part du haut/gauche, le nombre de points est ok.
+				cairo_dock_gl_path_rel_curve_to (pPath, iNbCurveSteps,
+					dx, 0.,
+					delta - dx, -h_,
+					delta, -h_);
+				cairo_dock_gl_path_rel_line_to (pPath,
+					x2 - x1 - 2*delta, 0.);
+				cairo_dock_gl_path_rel_curve_to (pPath, iNbCurveSteps,
+					dx, 0.,
+					delta - dx, h_,
+					delta, h_);
+				glLineWidth (fLineWidth);
+				glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+				cairo_dock_stroke_gl_path (pPath, FALSE);
+			}
+			
+			cairo_dock_free_gl_path (pPath);
+		}
+	}
+	glPopMatrix ();
+	
 	
 	//\_____________ On dessine la ficelle.
 	if (myIcons.iStringLineWidth > 0)
@@ -524,14 +616,13 @@ static void cd_render_opengl (CairoDock *pDock)
 	if (pFirstDrawnElement == NULL)
 		return;
 	
-	Icon *icon;
-	GList *ic = pFirstDrawnElement;
+	ic = pFirstDrawnElement;
 	do
 	{
-		icon = ic->data;
+		pIcon = ic->data;
 		
 		glPushMatrix ();
-		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, icon->bPointed);
+		cairo_dock_render_one_icon_opengl (pIcon, pDock, fDockMagnitude, pIcon->bPointed);
 		glPopMatrix ();
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);

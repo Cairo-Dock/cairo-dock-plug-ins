@@ -113,6 +113,9 @@ gboolean my_diapo_simple_draw_background;
 gdouble my_fCurveCurvature;
 gint my_iCurveAmplitude;
 
+gdouble my_fPanelRadius;
+gdouble my_fPanelInclination;
+
 gint my_iDrawSeparator3D = 0;
 gdouble my_fSeparatorColor[4];
 

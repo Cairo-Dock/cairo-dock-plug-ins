@@ -100,6 +100,9 @@ extern gboolean my_diapo_simple_display_all_icons;
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
 
+extern gdouble my_fPanelRadius;
+extern gdouble my_fPanelInclination;
+
 extern CairoDockSpeparatorType my_iDrawSeparator3D;
 
 CD_APPLET_GET_CONFIG_BEGIN
@@ -188,6 +191,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
+	
+	
+	my_fPanelRadius = 16;
+	my_fPanelInclination = 45. / 180. * G_PI;
+	
 	
 	if (g_key_file_has_group (pKeyFile, "Slide"))
 	{
