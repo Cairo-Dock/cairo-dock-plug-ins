@@ -193,7 +193,74 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	else
 		cairo_new_path (pCairoContext);
 	cairo_restore (pCairoContext);
-
+	
+	double x1, x2, dx, h = pDock->iDecorationsHeight;
+	GList *ic;
+	Icon *pIcon;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		{
+			x1 = pIcon->fDrawX = pIcon->fX;
+			
+			pIcon = NULL;
+			for (ic = ic->next; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				if (!CAIRO_DOCK_IS_SEPARATOR (pIcon))
+					break;
+			}
+			if (ic != NULL)
+			{
+				pIcon = ic->data;
+				x2 = pIcon->fDrawX;
+			}
+			else
+				break;
+			
+			g_print ("separator from %.2f to %.2f\n", x1, x2);
+			dx = MIN (fRadius, (x2 - x1) / 2);
+			
+			cairo_move_to (pCairoContext, x1, 0.);
+			cairo_rel_curve_to (pCairoContext,
+				dx, 0.,
+				0., h,
+				dx, 0.);
+			cairo_rel_move_to (pCairoContext,
+				x2 - x1 - 2*dx, 0.);
+			cairo_rel_curve_to (pCairoContext,
+				dx, 0.,
+				0., -h,
+				dx, 0.);
+			cairo_close_path (pCairoContext);
+			
+			cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OUT);
+			cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
+			cairo_fill (pCairoContext);
+			
+			if (fLineWidth > 0)
+			{
+				cairo_move_to (pCairoContext, x1, 0.);
+				cairo_rel_curve_to (pCairoContext,
+					dx, 0.,
+					0., h,
+					dx, 0.);
+				cairo_rel_move_to (pCairoContext,
+					x2 - x1 - 2*dx, 0.);
+				cairo_rel_curve_to (pCairoContext,
+					dx, 0.,
+					0., -h,
+					dx, 0.);
+				
+				cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
+				cairo_set_line_width (pCairoContext, fLineWidth);
+				cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+				cairo_stroke (pCairoContext);
+			}
+		}
+	}
+	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)
 		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, FALSE);
@@ -344,6 +411,27 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 }
 
 
+const int iNbCurveSteps = 20;
+static void _draw_physical_separator (double x1, double x2, CairoDock *pDock)
+{
+	_cairo_dock_define_static_vertex_tab (2*(iNbCurveSteps+1) + 1);  // +1 pour boucler
+	
+	double fLineWidth = myBackground.iDockLineWidth;
+	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myBackground.iDockRadius > 0 ? myBackground.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
+	double dx = MIN (fRadius, (x2 - x1) / 2);
+	double h = pDock->iDecorationsHeight;
+	
+	int i;
+	for (i = 0; i <= iNbCurveSteps; i ++)
+	{
+		t = 1.*i/NB_VERTEX_PER_ICON_PAIR;  // [0;1]
+		_cairo_dock_set_vertex_xy (n,
+			Bezier (x1, x1 + dx,x1_,x1,t),
+			Bezier (y1, y0_,y1_,y1,t));
+	}
+	
+	_cairo_dock_set_vertex_xy(_i, _x, _y)
+}
 
 static void cd_render_opengl (CairoDock *pDock)
 {
@@ -403,6 +491,13 @@ static void cd_render_opengl (CairoDock *pDock)
 	if (fLineWidth != 0)
 		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, iNbVertex);
 	glPopMatrix ();
+	
+	
+	{
+		glEnable (GL_BLEND);
+		glBlendFunc (GL_ONE, GL_ZERO);
+		glColor4f (0., 0., 0., 0.);
+	}
 	
 	//\_____________ On dessine la ficelle.
 	if (myIcons.iStringLineWidth > 0)

@@ -244,9 +244,9 @@ add_subdirectory (icon-effect)
 ############# INDICATOR-APPLET #################
 pkg_check_modules (DBUSMENU dbusmenu-glib)
 pkg_check_modules (INDICATOR_APPLET indicator libido-0.1 dbusmenu-gtk)
-#if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
-#	add_subdirectory (Indicator-applet)
-#endif()
+if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+	add_subdirectory (Indicator-applet)
+endif()
 
 ############# ILLUSION #################
 set (GETTEXT_ILLUSION ${GETTEXT_PLUGINS})
@@ -348,7 +348,7 @@ if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STRE
 	set (PACKAGE_MEMENU "cd-MeMenu")
 	set (memenudatadir "${pluginsdatadir}/MeMenu")
 	configure_file (MeMenu/data/MeMenu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/MeMenu/data/MeMenu.conf)
-	#add_subdirectory (MeMenu)
+	add_subdirectory (MeMenu)
 endif()
 
 ############# MESSAGING_MENU #################
@@ -358,7 +358,7 @@ if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STRE
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")
 	set (messaging_menudatadir "${pluginsdatadir}/Messaging-Menu")
 	configure_file (Messaging-Menu/data/Messaging-Menu.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Messaging-Menu/data/Messaging-Menu.conf)
-	#add_subdirectory (Messaging-Menu)
+	add_subdirectory (Messaging-Menu)
 endif()
 
 ############# MOTION BLUR #################
