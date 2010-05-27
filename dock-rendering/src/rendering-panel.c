@@ -271,16 +271,15 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 		return;
 	
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);  // * pDock->fMagnitudeMax
-	Icon *icon;
-	GList *ic = pFirstDrawnElement;
+	ic = pFirstDrawnElement;
 	do
 	{
-		icon = ic->data;
+		pIcon = ic->data;
 		
-		if (! CAIRO_DOCK_IS_SEPARATOR (icon))
+		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
 		{
 			cairo_save (pCairoContext);
-			cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, icon->bPointed);
+			cairo_dock_render_one_icon (pIcon, pDock, pCairoContext, fDockMagnitude, pIcon->bPointed);
 			cairo_restore (pCairoContext);
 		}
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -411,7 +410,7 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 }
 
 
-const int iNbCurveSteps = 20;
+/*const int iNbCurveSteps = 20;
 static void _draw_physical_separator (double x1, double x2, CairoDock *pDock)
 {
 	_cairo_dock_define_static_vertex_tab (2*(iNbCurveSteps+1) + 1);  // +1 pour boucler
@@ -432,7 +431,7 @@ static void _draw_physical_separator (double x1, double x2, CairoDock *pDock)
 	
 	_cairo_dock_set_vertex_xy(_i, _x, _y)
 }
-
+*/
 static void cd_render_opengl (CairoDock *pDock)
 {
 	GLsizei w = pDock->container.iWidth;
