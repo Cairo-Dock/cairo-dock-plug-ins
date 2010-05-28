@@ -5,6 +5,9 @@ SET(impl_SRCS
 
 add_library(indicator-applet STATIC ${impl_SRCS})
 
+# Needed for amd64 architecture
+add_definitions (-fPIC)
+
 link_directories(
 	${PACKAGE_LIBRARY_DIRS}
 	${DBUSMENU_LIBRARY_DIRS}
