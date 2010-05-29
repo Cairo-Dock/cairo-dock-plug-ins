@@ -787,7 +787,7 @@ static Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 
 static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 {
-	//\____________________ On genere le cadre.
+	//\_____________ On definit notre cadre.
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
 	h = pDock->iDecorationsHeight;
 	if (h < 2 * r)
@@ -819,42 +819,29 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - myBackground.iFrameMargin : r);
 	}
 	
-	//\____________________ On trace le cadre.
-	int sens;
-	if ((pDock->container.bDirectionUp && pDock->container.bIsHorizontal) || (!pDock->container.bDirectionUp && !pDock->container.bIsHorizontal))
-	{
-		sens = 1;
-		//dy = pDock->container.iHeight - pDock->iDecorationsHeight - 1.5 * l;
-		dy = pDock->iDecorationsHeight + 1.5*l;
-	}
-	else
-	{
-		sens = -1;
-		//dy = pDock->iDecorationsHeight + 1.5 * l;
-		dy = pDock->container.iHeight - .5 * l;
-	}
-	
-	int iNbVertex;
+	//\_____________ On genere les coordonnees du contour.
 	double fDeltaXTrapeze;
-	GLfloat *pVertexTab = cairo_dock_generate_trapeze_path (w - (/**myBackground.bRoundedBottomCorner*/TRUE ? 0 : 2*l/gamma), h+l, r, /**myBackground.bRoundedBottomCorner*/TRUE, gamma, &fDeltaXTrapeze, &iNbVertex);
+	const CairoDockGLPath *pFramePath = cairo_dock_generate_trapeze_path (w - (/**myBackground.bRoundedBottomCorner*/TRUE ? 0 : 2*l/gamma), h+l, r, /**myBackground.bRoundedBottomCorner*/TRUE, gamma, &fDeltaXTrapeze);
+	dx = dx - fDeltaXTrapeze;
+	dy = pDock->iDecorationsHeight + 1.5*l;
 	
-	if (! pDock->container.bIsHorizontal)
-		dx = pDock->container.iWidth - dx + fDeltaXTrapeze;
-	else
-		dx = dx - fDeltaXTrapeze;
-	
-	//\____________________ On dessine les decorations dedans.
-	//fDockOffsetY = (!pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
+	//\_____________ On remplit avec le fond.
 	glPushMatrix ();
-	cairo_dock_draw_frame_background_opengl (g_pDockBackgroundBuffer.iTexture, w+2*fDeltaXTrapeze, h+l, dx, dy, pVertexTab, iNbVertex, pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);
+	cairo_dock_set_container_orientation_opengl (CAIRO_CONTAINER (pDock));
+	glTranslatef (dx + (w+2*fDeltaXTrapeze)/2,
+		dy - h/2,
+		0.);
 	
-	//\____________________ On dessine le cadre.
+	cairo_dock_fill_gl_path (pFramePath, g_pDockBackgroundBuffer.iTexture);
+	
+	//\_____________ On trace le contour.
 	if (l != 0)
-		cairo_dock_draw_current_path_opengl (l, myBackground.fLineColor, iNbVertex);
+	{
+		glLineWidth (l);
+		glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		cairo_dock_stroke_gl_path (pFramePath, TRUE);
+	}
 	glPopMatrix ();
-	
-	/// donner un effet d'epaisseur => chaud du slip avec les separateurs physiques !
-	
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIcons.iStringLineWidth > 0)

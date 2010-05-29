@@ -615,7 +615,6 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 				_generate_sector_path (my_fRainbowConeOffset,
 					fRadius + .5 * pDock->iMaxIconHeight * fMaxScale,
 					fRadius - my_iSpaceBetweenRows/2,
-					
 					fDelta/180.*G_PI, pCosSinTab, pVertexTab);
 				
 				glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
@@ -674,18 +673,18 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		my_fRainbowLineColor[0], my_fRainbowLineColor[1], my_fRainbowLineColor[2], 0.};
 		glEnableClientState(GL_COLOR_ARRAY);
 		glColorPointer(4, GL_FLOAT, 0, color);
-		glVertexPointer(3, GL_FLOAT, 0, pVertexTab);
+		glVertexPointer(2, GL_FLOAT, 0, pVertexTab);
 		
-		pVertexTab[3*0+0] = - (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0];
-		pVertexTab[3*0+1] = (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0+1];
-		pVertexTab[3*1+0] = - fRadius * cos (my_fRainbowConeOffset);
-		pVertexTab[3*1+1] = fRadius * sin (my_fRainbowConeOffset);
-		pVertexTab[3*2+0] = 0.;
-		pVertexTab[3*2+1] = 0.;
-		pVertexTab[3*3+0] = - pVertexTab[3*1+0];
-		pVertexTab[3*3+1] = pVertexTab[3*1+1];
-		pVertexTab[3*4+0] = - pVertexTab[3*0+0];
-		pVertexTab[3*4+1] = pVertexTab[3*0+1];
+		pVertexTab[2*0+0] = - (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0];
+		pVertexTab[2*0+1] = (fRadius + .5 * pDock->iMaxIconHeight * fMaxScale + my_iSpaceBetweenRows/2) * pCosSinTab[2*0+1];
+		pVertexTab[2*1+0] = - fRadius * cos (my_fRainbowConeOffset);
+		pVertexTab[2*1+1] = fRadius * sin (my_fRainbowConeOffset);
+		pVertexTab[2*2+0] = 0.;
+		pVertexTab[2*2+1] = 0.;
+		pVertexTab[2*3+0] = - pVertexTab[2*1+0];
+		pVertexTab[2*3+1] = pVertexTab[2*1+1];
+		pVertexTab[2*4+0] = - pVertexTab[2*0+0];
+		pVertexTab[2*4+1] = pVertexTab[2*0+1];
 		
 		cairo_dock_draw_current_path_opengl (myBackground.iDockLineWidth, my_fRainbowLineColor, 5);
 		

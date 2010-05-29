@@ -134,7 +134,7 @@ CD_APPLET_PRE_INIT_END
 
 CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les vues.
-	cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
+	///cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
 	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
 	

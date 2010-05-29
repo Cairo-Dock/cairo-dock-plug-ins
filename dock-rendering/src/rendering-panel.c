@@ -51,7 +51,7 @@ static void cd_compute_size (CairoDock *pDock)
 				{
 					iNbGroups ++;
 					fGroupsWidth += MAX (0, fCurrentGroupWidth);
-					g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
+					//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 					fCurrentGroupWidth = - myIcons.iIconGap;
 				}
 			}
@@ -63,18 +63,18 @@ static void cd_compute_size (CairoDock *pDock)
 			{
 				iNbGroups ++;
 				fGroupsWidth += MAX (0, fCurrentGroupWidth);
-				g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
+				//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 				fCurrentGroupWidth = - myIcons.iIconGap;
 			}
 		}
 		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
 		fCurrentGroupWidth += pIcon->fWidth + myIcons.iIconGap;
-		g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
+		//g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
 	{
 		fGroupsWidth += MAX (0, fCurrentGroupWidth);
-		g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
+		//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 	}
 	if (fGroupsWidth < 0)
 		fGroupsWidth = 0;
@@ -85,7 +85,7 @@ static void cd_compute_size (CairoDock *pDock)
 	double fGroupGap = (iNbGroups > 1 ? (W - 2*fScreenBorderGap - fGroupsWidth) / (iNbGroups - 1) : W - fScreenBorderGap - fGroupsWidth);
 	if (fGroupGap < myIcons.iIconGap)  // les icones depassent en largeur.
 		fGroupGap = myIcons.iIconGap;
-	g_print (" -> %d groups, %d/%d\nfGroupGap = %.2f\n", iNbGroups, (int)fGroupsWidth, (int)W, fGroupGap);
+	//g_print (" -> %d groups, %d/%d\nfGroupGap = %.2f\n", iNbGroups, (int)fGroupsWidth, (int)W, fGroupGap);
 	
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
@@ -104,7 +104,7 @@ static void cd_compute_size (CairoDock *pDock)
 				{
 					xg += fCurrentGroupWidth + fGroupGap;
 					x = xg;
-					g_print ("jump to %.2f\n", x);
+					//g_print ("jump to %.2f\n", x);
 					fCurrentGroupWidth = - myIcons.iIconGap;
 				}
 			}
@@ -116,14 +116,14 @@ static void cd_compute_size (CairoDock *pDock)
 			{
 				xg += fCurrentGroupWidth + fGroupGap;
 				x = xg;
-				g_print ("jump to %.2f\n", x);
+				//g_print ("jump to %.2f\n", x);
 				fCurrentGroupWidth = - myIcons.iIconGap;
 			}
 		}
 		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
 		fCurrentGroupWidth += pIcon->fWidth + myIcons.iIconGap;
 		
-		g_print ("icon at %.2f\n", x);
+		//g_print ("icon at %.2f\n", x);
 		pIcon->fXAtRest = x;
 		x += pIcon->fWidth + myIcons.iIconGap;
 	}
@@ -135,7 +135,7 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iDecorationsHeight = pDock->iMaxIconHeight * pDock->container.fRatio + 2 * myBackground.iFrameMargin;
 	
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);
-	g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
+	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
 	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight * pDock->container.fRatio + myBackground.iFrameMargin + myBackground.iDockLineWidth + myLabels.iLabelSize;
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIcons.fAmplitude));  // au moins la taille du FBO.
@@ -439,9 +439,6 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 
 static void cd_render_opengl (CairoDock *pDock)
 {
-	///GLsizei w = pDock->container.iWidth;
-	///GLsizei h = pDock->container.iHeight;
-	
 	//\_____________ On definit notre rectangle.
 	double fLineWidth = myBackground.iDockLineWidth;
 	double fMargin = myBackground.iFrameMargin;
@@ -450,7 +447,6 @@ static void cd_render_opengl (CairoDock *pDock)
 	double fDockWidth;
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
 	
-	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
 	if (pFirstDrawnElement == NULL)
@@ -458,63 +454,49 @@ static void cd_render_opengl (CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
 		fDockWidth = pDock->container.iWidth - fExtraWidth;
-		fDockOffsetX = fRadius + fLineWidth / 2;
+		fDockOffsetX = fLineWidth / 2;
 	}
 	else
 	{
 		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
 		Icon *pFirstIcon = pFirstDrawnElement->data;
-		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin : fRadius + fLineWidth / 2);
-		if (fDockOffsetX - (fRadius + fLineWidth / 2) < 0)
-			fDockOffsetX = fRadius + fLineWidth / 2;
-		if (fDockOffsetX + fDockWidth + (fRadius + fLineWidth / 2) > pDock->container.iWidth)
-			fDockWidth = pDock->container.iWidth - fDockOffsetX - (fRadius + fLineWidth / 2);
+		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX + 0 - fMargin - fRadius : fLineWidth / 2);
+		if (fDockOffsetX - fLineWidth/2 < 0)
+			fDockOffsetX = fLineWidth / 2;
+		if (fDockOffsetX + fDockWidth + (2*fRadius + fLineWidth) > pDock->container.iWidth)
+			fDockWidth = pDock->container.iWidth - fDockOffsetX - (2*fRadius + fLineWidth);
 	}
 	
-	if ((pDock->container.bIsHorizontal && ! pDock->container.bDirectionUp) || (! pDock->container.bIsHorizontal && pDock->container.bDirectionUp))
-		fDockOffsetY = pDock->container.iHeight - .5 * fLineWidth;
-	else
-		fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
+	fDockOffsetY = pDock->iDecorationsHeight + 1.5 * fLineWidth;
 	
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 	
 	//\_____________ On genere les coordonnees du contour.
-	int iNbVertex;
-	const GLfloat *pVertexTab = cairo_dock_generate_rectangle_path (fDockWidth, fFrameHeight, fRadius, myBackground.bRoundedBottomCorner, &iNbVertex);
+	const CairoDockGLPath *pFramePath = cairo_dock_generate_rectangle_path (fDockWidth, fFrameHeight, fRadius, myBackground.bRoundedBottomCorner);
 	
-	if (! pDock->container.bIsHorizontal)
-		fDockOffsetX = pDock->container.iWidth - fDockOffsetX + fRadius;
-	else
-		fDockOffsetX = fDockOffsetX - fRadius;
-	
-	//\_____________ On trace le fond en texturant par des triangles.
+	//\_____________ On remplit avec le fond.
 	glPushMatrix ();
-	cairo_dock_draw_frame_background_opengl (g_pDockBackgroundBuffer.iTexture, fDockWidth+2*fRadius, fFrameHeight, fDockOffsetX, fDockOffsetY, pVertexTab, iNbVertex, pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);
+	cairo_dock_set_container_orientation_opengl (CAIRO_CONTAINER (pDock));
+	glTranslatef (fDockOffsetX + (fDockWidth+2*fRadius)/2,
+		fDockOffsetY - fFrameHeight/2,
+		0.);
+	
+	_cairo_dock_set_blend_source ();
+	cairo_dock_fill_gl_path (pFramePath, g_pDockBackgroundBuffer.iTexture);
 	
 	//\_____________ On trace le contour.
 	if (fLineWidth != 0)
-		cairo_dock_draw_current_path_opengl (fLineWidth, myBackground.fLineColor, iNbVertex);
+	{
+		glLineWidth (fLineWidth);
+		glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		cairo_dock_stroke_gl_path (pFramePath, TRUE);
+	}
 	glPopMatrix ();
 	
 	
 	//\_____________ On trace les separateurs physiques.
 	glPushMatrix ();
-	if (pDock->container.bIsHorizontal)
-	{
-		if (! pDock->container.bDirectionUp)
-		{
-			glTranslatef (0., pDock->container.iHeight, 0.);
-			glScalef (1., -1., 1.);
-		}
-	}
-	else
-	{
-		glTranslatef (pDock->container.iHeight/2, pDock->container.iWidth/2, 0.);
-		glRotatef (-90., 0., 0., 1.);
-		if (pDock->container.bDirectionUp)
-			glScalef (1., -1., 1.);
-		glTranslatef (-pDock->container.iWidth/2, -pDock->container.iHeight/2, 0.);
-	}
+	cairo_dock_set_container_orientation_opengl (CAIRO_CONTAINER (pDock));
 	
 	double x1, x2, dx, delta, h = pDock->iDecorationsHeight + 2*fLineWidth, h_ = h - fLineWidth;
 	GList *ic;
@@ -541,7 +523,7 @@ static void cd_render_opengl (CairoDock *pDock)
 			else
 				break;
 			
-			CairoDockGLPath *pPath = cairo_dock_new_gl_path (2*(iNbCurveSteps+1) + 1, (x1+x2)/2, h);  // on part du milieu en haut pour que les triangles soient contenus dans l'enveloppe.
+			CairoDockGLPath *pPath = cairo_dock_new_gl_path (2*(iNbCurveSteps+1) + 1, (x1+x2)/2, h, 0., 0.);  // on part du milieu en haut pour que les triangles soient contenus dans l'enveloppe.
 			
 			dx = MIN (my_fPanelRadius, (x2 - x1) / 2);
 			delta = dx + h*tan(my_fPanelInclination)/2;
@@ -563,7 +545,7 @@ static void cd_render_opengl (CairoDock *pDock)
 			
 			glBlendFunc (GL_ONE, GL_ZERO);
 			glColor4f (0., 0., 0., 0.);
-			cairo_dock_stroke_gl_path (pPath, TRUE);
+			cairo_dock_fill_gl_path (pPath, 0);
 			glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			
 			if (fLineWidth > 0)

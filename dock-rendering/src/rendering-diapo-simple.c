@@ -572,7 +572,135 @@ static const double a = 2.5;  // definit combien la fleche est penchee.
 	pColorTab[4*i+1] = c1[1]*f + c2[1]*(1-f);\
 	pColorTab[4*i+2] = c1[2]*f + c2[2]*(1-f);\
 	pColorTab[4*i+3] = (c1[3]*f + c2[3]*(1-f)) * fAlpha; } while (0)*/
-static GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, int *iNbPoints)
+static void cd_add_arrow_to_path (CairoDockGLPath *pPath, double fFrameWidth)
+{
+	double w = fFrameWidth / 2;
+	double aw = my_diapo_simple_arrowWidth/2;
+	double ah = my_diapo_simple_arrowHeight;
+	double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
+	
+	cairo_dock_gl_path_rel_line_to (pPath, w + xa - aw, 0.);  // pointe.
+	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);
+}
+static CairoDockGLPath *cd_generate_frame_path_without_arrow (double fFrameWidth, double fTotalHeight, double fRadius)
+{
+	static CairoDockGLPath *pPath = NULL;
+	double fTotalWidth = fFrameWidth + 2 * fRadius;
+	double fFrameHeight = MAX (0, fTotalHeight - 2 * fRadius);
+	double w = fFrameWidth / 2;
+	double h = fFrameHeight / 2;
+	double r = fRadius;
+	
+	int iNbPoins1Round = 90/DELTA_ROUND_DEGREE;
+	if (pPath == NULL)
+		pPath = cairo_dock_new_gl_path ((iNbPoins1Round+1)*4+1+3, w, -h-r, fTotalWidth, fTotalHeight);  // on commence au coin haut droit pour avoir une bonne triangulation du polygone, et en raisonnant par rapport au centre du rectangle.
+	else
+		cairo_dock_gl_path_move_to (pPath, w, -h-r);
+	
+	cairo_dock_gl_path_arc (pPath, iNbPoins1Round,  w, -h, r, -G_PI/2, +G_PI/2);  // coin bas droit.
+	
+	cairo_dock_gl_path_arc (pPath, iNbPoins1Round, w, h, r, 0.,     +G_PI/2);  // coin haut droit.
+	
+	cairo_dock_gl_path_arc (pPath, iNbPoins1Round, -w,  h, r, G_PI/2,  +G_PI/2);  // coin haut gauche.
+	
+	cairo_dock_gl_path_arc (pPath, iNbPoins1Round, -w, -h, r, G_PI,    +G_PI/2);  // coin bas gauche.
+	
+	return pPath;
+}
+
+static CairoDockGLPath *cd_generate_arrow_path (double fFrameWidth, double fTotalHeight)
+{
+	static CairoDockGLPath *pPath = NULL;
+	double w = fFrameWidth / 2;
+	
+	double aw = my_diapo_simple_arrowWidth/2;
+	double ah = my_diapo_simple_arrowHeight;
+	double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
+	
+	if (pPath == NULL)
+		pPath = cairo_dock_new_gl_path (3, xa - aw, -fTotalHeight/2, 0., 0.);
+	else
+		cairo_dock_gl_path_move_to (pPath, xa - aw, -fTotalHeight/2);
+	
+	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);
+	
+	return pPath;
+}
+
+static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pMiddleBottomColor)
+{
+	static GLfloat *pColorTab = NULL;
+	int iNbPoins1Round = 90/DELTA_ROUND_DEGREE;
+	if (pColorTab == NULL)
+		pColorTab = g_new (GLfloat, ((iNbPoins1Round+1)*4+1) * 4);
+	
+	double *pTopRightColor, *pTopLeftColor, *pBottomLeftColor, *pBottomRightColor;
+	double pMeanColor[4] = {(my_diapo_simple_color_frame_start[0] + my_diapo_simple_color_frame_stop[0])/2,
+		(my_diapo_simple_color_frame_start[1] + my_diapo_simple_color_frame_stop[1])/2,
+		(my_diapo_simple_color_frame_start[2] + my_diapo_simple_color_frame_stop[2])/2,
+		(my_diapo_simple_color_frame_start[3] + my_diapo_simple_color_frame_stop[3])/2};
+	pTopLeftColor = my_diapo_simple_color_frame_start;
+	if (my_diapo_simple_fade2bottom || my_diapo_simple_fade2right)
+	{
+		pBottomRightColor = my_diapo_simple_color_frame_stop;
+		if (my_diapo_simple_fade2bottom && my_diapo_simple_fade2right)
+		{
+			pBottomLeftColor = pMeanColor;
+			pTopRightColor = pMeanColor;
+		}
+		else if (my_diapo_simple_fade2bottom)
+		{
+			pBottomLeftColor = my_diapo_simple_color_frame_stop;
+			pTopRightColor = my_diapo_simple_color_frame_start;
+		}
+		else
+		{
+			pBottomLeftColor = my_diapo_simple_color_frame_start;
+			pTopRightColor = my_diapo_simple_color_frame_stop;
+		}
+	}
+	else
+	{
+		pBottomRightColor = my_diapo_simple_color_frame_start;
+		pBottomLeftColor = my_diapo_simple_color_frame_start;
+		pTopRightColor = my_diapo_simple_color_frame_start;
+	}
+	
+	pMiddleBottomColor[0] = (pBottomRightColor[0] + pBottomLeftColor[0])/2;
+	pMiddleBottomColor[1] = (pBottomRightColor[1] + pBottomLeftColor[1])/2;
+	pMiddleBottomColor[2] = (pBottomRightColor[2] + pBottomLeftColor[2])/2;
+	pMiddleBottomColor[3] = (pBottomRightColor[3] + pBottomLeftColor[3])/2;
+	
+	int i=0, j;
+	_copy_color (pColorTab, i, fAlpha, pBottomRightColor);
+	i ++;
+	
+	for (j = 0; j < iNbPoins1Round; j ++, i ++)  // coin bas droit.
+	{
+		_copy_color (pColorTab, i, fAlpha, pBottomRightColor);
+	}
+	
+	for (j = 0; j < iNbPoins1Round; j ++, i ++)  // coin haut droit.
+	{
+		_copy_color (pColorTab, i, fAlpha, pTopRightColor);
+	}
+	
+	for (j = 0; j < iNbPoins1Round; j ++, i ++)  // coin haut gauche.
+	{
+		_copy_color (pColorTab, i, fAlpha, pTopLeftColor);
+	}
+	
+	for (j = 0; j < iNbPoins1Round; j ++, i ++)  // coin bas gauche.
+	{
+		_copy_color (pColorTab, i, fAlpha, pBottomLeftColor);
+	}
+	
+	return pColorTab;
+}
+
+/**static GLfloat *cd_rendering_generate_path_for_diapo_simple_opengl (CairoDock *pDock, int *iNbPoints)
 {
 	//static GLfloat pVertexTab[((90/DELTA_ROUND_DEGREE+1)*4+1+3)*3];  // +3 pour la pointe.
 	_cairo_dock_define_static_vertex_tab ((90/DELTA_ROUND_DEGREE+1)*4+1+3);  // +3 pour la pointe.
@@ -936,7 +1064,7 @@ static GLfloat *cd_rendering_generate_arrow_path_for_diapo_simple_opengl (CairoD
 	}
 	_cairo_dock_close_path (i);  // on boucle.
 	_cairo_dock_return_vertex_tab ();
-}
+}*/
 
 static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 {
@@ -946,9 +1074,9 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	double fDockOffsetX, fDockOffsetY;
-	if (pDock->container.bIsHorizontal)
+	/**if (pDock->container.bIsHorizontal)
 	{
 		fDockOffsetX = X_BORDER_SPACE;
 		fDockOffsetY = (!pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
@@ -961,10 +1089,52 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		fDockOffsetX = (pDock->container.bDirectionUp ? .5*my_diapo_simple_lineWidth : my_diapo_simple_arrowHeight+ARROW_TIP);
 		fFrameHeight = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
 		fFrameWidth = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+	}*/
+	fDockOffsetX = X_BORDER_SPACE;
+	fDockOffsetY = my_diapo_simple_arrowHeight+ARROW_TIP;
+	fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
+	fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+	
+	//\_____________ On genere les coordonnees du contour.
+	CairoDockGLPath *pFramePath = cd_generate_frame_path_without_arrow (fFrameWidth, fFrameHeight, fRadius);
+	
+	//\_____________ On remplit avec le fond.
+	glPushMatrix ();
+	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
+	cairo_dock_set_container_orientation_opengl (CAIRO_CONTAINER (pDock));
+	glTranslatef (fDockOffsetX + (fFrameWidth)/2,
+		fDockOffsetY + fFrameHeight/2,
+		0.);
+	_cairo_dock_set_blend_alpha ();
+	
+	if (my_diapo_simple_draw_background)
+	{
+		// le cadre sans la pointe.
+		GLfloat pBottomMiddleColor[4];
+		const GLfloat *pColorTab = cd_generate_color_tab (fAlpha, pBottomMiddleColor);
+		glEnableClientState (GL_COLOR_ARRAY);
+		glColorPointer (4, GL_FLOAT, 0, pColorTab);
+		cairo_dock_fill_gl_path (pFramePath, 0);
+		glDisableClientState (GL_COLOR_ARRAY);
+		
+		// la pointe.
+		CairoDockGLPath *pArrowPath = cd_generate_arrow_path (fFrameWidth, fFrameHeight);
+		glColor4f (pBottomMiddleColor[0], pBottomMiddleColor[1], pBottomMiddleColor[2], pBottomMiddleColor[3] * fAlpha);
+		cairo_dock_fill_gl_path (pArrowPath, 0);
 	}
 	
+	//\_____________ On trace le contour.
+	if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
+	{
+		cd_add_arrow_to_path (pFramePath, fFrameWidth);
+		glLineWidth (my_diapo_simple_lineWidth);
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3] * fAlpha);
+		cairo_dock_stroke_gl_path (pFramePath, TRUE);
+	}
+	glPopMatrix ();
 	
-	if (my_diapo_simple_draw_background)  // On remplit le cadre en 2 temps (avec des polygones convexes).
+	
+	/**if (my_diapo_simple_draw_background)  // On remplit le cadre en 2 temps (avec des polygones convexes).
 	{
 		glPushMatrix ();
 		glTranslatef ((int) (fDockOffsetX + fFrameWidth/2), (int) (fDockOffsetY + fFrameHeight/2), -100);  // (int) -pDock->iMaxIconHeight * (1 + myIcons.fAmplitude) + 1
@@ -1015,7 +1185,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		}
 		
 		glPopMatrix ();
-	}
+	}*/
 	
 	if (pDock->icons == NULL)
 		return ;

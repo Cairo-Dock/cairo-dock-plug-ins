@@ -108,13 +108,13 @@ extern CairoDockSpeparatorType my_iDrawSeparator3D;
 CD_APPLET_GET_CONFIG_BEGIN
 	iVanishingPointY = cairo_dock_get_integer_key_value (pKeyFile, "Inclinated Plane", "vanishing point y", &bFlushConfFileNeeded, 0, NULL, NULL);
 
-	double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
+	/**double fInclinationAngle  = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "inclination", &bFlushConfFileNeeded, 35, NULL, NULL);
 	my_fInclinationOnHorizon = tan (fInclinationAngle * G_PI / 180.);
 	my_iGapOnEllipse = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "gap on ellipse", &bFlushConfFileNeeded, 10, NULL, NULL);
 	my_bRotateIconsOnEllipse = ! cairo_dock_get_boolean_key_value (pKeyFile, "Caroussel", "show face", &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_fForegroundRatio = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "foreground ratio", &bFlushConfFileNeeded, .5, NULL, NULL);
 	my_fScrollSpeed = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll speed", &bFlushConfFileNeeded, 10., NULL, NULL);
-	my_fScrollAcceleration = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll accel", &bFlushConfFileNeeded, .9, NULL, NULL);
+	my_fScrollAcceleration = cairo_dock_get_double_key_value (pKeyFile, "Caroussel", "scroll accel", &bFlushConfFileNeeded, .9, NULL, NULL);*/
 	
 	my_fParaboleCurvature = sqrt (cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "curvature", &bFlushConfFileNeeded, .7, NULL, NULL));  // c'est mieux proche de 1.
 	my_fParaboleRatio = cairo_dock_get_double_key_value (pKeyFile, "Parabolic", "ratio", &bFlushConfFileNeeded, 5, NULL, NULL);
