@@ -116,6 +116,8 @@ no mail image =
 #S+ Name of the file for the "has mail" image :
 has mail image = 
 
+#B- Play sound when a new e-mail is received?
+play sound = true
 #u Name of the file for the "new mail" sound :
 new mail sound = 
 
