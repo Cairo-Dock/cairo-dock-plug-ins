@@ -33,12 +33,8 @@ struct _AppletConfig {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	cairo_surface_t *pDropIndicatorSurface;
-	gdouble fDropIndicatorWidth, fDropIndicatorHeight;
-	GLuint iDropIndicatorTexture;
-	cairo_surface_t *pHoverIndicatorSurface;
-	gdouble fHoverIndicatorWidth, fHoverIndicatorHeight;
-	GLuint iHoverIndicatorTexture;
+	CairoDockImageBuffer dropIndicator;
+	CairoDockImageBuffer hoverIndicator;
 	GLuint iBilinearGradationTexture;
 	} ;
 

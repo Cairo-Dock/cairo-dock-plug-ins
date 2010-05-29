@@ -35,41 +35,19 @@ CD_APPLET_PRE_INIT_BEGIN (N_("drop indicator"),
 CD_APPLET_PRE_INIT_END
 
 
-static void _load_drop_indicator (void)
+static void _load_indicators (void)
 {
 	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
 	double iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
 	double iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
 	
-	if (myConfig.cDropIndicatorImageName != NULL)
-	{
-		gchar *cImagePath = cairo_dock_generate_file_path (myConfig.cDropIndicatorImageName);
-		cd_drop_indicator_load_drop_indicator (cImagePath,
-			iInitialWidth,
-			iInitialHeight);
-		g_free (cImagePath);
-	}
-	if (myData.pDropIndicatorSurface == NULL)  // image inexistante ou illisible.
-	{
-		cd_drop_indicator_load_drop_indicator (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_DEFAULT_DROP_INDICATOR_NAME,
-			iInitialWidth,
-			iInitialHeight);
-	}
+	cd_drop_indicator_load_drop_indicator (myConfig.cDropIndicatorImageName,
+		iInitialWidth,
+		iInitialHeight);
 	
-	if (myConfig.cHoverIndicatorImageName != NULL)
-	{
-		gchar *cImagePath = cairo_dock_generate_file_path (myConfig.cHoverIndicatorImageName);
-		cd_drop_indicator_load_hover_indicator (cImagePath,
-			iInitialWidth/3,
-			iInitialHeight*2/3);
-		g_free (cImagePath);
-	}
-	if (myData.pDropIndicatorSurface == NULL)  // image inexistante ou illisible.
-	{
-		cd_drop_indicator_load_drop_indicator (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_DEFAULT_HOVER_INDICATOR_NAME,
-			iInitialWidth/3,
+	cd_drop_indicator_load_hover_indicator (myConfig.cHoverIndicatorImageName,
+		iInitialWidth/3,
 		iInitialHeight*2/3);
-	}
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -77,7 +55,7 @@ CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
-	_load_drop_indicator ();
+	_load_indicators ();
 	
 	cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
@@ -107,7 +85,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		cd_drop_indicator_free_buffers ();
-		_load_drop_indicator ();
+		_load_indicators ();
 	}
 	
 CD_APPLET_RELOAD_END

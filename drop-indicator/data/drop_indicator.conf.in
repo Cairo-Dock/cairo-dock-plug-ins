@@ -18,7 +18,7 @@ hover indicator =
 animation =
 
 #I+[1;5] Speed:
-speed = 1
+speed = 2
 
 #e+[0;1] Rotation speed :
 #{Number of round per second.}

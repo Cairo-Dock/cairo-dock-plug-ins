@@ -37,19 +37,19 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 	if (pCairoContext != NULL)
 	{
 		cairo_save (pCairoContext);
-		double fX = pDock->container.iMouseX - myData.fDropIndicatorWidth / 2;
+		double fX = pDock->container.iMouseX - myData.dropIndicator.iWidth / 2;
 		if (pDock->container.bIsHorizontal)
 			cairo_rectangle (pCairoContext,
-				(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
-				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
-				(int) myData.fDropIndicatorWidth,
-				(int) (pDock->container.bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->container.iHeight));
+				(int) pDock->container.iMouseX - myData.dropIndicator.iWidth/2,
+				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.dropIndicator.iHeight),
+				(int) myData.dropIndicator.iWidth,
+				(int) (pDock->container.bDirectionUp ? 2*myData.dropIndicator.iHeight : pDock->container.iHeight));
 		else
 			cairo_rectangle (pCairoContext,
-				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
-				(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
-				(int) (pDock->container.bDirectionUp ? 2*myData.fDropIndicatorHeight : pDock->container.iHeight),
-				(int) myData.fDropIndicatorWidth);
+				(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.dropIndicator.iHeight),
+				(int) pDock->container.iMouseX - myData.dropIndicator.iWidth/2,
+				(int) (pDock->container.bDirectionUp ? 2*myData.dropIndicator.iHeight : pDock->container.iHeight),
+				(int) myData.dropIndicator.iWidth);
 		cairo_clip (pCairoContext);
 		
 		//cairo_move_to (pCairoContext, fX, 0);
@@ -61,7 +61,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		cairo_rotate (pCairoContext, fRotationAngle);
 		
 		cairo_translate (pCairoContext, 0, pData->iDropIndicatorOffset);
-		cairo_pattern_t* pPattern = cairo_pattern_create_for_surface (myData.pDropIndicatorSurface);
+		cairo_pattern_t* pPattern = cairo_pattern_create_for_surface (myData.dropIndicator.pSurface);
 		g_return_val_if_fail (cairo_pattern_status (pPattern) == CAIRO_STATUS_SUCCESS, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		cairo_pattern_set_extend (pPattern, CAIRO_EXTEND_REPEAT);
 		cairo_set_source (pCairoContext, pPattern);
@@ -70,7 +70,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (0.,
 			0.,
 			0.,
-			2*myData.fDropIndicatorHeight);  // de haut en bas.
+			2*myData.dropIndicator.iHeight);  // de haut en bas.
 		g_return_val_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 		cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
@@ -106,7 +106,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		cairo_pattern_destroy (pGradationPattern);
 		cairo_restore (pCairoContext);
 		
-		if (pData->fAlphaHover > 0 && myData.pHoverIndicatorSurface != NULL)
+		if (pData->fAlphaHover > 0 && myData.hoverIndicator.pSurface != NULL)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
 			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
@@ -120,7 +120,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 					cairo_translate (pCairoContext,
 						pIcon->fDrawY,
 						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale);
-				cairo_set_source_surface (pCairoContext, myData.pHoverIndicatorSurface, 0., 0.);
+				cairo_set_source_surface (pCairoContext, myData.hoverIndicator.pSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, pData->fAlphaHover);
 				cairo_restore (pCairoContext);
 			}
@@ -129,23 +129,23 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 	else
 	{
 		double fX = pDock->container.iMouseX;
-		double fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
+		double fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.dropIndicator.iHeight : myData.dropIndicator.iHeight);
 		glPushMatrix();
 		glLoadIdentity();
 		
 		if (pDock->container.bIsHorizontal)
 		{
 			fX = pDock->container.iMouseX;
-			fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
-			glTranslatef (fX, fY, - myData.fDropIndicatorWidth-1.);
+			fY = (pDock->container.bDirectionUp ? pDock->container.iHeight - myData.dropIndicator.iHeight : myData.dropIndicator.iHeight);
+			glTranslatef (fX, fY, - myData.dropIndicator.iWidth-1.);
 			if (! pDock->container.bDirectionUp)
 				glScalef (1., -1., 1.);
 		}
 		else
 		{
 			fX = pDock->container.iWidth - pDock->container.iMouseX;
-			fY = (! pDock->container.bDirectionUp ? pDock->container.iHeight - myData.fDropIndicatorHeight : myData.fDropIndicatorHeight);
-			glTranslatef (fY, fX, - myData.fDropIndicatorWidth-1.);
+			fY = (! pDock->container.bDirectionUp ? pDock->container.iHeight - myData.dropIndicator.iHeight : myData.dropIndicator.iHeight);
+			glTranslatef (fY, fX, - myData.dropIndicator.iWidth-1.);
 			glRotatef ((pDock->container.bDirectionUp ? 90. : -90.), 0., 0., 1.);
 		}
 		
@@ -155,7 +155,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		glMatrixMode(GL_TEXTURE); // On selectionne la matrice des textures
 		glPushMatrix();
 		glLoadIdentity(); // On la reset
-		glTranslatef(.0, - pData->iDropIndicatorOffset / myData.fDropIndicatorHeight, 0.);
+		glTranslatef(.0, - (double)pData->iDropIndicatorOffset / myData.dropIndicator.iHeight, 0.);
 		glScalef (1., -2., 1.);
 		glMatrixMode(GL_MODELVIEW); // On revient sur la matrice d'affichage
 		
@@ -167,14 +167,14 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			_cairo_dock_set_blend_over();
 		
 		//glEnable(GL_DEPTH_TEST);
-		glScalef (myData.fDropIndicatorWidth, myData.fDropIndicatorHeight, myData.fDropIndicatorWidth);
+		glScalef (myData.dropIndicator.iWidth, myData.dropIndicator.iHeight, myData.dropIndicator.iWidth);
 		glColor4f(1.0f, 1.0f, 1.0f, pData->fAlpha);
 		glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 		
 		glEnable(GL_TEXTURE);
 		glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
-		glBindTexture(GL_TEXTURE_2D, myData.iDropIndicatorTexture);
+		glBindTexture(GL_TEXTURE_2D, myData.dropIndicator.iTexture);
 		glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, myData.iBilinearGradationTexture);
@@ -212,7 +212,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
 		
-		if (pData->fAlphaHover > 0 && myData.iHoverIndicatorTexture != 0)
+		if (pData->fAlphaHover > 0 && myData.hoverIndicator.iTexture != 0)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
 			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
@@ -228,9 +228,9 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 					glTranslatef (pDock->container.iHeight - pIcon->fDrawY - 1./6*pIcon->fHeight*pIcon->fScale,
 						pDock->container.iWidth - (pIcon->fDrawX + 5./6*pIcon->fWidth*pIcon->fScale),
 						0.);
-				_cairo_dock_apply_texture_at_size_with_alpha (myData.iHoverIndicatorTexture,
-					myData.fHoverIndicatorWidth,
-					myData.fHoverIndicatorHeight,
+				_cairo_dock_apply_texture_at_size_with_alpha (myData.hoverIndicator.iTexture,
+					myData.hoverIndicator.iWidth,
+					myData.hoverIndicator.iHeight,
 					pData->fAlphaHover);
 				glPopMatrix ();
 				_cairo_dock_disable_texture ();
@@ -277,8 +277,8 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	pData->iDropIndicatorOffset += myConfig.iSpeed;
-	if (pData->iDropIndicatorOffset > 2*myData.fDropIndicatorHeight)
-		pData->iDropIndicatorOffset -= 2*myData.fDropIndicatorHeight;
+	if (pData->iDropIndicatorOffset > 2*myData.dropIndicator.iHeight)
+		pData->iDropIndicatorOffset -= 2*myData.dropIndicator.iHeight;
 	double dt = (CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
 	pData->iDropIndicatorRotation += myConfig.fRotationSpeed * 360. * dt/1e3;
 	if (pDock->bCanDrop)
@@ -301,16 +301,16 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 			*bContinueAnimation = TRUE;
 	}
 	
-	GdkRectangle rect = {(int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2,
-		(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight),
-		(int) myData.fDropIndicatorWidth,
-		(int) 2*myData.fDropIndicatorHeight};
+	GdkRectangle rect = {(int) pDock->container.iMouseX - myData.dropIndicator.iWidth/2,
+		(int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.dropIndicator.iHeight),
+		(int) myData.dropIndicator.iWidth,
+		(int) 2*myData.dropIndicator.iHeight};
 	if (! pDock->container.bIsHorizontal)
 	{
-		rect.x = (int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.fDropIndicatorHeight);
-		rect.y = (int) pDock->container.iMouseX - myData.fDropIndicatorWidth/2;
-		rect.width = (int) 2*myData.fDropIndicatorHeight;
-		rect.height =(int) myData.fDropIndicatorWidth;
+		rect.x = (int) (pDock->container.bDirectionUp ? 0 : pDock->container.iHeight - 2*myData.dropIndicator.iHeight);
+		rect.y = (int) pDock->container.iMouseX - myData.dropIndicator.iWidth/2;
+		rect.width = (int) 2*myData.dropIndicator.iHeight;
+		rect.height = (int) myData.dropIndicator.iWidth;
 	}
 	//g_print ("rect (%d;%d) (%dx%d)\n", rect.x, rect.y, rect.width, rect.height);
 	if (rect.width > 0 && rect.height > 0)
@@ -329,53 +329,50 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 }
 
 
-void cd_drop_indicator_load_drop_indicator (gchar *cImagePath, int iWidth, int iHeight)
+void cd_drop_indicator_load_drop_indicator (gchar *cImage, int iWidth, int iHeight)
 {
-	cd_message ("%s (%s)\n", __func__, cImagePath);
-	if (myData.pDropIndicatorSurface != NULL)
-		cairo_surface_destroy (myData.pDropIndicatorSurface);
-	if (myData.iDropIndicatorTexture != 0)
-	{
-		_cairo_dock_delete_texture (myData.iDropIndicatorTexture);
-		myData.iDropIndicatorTexture = 0;
-	}
-	myData.pDropIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
-		1.,
+	cd_message ("%s (%s)", __func__, cImage);
+	cairo_dock_load_image_buffer (&myData.dropIndicator,
+		cImage,
 		iWidth,
 		iHeight,
-		CAIRO_DOCK_KEEP_RATIO,
-		&myData.fDropIndicatorWidth, &myData.fDropIndicatorHeight,
-		NULL, NULL);
-	if (g_bUseOpenGL && myData.pDropIndicatorSurface != NULL)
+		CAIRO_DOCK_KEEP_RATIO);
+	if (myData.dropIndicator.pSurface == NULL)  // image inexistante ou illisible.
 	{
-		myData.iDropIndicatorTexture = cairo_dock_create_texture_from_surface (myData.pDropIndicatorSurface);
-		
-		if (myData.iBilinearGradationTexture == 0)
-			myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
+		cairo_dock_load_image_buffer (&myData.dropIndicator,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_DEFAULT_DROP_INDICATOR_NAME,
+			iWidth,
+			iHeight,
+			CAIRO_DOCK_KEEP_RATIO);
+	}
+	if (myData.dropIndicator.iTexture != 0 && myData.iBilinearGradationTexture == 0)
+	{
+		myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
 	}
 }
 
-void cd_drop_indicator_load_hover_indicator (gchar *cImagePath, int iWidth, int iHeight)
+void cd_drop_indicator_load_hover_indicator (gchar *cImage, int iWidth, int iHeight)
 {
-	cd_message ("%s (%s)\n", __func__, cImagePath);
-	if (myData.pHoverIndicatorSurface != NULL)
-		cairo_surface_destroy (myData.pHoverIndicatorSurface);
-	if (myData.iHoverIndicatorTexture != 0)
-	{
-		_cairo_dock_delete_texture (myData.iHoverIndicatorTexture);
-		myData.iHoverIndicatorTexture = 0;
-	}
-	myData.pHoverIndicatorSurface = cairo_dock_create_surface_from_image (cImagePath,
-		1.,
+	cd_message ("%s (%s)", __func__, cImage);
+	cairo_dock_load_image_buffer (&myData.hoverIndicator,
+		cImage,
 		iWidth,
 		iHeight,
-		CAIRO_DOCK_KEEP_RATIO,
-		&myData.fHoverIndicatorWidth, &myData.fHoverIndicatorHeight,
-		NULL, NULL);
-	if (g_bUseOpenGL && myData.pHoverIndicatorSurface != NULL)
+		CAIRO_DOCK_KEEP_RATIO);
+	if (myData.hoverIndicator.pSurface == NULL)  // image inexistante ou illisible.
 	{
-		myData.iHoverIndicatorTexture = cairo_dock_create_texture_from_surface (myData.pHoverIndicatorSurface);
+		cairo_dock_load_image_buffer (&myData.hoverIndicator,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_DEFAULT_HOVER_INDICATOR_NAME,
+			iWidth,
+			iHeight,
+			CAIRO_DOCK_KEEP_RATIO);
 	}
+}
+
+void cd_drop_indicator_free_buffers (void)
+{
+	cairo_dock_unload_image_buffer (&myData.dropIndicator);
+	cairo_dock_unload_image_buffer (&myData.hoverIndicator);
 }
 
 
