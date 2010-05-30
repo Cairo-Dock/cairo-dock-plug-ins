@@ -174,7 +174,7 @@ struct _AppletData {
 	gint iSongLength;
 	gint iRating;
 	gint iTrackListLength;
-	///gint iTrackListIndex;
+	gint iTrackListIndex;
 	
 	// Pour les lecteurs utilisant DBus
 	MusicPlayerDBus DBus_commands;

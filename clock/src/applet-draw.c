@@ -367,7 +367,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 					{
 						myData.pNextAnniversary->b1DayWarning = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
-							D_("Tomorrow is the following anniversary:"),
+							iDaysToNextAnniversary == 0 ? D_("Today is the following anniversary:") : D_("Tomorrow is the following anniversary:"),
 							myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
 							myData.pNextTask->cText?myData.pNextTask->cText:"",
 							D_("Repeat this message every:"));

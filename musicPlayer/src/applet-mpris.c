@@ -163,7 +163,7 @@
 /////////////////////////////////
 // Les Fonctions propres a MP. //
 /////////////////////////////////
-static inline void _extract_playing_status_mpris (int iStatus)
+static inline void _set_playing_status_mpris (int iStatus)
 {
 	switch (iStatus)
 	{
@@ -219,7 +219,7 @@ void cd_mpris_getPlaying (void)
 {
 	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (0);
-	_extract_playing_status_mpris (iStatus);
+	_set_playing_status_mpris (iStatus);
 }
 
 /* Teste si MP joue en boucle ou non
@@ -259,12 +259,12 @@ static void _on_get_current_track (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 		call_id,
 		NULL,
 		G_TYPE_INT,
-		&myData.iTrackNumber,  // myData.iTrackListIndex
+		&myData.iTrackListIndex,
 		G_TYPE_INVALID);
 	//g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
-	if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackNumber > 0)
+	if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackListIndex > 0)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackNumber);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackListIndex);
 		CD_APPLET_REDRAW_MY_ICON;
 	}
 }
@@ -432,7 +432,7 @@ void cd_mpris_getSongInfos ()
 
 /* Fonction executee a chaque changement de musique.
  */
-void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
+void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s ()\n", __func__);
@@ -474,7 +474,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	myData.bIsRunning = TRUE;
 	myData.iGetTimeFailed = 0;
 	int iStatus = _extract_status_mpris (status, 0);
-	_extract_playing_status_mpris (iStatus);
+	_set_playing_status_mpris (iStatus);
 	g_print ("myData.iPlayingStatus <- %d\n", myData.iPlayingStatus);
 	
 	if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
@@ -493,7 +493,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 
 /* Fonction executée à chaque changement dans la TrackList.
  */
-void onChangeTrackList (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
+void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s (%d)\n", __func__, iNewTrackListLength);
@@ -527,13 +527,13 @@ gboolean cd_mpris_dbus_connect_to_bus (void)
 			MP_DBUS_TYPE_SONG_METADATA,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "TrackChange",
-			G_CALLBACK(onChangeSong), NULL, NULL);
+			G_CALLBACK(onChangeSong_mpris), NULL, NULL);
 		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_shell, "TrackListChange",
 			MP_DBUS_TYPE_TRACKLIST_DATA,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_shell, "TrackListChange",
-			G_CALLBACK(onChangeTrackList), NULL, NULL);
+			G_CALLBACK(onChangeTrackList_mpris), NULL, NULL);
 		
 		return TRUE;
 	}
@@ -550,10 +550,10 @@ void cd_mpris_free_data (void)
 			G_CALLBACK(onChangePlaying_mpris), NULL);
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "TrackChange",
-			G_CALLBACK(onChangeSong), NULL);
+			G_CALLBACK(onChangeSong_mpris), NULL);
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_shell, "TrackListChange",
-			G_CALLBACK(onChangeTrackList), NULL);
+			G_CALLBACK(onChangeTrackList_mpris), NULL);
 	}
 	
 	musicplayer_dbus_disconnect_from_bus();

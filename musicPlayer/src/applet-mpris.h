@@ -37,11 +37,11 @@ void cd_mpris_get_track_index (void);
 void cd_mpris_getSongInfos (void);
 
 
-void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data);
+void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data);
 
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data);
 
-void onChangeTrackList (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data);
+void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data);
 
 
 gboolean cd_mpris_dbus_connect_to_bus (void);

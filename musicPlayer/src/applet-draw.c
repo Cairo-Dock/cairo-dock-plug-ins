@@ -228,9 +228,9 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			}
 			
 			//Affichage de l'info-rapide.
-			if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackNumber > 0)
+			if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackListLength > 0 && myData.iTrackListIndex > 0)
 			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackNumber);  // inutile de redessiner notre icone, ce sera fait plus loin.
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackListIndex);  // inutile de redessiner notre icone, ce sera fait plus loin.
 			}
 			else
 			{
@@ -317,7 +317,7 @@ void cd_musicplayer_popup_info (void)
 			str);
 	}
 	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d, %s %d/%d",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
@@ -330,8 +330,8 @@ void cd_musicplayer_popup_info (void)
 			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
 			D_("Length"),
 			myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
-			D_("Track n°"),
-			myData.iTrackNumber);
+			D_("Track n°"), myData.iTrackNumber,
+			D_("Song n°"), myData.iTrackListIndex, myData.iTrackListLength);
 	else
 		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
 			myIcon,

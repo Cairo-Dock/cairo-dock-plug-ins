@@ -28,12 +28,11 @@
 #include "applet-dbus.h"
 #include "applet-draw.h"
 #include "applet-cover.h"
+#include "applet-mpris.h"
 #include "applet-audacious.h"
 
 #define MP_DBUS_TYPE_PLAYER_STATUS_MPRIS (dbus_g_type_get_struct ("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
 #define MP_DBUS_TYPE_PLAYER_STATUS G_TYPE_INT
-
-gboolean bMpris = FALSE;
 
 /*
 <node name="/Player">
@@ -132,105 +131,6 @@ path : /org/atheme/audacious
 /////////////////////////////////
 // Les Fonctions propres a AU. //
 /////////////////////////////////
-static inline void _extract_playing_status_mpris (GValueArray *status)
-{
-	cd_debug ("%s ()\n", __func__);
-	int iStatus = -1;
-	GValue *value = g_value_array_get_nth (status, 0);
-	if (value != NULL && G_VALUE_HOLDS_INT(value))
-		iStatus = g_value_get_int (value);
-	else
-		cd_warning ("value : %x doesn't hold an int\n", value);
-	cd_debug (" => iStatus : %d\n", iStatus);
-	
-	switch (iStatus)
-	{
-		case 0:
-			myData.iPlayingStatus = PLAYER_PLAYING;
-		break;
-		case 1:
-			myData.iPlayingStatus = PLAYER_PAUSED;
-		break;
-		case 2:
-		default:
-			myData.iPlayingStatus = PLAYER_STOPPED;
-		break;
-	}
-}
-static inline void _extract_playing_status (gint status)
-{
-	cd_debug ("%s ()\n", __func__);
-	int iStatus = status;
-	cd_debug (" => iStatus : %d\n", iStatus);
-	
-	switch (iStatus)
-	{
-		case 0:
-			myData.iPlayingStatus = PLAYER_PLAYING;
-		break;
-		case 1:
-			myData.iPlayingStatus = PLAYER_PAUSED;
-		break;
-		case 2:
-		default:
-			myData.iPlayingStatus = PLAYER_STOPPED;
-		break;
-	}
-}
-
-
-/* Teste si Audacious joue de la musique ou non
- */
-static void _audacious_getPlaying_mpris (void)
-{
-	cd_debug ("%s ()\n", __func__);
-	GError *erreur = NULL;
-	GValueArray *status;
-	dbus_g_proxy_call (myData.dbus_proxy_player, "GetStatus", &erreur,  // Audacious's GetStatus() does not comply with MPRIS spec, it returns a single Int32
-		G_TYPE_INVALID,
-		MP_DBUS_TYPE_PLAYER_STATUS_MPRIS, &status,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
-	{
-		cd_warning (erreur->message);
-		g_error_free (erreur);
-		myData.iPlayingStatus = PLAYER_NONE;
-	}
-	else
-	{
-		_extract_playing_status_mpris (status);
-	}
-}
-static void _audacious_getPlaying (void)
-{
-	cd_debug ("%s ()\n", __func__);
-	GError *erreur = NULL;
-	gint status;
-	dbus_g_proxy_call (myData.dbus_proxy_player, "GetStatus", &erreur,  // Audacious's GetStatus() does not comply with MPRIS spec, it returns a single Int32
-		G_TYPE_INVALID,
-		MP_DBUS_TYPE_PLAYER_STATUS, &status,
-		G_TYPE_INVALID);
-	if (erreur != NULL)
-	{
-		cd_warning (erreur->message);
-		g_error_free (erreur);
-		myData.iPlayingStatus = PLAYER_NONE;
-	}
-	else
-	{
-		_extract_playing_status (status);
-	}
-}
-
-
-/* Renvoie le temps ecoule en secondes..
- */
-static void _audacious_get_time_elapsed (void)
-{
-	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet") / 1000;
-	//cd_debug ("myData.iCurrentTime <- %d\n", myData.iCurrentTime);
-}
-
 
 static inline void _extract_metadata (GHashTable *data_list)
 {
@@ -269,16 +169,18 @@ static inline void _extract_metadata (GHashTable *data_list)
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
 	
-	value = (GValue *) g_hash_table_lookup(data_list, "track-number");
+	value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
 	if (value == NULL)
-		value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
+		value = (GValue *) g_hash_table_lookup(data_list, "track-number");  // old parameter.
 	if (value != NULL && G_VALUE_HOLDS_INT(value))
 		myData.iTrackNumber = g_value_get_int(value);
 	else
-		myData.iTrackNumber = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
+		myData.iTrackNumber = 0.;
 	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
 	
-	value = (GValue *) g_hash_table_lookup(data_list, "length");
+	value = (GValue *) g_hash_table_lookup(data_list, "mtime");
+	if (value == NULL)
+		value = (GValue *) g_hash_table_lookup(data_list, "length");  // old parameter.
 	if (value != NULL && G_VALUE_HOLDS_INT(value)) myData.iSongLength = g_value_get_int(value) / 1000;
 	else myData.iSongLength = 0;
 	cd_message ("  iSongLength <- %ds", myData.iSongLength);
@@ -306,7 +208,8 @@ static void cd_audacious_getSongInfos (void)
 		G_TYPE_INVALID))
 	{
 		_extract_metadata (data_list);
-		
+		myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
+		myData.iTrackListLength = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetLength");
 		g_hash_table_destroy (data_list);
 	}
 	else
@@ -340,6 +243,8 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 	if (metadata != NULL)
 	{
 		_extract_metadata (metadata);
+		myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
+		myData.iTrackListLength = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetLength");
 		myData.bIsRunning = TRUE;
 	}
 	else
@@ -364,48 +269,6 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 	CD_APPLET_LEAVE ();
 }
 
-/* Fonction executée à chaque changement play/pause
- */
-static void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
-{
-	CD_APPLET_ENTER;
-	//cd_debug ("MP : %s (%x)\n", __func__, status);
-	myData.bIsRunning = TRUE;
-	_extract_playing_status_mpris (status);
-	
-	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
-	{
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
-	}
-	else
-	{
-		CD_APPLET_REDRAW_MY_ICON;
-	}
-	CD_APPLET_LEAVE ();
-}
-static void onChangePlaying(DBusGProxy *player_proxy, gint status, gpointer data)
-{
-	CD_APPLET_ENTER;
-	cd_debug ("MP : %s (%d)\n", __func__, status);
-	myData.bIsRunning = TRUE;
-	//_extract_playing_status (status);
-	
-	_audacious_getPlaying_mpris ();  // Audacious 2.1 is buggy, the signal marshaller doesn't comply with MPRIS but the "get" function does, so we use it to get the status when we receive the signal.
-	
-	if (myData.iPlayingStatus == PLAYER_PLAYING)
-		cd_musicplayer_relaunch_handler ();
-	if(! myData.cover_exist && myData.cPlayingUri != NULL)
-	{
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
-	}
-	else
-	{
-		CD_APPLET_REDRAW_MY_ICON;
-	}
-	CD_APPLET_LEAVE ();
-}
-
-
 
 ////////////////////////////
 // Definition du backend. //
@@ -421,28 +284,17 @@ static gboolean _cd_audacious_dbus_connect_to_bus (void)
 		
 		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();  // cree le proxy pour la 2eme interface car AU en a 2.
 		
-		if (bMpris)
-		{
-			dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
-				MP_DBUS_TYPE_PLAYER_STATUS_MPRIS,
-				G_TYPE_INVALID);
-			dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
-				G_CALLBACK(onChangePlaying_mpris), NULL, NULL);
-		}
-		else  // buggy version (2.1), the signal marshaller is wrong, but is sent correctly.
-		{
-			dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
-				MP_DBUS_TYPE_PLAYER_STATUS,
-				G_TYPE_INVALID);
-			dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
-				G_CALLBACK(onChangePlaying), NULL, NULL);
-		}
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
+			MP_DBUS_TYPE_PLAYER_STATUS_MPRIS,
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
+			G_CALLBACK(onChangePlaying_mpris), NULL, NULL);
 		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "TrackChange",
 			MP_DBUS_TYPE_SONG_METADATA,
 			G_TYPE_INVALID);
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "TrackChange",
-			G_CALLBACK(onChangeSong), NULL, NULL);
+			G_CALLBACK(onChangeSong), NULL, NULL);  // pas de TrackListChange, donc on fera tout dedans.
 		
 		return TRUE;
 	}
@@ -455,13 +307,9 @@ static void cd_audacious_free_data (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
-		if (bMpris)
-			dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "StatusChange",
-				G_CALLBACK(onChangePlaying_mpris), NULL);
-		else
-			dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "StatusChange",
-				G_CALLBACK(onChangePlaying), NULL);
-			
+		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "StatusChange",
+			G_CALLBACK(onChangePlaying_mpris), NULL);
+		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "TrackChange",
 			G_CALLBACK(onChangeSong), NULL);
 	}
@@ -501,6 +349,7 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_SHUFFLE :
 		case PLAYER_REPEAT :
 		{
+			
 			DBusGProxy *dbus_proxy_atheme = cairo_dock_create_new_session_proxy (
 				"org.atheme.audacious",
 				"/org/atheme/audacious",
@@ -565,7 +414,8 @@ static void cd_audacious_read_data (void)
 		{
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
-				_audacious_get_time_elapsed ();
+				///_audacious_get_time_elapsed ();
+				cd_mpris_get_time_elapsed ();
 				if (myData.iCurrentTime < 0)
 					myData.iPlayingStatus = PLAYER_STOPPED;
 			}
@@ -597,7 +447,8 @@ static void cd_audacious_configure (void)
 		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 		{
 			cd_debug ("MP : AU is running\n");
-			_audacious_getPlaying_mpris ();
+			///_audacious_getPlaying_mpris ();
+			cd_mpris_getPlaying ();
 			cd_audacious_getSongInfos ();
 			cd_musicplayer_update_icon (TRUE);
 		}
