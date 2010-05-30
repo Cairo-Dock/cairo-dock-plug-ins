@@ -131,6 +131,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	path = CD_CONFIG_GET_STRING ("Configuration", "has mail image");
 	myConfig.cHasMailUserImage = (path?cairo_dock_generate_file_path (path):NULL);
 	g_free (path);
+	myConfig.bPlaySound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "play sound", TRUE);
 	path = CD_CONFIG_GET_STRING ("Configuration", "new mail sound");
 	myConfig.cNewMailUserSound = (path?cairo_dock_generate_file_path (path):NULL);
 	g_free (path);

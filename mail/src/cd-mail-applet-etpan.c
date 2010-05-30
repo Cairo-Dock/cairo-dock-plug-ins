@@ -395,12 +395,15 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			GString *ttip_str = g_string_sized_new(300);
 			guint i;
 
-			/* don't play more often than every 4 seconds... */
-			time_t currentTime = time(NULL);
-			if(currentTime-myData.timeEndOfSound > 4)
+			if (myConfig.bPlaySound)
 			{
-				cairo_dock_play_sound(myConfig.cNewMailUserSound);
-				myData.timeEndOfSound = time(NULL);
+				/* don't play more often than every 4 seconds... */
+				time_t currentTime = time(NULL);
+				if(currentTime-myData.timeEndOfSound > 4)
+				{
+					cairo_dock_play_sound(myConfig.cNewMailUserSound);
+					myData.timeEndOfSound = time(NULL);
+				}
 			}
 
 			if (myData.iNbUnreadMails > 1)
