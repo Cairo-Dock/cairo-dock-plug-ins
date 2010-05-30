@@ -30,8 +30,8 @@
 
 extern gdouble my_fPanelRadius;
 extern gdouble my_fPanelInclination;
+extern gdouble my_fPanelRatio;
 const int iNbCurveSteps = 10;
-
 
 static void cd_compute_size (CairoDock *pDock)
 {
@@ -68,7 +68,7 @@ static void cd_compute_size (CairoDock *pDock)
 			}
 		}
 		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
-		fCurrentGroupWidth += pIcon->fWidth + myIcons.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIcons.iIconGap;
 		//g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
@@ -90,7 +90,6 @@ static void cd_compute_size (CairoDock *pDock)
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
-	double fDockWidth = 0.;
 	fCurrentGroupWidth = - myIcons.iIconGap;
 	iCurrentOrder = -1;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
@@ -121,27 +120,29 @@ static void cd_compute_size (CairoDock *pDock)
 			}
 		}
 		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
-		fCurrentGroupWidth += pIcon->fWidth + myIcons.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIcons.iIconGap;
 		
 		//g_print ("icon at %.2f\n", x);
 		pIcon->fXAtRest = x;
-		x += pIcon->fWidth + myIcons.iIconGap;
+		x += pIcon->fWidth * my_fPanelRatio + myIcons.iIconGap;
 	}
 	
 	pDock->fMagnitudeMax = 0.;  // pas de vague.
 	
 	pDock->pFirstDrawnElement = pDock->icons;
 	
-	pDock->iDecorationsHeight = pDock->iMaxIconHeight * pDock->container.fRatio + 2 * myBackground.iFrameMargin;
+	double hicon = pDock->iMaxIconHeight * my_fPanelRatio;
+	pDock->iDecorationsHeight = hicon * pDock->container.fRatio + 2 * myBackground.iFrameMargin;
 	
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
-	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight * pDock->container.fRatio + myBackground.iFrameMargin + myBackground.iDockLineWidth + myLabels.iLabelSize;
-	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIcons.fAmplitude));  // au moins la taille du FBO.
+	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + hicon * pDock->container.fRatio + myBackground.iFrameMargin + myBackground.iDockLineWidth + myLabels.iLabelSize;
+	
+	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, hicon * (1 + myIcons.fAmplitude));  // au moins la taille du FBO.
 
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
-	pDock->iMinDockHeight = 2 * (myBackground.iDockLineWidth + myBackground.iFrameMargin) + pDock->iMaxIconHeight * pDock->container.fRatio;
+	pDock->iMinDockHeight = 2 * (myBackground.iDockLineWidth + myBackground.iFrameMargin) + hicon * pDock->container.fRatio;
 }
 
 
@@ -578,22 +579,6 @@ static void cd_render_opengl (CairoDock *pDock)
 	
 	
 	//\_____________ On dessine les icones.
-	/**glEnable (GL_LIGHTING);  // pour indiquer a OpenGL qu'il devra prendre en compte l'eclairage.
-	glLightModelf (GL_LIGHT_MODEL_TWO_SIDE, 1.);
-	//glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);  // OpenGL doit considerer pour ses calculs d'eclairage que l'oeil est dans la scene (plus realiste).
-	GLfloat fGlobalAmbientColor[4] = {.0, .0, .0, 0.};
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, fGlobalAmbientColor);  // on definit la couleur de la lampe d'ambiance.
-	glEnable (GL_LIGHT0);  // on allume la lampe 0.
-	GLfloat fAmbientColor[4] = {.1, .1, .1, 1.};
-	//glLightfv (GL_LIGHT0, GL_AMBIENT, fAmbientColor);
-	GLfloat fDiffuseColor[4] = {.8, .8, .8, 1.};
-	glLightfv (GL_LIGHT0, GL_DIFFUSE, fDiffuseColor);
-	GLfloat fSpecularColor[4] = {.9, .9, .9, 1.};
-	glLightfv (GL_LIGHT0, GL_SPECULAR, fSpecularColor);
-	glLightf (GL_LIGHT0, GL_SPOT_EXPONENT, 10.);
-	GLfloat fDirection[4] = {.3, .0, -.8, 0.};  // le dernier 0 <=> direction.
-	glLightfv(GL_LIGHT0, GL_POSITION, fDirection);*/
-	
 	pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
@@ -658,7 +643,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 			}
 		}
 		
-		pIcon->fScale = 1.;
+		pIcon->fScale = my_fPanelRatio;
 		if (pIcon->fInsertRemoveFactor != 0)
 		{
 			if (pIcon->fInsertRemoveFactor > 0)
@@ -745,7 +730,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		pIcon->fDrawX = pIcon->fX;
 		
 		if (pDock->container.bDirectionUp)
-			pIcon->fY = pDock->iMaxDockHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pIcon->fHeight);
+			pIcon->fY = pDock->iMaxDockHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pIcon->fHeight * my_fPanelRatio);
 		else
 			pIcon->fY = myBackground.iDockLineWidth + myBackground.iFrameMargin;
 		pIcon->fDrawY = pIcon->fY;

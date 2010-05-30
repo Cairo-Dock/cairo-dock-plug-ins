@@ -33,10 +33,13 @@ static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 	if (pIndicator->pMenu == NULL)
 	{
 		pIndicator->pMenu = dbusmenu_gtkmenu_new (pIndicator->cBusName, pIndicator->cMenuObject);
-		DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
-		
-		if (pIndicator->add_menu_handler)
-			pIndicator->add_menu_handler (client);
+		if (pIndicator->pMenu != NULL)
+		{
+			DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
+			
+			if (pIndicator->add_menu_handler)
+				pIndicator->add_menu_handler (client);
+		}
 	}
 }
 
@@ -80,11 +83,13 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 			pIndicator->get_initial_values (myApplet);
 		
 		pIndicator->iSidGetMenuOnce = g_idle_add ((GSourceFunc)_get_menu_once, pIndicator);
+		pIndicator->bConnected = TRUE;
 	}
 	else  // If we're disconnecting, go back to offline.
 	{
 		if (pIndicator->on_disconnect)
 			pIndicator->on_disconnect (myApplet);
+		pIndicator->bConnected = FALSE;
 	}
 
 	return;
@@ -154,9 +159,13 @@ void cd_indicator_reload_icon (CDAppletIndicator *pIndicator)
 }
 
 
-void cd_indicator_show_menu (CDAppletIndicator *pIndicator)
+gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator)
 {
 	_cd_indicator_make_menu (pIndicator);
-	
-	cairo_dock_popup_menu_on_container (GTK_WIDGET (pIndicator->pMenu), myContainer);
+	if (pIndicator->pMenu != NULL)
+	{
+		cairo_dock_popup_menu_on_container (GTK_WIDGET (pIndicator->pMenu), myContainer);
+		return TRUE;
+	}
+	return FALSE;
 }

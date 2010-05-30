@@ -27,7 +27,8 @@
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	cd_indicator_show_menu (myData.pIndicator);
+	if (! cd_indicator_show_menu (myData.pIndicator))
+		cairo_dock_show_temporary_dialog_with_icon (D_("It seems that the Messaging-Menu is not installed on your system"), myIcon, myContainer, 3000., "same icon");
 CD_APPLET_ON_CLICK_END
 
 

@@ -8,74 +8,21 @@
 vanishing point y = 300
 
 
-[Caroussel]
+[Curve]
 
-#e+[0;60] Inclination of the plane:
-#{In degrees, relative to the vertical. This is a sort of inclination of the plane to the horizontal, giving a 3D impression. Setting this to 0 means that the plane is not inclined at all (vertical).}
-inclination = 40.
+#I+[0;100] Curvature of the curve in percent:
+#{The lower the value, the flatter the curve will appear.}
+curvature = 70
 
-#e+[.35;.75] Percentage of the dock's width that appears on the foreground:
-#{0.5 means the dock is half-folded, so half the icons are on the foreground and half are on the background.}
-foreground ratio = .5
-
-#e+[-10;50] Depth of the plane:
-#{The greater, the deeper. This represents the gap between the bottoms ofbackground icons and the tops of foreground icons (in pixels).}
-gap on ellipse = 10
-
-#b Always show the fronts of icons?
-#{otherwise they will turn.}
-show face = false
-
-[Parabolic]
-
-#e+[0.1;.8] Curvature:
-#{The higher this value, the sooner the parabola will be curved.}
-curvature = .3
-
-#e+[1.2;10] Height/width ratio:
-#{The parabola will be restricted to a rectangle of this proportion.}
-ratio = 5
-
-#e+[0;1] Magnitude of the wave:
-#{0 represents a flat wave, 1 represents maximum wave curvature.}
-wave magnitude= .2
-
-#b+ Curve towards the outside?
-curve outside = true
-
-#i+[0;20] Space between icons and their captions:
+#i+[0;50] Amplitude of the curve:
 #{in pixels.}
-text gap = 3
+amplitude = 25
 
-#b+ Draw captions while unfolding?
-#{This may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with OpenGL.}
-draw text = true
+[Panel]
 
-[Rainbow]
-
-#i+[0;40] Space between rows:
-space between rows = 10
-
-#i+[0;40] Space between icons:
-space between icons = 8
-
-#e+[0;1] Magnitude of the wave:
-#{0 represents a flat wave, 1 means the wave is identical to other views.}
-wave magnitude = .3
-
-#i+[1;20] Number of icons on the first row:
-nb icons min = 1
-
-#e+[60;180] Cone width:
-#{in degrees. The lower the value, the narrower the cone. 180° represents a wide open cone.}
-cone = 150
-
-#C+ Bow colour:
-#{Set transparency to 0 to not use it. This is quite slow with cairo.}
-bow color = 0.7,0.9,1.0,0.8
-
-#C+ Line colour:
-line color = 0.5,1.0,0.9,0.6
+#e+[0.5;1.;smaller icons;normal icons] Ratio to apply on icons' size :
+#{At 1, the icons will have the same size as in other views.}
+ratio = .75
 
 
 [SimpleSlide]
@@ -150,12 +97,53 @@ simple_arrowHeight = 20
 simple_arrowShift = 0
 
 
-[Curve]
+[Parabolic]
 
-#I+[0;100] Curvature of the curve in percent:
-#{The lower the value, the flatter the curve will appear.}
-curvature = 70
+#e+[0.1;.8] Curvature:
+#{The higher this value, the sooner the parabola will be curved.}
+curvature = .3
 
-#i+[0;50] Amplitude of the curve:
+#e+[1.2;10] Height/width ratio:
+#{The parabola will be restricted to a rectangle of this proportion.}
+ratio = 5
+
+#e+[0;1] Magnitude of the wave:
+#{0 represents a flat wave, 1 represents maximum wave curvature.}
+wave magnitude= .2
+
+#b+ Curve towards the outside?
+curve outside = true
+
+#i+[0;20] Space between icons and their captions:
 #{in pixels.}
-amplitude = 25
+text gap = 3
+
+#b+ Draw captions while unfolding?
+#{This may recquire more CPU during the unfolding animation, except if you launch Cairo-Dock with OpenGL.}
+draw text = true
+
+[Rainbow]
+
+#i+[0;40] Space between rows:
+space between rows = 10
+
+#i+[0;40] Space between icons:
+space between icons = 8
+
+#e+[0;1] Magnitude of the wave:
+#{0 represents a flat wave, 1 means the wave is identical to other views.}
+wave magnitude = .3
+
+#i+[1;20] Number of icons on the first row:
+nb icons min = 1
+
+#e+[60;180] Cone width:
+#{in degrees. The lower the value, the narrower the cone. 180° represents a wide open cone.}
+cone = 150
+
+#C+ Bow colour:
+#{Set transparency to 0 to not use it. This is quite slow with cairo.}
+bow color = 0.7,0.9,1.0,0.8
+
+#C+ Line colour:
+line color = 0.5,1.0,0.9,0.6

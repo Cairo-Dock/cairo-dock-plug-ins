@@ -38,6 +38,7 @@ struct _CDAppletIndicator {
 	DbusmenuGtkMenu *pMenu;
 	guint iSidGetMenuOnce;
 	gchar *cStatusIcon;
+	gboolean bConnected;
 	const gchar *cBusName;
 	const gchar *cServiceObject;
 	const gchar *cServiceInterface;
@@ -59,7 +60,7 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 
 void cd_indicator_reload_icon (CDAppletIndicator *pIndicator);
 
-void cd_indicator_show_menu (CDAppletIndicator *pIndicator);
+gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator);
 
 
 #endif

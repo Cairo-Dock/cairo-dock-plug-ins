@@ -92,7 +92,7 @@ void cd_me_on_connect (CairoDockModuleInstance *myApplet)
 
 void cd_me_on_disconnect (CairoDockModuleInstance *myApplet)
 {
-	g_print ("disconnected\n");
+	cd_warning ("It seems that the MeMenu is not available on this system");
 	status_icon_cb (NULL, DEFAULT_ICON, NULL, myApplet);  // If we're disconnecting, go back to offline.
 }
 
