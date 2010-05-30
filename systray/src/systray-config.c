@@ -29,10 +29,11 @@
 
 
 CD_APPLET_GET_CONFIG_BEGIN
-	
-	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("GUI", "shortkey", "<Ctrl>F2");
-	myConfig.iIconPacking = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "icon packing", 0);
-	myConfig.iIconSize = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("GUI", "icon size", 24);
+	CD_CONFIG_RENAME_GROUP ("GUI", "Configuration");
+	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F2");
+	myConfig.iIconPacking = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "icon packing", 0);
+	//myConfig.iIconSize = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "icon size", 24);
+	myConfig.iIconSize = 24;
 CD_APPLET_GET_CONFIG_END
 
 
@@ -45,7 +46,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cd_debug ("CD_APPLET_RESET_DATA_BEGIN\n");
+	cd_debug ("CD_APPLET_RESET_DATA_BEGIN");
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
@@ -59,5 +60,5 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	/// detruire la invisible window et la liste des icones ...
 	g_object_unref (myData.tray->manager);
-	cd_debug ("bye bye\n");
+	cd_debug ("end of reset data");
 CD_APPLET_RESET_DATA_END

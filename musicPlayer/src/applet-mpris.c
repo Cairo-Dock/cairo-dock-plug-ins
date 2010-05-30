@@ -251,12 +251,32 @@ void cd_mpris_get_time_elapsed (void)
 		myData.iCurrentTime /= 1000;
 }
 
-/* Renvoie le temps ecoule en secondes..
+/* Renvoie le numero de la chanson courante dans la playlist.
  */
+static void _on_get_current_track (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
+{
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		NULL,
+		G_TYPE_INT,
+		&myData.iTrackNumber,  // myData.iTrackListIndex
+		G_TYPE_INVALID);
+	//g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
+	if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackNumber > 0)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackNumber);
+		CD_APPLET_REDRAW_MY_ICON;
+	}
+}
 void cd_mpris_get_track_index (void)
 {
-	myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
-	//cd_debug ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);
+	DBusGProxyCall* pCall= dbus_g_proxy_begin_call (myData.dbus_proxy_shell, "GetCurrentTrack",
+		(DBusGProxyCallNotify)_on_get_current_track,
+		NULL,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+	/**myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
+	g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);*/
 }
 
 static inline int _get_integer_value (GValue *value)
@@ -325,14 +345,14 @@ static inline void _extract_metadata (GHashTable *data_list)
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
 	
-	value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
+	/**value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
 	if (value == NULL)
-		value = (GValue *) g_hash_table_lookup(data_list, "track-number");
+		value = (GValue *) g_hash_table_lookup(data_list, "track-number");  // au cas ou
 	if (value != NULL && G_VALUE_HOLDS_INT(value))
 		myData.iTrackNumber = g_value_get_int(value);
 	else
 		myData.iTrackNumber = 0;
-	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
+	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);*/
 	
 	myData.iSongLength = 0;
 	value = (GValue *) g_hash_table_lookup(data_list, "mtime");  // duree en ms.

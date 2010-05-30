@@ -360,7 +360,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			glPushMatrix ();
 			if (! pMainDock->container.bIsHorizontal)
 				glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
-			cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, fFrameColor);
+			glTranslatef (fDockOffsetX, fDockOffsetY, 0.);
+			cairo_dock_draw_rounded_rectangle_opengl (fFrameWidth, fFrameHeight, fRadius, fLineWidth, fFrameColor);
 			glPopMatrix ();
 			
 			// on les dessine.
@@ -431,7 +432,12 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 					_cairo_dock_disable_texture ();
 					fLineWidth = 4.;
 					double fFrameColor[4] = {myConfig.pFrameColor[0]+.1, myConfig.pFrameColor[1]+.1, myConfig.pFrameColor[2]+.1, 1.};
-					cairo_dock_draw_rounded_rectangle_opengl (fRadius, fLineWidth, iWidth * fZoom * fIconScale - fLineWidth, iHeight * fZoom * fIconScale - fLineWidth, -iWidth/2 * fZoom * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fIconScale - fLineWidth/2, fFrameColor);
+					glTranslatef (iWidth/2 * fZoom * fIconScale + fLineWidth/2, iHeight * fZoom/2 * fIconScale - fLineWidth/2, 0.);
+					cairo_dock_draw_rounded_rectangle_opengl (iWidth * fZoom * fIconScale - fLineWidth,
+						iHeight * fZoom * fIconScale - fLineWidth,
+						fRadius,
+						fLineWidth,
+						fFrameColor);
 					_cairo_dock_enable_texture ();
 					_cairo_dock_set_blend_alpha ();
 				}
@@ -459,7 +465,8 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		
 		if (! pMainDock->container.bIsHorizontal)
 			glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
-		cairo_dock_draw_rounded_rectangle_opengl (fRadius, 0, fFrameWidth, fFrameHeight, fDockOffsetX, fDockOffsetY, fFrameColor);
+		glTranslatef (fDockOffsetX, fDockOffsetY, 0.);
+		cairo_dock_draw_rounded_rectangle_opengl (fFrameWidth, fFrameHeight, fRadius, 0, fFrameColor);
 		glPopMatrix();
 		
 		// dessin des lettres.

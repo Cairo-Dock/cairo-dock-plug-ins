@@ -297,27 +297,26 @@ void rendering_draw_slide_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDes
 
 void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 {
-	_cairo_dock_define_static_vertex_tab (7);
+	///_cairo_dock_define_static_vertex_tab (7);
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
 		return ;
 	
 	// le cadre.
-	double fRadius = pSlide->iRadius;
+	double fRadius = (pSlide->bRoundedRadius ? pSlide->iRadius : 0.);
 	double fLineWidth = pSlide->iLineWidth;
 	if (fLineWidth != 0 && pSlide->fLineColor[3] != 0)
 	{
-		if (pSlide->bRoundedRadius)
+		///if (pSlide->bRoundedRadius)
 		{
-			cairo_dock_draw_rounded_rectangle_opengl (fRadius,
-				fLineWidth,
-				pDesklet->container.iWidth - 2 * fRadius,
+			cairo_dock_draw_rounded_rectangle_opengl (pDesklet->container.iWidth - 2 * fRadius,
 				pDesklet->container.iHeight,
-				0., 0.,
+				fRadius,
+				fLineWidth,
 				pSlide->fLineColor);
 			glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 		}
-		else
+		/**else
 		{
 			int i = 0;
 			_cairo_dock_set_vertex_xy (0, -pDesklet->container.iWidth/2, 				+pDesklet->container.iHeight/2);
@@ -326,7 +325,7 @@ void rendering_draw_slide_in_desklet_opengl (CairoDesklet *pDesklet)
 			_cairo_dock_set_vertex_xy (3, +pDesklet->container.iWidth/2, 				-pDesklet->container.iHeight/2);
 			_cairo_dock_set_path_as_current ();
 			cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
-		}
+		}*/
 	}
 	
 	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);

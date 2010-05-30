@@ -65,6 +65,3 @@ shortkey = <Control>F7
 
 #l[horizontal;vertical] Icons packing :
 icon packing = 0
-
-#i[16;48] Icons size :
-icon size = 24

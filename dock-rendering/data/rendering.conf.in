@@ -28,11 +28,11 @@ show face = false
 
 [Parabolic]
 
-#e[+0.1;1] Curvature:
+#e+[0.1;.8] Curvature:
 #{The higher this value, the sooner the parabola will be curved.}
-curvature = .5
+curvature = .3
 
-#e+[1;10] Height/width ratio:
+#e+[1.2;10] Height/width ratio:
 #{The parabola will be restricted to a rectangle of this proportion.}
 ratio = 5
 

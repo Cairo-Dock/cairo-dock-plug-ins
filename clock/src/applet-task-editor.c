@@ -44,7 +44,7 @@ typedef enum _CDClockTaskColumns
 
 static gboolean on_delete_task_window (GtkWidget *pWidget, GdkEvent *event, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	/// get day
 	
 	
@@ -60,7 +60,7 @@ static gboolean on_delete_task_window (GtkWidget *pWidget, GdkEvent *event, Cair
 
 static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint iMonth, guint iYear, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%d/%d/%d)\n", __func__, iDay, iMonth, iYear);
+	//g_print ("%s (%d/%d/%d)\n", __func__, iDay, iMonth, iYear);
 	//\______________ On cree le modele.
 	GtkListStore *pModel;
 	if (myData.pModel != NULL)
@@ -90,7 +90,7 @@ static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint i
 		pTask = t->data;
 		if (_cd_task_matches_day (pTask, iDay, iMonth, iYear))
 		{
-			g_print (" + %s\n", pTask->cTitle);
+			//g_print (" + %s\n", pTask->cTitle);
 			GtkTreeIter iter;
 			memset (&iter, 0, sizeof (GtkTreeIter));
 			gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
@@ -109,7 +109,7 @@ static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint i
 
 static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	CDClockTask *pTask = g_new0 (CDClockTask, 1);
 	int iDay, iMonth, iYear;
 	
@@ -131,7 +131,7 @@ static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, CairoDockModuleInsta
 }
 static void _cd_clock_delete_task (GtkMenuItem *pMenuItem, gpointer *data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	CairoDockModuleInstance *myApplet = data[0];
 	CDClockTask *pTask = data[1];
 	gboolean bDeleted = myData.pBackend->delete_task (pTask, myApplet);
@@ -197,7 +197,7 @@ static gboolean _cd_clock_select_one_item_in_tree (GtkTreeSelection * selection,
 	if (! gtk_tree_model_get_iter (model, &iter, path))
 		return FALSE;
 	
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	
 	return TRUE;
@@ -306,7 +306,6 @@ static gboolean _search_frequency (GtkTreeModel * model, GtkTreePath * path, Gtk
 	gtk_tree_model_get (model, iter,
 		0, &iFrequency,
 		1, &cName, -1);
-	g_print ("freq %d : %s\n", iFrequency, cName);
 	if (cName && strcmp (cName, data[0]) == 0)
 	{
 		data[1] = GINT_TO_POINTER (iFrequency);

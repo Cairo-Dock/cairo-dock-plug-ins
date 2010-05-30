@@ -309,7 +309,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		// les taches.
 		if (myData.pNextTask != NULL)
 		{
-			g_print ("next task : %s\n", myData.pNextTask->cTitle);
+			//g_print ("next task : %s\n", myData.pNextTask->cTitle);
 			struct tm st;
 			st.tm_min = myData.pNextTask->iMinute;
 			st.tm_hour = myData.pNextTask->iHour;
@@ -319,7 +319,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			st.tm_sec = 0;
 			st.tm_isdst = myData.currentTime.tm_isdst;
 			time_t t = mktime (&st);
-			g_print ("time : %ld, task : %ld\n", epoch, t);
+			//g_print ("time : %ld, task : %ld\n", epoch, t);
 			if (t < epoch)  // la tache est depassee.
 			{
 				myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
@@ -328,7 +328,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			{
 				if (! myData.pNextTask->b15mnWarning)
 				{
-					g_print ("15 mn warning\n");
+					//g_print ("15 mn warning\n");
 					myData.pNextTask->b15mnWarning = TRUE;
 					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
 						myIcon, myContainer,
@@ -343,7 +343,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				{
 					if (! myData.pNextTask->bFirstWarning)
 					{
-						g_print ("first warning\n");
+						//g_print ("first warning\n");
 						myData.pNextTask->bFirstWarning = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
 							D_("It's time for the following task:"),

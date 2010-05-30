@@ -90,7 +90,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 
 static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%d/%d/%d)\n", __func__, pTask->iDay, pTask->iMonth, pTask->iYear);
+	//g_print ("%s (%d/%d/%d)\n", __func__, pTask->iDay, pTask->iMonth, pTask->iYear);
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
 	GKeyFile *pKeyFile = g_key_file_new ();  // on veut un key_file meme s'il n'existe pas encore.
@@ -116,7 +116,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 
 static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s)\n", __func__, pTask->cTitle);
+	cd_debug ("%s (%s)", __func__, pTask->cTitle);
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
@@ -131,7 +131,7 @@ static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 
 static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s, '%s')\n", __func__, pTask->cTitle, pTask->cText);
+	cd_debug ("%s (%s, '%s')", __func__, pTask->cTitle, pTask->cText);
 	
 	gchar *cFile = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, "clock", "tasks.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);

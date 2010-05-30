@@ -38,10 +38,10 @@ gboolean cd_illusion_init_lightning (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 	{
 		l = &pData->pLightnings[i];
 		l->iNbCurrentVertex = 2;
-		l->pVertexTab = g_new0 (GLfloat, _CAIRO_DOCK_PATH_DIM * pData->iNbVertex);
+		l->pVertexTab = g_new0 (GLfloat, 2 * pData->iNbVertex);
 		for (j = 0; j < pData->iNbVertex; j ++)
 		{
-			l->pVertexTab[_CAIRO_DOCK_PATH_DIM*j+1] = - (double) j / (pData->iNbVertex-1);  // on part d'en haut et on descend.
+			l->pVertexTab[2*j+1] = - (double) j / (pData->iNbVertex-1);  // on part d'en haut et on descend.
 		}
 	}
 	
@@ -80,14 +80,14 @@ void cd_illusion_update_lightning (Icon *pIcon, CairoDock *pDock, CDIllusionData
 		alpha_t = 2 * (xbase/2) / (Nt * dx);  // correlation temporelle.
 		alpha_s = 2 * (ximpact - xsource) / (Nv * dx);  // correlation spatiale.
 		
-		l->pVertexTab[_CAIRO_DOCK_PATH_DIM*0] = xsource;
+		l->pVertexTab[2*0] = xsource;
 		for (j = 1; j < pData->iNbVertex; j ++)
 		{
-			xt = l->pVertexTab[_CAIRO_DOCK_PATH_DIM*j] + sign * (g_random_boolean () ? 1 + alpha_t * j/Nv : -1) * dx;  // correlation temporelle.
-			xs = l->pVertexTab[_CAIRO_DOCK_PATH_DIM*(j-1)] + (g_random_boolean () ? 1 + alpha_s : -1) * dx;  // correlation spatiale.
-			l->pVertexTab[_CAIRO_DOCK_PATH_DIM*j] = (xs + xt) / 2;  // correlation spatio-temporelle (et ouais).
+			xt = l->pVertexTab[2*j] + sign * (g_random_boolean () ? 1 + alpha_t * j/Nv : -1) * dx;  // correlation temporelle.
+			xs = l->pVertexTab[2*(j-1)] + (g_random_boolean () ? 1 + alpha_s : -1) * dx;  // correlation spatiale.
+			l->pVertexTab[2*j] = (xs + xt) / 2;  // correlation spatio-temporelle (et ouais).
 		}
-		l->pVertexTab[_CAIRO_DOCK_PATH_DIM*j] = ximpact;
+		l->pVertexTab[2*j] = ximpact;
 		l->iNbCurrentVertex = MIN (pData->iNbVertex, l->iNbCurrentVertex+1);
 	}
 	
@@ -149,8 +149,7 @@ void cd_illusion_draw_lightning_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	{
 		l = &pData->pLightnings[i];
 		
-		_cairo_dock_set_vertex_pointer (l->pVertexTab);
-		//cairo_dock_draw_current_path_opengl (1., myConfig.fLightningColor, l->iNbCurrentVertex);
+		///_cairo_dock_set_vertex_pointer (l->pVertexTab);
 		glDrawArrays (GL_LINE_STRIP, 0, l->iNbCurrentVertex);
 	}
 	

@@ -55,7 +55,7 @@ sep =
 mesh = 1
 
 #C Colour of the sheen:
-color = 1;1;1;1
+color = 1;1;1;0
 
 
 #[@animated_iconsdatadir@/spot.png]

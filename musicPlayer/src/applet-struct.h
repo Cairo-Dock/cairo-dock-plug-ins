@@ -169,12 +169,12 @@ struct _AppletData {
 	gchar *cAlbum;
 	gchar* cPlayingUri;
 	MyPlayerStatus iPlayingStatus, pPreviousPlayingStatus;
-	gint iTrackNumber, iPreviousTrackNumber;
+	gint iTrackNumber, iPreviousTrackNumber;  // track number = position dans la play-list, et non pas numero de piste dans l'album (qui ne nous interesse pas).
 	gint iCurrentTime, iPreviousCurrentTime, iGetTimeFailed;
 	gint iSongLength;
 	gint iRating;
 	gint iTrackListLength;
-	gint iTrackListIndex;
+	///gint iTrackListIndex;
 	
 	// Pour les lecteurs utilisant DBus
 	MusicPlayerDBus DBus_commands;

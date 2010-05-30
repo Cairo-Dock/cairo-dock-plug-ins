@@ -101,7 +101,7 @@ static int _compare_task (CDClockTask *pTask1, CDClockTask *pTask2, gpointer dat
 }
 void cd_clock_list_tasks (CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	cd_message ("%s ()", __func__);
 	if (myData.pTasks != NULL)
 		cd_clock_reset_tasks_list (myApplet);
 	
@@ -253,7 +253,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 				y = iYear;
 				g_date_set_dmy (pDate, d, m, y);
 				iDelta = g_date_days_between (pCurrentDate, pDate);
-				g_print ("iDelta : %d/%d/%d -> %d (%s)\n", d, m, y, iDelta, pTask->cTitle);
+				//g_print ("iDelta : %d/%d/%d -> %d (%s)\n", d, m, y, iDelta, pTask->cTitle);
 				if (iDelta < 0)  // pDate est avant pCurrentDate => on teste l'annee d'apres.
 				{
 					y = iYear + 1;
@@ -298,7 +298,7 @@ CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet
 	guint iMinute = myData.currentTime.tm_min;
 	gulong iIndex = _compute_index (iYear, iMonth, iDay, iHour, iMinute);
 	gulong i, iNextIndex=0;
-	g_print ("%s (%d/%d/%d -> %ld)\n", __func__, iDay, iMonth, iYear, iIndex);
+	//g_print ("%s (%d/%d/%d -> %ld)\n", __func__, iDay, iMonth, iYear, iIndex);
 	
 	CDClockTask *pNextTask = NULL;
 	CDClockTask *pTask;
@@ -455,7 +455,7 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 
 static void _on_day_selected (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 }
 

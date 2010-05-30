@@ -101,7 +101,7 @@ fg alpha = 1
 frame1 =
 
 #l[No;On icon;On label] Show the date:
-show date = 1
+show date = 2
 
 #b Display the time in a 24h format?
 #{for digital format only.}
