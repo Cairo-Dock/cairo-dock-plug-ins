@@ -205,7 +205,7 @@ CDListing *cd_do_create_listing (void)
 	pListing->container.bDirectionUp = TRUE;
 	pListing->container.fRatio = 1.;
 	
-	GtkWidget *pWindow = cairo_dock_create_container_window_no_opengl ();
+	GtkWidget *pWindow = cairo_dock_init_container_no_opengl (CAIRO_CONTAINER (pListing));
 	gtk_window_set_title (GTK_WINDOW (pWindow), "cairo-dock-listing");
 	//gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
 	g_signal_connect (G_OBJECT (pWindow),
@@ -259,9 +259,7 @@ void cd_do_destroy_listing (CDListing *pListing)
 	if (pListing->iSidFillEntries != 0)
 		g_source_remove (pListing->iSidFillEntries);
 	
-	if (pListing->container.iSidGLAnimation != 0)
-		g_source_remove (pListing->container.iSidGLAnimation);
-	gtk_widget_destroy (pListing->container.pWidget);
+	cairo_dock_finish_container (CAIRO_CONTAINER (pListing));
 	
 	g_free (pListing);
 }

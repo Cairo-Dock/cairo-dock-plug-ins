@@ -45,13 +45,13 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	int iNbLines, iNbDesktopByLine;
 	int Nx, Ny;
 	
-	if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
+	///if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
 	{
 		double fRatio, fMinRatio=9999;
 		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
-			if (iNbViewports % iNbLines != 0)
-				continue;
+			///if (iNbViewports % iNbLines != 0)
+			///	continue;
 			iNbDesktopByLine = iNbViewports / iNbLines;
 			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 			fZoomY = myIcon->fHeight / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
@@ -65,7 +65,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			}
 		}
 	}
-	else  // on va chercher a repartir au mieux les bureaux sur l'icone.
+	/**else  // on va chercher a repartir au mieux les bureaux sur l'icone.
 	{
 		if (myIcon->fWidth >= myIcon->fHeight)
 		{
@@ -77,7 +77,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 			*iBestNbLines = (int) ceil (sqrt (iNbViewports));
 			*iBestNbColumns = (int) ceil ((double)iNbViewports / (*iBestNbLines));
 		}
-	}
+	}*/
 	
 }
 void cd_switcher_compute_nb_lines_and_columns (void)

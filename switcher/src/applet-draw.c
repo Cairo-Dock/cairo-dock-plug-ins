@@ -436,7 +436,7 @@ void cd_switcher_draw_main_icon (void)
 void cd_switcher_draw_desktops_bounding_box (CairoDesklet *pDesklet)
 {
 	CD_APPLET_ENTER;
-	//g_print ("%s ()\n", __func__);
+	//g_print ("%s (%.2Fx%.2f)\n", __func__, myData.switcher.fOneViewportWidth, myData.switcher.fOneViewportHeight);
 	double x, y, w, h;
 	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 	

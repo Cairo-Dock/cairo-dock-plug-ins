@@ -88,10 +88,10 @@ simple_color_border_line = 1;1;1;0.5;
 sep_arrow= 
 
 #i+[10;100] Arrow width :
-simple_arrowWidth = 40
+simple_arrowWidth = 30
 
 #i+[0;100] Arrow height:
-simple_arrowHeight = 20
+simple_arrowHeight = 15
 
 #e+[-100;100] Arrow shift percentage:
 simple_arrowShift = 0
