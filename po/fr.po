@@ -1754,7 +1754,7 @@ msgstr "Vous avez un nouveau message"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr "mail"
+msgstr "Mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""

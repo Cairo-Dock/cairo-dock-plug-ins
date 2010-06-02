@@ -394,7 +394,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	cd_clock_put_text_on_frames (myApplet, width, height, fMaxScale, pTime);
 }*/
 
-#define GAP 2
+#define GAPX 12
+#define GAPY 2
 #define MAX_RATIO 2.
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
@@ -448,31 +449,81 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		PangoRectangle ink2, log2;
 		pango_layout_get_pixel_extents (pLayout2, &ink2, &log2);
 		
-		double h = ink.height + ink2.height + GAP;
-		double fZoomX = MIN ((double) (iWidth - 1) / ink.width, (double) (iWidth - 1) / ink2.width);
+		double h = ink.height + ink2.height + GAPY;
+		double w = MAX (ink.width, ink2.width);
+		///double fZoomX = MIN ((double) (iWidth - 1) / ink.width, (double) (iWidth - 1) / ink2.width);
+		double fZoomX = (double) iWidth / w;
 		double fZoomY = (double) iHeight / h;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
 		
-		if (fZoomX * MAX (ink.width, ink2.width) > myConfig.fTextRatio * iWidth)
+		if (fZoomX * w > myConfig.fTextRatio * iWidth)
 		{
-			fZoomY *= myConfig.fTextRatio * iWidth / (MAX (ink.width, ink2.width) * fZoomX);
-			fZoomX = myConfig.fTextRatio * iWidth / MAX (ink.width, ink2.width);
+			fZoomY *= myConfig.fTextRatio * iWidth / w * fZoomX;
+			fZoomX = myConfig.fTextRatio * iWidth / w;
 		}
 		
-		cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
-		cairo_scale (myDrawContext, fZoomX, fZoomY);
-		cairo_translate (myDrawContext, -ink.x, -ink.y);
-		pango_cairo_show_layout (myDrawContext, pLayout);
+		double h_ = MAX (ink.height, ink2.height);
+		double w_ = ink.width + ink2.width + GAPX;
+		double fZoomX_ = (double) iWidth / w_;
+		double fZoomY_ = (double) iHeight / h_;
+		if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
+			fZoomY_ = MAX_RATIO * fZoomX_;
 		
-		cairo_restore (myDrawContext);
-		cairo_save (myDrawContext);
+		if (fZoomX_ * w_ > myConfig.fTextRatio * iWidth)
+		{
+			fZoomY_ *= myConfig.fTextRatio * iWidth / w_ * fZoomX_;
+			fZoomX_ = myConfig.fTextRatio * iWidth / w_;
+		}
+		g_print ("%.2fx%.2f ; %.2f/%d\n", fZoomX_, fZoomY_, h_, iHeight);
+		if (fZoomY_ > fZoomX_)
+		{
+			double fMaxScale = cairo_dock_get_max_scale (myContainer);
+			fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizonta, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
+		}
 		
-		cairo_translate (myDrawContext, (iWidth - fZoomX * ink2.width) / 2, (iHeight + fZoomY * GAP)/2);
-		cairo_scale (myDrawContext, fZoomX, fZoomY);
-		cairo_translate (myDrawContext, -ink2.x, -ink2.y);
-		pango_cairo_show_layout (myDrawContext, pLayout2);
+		g_print ("%.2fx%.2f ; %.2fx%.2f\n", fZoomX, fZoomY, fZoomX_, fZoomY_);
+		double def = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // deformation.
+		double def_ = (fZoomX_ > fZoomY_ ? fZoomX_ / fZoomY_ : fZoomY_ / fZoomX_);
+		if (def > def_)  // deformation plus grande en mode vertical => on passe en mode horizontal.
+		{
+			w = w_;
+			h = h_;
+			fZoomX = fZoomX_;
+			fZoomY = fZoomY_;
+		}
 		
+		
+		if (def > def_)  // mode horizontal
+		{
+			cairo_translate (myDrawContext, (iWidth - fZoomX * w) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			cairo_translate (myDrawContext, -ink.x, -ink.y);
+			pango_cairo_show_layout (myDrawContext, pLayout);
+			
+			cairo_restore (myDrawContext);
+			cairo_save (myDrawContext);
+			
+			cairo_translate (myDrawContext, (iWidth + fZoomX * w) / 2 - fZoomX * ink2.width, (iHeight - fZoomY * h)/2);
+			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+			pango_cairo_show_layout (myDrawContext, pLayout2);
+		}
+		else
+		{
+			cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			cairo_translate (myDrawContext, -ink.x, -ink.y);
+			pango_cairo_show_layout (myDrawContext, pLayout);
+			
+			cairo_restore (myDrawContext);
+			cairo_save (myDrawContext);
+			
+			cairo_translate (myDrawContext, (iWidth - fZoomX * ink2.width) / 2, (iHeight + fZoomY * GAPY)/2);
+			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+			pango_cairo_show_layout (myDrawContext, pLayout2);
+		}
 		g_object_unref (pLayout2);
 	}
 	else
