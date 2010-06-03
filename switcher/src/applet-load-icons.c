@@ -172,7 +172,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+	cairo_t *pCairoContext = cairo_dock_create_context_from_container (myContainer);
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
 		iWidth, iHeight);

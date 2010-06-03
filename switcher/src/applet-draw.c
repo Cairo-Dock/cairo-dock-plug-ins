@@ -84,12 +84,8 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
 	
 	if (pIcon->pIconBuffer != NULL)
 	{
-		CairoDock *pParentDock = NULL;
-		pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-		if (pParentDock == NULL)
-			pParentDock = g_pMainDock;
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, NULL, &iWidth, &iHeight);
 		double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
 		double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
 		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
@@ -519,11 +515,8 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 {
 	//g_print (" + %s\n", pIcon->cName);
 	// on recupere la taille de l'icone.
-	CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-	if (pParentDock == NULL)
-		pParentDock = g_pMainDock;
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pParentDock), &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pIcon, NULL, &iWidth, &iHeight);
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
 	int w = 24, h = w;
