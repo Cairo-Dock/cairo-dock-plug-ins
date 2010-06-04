@@ -178,6 +178,8 @@ struct _AppletData {
 	gboolean bSortTopByRam;
 	// end of shared memory.
 	
+	gint iMaxFrequency
+	
 	} ;
 
 

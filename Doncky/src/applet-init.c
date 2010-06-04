@@ -49,15 +49,15 @@ CD_APPLET_DEFINITION (N_("Doncky"),
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 
-	if (myDesklet)
-	{
+	//~ if (myDesklet)
+	//~ {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	else
-	{
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // en mode dock l'image de l'icone est statique.
-	}
+	//~ }
+	//~ else
+	//~ {
+		//~ CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // en mode dock l'image de l'icone est statique.
+	//~ }
 	
 	cd_doncky_free_item_list (myApplet);	
 	cd_doncky_readxml (myApplet);
@@ -69,7 +69,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	
 	// en mode desklet on redessine l'icone avec le message d'attente.
-	if (myDesklet)
+	//~ if (myDesklet)
 		cd_applet_update_my_icon (myApplet);
 		
 	
@@ -105,11 +105,11 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet)
-	{
+	//~ if (myDesklet)
+	//~ {
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
+	//~ }
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -134,10 +134,10 @@ CD_APPLET_RELOAD_BEGIN
 		cd_doncky_readxml (myApplet);
 		
 		// redessin.
-		if (myDesklet)
+		//~ if (myDesklet)
 			cd_applet_update_my_icon (myApplet);
-		else
-			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;		
+		//~ else
+			//~ CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;		
 	}
 	else 
 	{
@@ -148,7 +148,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	// en mode desklet on redessine l'icone aux nouvelles dimensions.
-	if (myDesklet)
+	//~ if (myDesklet)
 		cd_applet_update_my_icon (myApplet);
 		
 CD_APPLET_RELOAD_END

@@ -541,8 +541,8 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
-	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
-		return;
+	//~ if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
+		//~ return;
 	//cd_debug ("Doncky-debug --> %s (%dx%d)", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
@@ -957,8 +957,8 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 
 void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet)
 {
-	if (myDesklet)
-	{
+	//~ if (myDesklet)
+	//~ {
 		// taille de la texture.
 		int iWidth, iHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
@@ -966,5 +966,5 @@ void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet)
 		cd_applet_draw_my_desklet (myApplet, iWidth, iHeight);		
 		
 		CD_APPLET_REDRAW_MY_ICON;
-	}
+	//~ }
 }
