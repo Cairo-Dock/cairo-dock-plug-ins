@@ -33,7 +33,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Scooby-Do",
+CD_APPLET_DEFINE_BEGIN ("Scooby-Do",
 	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plug-in allows you to make different actions directly from the keyboard.\n"
@@ -52,6 +52,8 @@ CD_APPLET_DEFINITION ("Scooby-Do",
 	"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE_END
 
 #define _register_backends(...) do {\
 	if (myConfig.bUseFiles)\

@@ -475,7 +475,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	myData.iGetTimeFailed = 0;
 	int iStatus = _extract_status_mpris (status, 0);
 	_set_playing_status_mpris (iStatus);
-	g_print ("myData.iPlayingStatus <- %d\n", myData.iPlayingStatus);
+	cd_debug ("myData.iPlayingStatus <- %d", myData.iPlayingStatus);
 	
 	if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 		cd_musicplayer_relaunch_handler ();
@@ -496,7 +496,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP : %s (%d)\n", __func__, iNewTrackListLength);
+	cd_debug ("MP : %s (%d)", __func__, iNewTrackListLength);
 	myData.iTrackListLength = iNewTrackListLength;
 	cd_mpris_get_track_index ();
 	CD_APPLET_LEAVE ();

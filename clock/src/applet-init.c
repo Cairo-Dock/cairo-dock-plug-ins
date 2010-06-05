@@ -32,7 +32,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("clock"),
+CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet displays time, date and a calandar.\n"
@@ -46,7 +46,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("clock"),
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_clock_load_custom_widget;
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN
@@ -164,6 +164,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iLastCheckedDay = -1;
 		myData.iLastCheckedMonth = -1;
 		myData.iLastCheckedYear = -1;
+		myData.iTextOrientation = 0;  // on recalcule l'orientation.
 		cd_clock_update_with_time (myApplet);
 		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 	}

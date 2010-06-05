@@ -26,12 +26,15 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Dbus",
+CD_APPLET_DEFINE_BEGIN ("Dbus",
 	2, 0, 9,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plug-in lets extern applications interact on the dock.\n"
 	"The communication between both sides is based on Dbus"),
 	"Necropotame & Fabounet")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

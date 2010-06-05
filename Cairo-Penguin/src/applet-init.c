@@ -27,7 +27,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Cairo-Penguin",
+CD_APPLET_DEFINE_BEGIN ("Cairo-Penguin",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("Add a lively Penguin in your dock !\n"
@@ -35,6 +35,9 @@ CD_APPLET_DEFINITION ("Cairo-Penguin",
 	"Middle-click to disturb him ^_^\n"
 	"Tux images are taken from Pingus, some other characters are available or can be added easily."),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;	
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_CAN_DOCK);
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN

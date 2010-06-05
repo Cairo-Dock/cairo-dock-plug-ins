@@ -449,54 +449,57 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		PangoRectangle ink2, log2;
 		pango_layout_get_pixel_extents (pLayout2, &ink2, &log2);
 		
-		double h = ink.height + ink2.height + GAPY;
-		double w = MAX (ink.width, ink2.width);
-		///double fZoomX = MIN ((double) (iWidth - 1) / ink.width, (double) (iWidth - 1) / ink2.width);
-		double fZoomX = (double) iWidth / w;
-		double fZoomY = (double) iHeight / h;
-		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
-			fZoomY = MAX_RATIO * fZoomX;
-		
-		if (fZoomX * w > myConfig.fTextRatio * iWidth)
+		double h=0, w=0, fZoomX=0, fZoomY=0;
+		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;
+		if (myData.iTextOrientation == 1 || myData.iTextOrientation == 0)
 		{
-			fZoomY *= myConfig.fTextRatio * iWidth / w * fZoomX;
-			fZoomX = myConfig.fTextRatio * iWidth / w;
+			h = ink.height + ink2.height + GAPY;
+			w = MAX (ink.width, ink2.width);
+			fZoomX = (double) iWidth / w;
+			fZoomY = (double) iHeight / h;
+			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
+				fZoomY = MAX_RATIO * fZoomX;
+			
+			if (fZoomX * w > myConfig.fTextRatio * iWidth)
+			{
+				fZoomY *= myConfig.fTextRatio * iWidth / w * fZoomX;
+				fZoomX = myConfig.fTextRatio * iWidth / w;
+			}
+		}
+		if (myData.iTextOrientation == 2 || myData.iTextOrientation == 0)
+		{
+			h_ = MAX (ink.height, ink2.height);
+			w_ = ink.width + ink2.width + GAPX;
+			fZoomX_ = (double) iWidth / w_;
+			fZoomY_ = (double) iHeight / h_;
+			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
+				fZoomY_ = MAX_RATIO * fZoomX_;
+			
+			if (fZoomX_ * w_ > myConfig.fTextRatio * iWidth)
+			{
+				fZoomY_ *= myConfig.fTextRatio * iWidth / w_ * fZoomX_;
+				fZoomX_ = myConfig.fTextRatio * iWidth / w_;
+			}
+			if (fZoomY_ > fZoomX_)
+			{
+				double fMaxScale = cairo_dock_get_max_scale (myContainer);
+				fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizontal, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
+			}
 		}
 		
-		double h_ = MAX (ink.height, ink2.height);
-		double w_ = ink.width + ink2.width + GAPX;
-		double fZoomX_ = (double) iWidth / w_;
-		double fZoomY_ = (double) iHeight / h_;
-		if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
-			fZoomY_ = MAX_RATIO * fZoomX_;
-		
-		if (fZoomX_ * w_ > myConfig.fTextRatio * iWidth)
+		if (myData.iTextOrientation == 0)  // si l'orientation n'est pas encore definie, on la definit de facon a ne pas changer (si on est tres proche de la limite, la taille du texte pourrait changer suffisamment pour nous faire passer d'une orientation a l'autre.
 		{
-			fZoomY_ *= myConfig.fTextRatio * iWidth / w_ * fZoomX_;
-			fZoomX_ = myConfig.fTextRatio * iWidth / w_;
-		}
-		g_print ("%.2fx%.2f ; %.2f/%d\n", fZoomX_, fZoomY_, h_, iHeight);
-		if (fZoomY_ > fZoomX_)
-		{
-			double fMaxScale = cairo_dock_get_max_scale (myContainer);
-			fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizonta, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
+			double def = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // deformation.
+			double def_ = (fZoomX_ > fZoomY_ ? fZoomX_ / fZoomY_ : fZoomY_ / fZoomX_);
+			if (def > def_)  // deformation plus grande en mode vertical => on passe en mode horizontal.
+				myData.iTextOrientation = 2;
+			else
+				myData.iTextOrientation = 1;
 		}
 		
-		g_print ("%.2fx%.2f ; %.2fx%.2f\n", fZoomX, fZoomY, fZoomX_, fZoomY_);
-		double def = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // deformation.
-		double def_ = (fZoomX_ > fZoomY_ ? fZoomX_ / fZoomY_ : fZoomY_ / fZoomX_);
-		if (def > def_)  // deformation plus grande en mode vertical => on passe en mode horizontal.
+		if (myData.iTextOrientation == 2)  // mode horizontal
 		{
-			w = w_;
-			h = h_;
-			fZoomX = fZoomX_;
-			fZoomY = fZoomY_;
-		}
-		
-		
-		if (def > def_)  // mode horizontal
-		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX * w) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
 			cairo_translate (myDrawContext, -ink.x, -ink.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
@@ -504,12 +507,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			cairo_restore (myDrawContext);
 			cairo_save (myDrawContext);
 			
-			cairo_translate (myDrawContext, (iWidth + fZoomX * w) / 2 - fZoomX * ink2.width, (iHeight - fZoomY * h)/2);
-			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * ink2.width, (iHeight - fZoomY_ * h_)/2);
+			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
 			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 		}
-		else
+		else  // mode vertical
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);

@@ -27,7 +27,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("GMenu",
+CD_APPLET_DEFINE_BEGIN ("GMenu",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_DESKTOP,
 	N_("Displays the common Applications menu and the Recently used files.\n"
@@ -37,7 +37,7 @@ CD_APPLET_PRE_INIT_BEGIN ("GMenu",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE ("Applications Menu")
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

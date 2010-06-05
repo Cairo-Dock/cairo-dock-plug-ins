@@ -28,7 +28,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
+CD_APPLET_DEFINE_BEGIN (N_("Network-Monitor"),
 	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet allows you to monitor your network connection(s).\n"
@@ -39,7 +39,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("Network-Monitor"),
 	"Yann Sladek (Mav), Remy Robertson (ChanGFu), and Fabrice Rey (Fabounet)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_netmonitor_load_custom_widget;
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, CDRenderer *pRendererParams)

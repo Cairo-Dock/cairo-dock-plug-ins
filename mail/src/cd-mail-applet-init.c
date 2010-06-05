@@ -30,7 +30,7 @@
 #include "cd-mail-applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
+CD_APPLET_DEFINE_BEGIN (N_("mail"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet is very useful to warn you when you get new e-mails\n"
@@ -41,7 +41,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("mail"),
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mail_load_custom_widget;
 	pInterface->save_custom_widget = cd_mail_save_custom_widget;
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 GLuint cd_mail_load_cube_calllist (void)

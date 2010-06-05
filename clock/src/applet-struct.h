@@ -173,6 +173,7 @@ struct _AppletData {
 	
 	cairo_surface_t *pNumericBgSurface;
 	ClockDigital pDigitalClock;
+	guint iTextOrientation;
 	
 	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture, iDateTexture;
 	gint iNeedleWidth, iNeedleHeight;

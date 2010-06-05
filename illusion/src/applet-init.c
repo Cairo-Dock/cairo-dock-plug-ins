@@ -27,7 +27,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("illusion"),
+CD_APPLET_DEFINE_BEGIN (N_("illusion"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This plugin provides animations for appearance & disappearance of icons."),
@@ -35,7 +35,8 @@ CD_APPLET_PRE_INIT_BEGIN (N_("illusion"),
 	if (! g_bUseOpenGL)
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-CD_APPLET_PRE_INIT_END
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE_END
 
 
 

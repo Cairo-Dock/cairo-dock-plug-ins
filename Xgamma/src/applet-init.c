@@ -37,7 +37,7 @@
 static gboolean s_bVideoExtensionChecked = FALSE;
 
 
-CD_APPLET_PRE_INIT_BEGIN ("Xgamma",
+CD_APPLET_DEFINE_BEGIN ("Xgamma",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("Setup the luminosity of your screen directly from your dock.\n"
@@ -48,7 +48,7 @@ CD_APPLET_PRE_INIT_BEGIN ("Xgamma",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE ("Screen Luminosity")
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN

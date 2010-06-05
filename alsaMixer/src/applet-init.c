@@ -28,7 +28,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN (N_("AlsaMixer"),
+CD_APPLET_DEFINE_BEGIN (N_("AlsaMixer"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_CONTROLER,
 	N_("This applet lets you control the sound volume from the dock.\n"
@@ -40,7 +40,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("AlsaMixer"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 static void _load_surfaces (void)

@@ -24,7 +24,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN ("kde integration",
+CD_APPLET_DEFINE_BEGIN ("kde integration",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This applet provides functions for a better integration into a KDE environnement.\n"
@@ -62,4 +62,5 @@ CD_APPLET_PRE_INIT_BEGIN ("kde integration",
 	}
 	else
 		return FALSE;
-CD_APPLET_PRE_INIT_END
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE_END

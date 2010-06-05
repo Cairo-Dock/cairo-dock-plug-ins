@@ -26,7 +26,7 @@
 #include "applet-read-data.h"
 #include "applet-init.h"
 
-CD_APPLET_PRE_INIT_BEGIN (N_("weather"),
+CD_APPLET_DEFINE_BEGIN (N_("weather"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_ACCESSORY,
 	N_("This applet displays weather into your dock.\n"
@@ -36,7 +36,7 @@ CD_APPLET_PRE_INIT_BEGIN (N_("weather"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	pInterface->load_custom_widget = cd_weather_load_custom_widget;
-CD_APPLET_PRE_INIT_END
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN

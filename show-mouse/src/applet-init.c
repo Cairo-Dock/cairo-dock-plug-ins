@@ -25,7 +25,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_PRE_INIT_BEGIN(N_("show mouse"),
+CD_APPLET_DEFINE_BEGIN (N_("show mouse"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_PLUG_IN,
 	N_("This plugin draws some animations around the cursor when it's inside a dock/desklet."),
@@ -33,7 +33,8 @@ CD_APPLET_PRE_INIT_BEGIN(N_("show mouse"),
 	if (! g_bUseOpenGL)
 		return FALSE;
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-CD_APPLET_PRE_INIT_END
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+CD_APPLET_DEFINE_END
 
 
 #define _cd_mouse_register_on_dock(...) \

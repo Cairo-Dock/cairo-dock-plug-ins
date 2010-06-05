@@ -297,14 +297,40 @@ msgstr "Törli a legutóbbi dokumentumok listáját?"
 msgid "Enter a command to launch:"
 msgstr "Írja be a futtatandó parancsot:"
 
-#: ../MeMenu/src/applet-init.c:29
+#: ../Indicator-Menus/src/applet-init.c:29
+msgid "Indicator-Menus"
+msgstr ""
+
+#: ../Indicator-Menus/src/applet-init.c:32
+msgid "Menus to control your session, connection state, etc."
+msgstr ""
+
+#: ../MeMenu/src/applet-init.c:31
 msgid "Me Menu"
 msgstr ""
 
-#: ../MeMenu/src/applet-init.c:32
+#: ../MeMenu/src/applet-init.c:34
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
+msgstr ""
+
+#: ../MeMenu/src/applet-notifications.c:31
+msgid "It seems that the Me-Menu is not installed on your system"
+msgstr ""
+
+#: ../Messaging-Menu/src/applet-init.c:31
+msgid "Messaging Menu"
+msgstr ""
+
+#: ../Messaging-Menu/src/applet-init.c:34
+msgid ""
+"A menu that notices you about new messages from Mail or Chat applications.\n"
+"It handles Evolution, Pidgin, Empathy, etc"
+msgstr ""
+
+#: ../Messaging-Menu/src/applet-notifications.c:31
+msgid "It seems that the Messaging-Menu is not installed on your system"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
@@ -695,44 +721,44 @@ msgid ""
 "Escape or the same shortkey will cancel."
 msgstr ""
 
-#: ../Scooby-Do/src/applet-listing.c:512
+#: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
 msgstr "(F1) Kis- és nagybetűk egyeztetése"
 
-#: ../Scooby-Do/src/applet-listing.c:519
+#: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
 msgstr "(F2) Zene"
 
-#: ../Scooby-Do/src/applet-listing.c:526
+#: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
 msgstr "(F3) Kép"
 
-#: ../Scooby-Do/src/applet-listing.c:533
+#: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
 msgstr "(F4) Video"
 
-#: ../Scooby-Do/src/applet-listing.c:540
+#: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
 msgstr "(F5) Szöveg"
 
-#: ../Scooby-Do/src/applet-listing.c:547
+#: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
 msgstr "(F6) HTML"
 
-#: ../Scooby-Do/src/applet-listing.c:554
+#: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
 msgstr "(F7) Források"
 
-#: ../Scooby-Do/src/applet-listing.c:673 ../Scooby-Do/src/applet-search.c:362
+#: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
 msgstr "Nincs találat"
 
-#: ../Scooby-Do/src/applet-listing.c:677 ../Scooby-Do/src/applet-search.c:358
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "results"
 msgstr "találatok"
 
-#: ../Scooby-Do/src/applet-listing.c:677 ../Scooby-Do/src/applet-search.c:358
+#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
 msgid "result"
 msgstr "találat"
@@ -853,6 +879,16 @@ msgstr "Jelzőrendszer"
 msgid "This applet displays a toon that will look at your mouse."
 msgstr "Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
 
+#: ../Toto/src/applet-init.c:28
+msgid "Toto"
+msgstr ""
+
+#: ../Toto/src/applet-init.c:31 ../template/src/applet-init.c:31
+msgid ""
+"Useful description\n"
+"and manual"
+msgstr ""
+
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
 "Setup the luminosity of your screen directly from your dock.\n"
@@ -937,8 +973,8 @@ msgstr "Csatornák beállítása"
 
 #: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
 #: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
-#: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:338
-#: ../clock/src/applet-draw.c:350 ../clock/src/applet-draw.c:371
+#: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:339
+#: ../clock/src/applet-draw.c:353 ../clock/src/applet-draw.c:374
 #: ../clock/src/applet-task-editor.c:119
 msgid "No title"
 msgstr ""
@@ -968,20 +1004,24 @@ msgstr ""
 msgid "The following task was scheduled at"
 msgstr ""
 
-#: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:352
-#: ../clock/src/applet-draw.c:373
+#: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:355
+#: ../clock/src/applet-draw.c:376
 msgid "Repeat this message every:"
 msgstr ""
 
-#: ../clock/src/applet-draw.c:337
+#: ../clock/src/applet-draw.c:338
 msgid "This task will begin in 15 minutes:"
 msgstr ""
 
-#: ../clock/src/applet-draw.c:349
+#: ../clock/src/applet-draw.c:352
 msgid "It's time for the following task:"
 msgstr ""
 
-#: ../clock/src/applet-draw.c:370
+#: ../clock/src/applet-draw.c:373
+msgid "Today is the following anniversary:"
+msgstr ""
+
+#: ../clock/src/applet-draw.c:373
 msgid "Tomorrow is the following anniversary:"
 msgstr ""
 
@@ -1050,38 +1090,38 @@ msgstr ""
 msgid "Each year"
 msgstr "Minden évben"
 
-#: ../clock/src/applet-task-editor.c:351
+#: ../clock/src/applet-task-editor.c:350
 msgid "each month"
 msgstr "minden hónapban"
 
-#: ../clock/src/applet-task-editor.c:354
+#: ../clock/src/applet-task-editor.c:353
 msgid "each year"
 msgstr "minden évben"
 
-#: ../clock/src/applet-task-editor.c:392
+#: ../clock/src/applet-task-editor.c:391
 msgid "Right-click to add a new task."
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:329
+#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:329
 #: ../RSSreader/data/messages:135
 msgid "Title"
 msgstr "Cím"
 
-#: ../clock/src/applet-task-editor.c:405
+#: ../clock/src/applet-task-editor.c:404
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:151
 msgid "Text"
 msgstr "Szöveg"
 
-#: ../clock/src/applet-task-editor.c:412
+#: ../clock/src/applet-task-editor.c:411
 msgid "Time"
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:426
+#: ../clock/src/applet-task-editor.c:425
 msgid "Freq."
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:433
+#: ../clock/src/applet-task-editor.c:432
 msgid "Tags"
 msgstr ""
 
@@ -1338,7 +1378,7 @@ msgstr ""
 msgid "Remove from history"
 msgstr "Eltávolítás az előzményekből"
 
-#: ../dock-rendering/src/rendering-init.c:34 ../dock-rendering/data/messages:7
+#: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
 msgstr "Áttekintő"
 
@@ -1348,12 +1388,12 @@ msgid "3D plane"
 msgstr "3D-s panel"
 
 #: ../dock-rendering/src/rendering-init.c:36
-#: ../dock-rendering/data/messages:25
+#: ../dock-rendering/data/messages:69
 msgid "Parabolic"
 msgstr "Parabolikus"
 
 #: ../dock-rendering/src/rendering-init.c:37
-#: ../dock-rendering/data/messages:49
+#: ../dock-rendering/data/messages:93
 msgid "Rainbow"
 msgstr "Szivárvány"
 
@@ -1362,17 +1402,17 @@ msgstr "Szivárvány"
 msgid "Slide"
 msgstr "Csúszka"
 
-#: ../dock-rendering/src/rendering-init.c:40
-#: ../dock-rendering/data/messages:113
+#: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
 msgstr "Görbe"
 
 #: ../dock-rendering/src/rendering-init.c:41
+#: ../dock-rendering/data/messages:17
 #, fuzzy
 msgid "Panel"
 msgstr "Szünet"
 
-#: ../dock-rendering/src/rendering-init.c:123
+#: ../dock-rendering/src/rendering-init.c:127
 msgid ""
 "This module adds different views to your dock.\n"
 "Any dock or sub-dock can be displayed with the view of your choice.\n"
@@ -1610,19 +1650,19 @@ msgstr ""
 msgid "Your computer will shut-down in 1 minute."
 msgstr "A számítógép 1 perc múlva leáll."
 
-#: ../mail/src/cd-mail-applet-config.c:205
+#: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
 msgstr "Kérem válasszon ki egy fióktípust."
 
-#: ../mail/src/cd-mail-applet-config.c:210
+#: ../mail/src/cd-mail-applet-config.c:211
 msgid "New account's name"
 msgstr "Új fiók neve"
 
-#: ../mail/src/cd-mail-applet-config.c:213
+#: ../mail/src/cd-mail-applet-config.c:214
 msgid "Please enter a name for this account."
 msgstr "Kérem adja meg a fiók nevét."
 
-#: ../mail/src/cd-mail-applet-config.c:223
+#: ../mail/src/cd-mail-applet-config.c:224
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -1630,11 +1670,11 @@ msgstr ""
 "Ez a fiók már létezik.\n"
 "Kérem válasszon másik nevet az új fióknak."
 
-#: ../mail/src/cd-mail-applet-config.c:352
+#: ../mail/src/cd-mail-applet-config.c:353
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-config.c:407
+#: ../mail/src/cd-mail-applet-config.c:408
 msgid "Remove Account"
 msgstr "Fiók eltávolítása"
 
@@ -1650,12 +1690,12 @@ msgstr "nincs tárgy"
 msgid "No unread mail in your mailboxes"
 msgstr "Nincs olvasatlan levél a postafiókjában"
 
-#: ../mail/src/cd-mail-applet-etpan.c:407
+#: ../mail/src/cd-mail-applet-etpan.c:410
 #, c-format
 msgid "You have %d new mails:"
 msgstr "%d új levele érkezett:"
 
-#: ../mail/src/cd-mail-applet-etpan.c:409
+#: ../mail/src/cd-mail-applet-etpan.c:412
 msgid "You have a new mail:"
 msgstr "Egy új levele érkezett:"
 
@@ -1712,7 +1752,7 @@ msgstr "Ismeretlen előadó"
 msgid "Unknown title"
 msgstr "Ismeretlen cím"
 
-#: ../musicPlayer/src/applet-draw.c:233
+#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
 msgid "Track"
 msgstr "Szám"
 
@@ -1734,6 +1774,10 @@ msgstr "Hossz"
 
 #: ../musicPlayer/src/applet-draw.c:333
 msgid "Track n°"
+msgstr ""
+
+#: ../musicPlayer/src/applet-draw.c:334
+msgid "Song n°"
 msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:336
@@ -2099,18 +2143,18 @@ msgstr ""
 msgid "Clean local directory"
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:621
+#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:344
+#: ../switcher/src/applet-notifications.c:346
 msgid "Current"
 msgstr "Jelenlegi"
 
-#: ../switcher/src/applet-draw.c:621 ../switcher/src/applet-draw.c:623
+#: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
 #: ../switcher/src/applet-load-icons.c:49
-#: ../switcher/src/applet-notifications.c:175
-#: ../switcher/src/applet-notifications.c:187
-#: ../switcher/src/applet-notifications.c:336
-#: ../switcher/src/applet-notifications.c:401
+#: ../switcher/src/applet-notifications.c:177
+#: ../switcher/src/applet-notifications.c:189
+#: ../switcher/src/applet-notifications.c:338
+#: ../switcher/src/applet-notifications.c:403
 msgid "Desktop"
 msgstr "Asztal"
 
@@ -2129,39 +2173,39 @@ msgid ""
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:176
-#: ../switcher/src/applet-notifications.c:234
+#: ../switcher/src/applet-notifications.c:178
+#: ../switcher/src/applet-notifications.c:236
 msgid "Rename this workspace"
 msgstr "Munkaterület átnevezése"
 
-#: ../switcher/src/applet-notifications.c:217
+#: ../switcher/src/applet-notifications.c:219
 msgid "Add a desktop"
 msgstr "Asztal hozzáadása"
 
-#: ../switcher/src/applet-notifications.c:221
+#: ../switcher/src/applet-notifications.c:223
 msgid "Remove last desktop"
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:225
+#: ../switcher/src/applet-notifications.c:227
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: ../switcher/src/applet-notifications.c:241
+#: ../switcher/src/applet-notifications.c:243
 msgid "Move current Desktop to this Desktop"
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:246
+#: ../switcher/src/applet-notifications.c:248
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:252 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:254 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "Asztal megjelenítése"
 
-#: ../switcher/src/applet-notifications.c:259
+#: ../switcher/src/applet-notifications.c:261
 msgid "Windows List"
 msgstr "Ablaklista"
 
@@ -2177,12 +2221,6 @@ msgstr ""
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
-msgstr ""
-
-#: ../template/src/applet-init.c:31
-msgid ""
-"Useful description\n"
-"and manual"
 msgstr ""
 
 #: ../terminal/src/terminal-callbacks.c:82
@@ -2590,7 +2628,8 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
 #: ../Doncky/data/messages:43 ../GMenu/data/messages:45
-#: ../MeMenu/data/messages:39 ../Network-Monitor/data/messages:45
+#: ../Indicator-Menus/data/messages:45 ../MeMenu/data/messages:39
+#: ../Messaging-Menu/data/messages:41 ../Network-Monitor/data/messages:45
 #: ../RSSreader/data/messages:47 ../Status-Notifier/data/messages:45
 #: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
 #: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:43
@@ -2623,16 +2662,16 @@ msgstr ""
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
 #: ../Clipper/data/messages:113 ../Doncky/data/messages:9
 #: ../Doncky/data/messages:91 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:99 ../RSSreader/data/messages:11
-#: ../RSSreader/data/messages:129 ../System-Monitor/data/messages:157
-#: ../System-Monitor/data/messages:165 ../Xgamma/data/messages:9
-#: ../alsaMixer/data/messages:135 ../alsaMixer/data/messages:139
-#: ../alsaMixer/data/messages:143 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:139 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
+#: ../GMenu/data/messages:99 ../Indicator-Menus/data/messages:9
+#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
+#: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:165
+#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:135
+#: ../alsaMixer/data/messages:139 ../alsaMixer/data/messages:143
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../switcher/data/messages:139
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Hagyja üresen az alapértelmezés használatához."
 
@@ -2758,7 +2797,8 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
 #: ../Doncky/data/messages:1 ../GMenu/data/messages:1
-#: ../MeMenu/data/messages:1 ../Network-Monitor/data/messages:1
+#: ../Indicator-Menus/data/messages:1 ../MeMenu/data/messages:1
+#: ../Messaging-Menu/data/messages:1 ../Network-Monitor/data/messages:1
 #: ../RSSreader/data/messages:1 ../Status-Notifier/data/messages:1
 #: ../System-Monitor/data/messages:1 ../Toons/data/messages:1
 #: ../Xgamma/data/messages:1 ../alsaMixer/data/messages:1
@@ -2778,7 +2818,8 @@ msgstr "Ikon"
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../Doncky/data/messages:3 ../GMenu/data/messages:3
-#: ../MeMenu/data/messages:3 ../Network-Monitor/data/messages:3
+#: ../Indicator-Menus/data/messages:3 ../MeMenu/data/messages:3
+#: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:3
 #: ../RSSreader/data/messages:3 ../Status-Notifier/data/messages:3
 #: ../System-Monitor/data/messages:3 ../Toons/data/messages:3
 #: ../Xgamma/data/messages:3 ../alsaMixer/data/messages:3
@@ -2806,7 +2847,8 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
 #: ../Doncky/data/messages:13 ../GMenu/data/messages:13
-#: ../MeMenu/data/messages:7 ../Network-Monitor/data/messages:11
+#: ../Indicator-Menus/data/messages:13 ../MeMenu/data/messages:7
+#: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
 #: ../RSSreader/data/messages:15 ../Status-Notifier/data/messages:13
 #: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
 #: ../Xgamma/data/messages:13 ../alsaMixer/data/messages:11
@@ -2826,7 +2868,8 @@ msgid "Name of the dock it belongs to:"
 msgstr ""
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
-#: ../GMenu/data/messages:15 ../MeMenu/data/messages:9
+#: ../GMenu/data/messages:15 ../Indicator-Menus/data/messages:15
+#: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
 #: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
 #: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
@@ -2847,7 +2890,8 @@ msgstr ""
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
-#: ../GMenu/data/messages:91 ../MeMenu/data/messages:85
+#: ../GMenu/data/messages:91 ../Indicator-Menus/data/messages:91
+#: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
 #: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
 #: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
@@ -2897,8 +2941,8 @@ msgstr ""
 msgid "Let the penguin wander everywhere in the dock?"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:25 ../dock-rendering/data/messages:41
-#: ../dock-rendering/data/messages:119
+#: ../Cairo-Penguin/data/messages:25 ../dock-rendering/data/messages:13
+#: ../dock-rendering/data/messages:85
 msgid "in pixels."
 msgstr "pixelekben."
 
@@ -3011,7 +3055,8 @@ msgid "Action_6/Command_4"
 msgstr ""
 
 #: ../Clipper/data/messages:109 ../Doncky/data/messages:5
-#: ../GMenu/data/messages:5 ../MeMenu/data/messages:5
+#: ../GMenu/data/messages:5 ../Indicator-Menus/data/messages:5
+#: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
 #: ../Status-Notifier/data/messages:5 ../System-Monitor/data/messages:5
 #: ../Toons/data/messages:5 ../Xgamma/data/messages:5
@@ -3031,7 +3076,8 @@ msgid "Desired icon size for this applet"
 msgstr ""
 
 #: ../Clipper/data/messages:111 ../Doncky/data/messages:7
-#: ../GMenu/data/messages:7 ../Network-Monitor/data/messages:9
+#: ../GMenu/data/messages:7 ../Indicator-Menus/data/messages:7
+#: ../Messaging-Menu/data/messages:7 ../Network-Monitor/data/messages:9
 #: ../RSSreader/data/messages:9 ../System-Monitor/data/messages:7
 #: ../Toons/data/messages:7 ../Xgamma/data/messages:7
 #: ../alsaMixer/data/messages:9 ../clock/data/messages:9
@@ -3048,17 +3094,19 @@ msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr ""
 
 #: ../Clipper/data/messages:115 ../Doncky/data/messages:11
-#: ../GMenu/data/messages:11 ../RSSreader/data/messages:13
-#: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
-#: ../logout/data/messages:11 ../quick-browser/data/messages:13
-#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../terminal/data/messages:11 ../weblets/data/messages:11
+#: ../GMenu/data/messages:11 ../Indicator-Menus/data/messages:11
+#: ../RSSreader/data/messages:13 ../Xgamma/data/messages:11
+#: ../dnd2share/data/messages:11 ../logout/data/messages:11
+#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
+#: ../showDesktop/data/messages:11 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../terminal/data/messages:11
+#: ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr ""
 
 #: ../Clipper/data/messages:121 ../Doncky/data/messages:15
-#: ../GMenu/data/messages:17 ../MeMenu/data/messages:11
+#: ../GMenu/data/messages:17 ../Indicator-Menus/data/messages:17
+#: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:13
 #: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
 #: ../Status-Notifier/data/messages:17 ../System-Monitor/data/messages:15
 #: ../Toons/data/messages:15 ../Xgamma/data/messages:17
@@ -3078,7 +3126,8 @@ msgid "Desklet"
 msgstr ""
 
 #: ../Clipper/data/messages:123 ../Doncky/data/messages:17
-#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../GMenu/data/messages:19 ../Indicator-Menus/data/messages:19
+#: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:15
 #: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:17
 #: ../Toons/data/messages:17 ../Xgamma/data/messages:19
@@ -3098,7 +3147,8 @@ msgid "Position"
 msgstr ""
 
 #: ../Clipper/data/messages:125 ../Doncky/data/messages:19
-#: ../GMenu/data/messages:21 ../MeMenu/data/messages:15
+#: ../GMenu/data/messages:21 ../Indicator-Menus/data/messages:21
+#: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:17
 #: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
 #: ../System-Monitor/data/messages:19 ../Toons/data/messages:19
 #: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:19
@@ -3119,7 +3169,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:127 ../Doncky/data/messages:21
-#: ../GMenu/data/messages:23 ../MeMenu/data/messages:17
+#: ../GMenu/data/messages:23 ../Indicator-Menus/data/messages:23
+#: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:19
 #: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
 #: ../System-Monitor/data/messages:21 ../Toons/data/messages:21
 #: ../Xgamma/data/messages:23 ../alsaMixer/data/messages:21
@@ -3138,7 +3189,8 @@ msgid "Lock position?"
 msgstr ""
 
 #: ../Clipper/data/messages:129 ../Doncky/data/messages:23
-#: ../GMenu/data/messages:25 ../MeMenu/data/messages:19
+#: ../GMenu/data/messages:25 ../Indicator-Menus/data/messages:25
+#: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:21
 #: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
 #: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
 #: ../Xgamma/data/messages:25 ../alsaMixer/data/messages:23
@@ -3159,7 +3211,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:131 ../Doncky/data/messages:25
-#: ../GMenu/data/messages:27 ../MeMenu/data/messages:21
+#: ../GMenu/data/messages:27 ../Indicator-Menus/data/messages:27
+#: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:23
 #: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
 #: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
 #: ../Xgamma/data/messages:27 ../alsaMixer/data/messages:25
@@ -3178,7 +3231,8 @@ msgid "Desklet dimensions (width x height):"
 msgstr ""
 
 #: ../Clipper/data/messages:133 ../Doncky/data/messages:27
-#: ../GMenu/data/messages:29 ../MeMenu/data/messages:23
+#: ../GMenu/data/messages:29 ../Indicator-Menus/data/messages:29
+#: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:25
 #: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
 #: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
 #: ../Xgamma/data/messages:29 ../compiz-icon/data/messages:25
@@ -3196,7 +3250,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:135 ../Doncky/data/messages:29
-#: ../GMenu/data/messages:31 ../MeMenu/data/messages:25
+#: ../GMenu/data/messages:31 ../Indicator-Menus/data/messages:31
+#: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:27
 #: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:33
 #: ../System-Monitor/data/messages:29 ../Toons/data/messages:29
 #: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:29
@@ -3215,7 +3270,8 @@ msgid "Desklet position (x, y):"
 msgstr ""
 
 #: ../Clipper/data/messages:137 ../Doncky/data/messages:31
-#: ../GMenu/data/messages:33 ../MeMenu/data/messages:27
+#: ../GMenu/data/messages:33 ../Indicator-Menus/data/messages:33
+#: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:29
 #: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
 #: ../Status-Notifier/data/messages:33 ../System-Monitor/data/messages:31
 #: ../Toons/data/messages:31 ../Xgamma/data/messages:33
@@ -3236,7 +3292,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:139 ../Doncky/data/messages:33
-#: ../GMenu/data/messages:35 ../MeMenu/data/messages:29
+#: ../GMenu/data/messages:35 ../Indicator-Menus/data/messages:35
+#: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:31
 #: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
 #: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
 #: ../Xgamma/data/messages:35 ../alsaMixer/data/messages:33
@@ -3254,7 +3311,8 @@ msgid "Rotation:"
 msgstr "Forgatás:"
 
 #: ../Clipper/data/messages:141 ../Doncky/data/messages:35
-#: ../GMenu/data/messages:37 ../MeMenu/data/messages:31
+#: ../GMenu/data/messages:37 ../Indicator-Menus/data/messages:37
+#: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:33
 #: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
 #: ../Status-Notifier/data/messages:37 ../System-Monitor/data/messages:35
 #: ../Toons/data/messages:35 ../Xgamma/data/messages:37
@@ -3274,7 +3332,8 @@ msgid "Visibility"
 msgstr ""
 
 #: ../Clipper/data/messages:143 ../Doncky/data/messages:37
-#: ../GMenu/data/messages:39 ../MeMenu/data/messages:33
+#: ../GMenu/data/messages:39 ../Indicator-Menus/data/messages:39
+#: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
 #: ../Scooby-Do/data/messages:27 ../System-Monitor/data/messages:37
 #: ../Toons/data/messages:37 ../Xgamma/data/messages:39
@@ -3294,7 +3353,8 @@ msgid "Is detached from the dock"
 msgstr ""
 
 #: ../Clipper/data/messages:145 ../Doncky/data/messages:39
-#: ../GMenu/data/messages:41 ../MeMenu/data/messages:35
+#: ../GMenu/data/messages:41 ../Indicator-Menus/data/messages:41
+#: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:37
 #: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
 #: ../Status-Notifier/data/messages:41 ../System-Monitor/data/messages:39
 #: ../Toons/data/messages:39 ../Xgamma/data/messages:41
@@ -3315,7 +3375,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:147 ../Doncky/data/messages:41
-#: ../GMenu/data/messages:43 ../MeMenu/data/messages:37
+#: ../GMenu/data/messages:43 ../Indicator-Menus/data/messages:43
+#: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:39
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
 #: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
 #: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:41
@@ -3334,7 +3395,8 @@ msgid "Visibility:"
 msgstr ""
 
 #: ../Clipper/data/messages:151 ../Doncky/data/messages:45
-#: ../GMenu/data/messages:47 ../MeMenu/data/messages:41
+#: ../GMenu/data/messages:47 ../Indicator-Menus/data/messages:47
+#: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:43
 #: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
 #: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:45
 #: ../Toons/data/messages:45 ../Xgamma/data/messages:47
@@ -3354,7 +3416,8 @@ msgid "Keep above"
 msgstr ""
 
 #: ../Clipper/data/messages:153 ../Doncky/data/messages:47
-#: ../GMenu/data/messages:49 ../MeMenu/data/messages:43
+#: ../GMenu/data/messages:49 ../Indicator-Menus/data/messages:49
+#: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
 #: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
 #: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:47
 #: ../Toons/data/messages:47 ../Xgamma/data/messages:49
@@ -3374,7 +3437,8 @@ msgid "Keep below"
 msgstr ""
 
 #: ../Clipper/data/messages:155 ../Doncky/data/messages:49
-#: ../GMenu/data/messages:51 ../MeMenu/data/messages:45
+#: ../GMenu/data/messages:51 ../Indicator-Menus/data/messages:51
+#: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
 #: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
 #: ../Xgamma/data/messages:51 ../alsaMixer/data/messages:49
@@ -3393,7 +3457,8 @@ msgid "Keep on widget layer"
 msgstr "A szerkentyűrétegen"
 
 #: ../Clipper/data/messages:157 ../Doncky/data/messages:51
-#: ../GMenu/data/messages:53 ../MeMenu/data/messages:47
+#: ../GMenu/data/messages:53 ../Indicator-Menus/data/messages:53
+#: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:49
 #: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
 #: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:51
 #: ../Toons/data/messages:51 ../Xgamma/data/messages:53
@@ -3413,7 +3478,8 @@ msgid "Reserve space"
 msgstr ""
 
 #: ../Clipper/data/messages:159 ../Doncky/data/messages:53
-#: ../GMenu/data/messages:55 ../MeMenu/data/messages:49
+#: ../GMenu/data/messages:55 ../Indicator-Menus/data/messages:55
+#: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:51
 #: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
 #: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
 #: ../Xgamma/data/messages:55 ../alsaMixer/data/messages:53
@@ -3450,7 +3516,8 @@ msgid "Decorations"
 msgstr ""
 
 #: ../Clipper/data/messages:163 ../Doncky/data/messages:57
-#: ../GMenu/data/messages:59 ../MeMenu/data/messages:53
+#: ../GMenu/data/messages:59 ../Indicator-Menus/data/messages:59
+#: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:55
 #: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
 #: ../Status-Notifier/data/messages:59 ../System-Monitor/data/messages:57
 #: ../Toons/data/messages:57 ../Xgamma/data/messages:59
@@ -3469,7 +3536,8 @@ msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 
 #: ../Clipper/data/messages:165 ../Doncky/data/messages:59
-#: ../GMenu/data/messages:61 ../MeMenu/data/messages:55
+#: ../GMenu/data/messages:61 ../Indicator-Menus/data/messages:61
+#: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:57
 #: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
 #: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
 #: ../Xgamma/data/messages:61 ../alsaMixer/data/messages:59
@@ -3488,7 +3556,8 @@ msgid "Choose a decoration theme for this desklet:"
 msgstr ""
 
 #: ../Clipper/data/messages:167 ../Doncky/data/messages:61
-#: ../GMenu/data/messages:63 ../MeMenu/data/messages:57
+#: ../GMenu/data/messages:63 ../Indicator-Menus/data/messages:63
+#: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:59
 #: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
 #: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
 #: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:61
@@ -3508,7 +3577,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:169 ../Doncky/data/messages:63
-#: ../GMenu/data/messages:65 ../MeMenu/data/messages:59
+#: ../GMenu/data/messages:65 ../Indicator-Menus/data/messages:65
+#: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:61
 #: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
 #: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
 #: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:63
@@ -3528,7 +3598,8 @@ msgid "Background image:"
 msgstr "Háttérkép:"
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
-#: ../GMenu/data/messages:67 ../MeMenu/data/messages:61
+#: ../GMenu/data/messages:67 ../Indicator-Menus/data/messages:67
+#: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:63
 #: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
 #: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
 #: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:65
@@ -3547,7 +3618,8 @@ msgid "Background transparency:"
 msgstr "Háttér átlátszósága:"
 
 #: ../Clipper/data/messages:173 ../Doncky/data/messages:67
-#: ../GMenu/data/messages:69 ../MeMenu/data/messages:63
+#: ../GMenu/data/messages:69 ../Indicator-Menus/data/messages:69
+#: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:65
 #: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
 #: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
 #: ../Xgamma/data/messages:69 ../alsaMixer/data/messages:67
@@ -3567,7 +3639,8 @@ msgstr ""
 "pixelekben. Ezzel állíthatja be a rajzok bal oldalhoz viszonyított helyzetét."
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
-#: ../GMenu/data/messages:71 ../MeMenu/data/messages:65
+#: ../GMenu/data/messages:71 ../Indicator-Menus/data/messages:71
+#: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:67
 #: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
 #: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
 #: ../Xgamma/data/messages:71 ../alsaMixer/data/messages:69
@@ -3586,7 +3659,8 @@ msgid "Left offset:"
 msgstr "Bal oldali eltolás"
 
 #: ../Clipper/data/messages:177 ../Doncky/data/messages:71
-#: ../GMenu/data/messages:73 ../MeMenu/data/messages:67
+#: ../GMenu/data/messages:73 ../Indicator-Menus/data/messages:73
+#: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:69
 #: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
 #: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
 #: ../Xgamma/data/messages:73 ../alsaMixer/data/messages:71
@@ -3607,7 +3681,8 @@ msgstr ""
 "helyzetét."
 
 #: ../Clipper/data/messages:179 ../Doncky/data/messages:73
-#: ../GMenu/data/messages:75 ../MeMenu/data/messages:69
+#: ../GMenu/data/messages:75 ../Indicator-Menus/data/messages:75
+#: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:71
 #: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
 #: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
 #: ../Xgamma/data/messages:75 ../alsaMixer/data/messages:73
@@ -3626,7 +3701,8 @@ msgid "Top offset:"
 msgstr "Felső eltolás:"
 
 #: ../Clipper/data/messages:181 ../Doncky/data/messages:75
-#: ../GMenu/data/messages:77 ../MeMenu/data/messages:71
+#: ../GMenu/data/messages:77 ../Indicator-Menus/data/messages:77
+#: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:73
 #: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
 #: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
 #: ../Xgamma/data/messages:77 ../alsaMixer/data/messages:75
@@ -3647,7 +3723,8 @@ msgstr ""
 "helyzetét."
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
-#: ../GMenu/data/messages:79 ../MeMenu/data/messages:73
+#: ../GMenu/data/messages:79 ../Indicator-Menus/data/messages:79
+#: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:75
 #: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
 #: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
 #: ../Xgamma/data/messages:79 ../alsaMixer/data/messages:77
@@ -3666,7 +3743,8 @@ msgid "Right offset:"
 msgstr "Jobb oldali eltolás:"
 
 #: ../Clipper/data/messages:185 ../Doncky/data/messages:79
-#: ../GMenu/data/messages:81 ../MeMenu/data/messages:75
+#: ../GMenu/data/messages:81 ../Indicator-Menus/data/messages:81
+#: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:77
 #: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
 #: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
 #: ../Xgamma/data/messages:81 ../alsaMixer/data/messages:79
@@ -3685,7 +3763,8 @@ msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr ""
 
 #: ../Clipper/data/messages:187 ../Doncky/data/messages:81
-#: ../GMenu/data/messages:83 ../MeMenu/data/messages:77
+#: ../GMenu/data/messages:83 ../Indicator-Menus/data/messages:83
+#: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:79
 #: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
 #: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
 #: ../Xgamma/data/messages:83 ../alsaMixer/data/messages:81
@@ -3704,7 +3783,8 @@ msgid "Bottom offset:"
 msgstr "Alsó eltolás:"
 
 #: ../Clipper/data/messages:189 ../Doncky/data/messages:83
-#: ../GMenu/data/messages:85 ../MeMenu/data/messages:79
+#: ../GMenu/data/messages:85 ../Indicator-Menus/data/messages:85
+#: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:81
 #: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
 #: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
 #: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:83
@@ -3725,7 +3805,8 @@ msgid ""
 msgstr ""
 
 #: ../Clipper/data/messages:191 ../Doncky/data/messages:85
-#: ../GMenu/data/messages:87 ../MeMenu/data/messages:81
+#: ../GMenu/data/messages:87 ../Indicator-Menus/data/messages:87
+#: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:83
 #: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
 #: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
 #: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:85
@@ -3744,7 +3825,8 @@ msgid "Foreground image:"
 msgstr "Előtér kép:"
 
 #: ../Clipper/data/messages:193 ../Doncky/data/messages:87
-#: ../GMenu/data/messages:89 ../MeMenu/data/messages:83
+#: ../GMenu/data/messages:89 ../Indicator-Menus/data/messages:89
+#: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:85
 #: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
 #: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
 #: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:87
@@ -3955,7 +4037,7 @@ msgstr ""
 msgid "Use this to increase the space between the lines"
 msgstr ""
 
-#: ../Doncky/data/messages:113 ../dock-rendering/data/messages:53
+#: ../Doncky/data/messages:113 ../dock-rendering/data/messages:97
 msgid "Space between icons:"
 msgstr ""
 
@@ -4051,10 +4133,32 @@ msgstr "napokban. Adjon meg 0-t a szűrő tiltásához."
 msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
-#: ../MeMenu/data/messages:51 ../Status-Notifier/data/messages:57
+#: ../Indicator-Menus/data/messages:57 ../MeMenu/data/messages:51
+#: ../Messaging-Menu/data/messages:53 ../Status-Notifier/data/messages:57
 msgid ""
 "e size=true\n"
 "F[Decorations;gtk-orientation-portrait]"
+msgstr ""
+
+#: ../Indicator-Menus/data/messages:93 ../Status-Notifier/data/messages:93
+msgid "This is a tooltip for this parameter."
+msgstr ""
+
+#: ../Indicator-Menus/data/messages:95 ../Status-Notifier/data/messages:95
+msgid "This is a boolean parameter. Y/N ?"
+msgstr ""
+
+#: ../Indicator-Menus/data/messages:97 ../Status-Notifier/data/messages:97
+msgid "This integer can go from 0 to 10 :"
+msgstr ""
+
+#: ../Indicator-Menus/data/messages:99 ../Status-Notifier/data/messages:99
+msgid "Enter some text here :"
+msgstr ""
+
+#: ../Messaging-Menu/data/messages:89
+msgid ""
+"Animation of the icon when one of the application demands your attention :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:7
@@ -4369,7 +4473,7 @@ msgid "RSS password (optional):"
 msgstr ""
 
 #: ../RSSreader/data/messages:105 ../clock/data/messages:93
-#: ../dnd2share/data/messages:97 ../mail/data/messages:105
+#: ../dnd2share/data/messages:97 ../mail/data/messages:107
 #: ../showDesktop/data/messages:97 ../slider/data/messages:105
 msgid "Behaviour"
 msgstr "Viselkedés"
@@ -4831,22 +4935,6 @@ msgstr "Előtér kép:"
 #: ../Status-Notifier/data/messages:89
 msgid "Foreground tansparency :"
 msgstr "Előtér átlátszósága:"
-
-#: ../Status-Notifier/data/messages:93
-msgid "This is a tooltip for this parameter."
-msgstr ""
-
-#: ../Status-Notifier/data/messages:95
-msgid "This is a boolean parameter. Y/N ?"
-msgstr ""
-
-#: ../Status-Notifier/data/messages:97
-msgid "This integer can go from 0 to 10 :"
-msgstr ""
-
-#: ../Status-Notifier/data/messages:99
-msgid "Enter some text here :"
-msgstr ""
 
 #: ../System-Monitor/data/messages:115 ../powermanager/data/messages:117
 msgid "It's the colour of the graphic for high values."
@@ -5436,7 +5524,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
-#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:101
+#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:57
 msgid "Corner radius:"
 msgstr ""
 
@@ -5624,206 +5712,185 @@ msgid "Height of the vanishing point:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:9
-msgid ""
-"In degrees, relative to the vertical. This is a sort of inclination of the "
-"plane to the horizontal, giving a 3D impression. Setting this to 0 means "
-"that the plane is not inclined at all (vertical)."
+msgid "The lower the value, the flatter the curve will appear."
 msgstr ""
 
 #: ../dock-rendering/data/messages:11
-msgid "Inclination of the plane:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:13
-msgid ""
-"0.5 means the dock is half-folded, so half the icons are on the foreground "
-"and half are on the background."
+msgid "Curvature of the curve in percent:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:15
-msgid "Percentage of the dock's width that appears on the foreground:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:17
-msgid ""
-"The greater, the deeper. This represents the gap between the bottoms "
-"ofbackground icons and the tops of foreground icons (in pixels)."
+msgid "Amplitude of the curve:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:19
-msgid "Depth of the plane:"
+msgid "At 1, the icons will have the same size as in other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:21
-msgid "otherwise they will turn."
+msgid "Ratio to apply on icons' size :"
 msgstr ""
 
 #: ../dock-rendering/data/messages:23
-msgid "Always show the fronts of icons?"
-msgstr ""
+#, fuzzy
+msgid "smaller icons"
+msgstr "Ikonanimációk"
+
+#: ../dock-rendering/data/messages:25
+#, fuzzy
+msgid "normal icons"
+msgstr "Információ"
 
 #: ../dock-rendering/data/messages:27
-msgid "The higher this value, the sooner the parabola will be curved."
+msgid "SimpleSlide"
 msgstr ""
 
 #: ../dock-rendering/data/messages:29
-msgid "Curvature:"
+msgid "Grid"
 msgstr ""
 
 #: ../dock-rendering/data/messages:31
-msgid "The parabola will be restricted to a rectangle of this proportion."
+msgid "Space between columns:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:33
-msgid "Height/width ratio:"
+#: ../dock-rendering/data/messages:33 ../dock-rendering/data/messages:95
+msgid "Space between rows:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:35
-msgid "0 represents a flat wave, 1 represents maximum wave curvature."
+msgid "Max icon size:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:37 ../dock-rendering/data/messages:57
-msgid "Magnitude of the wave:"
+#: ../dock-rendering/data/messages:37
+msgid "Sinusoidal wave radius:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:39
-msgid "Curve towards the outside?"
+msgid "Use a linear wave rather than a sinusoidal wave?"
+msgstr ""
+
+#: ../dock-rendering/data/messages:41
+msgid "Pack icons horizontally rather than vertically?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:43
-msgid "Space between icons and their captions:"
+msgid "Display text for all icons?"
 msgstr ""
 
 #: ../dock-rendering/data/messages:45
+msgid "Frame"
+msgstr ""
+
+#: ../dock-rendering/data/messages:47
+msgid "Draw a background?"
+msgstr ""
+
+#: ../dock-rendering/data/messages:49
+msgid "First gradient colour :"
+msgstr ""
+
+#: ../dock-rendering/data/messages:51
+msgid "Second gradient colour :"
+msgstr ""
+
+#: ../dock-rendering/data/messages:53
+msgid "Top to bottom gradient?"
+msgstr ""
+
+#: ../dock-rendering/data/messages:55
+msgid "Left to right gradient?"
+msgstr ""
+
+#: ../dock-rendering/data/messages:59
+msgid "Border line width :"
+msgstr ""
+
+#: ../dock-rendering/data/messages:61
+msgid "Border line colour :"
+msgstr ""
+
+#: ../dock-rendering/data/messages:63
+msgid "Arrow width :"
+msgstr ""
+
+#: ../dock-rendering/data/messages:65
+msgid "Arrow height:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:67
+msgid "Arrow shift percentage:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:71
+msgid "The higher this value, the sooner the parabola will be curved."
+msgstr ""
+
+#: ../dock-rendering/data/messages:73
+msgid "Curvature:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:75
+msgid "The parabola will be restricted to a rectangle of this proportion."
+msgstr ""
+
+#: ../dock-rendering/data/messages:77
+msgid "Height/width ratio:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:79
+msgid "0 represents a flat wave, 1 represents maximum wave curvature."
+msgstr ""
+
+#: ../dock-rendering/data/messages:81 ../dock-rendering/data/messages:101
+msgid "Magnitude of the wave:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:83
+msgid "Curve towards the outside?"
+msgstr ""
+
+#: ../dock-rendering/data/messages:87
+msgid "Space between icons and their captions:"
+msgstr ""
+
+#: ../dock-rendering/data/messages:89
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
 msgstr ""
 
-#: ../dock-rendering/data/messages:47
+#: ../dock-rendering/data/messages:91
 msgid "Draw captions while unfolding?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:51 ../dock-rendering/data/messages:77
-msgid "Space between rows:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:55
+#: ../dock-rendering/data/messages:99
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
-#: ../dock-rendering/data/messages:59
+#: ../dock-rendering/data/messages:103
 msgid "Number of icons on the first row:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:61
+#: ../dock-rendering/data/messages:105
 msgid ""
 "in degrees. The lower the value, the narrower the cone. 180° represents a "
 "wide open cone."
 msgstr ""
 
-#: ../dock-rendering/data/messages:63
+#: ../dock-rendering/data/messages:107
 msgid "Cone width:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:65
+#: ../dock-rendering/data/messages:109
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
 msgstr ""
 
-#: ../dock-rendering/data/messages:67
+#: ../dock-rendering/data/messages:111
 msgid "Bow colour:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:69
+#: ../dock-rendering/data/messages:113
 msgid "Line colour:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:71
-msgid "SimpleSlide"
-msgstr ""
-
-#: ../dock-rendering/data/messages:73
-msgid "Grid"
-msgstr ""
-
-#: ../dock-rendering/data/messages:75
-msgid "Space between columns:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:79
-msgid "Max icon size:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:81
-msgid "Sinusoidal wave radius:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:83
-msgid "Use a linear wave rather than a sinusoidal wave?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:85
-msgid "Pack icons horizontally rather than vertically?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:87
-msgid "Display text for all icons?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:89
-msgid "Frame"
-msgstr ""
-
-#: ../dock-rendering/data/messages:91
-msgid "Draw a background?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:93
-msgid "First gradient colour :"
-msgstr ""
-
-#: ../dock-rendering/data/messages:95
-msgid "Second gradient colour :"
-msgstr ""
-
-#: ../dock-rendering/data/messages:97
-msgid "Top to bottom gradient?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:99
-msgid "Left to right gradient?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:103
-msgid "Border line width :"
-msgstr ""
-
-#: ../dock-rendering/data/messages:105
-msgid "Border line colour :"
-msgstr ""
-
-#: ../dock-rendering/data/messages:107
-msgid "Arrow width :"
-msgstr ""
-
-#: ../dock-rendering/data/messages:109
-msgid "Arrow height:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:111
-msgid "Arrow shift percentage:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:115
-msgid "The lower the value, the flatter the curve will appear."
-msgstr ""
-
-#: ../dock-rendering/data/messages:117
-msgid "Curvature of the curve in percent:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:121
-msgid "Amplitude of the curve:"
 msgstr ""
 
 #: ../drop-indicator/data/messages:1
@@ -5891,7 +5958,7 @@ msgstr ""
 msgid "Number of Dustbins"
 msgstr ""
 
-#: ../dustbin/data/messages:105 ../mail/data/messages:123
+#: ../dustbin/data/messages:105 ../mail/data/messages:125
 msgid "Total number of files"
 msgstr ""
 
@@ -6165,62 +6232,66 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:103
+msgid "Play sound when a new e-mail is received?"
+msgstr ""
+
+#: ../mail/data/messages:105
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr ""
 
-#: ../mail/data/messages:107
+#: ../mail/data/messages:109
 msgid "Show new messages' content?"
 msgstr ""
 
-#: ../mail/data/messages:109
+#: ../mail/data/messages:111
 msgid "Maximum number of mails that will be previewed."
 msgstr ""
 
-#: ../mail/data/messages:111
+#: ../mail/data/messages:113
 msgid "Maximum of new messages shown?"
 msgstr ""
 
-#: ../mail/data/messages:113 ../musicPlayer/data/messages:137
+#: ../mail/data/messages:115 ../musicPlayer/data/messages:137
 #: ../tomboy/data/messages:119
 msgid "in seconds"
 msgstr "másodpercekben"
 
-#: ../mail/data/messages:115 ../tomboy/data/messages:121
+#: ../mail/data/messages:117 ../tomboy/data/messages:121
 msgid "Duration of the dialogue"
 msgstr ""
 
-#: ../mail/data/messages:117
+#: ../mail/data/messages:119
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
 "accounts you want."
 msgstr ""
 
-#: ../mail/data/messages:119
+#: ../mail/data/messages:121
 msgid "Check mail account on startup?"
 msgstr ""
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:123
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
-#: ../mail/data/messages:125
+#: ../mail/data/messages:127
 msgid "Mail application"
 msgstr "Levelező alkalmazás"
 
-#: ../mail/data/messages:127
+#: ../mail/data/messages:129
 msgid "Preferred mail application to launch on left-click :"
 msgstr ""
 
-#: ../mail/data/messages:129
+#: ../mail/data/messages:131
 msgid "Add a mail account"
 msgstr ""
 
-#: ../mail/data/messages:131
+#: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
 msgstr ""
 
-#: ../mail/data/messages:133
+#: ../mail/data/messages:135
 msgid "Add an account with specified type and name:"
 msgstr ""
 
@@ -7020,10 +7091,6 @@ msgstr ""
 
 #: ../systray/data/messages:53
 msgid "vertical"
-msgstr ""
-
-#: ../systray/data/messages:55
-msgid "Icons size :"
 msgstr ""
 
 #: ../terminal/data/messages:95
