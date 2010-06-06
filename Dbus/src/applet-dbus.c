@@ -287,6 +287,7 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
 		pVisitCard->cDescription = g_strdup (cDescription);
 		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
+		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 		//pVisitCard->bMultiInstance = TRUE;
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = _on_init_module;

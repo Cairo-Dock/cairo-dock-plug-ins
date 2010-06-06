@@ -14,7 +14,7 @@ name = Battery
 dock name = 
 
 #b Always display the icon, even when the dock is hidden?
-always visi = true
+always visi = false
 
 icon=
 order=

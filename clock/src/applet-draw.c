@@ -500,17 +500,17 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		if (myData.iTextOrientation == 2)  // mode horizontal
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
-			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			cairo_translate (myDrawContext, -ink.x, -ink.y);
-			pango_cairo_show_layout (myDrawContext, pLayout);
+			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
+			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+			pango_cairo_show_layout (myDrawContext, pLayout2);
 			
 			cairo_restore (myDrawContext);
 			cairo_save (myDrawContext);
 			
-			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * ink2.width, (iHeight - fZoomY_ * h_)/2);
+			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * ink.width, (iHeight - fZoomY_ * h_)/2);
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
-			pango_cairo_show_layout (myDrawContext, pLayout2);
+			cairo_translate (myDrawContext, -ink.x, -ink.y);
+			pango_cairo_show_layout (myDrawContext, pLayout);
 		}
 		else  // mode vertical
 		{
