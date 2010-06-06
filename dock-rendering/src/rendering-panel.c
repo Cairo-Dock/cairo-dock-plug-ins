@@ -483,7 +483,7 @@ static void cd_render_opengl (CairoDock *pDock)
 		0.);
 	
 	_cairo_dock_set_blend_source ();
-	cairo_dock_fill_gl_path (pFramePath, g_pDockBackgroundBuffer.iTexture);
+	cairo_dock_fill_gl_path (pFramePath, pDock->backgroundBuffer.iTexture);
 	
 	//\_____________ On trace le contour.
 	if (fLineWidth != 0)

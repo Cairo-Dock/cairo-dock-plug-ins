@@ -1187,8 +1187,8 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		fLineWidth/2,
 		0.);
 	glScalef (w + 2 * dw, fFrameHeight, 1.);
-	cairo_dock_fill_gl_path (pFramePath, g_pDockBackgroundBuffer.iTexture);
-	/*cairo_dock_draw_frame_background_opengl (g_pDockBackgroundBuffer.iTexture,
+	cairo_dock_fill_gl_path (pFramePath, pDock->backgroundBuffer.iTexture);
+	/*cairo_dock_draw_frame_background_opengl (pDock->backgroundBuffer.iTexture,
 		w + 2 * dw, fFrameHeight,
 		dx, dy,
 		pVertexTab, iNbVertex,

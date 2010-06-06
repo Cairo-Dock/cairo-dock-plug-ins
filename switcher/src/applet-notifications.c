@@ -69,8 +69,17 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 			iMouseX = myContainer->iMouseX - myIcon->fDrawX;
 			iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 		}
-		if (! myContainer->bIsHorizontal)
+		
+		double w, h;
+		if (myContainer->bIsHorizontal)
 		{
+			w = myIcon->fWidth * myIcon->fScale;
+			h = myIcon->fHeight * myIcon->fScale;
+		}
+		else
+		{
+			h = myIcon->fWidth * myIcon->fScale;
+			w = myIcon->fHeight * myIcon->fScale;
 			double tmp = iMouseX;
 			iMouseX = iMouseY;
 			iMouseY = tmp;
@@ -78,8 +87,8 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 		double fMaxScale = cairo_dock_get_max_scale (myContainer);
 		double dx = myData.switcher.fOffsetX / fMaxScale * myIcon->fScale;
 		double dy = myData.switcher.fOffsetY / fMaxScale * myIcon->fScale;
-		double w = myIcon->fWidth * myIcon->fScale - 2 * dx;
-		double h = myIcon->fHeight * myIcon->fScale - 2 * dy;
+		w -= 2 * dx;
+		h -= 2 * dy;
 		iMouseX -= dx;
 		iMouseY -= dy;
 		

@@ -613,7 +613,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fRadius + fLineWidth / 2);
 	}
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-	if (g_pDockBackgroundBuffer.pSurface != NULL)
+	if (pDock->backgroundBuffer.pSurface != NULL)
 	{
 		double fInclinationOnHorizon = (fDockWidth / 2) / iVanishingPointY;
 		double fRadius = myBackground.iDockRadius;
@@ -832,7 +832,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		dy - h/2,
 		0.);
 	
-	cairo_dock_fill_gl_path (pFramePath, g_pDockBackgroundBuffer.iTexture);
+	cairo_dock_fill_gl_path (pFramePath, pDock->backgroundBuffer.iTexture);
 	
 	//\_____________ On trace le contour.
 	if (l != 0)

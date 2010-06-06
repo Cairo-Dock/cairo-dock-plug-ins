@@ -244,6 +244,11 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 				cd_musicplayer_popup_info ();
 			}
 		}
+		else
+		{
+			cd_musicplayer_set_surface (PLAYER_STOPPED);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cTitle ? myData.cTitle : myData.pCurrentHandeler ? myData.pCurrentHandeler->name : myConfig.cDefaultTitle);
+		}
 		
 		//Affichage de la couverture de l'album.
 		if (myData.iSidCheckCover != 0)  // on stoppe la precedente boucle de verification de la couverture.
@@ -286,12 +291,17 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 	}
 	else  // aucune donnees, c'est soit un probleme soit le lecteur qui s'est ferme.
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myData.bIsRunning)
+		{
 			cd_musicplayer_set_surface (PLAYER_STOPPED);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandeler ? myData.pCurrentHandeler->name : myConfig.cDefaultTitle);
+		}
 		else
+		{
 			cd_musicplayer_set_surface (PLAYER_NONE);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
+		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
 }
 

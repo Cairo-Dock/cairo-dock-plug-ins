@@ -47,14 +47,16 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	
 	///if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
 	{
+		int w, h;
+		cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
 		double fRatio, fMinRatio=9999;
 		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
 			///if (iNbViewports % iNbLines != 0)
 			///	continue;
 			iNbDesktopByLine = iNbViewports / iNbLines;
-			fZoomX = myIcon->fWidth / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-			fZoomY = myIcon->fHeight / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+			fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+			fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
 			//cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
 			if (fRatio < fMinRatio)

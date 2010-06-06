@@ -53,6 +53,8 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
+	//else
+	//	cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->container.pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
 }
 CD_APPLET_INIT_END
 
