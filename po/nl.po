@@ -24,43 +24,43 @@ msgstr "Geanimeerde iconen"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "Deze plug-in bevat vele verschillende animaties voor uw iconen."
 
-#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Stuiteren"
 
-#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
 msgstr "Draaien"
 
-#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
+#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
 msgstr "Knipperen"
 
-#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
+#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
 msgstr "Kloppen"
 
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-init.c:60 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
 msgstr "Elastiek"
 
-#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
+#: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
 msgstr "Golven"
 
-#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:21
+#: ../Animated-icons/src/applet-init.c:62 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "Spotlicht"
@@ -431,8 +431,8 @@ msgid "Network ID"
 msgstr "Netwerk-ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:326 ../musicPlayer/src/applet-draw.c:328
-#: ../musicPlayer/src/applet-draw.c:330
+#: ../musicPlayer/src/applet-draw.c:336 ../musicPlayer/src/applet-draw.c:338
+#: ../musicPlayer/src/applet-draw.c:340
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -1168,7 +1168,7 @@ msgstr "elk jaar"
 msgid "Right-click to add a new task."
 msgstr "Klik met rechts om een nieuwe taak in te stellen."
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:329
+#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:339
 #: ../RSSreader/data/messages:135
 msgid "Title"
 msgstr "Titel"
@@ -1640,37 +1640,37 @@ msgstr "Icooneffecten"
 msgid "This plugin adds many special effects to your icons."
 msgstr "Deze plug-in voegt vele speciale effecten toe voor uw iconen."
 
-#: ../icon-effect/src/applet-init.c:79 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:80 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr "Vuur"
 
-#: ../icon-effect/src/applet-init.c:82 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:83 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
 msgstr "Sterren"
 
-#: ../icon-effect/src/applet-init.c:85 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:86 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
 msgstr "Regen"
 
-#: ../icon-effect/src/applet-init.c:88 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:89 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
 msgstr "Sneeuw"
 
-#: ../icon-effect/src/applet-init.c:91 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:92 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
 msgstr "Storm"
 
-#: ../icon-effect/src/applet-init.c:94 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:95 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:185
 msgid "Firework"
@@ -1864,31 +1864,31 @@ msgstr "Onbekende titel"
 msgid "Track"
 msgstr "Nummer"
 
-#: ../musicPlayer/src/applet-draw.c:316
+#: ../musicPlayer/src/applet-draw.c:326
 msgid "Current song"
 msgstr "Huidig nummer"
 
-#: ../musicPlayer/src/applet-draw.c:325
+#: ../musicPlayer/src/applet-draw.c:335
 msgid "Artist"
 msgstr "Artiest"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:337
 msgid "Album"
 msgstr "Album"
 
-#: ../musicPlayer/src/applet-draw.c:331
+#: ../musicPlayer/src/applet-draw.c:341
 msgid "Length"
 msgstr "Tijd"
 
-#: ../musicPlayer/src/applet-draw.c:333
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Track n°"
 msgstr "n° van nummer"
 
-#: ../musicPlayer/src/applet-draw.c:334
+#: ../musicPlayer/src/applet-draw.c:344
 msgid "Song n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:346
 msgid "There is no media playing."
 msgstr "Er wordt niets afgespeeld."
 
@@ -2315,16 +2315,16 @@ msgstr "Lokale map leegmaken"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:346
+#: ../switcher/src/applet-notifications.c:355
 msgid "Current"
 msgstr "Huidig"
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
 #: ../switcher/src/applet-load-icons.c:49
-#: ../switcher/src/applet-notifications.c:177
-#: ../switcher/src/applet-notifications.c:189
-#: ../switcher/src/applet-notifications.c:338
-#: ../switcher/src/applet-notifications.c:403
+#: ../switcher/src/applet-notifications.c:186
+#: ../switcher/src/applet-notifications.c:198
+#: ../switcher/src/applet-notifications.c:347
+#: ../switcher/src/applet-notifications.c:412
 msgid "Desktop"
 msgstr "Bureaublad"
 
@@ -2350,28 +2350,28 @@ msgstr ""
 " - Alle vensters op alle bureaubladen tonen (middlelklik of in het menu)\n"
 "Het kent 2 modus : Compact (op 1 icoon) en uitgebreid (met een sub-dock)."
 
-#: ../switcher/src/applet-notifications.c:178
-#: ../switcher/src/applet-notifications.c:236
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:245
 msgid "Rename this workspace"
 msgstr "Dit bureaublad hernoemen"
 
-#: ../switcher/src/applet-notifications.c:219
+#: ../switcher/src/applet-notifications.c:228
 msgid "Add a desktop"
 msgstr "Bureaublad toevoegen"
 
-#: ../switcher/src/applet-notifications.c:223
+#: ../switcher/src/applet-notifications.c:232
 msgid "Remove last desktop"
 msgstr "Verwijder laatste bureaublad"
 
-#: ../switcher/src/applet-notifications.c:227
+#: ../switcher/src/applet-notifications.c:236
 msgid "Refresh"
 msgstr "Vernieuwen"
 
-#: ../switcher/src/applet-notifications.c:243
+#: ../switcher/src/applet-notifications.c:252
 msgid "Move current Desktop to this Desktop"
 msgstr "Verplaats huidige bureaublad naar dit bureaublad"
 
-#: ../switcher/src/applet-notifications.c:248
+#: ../switcher/src/applet-notifications.c:257
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -2379,12 +2379,12 @@ msgstr ""
 "Hiermee verplaatst u alle vensters van het huidige bureaublad naar het "
 "bureaublad waar u op klikte."
 
-#: ../switcher/src/applet-notifications.c:254 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:263 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "Bureaublad tonen"
 
-#: ../switcher/src/applet-notifications.c:261
+#: ../switcher/src/applet-notifications.c:270
 msgid "Windows List"
 msgstr "Vensterlijst"
 
@@ -7358,9 +7358,13 @@ msgstr ""
 "Alle bureaubladen zullen op het hoofdicoon getekend worden. Anders zal een "
 "sub-dock alle bureaubladen bevatten."
 
-#: ../switcher/data/messages:89 ../switcher/data/messages:91
+#: ../switcher/data/messages:89
 msgid "Use the compact mode?"
 msgstr "Compacte modus gebruiken ?"
+
+#: ../switcher/data/messages:91
+msgid "Preserve the ratio of the screen ?"
+msgstr ""
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"

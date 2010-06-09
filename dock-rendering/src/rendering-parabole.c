@@ -81,7 +81,14 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 	
 	if ((pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2) ^ my_bParaboleCurveOutside)
 	{
-		iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		///iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		iX = pPointedIcon->fDrawX;
+		if (pSubDock->icons != NULL)
+		{
+			Icon *icon = pSubDock->icons->data;
+			iX += (pPointedIcon->fWidth * pPointedIcon->fScale - icon->fWidth) / 2;
+		}
+		g_print ("a droite : %d\n", iX);
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
@@ -89,10 +96,17 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 	}
 	else
 	{
-		iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		///iX = iMouseX + MAX (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
+		iX = pPointedIcon->fDrawX;
+		if (pSubDock->icons != NULL)
+		{
+			Icon *icon = pSubDock->icons->data;
+			iX += icon->fWidth + (pPointedIcon->fWidth * pPointedIcon->fScale - icon->fWidth) / 2;
+		}
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
 		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
+		
 	}
 	//cd_debug ("pSubDock->iGapY : %d\n", pSubDock->iGapY);
 }

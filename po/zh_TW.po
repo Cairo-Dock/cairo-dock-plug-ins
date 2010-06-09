@@ -24,43 +24,43 @@ msgstr "圖示動畫"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "這個增效模組程式能夠提供您更多不同的圖示動畫。"
 
-#: ../Animated-icons/src/applet-init.c:53 ../Animated-icons/data/messages:9
+#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "彈跳(Bounce)"
 
-#: ../Animated-icons/src/applet-init.c:54 ../Animated-icons/data/messages:11
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
 msgstr "旋轉(Rotate)"
 
-#: ../Animated-icons/src/applet-init.c:55 ../Animated-icons/data/messages:13
+#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
 msgstr "閃爍(Blink)"
 
-#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:15
+#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
 msgstr "脈衝光(Pulse)"
 
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-init.c:60 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
 msgstr "搖晃(Wobbly)"
 
-#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:19
+#: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
 msgstr "波浪(Wave)"
 
-#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:21
+#: ../Animated-icons/src/applet-init.c:62 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "斑紋(Spot)"
@@ -421,8 +421,8 @@ msgid "Network ID"
 msgstr "網路ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:326 ../musicPlayer/src/applet-draw.c:328
-#: ../musicPlayer/src/applet-draw.c:330
+#: ../musicPlayer/src/applet-draw.c:336 ../musicPlayer/src/applet-draw.c:338
+#: ../musicPlayer/src/applet-draw.c:340
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -1142,7 +1142,7 @@ msgstr "天氣"
 msgid "Right-click to add a new task."
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:329
+#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:339
 #: ../RSSreader/data/messages:135
 msgid "Title"
 msgstr "歌名"
@@ -1604,37 +1604,37 @@ msgstr "圖示效果"
 msgid "This plugin adds many special effects to your icons."
 msgstr "這個外掛可以在您的圖示上面增加很多特殊的效果。"
 
-#: ../icon-effect/src/applet-init.c:79 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:80 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr "火燄"
 
-#: ../icon-effect/src/applet-init.c:82 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:83 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
 msgstr "星星"
 
-#: ../icon-effect/src/applet-init.c:85 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:86 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
 msgstr "下雨"
 
-#: ../icon-effect/src/applet-init.c:88 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:89 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
 msgstr "下雪"
 
-#: ../icon-effect/src/applet-init.c:91 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:92 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
 msgstr "旋風"
 
-#: ../icon-effect/src/applet-init.c:94 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:95 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:185
 msgid "Firework"
@@ -1823,31 +1823,31 @@ msgstr "未知標題"
 msgid "Track"
 msgstr "曲目"
 
-#: ../musicPlayer/src/applet-draw.c:316
+#: ../musicPlayer/src/applet-draw.c:326
 msgid "Current song"
 msgstr "目前歌曲"
 
-#: ../musicPlayer/src/applet-draw.c:325
+#: ../musicPlayer/src/applet-draw.c:335
 msgid "Artist"
 msgstr "歌手"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:337
 msgid "Album"
 msgstr "專輯"
 
-#: ../musicPlayer/src/applet-draw.c:331
+#: ../musicPlayer/src/applet-draw.c:341
 msgid "Length"
 msgstr "長度"
 
-#: ../musicPlayer/src/applet-draw.c:333
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Track n°"
 msgstr "曲目 n°"
 
-#: ../musicPlayer/src/applet-draw.c:334
+#: ../musicPlayer/src/applet-draw.c:344
 msgid "Song n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:346
 msgid "There is no media playing."
 msgstr "沒有媒體播放 。"
 
@@ -2266,16 +2266,16 @@ msgstr "清除本地端的目錄"
 
 #: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:346
+#: ../switcher/src/applet-notifications.c:355
 msgid "Current"
 msgstr "目前"
 
 #: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
 #: ../switcher/src/applet-load-icons.c:49
-#: ../switcher/src/applet-notifications.c:177
-#: ../switcher/src/applet-notifications.c:189
-#: ../switcher/src/applet-notifications.c:338
-#: ../switcher/src/applet-notifications.c:403
+#: ../switcher/src/applet-notifications.c:186
+#: ../switcher/src/applet-notifications.c:198
+#: ../switcher/src/applet-notifications.c:347
+#: ../switcher/src/applet-notifications.c:412
 msgid "Desktop"
 msgstr "桌面"
 
@@ -2301,39 +2301,39 @@ msgstr ""
 " - 顯示在每個工作區的全部視窗(中鍵點擊或者是選單當中)\n"
 "它有兩種模式：壓縮的(一個圖示)與延伸的(有子Dock)。"
 
-#: ../switcher/src/applet-notifications.c:178
-#: ../switcher/src/applet-notifications.c:236
+#: ../switcher/src/applet-notifications.c:187
+#: ../switcher/src/applet-notifications.c:245
 msgid "Rename this workspace"
 msgstr "對這個工作區更名"
 
-#: ../switcher/src/applet-notifications.c:219
+#: ../switcher/src/applet-notifications.c:228
 msgid "Add a desktop"
 msgstr "增加一個桌面"
 
-#: ../switcher/src/applet-notifications.c:223
+#: ../switcher/src/applet-notifications.c:232
 msgid "Remove last desktop"
 msgstr "移除最後一個桌面"
 
-#: ../switcher/src/applet-notifications.c:227
+#: ../switcher/src/applet-notifications.c:236
 msgid "Refresh"
 msgstr "重新整理"
 
-#: ../switcher/src/applet-notifications.c:243
+#: ../switcher/src/applet-notifications.c:252
 msgid "Move current Desktop to this Desktop"
 msgstr "移動目前的桌面到這個桌面"
 
-#: ../switcher/src/applet-notifications.c:248
+#: ../switcher/src/applet-notifications.c:257
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr "這將會從目前的桌面移動全部的視窗到你點擊的那個上。"
 
-#: ../switcher/src/applet-notifications.c:254 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:263 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "顯示桌面"
 
-#: ../switcher/src/applet-notifications.c:261
+#: ../switcher/src/applet-notifications.c:270
 msgid "Windows List"
 msgstr "視窗清單"
 
@@ -7206,8 +7206,12 @@ msgid ""
 "contain all desktops."
 msgstr ""
 
-#: ../switcher/data/messages:89 ../switcher/data/messages:91
+#: ../switcher/data/messages:89
 msgid "Use the compact mode?"
+msgstr ""
+
+#: ../switcher/data/messages:91
+msgid "Preserve the ratio of the screen ?"
 msgstr ""
 
 #: ../switcher/data/messages:93
