@@ -8,10 +8,8 @@ SET(cd-Doncky_LIB_SRCS
 	applet-draw.c 		applet-draw.h
 	applet-xml.c 		applet-xml.h
 	applet-cpusage.c 		applet-cpusage.h
-	applet-monitor.c 		applet-monitor.h
 	applet-rame.c 		applet-rame.h
 	applet-nvidia.c 		applet-nvidia.h
-	applet-top.c 		applet-top.h
 	applet-disk-usage.c 	applet-disk-usage.h
 	applet-struct.h
 )

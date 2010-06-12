@@ -56,15 +56,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	
 	// REPRIS DE SYSTEM-MONITOR: (on impose les valeurs)	
-	myConfig.fSmoothFactor = 1.0;	
 	myConfig.fUserHZ = 100;	
 	myConfig.bShowCpu = TRUE;
 	myConfig.bShowRam = TRUE;
 	myConfig.bShowSwap = TRUE;
 	myConfig.bShowNvidia = FALSE;
-	myConfig.bShowFreeMemory = FALSE;
-	myConfig.iInfoDisplay = 0; // No;On icon;On label
-	myConfig.iNbDisplayedProcesses = 4; // nb top	
 CD_APPLET_GET_CONFIG_END
 
 

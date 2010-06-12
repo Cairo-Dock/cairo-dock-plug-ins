@@ -99,13 +99,9 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 	// SYSTEM-MONITOR
 	myData.bNeedsUpdate = FALSE;	
 	if (myConfig.bShowCpu)
-	{
 		cd_sysmonitor_get_cpu_data (myApplet);
-	}
 	if (myConfig.bShowRam || myConfig.bShowSwap)
-	{
 		cd_sysmonitor_get_ram_data (myApplet);
-	}
 	if (myConfig.bShowNvidia)
 	{
 		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lours, on decide donc de ne mettre a jour qu'une fois sur 3.
@@ -385,8 +381,8 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	{
 		cd_warning ("One or more datas couldn't be retrieved");
 		// CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
-		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+			//~ CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 	}
@@ -455,18 +451,10 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 					s_fValues[i++] = myData.fRamPercent / 100.;
 				}
 				if (myConfig.bShowSwap)
-				{
-					s_fValues[i++] = (myData.swapTotal ? (myConfig.bShowFreeMemory ? (double)myData.swapFree : (double)myData.swapUsed) / myData.swapTotal : 0.);
-				}
+					s_fValues[i++] = (myData.swapTotal ? ((double)myData.swapUsed) / myData.swapTotal : 0.);
 				if (myConfig.bShowNvidia)
-				{
 					s_fValues[i++] = myData.fGpuTempPercent / 100.;
-					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
-						myData.bAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessou de la limite.
-					
-					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
-						cd_nvidia_alert (myApplet);
-				}
+				
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 			}
 		}
@@ -888,11 +876,11 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			} 
 			
 			
-			if (pTextZone->iOverrideH != 0 || pTextZone->iOverrideH != NULL)
+			if (pTextZone->iOverrideH != 0)
 				myData.iPrevOverrideH = pTextZone->iOverrideH;
 			else
 				myData.iPrevOverrideH = 0;
-			if (pTextZone->iOverrideW != 0 || pTextZone->iOverrideW != NULL)
+			if (pTextZone->iOverrideW != 0)
 				myData.iPrevOverrideW = pTextZone->iOverrideW;
 			else
 				myData.iPrevOverrideW = 0;

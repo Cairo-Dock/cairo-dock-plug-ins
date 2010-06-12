@@ -68,13 +68,10 @@ struct _AppletConfig {
 	
 	// REPRIS DE SYSTEM-MONITOR :
 	gchar *defaultTitle;
-	gdouble fSmoothFactor;
 	gboolean bShowCpu;
 	gboolean bShowRam;
 	gboolean bShowNvidia;
 	gboolean bShowSwap;
-	gboolean bShowFreeMemory;	
-	CairoDockInfoDisplay iInfoDisplay;
 	gchar *cGThemePath;
 	gchar *cWatermarkImagePath;
 	gdouble fAlpha;	
@@ -92,12 +89,6 @@ struct _AppletConfig {
 	gboolean bStealTaskBarIcon;
 	gdouble fUserHZ;	
 	gchar *cSoundPath;
-	gint iLowerLimit;
-	gint iUpperLimit;
-	gint iAlertLimit;
-	gboolean bAlert;
-	gboolean bAlertSound;
-
 	} ;
 
 
@@ -186,7 +177,6 @@ struct _AppletData {
 	gboolean bNeedsUpdate;
 	gint iTimerCount;
 	// end of shared memory.
-	gboolean bAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	
 	gint iNbProcesses;

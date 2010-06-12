@@ -28,11 +28,6 @@
 #include "applet-init.h"
 #include "applet-xml.h"
 
-// REPRIS DE SYSTEM-MONITOR:
-#include "applet-top.h"
-#include "applet-monitor.h"
-
-
 
 CD_APPLET_DEFINITION (N_("Doncky"),
 	2, 0, 0,

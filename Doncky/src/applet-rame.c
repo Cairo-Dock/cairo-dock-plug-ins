@@ -68,11 +68,11 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 		gchar *str = cContent;
 		
 		get_value (myData.ramTotal)  // MemTotal
-		//cd_debug ("ramTotal : %lld", myData.ramTotal);
+		
 		
 		goto_next_line
 		get_value (myData.ramFree)  // MemFree
-		//cd_debug ("ramFree : %lld", myData.ramFree);
+		
 		
 		myData.ramUsed = myData.ramTotal - myData.ramFree;
 		goto_next_line
@@ -80,9 +80,10 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 		
 		goto_next_line
 		get_value (myData.ramCached)  // Cached.
-		//cd_debug ("ramCached : %lld", myData.ramCached);
 		
-		myData.fRamPercent = 100. * (myConfig.bShowFreeMemory ? myData.ramFree + myData.ramCached + myData.ramBuffers : myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
+		
+		myData.fRamPercent = 100. * (myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
+		
 		if (fabs (myData.fRamPercent - myData.fPrevRamPercent) > 1)
 		{
 			myData.fPrevRamPercent = myData.fRamPercent;
@@ -100,10 +101,8 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 				goto_next_line
 			}
 			get_value (myData.swapTotal)  // SwapTotal.
-			//cd_debug ("swapTotal : %lld", myData.swapTotal);
 			goto_next_line
 			get_value (myData.swapFree)  // SwapFree.
-			//cd_debug ("swapFree : %lld", myData.swapFree);
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
 			

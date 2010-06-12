@@ -48,13 +48,7 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 		else {
 			myData.iGPUTemp = iGpuTemp;
 		}
-		
-		if (myData.iGPUTemp <= myConfig.iLowerLimit)
-			myData.fGpuTempPercent = 0;
-		else if (myData.iGPUTemp >= myConfig.iUpperLimit )
-			myData.fGpuTempPercent = 100.;
-		else
-			myData.fGpuTempPercent = 100. * (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
+				
 		if (fabs (myData.fGpuTempPercent - myData.fPrevGpuTempPercent) > 1)
 		{
 			myData.fPrevGpuTempPercent = myData.fGpuTempPercent;
@@ -135,22 +129,5 @@ void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
 		cd_debug ("Doncky-debug --> nVidia %s %dMB %sV %d°C", myData.cGPUName, myData.iVideoRam, myData.cDriverVersion, myData.iGPUTemp);
 		
 		g_strfreev (cInfopipesList);
-	}
-}
-
-
-void cd_nvidia_alert (CairoDockModuleInstance *myApplet)
-{
-	if (myConfig.bShowNvidia) // Une petite sécurité :-)
-	{
-		if (myData.bAlerted || ! myConfig.bAlert)
-			return;
-		
-		cairo_dock_show_temporary_dialog_with_icon_printf (D_("Alert! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
-		
-		if (myConfig.bAlertSound)
-			cairo_dock_play_sound (myConfig.cSoundPath);
-		
-		myData.bAlerted = TRUE;
 	}
 }
