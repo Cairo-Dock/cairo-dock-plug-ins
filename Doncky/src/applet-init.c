@@ -60,7 +60,12 @@ CD_APPLET_INIT_BEGIN
 	//~ }
 	
 	cd_doncky_free_item_list (myApplet);	
-	cd_doncky_readxml (myApplet);
+	if (! cd_doncky_readxml (myApplet))
+		cd_debug ("Doncky-debug : ---------------------->  Bad XML format !");
+		
+	
+	
+	
 	
 	// REPRIS DE SYSTEM-MONITOR:
 	myData.pClock = g_timer_new ();
@@ -130,8 +135,9 @@ CD_APPLET_RELOAD_BEGIN
 				
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
 				
-		cd_doncky_free_item_list (myApplet);	
-		cd_doncky_readxml (myApplet);
+		cd_doncky_free_item_list (myApplet);		
+		if (! cd_doncky_readxml (myApplet))
+			cd_debug ("Doncky-debug : ---------------------->  Bad XML format !");
 		
 		// redessin.
 		//~ if (myDesklet)

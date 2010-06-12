@@ -29,8 +29,7 @@ typedef struct {
 	gint iFontSizeHeight;
 	double fTextColor[4];
 	gchar *cText;
-	gchar *cCommand;
-	gchar *cInternal;	
+	gchar *cCommand;	
 	gchar *cResult;
 	gchar *cAlignWidth;
 	gchar *cAlignHeight;
@@ -41,7 +40,6 @@ typedef struct {
 	gboolean bNextNewLine;
 	gboolean bBar;
 	gboolean bLimitedBar;
-	gboolean bStroke;
 	gint iHeight;
 	gint iWidth;
 	gint iImgSize;
@@ -55,6 +53,8 @@ typedef struct {
 	gchar *cMountPoint;
 	// Graph:
 	double graphHistory[300];
+	gboolean bIsBash;
+	gboolean bIsInternal;
 	
 } TextZone;
 

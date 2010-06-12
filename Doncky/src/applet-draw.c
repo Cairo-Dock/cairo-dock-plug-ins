@@ -162,51 +162,25 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 			pTextZone->bImgDraw = TRUE; // L'image est désormais chargée -> On peut la dessiner
 		}
 		
+		
+		
+		
 				
 		if (pTextZone->iRefresh != 0)
 				pTextZone->iTimer++;
-			
+		
 		
 		if (pTextZone->bRefresh)
 		{
-			if (pTextZone->cInternal == NULL) // C'est une commande bash !
+			if (pTextZone->bIsBash) // C'est une commande bash !
 			{
 				// cd_debug ("Doncky-debug : ----------------------> JE RAFFRAICHIS LA COMMANDE `%s`", pTextZone->cCommand);
 				pTextZone->cResult = cairo_dock_launch_command_sync (pTextZone->cCommand);
 			}
-			else // C'est une commande interne !
+			else if (pTextZone->bIsInternal)// C'est une commande interne !
 			{
 			
-				if (strcmp (pTextZone->cInternal, "testsm") == 0)
-				{
-					cd_sysmonitor_get_nvidia_info (myApplet);
-					
-					pTextZone->cResult = g_strdup_printf ("myData.fCpuPercent : %i%% \nmyData.cpu_user : %lli \nmyData.cpu_user_nice : %lli \nmyData.cpu_system : %lli \nmyData.cpu_idle : %lli \nmyData.iNbCPU : %i \n"
-						"myData.fRamPercent : %i%% \nmyData.ramUsed : %lli \nmyData.ramTotal : %lli \nmyData.ramCached : %lli \nmyData.ramFree : %lli \n"
-						"myData.swapTotal : %lli \nmyData.swapFree : %lli \nmyData.fSwapPercent : %i%% \nmyData.swapUsed : %lli \n"
-						"myData.cGPUName : %s \nmyData.iVideoRam : %iMB \nmyData.cDriverVersion : %s \nmyData.iGPUTemp : %i°C",
-						(int)myData.fCpuPercent,						
-						myData.cpu_user,
-						myData.cpu_user_nice,
-						myData.cpu_system,
-						myData.cpu_idle,
-						myData.iNbCPU,
-						(int)myData.fRamPercent,
-						myData.ramUsed,
-						myData.ramTotal,
-						myData.ramCached,
-						myData.ramFree,
-						myData.swapTotal,
-						myData.swapFree,
-						(int)myData.fSwapPercent,
-						myData.swapUsed,
-						myData.cGPUName,
-						myData.iVideoRam,
-						myData.cDriverVersion,
-						myData.iGPUTemp);
-				}
-										
-				else if (strcmp (pTextZone->cInternal, "cpuperc") == 0)
+				if (strcmp (pTextZone->cCommand, "cpuperc") == 0)
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 										
@@ -216,7 +190,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "cpuperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
+				else if (strcmp (pTextZone->cCommand, "cpuperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 					
@@ -228,7 +202,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fCpuPercent);
 				}
 					
-				else if (strcmp (pTextZone->cInternal, "memperc") == 0)
+				else if (strcmp (pTextZone->cCommand, "memperc") == 0)
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 					
@@ -240,7 +214,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "memperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
+				else if (strcmp (pTextZone->cCommand, "memperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 					
@@ -251,32 +225,32 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				}
 	
 										
-				else if (strcmp (pTextZone->cInternal, "mem") == 0) // en Mo
+				else if (strcmp (pTextZone->cCommand, "mem") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.ramTotal /100. * myData.fRamPercent));
 					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "memg") == 0) // Identique à mem mais en Go
+				else if (strcmp (pTextZone->cCommand, "memg") == 0) // Identique à mem mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.ramTotal /100. * myData.fRamPercent));
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 
-				else if (strcmp (pTextZone->cInternal, "memmax") == 0) // en Mo
+				else if (strcmp (pTextZone->cCommand, "memmax") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.ramTotal));
 					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "memmaxg") == 0) // Identique à memmax mais en Go
+				else if (strcmp (pTextZone->cCommand, "memmaxg") == 0) // Identique à memmax mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.ramTotal));
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
 								
-				else if (strcmp (pTextZone->cInternal, "swapperc") == 0)
+				else if (strcmp (pTextZone->cCommand, "swapperc") == 0)
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 					
@@ -286,7 +260,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);				
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "swapperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
+				else if (strcmp (pTextZone->cCommand, "swapperc2f") == 0) // Restreint à 2 chiffres : de 00 à 99 !
 				{
 					pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 					
@@ -298,7 +272,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fSwapPercent);
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "swap") == 0) // en Mo
+				else if (strcmp (pTextZone->cCommand, "swap") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.swapUsed));
 					
@@ -310,19 +284,19 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 						pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "swapg") == 0) // Identique à swap mais en Go
+				else if (strcmp (pTextZone->cCommand, "swapg") == 0) // Identique à swap mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.swapUsed));
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "swapmax") == 0) // en Mo
+				else if (strcmp (pTextZone->cCommand, "swapmax") == 0) // en Mo
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Mo(myApplet, myData.swapTotal));
 					pTextZone->cResult = g_strdup_printf ("%.0f", atof(pTextZone->cResult));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "swapmaxg") == 0) // Identique à swapmax mais en Go
+				else if (strcmp (pTextZone->cCommand, "swapmaxg") == 0) // Identique à swapmax mais en Go
 				{
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.swapTotal));
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
@@ -330,27 +304,27 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				
 				
 				
-				else if (strcmp (pTextZone->cInternal, "nvtemp") == 0)
+				else if (strcmp (pTextZone->cCommand, "nvtemp") == 0)
 				{
 					myConfig.bShowNvidia = TRUE;
 					pTextZone->cResult = g_strdup_printf ("%i", myData.iGPUTemp);
 				}
 					
-				else if (strcmp (pTextZone->cInternal, "nvname") == 0)
+				else if (strcmp (pTextZone->cCommand, "nvname") == 0)
 				{
 					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%s", myData.cGPUName);					
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "nvdriver") == 0)
+				else if (strcmp (pTextZone->cCommand, "nvdriver") == 0)
 				{
 					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%s", myData.cDriverVersion);					
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "nvram") == 0)
+				else if (strcmp (pTextZone->cCommand, "nvram") == 0)
 				{
 					myConfig.bShowNvidia = TRUE;
 					cd_sysmonitor_get_nvidia_info (myApplet);					
@@ -360,39 +334,39 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				
 				
 				
-				else if (strcmp (pTextZone->cInternal, "uptime") == 0)
+				else if (strcmp (pTextZone->cCommand, "uptime") == 0)
 				{
 					gchar *cUpTime = NULL, *cActivityTime = NULL;
 					cd_sysmonitor_get_uptime (&cUpTime, &cActivityTime);		
 					pTextZone->cResult = g_strdup_printf ("%s", cUpTime);			
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "fs_size") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_size") == 0)
 				{
 					if (strcmp (pTextZone->cMountPoint, "") != 0)
 						pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 0));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "fs_free") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_free") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 1));
 					
-				else if (strcmp (pTextZone->cInternal, "fs_used") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_used") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 2));
 				
-				else if (strcmp (pTextZone->cInternal, "fs_freeperc") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_freeperc") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 3));
 				
-				else if (strcmp (pTextZone->cInternal, "fs_usedperc") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_usedperc") == 0)
 				{
 					if (strcmp (pTextZone->cMountPoint, "") == 0 || pTextZone->cMountPoint == NULL)
 						pTextZone->cMountPoint = g_strdup_printf ("/");	
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 4));
 				}
 				
-				else if (strcmp (pTextZone->cInternal, "fs_type") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_type") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 5));
 				
-				else if (strcmp (pTextZone->cInternal, "fs_device") == 0)
+				else if (strcmp (pTextZone->cCommand, "fs_device") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 6));				
 				
 			}			
@@ -657,7 +631,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					fCurrentLineHeight = (double)myData.iLastLineHeight;
 				
 			}			
-			else if (pTextZone->bLimitedBar || pTextZone->bImgDraw)
+			else if (pTextZone->bLimitedBar || pTextZone->bImgDraw || pTextZone->bBar )
 			{
 				fCurrentLineWidth += pTextZone->iWidth;
 				
@@ -666,14 +640,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				else if (myData.bLastWasSameLine)
 					fCurrentLineHeight = (double)myData.iLastLineHeight;
 			}
-			else if (pTextZone->bBar)
-			{				
-				if ( (pTextZone->iHeight > fCurrentLineHeight) && ! myData.bLastWasSameLine)
-					fCurrentLineHeight = (double)pTextZone->iHeight;
-				else if (myData.bLastWasSameLine)
-					fCurrentLineHeight = (double)myData.iLastLineHeight;
-			}
-						
+									
 			it = it->next;
 		} while (it != NULL && ! pTextZone->bEndOfLine);
 		
@@ -686,6 +653,39 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		{
 	
 			pTextZone = it->data;
+			
+			
+			
+			
+			
+			
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 						
 			if (pTextZone->cFont == NULL || pTextZone->cFont =="") // Si aucune font -> on prend celle de la config
@@ -713,11 +713,11 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - pTextZone->iWidth - pTextZone->iFontSizeWidth;
 					else
 						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - fCurrentLineWidth - pTextZone->iFontSizeWidth;
+					
 				}
 				
 				if (pTextZone->bBar)
 					 myData.fCurrentX -= iSpaceBetweenElements ; // Il y a un élément avant la barre -> On supprime l'espace
-				
 			}
 			
 			
@@ -761,42 +761,24 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				cairo_set_source_rgba (myDrawContext, pTextZone->fTextColor[0], pTextZone->fTextColor[1], pTextZone->fTextColor[2], pTextZone->fTextColor[3]);
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			if (pTextZone->cText != NULL)
 				pango_layout_set_text (pLayout, pTextZone->cText, -1);
 			else
 				pango_layout_set_text (pLayout,"", -1);
 			pango_layout_get_pixel_extents (pLayout, &ink, &log);
-
-
-
-
-
-			
 			
 			
 			if (pTextZone->bBar || pTextZone->bLimitedBar) // On dessine la barre
 			{
-				int value;				
-				
+				int value;
 				if (pTextZone->bBar)
 				{
 					int iWidth, iHeight;
 					CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-					pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin - (myData.fCurrentX + iSpaceBetweenElements);
+					if (bFirstTextInLine)
+						pTextZone->iWidth =  iWidth - iMargin*2 - myConfig.iTextMargin*2;
+					else
+						pTextZone->iWidth =  iWidth - myData.fCurrentX - iMargin - myConfig.iTextMargin  - iSpaceBetweenElements;
 				}
 				
 				int i;
@@ -804,16 +786,11 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				{
 					if (i==0)
 					{
-						if (pTextZone->bStroke)
-							value = pTextZone->iWidth; // Une "stroke" (=trait) est une barre toujours pleine ;-) 
-						else
-						{
-							myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
-							value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);
-						}					
+						myData.cCurrentText = g_strdup_printf ("%s",pTextZone->cText); // Sinon, çà plante à la ligne d'en dessous
+						value = (int)((atof(myData.cCurrentText) / 100)*pTextZone->iWidth);						
 					}
 					else
-						value = pTextZone->iWidth;						
+						value = pTextZone->iWidth;
 					
 					// On dessine la valeur PUIS le cadre							
 					cairo_save (myDrawContext);
@@ -833,16 +810,14 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 											
 					cairo_set_line_width (myDrawContext, 0.5);
 					
-					
 					if (pTextZone->bBar)
 						cairo_translate (myDrawContext,
-							myData.fCurrentX + iSpaceBetweenElements + pTextZone->iOverrideW,
-							myData.fCurrentYalign + pTextZone->iOverrideH);
+							myData.fCurrentX + iSpaceBetweenElements + myData.iPrevOverrideW,
+							myData.fCurrentYalign + myData.iPrevOverrideH);
 					else
 						cairo_translate (myDrawContext,
-							myData.fCurrentX + pTextZone->iOverrideW,
-							myData.fCurrentYalign + pTextZone->iOverrideH);
-					
+							myData.fCurrentX + myData.iPrevOverrideW,
+							myData.fCurrentYalign + myData.iPrevOverrideH);
 					
 					cairo_dock_draw_rounded_rectangle (myDrawContext,
 						0,
@@ -857,21 +832,23 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 					cairo_restore (myDrawContext);					
 				}
 			}
+			
+			
 			else if (pTextZone->bImgDraw) // Il y a une image
 			{
 				if (pTextZone->pImgSurface != NULL)
 				{
 					cairo_set_source_surface (myDrawContext, pTextZone->pImgSurface,
-							myData.fCurrentX + pTextZone->iOverrideW,
-							myData.fCurrentYalign + pTextZone->iOverrideH);
+							myData.fCurrentX + myData.iPrevOverrideW,
+							myData.fCurrentYalign + myData.iPrevOverrideH);
 					cairo_paint (myDrawContext);
 				}			
 			}
 			else // C'est un texte !
 			{
 				cairo_move_to (myDrawContext,
-					myData.fCurrentX + pTextZone->iOverrideW,
-					myData.fCurrentYalign + pTextZone->iOverrideH);
+					myData.fCurrentX + myData.iPrevOverrideW,
+					myData.fCurrentYalign + myData.iPrevOverrideH);
 				pango_cairo_show_layout (myDrawContext, pLayout); // On dessine la ligne sur notre desklet
 			}
 				
@@ -909,6 +886,16 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 				
 				bFirstTextInLine = FALSE;
 			} 
+			
+			
+			if (pTextZone->iOverrideH != 0 || pTextZone->iOverrideH != NULL)
+				myData.iPrevOverrideH = pTextZone->iOverrideH;
+			else
+				myData.iPrevOverrideH = 0;
+			if (pTextZone->iOverrideW != 0 || pTextZone->iOverrideW != NULL)
+				myData.iPrevOverrideW = pTextZone->iOverrideW;
+			else
+				myData.iPrevOverrideW = 0;
 			
 			it = it->next;
 		} while (it != NULL && ! pTextZone->bEndOfLine);

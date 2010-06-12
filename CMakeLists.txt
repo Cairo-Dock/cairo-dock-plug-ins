@@ -164,7 +164,7 @@ add_subdirectory (dock-rendering)
 ############# DONCKY #################
 if ("${enable-doncky}" STREQUAL "yes")
 	set (GETTEXT_DONCKY ${GETTEXT_PLUGINS})
-	set (VERSION_DONCKY "0.0.1")
+	set (VERSION_DONCKY "0.0.2")
 	set (PACKAGE_DONCKY "cd-doncky")
 	set (donckydatadir "${pluginsdatadir}/Doncky")
 	configure_file (Doncky/data/Doncky.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Doncky/data/Doncky.conf)

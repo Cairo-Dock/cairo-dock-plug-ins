@@ -18,179 +18,129 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
-<code>
+<doncky>
 
 
 	<!--  Time -->
-	<zone>
-		<alignW>center</alignW>
-		<font>Terminal Bitstream Vera Sans Mono 20</font>
-		<color>255;255;255;255</color>
+	<font>Terminal Bitstream Vera Sans Mono 20</font>
+	<color>255;255;255;255</color>
+	<alignW>center</alignW>
+	<cmd>
 		<echo>`uptime | cut -d" " -f2`</echo>
 		<refresh>1</refresh>
-		<br/>
-	</zone>
+	</cmd>
+
+	<br/>
+
 
 
 	<!--  Uptime (en cours) -->
-	<zone>
-		<alignW>center</alignW>
-		<font>Terminal Bitstream Vera Sans Mono 12</font>
-		<color>255;255;255;255</color>
-		<txt>UPTIME: </txt>
-	</zone>
-	<zone>
-		<font>1Terminal Bitstream Vera Sans Mono 12</font>
-		<color>255;255;255;255</color>
+	<font>Terminal Bitstream Vera Sans Mono 12</font>
+	<alignW>center</alignW>
+	<txt>UPTIME: </txt>
+	<cmd>
 		<internal>uptime</internal>
 		<refresh>1</refresh>
-		<br>5</br>
-	</zone>
+	</cmd>
+
+	<br>5</br>
+	
 
 	<!--  Version GNU/Linux  -->
-	<zone>
-		<alignW>center</alignW>
-		<font>Terminal Bitstream Vera Sans Mono 8</font>
-		<color>255;255;0;255</color>
+	<font>Terminal Bitstream Vera Sans Mono 8</font>
+	<color>255;255;0;255</color>
+	<alignW>center</alignW>
+	<cmd>
 		<echo>`uname -o` version : </echo>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
-		<color>255;255;0;255</color>
+	</cmd>
+	<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
+	<cmd>
 		<echo>`cat /etc/issue.net` $(lsb_release -sc)</echo>
-		<br/>
-	</zone>
-	<!--  Version du Noyau  -->
-	<zone>
-		<alignW>center</alignW>
-		<font>Terminal Bitstream Vera Sans Mono 8</font>
-		<color>255;255;0;255</color>
-		<txt>Version du Noyau : </txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
-		<color>255;255;0;255</color>
-		<cmd>uname -r</cmd>		
-		<br>5</br>
-	</zone>
+	</cmd>
 
+	<br/>
+	
+
+	<!--  Version du Noyau  -->
+	<font>Terminal Bitstream Vera Sans Mono 8</font>
+	<txt>Version du Noyau : </txt>
+	<font>Terminal Bitstream Vera Sans Mono Bold 8</font>
+	<cmd>
+		<bash>uname -r</bash>
+	</cmd>
+
+	<br>10</br>
 
 
 	<!--  CPU Usage -->
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>0;0;0;255</color>
-		<txt>CPU Usage : </txt> 
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
+	<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+	<alignW>left</alignW>
+	<color>0;0;0;255</color>
+	<txt>CPU Usage : </txt> 
+	<color>255;255;0;255</color>
+	<cmd>
 		<internal>cpuperc</internal>
 		<refresh>1</refresh>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
-		<txt>%</txt>
-	</zone>
-	<zone>
-		<color>255;255;0;255</color>
+	</cmd>
+	<txt>%</txt>
+	<cmd>
 		<bar>cpuperc;10</bar>
 		<refresh>1</refresh>
-		<br>5</br> 
-	</zone>
+	</cmd>
 
+	<br/> 
 
 
 	<!--  Mem  -->
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>0;0;0;255</color>
-		<txt>RAM : </txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
+	<color>0;0;0;255</color>
+	<txt>RAM : </txt>
+	<font>Terminal Bitstream Vera Sans Mono 10</font>
+	<cmd>
 		<internal>mem</internal>
 		<refresh>3</refresh>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
-		<txt>Mo/</txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
+	</cmd>
+	<txt>Mo/</txt>
+	<cmd>
 		<internal>memmaxg</internal>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
-		<txt>Go - </txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
+	</cmd>
+	<txt>Go - </txt>
+	<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+	<color>255;255;0;255</color>
+	<cmd>
 		<internal>memperc</internal>
 		<refresh>3</refresh>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
-		<txt>%</txt>
-	</zone>
-	<zone>
-		<color>255;255;0;255</color>
+	</cmd>
+	<txt>%</txt>
+	<cmd>
 		<bar>memperc;10</bar>
 		<refresh>3</refresh>
-		<br/> 
-	</zone>
+	</cmd>
+
+	<br/> 
+
 
 	<!--  Swap Perc -->
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>0;0;0;255</color>
-		<txt>Swap : </txt>
-	</zone>
-
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
+	<color>0;0;0;255</color>
+	<txt>Swap : </txt>
+	<font>Terminal Bitstream Vera Sans Mono 10</font>
+	<cmd>
 		<internal>swap</internal>
 		<refresh>3</refresh>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
-		<txt>Mo/</txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
+	</cmd>
+	<txt>Mo/</txt>
+	<cmd>
 		<internal>swapmaxg</internal>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono 10</font>
-		<color>0;0;0;255</color>
-		<txt>Go - </txt>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
+	</cmd>
+	<txt>Go - </txt>
+	<color>255;255;0;255</color>
+	<cmd>
 		<internal>swapperc</internal>
 		<refresh>3</refresh>
-	</zone>
-	<zone>
-		<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
-		<color>255;255;0;255</color>
-		<txt>%</txt>
-	</zone>
-	<zone>
-		<color>255;255;0;255</color>
+	</cmd>
+	<font>Terminal Bitstream Vera Sans Mono Bold 10</font>
+	<txt>%</txt>
+	<cmd>
 		<bar>swapperc;10</bar>
 		<refresh>3</refresh>
-		<br/> 
-	</zone>
-
-</code>
+	</cmd>
+</doncky>

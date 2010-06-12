@@ -1,4 +1,4 @@
-#!en;@VERSION_WRITETHIS@
+#!en;@VERSION_DONCKY@
 
 #[gtk-about]
 [Icon]
@@ -31,7 +31,7 @@ locked = false
 
 #j+[50;1200] Desklet dimensions (width x height):
 #{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
-size = 250;185
+size = 260;160
 
 #i[-2048;2048] Desklet position (x, y):
 #{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
@@ -95,7 +95,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#S+ Specify a title :
+#S+ Specify the xml file to be used :
 #{Leave empty to use the default one.
 xml_filepath =
 
@@ -105,7 +105,7 @@ xml_filepath =
 #F[Text;gtk-italic]
 text = 
 
-#P+ Default icon:
+#P+ Default Font:
 #{Font to be used by default if none is specify in the .xml}
 default_font=Sans 8
 
@@ -113,11 +113,11 @@ default_font=Sans 8
 #{Color to be used by default if none is specify in the .xml}
 default_text_color=1.0;1.0;1.0;1.0
 
-#I+[0;48] Image for 'text' items:
+#I+[0;48] Margin all around the desklet:
 #{Margin to be used on left, right and top of the desklet}
 text_margin=0
 
-#I+[0;24] Space between icons:
+#I+[0;24] Space between lines:
 #{Use this to increase the space between the lines}
 space_between_lines=0
 

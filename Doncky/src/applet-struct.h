@@ -117,7 +117,29 @@ typedef struct {
 
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {	
+struct _AppletData {
+	// Nouveau Doncky
+	
+	
+	gchar *cPrevAlignWidth;
+	gchar *cPrevAlignHeight;
+	gchar *cPrevFont;
+	double fPrevTextColor[4];
+	gint iPrevOverrideH;
+	gint iPrevOverrideW;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Ancien Doncky
 	CairoDockTask *pPeriodicRefreshTask;
 	
 	GList *pTextZoneList;
@@ -178,9 +200,7 @@ struct _AppletData {
 	gboolean bSortTopByRam;
 	// end of shared memory.
 	
-	gint iMaxFrequency
-	
+	gint iMaxFrequency;
 	} ;
-
 
 #endif
