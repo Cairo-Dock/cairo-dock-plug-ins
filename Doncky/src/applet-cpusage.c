@@ -109,19 +109,8 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 				}
 			}
 			else if (strncmp (line, "processor", 9) == 0)  // processeur virtuel.
-			{
-				cd_debug ("  found 1 virtual processor");
 				myData.iNbCPU ++;
-			}
-			/*else if (strncmp (line, "physical id", 11) == 0)  // processeur physique.
-			{
-				
-			}
-			else if (strncmp (line, "cpu cores", 9) == 0)  // nbre de coeurs de ce processeur physique.
-			{
-				
-			}*/
-			
+						
 			if (str != NULL)
 				line = str;  // optimisation : on se place apres ce qu'on a trouve.
 			
@@ -133,7 +122,6 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 		while (TRUE);
 	}
 	myData.iNbCPU = MAX (myData.iNbCPU, 1);
-	cd_debug ("sysmonitor : %d CPU/core(s) found", myData.iNbCPU);
 	g_free (cContent);
 }
 
@@ -201,17 +189,6 @@ void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 			myData.fPrevCpuPercent = myData.fCpuPercent;
 			myData.bNeedsUpdate = TRUE;
 		}
-		/*cd_debug ("CPU(%d) user : %d -> %d / nice : %d -> %d / sys : %d -> %d / idle : %d -> %d",
-			myData.iNbCPU,
-			myData.cpu_user, new_cpu_user,
-			myData.cpu_user_nice, new_cpu_user_nice,
-			myData.cpu_system, new_cpu_system,
-			myData.cpu_idle, new_cpu_idle);
-		cd_debug ("=> CPU user : %.3f / nice : %.3f / sys : %.3f / idle : %.3f",
-			(new_cpu_user - myData.cpu_user) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_user_nice - myData.cpu_user_nice) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_system - myData.cpu_system) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed,
-			(new_cpu_idle - myData.cpu_idle) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed);*/
 	}
 	myData.cpu_user = new_cpu_user;
 	myData.cpu_user_nice = new_cpu_user_nice;

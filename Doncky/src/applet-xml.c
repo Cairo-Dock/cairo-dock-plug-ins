@@ -95,14 +95,9 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 	{
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "font") == 0)
 		{
-			myData.cPrevFont = xmlNodeGetContent (pXmlNode);
-			cd_debug ("Doncky-debug ---------------> myData.cPrevFont = %s", myData.cPrevFont);
-			
+			myData.cPrevFont = xmlNodeGetContent (pXmlNode);			
 			if (strcmp (myData.cPrevFont, "default") == 0)
-			{
 				myData.cPrevFont = g_strdup_printf("%s", myConfig.cDefaultFont);
-				cd_debug ("Doncky-debug ---------------> myData.cPrevFont = %s", myData.cPrevFont);
-			}
 		}
 		
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "color") == 0)
@@ -340,11 +335,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			
 			pTextZone->cText = g_strdup_printf("Please wait... "); // On initialise le 1er texte à afficher à " "
 			pTextZone->cMountPoint = g_strdup_printf ("/");
-			
-			cd_debug ("Doncky-debug : ---------------------->  Présence d'une commande");
-			
-			
-						
+					
 			xmlNodePtr pXmlSubNode;			
 			for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
 			{				
@@ -432,9 +423,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "refresh") == 0)
 				{
 					pTextZone->iRefresh = g_strtod (cNodeContent, NULL);
-					pTextZone->bRefresh = TRUE;
-					//pTextZone->iTimer = pTextZone->iRefresh - 2 ;	// On triche sur le timer à la lecture du xml pour avoir un refresh
-					cd_debug ("Doncky-debug : ---------------------->  Refresh à %i", pTextZone->iTimer);					
+					pTextZone->bRefresh = TRUE;				
 				}
 				else
 				{
@@ -442,7 +431,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					{
 						pTextZone->bRefresh = TRUE;
 						pTextZone->iRefresh = 0;
-						cd_debug ("Doncky-debug : ---------------------->  Refresh à 0");
 					}
 				}
 				xmlFree (cNodeContent);
@@ -466,11 +454,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			
 			pTextZone->bBar = FALSE;
 			
-						
-			cd_debug ("Doncky-debug : ---------------------->  Présence d'une image");
-			
-			
-						
 			xmlNodePtr pXmlSubNode;			
 			for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
 			{				

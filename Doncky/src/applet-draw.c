@@ -80,19 +80,6 @@ double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
 }
 
 
-//~ void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet)
-//~ {
-	//~ cd_debug ("Doncky-debug ---------------> REFRESH");
-	//~ 
-	//~ 
-	//~ myData.pPeriodicRefreshTask = cairo_dock_new_task (0,
-		//~ (CairoDockGetDataAsyncFunc) cd_launch_command,
-		//~ (CairoDockUpdateSyncFunc) cd_retrieve_command_result,
-		//~ myApplet);
-	//~ cairo_dock_launch_task (myData.pPeriodicRefreshTask);
-//~ }
-
-
 void cd_launch_command (CairoDockModuleInstance *myApplet)
 {
 	
@@ -147,9 +134,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				
 				//\_______________ On garde l'aire de la surface/texture.			
 				pTextZone->iWidth = (int)fImgW;
-				cd_debug ("Doncky-debug ------------> pTextZone->iWidth = %i", pTextZone->iWidth);
 				pTextZone->iHeight = (int)fImgH;
-				cd_debug ("Doncky-debug ------------> pTextZone->iHeight = %i", pTextZone->iHeight);
 			}
 						
 			pTextZone->pImgSurface = cairo_dock_create_surface_for_icon (pTextZone->cImgPath,
@@ -169,10 +154,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 		if (pTextZone->bRefresh)
 		{
 			if (pTextZone->bIsBash) // C'est une commande bash !
-			{
-				// cd_debug ("Doncky-debug : ----------------------> JE RAFFRAICHIS LA COMMANDE `%s`", pTextZone->cCommand);
 				pTextZone->cResult = cairo_dock_launch_command_sync (pTextZone->cCommand);
-			}
 			else if (pTextZone->bIsInternal)// C'est une commande interne !
 			{
 			
@@ -379,10 +361,7 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	
 	if ( ! myData.bAcquisitionOK)
 	{
-		cd_warning ("One or more datas couldn't be retrieved");
-		// CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
-		//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			//~ CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		cd_warning ("One or more datas couldn't be retrieved");	
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 	}
@@ -390,8 +369,6 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	{
 		if (! myData.bInitialized)
 		{
-			//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-				//~ CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (myDock ? "..." : D_("Loading"));
 			memset (s_fValues, 0, sizeof (s_fValues));
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		}
@@ -503,9 +480,6 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
-	//~ if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
-		//~ return;
-	//cd_debug ("Doncky-debug --> %s (%dx%d)", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
 	

@@ -29,8 +29,6 @@ char* rtrim( char* str, const char* t );
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
 double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
 
-void cd_doncky_periodic_refresh (CairoDockModuleInstance *myApplet);
-
 void cd_launch_command (CairoDockModuleInstance *myApplet);
 
 gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet);
