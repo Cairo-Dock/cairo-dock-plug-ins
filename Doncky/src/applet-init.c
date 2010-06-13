@@ -48,29 +48,19 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
-	//~ else
-	//~ {
-		//~ CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // en mode dock l'image de l'icone est statique.
-	//~ }
-	
+		
 	cd_doncky_free_item_list (myApplet);	
 	if (! cd_doncky_readxml (myApplet))
 		cd_debug ("Doncky-debug : ---------------------->  Bad XML format !");
-		
-	
-	
-	
 	
 	// REPRIS DE SYSTEM-MONITOR:
 	myData.pClock = g_timer_new ();
-
+	
 	if (myConfig.cSystemMonitorClass)
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	
-	// en mode desklet on redessine l'icone avec le message d'attente.
-	//~ if (myDesklet)
-		cd_applet_update_my_icon (myApplet);
-		
+	cd_applet_update_my_icon (myApplet);
+	
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -83,7 +73,6 @@ CD_APPLET_INIT_BEGIN
 			(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
 			myApplet);
 	cairo_dock_launch_task (myData.pPeriodicRefreshTask);
-	
 	
 	myData.bAcquisitionOK = TRUE;
 	
@@ -134,10 +123,8 @@ CD_APPLET_RELOAD_BEGIN
 			cd_debug ("Doncky-debug : ---------------------->  Bad XML format !");
 		
 		// redessin.
-		//~ if (myDesklet)
-			cd_applet_update_my_icon (myApplet);
-		//~ else
-			//~ CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;		
+		cd_applet_update_my_icon (myApplet);
+		
 	}
 	else 
 	{
@@ -145,10 +132,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevRamPercent = 0;
 		myData.fPrevSwapPercent = 0;
 		myData.fPrevGpuTempPercent = 0;
-	}
-	
-	// en mode desklet on redessine l'icone aux nouvelles dimensions.
-	//~ if (myDesklet)
-		cd_applet_update_my_icon (myApplet);
+	}	
+	cd_applet_update_my_icon (myApplet);
 		
 CD_APPLET_RELOAD_END

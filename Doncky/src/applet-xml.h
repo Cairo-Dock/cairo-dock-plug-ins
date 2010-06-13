@@ -59,7 +59,6 @@ typedef struct {
 } TextZone;
 
 
-
 void cd_doncky_free_item (TextZone *pTextZone);
 
 

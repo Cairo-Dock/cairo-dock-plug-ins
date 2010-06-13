@@ -23,12 +23,11 @@
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 
+
 #include <cairo-dock.h>
 #include "applet-struct.h"
 #include "applet-xml.h"
 #include "applet-draw.h"
-
-
 
 
 void cd_doncky_free_item (TextZone *pTextZone)
@@ -463,6 +462,13 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				{
 					pTextZone->cImgPath = xmlNodeGetContent (pXmlSubNode);
 					pTextZone->bImgDraw=FALSE;		
+					
+					if (g_strstr_len (pTextZone->cImgPath, -1, "~") != NULL) // On remplace l'éventuel "~" par le chemin complet
+				    {
+				        pTextZone->cImgPath = g_strstr_len (pTextZone->cImgPath, -1, "~/"); 
+				        pTextZone->cImgPath += 2;
+				        pTextZone->cImgPath = g_strdup_printf("%s/%s", g_strdup_printf("/home/%s", getenv("USER")), pTextZone->cImgPath);
+				     } 
 				}
 				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "size") == 0)
