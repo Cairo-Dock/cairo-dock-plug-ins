@@ -61,6 +61,7 @@ typedef struct {
 
 void cd_doncky_free_item (TextZone *pTextZone);
 
+char *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace);
 
 void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet);
 

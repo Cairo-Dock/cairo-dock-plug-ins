@@ -59,6 +59,71 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 	myData.pTextZoneList = NULL;
 }
 
+
+//~ gchar *g_str_replace (gchar *cString, gchar *cWord, gchar *cReplace)
+//~ {
+	//~ cd_debug ("Doncky-debug2 : ---------------------->  phrase de test = \"%s\"",cString);
+	//~ int iWordLength = strlen (cWord);
+	//~ 
+	//~ gchar *cPart1 = g_strdup_printf("%s", cString);
+	//~ // On récupère la partie de gauche
+	//~ g_strreverse (cPart1);
+	//~ cPart1 = strrchr(cPart1, '~') ;
+	//~ ltrim( cPart1, "~" );
+	//~ g_strreverse (cPart1);
+	//~ cd_debug ("Doncky-debug2 : ---------------------->  tempo1 = \"%s\"",cPart1);
+	//~ 
+	//~ 
+	//~ gchar *cFinalString = g_strdup_printf("%s", cPart1);
+	//~ return cFinalString;
+	//~ 
+	//~ int cWordLength = strlen (cWord);
+  //~ char *cPart1 = NULL, *cPart2 = NULL, *cFinalString = NULL;
+  //~ 
+  //~ cPart1 = g_strstr_len (cString, -1, cWord); //On trouve la 1er occurrence de cWord dans cString
+  //~ cPart1 -= cWordLength; //On recule de cWordLength dans la chaine pour enlever cWord
+  //~ *cPart1 = '\O'; //Et on coupe la chaine.
+//~ 
+  //~ cPart2 = g_strstr_len (cString, -1, cWord);
+  //~ cPart2 += cWordLength; //On avance de cWordLength dans la chaine pour sauter cWord
+//~ 
+  //~ cFinalString = g_strdup_printf ("%s%s%s", cPart1, cReplace, cPart2);
+  //~ //On imprime dans cFinalString la partie 1 suivie de la chaine de remplacement suivie de la partie 2.
+//~ 
+  //~ g_free (cPart1);
+  //~ g_free (cPart2); //On libère nos variables, la ram n'est pas un entrepôt.
+//~ 
+  //~ return cFinalString;
+	//~ 
+	//~ 
+//~ }
+
+gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)  // à rendre compatible avec une chaîne donnée au lieu de juste remplacer ~
+{
+	if (g_strstr_len (cString, -1, cWord) != NULL) // On remplace
+	{
+		gchar *cFinalString = g_strdup_printf("%s", cString);
+		while (g_strstr_len (cFinalString, -1, cWord) != NULL)
+		{
+			gchar *cPart1 = g_strdup_printf("%s", cFinalString);
+			// On récupère la partie de gauche
+			g_strreverse (cPart1);
+			cPart1 = strrchr(cPart1, '~') ;
+			ltrim( cPart1, "~" );
+			g_strreverse (cPart1);
+			// On récupère la partie de droite
+			gchar *cPart2 = g_strdup_printf("%s", cFinalString);
+			cPart2 = strchr(cPart2, '~');
+			ltrim( cPart2, "~" );
+			// On colle le texte au milieu
+			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
+		}
+		return g_strdup_printf("%s", cFinalString);	
+	}
+	else
+		return g_strdup_printf("%s",cString); // On retourne la phrase d'origine	
+}
+
 gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 {
 	// On va lire le contenu de myConfig.cXmlFilePath	
@@ -345,7 +410,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bash") == 0)
 				{
-					pTextZone->cCommand = xmlNodeGetContent (pXmlSubNode);
+					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
 					pTextZone->bIsBash = TRUE;
 					pTextZone->bIsInternal = FALSE;
 				}
@@ -358,7 +423,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					
 					GString *sTemp =  g_string_new  ("");
 					g_string_printf (sTemp, "sh -c 'echo \"%s\"'", cXmlCommand);
-					pTextZone->cCommand = g_strdup_printf("%s",sTemp->str) ;
+					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (sTemp->str, "~", g_strdup_printf("/home/%s", getenv("USER"))));
 					
 					g_string_free (sTemp, TRUE);
 					g_free (cXmlCommand);
@@ -368,7 +433,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "internal") == 0)
 				{
-					pTextZone->cCommand = xmlNodeGetContent (pXmlSubNode);
+					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
 					pTextZone->bIsInternal = TRUE;
 					pTextZone->bIsBash = FALSE;
 				}
@@ -387,7 +452,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 					cTempo = strrchr(cTempo, ';') ;
 					ltrim( cTempo, ";" );
 					g_strreverse (cTempo);
-					pTextZone->cCommand = g_strdup_printf("%s", cTempo);
+					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (cTempo, "~", g_strdup_printf("/home/%s", getenv("USER"))));
 					pTextZone->bIsInternal = TRUE;
 					pTextZone->bIsBash = FALSE;
 					
@@ -460,15 +525,8 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "file") == 0)
 				{
-					pTextZone->cImgPath = xmlNodeGetContent (pXmlSubNode);
-					pTextZone->bImgDraw=FALSE;		
-					
-					if (g_strstr_len (pTextZone->cImgPath, -1, "~") != NULL) // On remplace l'éventuel "~" par le chemin complet
-				    {
-				        pTextZone->cImgPath = g_strstr_len (pTextZone->cImgPath, -1, "~/"); 
-				        pTextZone->cImgPath += 2;
-				        pTextZone->cImgPath = g_strdup_printf("%s/%s", g_strdup_printf("/home/%s", getenv("USER")), pTextZone->cImgPath);
-				     } 
+					pTextZone->cImgPath = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					pTextZone->bImgDraw=FALSE;
 				}
 				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "size") == 0)

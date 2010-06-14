@@ -29,7 +29,7 @@
 #include "applet-disk-usage.h"
 #include "applet-rame.h"
 
-char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
+gchar* ltrim( gchar* str, const gchar* t )  // Couper tout depuis la gauche
 {
 	char* curStr = NULL;
 
@@ -45,7 +45,7 @@ char* ltrim( char* str, const char* t )  // Couper tout depuis la gauche
 	return str; 
 } 
 
-char* rtrim( char* str, const char* t )  // Couper tout depuis la droite
+gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 {
 	char* curEnd = str, *end = str;
 

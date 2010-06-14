@@ -24,8 +24,8 @@
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
-char* ltrim( char* str, const char* t );
-char* rtrim( char* str, const char* t );
+gchar* ltrim( gchar* str, const gchar* t );
+gchar* rtrim( gchar* str, const gchar* t );
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
 double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
 

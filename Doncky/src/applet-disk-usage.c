@@ -94,7 +94,7 @@ static void cd_doncky_get_fs_info (const gchar *cDiskURI, GString *sInfo, const 
 
 gchar *cd_doncky_get_disk_info (const gchar *cDiskURI, const int iType)
 {
-	gchar *cReturn = "";	
+	gchar *cReturn = NULL;	
 	GString *sInfo = g_string_new ("");
 	
 	// on recupere les infos de taille.
