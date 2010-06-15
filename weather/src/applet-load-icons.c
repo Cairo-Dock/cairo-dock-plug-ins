@@ -135,10 +135,10 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	
 	//\_______________________ On recharge l'icone principale.
+	myData.bErrorRetrievingData = myData.bErrorInThread;
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
 	CD_APPLET_REDRAW_MY_ICON;
 	
-	myData.bErrorRetrievingData = myData.bErrorInThread;
 	if (myData.bErrorRetrievingData && myData.pTask->iPeriod > 20)
 	{
 		cd_message ("no data, will re-try in 20s");

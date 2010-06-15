@@ -88,7 +88,6 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 			Icon *icon = pSubDock->icons->data;
 			iX += (pPointedIcon->fWidth * pPointedIcon->fScale - icon->fWidth) / 2;
 		}
-		g_print ("a droite : %d\n", iX);
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);

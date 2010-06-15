@@ -454,8 +454,8 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 {
 	g_print ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-	GtkWidget *pCustomWidgetBox = cairo_dock_get_widget_from_name ("Alarm", "add new");
-	g_return_if_fail (pCustomWidgetBox != NULL);
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_get_group_key_widget_from_name ("Alarm", "add new");
+	g_return_if_fail (pGroupKeyWidget != NULL);
 	
 	//\____________ On cree un bouton pour ajouter une alarme et on l'ajoute dans notre container.
 	GtkWidget *pButton = gtk_button_new_from_stock (GTK_STOCK_ADD);
@@ -463,7 +463,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 		"clicked",
 		G_CALLBACK (_cd_clock_add_alarm),
 		myApplet);
-	gtk_box_pack_start (GTK_BOX (pCustomWidgetBox),
+	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
 		pButton,
 		FALSE,
 		FALSE,
@@ -474,7 +474,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 		"clicked",
 		G_CALLBACK (_cd_clock_remove_alarm),
 		myApplet);
-	gtk_box_pack_start (GTK_BOX (pCustomWidgetBox),
+	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
 		pButton,
 		FALSE,
 		FALSE,

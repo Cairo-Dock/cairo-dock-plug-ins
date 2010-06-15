@@ -327,8 +327,15 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 {
 	cd_debug ("");
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-	GtkWidget *pCustomWidgetBox = cairo_dock_get_widget_from_name ("Configuration", "add account");
-	g_return_if_fail (pCustomWidgetBox != NULL);
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_get_group_key_widget_from_name ("Configuration", "add account");
+	g_return_if_fail (pGroupKeyWidget != NULL);
+	
+	GtkWidget *pCustomWidgetBox = gtk_hbox_new (FALSE, 3);
+	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
+		pCustomWidgetBox,
+		FALSE,
+		FALSE,
+		0);
 	
 	//\____________ On cree un combo pour selectionner le type de compte mail qu'on voudrait ajouter
 	GtkWidget *pMailTypesCombo = gtk_combo_box_new_text();

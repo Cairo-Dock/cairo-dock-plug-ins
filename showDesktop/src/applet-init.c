@@ -54,7 +54,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) on_show_desktop,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
-	myIcon->action_on_drag_hover = _show_desktop_for_drop;
+	myIcon->iface.action_on_drag_hover = _show_desktop_for_drop;
 	
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
 	if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)

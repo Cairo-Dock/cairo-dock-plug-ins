@@ -125,6 +125,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
+	myData.iTextOrientation = 0;  // on recalcule l'orientation.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ On stoppe le timer.
@@ -164,7 +165,6 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iLastCheckedDay = -1;
 		myData.iLastCheckedMonth = -1;
 		myData.iLastCheckedYear = -1;
-		myData.iTextOrientation = 0;  // on recalcule l'orientation.
 		cd_clock_update_with_time (myApplet);
 		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 	}

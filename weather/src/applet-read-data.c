@@ -325,6 +325,9 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			cd_warning ("while downlading current conditions data:\n%s -> %s", cURL, erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
+		}
+		if (cCCData == NULL)
+		{
 			myData.bErrorInThread = TRUE;
 			return;  // a la 1ere erreur on quitte.
 		}
@@ -342,6 +345,10 @@ void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet)
 			cd_warning ("while downlading forecast data:\n%s ->  %s", cURL, erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
+			myData.bErrorInThread = TRUE;
+		}
+		if (cForecastData == NULL)
+		{
 			myData.bErrorInThread = TRUE;
 		}
 	}
