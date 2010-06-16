@@ -29,9 +29,9 @@
 
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-CD_APPLET_ON_CLICK_BEGIN
-	
-CD_APPLET_ON_CLICK_END
+//~ CD_APPLET_ON_CLICK_BEGIN
+	//~ 
+//~ CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
@@ -41,9 +41,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-CD_APPLET_ON_SCROLL_BEGIN
-
-CD_APPLET_ON_SCROLL_END
+//~ CD_APPLET_ON_SCROLL_BEGIN
+//~ 
+//~ CD_APPLET_ON_SCROLL_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN

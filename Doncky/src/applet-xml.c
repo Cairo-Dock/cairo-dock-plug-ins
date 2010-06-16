@@ -60,44 +60,6 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 }
 
 
-//~ gchar *g_str_replace (gchar *cString, gchar *cWord, gchar *cReplace)
-//~ {
-	//~ cd_debug ("Doncky-debug2 : ---------------------->  phrase de test = \"%s\"",cString);
-	//~ int iWordLength = strlen (cWord);
-	//~ 
-	//~ gchar *cPart1 = g_strdup_printf("%s", cString);
-	//~ // On récupère la partie de gauche
-	//~ g_strreverse (cPart1);
-	//~ cPart1 = strrchr(cPart1, '~') ;
-	//~ ltrim( cPart1, "~" );
-	//~ g_strreverse (cPart1);
-	//~ cd_debug ("Doncky-debug2 : ---------------------->  tempo1 = \"%s\"",cPart1);
-	//~ 
-	//~ 
-	//~ gchar *cFinalString = g_strdup_printf("%s", cPart1);
-	//~ return cFinalString;
-	//~ 
-	//~ int cWordLength = strlen (cWord);
-  //~ char *cPart1 = NULL, *cPart2 = NULL, *cFinalString = NULL;
-  //~ 
-  //~ cPart1 = g_strstr_len (cString, -1, cWord); //On trouve la 1er occurrence de cWord dans cString
-  //~ cPart1 -= cWordLength; //On recule de cWordLength dans la chaine pour enlever cWord
-  //~ *cPart1 = '\O'; //Et on coupe la chaine.
-//~ 
-  //~ cPart2 = g_strstr_len (cString, -1, cWord);
-  //~ cPart2 += cWordLength; //On avance de cWordLength dans la chaine pour sauter cWord
-//~ 
-  //~ cFinalString = g_strdup_printf ("%s%s%s", cPart1, cReplace, cPart2);
-  //~ //On imprime dans cFinalString la partie 1 suivie de la chaine de remplacement suivie de la partie 2.
-//~ 
-  //~ g_free (cPart1);
-  //~ g_free (cPart2); //On libère nos variables, la ram n'est pas un entrepôt.
-//~ 
-  //~ return cFinalString;
-	//~ 
-	//~ 
-//~ }
-
 gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)  // à rendre compatible avec une chaîne donnée au lieu de juste remplacer ~
 {
 	if (g_strstr_len (cString, -1, cWord) != NULL) // On remplace
@@ -108,13 +70,47 @@ gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cRe
 			gchar *cPart1 = g_strdup_printf("%s", cFinalString);
 			// On récupère la partie de gauche
 			g_strreverse (cPart1);
-			cPart1 = strrchr(cPart1, '~') ;
-			ltrim( cPart1, "~" );
+			cPart1 = strrchr(cPart1, '~') ;   // VOIR COMMENT FAIRE UN strrstr !!!!   A TESTER CE QUI SUIT ->
+			
+			
+			
+//~ char *strrstr(char *x,char *y) {
+//~ int m = strlen(x);
+//~ int n = strlen(y);
+//~ char *X = malloc(m+1);
+//~ char *Y = malloc(n+1);
+//~ int i;
+//~ for (i=0; i<m; i++) X[m-1-i] = x[i]; X[m] = 0;
+//~ for (i=0; i<n; i++) Y[n-1-i] = y[i]; Y[n] = 0;
+//~ char *Z = strstr(X,Y);
+//~ if (Z) {
+//~ int ro = Z-X;
+//~ int lo = ro+n-1;
+//~ int ol = m-1-lo;
+//~ Z = x+ol;
+//~ }
+//~ free(X); free(Y);
+//~ return Z;
+//~ }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			ltrim( cPart1, cWord );
 			g_strreverse (cPart1);
 			// On récupère la partie de droite
 			gchar *cPart2 = g_strdup_printf("%s", cFinalString);
-			cPart2 = strchr(cPart2, '~');
-			ltrim( cPart2, "~" );
+			cPart2 = strstr(cPart2, cWord);
+			ltrim( cPart2, cWord );
 			// On colle le texte au milieu
 			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
 		}
