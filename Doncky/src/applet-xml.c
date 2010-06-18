@@ -60,66 +60,6 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 }
 
 
-gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)  // à rendre compatible avec une chaîne donnée au lieu de juste remplacer ~
-{
-	if (g_strstr_len (cString, -1, cWord) != NULL) // On remplace
-	{
-		gchar *cFinalString = g_strdup_printf("%s", cString);
-		while (g_strstr_len (cFinalString, -1, cWord) != NULL)
-		{
-			gchar *cPart1 = g_strdup_printf("%s", cFinalString);
-			// On récupère la partie de gauche
-			g_strreverse (cPart1);
-			cPart1 = strrchr(cPart1, '~') ;   // VOIR COMMENT FAIRE UN strrstr !!!!   A TESTER CE QUI SUIT ->
-			
-			
-			
-//~ char *strrstr(char *x,char *y) {
-//~ int m = strlen(x);
-//~ int n = strlen(y);
-//~ char *X = malloc(m+1);
-//~ char *Y = malloc(n+1);
-//~ int i;
-//~ for (i=0; i<m; i++) X[m-1-i] = x[i]; X[m] = 0;
-//~ for (i=0; i<n; i++) Y[n-1-i] = y[i]; Y[n] = 0;
-//~ char *Z = strstr(X,Y);
-//~ if (Z) {
-//~ int ro = Z-X;
-//~ int lo = ro+n-1;
-//~ int ol = m-1-lo;
-//~ Z = x+ol;
-//~ }
-//~ free(X); free(Y);
-//~ return Z;
-//~ }
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			ltrim( cPart1, cWord );
-			g_strreverse (cPart1);
-			// On récupère la partie de droite
-			gchar *cPart2 = g_strdup_printf("%s", cFinalString);
-			cPart2 = strstr(cPart2, cWord);
-			ltrim( cPart2, cWord );
-			// On colle le texte au milieu
-			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
-		}
-		return g_strdup_printf("%s", cFinalString);	
-	}
-	else
-		return g_strdup_printf("%s",cString); // On retourne la phrase d'origine	
-}
-
 gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 {
 	// On va lire le contenu de myConfig.cXmlFilePath	

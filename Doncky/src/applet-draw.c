@@ -65,6 +65,37 @@ gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 }
 
 
+gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)
+{
+	if (g_strstr_len (cString, -1, cWord) != NULL) // On remplace
+	{
+		gchar *cFinalString = g_strdup_printf("%s", cString);
+		while (g_strstr_len (cFinalString, -1, cWord) != NULL)
+		{
+			gchar *cPart1 = g_strdup_printf("%s", cFinalString);
+			gchar *cWordTemp = g_strdup_printf("%s", cWord);
+			g_strreverse (cPart1);
+			g_strreverse (cWordTemp);
+			cPart1 = strstr(cPart1, cWordTemp) ;
+			ltrim( cPart1, cWordTemp );
+			g_strreverse (cPart1);
+			gchar *cPart2 = g_strdup_printf("%s", cFinalString);
+			
+			while (g_strstr_len (cPart2, -1, cWord) != NULL)
+			{
+				cPart2 = strstr(cPart2, cWord);
+				ltrim( cPart2, cWord );
+			}
+			// On colle le texte au milieu
+			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
+			
+		}
+		return g_strdup_printf("%s", cFinalString);	
+	}
+	else
+		return g_strdup_printf("%s",cString); // On retourne la phrase d'origine	
+}
+
 
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo)
 {
