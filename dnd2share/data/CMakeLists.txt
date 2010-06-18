@@ -1,27 +1,12 @@
 
 ########### install files ###############
 
-install (FILES dnd2share.conf readme preview.jpg icon.svg
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/dnd2share.conf
+	readme
+	preview.jpg
+	icon.svg
 	DESTINATION ${dnd2sharedatadir})
 
 install (FILES upload2free.sh
 	DESTINATION ${dnd2sharedatadir}
 	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-
-#original Makefile.am contents follow:
-
-#
-#SUBDIRS = .
-#
-#moduledir = $(dnd2sharedatadir)
-#
-#module_DATA = \
-#	dnd2share.conf\
-#	readme\
-#	preview.jpg\
-#	icon.svg
-#
-#dist_dnd2sharedata_SCRIPTS = \
-#	upload2free.sh
-#
-#EXTRA_DIST = $(module_DATA)

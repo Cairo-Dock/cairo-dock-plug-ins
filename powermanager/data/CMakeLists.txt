@@ -1,24 +1,11 @@
 
 ########### install files ###############
 
-install(FILES  sector.svg 	default-battery.svg 	default-charge.svg 	powermanager.conf 	preview.jpg 	icon.png 	charge.svg DESTINATION ${powermanagerdatadir})
-
-
-
-#original Makefile.am contents follow:
-
-#
-#SUBDIRS = .
-#
-#moduledir = $(powermanagerdatadir)
-#
-#module_DATA = \
-#	sector.svg\
-#	default-battery.svg\
-#	default-charge.svg\
-#	powermanager.conf\
-#	preview.jpg\
-#	icon.png\
-#	charge.svg
-#
-#EXTRA_DIST = $(module_DATA)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/powermanager.conf
+	default-battery.svg
+	default-charge.svg
+	sector.svg
+	preview.jpg
+	icon.png
+	charge.svg
+	DESTINATION ${powermanagerdatadir})

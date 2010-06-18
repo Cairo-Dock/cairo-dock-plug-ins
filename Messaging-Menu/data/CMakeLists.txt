@@ -1,10 +1,7 @@
-########### subdirs if any ###############
-
 
 ########### install files ###############
 
-install (FILES
-	Messaging-Menu.conf
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Messaging-Menu.conf
 	preview.jpg
 	icon.svg
 	indicator-messages.svg

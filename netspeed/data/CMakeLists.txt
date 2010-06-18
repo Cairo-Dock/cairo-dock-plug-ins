@@ -1,23 +1,15 @@
 
 ########### install files ###############
 
-install(FILES  netspeed.conf 	preview.jpg 	default.png 	icon.png 	ok.png 	unknown.png 	bad.png 	netspeed DESTINATION ${netspeeddatadir})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/netspeed.conf
+	preview.jpg
+	default.png
+	icon.png
+	ok.png
+	unknown.png
+	bad.png
+	DESTINATION ${netspeeddatadir})
 
-
-
-#original Makefile.am contents follow:
-
-#
-#moduledir = $(netspeeddatadir)
-#
-#module_DATA = \
-#	netspeed.conf\
-#	preview.jpg\
-#	default.png\
-#	icon.png\
-#	ok.png\
-#	unknown.png\
-#	bad.png\
-#	netspeed
-#
-#EXTRA_DIST = $(module_DATA)
+install(FILES netspeed
+	DESTINATION ${netspeeddatadir}
+	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
