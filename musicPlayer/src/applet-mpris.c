@@ -441,6 +441,7 @@ void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer
 	{
 		_extract_metadata (metadata);
 		myData.bIsRunning = TRUE;
+		myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comem Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On cnosidere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
 	}
 	else
 	{

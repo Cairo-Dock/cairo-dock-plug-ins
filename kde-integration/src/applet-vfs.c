@@ -431,6 +431,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 			g_file_get_uri (pRootDir),
 			NULL,
 			0);
+		pNewIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 		
 		g_object_unref (pRootDir);
 		g_object_unref (pIcon);
@@ -444,6 +445,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 			g_strdup (pNewIcon->cName),
 			NULL,
 			0);
+		pNewIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			
 		g_object_unref (pIcon);
 	}
@@ -624,6 +626,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			gchar *cName = NULL;
 			
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
+			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			icon->iType = iNewIconsType;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
 			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
@@ -755,6 +758,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			g_strdup ("/home"),
 			NULL,
 			iOrder++);
+		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 		icon->iType = iNewIconsType;
 		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
 		icon->iVolumeID = 0;

@@ -41,6 +41,9 @@ static void _cd_musicplayer_stop (GtkMenuItem *menu_item, gpointer *data) {
 static void _cd_musicplayer_next (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_NEXT, NULL);
 }
+static void _cd_musicplayer_show_from_systray (GtkMenuItem *menu_item, gpointer *data) {
+	cairo_dock_launch_command (myData.pCurrentHandeler->launch);
+}
 static void _cd_musicplayer_jumpbox (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandeler->control (PLAYER_JUMPBOX, NULL);
 }
@@ -170,6 +173,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Next (middle-click)"), GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_STOP)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
+		if (myIcon->Xid == 0)  // lecteur dans le systray.
+			CD_APPLET_ADD_IN_MENU (D_("Show the Window"), _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_JUMPBOX)
 			CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_SHUFFLE)
