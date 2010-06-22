@@ -78,7 +78,6 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
   mailaccount->password = NULL;
   mailaccount->auth_type = POP3_AUTH_TYPE_TRY_APOP;
   mailaccount->path = NULL;
-  mailaccount->timeout = 0;
   
   if (g_key_file_has_key (pKeyFile, mailbox_name, "host", NULL))
   {

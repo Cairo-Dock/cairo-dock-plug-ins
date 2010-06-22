@@ -307,7 +307,8 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	cairo_destroy (pIconContext);
 	
 	//\_______________________ On met a jour l'icone principale.
-	if (pUpdatedMailAccount->iPrevNbUnseenMails != pUpdatedMailAccount->iNbUnseenMails)  // des mails en plus ou en moins.
+	if (pUpdatedMailAccount->iPrevNbUnseenMails != pUpdatedMailAccount->iNbUnseenMails &&
+	    !pUpdatedMailAccount->bError)  // des mails en plus ou en moins.
 	{
 		myData.iPrevNbUnreadMails = myData.iNbUnreadMails;
 		myData.iNbUnreadMails += pUpdatedMailAccount->iNbUnseenMails - pUpdatedMailAccount->iPrevNbUnseenMails;
