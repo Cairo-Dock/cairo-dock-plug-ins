@@ -389,9 +389,9 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			cairo_dock_show_temporary_dialog_with_icon (D_("No unread mail in your mailboxes"), myIcon, myContainer, 1500, "same icon");
 		}
 	}
-	else if (myData.iNbUnreadMails > myData.iPrevNbUnreadMails)  // de nouveaux mails.
+	else if (myData.iNbUnreadMails != myData.iPrevNbUnreadMails)
 	{
-		if (bSignalNewMessages)
+		if (bSignalNewMessages && myData.iNbUnreadMails > myData.iPrevNbUnreadMails)  // de nouveaux mails.
 		{
 			GString *ttip_str = g_string_sized_new(300);
 			guint i;
