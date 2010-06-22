@@ -144,9 +144,9 @@ static gboolean tray_clean_up(GtkWidget *widget,
 }
 
  
-  static gboolean cd_desklet_on_expose(GtkWidget *pWidget, 
+static gboolean cd_desklet_on_expose(GtkWidget *pWidget, 
                                       GdkEventExpose *pExpose, 
-                                      gpointer pDialog) 
+                                      gpointer data) 
  { 
  cairo_t *pCairoContext = gdk_cairo_create (pWidget->window); 
    if (cairo_status (pCairoContext) != CAIRO_STATUS_SUCCESS, FALSE) { 
@@ -177,12 +177,13 @@ static void tray_create_widget(TrayApplet *applet)
                     G_CALLBACK (tray_icon_message_sent), applet);
   g_signal_connect (applet->manager, "message_cancelled",
                     G_CALLBACK (tray_icon_message_cancelled), applet);
-  g_signal_connect (applet->box, "expose-event",
-                     G_CALLBACK (cd_desklet_on_expose), applet->box);
 
 
-	GdkColormap* pColormap = gdk_screen_get_rgba_colormap (applet->screen);
+	/**GdkColormap* pColormap = gdk_screen_get_rgba_colormap (applet->box);
 	gtk_widget_set_colormap (applet->box, pColormap);
+	
+	pColormap = gdk_screen_get_rgba_colormap (applet->widget);
+	gtk_widget_set_colormap (applet->widget, pColormap);*/
 	
 // 	GdkVisual* pVisual = gdk_rgb_get_visual ();
 // 	Visual *vis = GDK_VISUAL_XVISUAL (pVisual);
@@ -225,11 +226,11 @@ TrayApplet* tray_init (GtkWidget *parent)
 
   applet->widget = gtk_event_box_new ();
   //gtk_event_box_set_visible_window(GTK_EVENT_BOX (applet->widget), TRUE);  /// utile ?...
-  ///gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
-	//GdkColormap* pColormap = gdk_screen_get_rgba_colormap (screen);  /// utile ?...
-	//if (!pColormap)
-	//	pColormap = gdk_screen_get_rgb_colormap (screen);
-	//gtk_widget_set_colormap (applet->widget, pColormap);
+  //gtk_widget_set_colormap(applet->widget, gdk_screen_get_rgb_colormap (screen));
+	/**GdkColormap* pColormap = gdk_screen_get_rgba_colormap (screen);  /// utile ?...
+	if (!pColormap)
+		pColormap = gdk_screen_get_rgb_colormap (screen);
+	gtk_widget_set_colormap (applet->widget, pColormap);*/
   
   
   if (na_tray_manager_check_running(screen)) {
