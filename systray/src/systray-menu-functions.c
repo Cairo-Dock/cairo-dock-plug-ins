@@ -27,15 +27,14 @@
 #include "systray-menu-functions.h"
 #include "systray-init.h"
 #include "systray-struct.h"
-#include "cd-tray.h"
-
+#include "na-tray.h"
 
 
 CairoDialog *cd_systray_build_dialog (void)
 {
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
-	attr.pInteractiveWidget = myData.tray->widget;
+	attr.pInteractiveWidget = GTK_WIDGET (myData.tray);
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }
 static void systray_build_new_dialog(void);
@@ -63,8 +62,10 @@ void systray_apply_settings()
 
 void systray_build_and_show (void)
 {
-	myData.tray = tray_init(g_pMainDock->container.pWidget);
-	gtk_widget_show (myData.tray->widget);
+	myData.tray = na_tray_new_for_screen (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget)),
+		myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
+	gtk_widget_show (GTK_WIDGET (myData.tray));
+	myData.iIconPacking = myConfig.iIconPacking;
 
 	systray_apply_settings();
 
@@ -77,42 +78,10 @@ void systray_build_and_show (void)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
+		cairo_dock_add_interactive_widget_to_desklet (GTK_WIDGET (myData.tray), myDesklet);
 		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 		gtk_window_set_resizable(GTK_WINDOW(myDesklet->container.pWidget), FALSE);
 //		gtk_window_resize(GTK_WINDOW(myDesklet->container.pWidget), 2*g_iDockRadius, 2*g_iDockRadius);
 		//cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->container.pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
 	}
 }
-
-
-CD_APPLET_ON_CLICK_BEGIN
-{
-	if (! myData.tray)
-		systray_build_and_show ();
-	else if (myDesklet)
-		cairo_dock_show_desklet (myDesklet);
-	else if (myData.dialog)
-		cairo_dock_unhide_dialog(myData.dialog);
-}
-CD_APPLET_ON_CLICK_END
-
-CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-{
-	if (myData.tray)
-	{
-		if (myData.dialog)
-			cairo_dock_hide_dialog (myData.dialog);
-	}
-}
-CD_APPLET_ON_MIDDLE_CLICK_END
-
-
-CD_APPLET_ON_BUILD_MENU_BEGIN
-{
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-}
-CD_APPLET_ON_BUILD_MENU_END
-
-

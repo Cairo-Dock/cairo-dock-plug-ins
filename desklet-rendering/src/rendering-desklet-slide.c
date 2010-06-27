@@ -132,7 +132,7 @@ void rendering_load_icons_for_slide (CairoDesklet *pDesklet)
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
 		
-		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
+		cairo_dock_trigger_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 }
 

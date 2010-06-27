@@ -27,7 +27,7 @@
 # define   	SYSTRAY_STRUCT_H_
 
 #include <cairo-dock.h>
-#include "na-tray-manager.h"
+#include "na-tray.h"
 
 struct _AppletConfig {
   gchar *shortcut;
@@ -36,20 +36,10 @@ struct _AppletConfig {
 } ;
 
 
-
-typedef struct {
-  NaTrayManager  *manager;
-  GtkWidget      *box;
-  GtkWidget      *widget;
-  GdkScreen      *screen;
-
-  GList          *icons;
-  guint          idle_redraw_id;
-} TrayApplet;
-
 struct _AppletData {
   CairoDialog *dialog;
-  TrayApplet *tray;
+  gint iIconPacking;
+  NaTray *tray;
 } ;
 
 

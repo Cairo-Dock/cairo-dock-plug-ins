@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /*
 ** Login : <ctaf42@gmail.com>
 ** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric
@@ -19,14 +20,41 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef __SYSTRAY_INIT__
-#define  __SYSTRAY_INIT__
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+
+#include "systray-notifications.h"
+#include "systray-menu-functions.h"
+#include "systray-struct.h"
 
 
-#include <cairo-dock.h>
+CD_APPLET_ON_CLICK_BEGIN
 
-CD_APPLET_H
+	if (! myData.tray)
+		systray_build_and_show ();
+	else if (myDesklet)
+		cairo_dock_show_desklet (myDesklet);
+	else if (myData.dialog)
+		cairo_dock_unhide_dialog(myData.dialog);
+
+CD_APPLET_ON_CLICK_END
 
 
-#endif
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
+	if (myData.tray)
+	{
+		if (myData.dialog)
+			cairo_dock_hide_dialog (myData.dialog);
+	}
+
+CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+CD_APPLET_ON_BUILD_MENU_BEGIN
+
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+
+CD_APPLET_ON_BUILD_MENU_END

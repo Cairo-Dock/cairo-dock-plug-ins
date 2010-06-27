@@ -54,11 +54,9 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	else if (myData.tray)
 	{
-		gtk_widget_destroy (myData.tray->widget);
-		myData.tray->widget = NULL;
+		g_object_unref (myData.tray);
+		myData.tray = NULL;
 	}
 	
-	/// detruire la invisible window et la liste des icones ...
-	g_object_unref (myData.tray->manager);
 	cd_debug ("end of reset data");
 CD_APPLET_RESET_DATA_END

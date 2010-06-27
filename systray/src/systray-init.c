@@ -20,13 +20,14 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#include "stdlib.h"
+#include <stdlib.h>
 
 #include "systray-config.h"
 #include "systray-menu-functions.h"
-#include "systray-init.h"
-#include "cd-tray.h"
+#include "systray-notifications.h"
+#include "na-tray.h"
 #include "systray-struct.h"
+#include "systray-init.h"
 
 
 CD_APPLET_DEFINITION ("systray",
@@ -44,7 +45,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	if (myDesklet != NULL)  // on cree le terminal pour avoir qqch a afficher dans le desklet.
+	if (myDesklet != NULL)  // on cree le systray pour avoir qqch a afficher dans le desklet.
 	{
 		systray_build_and_show ();
 		CD_APPLET_SET_STATIC_DESKLET;
@@ -72,25 +73,14 @@ CD_APPLET_RELOAD_BEGIN
 {
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myData.tray && myData.tray->box)
+		if (myData.tray)
 		{
-			if ((GTK_IS_HBOX (myData.tray->box) && myConfig.iIconPacking == 1) ||
-				(GTK_IS_VBOX (myData.tray->box) && myConfig.iIconPacking == 0))
+			GtkOrientation o = na_tray_get_orientation (myData.tray);
+			if ((o == GTK_ORIENTATION_HORIZONTAL && myConfig.iIconPacking == 1)  ||
+				(o == GTK_ORIENTATION_VERTICAL && myConfig.iIconPacking == 0))
 			{
-				GtkWidget *pOldBox = myData.tray->box;
-				myData.tray->box = (myConfig.iIconPacking == 0 ? gtk_hbox_new(TRUE, 0) : gtk_vbox_new(TRUE, 0));
-				
-				GtkWidget *icon;
-				GList *ic;
-				for (ic = myData.tray->icons; ic != NULL; ic = ic->next)
-				{
-					icon = ic->data;
-					gtk_widget_reparent (icon, myData.tray->box);
-					gtk_widget_set_size_request (icon, myConfig.iIconSize, myConfig.iIconSize);
-				}
-				gtk_widget_destroy (pOldBox);
-				gtk_container_add (GTK_CONTAINER (myData.tray->widget), myData.tray->box);
-				gtk_widget_show_all (myData.tray->box);
+				na_tray_set_orientation (myData.tray,
+					myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
 			}
 		}
 		
@@ -103,15 +93,17 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
 			{
-				myData.tray->widget = cairo_dock_steal_widget_from_its_container (myData.tray->widget);
+				cairo_dock_steal_interactive_widget_from_dialog (myData.dialog);
 				cairo_dock_dialog_unreference (myData.dialog);
 				myData.dialog = NULL;
-				cairo_dock_add_interactive_widget_to_desklet (myData.tray->widget, myDesklet);
+				cairo_dock_add_interactive_widget_to_desklet (GTK_WIDGET (myData.tray), myDesklet);
 				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER);
+				cairo_dock_steal_interactive_widget_from_desklet (pDesklet);
 				myData.dialog = cd_systray_build_dialog ();
 				//myData.dialog = cairo_dock_build_dialog (NULL, myIcon, myContainer, NULL, myData.tray->widget, GTK_BUTTONS_NONE, NULL, NULL, NULL);
 				cairo_dock_hide_dialog (myData.dialog);

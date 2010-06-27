@@ -1,7 +1,6 @@
 /*
-** cd-tray.h
-** Login : <ctaf@CTAF-FIX.CTAFLAND>
-** Started on  Tue Dec  4 08:44:31 2007 GESTES Cedric
+** Login : <ctaf42@gmail.com>
+** Started on  Fri Nov 30 05:31:31 2007 GESTES Cedric
 ** $Id$
 **
 ** Copyright (C) 2007 GESTES Cedric
@@ -20,14 +19,19 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef   	CD_TRAY_H_
-# define   	CD_TRAY_H_
-
-# include "na-tray-manager.h"
-# include "systray-struct.h"
+#ifndef __SYSTRAY_NOTIFICATIONS__
+#define  __SYSTRAY_NOTIFICATIONS__
 
 
-TrayApplet* tray_init (GtkWidget *applet);
+#include <cairo-dock.h>
 
 
-#endif 	    /* !CD_TRAY_H_ */
+CD_APPLET_ON_CLICK_H
+
+CD_APPLET_ON_MIDDLE_CLICK_H
+
+CD_APPLET_ON_BUILD_MENU_H
+
+
+#endif
+
