@@ -26,6 +26,7 @@
 #include "systray-menu-functions.h"
 #include "systray-notifications.h"
 #include "na-tray.h"
+#include "na-tray-manager.h"
 #include "systray-struct.h"
 #include "systray-init.h"
 
@@ -45,6 +46,12 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	if (na_tray_manager_check_running (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget))) && ! cairo_dock_is_loading ())
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("Another systray is already running (probably on your panel)\nSince there can only be one systray at once, you should remove it to avoid any conflict."), myIcon, myContainer, 3000, NULL);
+	}
+	
 	if (myDesklet != NULL)  // on cree le systray pour avoir qqch a afficher dans le desklet.
 	{
 		systray_build_and_show ();
@@ -54,8 +61,6 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
-	//else
-	//	cairo_dock_set_xwindow_type_hint (GDK_WINDOW_XID (myDesklet->container.pWidget->window), "_NET_WM_WINDOW_TYPE_DOCK");
 }
 CD_APPLET_INIT_END
 

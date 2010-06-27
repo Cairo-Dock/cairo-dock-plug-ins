@@ -41,22 +41,19 @@ CD_APPLET_RESET_CONFIG_BEGIN
   if (myConfig.shortcut)
     cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)systray_on_keybinding_pull);
   g_free (myConfig.shortcut);
-  myConfig.shortcut = NULL;
 CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cd_debug ("CD_APPLET_RESET_DATA_BEGIN");
 	if (myData.dialog)
 	{
 		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
 		myData.dialog = NULL;
 	}
-	else if (myData.tray)
+	else if (myDesklet && myData.tray)
 	{
-		g_object_unref (myData.tray);
+		cairo_dock_steal_interactive_widget_from_desklet (myDesklet);
+		gtk_widget_destroy (myData.tray);
 		myData.tray = NULL;
 	}
-	
-	cd_debug ("end of reset data");
 CD_APPLET_RESET_DATA_END

@@ -525,7 +525,7 @@ add_subdirectory (System-Monitor)
 
 ############# SYSTRAY #################
 set (GETTEXT_SYSTRAY ${GETTEXT_PLUGINS})
-set (VERSION_SYSTRAY "0.1.11")
+set (VERSION_SYSTRAY "0.2.0")
 set (PACKAGE_SYSTRAY "cd-systray")
 set (systraydatadir "${pluginsdatadir}/systray")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/systray/data/systray.conf.in ${CMAKE_CURRENT_BINARY_DIR}/systray/data/systray.conf)
