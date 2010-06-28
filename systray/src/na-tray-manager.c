@@ -38,6 +38,10 @@
 
 #include "na-marshal.h"
 
+#if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
+#define gtk_widget_get_realized GTK_WIDGET_REALIZED
+#endif
+
 /* Signals */
 enum
 {
