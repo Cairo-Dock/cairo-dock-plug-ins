@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-05-24 10:23+0000\n"
+"POT-Creation-Date: 2010-06-09 23:16+0000\n"
+"PO-Revision-Date: 2010-06-10 09:58+0000\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-25 03:45+0000\n"
+"X-Launchpad-Export-Date: 2010-06-11 03:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -22,7 +23,8 @@ msgstr "Icone animate"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
+msgstr ""
+"Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
@@ -217,7 +219,8 @@ msgstr "Il modulo è stato aggiunto, ma non può essere lanciato."
 
 #: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "L'applet '%s' è stata aggiornata con successo e automaticamente ricaricata"
 
@@ -308,7 +311,8 @@ msgstr "Menu-Indicatore"
 
 #: ../Indicator-Menus/src/applet-init.c:32
 msgid "Menus to control your session, connection state, etc."
-msgstr "Menu per controllare la tua sessione, lo stato della connessione, etc."
+msgstr ""
+"Menu per controllare la tua sessione, lo stato della connessione, etc."
 
 #: ../MeMenu/src/applet-init.c:31
 msgid "Me Menu"
@@ -324,22 +328,24 @@ msgstr ""
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr ""
+msgstr "Sembra che Me-Menu non sia installato sul tuo sistema"
 
 #: ../Messaging-Menu/src/applet-init.c:31
-#, fuzzy
 msgid "Messaging Menu"
-msgstr "Me Menu"
+msgstr "Menu-Messaggi"
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
 msgstr ""
+"Un menu che ti avvisa dei nuovi messaggi provenienti dalle applicazioni di "
+"Chat o Mail.\n"
+"Gestisce Evolution, Pidgin, Empathy, etc"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid "It seems that the Messaging-Menu is not installed on your system"
-msgstr ""
+msgstr "Sembra che Menu-Messaggi non sia installato sul tuo sistema"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -558,7 +564,7 @@ msgstr ""
 #: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data..."
-msgstr "Sto recuperando l'informazione ..."
+msgstr "Ricezione dati..."
 
 #: ../RSSreader/src/applet-notifications.c:77
 msgid "It doesn't seem to be a valid URL."
@@ -748,7 +754,7 @@ msgstr ""
 "tastiera.\n"
 "Ha due modalità, ciascuna attivabile da una scorciatoia di tastiera:\n"
 "\n"
-"- la modalità ricerca (scorciatoia di default Ctrl + Invio):\n"
+"- la modalità ricerca (scorciatoia predefinita Ctrl + Invio):\n"
 "    Ti permette di cercare e lanciare le applicazioni, file, file recenti, "
 "segnalibri di firefox, comandi, e anche calcoli.\n"
 "    Scrivi quello che vuoi cercare, il risultato viene mostrato in tempo "
@@ -816,7 +822,7 @@ msgstr "risultato"
 
 #: ../Scooby-Do/src/applet-search.c:132
 msgid "Searching ..."
-msgstr "Ricerca in corso ..."
+msgstr "Ricerca in corso..."
 
 #: ../Scooby-Do/src/applet-session.c:50
 msgid "Enter your search"
@@ -1073,9 +1079,8 @@ msgid "It's time for the following task:"
 msgstr "E' tempo di svolgere questa attività:"
 
 #: ../clock/src/applet-draw.c:373
-#, fuzzy
 msgid "Today is the following anniversary:"
-msgstr "Domani è il seguente anniversario:"
+msgstr "Oggi ricorre il seguente anniversario:"
 
 #: ../clock/src/applet-draw.c:373
 msgid "Tomorrow is the following anniversary:"
@@ -1091,8 +1096,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1341,7 +1346,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Questo modulo fornisce delle decorazioni per i dialoghi info"
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossibile caricare il file, controlla che la connessione internet sia "
 "attiva."
@@ -1355,7 +1361,8 @@ msgstr ""
 "Basta premere Ctrl+v per incollare il suo URL ovunque."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Ti prego d'aspettare che l'attuale caricamento sia finito prima di "
 "cominciarne uno nuovo."
@@ -1495,9 +1502,8 @@ msgstr "Curva"
 
 #: ../dock-rendering/src/rendering-init.c:41
 #: ../dock-rendering/data/messages:17
-#, fuzzy
 msgid "Panel"
-msgstr "Pausa"
+msgstr "Pannello"
 
 #: ../dock-rendering/src/rendering-init.c:127
 msgid ""
@@ -1892,7 +1898,7 @@ msgstr "Traccia n°"
 
 #: ../musicPlayer/src/applet-draw.c:344
 msgid "Song n°"
-msgstr ""
+msgstr "Canzone n°"
 
 #: ../musicPlayer/src/applet-draw.c:346
 msgid "There is no media playing."
@@ -2067,7 +2073,8 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr "Un power manager per la batteria del laptop. Funziona con ACPI e DBus."
+msgstr ""
+"Un power manager per la batteria del laptop. Funziona con ACPI e DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -2158,8 +2165,8 @@ msgstr "mostra mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Questo plugin traccia delle animazioni attorno al cursore quando questo è "
 "dentro la dock/desklet."
@@ -2725,7 +2732,7 @@ msgid ""
 "Retrying now..."
 msgstr ""
 "Nessun dato disponibile\n"
-"Riprovo adesso ..."
+"Riprovo adesso..."
 
 #: ../weather/src/applet-notifications.c:163
 msgid "Feels like"
@@ -2908,7 +2915,7 @@ msgstr "Colore della lucentezza:"
 #: ../switcher/data/messages:9 ../switcher/data/messages:139
 #: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
-msgstr "Lascia vuoto per usare quello di default."
+msgstr "Lascia vuoto per usare quello predefinito."
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the spotlight:"
@@ -3070,7 +3077,7 @@ msgstr "Icona"
 #: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr "Imposta a 0 per usare la dimensione di default dell'applet"
+msgstr "Imposta a 0 per usare la dimensione predefinita dell'applet"
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size for busy penguin:"
@@ -3447,8 +3454,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con Alt"
-"+click centrale o Alt+click sinistro, ad esempio."
+"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con "
+"Alt+click centrale o Alt+click sinistro, ad esempio."
 
 #: ../Clipper/data/messages:131 ../Doncky/data/messages:25
 #: ../GMenu/data/messages:27 ../Indicator-Menus/data/messages:27
@@ -4157,8 +4164,8 @@ msgstr "Se così, numero di oggetti selezionati:"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con Ctrl"
-"+v"
+"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con "
+"Ctrl+v"
 
 #: ../Clipper/data/messages:223
 msgid "Paste into Clipboard?"
@@ -4255,7 +4262,8 @@ msgstr "Le applicazioni esterne possono modificare le etichette delle icone?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Le applicazioni esterne possono modificare le info veloci delle icone?"
+msgstr ""
+"Le applicazioni esterne possono modificare le info veloci delle icone?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -4280,19 +4288,19 @@ msgstr "Aspetto"
 #: ../Doncky/data/messages:99
 msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
-"Carattere da utilizzare come default se non è specificato nel file .xml"
+"Carattere predefinito da utilizzare se non è specificato nel file .xml"
 
 #: ../Doncky/data/messages:101 ../alsaMixer/data/messages:137
 msgid "Default icon:"
-msgstr "Icona di default:"
+msgstr "Icona predefinita:"
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
-msgstr "Colore da utlizzare di default se non è specificato nel file .xml"
+msgstr "Colore predefinito da utilizzare se non è specificato nel file .xml"
 
 #: ../Doncky/data/messages:105 ../icon-effect/data/messages:195
 msgid "Default colour:"
-msgstr "Colore di default:"
+msgstr "Colore predefinito:"
 
 #: ../Doncky/data/messages:107
 msgid "Margin to be used on left, right and top of the desklet"
@@ -4316,7 +4324,8 @@ msgid "Background"
 msgstr "Sfondo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Puoi avere sfondi maggiormente attraenti utilizzando le decorazioni della "
 "Desklet"
@@ -4433,10 +4442,11 @@ msgid "Enter some text here :"
 msgstr "Inserisci il testo qui:"
 
 #: ../Messaging-Menu/data/messages:89
-#, fuzzy
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
-msgstr "Animazione dell'icona quando connesso:"
+msgstr ""
+"Animazione dell'icona quando una delle applicazioni domanda la tua "
+"attenzione:"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -4458,7 +4468,8 @@ msgstr "Parametri"
 
 #: ../Network-Monitor/data/messages:95
 msgid "You can quickly switch to the other mode by scrolling on the icon."
-msgstr "Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
+msgstr ""
+"Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
 
 #: ../Network-Monitor/data/messages:97
 msgid "Info displayed by the icon:"
@@ -4474,7 +4485,7 @@ msgstr "Velocità connessione"
 
 #: ../Network-Monitor/data/messages:103
 msgid "By default the first active interface is used."
-msgstr "Di default la prima interfaccia attiva è utilizzata."
+msgstr "Di base è utilizzata la prima interfaccia attiva."
 
 #: ../Network-Monitor/data/messages:105
 msgid "Connection interface to monitor:"
@@ -4525,7 +4536,7 @@ msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
 msgstr ""
-"Permette di sovrascrivere il comando di default dell'applet e lanciare la "
+"Permette di sovrascrivere il comando predefinito dell'applet e lanciare la "
 "tua interfaccia preferita di configurazione wireless."
 
 #: ../Network-Monitor/data/messages:123
@@ -4534,7 +4545,7 @@ msgstr "Comando utente per mostrare la Configurazione Wireless:"
 
 #: ../Network-Monitor/data/messages:125 ../netspeed/data/messages:147
 msgid "Leave empty to use the default."
-msgstr "Lasciare vuoto per utilizzare quello di default."
+msgstr "Lasciare vuoto per utilizzare quello predefinito."
 
 #: ../Network-Monitor/data/messages:127 ../System-Monitor/data/messages:159
 #: ../netspeed/data/messages:149
@@ -4687,7 +4698,7 @@ msgstr "Disegnare una barra"
 #: ../wifi/data/messages:151 ../wifi/data/messages:155
 #: ../wifi/data/messages:159
 msgid "Leave empty to use the default icon."
-msgstr "Lasciare vuoto per usare l'icona di default."
+msgstr "Lasciare vuoto per utilizzare l'icona predefinita."
 
 #: ../Network-Monitor/data/messages:223
 msgid "Name of the image for the 'No signal' icon :"
@@ -4703,7 +4714,7 @@ msgstr "Percorso dell'immagine per l'icona 'Basso':"
 
 #: ../Network-Monitor/data/messages:235
 msgid "Name of the image for the 'Middle' icon :"
-msgstr "Percorso dell'immagine per l'icona 'Normale':"
+msgstr "Percorso dell'immagine per l'icona 'Medio':"
 
 #: ../Network-Monitor/data/messages:239
 msgid "Name of an image for the 'Good' icon :"
@@ -4785,7 +4796,7 @@ msgstr "Animazione dell'icona + Dialoghi a comparsa"
 
 #: ../RSSreader/data/messages:121 ../powermanager/data/messages:191
 msgid "Let empty to use the default notification animation."
-msgstr "Lasciare vuoto per usare l'animazione di notifica di default"
+msgstr "Lasciare vuoto per utilizzare l'animazione di notifica predefinita."
 
 #: ../RSSreader/data/messages:123 ../powermanager/data/messages:193
 msgid "Animation of the icon:"
@@ -4864,7 +4875,7 @@ msgstr "Logo"
 
 #: ../RSSreader/data/messages:167
 msgid "The default logo is the applet's icon"
-msgstr "Il logo di default per l'icona dell'applet"
+msgstr "Il logo predefinito per l'icona dell'applet"
 
 #: ../RSSreader/data/messages:169
 msgid "Display the logo?"
@@ -5101,7 +5112,7 @@ msgstr "Nome dell'icona come apparirà sull'etichetta nella dock:"
 
 #: ../Status-Notifier/data/messages:9
 msgid "Let empty to use the default one."
-msgstr "Lascia vuoto per usare quello di default."
+msgstr "Lasciare vuoto per utilizzare quello predefinito."
 
 #: ../Status-Notifier/data/messages:11
 msgid "Image's filename :"
@@ -5125,15 +5136,16 @@ msgid ""
 "Depending on your WindowManager, you can resize it with ALT + middle_click "
 "or ALT + left_click for exemple."
 msgstr ""
-"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con Alt"
-"+click centrale o Alt+click sinistro, ad esempio."
+"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con "
+"Alt+click centrale o Alt+click sinistro, ad esempio."
 
 #: ../Status-Notifier/data/messages:27
 msgid "Desklet's dimension (width x height) :"
 msgstr "Dimensione desklet (larghezza x altezza):"
 
 #: ../Status-Notifier/data/messages:29
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "In base al Gestore delle Finestre utilizzato puoi muoverla con Alt+click "
 "sinistro."
@@ -5329,7 +5341,8 @@ msgstr "Primo colore della 'top list':"
 
 #: ../System-Monitor/data/messages:179
 msgid "The second colour of the gradient used to display the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+msgstr ""
+"E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
 #: ../System-Monitor/data/messages:181
 msgid "Top list stop colour:"
@@ -5420,7 +5433,7 @@ msgstr "Luminosità da applicare automaticamente all'avvio:"
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:93
 msgid "Leave empty to use the default sound card."
-msgstr "Lasciare vuoto per utilizzare la scheda sonora di default."
+msgstr "Lasciare vuoto per utilizzare la scheda sonora predefinita."
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:29
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
@@ -5461,7 +5474,7 @@ msgstr "Scegli un secondo canale da controllare (opzionale):"
 
 #: ../alsaMixer/data/messages:103
 msgid "Leave empty to use the defaut command."
-msgstr "Lasciare vuoto per utilizzare il comando di default."
+msgstr "Lasciare vuoto per utilizzare il comando predefinito."
 
 #: ../alsaMixer/data/messages:105
 msgid "Specific command to run to show an advanced sound mixer:"
@@ -5507,7 +5520,8 @@ msgstr "Icona Muto:"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Lasciare vuoto per utilizzare il nome della località, se disponibile."
+msgstr ""
+"Lasciare vuoto per utilizzare il nome della località, se disponibile."
 
 #: ../clock/data/messages:91 ../dustbin/data/messages:87
 #: ../shortcuts/data/messages:91
@@ -5565,7 +5579,7 @@ msgstr "Usa le task dal seguente task-manager:"
 
 #: ../clock/data/messages:121
 msgid "Default"
-msgstr "Default"
+msgstr "Predefinito"
 
 #: ../clock/data/messages:123
 msgid "iCal"
@@ -5625,7 +5639,7 @@ msgstr "Regola data e ora"
 
 #: ../clock/data/messages:153
 msgid "Leave empty to use the default command."
-msgstr "Lasciare vuoto per usare i comandi di default."
+msgstr "Lasciare vuoto per utilizzare il comando predefinito."
 
 #: ../clock/data/messages:155
 msgid "Specific command to run:"
@@ -5675,7 +5689,7 @@ msgid ""
 "default."
 msgstr ""
 "Questo comando si utilizza per lanciare il Gestore delle Finestre; lasciare "
-"vuoto per utilizzare quello di default."
+"vuoto per utilizzare quello predefinito."
 
 #: ../compiz-icon/data/messages:107
 msgid "Custom command for system's Windows Manager:"
@@ -5788,7 +5802,7 @@ msgstr "Soltanto lo Schermo Attuale?"
 
 #: ../compiz-icon/data/messages:147
 msgid "By default this will be Emerald."
-msgstr "Sarà Emerald di default."
+msgstr "Di base sarà Emerald."
 
 #: ../compiz-icon/data/messages:149
 msgid "Choose your Window Decorator:"
@@ -5815,7 +5829,7 @@ msgstr "heliodor"
 #: ../switcher/data/messages:143 ../tomboy/data/messages:109
 #: ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
-msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
+msgstr "Lasciare vuoto per utilizzare la vista predefinita per la sub-dock."
 
 #: ../compiz-icon/data/messages:161 ../mail/data/messages:93
 #: ../shortcuts/data/messages:109 ../stack/data/messages:99
@@ -5831,7 +5845,7 @@ msgstr "Immagini"
 #: ../compiz-icon/data/messages:167 ../musicPlayer/data/messages:173
 #: ../tomboy/data/messages:15
 msgid "'Default' icon image name:"
-msgstr "Immagine per l'icona 'Default':"
+msgstr "Immagine per l'icona 'Predefinito':"
 
 #: ../compiz-icon/data/messages:171 ../musicPlayer/data/messages:189
 #: ../tomboy/data/messages:23
@@ -5840,7 +5854,7 @@ msgstr "Immagine per l'icona 'Non-funzionante':"
 
 #: ../compiz-icon/data/messages:175
 msgid "'Other WM' icon image name:"
-msgstr "Immagine per l'icona 'Altri wm':"
+msgstr "Immagine per l'icona 'Altri WM':"
 
 #: ../compiz-icon/data/messages:179
 msgid "'Settings' icon image name:"
@@ -6069,22 +6083,19 @@ msgstr "Ampiezza della curva."
 
 #: ../dock-rendering/data/messages:19
 msgid "At 1, the icons will have the same size as in other views."
-msgstr ""
+msgstr "A 1, le icone saranno di dimensione identica alle altre viste."
 
 #: ../dock-rendering/data/messages:21
-#, fuzzy
 msgid "Ratio to apply on icons' size :"
-msgstr "Rapporto da applicare al testo:"
+msgstr "Rapporto da applicare alla dimensione delle icone:"
 
 #: ../dock-rendering/data/messages:23
-#, fuzzy
 msgid "smaller icons"
-msgstr "più piccolo"
+msgstr "Icone più piccole"
 
 #: ../dock-rendering/data/messages:25
-#, fuzzy
 msgid "normal icons"
-msgstr "Informazione"
+msgstr "Icone normali"
 
 #: ../dock-rendering/data/messages:27
 msgid "SimpleSlide"
@@ -6211,7 +6222,8 @@ msgid "Draw captions while unfolding?"
 msgstr "Disegna le etichette durante lo sfogliamento?"
 
 #: ../dock-rendering/data/messages:99
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
 "altre viste."
@@ -6256,7 +6268,8 @@ msgid ""
 "launcher into the dock. Leave this empty to use the default."
 msgstr ""
 "Solitamente una freccia, che verrà mostrata quando provi a trascinare un "
-"nuovo lanciatore nella dock. Lasciare vuoto per utilizzare quello di default."
+"nuovo lanciatore nella dock. Lasciare vuoto per utilizzare quello "
+"predefinito."
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
@@ -6268,7 +6281,7 @@ msgid ""
 "Leave empty to use the default one."
 msgstr ""
 "Un simbolo che verrà mostrato quando provi a incollare qualcosa nella dock. "
-"Lasciare vuoto per utilizzare quello di default."
+"Lasciare vuoto per utilizzare quello predefinito."
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
@@ -6355,7 +6368,8 @@ msgid "Desktop-less support"
 msgstr "Supporto senza Scrivania"
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr "Se la cartella Cestino non è nota alla dock, puoi specificarla qui:"
 
 #: ../dustbin/data/messages:129
@@ -6396,7 +6410,8 @@ msgid "Colours"
 msgstr "Colori"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Questo altererà leggermente i colori, perciò potresti volerli modificare."
 
@@ -6563,7 +6578,7 @@ msgstr "più piccolo"
 
 #: ../logout/data/messages:93
 msgid "Leave empty to execute the default command."
-msgstr "Lasciare vuoto per eseguire il comando di default."
+msgstr "Lasciare vuoto per eseguire il comando predefinito."
 
 #: ../logout/data/messages:95
 msgid "User-defined command to execute for logout:"
@@ -6576,8 +6591,8 @@ msgid ""
 "command to shutdown is the same as the one to log out."
 msgstr ""
 "Sarà disponibile mediante click centrale. Lasciare vuoto per eseguire il "
-"comando di default, che dipende per la maggiore dalla tua distribuzione. "
-"Certe volte il comando di spegnimento è lo stesso di quello per terminare la "
+"comando di predefinito, il quale dipende dalla tua distribuzione. Certe "
+"volte il comando di spegnimento è lo stesso di quello per terminare la "
 "sessione."
 
 #: ../logout/data/messages:99
@@ -6602,7 +6617,7 @@ msgstr "Percorso dell'immagine per \"mail presente\":"
 
 #: ../mail/data/messages:103
 msgid "Play sound when a new e-mail is received?"
-msgstr ""
+msgstr "Riproduci un suono quando si riceve una nuova mail?"
 
 #: ../mail/data/messages:105
 msgid "Name of the file for the \"new mail\" sound :"
@@ -6644,7 +6659,8 @@ msgid "Check mail account on startup?"
 msgstr "Controlla l'account mail all'avvio?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se selezionato, il numero delle mail viene mostrato anche se non ci sono "
 "mail."
@@ -6678,7 +6694,8 @@ msgid "Blur amount:"
 msgstr "Quantità di sfocatura:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Lasciare vuoto per mostrare il nome del riproduttore attualmente controllato."
 
@@ -6836,15 +6853,15 @@ msgstr "Personalizzazione"
 
 #: ../musicPlayer/data/messages:177
 msgid "Name of the image for the 'play' icon :"
-msgstr "Immagine per l'icona 'Play':"
+msgstr "Immagine per l'icona 'play':"
 
 #: ../musicPlayer/data/messages:181
 msgid "Name of the image for the 'stop' icon :"
-msgstr "Immagine per l'icona 'Stop':"
+msgstr "Immagine per l'icona 'stop':"
 
 #: ../musicPlayer/data/messages:185
 msgid "Name of the image for the 'pause' icon :"
-msgstr "Immagine per l'icona 'Pausa':"
+msgstr "Immagine per l'icona 'pausa':"
 
 #: ../netspeed/data/messages:113
 msgid "It's the colour of the graphic for high rate values."
@@ -6856,7 +6873,7 @@ msgstr "E' il colore del grafico per i valori di velocità bassi."
 
 #: ../netspeed/data/messages:127
 msgid "By default this will be 'eth0'."
-msgstr "Di default sarà 'eth0'."
+msgstr "Di base sarà 'eth0'."
 
 #: ../netspeed/data/messages:129
 msgid "interface:"
@@ -6888,7 +6905,7 @@ msgstr "Nome dell'icona:"
 
 #: ../powermanager/data/messages:129
 msgid "'On-battery' icon filename:"
-msgstr "Nome dell'icona quando in modalità batteria:"
+msgstr "Nome dell'icona 'in modalità batteria':"
 
 #: ../powermanager/data/messages:131
 msgid "Icon's filename when on charge :"
@@ -7299,7 +7316,7 @@ msgstr "Scegli il colore di sfondo:"
 
 #: ../stack/data/messages:7
 msgid "Leave empty to use a default name"
-msgstr "Lasciare vuoto per utilizzare il nome di default"
+msgstr "Lasciare vuoto per utilizzare il nome predefinito"
 
 #: ../stack/data/messages:107
 msgid "They are items created by dropping a text into the Stack."
@@ -7367,7 +7384,8 @@ msgstr ""
 
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
-msgstr "Quando si copia/incolla/taglia, utilizza la selezione della clipboard?"
+msgstr ""
+"Quando si copia/incolla/taglia, utilizza la selezione della clipboard?"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7383,7 +7401,7 @@ msgstr "Usare la modalità compatta?"
 
 #: ../switcher/data/messages:91
 msgid "Preserve the ratio of the screen ?"
-msgstr ""
+msgstr "Mantenere il rapporto dello schermo?"
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"
@@ -7532,7 +7550,7 @@ msgstr "Scorciatoia per mostrare il terminale:"
 
 #: ../tomboy/data/messages:7
 msgid "Default title:"
-msgstr "Titolo di default:"
+msgstr "Titolo predefinito:"
 
 #: ../tomboy/data/messages:27
 msgid "Name of an image for the 'empty' icon :"
@@ -7582,7 +7600,7 @@ msgid ""
 msgstr ""
 "Scrivi il formato della data che utilizzi abitualmente nelle tue note. La "
 "sintassi è quella di 'strftime': %d per il giorno, %m per il mese, %y per "
-"l'anno (due cifre), etc ... Lasciare vuoto per utilizzare quella di default "
+"l'anno (due cifre), etc... Lasciare vuoto per utilizzare quello predefinito "
 "(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
@@ -7620,7 +7638,8 @@ msgstr "Codice della località:"
 
 #: ../weather/data/messages:97
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
+msgstr ""
+"Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
 
 #: ../weather/data/messages:99
 msgid "Use International System Units?"
@@ -7645,7 +7664,7 @@ msgstr "Info"
 #: ../weather/data/messages:111
 msgid "Display current conditions on the icon instead of the default one?"
 msgstr ""
-"Mostra le condizioni attuali sull'icona al posto che quelle di default?"
+"Mostra le condizioni attuali sull'icona al posto che quelle predefinite?"
 
 #: ../weather/data/messages:113
 msgid "Number of days to forecast:"
@@ -7688,7 +7707,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posizione dello scroll verticale"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Questo ti permette di visualizzare come notifica a comparsa il menu di Cairo-"
 "Dock con il click destro."
@@ -7734,7 +7754,7 @@ msgstr "Immagine dell'icona 'Basso':"
 
 #: ../wifi/data/messages:153
 msgid "'Average' icon filename:"
-msgstr "Immagine dell'icona 'Normale':"
+msgstr "Immagine dell'icona 'Medio':"
 
 #: ../wifi/data/messages:157
 msgid "'Good' icon filename:"
@@ -7753,12 +7773,13 @@ msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "wireless configuration interface."
 msgstr ""
-"Permette di sovrascrivere la linea di comando di default dell'applet e "
+"Permette di sovrascrivere la linea di comando predefinita dell'applet e "
 "lanciare l'interfaccia di configurazione wireless."
 
 #: ../wifi/data/messages:175
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless:"
+msgstr ""
+"Linea di comando alternativa per lanciare la Configurazione Wireless:"
 
 #: ../wifi/data/messages:183
 msgid "Signal Strength"
@@ -7774,50 +7795,7 @@ msgstr "Info brute sul segnale"
 
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
-msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
-
-#~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
-#~ msgstr ""
-#~ "In gradi, in rapporto alla posizione verticale. E' una specie di "
-#~ "inclinazione del piano in orizzontale, dando l'impressione di "
-#~ "tridimensionalità. Perciò metterlo a 0 significa che il piano sarà "
-#~ "affatto inclinato (verticale)."
-
-#~ msgid "Inclination of the plane:"
-#~ msgstr "Inclinazione del piano:"
-
-#~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
-#~ msgstr ""
-#~ "0.5 significa che la dock è ripiegata a metà, perciò la metà delle icone  "
-#~ "sono in primo piano e l'altra metà sullo sfondo."
-
-#~ msgid "Percentage of the dock's width that appears on the foreground:"
-#~ msgstr "Percentuale della larghezza della dock che appare in primo piano:"
-
-#~ msgid ""
-#~ "The greater, the deeper. This represents the gap between the bottoms "
-#~ "ofbackground icons and the tops of foreground icons (in pixels)."
-#~ msgstr ""
-#~ "Più è grande, più il piano è profondo. E' di fatto lo scarto tra la base "
-#~ "delle icone in sottofondo e l'altezza delle icone in primo piano (in "
-#~ "pixel)."
-
-#~ msgid "Depth of the plane:"
-#~ msgstr "Profondità del piano:"
-
-#~ msgid "otherwise they will turn."
-#~ msgstr "altrimenti esse ruoteranno."
-
-#~ msgid "Always show the fronts of icons?"
-#~ msgstr "Mostra sempre la faccia delle icone?"
-
-#~ msgid "Icons size :"
-#~ msgstr "Dimensione delle icone:"
+msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "feeled"
 #~ msgstr "risentito"
@@ -7847,6 +7825,9 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgid "Physical separator"
 #~ msgstr "Separatori fisici"
 
+#~ msgid "otherwise they will turn."
+#~ msgstr "altrimenti esse ruoteranno."
+
 #~ msgid "Theme overriding"
 #~ msgstr "Sovrascrittura del tema"
 
@@ -7857,8 +7838,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Animazione durante l'allerta :"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
@@ -7897,30 +7878,28 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un "
-#~ "file basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
+#~ "Stacks agisce come l'applet shortcut ma con i files. Per aggiungere un file "
+#~ "basta trascinare (drag'n'drop) lo stesso sull'icona Stacks"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Utilizzare soltanto la cartella locale Stacks ?"
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack "
-#~ "locale, sia tutte le cartelle monitorate. Bisogna assicurarsi di non "
-#~ "avere l'opzione 'Utilizzare la cartella locale Stacks' attiva."
+#~ "Si può utilizzare il segno '_CartellaLocale_' per avere sia lo stack locale, "
+#~ "sia tutte le cartelle monitorate. Bisogna assicurarsi di non avere l'opzione "
+#~ "'Utilizzare la cartella locale Stacks' attiva."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Cartelle sorvegliate :"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "Questa opzione con una lunga lista di files può rallentare la barra, "
-#~ "perciò utilizzarla con prudenza."
+#~ "Questa opzione con una lunga lista di files può rallentare la barra, perciò "
+#~ "utilizzarla con prudenza."
 
 #~ msgid "Separate different directories with separators ?"
 #~ msgstr "Separare le differenti cartelle con separatori ?"
@@ -7959,11 +7938,11 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -7996,8 +7975,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
-#~ "0 se si vuole alcuna filigrana."
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+#~ "se si vuole alcuna filigrana."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
@@ -8131,8 +8110,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -8179,8 +8158,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
 #~ msgstr ""
-#~ "Impossibile configurare il socket in modo da non bloccare la connessione. "
-#~ "Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+#~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+#~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
 
 #~ msgid ""
@@ -8197,17 +8176,17 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
 #~ msgstr ""
-#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-#~ "che username o password di GMail non siano corretti."
+#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+#~ "username o password di GMail non siano corretti."
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
 #~ msgstr ""
-#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci "
-#~ "un problema col server GMail, o un cambiamento nel modo di identificarsi "
-#~ "o nel modo di reperire i nuovi messaggi."
+#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+#~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+#~ "modo di reperire i nuovi messaggi."
 
 #~ msgid "_Username:"
 #~ msgstr "_Username:"
@@ -8225,28 +8204,27 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Mailbox GMail remota"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr ""
-#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare "
-#~ "il numero di nuovi messaggi in modo sicuro."
+#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+#~ "numero di nuovi messaggi in modo sicuro."
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr ""
-#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login "
-#~ "in modo testuale."
+#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+#~ "modo testuale."
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. "
-#~ "E' un bug !"
+#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+#~ "un bug !"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
@@ -8288,8 +8266,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Mailbox IMAP remoto"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
 #~ "protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
@@ -8331,8 +8309,7 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 
 #~ msgid "MH plugin watches local MH folders for new mail"
 #~ msgstr ""
-#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi "
-#~ "messaggi"
+#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #~ msgid "Advanced POP3 Options"
 #~ msgstr "Opzioni POP3 avanzate"
@@ -8350,8 +8327,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Mailbox POP3 remota"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
 #~ "protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
@@ -8365,8 +8342,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
-#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-#~ "supporto SSL."
+#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+#~ "SSL."
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
@@ -8385,8 +8362,7 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di "
-#~ "sotto."
+#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
 #~ msgid "Add New Mailbox"
 #~ msgstr "Aggiungere una nuova Mailbox"
@@ -8459,8 +8435,8 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Titolo : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
 #~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
 #~ "decorazione; lasciate vuoto per non averne."
@@ -8616,10 +8592,10 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "In base alla vostra versione di Tomboy la soppressione della nota "
-#~ "potrebbe non essere notificata. Spuntate questa casella se ricevete "
-#~ "notifiche con questo errore  <<No marshaller for signature of signal "
-#~ "'NoteDeleted'>> con modalità Debug nel terminale."
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
+#~ "modalità Debug nel terminale."
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "
@@ -8738,37 +8714,37 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr "Nessun dato (RSS  non valido?)"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Un plugin Gnome-Do-Like che permette di controllare la dock tramite "
 #~ "tastiera.\n"
-#~ "Ha due modelli, ciascuno dei quali può essere attivato mediante "
-#~ "scorciatoie di tasti:\n"
+#~ "Ha due modelli, ciascuno dei quali può essere attivato mediante scorciatoie "
+#~ "di tasti:\n"
 #~ "- il modello a navigazione : utilizza le frecce per muoverti nella dock e "
 #~ "nelle sub-dock,\n"
-#~ "  o digita il nome del lanciatore e premi Tab per saltare automaticamente "
-#~ "al lanciatore successivo disponibile\n"
-#~ "  premi Invio per cliccare sull'icona, Shift+Invio per Shift+Click, Alt"
-#~ "+Invio per il Click centrale e Ctrl+Invio per Click sinistro\n"
+#~ "  o digita il nome del lanciatore e premi Tab per saltare automaticamente al "
+#~ "lanciatore successivo disponibile\n"
+#~ "  premi Invio per cliccare sull'icona, Shift+Invio per Shift+Click, "
+#~ "Alt+Invio per il Click centrale e Ctrl+Invio per Click sinistro\n"
 #~ "- il modello a ricerca : digita una parte di testo per lanciare ogni "
 #~ "comando, file o calcolo.\n"
 #~ "  utilizza le frecce per navigare tra i risultati, premi Invio per "
 #~ "confermare, mantieni Ctrl, Alt o Shift per conservare i risultati.\n"
 #~ "Esc o la scorciatoia che lo richiama per cancellare."
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8821,17 +8797,40 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Animazione dell'icona quando il feed è cambiato :"
 
+#~ msgid ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "In gradi, in rapporto alla posizione verticale. E' una specie di "
+#~ "inclinazione del piano in orizzontale, dando l'impressione di "
+#~ "tridimensionalità. Perciò metterlo a 0 significa che il piano sarà affatto "
+#~ "inclinato (verticale)."
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 significa che la dock è ripiegata a metà, perciò la metà delle icone  "
+#~ "sono in primo piano e l'altra metà sullo sfondo."
+
+#~ msgid ""
+#~ "The greater, the deeper. This represents the gap between the bottoms "
+#~ "ofbackground icons and the tops of foreground icons (in pixels)."
+#~ msgstr ""
+#~ "Più è grande, più il piano è profondo. E' di fatto lo scarto tra la base "
+#~ "delle icone in sottofondo e l'altezza delle icone in primo piano (in pixel)."
+
 #~ msgid "Class of the mail application (optional)"
 #~ msgstr "Classe dell'applicazione mail (opzionale)"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
-#~ "Previene l'apparizione dell'icona dell'applicazione nella taskbar. "
-#~ "L'icona dell'applet si comporterà così come un lanciatore, "
-#~ "un'applicazione e un'applet."
+#~ "Previene l'apparizione dell'icona dell'applicazione nella taskbar. L'icona "
+#~ "dell'applet si comporterà così come un lanciatore, un'applicazione e "
+#~ "un'applet."
 
 #~ msgid ""
 #~ "This applet lets you access your desklets quickly.\n"
@@ -8876,3 +8875,18 @@ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso?"
 #~ msgstr ""
 #~ "Questa è l'applet Dustbin\n"
 #~ " scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
+
+#~ msgid "Depth of the plane:"
+#~ msgstr "Profondità del piano:"
+
+#~ msgid "Inclination of the plane:"
+#~ msgstr "Inclinazione del piano:"
+
+#~ msgid "Percentage of the dock's width that appears on the foreground:"
+#~ msgstr "Percentuale della larghezza della dock che appare in primo piano:"
+
+#~ msgid "Icons size :"
+#~ msgstr "Dimensione delle icone:"
+
+#~ msgid "Always show the fronts of icons?"
+#~ msgstr "Mostra sempre la faccia delle icone?"

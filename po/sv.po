@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-05-24 13:14+0000\n"
+"POT-Creation-Date: 2010-06-09 23:16+0000\n"
+"PO-Revision-Date: 2010-06-10 00:29+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-25 03:46+0000\n"
+"X-Launchpad-Export-Date: 2010-06-11 03:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: sv\n"
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
@@ -221,7 +223,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -1016,8 +1019,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1240,7 +1243,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1250,7 +1254,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1366,9 +1371,8 @@ msgstr "Kurva"
 
 #: ../dock-rendering/src/rendering-init.c:41
 #: ../dock-rendering/data/messages:17
-#, fuzzy
 msgid "Panel"
-msgstr "Pausa"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:127
 msgid ""
@@ -1949,8 +1953,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3997,7 +4001,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -4795,7 +4800,8 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../Status-Notifier/data/messages:29
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
@@ -5694,19 +5700,16 @@ msgid "At 1, the icons will have the same size as in other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:21
-#, fuzzy
 msgid "Ratio to apply on icons' size :"
-msgstr "Information att visa på ikonen:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:23
-#, fuzzy
 msgid "smaller icons"
-msgstr "Animerade ikoner"
+msgstr ""
 
 #: ../dock-rendering/data/messages:25
-#, fuzzy
 msgid "normal icons"
-msgstr "Information"
+msgstr ""
 
 #: ../dock-rendering/data/messages:27
 msgid "SimpleSlide"
@@ -5831,7 +5834,8 @@ msgid "Draw captions while unfolding?"
 msgstr "Visa etiketter under animering?"
 
 #: ../dock-rendering/data/messages:99
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -5969,7 +5973,8 @@ msgid "Desktop-less support"
 msgstr "Manuell hantering"
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 
 #: ../dustbin/data/messages:129
@@ -6009,7 +6014,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6245,7 +6251,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:127
@@ -6277,7 +6284,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7274,7 +7282,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7356,43 +7365,6 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
-#~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
-#~ msgstr ""
-#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande "
-#~ "plan som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
-
-#~ msgid "Inclination of the plane:"
-#~ msgstr "Planets vinkel:"
-
-#~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
-#~ msgstr ""
-#~ "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
-#~ "förgrunden, den andra hälften i bakgrunden."
-
-#~ msgid "Percentage of the dock's width that appears on the foreground:"
-#~ msgstr "Procent av dockans bredd som visas i förgrunden:"
-
-#~ msgid ""
-#~ "The greater, the deeper. This represents the gap between the bottoms "
-#~ "ofbackground icons and the tops of foreground icons (in pixels)."
-#~ msgstr ""
-#~ "Ju större, desto djupare. Egentligen avståndet mellan bakgrundsikonens "
-#~ "underkant och förgrundsikonens ovankant (i pixlar)."
-
-#~ msgid "Depth of the plane:"
-#~ msgstr "Djup på planet:"
-
-#~ msgid "otherwise they will turn."
-#~ msgstr "annars vänder de."
-
-#~ msgid "Always show the fronts of icons?"
-#~ msgstr "Visa alltid ikonens framsida?"
-
 #~ msgid "feeled"
 #~ msgstr "upplevd"
 
@@ -7421,6 +7393,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "För platta avgränsare kan du ange en färg:"
 
+#~ msgid "otherwise they will turn."
+#~ msgstr "annars vänder de."
+
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animera ikonen vid meddelande?"
 
@@ -7431,8 +7406,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -7507,8 +7482,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "höjd:"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -7667,11 +7642,11 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Personnal"
 #~ msgstr "Personlig"
@@ -7807,6 +7782,40 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr ""
 #~ "xmms applet\n"
 #~ " skapad av ChAnGFu för Cairo-Dock"
+
+#~ msgid ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan "
+#~ "som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
+
+#~ msgid "Inclination of the plane:"
+#~ msgstr "Planets vinkel:"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
+#~ "förgrunden, den andra hälften i bakgrunden."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground:"
+#~ msgstr "Procent av dockans bredd som visas i förgrunden:"
+
+#~ msgid ""
+#~ "The greater, the deeper. This represents the gap between the bottoms "
+#~ "ofbackground icons and the tops of foreground icons (in pixels)."
+#~ msgstr ""
+#~ "Ju större, desto djupare. Egentligen avståndet mellan bakgrundsikonens "
+#~ "underkant och förgrundsikonens ovankant (i pixlar)."
+
+#~ msgid "Depth of the plane:"
+#~ msgstr "Djup på planet:"
+
+#~ msgid "Always show the fronts of icons?"
+#~ msgstr "Visa alltid ikonens framsida?"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"

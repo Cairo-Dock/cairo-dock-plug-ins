@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-05-16 23:09+0000\n"
+"POT-Creation-Date: 2010-06-09 23:16+0000\n"
+"PO-Revision-Date: 2010-06-10 08:36+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-05-20 05:34+0000\n"
+"X-Launchpad-Export-Date: 2010-06-11 03:47+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -220,7 +221,8 @@ msgstr "Le module a été ajouté, mais n'a pas pu être exécuté"
 
 #: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "L'applet '%s' a été mise a jour et rechargée avec succès."
 
 #: ../Dbus/src/interface-applet-signals.c:511
@@ -255,7 +257,8 @@ msgstr ""
 #: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../Doncky/src/applet-top.c:287
 #: ../System-Monitor/src/applet-notifications.c:49
@@ -306,41 +309,47 @@ msgstr "Entrez une commande à lancer :"
 
 #: ../Indicator-Menus/src/applet-init.c:29
 msgid "Indicator-Menus"
-msgstr ""
+msgstr "Menus Indicateurs"
 
 #: ../Indicator-Menus/src/applet-init.c:32
 msgid "Menus to control your session, connection state, etc."
-msgstr ""
+msgstr "Menus pour controler votre session, l'état de la connexion, etc."
 
 #: ../MeMenu/src/applet-init.c:31
-#, fuzzy
 msgid "Me Menu"
-msgstr "Menu"
+msgstr "Notification de Session"
 
 #: ../MeMenu/src/applet-init.c:34
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
+"Un menu qui vous donne un accès rapide à votre information, votre statut "
+"online, vos amis."
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr ""
+"Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
 
 #: ../Messaging-Menu/src/applet-init.c:31
-#, fuzzy
 msgid "Messaging Menu"
-msgstr "Menu"
+msgstr "Notification de messages"
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
 msgstr ""
+"Un menu qui vous averti de nouveaux messages e-mail ou provenant de "
+"messageries instantanées.\n"
+"Il peut gérer des programmes comme Evolution, Pidgin, Empathy mais également "
+"beaucoup d'autres !"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid "It seems that the Messaging-Menu is not installed on your system"
 msgstr ""
+"Il semblerait que \"Messaging-Menu\" ne soit pas installé sur votre système."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -774,9 +783,9 @@ msgstr ""
 "docks,\n"
 "    ou tapez le nom d'un lanceur et appuyez sur Tab pour passer au lanceur "
 "suivant\n"
-"    appuyez sur Entrer pour cliquer sur l'icône, Shift+Entrer pour Shift"
-"+cliquer, Alt+Entrer pour un clic de molette et Ctrl+Entrer pour un clic "
-"gauche\n"
+"    appuyez sur Entrer pour cliquer sur l'icône, Shift+Entrer pour "
+"Shift+cliquer, Alt+Entrer pour un clic de molette et Ctrl+Entrer pour un "
+"clic gauche\n"
 "Echap ou la touche raccourci pour sortir."
 
 #: ../Scooby-Do/src/applet-listing.c:510
@@ -1047,9 +1056,8 @@ msgid "years"
 msgstr "années"
 
 #: ../clock/src/applet-calendar.c:555
-#, fuzzy
 msgid "Calendar and tasks"
-msgstr "Calendrier"
+msgstr "Calendrier et tâches"
 
 #: ../clock/src/applet-config.c:489 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
@@ -1081,9 +1089,8 @@ msgid "It's time for the following task:"
 msgstr "Il est temps d'accomplir la tâche suivante :"
 
 #: ../clock/src/applet-draw.c:373
-#, fuzzy
 msgid "Today is the following anniversary:"
-msgstr "Demain, il y aura l'anniversaire de :"
+msgstr "Aujourd'hui, nous souhaitons un bon anniversaire à :"
 
 #: ../clock/src/applet-draw.c:373
 msgid "Tomorrow is the following anniversary:"
@@ -1099,12 +1106,23 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
+"Cet applet affiche le temps, la date et un calendrier.\n"
+"2 vues sont possibles : <b>numérique</b> et <b>analogique</b>.\n"
+" La vue analogique est compatible avec les thèmes Cairo-Clock et vous pouvez "
+"détacher l'applet pour être un clone parfait de Cairo-Clock.\n"
+"Il affiche un <b>calendrier</b> au clic-gauche, ce qui vous permet de "
+"<b>traiter des taches</b>.\n"
+"Il accepte aussi les alarmes et vous autorises à définir l'heure et la "
+"date.\n"
+"Clic-gauche pour montrer/cacher le calendrier, Clic-Milieu pour arrêter une "
+"notification,\n"
+"Double-clic sur un jour pour éditer les taches pour ce jour."
 
 #: ../clock/src/applet-notifications.c:62
 msgid ""
@@ -1113,6 +1131,10 @@ msgid ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 msgstr ""
+"Aucune tãche n'est programmée pour aujourd'hui.\n"
+"\n"
+"Vous pouvez ajouter des tâches en cliquant sur l'applet pour ouvrir le "
+"calendrier, puis double-cliquez sur un jour."
 
 #: ../clock/src/applet-notifications.c:77
 msgid ""
@@ -1121,6 +1143,10 @@ msgid ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 msgstr ""
+"Aucune tâche n'est prévue pour les 7 prochains jours.\n"
+"\n"
+"Vous pouvez ajouter des tâches en cliquant sur l'applet pour ouvrir le "
+"calendrier, puis double-cliquez sur un jour."
 
 #: ../clock/src/applet-notifications.c:90
 msgid "Set up time and date"
@@ -1328,10 +1354,12 @@ msgstr "Rendu des dialogues"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr ""
+"Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -1345,7 +1373,8 @@ msgstr ""
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
@@ -1487,9 +1516,8 @@ msgstr "Courbe"
 
 #: ../dock-rendering/src/rendering-init.c:41
 #: ../dock-rendering/data/messages:17
-#, fuzzy
 msgid "Panel"
-msgstr "Pause"
+msgstr "Tableau de bord"
 
 #: ../dock-rendering/src/rendering-init.c:127
 msgid ""
@@ -1714,8 +1742,8 @@ msgstr ""
 "Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../logout/src/applet-init.c:28
@@ -1729,6 +1757,11 @@ msgid ""
 "restart\n"
 "  (you can invert the buttons if you prefer to shutdown on left-click)."
 msgstr ""
+"Un apple trés simple qui ajoute un icône pour vous déconnecter\n"
+"Faîtes un clic-gauche pour vous déconnecter ou changer de session, clic-"
+"milieu pour éteindre ou redémarrer\n"
+"  (Vous pouvez inverser les bouttons si vous préférez éteindre avec le "
+"boutton gauche)."
 
 #: ../logout/src/applet-notifications.c:101
 msgid "Choose in how many minutes your PC will stop:"
@@ -1884,7 +1917,7 @@ msgstr "Piste n°"
 
 #: ../musicPlayer/src/applet-draw.c:344
 msgid "Song n°"
-msgstr ""
+msgstr "Chanson n°"
 
 #: ../musicPlayer/src/applet-draw.c:346
 msgid "There is no media playing."
@@ -1892,7 +1925,7 @@ msgstr "Aucun media en cours de lecture."
 
 #: ../musicPlayer/src/applet-init.c:47
 msgid "musicPlayer"
-msgstr "Lecteur de musique"
+msgstr "Contrôleur de Musique"
 
 #: ../musicPlayer/src/applet-init.c:50
 msgid ""
@@ -1909,8 +1942,8 @@ msgstr ""
 "Cette applet vous permet de contrôler une multitude de lecteurs de musique.\n"
 "Clic gauche pour Jouer/Pause, clic du milieu pour passer à la prochaine "
 "chanson.\n"
-"Un coup de roulette vers le haut/bas pour jouer la chanson précédente/"
-"suivante.\n"
+"Un coup de roulette vers le haut/bas pour jouer la chanson "
+"précédente/suivante.\n"
 "Vous pouvez glisser et déposer vos fichiers musicaux sur l'icône pour les "
 "ajouter à la fin de la liste\n"
 " en cours (ceci dépend des lecteurs) ou des fichiers d'images pour les "
@@ -2129,6 +2162,17 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
+"Un applet qui vous donne un accés rapide vers tout vos raccourcis.\n"
+"Il peut traiter les disques, des points réseaux et les marque-pages Nautilus "
+"(même si vous n'avez pas Nautilus).\n"
+"Glissez déposez un dossier sur l'icône principale ou le sous-dock pour "
+"ajouter un marque-page.\n"
+"Faîtes un clic-milieu sur l'icône principale pour afficher votre dossier "
+"personnel.\n"
+"Faîtes un clic-milieu sur un icône de point de montage pour le (dé)monter "
+"rapidement.\n"
+"L'applet peut aussi afficher des informations intéressantes à propos de vos "
+"disques, comme l'espace disponible, le type, etc."
 
 #: ../shortcuts/src/applet-notifications.c:81
 msgid "Remove this bookmark"
@@ -2144,8 +2188,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -2186,20 +2230,20 @@ msgstr "Modifier la résolution de l'écran"
 
 #: ../showDesktop/src/applet-notifications.c:299
 msgid "Move to the Desktop"
-msgstr ""
+msgstr "Déplacer vers le Bureau"
 
 #: ../showDesktop/src/applet-notifications.c:300
 msgid "Copy to the Desktop"
-msgstr ""
+msgstr "Copier vers le bureau"
 
 #: ../showDesktop/src/applet-notifications.c:301
 #: ../showDesktop/src/applet-notifications.c:305
 msgid "Link to the Desktop"
-msgstr ""
+msgstr "Lier vers le bureau"
 
 #: ../showDesktop/src/applet-notifications.c:306
 msgid "Download onto the Desktop"
-msgstr ""
+msgstr "Télécharger vers le bureau"
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
@@ -3878,7 +3922,8 @@ msgstr "Transparence du fond :"
 #: ../weather/data/messages:67 ../weblets/data/messages:69
 #: ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
 #: ../GMenu/data/messages:71 ../Indicator-Menus/data/messages:71
@@ -3958,7 +4003,8 @@ msgstr "Décalage en haut :"
 #: ../weather/data/messages:75 ../weblets/data/messages:77
 #: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
 #: ../GMenu/data/messages:79 ../Indicator-Menus/data/messages:79
@@ -4142,8 +4188,8 @@ msgstr "Si oui, nombre de sélection d'objets :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:223
 msgid "Paste into Clipboard?"
@@ -4250,7 +4296,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -4305,7 +4352,8 @@ msgid "Background"
 msgstr "Fond :"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Vous pouvez avoir plus d'arrières plan attractifs en utilisant les "
 "décorations des Desklets"
@@ -4404,28 +4452,30 @@ msgid ""
 "e size=true\n"
 "F[Decorations;gtk-orientation-portrait]"
 msgstr ""
+"e size=true\n"
+"F[Decorations;gtk-orientation-portrait]"
 
 #: ../Indicator-Menus/data/messages:93 ../Status-Notifier/data/messages:93
 msgid "This is a tooltip for this parameter."
-msgstr ""
+msgstr "Ceci est un outil d'aide pour ce paramétre."
 
 #: ../Indicator-Menus/data/messages:95 ../Status-Notifier/data/messages:95
 msgid "This is a boolean parameter. Y/N ?"
-msgstr ""
+msgstr "Ceci est un paramètre de type booléen. O/N ?"
 
 #: ../Indicator-Menus/data/messages:97 ../Status-Notifier/data/messages:97
 msgid "This integer can go from 0 to 10 :"
-msgstr ""
+msgstr "Cet entier peut aller de 0 à 10 :"
 
 #: ../Indicator-Menus/data/messages:99 ../Status-Notifier/data/messages:99
 msgid "Enter some text here :"
-msgstr ""
+msgstr "Entrer uun texte ici :"
 
 #: ../Messaging-Menu/data/messages:89
-#, fuzzy
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
-msgstr "Animation de l'icône en lors de la connexion :"
+msgstr ""
+"Animation de l'icône quand une des applications demande votre attention :"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -5080,7 +5130,8 @@ msgstr "Proposer des moteurs de recherche du web?"
 
 #: ../Scooby-Do/data/messages:111
 msgid "It can launch commands and even do some calculations."
-msgstr "Il est possible d'exécuter des commandes et même des faire des calculs"
+msgstr ""
+"Il est possible d'exécuter des commandes et même des faire des calculs"
 
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
@@ -5124,7 +5175,8 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
 #: ../Status-Notifier/data/messages:29
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Suivant votre Gestionnaire de fenêtres, vous pouvez le déplacer avec ALT + "
 "clic-gauche."
@@ -5175,7 +5227,8 @@ msgstr "Transparence du fond :"
 
 #: ../Status-Notifier/data/messages:69
 msgid "in pixels. Use this to adjust the left position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Status-Notifier/data/messages:71
 msgid "Left offset :"
@@ -5191,7 +5244,8 @@ msgstr "Décalage en haut :"
 
 #: ../Status-Notifier/data/messages:77
 msgid "in pixels. Use this to adjust the right position of the drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Status-Notifier/data/messages:79
 msgid "Right offset :"
@@ -5548,7 +5602,7 @@ msgstr "Utiliser les tâches du gestionnaire de tâches suivant:"
 
 #: ../clock/data/messages:121
 msgid "Default"
-msgstr ""
+msgstr "Défaut"
 
 #: ../clock/data/messages:123
 msgid "iCal"
@@ -6017,8 +6071,8 @@ msgstr "Script personnel pour l'upload des fichiers : "
 #: ../dnd2share/data/messages:153
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:155
 msgid "Path of the DropBox folder :"
@@ -6055,21 +6109,19 @@ msgstr "Amplitude de la courbure :"
 #: ../dock-rendering/data/messages:19
 msgid "At 1, the icons will have the same size as in other views."
 msgstr ""
+"À la valeur 1, les icônes auront la même taille que dans les autres vues."
 
 #: ../dock-rendering/data/messages:21
-#, fuzzy
 msgid "Ratio to apply on icons' size :"
-msgstr "Ratio à appliquer sur le texte :"
+msgstr "RAtio a appliquer sur les tailles d'icônes :"
 
 #: ../dock-rendering/data/messages:23
-#, fuzzy
 msgid "smaller icons"
-msgstr "Plus petit"
+msgstr "Icônes plus petit"
 
 #: ../dock-rendering/data/messages:25
-#, fuzzy
 msgid "normal icons"
-msgstr "Informations"
+msgstr "Icône normal"
 
 #: ../dock-rendering/data/messages:27
 msgid "SimpleSlide"
@@ -6197,7 +6249,8 @@ msgid "Draw captions while unfolding?"
 msgstr "Dessiner les étiquettes pendant le dépliage ?"
 
 #: ../dock-rendering/data/messages:99
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -6342,7 +6395,8 @@ msgid "Desktop-less support"
 msgstr "Utilisation dégradée"
 
 #: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
+msgid ""
+"If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Si le dossier 'Trash' n'est pas connu par le dock, vous pouvez le spécifier "
 "ici :"
@@ -6389,7 +6443,8 @@ msgid "Colours"
 msgstr "Couleurs"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
@@ -6596,7 +6651,7 @@ msgstr "Nom d'une image pour les nouveaux e-mails :"
 
 #: ../mail/data/messages:103
 msgid "Play sound when a new e-mail is received?"
-msgstr ""
+msgstr "Jouer un son quand un nouveau courriel est réceptionné?"
 
 #: ../mail/data/messages:105
 msgid "Name of the file for the \"new mail\" sound :"
@@ -6639,8 +6694,10 @@ msgid "Check mail account on startup?"
 msgstr "Vérifier le compte mail au démarrage ?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
-msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
+msgstr ""
+"Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
 #: ../mail/data/messages:127
 msgid "Mail application"
@@ -6671,7 +6728,8 @@ msgid "Blur amount:"
 msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laissez vide pour afficher le nom du lecteur courant."
 
 #: ../musicPlayer/data/messages:91
@@ -6696,7 +6754,7 @@ msgstr "Banshee"
 
 #: ../musicPlayer/data/messages:101
 msgid "Clementine"
-msgstr ""
+msgstr "Clementine"
 
 #: ../musicPlayer/data/messages:103
 msgid "Exaile"
@@ -7355,8 +7413,8 @@ msgid ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
 msgstr ""
-"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / Ctrl"
-"+V"
+"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / "
+"Ctrl+V"
 
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
@@ -7376,7 +7434,7 @@ msgstr "Utiliser le mode compact ?"
 
 #: ../switcher/data/messages:91
 msgid "Preserve the ratio of the screen ?"
-msgstr ""
+msgstr "Préserver le ratio de l'écran ?"
 
 #: ../switcher/data/messages:93
 msgid "Map wallpaper to icons?"
@@ -7576,8 +7634,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
-"m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -7682,7 +7740,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
@@ -7769,57 +7828,10 @@ msgstr "Infos Brutes du Signal"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
-#~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
-#~ msgstr ""
-#~ "En degrés, par rapport à la position verticale. C'est une sorte "
-#~ "d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc "
-#~ "le mettre à 0 signifie que le plan n'est pas incliné du tout (vertical)."
-
-#~ msgid "Inclination of the plane:"
-#~ msgstr "Inclinaison du plan :"
-
-#~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
-#~ msgstr ""
-#~ "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes "
-#~ "sont à l'avant-plan, et la motié à l'arrière-pan."
-
-#~ msgid "Percentage of the dock's width that appears on the foreground:"
-#~ msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
-
-#~ msgid ""
-#~ "The greater, the deeper. This represents the gap between the bottoms "
-#~ "ofbackground icons and the tops of foreground icons (in pixels)."
-#~ msgstr ""
-#~ "Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre "
-#~ "le bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan "
-#~ "(en pixels)."
-
-#~ msgid "Depth of the plane:"
-#~ msgstr "Profondeur du plan :"
-
-#~ msgid "otherwise they will turn."
-#~ msgstr "sinon elles tourneront."
-
-#~ msgid "Always show the fronts of icons?"
-#~ msgstr "Toujours montrer les icônes de face ?"
-
-#~ msgid "Icons size :"
-#~ msgstr "Taille des icônes :"
-
-#~ msgid "No task is sheduled for today."
-#~ msgstr "Aucune tâche prévue pour aujourd'hui"
-
-#~ msgid "No task is sheduled for the next 7 days."
-#~ msgstr "Aucune tâche prévue pour les 7 prochains jours."
-
 #~ msgid "Free"
 #~ msgstr "Libre"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -7867,6 +7879,9 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "Pour les séparateurs plats, vous pouvez spécifier leur couleur:"
 
+#~ msgid "otherwise they will turn."
+#~ msgstr "sinon elles tourneront."
+
 #~ msgid "Theme overriding"
 #~ msgstr "Personnalisation du thème"
 
@@ -7897,6 +7912,9 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ msgid "Directory of the images :"
 #~ msgstr "Dossier des images"
 
+#~ msgid "Icons size :"
+#~ msgstr "Taille des icônes :"
+
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "Couleur d'avant-plan (r, v, b):"
 
@@ -7910,8 +7928,8 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ "only use this if it differs from its name. Generally it is not the case, "
 #~ "except for Thunderbird."
 #~ msgstr ""
-#~ "Utilisez uniquement ceci si cela diffère de son nom. Généralement, ce "
-#~ "n'est pas le cas, excepté pour Thunderbird"
+#~ "Utilisez uniquement ceci si cela diffère de son nom. Généralement, ce n'est "
+#~ "pas le cas, excepté pour Thunderbird"
 
 #~ msgid "Keep the desklets visible when showing the desktop ?"
 #~ msgstr "Garder les desklets visibles quand on montre le bureau ?"
@@ -7920,8 +7938,8 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ "According to your Window Manager, this may prevent the applet from hiding "
 #~ "the desktop."
 #~ msgstr ""
-#~ "En fonction de votre gestionnaire de fenêtres, cette fonctionnalité peut "
-#~ "ne pas fonctionner."
+#~ "En fonction de votre gestionnaire de fenêtres, cette fonctionnalité peut ne "
+#~ "pas fonctionner."
 
 #~ msgid "By default, this option is activated"
 #~ msgstr "Par défaut, cette option est activée"
@@ -7958,17 +7976,52 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Animation de l'icône quand le flux a changé :"
 
+#~ msgid ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "En degrés, par rapport à la position verticale. C'est une sorte "
+#~ "d'inclinaison du plan sur l'horizontal, donnant l'impression de 3D. Donc le "
+#~ "mettre à 0 signifie que le plan n'est pas incliné du tout (vertical)."
+
+#~ msgid "Inclination of the plane:"
+#~ msgstr "Inclinaison du plan :"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 signifie que le dock est à moitié replié, donc la moitié des icônes sont "
+#~ "à l'avant-plan, et la motié à l'arrière-pan."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground:"
+#~ msgstr "Pourcentage de la largeur du dock qui apparaît à l'avant-plan :"
+
+#~ msgid ""
+#~ "The greater, the deeper. This represents the gap between the bottoms "
+#~ "ofbackground icons and the tops of foreground icons (in pixels)."
+#~ msgstr ""
+#~ "Plus c'est grand, plus le plan est profond. C'est en fait l'écart entre le "
+#~ "bas des icônes de l'arrière-plan, et le haut des icônes d'avant-plan (en "
+#~ "pixels)."
+
+#~ msgid "Depth of the plane:"
+#~ msgstr "Profondeur du plan :"
+
+#~ msgid "Always show the fronts of icons?"
+#~ msgstr "Toujours montrer les icônes de face ?"
+
 #~ msgid "Class of the mail application (optional)"
 #~ msgstr "Classe de l'application mail (optionnel)"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
 #~ "Ceci empêchera l'icône de l'application d'apparaitre dans la barre des "
-#~ "tâches. L'icône de l'applet se comportera comme un lanceur, une "
-#~ "application et une applet."
+#~ "tâches. L'icône de l'applet se comportera comme un lanceur, une application "
+#~ "et une applet."
 
 #~ msgid ""
 #~ "This applet lets you access your desklets quickly.\n"
@@ -7995,3 +8048,9 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
 #~ msgid "Show/hide desklets that are on the widget layer too?"
 #~ msgstr "Montrer/cacher aussi les deklets qui sont sur la Couche Widgets ?"
+
+#~ msgid "No task is sheduled for today."
+#~ msgstr "Aucune tâche prévue pour aujourd'hui"
+
+#~ msgid "No task is sheduled for the next 7 days."
+#~ msgstr "Aucune tâche prévue pour les 7 prochains jours."
