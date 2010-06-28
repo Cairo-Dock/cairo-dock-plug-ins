@@ -176,6 +176,12 @@ void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet)
 }
 
 
+static gboolean _launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
+{
+	cd_shortcuts_launch_disk_periodic_task (myApplet);
+	myData.iSidLaunchTask = 0;
+	return FALSE;
+}
 gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
@@ -208,7 +214,8 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	myData.pIconList = NULL;
 	
 	//\_______________________ On lance la tache de mesure des disques.
-	cd_shortcuts_launch_disk_periodic_task (myApplet);
+	if (myData.iSidLaunchTask == 0)  // on la lance en idle, car les icones sont chargees en idle.
+		myData.iSidLaunchTask = g_idle_add ((GSourceFunc)_launch_disk_periodic_task, myApplet);
 	
 	return TRUE;
 }

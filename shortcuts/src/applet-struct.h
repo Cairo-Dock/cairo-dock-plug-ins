@@ -71,6 +71,7 @@ struct _AppletData {
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	
+	guint iSidLaunchTask;
 	CairoDockTask *pDiskTask;
 	// shared memory for the disk usage task
 	GList *pDiskUsageList;
