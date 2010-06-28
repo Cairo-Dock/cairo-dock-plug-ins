@@ -31,6 +31,7 @@
 
 #if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
 #define gtk_widget_get_mapped GTK_WIDGET_MAPPED
+#define gtk_widget_get_realized GTK_WIDGET_REALIZED
 #endif
 
 G_DEFINE_TYPE (NaTrayChild, na_tray_child, GTK_TYPE_SOCKET)
