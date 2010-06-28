@@ -32,6 +32,10 @@
 #define ICON_SPACING 1
 #define MIN_BOX_SIZE 24
 
+#if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
+#define gtk_widget_get_mapped GTK_WIDGET_MAPPED
+#endif
+
 typedef struct
 {
   NaTrayManager *tray_manager;

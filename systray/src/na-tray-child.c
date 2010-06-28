@@ -29,6 +29,10 @@
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 
+#if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
+#define gtk_widget_get_mapped GTK_WIDGET_MAPPED
+#endif
+
 G_DEFINE_TYPE (NaTrayChild, na_tray_child, GTK_TYPE_SOCKET)
 
 static void

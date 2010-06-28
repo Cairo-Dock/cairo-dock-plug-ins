@@ -53,7 +53,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	else if (myDesklet && myData.tray)
 	{
 		cairo_dock_steal_interactive_widget_from_desklet (myDesklet);
-		gtk_widget_destroy (myData.tray);
+		gtk_widget_destroy (GTK_WIDGET (myData.tray));
 		myData.tray = NULL;
 	}
 CD_APPLET_RESET_DATA_END
