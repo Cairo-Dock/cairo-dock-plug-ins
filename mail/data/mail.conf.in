@@ -107,7 +107,7 @@ renderer =
 #X[Theme] 
 frame_them =
 
-#h+[@maildatadir@/themes;Mail] Choose one of the available themes:
+#h+[@maildatadir@/themes;mail;mail] Choose one of the available themes:
 theme = Default
 
 #S+ Name of the file for the "no mail" image :
