@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-06-09 23:16+0000\n"
 "PO-Revision-Date: 2010-06-18 21:31+0000\n"
 "Last-Translator: Gabor Karsay <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
@@ -222,8 +221,7 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -239,11 +237,11 @@ msgstr ""
 msgid "day(s)"
 msgstr "Tag(e)"
 
-#: ../Doncky/src/applet-init.c:37
+#: ../Doncky/src/applet-init.c:32
 msgid "Doncky"
 msgstr ""
 
-#: ../Doncky/src/applet-init.c:40
+#: ../Doncky/src/applet-init.c:35
 msgid ""
 "This applet allows you to write texts and monitor your system\n"
 "with a \"text style desklet\".\n"
@@ -257,11 +255,6 @@ msgstr ""
 "Benutzung:\n"
 "  - MUSS VOM DOCK ABGEHÄNGT WERDEN, UM ZU FUNKTIONIEREN!\n"
 "  - Mit dem mittleren Maustasten werden die Werte neu geladen"
-
-#: ../Doncky/src/applet-nvidia.c:149 ../System-Monitor/src/applet-nvidia.c:141
-#, c-format
-msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Achtung ! Die Kerntemperatur der Grafikkarte hat %d°C erreicht."
 
 #: ../Doncky/src/applet-top.c:287
 #: ../System-Monitor/src/applet-notifications.c:49
@@ -284,6 +277,10 @@ msgstr ""
 "Tastenkombinationen wie ALT+F2 aufrufbar).\n"
 "Auch für das Öffnen des Menüs kann eine Tastenkombination gewählt werden "
 "(wie ALT+F1)."
+
+#: ../GMenu/src/applet-init.c:39
+msgid "Applications Menu"
+msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
@@ -937,6 +934,11 @@ msgstr "Ablagen"
 msgid "Monitor System"
 msgstr "Überwachsungssystem"
 
+#: ../System-Monitor/src/applet-nvidia.c:141
+#, c-format
+msgid "Alert! Graphic Card core temperature has reached %d°C"
+msgstr "Achtung ! Die Kerntemperatur der Grafikkarte hat %d°C erreicht."
+
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
 msgstr "Dieses Applet zeigt eine Figur, die deine Maus beobachtet."
@@ -1100,8 +1102,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1334,8 +1336,7 @@ msgstr ""
 "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
 "Internetverbindung aktiv ist."
@@ -1349,8 +1350,7 @@ msgstr ""
 "Drücken Sie Strg+v um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
@@ -1379,6 +1379,10 @@ msgstr ""
 "irgendwo ein Konto besitzen müssen.\n"
 "Damit Daten hochgeladen werden können, müssen die Pakete 'curl' und 'wget' "
 "installiert sein."
+
+#: ../dnd2share/src/applet-init.c:50
+msgid "Drop to share"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:33
 msgid "Clear the list of the recently uploaded files?"
@@ -1743,8 +1747,7 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:101
 msgid "Choose in how many minutes your PC will stop:"
-msgstr ""
-"Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
+msgstr "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
 
 #: ../logout/src/applet-notifications.c:126
 msgid "Lock screen"
@@ -1778,13 +1781,13 @@ msgstr ""
 "Dieses Konto existiert bereits.\n"
 "Bitte wählen Sie ein anderen Namen für das neue Konto."
 
-#: ../mail/src/cd-mail-applet-config.c:353
+#: ../mail/src/cd-mail-applet-config.c:360
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 "Geben Sie einen Namen für dieses Konto ein. Sie können jeden Namen "
 "verwenden, den Sie möchten."
 
-#: ../mail/src/cd-mail-applet-config.c:408
+#: ../mail/src/cd-mail-applet-config.c:415
 msgid "Remove Account"
 msgstr "Konto entfernen"
 
@@ -1796,16 +1799,16 @@ msgstr "Unbekannt"
 msgid "no subject"
 msgstr "Kein Betreff"
 
-#: ../mail/src/cd-mail-applet-etpan.c:388
+#: ../mail/src/cd-mail-applet-etpan.c:389
 msgid "No unread mail in your mailboxes"
 msgstr "Keine ungelesene E-mail in Ihrem Postfach"
 
-#: ../mail/src/cd-mail-applet-etpan.c:410
+#: ../mail/src/cd-mail-applet-etpan.c:411
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Sie haben %d neue E-Mails :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:412
+#: ../mail/src/cd-mail-applet-etpan.c:413
 msgid "You have a new mail:"
 msgstr "Sie haben eine neue E-Mail :"
 
@@ -1928,7 +1931,7 @@ msgstr ""
 "       Für Songbird wird die dazugehörige DBus-Erweiterung benötigt.\n"
 "       Für Exaile 0.3 muss die MPRIS-Erweiterung aktiviert werden."
 
-#: ../musicPlayer/src/applet-notifications.c:67
+#: ../musicPlayer/src/applet-notifications.c:70
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
@@ -1938,43 +1941,48 @@ msgstr ""
 "Sollte der Player laufen, kann es sein, dass seine Version zu alt ist und er "
 "einen solchen Dienst nicht unterstützt."
 
-#: ../musicPlayer/src/applet-notifications.c:159
+#: ../musicPlayer/src/applet-notifications.c:162
 msgid "Find opened player"
 msgstr "Finde geöffneten Player"
 
-#: ../musicPlayer/src/applet-notifications.c:166
+#: ../musicPlayer/src/applet-notifications.c:169
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: ../musicPlayer/src/applet-notifications.c:168
+#: ../musicPlayer/src/applet-notifications.c:171
 msgid "Play/Pause (left-click)"
 msgstr "Abspielen/Pause (links-Klick)"
 
-#: ../musicPlayer/src/applet-notifications.c:170
+#: ../musicPlayer/src/applet-notifications.c:173
 msgid "Next (middle-click)"
 msgstr "Nächstes (Mittelklick)"
 
-#: ../musicPlayer/src/applet-notifications.c:172
+#: ../musicPlayer/src/applet-notifications.c:175
 msgid "Stop"
 msgstr "Stop"
 
-#: ../musicPlayer/src/applet-notifications.c:174
+#: ../musicPlayer/src/applet-notifications.c:177
+#, fuzzy
+msgid "Show the Window"
+msgstr "Desktop anzeigen"
+
+#: ../musicPlayer/src/applet-notifications.c:179
 msgid "Show JumpBox"
 msgstr "Zeige JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:176
+#: ../musicPlayer/src/applet-notifications.c:181
 msgid "Toggle Shuffle"
 msgstr "Zufallswiedergabe an/aus"
 
-#: ../musicPlayer/src/applet-notifications.c:178
+#: ../musicPlayer/src/applet-notifications.c:183
 msgid "Toggle Repeat"
 msgstr "Wiederholen an/aus"
 
-#: ../musicPlayer/src/applet-notifications.c:180
+#: ../musicPlayer/src/applet-notifications.c:185
 msgid "Rate this song"
 msgstr "Bewerte dieses Lied"
 
-#: ../musicPlayer/src/applet-notifications.c:182
+#: ../musicPlayer/src/applet-notifications.c:187
 msgid "Information"
 msgstr "Information"
 
@@ -2070,8 +2078,7 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr ""
-"Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+msgstr "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -2154,8 +2161,8 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2386,7 +2393,7 @@ msgstr "Desktop anzeigen"
 msgid "Windows List"
 msgstr "Fensterliste"
 
-#: ../systray/src/systray-init.c:35
+#: ../systray/src/systray-init.c:37
 msgid ""
 "Add a systray to your dock.\n"
 "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
@@ -2394,6 +2401,13 @@ msgid ""
 "Middle-click to close the dalog.\n"
 "But the best way to use it id to detach it from the dock, and place it "
 "somewhere, above other windows."
+msgstr ""
+
+#: ../systray/src/systray-init.c:52
+msgid ""
+"Another systray is already running (probably on your panel)\n"
+"Since there can only be one systray at once, you should remove it to avoid "
+"any conflict."
 msgstr ""
 
 #: ../template/src/applet-init.c:28
@@ -2842,7 +2856,7 @@ msgstr ""
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
 #: ../stack/data/messages:47 ../switcher/data/messages:37
-#: ../systray/data/messages:33 ../terminal/data/messages:45
+#: ../systray/data/messages:37 ../terminal/data/messages:45
 #: ../tomboy/data/messages:59 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
@@ -3105,7 +3119,7 @@ msgstr ""
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
 #: ../switcher/data/messages:83 ../switcher/data/messages:85
-#: ../systray/data/messages:45 ../terminal/data/messages:91
+#: ../systray/data/messages:83 ../terminal/data/messages:91
 #: ../tomboy/data/messages:105 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:89
@@ -3361,9 +3375,9 @@ msgstr ""
 #: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
 #: ../showDesktop/data/messages:25 ../slider/data/messages:19
 #: ../stack/data/messages:23 ../switcher/data/messages:21
-#: ../terminal/data/messages:21 ../tomboy/data/messages:35
-#: ../weather/data/messages:19 ../weblets/data/messages:21
-#: ../wifi/data/messages:19
+#: ../systray/data/messages:17 ../terminal/data/messages:21
+#: ../tomboy/data/messages:35 ../weather/data/messages:19
+#: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
@@ -3383,9 +3397,9 @@ msgstr ""
 #: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
 #: ../showDesktop/data/messages:27 ../slider/data/messages:21
 #: ../stack/data/messages:25 ../switcher/data/messages:23
-#: ../terminal/data/messages:23 ../tomboy/data/messages:37
-#: ../weather/data/messages:21 ../weblets/data/messages:23
-#: ../wifi/data/messages:21
+#: ../systray/data/messages:19 ../terminal/data/messages:23
+#: ../tomboy/data/messages:37 ../weather/data/messages:21
+#: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr ""
 
@@ -3403,9 +3417,9 @@ msgstr ""
 #: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
 #: ../showDesktop/data/messages:29 ../slider/data/messages:23
 #: ../stack/data/messages:27 ../switcher/data/messages:25
-#: ../terminal/data/messages:25 ../tomboy/data/messages:39
-#: ../weather/data/messages:23 ../weblets/data/messages:25
-#: ../wifi/data/messages:23
+#: ../systray/data/messages:21 ../terminal/data/messages:25
+#: ../tomboy/data/messages:39 ../weather/data/messages:23
+#: ../weblets/data/messages:25 ../wifi/data/messages:23
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -3425,9 +3439,9 @@ msgstr ""
 #: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
 #: ../showDesktop/data/messages:31 ../slider/data/messages:25
 #: ../stack/data/messages:29 ../switcher/data/messages:27
-#: ../terminal/data/messages:27 ../tomboy/data/messages:41
-#: ../weather/data/messages:25 ../weblets/data/messages:27
-#: ../wifi/data/messages:25
+#: ../systray/data/messages:23 ../terminal/data/messages:27
+#: ../tomboy/data/messages:41 ../weather/data/messages:25
+#: ../weblets/data/messages:27 ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr ""
 
@@ -3442,9 +3456,9 @@ msgstr ""
 #: ../musicPlayer/data/messages:27 ../powermanager/data/messages:27
 #: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
 #: ../showDesktop/data/messages:33 ../slider/data/messages:27
-#: ../stack/data/messages:31 ../systray/data/messages:17
-#: ../terminal/data/messages:29 ../weather/data/messages:27
-#: ../weblets/data/messages:29 ../wifi/data/messages:27
+#: ../stack/data/messages:31 ../terminal/data/messages:29
+#: ../weather/data/messages:27 ../weblets/data/messages:29
+#: ../wifi/data/messages:27
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3464,7 +3478,7 @@ msgstr ""
 #: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
 #: ../showDesktop/data/messages:35 ../slider/data/messages:29
 #: ../stack/data/messages:33 ../switcher/data/messages:29
-#: ../systray/data/messages:19 ../terminal/data/messages:31
+#: ../systray/data/messages:27 ../terminal/data/messages:31
 #: ../tomboy/data/messages:45 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
@@ -3483,10 +3497,9 @@ msgstr ""
 #: ../netspeed/data/messages:29 ../powermanager/data/messages:31
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
-#: ../stack/data/messages:35 ../systray/data/messages:21
-#: ../terminal/data/messages:33 ../tomboy/data/messages:47
-#: ../weather/data/messages:31 ../weblets/data/messages:33
-#: ../wifi/data/messages:31
+#: ../stack/data/messages:35 ../terminal/data/messages:33
+#: ../tomboy/data/messages:47 ../weather/data/messages:31
+#: ../weblets/data/messages:33 ../wifi/data/messages:31
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -3505,9 +3518,9 @@ msgstr ""
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:39
 #: ../slider/data/messages:33 ../stack/data/messages:37
-#: ../systray/data/messages:23 ../terminal/data/messages:35
-#: ../tomboy/data/messages:49 ../weather/data/messages:33
-#: ../weblets/data/messages:35 ../wifi/data/messages:33
+#: ../terminal/data/messages:35 ../tomboy/data/messages:49
+#: ../weather/data/messages:33 ../weblets/data/messages:35
+#: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr ""
 
@@ -3525,7 +3538,7 @@ msgstr ""
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
-#: ../switcher/data/messages:31 ../systray/data/messages:25
+#: ../switcher/data/messages:31 ../systray/data/messages:29
 #: ../terminal/data/messages:37 ../tomboy/data/messages:51
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:35
@@ -3546,7 +3559,7 @@ msgstr ""
 #: ../powermanager/data/messages:37 ../quick-browser/data/messages:41
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
 #: ../slider/data/messages:37 ../stack/data/messages:41
-#: ../switcher/data/messages:33 ../systray/data/messages:27
+#: ../switcher/data/messages:33 ../systray/data/messages:31
 #: ../terminal/data/messages:39 ../tomboy/data/messages:53
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:37
@@ -3567,7 +3580,7 @@ msgstr ""
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
-#: ../systray/data/messages:29 ../terminal/data/messages:41
+#: ../systray/data/messages:33 ../terminal/data/messages:41
 #: ../tomboy/data/messages:55 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:39
 msgid ""
@@ -3589,7 +3602,7 @@ msgstr ""
 #: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
 #: ../showDesktop/data/messages:47 ../slider/data/messages:41
 #: ../stack/data/messages:45 ../switcher/data/messages:35
-#: ../systray/data/messages:31 ../terminal/data/messages:43
+#: ../systray/data/messages:35 ../terminal/data/messages:43
 #: ../tomboy/data/messages:57 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
@@ -3609,7 +3622,7 @@ msgstr ""
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
-#: ../switcher/data/messages:39 ../systray/data/messages:35
+#: ../switcher/data/messages:39 ../systray/data/messages:39
 #: ../terminal/data/messages:47 ../tomboy/data/messages:61
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:45
@@ -3630,7 +3643,7 @@ msgstr ""
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
-#: ../switcher/data/messages:41 ../systray/data/messages:37
+#: ../switcher/data/messages:41 ../systray/data/messages:41
 #: ../terminal/data/messages:49 ../tomboy/data/messages:63
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:47
@@ -3651,7 +3664,7 @@ msgstr ""
 #: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
 #: ../showDesktop/data/messages:55 ../slider/data/messages:49
 #: ../stack/data/messages:53 ../switcher/data/messages:43
-#: ../systray/data/messages:39 ../terminal/data/messages:51
+#: ../systray/data/messages:43 ../terminal/data/messages:51
 #: ../tomboy/data/messages:65 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
@@ -3671,7 +3684,7 @@ msgstr ""
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
-#: ../switcher/data/messages:45 ../systray/data/messages:41
+#: ../switcher/data/messages:45 ../systray/data/messages:45
 #: ../terminal/data/messages:53 ../tomboy/data/messages:67
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
@@ -3692,7 +3705,7 @@ msgstr ""
 #: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
 #: ../showDesktop/data/messages:59 ../slider/data/messages:53
 #: ../stack/data/messages:57 ../switcher/data/messages:47
-#: ../systray/data/messages:43 ../terminal/data/messages:55
+#: ../systray/data/messages:47 ../terminal/data/messages:55
 #: ../tomboy/data/messages:69 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
@@ -3710,9 +3723,10 @@ msgstr ""
 #: ../powermanager/data/messages:55 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
-#: ../switcher/data/messages:49 ../terminal/data/messages:57
-#: ../tomboy/data/messages:71 ../weather/data/messages:55
-#: ../weblets/data/messages:57 ../wifi/data/messages:55
+#: ../switcher/data/messages:49 ../systray/data/messages:49
+#: ../terminal/data/messages:57 ../tomboy/data/messages:71
+#: ../weather/data/messages:55 ../weblets/data/messages:57
+#: ../wifi/data/messages:55
 msgid "Decorations"
 msgstr ""
 
@@ -3730,9 +3744,10 @@ msgstr ""
 #: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
-#: ../switcher/data/messages:51 ../terminal/data/messages:59
-#: ../tomboy/data/messages:73 ../weather/data/messages:57
-#: ../weblets/data/messages:59 ../wifi/data/messages:57
+#: ../switcher/data/messages:51 ../systray/data/messages:51
+#: ../terminal/data/messages:59 ../tomboy/data/messages:73
+#: ../weather/data/messages:57 ../weblets/data/messages:59
+#: ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 
@@ -3750,9 +3765,9 @@ msgstr ""
 #: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
 #: ../showDesktop/data/messages:65 ../slider/data/messages:59
 #: ../stack/data/messages:63 ../switcher/data/messages:53
-#: ../terminal/data/messages:61 ../tomboy/data/messages:75
-#: ../weather/data/messages:59 ../weblets/data/messages:61
-#: ../wifi/data/messages:59
+#: ../systray/data/messages:53 ../terminal/data/messages:61
+#: ../tomboy/data/messages:75 ../weather/data/messages:59
+#: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr ""
 
@@ -3770,9 +3785,9 @@ msgstr ""
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
 #: ../showDesktop/data/messages:67 ../slider/data/messages:61
 #: ../stack/data/messages:65 ../switcher/data/messages:55
-#: ../terminal/data/messages:63 ../tomboy/data/messages:77
-#: ../weather/data/messages:61 ../weblets/data/messages:63
-#: ../wifi/data/messages:61
+#: ../systray/data/messages:55 ../terminal/data/messages:63
+#: ../tomboy/data/messages:77 ../weather/data/messages:61
+#: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
@@ -3792,9 +3807,9 @@ msgstr ""
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
 #: ../stack/data/messages:67 ../switcher/data/messages:57
-#: ../terminal/data/messages:65 ../tomboy/data/messages:79
-#: ../weather/data/messages:63 ../weblets/data/messages:65
-#: ../wifi/data/messages:63
+#: ../systray/data/messages:57 ../terminal/data/messages:65
+#: ../tomboy/data/messages:79 ../weather/data/messages:63
+#: ../weblets/data/messages:65 ../wifi/data/messages:63
 msgid "Background image:"
 msgstr ""
 
@@ -3812,9 +3827,9 @@ msgstr ""
 #: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
 #: ../showDesktop/data/messages:71 ../slider/data/messages:65
 #: ../stack/data/messages:69 ../switcher/data/messages:59
-#: ../terminal/data/messages:67 ../tomboy/data/messages:81
-#: ../weather/data/messages:65 ../weblets/data/messages:67
-#: ../wifi/data/messages:65
+#: ../systray/data/messages:59 ../terminal/data/messages:67
+#: ../tomboy/data/messages:81 ../weather/data/messages:65
+#: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr ""
 
@@ -3832,9 +3847,9 @@ msgstr ""
 #: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
 #: ../showDesktop/data/messages:73 ../slider/data/messages:67
 #: ../stack/data/messages:71 ../switcher/data/messages:61
-#: ../terminal/data/messages:69 ../tomboy/data/messages:83
-#: ../weather/data/messages:67 ../weblets/data/messages:69
-#: ../wifi/data/messages:67
+#: ../systray/data/messages:61 ../terminal/data/messages:69
+#: ../tomboy/data/messages:83 ../weather/data/messages:67
+#: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr ""
 
@@ -3852,9 +3867,9 @@ msgstr ""
 #: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
 #: ../showDesktop/data/messages:75 ../slider/data/messages:69
 #: ../stack/data/messages:73 ../switcher/data/messages:63
-#: ../terminal/data/messages:71 ../tomboy/data/messages:85
-#: ../weather/data/messages:69 ../weblets/data/messages:71
-#: ../wifi/data/messages:69
+#: ../systray/data/messages:63 ../terminal/data/messages:71
+#: ../tomboy/data/messages:85 ../weather/data/messages:69
+#: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr ""
 
@@ -3872,9 +3887,9 @@ msgstr ""
 #: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
 #: ../showDesktop/data/messages:77 ../slider/data/messages:71
 #: ../stack/data/messages:75 ../switcher/data/messages:65
-#: ../terminal/data/messages:73 ../tomboy/data/messages:87
-#: ../weather/data/messages:71 ../weblets/data/messages:73
-#: ../wifi/data/messages:71
+#: ../systray/data/messages:65 ../terminal/data/messages:73
+#: ../tomboy/data/messages:87 ../weather/data/messages:71
+#: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr ""
 
@@ -3892,9 +3907,9 @@ msgstr ""
 #: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
 #: ../showDesktop/data/messages:79 ../slider/data/messages:73
 #: ../stack/data/messages:77 ../switcher/data/messages:67
-#: ../terminal/data/messages:75 ../tomboy/data/messages:89
-#: ../weather/data/messages:73 ../weblets/data/messages:75
-#: ../wifi/data/messages:73
+#: ../systray/data/messages:67 ../terminal/data/messages:75
+#: ../tomboy/data/messages:89 ../weather/data/messages:73
+#: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr ""
 
@@ -3912,9 +3927,9 @@ msgstr ""
 #: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
 #: ../showDesktop/data/messages:81 ../slider/data/messages:75
 #: ../stack/data/messages:79 ../switcher/data/messages:69
-#: ../terminal/data/messages:77 ../tomboy/data/messages:91
-#: ../weather/data/messages:75 ../weblets/data/messages:77
-#: ../wifi/data/messages:75
+#: ../systray/data/messages:69 ../terminal/data/messages:77
+#: ../tomboy/data/messages:91 ../weather/data/messages:75
+#: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr ""
 
@@ -3932,9 +3947,9 @@ msgstr ""
 #: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
 #: ../showDesktop/data/messages:83 ../slider/data/messages:77
 #: ../stack/data/messages:81 ../switcher/data/messages:71
-#: ../terminal/data/messages:79 ../tomboy/data/messages:93
-#: ../weather/data/messages:77 ../weblets/data/messages:79
-#: ../wifi/data/messages:77
+#: ../systray/data/messages:71 ../terminal/data/messages:79
+#: ../tomboy/data/messages:93 ../weather/data/messages:77
+#: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr ""
 
@@ -3952,9 +3967,9 @@ msgstr ""
 #: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
 #: ../showDesktop/data/messages:85 ../slider/data/messages:79
 #: ../stack/data/messages:83 ../switcher/data/messages:73
-#: ../terminal/data/messages:81 ../tomboy/data/messages:95
-#: ../weather/data/messages:79 ../weblets/data/messages:81
-#: ../wifi/data/messages:79
+#: ../systray/data/messages:73 ../terminal/data/messages:81
+#: ../tomboy/data/messages:95 ../weather/data/messages:79
+#: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr ""
 
@@ -3972,9 +3987,9 @@ msgstr ""
 #: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
 #: ../showDesktop/data/messages:87 ../slider/data/messages:81
 #: ../stack/data/messages:85 ../switcher/data/messages:75
-#: ../terminal/data/messages:83 ../tomboy/data/messages:97
-#: ../weather/data/messages:81 ../weblets/data/messages:83
-#: ../wifi/data/messages:81
+#: ../systray/data/messages:75 ../terminal/data/messages:83
+#: ../tomboy/data/messages:97 ../weather/data/messages:81
+#: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr ""
 
@@ -3992,9 +4007,9 @@ msgstr ""
 #: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
 #: ../showDesktop/data/messages:89 ../slider/data/messages:83
 #: ../stack/data/messages:87 ../switcher/data/messages:77
-#: ../terminal/data/messages:85 ../tomboy/data/messages:99
-#: ../weather/data/messages:83 ../weblets/data/messages:85
-#: ../wifi/data/messages:83
+#: ../systray/data/messages:77 ../terminal/data/messages:85
+#: ../tomboy/data/messages:99 ../weather/data/messages:83
+#: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
@@ -4014,9 +4029,9 @@ msgstr ""
 #: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
 #: ../showDesktop/data/messages:91 ../slider/data/messages:85
 #: ../stack/data/messages:89 ../switcher/data/messages:79
-#: ../terminal/data/messages:87 ../tomboy/data/messages:101
-#: ../weather/data/messages:85 ../weblets/data/messages:87
-#: ../wifi/data/messages:85
+#: ../systray/data/messages:79 ../terminal/data/messages:87
+#: ../tomboy/data/messages:101 ../weather/data/messages:85
+#: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr ""
 
@@ -4034,9 +4049,9 @@ msgstr ""
 #: ../quick-browser/data/messages:91 ../shortcuts/data/messages:89
 #: ../showDesktop/data/messages:93 ../slider/data/messages:87
 #: ../stack/data/messages:91 ../switcher/data/messages:81
-#: ../terminal/data/messages:89 ../tomboy/data/messages:103
-#: ../weather/data/messages:87 ../weblets/data/messages:89
-#: ../wifi/data/messages:87
+#: ../systray/data/messages:81 ../terminal/data/messages:89
+#: ../tomboy/data/messages:103 ../weather/data/messages:87
+#: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr ""
 
@@ -4198,7 +4213,7 @@ msgid "Let extern applications register new module?"
 msgstr ""
 
 #: ../Doncky/data/messages:93
-msgid "Specify a title :"
+msgid "Specify the xml file to be used :"
 msgstr ""
 
 #: ../Doncky/data/messages:95 ../RSSreader/data/messages:133
@@ -4209,8 +4224,8 @@ msgstr ""
 msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:101 ../alsaMixer/data/messages:137
-msgid "Default icon:"
+#: ../Doncky/data/messages:101
+msgid "Default Font:"
 msgstr ""
 
 #: ../Doncky/data/messages:103
@@ -4225,16 +4240,16 @@ msgstr ""
 msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
-#: ../Doncky/data/messages:109 ../stack/data/messages:109
-msgid "Image for 'text' items:"
+#: ../Doncky/data/messages:109
+msgid "Margin all around the desklet:"
 msgstr ""
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
 msgstr ""
 
-#: ../Doncky/data/messages:113 ../dock-rendering/data/messages:97
-msgid "Space between icons:"
+#: ../Doncky/data/messages:113
+msgid "Space between lines:"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
@@ -4242,8 +4257,7 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -5037,8 +5051,7 @@ msgid "Desklet's dimension (width x height) :"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:29
-msgid ""
-"Depending on your WindowManager, you can move it with ALT + left_click"
+msgid "Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:31
@@ -5309,7 +5322,7 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:29
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
-#: ../tomboy/data/messages:43
+#: ../systray/data/messages:25 ../tomboy/data/messages:43
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
@@ -5372,6 +5385,10 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:125
 msgid "Effect to apply to the icon when adjusting volume:"
+msgstr ""
+
+#: ../alsaMixer/data/messages:137
+msgid "Default icon:"
 msgstr ""
 
 #: ../alsaMixer/data/messages:141
@@ -6054,9 +6071,12 @@ msgstr ""
 msgid "Draw captions while unfolding?"
 msgstr ""
 
+#: ../dock-rendering/data/messages:97
+msgid "Space between icons:"
+msgstr ""
+
 #: ../dock-rendering/data/messages:99
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:103
@@ -6188,8 +6208,7 @@ msgid "Desktop-less support"
 msgstr ""
 
 #: ../dustbin/data/messages:127
-msgid ""
-"If the Trash folder is not known by the dock, you can specify it here :"
+msgid "If the Trash folder is not known by the dock, you can specify it here :"
 msgstr ""
 "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier angeben:"
 
@@ -6230,8 +6249,7 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6467,8 +6485,7 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:123
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:127
@@ -6500,8 +6517,7 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7115,6 +7131,10 @@ msgstr ""
 msgid "They are items created by dropping a text into the Stack."
 msgstr ""
 
+#: ../stack/data/messages:109
+msgid "Image for 'text' items:"
+msgstr ""
+
 #: ../stack/data/messages:111
 msgid "These are items created by dropping a URL into the Stack."
 msgstr ""
@@ -7278,19 +7298,19 @@ msgstr ""
 msgid "Name of the icon as it will appear in its label in cairo-dock :"
 msgstr ""
 
-#: ../systray/data/messages:47
+#: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr ""
 
-#: ../systray/data/messages:49
+#: ../systray/data/messages:87
 msgid "Icons packing :"
 msgstr ""
 
-#: ../systray/data/messages:51
+#: ../systray/data/messages:89
 msgid "horizontal"
 msgstr ""
 
-#: ../systray/data/messages:53
+#: ../systray/data/messages:91
 msgid "vertical"
 msgstr ""
 
@@ -7480,8 +7500,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7568,8 +7587,8 @@ msgstr ""
 #~ msgstr "Verbindung fehlgeschlagen..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
-#~ "to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
+#~ "menu to add one."
 #~ msgstr ""
 #~ "Füge eine gültige RSS-Feed URL nach dem Drag'n drop-Prinzip hinzu oder "
 #~ "benutze den Menüpunkt \"Einfügen einer neuen RSS URL\"."
@@ -7581,7 +7600,8 @@ msgstr ""
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
-#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen ab.\n"
+#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen "
+#~ "ab.\n"
 #~ "Linke Maustaste für weitere Informationen, mittlere Maustaste zum "
 #~ "aktualisieren."
 
@@ -7600,7 +7620,6 @@ msgstr ""
 #~ msgid "Free"
 #~ msgstr "Frei"
 
-#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -7614,42 +7633,45 @@ msgstr ""
 #~ msgstr "Zeige Desklets"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
+#~ "keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to the "
-#~ "next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
+#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to validate, "
-#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to "
+#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
-#~ "gesteuert werden kann.\n"
-#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der "
+#~ "Tastatur gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel "
+#~ "ausgelöst.\n"
 #~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
 #~ "Unterdocks navigiert werden.\n"
 #~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
 #~ "passenden zu springen.\n"
-#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
-#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt"
+#~ "+Enter für Klick mit der mittleren Maustaste sowie STRG+Enter zum "
+#~ "Linksklick.\n"
 #~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
 #~ "Rechnung zu starten\n"
-#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
-#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
-#~ "beizubehalten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke "
+#~ "Enter zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die "
+#~ "Ergebnisse beizubehalten\n"
 #~ "Escape zum Abbrechen"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
 #~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
 #~ msgstr ""
-#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
-#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden "
+#~ "Tag, Pinky: Wir versuchen, das Dock an uns zu reißen!"
 
 #~ msgid "ToolTip"
 #~ msgstr "tooltip"

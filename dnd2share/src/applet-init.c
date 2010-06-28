@@ -47,7 +47,7 @@ CD_APPLET_DEFINE_BEGIN ("dnd2share",
 	"You'll need to install 'curl' and 'wget' to upload the data."),
 	"Nochka85 (Yann Dulieu) &amp; Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	CD_APPLET_REDEFINE_TITLE ("Drop to share")
+	CD_APPLET_REDEFINE_TITLE (N_("Drop to share"))
 CD_APPLET_DEFINE_END
 
 

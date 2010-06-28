@@ -36,7 +36,7 @@ CD_APPLET_DEFINE_BEGIN ("GMenu",
 	"You can also set up a shortkey to pop up the menu (like ALT+F1)"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	CD_APPLET_REDEFINE_TITLE ("Applications Menu")
+	CD_APPLET_REDEFINE_TITLE (N_("Applications Menu"))
 CD_APPLET_DEFINE_END
 
 
