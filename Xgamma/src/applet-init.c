@@ -47,7 +47,7 @@ CD_APPLET_DEFINE_BEGIN ("Xgamma",
 	"You can also define a luminosity value that will be applied automatically on startup."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	CD_APPLET_REDEFINE_TITLE (N(_"Screen Luminosity"))
+	CD_APPLET_REDEFINE_TITLE (N_("Screen Luminosity"))
 CD_APPLET_DEFINE_END
 
 
