@@ -34,7 +34,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 	//\________________ On gere l'evenement sur le point de montage.
 	cd_shortcuts_stop_disk_periodic_task (myApplet);
 	
-	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6);
+	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 6, CAIRO_DOCK_FM_SORT_BY_NAME);
 	
 	cd_shortcuts_launch_disk_periodic_task (myApplet);
 	
@@ -99,7 +99,7 @@ static void cd_shortcuts_on_change_drives (CairoDockFMEventType iEventType, cons
 static void cd_shortcuts_on_change_network (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 8);
+	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, 8, CAIRO_DOCK_FM_SORT_BY_NAME);
 	CD_APPLET_LEAVE();
 }
 

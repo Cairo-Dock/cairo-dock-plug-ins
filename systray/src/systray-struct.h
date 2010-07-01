@@ -24,22 +24,21 @@
 */
 
 #ifndef   	SYSTRAY_STRUCT_H_
-# define   	SYSTRAY_STRUCT_H_
+#define   	SYSTRAY_STRUCT_H_
 
 #include <cairo-dock.h>
 #include "na-tray.h"
 
 struct _AppletConfig {
-  gchar *shortcut;
-  gint iIconPacking;
-  gint iIconSize;
+	gchar *shortcut;
+	gint iIconPacking;
+	//gint iIconSize;
 } ;
 
 
 struct _AppletData {
-  CairoDialog *dialog;
-  gint iIconPacking;
-  NaTray *tray;
+	CairoDialog *dialog;
+	NaTray *tray;
 } ;
 
 

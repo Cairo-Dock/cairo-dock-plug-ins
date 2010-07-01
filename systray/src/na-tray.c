@@ -500,7 +500,9 @@ update_size_and_orientation (NaTray *tray)
 {
   NaTrayPrivate *priv = tray->priv;
 
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
   gtk_orientable_set_orientation (GTK_ORIENTABLE (priv->box), priv->orientation);
+#endif
 
   /* This only happens when setting the property during object construction */
   if (!priv->trays_screen)

@@ -835,9 +835,10 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
 			if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?
 				icon->fOrder = iOrder;
-			pIconList = g_list_insert_sorted (pIconList,
+			/*pIconList = g_list_insert_sorted (pIconList,
 				icon,
-				(GCompareFunc) cairo_dock_compare_icons_order);
+				(GCompareFunc) cairo_dock_compare_icons_order);*/
+			pIconList = g_list_prepend (pIconList, icon);
 			cd_debug (" + %s (%s)", icon->cName, icon->cFileName);
 			iOrder ++;
 			iNbFiles ++;

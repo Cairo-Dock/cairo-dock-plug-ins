@@ -25,18 +25,16 @@
 #include <signal.h>
 
 #include "systray-notifications.h"
-#include "systray-menu-functions.h"
+#include "systray-interface.h"
 #include "systray-struct.h"
 
 
 CD_APPLET_ON_CLICK_BEGIN
 
-	if (! myData.tray)
-		systray_build_and_show ();
-	else if (myDesklet)
+	if (myDesklet)
 		cairo_dock_show_desklet (myDesklet);
 	else if (myData.dialog)
-		cairo_dock_unhide_dialog(myData.dialog);
+		cairo_dock_toggle_dialog_visibility (myData.dialog);
 
 CD_APPLET_ON_CLICK_END
 

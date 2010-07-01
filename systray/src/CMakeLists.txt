@@ -2,24 +2,15 @@
 ########### sources ###############
 
 SET(cd-systray_LIB_SRCS
-	systray-init.c
-	systray-init.h
-	systray-config.c
-	systray-config.h
-	systray-notifications.c
-	systray-notifications.h
-	systray-menu-functions.c
-	systray-menu-functions.h
-	na-tray.c
-	na-tray.h
-	na-tray-manager.c
-	na-tray-manager.h
-	na-tray-child.c
-	na-tray-child.h
-	na-marshal.h
-	na-marshal.c
-	fixedtip.c
-	fixedtip.h
+	systray-init.c 		systray-init.h
+	systray-config.c 		systray-config.h
+	systray-notifications.c systray-notifications.h
+	systray-interface.c 	systray-interface.h
+	na-tray.c 			na-tray.h
+	na-tray-manager.c 	na-tray-manager.h
+	na-tray-child.c 		na-tray-child.h
+	na-marshal.h 		na-marshal.c
+	fixedtip.c 		fixedtip.h
 	systray-struct.h
 )
 

@@ -19,20 +19,24 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef __SYSTRAY_MENU_FUNC__
-#define  __SYSTRAY_MENU_FUNC__
+#ifndef __SYSTRAY_INTERFACE__
+#define  __SYSTRAY_INTERFACE__
 
 
 #include <cairo-dock.h>
 
 
-CairoDialog *cd_systray_build_dialog (void);
+void cd_systray_build_dialog (void);
 
-void systray_on_keybinding_pull(const char *keystring, gpointer user_data);
+void cd_systray_build_systray (void);
 
-void systray_apply_settings(void);
+void cd_systray_check_running (void);
 
-void systray_build_and_show (void);
+void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
+
+void systray_set_shortcut (void);
+
+void cd_systray_set_orientation (GtkOrientation o);
 
 
 #endif

@@ -527,7 +527,7 @@ add_subdirectory (System-Monitor)
 
 ############# SYSTRAY #################
 set (GETTEXT_SYSTRAY ${GETTEXT_PLUGINS})
-set (VERSION_SYSTRAY "0.2.0")
+set (VERSION_SYSTRAY "0.2.1")
 set (PACKAGE_SYSTRAY "cd-systray")
 set (systraydatadir "${pluginsdatadir}/systray")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/systray/data/systray.conf.in ${CMAKE_CURRENT_BINARY_DIR}/systray/data/systray.conf)
@@ -623,3 +623,13 @@ else()
 endif()
 
 add_subdirectory (po)
+
+############# FOLDERS #################
+if ("${enable-folders}" STREQUAL "yes")
+	set (GETTEXT_FOLDERS ${GETTEXT_PLUGINS})
+	set (VERSION_FOLDERS "0.0.1")
+	set (PACKAGE_FOLDERS "cd-Folders")
+	set (foldersdatadir "${pluginsdatadir}/Folders")
+	configure_file (Folders/data/Folders.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf)
+	add_subdirectory (Folders)
+endif()

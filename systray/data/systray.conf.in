@@ -16,7 +16,6 @@ icon =
 #d Name of the dock it belongs to:
 dock name = 
 
-icon=
 order=
 
 #F[Applet's Handbook]
@@ -35,8 +34,6 @@ frame_pos =
 #{If locked, the desklet cannot be moved by simply dragging it with the left mouse button. It can still be moved with ALT + left-click.}
 locked = false
 
-#j+[24;256] Desklet dimensions (width x height):
-#{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
 size = 96;24
 
 #i[-2048;2048] Desklet position (x, y):
@@ -58,7 +55,6 @@ accessibility=1
 #b Should be visible on all desktops?
 sticky=true
 
-use size=false
 
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=

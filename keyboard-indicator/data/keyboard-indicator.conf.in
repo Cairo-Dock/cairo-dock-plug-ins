@@ -58,7 +58,6 @@ sticky=true
 
 
 
-use size=true
 
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=

@@ -68,7 +68,7 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 				&error);
 			if (error != NULL)
 			{
-				cd_warning ("'Me' service not found on the bus : %s", error->message);
+				cd_warning ("'%s' service not found on the bus : %s", pIndicator->cServiceObject, error->message);
 				g_error_free(error);
 			}
 			if (pIndicator->pServiceProxy == NULL)
