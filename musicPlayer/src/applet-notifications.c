@@ -213,13 +213,13 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	{
 		if (myData.cArtist != NULL && myData.cAlbum != NULL/* && myData.pCurrentHandeler->cCoverDir != NULL*/)
 		{
-			cd_debug("Le fichier est un JPEG");
+			cd_debug ("MP - Le fichier est un JPEG");
 			gchar *cDirPath = myData.pCurrentHandeler->cCoverDir ? g_strdup (myData.pCurrentHandeler->cCoverDir) : g_strdup_printf("%s/musicplayer", g_cCairoDockDataDir);
 			gchar *cCommand, *cHost = NULL;
 			gchar *cFilePath = (*CD_APPLET_RECEIVED_DATA == '/' ? g_strdup (CD_APPLET_RECEIVED_DATA) : g_filename_from_uri (CD_APPLET_RECEIVED_DATA, &cHost, NULL));
 			if (cHost != NULL)  // fichier distant, on le telecharge dans le cache du lecteur.
 			{
-				cd_debug("Le fichier est distant (sur %s)", cHost);
+				cd_debug ("MP - Le fichier est distant (sur %s)", cHost);
 				cCommand = g_strdup_printf ("wget -O \"%s/%s - %s.jpg\" '%s'",
 					cDirPath,
 					myData.cArtist,
@@ -228,7 +228,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			}
 			else  // fichier local, on le copie juste dans le cache du lecteur.
 			{
-				cd_debug("Le fichier est local");
+				cd_debug ("MP - Le fichier est local");
 				cCommand = g_strdup_printf ("cp \"%s\" \"%s/%s - %s.jpg\"",
 					cFilePath,
 					cDirPath,
@@ -236,7 +236,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					myData.cAlbum);
 				
 			}
-			cd_debug ("on recupere la pochette par : '%s'", cCommand);
+			cd_debug ("MP - on recupere la pochette par : '%s'", cCommand);
 			cairo_dock_launch_command (cCommand);
 			g_free (cCommand);
 			g_free (cFilePath);
@@ -249,7 +249,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	}
 	else
 	{
-		cd_debug ("on rajoute la chanson a la queue.");
+		cd_debug ("MP - on rajoute la chanson a la queue.");
 		myData.pCurrentHandeler->control (PLAYER_ENQUEUE, CD_APPLET_RECEIVED_DATA);
 	}
 CD_APPLET_ON_DROP_DATA_END

@@ -217,7 +217,7 @@ static void cd_banshee_getSongInfos (void)
 
 static void cd_banshee_getCoverPath (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("MP - %s ()\n", __func__);
 	GHashTable *data_list = NULL;
 	GValue *value;
 	GError *erreur = NULL;
@@ -238,7 +238,7 @@ static void cd_banshee_getCoverPath (void)
 		value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 			cString = g_value_get_string(value);
-		cd_debug (" => got cover path from Banshee : '%s'\n", cString);
+		cd_debug ("MP -  => got cover path from Banshee : '%s'\n", cString);
 		gchar *cCoverPath = g_strdup_printf ("%s/.cache/album-art/300/%s.jpg", g_getenv ("HOME"), cString);
 		if (! g_file_test  (cCoverPath, G_FILE_TEST_EXISTS))
 		{
@@ -273,10 +273,10 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 			cd_banshee_getSongInfos ();
 		else if (strcmp (cMessage, "trackinfoupdated") == 0)
 		{
-			cd_debug (" trackinfoupdated\n");
+			cd_debug ("MP -  trackinfoupdated\n");
 			if (myData.cCoverPath == NULL)
 			{
-				cd_debug ("  aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
+				cd_debug ("MP -   aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
 				cd_banshee_getCoverPath ();
 			}
 			else if (!myData.cover_exist) // le lecteur nous avait deja refile l'adresse en avance, on regarde si le fichier est desormais present.
@@ -292,7 +292,7 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 	}
 	else
 	{
-		cd_debug ("message vide !\n");
+		cd_debug ("MP - message vide !\n");
 		g_free (myData.cPlayingUri);
 		myData.cPlayingUri = NULL;
 		g_free (myData.cArtist);
@@ -325,7 +325,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("MP - %s ()\n", __func__);
 	const GValue *value;
 	const gchar *cEvent = NULL;
 	const gchar *cMessage = NULL;
@@ -455,7 +455,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_SHUFFLE :
 		{
 			gboolean bShuffle = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetShuffleMode");
-			cd_debug ("bShuffle : %d\n", bShuffle);
+			cd_debug ("MP - bShuffle : %d\n", bShuffle);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetShuffleMode", 
 				G_TYPE_INT, ! bShuffle,
 				G_TYPE_INVALID,
@@ -466,7 +466,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_REPEAT :
 		{
 			int iRepeat = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetRepeatMode");
-			cd_debug ("iRepeat : %d\n", iRepeat);
+			cd_debug ("MP - iRepeat : %d\n", iRepeat);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRepeatMode", 
 				G_TYPE_INT, (iRepeat+1)%3,
 				G_TYPE_INVALID,
@@ -499,7 +499,7 @@ static void cd_banshee_read_data (void)
 				myData.iCurrentTime = 0;
 				if (myData.iPlayingStatus == PLAYER_STOPPED && myData.pPreviousPlayingStatus != PLAYER_STOPPED)  /// utile ?...
 				{
-					cd_debug ("LECTEUR STOPPE\n");
+					cd_debug ("MP - LECTEUR STOPPE\n");
 					myData.pPreviousPlayingStatus = PLAYER_STOPPED;
 					//cd_musicplayer_dbus_detect_player ();  // ca fait redemarrer le lecteur ?!
 					//if (! myData.bIsRunning)
