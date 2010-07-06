@@ -29,8 +29,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconDefault 		= CD_CONFIG_GET_STRING ("Icon", "default icon");
 	myConfig.cIconClose		= CD_CONFIG_GET_STRING ("Icon", "close icon");
 	myConfig.cIconBroken 		= CD_CONFIG_GET_STRING ("Icon", "broken icon");
-	myConfig.cIconEmpty 		= CD_CONFIG_GET_STRING ("Icon", "empty icon");
-	myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no deleted signal"); // Ce problème n'étant vu que sur Gutsy, on pourrait le supprimer
+	myConfig.cNoteIcon 		= CD_CONFIG_GET_STRING ("Configuration", "notes icon");
+	///myConfig.bNoDeletedSignal 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "no_deleted_signal"); // Ce problème n'étant vu que sur Gutsy, on pourrait le supprimer
 	myConfig.iAppControlled		= CD_CONFIG_GET_INTEGER ("Configuration", "app controlled");
 	myConfig.cRenderer 		= CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDrawContent 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "draw content");
@@ -52,15 +52,13 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cIconDefault);
 	g_free (myConfig.cIconClose);
 	g_free (myConfig.cIconBroken);
-	g_free (myConfig.cIconEmpty);
+	g_free (myConfig.cNoteIcon);
 	g_free (myConfig.cRenderer);
 	g_free (myConfig.cDateFormat);
 CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pTask);
-	cairo_surface_destroy (myData.pSurfaceDefault);
 	cairo_surface_destroy (myData.pSurfaceNote);
 	
 	free_all_notes ();  // detruit aussi la liste des icones.

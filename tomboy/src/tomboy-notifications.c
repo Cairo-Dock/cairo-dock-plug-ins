@@ -28,22 +28,47 @@
 #include "tomboy-notifications.h"
 
 
+static void _launch_tomboy (void)
+{
+	cd_debug ("");
+	dbus_detect_tomboy();
+	if (! myData.bIsRunning)
+	{
+		const gchar *cName = "";
+		switch (myConfig.iAppControlled)
+		{
+			case CD_NOTES_TOMBOY:
+			default:
+				cName = "Tomboy";
+			break;
+			case CD_NOTES_GNOTES:
+				cName = "Gnote";
+			break;
+		}
+		cairo_dock_show_temporary_dialog_with_icon_printf ("Launching %s...",
+			myIcon, myContainer,
+			2000,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			cName);
+		cairo_dock_launch_command ("tomboy &");
+		dbus_detect_tomboy_async ();
+	}
+	else
+	{
+		free_all_notes ();
+		getAllNotes_async ();
+	}
+}
+
 CD_APPLET_ON_CLICK_BEGIN
 	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		cd_message("tomboy : %s",pClickedIcon->cCommand);
-		showNote(pClickedIcon->cCommand);
+		showNote (pClickedIcon->cCommand);
 	}
-	else if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
+	else if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
-		dbus_detect_tomboy();
-		if (! myData.opening)
-		{
-			dbus_detect_tomboy();
-			free_all_notes ();
-			getAllNotes();
-			cd_tomboy_load_notes();
-		}
+		_launch_tomboy ();
 	}
 	else
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -55,7 +80,7 @@ static void _cd_tomboy_create_new_note (void)
 	gchar *note_title;
 	if (myConfig.bAutoNaming)
 	{
-		cd_debug ("on nomme automatiquement cette note\n");
+		cd_debug ("on nomme automatiquement cette note");
 		note_title = g_new0 (gchar, 50+1);
 		time_t epoch = (time_t) time (NULL);
 		struct tm currentTime;
@@ -64,12 +89,12 @@ static void _cd_tomboy_create_new_note (void)
 	}
 	else
 	{
-		cd_debug ("on demande le nom de la nouvelle note ...\n");
+		cd_debug ("on demande le nom de la nouvelle note ...");
 		note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
 			myIcon,
 			myContainer,
 			NULL);
-		cd_debug ("on a recu '%s'\n", note_title);
+		cd_debug ("on a recu '%s'", note_title);
 	}
 	cd_message ("%s (%s)", __func__, note_title);
 	gchar *note_name = addNote(note_title);
@@ -99,8 +124,7 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, gpointer data)
 {
 	free_all_notes ();
-	getAllNotes();
-	cd_tomboy_load_notes();
+	getAllNotes_async ();
 }
 static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, gpointer data)
 {
@@ -196,15 +220,14 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (pClickedIcon == myIcon && ! myData.opening)  // possible si on l'a quitte apres le demarrage de l'applet.
+	if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
-		dbus_detect_tomboy();
-		free_all_notes ();
-		getAllNotes();
-		cd_tomboy_load_notes();
+		_launch_tomboy ();
 	}
 	else
+	{
 		_cd_tomboy_create_new_note ();
+	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 

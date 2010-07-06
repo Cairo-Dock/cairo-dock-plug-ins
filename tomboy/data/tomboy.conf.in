@@ -17,15 +17,13 @@ frame_app =
 #S+ 'Default' icon image name:
 #{Leave empty to use the default icon.}
 default icon = 
-#S+ Name of the dock it belongs to:
+#S+ 'Close' icon image name:
 #{Leave empty to use the default icon.}
 close icon = 
 #S+ 'Broken' icon image name:
 #{Leave empty to use the default icon.}
 broken icon = 
-#S+ Name of an image for the 'empty' icon :
-#{Leave empty to use the default icon.}
-empty icon = 
+
 
 order=
 icon=
@@ -72,8 +70,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -114,9 +110,9 @@ fg alpha = 1
 #F[Display;gtk-orientation-portrait]
 frame_view=
 
-#n+ Sub-dock view name:
-#{Leave empty to use default sub-dock view.}/
-renderer = 
+#S+ Image file for the notes:
+#{Leave empty to use the default icon.}
+notes icon =
 
 #B Draw note's content on their icon?
 draw content = true
@@ -127,9 +123,13 @@ text color = 1.0; 0.0; 0.
 #B Display note's content with a dialog?
 popup content = true
 
-#i[5;30] Duration of the dialogue
+#i[5;30] Duration of the dialog:
 #{in seconds}
 time_dialog = 10
+
+#n+ Sub-dock view name:
+#{Leave empty to use default sub-dock view.}/
+renderer = 
 
 
 #F[Parameters;gtk-dialog-info]
@@ -151,4 +151,4 @@ date format =
 
 #b Emulate the 'NoteDeleted' signal?
 #{Depending on your tomboy's version, the note deletion may not be automatically notified to us. Only check this box if you notice some error message like <<No marshaller for signature of signal 'NoteDeleted'>> in the terminal.}
-no deleted signal = true
+no_deleted_signal = false

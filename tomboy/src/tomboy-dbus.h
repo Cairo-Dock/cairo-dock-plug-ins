@@ -24,20 +24,14 @@
 #include "tomboy-struct.h"
 
 
-gboolean dbus_connect_to_bus(void);
+gboolean dbus_connect_to_bus (void);
 void dbus_disconnect_from_bus (void);
-void dbus_detect_tomboy(void);
-void dbus_detect_tomboy_async (CairoDockModuleInstance *myApplet);
 
-void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, /*const gchar *note_title, */gpointer data);
-void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data);
-void onChangeNoteList(DBusGProxy *proxy,const gchar *note_name, gpointer data);
-gboolean cd_tomboy_check_deleted_notes (gpointer data);
+void dbus_detect_tomboy (void);
+void dbus_detect_tomboy_async (void);
 
-gchar *getNoteTitle (const gchar *note_name);
-gchar *getNoteContent (const gchar *note_name);
-void getAllNotes (void);
-gboolean cd_tomboy_load_notes (void);
+
+void getAllNotes_async (void);
 void free_all_notes (void);
 
 gchar *addNote(gchar *note_name);

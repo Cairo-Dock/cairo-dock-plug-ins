@@ -24,128 +24,56 @@
 #include "tomboy-draw.h"
 
 
-void load_all_surfaces(void)
+void cd_tomboy_load_note_surface (int iWidth, int iHeight)
 {
-	if (myData.pSurfaceDefault != NULL)
-		cairo_surface_destroy (myData.pSurfaceDefault);
 	if (myData.pSurfaceNote != NULL)
-		cairo_surface_destroy (myData.pSurfaceNote);
-	
-	if (myDock)  // en mode desklet, on ne peut pas charger les surfaces car on n'a pas leur encore leur taille.
 	{
-		//Chargement de default.svg
-		if (myConfig.cIconDefault != NULL)
+		if (myData.iNoteWidth != iWidth || myData.iNoteHeight != iHeight)
 		{
-			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cIconDefault);
-			myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-			g_free (cUserImagePath);
+			cairo_surface_destroy (myData.pSurfaceNote);
+			myData.pSurfaceNote = NULL;
 		}
-		else
-		{
-			myData.pSurfaceDefault = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
-		}
-		
-		//Chargement de note.svg ou d'une autre icone.
-		if (myConfig.cIconEmpty == NULL)
-			myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/note.svg");
-		else
-			myData.pSurfaceNote = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cIconEmpty);
 	}
-	else
+	if (myData.pSurfaceNote == NULL)
 	{
-		myData.pSurfaceDefault = NULL;
-		myData.pSurfaceNote = NULL;
+		myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cNoteIcon != NULL ? myConfig.cNoteIcon : MY_APPLET_SHARE_DATA_DIR"/note.svg",
+			iWidth,
+			iHeight);
 	}
 }
 
-void update_icon(void)
+void cd_tomboy_update_icon (void)
 {
 	if (myDesklet)
 		return ;
-	if(myData.opening)
+	if(myData.bIsRunning)
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
-		CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault);
-	}
-	else
-	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "close.svg");
-	}
-}
-
-
-static gboolean _cd_tomboy_reset_quick_info (gpointer data)
-{
-	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
-	CD_APPLET_REDRAW_MY_ICON;
-	myData.iSidResetQuickInfo = 0;
-	return FALSE;
-}
-
-void cd_tomboy_show_results (GList *pIconsList)
-{
-	//\_______________ On marque les icones du resultat.
-	cd_tomboy_reset_icon_marks (FALSE);
-	
-	int iNbResults = 0;
-	Icon *icon;
-	GList *ic;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		icon->bHasIndicator = TRUE;
-		iNbResults ++;
-	}
-	
-	//\_______________ On les montre.
-	if (myDock)
-	{
-		cairo_dock_show_subdock (myIcon, myDock);
-		cairo_dock_redraw_container (CAIRO_CONTAINER (myIcon->pSubDock));
-	}
-	else
-		cairo_dock_redraw_container (myContainer);
-	
-	//\_______________ On affiche le resultat.
-	if (myDock)
-	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d %s", iNbResults, iNbResults > 1 ? D_("results") : D_("result"));
-		if (myData.iSidResetQuickInfo != 0)
-			g_source_remove (myData.iSidResetQuickInfo);
-		myData.iSidResetQuickInfo = g_timeout_add_seconds (5, _cd_tomboy_reset_quick_info, NULL);
-	}
-	else
-	{
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%d %s",
-			pIconsList ? pIconsList->data : myDesklet->icons->data,
-			myContainer,
-			myConfig.iDialogDuration,
-			myConfig.cIconDefault != NULL ? myConfig.cIconDefault : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			iNbResults,
-			iNbResults > 1 ? D_("results") : D_("result"));
-	}
-}
-
-void cd_tomboy_reset_icon_marks (gboolean bForceRedraw)
-{
-	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	Icon *icon;
-	GList *ic;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		icon->bHasIndicator = FALSE;
-	}
-	
-	if (bForceRedraw)
-	{
-		if (myDock)
+		if (myData.iIconState != 1)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
-			CD_APPLET_REDRAW_MY_ICON;
+			myData.iIconState = 1;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconDefault, "default.svg");
 		}
-		cairo_dock_redraw_container (CD_APPLET_MY_ICONS_LIST_CONTAINER);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
 	}
+	else if (myData.dbus_enable)
+	{
+		if (myData.iIconState != 2)
+		{
+			myData.iIconState = 2;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "close.svg");
+		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+	}
+	else
+	{
+		if (myData.iIconState != 3)
+		{
+			myData.iIconState = 3;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
+		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+	}
+	CD_APPLET_REDRAW_MY_ICON;
 }
 
 
@@ -191,44 +119,75 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 }
 
 
-void cd_tomboy_draw_content_on_all_icons (void)
+static gboolean _cd_tomboy_reset_quick_info (gpointer data)
 {
-	cd_debug ("%s ()\n", __func__);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
+	CD_APPLET_REDRAW_MY_ICON;
+	myData.iSidResetQuickInfo = 0;
+	return FALSE;
+}
+void cd_tomboy_show_results (GList *pIconsList)
+{
+	//\_______________ On marque les icones du resultat.
+	cd_tomboy_reset_icon_marks (FALSE);
+	
+	int iNbResults = 0;
 	Icon *icon;
-	GList *ic, *pList = CD_APPLET_MY_ICONS_LIST;
-	for (ic = pList; ic != NULL; ic = ic->next)
+	GList *ic;
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		if (icon->cClass != NULL)
-		{
-			cairo_t *pIconContext = cairo_create (icon->pIconBuffer);
-			cd_tomboy_draw_content_on_icon (pIconContext, icon);
-			cairo_destroy (pIconContext);
-		}
+		icon->bHasIndicator = TRUE;
+		iNbResults ++;
 	}
-	cairo_dock_redraw_container (myContainer);
+	
+	//\_______________ On les montre.
+	if (myDock)
+	{
+		cairo_dock_show_subdock (myIcon, myDock);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (myIcon->pSubDock));
+	}
+	else
+		cairo_dock_redraw_container (myContainer);
+	
+	//\_______________ On affiche le resultat.
+	if (myDock)
+	{
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d %s", iNbResults, iNbResults > 1 ? D_("results") : D_("result"));
+		if (myData.iSidResetQuickInfo != 0)
+			g_source_remove (myData.iSidResetQuickInfo);
+		myData.iSidResetQuickInfo = g_timeout_add_seconds (5, _cd_tomboy_reset_quick_info, NULL);
+	}
+	else
+	{
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%d %s",
+			pIconsList ? pIconsList->data : myDesklet->icons->data,
+			myContainer,
+			myConfig.iDialogDuration,
+			"same icon",
+			iNbResults,
+			iNbResults > 1 ? D_("results") : D_("result"));
+	}
 }
 
-static gboolean _draw_content (CairoDockModuleInstance *myApplet)
+void cd_tomboy_reset_icon_marks (gboolean bForceRedraw)
 {
-	CD_APPLET_ENTER;
-	cd_tomboy_draw_content_on_all_icons ();
-	myData.iSidDrawContent = 0;
-	CD_APPLET_LEAVE (FALSE);
-}
-void cd_tomboy_trigger_draw_content_on_all_icons (CairoDockModuleInstance *myApplet)
-{
-	if (myData.iSidDrawContent != 0)  // on la lance en idle, car les icones sont chargees en idle.
-		g_source_remove (myData.iSidDrawContent);
-	myData.iSidDrawContent = g_idle_add ((GSourceFunc)_draw_content, myApplet);
-}
-
-/**
-void cd_tomboy_reload_desklet_renderer (void)
-{
-	CD_APPLET_SET_DESKLET_RENDERER ("Slide");
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon;
+	GList *ic;
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		icon->bHasIndicator = FALSE;
+	}
 	
-	cd_tomboy_draw_content_on_all_icons ();
-	
-	cairo_dock_redraw_container (myContainer);
-}*/
+	if (bForceRedraw)
+	{
+		if (myDock)
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+		cairo_dock_redraw_container (CD_APPLET_MY_ICONS_LIST_CONTAINER);
+	}
+}

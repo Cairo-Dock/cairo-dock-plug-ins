@@ -37,30 +37,20 @@ CD_APPLET_DEFINITION ("Note-Taking",
 	"Necropotame (Adrien Pilleboue)")
 
 CD_APPLET_INIT_BEGIN
-	load_all_surfaces();
-	
 	myData.hNoteTable = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
 		NULL,  // l'URI est partage avec l'icone.
 		(GDestroyNotify) NULL);  // on detruit les icones nous-memes.
 	
 	myData.dbus_enable = dbus_connect_to_bus ();
-	myData.pTask = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) getAllNotes,
-		(CairoDockUpdateSyncFunc) cd_tomboy_load_notes,
-		myApplet);
 	if (myData.dbus_enable)
 	{
-		dbus_detect_tomboy_async (myApplet);
-		///cairo_dock_launch_task (myData.pTask);
+		dbus_detect_tomboy_async ();  // -> getAllNotes_async -> _load_notes
 	}
 	else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
 	}
-	
-	if (myConfig.bNoDeletedSignal)
-		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);
 	
 	//Enregistrement des notifications
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
@@ -75,40 +65,24 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);
 	
-	if (myData.iSidCheckNotes != 0)
-		g_source_remove (myData.iSidCheckNotes);
 	if (myData.iSidResetQuickInfo != 0)
 		g_source_remove (myData.iSidResetQuickInfo);
 	if (myData.iSidPopupDialog != 0)
 		g_source_remove (myData.iSidPopupDialog);
-	if (myData.iSidDrawContent != 0)
-		g_source_remove (myData.iSidDrawContent);
 	
 	dbus_disconnect_from_bus ();
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	//\_______________ On recharge les surfaces.
-	load_all_surfaces();
-	
 	//\_______________ On recharge les parametres qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		myData.iIconState = 0;
+		
 		if (myData.dbus_enable)
 		{
-			cairo_dock_stop_task (myData.pTask);
-			free_all_notes ();  // detruit aussi la liste des icones.
-			
-			dbus_disconnect_from_bus ();
-			dbus_connect_to_bus (); // Si on change de note-taking
-			
-			//\___________ On arrete le timer.
-			if (myData.iSidCheckNotes != 0)
-			{
-				g_source_remove (myData.iSidCheckNotes);
-				myData.iSidCheckNotes = 0;
-			}
+			//\___________ On arrete tout.
 			if (myData.iSidResetQuickInfo != 0)
 			{
 				g_source_remove (myData.iSidResetQuickInfo);
@@ -120,27 +94,20 @@ CD_APPLET_RELOAD_BEGIN
 				myData.iSidPopupDialog = 0;
 			}
 			
+			//\___________ On se reconnecte (pour si on change de note-taking).
+			dbus_disconnect_from_bus ();  // arrete aussi les appels asynchrones.
+			dbus_connect_to_bus ();
 			
-			//\___________ On reconstruit les icones (si l'icone de la note a change).
-			cairo_dock_launch_task (myData.pTask);
-		}
-	}
-	else if (myDesklet)
-	{
-		cd_tomboy_trigger_draw_content_on_all_icons (myApplet);  // on recharge juste les surfaces/textures des icones.
-		///cd_tomboy_reload_desklet_renderer ();
-	}
-	
-	//\___________ On redessine l'icone principale.
-	if (myDock)
-	{
-		if (myData.dbus_enable)
-		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaceDefault);
-		}
-		else  // on signale par l'icone appropriee que le bus n'est pas accessible.
-		{
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "broken.svg");
+			//\___________ On recharge les notes (l'icone peut avoir change).
+			free_all_notes ();  // detruit aussi la liste des icones.
+			if (myData.dbus_enable)
+			{
+				dbus_detect_tomboy_async ();  // -> getAllNotes_async -> _load_notes
+			}
+			else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+			{
+				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
+			}
 		}
 	}
 CD_APPLET_RELOAD_END

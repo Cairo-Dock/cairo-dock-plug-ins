@@ -23,14 +23,20 @@
 #include <cairo-dock.h>
 #include <cairo-dock-applet-single-instance.h>
 
+typedef enum {
+	CD_NOTES_GNOTES=0,
+	CD_NOTES_TOMBOY,
+	CD_NOTES_NB_BACKENDS
+	} CDTomboyBackendEnum;
+
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cIconDefault;
 	gchar *cIconClose;
 	gchar *cIconBroken;
-	gchar *cIconEmpty;
+	gchar *cNoteIcon;
 	gboolean bNoDeletedSignal;
-	gint iAppControlled;
+	CDTomboyBackendEnum iAppControlled;
 	gchar *cRenderer;
 	gboolean bDrawContent;
 	gboolean bPopupContent;
@@ -42,16 +48,16 @@ struct _AppletConfig {
 	} ;
 
 struct _AppletData {
-	cairo_surface_t *pSurfaceDefault;
 	cairo_surface_t *pSurfaceNote;
+	gint iNoteWidth, iNoteHeight;
 	gboolean dbus_enable;
-	gboolean opening;
-	guint iSidCheckNotes;
+	gboolean bIsRunning;
+	gint iIconState;  // 0:vide 1:opened 2:closed 3:broken.
 	GHashTable *hNoteTable;
-	CairoDockTask *pTask;
 	guint iSidResetQuickInfo;
 	guint iSidPopupDialog;
-	guint iSidDrawContent;
+	DBusGProxyCall *pDetectTomboyCall;
+	DBusGProxyCall *pGetNotesCall;
 	} ;
 
 #endif
