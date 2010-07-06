@@ -63,7 +63,7 @@ CD_APPLET_STOP_BEGIN
 	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS) && myConfig.cStackDir)  // on a efface notre instance, on efface donc aussi le repertoire.
 	{
 		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", myConfig.cStackDir);
-		cd_debug ("Stack : %s\n", myConfig.cStackDir);
+		cd_debug ("Stack : %s", myConfig.cStackDir);
 		int r = system (cCommand);
 		g_free (cCommand);
 	}
@@ -80,7 +80,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_stack_build_icons (myApplet);  // pour les mimes.
 	}
-	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
+	/**else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
 	{
 		const gchar *cDeskletRendererName = NULL;
 		switch (myConfig.iDeskletRendererType)
@@ -95,5 +95,5 @@ CD_APPLET_RELOAD_BEGIN
 			break ;
 		}
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
-	}
+	}*/
 CD_APPLET_RELOAD_END

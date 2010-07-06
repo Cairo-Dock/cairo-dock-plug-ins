@@ -77,27 +77,39 @@ void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 	g_remove (cFilePath);
 	g_free (cFilePath);
 	
-	if (myDock)
-	{
-		cairo_dock_detach_icon_from_dock (pIcon, myIcon->pSubDock, FALSE);
-		cairo_dock_update_dock_size (myIcon->pSubDock);
-	}
-	else
-	{
-		myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
-		gtk_widget_queue_draw (myDesklet->container.pWidget);
-	}
-	cairo_dock_free_icon (pIcon);
+	CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);  // detruit l'icone.
 }
 
 
-
-Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cStackDirectory, const gchar *cContent)
+static void _set_icon_order (Icon *pIcon, CairoDockModuleInstance *myApplet, GCompareFunc comp)
+{
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon;
+	GList *ic;
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (comp (icon, pIcon) < 0)
+		{
+			if (ic->next != NULL)
+			{
+				Icon *next_icon = ic->next->data;
+				pIcon->fOrder = (icon->fOrder + next_icon->fOrder) / 2;
+			}
+			else
+			{
+				pIcon->fOrder = icon->fOrder + 1;
+			}
+		}
+	}
+}
+static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const gchar *cContent)
 {
 	gchar *cName;
 	double fOrder = 0;
 	int iDate;
 	
+	//\_______________________ On lui trouve un petit nom.
 	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0 || strncmp (cContent, "https://", 8) == 0)
@@ -105,12 +117,9 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');
 			if (str != NULL)
-			{
 				*str = '\0';
-				str ++;
-			}
-			else
-				str = buf;
+			
+			str = buf;
 			if (str[strlen(str)-1] == '/')
 				str[strlen(str)-1] = '\0';
 			str = strrchr (buf, '/');
@@ -137,14 +146,11 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	}
 	g_return_val_if_fail (cName != NULL, NULL);
 	
-	GList *pIconsList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
-	GList *ic;
-	Icon *icon;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)
-	{
-		icon = ic->data;
-		fOrder = MAX (fOrder, icon->fOrder);
-	}
+	//\_______________________ On ecrit toutes les infos dans un fichier de conf.
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon = cairo_dock_get_last_icon (pIconsList);
+	if (icon)
+		fOrder = icon->fOrder + 1;
 	
 	iDate = time (NULL);
 	
@@ -173,17 +179,29 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 	do
 	{
 		if (i == 0)
-			g_string_printf (sConfFilePath, "%s/%s", cStackDirectory, cName);
+			g_string_printf (sConfFilePath, "%s/%s", myConfig.cStackDir, cName);
 		else
-			g_string_printf (sConfFilePath, "%s/%s.%d", cStackDirectory, cName, i);
+			g_string_printf (sConfFilePath, "%s/%s.%d", myConfig.cStackDir, cName, i);
 		i ++;
 	} while (g_file_test (sConfFilePath->str, G_FILE_TEST_EXISTS));
 	
 	cairo_dock_write_keys_to_file (pKeyFile, sConfFilePath->str);
 	
+	//\_______________________ On cree une icone a partir du fichier de cle precedemment remplit.
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	if (pIcon != NULL)
+	{
 		pIcon->cDesktopFileName = g_path_get_basename (sConfFilePath->str);
+		
+		if (myConfig.iSortType == CD_STACK_SORT_BY_NAME)
+		{
+			_set_icon_order (pIcon, myApplet, (GCompareFunc) cairo_dock_compare_icons_name);
+		}
+		else if (myConfig.iSortType == CD_STACK_SORT_BY_TYPE)
+		{
+			_set_icon_order (pIcon, myApplet, (GCompareFunc) cairo_dock_compare_icons_extension);
+		}
+	}
 	
 	g_key_file_free (pKeyFile);
 	g_string_free (sConfFilePath, TRUE);
@@ -193,62 +211,12 @@ Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cSta
 void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gchar *cContent)
 {
 	//\_______________________ On cree l'item.
-	Icon *pIcon = cd_stack_create_item (myApplet, myConfig.cStackDir, cContent);
+	Icon *pIcon = _cd_stack_create_new_item (myApplet, cContent);
 	if (pIcon == NULL)  // peut arriver si l'icone est filtree.
 		return ;
 	
 	//\_______________________ On le charge et on le rajoute au container.
-	if (myDock)
-	{
-		if (myIcon->pSubDock == NULL)
-		{
-			GList *pStacksIconList = NULL;
-			pStacksIconList = g_list_prepend (pStacksIconList, pIcon);
-			CD_APPLET_CREATE_MY_SUBDOCK (pStacksIconList, myConfig.cRenderer);
-		}
-		else
-		{
-			cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
-			GCompareFunc pCompareFunc = NULL;
-			switch (myConfig.iSortType)
-			{
-				case CD_STACK_SORT_BY_DATE :
-				case CD_STACK_SORT_MANUALLY :
-					pCompareFunc = (GCompareFunc) cairo_dock_compare_icons_order;
-				break;
-				case CD_STACK_SORT_BY_NAME :
-					pCompareFunc = (GCompareFunc) cairo_dock_compare_icons_name;
-				break;
-				case CD_STACK_SORT_BY_TYPE :
-				default :
-					pCompareFunc = (GCompareFunc) cairo_dock_compare_icons_extension;
-				break;
-			}
-			cairo_dock_insert_icon_in_dock_full (pIcon, myIcon->pSubDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON, ! CAIRO_DOCK_INSERT_SEPARATOR, pCompareFunc);
-		}
-	}
-	else
-	{
-		GList *pStacksIconList = myDesklet->icons;
-		pStacksIconList = cd_stack_insert_icon_in_list (myApplet, pStacksIconList, pIcon);
-		
-		myDesklet->icons = pStacksIconList;
-		
-		const gchar *cDeskletRendererName = NULL;
-		switch (myConfig.iDeskletRendererType)
-		{
-			case CD_DESKLET_SLIDE :
-			default :
-				cDeskletRendererName = "Slide";
-			break ;
-			
-			case CD_DESKLET_TREE :
-				cDeskletRendererName = "Tree";
-			break ;
-		}
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
-		CAIRO_DOCK_REDRAW_MY_CONTAINER;
-	}
+	CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pIcon);
 }
 
 void cd_stack_set_item_name (const gchar *cDesktopFilePath, const gchar *cName)

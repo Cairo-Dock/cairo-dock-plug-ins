@@ -31,7 +31,6 @@ void cd_stack_clear_stack (CairoDockModuleInstance *myApplet);
 void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon);
 
 
-Icon *cd_stack_create_item (CairoDockModuleInstance *myApplet, const gchar *cStackDirectory, const gchar *cContent);
 void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gchar *cContent);
 void cd_stack_set_item_name (const gchar *cDesktopFilePath, const gchar *cName);
 void cd_stack_set_item_order (const gchar *cDesktopFilePath, double fOrder);

@@ -30,9 +30,8 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 	
 	cd_debug ("%s (%s)", __func__, cCompar);
 	int i=0;
-	gchar *tmp=NULL;
+	gchar *tmp;
 	while (cString[i] != NULL) {
-		cd_debug ("   %s\n", cString[i]);
 		tmp = g_strstr_len (cCompar, -1, cString[i]);
 		if (tmp != NULL)
 			return TRUE; //We found what we want
@@ -136,34 +135,17 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath)
 {
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
-	g_return_val_if_fail (pKeyFile != NULL, NULL)	;
+	g_return_val_if_fail (pKeyFile != NULL, NULL);
 	
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);
 	
 	g_key_file_free (pKeyFile);
 	return pIcon;
 }
-GList *cd_stack_insert_icon_in_list (CairoDockModuleInstance *myApplet, GList *pIconsList, Icon *pIcon)
-{
-	g_return_val_if_fail (pIcon != NULL, pIconsList);
-	switch (myConfig.iSortType)
-	{
-		case CD_STACK_SORT_BY_DATE :
-		case CD_STACK_SORT_MANUALLY :
-			pIconsList = g_list_insert_sorted (pIconsList, pIcon, (GCompareFunc) cairo_dock_compare_icons_order);
-		break;
-		case CD_STACK_SORT_BY_NAME :
-			pIconsList = g_list_insert_sorted (pIconsList, pIcon, (GCompareFunc) cairo_dock_compare_icons_name);
-		break;
-		case CD_STACK_SORT_BY_TYPE :
-		default :
-			pIconsList = g_list_insert_sorted (pIconsList, pIcon, (GCompareFunc) cairo_dock_compare_icons_extension);
-		break;
-	}
-	return pIconsList;
-}
+
 GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cStackDir)
 {
+	// on parcourt tous les fichiers du repertoire.
 	GDir *dir = g_dir_open (cStackDir, 0, NULL);
 	g_return_val_if_fail (dir != NULL, NULL);
 	
@@ -171,12 +153,8 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 	Icon *pIcon;
 	GString *sDesktopFilePath = g_string_new ("");
 	const gchar *cFileName;
-	do
+	while ((cFileName = g_dir_read_name (dir)) != NULL)
 	{
-		cFileName = g_dir_read_name (dir);
-		if (cFileName == NULL)
-			break ;
-		
 		g_string_printf (sDesktopFilePath, "%s/%s", cStackDir, cFileName);
 		
 		pIcon = cd_stack_build_one_icon_from_file (myApplet, sDesktopFilePath->str);
@@ -184,12 +162,41 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 		{
 			pIcon->cDesktopFileName = g_strdup (cFileName);
 			
-			pIconsList = cd_stack_insert_icon_in_list (myApplet, pIconsList, pIcon);
+			pIconsList = g_list_prepend (pIconsList, pIcon);
 		}
-	} while (1);
+	}
 	
 	g_string_free (sDesktopFilePath, TRUE);
 	g_dir_close (dir);
+	
+	// on classe la liste.
+	if (myConfig.iSortType == CD_STACK_SORT_BY_NAME)
+	{
+		pIconsList = g_list_sort (pIconsList, (GCompareFunc) cairo_dock_compare_icons_name);
+		int i = 0;
+		GList *ic;
+		for (ic = pIconsList; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			pIcon->fOrder = i ++;
+		}
+	}
+	else if (myConfig.iSortType == CD_STACK_SORT_BY_TYPE)
+	{
+		pIconsList = g_list_sort (pIconsList, (GCompareFunc) cairo_dock_compare_icons_extension);  /// a defaut d'avoir les types mime...
+		int i = 0;
+		GList *ic;
+		for (ic = pIconsList; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			pIcon->fOrder = i ++;
+		}
+	}
+	else
+	{
+		pIconsList = g_list_sort (pIconsList, (GCompareFunc) cairo_dock_compare_icons_order);
+	}
+	
 	return pIconsList;
 }
 
