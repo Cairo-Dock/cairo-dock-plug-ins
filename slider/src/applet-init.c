@@ -96,20 +96,19 @@ CD_APPLET_RELOAD_BEGIN
 	cairo_surface_destroy (myData.pPrevCairoSurface);
 	myData.pPrevCairoSurface = NULL;
 	
-	if (myDesklet) {
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
-	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
-	
-	
 	if ((!myConfig.bImageName || myDock) && myIcon->cQuickInfo != NULL) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
 	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		if (myDesklet) {
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
+		
+		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
+		
 		cairo_dock_stop_task (myData.pMeasureImage);
 		cairo_dock_stop_task (myData.pMeasureDirectory);
 		cd_slider_free_images_list (myData.pList);
@@ -119,7 +118,8 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_launch_task (myData.pMeasureDirectory);
 	}
 	else {
-		//Nothing to do ^^
+		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
+		
 		cd_slider_next_slide (myApplet); //restart sliding
 	}
 	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;

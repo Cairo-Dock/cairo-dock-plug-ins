@@ -179,6 +179,7 @@ void xgamma_build_and_show_widget (void)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
+		CD_APPLET_SET_STATIC_DESKLET;
 	}
 }

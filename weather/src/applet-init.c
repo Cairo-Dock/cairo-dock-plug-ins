@@ -90,11 +90,11 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_launch_task (myData.pTask);
 
 	}
-	else if (myDesklet)
+	/*else if (myDesklet)
 	{
 		// rien a faire, cairo-dock va recharger notre sous-dock.
 		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-	}
+	}*/
 CD_APPLET_RELOAD_END
 

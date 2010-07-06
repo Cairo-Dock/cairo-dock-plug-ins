@@ -135,18 +135,18 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
 	cairo_dock_free_emblem (myData.pEmblem);
 	myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
 	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
+		
 		_set_data_renderer (myApplet, TRUE);
 		
 		if(myData.checkLoop != 0)  // la frequence peut avoir change.

@@ -27,6 +27,7 @@
 gboolean dbus_connect_to_bus(void);
 void dbus_disconnect_from_bus (void);
 void dbus_detect_tomboy(void);
+void dbus_detect_tomboy_async (CairoDockModuleInstance *myApplet);
 
 void onDeleteNote(DBusGProxy *proxy,const gchar *note_uri, /*const gchar *note_title, */gpointer data);
 void onAddNote(DBusGProxy *proxy,const gchar *note_uri, gpointer data);

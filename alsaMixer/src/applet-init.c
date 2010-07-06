@@ -103,15 +103,16 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
+		myIcon->fWidth = MAX (1, MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0;
 		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
 		myIcon->fScale = 1;
 		cairo_dock_set_icon_size (myContainer, myIcon);
 		cairo_dock_load_icon_buffers (myIcon, myContainer);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // on charge l'icone nous-memes.
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		
 		if (myConfig.bHideScaleOnLeave)
 		{
 			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
@@ -196,12 +197,9 @@ CD_APPLET_RELOAD_BEGIN
 		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
 		myIcon->fHeight = myIcon->fWidth;
 		myIcon->fDrawX = 0;
-		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight + 0*g_iDockRadius/2;
+		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
 		myIcon->fScale = 1;
-		cairo_dock_set_icon_size (myContainer, myIcon);
-		cairo_dock_load_icon_buffers (myIcon, myContainer);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, "Simple", ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-		myDrawContext = cairo_create (myIcon->pIconBuffer);
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
 	//\_______________ On recharge les donnees qui ont pu changer.

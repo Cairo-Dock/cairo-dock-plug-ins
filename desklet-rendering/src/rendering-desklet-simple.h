@@ -26,6 +26,14 @@
 #define MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME "Simple"
 
 
+typedef struct {
+	// from config
+	gint iTopMargin;
+	gint iLeftpMargin;
+	gint iBottomMargin;
+	gint iRightMargin;
+	} CDSimpleParameters;
+
 void rendering_register_simple_desklet_renderer (void);
 
 

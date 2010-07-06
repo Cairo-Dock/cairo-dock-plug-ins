@@ -2,22 +2,13 @@
 ########### sources ###############
 
 SET(cd-desklet-rendering_LIB_SRCS
-	rendering-init.c
-	rendering-init.h
-	rendering-config.c
-	rendering-config.h
-	rendering-desklet-caroussel.c
-	rendering-desklet-caroussel.h
-	rendering-desklet-tree.c
-	rendering-desklet-tree.h
-	rendering-desklet-controler.c
-	rendering-desklet-controler.h
-	rendering-desklet-simple.h
-	rendering-desklet-simple.c
-	rendering-desklet-decorations.c
-	rendering-desklet-decorations.h
-	rendering-desklet-slide.c
-	rendering-desklet-slide.h
+	rendering-init.c 				rendering-init.h
+	rendering-config.c 				rendering-config.h
+	rendering-desklet-caroussel.c 	rendering-desklet-caroussel.h
+	rendering-desklet-tree.c 		rendering-desklet-tree.h
+	rendering-desklet-simple.c 		rendering-desklet-simple.h
+	rendering-desklet-decorations.c rendering-desklet-decorations.h
+	rendering-desklet-slide.c 		rendering-desklet-slide.h
 	rendering-struct.h
 )
 

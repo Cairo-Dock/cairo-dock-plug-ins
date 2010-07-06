@@ -24,6 +24,7 @@
 #include "applet-notifications.h"
 #include "applet-bookmarks.h"
 #include "applet-load-icons.h"
+#include "applet-disk-usage.h"
 #include "applet-struct.h"
 #include "applet-init.h"
 
@@ -85,23 +86,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
 	{
-		const gchar *cDeskletRendererName = NULL;
-		switch (myConfig.iDeskletRendererType)
-		{
-			case CD_DESKLET_SLIDE :
-			default :
-				cDeskletRendererName = "Slide";
-			break ;
-			
-			case CD_DESKLET_TREE :
-				cDeskletRendererName = "Tree";
-			break ;
-		}
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA (cDeskletRendererName, NULL);
-	}
-	else
-	{
-		// rien a faire, cairo-dock va recharger notre sous-dock.
+		cd_shortcuts_trigger_draw_disk_usage (myApplet);  // les icones ont ete rechargees par la vue, donc on redessine les barres.
 	}
 CD_APPLET_RELOAD_END
 

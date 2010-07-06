@@ -45,14 +45,14 @@ CD_APPLET_INIT_BEGIN
 		(GDestroyNotify) NULL);  // on detruit les icones nous-memes.
 	
 	myData.dbus_enable = dbus_connect_to_bus ();
+	myData.pTask = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) getAllNotes,
+		(CairoDockUpdateSyncFunc) cd_tomboy_load_notes,
+		myApplet);
 	if (myData.dbus_enable)
 	{
-		dbus_detect_tomboy();
-		myData.pTask = cairo_dock_new_task (0,
-				(CairoDockGetDataAsyncFunc) getAllNotes,
-				(CairoDockUpdateSyncFunc) cd_tomboy_load_notes,
-				myApplet);
-		cairo_dock_launch_task (myData.pTask);
+		dbus_detect_tomboy_async (myApplet);
+		///cairo_dock_launch_task (myData.pTask);
 	}
 	else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{
@@ -81,6 +81,8 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidResetQuickInfo);
 	if (myData.iSidPopupDialog != 0)
 		g_source_remove (myData.iSidPopupDialog);
+	if (myData.iSidDrawContent != 0)
+		g_source_remove (myData.iSidDrawContent);
 	
 	dbus_disconnect_from_bus ();
 CD_APPLET_STOP_END
@@ -98,6 +100,7 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_stop_task (myData.pTask);
 			free_all_notes ();  // detruit aussi la liste des icones.
 			
+			dbus_disconnect_from_bus ();
 			dbus_connect_to_bus (); // Si on change de note-taking
 			
 			//\___________ On arrete le timer.
@@ -124,7 +127,8 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myDesklet)
 	{
-		cd_tomboy_reload_desklet_renderer ();  // on recharge juste les surfaces/textures des icones.
+		cd_tomboy_trigger_draw_content_on_all_icons (myApplet);  // on recharge juste les surfaces/textures des icones.
+		///cd_tomboy_reload_desklet_renderer ();
 	}
 	
 	//\___________ On redessine l'icone principale.

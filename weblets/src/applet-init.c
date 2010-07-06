@@ -98,7 +98,8 @@ CD_APPLET_RELOAD_BEGIN
 				cairo_dock_dialog_unreference (myData.dialog);
 				myData.dialog = NULL;
 				cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
-				cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // pou rempecher le clignotement du au double-buffer.
+				CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour rempecher le clignotement du au double-buffer.
+				//cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // pou rempecher le clignotement du au double-buffer.
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue

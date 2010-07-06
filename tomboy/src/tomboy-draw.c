@@ -203,15 +203,27 @@ void cd_tomboy_draw_content_on_all_icons (void)
 		{
 			cairo_t *pIconContext = cairo_create (icon->pIconBuffer);
 			cd_tomboy_draw_content_on_icon (pIconContext, icon);
-			if (g_bUseOpenGL)
-				cairo_dock_update_icon_texture (icon);
-			else if (myDock)
-				cairo_dock_add_reflection_to_icon (icon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
 			cairo_destroy (pIconContext);
 		}
 	}
+	cairo_dock_redraw_container (myContainer);
 }
 
+static gboolean _draw_content (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_tomboy_draw_content_on_all_icons ();
+	myData.iSidDrawContent = 0;
+	CD_APPLET_LEAVE (FALSE);
+}
+void cd_tomboy_trigger_draw_content_on_all_icons (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iSidDrawContent != 0)  // on la lance en idle, car les icones sont chargees en idle.
+		g_source_remove (myData.iSidDrawContent);
+	myData.iSidDrawContent = g_idle_add ((GSourceFunc)_draw_content, myApplet);
+}
+
+/**
 void cd_tomboy_reload_desklet_renderer (void)
 {
 	CD_APPLET_SET_DESKLET_RENDERER ("Slide");
@@ -219,4 +231,4 @@ void cd_tomboy_reload_desklet_renderer (void)
 	cd_tomboy_draw_content_on_all_icons ();
 	
 	cairo_dock_redraw_container (myContainer);
-}
+}*/

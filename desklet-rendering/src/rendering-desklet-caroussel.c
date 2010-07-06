@@ -26,7 +26,7 @@
 #define CAROUSSEL_RATIO_MAIN_ICON_DESKLET .5
 
 // Pour dessiner une icone, avec son quickinfo, dans la matrice courante.
-void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContainer, gboolean bIsReflect)
+static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContainer, gboolean bIsReflect)
 {
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
 		return ;
@@ -132,7 +132,7 @@ static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gbool
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, gpointer *pConfig)
+static CDCarousselParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)
 {
 	CDCarousselParameters *pCaroussel = g_new0 (CDCarousselParameters, 1);
 	if (pConfig != NULL)
@@ -141,17 +141,13 @@ CDCarousselParameters *rendering_configure_caroussel (CairoDesklet *pDesklet, gp
 		pCaroussel->bRotateIconsOnEllipse = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
-	int iNbIcons = g_list_length (pDesklet->icons);
-	pCaroussel->fDeltaTheta = (iNbIcons != 0 ? 2 * G_PI / iNbIcons : 0);
-	//g_print ("%s (%.2f)\n", __func__, pCaroussel->fDeltaTheta);
-	
 	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	return pCaroussel;
 }
 
-void rendering_load_caroussel_data (CairoDesklet *pDesklet)
+static void load_data (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -198,7 +194,7 @@ void rendering_load_caroussel_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_free_caroussel_data (CairoDesklet *pDesklet)
+static void free_data (CairoDesklet *pDesklet)
 {
 	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, NULL);
 	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, NULL);
@@ -211,15 +207,53 @@ void rendering_free_caroussel_data (CairoDesklet *pDesklet)
 	pDesklet->pRendererData = NULL;
 }
 
-
-void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
+static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
 		return ;
 	
+	double fCentralSphereWidth = MAX (1, MIN (pDesklet->container.iWidth/3, pDesklet->container.iHeight/2));
+	if (pIcon == pDesklet->pIcon)
+	{
+		if (pCaroussel->b3D)
+		{
+			pIcon->fWidth = fCentralSphereWidth;
+			pIcon->fHeight = pIcon->fWidth;
+		}
+		else
+		{
+			pIcon->fWidth = MAX (1, pDesklet->container.iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
+			pIcon->fHeight = MAX (1, pDesklet->container.iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
+		}
+	}
+	else
+	{
+		if (pCaroussel->b3D)
+		{
+			pIcon->fWidth = fCentralSphereWidth/2;  // lorsque l'icone est devant, la ou elle est la plus grosse.
+			pIcon->fHeight = pIcon->fWidth;
+		}
+		else
+		{
+			pIcon->fWidth = MAX (1, .2 * pDesklet->container.iWidth - myLabels.iconTextDescription.iSize);
+			pIcon->fHeight = MAX (1, .2 * pDesklet->container.iHeight - myLabels.iconTextDescription.iSize);
+		}
+	}
+}
+
+static void calculate_icons (CairoDesklet *pDesklet)
+{
+	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
+	if (pCaroussel == NULL)
+		return ;
+	
+	int iNbIcons = g_list_length (pDesklet->icons);
+	pCaroussel->fDeltaTheta = (iNbIcons != 0 ? 2 * G_PI / iNbIcons : 0);
+	
+	// on calcule l'icone du centre.
 	Icon *pIcon = pDesklet->pIcon;
-	double fCentralSphereWidth = MAX (1, MIN (pDesklet->container.iWidth/3, pDesklet->container.iHeight/2));;
+	double fCentralSphereWidth = MAX (1, MIN (pDesklet->container.iWidth/3, pDesklet->container.iHeight/2));
 	if (pIcon != NULL)
 	{
 		if (pCaroussel->b3D)
@@ -232,8 +266,8 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, pDesklet->container.iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 			pIcon->fHeight = MAX (1, pDesklet->container.iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		}
-		pIcon->iImageWidth = pIcon->fWidth;
-		pIcon->iImageHeight = pIcon->fHeight;
+		//pIcon->iImageWidth = pIcon->fWidth;
+		//pIcon->iImageHeight = pIcon->fHeight;
 		
 		pIcon->fDrawX = (pDesklet->container.iWidth - pIcon->fWidth) / 2;
 		pIcon->fDrawY = (pDesklet->container.iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? myLabels.iconTextDescription.iSize : 0);
@@ -242,8 +276,9 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
-		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
+	
+	// on calcule le cortege d'icones.
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
@@ -258,22 +293,20 @@ void rendering_load_icons_for_caroussel (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, .2 * pDesklet->container.iWidth - myLabels.iconTextDescription.iSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->container.iHeight - myLabels.iconTextDescription.iSize);
 		}
-		pIcon->iImageWidth = pIcon->fWidth;
-		pIcon->iImageHeight = pIcon->fHeight;
+		//pIcon->iImageWidth = pIcon->fWidth;
+		//pIcon->iImageHeight = pIcon->fHeight;
 		
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
 		pIcon->fWidthFactor = 1.;
 		pIcon->fHeightFactor = 1.;
 		pIcon->fGlideScale = 1.;
-		
-		cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
 }
 
 
 
-void rendering_draw_caroussel_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
+static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	//g_print ("%s(%x)\n", __func__, pCaroussel);
@@ -479,7 +512,7 @@ static void _draw_disc_caroussel(CairoDesklet *pDesklet, double fTheta, double a
 	}
 }
 
-void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
+static void render_opengl (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -663,7 +696,7 @@ void rendering_draw_caroussel_in_desklet_opengl (CairoDesklet *pDesklet)
 }
 
 
-void rendering_draw_caroussel_bounding_box (CairoDesklet *pDesklet)
+static void render_bounding_box (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)
@@ -786,13 +819,13 @@ void rendering_draw_caroussel_bounding_box (CairoDesklet *pDesklet)
 void rendering_register_caroussel_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render 			= (CairoDeskletRenderFunc) rendering_draw_caroussel_in_desklet;
-	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) rendering_configure_caroussel;
-	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) rendering_load_caroussel_data;
-	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) rendering_free_caroussel_data;
-	pRenderer->load_icons 		= (CairoDeskletLoadIconsFunc) rendering_load_icons_for_caroussel;
-	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) rendering_draw_caroussel_in_desklet_opengl;
-	pRenderer->render_bounding_box 	= (CairoDeskletGLRenderFunc) rendering_draw_caroussel_bounding_box;
+	pRenderer->render 			= (CairoDeskletRenderFunc) render;
+	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) load_data;
+	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
+	pRenderer->calculate_icons	= (CairoDeskletCalculateIconsFunc) calculate_icons;
+	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;
+	pRenderer->render_bounding_box 	= (CairoDeskletGLRenderFunc) render_bounding_box;
 	
 	cairo_dock_register_desklet_renderer ("Caroussel", pRenderer);
 }

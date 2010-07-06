@@ -48,7 +48,14 @@ CD_APPLET_RESET_CONFIG_END
 void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
 	cd_shortcuts_free_disk_periodic_task (myApplet);
+	
 	cairo_dock_free_task (myData.pTask);
+	if (myData.pIconList != NULL)  // des donnees ont ete recuperees et non utilisees, on les libere.
+	{
+		g_list_foreach (myData.pIconList, (GFunc)g_free, NULL);
+		g_list_free (myData.pIconList);
+		myData.pIconList = NULL;
+	}
 	
 	if (myData.cDisksURI != NULL)
 	{

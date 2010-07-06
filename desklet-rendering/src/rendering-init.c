@@ -23,7 +23,7 @@
 #include "rendering-desklet-tree.h"
 #include "rendering-desklet-caroussel.h"
 #include "rendering-desklet-simple.h"
-#include "rendering-desklet-controler.h"
+//#include "rendering-desklet-controler.h"
 //#include "rendering-desklet-mediaplayer.h"
 #include "rendering-desklet-slide.h"
 #include "rendering-desklet-decorations.h"
@@ -44,7 +44,7 @@ CD_APPLET_DEFINE_BEGIN (N_("desklet rendering"),
 	rendering_register_tree_desklet_renderer ();
 	rendering_register_caroussel_desklet_renderer ();
 	rendering_register_simple_desklet_renderer ();
-	rendering_register_controler_desklet_renderer ();
+	//rendering_register_controler_desklet_renderer ();
 	//rendering_register_mediaplayer_desklet_renderer ();  // By ChAnGFu
 	rendering_register_slide_desklet_renderer ();  // By ChAnGFu
 	

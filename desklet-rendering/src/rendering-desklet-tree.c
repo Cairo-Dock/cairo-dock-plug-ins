@@ -28,40 +28,14 @@
 static int s_iLeafPosition[2][3*3] = {{-30,30,1 , 60,107,0 , -45,115,1},{-60,65,0 , 55,115,1 , -30,115,0}};
 
 
-CDTreeParameters *rendering_configure_tree (CairoDesklet *pDesklet, CairoDeskletRendererConfigPtr pConfig)
+static CDTreeParameters *configure (CairoDesklet *pDesklet, CairoDeskletRendererConfigPtr pConfig)
 {
-	cd_message ("");
-	GList *pIconsList = pDesklet->icons;
-	if (pIconsList == NULL)
-		return NULL;
-	
-	int iNbIcons = 0;
-	Icon *pIcon;
-	GList *ic;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
-			iNbIcons ++;
-	}
-	if (iNbIcons == 0)
-		return NULL;
-	
 	CDTreeParameters *pTree = g_new0 (CDTreeParameters, 1);
-	pTree->iNbIconsInTree = iNbIcons;
-	pTree->iNbBranches = (int) ceil (1.*iNbIcons/3.);
-	
-	double h = pDesklet->container.iHeight, w = pDesklet->container.iWidth;
-	pTree->fTreeWidthFactor = (w > TREE_WIDTH ? 1 : w / TREE_WIDTH);
-	pTree->fTreeHeightFactor = h / (pTree->iNbBranches * TREE_HEIGHT);
-	
-	cd_message (" -> %d icones, %d branches, proportions : %.2fx%.2f", pTree->iNbIconsInTree, pTree->iNbBranches, pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
-	
 	return pTree;
 }
 
 
-void rendering_load_tree_data (CairoDesklet *pDesklet)
+static void load_data (CairoDesklet *pDesklet)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
@@ -82,7 +56,7 @@ void rendering_load_tree_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_free_tree_data (CairoDesklet *pDesklet)
+static void free_data (CairoDesklet *pDesklet)
 {
 	cd_message ("");
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
@@ -97,30 +71,76 @@ void rendering_free_tree_data (CairoDesklet *pDesklet)
 }
 
 
-void rendering_load_icons_for_tree (CairoDesklet *pDesklet)
+static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
+{
+	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
+	if (pTree == NULL)
+		return ;
+	
+	if (pIcon == pDesklet->pIcon)
+	{
+		pIcon->fWidth = 0.;
+		pIcon->fHeight = 0.;
+	}
+	else
+	{
+		pIcon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+		pIcon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+	}
+}
+
+
+static void calculate_icons (CairoDesklet *pDesklet)
 {
 	g_return_if_fail (pDesklet != NULL);
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	if (pTree == NULL)
 		return ;
 	
-	GList* ic;
-	Icon *icon;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	Icon *pIcon = pDesklet->pIcon;
+	if (pIcon != NULL)  // on ne veut pas charger cette icone.
 	{
-		icon = ic->data;
-		icon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
-		icon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
-		icon->iImageWidth = icon->fWidth;
-		icon->iImageHeight = icon->fHeight;
-		
-		cairo_dock_load_icon_buffers (icon, CAIRO_CONTAINER (pDesklet));
+		pIcon->fWidth = 0.;
+		pIcon->fHeight = 0.;
+	}
+	
+	// on compte le nombre d'icones.
+	GList *pIconsList = pDesklet->icons;
+	if (pIconsList == NULL)
+		return ;
+	
+	int iNbIcons = 0;
+	GList *ic;
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+			iNbIcons ++;
+	}
+	
+	// on en deduit les parametres de l'arbre.
+	pTree->iNbIconsInTree = iNbIcons;
+	pTree->iNbBranches = (int) ceil (1.*iNbIcons/3.);
+	
+	double h = pDesklet->container.iHeight, w = pDesklet->container.iWidth;
+	pTree->fTreeWidthFactor = (w > TREE_WIDTH ? 1 : w / TREE_WIDTH);
+	pTree->fTreeHeightFactor = h / (pTree->iNbBranches * TREE_HEIGHT);
+	
+	cd_message (" -> %d icones, %d branches, proportions : %.2fx%.2f", pTree->iNbIconsInTree, pTree->iNbBranches, pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+	
+	// on calcule les tailles de chaque icone.
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		pIcon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+		pIcon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+		//icon->iImageWidth = icon->fWidth;
+		//icon->iImageHeight = icon->fHeight;
 	}
 }
 
 
-
-void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
+static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	CDTreeParameters *pTree = (CDTreeParameters *) pDesklet->pRendererData;
 	cd_message ("");
@@ -180,11 +200,11 @@ void rendering_draw_tree_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesk
 void rendering_register_tree_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render = rendering_draw_tree_in_desklet ;
-	pRenderer->configure = (CairoDeskletConfigureRendererFunc)rendering_configure_tree;
-	pRenderer->load_data = rendering_load_tree_data;
-	pRenderer->free_data = rendering_free_tree_data;
-	pRenderer->load_icons = rendering_load_icons_for_tree;
+	pRenderer->render = render ;
+	pRenderer->configure = (CairoDeskletConfigureRendererFunc)configure;
+	pRenderer->load_data = load_data;
+	pRenderer->free_data = free_data;
+	pRenderer->calculate_icons = calculate_icons;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_TREE_DESKLET_RENDERER_NAME, pRenderer);
 }

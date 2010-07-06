@@ -100,12 +100,7 @@ void cd_compiz_build_icons (void) {
 		CD_APPLET_SET_NAME_FOR_MY_ICON (COMPIZ_DEFAULT_NAME);
 	}
 	GList *pIconList = _list_icons ();  // ne nous appartiendra plus, donc ne pas desallouer.
-	if (myDock) {
-		CD_APPLET_CREATE_MY_SUBDOCK (pIconList, myConfig.cRenderer);
-	}
-	else {
-		myDesklet->icons = pIconList;
-		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-	}
+	
+	gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
 }

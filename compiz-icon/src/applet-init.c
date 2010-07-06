@@ -76,15 +76,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		
 		//\________________ les icones ont pu changer, ainsi que l'inhibition.
-		if (myIcon->pSubDock != NULL) {
-			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
-			myIcon->pSubDock = NULL;
-		}
-		if (myDesklet && myDesklet->icons != NULL) {
-			g_list_foreach (myDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (myDesklet->icons);
-			myDesklet->icons = NULL;
-		}
+		CD_APPLET_DELETE_MY_ICONS_LIST;
 		
 		if (cairo_dock_task_is_active (myData.pTask) && ! myConfig.bAutoReloadDecorator && ! myConfig.bAutoReloadCompiz) {
 			cairo_dock_stop_task (myData.pTask);
@@ -108,11 +100,11 @@ CD_APPLET_RELOAD_BEGIN
 		cd_compiz_build_icons ();
 		
 	}
-	else if (myDesklet != NULL) {
+	/*else if (myDesklet != NULL) {
 		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
 	}
 	else {
 		//Rien a faire
-	}
+	}*/
 CD_APPLET_RELOAD_END

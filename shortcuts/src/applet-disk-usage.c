@@ -152,7 +152,10 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 		}
 	}
 	
-	CD_APPLET_LEAVE(TRUE);
+	if (myDesklet)
+		cairo_dock_redraw_container (myContainer);
+	
+	CD_APPLET_LEAVE (TRUE);
 	//return TRUE;
 }
 
@@ -187,6 +190,27 @@ void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
 	myData.pDiskTask = NULL;
 }
 
+
+static gboolean _launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	CDDiskUsage *pDiskUsage;
+	GList *d;
+	for (d = myData.pDiskUsageList; d != NULL; d = d->next)
+	{
+		pDiskUsage = d->data;
+		pDiskUsage->iAvail = 0;
+	}
+	cd_shortcuts_launch_disk_periodic_task (myApplet);
+	myData.iSidLaunchTask = 0;
+	CD_APPLET_LEAVE (FALSE);
+}
+void cd_shortcuts_trigger_draw_disk_usage (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iSidLaunchTask != 0)  // on la lance en idle, car les icones sont chargees en idle.
+		g_source_remove (myData.iSidLaunchTask);
+	myData.iSidLaunchTask = g_idle_add ((GSourceFunc)_launch_disk_periodic_task, myApplet);
+}
 
 
 static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)

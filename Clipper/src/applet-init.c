@@ -44,10 +44,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	if (myIcon->cFileName == NULL)
-	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
-	}
+	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
 	GtkClipboard *pClipBoard;
 	if (myConfig.iItemType & CD_CLIPPER_CLIPBOARD)
@@ -106,19 +103,15 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		gtk_widget_queue_draw (myDesklet->container.pWidget);
-	}
-	
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myIcon->cFileName == NULL)
+		if (myDesklet)
 		{
-			CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
+		
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
 		g_list_foreach (myData.pActions, (GFunc) cd_clipper_free_action, NULL);
 		g_list_free (myData.pActions);

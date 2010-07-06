@@ -232,8 +232,6 @@ void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gch
 		GList *pStacksIconList = myDesklet->icons;
 		pStacksIconList = cd_stack_insert_icon_in_list (myApplet, pStacksIconList, pIcon);
 		
-		//cairo_dock_load_one_icon_from_scratch (pIcon, CAIRO_CONTAINER (myDesklet));
-		
 		myDesklet->icons = pStacksIconList;
 		
 		const gchar *cDeskletRendererName = NULL;

@@ -208,11 +208,6 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge notre theme.
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-	
 	if (myData.pEmptyBinSurface != NULL)
 	{
 		cairo_surface_destroy (myData.pEmptyBinSurface);
@@ -235,6 +230,11 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
+		
 		//\_______________ On stoppe la surveillance.
 		cd_dustbin_remove_all_dustbins ();
 		

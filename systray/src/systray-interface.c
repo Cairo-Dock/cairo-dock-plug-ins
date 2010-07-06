@@ -56,7 +56,7 @@ void cd_systray_build_systray (void)
 	else
 	{
 		cairo_dock_add_interactive_widget_to_desklet (GTK_WIDGET (myData.tray), myDesklet);
-		cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
+		CD_APPLET_SET_DESKLET_RENDERER (NULL);
 	}
 	gtk_widget_show (GTK_WIDGET (myData.tray));
 	

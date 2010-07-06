@@ -199,8 +199,7 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					cDeskletRendererName = "Tree";
 				break ;
 			}
-			cairo_dock_set_desklet_renderer_by_name (myDesklet, cDeskletRendererName, CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);
-			gtk_widget_queue_draw (myDesklet->container.pWidget);
+			CD_APPLET_SET_DESKLET_RENDERER (cDeskletRendererName);
 		}
 	}
 	CD_APPLET_LEAVE();

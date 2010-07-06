@@ -99,7 +99,7 @@ void cd_switcher_load_icons (void)
 		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
 		
 		//\_______________________ On peint les icones.
-		cd_switcher_paint_icons ();
+		cd_switcher_trigger_paint_icons ();
 	}
 }
 
@@ -150,6 +150,22 @@ void cd_switcher_paint_icons (void)
 		cairo_dock_set_icon_surface_with_reflect (pIconContext, pSurface, icon, pContainer);
 		cairo_destroy (pIconContext);
 	}
+}
+
+
+static gboolean _paint_icons (gpointer data)
+{
+	CD_APPLET_ENTER;
+	if (myConfig.bCompactView)
+		cd_switcher_paint_icons ();
+	myData.iSidPainIcons = 0;
+	CD_APPLET_LEAVE (FALSE);
+}
+void cd_switcher_trigger_paint_icons (void)
+{
+	if (myData.iSidPainIcons != 0)  // on la lance en idle, car les icones sont chargees en idle.
+		g_source_remove (myData.iSidPainIcons);
+	myData.iSidPainIcons = g_idle_add ((GSourceFunc)_paint_icons, NULL);
 }
 
 

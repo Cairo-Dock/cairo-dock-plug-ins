@@ -307,7 +307,7 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
 		gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, (CairoDeskletRendererConfigPtr) data);
+		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", (CairoDeskletRendererConfigPtr) data);
 	}
 	
 	return TRUE;

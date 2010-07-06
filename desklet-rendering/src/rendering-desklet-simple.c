@@ -24,7 +24,16 @@
 #include "rendering-desklet-simple.h"
 
 
-void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
+static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
+{
+	if (pIcon == pDesklet->pIcon)
+	{
+		pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
+		pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
+	}
+}
+
+static void calculate_icons (CairoDesklet *pDesklet)
 {
 	g_return_if_fail (pDesklet != NULL);
 	
@@ -33,8 +42,8 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
 	
 	pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
 	pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
-	pIcon->iImageWidth = pIcon->fWidth;
-	pIcon->iImageHeight = pIcon->fHeight;
+	//pIcon->iImageWidth = pIcon->fWidth;
+	//pIcon->iImageHeight = pIcon->fHeight;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->fScale = 1.;
@@ -42,11 +51,10 @@ void rendering_load_icons_for_simple (CairoDesklet *pDesklet)
 	pIcon->fAlpha = 1.;
 	pIcon->fDrawX = 0.;
 	pIcon->fDrawY = 0.;
-	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pDesklet));
 }
 
 
-void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDesklet)
+static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
@@ -76,7 +84,7 @@ void rendering_draw_simple_in_desklet (cairo_t *pCairoContext, CairoDesklet *pDe
 	}
 }
 
-void rendering_draw_simple_in_desklet_opengl (CairoDesklet *pDesklet)
+static void render_opengl (CairoDesklet *pDesklet)
 {
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
@@ -102,12 +110,12 @@ void rendering_draw_simple_in_desklet_opengl (CairoDesklet *pDesklet)
 void rendering_register_simple_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render = rendering_draw_simple_in_desklet;
+	pRenderer->render = render;
 	pRenderer->configure = NULL;
 	pRenderer->load_data = NULL;
 	pRenderer->free_data = NULL;
-	pRenderer->load_icons = rendering_load_icons_for_simple;
-	pRenderer->render_opengl = rendering_draw_simple_in_desklet_opengl;
+	pRenderer->calculate_icons = calculate_icons;
+	pRenderer->render_opengl = render_opengl;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
 }

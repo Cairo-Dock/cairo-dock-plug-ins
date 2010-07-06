@@ -78,5 +78,6 @@ struct _AppletData {
 	gint iSidAutoRefresh;
 	gint iPrevIndexHovered;
 	gdouble fDesktopNameAlpha;
+	guint iSidPainIcons;
 } ;
 #endif

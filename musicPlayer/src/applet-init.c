@@ -166,11 +166,7 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
+	if (myDock && (myIcon->cName == NULL || *myIcon->cName == '\0'))
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
 	
 	//\_______________ On reset surfaces et textures.
@@ -187,6 +183,11 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge entierement le theme 3D.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet)  // we are in desklet mode now, set a desklet renderer
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
+		
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER,
 			CAIRO_DOCK_MOUSE_MOVED,

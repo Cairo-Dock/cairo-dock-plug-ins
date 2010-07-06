@@ -28,19 +28,27 @@
 
 gboolean my_bRotateIconsOnEllipse = TRUE;
 
-
-static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, gint *data)
+typedef struct {
+	gint iNumDesktop;
+	gint iNumViewportX;
+	gint iNumViewportY;
+	gint iOneViewportWidth;
+	gint iOneViewportHeight;
+	cairo_t *pCairoContext;
+	} CDSwitcherDesktop;
+ 
+static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDesktop *data)
 {
 	if (pIcon == NULL || pIcon->fInsertRemoveFactor > 0)
 		return ;
 	if (pIcon->bIsHidden && ! myConfig.bDisplayHiddenWindows)
 		return ;
-	int iNumDesktop = data[0];
-	int iNumViewportX = data[1];
-	int iNumViewportY = data[2];
-	int iOneViewportWidth = data[3];
-	int iOneViewportHeight = data[4];
-	cairo_t *pCairoContext = GINT_TO_POINTER (data[5]);
+	int iNumDesktop = data->iNumDesktop;
+	int iNumViewportX = data->iNumViewportX;
+	int iNumViewportY = data->iNumViewportY;
+	int iOneViewportWidth = data->iOneViewportWidth;
+	int iOneViewportHeight = data->iOneViewportHeight;
+	cairo_t *pCairoContext = data->pCairoContext;
 	
 	// On calcule les coordonnees en repere absolu.
 	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
@@ -269,8 +277,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				cairo_clip (myDrawContext);
 				
 				//g_print (" dessin des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
-				gint data[6] = {iNumDesktop, iNumViewportX, iNumViewportY, (int) myData.switcher.fOneViewportWidth, (int) myData.switcher.fOneViewportHeight, GPOINTER_TO_INT (myDrawContext)};
-				g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, data);
+				CDSwitcherDesktop data = {iNumDesktop, iNumViewportX, iNumViewportY, (int) myData.switcher.fOneViewportWidth, (int) myData.switcher.fOneViewportHeight, myDrawContext};
+				g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, &data);
 				
 				cairo_restore (myDrawContext);
 			}
@@ -375,7 +383,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		
 		//fMaxScale = (myIcon->pSubDock != NULL ? cairo_dock_get_max_scale (myIcon->pSubDock) : 1);
 		//fRatio = (myIcon->pSubDock != NULL ? myIcon->pSubDock->container.fRatio : 1);
-		gint data[6];
+		CDSwitcherDesktop data;
 		int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
 		cairo_t *pCairoContext;
 		Icon *pIcon;
@@ -386,18 +394,17 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		{
 			pIcon = ic->data;
 			cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
-			
-			data[0] = iNumDesktop;
-			data[1] = iNumViewportX;
-			data[2] = iNumViewportY;
-			data[3] = iWidth;
-			data[4] = iHeight;
 			pCairoContext = cairo_create (pIcon->pIconBuffer);
-			data[5] = GPOINTER_TO_INT (pCairoContext);
 			cairo_set_line_width (pCairoContext, 1.);
 			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
-		
-			g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, data);
+			
+			data.iNumDesktop = iNumDesktop;
+			data.iNumViewportX = iNumViewportX;
+			data.iNumViewportY = iNumViewportY;
+			data.iOneViewportWidth = iWidth;
+			data.iOneViewportHeight = iHeight;
+			data.pCairoContext = pCairoContext;
+			g_list_foreach (pWindowList, (GFunc) _cd_switcher_draw_windows_on_viewport, &data);
 			
 			iNumViewportX ++;
 			if (iNumViewportX == g_desktopGeometry.iNbViewportX)

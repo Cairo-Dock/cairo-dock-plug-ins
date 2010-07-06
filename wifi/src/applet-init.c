@@ -112,12 +112,6 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
 	int i; // reset surfaces utilisateurs.
 	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
 		if (myData.pSurfaces[i] != NULL) {
@@ -129,6 +123,12 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet != NULL)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
+		
 		_set_data_renderer (myApplet, TRUE);
 		
 		myData.iQuality = -2;  // force le redessin.

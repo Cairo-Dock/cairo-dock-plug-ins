@@ -171,12 +171,6 @@ CD_APPLET_STOP_END
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
 	int i; // reset surfaces utilisateurs.
 	for (i = 0; i < CONNECTION_NB_QUALITY; i ++) {
 		if (myData.pSurfaces[i] != NULL) {
@@ -188,6 +182,12 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet != NULL)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
+		
 		cd_netmonitor_free_netspeed_task (myApplet);
 		cd_netmonitor_free_wifi_task (myApplet);
 		

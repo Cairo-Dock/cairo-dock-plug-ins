@@ -109,6 +109,31 @@ void dbus_detect_tomboy(void)
 
 
 
+static void _on_detect_tomboy (gboolean bPresent, CairoDockModuleInstance *myApplet)
+{
+	myData.opening = bPresent;
+	cairo_dock_launch_task (myData.pTask);
+}
+void dbus_detect_tomboy_async (CairoDockModuleInstance *myApplet)
+{
+	myData.opening = FALSE;
+	const gchar *cService = "";
+	switch (myConfig.iAppControlled)
+	{
+		case 1:
+		default:
+			cService = "org.gnome.Tomboy";
+		break;
+		case 0:
+			cService = "org.gnome.Gnote";
+		break;
+	}
+	
+	DBusGProxyCall *call_id = cairo_dock_dbus_detect_application_async (cService, (CairoDockOnAppliPresentOnDbus) _on_detect_tomboy, myApplet);
+}
+
+
+
 static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 {
 	Icon *pIcon = cairo_dock_create_dummy_launcher (getNoteTitle (cNoteURI),
@@ -153,7 +178,13 @@ void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /*const gchar *note_
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
 	g_return_if_fail (pIcon != NULL);
 	
-	if (myDock)
+	_cd_tomboy_unregister_note (pIcon);
+	
+	CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+	if (myDesklet)  // la vue recharge les icones => on redessine le contenu.
+		cd_tomboy_trigger_draw_content_on_all_icons (myApplet);
+	
+	/**if (myDock)
 	{
 		if (myIcon->pSubDock != NULL)
 		{
@@ -163,25 +194,39 @@ void onDeleteNote(DBusGProxy *proxy, const gchar *note_uri, /*const gchar *note_
 	}
 	else
 	{
+		
 		myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
 		cd_tomboy_reload_desklet_renderer ();
 	}
+	cairo_dock_free_icon (pIcon);*/
 	
-	_cd_tomboy_unregister_note (pIcon);
 	update_icon ();
-	cairo_dock_free_icon (pIcon);
 }
 
 void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 {
-	cd_message ("%s (%s)", __func__, note_uri);
+	g_print ("%s (%s)\n", __func__, note_uri);
 	
-	Icon *pIcon = _cd_tomboy_create_icon_for_note (note_uri);
-	GList *pList = (myDock ? (myIcon->pSubDock != NULL ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	// on verifie que l'icone n'existe pas deja.
+	Icon *pIcon = _cd_tomboy_find_note_from_uri (note_uri);
+	if (pIcon != NULL)
+		return;
+	
+	pIcon = _cd_tomboy_create_icon_for_note (note_uri);
+	/*GList *pList = CD_APPLET_MY_ICONS_LIST;
 	Icon *pLastIcon = cairo_dock_get_last_icon (pList);
-	pIcon->fOrder = (pLastIcon != NULL ? pLastIcon->fOrder + 1 : 0);
-	
-	if (myDock)
+	pIcon->fOrder = (pLastIcon != NULL ? pLastIcon->fOrder + 1 : 0);*/
+	pIcon->fOrder = CAIRO_DOCK_LAST_ORDER;
+	CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pIcon);
+	if (myDesklet)  // la vue recharge les icones => on redessine le contenu.
+		cd_tomboy_trigger_draw_content_on_all_icons (myApplet);
+	else if (pIcon->cClass != NULL)
+	{
+		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+		cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
+		cairo_destroy (pIconContext);
+	}
+	/**if (myDock)
 	{
 		if (myIcon->pSubDock == NULL)
 		{
@@ -197,17 +242,10 @@ void onAddNote(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 			pIcon,
 			(GCompareFunc) cairo_dock_compare_icons_order);
 		cd_tomboy_reload_desklet_renderer ();
-	}
+	}*/
 	
 	_cd_tomboy_register_note (pIcon);
 	update_icon ();
-	
-	if (pIcon->cClass != NULL)
-	{
-		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-		cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
-		cairo_destroy (pIconContext);
-	}
 }
 
 void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
@@ -231,7 +269,7 @@ void onChangeNoteList(DBusGProxy *proxy, const gchar *note_uri, gpointer data)
 	{
 		g_free (pIcon->cClass);
 		pIcon->cClass = getNoteContent (note_uri);
-		if (pIcon->cClass != NULL)
+		if (pIcon->cClass != NULL && pIcon->pIconBuffer)
 		{
 			cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 			if (myData.pSurfaceNote == NULL)
@@ -257,7 +295,7 @@ static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, int i
 	if (pIcon->iLastCheckTime < iTime)
 	{
 		cd_message ("cette note (%s) est trop vieille", cNoteURI);
-		if (myDock)
+		/**if (myDock)
 		{
 			if (myIcon->pSubDock != NULL)
 			{
@@ -268,8 +306,11 @@ static gboolean _cd_tomboy_remove_old_notes (gchar *cNoteURI, Icon *pIcon, int i
 		{
 			myDesklet->icons = g_list_remove (myDesklet->icons, pIcon);
 		}
+		cairo_dock_free_icon (pIcon);*/
+		CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+		if (myDesklet)
+			cd_tomboy_trigger_draw_content_on_all_icons (myApplet);
 		
-		cairo_dock_free_icon (pIcon);
 		return TRUE;
 	}
 	return FALSE;
@@ -306,7 +347,7 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 			if (iNbRemovedIcons != 0)
 			{
 				cd_message ("%d notes enlevees", iNbRemovedIcons);
-				if (myDock)
+				/**if (myDock)
 				{
 					if (myIcon->pSubDock != NULL)
 					{
@@ -316,7 +357,7 @@ gboolean cd_tomboy_check_deleted_notes (gpointer data)
 				else
 				{
 					cd_tomboy_reload_desklet_renderer ();
-				}
+				}*/
 				update_icon ();
 			}
 		}
@@ -386,12 +427,13 @@ gboolean cd_tomboy_load_notes (void)
 	GList *pList = g_hash_table_get_values (myData.hNoteTable);
 	CD_APPLET_LOAD_MY_ICONS_LIST (pList, myConfig.cRenderer, "Slide", NULL);
 	
+	cd_tomboy_trigger_draw_content_on_all_icons (myApplet);
+	
+	cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);  // le sous-dock n'est pas forcement detruit.
 	if (myConfig.bPopupContent)
 		cairo_dock_register_notification_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 	
 	update_icon ();
-	
-	cd_tomboy_draw_content_on_all_icons ();
 	
 	if (myConfig.bNoDeletedSignal && myData.iSidCheckNotes == 0)
 		myData.iSidCheckNotes = g_timeout_add_seconds (2, (GSourceFunc) cd_tomboy_check_deleted_notes, (gpointer) NULL);

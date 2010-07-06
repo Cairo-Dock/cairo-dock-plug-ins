@@ -108,6 +108,8 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.iSidAutoRefresh);
 	}
+	if (myData.iSidPainIcons != 0)
+		g_source_remove (myData.iSidPainIcons);
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -138,24 +140,25 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSidRedrawMainIconIdle = 0;
 	}
 	
-	if (myDesklet)
-	{
-		if (myConfig.bCompactView)
-		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		}
-		else
-		{
-			gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-		}
-	}
 	cd_switcher_compute_nb_lines_and_columns ();
 	
 	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet)
+		{
+			if (myConfig.bCompactView)
+			{
+				CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			}
+			else
+			{
+				gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+			}
+		}
+		
 		if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
 		{
 			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
@@ -204,7 +207,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.pDesktopBgMapSurface == NULL)
 			cd_switcher_load_default_map_surface ();
 		if (! myConfig.bCompactView)
-			cd_switcher_paint_icons ();
+			cd_switcher_trigger_paint_icons ();
 	}
 	
 	cd_switcher_draw_main_icon ();

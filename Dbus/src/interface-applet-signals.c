@@ -625,7 +625,6 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 	{
 		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 			"Simple",
-			CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 			(CairoDeskletRendererConfigPtr) NULL);
 	}
 	
@@ -715,7 +714,6 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 		{
 			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 				"Simple",
-				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 				(CairoDeskletRendererConfigPtr) NULL);
 		}
 		else
@@ -723,7 +721,6 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 			gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
 			cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
 				"Caroussel",
-				CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET,
 				(CairoDeskletRendererConfigPtr) data);
 		}
 	}

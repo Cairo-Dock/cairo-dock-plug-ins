@@ -163,12 +163,13 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet != NULL) {
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
+		
+		if (myDesklet != NULL)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
 		
 		cd_sysmonitor_stop_top_dialog (myApplet);
 		

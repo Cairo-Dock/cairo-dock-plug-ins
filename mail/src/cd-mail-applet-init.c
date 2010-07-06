@@ -225,11 +225,6 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{

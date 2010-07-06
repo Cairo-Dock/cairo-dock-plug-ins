@@ -117,17 +117,17 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myDesklet)
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
-	}
-	
-	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
+		///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
 	myData.iTextOrientation = 0;  // on recalcule l'orientation.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		//\_______________ set a desklet view.
+		if (myDesklet)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
+		}
 		//\_______________ On stoppe le timer.
 		g_source_remove (myData.iSidUpdateClock);
 		myData.iSidUpdateClock = 0;

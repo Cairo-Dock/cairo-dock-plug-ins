@@ -51,6 +51,7 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	guint iSidResetQuickInfo;
 	guint iSidPopupDialog;
+	guint iSidDrawContent;
 	} ;
 
 #endif
