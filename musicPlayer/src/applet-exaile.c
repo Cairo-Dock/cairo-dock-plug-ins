@@ -170,7 +170,7 @@ static void cd_exaile_getCoverPath (void)
  */
 static gboolean _cd_exaile_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus ();  // cree le proxy.
 		

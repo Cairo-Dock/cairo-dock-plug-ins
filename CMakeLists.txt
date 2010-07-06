@@ -493,7 +493,7 @@ add_subdirectory (slider)
 
 ############# STACK #################
 set (GETTEXT_STACK ${GETTEXT_PLUGINS})
-set (VERSION_STACK "0.2.7")
+set (VERSION_STACK "0.3.0")
 set (PACKAGE_STACK "cd-stack")
 set (stackdatadir "${pluginsdatadir}/stack")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/stack/data/stack.conf.in ${CMAKE_CURRENT_BINARY_DIR}/stack/data/stack.conf)
@@ -546,9 +546,9 @@ else()
 	add_subdirectory (terminal)
 endif()
 
-############# TOMBOY #################
+############# OY #################
 set (GETTEXT_TOMBOY ${GETTEXT_PLUGINS})
-set (VERSION_TOMBOY "1.2.3")
+set (VERSION_TOMBOY "1.3.0")
 set (PACKAGE_TOMBOY "cd-tomboy")
 set (tomboydatadir "${pluginsdatadir}/tomboy")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/tomboy/data/tomboy.conf.in ${CMAKE_CURRENT_BINARY_DIR}/tomboy/data/tomboy.conf)

@@ -103,15 +103,8 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
-		myIcon->fWidth = MAX (1, MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
-		myIcon->fHeight = myIcon->fWidth;
-		myIcon->fDrawX = 0;
-		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
-		myIcon->fScale = 1;
-		cairo_dock_set_icon_size (myContainer, myIcon);
-		cairo_dock_load_icon_buffers (myIcon, myContainer);
-		
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		gpointer pConfig[4] = {GINT_TO_POINTER (0), GINT_TO_POINTER (0), GINT_TO_POINTER (iScaleWidth), GINT_TO_POINTER (iScaleWidth)};
+		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 		
 		if (myConfig.bHideScaleOnLeave)
 		{
@@ -130,7 +123,6 @@ CD_APPLET_INIT_BEGIN
 	
 	mixer_init (myConfig.card_id);
 	
-	///mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
 	mixer_get_controlled_element ();
 	
 	if (myData.pControledElement == NULL)
@@ -191,23 +183,19 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet)
-	{
-		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
-		myIcon->fWidth = MAX (MAX (1, g_iDockRadius), MIN (myDesklet->container.iWidth, myDesklet->container.iHeight) - iScaleWidth);
-		myIcon->fHeight = myIcon->fWidth;
-		myIcon->fDrawX = 0;
-		myIcon->fDrawY = myDesklet->container.iHeight - myIcon->fHeight;
-		myIcon->fScale = 1;
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-	
 	//\_______________ On recharge les donnees qui ont pu changer.
 	_load_surfaces ();
 	
 	//\_______________ On recharge le mixer si necessaire.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet)
+		{
+			int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
+			gpointer pConfig[4] = {GINT_TO_POINTER (0), GINT_TO_POINTER (0), GINT_TO_POINTER (iScaleWidth), GINT_TO_POINTER (iScaleWidth)};
+			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
+		}
+		
 		if (myData.iSidCheckVolume != 0)
 		{
 			g_source_remove (myData.iSidCheckVolume);
@@ -226,7 +214,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
 		mixer_init (myConfig.card_id);
-		///mixer_write_elements_list (CD_APPLET_MY_CONF_FILE, CD_APPLET_MY_KEY_FILE);
 		mixer_get_controlled_element ();
 		
 		if (myData.pControledElement == NULL)

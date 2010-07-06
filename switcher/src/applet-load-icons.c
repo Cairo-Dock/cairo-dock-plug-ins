@@ -81,7 +81,8 @@ void cd_switcher_load_icons (void)
 	{
 		if (myIcon->pSubDock != NULL)  // si on est passe de expanded a compact, le sous-dock vide reste.
 		{
-			CD_APPLET_DESTROY_MY_SUBDOCK;
+			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+			myIcon->pSubDock = NULL;
 		}
 		if (myDesklet)
 		{

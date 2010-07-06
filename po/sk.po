@@ -6572,7 +6572,7 @@ msgid "in seconds"
 msgstr "v sekundách"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr "Čas dĺžky dialógu :"
 
 #: ../mail/data/messages:119

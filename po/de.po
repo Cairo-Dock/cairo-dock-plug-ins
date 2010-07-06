@@ -6470,7 +6470,7 @@ msgid "in seconds"
 msgstr "in Sekunden"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr ""
 
 #: ../mail/data/messages:119

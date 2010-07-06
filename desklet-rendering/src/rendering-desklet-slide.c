@@ -475,7 +475,7 @@ void rendering_register_slide_desklet_renderer (void)
 	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
 	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) load_data;
 	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
-	pRenderer->calculate_icons 		= (CairoDeskletCalculateIconsFunc) calculate_icons;
+	pRenderer->calculate_icons 	= (CairoDeskletCalculateIconsFunc) calculate_icons;
 	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;
 	
 	cairo_dock_register_desklet_renderer ("Slide", pRenderer);

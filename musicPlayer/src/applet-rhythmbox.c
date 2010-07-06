@@ -243,7 +243,7 @@ static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, g
  */
 gboolean cd_rhythmbox_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
 		

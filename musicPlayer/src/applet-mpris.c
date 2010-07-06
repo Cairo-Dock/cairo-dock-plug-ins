@@ -511,7 +511,7 @@ void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength
  */
 gboolean cd_mpris_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		// cree les proxys.
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus ();

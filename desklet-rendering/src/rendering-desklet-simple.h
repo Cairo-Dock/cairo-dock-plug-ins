@@ -29,7 +29,7 @@
 typedef struct {
 	// from config
 	gint iTopMargin;
-	gint iLeftpMargin;
+	gint iLeftMargin;
 	gint iBottomMargin;
 	gint iRightMargin;
 	} CDSimpleParameters;

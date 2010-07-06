@@ -6550,7 +6550,7 @@ msgid "in seconds"
 msgstr "秒単位"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr "プレビュー・ダイアログの表示継続時間 :"
 
 #: ../mail/data/messages:119

@@ -278,7 +278,7 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
  */
 static gboolean _cd_audacious_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
 		

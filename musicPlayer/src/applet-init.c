@@ -244,7 +244,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
 		if (myData.pCurrentHandeler == NULL)
-		{ 
+		{
  			cd_warning ("MP : this player (%s) is not supported.", myConfig.cMusicPlayer); 
  			return FALSE; 
 		}

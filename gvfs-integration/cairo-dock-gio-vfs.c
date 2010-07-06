@@ -75,7 +75,7 @@ static void _gio_vfs_free_monitor_data (gpointer *data)
 gboolean cairo_dock_gio_vfs_init (void)
 {
 	// first, check that the session has gvfs on DBus
-	if( !cairo_dock_bdus_is_enabled() ||
+	if( !cairo_dock_dbus_is_enabled() ||
 	    !cairo_dock_dbus_detect_application (G_VFS_DBUS_DAEMON_NAME) )
 	{
 		cd_warning("VFS Deamon NOT found on DBus !");

@@ -181,6 +181,7 @@ struct _AppletData {
 	gboolean dbus_enable;
 	gboolean dbus_enable_shell;
 	gboolean bIsRunning;
+	DBusGProxyCall *pDetectPlayerCall;
 	
 	//Données de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];

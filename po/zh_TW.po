@@ -6481,7 +6481,7 @@ msgid "in seconds"
 msgstr "以秒計算"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr "對話時間長度"
 
 #: ../mail/data/messages:119

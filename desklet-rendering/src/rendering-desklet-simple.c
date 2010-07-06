@@ -24,33 +24,53 @@
 #include "rendering-desklet-simple.h"
 
 
+static CDSimpleParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)  // gint x4
+{
+	CDSimpleParameters *pSimple = g_new0 (CDSimpleParameters, 1);
+	if (pConfig != NULL)
+	{
+		pSimple->iTopMargin = GPOINTER_TO_INT (pConfig[0]);
+		pSimple->iLeftMargin = GPOINTER_TO_INT (pConfig[1]);
+		pSimple->iBottomMargin = GPOINTER_TO_INT (pConfig[2]);
+		pSimple->iRightMargin = GPOINTER_TO_INT (pConfig[3]);
+	}
+	return pSimple;
+}
+
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
+	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
+	if (pSimple == NULL)
+		return ;
+	
 	if (pIcon == pDesklet->pIcon)
 	{
-		pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
-		pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
+		pIcon->fWidth = MAX (1, pDesklet->container.iWidth - pSimple->iLeftMargin - pSimple->iRightMargin);
+		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
 	}
 }
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {
 	g_return_if_fail (pDesklet != NULL);
+	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
+	if (pSimple == NULL)
+		return ;
 	
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
 	
-	pIcon->fWidth = MAX (1, pDesklet->container.iWidth);
-	pIcon->fHeight = MAX (1, pDesklet->container.iHeight);
+	pIcon->fWidth = MAX (1, pDesklet->container.iWidth - pSimple->iLeftMargin - pSimple->iRightMargin);
+	pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
 	//pIcon->iImageWidth = pIcon->fWidth;
 	//pIcon->iImageHeight = pIcon->fHeight;
+	pIcon->fDrawX = pSimple->iLeftMargin;
+	pIcon->fDrawY = pSimple->iTopMargin;
 	pIcon->fWidthFactor = 1.;
 	pIcon->fHeightFactor = 1.;
 	pIcon->fScale = 1.;
 	pIcon->fGlideScale = 1.;
 	pIcon->fAlpha = 1.;
-	pIcon->fDrawX = 0.;
-	pIcon->fDrawY = 0.;
 }
 
 
@@ -106,16 +126,25 @@ static void render_opengl (CairoDesklet *pDesklet)
 	}
 }
 
+static void free_data (CairoDesklet *pDesklet)
+{
+	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
+	if (pSimple == NULL)
+		return ;
+	
+	g_free (pSimple);
+	pDesklet->pRendererData = NULL;
+}
 
 void rendering_register_simple_desklet_renderer (void)
 {
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
-	pRenderer->render = render;
-	pRenderer->configure = NULL;
-	pRenderer->load_data = NULL;
-	pRenderer->free_data = NULL;
-	pRenderer->calculate_icons = calculate_icons;
-	pRenderer->render_opengl = render_opengl;
+	pRenderer->render 			= (CairoDeskletRenderFunc) render;
+	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
+	pRenderer->load_data 		= NULL;
+	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
+	pRenderer->calculate_icons 	= (CairoDeskletCalculateIconsFunc) calculate_icons;
+	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;
 	
 	cairo_dock_register_desklet_renderer (MY_APPLET_SIMPLE_DESKLET_RENDERER_NAME, pRenderer);
 }

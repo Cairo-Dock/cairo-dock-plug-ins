@@ -29,7 +29,7 @@
 
 gboolean cd_musicplayer_dbus_connect_to_bus (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		myData.dbus_proxy_player = cairo_dock_create_new_session_proxy (
 			myData.DBus_commands.service,
@@ -42,7 +42,7 @@ gboolean cd_musicplayer_dbus_connect_to_bus (void)
 
 gboolean musicplayer_dbus_connect_to_bus_Shell (void)
 {
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		myData.dbus_proxy_shell = cairo_dock_create_new_session_proxy (
 			myData.DBus_commands.service,
@@ -59,6 +59,12 @@ void musicplayer_dbus_disconnect_from_bus (void)
 	{
 		g_object_unref (myData.dbus_proxy_player);
 		myData.dbus_proxy_player = NULL;
+	}
+	if (myData.pDetectPlayerCall != NULL)
+	{
+		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
+		dbus_g_proxy_cancel_call (pProxy, myData.pDetectPlayerCall);
+		myData.pDetectPlayerCall = NULL;
 	}
 }
 
@@ -79,7 +85,12 @@ static void _on_detect_player (gboolean bPresent, GVoidFunc pCallback)
 void cd_musicplayer_dbus_detect_player_async (GVoidFunc pCallback)
 {
 	myData.bIsRunning = FALSE;
-	DBusGProxyCall *call_id = cairo_dock_dbus_detect_application_async (myData.DBus_commands.service, (CairoDockOnAppliPresentOnDbus) _on_detect_player, pCallback);
+	if (myData.pDetectPlayerCall != NULL)
+	{
+		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
+		dbus_g_proxy_cancel_call (pProxy, myData.pDetectPlayerCall);
+	}
+	myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.DBus_commands.service, (CairoDockOnAppliPresentOnDbus) _on_detect_player, pCallback);
 }
 
 void cd_musicplayer_dbus_detect_player (void)

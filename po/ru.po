@@ -6609,7 +6609,7 @@ msgid "in seconds"
 msgstr "в секундах"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr "Продолжительность диалогового окна:"
 
 #: ../mail/data/messages:119

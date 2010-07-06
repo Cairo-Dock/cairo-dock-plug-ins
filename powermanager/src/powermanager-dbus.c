@@ -114,7 +114,7 @@ gboolean dbus_connect_to_bus (void)
 {
 	cd_message ("");
 	
-	if (cairo_dock_bdus_is_enabled ())
+	if (cairo_dock_dbus_is_enabled ())
 	{
 		dbus_proxy_power = cairo_dock_create_new_session_proxy (
 			"org.freedesktop.PowerManagement",

@@ -6636,7 +6636,7 @@ msgid "in seconds"
 msgstr "In seconden"
 
 #: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialogue"
+msgid "Duration of the dialog:"
 msgstr "Tijdsduur van de dialoog :"
 
 #: ../mail/data/messages:119
