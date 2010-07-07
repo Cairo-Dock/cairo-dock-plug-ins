@@ -96,8 +96,8 @@ void cd_switcher_load_icons (void)
 		GList *pIconList = _load_icons ();
 		
 		//\_______________________ On charge la nouvelle liste.
-		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+		///gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Slide", NULL);
 		
 		//\_______________________ On peint les icones.
 		cd_switcher_trigger_paint_icons ();

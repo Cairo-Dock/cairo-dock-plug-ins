@@ -58,7 +58,16 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 		.5 * pSlide->iLineWidth + (1. - sqrt (2) / 2) * pSlide->iRadius :
 		.5 * pSlide->iLineWidth + .5 * pSlide->iRadius);
 	
-	pSlide->iNbIcons = g_list_length (pDesklet->icons);
+	int iNbIcons = 0;
+	Icon *pIcon;
+	GList *ic;
+	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			iNbIcons ++;
+	}
+	pSlide->iNbIcons = iNbIcons;
 	
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
@@ -137,27 +146,32 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)  // on ne veut pas charger cette icone.
 	{
-		pIcon->fWidth = 0.;
-		pIcon->fHeight = 0.;
+		pIcon->fWidth = -1;
+		pIcon->fHeight = -1;
 	}
 	
 	GList* ic;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pIcon->fWidth = pSlide->iIconSize;
-		pIcon->fHeight = pSlide->iIconSize;
-		//pIcon->iImageWidth = pIcon->fWidth;
-		//pIcon->iImageHeight = pIcon->fHeight;
-	
-		pIcon->fScale = 1.;
-		pIcon->fAlpha = 1.;
-		pIcon->fWidthFactor = 1.;
-		pIcon->fHeightFactor = 1.;
-		pIcon->fGlideScale = 1.;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			pIcon->fWidth = -1;
+			pIcon->fHeight = -1;
+		}
+		else
+		{
+			pIcon->fWidth = pSlide->iIconSize;
+			pIcon->fHeight = pSlide->iIconSize;
+		
+			pIcon->fScale = 1.;
+			pIcon->fAlpha = 1.;
+			pIcon->fWidthFactor = 1.;
+			pIcon->fHeightFactor = 1.;
+			pIcon->fGlideScale = 1.;
+		}
 	}
 }
-
 
 
 static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
@@ -211,6 +225,8 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			continue;
 		
 		pIcon->fDrawX = x;
 		pIcon->fDrawY = y;
@@ -233,7 +249,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	do
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer != NULL)
+		if (pIcon->pIconBuffer != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			cairo_save (pCairoContext);
 			
@@ -319,7 +335,6 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 
 static void render_opengl (CairoDesklet *pDesklet)
 {
-	///_cairo_dock_define_static_vertex_tab (7);
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
 		return ;
@@ -329,25 +344,12 @@ static void render_opengl (CairoDesklet *pDesklet)
 	double fLineWidth = pSlide->iLineWidth;
 	if (fLineWidth != 0 && pSlide->fLineColor[3] != 0)
 	{
-		///if (pSlide->bRoundedRadius)
-		{
-			cairo_dock_draw_rounded_rectangle_opengl (pDesklet->container.iWidth - 2 * fRadius,
-				pDesklet->container.iHeight,
-				fRadius,
-				fLineWidth,
-				pSlide->fLineColor);
-			glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
-		}
-		/**else
-		{
-			int i = 0;
-			_cairo_dock_set_vertex_xy (0, -pDesklet->container.iWidth/2, 				+pDesklet->container.iHeight/2);
-			_cairo_dock_set_vertex_xy (1, -pDesklet->container.iWidth/2, 				-pDesklet->container.iHeight/2 + fRadius);
-			_cairo_dock_set_vertex_xy (2, -pDesklet->container.iWidth/2 + fRadius, 	-pDesklet->container.iHeight/2);
-			_cairo_dock_set_vertex_xy (3, +pDesklet->container.iWidth/2, 				-pDesklet->container.iHeight/2);
-			_cairo_dock_set_path_as_current ();
-			cairo_dock_draw_current_path_opengl (fLineWidth, pSlide->fLineColor, 4);
-		}*/
+		cairo_dock_draw_rounded_rectangle_opengl (pDesklet->container.iWidth - 2 * fRadius,
+			pDesklet->container.iHeight,
+			fRadius,
+			fLineWidth,
+			pSlide->fLineColor);
+		glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 	}
 	
 	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
@@ -370,6 +372,8 @@ static void render_opengl (CairoDesklet *pDesklet)
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			continue;
 		
 		pIcon->fDrawX = x;
 		pIcon->fDrawY = y;
@@ -393,7 +397,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	{
 		pIcon = ic->data;
 		
-		if (pIcon->iIconTexture != 0)
+		if (pIcon->iIconTexture != 0 && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			glPushMatrix ();
 			
@@ -459,7 +463,6 @@ static void render_opengl (CairoDesklet *pDesklet)
 			
 			glPopMatrix ();
 		}
-		
 		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	} while (ic != pFirstDrawnElement);
 	

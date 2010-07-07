@@ -333,6 +333,8 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 	do
 	{
 		icon = ic->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+			continue;
 		
 		if (icon->bPointed)
 		{
@@ -775,6 +777,8 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	do
 	{
 		icon = ic->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+			continue;
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		

@@ -100,11 +100,4 @@ CD_APPLET_RELOAD_BEGIN
 		cd_compiz_build_icons ();
 		
 	}
-	/*else if (myDesklet != NULL) {
-		gpointer pConfig[2] = {GINT_TO_POINTER (FALSE), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
-	}
-	else {
-		//Rien a faire
-	}*/
 CD_APPLET_RELOAD_END

@@ -146,7 +146,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myDesklet)
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
 		{
 			if (myConfig.bCompactView)
 			{
@@ -154,8 +154,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else
 			{
-				gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Caroussel", pConfig);
+				CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Slide", NULL);
 			}
 		}
 		

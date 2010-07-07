@@ -35,12 +35,6 @@ CD_APPLET_DEFINITION (N_("Me Menu"),
 	"Fabounet")
 
 
-/**static gboolean _get_menu_once (CairoDockModuleInstance *myApplet)
-{
-	cd_me_get_menu (myApplet);
-	myData.iSidGetMenuOnce = 0;
-	return FALSE;
-}*/
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -79,7 +73,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myDesklet)  // we are in desklet mode now, set a desklet renderer
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}

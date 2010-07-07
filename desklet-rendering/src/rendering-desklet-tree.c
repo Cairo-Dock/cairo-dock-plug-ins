@@ -100,8 +100,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)  // on ne veut pas charger cette icone.
 	{
-		pIcon->fWidth = 0.;
-		pIcon->fHeight = 0.;
+		pIcon->fWidth = -1;
+		pIcon->fHeight = -1;
 	}
 	
 	// on compte le nombre d'icones.
@@ -114,7 +114,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			iNbIcons ++;
 	}
 	
@@ -132,10 +132,16 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pIcon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
-		pIcon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
-		//icon->iImageWidth = icon->fWidth;
-		//icon->iImageHeight = icon->fHeight;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			pIcon->fWidth = 0;
+			pIcon->fHeight = 0;
+		}
+		else
+		{
+			pIcon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+			pIcon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
+		}
 	}
 }
 
@@ -168,30 +174,30 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			continue;
+		
+		x = s_iLeafPosition[iBrancheType][3*iLeafNumber];
+		y = s_iLeafPosition[iBrancheType][3*iLeafNumber+1];
+		sens = s_iLeafPosition[iBrancheType][3*iLeafNumber+2];
+		
+		pIcon->fDrawX = w / 2 + x * pTree->fTreeWidthFactor - pIcon->fWidth / 2;
+		pIcon->fDrawY = h - (iBrancheNumber * TREE_HEIGHT + y) * pTree->fTreeHeightFactor - sens * pIcon->fHeight;
+		pIcon->fScale = 1;
+		pIcon->fAlpha = 1;
+		pIcon->fWidthFactor = 1;
+		pIcon->fHeightFactor = 1;
+		
+		cairo_save (pCairoContext);
+		cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
+		cairo_restore (pCairoContext);
+		
+		iLeafNumber ++;
+		if (iLeafNumber == 3)
 		{
-			x = s_iLeafPosition[iBrancheType][3*iLeafNumber];
-			y = s_iLeafPosition[iBrancheType][3*iLeafNumber+1];
-			sens = s_iLeafPosition[iBrancheType][3*iLeafNumber+2];
-			
-			pIcon->fDrawX = w / 2 + x * pTree->fTreeWidthFactor - pIcon->fWidth / 2;
-			pIcon->fDrawY = h - (iBrancheNumber * TREE_HEIGHT + y) * pTree->fTreeHeightFactor - sens * pIcon->fHeight;
-			pIcon->fScale = 1;
-			pIcon->fAlpha = 1;
-			pIcon->fWidthFactor = 1;
-			pIcon->fHeightFactor = 1;
-			
-			cairo_save (pCairoContext);
-			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
-			cairo_restore (pCairoContext);
-			
-			iLeafNumber ++;
-			if (iLeafNumber == 3)
-			{
-				iLeafNumber = 0;
-				iBrancheNumber ++;
-				iBrancheType = iBrancheNumber % 2;
-			}
+			iLeafNumber = 0;
+			iBrancheNumber ++;
+			iBrancheType = iBrancheNumber % 2;
 		}
 	}
 }

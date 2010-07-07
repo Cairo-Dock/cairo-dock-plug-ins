@@ -223,6 +223,21 @@ static void _launch_from_file (const gchar *cDesktopFilePath)
 		*str = '\0';
 #endif //CD_EXPAND_FIELD_CODES
 	
+	//\____________ On gere le lancement dans un terminal.
+	gboolean bExecInTerminal = g_key_file_get_boolean (keyfile, "Desktop Entry", "Terminal", NULL);
+	if (bExecInTerminal)  // on le fait apres l'expansion.
+	{
+		gchar *cOldCommand = cCommand;
+		const gchar *cTerm = g_getenv ("COLORTERM");
+		if (cTerm != NULL && strlen (cTerm) > 1)  // on filtre les cas COLORTERM=1 ou COLORTERM=y. ce qu'on veut c'est le nom d'un terminal.
+			cCommand = g_strdup_printf ("$COLORTERM -e \"%s\"", cOldCommand);
+		else if (g_getenv ("TERM") != NULL)
+			cCommand = g_strdup_printf ("$TERM -e \"%s\"", cOldCommand);
+		else
+			cCommand = g_strdup_printf ("xterm -e \"%s\"", cOldCommand);
+		g_free (cOldCommand);
+	}
+	
 	//\____________ On recupere le repertoire d'execution.
 	gchar *cWorkingDirectory = g_key_file_get_string (keyfile, "Desktop Entry", "Path", NULL);
 	if (cWorkingDirectory != NULL && *cWorkingDirectory == '\0')
@@ -230,6 +245,7 @@ static void _launch_from_file (const gchar *cDesktopFilePath)
 		g_free (cWorkingDirectory);
 		cWorkingDirectory = NULL;
 	}
+	
 	//\____________ On lance le tout.
 	cairo_dock_launch_command_full (cCommandExpanded, cWorkingDirectory);
 	g_free (cCommand);

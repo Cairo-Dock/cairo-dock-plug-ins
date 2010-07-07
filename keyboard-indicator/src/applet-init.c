@@ -110,7 +110,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myDesklet)  // we are in desklet mode now, set a desklet renderer
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}

@@ -105,7 +105,7 @@ CD_APPLET_INIT_BEGIN
 	
 	if (myData.bDbusConnection)
 	{
-		// on recupere la connection active sur l'interface souhaitée, ou la 1ere connexion active si aucune interface n'est specifiee.
+		// on recupere la connection active sur l'interface souhaitï¿½e, ou la 1ere connexion active si aucune interface n'est specifiee.
 		if (! cd_NetworkMonitor_get_active_connection_info())  // si aucune connexion courante, on parcourt la liste des devices connus, et on choisit dedans.
 		{
 			cd_NetworkMonitor_get_device ();
@@ -182,7 +182,7 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myDesklet != NULL)
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;

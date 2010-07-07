@@ -277,13 +277,13 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 	}
-	else  // on redessine juste notre icone si elle n'a pas ete rechargee par le dock.
+	else
 	{
-		//\_______________ On redessine notre icone.
+		/** //\_______________ On redessine notre icone.
 		if (myData.pControledElement != NULL)
 		{
 			mixer_element_update_with_event (myData.pControledElement, 0);
-		}
+		}*/
 		
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);

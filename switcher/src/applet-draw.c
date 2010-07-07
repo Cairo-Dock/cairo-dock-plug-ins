@@ -26,8 +26,6 @@
 #include "applet-desktops.h"
 #include "applet-draw.h"
 
-gboolean my_bRotateIconsOnEllipse = TRUE;
-
 typedef struct {
 	gint iNumDesktop;
 	gint iNumViewportX;
