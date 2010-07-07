@@ -63,19 +63,16 @@ typedef struct _CDDiskUsage {
 	} CDDiskUsage;
 
 struct _AppletData {
+	CairoDockTask *pTask;
 	// shared memory for the loading task
 	GList *pIconList;
 	// end of shared memory
-	CairoDockTask *pTask;
+	
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	
-	guint iSidLaunchTask;
-	CairoDockTask *pDiskTask;
-	// shared memory for the disk usage task
-	GList *pDiskUsageList;
-	// end of shared memory
+	CairoDockTask *pDiskTask;  // tache non threadee.
 	} ;
 
 

@@ -22,6 +22,7 @@
 #include <sys/types.h>
 #include <sys/statfs.h>
 #include <mntent.h>
+#include <math.h>
 
 #include <cairo-dock.h>
 
@@ -29,7 +30,7 @@
 #include "applet-disk-usage.h"
 
 
-static void _cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
+void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 {
 	static struct statfs sts;
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
@@ -39,7 +40,6 @@ static void _cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDisk
 	{
 		if (pDiskUsage->iType == 0)
 			pDiskUsage->iType = sts.f_type;
-		pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
 		pDiskUsage->iAvail = (long long)sts.f_bavail * sts.f_bsize;  // Blocs libres pour utilisateurs
 		pDiskUsage->iFree  = (long long)sts.f_bfree  * sts.f_bsize;  // Blocs libres
 		pDiskUsage->iTotal = (long long)sts.f_blocks * sts.f_bsize;  // Nombre total de blocs
@@ -52,48 +52,11 @@ static void _cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDisk
 	}
 }
 
-static void _cd_shortcuts_get_disk_usage (CairoDockModuleInstance *myApplet)
-{
-	//cd_message ("%s ()", __func__);
-	const gchar *cMountPath;
-	GList *pElement = myData.pDiskUsageList;
-	CDDiskUsage *pDiskUsage;
-	long long iAvail, iFree, iTotal, iUsed, iType;
-	Icon *pIcon;
-	GList *ic;
-	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		//g_print ("%s (%s, %d)\n", __func__, pIcon->cCommand, pIcon->iType);
-		if (pIcon->iType != 6)
-			break;
-		if (pIcon->cCommand != NULL)
-		{
-			if (pElement != NULL)
-			{
-				pDiskUsage = pElement->data;
-				pElement = pElement->next;
-			}
-			else
-			{
-				//g_print ("+ %s\n", pIcon->cCommand);
-				pDiskUsage = g_new0 (CDDiskUsage, 1);
-				myData.pDiskUsageList = g_list_append (myData.pDiskUsageList, pDiskUsage);
-			}
-			
-			_cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
-		}
-	}
-}
 
 static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 {
-	g_return_val_if_fail (myData.pDiskUsageList != NULL, TRUE);
-	
 	CD_APPLET_ENTER;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
-	GList *pElement = myData.pDiskUsageList;
 	CDDiskUsage *pDiskUsage;
 	Icon *pIcon;
 	double fValue;
@@ -104,11 +67,18 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 		pIcon = ic->data;
 		if (pIcon->iType != 6)
 			break;
-		if (pIcon->cCommand != NULL && pElement != NULL)
+		if (pIcon->cCommand != NULL)
 		{
-			pDiskUsage = pElement->data;
-			if (pDiskUsage->iPrevAvail != pDiskUsage->iAvail)
+			// get data
+			pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+			if (pDiskUsage == NULL)
+				continue;
+			cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
+			
+			// update from data
+			if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == 0 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee (un disque n'est jamais totalement vide).
 			{
+				pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
 				switch (myConfig.iDisplayType)
 				{
 					case CD_SHOW_FREE_SPACE :
@@ -132,23 +102,21 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 					break;
 				}
 				
-				if (myConfig.bDrawBar)
+				if (myConfig.bDrawBar && pIcon->pIconBuffer != NULL)
 				{
 					int iWidth, iHeight;
 					cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
 					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->cFileName, iWidth, iHeight);
 					cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 					
-					cairo_dock_set_icon_surface_with_bar (pIconContext, pSurface, fValue, pIcon, pContainer);
+					cairo_dock_set_icon_surface_with_bar (pIconContext, pSurface, fValue, pIcon);
 					
 					cairo_destroy (pIconContext);
 					cairo_surface_destroy (pSurface);
 				}
 				
-				if (pDiskUsage->iPrevAvail != 0)
-					cairo_dock_redraw_icon (pIcon, pContainer);
+				cairo_dock_redraw_icon (pIcon, pContainer);
 			}
-			pElement = pElement->next;
 		}
 	}
 	
@@ -156,7 +124,6 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 		cairo_dock_redraw_container (myContainer);
 	
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }
 
 
@@ -167,7 +134,7 @@ void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 		if (myData.pDiskTask == NULL)
 		{
 			myData.pDiskTask = cairo_dock_new_task (myConfig.iCheckInterval,
-				(CairoDockGetDataAsyncFunc) _cd_shortcuts_get_disk_usage,
+				(CairoDockGetDataAsyncFunc) NULL,
 				(CairoDockUpdateSyncFunc) _cd_shortcuts_update_disk_usage,
 				myApplet);
 		}
@@ -178,9 +145,6 @@ void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 void cd_shortcuts_stop_disk_periodic_task (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_stop_task (myData.pDiskTask);
-	g_list_foreach (myData.pDiskUsageList, (GFunc) g_free, NULL);
-	g_list_free (myData.pDiskUsageList);
-	myData.pDiskUsageList = NULL;
 }
 
 void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
@@ -190,27 +154,6 @@ void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
 	myData.pDiskTask = NULL;
 }
 
-
-static gboolean _launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
-{
-	CD_APPLET_ENTER;
-	CDDiskUsage *pDiskUsage;
-	GList *d;
-	for (d = myData.pDiskUsageList; d != NULL; d = d->next)
-	{
-		pDiskUsage = d->data;
-		pDiskUsage->iAvail = 0;
-	}
-	cd_shortcuts_launch_disk_periodic_task (myApplet);
-	myData.iSidLaunchTask = 0;
-	CD_APPLET_LEAVE (FALSE);
-}
-void cd_shortcuts_trigger_draw_disk_usage (CairoDockModuleInstance *myApplet)
-{
-	if (myData.iSidLaunchTask != 0)  // on la lance en idle, car les icones sont chargees en idle.
-		g_source_remove (myData.iSidLaunchTask);
-	myData.iSidLaunchTask = g_idle_add ((GSourceFunc)_launch_disk_periodic_task, myApplet);
-}
 
 
 static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
@@ -252,7 +195,7 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 	GString *sInfo = g_string_new ("");
 	// on recupere les infos de taille.
 	CDDiskUsage diskUsage;
-	_cd_shortcuts_get_fs_stat (cDiskURI, &diskUsage);
+	cd_shortcuts_get_fs_stat (cDiskURI, &diskUsage);
 	
 	// on recupere les infos du file system.
 	if (diskUsage.iTotal > 0)  // le disque est monte.

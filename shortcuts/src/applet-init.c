@@ -42,6 +42,9 @@ CD_APPLET_DEFINITION (N_("shortcuts"),
 
 
 CD_APPLET_INIT_BEGIN
+	if (! cairo_dock_reserve_data_slot (myApplet))
+		return;
+	
 	if (myDock)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
@@ -63,8 +66,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
-	if (myData.iSidLaunchTask != 0)
-		g_source_remove (myData.iSidLaunchTask);
 CD_APPLET_STOP_END
 
 
@@ -83,10 +84,6 @@ CD_APPLET_RELOAD_BEGIN
 			(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
 			myApplet);
 		cairo_dock_launch_task (myData.pTask);
-	}
-	else if (myDesklet)  // on recharge juste la vue du desklet qui a change de taille.
-	{
-		cd_shortcuts_trigger_draw_disk_usage (myApplet);  // les icones ont ete rechargees par la vue, donc on redessine les barres.
 	}
 CD_APPLET_RELOAD_END
 

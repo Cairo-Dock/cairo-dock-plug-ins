@@ -26,17 +26,18 @@
 
 
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Module", "list drives");
-	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Module", "list network");
-	myConfig.bListBookmarks = CD_CONFIG_GET_BOOLEAN ("Module", "list bookmarks");
-	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Module", "use separator");
+	CD_CONFIG_RENAME_GROUP ("Module", "Configuration");
+	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Configuration", "list drives");
+	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Configuration", "list network");
+	myConfig.bListBookmarks = CD_CONFIG_GET_BOOLEAN ("Configuration", "list bookmarks");
+	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Configuration", "use separator");
 	
-	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "disk usage", CD_SHOW_USED_SPACE_PERCENT);
-	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "check interval", 10);
-	myConfig.bDrawBar = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Module", "draw bar", TRUE);
+	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "disk usage", CD_SHOW_USED_SPACE_PERCENT);
+	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "check interval", 10);
+	myConfig.bDrawBar = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "draw bar", TRUE);
 	
-	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Module", "renderer");
-	myConfig.iDeskletRendererType = CD_CONFIG_GET_INTEGER ("Module", "desklet renderer");
+	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
+	myConfig.iDeskletRendererType = CD_CONFIG_GET_INTEGER ("Configuration", "desklet renderer");
 CD_APPLET_GET_CONFIG_END
 
 

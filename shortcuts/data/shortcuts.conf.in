@@ -95,7 +95,7 @@ fg desklet =
 fg alpha = 1
 
 #[gtk-preferences]
-[Module]
+[Configuration]
 
 #F[Items]
 frame_icon=
@@ -126,7 +126,7 @@ desklet renderer = 0
 #F[Disk usage]
 frame_disk=
 
-#l[No;Free space;Used space;Free space (in percent);Used space (in percent)] Show disk usage :
+#Y[No;0;0;Free space;1;2;Used space;1;2;Free space (in percent);1;2;Used space (in percent);1;2] Show disk usage :
 disk usage = 4
 
 #i[1;30] Delay between disk usage refresh :

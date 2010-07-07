@@ -26,37 +26,23 @@
 #include "applet-bookmarks.h"
 
 
-static GList * _cd_shortcuts_detach_icon_from_list (Icon *icon, GList *pIconList, gboolean bUseSeparator)
+static void _cd_shortcuts_mark_one_bookmark (Icon *icon, gpointer unused, int *pTime)
 {
-	pIconList = g_list_remove (pIconList, icon);  // on s'en fout des separateurs en mode desklet.
-	return pIconList;
+	icon->iLastCheckTime = *pTime;
 }
-static void _cd_shortcuts_detach_one_bookmark (Icon *icon, gpointer unused, gpointer *data)
+void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
-	CairoDockModuleInstance *myApplet = data[0];
-	GList **pList = data[1];
-	
-	*pList = g_list_append (*pList, icon);
-	if (myIcon->pSubDock != NULL)
-		cairo_dock_detach_icon_from_dock (icon, myIcon->pSubDock, FALSE);
-	else if (myDesklet)
-	{
-		myDesklet->icons = _cd_shortcuts_detach_icon_from_list (icon, myDesklet->icons, myConfig.bUseSeparator);
-	}
-}
-void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
-{
-	cd_message ("%s (%d)", __func__, iEventType);
-	g_return_if_fail (myIcon->pSubDock != NULL || myDesklet);
+	static int iTime = 0;
+	iTime ++;
 	CD_APPLET_ENTER;
+	g_print ("%s (%d)\n", __func__, iEventType);
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
-	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
+	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)  // le fichier des bookmarks a ete modifie.
 	{
 		cd_message ("  un signet en plus ou en moins");
-		//\____________________ On detache les icones des signets.
-		GList *pPrevBookmarkIconList = NULL;
-		gpointer data[2] = {myApplet, &pPrevBookmarkIconList};
-		Icon *pSeparatorIcon = cairo_dock_foreach_icons_of_type ((myDock ? myIcon->pSubDock->icons : myDesklet->icons), 10, (CairoDockForeachIconFunc) _cd_shortcuts_detach_one_bookmark, data);
 		
 		//\____________________ On lit le fichier des signets.
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
@@ -66,29 +52,38 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
+			cd_warning ("when trying to get the bookmarks : %s", erreur->message);
 			g_error_free (erreur);
 		}
 		else
 		{
 			gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 			g_free (cContent);
+			
+			//\____________________ On parcourt le contenu.
 			gchar *cOneBookmark;
 			Icon *pNewIcon;
 			gchar *cName, *cRealURI, *cIconName, *cUserName;
 			gboolean bIsDirectory;
 			int iVolumeID;
 			double fOrder, fCurrentOrder = 0;
-			int i = 0;
+			int i;
 			for (i = 0; cBookmarksList[i] != NULL; i ++)
 			{
 				cOneBookmark = cBookmarksList[i];
+				if (*cOneBookmark == '\0' || *cOneBookmark == '#')
+				{
+					g_free (cOneBookmark);
+					continue;
+				}
+				
+				// on recupere le nom a afficher.
 				cUserName = NULL;
 				if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
 				{
-					gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
-					g_free (cOneBookmark);
-					cOneBookmark = tmp;
+					gchar *tmp = cOneBookmark;
+					cOneBookmark = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
+					g_free (tmp);
 				}
 				else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
 				{
@@ -99,24 +94,28 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 						*str = '\0';
 					}
 				}
-				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pPrevBookmarkIconList, cOneBookmark);
-				if (pExistingIcon != NULL && (cUserName == NULL || strcmp (pExistingIcon->cName, cUserName) == 0) && cURI != NULL)  // on la reinsere a sa place. Si le nom utilisateur a change, on se prend pas la tete, on la recree.
+				
+				// on cree une icone pour le signet si aucune n'existe ou qu'il a change.
+				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cOneBookmark);
+				if (pExistingIcon != NULL)
 				{
-					cd_message (" = 1 signet : %s", cOneBookmark);
-					pPrevBookmarkIconList = g_list_remove (pPrevBookmarkIconList, pExistingIcon);
-					pExistingIcon->fOrder = fCurrentOrder ++;
-					if (myDock)
-						cairo_dock_insert_icon_in_dock_full (pExistingIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, myConfig.bUseSeparator, NULL);
+					if (cairo_dock_strings_differ (pExistingIcon->cName, cUserName) || cURI == NULL)  // signet inexistant ou qui a change => on le cree.
+					{
+						g_print ("le signet '%s' a change, on le recree\n", pExistingIcon->cName);
+						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
+						pExistingIcon = NULL;
+					}
 					else
-						myDesklet->icons = g_list_append (myDesklet->icons, pExistingIcon);
-					g_free (cOneBookmark);
+						pExistingIcon->iLastCheckTime = iTime;
 				}
-				else  // on la cree.
+				if (pExistingIcon == NULL)
 				{
+					g_print ("new bookmark : '%s'\n", cOneBookmark);
+					
 					cName = NULL;
 					cRealURI = NULL;
 					cIconName = NULL;
-					if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+					if (cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						cd_message (" + 1 signet : %s", cOneBookmark);
 						if (cUserName != NULL)
@@ -138,38 +137,52 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 							cIconName,
 							cRealURI,
 							NULL,
-							fCurrentOrder ++);
+							0);
 						pNewIcon->iType = 10;
 						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
-						if (myDesklet)
-						{
-							pNewIcon->fWidth = 48;
-							pNewIcon->fHeight = 48;
-						}
+						pNewIcon->iLastCheckTime = iTime;
 						
-						cairo_dock_load_icon_buffers (pNewIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer));
-						if (myDock)
-							cairo_dock_insert_icon_in_dock_full (pNewIcon, myIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON, myConfig.bUseSeparator, NULL);
-						else
-						{
-							myDesklet->icons = g_list_append (myDesklet->icons, pNewIcon);
-						}
+						pIconsList = CD_APPLET_MY_ICONS_LIST;
+						cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
+						
+						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 					}
 					else
 					{
+						cd_warning ("couldn't get info on bookmark '%s'", cOneBookmark);
 						g_free (cOneBookmark);
 					}
 				}
 			}
 			g_free (cBookmarksList);
 			
-			//\____________________ On supprime les signets qui restent.
-			g_list_foreach (pPrevBookmarkIconList, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (pPrevBookmarkIconList);
+			//\____________________ On supprime les vieux signets.
+			pIconsList = CD_APPLET_MY_ICONS_LIST;
+			gboolean bRemove = TRUE;
+			Icon *icon;
+			GList *ic;
+			while (bRemove)
+			{
+				bRemove = FALSE;
+				for (ic = pIconsList; ic != NULL; ic = ic->next)
+				{
+					icon = ic->data;
+					if (icon->iType == 10)
+					{
+						if (icon->iLastCheckTime != iTime)
+						{
+							g_print ("this bookmark is too old (%s)\n", icon->cName);
+							CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
+							bRemove = TRUE;
+							break;
+						}
+					}
+				}
+			}
 			
 			//\____________________ On ajoute ou supprime un separateur.
-			if (myDock)
+			/**if (myDock)
 			{
 				Icon *pFirstBookmarkIcon = cairo_dock_get_first_icon_of_type (myIcon->pSubDock->icons, 10);
 				if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
@@ -178,29 +191,9 @@ void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gc
 					cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
 					cairo_dock_free_icon (pSeparatorIcon);
 				}
-			}
+			}*/
 		}
 		g_free (cBookmarkFilePath);
-		if (myDock)
-		{
-			cairo_dock_update_dock_size (myIcon->pSubDock);
-		}
-		else
-		{
-			const gchar *cDeskletRendererName = NULL;
-			switch (myConfig.iDeskletRendererType)
-			{
-				case CD_DESKLET_SLIDE :
-				default :
-					cDeskletRendererName = "Slide";
-				break ;
-				
-				case CD_DESKLET_TREE :
-					cDeskletRendererName = "Tree";
-				break ;
-			}
-			CD_APPLET_SET_DESKLET_RENDERER (cDeskletRendererName);
-		}
 	}
 	CD_APPLET_LEAVE();
 }

@@ -24,7 +24,7 @@
 #include <cairo-dock.h>
 
 
-void cd_shortcuts_on_change_bookmarks (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet);
+void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet);
 
 
 void cd_shortcuts_remove_one_bookmark (const gchar *cURI);
