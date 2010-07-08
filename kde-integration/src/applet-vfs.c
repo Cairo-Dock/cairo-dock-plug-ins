@@ -905,8 +905,9 @@ gboolean vfs_backend_eject_drive (const gchar *cURI)
 }
 
 
+
 static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gpointer *data)
-//static void _vfs_backend_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
+//static void _gio_vfs_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
 {
 	cd_message ("%s (%d)", __func__, GPOINTER_TO_INT (data[1]));
 	
@@ -927,53 +928,38 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 		g_error_free (erreur);
 	}
 	
-	cd_message ("(un)mount fini -> %d", bSuccess);
-	pCallback (GPOINTER_TO_INT (data[1]) == 1, bSuccess, data[2], data[3], data[4]);
-	//g_free (data[2]);
-	//g_object_unref (pObject);
-	//g_free (data);
+	cd_message ("(un)mounted -> %d", bSuccess);
+	if (pCallback != NULL)
+		pCallback (GPOINTER_TO_INT (data[1]) == 1, bSuccess, data[2], data[3], data[4]);
+	g_free (data[2]);
+	g_free (data[3]);
+	g_free (data);
 }
 
-void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
+static void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
 {
-	g_return_if_fail (iVolumeID > 0);
+	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	/*gchar *cTargetURI = NULL;
-	GMount *pMount = _cd_find_mount_from_uri (cURI, &cTargetURI);
-	cd_message (" %x / %s\n", pMount, cTargetURI);
-	GVolume *pVolume = g_mount_get_volume (pMount);
-	gpointer *data2 = g_new (gpointer, 5);
-	data2[0] = pCallback;
-	data2[1] = GINT_TO_POINTER (1);
-	data2[2] = g_path_get_basename (cURI);
-	data2[3] = icon;
-	data2[4] = pDock;
-	g_volume_mount (pVolume,
-		G_MOUNT_MOUNT_NONE,
-		NULL,
-		NULL,
-		(GAsyncReadyCallback) _vfs_backend_mount_callback,
-		data2);*/
 	gchar *cTargetURI = _cd_find_target_uri (cURI);
 	GFile *pFile = g_file_new_for_uri (cURI);
 	
-	gpointer *data2 = g_new (gpointer, 5);
-	data2[0] = pCallback;
-	data2[1] = GINT_TO_POINTER (1);
-	data2[2] = g_path_get_basename (cTargetURI);
-	data2[3] = icon;
-	data2[4] = pContainer;
+	gpointer *data = g_new (gpointer, 5);  // libere dans la callback.
+	data[0] = pCallback;
+	data[1] = GINT_TO_POINTER (1);  // mount
+	data[2] = (cTargetURI ? g_path_get_basename (cTargetURI) : g_strdup (cURI));
+	data[3] = g_strdup (cURI);
+	data[4] = user_data;
 	g_file_mount_mountable  (pFile,
 		G_MOUNT_MOUNT_NONE,
 		NULL,
 		NULL,
 		(GAsyncReadyCallback) _vfs_backend_mount_callback,
-		data2);
+		data);
 	g_free (cTargetURI);
 }
 
-void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
+static void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
@@ -992,26 +978,29 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	gboolean bCanUnmount = g_mount_can_unmount (pMount);
 	cd_message ("eject:%d / unmount:%d\n", bCanEject, bCanUnmount);
 	if (! bCanEject && ! bCanUnmount)
+	{
+		cd_warning ("can't unmount this volume (%s)", cURI);
 		return ;
+	}
 	
-	gpointer *data2 = g_new (gpointer, 5);
-	data2[0] = pCallback;
-	data2[1] = GINT_TO_POINTER (bCanEject ? 2 : 0);
-	data2[2] = g_mount_get_name (pMount);
-	data2[3] = icon;
-	data2[4] = pContainer;
+	gpointer *data = g_new (gpointer, 5);
+	data[0] = pCallback;
+	data[1] = GINT_TO_POINTER (bCanEject ? 2 : 0);
+	data[2] = g_mount_get_name (pMount);
+	data[3] = g_strdup (cURI);
+	data[4] = user_data;
 	if (bCanEject)
 		g_mount_eject (pMount,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			(GAsyncReadyCallback) _vfs_backend_mount_callback,
-			data2);
+			data);
 	else
 		g_mount_unmount (pMount,
 			G_MOUNT_UNMOUNT_NONE ,
 			NULL,
 			(GAsyncReadyCallback) _vfs_backend_mount_callback,
-			data2);
+			data);
 }
 
 

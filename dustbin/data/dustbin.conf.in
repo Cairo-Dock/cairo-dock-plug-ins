@@ -109,7 +109,7 @@ full image =
 #F[Config;gtk-preferences]
 frame2 =
 
-#l[None;Number of Dustbins;Total number of files;Total weight] Display the following quick info :
+#l[None;Number of files;Total number of files;Total weight] Display the following quick info :
 quick info = 1
 
 #i Maximum total size of all dustbins :
@@ -129,7 +129,7 @@ middle click = 0
 #X[Desktop-less support]
 frame3 =
 
-#D If the Trash folder is not known by the dock, you can specify it here :
+#U If the Trash folder is not known by the dock, you can specify it here :
 additionnal directories = 
 
 #f[0.5;10.0] Time interval to check if dustbin is full/empty :

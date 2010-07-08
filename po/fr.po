@@ -6369,8 +6369,8 @@ msgid "Display the following quick info :"
 msgstr "Afficher l'info-rapide suivante :"
 
 #: ../dustbin/data/messages:103
-msgid "Number of Dustbins"
-msgstr "Nombre de déchets"
+msgid "Number of files"
+msgstr "Nombre de fichiers"
 
 #: ../dustbin/data/messages:105 ../mail/data/messages:125
 msgid "Total number of files"

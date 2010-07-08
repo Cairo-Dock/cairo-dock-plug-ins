@@ -113,9 +113,6 @@ list bookmarks = true
 #F[Display]
 frame_icon=
 
-#b Separate different shortcuts with separators?
-use separator = false
-
 #n+ Sub-dock view name:
 #{Leave empty to use default sub-dock view.}/
 renderer = 
