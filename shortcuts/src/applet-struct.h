@@ -36,6 +36,12 @@ typedef enum {
 } CDDiskUsageDisplayType;
 
 typedef enum {
+	CD_DRIVE_GROUP=6,
+	CD_NETWORK_GROUP=8,
+	CD_BOOKMARK_GROUP=10
+} CDShortcutsGroup;
+
+typedef enum {
 	CD_DESKLET_SLIDE=0,
 	CD_DESKLET_TREE,
 	CD_DESKLET_NB_RENDERER
@@ -45,7 +51,7 @@ struct _AppletConfig {
 	gboolean bListDrives;
 	gboolean bListNetwork;
 	gboolean bListBookmarks;
-	gboolean bUseSeparator;
+	///gboolean bUseSeparator;
 	CDDiskUsageDisplayType iDisplayType;
 	gint iCheckInterval;
 	gboolean bDrawBar;

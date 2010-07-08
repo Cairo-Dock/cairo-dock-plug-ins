@@ -30,7 +30,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bListDrives = CD_CONFIG_GET_BOOLEAN ("Configuration", "list drives");
 	myConfig.bListNetwork = CD_CONFIG_GET_BOOLEAN ("Configuration", "list network");
 	myConfig.bListBookmarks = CD_CONFIG_GET_BOOLEAN ("Configuration", "list bookmarks");
-	myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Configuration", "use separator");
+	///myConfig.bUseSeparator = CD_CONFIG_GET_BOOLEAN ("Configuration", "use separator");
 	
 	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "disk usage", CD_SHOW_USED_SPACE_PERCENT);
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "check interval", 10);

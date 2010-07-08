@@ -49,6 +49,7 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 	else
 	{
 		pDiskUsage->iTotal = 0;
+		pDiskUsage->iAvail = 0;
 	}
 }
 
@@ -65,7 +66,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iType != 6)
+		if (pIcon->iType != CD_DRIVE_GROUP)  // les disques sont en 1er
 			break;
 		if (pIcon->cCommand != NULL)
 		{

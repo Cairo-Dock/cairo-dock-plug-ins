@@ -138,7 +138,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 							cRealURI,
 							NULL,
 							0);
-						pNewIcon->iType = 10;
+						pNewIcon->iType = CD_BOOKMARK_GROUP;
 						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
 						pNewIcon->iLastCheckTime = iTime;
@@ -168,7 +168,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				for (ic = pIconsList; ic != NULL; ic = ic->next)
 				{
 					icon = ic->data;
-					if (icon->iType == 10)
+					if (icon->iType == CD_BOOKMARK_GROUP)
 					{
 						if (icon->iLastCheckTime != iTime)
 						{
@@ -210,51 +210,102 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s", erreur->message);
+		cd_warning ("while trying to read bookmarks file : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	else
 	{
-		GString *sNewContent = g_string_new ("");
 		gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 		g_free (cContent);
-		gchar *cOneBookmark;
+		gchar *cOneBookmark, *str;
 		int i = 0;
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
 			cOneBookmark = cBookmarksList[i];
+			if (*cOneBookmark == '\0' || *cOneBookmark == '#')
+				continue;
 			
-			if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
+			str = strchr (cOneBookmark, ' ');
+			if ((str && strncmp (cOneBookmark, cURI, str - cOneBookmark) == 0) || (!str && strcmp (cOneBookmark, cURI) == 0))
 			{
-				gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
+				cBookmarksList[i] = g_strdup ("");
 				g_free (cOneBookmark);
-				cOneBookmark = tmp;
+				break;
 			}
-			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
-			{
-				gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
-				if (str != NULL)
-					*str = '\0';
-			}
-			
-			if (*cOneBookmark != '\0' && strcmp (cOneBookmark, cURI) != 0)
-			{
-				g_string_append (sNewContent, cOneBookmark);
-				g_string_append_c (sNewContent, '\n');
-			}
-			g_free (cOneBookmark);
 		}
-		g_free (cBookmarksList);
 		
-		g_file_set_contents (cBookmarkFilePath, sNewContent->str, -1, &erreur);
-		if (erreur != NULL)
+		if (cBookmarksList[i] == NULL)
 		{
-			cd_warning ("Attention : %s", erreur->message);
-			g_error_free (erreur);
+			cd_warning ("bookmark '%s' not found", cURI);
+		}
+		else
+		{
+			cContent = g_strjoinv ("\n", cBookmarksList);
+			g_file_set_contents (cBookmarkFilePath, cContent, -1, &erreur);
+			if (erreur != NULL)
+			{
+				cd_warning ("while trying to write bookmarks file : %s", erreur->message);
+				g_error_free (erreur);
+			}
+			g_free (cContent);
+		}
+		g_strfreev (cBookmarksList);
+	}
+	g_free (cBookmarkFilePath);
+}
+
+void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
+{
+	g_return_if_fail (cURI != NULL);
+	cd_message ("%s (%s, %s)", __func__, cURI, cName);
+	
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	gchar *cContent = NULL;
+	gsize length=0;
+	GError *erreur = NULL;
+	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("while trying to read bookmarks file : %s", erreur->message);
+		g_error_free (erreur);
+	}
+	else
+	{
+		gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
+		g_free (cContent);
+		gchar *cOneBookmark, *str;
+		int i = 0;
+		for (i = 0; cBookmarksList[i] != NULL; i ++)
+		{
+			cOneBookmark = cBookmarksList[i];
+			if (*cOneBookmark == '\0' || *cOneBookmark == '#')
+				continue;
+			
+			str = strchr (cOneBookmark, ' ');
+			if ((str && strncmp (cOneBookmark, cURI, str - cOneBookmark) == 0) || (!str && strcmp (cOneBookmark, cURI) == 0))
+			{
+				cBookmarksList[i] = g_strdup_printf ("%s %s", cURI, cName);
+				g_free (cOneBookmark);
+				break;
+			}
 		}
 		
-		g_string_free (sNewContent, TRUE);
-		
+		if (cBookmarksList[i] == NULL)
+		{
+			cd_warning ("bookmark '%s' not found", cURI);
+		}
+		else
+		{
+			cContent = g_strjoinv ("\n", cBookmarksList);
+			g_file_set_contents (cBookmarkFilePath, cContent, -1, &erreur);
+			if (erreur != NULL)
+			{
+				cd_warning ("while trying to write bookmarks file : %s", erreur->message);
+				g_error_free (erreur);
+			}
+			g_free (cContent);
+		}
+		g_strfreev (cBookmarksList);
 	}
 	g_free (cBookmarkFilePath);
 }
@@ -275,6 +326,7 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	}
 	g_free (cBookmarkFilePath);
 }
+
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 {
@@ -325,7 +377,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			cIconName = NULL;
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 			{
-				cd_message (" + 1 signet : %s", cOneBookmark);
+				cd_message (" + 1 bookmark : %s", cOneBookmark);
 				if (cUserName != NULL)
 				{
 					g_free (cName);
@@ -346,7 +398,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 					cRealURI,
 					NULL,
 					fCurrentOrder ++);
-				pNewIcon->iType = 10;
+				pNewIcon->iType = CD_BOOKMARK_GROUP;
 				pNewIcon->cBaseURI = cOneBookmark;
 				pNewIcon->iVolumeID = iVolumeID;
 				pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);

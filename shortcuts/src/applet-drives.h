@@ -18,21 +18,14 @@
 */
 
 
-#ifndef __APPLET_NOTIFICATIONS__
-#define  __APPLET_NOTIFICATIONS__
+#ifndef __APPLET_DRIVES__
+#define  __APPLET_DRIVES__
+
 
 #include <cairo-dock.h>
 
 
-CD_APPLET_ON_CLICK_H
-
-CD_APPLET_ON_BUILD_MENU_H
-
-CD_APPLET_ON_MIDDLE_CLICK_H
-
-CD_APPLET_ON_DROP_DATA_H
-
-gboolean cd_shortcuts_free_data (CairoDockModuleInstance *myApplet, Icon *pIcon);
+GList * cd_shortcuts_list_drives (CairoDockModuleInstance *myApplet);
 
 
 #endif

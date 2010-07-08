@@ -2,18 +2,13 @@
 ########### sources ###############
 
 SET(cd-shortcuts_LIB_SRCS
-	applet-init.c
-	applet-init.h
-	applet-config.c
-	applet-config.h
-	applet-notifications.c
-	applet-notifications.h
-	applet-bookmarks.c
-	applet-bookmarks.h
-	applet-load-icons.c
-	applet-load-icons.h
-	applet-disk-usage.c
-	applet-disk-usage.h
+	applet-init.c 		applet-init.h
+	applet-config.c 		applet-config.h
+	applet-notifications.c 	applet-notifications.h
+	applet-bookmarks.c 	applet-bookmarks.h
+	applet-load-icons.c 	applet-load-icons.h
+	applet-disk-usage.c 	applet-disk-usage.h
+	applet-drives.c 		applet-drives.h
 	applet-struct.h
 )
 
