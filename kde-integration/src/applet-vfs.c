@@ -936,7 +936,7 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 	g_free (data);
 }
 
-static void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
+void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
@@ -959,7 +959,7 @@ static void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMoun
 	g_free (cTargetURI);
 }
 
-static void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
+void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, gpointer user_data)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);

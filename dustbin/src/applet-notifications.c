@@ -129,7 +129,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		0))
 	{
 		if (iVolumeID > 0)
-			cairo_dock_fm_unmount_full (cURI, iVolumeID, _cd_dustbin_action_after_unmount, myIcon, myContainer);
+			cairo_dock_fm_unmount_full (cURI, iVolumeID, (CairoDockFMMountCallback) _cd_dustbin_action_after_unmount, myApplet);
 		else
 		{
 			/*gchar * cDustbinPath = cairo_dock_fm_get_trash_path (CD_APPLET_RECEIVED_DATA, NULL);  // on laisse tomber les info pour l'instant ...
