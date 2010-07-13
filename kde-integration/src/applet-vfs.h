@@ -53,7 +53,7 @@ void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockF
 void vfs_backend_remove_monitor (const gchar *cURI);
 
 
-gboolean vfs_backend_delete_file (const gchar *cURI);
+gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash);
 
 gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName);
 
@@ -62,9 +62,13 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI);
 
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 
+void vfs_backend_empty_trash (void);
+
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath);
 
 gchar *vfs_backend_get_desktop_path (void);
+
+gsize vfs_backend_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *iCancel);
 
 
 #endif

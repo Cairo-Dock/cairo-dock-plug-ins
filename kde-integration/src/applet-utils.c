@@ -63,5 +63,5 @@ void env_backend_setup_time (void)
 
 void env_backend_show_system_monitor (void)
 {
-	cairo_dock_launch_command ("kde-system-monitor");  /// ksysguard ?...
+	cairo_dock_launch_command ("ksysguard");
 }

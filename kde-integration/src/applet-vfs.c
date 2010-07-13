@@ -17,12 +17,18 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <glib.h>
 #include <gio/gio.h>
 
 #include "applet-vfs.h"
+
+extern int lstat (const char *path, struct stat *buf);
 
 static GHashTable *s_hMonitorHandleTable = NULL;
 
@@ -802,7 +808,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	g_return_if_fail (cURI != NULL);
 	
 	cd_debug ("%s (%s)", __func__, cURI);
-	gchar *cCommand = g_strdup_printf ("kfmclient exec \"%s\"", cURI);
+	gchar *cCommand = g_strdup_printf ("kioclient exec \"%s\"", cURI);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 	
@@ -1105,37 +1111,50 @@ void vfs_backend_remove_monitor (const gchar *cURI)
 
 
 
-gboolean vfs_backend_delete_file (const gchar *cURI)
+gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 {
 	g_return_val_if_fail (cURI != NULL, FALSE);
-	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
-	GError *erreur = NULL;
-	gboolean bSuccess = g_file_trash (pFile, NULL, &erreur);
-	if (erreur != NULL)
+	if (bNoTrash)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
-		g_error_free (erreur);
+		GError *erreur = NULL;
+		gchar *cFilePath = g_filename_from_uri (cURI, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("%s", erreur->message);
+			g_error_free (erreur);
+			return FALSE;
+		}
+		gchar *cCommand = g_strdup_printf ("rm -rf \"%s\"", cFilePath);
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+		g_free (cFilePath);
 	}
-	g_object_unref (pFile);
-	return bSuccess;
+	else
+	{
+		gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" trash:/", cURI);
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+	}
+	return TRUE;
 }
 
 gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 {
 	g_return_val_if_fail (cOldURI != NULL, FALSE);
-	GFile *pOldFile = (*cOldURI == '/' ? g_file_new_for_path (cOldURI) : g_file_new_for_uri (cOldURI));
-	GError *erreur = NULL;
-	GFile *pNewFile = g_file_set_display_name (pOldFile, cNewName, NULL, &erreur);
-	if (erreur != NULL)
+	
+	gboolean bSuccess = FALSE;
+	gchar *cPath = g_path_get_dirname (cOldURI);
+	if (cPath)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
-		g_error_free (erreur);
+		gchar *cNewURI = g_strdup_printf ("%s/%s", cPath, cNewName);
+		gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" \"%s\"", cOldURI, cNewURI);
+		cairo_dock_launch_command (cCommand);
+		g_free (cCommand);
+		g_free (cNewURI);
+		bSuccess = TRUE;
 	}
-	gboolean bSuccess = (pNewFile != NULL);
-	if (pNewFile != NULL)
-		g_object_unref (pNewFile);
-	g_object_unref (pOldFile);
+	g_free (cPath);
 	return bSuccess;
 }
 
@@ -1143,30 +1162,15 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 {
 	g_return_val_if_fail (cURI != NULL, FALSE);
 	cd_message (" %s -> %s", cURI, cDirectoryURI);
-	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
-	gchar *cFileName = g_file_get_basename (pFile);
-	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);  // un peu moyen mais bon...
-	GFile *pDestinationFile = (*cNewFileURI == '/' ? g_file_new_for_path (cNewFileURI) : g_file_new_for_uri (cNewFileURI));
+	gchar *cFileName = g_path_get_basename (cURI);
+	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);
+	gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" \"%s\"", cURI, cNewFileURI);
+	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
 	g_free (cNewFileURI);
 	g_free (cFileName);
-	
-	GError *erreur = NULL;
-	gboolean bSuccess = g_file_move (pFile,
-		pDestinationFile,
-		G_FILE_COPY_NOFOLLOW_SYMLINKS,
-		NULL,
-		NULL,  // GFileProgressCallback
-		NULL,  // data
-		&erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("gnome-integration : %s", erreur->message);
-		g_error_free (erreur);
-	}
-	g_object_unref (pFile);
-	g_object_unref (pDestinationFile);
-	return bSuccess;
+	return TRUE;
 }
 
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
@@ -1208,6 +1212,11 @@ void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t 
 }
 
 
+void vfs_backend_empty_trash (void)
+{
+	cairo_dock_launch_command ("ktrash --empty");
+}
+
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
 	gchar *cPath = NULL;
@@ -1238,4 +1247,63 @@ gchar *vfs_backend_get_desktop_path (void)
 	if (cPath == NULL)
 		cPath = g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
 	return cPath;
+}
+
+
+gsize vfs_backend_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
+{
+	g_return_val_if_fail (cBaseURI != NULL, 0);
+	g_print ("%s (%s)\n", __func__, cBaseURI);
+	
+	GError *erreur = NULL;
+	gchar *cDirectory = (*cBaseURI == '/' ? (gchar*)cBaseURI : g_filename_from_uri (cBaseURI, NULL, &erreur));
+	if (erreur != NULL)
+	{
+		cd_warning ("kde-integration : %s", erreur->message);
+		g_error_free (erreur);
+		return 0;
+	}
+	
+	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("kde-integration : %s", erreur->message);
+		g_error_free (erreur);
+		return 0;
+	}
+	
+	gsize iMeasure = 0;
+	struct stat buf;
+	const gchar *cFileName;
+	GString *sFilePath = g_string_new ("");
+	while ((cFileName = g_dir_read_name (dir)) != NULL && ! g_atomic_int_get (pCancel))
+	{
+		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
+		
+		if (lstat (sFilePath->str, &buf) != -1)
+		{
+			if (S_ISDIR (buf.st_mode) && bRecursive)  // repertoire.
+			{
+				iMeasure += MAX (1, vfs_backend_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // un repertoire vide comptera pour 1.
+			}
+			else  // fichier simple.
+			{
+				if (iCountType == 1)  // measure size.
+				{
+					iMeasure += buf.st_size;
+				}
+				else  // measure nb files.
+				{
+					iMeasure ++;
+				}
+			}
+		}
+	}
+	
+	g_dir_close (dir);
+	g_string_free (sFilePath, TRUE);
+	if (cDirectory != cBaseURI)
+		g_free (cDirectory);
+	
+	return iMeasure;
 }

@@ -39,6 +39,7 @@ CD_APPLET_DEFINE_BEGIN ("kde integration",
 			pVFSBackend->get_file_info = vfs_backend_get_file_info;
 			pVFSBackend->get_file_properties = vfs_backend_get_file_properties;
 			pVFSBackend->list_directory = vfs_backend_list_directory;
+			pVFSBackend->measure_directory = vfs_backend_measure_directory;
 			pVFSBackend->launch_uri = vfs_backend_launch_uri;
 			pVFSBackend->is_mounted = vfs_backend_is_mounted;
 			pVFSBackend->can_eject = vfs_backend_can_eject;
@@ -50,6 +51,7 @@ CD_APPLET_DEFINE_BEGIN ("kde integration",
 			pVFSBackend->delete_file = vfs_backend_delete_file;
 			pVFSBackend->rename = vfs_backend_rename_file;
 			pVFSBackend->move = vfs_backend_move_file;
+			pVFSBackend->empty_trash = vfs_backend_empty_trash;
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
 			pVFSBackend->logout = env_backend_logout;
