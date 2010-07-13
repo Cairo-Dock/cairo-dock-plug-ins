@@ -31,11 +31,22 @@ typedef struct {
 	gdouble fLineColor[4];
 	gint iLineWidth;
 	gint iGapBetweenIcons;
+	gint iMinimumIconSize;
+	gboolean bInfiniteWidth;
+	gboolean bInfiniteHeight;
 	// computed data
 	gdouble fMargin;
 	gint iNbIcons;
+	GList* iFirstIconToShow;
 	gint iIconSize;
 	gint iNbLines, iNbColumns;
+	gint iMaxOffsetX;
+	gint iMaxOffsetY;
+	// current state
+	gint iCurrentOffsetX;
+	gint iCurrentOffsetY;
+	gint fCurrentPanXSpeed;
+	gint fCurrentPanYSpeed;
 	} CDSlideParameters;
 
 
