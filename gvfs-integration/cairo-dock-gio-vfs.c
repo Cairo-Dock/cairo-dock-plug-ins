@@ -1,4 +1,4 @@
-/**
+	/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
@@ -34,32 +34,9 @@
 #include <cairo-dock-log.h>
 #include <cairo-dock-desktop-file-factory.h>
 #include <cairo-dock-dbus.h>
-/*
-void cairo_dock_gio_vfs_stop (void);
 
-void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType);
-GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI);
-void cairo_dock_gio_vfs_launch_uri (const gchar *cURI);
+static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI);
 
-gchar * cairo_dock_gio_vfs_is_mounted (const gchar *cURI, gboolean *bIsMounted);
-gboolean cairo_dock_gio_vfs_can_eject (const gchar *cURI);
-gboolean cairo_dock_gio_vfs_eject_drive (const gchar *cURI);
-
-void cairo_dock_gio_vfs_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer);
-void cairo_dock_gio_vfs_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer);
-
-void cairo_dock_gio_vfs_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, gpointer data);
-void cairo_dock_gio_vfs_remove_monitor (const gchar *cURI);
-
-gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI);
-gboolean cairo_dock_gio_vfs_rename_file (const gchar *cOldURI, const gchar *cNewName);
-gboolean cairo_dock_gio_vfs_move_file (const gchar *cURI, const gchar *cDirectoryURI);
-
-void cairo_dock_gio_vfs_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
-
-gchar *cairo_dock_gio_vfs_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath);
-gchar *cairo_dock_gio_vfs_get_desktop_path (void);
-*/
 static GHashTable *s_hMonitorHandleTable = NULL;
 
 static void _gio_vfs_free_monitor_data (gpointer *data)
@@ -161,11 +138,11 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
 		NULL,
 		&erreur);
-	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
 		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
+		g_object_unref (pFile);
 		return ;
 	}
 	
@@ -216,9 +193,11 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 					g_free (cName);
 				}
 			}
+			g_object_unref (pFileInfo);
 		}
 	} while (TRUE);
-	//g_object_unref (pFileEnum);
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
 }
 
 static GDrive *_cd_find_drive_from_name (const gchar *cName)
@@ -684,12 +663,11 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	g_object_unref (pFile);
-	pFile = NULL;
 	if (erreur != NULL)
 	{
 		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
+		g_object_unref (pFile);
 		return NULL;
 	}
 	
@@ -843,9 +821,11 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			iOrder ++;
 			iNbFiles ++;
 		}
+		g_object_unref (pFileInfo);
 	} while (iNbFiles < iNbMaxFiles);
-	if (iNbFiles == iNbMaxFiles)
-		g_file_enumerator_close (pFileEnum, NULL, NULL);  // g_file_enumerator_close() est appelee lors du dernier 'g_file_enumerator_next_file'.
+	
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
 	
 	if (bAddHome && pIconList != NULL)
 	{
@@ -879,6 +859,85 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	return pIconList;
 }
 
+static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
+{
+	g_return_val_if_fail (cBaseURI != NULL, 0);
+	g_print ("%s (%s)\n", __func__, cBaseURI);
+	
+	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // on le libere a la fin si necessaire.
+	
+	GFile *pFile = g_file_new_for_uri (cURI);
+	GError *erreur = NULL;
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_SIZE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
+	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
+		cAttributes,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("gnome_integration : %s", erreur->message);
+		g_error_free (erreur);
+		g_object_unref (pFile);
+		return 0;
+	}
+	
+	gsize iMeasure = 0;
+	GFileInfo *pFileInfo;
+	GString *sFilePath = g_string_new ("");
+	do
+	{
+		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (pFileInfo == NULL)
+			break ;
+		
+		const gchar *cFileName = g_file_info_get_name (pFileInfo);
+		
+		g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
+		GFile *file = g_file_new_for_uri (sFilePath->str);
+		const gchar *cTargetURI = g_file_get_uri (file);
+		g_print ("+ %s [%s]\n", cFileName, cTargetURI);
+		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+		
+		if (iFileType == G_FILE_TYPE_DIRECTORY && bRecursive)
+		{
+			g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
+			iMeasure += MAX (1, cairo_dock_gio_vfs_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // un repertoire vide comptera pour 1.
+		}
+		else
+		{
+			if (iCountType == 1)  // measure size.
+			{
+				iMeasure += g_file_info_get_size (pFileInfo);
+			}
+			else  // measure nb files.
+			{
+				iMeasure ++;
+			}
+		}
+		g_object_unref (pFileInfo);
+	} while (! g_atomic_int_get (pCancel));
+	if (*pCancel)
+		g_print ("mesure annulee\n");
+	
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
+	g_string_free (sFilePath, TRUE);
+	if (cURI != cBaseURI)
+		g_free (cURI);
+	
+	return iMeasure;
+}
 
 
 static gchar *_cd_find_target_uri (const gchar *cBaseURI)
@@ -1215,17 +1274,50 @@ static void cairo_dock_gio_vfs_remove_monitor (const gchar *cURI)
 
 
 
-static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI)
+static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI, gboolean bNoTrash)
 {
 	g_return_val_if_fail (cURI != NULL, FALSE);
 	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
 	GError *erreur = NULL;
-	gboolean bSuccess = g_file_trash (pFile, NULL, &erreur);
-	if (erreur != NULL)
+	gboolean bSuccess;
+	if (bNoTrash)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
-		g_error_free (erreur);
+		const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_TYPE;
+		GFileInfo *pFileInfo = g_file_query_info (pFile,
+			cQuery,
+			G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+			NULL,
+			&erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			g_object_unref (pFile);
+			return FALSE;
+		}
+		
+		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+		if (iFileType == G_FILE_TYPE_DIRECTORY)
+		{
+			cairo_dock_gio_vfs_empty_dir (cURI);
+		}
+		
+		bSuccess = g_file_delete (pFile, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome-integration : %s", erreur->message);
+			g_error_free (erreur);
+		}
+	}
+	else
+	{
+		bSuccess = g_file_trash (pFile, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome-integration : %s", erreur->message);
+			g_error_free (erreur);
+		}
 	}
 	g_object_unref (pFile);
 	return bSuccess;
@@ -1320,6 +1412,8 @@ static void cairo_dock_gio_vfs_get_file_properties (const gchar *cURI, guint64 *
 
 static gchar *cairo_dock_gio_vfs_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
+	if (cNearURI == NULL)
+		return g_strdup ("trash://");
 	gchar *cPath = NULL;
 	/*GFile *pFile = g_file_new_for_uri ("trash://");
 	gchar *cPath = g_file_get_path (pFile);
@@ -1348,6 +1442,133 @@ static gchar *cairo_dock_gio_vfs_get_desktop_path (void)
 	return cPath;
 }
 
+static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
+{
+	if (cBaseURI == NULL)
+		return ;
+	
+	GFile *pFile = (*cBaseURI == '/' ? g_file_new_for_path (cBaseURI) : g_file_new_for_uri (cBaseURI));
+	GError *erreur = NULL;
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME;
+	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
+		cAttributes,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("gnome_integration : %s", erreur->message);
+		g_object_unref (pFile);
+		g_error_free (erreur);
+		return ;
+	}
+	
+	GString *sFileUri = g_string_new ("");
+	GFileInfo *pFileInfo;
+	GFile *file;
+	do
+	{
+		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (pFileInfo == NULL)
+			break ;
+		
+		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+		const gchar *cFileName = g_file_info_get_name (pFileInfo);
+		
+		g_string_printf (sFileUri, "%s/%s", cBaseURI, cFileName);
+		if (iFileType == G_FILE_TYPE_DIRECTORY)
+		{
+			cairo_dock_gio_vfs_empty_dir (sFileUri->str);
+		}
+		
+		file = (*cBaseURI == '/' ? g_file_new_for_path (sFileUri->str) : g_file_new_for_uri (sFileUri->str));
+		g_file_delete (file, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+		}
+		g_object_unref (file);
+		
+		g_object_unref (pFileInfo);
+	} while (1);
+	
+	g_string_free (sFileUri, TRUE);
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
+}
+
+static void cairo_dock_gio_vfs_empty_trash (void)
+{
+	GFile *pFile = g_file_new_for_uri ("trash://");
+	GError *erreur = NULL;
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME;
+	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
+		cAttributes,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("gnome_integration : %s", erreur->message);
+		g_object_unref (pFile);
+		g_error_free (erreur);
+		return ;
+	}
+	
+	GString *sFileUri = g_string_new ("");
+	GFileInfo *pFileInfo;
+	GFile *file;
+	do
+	{
+		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (pFileInfo == NULL)
+			break ;
+		
+		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+		const gchar *cFileName = g_file_info_get_name (pFileInfo);
+		
+		g_string_printf (sFileUri, "%s/%s", "trash://", cFileName);
+		g_print (" - %s\n", cFileName);
+		
+		GFile *file = g_file_new_for_uri (sFileUri->str);
+		const gchar *cURI = g_file_get_uri (file);
+		g_print ("   - %s\n", cURI);
+		
+		///cairo_dock_gio_vfs_delete_file (sFileUri->str, TRUE);  // TRUE <=> no trash.
+		g_file_delete (file, NULL, &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("gnome_integration : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+		}
+		
+		g_object_unref (pFileInfo);
+	} while (1);
+	
+	g_string_free (sFileUri, TRUE);
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
+}
+
 
 gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend)
 {
@@ -1356,6 +1577,7 @@ gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend
 		pVFSBackend->get_file_info = cairo_dock_gio_vfs_get_file_info;
 		pVFSBackend->get_file_properties = cairo_dock_gio_vfs_get_file_properties;
 		pVFSBackend->list_directory = cairo_dock_gio_vfs_list_directory;
+		pVFSBackend->measure_directory = cairo_dock_gio_vfs_measure_directory;
 		pVFSBackend->launch_uri = cairo_dock_gio_vfs_launch_uri;
 		pVFSBackend->is_mounted = cairo_dock_gio_vfs_is_mounted;
 		pVFSBackend->can_eject = cairo_dock_gio_vfs_can_eject;
@@ -1368,6 +1590,7 @@ gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend
 		pVFSBackend->rename = cairo_dock_gio_vfs_rename_file;
 		pVFSBackend->move = cairo_dock_gio_vfs_move_file;
 		pVFSBackend->get_trash_path = cairo_dock_gio_vfs_get_trash_path;
+		pVFSBackend->empty_trash = cairo_dock_gio_vfs_empty_trash;
 		pVFSBackend->get_desktop_path = cairo_dock_gio_vfs_get_desktop_path;
 	}
 
