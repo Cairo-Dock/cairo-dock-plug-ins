@@ -55,9 +55,6 @@ accessibility=0
 #b Should be visible on all desktops?
 sticky=true
 
-
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -91,8 +88,9 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
-[Module]
+[Configuration]
 
 #F[Theme;gtk-dialog-info]
 frame1 =
@@ -112,30 +110,5 @@ frame2 =
 #l[None;Number of files;Total number of files;Total weight] Display the following quick info :
 quick info = 1
 
-#i Maximum total size of all dustbins :
-#{in Mb. You will be notified when you go over this limit. Set to 0 to disable.}
-size limit = 0
-
-#i Maximum size authorized for each dustbin :
-#{in Mb. You will be notified when you go over this limit. Set to 0 to disable.}
-global size limit = 0
-
 #b Ask confirmation before emptying Dustbin?
 confirm = true
-
-#l[Display dustbins information;Empty all dustbins] Action on middle click :
-middle click = 0
-
-#X[Desktop-less support]
-frame3 =
-
-#U If the Trash folder is not known by the dock, you can specify it here :
-additionnal directories = 
-
-#f[0.5;10.0] Time interval to check if dustbin is full/empty :
-#{in seconds. only used if you can't monitor directories.}
-check interval = 2.0
-
-#s Alternative file browser used to show a trash :
-#{Only use this if you notice that the applet can't display the trash on click.}
-alternative file browser = 

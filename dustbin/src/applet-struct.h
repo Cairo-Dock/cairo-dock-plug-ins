@@ -30,47 +30,24 @@ typedef enum {
 	CD_DUSTBIN_INFO_WEIGHT
 	} CdDustbinInfotype;
 
-typedef struct {
-	gchar *cPath;
-	gint iNbTrashes;
-	gint iNbFiles;
-	gint iSize;
-	gint iAuthorizedWeight;
-	} CdDustbin;
-
-typedef struct {
-	gchar *cURI;
-	CdDustbin *pDustbin;
-	} CdDustbinMessage;
-
-
 struct _AppletConfig {
-	gchar **cAdditionnalDirectoriesList;
 	gchar *cThemePath;
 	gchar *cEmptyUserImage;
 	gchar *cFullUserImage;
 	CdDustbinInfotype iQuickInfoType;
-	int iGlobalSizeLimit;
-	int iSizeLimit;
 	gboolean bAskBeforeDelete;
 	gint iActionOnMiddleClick;
-	
-	double fCheckInterval;
-	gchar *cDefaultBrowser;
 	} ;
 
 struct _AppletData {
-	GList *pDustbinsList;
-	gchar *cDialogIconPath;
-	cairo_surface_t *pEmptyBinSurface;
-	cairo_surface_t *pFullBinSurface;
-	int iNbTrashes;
-	int iNbFiles;
-	int iSize;
-	int iQuickInfoValue;
-	
-	int iState;
-	int iSidCheckTrashes;
+	CairoDockTask *pTask;  // tache de la mesure.
+	// shared memory
+	gsize _iMeasure;
+	// end of shared memory
+	gsize iMeasure;
+	gchar *cDustbinPath;  // donnee constante.
+	gboolean bMonitoringOK;
+	gboolean bDisplayFullIcon;
 	} ;
 
 #define CD_DUSTBIN_DIALOG_DURATION 4000

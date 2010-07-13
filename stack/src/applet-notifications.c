@@ -112,7 +112,7 @@ static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
-	cd_debug ("stack : '%s' has been copied into the clipboard\n", pIcon->cCommand);
+	cd_debug ("stack : '%s' has been copied into the clipboard", pIcon->cCommand);
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 	CD_APPLET_LEAVE ();
 }
@@ -157,10 +157,10 @@ static void _cd_stack_open_item_folder (GtkMenuItem *menu_item, gpointer *data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer data[2] = {NULL, NULL};
 	data[0] = myApplet;
-	data[1] = pClickedIcon;
+	data[1] = CD_APPLET_CLICKED_ICON;
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		
-	if (pClickedIcon != NULL && pClickedIcon != myIcon)
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy (middle click)"), GTK_STOCK_COPY, _cd_stack_copy_content, pSubMenu, data);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GTK_STOCK_CUT, _cd_stack_cut_item, pSubMenu, data);
@@ -170,7 +170,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open (click)"), GTK_STOCK_EXECUTE, _cd_stack_open_item, pSubMenu, data);
-		if (pClickedIcon->iVolumeID == 1)
+		if (CD_APPLET_CLICKED_ICON->iVolumeID == 1)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open folder"), GTK_STOCK_OPEN, _cd_stack_open_item_folder, pSubMenu, data);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
@@ -179,8 +179,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, pSubMenu);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-	if (pClickedIcon != NULL && pClickedIcon != myIcon)
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
+		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -191,9 +191,9 @@ CD_APPLET_ON_DROP_DATA_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (pClickedIcon != NULL && pClickedIcon != myIcon)
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
 	{
-		gpointer data[2] = {myApplet, pClickedIcon};
+		gpointer data[2] = {myApplet, CD_APPLET_CLICKED_ICON};
 		_cd_stack_copy_content (NULL, data);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END

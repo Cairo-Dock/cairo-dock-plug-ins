@@ -5,8 +5,6 @@ SET(cd-dustbin_LIB_SRCS
 	applet-struct.h
 	applet-init.c
 	applet-init.h
-	applet-draw.c
-	applet-draw.h
 	applet-config.c
 	applet-config.h
 	applet-notifications.c

@@ -107,10 +107,16 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else if (CD_APPLET_CLICKED_ICON->iType == CD_BOOKMARK_GROUP)  // clic sur un signet, il peut etre place sur un volume non monte.
 		{
-			/*GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+			GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 			CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 			
-			gchar *cVolumeUri = g_strdup (CD_APPLET_CLICKED_ICON->cCommand);
+			/// chercher un volume contenant le signet
+			
+			/// si trouve et non monte, on le monte
+			
+			/// si non trouve, on cree l'URI et on monte.
+			
+			/*gchar *cVolumeUri = g_strdup (CD_APPLET_CLICKED_ICON->cCommand);
 			gchar *str = strchr (cVolumeUri, ':');
 			if (str && strlen (str) > 3)
 			{
