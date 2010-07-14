@@ -83,7 +83,7 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 		case CAIRO_DOCK_FILE_CREATED :
 			if (cairo_dock_task_is_running (myData.pTask) || cairo_dock_task_is_active (myData.pTask))
 			{
-				g_print ("cancel measure");
+				g_print ("cancel measure\n");
 				cairo_dock_discard_task (myData.pTask);
 				myData.pTask = cairo_dock_new_task (0,
 					(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,

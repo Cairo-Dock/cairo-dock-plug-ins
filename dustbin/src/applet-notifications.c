@@ -26,7 +26,14 @@
 
 static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_fm_empty_trash ();
+	int iAnswer = GTK_RESPONSE_YES;
+	if (myConfig.bAskBeforeDelete)
+	{
+		iAnswer = cairo_dock_ask_question_and_wait (D_("You're about to delete all files in all dustbins. Sure ?"), myIcon, myContainer);
+	}
+	
+	if (iAnswer == GTK_RESPONSE_YES)
+		cairo_dock_fm_empty_trash ();
 }
 
 static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
@@ -36,27 +43,27 @@ static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, CairoDockModuleInsta
 
 static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	/**GString *sInfo = g_string_new ("");
-	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-		g_string_printf (sInfo, "%.2fMb for %d files in all dustbins :", 1.*myData.iSize/(1024*1024), myData.iNbFiles);
-	else
-		g_string_printf (sInfo, "%d elements in all dustbins :", myData.iNbTrashes);
-	
-	CdDustbin *pDustbin;
-	GList *pElement;
-	for (pElement = myData.pDustbinsList; pElement != NULL; pElement = pElement->next)
+	gsize iSize, iNbFiles;
+	gint iCancel = 0;
+	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 	{
-		pDustbin = pElement->data;
-		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-			g_string_append_printf (sInfo, "\n  %.2fM for %d files in %s", 1.*pDustbin->iSize/(1024*1024), pDustbin->iNbFiles, pDustbin->cPath);
-		else
-			g_string_append_printf (sInfo, "\n  %d elements in %s", pDustbin->iNbTrashes, pDustbin->cPath);
+		iSize = myData.iMeasure;
 	}
+	else
+	{
+		iSize = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, TRUE, &iCancel);
+	}
+	iNbFiles = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, FALSE, &iCancel);
 	
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 5000, myData.cDialogIconPath);
-	
-	g_string_free (sInfo, TRUE);*/
+	cairo_dock_show_temporary_dialog_with_icon_printf (D_("%s :\n %d files\n %.2f %s"),
+		myIcon, myContainer,
+		5000,
+		"same icon",
+		D_("The trash contains"),
+		iNbFiles,
+		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
+		(iSize > 1e6 ? D_("Mo") : D_("Ko")));
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
@@ -88,7 +95,7 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 	g_free (cMessage);
 }
 CD_APPLET_ON_DROP_DATA_BEGIN
-	cd_message ("  %s --> a la poubelle !", CD_APPLET_RECEIVED_DATA);
+	cd_message ("  '%s' --> a la poubelle !", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
 	int iVolumeID = 0;
@@ -123,5 +130,5 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cairo_dock_fm_empty_trash ();
+	_cd_dustbin_delete_trash (NULL, myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
