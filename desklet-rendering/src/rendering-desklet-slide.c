@@ -33,130 +33,6 @@ static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, Cai
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-static inline void _slide_pan_delta(CairoDesklet *pDesklet, double fDeltaX, double fDeltaY)
-{
-	CDSlideParameters *pSlideParams = (CDSlideParameters *) pDesklet->pRendererData;
-	pSlideParams->fCurrentPanXSpeed = fDeltaX;
-	pSlideParams->fCurrentPanYSpeed = fDeltaY;
-	pSlideParams->iCurrentOffsetX += fDeltaX;
-	pSlideParams->iCurrentOffsetY += fDeltaY;
-	if (pSlideParams->iCurrentOffsetX < 0)
-	{
-		pSlideParams->iCurrentOffsetX = 0;
-		pSlideParams->fCurrentPanXSpeed = 0;
-	}
-	else if( pSlideParams->iCurrentOffsetX > pSlideParams->iMaxOffsetX )
-	{
-		pSlideParams->iCurrentOffsetX = pSlideParams->iMaxOffsetX;
-		pSlideParams->fCurrentPanXSpeed = 0;
-	}
-	if (pSlideParams->iCurrentOffsetY < 0)
-	{
-		pSlideParams->iCurrentOffsetY = 0;
-		pSlideParams->fCurrentPanYSpeed = 0;
-	}
-	else if( pSlideParams->iCurrentOffsetY > pSlideParams->iMaxOffsetY )
-	{
-		pSlideParams->iCurrentOffsetY = pSlideParams->iMaxOffsetY;
-		pSlideParams->fCurrentPanYSpeed = 0;
-	}
-
-	gtk_widget_queue_draw (pDesklet->container.pWidget);
-}
-
-static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bContinueAnimation)
-{
-	if (pDesklet->icons != NULL)
-	{
-		CDSlideParameters *pSlideParams = (CDSlideParameters *) pDesklet->pRendererData;
-		if (pSlideParams == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		
-		if (! pDesklet->container.bInside)  // on est en-dehors du desklet, on ralentit.
-		{
-			_slide_pan_delta (pDesklet, pSlideParams->fCurrentPanXSpeed*.85, pSlideParams->fCurrentPanYSpeed*.85);
-			if (fabs (pSlideParams->fCurrentPanXSpeed)+fabs (pSlideParams->fCurrentPanYSpeed) < pSlideParams->iIconSize/15)
-			// vitesse de translation epsilonesque, on quitte.
-			{
-				pSlideParams->fCurrentPanXSpeed = 0;
-				pSlideParams->fCurrentPanYSpeed = 0;
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-			}
-			*bContinueAnimation = TRUE;
-		}
-		else
-		{
-			double fDeltaX = 0;
-			double fDeltaY = 0;
-			// si on est dans la marge de 20% de la largeur du desklet a gauche,
-			// alors on translate a droite
-			if (pDesklet->container.iMouseX <= pDesklet->container.iWidth*0.2)
-			{
-				// La force de translation va de 0 (lorsqu'on est a 20%) jusqu'a
-				// pSlideParams->iIconSize / 2. (lorsqu'on est a 0%)
-				fDeltaX = (pSlideParams->iIconSize / 10) *
-									(pDesklet->container.iWidth*0.2 - pDesklet->container.iMouseX)/(pDesklet->container.iWidth*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la largeur du desklet a droite,
-			// alors on translate a gauche (-1)
-			else if( pDesklet->container.iMouseX >= pDesklet->container.iWidth*0.8 )
-			{
-				// La force de translation va de 0 (lorsqu'on est a 80%) jusqu'a
-				// pSlideParams->iIconSize / 2. (lorsqu'on est a 100%)
-				fDeltaX = -(pSlideParams->iIconSize / 10) *
-									 (pDesklet->container.iMouseX - pDesklet->container.iWidth*0.8)/(pDesklet->container.iWidth*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la hauteur du desklet en haut,
-			// alors on translate en bas
-			if (pDesklet->container.iMouseY <= pDesklet->container.iHeight*0.2)
-			{
-				// La force de translation va de 0 (lorsqu'on est a 20%) jusqu'a
-				// pSlideParams->iIconSize / 2. (lorsqu'on est a 0%)
-				fDeltaY = -(pSlideParams->iIconSize / 10) *
-									 (pDesklet->container.iHeight*0.2 - pDesklet->container.iMouseY)/(pDesklet->container.iHeight*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la hauteur du desklet en bas,
-			// alors on translate en haut (-1)
-			else if( pDesklet->container.iMouseY >= pDesklet->container.iHeight*0.8 )
-			{
-				// La force de translation va de 0 (lorsqu'on est a 80%) jusqu'a
-				// pSlideParams->iIconSize / 2. (lorsqu'on est a 100%)
-				fDeltaY = (pSlideParams->iIconSize / 10) *
-									(pDesklet->container.iMouseY - pDesklet->container.iHeight*0.8)/(pDesklet->container.iHeight*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			if( *bContinueAnimation == TRUE )
-			{
-				_slide_pan_delta( pDesklet, fDeltaX, fDeltaY );
-			}
-			else
-			{
-				pSlideParams->fCurrentPanXSpeed = 0.;
-				pSlideParams->fCurrentPanYSpeed = 0.;
-			}
-		}
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
-{
-	if (pDesklet->icons != NULL)
-	{
-		CDSlideParameters *pSlideParams = (CDSlideParameters *) pDesklet->pRendererData;
-		if (pSlideParams == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		if (pSlideParams->bInfiniteWidth && (pDesklet->container.iMouseX <= pDesklet->container.iWidth*0.2 || pDesklet->container.iMouseX >= pDesklet->container.iWidth*0.8))
-			*bStartAnimation = TRUE;
-		if (pSlideParams->bInfiniteHeight && (pDesklet->container.iMouseY <= pDesklet->container.iHeight*0.2 || pDesklet->container.iMouseY >= pDesklet->container.iHeight*0.8))
-			*bStartAnimation = TRUE;
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
 static CDSlideParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)  // gboolean, int, gdouble[4]
 {
 	CDSlideParameters *pSlide = g_new0 (CDSlideParameters, 1);
@@ -166,24 +42,11 @@ static CDSlideParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig) 
 		pSlide->iRadius = GPOINTER_TO_INT (pConfig[1]);
 		if (pConfig[2] != NULL)
 			memcpy (pSlide->fLineColor, pConfig[2], 4 * sizeof (gdouble));
+		pSlide->iLineWidth = 2;
+		pSlide->iGapBetweenIcons = 10;
 	}
 	
-	pSlide->iLineWidth = 2;
-	pSlide->iGapBetweenIcons = 10;
-	pSlide->iMinimumIconSize = 48;
-	pSlide->iCurrentOffsetX = 0;
-	pSlide->iCurrentOffsetY = 0;
-	pSlide->fCurrentPanXSpeed = 0;
-	pSlide->fCurrentPanYSpeed = 0;
-	pSlide->iMaxOffsetX = 0;
-	pSlide->iMaxOffsetY = 0;
-	pSlide->bInfiniteHeight=TRUE;
-	pSlide->bInfiniteWidth=FALSE;
-	
 	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
-	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	return pSlide;
 }
@@ -227,52 +90,6 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 			pSlide->iNbLines = p;
 			pSlide->iNbColumns = q;
 		}
-		else if(iSize > 0) // there is only one maximum
-		{
-			break;
-		}
-	}
-	// si les icones sont trop petites, et qu'on a une largeur et/ou une
-	// hauteur infinie(s), essayer d'avoir au moins une taille minimale
-	if(  pSlide->iIconSize < pSlide->iMinimumIconSize &&
-	    (pSlide->bInfiniteWidth || pSlide->bInfiniteHeight) )
-	{
-		if( pSlide->bInfiniteWidth && pSlide->bInfiniteHeight )
-		{
-			// surface infinie: on garde le meme nb de colonnes&lignes,
-			// mais on met la taille d'icone a iMinimumIconSize
-			pSlide->iIconSize = pSlide->iMinimumIconSize;
-		}
-		else if( pSlide->bInfiniteHeight )
-		{
-			// hauteur infinie et largeur fixe: on calcule le nombre de colonnes
-			// maxi avec pSlide->iIconSize = pSlide->iMinimumIconSize
-			pSlide->iIconSize = pSlide->iMinimumIconSize;
-			pSlide->iNbColumns = (w + di) / ( pSlide->iIconSize + dw + di );
-			if( pSlide->iNbColumns < 1 )
-			{
-				pSlide->iNbColumns = 1;
-				pSlide->iIconSize = w - dw; 
-			}
-			pSlide->iNbLines = (int) ceil ((double)pSlide->iNbIcons / pSlide->iNbColumns);
-		}
-		else if( pSlide->bInfiniteWidth )
-		{
-			// largeur infinie et hauteur fixe: on calcule le nombre de lignes
-			// maxi avec pSlide->iIconSize = pSlide->iMinimumIconSize
-			pSlide->iIconSize = pSlide->iMinimumIconSize;
-			pSlide->iNbLines = (h + di) / ( pSlide->iIconSize + dh + di );
-			if( pSlide->iNbLines < 1 )
-			{
-				pSlide->iNbLines = 1;
-				pSlide->iIconSize = h - dh; 
-			}
-			pSlide->iNbColumns = (int) ceil ((double)pSlide->iNbIcons / pSlide->iNbLines);
-		}
-		// on calcule l'offset maximal atteignable en X
-		pSlide->iMaxOffsetX = MAX(( pSlide->iIconSize + dw + di )*pSlide->iNbColumns - (w + di), 0);
-		// on calcule l'offset maximal atteignable en Y
-		pSlide->iMaxOffsetY = MAX(( pSlide->iIconSize + dh + di )*pSlide->iNbLines - (h + di), 0);
 	}
 }
 
@@ -396,32 +213,23 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	// les icones.
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
-	if( pSlide->iMaxOffsetY == 0 )
-	{
-		dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / pSlide->iNbLines;  // ecart entre 2 lignes.
-	}
-	if( pSlide->iMaxOffsetX == 0 )
-	{
-		dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
-	}
+	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
+	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
 	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
 	
-	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + dh/2;
+	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
 	GList *ic;
-	GList *pVisibleIcons = NULL;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			continue;
 		
-		pIcon->fDrawX = x - pSlide->iCurrentOffsetX;
-		pIcon->fDrawY = y - pSlide->iCurrentOffsetY;
+		pIcon->fDrawX = x;
+		pIcon->fDrawY = y;
 		
 		x += pSlide->iIconSize + dw;
 		q ++;
@@ -431,17 +239,10 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			x = pSlide->fMargin + dw/2;
 			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
 		}
-		// On ne dessine que les icones qui sont visibles
-		if( pIcon->fDrawX - pSlide->fMargin + dw/2 >= 0                &&
-		    pIcon->fDrawY - pSlide->fMargin + myLabels.iLabelSize >= 0 &&
-		    pIcon->fDrawX - pSlide->fMargin + dw/2 <= w - (pSlide->iIconSize + dw)          &&
-		    pIcon->fDrawY - pSlide->fMargin + myLabels.iLabelSize <= h - (pSlide->iIconSize + myLabels.iLabelSize + dh))
-		{
-			pVisibleIcons = g_list_append(pVisibleIcons, pIcon);
-		}
 	}
 	
-	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pVisibleIcons);
+	
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
 	ic = pFirstDrawnElement;
@@ -526,7 +327,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_restore (pCairoContext);
 			}
 		}
-		ic = cairo_dock_get_next_element (ic, pVisibleIcons);
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	}
 	while (ic != pFirstDrawnElement);
 }
@@ -556,37 +357,26 @@ static void render_opengl (CairoDesklet *pDesklet)
 	// les icones.
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
-	if( pSlide->iMaxOffsetY == 0 )
-	{
-		// ecart entre 2 lignes si il faut repartir vertivalement les icones.
-		dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize) - 2*pSlide->fMargin - myLabels.iLabelSize) / pSlide->iNbLines;
-	}
-	if( pSlide->iMaxOffsetX == 0 )
-	{
-		// ecart entre 2 colonnes si il faut repartir horizontalement les icones.
-		dw = (w - pSlide->iNbColumns * pSlide->iIconSize - 2*pSlide->fMargin) / pSlide->iNbColumns;
-	}
+	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
+	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
 	
 	
-	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize + dh/2;
+	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
 	GList *ic;
-	GList *pVisibleIcons = NULL;
 	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			continue;
 		
-		pIcon->fDrawX = x - pSlide->iCurrentOffsetX;
-		pIcon->fDrawY = y - pSlide->iCurrentOffsetY;
+		pIcon->fDrawX = x;
+		pIcon->fDrawY = y;
 		
 		x += pSlide->iIconSize + dw;
 		q ++;
@@ -596,18 +386,10 @@ static void render_opengl (CairoDesklet *pDesklet)
 			x = pSlide->fMargin + dw/2;
 			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
 		}
-		// On ne dessine que les icones qui sont visibles
-		if( pIcon->fDrawX - pSlide->fMargin - dw/2 >= 0                &&
-		    pIcon->fDrawY - pSlide->fMargin - myLabels.iLabelSize - dh/2 >= 0 &&
-		    pIcon->fDrawX - pSlide->fMargin - dw/2 <= w - (pSlide->iIconSize + dw/2)          &&
-		    pIcon->fDrawY - pSlide->fMargin - myLabels.iLabelSize - dh/2 <= h - (pSlide->iIconSize + myLabels.iLabelSize + dh/2))
-		{
-			pVisibleIcons = g_list_append(pVisibleIcons, pIcon);
-		}
 	}
 	
 	
-	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pVisibleIcons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
 	ic = pFirstDrawnElement;
@@ -683,9 +465,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 			
 			glPopMatrix ();
 		}
-
-		ic = cairo_dock_get_next_element (ic, pVisibleIcons);
-		
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	} while (ic != pFirstDrawnElement);
 	
 	_cairo_dock_disable_texture ();

@@ -26,12 +26,13 @@
 //#include "rendering-desklet-controler.h"
 //#include "rendering-desklet-mediaplayer.h"
 #include "rendering-desklet-slide.h"
+#include "rendering-desklet-viewport.h"
 #include "rendering-desklet-decorations.h"
 #include "rendering-init.h"
 
 
 CD_APPLET_DEFINE_BEGIN (N_("desklet rendering"),
-	2,0,0,
+	2,1,0,
 	CAIRO_DOCK_CATEGORY_THEME,
 	N_("This module provides different views for your desklets."),
 	"Fabounet (Fabrice Rey)")
@@ -47,6 +48,7 @@ CD_APPLET_DEFINE_BEGIN (N_("desklet rendering"),
 	//rendering_register_controler_desklet_renderer ();
 	//rendering_register_mediaplayer_desklet_renderer ();  // By ChAnGFu
 	rendering_register_slide_desklet_renderer ();  // By ChAnGFu
+	rendering_register_viewport_desklet_renderer ();  // By Tofe
 	
 	//\_______________ On enregistre les decorations.
 	cd_rendering_register_desklet_decorations ();

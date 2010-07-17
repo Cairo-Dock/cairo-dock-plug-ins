@@ -9,6 +9,7 @@ SET(cd-desklet-rendering_LIB_SRCS
 	rendering-desklet-simple.c 		rendering-desklet-simple.h
 	rendering-desklet-decorations.c rendering-desklet-decorations.h
 	rendering-desklet-slide.c 		rendering-desklet-slide.h
+	rendering-desklet-viewport.c 		rendering-desklet-viewport.h
 	rendering-struct.h
 )
 
