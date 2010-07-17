@@ -35,31 +35,34 @@
 	pIconList = g_list_append (pIconList, pIcon);\
 	pMailAccount->icon = pIcon;
 
+// Translation Hack:
+const char *strings_to_translate[16] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Use a secure connection (SSL)"), N_("Timeout"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:")};
+
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
   g_key_file_set_string (pKeyFile, pMailAccountName, "type", "pop3");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);  // on lui met un widget pour ne pas que la cle se fasse bazarder lors d'une mise a jour du fichier de conf.
   
-  g_key_file_set_string (pKeyFile, pMailAccountName, "host", "pop3.myhost.org");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "host", "pop3.myHost.org");
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 Server address:", NULL);
 
-  g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "username", N_("myLogin"));
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:\n{The password will be crypted.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 Password:\n{The password will be crypted.}", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 0);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i0 port:\n{Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i0 Port:\n{Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S.}", NULL);
 
   g_key_file_set_boolean (pKeyFile, pMailAccountName, "use secure connection", FALSE);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 use secure connection (SSL)", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 Use a secure connection (SSL)", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -103,14 +106,14 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_string (pKeyFile, pMailAccountName, "type", "imap");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
-  g_key_file_set_string (pKeyFile, pMailAccountName, "host", "imap.myhost.org");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 server address:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "host", "imap.myHost.org");
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "host", "s0 Server address:", NULL);
 
-  g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "username", N_("myLogin"));
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 Password:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "port", 0);
   g_key_file_set_comment (pKeyFile, pMailAccountName, "port", "i0 port:\n{Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL.}", NULL);
@@ -119,13 +122,13 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 use secure connection (SSL)", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "server_directory", "Inbox");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "server_directory", "s0 directory on server:", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "server_directory", "s0 Directory on server:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -178,13 +181,13 @@ void cd_mail_create_mbox_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "filename", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s0 path of mbox file:", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s0 Path of mbox file:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -217,10 +220,10 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, const gchar *pMailAccountName
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -245,13 +248,13 @@ void cd_mail_create_maildir_params( GKeyFile *pKeyFile, const gchar *pMailAccoun
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "path", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 path to mail directory:", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 Path to Mail directory:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -283,17 +286,17 @@ void cd_mail_create_gmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountN
   g_key_file_set_string (pKeyFile, pMailAccountName, "type", "gmail");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
-  g_key_file_set_string (pKeyFile, pMailAccountName, "username", "myLogin");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 username:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "username", N_("myLogin"));
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 password:", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 Password:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -386,14 +389,14 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_string (pKeyFile, pMailAccountName, "type", "feed");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
-  g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://www.glx-dock.org/rss/cd_svn.xml");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 address of feed:", NULL);
+  g_key_file_set_string (pKeyFile, pMailAccountName, "path", "http://identi.ca/api/statuses/user_timeline/cairodock.rss");
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 Address of feed:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] timeout:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Timeout:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 specific mail application\n{Leave this field empty to use the default mail application.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
 }
 
 void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)

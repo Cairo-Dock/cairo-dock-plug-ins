@@ -1,24 +1,33 @@
-#!en;@VERSION_MAIL@
+#!en;@VERSION_FOLDERS@
 
 #[gtk-about]
 [Icon]
+
 #j[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
 #s Name of the icon as it will appear in its caption in the dock:
-name = Mail
+#{Let empty to use the name of the folder.}
+name =
+
+#Y[Use an image;1;1;Draw sub-dock's content as emblems;0;0;Draw sub-dock's content as stack;0;0;Draw sub-dock's content inside a box;0;0] How to render the icon :
+view type = 3
+
+#S+ Image filename:
+#{Leave empty to use the default one.}
+image file = 
 
 #d Name of the dock it belongs to:
 dock name = 
 
+icon =
 order=
-icon=
 
 #F[Applet's Handbook]
 frame_hand=
 #A
-handbook=mail
+handbook=Folders
 
 #[gtk-convert]
 [Desklet]
@@ -91,67 +100,28 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
+#D Folder's path:
+dir path =
 
-#X[Sub-Dock view] 
-frame_sub-dock =
+#i[3;100] Maximum number of files to list:
+nb icons = 30
+
+#l-[Name;Size;Date] Sort files by :
+sort type = 0
+
+#b Sort folders before files?
+folders first = true
+
+#b Show hidden files?
+show hidden = false
+
+#v
+sep=
 
 #n+ Sub-dock view name:
 #{Leave empty to use default sub-dock view.}/
 renderer = 
-
-
-#X[Theme] 
-frame_them =
-
-#h+[@maildatadir@/themes;mail;mail] Choose one of the available themes:
-theme = Default
-
-#S+ Name of the file for the "no mail" image :
-no mail image = 
-
-#S+ Name of the file for the "has mail" image :
-has mail image = 
-
-#B- Play sound when a new e-mail is received?
-play sound = true
-#u Name of the file for the "new mail" sound :
-new mail sound = 
-
-
-#X[Behaviour] 
-frame_config_mail =
-
-#B Show new messages' content?
-show content = true
-
-#i[1;30] Maximum of new messages shown?
-#{Maximum number of mails that will be previewed.}
-max shown mails = 0
-
-#i[3;30] Duration of the dialogue
-#{in seconds}
-time_dialog = 5
-
-#b Check mail account on startup?
-#{If you have any problem with the applet, uncheck this option during the maintenance mode, then after the dock has relaunched, remove/modify the mail accounts you want.}
-check = true
-
-#b Total number of files
-#{If checked, the number of mails will be shown even if there is no mail.}
-show zero mail = true
-
-#X[Mail application] 
-frame_appli =
-
-#s Preferred mail application to launch on left-click :
-mail application = thunderbird
-
-#F[Add a mail account (you've to launch the applet)]
-frame_mail =
-
-#_ Add an account with specified type and name:
-#{The new account will be created with the specified type and name.}
-add account =

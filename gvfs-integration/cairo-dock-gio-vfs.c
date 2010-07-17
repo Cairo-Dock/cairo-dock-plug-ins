@@ -772,7 +772,11 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				cd_message ("le nom de ce volume est : %s", cName);
 			}
 			else
+			{
+				if (iFileType == G_FILE_TYPE_DIRECTORY)
+					icon->iVolumeID = -1;
 				cName = g_strdup (cFileName);
+			}
 			
 			if (icon->cCommand == NULL)
 				icon->cCommand = g_strdup (icon->cBaseURI);
@@ -1507,11 +1511,20 @@ static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 	g_object_unref (pFile);
 }
 
+static inline int _convert_base16 (char c)
+{
+	int x;
+	if (c >= '0' && c <= '9')
+		x = c - '0';
+	else
+		x = 10 + (c - 'A');
+	return x;
+}
 static void cairo_dock_gio_vfs_empty_trash (void)
 {
 	GFile *pFile = g_file_new_for_uri ("trash://");
 	GError *erreur = NULL;
-	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_STANDARD_NAME;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
@@ -1542,18 +1555,45 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		if (pFileInfo == NULL)
 			break ;
 		
-		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 		const gchar *cFileName = g_file_info_get_name (pFileInfo);
-		
-		g_string_printf (sFileUri, "%s/%s", "trash://", cFileName);
 		g_print (" - %s\n", cFileName);
 		
-		GFile *file = g_file_new_for_uri (sFileUri->str);
-		const gchar *cURI = g_file_get_uri (file);
-		g_print ("   - %s\n", cURI);
-		
-		///cairo_dock_gio_vfs_delete_file (sFileUri->str, TRUE);  // TRUE <=> no trash.
-		g_file_delete (file, NULL, &erreur);
+		// il y'a 2 cas : un fichier dans la poubelle du home, et un fichier dans une poubelle d'un autre volume.
+		if (cFileName && *cFileName == '\\')  // nom de la forme "\media\Fabounet2\.Trash-1000\files\t%C3%A8st%201" et URI "trash:///%5Cmedia%5CFabounet2%5C.Trash-1000%5Cfiles%5Ct%25C3%25A8st%25201", mais cette URI ne marche pas des qu'il y'a des caracteres non ASCII-7 dans le nom (bug dans gio/gvfs ?). Donc on feinte, en construisant le chemin du fichier (et de son double dans 'info').
+		{
+			g_string_printf (sFileUri, "file://%s", cFileName);
+			g_strdelimit (sFileUri->str, "\\", '/');
+			g_print ("   - %s\n", sFileUri->str);
+			
+			GFile *file = g_file_new_for_uri (sFileUri->str);
+			g_file_delete (file, NULL, &erreur);
+			g_object_unref (file);
+			
+			gchar *str = g_strrstr (sFileUri->str, "/files/");
+			if (str)
+			{
+				*str = '\0';
+				gchar *cInfo = g_strdup_printf ("%s/info/%s.trashinfo", sFileUri->str, str+7);
+				g_print ("   - %s\n", cInfo);
+				file = g_file_new_for_uri (cInfo);
+				g_free (cInfo);
+				g_file_delete (file, NULL, &erreur);
+				g_object_unref (file);
+			}
+		}
+		else  // poubelle principale : nom de la forme "tèst 1" et URI "trash:///t%C3%A8st%201"
+		{
+			g_string_printf (sFileUri, "trash:///%s", cFileName);
+			GFile *file = g_file_new_for_uri (sFileUri->str);
+			/*gchar *cValidURI = g_file_get_uri (file);
+			g_print ("   - %s\n", cValidURI);
+			g_object_unref (file);
+			
+			file = g_file_new_for_uri (cValidURI);
+			g_free (cValidURI);*/
+			g_file_delete (file, NULL, &erreur);
+			g_object_unref (file);
+		}
 		if (erreur != NULL)
 		{
 			cd_warning ("gnome_integration : %s", erreur->message);
