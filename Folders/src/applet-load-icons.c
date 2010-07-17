@@ -353,7 +353,7 @@ gboolean cd_folders_load_icons_from_data (CairoDockModuleInstance *myApplet)
 		pList = g_list_prepend (pList, pIcon);
 	}
 	pList = g_list_reverse (pList);
-	CD_APPLET_LOAD_MY_ICONS_LIST (pList, myConfig.cRenderer, "Slide", NULL);
+	CD_APPLET_LOAD_MY_ICONS_LIST (pList, myConfig.cRenderer, "Viewport", NULL);
 	myData.iNbIcons = myConfig.iNbIcons;
 	
 	//\_______________________ On se place en ecoute.
