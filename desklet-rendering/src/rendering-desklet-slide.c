@@ -420,6 +420,8 @@ static void render_opengl (CairoDesklet *pDesklet)
 			{
 				glPushMatrix ();
 				
+				double dx = .5 * (pIcon->iTextWidth & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
+				double dy = .5 * (pIcon->iTextHeight & 1);
 				double u0 = 0., u1 = 1.;
 				double fOffsetX = 0.;
 				if (pIcon->bPointed)
@@ -440,7 +442,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 					}
 				}
 				
-				glTranslatef (fOffsetX, pIcon->fHeight/2 + pIcon->iTextHeight / 2, 0.);
+				glTranslatef (ceil (fOffsetX) + dx, ceil (pIcon->fHeight/2 + pIcon->iTextHeight / 2) + dy, 0.);
 				
 				glBindTexture (GL_TEXTURE_2D, pIcon->iLabelTexture);
 				_cairo_dock_apply_current_texture_portion_at_size_with_offset (u0, 0.,

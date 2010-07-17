@@ -699,7 +699,11 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 				cd_message ("le nom de ce volume est : %s", cName);
 			}
 			else
+			{
+				if (iFileType == G_FILE_TYPE_DIRECTORY)
+					icon->iVolumeID = -1;
 				cName = g_strdup (cFileName);
+			}
 			
 			if (icon->cCommand == NULL)
 				icon->cCommand = g_strdup (icon->cBaseURI);
