@@ -195,10 +195,6 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 		.5 * pSlide->iLineWidth + (1. - sqrt (2) / 2) * pSlide->iRadius :
 		.5 * pSlide->iLineWidth + .5 * pSlide->iRadius);
 	
-<<<<<<< TREE
-	pSlide->iNbIcons = g_list_length (pDesklet->icons);
-	pSlide->iFirstIconToShow = pDesklet->icons;
-=======
 	int iNbIcons = 0;
 	Icon *pIcon;
 	GList *ic;
@@ -209,7 +205,6 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 			iNbIcons ++;
 	}
 	pSlide->iNbIcons = iNbIcons;
->>>>>>> MERGE-SOURCE
 	
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
@@ -686,12 +681,9 @@ static void render_opengl (CairoDesklet *pDesklet)
 			
 			glPopMatrix ();
 		}
-<<<<<<< TREE
-		
+
 		ic = cairo_dock_get_next_element (ic, pVisibleIcons);
-=======
-		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
->>>>>>> MERGE-SOURCE
+		
 	} while (ic != pFirstDrawnElement);
 	
 	_cairo_dock_disable_texture ();
