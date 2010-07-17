@@ -149,7 +149,7 @@ frame_appli =
 #s Preferred mail application to launch on left-click :
 mail application = thunderbird
 
-#F[Add a mail account]
+#F[Add a mail account (you've to launch the applet)]
 frame_mail =
 
 #_ Add an account with specified type and name:

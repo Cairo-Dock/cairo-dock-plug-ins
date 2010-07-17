@@ -31,6 +31,8 @@ static GList *s_pTimeZoneList = NULL;
 
 #define CD_CLOCK_NB_FREQUENCIES 12
 
+// Translation Hack:
+const char *strings_to_translate[21] = {N_("Alarm"), N_("Time you want to be notified:"), N_("In the form xx:xx. E.g.: 20:35 for 8:35pm"), N_("Never"), N_("Day"), N_("Monday"), N_("Tuesday"), N_("Wednesday"), N_("Thursday"), N_("Friday"), N_("Saturday"), N_("Sunday"), N_("Week Day"), N_("Week End"), N_("Month"), N_("Repeat every:"), N_("If every month, which day of the month?"), N_("Message you want to use to be notified:"), N_("Tea Time!"), N_("Command to launch:"), N_("E.g.:")};
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_______________ On recupere les parametres de fonctionnement.
@@ -53,7 +55,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "style", -1);  // si cette cle n'existait pas, elle a ete rajoutee avec la valeur -1.
 	if (iStyle == -1)
 	{
-		g_print ("*** pas de cle 'style'\n");
+		cd_debug ("*** pas de cle 'style'");
 		myConfig.bOldStyle = CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
 		g_key_file_set_integer (pKeyFile, "Module", "style", myConfig.bOldStyle ? 0 : 1);
 	}
@@ -220,7 +222,7 @@ CD_APPLET_RESET_DATA_END
 	g_key_file_remove_key (pKeyFile, cGroupName, sKeyName->str, NULL); } while (0)
 static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%d)\n", __func__, myConfig.pAlarms->len);
+	cd_debug ("%s (%d)", __func__, myConfig.pAlarms->len);
 	//\____________ On ouvre notre fichier de conf.
 	GError *erreur = NULL;
 	GKeyFile* pKeyFile = g_key_file_new();
@@ -243,16 +245,16 @@ static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myA
 			break ;
 		iNumNewAlarm ++;
 	} while (1);
-	g_print ("%d alarmes deja presentes\n", iNumNewAlarm);
+	cd_debug ("%d alarmes deja presentes", iNumNewAlarm);
 	iNumNewAlarm ++;
 	
 	//\____________ On rajoute les champs de la nouvelle alarme.
 	_add_new_entry ("frame", "F0[Alarm]", "", "");
-	_add_new_entry ("time", "s0", "Time you want to be notified :\n{in the form xx:xx. For exemple, 20:35 for 8:35pm}", "");
-	_add_new_entry ("repeat", "r0[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month]", "Repeat every", "0");
-	_add_new_entry ("day", "i0[1;31]", "If every month, which day of the month ? :", "1");
-	_add_new_entry ("message", "s0", "Message you want to use to be notified :", "go to bed !");
-	_add_new_entry ("command", "s0", "Command to execute :\n{For exemple : play /path/to/file.ogg}", "");
+	_add_new_entry ("time", "s0", "Time you want to be notified:\n{In the form xx:xx. E.g.: 20:35 for 8:35pm}", "");
+	_add_new_entry ("repeat", "l0[Never;Day;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;Week Day;Week End;Month]", "Repeat every:", "0");
+	_add_new_entry ("day", "i0[1;31]", "If every month, which day of the month?", "1");
+	_add_new_entry ("message", "s0", "Message you want to use to be notified:", "Tea Time!");
+	_add_new_entry ("command", "s0", "Command to launch:\n{E.g.: play /path/to/file.ogg}", "");
 	
 	cairo_dock_write_keys_to_file (pKeyFile, myApplet->cConfFilePath);
 	g_key_file_free (pKeyFile);
@@ -262,7 +264,7 @@ static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myA
 }
 static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%d)\n", __func__, myConfig.pAlarms->len);
+	cd_debug ("%s (%d)", __func__, myConfig.pAlarms->len);
 	
 	//\____________ On ouvre notre fichier de conf.
 	GError *erreur = NULL;
@@ -286,7 +288,7 @@ static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *
 			break ;
 		iNumLastAlarm ++;
 	} while (1);
-	g_print ("%d alarmes deja presentes\n", iNumLastAlarm);
+	cd_debug ("%d alarmes deja presentes", iNumLastAlarm);
 	if (iNumLastAlarm == 0)
 		return ;
 	
@@ -313,7 +315,7 @@ static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 	CairoDockModuleInstance *myApplet = data[0];
 	gchar *cLocationPath = data[1];
 	g_return_if_fail (cLocationPath != NULL);
-	g_print ("%s (%s, %s)\n", __func__, cLocationPath, myApplet->cConfFilePath);
+	cd_debug ("%s (%s, %s)", __func__, cLocationPath, myApplet->cConfFilePath);
 	
 	//\____________________ On met a jour le panneau de conf.
 	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Module", "location");
@@ -324,7 +326,7 @@ static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 
 static void _cd_clock_delete_menu (GtkMenuShell *menu, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 }
 
 static int _cd_clock_compare_path_order (gpointer *data1, gpointer *data2) {
@@ -452,7 +454,7 @@ void cd_clock_free_timezone_list (void)
 
 void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->cName);
+	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_get_group_key_widget_from_name ("Alarm", "add new");
 	g_return_if_fail (pGroupKeyWidget != NULL);
@@ -497,6 +499,6 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 
 void cd_clock_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
 {
-	g_print ("%s (%s)\n", __func__, myIcon->cName);
+	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.
 }
