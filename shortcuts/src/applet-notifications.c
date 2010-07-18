@@ -49,6 +49,7 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 	}
 	CD_APPLET_LEAVE ();
 }
+
 static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
@@ -76,6 +77,7 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	}
 	CD_APPLET_LEAVE ();
 }
+
 CD_APPLET_ON_CLICK_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale -> on affiche un message en cas de probleme, sinon on laisse passer la notification.
 	{
@@ -147,29 +149,33 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+
+static void _mount_unmount (Icon *pIcon, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
+{
+	gboolean bIsMounted = FALSE;
+	gchar *cActivationURI = cairo_dock_fm_is_mounted (pIcon->cBaseURI, &bIsMounted);
+	g_free (cActivationURI);
+
+	if (! bIsMounted)
+	{
+		cairo_dock_fm_mount_full (pIcon->cBaseURI, pIcon->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
+	}
+	else
+	{
+		cairo_dock_fm_unmount_full (pIcon->cBaseURI, pIcon->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
+		
+		cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), pIcon, pContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
+	}
+}
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale.
 	{
 		cairo_dock_fm_launch_uri (g_getenv ("HOME"));
 	}
-	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP || CD_APPLET_CLICKED_ICON->iVolumeID != 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
+	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP || CD_APPLET_CLICKED_ICON->iVolumeID > 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
 	{
-		gboolean bIsMounted = FALSE;
-		gchar *cActivationURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
-		cd_message ("  cActivationURI : %s; bIsMounted : %d", cActivationURI, bIsMounted);
-		g_free (cActivationURI);
-
-		g_print (" click on %s ; %s\n", CD_APPLET_CLICKED_ICON->cCommand, CD_APPLET_CLICKED_ICON->cBaseURI);
-		if (! bIsMounted)
-		{
-			cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_CLICKED_ICON->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
-		}
-		else
-		{
-			cairo_dock_fm_unmount_full (CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_CLICKED_ICON->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
-			
-			cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
-		}
+		_mount_unmount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, myApplet);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -194,13 +200,32 @@ static void _cd_shortcuts_rename_bookmark (GtkMenuItem *menu_item, gpointer *dat
 	}
 	CD_APPLET_LEAVE ();
 }
+static void _cd_shortcuts_eject (GtkMenuItem *menu_item, gpointer *data)
+{
+	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
+	Icon *pIcon = data[1];
+	CairoContainer *pContainer = data[2];
+	
+	cairo_dock_fm_eject_drive (pIcon->cBaseURI);
+	CD_APPLET_LEAVE ();
+}
+static void _cd_shortcuts_unmount (GtkMenuItem *menu_item, gpointer *data)
+{
+	CairoDockModuleInstance *myApplet = data[0];
+	CD_APPLET_ENTER;
+	Icon *pIcon = data[1];
+	CairoContainer *pContainer = data[2];
+	
+	_mount_unmount (pIcon, pContainer, myApplet);
+	CD_APPLET_LEAVE ();
+}
 static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	CairoContainer *pContainer = data[2];
-	//g_print ("%s (%s)\n", __func__, pIcon->cCommand);
 	
 	gchar *cInfo = cd_shortcuts_get_disk_info (pIcon->cCommand, pIcon->cName);
 	cairo_dock_show_temporary_dialog_with_icon (cInfo, pIcon, pContainer, 15000, "same icon");
@@ -226,9 +251,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Rename this bookmark"), _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 	}
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cCommand != NULL)  // clic sur un volume.
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get disk info"), _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
+		if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"), GTK_STOCK_DISCONNECT, _cd_shortcuts_eject, CD_APPLET_MY_MENU, data);
+		
+		gboolean bIsMounted = FALSE;
+		gchar *cURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
+		g_free (cURI);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (bIsMounted ? D_("Unmount (middle-click)") : D_("Mount (middle-click)"), GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
+		
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"), GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
 	}
 CD_APPLET_ON_BUILD_MENU_END
 
