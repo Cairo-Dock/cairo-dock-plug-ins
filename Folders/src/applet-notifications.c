@@ -97,7 +97,7 @@ static void _cairo_dock_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 	time_t iLastModificationTime = 0;
 	gchar *cMimeType = NULL;
 	int iUID=0, iGID=0, iPermissionsMask=0;
-	if (cairo_dock_fm_get_file_properties (icon->cCommand, &iSize, &iLastModificationTime, &cMimeType, &iUID, &iGID, &iPermissionsMask))
+	if (cairo_dock_fm_get_file_properties (icon->cBaseURI, &iSize, &iLastModificationTime, &cMimeType, &iUID, &iGID, &iPermissionsMask))
 	{
 		GtkWidget *pDialog = gtk_message_dialog_new (GTK_WINDOW (pDock->container.pWidget),
 			GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -165,7 +165,10 @@ static void _cairo_dock_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		int iOwnerPermissions = iPermissionsMask >> 6;  // 8*8.
 		int iGroupPermissions = (iPermissionsMask - (iOwnerPermissions << 6)) >> 3;
 		int iOthersPermissions = (iPermissionsMask % 8);
-		g_string_printf (sInfo, "<u>Permissions</u> : %d / %d / %d", iOwnerPermissions, iGroupPermissions, iOthersPermissions);
+		g_string_printf (sInfo, "<u>Permissions</u> : read:%s / write:%s / execute:%s",
+			iOwnerPermissions?"yes":"no",
+			iGroupPermissions?"yes":"no",
+			iOthersPermissions?"yes":"no");
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
@@ -241,7 +244,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (_("Properties"), GTK_STOCK_PROPERTIES,  _cairo_dock_show_file_properties, CD_APPLET_MY_MENU, data);
 	}
 	
-	if (CD_APPLET_CLICKED_ICON != myIcon)
+	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
 		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 CD_APPLET_ON_BUILD_MENU_END
 

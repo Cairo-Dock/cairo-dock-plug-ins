@@ -211,7 +211,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			}
 			pNewIcon->iType = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
 			double fCurrentOrder = pConcernedIcon->fOrder;
-			if (myConfig.iSortType == 1)  // sort by size.
+			if (myConfig.iSortType == 1 || myConfig.iSortType == 2)  // sort by date or size.
 				pConcernedIcon->fOrder = pNewIcon->fOrder;
 			
 			//\_______________________ on gere le changement de nom.
@@ -310,11 +310,11 @@ void cd_folders_get_data (CairoDockModuleInstance *myApplet)
 	{
 		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_name);
 	}
-	else if (myConfig.iSortType == 2)  // sort by type
+	else if (myConfig.iSortType == 3)  // sort by type
 	{
 		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_extension);
 	}
-	else
+	else  // sort by date or size
 	{
 		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_order);
 	}

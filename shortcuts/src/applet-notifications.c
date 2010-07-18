@@ -166,7 +166,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		}
 		else
 		{
-			cairo_dock_fm_unmount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
+			cairo_dock_fm_unmount_full (CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_CLICKED_ICON->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
+			
 			cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
 		}
 	}

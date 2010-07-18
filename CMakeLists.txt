@@ -627,7 +627,7 @@ add_subdirectory (po)
 ############# FOLDERS #################
 if ("${enable-folders}" STREQUAL "yes")
 	set (GETTEXT_FOLDERS ${GETTEXT_PLUGINS})
-	set (VERSION_FOLDERS "0.0.1")
+	set (VERSION_FOLDERS "0.1.0")
 	set (PACKAGE_FOLDERS "cd-Folders")
 	set (foldersdatadir "${pluginsdatadir}/Folders")
 	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Folders/data/Folders.conf)

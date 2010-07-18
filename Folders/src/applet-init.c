@@ -43,14 +43,15 @@ static inline void _set_comparaison_func (CairoDockModuleInstance *myApplet)
 {
 	switch (myConfig.iSortType)
 	{
-		case 0:
+		case 0:  // name
 		default:
 			myData.comp = (GCompareFunc) cairo_dock_compare_icons_name;
 		break;
-		case 1:
+		case 1:  // date
+		case 2:  // size
 			myData.comp = NULL;
 		break;
-		case 2:
+		case 3:  // type
 			myData.comp = (GCompareFunc) cairo_dock_compare_icons_extension;
 		break;
 	}

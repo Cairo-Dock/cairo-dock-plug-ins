@@ -80,7 +80,107 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	cairo_dock_fm_manage_event_on_file (iEventType, cURI, myIcon, CD_NETWORK_GROUP, CAIRO_DOCK_FM_SORT_BY_NAME);
+	
+	g_print (" * event %d on network '%s'\n", iEventType, cURI);
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
+	
+	switch (iEventType)
+	{
+		case CAIRO_DOCK_FILE_DELETED :  // un reseau a ete deconnecte.
+		{
+			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
+			if (pConcernedIcon == NULL)  // on cherche par nom.
+			{
+				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList, cURI);
+			}
+			if (pConcernedIcon == NULL)
+			{
+				cd_warning ("  an unknown network was removed");
+				return ;
+			}
+			g_print (" %s will be removed\n", pConcernedIcon->cName);
+			
+			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+		}
+		break ;
+		
+		case CAIRO_DOCK_FILE_CREATED :  // un reseau a ete connecte.
+		{
+			//\_______________________ on verifie qu'elle n'existe pas deja.
+			Icon *pSameIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
+			if (pSameIcon != NULL)
+			{
+				cd_warning ("this mount point (%s) already exists.", pSameIcon->cName);
+				return;  // on decide de ne rien faire, c'est surement un signal inutile.
+			}
+			
+			//\_______________________ on cree une icone pour cette nouvelle URI.
+			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
+			if (pNewIcon == NULL)
+			{
+				cd_warning ("couldn't create an icon for this network");
+				return ;
+			}
+			pNewIcon->iType = CD_NETWORK_GROUP;
+			
+			//\_______________________ on la place au bon endroit suivant son nom.
+			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
+			g_print (" new network : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
+			
+			//\_______________________ on l'insere dans la liste.
+			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
+			
+			//\_______________________ on affiche un message.
+			cairo_dock_show_temporary_dialog_with_icon_printf (
+				D_("%s has been connected"),
+				pNewIcon, pContainer,
+				4000,
+				NULL,  // son icone n'est pas encore chargee
+				pNewIcon->cName);
+		}
+		
+		case CAIRO_DOCK_FILE_MODIFIED :  // un point de montage a ete (de)monte
+		{
+			//\_______________________ on cherche l'icone concernee.
+			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
+			if (pConcernedIcon == NULL)  // on cherche par nom.
+			{
+				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList, cURI);
+			}
+			if (pConcernedIcon == NULL)
+			{
+				cd_warning ("  an unknown network was modified");
+				return ;
+			}
+			g_print (" %s is modified\n", pConcernedIcon->cName);
+			
+			//\_______________________ on recupere les infos actuelles.
+			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
+			if (pNewIcon == NULL)
+			{
+				cd_warning ("couldn't create an icon for this network");
+				return ;
+			}
+			pNewIcon->iType = CD_NETWORK_GROUP;
+			
+			//\_______________________ on remplace l'icone si des choses ont change.
+			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
+			{
+				g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
+				
+				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+				
+				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
+				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
+			}
+			else
+			{
+				cairo_dock_free_icon (pNewIcon);
+			}
+		}
+	}
 	CD_APPLET_LEAVE();
 }
 

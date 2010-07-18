@@ -395,7 +395,7 @@ void create_menuitem (GtkWidget          *menu,
 	//if (!panel_lockdown_get_locked_down ()) {
 	{
 		static GtkTargetEntry menu_item_targets[] = {
-			{ "text/uri-list", 0, 0 }
+			{ (gchar*)"text/uri-list", 0, 0 }
 		};
 
 		gtk_drag_source_set (menuitem,

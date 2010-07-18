@@ -41,7 +41,7 @@ locked = false
 
 #j+[48;512] Desklet dimensions (width x height):
 #{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
-size = 96;96
+size = 256;196
 
 #i[-2048;2048] Desklet position (x, y):
 #{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
@@ -110,7 +110,7 @@ dir path =
 #i[3;100] Maximum number of files to list:
 nb icons = 30
 
-#l-[Name;Size;Date] Sort files by :
+#l-[Name;Date;Size] Sort files by :
 sort type = 0
 
 #b Sort folders before files?

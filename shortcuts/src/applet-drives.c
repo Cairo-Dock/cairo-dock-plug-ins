@@ -154,6 +154,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 		
 		case CAIRO_DOCK_FILE_MODIFIED :  // un point de montage a ete (de)monte
 		{
+			//\_______________________ on cherche l'icone concernee.
 			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
 			if (pConcernedIcon == NULL)  // on cherche par nom.
 			{

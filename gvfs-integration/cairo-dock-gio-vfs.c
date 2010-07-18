@@ -1404,9 +1404,9 @@ static void cairo_dock_gio_vfs_get_file_properties (const gchar *cURI, guint64 *
 	*cMimeType = g_file_info_get_attribute_as_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
 	*iUID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_UID);
 	*iGID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_UNIX_GID);
-	int r = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
-	int w = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
-	int x = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE);
+	gboolean r = g_file_info_get_attribute_boolean (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
+	gboolean w = g_file_info_get_attribute_boolean (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+	gboolean x = g_file_info_get_attribute_boolean (pFileInfo, G_FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE);
 	*iPermissionsMask = r * 8 * 8 + w * 8 + x;
 	
 	g_object_unref (pFileInfo);
