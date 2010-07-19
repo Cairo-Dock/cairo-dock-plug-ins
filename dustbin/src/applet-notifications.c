@@ -56,12 +56,13 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstan
 	iNbFiles = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, FALSE, &iCancel);
 	
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon_printf (D_("%s :\n %d files\n %.2f %s"),
+	cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n %d %s\n %.2f %s",
 		myIcon, myContainer,
 		5000,
 		"same icon",
 		D_("The trash contains"),
 		iNbFiles,
+		D_("files"),
 		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
 		(iSize > 1e6 ? D_("Mo") : D_("Ko")));
 }
@@ -84,13 +85,14 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 	gchar *cMessage;
 	if (bSuccess)
 	{
-		cMessage = g_strdup_printf (_("%s successfully unmounted"), cName);
+		cMessage = g_strdup_printf (D_("%s successfully unmounted"), cName);
 	}
 	else
 	{
-		cMessage = g_strdup_printf (_("failed to unmount %s"), cName);
+		cMessage = g_strdup_printf (D_("failed to unmount %s"), cName);
 		
 	}
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cairo_dock_show_temporary_dialog (cMessage, myIcon, myContainer, 4000);
 	g_free (cMessage);
 }
@@ -110,7 +112,10 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		0))
 	{
 		if (iVolumeID > 0)
+		{
+			cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), myIcon, myContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
 			cairo_dock_fm_unmount_full (cURI, iVolumeID, (CairoDockFMMountCallback) _cd_dustbin_action_after_unmount, myApplet);
+		}
 		else
 			cairo_dock_fm_delete_file (cURI, FALSE);
 	}

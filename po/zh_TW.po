@@ -250,6 +250,67 @@ msgstr ""
 msgid "Mb"
 msgstr "Mb"
 
+#: ../Folders/src/applet-init.c:29
+#, fuzzy
+msgid "Folders"
+msgstr "資料夾"
+
+#: ../Folders/src/applet-init.c:32
+msgid ""
+"Load folders inside the Dock\n"
+"You can have as many instances of this applet as you want."
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:37
+msgid "Open the configuration of the applet to choose a folder to import."
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:47
+msgid "Empty or unreadable folder."
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:191
+#, c-format
+msgid ""
+"You're about deleting this file\n"
+"  (%s)\n"
+"from your hard-disk. Sure ?"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:200
+msgid ""
+"Warning: could not delete this file.\n"
+"Please check file permissions."
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:213
+#, fuzzy
+msgid "Rename to:"
+msgstr "更改這個分頁的名稱"
+
+#: ../Folders/src/applet-notifications.c:220
+#, c-format
+msgid ""
+"Warning: could not rename %s.\n"
+"Check file permissions \n"
+"and that the new name does not already exist."
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:240
+#, fuzzy
+msgid "Delete this file"
+msgstr "刪除這頁筆記"
+
+#: ../Folders/src/applet-notifications.c:242
+#, fuzzy
+msgid "Rename this file"
+msgstr "重命名此項目"
+
+#: ../Folders/src/applet-notifications.c:244
+#, fuzzy
+msgid "Properties"
+msgstr "粒子"
+
 #: ../GMenu/src/applet-init.c:33
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
@@ -292,14 +353,6 @@ msgstr "清除最近使用過的文件列表嗎？"
 #: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
 msgid "Enter a command to launch:"
 msgstr "輸入一個執行指令："
-
-#: ../Indicator-Menus/src/applet-init.c:29
-msgid "Indicator-Menus"
-msgstr "指標選單"
-
-#: ../Indicator-Menus/src/applet-init.c:32
-msgid "Menus to control your session, connection state, etc."
-msgstr "選單用來控制您的階段作業、連線狀態等等。"
 
 #: ../MeMenu/src/applet-init.c:31
 msgid "Me Menu"
@@ -425,8 +478,8 @@ msgid "Network ID"
 msgstr "網路ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:336 ../musicPlayer/src/applet-draw.c:338
-#: ../musicPlayer/src/applet-draw.c:340
+#: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
+#: ../musicPlayer/src/applet-draw.c:341
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
@@ -545,7 +598,7 @@ msgstr ""
 "    或在選單上面使用\"貼上一個新的RSS網址\" 。\n"
 "    或編輯配置面板。"
 
-#: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:123
+#: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:122
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data..."
 msgstr "取得資料當中...."
@@ -786,12 +839,12 @@ msgid "No result"
 msgstr "沒有結果"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
+#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "results"
 msgstr "結果"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:112 ../tomboy/src/tomboy-draw.c:125
+#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "result"
 msgstr "結果"
 
@@ -902,7 +955,7 @@ msgid "Buffers"
 msgstr "緩衝區"
 
 #: ../System-Monitor/src/applet-notifications.c:115
-#: ../netspeed/src/applet-notifications.c:71
+#: ../netspeed/src/applet-notifications.c:70
 msgid "Monitor System"
 msgstr "系統監視器"
 
@@ -914,18 +967,6 @@ msgstr "警告！顯示卡的核心溫度已經到達%d°C"
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
 msgstr "這個小程式會顯示動畫來看著你的滑鼠移動。"
-
-#: ../Toto/src/applet-init.c:28
-msgid "Toto"
-msgstr "Toto"
-
-#: ../Toto/src/applet-init.c:31 ../template/src/applet-init.c:31
-msgid ""
-"Useful description\n"
-"and manual"
-msgstr ""
-"有用的說明\n"
-"和手冊"
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -941,6 +982,10 @@ msgstr ""
 "左鍵點擊來打開交談式視窗設定亮度。\n"
 "中鍵點擊設定獨自每個顏色。\n"
 "您還可以定義在啟動電腦時自動使用設定亮度值。"
+
+#: ../Xgamma/src/applet-init.c:50
+msgid "Screen Luminosity"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
@@ -1023,7 +1068,96 @@ msgstr "年"
 msgid "Calendar and tasks"
 msgstr "日曆和任務"
 
-#: ../clock/src/applet-config.c:489 ../weather/src/applet-config.c:180
+#: ../clock/src/applet-config.c:35 ../clock/data/messages:157
+msgid "Alarm"
+msgstr "鬧鐘"
+
+#: ../clock/src/applet-config.c:35
+msgid "Time you want to be notified:"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+msgid "Never"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+#, fuzzy
+msgid "Day"
+msgstr "五月"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Monday"
+msgstr "星期一"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Tuesday"
+msgstr "星期二"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Wednesday"
+msgstr "星期三"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Thursday"
+msgstr "星期四"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Friday"
+msgstr "星期五"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Saturday"
+msgstr "星期六"
+
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+msgid "Sunday"
+msgstr "星期日"
+
+#: ../clock/src/applet-config.c:35
+msgid "Week Day"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+msgid "Week End"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+#, fuzzy
+msgid "Month"
+msgstr "兩者"
+
+#: ../clock/src/applet-config.c:35
+#, fuzzy
+msgid "Repeat every:"
+msgstr "重複此消息的時間間隔："
+
+#: ../clock/src/applet-config.c:35
+msgid "If every month, which day of the month?"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+msgid "Message you want to use to be notified:"
+msgstr ""
+
+#: ../clock/src/applet-config.c:35
+#, fuzzy
+msgid "Tea Time!"
+msgstr "時間"
+
+#: ../clock/src/applet-config.c:35
+#, fuzzy
+msgid "Command to launch:"
+msgstr "輸入一個執行指令："
+
+#: ../clock/src/applet-config.c:35
+msgid "E.g.:"
+msgstr ""
+
+#: ../clock/src/applet-config.c:491 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
 msgstr "尋找您的語言設定："
 
@@ -1151,7 +1285,7 @@ msgstr "每一年"
 msgid "Right-click to add a new task."
 msgstr "右鍵點擊來增加新的行程計劃。"
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:339
+#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:340
 #: ../RSSreader/data/messages:135
 msgid "Title"
 msgstr "歌名"
@@ -1277,11 +1411,11 @@ msgstr "沒有"
 msgid "board"
 msgstr "地板"
 
-#: ../desklet-rendering/src/rendering-init.c:33
+#: ../desklet-rendering/src/rendering-init.c:34
 msgid "desklet rendering"
 msgstr "桌面小工具的渲染"
 
-#: ../desklet-rendering/src/rendering-init.c:36
+#: ../desklet-rendering/src/rendering-init.c:37
 msgid "This module provides different views for your desklets."
 msgstr "這麼模組提供不同的風貌給您的桌面小工具(Desklets)。"
 
@@ -1456,7 +1590,7 @@ msgstr "拋物狀天線(Parabolic)"
 msgid "Rainbow"
 msgstr "彩虹(Rainbow)"
 
-#: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:113
+#: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:111
 #: ../stack/data/messages:103
 msgid "Slide"
 msgstr "投影片(Slide)"
@@ -1492,23 +1626,11 @@ msgid ""
 "dock."
 msgstr "這個外掛當您放了什麼東西在Dock上時會顯示一個動畫。"
 
-#: ../dustbin/src/applet-draw.c:155
-msgid "calculating"
-msgstr "計算"
-
-#: ../dustbin/src/applet-draw.c:165
-msgid " trashe(s)"
-msgstr " 垃圾"
-
-#: ../dustbin/src/applet-draw.c:169
-msgid " file(s)"
-msgstr " 檔案"
-
-#: ../dustbin/src/applet-init.c:31
+#: ../dustbin/src/applet-init.c:30
 msgid "dustbin"
 msgstr "回收桶"
 
-#: ../dustbin/src/applet-init.c:34
+#: ../dustbin/src/applet-init.c:33
 msgid ""
 "This applet manages the dustbin\n"
 "You can threw files and unmount disks by drag andn droping them on the "
@@ -1521,67 +1643,69 @@ msgstr ""
 "假如您使用了太多的空間，這個小程式可以警告您。\n"
 "中鍵點擊可以顯示關於回收桶的使用資訊。"
 
+#: ../dustbin/src/applet-notifications.c:32
+#, fuzzy
+msgid "You're about to delete all files in all dustbins. Sure ?"
+msgstr "您即將刪除回收桶中的所有檔案。確定嗎？"
+
+#: ../dustbin/src/applet-notifications.c:63
+msgid "The trash contains"
+msgstr ""
+
+#: ../dustbin/src/applet-notifications.c:65
+#, fuzzy
+msgid "files"
+msgstr "檔案"
+
 #: ../dustbin/src/applet-notifications.c:67
-#: ../dustbin/src/applet-notifications.c:72
-msgid "Show Trash"
+msgid "Mo"
+msgstr ""
+
+#: ../dustbin/src/applet-notifications.c:67
+msgid "Ko"
+msgstr ""
+
+#: ../dustbin/src/applet-notifications.c:73
+#, fuzzy
+msgid "Show Trash (click)"
 msgstr "顯示回收桶"
 
-#: ../dustbin/src/applet-notifications.c:68
-#: ../dustbin/src/applet-notifications.c:81
-msgid "Empty Trash"
-msgstr "刪除垃圾"
+#: ../dustbin/src/applet-notifications.c:74
+#, fuzzy
+msgid "Empty Trash (middle-click)"
+msgstr "下一個(中鍵點擊)"
 
 #: ../dustbin/src/applet-notifications.c:76
-#, c-format
-msgid "Show %s"
-msgstr "顯示 %s"
-
-#: ../dustbin/src/applet-notifications.c:79
-msgid "Show All"
-msgstr "全部顯示"
-
-#: ../dustbin/src/applet-notifications.c:85
-#, c-format
-msgid "Delete %s"
-msgstr "刪除 %s"
-
-#: ../dustbin/src/applet-notifications.c:88
-msgid "Delete All"
-msgstr "全部刪除"
-
-#: ../dustbin/src/applet-notifications.c:92 ../dustbin/data/messages:121
 msgid "Display dustbins information"
 msgstr "顯示回收桶資訊"
 
-#: ../dustbin/src/applet-notifications.c:106
+#: ../dustbin/src/applet-notifications.c:88
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s 現在已卸載"
 
-#: ../dustbin/src/applet-notifications.c:110
+#: ../dustbin/src/applet-notifications.c:92
 #, c-format
 msgid "failed to unmount %s"
 msgstr "卸載 %s 失敗"
 
-#: ../dustbin/src/applet-trashes-manager.c:380
-#, c-format
-msgid "You are about to delete all files in %s. Continue?"
-msgstr "你要刪除的所有在%s的檔案 。確定嗎？"
-
-#: ../dustbin/src/applet-trashes-manager.c:382
-msgid "You are about to delete all files in all dustbins. Continue?"
-msgstr "您即將刪除回收桶中的所有檔案。確定嗎？"
-
-#: ../dustbin/src/applet-trashes-manager.c:462
-#, c-format
-msgid ""
-"A problem occured\n"
-"If '%s' is not your usual file browser,\n"
-"you can change this in the configuration panel of this module"
+#: ../dustbin/src/applet-notifications.c:116
+#: ../shortcuts/src/applet-notifications.c:167
+msgid "Unmouting this volume ..."
 msgstr ""
-"出現了問題\n"
-"假如 '%s' 不是你常用的檔案瀏覽器。\n"
-"您可以利用這個模組的設置改變它。"
+
+#: ../dustbin/src/applet-trashes-manager.c:59
+msgid " trashe(s)"
+msgstr " 垃圾"
+
+#: ../dustbin/src/applet-trashes-manager.c:63
+msgid " file(s)"
+msgstr " 檔案"
+
+#: ../dustbin/src/applet-trashes-manager.c:94
+#: ../dustbin/src/applet-trashes-manager.c:123
+msgid "calculating"
+msgstr "計算"
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -1718,6 +1842,84 @@ msgstr "計劃的自動關機"
 msgid "Your computer will shut-down in 1 minute."
 msgstr "您的電腦將在1分鐘內關機。"
 
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Server address:"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "myHost"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Username:"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Password:"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "The password will be crypted."
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Port:"
+msgstr "字型："
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid ""
+"Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
+"995 for POP3S."
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Use a secure connection (SSL)"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Timeout"
+msgstr "時間"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
+msgid "In minutes."
+msgstr "以分鐘。"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Specific mail application"
+msgstr "信件的應用程式"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Leave empty to use the default mail application."
+msgstr "空白將會使用預設的圖示。"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Directory on server:"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Path of mbox file:"
+msgstr "警告聲音檔案的路徑："
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Path to Mail directory:"
+msgstr "清除本地端的目錄"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Address of feed:"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:49
+#: ../mail/src/cd-mail-applet-accounts.c:112
+#: ../mail/src/cd-mail-applet-accounts.c:289
+msgid "myLogin"
+msgstr ""
+
 #: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
 msgstr "請選擇帳戶類型。"
@@ -1831,31 +2033,31 @@ msgstr "未知標題"
 msgid "Track"
 msgstr "曲目"
 
-#: ../musicPlayer/src/applet-draw.c:326
+#: ../musicPlayer/src/applet-draw.c:327
 msgid "Current song"
 msgstr "目前歌曲"
 
-#: ../musicPlayer/src/applet-draw.c:335
+#: ../musicPlayer/src/applet-draw.c:336
 msgid "Artist"
 msgstr "歌手"
 
-#: ../musicPlayer/src/applet-draw.c:337
+#: ../musicPlayer/src/applet-draw.c:338
 msgid "Album"
 msgstr "專輯"
 
-#: ../musicPlayer/src/applet-draw.c:341
+#: ../musicPlayer/src/applet-draw.c:342
 msgid "Length"
 msgstr "長度"
 
-#: ../musicPlayer/src/applet-draw.c:343
+#: ../musicPlayer/src/applet-draw.c:344
 msgid "Track n°"
 msgstr "曲目 n°"
 
-#: ../musicPlayer/src/applet-draw.c:344
+#: ../musicPlayer/src/applet-draw.c:345
 msgid "Song n°"
 msgstr "Song n°"
 
-#: ../musicPlayer/src/applet-draw.c:346
+#: ../musicPlayer/src/applet-draw.c:347
 msgid "There is no media playing."
 msgstr "沒有媒體播放 。"
 
@@ -1962,7 +2164,7 @@ msgstr "已下載"
 msgid "uploaded"
 msgstr "已上傳"
 
-#: ../netspeed/src/applet-notifications.c:43
+#: ../netspeed/src/applet-notifications.c:42
 #, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
@@ -1973,7 +2175,7 @@ msgstr ""
 " 您要監視它必須要先設定好界面卡。\n"
 " 你想這樣做嗎？"
 
-#: ../netspeed/src/applet-notifications.c:73
+#: ../netspeed/src/applet-notifications.c:72
 msgid "Re-check interface"
 msgstr "重新檢查界面卡"
 
@@ -2073,17 +2275,33 @@ msgstr ""
 msgid "Open this folder"
 msgstr "打開這個資料夾"
 
-#: ../shortcuts/src/applet-bookmarks.c:131
-#: ../shortcuts/src/applet-bookmarks.c:346
-#: ../shortcuts/src/applet-load-icons.c:82
+#: ../shortcuts/src/applet-bookmarks.c:130
+#: ../shortcuts/src/applet-bookmarks.c:390
+#: ../shortcuts/src/applet-drives.c:277
 msgid "Unmounted"
 msgstr "已卸載"
 
-#: ../shortcuts/src/applet-init.c:31
+#: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
+#, fuzzy, c-format
+msgid "%s is now mounted"
+msgstr "%s 現在已卸載"
+
+#: ../shortcuts/src/applet-drives.c:147
+#: ../shortcuts/src/applet-load-icons.c:137
+#, c-format
+msgid "%s has been connected"
+msgstr ""
+
+#: ../shortcuts/src/applet-drives.c:204
+#, fuzzy, c-format
+msgid "%s is now unmounted"
+msgstr "%s 現在已卸載"
+
+#: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
 msgstr "快速鍵"
 
-#: ../shortcuts/src/applet-init.c:34
+#: ../shortcuts/src/applet-init.c:35
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
 "It can manage disks, network points, and Nautilus bookmarks (even if you "
@@ -2101,13 +2319,62 @@ msgstr ""
 "在掛載圖示上面點擊滑鼠中鍵可以快速的 掛載/反掛載 磁碟。\n"
 "這個小程式也可以顯示您的硬碟資訊，像是剩餘空間、檔案格式類型等等。"
 
-#: ../shortcuts/src/applet-notifications.c:81
+#: ../shortcuts/src/applet-notifications.c:44
+#: ../shortcuts/src/applet-notifications.c:72
+#, fuzzy, c-format
+msgid "failed to mount %s"
+msgstr "卸載 %s 失敗"
+
+#: ../shortcuts/src/applet-notifications.c:44
+#: ../shortcuts/src/applet-notifications.c:72
+#, fuzzy, c-format
+msgid "Failed to unmount %s"
+msgstr "卸載 %s 失敗"
+
+#: ../shortcuts/src/applet-notifications.c:88
+msgid "Sorry, this applet is not yet available for KDE."
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:90
+msgid "No disks or bookmarks were found."
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:193
+#, fuzzy
+msgid "Enter a name for this bookmark:"
+msgstr "移除這個書籤"
+
+#: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
 msgstr "移除這個書籤"
 
-#: ../shortcuts/src/applet-notifications.c:91
+#: ../shortcuts/src/applet-notifications.c:251
+#, fuzzy
+msgid "Rename this bookmark"
+msgstr "移除這個書籤"
+
+#: ../shortcuts/src/applet-notifications.c:257
+#, fuzzy
+msgid "Eject"
+msgstr "執行"
+
+#: ../shortcuts/src/applet-notifications.c:262
+#, fuzzy
+msgid "Unmount (middle-click)"
+msgstr "下一個(中鍵點擊)"
+
+#: ../shortcuts/src/applet-notifications.c:262
+#, fuzzy
+msgid "Mount (middle-click)"
+msgstr "下一個(中鍵點擊)"
+
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
 msgstr "取得硬碟資訊"
+
+#: ../shortcuts/src/applet-notifications.c:289
+msgid "Only folders can be bookmarked."
+msgstr ""
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
@@ -2272,13 +2539,13 @@ msgstr "重新載入堆疊"
 msgid "Clean local directory"
 msgstr "清除本地端的目錄"
 
-#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:355
 msgid "Current"
 msgstr "目前"
 
-#: ../switcher/src/applet-draw.c:614 ../switcher/src/applet-draw.c:616
+#: ../switcher/src/applet-draw.c:619 ../switcher/src/applet-draw.c:621
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:186
 #: ../switcher/src/applet-notifications.c:198
@@ -2345,7 +2612,11 @@ msgstr "顯示桌面"
 msgid "Windows List"
 msgstr "視窗清單"
 
-#: ../systray/src/systray-init.c:37
+#: ../systray/src/systray-init.c:32
+msgid "systray"
+msgstr ""
+
+#: ../systray/src/systray-init.c:35
 msgid ""
 "Add a systray to your dock.\n"
 "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
@@ -2360,7 +2631,8 @@ msgstr ""
 "但是最好的方式是將他與Dock分離，然後放置在桌面的任何地方，並且讓他顯示於其他"
 "視窗之上。"
 
-#: ../systray/src/systray-init.c:52
+#: ../systray/src/systray-interface.c:71
+#: ../systray/src/systray-menu-functions.c:70
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -2370,6 +2642,14 @@ msgstr ""
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
 msgstr "CD_APPLET_NAME"
+
+#: ../template/src/applet-init.c:31
+msgid ""
+"Useful description\n"
+"and manual"
+msgstr ""
+"有用的說明\n"
+"和手冊"
 
 #: ../terminal/src/terminal-callbacks.c:82
 #: ../terminal/src/terminal-widget.c:352
@@ -2453,55 +2733,55 @@ msgstr ""
 "中鍵點擊則是馬上建立一個新的筆記。\n"
 "您可以在圖示上面搜尋已經寫好的筆記或顯示內容。"
 
-#: ../tomboy/src/tomboy-notifications.c:68
+#: ../tomboy/src/tomboy-notifications.c:93
 msgid "Note name : "
 msgstr "筆記頁的名稱： "
 
-#: ../tomboy/src/tomboy-notifications.c:91
+#: ../tomboy/src/tomboy-notifications.c:116
 msgid "Delete this note?"
 msgstr "刪除這頁筆記？"
 
-#: ../tomboy/src/tomboy-notifications.c:107
+#: ../tomboy/src/tomboy-notifications.c:131
 msgid "Search for:"
 msgstr "搜尋："
 
-#: ../tomboy/src/tomboy-notifications.c:123
+#: ../tomboy/src/tomboy-notifications.c:147
 msgid "Search for tag:"
 msgstr "搜尋標籤："
 
-#: ../tomboy/src/tomboy-notifications.c:162
+#: ../tomboy/src/tomboy-notifications.c:186
 msgid "Reload notes"
 msgstr "重新載入筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:163
+#: ../tomboy/src/tomboy-notifications.c:187
 msgid "Add a note"
 msgstr "增加一頁筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:169
+#: ../tomboy/src/tomboy-notifications.c:193
 msgid "Delete this note"
 msgstr "刪除這頁筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:172
+#: ../tomboy/src/tomboy-notifications.c:196
 msgid "Search"
 msgstr "搜尋"
 
-#: ../tomboy/src/tomboy-notifications.c:173
+#: ../tomboy/src/tomboy-notifications.c:197
 msgid "Search for tag"
 msgstr "搜尋標籤"
 
-#: ../tomboy/src/tomboy-notifications.c:175
+#: ../tomboy/src/tomboy-notifications.c:199
 msgid "Search for today's note"
 msgstr "搜尋今天的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:176
+#: ../tomboy/src/tomboy-notifications.c:200
 msgid "Search for this week's note"
 msgstr "搜尋本周的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:177
+#: ../tomboy/src/tomboy-notifications.c:201
 msgid "Search for next week's note"
 msgstr "搜尋下個星期的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:187
+#: ../tomboy/src/tomboy-notifications.c:211
 msgid "Reset marks"
 msgstr "清除標記"
 
@@ -2540,34 +2820,6 @@ msgstr ""
 "它可以完整的分離變成桌面上漂亮3D小工具。\n"
 "在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預"
 "報。\n"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Monday"
-msgstr "星期一"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Tuesday"
-msgstr "星期二"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Wednesday"
-msgstr "星期三"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Thursday"
-msgstr "星期四"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Friday"
-msgstr "星期五"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Saturday"
-msgstr "星期六"
-
-#: ../weather/src/applet-load-icons.c:26
-msgid "Sunday"
-msgstr "星期日"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
@@ -2804,8 +3056,8 @@ msgid "Type of mesh:"
 msgstr "圖示變化的樣式："
 
 #: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
-#: ../Doncky/data/messages:43 ../GMenu/data/messages:45
-#: ../Indicator-Menus/data/messages:45 ../MeMenu/data/messages:39
+#: ../Doncky/data/messages:43 ../Folders/data/messages:57
+#: ../GMenu/data/messages:45 ../MeMenu/data/messages:39
 #: ../Messaging-Menu/data/messages:41 ../Network-Monitor/data/messages:45
 #: ../RSSreader/data/messages:47 ../Status-Notifier/data/messages:45
 #: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
@@ -2819,7 +3071,7 @@ msgstr "圖示變化的樣式："
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
 #: ../stack/data/messages:47 ../switcher/data/messages:37
 #: ../systray/data/messages:37 ../terminal/data/messages:45
-#: ../tomboy/data/messages:59 ../weather/data/messages:43
+#: ../tomboy/data/messages:55 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
 msgstr "一般"
@@ -2838,8 +3090,8 @@ msgstr "閃耀的顏色："
 
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
 #: ../Clipper/data/messages:113 ../Doncky/data/messages:9
-#: ../Doncky/data/messages:91 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:99 ../Indicator-Menus/data/messages:9
+#: ../Doncky/data/messages:91 ../Folders/data/messages:21
+#: ../GMenu/data/messages:9 ../GMenu/data/messages:99
 #: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
 #: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:165
 #: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:135
@@ -2848,7 +3100,8 @@ msgstr "閃耀的顏色："
 #: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
 #: ../switcher/data/messages:9 ../switcher/data/messages:139
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../systray/data/messages:9 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "空白來使用預設的那個設定。"
 
@@ -2973,8 +3226,8 @@ msgid "Blink duration:"
 msgstr "閃爍的時間長度："
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
-#: ../Doncky/data/messages:1 ../GMenu/data/messages:1
-#: ../Indicator-Menus/data/messages:1 ../MeMenu/data/messages:1
+#: ../Doncky/data/messages:1 ../Folders/data/messages:1
+#: ../GMenu/data/messages:1 ../MeMenu/data/messages:1
 #: ../Messaging-Menu/data/messages:1 ../Network-Monitor/data/messages:1
 #: ../RSSreader/data/messages:1 ../Status-Notifier/data/messages:1
 #: ../System-Monitor/data/messages:1 ../Toons/data/messages:1
@@ -2994,8 +3247,8 @@ msgid "Icon"
 msgstr "圖示"
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
-#: ../Doncky/data/messages:3 ../GMenu/data/messages:3
-#: ../Indicator-Menus/data/messages:3 ../MeMenu/data/messages:3
+#: ../Doncky/data/messages:3 ../Folders/data/messages:3
+#: ../GMenu/data/messages:3 ../MeMenu/data/messages:3
 #: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:3
 #: ../RSSreader/data/messages:3 ../Status-Notifier/data/messages:3
 #: ../System-Monitor/data/messages:3 ../Toons/data/messages:3
@@ -3023,8 +3276,8 @@ msgid "Icon name for busy penguin:"
 msgstr "當企鵝不是自由奔跑的時候，圖示的名稱："
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
-#: ../Doncky/data/messages:13 ../GMenu/data/messages:13
-#: ../Indicator-Menus/data/messages:13 ../MeMenu/data/messages:7
+#: ../Doncky/data/messages:13 ../Folders/data/messages:25
+#: ../GMenu/data/messages:13 ../MeMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
 #: ../RSSreader/data/messages:15 ../Status-Notifier/data/messages:13
 #: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
@@ -3037,15 +3290,14 @@ msgstr "當企鵝不是自由奔跑的時候，圖示的名稱："
 #: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
 #: ../showDesktop/data/messages:17 ../slider/data/messages:9
 #: ../stack/data/messages:15 ../switcher/data/messages:13
-#: ../systray/data/messages:9 ../terminal/data/messages:13
-#: ../tomboy/data/messages:9 ../tomboy/data/messages:19
-#: ../weather/data/messages:11 ../weblets/data/messages:13
-#: ../wifi/data/messages:9
+#: ../systray/data/messages:13 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../weather/data/messages:11
+#: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "它屬於哪個Dock："
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
-#: ../GMenu/data/messages:15 ../Indicator-Menus/data/messages:15
+#: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
 #: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
@@ -3059,30 +3311,31 @@ msgstr "它屬於哪個Dock："
 #: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
 #: ../showDesktop/data/messages:19 ../slider/data/messages:13
 #: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:11 ../terminal/data/messages:15
-#: ../tomboy/data/messages:29 ../weather/data/messages:13
+#: ../systray/data/messages:15 ../terminal/data/messages:15
+#: ../tomboy/data/messages:25 ../weather/data/messages:13
 #: ../weblets/data/messages:15 ../wifi/data/messages:13
 msgid "Applet's Handbook"
 msgstr "此小程式的簡易說明"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
-#: ../GMenu/data/messages:91 ../Indicator-Menus/data/messages:91
+#: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
 #: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
 #: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
 #: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:89
 #: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:87
-#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:91
-#: ../mail/data/messages:87 ../motion-blur/data/messages:1
-#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
-#: ../powermanager/data/messages:89 ../quick-browser/data/messages:93
+#: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:87
+#: ../logout/data/messages:91 ../mail/data/messages:87
+#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:89
+#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
+#: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
 #: ../switcher/data/messages:83 ../switcher/data/messages:85
 #: ../systray/data/messages:83 ../terminal/data/messages:91
-#: ../tomboy/data/messages:105 ../weather/data/messages:89
+#: ../tomboy/data/messages:101 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:89
 msgid "Configuration"
@@ -3232,7 +3485,7 @@ msgid "Action_6/Command_4"
 msgstr "動作_6/指令_4"
 
 #: ../Clipper/data/messages:109 ../Doncky/data/messages:5
-#: ../GMenu/data/messages:5 ../Indicator-Menus/data/messages:5
+#: ../Folders/data/messages:5 ../GMenu/data/messages:5
 #: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
 #: ../Status-Notifier/data/messages:5 ../System-Monitor/data/messages:5
@@ -3253,7 +3506,7 @@ msgid "Desired icon size for this applet"
 msgstr "此小程式的圖示大小"
 
 #: ../Clipper/data/messages:111 ../Doncky/data/messages:7
-#: ../GMenu/data/messages:7 ../Indicator-Menus/data/messages:7
+#: ../Folders/data/messages:9 ../GMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:7 ../Network-Monitor/data/messages:9
 #: ../RSSreader/data/messages:9 ../System-Monitor/data/messages:7
 #: ../Toons/data/messages:7 ../Xgamma/data/messages:7
@@ -3271,18 +3524,18 @@ msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "圖示的名稱，它將出現在Dock的圖示名稱上面顯示此名稱："
 
 #: ../Clipper/data/messages:115 ../Doncky/data/messages:11
-#: ../GMenu/data/messages:11 ../Indicator-Menus/data/messages:11
+#: ../Folders/data/messages:23 ../GMenu/data/messages:11
 #: ../RSSreader/data/messages:13 ../Xgamma/data/messages:11
 #: ../dnd2share/data/messages:11 ../logout/data/messages:11
 #: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
 #: ../showDesktop/data/messages:11 ../stack/data/messages:13
-#: ../switcher/data/messages:11 ../terminal/data/messages:11
-#: ../weblets/data/messages:11
+#: ../switcher/data/messages:11 ../systray/data/messages:11
+#: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "圖檔的名稱："
 
 #: ../Clipper/data/messages:121 ../Doncky/data/messages:15
-#: ../GMenu/data/messages:17 ../Indicator-Menus/data/messages:17
+#: ../Folders/data/messages:29 ../GMenu/data/messages:17
 #: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:13
 #: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
 #: ../Status-Notifier/data/messages:17 ../System-Monitor/data/messages:15
@@ -3295,15 +3548,15 @@ msgstr "圖檔的名稱："
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:21
 #: ../slider/data/messages:15 ../stack/data/messages:19
-#: ../switcher/data/messages:17 ../systray/data/messages:13
-#: ../terminal/data/messages:17 ../tomboy/data/messages:31
+#: ../switcher/data/messages:17 ../systray/data/messages:17
+#: ../terminal/data/messages:17 ../tomboy/data/messages:27
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "桌面小工具"
 
 #: ../Clipper/data/messages:123 ../Doncky/data/messages:17
-#: ../GMenu/data/messages:19 ../Indicator-Menus/data/messages:19
+#: ../Folders/data/messages:31 ../GMenu/data/messages:19
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:15
 #: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:17
@@ -3316,15 +3569,15 @@ msgstr "桌面小工具"
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
 #: ../slider/data/messages:17 ../stack/data/messages:21
-#: ../switcher/data/messages:19 ../systray/data/messages:15
-#: ../terminal/data/messages:19 ../tomboy/data/messages:33
+#: ../switcher/data/messages:19 ../systray/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:29
 #: ../weather/data/messages:17 ../weblets/data/messages:19
 #: ../wifi/data/messages:17
 msgid "Position"
 msgstr "位置"
 
 #: ../Clipper/data/messages:125 ../Doncky/data/messages:19
-#: ../GMenu/data/messages:21 ../Indicator-Menus/data/messages:21
+#: ../Folders/data/messages:33 ../GMenu/data/messages:21
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:17
 #: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
 #: ../System-Monitor/data/messages:19 ../Toons/data/messages:19
@@ -3337,8 +3590,8 @@ msgstr "位置"
 #: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
 #: ../showDesktop/data/messages:25 ../slider/data/messages:19
 #: ../stack/data/messages:23 ../switcher/data/messages:21
-#: ../systray/data/messages:17 ../terminal/data/messages:21
-#: ../tomboy/data/messages:35 ../weather/data/messages:19
+#: ../systray/data/messages:21 ../terminal/data/messages:21
+#: ../tomboy/data/messages:31 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
@@ -3348,7 +3601,7 @@ msgstr ""
 "左鍵拖動 的方式來移動。"
 
 #: ../Clipper/data/messages:127 ../Doncky/data/messages:21
-#: ../GMenu/data/messages:23 ../Indicator-Menus/data/messages:23
+#: ../Folders/data/messages:35 ../GMenu/data/messages:23
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:19
 #: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
 #: ../System-Monitor/data/messages:21 ../Toons/data/messages:21
@@ -3361,14 +3614,14 @@ msgstr ""
 #: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
 #: ../showDesktop/data/messages:27 ../slider/data/messages:21
 #: ../stack/data/messages:25 ../switcher/data/messages:23
-#: ../systray/data/messages:19 ../terminal/data/messages:23
-#: ../tomboy/data/messages:37 ../weather/data/messages:21
+#: ../systray/data/messages:23 ../terminal/data/messages:23
+#: ../tomboy/data/messages:33 ../weather/data/messages:21
 #: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "鎖定位置？"
 
 #: ../Clipper/data/messages:129 ../Doncky/data/messages:23
-#: ../GMenu/data/messages:25 ../Indicator-Menus/data/messages:25
+#: ../Folders/data/messages:37 ../GMenu/data/messages:25
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:21
 #: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
 #: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
@@ -3381,9 +3634,9 @@ msgstr "鎖定位置？"
 #: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
 #: ../showDesktop/data/messages:29 ../slider/data/messages:23
 #: ../stack/data/messages:27 ../switcher/data/messages:25
-#: ../systray/data/messages:21 ../terminal/data/messages:25
-#: ../tomboy/data/messages:39 ../weather/data/messages:23
-#: ../weblets/data/messages:25 ../wifi/data/messages:23
+#: ../terminal/data/messages:25 ../tomboy/data/messages:35
+#: ../weather/data/messages:23 ../weblets/data/messages:25
+#: ../wifi/data/messages:23
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -3392,7 +3645,7 @@ msgstr ""
 "ALT + 左鍵點擊。"
 
 #: ../Clipper/data/messages:131 ../Doncky/data/messages:25
-#: ../GMenu/data/messages:27 ../Indicator-Menus/data/messages:27
+#: ../Folders/data/messages:39 ../GMenu/data/messages:27
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:23
 #: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
 #: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
@@ -3405,14 +3658,14 @@ msgstr ""
 #: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
 #: ../showDesktop/data/messages:31 ../slider/data/messages:25
 #: ../stack/data/messages:29 ../switcher/data/messages:27
-#: ../systray/data/messages:23 ../terminal/data/messages:27
-#: ../tomboy/data/messages:41 ../weather/data/messages:25
-#: ../weblets/data/messages:27 ../wifi/data/messages:25
+#: ../terminal/data/messages:27 ../tomboy/data/messages:37
+#: ../weather/data/messages:25 ../weblets/data/messages:27
+#: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "桌面小工具的尺寸(寬 x 高)："
 
 #: ../Clipper/data/messages:133 ../Doncky/data/messages:27
-#: ../GMenu/data/messages:29 ../Indicator-Menus/data/messages:29
+#: ../Folders/data/messages:41 ../GMenu/data/messages:29
 #: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:25
 #: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
 #: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
@@ -3431,7 +3684,7 @@ msgid ""
 msgstr "以您的視窗管理員設定為主，您也可以移動它，按下 ALT + 左鍵移動。"
 
 #: ../Clipper/data/messages:135 ../Doncky/data/messages:29
-#: ../GMenu/data/messages:31 ../Indicator-Menus/data/messages:31
+#: ../Folders/data/messages:43 ../GMenu/data/messages:31
 #: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:27
 #: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:33
 #: ../System-Monitor/data/messages:29 ../Toons/data/messages:29
@@ -3445,13 +3698,13 @@ msgstr "以您的視窗管理員設定為主，您也可以移動它，按下 AL
 #: ../showDesktop/data/messages:35 ../slider/data/messages:29
 #: ../stack/data/messages:33 ../switcher/data/messages:29
 #: ../systray/data/messages:27 ../terminal/data/messages:31
-#: ../tomboy/data/messages:45 ../weather/data/messages:29
+#: ../tomboy/data/messages:41 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 
 #: ../Clipper/data/messages:137 ../Doncky/data/messages:31
-#: ../GMenu/data/messages:33 ../Indicator-Menus/data/messages:33
+#: ../Folders/data/messages:45 ../GMenu/data/messages:33
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:29
 #: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
 #: ../Status-Notifier/data/messages:33 ../System-Monitor/data/messages:31
@@ -3464,7 +3717,7 @@ msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
 #: ../stack/data/messages:35 ../terminal/data/messages:33
-#: ../tomboy/data/messages:47 ../weather/data/messages:31
+#: ../tomboy/data/messages:43 ../weather/data/messages:31
 #: ../weblets/data/messages:33 ../wifi/data/messages:31
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
@@ -3472,7 +3725,7 @@ msgid ""
 msgstr "在桌面小程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面小程式。"
 
 #: ../Clipper/data/messages:139 ../Doncky/data/messages:33
-#: ../GMenu/data/messages:35 ../Indicator-Menus/data/messages:35
+#: ../Folders/data/messages:47 ../GMenu/data/messages:35
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:31
 #: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
 #: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
@@ -3484,14 +3737,14 @@ msgstr "在桌面小程式左上方的小按鈕，您可以用滑鼠拖動它來
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:39
 #: ../slider/data/messages:33 ../stack/data/messages:37
-#: ../terminal/data/messages:35 ../tomboy/data/messages:49
+#: ../terminal/data/messages:35 ../tomboy/data/messages:45
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "自轉(Rotation)："
 
 #: ../Clipper/data/messages:141 ../Doncky/data/messages:35
-#: ../GMenu/data/messages:37 ../Indicator-Menus/data/messages:37
+#: ../Folders/data/messages:49 ../GMenu/data/messages:37
 #: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:33
 #: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
 #: ../Status-Notifier/data/messages:37 ../System-Monitor/data/messages:35
@@ -3505,14 +3758,14 @@ msgstr "自轉(Rotation)："
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
 #: ../switcher/data/messages:31 ../systray/data/messages:29
-#: ../terminal/data/messages:37 ../tomboy/data/messages:51
+#: ../terminal/data/messages:37 ../tomboy/data/messages:47
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:35
 msgid "Visibility"
 msgstr "可見度"
 
 #: ../Clipper/data/messages:143 ../Doncky/data/messages:37
-#: ../GMenu/data/messages:39 ../Indicator-Menus/data/messages:39
+#: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
 #: ../Scooby-Do/data/messages:27 ../System-Monitor/data/messages:37
@@ -3526,14 +3779,14 @@ msgstr "可見度"
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
 #: ../slider/data/messages:37 ../stack/data/messages:41
 #: ../switcher/data/messages:33 ../systray/data/messages:31
-#: ../terminal/data/messages:39 ../tomboy/data/messages:53
+#: ../terminal/data/messages:39 ../tomboy/data/messages:49
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "從Dock上面分離嗎？"
 
 #: ../Clipper/data/messages:145 ../Doncky/data/messages:39
-#: ../GMenu/data/messages:41 ../Indicator-Menus/data/messages:41
+#: ../Folders/data/messages:53 ../GMenu/data/messages:41
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:37
 #: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
 #: ../Status-Notifier/data/messages:41 ../System-Monitor/data/messages:39
@@ -3547,7 +3800,7 @@ msgstr "從Dock上面分離嗎？"
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
 #: ../systray/data/messages:33 ../terminal/data/messages:41
-#: ../tomboy/data/messages:55 ../weather/data/messages:39
+#: ../tomboy/data/messages:51 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:39
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
@@ -3557,7 +3810,7 @@ msgstr ""
 "裏面設定 class=Cairo-dock & type=utility"
 
 #: ../Clipper/data/messages:147 ../Doncky/data/messages:41
-#: ../GMenu/data/messages:43 ../Indicator-Menus/data/messages:43
+#: ../Folders/data/messages:55 ../GMenu/data/messages:43
 #: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:39
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
 #: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
@@ -3571,13 +3824,13 @@ msgstr ""
 #: ../showDesktop/data/messages:47 ../slider/data/messages:41
 #: ../stack/data/messages:45 ../switcher/data/messages:35
 #: ../systray/data/messages:35 ../terminal/data/messages:43
-#: ../tomboy/data/messages:57 ../weather/data/messages:41
+#: ../tomboy/data/messages:53 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr "能見度："
 
 #: ../Clipper/data/messages:151 ../Doncky/data/messages:45
-#: ../GMenu/data/messages:47 ../Indicator-Menus/data/messages:47
+#: ../Folders/data/messages:59 ../GMenu/data/messages:47
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:43
 #: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
 #: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:45
@@ -3591,14 +3844,14 @@ msgstr "能見度："
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
 #: ../switcher/data/messages:39 ../systray/data/messages:39
-#: ../terminal/data/messages:47 ../tomboy/data/messages:61
+#: ../terminal/data/messages:47 ../tomboy/data/messages:57
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:45
 msgid "Keep above"
 msgstr "保持在上"
 
 #: ../Clipper/data/messages:153 ../Doncky/data/messages:47
-#: ../GMenu/data/messages:49 ../Indicator-Menus/data/messages:49
+#: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
 #: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
 #: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:47
@@ -3612,14 +3865,14 @@ msgstr "保持在上"
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
 #: ../switcher/data/messages:41 ../systray/data/messages:41
-#: ../terminal/data/messages:49 ../tomboy/data/messages:63
+#: ../terminal/data/messages:49 ../tomboy/data/messages:59
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:47
 msgid "Keep below"
 msgstr "保持在下"
 
 #: ../Clipper/data/messages:155 ../Doncky/data/messages:49
-#: ../GMenu/data/messages:51 ../Indicator-Menus/data/messages:51
+#: ../Folders/data/messages:63 ../GMenu/data/messages:51
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
 #: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
@@ -3633,13 +3886,13 @@ msgstr "保持在下"
 #: ../showDesktop/data/messages:55 ../slider/data/messages:49
 #: ../stack/data/messages:53 ../switcher/data/messages:43
 #: ../systray/data/messages:43 ../terminal/data/messages:51
-#: ../tomboy/data/messages:65 ../weather/data/messages:49
+#: ../tomboy/data/messages:61 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr "在桌面小程式層(Widget Layer)"
 
 #: ../Clipper/data/messages:157 ../Doncky/data/messages:51
-#: ../GMenu/data/messages:53 ../Indicator-Menus/data/messages:53
+#: ../Folders/data/messages:65 ../GMenu/data/messages:53
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:49
 #: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
 #: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:51
@@ -3653,14 +3906,14 @@ msgstr "在桌面小程式層(Widget Layer)"
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
 #: ../switcher/data/messages:45 ../systray/data/messages:45
-#: ../terminal/data/messages:53 ../tomboy/data/messages:67
+#: ../terminal/data/messages:53 ../tomboy/data/messages:63
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr "保留空間"
 
 #: ../Clipper/data/messages:159 ../Doncky/data/messages:53
-#: ../GMenu/data/messages:55 ../Indicator-Menus/data/messages:55
+#: ../Folders/data/messages:67 ../GMenu/data/messages:55
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:51
 #: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
 #: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
@@ -3674,14 +3927,16 @@ msgstr "保留空間"
 #: ../showDesktop/data/messages:59 ../slider/data/messages:53
 #: ../stack/data/messages:57 ../switcher/data/messages:47
 #: ../systray/data/messages:47 ../terminal/data/messages:55
-#: ../tomboy/data/messages:69 ../weather/data/messages:53
+#: ../tomboy/data/messages:65 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr "全部的桌面都可以看得到嗎？"
 
 #: ../Clipper/data/messages:161 ../Doncky/data/messages:55
-#: ../GMenu/data/messages:57 ../Network-Monitor/data/messages:57
-#: ../RSSreader/data/messages:59 ../System-Monitor/data/messages:55
+#: ../Folders/data/messages:69 ../GMenu/data/messages:57
+#: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:53
+#: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:59
+#: ../Status-Notifier/data/messages:57 ../System-Monitor/data/messages:55
 #: ../Toons/data/messages:55 ../Xgamma/data/messages:57
 #: ../alsaMixer/data/messages:55 ../clock/data/messages:57
 #: ../compiz-icon/data/messages:53 ../dnd2share/data/messages:53
@@ -3692,14 +3947,14 @@ msgstr "全部的桌面都可以看得到嗎？"
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
 #: ../switcher/data/messages:49 ../systray/data/messages:49
-#: ../terminal/data/messages:57 ../tomboy/data/messages:71
+#: ../terminal/data/messages:57 ../tomboy/data/messages:67
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:55
 msgid "Decorations"
 msgstr "裝飾"
 
 #: ../Clipper/data/messages:163 ../Doncky/data/messages:57
-#: ../GMenu/data/messages:59 ../Indicator-Menus/data/messages:59
+#: ../Folders/data/messages:71 ../GMenu/data/messages:59
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:55
 #: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
 #: ../Status-Notifier/data/messages:59 ../System-Monitor/data/messages:57
@@ -3713,14 +3968,14 @@ msgstr "裝飾"
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
 #: ../switcher/data/messages:51 ../systray/data/messages:51
-#: ../terminal/data/messages:59 ../tomboy/data/messages:73
+#: ../terminal/data/messages:59 ../tomboy/data/messages:69
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr "在下方選擇 \"自定義裝飾\" 來定義您想要的裝飾。"
 
 #: ../Clipper/data/messages:165 ../Doncky/data/messages:59
-#: ../GMenu/data/messages:61 ../Indicator-Menus/data/messages:61
+#: ../Folders/data/messages:73 ../GMenu/data/messages:61
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:57
 #: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
 #: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
@@ -3734,13 +3989,13 @@ msgstr "在下方選擇 \"自定義裝飾\" 來定義您想要的裝飾。"
 #: ../showDesktop/data/messages:65 ../slider/data/messages:59
 #: ../stack/data/messages:63 ../switcher/data/messages:53
 #: ../systray/data/messages:53 ../terminal/data/messages:61
-#: ../tomboy/data/messages:75 ../weather/data/messages:59
+#: ../tomboy/data/messages:71 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "選擇桌面小工具的裝飾主題："
 
 #: ../Clipper/data/messages:167 ../Doncky/data/messages:61
-#: ../GMenu/data/messages:63 ../Indicator-Menus/data/messages:63
+#: ../Folders/data/messages:75 ../GMenu/data/messages:63
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:59
 #: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
 #: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
@@ -3754,14 +4009,14 @@ msgstr "選擇桌面小工具的裝飾主題："
 #: ../showDesktop/data/messages:67 ../slider/data/messages:61
 #: ../stack/data/messages:65 ../switcher/data/messages:55
 #: ../systray/data/messages:55 ../terminal/data/messages:63
-#: ../tomboy/data/messages:77 ../weather/data/messages:61
+#: ../tomboy/data/messages:73 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr "這是顯示在桌面小程式下方的圖形，就像是相框一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:169 ../Doncky/data/messages:63
-#: ../GMenu/data/messages:65 ../Indicator-Menus/data/messages:65
+#: ../Folders/data/messages:77 ../GMenu/data/messages:65
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:61
 #: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
 #: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
@@ -3776,13 +4031,13 @@ msgstr "這是顯示在桌面小程式下方的圖形，就像是相框一樣。
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
 #: ../stack/data/messages:67 ../switcher/data/messages:57
 #: ../systray/data/messages:57 ../terminal/data/messages:65
-#: ../tomboy/data/messages:79 ../weather/data/messages:63
+#: ../tomboy/data/messages:75 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:63
 msgid "Background image:"
 msgstr "背景影像："
 
 #: ../Clipper/data/messages:171 ../Doncky/data/messages:65
-#: ../GMenu/data/messages:67 ../Indicator-Menus/data/messages:67
+#: ../Folders/data/messages:79 ../GMenu/data/messages:67
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:63
 #: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
 #: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
@@ -3796,13 +4051,13 @@ msgstr "背景影像："
 #: ../showDesktop/data/messages:71 ../slider/data/messages:65
 #: ../stack/data/messages:69 ../switcher/data/messages:59
 #: ../systray/data/messages:59 ../terminal/data/messages:67
-#: ../tomboy/data/messages:81 ../weather/data/messages:65
+#: ../tomboy/data/messages:77 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "背景透明度："
 
 #: ../Clipper/data/messages:173 ../Doncky/data/messages:67
-#: ../GMenu/data/messages:69 ../Indicator-Menus/data/messages:69
+#: ../Folders/data/messages:81 ../GMenu/data/messages:69
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:65
 #: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
 #: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
@@ -3816,13 +4071,13 @@ msgstr "背景透明度："
 #: ../showDesktop/data/messages:73 ../slider/data/messages:67
 #: ../stack/data/messages:71 ../switcher/data/messages:61
 #: ../systray/data/messages:61 ../terminal/data/messages:69
-#: ../tomboy/data/messages:83 ../weather/data/messages:67
+#: ../tomboy/data/messages:79 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "以像素為單位，可以調整位於左邊時的位置。"
 
 #: ../Clipper/data/messages:175 ../Doncky/data/messages:69
-#: ../GMenu/data/messages:71 ../Indicator-Menus/data/messages:71
+#: ../Folders/data/messages:83 ../GMenu/data/messages:71
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:67
 #: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
 #: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
@@ -3836,13 +4091,13 @@ msgstr "以像素為單位，可以調整位於左邊時的位置。"
 #: ../showDesktop/data/messages:75 ../slider/data/messages:69
 #: ../stack/data/messages:73 ../switcher/data/messages:63
 #: ../systray/data/messages:63 ../terminal/data/messages:71
-#: ../tomboy/data/messages:85 ../weather/data/messages:69
+#: ../tomboy/data/messages:81 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "左邊的位移量："
 
 #: ../Clipper/data/messages:177 ../Doncky/data/messages:71
-#: ../GMenu/data/messages:73 ../Indicator-Menus/data/messages:73
+#: ../Folders/data/messages:85 ../GMenu/data/messages:73
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:69
 #: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
 #: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
@@ -3856,13 +4111,13 @@ msgstr "左邊的位移量："
 #: ../showDesktop/data/messages:77 ../slider/data/messages:71
 #: ../stack/data/messages:75 ../switcher/data/messages:65
 #: ../systray/data/messages:65 ../terminal/data/messages:73
-#: ../tomboy/data/messages:87 ../weather/data/messages:71
+#: ../tomboy/data/messages:83 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "以像素為單位，可以調整位於頂部時的位置。"
 
 #: ../Clipper/data/messages:179 ../Doncky/data/messages:73
-#: ../GMenu/data/messages:75 ../Indicator-Menus/data/messages:75
+#: ../Folders/data/messages:87 ../GMenu/data/messages:75
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:71
 #: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
 #: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
@@ -3876,13 +4131,13 @@ msgstr "以像素為單位，可以調整位於頂部時的位置。"
 #: ../showDesktop/data/messages:79 ../slider/data/messages:73
 #: ../stack/data/messages:77 ../switcher/data/messages:67
 #: ../systray/data/messages:67 ../terminal/data/messages:75
-#: ../tomboy/data/messages:89 ../weather/data/messages:73
+#: ../tomboy/data/messages:85 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "頂部位移量："
 
 #: ../Clipper/data/messages:181 ../Doncky/data/messages:75
-#: ../GMenu/data/messages:77 ../Indicator-Menus/data/messages:77
+#: ../Folders/data/messages:89 ../GMenu/data/messages:77
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:73
 #: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
 #: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
@@ -3896,13 +4151,13 @@ msgstr "頂部位移量："
 #: ../showDesktop/data/messages:81 ../slider/data/messages:75
 #: ../stack/data/messages:79 ../switcher/data/messages:69
 #: ../systray/data/messages:69 ../terminal/data/messages:77
-#: ../tomboy/data/messages:91 ../weather/data/messages:75
+#: ../tomboy/data/messages:87 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "以像素為單位，可以調整位於右邊時的位置。"
 
 #: ../Clipper/data/messages:183 ../Doncky/data/messages:77
-#: ../GMenu/data/messages:79 ../Indicator-Menus/data/messages:79
+#: ../Folders/data/messages:91 ../GMenu/data/messages:79
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:75
 #: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
 #: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
@@ -3916,13 +4171,13 @@ msgstr "以像素為單位，可以調整位於右邊時的位置。"
 #: ../showDesktop/data/messages:83 ../slider/data/messages:77
 #: ../stack/data/messages:81 ../switcher/data/messages:71
 #: ../systray/data/messages:71 ../terminal/data/messages:79
-#: ../tomboy/data/messages:93 ../weather/data/messages:77
+#: ../tomboy/data/messages:89 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "右邊偏移量："
 
 #: ../Clipper/data/messages:185 ../Doncky/data/messages:79
-#: ../GMenu/data/messages:81 ../Indicator-Menus/data/messages:81
+#: ../Folders/data/messages:93 ../GMenu/data/messages:81
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:77
 #: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
 #: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
@@ -3936,13 +4191,13 @@ msgstr "右邊偏移量："
 #: ../showDesktop/data/messages:85 ../slider/data/messages:79
 #: ../stack/data/messages:83 ../switcher/data/messages:73
 #: ../systray/data/messages:73 ../terminal/data/messages:81
-#: ../tomboy/data/messages:95 ../weather/data/messages:79
+#: ../tomboy/data/messages:91 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "以像素為單位，可以調整位於底部時的位置。"
 
 #: ../Clipper/data/messages:187 ../Doncky/data/messages:81
-#: ../GMenu/data/messages:83 ../Indicator-Menus/data/messages:83
+#: ../Folders/data/messages:95 ../GMenu/data/messages:83
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:79
 #: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
 #: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
@@ -3956,13 +4211,13 @@ msgstr "以像素為單位，可以調整位於底部時的位置。"
 #: ../showDesktop/data/messages:87 ../slider/data/messages:81
 #: ../stack/data/messages:85 ../switcher/data/messages:75
 #: ../systray/data/messages:75 ../terminal/data/messages:83
-#: ../tomboy/data/messages:97 ../weather/data/messages:81
+#: ../tomboy/data/messages:93 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "底部偏移量："
 
 #: ../Clipper/data/messages:189 ../Doncky/data/messages:83
-#: ../GMenu/data/messages:85 ../Indicator-Menus/data/messages:85
+#: ../Folders/data/messages:97 ../GMenu/data/messages:85
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:81
 #: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
 #: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
@@ -3976,7 +4231,7 @@ msgstr "底部偏移量："
 #: ../showDesktop/data/messages:89 ../slider/data/messages:83
 #: ../stack/data/messages:87 ../switcher/data/messages:77
 #: ../systray/data/messages:77 ../terminal/data/messages:85
-#: ../tomboy/data/messages:99 ../weather/data/messages:83
+#: ../tomboy/data/messages:95 ../weather/data/messages:83
 #: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
@@ -3984,7 +4239,7 @@ msgid ""
 msgstr "這是顯示在桌面小程式之上的圖形，就像是反射一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:191 ../Doncky/data/messages:85
-#: ../GMenu/data/messages:87 ../Indicator-Menus/data/messages:87
+#: ../Folders/data/messages:99 ../GMenu/data/messages:87
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:83
 #: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
 #: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
@@ -3998,13 +4253,13 @@ msgstr "這是顯示在桌面小程式之上的圖形，就像是反射一樣。
 #: ../showDesktop/data/messages:91 ../slider/data/messages:85
 #: ../stack/data/messages:89 ../switcher/data/messages:79
 #: ../systray/data/messages:79 ../terminal/data/messages:87
-#: ../tomboy/data/messages:101 ../weather/data/messages:85
+#: ../tomboy/data/messages:97 ../weather/data/messages:85
 #: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "前景圖片："
 
 #: ../Clipper/data/messages:193 ../Doncky/data/messages:87
-#: ../GMenu/data/messages:89 ../Indicator-Menus/data/messages:89
+#: ../Folders/data/messages:101 ../GMenu/data/messages:89
 #: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:85
 #: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
 #: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
@@ -4018,7 +4273,7 @@ msgstr "前景圖片："
 #: ../showDesktop/data/messages:93 ../slider/data/messages:87
 #: ../stack/data/messages:91 ../switcher/data/messages:81
 #: ../systray/data/messages:81 ../terminal/data/messages:89
-#: ../tomboy/data/messages:103 ../weather/data/messages:87
+#: ../tomboy/data/messages:99 ../weather/data/messages:87
 #: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "前景透明度："
@@ -4276,6 +4531,87 @@ msgstr "邊框顏色"
 msgid "Border colour :"
 msgstr "邊框顏色："
 
+#: ../Folders/data/messages:7
+#, fuzzy
+msgid "Let empty to use the name of the folder."
+msgstr "保持空白,會使用城市名"
+
+#: ../Folders/data/messages:11
+#, fuzzy
+msgid "How to render the icon :"
+msgstr "如何展現當前的桌面："
+
+#: ../Folders/data/messages:13
+#, fuzzy
+msgid "Use an image"
+msgstr "開啟圖片"
+
+#: ../Folders/data/messages:15
+msgid "Draw sub-dock's content as emblems"
+msgstr ""
+
+#: ../Folders/data/messages:17
+#, fuzzy
+msgid "Draw sub-dock's content as stack"
+msgstr "在它們圖示上面顯示出筆記的內容？"
+
+#: ../Folders/data/messages:19
+#, fuzzy
+msgid "Draw sub-dock's content inside a box"
+msgstr "在它們圖示上面顯示出筆記的內容？"
+
+#: ../Folders/data/messages:105
+#, fuzzy
+msgid "Folder's path:"
+msgstr "資料夾"
+
+#: ../Folders/data/messages:107
+#, fuzzy
+msgid "Maximum number of files to list:"
+msgstr "搜尋結果的最大數量："
+
+#: ../Folders/data/messages:109
+#, fuzzy
+msgid "Sort files by :"
+msgstr "排列項目依照："
+
+#: ../Folders/data/messages:111 ../stack/data/messages:127
+msgid "Name"
+msgstr "名稱"
+
+#: ../Folders/data/messages:113 ../stack/data/messages:129
+msgid "Date"
+msgstr "日期"
+
+#: ../Folders/data/messages:115
+#, fuzzy
+msgid "Size"
+msgstr "投影片(Slide)"
+
+#: ../Folders/data/messages:117
+#, fuzzy
+msgid "Sort folders before files?"
+msgstr "先列出的資料夾？"
+
+#: ../Folders/data/messages:119 ../Scooby-Do/data/messages:103
+#: ../quick-browser/data/messages:103
+msgid "Show hidden files?"
+msgstr "顯示隱藏檔案？"
+
+#: ../Folders/data/messages:121 ../compiz-icon/data/messages:159
+#: ../mail/data/messages:91 ../shortcuts/data/messages:105
+#: ../stack/data/messages:97 ../switcher/data/messages:143
+#: ../tomboy/data/messages:119 ../weather/data/messages:123
+msgid "Leave empty to use default sub-dock view."
+msgstr "讓他空白來使用預設的子Dock風貌。"
+
+#: ../Folders/data/messages:123 ../compiz-icon/data/messages:161
+#: ../mail/data/messages:93 ../shortcuts/data/messages:107
+#: ../stack/data/messages:99 ../switcher/data/messages:145
+#: ../tomboy/data/messages:121 ../weather/data/messages:125
+msgid "Sub-dock view name:"
+msgstr "子Dock的風貌名稱："
+
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
 msgstr "在選單上面顯示圖示？"
@@ -4315,31 +4651,6 @@ msgstr "以日為單位。設定為 0 時不使用這個篩選器。"
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
 msgstr "只顯示檔案的最後修改日期小於；"
-
-#: ../Indicator-Menus/data/messages:57 ../MeMenu/data/messages:51
-#: ../Messaging-Menu/data/messages:53 ../Status-Notifier/data/messages:57
-msgid ""
-"e size=true\n"
-"F[Decorations;gtk-orientation-portrait]"
-msgstr ""
-"e size=true\n"
-"F[Decorations;gtk-orientation-portrait]"
-
-#: ../Indicator-Menus/data/messages:93 ../Status-Notifier/data/messages:93
-msgid "This is a tooltip for this parameter."
-msgstr "這是下列參數的工具提示。"
-
-#: ../Indicator-Menus/data/messages:95 ../Status-Notifier/data/messages:95
-msgid "This is a boolean parameter. Y/N ?"
-msgstr "這個參數是以布林碼(真/假)表示嗎 Y/N ？"
-
-#: ../Indicator-Menus/data/messages:97 ../Status-Notifier/data/messages:97
-msgid "This integer can go from 0 to 10 :"
-msgstr "這個整數可以從 0 到 10 ："
-
-#: ../Indicator-Menus/data/messages:99 ../Status-Notifier/data/messages:99
-msgid "Enter some text here :"
-msgstr "在這裡輸入一些文字："
 
 #: ../Messaging-Menu/data/messages:89
 msgid ""
@@ -4395,7 +4706,7 @@ msgstr "顯示數字值："
 #: ../Network-Monitor/data/messages:109 ../RSSreader/data/messages:113
 #: ../System-Monitor/data/messages:143 ../alsaMixer/data/messages:119
 #: ../clock/data/messages:97 ../netspeed/data/messages:141
-#: ../shortcuts/data/messages:121
+#: ../shortcuts/data/messages:119
 msgid "No"
 msgstr "不要"
 
@@ -4587,7 +4898,7 @@ msgstr "拉桿"
 #: ../musicPlayer/data/messages:179 ../musicPlayer/data/messages:183
 #: ../musicPlayer/data/messages:187 ../tomboy/data/messages:13
 #: ../tomboy/data/messages:17 ../tomboy/data/messages:21
-#: ../tomboy/data/messages:25 ../wifi/data/messages:139
+#: ../tomboy/data/messages:105 ../wifi/data/messages:139
 #: ../wifi/data/messages:143 ../wifi/data/messages:147
 #: ../wifi/data/messages:151 ../wifi/data/messages:155
 #: ../wifi/data/messages:159
@@ -4663,10 +4974,6 @@ msgstr "RSS 密碼（選項）："
 #: ../showDesktop/data/messages:97 ../slider/data/messages:105
 msgid "Behaviour"
 msgstr "動作方式"
-
-#: ../RSSreader/data/messages:107
-msgid "In minutes."
-msgstr "以分鐘。"
 
 #: ../RSSreader/data/messages:109
 msgid "Refresh time:"
@@ -4978,10 +5285,6 @@ msgstr "喜愛的應用程式以 'y' 開始："
 msgid "Favorite application(s) starting with 'z' :"
 msgstr "喜愛的應用程式以 'z' 開始："
 
-#: ../Scooby-Do/data/messages:103 ../quick-browser/data/messages:103
-msgid "Show hidden files?"
-msgstr "顯示隱藏檔案？"
-
 #: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
 msgstr "建議的網路搜尋引擎？"
@@ -5121,6 +5424,22 @@ msgstr "前景圖片："
 #: ../Status-Notifier/data/messages:89
 msgid "Foreground tansparency :"
 msgstr "前景透明度："
+
+#: ../Status-Notifier/data/messages:93
+msgid "This is a tooltip for this parameter."
+msgstr "這是下列參數的工具提示。"
+
+#: ../Status-Notifier/data/messages:95
+msgid "This is a boolean parameter. Y/N ?"
+msgstr "這個參數是以布林碼(真/假)表示嗎 Y/N ？"
+
+#: ../Status-Notifier/data/messages:97
+msgid "This integer can go from 0 to 10 :"
+msgstr "這個整數可以從 0 到 10 ："
+
+#: ../Status-Notifier/data/messages:99
+msgid "Enter some text here :"
+msgstr "在這裡輸入一些文字："
 
 #: ../System-Monitor/data/messages:115 ../powermanager/data/messages:117
 msgid "It's the colour of the graphic for high values."
@@ -5304,7 +5623,7 @@ msgstr "使用預設的音效卡請空白。"
 
 #: ../alsaMixer/data/messages:27 ../clock/data/messages:29
 #: ../dustbin/data/messages:25 ../netspeed/data/messages:25
-#: ../systray/data/messages:25 ../tomboy/data/messages:43
+#: ../systray/data/messages:25 ../tomboy/data/messages:39
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
@@ -5360,7 +5679,7 @@ msgstr "當滑鼠游標離開桌面小工具時隱藏聲音調整器？"
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
 #: ../musicPlayer/data/messages:143 ../shortcuts/data/messages:93
 #: ../shortcuts/data/messages:103 ../slider/data/messages:145
-#: ../stack/data/messages:95 ../tomboy/data/messages:107
+#: ../stack/data/messages:95 ../tomboy/data/messages:103
 #: ../weather/data/messages:119
 msgid "Display"
 msgstr "顯示"
@@ -5389,8 +5708,7 @@ msgstr "靜音圖示："
 msgid "Leave empty to use the location name if available."
 msgstr "假如地區的名稱有設定，讓它空白來使用它。"
 
-#: ../clock/data/messages:91 ../dustbin/data/messages:87
-#: ../shortcuts/data/messages:91
+#: ../clock/data/messages:91
 msgid "Module"
 msgstr "模組"
 
@@ -5504,10 +5822,6 @@ msgstr "讓它空白來使用預設的指令。"
 #: ../clock/data/messages:155
 msgid "Specific command to run:"
 msgstr "特別的執行指令："
-
-#: ../clock/data/messages:157
-msgid "Alarm"
-msgstr "鬧鐘"
 
 #: ../clock/data/messages:159
 msgid ""
@@ -5679,20 +5993,6 @@ msgstr "kde視窗裝飾器"
 #: ../compiz-icon/data/messages:157
 msgid "heliodor"
 msgstr "heliodor (beryl的視窗裝飾器)"
-
-#: ../compiz-icon/data/messages:159 ../mail/data/messages:91
-#: ../shortcuts/data/messages:107 ../stack/data/messages:97
-#: ../switcher/data/messages:143 ../tomboy/data/messages:109
-#: ../weather/data/messages:123
-msgid "Leave empty to use default sub-dock view."
-msgstr "讓他空白來使用預設的子Dock風貌。"
-
-#: ../compiz-icon/data/messages:161 ../mail/data/messages:93
-#: ../shortcuts/data/messages:109 ../stack/data/messages:99
-#: ../switcher/data/messages:145 ../tomboy/data/messages:111
-#: ../weather/data/messages:125
-msgid "Sub-dock view name:"
-msgstr "子Dock的風貌名稱："
 
 #: ../compiz-icon/data/messages:163 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -6177,8 +6477,9 @@ msgid "Display the following quick info :"
 msgstr "以下面的方式顯示快速資訊："
 
 #: ../dustbin/data/messages:103
-msgid "Number of Dustbins"
-msgstr "回收桶的容量"
+#, fuzzy
+msgid "Number of files"
+msgstr "項目的數量："
 
 #: ../dustbin/data/messages:105 ../mail/data/messages:125
 msgid "Total number of files"
@@ -6188,55 +6489,9 @@ msgstr "全部檔案的數量"
 msgid "Total weight"
 msgstr "全部的重量"
 
-#: ../dustbin/data/messages:109 ../dustbin/data/messages:113
-msgid ""
-"in Mb. You will be notified when you go over this limit. Set to 0 to disable."
-msgstr "以 Mb 表示，當您的垃圾超過這個數量時會通知您。設為 0 禁用。"
-
-#: ../dustbin/data/messages:111
-msgid "Maximum total size of all dustbins :"
-msgstr "回收桶的最大容量："
-
-#: ../dustbin/data/messages:115
-msgid "Maximum size authorized for each dustbin :"
-msgstr "每個回收桶允許的最大容量為："
-
-#: ../dustbin/data/messages:117
+#: ../dustbin/data/messages:109
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr "清空回收桶前詢問確認？"
-
-#: ../dustbin/data/messages:119 ../switcher/data/messages:101
-msgid "Action on middle click :"
-msgstr "中鍵點擊動作："
-
-#: ../dustbin/data/messages:123
-msgid "Empty all dustbins"
-msgstr "清理全部的回收桶"
-
-#: ../dustbin/data/messages:125
-msgid "Desktop-less support"
-msgstr "無桌面的支援"
-
-#: ../dustbin/data/messages:127
-msgid "If the Trash folder is not known by the dock, you can specify it here :"
-msgstr "假如回收桶的目錄 Dock 無法察知，您可自定義在這邊："
-
-#: ../dustbin/data/messages:129
-msgid "in seconds. only used if you can't monitor directories."
-msgstr "以秒表示，只有使用在假如您不能夠監視您的垃圾桶目錄。"
-
-#: ../dustbin/data/messages:131
-msgid "Time interval to check if dustbin is full/empty :"
-msgstr "檢查回收桶是否 滿 / 空 的時間間隔："
-
-#: ../dustbin/data/messages:133
-msgid ""
-"Only use this if you notice that the applet can't display the trash on click."
-msgstr "只有在您點擊回收桶時無法顯示相關訊息時才使用。"
-
-#: ../dustbin/data/messages:135
-msgid "Alternative file browser used to show a trash :"
-msgstr "回收桶瀏覽器的選擇："
 
 #: ../icon-effect/data/messages:67
 msgid "Draw in background?"
@@ -6476,12 +6731,13 @@ msgid "Maximum of new messages shown?"
 msgstr "可以顯示最多的信件為？"
 
 #: ../mail/data/messages:115 ../musicPlayer/data/messages:137
-#: ../tomboy/data/messages:119
+#: ../tomboy/data/messages:115
 msgid "in seconds"
 msgstr "以秒計算"
 
-#: ../mail/data/messages:117 ../tomboy/data/messages:121
-msgid "Duration of the dialog:"
+#: ../mail/data/messages:117
+#, fuzzy
+msgid "Duration of the dialogue"
 msgstr "對話時間長度"
 
 #: ../mail/data/messages:119
@@ -6510,8 +6766,8 @@ msgid "Preferred mail application to launch on left-click :"
 msgstr "左鍵點擊之後執行的信件應用程式為："
 
 #: ../mail/data/messages:131
-msgid "Add a mail account"
-msgstr "增加一個信件帳號"
+msgid "Add a mail account (you've to launch the applet)"
+msgstr ""
 
 #: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
@@ -6893,51 +7149,47 @@ msgstr "GTK書籤，例如他是使用在檔案管理員(Nautilus)裏面。"
 msgid "List bookmarks?"
 msgstr "列出書籤？"
 
-#: ../shortcuts/data/messages:105
-msgid "Separate different shortcuts with separators?"
-msgstr "以分隔圖來分開不同的快速鍵？"
-
-#: ../shortcuts/data/messages:111 ../stack/data/messages:101
+#: ../shortcuts/data/messages:109 ../stack/data/messages:101
 msgid "Type of view for the desklet mode :"
 msgstr "檢視desklet mode 類型"
 
-#: ../shortcuts/data/messages:115 ../stack/data/messages:105
+#: ../shortcuts/data/messages:113 ../stack/data/messages:105
 msgid "Tree"
 msgstr "樹形列表"
 
-#: ../shortcuts/data/messages:117
+#: ../shortcuts/data/messages:115
 msgid "Disk usage"
 msgstr "磁碟使用量"
 
-#: ../shortcuts/data/messages:119
+#: ../shortcuts/data/messages:117
 msgid "Show disk usage :"
 msgstr "顯示磁碟使用率"
 
-#: ../shortcuts/data/messages:123
+#: ../shortcuts/data/messages:121
 msgid "Free space"
 msgstr "磁碟剩餘空間"
 
-#: ../shortcuts/data/messages:125
+#: ../shortcuts/data/messages:123
 msgid "Used space"
 msgstr "已使用空間"
 
-#: ../shortcuts/data/messages:127
+#: ../shortcuts/data/messages:125
 msgid "Free space (in percent)"
 msgstr "剩餘空間百分比"
 
-#: ../shortcuts/data/messages:129
+#: ../shortcuts/data/messages:127
 msgid "Used space (in percent)"
 msgstr "已使用空間百分比"
 
-#: ../shortcuts/data/messages:131
+#: ../shortcuts/data/messages:129
 msgid "In seconds."
 msgstr "以秒表示。"
 
-#: ../shortcuts/data/messages:133
+#: ../shortcuts/data/messages:131
 msgid "Delay between disk usage refresh :"
 msgstr "磁碟使用量的檢查間隔時間："
 
-#: ../shortcuts/data/messages:135
+#: ../shortcuts/data/messages:133
 msgid "Display disk usage with a bar?"
 msgstr "在同一欄中顯示磁碟使用量？"
 
@@ -7188,14 +7440,6 @@ msgstr "你可在此定義 mime 類型來迴避："
 msgid "Sort items by:"
 msgstr "排列項目依照："
 
-#: ../stack/data/messages:127
-msgid "Name"
-msgstr "名稱"
-
-#: ../stack/data/messages:129
-msgid "Date"
-msgstr "日期"
-
 #: ../stack/data/messages:131
 msgid "Type"
 msgstr "類型"
@@ -7243,6 +7487,10 @@ msgstr "在圖示上顯示視窗？"
 #: ../switcher/data/messages:99
 msgid "Draw hidden windows?"
 msgstr "也要顯示隱藏視窗嗎？"
+
+#: ../switcher/data/messages:101
+msgid "Action on middle click :"
+msgstr "中鍵點擊動作："
 
 #: ../switcher/data/messages:103
 msgid "Show windows' list"
@@ -7377,21 +7625,31 @@ msgstr "顯示終端機的快捷鍵"
 msgid "Default title:"
 msgstr "預設抬頭"
 
-#: ../tomboy/data/messages:27
-msgid "Name of an image for the 'empty' icon :"
-msgstr "\"空的\" 的圖像檔案："
+#: ../tomboy/data/messages:19
+#, fuzzy
+msgid "'Close' icon image name:"
+msgstr "「毀損」圖示的檔案名稱："
 
-#: ../tomboy/data/messages:113
+#: ../tomboy/data/messages:107
+#, fuzzy
+msgid "Image file for the notes:"
+msgstr "給 \"文字\" 物件的圖片："
+
+#: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
 msgstr "在它們圖示上面顯示出筆記的內容？"
 
-#: ../tomboy/data/messages:115
+#: ../tomboy/data/messages:111
 msgid "Text colour of the content :"
 msgstr "內文的文字顏色"
 
-#: ../tomboy/data/messages:117
+#: ../tomboy/data/messages:113
 msgid "Display note's content with a dialog?"
 msgstr "以彈出式視窗顯示筆記內容？"
+
+#: ../tomboy/data/messages:117
+msgid "Duration of the dialog:"
+msgstr "對話時間長度"
 
 #: ../tomboy/data/messages:125
 msgid "Choose the note-taking application to control :"
@@ -7609,6 +7867,96 @@ msgstr "原始訊號資訊"
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr "覆蓋預設的標籤與連接點的名稱？"
+
+#~ msgid "Indicator-Menus"
+#~ msgstr "指標選單"
+
+#~ msgid "Menus to control your session, connection state, etc."
+#~ msgstr "選單用來控制您的階段作業、連線狀態等等。"
+
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
+#~ msgid "Empty Trash"
+#~ msgstr "刪除垃圾"
+
+#~ msgid "Show %s"
+#~ msgstr "顯示 %s"
+
+#~ msgid "Show All"
+#~ msgstr "全部顯示"
+
+#~ msgid "Delete %s"
+#~ msgstr "刪除 %s"
+
+#~ msgid "Delete All"
+#~ msgstr "全部刪除"
+
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "你要刪除的所有在%s的檔案 。確定嗎？"
+
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "出現了問題\n"
+#~ "假如 '%s' 不是你常用的檔案瀏覽器。\n"
+#~ "您可以利用這個模組的設置改變它。"
+
+#~ msgid ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
+#~ msgstr ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
+
+#~ msgid "Number of Dustbins"
+#~ msgstr "回收桶的容量"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
+#~ "disable."
+#~ msgstr "以 Mb 表示，當您的垃圾超過這個數量時會通知您。設為 0 禁用。"
+
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "回收桶的最大容量："
+
+#~ msgid "Maximum size authorized for each dustbin :"
+#~ msgstr "每個回收桶允許的最大容量為："
+
+#~ msgid "Empty all dustbins"
+#~ msgstr "清理全部的回收桶"
+
+#~ msgid "Desktop-less support"
+#~ msgstr "無桌面的支援"
+
+#~ msgid ""
+#~ "If the Trash folder is not known by the dock, you can specify it here :"
+#~ msgstr "假如回收桶的目錄 Dock 無法察知，您可自定義在這邊："
+
+#~ msgid "in seconds. only used if you can't monitor directories."
+#~ msgstr "以秒表示，只有使用在假如您不能夠監視您的垃圾桶目錄。"
+
+#~ msgid "Time interval to check if dustbin is full/empty :"
+#~ msgstr "檢查回收桶是否 滿 / 空 的時間間隔："
+
+#~ msgid ""
+#~ "Only use this if you notice that the applet can't display the trash on "
+#~ "click."
+#~ msgstr "只有在您點擊回收桶時無法顯示相關訊息時才使用。"
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "回收桶瀏覽器的選擇："
+
+#~ msgid "Add a mail account"
+#~ msgstr "增加一個信件帳號"
+
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "以分隔圖來分開不同的快速鍵？"
+
+#~ msgid "Name of an image for the 'empty' icon :"
+#~ msgstr "\"空的\" 的圖像檔案："
 
 #~ msgid "Specify a title :"
 #~ msgstr "指定標題："

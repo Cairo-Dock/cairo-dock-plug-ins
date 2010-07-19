@@ -112,13 +112,13 @@ void cd_dustbin_start (CairoDockModuleInstance *myApplet)
 			cd_message ("dustbin : can't monitor trash folder\n we'll check it periodically");
 		}
 		
-		myData.pTask = cairo_dock_new_task (myData.bMonitoringOK ? 0 : 10,
+		myData.pTask = cairo_dock_new_task (myData.bMonitoringOK ? 0 : 10,  // si le monitoring de fichiers n'est pas disponible, on execute la tache periodiquement.
 			(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
 			(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
 			myApplet);
 		
 		cairo_dock_launch_task (myData.pTask);  // on la lance meme si on n'affiche rien, pour savoir si le nombre de fichiers est nul ou non.
-		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)  // operation potentiellement longue.
+		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)  // operation potentiellement longue => on met un petit message discret.
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
 		}

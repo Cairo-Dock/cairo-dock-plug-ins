@@ -782,7 +782,52 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		
-		if(icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
+		if (icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
+		{
+			glPushMatrix ();
+			
+			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
+			
+			double dx = .5 * (icon->iTextWidth & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
+			double dy = .5 * (icon->iTextHeight & 1);
+			double u0 = 0., u1 = 1.;
+			double fOffsetX = 0.;
+			if (icon->bPointed)
+			{
+				_cairo_dock_set_alpha (fAlpha);
+				if (icon->fDrawX + icon->fWidth/2 + icon->iTextWidth/2 > pDock->container.iWidth)
+					fOffsetX = pDock->container.iWidth - (icon->fDrawX + icon->fWidth/2 + icon->iTextWidth/2);
+				if (icon->fDrawX + icon->fWidth/2 - icon->iTextWidth/2 < 0)
+					fOffsetX = icon->iTextWidth/2 - (icon->fDrawX + icon->fWidth/2);
+			}
+			else
+			{
+				_cairo_dock_set_alpha (fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
+				if (icon->iTextWidth > icon->fWidth + 2 * myLabels.iLabelSize)
+				{
+					fOffsetX = 0.;
+					u1 = (double) (icon->fWidth + 2 * myLabels.iLabelSize) / icon->iTextWidth;
+				}
+			}
+			
+			glTranslatef (ceil (icon->fDrawX + icon->fScale * icon->fWidth/2 + fOffsetX) + dx,
+				ceil (pDock->container.iHeight - icon->fDrawY + 0*icon->fHeight/2 + icon->iTextHeight / 2) + dy,
+				0.);
+			
+			_cairo_dock_enable_texture ();
+			_cairo_dock_set_blend_alpha ();
+			glBindTexture (GL_TEXTURE_2D, icon->iLabelTexture);
+			_cairo_dock_apply_current_texture_portion_at_size_with_offset (u0, 0.,
+				u1 - u0, 1.,
+				icon->iTextWidth * (u1 - u0), icon->iTextHeight,
+				0., 0.);
+			_cairo_dock_disable_texture ();
+			_cairo_dock_set_alpha (1.);
+			
+			glPopMatrix ();
+		}
+		
+		/**if(icon->iLabelTexture != 0 && (my_diapo_simple_display_all_icons || icon->bPointed))
 		{
 			glPushMatrix ();
 			cairo_dock_translate_on_icon_opengl (icon, CAIRO_CONTAINER (pDock), 1.);
@@ -820,7 +865,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 					fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
 			}
 			glPopMatrix ();
-		}
+		}*/
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	}
