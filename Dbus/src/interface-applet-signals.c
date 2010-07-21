@@ -57,8 +57,16 @@ static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
 {
 	//g_print ("%s ()\n", __func__);
 }
-
 static void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data)
+{
+	//g_print ("%s ()\n", __func__);
+}
+static void g_cclosure_marshal_VOID__INT_VALUE (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
@@ -153,6 +161,22 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			NULL, NULL,
 			g_cclosure_marshal_VOID__VALUE,
 			G_TYPE_NONE, 1, G_TYPE_VALUE);
+	s_iSignals[ANSWER_DIALOG] =
+		g_signal_new("on_answer_dialog",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT_VALUE,
+			G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_VALUE);
+	s_iSignals[SHORTKEY] =
+		g_signal_new("on_shortkey",
+			G_OBJECT_CLASS_TYPE(klass),
+			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
+			0,
+			NULL, NULL,
+			g_cclosure_marshal_VOID__STRING,
+			G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSignals[INIT_MODULE] =
 		g_signal_new("on_init_module",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -197,6 +221,10 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 		dbus_g_proxy_add_signal(pProxy, "on_change_focus",
 			G_TYPE_BOOLEAN, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_answer",
+			G_TYPE_VALUE, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_answer_dialog",
+			G_TYPE_VALUE, G_TYPE_INVALID);
+		dbus_g_proxy_add_signal(pProxy, "on_shortkey",
 			G_TYPE_VALUE, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_init_module",
 			G_TYPE_INVALID);
@@ -615,6 +643,131 @@ void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInterac
 	g_value_set_string (&v, cAnswer);
 	
 	_emit_answer (pDbusApplet, pDialog, &v);
+}
+
+
+static inline void _emit_answer_dialog (dbusApplet *pDbusApplet, CairoDialog *pDialog, int iClickedButton, GValue *v)
+{
+	Icon *pClickedIcon = pDialog->pIcon;
+	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
+	
+	if (pClickedIcon == pAppletIcon)
+		g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);
+	//else if (pDbusApplet->pSubApplet != NULL)
+	//	g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, iClickedButton, v, pClickedIcon->cCommand);
+	
+	pDbusApplet->pDialog = NULL;
+}
+void cd_dbus_applet_emit_on_answer_buttons (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_INT);
+	g_value_set_int (&v, iClickedButton);
+	
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_STRING);
+	
+	GtkWidget *pEntry;
+	if (GTK_IS_ENTRY (pInteractiveWidget))
+	{
+		pEntry = pInteractiveWidget;
+	}
+	else
+	{
+		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
+		g_return_if_fail (children != NULL);
+		pEntry = children->data;
+	}
+	
+	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
+	g_print (" -> %s\n", cText);
+	g_value_set_string (&v, cText);
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_STRING);
+	
+	GtkWidget *pEntry;
+	if (GTK_IS_ENTRY (pInteractiveWidget))
+	{
+		pEntry = pInteractiveWidget;
+	}
+	else
+	{
+		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
+		g_return_if_fail (children != NULL);
+		pEntry = children->data;
+	}
+	GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+	GtkTextIter start, end;
+	gtk_text_buffer_get_iter_at_offset (pBuffer, &start, 0);
+	gtk_text_buffer_get_iter_at_offset (pBuffer, &end, -1);
+	gchar *cText = gtk_text_buffer_get_text (pBuffer,
+		&start,
+		&end,
+		FALSE);
+	
+	g_value_set_string (&v, cText);
+	g_free (cText);
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_DOUBLE);
+	
+	GtkWidget *pScale;
+	if (GTK_IS_RANGE (pInteractiveWidget))
+	{
+		pScale = pInteractiveWidget;
+	}
+	else
+	{
+		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
+		g_return_if_fail (children != NULL && children->next != NULL);
+		pScale = children->next->data;
+	}
+	
+	double x = gtk_range_get_value (GTK_RANGE (pScale));
+	g_value_set_double (&v, x);
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_combo_entry (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_STRING);
+	
+	GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pInteractiveWidget));
+	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
+	
+	g_value_set_string (&v, cText);
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_answer_combo (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
+{
+	GValue v = G_VALUE_INIT;
+	g_value_init (&v, G_TYPE_INT);
+	
+	int iSelectedItem = gtk_combo_box_get_active (GTK_COMBO_BOX (pInteractiveWidget));
+	
+	g_value_set_int (&v, iSelectedItem);
+	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+}
+
+void cd_dbus_applet_emit_on_shortkey (const gchar *cShortkey, dbusApplet *pDbusApplet)
+{
+	g_signal_emit (pDbusApplet, s_iSignals[SHORTKEY], 0, cShortkey);
 }
 
 

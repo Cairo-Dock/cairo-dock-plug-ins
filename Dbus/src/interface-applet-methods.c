@@ -29,6 +29,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 
 ******************************************************************************/
 
+#include <math.h>
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -189,6 +190,307 @@ static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage
 	return TRUE;
 }
 
+static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
+{
+	int iNbChars;
+	if (GTK_IS_ENTRY (pEntry))
+	{
+		const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
+		iNbChars = (cText ? strlen (cText) : 0);
+	}
+	else
+	{
+		GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+		iNbChars = gtk_text_buffer_get_char_count (pBuffer);
+	}
+	
+	int iNbCharsMax = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (pEntry), "nb-chars-max"));
+	
+	gchar *cLabel;
+	if (iNbChars < iNbCharsMax)
+		cLabel = g_strdup_printf ("<b>%d</b>", iNbChars);
+	else
+		cLabel = g_strdup_printf ("<span color=\"red\"><b>%d</b></span>", iNbChars);
+	gtk_label_set_markup (GTK_LABEL (pLabel), cLabel);
+	g_free (cLabel);
+}
+static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
+{
+	g_return_val_if_fail (hDialogAttributes != NULL, FALSE);
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
+		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
+	
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	GValue *v;
+	
+	// attributs du dialogue.
+	gchar *cImageFilePath = NULL;
+	v = g_hash_table_lookup (hDialogAttributes, "icon");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v));
+		attr.cImageFilePath = cImageFilePath;
+	}
+	else
+		attr.cImageFilePath = "same icon";
+	
+	v = g_hash_table_lookup (hDialogAttributes, "message");
+	if (v && G_VALUE_HOLDS_STRING (v))
+		attr.cText = g_value_get_string (v);
+	
+	v = g_hash_table_lookup (hDialogAttributes, "time-length");
+	if (v && G_VALUE_HOLDS_INT (v))
+		attr.iTimeLength = 1000 * g_value_get_int (v);
+	
+	gchar **cButtonsImage = NULL;
+	v = g_hash_table_lookup (hDialogAttributes, "buttons");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cButtonsImage = g_strsplit (g_value_get_string (v), ";", -1);  // NULL-terminated
+		attr.cButtonsImage = (const gchar **)cButtonsImage;
+	}
+	
+	v = g_hash_table_lookup (hDialogAttributes, "force-above");
+	if (v && G_VALUE_HOLDS_BOOLEAN (v))
+		attr.bForceAbove = g_value_get_boolean (v);
+	
+	attr.pUserData = pDbusApplet;
+	
+	// attributs du widget interactif.
+	GtkWidget *pWidget = NULL;
+	if (hWidgetAttributes != NULL)  // un widget d'interaction est defini.
+	{
+		v = g_hash_table_lookup (hWidgetAttributes, "type");
+		if (v && G_VALUE_HOLDS_STRING (v))
+		{
+			const gchar *cType = g_value_get_string (v);
+			if (cType)
+			{
+				if (strcmp (cType, "text-entry") == 0)
+				{
+					GtkWidget *pEntry = NULL;
+					gboolean bMultiLines = FALSE;
+					gboolean bEditable = TRUE;
+					gboolean bVisible = TRUE;
+					int iNbCharsMax = 0;
+					const gchar *cInitialText = NULL;
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "multi-lines");
+					if (v && G_VALUE_HOLDS_BOOLEAN (v))
+						bMultiLines = g_value_get_boolean (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "editable");
+					if (v && G_VALUE_HOLDS_BOOLEAN (v))
+						bEditable = g_value_get_boolean (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "visible");
+					if (v && G_VALUE_HOLDS_BOOLEAN (v))
+						bVisible = g_value_get_boolean (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "nb-chars");
+					if (v && G_VALUE_HOLDS_INT(v))
+						iNbCharsMax = g_value_get_int(v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cInitialText = g_value_get_string (v);
+					
+					if (bMultiLines)
+					{
+						pEntry = gtk_text_view_new ();
+						pWidget = pEntry;
+						gtk_widget_set (pEntry, "width-request", 200, "height-request", 150, NULL);
+						
+						if (! bEditable)
+							gtk_text_view_set_editable (GTK_TEXT_VIEW (pEntry), FALSE);
+						
+						if (cInitialText != NULL)
+						{
+							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+							gtk_text_buffer_set_text (pBuffer, cInitialText, -1);
+						}
+						
+						if (attr.cButtonsImage != NULL)
+							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_view;
+					}
+					else
+					{
+						pEntry = gtk_entry_new ();
+						pWidget = pEntry;
+						gtk_entry_set_has_frame (GTK_ENTRY (pEntry), FALSE);
+						gtk_widget_set (pEntry, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
+						if (cInitialText != NULL)
+							gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
+						if (! bEditable)
+							gtk_editable_set_editable (GTK_EDITABLE (pEntry), FALSE);
+						if (! bVisible)
+							gtk_entry_set_visibility (GTK_ENTRY (pEntry), FALSE);
+						
+						if (attr.cButtonsImage != NULL)
+							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_entry;
+					}
+					if (iNbCharsMax != 0)
+					{
+						gchar *cLabel = g_strdup_printf ("<b>%d</b>", cInitialText ? strlen (cInitialText) : 0);
+						GtkWidget *pLabel = gtk_label_new (cLabel);
+						g_free (cLabel);
+						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+						GtkWidget *pBox = gtk_hbox_new (FALSE, 3);
+						gtk_box_pack_start (GTK_BOX (pBox), pEntry, FALSE, FALSE, 0);
+						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
+						pWidget = pBox;
+						g_object_set_data (G_OBJECT (pEntry), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
+						g_signal_connect (pEntry, "changed", G_CALLBACK (_on_text_changed), pLabel);
+					}
+				}
+				else if (strcmp (cType, "scale") == 0)
+				{
+					GtkWidget *pScale = NULL;
+					double fMinValue = 0.;
+					double fMaxValue = 100.;
+					int iNbDigit = 2;
+					double fInitialValue = 0.;
+					const gchar *cMinLabel = NULL;
+					const gchar *cMaxLabel = NULL;
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "min-value");
+					if (v && G_VALUE_HOLDS_DOUBLE (v))
+						fMinValue = g_value_get_double (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "max-value");
+					if (v && G_VALUE_HOLDS_DOUBLE (v))
+						fMaxValue = g_value_get_double (v);
+					fMaxValue = MAX (fMaxValue, fMinValue+1);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "nb-digit");
+					if (v && G_VALUE_HOLDS_INT (v))
+						iNbDigit = g_value_get_int (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
+					if (v && G_VALUE_HOLDS_DOUBLE (v))
+						fInitialValue = g_value_get_double (v);
+					fInitialValue = MAX (MIN (fInitialValue, fMaxValue), fMinValue);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "min-label");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cMinLabel = g_value_get_string (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "max-label");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cMaxLabel = g_value_get_string (v);
+					
+					pScale = gtk_hscale_new_with_range (fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
+					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
+					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
+					
+					gtk_widget_set (pScale, "width-request", 150, NULL);
+					
+					if (cMinLabel || cMaxLabel)
+					{
+						GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
+						GtkWidget *label = gtk_label_new (cMinLabel);
+						GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
+						gtk_container_add (GTK_CONTAINER (pAlign), label);
+						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pScale, FALSE, FALSE, 0);
+						label = gtk_label_new (cMaxLabel);
+						pAlign = gtk_alignment_new (1., 1., 0., 0.);
+						gtk_container_add (GTK_CONTAINER (pAlign), label);
+						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
+						pWidget = pExtendedWidget;
+					}
+					else
+						pWidget = pScale;
+					
+					if (attr.cButtonsImage != NULL)
+						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_scale;
+				}
+				else if (strcmp (cType, "list") == 0)
+				{
+					gboolean bEditable = FALSE;
+					const gchar *cValues = NULL;
+					gchar **cValuesList = NULL;
+					const gchar *cInitialText = NULL;
+					int iInitialValue = 0;
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "editable");
+					if (v && G_VALUE_HOLDS_BOOLEAN (v))
+						bEditable = g_value_get_boolean (v);
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "values");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cValues = g_value_get_string (v);
+					
+					if (cValues != NULL)
+						cValuesList = g_strsplit (cValues, ";", -1);
+					
+					if (bEditable)
+						pWidget = gtk_combo_box_entry_new_text ();
+					else
+						pWidget = gtk_combo_box_new_text ();
+					
+					if (cValuesList != NULL)
+					{
+						int i;
+						for (i = 0; cValuesList[i] != NULL; i ++)
+						{
+							gtk_combo_box_append_text (GTK_COMBO_BOX (pWidget), cValuesList[i]);
+						}
+					}
+					
+					v = g_hash_table_lookup (hWidgetAttributes, "initial-value");
+					if (bEditable)
+					{
+						if (v && G_VALUE_HOLDS_STRING (v))
+							cInitialText = g_value_get_string (v);
+						if (cInitialText != NULL)
+						{
+							GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pWidget));
+							gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
+						}
+					}
+					else
+					{
+						if (v && G_VALUE_HOLDS_INT (v))
+							iInitialValue = g_value_get_int (v);
+						gtk_combo_box_set_active (GTK_COMBO_BOX (pWidget), iInitialValue);
+					}
+					
+					if (attr.cButtonsImage != NULL)
+					{
+						if (bEditable)
+							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo_entry;
+						else
+							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_combo;
+					}
+				}
+				else
+					cd_warning ("unknown widget type '%s'", cType);
+			}  // fin du type de widget.
+		}
+	}
+	attr.pInteractiveWidget = pWidget;
+	
+	if (pWidget == NULL)  // pas de widget, on renverra le numero du bouton appuye.
+	{
+		if (attr.cButtonsImage != NULL)
+			attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_buttons;
+	}
+	
+	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
+	
+	g_free (cImageFilePath);
+	if (cButtonsImage)
+		g_strfreev (cButtonsImage);
+	return TRUE;
+}
+
 
   ///////////////////////////////////////////////////
  ////////// sub-applet interface methods ///////////
@@ -237,6 +539,11 @@ gboolean cd_dbus_sub_applet_ask_value (dbusSubApplet *pDbusSubApplet, const gcha
 gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
 {
 	return _applet_ask_text (pDbusSubApplet->pApplet, cMessage, cInitialText, cIconID, error);
+}
+
+gboolean cd_dbus_sub_applet_popup_dialog (dbusSubApplet *pDbusSubApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
+{
+	return _applet_popup_dialog (pDbusSubApplet->pApplet, hDialogAttributes, hWidgetAttributes, cIconID, error);
 }
 
 
@@ -441,6 +748,11 @@ gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message,
 {
 	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
+}
+
+gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, GError **error)
+{
+	return _applet_popup_dialog (pDbusApplet, hDialogAttributes, hWidgetAttributes, NULL, error);
 }
 
 
@@ -795,9 +1107,68 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 }
 
 
+gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cShortkeys, GError **error)
+{
+	cd_debug ("%s ()", __func__);
+	g_return_val_if_fail (cShortkeys != NULL, FALSE);
+	
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	const gchar *cShortkey;
+	int i;
+	GList *sk, *next_sk;
+	gchar *key;
+	
+	// on enleve les vieux raccourcis dont l'applet ne veut plus.
+	sk = pDbusApplet->pShortkeyList;
+	while (sk != NULL)
+	{
+		next_sk = sk->next;
+		key = sk->data;
+		
+		// on cherche ce raccourci parmi la nouvelle liste.
+		for (i = 0; cShortkeys[i] != NULL; i ++)
+		{
+			cShortkey = cShortkeys[i];
+			if (strcmp (cShortkey, key) == 0)
+				break;
+		}
+		if (! cShortkeys[i])  // raccourci non trouve dans la nouvelle liste => on l'enleve
+		{
+			g_print (" shortkey '%s' not wanted anymore\n", key);
+			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
+			pDbusApplet->pShortkeyList = g_list_delete_link (pDbusApplet->pShortkeyList, sk);
+		}
+		sk = next_sk;
+	}
+	
+	// on lie les nouveaux raccourcis non encore lies.
+	gboolean bCouldBind;
+	for (i = 0; cShortkeys[i] != NULL; i ++)
+	{
+		cShortkey = cShortkeys[i];
+		for (sk = pDbusApplet->pShortkeyList; sk != NULL; sk = sk->next)  // on regarde si ce nouveau raccourci est deja lie.
+		{
+			key = sk->data;
+			if (strcmp (cShortkey, key) == 0)  // ce raccourci a deja ete lie avec succes precedemment.
+				break;
+		}
+		if (! sk)  // raccourci non encore lie => on lie.
+		{
+			g_print (" shortkey '%s' wanted\n", cShortkey);
+			bCouldBind = cd_keybinder_bind (cShortkey, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet);
+			if (bCouldBind)
+				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));
+		}
+	}
+	return TRUE;
+}
+
+
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
 {
-	cd_debug ("%s (%s)\n", __func__, cProperty);
+	cd_debug ("%s (%s)", __func__, cProperty);
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
@@ -883,7 +1254,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 
 gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperties, GError **error)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	

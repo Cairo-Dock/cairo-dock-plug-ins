@@ -63,6 +63,7 @@ struct _dbusApplet {
 	gchar *cModuleName;
 	dbusSubApplet *pSubApplet;
 	CairoDialog *pDialog;
+	GList *pShortkeyList;
 };
 typedef struct {
 	GObjectClass parent_class;
@@ -90,6 +91,8 @@ typedef enum {
 	INIT_MODULE,
 	STOP_MODULE,
 	ANSWER,
+	ANSWER_DIALOG,
+	SHORTKEY,
 	NB_SIGNALS
 } CDSignalEnum;
 

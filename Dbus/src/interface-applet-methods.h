@@ -44,6 +44,8 @@ gboolean cd_dbus_sub_applet_ask_value (dbusSubApplet *pDbusApplet, const gchar *
 
 gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error);
 
+gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, GError **error);
+
 gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const gchar **pIconFields, GError **error);
 
 gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, const gchar *cIconID, GError **error);
@@ -70,6 +72,8 @@ gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message
 
 gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, GError **error);
 
+gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, GError **error);
+
 
 gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error);
 
@@ -82,6 +86,8 @@ gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GEr
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error);
 
 gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error);
+
+gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cShortkey, GError **error);
 
 
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error);

@@ -47,6 +47,10 @@
 			<arg name="cMessage" type="s" direction="in"/>
 			<arg name="cInitialText" type="s" direction="in"/>
 		</method>
+		<method name="PopupDialog">
+			<arg name="hDialogAttributes" direction="in" type="a{sv}"/>
+			<arg name="hWidgetAttributes" direction="in" type="a{sv}"/>
+		</method>
 		<method name="AddDataRenderer">
 			<arg name="cType" type="s" direction="in"/>
 			<arg name="iNbValues" type="i" direction="in"/>
@@ -66,6 +70,9 @@
 		</method>
 		<method name="AddMenuItems">
 			<arg name="pItems" type="aa{sv}" direction="in"/>
+		</method>
+		<method name="BindShortkey">
+			<arg name="cShortkeys" type="as" direction="in"/>
 		</method>
 		
 		<signal name="on_click">
@@ -89,6 +96,13 @@
 		</signal>
 		<signal name="on_answer">
 			<arg name="answer" type="v"/>
+		</signal>
+		<signal name="on_answer_dialog">
+			<arg name="iClickedButton" type="i"/>
+			<arg name="answer" type="v"/>
+		</signal>
+		<signal name="on_shortkey">
+			<arg name="cShortkey" type="s"/>
 		</signal>
 		
 		<signal name="on_stop_module">

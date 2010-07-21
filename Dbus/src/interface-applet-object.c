@@ -162,13 +162,23 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 {
 	dbusApplet *pDbusApplet = _remove_dbus_applet_from_list (pModuleInstance);
 	
-	if (_applet_list_is_empty ())
+	if (_applet_list_is_empty ())  // si plus d'applet dbus, inutile de garder les notifications actives.
 	{
 		cd_dbus_unregister_notifications ();
 	}
 	
 	if (pDbusApplet != NULL)
 	{
+		// on enleve les raccourcis clavier de l'applet.
+		GList *sk;
+		gchar *key;
+		for (sk = pDbusApplet->pShortkeyList; sk != NULL; sk = sk->next)
+		{
+			key = sk->data;
+			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
+		}
+		
+		// on detruit l'objet associe aux sous-icones.
 		if (pDbusApplet->pSubApplet != NULL)
 		{
 			g_object_unref (pDbusApplet->pSubApplet);
