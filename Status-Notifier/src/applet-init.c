@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION (N_("Status Notifier"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A <b>notification area</b> for your dock\n"
 	"Also called 'systray'.\n"
 	"It is designed to work on any desktop that supports the latest systray specifications (KDE, Gnome, etc)"),

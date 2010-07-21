@@ -31,7 +31,7 @@
 
 CD_APPLET_DEFINITION (N_("shortcuts"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("An applet that let you access quickly to all of your shortcuts.\n"
 	"It can manage disks, network points, and Nautilus bookmarks (even if you don't have Nautilus).\n"
 	"Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"

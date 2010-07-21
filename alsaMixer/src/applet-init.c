@@ -28,9 +28,9 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("AlsaMixer"),
+CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_CONTROLER,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet lets you control the sound volume from the dock.\n"
 	"Scroll up/down on the icon to increase/decrease the volume.\n"
 	"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
@@ -39,6 +39,7 @@ CD_APPLET_DEFINE_BEGIN (N_("AlsaMixer"),
 	"This applet works with the Alsa sound driver."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Sound Control"))
 	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
 CD_APPLET_DEFINE_END
 
@@ -279,11 +280,11 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		/** //\_______________ On redessine notre icone.
+		///\_______________ On redessine notre icone.
 		if (myData.pControledElement != NULL)
 		{
 			mixer_element_update_with_event (myData.pControledElement, 0);
-		}*/
+		}
 		
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);

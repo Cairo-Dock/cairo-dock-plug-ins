@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINITION ("Toons",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This applet displays a toon that will look at your mouse."),
 	"Fabounet (Fabrice Rey)")
 

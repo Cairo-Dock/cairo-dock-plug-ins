@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINITION ("Clipper",
 	1, 6, 3,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet keeps a trace of the clipboard and mouse selection,\n"
 	"so that you can recall them quickly. It's a clone of the well-know Klipper.\n"
 	"It supports clipboard and mouse selection, predefined actions, and persistent items.\n"

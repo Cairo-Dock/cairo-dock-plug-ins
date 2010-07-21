@@ -37,7 +37,7 @@
 
 CD_APPLET_DEFINE_BEGIN ("dnd2share",
 	2, 0, 7,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet lets you share files easily :\n"
 	"Drag-and-drop a file on the icon to upload it to one of the available hosting sites.\n"
 	"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"

@@ -31,7 +31,7 @@
 
 CD_APPLET_DEFINITION (N_("Doncky"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet allows you to write texts and monitor your system\n"
 	"with a \"text style desklet\".\n"
 	"USAGE:\n"

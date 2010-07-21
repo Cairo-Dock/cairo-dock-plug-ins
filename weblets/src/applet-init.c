@@ -27,7 +27,7 @@
 
 CD_APPLET_DEFINITION ("weblets",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("The weblets applet allows you to show an interactive web page on your desktop.\n"
 	"You can select your web page, set the desired scrolling,\n"
 	"and hide the scrollbars to get a real 'crop' of the page."),

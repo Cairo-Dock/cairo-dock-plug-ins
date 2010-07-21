@@ -31,7 +31,7 @@
 
 CD_APPLET_DEFINITION (N_("switcher"),
 	2, 0, 9,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to interact with your workspaces :\n"
 	" - switch between your workspaces (scroll up/down with the mouse),\n"
 	" - name them (in the config),\n"

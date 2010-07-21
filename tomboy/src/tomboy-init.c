@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINITION ("Note-Taking",
 	1, 5, 4,
-	CAIRO_DOCK_CATEGORY_CONTROLER,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("Control your Gnote or TomBoy's notes directly in the dock !\n"
 	"Click on a note to open it, Escape to close it.\n"
 	"Middle-click to instantly create a new note.\n"

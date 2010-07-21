@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINITION (N_("dustbin"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet manages the dustbin\n"
 	"You can threw files and unmount disks by drag andn droping them on the icon.\n"
 	"The applet can warn you if you use too much space\n"
@@ -40,19 +40,23 @@ static void _get_theme (void)
 {
 	if (myConfig.cEmptyUserImage != NULL)
 	{
-		if (! g_file_test (myConfig.cEmptyUserImage, G_FILE_TEST_EXISTS))
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cEmptyUserImage);
+		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cEmptyUserImage);
 			myConfig.cEmptyUserImage = NULL;
 		}
+		g_free (cPath);
 	}
 	if (myConfig.cFullUserImage != NULL)
 	{
-		if (! g_file_test (myConfig.cFullUserImage, G_FILE_TEST_EXISTS))
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cFullUserImage);
+		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cFullUserImage);
 			myConfig.cFullUserImage = NULL;
 		}
+                g_free (cPath);
 	}
 	if (myConfig.cThemePath != NULL)
 	{

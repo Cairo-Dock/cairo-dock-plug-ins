@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("Load folders inside the Dock\n"
 	"You can have as many instances of this applet as you want."),
 	"Fabounet")

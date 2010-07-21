@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINITION ("stacks",
 	1, 6, 2,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
 	"To add file into your stacks, you just have to drag and drop it on the Stacks icon and you're done.\n"
 	"You can drop any file, or web URL, or even some piece of text\n"

@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION (N_("keyboard indicator"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet lets you control the keyboard layout.\n\
 	It can also display the current num and caps lock.\n\
 	Left-click to switch to the next layout\n\

@@ -34,7 +34,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet displays time, date and a calandar.\n"
 	"2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 	" Analogic view is compatible with the Cairo-Clock's themes, and you can detach the applet to be a perfect clone of Cairo-Clock.\n"

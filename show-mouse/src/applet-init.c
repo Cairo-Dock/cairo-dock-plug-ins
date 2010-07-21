@@ -27,7 +27,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("show mouse"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This plugin draws some animations around the cursor when it's inside a dock/desklet."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)

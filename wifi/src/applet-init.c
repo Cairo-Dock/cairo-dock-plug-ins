@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINITION ("wifi",
 	2, 0, 7,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the signal strength of the first active wifi connection\n"
 	"Left-click to pop-up some info,"
 	"Middle-click to re-check immediately."),

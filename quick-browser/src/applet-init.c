@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINITION (N_("Quick Browser"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet lets you browse a folder and its sub-folders very quickly.\n"
 	"You can set up a shortkey to pop up the menu.\n"
 	"Midlle-click will open the main folder.\n"

@@ -31,7 +31,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("systray"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Add a systray to your dock.\n"
 	"Left-click to show the systray in a dialog (you can bind a keyboard shortcut for it.)\n"
 	"Middle-click to close the dalog.\n"

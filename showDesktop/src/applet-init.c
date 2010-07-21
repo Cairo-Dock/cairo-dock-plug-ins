@@ -27,7 +27,7 @@
 
 CD_APPLET_DEFINITION (N_("showDesktop"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet adds an icon to show your desktop,\n"
 	" and also : the desklets, the Widget Layer, or all the desktops at once.\n"
 	"It can also be used to quickly change the screen's resolution from the right-click menu.\n"

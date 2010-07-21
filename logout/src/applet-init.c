@@ -27,7 +27,7 @@
 
 CD_APPLET_DEFINITION (N_("logout"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A very simple applet that adds an icon to log out from your session\n"
 	"Left click to log out or change the user, middle click to shutdown or restart\n"
 	"  (you can invert the buttons if you prefer to shutdown on left-click)."),

@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINITION (N_("System Monitor"),
 	2, 0, 5,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet shows you the CPU load, RAM usage, graphic card temperature, etc.\n"
 	"Middle click on the icon to get some valuable info.\n"
 	"Left click on the icon to get a list of the most ressources using programs.\n"

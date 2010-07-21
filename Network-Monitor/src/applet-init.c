@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("Network-Monitor"),
 	2, 1, 4,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet allows you to monitor your network connection(s).\n"
 	"It can display the download/upload speeds and the wifi signal quality.\n"
 	"If you have network-manager running, it can also let you choose the current wifi network.\n"

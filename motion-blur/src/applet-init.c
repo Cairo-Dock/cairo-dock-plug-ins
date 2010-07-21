@@ -27,7 +27,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("motion blur"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This plugin adds a motion blur effect to docks."),
 	"Fabounet (Fabrice Rey)")
 	if (! g_bUseOpenGL)

@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("weather"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet displays weather into your dock.\n"
 	"Data are provided by www.weather.com, you can find your location in the config panel.\n"
 	"It can detach itself to be a totally eye-candy 3D deskelt.\n"

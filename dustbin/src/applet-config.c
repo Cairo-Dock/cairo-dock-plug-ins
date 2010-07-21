@@ -31,6 +31,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_RENAME_GROUP ("Module", "Configuration");
 	
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "default");
+	if (myConfig.cThemePath == NULL)
+		myConfig.cThemePath = g_strdup ("default");
 	myConfig.cEmptyUserImage = CD_CONFIG_GET_STRING ("Configuration", "empty image");
 	myConfig.cFullUserImage = CD_CONFIG_GET_STRING ("Configuration", "full image");
 	

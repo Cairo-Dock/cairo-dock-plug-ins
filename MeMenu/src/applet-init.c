@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION (N_("Me Menu"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("A menu that lets you access quickly to your information, your online status, your friends."),
 	"Fabounet")
 

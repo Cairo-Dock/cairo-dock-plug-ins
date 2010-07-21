@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION ("terminal",
 	2, 0, 7,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Add a terminal to your dock !\n"
 	"Left/middle click to show/hide terminal (you can bind a keyboard shortcut for it.)\n"
 	"You can drag'n'drop files or text and select an action.\n"

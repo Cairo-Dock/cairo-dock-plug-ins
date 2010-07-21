@@ -35,7 +35,7 @@
 
 CD_APPLET_DEFINE_BEGIN ("Scooby-Do",
 	2, 1, 4,
-	CAIRO_DOCK_CATEGORY_PLUG_IN,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This plug-in allows you to make different actions directly from the keyboard.\n"
 	"It has 2 modes, each one being triggered by a keyboard shortcut:\n\n"
 	"- the finder mode (default shortcut : CTRL + Enter) :\n"

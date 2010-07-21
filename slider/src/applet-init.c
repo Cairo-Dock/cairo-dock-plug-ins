@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINITION (N_("slider"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet is a basic image slider\n"
 	" You just have to select a directory and a display effect and you're done\n"
 	"Click to play/pause or to edit the current image.\n"

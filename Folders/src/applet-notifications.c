@@ -186,9 +186,12 @@ static void _cairo_dock_delete_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
 	CairoDock *pDock = data[1];
-	cd_message ("%s (%s)\n", __func__, icon->cName);
-
-	gchar *question = g_strdup_printf (_("You're about deleting this file\n  (%s)\nfrom your hard-disk. Sure ?"), icon->cBaseURI);
+	cd_message ("%s (%s)", __func__, icon->cName);
+	
+	gchar *cPath = g_filename_from_uri (icon->cBaseURI, NULL, NULL);
+	g_return_if_fail (cPath != NULL);
+	gchar *question = g_strdup_printf (_("You're about deleting this file\n  (%s)\nfrom your hard-disk. Sure ?"), cPath);
+	g_free (cPath);
 	int answer = cairo_dock_ask_question_and_wait (question, icon, CAIRO_CONTAINER (pDock));
 	g_free (question);
 	if (answer == GTK_RESPONSE_YES)
@@ -251,7 +254,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
 {
-	g_print ("drop '%s'\n", cReceivedData);
+	g_print ("Folders received '%s'\n", cReceivedData);
 	
 	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // lachage sur une icone.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;

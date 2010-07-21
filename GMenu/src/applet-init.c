@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINE_BEGIN ("GMenu",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_DESKTOP,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Displays the common Applications menu and the Recently used files.\n"
 	"It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
 	"Middle-click to open a dialog to quickly launch any command (you can set up a shortkey for it, like ALT+F2)\n"

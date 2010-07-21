@@ -32,7 +32,7 @@
 
 CD_APPLET_DEFINE_BEGIN (N_("mail"),
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet is very useful to warn you when you get new e-mails\n"
 	"It can check in any kind of mailbox (yahoo, gmail, etc)\n"
 	"Left-click to launch the prefered mail application,\n"

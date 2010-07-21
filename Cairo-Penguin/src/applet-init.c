@@ -29,7 +29,7 @@
 
 CD_APPLET_DEFINE_BEGIN ("Cairo-Penguin",
 	2, 0, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("Add a lively Penguin in your dock !\n"
 	"Left click to change the animation,\n"
 	"Middle-click to disturb him ^_^\n"

@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION (N_("Messaging Menu"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_ACCESSORY,
+	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
 	"It handles Evolution, Pidgin, Empathy, etc"),
 	"Fabounet")

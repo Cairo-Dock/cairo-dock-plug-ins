@@ -46,7 +46,7 @@
 
 CD_APPLET_DEFINITION (N_("musicPlayer"),
 	2,0,0,
-	CAIRO_DOCK_CATEGORY_CONTROLER,
+	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet lets you control any music player.\n"
 	"Left click to Play/Pause, middle-click to play Next song.\n"
 	"Scroll up/down to play previous/next song.\n"
