@@ -184,25 +184,25 @@ msgid ""
 "The communication between both sides is based on Dbus"
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:410
+#: ../Dbus/src/interface-applet-signals.c:438
 msgid "About this applet"
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:498
+#: ../Dbus/src/interface-applet-signals.c:526
 msgid "Sorry, this module couldn't be added."
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:502
-#: ../Dbus/src/interface-applet-signals.c:508
+#: ../Dbus/src/interface-applet-signals.c:530
+#: ../Dbus/src/interface-applet-signals.c:536
 msgid "The module has been added, but couldn't be launched."
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:511
+#: ../Dbus/src/interface-applet-signals.c:539
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
-#: ../Dbus/src/interface-applet-signals.c:511
+#: ../Dbus/src/interface-applet-signals.c:539
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -226,13 +226,6 @@ msgid ""
 "  - Middle-clic to reload values"
 msgstr ""
 
-#: ../Doncky/src/applet-top.c:287
-#: ../System-Monitor/src/applet-notifications.c:49
-#: ../System-Monitor/src/applet-notifications.c:66
-#: ../System-Monitor/src/applet-top.c:288
-msgid "Mb"
-msgstr ""
-
 #: ../Folders/src/applet-init.c:29
 #, fuzzy
 msgid "Folders"
@@ -252,7 +245,7 @@ msgstr ""
 msgid "Empty or unreadable folder."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:191
+#: ../Folders/src/applet-notifications.c:193
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -260,18 +253,18 @@ msgid ""
 "from your hard-disk. Sure ?"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:200
+#: ../Folders/src/applet-notifications.c:203
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:213
+#: ../Folders/src/applet-notifications.c:216
 #, fuzzy
 msgid "Rename to:"
 msgstr "タブ名の変更"
 
-#: ../Folders/src/applet-notifications.c:220
+#: ../Folders/src/applet-notifications.c:223
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -279,17 +272,17 @@ msgid ""
 "and that the new name does not already exist."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:240
+#: ../Folders/src/applet-notifications.c:243
 #, fuzzy
 msgid "Delete this file"
 msgstr "删除此便签"
 
-#: ../Folders/src/applet-notifications.c:242
+#: ../Folders/src/applet-notifications.c:245
 #, fuzzy
 msgid "Rename this file"
 msgstr "更名此标签"
 
-#: ../Folders/src/applet-notifications.c:244
+#: ../Folders/src/applet-notifications.c:247
 msgid "Properties"
 msgstr ""
 
@@ -384,7 +377,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:136 ../wifi/src/applet-draw.c:31
-#: ../Clipper/data/messages:203 ../Network-Monitor/data/messages:213
+#: ../Clipper/data/messages:99 ../Network-Monitor/data/messages:213
 #: ../alsaMixer/data/messages:127 ../compiz-icon/data/messages:95
 #: ../dustbin/data/messages:101 ../wifi/data/messages:131
 #: ../wifi/data/messages:181
@@ -821,6 +814,12 @@ msgid ""
 msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:49
+#: ../System-Monitor/src/applet-notifications.c:66
+#: ../System-Monitor/src/applet-top.c:288
+msgid "Mb"
+msgstr ""
+
+#: ../System-Monitor/src/applet-notifications.c:49
 msgid "Gb"
 msgstr ""
 
@@ -912,10 +911,6 @@ msgstr "设置Gamma值："
 msgid "Apply current luminosity on startup"
 msgstr ""
 
-#: ../alsaMixer/src/applet-init.c:31
-msgid "AlsaMixer"
-msgstr ""
-
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
@@ -927,6 +922,11 @@ msgid ""
 "mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
+
+#: ../alsaMixer/src/applet-init.c:42
+#, fuzzy
+msgid "Sound Control"
+msgstr "信息及控制器"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -2422,7 +2422,6 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-interface.c:71
-#: ../systray/src/systray-menu-functions.c:70
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -2816,7 +2815,7 @@ msgstr ""
 msgid "Type of mesh:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
+#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:45
 #: ../Doncky/data/messages:43 ../Folders/data/messages:57
 #: ../GMenu/data/messages:45 ../MeMenu/data/messages:39
 #: ../Messaging-Menu/data/messages:41 ../Network-Monitor/data/messages:45
@@ -2830,8 +2829,9 @@ msgstr ""
 #: ../netspeed/data/messages:41 ../powermanager/data/messages:43
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
-#: ../stack/data/messages:47 ../switcher/data/messages:37
-#: ../systray/data/messages:37 ../terminal/data/messages:45
+#: ../stack/data/messages:47 ../stacks/data/messages:43
+#: ../switcher/data/messages:37 ../systray/data/messages:37
+#: ../template/data/messages:45 ../terminal/data/messages:45
 #: ../tomboy/data/messages:55 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
@@ -2850,7 +2850,7 @@ msgid "Colour of the sheen:"
 msgstr ""
 
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
-#: ../Clipper/data/messages:113 ../Doncky/data/messages:9
+#: ../Clipper/data/messages:9 ../Doncky/data/messages:9
 #: ../Doncky/data/messages:91 ../Folders/data/messages:21
 #: ../GMenu/data/messages:9 ../GMenu/data/messages:99
 #: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
@@ -2860,8 +2860,9 @@ msgstr ""
 #: ../dnd2share/data/messages:9 ../logout/data/messages:9
 #: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:139
-#: ../systray/data/messages:9 ../terminal/data/messages:9
+#: ../stacks/data/messages:9 ../switcher/data/messages:9
+#: ../switcher/data/messages:139 ../systray/data/messages:9
+#: ../template/data/messages:9 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr ""
@@ -2986,7 +2987,7 @@ msgstr ""
 msgid "Blink duration:"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
+#: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:1
 #: ../Doncky/data/messages:1 ../Folders/data/messages:1
 #: ../GMenu/data/messages:1 ../MeMenu/data/messages:1
 #: ../Messaging-Menu/data/messages:1 ../Network-Monitor/data/messages:1
@@ -3000,14 +3001,15 @@ msgstr ""
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
 #: ../showDesktop/data/messages:1 ../slider/data/messages:1
-#: ../stack/data/messages:1 ../switcher/data/messages:1
-#: ../systray/data/messages:1 ../terminal/data/messages:1
+#: ../stack/data/messages:1 ../stacks/data/messages:1
+#: ../switcher/data/messages:1 ../systray/data/messages:1
+#: ../template/data/messages:1 ../terminal/data/messages:1
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
 msgstr "图标"
 
-#: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
+#: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:3
 #: ../Doncky/data/messages:3 ../Folders/data/messages:3
 #: ../GMenu/data/messages:3 ../MeMenu/data/messages:3
 #: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:3
@@ -3021,8 +3023,9 @@ msgstr "图标"
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
 #: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../switcher/data/messages:3
-#: ../systray/data/messages:3 ../terminal/data/messages:3
+#: ../stack/data/messages:3 ../stacks/data/messages:3
+#: ../switcher/data/messages:3 ../systray/data/messages:3
+#: ../template/data/messages:3 ../terminal/data/messages:3
 #: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
@@ -3036,7 +3039,7 @@ msgstr ""
 msgid "Icon name for busy penguin:"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
+#: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:13
 #: ../Doncky/data/messages:13 ../Folders/data/messages:25
 #: ../GMenu/data/messages:13 ../MeMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
@@ -3050,14 +3053,15 @@ msgstr ""
 #: ../netspeed/data/messages:9 ../powermanager/data/messages:9
 #: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
 #: ../showDesktop/data/messages:17 ../slider/data/messages:9
-#: ../stack/data/messages:15 ../switcher/data/messages:13
-#: ../systray/data/messages:13 ../terminal/data/messages:13
+#: ../stack/data/messages:15 ../stacks/data/messages:13
+#: ../switcher/data/messages:13 ../systray/data/messages:13
+#: ../template/data/messages:13 ../terminal/data/messages:13
 #: ../tomboy/data/messages:9 ../weather/data/messages:11
 #: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "所属dock名称:"
 
-#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
+#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:15
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
@@ -3072,13 +3076,14 @@ msgstr "所属dock名称:"
 #: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
 #: ../showDesktop/data/messages:19 ../slider/data/messages:13
 #: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:15 ../terminal/data/messages:15
-#: ../tomboy/data/messages:25 ../weather/data/messages:13
-#: ../weblets/data/messages:15 ../wifi/data/messages:13
+#: ../systray/data/messages:15 ../template/data/messages:15
+#: ../terminal/data/messages:15 ../tomboy/data/messages:25
+#: ../weather/data/messages:13 ../weblets/data/messages:15
+#: ../wifi/data/messages:13
 msgid "Applet's Handbook"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
+#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:91
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
@@ -3094,8 +3099,9 @@ msgstr ""
 #: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
-#: ../switcher/data/messages:83 ../switcher/data/messages:85
-#: ../systray/data/messages:83 ../terminal/data/messages:91
+#: ../stacks/data/messages:89 ../switcher/data/messages:83
+#: ../switcher/data/messages:85 ../systray/data/messages:83
+#: ../template/data/messages:91 ../terminal/data/messages:91
 #: ../tomboy/data/messages:101 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:89
@@ -3111,7 +3117,7 @@ msgstr "配置"
 msgid "Choose one of the available themes:"
 msgstr "选择主题:"
 
-#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:243
+#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:139
 #: ../Network-Monitor/data/messages:167 ../System-Monitor/data/messages:149
 #: ../System-Monitor/data/messages:185 ../Toons/data/messages:93
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
@@ -3141,111 +3147,7 @@ msgstr "以点为单位。"
 msgid "Ground offset:"
 msgstr ""
 
-#: ../Clipper/data/messages:1 ../Clipper/data/messages:53
-msgid "Action_0"
-msgstr ""
-
-#: ../Clipper/data/messages:3 ../Clipper/data/messages:55
-msgid "Action_0/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:5 ../Clipper/data/messages:57
-msgid "Action_1"
-msgstr ""
-
-#: ../Clipper/data/messages:7 ../Clipper/data/messages:59
-msgid "Action_1/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:9 ../Clipper/data/messages:61
-msgid "Action_1/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:11 ../Clipper/data/messages:63
-msgid "Action_1/Command_2"
-msgstr ""
-
-#: ../Clipper/data/messages:13 ../Clipper/data/messages:65
-msgid "Action_1/Command_3"
-msgstr ""
-
-#: ../Clipper/data/messages:15 ../Clipper/data/messages:67
-msgid "Action_1/Command_4"
-msgstr ""
-
-#: ../Clipper/data/messages:17 ../Clipper/data/messages:69
-msgid "Action_2"
-msgstr ""
-
-#: ../Clipper/data/messages:19 ../Clipper/data/messages:71
-msgid "Action_2/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:21 ../Clipper/data/messages:73
-msgid "Action_2/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:23 ../Clipper/data/messages:75
-msgid "Action_3"
-msgstr ""
-
-#: ../Clipper/data/messages:25 ../Clipper/data/messages:77
-msgid "Action_3/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:27 ../Clipper/data/messages:79
-msgid "Action_3/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:29 ../Clipper/data/messages:81
-msgid "Action_4"
-msgstr ""
-
-#: ../Clipper/data/messages:31 ../Clipper/data/messages:83
-msgid "Action_4/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:33 ../Clipper/data/messages:85
-msgid "Action_4/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:35 ../Clipper/data/messages:87
-msgid "Action_5"
-msgstr ""
-
-#: ../Clipper/data/messages:37 ../Clipper/data/messages:89
-msgid "Action_5/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:39 ../Clipper/data/messages:91
-msgid "Action_5/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:41 ../Clipper/data/messages:93
-msgid "Action_6"
-msgstr ""
-
-#: ../Clipper/data/messages:43 ../Clipper/data/messages:95
-msgid "Action_6/Command_0"
-msgstr ""
-
-#: ../Clipper/data/messages:45 ../Clipper/data/messages:97
-msgid "Action_6/Command_1"
-msgstr ""
-
-#: ../Clipper/data/messages:47 ../Clipper/data/messages:99
-msgid "Action_6/Command_2"
-msgstr ""
-
-#: ../Clipper/data/messages:49 ../Clipper/data/messages:101
-msgid "Action_6/Command_3"
-msgstr ""
-
-#: ../Clipper/data/messages:51 ../Clipper/data/messages:103
-msgid "Action_6/Command_4"
-msgstr ""
-
-#: ../Clipper/data/messages:109 ../Doncky/data/messages:5
+#: ../Clipper/data/messages:5 ../Doncky/data/messages:5
 #: ../Folders/data/messages:5 ../GMenu/data/messages:5
 #: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
@@ -3259,14 +3161,15 @@ msgstr ""
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
 #: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
 #: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../stacks/data/messages:5 ../switcher/data/messages:5
+#: ../systray/data/messages:5 ../template/data/messages:5
 #: ../terminal/data/messages:5 ../tomboy/data/messages:5
 #: ../weather/data/messages:5 ../weblets/data/messages:5
 #: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "此小程序期望的图标大小"
 
-#: ../Clipper/data/messages:111 ../Doncky/data/messages:7
+#: ../Clipper/data/messages:7 ../Doncky/data/messages:7
 #: ../Folders/data/messages:9 ../GMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:7 ../Network-Monitor/data/messages:9
 #: ../RSSreader/data/messages:9 ../System-Monitor/data/messages:7
@@ -3278,24 +3181,26 @@ msgstr "此小程序期望的图标大小"
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
 #: ../showDesktop/data/messages:7 ../slider/data/messages:7
-#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../stack/data/messages:9 ../stacks/data/messages:7
+#: ../switcher/data/messages:7 ../template/data/messages:7
 #: ../weather/data/messages:9 ../weblets/data/messages:7
 #: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "在dock中显示的图标标签名称:"
 
-#: ../Clipper/data/messages:115 ../Doncky/data/messages:11
+#: ../Clipper/data/messages:11 ../Doncky/data/messages:11
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
 #: ../RSSreader/data/messages:13 ../Xgamma/data/messages:11
 #: ../dnd2share/data/messages:11 ../logout/data/messages:11
 #: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
 #: ../showDesktop/data/messages:11 ../stack/data/messages:13
-#: ../switcher/data/messages:11 ../systray/data/messages:11
+#: ../stacks/data/messages:11 ../switcher/data/messages:11
+#: ../systray/data/messages:11 ../template/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr ""
 
-#: ../Clipper/data/messages:121 ../Doncky/data/messages:15
+#: ../Clipper/data/messages:17 ../Doncky/data/messages:15
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
 #: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:13
 #: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
@@ -3309,14 +3214,15 @@ msgstr ""
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:21
 #: ../slider/data/messages:15 ../stack/data/messages:19
-#: ../switcher/data/messages:17 ../systray/data/messages:17
+#: ../stacks/data/messages:15 ../switcher/data/messages:17
+#: ../systray/data/messages:17 ../template/data/messages:17
 #: ../terminal/data/messages:17 ../tomboy/data/messages:27
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "桌面小工具"
 
-#: ../Clipper/data/messages:123 ../Doncky/data/messages:17
+#: ../Clipper/data/messages:19 ../Doncky/data/messages:17
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:15
 #: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
@@ -3330,14 +3236,15 @@ msgstr "桌面小工具"
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
 #: ../slider/data/messages:17 ../stack/data/messages:21
-#: ../switcher/data/messages:19 ../systray/data/messages:19
+#: ../stacks/data/messages:17 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
 #: ../terminal/data/messages:19 ../tomboy/data/messages:29
 #: ../weather/data/messages:17 ../weblets/data/messages:19
 #: ../wifi/data/messages:17
 msgid "Position"
 msgstr ""
 
-#: ../Clipper/data/messages:125 ../Doncky/data/messages:19
+#: ../Clipper/data/messages:21 ../Doncky/data/messages:19
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:17
 #: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
@@ -3350,8 +3257,9 @@ msgstr ""
 #: ../netspeed/data/messages:17 ../powermanager/data/messages:19
 #: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
 #: ../showDesktop/data/messages:25 ../slider/data/messages:19
-#: ../stack/data/messages:23 ../switcher/data/messages:21
-#: ../systray/data/messages:21 ../terminal/data/messages:21
+#: ../stack/data/messages:23 ../stacks/data/messages:19
+#: ../switcher/data/messages:21 ../systray/data/messages:21
+#: ../template/data/messages:21 ../terminal/data/messages:21
 #: ../tomboy/data/messages:31 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
@@ -3361,7 +3269,7 @@ msgstr ""
 "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
 "移动。"
 
-#: ../Clipper/data/messages:127 ../Doncky/data/messages:21
+#: ../Clipper/data/messages:23 ../Doncky/data/messages:21
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:19
 #: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
@@ -3374,14 +3282,15 @@ msgstr ""
 #: ../netspeed/data/messages:19 ../powermanager/data/messages:21
 #: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
 #: ../showDesktop/data/messages:27 ../slider/data/messages:21
-#: ../stack/data/messages:25 ../switcher/data/messages:23
-#: ../systray/data/messages:23 ../terminal/data/messages:23
+#: ../stack/data/messages:25 ../stacks/data/messages:21
+#: ../switcher/data/messages:23 ../systray/data/messages:23
+#: ../template/data/messages:23 ../terminal/data/messages:23
 #: ../tomboy/data/messages:33 ../weather/data/messages:21
 #: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "锁定位置?"
 
-#: ../Clipper/data/messages:129 ../Doncky/data/messages:23
+#: ../Clipper/data/messages:25 ../Doncky/data/messages:23
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:21
 #: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
@@ -3394,7 +3303,8 @@ msgstr "锁定位置?"
 #: ../netspeed/data/messages:21 ../powermanager/data/messages:23
 #: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
 #: ../showDesktop/data/messages:29 ../slider/data/messages:23
-#: ../stack/data/messages:27 ../switcher/data/messages:25
+#: ../stack/data/messages:27 ../stacks/data/messages:23
+#: ../switcher/data/messages:25 ../template/data/messages:25
 #: ../terminal/data/messages:25 ../tomboy/data/messages:35
 #: ../weather/data/messages:23 ../weblets/data/messages:25
 #: ../wifi/data/messages:23
@@ -3405,7 +3315,7 @@ msgstr ""
 "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
 "器。"
 
-#: ../Clipper/data/messages:131 ../Doncky/data/messages:25
+#: ../Clipper/data/messages:27 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:23
 #: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
@@ -3418,14 +3328,15 @@ msgstr ""
 #: ../netspeed/data/messages:23 ../powermanager/data/messages:25
 #: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
 #: ../showDesktop/data/messages:31 ../slider/data/messages:25
-#: ../stack/data/messages:29 ../switcher/data/messages:27
+#: ../stack/data/messages:29 ../stacks/data/messages:25
+#: ../switcher/data/messages:27 ../template/data/messages:27
 #: ../terminal/data/messages:27 ../tomboy/data/messages:37
 #: ../weather/data/messages:25 ../weblets/data/messages:27
 #: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "桌面小工具尺寸(宽×高):"
 
-#: ../Clipper/data/messages:133 ../Doncky/data/messages:27
+#: ../Clipper/data/messages:29 ../Doncky/data/messages:27
 #: ../Folders/data/messages:41 ../GMenu/data/messages:29
 #: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:25
 #: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
@@ -3436,7 +3347,8 @@ msgstr "桌面小工具尺寸(宽×高):"
 #: ../musicPlayer/data/messages:27 ../powermanager/data/messages:27
 #: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
 #: ../showDesktop/data/messages:33 ../slider/data/messages:27
-#: ../stack/data/messages:31 ../terminal/data/messages:29
+#: ../stack/data/messages:31 ../stacks/data/messages:27
+#: ../template/data/messages:29 ../terminal/data/messages:29
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:27
 msgid ""
@@ -3444,7 +3356,7 @@ msgid ""
 "left-click."
 msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
 
-#: ../Clipper/data/messages:135 ../Doncky/data/messages:29
+#: ../Clipper/data/messages:31 ../Doncky/data/messages:29
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
 #: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:27
 #: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:33
@@ -3457,14 +3369,15 @@ msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的�
 #: ../netspeed/data/messages:27 ../powermanager/data/messages:29
 #: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
 #: ../showDesktop/data/messages:35 ../slider/data/messages:29
-#: ../stack/data/messages:33 ../switcher/data/messages:29
-#: ../systray/data/messages:27 ../terminal/data/messages:31
+#: ../stack/data/messages:33 ../stacks/data/messages:29
+#: ../switcher/data/messages:29 ../systray/data/messages:27
+#: ../template/data/messages:31 ../terminal/data/messages:31
 #: ../tomboy/data/messages:41 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "桌面小工具位置(x ; y):"
 
-#: ../Clipper/data/messages:137 ../Doncky/data/messages:31
+#: ../Clipper/data/messages:33 ../Doncky/data/messages:31
 #: ../Folders/data/messages:45 ../GMenu/data/messages:33
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:29
 #: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
@@ -3477,7 +3390,8 @@ msgstr "桌面小工具位置(x ; y):"
 #: ../netspeed/data/messages:29 ../powermanager/data/messages:31
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
-#: ../stack/data/messages:35 ../terminal/data/messages:33
+#: ../stack/data/messages:35 ../stacks/data/messages:31
+#: ../template/data/messages:33 ../terminal/data/messages:33
 #: ../tomboy/data/messages:43 ../weather/data/messages:31
 #: ../weblets/data/messages:33 ../wifi/data/messages:31
 msgid ""
@@ -3485,7 +3399,7 @@ msgid ""
 "buttons on its left and top sides."
 msgstr ""
 
-#: ../Clipper/data/messages:139 ../Doncky/data/messages:33
+#: ../Clipper/data/messages:35 ../Doncky/data/messages:33
 #: ../Folders/data/messages:47 ../GMenu/data/messages:35
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:31
 #: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
@@ -3498,13 +3412,14 @@ msgstr ""
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:39
 #: ../slider/data/messages:33 ../stack/data/messages:37
+#: ../stacks/data/messages:33 ../template/data/messages:35
 #: ../terminal/data/messages:35 ../tomboy/data/messages:45
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "旋转:"
 
-#: ../Clipper/data/messages:141 ../Doncky/data/messages:35
+#: ../Clipper/data/messages:37 ../Doncky/data/messages:35
 #: ../Folders/data/messages:49 ../GMenu/data/messages:37
 #: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:33
 #: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
@@ -3518,14 +3433,15 @@ msgstr "旋转:"
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
-#: ../switcher/data/messages:31 ../systray/data/messages:29
+#: ../stacks/data/messages:35 ../switcher/data/messages:31
+#: ../systray/data/messages:29 ../template/data/messages:37
 #: ../terminal/data/messages:37 ../tomboy/data/messages:47
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:35
 msgid "Visibility"
 msgstr ""
 
-#: ../Clipper/data/messages:143 ../Doncky/data/messages:37
+#: ../Clipper/data/messages:39 ../Doncky/data/messages:37
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
@@ -3539,14 +3455,15 @@ msgstr ""
 #: ../powermanager/data/messages:37 ../quick-browser/data/messages:41
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
 #: ../slider/data/messages:37 ../stack/data/messages:41
-#: ../switcher/data/messages:33 ../systray/data/messages:31
+#: ../stacks/data/messages:37 ../switcher/data/messages:33
+#: ../systray/data/messages:31 ../template/data/messages:39
 #: ../terminal/data/messages:39 ../tomboy/data/messages:49
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "与dock分离?"
 
-#: ../Clipper/data/messages:145 ../Doncky/data/messages:39
+#: ../Clipper/data/messages:41 ../Doncky/data/messages:39
 #: ../Folders/data/messages:53 ../GMenu/data/messages:41
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:37
 #: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
@@ -3560,7 +3477,8 @@ msgstr "与dock分离?"
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
-#: ../systray/data/messages:33 ../terminal/data/messages:41
+#: ../stacks/data/messages:39 ../systray/data/messages:33
+#: ../template/data/messages:41 ../terminal/data/messages:41
 #: ../tomboy/data/messages:51 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:39
 msgid ""
@@ -3568,7 +3486,7 @@ msgid ""
 "(class=Cairo-dock & type=utility)"
 msgstr ""
 
-#: ../Clipper/data/messages:147 ../Doncky/data/messages:41
+#: ../Clipper/data/messages:43 ../Doncky/data/messages:41
 #: ../Folders/data/messages:55 ../GMenu/data/messages:43
 #: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:39
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
@@ -3581,14 +3499,15 @@ msgstr ""
 #: ../netspeed/data/messages:39 ../powermanager/data/messages:41
 #: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
 #: ../showDesktop/data/messages:47 ../slider/data/messages:41
-#: ../stack/data/messages:45 ../switcher/data/messages:35
-#: ../systray/data/messages:35 ../terminal/data/messages:43
+#: ../stack/data/messages:45 ../stacks/data/messages:41
+#: ../switcher/data/messages:35 ../systray/data/messages:35
+#: ../template/data/messages:43 ../terminal/data/messages:43
 #: ../tomboy/data/messages:53 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr ""
 
-#: ../Clipper/data/messages:151 ../Doncky/data/messages:45
+#: ../Clipper/data/messages:47 ../Doncky/data/messages:45
 #: ../Folders/data/messages:59 ../GMenu/data/messages:47
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:43
 #: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
@@ -3602,14 +3521,15 @@ msgstr ""
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
-#: ../switcher/data/messages:39 ../systray/data/messages:39
+#: ../stacks/data/messages:45 ../switcher/data/messages:39
+#: ../systray/data/messages:39 ../template/data/messages:47
 #: ../terminal/data/messages:47 ../tomboy/data/messages:57
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:45
 msgid "Keep above"
 msgstr ""
 
-#: ../Clipper/data/messages:153 ../Doncky/data/messages:47
+#: ../Clipper/data/messages:49 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
 #: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
@@ -3623,14 +3543,15 @@ msgstr ""
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
-#: ../switcher/data/messages:41 ../systray/data/messages:41
+#: ../stacks/data/messages:47 ../switcher/data/messages:41
+#: ../systray/data/messages:41 ../template/data/messages:49
 #: ../terminal/data/messages:49 ../tomboy/data/messages:59
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:47
 msgid "Keep below"
 msgstr ""
 
-#: ../Clipper/data/messages:155 ../Doncky/data/messages:49
+#: ../Clipper/data/messages:51 ../Doncky/data/messages:49
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
@@ -3643,14 +3564,15 @@ msgstr ""
 #: ../netspeed/data/messages:47 ../powermanager/data/messages:49
 #: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
 #: ../showDesktop/data/messages:55 ../slider/data/messages:49
-#: ../stack/data/messages:53 ../switcher/data/messages:43
-#: ../systray/data/messages:43 ../terminal/data/messages:51
+#: ../stack/data/messages:53 ../stacks/data/messages:49
+#: ../switcher/data/messages:43 ../systray/data/messages:43
+#: ../template/data/messages:51 ../terminal/data/messages:51
 #: ../tomboy/data/messages:61 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr ""
 
-#: ../Clipper/data/messages:157 ../Doncky/data/messages:51
+#: ../Clipper/data/messages:53 ../Doncky/data/messages:51
 #: ../Folders/data/messages:65 ../GMenu/data/messages:53
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:49
 #: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
@@ -3664,14 +3586,15 @@ msgstr ""
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
-#: ../switcher/data/messages:45 ../systray/data/messages:45
+#: ../stacks/data/messages:51 ../switcher/data/messages:45
+#: ../systray/data/messages:45 ../template/data/messages:53
 #: ../terminal/data/messages:53 ../tomboy/data/messages:63
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr ""
 
-#: ../Clipper/data/messages:159 ../Doncky/data/messages:53
+#: ../Clipper/data/messages:55 ../Doncky/data/messages:53
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:51
 #: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
@@ -3684,14 +3607,15 @@ msgstr ""
 #: ../netspeed/data/messages:51 ../powermanager/data/messages:53
 #: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
 #: ../showDesktop/data/messages:59 ../slider/data/messages:53
-#: ../stack/data/messages:57 ../switcher/data/messages:47
-#: ../systray/data/messages:47 ../terminal/data/messages:55
+#: ../stack/data/messages:57 ../stacks/data/messages:53
+#: ../switcher/data/messages:47 ../systray/data/messages:47
+#: ../template/data/messages:55 ../terminal/data/messages:55
 #: ../tomboy/data/messages:65 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr ""
 
-#: ../Clipper/data/messages:161 ../Doncky/data/messages:55
+#: ../Clipper/data/messages:57 ../Doncky/data/messages:55
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
 #: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:53
 #: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:59
@@ -3705,14 +3629,15 @@ msgstr ""
 #: ../powermanager/data/messages:55 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
-#: ../switcher/data/messages:49 ../systray/data/messages:49
+#: ../stacks/data/messages:55 ../switcher/data/messages:49
+#: ../systray/data/messages:49 ../template/data/messages:57
 #: ../terminal/data/messages:57 ../tomboy/data/messages:67
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:55
 msgid "Decorations"
 msgstr "装饰"
 
-#: ../Clipper/data/messages:163 ../Doncky/data/messages:57
+#: ../Clipper/data/messages:59 ../Doncky/data/messages:57
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:55
 #: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
@@ -3726,14 +3651,15 @@ msgstr "装饰"
 #: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
-#: ../switcher/data/messages:51 ../systray/data/messages:51
+#: ../stacks/data/messages:57 ../switcher/data/messages:51
+#: ../systray/data/messages:51 ../template/data/messages:59
 #: ../terminal/data/messages:59 ../tomboy/data/messages:69
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 
-#: ../Clipper/data/messages:165 ../Doncky/data/messages:59
+#: ../Clipper/data/messages:61 ../Doncky/data/messages:59
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:57
 #: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
@@ -3746,14 +3672,15 @@ msgstr ""
 #: ../netspeed/data/messages:57 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
 #: ../showDesktop/data/messages:65 ../slider/data/messages:59
-#: ../stack/data/messages:63 ../switcher/data/messages:53
-#: ../systray/data/messages:53 ../terminal/data/messages:61
+#: ../stack/data/messages:63 ../stacks/data/messages:59
+#: ../switcher/data/messages:53 ../systray/data/messages:53
+#: ../template/data/messages:61 ../terminal/data/messages:61
 #: ../tomboy/data/messages:71 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "为这个桌面小工具选择一个装饰主题:"
 
-#: ../Clipper/data/messages:167 ../Doncky/data/messages:61
+#: ../Clipper/data/messages:63 ../Doncky/data/messages:61
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:59
 #: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
@@ -3766,15 +3693,16 @@ msgstr "为这个桌面小工具选择一个装饰主题:"
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:61
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
 #: ../showDesktop/data/messages:67 ../slider/data/messages:61
-#: ../stack/data/messages:65 ../switcher/data/messages:55
-#: ../systray/data/messages:55 ../terminal/data/messages:63
+#: ../stack/data/messages:65 ../stacks/data/messages:61
+#: ../switcher/data/messages:55 ../systray/data/messages:55
+#: ../template/data/messages:63 ../terminal/data/messages:63
 #: ../tomboy/data/messages:73 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
 
-#: ../Clipper/data/messages:169 ../Doncky/data/messages:63
+#: ../Clipper/data/messages:65 ../Doncky/data/messages:63
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:61
 #: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
@@ -3788,14 +3716,15 @@ msgstr "在图画下面显示的图片，例如边框。留空则为不使用图
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
-#: ../stack/data/messages:67 ../switcher/data/messages:57
-#: ../systray/data/messages:57 ../terminal/data/messages:65
+#: ../stack/data/messages:67 ../stacks/data/messages:63
+#: ../switcher/data/messages:57 ../systray/data/messages:57
+#: ../template/data/messages:65 ../terminal/data/messages:65
 #: ../tomboy/data/messages:75 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:63
 msgid "Background image:"
 msgstr "背景图片:"
 
-#: ../Clipper/data/messages:171 ../Doncky/data/messages:65
+#: ../Clipper/data/messages:67 ../Doncky/data/messages:65
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:63
 #: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
@@ -3808,14 +3737,15 @@ msgstr "背景图片:"
 #: ../netspeed/data/messages:63 ../powermanager/data/messages:65
 #: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
 #: ../showDesktop/data/messages:71 ../slider/data/messages:65
-#: ../stack/data/messages:69 ../switcher/data/messages:59
-#: ../systray/data/messages:59 ../terminal/data/messages:67
+#: ../stack/data/messages:69 ../stacks/data/messages:65
+#: ../switcher/data/messages:59 ../systray/data/messages:59
+#: ../template/data/messages:67 ../terminal/data/messages:67
 #: ../tomboy/data/messages:77 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "背景透明度:"
 
-#: ../Clipper/data/messages:173 ../Doncky/data/messages:67
+#: ../Clipper/data/messages:69 ../Doncky/data/messages:67
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:65
 #: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
@@ -3828,14 +3758,15 @@ msgstr "背景透明度:"
 #: ../netspeed/data/messages:65 ../powermanager/data/messages:67
 #: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
 #: ../showDesktop/data/messages:73 ../slider/data/messages:67
-#: ../stack/data/messages:71 ../switcher/data/messages:61
-#: ../systray/data/messages:61 ../terminal/data/messages:69
+#: ../stack/data/messages:71 ../stacks/data/messages:67
+#: ../switcher/data/messages:61 ../systray/data/messages:61
+#: ../template/data/messages:69 ../terminal/data/messages:69
 #: ../tomboy/data/messages:79 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 
-#: ../Clipper/data/messages:175 ../Doncky/data/messages:69
+#: ../Clipper/data/messages:71 ../Doncky/data/messages:69
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:67
 #: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
@@ -3848,14 +3779,15 @@ msgstr "以象素为单位。使用此设置调整图画的左边位置。"
 #: ../netspeed/data/messages:67 ../powermanager/data/messages:69
 #: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
 #: ../showDesktop/data/messages:75 ../slider/data/messages:69
-#: ../stack/data/messages:73 ../switcher/data/messages:63
-#: ../systray/data/messages:63 ../terminal/data/messages:71
+#: ../stack/data/messages:73 ../stacks/data/messages:69
+#: ../switcher/data/messages:63 ../systray/data/messages:63
+#: ../template/data/messages:71 ../terminal/data/messages:71
 #: ../tomboy/data/messages:81 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "左偏移:"
 
-#: ../Clipper/data/messages:177 ../Doncky/data/messages:71
+#: ../Clipper/data/messages:73 ../Doncky/data/messages:71
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:69
 #: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
@@ -3868,14 +3800,15 @@ msgstr "左偏移:"
 #: ../netspeed/data/messages:69 ../powermanager/data/messages:71
 #: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
 #: ../showDesktop/data/messages:77 ../slider/data/messages:71
-#: ../stack/data/messages:75 ../switcher/data/messages:65
-#: ../systray/data/messages:65 ../terminal/data/messages:73
+#: ../stack/data/messages:75 ../stacks/data/messages:71
+#: ../switcher/data/messages:65 ../systray/data/messages:65
+#: ../template/data/messages:73 ../terminal/data/messages:73
 #: ../tomboy/data/messages:83 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 
-#: ../Clipper/data/messages:179 ../Doncky/data/messages:73
+#: ../Clipper/data/messages:75 ../Doncky/data/messages:73
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:71
 #: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
@@ -3888,14 +3821,15 @@ msgstr "以象素为单位。使用此设置调整图画的上边位置。"
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
 #: ../showDesktop/data/messages:79 ../slider/data/messages:73
-#: ../stack/data/messages:77 ../switcher/data/messages:67
-#: ../systray/data/messages:67 ../terminal/data/messages:75
+#: ../stack/data/messages:77 ../stacks/data/messages:73
+#: ../switcher/data/messages:67 ../systray/data/messages:67
+#: ../template/data/messages:75 ../terminal/data/messages:75
 #: ../tomboy/data/messages:85 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "顶偏移:"
 
-#: ../Clipper/data/messages:181 ../Doncky/data/messages:75
+#: ../Clipper/data/messages:77 ../Doncky/data/messages:75
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:73
 #: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
@@ -3908,14 +3842,15 @@ msgstr "顶偏移:"
 #: ../netspeed/data/messages:73 ../powermanager/data/messages:75
 #: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
 #: ../showDesktop/data/messages:81 ../slider/data/messages:75
-#: ../stack/data/messages:79 ../switcher/data/messages:69
-#: ../systray/data/messages:69 ../terminal/data/messages:77
+#: ../stack/data/messages:79 ../stacks/data/messages:75
+#: ../switcher/data/messages:69 ../systray/data/messages:69
+#: ../template/data/messages:77 ../terminal/data/messages:77
 #: ../tomboy/data/messages:87 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 
-#: ../Clipper/data/messages:183 ../Doncky/data/messages:77
+#: ../Clipper/data/messages:79 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:75
 #: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
@@ -3928,14 +3863,15 @@ msgstr "以象素为单位。使用此设置调整图画的右边位置。"
 #: ../netspeed/data/messages:75 ../powermanager/data/messages:77
 #: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
 #: ../showDesktop/data/messages:83 ../slider/data/messages:77
-#: ../stack/data/messages:81 ../switcher/data/messages:71
-#: ../systray/data/messages:71 ../terminal/data/messages:79
+#: ../stack/data/messages:81 ../stacks/data/messages:77
+#: ../switcher/data/messages:71 ../systray/data/messages:71
+#: ../template/data/messages:79 ../terminal/data/messages:79
 #: ../tomboy/data/messages:89 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "右偏移:"
 
-#: ../Clipper/data/messages:185 ../Doncky/data/messages:79
+#: ../Clipper/data/messages:81 ../Doncky/data/messages:79
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:77
 #: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
@@ -3948,14 +3884,15 @@ msgstr "右偏移:"
 #: ../netspeed/data/messages:77 ../powermanager/data/messages:79
 #: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
 #: ../showDesktop/data/messages:85 ../slider/data/messages:79
-#: ../stack/data/messages:83 ../switcher/data/messages:73
-#: ../systray/data/messages:73 ../terminal/data/messages:81
+#: ../stack/data/messages:83 ../stacks/data/messages:79
+#: ../switcher/data/messages:73 ../systray/data/messages:73
+#: ../template/data/messages:81 ../terminal/data/messages:81
 #: ../tomboy/data/messages:91 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 
-#: ../Clipper/data/messages:187 ../Doncky/data/messages:81
+#: ../Clipper/data/messages:83 ../Doncky/data/messages:81
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:79
 #: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
@@ -3968,14 +3905,15 @@ msgstr "以象素为单位。使用此设置调整图画的下边位置。"
 #: ../netspeed/data/messages:79 ../powermanager/data/messages:81
 #: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
 #: ../showDesktop/data/messages:87 ../slider/data/messages:81
-#: ../stack/data/messages:85 ../switcher/data/messages:75
-#: ../systray/data/messages:75 ../terminal/data/messages:83
+#: ../stack/data/messages:85 ../stacks/data/messages:81
+#: ../switcher/data/messages:75 ../systray/data/messages:75
+#: ../template/data/messages:83 ../terminal/data/messages:83
 #: ../tomboy/data/messages:93 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "底偏移:"
 
-#: ../Clipper/data/messages:189 ../Doncky/data/messages:83
+#: ../Clipper/data/messages:85 ../Doncky/data/messages:83
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:81
 #: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
@@ -3988,8 +3926,9 @@ msgstr "底偏移:"
 #: ../netspeed/data/messages:81 ../powermanager/data/messages:83
 #: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
 #: ../showDesktop/data/messages:89 ../slider/data/messages:83
-#: ../stack/data/messages:87 ../switcher/data/messages:77
-#: ../systray/data/messages:77 ../terminal/data/messages:85
+#: ../stack/data/messages:87 ../stacks/data/messages:83
+#: ../switcher/data/messages:77 ../systray/data/messages:77
+#: ../template/data/messages:85 ../terminal/data/messages:85
 #: ../tomboy/data/messages:95 ../weather/data/messages:83
 #: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
@@ -3997,7 +3936,7 @@ msgid ""
 "no image."
 msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
 
-#: ../Clipper/data/messages:191 ../Doncky/data/messages:85
+#: ../Clipper/data/messages:87 ../Doncky/data/messages:85
 #: ../Folders/data/messages:99 ../GMenu/data/messages:87
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:83
 #: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
@@ -4010,14 +3949,15 @@ msgstr "在图画上面显示的图片，例如反射。留空则为不使用图
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:85
 #: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
 #: ../showDesktop/data/messages:91 ../slider/data/messages:85
-#: ../stack/data/messages:89 ../switcher/data/messages:79
-#: ../systray/data/messages:79 ../terminal/data/messages:87
+#: ../stack/data/messages:89 ../stacks/data/messages:85
+#: ../switcher/data/messages:79 ../systray/data/messages:79
+#: ../template/data/messages:87 ../terminal/data/messages:87
 #: ../tomboy/data/messages:97 ../weather/data/messages:85
 #: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "前景图片:"
 
-#: ../Clipper/data/messages:193 ../Doncky/data/messages:87
+#: ../Clipper/data/messages:89 ../Doncky/data/messages:87
 #: ../Folders/data/messages:101 ../GMenu/data/messages:89
 #: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:85
 #: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
@@ -4030,119 +3970,120 @@ msgstr "前景图片:"
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:87
 #: ../quick-browser/data/messages:91 ../shortcuts/data/messages:89
 #: ../showDesktop/data/messages:93 ../slider/data/messages:87
-#: ../stack/data/messages:91 ../switcher/data/messages:81
-#: ../systray/data/messages:81 ../terminal/data/messages:89
+#: ../stack/data/messages:91 ../stacks/data/messages:87
+#: ../switcher/data/messages:81 ../systray/data/messages:81
+#: ../template/data/messages:89 ../terminal/data/messages:89
 #: ../tomboy/data/messages:99 ../weather/data/messages:87
 #: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "前景透明度:"
 
-#: ../Clipper/data/messages:197
+#: ../Clipper/data/messages:93
 msgid "Items"
 msgstr ""
 
-#: ../Clipper/data/messages:199
+#: ../Clipper/data/messages:95
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr ""
 
-#: ../Clipper/data/messages:201
+#: ../Clipper/data/messages:97
 msgid "Which items should be remembered?"
 msgstr ""
 
-#: ../Clipper/data/messages:205
+#: ../Clipper/data/messages:101
 msgid "Clipboard"
 msgstr ""
 
-#: ../Clipper/data/messages:207
+#: ../Clipper/data/messages:103
 msgid "Selection"
 msgstr ""
 
-#: ../Clipper/data/messages:209
+#: ../Clipper/data/messages:105
 msgid "Both"
 msgstr ""
 
-#: ../Clipper/data/messages:211
+#: ../Clipper/data/messages:107
 msgid "Number of items:"
 msgstr ""
 
-#: ../Clipper/data/messages:213
+#: ../Clipper/data/messages:109
 msgid "Remember items between 2 sessions ?"
 msgstr ""
 
-#: ../Clipper/data/messages:215
+#: ../Clipper/data/messages:111
 msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
 msgstr ""
 
-#: ../Clipper/data/messages:217
+#: ../Clipper/data/messages:113
 msgid "Separate clipboard and selection?"
 msgstr ""
 
-#: ../Clipper/data/messages:219
+#: ../Clipper/data/messages:115
 msgid "If so, number of selection items:"
 msgstr ""
 
-#: ../Clipper/data/messages:221
+#: ../Clipper/data/messages:117
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 
-#: ../Clipper/data/messages:223
+#: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
 msgstr ""
 
-#: ../Clipper/data/messages:225
+#: ../Clipper/data/messages:121
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr ""
 
-#: ../Clipper/data/messages:227
+#: ../Clipper/data/messages:123
 msgid "Paste into Selection?"
 msgstr ""
 
-#: ../Clipper/data/messages:229
+#: ../Clipper/data/messages:125
 msgid "Shortkey to pop-up the items menu:"
 msgstr ""
 
-#: ../Clipper/data/messages:231
+#: ../Clipper/data/messages:127
 msgid "Pop-up menus at mouse position?"
 msgstr ""
 
-#: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
+#: ../Clipper/data/messages:129 ../compiz-icon/data/messages:89
 msgid "Actions"
 msgstr "动作"
 
-#: ../Clipper/data/messages:235
+#: ../Clipper/data/messages:131
 msgid ""
 "If some actions are associated with an item, they will be proposed when the "
 "item is created."
 msgstr ""
 
-#: ../Clipper/data/messages:237
+#: ../Clipper/data/messages:133
 msgid "Enable actions?"
 msgstr ""
 
-#: ../Clipper/data/messages:239
+#: ../Clipper/data/messages:135
 msgid "Display actions when selecting an item in the history."
 msgstr ""
 
-#: ../Clipper/data/messages:241
+#: ../Clipper/data/messages:137
 msgid "Replay actions?"
 msgstr ""
 
-#: ../Clipper/data/messages:245
+#: ../Clipper/data/messages:141
 msgid "Duration of the action menu:"
 msgstr ""
 
-#: ../Clipper/data/messages:247
+#: ../Clipper/data/messages:143
 msgid "Persistent items"
 msgstr ""
 
-#: ../Clipper/data/messages:249
+#: ../Clipper/data/messages:145
 msgid "A list of persistent items which can be accessed with middle-click:"
 msgstr ""
 
@@ -4354,8 +4295,9 @@ msgstr ""
 
 #: ../Folders/data/messages:121 ../compiz-icon/data/messages:159
 #: ../mail/data/messages:91 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:143
-#: ../tomboy/data/messages:119 ../weather/data/messages:123
+#: ../stack/data/messages:97 ../stacks/data/messages:115
+#: ../switcher/data/messages:143 ../tomboy/data/messages:119
+#: ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
 msgstr "留空以使用默认的子dock视图。"
 
@@ -5209,19 +5151,19 @@ msgstr "前景图片:"
 msgid "Foreground tansparency :"
 msgstr "前景透明度:"
 
-#: ../Status-Notifier/data/messages:93
+#: ../Status-Notifier/data/messages:93 ../template/data/messages:93
 msgid "This is a tooltip for this parameter."
 msgstr ""
 
-#: ../Status-Notifier/data/messages:95
+#: ../Status-Notifier/data/messages:95 ../template/data/messages:95
 msgid "This is a boolean parameter. Y/N ?"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:97
+#: ../Status-Notifier/data/messages:97 ../template/data/messages:97
 msgid "This integer can go from 0 to 10 :"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:99
+#: ../Status-Notifier/data/messages:99 ../template/data/messages:99
 msgid "Enter some text here :"
 msgstr ""
 
@@ -7180,14 +7122,14 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: ../stack/data/messages:117
+#: ../stack/data/messages:117 ../stacks/data/messages:107
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
 msgstr ""
 "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
-#: ../stack/data/messages:119
+#: ../stack/data/messages:119 ../stacks/data/messages:109
 msgid "Filter files on MIME type?"
 msgstr "根据MIME类型过滤文件"
 
@@ -7195,7 +7137,7 @@ msgstr "根据MIME类型过滤文件"
 msgid "E.g. image, text, video, audio, application..."
 msgstr ""
 
-#: ../stack/data/messages:123
+#: ../stack/data/messages:123 ../stacks/data/messages:113
 msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "在此指定不显示的文件MIME类型列表:"
 
@@ -7220,6 +7162,56 @@ msgstr ""
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr ""
+
+#: ../stacks/data/messages:91
+msgid "Directory & Options"
+msgstr "目录及选项"
+
+#: ../stacks/data/messages:93
+msgid ""
+"Stacks will act as a the shortcut applet's but with files. To add a file, "
+"just drag and drop it on the Stacks icon"
+msgstr ""
+"Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到"
+"Stacks的图标上。"
+
+#: ../stacks/data/messages:95
+msgid "Use only Stacks local directory ?"
+msgstr "仅使用Stacks本地目录?"
+
+#: ../stacks/data/messages:97
+msgid ""
+"You can use '_LocalDirectory_' tag to have both stack local and all "
+"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+msgstr ""
+"您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没有选"
+"中“仅使用Stacks本地目录。"
+
+#: ../stacks/data/messages:99
+msgid "Monitored Directories :"
+msgstr "监控目录:"
+
+#: ../stacks/data/messages:101
+msgid ""
+"This option with large files lists can slow down the dock, use it properly."
+msgstr "此选项在大量文件列表的情况下将降低dock的速度，请酌情使用。"
+
+#: ../stacks/data/messages:103
+msgid "List hidden files ?"
+msgstr "列出隐藏文件?"
+
+#: ../stacks/data/messages:105
+msgid "Separate different directories with separators ?"
+msgstr "使用间隔分隔不同的目录"
+
+#: ../stacks/data/messages:111
+msgid "Eg: image, text, video, audio, application..."
+msgstr "例如: 图片、文本、影像、音频、应用程序……"
+
+#: ../stacks/data/messages:117
+#, fuzzy
+msgid "Name of the view used for the sub-dock :"
+msgstr "“停止”图标的图片名称:"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7805,44 +7797,6 @@ msgstr "以接入点名称替代默认标签"
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "保持于小应用程序层？"
 
-#~ msgid "Directory & Options"
-#~ msgstr "目录及选项"
-
-#~ msgid ""
-#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
-#~ "just drag and drop it on the Stacks icon"
-#~ msgstr ""
-#~ "Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到"
-#~ "Stacks的图标上。"
-
-#~ msgid "Use only Stacks local directory ?"
-#~ msgstr "仅使用Stacks本地目录?"
-
-#~ msgid ""
-#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
-#~ msgstr ""
-#~ "您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没"
-#~ "有选中“仅使用Stacks本地目录。"
-
-#~ msgid "Monitored Directories :"
-#~ msgstr "监控目录:"
-
-#~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
-#~ msgstr "此选项在大量文件列表的情况下将降低dock的速度，请酌情使用。"
-
-#~ msgid "List hidden files ?"
-#~ msgstr "列出隐藏文件?"
-
-#~ msgid "Separate different directories with separators ?"
-#~ msgstr "使用间隔分隔不同的目录"
-
-#~ msgid "Eg: image, text, video, audio, application..."
-#~ msgstr "例如: 图片、文本、影像、音频、应用程序……"
-
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "前景色(红、绿、蓝):"
 
@@ -7854,9 +7808,6 @@ msgstr "以接入点名称替代默认标签"
 
 #~ msgid "Extended display mode :"
 #~ msgstr "扩展显示模式："
-
-#~ msgid "Info and Controler"
-#~ msgstr "信息及控制器"
 
 #~ msgid "Controler"
 #~ msgstr "控制器"
