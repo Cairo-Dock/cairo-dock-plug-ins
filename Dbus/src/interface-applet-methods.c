@@ -260,13 +260,18 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	if (v && G_VALUE_HOLDS_BOOLEAN (v))
 		attr.bForceAbove = g_value_get_boolean (v);
 	
+	gboolean bUseMarkup = FALSE;
+	v = g_hash_table_lookup (hDialogAttributes, "use-markup");
+	if (v && G_VALUE_HOLDS_BOOLEAN (v))
+		bUseMarkup = g_value_get_boolean (v);
+	
 	attr.pUserData = pDbusApplet;
 	
 	// attributs du widget interactif.
 	GtkWidget *pWidget = NULL;
 	if (hWidgetAttributes != NULL)  // un widget d'interaction est defini.
 	{
-		v = g_hash_table_lookup (hWidgetAttributes, "type");
+		v = g_hash_table_lookup (hWidgetAttributes, "widget-type");
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			const gchar *cType = g_value_get_string (v);
@@ -305,7 +310,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					{
 						pEntry = gtk_text_view_new ();
 						pWidget = pEntry;
-						gtk_widget_set (pEntry, "width-request", 200, "height-request", 150, NULL);
+						gtk_widget_set (pEntry, "width-request", 200, "height-request", 100, NULL);
 						
 						if (! bEditable)
 							gtk_text_view_set_editable (GTK_TEXT_VIEW (pEntry), FALSE);
@@ -483,7 +488,11 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 			attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_buttons;
 	}
 	
+	if (bUseMarkup)
+		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
 	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
+	if (bUseMarkup)
+		myDialogs.dialogTextDescription.bUseMarkup = FALSE;
 	
 	g_free (cImageFilePath);
 	if (cButtonsImage)

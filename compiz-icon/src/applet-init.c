@@ -30,7 +30,7 @@
 
 CD_APPLET_DEFINITION ("compiz-icon",
 	1, 6, 2,
-	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to manage compiz and other windows manager\n"
 	"The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz actions.\n"
 	"You can bind one of these actions with the middle-click.\n"
