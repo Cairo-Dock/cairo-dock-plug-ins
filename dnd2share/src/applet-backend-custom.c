@@ -57,7 +57,6 @@ static void upload (const gchar *cFilePath)
 		cd_warning ("this adress (%s) seems not valid !\nThe output was : '%s'", str, cResult);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
 	myData.cResultUrls[0] = g_strdup (str);
 	g_free (cResult);
 }

@@ -87,7 +87,6 @@ static void upload (const gchar *cFilePath)
 	}
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
 	myData.cResultUrls[0] = cURL;
 }
 

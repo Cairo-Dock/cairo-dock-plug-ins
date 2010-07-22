@@ -156,6 +156,14 @@ CD_APPLET_RELOAD_BEGIN
 		for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 			myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
 		
+		//\____________ on met a jour la derniere URL
+		if (myData.cLastURL != NULL && myData.pUpoadedItems != NULL)
+		{
+			CDUploadedItem *pItem = myData.pUpoadedItems->data;
+			g_free (myData.cLastURL);
+			myData.cLastURL = g_strdup (cd_dnd2share_get_prefered_url_from_item (pItem));
+		}
+		
 		//\____________ On affiche la derniere image uploadee.
 		if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 		{

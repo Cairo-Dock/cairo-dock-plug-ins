@@ -107,7 +107,6 @@ static void upload (const gchar *cFilePath)
 	g_free (cLogFile);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls = g_new0 (gchar *, NB_URLS+1);
 	myData.cResultUrls[0] = cDirectLink;
 	myData.cResultUrls[1] = cDisplayImage;
 	myData.cResultUrls[2] = cBBCode150px;

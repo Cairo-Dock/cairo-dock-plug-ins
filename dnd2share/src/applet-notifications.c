@@ -454,7 +454,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			//g_print ("%d) %s : ", i, pBackend->cUrlLabels[i]);
 			//g_print (" + %s\n", pItem->cDistantUrls[i]);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
+			if (pItem->cDistantUrls[i] != NULL)  // peut etre null (par exemple la tiny url).
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
 		}
 		if (pItem->iFileType != CD_TYPE_TEXT)
 			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);

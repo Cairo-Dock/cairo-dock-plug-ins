@@ -51,7 +51,7 @@ typedef void (* CDUploadFunc) (const gchar *cFilePath);
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;  // nom du site, pour affichage
 	gint iNbUrls;  // nombre d'URLs qu'il renvoie.
-	const gchar **cUrlLabels;  // description de chacune de ces URL.
+	gchar **cUrlLabels;  // description de chacune de ces URL.
 	gint iPreferedUrlType;  // celle qui est la plus utile, eventuellement a mettre en conf.
 	CDUploadFunc upload;  // la fonction d'upload, threadee.
 	} CDSiteBackend;
@@ -70,6 +70,8 @@ struct _AppletConfig {
 	gchar *cCustomScripts[CD_NB_FILE_TYPES];
 	gchar *cDropboxDir;
 	gboolean bAnonymous;
+	gint iTinyURLService;
+	gboolean bUseTinyAsDefault;
 	} ;
 
 

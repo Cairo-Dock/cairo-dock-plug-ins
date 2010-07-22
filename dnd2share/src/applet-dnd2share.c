@@ -92,7 +92,7 @@ void cd_dnd2share_build_history (void)
 		for (j = 0; j < myData.backends[iFileType][iSiteID].iNbUrls; j ++)
 		{
 			g_string_printf (sUrlKey, "url%d", j);
-			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);
+			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);  // NULL si cette URL n'avait pas ete sauvegardee avant.
 		}
 		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);  /// un 'int' est-ce que ca suffit ?...
 		
@@ -119,7 +119,35 @@ static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 {
 	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[myData.iCurrentFileType];
 	g_return_if_fail (pCurrentBackend != NULL);
+	
+	myData.cResultUrls = g_new0 (gchar *, pCurrentBackend->iNbUrls+1);  // NULL-terminated
 	pCurrentBackend->upload (cFilePath);
+	
+	if (myData.cResultUrls[0] && myConfig.iTinyURLService != 0)  // on en fait une tiny-url.
+	{
+		gchar *Command = NULL;
+		switch (myConfig.iTinyURLService)
+		{
+			case 1:
+			default:
+				Command = g_strdup_printf ("http://tinyurl.com/api-create.php?url=%s", myData.cResultUrls[0]);
+			break;
+			case 2:
+				Command = g_strdup_printf ("http://shorterlink.org/createlink.php?url=%s", myData.cResultUrls[0]);
+			break;
+			/*http://soso.bz/
+			http://notlong.com/links/
+			http://www.minu.me/
+			http://cuturl.biz/
+			http://tiny.cc/
+			http://o-x.fr/create.php
+			http://petitlien.fr/create.php
+			http://bit.ly
+			http://is.gd/create.php*/
+		}
+		myData.cResultUrls[pCurrentBackend->iNbUrls-1] = cairo_dock_get_url_data (Command, NULL);
+		g_free (Command);
+	}
 }
 static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 {
@@ -218,7 +246,11 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		}
 		
 		// On copie l'URL dans le clipboard.
-		gchar *cURL = myData.cResultUrls[pCurrentBackend->iPreferedUrlType];
+		gchar *cURL = NULL;
+		if (myConfig.bUseTinyAsDefault)
+			cURL = myData.cResultUrls[pCurrentBackend->iNbUrls-1];
+		if (cURL == NULL)
+			cURL = myData.cResultUrls[pCurrentBackend->iPreferedUrlType];
 		if (cURL == NULL)
 		{
 			int i;
@@ -412,7 +444,11 @@ gchar *cd_dnd2share_get_prefered_url_from_item (CDUploadedItem *pItem)
 {
 	CDSiteBackend *pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
 	//g_print ("%s (type:%d; site:%d)\n", __func__, pItem->iFileType, pItem->iSiteID);
-	gchar *cURL = pItem->cDistantUrls[pBackend->iPreferedUrlType];
+	gchar *cURL = NULL;
+	if (myConfig.bUseTinyAsDefault)
+		cURL = pItem->cDistantUrls[pBackend->iNbUrls-1];
+	if (cURL == NULL)
+		cURL = pItem->cDistantUrls[pBackend->iPreferedUrlType];
 	if (cURL == NULL)
 	{
 		int i;
@@ -495,8 +531,10 @@ void cd_dnd2share_register_new_backend (CDFileType iFileType, const gchar *cSite
 	myData.iNbSitesForType[iFileType] ++;
 	
 	pNewBackend->cSiteName = cSiteName;
-	pNewBackend->iNbUrls = iNbUrls;
-	pNewBackend->cUrlLabels = cUrlLabels;
+	pNewBackend->iNbUrls = iNbUrls + 1;  // +1 pour la tiny-url.
+	pNewBackend->cUrlLabels = g_new0 (gchar *, pNewBackend->iNbUrls+1);  // +1 pour le NULL final.
+	memcpy (pNewBackend->cUrlLabels, cUrlLabels, iNbUrls * sizeof (gchar*));  // on prend les N labels fournis par le backend.
+	pNewBackend->cUrlLabels[iNbUrls] = D_("Tiny URL");  // on rajoute le tiny-url.
 	pNewBackend->iPreferedUrlType = iPreferedUrlType;
 	pNewBackend->upload = pUploadFunc;
 }

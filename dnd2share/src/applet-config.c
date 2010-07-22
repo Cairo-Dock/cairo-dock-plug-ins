@@ -53,6 +53,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.cDropboxDir && myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] == '/')
 		myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] = '\0';
 	myConfig.bAnonymous = CD_CONFIG_GET_BOOLEAN ("Configuration", "anonymous");
+	myConfig.iTinyURLService = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "tiny url", 1);
+	if (myConfig.iTinyURLService != 0)
+		myConfig.bUseTinyAsDefault = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use tiny", TRUE);
 CD_APPLET_GET_CONFIG_END
 
 
