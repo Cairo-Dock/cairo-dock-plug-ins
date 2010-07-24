@@ -118,7 +118,7 @@ display last image = false
 animation = pulse
 
 #Y[None;0;0;Tiny-URL;1;1;Shorter-Link;1;1] Use the following service to make the URL smaller:
-tiny url = 1
+tiny url = 0
 
 #b Use the tiny URL by default?
 use tiny = false

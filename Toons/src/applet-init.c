@@ -26,7 +26,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Toons",
+CD_APPLET_DEFINITION (N_("Toons"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("This applet displays a toon that will look at your mouse."),

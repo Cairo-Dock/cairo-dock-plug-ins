@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-06-18 08:58+0000\n"
+"POT-Creation-Date: 2010-07-19 00:13+0000\n"
+"PO-Revision-Date: 2010-07-20 08:09+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-06-19 03:54+0000\n"
+"X-Launchpad-Export-Date: 2010-07-21 03:46+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -203,25 +204,26 @@ msgstr ""
 "Этот плагин позволяет внешним приложениям взаимодействовать с панелью.\n"
 "Коммуникация основана на Dbus."
 
-#: ../Dbus/src/interface-applet-signals.c:438
+#: ../Dbus/src/interface-applet-signals.c:410
 msgid "About this applet"
 msgstr "Об апплете"
 
-#: ../Dbus/src/interface-applet-signals.c:526
+#: ../Dbus/src/interface-applet-signals.c:498
 msgid "Sorry, this module couldn't be added."
 msgstr "Не удалось загрузить этот модуль."
 
-#: ../Dbus/src/interface-applet-signals.c:530
-#: ../Dbus/src/interface-applet-signals.c:536
+#: ../Dbus/src/interface-applet-signals.c:502
+#: ../Dbus/src/interface-applet-signals.c:508
 msgid "The module has been added, but couldn't be launched."
 msgstr "Модуль был добавлен, но запустить его не удалось."
 
-#: ../Dbus/src/interface-applet-signals.c:539
+#: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Апплет '%s' успешно обновлён и автоматически перезагружен"
 
-#: ../Dbus/src/interface-applet-signals.c:539
+#: ../Dbus/src/interface-applet-signals.c:511
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -250,66 +252,80 @@ msgstr ""
 "  – НЕОБХОДИМО открепить от панели!\n"
 "  – Средний щелчок для обновления"
 
+#: ../Doncky/src/applet-top.c:287
+#: ../System-Monitor/src/applet-notifications.c:49
+#: ../System-Monitor/src/applet-notifications.c:66
+#: ../System-Monitor/src/applet-top.c:288
+msgid "Mb"
+msgstr "Мбайт"
+
 #: ../Folders/src/applet-init.c:29
-#, fuzzy
 msgid "Folders"
-msgstr "Каталог"
+msgstr "Каталоги"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
 "Load folders inside the Dock\n"
 "You can have as many instances of this applet as you want."
 msgstr ""
+"Позволяет просматривать каталоги прямо из панели.\n"
+"Апплет можно использовать несколько раз, чтобы иметь доступ сразу к "
+"нескольким каталогам"
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
+"Откройте настройки этого апплета, чтобы добавить каталог для просмотра."
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
-msgstr ""
+msgstr "Пустой или ошибочный каталог."
 
-#: ../Folders/src/applet-notifications.c:193
+#: ../Folders/src/applet-notifications.c:191
 #, c-format
 msgid ""
 "You're about deleting this file\n"
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
+"Вы собираетесь удалить файл\n"
+"  (%s)\n"
+"с жёсткого диска. Вы уверены?"
 
-#: ../Folders/src/applet-notifications.c:203
+#: ../Folders/src/applet-notifications.c:200
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
+"Внимание: не удалось удалить этот файл. \n"
+"Убедитесь, что вы имеете соответствующие права."
 
-#: ../Folders/src/applet-notifications.c:216
-#, fuzzy
+#: ../Folders/src/applet-notifications.c:213
 msgid "Rename to:"
-msgstr "Переименовать эту вкладку"
+msgstr "Переименовать в:"
 
-#: ../Folders/src/applet-notifications.c:223
+#: ../Folders/src/applet-notifications.c:220
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"Внимание: не удалось переименовать %s.\n"
+"Убедитесь, что вы имеете права на запись \n"
+"и новое имя уже не присутствует на панели."
 
-#: ../Folders/src/applet-notifications.c:243
-#, fuzzy
+#: ../Folders/src/applet-notifications.c:240
 msgid "Delete this file"
-msgstr "Удалить заметку"
+msgstr "Удалить этот файл"
 
-#: ../Folders/src/applet-notifications.c:245
-#, fuzzy
+#: ../Folders/src/applet-notifications.c:242
 msgid "Rename this file"
-msgstr "Переименовать этот элемент"
+msgstr "Переименовать этот файл"
 
-#: ../Folders/src/applet-notifications.c:247
-#, fuzzy
+#: ../Folders/src/applet-notifications.c:244
 msgid "Properties"
-msgstr "Частицы"
+msgstr "Свойства"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -326,9 +342,8 @@ msgstr ""
 "Кроме того, вы можете установить клавишу для показа меню (как ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
-#, fuzzy
 msgid "Applications Menu"
-msgstr "Почтовое приложение"
+msgstr "Меню приложений"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
@@ -412,7 +427,7 @@ msgstr "Кабель был отсоединён"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:136 ../wifi/src/applet-draw.c:31
-#: ../Clipper/data/messages:99 ../Network-Monitor/data/messages:213
+#: ../Clipper/data/messages:203 ../Network-Monitor/data/messages:213
 #: ../alsaMixer/data/messages:127 ../compiz-icon/data/messages:95
 #: ../dustbin/data/messages:101 ../wifi/data/messages:131
 #: ../wifi/data/messages:181
@@ -810,8 +825,8 @@ msgstr ""
 "    используйте стрелки для перемещения внутри панели и суб-панелей\n"
 "    или введите название значка запуска и используйте Tab для переключения "
 "на ближайший подходящий значок,\n"
-"    нажмите Enter для щелчка по значку, Shift+Enter для Shift+щелчок, Alt"
-"+Enter для среднего щелчка и Ctrl+Enter для левого щелчка\n"
+"    нажмите Enter для щелчка по значку, Shift+Enter для Shift+щелчок, "
+"Alt+Enter для среднего щелчка и Ctrl+Enter для левого щелчка\n"
 "Escape или то же сочетание клавиш для отмены."
 
 #: ../Scooby-Do/src/applet-listing.c:510
@@ -910,12 +925,6 @@ msgstr ""
 "Вам следует удалить информацию, которую не удалось получить."
 
 #: ../System-Monitor/src/applet-notifications.c:49
-#: ../System-Monitor/src/applet-notifications.c:66
-#: ../System-Monitor/src/applet-top.c:288
-msgid "Mb"
-msgstr "Мбайт"
-
-#: ../System-Monitor/src/applet-notifications.c:49
 msgid "Gb"
 msgstr "Гб"
 
@@ -1005,7 +1014,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-init.c:50
 msgid "Screen Luminosity"
-msgstr ""
+msgstr "Яркость экрана"
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
@@ -1014,6 +1023,10 @@ msgstr "Настройки гаммы:"
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
 msgstr "Применять текущую яркость при загрузке"
+
+#: ../alsaMixer/src/applet-init.c:31
+msgid "AlsaMixer"
+msgstr "AlsaMixer"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1034,11 +1047,6 @@ msgstr ""
 "Средний щелчок, для приглушения звука, двойной щелчок вызовет микшер "
 "каналов.\n"
 "Апплет работает через драйвер Alsa."
-
-#: ../alsaMixer/src/applet-init.c:42
-#, fuzzy
-msgid "Sound Control"
-msgstr "Управление"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -1096,20 +1104,19 @@ msgstr "Напоминание"
 
 #: ../clock/src/applet-config.c:35
 msgid "Time you want to be notified:"
-msgstr ""
+msgstr "В какое время вас уведомить:"
 
 #: ../clock/src/applet-config.c:35
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
-msgstr ""
+msgstr "В формате чч:мм. Например: 20:35 для 8.35pm"
 
 #: ../clock/src/applet-config.c:35
 msgid "Never"
-msgstr ""
+msgstr "Никогда"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Day"
-msgstr "Май"
+msgstr "День"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
@@ -1141,43 +1148,39 @@ msgstr "Воскресенье"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week Day"
-msgstr ""
+msgstr "Рабочий день"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week End"
-msgstr ""
+msgstr "Выходной день"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Month"
-msgstr "Оба"
+msgstr "Месяц"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Repeat every:"
-msgstr "Повторять событие каждые:"
+msgstr "Повторять каждый:"
 
 #: ../clock/src/applet-config.c:35
 msgid "If every month, which day of the month?"
-msgstr ""
+msgstr "Если каждый месяц, то в какой день?"
 
 #: ../clock/src/applet-config.c:35
 msgid "Message you want to use to be notified:"
-msgstr ""
+msgstr "Выдавать сообщение при уведомлении:"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Tea Time!"
-msgstr "Время"
+msgstr "Обеденный перерыв!"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Command to launch:"
-msgstr "Введите команду для запуска:"
+msgstr "Команда для запуска:"
 
 #: ../clock/src/applet-config.c:35
 msgid "E.g.:"
-msgstr ""
+msgstr "Например:"
 
 #: ../clock/src/applet-config.c:491 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
@@ -1226,8 +1229,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1475,7 +1478,8 @@ msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1487,7 +1491,8 @@ msgstr ""
 "Нажмите CTRL+v, чтобы вставить его URL куда угодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Дождитесь завершения текущей закачки прежде чем начать новую."
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1516,7 +1521,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-init.c:50
 msgid "Drop to share"
-msgstr ""
+msgstr "Перетащите, чтобы поделиться"
 
 #: ../dnd2share/src/applet-notifications.c:33
 msgid "Clear the list of the recently uploaded files?"
@@ -1676,18 +1681,16 @@ msgstr ""
 "Средний щелчок отобразит полезную информацию о корзине."
 
 #: ../dustbin/src/applet-notifications.c:32
-#, fuzzy
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Вы собираетесь удалить все файлы из всех корзин. Уверены?"
 
 #: ../dustbin/src/applet-notifications.c:63
 msgid "The trash contains"
-msgstr ""
+msgstr "Корзина содержит"
 
 #: ../dustbin/src/applet-notifications.c:65
-#, fuzzy
 msgid "files"
-msgstr "Файлы"
+msgstr "файлов"
 
 #: ../dustbin/src/applet-notifications.c:67
 msgid "Mo"
@@ -1698,14 +1701,12 @@ msgid "Ko"
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:73
-#, fuzzy
 msgid "Show Trash (click)"
-msgstr "Показать корзину"
+msgstr "Показать корзину (щелчок)"
 
 #: ../dustbin/src/applet-notifications.c:74
-#, fuzzy
 msgid "Empty Trash (middle-click)"
-msgstr "Следующий (средний щелчок)"
+msgstr "Очистить корзину (средний щелчок)"
 
 #: ../dustbin/src/applet-notifications.c:76
 msgid "Display dustbins information"
@@ -1724,7 +1725,7 @@ msgstr "не удалось отсоединить %s"
 #: ../dustbin/src/applet-notifications.c:116
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
-msgstr ""
+msgstr "Отсоединяется том..."
 
 #: ../dustbin/src/applet-trashes-manager.c:59
 msgid " trashe(s)"
@@ -1877,82 +1878,78 @@ msgstr "Ваш компьютер выключится через 1 минуту
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr ""
+msgstr "Адрес сервера:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
-msgstr ""
+msgstr "мой хост"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr ""
+msgstr "Имя пользователя:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
-msgstr ""
+msgstr "Пароль будет зашифрован."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Port:"
-msgstr "Шрифт:"
+msgstr "Порт:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
 msgstr ""
+"Введите 0, чтобы использовать порт по умолчанию. Это будут 110 для POP3 или "
+"APOP и 995 для POP3S"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
-msgstr ""
+msgstr "Использовать безопасное соединение (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Timeout"
-msgstr "Время"
+msgstr "Задержка"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
 msgid "In minutes."
 msgstr "В минутах."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Specific mail application"
-msgstr "Почтовое приложение"
+msgstr "Укажите почтовое приложение"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Leave empty to use the default mail application."
-msgstr "Оставьте пустым, чтобы использовать стандартный."
+msgstr ""
+"Оставьте пустым, чтобы использовать почтовое приложение по умолчанию."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Directory on server:"
-msgstr "Каталог с изображениями:"
+msgstr "Каталог на сервере:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Path of mbox file:"
-msgstr "Путь до звукового файла:"
+msgstr "Путь к mbox файлу:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Path to Mail directory:"
-msgstr "Очистить локальную директорию"
+msgstr "Путь к Mail каталогу:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Address of feed:"
-msgstr ""
+msgstr "Адрес ленты:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:49
 #: ../mail/src/cd-mail-applet-accounts.c:112
 #: ../mail/src/cd-mail-applet-accounts.c:289
 msgid "myLogin"
-msgstr ""
+msgstr "мойЛогин"
 
 #: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
@@ -2152,9 +2149,8 @@ msgid "Stop"
 msgstr "Остановить"
 
 #: ../musicPlayer/src/applet-notifications.c:177
-#, fuzzy
 msgid "Show the Window"
-msgstr "Показать рабочий стол"
+msgstr "Показать окно"
 
 #: ../musicPlayer/src/applet-notifications.c:179
 msgid "Show JumpBox"
@@ -2319,18 +2315,18 @@ msgid "Unmounted"
 msgstr "Отсоединено"
 
 #: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now mounted"
-msgstr "%s отсоединён"
+msgstr "%s присоединён"
 
 #: ../shortcuts/src/applet-drives.c:147
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
-msgstr ""
+msgstr "%s подключен"
 
 #: ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now unmounted"
 msgstr "%s отсоединён"
 
@@ -2355,57 +2351,52 @@ msgstr ""
 "Перетащите каталог на главный значок или суб-панель, чтобы добавить ярлык.\n"
 "Средний щелчок на главном значке, чтобы показать ваш домашний каталог.\n"
 "Средний щелчок на присоединённом томе, чтобы быстро его (от)соединить.\n"
-"Апплет показывает важную информацию о ваших дисках: свободное место, тип и т."
-"д."
+"Апплет показывает важную информацию о ваших дисках: свободное место, тип и "
+"т.д."
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "failed to mount %s"
-msgstr "не удалось отсоединить %s"
+msgstr "Не удалось присоединить %s"
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to unmount %s"
-msgstr "не удалось отсоединить %s"
+msgstr "Не удалось отсоединить %s"
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
-msgstr ""
+msgstr "Этот аппелт пока не доступен для KDE."
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr ""
+msgstr "Не удалось обнаружить дисков или закладок."
 
 #: ../shortcuts/src/applet-notifications.c:193
-#, fuzzy
 msgid "Enter a name for this bookmark:"
-msgstr "Удалить эту закладку"
+msgstr "Введите имя для этой закладки:"
 
 #: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
 msgstr "Удалить эту закладку"
 
 #: ../shortcuts/src/applet-notifications.c:251
-#, fuzzy
 msgid "Rename this bookmark"
-msgstr "Удалить эту закладку"
+msgstr "Переименовать закладку"
 
 #: ../shortcuts/src/applet-notifications.c:257
-#, fuzzy
 msgid "Eject"
-msgstr "Выполнить"
+msgstr "Извлечь"
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Unmount (middle-click)"
-msgstr "Следующий (средний щелчок)"
+msgstr "Отсоединить (средний щелчок)"
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Mount (middle-click)"
-msgstr "Следующий (средний щелчок)"
+msgstr "Присоединить (средний щелчок)"
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
@@ -2413,7 +2404,7 @@ msgstr "Получить информацию о диске"
 
 #: ../shortcuts/src/applet-notifications.c:289
 msgid "Only folders can be bookmarked."
-msgstr ""
+msgstr "В закладки можно добавлять только каталоги."
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
@@ -2421,8 +2412,8 @@ msgstr "Анимировать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин украшает курсор различной анимацией, когда тот находится внутри "
 "панели/десклета."
@@ -2662,7 +2653,7 @@ msgstr "Список окон"
 
 #: ../systray/src/systray-init.c:32
 msgid "systray"
-msgstr ""
+msgstr "Область уведомлений"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2681,11 +2672,15 @@ msgstr ""
 "поместить где-нибудь в стороне от других окон."
 
 #: ../systray/src/systray-interface.c:71
+#: ../systray/src/systray-menu-functions.c:70
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
 "any conflict."
 msgstr ""
+"Область задач уже запущена (возможно на вашей панели)\n"
+"Одновременно может быть запущена только одна область задач. Чтобы избежать "
+"конфликтов, вам следует удалить вторую."
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
@@ -3113,7 +3108,7 @@ msgstr "Повторять пока наведено на значок?"
 msgid "Type of mesh:"
 msgstr "Тип сетки:"
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:45
+#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:149
 #: ../Doncky/data/messages:43 ../Folders/data/messages:57
 #: ../GMenu/data/messages:45 ../MeMenu/data/messages:39
 #: ../Messaging-Menu/data/messages:41 ../Network-Monitor/data/messages:45
@@ -3127,9 +3122,8 @@ msgstr "Тип сетки:"
 #: ../netspeed/data/messages:41 ../powermanager/data/messages:43
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
-#: ../stack/data/messages:47 ../stacks/data/messages:43
-#: ../switcher/data/messages:37 ../systray/data/messages:37
-#: ../template/data/messages:45 ../terminal/data/messages:45
+#: ../stack/data/messages:47 ../switcher/data/messages:37
+#: ../systray/data/messages:37 ../terminal/data/messages:45
 #: ../tomboy/data/messages:55 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
@@ -3148,7 +3142,7 @@ msgid "Colour of the sheen:"
 msgstr "Цвет сияния:"
 
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
-#: ../Clipper/data/messages:9 ../Doncky/data/messages:9
+#: ../Clipper/data/messages:113 ../Doncky/data/messages:9
 #: ../Doncky/data/messages:91 ../Folders/data/messages:21
 #: ../GMenu/data/messages:9 ../GMenu/data/messages:99
 #: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
@@ -3158,9 +3152,8 @@ msgstr "Цвет сияния:"
 #: ../dnd2share/data/messages:9 ../logout/data/messages:9
 #: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../stacks/data/messages:9 ../switcher/data/messages:9
-#: ../switcher/data/messages:139 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
+#: ../switcher/data/messages:9 ../switcher/data/messages:139
+#: ../systray/data/messages:9 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Оставьте пустым, чтобы использовать стандартное."
@@ -3285,7 +3278,7 @@ msgstr "Насколько плоским должен становиться з
 msgid "Blink duration:"
 msgstr "Продолжительность мигания:"
 
-#: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:1
+#: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:105
 #: ../Doncky/data/messages:1 ../Folders/data/messages:1
 #: ../GMenu/data/messages:1 ../MeMenu/data/messages:1
 #: ../Messaging-Menu/data/messages:1 ../Network-Monitor/data/messages:1
@@ -3299,15 +3292,14 @@ msgstr "Продолжительность мигания:"
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
 #: ../showDesktop/data/messages:1 ../slider/data/messages:1
-#: ../stack/data/messages:1 ../stacks/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../template/data/messages:1 ../terminal/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../terminal/data/messages:1
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Значок"
 
-#: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:3
+#: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:107
 #: ../Doncky/data/messages:3 ../Folders/data/messages:3
 #: ../GMenu/data/messages:3 ../MeMenu/data/messages:3
 #: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:3
@@ -3321,9 +3313,8 @@ msgstr "Значок"
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
 #: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../stacks/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../template/data/messages:3 ../terminal/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../terminal/data/messages:3
 #: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
@@ -3337,7 +3328,7 @@ msgstr "Размер значка, когда пингвин не свободе
 msgid "Icon name for busy penguin:"
 msgstr "Имя значка, когда пингвин не свободен:"
 
-#: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:13
+#: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:117
 #: ../Doncky/data/messages:13 ../Folders/data/messages:25
 #: ../GMenu/data/messages:13 ../MeMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
@@ -3351,15 +3342,14 @@ msgstr "Имя значка, когда пингвин не свободен:"
 #: ../netspeed/data/messages:9 ../powermanager/data/messages:9
 #: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
 #: ../showDesktop/data/messages:17 ../slider/data/messages:9
-#: ../stack/data/messages:15 ../stacks/data/messages:13
-#: ../switcher/data/messages:13 ../systray/data/messages:13
-#: ../template/data/messages:13 ../terminal/data/messages:13
+#: ../stack/data/messages:15 ../switcher/data/messages:13
+#: ../systray/data/messages:13 ../terminal/data/messages:13
 #: ../tomboy/data/messages:9 ../weather/data/messages:11
 #: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Имя панели, к которой он принадлежит:"
 
-#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:15
+#: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:119
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
@@ -3374,14 +3364,13 @@ msgstr "Имя панели, к которой он принадлежит:"
 #: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
 #: ../showDesktop/data/messages:19 ../slider/data/messages:13
 #: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:15 ../template/data/messages:15
-#: ../terminal/data/messages:15 ../tomboy/data/messages:25
-#: ../weather/data/messages:13 ../weblets/data/messages:15
-#: ../wifi/data/messages:13
+#: ../systray/data/messages:15 ../terminal/data/messages:15
+#: ../tomboy/data/messages:25 ../weather/data/messages:13
+#: ../weblets/data/messages:15 ../wifi/data/messages:13
 msgid "Applet's Handbook"
 msgstr "Руководство по апплетам"
 
-#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:91
+#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:195
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
@@ -3397,9 +3386,8 @@ msgstr "Руководство по апплетам"
 #: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
-#: ../stacks/data/messages:89 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:83
-#: ../template/data/messages:91 ../terminal/data/messages:91
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:83 ../terminal/data/messages:91
 #: ../tomboy/data/messages:101 ../weather/data/messages:89
 #: ../weather/data/messages:91 ../weblets/data/messages:91
 #: ../wifi/data/messages:89
@@ -3415,7 +3403,7 @@ msgstr "Настройки"
 msgid "Choose one of the available themes:"
 msgstr "Выберите одну из доступных тем:"
 
-#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:139
+#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:243
 #: ../Network-Monitor/data/messages:167 ../System-Monitor/data/messages:149
 #: ../System-Monitor/data/messages:185 ../Toons/data/messages:93
 #: ../dnd2share/data/messages:93 ../netspeed/data/messages:131
@@ -3445,7 +3433,111 @@ msgstr "в пикселях."
 msgid "Ground offset:"
 msgstr "Смещение от поверхности:"
 
-#: ../Clipper/data/messages:5 ../Doncky/data/messages:5
+#: ../Clipper/data/messages:1 ../Clipper/data/messages:53
+msgid "Action_0"
+msgstr "Действие_0"
+
+#: ../Clipper/data/messages:3 ../Clipper/data/messages:55
+msgid "Action_0/Command_0"
+msgstr "Действие_0/Команда_0"
+
+#: ../Clipper/data/messages:5 ../Clipper/data/messages:57
+msgid "Action_1"
+msgstr "Действие_1"
+
+#: ../Clipper/data/messages:7 ../Clipper/data/messages:59
+msgid "Action_1/Command_0"
+msgstr "Действие_1/Команда_0"
+
+#: ../Clipper/data/messages:9 ../Clipper/data/messages:61
+msgid "Action_1/Command_1"
+msgstr "Действие_1/Команда_1"
+
+#: ../Clipper/data/messages:11 ../Clipper/data/messages:63
+msgid "Action_1/Command_2"
+msgstr "Действие_1/Команда_2"
+
+#: ../Clipper/data/messages:13 ../Clipper/data/messages:65
+msgid "Action_1/Command_3"
+msgstr "Действие_1/Команда_3"
+
+#: ../Clipper/data/messages:15 ../Clipper/data/messages:67
+msgid "Action_1/Command_4"
+msgstr "Действие_1/Команда_4"
+
+#: ../Clipper/data/messages:17 ../Clipper/data/messages:69
+msgid "Action_2"
+msgstr "Действие_2"
+
+#: ../Clipper/data/messages:19 ../Clipper/data/messages:71
+msgid "Action_2/Command_0"
+msgstr "Действие_2/Команда_2"
+
+#: ../Clipper/data/messages:21 ../Clipper/data/messages:73
+msgid "Action_2/Command_1"
+msgstr "Действие_2/Команда_1"
+
+#: ../Clipper/data/messages:23 ../Clipper/data/messages:75
+msgid "Action_3"
+msgstr "Действие_3"
+
+#: ../Clipper/data/messages:25 ../Clipper/data/messages:77
+msgid "Action_3/Command_0"
+msgstr "Действие_3/Команда_0"
+
+#: ../Clipper/data/messages:27 ../Clipper/data/messages:79
+msgid "Action_3/Command_1"
+msgstr "Действие_3/Команда_1"
+
+#: ../Clipper/data/messages:29 ../Clipper/data/messages:81
+msgid "Action_4"
+msgstr "Действие_4"
+
+#: ../Clipper/data/messages:31 ../Clipper/data/messages:83
+msgid "Action_4/Command_0"
+msgstr "Действие_4/Команда_0"
+
+#: ../Clipper/data/messages:33 ../Clipper/data/messages:85
+msgid "Action_4/Command_1"
+msgstr "Действие_4/Команда_1"
+
+#: ../Clipper/data/messages:35 ../Clipper/data/messages:87
+msgid "Action_5"
+msgstr "Действие_5"
+
+#: ../Clipper/data/messages:37 ../Clipper/data/messages:89
+msgid "Action_5/Command_0"
+msgstr "Действие_5/Команда_0"
+
+#: ../Clipper/data/messages:39 ../Clipper/data/messages:91
+msgid "Action_5/Command_1"
+msgstr "Действие_5/Команда_1"
+
+#: ../Clipper/data/messages:41 ../Clipper/data/messages:93
+msgid "Action_6"
+msgstr "Действие_6"
+
+#: ../Clipper/data/messages:43 ../Clipper/data/messages:95
+msgid "Action_6/Command_0"
+msgstr "Действие_6/Команда_0"
+
+#: ../Clipper/data/messages:45 ../Clipper/data/messages:97
+msgid "Action_6/Command_1"
+msgstr "Действие_6/Команда_1"
+
+#: ../Clipper/data/messages:47 ../Clipper/data/messages:99
+msgid "Action_6/Command_2"
+msgstr "Действие_6/Команда_1"
+
+#: ../Clipper/data/messages:49 ../Clipper/data/messages:101
+msgid "Action_6/Command_3"
+msgstr "Действие_6/Команда_3"
+
+#: ../Clipper/data/messages:51 ../Clipper/data/messages:103
+msgid "Action_6/Command_4"
+msgstr "Действие_6/Команда_4"
+
+#: ../Clipper/data/messages:109 ../Doncky/data/messages:5
 #: ../Folders/data/messages:5 ../GMenu/data/messages:5
 #: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
@@ -3459,15 +3551,14 @@ msgstr "Смещение от поверхности:"
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
 #: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
 #: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../stacks/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../template/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
 #: ../terminal/data/messages:5 ../tomboy/data/messages:5
 #: ../weather/data/messages:5 ../weblets/data/messages:5
 #: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Определите размер значка для этого апплета"
 
-#: ../Clipper/data/messages:7 ../Doncky/data/messages:7
+#: ../Clipper/data/messages:111 ../Doncky/data/messages:7
 #: ../Folders/data/messages:9 ../GMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:7 ../Network-Monitor/data/messages:9
 #: ../RSSreader/data/messages:9 ../System-Monitor/data/messages:7
@@ -3479,26 +3570,24 @@ msgstr "Определите размер значка для этого апп�
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
 #: ../showDesktop/data/messages:7 ../slider/data/messages:7
-#: ../stack/data/messages:9 ../stacks/data/messages:7
-#: ../switcher/data/messages:7 ../template/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
 #: ../weather/data/messages:9 ../weblets/data/messages:7
 #: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Имя значка, как оно будет отображено в подписи на панели:"
 
-#: ../Clipper/data/messages:11 ../Doncky/data/messages:11
+#: ../Clipper/data/messages:115 ../Doncky/data/messages:11
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
 #: ../RSSreader/data/messages:13 ../Xgamma/data/messages:11
 #: ../dnd2share/data/messages:11 ../logout/data/messages:11
 #: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
 #: ../showDesktop/data/messages:11 ../stack/data/messages:13
-#: ../stacks/data/messages:11 ../switcher/data/messages:11
-#: ../systray/data/messages:11 ../template/data/messages:11
+#: ../switcher/data/messages:11 ../systray/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "Имя изображения:"
 
-#: ../Clipper/data/messages:17 ../Doncky/data/messages:15
+#: ../Clipper/data/messages:121 ../Doncky/data/messages:15
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
 #: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:13
 #: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
@@ -3512,15 +3601,14 @@ msgstr "Имя изображения:"
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../showDesktop/data/messages:21
 #: ../slider/data/messages:15 ../stack/data/messages:19
-#: ../stacks/data/messages:15 ../switcher/data/messages:17
-#: ../systray/data/messages:17 ../template/data/messages:17
+#: ../switcher/data/messages:17 ../systray/data/messages:17
 #: ../terminal/data/messages:17 ../tomboy/data/messages:27
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "Десклет"
 
-#: ../Clipper/data/messages:19 ../Doncky/data/messages:17
+#: ../Clipper/data/messages:123 ../Doncky/data/messages:17
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:15
 #: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
@@ -3534,15 +3622,14 @@ msgstr "Десклет"
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
 #: ../slider/data/messages:17 ../stack/data/messages:21
-#: ../stacks/data/messages:17 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../switcher/data/messages:19 ../systray/data/messages:19
 #: ../terminal/data/messages:19 ../tomboy/data/messages:29
 #: ../weather/data/messages:17 ../weblets/data/messages:19
 #: ../wifi/data/messages:17
 msgid "Position"
 msgstr "Позиция"
 
-#: ../Clipper/data/messages:21 ../Doncky/data/messages:19
+#: ../Clipper/data/messages:125 ../Doncky/data/messages:19
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:17
 #: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
@@ -3555,9 +3642,8 @@ msgstr "Позиция"
 #: ../netspeed/data/messages:17 ../powermanager/data/messages:19
 #: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
 #: ../showDesktop/data/messages:25 ../slider/data/messages:19
-#: ../stack/data/messages:23 ../stacks/data/messages:19
-#: ../switcher/data/messages:21 ../systray/data/messages:21
-#: ../template/data/messages:21 ../terminal/data/messages:21
+#: ../stack/data/messages:23 ../switcher/data/messages:21
+#: ../systray/data/messages:21 ../terminal/data/messages:21
 #: ../tomboy/data/messages:31 ../weather/data/messages:19
 #: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
@@ -3568,7 +3654,7 @@ msgstr ""
 "кнопкой мыши. И, конечно, вы по-прежнему можете использовать ALT + левый "
 "щелчок."
 
-#: ../Clipper/data/messages:23 ../Doncky/data/messages:21
+#: ../Clipper/data/messages:127 ../Doncky/data/messages:21
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:19
 #: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
@@ -3581,15 +3667,14 @@ msgstr ""
 #: ../netspeed/data/messages:19 ../powermanager/data/messages:21
 #: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
 #: ../showDesktop/data/messages:27 ../slider/data/messages:21
-#: ../stack/data/messages:25 ../stacks/data/messages:21
-#: ../switcher/data/messages:23 ../systray/data/messages:23
-#: ../template/data/messages:23 ../terminal/data/messages:23
+#: ../stack/data/messages:25 ../switcher/data/messages:23
+#: ../systray/data/messages:23 ../terminal/data/messages:23
 #: ../tomboy/data/messages:33 ../weather/data/messages:21
 #: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "Заблокировать позицию?"
 
-#: ../Clipper/data/messages:25 ../Doncky/data/messages:23
+#: ../Clipper/data/messages:129 ../Doncky/data/messages:23
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:21
 #: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
@@ -3602,8 +3687,7 @@ msgstr "Заблокировать позицию?"
 #: ../netspeed/data/messages:21 ../powermanager/data/messages:23
 #: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
 #: ../showDesktop/data/messages:29 ../slider/data/messages:23
-#: ../stack/data/messages:27 ../stacks/data/messages:23
-#: ../switcher/data/messages:25 ../template/data/messages:25
+#: ../stack/data/messages:27 ../switcher/data/messages:25
 #: ../terminal/data/messages:25 ../tomboy/data/messages:35
 #: ../weather/data/messages:23 ../weblets/data/messages:25
 #: ../wifi/data/messages:23
@@ -3614,7 +3698,7 @@ msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете изменять размер при помощи "
 "ALT + средний щелчок или ALT + левый щелчок."
 
-#: ../Clipper/data/messages:27 ../Doncky/data/messages:25
+#: ../Clipper/data/messages:131 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:23
 #: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
@@ -3627,15 +3711,14 @@ msgstr ""
 #: ../netspeed/data/messages:23 ../powermanager/data/messages:25
 #: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
 #: ../showDesktop/data/messages:31 ../slider/data/messages:25
-#: ../stack/data/messages:29 ../stacks/data/messages:25
-#: ../switcher/data/messages:27 ../template/data/messages:27
+#: ../stack/data/messages:29 ../switcher/data/messages:27
 #: ../terminal/data/messages:27 ../tomboy/data/messages:37
 #: ../weather/data/messages:25 ../weblets/data/messages:27
 #: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "Размер десклета (ширина x высота):"
 
-#: ../Clipper/data/messages:29 ../Doncky/data/messages:27
+#: ../Clipper/data/messages:133 ../Doncky/data/messages:27
 #: ../Folders/data/messages:41 ../GMenu/data/messages:29
 #: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:25
 #: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
@@ -3646,8 +3729,7 @@ msgstr "Размер десклета (ширина x высота):"
 #: ../musicPlayer/data/messages:27 ../powermanager/data/messages:27
 #: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
 #: ../showDesktop/data/messages:33 ../slider/data/messages:27
-#: ../stack/data/messages:31 ../stacks/data/messages:27
-#: ../template/data/messages:29 ../terminal/data/messages:29
+#: ../stack/data/messages:31 ../terminal/data/messages:29
 #: ../weather/data/messages:27 ../weblets/data/messages:29
 #: ../wifi/data/messages:27
 msgid ""
@@ -3657,7 +3739,7 @@ msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
 
-#: ../Clipper/data/messages:31 ../Doncky/data/messages:29
+#: ../Clipper/data/messages:135 ../Doncky/data/messages:29
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
 #: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:27
 #: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:33
@@ -3670,15 +3752,14 @@ msgstr ""
 #: ../netspeed/data/messages:27 ../powermanager/data/messages:29
 #: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
 #: ../showDesktop/data/messages:35 ../slider/data/messages:29
-#: ../stack/data/messages:33 ../stacks/data/messages:29
-#: ../switcher/data/messages:29 ../systray/data/messages:27
-#: ../template/data/messages:31 ../terminal/data/messages:31
+#: ../stack/data/messages:33 ../switcher/data/messages:29
+#: ../systray/data/messages:27 ../terminal/data/messages:31
 #: ../tomboy/data/messages:41 ../weather/data/messages:29
 #: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "Позиция десклета (x ; y):"
 
-#: ../Clipper/data/messages:33 ../Doncky/data/messages:31
+#: ../Clipper/data/messages:137 ../Doncky/data/messages:31
 #: ../Folders/data/messages:45 ../GMenu/data/messages:33
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:29
 #: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
@@ -3691,8 +3772,7 @@ msgstr "Позиция десклета (x ; y):"
 #: ../netspeed/data/messages:29 ../powermanager/data/messages:31
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
-#: ../stack/data/messages:35 ../stacks/data/messages:31
-#: ../template/data/messages:33 ../terminal/data/messages:33
+#: ../stack/data/messages:35 ../terminal/data/messages:33
 #: ../tomboy/data/messages:43 ../weather/data/messages:31
 #: ../weblets/data/messages:33 ../wifi/data/messages:31
 msgid ""
@@ -3702,7 +3782,7 @@ msgstr ""
 "Вы можете с лёгкостью вращать любой десклет, используйте для этого маленькие "
 "кнопки по сторонам десклета."
 
-#: ../Clipper/data/messages:35 ../Doncky/data/messages:33
+#: ../Clipper/data/messages:139 ../Doncky/data/messages:33
 #: ../Folders/data/messages:47 ../GMenu/data/messages:35
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:31
 #: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
@@ -3715,14 +3795,13 @@ msgstr ""
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:39
 #: ../slider/data/messages:33 ../stack/data/messages:37
-#: ../stacks/data/messages:33 ../template/data/messages:35
 #: ../terminal/data/messages:35 ../tomboy/data/messages:45
 #: ../weather/data/messages:33 ../weblets/data/messages:35
 #: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "Вращение:"
 
-#: ../Clipper/data/messages:37 ../Doncky/data/messages:35
+#: ../Clipper/data/messages:141 ../Doncky/data/messages:35
 #: ../Folders/data/messages:49 ../GMenu/data/messages:37
 #: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:33
 #: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
@@ -3736,15 +3815,14 @@ msgstr "Вращение:"
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
-#: ../stacks/data/messages:35 ../switcher/data/messages:31
-#: ../systray/data/messages:29 ../template/data/messages:37
+#: ../switcher/data/messages:31 ../systray/data/messages:29
 #: ../terminal/data/messages:37 ../tomboy/data/messages:47
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:35
 msgid "Visibility"
 msgstr "Видимость"
 
-#: ../Clipper/data/messages:39 ../Doncky/data/messages:37
+#: ../Clipper/data/messages:143 ../Doncky/data/messages:37
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
@@ -3758,15 +3836,14 @@ msgstr "Видимость"
 #: ../powermanager/data/messages:37 ../quick-browser/data/messages:41
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:43
 #: ../slider/data/messages:37 ../stack/data/messages:41
-#: ../stacks/data/messages:37 ../switcher/data/messages:33
-#: ../systray/data/messages:31 ../template/data/messages:39
+#: ../switcher/data/messages:33 ../systray/data/messages:31
 #: ../terminal/data/messages:39 ../tomboy/data/messages:49
 #: ../weather/data/messages:37 ../weblets/data/messages:39
 #: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "Открепить от панели?"
 
-#: ../Clipper/data/messages:41 ../Doncky/data/messages:39
+#: ../Clipper/data/messages:145 ../Doncky/data/messages:39
 #: ../Folders/data/messages:53 ../GMenu/data/messages:41
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:37
 #: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
@@ -3780,8 +3857,7 @@ msgstr "Открепить от панели?"
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
-#: ../stacks/data/messages:39 ../systray/data/messages:33
-#: ../template/data/messages:41 ../terminal/data/messages:41
+#: ../systray/data/messages:33 ../terminal/data/messages:41
 #: ../tomboy/data/messages:51 ../weather/data/messages:39
 #: ../weblets/data/messages:41 ../wifi/data/messages:39
 msgid ""
@@ -3791,7 +3867,7 @@ msgstr ""
 "Для слоя виджетов CompizFusion, установите поведение в Compiz на: "
 "(класс=Cairo-dock и тип=utility)"
 
-#: ../Clipper/data/messages:43 ../Doncky/data/messages:41
+#: ../Clipper/data/messages:147 ../Doncky/data/messages:41
 #: ../Folders/data/messages:55 ../GMenu/data/messages:43
 #: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:39
 #: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
@@ -3804,15 +3880,14 @@ msgstr ""
 #: ../netspeed/data/messages:39 ../powermanager/data/messages:41
 #: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
 #: ../showDesktop/data/messages:47 ../slider/data/messages:41
-#: ../stack/data/messages:45 ../stacks/data/messages:41
-#: ../switcher/data/messages:35 ../systray/data/messages:35
-#: ../template/data/messages:43 ../terminal/data/messages:43
+#: ../stack/data/messages:45 ../switcher/data/messages:35
+#: ../systray/data/messages:35 ../terminal/data/messages:43
 #: ../tomboy/data/messages:53 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr "Видимость:"
 
-#: ../Clipper/data/messages:47 ../Doncky/data/messages:45
+#: ../Clipper/data/messages:151 ../Doncky/data/messages:45
 #: ../Folders/data/messages:59 ../GMenu/data/messages:47
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:43
 #: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
@@ -3826,15 +3901,14 @@ msgstr "Видимость:"
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
-#: ../stacks/data/messages:45 ../switcher/data/messages:39
-#: ../systray/data/messages:39 ../template/data/messages:47
+#: ../switcher/data/messages:39 ../systray/data/messages:39
 #: ../terminal/data/messages:47 ../tomboy/data/messages:57
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:45
 msgid "Keep above"
 msgstr "Держать поверх"
 
-#: ../Clipper/data/messages:49 ../Doncky/data/messages:47
+#: ../Clipper/data/messages:153 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
 #: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
@@ -3848,15 +3922,14 @@ msgstr "Держать поверх"
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
-#: ../stacks/data/messages:47 ../switcher/data/messages:41
-#: ../systray/data/messages:41 ../template/data/messages:49
+#: ../switcher/data/messages:41 ../systray/data/messages:41
 #: ../terminal/data/messages:49 ../tomboy/data/messages:59
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:47
 msgid "Keep below"
 msgstr "Держать позади"
 
-#: ../Clipper/data/messages:51 ../Doncky/data/messages:49
+#: ../Clipper/data/messages:155 ../Doncky/data/messages:49
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
@@ -3869,15 +3942,14 @@ msgstr "Держать позади"
 #: ../netspeed/data/messages:47 ../powermanager/data/messages:49
 #: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
 #: ../showDesktop/data/messages:55 ../slider/data/messages:49
-#: ../stack/data/messages:53 ../stacks/data/messages:49
-#: ../switcher/data/messages:43 ../systray/data/messages:43
-#: ../template/data/messages:51 ../terminal/data/messages:51
+#: ../stack/data/messages:53 ../switcher/data/messages:43
+#: ../systray/data/messages:43 ../terminal/data/messages:51
 #: ../tomboy/data/messages:61 ../weather/data/messages:49
 #: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr "На слое виджетов"
 
-#: ../Clipper/data/messages:53 ../Doncky/data/messages:51
+#: ../Clipper/data/messages:157 ../Doncky/data/messages:51
 #: ../Folders/data/messages:65 ../GMenu/data/messages:53
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:49
 #: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
@@ -3891,15 +3963,14 @@ msgstr "На слое виджетов"
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
-#: ../stacks/data/messages:51 ../switcher/data/messages:45
-#: ../systray/data/messages:45 ../template/data/messages:53
+#: ../switcher/data/messages:45 ../systray/data/messages:45
 #: ../terminal/data/messages:53 ../tomboy/data/messages:63
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr "Резервировать место"
 
-#: ../Clipper/data/messages:55 ../Doncky/data/messages:53
+#: ../Clipper/data/messages:159 ../Doncky/data/messages:53
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:51
 #: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
@@ -3912,15 +3983,14 @@ msgstr "Резервировать место"
 #: ../netspeed/data/messages:51 ../powermanager/data/messages:53
 #: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
 #: ../showDesktop/data/messages:59 ../slider/data/messages:53
-#: ../stack/data/messages:57 ../stacks/data/messages:53
-#: ../switcher/data/messages:47 ../systray/data/messages:47
-#: ../template/data/messages:55 ../terminal/data/messages:55
+#: ../stack/data/messages:57 ../switcher/data/messages:47
+#: ../systray/data/messages:47 ../terminal/data/messages:55
 #: ../tomboy/data/messages:65 ../weather/data/messages:53
 #: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr "Показывать на всех рабочих столах?"
 
-#: ../Clipper/data/messages:57 ../Doncky/data/messages:55
+#: ../Clipper/data/messages:161 ../Doncky/data/messages:55
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
 #: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:53
 #: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:59
@@ -3934,15 +4004,14 @@ msgstr "Показывать на всех рабочих столах?"
 #: ../powermanager/data/messages:55 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
-#: ../stacks/data/messages:55 ../switcher/data/messages:49
-#: ../systray/data/messages:49 ../template/data/messages:57
+#: ../switcher/data/messages:49 ../systray/data/messages:49
 #: ../terminal/data/messages:57 ../tomboy/data/messages:67
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:55
 msgid "Decorations"
 msgstr "Оформление"
 
-#: ../Clipper/data/messages:59 ../Doncky/data/messages:57
+#: ../Clipper/data/messages:163 ../Doncky/data/messages:57
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:55
 #: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
@@ -3956,8 +4025,7 @@ msgstr "Оформление"
 #: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
-#: ../stacks/data/messages:57 ../switcher/data/messages:51
-#: ../systray/data/messages:51 ../template/data/messages:59
+#: ../switcher/data/messages:51 ../systray/data/messages:51
 #: ../terminal/data/messages:59 ../tomboy/data/messages:69
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:57
@@ -3965,7 +4033,7 @@ msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 "Выберите 'Собственное оформление', чтобы настроить своё оформление ниже."
 
-#: ../Clipper/data/messages:61 ../Doncky/data/messages:59
+#: ../Clipper/data/messages:165 ../Doncky/data/messages:59
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:57
 #: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
@@ -3978,15 +4046,14 @@ msgstr ""
 #: ../netspeed/data/messages:57 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
 #: ../showDesktop/data/messages:65 ../slider/data/messages:59
-#: ../stack/data/messages:63 ../stacks/data/messages:59
-#: ../switcher/data/messages:53 ../systray/data/messages:53
-#: ../template/data/messages:61 ../terminal/data/messages:61
+#: ../stack/data/messages:63 ../switcher/data/messages:53
+#: ../systray/data/messages:53 ../terminal/data/messages:61
 #: ../tomboy/data/messages:71 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "Выберите тему оформления для этого десклета:"
 
-#: ../Clipper/data/messages:63 ../Doncky/data/messages:61
+#: ../Clipper/data/messages:167 ../Doncky/data/messages:61
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:59
 #: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
@@ -3999,9 +4066,8 @@ msgstr "Выберите тему оформления для этого дес�
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:61
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
 #: ../showDesktop/data/messages:67 ../slider/data/messages:61
-#: ../stack/data/messages:65 ../stacks/data/messages:61
-#: ../switcher/data/messages:55 ../systray/data/messages:55
-#: ../template/data/messages:63 ../terminal/data/messages:63
+#: ../stack/data/messages:65 ../switcher/data/messages:55
+#: ../systray/data/messages:55 ../terminal/data/messages:63
 #: ../tomboy/data/messages:73 ../weather/data/messages:61
 #: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
@@ -4010,7 +4076,7 @@ msgstr ""
 "Изображение показываемое позади рисунка, например рамка. Оставьте пустым, "
 "чтобы не использовать."
 
-#: ../Clipper/data/messages:65 ../Doncky/data/messages:63
+#: ../Clipper/data/messages:169 ../Doncky/data/messages:63
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:61
 #: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
@@ -4024,15 +4090,14 @@ msgstr ""
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
-#: ../stack/data/messages:67 ../stacks/data/messages:63
-#: ../switcher/data/messages:57 ../systray/data/messages:57
-#: ../template/data/messages:65 ../terminal/data/messages:65
+#: ../stack/data/messages:67 ../switcher/data/messages:57
+#: ../systray/data/messages:57 ../terminal/data/messages:65
 #: ../tomboy/data/messages:75 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:63
 msgid "Background image:"
 msgstr "Фоновое изображение:"
 
-#: ../Clipper/data/messages:67 ../Doncky/data/messages:65
+#: ../Clipper/data/messages:171 ../Doncky/data/messages:65
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:63
 #: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
@@ -4045,15 +4110,14 @@ msgstr "Фоновое изображение:"
 #: ../netspeed/data/messages:63 ../powermanager/data/messages:65
 #: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
 #: ../showDesktop/data/messages:71 ../slider/data/messages:65
-#: ../stack/data/messages:69 ../stacks/data/messages:65
-#: ../switcher/data/messages:59 ../systray/data/messages:59
-#: ../template/data/messages:67 ../terminal/data/messages:67
+#: ../stack/data/messages:69 ../switcher/data/messages:59
+#: ../systray/data/messages:59 ../terminal/data/messages:67
 #: ../tomboy/data/messages:77 ../weather/data/messages:65
 #: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "Фоновая прозрачность:"
 
-#: ../Clipper/data/messages:69 ../Doncky/data/messages:67
+#: ../Clipper/data/messages:173 ../Doncky/data/messages:67
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:65
 #: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
@@ -4066,15 +4130,14 @@ msgstr "Фоновая прозрачность:"
 #: ../netspeed/data/messages:65 ../powermanager/data/messages:67
 #: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
 #: ../showDesktop/data/messages:73 ../slider/data/messages:67
-#: ../stack/data/messages:71 ../stacks/data/messages:67
-#: ../switcher/data/messages:61 ../systray/data/messages:61
-#: ../template/data/messages:69 ../terminal/data/messages:69
+#: ../stack/data/messages:71 ../switcher/data/messages:61
+#: ../systray/data/messages:61 ../terminal/data/messages:69
 #: ../tomboy/data/messages:79 ../weather/data/messages:67
 #: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "в пикселях. Определяет левую позицию рисунка."
 
-#: ../Clipper/data/messages:71 ../Doncky/data/messages:69
+#: ../Clipper/data/messages:175 ../Doncky/data/messages:69
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:67
 #: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
@@ -4087,15 +4150,14 @@ msgstr "в пикселях. Определяет левую позицию ри
 #: ../netspeed/data/messages:67 ../powermanager/data/messages:69
 #: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
 #: ../showDesktop/data/messages:75 ../slider/data/messages:69
-#: ../stack/data/messages:73 ../stacks/data/messages:69
-#: ../switcher/data/messages:63 ../systray/data/messages:63
-#: ../template/data/messages:71 ../terminal/data/messages:71
+#: ../stack/data/messages:73 ../switcher/data/messages:63
+#: ../systray/data/messages:63 ../terminal/data/messages:71
 #: ../tomboy/data/messages:81 ../weather/data/messages:69
 #: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "Левое смещение:"
 
-#: ../Clipper/data/messages:73 ../Doncky/data/messages:71
+#: ../Clipper/data/messages:177 ../Doncky/data/messages:71
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:69
 #: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
@@ -4108,15 +4170,14 @@ msgstr "Левое смещение:"
 #: ../netspeed/data/messages:69 ../powermanager/data/messages:71
 #: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
 #: ../showDesktop/data/messages:77 ../slider/data/messages:71
-#: ../stack/data/messages:75 ../stacks/data/messages:71
-#: ../switcher/data/messages:65 ../systray/data/messages:65
-#: ../template/data/messages:73 ../terminal/data/messages:73
+#: ../stack/data/messages:75 ../switcher/data/messages:65
+#: ../systray/data/messages:65 ../terminal/data/messages:73
 #: ../tomboy/data/messages:83 ../weather/data/messages:71
 #: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "в пикселях. Определяет верхнюю позицию рисунка."
 
-#: ../Clipper/data/messages:75 ../Doncky/data/messages:73
+#: ../Clipper/data/messages:179 ../Doncky/data/messages:73
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:71
 #: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
@@ -4129,15 +4190,14 @@ msgstr "в пикселях. Определяет верхнюю позицию 
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
 #: ../showDesktop/data/messages:79 ../slider/data/messages:73
-#: ../stack/data/messages:77 ../stacks/data/messages:73
-#: ../switcher/data/messages:67 ../systray/data/messages:67
-#: ../template/data/messages:75 ../terminal/data/messages:75
+#: ../stack/data/messages:77 ../switcher/data/messages:67
+#: ../systray/data/messages:67 ../terminal/data/messages:75
 #: ../tomboy/data/messages:85 ../weather/data/messages:73
 #: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "Верхнее смещение:"
 
-#: ../Clipper/data/messages:77 ../Doncky/data/messages:75
+#: ../Clipper/data/messages:181 ../Doncky/data/messages:75
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:73
 #: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
@@ -4150,15 +4210,14 @@ msgstr "Верхнее смещение:"
 #: ../netspeed/data/messages:73 ../powermanager/data/messages:75
 #: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
 #: ../showDesktop/data/messages:81 ../slider/data/messages:75
-#: ../stack/data/messages:79 ../stacks/data/messages:75
-#: ../switcher/data/messages:69 ../systray/data/messages:69
-#: ../template/data/messages:77 ../terminal/data/messages:77
+#: ../stack/data/messages:79 ../switcher/data/messages:69
+#: ../systray/data/messages:69 ../terminal/data/messages:77
 #: ../tomboy/data/messages:87 ../weather/data/messages:75
 #: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "в пикселях. Определяет правую позицию рисунка."
 
-#: ../Clipper/data/messages:79 ../Doncky/data/messages:77
+#: ../Clipper/data/messages:183 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:75
 #: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
@@ -4171,15 +4230,14 @@ msgstr "в пикселях. Определяет правую позицию р
 #: ../netspeed/data/messages:75 ../powermanager/data/messages:77
 #: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
 #: ../showDesktop/data/messages:83 ../slider/data/messages:77
-#: ../stack/data/messages:81 ../stacks/data/messages:77
-#: ../switcher/data/messages:71 ../systray/data/messages:71
-#: ../template/data/messages:79 ../terminal/data/messages:79
+#: ../stack/data/messages:81 ../switcher/data/messages:71
+#: ../systray/data/messages:71 ../terminal/data/messages:79
 #: ../tomboy/data/messages:89 ../weather/data/messages:77
 #: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "Правое смещение:"
 
-#: ../Clipper/data/messages:81 ../Doncky/data/messages:79
+#: ../Clipper/data/messages:185 ../Doncky/data/messages:79
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:77
 #: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
@@ -4192,15 +4250,14 @@ msgstr "Правое смещение:"
 #: ../netspeed/data/messages:77 ../powermanager/data/messages:79
 #: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
 #: ../showDesktop/data/messages:85 ../slider/data/messages:79
-#: ../stack/data/messages:83 ../stacks/data/messages:79
-#: ../switcher/data/messages:73 ../systray/data/messages:73
-#: ../template/data/messages:81 ../terminal/data/messages:81
+#: ../stack/data/messages:83 ../switcher/data/messages:73
+#: ../systray/data/messages:73 ../terminal/data/messages:81
 #: ../tomboy/data/messages:91 ../weather/data/messages:79
 #: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "в пикселях. Определяет нижнюю позицию рисунка."
 
-#: ../Clipper/data/messages:83 ../Doncky/data/messages:81
+#: ../Clipper/data/messages:187 ../Doncky/data/messages:81
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:79
 #: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
@@ -4213,15 +4270,14 @@ msgstr "в пикселях. Определяет нижнюю позицию р
 #: ../netspeed/data/messages:79 ../powermanager/data/messages:81
 #: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
 #: ../showDesktop/data/messages:87 ../slider/data/messages:81
-#: ../stack/data/messages:85 ../stacks/data/messages:81
-#: ../switcher/data/messages:75 ../systray/data/messages:75
-#: ../template/data/messages:83 ../terminal/data/messages:83
+#: ../stack/data/messages:85 ../switcher/data/messages:75
+#: ../systray/data/messages:75 ../terminal/data/messages:83
 #: ../tomboy/data/messages:93 ../weather/data/messages:81
 #: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "Нижнее смещение:"
 
-#: ../Clipper/data/messages:85 ../Doncky/data/messages:83
+#: ../Clipper/data/messages:189 ../Doncky/data/messages:83
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:81
 #: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
@@ -4234,9 +4290,8 @@ msgstr "Нижнее смещение:"
 #: ../netspeed/data/messages:81 ../powermanager/data/messages:83
 #: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
 #: ../showDesktop/data/messages:89 ../slider/data/messages:83
-#: ../stack/data/messages:87 ../stacks/data/messages:83
-#: ../switcher/data/messages:77 ../systray/data/messages:77
-#: ../template/data/messages:85 ../terminal/data/messages:85
+#: ../stack/data/messages:87 ../switcher/data/messages:77
+#: ../systray/data/messages:77 ../terminal/data/messages:85
 #: ../tomboy/data/messages:95 ../weather/data/messages:83
 #: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
@@ -4246,7 +4301,7 @@ msgstr ""
 "Изображение показываемое поверх рисунка, например отражение. Оставьте "
 "пустым, чтобы не использовать."
 
-#: ../Clipper/data/messages:87 ../Doncky/data/messages:85
+#: ../Clipper/data/messages:191 ../Doncky/data/messages:85
 #: ../Folders/data/messages:99 ../GMenu/data/messages:87
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:83
 #: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
@@ -4259,15 +4314,14 @@ msgstr ""
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:85
 #: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
 #: ../showDesktop/data/messages:91 ../slider/data/messages:85
-#: ../stack/data/messages:89 ../stacks/data/messages:85
-#: ../switcher/data/messages:79 ../systray/data/messages:79
-#: ../template/data/messages:87 ../terminal/data/messages:87
+#: ../stack/data/messages:89 ../switcher/data/messages:79
+#: ../systray/data/messages:79 ../terminal/data/messages:87
 #: ../tomboy/data/messages:97 ../weather/data/messages:85
 #: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "Изображение переднего плана:"
 
-#: ../Clipper/data/messages:89 ../Doncky/data/messages:87
+#: ../Clipper/data/messages:193 ../Doncky/data/messages:87
 #: ../Folders/data/messages:101 ../GMenu/data/messages:89
 #: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:85
 #: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
@@ -4280,19 +4334,18 @@ msgstr "Изображение переднего плана:"
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:87
 #: ../quick-browser/data/messages:91 ../shortcuts/data/messages:89
 #: ../showDesktop/data/messages:93 ../slider/data/messages:87
-#: ../stack/data/messages:91 ../stacks/data/messages:87
-#: ../switcher/data/messages:81 ../systray/data/messages:81
-#: ../template/data/messages:89 ../terminal/data/messages:89
+#: ../stack/data/messages:91 ../switcher/data/messages:81
+#: ../systray/data/messages:81 ../terminal/data/messages:89
 #: ../tomboy/data/messages:99 ../weather/data/messages:87
 #: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "Прозрачность переднего плана:"
 
-#: ../Clipper/data/messages:93
+#: ../Clipper/data/messages:197
 msgid "Items"
 msgstr "Элементы"
 
-#: ../Clipper/data/messages:95
+#: ../Clipper/data/messages:199
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
@@ -4300,31 +4353,31 @@ msgstr ""
 "Элементы буфера обмена — это те, которые вы копируете с помощью CTRL+c. "
 "Элементы выделения — это те, которые вы выделяете мышью."
 
-#: ../Clipper/data/messages:97
+#: ../Clipper/data/messages:201
 msgid "Which items should be remembered?"
 msgstr "Какие элементы запоминать?"
 
-#: ../Clipper/data/messages:101
+#: ../Clipper/data/messages:205
 msgid "Clipboard"
 msgstr "Буфера обмена"
 
-#: ../Clipper/data/messages:103
+#: ../Clipper/data/messages:207
 msgid "Selection"
 msgstr "Выделения"
 
-#: ../Clipper/data/messages:105
+#: ../Clipper/data/messages:209
 msgid "Both"
 msgstr "Оба"
 
-#: ../Clipper/data/messages:107
+#: ../Clipper/data/messages:211
 msgid "Number of items:"
 msgstr "Количество элементов:"
 
-#: ../Clipper/data/messages:109
+#: ../Clipper/data/messages:213
 msgid "Remember items between 2 sessions ?"
 msgstr "Запоминать элементы между двумя сессиями?"
 
-#: ../Clipper/data/messages:111
+#: ../Clipper/data/messages:215
 msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
@@ -4332,26 +4385,26 @@ msgstr ""
 "Это особенно полезно, когда вы часто выделяете мышью текст и не хотите "
 "терять многочисленные элементы, запомненные в буфере обмена."
 
-#: ../Clipper/data/messages:113
+#: ../Clipper/data/messages:217
 msgid "Separate clipboard and selection?"
 msgstr "Разделять элементы?"
 
-#: ../Clipper/data/messages:115
+#: ../Clipper/data/messages:219
 msgid "If so, number of selection items:"
 msgstr "Если так, то укажите количество выбранных элементов:"
 
-#: ../Clipper/data/messages:117
+#: ../Clipper/data/messages:221
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
 "Когда вы щёлкаете по элементу, его содержимое становится доступным для "
 "вставки CTRL+v"
 
-#: ../Clipper/data/messages:119
+#: ../Clipper/data/messages:223
 msgid "Paste into Clipboard?"
 msgstr "Вставлять в буфер обмена?"
 
-#: ../Clipper/data/messages:121
+#: ../Clipper/data/messages:225
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
@@ -4359,23 +4412,23 @@ msgstr ""
 "Когда вы щёлкаете по элементу, его содержимое становится доступным для "
 "вставки средним щелчком"
 
-#: ../Clipper/data/messages:123
+#: ../Clipper/data/messages:227
 msgid "Paste into Selection?"
 msgstr "Вставлять в выделение?"
 
-#: ../Clipper/data/messages:125
+#: ../Clipper/data/messages:229
 msgid "Shortkey to pop-up the items menu:"
 msgstr "Клавиатурное сочетание для вызова меню:"
 
-#: ../Clipper/data/messages:127
+#: ../Clipper/data/messages:231
 msgid "Pop-up menus at mouse position?"
 msgstr "Показывать меню в позиции курсора?"
 
-#: ../Clipper/data/messages:129 ../compiz-icon/data/messages:89
+#: ../Clipper/data/messages:233 ../compiz-icon/data/messages:89
 msgid "Actions"
 msgstr "Действия"
 
-#: ../Clipper/data/messages:131
+#: ../Clipper/data/messages:235
 msgid ""
 "If some actions are associated with an item, they will be proposed when the "
 "item is created."
@@ -4383,27 +4436,27 @@ msgstr ""
 "Если некоторые действия ассоциированы с элементом, то они будут предложены "
 "вам, когда элемент будет создан."
 
-#: ../Clipper/data/messages:133
+#: ../Clipper/data/messages:237
 msgid "Enable actions?"
 msgstr "Разрешить действия?"
 
-#: ../Clipper/data/messages:135
+#: ../Clipper/data/messages:239
 msgid "Display actions when selecting an item in the history."
 msgstr "Показывать действия во время выделения элементов в истории."
 
-#: ../Clipper/data/messages:137
+#: ../Clipper/data/messages:241
 msgid "Replay actions?"
 msgstr "Повторять действия?"
 
-#: ../Clipper/data/messages:141
+#: ../Clipper/data/messages:245
 msgid "Duration of the action menu:"
 msgstr "Продолжительность меню действий:"
 
-#: ../Clipper/data/messages:143
+#: ../Clipper/data/messages:247
 msgid "Persistent items"
 msgstr "Постоянные элементы"
 
-#: ../Clipper/data/messages:145
+#: ../Clipper/data/messages:249
 msgid "A list of persistent items which can be accessed with middle-click:"
 msgstr "Список постоянных элементов, которые доступны по среднему щелчку:"
 
@@ -4457,7 +4510,7 @@ msgstr "Позволить сторонним приложениям регис�
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
-msgstr ""
+msgstr "Укажите какой xml файл использовать:"
 
 #: ../Doncky/data/messages:95 ../RSSreader/data/messages:133
 msgid "Appearance"
@@ -4468,9 +4521,8 @@ msgid "Font to be used by default if none is specify in the .xml"
 msgstr "Шрифт, используемый по умолчанию, если не указан в .xml файле"
 
 #: ../Doncky/data/messages:101
-#, fuzzy
 msgid "Default Font:"
-msgstr "Стандартный значок:"
+msgstr "Шрифт по умолчанию:"
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
@@ -4485,25 +4537,24 @@ msgid "Margin to be used on left, right and top of the desklet"
 msgstr "Выравнивание относительно левого, правого и верхнего края десклета"
 
 #: ../Doncky/data/messages:109
-#, fuzzy
 msgid "Margin all around the desklet:"
-msgstr "Файл изображения для скрытия десклета:"
+msgstr "Выравнить всё вокруг десклета:"
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
 msgstr "Используйте для увеличения интервала между строками"
 
 #: ../Doncky/data/messages:113
-#, fuzzy
 msgid "Space between lines:"
-msgstr "Расстояние между значками:"
+msgstr "Промежуток между строками:"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
 msgid "Background"
 msgstr "Задний фон"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Вы можете получить более привлекательный задний фон при использовании "
 "Оформления декслетов"
@@ -4553,48 +4604,40 @@ msgid "Border colour :"
 msgstr "Цвет границы:"
 
 #: ../Folders/data/messages:7
-#, fuzzy
 msgid "Let empty to use the name of the folder."
-msgstr "Оставьте пустым, чтобы использовать название города."
+msgstr "Оставьте пустым, тобы использовать имя папки."
 
 #: ../Folders/data/messages:11
-#, fuzzy
 msgid "How to render the icon :"
-msgstr "Как отрисовывать текущий рабочий стол:"
+msgstr "Как отрисовывать значок:"
 
 #: ../Folders/data/messages:13
-#, fuzzy
 msgid "Use an image"
-msgstr "открыть изображение"
+msgstr "Использовать изображение"
 
 #: ../Folders/data/messages:15
 msgid "Draw sub-dock's content as emblems"
-msgstr ""
+msgstr "Отрисовывать содержимое суб-панели как эмблему"
 
 #: ../Folders/data/messages:17
-#, fuzzy
 msgid "Draw sub-dock's content as stack"
-msgstr "Показывать содержимое записки на её значке?"
+msgstr "Отрисовывать содержимое суб-панели как стопку"
 
 #: ../Folders/data/messages:19
-#, fuzzy
 msgid "Draw sub-dock's content inside a box"
-msgstr "Показывать содержимое записки на её значке?"
+msgstr "Отрисовывать содержимое суб-панели внутри коробки"
 
 #: ../Folders/data/messages:105
-#, fuzzy
 msgid "Folder's path:"
-msgstr "Каталог"
+msgstr "Путь к каталогу:"
 
 #: ../Folders/data/messages:107
-#, fuzzy
 msgid "Maximum number of files to list:"
-msgstr "Максимальное количество результатов поиска:"
+msgstr "Максимальное количество файлов в списке:"
 
 #: ../Folders/data/messages:109
-#, fuzzy
 msgid "Sort files by :"
-msgstr "Сортировать по:"
+msgstr "Сортировать файлы по:"
 
 #: ../Folders/data/messages:111 ../stack/data/messages:127
 msgid "Name"
@@ -4605,14 +4648,12 @@ msgid "Date"
 msgstr "Дата"
 
 #: ../Folders/data/messages:115
-#, fuzzy
 msgid "Size"
-msgstr "Скольжение"
+msgstr "Размер"
 
 #: ../Folders/data/messages:117
-#, fuzzy
 msgid "Sort folders before files?"
-msgstr "Каталоги в начале?"
+msgstr "Поместить папки перед файлами?"
 
 #: ../Folders/data/messages:119 ../Scooby-Do/data/messages:103
 #: ../quick-browser/data/messages:103
@@ -4621,9 +4662,8 @@ msgstr "Показывать скрытые файлы?"
 
 #: ../Folders/data/messages:121 ../compiz-icon/data/messages:159
 #: ../mail/data/messages:91 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../stacks/data/messages:115
-#: ../switcher/data/messages:143 ../tomboy/data/messages:119
-#: ../weather/data/messages:123
+#: ../stack/data/messages:97 ../switcher/data/messages:143
+#: ../tomboy/data/messages:119 ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
 msgstr "Оставьте пустым, чтобы использовать стандартный вид суб-панели."
 
@@ -4632,7 +4672,7 @@ msgstr "Оставьте пустым, чтобы использовать ст�
 #: ../stack/data/messages:99 ../switcher/data/messages:145
 #: ../tomboy/data/messages:121 ../weather/data/messages:125
 msgid "Sub-dock view name:"
-msgstr "Имя темы для суб-панели:"
+msgstr "Тема для суб-панели:"
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
@@ -4672,7 +4712,8 @@ msgstr "в днях. Установите 0, чтобы не использов�
 
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Показывать только файлы, время последних изменений которых меньше чем:"
+msgstr ""
+"Показывать только файлы, время последних изменений которых меньше чем:"
 
 #: ../Messaging-Menu/data/messages:89
 msgid ""
@@ -5367,7 +5408,8 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Размер десклета (ширина x высота):"
 
 #: ../Status-Notifier/data/messages:29
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "В зависимости от вашего Менеджера Окон, вы можете перемешать с помощью ALT + "
 "левый щелчок"
@@ -5464,19 +5506,19 @@ msgstr "Изображение переднего плана:"
 msgid "Foreground tansparency :"
 msgstr "Прозрачность переднего плана:"
 
-#: ../Status-Notifier/data/messages:93 ../template/data/messages:93
+#: ../Status-Notifier/data/messages:93
 msgid "This is a tooltip for this parameter."
 msgstr "Подсказка для этого параметра."
 
-#: ../Status-Notifier/data/messages:95 ../template/data/messages:95
+#: ../Status-Notifier/data/messages:95
 msgid "This is a boolean parameter. Y/N ?"
 msgstr "Это булевый параметр? Y/N?"
 
-#: ../Status-Notifier/data/messages:97 ../template/data/messages:97
+#: ../Status-Notifier/data/messages:97
 msgid "This integer can go from 0 to 10 :"
 msgstr "Целое число от 0 до 10:"
 
-#: ../Status-Notifier/data/messages:99 ../template/data/messages:99
+#: ../Status-Notifier/data/messages:99
 msgid "Enter some text here :"
 msgstr "Введите текст:"
 
@@ -6283,7 +6325,8 @@ msgstr "Высота точки схождения:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -6295,7 +6338,8 @@ msgstr "Амлитуда кривой."
 
 #: ../dock-rendering/data/messages:19
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "При значении 1, значки будут такого же размера, как и остальные виды."
+msgstr ""
+"При значении 1, значки будут такого же размера, как и остальные виды."
 
 #: ../dock-rendering/data/messages:21
 msgid "Ratio to apply on icons' size :"
@@ -6439,7 +6483,8 @@ msgid "Space between icons:"
 msgstr "Расстояние между значками:"
 
 #: ../dock-rendering/data/messages:99
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значении 0 волна будет полностью плоской, при значении 1 волна будет "
 "идентична другим видам."
@@ -6540,9 +6585,8 @@ msgid "Display the following quick info :"
 msgstr "Показывать следующую информацию:"
 
 #: ../dustbin/data/messages:103
-#, fuzzy
 msgid "Number of files"
-msgstr "Количество элементов:"
+msgstr "Количество файлов"
 
 #: ../dustbin/data/messages:105 ../mail/data/messages:125
 msgid "Total number of files"
@@ -6576,7 +6620,8 @@ msgid "Colours"
 msgstr "Цвета"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Он едва изменяет цвета, так что вы можете даже не изменять его."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6804,7 +6849,6 @@ msgid "in seconds"
 msgstr "в секундах"
 
 #: ../mail/data/messages:117
-#, fuzzy
 msgid "Duration of the dialogue"
 msgstr "Продолжительность диалогового окна:"
 
@@ -6815,15 +6859,16 @@ msgid ""
 "accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:121
 msgid "Check mail account on startup?"
 msgstr "Проверять почтовый аккаунт при запуске?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Если отмечено, то будет выведено количество почтовых сообщений, даже если "
 "новых сообщений нет."
@@ -6838,7 +6883,7 @@ msgstr "Предпочитаемое приложение для запуска 
 
 #: ../mail/data/messages:131
 msgid "Add a mail account (you've to launch the applet)"
-msgstr ""
+msgstr "Добавить учётную запись почты (необходимо запустить апплет)"
 
 #: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
@@ -6857,7 +6902,8 @@ msgid "Blur amount:"
 msgstr "Качество размытия:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставьте пустым, чтобы отображать имя проигрывателя, которым вы сейчас "
 "управляете."
@@ -7301,7 +7347,8 @@ msgstr "В пикселях."
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -7498,7 +7545,7 @@ msgstr "Изображение для элементов 'ссылок' :"
 msgid "Options"
 msgstr "Опции"
 
-#: ../stack/data/messages:117 ../stacks/data/messages:107
+#: ../stack/data/messages:117
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
@@ -7506,7 +7553,7 @@ msgstr ""
 "Эта опция позволит вам избежать отображения некоторых файлов в Stacks, "
 "основываясь на их типе (видео, изображения и т.д...)"
 
-#: ../stack/data/messages:119 ../stacks/data/messages:109
+#: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
 msgstr "Фильтровать файлы по их mime типам?"
 
@@ -7514,7 +7561,7 @@ msgstr "Фильтровать файлы по их mime типам?"
 msgid "E.g. image, text, video, audio, application..."
 msgstr "Например: image, text, video, audio, application, ..."
 
-#: ../stack/data/messages:123 ../stacks/data/messages:113
+#: ../stack/data/messages:123
 msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "Укажите список mime типов:"
 
@@ -7541,57 +7588,6 @@ msgstr ""
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr "При копировании/вставке/вырезанию использовать буфер обмена выбора?"
-
-#: ../stacks/data/messages:91
-#, fuzzy
-msgid "Directory & Options"
-msgstr "Каталог с изображениями:"
-
-#: ../stacks/data/messages:93
-msgid ""
-"Stacks will act as a the shortcut applet's but with files. To add a file, "
-"just drag and drop it on the Stacks icon"
-msgstr ""
-
-#: ../stacks/data/messages:95
-#, fuzzy
-msgid "Use only Stacks local directory ?"
-msgstr "Очистить локальную директорию"
-
-#: ../stacks/data/messages:97
-msgid ""
-"You can use '_LocalDirectory_' tag to have both stack local and all "
-"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
-msgstr ""
-
-#: ../stacks/data/messages:99
-msgid "Monitored Directories :"
-msgstr ""
-
-#: ../stacks/data/messages:101
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-
-#: ../stacks/data/messages:103
-#, fuzzy
-msgid "List hidden files ?"
-msgstr "Показывать скрытые файлы?"
-
-#: ../stacks/data/messages:105
-#, fuzzy
-msgid "Separate different directories with separators ?"
-msgstr "Отделять ярлыки разделителями?"
-
-#: ../stacks/data/messages:111
-#, fuzzy
-msgid "Eg: image, text, video, audio, application..."
-msgstr "Например: image, text, video, audio, application, ..."
-
-#: ../stacks/data/messages:117
-#, fuzzy
-msgid "Name of the view used for the sub-dock :"
-msgstr "Файл изображения значка 'стоп':"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7692,7 +7688,8 @@ msgstr "только другие"
 
 #: ../switcher/data/messages:141
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr ""
+"Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:147
 msgid "In expanded mode, render the desklet in 3D?"
@@ -7763,14 +7760,12 @@ msgid "Default title:"
 msgstr "Стандартный заголовок:"
 
 #: ../tomboy/data/messages:19
-#, fuzzy
 msgid "'Close' icon image name:"
-msgstr "Файл изображения для значка 'поломка':"
+msgstr "Изображение для значка 'Закрыть':"
 
 #: ../tomboy/data/messages:107
-#, fuzzy
 msgid "Image file for the notes:"
-msgstr "Изображение для 'текстовых' элементов:"
+msgstr "Изображение для записок:"
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
@@ -7924,7 +7919,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиция вертикальной полосы"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "Это позволит использовать правый щелчок для вызова меню Cairo-Dock."
 
 #: ../weblets/data/messages:107
@@ -8010,178 +8006,10 @@ msgstr "Служебная информация о сигнале"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Заменить стандартную подпись, на имя точки доступа?"
 
-#~ msgid "AlsaMixer"
-#~ msgstr "AlsaMixer"
-
-#~ msgid "Action_0"
-#~ msgstr "Действие_0"
-
-#~ msgid "Action_0/Command_0"
-#~ msgstr "Действие_0/Команда_0"
-
-#~ msgid "Action_1"
-#~ msgstr "Действие_1"
-
-#~ msgid "Action_1/Command_0"
-#~ msgstr "Действие_1/Команда_0"
-
-#~ msgid "Action_1/Command_1"
-#~ msgstr "Действие_1/Команда_1"
-
-#~ msgid "Action_1/Command_2"
-#~ msgstr "Действие_1/Команда_2"
-
-#~ msgid "Action_1/Command_3"
-#~ msgstr "Действие_1/Команда_3"
-
-#~ msgid "Action_1/Command_4"
-#~ msgstr "Действие_1/Команда_4"
-
-#~ msgid "Action_2"
-#~ msgstr "Действие_2"
-
-#~ msgid "Action_2/Command_0"
-#~ msgstr "Действие_2/Команда_2"
-
-#~ msgid "Action_2/Command_1"
-#~ msgstr "Действие_2/Команда_1"
-
-#~ msgid "Action_3"
-#~ msgstr "Действие_3"
-
-#~ msgid "Action_3/Command_0"
-#~ msgstr "Действие_3/Команда_0"
-
-#~ msgid "Action_3/Command_1"
-#~ msgstr "Действие_3/Команда_1"
-
-#~ msgid "Action_4"
-#~ msgstr "Действие_4"
-
-#~ msgid "Action_4/Command_0"
-#~ msgstr "Действие_4/Команда_0"
-
-#~ msgid "Action_4/Command_1"
-#~ msgstr "Действие_4/Команда_1"
-
-#~ msgid "Action_5"
-#~ msgstr "Действие_5"
-
-#~ msgid "Action_5/Command_0"
-#~ msgstr "Действие_5/Команда_0"
-
-#~ msgid "Action_5/Command_1"
-#~ msgstr "Действие_5/Команда_1"
-
-#~ msgid "Action_6"
-#~ msgstr "Действие_6"
-
-#~ msgid "Action_6/Command_0"
-#~ msgstr "Действие_6/Команда_0"
-
-#~ msgid "Action_6/Command_1"
-#~ msgstr "Действие_6/Команда_1"
-
-#~ msgid "Action_6/Command_2"
-#~ msgstr "Действие_6/Команда_1"
-
-#~ msgid "Action_6/Command_3"
-#~ msgstr "Действие_6/Команда_3"
-
-#~ msgid "Action_6/Command_4"
-#~ msgstr "Действие_6/Команда_4"
-
-#~ msgid "Indicator-Menus"
-#~ msgstr "Меню-индикаторы"
-
-#~ msgid "Menus to control your session, connection state, etc."
-#~ msgstr "Меню для управления вашей сессией, состоянием соединения и т.д."
-
-#~ msgid "Toto"
-#~ msgstr "Toto"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Удалить корзину"
-
-#~ msgid "Show %s"
-#~ msgstr "Показать %s"
-
-#~ msgid "Show All"
-#~ msgstr "Показать все"
-
-#~ msgid "Delete %s"
-#~ msgstr "Удалить %s"
-
-#~ msgid "Delete All"
-#~ msgstr "Удалить все"
-
-#~ msgid "You are about to delete all files in %s. Continue?"
-#~ msgstr "Вы собираетесь удалить все файлы из %s. Уверены?"
-
-#~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual file browser,\n"
-#~ "you can change this in the configuration panel of this module"
-#~ msgstr ""
-#~ "Возникла проблема\n"
-#~ "Если '%s' на является обозревателем по-умолчанию,\n"
-#~ "то вы можете изменить его в настройках модуля."
-
-#~ msgid "Number of Dustbins"
-#~ msgstr "Количество корзин"
-
-#~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
-#~ msgstr ""
-#~ "в Мб. Вы будете предупреждены, когда превысите лимит. Установите 0, чтобы "
-#~ "не использовать его."
-
-#~ msgid "Maximum total size of all dustbins :"
-#~ msgstr "Максимальное количество файлов в корзинах:"
-
-#~ msgid "Maximum size authorized for each dustbin :"
-#~ msgstr "Максимальный размер для каждой корзины:"
-
-#~ msgid "Empty all dustbins"
-#~ msgstr "Очистить все корзины"
-
-#~ msgid "Desktop-less support"
-#~ msgstr "Сквозная поддержка."
-
-#~ msgid ""
-#~ "If the Trash folder is not known by the dock, you can specify it here :"
-#~ msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
-
-#~ msgid "in seconds. only used if you can't monitor directories."
-#~ msgstr ""
-#~ "в секундах. Используется, только если вы не можете отслеживать каталоги."
-
-#~ msgid "Time interval to check if dustbin is full/empty :"
-#~ msgstr "Интервал проверок на заполненность корзин:"
-
-#~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
-#~ msgstr ""
-#~ "Используйте если вы столкнулись с тем, что апплет не может отобразить "
-#~ "содержимое корзины по щелчку."
-
-#~ msgid "Alternative file browser used to show a trash :"
-#~ msgstr "Алтернативный обозреватель файлов, для просмотра корзин:"
-
-#~ msgid "Add a mail account"
-#~ msgstr "Добавить почтовый аккаунт"
-
-#~ msgid "Name of an image for the 'empty' icon :"
-#~ msgstr "Файл изображения для значка 'пустой':"
-
-#~ msgid "Specify a title :"
-#~ msgstr "Укажите заголовок:"
-
 #~ msgid "Free"
 #~ msgstr "Свободно"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8190,6 +8018,20 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Не удалось обнаружить канал с именем '%s'\n"
 #~ "Попробуйте открыть панель настроек апплета\n"
 #~ " и выбрать правильный аудио-канал для управления."
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "Показать %s"
+
+#~ msgid "Show All"
+#~ msgstr "Показать все"
+
+#, c-format
+#~ msgid "Delete %s"
+#~ msgstr "Удалить %s"
+
+#~ msgid "Delete All"
+#~ msgstr "Удалить все"
 
 #~ msgid "New song"
 #~ msgstr "Новая композиция"
@@ -8214,8 +8056,7 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Этот апплет позволяет переключаться между виртуальными рабочими столами.\n"
-#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-"
-#~ "панель).\n"
+#~ "Имеется два режима: компактный (в одном значке) и расширенный (суб-панель).\n"
 #~ "Вы можете быстро добавить/удалить рабочий стол через правый щелчок.\n"
 #~ "Прокручивание колесом мыши на основном значке будет переключать столы, "
 #~ "средний щелчок - показать рабочий стол"
@@ -8239,8 +8080,8 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
 #~ "number or so."
 #~ msgstr ""
-#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без "
-#~ "каких либо цифр и т.п."
+#~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без каких "
+#~ "либо цифр и т.п."
 
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Шрифт для цифрового дисплея:"
@@ -8265,6 +8106,28 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "otherwise they will turn."
 #~ msgstr "в противном случае они будут повёрнуты."
+
+#~ msgid ""
+#~ "If the Trash folder is not known by the dock, you can specify it here :"
+#~ msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
+
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "Максимальное количество файлов в корзинах:"
+
+#~ msgid "Maximum size authorized for each dustbin :"
+#~ msgstr "Максимальный размер для каждой корзины:"
+
+#~ msgid "Desktop-less support"
+#~ msgstr "Сквозная поддержка."
+
+#~ msgid ""
+#~ "Only use this if you notice that the applet can't display the trash on click."
+#~ msgstr ""
+#~ "Используйте если вы столкнулись с тем, что апплет не может отобразить "
+#~ "содержимое корзины по щелчку."
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "Алтернативный обозреватель файлов, для просмотра корзин:"
 
 #~ msgid "Theme overriding"
 #~ msgstr "Замещение тем"
@@ -8317,42 +8180,45 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "Этот апплет  показывает активные соединения\n"
-#~ "Левый щелчок, чтобы получить некоторую информацию, средний для "
-#~ "перепроверки."
+#~ "Левый щелчок, чтобы получить некоторую информацию, средний для перепроверки."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Плагин типа Gnome-Do, который позволит вам управлять панелью с "
-#~ "клавиатуры.\n"
+#~ "Плагин типа Gnome-Do, который позволит вам управлять панелью с клавиатуры.\n"
 #~ "Имеет 2 режима, каждый из которых включается клавиатурным сокращением:\n"
-#~ "— навигационный режим: используйте стредки для навигации среди панелей и "
-#~ "суб-панелей\n"
+#~ "— навигационный режим: используйте стредки для навигации среди панелей и суб-"
+#~ "панелей\n"
 #~ "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
 #~ "ближайший похожий\n"
 #~ "  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
 #~ "Alt+Enter для среднего и Ctrl+Enter для левого\n"
 #~ "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
 #~ "или вычисление.\n"
-#~ "  используйте стрелки для навигации, нажмите Enter для подтверждения, "
-#~ "CTRL, ALT или SHIFT для сохранения результата.\n"
+#~ "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
+#~ "ALT или SHIFT для сохранения результата.\n"
 #~ "Escape или то же клавиатурное сокращение для отмены."
+
+#~ msgid "Name of an image for the 'empty' icon :"
+#~ msgstr "Файл изображения для значка 'пустой':"
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Не удалось соединиться..."
+
+#~ msgid "Specify a title :"
+#~ msgstr "Укажите заголовок:"
 
 #~ msgid "Title num :"
 #~ msgstr "Номер заголовка:"
@@ -8380,8 +8246,8 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Этот апплет добавляет значок для отображения рабочего стола,\n"
 #~ "а также: всех десклетов, Слоя Виджетов, всех рабочих столов.\n"
 #~ "Левый щелчок для показа/скрытия рабочего стола,\n"
-#~ "Средний щелчок для показа/скрытия рабочего стола, десклетов, Слоя "
-#~ "Виджетов или всех рабочих столов сразу."
+#~ "Средний щелчок для показа/скрытия рабочего стола, десклетов, Слоя Виджетов "
+#~ "или всех рабочих столов сразу."
 
 #~ msgid "Number of feed lines to display in the dialog :"
 #~ msgstr "Количество строк отображаемых в окне:"
@@ -8409,8 +8275,8 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
 #~ "It can display the download/upload speeds and the wifi signal quality.\n"
-#~ "If you have network-manager running, it can also let you choose the "
-#~ "current wifi network.\n"
+#~ "If you have network-manager running, it can also let you choose the current "
+#~ "wifi network.\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "Этот апплет помогает вам отслеживать сетевые соединения.\n"
@@ -8420,6 +8286,20 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "ToolTip"
 #~ msgstr "подсказка"
+
+#, c-format
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "Вы собираетесь удалить все файлы из %s. Уверены?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "Возникла проблема\n"
+#~ "Если '%s' на является обозревателем по-умолчанию,\n"
+#~ "то вы можете изменить его в настройках модуля."
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Показывать инфо-облачко при изменении ленты?"
@@ -8431,9 +8311,9 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgstr "Анимация значка при изменении ленты:"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
 #~ "В градусах, относительно вертикальной позиции. Таким образом создаётся 3D "
 #~ "эффект. установите 0, чтобы не использовать наклон."
@@ -8442,11 +8322,11 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgstr "Наклон плоскости:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "Значение 0,5 будет означать, что панель на половину скрыта, поэтому "
-#~ "половина значков будет на переднем фоне, а остальное на заднем."
+#~ "Значение 0,5 будет означать, что панель на половину скрыта, поэтому половина "
+#~ "значков будет на переднем фоне, а остальное на заднем."
 
 #~ msgid "Percentage of the dock's width that appears on the foreground:"
 #~ msgstr "Процент ширины панели для отображения на переднем фоне:"
@@ -8455,8 +8335,8 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "The greater, the deeper. This represents the gap between the bottoms "
 #~ "ofbackground icons and the tops of foreground icons (in pixels)."
 #~ msgstr ""
-#~ "Чем выше значение, тем глубже. Влияет на интервал между нижним краем "
-#~ "фоновых значков и верхним краем значков на переднем фоне (в пикселях)."
+#~ "Чем выше значение, тем глубже. Влияет на интервал между нижним краем фоновых "
+#~ "значков и верхним краем значков на переднем фоне (в пикселях)."
 
 #~ msgid "Depth of the plane:"
 #~ msgstr "Глубина плоскости:"
@@ -8464,17 +8344,34 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Always show the fronts of icons?"
 #~ msgstr "Всегда отображать поверхность значков?"
 
+#~ msgid "Number of Dustbins"
+#~ msgstr "Количество корзин"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+#~ msgstr ""
+#~ "в Мб. Вы будете предупреждены, когда превысите лимит. Установите 0, чтобы не "
+#~ "использовать его."
+
+#~ msgid "Time interval to check if dustbin is full/empty :"
+#~ msgstr "Интервал проверок на заполненность корзин:"
+
 #~ msgid "Class of the mail application (optional)"
 #~ msgstr "Класс почтового приложения (опционально)"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
-#~ "Предотвратит появление значка почтового приложения на панели задач. "
-#~ "Значок апплета будет вести себя и как значок запуска, и как приложение, и "
-#~ "как апплет."
+#~ "Предотвратит появление значка почтового приложения на панели задач. Значок "
+#~ "апплета будет вести себя и как значок запуска, и как приложение, и как "
+#~ "апплет."
+
+#~ msgid "Add a mail account"
+#~ msgstr "Добавить почтовый аккаунт"
+
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "Отделять ярлыки разделителями?"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
@@ -8493,8 +8390,7 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Левый щелчок, чтобы показать/скрыть ваши десклеты.\n"
 #~ "Вообще-то, если вы используете Compiz, то нет нужды использовать этот "
 #~ "апплет;\n"
-#~ " вам потребуется только использовать возможность десклетов — 'Слой "
-#~ "Виджетов'"
+#~ " вам потребуется только использовать возможность десклетов — 'Слой Виджетов'"
 
 #~ msgid "Location not found"
 #~ msgstr "Не удалось найти местонахождение"
@@ -8511,8 +8407,24 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Show/hide desklets that are on the widget layer too?"
 #~ msgstr "Показывать/скрывать десклеты и на Слое Виджетов?"
 
+#~ msgid "in seconds. only used if you can't monitor directories."
+#~ msgstr ""
+#~ "в секундах. Используется, только если вы не можете отслеживать каталоги."
+
+#~ msgid "Empty all dustbins"
+#~ msgstr "Очистить все корзины"
+
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
 #~ msgid "No task is sheduled for today."
 #~ msgstr "Сегодня нет событий."
 
 #~ msgid "No task is sheduled for the next 7 days."
 #~ msgstr "Нет событий на следующие 7 дней."
+
+#~ msgid "Menus to control your session, connection state, etc."
+#~ msgstr "Меню для управления вашей сессией, состоянием соединения и т.д."
+
+#~ msgid "Indicator-Menus"
+#~ msgstr "Меню-индикаторы"

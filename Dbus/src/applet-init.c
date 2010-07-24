@@ -32,7 +32,8 @@ CD_APPLET_DEFINE_BEGIN ("Dbus",
 	N_("This plug-in lets extern applications interact on the dock.\n"
 	"The communication between both sides is based on Dbus"),
 	"Necropotame & Fabounet")
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE ("DBus");
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 CD_APPLET_DEFINE_END
 

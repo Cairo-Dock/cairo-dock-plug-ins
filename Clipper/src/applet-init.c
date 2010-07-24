@@ -26,7 +26,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("Clipper",
+CD_APPLET_DEFINITION (N_("Clipper"),
 	1, 6, 3,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet keeps a trace of the clipboard and mouse selection,\n"

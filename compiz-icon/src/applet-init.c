@@ -28,7 +28,7 @@
 
 #define CD_COMPIZ_CHECK_TIME 4
 
-CD_APPLET_DEFINITION ("compiz-icon",
+CD_APPLET_DEFINITION (N_("compiz-icon"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to manage compiz and other windows manager\n"

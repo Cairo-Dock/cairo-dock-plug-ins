@@ -27,7 +27,7 @@
 #include "tomboy-init.h"
 
 
-CD_APPLET_DEFINITION ("Note-Taking",
+CD_APPLET_DEFINITION (N_("Note-Taking"),
 	1, 5, 4,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("Control your Gnote or TomBoy's notes directly in the dock !\n"

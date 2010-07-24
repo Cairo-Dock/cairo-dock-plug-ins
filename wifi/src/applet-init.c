@@ -27,7 +27,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION ("wifi",
+CD_APPLET_DEFINITION (N_("wifi"),
 	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the signal strength of the first active wifi connection\n"

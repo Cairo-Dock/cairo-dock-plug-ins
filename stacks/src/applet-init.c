@@ -27,7 +27,7 @@
 #include "applet-stacks.h"
 
 
-CD_APPLET_DEFINITION ("stacks",
+CD_APPLET_DEFINITION (N_("stacks"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"

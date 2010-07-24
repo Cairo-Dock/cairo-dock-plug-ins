@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-06-10 00:29+0000\n"
+"POT-Creation-Date: 2010-07-22 02:10+0000\n"
+"PO-Revision-Date: 2010-07-22 02:54+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-06-11 03:48+0000\n"
+"X-Launchpad-Export-Date: 2010-07-23 04:13+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: sv\n"
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
@@ -221,7 +223,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:539
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -288,9 +291,8 @@ msgid ""
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:216
-#, fuzzy
 msgid "Rename to:"
-msgstr "Byt namn"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:223
 #, c-format
@@ -301,14 +303,12 @@ msgid ""
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:243
-#, fuzzy
 msgid "Delete this file"
-msgstr "Ta bort anteckning"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:245
-#, fuzzy
 msgid "Rename this file"
-msgstr "Byt namn"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:247
 msgid "Properties"
@@ -964,9 +964,8 @@ msgid ""
 msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:42
-#, fuzzy
 msgid "Sound Control"
-msgstr "Info och Controller"
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -1149,8 +1148,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1373,7 +1372,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:130
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:241
@@ -1383,7 +1383,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:286
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-init.c:41
@@ -1538,7 +1539,6 @@ msgid ""
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:32
-#, fuzzy
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Alla papperskorgar kommer att tömmas. Är du säker?"
 
@@ -1547,9 +1547,8 @@ msgid "The trash contains"
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:65
-#, fuzzy
 msgid "files"
-msgstr " fil(er)"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:67
 msgid "Mo"
@@ -1560,14 +1559,12 @@ msgid "Ko"
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:73
-#, fuzzy
 msgid "Show Trash (click)"
-msgstr "Visa Papperskorg"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:74
-#, fuzzy
 msgid "Empty Trash (middle-click)"
-msgstr "Nästa (mellanklick)"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:76
 msgid "Display dustbins information"
@@ -1754,9 +1751,8 @@ msgid "Use a secure connection (SSL)"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Timeout"
-msgstr "Tidszon:"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
 msgid "In minutes."
@@ -1767,14 +1763,12 @@ msgid "Specific mail application"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Leave empty to use the default mail application."
-msgstr "Lämna tomt för att använda standardkommando."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Directory on server:"
-msgstr "Bildkatalog:"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Path of mbox file:"
@@ -1971,9 +1965,8 @@ msgid "Stop"
 msgstr "Stopp"
 
 #: ../musicPlayer/src/applet-notifications.c:177
-#, fuzzy
 msgid "Show the Window"
-msgstr "Visa datum:"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:179
 msgid "Show JumpBox"
@@ -2126,9 +2119,9 @@ msgid "Unmounted"
 msgstr "Avmonterad"
 
 #: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now mounted"
-msgstr "%s har nu avmonterats"
+msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:147
 #: ../shortcuts/src/applet-load-icons.c:137
@@ -2137,7 +2130,7 @@ msgid "%s has been connected"
 msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now unmounted"
 msgstr "%s har nu avmonterats"
 
@@ -2159,15 +2152,15 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "failed to mount %s"
-msgstr "kunde inte avmontera %s"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to unmount %s"
-msgstr "kunde inte avmontera %s"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
@@ -2178,32 +2171,28 @@ msgid "No disks or bookmarks were found."
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:193
-#, fuzzy
 msgid "Enter a name for this bookmark:"
-msgstr "Ta bort bokmärket"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
 msgstr "Ta bort bokmärket"
 
 #: ../shortcuts/src/applet-notifications.c:251
-#, fuzzy
 msgid "Rename this bookmark"
-msgstr "Ta bort bokmärket"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:257
 msgid "Eject"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Unmount (middle-click)"
-msgstr "Nästa (mellanklick)"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Mount (middle-click)"
-msgstr "Nästa (mellanklick)"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
@@ -2219,8 +2208,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -4170,9 +4159,8 @@ msgid "Font to be used by default if none is specify in the .xml"
 msgstr ""
 
 #: ../Doncky/data/messages:101
-#, fuzzy
 msgid "Default Font:"
-msgstr "Standard ikon:"
+msgstr ""
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
@@ -4187,25 +4175,24 @@ msgid "Margin to be used on left, right and top of the desklet"
 msgstr ""
 
 #: ../Doncky/data/messages:109
-#, fuzzy
 msgid "Margin all around the desklet:"
-msgstr "Bild för att dölja desklet:"
+msgstr ""
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
 msgstr ""
 
 #: ../Doncky/data/messages:113
-#, fuzzy
 msgid "Space between lines:"
-msgstr "Avstånd mellan ikoner:"
+msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
 msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -4253,47 +4240,40 @@ msgid "Border colour :"
 msgstr ""
 
 #: ../Folders/data/messages:7
-#, fuzzy
 msgid "Let empty to use the name of the folder."
-msgstr "Lämna tomt för att använda namnet på staden."
+msgstr ""
 
 #: ../Folders/data/messages:11
-#, fuzzy
 msgid "How to render the icon :"
-msgstr "Hur ska aktivt skrivbord visas:"
+msgstr ""
 
 #: ../Folders/data/messages:13
-#, fuzzy
 msgid "Use an image"
-msgstr "öppna bild"
+msgstr ""
 
 #: ../Folders/data/messages:15
 msgid "Draw sub-dock's content as emblems"
 msgstr ""
 
 #: ../Folders/data/messages:17
-#, fuzzy
 msgid "Draw sub-dock's content as stack"
-msgstr "Visa noteringens innehåll på ikonen?"
+msgstr ""
 
 #: ../Folders/data/messages:19
-#, fuzzy
 msgid "Draw sub-dock's content inside a box"
-msgstr "Visa noteringens innehåll på ikonen?"
+msgstr ""
 
 #: ../Folders/data/messages:105
 msgid "Folder's path:"
 msgstr ""
 
 #: ../Folders/data/messages:107
-#, fuzzy
 msgid "Maximum number of files to list:"
-msgstr "Totalt antal filer"
+msgstr ""
 
 #: ../Folders/data/messages:109
-#, fuzzy
 msgid "Sort files by :"
-msgstr "Sortera efter:"
+msgstr ""
 
 #: ../Folders/data/messages:111 ../stack/data/messages:127
 msgid "Name"
@@ -4304,9 +4284,8 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../Folders/data/messages:115
-#, fuzzy
 msgid "Size"
-msgstr "Rutnät"
+msgstr ""
 
 #: ../Folders/data/messages:117
 msgid "Sort folders before files?"
@@ -5052,7 +5031,8 @@ msgid "Desklet's dimension (width x height) :"
 msgstr "Storlek på Desklet (bredd x höjd):"
 
 #: ../Status-Notifier/data/messages:29
-msgid "Depending on your WindowManager, you can move it with ALT + left_click"
+msgid ""
+"Depending on your WindowManager, you can move it with ALT + left_click"
 msgstr ""
 "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
@@ -6090,7 +6070,8 @@ msgid "Space between icons:"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../dock-rendering/data/messages:99
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -6185,9 +6166,8 @@ msgid "Display the following quick info :"
 msgstr "Visa följande snabbinformation:"
 
 #: ../dustbin/data/messages:103
-#, fuzzy
 msgid "Number of files"
-msgstr "Totalt antal filer"
+msgstr ""
 
 #: ../dustbin/data/messages:105 ../mail/data/messages:125
 msgid "Total number of files"
@@ -6221,7 +6201,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6442,9 +6423,8 @@ msgid "in seconds"
 msgstr "i sekunder"
 
 #: ../mail/data/messages:117
-#, fuzzy
 msgid "Duration of the dialogue"
-msgstr "Bildkatalog:"
+msgstr ""
 
 #: ../mail/data/messages:119
 msgid ""
@@ -6458,7 +6438,8 @@ msgid "Check mail account on startup?"
 msgstr ""
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:127
@@ -6490,7 +6471,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7162,9 +7144,8 @@ msgstr ""
 "Använd urklippshanteraren för markeringar vid kopiera/klipp ut/klistra in?"
 
 #: ../stacks/data/messages:91
-#, fuzzy
 msgid "Directory & Options"
-msgstr "Bildkatalog:"
+msgstr ""
 
 #: ../stacks/data/messages:93
 msgid ""
@@ -7192,24 +7173,20 @@ msgid ""
 msgstr ""
 
 #: ../stacks/data/messages:103
-#, fuzzy
 msgid "List hidden files ?"
-msgstr "Visa diskar och volymer?"
+msgstr ""
 
 #: ../stacks/data/messages:105
-#, fuzzy
 msgid "Separate different directories with separators ?"
-msgstr "Avskilj olika genvägar med avgränsare?"
+msgstr ""
 
 #: ../stacks/data/messages:111
-#, fuzzy
 msgid "Eg: image, text, video, audio, application..."
-msgstr "T ex bilder, video, ljud, program..."
+msgstr ""
 
 #: ../stacks/data/messages:117
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "Bild för stop:"
+msgstr "Namn på vy för sub-dockan:"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7383,14 +7360,12 @@ msgid "Default title:"
 msgstr "Standardtitel:"
 
 #: ../tomboy/data/messages:19
-#, fuzzy
 msgid "'Close' icon image name:"
-msgstr "Bild för bruten:"
+msgstr ""
 
 #: ../tomboy/data/messages:107
-#, fuzzy
 msgid "Image file for the notes:"
-msgstr "Bild för textobjekt:"
+msgstr ""
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
@@ -7543,7 +7518,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7625,62 +7601,19 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
-#~ msgid "Empty Trash"
-#~ msgstr "Töm Papperskorg"
-
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Visa %s"
 
 #~ msgid "Show All"
 #~ msgstr "Visa alla"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Ta bort %s"
 
 #~ msgid "Delete All"
 #~ msgstr "Ta bort alla"
-
-#~ msgid "You are about to delete all files in %s. Continue?"
-#~ msgstr "Alla filer i %s kommer att raderas. Är du säker?"
-
-#~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual file browser,\n"
-#~ "you can change this in the configuration panel of this module"
-#~ msgstr ""
-#~ "Ett problem uppstod.\n"
-#~ "Om '%s' inte är din vanliga filhanterare,\n"
-#~ "ändra detta i inställningarna för denna modul."
-
-#~ msgid "Number of Dustbins"
-#~ msgstr "Antal papperskorgar"
-
-#~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
-#~ msgstr ""
-#~ "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
-#~ "inaktivera."
-
-#~ msgid "Maximum total size of all dustbins :"
-#~ msgstr "Maximal storlek för alla papperskorgar:"
-
-#~ msgid "Maximum size authorized for each dustbin :"
-#~ msgstr "Maximal storlek för enskild papperskorg:"
-
-#~ msgid "Desktop-less support"
-#~ msgstr "Manuell hantering"
-
-#~ msgid "Time interval to check if dustbin is full/empty :"
-#~ msgstr "Tid mellan uppdateringar:"
-
-#~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
-#~ msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
-
-#~ msgid "Alternative file browser used to show a trash :"
-#~ msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
 
 #~ msgid "feeled"
 #~ msgstr "upplevd"
@@ -7713,6 +7646,22 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "otherwise they will turn."
 #~ msgstr "annars vänder de."
 
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "Maximal storlek för alla papperskorgar:"
+
+#~ msgid "Maximum size authorized for each dustbin :"
+#~ msgstr "Maximal storlek för enskild papperskorg:"
+
+#~ msgid "Desktop-less support"
+#~ msgstr "Manuell hantering"
+
+#~ msgid ""
+#~ "Only use this if you notice that the applet can't display the trash on click."
+#~ msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
+
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animera ikonen vid meddelande?"
 
@@ -7723,8 +7672,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -7790,8 +7739,8 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "höjd:"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"
@@ -7935,11 +7884,11 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
 
 #~ msgid "Personnal"
 #~ msgstr "Personlig"
@@ -8076,20 +8025,37 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "xmms applet\n"
 #~ " skapad av ChAnGFu för Cairo-Dock"
 
+#~ msgid "Empty Trash"
+#~ msgstr "Töm Papperskorg"
+
+#, c-format
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "Alla filer i %s kommer att raderas. Är du säker?"
+
+#, c-format
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
 #~ msgstr ""
-#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande "
-#~ "plan som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
+#~ "Ett problem uppstod.\n"
+#~ "Om '%s' inte är din vanliga filhanterare,\n"
+#~ "ändra detta i inställningarna för denna modul."
+
+#~ msgid ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan "
+#~ "som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Planets vinkel:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
 #~ "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
 #~ "förgrunden, den andra hälften i bakgrunden."
@@ -8109,6 +8075,18 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "Always show the fronts of icons?"
 #~ msgstr "Visa alltid ikonens framsida?"
+
+#~ msgid "Number of Dustbins"
+#~ msgstr "Antal papperskorgar"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+#~ msgstr ""
+#~ "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
+#~ "inaktivera."
+
+#~ msgid "Time interval to check if dustbin is full/empty :"
+#~ msgstr "Tid mellan uppdateringar:"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"

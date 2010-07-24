@@ -26,7 +26,7 @@
 #include "applet-netspeed.h"
 
 
-CD_APPLET_DEFINITION ("netspeed",
+CD_APPLET_DEFINITION (N_("netspeed"),
 	2, 0, 5,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the bit rate of your internet connection and some stats about it.\n"

@@ -28,7 +28,7 @@
 #include "powermanager-init.h"
 
 
-CD_APPLET_DEFINITION ("PowerManager",
+CD_APPLET_DEFINITION (N_("PowerManager"),
 	2, 0, 6,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("A power manager for laptop batteries. Works with ACPI and DBus."),

@@ -28,7 +28,7 @@
 #include "terminal-init.h"
 
 
-CD_APPLET_DEFINITION ("terminal",
+CD_APPLET_DEFINITION (N_("terminal"),
 	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Add a terminal to your dock !\n"

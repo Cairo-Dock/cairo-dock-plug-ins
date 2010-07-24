@@ -35,7 +35,8 @@ CD_APPLET_DEFINE_BEGIN ("Cairo-Penguin",
 	"Middle-click to disturb him ^_^\n"
 	"Tux images are taken from Pingus, some other characters are available or can be added easily."),
 	"Fabounet (Fabrice Rey)")
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;	
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Cairo-Penguin"));
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_CAN_DOCK);
 CD_APPLET_DEFINE_END
 
