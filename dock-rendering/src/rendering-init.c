@@ -96,7 +96,7 @@ gint     my_diapo_simple_sinW;
 gboolean my_diapo_simple_lineaire;
 gboolean  my_diapo_simple_wide_grid;
 gboolean  my_diapo_simple_text_only_on_pointed;
-gboolean my_diapo_simple_display_all_icons;
+gboolean my_diapo_simple_display_all_labels;
 
 gdouble  my_diapo_simple_color_frame_start[4];
 gdouble  my_diapo_simple_color_frame_stop[4];
