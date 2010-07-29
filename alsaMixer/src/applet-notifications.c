@@ -79,8 +79,6 @@ void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 CD_APPLET_ON_SCROLL_BEGIN
 	int iVolume = mixer_get_mean_volume ();  // [0;100]
 	double delta = myConfig.iScrollVariation;
-	if (myData.iVolumeMax > myData.iVolumeMin)
-		delta = MAX (delta, ceil (100. / (myData.iVolumeMax - myData.iVolumeMin)));
 	if (CD_APPLET_SCROLL_DOWN)
 	{
 		iVolume = MAX (iVolume - delta, 0);

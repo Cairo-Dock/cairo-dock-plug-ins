@@ -166,14 +166,13 @@ int mixer_get_mean_volume (void)
 	long iVolumeLeft=0, iVolumeRight=0;
 	gboolean bHasLeft = snd_mixer_selem_has_playback_channel (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
 	gboolean bHasRight = snd_mixer_selem_has_playback_channel (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
-		
+	g_return_val_if_fail (bHasLeft || bHasRight, 0);
+	
 	if (bHasLeft)
 		snd_mixer_selem_get_playback_volume (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
 	if (bHasRight)
 		snd_mixer_selem_get_playback_volume (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iVolumeRight);
 	cd_debug ("volume : %d;%d", iVolumeLeft, iVolumeRight);
-	
-	g_return_val_if_fail (bHasLeft || bHasRight, 0);
 	
 	int iMeanVolume = (iVolumeLeft + iVolumeRight) / (bHasLeft + bHasRight);
 	
@@ -184,6 +183,7 @@ int mixer_get_mean_volume (void)
 void mixer_set_volume (int iNewVolume)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
+	cd_debug ("%s (%d)", __func__, iNewVolume);
 	int iVolume = ceil (myData.iVolumeMin + (myData.iVolumeMax - myData.iVolumeMin) * iNewVolume / 100.);
 	snd_mixer_selem_set_playback_volume_all (myData.pControledElement, iVolume);
 	if (myData.pControledElement2 != NULL)
