@@ -140,6 +140,41 @@ static void _cd_dbus_launch_third_party_applets_in_dir (const gchar *cDirPath)
 	g_free (cThirdPartyPath);
 }
 
+static void _get_package_path (gpointer data)
+{
+	
+}
+static void _apply_package_update (gpointer data)
+{
+	
+}
+static void _on_got_list (GHashTable *pThemesTable, gpointer data)
+{
+	if (pThemesTable != NULL)
+	{
+		g_hash_table_ref (pThemesTable);
+		myData.pThemesTable = pThemesTable;
+		
+		/*dbusApplet *pDbusApplet;
+		GList *a;
+		for (a = myData.pAppletList; a != NULL; a = a->next)
+		{
+			pDbusApplet = a->data;
+			CairoDockPackage *pPackage = g_hash_table_lookup (pThemesTable, pDbusApplet->cModuleName);
+			if (! pPackage)  // applet perso.
+				continue;
+			
+			if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
+			{
+				g_print ("*** the applet '%s' needs to be updated\n", pDbusApplet->cModuleName);
+				pDbusApplet->pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) NULL, NULL);
+				cairo_dock_launch_task (pDbusApplet->pUpdateTask);
+			}
+		}*/
+	}
+	cairo_dock_free_task (myData.pGetListTask);
+	myData.pGetListTask = NULL;
+}
 static gboolean _cd_dbus_launch_third_party_applets (gpointer data)
 {
 	_cd_dbus_launch_third_party_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
@@ -153,7 +188,7 @@ void cd_dbus_launch_service (void)
 	g_type_init();
 	
 	// on cree l'objet distant principal.
-	cd_message("dbus : Lancement du service");
+	cd_message ("dbus : launching service...");
 	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // appelle cd_dbus_main_class_init() et cd_dbus_main_init().
 	
 	// Register the service name
@@ -161,10 +196,26 @@ void cd_dbus_launch_service (void)
 	
 	// on lance les applets distantes.
 	g_idle_add ((GSourceFunc) _cd_dbus_launch_third_party_applets, NULL);  // on les lance avec un delai, car si l'applet DBus est lancee au demarrage du dock, on est dans la fonction cairo_dock_activate_modules_from_list(), et donc si on enregistre des applets pendant ce temps, le dock risque de recharger certaines des applets distantes (celles qui seront actives en conf et qui viendront apres DBus).
+	
+	// on telecharge en tache de fond la liste des applets.
+	gchar *cShareThemesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "third-party");
+	gchar *cUserThemesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, "third-party");
+	myData.pGetListTask = cairo_dock_list_packages_async (cShareThemesDir, cUserThemesDir, "third-party", (CairoDockGetPackagesFunc) _on_got_list, NULL);
+	g_free (cShareThemesDir);
+	g_free (cUserThemesDir);
 }
 
 void cd_dbus_stop_service (void)
 {
+	// on abandonne les mises a jour.
+	cairo_dock_free_task (myData.pGetListTask);
+	myData.pGetListTask = NULL;
+	if (myData.pThemesTable != NULL)
+	{
+		g_hash_table_destroy(myData.pThemesTable);
+		myData.pThemesTable = NULL;
+	}
+	
 	// on vire tous les modules distants.
 	myData.bServiceIsStopping = TRUE;  // on stoppe les applets distantes differemment suivant que c'est l'utilisateur qui la decoche ou pas.
 	dbusApplet *pDbusApplet;

@@ -784,7 +784,7 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
 		///attr.cThemePath = cairo_dock_get_gauge_theme_path (cTheme, CAIRO_DOCK_ANY_THEME);
-		attr.cThemePath = cairo_dock_get_data_renderer_theme_path ("gauge", cTheme, CAIRO_DOCK_ANY_THEME);
+		attr.cThemePath = cairo_dock_get_data_renderer_theme_path ("gauge", cTheme, CAIRO_DOCK_ANY_PACKAGE);
 	}
 	else if (strcmp (cType, "gauge") == 0)
 	{

@@ -6366,11 +6366,11 @@ msgstr "Ratio à appliquer sur les tailles d'icônes :"
 
 #: ../dock-rendering/data/messages:23
 msgid "smaller icons"
-msgstr "Icônes plus petit"
+msgstr "Icônes plus petites"
 
 #: ../dock-rendering/data/messages:25
 msgid "normal icons"
-msgstr "Icône normal"
+msgstr "Icônes normales"
 
 #: ../dock-rendering/data/messages:27
 msgid "SimpleSlide"

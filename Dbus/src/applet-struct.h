@@ -108,6 +108,8 @@ struct _AppletData {
 	gboolean bServiceIsStopping;
 	guint iSidRemoveAppletFromConf;
 	Window xActiveWindow;
+	CairoDockTask *pGetListTask;
+	GHashTable *pThemesTable;
 	} ;
 
 

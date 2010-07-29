@@ -118,7 +118,7 @@ display last image = false
 animation = pulse
 
 #Y[None;0;0;Tiny-URL;1;1;Shorter-Link;1;1] Use the following service to make the URL smaller:
-tiny url = 0
+tiny url = 1
 
 #b Use the tiny URL by default?
 use tiny = false
@@ -145,16 +145,20 @@ file site = 1
 #v
 sep_sites=
 
-#S Custom script for text upload : 
+#S Custom script for text upload :
+#{The script takes the file path as a parameter, and write the resulting URL on the standard output.}
 text script =
 
-#S Custom script for image upload : 
+#S Custom script for image upload :
+#{The script takes the file path as a parameter, and write the resulting URL on the standard output.}
 image script =
 
-#S Custom script for video upload : 
+#S Custom script for video upload :
+#{The script takes the file path as a parameter, and write the resulting URL on the standard output.}
 video script =
 
-#S Custom script for file upload : 
+#S Custom script for file upload :
+#{The script takes the file path as a parameter, and write the resulting URL on the standard output.}
 file script =
 
 #v
@@ -165,4 +169,5 @@ sep_params=
 dropbox dir =
 
 #b Post text as Anonymous ?
+#{Otherwise, your user name will be used when possible.}
 anonymous = false

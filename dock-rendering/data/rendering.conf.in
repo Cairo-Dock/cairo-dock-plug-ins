@@ -45,14 +45,11 @@ simple_sinW = 200
 #b+ Use a linear wave rather than a sinusoidal wave?
 simple_lineaire = false
 
-#b+ Pack icons horizontally rather than vertically?
-simple_wide_grid = true
-
 #v
 sep_icon= 
 
 #b Display text for all icons?
-simple_display_all_icons = true
+simple_display_all_labels = true
 
 #F[Frame]
 frame_frame =
