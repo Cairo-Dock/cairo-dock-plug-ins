@@ -37,7 +37,7 @@ static void g_cclosure_marshal_VOID__INT_STRING (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
 static void g_cclosure_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
 	GValue *return_value,
@@ -46,7 +46,7 @@ static void g_cclosure_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
 static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
 	GValue *return_value,
@@ -55,16 +55,16 @@ static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
-static void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
 static void g_cclosure_marshal_VOID__INT_VALUE (GClosure *closure,
 	GValue *return_value,
@@ -73,7 +73,7 @@ static void g_cclosure_marshal_VOID__INT_VALUE (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
 static void g_cclosure_marshal_VOID__VALUE_STRING (GClosure *closure,
 	GValue *return_value,
@@ -82,7 +82,7 @@ static void g_cclosure_marshal_VOID__VALUE_STRING (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	//g_print ("%s ()\n", __func__);
+	g_print ("%s ()\n", __func__);
 }
 
 void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
@@ -93,8 +93,8 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE,
-		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_INVALID);  // answer
+	/*dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE,
+		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_INVALID);*/  // answer
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSignals[CLIC] =
@@ -243,7 +243,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__INT_STRING,
+	/*dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__INT_STRING,
 		G_TYPE_NONE, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);  // clic
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOOLEAN_STRING,
 		G_TYPE_NONE, G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_INVALID);  // scroll
@@ -251,6 +251,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);  // drop
 	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE_STRING,
 		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_STRING, G_TYPE_INVALID);  // answer
+	*/
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSubSignals[CLIC] =
@@ -486,7 +487,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 		//g_print ("dropped a distant applet\n");
 		gchar *cServerAdress = g_path_get_dirname (cReceivedData);
 		gchar *cDistantFileName = g_path_get_basename (cReceivedData);
-		gchar *cExtractTo = g_strdup_printf ("%s/third-party", g_cCairoDockDataDir);
+		gchar *cExtractTo = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 		gchar *cAppletDirPath = cairo_dock_download_file (cServerAdress, "", cDistantFileName, cExtractTo, &erreur);
 		g_free (cServerAdress);
 		g_free (cDistantFileName);

@@ -36,4 +36,11 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir);
 
 
+/*void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);*/
+
 #endif

@@ -118,7 +118,7 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 static void _cd_dbus_launch_third_party_applets_in_dir (const gchar *cDirPath)
 {
 	const gchar *cFileName;
-	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, "third-party");
+	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, CD_DBUS_APPLETS_FOLDER);
 	
 	GDir *dir = g_dir_open (cThirdPartyPath, 0, NULL);  // si le repertoire n'existe pas, on ne veut de warning.
 	if (dir == NULL)
@@ -140,37 +140,74 @@ static void _cd_dbus_launch_third_party_applets_in_dir (const gchar *cDirPath)
 	g_free (cThirdPartyPath);
 }
 
-static void _get_package_path (gpointer data)
+static void _get_package_path (gchar *cModuleName)
 {
+	gchar *cSharePackagesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, CD_DBUS_APPLETS_FOLDER);
+	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
+	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
+	gchar *cPath = cairo_dock_get_package_path (cModuleName, cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir,  CAIRO_DOCK_UPDATED_PACKAGE);
+	g_print ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
+	g_free (cPath);
+	g_free (cSharePackagesDir);
+	g_free (cUserPackagesDir);
+	g_free (cDistantPackagesDir);
+	
 	
 }
-static void _apply_package_update (gpointer data)
+static gboolean _apply_package_update (gchar *cModuleName)
 {
+	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	g_return_val_if_fail (pModule != NULL, TRUE);
 	
+	if (pModule->pInstancesList != NULL)  // applet active => on la recharge.
+	{
+		g_print ("*** applet '%s' is active, reload it\n", cModuleName);
+		CairoDockModuleInstance *pModuleInstance = pModule->pInstancesList->data;
+		Icon *pIcon = pModuleInstance->pIcon;
+		CairoContainer *pContainer = pModuleInstance->pContainer;
+		/*dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
+		g_return_val_if_fail (pDbusApplet != NULL, TRUE);*/
+		
+		myData.bServiceIsStopping = TRUE;  // c'est le service qui stoppe l'applet, pas l'utilisateur.
+		cairo_dock_unregister_module (cModuleName);  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte), et enleve le module de la table. l'objet distant n'est pas detruit, puisque de toute facon on vide toute la liste.
+		myData.bServiceIsStopping = FALSE;
+		
+		if (pIcon != NULL && pContainer != NULL)  // par contre les icones restent, mais ne sont plus des applets (elles ont perdu leur module). On fait donc le menage.
+		{
+			if (CAIRO_DOCK_IS_DOCK (pContainer))
+			{
+				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIcons.iSeparateIcons);
+				cairo_dock_free_icon (pIcon);
+				cairo_dock_update_dock_size (CAIRO_DOCK (pContainer));
+				cairo_dock_redraw_container (pContainer);
+			}
+		}
+		
+		gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
+		cd_dbus_register_module_in_dir (cModuleName, cThirdPartyPath);
+		g_free (cThirdPartyPath);
+	}
+	
+	/// get corresponding task ...
+	//myData.pUpdateTasksList = g_list_remove (myData.pUpdateTasksList, pUpdateTask);
+	//cairo_dock_free_task (pUpdateTask);
+	return TRUE;
+}
+static void _check_update_theme (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)
+{
+	if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
+	{
+		g_print ("*** the applet '%s' needs to be updated\n", cModuleName);
+		CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) g_free, g_strdup (cModuleName));
+		myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
+		cairo_dock_launch_task (pUpdateTask);
+	}
 }
 static void _on_got_list (GHashTable *pThemesTable, gpointer data)
 {
 	if (pThemesTable != NULL)
 	{
-		g_hash_table_ref (pThemesTable);
-		myData.pThemesTable = pThemesTable;
-		
-		/*dbusApplet *pDbusApplet;
-		GList *a;
-		for (a = myData.pAppletList; a != NULL; a = a->next)
-		{
-			pDbusApplet = a->data;
-			CairoDockPackage *pPackage = g_hash_table_lookup (pThemesTable, pDbusApplet->cModuleName);
-			if (! pPackage)  // applet perso.
-				continue;
-			
-			if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
-			{
-				g_print ("*** the applet '%s' needs to be updated\n", pDbusApplet->cModuleName);
-				pDbusApplet->pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) NULL, NULL);
-				cairo_dock_launch_task (pDbusApplet->pUpdateTask);
-			}
-		}*/
+		g_hash_table_foreach (pThemesTable, (GHFunc) _check_update_theme, NULL);
 	}
 	cairo_dock_free_task (myData.pGetListTask);
 	myData.pGetListTask = NULL;
@@ -198,11 +235,11 @@ void cd_dbus_launch_service (void)
 	g_idle_add ((GSourceFunc) _cd_dbus_launch_third_party_applets, NULL);  // on les lance avec un delai, car si l'applet DBus est lancee au demarrage du dock, on est dans la fonction cairo_dock_activate_modules_from_list(), et donc si on enregistre des applets pendant ce temps, le dock risque de recharger certaines des applets distantes (celles qui seront actives en conf et qui viendront apres DBus).
 	
 	// on telecharge en tache de fond la liste des applets.
-	gchar *cShareThemesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, "third-party");
-	gchar *cUserThemesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, "third-party");
-	myData.pGetListTask = cairo_dock_list_packages_async (cShareThemesDir, cUserThemesDir, "third-party", (CairoDockGetPackagesFunc) _on_got_list, NULL);
-	g_free (cShareThemesDir);
-	g_free (cUserThemesDir);
+	gchar *cSharePackagesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, CD_DBUS_APPLETS_FOLDER);
+	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
+	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, CD_DBUS_APPLETS_FOLDER, (CairoDockGetPackagesFunc) _on_got_list, NULL);
+	g_free (cSharePackagesDir);
+	g_free (cUserPackagesDir);
 }
 
 void cd_dbus_stop_service (void)
@@ -210,11 +247,9 @@ void cd_dbus_stop_service (void)
 	// on abandonne les mises a jour.
 	cairo_dock_free_task (myData.pGetListTask);
 	myData.pGetListTask = NULL;
-	if (myData.pThemesTable != NULL)
-	{
-		g_hash_table_destroy(myData.pThemesTable);
-		myData.pThemesTable = NULL;
-	}
+	g_list_foreach (myData.pUpdateTasksList, (GFunc) cairo_dock_free_task, NULL);
+	g_list_free (myData.pUpdateTasksList);
+	myData.pUpdateTasksList = NULL;
 	
 	// on vire tous les modules distants.
 	myData.bServiceIsStopping = TRUE;  // on stoppe les applets distantes differemment suivant que c'est l'utilisateur qui la decoche ou pas.
@@ -381,3 +416,43 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 	cd_debug ("applet has been successfully instanciated");
 	return TRUE;
 }
+
+
+/*void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__VALUE) (gpointer     data1,
+												GValue     *arg_1,
+												gpointer     data2);
+	register GMarshalFunc_VOID__VALUE callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	//gboolean v_return;
+
+	//g_return_if_fail (return_value != NULL);
+	g_return_if_fail (n_param_values == 2);
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__VALUE) (marshal_data ? marshal_data : cc->callback);
+
+	//v_return = 
+	callback (data1,
+							g_marshal_value_peek_pointer (param_values + 1),
+							data2);
+
+	//g_value_set_boolean (return_value, v_return);
+}*/
