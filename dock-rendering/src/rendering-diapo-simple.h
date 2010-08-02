@@ -24,6 +24,8 @@
 #include "cairo-dock.h"
 
 
+gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAnimation);
+
 void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName);
 
 

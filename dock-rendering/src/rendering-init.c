@@ -147,6 +147,9 @@ CD_APPLET_INIT_BEGIN
 	//cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
+	cairo_dock_register_notification (CAIRO_DOCK_LEAVE_DOCK,
+		(CairoDockNotificationFunc) cd_slide_on_leave,
+		CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
@@ -171,6 +174,8 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PANEL_VIEW_NAME);
+	
+	cairo_dock_remove_notification_func (CAIRO_DOCK_LEAVE_DOCK, (CairoDockNotificationFunc) cd_slide_on_leave, NULL);
 	
 	cairo_dock_reset_all_views ();
 	cairo_dock_update_renderer_list_for_gui ();

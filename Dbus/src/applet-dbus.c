@@ -199,10 +199,13 @@ static void _check_update_theme (const gchar *cModuleName, CairoDockPackage *pPa
 	if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
 	{
 		gchar *cUserDirPath = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER, cModuleName);
-		g_print ("*** the applet '%s' needs to be updated\n", cModuleName);
-		CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) g_free, g_strdup (cModuleName));
-		myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
-		cairo_dock_launch_task (pUpdateTask);
+		if (g_file_test (cUserDirPath, G_FILE_TEST_EXISTS))
+		{
+			g_print ("*** the applet '%s' needs to be updated\n", cModuleName);
+			CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) g_free, g_strdup (cModuleName));
+			myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
+			cairo_dock_launch_task (pUpdateTask);
+		}
 	}
 }
 static void _on_got_list (GHashTable *pThemesTable, gpointer data)
