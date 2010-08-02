@@ -30,61 +30,6 @@ static guint s_iSignals[NB_SIGNALS] = { 0 };
 static guint s_iSubSignals[NB_SIGNALS] = { 0 };
 
 
-static void g_cclosure_marshal_VOID__INT_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-static void g_cclosure_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-static void g_cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-static void g_cclosure_marshal_VOID__INT_VALUE (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-static void g_cclosure_marshal_VOID__VALUE_STRING (GClosure *closure,
-	GValue *return_value,
-	guint n_param_values,
-	const GValue *param_values,
-	gpointer invocation_hint,
-	gpointer marshal_data)
-{
-	g_print ("%s ()\n", __func__);
-}
-
 void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 {
 	static gboolean bFirst = TRUE;
@@ -93,8 +38,10 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
-	/*dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE,
-		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_INVALID);*/  // answer
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__VALUE,
+		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_INVALID);  // answer
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__INT_VALUE,
+		G_TYPE_NONE, G_TYPE_INT, G_TYPE_VALUE, G_TYPE_INVALID);  // answer_dialog
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSignals[CLIC] =
@@ -103,7 +50,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__INT,
+			cd_dbus_marshal_VOID__INT,
 			G_TYPE_NONE, 1, G_TYPE_INT);
 	s_iSignals[MIDDLE_CLIC] =
 		g_signal_new("on_middle_click",
@@ -111,7 +58,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__VOID,
+			cd_dbus_marshal_VOID__VOID,
 			G_TYPE_NONE, 0, G_TYPE_NONE);
 	s_iSignals[SCROLL] =
 		g_signal_new("on_scroll",
@@ -119,7 +66,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__BOOLEAN,
+			cd_dbus_marshal_VOID__BOOLEAN,
 			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 	s_iSignals[BUILD_MENU] =
 		g_signal_new("on_build_menu",
@@ -127,7 +74,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__VOID,
+			cd_dbus_marshal_VOID__VOID,
 			G_TYPE_NONE, 0, G_TYPE_NONE);
 	s_iSignals[MENU_SELECT] =
 		g_signal_new("on_menu_select",
@@ -135,7 +82,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__INT,
+			cd_dbus_marshal_VOID__INT,
 			G_TYPE_NONE, 1, G_TYPE_INT);
 	s_iSignals[DROP_DATA] =
 		g_signal_new("on_drop_data",
@@ -143,7 +90,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__STRING,
+			cd_dbus_marshal_VOID__STRING,
 			G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSignals[CHANGE_FOCUS] =
 		g_signal_new("on_change_focus",
@@ -151,7 +98,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__BOOLEAN,
+			cd_dbus_marshal_VOID__BOOLEAN,
 			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 	s_iSignals[ANSWER] =
 		g_signal_new("on_answer",
@@ -159,7 +106,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__VALUE,
+			cd_dbus_marshal_VOID__VALUE,
 			G_TYPE_NONE, 1, G_TYPE_VALUE);
 	s_iSignals[ANSWER_DIALOG] =
 		g_signal_new("on_answer_dialog",
@@ -167,7 +114,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__INT_VALUE,
+			cd_dbus_marshal_VOID__INT_VALUE,
 			G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_VALUE);
 	s_iSignals[SHORTKEY] =
 		g_signal_new("on_shortkey",
@@ -175,7 +122,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__STRING,
+			cd_dbus_marshal_VOID__STRING,
 			G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSignals[INIT_MODULE] =
 		g_signal_new("on_init_module",
@@ -183,7 +130,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__VOID,
+			cd_dbus_marshal_VOID__VOID,
 			G_TYPE_NONE, 0, G_TYPE_NONE);
 	s_iSignals[STOP_MODULE] =
 		g_signal_new("on_stop_module",
@@ -191,7 +138,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__VOID,
+			cd_dbus_marshal_VOID__VOID,
 			G_TYPE_NONE, 0, G_TYPE_NONE);
 	s_iSignals[RELOAD_MODULE] =
 		g_signal_new("on_reload_module",
@@ -199,7 +146,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 			0,
 			NULL, NULL,
-			g_cclosure_marshal_VOID__BOOLEAN,
+			cd_dbus_marshal_VOID__BOOLEAN,
 			G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 	
 	// Add signals
@@ -243,15 +190,14 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 	bFirst = FALSE;
 	
 	// Enregistrement des marshaller specifique aux signaux.
-	/*dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__INT_STRING,
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__INT_STRING,
 		G_TYPE_NONE, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);  // clic
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__BOOLEAN_STRING,
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__BOOLEAN_STRING,
 		G_TYPE_NONE, G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_INVALID);  // scroll
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__STRING_STRING,
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__STRING_STRING,
 		G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);  // drop
-	dbus_g_object_register_marshaller(g_cclosure_marshal_VOID__VALUE_STRING,
+	dbus_g_object_register_marshaller(cd_dbus_marshal_VOID__VALUE_STRING,
 		G_TYPE_NONE, G_TYPE_VALUE, G_TYPE_STRING, G_TYPE_INVALID);  // answer
-	*/
 	
 	// on definit les signaux dont on aura besoin.
 	s_iSubSignals[CLIC] =
@@ -260,7 +206,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__INT_STRING,
+				cd_dbus_marshal_VOID__INT_STRING,
 				G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_STRING);
 	s_iSubSignals[MIDDLE_CLIC] =
 		g_signal_new("on_middle_click_sub_icon",
@@ -268,7 +214,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING,
+				cd_dbus_marshal_VOID__STRING,
 				G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSubSignals[SCROLL] =
 		g_signal_new("on_scroll_sub_icon",
@@ -276,7 +222,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__BOOLEAN_STRING,
+				cd_dbus_marshal_VOID__BOOLEAN_STRING,
 				G_TYPE_NONE, 2, G_TYPE_BOOLEAN, G_TYPE_STRING);
 	s_iSubSignals[BUILD_MENU] =
 		g_signal_new("on_build_menu_sub_icon",
@@ -284,7 +230,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING,
+				cd_dbus_marshal_VOID__STRING,
 				G_TYPE_NONE, 1, G_TYPE_STRING);
 	s_iSubSignals[MENU_SELECT] =
 		g_signal_new("on_menu_select_sub_icon",
@@ -292,7 +238,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__INT_STRING,
+				cd_dbus_marshal_VOID__INT_STRING,
 				G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_STRING);
 	s_iSubSignals[DROP_DATA] =
 		g_signal_new("on_drop_data_sub_icon",
@@ -300,7 +246,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__STRING_STRING,
+				cd_dbus_marshal_VOID__STRING_STRING,
 				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
 	s_iSubSignals[ANSWER] =
 		g_signal_new("on_answer_sub_icon",
@@ -308,7 +254,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
 				0,
 				NULL, NULL,
-				g_cclosure_marshal_VOID__VALUE_STRING,
+				cd_dbus_marshal_VOID__VALUE_STRING,
 				G_TYPE_NONE, 2, G_TYPE_VALUE, G_TYPE_STRING);
 	
 	// Add signals

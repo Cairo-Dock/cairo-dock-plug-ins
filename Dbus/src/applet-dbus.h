@@ -36,11 +36,53 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir);
 
 
-/*void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
+// Marshallers //
+
+void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
 	GValue *return_value,
 	guint n_param_values,
 	const GValue *param_values,
 	gpointer invocation_hint,
-	gpointer marshal_data);*/
+	gpointer marshal_data);
+
+void cd_dbus_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+
+void cd_dbus_marshal_VOID__STRING_STRING (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+
+void cd_dbus_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+
+void cd_dbus_marshal_VOID__INT_VALUE (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+
+void cd_dbus_marshal_VOID__VALUE_STRING (GClosure *closure,
+	GValue *return_value,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint,
+	gpointer marshal_data);
+
+#define cd_dbus_marshal_VOID__INT g_cclosure_marshal_VOID__INT
+#define cd_dbus_marshal_VOID__BOOLEAN g_cclosure_marshal_VOID__BOOLEAN
+#define cd_dbus_marshal_VOID__STRING g_cclosure_marshal_VOID__STRING
+#define cd_dbus_marshal_VOID__VOID g_cclosure_marshal_VOID__VOID
 
 #endif

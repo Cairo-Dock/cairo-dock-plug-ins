@@ -195,8 +195,10 @@ static gboolean _apply_package_update (gchar *cModuleName)
 }
 static void _check_update_theme (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)
 {
+	g_print ("*** %s (%s, %d)\n", __func__, cModuleName, pPackage->iType);
 	if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
 	{
+		gchar *cUserDirPath = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER, cModuleName);
 		g_print ("*** the applet '%s' needs to be updated\n", cModuleName);
 		CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) g_free, g_strdup (cModuleName));
 		myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
@@ -237,9 +239,11 @@ void cd_dbus_launch_service (void)
 	// on telecharge en tache de fond la liste des applets.
 	gchar *cSharePackagesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, CD_DBUS_APPLETS_FOLDER);
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
-	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, CD_DBUS_APPLETS_FOLDER, (CairoDockGetPackagesFunc) _on_got_list, NULL);
+	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
+	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL);
 	g_free (cSharePackagesDir);
 	g_free (cUserPackagesDir);
+	g_free (cDistantPackagesDir);
 }
 
 void cd_dbus_stop_service (void)
@@ -338,7 +342,7 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
-	cd_debug ("%s (%s)", __func__, cModuleName);
+	g_print ("%s (%s)\n", __func__, cModuleName);
 	
 	//\____________ on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
@@ -417,12 +421,117 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 	return TRUE;
 }
 
+  ///////////////////
+ /// Marshallers ///
+///////////////////
 
-/*void g_cclosure_marshal_VOID__VALUE (GClosure *closure,
-	GValue *return_value,
+void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
 	guint n_param_values,
 	const GValue *param_values,
-	gpointer invocation_hint,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__INT_STRING) (gpointer     data1,
+												gint        arg_1,
+												gchar 	   *arg_2,
+												gpointer     data2);
+	register GMarshalFunc_VOID__INT_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_marshal_value_peek_int (param_values + 1),
+		g_marshal_value_peek_string (param_values + 2),
+		data2);
+}
+void cd_dbus_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__BOOLEAN_STRING) (gpointer     data1,
+												gboolean    arg_1,
+												gchar 	   *arg_2,
+												gpointer     data2);
+	register GMarshalFunc_VOID__BOOLEAN_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__BOOLEAN_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_marshal_value_peek_boolean (param_values + 1),
+		g_marshal_value_peek_string (param_values + 2),
+		data2);
+}
+void cd_dbus_marshal_VOID__STRING_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer     data1,
+												gchar      *arg_1,
+												gchar 	   *arg_2,
+												gpointer     data2);
+	register GMarshalFunc_VOID__STRING_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_marshal_value_peek_string (param_values + 1),
+		g_marshal_value_peek_string (param_values + 2),
+		data2);
+}
+void cd_dbus_marshal_VOID__VALUE (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
 	g_print ("%s ()\n", __func__);
@@ -432,10 +541,7 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 	register GMarshalFunc_VOID__VALUE callback;
 	register GCClosure *cc = (GCClosure*) closure;
 	register gpointer data1, data2;
-	//gboolean v_return;
-
-	//g_return_if_fail (return_value != NULL);
-	g_return_if_fail (n_param_values == 2);
+	g_return_if_fail (n_param_values == 2);  // return_value est NULL ici, car la callback ne renvoit rien.
 
 	if (G_CCLOSURE_SWAP_DATA (closure))
 	{
@@ -449,10 +555,75 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 	}
 	callback = (GMarshalFunc_VOID__VALUE) (marshal_data ? marshal_data : cc->callback);
 
-	//v_return = 
 	callback (data1,
-							g_marshal_value_peek_pointer (param_values + 1),
-							data2);
+		g_marshal_value_peek_pointer (param_values + 1),
+		data2);
+}
+void cd_dbus_marshal_VOID__INT_VALUE (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__INT_VALUE) (gpointer     data1,
+												gint 		arg_1,
+												GValue     *arg_2,
+												gpointer     data2);
+	register GMarshalFunc_VOID__INT_VALUE callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
 
-	//g_value_set_boolean (return_value, v_return);
-}*/
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__INT_VALUE) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_marshal_value_peek_int (param_values + 1),
+		g_marshal_value_peek_pointer (param_values + 2),
+		data2);
+}
+void cd_dbus_marshal_VOID__VALUE_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	g_print ("%s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__VALUE_STRING) (gpointer     data1,
+												GValue     *arg_1,
+												gchar 	   *arg_2,
+												gpointer     data2);
+	register GMarshalFunc_VOID__VALUE_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__VALUE_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_marshal_value_peek_pointer (param_values + 1),
+		g_marshal_value_peek_string (param_values + 2),
+		data2);
+}
