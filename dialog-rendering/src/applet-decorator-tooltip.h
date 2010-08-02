@@ -26,12 +26,6 @@
 #define MY_APPLET_DECORATOR_TOOLTIP_NAME N_("tooltip")
 
 
-void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog);
-
-
-void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog);
-
-
 void cd_decorator_register_tooltip (void);
 
 

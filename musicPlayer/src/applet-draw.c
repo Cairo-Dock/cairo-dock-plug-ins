@@ -342,7 +342,7 @@ void cd_musicplayer_popup_info (void)
 			D_("Length"),
 			myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
 			D_("Track n°"), myData.iTrackNumber,
-			D_("Song n°"), myData.iTrackListIndex, myData.iTrackListLength);
+			D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex commence a 0.
 	else
 		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
 			myIcon,

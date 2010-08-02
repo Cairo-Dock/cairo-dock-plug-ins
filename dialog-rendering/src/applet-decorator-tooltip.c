@@ -24,7 +24,6 @@
 #include "applet-struct.h"
 #include "applet-decorator-tooltip.h"
 
-//A bosser
 #define _CAIRO_DIALOG_TOOLTIP_MIN_GAP 10
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH 20
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT 5
@@ -33,26 +32,30 @@
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
 	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
+	int iIconOffset = myDialogs.iDialogIconSize/2;
 	pDialog->iRightMargin = iMargin;
-	pDialog->iLeftMargin = iMargin;
-	pDialog->iTopMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
+	pDialog->iLeftMargin = iIconOffset + iMargin;
+	pDialog->iTopMargin = MAX (iIconOffset, _CAIRO_DIALOG_TOOLTIP_MARGIN);
 	pDialog->iBottomMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
 	pDialog->iMinBottomGap = _CAIRO_DIALOG_TOOLTIP_MIN_GAP;
 	pDialog->iMinFrameWidth = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH;
 	pDialog->fAlign = .5;
 	pDialog->container.fRatio = 0.;
 	pDialog->container.bUseReflect = FALSE;
+	pDialog->iIconOffsetX = iIconOffset;
+	pDialog->iIconOffsetY = iIconOffset;
 }
 
 
 void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog) {
 	double fLineWidth = myConfig.iTooltipLineWidth;
 	double fRadius = myConfig.iTooltipRadius;
+	double fIconOffset = myDialogs.iDialogIconSize/2;
 	
-	double fOffsetX = fRadius + fLineWidth / 2;
-	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2);
+	double fOffsetX = fRadius + fLineWidth / 2 + fIconOffset;
+	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : -fIconOffset);
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
-	int iWidth = pDialog->container.iWidth;
+	int iWidth = pDialog->container.iWidth - fIconOffset;
 	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
@@ -62,18 +65,18 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	
 	// Coin haut droit.
 	cairo_rel_curve_to (pCairoContext,
-	0, 0,
-	fRadius, 0,
-	fRadius, sens * fRadius);
+		0, 0,
+		fRadius, 0,
+		fRadius, sens * fRadius);
 	
 	// Ligne droite. (Haut droit -> Bas droit)
-	cairo_rel_line_to (pCairoContext, 0, sens *     (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
+	cairo_rel_line_to (pCairoContext, 0, sens *     (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth + fIconOffset)));
 	
 	// Coin bas droit.
 	cairo_rel_curve_to (pCairoContext,
-	0, 0,
-	0, sens * fRadius,
-	-fRadius, sens * fRadius);
+		0, 0,
+		0, sens * fRadius,
+		-fRadius, sens * fRadius);
 	
 	// La pointe.
 	double fDemiWidth = (iWidth - fLineWidth - 2 * fRadius - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH)/2;
@@ -89,14 +92,14 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		-fRadius, -sens * fRadius);
 	
 	// On remonte.
-	cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
+	cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth + fIconOffset)));
 	
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,
 		0, -sens * fRadius,
 		fRadius, -sens * fRadius);
-	if (fRadius     < 1)
+	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 	
 	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],     myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
@@ -106,7 +109,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	
 	cairo_stroke (pCairoContext); //On ferme notre chemin
 	
-	if (pDialog->iIconSize != 0) {
+	if (0&&pDialog->iIconSize != 0) {
 		//Ajout d'un cadre pour l'icône (Pas d'alpha)
 		int iIconFrameWidth = (pDialog->iIconSize / 2) - (2 * fRadius + fLineWidth);
 		//cd_debug ("Tooltip: %d", iIconFrameWidth);

@@ -50,6 +50,7 @@ extern gboolean my_diapo_simple_display_all_labels;
 
 const gint X_BORDER_SPACE = 40;
 const gint ARROW_TIP = 5;  // pour gerer la pointe de la fleche.
+const double fArrowHeight = 14, fArrowWidth = 8, gap = 4;
 
 /// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom.
 
@@ -58,6 +59,11 @@ typedef struct {
 	guint nRowsY;
 	gint iScrollOffset;  // en pixels
 	gint iDeltaHeight;  // en pixels
+	gboolean bClicked;
+	guint iSidPressEvent;
+	guint iSidReleaseEvent;
+	gint iClickY;
+	gint iClickOffset;
 	} CDSlideData;
 
 // Fonctions utiles pour transformer l'index de la liste en couple (x,y) sur la grille et inversement.
@@ -95,6 +101,42 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 
 const double sr = .5;  // screen ratio
 
+static void _set_scroll (CairoDock *pDock, int iOffsetY)
+{
+	g_print ("%s (%d)\n", __func__, iOffsetY);
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_if_fail (pData != NULL);
+	
+	pData->iScrollOffset = MIN (0, MAX (iOffsetY, -pData->iDeltaHeight));
+	cairo_dock_calculate_dock_icons (pDock);
+	gtk_widget_queue_draw (pDock->container.pWidget);
+}
+static gboolean _add_scroll (CairoDock *pDock, int iDeltaOffsetY)
+{
+	g_print ("%s (%d)\n", __func__, iDeltaOffsetY);
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_val_if_fail (pData != NULL, FALSE);
+	
+	if (iDeltaOffsetY < 0)
+	{
+		if (pData->iScrollOffset < - pData->iDeltaHeight)
+			return FALSE;
+		pData->iScrollOffset -= iDeltaOffsetY;
+		if (pData->iScrollOffset < - pData->iDeltaHeight)
+			pData->iScrollOffset = - pData->iDeltaHeight;
+	}
+	else
+	{
+		if (pData->iScrollOffset >= 0)
+			return FALSE;
+		pData->iScrollOffset += iDeltaOffsetY;
+		if (pData->iScrollOffset > 0)
+			pData->iScrollOffset = 0;
+	}
+	cairo_dock_calculate_dock_icons (pDock);
+	gtk_widget_queue_draw (pDock->container.pWidget);
+}
+
 static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, int iDirection)
 {
 	CDSlideData *pData = pDock->pRendererData;
@@ -121,6 +163,67 @@ static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDoc
 	cairo_dock_calculate_dock_icons (pDock);
 	gtk_widget_queue_draw (pDock->container.pWidget);
 	
+	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+}
+static gboolean _cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDock *pDock, guint iButtonState)
+{
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	if (pData->bClicked)
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+gboolean _cd_slide_on_press_release (GtkWidget* pWidget, GdkEventButton* pButton, CairoDock *pDock)
+{
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_val_if_fail (pData != NULL, FALSE);
+	
+	if (pButton->type == GDK_BUTTON_PRESS)
+	{
+		double x_arrow = pDock->iMaxDockWidth - X_BORDER_SPACE - fArrowWidth;
+		if (pButton->x > x_arrow)
+		{
+			g_print ("click (y=%d, scroll=%d)\n", (int) pButton->y, pData->iScrollOffset);
+			pData->bClicked = TRUE;
+			pData->iClickY = pButton->y;
+			pData->iClickOffset = pData->iScrollOffset;
+		}
+	}
+	else if (GDK_BUTTON_RELEASE)
+	{
+		g_print ("release\n");
+		pData->bClicked = FALSE;
+	}
+	return FALSE;
+}
+static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
+{
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	if (pData->bClicked)
+	{
+		g_print ("scroll on motion (y=%d)\n", pDock->container.iMouseY);
+		
+		double y_arrow_top, y_arrow_bottom;
+		if (pDock->container.bDirectionUp)
+		{
+			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
+			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
+		}
+		else
+		{
+			y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
+			y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
+		}
+		double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+gap));
+		double ygrip = (double) - pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+gap) - fGripHeight);
+		
+		int delta = pDock->container.iMouseY - pData->iClickY;
+		_set_scroll (pDock, - (pData->iClickOffset + (double)delta / (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+gap) - fGripHeight) * pData->iDeltaHeight));
+	}
 	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
@@ -184,12 +287,23 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pDock->fFlatDockWidth = pDock->iMaxDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+g_fAmplitude);
 	
-	if (pDock->pRendererData == NULL)
-	{
-		pDock->pRendererData = g_new0 (CDSlideData, 1);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-	}
 	CDSlideData *pData = pDock->pRendererData;
+	if (pData == NULL)
+	{
+		pData = g_new0 (CDSlideData, 1);
+		pDock->pRendererData = pData;
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
+		pData->iSidPressEvent = g_signal_connect (G_OBJECT (pDock->container.pWidget),
+			"button-press-event",
+			G_CALLBACK (_cd_slide_on_press_release),
+			pDock);
+		pData->iSidReleaseEvent = g_signal_connect (G_OBJECT (pDock->container.pWidget),
+			"button-release-event",
+			G_CALLBACK (_cd_slide_on_press_release),
+			pDock);
+	}
 	pData->nRowsX = nRowsX;
 	pData->nRowsY = nRowsY;
 	pData->iDeltaHeight = iDeltaHeight;
@@ -856,9 +970,8 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		if (pScrollPath == NULL)
 			pScrollPath = cairo_dock_new_gl_path (4, 0., 0., 0, 0);
 		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 1. * fAlpha);
-		glLineWidth (1.);
+		glLineWidth (2.);
 		
-		double fArrowHeight = 14, fArrowWidth = 8, gap = 4;
 		double x_arrow = pDock->iMaxDockWidth - X_BORDER_SPACE - fArrowWidth/2;
 		double y_arrow_top, y_arrow_bottom;
 		if (pDock->container.bDirectionUp)
@@ -981,13 +1094,15 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 
 void cd_rendering_free_slide_data (CairoDock *pDock)
 {
-	if (pDock->pRendererData != NULL)
+	CDSlideData *pData = pDock->pRendererData;
+	if (pData != NULL)
 	{
 		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-	}
-	CDSlideData *pData = pDock->pRendererData;
-	if (pData)
-	{
+		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, NULL);
+		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidPressEvent);
+		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidReleaseEvent);
+		
 		g_free (pData);
 		pDock->pRendererData = NULL;
 	}

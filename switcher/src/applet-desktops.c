@@ -245,6 +245,7 @@ gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
 {
 	g_desktopGeometry.iNbDesktops = cairo_dock_get_nb_desktops ();
 	cairo_dock_get_nb_viewports (&g_desktopGeometry.iNbViewportX, &g_desktopGeometry.iNbViewportY);
+	g_print ("refresh -> %d/%d/%d\n", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
 	cd_switcher_update_from_screen_geometry ();
 	myData.iSidAutoRefresh = 0;
 	return FALSE;
