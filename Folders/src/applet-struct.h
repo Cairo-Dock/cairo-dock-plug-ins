@@ -28,7 +28,7 @@ struct _AppletConfig {
 	gchar *cImageFile;
 	gchar *cDefaultTitle;
 	gchar *cDirPath;
-	guint iNbIcons;
+	///guint iNbIcons;
 	CairoDockFMSortType iSortType;
 	gboolean bFoldersFirst;
 	gboolean bShowHiddenFiles;
@@ -42,8 +42,8 @@ struct _AppletData {
 	GList *pIconList;
 	// end of shared memory
 	CairoDockTask *pTask;
-	GList *pAllFiles;
-	guint iNbIcons;
+	///GList *pAllFiles;
+	///guint iNbIcons;
 	GCompareFunc comp;
 	} ;
 

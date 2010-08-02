@@ -107,9 +107,6 @@ fg alpha = 1
 #D Folder's path:
 dir path =
 
-#i[3;100] Maximum number of files to list:
-nb icons = 30
-
 #l-[Name;Date;Size] Sort files by :
 sort type = 0
 

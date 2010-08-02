@@ -37,7 +37,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_free (tmp);
 	}
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-	myConfig.iNbIcons = CD_CONFIG_GET_INTEGER ("Configuration", "nb icons");
+	//myConfig.iNbIcons = CD_CONFIG_GET_INTEGER ("Configuration", "nb icons");
 	myConfig.iSortType = CD_CONFIG_GET_INTEGER ("Configuration", "sort type");
 	myConfig.bFoldersFirst = CD_CONFIG_GET_BOOLEAN ("Configuration", "folders first");
 	myConfig.bShowHiddenFiles = CD_CONFIG_GET_BOOLEAN ("Configuration", "show hidden");
