@@ -88,14 +88,17 @@ extern gdouble  my_diapo_simple_color_frame_start[4];
 extern gdouble  my_diapo_simple_color_frame_stop[4];
 extern gboolean my_diapo_simple_fade2bottom;
 extern gboolean my_diapo_simple_fade2right;
-extern guint    my_diapo_simple_arrowWidth;
-extern guint    my_diapo_simple_arrowHeight;
+extern gint    my_diapo_simple_arrowWidth;
+extern gint    my_diapo_simple_arrowHeight;
 extern gdouble  my_diapo_simple_arrowShift;
-extern guint    my_diapo_simple_lineWidth;
-extern guint    my_diapo_simple_radius;
+extern gint    my_diapo_simple_lineWidth;
+extern gint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_labels;
+extern gdouble  my_diapo_simple_color_scrollbar_line[4];
+extern gdouble  my_diapo_simple_color_scrollbar_inside[4];
+extern gdouble  my_diapo_simple_color_grip[4];
 
 extern gdouble my_fCurveCurvature;
 extern gint my_iCurveAmplitude;
@@ -188,6 +191,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
 	my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_display_all_labels = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_display_all_labels",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
+	
+	gdouble scrollbar_color[4] = {my_diapo_simple_color_border_line[0],my_diapo_simple_color_border_line[1],my_diapo_simple_color_border_line[2],1.};
+	cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "scrollbar_color", &bFlushConfFileNeeded, my_diapo_simple_color_scrollbar_line, 4, scrollbar_color, NULL, NULL);
+	
+	gdouble scrollbar_color_inside[4] = {.9,.9,.9,0.3};
+	cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "scrollbar_color_inside", &bFlushConfFileNeeded, my_diapo_simple_color_scrollbar_inside, 4, scrollbar_color_inside, NULL, NULL);
+	
+	gdouble scroll_grip_color[4] = {.9,.9,.9,0.9};
+	cairo_dock_get_double_list_key_value (pKeyFile, "SimpleSlide", "scroll_grip_color", &bFlushConfFileNeeded, my_diapo_simple_color_grip, 4, scroll_grip_color, NULL, NULL);
 	
 	
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;

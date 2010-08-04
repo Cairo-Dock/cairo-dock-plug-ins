@@ -404,8 +404,8 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		}
 		
 		//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-		GtkWidget *pCustomWidgetBox = cairo_dock_get_widget_from_name (cMailAccountName, "remove account");
-		if( pCustomWidgetBox == NULL )
+		CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_get_group_key_widget_from_name (cMailAccountName, "remove account");
+		if( pGroupKeyWidget == NULL )
 		{
 			cd_warning ("mail : oups, there is a problem in the conf file");
 			continue;
@@ -418,7 +418,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 			"clicked",
 			G_CALLBACK (_cd_mail_remove_account),
 			myApplet);
-		gtk_box_pack_start (GTK_BOX (pCustomWidgetBox),
+		gtk_box_pack_start (GTK_BOX (pGroupKeyWidget->pKeyBox),
 			pButton,
 			FALSE,
 			FALSE,

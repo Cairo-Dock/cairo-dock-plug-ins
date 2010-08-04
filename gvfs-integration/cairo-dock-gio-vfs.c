@@ -1609,6 +1609,60 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 	g_object_unref (pFile);
 }
 
+static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
+{
+	gchar *cFullURI;
+	if (*cBaseURI == '/')
+		cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
+	else
+		cFullURI = g_strdup (cBaseURI);
+	GFile *pFile = g_file_new_for_uri (cFullURI);
+	
+	GError *erreur = NULL;
+	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+	GFileInfo *pFileInfo = g_file_query_info (pFile,
+		cQuery,
+		G_FILE_QUERY_INFO_NONE,
+		NULL,
+		&erreur);
+	
+	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte, mais on signale tout de meme la raison avec un warning.
+	{
+		cd_warning ("gnome_integration : %s", erreur->message);
+		g_error_free (erreur);
+		g_free (cFullURI);
+		g_object_unref (pFile);
+		return NULL;
+	}
+	
+	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
+	
+	GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
+	GList *a;
+	GList *pList = NULL;
+	gchar **pData;
+	GAppInfo *pAppInfo;
+	const char *cName, *cDisplayedName, *cExec;
+	GIcon *pIcon;
+	for (a = pAppsList; a != NULL; a = a->next)
+	{
+		pAppInfo = a->data;
+		pIcon = g_app_info_get_icon (pAppInfo);
+		
+		pData = g_new0 (gchar*, 5);
+		pData[0] = g_strdup (g_app_info_get_name (pAppInfo));
+		pData[1] = g_strdup (g_app_info_get_display_name (pAppInfo));
+		pData[2] = g_strdup (g_app_info_get_executable (pAppInfo));
+		pData[3] = g_icon_to_string (pIcon);
+		pList = g_list_prepend (pList, pData);
+	}
+	
+	g_free (cFullURI);
+	g_object_unref (pFile);
+	g_list_free (pAppsList);
+	g_object_unref (pFileInfo);
+	return pList;
+}
 
 gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend)
 {
@@ -1632,6 +1686,7 @@ gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend
 		pVFSBackend->get_trash_path = cairo_dock_gio_vfs_get_trash_path;
 		pVFSBackend->empty_trash = cairo_dock_gio_vfs_empty_trash;
 		pVFSBackend->get_desktop_path = cairo_dock_gio_vfs_get_desktop_path;
+		pVFSBackend->list_apps_for_file = cairo_dock_gio_vfs_list_apps_for_file;
 	}
 
 	return TRUE;

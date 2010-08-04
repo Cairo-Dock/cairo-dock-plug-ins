@@ -101,6 +101,26 @@ GLuint cd_mail_load_cube_calllist (void)
 static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 {
 	//\_______________ On charge le theme si necessaire, avec en priorite les images utilisateur.
+	if (myConfig.cNoMailUserImage != NULL)
+	{
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cNoMailUserImage);
+		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
+		{
+			g_free (myConfig.cNoMailUserImage);
+			myConfig.cNoMailUserImage = NULL;
+		}
+		g_free (cPath);
+	}
+	if (myConfig.cHasMailUserImage != NULL)
+	{
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cHasMailUserImage);
+		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
+		{
+			g_free (myConfig.cHasMailUserImage);
+			myConfig.cHasMailUserImage = NULL;
+		}
+		g_free (cPath);
+	}
 	if (myConfig.cThemePath != NULL && (myConfig.cNoMailUserImage == NULL || myConfig.cHasMailUserImage == NULL))
 	{
 		GError *tmp_erreur = NULL;
