@@ -116,9 +116,4 @@ folders first = true
 #b Show hidden files?
 show hidden = false
 
-#v
-sep=
-
-#n+ Sub-dock view name:
-#{Leave empty to use default sub-dock view.}/
-renderer = 
+renderer = Slide

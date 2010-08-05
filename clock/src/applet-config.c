@@ -32,17 +32,18 @@ static GList *s_pTimeZoneList = NULL;
 #define CD_CLOCK_NB_FREQUENCIES 12
 
 // Translation Hack:
-const char *strings_to_translate[21] = {N_("Alarm"), N_("Time you want to be notified:"), N_("In the form xx:xx. E.g.: 20:35 for 8:35pm"), N_("Never"), N_("Day"), N_("Monday"), N_("Tuesday"), N_("Wednesday"), N_("Thursday"), N_("Friday"), N_("Saturday"), N_("Sunday"), N_("Week Day"), N_("Week End"), N_("Month"), N_("Repeat every:"), N_("If every month, which day of the month?"), N_("Message you want to use to be notified:"), N_("Tea Time!"), N_("Command to launch:"), N_("E.g.:")};
+const char *strings_to_translate[] = {N_("Alarm"), N_("Time you want to be notified:"), N_("In the form xx:xx. E.g.: 20:35 for 8:35pm"), N_("Never"), N_("Day"), N_("Monday"), N_("Tuesday"), N_("Wednesday"), N_("Thursday"), N_("Friday"), N_("Saturday"), N_("Sunday"), N_("Week Day"), N_("Week End"), N_("Month"), N_("Repeat every:"), N_("If every month, which day of the month?"), N_("Message you want to use to be notified:"), N_("Tea Time!"), N_("Command to launch:"), N_("E.g.:")};
 
 CD_APPLET_GET_CONFIG_BEGIN
-	//\_______________ On recupere les parametres de fonctionnement.
-	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER ("Module", "show date");
-	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Module", "show seconds");
-	myConfig.iSmoothAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Module", "smooth", 500);
-	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Module", "24h mode");
-	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Module", "location");
-	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Module", "setup command");
-	myConfig.cTaskMgrName	 	= CD_CONFIG_GET_STRING ("Module", "task mgr");
+	CD_CONFIG_RENAME_GROUP ("Module", "Configuration");
+	
+	myConfig.iShowDate 		= CD_CONFIG_GET_INTEGER ("Configuration", "show date");
+	myConfig.bShowSeconds 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "show seconds");
+	myConfig.iSmoothAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT  ("Configuration", "smooth", 500);
+	myConfig.b24Mode 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "24h mode");
+	myConfig.cLocation 		= CD_CONFIG_GET_STRING ("Configuration", "location");
+	myConfig.cSetupTimeCommand 	= CD_CONFIG_GET_STRING ("Configuration", "setup command");
+	myConfig.cTaskMgrName	 	= CD_CONFIG_GET_STRING ("Configuration", "task mgr");
 	
 	if (myConfig.iShowDate != CAIRO_DOCK_INFO_ON_LABEL && myConfig.cLocation != NULL)
 	{
@@ -52,12 +53,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	
 	//\_______________ On recupere les parametres d'apparence.
-	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Module", "style", -1);  // si cette cle n'existait pas, elle a ete rajoutee avec la valeur -1.
+	int iStyle = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "style", -1);  // si cette cle n'existait pas, elle a ete rajoutee avec la valeur -1.
 	if (iStyle == -1)
 	{
 		cd_debug ("*** pas de cle 'style'");
-		myConfig.bOldStyle = CD_CONFIG_GET_BOOLEAN ("Module", "old fashion style");
-		g_key_file_set_integer (pKeyFile, "Module", "style", myConfig.bOldStyle ? 0 : 1);
+		myConfig.bOldStyle = CD_CONFIG_GET_BOOLEAN ("Configuration", "old fashion style");
+		g_key_file_set_integer (pKeyFile, "Configuration", "style", myConfig.bOldStyle ? 0 : 1);
 	}
 	else
 	{
@@ -67,14 +68,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	double couleur[4] = {0., 0., 0.5, 1.};
 	if (myConfig.bOldStyle)
 	{
-		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Module", "theme", "themes", "glassy");
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "date color", myConfig.fDateColor, couleur);
+		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "glassy");
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "date color", myConfig.fDateColor, couleur);
 	}
 	else
 	{
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Module", "text color", myConfig.fTextColor, couleur);
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, couleur);
 		
-		gchar *cFontDescription = CD_CONFIG_GET_STRING ("Module", "font");
+		gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
 		if (cFontDescription == NULL)
 		{
 			cFontDescription = g_strdup ("Sans");  // sinon fd est NULL. On ne precise pas la taille ici pour pouvoir intercepter ce cas.
@@ -86,7 +87,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.iStyle = pango_font_description_get_style (fd);
 		if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
 		{
-			int iWeight = g_key_file_get_integer (pKeyFile, "Module", "weight", NULL);
+			int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "weight", NULL);
 			myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
 			myConfig.iStyle = PANGO_STYLE_NORMAL;
 			
@@ -95,13 +96,13 @@ CD_APPLET_GET_CONFIG_BEGIN
 			pango_font_description_set_style (fd, myConfig.iStyle);
 			g_free (cFontDescription);
 			cFontDescription = pango_font_description_to_string (fd);
-			g_key_file_set_string (pKeyFile, "Module", "font", cFontDescription);
+			g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
 		}
 		pango_font_description_free (fd);
 		g_free (cFontDescription);
 		
-		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Module", "numeric bg");
-		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Module", "text ratio", 1.);
+		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
+		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
 	}
 	
 	//\_______________ On recupere les alarmes.
@@ -318,7 +319,7 @@ static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 	cd_debug ("%s (%s, %s)", __func__, cLocationPath, myApplet->cConfFilePath);
 	
 	//\____________________ On met a jour le panneau de conf.
-	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Module", "location");
+	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Configuration", "location");
 	gtk_entry_set_text (GTK_ENTRY (pLocationEntry), cLocationPath);
 	
 	cd_clock_free_timezone_list ();
@@ -483,7 +484,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 		0);
 	
 	//\____________ On recupere le widget de la location (un gtk_entry).
-	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Module", "location");
+	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Configuration", "location");
 	g_return_if_fail (pLocationEntry != NULL);
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pLocationEntry);

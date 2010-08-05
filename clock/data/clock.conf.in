@@ -94,7 +94,7 @@ fg desklet =
 fg alpha = 1
 
 #[gtk-preferences]
-[Module]
+[Configuration]
 
 #F[Behaviour;gtk-execute]
 frame1 =

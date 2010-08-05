@@ -51,6 +51,7 @@ CD_APPLET_DEFINE_BEGIN ("kde integration",
 			pVFSBackend->delete_file = vfs_backend_delete_file;
 			pVFSBackend->rename = vfs_backend_rename_file;
 			pVFSBackend->move = vfs_backend_move_file;
+			pVFSBackend->create = vfs_backend_create_file;
 			pVFSBackend->empty_trash = vfs_backend_empty_trash;
 			pVFSBackend->get_trash_path = vfs_backend_get_trash_path;
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;

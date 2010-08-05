@@ -59,6 +59,8 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName);
 
 gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI);
 
+gboolean vfs_backend_create_file (const gchar *cURI, gboolean bDirectory);
+
 
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask);
 

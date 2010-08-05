@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-load-icons.h"
 
 static void _cd_folders_remove_all_icons (CairoDockModuleInstance *myApplet);
@@ -403,4 +404,30 @@ void cd_folders_free_all_data (CairoDockModuleInstance *myApplet)
 	
 	cairo_dock_free_task (myData.pTask);
 	myData.pTask = NULL;
+	
+	cd_folders_free_apps_list (myApplet);
+}
+
+
+void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortType iSortType)
+{
+	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	
+	switch (iSortType)
+	{
+		case CAIRO_DOCK_FM_SORT_BY_NAME:
+			
+		break;
+		case CAIRO_DOCK_FM_SORT_BY_DATE:
+			
+		break;
+		case CAIRO_DOCK_FM_SORT_BY_SIZE:
+			
+		break;
+		case CAIRO_DOCK_FM_SORT_BY_TYPE:
+			
+		break;
+		default:
+		break;
+	}
 }

@@ -1375,6 +1375,28 @@ static gboolean cairo_dock_gio_vfs_move_file (const gchar *cURI, const gchar *cD
 	return bSuccess;
 }
 
+static gboolean cairo_dock_gio_vfs_create_file (const gchar *cURI, gboolean bDirectory)
+{
+	g_return_val_if_fail (cURI != NULL, FALSE);
+	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
+	
+	GError *erreur = NULL;
+	gboolean bSuccess = TRUE;
+	if (bDirectory)
+		g_file_make_directory_with_parents (pFile, NULL, &erreur);
+	else
+		g_file_create (pFile, G_FILE_CREATE_PRIVATE, NULL, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("gnome-integration : %s", erreur->message);
+		g_error_free (erreur);
+		bSuccess = FALSE;
+	}
+	g_object_unref (pFile);
+	
+	return bSuccess;
+}
+
 static void cairo_dock_gio_vfs_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
 {
 	g_return_if_fail (cURI != NULL);
@@ -1649,11 +1671,11 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		pAppInfo = a->data;
 		pIcon = g_app_info_get_icon (pAppInfo);
 		
-		pData = g_new0 (gchar*, 5);
-		pData[0] = g_strdup (g_app_info_get_name (pAppInfo));
-		pData[1] = g_strdup (g_app_info_get_display_name (pAppInfo));
-		pData[2] = g_strdup (g_app_info_get_executable (pAppInfo));
-		pData[3] = g_icon_to_string (pIcon);
+		pData = g_new0 (gchar*, 4);
+		pData[0] = g_strdup (g_app_info_get_display_name (pAppInfo));
+		pData[1] = g_strdup (g_app_info_get_executable (pAppInfo));
+		if (pIcon)
+			pData[2] = g_icon_to_string (pIcon);
 		pList = g_list_prepend (pList, pData);
 	}
 	
@@ -1683,6 +1705,7 @@ gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend
 		pVFSBackend->delete_file = cairo_dock_gio_vfs_delete_file;
 		pVFSBackend->rename = cairo_dock_gio_vfs_rename_file;
 		pVFSBackend->move = cairo_dock_gio_vfs_move_file;
+		pVFSBackend->create = cairo_dock_gio_vfs_create_file;
 		pVFSBackend->get_trash_path = cairo_dock_gio_vfs_get_trash_path;
 		pVFSBackend->empty_trash = cairo_dock_gio_vfs_empty_trash;
 		pVFSBackend->get_desktop_path = cairo_dock_gio_vfs_get_desktop_path;

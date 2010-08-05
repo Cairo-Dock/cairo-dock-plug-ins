@@ -36,4 +36,7 @@ CD_APPLET_ON_BUILD_MENU_H
 gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer);
 
 
+void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet);
+
+
 #endif

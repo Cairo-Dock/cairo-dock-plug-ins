@@ -45,6 +45,7 @@ struct _AppletData {
 	///GList *pAllFiles;
 	///guint iNbIcons;
 	GCompareFunc comp;
+	GList *pAppList;
 	} ;
 
 

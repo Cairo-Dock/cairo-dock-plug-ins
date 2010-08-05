@@ -29,6 +29,29 @@
 #include "applet-notifications.h"
 
 
+static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compiz-Icon applet, thanks ChangFu !
+{
+	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
+	{
+		cd_warning  ("Dbus plug-in must be activated in Compiz !");
+		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
+	}
+	
+	GError *erreur = NULL;
+	gchar *cDbusCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/%s org.freedesktop.compiz.activate string:'root' int32:%d", cCommand, cairo_dock_get_root_id ());
+	g_spawn_command_line_async (cDbusCommand, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("ShowDesktop : when trying to send '%s' : %s", cDbusCommand, erreur->message);
+		g_error_free (erreur);
+	}
+	g_free (cDbusCommand);
+}
+static void _cd_expose (void)
+{
+	_compiz_dbus_action ("expo/allscreens/expo_button");  // expo avant la 0.7
+}
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myConfig.iActionOnMiddleClick == 0)
 	{
@@ -36,10 +59,14 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		cd_switcher_build_windows_list (pMenu);
 		cairo_dock_popup_menu_on_container (pMenu, myContainer);
 	}
-	else
+	else if (myConfig.iActionOnMiddleClick == 1)
 	{
 		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	}
+	else if (myConfig.iActionOnMiddleClick == 2)
+	{
+		_cd_expose ();
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -223,6 +250,10 @@ static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleIn
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 }
+static void _cd_switcher_expose (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	_cd_expose ();
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a desktop"),
@@ -233,11 +264,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GTK_STOCK_REMOVE,
 		_cd_switcher_remove_last_desktop,
 		pSubMenu);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
-		GTK_STOCK_REFRESH,
-		_cd_switcher_refresh,
-		pSubMenu);
-
+	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 	{
@@ -258,19 +285,30 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 	}
 	
-	if (myConfig.iActionOnMiddleClick == 0)
+	if (myConfig.iActionOnMiddleClick != 0)
+	{
+		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		cd_switcher_build_windows_list (pSubMenu);
+	}
+	if (myConfig.iActionOnMiddleClick != 1)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"),
 			GTK_STOCK_FULLSCREEN,
 			_cd_switcher_show_desktop,
 			pSubMenu);
 	}
-	else
+	if (myConfig.iActionOnMiddleClick != 2)
 	{
-		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
-		cd_switcher_build_windows_list (pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Expose all the desktops (Compiz)"),
+			GTK_STOCK_LEAVE_FULLSCREEN,
+			_cd_switcher_expose,
+			pSubMenu);
 	}
 	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
+		GTK_STOCK_REFRESH,
+		_cd_switcher_refresh,
+		pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

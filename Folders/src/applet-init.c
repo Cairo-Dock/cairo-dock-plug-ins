@@ -29,8 +29,12 @@
 CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
-	N_("Load folders inside the Dock\n"
-	"You can have as many instances of this applet as you want."),
+	N_("This applet imports folders inside the Dock\n"
+	"You can have as many instances of this applet as you want, each one with a different folder.\n"
+	"To add a folder in your dock:\n"
+	" - activate the applet, open its configuration panel, and select a folder\n"
+	" - or just drop a folder into the dock\n"
+	"Middle-click on the main icon opens the folder.\n"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	cairo_dock_register_notification (CAIRO_DOCK_DROP_DATA,
@@ -57,16 +61,26 @@ static inline void _set_comparaison_func (CairoDockModuleInstance *myApplet)
 	}
 }
 
+static inline void _set_icon_label (CairoDockModuleInstance *myApplet)
+{
+	if (myDock && myConfig.cDefaultTitle == NULL && myConfig.cDirPath != NULL)
+	{
+		gchar *cPath = g_filename_from_uri (myConfig.cDirPath, NULL, NULL);
+		if (cPath)
+		{
+			gchar *str = strrchr (cPath, '/');
+			if (str)
+				CD_APPLET_SET_NAME_FOR_MY_ICON (str+1);
+			g_free (cPath);
+		}
+	}
+}
+
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	
 	//\_______________ On definit le dessin de l'icone principale.
-	if (myDock && myConfig.cDefaultTitle == NULL)
-	{
-		gchar *cDirName = g_path_get_basename (myConfig.cDirPath);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cDirName);
-		g_free (cDirName);
-	}
+	_set_icon_label (myApplet);
 	
 	myIcon->iSubdockViewType = myConfig.iSubdockViewType;
 	if (myDock && myConfig.iSubdockViewType == 0)
@@ -105,12 +119,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_folders_free_all_data (myApplet);
 		
 		//\_______________ On met a jour l'icone principale.
-		if (myDock && myConfig.cDefaultTitle == NULL)
-		{
-			gchar *cDirName = g_path_get_basename (myConfig.cDirPath);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (cDirName);
-			g_free (cDirName);
-		}
+		_set_icon_label (myApplet);
 		
 		myIcon->iSubdockViewType = myConfig.iSubdockViewType;
 		if (myDock && myConfig.iSubdockViewType == 0)

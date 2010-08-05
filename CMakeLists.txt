@@ -212,7 +212,7 @@ add_subdirectory (dustbin)
 
 ############# FOLDERS #################
 set (GETTEXT_FOLDERS ${GETTEXT_PLUGINS})
-set (VERSION_FOLDERS "0.1.0")
+set (VERSION_FOLDERS "0.2.0")
 set (PACKAGE_FOLDERS "cd-Folders")
 set (foldersdatadir "${pluginsdatadir}/Folders")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Folders/data/Folders.conf)
@@ -519,7 +519,7 @@ endif()
 
 ############# SWITCHER #################
 set (GETTEXT_SWITCHER ${GETTEXT_PLUGINS})
-set (VERSION_SWITCHER "2.1.3")
+set (VERSION_SWITCHER "2.1.4")
 set (PACKAGE_SWITCHER "cd-switcher")
 set (switcherdatadir "${pluginsdatadir}/switcher")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMAKE_CURRENT_BINARY_DIR}/switcher/data/switcher.conf)

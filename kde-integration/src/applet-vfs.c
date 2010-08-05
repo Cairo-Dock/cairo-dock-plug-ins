@@ -1177,6 +1177,24 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 	return TRUE;
 }
 
+gboolean vfs_backend_create_file (const gchar *cURI, gboolean bDirectory)
+{
+	g_return_val_if_fail (cURI != NULL, FALSE);
+	gchar *cPath = g_filename_from_uri (cURI, NULL, NULL);
+	
+	gchar *cCommand;
+	gboolean bSuccess = TRUE;
+	if (bDirectory)
+		cCommand = g_strdup_printf ("mkdir -p \"%s\"", cPath);
+	else
+		cCommand = g_strdup_printf ("touch \"%s\"", cPath);
+	cairo_dock_launch_command (cCommand);
+	
+	g_free (cCommand);
+	g_free (cPath);
+	return bSuccess;
+}
+
 void vfs_backend_get_file_properties (const gchar *cURI, guint64 *iSize, time_t *iLastModificationTime, gchar **cMimeType, int *iUID, int *iGID, int *iPermissionsMask)
 {
 	g_return_if_fail (cURI != NULL);

@@ -127,7 +127,7 @@ nb days = 5
 display nights = false
 
 #b Display temperature as quick info?
-display temperature = false
+display temperature = true
 
 #F[Display;gtk-dialog-info]
 frame_disp =
