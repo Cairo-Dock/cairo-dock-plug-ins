@@ -168,7 +168,7 @@ void cd_powermanager_bubble (void)
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated charge time:"), hms);
+			g_string_printf (sInfo, "%s %.2f%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), myData.battery_charge, D_("Estimated charge time:"), (myData.battery_charge > 99.9 ? "0" : hms));
 		}
 		g_free (hms);
 	}
@@ -210,7 +210,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	{
 		if (myConfig.iNotificationType != 1)
 		{
-			g_string_printf (sInfo, "%s (%.2f%%) \n %s %s ", D_("PowerManager.\nYour battery is now charged"), myData.battery_charge, D_("Estimated time with charge:"), hms);
+			g_string_printf (sInfo, "%s (%.2f%%)", D_("PowerManager.\nYour battery is now charged"), myData.battery_charge);
 			_cd_powermanager_dialog (sInfo->str, myConfig.iNotificationDuration);
 		}
 		if (myConfig.iNotificationType != 2)

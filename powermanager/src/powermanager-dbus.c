@@ -475,7 +475,11 @@ gboolean update_stats(void)
 	}
 	
 	//Utile de connaitre l'autonomie estimée quand la batterie est chargée
-	if (myData.on_battery || myData.battery_charge == 100) { //Decompte avant décharge complete
+	if (myData.battery_charge > 99.9)  // on evite le point a 100, trop instable
+	{
+		myData.battery_time = 0.;
+	}
+	else if (myData.on_battery/** || myData.battery_charge == 100*/) { //Decompte avant décharge complete
 		if (fPresentRate > 0) {
 			myData.battery_time = 3600. * iRemainingCapacity / fPresentRate;
 		}
