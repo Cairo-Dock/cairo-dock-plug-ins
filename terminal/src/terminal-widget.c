@@ -107,15 +107,20 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 {
 	gchar *cUsefulLabel;
 	gchar *str = strchr (cLabel, '>');
+	g_print ("%s (%s)\n", __func__, cLabel);
 	if (cLabel != NULL && strncmp (cLabel, "<span color='", 13) == 0 && str != NULL)  // approximatif mais devrait suffire.
 	{
-		gchar *cColor = g_strndup (cLabel+13, 7);
-		if (pColor != NULL)
+		const gchar *col = cLabel+13;
+		gchar *col_end = strchr (col+1, '\'');
+		if (col_end)
+		{
+			gchar *cColor = g_strndup (col, col_end - col);
+			g_print ("cColor : %s\n", cColor);
 			*bColorSet = gdk_color_parse (cColor, pColor);
-		g_free (cColor);
-		
+			g_free (cColor);
+		}
 		cUsefulLabel = g_strdup (str+1);
-		str = strrchr (cLabel, '<');
+		str = strrchr (cUsefulLabel, '<');
 		if (str != NULL && strcmp (str, "</span>") == 0)
 			*str = '\0';
 	}
@@ -141,7 +146,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
-		const gchar *cCurrentName = gtk_label_get_text (pLabel);
+		const gchar *cCurrentName = gtk_label_get_label (pLabel);
 		GdkColor color;
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
@@ -165,6 +170,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 			}
 			g_free (cNewName);
 		}
+		g_list_free (pTabWidgetList);
 	}
 }
 
@@ -175,13 +181,13 @@ static void _set_color (GtkColorSelection *pColorSelection, GtkLabel *pLabel)
 	
 	gchar *cColor = gdk_color_to_string (&color);
 	
-	const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
-	gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, NULL, NULL);
-	gchar *cNewLabel = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cUsefulLabel);
+	const gchar *cCurrentLabel = gtk_label_get_text (pLabel);  // recupere le texte sans les balises pango.
+	//gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, NULL, NULL);
+	gchar *cNewLabel = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cCurrentLabel);
 	gtk_label_set_markup (pLabel, cNewLabel);
 	
 	g_free (cNewLabel);
-	g_free (cUsefulLabel);
+	//g_free (cUsefulLabel);
 	g_free (cColor);
 }
 void terminal_change_color_tab (GtkWidget *vterm)
