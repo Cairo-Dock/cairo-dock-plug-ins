@@ -7,7 +7,7 @@
 icon size = 0;0
 
 #s Icon name for busy penguin:
-name = Tux
+name = 
 
 #d Name of the dock it belongs to:
 dock name = 

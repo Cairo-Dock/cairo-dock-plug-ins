@@ -559,7 +559,7 @@ void cd_satus_notifier_launch_service (void)
 	// register to the watcher.
 	g_print ("registering to the watcher...\n");
 	GError *erreur = NULL;
-	dbus_g_proxy_call (myData.pProxyWatcher, "RegisterStatusNotifierHost", &erreur,
+	dbus_g_proxy_call (myData.pProxyWatcher, "RegisterNotificationHost"/**"RegisterStatusNotifierHost"*/, &erreur,
 		G_TYPE_STRING, myData.cHostName,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
@@ -570,13 +570,13 @@ void cd_satus_notifier_launch_service (void)
 		return;
 	}
 	// connect to the signals.
-	dbus_g_proxy_add_signal(myData.pProxyWatcher, "StatusNotifierItemRegistered",
+	dbus_g_proxy_add_signal(myData.pProxyWatcher, "ServiceRegistered"/**"StatusNotifierItemRegistered"*/,
 		G_TYPE_STRING, G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(myData.pProxyWatcher, "StatusNotifierItemRegistered",
+	dbus_g_proxy_connect_signal(myData.pProxyWatcher, "ServiceRegistered"/**"StatusNotifierItemRegistered"*/,
 		G_CALLBACK(on_new_item), myApplet, NULL);
-	dbus_g_proxy_add_signal(myData.pProxyWatcher, "StatusNotifierItemUnregistered",
+	dbus_g_proxy_add_signal(myData.pProxyWatcher, "ServiceUnregistered"/**"StatusNotifierItemUnregistered"*/,
 		G_TYPE_STRING, G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(myData.pProxyWatcher, "StatusNotifierItemUnregistered",
+	dbus_g_proxy_connect_signal(myData.pProxyWatcher, "ServiceUnregistered"/**"StatusNotifierItemUnregistered"*/,
 		G_CALLBACK(on_removed_item), myApplet, NULL);
 	
 	// get the items.

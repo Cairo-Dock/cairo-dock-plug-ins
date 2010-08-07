@@ -796,6 +796,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					icon->cFileName = g_strdup (cFilePath);
 					cairo_dock_remove_html_spaces (icon->cFileName);
 				}
+
 				g_free (cHostname);
 				g_free (cFilePath);
 			}
@@ -1673,9 +1674,9 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		
 		pData = g_new0 (gchar*, 4);
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 24)
-		pData[0] = g_strdup (g_app_info_get_display_name (pAppInfo));
+			pData[0] = g_strdup (g_app_info_get_display_name (pAppInfo));
 		#else
-		pData[0] = g_strdup (g_app_info_get_name (pAppInfo));
+			pData[0] = g_strdup (g_app_info_get_name (pAppInfo));
 		#endif
 		pData[1] = g_strdup (g_app_info_get_executable (pAppInfo));
 		if (pIcon)

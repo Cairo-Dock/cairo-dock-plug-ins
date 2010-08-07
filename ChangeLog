@@ -1,107 +1,76 @@
-Modifications made on the SVN and BZR : Rev 2.0.8.1 => 2.0.9
+Modifications made on the SVN and BZR: Rev 2.0.8.1 => 2.0.9
 
 /* A bugs fixed version */
 
 Fabounet :
  * Miscellaneous :
-   * Added dnd2share forgot on the general configure.ac
-   * changed agencement of many options in conf files for a better ergonomy.
-   * updated to fit structure changes in the core
- * Alsamixer : fixed the listing of available channels in the config.
- * Animated Icons : fixed Spot animation
- * Cairo-Penguin :
-   * fixed its position within vertical docks.
-   * fixed a crash on right-click
- * Clipper : Fixed incremental selection bug in mouse selection
- * Clock :
-   * use gtk font selector
-   * improved numeric view
- * Cpusage : merged in System-Monitor for code reusability and global bug fixes.
- * DBus :
-   * correction in init/stop module
-   * bugs fixed in the DBus interface
-   * Updated functionalities
-   * Added a documentation of the DBus methods.
-   * split the interface in 2 for a easier use.
-   * rewriting for sub-icons
- * Desklet rendering :
-   * desklet caroussel : fixed bug with non-square desklet.
-   * Rewriting of the desklet Slide view.
-   * fixed a crash on the Tree view of desklets
+   * Added documentation in .h files
+   * Cleaning of Cairo-Dock API
+   * Fixed some of memory leaks
+   * Fixed a crash when a module stop
+   * set the Widget Layer rule automatically
+   * detection of composition
+   * metacity: automatically turn on composite
+   * proposed to see the help if it has never been done
+   * message when no plug-in
+   * removed some print messages
+ * Config pannel :
+   * changed the agencement of many options for a better ergonomy.
+   * enhancement of previews in config panels
+   * correction of the icon's order bug
+   * Using font selector to simplify the config panel
+   * small refresh of the config panel
+   * Improved the config panel for launchers
  * Dock rendering :
-   * Curve view :
-     * fixed extended mode
-     * physical separator fix
-     * fixed opengl Curve view
-   * Default view : fixed extended mode
-   * 3D view :
-     * fixed extended mode
-     * physical separator fix
-   * correction in Slide view
- * DnD2Share : Fixed the new bug with videobin.
- * Icon-effect : fixed animation refresh
- * Integration plug-ins : changed name
- * Keyboard-indicator :
-   * use gtk font selector
-   * bug-fix and added a text ratio
- * MP :
-   * made from a merge of the RB + XMMS applets.
-   * fixed support for Amarok2 and Xmms2
-   * minor bug fixes (present in RB) and support for Banshee for Karmic.
-   * correction of the MusicPlayer's icon's thumbnail bug
-   * better cover detection.
-   * correction in the 3D box theme
-   * updated some default values in config files
-   * fixed a crash when stopping MP
- * Motion blur : fixed refresh
- * Nvidia : merged in System-Monitor for code reusability and global bug fixes.
- * po :
-   * added NL translations in 'potfiles'
-   * unified plug-ins translation (easier for the lp translation tool)
- * Powermanager : fixed a bug when charge is between 99.9 and 100
- * QB : fixed 'icon size' option
- * Rame : merged in System-Monitor for code reusability and global bug fixes.
- * Rhythmbox : unified in MP (there was a bit buggy)
- * ShowDesktop : Adding possibility to swap buttons
- * System-Monitor : merge of Cpusage, Nvidia and Rame in order to reuse the code and fix some bugs common to these 3 applets.
- * Switcher :
-   * fixed the 'keep ratio' mode.
-   * fixed 3D picking of the selected desktop.
- * Terminal : fixed bug to force the closing.
- * Tomboy : imporved the desklet mode
- * Toons : fixed Toons in vertical mode
- * Wifi : fixed when user mode can't launch iwconfig
- * XFCE : tried to fix the XFCE bug (nautilus open)
- * XMMS / Audacious / Amarok / Banshee : merged in MP and updated to fit the latest versions of the players.
+   * fixed extended panel mode
+ * Desklets :
+   * Fixed picking 3D bug.
+   * bug-fix on ratio 
+   * desklets can't be hidden
+ * Dialogs :
+   * fixed to don't have twice the same dialog on notification
+   * dialogs can't be hidden
+   * the dock doesn't go under windows when a dialog exists
+ * Gauges :
+   * graph :
+     * fixed the scale of graph to fit the icon's width
+     * fixed graph with mixed values
+ * OpenGL :
+   * Added a workaround for ATI xorg drivers (with KMS on kernel boot)
+   * try to start the OpenGL backend without Stencil if failed
+ * Task bar :
+   * correction of some icons doesn't appear
+   * correction of the discontinuity in icon disappearance animation
+   * solved the jump of icons when closing
+   * fixed the bug with quick-hide
+   * fixed the drawing of indicator on appli's icon
+   * integration of the icon glide movement into the animation loop
+   * added some tooltips to the menu
+   * lock dock option works now for all icons
+ * Themes :
+   * added versionning for distant themes
+   * Default: correction in some conf files
+   * fixed 1 crash when reloading theme
+   * Improved the theme selector
+   * TM handles .tar.bz2 and .tgz
+ * Subdocks
+   * fixed block bugs
+   * correction of the sub-sub-docks bug
+ * Xinerama: available for all root docks to take into account different screen sizes
+ * XShape: correction 1 bug on fullscreen mode
 
-
-Nochka85 :
- * DBus : add missing icon + updated the demo
- * DnD2Share : Updated the support of Uppix.
- * MP : Fixed OSD Pause when the player isn't launched
 
 
 Mav :
- * Each plug-ins : removed unused translations
- * gnome-integration : removed translation
- * MP : updated the support for the latest versions of some players.
+ * Fix headers cairo-dock-dbus
+ * Updated LICENCE file.
+ * Updated default-theme.
 
 
-Tofe :
- * fixed most of bugs in Mail but not enough stable yet to be released.
-
- 
- Matttbe :
- * Each plug-ins :
-  * removed unused translations
-  * removed configure.ac of Makefile.am
-  * Updated translations
- * QB : consider files ended with tild (*~) as hidden
- * Tomboy :
-  * updated to support Gnote for Karmic.
-  * Reloaded the dbus connexion when the note-taking application is changed
-  * Removed the double title in the config panel
- * Dnd2share : fixed the support of videobin.org (API change of the site) (thanks to j^)
+Matttbe :
+ * Updated translations
+ * Added licences in each file
+ * fixed a little bug in tips of the cairo-dock menu
  
  ===========================
  
@@ -159,17 +128,84 @@ Tofe :
  
  ===========================
  
- Modifications made on BZR : Rev 2.0.9.2 => 2.2.0
+ Rev 2.1.3-6 => 2.1.3-10-lucid
+
+/* A bugs fixed version */
+
+Core: 
+  * Fixed some bugs:
+    * Fixed a important crash when read several xml data
+    * LP: #521167 Cairo-dock crashes by theme changing
+    * Fixed a bug with desklets buttons
+    * Used icons of the system
+    * Fixed a bug when removing a container with OpenGL backend
+    * Fixed some typo on some define
+    * Fixed a little bug in the drag motion
+    * Reduced the disk access for SSD disk
+  * Used the official Ubuntu Lucid theme.
+
+Plug-ins
+ * New upstream release
+  * Fixed some bugs:
+    * LP: #455261 (Cannot Modify / Add Custom Launchers)
+    * LP: #449422 (Cairo-Dock resize problem)
+    * LP: #489349 (showDesktop Applet only seems to work
+           every second time you click on it)
+    * LP: #526742 (The system monitor plugin and netspeed
+           plugin inverts upside-down continuously)
+    * Dbus: Used the right DBus API of Cairo-Dock (2.1.3 stable)
+    * Used icons of the system
+    * alsaMixer: fixed a crash when read several xml data
+    * musicPlayer:
+    * Removed some annoying warnings
+    * Banshee-plugin: fixed some bugs due to the new version (1.4.0)
+
+ ===========================
  
- Fabounet :
-  * Il y a tellement ^^
+ Rev 2.1.3-10 => 2.2.0-0beta4
  
- 
- Matttbe :
-  * Updated translations
-  * Added new icons
-  * Fixed dnd2share with another Public directory
-  * preview.png -> preview.jpg
-  * Added Exaile 0.3 support
- 
- (Faut mettre blindé :þ -> boh, ça passera même si on ne met rien en fait ^^)
+Core
+ * Migrated from Autotools to CMake
+ * Use libcurl for file downloads
+ * OpenGL backend: migrated from Pbuffer to FBO.
+ * Added 2 new visibility modes
+ * Added hiding animations
+ * Removed files management from the core
+ * VFS backend: new methods added
+ * OpenGL backend: added a cairo-like API for paths
+ * Applet API: unified methods to handle icons in sub-docks and desklets
+ * Added ability to have several docks with independant configurations
+ * Icons that demand attention are visible even when the dock is hidden
+ * Icons are now loaded progressively for a faster startup
+ * Desklets: added ability to click behind desklets
+ * Labels: homogeneous spacing and better rendering in OpenGL
+ * Better guessing of launcher's class
+ * Config panel :
+  * Improved the simple config panel, new categories of applets in the advanced panel
+  * Added buttons to enable some features of Gnome/Compiz/etc.
+  * Added internet connection options
+ * Added a config file for startup options
+ * Added man pages
+ * Removed unwanted verbosity
+ * Updated translations
+
+Plug-ins
+
+ * Me-Menu: new applet that adds the Me-Menu inside the dock
+ * Messaging-Menu: new applet that adds the Messaging-Menu inside the dock
+ * Dock-rendering: added a new 'Panel' view
+ * DBus: added new methods to the API   added management of third-party applets through a repository
+ * Clock: horizontal packaging of time date
+ * Switcher: horizontal packaging of desktops
+ * Dnd2Share: added tiny-url ability
+ * Logout: added the ability to lock the screen
+ * Dustbin: handle trashes in all the volumes
+ * Shortcuts: display a message when unmounting and connecting disks, and fixed icons reordering
+ * MusicPlayer: added support for Guayadeque
+ * Switcher: added Exposé in the list of actions for middle-click
+ * Dialog-rendering: improved the 'tooltip' view
+ * Improved the integration with KDEand use gio for XFCE 4.6
+ * Mail: bug-fix in messages count
+ * Folders: new applet that adds file-managing abilities to the dock.
+ * Updated translations
+
