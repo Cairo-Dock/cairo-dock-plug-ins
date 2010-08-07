@@ -274,7 +274,7 @@ static void _cd_folders_new_file (GtkMenuItem *pMenuItem, CairoDockModuleInstanc
 
 static void _cd_folders_open_folder (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
 {
-	
+	cairo_dock_fm_launch_uri (myConfig.cDirPath);
 }
 
 static void _cd_folders_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
