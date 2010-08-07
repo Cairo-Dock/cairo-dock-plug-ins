@@ -124,7 +124,7 @@ new mail sound =
 #X[Behaviour] 
 frame_config_mail =
 
-#B Show new messages' content?
+#B[2] Show new messages' content?
 show content = true
 
 #i[1;30] Maximum of new messages shown?
@@ -139,7 +139,7 @@ time_dialog = 5
 #{If you have any problem with the applet, uncheck this option during the maintenance mode, then after the dock has relaunched, remove/modify the mail accounts you want.}
 check = true
 
-#b Total number of files
+#b Show '0' if there is no mail?
 #{If checked, the number of mails will be shown even if there is no mail.}
 show zero mail = true
 
