@@ -86,7 +86,15 @@ static inline guint _get_index_from_gridXY (guint nRowsX, guint gridX, guint gri
 static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRowX, guint *nRowY)
 {
 	// Calcul du nombre de lignes (nY) / colonnes (nX) :
-	guint count = g_list_length (pIconList);
+	guint count = 0;  // g_list_length (pIconList)
+	GList *ic;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+			count ++;
+	}
+	
 	if (count == 0)
 	{
 		*nRowX = 0;
@@ -624,7 +632,7 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 				0.,
 				(pDock->container.bDirectionUp ? my_diapo_simple_lineWidth : h),  // top left corner.
 				pDock->container.iWidth,
-				pDock->container.iHeight - h);
+				pDock->container.iHeight - h - my_diapo_simple_lineWidth);
 			cairo_clip (pCairoContext);
 		}  // sinon clip inutile.
 	}
@@ -636,11 +644,9 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 	{
 		icon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
-			continue;
-		
-		if (icon->bPointed)
 		{
-			
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
+			continue;
 		}
 		
 		cairo_save (pCairoContext);
@@ -1172,7 +1178,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 			glScissor (0,
 				(pDock->container.bDirectionUp ? h : 0),  // lower left corner of the scissor box.
 				pDock->container.iWidth,
-				pDock->container.iHeight - h);
+				pDock->container.iHeight - h - my_diapo_simple_lineWidth);
 		}  // sinon clip inutile.
 	}
 	
@@ -1182,7 +1188,10 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	{
 		icon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+		{
+			ic = cairo_dock_get_next_element (ic, pDock->icons);
 			continue;
+		}
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		
