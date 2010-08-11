@@ -36,7 +36,6 @@ struct _AppletConfig {
 	gchar *cFullUserImage;
 	CdDustbinInfotype iQuickInfoType;
 	gboolean bAskBeforeDelete;
-	gint iActionOnMiddleClick;
 	} ;
 
 struct _AppletData {

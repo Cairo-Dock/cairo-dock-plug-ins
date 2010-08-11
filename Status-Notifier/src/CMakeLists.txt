@@ -2,14 +2,11 @@
 ########### sources ###############
 
 SET(cd-StatusNotifier_LIB_SRCS
-	applet-init.c
-	applet-init.h
-	applet-config.c
-	applet-config.h
-	applet-host.c
-	applet-host.h
-	applet-notifications.c
-	applet-notifications.h
+	applet-init.c 		applet-init.h
+	applet-config.c 		applet-config.h
+	applet-host.c 		applet-host.h
+	applet-item.c 		applet-item.h
+	applet-notifications.c 	applet-notifications.h
 	applet-struct.h
 )
 

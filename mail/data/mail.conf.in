@@ -132,7 +132,7 @@ show content = true
 max shown mails = 0
 
 #i[3;30] Duration of the dialogue
-#{in seconds}
+#{in seconds.}
 time_dialog = 5
 
 #b Check mail account on startup?

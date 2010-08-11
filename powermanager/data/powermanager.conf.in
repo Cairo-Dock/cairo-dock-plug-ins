@@ -60,8 +60,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -142,7 +140,7 @@ effect=0
 #F[Parameters;gtk-preferences]
 frame_param =
 
-#i[20;180] Interval of time between 2 checks :
+#i[20;180] Refresh time:
 #{in seconds.}
 check interval = 30
 

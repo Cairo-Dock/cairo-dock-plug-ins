@@ -127,7 +127,7 @@ frame_disk=
 disk usage = 4
 
 #i[1;30] Delay between disk usage refresh :
-#{In seconds.}
+#{in seconds.}
 check interval = 10
 
 #b Display disk usage with a bar?

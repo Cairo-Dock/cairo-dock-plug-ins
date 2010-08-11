@@ -25,22 +25,9 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bSomeBooleanValue;
-	gint iSomeIntegerValue;
-	gchar *cSomeStringValue;
+	gboolean bCompactMode;
+	gint iItemMinSize;
 	} ;
-
-
-typedef struct _statusNotifierHostObject statusNotifierHostObject;
-
-struct _statusNotifierHostObject {
-	GObject parent;
-	DBusGConnection *connection;
-};
-typedef struct {
-	GObjectClass parent_class;
-} statusNotifierHostObjectClass;
-
 
 
 typedef enum {
@@ -66,29 +53,35 @@ typedef struct {
 	} CDToolTip;
 
 typedef struct {
+	// props
 	gchar *cService;
-	DBusGProxy *pProxyProps;
-	DBusGProxy *pProxy;
 	gchar *cId;
+	gchar *cTitle;
 	CDStatusEnum iStatus;
 	CDCategoryEnum iCategory;
 	Window iWindowId;
+	gchar *cIconName;
 	gchar *cIconThemePath;
 	gchar *cAttentionIconName;
 	gchar *cAttentionMovieName;
 	gchar *cOverlayIconName;
 	CDToolTip *pToolTip;
 	guint iSidPopupTooltip;
-} CDStatusNotifierItemData;
-
+	// data
+	DBusGProxy *pProxyProps;
+	DBusGProxy *pProxy;
+	cairo_surface_t *pSurface;
+	GLuint iTexture;
+	Icon *pIcon; 
+} CDStatusNotifierItem;
 
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	statusNotifierHostObject *pMainObject;
 	DBusGProxy *pProxyWatcher;
 	gchar *cHostName;
-	GList *pIcons;
+	GList *pItems;
+	guint iSidGetWatcher;
 	} ;
 
 

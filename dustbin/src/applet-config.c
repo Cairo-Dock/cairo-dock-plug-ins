@@ -38,7 +38,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iQuickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick info", CD_DUSTBIN_INFO_NB_TRASHES);
 	myConfig.bAskBeforeDelete = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "confirm", TRUE);
-	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "middle click");
 CD_APPLET_GET_CONFIG_END
 
 

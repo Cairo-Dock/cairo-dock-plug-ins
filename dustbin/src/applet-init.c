@@ -31,9 +31,8 @@ CD_APPLET_DEFINITION (N_("dustbin"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet manages the dustbin\n"
-	"You can threw files and unmount disks by drag andn droping them on the icon.\n"
-	"The applet can warn you if you use too much space\n"
-	"Middle-click to display usefull info about the dustbin."),
+	"You can threw files and unmount disks by drag-and-dropping them on the icon.\n"
+	"Middle-click on the icon will empty the dustbin."),
 	"Fabounet (Fabrice Rey)")
 
 static void _get_theme (void)

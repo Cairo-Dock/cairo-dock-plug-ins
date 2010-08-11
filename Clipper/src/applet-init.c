@@ -26,7 +26,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Clipper"),
+CD_APPLET_DEFINE_BEGIN ("Clipper",
 	1, 6, 3,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet keeps a trace of the clipboard and mouse selection,\n"
@@ -35,6 +35,9 @@ CD_APPLET_DEFINITION (N_("Clipper"),
 	"Left-click to popup the clipboard and mouse selection history,\n"
 	"Drop text on the icon to create persistent items, and middle-clck to recall them."),
 	"Fabrice Rey (Fabounet)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Clipboard history"))
+CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

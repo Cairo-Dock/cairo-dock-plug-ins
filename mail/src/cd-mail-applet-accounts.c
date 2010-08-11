@@ -36,7 +36,7 @@
 	pMailAccount->icon = pIcon;
 
 // Translation Hack:
-const char *strings_to_translate[16] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Use a secure connection (SSL)"), N_("Time length between 2 checks:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:")};
+const char *strings_to_translate[16] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:")};
 
 void cd_mail_create_pop3_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
@@ -59,7 +59,7 @@ void cd_mail_create_pop3_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "use secure connection", "b0 Use a secure connection (SSL)", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -125,7 +125,7 @@ void cd_mail_create_imap_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "server_directory", "s0 Directory on server:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -184,7 +184,7 @@ void cd_mail_create_mbox_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "filename", "s0 Path of mbox file:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -220,7 +220,7 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, const gchar *pMailAccountName
   g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -251,7 +251,7 @@ void cd_mail_create_maildir_params( GKeyFile *pKeyFile, const gchar *pMailAccoun
   g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 Path to Mail directory:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -293,7 +293,7 @@ void cd_mail_create_gmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountN
   g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 Password:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
@@ -393,7 +393,7 @@ void cd_mail_create_feed_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
   g_key_file_set_comment (pKeyFile, pMailAccountName, "path", "s0 Address of feed:", NULL);
 
   g_key_file_set_integer (pKeyFile, pMailAccountName, "timeout mn", 10);
-  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Time length between 2 checks:\n{In minutes.}", NULL);
+  g_key_file_set_comment (pKeyFile, pMailAccountName, "timeout mn", "I0[1;30] Refresh time:\n{In minutes.}", NULL);
 
   g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
   g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);

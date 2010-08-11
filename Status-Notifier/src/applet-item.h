@@ -17,17 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#ifndef __APPLET_LOAD_ICONS__
-#define  __APPLET_LOAD_ICONS__
-
+#ifndef __APPLET_ITEM__
+#define  __APPLET_ITEM__
 
 #include <cairo-dock.h>
 
-void cd_stacks_build_icons (void);
-void cd_stacks_destroy_icons (void);
-void cd_stacks_update (CairoDockFMEventType iEventType, const gchar *cURI, Icon *pIcon);
-void cd_stacks_reload (void);
-void cd_stacks_debug_icon(Icon *pIcon);
+
+CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService);
+
+
+void cd_free_item (CDStatusNotifierItem *pItem);
+
 
 #endif

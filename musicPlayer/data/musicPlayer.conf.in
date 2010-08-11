@@ -115,7 +115,7 @@ frame_info=
 enable_dialogs=true
 
 #i[1;30] Time length of tooltips:
-#{in seconds}
+#{in seconds.}
 time_dialog = 4
 
 #a+ Animation when music changes:

@@ -131,7 +131,7 @@ frame_param =
 #{By default this will be 'eth0'.}
 interface = 
 
-#i[1;30] Delay between measurements:
+#i[1;30] Refresh time:
 #{in seconds.}
 delay = 3
 

@@ -124,7 +124,7 @@ text color = 1.0; 0.0; 0.
 popup content = true
 
 #i[5;30] Duration of the dialog:
-#{in seconds}
+#{in seconds.}
 time_dialog = 10
 
 #n+ Sub-dock view name:

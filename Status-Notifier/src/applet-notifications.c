@@ -49,7 +49,7 @@ static inline gboolean _emit_click (Icon *pIcon, CairoContainer *pContainer, con
 		{
 			cairo_dock_remove_dialog_if_any (pIcon);
 			
-			CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 			if (pItemData != NULL)
 			{
 				if (pItemData->iSidPopupTooltip != 0)
@@ -85,7 +85,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	{
 		if (CD_APPLET_CLICKED_ICON != NULL)
 		{
-			CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (CD_APPLET_CLICKED_ICON);
+			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (CD_APPLET_CLICKED_ICON);
 			if (pItemData != NULL)
 			{
 				dbus_g_proxy_call (pItemData->pProxy, "Scroll", NULL,
@@ -123,7 +123,7 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 
 static gboolean _popup_tooltip (Icon *pIcon)
 {
-	CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+	CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pItemData != NULL && pItemData->pToolTip != NULL)
 	{
 		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
@@ -146,12 +146,12 @@ gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Ic
 {
 	if (pDock == myIcon->pSubDock && myIcon->pSubDock != NULL)
 	{
-		Icon *icon = NULL;
+		/*Icon *icon = NULL;
 		GList *ic;
 		for (ic = myData.pIcons; ic != NULL; ic = ic->next)
 		{
 			icon = ic->data;
-			CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 			if (pItemData && pItemData->iSidPopupTooltip != 0)
 			{
 				g_source_remove (pItemData->iSidPopupTooltip);
@@ -162,9 +162,9 @@ gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Ic
 		
 		if (pIcon)
 		{
-			CDStatusNotifierItemData *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 			pItemData->iSidPopupTooltip = g_timeout_add (600, (GSourceFunc) _popup_tooltip, pIcon);
-		}
+		}*/
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

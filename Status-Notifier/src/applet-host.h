@@ -16,8 +16,6 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-
 #ifndef __APPLET_HOST__
 #define  __APPLET_HOST__
 
@@ -28,7 +26,7 @@
 void cd_satus_notifier_launch_service (void);
 
 
-Icon * cd_satus_notifier_find_icon_from_service (const gchar *cService);
+void cd_satus_notifier_stop_service (void);
 
 
 #endif

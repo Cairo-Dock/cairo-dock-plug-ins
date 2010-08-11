@@ -56,8 +56,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -97,7 +95,7 @@ fg alpha = 1
 #F[Actions;gtk-preferences]
 frame_act = 
 
-#l[None;Switch WM;Widget Layer;Expose;Show Desktop] Choose an action for middle click on the icon:
+#l[None;Switch WM;Widget Layer;Expose;Show Desktop] Action on middle click :
 #{Except when switching to another WM, you must activate the Dbus plugin in Compiz along with the plugin corresponding to the desired action.}
 middle click = 1
 

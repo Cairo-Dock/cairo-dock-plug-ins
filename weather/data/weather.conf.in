@@ -110,8 +110,8 @@ IS units = true
 #{in seconds. Set 0 to have never-ending dialogs.}
 dialog duration = 7
 
-#i[5;60] Interval of time between 2 checks :
-#{in minutes.}
+#i[5;60] Refresh time:
+#{In minutes.}
 check interval = 15
 
 #F[Info;gtk-info]
