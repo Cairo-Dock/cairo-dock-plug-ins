@@ -87,6 +87,7 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 {
 	// Calcul du nombre de lignes (nY) / colonnes (nX) :
 	guint count = 0;  // g_list_length (pIconList)
+	Icon *icon;
 	GList *ic;
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
