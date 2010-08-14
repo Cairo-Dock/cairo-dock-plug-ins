@@ -193,7 +193,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 	//cairo_dock_free_task (pUpdateTask);
 	return TRUE;
 }
-static void _check_update_theme (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)
+static void _check_update_package (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)
 {
 	g_print ("*** %s (%s, %d)\n", __func__, cModuleName, pPackage->iType);
 	if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
@@ -212,7 +212,7 @@ static void _on_got_list (GHashTable *pThemesTable, gpointer data)
 {
 	if (pThemesTable != NULL)
 	{
-		g_hash_table_foreach (pThemesTable, (GHFunc) _check_update_theme, NULL);
+		g_hash_table_foreach (pThemesTable, (GHFunc) _check_update_package, NULL);
 	}
 	cairo_dock_free_task (myData.pGetListTask);
 	myData.pGetListTask = NULL;

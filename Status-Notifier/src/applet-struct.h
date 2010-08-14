@@ -56,30 +56,40 @@ typedef struct {
 	// props
 	gchar *cService;
 	gchar *cId;
-	gchar *cTitle;
-	CDStatusEnum iStatus;
 	CDCategoryEnum iCategory;
-	Window iWindowId;
+	CDStatusEnum iStatus;
 	gchar *cIconName;
 	gchar *cIconThemePath;
 	gchar *cAttentionIconName;
+	gchar *cTitle;
+	// additionnal props supported by Ubuntu
+	gchar *cLabel;
+	gchar *cLabelGuide;
+	gchar *cMenuPath;
+	// additionnal props supported by KDE
+	Window iWindowId;
 	gchar *cAttentionMovieName;
 	gchar *cOverlayIconName;
 	CDToolTip *pToolTip;
+	
+	gint iPosition;  // donnee par l'indicator service
 	guint iSidPopupTooltip;
 	// data
 	DBusGProxy *pProxyProps;
 	DBusGProxy *pProxy;
 	cairo_surface_t *pSurface;
 	GLuint iTexture;
-	Icon *pIcon; 
+	Icon *pIcon;
 } CDStatusNotifierItem;
 
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	DBusGProxy *pProxyWatcher;
 	gchar *cHostName;
+	DBusGProxy *pProxyWatcher;
+	DBusGProxy *pProxyIndicatorApplicationService;
+	DBusGProxyCall* pRegisterHostCall;
+	DBusGProxyCall* pGetApplicationsCall;
 	GList *pItems;
 	guint iSidGetWatcher;
 	} ;

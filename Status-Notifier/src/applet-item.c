@@ -28,6 +28,8 @@
 #define CD_STATUS_NOTIFIER_ITEM_IFACE "org.kde.StatusNotifierItem"
 #define CD_STATUS_NOTIFIER_ITEM_OBJ "/StatusNotifierItem"
 
+#define CD_INDICATOR_APPLICATION_ITEM_OBJ "/org/ayatana/NotificationItem"
+
 
 static CDCategoryEnum _find_category (const gchar *cCategory)
 {
@@ -55,6 +57,16 @@ static CDStatusEnum _find_status (const gchar *cStatus)
 	if (*cStatus == 'P')
 		return CD_STATUS_PASSIVE;
 	return CD_STATUS_ACTIVE;
+}
+
+static void cd_free_tooltip (CDToolTip *pToolTip)
+{
+	if (pToolTip == NULL)
+		return;
+	g_free (pToolTip->cIconName);
+	g_free (pToolTip->cTitle);
+	g_free (pToolTip->cMessage);
+	g_free (pToolTip);
 }
 
 static CDToolTip *_make_tooltip_from_dbus_struct (GValueArray *pToolTipTab)
@@ -123,65 +135,111 @@ static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
 }
 
 
-static void on_new_item_title (DBusGProxy *proxy_item, Icon *pIcon)
+static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
 	g_print ("%s ()\n", __func__);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
 	
-	gchar *cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
-	cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
-	g_free (cTitle);
+	g_free (pItem->cIconName);
+	pItem->cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
+	g_print (" new icon : %s\n", pItem->cIconName);
 	
+	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
+	{
+		if (myConfig.bCompactMode)
+		{
+			cairo_dock_load_icon_image (myIcon, myContainer);
+		}
+		else
+		{
+			/*cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+			cairo_dock_set_image_on_icon (pIconContext, pItem->cIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+			cairo_destroy (pIconContext);*/
+		}
+	}
 	CD_APPLET_LEAVE ();
 }
 
-static void on_new_item_icon (DBusGProxy *proxy_item, Icon *pIcon)
+static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
 	g_print ("%s ()\n", __func__);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
-	
-	gchar *cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
-	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-	cairo_dock_set_image_on_icon (pIconContext, pItem->cAttentionIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
-	cairo_destroy (pIconContext);
-	g_free (cIconName);
-	
-	CD_APPLET_LEAVE ();
-}
-
-static void on_new_item_attention_icon (DBusGProxy *proxy_item, Icon *pIcon)
-{
-	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
 	
 	g_free (pItem->cAttentionIconName);
 	pItem->cAttentionIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "AttentionIconName");
-	if (pIcon->bIsDemandingAttention && pIcon->pIconBuffer)
+	g_print (" new attention icon : %s\n", pItem->cAttentionIconName);
+	
+	if (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION)
 	{
-		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-		cairo_dock_set_image_on_icon (pIconContext, pItem->cAttentionIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
-		cairo_destroy (pIconContext);
+		if (myConfig.bCompactMode)
+		{
+			cairo_dock_load_icon_image (myIcon, myContainer);
+		}
+		else
+		{
+			/*cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+			cairo_dock_set_image_on_icon (pIconContext, pItem->cAttentionIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+			cairo_destroy (pIconContext);*/
+		}
 	}
+	CD_APPLET_LEAVE ();
+}
+
+static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CDStatusNotifierItem *pItem)
+{
+	CD_APPLET_ENTER;
+	g_print ("%s (%s)\n", __func__, cStatus);
+	
+	pItem->iStatus = _find_status (cStatus);
+	if (myConfig.bCompactMode)
+	{
+		cairo_dock_load_icon_image (myIcon, myContainer);
+	}
+	else
+	{
+		/*cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+		cairo_dock_set_image_on_icon (pIconContext, pItem->cAttentionIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+		cairo_destroy (pIconContext);*/
+	}
+	//_show_item_status (pIcon, pItem);
 	
 	CD_APPLET_LEAVE ();
 }
 
-static void on_new_item_overlay_icon (DBusGProxy *proxy_item, Icon *pIcon)
+
+static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, const gchar *cLabelGuide, CDStatusNotifierItem *pItem)
+{
+	CD_APPLET_ENTER;
+	g_print ("%s (%s, %s)\n", __func__, cLabel, cLabelGuide);
+	
+	CD_APPLET_LEAVE ();
+}
+
+
+static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
 	g_print ("%s ()\n", __func__);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
+	
+	g_free (pItem->cTitle);
+	pItem->cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
+	g_print (" new title : %s\n", pItem->cTitle);
+	
+	//cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_new_item_overlay_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
+{
+	CD_APPLET_ENTER;
+	g_print ("%s ()\n", __func__);
 	
 	g_free (pItem->cOverlayIconName);
 	pItem->cOverlayIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "OverlayIconName");
-	if (pIcon->pIconBuffer)
+	g_print (" new overlay : %s\n", pItem->cOverlayIconName);
+	
+	/*if (pIcon->pIconBuffer)
 	{
 		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 		cairo_dock_set_image_on_icon (pIconContext, pIcon->cFileName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
@@ -194,80 +252,71 @@ static void on_new_item_overlay_icon (DBusGProxy *proxy_item, Icon *pIcon)
 			cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 			cairo_dock_free_emblem (pEmblem);
 		}
-	}
+	}*/
 	
 	CD_APPLET_LEAVE ();
 }
 
 
 
-static void cd_free_tooltip (CDToolTip *pToolTip)
-{
-	if (pToolTip == NULL)
-		return;
-	g_free (pToolTip->cIconName);
-	g_free (pToolTip->cTitle);
-	g_free (pToolTip->cMessage);
-	g_free (pToolTip);
-}
-
-static void on_new_item_tooltip (DBusGProxy *proxy_item, Icon *pIcon)
+static void on_new_item_tooltip (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
 	g_print ("%s ()\n", __func__);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
 	
-	cairo_dock_remove_dialog_if_any (pIcon);
 	cd_free_tooltip (pItem->pToolTip);
 	pItem->pToolTip = NULL;
+	
+	//cairo_dock_remove_dialog_if_any (pIcon);
 	
 	GValueArray *pToolTipTab = cairo_dock_dbus_get_property_as_boxed (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "ToolTip");
 	if (pToolTipTab)
 	{
 		pItem->pToolTip = _make_tooltip_from_dbus_struct (pToolTipTab);
 		
-		if (pItem->pToolTip && pItem->pToolTip->cMessage != NULL)
-			_show_item_tooltip (pIcon, pItem);
+		//if (pItem->pToolTip && pItem->pToolTip->cMessage != NULL)
+		//	_show_item_tooltip (pIcon, pItem);
 	}
 	
 	CD_APPLET_LEAVE ();
 }
 
-static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, Icon *pIcon)
-{
-	CD_APPLET_ENTER;
-	g_print ("%s (%s)\n", __func__, cStatus);
-	CDStatusNotifierItem *pItem = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-	CD_APPLET_LEAVE_IF_FAIL (pItem != NULL);
-	
-	pItem->iStatus = _find_status (cStatus);
-	_show_item_status (pIcon, pItem);
-	
-	CD_APPLET_LEAVE ();
-}
 
-
-CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
+CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath)
 {
 	gchar *str = strchr (cService, '/');
 	if (str)
 		*str = '\0';
-	g_print (" + item '%s' on the bus\n", cService);
+	g_print ("%s (%s)\n", __func__, cService);
+	
+	// special case for Ubuntu indicators: we don't know their object path.
+	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
+	{
+		gchar *str = strrchr (cObjectPath, '/');
+		if (str)
+			*str = '\0';
+	}
+	else
+	{
+		cObjectPath = CD_STATUS_NOTIFIER_ITEM_OBJ;
+	}
 	
 	//\_________________ get the properties of the item.
 	DBusGProxy *pProxyItemProp = cairo_dock_create_new_session_proxy (
 		cService,
-		CD_STATUS_NOTIFIER_ITEM_OBJ,
-		"org.freedesktop.DBus.Properties");
+		cObjectPath,
+		DBUS_INTERFACE_PROPERTIES);
 	if (pProxyItemProp == NULL)
 		return NULL;
+	
+	g_print ("owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
 	
 	g_print ("getting properties ...\n");
 	GHashTable *hProps = cairo_dock_dbus_get_all_properties (pProxyItemProp, CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (hProps == NULL)
 		return NULL;
 	
+	// properties supported by KDE and Ubuntu.
 	GValue *v;
 	const gchar *cId = NULL;
 	v = g_hash_table_lookup (hProps, "Id");
@@ -275,15 +324,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	{
 		cId = g_value_get_string (v);
 	}
-	g_print ("  ID '%s\n", cId);
-	
-	const gchar *cTitle = NULL;
-	v = g_hash_table_lookup (hProps, "Title");  // -> cName
-	if (v && G_VALUE_HOLDS_STRING (v))
-	{
-		cTitle = g_value_get_string (v);
-	}
-	g_print ("  Title '%s\n", cTitle);
+	g_print ("  ID '%s'\n", cId);
 	
 	const gchar *cCategory = NULL;
 	v = g_hash_table_lookup (hProps, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
@@ -301,14 +342,6 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	}
 	g_print ("  Status '%s'\n", cStatus);
 	
-	v = g_hash_table_lookup (hProps, "WindowId");
-	guint iWindowId = 0;
-	if (v && G_VALUE_HOLDS_UINT(v))
-	{
-		iWindowId = g_value_get_uint (v);
-	}
-	g_print ("  WindowId '%d'\n", iWindowId);
-	
 	const gchar *cIconName = NULL;
 	v = g_hash_table_lookup (hProps, "IconName");  // -> cIFileName
 	if (v && G_VALUE_HOLDS_STRING (v))
@@ -325,14 +358,6 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	}
 	g_print ("  IconThemePath '%s'\n", cIconThemePath);
 	
-	const gchar *cOverlayIconName = NULL;
-	v = g_hash_table_lookup (hProps, "OverlayIconName");  // -> emblem
-	if (v && G_VALUE_HOLDS_STRING (v))
-	{
-		cOverlayIconName = g_value_get_string (v);
-	}
-	g_print ("  OverlayIconName '%s'\n", cOverlayIconName);
-	
 	const gchar *cAttentionIconName = NULL;
 	v = g_hash_table_lookup (hProps, "AttentionIconName");  // -> keep for demands of attention
 	if (v && G_VALUE_HOLDS_STRING (v))
@@ -340,6 +365,56 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 		cAttentionIconName = g_value_get_string (v);
 	}
 	g_print ("  AttentionIconName '%s'\n", cAttentionIconName);
+	
+	// properties supported by Ubuntu.
+	const gchar *cMenuPath = NULL;
+	v = g_hash_table_lookup (hProps, "Menu");  // object path to a dbus-menu
+	if (v && G_VALUE_HOLDS_BOXED(v))
+	{
+		cMenuPath = (gchar*) g_value_get_boxed (v);
+	}
+	g_print ("  cMenuPath '%s'\n", cMenuPath);
+	
+	const gchar *cLabel = NULL;
+	v = g_hash_table_lookup (hProps, "XAyatanaLabel");
+	if (v && G_VALUE_HOLDS_BOXED(v))
+	{
+		cLabel = g_value_get_string (v);
+	}
+	g_print ("  cLabel '%s'\n", cLabel);
+	
+	const gchar *cLabelGuide = NULL;
+	v = g_hash_table_lookup (hProps, "XAyatanaLabelGuide");
+	if (v && G_VALUE_HOLDS_BOXED(v))
+	{
+		cLabelGuide = g_value_get_string (v);
+	}
+	g_print ("  cLabelGuide '%s'\n", cLabelGuide);
+	
+	// properties supported by KDE.
+	const gchar *cTitle = NULL;
+	v = g_hash_table_lookup (hProps, "Title");  // -> cName
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cTitle = g_value_get_string (v);
+	}
+	g_print ("  Title '%s\n", cTitle);
+	
+	v = g_hash_table_lookup (hProps, "WindowId");
+	guint iWindowId = 0;
+	if (v && G_VALUE_HOLDS_UINT(v))
+	{
+		iWindowId = g_value_get_uint (v);
+	}
+	g_print ("  WindowId '%d'\n", iWindowId);
+	
+	const gchar *cOverlayIconName = NULL;
+	v = g_hash_table_lookup (hProps, "OverlayIconName");  // -> emblem
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cOverlayIconName = g_value_get_string (v);
+	}
+	g_print ("  OverlayIconName '%s'\n", cOverlayIconName);
 	
 	const gchar *cAttentionMovieName = NULL;
 	v = g_hash_table_lookup (hProps, "AttentionMovieName");  // -> idem
@@ -359,7 +434,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	g_print ("creating the icon...\n");
 	DBusGProxy *pProxyItem = cairo_dock_create_new_session_proxy (
 		cService,
-		"/StatusNotifierItem",
+		CD_STATUS_NOTIFIER_ITEM_OBJ,
 		CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (pProxyItem == NULL)
 		return NULL;
@@ -371,6 +446,9 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	pItem->pProxy = pProxyItem;
 	pItem->cId = g_strdup (cId);
 	pItem->cTitle = g_strdup (cTitle);
+	pItem->cLabel = g_strdup (cLabel);
+	pItem->cLabelGuide = g_strdup (cLabelGuide);
+	pItem->cMenuPath = g_strdup (cMenuPath);
 	pItem->iWindowId = iWindowId;
 	pItem->iCategory = _find_category (cCategory);
 	pItem->iStatus = _find_status (cStatus);
@@ -387,10 +465,11 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	myData.pItems = g_list_prepend (myData.pItems, pItem);
 	
 	//\_________________ track any changes in the item.
-	dbus_g_proxy_add_signal(pProxyItem, "NewTitle",
-		G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(pProxyItem, "NewTitle",
-		G_CALLBACK(on_new_item_title), myApplet, NULL);
+	// signals supported by both.
+	dbus_g_proxy_add_signal(pProxyItem, "NewStatus",
+		G_TYPE_STRING, G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(pProxyItem, "NewStatus",
+		G_CALLBACK(on_new_item_status), myApplet, NULL);
 	
 	dbus_g_proxy_add_signal(pProxyItem, "NewIcon",
 		G_TYPE_INVALID);
@@ -402,20 +481,27 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService)
 	dbus_g_proxy_connect_signal(pProxyItem, "NewAttentionIcon",
 		G_CALLBACK(on_new_item_attention_icon), myApplet, NULL);
 	
+	// signals supported by Ubuntu.
+	dbus_g_proxy_add_signal(pProxyItem, "NewLabel",
+		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(pProxyItem, "NewLabel",
+		G_CALLBACK(on_new_item_label), myApplet, NULL);
+	
+	// signals supported by KDE.
 	dbus_g_proxy_add_signal(pProxyItem, "NewOverlayIcon",
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(pProxyItem, "NewOverlayIcon",
 		G_CALLBACK(on_new_item_overlay_icon), myApplet, NULL);
 	
+	dbus_g_proxy_add_signal(pProxyItem, "NewTitle",
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(pProxyItem, "NewTitle",
+		G_CALLBACK(on_new_item_title), myApplet, NULL);
+	
 	dbus_g_proxy_add_signal(pProxyItem, "NewToolTip",
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(pProxyItem, "NewToolTip",
 		G_CALLBACK(on_new_item_tooltip), myApplet, NULL);
-	
-	dbus_g_proxy_add_signal(pProxyItem, "NewStatus",
-		G_TYPE_STRING, G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(pProxyItem, "NewStatus",
-		G_CALLBACK(on_new_item_status), myApplet, NULL);
 	
 	g_print ("destroy props...\n");
 	g_hash_table_destroy (hProps);
@@ -434,8 +520,53 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	g_free (pItem->cId);
 	g_free (pItem->cIconName);
 	g_free (pItem->cAttentionIconName);
+	g_free (pItem->cLabel);
+	g_free (pItem->cLabelGuide);
+	g_free (pItem->cTitle);
 	g_free (pItem->cAttentionMovieName);
 	g_free (pItem->cOverlayIconName);
 	cd_free_tooltip (pItem->pToolTip);
 	g_free (pItem);
+}
+
+
+CDStatusNotifierItem *cd_satus_notifier_get_item_from_icon (Icon *pIcon)
+{
+	CDStatusNotifierItem *pItem;
+	GList *it;
+	for (it = myData.pItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		if (pIcon->cCommand && strcmp (pIcon->cCommand, pItem->cService) == 0)
+			return pItem;
+	}
+	return NULL;
+}
+
+Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
+{
+	GList *ic, *pIcons = CD_APPLET_MY_ICONS_LIST;
+	Icon *pIcon;
+	for (ic = pIcons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (pIcon->cCommand && strcmp (pIcon->cCommand, pItem->cService) == 0)
+		{
+			return pIcon;
+		}
+	}
+	return NULL;
+}
+
+CDStatusNotifierItem *cd_satus_notifier_get_item_from_position (int iPosition)
+{
+	CDStatusNotifierItem *pItem;
+	GList *it;
+	for (it = myData.pItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		if (pItem->iPosition == iPosition)
+			return pItem;
+	}
+	return NULL;
 }

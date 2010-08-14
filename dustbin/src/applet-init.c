@@ -138,6 +138,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		//\_______________ On stoppe la surveillance.
 		cd_dustbin_stop (myApplet);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		
 		//\_______________ On la redemarre.
 		_get_theme ();

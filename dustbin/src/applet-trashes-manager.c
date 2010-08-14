@@ -35,7 +35,7 @@ static void cd_dustbin_measure_trash (CairoDockModuleInstance *myApplet)
 static gboolean cd_dustbin_display_result (CairoDockModuleInstance *myApplet)
 {
 	myData.iMeasure = myData._iMeasure;
-	g_print ("trash measure : %d\n", myData.iMeasure);
+	//g_print ("trash measure : %d\n", myData.iMeasure);
 	
 	if (myData.iMeasure == 0)
 	{
@@ -75,7 +75,7 @@ static gboolean cd_dustbin_display_result (CairoDockModuleInstance *myApplet)
 static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
-	g_print ("%s (%s, %d)\n", __func__, cURI, myData.iMeasure);
+	//g_print ("%s (%s, %d)\n", __func__, cURI, myData.iMeasure);
 	gchar *cQuickInfo = NULL;
 	switch (iEventType)
 	{
@@ -83,14 +83,14 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 		case CAIRO_DOCK_FILE_CREATED :
 			if (cairo_dock_task_is_running (myData.pTask) || cairo_dock_task_is_active (myData.pTask))
 			{
-				g_print ("cancel measure\n");
+				//g_print ("cancel measure\n");
 				cairo_dock_discard_task (myData.pTask);
 				myData.pTask = cairo_dock_new_task (0,
 					(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
 					(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
 					myApplet);
 			}
-			else
+			else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
 			cairo_dock_launch_task_delayed (myData.pTask, 500);
 		break ;

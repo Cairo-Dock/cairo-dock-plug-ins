@@ -867,7 +867,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
 {
 	g_return_val_if_fail (cBaseURI != NULL, 0);
-	g_print ("%s (%s)\n", __func__, cBaseURI);
+	cd_debug ("%s (%s)", __func__, cBaseURI);
 	
 	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // on le libere a la fin si necessaire.
 	
@@ -911,7 +911,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
 		GFile *file = g_file_new_for_uri (sFilePath->str);
 		const gchar *cTargetURI = g_file_get_uri (file);
-		g_print ("+ %s [%s]\n", cFileName, cTargetURI);
+		//g_print ("+ %s [%s]\n", cFileName, cTargetURI);
 		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 		
 		if (iFileType == G_FILE_TYPE_DIRECTORY && bRecursive)
@@ -933,7 +933,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		g_object_unref (pFileInfo);
 	} while (! g_atomic_int_get (pCancel));
 	if (*pCancel)
-		g_print ("mesure annulee\n");
+		cd_debug ("mesure annulee");
 	
 	g_object_unref (pFileEnum);
 	g_object_unref (pFile);
