@@ -52,9 +52,9 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON,
+	/*cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON,
 		(CairoDockNotificationFunc) cd_status_notifier_on_enter_icon,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		CAIRO_DOCK_RUN_AFTER, myApplet);*/
 	cairo_dock_register_notification (CAIRO_DOCK_BUILD_CONTAINER_MENU,
 		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
 		CAIRO_DOCK_RUN_FIRST, myApplet);
@@ -71,6 +71,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_CONTAINER_MENU,
 		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
 		myApplet);
+	cd_satus_notifier_stop_service ();
 CD_APPLET_STOP_END
 
 

@@ -21,6 +21,9 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include <libdbusmenu-gtk/menuitem.h>
+#include <libdbusmenu-gtk/menu.h>
+
 #include <cairo-dock.h>
 
 //\___________ structure containing the applet's configuration parameters.
@@ -77,6 +80,7 @@ typedef struct {
 	// data
 	DBusGProxy *pProxyProps;
 	DBusGProxy *pProxy;
+	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
 	GLuint iTexture;
 	Icon *pIcon;

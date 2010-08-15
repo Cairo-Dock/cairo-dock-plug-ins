@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-item.h"
 #include "applet-notifications.h"
 
 static void _get_x_y (Icon *pIcon, CairoContainer *pContainer, int *x, int *y)
@@ -37,64 +38,93 @@ static void _get_x_y (Icon *pIcon, CairoContainer *pContainer, int *x, int *y)
 		*x = pContainer->iWindowPositionY + (pContainer->bDirectionUp ? 0 : pContainer->iHeight);
 		*y = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
 	}
-	g_print ("menu position : %d;%d\n", *x, *y);
+	g_print ("click position : %d;%d\n", *x, *y);
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 static inline gboolean _emit_click (Icon *pIcon, CairoContainer *pContainer, const gchar *cSignal)
 {
-	if (pContainer == CAIRO_CONTAINER (myIcon->pSubDock) && myIcon->pSubDock != NULL)
+	CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (pIcon);
+	g_return_val_if_fail (pItem != NULL, FALSE);
+	
+	cairo_dock_remove_dialog_if_any (pIcon);
+	if (pItem->iSidPopupTooltip != 0)
 	{
-		if (pIcon != NULL)
-		{
-			cairo_dock_remove_dialog_if_any (pIcon);
-			
-			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-			if (pItemData != NULL)
-			{
-				if (pItemData->iSidPopupTooltip != 0)
-				{
-					g_source_remove (pItemData->iSidPopupTooltip);
-					pItemData->iSidPopupTooltip = 0;
-				}	
-				int x, y;
-				_get_x_y (pIcon, pContainer, &x, &y);
-				dbus_g_proxy_call (pItemData->pProxy, cSignal, NULL,
-					G_TYPE_INT, x,
-					G_TYPE_INT, y,
-					G_TYPE_INVALID,
-					G_TYPE_INVALID);
-			}
-		}
-		return TRUE;
+		g_source_remove (pItem->iSidPopupTooltip);
+		pItem->iSidPopupTooltip = 0;
+	}	
+	
+	int x, y;
+	_get_x_y (pIcon, pContainer, &x, &y);
+	
+	GError *erreur = NULL;
+	dbus_g_proxy_call (pItem->pProxy, cSignal, &erreur,
+		G_TYPE_INT, x,
+		G_TYPE_INT, y,
+		G_TYPE_INVALID,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		g_print ("method %s failed (%s)\n", cSignal, erreur->message);
+		g_error_free (erreur);
+		return FALSE;
 	}
-	return FALSE;
+	return TRUE;
 }
 CD_APPLET_ON_CLICK_BEGIN
-	_emit_click (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
+	gboolean r;
+	if (myConfig.bCompactMode)
+	{
+		
+	}
+	else if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
+	{
+		r = _emit_click (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
+		if (!r)
+		{
+			CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (CD_APPLET_CLICKED_ICON);
+			g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			if (pItem->cId != NULL)
+			{
+				cairo_dock_launch_command (pItem->cId);
+			}
+		}
+	}
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	_emit_click (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
+	if (myConfig.bCompactMode)
+	{
+		
+	}
+	else if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
+	{
+		_emit_click (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
+	}
 CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN
-	if (CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myIcon->pSubDock) && myIcon->pSubDock != NULL)
+	GError *erreur = NULL;
+	if (myConfig.bCompactMode)
 	{
-		if (CD_APPLET_CLICKED_ICON != NULL)
-		{
-			CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (CD_APPLET_CLICKED_ICON);
-			if (pItemData != NULL)
-			{
-				dbus_g_proxy_call (pItemData->pProxy, "Scroll", NULL,
-					G_TYPE_INT, CD_APPLET_SCROLL_UP ? +1 : -1,
-					G_TYPE_STRING, "vertical",
-					G_TYPE_INVALID,
-					G_TYPE_INVALID);
-			}
-		}
+		
+	}
+	else if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
+	{
+		CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (CD_APPLET_CLICKED_ICON);
+		g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		dbus_g_proxy_call (pItem->pProxy, "Scroll", &erreur,
+			G_TYPE_INT, CD_APPLET_SCROLL_UP ? +1 : -1,
+			G_TYPE_STRING, "vertical",
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+	}
+	if (erreur != NULL)
+	{
+		g_print ("method %s failed (%s)\n", "Scroll", erreur->message);
+		g_error_free (erreur);
 	}
 CD_APPLET_ON_SCROLL_END
 
@@ -108,16 +138,38 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
-	if (pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && myIcon->pSubDock != NULL)
+	if ((myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock)) ||
+		(myDesklet && pClickedContainer == myContainer))
 	{
-		*bDiscardMenu = TRUE;
-		if (pClickedIcon != NULL)
+		if (myConfig.bCompactMode)
 		{
-			_emit_click (pClickedIcon, pClickedContainer, "ContextMenu");
+			
 		}
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		else if (pClickedIcon != NULL && pClickedIcon != myIcon)
+		{
+			CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (CD_APPLET_CLICKED_ICON);
+			g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			
+			gboolean r = FALSE;
+			if (pItem->cMenuPath != NULL)
+			{
+				if (pItem->pMenu == NULL)
+					pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+				if (pItem->pMenu != NULL)
+				{
+					cairo_dock_popup_menu_on_container (GTK_WIDGET (pItem->pMenu), CD_APPLET_MY_ICONS_LIST_CONTAINER);
+					r = TRUE;
+				}
+			}
+			
+			if (!r)
+			{
+				_emit_click (pClickedIcon, pClickedContainer, "ContextMenu");
+			}
+			*bDiscardMenu = TRUE;
+			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 

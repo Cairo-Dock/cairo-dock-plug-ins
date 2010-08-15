@@ -509,12 +509,17 @@ add_subdirectory (stack)
 
 ############# STATUS NOTIFIER #################
 if ("${enable-status-notifier}" STREQUAL "yes")
-	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
-	set (VERSION_STATUS_NOTIFIER "0.0.1")
-	set (PACKAGE_STATUS_NOTIFIER "cd-status-notifier")
-	set (status_notifierdatadir "${pluginsdatadir}/Status-Notifier")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Status-Notifier/data/Status-Notifier.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Status-Notifier/data/Status-Notifier.conf)
-	add_subdirectory (Status-Notifier)
+	pkg_check_modules (STATUS_NOTIFIER dbusmenu-gtk)
+	if ("${STATUS_NOTIFIER_FOUND}" STREQUAL "")
+		message (STATUS "Could not find Status-Notifier libs; Cairo-Dock won't be built with Status-Notifier support.")
+	else()
+		set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
+		set (VERSION_STATUS_NOTIFIER "0.1.0")
+		set (PACKAGE_STATUS_NOTIFIER "cd-status-notifier")
+		set (status_notifierdatadir "${pluginsdatadir}/Status-Notifier")
+		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Status-Notifier/data/Status-Notifier.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Status-Notifier/data/Status-Notifier.conf)
+		add_subdirectory (Status-Notifier)
+	endif()
 endif()
 
 ############# SWITCHER #################

@@ -418,6 +418,8 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 		for (i = 0; pApplications[i] != NULL; i ++)
 		{
 			pItem = cd_satus_notifier_create_item (pApplications[i], NULL);
+			if (! pItem)
+				continue;
 			myData.pItems = g_list_prepend (myData.pItems, pItem);
 			
 			if (! myConfig.bCompactMode)
@@ -535,6 +537,8 @@ static void _cd_satus_notifier_get_items (void)
 		for (i = 0; cItemsName[i] != NULL; i ++)
 		{
 			pItem = cd_satus_notifier_create_item (cItemsName[i], NULL);
+			if (! pItem)
+				continue;
 			myData.pItems = g_list_prepend (myData.pItems, pItem);
 			
 			if (! myConfig.bCompactMode)

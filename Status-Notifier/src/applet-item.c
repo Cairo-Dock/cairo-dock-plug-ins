@@ -462,8 +462,6 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		pItem->pToolTip = _make_tooltip_from_dbus_struct (pToolTipTab);
 	}
 	
-	myData.pItems = g_list_prepend (myData.pItems, pItem);
-	
 	//\_________________ track any changes in the item.
 	// signals supported by both.
 	dbus_g_proxy_add_signal(pProxyItem, "NewStatus",

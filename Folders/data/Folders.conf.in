@@ -11,15 +11,18 @@ icon size = 0;0
 #{Let empty to use the name of the folder.}
 name =
 
+#d Name of the dock it belongs to:
+dock name = 
+
+#v
+sep_icon=
+
 #Y[Use an image;1;1;Draw sub-dock's content as emblems;0;0;Draw sub-dock's content as stack;0;0;Draw sub-dock's content inside a box;0;0] How to render the icon :
 view type = 3
 
 #S+ Image filename:
 #{Leave empty to use the default one.}
 image file = 
-
-#d Name of the dock it belongs to:
-dock name = 
 
 icon =
 order=
