@@ -1,5 +1,7 @@
-X-Source-Downloaded-From: http://developer.berlios.de/projects/cairo-dock/
-X-Upstream-Author: Fabrice Rey <fabounet@glx-dock.org>.
+X-Source-Downloaded-From: https://launchpad.net/cairo-dock
+X-Upstream-Author: Fabrice Rey <fabounet@glx-dock.org>
+X-Debianized-By: Matthieu Baerts (matttbe) <matttbe@gmail.com>
+X-Debianized-Date: Sat, 07 Aug 2010 03:37:36 +0200
 
 Files: systray/src/cd-tray.c: LGPL (v2 or later)
 Copyright: 2007 Neil Jagdish Patel
@@ -79,10 +81,6 @@ Files: 	powermanager/*
 Copyright: 2008 Adrien Pilleboue
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
-Files: 	rhythmbox/*
-Copyright: 2008 Adrien Pilleboue and 2009 Yann Dulieu
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
-
 Files: 	mail/*
 Copyright: Christophe Chapuis and Fabrice Rey
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
@@ -105,12 +103,23 @@ Copyright: Cchumi and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: 	musicPlayer/*
-Copyright: Rémy Robertson, Yann Sladek and Fabrice Rey <fabounet@glx-dock.org>
+Copyright: Rémy Robertson, Yann Sladek, Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: dnd2share/*
-	RSSreader/*
 Copyright: Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+
+Files: 	RSSreader/*
+Copyright: 2008 Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+
+Files: 	Doncky/*
+Copyright: 2008 Yann Dulieu
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+
+Files: 	Network-Monitor/*
+Copyright: 2008 Yann Sladek and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 
@@ -133,37 +142,17 @@ Files: 	alsaMixer/*
 	motion-blur/*
 	quick-browser/*
 	rendering/*
-	Scooby-Do
+	Scooby-Do/*
 	showDesklets/*
 	show-mouse/*
 	Toons/*
 	weather/*
 	Xgamma/*
+	*Menu/*
+	Folders/*
+	Indicator-applet/*
+	Status-Notifier/*
+	gvfs-integration/*
+	*/*
 Copyright: Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
-
-Icons inspired of the Humanity Icons theme and recolorized by Matthieu Baerts
-Copyright: Daniel Fore, Jonian Guveli and K.Vishnoo Charan Reddy.
-Licence: GPL v2  (See /usr/share/common-licenses/GPL-2 for complete licence)
-
-Pictures on slider/data/preview.jpg:
-Copyright: Matthieu Baerts
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
-
-Files: 	debian/*
-Copyright: Copyright (C) Julien Lavergne <julien.lavergne@gmail.com>
-Licence: GPL 2+ (See /usr/share/common-licenses/GPL-2 for complete licence)
-Updated by Matthieu Baerts and Didier Roche for new releases.
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
