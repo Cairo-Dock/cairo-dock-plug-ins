@@ -328,17 +328,17 @@ void cd_musicplayer_popup_info (void)
 			str);
 	}
 	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n%s : %s\n%s : %s\n%s : %d:%02d\n%s %d, %s %d/%d",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("Artist"),
 			myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
-			D_("Album"),
-			myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
 			D_("Title"),
 			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
+			D_("Album"),
+			myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
 			D_("Length"),
 			myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
 			D_("Track n°"), myData.iTrackNumber,

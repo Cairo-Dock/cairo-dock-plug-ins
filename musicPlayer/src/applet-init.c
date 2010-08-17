@@ -37,6 +37,7 @@
 #include "applet-banshee.h" //Support Banshee
 #include "applet-rhythmbox.h" //Support Rhythmbox
 #include "applet-qmmp.h" //Support Qmmp
+#include "applet-gmusicbrowser.h" //Support GMusicBrowser
 #include "applet-guayadeque.h" //Support Guayadeque
 #include "applet-quodlibet.h" //Support QuodLibet
 #include "applet-listen.h" //Support Listen
@@ -76,6 +77,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_audacious_handler();
 	cd_musicplayer_register_guayadeque_handler();
 	cd_musicplayer_register_clementine_handler();
+	cd_musicplayer_register_gmusicbrowser_handler();
 	
 	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
 	if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))

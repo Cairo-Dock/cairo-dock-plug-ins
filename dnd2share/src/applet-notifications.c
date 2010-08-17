@@ -392,7 +392,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-	CD_APPLET_ADD_IN_MENU (D_("Send the clipboard's content"), _send_clipboard, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
 	if (myData.pUpoadedItems != NULL)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, CD_APPLET_MY_MENU);
