@@ -690,8 +690,15 @@ GtkWidget * create_applications_menu (const char *menu_file,
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
-
-	main_menu = create_applications_menu ("applications.menu", NULL, NULL);
+	
+	// workaround pour KDE, qui ne loupe pas une occasion de se distinguer.
+	const gchar *cMenuFileName;
+	if (! g_file_test ("/etc/xdg/menus/applications.menu", G_FILE_TEST_EXISTS) && g_file_test ("/etc/xdg/menus/kde-applications.menu", G_FILE_TEST_EXISTS))  // on pourrait aussi aller lire le start-here.menu, mais je suis pas sur que ce soit standard.
+		cMenuFileName = "kde-applications.menu";
+	else
+		cMenuFileName = "applications.menu";
+	
+	main_menu = create_applications_menu (cMenuFileName, NULL, NULL);
 	
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback",

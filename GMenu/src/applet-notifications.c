@@ -30,7 +30,7 @@ static void cd_menu_show_menu (void)
 {
 	if (myData.pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_container (myData.pMenu, myContainer);
+		cairo_dock_popup_menu_on_icon (myData.pMenu, myIcon, myContainer);
 	}
 }
 
