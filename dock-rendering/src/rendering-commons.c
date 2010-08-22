@@ -94,7 +94,7 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	
-	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (300, 150);
+	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface ((g_bUseOpenGL?10:200), (g_bUseOpenGL?50:150));  // en opengl on etire la texture, donc pas besoin de la charger en grand.
 	
 	if (g_bUseOpenGL)
 	{
@@ -107,7 +107,7 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	}
 	else
 	{
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 300, 150, -G_PI / 2);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 200, 150, -G_PI / 2);
 	}
 }
 
