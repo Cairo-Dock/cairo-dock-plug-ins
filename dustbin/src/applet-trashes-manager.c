@@ -139,4 +139,9 @@ void cd_dustbin_stop (CairoDockModuleInstance *myApplet)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cDustbinPath, TRUE, NULL);
 	}
+	
+	cairo_dock_dialog_unreference (myData.pInfoDialog);
+	
+	cairo_dock_free_task (myData.pInfoTask);
+	myData.pInfoTask = NULL;
 }

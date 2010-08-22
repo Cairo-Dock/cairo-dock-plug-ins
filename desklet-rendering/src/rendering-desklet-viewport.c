@@ -23,286 +23,282 @@
 
 #include "rendering-desklet-viewport.h"
 
-#define _cairo_dock_set_path_as_current(...) _cairo_dock_set_vertex_pointer(pVertexTab)
+static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 
-static gboolean on_enter_icon_viewport (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
+static inline void _get_gridXY_from_index (guint nRowsX, guint index, guint* gridX, guint* gridY)
+{
+	*gridX = index % nRowsX;
+	*gridY = index / nRowsX;
+}
+
+static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *pViewport)
+{
+	// nombre d'icones.
+	guint nIcones = 0;  // nb icones.
+	Icon *icon;
+	GList *ic;
+	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+			nIcones ++;
+	}
+	
+	// taille des differents composants.
+	pViewport->iIconGapX = 50;
+	pViewport->iIconGapY = 10;
+	pViewport->fMargin = pViewport->iIconGapX / 2;
+	pViewport->fArrowGap = .05 * pDesklet->container.iHeight;
+	pViewport->fArrowHeight = 14.;
+	pViewport->fScrollbarWidth = 10.;
+	pViewport->fScrollbarArrowGap = 4.;
+	pViewport->fScrollbarIconGap = 10.;
+	
+	int iIconSize = 48;
+	double h_min = pViewport->iIconSize + myLabels.iLabelSize;  // hauteur min pour caser 1 icone.
+	double fx=1, fy=1;
+	if (h_min > pDesklet->container.iHeight)
+	{
+		fy = (double) MAX (1, pDesklet->container.iHeight - myLabels.iLabelSize) / pViewport->iIconSize;
+		pViewport->fArrowHeight *= fy;
+		iIconSize *= fy;
+	}
+	double w_min = pViewport->fMargin + iIconSize + pViewport->fMargin + pViewport->fScrollbarIconGap + pViewport->fScrollbarWidth + pViewport->fScrollbarIconGap;  // largeur min pour caser 1 icone.
+	if (w_min > pDesklet->container.iWidth)
+	{
+		fx = (double) pDesklet->container.iWidth / w_min;
+		iIconSize *= fx;
+		pViewport->iIconGapX *= fx;
+		pViewport->fMargin *= fx;
+		pViewport->fScrollbarWidth *= fx;
+		pViewport->fScrollbarArrowGap *= fx;
+		pViewport->fScrollbarIconGap *= fx;
+		w_min = pDesklet->container.iWidth;
+	}
+	pViewport->iIconSize = iIconSize;
+	
+	// taille de la grille.
+	pViewport->nRowsX = (pDesklet->container.iWidth - w_min) / (pViewport->iIconSize + pViewport->iIconGapX) + 1;
+	pViewport->nRowsY = ceil ((double)nIcones / pViewport->nRowsX);
+	pViewport->iDeltaHeight = MAX (0, (pViewport->nRowsY - 1) * (pViewport->iIconSize + myLabels.iLabelSize + pViewport->iIconGapY) + pViewport->iIconSize + myLabels.iLabelSize - pDesklet->container.iHeight);
+	pViewport->fMargin = (pDesklet->container.iWidth - (pViewport->nRowsX * (pViewport->iIconSize + pViewport->iIconGapX) - pViewport->iIconSize + pViewport->fScrollbarIconGap + pViewport->fScrollbarWidth + pViewport->fScrollbarIconGap)) / 2;  // on reajuste la marge pour centrer les icones.
+}
+
+static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameters *pViewport)
+{
+	double fScrollOffset = - pViewport->iScrollOffset;
+	int iOffsetY = myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
+		fScrollOffset;
+	
+	Icon* icon;
+	GList* ic, *pointed_ic=NULL;
+	int i, x, y;
+	for (ic = pDesklet->icons, i = 0; ic != NULL; ic = ic->next, i++)
+	{
+		icon = ic->data;
+		
+		// position sur la grille.
+		_get_gridXY_from_index (pViewport->nRowsX, i, &x, &y);
+		
+		// on en deduit la position au repos.
+		icon->fX = pViewport->fMargin + (icon->fWidth + pViewport->iIconGapX) * x;
+		icon->fY = iOffsetY + (icon->fHeight + myLabels.iLabelSize + pViewport->iIconGapY) * y;
+		
+		icon->fDrawX = icon->fX;
+		icon->fDrawY = icon->fY;
+	}
+}
+
+
+static void _set_scroll (CairoDesklet *pDesklet, int iOffsetY)
+{
+	//g_print ("%s (%d)\n", __func__, iOffsetY);
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_if_fail (pData != NULL);
+	
+	pData->iScrollOffset = MAX (0, MIN (iOffsetY, pData->iDeltaHeight));
+	_compute_icons_position (pDesklet, pData);
+	gtk_widget_queue_draw (pDesklet->container.pWidget);
+}
+
+static gboolean _add_scroll (CairoDesklet *pDesklet, int iDeltaOffsetY)
+{
+	//g_print ("%s (%d)\n", __func__, iDeltaOffsetY);
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_val_if_fail (pData != NULL, FALSE);
+	
+	if (iDeltaOffsetY < 0)
+	{
+		if (pData->iScrollOffset <= 0)
+			return FALSE;
+	}
+	else
+	{
+		if (pData->iScrollOffset >= pData->iDeltaHeight)
+			return FALSE;
+	}
+	_set_scroll (pDesklet, pData->iScrollOffset + iDeltaOffsetY);
+	return TRUE;
+}
+
+static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection)
+{
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	if (pData->iDeltaHeight == 0)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	gboolean bScrolled = _add_scroll (pDesklet, iDirection == 1 ? pData->iIconSize : - pData->iIconSize);
+	return (bScrolled ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+static gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton, CairoDesklet *pDesklet)
+{
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_val_if_fail (pData != NULL, FALSE);
+	if (pData->iDeltaHeight == 0)
+		return FALSE;
+	
+	gboolean bIntercept = FALSE;
+	if (pButton->type == GDK_BUTTON_PRESS && pButton->button == 1)
+	{
+		double x_arrow = pDesklet->container.iWidth - pData->fScrollbarIconGap - pData->fScrollbarWidth;
+		if (pButton->x > x_arrow)  // on a clique dans la zone de scroll.
+		{
+			// on regarde sur quoi on clic.
+			double y_arrow_top = 2., y_arrow_bottom = pDesklet->container.iHeight - 2.;  // on laisse 2 pixels de marge.
+			
+			if (pButton->y > y_arrow_top - pData->fScrollbarArrowGap/2 && pButton->y < y_arrow_top + pData->fArrowHeight + pData->fScrollbarArrowGap/2)  // bouton haut
+			{
+				_set_scroll (pDesklet, 0);
+				bIntercept = TRUE;
+				pDesklet->retaching = FALSE;
+			}
+			else if (pButton->y < y_arrow_bottom + pData->fScrollbarArrowGap/2 && pButton->y > y_arrow_bottom - pData->fArrowHeight - pData->fScrollbarArrowGap/2)  // bouton bas
+			{
+				_set_scroll (pDesklet, pData->iDeltaHeight);
+				bIntercept = TRUE;
+				pDesklet->making_transparent = FALSE;
+			}
+			else  // scrollbar
+			{
+				pData->bDraggingScrollbar = TRUE;
+				pData->iClickY = pButton->y;
+				pData->iClickOffset = pData->iScrollOffset;
+				bIntercept = TRUE;
+				pDesklet->moving = TRUE;
+			}
+			pDesklet->bClicked = !bIntercept;  // on fait croire au desklet qu'on n'a pas clique sur lui. c'est vraiment limite, mais on peut difficilement s'enregistrer au clic avant l'applet qui possede le desklet.
+		}
+	}
+	else if (GDK_BUTTON_RELEASE)
+	{
+		//g_print ("release\n");
+		pData->bDraggingScrollbar = FALSE;
+		pDesklet->moving = FALSE;
+	}
+	return FALSE;
+}
+
+static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDesklet *pDesklet, gboolean *bStartAnimation)
+{
+	CDViewportParameters *pData = pDesklet->pRendererData;
+	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	if (pData->iDeltaHeight == 0)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (pData->bDraggingScrollbar)
+	{
+		double y_arrow_top = 2., y_arrow_bottom = pDesklet->container.iHeight - 2.;  // on laisse 2 pixels de marge.
+		double fFrameHeight = pDesklet->container.iHeight;  // hauteur du cadre.
+		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
+		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight);
+		
+		int delta = pDesklet->container.iMouseY - pData->iClickY;
+		_set_scroll (pDesklet, (pData->iClickOffset + (double)delta / (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
 	gtk_widget_queue_draw (pContainer->pWidget);  // et oui, on n'a rien d'autre a faire.
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-static inline void _viewport_pan_delta(CairoDesklet *pDesklet, double fDeltaX, double fDeltaY)
+static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)
 {
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	pViewportConf->fCurrentPanXSpeed = fDeltaX;
-	pViewportConf->fCurrentPanYSpeed = fDeltaY;
-	pViewportConf->iCurrentOffsetX += fDeltaX;
-	pViewportConf->iCurrentOffsetY += fDeltaY;
-	if (pViewportConf->iCurrentOffsetX < 0)
-	{
-		pViewportConf->iCurrentOffsetX = 0;
-		pViewportConf->fCurrentPanXSpeed = 0;
-	}
-	else if( pViewportConf->iCurrentOffsetX > pViewportConf->iMaxOffsetX )
-	{
-		pViewportConf->iCurrentOffsetX = pViewportConf->iMaxOffsetX;
-		pViewportConf->fCurrentPanXSpeed = 0;
-	}
-	if (pViewportConf->iCurrentOffsetY < 0)
-	{
-		pViewportConf->iCurrentOffsetY = 0;
-		pViewportConf->fCurrentPanYSpeed = 0;
-	}
-	else if( pViewportConf->iCurrentOffsetY > pViewportConf->iMaxOffsetY )
-	{
-		pViewportConf->iCurrentOffsetY = pViewportConf->iMaxOffsetY;
-		pViewportConf->fCurrentPanYSpeed = 0;
-	}
-
-	gtk_widget_queue_draw (pDesklet->container.pWidget);
-}
-
-static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bContinueAnimation)
-{
-	if (pDesklet->icons != NULL)
-	{
-		CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-		if (pViewportConf == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		
-		if (! pDesklet->container.bInside)  // on est en-dehors du desklet, on ralentit.
-		{
-			_viewport_pan_delta (pDesklet, pViewportConf->fCurrentPanXSpeed*.85, pViewportConf->fCurrentPanYSpeed*.85);
-			if (fabs (pViewportConf->fCurrentPanXSpeed)+fabs (pViewportConf->fCurrentPanYSpeed) < pViewportConf->iIconSize/15)
-			// vitesse de translation epsilonesque, on quitte.
-			{
-				pViewportConf->fCurrentPanXSpeed = 0;
-				pViewportConf->fCurrentPanYSpeed = 0;
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-			}
-			*bContinueAnimation = TRUE;
-		}
-		else
-		{
-			double fDeltaX = 0;
-			double fDeltaY = 0;
-			// si on est dans la marge de 20% de la largeur du desklet a gauche,
-			// alors on translate a droite
-			if (pDesklet->container.iMouseX <= pDesklet->container.iWidth*0.2)
-			{
-				// La force de translation va de 0 (lorsqu'on est a 20%) jusqu'a
-				// pViewportConf->iIconSize / 2. (lorsqu'on est a 0%)
-				fDeltaX = (pViewportConf->iIconSize / 10) *
-									(pDesklet->container.iWidth*0.2 - pDesklet->container.iMouseX)/(pDesklet->container.iWidth*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la largeur du desklet a droite,
-			// alors on translate a gauche (-1)
-			else if( pDesklet->container.iMouseX >= pDesklet->container.iWidth*0.8 )
-			{
-				// La force de translation va de 0 (lorsqu'on est a 80%) jusqu'a
-				// pViewportConf->iIconSize / 2. (lorsqu'on est a 100%)
-				fDeltaX = -(pViewportConf->iIconSize / 10) *
-									 (pDesklet->container.iMouseX - pDesklet->container.iWidth*0.8)/(pDesklet->container.iWidth*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la hauteur du desklet en haut,
-			// alors on translate en bas
-			if (pDesklet->container.iMouseY <= pDesklet->container.iHeight*0.2)
-			{
-				// La force de translation va de 0 (lorsqu'on est a 20%) jusqu'a
-				// pViewportConf->iIconSize / 2. (lorsqu'on est a 0%)
-				fDeltaY = -(pViewportConf->iIconSize / 10) *
-									 (pDesklet->container.iHeight*0.2 - pDesklet->container.iMouseY)/(pDesklet->container.iHeight*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			// si on est dans la marge de 20% de la hauteur du desklet en bas,
-			// alors on translate en haut (-1)
-			else if( pDesklet->container.iMouseY >= pDesklet->container.iHeight*0.8 )
-			{
-				// La force de translation va de 0 (lorsqu'on est a 80%) jusqu'a
-				// pViewportConf->iIconSize / 2. (lorsqu'on est a 100%)
-				fDeltaY = (pViewportConf->iIconSize / 10) *
-									(pDesklet->container.iMouseY - pDesklet->container.iHeight*0.8)/(pDesklet->container.iHeight*0.2);
-				*bContinueAnimation = TRUE;
-			}
-			if( *bContinueAnimation == TRUE )
-			{
-				_viewport_pan_delta( pDesklet, fDeltaX, fDeltaY );
-			}
-			else
-			{
-				pViewportConf->fCurrentPanXSpeed = 0.;
-				pViewportConf->fCurrentPanYSpeed = 0.;
-			}
-		}
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
-{
-	if (pDesklet->icons != NULL)
-	{
-		CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-		if (pViewportConf == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		if (pViewportConf->bInfiniteWidth && (pDesklet->container.iMouseX <= pDesklet->container.iWidth*0.2 || pDesklet->container.iMouseX >= pDesklet->container.iWidth*0.8))
-			*bStartAnimation = TRUE;
-		if (pViewportConf->bInfiniteHeight && (pDesklet->container.iMouseY <= pDesklet->container.iHeight*0.2 || pDesklet->container.iMouseY >= pDesklet->container.iHeight*0.8))
-			*bStartAnimation = TRUE;
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)  // gboolean, int, gdouble[4]
-{
-	CDViewportParameters *pViewportConf = g_new0 (CDViewportParameters, 1);
+	CDViewportParameters *pViewport = g_new0 (CDViewportParameters, 1);
 	if (pConfig != NULL)
 	{
-		pViewportConf->bRoundedRadius = GPOINTER_TO_INT (pConfig[0]);
-		pViewportConf->iRadius = GPOINTER_TO_INT (pConfig[1]);
-		if (pConfig[2] != NULL)
-			memcpy (pViewportConf->fLineColor, pConfig[2], 4 * sizeof (gdouble));
+		// get parameters
+		// gap icon, horizontal scroll bar, icon size, icon gap
+		
 	}
 	
-	pViewportConf->iLineWidth = 2;
-	pViewportConf->iGapBetweenIcons = 10;
-	pViewportConf->iMinimumIconSize = 48;
-	pViewportConf->iCurrentOffsetX = 0;
-	pViewportConf->iCurrentOffsetY = 0;
-	pViewportConf->fCurrentPanXSpeed = 0;
-	pViewportConf->fCurrentPanYSpeed = 0;
-	pViewportConf->iMaxOffsetX = 0;
-	pViewportConf->iMaxOffsetY = 0;
-	pViewportConf->bInfiniteHeight=TRUE;
-	pViewportConf->bInfiniteWidth=FALSE;
+	pViewport->color_scrollbar_inside[0] = .8;
+	pViewport->color_scrollbar_inside[1] = .8;
+	pViewport->color_scrollbar_inside[2] = .8;
+	pViewport->color_scrollbar_inside[3] = .75;
+	pViewport->color_scrollbar_line[0] = 1.;
+	pViewport->color_scrollbar_line[1] = 1.;
+	pViewport->color_scrollbar_line[2] = 1.;
+	pViewport->color_scrollbar_line[3] = 1.;
+	pViewport->color_grip[0] = .9;
+	pViewport->color_grip[1] = .9;
+	pViewport->color_grip[2] = .9;
+	pViewport->color_grip[3] = 1.;
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_viewport, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	pViewport->iSidPressEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
+		"button-press-event",
+		G_CALLBACK (_cd_slide_on_press_button),
+		pDesklet);  // car les notification de clic en provenance du dock sont emises lors du relachement du bouton.
+	pViewport->iSidReleaseEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
+		"button-release-event",
+		G_CALLBACK (_cd_slide_on_press_button),
+		pDesklet);
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
-	
-	return pViewportConf;
+	return pViewport;
 }
 
 
-static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *pViewportConf)
+/**static void load_data (CairoDesklet *pDesklet)
 {
-	pViewportConf->fMargin = (pViewportConf->bRoundedRadius ?
-		.5 * pViewportConf->iLineWidth + (1. - sqrt (2) / 2) * pViewportConf->iRadius :
-		.5 * pViewportConf->iLineWidth + .5 * pViewportConf->iRadius);
-	
-	int iNbIcons = 0;
-	Icon *pIcon;
-	GList *ic;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			iNbIcons ++;
-	}
-	pViewportConf->iNbIcons = iNbIcons;
-	
-	double w = pDesklet->container.iWidth - 2 * pViewportConf->fMargin;
-	double h = pDesklet->container.iHeight - 2 * pViewportConf->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
-	int di = pViewportConf->iGapBetweenIcons;  // ecart entre 2 lignes/colonnes.
-	
-	int p, q;  // nombre de lignes et colonnes.
-	int iSize;
-	pViewportConf->iIconSize = 0, pViewportConf->iNbLines = 0, pViewportConf->iNbColumns = 0;
-	//g_print ("%d icones sur %dx%d (%d)\n", pViewportConf->iNbIcons, (int)w, (int)h, myLabels.iLabelSize);
-	for (p = 1; p <= pViewportConf->iNbIcons; p ++)
-	{
-		q = (int) ceil ((double)pViewportConf->iNbIcons / p);
-		iSize = MIN ((h - (p - 1) * di) / p - dh, (w - (q - 1) * di) / q - dw);
-		//g_print ("  %dx%d -> %d\n", p, q, iSize);
-		if (iSize > pViewportConf->iIconSize)
-		{
-			pViewportConf->iIconSize = iSize;
-			pViewportConf->iNbLines = p;
-			pViewportConf->iNbColumns = q;
-		}
-		else if(iSize > 0) // there is only one maximum
-		{
-			break;
-		}
-	}
-	// si les icones sont trop petites, et qu'on a une largeur et/ou une
-	// hauteur infinie(s), essayer d'avoir au moins une taille minimale
-	if(  pViewportConf->iIconSize < pViewportConf->iMinimumIconSize &&
-	    (pViewportConf->bInfiniteWidth || pViewportConf->bInfiniteHeight) )
-	{
-		if( pViewportConf->bInfiniteWidth && pViewportConf->bInfiniteHeight )
-		{
-			// surface infinie: on garde le meme nb de colonnes&lignes,
-			// mais on met la taille d'icone a iMinimumIconSize
-			pViewportConf->iIconSize = pViewportConf->iMinimumIconSize;
-		}
-		else if( pViewportConf->bInfiniteHeight )
-		{
-			// hauteur infinie et largeur fixe: on calcule le nombre de colonnes
-			// maxi avec pViewportConf->iIconSize = pViewportConf->iMinimumIconSize
-			pViewportConf->iIconSize = pViewportConf->iMinimumIconSize;
-			pViewportConf->iNbColumns = (w + di) / ( pViewportConf->iIconSize + dw + di );
-			if( pViewportConf->iNbColumns < 1 )
-			{
-				pViewportConf->iNbColumns = 1;
-				pViewportConf->iIconSize = w - dw; 
-			}
-			pViewportConf->iNbLines = (int) ceil ((double)pViewportConf->iNbIcons / pViewportConf->iNbColumns);
-		}
-		else if( pViewportConf->bInfiniteWidth )
-		{
-			// largeur infinie et hauteur fixe: on calcule le nombre de lignes
-			// maxi avec pViewportConf->iIconSize = pViewportConf->iMinimumIconSize
-			pViewportConf->iIconSize = pViewportConf->iMinimumIconSize;
-			pViewportConf->iNbLines = (h + di) / ( pViewportConf->iIconSize + dh + di );
-			if( pViewportConf->iNbLines < 1 )
-			{
-				pViewportConf->iNbLines = 1;
-				pViewportConf->iIconSize = h - dh; 
-			}
-			pViewportConf->iNbColumns = (int) ceil ((double)pViewportConf->iNbIcons / pViewportConf->iNbLines);
-		}
-		// on calcule l'offset maximal atteignable en X
-		pViewportConf->iMaxOffsetX = MAX(( pViewportConf->iIconSize + dw + di )*pViewportConf->iNbColumns - (w + di), 0);
-		// on calcule l'offset maximal atteignable en Y
-		pViewportConf->iMaxOffsetY = MAX(( pViewportConf->iIconSize + dh + di )*pViewportConf->iNbLines - (h + di), 0);
-	}
-}
-
-static void load_data (CairoDesklet *pDesklet)
-{
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewportConf == NULL)
+	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
+	if (pViewport == NULL)
 		return ;
 	
-	_compute_icons_grid (pDesklet, pViewportConf);
-}
-
+	_compute_icons_grid (pDesklet, pViewport);
+}*/
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_viewport, NULL);
-	
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewportConf == NULL)
+	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
+	if (pViewport == NULL)
 		return ;
 	
-	g_free (pViewportConf);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
+	//cairo_dock_remove_notification_func (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_slide_on_click, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
+	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidReleaseEvent);
+	
+	g_free (pViewport);
 	pDesklet->pRendererData = NULL;
 }
 
 
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewportConf == NULL)
+	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
+	if (pViewport == NULL)
 		return ;
 	
 	if (pIcon == pDesklet->pIcon)
@@ -312,19 +308,19 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 	}
 	else
 	{
-		pIcon->fWidth = pViewportConf->iIconSize;
-		pIcon->fHeight = pViewportConf->iIconSize;
+		pIcon->fWidth = pViewport->iIconSize;
+		pIcon->fHeight = pViewport->iIconSize;
 	}
 }
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewportConf == NULL)
+	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
+	if (pViewport == NULL)
 		return ;
 	
-	_compute_icons_grid (pDesklet, pViewportConf);
-	cd_debug ("pViewportConf->iIconSize : %d\n", pViewportConf->iIconSize);
+	_compute_icons_grid (pDesklet, pViewport);
+	cd_debug ("pViewport->iIconSize : %d\n", pViewport->iIconSize);
 	
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)  // on ne veut pas charger cette icone.
@@ -344,8 +340,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		}
 		else
 		{
-			pIcon->fWidth = pViewportConf->iIconSize;
-			pIcon->fHeight = pViewportConf->iIconSize;
+			pIcon->fWidth = pViewport->iIconSize;
+			pIcon->fHeight = pViewport->iIconSize;
 		
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
@@ -354,97 +350,86 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fGlideScale = 1.;
 		}
 	}
+	
+	_compute_icons_position (pDesklet, pViewport);
 }
-
 
 static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	//g_print ("%s(%x)\n", __func__, pViewportConf);
-	if (pViewportConf == NULL)
+	CDViewportParameters *pData = (CDViewportParameters *) pDesklet->pRendererData;
+	//g_print ("%s(%x)\n", __func__, pViewport);
+	if (pData == NULL)
 		return ;
 	
-	double fRadius = pViewportConf->iRadius;
-	double fLineWidth = pViewportConf->iLineWidth;
-	// le cadre.
-	cairo_set_line_width (pCairoContext, pViewportConf->iLineWidth);
-	if (pViewportConf->bRoundedRadius)
+	//\____________________ On dessine les barres de defilement.
+	if (pData != NULL && pData->iDeltaHeight != 0)
 	{
-		cairo_translate (pCairoContext, 0., .5 * fLineWidth);
-		cairo_dock_draw_rounded_rectangle (pCairoContext,
-			fRadius,
-			fLineWidth,
-			pDesklet->container.iWidth - 2 * fRadius - fLineWidth,
-			pDesklet->container.iHeight - 2*fLineWidth);
-	}
-	else
-	{
-		cairo_move_to (pCairoContext, 0., 0.);
-		cairo_rel_line_to (pCairoContext,
-			0.,
-			pDesklet->container.iHeight - fRadius - fLineWidth);
-		cairo_rel_line_to (pCairoContext,
-			pViewportConf->iRadius,
-			pViewportConf->iRadius);
-		cairo_rel_line_to (pCairoContext,
-			pDesklet->container.iWidth - fRadius - fLineWidth,
-			0.);
-	}
-	cairo_set_source_rgba (pCairoContext, pViewportConf->fLineColor[0], pViewportConf->fLineColor[1], pViewportConf->fLineColor[2], pViewportConf->fLineColor[3]);
-	cairo_stroke (pCairoContext);
-	
-	// les icones.
-	double w = pDesklet->container.iWidth - 2 * pViewportConf->fMargin;
-	double h = pDesklet->container.iHeight - 2 * pViewportConf->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
-	if( pViewportConf->iMaxOffsetY == 0 )
-	{
-		dh = (h - pViewportConf->iNbLines * (pViewportConf->iIconSize + myLabels.iLabelSize)) / pViewportConf->iNbLines;  // ecart entre 2 lignes.
-	}
-	if( pViewportConf->iMaxOffsetX == 0 )
-	{
-		dw = (w - pViewportConf->iNbColumns * pViewportConf->iIconSize) / pViewportConf->iNbColumns;  // ecart entre 2 colonnes.
-	}
-	
-	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
-	
-	double x = pViewportConf->fMargin + dw/2, y = pViewportConf->fMargin + dh/2;
-	int q = 0;
-	Icon *pIcon;
-	GList *ic;
-	GList *pVisibleIcons = NULL;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			continue;
+		cairo_save (pCairoContext);
+		cairo_set_line_width (pCairoContext, 2.);
 		
-		pIcon->fDrawX = x - pViewportConf->iCurrentOffsetX;
-		pIcon->fDrawY = y - pViewportConf->iCurrentOffsetY;
+		double x_arrow = pDesklet->container.iWidth - pData->fScrollbarIconGap - pData->fScrollbarWidth/2;  // pointe de la fleche.
+		double y_arrow_top, y_arrow_bottom;
+		y_arrow_top = 2.;
+		y_arrow_bottom = pDesklet->container.iHeight - 2.;
 		
-		x += pViewportConf->iIconSize + dw;
-		q ++;
-		if (q == pViewportConf->iNbColumns)
+		if (pData->iScrollOffset != 0)  // fleche vers le haut.
 		{
-			q = 0;
-			x = pViewportConf->fMargin + dw/2;
-			y += pViewportConf->iIconSize + myLabels.iLabelSize + dh;
+			cairo_move_to (pCairoContext, x_arrow, y_arrow_top);
+			cairo_rel_line_to (pCairoContext, pData->fScrollbarWidth/2, pData->fArrowHeight);
+			cairo_rel_line_to (pCairoContext, -pData->fScrollbarWidth, 0.);
+			cairo_close_path (pCairoContext);
+			
+			cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+			cairo_fill_preserve (pCairoContext);
+			
+			cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+			cairo_stroke (pCairoContext);
 		}
-		// On ne dessine que les icones qui sont visibles
-		if( pIcon->fDrawX - pViewportConf->fMargin + dw/2 >= 0                &&
-		    pIcon->fDrawY - pViewportConf->fMargin + myLabels.iLabelSize >= 0 &&
-		    pIcon->fDrawX - pViewportConf->fMargin + dw/2 <= w - (pViewportConf->iIconSize + dw)          &&
-		    pIcon->fDrawY - pViewportConf->fMargin + myLabels.iLabelSize <= h - (pViewportConf->iIconSize + myLabels.iLabelSize + dh))
+		if (pData->iScrollOffset != pData->iDeltaHeight)  // fleche vers le bas.
 		{
-			pVisibleIcons = g_list_append(pVisibleIcons, pIcon);
+			cairo_move_to (pCairoContext, x_arrow, y_arrow_bottom);
+			cairo_rel_line_to (pCairoContext, pData->fScrollbarWidth/2, - pData->fArrowHeight);
+			cairo_rel_line_to (pCairoContext, -pData->fScrollbarWidth, 0.);
+			cairo_close_path (pCairoContext);
+			
+			cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+			cairo_fill_preserve (pCairoContext);
+			
+			cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+			cairo_stroke (pCairoContext);
 		}
+		// scrollbar outline
+		cairo_move_to (pCairoContext, x_arrow - pData->fScrollbarWidth/2, y_arrow_top + pData->fArrowHeight + pData->fScrollbarArrowGap);
+		cairo_rel_line_to (pCairoContext, pData->fScrollbarWidth, 0.);
+		cairo_rel_line_to (pCairoContext, 0., y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
+		cairo_rel_line_to (pCairoContext, -pData->fScrollbarWidth, 0.);
+		cairo_close_path (pCairoContext);
+		
+		cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+		cairo_fill_preserve (pCairoContext);
+		
+		cairo_set_source_rgba (pCairoContext, pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+		cairo_stroke (pCairoContext);
+		// grip
+		double fFrameHeight = pDesklet->container.iHeight ;  // hauteur du cadre.
+		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
+		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight);
+		cairo_set_source_rgba (pCairoContext, pData->color_grip[0], pData->color_grip[1], pData->color_grip[2], pData->color_grip[3]);
+		cairo_move_to (pCairoContext, x_arrow - pData->fScrollbarWidth/2 + 1, y_arrow_top + pData->fArrowHeight + pData->fScrollbarArrowGap + ygrip);
+		cairo_rel_line_to (pCairoContext, pData->fScrollbarWidth - 2, 0.);
+		cairo_rel_line_to (pCairoContext, 0., fGripHeight);
+		cairo_rel_line_to (pCairoContext, - (pData->fScrollbarWidth - 2), 0.);
+		cairo_fill (pCairoContext);
+		
+		cairo_restore (pCairoContext);
 	}
 	
-	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pVisibleIcons);
+	//\____________________ On dessine les icones.
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
-	ic = pFirstDrawnElement;
+	Icon *pIcon;
+	GList *ic = pFirstDrawnElement;
 	do
 	{
 		pIcon = ic->data;
@@ -455,7 +440,6 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
 			
 			cairo_restore (pCairoContext);
-			
 			
 			if (pIcon->pTextBuffer != NULL)
 			{
@@ -526,91 +510,103 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_restore (pCairoContext);
 			}
 		}
-		ic = cairo_dock_get_next_element (ic, pVisibleIcons);
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	}
 	while (ic != pFirstDrawnElement);
+	
+	// la scrollbar
+	
 }
 
 
 static void render_opengl (CairoDesklet *pDesklet)
 {
-	CDViewportParameters *pViewportConf = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewportConf == NULL)
+	static CairoDockGLPath *pScrollPath = NULL;
+	
+	CDViewportParameters *pData = (CDViewportParameters *) pDesklet->pRendererData;
+	//g_print ("%s(%x)\n", __func__, pViewport);
+	if (pData == NULL)
 		return ;
 	
-	// le cadre.
-	double fRadius = (pViewportConf->bRoundedRadius ? pViewportConf->iRadius : 0.);
-	double fLineWidth = pViewportConf->iLineWidth;
-	if (fLineWidth != 0 && pViewportConf->fLineColor[3] != 0)
+	glPushMatrix ();
+	glTranslatef (- pDesklet->container.iWidth/2, - pDesklet->container.iHeight / 2, 0.);
+	_cairo_dock_set_blend_alpha ();
+	_cairo_dock_disable_texture ();
+	
+	//\____________________ On dessine les barres de defilement.
+	if (pData != NULL && pData->iDeltaHeight != 0)
 	{
-		cairo_dock_draw_rounded_rectangle_opengl (pDesklet->container.iWidth - 2 * fRadius,
-			pDesklet->container.iHeight,
-			fRadius,
-			fLineWidth,
-			pViewportConf->fLineColor);
-		glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
+		glPushMatrix ();
+		if (pScrollPath == NULL)
+			pScrollPath = cairo_dock_new_gl_path (4, 0., 0., 0, 0);  // des triangles ou des rectangles => 4 points max.
+		glLineWidth (2.);
+		
+		double x_arrow = pDesklet->container.iWidth - pData->fScrollbarIconGap - pData->fScrollbarWidth/2;  // pointe de la fleche.
+		double y_arrow_top, y_arrow_bottom;
+		y_arrow_bottom = 2.;
+		y_arrow_top = pDesklet->container.iHeight - 2.;
+		
+		if (pData->iScrollOffset != 0)  // fleche vers le haut.
+		{
+			cairo_dock_gl_path_move_to (pScrollPath, x_arrow, y_arrow_top);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, pData->fScrollbarWidth/2, -pData->fArrowHeight);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, -pData->fScrollbarWidth, 0.);
+			
+			glColor4f (pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+			cairo_dock_fill_gl_path (pScrollPath, 0);
+			
+			glColor4f (pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+			cairo_dock_stroke_gl_path (pScrollPath, TRUE);  // TRUE <=> close
+		}
+		if (pData->iScrollOffset != pData->iDeltaHeight)  // fleche vers le bas.
+		{
+			cairo_dock_gl_path_move_to (pScrollPath, x_arrow, y_arrow_bottom);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, pData->fScrollbarWidth/2, pData->fArrowHeight);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, -pData->fScrollbarWidth, 0.);
+			
+			glColor4f (pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+			cairo_dock_fill_gl_path (pScrollPath, 0);
+			
+			glColor4f (pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+			cairo_dock_stroke_gl_path (pScrollPath, TRUE);  // TRUE <=> close
+		}
+		
+		// scrollbar outline
+		cairo_dock_gl_path_move_to (pScrollPath, x_arrow - pData->fScrollbarWidth/2, y_arrow_bottom + pData->fArrowHeight + pData->fScrollbarArrowGap);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, pData->fScrollbarWidth, 0.);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, 0., y_arrow_top - y_arrow_bottom - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
+		cairo_dock_gl_path_rel_line_to (pScrollPath, -pData->fScrollbarWidth, 0.);
+		
+		glColor4f (pData->color_scrollbar_inside[0], pData->color_scrollbar_inside[1], pData->color_scrollbar_inside[2], pData->color_scrollbar_inside[3]);
+		cairo_dock_fill_gl_path (pScrollPath, 0);
+		
+		glColor4f (pData->color_scrollbar_line[0], pData->color_scrollbar_line[1], pData->color_scrollbar_line[2], pData->color_scrollbar_line[3]);
+		cairo_dock_stroke_gl_path (pScrollPath, TRUE);
+		
+		// grip
+		double fFrameHeight = pDesklet->container.iHeight;  // hauteur du cadre.
+		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
+		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight);
+		glColor4f (pData->color_grip[0], pData->color_grip[1], pData->color_grip[2], pData->color_grip[3]);
+		cairo_dock_gl_path_move_to (pScrollPath, x_arrow - pData->fScrollbarWidth/2, y_arrow_top - (pData->fArrowHeight + pData->fScrollbarArrowGap) - ygrip);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, pData->fScrollbarWidth, 0.);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, 0., - fGripHeight);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, -pData->fScrollbarWidth, 0.);
+		cairo_dock_fill_gl_path (pScrollPath, 0);
+		
+		glPopMatrix ();
 	}
 	
-	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
-	
-	// les icones.
-	double w = pDesklet->container.iWidth - 2 * pViewportConf->fMargin;
-	double h = pDesklet->container.iHeight - 2 * pViewportConf->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
-	if( pViewportConf->iMaxOffsetY == 0 )
-	{
-		// ecart entre 2 lignes si il faut repartir vertivalement les icones.
-		dh = (h - pViewportConf->iNbLines * (pViewportConf->iIconSize + myLabels.iLabelSize) - 2*pViewportConf->fMargin - myLabels.iLabelSize) / pViewportConf->iNbLines;
-	}
-	if( pViewportConf->iMaxOffsetX == 0 )
-	{
-		// ecart entre 2 colonnes si il faut repartir horizontalement les icones.
-		dw = (w - pViewportConf->iNbColumns * pViewportConf->iIconSize - 2*pViewportConf->fMargin) / pViewportConf->iNbColumns;
-	}
-	
+	//\____________________ On dessine les icones.
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
 	
-	
-	double x = pViewportConf->fMargin + dw/2, y = pViewportConf->fMargin + myLabels.iLabelSize + dh/2;
-	int q = 0;
-	Icon *pIcon;
-	GList *ic;
-	GList *pVisibleIcons = NULL;
-	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			continue;
-		
-		pIcon->fDrawX = x - pViewportConf->iCurrentOffsetX;
-		pIcon->fDrawY = y - pViewportConf->iCurrentOffsetY;
-		
-		x += pViewportConf->iIconSize + dw;
-		q ++;
-		if (q == pViewportConf->iNbColumns)
-		{
-			q = 0;
-			x = pViewportConf->fMargin + dw/2;
-			y += pViewportConf->iIconSize + myLabels.iLabelSize + dh;
-		}
-		// On ne dessine que les icones qui sont visibles
-		if( pIcon->fDrawX - pViewportConf->fMargin - dw/2 >= 0                &&
-		    pIcon->fDrawY - pViewportConf->fMargin - myLabels.iLabelSize - dh/2 >= 0 &&
-		    pIcon->fDrawX - pViewportConf->fMargin - dw/2 <= w - (pViewportConf->iIconSize + dw/2)          &&
-		    pIcon->fDrawY - pViewportConf->fMargin - myLabels.iLabelSize - dh/2 <= h - (pViewportConf->iIconSize + myLabels.iLabelSize + dh/2))
-		{
-			pVisibleIcons = g_list_append(pVisibleIcons, pIcon);
-		}
-	}
-	
-	
-	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pVisibleIcons);
+	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDesklet->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
-	ic = pFirstDrawnElement;
+	Icon *pIcon;
+	GList *ic = pFirstDrawnElement;
 	do
 	{
 		pIcon = ic->data;
@@ -626,14 +622,6 @@ static void render_opengl (CairoDesklet *pDesklet)
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			/// generer une notification ...
-			/*if (pIcon->bHasIndicator && g_pIndicatorBuffer.iTexture != 0)
-			{
-				glPushMatrix ();
-				glTranslatef (0., - pIcon->fHeight/2 + g_pIndicatorBuffer.iHeight/2 * pIcon->fWidth / g_pIndicatorBuffer.iWidth, 0.);
-				_cairo_dock_apply_texture_at_size (g_pIndicatorBuffer.iTexture, pIcon->fWidth, g_pIndicatorBuffer.iHeight * pIcon->fWidth / g_pIndicatorBuffer.iWidth);
-				glPopMatrix ();
-			}*/
-			
 			if (pIcon->iLabelTexture != 0)
 			{
 				glPushMatrix ();
@@ -684,10 +672,11 @@ static void render_opengl (CairoDesklet *pDesklet)
 			glPopMatrix ();
 		}
 
-		ic = cairo_dock_get_next_element (ic, pVisibleIcons);
+		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 		
 	} while (ic != pFirstDrawnElement);
 	
+	glPopMatrix ();
 	_cairo_dock_disable_texture ();
 }
 
@@ -698,7 +687,7 @@ void rendering_register_viewport_desklet_renderer (void)
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render 			= (CairoDeskletRenderFunc) render;
 	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
-	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) load_data;
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) NULL;  /// load_data
 	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
 	pRenderer->calculate_icons 	= (CairoDeskletCalculateIconsFunc) calculate_icons;
 	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;

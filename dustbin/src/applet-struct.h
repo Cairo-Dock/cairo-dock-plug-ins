@@ -47,6 +47,11 @@ struct _AppletData {
 	gchar *cDustbinPath;  // donnee constante.
 	gboolean bMonitoringOK;
 	gboolean bDisplayFullIcon;
+	CairoDockTask *pInfoTask;  // tache de la mesure de l'info.
+	// shared memory
+	gsize _iInfoMeasure;
+	// end of shared memory
+	CairoDialog *pInfoDialog;
 	} ;
 
 #define CD_DUSTBIN_DIALOG_DURATION 4000

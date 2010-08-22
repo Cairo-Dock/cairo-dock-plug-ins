@@ -138,16 +138,23 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
-	if ((myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock)) ||
-		(myDesklet && pClickedContainer == myContainer))
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (myConfig.bCompactMode)
 	{
-		if (myConfig.bCompactMode)
+		if (pClickedIcon == myIcon)
 		{
 			
+			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
-		else if (pClickedIcon != NULL && pClickedIcon != myIcon)
+	}
+	else
+	{
+		if ((myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock)) ||
+			(myDesklet && pClickedContainer == myContainer))  // clic sur le bon container.
 		{
-			CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (CD_APPLET_CLICKED_ICON);
+			CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (pClickedIcon);
 			g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 			
 			gboolean r = FALSE;
@@ -157,7 +164,7 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 					pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
 				if (pItem->pMenu != NULL)
 				{
-					cairo_dock_popup_menu_on_container (GTK_WIDGET (pItem->pMenu), CD_APPLET_MY_ICONS_LIST_CONTAINER);
+					cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pClickedIcon, pClickedContainer);
 					r = TRUE;
 				}
 			}
@@ -170,6 +177,7 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
 	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 

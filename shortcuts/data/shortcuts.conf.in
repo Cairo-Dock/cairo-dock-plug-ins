@@ -23,6 +23,7 @@ frame_hand=
 #A
 handbook=shortcuts
 
+
 #[gtk-convert]
 [Desklet]
 
@@ -58,9 +59,6 @@ accessibility=0
 #b Should be visible on all desktops?
 sticky=true
 
-
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -93,6 +91,7 @@ bottom offset = 0
 fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
+
 
 #[gtk-preferences]
 [Configuration]

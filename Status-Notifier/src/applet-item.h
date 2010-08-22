@@ -25,15 +25,14 @@
 
 CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath);
 
-
 void cd_free_item (CDStatusNotifierItem *pItem);
+
+Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem);
 
 
 CDStatusNotifierItem *cd_satus_notifier_get_item_from_icon (Icon *pIcon);
 
 Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem);
-
-CDStatusNotifierItem *cd_satus_notifier_get_item_from_position (int iPosition);
 
 
 #endif

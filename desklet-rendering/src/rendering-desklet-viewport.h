@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __RENDERING_DESKLET_VIEWPORT__
 #define  __RENDERING_DESKLET_VIEWPORT__
 
@@ -26,31 +25,35 @@
 
 typedef struct {
 	// from config
-	gboolean bRoundedRadius;
-	gint iRadius;
-	gdouble fLineColor[4];
-	gint iLineWidth;
-	gint iGapBetweenIcons;
-	gint iMinimumIconSize;
-	gboolean bInfiniteWidth;
-	gboolean bInfiniteHeight;
+	gboolean bHorizontalScrolBar;
+	gint iIconGapX, iIconGapY;
+	gdouble color_scrollbar_line[4];
+	gdouble color_scrollbar_inside[4];
+	gdouble color_grip[4];
 	// computed data
+	gint nRowsX;
+	gint nRowsY;
+	gint iDeltaHeight;  // hauteur scrollable, en pixels
+	gint iScrollOffset;  // hauteur scrollee, en pixels, positive.
+	gboolean bDraggingScrollbar;  // si le clic est couramment enfonce sur la scrollbar.
+	guint iSidPressEvent;  // sid du clic
+	guint iSidReleaseEvent;  // sid du relachement du clic
+	gint iClickY;  // hauteur ou on a clique, en coordonnees fenetre
+	gint iClickOffset;  // hauteur scrollee au moment du clic
 	gdouble fMargin;
-	gint iNbIcons;
-	GList* iFirstIconToShow;
+	
 	gint iIconSize;
-	gint iNbLines, iNbColumns;
-	gint iMaxOffsetX;
-	gint iMaxOffsetY;
-	// current state
-	gint iCurrentOffsetX;
-	gint iCurrentOffsetY;
-	gint fCurrentPanXSpeed;
-	gint fCurrentPanYSpeed;
+	gdouble fArrowHeight;
+	gdouble fArrowGap;
+	gdouble fScrollbarArrowGap;
+	gdouble fScrollbarWidth;
+	gdouble fScrollbarIconGap;
 	} CDViewportParameters;
 
 
 void rendering_register_viewport_desklet_renderer (void);
+
+//gboolean cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, guint iButtonState);
 
 
 #endif

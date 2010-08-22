@@ -29,4 +29,9 @@ void cd_satus_notifier_launch_service (void);
 void cd_satus_notifier_stop_service (void);
 
 
+void cd_satus_notifier_add_theme_path (const gchar * cThemePath);
+
+void cd_satus_notifier_remove_theme_path (const gchar * cThemePath);
+
+
 #endif

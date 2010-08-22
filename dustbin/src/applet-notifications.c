@@ -41,11 +41,74 @@ static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, CairoDockModuleInsta
 	cairo_dock_fm_launch_uri ("trash:/"/**myData.cDustbinPath*/);  // on force l'utilisation de trash:/ ici, car on sait que tous les backends sauront l'ouvrir.
 }
 
+
+static void _free_info_dialog (CairoDockModuleInstance *myApplet)
+{
+	myData.pInfoDialog = NULL;
+	if (myData.pInfoTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pInfoTask);
+		myData.pInfoTask = NULL;
+	}
+}
+static void _measure_trash (CairoDockModuleInstance *myApplet)
+{
+	myData._iInfoMeasure = cairo_dock_fm_measure_diretory (myData.cDustbinPath, (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT ? 0 : 1), TRUE, &myData.pInfoTask->bDiscard);
+}
+static gboolean _display_result (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pInfoDialog != NULL)
+	{
+		int iSize=-1, iNbFiles=-1, iTrashes=-1;
+		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		{
+			iSize = myData.iMeasure;
+			iNbFiles = myData._iInfoMeasure;
+		}
+		else
+		{
+			iSize = myData._iInfoMeasure;
+			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
+				iNbFiles = myData.iMeasure;
+			else
+			{
+				gint iCancel = 0;
+				iTrashes = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, FALSE, &iCancel);  // ca c'est rapide.
+			}
+		}
+		
+		cairo_dock_set_dialog_message_printf (myData.pInfoDialog, "%s :\n %d %s\n %.2f %s", D_("The trash contains"),
+		iNbFiles > -1 ? iNbFiles : iTrashes,
+		iNbFiles > -1 ? D_("files") : D_("elements"),
+		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
+		(iSize > 1e6 ? D_("Mo") : D_("Ko")));
+	}
+}
 static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	gsize iSize, iNbFiles;
 	gint iCancel = 0;
-	if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+	
+	if (myData.pInfoDialog != NULL)
+		cairo_dock_dialog_unreference (myData.pInfoDialog);
+	if (myData.pInfoTask != NULL)
+		cairo_dock_discard_task (myData.pInfoTask);
+	
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	attr.cImageFilePath = "same icon";
+	attr.cText = g_strdup_printf ("%s ...\n\n", D_("Counting total size and files number..."));
+	attr.pFreeDataFunc = (GFreeFunc)_free_info_dialog;
+	attr.pUserData = myApplet;
+	myData.pInfoDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	
+	/// launch task --> result => update dialog
+	myData.pInfoTask = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) _measure_trash,
+		(CairoDockUpdateSyncFunc) _display_result,
+		myApplet);
+	cairo_dock_launch_task (myData.pInfoTask);
+	/**if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 	{
 		iSize = myData.iMeasure;
 	}
@@ -64,7 +127,7 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstan
 		iNbFiles,
 		D_("files"),
 		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
-		(iSize > 1e6 ? D_("Mo") : D_("Ko")));
+		(iSize > 1e6 ? D_("Mo") : D_("Ko")));*/
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN

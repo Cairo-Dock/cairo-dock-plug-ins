@@ -48,9 +48,9 @@ extern gdouble  my_diapo_simple_color_border_line[4];
 extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_labels;
 
-extern gdouble  my_diapo_simple_color_scrollbar_line[4];
-extern gdouble  my_diapo_simple_color_scrollbar_inside[4];
-extern gdouble  my_diapo_simple_color_grip[4];
+extern gdouble my_diapo_simple_color_scrollbar_line[4];
+extern gdouble my_diapo_simple_color_scrollbar_inside[4];
+extern gdouble my_diapo_simple_color_grip[4];
 
 const gint X_BORDER_SPACE = 40;  // espace laisse de chaque cote pour eviter de sortir trop facilement (et pour laisser de la place pour les etiquettes).
 const gint ARROW_TIP = 5;  // pour gerer la pointe de la fleche.
@@ -244,8 +244,9 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 		
 		int delta = pDock->container.iMouseY - pData->iClickY;
 		_set_scroll (pDock, (pData->iClickOffset + (double)delta / (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
 {
@@ -761,11 +762,16 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		fScrollOffset = (pDock->container.bDirectionUp ? - pData->iScrollOffset : pData->iScrollOffset);
 	
 	// On calcule la position de base pour toutes les icones
-	int iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
-		myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
-		.5 * my_diapo_simple_lineWidth +  // demi-ligne du haut;
-		fScrollOffset;
-	
+	int iOffsetY;
+	if (pDock->container.bDirectionUp)
+		iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
+			myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
+			.5 * my_diapo_simple_lineWidth +  // demi-ligne du haut;
+			fScrollOffset;
+	else
+		iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
+				.5 * my_diapo_simple_lineWidth +  // demi-ligne du bas;
+				fScrollOffset;
 	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
 	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
 	Icon* icon;
@@ -783,7 +789,9 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		if (pDock->container.bDirectionUp)
 			icon->fY = iOffsetY + (icon->fHeight + my_diapo_simple_iconGapY) * y;
 		else
-			icon->fY = pDock->container.iHeight - iOffsetY - icon->fHeight - (nRowsY - 1 - y) * (icon->fHeight + my_diapo_simple_iconGapY) + (my_diapo_simple_arrowHeight + ARROW_TIP);  // la ligne du haut quand le dock est en bas, reste en haut quand le dock est en haut.
+		{
+			icon->fY = pDock->container.iHeight - iOffsetY - icon->fHeight - (nRowsY - 1 - y) * (icon->fHeight + my_diapo_simple_iconGapY);
+		}
 		
 		// on en deduit le zoom par rapport a la position de la souris.
 		gdouble distanceE = sqrt ((icon->fX + icon->fWidth/2 - Mx) * (icon->fX + icon->fWidth/2 - Mx) + (icon->fY + icon->fHeight/2 - My) * (icon->fY + icon->fHeight/2 - My));

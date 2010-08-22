@@ -532,7 +532,7 @@ add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
 set (GETTEXT_SYSTEM_MONITOR ${GETTEXT_PLUGINS})
-set (VERSION_SYSTEM_MONITOR "1.0.4")
+set (VERSION_SYSTEM_MONITOR "1.0.5")
 set (PACKAGE_SYSTEM_MONITOR "cd-system-monitor")
 set (system_monitordatadir "${pluginsdatadir}/System-monitor")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/System-Monitor/data/System-Monitor.conf.in ${CMAKE_CURRENT_BINARY_DIR}/System-Monitor/data/System-Monitor.conf)

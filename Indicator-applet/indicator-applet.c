@@ -164,7 +164,7 @@ gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator)
 	_cd_indicator_make_menu (pIndicator);
 	if (pIndicator->pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_container (GTK_WIDGET (pIndicator->pMenu), myContainer);
+		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pIndicator->pMenu), myIcon, myContainer);
 		return TRUE;
 	}
 	return FALSE;

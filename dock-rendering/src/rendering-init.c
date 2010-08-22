@@ -152,7 +152,7 @@ CD_APPLET_INIT_BEGIN
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
 	cairo_dock_register_notification (CAIRO_DOCK_LEAVE_DOCK,
 		(CairoDockNotificationFunc) cd_slide_on_leave,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+		CAIRO_DOCK_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	

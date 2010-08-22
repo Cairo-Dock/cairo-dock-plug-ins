@@ -29,7 +29,6 @@
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gboolean bCompactMode;
-	gint iItemMinSize;
 	} ;
 
 
@@ -80,6 +79,7 @@ typedef struct {
 	// data
 	DBusGProxy *pProxyProps;
 	DBusGProxy *pProxy;
+	gboolean bInvalid;  // item deja en cours de destruction
 	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
 	GLuint iTexture;
@@ -96,6 +96,7 @@ struct _AppletData {
 	DBusGProxyCall* pGetApplicationsCall;
 	GList *pItems;
 	guint iSidGetWatcher;
+	GHashTable *pThemePaths;
 	} ;
 
 

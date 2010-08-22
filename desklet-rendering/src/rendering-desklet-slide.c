@@ -93,14 +93,14 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	}
 }
 
-static void load_data (CairoDesklet *pDesklet)
+/**static void load_data (CairoDesklet *pDesklet)
 {
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
 		return ;
 	
 	_compute_icons_grid (pDesklet, pSlide);
-}
+}*/
 
 
 static void free_data (CairoDesklet *pDesklet)
@@ -256,7 +256,6 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
 			
 			cairo_restore (pCairoContext);
-			
 			
 			if (pIcon->pTextBuffer != NULL)
 			{
@@ -478,7 +477,7 @@ void rendering_register_slide_desklet_renderer (void)
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render 			= (CairoDeskletRenderFunc) render;
 	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
-	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) load_data;
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) NULL;  /// load_data;
 	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
 	pRenderer->calculate_icons 	= (CairoDeskletCalculateIconsFunc) calculate_icons;
 	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;

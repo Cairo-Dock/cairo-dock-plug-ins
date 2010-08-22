@@ -35,7 +35,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	else
 	{
 		GtkWidget *pMenu = cd_clipper_build_items_menu ();
-		cairo_dock_popup_menu_on_container (pMenu, myContainer);
+		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -101,7 +101,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	else
 	{
 		GtkWidget *pMenu = cd_clipper_build_persistent_items_menu ();
-		cairo_dock_popup_menu_on_container (pMenu, myContainer);
+		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 

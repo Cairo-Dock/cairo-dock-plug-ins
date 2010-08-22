@@ -867,7 +867,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
 {
 	g_return_val_if_fail (cBaseURI != NULL, 0);
-	cd_debug ("%s (%s)", __func__, cBaseURI);
+	//cd_debug ("%s (%s)", __func__, cBaseURI);
 	
 	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // on le libere a la fin si necessaire.
 	

@@ -59,9 +59,6 @@ accessibility=0
 #b Should be visible on all desktops?
 sticky=true
 
-
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -94,6 +91,7 @@ bottom offset = 0
 fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
+
 
 #[gtk-preferences]
 [Configuration]
@@ -140,7 +138,7 @@ frame_act =
 
 #b Enable actions?
 #{If some actions are associated with an item, they will be proposed when the item is created.}
-enable actions = true
+enable actions = false
 
 #b Replay actions?
 #{Display actions when selecting an item in the history.}

@@ -52,7 +52,9 @@ CD_APPLET_DEFINE_BEGIN (N_("desklet rendering"),
 	
 	//\_______________ On enregistre les decorations.
 	cd_rendering_register_desklet_decorations ();
-
+	
+	//cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_slide_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
+	
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Desklets");
 CD_APPLET_DEFINE_END
