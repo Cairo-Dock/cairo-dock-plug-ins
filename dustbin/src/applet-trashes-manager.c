@@ -66,6 +66,10 @@ static gboolean cd_dustbin_display_result (CairoDockModuleInstance *myApplet)
 		{
 			CD_APPLET_SET_SIZE_AS_QUICK_INFO (myData.iMeasure);
 		}
+		else  // on vire les "..."
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		}
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON;

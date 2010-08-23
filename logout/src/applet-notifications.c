@@ -142,7 +142,8 @@ static gboolean _timer (gpointer data)
 		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
 		else
-			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.freedesktop.PowerManagement /org/freedesktop/PowerManagement org.freedesktop.PowerManagement.Shutdown");  // --print-reply --reply-timeout=2000
+			///cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.freedesktop.PowerManagement /org/freedesktop/PowerManagement org.freedesktop.PowerManagement.Shutdown");  // --print-reply --reply-timeout=2000
+			cairo_dock_launch_command ("dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop");  // Suspend est aussi possible
 		
 		myData.iSidTimer = 0;
 		CD_APPLET_LEAVE (FALSE);  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.

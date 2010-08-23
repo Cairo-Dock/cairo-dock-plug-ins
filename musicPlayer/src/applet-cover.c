@@ -81,6 +81,7 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 	if (myData.cArtist == NULL || myData.cAlbum == NULL)
 	{
 		myData.cover_exist = FALSE;
+		cd_debug ("MP : no artist and/or album, skip");
 		return ;
 	}
 	if (cGivenCoverPath != NULL)  // le lecteur nous donne une adresse, eventuellement distante.

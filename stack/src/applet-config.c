@@ -27,7 +27,7 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-	myConfig.iDeskletRendererType = CD_CONFIG_GET_INTEGER ("Module", "desklet renderer");
+	myConfig.iDeskletRendererType = CD_CONFIG_GET_INTEGER ("Configuration", "desklet renderer");
 
 	gsize length = 0;
 	myConfig.cMimeTypes = CD_CONFIG_GET_STRING_LIST ("Configuration", "mime", &length);

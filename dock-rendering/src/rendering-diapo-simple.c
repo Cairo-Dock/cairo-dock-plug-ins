@@ -1048,11 +1048,8 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
 	double fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	double fDockOffsetX, fDockOffsetY;
-	
 	fDockOffsetX = X_BORDER_SPACE;
 	fDockOffsetY = my_diapo_simple_arrowHeight+ARROW_TIP;
-	///fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-	///fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 	
 	//\_____________ On genere les coordonnees du contour.
 	CairoDockGLPath *pFramePath = cd_generate_frame_path_without_arrow (fFrameWidth, fFrameHeight, fRadius);
