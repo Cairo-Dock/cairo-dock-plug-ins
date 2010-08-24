@@ -234,9 +234,8 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 	CDViewportParameters *pViewport = g_new0 (CDViewportParameters, 1);
 	if (pConfig != NULL)
 	{
-		// get parameters
+		// get parameters ...
 		// gap icon, horizontal scroll bar, icon size, icon gap
-		
 	}
 	
 	pViewport->color_scrollbar_inside[0] = .8;
@@ -268,15 +267,6 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 }
 
 
-/**static void load_data (CairoDesklet *pDesklet)
-{
-	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
-	if (pViewport == NULL)
-		return ;
-	
-	_compute_icons_grid (pDesklet, pViewport);
-}*/
-
 static void free_data (CairoDesklet *pDesklet)
 {
 	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
@@ -284,7 +274,6 @@ static void free_data (CairoDesklet *pDesklet)
 		return ;
 	
 	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-	//cairo_dock_remove_notification_func (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_slide_on_click, NULL);
 	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
@@ -313,15 +302,17 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 	}
 }
 
+
 static void calculate_icons (CairoDesklet *pDesklet)
 {
 	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
 	if (pViewport == NULL)
 		return ;
 	
+	//\____________________ On calcule la grille : repartition et taille des icones, scrollbar.
 	_compute_icons_grid (pDesklet, pViewport);
-	cd_debug ("pViewport->iIconSize : %d\n", pViewport->iIconSize);
 	
+	//\____________________ On renseigne chaque icone apres (elles sont toutes identiques).
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)  // on ne veut pas charger cette icone.
 	{
@@ -351,8 +342,10 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		}
 	}
 	
+	//\____________________ tant qu'on y est, on calcule leur position.
 	_compute_icons_position (pDesklet, pViewport);
 }
+
 
 static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 {
@@ -687,7 +680,7 @@ void rendering_register_viewport_desklet_renderer (void)
 	CairoDeskletRenderer *pRenderer = g_new0 (CairoDeskletRenderer, 1);
 	pRenderer->render 			= (CairoDeskletRenderFunc) render;
 	pRenderer->configure 		= (CairoDeskletConfigureRendererFunc) configure;
-	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) NULL;  /// load_data
+	pRenderer->load_data 		= (CairoDeskletLoadRendererDataFunc) NULL;  // nothing to load.
 	pRenderer->free_data 		= (CairoDeskletFreeRendererDataFunc) free_data;
 	pRenderer->calculate_icons 	= (CairoDeskletCalculateIconsFunc) calculate_icons;
 	pRenderer->render_opengl 	= (CairoDeskletGLRenderFunc) render_opengl;

@@ -754,16 +754,18 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-panel-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-panel.png", MY_APPLET_SHARE_DATA_DIR);
+	// interface
 	pRenderer->compute_size = cd_compute_size;
 	pRenderer->calculate_icons = cd_calculate_icons;
 	pRenderer->render = cd_render;
 	pRenderer->render_optimized = cd_render_optimized;
 	pRenderer->render_opengl = cd_render_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	// parametres
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
-
+	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-panel-view");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-panel.png");
+	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

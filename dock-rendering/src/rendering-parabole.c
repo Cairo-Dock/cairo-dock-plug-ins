@@ -763,15 +763,17 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 void cd_rendering_register_parabole_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-parabolic-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-parabolic.jpg", MY_APPLET_SHARE_DATA_DIR);
+	// interface
 	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_parabole;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_parabole;
 	pRenderer->render = cd_rendering_render_parabole;
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_parabole_opengl;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_parabole;
+	// parametres
 	pRenderer->cDisplayedName = D_ (cRendererName);
+	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-parabolic-view");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-parabolic.jpg");
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

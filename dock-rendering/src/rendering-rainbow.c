@@ -728,15 +728,17 @@ void cd_rendering_reload_rainbow_buffers (void)
 void cd_rendering_register_rainbow_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-rainbow-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-rainbow.jpg", MY_APPLET_SHARE_DATA_DIR);
+	// interface
 	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_rainbow;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_rainbow;
 	pRenderer->render = cd_rendering_render_rainbow;
 	pRenderer->render_optimized = NULL;
 	pRenderer->render_opengl = cd_rendering_render_rainbow_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	// parametres
 	pRenderer->cDisplayedName = D_ (cRendererName);
+	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-rainbow-view");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-rainbow.jpg");
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

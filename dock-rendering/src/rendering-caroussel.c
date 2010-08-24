@@ -325,8 +325,8 @@ void cd_rendering_free_caroussel_data (CairoDock *pDock)
 void cd_rendering_register_caroussel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-caroussel-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-caroussel.jpg", MY_APPLET_SHARE_DATA_DIR);
+	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-caroussel-view");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-caroussel.jpg");
 	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_caroussel;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_caroussel;  // cairo_dock_apply_wave_effect;
 	pRenderer->render = cd_rendering_render_caroussel;

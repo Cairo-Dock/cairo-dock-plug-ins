@@ -1298,17 +1298,19 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 void cd_rendering_register_curve_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
-	pRenderer->cReadmeFilePath = g_strdup_printf ("%s/readme-curve-view", MY_APPLET_SHARE_DATA_DIR);
-	pRenderer->cPreviewFilePath = g_strdup_printf ("%s/preview-curve.jpg", MY_APPLET_SHARE_DATA_DIR);
+	// interface
 	pRenderer->compute_size = cd_rendering_calculate_max_dock_size_curve;
 	pRenderer->calculate_icons = cd_rendering_calculate_icons_curve;
 	pRenderer->render = cd_rendering_render_curve;
 	pRenderer->render_optimized = cd_rendering_render_optimized_curve;
 	pRenderer->render_opengl = cd_rendering_render_curve_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	// parametres
 	pRenderer->bUseReflect = TRUE;
 	pRenderer->bUseStencil = TRUE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
+	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-curve-view");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-curve.jpg");
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }
