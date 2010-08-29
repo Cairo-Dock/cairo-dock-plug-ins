@@ -130,7 +130,7 @@ paste selection = true
 shortkey = <Control>F8
 
 #b Pop-up menus at mouse position?
-menu on mouse = true
+menu on mouse = false 
 
 
 #F[Actions;gtk-execute]
