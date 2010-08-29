@@ -24,6 +24,7 @@ frame_hand=
 #A
 handbook=PowerManager
 
+
 #[gtk-convert]
 [Desklet]
 
@@ -93,6 +94,7 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
@@ -134,7 +136,6 @@ battery icon =
 charge icon = 
 #l+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to the charge :
 effect=0
-
 
 
 #F[Parameters;gtk-preferences]
@@ -205,4 +206,3 @@ battery_animation=
 #I[0;60] Duration of the notification:
 #{In seconds. Set to 0 for infinite time (need to click on dialog to close it).}
 notif_duration=10
-

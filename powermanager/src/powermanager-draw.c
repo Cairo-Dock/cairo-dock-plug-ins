@@ -281,3 +281,32 @@ void cd_powermanager_draw_icon_with_effect (gboolean bOnBattery)
 		break;
 	}
 }
+
+
+void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+{
+	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
+	if(myConfig.quickInfoType == POWER_MANAGER_TIME)
+	{
+		if (myData.battery_time != 0)
+		{
+			int time = myData.battery_time;
+			int hours = time / 3600;
+			int minutes = (time % 3600) / 60;
+			if (hours != 0)
+				snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
+			else
+				snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+		}
+		else
+		{
+			strncpy (cFormatBuffer, "-:--", iBufferLength);
+		}
+	}
+	else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
+	{
+		snprintf (cFormatBuffer, iBufferLength, "%d%%", (int)myData.battery_charge);
+	}
+	else
+		cFormatBuffer[0] = '\0';
+}

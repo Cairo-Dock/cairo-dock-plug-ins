@@ -87,7 +87,7 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			// Copier les donnes en memoire partagee...
 			
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || (myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
+			if (/**myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || */(myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
 			{
 				gboolean bOneLine = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL);
 				GString *sInfo = g_string_new ("");
@@ -146,7 +146,7 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				{
 					s_fValues[i++] = myData.fGpuTempPercent / 100.;
 					if (myData.bAlerted && myData.iGPUTemp < myConfig.iAlertLimit)
-						myData.bAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessou de la limite.
+						myData.bAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessous de la limite.
 					
 					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
 						cd_nvidia_alert (myApplet);
@@ -157,12 +157,12 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 	}
 	
 	CD_APPLET_LEAVE (myData.bAcquisitionOK);
-	//return myData.bAcquisitionOK;
 }
 
 
-void cd_sysmonitor_format_value (double fValue, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
 {
+	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
 	int i = -1;
 	if (myConfig.bShowCpu)
 	{
@@ -197,7 +197,7 @@ void cd_sysmonitor_format_value (double fValue, int iNumValue, gchar *cFormatBuf
 		if (i == iNumValue)
 		{
 			double fTemp = myConfig.iLowerLimit + fValue * (myConfig.iUpperLimit - myConfig.iLowerLimit);
-			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
+			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0fï¿½" : "%.0fï¿½", fTemp);
 			return ;
 		}
 	}

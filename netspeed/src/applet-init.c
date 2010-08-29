@@ -34,10 +34,9 @@ CD_APPLET_DEFINITION (N_("netspeed"),
 	"Middle-click to (de)activate the network (needs NetworManager)"),
 	"parAdOxxx_ZeRo");
 
-
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
 	if (myConfig.iDisplayType == CD_NETSPEED_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
@@ -72,12 +71,19 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		/// A FAIRE...
 	}
-	if (pRenderAttr != NULL)
+	if (pRenderAttr != NULL)  // attributs generiques.
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		pRenderAttr->iNbValues = 2;
 		pRenderAttr->bUpdateMinMax = TRUE;
-		//pRenderAttr->bWriteValues = TRUE;
+		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+		{
+			pRenderAttr->bWriteValues = TRUE;
+			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_netspeed_format_value;
+			pRenderAttr->pFormatData = myApplet;
+		}
+		const gchar *labels[2] = {"UP", "DOWN"};
+		pRenderAttr->cLabels = (gchar **)labels;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		else

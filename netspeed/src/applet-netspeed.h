@@ -22,6 +22,8 @@
 
 #include <cairo-dock.h>
 
+void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet);
+
 void cd_netspeed_get_data (CairoDockModuleInstance *myApplet);
 
 gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet);

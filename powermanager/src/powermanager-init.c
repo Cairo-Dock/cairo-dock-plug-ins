@@ -64,7 +64,13 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	}
 	if (pRenderAttr != NULL)
 	{
-		//pRenderAttr->bWriteValues = TRUE;
+		if (myConfig.quickInfoType != 0)
+		{
+			pRenderAttr->bWriteValues = TRUE;
+			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_powermanager_format_value;
+			pRenderAttr->pFormatData = myApplet;
+		}
+		
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		else

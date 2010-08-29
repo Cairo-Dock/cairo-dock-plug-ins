@@ -33,58 +33,71 @@
 
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-static void cd_netspeed_formatRate (CairoDockModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
+static void cd_netspeed_formatRate (unsigned long long rate, gchar* debit, int iBufferSize, gboolean bLong)
+{
 	int smallRate;
-	
 	if (rate <= 0)
 	{
-		if (myDesklet)
-			g_sprintf(debit, "0 %s/s", D_("B"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "0 %s/s", D_("B"));
 		else
-			g_sprintf(debit, "0");
+			snprintf (debit, iBufferSize, "0");
 	}
 	else if (rate < 1024)
 	{
 		smallRate = rate;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("B"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "%i %s/s", smallRate, D_("B"));
 		else
-			g_sprintf(debit, "%iB", smallRate);
+			snprintf (debit, iBufferSize, "%iB", smallRate);
 	}
 	else if (rate < (1<<20))
 	{
 		smallRate = rate >> 10;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("KB"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "%i %s/s", smallRate, D_("KB"));
 		else
-			g_sprintf(debit, "%iK", smallRate);
+			snprintf (debit, iBufferSize, "%iK", smallRate);
 	}
 	else if (rate < (1<<30))
 	{
 		smallRate = rate >> 20;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("MB"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "%i %s/s", smallRate, D_("MB"));
 		else
-			g_sprintf(debit, "%iM", smallRate);
+			snprintf (debit, iBufferSize, "%iM", smallRate);
 	}
 	else if (rate < ((unsigned long long)1<<40))
 	{
 		smallRate = rate >> 30;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("GB"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "%i %s/s", smallRate, D_("GB"));
 		else
-			g_sprintf(debit, "%iG", smallRate);
+			snprintf (debit, iBufferSize, "%iG", smallRate);
 	}
 	else  // c'est vraiment pour dire qu'on est exhaustif :-)
 	{
 		smallRate = rate >> 40;
-		if (myDesklet)
-			g_sprintf(debit, "%i %s/s", smallRate, D_("TB"));
+		if (bLong)
+			snprintf (debit, iBufferSize, "%i %s/s", smallRate, D_("TB"));
 		else
-			g_sprintf(debit, "%iT", smallRate);
+			snprintf (debit, iBufferSize, "%iT", smallRate);
 	}
 }
 
+
+void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+{
+	static gchar s_upRateFormatted[11];
+	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
+	
+	fValue *= (iNumValue == 0 ? myData.iMaxUpRate : myData.iMaxDownRate);
+	cd_netspeed_formatRate (fValue, s_upRateFormatted, 11, FALSE);
+	snprintf (cFormatBuffer, iBufferLength,
+		"%s%s",
+		cairo_data_renderer_can_write_values (pRenderer) ? (iNumValue == 0 ?"↓" : "↑") : "",
+		s_upRateFormatted);
+}
 
 void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 {
@@ -188,11 +201,14 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		{
 			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
-				cd_netspeed_formatRate (myApplet, myData.iUploadSpeed, s_upRateFormatted);
-				cd_netspeed_formatRate (myApplet, myData.iDownloadSpeed, s_downRateFormatted);
+				cd_netspeed_formatRate (myData.iUploadSpeed, s_upRateFormatted, 11, myDesklet != NULL);
+				cd_netspeed_formatRate (myData.iDownloadSpeed, s_downRateFormatted, 11, myDesklet != NULL);
+				
 				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 				{
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
+					CairoDataRenderer *pRenderer = cairo_dock_get_icon_data_renderer (myIcon);
+					if (!pRenderer || ! cairo_data_renderer_can_write_values (pRenderer))
+						CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
 				}
 				else
 				{

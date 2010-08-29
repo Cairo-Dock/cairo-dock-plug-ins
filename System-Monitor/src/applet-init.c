@@ -48,7 +48,7 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
@@ -103,13 +103,29 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		/// A FAIRE...
 	}
-	if (pRenderAttr != NULL)
+	if (pRenderAttr != NULL)  // attributs generiques.
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		pRenderAttr->iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
-		pRenderAttr->format_value = (CairoDockGetValueFormatFunc) cd_sysmonitor_format_value;
-		pRenderAttr->pFormatData = myApplet;
-		//pRenderAttr->bWriteValues = TRUE;
+		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+		{
+			pRenderAttr->bWriteValues = TRUE;
+			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_sysmonitor_format_value;
+			pRenderAttr->pFormatData = myApplet;
+		}
+		const gchar *c[] = {"/usr/share/icons/gnome/scalable/actions/gtk-about.svg", "/usr/share/icons/gnome/scalable/actions/gtk-help.svg", "", ""};
+		//pRenderAttr->cEmblems = c;
+		const gchar *labels[4] = {NULL, NULL, NULL, NULL};
+		int i = 0;
+		if (myConfig.bShowCpu)
+			labels[i++] = "CPU";
+		if (myConfig.bShowRam)
+			labels[i++] = "RAM";
+		if (myConfig.bShowSwap)
+			labels[i++] = "SWAP";
+		if (myConfig.bShowNvidia)
+			labels[i++] = "TEMP";
+		pRenderAttr->cLabels = (gchar **)labels;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		else
