@@ -72,6 +72,7 @@ CD_APPLET_INIT_BEGIN
 	myData.iLastCheckedDay = -1;
 	myData.iLastCheckedMonth = -1;
 	myData.iLastCheckedYear = -1;
+	myData.iTextLayout = myConfig.iPreferedTextLayout;
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -117,9 +118,9 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-		///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
+	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
-	myData.iTextOrientation = 0;  // on recalcule l'orientation.
+	myData.iTextLayout = myConfig.iPreferedTextLayout;  // on recalcule l'orientation si elle est automatique.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		//\_______________ set a desklet view.

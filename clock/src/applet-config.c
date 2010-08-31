@@ -103,6 +103,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
 		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
+		
+		myConfig.iPreferedTextLayout = CD_CONFIG_GET_INTEGER ("Configuration", "text layout");
 	}
 	
 	//\_______________ On recupere les alarmes.

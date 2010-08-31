@@ -132,11 +132,19 @@ typedef struct {
 	gpointer pData;
 	} CDClockTaskBackend;
 
+typedef enum _CDClockTextLayout
+{
+	CD_TEXT_LAYOUT_AUTO = 0,
+	CD_TEXT_LAYOUT_1_LINE,
+	CD_TEXT_LAYOUT_2_LINES
+} CDClockTextLayout;
+
 struct _AppletConfig {
 	CairoDockInfoDisplay iShowDate;
 	gboolean bShowSeconds;
 	gboolean bOldStyle;
 	gboolean b24Mode;
+	CDClockTextLayout iPreferedTextLayout;
 	double fTextColor[4];
 	double fDateColor[4];
 	gchar *cThemePath;
@@ -173,7 +181,7 @@ struct _AppletData {
 	
 	cairo_surface_t *pNumericBgSurface;
 	ClockDigital pDigitalClock;
-	guint iTextOrientation;
+	guint iTextLayout;
 	
 	GLuint iBgTexture, iFgTexture, iHourNeedleTexture, iMinuteNeedleTexture, iSecondNeedleTexture, iDateTexture;
 	gint iNeedleWidth, iNeedleHeight;

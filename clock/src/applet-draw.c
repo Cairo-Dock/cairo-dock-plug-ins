@@ -394,8 +394,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	cd_clock_put_text_on_frames (myApplet, width, height, fMaxScale, pTime);
 }*/
 
-#define GAPX 12
-#define GAPY 2
+#define GAPX .12
+#define GAPY .02
 #define MAX_RATIO 2.
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
@@ -451,9 +451,9 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		
 		double h=0, w=0, fZoomX=0, fZoomY=0;
 		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;
-		if (myData.iTextOrientation == 1 || myData.iTextOrientation == 0)
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
-			h = ink.height + ink2.height + GAPY;
+			h = ink.height + ink2.height + GAPY * iHeight;
 			w = MAX (ink.width, ink2.width);
 			fZoomX = (double) iWidth / w;
 			fZoomY = (double) iHeight / h;
@@ -466,10 +466,10 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 				fZoomX = myConfig.fTextRatio * iWidth / w;
 			}
 		}
-		if (myData.iTextOrientation == 2 || myData.iTextOrientation == 0)
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
 			h_ = MAX (ink.height, ink2.height);
-			w_ = ink.width + ink2.width + GAPX;
+			w_ = ink.width + ink2.width + GAPX * iWidth;
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
 			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
@@ -487,17 +487,17 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 		}
 		
-		if (myData.iTextOrientation == 0)  // si l'orientation n'est pas encore definie, on la definit de facon a ne pas changer (si on est tres proche de la limite, la taille du texte pourrait changer suffisamment pour nous faire passer d'une orientation a l'autre.
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)  // si l'orientation n'est pas encore definie, on la definit de facon a ne pas changer (si on est tres proche de la limite, la taille du texte pourrait changer suffisamment pour nous faire passer d'une orientation a l'autre.
 		{
 			double def = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // deformation.
 			double def_ = (fZoomX_ > fZoomY_ ? fZoomX_ / fZoomY_ : fZoomY_ / fZoomX_);
-			if (def > def_)  // deformation plus grande en mode vertical => on passe en mode horizontal.
-				myData.iTextOrientation = 2;
+			if (def > def_)  // deformation plus grande en mode 2 lignes => on passe en mode 1 ligne.
+				myData.iTextLayout = CD_TEXT_LAYOUT_2_LINES;
 			else
-				myData.iTextOrientation = 1;
+				myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
 		}
 		
-		if (myData.iTextOrientation == 2)  // mode horizontal
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE)  // mode 1 ligne
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
@@ -512,7 +512,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			cairo_translate (myDrawContext, -ink.x, -ink.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 		}
-		else  // mode vertical
+		else  // mode 2 lignes
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);

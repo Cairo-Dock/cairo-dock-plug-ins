@@ -146,6 +146,9 @@ font = Sans 16
 #C+ Text colour:
 text color = 0.0; 0.0; 0.5; 1.
 
+#l+[Automatic;On 1 line;On 2 lines] Layout of the text:
+text layout = 0
+
 #e+[.5;1] Ratio to apply on text :
 text ratio = 1
 
