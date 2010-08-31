@@ -30,11 +30,20 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDefaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.cImageFile = CD_CONFIG_GET_STRING ("Icon", "image file");
 	myConfig.cDirPath = CD_CONFIG_GET_STRING ("Configuration", "dir path");
-	if (myConfig.cDirPath && *myConfig.cDirPath == '/')
+	if (myConfig.cDirPath)
 	{
-		gchar *tmp = myConfig.cDirPath;
-		myConfig.cDirPath = g_filename_to_uri (myConfig.cDirPath, NULL, NULL);
-		g_free (tmp);
+		if (*myConfig.cDirPath == '~')
+		{
+			gchar *tmp = myConfig.cDirPath;
+			myConfig.cDirPath = g_strdup_printf ("%s/%s", g_getenv ("HOME"), myConfig.cDirPath);
+			g_free (tmp);
+		}
+		if (*myConfig.cDirPath == '/')
+		{
+			gchar *tmp = myConfig.cDirPath;
+			myConfig.cDirPath = g_filename_to_uri (myConfig.cDirPath, NULL, NULL);
+			g_free (tmp);
+		}
 	}
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	//myConfig.iNbIcons = CD_CONFIG_GET_INTEGER ("Configuration", "nb icons");
