@@ -190,8 +190,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		int i;
 		for (i = 0; i < num_sizes; i ++)
 		{
-			g_string_printf (pResString, "%s%dx%d", (i == original_size_id ? "=>" : ""), xrrs[i].width, xrrs[i].height);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
+			g_string_printf (pResString, "%dx%d", xrrs[i].width, xrrs[i].height);
+			if (i == original_size_id)
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
+			else
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
 			/*short   *rates;
 			int     num_rates;
 			rates = XRRRates(dpy, 0, i, &num_rates);

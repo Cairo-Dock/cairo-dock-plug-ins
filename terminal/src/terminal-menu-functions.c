@@ -75,10 +75,10 @@ static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU(D_("New Tab"), on_new_tab, pSubMenu);
-	CD_APPLET_ADD_IN_MENU(D_("Rename current Tab"), on_rename_tab, pSubMenu);
-	CD_APPLET_ADD_IN_MENU(D_("Close current Tab"), on_close_tab, pSubMenu);
-	CD_APPLET_ADD_SEPARATOR(pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("New Tab"), GTK_STOCK_NEW, on_new_tab, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Rename current Tab"), GTK_STOCK_EDIT, on_rename_tab, pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Close current Tab"), GTK_STOCK_CLOSE, on_close_tab, pSubMenu);
+	CD_APPLET_ADD_SEPARATOR (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END

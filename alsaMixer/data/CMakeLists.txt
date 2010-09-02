@@ -4,6 +4,7 @@
 install(FILES  ${CMAKE_CURRENT_BINARY_DIR}/AlsaMixer.conf
 	default.svg
 	mute.svg
+	emblem-mute.svg
 	broken.svg
 	preview.jpg
 	icon.png

@@ -256,24 +256,12 @@ static void _cd_switcher_expose (GtkMenuItem *menu_item, CairoDockModuleInstance
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a desktop"),
-		GTK_STOCK_ADD,
-		_cd_switcher_add_desktop,
-		pSubMenu);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last desktop"),
-		GTK_STOCK_REMOVE,
-		_cd_switcher_remove_last_desktop,
-		pSubMenu);
-	
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"), GTK_STOCK_REFRESH, _cd_switcher_refresh, pSubMenu);
+
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 	{
 		int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"),
-			GTK_STOCK_EDIT,
-			_cd_switcher_rename_desktop,
-			pSubMenu,
-			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
 			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current Desktop to this Desktop"),
@@ -283,7 +271,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				GINT_TO_POINTER (iIndex));
 			gtk_widget_set_tooltip_text (pMenuItem, D_("This will move all windows from the current desktop to the one you clicked on."));
 		}
+
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"), GTK_STOCK_EDIT, _cd_switcher_rename_desktop, pSubMenu, GINT_TO_POINTER (iIndex));
 	}
+	else
+	{
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	}
+	
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a desktop"), GTK_STOCK_ADD, _cd_switcher_add_desktop, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last desktop"), GTK_STOCK_REMOVE, _cd_switcher_remove_last_desktop, pSubMenu);
 	
 	if (myConfig.iActionOnMiddleClick != 0)
 	{
@@ -292,23 +290,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	if (myConfig.iActionOnMiddleClick != 1)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"),
-			GTK_STOCK_FULLSCREEN,
-			_cd_switcher_show_desktop,
-			pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"), GTK_STOCK_FULLSCREEN, _cd_switcher_show_desktop, CD_APPLET_MY_MENU);
 	}
 	if (myConfig.iActionOnMiddleClick != 2)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Expose all the desktops (Compiz)"),
-			GTK_STOCK_LEAVE_FULLSCREEN,
-			_cd_switcher_expose,
-			pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Expose all the desktops (Compiz)"), GTK_STOCK_LEAVE_FULLSCREEN, _cd_switcher_expose, CD_APPLET_MY_MENU);
 	}
-	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
-		GTK_STOCK_REFRESH,
-		_cd_switcher_refresh,
-		pSubMenu);
+
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

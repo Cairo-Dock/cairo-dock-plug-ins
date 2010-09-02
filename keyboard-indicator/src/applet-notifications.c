@@ -49,7 +49,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		int i;
 		for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (pGroupNames[i], _select_group, pSubMenu, GINT_TO_POINTER (i));
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (pGroupNames[i], _select_group, CD_APPLET_MY_MENU, GINT_TO_POINTER (i));
 		}
 CD_APPLET_ON_BUILD_MENU_END
 
