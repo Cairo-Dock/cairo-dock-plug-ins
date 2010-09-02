@@ -175,11 +175,12 @@ static void cd_compiz_switch_decorator (GtkMenuItem *menu_item, gpointer *data) 
 	cd_compiz_start_decorator (iDecorator);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
+	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+
 	if (CD_APPLET_CLICKED_ICON != NULL && strcmp(CD_APPLET_CLICKED_ICON->cName,D_("Emerald Manager")) == 0) {
-		CD_APPLET_ADD_IN_MENU (D_("Reload Emerald"), cd_compiz_start_favorite_decorator, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload Emerald"), GTK_STOCK_REFRESH, cd_compiz_start_favorite_decorator, CD_APPLET_MY_MENU);
 	}
 	
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	CD_APPLET_ADD_IN_MENU (D_("Switch Windows Manager"), cd_compiz_switch_manager, pSubMenu);
 	GtkWidget *pDecoratorSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Switch Windows Decorator"), pSubMenu);
 		CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cDecorators[DECORATOR_EMERALD], cd_compiz_switch_decorator, pDecoratorSubMenu, GINT_TO_POINTER (DECORATOR_EMERALD));
@@ -193,8 +194,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Exposition Mode"), _compiz_menu_activate_expo, pSubMenu);
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Widget Layer"), _compiz_menu_toggle_wlayer, pSubMenu);
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Toggle Show Desktop"), _compiz_menu_show_desktop, pSubMenu);
+	
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Toggle Show Desktop"), GTK_STOCK_FULLSCREEN, _compiz_menu_show_desktop, CD_APPLET_MY_MENU);
+
 	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->cCommand == NULL || strcmp (pClickedIcon->cCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;  // on ne veut pas des autres entrees habituelles du menu.
 CD_APPLET_ON_BUILD_MENU_END

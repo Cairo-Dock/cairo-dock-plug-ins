@@ -50,9 +50,8 @@ static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	//on rajoute un sous menu, sinon ce n'est pas esthétique
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU (D_("Set up power management"), power_config, pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
 	if (myData.dbus_enable)
 	{
 		CD_APPLET_ADD_IN_MENU (D_("Halt"), power_halt, pSubMenu);

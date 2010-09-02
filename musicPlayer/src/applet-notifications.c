@@ -165,26 +165,43 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else
 	{
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PREVIOUS)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Previous"), GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PLAY_PAUSE)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Play/Pause (left-click)"), (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_NEXT)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Next (middle-click)"), GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_STOP)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
+		if (myData.pCurrentHandeler->iPlayerControls)
+		{
+			if (PLAYER_PREVIOUS)
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Previous"), GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
+			if (PLAYER_PLAY_PAUSE)
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Play/Pause (left-click)"), (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+			if (PLAYER_NEXT)
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Next (middle-click)"), GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
+			if (PLAYER_STOP)
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
+	
+			if (PLAYER_PREVIOUS || PLAYER_PLAY_PAUSE || PLAYER_NEXT || PLAYER_STOP)
+				CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+		}
+
 		if (myIcon->Xid == 0)  // lecteur dans le systray.
 			CD_APPLET_ADD_IN_MENU (D_("Show the Window"), _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_JUMPBOX)
-			CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_SHUFFLE)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_REPEAT)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, CD_APPLET_MY_MENU);
-		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_RATE)
-			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, CD_APPLET_MY_MENU);
+
+		if (myData.pCurrentHandeler->iPlayerControls)
+		{
+			if (PLAYER_JUMPBOX)
+			{
+				CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, pSubMenu);
+				// CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+			}
+			if (PLAYER_RATE)
+				CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, pSubMenu);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
+	
+			if (PLAYER_SHUFFLE)
+				CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, pSubMenu);
+			if (PLAYER_REPEAT)
+				CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, pSubMenu);
+			if (PLAYER_REPEAT || PLAYER_SHUFFLE)
+				CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+		}
 	}
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
