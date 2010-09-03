@@ -27,6 +27,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 
 void cd_free_item (CDStatusNotifierItem *pItem);
 
+gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem);
+
 Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem);
 
 

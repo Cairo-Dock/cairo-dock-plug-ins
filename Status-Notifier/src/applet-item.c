@@ -24,6 +24,7 @@
 
 #include "applet-struct.h"
 #include "applet-host.h"
+#include "applet-draw.h"
 #include "applet-item.h"
 
 #define CD_STATUS_NOTIFIER_ITEM_IFACE "org.kde.StatusNotifierItem"
@@ -147,20 +148,7 @@ static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pIte
 	
 	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
 	{
-		if (myConfig.bCompactMode)
-		{
-			cairo_dock_load_icon_image (myIcon, myContainer);
-		}
-		else
-		{
-			Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
-			if (pIcon != NULL && pIcon->pIconBuffer != NULL)
-			{
-				cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-				cairo_dock_set_image_on_icon (pIconContext, pItem->cIconName, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
-				cairo_destroy (pIconContext);
-			}
-		}
+		cd_satus_notifier_update_item_image (pItem);
 	}
 	CD_APPLET_LEAVE ();
 }
@@ -176,20 +164,7 @@ static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifier
 	
 	if (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION)
 	{
-		if (myConfig.bCompactMode)
-		{
-			cairo_dock_load_icon_image (myIcon, myContainer);
-		}
-		else
-		{
-			Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
-			if (pIcon != NULL && pIcon->pIconBuffer != NULL)
-			{
-				cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-				cairo_dock_set_image_on_icon (pIconContext, pItem->cAttentionIconName, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
-				cairo_destroy (pIconContext);
-			}
-		}
+		cd_satus_notifier_update_item_image (pItem);
 	}
 	CD_APPLET_LEAVE ();
 }
@@ -199,26 +174,36 @@ static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CD
 	CD_APPLET_ENTER;
 	g_print ("%s (%s)\n", __func__, cStatus);
 	
+	// get the new status
+	CDStatusEnum iPrevStatus = pItem->iStatus;
 	pItem->iStatus = _find_status (cStatus);
-	if (myConfig.bCompactMode)
+	if (pItem->iStatus == iPrevStatus)
+		CD_APPLET_LEAVE ();
+	
+	// update the item
+	if (iPrevStatus == CD_STATUS_PASSIVE || pItem->iStatus == CD_STATUS_PASSIVE)  // hide/show the item.
 	{
-		cairo_dock_load_icon_image (myIcon, myContainer);
-	}
-	else
-	{
-		Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
-		if (pIcon != NULL)
+		if (myConfig.bCompactMode)
 		{
-			if (pIcon->pIconBuffer != NULL)
-			{
-				cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-				cairo_dock_set_image_on_icon (pIconContext,
-					pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName : pItem->cIconName,
-					pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
-				cairo_destroy (pIconContext);
-			}
-			_show_item_status (pIcon, pItem);
+			cd_satus_notifier_reload_compact_mode ();
 		}
+		else
+		{
+			if (pItem->iStatus == CD_STATUS_PASSIVE)  // remove passive item
+			{
+				Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
+				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+			}
+			else  // add newly active item
+			{
+				Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
+				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pIcon);
+			}
+		}
+	}
+	else  // status has changed => image has changed too.
+	{
+		cd_satus_notifier_update_item_image (pItem);
 	}
 	
 	CD_APPLET_LEAVE ();
@@ -229,6 +214,25 @@ static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, cons
 {
 	CD_APPLET_ENTER;
 	g_print ("%s (%s, %s)\n", __func__, cLabel, cLabelGuide);
+	
+	g_free (pItem->cLabel);
+	pItem->cLabel = g_strdup (cLabel);
+	g_free (pItem->cLabelGuide);
+	pItem->cLabelGuide = g_strdup (cLabelGuide);
+	
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_new_item_theme_path (DBusGProxy *proxy_item, const gchar *cNewThemePath, CDStatusNotifierItem *pItem)
+{
+	CD_APPLET_ENTER;
+	g_print ("%s (%s)\n", __func__, cNewThemePath);
+	
+	g_free (pItem->cIconThemePath);
+	pItem->cIconThemePath = g_strdup (cNewThemePath);
+	
+	cd_satus_notifier_update_item_image (pItem);
 	
 	CD_APPLET_LEAVE ();
 }
@@ -310,7 +314,7 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	
 	if (myConfig.bCompactMode)
 	{
-		cairo_dock_load_icon_image (myIcon, myContainer);
+		cd_satus_notifier_reload_compact_mode ();
 	}
 	else
 	{
@@ -320,6 +324,30 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	
 	cd_free_item (pItem);
 	CD_APPLET_LEAVE ();
+}
+
+gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
+{
+	g_return_val_if_fail (pItem != NULL, NULL);
+	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
+	
+	gchar *cIconPath = NULL;
+	if (pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
+	{
+		cIconPath = g_strdup_printf ("%s/%s", pItem->cIconThemePath, pItem->cIconName);
+		if (! g_file_test (cIconPath, G_FILE_TEST_EXISTS))
+		{
+			g_free (cIconPath);
+			cIconPath = NULL;
+		}
+	}
+	
+	if (cIconPath == NULL)
+	{
+		cIconPath = cairo_dock_search_icon_s_path (pItem->cIconName);
+	}
+	
+	return cIconPath;
 }
 
 CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath)
@@ -504,6 +532,15 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
+	/*if (myConfig.bCompactMode && myData.iItemSize != 0 && pItem->iStatus != CD_STATUS_PASSIVE)
+	{
+		gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
+		if (cIconPath != NULL)
+		{
+			pItem->pSurface = cairo_dock_create_surface_from_icon (cIconPath, myData.iItemSize, myData.iItemSize);
+			g_free (cIconPath);
+		}
+	}*/
 	
 	//\_________________ track any changes in the item.
 	// signals supported by both.
@@ -523,10 +560,15 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		G_CALLBACK(on_new_item_attention_icon), pItem, NULL);
 	
 	// signals supported by Ubuntu.
-	dbus_g_proxy_add_signal(pProxyItem, "NewLabel",
+	dbus_g_proxy_add_signal(pProxyItem, "XAyatanaNewLabel",
 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal(pProxyItem, "NewLabel",
+	dbus_g_proxy_connect_signal(pProxyItem, "XAyatanaNewLabel",
 		G_CALLBACK(on_new_item_label), pItem, NULL);
+	
+	dbus_g_proxy_add_signal(pProxyItem, "NewIconThemePath",
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(pProxyItem, "NewIconThemePath",
+		G_CALLBACK(on_new_item_theme_path), pItem, NULL);
 	
 	// signals supported by KDE.
 	dbus_g_proxy_add_signal(pProxyItem, "NewOverlayIcon",
@@ -571,6 +613,7 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	g_free (pItem->cAttentionMovieName);
 	g_free (pItem->cOverlayIconName);
 	cd_free_tooltip (pItem->pToolTip);
+	cairo_surface_destroy (pItem->pSurface);
 	g_free (pItem);
 }
 
@@ -580,32 +623,13 @@ static void _load_item_image (Icon *icon)
 	int iWidth = icon->iImageWidth;
 	int iHeight = icon->iImageHeight;
 	
-	if (icon->cFileName)  // icone possedant une image, on affiche celle-ci.
-	{
-		gchar *cIconPath = NULL;
-		
-		CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (icon);
-		if (cIconPath == NULL && pItem != NULL && pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
-		{
-			cIconPath = g_strdup_printf ("%s/%s", pItem->cIconThemePath, icon->cFileName);
-			if (! g_file_test (cIconPath, G_FILE_TEST_EXISTS))
-			{
-				g_free (cIconPath);
-				cIconPath = NULL;
-			}
-		}
-		
-		if (cIconPath == NULL)
-		{
-			cIconPath = cairo_dock_search_icon_s_path (icon->cFileName);
-		}
-		
-		if (cIconPath != NULL && *cIconPath != '\0')
-			icon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
-				iWidth,
-				iHeight);
-		g_free (cIconPath);
-	}
+	CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (icon);
+	gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
+	if (cIconPath != NULL && *cIconPath != '\0')
+		icon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
+			iWidth,
+			iHeight);
+	g_free (cIconPath);
 }
 Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem)
 {
@@ -614,8 +638,8 @@ Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem)
 		g_strdup (pItem->cIconName),
 		g_strdup (pItem->cService),
 		NULL,
-		pItem->iCategory);
-	pIcon->iface.load_image = _load_item_image;  /// a tester...
+		pItem->iPosition > -1 ? pItem->iPosition : (int)pItem->iCategory);
+	pIcon->iface.load_image = _load_item_image;  /// a voir...
 	return pIcon;
 }
 
@@ -635,13 +659,13 @@ CDStatusNotifierItem *cd_satus_notifier_get_item_from_icon (Icon *pIcon)
 
 Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 {
-	g_print ("%s (%s)\n", __func__, pItem->cService);
+	//g_print ("%s (%s)\n", __func__, pItem->cService);
 	GList *ic, *pIcons = CD_APPLET_MY_ICONS_LIST;
 	Icon *pIcon;
 	for (ic = pIcons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		g_print ("  %s \n", pIcon->cCommand);
+		//g_print ("  %s \n", pIcon->cCommand);
 		if (pIcon->cCommand && strcmp (pIcon->cCommand, pItem->cService) == 0)
 		{
 			return pIcon;

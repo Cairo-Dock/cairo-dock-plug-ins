@@ -81,7 +81,7 @@ static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance 
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU (D_("Reload now"), _cd_weather_reload, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GTK_STOCK_REFRESH, _cd_weather_reload, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

@@ -2199,7 +2199,7 @@ msgid ""
 "don't have Nautilus).\n"
 "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 "Middle-click on the main icon to show your home folder.\n"
-"Middle-click on a mounting point icon to (un)mount is quickly.\n"
+"Middle-click on a mounting point icon to (un)mount it quickly\n"
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
@@ -2448,15 +2448,15 @@ msgid "Rename this workspace"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:259
-msgid "Add a desktop"
+msgid "Add a workspace"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:263
-msgid "Remove last desktop"
+msgid "Remove last workspace"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:279
-msgid "Move current Desktop to this Desktop"
+msgid "Move current workspace to this workspace"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:284

@@ -24,6 +24,7 @@
 
 #include "applet-struct.h"
 #include "applet-item.h"
+#include "applet-draw.h"
 #include "applet-host.h"
 
 #define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
@@ -130,9 +131,11 @@ static inline void _add_new_item (const gchar *cService, const gchar *cObjectPat
 	pItem->iPosition = iPosition;
 	myData.pItems = g_list_prepend (myData.pItems, pItem);
 	
+	if (pItem->iStatus == CD_STATUS_PASSIVE)  // don't show a passive item.
+		return;
 	if (myConfig.bCompactMode)
 	{
-		cairo_dock_load_icon_image (myIcon, myContainer);
+		cd_satus_notifier_reload_compact_mode ();
 	}
 	else
 	{
@@ -148,9 +151,11 @@ static inline void _remove_item (const gchar *cService, int iPosition)
 	
 	myData.pItems = g_list_remove (myData.pItems, pItem);
 	
+	if (pItem->iStatus == CD_STATUS_PASSIVE)  // the item was passive, therefore not visible.
+		return;
 	if (myConfig.bCompactMode)
 	{
-		cairo_dock_load_icon_image (myIcon, myContainer);
+		cd_satus_notifier_reload_compact_mode ();
 	}
 	else
 	{
@@ -174,7 +179,7 @@ static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cService, Cairo
 static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cService, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("item removed : '%s'\n", cService);
+	g_print ("%s (%s)\n", __func__, cService);
 	
 	gchar *str = strchr (cService, '/');
 	if (str)
@@ -247,7 +252,6 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 	GValueArray *va;
 	GValue *v;
 	CDStatusNotifierItem *pItem=NULL;
-	GList *pIcons = NULL;
 	g_print ("%d apps in the systray\n", pApplications->len);
 	for (i = 0; i < pApplications->len; i ++)
 	{
@@ -305,17 +309,16 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			continue;
 		pItem->iPosition = iPosition;
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
-		
-		if (! myConfig.bCompactMode)
-		{
-			Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
-			if (pIcon)
-				pIcons = g_list_prepend (pIcons, pIcon);
-		}
 	}
 	
-	if (! myConfig.bCompactMode)
-		CD_APPLET_LOAD_MY_ICONS_LIST (pIcons, NULL, "Slide", NULL);
+	if (myConfig.bCompactMode)
+	{
+		cd_satus_notifier_reload_compact_mode ();
+	}
+	else
+	{
+		cd_satus_notifier_load_icons_from_items ();
+	}
 	
 	g_ptr_array_free (pApplications, TRUE);
 	CD_APPLET_LEAVE ();
@@ -382,7 +385,6 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 	{
 		if (pApplications == NULL)
 			CD_APPLET_LEAVE ();
-		GList *pIcons = NULL;
 		guint i;
 		CDStatusNotifierItem *pItem;
 		for (i = 0; pApplications[i] != NULL; i ++)
@@ -391,24 +393,17 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 			if (! pItem)
 				continue;
 			myData.pItems = g_list_prepend (myData.pItems, pItem);
-			
-			if (! myConfig.bCompactMode)
-			{
-				Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
-				if (pIcon)
-					pIcons = g_list_prepend (pIcons, pIcon);
-			}
 		}
 		
 		g_strfreev (pApplications);
 		
 		if (myConfig.bCompactMode)
 		{
-			cairo_dock_load_icon_image (myIcon, myContainer);
+			cd_satus_notifier_reload_compact_mode ();
 		}
 		else
 		{
-			CD_APPLET_LOAD_MY_ICONS_LIST (pIcons, NULL, "Slide", NULL);
+			cd_satus_notifier_load_icons_from_items ();
 		}
 	}
 	else  // un watcher asocial comme celui d'Ubuntu, on essaye avec l'"indicator-application".
@@ -480,42 +475,6 @@ static void _cd_satus_notifier_register_host (void)
 		(GDestroyNotify) NULL,
 		G_TYPE_STRING, myData.cHostName,
 		G_TYPE_INVALID);
-}
-
-static void _load_my_icon_image (Icon *pIcon)
-{
-	CD_APPLET_ENTER;
-	int iWidth = pIcon->iImageWidth;
-	int iHeight = pIcon->iImageHeight;
-	
-	if (myConfig.bCompactMode)
-	{
-		pIcon->pIconBuffer = cairo_dock_create_blank_surface (iWidth, iHeight);
-		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-		
-		CDStatusNotifierItem *pItem;
-		GList *it;
-		for (it = myData.pItems; it != NULL; it = it->next)
-		{
-			pItem = it->data;
-			if (pItem->pSurface != NULL)
-			{
-				
-			}
-		}
-		cairo_destroy (pIconContext);
-	}
-	else
-	{
-		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
-		if (cIconPath != NULL && *cIconPath != '\0')
-			pIcon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
-				iWidth,
-				iHeight);
-		g_free (cIconPath);
-	}
-	
-	CD_APPLET_LEAVE ();
 }
 
 
@@ -634,17 +593,20 @@ void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
 }
 
 
-
-void cd_satus_notifier_draw_compact_icon (void)
+void cd_satus_notifier_load_icons_from_items (void)
 {
+	GList *pIcons = NULL;
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->pSurface != NULL)
+		if (pItem->iStatus != CD_STATUS_PASSIVE)
 		{
-			
+			Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
+			if (pIcon)
+				pIcons = g_list_prepend (pIcons, pIcon);
 		}
 	}
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIcons, NULL, "Slide", NULL);
 }

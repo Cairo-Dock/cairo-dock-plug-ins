@@ -87,9 +87,9 @@ static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleIn
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU (D_("Set up time and date"), _cd_clock_launch_time_admin, pSubMenu);
 		CD_APPLET_ADD_IN_MENU (D_("Show today's tasks"), _cd_clock_show_tasks_today, pSubMenu);
 		CD_APPLET_ADD_IN_MENU (D_("Show this week's tasks"), _cd_clock_show_tasks_week, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up time and date"), GTK_STOCK_PREFERENCES, _cd_clock_launch_time_admin, pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

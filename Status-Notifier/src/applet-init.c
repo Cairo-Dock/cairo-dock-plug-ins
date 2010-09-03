@@ -25,6 +25,7 @@
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-host.h"
+#include "applet-draw.h"
 #include "applet-init.h"
 
 
@@ -47,7 +48,8 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	
-	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	if (!myConfig.bCompactMode && myDock)
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -79,12 +81,30 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
+		if (myConfig.bCompactMode)
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+			if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
+			{
+				CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
+			}
+			CD_APPLET_DELETE_MY_ICONS_LIST;
+			cd_satus_notifier_reload_compact_mode ();
+			
 		}
-		
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
-		
+		else
+		{
+			myData.iItemSize = 0;  // unvalidate the grid.
+			cd_satus_notifier_load_icons_from_items ();
+			
+			if (myDock)
+				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+		}
+	}
+	else  // applet resized
+	{
+		if (myConfig.bCompactMode)
+		{
+			cd_satus_notifier_reload_compact_mode ();
+		}
 	}
 CD_APPLET_RELOAD_END

@@ -2450,7 +2450,7 @@ msgid ""
 "don't have Nautilus).\n"
 "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 "Middle-click on the main icon to show your home folder.\n"
-"Middle-click on a mounting point icon to (un)mount is quickly.\n"
+"Middle-click on a mounting point icon to (un)mount it quickly\n"
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
@@ -2485,11 +2485,11 @@ msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr "Aucun disque ni marque-page ont été trouvé."
+msgstr "Aucun disque ni signet n'a été trouvé."
 
 #: ../shortcuts/src/applet-notifications.c:193
 msgid "Enter a name for this bookmark:"
-msgstr "Entrez le nom de ce marque-page :"
+msgstr "Entrez un nom pour ce signet :"
 
 #: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
@@ -2497,7 +2497,7 @@ msgstr "Supprimer ce signet"
 
 #: ../shortcuts/src/applet-notifications.c:251
 msgid "Rename this bookmark"
-msgstr "Renommer ce marque-page"
+msgstr "Renommer ce signet"
 
 #: ../shortcuts/src/applet-notifications.c:257
 msgid "Eject"
@@ -2517,7 +2517,7 @@ msgstr "Récupérer les informations du disque"
 
 #: ../shortcuts/src/applet-notifications.c:289
 msgid "Only folders can be bookmarked."
-msgstr "Uniquement les dossiers seront ajoutés à la liste des marque-pages."
+msgstr "Uniquement les dossiers seront ajoutés à la liste des signets."
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
@@ -2746,15 +2746,15 @@ msgid "Rename this workspace"
 msgstr "Renommer cet espace de travail"
 
 #: ../switcher/src/applet-notifications.c:259
-msgid "Add a desktop"
+msgid "Add a workspace"
 msgstr "Ajouter un bureau"
 
 #: ../switcher/src/applet-notifications.c:263
-msgid "Remove last desktop"
+msgid "Remove last workspace"
 msgstr "Retirer le dernier bureau"
 
 #: ../switcher/src/applet-notifications.c:279
-msgid "Move current Desktop to this Desktop"
+msgid "Move current workspace to this workspace"
 msgstr "Déplacer le bureau courant vers ce bureau"
 
 #: ../switcher/src/applet-notifications.c:284
@@ -8013,7 +8013,7 @@ msgstr "Tout les URI valides devrait fonctionner."
 
 #: ../weblets/data/messages:117
 msgid "Predefined bookmarks to show in applet menu:"
-msgstr "Marque-Pages prédéfinis à afficher dans le menu de l'applet"
+msgstr "Signets prédéfinis à afficher dans le menu de l'applet"
 
 #: ../wifi/data/messages:141
 msgid "'No signal' icon filename:"

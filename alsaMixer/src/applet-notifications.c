@@ -42,7 +42,7 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	}
 	else
 	{
-		g_spawn_command_line_async ("gnome-volume-control", &erreur);
+		g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur);
 	}
 	
 	if (erreur != NULL)

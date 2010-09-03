@@ -28,7 +28,9 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bCompactMode;
+	gboolean bCompactMode;  // les items sur l'icone principale ou dans un sous-dock.
+	gboolean bResizeIcon;  // si compact, redimensionner l'icone principale automatiquement.
+	gint iNbLines;  // si compact et redimensionnement auto, nbre de lignes (colonnes en mode vertical).
 	} ;
 
 
@@ -82,8 +84,8 @@ typedef struct {
 	gboolean bInvalid;  // item deja en cours de destruction
 	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
-	GLuint iTexture;
-	Icon *pIcon;
+	/*GLuint iTexture;
+	Icon *pIcon;*/
 } CDStatusNotifierItem;
 
 
@@ -97,6 +99,7 @@ struct _AppletData {
 	GList *pItems;
 	guint iSidGetWatcher;
 	GHashTable *pThemePaths;
+	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
 	} ;
 
 

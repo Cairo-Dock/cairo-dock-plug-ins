@@ -140,13 +140,15 @@ CD_APPLET_ON_CLICK_BEGIN
 			{
 				_cd_musicplayer_pp (NULL, NULL);
 			}
-			else
+			else if (myIcon->Xid != 0)
 			{
 				if (myIcon->Xid == cairo_dock_get_current_active_window ())  // la fenetre du lecteur a le focus. en mode desklet ca ne marche pas car il aura pris le focus au moment du clic.
 					cairo_dock_minimize_xwindow (myIcon->Xid);
 				else
 					cairo_dock_show_xwindow (myIcon->Xid);
 			}
+			else if (myData.pCurrentHandeler->launch != NULL)
+                                cairo_dock_launch_command (myData.pCurrentHandeler->launch);
 		}
 		else if (myData.pCurrentHandeler->launch != NULL)
 			cairo_dock_launch_command (myData.pCurrentHandeler->launch);
