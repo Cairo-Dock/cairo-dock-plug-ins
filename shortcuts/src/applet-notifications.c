@@ -245,23 +245,26 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == CD_BOOKMARK_GROUP)  // clic sur un signet.
+	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),  GTK_STOCK_SAVE_AS, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
-		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
-	}
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
-	{
-		if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"), GTK_STOCK_DISCONNECT, _cd_shortcuts_eject, CD_APPLET_MY_MENU, data);
-		
-		gboolean bIsMounted = FALSE;
-		gchar *cURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
-		g_free (cURI);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (bIsMounted ? D_("Unmount (middle-click)") : D_("Mount (middle-click)"), GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
-		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"), GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
+		if (CD_APPLET_CLICKED_ICON->iType == CD_BOOKMARK_GROUP)  // clic sur un signet.
+		{
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),  GTK_STOCK_SAVE_AS, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
+			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		}
+		else if (CD_APPLET_CLICKED_ICON->iType == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
+		{
+			if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"), GTK_STOCK_DISCONNECT, _cd_shortcuts_eject, CD_APPLET_MY_MENU, data);
+			
+			gboolean bIsMounted = FALSE;
+			gchar *cURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
+			g_free (cURI);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (bIsMounted ? D_("Unmount (middle-click)") : D_("Mount (middle-click)"), GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"), GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
+		}
 	}
 CD_APPLET_ON_BUILD_MENU_END
 

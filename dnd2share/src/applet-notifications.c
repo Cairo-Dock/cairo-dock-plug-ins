@@ -394,76 +394,90 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
+	GtkWidget *pHistoryMenu = gtk_menu_new ();
+	GtkWidget *mi = gtk_image_menu_item_new_with_label (D_("History"));
+	
+	GtkWidget *im = gtk_image_new_from_stock (GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), im);
+	
+	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), mi); 
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), pHistoryMenu);
+	
+	//GtkWidget *pHistoryMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("History"), CD_APPLET_MY_MENU, GTK_STOCK_INDEX);
 	if (myData.pUpoadedItems != NULL)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, CD_APPLET_MY_MENU);
-	
-	CDSiteBackend *pBackend;
-	CDUploadedItem *pItem;
-	GtkWidget *pItemSubMenu;
-	gchar *str;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
-	gboolean bIsDirectory;
-	int iVolumeID;
-	double fOrder;
-	int i;
-	GList *it;
-	for (it = myData.pUpoadedItems; it != NULL; it = it->next)
 	{
-		pItem = it->data;
-		
-		// on cherche une miniature a mettre dans le menu.
-		gchar *cPreview = NULL;
-		if (pItem->iFileType == CD_TYPE_IMAGE)
+		CDSiteBackend *pBackend;
+		CDUploadedItem *pItem;
+		GtkWidget *pItemSubMenu;
+		gchar *str;
+		gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+		gboolean bIsDirectory;
+		int iVolumeID;
+		double fOrder;
+		int i;
+		GList *it;
+		for (it = myData.pUpoadedItems; it != NULL; it = it->next)
 		{
-			cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
-			if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
+			pItem = it->data;
+			
+			// on cherche une miniature a mettre dans le menu.
+			gchar *cPreview = NULL;
+			if (pItem->iFileType == CD_TYPE_IMAGE)
 			{
-				g_free (cPreview);
-				cPreview = cairo_dock_search_icon_s_path ("image-x-generic");;
+				cPreview = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
+				if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
+				{
+					g_free (cPreview);
+					cPreview = cairo_dock_search_icon_s_path ("image-x-generic");;
+				}
 			}
-		}
-		else if (pItem->iFileType == CD_TYPE_TEXT)
-		{
-			cPreview = cairo_dock_search_icon_s_path ("text-x-generic");
-		}
-		else if (pItem->iFileType == CD_TYPE_VIDEO)
-		{
-			cPreview = cairo_dock_search_icon_s_path ("video-x-generic");
-		}
-		if (cPreview == NULL)
-		{
-			cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cPreview, &bIsDirectory, &iVolumeID, &fOrder, 0);
-			g_free (cName);
-			cName = NULL;
-			g_free (cURI);
-			cURI = NULL;
+			else if (pItem->iFileType == CD_TYPE_TEXT)
+			{
+				cPreview = cairo_dock_search_icon_s_path ("text-x-generic");
+			}
+			else if (pItem->iFileType == CD_TYPE_VIDEO)
+			{
+				cPreview = cairo_dock_search_icon_s_path ("video-x-generic");
+			}
+			if (cPreview == NULL)
+			{
+				cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cPreview, &bIsDirectory, &iVolumeID, &fOrder, 0);
+				g_free (cName);
+				cName = NULL;
+				g_free (cURI);
+				cURI = NULL;
+			}
+			
+			// on cree un sous-menu pour ce fichier.
+			str = strchr (pItem->cFileName, '\n');
+			if (str)
+				*str = '\0';
+			pItemSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (pItem->cFileName, pHistoryMenu, cPreview);
+			if (str)
+				*str = '\n';
+			g_free (cPreview);
+			
+			// on le peuple avec les liens.
+			pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
+			for (i = 0; i < pBackend->iNbUrls; i ++)
+			{
+				//g_print ("%d) %s : ", i, pBackend->cUrlLabels[i]);
+				//g_print (" + %s\n", pItem->cDistantUrls[i]);
+				if (pItem->cDistantUrls[i] != NULL)  // peut etre null (par exemple la tiny url).
+					CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
+			}
+			if (pItem->iFileType != CD_TYPE_TEXT)
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);
+			else
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get text"), _show_local_file, pItemSubMenu, pItem);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 		}
 		
-		// on cree un sous-menu pour ce fichier.
-		str = strchr (pItem->cFileName, '\n');
-		if (str)
-			*str = '\0';
-		pItemSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (pItem->cFileName, pModuleSubMenu, cPreview);
-		if (str)
-			*str = '\n';
-		g_free (cPreview);
-		
-		// on le peuple avec les liens.
-		pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
-		for (i = 0; i < pBackend->iNbUrls; i ++)
-		{
-			//g_print ("%d) %s : ", i, pBackend->cUrlLabels[i]);
-			//g_print (" + %s\n", pItem->cDistantUrls[i]);
-			if (pItem->cDistantUrls[i] != NULL)  // peut etre null (par exemple la tiny url).
-				CD_APPLET_ADD_IN_MENU_WITH_DATA (pBackend->cUrlLabels[i], _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
-		}
-		if (pItem->iFileType != CD_TYPE_TEXT)
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Open file"), _show_local_file, pItemSubMenu, pItem);
-		else
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get text"), _show_local_file, pItemSubMenu, pItem);
-		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, pHistoryMenu);
 	}
+	else
+		gtk_widget_set_sensitive (GTK_WIDGET (mi), FALSE);
 	
-	CD_APPLET_ADD_ABOUT_IN_MENU (CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

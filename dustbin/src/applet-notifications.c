@@ -102,42 +102,24 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstan
 	attr.pUserData = myApplet;
 	myData.pInfoDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 	
-	/// launch task --> result => update dialog
+	// launch the task and update the dialog when finished.
 	myData.pInfoTask = cairo_dock_new_task (0,
 		(CairoDockGetDataAsyncFunc) _measure_trash,
 		(CairoDockUpdateSyncFunc) _display_result,
 		myApplet);
 	cairo_dock_launch_task (myData.pInfoTask);
-	/**if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
-	{
-		iSize = myData.iMeasure;
-	}
-	else
-	{
-		iSize = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, TRUE, &iCancel);
-	}
-	iNbFiles = cairo_dock_fm_measure_diretory (myData.cDustbinPath, 0, FALSE, &iCancel);
-	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n %d %s\n %.2f %s",
-		myIcon, myContainer,
-		5000,
-		"same icon",
-		D_("The trash contains"),
-		iNbFiles,
-		D_("files"),
-		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
-		(iSize > 1e6 ? D_("Mo") : D_("Ko")));*/
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-	CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Show Trash (click)"), _cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL);
-	CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Empty Trash (middle-click)"), _cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
+	// Main Menu
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Show Trash (click)"), GTK_STOCK_OPEN, _cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Empty Trash (middle-click)"), GTK_STOCK_DELETE, _cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
 	
-	CD_APPLET_ADD_IN_MENU (D_("Display dustbins information"), _cd_dustbin_show_info, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Display dustbins information"), GTK_STOCK_INFO, _cd_dustbin_show_info, CD_APPLET_MY_MENU);
 	
+	// Sub-Menu
 	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

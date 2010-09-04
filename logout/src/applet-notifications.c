@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
@@ -124,7 +123,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/icon-lock.png", _cd_logout_lock_screen, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
+	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END

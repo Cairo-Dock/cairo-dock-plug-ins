@@ -51,7 +51,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myData.bInitialized && myData.bAcquisitionOK)
 	{
 		if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))
-			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 		
 		// On recupere l'uptime.
 		gchar *cUpTime = NULL, *cActivityTime = NULL, *cGCInfos = NULL;
@@ -112,7 +112,8 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	
 	CD_APPLET_ADD_IN_MENU (D_("System Monitor"), _show_monitor_system, CD_APPLET_MY_MENU);
-
+	
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

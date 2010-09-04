@@ -636,3 +636,13 @@ else()
 endif()
 
 add_subdirectory (po)
+
+############# REMOTE_CONTROL #################
+if ("${enable_remote_control}" STREQUAL "yes")
+	set (GETTEXT_REMOTE_CONTROL ${GETTEXT_PLUGINS})
+	set (VERSION_REMOTE_CONTROL "0.0.1")
+	set (PACKAGE_REMOTE_CONTROL "cd-Remote-Control")
+	set (remote_controldatadir "${pluginsdatadir}/Remote-Control")
+	configure_file (Remote-Control/data/Remote-Control.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.conf)
+	add_subdirectory (Remote-Control)
+endif()

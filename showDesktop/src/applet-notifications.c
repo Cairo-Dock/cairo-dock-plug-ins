@@ -159,10 +159,10 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 #endif
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	
+	// Main Menu
 	#ifdef HAVE_XRANDR
-	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
+	GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
 	
 	Display                 *dpy;
 	Window                  root;
@@ -192,9 +192,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			g_string_printf (pResString, "%dx%d", xrrs[i].width, xrrs[i].height);
 			if (i == original_size_id)
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
 			else
-				CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pSubMenu, GINT_TO_POINTER (i));
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
 			/*short   *rates;
 			int     num_rates;
 			rates = XRRRates(dpy, 0, i, &num_rates);
@@ -206,6 +206,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		XRRFreeScreenConfigInfo (conf);
 	}
 	#endif
+	
+	//Sub-Menu
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

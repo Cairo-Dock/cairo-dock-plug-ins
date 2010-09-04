@@ -105,7 +105,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
@@ -113,15 +113,14 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		{
 			cd_debug ("%s\n", myApplet->cConfFilePath);
 			cairo_dock_notify (CAIRO_DOCK_BUILD_ICON_MENU, myIcon, myContainer, CD_APPLET_MY_MENU);
-			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 		}
 		
 		GtkWidget *pMenuItem, *image;
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
-		GtkWidget *pModuleSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Hey, you there!"), CD_APPLET_MY_MENU);
-		//GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+		GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		if (penguin_is_resting (pAnimation))
 		{
 			CD_APPLET_ADD_IN_MENU(D_("Wake up"), _wake_up, pModuleSubMenu);
@@ -170,7 +169,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
 				CD_APPLET_ANIMATE_MY_ICON ("bounce", 3);
-				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllééééé !", myIcon, myContainer, 2500);
+				myData.pDialog = cairo_dock_show_temporary_dialog ("Olllï¿½ï¿½ï¿½ï¿½ï¿½ !", myIcon, myContainer, 2500);
 			}
 			else
 			{

@@ -140,6 +140,7 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 	if (pClickedIcon == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
+	CD_APPLET_ENTER;
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 	if (pItem != NULL)
 	{
@@ -160,9 +161,9 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 			_emit_click (pItem, pClickedIcon, pClickedContainer, "ContextMenu");
 		}
 		*bDiscardMenu = TRUE;
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 
 

@@ -289,7 +289,7 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 
 	CDMailAccount *pMailAccount = NULL;
 	guint i;
@@ -301,12 +301,12 @@ CD_APPLET_ON_SCROLL_BEGIN
 			break ;
 	}
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
 		cd_debug ("account is being checked, wait a second\n");
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	}
 	
 	/* Ensure the connection is alive */

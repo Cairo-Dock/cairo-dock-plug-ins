@@ -117,7 +117,7 @@ text icon =
 url icon = 
 
 
-#F[Options;gtk-file]
+#X[Options;gtk-file]
 frame_opt = 
 #B Filter files on MIME type?
 #{These options allow you to prevent some files from displaying in stacks based on their type (video, image, etc.)}
@@ -132,6 +132,4 @@ sep =
 #l[Name;Date;Type;Manual order] Sort items by:
 sort by = 1
 
-#b When copying/pasting/cutting, use the selection clipboard?
-#{It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v clipboard}
-selection = false
+selection_ = false

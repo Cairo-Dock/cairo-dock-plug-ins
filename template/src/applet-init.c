@@ -26,7 +26,7 @@
 
 
 CD_APPLET_DEFINITION (N_("CD_APPLET_NAME"),
-	2, 1, 4,
+	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("Useful description\n"
 	"and manual"),

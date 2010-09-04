@@ -42,15 +42,20 @@ static void _select_group (GtkMenuItem *menu_item, gpointer *data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-		
-		XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());  // singleton.
-		const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
-		int i;
-		for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)
-		{
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (pGroupNames[i], _select_group, CD_APPLET_MY_MENU, GINT_TO_POINTER (i));
-		}
+	
+	// Main Menu
+	XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());  // singleton.
+	const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
+	int i;
+	for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_DATA (pGroupNames[i], _select_group, CD_APPLET_MY_MENU, GINT_TO_POINTER (i));
+	}
+	
+	// Sub-Menu
+	if (pSubMenu == CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

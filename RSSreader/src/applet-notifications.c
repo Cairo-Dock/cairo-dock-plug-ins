@@ -137,13 +137,13 @@ static gboolean _redraw_desklet_idle (CairoDockModuleInstance *myApplet)
 }
 CD_APPLET_ON_SCROLL_BEGIN
 	if (! myDesklet)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	myData.iFirstDisplayedItem += (CD_APPLET_SCROLL_UP ? -1 : 1);
 	if (myData.iFirstDisplayedItem < 0)  // on a scrolle trop haut.
 	{
 		myData.iFirstDisplayedItem = 0;
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	}
 	else
 	{
@@ -151,7 +151,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 		if (myData.iFirstDisplayedItem > n - 1)  // on a scrolle trop bas.
 		{
 			myData.iFirstDisplayedItem = n - 1;
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		}
 	}
 	if (myData.iSidRedrawIdle == 0)  // on planifie un redessin pour quand la boucle principale sera accessible, de facon a éviter de la surcharger en cas de scroll rapide.

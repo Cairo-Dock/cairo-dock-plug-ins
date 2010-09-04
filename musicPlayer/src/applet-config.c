@@ -29,7 +29,7 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iQuickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
-	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "XMMS");
+	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "Rhythmbox");
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
 	if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0')
 	{

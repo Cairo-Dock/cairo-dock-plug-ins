@@ -149,7 +149,7 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 CD_APPLET_ON_CLICK_BEGIN
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
 		cairo_dock_set_current_desktop (iNumDesktop);
@@ -177,7 +177,7 @@ CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
 		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	}
 	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	cd_debug ("Switcher: switching to %d", iIndex);
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
@@ -255,12 +255,13 @@ static void _cd_switcher_expose (GtkMenuItem *menu_item, CairoDockModuleInstance
 	_cd_expose ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
+	// Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a desktop"),
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a workspace"),
 		GTK_STOCK_ADD,
 		_cd_switcher_add_desktop,
 		pSubMenu);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last desktop"),
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last workspace"),
 		GTK_STOCK_REMOVE,
 		_cd_switcher_remove_last_desktop,
 		pSubMenu);
@@ -276,7 +277,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
-			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current Desktop to this Desktop"),
+			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current workspace to this workspace"),
 				GTK_STOCK_JUMP_TO,
 				_cd_switcher_move_to_desktop,
 				pSubMenu,
@@ -285,27 +286,31 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 	}
 	
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	// Main Menu
+	if (pSubMenu == CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	if (myConfig.iActionOnMiddleClick != 0)
 	{
-		pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
-		cd_switcher_build_windows_list (pSubMenu);
+		GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		cd_switcher_build_windows_list (pWindowsListMenu);
 	}
 	if (myConfig.iActionOnMiddleClick != 1)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"),
 			GTK_STOCK_FULLSCREEN,
 			_cd_switcher_show_desktop,
-			pSubMenu);
+			CD_APPLET_MY_MENU);
 	}
 	if (myConfig.iActionOnMiddleClick != 2)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Expose all the desktops (Compiz)"),
 			GTK_STOCK_LEAVE_FULLSCREEN,
 			_cd_switcher_expose,
-			pSubMenu);
+			CD_APPLET_MY_MENU);
 	}
 	
+	// Sub-Menu
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
 		GTK_STOCK_REFRESH,
 		_cd_switcher_refresh,
@@ -343,7 +348,6 @@ gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XAc
 	CD_APPLET_ENTER;
 	_cd_switcher_queue_draw (myApplet);
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
@@ -405,7 +409,6 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 	}
 	
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
@@ -414,7 +417,6 @@ gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
 	cd_debug ("");
 	cd_switcher_update_from_screen_geometry ();
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure)
@@ -423,7 +425,6 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XC
 	cd_debug ("");
 	_cd_switcher_queue_draw (myApplet);
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
@@ -432,12 +433,10 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
 	if (iIndex != myData.iPrevIndexHovered)
@@ -458,7 +457,6 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 			*bStartAnimation = TRUE;
 	}
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
@@ -482,7 +480,6 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 	}
 	CAIRO_DOCK_REDRAW_MY_CONTAINER;
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
@@ -499,7 +496,6 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 	{
 		if (myIcon->pTextBuffer == NULL)
 			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		cairo_save (pCairoContext);
 		cairo_translate (pCairoContext, x, y);
 		cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
@@ -510,7 +506,6 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 	{
 		if (myIcon->iLabelTexture == 0)
 			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		glPushMatrix ();
 		if (myDesklet)
 			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
@@ -521,7 +516,6 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 		glPopMatrix ();
 	}
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)

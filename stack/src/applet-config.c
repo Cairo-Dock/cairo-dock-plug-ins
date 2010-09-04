@@ -35,7 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bFilter = CD_CONFIG_GET_BOOLEAN ("Configuration", "filter");
 	
 	myConfig.iSortType = CD_CONFIG_GET_INTEGER ("Configuration", "sort by");
-	myConfig.bSelectionClipBoard = CD_CONFIG_GET_BOOLEAN ("Configuration", "selection");
+	myConfig.bSelectionClipBoard = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "selection_", FALSE);
 	
 	myConfig.cTextIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "text icon", CD_STACK_DEFAULT_TEXT_ICON);
 	

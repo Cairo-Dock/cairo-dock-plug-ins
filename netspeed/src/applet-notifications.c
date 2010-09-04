@@ -67,12 +67,16 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	
+	// Main Menu
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("System Monitor"), GTK_STOCK_MEDIA_PLAY, _show_monitor_system, CD_APPLET_MY_MENU);
+	
+	// Sub-Menu
 	if (! myData.bAcquisitionOK) {
 		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, pSubMenu);
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-	CD_APPLET_ADD_IN_MENU (D_("System Monitor"), _show_monitor_system, CD_APPLET_MY_MENU);
 
 CD_APPLET_ON_BUILD_MENU_END
 

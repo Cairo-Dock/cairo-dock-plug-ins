@@ -2747,15 +2747,15 @@ msgstr "Renommer cet espace de travail"
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Add a workspace"
-msgstr "Ajouter un bureau"
+msgstr "Ajouter un espace de travail"
 
 #: ../switcher/src/applet-notifications.c:263
 msgid "Remove last workspace"
-msgstr "Retirer le dernier bureau"
+msgstr "Retirer le dernier espace de travail"
 
 #: ../switcher/src/applet-notifications.c:279
 msgid "Move current workspace to this workspace"
-msgstr "Déplacer le bureau courant vers ce bureau"
+msgstr "Déplacer l'espace de travail courant vers celui-ci"
 
 #: ../switcher/src/applet-notifications.c:284
 msgid ""

@@ -144,7 +144,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myDock != NULL && myIcon->pSubDock != NULL && pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL) {  // clic sur ne icone du sous-dock.
 		//cd_debug (" clic sur %s", pClickedIcon->cName);
 		///if (pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
-		///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		///	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 	}
 	else if (myDesklet != NULL && pClickedContainer == myContainer && pClickedIcon != NULL) {  // clic sur une des icones du desklet.
@@ -152,12 +152,12 @@ CD_APPLET_ON_CLICK_BEGIN
 			cairo_dock_launch_task (myData.pTask);
 		else {
 			if (pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+				CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 			_compiz_action_by_id ((int) pClickedIcon->fOrder/2, pClickedIcon);
 		}
 	}
 	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 CD_APPLET_ON_CLICK_END
 
 
@@ -166,7 +166,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		_action_on_click (myConfig.iActionOnMiddleClick);
 	}
 	else if (pClickedIcon != NULL && pClickedIcon->cCommand != NULL && strcmp (pClickedIcon->cCommand, "none") != 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -195,11 +195,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU (D_("Toggle Widget Layer"), _compiz_menu_toggle_wlayer, pSubMenu);
 	}
 	
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Toggle Show Desktop"), GTK_STOCK_FULLSCREEN, _compiz_menu_show_desktop, CD_APPLET_MY_MENU);
 
 	if (pClickedIcon != myIcon && (pClickedIcon == NULL || pClickedIcon->cCommand == NULL || strcmp (pClickedIcon->cCommand, "none") == 0 || ! CAIRO_DOCK_IS_APPLI (pClickedIcon)))
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;  // on ne veut pas des autres entrees habituelles du menu.
+		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);  // on ne veut pas des autres entrees habituelles du menu.
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
