@@ -159,17 +159,21 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	data[0] = myApplet;
 	data[1] = CD_APPLET_CLICKED_ICON;
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
-	
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic on main icon
 	{
 		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+		
+		// Main Menu
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
+		
+		// Sub-Menu
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu);
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic on an item
 	{
+		// Main Menu
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open (click)"), GTK_STOCK_EXECUTE, _cd_stack_open_item, CD_APPLET_MY_MENU, data);
 		if (CD_APPLET_CLICKED_ICON->iVolumeID == 1)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_OPEN, _cd_stack_open_item_folder, CD_APPLET_MY_MENU, data);
@@ -177,6 +181,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy (middle click)"), GTK_STOCK_COPY, _cd_stack_copy_content, CD_APPLET_MY_MENU, data);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GTK_STOCK_CUT, _cd_stack_cut_item, CD_APPLET_MY_MENU, data);
 		
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this item"), GTK_STOCK_SAVE_AS, _cd_stack_rename_item, CD_APPLET_MY_MENU, data);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this item"), GTK_STOCK_REMOVE, _cd_stack_remove_item, CD_APPLET_MY_MENU, data);
 	}

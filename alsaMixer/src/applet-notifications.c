@@ -56,7 +56,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	// Main Menu
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (_("Adjust channels"), GTK_STOCK_PREFERENCES, _mixer_show_advanced_mixer, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK ((myData.bIsMute ? _("Unmute") : _("Mute")), MY_APPLET_SHARE_DATA_DIR"/emblem-mute.svg", mixer_switch_mute, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK ((myData.bIsMute ? _("Unmute (middle-click)") : _("Mute (middle-click)")), MY_APPLET_SHARE_DATA_DIR"/emblem-mute.svg", mixer_switch_mute, CD_APPLET_MY_MENU);
 	// Sub-Menu
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

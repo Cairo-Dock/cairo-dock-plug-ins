@@ -89,7 +89,7 @@ static gboolean _task_warning_repeat (CDClockTask *pTask, const gchar *cMessage)
 }
 static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractiveWidget, CDClockTask *pTask, CairoDialog *pDialog)
 {
-	g_print ("%s (%d)\n", __func__, iClickedButton);
+	cd_debug ("%s (%d)", __func__, iClickedButton);
 	GList *cl = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
 	g_return_if_fail (cl != NULL && cl->next != NULL);
 	GtkWidget *pScale = cl->next->data;

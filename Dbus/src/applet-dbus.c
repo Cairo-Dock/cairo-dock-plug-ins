@@ -146,7 +146,7 @@ static void _get_package_path (gchar *cModuleName)
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
 	gchar *cPath = cairo_dock_get_package_path (cModuleName, cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir,  CAIRO_DOCK_UPDATED_PACKAGE);
-	g_print ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
+	cd_debug ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
 	g_free (cPath);
 	g_free (cSharePackagesDir);
 	g_free (cUserPackagesDir);
@@ -161,7 +161,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 	
 	if (pModule->pInstancesList != NULL)  // applet active => on la recharge.
 	{
-		g_print ("*** applet '%s' is active, reload it\n", cModuleName);
+		cd_debug ("*** applet '%s' is active, reload it", cModuleName);
 		CairoDockModuleInstance *pModuleInstance = pModule->pInstancesList->data;
 		Icon *pIcon = pModuleInstance->pIcon;
 		CairoContainer *pContainer = pModuleInstance->pContainer;
@@ -195,13 +195,13 @@ static gboolean _apply_package_update (gchar *cModuleName)
 }
 static void _check_update_package (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)
 {
-	g_print ("*** %s (%s, %d)\n", __func__, cModuleName, pPackage->iType);
+	cd_message ("*** %s (%s, %d)", __func__, cModuleName, pPackage->iType);
 	if (pPackage->iType == CAIRO_DOCK_UPDATED_PACKAGE)
 	{
 		gchar *cUserDirPath = g_strdup_printf ("%s/%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER, cModuleName);
 		if (g_file_test (cUserDirPath, G_FILE_TEST_EXISTS))
 		{
-			g_print ("*** the applet '%s' needs to be updated\n", cModuleName);
+			cd_message ("*** the applet '%s' needs to be updated", cModuleName);
 			CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0, (CairoDockGetDataAsyncFunc) _get_package_path, (CairoDockUpdateSyncFunc) _apply_package_update, (GFreeFunc) g_free, g_strdup (cModuleName));
 			myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
 			cairo_dock_launch_task (pUpdateTask);
@@ -240,11 +240,10 @@ void cd_dbus_launch_service (void)
 	g_idle_add ((GSourceFunc) _cd_dbus_launch_third_party_applets, NULL);  // on les lance avec un delai, car si l'applet DBus est lancee au demarrage du dock, on est dans la fonction cairo_dock_activate_modules_from_list(), et donc si on enregistre des applets pendant ce temps, le dock risque de recharger certaines des applets distantes (celles qui seront actives en conf et qui viendront apres DBus).
 	
 	// on telecharge en tache de fond la liste des applets.
-	gchar *cSharePackagesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, CD_DBUS_APPLETS_FOLDER);
+	const gchar *cSharePackagesDir = NULL;  // MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
 	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL);
-	g_free (cSharePackagesDir);
 	g_free (cUserPackagesDir);
 	g_free (cDistantPackagesDir);
 }
@@ -345,7 +344,7 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
-	g_print ("%s (%s)\n", __func__, cModuleName);
+	cd_message ("%s (%s)", __func__, cModuleName);
 	
 	//\____________ on cree et on enregistre un nouveau module s'il n'existe pas deja.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
