@@ -1383,9 +1383,11 @@ static gboolean cairo_dock_gio_vfs_create_file (const gchar *cURI, gboolean bDir
 	
 	GError *erreur = NULL;
 	gboolean bSuccess = TRUE;
+	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)
 	if (bDirectory)
 		g_file_make_directory_with_parents (pFile, NULL, &erreur);
 	else
+	#endif
 		g_file_create (pFile, G_FILE_CREATE_PRIVATE, NULL, &erreur);
 	if (erreur != NULL)
 	{
@@ -1680,7 +1682,11 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		#endif
 		pData[1] = g_strdup (g_app_info_get_executable (pAppInfo));
 		if (pIcon)
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
 			pData[2] = g_icon_to_string (pIcon);
+		#else
+			pData[2] = _cd_get_icon_path (pIcon, NULL);
+		#endif
 		pList = g_list_prepend (pList, pData);
 	}
 	
