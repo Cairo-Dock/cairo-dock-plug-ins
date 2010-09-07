@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-07-23 22:50+0000\n"
+"POT-Creation-Date: 2010-08-29 00:59+0000\n"
+"PO-Revision-Date: 2010-09-04 03:57+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-07-24 04:02+0000\n"
+"X-Launchpad-Export-Date: 2010-09-05 04:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -228,7 +229,8 @@ msgstr "Le module a été ajouté, mais n'a pas pu être exécuté"
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "L'applet '%s' a été mise a jour et rechargée avec succès."
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -277,6 +279,15 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
+"Cette applet importent des dossiers dans le Dock.\n"
+"Vous pouvez créer plusieurs instances et ainsi avoir un accès rapide à "
+"plusieurs dossiers différents.\n"
+"Pour ajouter un dossier dans le dock :\n"
+" - Activez l'applet, ouvrez le panneau de configuration et sélectionnez un "
+"dossier.\n"
+" - Ou glissez simplement un dossier dans le dock !\n"
+"Le clic du milieu sur l'icône principale ouvrira le dossier avec votre "
+"explorateur de fichiers par défaut.\n"
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
@@ -422,7 +433,8 @@ msgstr ""
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr "Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
+msgstr ""
+"Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
 
 #: ../Messaging-Menu/src/applet-init.c:31
 msgid "Messaging Menu"
@@ -875,9 +887,9 @@ msgstr ""
 "docks,\n"
 "    ou tapez le nom d'un lanceur et appuyez sur Tab pour passer au lanceur "
 "suivant\n"
-"    appuyez sur Entrer pour cliquer sur l'icône, Shift+Entrer pour Shift"
-"+cliquer, Alt+Entrer pour un clic de molette et Ctrl+Entrer pour un clic "
-"gauche\n"
+"    appuyez sur Entrer pour cliquer sur l'icône, Shift+Entrer pour "
+"Shift+cliquer, Alt+Entrer pour un clic de molette et Ctrl+Entrer pour un "
+"clic gauche\n"
 "Echap ou la touche raccourci pour sortir."
 
 #: ../Scooby-Do/src/applet-listing.c:510
@@ -1040,7 +1052,8 @@ msgstr "Moniteur système"
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
@@ -1137,9 +1150,8 @@ msgid "Adjust channels"
 msgstr "Ajustez les canaux"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Unmute"
-msgstr "Non monté"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:61
 msgid "Mute"
@@ -1292,8 +1304,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1544,10 +1556,12 @@ msgstr "Rendu des dialogues"
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some decorators for dialog bubbles."
-msgstr "Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
+msgstr ""
+"Ce plug-in fournit plusieurs décorations pour les bulles de dialogues."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -1561,7 +1575,8 @@ msgstr ""
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
@@ -1780,9 +1795,8 @@ msgid "files"
 msgstr "fichiers"
 
 #: ../dustbin/src/applet-notifications.c:82
-#, fuzzy
 msgid "elements"
-msgstr "Weblets"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Mo"
@@ -1929,8 +1943,8 @@ msgstr ""
 "Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
 "\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../logout/src/applet-init.c:28
@@ -2207,8 +2221,8 @@ msgstr ""
 "Cette applet vous permet de contrôler une multitude de lecteurs de musique.\n"
 "Clic gauche pour Jouer/Pause, clic du milieu pour passer à la prochaine "
 "chanson.\n"
-"Un coup de roulette vers le haut/bas pour jouer la chanson précédente/"
-"suivante.\n"
+"Un coup de roulette vers le haut/bas pour jouer la chanson "
+"précédente/suivante.\n"
 "Vous pouvez glisser et déposer vos fichiers musicaux sur l'icône pour les "
 "ajouter à la fin de la liste\n"
 " en cours (ceci dépend des lecteurs) ou des fichiers d'images pour les "
@@ -2450,7 +2464,7 @@ msgid ""
 "don't have Nautilus).\n"
 "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 "Middle-click on the main icon to show your home folder.\n"
-"Middle-click on a mounting point icon to (un)mount it quickly\n"
+"Middle-click on a mounting point icon to (un)mount is quickly.\n"
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
@@ -2525,8 +2539,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -2689,19 +2703,16 @@ msgid "Clear the stack"
 msgstr "Vider la pile"
 
 #: ../stacks/src/applet-init.c:30
-#, fuzzy
 msgid "stacks"
-msgstr "Pile"
+msgstr "Piles"
 
 #: ../stacks/src/applet-notifications.c:44
-#, fuzzy
 msgid "Reload Stacks"
-msgstr "Recharger les notes"
+msgstr "Relancer Stacks"
 
 #: ../stacks/src/applet-notifications.c:45
-#, fuzzy
 msgid "Clean local directory"
-msgstr "Chemin du dossier Mail :"
+msgstr "Nettoyer le dossier local"
 
 #: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
@@ -2746,16 +2757,16 @@ msgid "Rename this workspace"
 msgstr "Renommer cet espace de travail"
 
 #: ../switcher/src/applet-notifications.c:259
-msgid "Add a workspace"
-msgstr "Ajouter un espace de travail"
+msgid "Add a desktop"
+msgstr "Ajouter un bureau"
 
 #: ../switcher/src/applet-notifications.c:263
-msgid "Remove last workspace"
-msgstr "Retirer le dernier espace de travail"
+msgid "Remove last desktop"
+msgstr "Retirer le dernier bureau"
 
 #: ../switcher/src/applet-notifications.c:279
-msgid "Move current workspace to this workspace"
-msgstr "Déplacer l'espace de travail courant vers celui-ci"
+msgid "Move current Desktop to this Desktop"
+msgstr "Déplacer le bureau courant vers ce bureau"
 
 #: ../switcher/src/applet-notifications.c:284
 msgid ""
@@ -4232,7 +4243,8 @@ msgstr "Transparence du fond :"
 #: ../weather/data/messages:67 ../weblets/data/messages:69
 #: ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:71 ../Doncky/data/messages:69
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
@@ -4320,7 +4332,8 @@ msgstr "Décalage en haut :"
 #: ../weather/data/messages:75 ../weblets/data/messages:77
 #: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:79 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
@@ -4516,8 +4529,8 @@ msgstr "Si oui, nombre de sélection d'objets :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
@@ -4624,7 +4637,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -4679,7 +4693,8 @@ msgid "Background"
 msgstr "Fond :"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Vous pouvez avoir plus d'arrières plan attractifs en utilisant les "
 "décorations des Desklets"
@@ -5473,7 +5488,8 @@ msgstr "Proposer des moteurs de recherche du web?"
 
 #: ../Scooby-Do/data/messages:111
 msgid "It can launch commands and even do some calculations."
-msgstr "Il est possible d'exécuter des commandes et même des faire des calculs"
+msgstr ""
+"Il est possible d'exécuter des commandes et même des faire des calculs"
 
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
@@ -6209,19 +6225,19 @@ msgstr "Animation de l'icone durant l'upload :"
 
 #: ../dnd2share/data/messages:109
 msgid "Use the following service to make the URL smaller:"
-msgstr ""
+msgstr "Utiliser le service suivant pour raccourcir l'URL :"
 
 #: ../dnd2share/data/messages:113
 msgid "Tiny-URL"
-msgstr ""
+msgstr "Tiny-URL"
 
 #: ../dnd2share/data/messages:115
 msgid "Shorter-Link"
-msgstr ""
+msgstr "Shorter-Link"
 
 #: ../dnd2share/data/messages:117
 msgid "Use the tiny URL by default?"
-msgstr ""
+msgstr "Utiliser les URL raccourcies par défaut ?"
 
 #: ../dnd2share/data/messages:119
 msgid "in KB/s - 0 means unlimited"
@@ -6290,28 +6306,30 @@ msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
+"Le script recevra le chemin du fichier en paramètre ($1) et il devra "
+"renvoyer l'URL correspondante dans un format standard."
 
 #: ../dnd2share/data/messages:157
 msgid "Custom script for text upload :"
-msgstr "Script personnel pour l'upload des textes : "
+msgstr "Script personnel pour l'upload des textes :"
 
 #: ../dnd2share/data/messages:161
 msgid "Custom script for image upload :"
-msgstr "Script personnel pour l'upload des images : "
+msgstr "Script personnel pour l'upload des images :"
 
 #: ../dnd2share/data/messages:165
 msgid "Custom script for video upload :"
-msgstr "Script personnel pour l'upload des vidéos : "
+msgstr "Script personnel pour l'upload des vidéos :"
 
 #: ../dnd2share/data/messages:169
 msgid "Custom script for file upload :"
-msgstr "Script personnel pour l'upload des fichiers : "
+msgstr "Script personnel pour l'upload des fichiers :"
 
 #: ../dnd2share/data/messages:171
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:173
 msgid "Path of the DropBox folder :"
@@ -6508,7 +6526,8 @@ msgid "Space between icons:"
 msgstr "Espacement entre les icônes :"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -6645,7 +6664,8 @@ msgid "Colours"
 msgstr "Couleurs"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
@@ -6890,12 +6910,14 @@ msgid "Check mail account on startup?"
 msgstr "Vérifier le compte mail au démarrage ?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
-msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
+msgstr ""
+"Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
 #: ../mail/data/messages:125
 msgid "Show '0' if there is no mail?"
-msgstr ""
+msgstr "Afficher '0' si il n'y a aucun email ?"
 
 #: ../mail/data/messages:127
 msgid "Mail application"
@@ -6907,7 +6929,8 @@ msgstr "Application mail préférée à exécuter au clic gauche"
 
 #: ../mail/data/messages:131
 msgid "Add a mail account (you've to launch the applet)"
-msgstr "Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
+msgstr ""
+"Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
 
 #: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
@@ -6926,7 +6949,8 @@ msgid "Blur amount:"
 msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laissez vide pour afficher le nom du lecteur courant."
 
 #: ../musicPlayer/data/messages:91
@@ -6962,9 +6986,8 @@ msgid "Exaile 0.3"
 msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:107
-#, fuzzy
 msgid "GMusicBrowser"
-msgstr "Navigateur rapide"
+msgstr ""
 
 #: ../musicPlayer/data/messages:109
 msgid "Guayadeque"
@@ -7587,61 +7610,64 @@ msgid ""
 "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 "clipboard"
 msgstr ""
-"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / Ctrl"
-"+V"
+"C'est la sélection faite à la souris, par opposition à celle de Ctrl+C / "
+"Ctrl+V"
 
 #: ../stack/data/messages:137
 msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr "Lors d'un copier/coller/couper, utiliser la sélection souris ?"
 
 #: ../stacks/data/messages:91
-#, fuzzy
 msgid "Directory & Options"
-msgstr "Dossier sur le serveur :"
+msgstr "Répertoire & Options"
 
 #: ../stacks/data/messages:93
 msgid ""
 "Stacks will act as a the shortcut applet's but with files. To add a file, "
 "just drag and drop it on the Stacks icon"
 msgstr ""
+"Cette applet agira comme l'applet Raccourcis mais avec des fichiers. Pour "
+"ajouter un fichier, glissez et déposez-le sur l'icône de l'applet"
 
 #: ../stacks/data/messages:95
 msgid "Use only Stacks local directory ?"
-msgstr ""
+msgstr "Utilisez uniquement le répertoire Stacks local"
 
 #: ../stacks/data/messages:97
 msgid ""
 "You can use '_LocalDirectory_' tag to have both stack local and all "
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
+"Vous pouvez utilisez le tag '_LocalDirectory_' pour avoir en même temps une "
+"pile locale et tous les répertoires sous contrôle. Assurez-vous que l'option "
+"'Utilisez uniquement le répertoire Stacks local' est décoché."
 
 #: ../stacks/data/messages:99
 msgid "Monitored Directories :"
-msgstr ""
+msgstr "Répertoires à contrôler :"
 
 #: ../stacks/data/messages:101
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
+"Cette option peut ralentir votre dock si vous utilisez des fichiers "
+"volumineux, à utiliser avec précaution."
 
 #: ../stacks/data/messages:103
-#, fuzzy
 msgid "List hidden files ?"
-msgstr "Montrer les fichiers cachés ?"
+msgstr "Lister les fichiers cachés"
 
 #: ../stacks/data/messages:105
 msgid "Separate different directories with separators ?"
-msgstr ""
+msgstr "Séparer les dossier différents avec des séparateurs ?"
 
 #: ../stacks/data/messages:111
-#, fuzzy
 msgid "Eg: image, text, video, audio, application..."
-msgstr "Ex: image, text, video, audio, application, ..."
+msgstr "Par ex : image, texte, video, audio, application..."
 
 #: ../stacks/data/messages:117
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "Nom de l'image 'Stop' :"
+msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7881,8 +7907,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
-"m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -7983,7 +8009,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
@@ -8069,3 +8096,34 @@ msgstr "Infos Brutes du Signal"
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
+
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to show your home folder.\n"
+#~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "Un applet qui vous donne un accés rapide vers tout vos raccourcis.\n"
+#~ "Il peut traiter les disques, des points réseaux et les marque-pages Nautilus "
+#~ "(même si vous n'avez pas Nautilus).\n"
+#~ "Glissez déposez un dossier sur l'icône principale ou le sous-dock pour "
+#~ "ajouter un marque-page.\n"
+#~ "Faîtes un clic-milieu sur l'icône principale pour afficher votre dossier "
+#~ "personnel.\n"
+#~ "Faîtes un clic-milieu sur un icône de point de montage pour le (dé)monter "
+#~ "rapidement.\n"
+#~ "L'applet peut aussi afficher des informations intéressantes à propos de vos "
+#~ "disques, comme l'espace disponible, le type, etc."
+
+#~ msgid "Add a workspace"
+#~ msgstr "Ajouter un espace de travail"
+
+#~ msgid "Remove last workspace"
+#~ msgstr "Retirer le dernier espace de travail"
+
+#~ msgid "Move current workspace to this workspace"
+#~ msgstr "Déplacer l'espace de travail courant vers celui-ci"

@@ -7,16 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-07-15 09:49+0000\n"
+"POT-Creation-Date: 2010-08-29 00:59+0000\n"
+"PO-Revision-Date: 2010-09-03 05:07+0000\n"
 "Last-Translator: Jonay <jonay.santana@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-07-16 03:43+0000\n"
+"X-Launchpad-Export-Date: 2010-09-04 04:54+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:65
+msgid "Rotate"
+msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -31,12 +38,6 @@ msgstr "Este complemento proporciona diferentes animaciones para los iconos."
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Rebotar"
-
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
-msgid "Rotate"
-msgstr "Rotar"
 
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
@@ -82,9 +83,8 @@ msgstr ""
 "disponibles y pueden ser añadidos fácilmente."
 
 #: ../Cairo-Penguin/src/applet-init.c:39
-#, fuzzy
 msgid "Cairo-Penguin"
-msgstr "Iniciar XPenguins"
+msgstr "Cairo-Penguin"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -197,9 +197,8 @@ msgstr ""
 "central para llamarlos."
 
 #: ../Clipper/src/applet-init.c:39
-#, fuzzy
 msgid "Clipboard history"
-msgstr "Limpiar Historial"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -232,7 +231,8 @@ msgstr "El modulo ha sido añadido, pero no se pudo ser lanzado"
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "La mini-aplicación '%s' ha sido actualizada con éxito y automaticamente "
 "relanzada."
@@ -272,9 +272,8 @@ msgid "Mb"
 msgstr "Mb"
 
 #: ../Folders/src/applet-init.c:29
-#, fuzzy
 msgid "Folders"
-msgstr "Carpeta"
+msgstr "Carpetas"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
@@ -286,14 +285,24 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
+"Esta miniaplicación importa carpetas dentro del dock\n"
+"Puede tener tantas instancias de esta miniaplicación como quiera, cada una "
+"con una carpeta diferente.\n"
+"Para añadir una carpeta a su dock:\n"
+" - active la miniaplicación, abra su panel de configuración y seleccione una "
+"carpeta\n"
+" - o simplemente suelte una carpeta en el dock\n"
+"Una pulsación con el botón central en el icono abre la carpeta.\n"
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
+"Abra la configuración de la miniaplicación para elegir una carpeta a "
+"importar."
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
-msgstr ""
+msgstr "Carpeta vacía o legible."
 
 #: ../Folders/src/applet-notifications.c:193
 #, c-format
@@ -302,17 +311,21 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
+"Está a punto de eliminar este archivo\n"
+"  (%s)\n"
+"de su disco duro. ¿Está seguro?"
 
 #: ../Folders/src/applet-notifications.c:203
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
+"Advertencia: no se pudo eliminar este archivo.\n"
+"Por favor, verifique los permisos."
 
 #: ../Folders/src/applet-notifications.c:216
-#, fuzzy
 msgid "Rename to:"
-msgstr "Renombrar esta pestaña"
+msgstr "Renombrar a:"
 
 #: ../Folders/src/applet-notifications.c:223
 #, c-format
@@ -321,11 +334,13 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"Advertencia: no se puedo renombrar %s.\n"
+"Verifique los permisos del archivo \n"
+"y que el nuevo nombre no esté en uso."
 
 #: ../Folders/src/applet-notifications.c:262
-#, fuzzy
 msgid "Enter a file name:"
-msgstr "Nombre de archivo de la imágen:"
+msgstr "Introduzca un nombre de archivo:"
 
 #: ../Folders/src/applet-notifications.c:270
 #, c-format
@@ -334,40 +349,37 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"Aviso: no se pudo crear %s.\n"
+"Compruebe los permisos del archivo\n"
+"y que el nombre no exista ya."
 
 #: ../Folders/src/applet-notifications.c:319
-#, fuzzy
 msgid "Open with"
-msgstr "Abrir archivo"
+msgstr "Abrir con"
 
 #: ../Folders/src/applet-notifications.c:352
-#, fuzzy
 msgid "Delete this file"
-msgstr "Eliminar esta nota"
+msgstr "Eliminar este archivo"
 
 #: ../Folders/src/applet-notifications.c:354
-#, fuzzy
 msgid "Rename this file"
-msgstr "Renombrar este artículo"
+msgstr "Renombrar este archivo"
 
 #: ../Folders/src/applet-notifications.c:356
-#, fuzzy
 msgid "Move this file"
-msgstr "Eliminar este artículo"
+msgstr "Mover este archivo"
 
 #: ../Folders/src/applet-notifications.c:358
-#, fuzzy
 msgid "Properties"
-msgstr "Partículas"
+msgstr "Propiedades"
 
 #: ../Folders/src/applet-notifications.c:360
 msgid "Create a new file"
-msgstr ""
+msgstr "Crear un archivo nuevo"
 
 #: ../Folders/src/applet-notifications.c:364
-#, fuzzy
 msgid "Open the folder (middle-click)"
-msgstr "Siguiente (clic central)"
+msgstr "Abrir la carpeta (botón central)"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -382,8 +394,8 @@ msgstr ""
 "Es compatible con cualquier menú XDG (Gnome, XFCE, KDE...)\n"
 "Clic central para abrir un diálogo para iniciar rápidamente cualquier "
 "comando (Puede establecer un atajo de teclado para ello, como ALT+F2)\n"
-"También puede establecer un atajo de teclado para aparecer el menú (como ALT"
-"+F1)"
+"También puede establecer un atajo de teclado para aparecer el menú (como "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
@@ -1041,9 +1053,8 @@ msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr "¡Alerta! El núcleo de la Tarjeta Gráfica ha alcanzado %d°C"
 
 #: ../Toons/src/applet-init.c:29
-#, fuzzy
 msgid "Toons"
-msgstr "Toto"
+msgstr "Toons"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -1068,7 +1079,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-init.c:50
 msgid "Screen Luminosity"
-msgstr ""
+msgstr "Luminosidad de la pantalla"
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
@@ -1101,9 +1112,8 @@ msgstr ""
 "Esta mini-aplicación funciona con el controlador de sonido ALSA."
 
 #: ../alsaMixer/src/applet-init.c:42
-#, fuzzy
 msgid "Sound Control"
-msgstr "Control"
+msgstr "Control de sonido"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -1140,14 +1150,12 @@ msgid "Adjust channels"
 msgstr "Ajustar canales"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Unmute"
-msgstr "Desmontado"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:61
-#, fuzzy
 msgid "Mute"
-msgstr "Módulo"
+msgstr ""
 
 #: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
 #: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
@@ -1171,20 +1179,19 @@ msgstr "Alarma"
 
 #: ../clock/src/applet-config.c:35
 msgid "Time you want to be notified:"
-msgstr ""
+msgstr "Hora a la que quiere que se le notifique:"
 
 #: ../clock/src/applet-config.c:35
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
-msgstr ""
+msgstr "En la forma xx:xx. Por ejemplo: 20:35 for 8:35pm"
 
 #: ../clock/src/applet-config.c:35
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Day"
-msgstr "May"
+msgstr "Día"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
@@ -1216,43 +1223,39 @@ msgstr "Domingo"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week Day"
-msgstr ""
+msgstr "Día de la semana"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week End"
-msgstr ""
+msgstr "Fin de semana"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Month"
-msgstr "Ambos"
+msgstr "Mes"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Repeat every:"
-msgstr "Repetir este mensaje cada:"
+msgstr "Repetir cada:"
 
 #: ../clock/src/applet-config.c:35
 msgid "If every month, which day of the month?"
-msgstr ""
+msgstr "Si ha de ser cada mes, ¿qué día del mes?"
 
 #: ../clock/src/applet-config.c:35
 msgid "Message you want to use to be notified:"
-msgstr ""
+msgstr "Mensaje que quiere que se le notifique:"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Tea Time!"
-msgstr "Tiempo"
+msgstr "¡Hora del té!"
 
 #: ../clock/src/applet-config.c:35
-#, fuzzy
 msgid "Command to launch:"
-msgstr "Introduce un comando a lanzar :"
+msgstr "Orden a lanzar:"
 
 #: ../clock/src/applet-config.c:35
 msgid "E.g.:"
-msgstr ""
+msgstr "P. ej.:"
 
 #: ../clock/src/applet-config.c:492 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
@@ -1301,12 +1304,22 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
+"Esta miniaplicación muestra la hora, la fecha y un calendario.\n"
+"Hay disponibles 2 vistas: la <b>numérica</b> y la <b>analógica</b>.\n"
+" La vista analógica es compatible con los temas del reloj de Cairo y puede "
+"sacar la miniaplicación para tener un clon perfecto del reloj de Cairo. "
+"Muestra un <b>calendario</b> al pulsar con el botón derecho, que le permite "
+"<b>gestionar tareas</b>.\n"
+"También soporta alarmas y se le permite configurar una hora y fecha.\n"
+"Una pulsación con el botón izquierdo muestra u oculta el calendario y una "
+"pulsación con el botón central detiene una notificación.\n"
+"Una doble pulsación sobre un día le permite editar las tareas de ese día."
 
 #: ../clock/src/applet-notifications.c:62
 msgid ""
@@ -1400,9 +1413,8 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 #: ../compiz-icon/src/applet-init.c:31
-#, fuzzy
 msgid "compiz-icon"
-msgstr "Opciones de Compiz"
+msgstr "icono-de-compiz"
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -1547,7 +1559,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Este plug-in proporciona decoradores para ventanas de diálogo."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "No se pudo subir el archivo, compruebe que su conexión de internet este "
 "activa."
@@ -1561,13 +1574,13 @@ msgstr ""
 "Tan solo presione CTRL+V para pegar su URL en cualquier lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Espere a que termine la subida de datos antes de empezar otra nueva."
 
 #: ../dnd2share/src/applet-dnd2share.c:537
-#, fuzzy
 msgid "Tiny URL"
-msgstr "Copiar URL"
+msgstr "Tiny URL"
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -1756,61 +1769,48 @@ msgid "dustbin"
 msgstr "cubo de la basura"
 
 #: ../dustbin/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "This applet manages the dustbin\n"
 "You can threw files and unmount disks by drag-and-dropping them on the "
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
-"Éste aplique administra la papelera.\n"
-"Puede arrojar archivos y desmontar unidades de disco arrastrando y "
-"soltándolos sobre el icono.\n"
-"El aplique puede avisarle si utiliza demasiado espacio.\n"
-"Pulse con el botón intermedio para visualizar información útil sobre la "
-"papelera."
 
 #: ../dustbin/src/applet-notifications.c:32
-#, fuzzy
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr ""
-"¿Está seguro de querer eliminar todos los archivos en todas las papeleras?"
+msgstr "Esta seguro de eliminar todos los archivos en todas las papeleras ?"
 
 #: ../dustbin/src/applet-notifications.c:80
 msgid "The trash contains"
-msgstr ""
+msgstr "La papelera contiene"
 
 #: ../dustbin/src/applet-notifications.c:82
-#, fuzzy
 msgid "files"
-msgstr "Archivos"
+msgstr "archivos"
 
 #: ../dustbin/src/applet-notifications.c:82
-#, fuzzy
 msgid "elements"
-msgstr "Complementos Web"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Mo"
-msgstr ""
+msgstr "Lu"
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Ko"
-msgstr ""
+msgstr "Ko"
 
 #: ../dustbin/src/applet-notifications.c:100
 msgid "Counting total size and files number..."
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:136
-#, fuzzy
 msgid "Show Trash (click)"
-msgstr "Mostrar papelera"
+msgstr "Mostrar papelera (pulsar)"
 
 #: ../dustbin/src/applet-notifications.c:137
-#, fuzzy
 msgid "Empty Trash (middle-click)"
-msgstr "Siguiente (clic central)"
+msgstr "Vaciar papelera (pulsación central)"
 
 #: ../dustbin/src/applet-notifications.c:139
 msgid "Display dustbins information"
@@ -1829,7 +1829,7 @@ msgstr "no se pudo desmontar %s"
 #: ../dustbin/src/applet-notifications.c:179
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
-msgstr ""
+msgstr "Desmontando este volumen..."
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -1976,38 +1976,39 @@ msgstr "Su computador se apagara en un minuto"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr ""
+msgstr "Dirección del servidor:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
-msgstr ""
+msgstr "miEquipo"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr ""
+msgstr "Nombre de usuario:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr ""
+msgstr "Contraseña:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
-msgstr ""
+msgstr "Esta contraseña se cifrará."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Port:"
-msgstr "Tipo de letra:"
+msgstr "Puerto:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
 msgstr ""
+"Introduzca 0 para usar el puerto predeterminado. Los puestos predeterminados "
+"son 110 para POP3 o APOP y el 995 para POP3S."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
-msgstr ""
+msgstr "Usar una conexión segura (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:109
 #: ../netspeed/data/messages:133 ../powermanager/data/messages:147
@@ -2021,38 +2022,34 @@ msgid "In minutes."
 msgstr "En minutos."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Specific mail application"
-msgstr "Aplicación de correo"
+msgstr "Aplicación específica para correo"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Leave empty to use the default mail application."
-msgstr "Dejar en blanco para usar el icono por defecto."
+msgstr "Déjelo vacío para usar la aplicación de correo predeterminada."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
-msgstr ""
+msgstr "Directorio en el servidor:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Path of mbox file:"
-msgstr "Ruta al archivo de sonido:"
+msgstr "Ruta del archivo mbox:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Path to Mail directory:"
-msgstr "Limpiar carpeta local"
+msgstr "Ruta al directorio de correo:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Address of feed:"
-msgstr ""
+msgstr "Dirección del canal:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:49
 #: ../mail/src/cd-mail-applet-accounts.c:112
 #: ../mail/src/cd-mail-applet-accounts.c:289
 msgid "myLogin"
-msgstr ""
+msgstr "miUsuario"
 
 #: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
@@ -2279,9 +2276,8 @@ msgid "Information"
 msgstr "Información"
 
 #: ../netspeed/src/applet-init.c:29
-#, fuzzy
 msgid "netspeed"
-msgstr "Velocidad de la red"
+msgstr "netspeed"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -2373,9 +2369,8 @@ msgstr ""
 "La batería está cargada."
 
 #: ../powermanager/src/powermanager-init.c:31
-#, fuzzy
 msgid "PowerManager"
-msgstr "Administrador de temas Emerald"
+msgstr "Gestión de energía"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
@@ -2433,20 +2428,20 @@ msgid "Unmounted"
 msgstr "Desmontado"
 
 #: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now mounted"
-msgstr "%s ahora está desmontado"
+msgstr "%s está montado"
 
 #: ../shortcuts/src/applet-drives.c:147
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
-msgstr ""
+msgstr "%s se ha conectado"
 
 #: ../shortcuts/src/applet-drives.c:204
-#, fuzzy, c-format
+#, c-format
 msgid "%s is now unmounted"
-msgstr "%s ahora está desmontado"
+msgstr "%s esta ahora desmontado"
 
 #: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
@@ -2459,59 +2454,66 @@ msgid ""
 "don't have Nautilus).\n"
 "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 "Middle-click on the main icon to show your home folder.\n"
-"Middle-click on a mounting point icon to (un)mount it quickly\n"
+"Middle-click on a mounting point icon to (un)mount is quickly.\n"
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
+"Una miniaplicación que le permite acceder rápidamente a todos sus atajos.\n"
+"Puede gestionar discos, puntos de red y marcadores de Nautilus (incluso si "
+"no tiene Nautlius).\n"
+"Arrastre y suelte una carpeta en el icono principal o en la sub-barra para "
+"añadir un marcador.\n"
+"Pulse con el botón central en el icono principal para mostrar el nombre de "
+"su carpeta de inicio.\n"
+"Pulse con el botón central en el icono de punto de montaje para montar o "
+"desmontarlo rápidamente.\n"
+"Esta miniaplicación también puede mostrar información valiosa sobre sus "
+"discos, como espacio libre, tipo, etc."
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "failed to mount %s"
-msgstr "no se pudo desmontar %s"
+msgstr "falló al montar %s"
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to unmount %s"
-msgstr "no se pudo desmontar %s"
+msgstr "Falló al desmontar %s"
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
 msgstr ""
+"Lo sentiemos, pero esta miniaplicación no está disponible para KDE todavía."
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr ""
+msgstr "No se han encontrado discos o marcadores."
 
 #: ../shortcuts/src/applet-notifications.c:193
-#, fuzzy
 msgid "Enter a name for this bookmark:"
-msgstr "Eliminar este marcador"
+msgstr "Introduzca un nombre para este marcador:"
 
 #: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
 msgstr "Eliminar este marcador"
 
 #: ../shortcuts/src/applet-notifications.c:251
-#, fuzzy
 msgid "Rename this bookmark"
-msgstr "Eliminar este marcador"
+msgstr "Renombrar este marcador"
 
 #: ../shortcuts/src/applet-notifications.c:257
-#, fuzzy
 msgid "Eject"
-msgstr "Ejecutar"
+msgstr "Expulsar"
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Unmount (middle-click)"
-msgstr "Siguiente (clic central)"
+msgstr "Desmontar (pulsación central)"
 
 #: ../shortcuts/src/applet-notifications.c:262
-#, fuzzy
 msgid "Mount (middle-click)"
-msgstr "Siguiente (clic central)"
+msgstr "Montar (pulsación central)"
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
@@ -2519,7 +2521,7 @@ msgstr "Obtener información del disco"
 
 #: ../shortcuts/src/applet-notifications.c:289
 msgid "Only folders can be bookmarked."
-msgstr ""
+msgstr "Sólo se pueden marcar carpetas."
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
@@ -2527,8 +2529,8 @@ msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin dibuja alguna animación alrededor del cursor cuando está dentro "
 "de un dock o desklet."
@@ -2688,9 +2690,8 @@ msgid "Clear the stack"
 msgstr "Limpiar la pila"
 
 #: ../stacks/src/applet-init.c:30
-#, fuzzy
 msgid "stacks"
-msgstr "Pila"
+msgstr "pilas"
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
@@ -2746,15 +2747,15 @@ msgid "Rename this workspace"
 msgstr "Renombrar este espacio de trabajo"
 
 #: ../switcher/src/applet-notifications.c:259
-msgid "Add a workspace"
+msgid "Add a desktop"
 msgstr "Agregar un escritorio"
 
 #: ../switcher/src/applet-notifications.c:263
-msgid "Remove last workspace"
+msgid "Remove last desktop"
 msgstr "Eliminar ultimo escritorio"
 
 #: ../switcher/src/applet-notifications.c:279
-msgid "Move current workspace to this workspace"
+msgid "Move current Desktop to this Desktop"
 msgstr "Mover el escritorio actual a este escritorio"
 
 #: ../switcher/src/applet-notifications.c:284
@@ -2785,7 +2786,7 @@ msgstr "Actualizar"
 
 #: ../systray/src/systray-init.c:32
 msgid "systray"
-msgstr ""
+msgstr "bandeja del sistema"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2810,6 +2811,9 @@ msgid ""
 "Since there can only be one systray at once, you should remove it to avoid "
 "any conflict."
 msgstr ""
+"Ya hay otra bandeja del sistema ejecutándose (probablemente en su panel)\n"
+"Como sólo puede haber una bandeja del sistema a la vez, elimínela para "
+"evitar conflictos."
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
@@ -2829,9 +2833,8 @@ msgid "Copy"
 msgstr "Copiar"
 
 #: ../terminal/src/terminal-init.c:31
-#, fuzzy
 msgid "terminal"
-msgstr "Terminal"
+msgstr "terminal"
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -2905,9 +2908,8 @@ msgid "Close this Tab"
 msgstr "Cerrar esta pestaña"
 
 #: ../tomboy/src/tomboy-init.c:30
-#, fuzzy
 msgid "Note-Taking"
-msgstr "Nada"
+msgstr "Anotador"
 
 #: ../tomboy/src/tomboy-init.c:33
 msgid ""
@@ -3132,9 +3134,8 @@ msgid "Pressure"
 msgstr "Presión"
 
 #: ../weblets/src/applet-init.c:28
-#, fuzzy
 msgid "weblets"
-msgstr "Complementos Web"
+msgstr "weblets"
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -3146,8 +3147,8 @@ msgstr ""
 "Los complementos web (weblets) le permite visualizar páginas web "
 "interactivas en su escritorio.\n"
 "Puede seleccionar la página web, establecer el desplazamiento deseado,\n"
-"y ocultar las barras de desplazamiento para obtener un verdadero «recorte» de "
-"la página."
+"y ocultar las barras de desplazamiento para obtener un verdadero «recorte» "
+"de la página."
 
 #: ../weblets/src/applet-widget.c:58
 msgid "Weblets"
@@ -3158,9 +3159,8 @@ msgid "WiFi disabled."
 msgstr "Conexión inalámbrica no disponible."
 
 #: ../wifi/src/applet-init.c:30
-#, fuzzy
 msgid "wifi"
-msgstr "Inalámbrica"
+msgstr "wifi"
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -3344,17 +3344,15 @@ msgstr "Rayos"
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
-#, fuzzy
 msgid "1st color of gradation :"
-msgstr "er color del degradado:"
+msgstr "Primer colo de la gradiente:"
 
 #: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
-#, fuzzy
 msgid "2nd color of gradation :"
-msgstr "do color del degradado:"
+msgstr "Segundo color de la gradiente:"
 
 #: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
@@ -4149,7 +4147,8 @@ msgstr ""
 #: ../weather/data/messages:59 ../weblets/data/messages:61
 #: ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
-msgstr "Seleccione un tema de decoración para este complemento del escritorio:"
+msgstr ""
+"Seleccione un tema de decoración para este complemento del escritorio:"
 
 #: ../Clipper/data/messages:63 ../Doncky/data/messages:61
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
@@ -4286,7 +4285,8 @@ msgstr "Desplazamiento izquierdo:"
 #: ../weather/data/messages:71 ../weblets/data/messages:73
 #: ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición superior de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición superior de los dibujos."
 
 #: ../Clipper/data/messages:75 ../Doncky/data/messages:73
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
@@ -4330,7 +4330,8 @@ msgstr "Desplazamiento superior:"
 #: ../weather/data/messages:75 ../weblets/data/messages:77
 #: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición derecha de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición derecha de los dibujos."
 
 #: ../Clipper/data/messages:79 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
@@ -4374,7 +4375,8 @@ msgstr "Desplazamiento derecho:"
 #: ../weather/data/messages:79 ../weblets/data/messages:81
 #: ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición inferior de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición inferior de los dibujos."
 
 #: ../Clipper/data/messages:83 ../Doncky/data/messages:81
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
@@ -4525,7 +4527,8 @@ msgstr "De ser así, número de elementos seleccionados:"
 #: ../Clipper/data/messages:117
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "Cuando pulse sobre un elemento, su contenido será accesible con CTRL+v"
+msgstr ""
+"Cuando pulse sobre un elemento, su contenido será accesible con CTRL+v"
 
 #: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
@@ -4569,7 +4572,8 @@ msgstr "¿Activar acciones?"
 
 #: ../Clipper/data/messages:135
 msgid "Display actions when selecting an item in the history."
-msgstr "Visualizar acciones cuando se seleccione un elemento en el histórico."
+msgstr ""
+"Visualizar acciones cuando se seleccione un elemento en el histórico."
 
 #: ../Clipper/data/messages:137
 msgid "Replay actions?"
@@ -4618,7 +4622,8 @@ msgstr "¿Permitir que aplicaciones externas muestren/escondan las barras?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
-msgstr "¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
+msgstr ""
+"¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
@@ -4694,7 +4699,8 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Puede tener fondos más atractivos usando las decoraciones de los "
 "complementos del escritorio"
@@ -4745,43 +4751,36 @@ msgid "Border colour :"
 msgstr "Color del borde:"
 
 #: ../Folders/data/messages:7
-#, fuzzy
 msgid "Let empty to use the name of the folder."
-msgstr "Dejar en blanco para utilizar el nombre de la ciudad."
+msgstr "Déjelo vacío para usar el nombre de la carpeta."
 
 #: ../Folders/data/messages:13
-#, fuzzy
 msgid "How to render the icon :"
-msgstr "Cómo dibujar el escritorio actual:"
+msgstr "Cómo renderizar el icono:"
 
 #: ../Folders/data/messages:15
-#, fuzzy
 msgid "Use an image"
-msgstr "Abrir imagen"
+msgstr "Usar una imagen"
 
 #: ../Folders/data/messages:17
 msgid "Draw sub-dock's content as emblems"
-msgstr ""
+msgstr "Dibujar el contenido de la sub-barra como emblemas"
 
 #: ../Folders/data/messages:19
-#, fuzzy
 msgid "Draw sub-dock's content as stack"
-msgstr "Dibujar el contenido de las notas en sus iconos?"
+msgstr "Dibujar el contenido de la sub-barra como una pila"
 
 #: ../Folders/data/messages:21
-#, fuzzy
 msgid "Draw sub-dock's content inside a box"
-msgstr "Dibujar el contenido de las notas en sus iconos?"
+msgstr "Dibujar el contenido de la sub-barra dentro de un recuadro"
 
 #: ../Folders/data/messages:105
-#, fuzzy
 msgid "Folder's path:"
-msgstr "Carpeta"
+msgstr "Ruta de la carpeta:"
 
 #: ../Folders/data/messages:107
-#, fuzzy
 msgid "Sort files by :"
-msgstr "Ordenar elementos por:"
+msgstr "Ordenar archivos por :"
 
 #: ../Folders/data/messages:109 ../stack/data/messages:127
 msgid "Name"
@@ -4792,14 +4791,12 @@ msgid "Date"
 msgstr "Fecha"
 
 #: ../Folders/data/messages:113
-#, fuzzy
 msgid "Size"
-msgstr "Diapositiva"
+msgstr "Tamaño"
 
 #: ../Folders/data/messages:115
-#, fuzzy
 msgid "Sort folders before files?"
-msgstr "¿Listar primero las carpetas?"
+msgstr "¿Ordenar carpetas antes que los archivos?"
 
 #: ../Folders/data/messages:117 ../Scooby-Do/data/messages:103
 #: ../quick-browser/data/messages:103
@@ -5525,9 +5522,8 @@ msgstr ""
 "izquierda/inferior de la pantalla"
 
 #: ../Status-Notifier/data/messages:93
-#, fuzzy
 msgid "Display items in compact mode?"
-msgstr "Utilizar el modo compacto?"
+msgstr ""
 
 #: ../System-Monitor/data/messages:115 ../powermanager/data/messages:117
 msgid "It's the colour of the graphic for high values."
@@ -5555,7 +5551,8 @@ msgstr "¿Mostrar SWAP también?"
 
 #: ../System-Monitor/data/messages:135
 msgid "You need an nVidia card and the 'nvidia-settings' tool."
-msgstr "Se requiere de una tarjeta nVidia y la herramienta «nvidia-settings»."
+msgstr ""
+"Se requiere de una tarjeta nVidia y la herramienta «nvidia-settings»."
 
 #: ../System-Monitor/data/messages:137
 msgid "Show graphic card's temperature?"
@@ -5612,7 +5609,8 @@ msgstr "Número de programas a mostrar en la lista de «top»:"
 
 #: ../System-Monitor/data/messages:175
 msgid "The first colour of the gradient used to display the top list."
-msgstr "El primer color del degradado usado para visualizar la lista de «top»."
+msgstr ""
+"El primer color del degradado usado para visualizar la lista de «top»."
 
 #: ../System-Monitor/data/messages:177
 msgid "Top list start colour:"
@@ -5620,7 +5618,8 @@ msgstr "Color de inicio de la lista de «top»:"
 
 #: ../System-Monitor/data/messages:179
 msgid "The second colour of the gradient used to display the top list."
-msgstr "El segundo color del degradado usado para visualizar la lista de «top»."
+msgstr ""
+"El segundo color del degradado usado para visualizar la lista de «top»."
 
 #: ../System-Monitor/data/messages:181
 msgid "Top list stop colour:"
@@ -6236,19 +6235,19 @@ msgstr "Animación del icono durante la subida:"
 
 #: ../dnd2share/data/messages:109
 msgid "Use the following service to make the URL smaller:"
-msgstr ""
+msgstr "Usar el siguiente servicio para acortar las direcciones URL:"
 
 #: ../dnd2share/data/messages:113
 msgid "Tiny-URL"
-msgstr ""
+msgstr "Tiny-URL"
 
 #: ../dnd2share/data/messages:115
 msgid "Shorter-Link"
-msgstr ""
+msgstr "Shorter-Link"
 
 #: ../dnd2share/data/messages:117
 msgid "Use the tiny URL by default?"
-msgstr ""
+msgstr "¿Usar tiny URL por defecto?"
 
 #: ../dnd2share/data/messages:119
 msgid "in KB/s - 0 means unlimited"
@@ -6317,26 +6316,24 @@ msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
+"El script toma la ruta del archivo como parámetro y escribe la URL "
+"resultante por la salida estándar."
 
 #: ../dnd2share/data/messages:157
-#, fuzzy
 msgid "Custom script for text upload :"
-msgstr "Guión personalizado para subir archivos : "
+msgstr "Script personalizado para subida de textos:"
 
 #: ../dnd2share/data/messages:161
-#, fuzzy
 msgid "Custom script for image upload :"
-msgstr "Guión personalizado para subir imágenes : "
+msgstr "Script personalizado para subida de imágenes:"
 
 #: ../dnd2share/data/messages:165
-#, fuzzy
 msgid "Custom script for video upload :"
-msgstr "Guión personalizado para subir vídeos : "
+msgstr "Script personalizado para subida de vídeos:"
 
 #: ../dnd2share/data/messages:169
-#, fuzzy
 msgid "Custom script for file upload :"
-msgstr "Guión personalizado para subir archivos : "
+msgstr "Script personalizado para subida de archivos:"
 
 #: ../dnd2share/data/messages:171
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
@@ -6347,9 +6344,8 @@ msgid "Path of the DropBox folder :"
 msgstr "Ruta del directorio de DropBox:"
 
 #: ../dnd2share/data/messages:175
-#, fuzzy
 msgid "Otherwise, your user name will be used when possible."
-msgstr "De otra forma se le pedirá que le asigne un nombre."
+msgstr "Si no, se usará su nombre de usuario cuando sea posible."
 
 #: ../dnd2share/data/messages:177
 msgid "Post text as Anonymous ?"
@@ -6413,9 +6409,8 @@ msgid "Space between rows:"
 msgstr "Espacio entre columnas:"
 
 #: ../dock-rendering/data/messages:35
-#, fuzzy
 msgid "Zoom when mouse hovers an icon:"
-msgstr "Al cubrir un icono"
+msgstr "Aumentar cuando el ratón esté encima de un icono:"
 
 #: ../dock-rendering/data/messages:41
 msgid "Sinusoidal wave radius:"
@@ -6474,24 +6469,20 @@ msgid "Arrow shift percentage:"
 msgstr "Porcentaje de desplazamiento de la flecha:"
 
 #: ../dock-rendering/data/messages:71
-#, fuzzy
 msgid "Scroll bar"
-msgstr "¿Mostrar barras de desplazamiento?"
+msgstr "Barra de desplazamiento"
 
 #: ../dock-rendering/data/messages:73
-#, fuzzy
 msgid "Color of the scroll bar's outline:"
-msgstr "Color de línea del plano:"
+msgstr "Color del exterior de la barra de desplazamiento:"
 
 #: ../dock-rendering/data/messages:75
-#, fuzzy
 msgid "Color of the scroll bar's inside:"
-msgstr "Color de línea del plano:"
+msgstr "Color del interior de la barra de desplazamiento:"
 
 #: ../dock-rendering/data/messages:77
-#, fuzzy
 msgid "Color of the scroll grip:"
-msgstr "Color del márgen:"
+msgstr "Color del asidero de la barra desplazamiento:"
 
 #: ../dock-rendering/data/messages:81
 msgid "The higher this value, the sooner the parabola will be curved."
@@ -6545,7 +6536,8 @@ msgid "Space between icons:"
 msgstr "Espacio entre iconos:"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "Cero representa una onda plana, uno indica que la onda es idéntica a las "
 "otras vistas."
@@ -6649,9 +6641,8 @@ msgid "Display the following quick info :"
 msgstr "Desplegar la siguiente información rápida:"
 
 #: ../dustbin/data/messages:103
-#, fuzzy
 msgid "Number of files"
-msgstr "Número de elementos:"
+msgstr "Número de archivos"
 
 #: ../dustbin/data/messages:105
 msgid "Total number of files"
@@ -6685,7 +6676,8 @@ msgid "Colours"
 msgstr "Colores"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Esto podría alterar ligeramente sus colores, por lo que tal vez tenga que "
 "ajustarlos."
@@ -6911,7 +6903,6 @@ msgid "Maximum of new messages shown?"
 msgstr "Número máximo de mensajes nuevos a mostrar?"
 
 #: ../mail/data/messages:117
-#, fuzzy
 msgid "Duration of the dialogue"
 msgstr "Duración del diálogo"
 
@@ -6930,7 +6921,8 @@ msgid "Check mail account on startup?"
 msgstr "Revisar cuentas de correo electrónico al iniciar?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Si está seleccionado, el número de mensajes se mostrará, incluso si no hay "
 "correo."
@@ -6950,7 +6942,7 @@ msgstr ""
 
 #: ../mail/data/messages:131
 msgid "Add a mail account (you've to launch the applet)"
-msgstr ""
+msgstr "Añadir una cuenta de correo (ha de lanzar la miniaplicación)"
 
 #: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
@@ -6969,7 +6961,8 @@ msgid "Blur amount:"
 msgstr "Cantidad de difuminado:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Deje vacío para visualizar el nombre del reproductor que está siendo "
 "actualmente controlado."
@@ -7007,9 +7000,8 @@ msgid "Exaile 0.3"
 msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:107
-#, fuzzy
 msgid "GMusicBrowser"
-msgstr "Buscador rápido"
+msgstr ""
 
 #: ../musicPlayer/data/messages:109
 msgid "Guayadeque"
@@ -7642,55 +7634,56 @@ msgid "When copying/pasting/cutting, use the selection clipboard?"
 msgstr "Al copiar/pegar/cortar, usar la selección del portapapeles?"
 
 #: ../stacks/data/messages:91
-#, fuzzy
 msgid "Directory & Options"
-msgstr "Decoraciones"
+msgstr "Directorio y opciones"
 
 #: ../stacks/data/messages:93
 msgid ""
 "Stacks will act as a the shortcut applet's but with files. To add a file, "
 "just drag and drop it on the Stacks icon"
 msgstr ""
+"Las pilas actuarán como atajos de la miniaplicación pero con archivos. Para "
+"añadir un archivo, arrástrelo y suéltelo en el icono de las pilas."
 
 #: ../stacks/data/messages:95
-#, fuzzy
 msgid "Use only Stacks local directory ?"
-msgstr "Limpiar carpeta local"
+msgstr "¿Usar sólo el directorio local de pilas?"
 
 #: ../stacks/data/messages:97
 msgid ""
 "You can use '_LocalDirectory_' tag to have both stack local and all "
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
+"Puede usar la etiqueta «_LocalDirectory_» para tener la pila local y todos "
+"los directorios monitorizados. Asegúrese de que la opción «Usar sólo el "
+"directorio local de pilas» no está seleccionada."
 
 #: ../stacks/data/messages:99
 msgid "Monitored Directories :"
-msgstr ""
+msgstr "Directorios monitorizados:"
 
 #: ../stacks/data/messages:101
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
+"Esta opción con listas archivos grandes puede ralentizar el dock, úsela con "
+"cuidado."
 
 #: ../stacks/data/messages:103
-#, fuzzy
 msgid "List hidden files ?"
 msgstr "¿Mostrar archivos ocultos?"
 
 #: ../stacks/data/messages:105
-#, fuzzy
 msgid "Separate different directories with separators ?"
-msgstr "Aislar los diferentes atajos mediante separadores?"
+msgstr "¿Separar diferentes directorios con separadores?"
 
 #: ../stacks/data/messages:111
-#, fuzzy
 msgid "Eg: image, text, video, audio, application..."
-msgstr "Ejem. imagen, texto, vídeo, audio, aplicación..."
+msgstr "Por ejemplo: imagen, texto, vídeo, audio, aplicación..."
 
 #: ../stacks/data/messages:117
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "Nombre de la imagen para el icono 'detener':"
+msgstr "Nombre de la vista para esta sub-barra:"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7801,7 +7794,8 @@ msgstr "Nombre del icono tal y como aparecerá en su título en Cairo-Dock."
 
 #: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
-msgstr "Atajo del teclado para conmutar la barra del sistema en modo lanzador:"
+msgstr ""
+"Atajo del teclado para conmutar la barra del sistema en modo lanzador:"
 
 #: ../systray/data/messages:87
 msgid "Icons packing :"
@@ -7877,14 +7871,12 @@ msgid "Default title:"
 msgstr "Título predeterminado:"
 
 #: ../tomboy/data/messages:19
-#, fuzzy
 msgid "'Close' icon image name:"
-msgstr "Nombre de la imagen para el icono 'roto':"
+msgstr "Nombre de la imagen de icono «cerrar»:"
 
 #: ../tomboy/data/messages:107
-#, fuzzy
 msgid "Image file for the notes:"
-msgstr "Imágen para elementos «texto»:"
+msgstr "Archivo de imagen para las notas:"
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
@@ -7934,8 +7926,8 @@ msgid ""
 msgstr ""
 "Escriba el formato de la fecha que utiliza normalmente en sus notas. La "
 "sintáxis es la de «strftime»: %d para el día, %m para el mes, %y para el año "
-"(con dos dígitos), etc. Deje en blanco para usar el formato predeterminado (%"
-"d/%m/%y)."
+"(con dos dígitos), etc. Deje en blanco para usar el formato predeterminado "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -8037,7 +8029,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posición de la barra de desplazamiento vertical en pixeles"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Esto le permite pulsar con el botón derecho del ratón sobre el complemento "
 "del escritorio para acceder al menú de Cairo-Dock."
@@ -8107,7 +8100,8 @@ msgstr ""
 
 #: ../wifi/data/messages:175
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Línea de órdenes alternativa para lanzar la configuración inalámbrica:"
+msgstr ""
+"Línea de órdenes alternativa para lanzar la configuración inalámbrica:"
 
 #: ../wifi/data/messages:183
 msgid "Signal Strength"
@@ -8126,174 +8120,124 @@ msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 "¿Sobreescribir la etiqueta por defecto con el nombre del punto de conexión?"
 
-#, fuzzy
-#~ msgid "Time length between 2 checks:"
-#~ msgstr "Intervalo de tiempo entre 2 revisiones:"
-
-#~ msgid "in seconds"
-#~ msgstr "En segundos"
-
-#~ msgid "In seconds."
-#~ msgstr "En segundos."
-
-#~ msgid "In pixels."
-#~ msgstr "En pixeles."
-
-#~ msgid "in minutes."
-#~ msgstr "en minutos"
-
-#, fuzzy
-#~ msgid "Clipper"
-#~ msgstr "Porta papeles"
-
-#, fuzzy
-#~ msgid "Timeout"
-#~ msgstr "Tiempo"
+#~ msgid "Free"
+#~ msgstr "Libre"
 
 #~ msgid ""
-#~ "If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Si esta bloqueado, el desklet no puede ser movido simplemente arrastrando "
-#~ "con el botón izquierdo del ratón. Por supuesto usted aun puede moverlo "
-#~ "con ALT + click"
-
-#~ msgid "Lock position ?"
-#~ msgstr "¿Asegurar posición?"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
-#~ msgstr ""
-#~ "Dependiendo de su administrador de ventanas, usted puede redimencionarlo "
-#~ "con ALT + click del medio ó ALT + click por ejemplo."
-
-#~ msgid "Desklet's dimension (width x height) :"
-#~ msgstr "Dimencion del desklet (ancho x alto):"
-
-#~ msgid ""
-#~ "Depending on your WindowManager, you can move it with ALT + left_click"
-#~ msgstr ""
-#~ "Dependiendo de su administrador de ventanas, usted puede moverlo con ALT "
-#~ "+ click"
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "Posicion del desklet (x ; y):"
-
-#~ msgid "Rotation :"
-#~ msgstr "Rotación:"
-
-#~ msgid "Is detached from the dock ?"
-#~ msgstr "¿Está separado del lanzador?"
-
-#~ msgid "Visibility :"
-#~ msgstr "Visibilidad:"
-
-#~ msgid "On Widget Layer"
-#~ msgstr "Sobre la capa de Widgets"
-
-#~ msgid "Should be visible on all desktops ?"
-#~ msgstr "¿Visible en todos los escritorios?"
-
-#~ msgid "Choose a decoration theme for this desklet :"
-#~ msgstr "Seleccione un tema de decoración para este desklet:"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the drawings, like a frame for "
-#~ "exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "Es una imagen que se mostrará debajo de los objetos, como un marco por "
-#~ "ejemplo. Dejar vacío para no usar ninguna."
-
-#~ msgid "Background image :"
-#~ msgstr "Imagen de fondo:"
-
-#~ msgid "Background tansparency :"
-#~ msgstr "Transparencia de fondo:"
-
-#~ msgid "in pixels. Use this to adjust the left position of the drawings."
-#~ msgstr "En pixeles. Usar para ajustar la posición izquierda de los objetos."
-
-#~ msgid "Left offset :"
-#~ msgstr "Desplazamiento izquierdo:"
-
-#~ msgid "in pixels. Use this to adjust the top position of the drawings."
-#~ msgstr "En pixeles. Usar para ajustar la posición superior de los objetos."
-
-#~ msgid "Top offset :"
-#~ msgstr "Desplazamiento superior:"
-
-#~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr "En pixeles. Usar para ajustar la posición derecha de los objetos."
-
-#~ msgid "Right offset :"
-#~ msgstr "Desplazamiento derecho:"
-
-#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
-#~ msgstr "En pixeles. Usar para ajustar la posición inferior de los objetos."
-
-#~ msgid "Bottom offset :"
-#~ msgstr "Desplazamiento inferior:"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "Imagen que se mostrará encima de los objetos, como un reflejo por "
-#~ "ejemplo. Dejar en blanco para no usar ninguna."
-
-#~ msgid "Foreground image :"
-#~ msgstr "Imagen de frente:"
-
-#~ msgid "Foreground tansparency :"
-#~ msgstr "Transparencia del texto:"
-
-#~ msgid "Choose an action for middle click on the icon:"
-#~ msgstr ""
-#~ "Seleccione una acción para la pulsación con el botón intermedio del ratón "
-#~ "en el icono:"
-
-#~ msgid "Delay between measurements:"
-#~ msgstr "Intervalo entre mediciones:"
-
-#~ msgid "Doncky"
-#~ msgstr "Doncky"
-
-#~ msgid "Indicator-Menus"
-#~ msgstr "Menús de indicadores"
-
-#~ msgid "Menus to control your session, connection state, etc."
-#~ msgstr "Menús de control de sesión, estado de conexión, etc."
+#~ "Un complemento similar a Gnome-Do con el que se puede controlar el dock "
+#~ "desde el teclado.\n"
+#~ "Tiene dos modos, cada uno de ellos convocado mediante atajos de teclado:\n"
+#~ "- modo navigación: se usan las flechas para navegar en los docks y "
+#~ "subdocks.\n"
+#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para saltar "
+#~ "automáticamente al siguiente lanzador posible.\n"
+#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para "
+#~ "Mayús+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
+#~ "izquierdo\n"
+#~ "- modo de búsqueda: se escribe un texto para lanzar una orden, archivo o "
+#~ "cálculo.\n"
+#~ "  se usan las flechas para navegar entre los resultados y se presiona intro "
+#~ "para validar, se pulsa Ctrl, Alt o Mayús para mantener los resultados.\n"
+#~ "Escape o la misma tecla de atajo cancelan."
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
-#~ msgid "Empty Trash"
-#~ msgstr "Vaciar la papelera"
-
-#~ msgid "Show %s"
-#~ msgstr "Mostrar %s"
-
-#~ msgid "Show All"
-#~ msgstr "Mostrar Todo"
-
-#~ msgid "Delete %s"
-#~ msgstr "Borrar %s"
+#, c-format
+#~ msgid ""
+#~ "I couldn't find any audio channel named '%s'\n"
+#~ "You should try to open the configuration panel of the applet,\n"
+#~ " and select the proper audio channel you want to control."
+#~ msgstr ""
+#~ "No se encontró ningún canal de audio llamado '%s'\n"
+#~ "Abra el panel de configuración de la aplicación,\n"
+#~ " y seleccione el canal apropiado de audio que quiere controlar."
 
 #~ msgid "Delete All"
 #~ msgstr "Eliminar Todo"
 
-#~ msgid "You are about to delete all files in %s. Continue?"
-#~ msgstr "¿Está seguro de querer eliminar todos los archivos en %s?"
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "Mostrar %s"
+
+#, c-format
+#~ msgid "Delete %s"
+#~ msgstr "Borrar %s"
+
+#~ msgid "Show All"
+#~ msgstr "Mostrar Todo"
+
+#~ msgid "Please wait ..."
+#~ msgstr "Por favor espere ..."
+
+#~ msgid "in minutes."
+#~ msgstr "en minutos"
+
+#~ msgid "No RSS feed URL defined..."
+#~ msgstr "No se definió una dirección URL para un canal RSS..."
 
 #~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual file browser,\n"
-#~ "you can change this in the configuration panel of this module"
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
-#~ "Ocurrió un problema\n"
-#~ "Si '%s' no es su explorador de archivos predefinido\n"
-#~ "puede cambiar esta configuración en el panel de este módulo."
+#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar una "
+#~ "nueva dirección URL de RSS\" desde el menú para agregar una."
+
+#~ msgid "Failed to connect..."
+#~ msgstr "Error al conectar..."
+
+#~ msgid "No data (invalid rss ?)"
+#~ msgstr "Sin datos (¿RSS inválido?)"
+
+#~ msgid "showDesklets"
+#~ msgstr "MostrarComplementosDelEscritorio"
+
+#~ msgid "in seconds"
+#~ msgstr "En segundos"
+
+#~ msgid "Should be visible on all desktops ?"
+#~ msgstr "¿Visible en todos los escritorios?"
+
+#~ msgid "Lock position ?"
+#~ msgstr "¿Asegurar posición?"
+
+#~ msgid "in degrees."
+#~ msgstr "En ángulos."
+
+#~ msgid "Rotation :"
+#~ msgstr "Rotación:"
+
+#~ msgid "Background image :"
+#~ msgstr "Imagen de fondo:"
+
+#~ msgid "Left offset :"
+#~ msgstr "Desplazamiento izquierdo:"
+
+#~ msgid "Top offset :"
+#~ msgstr "Desplazamiento superior:"
+
+#~ msgid "Right offset :"
+#~ msgstr "Desplazamiento derecho:"
+
+#~ msgid "Bottom offset :"
+#~ msgstr "Desplazamiento inferior:"
+
+#~ msgid "not used at the moment."
+#~ msgstr "No usar por ahora."
 
 #~ msgid "Action_0"
 #~ msgstr "Acción_0"
@@ -8373,144 +8317,14 @@ msgstr ""
 #~ msgid "Action_6/Command_4"
 #~ msgstr "Acción_6/Comando_4"
 
-#~ msgid ""
-#~ "e size=true\n"
-#~ "F[Decorations;gtk-orientation-portrait]"
-#~ msgstr ""
-#~ "e size=true\n"
-#~ "F[Decorations;gtk-orientation-portrait]"
-
-#~ msgid "Max icon size:"
-#~ msgstr "Tamaño máximo de los iconos"
-
-#~ msgid "Pack icons horizontally rather than vertically?"
-#~ msgstr "¿Empaquetar los iconos horizontalmente en lugar de verticalmente?"
-
-#~ msgid "Number of Dustbins"
-#~ msgstr "Número de papeleras"
-
-#~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
-#~ msgstr ""
-#~ "in Mb. Se le notificará cuando exceda este límite. Establezca a cero para "
-#~ "desactivarlo."
-
-#~ msgid "Maximum total size of all dustbins :"
-#~ msgstr "Tamaño máximo total para todas las papeleras:"
-
-#~ msgid "Maximum size authorized for each dustbin :"
-#~ msgstr "Tamaño máximo autorizado para cada papelera:"
-
-#~ msgid "Empty all dustbins"
-#~ msgstr "Vaciar todas las papeleras"
-
-#~ msgid "Desktop-less support"
-#~ msgstr "Soporte para ambientes sin escritorio"
-
-#~ msgid ""
-#~ "If the Trash folder is not known by the dock, you can specify it here :"
-#~ msgstr ""
-#~ "Si el lanzador no reconoce el directorio de la Papelera de reciclaje, lo "
-#~ "puede especificar aquí:"
-
-#~ msgid "in seconds. only used if you can't monitor directories."
-#~ msgstr "en segundos. Use solamente si no puede vigilar carpetas."
-
-#~ msgid "Time interval to check if dustbin is full/empty :"
-#~ msgstr "Intervalo de tiempo para revisar si la papelera está llena/vacía:"
-
-#~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
-#~ msgstr ""
-#~ "Úselo sólo si nota que el aplique no puede mostrar el contenido de la "
-#~ "papelera al pulsar sobre él."
-
-#~ msgid "Alternative file browser used to show a trash :"
-#~ msgstr "Navegador de archivos alternativo para mostrar la papelera:"
-
-#~ msgid "Add a mail account"
-#~ msgstr "Agregar una cuenta de correo"
-
-#~ msgid "Name of an image for the 'empty' icon :"
-#~ msgstr "Nombre de la imagen para el icono «vacío»:"
-
-#~ msgid "Free"
-#~ msgstr "Libre"
-
-#~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
-#~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
-#~ "- the finder mode : type some text to launch any command, file or "
-#~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
-#~ "Escape or the same shortkey to cancel."
-#~ msgstr ""
-#~ "Un complemento similar a Gnome-Do con el que se puede controlar el dock "
-#~ "desde el teclado.\n"
-#~ "Tiene dos modos, cada uno de ellos convocado mediante atajos de teclado:\n"
-#~ "- modo navigación: se usan las flechas para navegar en los docks y "
-#~ "subdocks.\n"
-#~ "  o se escribe el nombre de un lanzador y se presiona tabulador para "
-#~ "saltar automáticamente al siguiente lanzador posible.\n"
-#~ "  se presiona intro para para pulsar en el icono. Mayús+Intro para Mayús"
-#~ "+pulsación, Alt+Intro para pulsación central y Ctrl+Intro para botón "
-#~ "izquierdo\n"
-#~ "- modo de búsqueda: se escribe un texto para lanzar una orden, archivo o "
-#~ "cálculo.\n"
-#~ "  se usan las flechas para navegar entre los resultados y se presiona "
-#~ "intro para validar, se pulsa Ctrl, Alt o Mayús para mantener los "
-#~ "resultados.\n"
-#~ "Escape o la misma tecla de atajo cancelan."
-
-#~ msgid ""
-#~ "I couldn't find any audio channel named '%s'\n"
-#~ "You should try to open the configuration panel of the applet,\n"
-#~ " and select the proper audio channel you want to control."
-#~ msgstr ""
-#~ "No se encontró ningún canal de audio llamado '%s'\n"
-#~ "Abra el panel de configuración de la aplicación,\n"
-#~ " y seleccione el canal apropiado de audio que quiere controlar."
-
-#~ msgid "Please wait ..."
-#~ msgstr "Por favor espere ..."
-
-#~ msgid "No RSS feed URL defined..."
-#~ msgstr "No se definió una dirección URL para un canal RSS..."
-
-#~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
-#~ msgstr ""
-#~ "Arrastre una dirección URL válida para un canal RSS, o utilize \"Pegar "
-#~ "una nueva dirección URL de RSS\" desde el menú para agregar una."
-
-#~ msgid "Failed to connect..."
-#~ msgstr "Error al conectar..."
-
-#~ msgid "No data (invalid rss ?)"
-#~ msgstr "Sin datos (¿RSS inválido?)"
-
-#~ msgid "showDesklets"
-#~ msgstr "MostrarComplementosDelEscritorio"
-
-#~ msgid "in degrees."
-#~ msgstr "En ángulos."
-
-#~ msgid "not used at the moment."
-#~ msgstr "No usar por ahora."
-
 #~ msgid "By default, this option is activated"
 #~ msgstr "Por defecto esta opción está activada"
+
+#~ msgid "Foreground image :"
+#~ msgstr "Imagen de frente:"
+
+#~ msgid "Foreground tansparency :"
+#~ msgstr "Transparencia del texto:"
 
 #~ msgid "Normal separator"
 #~ msgstr "Separador normal"
@@ -8536,24 +8350,73 @@ msgstr ""
 #~ msgid "Depth of the plane:"
 #~ msgstr "Profundidad del plano:"
 
+#~ msgid "Max icon size:"
+#~ msgstr "Tamaño máximo de los iconos"
+
 #~ msgid "Alert when battery low?"
 #~ msgstr "¿Avisar cuando la carga de la batería esté baja?"
 
 #~ msgid "Alert when battery charge is critical?"
 #~ msgstr "Avisar cuando la carga de la batería sea crítica."
 
+#, c-format
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "¿Está seguro de querer eliminar todos los archivos en %s?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "Ocurrió un problema\n"
+#~ "Si '%s' no es su explorador de archivos predefinido\n"
+#~ "puede cambiar esta configuración en el panel de este módulo."
+
 #~ msgid "Specify a title :"
 #~ msgstr "Especificar un título:"
+
+#~ msgid "Pack icons horizontally rather than vertically?"
+#~ msgstr "¿Empaquetar los iconos horizontalmente en lugar de verticalmente?"
+
+#~ msgid "Number of Dustbins"
+#~ msgstr "Número de papeleras"
+
+#~ msgid "Empty all dustbins"
+#~ msgstr "Vaciar todas las papeleras"
+
+#~ msgid "in seconds. only used if you can't monitor directories."
+#~ msgstr "en segundos. Use solamente si no puede vigilar carpetas."
+
+#~ msgid "Add a mail account"
+#~ msgstr "Agregar una cuenta de correo"
+
+#~ msgid "In seconds."
+#~ msgstr "En segundos."
+
+#~ msgid "In pixels."
+#~ msgstr "En pixeles."
+
+#~ msgid "Empty Trash"
+#~ msgstr "Vaciar la papelera"
+
+#~ msgid "Doncky"
+#~ msgstr "Doncky"
+
+#~ msgid "Choose an action for middle click on the icon:"
+#~ msgstr ""
+#~ "Seleccione una acción para la pulsación con el botón intermedio del ratón en "
+#~ "el icono:"
 
 #~ msgid "otherwise they will turn."
 #~ msgstr "de otro modo, rotarán."
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "0,5 significa que el lanzador se encuentra semi-plegado, por lo que la "
-#~ "mitad de los iconos se encuentran al frente y la otra mitad en el fondo."
+#~ "0,5 significa que el lanzador se encuentra semi-plegado, por lo que la mitad "
+#~ "de los iconos se encuentran al frente y la otra mitad en el fondo."
 
 #~ msgid ""
 #~ "The greater, the deeper. This represents the gap between the bottoms "
@@ -8567,19 +8430,148 @@ msgstr ""
 #~ msgstr "Porcentaje del ancho del lanzador en el fondo:"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
-#~ "En grados, relativo a la vertical. Éste es algo similar a la inclinación "
-#~ "del plano sobre la horizontal, dando una apariencia de 3D. Si se "
-#~ "establece a cero, el plano no tendrá inclinación alguna (vertical)."
+#~ "En grados, relativo a la vertical. Éste es algo similar a la inclinación del "
+#~ "plano sobre la horizontal, dando una apariencia de 3D. Si se establece a "
+#~ "cero, el plano no tendrá inclinación alguna (vertical)."
 
 #~ msgid "Always show the fronts of icons?"
 #~ msgstr "Mostrar siempre la parte frontal de los iconos?"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+#~ msgstr ""
+#~ "in Mb. Se le notificará cuando exceda este límite. Establezca a cero para "
+#~ "desactivarlo."
+
+#~ msgid ""
+#~ "If the Trash folder is not known by the dock, you can specify it here :"
+#~ msgstr ""
+#~ "Si el lanzador no reconoce el directorio de la Papelera de reciclaje, lo "
+#~ "puede especificar aquí:"
+
+#~ msgid "Time interval to check if dustbin is full/empty :"
+#~ msgstr "Intervalo de tiempo para revisar si la papelera está llena/vacía:"
+
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "Tamaño máximo total para todas las papeleras:"
+
+#~ msgid "Maximum size authorized for each dustbin :"
+#~ msgstr "Tamaño máximo autorizado para cada papelera:"
+
+#~ msgid "Desktop-less support"
+#~ msgstr "Soporte para ambientes sin escritorio"
+
+#~ msgid ""
+#~ "Only use this if you notice that the applet can't display the trash on click."
+#~ msgstr ""
+#~ "Úselo sólo si nota que el aplique no puede mostrar el contenido de la "
+#~ "papelera al pulsar sobre él."
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "Navegador de archivos alternativo para mostrar la papelera:"
+
+#~ msgid "Delay between measurements:"
+#~ msgstr "Intervalo entre mediciones:"
+
+#~ msgid "Name of an image for the 'empty' icon :"
+#~ msgstr "Nombre de la imagen para el icono «vacío»:"
 
 #~ msgid "No task is sheduled for today."
 #~ msgstr "No hay tareas para hoy."
 
 #~ msgid "No task is sheduled for the next 7 days."
 #~ msgstr "No hay tareas programadas para los siguientes 7 dias."
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "Dimencion del desklet (ancho x alto):"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
+#~ msgstr ""
+#~ "Dependiendo de su administrador de ventanas, usted puede redimencionarlo con "
+#~ "ALT + click del medio ó ALT + click por ejemplo."
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr ""
+#~ "Dependiendo de su administrador de ventanas, usted puede moverlo con ALT + "
+#~ "click"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "Posicion del desklet (x ; y):"
+
+#~ msgid "Visibility :"
+#~ msgstr "Visibilidad:"
+
+#~ msgid ""
+#~ "If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ msgstr ""
+#~ "Si esta bloqueado, el desklet no puede ser movido simplemente arrastrando "
+#~ "con el botón izquierdo del ratón. Por supuesto usted aun puede moverlo con "
+#~ "ALT + click"
+
+#~ msgid "in pixels. Use this to adjust the right position of the drawings."
+#~ msgstr "En pixeles. Usar para ajustar la posición derecha de los objetos."
+
+#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
+#~ msgstr "En pixeles. Usar para ajustar la posición inferior de los objetos."
+
+#~ msgid "Background tansparency :"
+#~ msgstr "Transparencia de fondo:"
+
+#~ msgid "in pixels. Use this to adjust the left position of the drawings."
+#~ msgstr "En pixeles. Usar para ajustar la posición izquierda de los objetos."
+
+#~ msgid "in pixels. Use this to adjust the top position of the drawings."
+#~ msgstr "En pixeles. Usar para ajustar la posición superior de los objetos."
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
+#~ msgstr ""
+#~ "Imagen que se mostrará encima de los objetos, como un reflejo por ejemplo. "
+#~ "Dejar en blanco para no usar ninguna."
+
+#~ msgid "Choose a decoration theme for this desklet :"
+#~ msgstr "Seleccione un tema de decoración para este desklet:"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the drawings, like a frame for "
+#~ "exemple. Let empty to not use any."
+#~ msgstr ""
+#~ "Es una imagen que se mostrará debajo de los objetos, como un marco por "
+#~ "ejemplo. Dejar vacío para no usar ninguna."
+
+#~ msgid "Menus to control your session, connection state, etc."
+#~ msgstr "Menús de control de sesión, estado de conexión, etc."
+
+#~ msgid "Indicator-Menus"
+#~ msgstr "Menús de indicadores"
+
+#~ msgid ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
+#~ msgstr ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "¿Está separado del lanzador?"
+
+#~ msgid "On Widget Layer"
+#~ msgstr "Sobre la capa de Widgets"
+
+#~ msgid "Add a workspace"
+#~ msgstr "Agregar un escritorio"
+
+#~ msgid "Remove last workspace"
+#~ msgstr "Eliminar ultimo escritorio"
+
+#~ msgid "Move current workspace to this workspace"
+#~ msgstr "Mover el escritorio actual a este escritorio"

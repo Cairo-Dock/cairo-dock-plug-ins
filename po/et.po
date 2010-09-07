@@ -1,72 +1,70 @@
-# German translation for cairo-dock-plug-ins
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Estonian translation for cairo-dock-plug-ins
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
-"Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-08-29 00:59+0000\n"
-"PO-Revision-Date: 2010-09-03 05:05+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
-"Language-Team: German <de@li.org>\n"
+"PO-Revision-Date: 2010-09-05 18:22+0000\n"
+"Last-Translator: lyyser <Unknown>\n"
+"Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-04 04:53+0000\n"
+"X-Launchpad-Export-Date: 2010-09-06 05:07+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
-msgstr "Animierte Symbole"
+msgstr "Animeeritud ikoonid"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr ""
-"Diese Erweiterung stellt viele unterschiedliche Animationen für Ihre Dock-"
-"Symbole zur Verfügung."
+msgstr "See vidin pakub palju erinevaid animatsioone sinu ikoonidele."
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
-msgstr "Springen"
+msgstr "Tagasipõrge"
 
 #: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
-msgstr "Rotieren"
+msgstr "Pööra"
 
 #: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
-msgstr "Blinken"
+msgstr "Vilkuv"
 
 #: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
-msgstr "Pulsieren"
+msgstr "Pulseerimine"
 
 #: ../Animated-icons/src/applet-init.c:60 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
-msgstr "Wackeln"
+msgstr "Värisemine"
 
 #: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
-msgstr "Welle"
+msgstr "Lainetus"
 
 #: ../Animated-icons/src/applet-init.c:62 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
-msgstr "Punkt"
+msgstr "Laik"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -76,95 +74,87 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Ein lebendiger Pinguin für das Dock.\n"
-"Linksklick für einen Animationswechsel,\n"
-"Rechtsklick um ihn zu stören\n"
-"Die TuX-Grafiken sind von Pingus übernommen, andere Charaktere stehen zur "
-"Verfügung und können leicht hinzugefügt werden."
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
-msgstr ""
+msgstr "Cairo-Pingviin"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
-msgstr "Hey, hier bin ich!"
+msgstr "Tere, ma olen siin!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "Sorry, ich bin gerade beschäftigt."
+msgstr "Kahju, aga ma olen praegu hõivatud."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Ich habe keine Zeit mit dir zu spielen, ich muss diese ganzen Symbole "
-"ausgraben."
+"Mul pole aega sinuga mängida, ma pean kaevama ja mineerima kõik need ikoonid."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
-msgstr "Dein Dock ist so unordentlich! Lass mich aufräumen."
+msgstr "Sinu dokk on nii sassis! Las ma korrastan seda."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin!"
-msgstr "Gib zu, ich bin dir als Pinguin überlegen!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me?!"
-msgstr "Warte, du willst mich töten?!"
+msgstr "Oota, kas sa tahad mind ära tappa?!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how painful it is to be clicked on??"
-msgstr "Weißt du, wie sehr es weh tut, geklickt zu werden?!"
+msgstr "Kas sa tead kui valus on kui sinu peale vajutatakse??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha!"
-msgstr "Jetzt ist es mein Dock, muhahaha!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate!"
-msgstr "Ich will ein Pirat sein!"
+msgstr "Ma tahan piraadiks saada!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass!"
-msgstr "Du kannst nicht vorbei!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father!"
-msgstr "Ich bin dein Vater!"
+msgstr "Ma olen su isa!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
 msgstr ""
-"Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
-"Pinky: Wir versuchen, das Dock an uns zu reißen!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
-msgstr "Für Aiur!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:123
 msgid "Hey, you there!"
-msgstr "Hey, du da!"
+msgstr "Hei sina seal!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
-msgstr "Aufwachen"
+msgstr "Äratus"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
-msgstr "Still halten"
+msgstr "Ole vait"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:134
 #: ../Scooby-Do/data/messages:101
 msgid "Start XPenguins"
-msgstr "XPenguins starten"
+msgstr "Käivita XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:135
 msgid "Stop XPenguins"
-msgstr "XPenguins stoppen"
+msgstr "Sule XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:158
 #: ../Cairo-Penguin/src/applet-notifications.c:160
@@ -173,7 +163,7 @@ msgstr "Zzzzz"
 
 #: ../Clipper/src/applet-config.c:33 ../Clipper/src/applet-notifications.c:33
 msgid "No items yet."
-msgstr "Noch keine Einträge."
+msgstr ""
 
 #: ../Clipper/src/applet-init.c:32
 msgid ""
@@ -185,67 +175,54 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
-"Diese Minianwendung speichert die Zwischenablage und die Mausmarkierung,\n"
-"sodass sie schnell abgerufen werden können. Es ist ein Klon des "
-"wohlbekannten Klipper.\n"
-"Sie unterstützt die Zwischenablage, die Mausmarkierung, vordefinierte "
-"Aktionen sowie dauerhafte Einträge.\n"
-"Per Linksklick wird die Chronik der Zwischenablage und der Mausmarkierungen "
-"aufgerufen.\n"
-"Zum Erstellen von dauerhaften Einträgen einen Textausschnitt mit der Maus "
-"auf das Symbol ziehen, Aufrufen per Mittelklick."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
-msgstr ""
+msgstr "Lõikepuhvri ajalugu"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
-"Keine dauerhaften Einträge.\n"
-"Zum Erstellen einen Textausschnitt mit der Maus auf das Symbol ziehen."
 
 #: ../Dbus/src/applet-init.c:32
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"Dieses Plugin ermöglicht eine Interaktion mit externen Anwendungen.\n"
-"Die Kommunikation findet über D-Bus statt."
+"See plugin  lubab välistel rakendustel suhelda omavahel \n"
+"dokil. Suhtlus toimub mõlemas suunas läbi Dbus-i."
 
 #: ../Dbus/src/interface-applet-signals.c:385
 msgid "About this applet"
-msgstr "Info zu dieser Minianwendung"
+msgstr "Teave sellest vidinast"
 
 #: ../Dbus/src/interface-applet-signals.c:473
 msgid "Sorry, this module couldn't be added."
-msgstr "Entschuldigung, aber dieses Modul kann nicht hinzugefügt werden."
+msgstr "Vabandust, seda moodulit ei saanud lisada."
 
 #: ../Dbus/src/interface-applet-signals.c:477
 #: ../Dbus/src/interface-applet-signals.c:483
 msgid "The module has been added, but couldn't be launched."
-msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
+msgstr "Moodul lisati, kuid seda ei saa käivitada."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
 msgid ""
 "The applet '%s' has been succefully updated and automatically reloaded"
-msgstr ""
-"Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
+msgstr "Vidin '%s' uuendati edukalt ja laaditi automaatselt uuesti"
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
-msgstr ""
-"Das Applet '%s' wurde erfolgreich installiert und automatisch gestartet."
+msgstr "Vidin '%s' paigaldati edukalt ja käivitati automaatselt"
 
 #: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:56
 #: ../System-Monitor/src/applet-cpusage.c:61
 msgid "day(s)"
-msgstr "Tag(e)"
+msgstr "päev(ad)"
 
 #: ../Doncky/src/applet-init.c:35
 msgid ""
@@ -255,12 +232,6 @@ msgid ""
 "  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
 "  - Middle-clic to reload values"
 msgstr ""
-"Dieses Applet erlaubt es Ihnen Texte zu schreiben und Ihr System zu "
-"überwachen\n"
-"mit einem \"Textstil-Desklet\".\n"
-"Benutzung:\n"
-"  - MUSS VOM DOCK ABGEHÄNGT WERDEN, UM ZU FUNKTIONIEREN!\n"
-"  - Mit dem mittleren Maustasten werden die Werte neu geladen"
 
 #: ../Doncky/src/applet-top.c:287
 #: ../System-Monitor/src/applet-notifications.c:49
@@ -271,7 +242,7 @@ msgstr "Mb"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
-msgstr "Ordner"
+msgstr "Kaustad"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
@@ -283,16 +254,21 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
+"See vidin impordib kaustu dokile\n"
+"Sa võid lisada selle vidina instantse nii palju kui vaja, igaüks erineva "
+"kaustaga.\n"
+"Kausta lisamiseks dokile:\n"
+" - aktiveeri vidin, ava selle seadistuspaneel ja lisa kaust\n"
+" - või lihtsalt lohista kaust dokile.\n"
+"Hiire keskmise nuppu vajutamine avab kausta.\n"
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr ""
-"Die Konfiguration des Applets öffnen, um einen zu importierenden Ordner zu "
-"öffnen."
+msgstr "Kausta importimiseks ava vidina seadistuspaneel."
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
-msgstr "Ordner ist leer oder nicht lesbar."
+msgstr "Tühi või loetamatu kaust."
 
 #: ../Folders/src/applet-notifications.c:193
 #, c-format
@@ -301,21 +277,21 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
-"Soll die Datei\n"
+"Sa oled kustutamas faili\n"
 "  (%s)\n"
-"von der Festplatte gelöscht werden?"
+"oma kõvakettalt. Oled kindel?"
 
 #: ../Folders/src/applet-notifications.c:203
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
-"Warnung: Diese Datei konnte nicht gelöscht werden.\n"
-"Bitte überprüfen Sie die Zugriffsrechte der Datei."
+"Hoiatus: ei saa kustutada faili.\n"
+"Palun kontrolli faili õiguseid."
 
 #: ../Folders/src/applet-notifications.c:216
 msgid "Rename to:"
-msgstr "Umbenennen in:"
+msgstr "Nimeta ümber:"
 
 #: ../Folders/src/applet-notifications.c:223
 #, c-format
@@ -324,13 +300,14 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Warnung: %s konnte nicht umbenannt werden.\n"
-"Bitte prüfen Sie die Zugriffsrechte der Datei \n"
-"und ob der neue Name nicht bereits existiert."
+"Hoiatus: ei saanud ümbernime-\n"
+"tada %s.\n"
+"Kontrolli faili õiguseid \n"
+"ja et antud nimi ei ole kasutuses."
 
 #: ../Folders/src/applet-notifications.c:262
 msgid "Enter a file name:"
-msgstr "Geben Sie einen Dateinamen ein:"
+msgstr "Sisesta faili nimi:"
 
 #: ../Folders/src/applet-notifications.c:270
 #, c-format
@@ -339,37 +316,37 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Achtung: %s konnte nicht erstellt werden.\n"
-"Überprüfen Sie die Zugriffsberechtigungen \n"
-"und ob der Dateiname bereits vorhanden ist."
+"Hoiatus: ei saanud luua %s.\n"
+"Kontrolli faili õiguseid \n"
+"ja et nimi juba ei eksisteeri."
 
 #: ../Folders/src/applet-notifications.c:319
 msgid "Open with"
-msgstr "Öffnen mit"
+msgstr "Ava koos"
 
 #: ../Folders/src/applet-notifications.c:352
 msgid "Delete this file"
-msgstr "Diese Datei löschen"
+msgstr "Kustuta see fail"
 
 #: ../Folders/src/applet-notifications.c:354
 msgid "Rename this file"
-msgstr "Diese Datei umbenennen"
+msgstr "Nimet ümber see fail"
 
 #: ../Folders/src/applet-notifications.c:356
 msgid "Move this file"
-msgstr ""
+msgstr "Liiguta seda faili"
 
 #: ../Folders/src/applet-notifications.c:358
 msgid "Properties"
-msgstr "Eigenschaften"
+msgstr "Seaded"
 
 #: ../Folders/src/applet-notifications.c:360
 msgid "Create a new file"
-msgstr "Neue Datei erstellen"
+msgstr "Loo uus fail"
 
 #: ../Folders/src/applet-notifications.c:364
 msgid "Open the folder (middle-click)"
-msgstr ""
+msgstr "Ava kaust ( keskmine hiireklahv)"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -379,97 +356,94 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
-"Zeigt das Anwendungen-Menü und die Zuletzt geöffneten Dokumente an.\n"
-"Kompatibel zu jedem XDG-konformen Menü (Gnome, Xfce, KDE, ...).\n"
-"Mittelklick zum Öffnen eines Schnellstart-Dialogs (auch mit "
-"Tastenkombinationen wie ALT+F2 aufrufbar).\n"
-"Auch für das Öffnen des Menüs kann eine Tastenkombination gewählt werden "
-"(wie ALT+F1)."
+"Kuvab üldise rakenduste menüü ja hiljuti kasutatud failide nimekirja.\n"
+"Töötab iga XDG-ga ühilduva menüüga (Gnome, XFCE, KDE,...)\n"
+"Keskmise hiirklahv avab dialoogiakna käskude kiireks käivitamiseks (võid "
+"luua ka kiirklahvi, nt ALT+F2) \n"
+"Menüü kuvamiseks võite ka luua kiirklahvi (ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
-msgstr "Menü \"Anwendungen\""
+msgstr "Rakenduste menüü"
 
 #: ../GMenu/src/applet-notifications.c:147
 msgid "Quick launch"
-msgstr "Anwendung ausführen"
+msgstr "Kiirkäivitus"
 
 #: ../GMenu/src/applet-notifications.c:148
 msgid "Configure menu"
-msgstr "Menü konfigurieren"
+msgstr "Seadete menüü"
 
 #: ../GMenu/src/applet-notifications.c:149
 msgid "Clear recent"
-msgstr "Liste der zuletzt geöffneten Dokumente löschen"
+msgstr "Tühjenda hiljutised"
 
 #: ../GMenu/src/applet-recent.c:56
 msgid "Recent Documents"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr "Hiljutised dokumendid"
 
 #: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents?"
-msgstr "Liste der zuletzt geöffneten Dokumente löschen?"
+msgstr "Tühjendan hiljuti kasutatud dokumendid?"
 
 #: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
 msgid "Enter a command to launch:"
-msgstr "Auszuführender Befehl:"
+msgstr "Sisesta käsk käivitamiseks:"
 
 #: ../MeMenu/src/applet-init.c:31
 msgid "Me Menu"
-msgstr ""
+msgstr "Minu menüü"
 
 #: ../MeMenu/src/applet-init.c:34
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
-"Ein Menü, das Ihnen den schnellen Zugriff auf ihre Informationen, Ihren "
-"Anwesenheitsstatus und ihre Freunde gestattet."
+"See menüü  lubab kiiret juurdepääsu oma andmetele, võrguolekule ja sõpradele."
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr "Es scheint das, dass Me-Menu nicht auf dem System installiert ist."
+msgstr "Tundub, et Me-Menu ei ole paigaldatud."
 
 #: ../Messaging-Menu/src/applet-init.c:31
 msgid "Messaging Menu"
-msgstr "Nachrichten Menü"
+msgstr "Suhtlusmenüü"
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
 msgstr ""
-"Ein Menü das über neue Nachrichten von Mail oder Chat Programmen "
-"benachrichtigt.\n"
-"z.B. Evolution, Pidgin, Empathy, usw."
+"See menüü teavitab sind meili- ja suhtlusprogrammide uutest sõnumitest.\n"
+"Siia hulka kuuluvad Evolution, Pidgin, Empathy, jne"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid "It seems that the Messaging-Menu is not installed on your system"
-msgstr "Es scheint das, dass Me-Menu nicht auf dem System installiert ist."
+msgstr "Tundub, et  Messaging-Menu ei ole sinu süsteemi paigaldatud"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
-msgstr "Die Netzwerkverbindung wurde deaktiviert."
+msgstr "Võrguühenduse olek muutus mitteaktiivseks."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr "Verbinde..."
+msgstr "Ühendumine..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
-msgstr "Netzwerkverbindung wurder hergestellt"
+msgstr "Võrguühendus loodud."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network connection state changed to disconnected."
-msgstr "Verbindung zum Netzwerk wurde getrennt."
+msgstr "Võrguühendus seisund muudeti lahtiühendatuks."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been plugged"
-msgstr "Ein Kabel wurde eingesteckt"
+msgstr "Võrgukaabel ühendatud"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been unplugged"
-msgstr "Ein Kabel wurde entfernt"
+msgstr "Võrgukaabel lahti ühendatud"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 #: ../powermanager/src/powermanager-draw.c:136 ../wifi/src/applet-draw.c:31
@@ -478,65 +452,65 @@ msgstr "Ein Kabel wurde entfernt"
 #: ../dnd2share/data/messages:111 ../dustbin/data/messages:101
 #: ../wifi/data/messages:131 ../wifi/data/messages:181
 msgid "None"
-msgstr "Keines"
+msgstr "Pole"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Very Low"
-msgstr "Sehr schwach"
+msgstr "Väga madal"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Low"
-msgstr "Schwach"
+msgstr "Madal"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Middle"
-msgstr "Mittel"
+msgstr "Keskel"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Good"
-msgstr "Gut"
+msgstr "Hea"
 
 #: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:31
 msgid "Excellent"
-msgstr "Hervorragend"
+msgstr "Suurepärane"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Not connected"
-msgstr "Nicht verbunden"
+msgstr "Pole ühendatud"
 
 #: ../Network-Monitor/src/applet-draw.c:30
 msgid "Wired connection"
-msgstr "Kabelgebundene Verbindung"
+msgstr "Traadiga ühendus"
 
 #: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
-"Prüfe Verbindung...\n"
-"Bitte versuchen Sie es in ein paar Sekunden erneut"
+"Kontrollin ühendust...\n"
+"Palun proovi mõne sekundi pärast uuesti."
 
 #: ../Network-Monitor/src/applet-draw.c:131
 msgid "Wired Connection."
-msgstr "Kabelgebundene Verbindung."
+msgstr "Traadiga ühendus"
 
 #: ../Network-Monitor/src/applet-draw.c:133
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:160
 msgid "Interface"
-msgstr "Schnittstelle"
+msgstr "Kujundus"
 
 #: ../Network-Monitor/src/applet-draw.c:134
 #: ../Network-Monitor/src/applet-draw.c:146
 msgid "Speed"
-msgstr "Geschwindigkeit"
+msgstr "Kiirus"
 
 #: ../Network-Monitor/src/applet-draw.c:143 ../wifi/src/applet-draw.c:156
 msgid "Wifi enabled."
-msgstr "Wifi aktiviert."
+msgstr "Wifi lubatud."
 
 #: ../Network-Monitor/src/applet-draw.c:145 ../wifi/src/applet-draw.c:158
 msgid "Network ID"
-msgstr "Netzwerk-ID"
+msgstr "Võrgu ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
 #: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
@@ -544,19 +518,19 @@ msgstr "Netzwerk-ID"
 #: ../powermanager/src/powermanager-draw.c:164
 #: ../powermanager/src/powermanager-draw.c:193
 msgid "Unknown"
-msgstr "Unbekannt"
+msgstr "Tundmatu"
 
 #: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:159
 msgid "Access point"
-msgstr "Zugangspunkt"
+msgstr "Tugijaam (AP)"
 
 #: ../Network-Monitor/src/applet-draw.c:149 ../wifi/src/applet-draw.c:161
 msgid "Signal Quality"
-msgstr "Signalqualität"
+msgstr "Signaali kvaliteet"
 
 #: ../Network-Monitor/src/applet-init.c:31
 msgid "Network-Monitor"
-msgstr "Netzwerkmonitor"
+msgstr "Võrgumonitor"
 
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
@@ -567,19 +541,12 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
-"Dieses Applet erlaubt es Ihnen ihre Netzwerkverbindung(en) zu überwachen.\n"
-"Es zeigt die Download/Upload Geschwindigkeiten und die Signalqualität der "
-"kabellosen Verbindung.\n"
-"Wenn Sie einen Netzwerk-Manager benutzen, können Sie auch das kabellose "
-"Netzwerk festlegen.\n"
-"Links-Klicken Sie um mehr Informationen zu zeigen, Scrollen Sie über das "
-"Icon, um zwischen der Netzgeschwindigkeit und der Signalstärke zu wechseln"
 
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
 #: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
 msgid "B"
-msgstr "B"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:58
@@ -607,37 +574,37 @@ msgstr "TB"
 #: ../System-Monitor/src/applet-monitor.c:82
 #: ../netspeed/src/applet-netspeed.c:196
 msgid "Loading"
-msgstr "Laden"
+msgstr "Laadimine"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
 #: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
-msgstr "Suche nach drahtlosen Peripheriegeräten"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:101
 #: ../wifi/src/applet-notifications.c:76
 msgid "Network Administration"
-msgstr "Netzwerk Administration"
+msgstr "Võrgu administraator"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Activate network"
-msgstr "Aktiviere Netzwerkverbindung"
+msgstr "Lülita võrk sisse"
 
 #: ../Network-Monitor/src/applet-notifications.c:105
 msgid "Deactivate network"
-msgstr "Deaktiviere Netzwerkverbindung"
+msgstr "Lülita võrk välja"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Deactivate wifi"
-msgstr "Deaktiviere WiFi"
+msgstr "Lülita välja wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:109
 msgid "Activate wifi"
-msgstr "Aktiviere WiFi"
+msgstr "Lülita wifi sisse"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr "RSSreader"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -651,61 +618,60 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
-"Dieses Applet ist ein RSS/Atom Feed-Reader.\n"
-"Sie können es so oft öffnen, wie Sie wollen.\n"
-"BENUTZUNG:\n"
-" - Linke Maustaste : Zeigt alle Feeds in einem Dialogfenster\n"
-" - Mittlere Maustaste : Erneuert alle Feeds.\n"
-" - Scrollrad auf dem Desklet : Wechselt durch die Feeds.\n"
-" - Ziehen und legen Sie eine gültige URL auf dem Icon ab um sie auszulesen\n"
-"    oder kopieren Sie sie und benutzen Sie \"Neue RSS Url hinzufügen\" im "
-"Menü\n"
-"    oder bearbeiten Sie das Einstellungs-Panel"
+"See vidin on RSS/Atom uudistevoo lugeja.\n"
+"Saa võid luua vidinast nii palju eksemplare kui tahad.\n"
+"KASUTUS:\n"
+" - Vasak hiireklahv : kuvab uudistevoo read täielikult dialoogiaknas. \n"
+" - Keskmine hiireklahv : uuendab uudistevoogu.\n"
+" - Kerimine vidinal : kerib uudistevoo ridu.\n"
+" - Lohista ja vabasta kehtiv uudistevoo URL ikoonile,\n"
+"    või kopeeri ja kasuta \"Kleebi uus RSS Url\" menüükäsku.   \n"
+"    või muuda seadistuspaneeli vastaval."
 
 #: ../RSSreader/src/applet-init.c:62 ../RSSreader/src/applet-init.c:122
 #: ../RSSreader/src/applet-notifications.c:64
 msgid "Retrieving data..."
-msgstr "Empfange Daten ..."
+msgstr "Andmete tõmbamine..."
 
 #: ../RSSreader/src/applet-notifications.c:77
 msgid "It doesn't seem to be a valid URL."
-msgstr "Die URL scheint nicht gültig zu sein."
+msgstr "Tundub, et URL pole kehtiv."
 
 #: ../RSSreader/src/applet-notifications.c:122
 msgid "Paste a new RSS Url (drag and drop)"
-msgstr "Fügen Sie einen neuen RSS-Link ein"
+msgstr "Kleebi uus RSS link (lohista ja vabasta ikoonile)"
 
 #: ../RSSreader/src/applet-notifications.c:125
 msgid "Open with your web browser"
-msgstr "Mit dem Web-Browser öffnen"
+msgstr "Ava veebilehitsejaga"
 
 #: ../RSSreader/src/applet-rss.c:391
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr "Warnung : Beim letzen Versuch konnten keine Daten empfangen werden."
+msgstr "Hoiatus: Ei suutnud hankida andmeid eelmisel katsel."
 
 #: ../RSSreader/src/applet-rss.c:426
 msgid "No URL is defined."
-msgstr "Es ist keine URL definiert."
+msgstr "URL ei ole määratud."
 
 #: ../RSSreader/src/applet-rss.c:427
 msgid "No data (no connection?)"
-msgstr "Keine Daten gefunden ( Verbindung inaktiv ?)"
+msgstr "Pole andmeid ( pole ühendust?)"
 
 #: ../RSSreader/src/applet-rss.c:445 ../RSSreader/src/applet-rss.c:465
 msgid "Invalid data (invalid RSS/Atom feed?)"
-msgstr "Unzulässige Daten (RSS/Atom feed ungültig ?)"
+msgstr "Vigased andmed ( vigane RSS/Atom uudistevoog?)"
 
 #: ../RSSreader/src/applet-rss.c:517
 msgid "No data"
-msgstr "Keine Daten"
+msgstr "Andmed puuduvad"
 
 #: ../RSSreader/src/applet-rss.c:556
 msgid "No modification"
-msgstr "Keine Veränderung"
+msgstr "Pole muutusi"
 
 #: ../RSSreader/src/applet-rss.c:582
 msgid "This RSS feed has been modified..."
-msgstr "Dieser RSS-Feed wurde verändert..."
+msgstr "See RSS-voog on muudetud..."
 
 #: ../RSSreader/src/applet-rss.c:731
 msgid ""
@@ -713,10 +679,9 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
-"Keine Adresse ausgewählt.\n"
-"Es kann eine durch Kopieren in die Zwischenablage\n"
-" und Auswählen von \"Einfügen der RL(?)\"\n"
-" im Menü festgelegt werden"
+"URL pole määratud\n"
+"Sa võid luua uue kopeerides URL-i lõikepuhvrist,\n"
+"ja valides menüüst \"Kleebi URL\"."
 
 #: ../RSSreader/src/applet-rss.c:737
 msgid ""
@@ -724,80 +689,80 @@ msgid ""
 "Did you set a valid RSS feed?\n"
 "Is your connection alive?"
 msgstr ""
-"Keine Daten empfangen.\n"
-"Haben Sie einen gültigen RSS feed eingestellt ?\n"
-"Ist ihre Verbindung aktiv ?"
+"Pole andmeid\n"
+"Kas sa valisid kehtiva RSS- uudistevoo?\n"
+"Kas internetiühendus on aktiivne?"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr "Der Wert %s wurde in Ihre Zwischenablage kopiert."
+msgstr "Väärtus %s on kopeeritud lõikepuhvrisse."
 
 #: ../Scooby-Do/src/applet-backend-command.c:95
 msgid "Execute"
-msgstr "Ausführen"
+msgstr "Käivita"
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr "Ein Terminal-Fenster hier öffnen"
+msgstr "Ava terminal siin"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
-msgstr "Zip-Ordner"
+msgstr "Zip kaust"
 
 #: ../Scooby-Do/src/applet-backend-files.c:177
 #: ../Scooby-Do/src/applet-backend-files.c:251
 msgid "Move to"
-msgstr "Verschieben nach"
+msgstr "Liiguta kuhu"
 
 #: ../Scooby-Do/src/applet-backend-files.c:185
 #: ../Scooby-Do/src/applet-backend-files.c:259
 #: ../Scooby-Do/src/applet-backend-firefox.c:374
 msgid "Copy URL"
-msgstr "URL kopieren"
+msgstr "Kopeeri URL"
 
 #: ../Scooby-Do/src/applet-backend-files.c:227
 #: ../Scooby-Do/src/applet-backend-recent.c:145
 msgid "Open location"
-msgstr "Ort öffnen"
+msgstr "Ava asukoht"
 
 #: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip file"
-msgstr "Zip-Datei"
+msgstr "Zip fail"
 
 #: ../Scooby-Do/src/applet-backend-files.c:243
 msgid "Mail file"
-msgstr "Mail-Datei"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
-msgstr "Wähle ein Verzeichnis"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:524
 msgid "Files"
-msgstr "Dateien"
+msgstr "Failid"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:358
 msgid "Open"
-msgstr "Öffnen"
+msgstr "Ava"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:366
 msgid "Open in new window"
-msgstr "In neuem Fenster öffnen"
+msgstr "Ava uues aknas"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
 #: ../dnd2share/src/applet-notifications.c:461
 msgid "Open file"
-msgstr "Öffne Datei"
+msgstr "Ava fail"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:496
 #: ../Scooby-Do/data/messages:105
 msgid "Firefox bookmarks"
-msgstr "Firefox Lesezeichen"
+msgstr "Firefox'i järjehoidjad"
 
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:107
 msgid "Recent files"
-msgstr "Zuletzt verwendete Dateien"
+msgstr "Viimati kasutatud"
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Wikipedia"
@@ -813,7 +778,7 @@ msgstr "Google"
 
 #: ../Scooby-Do/src/applet-backend-web.c:125
 msgid "Search on the web"
-msgstr "Im Web suchen"
+msgstr "Otsing veebis"
 
 #: ../Scooby-Do/src/applet-backend-web.c:139
 msgid "Mediadico"
@@ -851,48 +816,18 @@ msgid ""
 "for middle click, and Ctrl+Enter for left click\n"
 "Escape or the same shortkey will cancel."
 msgstr ""
-"Dieses Plugin erlaubt es Ihnen verschiedene Aktionen über die Tastatur "
-"auszuführen\n"
-"Es gibt 2 verschiedene Modi, welche ducrch eine Tastenkombination aktiviert "
-"werden können:\n"
-"\n"
-"- der Finder Modus (Standard Tastenkombination : STRG + Enter):\n"
-"    Dieser Modus lässt Sie Programme starten, Dateien suchen, Firefox "
-"Lesezeichen starten, Befehle und sogar \n"
-"    mathemtische Berechnungen ausführen.\n"
-"    Mögliche Ergebnisse werden während Sie tippen angezeigt.\n"
-"    Das erste Ergebnis jeder Kategorie wird in der Hauptliste angezeigt.\n"
-"    Mit den Hoch- und Runter-Tasten können sie durch die Liste navigieren.\n"
-"    Die Links- und Rechts-Tasten erlauben es Inen die Kategorien zu wechseln "
-"oder verschiedene Aktionen anzuzeigen(falls\n"
-"    ein keiner Pfeil neben dem hervorgehobenen Text zu sehen ist).\n"
-"    Wenn Sie in einer Kategorie sind, können Sie durch tippen einzelner "
-"Buchstaben die Ergebnisse eingrenzen.\n"
-"    Mit Enter können sie Aktionen bestätigen, durch drücken der ALT oder "
-"SIFT Taste bleibt de Liste geöffnet.\n"
-"\n"
-"- Navigations Modus (Standard Tastenkombination : STRG + F9):\n"
-"    Mit den Pfeiltasten können sie durch das Dock und seine SUb-Docks "
-"navigieren.\n"
-"    Oder sie tippen den Namen eines Starters und können mit der Tabulator "
-"Taste zum nächsten passenden Starter springen.\n"
-"    Enter entspricht dem anklicken des Icons, SHIFT + ENTER entspricht SHIFT "
-"+ KLick eines Icons, ALT + ENTER entspricht\n"
-"    einem Mittelklick und CTRL + ENTER einem Linksklick.\n"
-"ESCAPE oder die vorher benutzte Tastenkombination zum Starten des "
-"Tastatrmodus beendet diesen."
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
-msgstr "(F1) Passender Fall"
+msgstr "(F1) Tõstutundlik"
 
 #: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
-msgstr "(F2) Musik"
+msgstr "(F2) Muusika"
 
 #: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
-msgstr "(F3) Bild"
+msgstr "(F3) Pilt"
 
 #: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
@@ -900,41 +835,41 @@ msgstr "(F4) Video"
 
 #: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
-msgstr "(F5) Text"
+msgstr "(F5) Tekst"
 
 #: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
-msgstr "(F6) HTML"
+msgstr "(F6) Html"
 
 #: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
-msgstr "(F7) Quellen"
+msgstr "(F7) Allikmaterjal"
 
 #: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
-msgstr "Kein Ergebnis"
+msgstr "Pole tulemust"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "results"
-msgstr "Ergebnisse"
+msgstr "tulemused"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "result"
-msgstr "Ergebnis"
+msgstr "tulemus"
 
 #: ../Scooby-Do/src/applet-search.c:132
 msgid "Searching ..."
-msgstr "Suche..."
+msgstr "Otsin ..."
 
 #: ../Scooby-Do/src/applet-session.c:50
 msgid "Enter your search"
-msgstr "Geben Sie Ihre Suche ein"
+msgstr "Sisesta oma otsing"
 
 #: ../Status-Notifier/src/applet-init.c:31
 msgid "Status Notifier"
-msgstr "Status-Benachrichtigung"
+msgstr "Oleku teavitus"
 
 #: ../Status-Notifier/src/applet-init.c:34
 msgid ""
@@ -943,14 +878,10 @@ msgid ""
 "It is designed to work on any desktop that supports the latest systray "
 "specifications (KDE, Gnome, etc)"
 msgstr ""
-"Ein <b>Benachrichtigungsfeld</b> für Ihr Dock\n"
-"Auch »Systray« genannt.\n"
-"Es wurde für Arbeitsumgebungen entworfen, welche die neuesten Systray-"
-"Spezifikationen zu unterstützen (KDE, Gnome, usw.)"
 
 #: ../System-Monitor/src/applet-init.c:30
 msgid "System Monitor"
-msgstr "Systemmonitor"
+msgstr "Süsteemi jälgija"
 
 #: ../System-Monitor/src/applet-init.c:33
 msgid ""
@@ -961,14 +892,12 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
-"Dieses Applet zeigt die Prozessorauslastung, Arbeitsspeicherverbrauch, "
-"Grafikkartentemperatur, etc.\n"
-"Mit der mittleren Maustaste auf das Symbol klicken um einige nützliche "
-"Informationen zu erhalten.\n"
-"Linksklick für eine Liste der Programme die am meisten Leistung "
-"verbrauchen.\n"
-"Es kann mehrere mehrere Male gestartet werden und dabei jeweils andere "
-"Informationen anzeigen."
+"See vidin kuvab CPU koormust, RAM-i kasutust , graafikakaardi temperatuuri, "
+"jne.\n"
+"Keskmise klahvi vajutus kuvab vajalikku infot. \n"
+"Vasaku hiireklahvi vajutus ikoonil kuvab enim resursse kasutavad "
+"programmid.\n"
+"Sa võid luua vidinast mitmeid koopiaid kuvades igaühel erinevaid väärtusi."
 
 #: ../System-Monitor/src/applet-notifications.c:43
 #: ../System-Monitor/src/applet-notifications.c:93
@@ -976,8 +905,8 @@ msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
 msgstr ""
-"Der Abruf eines oder mehrerer Werte schlug fehl.\n"
-"Die Daten, die nicht beschafft werden konnten, sollten entfernt werden."
+"Ühe või enama andmete soetamine ebaõnnestus.\n"
+"Sa peaksid eemaldama andmed mida ei saanud hankida."
 
 #: ../System-Monitor/src/applet-notifications.c:49
 msgid "Gb"
@@ -985,65 +914,65 @@ msgstr "Gb"
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "GPU model"
-msgstr "GPU-Model"
+msgstr "GPU mudel"
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Video Ram"
-msgstr "Video-RAM"
+msgstr "Videomälu"
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Driver Version"
-msgstr "Treiber-Version"
+msgstr "Draiveri versioon"
 
 #: ../System-Monitor/src/applet-notifications.c:66
 msgid "Core Temperature"
-msgstr "Prozessortemperatur"
+msgstr "Tuuma temperatuur"
 
 #: ../System-Monitor/src/applet-notifications.c:77
 msgid "CPU model"
-msgstr "Prozessor-Modell"
+msgstr "CPU mudel"
 
 #: ../System-Monitor/src/applet-notifications.c:78
 msgid "Frequency"
-msgstr "Taktfrequenz"
+msgstr "Sagedus"
 
 #: ../System-Monitor/src/applet-notifications.c:79
 msgid "core(s)"
-msgstr "Kern(e)"
+msgstr "tuum(i)"
 
 #: ../System-Monitor/src/applet-notifications.c:80
 msgid "Uptime"
-msgstr "Betriebszeit"
+msgstr "Tööaeg"
 
 #: ../System-Monitor/src/applet-notifications.c:81
 msgid "Activity time"
-msgstr "Laufzeit"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:82
 msgid "Memory"
-msgstr "Speicher"
+msgstr "Mälu"
 
 #: ../System-Monitor/src/applet-notifications.c:83
 msgid "Available"
-msgstr "Verfügbar"
+msgstr "Saadaval"
 
 #: ../System-Monitor/src/applet-notifications.c:84
 msgid "Cached"
-msgstr "Zwischengespeichert"
+msgstr "Puhverdatud"
 
 #: ../System-Monitor/src/applet-notifications.c:85
 msgid "Buffers"
-msgstr "Ablagen"
+msgstr "Puhvrid"
 
 #: ../System-Monitor/src/applet-notifications.c:115
 #: ../netspeed/src/applet-notifications.c:70
 msgid "Monitor System"
-msgstr "Überwachsungssystem"
+msgstr "Süsteemi jälgija"
 
 #: ../System-Monitor/src/applet-nvidia.c:141
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Achtung ! Die Kerntemperatur der Grafikkarte hat %d°C erreicht."
+msgstr "Häire! Graafikakaardi tuuma temperatuur on saavutanud %d°C"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
@@ -1051,7 +980,7 @@ msgstr ""
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr "Dieses Applet zeigt eine Figur, die deine Maus beobachtet."
+msgstr ""
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -1062,12 +991,6 @@ msgid ""
 "You can also define a luminosity value that will be applied automatically on "
 "startup."
 msgstr ""
-"Stelle die Bildschirmhelligkeit direkt vom Dock aus ein.\n"
-"Hoch/Runter scrollen zum Erhöhen/Senken der Helligkeit.\n"
-"Linksklick zum Öffnen eines Einstellungsdialoges.\n"
-"Mittelklick um die Leuchtkraft für jede Farbe einzeln einzustellen.\n"
-"Es kann außerdem ein Helligkeitswert eingestellt werden, der bei jedem Start "
-"übernommen wird."
 
 #: ../Xgamma/src/applet-init.c:50
 msgid "Screen Luminosity"
@@ -1075,11 +998,11 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
-msgstr "Verwalten der Gamme-Einstellung:"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
-msgstr "Übernehmen der aktuellen Bildschirmhelligkeit beim Start"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1092,62 +1015,52 @@ msgid ""
 "mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
-"Dieses Applet erlaubt es, vom Dock aus die Lautstärke einzustellen.\n"
-"Scrolle auf dem Icon hoch/runter um die Lautstärke zu erhöhen/verringern.\n"
-"Auf das Icon klicken, um die Lautstärkekontrolle anzuzeigen oder zu "
-"verbergen (Hierfür kann außerdem eine Tastenkombination festgelegt werden)\n"
-"Der Dialog kann per Mausklick verborgen werden.\n"
-"Klick mit der mittleren Maustaste um die Stummschaltung zu aktivieren oder "
-"zu deaktivieren.\n"
-"Dieses Applet funktioniert mit dem ALSA-Tontreiber."
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
-msgstr ""
+msgstr "Heli juhtimine"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
-msgstr "Karte '%s' konnte nicht geöffnet werden"
+msgstr "Ma ei suutnud avada '%s' kaarti"
 
 #: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
-msgstr ""
-"Die Karte '%s' wurde geöffnet, ich konnte jedoch keine Informationen "
-"erhalten."
+msgstr "Kaardi '%s' avas, kuid ma ei saanud mingit infot"
 
 #: ../alsaMixer/src/applet-mixer.c:64
 msgid "I couldn't open the mixer"
-msgstr "Ich konnte den Mixer nicht öffnen."
+msgstr "Ma ei suutnud avada mikserit"
 
 #: ../alsaMixer/src/applet-mixer.c:71
 msgid "I couldn't attach the mixer to the card"
-msgstr "Der Mixer konnte keiner Soundkarte zugewiesen werden."
+msgstr "Ei saanud mikserit helikaardiga ühendada."
 
 #: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
-msgstr "Optionen konnten nicht registriert werden"
+msgstr "Ma ei suutnud registreerida valikut"
 
 #: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
-msgstr "Ich konnte den Mixer nicht laden."
+msgstr ""
 
 #: ../alsaMixer/src/applet-mixer.c:289
 msgid "Set up volume:"
-msgstr "Lautstärke einstellen :"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:57
 msgid "Adjust channels"
-msgstr "Bearbeiten der Kanaleinstellungen"
+msgstr "Reguleeri kanaleid"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Unmute"
-msgstr "Laut schalten"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:61
 msgid "Mute"
-msgstr "Stumm schalten"
+msgstr ""
 
 #: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
 #: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
@@ -1155,15 +1068,15 @@ msgstr "Stumm schalten"
 #: ../clock/src/applet-draw.c:353 ../clock/src/applet-draw.c:374
 #: ../clock/src/applet-task-editor.c:119
 msgid "No title"
-msgstr "Kein Titel"
+msgstr "Pealkirja pole"
 
 #: ../clock/src/applet-calendar.c:438
 msgid "years"
-msgstr "Jahre"
+msgstr "aastad"
 
 #: ../clock/src/applet-calendar.c:555
 msgid "Calendar and tasks"
-msgstr "Kalender und Aufgaben"
+msgstr "Kalender ja ülesanded"
 
 #: ../clock/src/applet-config.c:35 ../clock/data/messages:157
 msgid "Alarm"
@@ -1171,124 +1084,124 @@ msgstr "Alarm"
 
 #: ../clock/src/applet-config.c:35
 msgid "Time you want to be notified:"
-msgstr "Erinnerungszeit:"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
-msgstr "In der Form xx:xx. z.B.: 20:35 für 8:35pm"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "Never"
-msgstr "Niemals"
+msgstr "Mitte kunagi"
 
 #: ../clock/src/applet-config.c:35
 msgid "Day"
-msgstr "Tag"
+msgstr "Päev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr "Montag"
+msgstr "Esmaspäev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr "Dienstag"
+msgstr "Teisipäev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr "Mittwoch"
+msgstr "Kolmapäev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr "Donnerstag"
+msgstr "Neljapäev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr "Freitag"
+msgstr "Reede"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr "Samstag"
+msgstr "Laupäev"
 
 #: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr "Sonntag"
+msgstr "Pühapäev"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week Day"
-msgstr "Wochentag"
+msgstr "Nädalapäev"
 
 #: ../clock/src/applet-config.c:35
 msgid "Week End"
-msgstr "Wochenende"
+msgstr "Nädala lõpp"
 
 #: ../clock/src/applet-config.c:35
 msgid "Month"
-msgstr "Monat"
+msgstr "Kuu"
 
 #: ../clock/src/applet-config.c:35
 msgid "Repeat every:"
-msgstr "Erinnern alle:"
+msgstr "Korda iga:"
 
 #: ../clock/src/applet-config.c:35
 msgid "If every month, which day of the month?"
-msgstr "Falls monatlich, an welchem Tag des Monats?"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "Message you want to use to be notified:"
-msgstr "Meldung, die als Erinnerung angezeigt werden soll:"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "Tea Time!"
-msgstr "Tea Time!"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "Command to launch:"
-msgstr "Auszuführender Befehl:"
+msgstr ""
 
 #: ../clock/src/applet-config.c:35
 msgid "E.g.:"
-msgstr "z.B.:"
+msgstr "Nt. :"
 
 #: ../clock/src/applet-config.c:492 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
-msgstr "Suche nach dem Ort:"
+msgstr "Otsi oma asukoht:"
 
 #: ../clock/src/applet-draw.c:54
 msgid "1mn"
-msgstr "1min"
+msgstr ""
 
 #: ../clock/src/applet-draw.c:59
 msgid "1h"
-msgstr "1h"
+msgstr "1t"
 
 #: ../clock/src/applet-draw.c:82
 msgid "The following task was scheduled at"
-msgstr "Die folgende Aufgabe wurde beauftragt um"
+msgstr ""
 
 #: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:355
 #: ../clock/src/applet-draw.c:376
 msgid "Repeat this message every:"
-msgstr "Wiederhole diese Nachricht alle:"
+msgstr "Korda seda teadet iga:"
 
 #: ../clock/src/applet-draw.c:338
 msgid "This task will begin in 15 minutes:"
-msgstr "Diese Aufgabe wird in 15 Minuten beginnen:"
+msgstr ""
 
 #: ../clock/src/applet-draw.c:352
 msgid "It's time for the following task:"
-msgstr "Die folgende Aufgabe ist fällig:"
+msgstr ""
 
 #: ../clock/src/applet-draw.c:373
 msgid "Today is the following anniversary:"
-msgstr "Heute ist folgender Jahrestag:"
+msgstr "Täna on järgmine tähtpäev:"
 
 #: ../clock/src/applet-draw.c:373
 msgid "Tomorrow is the following anniversary:"
-msgstr "Morgen ist folgender Jahrestag:"
+msgstr "Homme on järgmine tähtpäev:"
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
-msgstr "Uhr"
+msgstr "kell"
 
 #: ../clock/src/applet-init.c:38
 msgid ""
@@ -1302,19 +1215,6 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
-"Dieses Applet zeigt Zeit, Datum und einen Kalender an.\n"
-"Zwei Ansichten sind verfügbar : <b>numerisch</b> und <b>analog</b>.\n"
-" Die analoge Ansicht ist zu den Cairo-Clock-Themen kompatibel, daher können "
-"Sie durch Abtrennen des Applets eine perfekte Kopie der Cairo-Clock "
-"erzeugen.\n"
-"Durch einen Linksklick wird ein <b>Kalender</b> angezeigt, in welchem Sie "
-"<b>Aufgaben verwalten können</b>.\n"
-"Außerdem werden Erinnerungen angezeigt, und die Anpassung von Zeit und Datum "
-"sind möglich.\n"
-"Ein Linksklick zeigt den Kalender an oder verbirgt ihn, ein Mittelklick "
-"stoppt die Benachrichtigung.\n"
-"Ein Doppelklick auf einen Tag ermöglicht die Bearbeitung der Aufgaben für "
-"diesen Tag."
 
 #: ../clock/src/applet-notifications.c:62
 msgid ""
@@ -1323,10 +1223,6 @@ msgid ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 msgstr ""
-"Für heute stehen keine Aufgaben an.\n"
-"\n"
-"Sie können Aufgaben hinzufügen, indem Sie zum Öffnen des Kalenders auf das "
-"Applet klicken und anschließend auf einen Tag doppelklicken."
 
 #: ../clock/src/applet-notifications.c:77
 msgid ""
@@ -1335,70 +1231,65 @@ msgid ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 msgstr ""
-"Für die nächsten 7 Tage stehen keine Aufgaben an.\n"
-"\n"
-"Sie können Aufgaben hinzufügen, indem Sie zum Öffnen des Kalenders auf das "
-"Applet klicken und anschließend auf einen Tag doppelklicken."
 
 #: ../clock/src/applet-notifications.c:90
 msgid "Set up time and date"
-msgstr "Stelle Datum und Zeit ein"
+msgstr "Sea kellaeg ja kuupäeva"
 
 #: ../clock/src/applet-notifications.c:91
 msgid "Show today's tasks"
-msgstr "Heutige Aufgaben anzeigen"
+msgstr "Näita tänaseid tegevusi"
 
 #: ../clock/src/applet-notifications.c:92
 msgid "Show this week's tasks"
-msgstr "Aufgaben für diese Woche anzeigen"
+msgstr "Näita selle nädala ülesandeid"
 
 #: ../clock/src/applet-task-editor.c:156
 msgid "Add a new task"
-msgstr "Neue Aufgabe hinzufügen"
+msgstr "Lisa uus ülesanne"
 
 #: ../clock/src/applet-task-editor.c:177
 msgid "Delete this task"
-msgstr "Diese Aufgabe löschen"
+msgstr "Kustuta see ülesanne"
 
 #: ../clock/src/applet-task-editor.c:215
 msgid "Don't repeat"
-msgstr "Nicht wiederholen"
+msgstr "Ära korrda"
 
 #: ../clock/src/applet-task-editor.c:221
 msgid "Each month"
-msgstr "Jeden Monat"
+msgstr "Igal kuul"
 
 #: ../clock/src/applet-task-editor.c:227
 msgid "Each year"
-msgstr "Jedes Jahr"
+msgstr "Igal aastal"
 
 #: ../clock/src/applet-task-editor.c:350
 msgid "each month"
-msgstr "jeden Monat"
+msgstr "igal kuul"
 
 #: ../clock/src/applet-task-editor.c:353
 msgid "each year"
-msgstr "jedes Jahr"
+msgstr "igal aastal"
 
 #: ../clock/src/applet-task-editor.c:391
 msgid "Right-click to add a new task."
-msgstr ""
-"Klicken Sie mit der rechten Maustaste, um eine neue Aufgabe hinzuzufügen."
+msgstr "Paremklõps uue ülesande lisamiseks."
 
 #: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:338
 #: ../RSSreader/data/messages:135
 msgid "Title"
-msgstr "Titel"
+msgstr "Pealkiri"
 
 #: ../clock/src/applet-task-editor.c:404
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:151
 msgid "Text"
-msgstr "Text"
+msgstr "Tekst"
 
 #: ../clock/src/applet-task-editor.c:411
 msgid "Time"
-msgstr "Zeit"
+msgstr "Aeg"
 
 #: ../clock/src/applet-task-editor.c:425
 msgid "Freq."
@@ -1406,7 +1297,7 @@ msgstr ""
 
 #: ../clock/src/applet-task-editor.c:432
 msgid "Tags"
-msgstr "Schlagwörter"
+msgstr "Sildid"
 
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
@@ -1420,70 +1311,61 @@ msgid ""
 "You can bind one of these actions with the middle-click.\n"
 "The configuration panel gives you some options to launch Compiz."
 msgstr ""
-"Dieses Applet ermöglicht es, Compiz und andere Fenstermanager zu verwalten.\n"
-"Die Unter-Docks erlauben den Zugriff auf den Konfigurationsmanager von "
-"Compiz, Emerald und einige grundlegende Aktionen mit Compiz.\n"
-"Eine dieser Vorgänge kann an den Klick mit der mittleren Maustaste gebunden "
-"werden.\n"
-"Das Konfigurationsfeld stellt  einige Optionen bereit um Compiz zu starten."
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Configure Compiz"
-msgstr "Konfiguriere compiz"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 #: ../compiz-icon/src/applet-notifications.c:178
 msgid "Emerald Manager"
-msgstr "Emerald-Manager"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Reload WM"
-msgstr "Lade den Fesntermanager neu"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
-msgstr "Darstellung"
+msgstr ""
 
 #: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:99
 msgid "Widget Layer"
-msgstr "Widget Layer"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:94
 msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
-"Um Compiz zu konfigurieren muss der Compiz-Einstellungsmanager installiert "
-"werden.\n"
-" Dies ist mit Hilfe von Synaptic möglich."
 
 #: ../compiz-icon/src/applet-notifications.c:179
 msgid "Reload Emerald"
-msgstr "Lade Emerald neu"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:183
 msgid "Switch Windows Manager"
-msgstr "Wechsel den Fenstermanager"
+msgstr "Lülita Windows Manager"
 
 #: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Decorator"
-msgstr "Ändere Fensterdekoration"
+msgstr "Lülita Windows Decorator"
 
 #: ../compiz-icon/src/applet-notifications.c:193
 msgid "Toggle Exposition Mode"
-msgstr "Ändern des Darstellungsmodus"
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Widget Layer"
-msgstr "Wechselt zwischen den einzelnen Widget Ebenen."
+msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:196
 msgid "Toggle Show Desktop"
-msgstr "Wechsle Arbeitsfläche anzeigen"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
-msgstr "Rahmen & Reflektionen"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch sellotape"
@@ -1495,86 +1377,80 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
-msgstr "CD-Hülle"
+msgstr "CD karp"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr "dunkel"
+msgstr "tume"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr "leeren"
+msgstr "puhas"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
-msgstr "futuristisch"
+msgstr "futuristlik"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:119
 msgid "none"
-msgstr "kein"
+msgstr "pole"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "board"
-msgstr "Tafel"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-init.c:34
 msgid "desklet rendering"
-msgstr "Desklet Darstellung"
+msgstr ""
 
 #: ../desklet-rendering/src/rendering-init.c:37
 msgid "This module provides different views for your desklets."
-msgstr "Dieses Modul stellt verschiedene Ansichten für Ihre Desklets bereit."
+msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
-msgstr "3D-Ebene"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 msgid "comics"
-msgstr "Comics"
+msgstr "koomiks"
 
 #: ../dialog-rendering/src/applet-decorator-curly.h:26
 msgid "curly"
-msgstr "gewellt"
+msgstr "looksulg"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
-msgstr "modern"
+msgstr "modernne"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr "Tooltip"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
-msgstr "Dialog Darstellung"
+msgstr ""
 
 #: ../dialog-rendering/src/applet-init.c:35
 msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
-"Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
 "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
-"Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
-"Internetverbindung aktiv ist."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
-"Datei wurde hochgeladen.\n"
-"Drücken Sie Strg+v um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
 msgid ""
 "Please wait for the current upload to finish before starting a new one."
 msgstr ""
-"Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
 #: ../dnd2share/src/applet-dnd2share.c:537
 msgid "Tiny URL"
@@ -1593,18 +1469,6 @@ msgid ""
 "account.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"Mit diesem Applet können Sie Dateien einfach teilen.\n"
-"Einfach die Datei per Drag-and-Drop auf das Symbol schieben, um es bei einer "
-"verfügbaren Seite hochzuladen.\n"
-"Viele Anbieter, wie beispielsweise Dropbox, Imageshark und Pastebin werden "
-"unterstützt.\n"
-"Es können Dateien, Bilder, Videos sowie Text hochgeladen werden.\n"
-"Die Adresse wird dann automatisch in der Zwischenablage gespeichert und kann "
-"mit STRG-V kopiert werden.\n"
-"Es kann eine Chronik der letzten Uploads gespeichert werden, ohne dass Sie "
-"irgendwo ein Konto besitzen müssen.\n"
-"Damit Daten hochgeladen werden können, müssen die Pakete 'curl' und 'wget' "
-"installiert sein."
 
 #: ../dnd2share/src/applet-init.c:50
 msgid "Drop to share"
@@ -1612,37 +1476,29 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:33
 msgid "Clear the list of the recently uploaded files?"
-msgstr "Die Liste der kürzlich hochgeladenen Dateien leeren ?"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:51
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
-"Der Text wurde in Ihrer Zwischenablage gespeichert.\n"
-"Sie können Ihn mit STRG+v abrufen."
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr ""
-"Entschuldigung, es konnte weder die Originaldatei noch eine Vorschau von ihr "
-"gefunden werden."
 
 #: ../dnd2share/src/applet-notifications.c:98
 msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
-"Die URL wurde in Ihre Zwischenablage gespeichert.\n"
-"Verwenden Sie einfach 'STRG-v', um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-notifications.c:113
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
 msgstr ""
-"Keine hochgeladene Datei verfügbar.\n"
-"Ziehen Sie einfach eine per Drag-and-Drop in das Symbol, um sie hochzuladen."
 
 #: ../dnd2share/src/applet-notifications.c:114
 msgid ""
@@ -1650,83 +1506,75 @@ msgid ""
 "Consider activating the history if you want the applet to remember previous "
 "uploads."
 msgstr ""
-"Keine hochgeladene Datei verfügbar.\n"
-"Denken Sie daran, die Chronik zu aktivieren, damit das Applet sich an "
-"frühere Uploads erinnert."
 
 #: ../dnd2share/src/applet-notifications.c:131
 msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
 msgstr ""
-"Die derzeitige URL wurde in die Zwischeablage gespeichert\n"
-"Verwenden Sie einfach 'STRG-v', um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-notifications.c:132
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
 msgstr ""
-"Die derzeitige URL wurde in die Auswahl gespeichert\n"
-"Benutzen Sie einfach die mittlere Maustaste, um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-notifications.c:378
 msgid "File"
-msgstr "Datei"
+msgstr "Fail"
 
 #: ../dnd2share/src/applet-notifications.c:381
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr ""
-"Klicken Sie auf das Symbol, um die URL in die Zwischenablage zu speichern."
 
 #: ../dnd2share/src/applet-notifications.c:395
 msgid "Send the clipboard's content"
-msgstr "Sende den Inhalt der Zwischenablage"
+msgstr "Saada lõikepuhvri sisu"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "Clear History"
-msgstr "Verlauf leeren"
+msgstr "Puhasta ajalugu"
 
 #: ../dnd2share/src/applet-notifications.c:463
 msgid "Get text"
-msgstr "Hole einen Text"
+msgstr "Hangi tekst"
 
 #: ../dnd2share/src/applet-notifications.c:465
 msgid "Remove from history"
-msgstr "Von der Chronik entfernen"
+msgstr "Eemalda ajalugu"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
-msgstr "Karussell"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:35
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
-msgstr "3D Fläche"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:79
 msgid "Parabolic"
-msgstr "Parabolisch"
+msgstr "Paraboolne"
 
 #: ../dock-rendering/src/rendering-init.c:37
 #: ../dock-rendering/data/messages:103
 msgid "Rainbow"
-msgstr "Regenbogen"
+msgstr ""
 
 #: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:111
 #: ../stack/data/messages:103
 msgid "Slide"
-msgstr "Gleiten"
+msgstr "Slaid"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
-msgstr "Kurve"
+msgstr "Kõver"
 
 #: ../dock-rendering/src/rendering-init.c:41
 #: ../dock-rendering/data/messages:17
 msgid "Panel"
-msgstr "Panel"
+msgstr "Paneel"
 
 #: ../dock-rendering/src/rendering-init.c:130
 msgid ""
@@ -1735,39 +1583,33 @@ msgid ""
 "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
 "are provided."
 msgstr ""
-"Dieses Modul fügt verschiedene Ansichten zu Ihrem Dock hinzu.\n"
-"Jedes Dock oder Sub-Dock kann mit der Ansicht Ihrer Wahl angezeigt werden.\n"
-"Verfügbar sind das Aktuelle, 3D-Ebene, Karussell, Parabolisch , Regenbogen, "
-"Gleiten und Wölbung."
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
-msgstr "Zielmarkierung"
+msgstr ""
 
 #: ../drop-indicator/src/applet-init.c:31
 msgid ""
 "This plug-in displays an animated indicator when you drop something into the "
 "dock."
 msgstr ""
-"Diese Erweiterung zeigt einen Hinweis, wenn Sie etwas in das Dock fallen "
-"lassen."
 
 #: ../dustbin/src/applet-draw.c:155 ../dustbin/src/applet-trashes-manager.c:98
 #: ../dustbin/src/applet-trashes-manager.c:127
 msgid "calculating"
-msgstr "berechne..."
+msgstr "kalkuleerin"
 
 #: ../dustbin/src/applet-draw.c:165 ../dustbin/src/applet-trashes-manager.c:59
 msgid " trashe(s)"
-msgstr " Müll"
+msgstr ""
 
 #: ../dustbin/src/applet-draw.c:169 ../dustbin/src/applet-trashes-manager.c:63
 msgid " file(s)"
-msgstr " Datei(en)"
+msgstr " fail(id)"
 
 #: ../dustbin/src/applet-init.c:30
 msgid "dustbin"
-msgstr "Mülleimer"
+msgstr "prügikast"
 
 #: ../dustbin/src/applet-init.c:33
 msgid ""
@@ -1779,24 +1621,23 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:32
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr ""
-"Sie sind dabei, alle Dateien im Mülleimer zu löschen. Sind Sie sich sicher?"
+msgstr "Soovid kustutada kõik failid kõikidest prügikastidest. Kindel?"
 
 #: ../dustbin/src/applet-notifications.c:80
 msgid "The trash contains"
-msgstr "Der Müll enthält"
+msgstr "Prügikast sisaldab"
 
 #: ../dustbin/src/applet-notifications.c:82
 msgid "files"
-msgstr "Dateien"
+msgstr "failid"
 
 #: ../dustbin/src/applet-notifications.c:82
 msgid "elements"
-msgstr "Elemente"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Mo"
-msgstr ""
+msgstr "E"
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Ko"
@@ -1808,30 +1649,30 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:136
 msgid "Show Trash (click)"
-msgstr "Müll anzeigen (klicken)"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:137
 msgid "Empty Trash (middle-click)"
-msgstr "Müll leeren (Mittelklick)"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:139
 msgid "Display dustbins information"
-msgstr "Zeigt ihnen Informationen über den Papierkorb an"
+msgstr "Näita prügikastide infot"
 
 #: ../dustbin/src/applet-notifications.c:151
 #, c-format
 msgid "%s successfully unmounted"
-msgstr "%s ist nun ausgehangen"
+msgstr "%s edukalt lahtihaagitud"
 
 #: ../dustbin/src/applet-notifications.c:155
 #, c-format
 msgid "failed to unmount %s"
-msgstr "Aushängen von %s fehlgeschlagen"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:179
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
-msgstr "Diesen Datenträger aushängen …"
+msgstr ""
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -1840,11 +1681,6 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for old Gnome version (prior to 2.22)."
 msgstr ""
-"Dieses Applet stellt Funktionen für eine bessere Integration in eine Gnome-"
-"Umgebung bereit.\n"
-"Es ist automatisch angeschaltet, eine Aktivierung ist deshalb nicht "
-"notwendig.\n"
-"Es ist für ältere Gnome-Versionen (vor Version 2.22) gedacht."
 
 #: ../gnome-integration/src/applet-init.c:31
 msgid ""
@@ -1853,66 +1689,59 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for the a GNOME version >= 2.22"
 msgstr ""
-"Dieses Applet stellt Funktionen für eine bessere Integration in eine Gnome-"
-"Umgebung bereit.\n"
-"Es ist automatisch angeschaltet, eine Aktivierung ist deshalb nicht "
-"notwendig.\n"
-"Es ist für eine Gnome-Version >= 2.22 ausgelegt."
 
 #: ../icon-effect/src/applet-init.c:34
 msgid "icon effects"
-msgstr "Symbol-Effekte"
+msgstr "Ikooniefektid"
 
 #: ../icon-effect/src/applet-init.c:37
 msgid "This plugin adds many special effects to your icons."
-msgstr "Diese Erweiterung fügt viele Spezialeffekte zu Ihren Symbolen hinzu."
+msgstr "See lisandprogramm lisab palju eriefekte sinu ikoonidele."
 
 #: ../icon-effect/src/applet-init.c:80 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
-msgstr "Feuer"
+msgstr "Tuli"
 
 #: ../icon-effect/src/applet-init.c:83 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
-msgstr "Sterne"
+msgstr "Tähed"
 
 #: ../icon-effect/src/applet-init.c:86 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
-msgstr "Regen"
+msgstr "Vihm"
 
 #: ../icon-effect/src/applet-init.c:89 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
-msgstr "Schnee"
+msgstr "Lumi"
 
 #: ../icon-effect/src/applet-init.c:92 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
-msgstr "Sturm"
+msgstr "Torm"
 
 #: ../icon-effect/src/applet-init.c:95 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:185
 msgid "Firework"
-msgstr "Feuerwerk"
+msgstr "Tulevärk"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
-msgstr "illusion"
+msgstr "illusioon"
 
 #: ../illusion/src/applet-init.c:33
 msgid ""
 "This plugin provides animations for appearance & disappearance of icons."
 msgstr ""
-"Diese Erweiterung stellt Animationen für das Erscheinen und Verschwinden von "
-"Symbolen bereit."
 
 #: ../kde-integration/src/applet-init.c:30
 msgid ""
@@ -1921,15 +1750,10 @@ msgid ""
 "It is auto-activated, so you don't need to activate it.\n"
 "It is designed for KDE4"
 msgstr ""
-"Dieses Applet stellt Funktionen für eine bessere Integration in eine KDE-"
-"Umgebung bereit.\n"
-"Es ist automatisch eingeschaltet, eine Aktivierung ist deshalb nicht "
-"notwendig.\n"
-"Es ist für KDE4 ausgelegt."
 
 #: ../keyboard-indicator/src/applet-init.c:31
 msgid "keyboard indicator"
-msgstr "Tastatur-Layout-Anzeige"
+msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:34
 msgid ""
@@ -1939,16 +1763,10 @@ msgid ""
 "\tScroll up/down to select the previous/next layout\n"
 "\tRight-click gives you access to the list of available layouts."
 msgstr ""
-"Dieses Applet erlaubt Ihnen, Ihr Tastaturbelegung zu verwalten.\n"
-"\tEs kann außerdem den aktuellen Num- bzw. Caps-Lock anzeigen.\n"
-"\tLinksklick, um zur nächsten Belegung zu wechseln.\n"
-"\tHoch-/Runterscrollen um die vorige/nächste Tastaturbelegung auszuwählen.\n"
-"\tMit Hilfe eines Rechtsklicks erhalten Sie Zugriff auf eine Liste der "
-"verfügbaren Tastaturbelegungen."
 
 #: ../logout/src/applet-init.c:28
 msgid "logout"
-msgstr "Abmelden"
+msgstr "väljalogimine"
 
 #: ../logout/src/applet-init.c:31
 msgid ""
@@ -1961,23 +1779,22 @@ msgstr ""
 #: ../logout/src/applet-notifications.c:101
 msgid "Choose in how many minutes your PC will stop:"
 msgstr ""
-"Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
 
 #: ../logout/src/applet-notifications.c:126
 msgid "Lock screen"
-msgstr "Bildschirm sperren"
+msgstr "Ekraani lukustamine"
 
 #: ../logout/src/applet-notifications.c:127
 msgid "Program an automatic shut-down"
-msgstr "Stellen Sie das automatische Herunterfahren ein"
+msgstr "Programm automaatselt seiskub"
 
 #: ../logout/src/applet-notifications.c:158
 msgid "Your computer will shut-down in 1 minute."
-msgstr "Ihr Computer wird in einer Minute herunterfahren."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr "Serveradresse:"
+msgstr "Serveri aadress:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -1985,15 +1802,15 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr "Benutzername:"
+msgstr "Kasutajanimi:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr "Passwort:"
+msgstr "Salasõna:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
-msgstr "Das Passwort wird verschlüsselt."
+msgstr "Salasõna krüpteeritakse."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Port:"
@@ -2004,39 +1821,37 @@ msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
 msgstr ""
-"Geben Sie 0 ein, um den vorgegebenen Port zu verwenden. Die Vorgabeports "
-"sind 110 für POP3 oder APOP und 995 für POP3S."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
-msgstr "Sichere Verbindung verwenden (SSL)"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:109
 #: ../netspeed/data/messages:133 ../powermanager/data/messages:147
 #: ../weather/data/messages:107
 msgid "Refresh time:"
-msgstr ""
+msgstr "Värskendusaeg:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
 #: ../weather/data/messages:105
 msgid "In minutes."
-msgstr "In Minuten."
+msgstr "Minutites."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific mail application"
-msgstr "Benutzerdefinierte E-Mail-Anwendung"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Leer lassen, um die vorgegebene E-Mail-Anwendung zu verwenden."
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
-msgstr "Ordner auf dem Server:"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Path of mbox file:"
-msgstr "Pfad zur mbox-Datei:"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Path to Mail directory:"
@@ -2044,7 +1859,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Address of feed:"
-msgstr "Pfad zum Mailordner:"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:49
 #: ../mail/src/cd-mail-applet-accounts.c:112
@@ -2054,58 +1869,56 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
-msgstr "Bitte wählen Sie ein Kontotyp aus."
+msgstr "Palun valige konto tüüp."
 
 #: ../mail/src/cd-mail-applet-config.c:211
 msgid "New account's name"
-msgstr "Neuer Name des Kontos"
+msgstr "Uus konto nimi"
 
 #: ../mail/src/cd-mail-applet-config.c:214
 msgid "Please enter a name for this account."
-msgstr "Bitte geben Sie einen Namen für dieses Konto ein."
+msgstr "Palun sisestage nimi sellele kontole."
 
 #: ../mail/src/cd-mail-applet-config.c:224
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
 msgstr ""
-"Dieses Konto existiert bereits.\n"
-"Bitte wählen Sie ein anderen Namen für das neue Konto."
+"See konto on juba olemas.\n"
+"Palun vali mõni teine nimi uuele kontole."
 
 #: ../mail/src/cd-mail-applet-config.c:360
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr ""
-"Geben Sie einen Namen für dieses Konto ein. Sie können jeden Namen "
-"verwenden, den Sie möchten."
+msgstr "Sisestage nimi antud kontole. Võite anda talle ükskõik mis nime."
 
 #: ../mail/src/cd-mail-applet-config.c:415
 msgid "Remove Account"
-msgstr "Konto entfernen"
+msgstr "Eemalda konto"
 
 #: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:158
 msgid "unknown"
-msgstr "Unbekannt"
+msgstr "tundmatu"
 
 #: ../mail/src/cd-mail-applet-etpan.c:236
 msgid "no subject"
-msgstr "Kein Betreff"
+msgstr "teema puudub"
 
 #: ../mail/src/cd-mail-applet-etpan.c:389
 msgid "No unread mail in your mailboxes"
-msgstr "Keine ungelesene E-mail in Ihrem Postfach"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-etpan.c:411
 #, c-format
 msgid "You have %d new mails:"
-msgstr "Sie haben %d neue E-Mails :"
+msgstr "Sul on %d uut kirja:"
 
 #: ../mail/src/cd-mail-applet-etpan.c:413
 msgid "You have a new mail:"
-msgstr "Sie haben eine neue E-Mail :"
+msgstr "Sulle on uus kiri:"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr "E-Mail"
+msgstr "meil"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -2114,11 +1927,6 @@ msgid ""
 "Left-click to launch the prefered mail application,\n"
 "Middle-click to refresh all the mailboxes."
 msgstr ""
-"Dieses Applet ist sehr nützlich, um bei neuen E-Mails einen Hinweis "
-"anzuzeigen\n"
-"Es kann jede Art von Mail-Postfach prüfen (Yahoo, GMail, etc.)\n"
-"Ein Linksklick startet Ihr bevorzugtes E-Mail-Programm\n"
-"Ein Mittelklick aktualisiert alle E-Mail-Postfächer"
 
 #: ../mail/src/cd-mail-applet-notifications.c:63
 #, c-format
@@ -2127,54 +1935,51 @@ msgid ""
 "If '%s' is not your usual mail application,\n"
 "you can change it in the configuration panel of this module"
 msgstr ""
-"Ein Problem fand statt.\n"
-"Wenn '%s' nicht Ihr übliches Mailprogramm ist, können Sie dies in der "
-"Konfigurationsleiste dieses Moduls ändern."
 
 #: ../mail/src/cd-mail-applet-notifications.c:139
 msgid "Refresh a mail account"
-msgstr "Aktualisiere ein E-Mail-Konto"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:148
 msgid "Mark all emails as read"
-msgstr "Markiere alle Mails als gelesen"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:151
 #, c-format
 msgid "Launch %s"
-msgstr "Lade %s"
+msgstr "Käivita %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:326
 msgid "Mail"
-msgstr "E-Mail"
+msgstr "E-Kiri"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
-msgstr "Motion-Blur"
+msgstr ""
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Diese Erweiterung fügt einen Motion-Blur-Effekt zu den Docks hinzu"
+msgstr ""
 
 #: ../musicPlayer/src/applet-draw.c:227
 msgid "Unknown artist"
-msgstr "Unbekannter Künstler"
+msgstr "Tundmatu esitaja"
 
 #: ../musicPlayer/src/applet-draw.c:227
 msgid "Unknown title"
-msgstr "Unbekannter Titel"
+msgstr "Tundmatu pealkiri"
 
 #: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
 msgid "Track"
-msgstr "Titel"
+msgstr "Rada"
 
 #: ../musicPlayer/src/applet-draw.c:327
 msgid "Current song"
-msgstr "Aktuelles Lied"
+msgstr "Esitatv laul"
 
 #: ../musicPlayer/src/applet-draw.c:336
 msgid "Artist"
-msgstr "Künstler"
+msgstr "Esitaja"
 
 #: ../musicPlayer/src/applet-draw.c:340
 msgid "Album"
@@ -2182,23 +1987,23 @@ msgstr "Album"
 
 #: ../musicPlayer/src/applet-draw.c:342
 msgid "Length"
-msgstr "Länge"
+msgstr "Pikkus"
 
 #: ../musicPlayer/src/applet-draw.c:344
 msgid "Track n°"
-msgstr "Titel n°"
+msgstr "Loo n°"
 
 #: ../musicPlayer/src/applet-draw.c:345
 msgid "Song n°"
-msgstr "Titelnummer"
+msgstr "Laul n°"
 
 #: ../musicPlayer/src/applet-draw.c:347
 msgid "There is no media playing."
-msgstr "Es werden keine Mediendateien abgespielt."
+msgstr ""
 
 #: ../musicPlayer/src/applet-init.c:48
 msgid "musicPlayer"
-msgstr "Musikspieler"
+msgstr "musikaMängija"
 
 #: ../musicPlayer/src/applet-init.c:51
 msgid ""
@@ -2212,15 +2017,6 @@ msgid ""
 "       For SongBird, you have to install its dbus add-on.\n"
 "       For Exaile 0.3, you have to activate its MPRIS plug-in"
 msgstr ""
-"Dieses Applet erlaubt ihnen jeden Musikspieler zu kontrollieren.\n"
-"Linksklick für Play/Pause, Mittelklick, um das nächste Lied zu spielen\n"
-"Scrollen sie hoch/runter, um den vorherigen/nächsten Track abzuspielen\n"
-"Mit Drag-and-Drop können Lieder auf das Symbol gezogen werden, um sie in die "
-"Warteschlange zu stellen (hängt vom Player ab),\n"
-" und JPEG-Bilder, um sie als Cover zu nutzen.\n"
-"Hinweis: Für XMMS muss das 'xmms-infopipe'-Plugin installiert werden.\n"
-"       Für Songbird wird die dazugehörige DBus-Erweiterung benötigt.\n"
-"       Für Exaile 0.3 muss die MPRIS-Erweiterung aktiviert werden."
 
 #: ../musicPlayer/src/applet-notifications.c:70
 msgid ""
@@ -2228,57 +2024,54 @@ msgid ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
-"Entschuldigung, Ich konnte keinen Player erkennen.\n"
-"Sollte der Player laufen, kann es sein, dass seine Version zu alt ist und er "
-"einen solchen Dienst nicht unterstützt."
 
 #: ../musicPlayer/src/applet-notifications.c:162
 msgid "Find opened player"
-msgstr "Finde geöffneten Player"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:169
 msgid "Previous"
-msgstr "Vorheriges"
+msgstr "Eelmine"
 
 #: ../musicPlayer/src/applet-notifications.c:171
 msgid "Play/Pause (left-click)"
-msgstr "Abspielen/Pause (links-Klick)"
+msgstr "Mängi/Pausi (vasak-klik)"
 
 #: ../musicPlayer/src/applet-notifications.c:173
 msgid "Next (middle-click)"
-msgstr "Nächstes (Mittelklick)"
+msgstr "Järgmine (kesk-klik)"
 
 #: ../musicPlayer/src/applet-notifications.c:175
 msgid "Stop"
-msgstr "Stop"
+msgstr "Peata"
 
 #: ../musicPlayer/src/applet-notifications.c:177
 msgid "Show the Window"
-msgstr "Das Fenster anzeigen"
+msgstr "Näita akent"
 
 #: ../musicPlayer/src/applet-notifications.c:179
 msgid "Show JumpBox"
-msgstr "Zeige JumpBox"
+msgstr "Näita JumpBox'i"
 
 #: ../musicPlayer/src/applet-notifications.c:181
 msgid "Toggle Shuffle"
-msgstr "Zufallswiedergabe an/aus"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:183
 msgid "Toggle Repeat"
-msgstr "Wiederholen an/aus"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:185
 msgid "Rate this song"
-msgstr "Bewerte dieses Lied"
+msgstr "Hinda seda laulu"
 
 #: ../musicPlayer/src/applet-notifications.c:187
 msgid "Information"
-msgstr "Information"
+msgstr "Info"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
-msgstr ""
+msgstr "netikiirus"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -2287,23 +2080,18 @@ msgid ""
 "Left-click on the icon to have the total amount of data transfered\n"
 "Middle-click to (de)activate the network (needs NetworManager)"
 msgstr ""
-"Dieses Applet zeigt Ihnen die Geschwindigkeit Ihrer Internetverbindung sowie "
-"einige Informationen über diese an.\n"
-"Linksklick auf das Symbol, um die Gesamtmenge der übertragenen Daten "
-"anzuzeigen.\n"
-"Mittelklick um das Netzwerk, zu (de)aktivieren (benötigt den NetworkManager)"
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
-msgstr "Gesamtmenge der übertragenen Daten:"
+msgstr "Andmemaht kokku"
 
 #: ../netspeed/src/applet-notifications.c:37
 msgid "downloaded"
-msgstr "heruntergeladen"
+msgstr "allalaetud"
 
 #: ../netspeed/src/applet-notifications.c:38
 msgid "uploaded"
-msgstr "hochgeladen"
+msgstr "üleslaetud"
 
 #: ../netspeed/src/applet-notifications.c:42
 #, c-format
@@ -2312,62 +2100,51 @@ msgid ""
 " You may have to set up the interface you wish to monitor.\n"
 " Do you want to do it now?"
 msgstr ""
-"Die Schnittstelle '%s scheint nicht zu existieren oder ist nicht lesbar.\n"
-" Sie muss möglicherweise aktiviert werden, um sie beobachten zu können.\n"
-" Wollen Sie dies nun tun?"
 
 #: ../netspeed/src/applet-notifications.c:72
 msgid "Re-check interface"
-msgstr "Kontrolliere die Schnittstelle noch einmal"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:167
 msgid ""
 "Laptop on Battery.\n"
 " Battery charged at:"
 msgstr ""
-"Laptopbetrieb über Akku.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:167
 #: ../powermanager/src/powermanager-draw.c:199
 msgid "Estimated time with charge:"
-msgstr "Mit Laden vergangene Zeit:"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:171
 msgid ""
 "Laptop on Charge.\n"
 " Battery charged at:"
 msgstr ""
-"Laptopbetrieb über Netzadapter.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:171
 msgid "Estimated charge time:"
-msgstr "Noch für das Laden benötigte Zeit:"
+msgstr "Hinnanguline laadimisaeg:"
 
 #: ../powermanager/src/powermanager-draw.c:177
 msgid "No battery found."
-msgstr "Keinen Akku gefunden."
+msgstr "Ei leitud akut."
 
 #: ../powermanager/src/powermanager-draw.c:199
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
 msgstr ""
-"Energieverwaltung.\n"
-"Der Ladezustand ihres Akkus scheint gering zu sein."
 
 #: ../powermanager/src/powermanager-draw.c:199
 msgid "Please put your laptop on charge."
-msgstr "Bitte schließen Sie Ihren Laptop an die Ladestation an"
+msgstr "Palun pange oma läpakas laadima."
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
 msgstr ""
-"Energieverwaltung.\n"
-"Ihr Akku ist nun aufgeladen"
 
 #: ../powermanager/src/powermanager-init.c:31
 msgid "PowerManager"
@@ -2376,31 +2153,30 @@ msgstr ""
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
 msgstr ""
-"Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
-msgstr "Einstellen der Energieverwaltung"
+msgstr ""
 
 #: ../powermanager/src/powermanager-menu-functions.c:58
 msgid "Halt"
-msgstr "Stoppen"
+msgstr "Seiska"
 
 #: ../powermanager/src/powermanager-menu-functions.c:59
 msgid "Hibernate"
-msgstr "Ruhezustand"
+msgstr "Uinumine"
 
 #: ../powermanager/src/powermanager-menu-functions.c:60
 msgid "Suspend"
-msgstr "Bereitschaft"
+msgstr "Peata"
 
 #: ../powermanager/src/powermanager-menu-functions.c:61
 msgid "Reboot"
-msgstr "Neustart"
+msgstr "Taaskäivita"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
-msgstr "Schnellanzeiger"
+msgstr "Kiirbrauser"
 
 #: ../quick-browser/src/applet-init.c:32
 msgid ""
@@ -2410,44 +2186,37 @@ msgid ""
 "This applet can be instanciated several times, if you want to browse "
 "different folders."
 msgstr ""
-"Mit diesem Applet können Sie schnell durch einen Ordner und seine "
-"Unterordner blättern.\n"
-"Sie können eine Tastenkombination einstellen, mit der das Menü angezeigt "
-"wird.\n"
-"Mittelklick öffnet den Hauptordner.\n"
-"Dieses Applet kann mehrere Male dargestellt werden, wenn Sie durch "
-"verschiedene Ordner blättern wollen."
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:113
 msgid "Open this folder"
-msgstr "Öffne dieses Verzeichnis"
+msgstr "Ava see kaust"
 
 #: ../shortcuts/src/applet-bookmarks.c:130
 #: ../shortcuts/src/applet-bookmarks.c:390
 #: ../shortcuts/src/applet-drives.c:277
 msgid "Unmounted"
-msgstr "Nicht eingebunden"
+msgstr "Haakimata"
 
 #: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
 #, c-format
 msgid "%s is now mounted"
-msgstr "%s  wurde eingehängt"
+msgstr "%s on nüüd haagitud"
 
 #: ../shortcuts/src/applet-drives.c:147
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
-msgstr "%s wurde verbunden"
+msgstr "%s on ühendatud"
 
 #: ../shortcuts/src/applet-drives.c:204
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s ist nun ausgehangen"
+msgstr "%s on nüüd lahtihaagitud"
 
 #: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
-msgstr "Schnellzugriff"
+msgstr "otseteed"
 
 #: ../shortcuts/src/applet-init.c:35
 msgid ""
@@ -2460,85 +2229,72 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
-"Dieses Applet ermöglicht Ihnen den Zugriff auf Ihre Tastenkombinationen.\n"
-"Es verwaltet Datenträger, Orte im Netzwerk und Nautilus-Lesezeichen (selbst "
-"dann, wenn Sie Nautilus nicht\n"
-"haben sollten). Ziehen Sie einen Ordner auf das Hauptsymbol oder das "
-"Subdock, um ein Lesezeichen\n"
-"hinzuzufügen. Ein Mittelklick auf das Hauptsymbol zeigt Ihren persönlichen "
-"Ordner an. Ein Mittelklick\n"
-"auf das Symbol eines Einhängepunkts hängt das Objekt aus oder ein. Das "
-"Applet kann außerdem\n"
-"Informationen über Ihre Datenträger anzeigen, wie den freien Platz, den Typ "
-"usw."
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
 #, c-format
 msgid "failed to mount %s"
-msgstr "Einhängen von %s fehlgeschlagen"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
 #, c-format
 msgid "Failed to unmount %s"
-msgstr "Aushängen von %s fehlgeschlagen"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
-msgstr "Dieses Applet ist leider für KDE noch nicht verfügbar."
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr "Es wurden keine Datenträger oder Lesezeichen gefunden."
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:193
 msgid "Enter a name for this bookmark:"
-msgstr "Geben Sie einen Namen für dieses Lesezeichen ein:"
+msgstr "Sisestage nimi sellele järjehoidjale:"
 
 #: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
-msgstr "Entferne dieses Lesezeichen"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:251
 msgid "Rename this bookmark"
-msgstr "Dieses Lesezeichen umbenennen"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:257
 msgid "Eject"
-msgstr "Auswerfen"
+msgstr "Väljasta"
 
 #: ../shortcuts/src/applet-notifications.c:262
 msgid "Unmount (middle-click)"
-msgstr "Aushängen (Mittelklick)"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:262
 msgid "Mount (middle-click)"
-msgstr "Einhängen (Mittelklick)"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
-msgstr "Hole Datenträger-Informationen"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:289
 msgid "Only folders can be bookmarked."
-msgstr "Nur Ordner können als Lesezeichen angegeben werden."
+msgstr ""
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
-msgstr "zeige Maus"
+msgstr "näita hiirt"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
 "This plugin draws some animations around the cursor when it's inside a "
 "dock/desklet."
 msgstr ""
-"Dieses Plugin zeichnet Animationen um den Mauszeiger, wenn er sich in einem "
-"Dock/Desklet befindet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
-msgstr "Zeige den Desktop"
+msgstr "näitaTöölauda"
 
 #: ../showDesktop/src/applet-init.c:31
 msgid ""
@@ -2550,43 +2306,36 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
-"Dieses Applet fügt ein Symbol zu Ihrem Desktop hinzu\n"
-" und außerdem die Desklets, den Widget-Layer und alle Desktops auf einmal.\n"
-"Es kann außerdem verwendet werden, um mit Hilfe des Rechtsklick-Menüs "
-"schnell die Bildschirmauflösung zu ändern.\n"
-"Linksklick zum zeigen/verbergen des Desktops.\n"
-"Mittelklick, um entweder den Desktop, die Desklets, den Widget-Layer oder "
-"alle Desktops auf einmal zu zeigen/verbergen."
 
 #: ../showDesktop/src/applet-notifications.c:76
 #: ../switcher/src/applet-notifications.c:37
 msgid "You need to run Compiz and activate its 'DBus' plug-in."
-msgstr "Sie müssen Compiz ausführen und sein 'DBus' Plug-in aktivieren."
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:165
 msgid "Change screen resolution"
-msgstr "Bildschirmauflösung ändern"
+msgstr "Ekraani eraldusvõime muutmine"
 
 #: ../showDesktop/src/applet-notifications.c:299
 msgid "Move to the Desktop"
-msgstr "Auf die Arbeitsfläche verschieben"
+msgstr "Pane töölauale"
 
 #: ../showDesktop/src/applet-notifications.c:300
 msgid "Copy to the Desktop"
-msgstr "Auf die Arbeitsfläche kopieren"
+msgstr "Kopeeri töölauale"
 
 #: ../showDesktop/src/applet-notifications.c:301
 #: ../showDesktop/src/applet-notifications.c:305
 msgid "Link to the Desktop"
-msgstr "Verknüpfung auf der Arbeitsfläche erstellen"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:306
 msgid "Download onto the Desktop"
-msgstr "Auf die Arbeitsfläche herunterladen"
+msgstr ""
 
 #: ../slider/src/applet-init.c:29
 msgid "slider"
-msgstr "Schieberegler"
+msgstr "liugur"
 
 #: ../slider/src/applet-init.c:32
 msgid ""
@@ -2595,31 +2344,26 @@ msgid ""
 "Click to play/pause or to edit the current image.\n"
 "Middle-click to open the images folder."
 msgstr ""
-"Dieses Applet ist eine einfache Diashow,\n"
-" Sie müssen lediglich einen Ordner und einen Anzeige-Effekt einstellen und "
-"sind dann fertig\n"
-"Klick zum Spielen/Pausieren oder zum Editieren des aktuellen Bildes.\n"
-"Mittelklick um den Bilder-Ordner zu öffnen."
 
 #: ../slider/src/applet-notifications.c:166
 msgid "Play"
-msgstr "Wiedergabe"
+msgstr "Esita"
 
 #: ../slider/src/applet-notifications.c:166
 msgid "Pause"
-msgstr "Pause"
+msgstr "Paus"
 
 #: ../slider/src/applet-notifications.c:169
 msgid "Open current image"
-msgstr "Öffne das aktuelle Bild"
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:171
 msgid "Browse images folder"
-msgstr "Navigiere durch den Bilder-Ordner"
+msgstr "Sirvi piltide kaustas"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
-msgstr "Zwischenablage"
+msgstr ""
 
 #: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
 msgid ""
@@ -2630,14 +2374,6 @@ msgid ""
 "You can drop any file, or web URL, or even some piece of text\n"
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
-"Diese Mini-Anwendung ermöglicht es Ihnen, einen Stapel von Dateien "
-"aufzubauen, wie das Stapel-Applet von MacOS X.\n"
-"Um eine Datei dem Stapel hinzuzufügen, ziehen Sie diese einfach auf das "
-"Stapel-Icon und schon sind Sie fertig.\n"
-"Sie können jede Datei, Internetadresse oder sogar Textauszüge auf das Stapel-"
-"Icon fallen lassen.\n"
-"Sie können jederzeit den Pfad der Datei, die Adresse oder den Text zur "
-"Zwischenablage hinzufügen."
 
 #: ../stack/src/applet-notifications.c:50
 msgid ""
@@ -2645,49 +2381,46 @@ msgid ""
 "You can add files, URL, and even a piece of text by dragging them onto the "
 "icon."
 msgstr ""
-"Keine Elemente im Stapel.\n"
-"Sie können Dateien, URLs, und sogar Textausschnitte hinzufügen, indem Sie "
-"die Elemente auf das Symbol ziehen."
 
 #: ../stack/src/applet-notifications.c:74
 msgid "Clear the stack?"
-msgstr "Den Stapel leeren?"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:95
 msgid "Set new name for this item:"
-msgstr "Definiere einen neuen Namen für dieses Element :"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:165
 msgid "Copy (middle click)"
-msgstr "Kopieren (mittlere Maustaste)"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:166
 msgid "Cut"
-msgstr "Ausschneiden"
+msgstr "Lõika"
 
 #: ../stack/src/applet-notifications.c:167
 msgid "Rename this item"
-msgstr "Dieses Element umbenennen"
+msgstr "Nimeta ümber see element"
 
 #: ../stack/src/applet-notifications.c:168
 msgid "Remove this item"
-msgstr "Dieses Element entfernen"
+msgstr "Eemalda see element"
 
 #: ../stack/src/applet-notifications.c:172
 msgid "Open (click)"
-msgstr "Öffnen (klick)"
+msgstr "Ava (klik)"
 
 #: ../stack/src/applet-notifications.c:174
 msgid "Open folder"
-msgstr "Verzeichnis öffnen"
+msgstr "Ava kataloog"
 
 #: ../stack/src/applet-notifications.c:179
 msgid "Paste (drag'n'drop)"
-msgstr "Einfügen (drag'n'drop)"
+msgstr "Kleebi (lohistamisega)"
 
 #: ../stack/src/applet-notifications.c:180
 msgid "Clear the stack"
-msgstr "Den Stapel löschen"
+msgstr ""
 
 #: ../stacks/src/applet-init.c:30
 msgid "stacks"
@@ -2695,17 +2428,17 @@ msgstr ""
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
-msgstr "Stapel neu laden"
+msgstr ""
 
 #: ../stacks/src/applet-notifications.c:45
 msgid "Clean local directory"
-msgstr "Lokales Verzeichnis aufräumen"
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:393
 msgid "Current"
-msgstr "Aktuell"
+msgstr "Aktiivne"
 
 #: ../switcher/src/applet-draw.c:619 ../switcher/src/applet-draw.c:621
 #: ../switcher/src/applet-load-icons.c:49
@@ -2714,11 +2447,11 @@ msgstr "Aktuell"
 #: ../switcher/src/applet-notifications.c:385
 #: ../switcher/src/applet-notifications.c:450
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Töölaud"
 
 #: ../switcher/src/applet-init.c:32
 msgid "switcher"
-msgstr "Wechsler"
+msgstr "vahetaja"
 
 #: ../switcher/src/applet-init.c:35
 msgid ""
@@ -2734,49 +2467,47 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:214
 #: ../switcher/src/applet-notifications.c:272
 msgid "Rename this workspace"
-msgstr "Arbeitsfläche umbenennen"
+msgstr "Nimeta ümber see tööruum"
 
 #: ../switcher/src/applet-notifications.c:259
 msgid "Add a desktop"
-msgstr "Füge zum Desktop hinzu"
+msgstr "Lisa töölauale"
 
 #: ../switcher/src/applet-notifications.c:263
 msgid "Remove last desktop"
-msgstr "Entferne letzten Desktop"
+msgstr "Eemalda viimane töölaud"
 
 #: ../switcher/src/applet-notifications.c:279
 msgid "Move current Desktop to this Desktop"
-msgstr "Aktuelle Arbeitsfläche auf diese Arbeitsfläche verschieben"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:284
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr ""
-"Hiermit werden alle Fenster von der aktuellen Arbeitsfläche zu der "
-"angeklickten bewegt."
 
 #: ../switcher/src/applet-notifications.c:290
 msgid "Windows List"
-msgstr "Fensterliste"
+msgstr ""
 
 #: ../switcher/src/applet-notifications.c:295 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
-msgstr "Desktop anzeigen"
+msgstr "Töölaua näitamine"
 
 #: ../switcher/src/applet-notifications.c:302 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125 ../switcher/data/messages:107
 msgid "Expose all the desktops (Compiz)"
-msgstr ""
+msgstr "Näita kõiki töölaudasi (Compiz)"
 
 #: ../switcher/src/applet-notifications.c:308
 msgid "Refresh"
-msgstr "Aktualisieren"
+msgstr "Uuenda"
 
 #: ../systray/src/systray-init.c:32
 msgid "systray"
-msgstr "Benachrichtigungsfeld"
+msgstr "salv"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2787,12 +2518,6 @@ msgid ""
 "But the best way to use it id to detach it from the dock, and place it "
 "somewhere, above other windows."
 msgstr ""
-"Fügt ein Benachrichtigungsfeld zu Ihrem Dock hinzu.\n"
-"Links klicken, um das Benachrichtigungsfeld in einem Dialog anzuzeigen "
-"(Zuweisung eines Tastenkürzels ist möglich).\n"
-"Mittelklick, um den Dialog zu schließen.\n"
-"Trennen Sie das Benachrichtigungsfeld am besten vom Dock ab und platzieren "
-"Sie es irgendwo anders, oberhalb anderer Fenster."
 
 #: ../systray/src/systray-interface.c:71
 #: ../systray/src/systray-menu-functions.c:70
@@ -2801,31 +2526,25 @@ msgid ""
 "Since there can only be one systray at once, you should remove it to avoid "
 "any conflict."
 msgstr ""
-"Ein weiteres Benachrichtigungsfeld läuft bereits, möglicherweise in Ihrem "
-"Panel.\n"
-"Da Sie nur eines betreiben können, sollten Sie es entfernen, um Konflikte zu "
-"vermeiden."
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
-msgstr "CD_APPLET_NAME"
+msgstr "CD_RAKENDI_NIMI"
 
 #: ../template/src/applet-init.c:31
 msgid ""
 "Useful description\n"
 "and manual"
 msgstr ""
-"Nützliche Beschreibung\n"
-"und Anleitung"
 
 #: ../terminal/src/terminal-callbacks.c:82
 #: ../terminal/src/terminal-widget.c:358
 msgid "Copy"
-msgstr "Kopieren"
+msgstr "Kopeeri"
 
 #: ../terminal/src/terminal-init.c:31
 msgid "terminal"
-msgstr ""
+msgstr "terminal"
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -2842,15 +2561,15 @@ msgstr ""
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:374
 msgid "New Tab"
-msgstr "Neuer Tab"
+msgstr "Uus sakk"
 
 #: ../terminal/src/terminal-menu-functions.c:79
 msgid "Rename current Tab"
-msgstr "Aktuellen Tab umbenennen"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:80
 msgid "Close current Tab"
-msgstr "Aktuellen Tab schließen"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:51 ../terminal/data/messages:107
 msgid "Terminal"
@@ -2858,32 +2577,32 @@ msgstr "Terminal"
 
 #: ../terminal/src/terminal-widget.c:154
 msgid "Set title for this tab:"
-msgstr "Den Titel für diesen Tab einstellen:"
+msgstr "Sea pealkiri sellele sakile:"
 
 #: ../terminal/src/terminal-widget.c:209
 msgid "Select a color"
-msgstr "Wählen Sie eine Farbe"
+msgstr "Vali värv"
 
 #: ../terminal/src/terminal-widget.c:318
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
-msgstr "Sie können das Konsole-Desklet wiederaufrufen indem sie  %s eingeben"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:364
 msgid "Paste"
-msgstr "Einfügen"
+msgstr "Aseta"
 
 #: ../terminal/src/terminal-widget.c:380
 msgid "Rename this Tab"
-msgstr "Diesen Tab umbenennen"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:386
 msgid "Change this Tab's colour"
-msgstr "Die Farbe dieses Tabs ändern"
+msgstr ""
 
 #: ../terminal/src/terminal-widget.c:392
 msgid "Close this Tab"
-msgstr "Schließe diesen Tab"
+msgstr ""
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -2899,47 +2618,47 @@ msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:93
 msgid "Note name : "
-msgstr "Notizname : "
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:116
 msgid "Delete this note?"
-msgstr "Diese Notiz entfernen ?"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:131
 msgid "Search for:"
-msgstr "Suche nach :"
+msgstr "Otsitakse:"
 
 #: ../tomboy/src/tomboy-notifications.c:147
 msgid "Search for tag:"
-msgstr "Suche nach dem tag :"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:186
 msgid "Reload notes"
-msgstr "Notizen aktualisieren"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:187
 msgid "Add a note"
-msgstr "Eine Notiz hinzufügen"
+msgstr "Lisa märkus"
 
 #: ../tomboy/src/tomboy-notifications.c:193
 msgid "Delete this note"
-msgstr "Diese Notiz löschen"
+msgstr "Kustuta see märkus"
 
 #: ../tomboy/src/tomboy-notifications.c:196
 msgid "Search"
-msgstr "Suche"
+msgstr "Otsi"
 
 #: ../tomboy/src/tomboy-notifications.c:197
 msgid "Search for tag"
-msgstr "Suche nach dem tag"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:199
 msgid "Search for today's note"
-msgstr "Nach Notizen für den heutigen Tag suchen"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:200
 msgid "Search for this week's note"
-msgstr "Nach Notizen für die aktuelle Woche suchen"
+msgstr ""
 
 #: ../tomboy/src/tomboy-notifications.c:201
 msgid "Search for next week's note"
@@ -2954,23 +2673,21 @@ msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
-"Information konnte nicht abgerufen werden.\n"
-" Ist die Verbindung aktiv?"
+"Ma ei saanud infot\n"
+" Kas ühendus on elus ?"
 
 #: ../weather/src/applet-config.c:126
 msgid "I couldn't find this location"
-msgstr "Ich konnte diesen Standort nicht finden"
+msgstr "Ma ei suutnud leida seda asukohta"
 
 #: ../weather/src/applet-config.c:184
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
-"Geben Sie den Namen ihres Standortes ein und drücken Sie die Eingabetaste um "
-"zwischen den Ergebnissen zu wählen."
 
 #: ../weather/src/applet-init.c:29
 msgid "weather"
-msgstr "Wetter"
+msgstr "ilm"
 
 #: ../weather/src/applet-init.c:32
 msgid ""
@@ -2981,29 +2698,22 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
-"Diese Mini-Anwendung zeigt das Wetter in Ihrem Dock an.\n"
-"Die Daten werden von www.weather.com zur Verfügung gestellt. Ihren Standort "
-"finden Sie im Konfigurationsdialog.\n"
-"Sie können es aus dem Dock herauslösen, sodass es zu einem Augenschmaus 3D-"
-"Desklet wird.\n"
-"Ein Mittelklick auf das Haupt-Icon zeigt aktuelle Informationen an, ein "
-"Linksklick auf ein Unter-Icon zeigt Vorhersagen an.\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
-msgstr "Januar"
+msgstr "Jaan"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Feb"
-msgstr "Februar"
+msgstr "Veebr"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Mar"
-msgstr "März"
+msgstr "Mär"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Apr"
-msgstr "April"
+msgstr "Apr"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "May"
@@ -3011,99 +2721,97 @@ msgstr "Mai"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jun"
-msgstr "Juni"
+msgstr "Juuni"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jui"
-msgstr "Juli"
+msgstr "Juul"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Aug"
-msgstr "August"
+msgstr "Aug"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sep"
-msgstr "September"
+msgstr "Sept"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Oct"
-msgstr "Oktober"
+msgstr "Okt"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Nov"
-msgstr "November"
+msgstr "Nov"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Dec"
-msgstr "Dezember"
+msgstr "Dets"
 
 #: ../weather/src/applet-notifications.c:33
 #: ../weather/src/applet-notifications.c:68
 msgid "Data are being retrieved, please wait a moment."
-msgstr "Daten werden empfangen, bitte warten Sie einen Moment."
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:84
 msgid "Reload now"
-msgstr "Aktualisiere jetzt"
+msgstr "Lae nüüd"
 
 #: ../weather/src/applet-notifications.c:108
 msgid ""
 "No data available\n"
 " is your connection alive?"
 msgstr ""
-"Es waren keine Daten verfügbar\n"
-" ist die Verbindung aktiv ?"
+"Andmed pole saadaval\n"
+" on teie ühendus elus?"
 
 #: ../weather/src/applet-notifications.c:127
 #: ../weather/src/applet-notifications.c:163
 msgid "Temperature"
-msgstr "Temperatur"
+msgstr "Temperatuur"
 
 #: ../weather/src/applet-notifications.c:128
 msgid "Precipitation probability"
-msgstr "Niederschlagswahrscheinlichkeit"
+msgstr "Sademete tõenäosus"
 
 #: ../weather/src/applet-notifications.c:129
 #: ../weather/src/applet-notifications.c:164
 msgid "Wind"
-msgstr "Wind"
+msgstr "Tuul"
 
 #: ../weather/src/applet-notifications.c:130
 #: ../weather/src/applet-notifications.c:165
 msgid "Humidity"
-msgstr "Luftfeuchtigkeit"
+msgstr "Niiskus"
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
 msgid "Sunrise"
-msgstr "Sonnenaufgang"
+msgstr "Päikesetõus"
 
 #: ../weather/src/applet-notifications.c:131
 #: ../weather/src/applet-notifications.c:166
 msgid "Sunset"
-msgstr "Sonnenuntergang"
+msgstr "Päikeseloojang"
 
 #: ../weather/src/applet-notifications.c:139
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
-"Daten werden abgerufen, bitte versuchen Sie es in ein paar Sekunden noch "
-"einmal."
 
 #: ../weather/src/applet-notifications.c:149
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
-"Es waren keine Daten verfügbar\n"
-"Versuche es erneut ..."
+"Andmeid pole saadaval\n"
+"Proovitakse uuesti nüüd ..."
 
 #: ../weather/src/applet-notifications.c:163
 msgid "Feels like"
-msgstr "gefühlt"
+msgstr "Tundub nagu"
 
 #: ../weather/src/applet-notifications.c:165
 msgid "Pressure"
-msgstr "Luftdruck"
+msgstr "Õhurõhk"
 
 #: ../weblets/src/applet-init.c:28
 msgid "weblets"
@@ -3119,15 +2827,15 @@ msgstr ""
 
 #: ../weblets/src/applet-widget.c:58
 msgid "Weblets"
-msgstr "Weblets"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:151
 msgid "WiFi disabled."
-msgstr "Wifi deaktiviert"
+msgstr "WiFi keelatud."
 
 #: ../wifi/src/applet-init.c:30
 msgid "wifi"
-msgstr ""
+msgstr "wifi"
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -3135,10 +2843,6 @@ msgid ""
 "connection\n"
 "Left-click to pop-up some info,Middle-click to re-check immediately."
 msgstr ""
-"Dieses Applet zeigt Ihnen die Signalstärke der ersten aktiven Wifi "
-"Verbindung.\n"
-"Klicken Sie mit der linken Maustaste, um ein paar Informationen erscheinen "
-"zu lassen, oder die mittlere Maustaste um sofort neu zu prüfen."
 
 #: ../xfce-integration/src/applet-init.c:32
 msgid ""
@@ -3146,36 +2850,31 @@ msgid ""
 "environnement.\n"
 "It is auto-activated, so you don't need to activate it."
 msgstr ""
-"Dieses Applet bietet Funktionen, für eine bessere Integration in eine XFCE "
-"Umgebung.\n"
-"Sie brauchen das Applet nicht zu aktivieren, da es automatisch aktiviert ist."
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
 msgid "Global"
-msgstr "Global"
+msgstr "Globaalne"
 
 #: ../Animated-icons/data/messages:3
 msgid "Animations are triggered when hovering an icon only in OpenGL mode."
 msgstr ""
-"Animationen beim hervorheben eines Icons werden nur im OpenGL Modus "
-"dargestellt."
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
-msgstr "beim Überfahren eines Symbols mit dem Mauszeiger"
+msgstr ""
 
 #: ../Animated-icons/data/messages:7 ../icon-effect/data/messages:5
 msgid "Effects used:"
-msgstr "Verwendete Effekte:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:23 ../icon-effect/data/messages:19
 msgid "when clicking on an launcher"
-msgstr "beim Klicken eines Starters"
+msgstr ""
 
 #: ../Animated-icons/data/messages:25 ../icon-effect/data/messages:21
 msgid "Effects used on launcher:"
-msgstr "Auf Starter angewandte Effekte:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
 #: ../Animated-icons/data/messages:75
@@ -3184,23 +2883,23 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
-msgstr "Wenn Sie auf ein Programm Icon klicken"
+msgstr ""
 
 #: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
-msgstr "Effekte welche für Programm Icons verwendet werden:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
-msgstr "beim Anklicken eines Applets"
+msgstr ""
 
 #: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
 msgid "Effects used on applets:"
-msgstr "Auf Applets anzuwendende Effekte:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:77
 msgid "Rotation"
-msgstr "Drehung"
+msgstr "Pööramine"
 
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
@@ -3210,7 +2909,7 @@ msgstr "Drehung"
 #: ../icon-effect/data/messages:145 ../icon-effect/data/messages:167
 #: ../icon-effect/data/messages:187
 msgid "In ms."
-msgstr "In ms."
+msgstr ""
 
 #: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
 #: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
@@ -3220,7 +2919,7 @@ msgstr "In ms."
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
 msgid "Duration of the animation:"
-msgstr "Dauer der Animation:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
 #: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
@@ -3255,15 +2954,15 @@ msgstr ""
 #: ../tomboy/data/messages:55 ../weather/data/messages:43
 #: ../weblets/data/messages:45 ../wifi/data/messages:43
 msgid "Normal"
-msgstr "Normal"
+msgstr "Normaalne"
 
 #: ../Animated-icons/data/messages:89
 msgid "Cube"
-msgstr "Würfel"
+msgstr "Kuup"
 
 #: ../Animated-icons/data/messages:91
 msgid "Capsule"
-msgstr ""
+msgstr "Kapsel"
 
 #: ../Animated-icons/data/messages:93
 msgid "Colour of the sheen:"
@@ -3285,7 +2984,7 @@ msgstr ""
 #: ../template/data/messages:9 ../terminal/data/messages:9
 #: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
-msgstr "Leer lassen, um die Vorgabe zu verwenden."
+msgstr ""
 
 #: ../Animated-icons/data/messages:107
 msgid "Image for the spotlight:"
@@ -3325,7 +3024,7 @@ msgstr ""
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
-msgstr "Zufällige Farben?"
+msgstr ""
 
 #: ../Animated-icons/data/messages:125
 msgid "Number of rays:"
@@ -3341,63 +3040,63 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:133
 msgid "Initial stretch:"
-msgstr "Anfängliche Dehnung:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:135
 msgid "Horizontal stretch"
-msgstr "Horizontale Dehnung"
+msgstr "Horisontaalne venitamine"
 
 #: ../Animated-icons/data/messages:137
 msgid "Vertical stretch"
-msgstr "Vertikale Dehnung"
+msgstr "Vertikaalne venitamine"
 
 #: ../Animated-icons/data/messages:139
 msgid "Corner stretch"
-msgstr ""
+msgstr "Nurk venitamine"
 
 #: ../Animated-icons/data/messages:141
 msgid "Spring constant:"
-msgstr ""
+msgstr "Vedrukonstant:"
 
 #: ../Animated-icons/data/messages:143
 msgid "Friction:"
-msgstr ""
+msgstr "Hõõrdumine:"
 
 #: ../Animated-icons/data/messages:145
 msgid "Number of points on the grid in each direction:"
-msgstr "Anzahl der Punkte im Raster in jeder Richtung:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:155
 msgid "Wave width:"
-msgstr "Wellenbreite:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:157
 msgid "Wave amplitude:"
-msgstr "Wellenausschlag:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:163
 msgid "Pulse duration:"
-msgstr "Schwingungsdauer:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:167
 msgid "Pulse max zoom:"
-msgstr "Maximale Vergrößerung der Schwingung:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:169
 msgid "Pulse follows icon shape?"
-msgstr "Schwingung folgt der Symbolform?"
+msgstr ""
 
 #: ../Animated-icons/data/messages:175
 msgid "Bounce duration:"
-msgstr "Sprungdauer:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:179
 msgid "When bouncing, resize the icon by:"
-msgstr "Beim Springen das Symbol verkleinern um:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:181
 msgid "the lower the value, the more it will flatten."
-msgstr "Je niedriger der Wert, umso größer ist die Abflachung."
+msgstr ""
 
 #: ../Animated-icons/data/messages:183
 msgid "How much the icon will flatten when hitting the ground:"
@@ -3405,7 +3104,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:189
 msgid "Blink duration:"
-msgstr "Blinkdauer:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:1 ../Clipper/data/messages:1
 #: ../Doncky/data/messages:1 ../Folders/data/messages:1
@@ -3427,7 +3126,7 @@ msgstr "Blinkdauer:"
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
-msgstr "Symbol"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:3
 #: ../Doncky/data/messages:3 ../Folders/data/messages:3
@@ -3449,15 +3148,15 @@ msgstr "Symbol"
 #: ../tomboy/data/messages:3 ../weather/data/messages:3
 #: ../weblets/data/messages:3 ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
-msgstr "Tragen Sie 0 ein, um die standardmäßige Appletgröße zu verwenden"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:5
 msgid "Icon size for busy penguin:"
-msgstr "Symbolgröße für fleißigen Pinguin:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:7
 msgid "Icon name for busy penguin:"
-msgstr "Symbolname für fleißigen Pinguin:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:13
 #: ../Doncky/data/messages:13 ../Folders/data/messages:11
@@ -3501,7 +3200,7 @@ msgstr ""
 #: ../weather/data/messages:13 ../weblets/data/messages:15
 #: ../wifi/data/messages:13
 msgid "Applet's Handbook"
-msgstr "Handbuch des Applets"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:91
 #: ../Dbus/data/messages:1 ../Doncky/data/messages:89
@@ -3526,7 +3225,7 @@ msgstr "Handbuch des Applets"
 #: ../weather/data/messages:89 ../weather/data/messages:91
 #: ../weblets/data/messages:91 ../wifi/data/messages:89
 msgid "Configuration"
-msgstr "Einstellungen"
+msgstr "Seaded"
 
 #: ../Cairo-Penguin/data/messages:15 ../Network-Monitor/data/messages:139
 #: ../Network-Monitor/data/messages:183 ../System-Monitor/data/messages:99
@@ -3535,7 +3234,7 @@ msgstr "Einstellungen"
 #: ../powermanager/data/messages:101 ../weather/data/messages:121
 #: ../wifi/data/messages:101
 msgid "Choose one of the available themes:"
-msgstr "Eines der verfügbaren Themen wählen:"
+msgstr "Vali üks saadaolevatest teemadest:"
 
 #: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:139
 #: ../Network-Monitor/data/messages:167 ../System-Monitor/data/messages:149
@@ -3546,15 +3245,15 @@ msgstr "Eines der verfügbaren Themen wählen:"
 #: ../slider/data/messages:107 ../tomboy/data/messages:115
 #: ../wifi/data/messages:165
 msgid "in seconds."
-msgstr "in Sekunden."
+msgstr "sekundites."
 
 #: ../Cairo-Penguin/data/messages:19
 msgid "Delay between animation changes :"
-msgstr "Verzögerung zwischen Animationswechsel:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:21
 msgid "Penguin transparency:"
-msgstr "Transparenz des Pinguins:"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:23
 msgid "Let the penguin wander everywhere in the dock?"
@@ -3563,7 +3262,7 @@ msgstr ""
 #: ../Cairo-Penguin/data/messages:25 ../dock-rendering/data/messages:13
 #: ../dock-rendering/data/messages:95 ../show-mouse/data/messages:23
 msgid "in pixels."
-msgstr "in Pixel."
+msgstr "pikselites."
 
 #: ../Cairo-Penguin/data/messages:27
 msgid "Ground offset:"
@@ -3589,7 +3288,7 @@ msgstr ""
 #: ../weather/data/messages:5 ../weblets/data/messages:5
 #: ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
-msgstr "Gewünschte Symbolgröße für dieses Applet"
+msgstr ""
 
 #: ../Clipper/data/messages:7 ../Doncky/data/messages:7
 #: ../Folders/data/messages:9 ../GMenu/data/messages:7
@@ -3608,7 +3307,7 @@ msgstr "Gewünschte Symbolgröße für dieses Applet"
 #: ../weather/data/messages:9 ../weblets/data/messages:7
 #: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
-msgstr "Name des Symbols, so wie es als Beschriftung im Dock erscheint:"
+msgstr ""
 
 #: ../Clipper/data/messages:11 ../Doncky/data/messages:11
 #: ../Folders/data/messages:25 ../GMenu/data/messages:11
@@ -3620,7 +3319,7 @@ msgstr "Name des Symbols, so wie es als Beschriftung im Dock erscheint:"
 #: ../systray/data/messages:11 ../template/data/messages:11
 #: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
-msgstr "Name der Bilddatei:"
+msgstr "Pildi failinim:"
 
 #: ../Clipper/data/messages:17 ../Doncky/data/messages:15
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
@@ -3642,7 +3341,7 @@ msgstr "Name der Bilddatei:"
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:15
 msgid "Desklet"
-msgstr "Desklet"
+msgstr ""
 
 #: ../Clipper/data/messages:19 ../Doncky/data/messages:17
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
@@ -3664,7 +3363,7 @@ msgstr "Desklet"
 #: ../weather/data/messages:17 ../weblets/data/messages:19
 #: ../wifi/data/messages:17
 msgid "Position"
-msgstr "Position"
+msgstr "Asukoht"
 
 #: ../Clipper/data/messages:21 ../Doncky/data/messages:19
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
@@ -3689,9 +3388,6 @@ msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
 msgstr ""
-"Falls gesperrt, kann das Desklet nicht durch einfaches Ziehen und Ablegen "
-"mit der linken Maustaste verschoben werden. Es lässt sich nur bei gedrückter "
-"Alt-Taste bewegen."
 
 #: ../Clipper/data/messages:23 ../Doncky/data/messages:21
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
@@ -3713,7 +3409,7 @@ msgstr ""
 #: ../weather/data/messages:21 ../weblets/data/messages:23
 #: ../wifi/data/messages:21
 msgid "Lock position?"
-msgstr "Position sperren?"
+msgstr ""
 
 #: ../Clipper/data/messages:25 ../Doncky/data/messages:23
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
@@ -3737,8 +3433,6 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Abhängig von Ihrem Fensterverwalter können Sie Größenänderungen durch "
-"Linksklick oder Mittelklick bei gedrückter Alt-Taste ausführen."
 
 #: ../Clipper/data/messages:27 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
@@ -3759,7 +3453,7 @@ msgstr ""
 #: ../tomboy/data/messages:37 ../weather/data/messages:25
 #: ../weblets/data/messages:27 ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
-msgstr "Abmessungen des Desklets (Breite x Höhe):"
+msgstr ""
 
 #: ../Clipper/data/messages:29 ../Doncky/data/messages:27
 #: ../Folders/data/messages:41 ../GMenu/data/messages:29
@@ -3779,8 +3473,6 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Abhängig von Ihrem Fensterverwalter können Sie Verschiebungen durch "
-"Linksklick bei gedrückter Alt-Taste ausführen."
 
 #: ../Clipper/data/messages:31 ../Doncky/data/messages:29
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
@@ -3825,8 +3517,6 @@ msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
 msgstr ""
-"Sie können das Desklet schnell mit der Maus drehen. Klicken Sie dazu die "
-"kleinen Knöpfe links und oben an und ziehen Sie sie."
 
 #: ../Clipper/data/messages:35 ../Doncky/data/messages:33
 #: ../Folders/data/messages:47 ../GMenu/data/messages:35
@@ -3846,7 +3536,7 @@ msgstr ""
 #: ../tomboy/data/messages:45 ../weather/data/messages:33
 #: ../weblets/data/messages:35 ../wifi/data/messages:33
 msgid "Rotation:"
-msgstr "Drehung:"
+msgstr "Pöörlemine:"
 
 #: ../Clipper/data/messages:37 ../Doncky/data/messages:35
 #: ../Folders/data/messages:49 ../GMenu/data/messages:37
@@ -3868,7 +3558,7 @@ msgstr "Drehung:"
 #: ../weather/data/messages:35 ../weblets/data/messages:37
 #: ../wifi/data/messages:35
 msgid "Visibility"
-msgstr "Sichtbarkeit"
+msgstr "Nähtavus"
 
 #: ../Clipper/data/messages:39 ../Doncky/data/messages:37
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
@@ -3890,7 +3580,7 @@ msgstr "Sichtbarkeit"
 #: ../tomboy/data/messages:49 ../weather/data/messages:37
 #: ../weblets/data/messages:39 ../wifi/data/messages:37
 msgid "Is detached from the dock"
-msgstr "Ist vom Dock abgetrennt"
+msgstr ""
 
 #: ../Clipper/data/messages:41 ../Doncky/data/messages:39
 #: ../Folders/data/messages:53 ../GMenu/data/messages:41
@@ -3935,7 +3625,7 @@ msgstr ""
 #: ../weather/data/messages:41 ../weblets/data/messages:43
 #: ../wifi/data/messages:41
 msgid "Visibility:"
-msgstr "Sichtbarkeit :"
+msgstr "Nähtavus:"
 
 #: ../Clipper/data/messages:47 ../Doncky/data/messages:45
 #: ../Folders/data/messages:59 ../GMenu/data/messages:47
@@ -3957,7 +3647,7 @@ msgstr "Sichtbarkeit :"
 #: ../weather/data/messages:45 ../weblets/data/messages:47
 #: ../wifi/data/messages:45
 msgid "Keep above"
-msgstr "Im Vordergrund halten"
+msgstr "Alati pealmine"
 
 #: ../Clipper/data/messages:49 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
@@ -3979,7 +3669,7 @@ msgstr "Im Vordergrund halten"
 #: ../weather/data/messages:47 ../weblets/data/messages:49
 #: ../wifi/data/messages:47
 msgid "Keep below"
-msgstr "Im Hintergrund"
+msgstr "Alati alumine"
 
 #: ../Clipper/data/messages:51 ../Doncky/data/messages:49
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
@@ -4023,7 +3713,7 @@ msgstr ""
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
 msgid "Reserve space"
-msgstr "Platz reservieren"
+msgstr ""
 
 #: ../Clipper/data/messages:55 ../Doncky/data/messages:53
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
@@ -4045,7 +3735,7 @@ msgstr "Platz reservieren"
 #: ../weather/data/messages:53 ../weblets/data/messages:55
 #: ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
-msgstr "Auf allen Arbeitsfächen sichtbar?"
+msgstr ""
 
 #: ../Clipper/data/messages:57 ../Doncky/data/messages:55
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
@@ -4067,7 +3757,7 @@ msgstr "Auf allen Arbeitsfächen sichtbar?"
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:55
 msgid "Decorations"
-msgstr "Dekorationen"
+msgstr ""
 
 #: ../Clipper/data/messages:59 ../Doncky/data/messages:57
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
@@ -4111,7 +3801,7 @@ msgstr ""
 #: ../weather/data/messages:59 ../weblets/data/messages:61
 #: ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
-msgstr "Wählen Sie ein Dekorationsthema für dieses Desklet:"
+msgstr ""
 
 #: ../Clipper/data/messages:63 ../Doncky/data/messages:61
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
@@ -4135,8 +3825,6 @@ msgstr "Wählen Sie ein Dekorationsthema für dieses Desklet:"
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
-"Bild als Hintergrund für Darstellungen, z.B. ein Rahmen. Leer lassen, um "
-"kein Bild zu verwenden."
 
 #: ../Clipper/data/messages:65 ../Doncky/data/messages:63
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
@@ -4159,7 +3847,7 @@ msgstr ""
 #: ../tomboy/data/messages:75 ../weather/data/messages:63
 #: ../weblets/data/messages:65 ../wifi/data/messages:63
 msgid "Background image:"
-msgstr "Hintergrundbild:"
+msgstr "Taustapilt:"
 
 #: ../Clipper/data/messages:67 ../Doncky/data/messages:65
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
@@ -4181,7 +3869,7 @@ msgstr "Hintergrundbild:"
 #: ../weather/data/messages:65 ../weblets/data/messages:67
 #: ../wifi/data/messages:65
 msgid "Background transparency:"
-msgstr "Hintergrund-Transparenz:"
+msgstr "Tausta läbipaistvus:"
 
 #: ../Clipper/data/messages:69 ../Doncky/data/messages:67
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
@@ -4204,8 +3892,6 @@ msgstr "Hintergrund-Transparenz:"
 #: ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr ""
-"in Pixel. Verwenden Sie dies zum Anpassen der linken Position der "
-"Darstellung."
 
 #: ../Clipper/data/messages:71 ../Doncky/data/messages:69
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
@@ -4227,7 +3913,7 @@ msgstr ""
 #: ../weather/data/messages:69 ../weblets/data/messages:71
 #: ../wifi/data/messages:69
 msgid "Left offset:"
-msgstr "Linker Versatz:"
+msgstr ""
 
 #: ../Clipper/data/messages:73 ../Doncky/data/messages:71
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
@@ -4250,8 +3936,6 @@ msgstr "Linker Versatz:"
 #: ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr ""
-"in Pixel. Verwenden Sie dies zum Anpassen der oberen Position der "
-"Darstellung."
 
 #: ../Clipper/data/messages:75 ../Doncky/data/messages:73
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
@@ -4273,7 +3957,7 @@ msgstr ""
 #: ../weather/data/messages:73 ../weblets/data/messages:75
 #: ../wifi/data/messages:73
 msgid "Top offset:"
-msgstr "Oberer Versatz:"
+msgstr ""
 
 #: ../Clipper/data/messages:77 ../Doncky/data/messages:75
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
@@ -4296,8 +3980,6 @@ msgstr "Oberer Versatz:"
 #: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr ""
-"in Pixel. Verwenden Sie dies zum Anpassen der rechten Position der "
-"Darstellung."
 
 #: ../Clipper/data/messages:79 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
@@ -4319,7 +4001,7 @@ msgstr ""
 #: ../weather/data/messages:77 ../weblets/data/messages:79
 #: ../wifi/data/messages:77
 msgid "Right offset:"
-msgstr "Rechter Versatz:"
+msgstr ""
 
 #: ../Clipper/data/messages:81 ../Doncky/data/messages:79
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
@@ -4342,8 +4024,6 @@ msgstr "Rechter Versatz:"
 #: ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr ""
-"in Pixel. Verwenden Sie dies zum Anpassen der unteren Position der "
-"Darstellung."
 
 #: ../Clipper/data/messages:83 ../Doncky/data/messages:81
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
@@ -4365,7 +4045,7 @@ msgstr ""
 #: ../weather/data/messages:81 ../weblets/data/messages:83
 #: ../wifi/data/messages:81
 msgid "Bottom offset:"
-msgstr "Unterer Versatz:"
+msgstr ""
 
 #: ../Clipper/data/messages:85 ../Doncky/data/messages:83
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
@@ -4411,7 +4091,7 @@ msgstr ""
 #: ../weather/data/messages:85 ../weblets/data/messages:87
 #: ../wifi/data/messages:85
 msgid "Foreground image:"
-msgstr "Vordergrundbild:"
+msgstr ""
 
 #: ../Clipper/data/messages:89 ../Doncky/data/messages:87
 #: ../Folders/data/messages:101 ../GMenu/data/messages:89
@@ -4433,11 +4113,11 @@ msgstr "Vordergrundbild:"
 #: ../weather/data/messages:87 ../weblets/data/messages:89
 #: ../wifi/data/messages:87
 msgid "Foreground tansparency:"
-msgstr "Transparenz des Vordergrundes:"
+msgstr ""
 
 #: ../Clipper/data/messages:93
 msgid "Items"
-msgstr "Objekte"
+msgstr "Esemed"
 
 #: ../Clipper/data/messages:95
 msgid ""
@@ -4451,19 +4131,19 @@ msgstr ""
 
 #: ../Clipper/data/messages:101
 msgid "Clipboard"
-msgstr "Zwischenablage"
+msgstr ""
 
 #: ../Clipper/data/messages:103
 msgid "Selection"
-msgstr "Auswahl"
+msgstr "Valik"
 
 #: ../Clipper/data/messages:105
 msgid "Both"
-msgstr "Beides"
+msgstr "Mõlemad"
 
 #: ../Clipper/data/messages:107
 msgid "Number of items:"
-msgstr "Anzahl der Einträge:"
+msgstr ""
 
 #: ../Clipper/data/messages:109
 msgid "Remember items between 2 sessions ?"
@@ -4490,7 +4170,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
-msgstr "In Zwischenablage einfügen?"
+msgstr ""
 
 #: ../Clipper/data/messages:121
 msgid ""
@@ -4500,7 +4180,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:123
 msgid "Paste into Selection?"
-msgstr "In Auswahl einfügen?"
+msgstr ""
 
 #: ../Clipper/data/messages:125
 msgid "Shortkey to pop-up the items menu:"
@@ -4508,11 +4188,11 @@ msgstr ""
 
 #: ../Clipper/data/messages:127
 msgid "Pop-up menus at mouse position?"
-msgstr "Aufklappmenüs an der Mausposition?"
+msgstr ""
 
 #: ../Clipper/data/messages:129 ../compiz-icon/data/messages:89
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Tegevused"
 
 #: ../Clipper/data/messages:131
 msgid ""
@@ -4522,7 +4202,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:133
 msgid "Enable actions?"
-msgstr "Aktionen aktivieren?"
+msgstr ""
 
 #: ../Clipper/data/messages:135
 msgid "Display actions when selecting an item in the history."
@@ -4594,27 +4274,27 @@ msgstr ""
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
-msgstr "Geben Sie die zu verwendende XML-Datei an:"
+msgstr ""
 
 #: ../Doncky/data/messages:95 ../RSSreader/data/messages:133
 msgid "Appearance"
-msgstr "Erscheinungsbild"
+msgstr "Välimus"
 
 #: ../Doncky/data/messages:99
 msgid "Font to be used by default if none is specify in the .xml"
-msgstr ""
+msgstr "Font, mida kasutatakse vaikimisi, kui ei ole täpsustatud. xml"
 
 #: ../Doncky/data/messages:101
 msgid "Default Font:"
-msgstr "Standardschrift:"
+msgstr "Vaikimisi font:"
 
 #: ../Doncky/data/messages:103
 msgid "Color to be used by default if none is specify in the .xml"
-msgstr ""
+msgstr "Värv, mida kasutatakse vaikimisi, kui ei ole täpsustatud. xml"
 
 #: ../Doncky/data/messages:105 ../icon-effect/data/messages:195
 msgid "Default colour:"
-msgstr "Standardfarbe:"
+msgstr "Vaikimisi värv:"
 
 #: ../Doncky/data/messages:107
 msgid "Margin to be used on left, right and top of the desklet"
@@ -4622,7 +4302,7 @@ msgstr ""
 
 #: ../Doncky/data/messages:109
 msgid "Margin all around the desklet:"
-msgstr "Ränder um dasDesklet:"
+msgstr ""
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
@@ -4630,11 +4310,11 @@ msgstr ""
 
 #: ../Doncky/data/messages:113
 msgid "Space between lines:"
-msgstr ""
+msgstr "Ruum ridade vahel:"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
 msgid "Background"
-msgstr "Hintergrund"
+msgstr "Tagapõhi"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
 msgid ""
@@ -4643,23 +4323,23 @@ msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
 msgid "Display a simple background?"
-msgstr "Einen einfachen Hintergrund anzeigen?"
+msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
 msgid "first colour of the gradation"
-msgstr "Erste Farbe des Farbverlaufs"
+msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
 msgid "Background first colour :"
-msgstr "Hintergrundfarbe 1:"
+msgstr "Tausta esimene värv:"
 
 #: ../Doncky/data/messages:125 ../RSSreader/data/messages:189
 msgid "second colour of the gradation"
-msgstr "Zweite Farbe des Farbverlaufs"
+msgstr ""
 
 #: ../Doncky/data/messages:127 ../RSSreader/data/messages:191
 msgid "Background second colour:"
-msgstr "Hintergrundfarbe 2:"
+msgstr ""
 
 #: ../Doncky/data/messages:129 ../RSSreader/data/messages:193
 msgid "Set the radius corner to 0 for no radius"
@@ -4675,72 +4355,72 @@ msgstr ""
 
 #: ../Doncky/data/messages:135 ../RSSreader/data/messages:199
 msgid "Border thickness:"
-msgstr "Dicke des Randes:"
+msgstr ""
 
 #: ../Doncky/data/messages:137 ../RSSreader/data/messages:201
 msgid "Border colour"
-msgstr "Randfarbe"
+msgstr ""
 
 #: ../Doncky/data/messages:139 ../RSSreader/data/messages:203
 msgid "Border colour :"
-msgstr "Randfrabe:"
+msgstr "Äärise värv:"
 
 #: ../Folders/data/messages:7
 msgid "Let empty to use the name of the folder."
-msgstr "Leer lassen, um den Namen des Ordners zu verwenden."
+msgstr ""
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
-msgstr "So wird das Symbol dargestellt:"
+msgstr ""
 
 #: ../Folders/data/messages:15
 msgid "Use an image"
-msgstr "Ein Bild benutzen"
+msgstr ""
 
 #: ../Folders/data/messages:17
 msgid "Draw sub-dock's content as emblems"
-msgstr "Inhalt des Subdocks als Embleme darstellen"
+msgstr ""
 
 #: ../Folders/data/messages:19
 msgid "Draw sub-dock's content as stack"
-msgstr "Inhalt des Subdocks als Stapel anzeigen"
+msgstr ""
 
 #: ../Folders/data/messages:21
 msgid "Draw sub-dock's content inside a box"
-msgstr "Inhalt des Subdocks in einem Kasten anzeigen"
+msgstr ""
 
 #: ../Folders/data/messages:105
 msgid "Folder's path:"
-msgstr "Ordnerpfad:"
+msgstr ""
 
 #: ../Folders/data/messages:107
 msgid "Sort files by :"
-msgstr "Dateien sortieren nach :"
+msgstr "Sorteeri failisi :"
 
 #: ../Folders/data/messages:109 ../stack/data/messages:127
 msgid "Name"
-msgstr "Name"
+msgstr "Nime"
 
 #: ../Folders/data/messages:111 ../stack/data/messages:129
 msgid "Date"
-msgstr "Datum"
+msgstr "Kuupäev"
 
 #: ../Folders/data/messages:113
 msgid "Size"
-msgstr "Größe"
+msgstr "Suurus"
 
 #: ../Folders/data/messages:115
 msgid "Sort folders before files?"
-msgstr "Ordner vor Dateien anzeigen?"
+msgstr ""
 
 #: ../Folders/data/messages:117 ../Scooby-Do/data/messages:103
 #: ../quick-browser/data/messages:103
 msgid "Show hidden files?"
-msgstr "Verborgene Dateien anzeigen ?"
+msgstr ""
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
-msgstr "Symbole im Menü anzeigen?"
+msgstr ""
 
 #: ../GMenu/data/messages:95 ../quick-browser/data/messages:119
 msgid "Shortkey to show/hide the menu:"
@@ -4756,15 +4436,15 @@ msgstr ""
 
 #: ../GMenu/data/messages:103
 msgid "Recent documents"
-msgstr "Zuletzt verwendete Dokumente"
+msgstr "Viimatised dokumendid"
 
 #: ../GMenu/data/messages:105
 msgid "Show recent documents?"
-msgstr "Zuletzt verwendete Dokumente anzeigen?"
+msgstr ""
 
 #: ../GMenu/data/messages:107
 msgid "Leave blank if filter is not needed."
-msgstr "Leer lassen, falls kein Filter erforderlich ist."
+msgstr ""
 
 #: ../GMenu/data/messages:109
 msgid "Only show files that are under this folder or its sub-folder:"
@@ -4785,21 +4465,21 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
-msgstr "Leer lassen, um den Verbindungsnamen zu verwenden."
+msgstr ""
 
 #: ../Network-Monitor/data/messages:13 ../System-Monitor/data/messages:11
 #: ../Toons/data/messages:11 ../clock/data/messages:13
 #: ../powermanager/data/messages:11 ../slider/data/messages:11
 #: ../wifi/data/messages:11
 msgid "Always display the icon, even when the dock is hidden?"
-msgstr "Das Symbol immer anzeigen, selbst wenn das Dock verborgen ist?"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:93 ../Network-Monitor/data/messages:165
 #: ../Network-Monitor/data/messages:253 ../System-Monitor/data/messages:127
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:143
 #: ../tomboy/data/messages:123 ../wifi/data/messages:163
 msgid "Parameters"
-msgstr "Parameter"
+msgstr "Parameetrid"
 
 #: ../Network-Monitor/data/messages:95
 msgid "You can quickly switch to the other mode by scrolling on the icon."
@@ -4811,11 +4491,11 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:99
 msgid "Wifi signal"
-msgstr ""
+msgstr "Wifi signaal"
 
 #: ../Network-Monitor/data/messages:101
 msgid "Connexion speed"
-msgstr ""
+msgstr "Ühenduse kiirus"
 
 #: ../Network-Monitor/data/messages:103
 msgid "By default the first active interface is used."
@@ -4834,7 +4514,7 @@ msgstr ""
 #: ../clock/data/messages:97 ../netspeed/data/messages:141
 #: ../shortcuts/data/messages:119
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: ../Network-Monitor/data/messages:111 ../System-Monitor/data/messages:145
 #: ../alsaMixer/data/messages:123 ../clock/data/messages:99
@@ -4884,7 +4564,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:129
 msgid "Net Speed"
-msgstr ""
+msgstr "Neti kiirus"
 
 #: ../Network-Monitor/data/messages:131 ../System-Monitor/data/messages:91
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:91
@@ -4899,7 +4579,7 @@ msgstr ""
 #: ../powermanager/data/messages:93 ../powermanager/data/messages:99
 #: ../wifi/data/messages:93 ../wifi/data/messages:99
 msgid "Gauge"
-msgstr ""
+msgstr "Mõõdupuu"
 
 #: ../Network-Monitor/data/messages:135 ../Network-Monitor/data/messages:141
 #: ../Network-Monitor/data/messages:177 ../Network-Monitor/data/messages:185
@@ -4908,7 +4588,7 @@ msgstr ""
 #: ../powermanager/data/messages:95 ../powermanager/data/messages:103
 #: ../wifi/data/messages:95 ../wifi/data/messages:103
 msgid "Graph"
-msgstr ""
+msgstr "Graafik"
 
 #: ../Network-Monitor/data/messages:143 ../Network-Monitor/data/messages:187
 #: ../System-Monitor/data/messages:103 ../netspeed/data/messages:101
@@ -4920,31 +4600,31 @@ msgstr ""
 #: ../System-Monitor/data/messages:105 ../netspeed/data/messages:103
 #: ../powermanager/data/messages:107 ../wifi/data/messages:107
 msgid "Line"
-msgstr ""
+msgstr "Rida"
 
 #: ../Network-Monitor/data/messages:147 ../Network-Monitor/data/messages:191
 #: ../System-Monitor/data/messages:107 ../netspeed/data/messages:105
 #: ../powermanager/data/messages:109 ../wifi/data/messages:109
 msgid "Plain"
-msgstr ""
+msgstr "Puhas"
 
 #: ../Network-Monitor/data/messages:149 ../Network-Monitor/data/messages:193
 #: ../System-Monitor/data/messages:109 ../netspeed/data/messages:107
 #: ../powermanager/data/messages:111 ../wifi/data/messages:111
 msgid "Bar"
-msgstr ""
+msgstr "Riba"
 
 #: ../Network-Monitor/data/messages:151 ../Network-Monitor/data/messages:195
 #: ../System-Monitor/data/messages:111 ../netspeed/data/messages:109
 #: ../powermanager/data/messages:113 ../wifi/data/messages:113
 msgid "Circle"
-msgstr ""
+msgstr "Ringjoon"
 
 #: ../Network-Monitor/data/messages:153 ../Network-Monitor/data/messages:197
 #: ../System-Monitor/data/messages:113 ../netspeed/data/messages:111
 #: ../powermanager/data/messages:115 ../wifi/data/messages:115
 msgid "Plain Circle"
-msgstr ""
+msgstr "Tavaline ring"
 
 #: ../Network-Monitor/data/messages:155 ../Network-Monitor/data/messages:199
 #: ../wifi/data/messages:117
@@ -4980,7 +4660,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:171
 msgid "Wifi"
-msgstr ""
+msgstr "Wifi"
 
 #: ../Network-Monitor/data/messages:173
 msgid "Choose the style of the display:"
@@ -4990,7 +4670,7 @@ msgstr ""
 #: ../powermanager/data/messages:97 ../powermanager/data/messages:127
 #: ../wifi/data/messages:97 ../wifi/data/messages:127
 msgid "Icons"
-msgstr ""
+msgstr "Ikoonid"
 
 #: ../Network-Monitor/data/messages:211 ../wifi/data/messages:129
 msgid "Effect to apply on the icon according to strength :"
@@ -4999,12 +4679,12 @@ msgstr ""
 #: ../Network-Monitor/data/messages:215 ../alsaMixer/data/messages:129
 #: ../wifi/data/messages:133
 msgid "Zoom"
-msgstr ""
+msgstr "Suurendus"
 
 #: ../Network-Monitor/data/messages:217 ../alsaMixer/data/messages:131
 #: ../wifi/data/messages:135
 msgid "Transparency"
-msgstr ""
+msgstr "Läbipaistvus"
 
 #: ../Network-Monitor/data/messages:219 ../alsaMixer/data/messages:133
 #: ../wifi/data/messages:137
@@ -5076,7 +4756,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:95
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS-voog"
 
 #: ../RSSreader/data/messages:97
 msgid "Enter a valid atom/rss feed"
@@ -5084,7 +4764,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:99
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../RSSreader/data/messages:101
 msgid "RSS login (optional):"
@@ -5098,7 +4778,7 @@ msgstr ""
 #: ../dnd2share/data/messages:97 ../mail/data/messages:107
 #: ../showDesktop/data/messages:97 ../slider/data/messages:105
 msgid "Behaviour"
-msgstr ""
+msgstr "Käitumine"
 
 #: ../RSSreader/data/messages:111
 msgid "Notify about feed updates:"
@@ -5143,7 +4823,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:139
 msgid "Title font:"
-msgstr ""
+msgstr "Pealkirja font:"
 
 #: ../RSSreader/data/messages:141
 msgid "Colour to be used for the title"
@@ -5151,7 +4831,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:143
 msgid "Title colour:"
-msgstr ""
+msgstr "Pealkirja värv:"
 
 #: ../RSSreader/data/messages:145
 msgid "Alignment of the title:"
@@ -5159,11 +4839,11 @@ msgstr ""
 
 #: ../RSSreader/data/messages:147
 msgid "left"
-msgstr ""
+msgstr "vasak"
 
 #: ../RSSreader/data/messages:149
 msgid "right"
-msgstr ""
+msgstr "parem"
 
 #: ../RSSreader/data/messages:153
 msgid "Font to be used for the feed lines"
@@ -5191,7 +4871,7 @@ msgstr ""
 
 #: ../RSSreader/data/messages:165
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: ../RSSreader/data/messages:167
 msgid "The default logo is the applet's icon"
@@ -5207,16 +4887,16 @@ msgstr ""
 
 #: ../RSSreader/data/messages:173
 msgid "Logo size:"
-msgstr ""
+msgstr "Logo suurus:"
 
 #: ../RSSreader/data/messages:175 ../dock-rendering/data/messages:37
 #: ../keyboard-indicator/data/messages:111
 msgid "normal"
-msgstr ""
+msgstr "tavaline"
 
 #: ../RSSreader/data/messages:177 ../dock-rendering/data/messages:39
 msgid "big"
-msgstr ""
+msgstr "suur"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to enable/disable the finder mode:"
@@ -5248,7 +4928,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:15
 msgid "Animations"
-msgstr ""
+msgstr "Animatsioonid"
 
 #: ../Scooby-Do/data/messages:19
 msgid "Duration of the appearance animation :"
@@ -5280,7 +4960,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:37
 msgid "Text size:"
-msgstr ""
+msgstr "Teksti suurus:"
 
 #: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
 msgid "Outline text?"
@@ -5288,7 +4968,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:41 ../clock/data/messages:145
 msgid "Text colour:"
-msgstr ""
+msgstr "Teksti värv:"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Character background colour:"
@@ -5416,7 +5096,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:115
 msgid "Help"
-msgstr ""
+msgstr "Abi"
 
 #: ../Status-Notifier/data/messages:7
 msgid "Name of the icon as it will appear in its label in the dock :"
@@ -5627,11 +5307,11 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:95
 msgid "Sound card:"
-msgstr ""
+msgstr "Helikaart:"
 
 #: ../alsaMixer/data/messages:97
 msgid "Select channel:"
-msgstr ""
+msgstr "Vali kanal:"
 
 #: ../alsaMixer/data/messages:99
 msgid ""
@@ -5654,7 +5334,7 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:107
 msgid "Control"
-msgstr ""
+msgstr "Juhtimine"
 
 #: ../alsaMixer/data/messages:109
 msgid "Shortkey to show/hide the sound control dialog:"
@@ -5670,7 +5350,7 @@ msgstr ""
 #: ../stack/data/messages:95 ../tomboy/data/messages:103
 #: ../weather/data/messages:119
 msgid "Display"
-msgstr ""
+msgstr "Kuva"
 
 #: ../alsaMixer/data/messages:117
 msgid "Display volume :"
@@ -5682,7 +5362,7 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:137
 msgid "Default icon:"
-msgstr ""
+msgstr "Vaikimisi ikoon:"
 
 #: ../alsaMixer/data/messages:141
 msgid "Broken icon:"
@@ -5733,7 +5413,7 @@ msgstr ""
 
 #: ../clock/data/messages:117
 msgid "Timezone:"
-msgstr ""
+msgstr "Ajavöönd:"
 
 #: ../clock/data/messages:119
 msgid "Use the tasks from the following task-manager:"
@@ -5741,15 +5421,15 @@ msgstr ""
 
 #: ../clock/data/messages:121
 msgid "Default"
-msgstr ""
+msgstr "Vaikimisi"
 
 #: ../clock/data/messages:123
 msgid "iCal"
-msgstr ""
+msgstr "iCal"
 
 #: ../clock/data/messages:125
 msgid "Style"
-msgstr ""
+msgstr "Stiil"
 
 #: ../clock/data/messages:127
 msgid ""
@@ -5763,15 +5443,15 @@ msgstr ""
 
 #: ../clock/data/messages:131
 msgid "Analogue"
-msgstr ""
+msgstr "Analoog"
 
 #: ../clock/data/messages:133
 msgid "Digital"
-msgstr ""
+msgstr "Digitaal"
 
 #: ../clock/data/messages:135
 msgid "Analogue View"
-msgstr ""
+msgstr "Analoog vaade"
 
 #: ../clock/data/messages:137
 msgid "List of available themes for analogue display:"
@@ -5787,7 +5467,7 @@ msgstr ""
 
 #: ../clock/data/messages:143 ../keyboard-indicator/data/messages:99
 msgid "Font:"
-msgstr ""
+msgstr "Font:"
 
 #: ../clock/data/messages:147
 msgid "Ratio to apply on text :"
@@ -5834,7 +5514,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:103
 msgid "Show Desktop"
-msgstr ""
+msgstr "Näita töölauda"
 
 #: ../compiz-icon/data/messages:105
 msgid ""
@@ -5946,7 +5626,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:151
 msgid "emerald"
-msgstr ""
+msgstr "emerald"
 
 #: ../compiz-icon/data/messages:153
 msgid "gtk-window-decorator"
@@ -5976,7 +5656,7 @@ msgstr ""
 
 #: ../compiz-icon/data/messages:163 ../drop-indicator/data/messages:3
 msgid "Images"
-msgstr ""
+msgstr "Pildid"
 
 #: ../compiz-icon/data/messages:167 ../musicPlayer/data/messages:175
 #: ../tomboy/data/messages:15
@@ -6014,7 +5694,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:1
 msgid "Comics"
-msgstr ""
+msgstr "Koomiks"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
@@ -6025,7 +5705,7 @@ msgstr ""
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
 msgid "Border width:"
-msgstr ""
+msgstr "Raami laius:"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
@@ -6034,7 +5714,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:9
 msgid "Modern"
-msgstr "Modern"
+msgstr "Moodne"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
@@ -6054,7 +5734,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:29
 msgid "Tooltip"
-msgstr ""
+msgstr "Vihje"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Colour of the margin :"
@@ -6062,7 +5742,7 @@ msgstr ""
 
 #: ../dialog-rendering/data/messages:39
 msgid "Curly"
-msgstr "gewellt"
+msgstr "Lokkis"
 
 #: ../dialog-rendering/data/messages:47
 msgid "Curvature of the tip :"
@@ -6130,7 +5810,7 @@ msgstr ""
 
 #: ../dnd2share/data/messages:123
 msgid "Sites"
-msgstr ""
+msgstr "Saidid"
 
 #: ../dnd2share/data/messages:125
 msgid "Preferred site for texts hosting :"
@@ -6139,7 +5819,7 @@ msgstr ""
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:133
 #: ../dnd2share/data/messages:143 ../dnd2share/data/messages:149
 msgid "Custom"
-msgstr ""
+msgstr "Kohanda"
 
 #: ../dnd2share/data/messages:129
 msgid "Pastebin.ca"
@@ -6266,7 +5946,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:29
 msgid "Grid"
-msgstr ""
+msgstr "Alusvõrk"
 
 #: ../dock-rendering/data/messages:31
 msgid "Space between columns:"
@@ -6294,7 +5974,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:47
 msgid "Frame"
-msgstr ""
+msgstr "Raam"
 
 #: ../dock-rendering/data/messages:49
 msgid "Draw a background?"
@@ -6338,7 +6018,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:71
 msgid "Scroll bar"
-msgstr ""
+msgstr "otsinguriba"
 
 #: ../dock-rendering/data/messages:73
 msgid "Color of the scroll bar's outline:"
@@ -6455,11 +6135,11 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
-msgstr ""
+msgstr "Animatsioon"
 
 #: ../drop-indicator/data/messages:15
 msgid "Speed:"
-msgstr ""
+msgstr "Kiirus:"
 
 #: ../drop-indicator/data/messages:17
 msgid "Number of round per second."
@@ -6472,7 +6152,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:89 ../mail/data/messages:95
 msgid "Theme"
-msgstr ""
+msgstr "Teema"
 
 #: ../dustbin/data/messages:93
 msgid "Name of the image to overwrite the theme's empty image :"
@@ -6484,7 +6164,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:97
 msgid "Config"
-msgstr ""
+msgstr "Seadistus"
 
 #: ../dustbin/data/messages:99
 msgid "Display the following quick info :"
@@ -6523,7 +6203,7 @@ msgstr ""
 #: ../icon-effect/data/messages:173 ../icon-effect/data/messages:193
 #: ../illusion/data/messages:35 ../terminal/data/messages:93
 msgid "Colours"
-msgstr ""
+msgstr "Värvid"
 
 #: ../icon-effect/data/messages:87
 msgid ""
@@ -6539,7 +6219,7 @@ msgstr ""
 #: ../icon-effect/data/messages:179 ../icon-effect/data/messages:203
 #: ../illusion/data/messages:43
 msgid "Particles"
-msgstr ""
+msgstr "Osakesed"
 
 #: ../icon-effect/data/messages:93 ../icon-effect/data/messages:117
 #: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
@@ -6552,7 +6232,7 @@ msgstr ""
 #: ../icon-effect/data/messages:183 ../icon-effect/data/messages:213
 #: ../illusion/data/messages:47 ../show-mouse/data/messages:25
 msgid "Particle size:"
-msgstr ""
+msgstr "Osakese suurus:"
 
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:141
 #: ../icon-effect/data/messages:163 ../illusion/data/messages:49
@@ -6599,7 +6279,7 @@ msgstr ""
 #: ../illusion/data/messages:7 ../illusion/data/messages:21
 #: ../illusion/data/messages:53
 msgid "Fade out"
-msgstr ""
+msgstr "Hajumine"
 
 #: ../illusion/data/messages:9 ../illusion/data/messages:23
 #: ../illusion/data/messages:57
@@ -6609,16 +6289,16 @@ msgstr ""
 #: ../illusion/data/messages:11 ../illusion/data/messages:25
 #: ../illusion/data/messages:67
 msgid "Break"
-msgstr ""
+msgstr "Eraldamine"
 
 #: ../illusion/data/messages:13 ../illusion/data/messages:27
 #: ../illusion/data/messages:73
 msgid "Black Hole"
-msgstr ""
+msgstr "Must auk"
 
 #: ../illusion/data/messages:15 ../illusion/data/messages:29
 msgid "Random"
-msgstr ""
+msgstr "Juhuslik"
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance:"
@@ -6801,7 +6481,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:91
 msgid "Audio Player"
-msgstr ""
+msgstr "Helifailide mängija"
 
 #: ../musicPlayer/data/messages:93
 msgid "Player to control:"
@@ -6813,11 +6493,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:97
 msgid "Audacious"
-msgstr ""
+msgstr "Audacious"
 
 #: ../musicPlayer/data/messages:99
 msgid "Banshee"
-msgstr ""
+msgstr "Banshee"
 
 #: ../musicPlayer/data/messages:101
 msgid "Clementine"
@@ -6829,7 +6509,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:105
 msgid "Exaile 0.3"
-msgstr ""
+msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:107
 msgid "GMusicBrowser"
@@ -6841,7 +6521,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:111
 msgid "Listen"
-msgstr ""
+msgstr "Kuulama"
 
 #: ../musicPlayer/data/messages:113
 msgid "Qmmp"
@@ -6861,11 +6541,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:121
 msgid "XMMS 2"
-msgstr ""
+msgstr "XMMS 2"
 
 #: ../musicPlayer/data/messages:123
 msgid "XMMS"
-msgstr ""
+msgstr "XMMS"
 
 #: ../musicPlayer/data/messages:125
 msgid ""
@@ -6911,19 +6591,19 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:149
 msgid "Nothing"
-msgstr ""
+msgstr "Puudub"
 
 #: ../musicPlayer/data/messages:151
 msgid "Time Elapsed"
-msgstr ""
+msgstr "Aega kulunud"
 
 #: ../musicPlayer/data/messages:153
 msgid "Time Remaining"
-msgstr ""
+msgstr "Aega jäänud"
 
 #: ../musicPlayer/data/messages:155
 msgid "Track number"
-msgstr ""
+msgstr "Pala number"
 
 #: ../musicPlayer/data/messages:157
 msgid "Display album's cover?"
@@ -6935,7 +6615,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:161
 msgid "Allow Cairo-Dock to download missing covers?"
-msgstr "Erlaube Cairo-Dock fehlende Covers herunterzuladen ?"
+msgstr ""
 
 #: ../musicPlayer/data/messages:163 ../musicPlayer/data/messages:167
 msgid "requires OpenGL."
@@ -6997,7 +6677,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:7
 msgid "Icon name:"
-msgstr "Symbolname :"
+msgstr "Ikooni nimi:"
 
 #: ../powermanager/data/messages:129
 msgid "'On-battery' icon filename:"
@@ -7013,15 +6693,15 @@ msgstr ""
 
 #: ../powermanager/data/messages:135 ../powermanager/data/messages:151
 msgid "nothing"
-msgstr ""
+msgstr "ei midagi"
 
 #: ../powermanager/data/messages:137
 msgid "zoom"
-msgstr ""
+msgstr "suurendus"
 
 #: ../powermanager/data/messages:139
 msgid "transparency"
-msgstr ""
+msgstr "läbipaistvus"
 
 #: ../powermanager/data/messages:141
 msgid "draw bar"
@@ -7033,15 +6713,15 @@ msgstr ""
 
 #: ../powermanager/data/messages:153
 msgid "charge"
-msgstr ""
+msgstr "laeng"
 
 #: ../powermanager/data/messages:155
 msgid "time"
-msgstr ""
+msgstr "aeg"
 
 #: ../powermanager/data/messages:157
 msgid "Notification"
-msgstr ""
+msgstr "Teavitus"
 
 #: ../powermanager/data/messages:159
 msgid "Notification when battery charged ?"
@@ -7055,7 +6735,7 @@ msgstr ""
 #: ../powermanager/data/messages:163 ../powermanager/data/messages:173
 #: ../powermanager/data/messages:181
 msgid "Play a sound:"
-msgstr ""
+msgstr "Mängitakse heli:"
 
 #: ../powermanager/data/messages:165
 msgid "Notification when low battery ?"
@@ -7067,7 +6747,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:169
 msgid "Battery level:"
-msgstr "Batteriezustand :"
+msgstr "Aku tase:"
 
 #: ../powermanager/data/messages:175
 msgid "When battery level is under 4%"
@@ -7087,7 +6767,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:95 ../slider/data/messages:91
 msgid "Folder"
-msgstr ""
+msgstr "Kaust"
 
 #: ../quick-browser/data/messages:97
 msgid "Folder to browse :"
@@ -7103,7 +6783,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:105
 msgid "Menu"
-msgstr ""
+msgstr "Menüü"
 
 #: ../quick-browser/data/messages:107
 msgid "It can be CPU intense to load a lot of icons."
@@ -7111,19 +6791,19 @@ msgstr ""
 
 #: ../quick-browser/data/messages:111
 msgid "Icon size :"
-msgstr "Symbolgröße :"
+msgstr ""
 
 #: ../quick-browser/data/messages:113
 msgid "small"
-msgstr "klein"
+msgstr "väike"
 
 #: ../quick-browser/data/messages:115
 msgid "medium"
-msgstr "mittelgroß"
+msgstr "keskmine"
 
 #: ../quick-browser/data/messages:117
 msgid "large"
-msgstr "groß"
+msgstr ""
 
 #: ../quick-browser/data/messages:121
 msgid ""
@@ -7157,31 +6837,31 @@ msgstr ""
 
 #: ../shortcuts/data/messages:113 ../stack/data/messages:105
 msgid "Tree"
-msgstr ""
+msgstr "Puu"
 
 #: ../shortcuts/data/messages:115
 msgid "Disk usage"
-msgstr ""
+msgstr "Kettakasutus"
 
 #: ../shortcuts/data/messages:117
 msgid "Show disk usage :"
-msgstr ""
+msgstr "Näita kettakasutust :"
 
 #: ../shortcuts/data/messages:121
 msgid "Free space"
-msgstr ""
+msgstr "Vaba ruum"
 
 #: ../shortcuts/data/messages:123
 msgid "Used space"
-msgstr ""
+msgstr "Kasutatud ruum"
 
 #: ../shortcuts/data/messages:125
 msgid "Free space (in percent)"
-msgstr ""
+msgstr "Vaba ruum (protsentides)"
 
 #: ../shortcuts/data/messages:127
 msgid "Used space (in percent)"
-msgstr ""
+msgstr "Kasutatud ruum (protsentides)"
 
 #: ../shortcuts/data/messages:131
 msgid "Delay between disk usage refresh :"
@@ -7201,7 +6881,7 @@ msgstr ""
 
 #: ../show-mouse/data/messages:11
 msgid "dock"
-msgstr ""
+msgstr "dokk"
 
 #: ../show-mouse/data/messages:13
 msgid "desklet"
@@ -7222,7 +6902,7 @@ msgstr ""
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
-msgstr "Streuung :"
+msgstr ""
 
 #: ../showDesktop/data/messages:13
 msgid "Leave empty to use the same image."
@@ -7298,11 +6978,11 @@ msgstr ""
 
 #: ../slider/data/messages:113
 msgid "play/pause"
-msgstr ""
+msgstr "esita/paus"
 
 #: ../slider/data/messages:115
 msgid "open image"
-msgstr ""
+msgstr "va pilt"
 
 #: ../slider/data/messages:117
 msgid "Effect while changing image:"
@@ -7342,7 +7022,7 @@ msgstr ""
 
 #: ../slider/data/messages:137
 msgid "random"
-msgstr ""
+msgstr "juhuslik"
 
 #: ../slider/data/messages:139
 msgid "Number of steps for transitions:"
@@ -7350,7 +7030,7 @@ msgstr ""
 
 #: ../slider/data/messages:141
 msgid "fast"
-msgstr ""
+msgstr "kiire"
 
 #: ../slider/data/messages:143
 msgid "slow"
@@ -7380,7 +7060,7 @@ msgstr ""
 
 #: ../slider/data/messages:157
 msgid "Choose a background colour :"
-msgstr "Wähle eine Hintergrundfarbe :"
+msgstr ""
 
 #: ../stack/data/messages:7
 msgid "Leave empty to use a default name"
@@ -7404,7 +7084,7 @@ msgstr ""
 
 #: ../stack/data/messages:115
 msgid "Options"
-msgstr "Optionen"
+msgstr "Valikud"
 
 #: ../stack/data/messages:117 ../stacks/data/messages:107
 msgid ""
@@ -7426,11 +7106,11 @@ msgstr ""
 
 #: ../stack/data/messages:125
 msgid "Sort items by:"
-msgstr "Sortiere Einträge nach :"
+msgstr ""
 
 #: ../stack/data/messages:131
 msgid "Type"
-msgstr ""
+msgstr "Tüüp"
 
 #: ../stack/data/messages:133
 msgid "Manual order"
@@ -7523,11 +7203,11 @@ msgstr ""
 
 #: ../switcher/data/messages:103
 msgid "Show windows' list"
-msgstr "Zeige Fensterliste"
+msgstr ""
 
 #: ../switcher/data/messages:105
 msgid "Show desktop"
-msgstr "Zeige Desktop"
+msgstr "Näita töölauda"
 
 #: ../switcher/data/messages:109
 msgid "Workspace names :"
@@ -7535,7 +7215,7 @@ msgstr ""
 
 #: ../switcher/data/messages:111
 msgid "Display options"
-msgstr ""
+msgstr "Ekraani seaded"
 
 #: ../switcher/data/messages:113
 msgid "Size of the inside lines :"
@@ -7604,11 +7284,11 @@ msgstr ""
 
 #: ../systray/data/messages:89
 msgid "horizontal"
-msgstr ""
+msgstr "rõhtne"
 
 #: ../systray/data/messages:91
 msgid "vertical"
-msgstr ""
+msgstr "püstine"
 
 #: ../template/data/messages:93
 msgid "This is a tooltip for this parameter."
@@ -7624,7 +7304,7 @@ msgstr ""
 
 #: ../template/data/messages:99
 msgid "Enter some text here :"
-msgstr ""
+msgstr "Lisa siia tekst:"
 
 #: ../terminal/data/messages:95
 msgid "needs to restart the applet."
@@ -7632,11 +7312,11 @@ msgstr ""
 
 #: ../terminal/data/messages:97
 msgid "Terminal transparency:"
-msgstr ""
+msgstr "Terminali läbipaistvus:"
 
 #: ../terminal/data/messages:99
 msgid "transparent"
-msgstr ""
+msgstr "läbipaistev"
 
 #: ../terminal/data/messages:101
 msgid "opaque"
@@ -7644,11 +7324,11 @@ msgstr ""
 
 #: ../terminal/data/messages:103
 msgid "Foreground colour:"
-msgstr "Vordergrundfarbe"
+msgstr ""
 
 #: ../terminal/data/messages:105
 msgid "Background colour:"
-msgstr "Hintergrundfarbe:"
+msgstr "Taustavärv:"
 
 #: ../terminal/data/messages:109
 msgid ""
@@ -7662,11 +7342,11 @@ msgstr ""
 
 #: ../terminal/data/messages:113
 msgid "Shortkey to show the terminal:"
-msgstr "Tastaturkombination um das Terminal anzuzeigen:"
+msgstr "Kiirklahv terminali kuvamiseks:"
 
 #: ../tomboy/data/messages:7
 msgid "Default title:"
-msgstr ""
+msgstr "Vaikimisi pealkiri:"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
@@ -7682,7 +7362,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:111
 msgid "Text colour of the content :"
-msgstr ""
+msgstr "Teksti sisu värv:"
 
 #: ../tomboy/data/messages:113
 msgid "Display note's content with a dialog?"
@@ -7702,11 +7382,11 @@ msgstr ""
 
 #: ../tomboy/data/messages:129
 msgid "Tomboy"
-msgstr ""
+msgstr "Tomboy"
 
 #: ../tomboy/data/messages:131
 msgid "Ask for confirmation before deleting a note?"
-msgstr ""
+msgstr "Kas küsida märkme kustutamisel kinnitust?"
 
 #: ../tomboy/data/messages:133
 msgid "Otherwise you will be asked to name it."
@@ -7714,7 +7394,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:135
 msgid "Automatically name a new note?"
-msgstr ""
+msgstr "Anna märkmele automaatselt nimi?"
 
 #: ../tomboy/data/messages:137
 msgid ""
@@ -7757,7 +7437,7 @@ msgstr ""
 
 #: ../weather/data/messages:99
 msgid "Use International System Units?"
-msgstr ""
+msgstr "Kasutan rahvusvahelisi mõõtühikuid?"
 
 #: ../weather/data/messages:101
 msgid "in seconds. Set 0 to have never-ending dialogs."
@@ -7765,7 +7445,7 @@ msgstr ""
 
 #: ../weather/data/messages:103
 msgid "Dialog duration:"
-msgstr ""
+msgstr "Dialoogi kestus:"
 
 #: ../weather/data/messages:109 ../wifi/data/messages:177
 msgid "Info"
@@ -7777,19 +7457,19 @@ msgstr ""
 
 #: ../weather/data/messages:113
 msgid "Number of days to forecast:"
-msgstr "Anzahl der Tage welche vorhergesagt werden sollen:"
+msgstr "Ilmaennustuse pikkus päevades:"
 
 #: ../weather/data/messages:115
 msgid "Display nights?"
-msgstr "Sollen Nächte auch anezeigt werden?"
+msgstr "Näita ööd?"
 
 #: ../weather/data/messages:117
 msgid "Display temperature as quick info?"
-msgstr ""
+msgstr "Näita temperatuuri kohta kiirinfot?"
 
 #: ../weather/data/messages:127
 msgid "Render desklet in 3D?"
-msgstr "Soll das Desklet in 3D angezeigt werden?"
+msgstr ""
 
 #: ../weblets/data/messages:93
 msgid "URI to load in weblet"
@@ -7797,7 +7477,7 @@ msgstr ""
 
 #: ../weblets/data/messages:95
 msgid "Show scrollbars?"
-msgstr "Scrollleisten anzeigen?"
+msgstr "Näita kerimisribasid?"
 
 #: ../weblets/data/messages:97
 msgid "Horizontal scroll of the browser in pixels"
@@ -7805,7 +7485,7 @@ msgstr ""
 
 #: ../weblets/data/messages:99
 msgid "Position of horizontal scrollbar"
-msgstr ""
+msgstr "Horisontaalse kerimisriba asukoht:"
 
 #: ../weblets/data/messages:101
 msgid "Vertical scroll of the browser in pixels"
@@ -7819,6 +7499,7 @@ msgstr ""
 msgid ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
+"See lubab sul paremklikkata vidinal Cairo-dokki menüü esilekuvamiseks."
 
 #: ../weblets/data/messages:107
 msgid "Right margin width, in pixels:"
@@ -7826,7 +7507,7 @@ msgstr ""
 
 #: ../weblets/data/messages:109
 msgid "Transparent background?"
-msgstr "Transparenter Hintergrund ?"
+msgstr "Läbipaistev taust?"
 
 #: ../weblets/data/messages:111
 msgid ""
@@ -7839,7 +7520,7 @@ msgstr ""
 
 #: ../weblets/data/messages:115
 msgid "Any valid URI should work."
-msgstr ""
+msgstr "Iga kehtiv URI peaks sobima."
 
 #: ../weblets/data/messages:117
 msgid "Predefined bookmarks to show in applet menu:"
@@ -7847,31 +7528,31 @@ msgstr ""
 
 #: ../wifi/data/messages:141
 msgid "'No signal' icon filename:"
-msgstr "'Kein Signal' Symboldateiname:"
+msgstr "'Pole signaali' ikooni failinimi:"
 
 #: ../wifi/data/messages:145
 msgid "'Very low' icon filename:"
-msgstr "'Sehr niedrig' Symboldateiname:"
+msgstr "'Väga madal' ikooni failinimi:"
 
 #: ../wifi/data/messages:149
 msgid "'Low' icon filename:"
-msgstr "'Niedrig' Symboldateiname:"
+msgstr "'Madal' ikooni failinimi:"
 
 #: ../wifi/data/messages:153
 msgid "'Average' icon filename:"
-msgstr "'Durchschnittlich' Symboldateiname:"
+msgstr "'Keskmine' ikooni failinimi:"
 
 #: ../wifi/data/messages:157
 msgid "'Good' icon filename:"
-msgstr "'Gut' Symboldateiname:"
+msgstr "'Hea' ikooni failinimi:"
 
 #: ../wifi/data/messages:161
 msgid "'Excellent' icon filename:"
-msgstr "'Exzellent' Symboldateiname:"
+msgstr "'Suurepärane' ikooni failinimi:"
 
 #: ../wifi/data/messages:167
 msgid "Delay between signal checks :"
-msgstr "Zeitintervall zwischen Signalprüfungen :"
+msgstr "Viide signaali kontrollimiste vahel:"
 
 #: ../wifi/data/messages:173
 msgid ""
@@ -7882,164 +7563,19 @@ msgstr ""
 #: ../wifi/data/messages:175
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
-"Alternativer Kommandozeilenbefehl um die drahtlose Konfiguration zu starten."
 
 #: ../wifi/data/messages:183
 msgid "Signal Strength"
-msgstr "Signalstärke"
+msgstr "Signaali tugevus"
 
 #: ../wifi/data/messages:185
 msgid "Signal Strength in percent"
-msgstr "Signalstärke in Prozent"
+msgstr ""
 
 #: ../wifi/data/messages:187
 msgid "Raw Signal Informations"
-msgstr ""
+msgstr "Puhta signaali info"
 
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
-
-#~ msgid "Failed to connect..."
-#~ msgstr "Verbindung fehlgeschlagen..."
-
-#~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
-#~ "to add one."
-#~ msgstr ""
-#~ "Füge eine gültige RSS-Feed URL nach dem Drag'n drop-Prinzip hinzu oder "
-#~ "benutze den Menüpunkt \"Einfügen einer neuen RSS URL\"."
-
-#~ msgid "No RSS feed URL defined..."
-#~ msgstr "Es wurde keine URL für den RSS-Feed festgelegt..."
-
-#~ msgid ""
-#~ "This applet shows you a monitor of your active connections\n"
-#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
-#~ msgstr ""
-#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen ab.\n"
-#~ "Linke Maustaste für weitere Informationen, mittlere Maustaste zum "
-#~ "aktualisieren."
-
-#~ msgid "AlsaMixer"
-#~ msgstr "AlsaMixer"
-
-#~ msgid "Show All"
-#~ msgstr "Zeige alle"
-
-#, c-format
-#~ msgid "Delete %s"
-#~ msgstr "Lösche %s"
-
-#~ msgid "Delete All"
-#~ msgstr "Lösche alle"
-
-#~ msgid "Icons size :"
-#~ msgstr "Symbolgröße :"
-
-#~ msgid "View"
-#~ msgstr "Ansicht"
-
-#~ msgid "Free"
-#~ msgstr "Frei"
-
-#, c-format
-#~ msgid ""
-#~ "I couldn't find any audio channel named '%s'\n"
-#~ "You should try to open the configuration panel of the applet,\n"
-#~ " and select the proper audio channel you want to control."
-#~ msgstr ""
-#~ "Ich konnte keine Audiokanäle mit dem Namen '%s' finden.\n"
-#~ "Sie sollten versuchen, das Konfigurationspanel des Applets zu öffnen,\n"
-#~ "und dort einen funktionsfähigen Audiokanal für die Verwendung auszuwählen."
-
-#, c-format
-#~ msgid "Show %s"
-#~ msgstr "Zeige %s"
-
-#~ msgid "in seconds"
-#~ msgstr "in Sekunden"
-
-#~ msgid "showDesklets"
-#~ msgstr "Zeige Desklets"
-
-#~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
-#~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to the "
-#~ "next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-#~ "for middle click, and Ctrl+Enter for left click\n"
-#~ "- the finder mode : type some text to launch any command, file or "
-#~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to validate, "
-#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
-#~ "Escape or the same shortkey to cancel."
-#~ msgstr ""
-#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
-#~ "gesteuert werden kann.\n"
-#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
-#~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
-#~ "Unterdocks navigiert werden.\n"
-#~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
-#~ "passenden zu springen.\n"
-#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
-#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
-#~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
-#~ "Rechnung zu starten\n"
-#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
-#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
-#~ "beizubehalten\n"
-#~ "Escape zum Abbrechen"
-
-#~ msgid ""
-#~ "If the Trash folder is not known by the dock, you can specify it here :"
-#~ msgstr ""
-#~ "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier angeben:"
-
-#~ msgid "Alternative file browser used to show a trash :"
-#~ msgstr "Alternativer Dateibrowser, um den Müll anzuzeigen:"
-
-#~ msgid "Empty Trash"
-#~ msgstr "Leere Mülleimer"
-
-#, c-format
-#~ msgid "You are about to delete all files in %s. Continue?"
-#~ msgstr "Sind Sie sicher, dass Sie alle Dateien in %s löschen möchten ?"
-
-#, c-format
-#~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual file browser,\n"
-#~ "you can change this in the configuration panel of this module"
-#~ msgstr ""
-#~ "Ein Problem ist aufgetreten.\n"
-#~ "Wenn '%s' nicht Ihr üblicher Dateimanager ist, können Sie dies in der "
-#~ "Konfigurationsleiste dieses Moduls ändern."
-
-#~ msgid ""
-#~ "- What will we do tonight Cortex?\n"
-#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
-#~ msgstr ""
-#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
-#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
-
-#~ msgid "ToolTip"
-#~ msgstr "tooltip"
-
-#~ msgid "in minutes."
-#~ msgstr "in Minuten"
-
-#~ msgid "Menus to control your session, connection state, etc."
-#~ msgstr "Menüs zur kontrolle der Sitzung, Verbindungsstatus, usw."
-
-#~ msgid "Add a workspace"
-#~ msgstr "Füge zum Desktop hinzu"
-
-#~ msgid "Remove last workspace"
-#~ msgstr "Entferne letzten Desktop"
-
-#~ msgid "Move current workspace to this workspace"
-#~ msgstr "Aktuelle Arbeitsfläche auf diese Arbeitsfläche verschieben"
