@@ -131,6 +131,7 @@ void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myA
 void cd_clock_remove_task_from_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
 	myData.pTasks = g_list_remove (myData.pTasks, pTask);
+	myData.pMissedTasks = g_list_remove (myData.pMissedTasks, pTask);
 	myData.pNextTask = cd_clock_get_next_scheduled_task (myApplet);
 	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
@@ -154,8 +155,10 @@ void cd_clock_reset_tasks_list (CairoDockModuleInstance *myApplet)
 {
 	g_list_foreach (myData.pTasks, (GFunc)cd_clock_free_task, NULL);
 	g_list_free (myData.pTasks);
+	g_list_free (myData.pMissedTasks);
 	myData.pTasks = NULL;
 	myData.pNextTask = NULL;
+	myData.pMissedTasks = NULL;
 }
 
 CDClockTask *cd_clock_get_task_by_id (const gchar *cID, CairoDockModuleInstance *myApplet)
@@ -381,6 +384,85 @@ CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet)
 		}
 	}
 	return pNextAnniversary;
+}
+
+
+GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet)
+{
+	GList *pTaskList = NULL;
+	guint iDay = myData.currentTime.tm_mday, iMonth = myData.currentTime.tm_mon, iYear = myData.currentTime.tm_year + 1900;
+	
+	GDate* pCurrentDate = g_date_new_dmy (iDay, iMonth + 1, iYear);
+	GDate* pDate = g_date_new ();
+	guint d, m, y;
+	int iDelta;
+	CDClockTask *pTask;
+	GList *t;
+	for (t = myData.pTasks; t != NULL; t = t->next)
+	{
+		pTask = t->data;
+		if (pTask->bAcknowledged)
+			continue;
+		
+		switch (pTask->iFrequency)
+		{
+			case CD_TASK_DONT_REPEAT:
+			default:
+				d = pTask->iDay;
+				m = pTask->iMonth+1;
+				y = pTask->iYear;
+				g_date_set_dmy (pDate, d, m, y);
+				iDelta = g_date_days_between (pCurrentDate, pDate);
+			break;
+			
+			case CD_TASK_EACH_MONTH:
+				d = pTask->iDay;
+				m = iMonth+1;
+				y = iYear;
+				g_date_set_dmy (pDate, d, m, y);
+				iDelta = g_date_days_between (pCurrentDate, pDate);
+				if (iDelta > 0)  // pDate est apres pCurrentDate => on teste le mois d'avant.
+				{
+					if (iMonth > 0)
+					{
+						m = iMonth;
+						g_date_set_dmy (pDate, d, m, y);
+					}
+					else
+					{
+						m = 12;
+						y = pTask->iYear - 1;
+						g_date_set_dmy (pDate, d, m, y);
+					}
+					iDelta = g_date_days_between (pCurrentDate, pDate);
+				}
+			break;
+			
+			case CD_TASK_EACH_YEAR:
+				d = pTask->iDay;
+				m = pTask->iMonth+1;
+				y = iYear;
+				g_date_set_dmy (pDate, d, m, y);
+				iDelta = g_date_days_between (pCurrentDate, pDate);
+				//g_print ("iDelta : %d/%d/%d -> %d (%s)\n", d, m, y, iDelta, pTask->cTitle);
+				if (iDelta > 0)  // pDate est apres pCurrentDate => on teste l'annee d'avant.
+				{
+					y = iYear - 1;
+					g_date_set_dmy (pDate, d, m, y);
+					iDelta = g_date_days_between (pCurrentDate, pDate);
+				}
+			break;
+		}
+		
+		if (iDelta <= 0 && iDelta > -7)
+		{
+			pTaskList = g_list_prepend (pTaskList, pTask);
+		}  // on n'arrete pas le parcours si iDelta > 7 pour prendre en compte aussi les anniv.
+	}
+	g_date_free (pCurrentDate);
+	g_date_free (pDate);
+	
+	return pTaskList;
 }
 
 

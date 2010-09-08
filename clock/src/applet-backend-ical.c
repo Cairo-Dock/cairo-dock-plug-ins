@@ -173,7 +173,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		pTask->iYear = liCalStartDate.year;
 		pTask->iHour = liCalStartDate.hour;
 		pTask->iMinute = liCalStartDate.minute;
-
+		
 		pTask->iFrequency = CD_TASK_DONT_REPEAT;
 		// TODO: really do the frequency management. If possible.
 		icalproperty *rrule = NULL;
@@ -190,6 +190,8 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		pTask->cTitle = g_strdup(icalcomponent_get_summary(piCalComponent));
 		pTask->cText = g_strdup(icalcomponent_get_description(piCalComponent));
 		pTask->cTags = g_strdup(icalcomponent_get_comment(piCalComponent));
+		
+		pTask->bAcknowledged = TRUE;  /// a recuperer si possible ...
 		
 		pTaskList = g_list_prepend (pTaskList, pTask);
 	}

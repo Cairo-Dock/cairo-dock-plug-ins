@@ -120,6 +120,7 @@ typedef struct {
 	gint iWarningDelay;  // en minutes.
 	guint iSidWarning;
 	CairoDialog *pWarningDialog;
+	gboolean bAcknowledged;
 	} CDClockTask;
 
 typedef struct {
@@ -197,6 +198,8 @@ struct _AppletData {
 	guint iButtonPressTime;
 	CDClockTask *pNextTask;
 	CDClockTask *pNextAnniversary;
+	gboolean bTaskCheckedOnce;
+	GList *pMissedTasks;
 	} ;
 
 #endif

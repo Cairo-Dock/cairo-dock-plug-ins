@@ -145,6 +145,90 @@ void cd_clock_init_time (CairoDockModuleInstance *myApplet)
 	_get_current_time (epoch, myApplet);
 }
 
+static gchar *_make_missed_task_message (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+{
+	g_print ("%s (%s)\n", __func__, pTask->cID);
+	struct tm st;
+	memset (&st, 0, sizeof (st));
+	st.tm_min = pTask->iMinute;
+	st.tm_hour = pTask->iHour;
+	st.tm_mday = pTask->iDay;
+	st.tm_mon = pTask->iMonth;
+	st.tm_year = pTask->iYear - 1900;
+	st.tm_sec = 0;
+	st.tm_isdst = myData.currentTime.tm_isdst;
+	char cDateBuffer[200+1];
+	memset (cDateBuffer, 0, 200);
+	const gchar *cFormat;
+	if (myConfig.b24Mode)
+		cFormat = "%a %d %b, %R";
+	else
+		cFormat = "%a %d %b, %I:%M %p";
+	strftime (cDateBuffer, 200, cFormat, &st);
+	return g_strdup_printf ("%s\n\n %s\n %s\n\n %s",
+		D_("The following task has felt due:"),
+		cDateBuffer,
+		pTask->cTitle?pTask->cTitle:D_("No title"),
+		pTask->cText?pTask->cText:"");
+}
+static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+{
+	g_return_if_fail (myData.pMissedTasks != NULL);
+	g_print ("%s ()\n", __func__);
+	
+	// acknowledge this task
+	CDClockTask *pTask = myData.pMissedTasks->data;
+	pTask->bAcknowledged = TRUE;
+	myData.pBackend->update_task (pTask, myApplet);
+	
+	// jump to next task.
+	if (iClickedButton == -1 || iClickedButton == 1)  // 'enter' or 2nd button
+	{
+		myData.pMissedTasks = g_list_delete_link (myData.pMissedTasks, myData.pMissedTasks);
+		if (myData.pMissedTasks != NULL)
+		{
+			// display next task.
+			pTask = myData.pMissedTasks->data;
+			g_print ("display task '%s'\n", pTask->cID);
+			gchar *cMessage = _make_missed_task_message (pTask, myApplet);
+			cairo_dock_set_dialog_message (pDialog, cMessage);
+			g_free (cMessage);
+			
+			// remove 'next' button if no more task will follow.
+			if (myData.pMissedTasks->next == NULL && pDialog->pButtons != NULL && pDialog->iNbButtons > 1)
+			{
+				// remove 'next' button
+				cairo_surface_t *pSurface;
+				GLuint iTexture;
+				int i = 1;
+				pSurface = pDialog->pButtons[i].pSurface;
+				if (pSurface != NULL)
+				{
+					cairo_surface_destroy (pSurface);
+					pDialog->pButtons[i].pSurface = NULL;
+				}
+				iTexture = pDialog->pButtons[i].iTexture;
+				if (iTexture != 0)
+				{
+					_cairo_dock_delete_texture (iTexture);
+					pDialog->pButtons[i].iTexture = 0;
+				}
+				pDialog->iNbButtons = 1;  // only the 'ok' button will stay.
+				
+				// transform 'cancel' into 'ok'
+				i = 0;
+				pDialog->pButtons[i].iDefaultType = 1;
+			}
+			cairo_dock_dialog_reference (pDialog);  // keep the dialog alive.
+		}
+	}
+	else  // dismiss next missed tasks and let the dialog close itself.
+	{
+		g_list_free (myData.pMissedTasks);
+		myData.pMissedTasks = NULL;
+	}
+}
+
 gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
@@ -167,8 +251,6 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	{
 		if (bNewDate || myData.iDateTexture == 0)
 		{
-			strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", &myData.currentTime);
-			
 			if (myData.iDateTexture != 0)
 				_cairo_dock_delete_texture (myData.iDateTexture);
 			
@@ -306,7 +388,36 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			}
 		}
 		
-		// les taches.
+		// display missed tasks.
+		if (!myData.bTaskCheckedOnce)
+		{
+			myData.bTaskCheckedOnce = TRUE;
+			myData.pMissedTasks = cd_clock_get_missed_tasks (myApplet);
+		}
+		if (myData.pMissedTasks != NULL)  // so if the dialog was closed before we could acknowledge all the tasks, it will re-open.
+		{
+			CDClockTask *pTask = myData.pMissedTasks->data;
+			gchar *cMessage = _make_missed_task_message (pTask, myApplet);
+			CairoDialogAttribute attr;
+			memset (&attr, 0, sizeof (CairoDialogAttribute));
+			attr.cText = cMessage;
+			attr.cImageFilePath = (gchar *)MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
+			const gchar *cButtonsImage[3] = {"ok", NULL, NULL};
+			if (myData.pMissedTasks->next != NULL)
+			{
+				cButtonsImage[0] = "cancel";
+				cButtonsImage[1] = "next.png";
+			}
+			attr.cButtonsImage = cButtonsImage;
+			attr.pActionFunc = (CairoDockActionOnAnswerFunc)_on_next_missed_task;
+			attr.pUserData = myApplet;
+			attr.pFreeDataFunc = NULL;
+			attr.iTimeLength = 0;
+			CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+			g_free (cMessage);
+		}
+		
+		// display next task.
 		if (myData.pNextTask != NULL)
 		{
 			//g_print ("next task : %s\n", myData.pNextTask->cTitle);
@@ -326,22 +437,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			}
 			else if (t < epoch + 15*60 && t >= epoch)
 			{
-				if (! myData.pNextTask->b15mnWarning)
-				{
-					//g_print ("15 mn warning\n");
-					myData.pNextTask->b15mnWarning = TRUE;
-					myDialogs.dialogTextDescription.bUseMarkup = TRUE;
-					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
-						myIcon, myContainer,
-						60e3,
-						MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
-						D_("This task will begin in 15 minutes:"),
-						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
-						myData.pNextTask->cText?myData.pNextTask->cText:"");
-					myDialogs.dialogTextDescription.bUseMarkup = FALSE;
-					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
-				}
-				else if (t < epoch + 60)
+				if (t < epoch + 60)
 				{
 					if (! myData.pNextTask->bFirstWarning)
 					{
@@ -357,11 +453,27 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 						g_free (cText);
 					}
 				}
+				else if (! myData.pNextTask->b15mnWarning)
+				{
+					//g_print ("15 mn warning\n");
+					myData.pNextTask->b15mnWarning = TRUE;
+					myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
+						myIcon, myContainer,
+						60e3,
+						MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
+						D_("This task will begin in 15 minutes:"),
+						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
+						myData.pNextTask->cText?myData.pNextTask->cText:"");
+					myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
+				}
 			}
 			
+			// display next anniversary if it is scheduled in less than 1 day, because anniversary require time to prepare.
 			if (myData.pNextAnniversary != NULL)
 			{
-				if (!myData.pNextAnniversary->b1DayWarning && ! myData.pNextAnniversary->bFirstWarning && ! myData.pNextTask->b15mnWarning)
+				if (!myData.pNextAnniversary->b1DayWarning && ! myData.pNextAnniversary->bFirstWarning && ! myData.pNextAnniversary->b15mnWarning)
 				{
 					GDate* pCurrentDate = g_date_new_dmy (myData.currentTime.tm_mday, myData.currentTime.tm_mon + 1, myData.currentTime.tm_year+1900);
 					GDate* pAnnivDate = g_date_new_dmy (myData.pNextAnniversary->iDay, myData.pNextAnniversary->iMonth + 1, myData.currentTime.tm_year+1900);
@@ -399,8 +511,6 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 #define MAX_RATIO 2.
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
-	GString *sFormat = g_string_new ("");
-	
 	cairo_dock_erase_cairo_context (myDrawContext);
 	if (myData.pNumericBgSurface != NULL)
 	{
@@ -418,22 +528,23 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	pango_layout_set_font_description (pLayout, pDesc);
 	
+	const gchar *cFormat;
 	if (myConfig.b24Mode)
 	{
 		if (myConfig.bShowSeconds)
-			g_string_assign (sFormat, "%T");
+			cFormat = "%T";
 		else
-			g_string_assign (sFormat, "%R");
+			cFormat = "%R";
 	}
 	else
 	{
 		if (myConfig.bShowSeconds)
-			g_string_assign (sFormat, "%r");  // equivalent a %I:%M:%S %p
+			cFormat = "%r";  // equivalent a %I:%M:%S %p
 		else
-			g_string_printf (sFormat, "%%I:%%M %%p");
+			cFormat = "%I:%M %p";
 	}
 	
-	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, sFormat->str, pTime);
+	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cFormat, pTime);
 	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
 	PangoRectangle ink, log;
 	pango_layout_get_pixel_extents (pLayout, &ink, &log);

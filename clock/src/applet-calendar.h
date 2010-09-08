@@ -52,6 +52,8 @@ CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet
 
 CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet);
 
+GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet);
+
 
 void cd_clock_update_calendar_marks (CairoDockModuleInstance *myApplet);
 

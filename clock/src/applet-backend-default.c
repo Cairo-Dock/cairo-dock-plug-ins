@@ -45,46 +45,72 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 	}
 	gchar *cFile = g_strdup_printf ("%s/%s", cDirPath, "tasks.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFile);
-	g_free (cFile);
+	
 	g_free (cDirPath);
 	if (pKeyFile == NULL)  // encore aucune taches.
+	{
+		g_free (cFile);
 		return NULL;
+	}
 	
 	gsize length=0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	if (pGroupList == NULL)
 	{
 		g_key_file_free (pKeyFile);
+		g_free (cFile);
 		return NULL;
 	}
 	
 	CDClockTask *pTask;
 	gchar *cTaskID;
 	GList *pTaskList = NULL;
+	guint iMonth = myData.currentTime.tm_mon;
+	guint iYear = myData.currentTime.tm_year + 1900;
+	guint y, m, freq;
+	gboolean bUpdateFile = FALSE;
 	guint i;
 	for (i = 0; i < length; i ++)
 	{
 		cTaskID = pGroupList[i];
-		pTask = g_new0 (CDClockTask, 1);
-		//g_print ("+ task %s\n", cTaskID);
 		
+		// discard tasks older than 1 year (clean the file too).
+		y = g_key_file_get_integer (pKeyFile, cTaskID, "year", NULL);
+		m = g_key_file_get_integer (pKeyFile, cTaskID, "month", NULL);
+		freq = g_key_file_get_integer (pKeyFile, cTaskID, "freq", NULL);
+		if (freq == CD_TASK_DONT_REPEAT && (iYear < y -1 || iYear == y - 1 && iMonth < m))
+		{
+			g_key_file_remove_group (pKeyFile, cTaskID, NULL);
+			bUpdateFile = TRUE;
+			g_free (cTaskID);
+			continue;
+		}
+		
+		// append the task.
+		pTask = g_new0 (CDClockTask, 1);
 		pTask->cID = cTaskID;
 		pTask->iDay = g_key_file_get_integer (pKeyFile, cTaskID, "day", NULL);
-		pTask->iMonth = g_key_file_get_integer (pKeyFile, cTaskID, "month", NULL);
-		pTask->iYear = g_key_file_get_integer (pKeyFile, cTaskID, "year", NULL);
+		pTask->iMonth = m;
+		pTask->iYear = y;
 		pTask->cTitle = g_key_file_get_string (pKeyFile, cTaskID, "title", NULL);
 		pTask->cText = g_key_file_get_string (pKeyFile, cTaskID, "text", NULL);
 		pTask->cTags = g_key_file_get_string (pKeyFile, cTaskID, "tags", NULL);
 		pTask->iHour = g_key_file_get_integer (pKeyFile, cTaskID, "hour", NULL);
 		pTask->iMinute = g_key_file_get_integer (pKeyFile, cTaskID, "minute", NULL);
-		pTask->iFrequency = g_key_file_get_integer (pKeyFile, cTaskID, "freq", NULL);
+		pTask->iFrequency = freq;
+		pTask->bAcknowledged = g_key_file_get_boolean (pKeyFile, cTaskID, "ack", NULL);
 		
 		pTaskList = g_list_prepend (pTaskList, pTask);
 		s_iCounter = MAX (s_iCounter, atoi (cTaskID));
 	}
 	
 	g_free (pGroupList);  // les elements sont les IDs et sont integres dans les taches.
+	
+	if (bUpdateFile)
+		cairo_dock_write_keys_to_file (pKeyFile, cFile);
+	
 	g_key_file_free (pKeyFile);
+	g_free (cFile);
 	return pTaskList;
 }
 
@@ -107,6 +133,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	g_key_file_set_integer (pKeyFile, pTask->cID, "hour", pTask->iHour);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "minute", pTask->iMinute);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "freq", pTask->iFrequency);
+	g_key_file_set_boolean (pKeyFile, pTask->cID, "ack", pTask->bAcknowledged);
 	
 	cairo_dock_write_keys_to_file (pKeyFile, cFile);
 	g_free (cFile);
@@ -143,6 +170,7 @@ static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	g_key_file_set_integer (pKeyFile, pTask->cID, "hour", pTask->iHour);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "minute", pTask->iMinute);
 	g_key_file_set_integer (pKeyFile, pTask->cID, "freq", pTask->iFrequency);
+	g_key_file_set_boolean (pKeyFile, pTask->cID, "ack", pTask->bAcknowledged);
 	
 	cairo_dock_write_keys_to_file (pKeyFile, cFile);
 	g_free (cFile);
