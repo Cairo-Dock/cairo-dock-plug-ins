@@ -17,10 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_APPLI_FINDER__
 #define  __APPLET_APPLI_FINDER__
-
 
 #include <cairo-dock.h>
 #include "applet-struct.h"

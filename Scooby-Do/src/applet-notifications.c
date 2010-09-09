@@ -32,7 +32,7 @@
 
 gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	if (pCairoContext != NULL)
 	{
@@ -49,17 +49,7 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 
 gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	
-	if (myData.iMotionCount != 0)
-	{
-		myData.iMotionCount --;
-		double f = (double) myData.iMotionCount / 10;
-		cairo_dock_emit_motion_signal (CAIRO_DOCK (pContainer),
-			f * myData.iPrevMouseX + (1-f) * myData.iMouseX,
-			f * myData.iPrevMouseY + (1-f) * myData.iMouseY);
-		*bContinueAnimation = TRUE;
-	}
+	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	int iDeltaT = cairo_dock_get_animation_delta_t (pContainer);
 	if (cd_do_session_is_closing ())
@@ -72,7 +62,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 			*bContinueAnimation = TRUE;
 		cairo_dock_redraw_container (pContainer);
 	}
-	else if (cd_do_session_is_waiting_for_input ())
+	else if (cd_do_session_is_running ())
 	{
 		if (myData.pCharList == NULL)
 		{
@@ -137,31 +127,6 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 }*/
 
 
-gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
-{
-	if (pIcon == myData.pCurrentIcon && ! myData.bIgnoreIconState)
-	{
-		cd_debug ("notre icone vient de se faire stopper\n");
-		myData.pCurrentIcon = NULL;
-		myData.pCurrentDock = NULL;
-		
-		// eventuellement emuler un TAB pour trouver la suivante ...
-	}
-	if (myData.pMatchingIcons != NULL)
-	{
-		myData.pMatchingIcons = g_list_remove (myData.pMatchingIcons, pIcon);
-		if (myData.pCurrentMatchingElement && myData.pCurrentMatchingElement->data == pIcon)
-			myData.pCurrentMatchingElement = NULL;
-		if (myData.pCurrentApplicationToLoad && myData.pCurrentApplicationToLoad->data == pIcon)
-		{
-			myData.pCurrentApplicationToLoad = myData.pCurrentApplicationToLoad->next;
-		}
-	}
-	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}
-
-
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
 	Window xActiveWindow = data[0];
@@ -170,6 +135,8 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {
+	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
 	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Window data[2] = {*XActiveWindow, 0};
@@ -181,73 +148,10 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 }
 
 
-static void _place_menu (GtkMenu *menu,
-	gint *x,
-	gint *y,
-	gboolean *push_in,
-	gpointer user_data)
-{
-	/// gerer les docks verticaux ...
-	*x = myData.pCurrentDock->container.iWindowPositionX + myData.pCurrentDock->container.iMouseX;
-	*y = myData.pCurrentDock->container.iWindowPositionY;
-	*push_in = TRUE;
-}
-
-static inline int _orient_arrow (CairoContainer *pContainer, int iKeyVal)
-{
-	switch (iKeyVal)
-	{
-		case GDK_Up :
-			if (pContainer->bIsHorizontal)
-			{
-				if (!pContainer->bDirectionUp)
-					iKeyVal = GDK_Down;
-			}
-			else
-			{
-				iKeyVal = GDK_Left;
-			}
-		break;
-		
-		case GDK_Down :
-			if (pContainer->bIsHorizontal)
-			{
-				if (!pContainer->bDirectionUp)
-					iKeyVal = GDK_Up;
-			}
-			else
-			{
-				iKeyVal = GDK_Right;
-			}
-		break;
-		
-		case GDK_Left :
-			if (!pContainer->bIsHorizontal)
-			{
-				if (pContainer->bDirectionUp)
-					iKeyVal = GDK_Up;
-				else
-					iKeyVal = GDK_Down;
-			}
-		break;
-		
-		case GDK_Right :
-			if (!pContainer->bIsHorizontal)
-			{
-				if (pContainer->bDirectionUp)
-					iKeyVal = GDK_Down;
-				else
-					iKeyVal = GDK_Up;
-			}
-		break;
-		default:
-		break;
-
-	}
-	return iKeyVal;
-}
 gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
+	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
 	if (myData.sCurrentText == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -267,30 +171,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		// on rejette.
 	}
-	else if (iKeyVal == GDK_Menu)  // emulation du clic droit.
-	{
-		if (myData.bNavigationMode)
-		{
-			if (myData.pCurrentIcon != NULL)
-			{
-				myData.bIgnoreIconState = TRUE;
-				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
-				myData.bIgnoreIconState = FALSE;
-			}
-			if (myData.pCurrentDock == NULL)
-				myData.pCurrentDock = g_pMainDock;
-			myData.pCurrentDock->bMenuVisible = TRUE;
-			GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
-			gtk_widget_show_all (menu);
-			gtk_menu_popup (GTK_MENU (menu),
-				NULL,
-				NULL,
-				(GtkMenuPositionFunc) _place_menu,  // pour positionner le menu sur le dock plutot que sur la souris.
-				NULL,
-				1,
-				gtk_get_current_event_time ());
-		}
-	}
 	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
 	{
 		if (myData.iNbValidCaracters > 0)
@@ -303,38 +183,31 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			cd_do_delete_invalid_caracters ();
 			
 			// on relance la recherche.
-			if (myData.bNavigationMode)
+			if (myData.pListingHistory == NULL)  // recherche principale.
 			{
-				if (myData.pCurrentIcon == NULL)  // sinon l'icone actuelle convient toujours.
-					cd_do_search_current_icon (FALSE);
-			}
-			else  // mode recherche.
-			{
-				if (myData.pListingHistory == NULL)  // recherche principale.
+				g_list_free (myData.pMatchingIcons);
+				myData.pMatchingIcons = NULL;
+				cd_do_search_matching_icons ();
+				if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche des entrees.
 				{
-					g_list_free (myData.pMatchingIcons);
-					myData.pMatchingIcons = NULL;
-					cd_do_search_matching_icons ();
-					if (myData.pMatchingIcons == NULL && myData.sCurrentText->len > 0)  // on n'a trouve aucun programme, on cherche des entrees.
+					if (myData.iSidLoadExternAppliIdle != 0)
 					{
-						if (myData.iSidLoadExternAppliIdle != 0)
-						{
-							g_source_remove (myData.iSidLoadExternAppliIdle);
-							myData.iSidLoadExternAppliIdle = 0;
-						}
-						cd_do_launch_all_backends ();
+						g_source_remove (myData.iSidLoadExternAppliIdle);
+						myData.iSidLoadExternAppliIdle = 0;
 					}
-					else  // on a trouve au moins un programme, on cache le listing des fichiers.
-					{
-						
-						cd_do_hide_listing ();
-					}
+					cd_do_launch_all_backends ();
 				}
-				else  // sous-recherche => on filtre.
+				else  // on a trouve au moins un programme, on cache le listing des fichiers.
 				{
-					cd_do_filter_current_listing ();
+					
+					cd_do_hide_listing ();
 				}
 			}
+			else  // sous-recherche => on filtre.
+			{
+				cd_do_filter_current_listing ();
+			}
+			
 			
 			// on repositionne les caracteres et on anime tout ca.
 			cd_do_launch_appearance_animation ();
@@ -345,176 +218,45 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		if (myData.iNbValidCaracters > 0)
 		{
 			gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
-			if (myData.bNavigationMode)
+			if (myData.pMatchingIcons != NULL)
 			{
-				// on cherche l'icone suivante.
-				cd_do_search_current_icon (TRUE);  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
+				cd_do_select_previous_next_matching_icon (!bPrevious);
 			}
-			else 
+			else
 			{
-				if (myData.pMatchingIcons != NULL)
-				{
-					cd_do_select_previous_next_matching_icon (!bPrevious);
-				}
-				else
-				{
-					// faire un truc ?...
-				}
+				// faire un truc ?...
 			}
 		}
 	}
 	else if (iKeyVal == GDK_Return)
 	{
 		cd_debug ("Enter (%s)\n", myData.cSearchText);
-		if (myData.bNavigationMode)
+		if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
 		{
-			if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
-			{
-				cd_debug ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
-				
-				myData.bIgnoreIconState = TRUE;
-				if (iModifierType & GDK_MOD1_MASK)  // ALT
-				{
-					myData.bIgnoreIconState = TRUE;
-					cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
-					myData.bIgnoreIconState = FALSE;
-					cairo_dock_notify (CAIRO_DOCK_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
-				}
-				else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
-				{
-					myData.bIgnoreIconState = TRUE;
-					cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
-					myData.bIgnoreIconState = FALSE;
-					
-					myData.pCurrentDock->bMenuVisible = TRUE;
-					GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
-					gtk_widget_show_all (menu);
-					gtk_menu_popup (GTK_MENU (menu),
-						NULL,
-						NULL,
-						NULL,
-						NULL,
-						1,
-						gtk_get_current_event_time ());
-				}
-				else if (myData.pCurrentIcon != NULL)
-					cairo_dock_notify (CAIRO_DOCK_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
-				if (myData.pCurrentIcon != NULL)
-					cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
-				myData.bIgnoreIconState = FALSE;
-				myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
-			}
+			Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
+			cairo_dock_launch_command (pIcon->cCommand);
+		}
+		else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
+		{
+			CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
+			cd_debug ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
+			if (pEntry->execute)
+				pEntry->execute (pEntry);
+			else
+				return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		}
+		else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
+		{
+			cd_debug ("on execute '%s'\n", myData.sCurrentText->str);
+			cairo_dock_launch_command (myData.sCurrentText->str);
+		}
+		
+		if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))
 			cd_do_close_session ();
-		}
-		else  // mode recherche.
-		{
-			if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
-			{
-				Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
-				cairo_dock_launch_command (pIcon->cCommand);
-			}
-			else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
-			{
-				CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
-				cd_debug ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
-				if (pEntry->execute)
-					pEntry->execute (pEntry);
-				else
-					return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
-			}
-			else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
-			{
-				cd_debug ("on execute '%s'\n", myData.sCurrentText->str);
-				cairo_dock_launch_command (myData.sCurrentText->str);
-			}
-			
-			if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))
-				cd_do_close_session ();
-		}
 	}
 	else if (iKeyVal == GDK_Left || iKeyVal == GDK_Right || iKeyVal == GDK_Up || iKeyVal == GDK_Down)
 	{
-		if (myData.bNavigationMode)
-		{
-			iKeyVal = _orient_arrow (pContainer, iKeyVal);
-			if (iKeyVal == GDK_Up)
-			{
-				if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)
-				{
-					cd_debug ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->cName);
-					Icon *pIcon = cairo_dock_get_first_icon (myData.pCurrentIcon->pSubDock->icons);
-					cd_do_change_current_icon (pIcon, myData.pCurrentIcon->pSubDock);
-				}
-			}
-			else if (iKeyVal == GDK_Down)
-			{
-				if (myData.pCurrentDock != NULL && myData.pCurrentDock->iRefCount > 0)
-				{
-					CairoDock *pParentDock = NULL;
-					Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (myData.pCurrentDock, &pParentDock);
-					if (pPointingIcon != NULL)
-					{
-						cd_debug ("on redescend dans le dock parent via %s\n", pPointingIcon->cName);
-						cd_do_change_current_icon (pPointingIcon, pParentDock);
-					}
-				}
-			}
-			else if (iKeyVal == GDK_Left)
-			{
-				if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
-				{
-					myData.pCurrentDock = g_pMainDock;
-					int n = g_list_length (g_pMainDock->icons);
-					if (n > 0)
-					{
-						myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-						if (CAIRO_DOCK_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
-							myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
-					}
-				}
-				if (myData.pCurrentDock->icons != NULL)
-				{
-					Icon *pPrevIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
-					if (CAIRO_DOCK_IS_SEPARATOR (pPrevIcon))
-						pPrevIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, pPrevIcon);
-					if (pPrevIcon == NULL)  // pas trouve ou bien 1ere icone.
-					{
-						pPrevIcon = cairo_dock_get_last_icon (myData.pCurrentDock->icons);
-					}
-					
-					cd_debug ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->cName : "none");
-					cd_do_change_current_icon (pPrevIcon, myData.pCurrentDock);
-				}
-			}
-			else  // Gdk_Right.
-			{
-				if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
-				{
-					myData.pCurrentDock = g_pMainDock;
-					int n = g_list_length (g_pMainDock->icons);
-					if (n > 0)
-					{
-						myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-						if (CAIRO_DOCK_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
-							myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
-					}
-				}
-				if (myData.pCurrentDock->icons != NULL)
-				{
-					Icon *pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
-					if (CAIRO_DOCK_IS_SEPARATOR (pNextIcon))
-						pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, pNextIcon);
-					if (pNextIcon == NULL)  // pas trouve ou bien 1ere icone.
-					{
-						pNextIcon = cairo_dock_get_first_icon (myData.pCurrentDock->icons);
-					}
-					
-					cd_debug ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->cName : "none");
-					cd_do_change_current_icon (pNextIcon, myData.pCurrentDock);
-				}
-			}
-		}
-		else if (myData.pMatchingIcons != NULL)
+		if (myData.pMatchingIcons != NULL)
 		{
 			cd_do_select_previous_next_matching_icon (iKeyVal == GDK_Right || iKeyVal == GDK_Down);
 		}
@@ -540,15 +282,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home || iKeyVal == GDK_End)
 	{
-		if (myData.bNavigationMode)
-		{
-			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
-				myData.pCurrentDock = g_pMainDock;
-			Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
-			cd_debug ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
-			cd_do_change_current_icon (pIcon, myData.pCurrentDock);
-		}
-		else if (myData.pListing != NULL)
+		if (myData.pListing != NULL)
 		{
 			if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up)
 				cd_do_select_prev_next_page_in_listing (iKeyVal == GDK_Page_Down);  // TRUE <=> next page
@@ -558,7 +292,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal >= GDK_F1 && iKeyVal <= GDK_F9)
 	{
-		if (! myData.bNavigationMode && myData.pListing != NULL && GTK_WIDGET_VISIBLE (myData.pListing->container.pWidget))
+		if (myData.pListing != NULL && GTK_WIDGET_VISIBLE (myData.pListing->container.pWidget))
 		{
 			cd_debug ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
 			cd_do_activate_filter_option (iKeyVal - GDK_F1);
@@ -568,7 +302,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	else if (string)  /// utiliser l'unichar ...
 	{
 		cd_debug ("string:'%s'\n", string);
-		int iNbNewChar = 0;
+		guint iNbNewChar = 0;
 		if ((iModifierType & GDK_CONTROL_MASK) && iUnicodeChar == 'v')  // CTRL+v
 		{
 			cd_debug ("CTRL+v\n");
@@ -597,30 +331,25 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			myData.iNbValidCaracters = myData.sCurrentText->len;  // l'utilisateur valide la nouvelle lettre ainsi que celles precedemment ajoutee par completion.
 		}
 		
-		if (myData.bNavigationMode)  // on cherche un lanceur correspondant.
+
+		// on cherche la liste des icones qui correspondent.
+		if (myData.pListingHistory == NULL)
 		{
-			cd_do_search_current_icon (FALSE);
+			//if (! (myData.bFoundNothing || (myData.pListing && myData.pListing->pEntries)))  // on n'est pas deja dans une recherche de fichiers
+			if (myData.iNbValidCaracters == iNbNewChar || myData.pMatchingIcons != NULL)  // 1er ajout de lettre ou precedente recherche d'icones fructueuse => on remet ca.
+			{
+				cd_do_search_matching_icons ();
+			}
+			
+			// si on n'a trouve aucun lanceur, on lance la recherche dans les backends.
+			if (myData.pMatchingIcons == NULL)
+			{
+				cd_do_launch_all_backends ();
+			}
 		}
-		else  // on cherche la liste des icones qui correspondent.
+		else
 		{
-			if (myData.pListingHistory == NULL)
-			{
-				//if (! (myData.bFoundNothing || (myData.pListing && myData.pListing->pEntries)))  // on n'est pas deja dans une recherche de fichiers
-				if (myData.iNbValidCaracters == iNbNewChar || myData.pMatchingIcons != NULL)  // 1er ajout de lettre ou precedente recherche d'icones fructueuse => on remet ca.
-				{
-					cd_do_search_matching_icons ();
-				}
-				
-				// si on n'a trouve aucun lanceur, on lance la recherche dans les backends.
-				if (myData.pMatchingIcons == NULL)
-				{
-					cd_do_launch_all_backends ();
-				}
-			}
-			else
-			{
-				cd_do_filter_current_listing ();
-			}
+			cd_do_filter_current_listing ();
 		}
 		
 		// on rajoute une surface/texture pour la/les nouvelle(s) lettre(s).
@@ -636,22 +365,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 }
 
 
-#define _cd_do_on_shortkey(bNewModeNav) \
-	if (myData.sCurrentText == NULL) { \
-		myData.bNavigationMode = bNewModeNav; \
-		cd_do_open_session (); } \
-	else { \
-		cd_do_close_session (); \
-		if (myData.bNavigationMode != bNewModeNav) { \
-			cd_do_open_session (); \
-			myData.bNavigationMode = bNewModeNav; } }
-	
-void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
-{
-	_cd_do_on_shortkey (TRUE);
-}
-
 void cd_do_on_shortkey_search (const char *keystring, gpointer data)
 {
-	_cd_do_on_shortkey (FALSE);
+	if (! cd_do_session_is_running ())
+	{
+		cd_do_open_session ();
+	}
+	else
+	{
+		cd_do_close_session ();
+	}
 }

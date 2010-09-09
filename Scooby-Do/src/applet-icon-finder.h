@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_ICON_FINDER__
 #define  __APPLET_ICON_FINDER__
 

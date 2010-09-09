@@ -9,7 +9,6 @@ install (FILES calc.sh
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Scooby-Do.conf
 	preview.jpg
 	icon.png
-	arrows.svg
 	active-button.svg
 	inactive-button.svg
 	internet.png

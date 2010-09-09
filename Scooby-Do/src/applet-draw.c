@@ -91,7 +91,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 	
 	if (myData.pCharList == NULL && myData.pListingHistory == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
-		if (! myData.bNavigationMode && myData.pPromptSurface != NULL)
+		if (myData.pPromptSurface != NULL)
 		{
 			double fFrameWidth = myData.iPromptWidth;
 			double fFrameHeight = myData.iPromptHeight;
@@ -105,27 +105,8 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			if (fAlpha != 0)
 			{
 				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				cairo_dock_draw_surface (pCairoContext, myData.pArrowSurface, fFrameWidth, fFrameHeight, pMainDock->container.bDirectionUp, pMainDock->container.bIsHorizontal, fAlpha);
+				cairo_dock_draw_surface (pCairoContext, myData.pPromptSurface, fFrameWidth, fFrameHeight, pMainDock->container.bDirectionUp, pMainDock->container.bIsHorizontal, fAlpha);
 				//cairo_set_source_surface (pCairoContext, myData.pPromptSurface, 0., 0.);
-				//cairo_paint_with_alpha (pCairoContext, fAlpha);
-			}
-		}
-		else if (myData.bNavigationMode && myData.pArrowSurface != NULL)
-		{
-			double fFrameWidth = myData.iArrowWidth;
-			double fFrameHeight = myData.iArrowHeight;
-			
-			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
-			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
-			fDockOffsetY = (pMainDock->container.iHeight - fFrameHeight) / 2;
-			
-			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
-			
-			if (fAlpha != 0)
-			{
-				cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-				cairo_dock_draw_surface (pCairoContext, myData.pArrowSurface, fFrameWidth, fFrameHeight, pMainDock->container.bDirectionUp, pMainDock->container.bIsHorizontal, fAlpha);
-				//cairo_set_source_surface (pCairoContext, myData.pArrowSurface, 0., 0.);
 				//cairo_paint_with_alpha (pCairoContext, fAlpha);
 			}
 		}
@@ -282,7 +263,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 	
 	if (myData.pCharList == NULL && myData.pListingHistory == NULL)  // aucune lettre de tapee => on montre le prompt.
 	{
-		if (! myData.bNavigationMode && myData.iPromptTexture != 0)
+		if (myData.iPromptTexture != 0)
 		{
 			double fFrameWidth = myData.iPromptWidth;
 			double fFrameHeight = myData.iPromptHeight;
@@ -304,34 +285,6 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 				_cairo_dock_set_blend_alpha ();
 				
 				_cairo_dock_apply_texture_at_size_with_alpha (myData.iPromptTexture, fFrameWidth, fFrameHeight, fAlpha);
-				
-				_cairo_dock_disable_texture ();
-				
-				glPopMatrix();
-			}
-		}
-		else if (myData.bNavigationMode && myData.iArrowTexture != 0)
-		{
-			double fFrameWidth = myData.iArrowWidth;
-			double fFrameHeight = myData.iArrowHeight;
-						
-			double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
-			fDockOffsetX = (pMainDock->container.iWidth - fFrameWidth) / 2;
-			fDockOffsetY = (pMainDock->container.iHeight - fFrameHeight) / 2;
-			
-			fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
-			
-			if (fAlpha != 0)
-			{
-				glPushMatrix ();
-				if (! pMainDock->container.bIsHorizontal)
-					glRotatef (pMainDock->container.bDirectionUp ? 90. : -90., 0., 0., 1.);
-				glTranslatef (pMainDock->container.iWidth/2, pMainDock->container.iHeight/2, 0.);
-				
-				_cairo_dock_enable_texture ();
-				_cairo_dock_set_blend_alpha ();
-				
-				_cairo_dock_apply_texture_at_size_with_alpha (myData.iArrowTexture, fFrameWidth, fFrameHeight, fAlpha);
 				
 				_cairo_dock_disable_texture ();
 				

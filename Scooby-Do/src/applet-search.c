@@ -70,7 +70,7 @@ static gboolean _update_entries (CDBackend *pBackend)
 	pBackend->bFoundNothing = FALSE;
 	pBackend->bTooManyResults = FALSE;
 	
-	if (! cd_do_session_is_waiting_for_input () || myData.pListingHistory != NULL)  // on a quitte la session ou on a choisi une entree en cours de route.
+	if (! cd_do_session_is_running () || myData.pListingHistory != NULL)  // on a quitte la session ou on a choisi une entree en cours de route.
 	{
 		cd_debug (" on a quitte la session ou on a choisi une entree en cours de route\n");
 		_discard_results (pBackend);

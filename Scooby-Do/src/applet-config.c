@@ -60,7 +60,6 @@ static const gchar *s_DefaultApplis[26+1] = {
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.cShortkeyNav = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	myConfig.cShortkeySearch = CD_CONFIG_GET_STRING ("Configuration", "shortkey search");
 	myConfig.iAppearanceDuration = CD_CONFIG_GET_INTEGER ("Configuration", "appear duration");
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
@@ -126,10 +125,6 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	//g_print ("%s / %s\n", myConfig.cShortkeyNav, myConfig.cShortkeySearch);
-	if (myConfig.cShortkeyNav)
-		cd_keybinder_unbind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav);
-	g_free (myConfig.cShortkeyNav);
 	if (myConfig.cShortkeySearch)
 		cd_keybinder_unbind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search);
 	g_free (myConfig.cShortkeySearch);
@@ -154,10 +149,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pPromptSurface);
 	if (myData.iPromptTexture != 0)
 		_cairo_dock_delete_texture (myData.iPromptTexture);
-	if (myData.pArrowSurface != NULL)
-		cairo_surface_destroy (myData.pArrowSurface);
-	if (myData.iArrowTexture != 0)
-		_cairo_dock_delete_texture (myData.iArrowTexture);
 	if (myData.pScoobySurface != NULL)
 		cairo_surface_destroy (myData.pScoobySurface);
 	if (myData.pActiveButtonSurface != NULL)

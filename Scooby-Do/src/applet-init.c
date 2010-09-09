@@ -36,22 +36,18 @@
 CD_APPLET_DEFINE_BEGIN ("Scooby-Do",
 	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("This plug-in allows you to make different actions directly from the keyboard.\n"
-	"It has 2 modes, each one being triggered by a keyboard shortcut:\n\n"
-	"- the finder mode (default shortcut : CTRL + Enter) :\n"
-	"    It lets you find and launch applications, files, recent files, firefox bookmarks, commands, and even calculations.\n"
-	"    Type what you want to search, the results will be displayed in real time.\n"
-	"    The first results of each category are displayed in the main listing.\n"
-	"    Use the up/down arrows to navigate inside the list,\n"
-	"    and use the left/right arrows to enter into a category, or to display more actions (when a little arrow is drawn next to text).\n"
-	"    Once inside a category, you can filter the results by typing some letters.\n"
-	"    Press Enter to validate, maintain SHIFT or ALT to keep the list of results opened.\n\n"
-	"- the navigation mode (default shortcut : CTRL + F9) :\n"
-	"    use the arrows to navigate into the docks and sub-docks,\n"
-	"    or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
-	"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
+	("This plug-in allows you to make different actions directly from the keyboard.\n"
+	"It is triggered by a keyboard shortcut (by default: CTRL + Enter):\n"
+	"It lets you find and launch applications, files, recent files, firefox bookmarks, commands, and even calculations.\n"
+	"Type what you want to search, the results will be displayed in real time.\n"
+	"The first results of each category are displayed in the main listing.\n"
+	"Use the up/down arrows to navigate inside the list,\n"
+	" and use the left/right arrows to enter into a category, or to display more actions (when a little arrow is drawn next to text).\n"
+	"Once inside a category, you can filter the results by typing some letters.\n"
+	"Press Enter to validate, maintain SHIFT or ALT to keep the list of results opened.\n"
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 CD_APPLET_DEFINE_END
 
@@ -70,7 +66,6 @@ CD_APPLET_DEFINE_END
 CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);
 	cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);
 	
 	_register_backends ();
@@ -97,7 +92,6 @@ CD_APPLET_RELOAD_BEGIN
 		cd_do_destroy_listing (myData.pListing);
 		myData.pListing = NULL;
 		
-		cd_keybinder_bind (myConfig.cShortkeyNav, (CDBindkeyHandler) cd_do_on_shortkey_nav, myApplet);  // shortkey were unbinded during reset_config.
 		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
 		
 		if (myData.sCurrentText != NULL)  // peu probable.

@@ -6,9 +6,6 @@
 #k Shortkey to enable/disable the finder mode:
 shortkey search = <Control>Return
 
-#k Shortkey to enable/disable the navigation mode:
-shortkey = <Control>F9
-
 #i[10;200] Maximum number of results :
 #{Maximum number of mails that will be previewed. Put -1 to show the maximum possible.}
 nb results = 80

@@ -29,22 +29,34 @@
 
 void cd_do_open_session (void)
 {
-	// on termine l'animation de fin de la precedente session.
+	if (cd_do_session_is_running ())  // session already running
+		return;
+	
+	// on termine la precedente session.
 	cd_do_exit_session ();
 	cd_do_stop_all_backends ();  // on le fait maintenant pour ne pas bloquer au exit.
 	
-	// on s'abonne aux notifications dont on aura besoin pour la session.
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
-	//cairo_dock_register_notification (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, CAIRO_DOCK_RUN_FIRST, NULL);
+	// register to draw on dock.
+	if (cd_do_session_is_off ())
+	{
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock),
+			CAIRO_DOCK_UPDATE_DOCK,
+			(CairoDockNotificationFunc) cd_do_update_container,
+			CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (g_pMainDock),
+			CAIRO_DOCK_RENDER_DOCK,
+			(CairoDockNotificationFunc) cd_do_render,
+			CAIRO_DOCK_RUN_AFTER, NULL);
+	}
 	
-	// on se met en attente de texte.
+	// wait for keyboard input.
+	cairo_dock_register_notification (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	
 	myData.sCurrentText = g_string_sized_new (20);
 	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
 	myData.iPromptAnimationCount = 0;
-	if (! myData.bNavigationMode && myData.pPromptSurface == NULL)
+	if (myData.pPromptSurface == NULL)
 	{
 		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), &myConfig.labelDescription, &myData.iPromptWidth, &myData.iPromptHeight);
@@ -54,22 +66,9 @@ void cd_do_open_session (void)
 			myData.iPromptTexture = cairo_dock_create_texture_from_surface (myData.pPromptSurface);
 		}
 	}
-	else if (myData.bNavigationMode && myData.pArrowSurface == NULL)
-	{
-		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
-		myData.pArrowSurface = cairo_dock_create_surface_for_icon (MY_APPLET_SHARE_DATA_DIR"/arrows.svg", g_pMainDock->iMaxDockHeight, g_pMainDock->iMaxDockHeight);
-		myData.iArrowWidth = g_pMainDock->iMaxDockHeight;
-		myData.iArrowHeight = g_pMainDock->iMaxDockHeight;
-		cairo_destroy (pCairoContext);
-		if (g_bUseOpenGL)
-		{
-			myData.iArrowTexture = cairo_dock_create_texture_from_surface (myData.pArrowSurface);
-		}
-	}
+	
 	// on montre le main dock.
-	myData.bIgnoreIconState = TRUE;
-	cairo_dock_emit_enter_signal (g_pMainDock);
-	myData.bIgnoreIconState = FALSE;
+	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (g_pMainDock));
 	
 	// le main dock prend le focus.
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
@@ -81,23 +80,22 @@ void cd_do_open_session (void)
 	
 	// On lance l'animation d'attente.
 	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	
+	myData.iSessionState = 2;
 }
 
 void cd_do_close_session (void)
 {
-	// on ne veut plus de texte.
+	if (! cd_do_session_is_running ())  // session not running
+		return;
+	
+	// no more keyboard input.
+	cairo_dock_remove_notification_func (CAIRO_DOCK_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, NULL);
+	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
+	
 	g_string_free (myData.sCurrentText, TRUE);
 	myData.sCurrentText = NULL;
 	myData.iNbValidCaracters = 0;
-	
-	// on remet a zero la session.
-	if (myData.pCurrentIcon != NULL)
-	{
-		myData.bIgnoreIconState = TRUE;
-		cairo_dock_stop_icon_animation (myData.pCurrentIcon);
-		myData.bIgnoreIconState = FALSE;
-		myData.pCurrentIcon = NULL;
-	}
 	
 	// on cache les resultats
 	cd_do_hide_listing ();
@@ -106,16 +104,7 @@ void cd_do_close_session (void)
 	myData.cSearchText = NULL;
 	myData.iCurrentFilter = 0;
 	
-	if (myData.pCurrentDock != NULL)
-	{
-		//cairo_dock_leave_from_main_dock (myData.pCurrentDock);  /// voir avec un emit_leave_signal ...
-		cairo_dock_emit_leave_signal (myData.pCurrentDock);
-		myData.pCurrentDock = NULL;
-	}
-	if (myData.pCurrentDock != g_pMainDock)
-	{
-		cairo_dock_emit_leave_signal (g_pMainDock);
-	}
+	cairo_dock_emit_leave_signal (CAIRO_CONTAINER (g_pMainDock));
 	
 	// on redonne le focus a l'ancienne fenetre.
 	if (myData.iPreviouslyActiveWindow != 0)
@@ -131,20 +120,26 @@ void cd_do_close_session (void)
 	myData.iCloseTime = myConfig.iCloseDuration;
 	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
 	cairo_dock_freeze_docks (FALSE);
+	
+	myData.iSessionState = 1;
 }
 
 void cd_do_exit_session (void)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
-	//cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_DOCK, (CairoDockNotificationFunc) cd_do_enter_container, NULL);
+	if (cd_do_session_is_off ())  // session already off
+		return;
 	
-	// arreter les backends...
 	
+	cd_do_close_session ();
 	
 	myData.iCloseTime = 0;
+	
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
+	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (g_pMainDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+	
+	/// arreter les backends...
+	
+	
 	if (myData.pCharList != NULL)
 	{
 		cd_do_free_char_list (myData.pCharList);
@@ -179,6 +174,8 @@ void cd_do_exit_session (void)
 		myData.iPreviousMatchingOffset = 0;
 		myData.iCurrentMatchingOffset = 0;
 	}
+	
+	myData.iSessionState = 0;
 }
 
 
@@ -214,7 +211,8 @@ void cd_do_load_pending_caracters (void)
 	CDChar *pChar;
 	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
 	int iDeltaT = cairo_dock_get_animation_delta_t (g_pMainDock);
-	int i, iOffsetX=0;
+	guint i;
+	int iOffsetX=0;
 	for (i = myData.iNbValidCaracters-0; i < myData.sCurrentText->len; i++)
 	{
 		//g_print (" on charge la lettre '%c' (%d) tex:%d\n", myData.sCurrentText->str[i], i, bLoadTexture);
@@ -297,7 +295,7 @@ void cd_do_delete_invalid_caracters (void)
 	// on efface les lettres precedentes jusqu'a la derniere position validee.
 	CDChar *pChar;
 	GList *c = g_list_last (myData.pCharList), *c_prev;
-	int i;
+	guint i;
 	for (i = myData.iNbValidCaracters; i < myData.sCurrentText->len && c != NULL; i ++)
 	{
 		//g_print ("on efface '%c'\n", myData.sCurrentText->str[i]);
