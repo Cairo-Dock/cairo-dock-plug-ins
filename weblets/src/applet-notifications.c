@@ -97,7 +97,7 @@ static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, CairoDockModuleI
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gint i = 0;
 	// Main Menu
-	CD_APPLET_ADD_IN_MENU("Reload webpage", _cd_weblets_reload_webpage, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Reload webpage", GTK_STOCK_REFRESH, _cd_weblets_reload_webpage, CD_APPLET_MY_MENU);
 	// Sub Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if( myConfig.cListURI != NULL )

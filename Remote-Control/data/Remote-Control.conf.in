@@ -1,0 +1,14 @@
+#!en;@VERSION_REMOTE_CONTROL@
+
+#[gtk-preferences]
+[Configuration]
+
+#k Shortkey to trigger the applet:
+shortkey = <Control>F9
+
+#a+ Animation of the current icon :
+animation=pulse
+
+#I[0;2000] Duration of the stop animation :
+#{In ms.}
+stop duration = 800

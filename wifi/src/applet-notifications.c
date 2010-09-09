@@ -73,8 +73,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (! myData.bWirelessExt)
-		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), _wifi_recheck_wireless_extension, pSubMenu);
-	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_wifi_show_config, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, pSubMenu);
+ 
+77
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, pSubMenu);
 	CD_APPLET_ADD_SEPARATOR (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
