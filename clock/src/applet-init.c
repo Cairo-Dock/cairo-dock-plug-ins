@@ -22,7 +22,7 @@
 
 #include "applet-struct.h"
 #include "applet-draw.h"
-#include "applet-digital.h" //Digital html like renderer
+#include "applet-timer.h"
 #include "applet-config.h"
 #include "applet-theme.h"
 #include "applet-calendar.h"
@@ -64,8 +64,6 @@ CD_APPLET_INIT_BEGIN
 	cd_clock_load_back_and_fore_ground (myApplet);
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cd_clock_load_textures (myApplet);
-	
-	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
 	
 	myData.cSystemLocation = g_strdup (g_getenv ("TZ"));
 	myData.iLastCheckedMinute = -1;
@@ -117,9 +115,6 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	//\_______________ On recharge les donnees qui ont pu changer.
-	///cd_clock_configure_digital (myApplet);  // mis en commentaire jusqu'a ce que ca soit fini.
-	
 	myData.iTextLayout = myConfig.iPreferedTextLayout;  // on recalcule l'orientation si elle est automatique.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

@@ -4,9 +4,10 @@
 SET(cd-clock_LIB_SRCS
 	applet-struct.h
 	applet-init.c 			applet-init.h
-	applet-draw.c 			applet-draw.h
 	applet-config.c 			applet-config.h
 	applet-notifications.c 		applet-notifications.h
+	applet-draw.c 			applet-draw.h
+	applet-timer.c 			applet-timer.h
 	applet-theme.c 			applet-theme.h
 	applet-calendar.c 		applet-calendar.h
 	applet-task-editor.c 		applet-task-editor.h

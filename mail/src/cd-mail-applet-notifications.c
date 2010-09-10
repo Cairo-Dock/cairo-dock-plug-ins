@@ -103,6 +103,11 @@ static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
 	}
 }
 
+static void _cd_mail_update_all_accounts (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	_cd_mail_force_update (myApplet);
+}
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
     _cd_mail_force_update(myApplet);
@@ -131,29 +136,44 @@ static void _cd_mail_mark_all_as_read (GtkMenuItem *menu_item, CairoDockModuleIn
 	_cd_mail_force_update(myApplet);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	
+	// Main Menu
 	if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
 	{
-			/* add a "update account" item for each mailbox */
-			GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU (D_("Refresh a mail account"), pSubMenu);
-			
+		if (myData.pMailAccounts->len > 1)  // many accounts -> list them in a sub-menu
+		{
+			// add a "update account" item for each mailbox
+			GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Refresh a mail account"), CD_APPLET_MY_MENU, GTK_STOCK_REFRESH);
 			guint i;
 			for (i = 0; i < myData.pMailAccounts->len; i ++)
 			{
-		CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
-		CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
+				CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
+				CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
 			}
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Refresh all (Middle-click)"), GTK_STOCK_REFRESH, _cd_mail_update_all_accounts, CD_APPLET_MY_MENU, myApplet);
+		}
+		else  // 1 account -> in main menu
+		{
+			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, 0);
+			gchar *cLabel = g_strdup_printf (D_("Refresh %s"), pMailAccount->name);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_REFRESH, _cd_mail_update_account, CD_APPLET_MY_MENU, pMailAccount);
+			g_free (cLabel);
+		}
 	}
-	CD_APPLET_ADD_IN_MENU (D_("Mark all emails as read"), _cd_mail_mark_all_as_read, pSubMenu);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Mark all emails as read"), GTK_STOCK_OK, _cd_mail_mark_all_as_read, CD_APPLET_MY_MENU);
 	if (myConfig.cMailApplication)
 	{
 		gchar *cLabel = g_strdup_printf (D_("Launch %s"), myConfig.cMailApplication);
-		CD_APPLET_ADD_IN_MENU (cLabel, _cd_mail_launch_mail_appli, pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, _cd_mail_launch_mail_appli, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
+	
+	// Sub-Menu
+	if (pSubMenu == CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-
 CD_APPLET_ON_BUILD_MENU_END
 
 void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)

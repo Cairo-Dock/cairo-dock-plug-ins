@@ -34,6 +34,14 @@ typedef enum _CDSysmonitorDisplayType {
 	CD_SYSMONITOR_NB_TYPES
 	} CDSysmonitorDisplayType; 
 
+typedef struct {
+	gint iLowerLimit;
+	gint iUpperLimit;
+	gint iAlertLimit;
+	gboolean bAlert;
+	gboolean bAlertSound;
+	} CDAlertParam;
+
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gint iCheckInterval;
@@ -46,8 +54,6 @@ struct _AppletConfig {
 	
 	CairoDockInfoDisplay iInfoDisplay;
 	gchar *cGThemePath;
-	gchar *cWatermarkImagePath;
-	gdouble fAlpha;
 	
 	CDSysmonitorDisplayType iDisplayType;
 	CairoDockTypeGraph iGraphType;
@@ -108,6 +114,10 @@ struct _AppletData {
 	gdouble fPrevRamPercent, fPrevSwapPercent;
 	gdouble fGpuTempPercent;
 	gdouble fPrevGpuTempPercent;
+	gdouble fCpuTempPercent;
+	gdouble fPrevCpuTempPercent;
+	gdouble fFanSpeedPercent;
+	gdouble fPrevFanSpeedPercent;
 	gboolean bNeedsUpdate;
 	gint iTimerCount;
 	// end of shared memory.

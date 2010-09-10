@@ -48,12 +48,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
 	
-	/*myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
-	if (myConfig.fAlpha != 0)
-	{
-		myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
-	}*/
-	
 	myConfig.iLowerLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "llt", 50);
 	myConfig.iUpperLimit = MAX (myConfig.iLowerLimit+1, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "ult", 110));
 	myConfig.iAlertLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "alt", 100);
@@ -102,7 +96,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cGThemePath);
 	g_free (myConfig.defaultTitle);
 	cairo_dock_free_label_description (myConfig.pTopTextDescription);
-	g_free (myConfig.cWatermarkImagePath);
 	g_free (myConfig.cSystemMonitorCommand);
 	g_free (myConfig.cSystemMonitorClass);
 CD_APPLET_RESET_CONFIG_END

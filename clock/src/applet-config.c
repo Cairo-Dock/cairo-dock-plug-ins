@@ -24,6 +24,7 @@
 #include "applet-draw.h"
 #include "applet-theme.h"
 #include "applet-calendar.h"
+#include "applet-timer.h"
 #include "applet-config.h"
 
 #define CD_CLOCK_TIMEZONE_DIR "/usr/share/zoneinfo"

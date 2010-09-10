@@ -162,16 +162,19 @@ CD_APPLET_ON_SCROLL_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-		if (myConfig.iClickOption != SLIDER_PAUSE) {
-			CD_APPLET_ADD_IN_MENU (myData.bPause ? D_("Play") : D_("Pause"), _cd_slider_toogle_pause, pSubMenu);
-		}
-		if (myConfig.iClickOption != SLIDER_OPEN_IMAGE) {
-			CD_APPLET_ADD_IN_MENU (D_("Open current image"), _cd_slider_open_current_slide, pSubMenu);
-		}
-		CD_APPLET_ADD_IN_MENU (D_("Browse images folder"), _cd_slider_run_dir, pSubMenu);
-		
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	// Main Menu
+	if (myConfig.iClickOption != SLIDER_PAUSE) {
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.bPause ? D_("Play") : D_("Pause"), myData.bPause ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE, _cd_slider_toogle_pause, CD_APPLET_MY_MENU);
+	}
+	if (myConfig.iClickOption != SLIDER_OPEN_IMAGE) {
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open current image"), GTK_STOCK_OPEN, _cd_slider_open_current_slide, CD_APPLET_MY_MENU);
+	}
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse images folder"), GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
+	
+	// Sub-Menu
+	if (pSubMenu == CD_APPLET_MY_MENU)
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
