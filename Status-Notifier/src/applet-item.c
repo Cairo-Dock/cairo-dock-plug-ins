@@ -532,15 +532,9 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
-	/*if (myConfig.bCompactMode && myData.iItemSize != 0 && pItem->iStatus != CD_STATUS_PASSIVE)
-	{
-		gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
-		if (cIconPath != NULL)
-		{
-			pItem->pSurface = cairo_dock_create_surface_from_icon (cIconPath, myData.iItemSize, myData.iItemSize);
-			g_free (cIconPath);
-		}
-	}*/
+	
+	if (pItem->cMenuPath != NULL)
+		pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
 	
 	//\_________________ track any changes in the item.
 	// signals supported by both.

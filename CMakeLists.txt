@@ -62,12 +62,10 @@ if (NOT "${dock_version}" STREQUAL "${VERSION}")
 endif()
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
-if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND "${LIB_SUFFIX}" STREQUAL "" AND "${FORCE_NOT_LIB64}" STREQUAL "" )
-	set (libdir lib64/cairo-dock)
-elseif( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_NOT_LIB64}" STREQUAL "" )
-	set (libdir lib${LIB_SUFFIX}/cairo-dock)
+if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
+	set (libdir ${prefix}/lib64)
 else()
-	set (libdir lib${LIB_SUFFIX}/cairo-dock)
+	set (libdir ${prefix}/lib${LIB_SUFFIX})
 endif()
 
 if (NOT "${pluginsdir}" STREQUAL "${CMAKE_INSTALL_PREFIX}/${libdir}")

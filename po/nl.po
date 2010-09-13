@@ -7,7 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-08-29 00:59+0000\n"
 "PO-Revision-Date: 2010-09-03 05:11+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,29 +142,25 @@ msgstr ""
 msgid "For Aiur!"
 msgstr "For Aiur!"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:123
-msgid "Hey, you there!"
-msgstr "He, jij daar !"
-
-#: ../Cairo-Penguin/src/applet-notifications.c:127
+#: ../Cairo-Penguin/src/applet-notifications.c:126
 msgid "Wake up"
 msgstr "Wakker worden"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:131
+#: ../Cairo-Penguin/src/applet-notifications.c:130
 msgid "Keep quiet"
 msgstr "Stil zijn"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:134
-#: ../Scooby-Do/data/messages:101
+#: ../Cairo-Penguin/src/applet-notifications.c:133
+#: ../Scooby-Do/data/messages:99
 msgid "Start XPenguins"
 msgstr "Start XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:135
+#: ../Cairo-Penguin/src/applet-notifications.c:134
 msgid "Stop XPenguins"
 msgstr "Stop XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:158
-#: ../Cairo-Penguin/src/applet-notifications.c:160
+#: ../Cairo-Penguin/src/applet-notifications.c:157
+#: ../Cairo-Penguin/src/applet-notifications.c:159
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -196,7 +191,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr "Klembordgeschiedenis"
 
-#: ../Clipper/src/applet-notifications.c:99
+#: ../Clipper/src/applet-notifications.c:101
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -227,8 +222,7 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -344,33 +338,38 @@ msgstr ""
 "Controleer uw rechten \n"
 "en of de bestandsnaam niet reeds bestaat.."
 
-#: ../Folders/src/applet-notifications.c:319
-msgid "Open with"
-msgstr "Openen met"
+#: ../Folders/src/applet-notifications.c:322
+msgid "Open the folder (middle-click)"
+msgstr "De map openen (middelklik)"
 
-#: ../Folders/src/applet-notifications.c:352
-msgid "Delete this file"
-msgstr "Dit bestand verwijderen"
-
-#: ../Folders/src/applet-notifications.c:354
+#: ../Folders/src/applet-notifications.c:328
 msgid "Rename this file"
 msgstr "Dit bestand hernoemen"
 
-#: ../Folders/src/applet-notifications.c:356
+#: ../Folders/src/applet-notifications.c:329
+msgid "Delete this file"
+msgstr "Dit bestand verwijderen"
+
+#: ../Folders/src/applet-notifications.c:330
 msgid "Move this file"
 msgstr "Dit bestand verplaatsen"
 
-#: ../Folders/src/applet-notifications.c:358
+#: ../Folders/src/applet-notifications.c:336
+msgid "Open with"
+msgstr "Openen met"
+
+#: ../Folders/src/applet-notifications.c:370
 msgid "Properties"
 msgstr "Eigenschappen"
 
-#: ../Folders/src/applet-notifications.c:360
+#: ../Folders/src/applet-notifications.c:373
 msgid "Create a new file"
 msgstr "Een nieuw bestand aanmaken"
 
-#: ../Folders/src/applet-notifications.c:364
-msgid "Open the folder (middle-click)"
-msgstr "De map openen (middelklik)"
+#: ../Folders/src/applet-notifications.c:374
+#, fuzzy
+msgid "Create a new folder"
+msgstr "Een nieuw bestand aanmaken"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -390,15 +389,16 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Toepassingenmenu"
 
-#: ../GMenu/src/applet-notifications.c:147
-msgid "Quick launch"
-msgstr "Snelstart"
+#: ../GMenu/src/applet-notifications.c:75
+#, fuzzy
+msgid "Quick launch (Middle-click)"
+msgstr "Aankoppelen (middelklik)"
 
-#: ../GMenu/src/applet-notifications.c:148
+#: ../GMenu/src/applet-notifications.c:77
 msgid "Configure menu"
 msgstr "Menu configureren"
 
-#: ../GMenu/src/applet-notifications.c:149
+#: ../GMenu/src/applet-notifications.c:80
 msgid "Clear recent"
 msgstr "Recente documenten wissen"
 
@@ -410,7 +410,7 @@ msgstr "Recente documenten"
 msgid "Clear the list of the recently used documents?"
 msgstr "Recente documentenlijst wissen ?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
+#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Voer een opdracht in om uit te voeren :"
 
@@ -610,12 +610,12 @@ msgid "Loading"
 msgstr "Laden"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
-#: ../wifi/src/applet-notifications.c:75
+#: ../wifi/src/applet-notifications.c:76
 msgid "Check for Wireless Extension"
 msgstr "Controleer op draadloze extensie"
 
 #: ../Network-Monitor/src/applet-notifications.c:101
-#: ../wifi/src/applet-notifications.c:76
+#: ../wifi/src/applet-notifications.c:77
 msgid "Network Administration"
 msgstr "Netwerkadministratie"
 
@@ -786,16 +786,16 @@ msgid "Open in new window"
 msgstr "Openen in nieuw venster"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:461
+#: ../dnd2share/src/applet-notifications.c:470
 msgid "Open file"
 msgstr "Open bestand"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:496
-#: ../Scooby-Do/data/messages:105
+#: ../Scooby-Do/data/messages:103
 msgid "Firefox bookmarks"
 msgstr "Firefox-bladwijzers"
 
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:107
+#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
 msgid "Recent files"
 msgstr "Recente bestanden"
 
@@ -822,60 +822,6 @@ msgstr "Mediadico"
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
 msgstr "Amazon"
-
-#: ../Scooby-Do/src/applet-init.c:39
-msgid ""
-"This plug-in allows you to make different actions directly from the "
-"keyboard.\n"
-"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-"\n"
-"- the finder mode (default shortcut : CTRL + Enter) :\n"
-"    It lets you find and launch applications, files, recent files, firefox "
-"bookmarks, commands, and even calculations.\n"
-"    Type what you want to search, the results will be displayed in real "
-"time.\n"
-"    The first results of each category are displayed in the main listing.\n"
-"    Use the up/down arrows to navigate inside the list,\n"
-"    and use the left/right arrows to enter into a category, or to display "
-"more actions (when a little arrow is drawn next to text).\n"
-"    Once inside a category, you can filter the results by typing some "
-"letters.\n"
-"    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-"results opened.\n"
-"\n"
-"- the navigation mode (default shortcut : CTRL + F9) :\n"
-"    use the arrows to navigate into the docks and sub-docks,\n"
-"    or type the name of a launcher and press Tab to automatically jump to "
-"the next suitable launcher\n"
-"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-"for middle click, and Ctrl+Enter for left click\n"
-"Escape or the same shortkey will cancel."
-msgstr ""
-"Met deze plug-in kunt u verschillende acties uitvoeren met het toetsenbord.\n"
-"Het kent 2 modi, die elk door een sneltoets gekozen kunnen worden:\n"
-"\n"
-"- De vindermodus (standaardsneltoets : CTRL + Enter) :\n"
-"    U kunt er toepassingen, bestanden, recente bestanden, Firefox-"
-"bladwijzers, opdrachten en zelfs berekeningen mee vinden en uitvoeren.\n"
-"    Typ wat u wilt zoeken, de resultaten worden direct weergegeven.\n"
-"    De eerste resultaten van elke categorie zullen getoond worden in de "
-"hoofdlijst.\n"
-"    Gebruik het omhoog/omlaagpijltje om te navigeren in de lijst,\n"
-"    en gebruik het linker/rechterpijltje om naar een categorie te gaan, of "
-"om meer acties te tonen (wanneer er een klein pijltje naast de tekst "
-"getekend is).\n"
-"    Wanneer u in een categorie bent, kunt u de resultaten filteren door het "
-"typen van enkele letters.\n"
-"    Druk op Enter om te valideren, houdt ALT of SHIFT in om de "
-"resultatenlijst geopend te houden.\n"
-"\n"
-"- De navigatiemodus (standaardsneltoets : CTRL + F9) :\n"
-"    Gebruik de pijltjes om te navigeren naar de docks en sub-docks,\n"
-"    of typ de naam van een starter en druk op Tab om automatisch naar de "
-"volgende starter te gaan\n"
-"    Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, "
-"Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik\n"
-"Druk op Escape of op dezelfde sneltoets om te annuleren."
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
@@ -923,27 +869,17 @@ msgstr "Resultaat"
 msgid "Searching ..."
 msgstr "Bezig met zoeken..."
 
-#: ../Scooby-Do/src/applet-session.c:50
+#: ../Scooby-Do/src/applet-session.c:62
 msgid "Enter your search"
 msgstr "Voer uw zoekopdracht in"
 
-#: ../Status-Notifier/src/applet-init.c:31
+#: ../Status-Notifier/src/applet-init.c:32
 msgid "Status Notifier"
 msgstr "Notificatiestatus"
 
-#: ../Status-Notifier/src/applet-init.c:34
-msgid ""
-"A <b>notification area</b> for your dock\n"
-"Also called 'systray'.\n"
-"It is designed to work on any desktop that supports the latest systray "
-"specifications (KDE, Gnome, etc)"
-msgstr ""
-"Een <b>mededelingengebied</b> voor uw dock\n"
-"Ook wel 'systeemvak genoemd'.\n"
-"Het is ontwikkeld om te werken met elk systeem dat de laatste "
-"systeemvakspecificaties ondersteunt (KDE, Gnome, etc)"
-
 #: ../System-Monitor/src/applet-init.c:30
+#: ../System-Monitor/src/applet-notifications.c:116
+#: ../netspeed/src/applet-notifications.c:72
 msgid "System Monitor"
 msgstr "Systeemmonitor"
 
@@ -1027,16 +963,11 @@ msgstr "Buffergeheugen"
 msgid "Buffers"
 msgstr "Buffers"
 
-#: ../System-Monitor/src/applet-notifications.c:115
-#: ../netspeed/src/applet-notifications.c:70
-msgid "Monitor System"
-msgstr "Systeemmonitor"
-
 #: ../System-Monitor/src/applet-nvidia.c:141
+#: ../System-Monitor/src/applet-sensors.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr ""
-"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
@@ -1069,7 +1000,7 @@ msgstr "Schermhelderheid"
 msgid "Set up gamma:"
 msgstr "Gamma instellen :"
 
-#: ../Xgamma/src/applet-notifications.c:61
+#: ../Xgamma/src/applet-notifications.c:62
 msgid "Apply current luminosity on startup"
 msgstr "Huidige helderheid instellen voor bij het opstarten."
 
@@ -1126,154 +1057,123 @@ msgstr "Ik kon de mixer niet laden"
 msgid "Set up volume:"
 msgstr "Volume instellen :"
 
-#: ../alsaMixer/src/applet-notifications.c:57
+#: ../alsaMixer/src/applet-notifications.c:58
 msgid "Adjust channels"
 msgstr "Kanalen aanpassen"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-msgid "Unmute"
-msgstr "Niet dempen"
+#, fuzzy
+msgid "Unmute (middle-click)"
+msgstr "Ontkoppelen (middelklik)"
 
-#: ../alsaMixer/src/applet-notifications.c:61
-msgid "Mute"
-msgstr "Dempen"
+#: ../alsaMixer/src/applet-notifications.c:59
+#, fuzzy
+msgid "Mute (middle-click)"
+msgstr "Aankoppelen (middelklik)"
 
-#: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
-#: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
-#: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:339
-#: ../clock/src/applet-draw.c:353 ../clock/src/applet-draw.c:374
-#: ../clock/src/applet-task-editor.c:119
+#: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
+#: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
+#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:84
+#: ../clock/src/applet-timer.c:172 ../clock/src/applet-timer.c:454
+#: ../clock/src/applet-timer.c:471 ../clock/src/applet-timer.c:491
 msgid "No title"
 msgstr "Geen titel"
 
-#: ../clock/src/applet-calendar.c:438
+#: ../clock/src/applet-calendar.c:520
 msgid "years"
 msgstr "jaren"
 
-#: ../clock/src/applet-calendar.c:555
+#: ../clock/src/applet-calendar.c:637
 msgid "Calendar and tasks"
 msgstr "Kalender en taken"
 
-#: ../clock/src/applet-config.c:35 ../clock/data/messages:157
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:165
 msgid "Alarm"
 msgstr "Herinnering"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
 msgstr "Tijd van waarschuwing:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
 msgstr "In de vorm xx:xx. Bijvoorbeeld: 20:35 voor 8:35pm"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Never"
 msgstr "Nooit"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Day"
 msgstr "Dag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
 msgstr "Maandag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
 msgstr "Dinsdag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
 msgstr "Woensdag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
 msgstr "Vrijdag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
 msgstr "Zondag"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Week Day"
 msgstr "Weekdag"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Week End"
 msgstr "Weekeinde"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Month"
 msgstr "Maand"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
 msgstr "Herhalen elke:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
 msgstr "Indien elke maand, welke dag van de maand?"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Message you want to use to be notified:"
 msgstr "Waarschuwingsbericht dat u wilt gebruiken:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
 msgstr "Tijd voor thee!"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Command to launch:"
 msgstr "Opdracht om uit te voeren:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "E.g.:"
 msgstr "B.v.:"
 
-#: ../clock/src/applet-config.c:492 ../weather/src/applet-config.c:180
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
 msgstr "Zoek uw locatie :"
-
-#: ../clock/src/applet-draw.c:54
-msgid "1mn"
-msgstr "1min"
-
-#: ../clock/src/applet-draw.c:59
-msgid "1h"
-msgstr "1uur"
-
-#: ../clock/src/applet-draw.c:82
-msgid "The following task was scheduled at"
-msgstr "De volgende taak is ingesteld op"
-
-#: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:355
-#: ../clock/src/applet-draw.c:376
-msgid "Repeat this message every:"
-msgstr "Dit bericht herhalen elke:"
-
-#: ../clock/src/applet-draw.c:338
-msgid "This task will begin in 15 minutes:"
-msgstr "Deze taak zal over 15 minuten starten:"
-
-#: ../clock/src/applet-draw.c:352
-msgid "It's time for the following task:"
-msgstr "Het is tijd voor de volgende taak:"
-
-#: ../clock/src/applet-draw.c:373
-msgid "Today is the following anniversary:"
-msgstr "Vandaag is de volgende feestdag:"
-
-#: ../clock/src/applet-draw.c:373
-msgid "Tomorrow is the following anniversary:"
-msgstr "Morgen is de volgende verjaardag:"
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
@@ -1285,8 +1185,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1326,17 +1226,17 @@ msgstr ""
 "U kunt taken toevoegen door te klikken op het applet en de kalender te "
 "openen, waarna u kunt dubbelklikken op een dag."
 
-#: ../clock/src/applet-notifications.c:90
-msgid "Set up time and date"
-msgstr "Tijd en datum instellen"
-
-#: ../clock/src/applet-notifications.c:91
+#: ../clock/src/applet-notifications.c:92
 msgid "Show today's tasks"
 msgstr "Taken van vandaag tonen"
 
-#: ../clock/src/applet-notifications.c:92
+#: ../clock/src/applet-notifications.c:93
 msgid "Show this week's tasks"
 msgstr "Taken van deze week tonen"
+
+#: ../clock/src/applet-notifications.c:96
+msgid "Set up time and date"
+msgstr "Tijd en datum instellen"
 
 #: ../clock/src/applet-task-editor.c:156
 msgid "Add a new task"
@@ -1393,6 +1293,44 @@ msgstr "Freq."
 msgid "Tags"
 msgstr "Labels"
 
+#: ../clock/src/applet-timer.c:55
+msgid "1mn"
+msgstr "1min"
+
+#: ../clock/src/applet-timer.c:60
+msgid "1h"
+msgstr "1uur"
+
+#: ../clock/src/applet-timer.c:83
+msgid "The following task was scheduled at"
+msgstr "De volgende taak is ingesteld op"
+
+#: ../clock/src/applet-timer.c:86 ../clock/src/applet-timer.c:456
+#: ../clock/src/applet-timer.c:493
+msgid "Repeat this message every:"
+msgstr "Dit bericht herhalen elke:"
+
+#: ../clock/src/applet-timer.c:170
+#, fuzzy
+msgid "The following task has felt due:"
+msgstr "De volgende taak is ingesteld op"
+
+#: ../clock/src/applet-timer.c:453
+msgid "It's time for the following task:"
+msgstr "Het is tijd voor de volgende taak:"
+
+#: ../clock/src/applet-timer.c:470
+msgid "This task will begin in 15 minutes:"
+msgstr "Deze taak zal over 15 minuten starten:"
+
+#: ../clock/src/applet-timer.c:490
+msgid "Today is the following anniversary:"
+msgstr "Vandaag is de volgende feestdag:"
+
+#: ../clock/src/applet-timer.c:490
+msgid "Tomorrow is the following anniversary:"
+msgstr "Morgen is de volgende verjaardag:"
+
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
 msgstr "compiz-icoon"
@@ -1416,7 +1354,7 @@ msgid "Configure Compiz"
 msgstr "Compiz configureren"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
-#: ../compiz-icon/src/applet-notifications.c:178
+#: ../compiz-icon/src/applet-notifications.c:180
 msgid "Emerald Manager"
 msgstr "Emerald-vensterbeheerder"
 
@@ -1440,27 +1378,27 @@ msgstr ""
 "Om Compiz te kunnen configureren, moet u CCSM installeren\n"
 "met uw pakketbeheerder (Synaptic, YasT, etc)"
 
-#: ../compiz-icon/src/applet-notifications.c:179
+#: ../compiz-icon/src/applet-notifications.c:181
 msgid "Reload Emerald"
 msgstr "Herlaad Emerald"
 
-#: ../compiz-icon/src/applet-notifications.c:183
+#: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Manager"
 msgstr "Verwissel vensterbeheerder"
 
-#: ../compiz-icon/src/applet-notifications.c:184
+#: ../compiz-icon/src/applet-notifications.c:185
 msgid "Switch Windows Decorator"
 msgstr "Verwissel vensterdecorateur"
 
-#: ../compiz-icon/src/applet-notifications.c:193
+#: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Exposition Mode"
 msgstr "Ga naar ´Expo Modus´"
 
-#: ../compiz-icon/src/applet-notifications.c:194
+#: ../compiz-icon/src/applet-notifications.c:195
 msgid "Toggle Widget Layer"
 msgstr "Ga naar ´Widgets Layer´"
 
-#: ../compiz-icon/src/applet-notifications.c:196
+#: ../compiz-icon/src/applet-notifications.c:198
 msgid "Toggle Show Desktop"
 msgstr "Ga naar ´Bureaublad tonen´"
 
@@ -1538,8 +1476,7 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+msgid "Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
@@ -1552,8 +1489,7 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -1662,16 +1598,21 @@ msgid "Send the clipboard's content"
 msgstr "Inhoud van klembord versturen"
 
 #: ../dnd2share/src/applet-notifications.c:398
-msgid "Clear History"
+#, fuzzy
+msgid "History"
 msgstr "Geschiedenis wissen"
 
-#: ../dnd2share/src/applet-notifications.c:463
+#: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
 msgstr "Tekst halen"
 
-#: ../dnd2share/src/applet-notifications.c:465
+#: ../dnd2share/src/applet-notifications.c:474
 msgid "Remove from history"
 msgstr "Verwijderen uit geschiedenis"
+
+#: ../dnd2share/src/applet-notifications.c:477
+msgid "Clear History"
+msgstr "Geschiedenis wissen"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
@@ -1788,29 +1729,29 @@ msgstr "Kb"
 msgid "Counting total size and files number..."
 msgstr "Bezig met tellen van totale grootte en aantal bestanden..."
 
-#: ../dustbin/src/applet-notifications.c:136
+#: ../dustbin/src/applet-notifications.c:117
 msgid "Show Trash (click)"
 msgstr "Prullenbak tonen (klikken)"
 
-#: ../dustbin/src/applet-notifications.c:137
+#: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash (middle-click)"
 msgstr "Prullenbak legen (middelklik)"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:120
 msgid "Display dustbins information"
 msgstr "Prullenbakinformatie tonen"
 
-#: ../dustbin/src/applet-notifications.c:151
+#: ../dustbin/src/applet-notifications.c:133
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s is nu ontkoppeld"
 
-#: ../dustbin/src/applet-notifications.c:155
+#: ../dustbin/src/applet-notifications.c:137
 #, c-format
 msgid "failed to unmount %s"
 msgstr "Kon %s niet ontkoppelen"
 
-#: ../dustbin/src/applet-notifications.c:179
+#: ../dustbin/src/applet-notifications.c:161
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Dit volume wordt ontkoppeld ..."
@@ -1940,11 +1881,11 @@ msgstr ""
 "te sluiten of herstarten\n"
 "  (U kunt dit omdraaien als u liever met een linkerklik de computer afsluit)."
 
-#: ../logout/src/applet-notifications.c:101
+#: ../logout/src/applet-notifications.c:100
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Selecteer aantal minuten waarna u PC zal afsluiten :"
 
-#: ../logout/src/applet-notifications.c:126
+#: ../logout/src/applet-notifications.c:125
 msgid "Lock screen"
 msgstr "Beeldscherm vergrendelen"
 
@@ -1952,7 +1893,7 @@ msgstr "Beeldscherm vergrendelen"
 msgid "Program an automatic shut-down"
 msgstr "Stel automatisch afsluiten in"
 
-#: ../logout/src/applet-notifications.c:158
+#: ../logout/src/applet-notifications.c:159
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Uw computer zal afsluiten na 1 minuut."
 
@@ -2111,20 +2052,30 @@ msgstr ""
 "Als '%s' niet uw gebruikelijke e-mailprogramma is,\n"
 "dan kunt u dit wijzigen in het configuratiepaneel van deze module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:139
+#: ../mail/src/cd-mail-applet-notifications.c:147
 msgid "Refresh a mail account"
 msgstr "Vernieuw een e-mailaccount"
 
-#: ../mail/src/cd-mail-applet-notifications.c:148
+#: ../mail/src/cd-mail-applet-notifications.c:154
+#, fuzzy
+msgid "Refresh all (Middle-click)"
+msgstr "Volgende (middelklik)"
+
+#: ../mail/src/cd-mail-applet-notifications.c:159
+#, fuzzy, c-format
+msgid "Refresh %s"
+msgstr "Vernieuwen"
+
+#: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
 msgstr "Alle e-mails markeren als gelezen"
 
-#: ../mail/src/cd-mail-applet-notifications.c:151
+#: ../mail/src/cd-mail-applet-notifications.c:168
 #, c-format
 msgid "Launch %s"
 msgstr "Open %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:326
+#: ../mail/src/cd-mail-applet-notifications.c:346
 msgid "Mail"
 msgstr "E-mail"
 
@@ -2203,7 +2154,7 @@ msgstr ""
 "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
 "       Voor Exaile 0.3, dient u de MPRIS plug-in te activeren"
 
-#: ../musicPlayer/src/applet-notifications.c:70
+#: ../musicPlayer/src/applet-notifications.c:74
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
@@ -2212,49 +2163,49 @@ msgstr ""
 "Sorry, ik kon geen speler detecteren.\n"
 "Dit komt misschien omdat deze versie te oud is en dit niet ondersteunt."
 
-#: ../musicPlayer/src/applet-notifications.c:162
+#: ../musicPlayer/src/applet-notifications.c:172
 msgid "Find opened player"
 msgstr "Zoek naar geopende speler"
 
-#: ../musicPlayer/src/applet-notifications.c:169
+#: ../musicPlayer/src/applet-notifications.c:179
 msgid "Previous"
 msgstr "Vorige"
 
-#: ../musicPlayer/src/applet-notifications.c:171
+#: ../musicPlayer/src/applet-notifications.c:181
 msgid "Play/Pause (left-click)"
 msgstr "Afspelen/pauzeren (linkerklik)"
 
-#: ../musicPlayer/src/applet-notifications.c:173
+#: ../musicPlayer/src/applet-notifications.c:183
 msgid "Next (middle-click)"
 msgstr "Volgende (middelklik)"
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:185
 msgid "Stop"
 msgstr "Stoppen"
 
-#: ../musicPlayer/src/applet-notifications.c:177
+#: ../musicPlayer/src/applet-notifications.c:189
+msgid "Information"
+msgstr "Informatie"
+
+#: ../musicPlayer/src/applet-notifications.c:192
 msgid "Show the Window"
 msgstr "Venster tonen"
 
-#: ../musicPlayer/src/applet-notifications.c:179
+#: ../musicPlayer/src/applet-notifications.c:198
 msgid "Show JumpBox"
 msgstr "JumpBox tonen"
 
-#: ../musicPlayer/src/applet-notifications.c:181
+#: ../musicPlayer/src/applet-notifications.c:200
 msgid "Toggle Shuffle"
 msgstr "Ga naar shuffle"
 
-#: ../musicPlayer/src/applet-notifications.c:183
+#: ../musicPlayer/src/applet-notifications.c:202
 msgid "Toggle Repeat"
 msgstr "Ga naar Herhalen"
 
-#: ../musicPlayer/src/applet-notifications.c:185
+#: ../musicPlayer/src/applet-notifications.c:204
 msgid "Rate this song"
 msgstr "Dit nummer waarderen"
-
-#: ../musicPlayer/src/applet-notifications.c:187
-msgid "Information"
-msgstr "Informatie"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2296,7 +2247,7 @@ msgstr ""
 "interface selecteren die u wenst te monitoren.\n"
 "Wilt u dit nu doen ?"
 
-#: ../netspeed/src/applet-notifications.c:72
+#: ../netspeed/src/applet-notifications.c:76
 msgid "Re-check interface"
 msgstr "Controleer interface opnieuw"
 
@@ -2471,31 +2422,31 @@ msgstr "Geen schijven of bladwijzers gevonden."
 msgid "Enter a name for this bookmark:"
 msgstr "Voer een naam in voor deze bladwijzer:"
 
-#: ../shortcuts/src/applet-notifications.c:250
-msgid "Remove this bookmark"
-msgstr "Verwijder deze bladwijzer"
-
-#: ../shortcuts/src/applet-notifications.c:251
+#: ../shortcuts/src/applet-notifications.c:252
 msgid "Rename this bookmark"
 msgstr "Deze bladwijzer hernoemen"
 
-#: ../shortcuts/src/applet-notifications.c:257
+#: ../shortcuts/src/applet-notifications.c:253
+msgid "Remove this bookmark"
+msgstr "Verwijder deze bladwijzer"
+
+#: ../shortcuts/src/applet-notifications.c:259
 msgid "Eject"
 msgstr "Uitwerpen"
 
-#: ../shortcuts/src/applet-notifications.c:262
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Unmount (middle-click)"
 msgstr "Ontkoppelen (middelklik)"
 
-#: ../shortcuts/src/applet-notifications.c:262
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Mount (middle-click)"
 msgstr "Aankoppelen (middelklik)"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:266
 msgid "Get disk info"
 msgstr "Schijfinfo ophalen"
 
-#: ../shortcuts/src/applet-notifications.c:289
+#: ../shortcuts/src/applet-notifications.c:292
 msgid "Only folders can be bookmarked."
 msgstr "Er kan alleen een bladwijzer van een map gemaakt worden."
 
@@ -2505,8 +2456,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -2541,20 +2492,20 @@ msgstr "U dient de 'DBus' plug-in in Compiz te activeren."
 msgid "Change screen resolution"
 msgstr "Schermresolutie wijzigen"
 
-#: ../showDesktop/src/applet-notifications.c:299
+#: ../showDesktop/src/applet-notifications.c:305
 msgid "Move to the Desktop"
 msgstr "Verplaatsen naar het bureaublad"
 
-#: ../showDesktop/src/applet-notifications.c:300
+#: ../showDesktop/src/applet-notifications.c:306
 msgid "Copy to the Desktop"
 msgstr "Kopiëren naar het bureaublad"
 
-#: ../showDesktop/src/applet-notifications.c:301
-#: ../showDesktop/src/applet-notifications.c:305
+#: ../showDesktop/src/applet-notifications.c:307
+#: ../showDesktop/src/applet-notifications.c:311
 msgid "Link to the Desktop"
 msgstr "Linken naar het bureaublad"
 
-#: ../showDesktop/src/applet-notifications.c:306
+#: ../showDesktop/src/applet-notifications.c:312
 msgid "Download onto the Desktop"
 msgstr "Downloaden naar het bureaublad"
 
@@ -2574,19 +2525,19 @@ msgstr ""
 "Klik om af te spelen/pauzeren of om de huidige afbeelding te bewerken.\n"
 "Middelklik om de afbeeldingenmap te openen."
 
-#: ../slider/src/applet-notifications.c:166
+#: ../slider/src/applet-notifications.c:167
 msgid "Play"
 msgstr "Afspelen"
 
-#: ../slider/src/applet-notifications.c:166
+#: ../slider/src/applet-notifications.c:167
 msgid "Pause"
 msgstr "Pauzeren"
 
-#: ../slider/src/applet-notifications.c:169
+#: ../slider/src/applet-notifications.c:170
 msgid "Open current image"
 msgstr "Open huidige afbeelding"
 
-#: ../slider/src/applet-notifications.c:171
+#: ../slider/src/applet-notifications.c:172
 msgid "Browse images folder"
 msgstr "Afbeeldingenmap doorbladeren"
 
@@ -2629,37 +2580,38 @@ msgstr "Stapel leegmaken ?"
 msgid "Set new name for this item:"
 msgstr "Voer nieuwe naam in voor dit item :"
 
-#: ../stack/src/applet-notifications.c:165
-msgid "Copy (middle click)"
-msgstr "Kopiëren (middelklik)"
-
-#: ../stack/src/applet-notifications.c:166
-msgid "Cut"
-msgstr "Knippen"
-
 #: ../stack/src/applet-notifications.c:167
-msgid "Rename this item"
-msgstr "Hernoem dit item"
-
-#: ../stack/src/applet-notifications.c:168
-msgid "Remove this item"
-msgstr "Verwijder dit item"
-
-#: ../stack/src/applet-notifications.c:172
-msgid "Open (click)"
-msgstr "Open (klik)"
-
-#: ../stack/src/applet-notifications.c:174
-msgid "Open folder"
-msgstr "Map openen"
-
-#: ../stack/src/applet-notifications.c:179
 msgid "Paste (drag'n'drop)"
 msgstr "Plakken (verslepen)"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:170
 msgid "Clear the stack"
 msgstr "Stapel leegmaken"
+
+#: ../stack/src/applet-notifications.c:177
+msgid "Open (click)"
+msgstr "Open (klik)"
+
+#: ../stack/src/applet-notifications.c:179
+#, fuzzy
+msgid "Open parent folder"
+msgstr "Open deze map"
+
+#: ../stack/src/applet-notifications.c:181
+msgid "Copy (middle click)"
+msgstr "Kopiëren (middelklik)"
+
+#: ../stack/src/applet-notifications.c:182
+msgid "Cut"
+msgstr "Knippen"
+
+#: ../stack/src/applet-notifications.c:185
+msgid "Rename this item"
+msgstr "Hernoem dit item"
+
+#: ../stack/src/applet-notifications.c:186
+msgid "Remove this item"
+msgstr "Verwijder dit item"
 
 #: ../stacks/src/applet-init.c:30
 msgid "stacks"
@@ -2675,7 +2627,7 @@ msgstr "Lokale map leegmaken"
 
 #: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:393
+#: ../switcher/src/applet-notifications.c:400
 msgid "Current"
 msgstr "Huidig"
 
@@ -2683,8 +2635,8 @@ msgstr "Huidig"
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:213
 #: ../switcher/src/applet-notifications.c:225
-#: ../switcher/src/applet-notifications.c:385
-#: ../switcher/src/applet-notifications.c:450
+#: ../switcher/src/applet-notifications.c:392
+#: ../switcher/src/applet-notifications.c:452
 msgid "Desktop"
 msgstr "Bureaublad"
 
@@ -2711,23 +2663,23 @@ msgstr ""
 "Het kent 2 modus : Compact (op 1 icoon) en uitgebreid (met een sub-dock)."
 
 #: ../switcher/src/applet-notifications.c:214
-#: ../switcher/src/applet-notifications.c:272
+#: ../switcher/src/applet-notifications.c:273
 msgid "Rename this workspace"
 msgstr "Dit bureaublad hernoemen"
 
-#: ../switcher/src/applet-notifications.c:259
-msgid "Add a desktop"
+#: ../switcher/src/applet-notifications.c:260
+msgid "Add a workspace"
 msgstr "Bureaublad toevoegen"
 
-#: ../switcher/src/applet-notifications.c:263
-msgid "Remove last desktop"
+#: ../switcher/src/applet-notifications.c:264
+msgid "Remove last workspace"
 msgstr "Verwijder laatste bureaublad"
 
-#: ../switcher/src/applet-notifications.c:279
-msgid "Move current Desktop to this Desktop"
+#: ../switcher/src/applet-notifications.c:280
+msgid "Move current workspace to this workspace"
 msgstr "Verplaats huidige bureaublad naar dit bureaublad"
 
-#: ../switcher/src/applet-notifications.c:284
+#: ../switcher/src/applet-notifications.c:285
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -2735,21 +2687,21 @@ msgstr ""
 "Hiermee verplaatst u alle vensters van het huidige bureaublad naar het "
 "bureaublad waar u op klikte."
 
-#: ../switcher/src/applet-notifications.c:290
+#: ../switcher/src/applet-notifications.c:294
 msgid "Windows List"
 msgstr "Vensterlijst"
 
-#: ../switcher/src/applet-notifications.c:295 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:299 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "Bureaublad tonen"
 
-#: ../switcher/src/applet-notifications.c:302 ../showDesktop/data/messages:111
+#: ../switcher/src/applet-notifications.c:306 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125 ../switcher/data/messages:107
 msgid "Expose all the desktops (Compiz)"
 msgstr "Alle bureabladen tonen (Compiz)"
 
-#: ../switcher/src/applet-notifications.c:308
+#: ../switcher/src/applet-notifications.c:314
 msgid "Refresh"
 msgstr "Vernieuwen"
 
@@ -2826,16 +2778,16 @@ msgstr ""
 "laatste tabblad\n"
 "Om een tabblad te sluiten : typ 'CTRL+w' of middelklik erop."
 
-#: ../terminal/src/terminal-menu-functions.c:78
+#: ../terminal/src/terminal-menu-functions.c:79
 #: ../terminal/src/terminal-widget.c:374
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
-#: ../terminal/src/terminal-menu-functions.c:79
+#: ../terminal/src/terminal-menu-functions.c:80
 msgid "Rename current Tab"
 msgstr "Huidig tabblad hernoemen"
 
-#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Close current Tab"
 msgstr "Huidig tabblad sluiten"
 
@@ -2905,39 +2857,39 @@ msgstr "Zoeken naar :"
 msgid "Search for tag:"
 msgstr "Zoeken naar label :"
 
-#: ../tomboy/src/tomboy-notifications.c:186
-msgid "Reload notes"
-msgstr "Notities herladen"
-
-#: ../tomboy/src/tomboy-notifications.c:187
+#: ../tomboy/src/tomboy-notifications.c:195
 msgid "Add a note"
 msgstr "Notitie toevoegen"
 
-#: ../tomboy/src/tomboy-notifications.c:193
+#: ../tomboy/src/tomboy-notifications.c:199
 msgid "Delete this note"
 msgstr "Deze notitie verwijderen"
 
-#: ../tomboy/src/tomboy-notifications.c:196
+#: ../tomboy/src/tomboy-notifications.c:202
+msgid "Reload notes"
+msgstr "Notities herladen"
+
+#: ../tomboy/src/tomboy-notifications.c:208
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../tomboy/src/tomboy-notifications.c:197
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag"
 msgstr "Zoeken naar label"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:211
 msgid "Search for today's note"
 msgstr "Zoeken naar notities van vandaag"
 
-#: ../tomboy/src/tomboy-notifications.c:200
+#: ../tomboy/src/tomboy-notifications.c:212
 msgid "Search for this week's note"
 msgstr "Zoeken naar notities van deze week"
 
-#: ../tomboy/src/tomboy-notifications.c:201
+#: ../tomboy/src/tomboy-notifications.c:213
 msgid "Search for next week's note"
 msgstr "Zoeken naar notities van volgende week"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:223
 msgid "Reset marks"
 msgstr "Markeringen verwijderen"
 
@@ -3033,11 +2985,11 @@ msgstr "Dec"
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Data wordt opgehaaldd, een moment geduld a.u.b."
 
-#: ../weather/src/applet-notifications.c:84
+#: ../weather/src/applet-notifications.c:85
 msgid "Reload now"
 msgstr "Nu herladen"
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:110
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3045,40 +2997,40 @@ msgstr ""
 "Geen data beschikbaar\n"
 "Werkt de verbinding ?"
 
-#: ../weather/src/applet-notifications.c:127
-#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:129
+#: ../weather/src/applet-notifications.c:165
 msgid "Temperature"
 msgstr "Temperatuur"
 
-#: ../weather/src/applet-notifications.c:128
+#: ../weather/src/applet-notifications.c:130
 msgid "Precipitation probability"
 msgstr "Kans op neerslag"
 
-#: ../weather/src/applet-notifications.c:129
-#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:131
+#: ../weather/src/applet-notifications.c:166
 msgid "Wind"
 msgstr "Wind"
 
-#: ../weather/src/applet-notifications.c:130
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:132
+#: ../weather/src/applet-notifications.c:167
 msgid "Humidity"
 msgstr "Vochtigheid"
 
-#: ../weather/src/applet-notifications.c:131
-#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:133
+#: ../weather/src/applet-notifications.c:168
 msgid "Sunrise"
 msgstr "Zonsopkomst"
 
-#: ../weather/src/applet-notifications.c:131
-#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:133
+#: ../weather/src/applet-notifications.c:168
 msgid "Sunset"
 msgstr "Zonsondergang"
 
-#: ../weather/src/applet-notifications.c:139
+#: ../weather/src/applet-notifications.c:141
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Data wordt opgehaald, probeer het over enkele ogenblikken opnieuw."
 
-#: ../weather/src/applet-notifications.c:149
+#: ../weather/src/applet-notifications.c:151
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3086,11 +3038,11 @@ msgstr ""
 "Geen data beschikbaar\n"
 "Opnieuw proberen..."
 
-#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:165
 msgid "Feels like"
 msgstr "Gevoelstemperatuur"
 
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:167
 msgid "Pressure"
 msgstr "Druk"
 
@@ -3196,10 +3148,10 @@ msgstr "Draaien"
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
 #: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
-#: ../Scooby-Do/data/messages:17 ../Scooby-Do/data/messages:21
-#: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
-#: ../icon-effect/data/messages:145 ../icon-effect/data/messages:167
-#: ../icon-effect/data/messages:187
+#: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
+#: ../Scooby-Do/data/messages:19 ../icon-effect/data/messages:101
+#: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
+#: ../icon-effect/data/messages:167 ../icon-effect/data/messages:187
 msgid "In ms."
 msgstr "In ms."
 
@@ -3476,7 +3428,7 @@ msgstr "Naam van het dock waar het bijhoort:"
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
-#: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:15
 #: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
 #: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:13
 #: ../clock/data/messages:15 ../compiz-icon/data/messages:11
@@ -3499,23 +3451,24 @@ msgstr "Applet's handleiding"
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
-#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
-#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
-#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:89
-#: ../clock/data/messages:91 ../compiz-icon/data/messages:87
-#: ../dnd2share/data/messages:87 ../dustbin/data/messages:87
-#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:91
-#: ../mail/data/messages:87 ../motion-blur/data/messages:1
-#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
-#: ../powermanager/data/messages:89 ../quick-browser/data/messages:93
-#: ../shortcuts/data/messages:91 ../show-mouse/data/messages:1
-#: ../showDesktop/data/messages:95 ../slider/data/messages:89
-#: ../stack/data/messages:93 ../stacks/data/messages:89
-#: ../switcher/data/messages:83 ../switcher/data/messages:85
-#: ../systray/data/messages:83 ../template/data/messages:91
-#: ../terminal/data/messages:91 ../tomboy/data/messages:101
-#: ../weather/data/messages:89 ../weather/data/messages:91
-#: ../weblets/data/messages:91 ../wifi/data/messages:89
+#: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:1
+#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:89
+#: ../Toons/data/messages:89 ../Xgamma/data/messages:91
+#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
+#: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:87
+#: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:87
+#: ../logout/data/messages:91 ../mail/data/messages:87
+#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:89
+#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
+#: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
+#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
+#: ../slider/data/messages:89 ../stack/data/messages:93
+#: ../stacks/data/messages:89 ../switcher/data/messages:83
+#: ../switcher/data/messages:85 ../systray/data/messages:83
+#: ../template/data/messages:91 ../terminal/data/messages:91
+#: ../tomboy/data/messages:101 ../weather/data/messages:89
+#: ../weather/data/messages:91 ../weblets/data/messages:91
+#: ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Configuratie"
 
@@ -3864,7 +3817,7 @@ msgstr "Zichtbaarheid"
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
-#: ../Scooby-Do/data/messages:27 ../Status-Notifier/data/messages:39
+#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:39
 #: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
 #: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:37
 #: ../clock/data/messages:39 ../compiz-icon/data/messages:35
@@ -4139,7 +4092,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:65 ../System-Monitor/data/messages:63
 #: ../Toons/data/messages:63 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:63 ../clock/data/messages:65
-#: ../clock/data/messages:149 ../compiz-icon/data/messages:61
+#: ../clock/data/messages:157 ../compiz-icon/data/messages:61
 #: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:61
 #: ../keyboard-indicator/data/messages:113 ../logout/data/messages:65
@@ -4492,8 +4445,7 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr ""
-"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:123
 msgid "Paste into Selection?"
@@ -4640,8 +4592,7 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -4738,7 +4689,7 @@ msgstr "Grootte"
 msgid "Sort folders before files?"
 msgstr "Mappen sorteren boven bestanden?"
 
-#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:103
+#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:101
 #: ../quick-browser/data/messages:103
 msgid "Show hidden files?"
 msgstr "Verborgen bestanden tonen ?"
@@ -5231,15 +5182,24 @@ msgstr "Normaal"
 msgid "big"
 msgstr "Groot"
 
+#: ../Remote-Control/data/messages:3
+#, fuzzy
+msgid "Shortkey to trigger the applet:"
+msgstr "Sneltoets om naar het systeemvak te wisselen"
+
+#: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
+msgid "Animation of the current icon :"
+msgstr "Animatie van het huidige icoon :"
+
+#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:21
+msgid "Duration of the stop animation :"
+msgstr "Tijdsduur van de animatie voor het stoppen :"
+
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to enable/disable the finder mode:"
 msgstr "Sneltoets om de vindermodus te activeren/deactiveren :"
 
 #: ../Scooby-Do/data/messages:5
-msgid "Shortkey to enable/disable the navigation mode:"
-msgstr "Sneltoets om de navigatiemodus te activeren/deactiveren :"
-
-#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -5247,11 +5207,11 @@ msgstr ""
 "Maximum aantal e-mails dat getoond zal worden. Stel in op -1 om het grootste "
 "aantal te tonen."
 
-#: ../Scooby-Do/data/messages:9
+#: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
 msgstr "Maximum aantal resultaten :"
 
-#: ../Scooby-Do/data/messages:11
+#: ../Scooby-Do/data/messages:9
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
@@ -5259,179 +5219,171 @@ msgstr ""
 "Aantal regels in het overzicht. Indien er meer resultaten zijn, kunt u er "
 "doorheen scrollen met de pijltjes."
 
-#: ../Scooby-Do/data/messages:13
+#: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
 msgstr "Aantal te tonen lijnen :"
 
-#: ../Scooby-Do/data/messages:15
+#: ../Scooby-Do/data/messages:13
 msgid "Animations"
 msgstr "Animaties"
 
-#: ../Scooby-Do/data/messages:19
+#: ../Scooby-Do/data/messages:17
 msgid "Duration of the appearance animation :"
 msgstr "Tijdsduur van de animatie voor het verschijnen :"
 
-#: ../Scooby-Do/data/messages:23
-msgid "Duration of the stop animation :"
-msgstr "Tijdsduur van de animatie voor het stoppen :"
-
-#: ../Scooby-Do/data/messages:25
-msgid "Animation of the current icon :"
-msgstr "Animatie van het huidige icoon :"
-
-#: ../Scooby-Do/data/messages:29
+#: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type:"
 msgstr "Lettertype om te gebruiken :"
 
-#: ../Scooby-Do/data/messages:31
+#: ../Scooby-Do/data/messages:29
 msgid "Color of the text's frame  :"
 msgstr "Kleur van tekstframe :"
 
-#: ../Scooby-Do/data/messages:33
+#: ../Scooby-Do/data/messages:31
 msgid "Font size, relative to the dock size:"
 msgstr "Grootte lettertype, relatief aan de grootte van het dock :"
 
-#: ../Scooby-Do/data/messages:35
+#: ../Scooby-Do/data/messages:33
 msgid "between 1 and 9, the higher, the bigger."
 msgstr "Tussen 1 en 9, hoe groter, hoe zwaarder."
 
-#: ../Scooby-Do/data/messages:37
+#: ../Scooby-Do/data/messages:35
 msgid "Text size:"
 msgstr "Tekstgewicht :"
 
-#: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:103
 msgid "Outline text?"
 msgstr "De tekst omlijnen ?"
 
-#: ../Scooby-Do/data/messages:41 ../clock/data/messages:145
+#: ../Scooby-Do/data/messages:39 ../clock/data/messages:145
 msgid "Text colour:"
 msgstr "Tekstkleur :"
 
-#: ../Scooby-Do/data/messages:43
+#: ../Scooby-Do/data/messages:41
 msgid "Character background colour:"
 msgstr "Achtergrondkleur van de tekens :"
 
-#: ../Scooby-Do/data/messages:45
+#: ../Scooby-Do/data/messages:43
 msgid "Write text on the top of the dock?"
 msgstr "Tekst bovenop het dock schrijven ?"
 
-#: ../Scooby-Do/data/messages:47
+#: ../Scooby-Do/data/messages:45
 msgid "Favorite applications"
 msgstr "Favoriete toepassingen"
 
-#: ../Scooby-Do/data/messages:49
+#: ../Scooby-Do/data/messages:47
 msgid "FAvorite applications starting with 'a' :"
 msgstr "Favoriete toepassing die begint met een 'A' :"
 
-#: ../Scooby-Do/data/messages:51
+#: ../Scooby-Do/data/messages:49
 msgid "Favorite application starting with 'b' :"
 msgstr "Favoriete toepassing die begint met een 'B' :"
 
-#: ../Scooby-Do/data/messages:53
+#: ../Scooby-Do/data/messages:51
 msgid "Favorite application(s) starting with 'c' :"
 msgstr "Favoriete toepassing die begint met een 'C' :"
 
-#: ../Scooby-Do/data/messages:55
+#: ../Scooby-Do/data/messages:53
 msgid "Favorite application(s starting with 'd' :"
 msgstr "Favoriete toepassing die begint met een 'D' :"
 
-#: ../Scooby-Do/data/messages:57
+#: ../Scooby-Do/data/messages:55
 msgid "Favorite application(s) starting with 'e' :"
 msgstr "Favoriete toepassing die begint met een 'E' :"
 
-#: ../Scooby-Do/data/messages:59
+#: ../Scooby-Do/data/messages:57
 msgid "Favorite application(s) starting with 'f' :"
 msgstr "Favoriete toepassing die begint met een 'F' :"
 
-#: ../Scooby-Do/data/messages:61
+#: ../Scooby-Do/data/messages:59
 msgid "Favorite application(s) starting with 'g' :"
 msgstr "Favoriete toepassing die begint met een 'G' :"
 
-#: ../Scooby-Do/data/messages:63
+#: ../Scooby-Do/data/messages:61
 msgid "Favorite application(s) starting with 'h' :"
 msgstr "Favoriete toepassing die begint met een 'H' :"
 
-#: ../Scooby-Do/data/messages:65
+#: ../Scooby-Do/data/messages:63
 msgid "Favorite application(s) starting with 'i' :"
 msgstr "Favoriete toepassing die begint met een 'I' :"
 
-#: ../Scooby-Do/data/messages:67
+#: ../Scooby-Do/data/messages:65
 msgid "Favorite application(s) starting with 'j' :"
 msgstr "Favoriete toepassing die begint met een 'J' :"
 
-#: ../Scooby-Do/data/messages:69
+#: ../Scooby-Do/data/messages:67
 msgid "Favorite application(s) starting with 'k' :"
 msgstr "Favoriete toepassing die begint met een 'K' :"
 
-#: ../Scooby-Do/data/messages:71
+#: ../Scooby-Do/data/messages:69
 msgid "Favorite application(s) starting with 'l' :"
 msgstr "Favoriete toepassing die begint met een 'L' :"
 
-#: ../Scooby-Do/data/messages:73
+#: ../Scooby-Do/data/messages:71
 msgid "Favorite application(s) starting with 'm' :"
 msgstr "Favoriete toepassing die begint met een 'M' :"
 
-#: ../Scooby-Do/data/messages:75
+#: ../Scooby-Do/data/messages:73
 msgid "Favorite application(s) starting with 'n' :"
 msgstr "Favoriete toepassing die begint met een 'N' :"
 
-#: ../Scooby-Do/data/messages:77
+#: ../Scooby-Do/data/messages:75
 msgid "Favorite application(s) starting with 'o' :"
 msgstr "Favoriete toepassing die begint met een 'O' :"
 
-#: ../Scooby-Do/data/messages:79
+#: ../Scooby-Do/data/messages:77
 msgid "Favorite application(s) starting with 'p' :"
 msgstr "Favoriete toepassing die begint met een 'P' :"
 
-#: ../Scooby-Do/data/messages:81
+#: ../Scooby-Do/data/messages:79
 msgid "Favorite application(s) starting with 'q' :"
 msgstr "Favoriete toepassing die begint met een 'Q' :"
 
-#: ../Scooby-Do/data/messages:83
+#: ../Scooby-Do/data/messages:81
 msgid "Favorite application(s) starting with 'r' :"
 msgstr "Favoriete toepassing die begint met een 'R' :"
 
-#: ../Scooby-Do/data/messages:85
+#: ../Scooby-Do/data/messages:83
 msgid "Favorite application(s) starting with 's' :"
 msgstr "Favoriete toepassing die begint met een 'S' :"
 
-#: ../Scooby-Do/data/messages:87
+#: ../Scooby-Do/data/messages:85
 msgid "Favorite application(s) starting with 't' :"
 msgstr "Favoriete toepassing die begint met een 'T' :"
 
-#: ../Scooby-Do/data/messages:89
+#: ../Scooby-Do/data/messages:87
 msgid "Favorite application(s) starting with 'u' :"
 msgstr "Favoriete toepassing die begint met een 'U' :"
 
-#: ../Scooby-Do/data/messages:91
+#: ../Scooby-Do/data/messages:89
 msgid "Favorite application(s) starting with 'v' :"
 msgstr "Favoriete toepassing die begint met een 'V' :"
 
-#: ../Scooby-Do/data/messages:93
+#: ../Scooby-Do/data/messages:91
 msgid "Favorite application(s) starting with 'w' :"
 msgstr "Favoriete toepassing die begint met een 'W' :"
 
-#: ../Scooby-Do/data/messages:95
+#: ../Scooby-Do/data/messages:93
 msgid "Favorite application(s) starting with 'x' :"
 msgstr "Favoriete toepassing die begint met een 'X' :"
 
-#: ../Scooby-Do/data/messages:97
+#: ../Scooby-Do/data/messages:95
 msgid "Favorite application(s) starting with 'y' :"
 msgstr "Favoriete toepassing die begint met een 'Y' :"
 
-#: ../Scooby-Do/data/messages:99
+#: ../Scooby-Do/data/messages:97
 msgid "Favorite application(s) starting with 'z' :"
 msgstr "Favoriete toepassing die begint met een 'Z' :"
 
-#: ../Scooby-Do/data/messages:109
+#: ../Scooby-Do/data/messages:107
 msgid "Propose some web search engines ?"
 msgstr "Enige webzoekmachines voorstellen ?"
 
-#: ../Scooby-Do/data/messages:111
+#: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
 msgstr "Het kan opdrachten uitvoeren en zelfs enige berekeningen doen."
 
-#: ../Scooby-Do/data/messages:115
+#: ../Scooby-Do/data/messages:113
 msgid "Help"
 msgstr "Hulp"
 
@@ -5726,8 +5678,7 @@ msgstr "´Dempen´ icoon :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr ""
-"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:95
 msgid "Show the date:"
@@ -5831,29 +5782,48 @@ msgid "Font:"
 msgstr "Lettertype :"
 
 #: ../clock/data/messages:147
+#, fuzzy
+msgid "Layout of the text:"
+msgstr "Relatieve grootte van de tekst :"
+
+#: ../clock/data/messages:149
+#, fuzzy
+msgid "Automatic"
+msgstr "Personaliseren"
+
+#: ../clock/data/messages:151
+#, fuzzy
+msgid "On 1 line"
+msgstr "Op icoon"
+
+#: ../clock/data/messages:153
+msgid "On 2 lines"
+msgstr ""
+
+#: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
 msgstr "Verhouding om toe te passen op tekst :"
 
-#: ../clock/data/messages:151
+#: ../clock/data/messages:159
 msgid "Configure time and date"
 msgstr "Stel tijd en datum in"
 
-#: ../clock/data/messages:153
+#: ../clock/data/messages:161
 msgid "Leave empty to use the default command."
 msgstr "Laat leeg om standaardopdracht te gebruiken."
 
-#: ../clock/data/messages:155
+#: ../clock/data/messages:163
 msgid "Specific command to run:"
 msgstr "Specifieke opdracht om uit te voeren :"
 
-#: ../clock/data/messages:159
+#: ../clock/data/messages:167
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "De nieuwe herinnering zal toegevoegd worden aan het eind, de laatste "
 "herinnering zal verwijderd worden."
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:169
 msgid "Add or remove an alarm:"
 msgstr "Herinnering toevoegen of verwijderen :"
 
@@ -5862,8 +5832,9 @@ msgid ""
 "Except when switching to another WM, you must activate the Dbus plugin in "
 "Compiz along with the plugin corresponding to the desired action."
 msgstr ""
-"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in Compiz "
-", de Dbus plug-in activeren samen met de plug-in voor de gewenste actie."
+"Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in "
+"Compiz , de Dbus plug-in activeren samen met de plug-in voor de gewenste "
+"actie."
 
 #: ../compiz-icon/data/messages:93 ../switcher/data/messages:101
 msgid "Action on middle click :"
@@ -6027,8 +5998,7 @@ msgstr "Heliodor"
 #: ../stacks/data/messages:115 ../switcher/data/messages:145
 #: ../tomboy/data/messages:119 ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
-msgstr ""
-"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../compiz-icon/data/messages:161 ../mail/data/messages:93
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
@@ -6427,8 +6397,7 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:85
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr ""
-"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:87
 msgid "Height/width ratio:"
@@ -6467,8 +6436,7 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen iconen :"
 
 #: ../dock-rendering/data/messages:109
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -6559,8 +6527,7 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr ""
-"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -6606,8 +6573,7 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:87
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6776,8 +6742,7 @@ msgstr "Laat leeg als u de standaardopdracht wilt uitvoeren."
 
 #: ../logout/data/messages:95
 msgid "User-defined command to execute for logout:"
-msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
+msgstr "Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
 
 #: ../logout/data/messages:97
 msgid ""
@@ -6793,8 +6758,8 @@ msgstr ""
 #: ../logout/data/messages:99
 msgid "User-defined command to execute for shutdown:"
 msgstr ""
-"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te sluiten "
-":"
+"Door gebruiker bepaalde opdracht om uit te voeren, om computer af te "
+"sluiten :"
 
 #: ../logout/data/messages:101
 msgid "Invert buttons?"
@@ -6851,8 +6816,7 @@ msgid "Check mail account on startup?"
 msgstr "E-mailaccount controleren tijdens opstarten ?"
 
 #: ../mail/data/messages:123
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -6890,8 +6854,7 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:91
@@ -7484,8 +7447,7 @@ msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr ""
-"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:157
 msgid "Choose a background colour :"
@@ -7549,18 +7511,6 @@ msgstr "Soort"
 msgid "Manual order"
 msgstr "Handmatig ordenen"
 
-#: ../stack/data/messages:135
-msgid ""
-"It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
-"clipboard"
-msgstr ""
-"Dit is een selectie gemaakt met de muis, in tegenstelling tot het "
-"gebruikelijke CTRL+c/CTRL+v in het klembord"
-
-#: ../stack/data/messages:137
-msgid "When copying/pasting/cutting, use the selection clipboard?"
-msgstr "Bij het kopiëren/plakken/knippen de klembordselectie gebruiken ?"
-
 #: ../stacks/data/messages:91
 msgid "Directory & Options"
 msgstr "Map en opties"
@@ -7584,8 +7534,8 @@ msgid ""
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
 "U kunt het label '_LocalDirectory_' aanbrengen om zowel de lokale mappen van "
-"de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen "
-"stapel´s lokale map gebruiken' is uitgevinkt."
+"de stapel als de gemonitoorde mappen te hebben. Let erop dat 'Alleen stapel"
+"´s lokale map gebruiken' is uitgevinkt."
 
 #: ../stacks/data/messages:99
 msgid "Monitored Directories :"
@@ -7954,8 +7904,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
@@ -8042,13 +7991,118 @@ msgstr "Ruwe signaalinformatie"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
+#~ msgid "Hey, you there!"
+#~ msgstr "He, jij daar !"
+
+#~ msgid "Quick launch"
+#~ msgstr "Snelstart"
+
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, "
+#~ "firefox bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main "
+#~ "listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
+#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "Met deze plug-in kunt u verschillende acties uitvoeren met het "
+#~ "toetsenbord.\n"
+#~ "Het kent 2 modi, die elk door een sneltoets gekozen kunnen worden:\n"
+#~ "\n"
+#~ "- De vindermodus (standaardsneltoets : CTRL + Enter) :\n"
+#~ "    U kunt er toepassingen, bestanden, recente bestanden, Firefox-"
+#~ "bladwijzers, opdrachten en zelfs berekeningen mee vinden en uitvoeren.\n"
+#~ "    Typ wat u wilt zoeken, de resultaten worden direct weergegeven.\n"
+#~ "    De eerste resultaten van elke categorie zullen getoond worden in de "
+#~ "hoofdlijst.\n"
+#~ "    Gebruik het omhoog/omlaagpijltje om te navigeren in de lijst,\n"
+#~ "    en gebruik het linker/rechterpijltje om naar een categorie te gaan, "
+#~ "of om meer acties te tonen (wanneer er een klein pijltje naast de tekst "
+#~ "getekend is).\n"
+#~ "    Wanneer u in een categorie bent, kunt u de resultaten filteren door "
+#~ "het typen van enkele letters.\n"
+#~ "    Druk op Enter om te valideren, houdt ALT of SHIFT in om de "
+#~ "resultatenlijst geopend te houden.\n"
+#~ "\n"
+#~ "- De navigatiemodus (standaardsneltoets : CTRL + F9) :\n"
+#~ "    Gebruik de pijltjes om te navigeren naar de docks en sub-docks,\n"
+#~ "    of typ de naam van een starter en druk op Tab om automatisch naar de "
+#~ "volgende starter te gaan\n"
+#~ "    Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift"
+#~ "+klik, Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik\n"
+#~ "Druk op Escape of op dezelfde sneltoets om te annuleren."
+
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "Een <b>mededelingengebied</b> voor uw dock\n"
+#~ "Ook wel 'systeemvak genoemd'.\n"
+#~ "Het is ontwikkeld om te werken met elk systeem dat de laatste "
+#~ "systeemvakspecificaties ondersteunt (KDE, Gnome, etc)"
+
+#~ msgid "Monitor System"
+#~ msgstr "Systeemmonitor"
+
+#~ msgid "Unmute"
+#~ msgstr "Niet dempen"
+
+#~ msgid "Mute"
+#~ msgstr "Dempen"
+
+#~ msgid "Open folder"
+#~ msgstr "Map openen"
+
+#~ msgid "Add a desktop"
+#~ msgstr "Bureaublad toevoegen"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Verwijder laatste bureaublad"
+
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Verplaats huidige bureaublad naar dit bureaublad"
+
+#~ msgid "Shortkey to enable/disable the navigation mode:"
+#~ msgstr "Sneltoets om de navigatiemodus te activeren/deactiveren :"
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+#~ msgstr ""
+#~ "Dit is een selectie gemaakt met de muis, in tegenstelling tot het "
+#~ "gebruikelijke CTRL+c/CTRL+v in het klembord"
+
+#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
+#~ msgstr "Bij het kopiëren/plakken/knippen de klembordselectie gebruiken ?"
+
 #~ msgid "Free"
 #~ msgstr "Vrij"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
-#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8058,14 +8112,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Open het configuratiepaneel van het applet,\n"
 #~ " en selecteer het juiste audiokanaal dat u wilt beheren."
 
-#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Toon %s"
 
 #~ msgid "Show All"
 #~ msgstr "Toon alles"
 
-#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Verwijder %s"
 
@@ -8074,14 +8126,15 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
-#~ "next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
+#~ "for next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Bedien uw Rhythmbox-speler direct vanuit het dock !\n"
-#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en naar "
-#~ "beneden scrollen voor volgende nummer, omhoog scrollen voor vorige nummer.\n"
+#~ "Klik met links om te openen en om te afspelen/pauzeren. Middelklik en "
+#~ "naar beneden scrollen voor volgende nummer, omhoog scrollen voor vorige "
+#~ "nummer.\n"
 #~ "U kunt albumhoezen (jpg) naar het icoon slepen om ze te gebruiken,\n"
 #~ "dit kunt u ook doen met nummers om ze in de wachtrij te plaatsen."
 
@@ -8116,8 +8169,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
-#~ "still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
+#~ "is still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -8129,7 +8182,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Voor XMMS, moet u de 'xmms-infopipe' plug-in installeren.\n"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen.\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
+#~ "plaatsen.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen."
 
 #~ msgid "in seconds"
@@ -8214,11 +8268,11 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Actie_6/Opdracht_4"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
-#~ "or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple."
 #~ msgstr ""
-#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld wijzigen "
-#~ "met ALT + middenklik of ALT + linkermuisklik."
+#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld "
+#~ "wijzigen met ALT + middenklik of ALT + linkermuisklik."
 
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Desklet's grootte (breedte x hoogte) :"
@@ -8308,8 +8362,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Ondermarge :"
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect for "
-#~ "exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect "
+#~ "for exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "Dit is een afbeelding die getoond wordt boven de tekeningen, zoals "
 #~ "bijvoorbeeld een reflectie. Laat leeg als u er geen wilt gebruiken."
@@ -8364,10 +8418,11 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Bureaubladloze ondersteuning"
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on click."
+#~ "Only use this if you notice that the applet can't display the trash on "
+#~ "click."
 #~ msgstr ""
-#~ "Gebruik dit alleen als u merkt dat het applet de prullenbak niet kan tonen "
-#~ "bij een klik."
+#~ "Gebruik dit alleen als u merkt dat het applet de prullenbak niet kan "
+#~ "tonen bij een klik."
 
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternatieve bestandsbeheerder om prullenbak te tonen :"
@@ -8379,8 +8434,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "only use this if it differs from its name. Generally it is not the case, "
 #~ "except for Thunderbird."
 #~ msgstr ""
-#~ "Gebruik dit alleen wanneer de namen verschillen. In het algemeen is dit niet "
-#~ "het geval, alleen bij Thunderbird."
+#~ "Gebruik dit alleen wanneer de namen verschillen. In het algemeen is dit "
+#~ "niet het geval, alleen bij Thunderbird."
 
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Icoon animeren tijdens waarschuwing ?"
@@ -8392,12 +8447,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Info-ballonnen activeren ?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
-#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Dit voorkomt dat het icoon van Rhythmbox zichtbaar is in de taakbalk. Het "
-#~ "icoon van het applet zal zich dan gedragen als een starter, een toepassing "
-#~ "en applet."
+#~ "icoon van het applet zal zich dan gedragen als een starter, een "
+#~ "toepassing en applet."
 
 #~ msgid "Steal the rhythmbox's icon in taskbar ?"
 #~ msgstr "Icoon Rhythmbox stelen uit taakbalk ?"
@@ -8487,7 +8542,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on "
+#~ "Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
@@ -8495,8 +8551,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
 #~ "nummer.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
-#~ "plaatsen(afhankelijk van speler).\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen"
+#~ "(afhankelijk van speler).\n"
 #~ "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 #~ "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
 
@@ -8511,13 +8567,14 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Breedte :"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
-#~ "or ALT + left_click for exemple.}\n"
+#~ "Depending on your WindowManager, you can resize it with ALT + "
+#~ "middle_click or ALT + left_click for exemple.}\n"
 #~ "width=92\n"
 #~ "#i[48;256] ...\n"
 #~ "height=92\n"
 #~ "#i[-2048;2048] Desklet's position (x ; y) :\n"
-#~ "#{Depending on your WindowManager, you can move it with ALT + left_click}\n"
+#~ "#{Depending on your WindowManager, you can move it with ALT + "
+#~ "left_click}\n"
 #~ "x position=0\n"
 #~ "#i[-2048;2048] ...\n"
 #~ "y position=0\n"
@@ -8532,14 +8589,15 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "(name=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
+#~ "left mouse button. Of course you can still move it with ALT + "
+#~ "left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
 #~ msgstr ""
-#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld wijzigen "
-#~ "met ALT + middenklik of ALT + linkermuisklik.}\n"
+#~ "Afhankelijk van uw vensterbeheerder, kunt u de grootte bijvoorbeeld "
+#~ "wijzigen met ALT + middenklik of ALT + linkermuisklik.}\n"
 #~ "Breedte=92\n"
 #~ "#i[48;256] ...\n"
 #~ "Hoogte=92\n"
@@ -8573,7 +8631,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "You can put the tag '__Player__' to display the name of the player you "
 #~ "control"
 #~ msgstr ""
-#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u bedient"
+#~ "U kunt het label '__Player__' aanbrengen, om te tonen welke speler u "
+#~ "bedient"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click}\n"
@@ -8591,8 +8650,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "(class=cairo-dock & type=utility)}\n"
 #~ "on widget layer=false\n"
 #~ "#b Lock position ?\n"
-#~ "#{If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click.}\n"
+#~ "#{If locked, the desklet can't be moved by simply dragging it with the "
+#~ "left mouse button. Of course you can still move it with ALT + "
+#~ "left_click.}\n"
 #~ "locked =false\n"
 #~ "I[-180;180] Rotation :\n"
 #~ "{in degrees."
@@ -8629,14 +8689,11 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Gewenste icoongrootte voor dit applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
-#~ "dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(name=cairo-dock & type=utility)"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)"
-
-#~ msgid "Shortkey to toggle the systray"
-#~ msgstr "Sneltoets om naar het systeemvak te wisselen"
 
 #~ msgid "Narrow your search"
 #~ msgstr "Beperk uw zoekopdracht"
@@ -8647,7 +8704,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid ""
 #~ "Here you can specify a list of additionnal Trash directories to monitor :"
 #~ msgstr ""
-#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te monitoren :"
+#~ "Hier kunt u een lijst specificeren met extra prullenbakken om te "
+#~ "monitoren :"
 
 #~ msgid "Desklet display mode :"
 #~ msgstr "Weergavemodus van desklet :"
@@ -8698,8 +8756,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Grootte van de gedownloade albumhoezen :"
 
 #~ msgid ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
-#~ "dock & type=utility)}"
+#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
+#~ "(class=Cairo-dock & type=utility)}"
 #~ msgstr ""
 #~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
 #~ "(class=Cairo-dock & type=utility)}"
@@ -8723,8 +8781,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr ""
 #~ "Het CPU-gebruik applet toont het huidige gebruik van de processor.\n"
 #~ "Middelklik op het icoon voor enige waardevolle informatie.\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
-#~ "CPU-gebruik."
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
+#~ "meeste CPU-gebruik."
 
 #~ msgid "Data acquisition has failed"
 #~ msgstr "Verkrijgen van data mislukt"
@@ -8739,8 +8797,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op 0 "
-#~ "om geen watermerk te gebruiken."
+#~ "Laat leeg om standaardafbeelding te gebruiken. Stel doorzichtigheid in op "
+#~ "0 om geen watermerk te gebruiken."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Afbeelding om te gebruiken als watermerk :"
@@ -8820,8 +8878,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr ""
 #~ "Dit applet toont info over uw nVidia-kaart\n"
 #~ "Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
-#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-in "
-#~ "niet."
+#~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-"
+#~ "in niet."
 
 #~ msgid "Display Card name on the Label ?"
 #~ msgstr "Kaartnaam op het label tonen ?"
@@ -8849,8 +8907,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Left-click to show a list of the most memory using programs"
 #~ msgstr ""
 #~ "Dit applet toont u het huidige RAM- en SWAP-gebruik\n"
-#~ "Klik met links op het icoon voor een lijst met toepassingen met het meeste "
-#~ "geheugengebruik"
+#~ "Klik met links op het icoon voor een lijst met toepassingen met het "
+#~ "meeste geheugengebruik"
 
 #~ msgid "It's the color of the graphic for high RAM values."
 #~ msgstr "Dit is de kleur voor de hoge RAM-waarden in de grafiek."
@@ -8877,8 +8935,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Toon geheugengebruik waarden :"
 
 #~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most memory-"
-#~ "using programs."
+#~ "When you left-click on the icon, you will get the list of the N most "
+#~ "memory-using programs."
 #~ msgstr ""
 #~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
 #~ "toepassingen met het meeste geheugengebruik."
@@ -8891,7 +8949,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "Dit applet toont u de actieve verbindingen\n"
-#~ "Klik met links voor meer info. Middelklik om direct opnieuw te controleren."
+#~ "Klik met links voor meer info. Middelklik om direct opnieuw te "
+#~ "controleren."
 
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
@@ -8906,40 +8965,41 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Weergave"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
+#~ "keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to the "
-#~ "next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
+#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to validate, "
-#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to "
+#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Een op Gnome-Do lijkende plug-in waarmee u het dock kunt beheren vanaf het "
-#~ "toetsenbord.\n"
+#~ "Een op Gnome-Do lijkende plug-in waarmee u het dock kunt beheren vanaf "
+#~ "het toetsenbord.\n"
 #~ "Het heeft 2 modus, die elk door een sneltoets gekozen kunnen worden:\n"
-#~ "- De navigatiemodus : gebruik de pijltjes om naar de docks en sub-docks te "
-#~ "navigeren,\n"
+#~ "- De navigatiemodus : gebruik de pijltjes om naar de docks en sub-docks "
+#~ "te navigeren,\n"
 #~ "  of typ de naam van een starter en druk op Tab om automatisch naar de "
 #~ "volgende starter te gaan\n"
 #~ "  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, "
 #~ "Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
-#~ "- De vindermodus : typ een opdracht om elk bestand, opdracht of berekening "
-#~ "uit te voeren.\n"
-#~ "  Gebruik de pijltjes om te navigeren tussen de gevonden resultaten, druk op "
-#~ "Enter om te valideren, houdt CTRL, ALT of SHIFT in om de resultaten te "
+#~ "- De vindermodus : typ een opdracht om elk bestand, opdracht of "
+#~ "berekening uit te voeren.\n"
+#~ "  Gebruik de pijltjes om te navigeren tussen de gevonden resultaten, druk "
+#~ "op Enter om te valideren, houdt CTRL, ALT of SHIFT in om de resultaten te "
 #~ "behouden.\n"
 #~ "Druk op Escape of dezelfde sneltoets om te annuleren."
 
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr ""
-#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar dit "
-#~ "bureaublad"
+#~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar "
+#~ "dit bureaublad"
 
 #~ msgid "Name of an image for the 'empty' icon :"
 #~ msgstr "Naam van afbeelding voor het 'Leeg' icoon :"
@@ -9024,16 +9084,17 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
 #~ "It can display the download/upload speeds and the wifi signal quality.\n"
-#~ "If you have network-manager running, it can also let you choose the current "
-#~ "wifi network.\n"
+#~ "If you have network-manager running, it can also let you choose the "
+#~ "current wifi network.\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "Met dit applet kunt u uw actieve vebindingen monitoren.\n"
-#~ "Het kan de download- en uploadsnelheden weergeven en de sterkte van het wifi-"
-#~ "signaal.\n"
+#~ "Het kan de download- en uploadsnelheden weergeven en de sterkte van het "
+#~ "wifi-signaal.\n"
 #~ "Wanneer u een netwerkbeheerder heeft, dan kunt u ook het huidige wifi-"
 #~ "netwerk selecteren.\n"
-#~ "Klik met links voor meer info, middelklik om direct opnieuw te controleren."
+#~ "Klik met links voor meer info, middelklik om direct opnieuw te "
+#~ "controleren."
 
 #~ msgid "Doncky"
 #~ msgstr "Dock"
@@ -9041,11 +9102,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "ToolTip"
 #~ msgstr "Tip"
 
-#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "U gaat alle bestanden uit %s verwijderen. Weet u het zeker ?"
 
-#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -9068,20 +9127,21 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Selecteer een actie voor het middelklikken op het icoon :"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
-#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
-#~ "that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of "
+#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
+#~ "means that the plane is not inclined at all (vertical)."
 #~ msgstr ""
 #~ "In graden, wat betreft de verticale positie. Het is een soort van helling "
-#~ "van het vlak ten opzichte van horizontaal, waardoor het 3D-gevoel ontstaat. "
-#~ "Als u het op 0 instelt zal het vlak helemaal niet hellen (verticaal)."
+#~ "van het vlak ten opzichte van horizontaal, waardoor het 3D-gevoel "
+#~ "ontstaat. Als u het op 0 instelt zal het vlak helemaal niet hellen "
+#~ "(verticaal)."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Helling van het vlak :"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
-#~ "and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the "
+#~ "foreground and half are on the background."
 #~ msgstr ""
 #~ "0.5 betekent dat het dock half opgevouwen is, waardoor de helft van de "
 #~ "iconen op de voorgrond zijn en de andere helft op de achtergrond."
@@ -9094,8 +9154,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "The greater, the deeper. This represents the gap between the bottoms "
 #~ "ofbackground icons and the tops of foreground icons (in pixels)."
 #~ msgstr ""
-#~ "Hoe groter, hoe dieper. Het is in feite de ruimte tussen de achtergrond en "
-#~ "icoononderkant en tussen de voorgrond en icoonbovenkant (in pixels)."
+#~ "Hoe groter, hoe dieper. Het is in feite de ruimte tussen de achtergrond "
+#~ "en icoononderkant en tussen de voorgrond en icoonbovenkant (in pixels)."
 
 #~ msgid "Depth of the plane:"
 #~ msgstr "Diepte van het vlak :"
@@ -9113,10 +9173,11 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Aantal prullenbakken"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
+#~ "disable."
 #~ msgstr ""
-#~ "In Mb. U wordt gewaarschuwd bij overschrijding. Stel in op 0 om dit niet te "
-#~ "gebruiken."
+#~ "In Mb. U wordt gewaarschuwd bij overschrijding. Stel in op 0 om dit niet "
+#~ "te gebruiken."
 
 #~ msgid "Time interval to check if dustbin is full/empty :"
 #~ msgstr "Tijdsinterval om te controleren of prullenbak vol/leeg is :"
@@ -9126,7 +9187,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an applet."
+#~ "applet's icon will then behave as a launcher, an application, and an "
+#~ "applet."
 #~ msgstr ""
 #~ "Dit voorkomt dat het icoon van de toepassing zichtbaar is in de taakbalk. "
 #~ "Het icoon van het applet zal zich dan gedragen als een starter, een "
@@ -9175,7 +9237,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr "Desklets tonen/verbergen die op de ´Widget layer´ geplaatst zijn ?"
 
 #~ msgid "in seconds. only used if you can't monitor directories."
-#~ msgstr "In seconden, wordt alleen gebruikt als u geen mappen kunt monitoren."
+#~ msgstr ""
+#~ "In seconden, wordt alleen gebruikt als u geen mappen kunt monitoren."
 
 #~ msgid "Empty all dustbins"
 #~ msgstr "Alle prullenbakken legen"
@@ -9200,27 +9263,19 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
+#~ "bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like free "
-#~ "space, type, etc."
+#~ "The applet can also display valuable information about your disks, like "
+#~ "free space, type, etc."
 #~ msgstr ""
 #~ "Een applet waarmee u snel toegang heeft tot al uw snelkoppelingen.\n"
-#~ "Het kan schijven, netwerkpunten en Nautilus-bladwijzers beheren (zelfs als u "
-#~ "geen Nautilus heeft).\n"
-#~ "Sleep een map naar het hoofdicoon of het sub-dock om een bladwijzer toe te "
-#~ "voegen.\n"
+#~ "Het kan schijven, netwerkpunten en Nautilus-bladwijzers beheren (zelfs "
+#~ "als u geen Nautilus heeft).\n"
+#~ "Sleep een map naar het hoofdicoon of het sub-dock om een bladwijzer toe "
+#~ "te voegen.\n"
 #~ "Middelklik op het hoofdicoon om uw persoonlijke map te tonen.\n"
 #~ "Middelklik op een koppelpunticoon om snel te (ont)koppelen.\n"
 #~ "Het applet kan ook nuttige informatie over uw schijven tonen, zoals vrije "
 #~ "ruimte, type, etc."
-
-#~ msgid "Add a workspace"
-#~ msgstr "Bureaublad toevoegen"
-
-#~ msgid "Remove last workspace"
-#~ msgstr "Verwijder laatste bureaublad"
-
-#~ msgid "Move current workspace to this workspace"
-#~ msgstr "Verplaats huidige bureaublad naar dit bureaublad"

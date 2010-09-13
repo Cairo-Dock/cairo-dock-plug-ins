@@ -84,13 +84,12 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 
 CD_APPLET_ON_CLICK_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
+	g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
 	if (pItem != NULL)
 	{
 		gboolean r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
 		if (!r)
 		{
-			CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (CD_APPLET_CLICKED_ICON);
-			g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 			if (pItem->cId != NULL)
 			{
 				cairo_dock_launch_command (pItem->cId);  // lancer une nouvelle fois l'appli montre sa fenetre (enfin, generalement).

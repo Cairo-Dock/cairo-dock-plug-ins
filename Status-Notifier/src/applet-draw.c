@@ -172,9 +172,10 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 		return NULL;
 	
 	int iMouseX, iMouseY;
-	iMouseX = myContainer->iMouseX;
-	iMouseY = myContainer->iMouseY;
+	iMouseX = myContainer->iMouseX - myIcon->fDrawX;
+	iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 	
+	g_print ("%s (%d;%d)\n", __func__, iMouseX, iMouseY);
 	// get index on the grid.
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
@@ -194,16 +195,16 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 		pItem = it->data;
 		if (pItem->pSurface != NULL && pItem->iStatus != CD_STATUS_PASSIVE)
 		{
+			if (i == line && j == col)
+			{
+				pFoundItem = pItem;
+				break;
+			}
 			j ++;
 			if (j == myData.iNbColumns)  // next line.
 			{
 				j = 0;
 				i ++;
-			}
-			if (i == line && j == col)
-			{
-				pFoundItem = pItem;
-				break;
 			}
 		}
 	}

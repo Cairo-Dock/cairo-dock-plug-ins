@@ -32,7 +32,7 @@
 CD_APPLET_DEFINITION (N_("Status Notifier"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
-	N_("A <b>notification area</b> for your dock\n"
+	("A <b>notification area</b> for your dock\n"
 	"Also called 'systray'.\n"
 	"It is designed to work on any desktop that supports the latest systray specifications (KDE, Gnome, etc)"),
 	"Fabounet (Fabrice Rey)")
@@ -42,6 +42,9 @@ CD_APPLET_DEFINITION (N_("Status Notifier"),
 CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
+	
+	if (myConfig.bCompactMode)
+		CD_APPLET_SET_STATIC_ICON;
 	
 	if (myDesklet)
 	{
