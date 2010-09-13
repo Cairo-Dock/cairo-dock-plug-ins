@@ -390,7 +390,11 @@ CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet)
 GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet)
 {
 	GList *pTaskList = NULL;
-	guint iDay = myData.currentTime.tm_mday, iMonth = myData.currentTime.tm_mon, iYear = myData.currentTime.tm_year + 1900;
+	guint iDay = myData.currentTime.tm_mday;
+	guint iMonth = myData.currentTime.tm_mon;
+	guint iYear = myData.currentTime.tm_year + 1900;
+	guint iHour = myData.currentTime.tm_hour;
+	guint iMinute = myData.currentTime.tm_min;
 	
 	GDate* pCurrentDate = g_date_new_dmy (iDay, iMonth + 1, iYear);
 	GDate* pDate = g_date_new ();
@@ -456,6 +460,11 @@ GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet)
 		
 		if (iDelta <= 0 && iDelta > -7)
 		{
+			if (iDelta == 0)  // today's task, check time
+			{
+				if (pTask->iHour > iHour || (pTask->iHour == iHour && pTask->iMinute > iMinute))  // it's in the future, skip it.
+					continue;
+			}
 			pTaskList = g_list_prepend (pTaskList, pTask);
 		}  // on n'arrete pas le parcours si iDelta > 7 pour prendre en compte aussi les anniv.
 	}
