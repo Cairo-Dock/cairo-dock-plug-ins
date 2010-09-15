@@ -505,7 +505,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 }
 
 
-static double *_generate_cos_sin (double fConeOffset, double fDelta, double *pTabValues)
+static void _generate_cos_sin (double fConeOffset, double fDelta, double *pTabValues)
 {
 	int i, n = (int) ceil ((G_PI/2 - fConeOffset) / fDelta);
 	pTabValues[2*n] = 0.;  // point au milieu.
@@ -521,9 +521,8 @@ static double *_generate_cos_sin (double fConeOffset, double fDelta, double *pTa
 		pTabValues[2*(2*n-i)] = - pTabValues[2*i];
 		pTabValues[2*(2*n-i)+1] = pTabValues[2*i+1];
 	}
-	return pTabValues;
 }
-static GLfloat *_generate_sector_path (double fConeOffset, double fRadius1, double fRadius2, double fDelta, double *pCosSinTab, GLfloat *pTabValues)
+static void _generate_sector_path (double fConeOffset, double fRadius1, double fRadius2, double fDelta, double *pCosSinTab, GLfloat *pTabValues)
 {
 	int i, n = (int) ceil ((G_PI/2 - fConeOffset) / fDelta), N = (2*n+1) * 2;
 	for (i = 0; i < 2*n+1; i ++)
@@ -538,25 +537,24 @@ static GLfloat *_generate_sector_path (double fConeOffset, double fRadius1, doub
 	pTabValues[3*N+1] = pTabValues[3*0+1];
 	pTabValues[3*(N+1)] = pTabValues[3*1];
 	pTabValues[3*(N+1)+1] = pTabValues[3*1+1];
-	
-	return pTabValues;
 }
 
 static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 {
 	static double fDelta = 1.;
+	int n = ceil (180./fDelta+1) + 1;  // nb points max, +1 for safety with rounded calculations.
 	if (pCosSinTab == NULL)
 	{
-		pCosSinTab = g_new0 (double, (180./fDelta+1) * 2);
+		pCosSinTab = g_new0 (double, n * 2);
 		_generate_cos_sin (my_fRainbowConeOffset, fDelta/180.*G_PI, pCosSinTab);
 	}
 	if (pVertexTab == NULL)
-		pVertexTab = g_new0 (GLfloat, ((180./fDelta+1) * 2) * 3);
+		pVertexTab = g_new0 (GLfloat, (n * 2) * 3);
 	if (pColorTab == NULL)
 	{
-		pColorTab = g_new0 (GLfloat, ((180./fDelta+1) * 2) * 4);
+		pColorTab = g_new0 (GLfloat, (n * 2) * 4);
 		int i;
-		for (i = 0; i < (180./fDelta+1); i ++)
+		for (i = 0; i < n; i ++)
 		{
 			pColorTab[4*2*i+0] = my_fRainbowColor[0];
 			pColorTab[4*2*i+1] = my_fRainbowColor[1];
@@ -582,7 +580,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		glEnableClientState(GL_COLOR_ARRAY);
 		glLineWidth (1);
 		
-		int i, n = (int) ceil ((G_PI/2 - my_fRainbowConeOffset) / (fDelta/180.*G_PI)), N = (2*n+1) * 2;
+		int n = (int) ceil ((G_PI/2 - my_fRainbowConeOffset) / (fDelta/180.*G_PI)), N = (2*n+1) * 2;
 		
 		glPushMatrix ();
 		if (! pDock->container.bIsHorizontal)
@@ -722,6 +720,8 @@ void cd_rendering_reload_rainbow_buffers (void)
 	pColorTab = NULL;
 	g_free (pCosSinTab);
 	pCosSinTab = NULL;
+	g_free (pVertexTab);
+	pVertexTab = NULL;
 }
 
 
