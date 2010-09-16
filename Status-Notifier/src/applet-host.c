@@ -295,14 +295,14 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cLabelGuide = g_value_get_string (v);
 		
-		//g_print (" + item {%s ; %d ; %s ; %s ; %s ; %s ; %s}\n",
+		/*g_print (" + item {%s ; %d ; %s ; %s ; %s ; %s ; %s}\n",
 			cIconName,
 			iPosition,
 			cAdress,
 			cObjectPath,
 			cIconThemePath,
 			cLabel,
-			cLabelGuide);
+			cLabelGuide);*/
 		
 		pItem = cd_satus_notifier_create_item (cAdress, cObjectPath);
 		if (! pItem)
