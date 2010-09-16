@@ -632,7 +632,7 @@ void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pI
 	}
 	
 	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
-	g_print (" -> %s\n", cText);
+	//g_print (" -> %s\n", cText);
 	g_value_set_string (&v, cText);
 	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
 }

@@ -51,10 +51,10 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
 	{
-		g_print ("clic on %s\n", CD_APPLET_CLICKED_ICON->cBaseURI);
+		//g_print ("clic on %s\n", CD_APPLET_CLICKED_ICON->cBaseURI);
 		if (CD_APPLET_CLICKED_ICON->iVolumeID == -1)
 		{
-			g_print ("folder\n");
+			//g_print ("folder\n");
 			
 			/// lister le repertoire dans un thread.
 			
@@ -350,7 +350,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				app[1] = CD_APPLET_CLICKED_CONTAINER;
 				app[2] = myApplet;
 				app[3] = g_strdup (pAppInfo[1]);
-				g_print (" + %s (%s ; %s)\n", pAppInfo[0], pAppInfo[1], pAppInfo[2]);
+				//g_print (" + %s (%s ; %s)\n", pAppInfo[0], pAppInfo[1], pAppInfo[2]);
 				myData.pAppList = g_list_prepend (myData.pAppList, app);
 				
 				if (pAppInfo[2] != NULL)
@@ -364,7 +364,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_list_free (pApps);
 		}
 		else
-			g_print ("no apps list for '%s'\n", CD_APPLET_CLICKED_ICON->cBaseURI);
+			//g_print ("no apps list for '%s'\n", CD_APPLET_CLICKED_ICON->cBaseURI);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Properties"), GTK_STOCK_PROPERTIES, _cd_folders_show_file_properties, CD_APPLET_MY_MENU, data);
@@ -381,7 +381,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
 {
-	g_print ("Folders received '%s'\n", cReceivedData);
+	//g_print ("Folders received '%s'\n", cReceivedData);
 	
 	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // lachage sur une icone.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -394,7 +394,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 	
 	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))
 	{
-		g_print (" ajout d'un repertoire...\n");
+		//g_print (" ajout d'un repertoire...\n");
 		CairoDockModule *pModule = cairo_dock_find_module_from_name ("Folders");
 		g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		

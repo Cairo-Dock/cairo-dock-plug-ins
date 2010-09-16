@@ -56,7 +56,7 @@ entry_activate_cb (GtkEntry *entry, DbusmenuMenuitem *mi)
 	g_value_init (&value, G_TYPE_STRING);
 	g_value_set_static_string (&value, gtk_entry_get_text (entry));
 
-	g_print ("user typed: %s\n", g_value_get_string (&value));
+	//g_print ("user typed: %s\n", g_value_get_string (&value));
 	dbusmenu_menuitem_handle_event (mi, "send", &value, gtk_get_current_event_time());
 }
 

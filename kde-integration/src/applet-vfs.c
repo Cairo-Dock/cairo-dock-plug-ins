@@ -788,6 +788,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
 
 static gchar *_cd_find_target_uri (const gchar *cBaseURI)
+
 {
 	GError *erreur = NULL;
 	GFile *pFile = g_file_new_for_uri (cBaseURI);
@@ -1275,7 +1276,7 @@ gchar *vfs_backend_get_desktop_path (void)
 gsize vfs_backend_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
 {
 	g_return_val_if_fail (cBaseURI != NULL, 0);
-	g_print ("%s (%s)\n", __func__, cBaseURI);
+	//g_print ("%s (%s)\n", __func__, cBaseURI);
 	
 	GError *erreur = NULL;
 	gchar *cDirectory = (*cBaseURI == '/' ? (gchar*)cBaseURI : g_filename_from_uri (cBaseURI, NULL, &erreur));

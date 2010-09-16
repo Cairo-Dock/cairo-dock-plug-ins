@@ -90,7 +90,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 {
 	gchar *cURI = (g_strdup (cBaseURI));
 	cairo_dock_remove_html_spaces (cURI);
-	g_print (" * event %d on '%s'\n", iEventType, cURI);
+	//g_print (" * event %d on '%s'\n", iEventType, cURI);
 	
 	switch (iEventType)
 	{
@@ -106,7 +106,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_warning ("  an unknown mount point was removed");
 				return ;
 			}
-			g_print (" %s will be removed\n", pConcernedIcon->cName);
+			//g_print (" %s will be removed\n", pConcernedIcon->cName);
 			
 			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 		}
@@ -134,7 +134,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
-			g_print (" new drive : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
+			//g_print (" new drive : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
 			
 			//\_______________________ on l'insere dans la liste.
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
@@ -165,7 +165,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_warning ("  an unknown mount point was modified");
 				return ;
 			}
-			g_print (" %s is modified\n", pConcernedIcon->cName);
+			//g_print (" %s is modified\n", pConcernedIcon->cName);
 			
 			//\_______________________ on recupere les infos actuelles.
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
@@ -179,7 +179,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			//\_______________________ on remplace l'icone si des choses ont change.
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
 			{
-				g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
+				//g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
 				
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				
@@ -247,12 +247,12 @@ static void _cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const
 	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
 	if (cTargetURI == NULL)  // version bourrinne.
 	{
-		g_print ("couldn't guess target URi of mount point '%s'\n", cURI);
+		//g_print ("couldn't guess target URi of mount point '%s'\n", cURI);
 		cd_shortcuts_on_bookmarks_event (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);  // NULL <=> on recharge tout.
 	}
 	else  // version optimisee.
 	{
-		g_print ("test bookmarks in '%s'...\n", cTargetURI);
+		//g_print ("test bookmarks in '%s'...\n", cTargetURI);
 		pIconsList = CD_APPLET_MY_ICONS_LIST;
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
@@ -261,14 +261,14 @@ static void _cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const
 			{
 				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
 				{
-					g_print ("le signet '%s' est situe sur un point de montage ayant change (%s)\n", icon->cBaseURI, cTargetURI);
+					//g_print ("le signet '%s' est situe sur un point de montage ayant change (%s)\n", icon->cBaseURI, cTargetURI);
 					gchar *cName = NULL, *cRealURI = NULL, *cIconName = NULL, *cUserName = NULL;
 					int iVolumeID = 0;
 					gboolean bIsDirectory = FALSE;
 					double fOrder;
 					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
-						g_print (" -> %s (%d)\n", cIconName, bIsMounted);
+						//g_print (" -> %s (%d)\n", cIconName, bIsMounted);
 						g_free (icon->cName);
 						if (bIsMounted || cIconName == NULL)
 							icon->cName = cName;

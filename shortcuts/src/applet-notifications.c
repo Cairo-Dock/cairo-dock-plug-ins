@@ -36,7 +36,7 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
 	
-	g_print ("%s (%s , %d)\n", __func__, cURI, bSuccess);
+	//g_print ("%s (%s , %d)\n", __func__, cURI, bSuccess);
 	if (! bSuccess)  // en cas de montage reussi, on aura un dialogue via les evenements.
 	{
 		cairo_dock_remove_dialog_if_any (pIcon);
@@ -57,7 +57,7 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
-	g_print ("%s (%s)\n", __func__, cURI);
+	//g_print ("%s (%s)\n", __func__, cURI);
 	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
 	

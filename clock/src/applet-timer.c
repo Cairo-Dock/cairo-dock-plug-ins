@@ -148,7 +148,7 @@ void cd_clock_init_time (CairoDockModuleInstance *myApplet)
 
 static gchar *_make_missed_task_message (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s)\n", __func__, pTask->cID);
+	//g_print ("%s (%s)\n", __func__, pTask->cID);
 	struct tm st;
 	memset (&st, 0, sizeof (st));
 	st.tm_min = pTask->iMinute;
@@ -175,7 +175,7 @@ static gchar *_make_missed_task_message (CDClockTask *pTask, CairoDockModuleInst
 static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
 {
 	g_return_if_fail (myData.pMissedTasks != NULL);
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	// acknowledge this task
 	CDClockTask *pTask = myData.pMissedTasks->data;
@@ -190,7 +190,7 @@ static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWid
 		{
 			// display next task.
 			pTask = myData.pMissedTasks->data;
-			g_print ("display task '%s'\n", pTask->cID);
+			//g_print ("display task '%s'\n", pTask->cID);
 			gchar *cMessage = _make_missed_task_message (pTask, myApplet);
 			cairo_dock_set_dialog_message (pDialog, cMessage);
 			g_free (cMessage);

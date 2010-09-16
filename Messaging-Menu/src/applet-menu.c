@@ -67,7 +67,7 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 static gboolean
 new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
 
 	gint padding = 4;
@@ -86,7 +86,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gtk_widget_show(icon);
 
 	/* Application name in a label */
-	g_print ("  name : %s\n", dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+	//g_print ("  name : %s\n", dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
 	GtkWidget * label = gtk_label_new(dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, padding);
@@ -131,7 +131,7 @@ struct _indicator_item_t {
 static void
 indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, indicator_item_t * mi_data)
 {
-	g_print ("%s (%s)\n", __func__, prop);
+	//g_print ("%s (%s)\n", __func__, prop);
 	if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_LABEL)) {
 		/* Set the main label */
 		gtk_label_set_text(GTK_LABEL(mi_data->label), g_value_get_string(value));
@@ -180,7 +180,7 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 static gboolean
 new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
 	g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 	/* Note: not checking parent, it's reasonable for it to be NULL */

@@ -46,14 +46,14 @@
 static void
 username_cb (DBusGProxy * proxy, const char * username, GError *error, CairoDockModuleInstance *myApplet)
 {
-	g_print (" + new username: '%s'\n", username);
+	//g_print (" + new username: '%s'\n", username);
 	CD_APPLET_SET_NAME_FOR_MY_ICON (username);  // username peut etre NULL ou vide, c'est pas genant.
 }
 
 static void
 username_changed (DBusGProxy * proxy, gchar * username, CairoDockModuleInstance *myApplet)
 {
-	g_print ("Changing username: '%s'\n", username);
+	//g_print ("Changing username: '%s'\n", username);
 	
 	return username_cb(proxy, username, NULL, myApplet);
 }
@@ -63,7 +63,7 @@ status_icon_cb (DBusGProxy * proxy, const char * icons, GError *error, CairoDock
 {
 	g_return_if_fail(icons != NULL);
 	g_return_if_fail(icons[0] != '\0');
-	g_print (" + new icon: '%s'\n", icons);
+	//g_print (" + new icon: '%s'\n", icons);
 	
 	cd_indicator_set_icon (myData.pIndicator, icons);
 	CD_APPLET_REDRAW_MY_ICON;
@@ -74,7 +74,7 @@ status_icon_cb (DBusGProxy * proxy, const char * icons, GError *error, CairoDock
 static void
 status_icon_changed (DBusGProxy * proxy, gchar * icon, CairoDockModuleInstance *myApplet)
 {
-	g_print ("Changing status icon: '%s'\n", icon);
+	//g_print ("Changing status icon: '%s'\n", icon);
 	
 	return status_icon_cb(proxy, icon, NULL, myApplet);
 }

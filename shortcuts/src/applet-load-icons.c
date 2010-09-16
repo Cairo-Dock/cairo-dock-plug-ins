@@ -50,7 +50,7 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 	if (cairo_dock_compare_icons_name (pNewIcon, pIcon) <= 0)
 	{
 		pNewIcon->fOrder = pIcon->fOrder - 1;
-		g_print ("name : %s <= %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
+		//g_print ("name : %s <= %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
 		return;
 	}
 	
@@ -69,7 +69,7 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 				Icon *pPrevIcon = ic->prev->data;
 				pNewIcon->fOrder = (pIcon->fOrder + pPrevIcon->fOrder) / 2;
 			}
-			g_print ("  name : %s < %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
+			//g_print ("  name : %s < %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
 			break;
 		}
 		pNewIcon->fOrder = pIcon->fOrder + 1;
@@ -81,7 +81,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 {
 	CD_APPLET_ENTER;
 	
-	g_print (" * event %d on network '%s'\n", iEventType, cURI);
+	//g_print (" * event %d on network '%s'\n", iEventType, cURI);
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
@@ -100,7 +100,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				cd_warning ("  an unknown network was removed");
 				return ;
 			}
-			g_print (" %s will be removed\n", pConcernedIcon->cName);
+			//g_print (" %s will be removed\n", pConcernedIcon->cName);
 			
 			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 		}
@@ -127,7 +127,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
-			g_print (" new network : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
+			//g_print (" new network : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
 			
 			//\_______________________ on l'insere dans la liste.
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
@@ -154,7 +154,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				cd_warning ("  an unknown network was modified");
 				return ;
 			}
-			g_print (" %s is modified\n", pConcernedIcon->cName);
+			//g_print (" %s is modified\n", pConcernedIcon->cName);
 			
 			//\_______________________ on recupere les infos actuelles.
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
@@ -168,7 +168,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 			//\_______________________ on remplace l'icone si des choses ont change.
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
 			{
-				g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
+				//g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
 				
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				

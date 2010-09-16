@@ -35,7 +35,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	static int iTime = 0;
 	iTime ++;
 	CD_APPLET_ENTER;
-	g_print ("%s (%d)\n", __func__, iEventType);
+	//g_print ("%s (%d)\n", __func__, iEventType);
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
@@ -101,7 +101,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				{
 					if (cairo_dock_strings_differ (pExistingIcon->cName, cUserName) || cURI == NULL)  // signet inexistant ou qui a change => on le cree.
 					{
-						g_print ("le signet '%s' a change, on le recree\n", pExistingIcon->cName);
+						//g_print ("le signet '%s' a change, on le recree\n", pExistingIcon->cName);
 						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
 						pExistingIcon = NULL;
 					}
@@ -110,7 +110,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				}
 				if (pExistingIcon == NULL)
 				{
-					g_print ("new bookmark : '%s'\n", cOneBookmark);
+					//g_print ("new bookmark : '%s'\n", cOneBookmark);
 					
 					cName = NULL;
 					cRealURI = NULL;
@@ -172,7 +172,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					{
 						if (icon->iLastCheckTime != iTime)
 						{
-							g_print ("this bookmark is too old (%s)\n", icon->cName);
+							//g_print ("this bookmark is too old (%s)\n", icon->cName);
 							CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
 							bRemove = TRUE;
 							break;

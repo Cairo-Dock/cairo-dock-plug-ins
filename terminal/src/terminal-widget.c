@@ -107,7 +107,7 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 {
 	gchar *cUsefulLabel;
 	gchar *str = strchr (cLabel, '>');
-	g_print ("%s (%s)\n", __func__, cLabel);
+	//g_print ("%s (%s)\n", __func__, cLabel);
 	if (cLabel != NULL && strncmp (cLabel, "<span color='", 13) == 0 && str != NULL)  // approximatif mais devrait suffire.
 	{
 		const gchar *col = cLabel+13;
@@ -115,7 +115,7 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 		if (col_end)
 		{
 			gchar *cColor = g_strndup (col, col_end - col);
-			g_print ("cColor : %s\n", cColor);
+			//g_print ("cColor : %s\n", cColor);
 			*bColorSet = gdk_color_parse (cColor, pColor);
 			g_free (cColor);
 		}

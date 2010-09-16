@@ -62,13 +62,13 @@ void cd_satus_notifier_compute_grid (void)
 			myData.iItemSize = iSize;
 		}
 	}
-	g_print ("satus_notifier : %dx%d\n", myData.iNbLines, myData.iNbColumns);
+	//g_print ("satus_notifier : %dx%d\n", myData.iNbLines, myData.iNbColumns);
 }
 
 
 void cd_satus_notifier_draw_compact_icon (void)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
@@ -133,13 +133,13 @@ void cd_satus_notifier_draw_compact_icon (void)
 
 void cd_satus_notifier_reload_compact_mode (void)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	// re-compute the grid.
 	int iPrevSize = myData.iItemSize;
 	cd_satus_notifier_compute_grid ();
 	
 	// reload surfaces if their size has changed.
-	g_print (" size: %d -> %d\n", iPrevSize, myData.iItemSize);
+	//g_print (" size: %d -> %d\n", iPrevSize, myData.iItemSize);
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)
@@ -175,7 +175,7 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 	iMouseX = myContainer->iMouseX - myIcon->fDrawX;
 	iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 	
-	g_print ("%s (%d;%d)\n", __func__, iMouseX, iMouseY);
+	//g_print ("%s (%d;%d)\n", __func__, iMouseX, iMouseY);
 	// get index on the grid.
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);

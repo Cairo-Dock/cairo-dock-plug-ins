@@ -140,11 +140,11 @@ static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
 static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_free (pItem->cIconName);
 	pItem->cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
-	g_print (" new icon : %s\n", pItem->cIconName);
+	//g_print (" new icon : %s\n", pItem->cIconName);
 	
 	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -156,11 +156,11 @@ static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pIte
 static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_free (pItem->cAttentionIconName);
 	pItem->cAttentionIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "AttentionIconName");
-	g_print (" new attention icon : %s\n", pItem->cAttentionIconName);
+	//g_print (" new attention icon : %s\n", pItem->cAttentionIconName);
 	
 	if (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -172,7 +172,7 @@ static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifier
 static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s (%s)\n", __func__, cStatus);
+	//g_print ("%s (%s)\n", __func__, cStatus);
 	
 	// get the new status
 	CDStatusEnum iPrevStatus = pItem->iStatus;
@@ -213,7 +213,7 @@ static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CD
 static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, const gchar *cLabelGuide, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s (%s, %s)\n", __func__, cLabel, cLabelGuide);
+	//g_print ("%s (%s, %s)\n", __func__, cLabel, cLabelGuide);
 	
 	g_free (pItem->cLabel);
 	pItem->cLabel = g_strdup (cLabel);
@@ -227,7 +227,7 @@ static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, cons
 static void on_new_item_theme_path (DBusGProxy *proxy_item, const gchar *cNewThemePath, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s (%s)\n", __func__, cNewThemePath);
+	//g_print ("%s (%s)\n", __func__, cNewThemePath);
 	
 	g_free (pItem->cIconThemePath);
 	pItem->cIconThemePath = g_strdup (cNewThemePath);
@@ -241,11 +241,11 @@ static void on_new_item_theme_path (DBusGProxy *proxy_item, const gchar *cNewThe
 static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_free (pItem->cTitle);
 	pItem->cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
-	g_print (" new title : %s\n", pItem->cTitle);
+	//g_print (" new title : %s\n", pItem->cTitle);
 	
 	//cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 	
@@ -255,11 +255,11 @@ static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pIt
 static void on_new_item_overlay_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	g_free (pItem->cOverlayIconName);
 	pItem->cOverlayIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "OverlayIconName");
-	g_print (" new overlay : %s\n", pItem->cOverlayIconName);
+	//g_print (" new overlay : %s\n", pItem->cOverlayIconName);
 	
 	/*if (pIcon->pIconBuffer)
 	{
@@ -284,7 +284,7 @@ static void on_new_item_overlay_icon (DBusGProxy *proxy_item, CDStatusNotifierIt
 static void on_new_item_tooltip (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	
 	cd_free_tooltip (pItem->pToolTip);
 	pItem->pToolTip = NULL;
@@ -308,7 +308,7 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	if (pItem->bInvalid)
 		return;
 	CD_APPLET_ENTER;
-	g_print ("this item (%s) was suddenly removed\n", __func__, pItem->cService);
+	//g_print ("this item (%s) was suddenly removed\n", __func__, pItem->cService);
 	
 	myData.pItems = g_list_remove (myData.pItems, pItem);
 	
@@ -356,7 +356,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	gchar *str = strchr (cService, '/');
 	if (str)
 		*str = '\0';
-	g_print ("%s (%s)\n", __func__, cService);
+	//g_print ("%s (%s)\n", __func__, cService);
 	
 	// special case for Ubuntu indicators: we don't know their object path.
 	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
@@ -377,9 +377,9 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		DBUS_INTERFACE_PROPERTIES);
 	if (pProxyItemProp == NULL)
 		return NULL;
-	g_print ("owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
+	//g_print ("owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
 	
-	g_print ("getting properties ...\n");
+	//g_print ("getting properties ...\n");
 	GHashTable *hProps = cairo_dock_dbus_get_all_properties (pProxyItemProp, CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (hProps == NULL)
 		return NULL;
@@ -392,7 +392,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cId = g_value_get_string (v);
 	}
-	g_print ("  ID '%s'\n", cId);
+	//g_print ("  ID '%s'\n", cId);
 	
 	const gchar *cCategory = NULL;
 	v = g_hash_table_lookup (hProps, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
@@ -400,7 +400,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cCategory = g_value_get_string (v);
 	}
-	g_print ("  Category '%s'\n", cCategory);
+	//g_print ("  Category '%s'\n", cCategory);
 	
 	const gchar *cStatus = NULL;
 	v = g_hash_table_lookup (hProps, "Status");  // (Passive, Active, NeedsAttention) -> demands attention
@@ -408,7 +408,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cStatus = g_value_get_string (v);
 	}
-	g_print ("  Status '%s'\n", cStatus);
+	//g_print ("  Status '%s'\n", cStatus);
 	
 	const gchar *cIconName = NULL;
 	v = g_hash_table_lookup (hProps, "IconName");  // -> cIFileName
@@ -416,7 +416,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cIconName = g_value_get_string (v);
 	}
-	g_print ("  IconName '%s'\n", cIconName);
+	//g_print ("  IconName '%s'\n", cIconName);
 	
 	const gchar *cIconThemePath = NULL;
 	v = g_hash_table_lookup (hProps, "IconThemePath");
@@ -424,7 +424,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cIconThemePath = g_value_get_string (v);
 	}
-	g_print ("  IconThemePath '%s'\n", cIconThemePath);
+	//g_print ("  IconThemePath '%s'\n", cIconThemePath);
 	
 	const gchar *cAttentionIconName = NULL;
 	v = g_hash_table_lookup (hProps, "AttentionIconName");  // -> keep for demands of attention
@@ -432,7 +432,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cAttentionIconName = g_value_get_string (v);
 	}
-	g_print ("  AttentionIconName '%s'\n", cAttentionIconName);
+	//g_print ("  AttentionIconName '%s'\n", cAttentionIconName);
 	
 	// properties supported by Ubuntu.
 	const gchar *cMenuPath = NULL;
@@ -441,7 +441,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cMenuPath = (gchar*) g_value_get_boxed (v);
 	}
-	g_print ("  cMenuPath '%s'\n", cMenuPath);
+	//g_print ("  cMenuPath '%s'\n", cMenuPath);
 	
 	const gchar *cLabel = NULL;
 	v = g_hash_table_lookup (hProps, "XAyatanaLabel");
@@ -449,7 +449,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cLabel = g_value_get_string (v);
 	}
-	g_print ("  cLabel '%s'\n", cLabel);
+	//g_print ("  cLabel '%s'\n", cLabel);
 	
 	const gchar *cLabelGuide = NULL;
 	v = g_hash_table_lookup (hProps, "XAyatanaLabelGuide");
@@ -457,7 +457,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cLabelGuide = g_value_get_string (v);
 	}
-	g_print ("  cLabelGuide '%s'\n", cLabelGuide);
+	//g_print ("  cLabelGuide '%s'\n", cLabelGuide);
 	
 	// properties supported by KDE.
 	const gchar *cTitle = NULL;
@@ -466,7 +466,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cTitle = g_value_get_string (v);
 	}
-	g_print ("  Title '%s\n", cTitle);
+	//g_print ("  Title '%s\n", cTitle);
 	
 	v = g_hash_table_lookup (hProps, "WindowId");
 	guint iWindowId = 0;
@@ -474,7 +474,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		iWindowId = g_value_get_uint (v);
 	}
-	g_print ("  WindowId '%d'\n", iWindowId);
+	//g_print ("  WindowId '%d'\n", iWindowId);
 	
 	const gchar *cOverlayIconName = NULL;
 	v = g_hash_table_lookup (hProps, "OverlayIconName");  // -> emblem
@@ -482,7 +482,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cOverlayIconName = g_value_get_string (v);
 	}
-	g_print ("  OverlayIconName '%s'\n", cOverlayIconName);
+	//g_print ("  OverlayIconName '%s'\n", cOverlayIconName);
 	
 	const gchar *cAttentionMovieName = NULL;
 	v = g_hash_table_lookup (hProps, "AttentionMovieName");  // -> idem
@@ -490,7 +490,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cAttentionMovieName = g_value_get_string (v);
 	}
-	g_print ("  AttentionMovieName '%s'\n", cAttentionMovieName);
+	//g_print ("  AttentionMovieName '%s'\n", cAttentionMovieName);
 	
 	GValueArray *pToolTipTab = NULL;
 	v = g_hash_table_lookup (hProps, "ToolTip");

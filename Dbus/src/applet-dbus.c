@@ -434,7 +434,7 @@ void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__INT_STRING) (gpointer     data1,
 												gint        arg_1,
 												gchar 	   *arg_2,
@@ -468,7 +468,7 @@ void cd_dbus_marshal_VOID__BOOLEAN_STRING (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__BOOLEAN_STRING) (gpointer     data1,
 												gboolean    arg_1,
 												gchar 	   *arg_2,
@@ -502,7 +502,7 @@ void cd_dbus_marshal_VOID__STRING_STRING (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer     data1,
 												gchar      *arg_1,
 												gchar 	   *arg_2,
@@ -536,7 +536,7 @@ void cd_dbus_marshal_VOID__VALUE (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__VALUE) (gpointer     data1,
 												GValue     *arg_1,
 												gpointer     data2);
@@ -568,7 +568,7 @@ void cd_dbus_marshal_VOID__INT_VALUE (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__INT_VALUE) (gpointer     data1,
 												gint 		arg_1,
 												GValue     *arg_2,
@@ -602,7 +602,7 @@ void cd_dbus_marshal_VOID__VALUE_STRING (GClosure *closure,
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	g_print ("%s ()\n", __func__);
+	//g_print ("%s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__VALUE_STRING) (gpointer     data1,
 												GValue     *arg_1,
 												gchar 	   *arg_2,

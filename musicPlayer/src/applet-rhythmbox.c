@@ -112,7 +112,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 	}
 	else
 	{
-		cd_warning ("  can't get song properties");
+		cd_debug ("  can't get song properties");
 		g_free (myData.cPlayingUri);
 		myData.cPlayingUri = NULL;
 		g_free (myData.cTitle);

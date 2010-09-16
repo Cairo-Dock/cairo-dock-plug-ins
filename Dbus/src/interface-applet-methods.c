@@ -1145,7 +1145,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 		}
 		if (! cShortkeys[i])  // raccourci non trouve dans la nouvelle liste => on l'enleve
 		{
-			g_print (" shortkey '%s' not wanted anymore\n", key);
+			//g_print (" shortkey '%s' not wanted anymore\n", key);
 			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
 			pDbusApplet->pShortkeyList = g_list_delete_link (pDbusApplet->pShortkeyList, sk);
 		}
@@ -1165,7 +1165,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 		}
 		if (! sk)  // raccourci non encore lie => on lie.
 		{
-			g_print (" shortkey '%s' wanted\n", cShortkey);
+			//g_print (" shortkey '%s' wanted\n", cShortkey);
 			bCouldBind = cd_keybinder_bind (cShortkey, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet);
 			if (bCouldBind)
 				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));

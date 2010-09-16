@@ -39,7 +39,7 @@ static void _get_x_y (Icon *pIcon, CairoContainer *pContainer, int *x, int *y)
 		*x = pContainer->iWindowPositionY + (pContainer->bDirectionUp ? 0 : pContainer->iHeight);
 		*y = pContainer->iWindowPositionX + pIcon->fDrawX + pIcon->fWidth * pIcon->fScale/2;
 	}
-	g_print ("click position : %d;%d\n", *x, *y);
+	//g_print ("click position : %d;%d\n", *x, *y);
 }
 static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer, const gchar *cSignal)
 {
@@ -54,7 +54,7 @@ static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, Ca
 		G_TYPE_INVALID);
 	if (erreur != NULL)
 	{
-		g_print ("method %s failed (%s)\n", cSignal, erreur->message);
+		//g_print ("method %s failed (%s)\n", cSignal, erreur->message);
 		g_error_free (erreur);
 		return FALSE;
 	}
@@ -84,7 +84,7 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 
 CD_APPLET_ON_CLICK_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
-	g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
+	//g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
 	if (pItem != NULL)
 	{
 		gboolean r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
@@ -120,7 +120,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 			G_TYPE_INVALID);
 		if (erreur != NULL)
 		{
-			g_print ("method %s failed (%s)\n", "Scroll", erreur->message);
+			//g_print ("method %s failed (%s)\n", "Scroll", erreur->message);
 			g_error_free (erreur);
 		}
 	}
@@ -172,7 +172,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 	if (pItemData != NULL && pItemData->pToolTip != NULL)
 	{
 		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
-		g_print ("pItemData->pToolTip->cMessage : %s\n", pItemData->pToolTip->cMessage);
+		//g_print ("pItemData->pToolTip->cMessage : %s\n", pItemData->pToolTip->cMessage);
 		gchar *cText = g_strdup_printf ("<b>%s</b>\n%s", pItemData->pToolTip->cTitle, pItemData->pToolTip->cMessage);
 		gchar *cIconPath = NULL;
 		if (pItemData->pToolTip->cIconName)

@@ -295,7 +295,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 
 static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s)\n", __func__, pTask->cTitle);
+	//g_print ("%s (%s)\n", __func__, pTask->cTitle);
 
 	if( !_assert_data() ) return FALSE;
 	if( pTask == NULL ) return FALSE;
@@ -316,7 +316,7 @@ static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 
 static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s, '%s')\n", __func__, pTask->cTitle, pTask->cText);
+	//g_print ("%s (%s, '%s')\n", __func__, pTask->cTitle, pTask->cText);
 	//if( !delete_task (pTask, myApplet) ) return FALSE;
 	if( !create_task (pTask, myApplet) ) return FALSE;
 		

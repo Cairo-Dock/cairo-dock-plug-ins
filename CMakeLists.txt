@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.2.0")
+set (VERSION "2.2.0-1")
 
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -23,7 +23,7 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION}")
 set (CPACK_SOURCE_IGNORE_FILES 
-	"/build/;/.bzr/;bzrignore$;/misc/;/en_GB.po$;~$;${CPACK_SOURCE_IGNORE_FILES}")
+	"/build/;/.bzr/;bzrignore$;/misc/;~$;${CPACK_SOURCE_IGNORE_FILES}")
 include (CPack)
 
 add_custom_target( dist
@@ -557,7 +557,7 @@ else()
 	add_subdirectory (terminal)
 endif()
 
-############# OY #################
+############# TOMBOY #################
 set (GETTEXT_TOMBOY ${GETTEXT_PLUGINS})
 set (VERSION_TOMBOY "1.3.0")
 set (PACKAGE_TOMBOY "cd-tomboy")
@@ -641,6 +641,6 @@ if ("${enable_remote_control}" STREQUAL "yes")
 	set (VERSION_REMOTE_CONTROL "0.0.1")
 	set (PACKAGE_REMOTE_CONTROL "cd-Remote-Control")
 	set (remote_controldatadir "${pluginsdatadir}/Remote-Control")
-	configure_file (Remote-Control/data/Remote-Control.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.conf)
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Remote-Control/data/Remote-Control.conf)
 	add_subdirectory (Remote-Control)
 endif()

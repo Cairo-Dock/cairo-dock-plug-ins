@@ -38,7 +38,7 @@
 static void
 attention_changed_cb (DBusGProxy * proxy, gboolean dot, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (attention : %d)\n", __func__, dot);
+	//g_print ("%s (attention : %d)\n", __func__, dot);
 	if (dot)
 	{
 		cd_indicator_set_icon (myData.pIndicator, "indicator-messages-new");
@@ -58,7 +58,7 @@ attention_changed_cb (DBusGProxy * proxy, gboolean dot, CairoDockModuleInstance 
 static void
 icon_changed_cb (DBusGProxy * proxy, gboolean hidden, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (hidden : %d)\n", __func__, hidden);
+	//g_print ("%s (hidden : %d)\n", __func__, hidden);
 	if (hidden)
 	{
 		myIcon->fAlpha = .5;
@@ -116,7 +116,7 @@ void cd_messaging_on_connect (CairoDockModuleInstance *myApplet)
 
 void cd_messaging_on_disconnect (CairoDockModuleInstance *myApplet)
 {
-	g_print ("disconnected\n");
+	//g_print ("disconnected\n");
 	cd_indicator_set_icon (myData.pIndicator, DEFAULT_ICON);  // If we're disconnecting, go back to offline.
 }
 

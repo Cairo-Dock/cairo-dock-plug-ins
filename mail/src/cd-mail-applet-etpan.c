@@ -344,7 +344,7 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 			struct mail_flags *pFlags = NULL;
 
 			// on marque le message comme lu.
-			g_print ("Fetching message number %d (uid %s)...", i, cMessageUid);
+			//g_print ("Fetching message number %d (uid %s)...", i, cMessageUid);
 			
 			r = mailfolder_get_message_by_uid (pMailAccount->folder, cMessageUid, &pMessage);  /// or result_messages - i ?...
 			if (r != MAIL_NO_ERROR || pMessage == NULL)

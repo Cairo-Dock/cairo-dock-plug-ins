@@ -188,7 +188,7 @@ static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  
 	else
 		cCommandExpanded = g_strdup (cCommand);
 #endif //CD_EXPAND_FIELD_CODES
-	g_print ("cCommandExpanded : %s\n", cCommandExpanded);
+	//g_print ("cCommandExpanded : %s\n", cCommandExpanded);
 	return cCommandExpanded;
 }
 static void _launch_from_file (const gchar *cDesktopFilePath)
