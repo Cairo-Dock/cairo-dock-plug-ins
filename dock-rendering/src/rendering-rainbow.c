@@ -70,7 +70,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
 	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
 	double fRadius=0;
-	if (my_fRainbowColor[3] != 0)
+	if (my_fRainbowColor[3] != 0 && pDock->icons != NULL)
 	{
 		cairo_save (pCairoContext);
 		if (! pDock->container.bIsHorizontal)
@@ -84,7 +84,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
-		//\____________________ On trace le cadre.
+		//\____________________ On fait un clip du cone.
 		cairo_move_to (pCairoContext, 0., pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
 		cairo_line_to (pCairoContext, pDock->container.iWidth, pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
@@ -93,7 +93,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 		cairo_close_path (pCairoContext);
 		cairo_clip (pCairoContext);
 		
-		//\____________________ On dessine les decorations dedans.
+		//\____________________ On dessine chaque rayure dedans.
 		cairo_pattern_t *pGradationPattern = cairo_pattern_create_radial (pDock->container.iWidth/2,
 			pDock->container.iHeight,
 			0.,
@@ -565,7 +565,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	
 	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
 	double fRadius=0;
-	if (my_fRainbowColor[3] != 0)
+	if (my_fRainbowColor[3] != 0 && pDock->icons != NULL)
 	{
 		//\____________________ On trace le cadre.
 		//\____________________ On dessine les decorations dedans.
