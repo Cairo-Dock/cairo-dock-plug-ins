@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-03 05:19+0000\n"
-"Last-Translator: Maks Mokriev <mcree@ukr.net>\n"
+"POT-Creation-Date: 2010-09-13 00:36+0000\n"
+"PO-Revision-Date: 2010-09-14 09:31+0000\n"
+"Last-Translator: Sergiy Gavrylov <sergiovana@bigmir.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-04 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-09-15 05:11+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -222,7 +223,8 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -279,7 +281,8 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
+msgstr ""
+"Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
@@ -363,9 +366,8 @@ msgid "Create a new file"
 msgstr "Створити новий файл"
 
 #: ../Folders/src/applet-notifications.c:374
-#, fuzzy
 msgid "Create a new folder"
-msgstr "Створити новий файл"
+msgstr "Створити нову теку"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -386,9 +388,8 @@ msgid "Applications Menu"
 msgstr "Меню «Програми»"
 
 #: ../GMenu/src/applet-notifications.c:75
-#, fuzzy
 msgid "Quick launch (Middle-click)"
-msgstr "Приєднати (середнє клацання)"
+msgstr "Швидкий запуск (клацання середньою кнопкою)"
 
 #: ../GMenu/src/applet-notifications.c:77
 msgid "Configure menu"
@@ -1061,14 +1062,12 @@ msgid "Adjust channels"
 msgstr "Налаштування каналів"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Unmute (middle-click)"
-msgstr "Від’єднати (середнє клацання)"
+msgstr "Відновити звук (клацання середньою кнопкою)"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Mute (middle-click)"
-msgstr "Приєднати (середнє клацання)"
+msgstr "Приглушити (клацання середньою кнопкою)"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
@@ -1184,8 +1183,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1309,9 +1308,8 @@ msgid "Repeat this message every:"
 msgstr "Повторювати подію кожні:"
 
 #: ../clock/src/applet-timer.c:170
-#, fuzzy
 msgid "The following task has felt due:"
-msgstr "Наступна подія запланована на"
+msgstr "Наступне завдання в очікуванні:"
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
@@ -1473,7 +1471,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Цей додаток надає кілька видів для ваших хмарок повідомлень."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не вдалося завантажити файл, перевірте з'єднання з Інтернетом."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -1485,7 +1484,8 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -1536,7 +1536,8 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
-msgstr "Нажаль, оригінальний файл як і його передперегляд виявити не вдалося."
+msgstr ""
+"Нажаль, оригінальний файл як і його передперегляд виявити не вдалося."
 
 #: ../dnd2share/src/applet-notifications.c:98
 msgid ""
@@ -1592,9 +1593,8 @@ msgid "Send the clipboard's content"
 msgstr "Надіслати містиме буферу обміну"
 
 #: ../dnd2share/src/applet-notifications.c:398
-#, fuzzy
 msgid "History"
-msgstr "Очистити історію"
+msgstr "Історія"
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -1672,7 +1672,7 @@ msgstr "обчислення"
 
 #: ../dustbin/src/applet-draw.c:165 ../dustbin/src/applet-trashes-manager.c:59
 msgid " trashe(s)"
-msgstr " смітник(и)"
+msgstr " елемент(ів)"
 
 #: ../dustbin/src/applet-draw.c:169 ../dustbin/src/applet-trashes-manager.c:63
 msgid " file(s)"
@@ -1696,7 +1696,9 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:32
 msgid "You're about to delete all files in all dustbins. Sure ?"
-msgstr "Ви збираєтеся видалити всі файли зі всіх смітників. Впевнені?"
+msgstr ""
+"Ви збираєтеся видалити всі файли зі всіх частин (тек), що в смітнику . "
+"Впевнені?"
 
 #: ../dustbin/src/applet-notifications.c:80
 msgid "The trash contains"
@@ -1724,7 +1726,7 @@ msgstr "Підрахунок загального розміру та кільк
 
 #: ../dustbin/src/applet-notifications.c:117
 msgid "Show Trash (click)"
-msgstr "Показати смітник (клацання)"
+msgstr "Переглянути смітник (клацання)"
 
 #: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash (middle-click)"
@@ -2043,14 +2045,13 @@ msgid "Refresh a mail account"
 msgstr "Оновити всі поштові скриньки"
 
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#, fuzzy
 msgid "Refresh all (Middle-click)"
-msgstr "Наступна"
+msgstr "Відновити все (клацання середньою кнопкою)"
 
 #: ../mail/src/cd-mail-applet-notifications.c:159
-#, fuzzy, c-format
+#, c-format
 msgid "Refresh %s"
-msgstr "Оновити"
+msgstr "Відновити %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
@@ -2439,8 +2440,8 @@ msgstr "Показувати курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -2574,9 +2575,8 @@ msgid "Open (click)"
 msgstr "Відкрити (клацання)"
 
 #: ../stack/src/applet-notifications.c:179
-#, fuzzy
 msgid "Open parent folder"
-msgstr "Відкрити цей каталог"
+msgstr "Відкрити батьківську теку"
 
 #: ../stack/src/applet-notifications.c:181
 msgid "Copy (middle click)"
@@ -3704,8 +3704,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
-"+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
+"ALT+ліве клацання."
 
 #: ../Clipper/data/messages:31 ../Doncky/data/messages:29
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
@@ -4016,7 +4016,8 @@ msgstr "Оформлення"
 #: ../weather/data/messages:57 ../weblets/data/messages:59
 #: ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr ""
+"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:61 ../Doncky/data/messages:59
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
@@ -4569,7 +4570,8 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло з використанням Оформлення десклетів"
 
@@ -5159,9 +5161,8 @@ msgid "big"
 msgstr "великий"
 
 #: ../Remote-Control/data/messages:3
-#, fuzzy
 msgid "Shortkey to trigger the applet:"
-msgstr "Комбінація клавіш для показу/приховування десклету:"
+msgstr "Клавіша швидкого доступу для запуску аплету:"
 
 #: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -5755,23 +5756,20 @@ msgid "Font:"
 msgstr "Шрифт:"
 
 #: ../clock/data/messages:147
-#, fuzzy
 msgid "Layout of the text:"
-msgstr "Відносний розмір тексту:"
+msgstr "Компонування тексту:"
 
 #: ../clock/data/messages:149
-#, fuzzy
 msgid "Automatic"
-msgstr "Персоналізація"
+msgstr "Автоматично"
 
 #: ../clock/data/messages:151
-#, fuzzy
 msgid "On 1 line"
-msgstr "На значку"
+msgstr "В 1 рядок"
 
 #: ../clock/data/messages:153
 msgid "On 2 lines"
-msgstr ""
+msgstr "В 2 рядки"
 
 #: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
@@ -6239,7 +6237,8 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr ""
+"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -6407,7 +6406,8 @@ msgid "Space between icons:"
 msgstr "Відстань між значками:"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -6544,7 +6544,8 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6785,7 +6786,8 @@ msgid "Check mail account on startup?"
 msgstr "Перевіряти пошту під час запуску?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -6823,7 +6825,8 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Залиште порожнім, щоб відображати ім'я програвача, яким зараз управляєте."
 
@@ -7253,7 +7256,8 @@ msgstr "Життєвий час часток:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr ""
+"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -7869,7 +7873,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної полоси"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 
@@ -7956,114 +7961,8 @@ msgstr "Стужбова інформація про сигнал"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Змінити типовий підпис на назву точки доступу?"
 
-#~ msgid "Hey, you there!"
-#~ msgstr "Гей, ти там!"
-
 #~ msgid "Quick launch"
 #~ msgstr "Швидкий запуск"
-
-#~ msgid ""
-#~ "This plug-in allows you to make different actions directly from the "
-#~ "keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "\n"
-#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
-#~ "    Type what you want to search, the results will be displayed in real "
-#~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
-#~ "    Use the up/down arrows to navigate inside the list,\n"
-#~ "    and use the left/right arrows to enter into a category, or to display "
-#~ "more actions (when a little arrow is drawn next to text).\n"
-#~ "    Once inside a category, you can filter the results by typing some "
-#~ "letters.\n"
-#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-#~ "results opened.\n"
-#~ "\n"
-#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
-#~ "    use the arrows to navigate into the docks and sub-docks,\n"
-#~ "    or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
-#~ "Escape or the same shortkey will cancel."
-#~ msgstr ""
-#~ "Цей додаток дозволяє вам здійснювати різноманітні дії прямо з "
-#~ "клавіатури.\n"
-#~ "Він має 2 режими, кожен з яких викликається комбінацією клавіш:\n"
-#~ "\n"
-#~ "- Режим пошуку (типова комбінація: CTRL + Enter):\n"
-#~ "    Дозволяє вам знаходити та запускати програми, файли, недавні файли, "
-#~ "закладки FireFox-а, команди та навіть розрахунки.\n"
-#~ "    Набирайте те, що ви хочете знайти, результати будуть показуватися в "
-#~ "реальному часі.\n"
-#~ "    Перші результати по кожній категорії відображаються в основному "
-#~ "списку.\n"
-#~ "    Використовуйте клавіші вгору/вниз для пересування по списку,\n"
-#~ "    а також клавіші вліво/вправо для входження в категорію або для "
-#~ "відображення додаткової інформації (коли бачите маленьку стрілку поряд з "
-#~ "текстом).\n"
-#~ "    Опинившись всередині категорії, ви можете фільтрувати результати, "
-#~ "ввівши кілька літер.\n"
-#~ "    Натисніть Enter для вибору, утримуйте Shift або Alt для збереження "
-#~ "результатів пошуку відкритим.\n"
-#~ "\n"
-#~ "- Режим навігації (типова комбінація: CTRL + F9):\n"
-#~ "    Використовуйте стрілки для навігації в панелях та суб-панелях,\n"
-#~ "    або наберіть з клавіатури назву та натисніть Tab для автоматичного "
-#~ "переходу до наступного підходящого запускника\n"
-#~ "    натисніть Enter для імітації клацання на значку, Shift+Enter для Shift"
-#~ "+клацання, Alt+Enter для середнього клацання та Ctrl+Enter для лівого "
-#~ "клацання\n"
-#~ "Esc або така ж комбінація для відміни."
-
-#~ msgid ""
-#~ "A <b>notification area</b> for your dock\n"
-#~ "Also called 'systray'.\n"
-#~ "It is designed to work on any desktop that supports the latest systray "
-#~ "specifications (KDE, Gnome, etc)"
-#~ msgstr ""
-#~ "<b>Область повідомлень</b> для вашої панелі\n"
-#~ "Також відома як 'системний трей'.\n"
-#~ "Спроектована для роботи зі всіма робочими середовищами з врахуванням їх "
-#~ "останніх специфікацій (KDE, Gnome та інші)"
-
-#~ msgid "Monitor System"
-#~ msgstr "Система під спостереженням"
-
-#~ msgid "Unmute"
-#~ msgstr "Увімкнути звук"
-
-#~ msgid "Mute"
-#~ msgstr "Вимкнути звук"
-
-#~ msgid "Open folder"
-#~ msgstr "Відкрити теку"
-
-#~ msgid "Add a desktop"
-#~ msgstr "Додати стільницю"
-
-#~ msgid "Remove last desktop"
-#~ msgstr "Видалити останню стільницю"
-
-#~ msgid "Move current Desktop to this Desktop"
-#~ msgstr "Перемістіть поточну стільницю на цю стільницю"
-
-#~ msgid "Shortkey to enable/disable the navigation mode:"
-#~ msgstr "Комбінація клавіш для (де)активація режиму навігації:"
-
-#~ msgid ""
-#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
-#~ "clipboard"
-#~ msgstr ""
-#~ "Тут знаходяться виділені за допомогою миші елементи, в доповнення до ctrl"
-#~ "+c/ctrl+v буферу обміну"
-
-#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
-#~ msgstr ""
-#~ "Викоритовувати вибраний буфер обміну при копіюванні/вирізанні/вставленні?"
 
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
@@ -8078,6 +7977,7 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8088,26 +7988,25 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "та вибрати правильний аудіо-канал для управління."
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Додаток схожий на Gnome-Do, який дозволить вам управляти панеллю з "
 #~ "клавіатури.\n"
 #~ "Має 2 режими, кожен з яких включається комбінацією клавіш:\n"
-#~ "- навігаційний режим: використовуйте стрілки для навігації між панелями "
-#~ "та суб-панелями\n"
+#~ "- навігаційний режим: використовуйте стрілки для навігації між панелями та "
+#~ "суб-панелями\n"
 #~ "або введіть ім'я значка запуску та нитисніть Tab, щоб перейти на перший "
 #~ "схожий\n"
 #~ "натисніть Enter, щоб клацнути по значку, Shift+Enter для Shift+клацання, "
@@ -8118,15 +8017,20 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "Ctrl, Alt або Shift для збереження результату.\n"
 #~ "Esc або туж комбінацію клавіш для відміни."
 
+#~ msgid "Monitor System"
+#~ msgstr "Система під спостереженням"
+
 #~ msgid "Delete All"
 #~ msgstr "Видалити все"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Показати %s"
 
 #~ msgid "Show All"
 #~ msgstr "Показати все"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Видалити %s"
 
@@ -8140,11 +8044,20 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "Цей аплет додає значок для відображення стільниці,\n"
 #~ "а також: всіх десклетів, шару віджетів, всіх стільниць.\n"
 #~ "Ліве клацання для показу/приховування стільниці,\n"
-#~ "Середнє клацання для показу/приховування стільниці, десклетів, шару "
-#~ "віджетів або всіх стільниць відразу."
+#~ "Середнє клацання для показу/приховування стільниці, десклетів, шару віджетів "
+#~ "або всіх стільниць відразу."
 
 #~ msgid "showDesklets"
 #~ msgstr "Показувати десклети"
+
+#~ msgid "Open folder"
+#~ msgstr "Відкрити теку"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Видалити останню стільницю"
+
+#~ msgid "Add a desktop"
+#~ msgstr "Додати стільницю"
 
 #~ msgid "Action_0"
 #~ msgstr "Дія_0"
@@ -8231,19 +8144,19 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "Якщо заблоковано, то десклет можна легко перемістити захвативши його "
-#~ "лівою кнопкою миші. А також ви, як і раніше, можете використовувати ALT"
-#~ "+ліве клацання."
+#~ "Якщо заблоковано, то десклет можна легко перемістити захвативши його лівою "
+#~ "кнопкою миші. А також ви, як і раніше, можете використовувати ALT+ліве "
+#~ "клацання."
 
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Розмір десклету (ширина Х висота)"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
 #~ msgstr ""
-#~ "Залежно від вашого менеджеру вікон, ви можете змінювати розмір за "
-#~ "допомогою ALT+середнє клацання або ALT+ліве клацання."
+#~ "Залежно від вашого менеджеру вікон, ви можете змінювати розмір за допомогою "
+#~ "ALT+середнє клацання або ALT+ліве клацання."
 
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "Від'єднати від панелі?"
@@ -8313,8 +8226,8 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgstr "Зображення тла:"
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "Зображення поверх рисунка, наприклад відображення. Залиште пустим, щоб не "
 #~ "використовувати."
@@ -8358,15 +8271,14 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
 #~ "It can display the download/upload speeds and the wifi signal quality.\n"
-#~ "If you have network-manager running, it can also let you choose the "
-#~ "current wifi network.\n"
+#~ "If you have network-manager running, it can also let you choose the current "
+#~ "wifi network.\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "Цей аплет дозволяє вам слідкувати за активністю ваших з'єднань.\n"
-#~ "Показується швидкість звантаження/вивантаження та потужність wifi "
-#~ "сигналу.\n"
-#~ "Якщо у вас вже є працюючий менеджер мережі, він також може дозволити "
-#~ "вибрати існуючу мережу wifi.\n"
+#~ "Показується швидкість звантаження/вивантаження та потужність wifi сигналу.\n"
+#~ "Якщо у вас вже є працюючий менеджер мережі, він також може дозволити вибрати "
+#~ "існуючу мережу wifi.\n"
 #~ "Ліве клацання показує деяку інформацію, середнє клацання заставляє "
 #~ "перепровірити з'єднання."
 
@@ -8390,11 +8302,9 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgstr "Якщо смітник не відомий панелі, ви можете вказати його тут:"
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr ""
-#~ "Використовуйте, якщо аплет не може відобразити вміст смітника за "
-#~ "клацанням."
+#~ "Використовуйте, якщо аплет не може відобразити вміст смітника за клацанням."
 
 #~ msgid "Desktop-less support"
 #~ msgstr "Наскрізна підтримка."
@@ -8406,8 +8316,8 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "only use this if it differs from its name. Generally it is not the case, "
 #~ "except for Thunderbird."
 #~ msgstr ""
-#~ "використовуйте, тільки якщо відрізняється від його імені. Взагалі-то, не "
-#~ "має значення окрім як для Thunderbird."
+#~ "використовуйте, тільки якщо відрізняється від його імені. Взагалі-то, не має "
+#~ "значення окрім як для Thunderbird."
 
 #~ msgid "Animation during alert :"
 #~ msgstr "Використовувати анімацію:"
@@ -8442,6 +8352,63 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "in minutes."
 #~ msgstr "в хвилинах."
 
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "Цей додаток дозволяє вам здійснювати різноманітні дії прямо з клавіатури.\n"
+#~ "Він має 2 режими, кожен з яких викликається комбінацією клавіш:\n"
+#~ "\n"
+#~ "- Режим пошуку (типова комбінація: CTRL + Enter):\n"
+#~ "    Дозволяє вам знаходити та запускати програми, файли, недавні файли, "
+#~ "закладки FireFox-а, команди та навіть розрахунки.\n"
+#~ "    Набирайте те, що ви хочете знайти, результати будуть показуватися в "
+#~ "реальному часі.\n"
+#~ "    Перші результати по кожній категорії відображаються в основному списку.\n"
+#~ "    Використовуйте клавіші вгору/вниз для пересування по списку,\n"
+#~ "    а також клавіші вліво/вправо для входження в категорію або для "
+#~ "відображення додаткової інформації (коли бачите маленьку стрілку поряд з "
+#~ "текстом).\n"
+#~ "    Опинившись всередині категорії, ви можете фільтрувати результати, ввівши "
+#~ "кілька літер.\n"
+#~ "    Натисніть Enter для вибору, утримуйте Shift або Alt для збереження "
+#~ "результатів пошуку відкритим.\n"
+#~ "\n"
+#~ "- Режим навігації (типова комбінація: CTRL + F9):\n"
+#~ "    Використовуйте стрілки для навігації в панелях та суб-панелях,\n"
+#~ "    або наберіть з клавіатури назву та натисніть Tab для автоматичного "
+#~ "переходу до наступного підходящого запускника\n"
+#~ "    натисніть Enter для імітації клацання на значку, Shift+Enter для "
+#~ "Shift+клацання, Alt+Enter для середнього клацання та Ctrl+Enter для лівого "
+#~ "клацання\n"
+#~ "Esc або така ж комбінація для відміни."
+
+#~ msgid "Hey, you there!"
+#~ msgstr "Гей, ти там!"
+
 #~ msgid "Doncky"
 #~ msgstr "панелі"
 
@@ -8451,9 +8418,11 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "Empty Trash"
 #~ msgstr "Видалити смітник"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Ви збираєтеся видалити всі файли з %s. Впевнені?"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8462,6 +8431,9 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "Виникла проблема\n"
 #~ "Якщо '%s'  не є типовим файловим менеджером,\n"
 #~ "то ви може змінити його в налаштуванні модуля."
+
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Перемістіть поточну стільницю на цю стільницю"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Показувати хмарку повідомлень при зміні стрічки?"
@@ -8472,26 +8444,29 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Анімація значка при зміні стрічки:"
 
+#~ msgid "Shortkey to enable/disable the navigation mode:"
+#~ msgstr "Комбінація клавіш для (де)активація режиму навігації:"
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Виберіть дію для середнього клацання:"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
-#~ "В градусах, відносно вертикальної позиції. Таким чином створюється 3D "
-#~ "ефект. Встановіть 0, щоб не використовувати нахил."
+#~ "В градусах, відносно вертикальної позиції. Таким чином створюється 3D ефект. "
+#~ "Встановіть 0, щоб не використовувати нахил."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Нахил площини:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "Значення 0,5 означатиме, що наполовину схована, тому половина значків "
-#~ "буде на передньому плані, а решта на задньому."
+#~ "Значення 0,5 означатиме, що наполовину схована, тому половина значків буде "
+#~ "на передньому плані, а решта на задньому."
 
 #~ msgid "Percentage of the dock's width that appears on the foreground:"
 #~ msgstr "Відсоток ширини панелі для відображення на передньому плані:"
@@ -8500,8 +8475,8 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ "The greater, the deeper. This represents the gap between the bottoms "
 #~ "ofbackground icons and the tops of foreground icons (in pixels)."
 #~ msgstr ""
-#~ "Чим вище значення, тим глибше. Впливає на інтервал між нижнім краєм "
-#~ "задніх значків та верхнім краєм значків на передньому плані (в пікселях)."
+#~ "Чим вище значення, тим глибше. Впливає на інтервал між нижнім краєм задніх "
+#~ "значків та верхнім краєм значків на передньому плані (в пікселях)."
 
 #~ msgid "Depth of the plane:"
 #~ msgstr "Глибина площини:"
@@ -8519,11 +8494,10 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgstr "Кількість смітників"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr ""
-#~ "в Мб. Вас буде попереджено, коли ліміт буде перевищено. Встановіть 0, щоб "
-#~ "не використовувати його."
+#~ "в Мб. Вас буде попереджено, коли ліміт буде перевищено. Встановіть 0, щоб не "
+#~ "використовувати його."
 
 #~ msgid "Time interval to check if dustbin is full/empty :"
 #~ msgstr "Інтервал перевірок заповненості смітника:"
@@ -8533,8 +8507,7 @@ msgstr "Змінити типовий підпис на назву точки д
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
 #~ "Попередить появу значка поштової програми на панелі задач. Значок аплету "
 #~ "буде вести себе і як значок запуску, і як програма, і як аплет."
@@ -8544,6 +8517,10 @@ msgstr "Змінити типовий підпис на назву точки д
 
 #~ msgid "Delay between measurements:"
 #~ msgstr "Інтервал між двома вимірами:"
+
+#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
+#~ msgstr ""
+#~ "Викоритовувати вибраний буфер обміну при копіюванні/вирізанні/вставленні?"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
@@ -8560,8 +8537,8 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgstr ""
 #~ "Цей аплет забезпечує швидкий доступ до ваших десклетів.\n"
 #~ "Ліве клацання, щоб показати/приховати ваші десклети.\n"
-#~ "Взагалі-то, якщо ви використовуєте Compiz, то не має потреби "
-#~ "використовувати цей аплет;\n"
+#~ "Взагалі-то, якщо ви використовуєте Compiz, то не має потреби використовувати "
+#~ "цей аплет;\n"
 #~ " вам потрібно тільки використовувати можливість десклетів - 'Шар віджетів'"
 
 #~ msgid "Location not found"
@@ -8589,6 +8566,24 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgstr ""
 #~ "в секундах. Використовується, тільки якщо ви не можете відслідковувати "
 #~ "каталоги."
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+#~ msgstr ""
+#~ "Тут знаходяться виділені за допомогою миші елементи, в доповнення до "
+#~ "ctrl+c/ctrl+v буферу обміну"
+
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "<b>Область повідомлень</b> для вашої панелі\n"
+#~ "Також відома як 'системний трей'.\n"
+#~ "Спроектована для роботи зі всіма робочими середовищами з врахуванням їх "
+#~ "останніх специфікацій (KDE, Gnome та інші)"
 
 #~ msgid "No task is sheduled for today."
 #~ msgstr "Сьогодні подій немає."
@@ -8623,16 +8618,21 @@ msgstr "Змінити типовий підпис на назву точки д
 #~ msgid "Maximum number of files to list:"
 #~ msgstr "Максимальна кількість файлів у списку:"
 
+#~ msgid "Mute"
+#~ msgstr "Вимкнути звук"
+
+#~ msgid "Unmute"
+#~ msgstr "Увімкнути звук"
+
 #~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "Аплет, який дозволяє швидко дістатися ваших ярликів.\n"
 #~ "Підтримує управління дисками, мережевими ресурсами та закладками Nautilus "

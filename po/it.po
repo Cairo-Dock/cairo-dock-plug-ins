@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-03 05:09+0000\n"
-"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"POT-Creation-Date: 2010-09-13 00:36+0000\n"
+"PO-Revision-Date: 2010-09-13 10:12+0000\n"
+"Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-04 04:53+0000\n"
+"X-Launchpad-Export-Date: 2010-09-14 05:00+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -22,7 +23,8 @@ msgstr "Icone animate"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
+msgstr ""
+"Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
 
 #: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
@@ -221,7 +223,8 @@ msgstr "Il modulo è stato aggiunto, ma non può essere lanciato."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "L'applet '%s' è stata aggiornata con successo e automaticamente ricaricata"
 
@@ -368,9 +371,8 @@ msgid "Create a new file"
 msgstr "Crea un nuovo file"
 
 #: ../Folders/src/applet-notifications.c:374
-#, fuzzy
 msgid "Create a new folder"
-msgstr "Crea un nuovo file"
+msgstr "Crea una nuova cartella"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -391,9 +393,8 @@ msgid "Applications Menu"
 msgstr "Menu Applicazioni"
 
 #: ../GMenu/src/applet-notifications.c:75
-#, fuzzy
 msgid "Quick launch (Middle-click)"
-msgstr "Monta (click centrale)"
+msgstr "Avvio rapido (Tasto centrale)"
 
 #: ../GMenu/src/applet-notifications.c:77
 msgid "Configure menu"
@@ -1067,14 +1068,12 @@ msgid "Adjust channels"
 msgstr "Aggiusta i canali"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Unmute (middle-click)"
-msgstr "Smonta (click centrale)"
+msgstr "Attiva audio (tasto centrale)"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Mute (middle-click)"
-msgstr "Monta (click centrale)"
+msgstr "Muto (tasto centrale)"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
@@ -1190,8 +1189,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1316,9 +1315,8 @@ msgid "Repeat this message every:"
 msgstr "Ripeti questo messaggio ogni:"
 
 #: ../clock/src/applet-timer.c:170
-#, fuzzy
 msgid "The following task has felt due:"
-msgstr "La seguente attività è stata pianificata..."
+msgstr "Il compito seguente è fallito perchè:"
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
@@ -1482,7 +1480,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Questo modulo fornisce delle decorazioni per i dialoghi info"
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossibile caricare il file, controlla che la connessione internet sia "
 "attiva."
@@ -1496,7 +1495,8 @@ msgstr ""
 "Basta premere Ctrl+v per incollare il suo URL ovunque."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Ti prego d'aspettare che l'attuale caricamento sia finito prima di "
 "cominciarne uno nuovo."
@@ -1603,9 +1603,8 @@ msgid "Send the clipboard's content"
 msgstr "Spedisci il contenuto della clipboard"
 
 #: ../dnd2share/src/applet-notifications.c:398
-#, fuzzy
 msgid "History"
-msgstr "Azzera cronologia"
+msgstr "Cronologia"
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -1952,7 +1951,8 @@ msgstr "Specifica l'applicazione per la posta"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Lasciare vuoto per utilizzare l'applicazione per la posta predefinita."
+msgstr ""
+"Lasciare vuoto per utilizzare l'applicazione per la posta predefinita."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2059,14 +2059,13 @@ msgid "Refresh a mail account"
 msgstr "Aggiorna un account di posta"
 
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#, fuzzy
 msgid "Refresh all (Middle-click)"
-msgstr "Seguente (click centrale)"
+msgstr "Aggiorna tutto (Tasto centrale)"
 
 #: ../mail/src/cd-mail-applet-notifications.c:159
-#, fuzzy, c-format
+#, c-format
 msgid "Refresh %s"
-msgstr "Aggiorna"
+msgstr "Aggiorna %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
@@ -2310,7 +2309,8 @@ msgstr "PowerManager"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr "Un power manager per la batteria del laptop. Funziona con ACPI e DBus."
+msgstr ""
+"Un power manager per la batteria del laptop. Funziona con ACPI e DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -2461,8 +2461,8 @@ msgstr "mostra mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Questo plugin traccia delle animazioni attorno al cursore quando questo è "
 "dentro la dock/desklet."
@@ -2598,9 +2598,8 @@ msgid "Open (click)"
 msgstr "Apri (click)"
 
 #: ../stack/src/applet-notifications.c:179
-#, fuzzy
 msgid "Open parent folder"
-msgstr "Apri questa cartella"
+msgstr "Apri cartella superiore"
 
 #: ../stack/src/applet-notifications.c:181
 msgid "Copy (middle click)"
@@ -3689,8 +3688,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con Alt"
-"+click centrale o Alt+click sinistro, ad esempio."
+"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con "
+"Alt+click centrale o Alt+click sinistro, ad esempio."
 
 #: ../Clipper/data/messages:27 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
@@ -4451,8 +4450,8 @@ msgstr "Se così, numero di oggetti selezionati:"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con Ctrl"
-"+v"
+"Quando si clicca su di un oggetto, il suo contenuto sarà accessibile con "
+"Ctrl+v"
 
 #: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
@@ -4549,7 +4548,8 @@ msgstr "Le applicazioni esterne possono modificare le etichette delle icone?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Le applicazioni esterne possono modificare le info veloci delle icone?"
+msgstr ""
+"Le applicazioni esterne possono modificare le info veloci delle icone?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -4573,7 +4573,8 @@ msgstr "Aspetto"
 
 #: ../Doncky/data/messages:99
 msgid "Font to be used by default if none is specify in the .xml"
-msgstr "Carattere predefinito da utilizzare se non è specificato nel file .xml"
+msgstr ""
+"Carattere predefinito da utilizzare se non è specificato nel file .xml"
 
 #: ../Doncky/data/messages:101
 msgid "Default Font:"
@@ -4609,7 +4610,8 @@ msgid "Background"
 msgstr "Sfondo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Puoi avere sfondi maggiormente attraenti utilizzando le decorazioni della "
 "Desklet"
@@ -4780,7 +4782,8 @@ msgstr "Parametri"
 
 #: ../Network-Monitor/data/messages:95
 msgid "You can quickly switch to the other mode by scrolling on the icon."
-msgstr "Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
+msgstr ""
+"Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
 
 #: ../Network-Monitor/data/messages:97
 msgid "Info displayed by the icon:"
@@ -5202,9 +5205,8 @@ msgid "big"
 msgstr "grande"
 
 #: ../Remote-Control/data/messages:3
-#, fuzzy
 msgid "Shortkey to trigger the applet:"
-msgstr "Scorciatoia da tastiera per mostrare/nascondere le desklet :"
+msgstr "Scorciatoia per avviare l'applet:"
 
 #: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -5526,7 +5528,8 @@ msgstr "Primo colore della 'top list':"
 
 #: ../System-Monitor/data/messages:179
 msgid "The second colour of the gradient used to display the top list."
-msgstr "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+msgstr ""
+"E' il secondo colore della gradazione usata per scrivere la 'top list'"
 
 #: ../System-Monitor/data/messages:181
 msgid "Top list stop colour:"
@@ -5697,7 +5700,8 @@ msgstr "Icona Muto:"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Lasciare vuoto per utilizzare il nome della località, se disponibile."
+msgstr ""
+"Lasciare vuoto per utilizzare il nome della località, se disponibile."
 
 #: ../clock/data/messages:95
 msgid "Show the date:"
@@ -5801,23 +5805,20 @@ msgid "Font:"
 msgstr "Carattere:"
 
 #: ../clock/data/messages:147
-#, fuzzy
 msgid "Layout of the text:"
-msgstr "Dimensione relativa del testo:"
+msgstr "Layout del testo:"
 
 #: ../clock/data/messages:149
-#, fuzzy
 msgid "Automatic"
-msgstr "Personalizzazione"
+msgstr "Automatico"
 
 #: ../clock/data/messages:151
-#, fuzzy
 msgid "On 1 line"
-msgstr "Sull'icona"
+msgstr "Su 1 riga"
 
 #: ../clock/data/messages:153
 msgid "On 2 lines"
-msgstr ""
+msgstr "Su 2 righe"
 
 #: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
@@ -6453,7 +6454,8 @@ msgid "Space between icons:"
 msgstr "Spazio tra le icone:"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
 "altre viste."
@@ -6590,7 +6592,8 @@ msgid "Colours"
 msgstr "Colori"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Questo altererà leggermente i colori, perciò potresti volerli modificare."
 
@@ -6833,7 +6836,8 @@ msgid "Check mail account on startup?"
 msgstr "Controlla l'account mail all'avvio?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se selezionato, il numero delle mail viene mostrato anche se non ci sono "
 "mail."
@@ -6871,7 +6875,8 @@ msgid "Blur amount:"
 msgstr "Quantità di sfocatura:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Lasciare vuoto per mostrare il nome del riproduttore attualmente controllato."
 
@@ -7853,7 +7858,8 @@ msgstr "Codice della località:"
 
 #: ../weather/data/messages:97
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
+msgstr ""
+"Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
 
 #: ../weather/data/messages:99
 msgid "Use International System Units?"
@@ -7917,7 +7923,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posizione dello scroll verticale"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Questo ti permette di visualizzare come notifica a comparsa il menu di Cairo-"
 "Dock con il click destro."
@@ -7987,7 +7994,8 @@ msgstr ""
 
 #: ../wifi/data/messages:175
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless:"
+msgstr ""
+"Linea di comando alternativa per lanciare la Configurazione Wireless:"
 
 #: ../wifi/data/messages:183
 msgid "Signal Strength"
@@ -8005,113 +8013,8 @@ msgstr "Info brute sul segnale"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
-#~ msgid "Hey, you there!"
-#~ msgstr "Hey, tu là!"
-
-#~ msgid "Quick launch"
-#~ msgstr "Avvio veloce"
-
-#~ msgid ""
-#~ "This plug-in allows you to make different actions directly from the "
-#~ "keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "\n"
-#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
-#~ "    Type what you want to search, the results will be displayed in real "
-#~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
-#~ "    Use the up/down arrows to navigate inside the list,\n"
-#~ "    and use the left/right arrows to enter into a category, or to display "
-#~ "more actions (when a little arrow is drawn next to text).\n"
-#~ "    Once inside a category, you can filter the results by typing some "
-#~ "letters.\n"
-#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-#~ "results opened.\n"
-#~ "\n"
-#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
-#~ "    use the arrows to navigate into the docks and sub-docks,\n"
-#~ "    or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
-#~ "Escape or the same shortkey will cancel."
-#~ msgstr ""
-#~ "Questo plugin ti permette di compiere differenti azioni direttamente "
-#~ "dalla tastiera.\n"
-#~ "Ha due modalità, ciascuna attivabile da una scorciatoia di tastiera:\n"
-#~ "\n"
-#~ "- la modalità ricerca (scorciatoia predefinita Ctrl + Invio):\n"
-#~ "    Ti permette di cercare e lanciare le applicazioni, file, file "
-#~ "recenti, segnalibri di firefox, comandi, e anche calcoli.\n"
-#~ "    Scrivi quello che vuoi cercare, il risultato viene mostrato in tempo "
-#~ "reale.\n"
-#~ "    Il primo risultato di ciascuna categoria è mostrato nella lista "
-#~ "principale.\n"
-#~ "    Utilizza le frecce su/giù per navigare nella lista,\n"
-#~ "    e usa le frecce sinistra/destra per entrare in una categoria, o per "
-#~ "mostrare ulteriori azioni (quando una piccola freccia è disegnata dopo il "
-#~ "testo).\n"
-#~ "    Quando sei dentro una categoria, puoi filtrare i risultati digitando "
-#~ "delle lettere.\n"
-#~ "    Premi Invio per confermare, mantenendo Shift o Alt premuti se si "
-#~ "vuole lasciare aperta la lista dei risultati.\n"
-#~ "\n"
-#~ "- la modalità navigazione (scorciatoia di default Ctrl + F9):\n"
-#~ "    utilizza le frecce per navigare nella dock e nelle sub-dock,\n"
-#~ "    o digita il nome del lanciatore e premi Tab per saltare "
-#~ "automaticamente al successivo lanciatore\n"
-#~ "    premi Invio per cliccare sull'icona, Shift+Invio come Shift+click del "
-#~ "mouse, Alt+Invio come click centrale, Ctrl+Invio come click sinistro\n"
-#~ "Esc o la stessa scorciatoia cancellerà l'operazione."
-
-#~ msgid ""
-#~ "A <b>notification area</b> for your dock\n"
-#~ "Also called 'systray'.\n"
-#~ "It is designed to work on any desktop that supports the latest systray "
-#~ "specifications (KDE, Gnome, etc)"
-#~ msgstr ""
-#~ "Un'<b>area di notifica</b> per la tua dock\n"
-#~ "Chiamata anche 'systray' (o Area di notifica).\n"
-#~ "E' designata a lavorare su tutti i desktop che supportano le ultimissime "
-#~ "specifiche systray (KDE, Gnome, etc)"
-
 #~ msgid "Monitor System"
 #~ msgstr "Monitorare il sistema"
-
-#~ msgid "Unmute"
-#~ msgstr "Attiva audio"
-
-#~ msgid "Mute"
-#~ msgstr "Escludi audio"
-
-#~ msgid "Open folder"
-#~ msgstr "Apri cartella"
-
-#~ msgid "Add a desktop"
-#~ msgstr "Aggiungi una scrivania"
-
-#~ msgid "Remove last desktop"
-#~ msgstr "Rimuovi l'ultima scrivania"
-
-#~ msgid "Move current Desktop to this Desktop"
-#~ msgstr "Sposta l'attuale scrivania in questa"
-
-#~ msgid "Shortkey to enable/disable the navigation mode:"
-#~ msgstr "Scorciatoia per attivare/disattivare la modalità navigazione:"
-
-#~ msgid ""
-#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
-#~ "clipboard"
-#~ msgstr ""
-#~ "E' la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl+v "
-#~ "della lavagna"
-
-#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
-#~ msgstr ""
-#~ "Quando si copia/incolla/taglia, utilizza la selezione della clipboard?"
 
 #~ msgid "feeled"
 #~ msgstr "risentito"
@@ -8232,8 +8135,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Animazione durante l'allerta :"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
@@ -8290,11 +8193,11 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
 #~ msgstr ""
-#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -8327,8 +8230,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
 #~ msgstr ""
-#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a "
-#~ "0 se si vuole alcuna filigrana."
+#~ "Lasciare vuoto per usare l'immagine di default. Settare la trasparenza a 0 "
+#~ "se si vuole alcuna filigrana."
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
@@ -8435,8 +8338,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "not including the labels. The 'k' coef will be adjusted to preserve this "
 #~ "ratio."
 #~ msgstr ""
-#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per "
-#~ "mantenere questo rapporto."
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
 
 #~ msgid "Use a flat separator instead of the defined separator icon ?"
 #~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
@@ -8480,8 +8383,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
 #~ msgstr ""
-#~ "Impossibile configurare il socket in modo da non bloccare la connessione. "
-#~ "Se il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
+#~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
+#~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
 
 #~ msgid ""
@@ -8498,17 +8401,17 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Received HTTP response code %d.  The most likely reason for this is that "
 #~ "your GMail username or password is incorrect."
 #~ msgstr ""
-#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è "
-#~ "che username o password di GMail non siano corretti."
+#~ "Codice di risposta %d ricevuto tramite HTTP. La ragione più plausibile è che "
+#~ "username o password di GMail non siano corretti."
 
 #~ msgid ""
-#~ "Received HTTP response code %d, which should be 200.  There may be a "
-#~ "problem with GMail's servers, or they have incompatibly changed their "
-#~ "authentication method or location of the new messages feed."
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
 #~ msgstr ""
-#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci "
-#~ "un problema col server GMail, o un cambiamento nel modo di identificarsi "
-#~ "o nel modo di reperire i nuovi messaggi."
+#~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
+#~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
+#~ "modo di reperire i nuovi messaggi."
 
 #~ msgid "Check for _new messages every"
 #~ msgstr "Verifica per _nuovi messaggi ogni"
@@ -8520,28 +8423,27 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Mailbox GMail remota"
 
 #~ msgid ""
-#~ "The GMail plugin can connect to Google's mail service and securely "
-#~ "retrieve the number of new messages."
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
 #~ msgstr ""
-#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare "
-#~ "il numero di nuovi messaggi in modo sicuro."
+#~ "Il plugin GMail può connettersi al servizio mail di Google e recuperare il "
+#~ "numero di nuovi messaggi in modo sicuro."
 
 #~ msgid ""
-#~ "Secure IMAP is not available, and the IMAP server does not support "
-#~ "plaintext logins."
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
 #~ msgstr ""
-#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login "
-#~ "in modo testuale."
+#~ "Non è disponibile un IMAP sicuro, e il server IMAP non supporta il login in "
+#~ "modo testuale."
 
-#~ msgid ""
-#~ "STARTTLS security was requested, but this server does not support it."
+#~ msgid "STARTTLS security was requested, but this server does not support it."
 #~ msgstr "Sicurezza STARTTLS domandata, ma il server non la supporta."
 
 #~ msgid ""
 #~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
 #~ msgstr ""
-#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. "
-#~ "E' un bug !"
+#~ "Il buffer è troppo piccolo per ricevere la totalità delle risposte IMAP. E' "
+#~ "un bug !"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
@@ -8583,8 +8485,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Mailbox IMAP remoto"
 
 #~ msgid ""
-#~ "The IMAP plugin can connect to a remote mail server that supports the "
-#~ "IMAP protocol, optionally using SSL for link protection."
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in IMAP può connettersi a un server mail remoto che supporta il "
 #~ "protocollo IMAP, volendo attraverso l'utilizzo di SSL per la "
@@ -8626,8 +8528,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "MH plugin watches local MH folders for new mail"
 #~ msgstr ""
-#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi "
-#~ "messaggi"
+#~ "Il plug-in MH sorveglia le cartelle MH locali alla ricerca di nuovi messaggi"
 
 #~ msgid "Advanced POP3 Options"
 #~ msgstr "Opzioni POP3 avanzate"
@@ -8645,8 +8546,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Mailbox POP3 remota"
 
 #~ msgid ""
-#~ "The POP3 plugin can connect to a remote mail server that supports the "
-#~ "POP3 protocol, optionally using SSL for link protection."
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
 #~ msgstr ""
 #~ "Il plug-in POP3 può connettersi a un server mail remoto che supporta il "
 #~ "protocollo POP3, volendo attraverso l'utilizzo di SSL per la "
@@ -8660,8 +8561,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
 #~ msgstr ""
-#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il "
-#~ "supporto SSL."
+#~ "XfceMailwatch: la negoziazione TLS è fallita: non compilayo con il supporto "
+#~ "SSL."
 
 #~ msgid "A secure connection was requested, but gnutls was not initialised"
 #~ msgstr "Richiesta connessione sicura, ma gnutls non è stato avviato"
@@ -8680,8 +8581,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Select a mailbox type.  A description of the type will appear below."
 #~ msgstr ""
-#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di "
-#~ "sotto."
+#~ "Selezionare un tipo di Mailbox. Una descrizione del tipo apparirà di sotto."
 
 #~ msgid "Add New Mailbox"
 #~ msgstr "Aggiungere una nuova Mailbox"
@@ -8754,8 +8654,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Titolo : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
 #~ "Se scegliete 'personalizzato', potrete definire la vostra propria "
 #~ "decorazione; lasciate vuoto per non averne."
@@ -8911,10 +8811,10 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Only check this box if you notice some message like <<No marshaller for "
 #~ "signature of signal 'NoteDeleted'>> in the terminal."
 #~ msgstr ""
-#~ "In base alla vostra versione di Tomboy la soppressione della nota "
-#~ "potrebbe non essere notificata. Spuntate questa casella se ricevete "
-#~ "notifiche con questo errore  <<No marshaller for signature of signal "
-#~ "'NoteDeleted'>> con modalità Debug nel terminale."
+#~ "In base alla vostra versione di Tomboy la soppressione della nota potrebbe "
+#~ "non essere notificata. Spuntate questa casella se ricevete notifiche con "
+#~ "questo errore  <<No marshaller for signature of signal 'NoteDeleted'>> con "
+#~ "modalità Debug nel terminale."
 
 #~ msgid ""
 #~ "Right click on the icon to let Cairo-Dock help you to find your location "
@@ -8996,6 +8896,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Play/Pause"
 #~ msgstr "Play/Pause"
 
+#~ msgid "Quick launch"
+#~ msgstr "Avvio veloce"
+
 #~ msgid ""
 #~ "This applet is an RSS/Atom feed reader.\n"
 #~ "You can instanciate it as many times as you want.\n"
@@ -9030,37 +8933,37 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "AlsaMixer"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Un plugin Gnome-Do-Like che permette di controllare la dock tramite "
 #~ "tastiera.\n"
-#~ "Ha due modelli, ciascuno dei quali può essere attivato mediante "
-#~ "scorciatoie di tasti:\n"
+#~ "Ha due modelli, ciascuno dei quali può essere attivato mediante scorciatoie "
+#~ "di tasti:\n"
 #~ "- il modello a navigazione : utilizza le frecce per muoverti nella dock e "
 #~ "nelle sub-dock,\n"
-#~ "  o digita il nome del lanciatore e premi Tab per saltare automaticamente "
-#~ "al lanciatore successivo disponibile\n"
-#~ "  premi Invio per cliccare sull'icona, Shift+Invio per Shift+Click, Alt"
-#~ "+Invio per il Click centrale e Ctrl+Invio per Click sinistro\n"
+#~ "  o digita il nome del lanciatore e premi Tab per saltare automaticamente al "
+#~ "lanciatore successivo disponibile\n"
+#~ "  premi Invio per cliccare sull'icona, Shift+Invio per Shift+Click, "
+#~ "Alt+Invio per il Click centrale e Ctrl+Invio per Click sinistro\n"
 #~ "- il modello a ricerca : digita una parte di testo per lanciare ogni "
 #~ "comando, file o calcolo.\n"
 #~ "  utilizza le frecce per navigare tra i risultati, premi Invio per "
 #~ "confermare, mantieni Ctrl, Alt o Shift per conservare i risultati.\n"
 #~ "Esc o la scorciatoia che lo richiama per cancellare."
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -9072,6 +8975,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "showDesklets"
 #~ msgstr "mostraDesklet"
+
+#~ msgid "Open folder"
+#~ msgstr "Apri cartella"
 
 #~ msgid "in seconds"
 #~ msgstr "in secondi"
@@ -9095,18 +9001,25 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "In pixels."
 #~ msgstr "In pixel."
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Svuota %s"
 
 #~ msgid "Delete All"
 #~ msgstr "Svuota Tutti"
 
+#~ msgid "Add a desktop"
+#~ msgstr "Aggiungi una scrivania"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Rimuovi l'ultima scrivania"
+
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
 #~ msgstr ""
-#~ "In base al Gestore delle Finestre utilizzato puoi ridimensionarla con Alt"
-#~ "+click centrale o Alt+click sinistro, ad esempio."
+#~ "In base al Gestore delle Finestre utilizzato puoi ridimensionarla con "
+#~ "Alt+click centrale o Alt+click sinistro, ad esempio."
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
@@ -9118,9 +9031,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "Se la posizione è bloccata, la desklet non può essere mossa con il "
-#~ "semplice trascinamento mediante il tasto sinistro del mouse. Puoi "
-#~ "comunque muoverla con Alt+click sinistro."
+#~ "Se la posizione è bloccata, la desklet non può essere mossa con il semplice "
+#~ "trascinamento mediante il tasto sinistro del mouse. Puoi comunque muoverla "
+#~ "con Alt+click sinistro."
 
 #~ msgid "in pixels. Use this to adjust the top position of the drawings."
 #~ msgstr ""
@@ -9150,8 +9063,8 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "basso dei disegni."
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "E' un'immagine che viene mostrata sopra i disegni, come un riflesso ad "
 #~ "esempio. Lasciare vuoto per non utilizzarne."
@@ -9175,8 +9088,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Percorso di un'immagine per mostrare le desklet :"
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr ""
 #~ "Utilizzalo solo se verifichi che l'applet non mostra il cestino al click."
 
@@ -9189,6 +9101,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Empty Trash"
 #~ msgstr "Svuota il Cestino"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -9197,6 +9110,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Un problema si è presentato.\n"
 #~ "Se '%s' non è il vostro navigatore di file predefinito,\n"
 #~ "potete cambiarlo nel pannello di configurazione di quest'applet."
+
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Sposta l'attuale scrivania in questa"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Mostra una notifica a comparsa quando il feed è cambiato?"
@@ -9208,18 +9124,18 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr "Animazione dell'icona quando il feed è cambiato :"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
 #~ "In gradi, in rapporto alla posizione verticale. E' una specie di "
 #~ "inclinazione del piano in orizzontale, dando l'impressione di "
-#~ "tridimensionalità. Perciò metterlo a 0 significa che il piano sarà "
-#~ "affatto inclinato (verticale)."
+#~ "tridimensionalità. Perciò metterlo a 0 significa che il piano sarà affatto "
+#~ "inclinato (verticale)."
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
 #~ "0.5 significa che la dock è ripiegata a metà, perciò la metà delle icone  "
 #~ "sono in primo piano e l'altra metà sullo sfondo."
@@ -9229,15 +9145,13 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "ofbackground icons and the tops of foreground icons (in pixels)."
 #~ msgstr ""
 #~ "Più è grande, più il piano è profondo. E' di fatto lo scarto tra la base "
-#~ "delle icone in sottofondo e l'altezza delle icone in primo piano (in "
-#~ "pixel)."
+#~ "delle icone in sottofondo e l'altezza delle icone in primo piano (in pixel)."
 
 #~ msgid "Number of Dustbins"
 #~ msgstr "Numero di cestini"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr ""
 #~ "in Mb. Verrai notificato se supererai questo limite. Mettere 0 per non "
 #~ "usarlo."
@@ -9247,12 +9161,11 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
-#~ "Previene l'apparizione dell'icona dell'applicazione nella taskbar. "
-#~ "L'icona dell'applet si comporterà così come un lanciatore, "
-#~ "un'applicazione e un'applet."
+#~ "Previene l'apparizione dell'icona dell'applicazione nella taskbar. L'icona "
+#~ "dell'applet si comporterà così come un lanciatore, un'applicazione e "
+#~ "un'applet."
 
 #~ msgid "Add a mail account"
 #~ msgstr "Aggiungi un account di posta"
@@ -9301,11 +9214,29 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Questa è l'applet Dustbin\n"
 #~ " scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
 
+#~ msgid ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+#~ msgstr ""
+#~ "E' la selezione fatta dal mouse, in opposizione all'usuale ctrl+c/ctrl+v "
+#~ "della lavagna"
+
 #~ msgid "in seconds. only used if you can't monitor directories."
 #~ msgstr "in secondi. usato soltanto se non puoi monitorare le cartelle."
 
 #~ msgid "Empty all dustbins"
 #~ msgstr "Svuota tutti i cestini"
+
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "Un'<b>area di notifica</b> per la tua dock\n"
+#~ "Chiamata anche 'systray' (o Area di notifica).\n"
+#~ "E' designata a lavorare su tutti i desktop che supportano le ultimissime "
+#~ "specifiche systray (KDE, Gnome, etc)"
 
 #~ msgid ""
 #~ "e size=true\n"
@@ -9321,6 +9252,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Indicator-Menus"
 #~ msgstr "Menu-Indicatore"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Mostra %s"
 
@@ -9329,6 +9261,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Specify a title :"
 #~ msgstr "Specifica un titolo:"
+
+#~ msgid "Shortkey to enable/disable the navigation mode:"
+#~ msgstr "Scorciatoia per attivare/disattivare la modalità navigazione:"
 
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "Posizione desklet (x ; y):"
@@ -9409,6 +9344,7 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Name of an image for the 'empty' icon :"
 #~ msgstr "Percorso dell'immagine per l'icona 'vuoto':"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Stai per cancellare tutti i file in %s. Sicuro?"
 
@@ -9433,6 +9369,68 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Separate different shortcuts with separators?"
 #~ msgstr "Separa le differenti scorciatoie con separatori?"
 
+#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
+#~ msgstr ""
+#~ "Quando si copia/incolla/taglia, utilizza la selezione della clipboard?"
+
+#~ msgid "Hey, you there!"
+#~ msgstr "Hey, tu là!"
+
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "Questo plugin ti permette di compiere differenti azioni direttamente dalla "
+#~ "tastiera.\n"
+#~ "Ha due modalità, ciascuna attivabile da una scorciatoia di tastiera:\n"
+#~ "\n"
+#~ "- la modalità ricerca (scorciatoia predefinita Ctrl + Invio):\n"
+#~ "    Ti permette di cercare e lanciare le applicazioni, file, file recenti, "
+#~ "segnalibri di firefox, comandi, e anche calcoli.\n"
+#~ "    Scrivi quello che vuoi cercare, il risultato viene mostrato in tempo "
+#~ "reale.\n"
+#~ "    Il primo risultato di ciascuna categoria è mostrato nella lista "
+#~ "principale.\n"
+#~ "    Utilizza le frecce su/giù per navigare nella lista,\n"
+#~ "    e usa le frecce sinistra/destra per entrare in una categoria, o per "
+#~ "mostrare ulteriori azioni (quando una piccola freccia è disegnata dopo il "
+#~ "testo).\n"
+#~ "    Quando sei dentro una categoria, puoi filtrare i risultati digitando "
+#~ "delle lettere.\n"
+#~ "    Premi Invio per confermare, mantenendo Shift o Alt premuti se si vuole "
+#~ "lasciare aperta la lista dei risultati.\n"
+#~ "\n"
+#~ "- la modalità navigazione (scorciatoia di default Ctrl + F9):\n"
+#~ "    utilizza le frecce per navigare nella dock e nelle sub-dock,\n"
+#~ "    o digita il nome del lanciatore e premi Tab per saltare automaticamente "
+#~ "al successivo lanciatore\n"
+#~ "    premi Invio per cliccare sull'icona, Shift+Invio come Shift+click del "
+#~ "mouse, Alt+Invio come click centrale, Ctrl+Invio come click sinistro\n"
+#~ "Esc o la stessa scorciatoia cancellerà l'operazione."
+
 #~ msgid ""
 #~ "Load folders inside the Dock\n"
 #~ "You can have as many instances of this applet as you want."
@@ -9446,24 +9444,28 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Maximum number of files to list:"
 #~ msgstr "Numero massimo dei file da elencare:"
 
+#~ msgid "Mute"
+#~ msgstr "Escludi audio"
+
+#~ msgid "Unmute"
+#~ msgstr "Attiva audio"
+
 #~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "Un'applet che ti permette un rapido accesso a tutte le tue scorciatoie.\n"
-#~ "Gestisce dischi, punti d'accesso alle reti, segnalibri di Nautilus (anche "
-#~ "se non hai Nautilus).\n"
-#~ "Trascina una cartella sull'icona principale o sulla sub-dock per "
-#~ "aggiungerla come segnalibro.\n"
+#~ "Gestisce dischi, punti d'accesso alle reti, segnalibri di Nautilus (anche se "
+#~ "non hai Nautilus).\n"
+#~ "Trascina una cartella sull'icona principale o sulla sub-dock per aggiungerla "
+#~ "come segnalibro.\n"
 #~ "Click centrale sull'icona principale per mostrare la cartella home.\n"
-#~ "Click centrale sull'icona di un punto di mount per (s)montarlo "
-#~ "rapidamente.\n"
-#~ "L'applet può mostrare anche interessanti informazioni sui tuoi dischi, "
-#~ "come spazio libero, tipo, etc."
+#~ "Click centrale sull'icona di un punto di mount per (s)montarlo rapidamente.\n"
+#~ "L'applet può mostrare anche interessanti informazioni sui tuoi dischi, come "
+#~ "spazio libero, tipo, etc."

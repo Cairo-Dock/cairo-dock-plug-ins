@@ -6,14 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
-"Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-08-18 18:38+0000\n"
-"Last-Translator: boki24 <Unknown>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-08-29 00:59+0000\n"
+"PO-Revision-Date: 2010-09-07 03:39+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-08-19 03:53+0000\n"
+"X-Launchpad-Export-Date: 2010-09-08 04:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -134,25 +135,29 @@ msgstr ""
 msgid "For Aiur!"
 msgstr ""
 
-#: ../Cairo-Penguin/src/applet-notifications.c:126
+#: ../Cairo-Penguin/src/applet-notifications.c:123
+msgid "Hey, you there!"
+msgstr "Hej ti tamo!"
+
+#: ../Cairo-Penguin/src/applet-notifications.c:127
 msgid "Wake up"
 msgstr "Probudi se"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:130
+#: ../Cairo-Penguin/src/applet-notifications.c:131
 msgid "Keep quiet"
 msgstr "Budi tih"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:133
-#: ../Scooby-Do/data/messages:99
+#: ../Cairo-Penguin/src/applet-notifications.c:134
+#: ../Scooby-Do/data/messages:101
 msgid "Start XPenguins"
 msgstr "Pokreni XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:134
+#: ../Cairo-Penguin/src/applet-notifications.c:135
 msgid "Stop XPenguins"
 msgstr "Zaustavi XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:157
-#: ../Cairo-Penguin/src/applet-notifications.c:159
+#: ../Cairo-Penguin/src/applet-notifications.c:158
+#: ../Cairo-Penguin/src/applet-notifications.c:160
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -175,7 +180,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr ""
 
-#: ../Clipper/src/applet-notifications.c:101
+#: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -202,7 +207,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -293,38 +299,33 @@ msgid ""
 "and that the new name does not already exist."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:322
-msgid "Open the folder (middle-click)"
-msgstr ""
-
-#: ../Folders/src/applet-notifications.c:328
-msgid "Rename this file"
-msgstr "Preimenuj ovaj fajl"
-
-#: ../Folders/src/applet-notifications.c:329
-msgid "Delete this file"
-msgstr "Obriši ovaj fajl"
-
-#: ../Folders/src/applet-notifications.c:330
-msgid "Move this file"
-msgstr "Premesti ovaj fajl"
-
-#: ../Folders/src/applet-notifications.c:336
+#: ../Folders/src/applet-notifications.c:319
 msgid "Open with"
 msgstr "Otvori uz pomoć"
 
-#: ../Folders/src/applet-notifications.c:370
+#: ../Folders/src/applet-notifications.c:352
+msgid "Delete this file"
+msgstr "Obriši ovaj fajl"
+
+#: ../Folders/src/applet-notifications.c:354
+msgid "Rename this file"
+msgstr "Preimenuj ovaj fajl"
+
+#: ../Folders/src/applet-notifications.c:356
+msgid "Move this file"
+msgstr "Premesti ovaj fajl"
+
+#: ../Folders/src/applet-notifications.c:358
 msgid "Properties"
 msgstr "Osobine"
 
-#: ../Folders/src/applet-notifications.c:373
+#: ../Folders/src/applet-notifications.c:360
 msgid "Create a new file"
 msgstr "Kreiraj novi fajl"
 
-#: ../Folders/src/applet-notifications.c:374
-#, fuzzy
-msgid "Create a new folder"
-msgstr "Kreiraj novi fajl"
+#: ../Folders/src/applet-notifications.c:364
+msgid "Open the folder (middle-click)"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -339,16 +340,15 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Programski meni"
 
-#: ../GMenu/src/applet-notifications.c:75
-#, fuzzy
-msgid "Quick launch (Middle-click)"
-msgstr "Montiraj (srednji-klik)"
+#: ../GMenu/src/applet-notifications.c:147
+msgid "Quick launch"
+msgstr "Brzi pokretač"
 
-#: ../GMenu/src/applet-notifications.c:77
+#: ../GMenu/src/applet-notifications.c:148
 msgid "Configure menu"
 msgstr ""
 
-#: ../GMenu/src/applet-notifications.c:80
+#: ../GMenu/src/applet-notifications.c:149
 msgid "Clear recent"
 msgstr "Očisti nedavne"
 
@@ -360,7 +360,7 @@ msgstr "Nedavni dokumenti"
 msgid "Clear the list of the recently used documents?"
 msgstr "Obrisati listu nedavno korišćenih dokumenata?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
 msgid "Enter a command to launch:"
 msgstr "Unesi naredbu da pokreneš:"
 
@@ -548,12 +548,12 @@ msgid "Loading"
 msgstr "Učitavam"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
-#: ../wifi/src/applet-notifications.c:76
+#: ../wifi/src/applet-notifications.c:75
 msgid "Check for Wireless Extension"
 msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:101
-#: ../wifi/src/applet-notifications.c:77
+#: ../wifi/src/applet-notifications.c:76
 msgid "Network Administration"
 msgstr ""
 
@@ -707,16 +707,16 @@ msgid "Open in new window"
 msgstr "Otvori u novom prozoru"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:470
+#: ../dnd2share/src/applet-notifications.c:461
 msgid "Open file"
 msgstr "Otvori fajl"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:496
-#: ../Scooby-Do/data/messages:103
+#: ../Scooby-Do/data/messages:105
 msgid "Firefox bookmarks"
 msgstr ""
 
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
+#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:107
 msgid "Recent files"
 msgstr "Nedavni fajlovi"
 
@@ -743,6 +743,35 @@ msgstr "Mediadico"
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
 msgstr "Amazon"
+
+#: ../Scooby-Do/src/applet-init.c:39
+msgid ""
+"This plug-in allows you to make different actions directly from the "
+"keyboard.\n"
+"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+"\n"
+"- the finder mode (default shortcut : CTRL + Enter) :\n"
+"    It lets you find and launch applications, files, recent files, firefox "
+"bookmarks, commands, and even calculations.\n"
+"    Type what you want to search, the results will be displayed in real "
+"time.\n"
+"    The first results of each category are displayed in the main listing.\n"
+"    Use the up/down arrows to navigate inside the list,\n"
+"    and use the left/right arrows to enter into a category, or to display "
+"more actions (when a little arrow is drawn next to text).\n"
+"    Once inside a category, you can filter the results by typing some "
+"letters.\n"
+"    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+"results opened.\n"
+"\n"
+"- the navigation mode (default shortcut : CTRL + F9) :\n"
+"    use the arrows to navigate into the docks and sub-docks,\n"
+"    or type the name of a launcher and press Tab to automatically jump to "
+"the next suitable launcher\n"
+"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+"for middle click, and Ctrl+Enter for left click\n"
+"Escape or the same shortkey will cancel."
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
@@ -790,17 +819,23 @@ msgstr "rezultat"
 msgid "Searching ..."
 msgstr "Pretražujem ..."
 
-#: ../Scooby-Do/src/applet-session.c:62
+#: ../Scooby-Do/src/applet-session.c:50
 msgid "Enter your search"
 msgstr ""
 
-#: ../Status-Notifier/src/applet-init.c:32
+#: ../Status-Notifier/src/applet-init.c:31
 msgid "Status Notifier"
 msgstr ""
 
+#: ../Status-Notifier/src/applet-init.c:34
+msgid ""
+"A <b>notification area</b> for your dock\n"
+"Also called 'systray'.\n"
+"It is designed to work on any desktop that supports the latest systray "
+"specifications (KDE, Gnome, etc)"
+msgstr ""
+
 #: ../System-Monitor/src/applet-init.c:30
-#: ../System-Monitor/src/applet-notifications.c:116
-#: ../netspeed/src/applet-notifications.c:72
 msgid "System Monitor"
 msgstr ""
 
@@ -877,8 +912,12 @@ msgstr ""
 msgid "Buffers"
 msgstr "Baferi"
 
+#: ../System-Monitor/src/applet-notifications.c:115
+#: ../netspeed/src/applet-notifications.c:70
+msgid "Monitor System"
+msgstr ""
+
 #: ../System-Monitor/src/applet-nvidia.c:141
-#: ../System-Monitor/src/applet-sensors.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr ""
@@ -909,7 +948,7 @@ msgstr ""
 msgid "Set up gamma:"
 msgstr ""
 
-#: ../Xgamma/src/applet-notifications.c:62
+#: ../Xgamma/src/applet-notifications.c:61
 msgid "Apply current luminosity on startup"
 msgstr ""
 
@@ -959,123 +998,154 @@ msgstr ""
 msgid "Set up volume:"
 msgstr "Podesi glasnost:"
 
-#: ../alsaMixer/src/applet-notifications.c:58
+#: ../alsaMixer/src/applet-notifications.c:57
 msgid "Adjust channels"
 msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
-msgid "Unmute (middle-click)"
-msgstr "Demontiraj (srednji-klik)"
+msgid "Unmute"
+msgstr ""
 
-#: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
-msgid "Mute (middle-click)"
-msgstr "Montiraj (srednji-klik)"
+#: ../alsaMixer/src/applet-notifications.c:61
+msgid "Mute"
+msgstr ""
 
-#: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
-#: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
-#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:84
-#: ../clock/src/applet-timer.c:172 ../clock/src/applet-timer.c:454
-#: ../clock/src/applet-timer.c:471 ../clock/src/applet-timer.c:491
+#: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
+#: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
+#: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:339
+#: ../clock/src/applet-draw.c:353 ../clock/src/applet-draw.c:374
+#: ../clock/src/applet-task-editor.c:119
 msgid "No title"
 msgstr "Bez naslova"
 
-#: ../clock/src/applet-calendar.c:520
+#: ../clock/src/applet-calendar.c:438
 msgid "years"
 msgstr "godine"
 
-#: ../clock/src/applet-calendar.c:637
+#: ../clock/src/applet-calendar.c:555
 msgid "Calendar and tasks"
 msgstr "Kalendar i poslovi"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:165
+#: ../clock/src/applet-config.c:35 ../clock/data/messages:157
 msgid "Alarm"
 msgstr "Alarm"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Time you want to be notified:"
 msgstr ""
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
 msgstr ""
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Never"
 msgstr "Nikada"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Day"
 msgstr "Dan"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
 msgstr "Ponedeljak"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
 msgstr "Utorak"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
 msgstr "Sreda"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
 msgstr "Četvrtak"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
 msgstr "Petak"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
 msgstr "Subota"
 
-#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
 msgstr "Nedelja"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Week Day"
 msgstr "Radnim danima"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Week End"
 msgstr "Vikendom"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Month"
 msgstr "Mesec"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Repeat every:"
 msgstr "Ponovi svakih:"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "If every month, which day of the month?"
 msgstr ""
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Message you want to use to be notified:"
 msgstr ""
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Tea Time!"
 msgstr "Vreme za čaj!"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "Command to launch:"
 msgstr "Naredbu da pokrenem:"
 
-#: ../clock/src/applet-config.c:36
+#: ../clock/src/applet-config.c:35
 msgid "E.g.:"
 msgstr "Npr:"
 
-#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:180
+#: ../clock/src/applet-config.c:492 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
 msgstr ""
+
+#: ../clock/src/applet-draw.c:54
+msgid "1mn"
+msgstr "1min"
+
+#: ../clock/src/applet-draw.c:59
+msgid "1h"
+msgstr "1h"
+
+#: ../clock/src/applet-draw.c:82
+msgid "The following task was scheduled at"
+msgstr "Ovaj posao je bio zakazan za"
+
+#: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:355
+#: ../clock/src/applet-draw.c:376
+msgid "Repeat this message every:"
+msgstr "Ponovi ovu poruku svakih:"
+
+#: ../clock/src/applet-draw.c:338
+msgid "This task will begin in 15 minutes:"
+msgstr "Ovaj zadatak će početi za 15 minuta:"
+
+#: ../clock/src/applet-draw.c:352
+msgid "It's time for the following task:"
+msgstr "Vreme je za sledeći zadatak:"
+
+#: ../clock/src/applet-draw.c:373
+msgid "Today is the following anniversary:"
+msgstr "Danas je sledeća godišnjica:"
+
+#: ../clock/src/applet-draw.c:373
+msgid "Tomorrow is the following anniversary:"
+msgstr "Sutra je sledeća godišnjica:"
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
@@ -1087,8 +1157,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1110,17 +1180,17 @@ msgid ""
 "double-clicking on a day."
 msgstr ""
 
-#: ../clock/src/applet-notifications.c:92
+#: ../clock/src/applet-notifications.c:90
+msgid "Set up time and date"
+msgstr "Podesi datum i vreme"
+
+#: ../clock/src/applet-notifications.c:91
 msgid "Show today's tasks"
 msgstr "Prikaži današnje zadatke"
 
-#: ../clock/src/applet-notifications.c:93
+#: ../clock/src/applet-notifications.c:92
 msgid "Show this week's tasks"
 msgstr "Prikaži poslove za ovu nedelju"
-
-#: ../clock/src/applet-notifications.c:96
-msgid "Set up time and date"
-msgstr "Podesi datum i vreme"
 
 #: ../clock/src/applet-task-editor.c:156
 msgid "Add a new task"
@@ -1177,44 +1247,6 @@ msgstr "Frek."
 msgid "Tags"
 msgstr ""
 
-#: ../clock/src/applet-timer.c:55
-msgid "1mn"
-msgstr "1min"
-
-#: ../clock/src/applet-timer.c:60
-msgid "1h"
-msgstr "1h"
-
-#: ../clock/src/applet-timer.c:83
-msgid "The following task was scheduled at"
-msgstr "Ovaj posao je bio zakazan za"
-
-#: ../clock/src/applet-timer.c:86 ../clock/src/applet-timer.c:456
-#: ../clock/src/applet-timer.c:493
-msgid "Repeat this message every:"
-msgstr "Ponovi ovu poruku svakih:"
-
-#: ../clock/src/applet-timer.c:170
-#, fuzzy
-msgid "The following task has felt due:"
-msgstr "Ovaj posao je bio zakazan za"
-
-#: ../clock/src/applet-timer.c:453
-msgid "It's time for the following task:"
-msgstr "Vreme je za sledeći zadatak:"
-
-#: ../clock/src/applet-timer.c:470
-msgid "This task will begin in 15 minutes:"
-msgstr "Ovaj zadatak će početi za 15 minuta:"
-
-#: ../clock/src/applet-timer.c:490
-msgid "Today is the following anniversary:"
-msgstr "Danas je sledeća godišnjica:"
-
-#: ../clock/src/applet-timer.c:490
-msgid "Tomorrow is the following anniversary:"
-msgstr "Sutra je sledeća godišnjica:"
-
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
 msgstr ""
@@ -1233,7 +1265,7 @@ msgid "Configure Compiz"
 msgstr "Podesi Compiz"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
-#: ../compiz-icon/src/applet-notifications.c:180
+#: ../compiz-icon/src/applet-notifications.c:178
 msgid "Emerald Manager"
 msgstr ""
 
@@ -1255,27 +1287,27 @@ msgid ""
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
 
-#: ../compiz-icon/src/applet-notifications.c:181
+#: ../compiz-icon/src/applet-notifications.c:179
 msgid "Reload Emerald"
 msgstr "Ponovo učitaj Emerald"
 
-#: ../compiz-icon/src/applet-notifications.c:184
+#: ../compiz-icon/src/applet-notifications.c:183
 msgid "Switch Windows Manager"
 msgstr ""
 
-#: ../compiz-icon/src/applet-notifications.c:185
+#: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Decorator"
 msgstr ""
 
-#: ../compiz-icon/src/applet-notifications.c:194
+#: ../compiz-icon/src/applet-notifications.c:193
 msgid "Toggle Exposition Mode"
 msgstr ""
 
-#: ../compiz-icon/src/applet-notifications.c:195
+#: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Widget Layer"
 msgstr ""
 
-#: ../compiz-icon/src/applet-notifications.c:198
+#: ../compiz-icon/src/applet-notifications.c:196
 msgid "Toggle Show Desktop"
 msgstr ""
 
@@ -1353,7 +1385,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -1363,7 +1396,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:537
@@ -1448,21 +1482,16 @@ msgid "Send the clipboard's content"
 msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:398
-#, fuzzy
-msgid "History"
+msgid "Clear History"
 msgstr "Očisti istorijat"
 
-#: ../dnd2share/src/applet-notifications.c:472
+#: ../dnd2share/src/applet-notifications.c:463
 msgid "Get text"
 msgstr "Preuzmi tekst"
 
-#: ../dnd2share/src/applet-notifications.c:474
+#: ../dnd2share/src/applet-notifications.c:465
 msgid "Remove from history"
 msgstr "Ukloni iz istorijata"
-
-#: ../dnd2share/src/applet-notifications.c:477
-msgid "Clear History"
-msgstr "Očisti istorijat"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
@@ -1553,9 +1582,8 @@ msgid "files"
 msgstr "fajlovi"
 
 #: ../dustbin/src/applet-notifications.c:82
-#, fuzzy
 msgid "elements"
-msgstr "Klementina"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Mo"
@@ -1569,29 +1597,29 @@ msgstr ""
 msgid "Counting total size and files number..."
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:117
+#: ../dustbin/src/applet-notifications.c:136
 msgid "Show Trash (click)"
 msgstr "Prikaži đubre (klik)"
 
-#: ../dustbin/src/applet-notifications.c:118
+#: ../dustbin/src/applet-notifications.c:137
 msgid "Empty Trash (middle-click)"
 msgstr "Isparzni đubre (srednji-klik)"
 
-#: ../dustbin/src/applet-notifications.c:120
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Display dustbins information"
 msgstr "Prikaži informacije o đubretu"
 
-#: ../dustbin/src/applet-notifications.c:133
+#: ../dustbin/src/applet-notifications.c:151
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s uspešno demontiran"
 
-#: ../dustbin/src/applet-notifications.c:137
+#: ../dustbin/src/applet-notifications.c:155
 #, c-format
 msgid "failed to unmount %s"
 msgstr "neuspelo demontiranje %s"
 
-#: ../dustbin/src/applet-notifications.c:161
+#: ../dustbin/src/applet-notifications.c:179
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Demontiram ovaj diska ..."
@@ -1698,11 +1726,11 @@ msgid ""
 "  (you can invert the buttons if you prefer to shutdown on left-click)."
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:100
+#: ../logout/src/applet-notifications.c:101
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Odaberite za koliko minuta će se vaš PC prestati sa radom:"
 
-#: ../logout/src/applet-notifications.c:125
+#: ../logout/src/applet-notifications.c:126
 msgid "Lock screen"
 msgstr "Zaključaj ekran"
 
@@ -1710,7 +1738,7 @@ msgstr "Zaključaj ekran"
 msgid "Program an automatic shut-down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:159
+#: ../logout/src/applet-notifications.c:158
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Vaš računar će prestati sa radom za 1 minut."
 
@@ -1765,7 +1793,8 @@ msgstr "Određeni program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
+msgstr ""
+"Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -1858,30 +1887,20 @@ msgid ""
 "you can change it in the configuration panel of this module"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:147
+#: ../mail/src/cd-mail-applet-notifications.c:139
 msgid "Refresh a mail account"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:154
-#, fuzzy
-msgid "Refresh all (Middle-click)"
-msgstr "Sledeći (srednji-klik)"
-
-#: ../mail/src/cd-mail-applet-notifications.c:159
-#, fuzzy, c-format
-msgid "Refresh %s"
-msgstr "Osveži"
-
-#: ../mail/src/cd-mail-applet-notifications.c:165
+#: ../mail/src/cd-mail-applet-notifications.c:148
 msgid "Mark all emails as read"
 msgstr "Označi da su sve poruke pročitane"
 
-#: ../mail/src/cd-mail-applet-notifications.c:168
+#: ../mail/src/cd-mail-applet-notifications.c:151
 #, c-format
 msgid "Launch %s"
 msgstr "Pokreni %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:346
+#: ../mail/src/cd-mail-applet-notifications.c:326
 msgid "Mail"
 msgstr "Pošta"
 
@@ -1950,56 +1969,56 @@ msgid ""
 "       For Exaile 0.3, you have to activate its MPRIS plug-in"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:74
+#: ../musicPlayer/src/applet-notifications.c:70
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:172
+#: ../musicPlayer/src/applet-notifications.c:162
 msgid "Find opened player"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:179
+#: ../musicPlayer/src/applet-notifications.c:169
 msgid "Previous"
 msgstr "Prethodni"
 
-#: ../musicPlayer/src/applet-notifications.c:181
+#: ../musicPlayer/src/applet-notifications.c:171
 msgid "Play/Pause (left-click)"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:183
+#: ../musicPlayer/src/applet-notifications.c:173
 msgid "Next (middle-click)"
 msgstr "Sledeći (srednji-klik)"
 
-#: ../musicPlayer/src/applet-notifications.c:185
+#: ../musicPlayer/src/applet-notifications.c:175
 msgid "Stop"
 msgstr "Zaustavi"
 
-#: ../musicPlayer/src/applet-notifications.c:189
-msgid "Information"
-msgstr "Informacije"
-
-#: ../musicPlayer/src/applet-notifications.c:192
+#: ../musicPlayer/src/applet-notifications.c:177
 msgid "Show the Window"
 msgstr "Pokaži prozor"
 
-#: ../musicPlayer/src/applet-notifications.c:198
+#: ../musicPlayer/src/applet-notifications.c:179
 msgid "Show JumpBox"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:200
+#: ../musicPlayer/src/applet-notifications.c:181
 msgid "Toggle Shuffle"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:202
+#: ../musicPlayer/src/applet-notifications.c:183
 msgid "Toggle Repeat"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:204
+#: ../musicPlayer/src/applet-notifications.c:185
 msgid "Rate this song"
 msgstr "Oceni ovu pesmu"
+
+#: ../musicPlayer/src/applet-notifications.c:187
+msgid "Information"
+msgstr "Informacije"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2033,7 +2052,7 @@ msgid ""
 " Do you want to do it now?"
 msgstr ""
 
-#: ../netspeed/src/applet-notifications.c:76
+#: ../netspeed/src/applet-notifications.c:72
 msgid "Re-check interface"
 msgstr ""
 
@@ -2186,31 +2205,31 @@ msgstr ""
 msgid "Enter a name for this bookmark:"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:252
-msgid "Rename this bookmark"
-msgstr ""
-
-#: ../shortcuts/src/applet-notifications.c:253
+#: ../shortcuts/src/applet-notifications.c:250
 msgid "Remove this bookmark"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:259
+#: ../shortcuts/src/applet-notifications.c:251
+msgid "Rename this bookmark"
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:257
 msgid "Eject"
 msgstr "Izbaci"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:262
 msgid "Unmount (middle-click)"
 msgstr "Demontiraj (srednji-klik)"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:262
 msgid "Mount (middle-click)"
 msgstr "Montiraj (srednji-klik)"
 
-#: ../shortcuts/src/applet-notifications.c:266
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Get disk info"
 msgstr "Preuzmi info o disku"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:289
 msgid "Only folders can be bookmarked."
 msgstr ""
 
@@ -2220,8 +2239,8 @@ msgstr "prikaži miša"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2248,20 +2267,20 @@ msgstr ""
 msgid "Change screen resolution"
 msgstr "Promenite rezoluciju ekrana"
 
-#: ../showDesktop/src/applet-notifications.c:305
+#: ../showDesktop/src/applet-notifications.c:299
 msgid "Move to the Desktop"
 msgstr "Premesti na radnu površinu"
 
-#: ../showDesktop/src/applet-notifications.c:306
+#: ../showDesktop/src/applet-notifications.c:300
 msgid "Copy to the Desktop"
 msgstr "Kopiraj na radnu površinu"
 
-#: ../showDesktop/src/applet-notifications.c:307
-#: ../showDesktop/src/applet-notifications.c:311
+#: ../showDesktop/src/applet-notifications.c:301
+#: ../showDesktop/src/applet-notifications.c:305
 msgid "Link to the Desktop"
 msgstr "Poveži sa radnom površinom"
 
-#: ../showDesktop/src/applet-notifications.c:312
+#: ../showDesktop/src/applet-notifications.c:306
 msgid "Download onto the Desktop"
 msgstr "Preuzmi na radnu površinu"
 
@@ -2277,19 +2296,19 @@ msgid ""
 "Middle-click to open the images folder."
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:167
+#: ../slider/src/applet-notifications.c:166
 msgid "Play"
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:167
+#: ../slider/src/applet-notifications.c:166
 msgid "Pause"
 msgstr "Pauza"
 
-#: ../slider/src/applet-notifications.c:170
+#: ../slider/src/applet-notifications.c:169
 msgid "Open current image"
 msgstr ""
 
-#: ../slider/src/applet-notifications.c:172
+#: ../slider/src/applet-notifications.c:171
 msgid "Browse images folder"
 msgstr ""
 
@@ -2322,56 +2341,53 @@ msgstr ""
 msgid "Set new name for this item:"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:167
-msgid "Paste (drag'n'drop)"
-msgstr "Prilepi (prevuci i pusti)"
-
-#: ../stack/src/applet-notifications.c:170
-msgid "Clear the stack"
-msgstr ""
-
-#: ../stack/src/applet-notifications.c:177
-msgid "Open (click)"
-msgstr "Otvori (klik)"
-
-#: ../stack/src/applet-notifications.c:179
-#, fuzzy
-msgid "Open parent folder"
-msgstr "Otvori ovaj folder"
-
-#: ../stack/src/applet-notifications.c:181
+#: ../stack/src/applet-notifications.c:165
 msgid "Copy (middle click)"
 msgstr "Kopiraj (srednji klik)"
 
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:166
 msgid "Cut"
 msgstr "Iseci"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:167
 msgid "Rename this item"
 msgstr "Promeni naziv ovoj stavci"
 
-#: ../stack/src/applet-notifications.c:186
+#: ../stack/src/applet-notifications.c:168
 msgid "Remove this item"
 msgstr "Ukloni ovu stavku"
+
+#: ../stack/src/applet-notifications.c:172
+msgid "Open (click)"
+msgstr "Otvori (klik)"
+
+#: ../stack/src/applet-notifications.c:174
+msgid "Open folder"
+msgstr "Otvori folder"
+
+#: ../stack/src/applet-notifications.c:179
+msgid "Paste (drag'n'drop)"
+msgstr "Prilepi (prevuci i pusti)"
+
+#: ../stack/src/applet-notifications.c:180
+msgid "Clear the stack"
+msgstr ""
 
 #: ../stacks/src/applet-init.c:30
 msgid "stacks"
 msgstr ""
 
 #: ../stacks/src/applet-notifications.c:44
-#, fuzzy
 msgid "Reload Stacks"
-msgstr "Ponovo učitaj napomenu"
+msgstr ""
 
 #: ../stacks/src/applet-notifications.c:45
-#, fuzzy
 msgid "Clean local directory"
-msgstr "Putanja do direktorijuma e-pošte:"
+msgstr "Očisti lokalni direktorijum"
 
 #: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:400
+#: ../switcher/src/applet-notifications.c:393
 msgid "Current"
 msgstr "Trenutni"
 
@@ -2379,8 +2395,8 @@ msgstr "Trenutni"
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:213
 #: ../switcher/src/applet-notifications.c:225
-#: ../switcher/src/applet-notifications.c:392
-#: ../switcher/src/applet-notifications.c:452
+#: ../switcher/src/applet-notifications.c:385
+#: ../switcher/src/applet-notifications.c:450
 msgid "Desktop"
 msgstr "Radna površina"
 
@@ -2400,26 +2416,23 @@ msgid ""
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:214
-#: ../switcher/src/applet-notifications.c:273
+#: ../switcher/src/applet-notifications.c:272
 msgid "Rename this workspace"
 msgstr "Promeni naziv ovog radnog prostora"
 
-#: ../switcher/src/applet-notifications.c:260
-#, fuzzy
-msgid "Add a workspace"
-msgstr "Dodaj napomenu"
+#: ../switcher/src/applet-notifications.c:259
+msgid "Add a desktop"
+msgstr "Dodaj radnu površinu"
 
-#: ../switcher/src/applet-notifications.c:264
-#, fuzzy
-msgid "Remove last workspace"
-msgstr "Promeni naziv ovog radnog prostora"
+#: ../switcher/src/applet-notifications.c:263
+msgid "Remove last desktop"
+msgstr "Ukloni poslednju radnu površinu"
 
-#: ../switcher/src/applet-notifications.c:280
-#, fuzzy
-msgid "Move current workspace to this workspace"
+#: ../switcher/src/applet-notifications.c:279
+msgid "Move current Desktop to this Desktop"
 msgstr "Premesti trenutnu radnu površinu na ovu radnu površinu"
 
-#: ../switcher/src/applet-notifications.c:285
+#: ../switcher/src/applet-notifications.c:284
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -2427,21 +2440,21 @@ msgstr ""
 "Ovo će premestiti sve prozore sa trenutne radne površine na onu na kju ste "
 "kliknuli."
 
-#: ../switcher/src/applet-notifications.c:294
+#: ../switcher/src/applet-notifications.c:290
 msgid "Windows List"
 msgstr "Lista prozora"
 
-#: ../switcher/src/applet-notifications.c:299 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:295 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "Prikaži radnu površinu"
 
-#: ../switcher/src/applet-notifications.c:306 ../showDesktop/data/messages:111
+#: ../switcher/src/applet-notifications.c:302 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125 ../switcher/data/messages:107
 msgid "Expose all the desktops (Compiz)"
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:314
+#: ../switcher/src/applet-notifications.c:308
 msgid "Refresh"
 msgstr "Osveži"
 
@@ -2498,16 +2511,16 @@ msgid ""
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 
-#: ../terminal/src/terminal-menu-functions.c:79
+#: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:374
 msgid "New Tab"
 msgstr "Novi jezičak"
 
-#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-menu-functions.c:79
 msgid "Rename current Tab"
 msgstr "Promeni naziv trenutnog jezička"
 
-#: ../terminal/src/terminal-menu-functions.c:81
+#: ../terminal/src/terminal-menu-functions.c:80
 msgid "Close current Tab"
 msgstr "Zatvori trenutni jezičak"
 
@@ -2572,39 +2585,39 @@ msgstr "Traži:"
 msgid "Search for tag:"
 msgstr ""
 
-#: ../tomboy/src/tomboy-notifications.c:195
-msgid "Add a note"
-msgstr "Dodaj napomenu"
-
-#: ../tomboy/src/tomboy-notifications.c:199
-msgid "Delete this note"
-msgstr "Obriši ovu napomenu"
-
-#: ../tomboy/src/tomboy-notifications.c:202
+#: ../tomboy/src/tomboy-notifications.c:186
 msgid "Reload notes"
 msgstr "Ponovo učitaj napomenu"
 
-#: ../tomboy/src/tomboy-notifications.c:208
+#: ../tomboy/src/tomboy-notifications.c:187
+msgid "Add a note"
+msgstr "Dodaj napomenu"
+
+#: ../tomboy/src/tomboy-notifications.c:193
+msgid "Delete this note"
+msgstr "Obriši ovu napomenu"
+
+#: ../tomboy/src/tomboy-notifications.c:196
 msgid "Search"
 msgstr "Pretraga"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:197
 msgid "Search for tag"
 msgstr ""
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:199
 msgid "Search for today's note"
 msgstr "Traži današnju napomenu"
 
-#: ../tomboy/src/tomboy-notifications.c:212
+#: ../tomboy/src/tomboy-notifications.c:200
 msgid "Search for this week's note"
 msgstr "Traži ovonedeljnu napomenu"
 
-#: ../tomboy/src/tomboy-notifications.c:213
+#: ../tomboy/src/tomboy-notifications.c:201
 msgid "Search for next week's note"
 msgstr "Traži napomenu za iduću nedelju"
 
-#: ../tomboy/src/tomboy-notifications.c:223
+#: ../tomboy/src/tomboy-notifications.c:211
 msgid "Reset marks"
 msgstr ""
 
@@ -2690,11 +2703,11 @@ msgstr "dec."
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Podaci su povraćeni, malo sačekajte, molim."
 
-#: ../weather/src/applet-notifications.c:85
+#: ../weather/src/applet-notifications.c:84
 msgid "Reload now"
 msgstr "Sada ponovo učitati"
 
-#: ../weather/src/applet-notifications.c:110
+#: ../weather/src/applet-notifications.c:108
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -2702,40 +2715,40 @@ msgstr ""
 "Nema podataka\n"
 " da li ste povezani?"
 
-#: ../weather/src/applet-notifications.c:129
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:127
+#: ../weather/src/applet-notifications.c:163
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: ../weather/src/applet-notifications.c:130
+#: ../weather/src/applet-notifications.c:128
 msgid "Precipitation probability"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:131
-#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:129
+#: ../weather/src/applet-notifications.c:164
 msgid "Wind"
 msgstr "Vetar"
 
-#: ../weather/src/applet-notifications.c:132
-#: ../weather/src/applet-notifications.c:167
+#: ../weather/src/applet-notifications.c:130
+#: ../weather/src/applet-notifications.c:165
 msgid "Humidity"
 msgstr "Vlažnost"
 
-#: ../weather/src/applet-notifications.c:133
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:131
+#: ../weather/src/applet-notifications.c:166
 msgid "Sunrise"
 msgstr "Sunce izlazi"
 
-#: ../weather/src/applet-notifications.c:133
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:131
+#: ../weather/src/applet-notifications.c:166
 msgid "Sunset"
 msgstr "Sunce zalazi"
 
-#: ../weather/src/applet-notifications.c:141
+#: ../weather/src/applet-notifications.c:139
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Podaci su preuzeti, molim vas da pokušate kasnije"
 
-#: ../weather/src/applet-notifications.c:151
+#: ../weather/src/applet-notifications.c:149
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -2743,11 +2756,11 @@ msgstr ""
 "Nema podataka\n"
 "Pokušavam ponovo ..."
 
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:163
 msgid "Feels like"
 msgstr "Nešto kao"
 
-#: ../weather/src/applet-notifications.c:167
+#: ../weather/src/applet-notifications.c:165
 msgid "Pressure"
 msgstr "Pritisak"
 
@@ -2842,10 +2855,10 @@ msgstr "Rotacija"
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
 #: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
-#: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
-#: ../Scooby-Do/data/messages:19 ../icon-effect/data/messages:101
-#: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
-#: ../icon-effect/data/messages:167 ../icon-effect/data/messages:187
+#: ../Scooby-Do/data/messages:17 ../Scooby-Do/data/messages:21
+#: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
+#: ../icon-effect/data/messages:145 ../icon-effect/data/messages:167
+#: ../icon-effect/data/messages:187
 msgid "In ms."
 msgstr "U ms."
 
@@ -3122,7 +3135,7 @@ msgstr "Naziv doka kom pripada:"
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
-#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:15
+#: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
 #: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
 #: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:13
 #: ../clock/data/messages:15 ../compiz-icon/data/messages:11
@@ -3145,24 +3158,23 @@ msgstr "Priručnik apleta"
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
-#: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:1
-#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:89
-#: ../Toons/data/messages:89 ../Xgamma/data/messages:91
-#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
-#: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:87
-#: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:87
-#: ../logout/data/messages:91 ../mail/data/messages:87
-#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:89
-#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
-#: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
-#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
-#: ../slider/data/messages:89 ../stack/data/messages:93
-#: ../stacks/data/messages:89 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:83
-#: ../template/data/messages:91 ../terminal/data/messages:91
-#: ../tomboy/data/messages:101 ../weather/data/messages:89
-#: ../weather/data/messages:91 ../weblets/data/messages:91
-#: ../wifi/data/messages:89
+#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
+#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
+#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:89
+#: ../clock/data/messages:91 ../compiz-icon/data/messages:87
+#: ../dnd2share/data/messages:87 ../dustbin/data/messages:87
+#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:91
+#: ../mail/data/messages:87 ../motion-blur/data/messages:1
+#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
+#: ../powermanager/data/messages:89 ../quick-browser/data/messages:93
+#: ../shortcuts/data/messages:91 ../show-mouse/data/messages:1
+#: ../showDesktop/data/messages:95 ../slider/data/messages:89
+#: ../stack/data/messages:93 ../stacks/data/messages:89
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:83 ../template/data/messages:91
+#: ../terminal/data/messages:91 ../tomboy/data/messages:101
+#: ../weather/data/messages:89 ../weather/data/messages:91
+#: ../weblets/data/messages:91 ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Podešavanje"
 
@@ -3503,7 +3515,7 @@ msgstr "Vidljivost"
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
-#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:39
+#: ../Scooby-Do/data/messages:27 ../Status-Notifier/data/messages:39
 #: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
 #: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:37
 #: ../clock/data/messages:39 ../compiz-icon/data/messages:35
@@ -3772,7 +3784,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:65 ../System-Monitor/data/messages:63
 #: ../Toons/data/messages:63 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:63 ../clock/data/messages:65
-#: ../clock/data/messages:157 ../compiz-icon/data/messages:61
+#: ../clock/data/messages:149 ../compiz-icon/data/messages:61
 #: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:61
 #: ../keyboard-indicator/data/messages:113 ../logout/data/messages:65
@@ -4256,7 +4268,8 @@ msgid "Background"
 msgstr "Pozadina"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -4351,7 +4364,7 @@ msgstr "Veličina"
 msgid "Sort folders before files?"
 msgstr "Sortirati foldere pre fajlova?"
 
-#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:101
+#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:103
 #: ../quick-browser/data/messages:103
 msgid "Show hidden files?"
 msgstr "Prikazati skrivene fajlove?"
@@ -4836,204 +4849,203 @@ msgstr "uobičajen"
 msgid "big"
 msgstr "velik"
 
-#: ../Remote-Control/data/messages:3
-#, fuzzy
-msgid "Shortkey to trigger the applet:"
-msgstr "Prečica za prikaz/skrivanje menija:"
-
-#: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
-msgid "Animation of the current icon :"
-msgstr "Animacija trenutne ikone:"
-
-#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:21
-msgid "Duration of the stop animation :"
-msgstr ""
-
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to enable/disable the finder mode:"
 msgstr ""
 
 #: ../Scooby-Do/data/messages:5
+msgid "Shortkey to enable/disable the navigation mode:"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 msgstr ""
 
-#: ../Scooby-Do/data/messages:7
+#: ../Scooby-Do/data/messages:9
 msgid "Maximum number of results :"
 msgstr "Maksimalan broj rezultata:"
 
-#: ../Scooby-Do/data/messages:9
+#: ../Scooby-Do/data/messages:11
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
 msgstr ""
 
-#: ../Scooby-Do/data/messages:11
+#: ../Scooby-Do/data/messages:13
 msgid "Number of lines to display :"
 msgstr "Broj linija za prikaz:"
 
-#: ../Scooby-Do/data/messages:13
+#: ../Scooby-Do/data/messages:15
 msgid "Animations"
 msgstr "Animacije"
 
-#: ../Scooby-Do/data/messages:17
+#: ../Scooby-Do/data/messages:19
 msgid "Duration of the appearance animation :"
 msgstr "Dužina trajanja animacije:"
 
-#: ../Scooby-Do/data/messages:27
+#: ../Scooby-Do/data/messages:23
+msgid "Duration of the stop animation :"
+msgstr ""
+
+#: ../Scooby-Do/data/messages:25
+msgid "Animation of the current icon :"
+msgstr "Animacija trenutne ikone:"
+
+#: ../Scooby-Do/data/messages:29
 msgid "Font used to display what you type:"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:29
+#: ../Scooby-Do/data/messages:31
 msgid "Color of the text's frame  :"
 msgstr "Boja tekstualnog okvira:"
 
-#: ../Scooby-Do/data/messages:31
+#: ../Scooby-Do/data/messages:33
 msgid "Font size, relative to the dock size:"
 msgstr "Veličina fonta, relativna u odnosu na veličinu doka:"
 
-#: ../Scooby-Do/data/messages:33
+#: ../Scooby-Do/data/messages:35
 msgid "between 1 and 9, the higher, the bigger."
 msgstr "između 1 i 9, što više, to veće."
 
-#: ../Scooby-Do/data/messages:35
+#: ../Scooby-Do/data/messages:37
 msgid "Text size:"
 msgstr "Veličina teksta:"
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:103
+#: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
 msgid "Outline text?"
 msgstr "Tekst sa konturom?"
 
-#: ../Scooby-Do/data/messages:39 ../clock/data/messages:145
+#: ../Scooby-Do/data/messages:41 ../clock/data/messages:145
 msgid "Text colour:"
 msgstr "Boja teksta:"
 
-#: ../Scooby-Do/data/messages:41
+#: ../Scooby-Do/data/messages:43
 msgid "Character background colour:"
 msgstr "Boja pozadine znaka:"
 
-#: ../Scooby-Do/data/messages:43
+#: ../Scooby-Do/data/messages:45
 msgid "Write text on the top of the dock?"
 msgstr "Ispisati tekst preko doka?"
 
-#: ../Scooby-Do/data/messages:45
+#: ../Scooby-Do/data/messages:47
 msgid "Favorite applications"
 msgstr "Omiljeni programi"
 
-#: ../Scooby-Do/data/messages:47
+#: ../Scooby-Do/data/messages:49
 msgid "FAvorite applications starting with 'a' :"
 msgstr "Omiljeni programi koji počinju na 'a':"
 
-#: ../Scooby-Do/data/messages:49
+#: ../Scooby-Do/data/messages:51
 msgid "Favorite application starting with 'b' :"
 msgstr "Omiljeni programi koji počinju na 'b':"
 
-#: ../Scooby-Do/data/messages:51
+#: ../Scooby-Do/data/messages:53
 msgid "Favorite application(s) starting with 'c' :"
 msgstr "Omiljeni programi koji počinju na 'c':"
 
-#: ../Scooby-Do/data/messages:53
+#: ../Scooby-Do/data/messages:55
 msgid "Favorite application(s starting with 'd' :"
 msgstr "Omiljeni programi koji počinju na 'd':"
 
-#: ../Scooby-Do/data/messages:55
+#: ../Scooby-Do/data/messages:57
 msgid "Favorite application(s) starting with 'e' :"
 msgstr "Omiljeni programi koji počinju na 'e':"
 
-#: ../Scooby-Do/data/messages:57
+#: ../Scooby-Do/data/messages:59
 msgid "Favorite application(s) starting with 'f' :"
 msgstr "Omiljeni programi koji počinju na 'f':"
 
-#: ../Scooby-Do/data/messages:59
+#: ../Scooby-Do/data/messages:61
 msgid "Favorite application(s) starting with 'g' :"
 msgstr "Omiljeni programi koji počinju na 'g':"
 
-#: ../Scooby-Do/data/messages:61
+#: ../Scooby-Do/data/messages:63
 msgid "Favorite application(s) starting with 'h' :"
 msgstr "Omiljeni programi koji počinju na 'h':"
 
-#: ../Scooby-Do/data/messages:63
+#: ../Scooby-Do/data/messages:65
 msgid "Favorite application(s) starting with 'i' :"
 msgstr "Omiljeni programi koji počinju na 'i':"
 
-#: ../Scooby-Do/data/messages:65
+#: ../Scooby-Do/data/messages:67
 msgid "Favorite application(s) starting with 'j' :"
 msgstr "Omiljeni programi koji počinju na 'j':"
 
-#: ../Scooby-Do/data/messages:67
+#: ../Scooby-Do/data/messages:69
 msgid "Favorite application(s) starting with 'k' :"
 msgstr "Omiljeni programi koji počinju na 'k':"
 
-#: ../Scooby-Do/data/messages:69
+#: ../Scooby-Do/data/messages:71
 msgid "Favorite application(s) starting with 'l' :"
 msgstr "Omiljeni programi koji počinju na 'l':"
 
-#: ../Scooby-Do/data/messages:71
+#: ../Scooby-Do/data/messages:73
 msgid "Favorite application(s) starting with 'm' :"
 msgstr "Omiljeni programi koji počinju na 'm':"
 
-#: ../Scooby-Do/data/messages:73
+#: ../Scooby-Do/data/messages:75
 msgid "Favorite application(s) starting with 'n' :"
 msgstr "Omiljeni programi koji počinju na 'n':"
 
-#: ../Scooby-Do/data/messages:75
+#: ../Scooby-Do/data/messages:77
 msgid "Favorite application(s) starting with 'o' :"
 msgstr "Omiljeni programi koji počinju na 'o':"
 
-#: ../Scooby-Do/data/messages:77
+#: ../Scooby-Do/data/messages:79
 msgid "Favorite application(s) starting with 'p' :"
 msgstr "Omiljeni programi koji počinju na 'p':"
 
-#: ../Scooby-Do/data/messages:79
+#: ../Scooby-Do/data/messages:81
 msgid "Favorite application(s) starting with 'q' :"
 msgstr "Omiljeni programi koji počinju na 'q':"
 
-#: ../Scooby-Do/data/messages:81
+#: ../Scooby-Do/data/messages:83
 msgid "Favorite application(s) starting with 'r' :"
 msgstr "Omiljeni programi koji počinju na 'r':"
 
-#: ../Scooby-Do/data/messages:83
+#: ../Scooby-Do/data/messages:85
 msgid "Favorite application(s) starting with 's' :"
 msgstr "Omiljeni programi koji počinju na 's':"
 
-#: ../Scooby-Do/data/messages:85
+#: ../Scooby-Do/data/messages:87
 msgid "Favorite application(s) starting with 't' :"
 msgstr "Omiljeni programi koji počinju na 't':"
 
-#: ../Scooby-Do/data/messages:87
+#: ../Scooby-Do/data/messages:89
 msgid "Favorite application(s) starting with 'u' :"
 msgstr "Omiljeni programi koji počinju na 'u':"
 
-#: ../Scooby-Do/data/messages:89
+#: ../Scooby-Do/data/messages:91
 msgid "Favorite application(s) starting with 'v' :"
 msgstr "Omiljeni programi koji počinju na 'v':"
 
-#: ../Scooby-Do/data/messages:91
+#: ../Scooby-Do/data/messages:93
 msgid "Favorite application(s) starting with 'w' :"
 msgstr "Omiljeni programi koji počinju na 'w':"
 
-#: ../Scooby-Do/data/messages:93
+#: ../Scooby-Do/data/messages:95
 msgid "Favorite application(s) starting with 'x' :"
 msgstr "Omiljeni programi koji počinju na 'x':"
 
-#: ../Scooby-Do/data/messages:95
+#: ../Scooby-Do/data/messages:97
 msgid "Favorite application(s) starting with 'y' :"
 msgstr "Omiljeni programi koji počinju na 'y':"
 
-#: ../Scooby-Do/data/messages:97
+#: ../Scooby-Do/data/messages:99
 msgid "Favorite application(s) starting with 'z' :"
 msgstr "Omiljeni programi koji počinju na 'z':"
 
-#: ../Scooby-Do/data/messages:107
+#: ../Scooby-Do/data/messages:109
 msgid "Propose some web search engines ?"
 msgstr "Predloži neke internet pretraživače?"
 
-#: ../Scooby-Do/data/messages:109
+#: ../Scooby-Do/data/messages:111
 msgid "It can launch commands and even do some calculations."
 msgstr ""
 
-#: ../Scooby-Do/data/messages:113
+#: ../Scooby-Do/data/messages:115
 msgid "Help"
 msgstr "Pomoć"
 
@@ -5409,45 +5421,27 @@ msgid "Font:"
 msgstr "Font:"
 
 #: ../clock/data/messages:147
-#, fuzzy
-msgid "Layout of the text:"
-msgstr "Relativna veličina teksta:"
-
-#: ../clock/data/messages:149
-#, fuzzy
-msgid "Automatic"
-msgstr "Prilagođenje"
-
-#: ../clock/data/messages:151
-msgid "On 1 line"
-msgstr ""
-
-#: ../clock/data/messages:153
-msgid "On 2 lines"
-msgstr ""
-
-#: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
 msgstr "Na tekst primeni odnos:"
 
-#: ../clock/data/messages:159
+#: ../clock/data/messages:151
 msgid "Configure time and date"
 msgstr "Podesi vreme i datum"
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:153
 msgid "Leave empty to use the default command."
 msgstr ""
 
-#: ../clock/data/messages:163
+#: ../clock/data/messages:155
 msgid "Specific command to run:"
 msgstr ""
 
-#: ../clock/data/messages:167
+#: ../clock/data/messages:159
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 
-#: ../clock/data/messages:169
+#: ../clock/data/messages:161
 msgid "Add or remove an alarm:"
 msgstr "Dodaj ili ukloni alarm:"
 
@@ -6037,7 +6031,8 @@ msgid "Space between icons:"
 msgstr "Razmak između ikona:"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:113
@@ -6165,7 +6160,8 @@ msgid "Colours"
 msgstr "Boje"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6396,7 +6392,8 @@ msgid "Check mail account on startup?"
 msgstr "Proveri poštu nakon pokretanja?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:125
@@ -6432,7 +6429,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -6468,9 +6466,8 @@ msgid "Exaile 0.3"
 msgstr ""
 
 #: ../musicPlayer/data/messages:107
-#, fuzzy
 msgid "GMusicBrowser"
-msgstr "Brzi pregledač"
+msgstr ""
 
 #: ../musicPlayer/data/messages:109
 msgid "Guayadeque"
@@ -7073,10 +7070,19 @@ msgstr "Tip"
 msgid "Manual order"
 msgstr ""
 
+#: ../stack/data/messages:135
+msgid ""
+"It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+"clipboard"
+msgstr ""
+
+#: ../stack/data/messages:137
+msgid "When copying/pasting/cutting, use the selection clipboard?"
+msgstr ""
+
 #: ../stacks/data/messages:91
-#, fuzzy
 msgid "Directory & Options"
-msgstr "Ukrašavanja"
+msgstr "Direktorijum i opcije"
 
 #: ../stacks/data/messages:93
 msgid ""
@@ -7096,7 +7102,7 @@ msgstr ""
 
 #: ../stacks/data/messages:99
 msgid "Monitored Directories :"
-msgstr ""
+msgstr "Nadgledani direktorijumi:"
 
 #: ../stacks/data/messages:101
 msgid ""
@@ -7104,22 +7110,20 @@ msgid ""
 msgstr ""
 
 #: ../stacks/data/messages:103
-#, fuzzy
 msgid "List hidden files ?"
-msgstr "Prikazati skrivene fajlove?"
+msgstr "Prikazati sakrivene fajlove?"
 
 #: ../stacks/data/messages:105
 msgid "Separate different directories with separators ?"
-msgstr ""
+msgstr "Odvojiti različite direktorijume odvajačem?"
 
 #: ../stacks/data/messages:111
 msgid "Eg: image, text, video, audio, application..."
-msgstr ""
+msgstr "Npr: slika, teks, video, audio, program ..."
 
 #: ../stacks/data/messages:117
-#, fuzzy
 msgid "Name of the view used for the sub-dock :"
-msgstr "Naziv slike za ikonu 'stop':"
+msgstr ""
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -7446,7 +7450,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7527,18 +7532,3 @@ msgstr "Informacije o sirovom signalu"
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
-
-#~ msgid "Hey, you there!"
-#~ msgstr "Hej ti tamo!"
-
-#~ msgid "Quick launch"
-#~ msgstr "Brzi pokretač"
-
-#~ msgid "Open folder"
-#~ msgstr "Otvori folder"
-
-#~ msgid "Add a desktop"
-#~ msgstr "Dodaj radnu površinu"
-
-#~ msgid "Remove last desktop"
-#~ msgstr "Ukloni poslednju radnu površinu"

@@ -6,13 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-03 05:15+0000\n"
-"Last-Translator: Sam Samuels <gemini_sam_samuels@hotmail.co.uk>\n"
+"POT-Creation-Date: 2010-09-13 00:36+0000\n"
+"PO-Revision-Date: 2010-09-18 01:41+0000\n"
+"Last-Translator: Kauan Mocelin <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-04 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-09-18 05:35+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -190,7 +191,7 @@ msgstr ""
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
-msgstr ""
+msgstr "Histórico da área de transferência"
 
 #: ../Clipper/src/applet-notifications.c:101
 msgid ""
@@ -223,7 +224,8 @@ msgstr "O módulo foi adicionado, mas não pode ser executado."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "O mini-aplicativo '%s' foi atualizado com sucesso e automaticamente "
 "recarregado"
@@ -263,7 +265,7 @@ msgstr "Mb"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
-msgstr ""
+msgstr "Diretórios"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
@@ -282,7 +284,7 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
-msgstr ""
+msgstr "Pasta vazia ou ilegível."
 
 #: ../Folders/src/applet-notifications.c:193
 #, c-format
@@ -297,10 +299,12 @@ msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
+"Atenção : não foi possível deletar este arquivo.\n"
+"Verifique se você tem permissão de escrita no mesmo."
 
 #: ../Folders/src/applet-notifications.c:216
 msgid "Rename to:"
-msgstr ""
+msgstr "Renomear para :"
 
 #: ../Folders/src/applet-notifications.c:223
 #, c-format
@@ -309,10 +313,13 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"Atenção : não foi possível renomear %s.\n"
+"Verifique se você tem permissão de escrita,\n"
+" e se o nome desejado já não existe."
 
 #: ../Folders/src/applet-notifications.c:262
 msgid "Enter a file name:"
-msgstr ""
+msgstr "Digite um nome de arquivo:"
 
 #: ../Folders/src/applet-notifications.c:270
 #, c-format
@@ -324,36 +331,35 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:322
 msgid "Open the folder (middle-click)"
-msgstr ""
+msgstr "Abra a pasta (clicar com botão do meio do mouse)"
 
 #: ../Folders/src/applet-notifications.c:328
 msgid "Rename this file"
-msgstr ""
+msgstr "Renomear este arquivo"
 
 #: ../Folders/src/applet-notifications.c:329
 msgid "Delete this file"
-msgstr ""
+msgstr "Deletar este arquivo"
 
 #: ../Folders/src/applet-notifications.c:330
 msgid "Move this file"
-msgstr ""
+msgstr "Mover este arquivo"
 
 #: ../Folders/src/applet-notifications.c:336
 msgid "Open with"
-msgstr ""
+msgstr "Abrir com"
 
 #: ../Folders/src/applet-notifications.c:370
 msgid "Properties"
-msgstr ""
+msgstr "Propriedades"
 
 #: ../Folders/src/applet-notifications.c:373
 msgid "Create a new file"
-msgstr ""
+msgstr "Criar um arquivo novo"
 
 #: ../Folders/src/applet-notifications.c:374
-#, fuzzy
 msgid "Create a new folder"
-msgstr "Navegar na pasta de imagens"
+msgstr "Criar uma nova pasta"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -374,9 +380,8 @@ msgid "Applications Menu"
 msgstr "Menu Aplicativos"
 
 #: ../GMenu/src/applet-notifications.c:75
-#, fuzzy
 msgid "Quick launch (Middle-click)"
-msgstr "Lançador rápido"
+msgstr "Lançar rapidamente (clicar com botão do meio do mouse)"
 
 #: ../GMenu/src/applet-notifications.c:77
 msgid "Configure menu"
@@ -984,7 +989,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-init.c:50
 msgid "Screen Luminosity"
-msgstr ""
+msgstr "Luminosidade da tela"
 
 #: ../Xgamma/src/applet-notifications.c:36 ../Xgamma/src/applet-xgamma.c:159
 msgid "Set up gamma:"
@@ -1053,14 +1058,12 @@ msgid "Adjust channels"
 msgstr "Ajustar canais"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Unmute (middle-click)"
-msgstr "Próximo (botão do meio)"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "Mute (middle-click)"
-msgstr "Próximo (botão do meio)"
+msgstr "Mudo (clicar com botão do meio do mouse)"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
@@ -1092,11 +1095,11 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: ../clock/src/applet-config.c:36
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
@@ -1128,15 +1131,15 @@ msgstr "Domingo"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week Day"
-msgstr ""
+msgstr "Dia da Semana"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week End"
-msgstr ""
+msgstr "Final de Semana"
 
 #: ../clock/src/applet-config.c:36
 msgid "Month"
-msgstr ""
+msgstr "Mês"
 
 #: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
@@ -1152,11 +1155,11 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
-msgstr ""
+msgstr "Hora do Chá!"
 
 #: ../clock/src/applet-config.c:36
 msgid "Command to launch:"
-msgstr ""
+msgstr "Comando para lançar:"
 
 #: ../clock/src/applet-config.c:36
 msgid "E.g.:"
@@ -1176,8 +1179,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1302,9 +1305,8 @@ msgid "Repeat this message every:"
 msgstr "Repita esta mensagem a cada:"
 
 #: ../clock/src/applet-timer.c:170
-#, fuzzy
 msgid "The following task has felt due:"
-msgstr "A seguinte tarefa foi agendada às"
+msgstr ""
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
@@ -1467,7 +1469,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
 "está ativa."
@@ -1481,7 +1484,8 @@ msgstr ""
 "Pressione CTRL+v para colar sua URL em qualquer lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Por favor, aguarde o upload atual ser terminado antes de começar um novo."
 
@@ -1588,9 +1592,8 @@ msgid "Send the clipboard's content"
 msgstr "Evniar o conteúdo da área de transferência"
 
 #: ../dnd2share/src/applet-notifications.c:398
-#, fuzzy
 msgid "History"
-msgstr "Limpar Histórico"
+msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -2041,14 +2044,13 @@ msgid "Refresh a mail account"
 msgstr "Atualizar uma conta de e-mail"
 
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#, fuzzy
 msgid "Refresh all (Middle-click)"
-msgstr "Próximo (botão do meio)"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:159
-#, fuzzy, c-format
+#, c-format
 msgid "Refresh %s"
-msgstr "Atualizar"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
@@ -2445,8 +2447,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este mini-aplicativo desenha algumas animações ao redor do cursor quando "
 "mesmo estiver dentro do dock/desklet."
@@ -2585,9 +2587,8 @@ msgid "Open (click)"
 msgstr "Abrir (clique)"
 
 #: ../stack/src/applet-notifications.c:179
-#, fuzzy
 msgid "Open parent folder"
-msgstr "Abrir esta pasta"
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:181
 msgid "Copy (middle click)"
@@ -3678,8 +3679,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:27 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
@@ -4590,7 +4591,8 @@ msgid "Background"
 msgstr "Plano de fundo"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Você pode ter planos de fundo mais atrativos usando as decorações de Desklet"
 
@@ -4722,8 +4724,8 @@ msgstr "Deixe em branco para não usar esse filtro."
 #: ../GMenu/data/messages:109
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Mostrar apenas os arquivos que estão dentro desta pasta e sua(s) sub-pasta"
-"(s):"
+"Mostrar apenas os arquivos que estão dentro desta pasta e sua(s) sub-"
+"pasta(s):"
 
 #: ../GMenu/data/messages:111
 msgid "in days. Set 0 if unsued."
@@ -4731,7 +4733,8 @@ msgstr "em dia(s). Defina 0 para não usar esse filtro."
 
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Mostrar apenas os arquivos cuja data da última modificação é inferior;"
+msgstr ""
+"Mostrar apenas os arquivos cuja data da última modificação é inferior;"
 
 #: ../Messaging-Menu/data/messages:89
 msgid ""
@@ -5179,9 +5182,8 @@ msgid "big"
 msgstr "grande"
 
 #: ../Remote-Control/data/messages:3
-#, fuzzy
 msgid "Shortkey to trigger the applet:"
-msgstr "Atalho para mostrar / ocultar o desklets:"
+msgstr ""
 
 #: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -5404,8 +5406,8 @@ msgid ""
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Dependendo do seu Gerenciador de Janelas, você pode movê-lo com Alt + Clique "
-"com botão esquerdo. Valores negativos são contados a partir da parte direita/"
-"inferior da tela."
+"com botão esquerdo. Valores negativos são contados a partir da parte "
+"direita/inferior da tela."
 
 #: ../Status-Notifier/data/messages:93
 msgid "Display items in compact mode?"
@@ -5774,19 +5776,16 @@ msgid "Font:"
 msgstr "Fonte:"
 
 #: ../clock/data/messages:147
-#, fuzzy
 msgid "Layout of the text:"
-msgstr "Tamanho relativo do texto:"
+msgstr ""
 
 #: ../clock/data/messages:149
-#, fuzzy
 msgid "Automatic"
-msgstr "Personalisação"
+msgstr ""
 
 #: ../clock/data/messages:151
-#, fuzzy
 msgid "On 1 line"
-msgstr "No ícones"
+msgstr ""
 
 #: ../clock/data/messages:153
 msgid "On 2 lines"
@@ -6425,7 +6424,8 @@ msgid "Space between icons:"
 msgstr "Espaço entre ícones :"
 
 #: ../dock-rendering/data/messages:109
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa que a onda é totalmente plana, 1 fica que a onda é idêntica a "
 "outros pontos de vista."
@@ -6560,7 +6560,8 @@ msgid "Colours"
 msgstr "Cores"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ele alterará ligeiramente as cores, assim você pode ter que modificá-las."
 
@@ -6801,7 +6802,8 @@ msgid "Check mail account on startup?"
 msgstr "Verificar conta de email na inicialização?"
 
 #: ../mail/data/messages:123
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se marcado, o número de e-mails será mostrado mesmo se não houverem e-mails."
 
@@ -6839,7 +6841,8 @@ msgid "Blur amount:"
 msgstr "Tamanho do rastro"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Deixe em branco para mostrar o nome do reproduzir de aúdio que está sendo "
 "controlado."
@@ -6936,8 +6939,8 @@ msgstr "Clique para reproduzir/pausar, e clique do meio para próximo"
 #: ../musicPlayer/data/messages:133
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
-"Clique para mostrar/ocultar o reprodutor, e clique do meio para reproduzir/"
-"pausar"
+"Clique para mostrar/ocultar o reprodutor, e clique do meio para "
+"reproduzir/pausar"
 
 #: ../musicPlayer/data/messages:135
 msgid "Action on music change"
@@ -7485,7 +7488,8 @@ msgstr "Ex.: imagem, texto, vídeo, áudio, aplicação,..."
 
 #: ../stack/data/messages:123 ../stacks/data/messages:113
 msgid "Here you can specify a list of MIME types to ignore:"
-msgstr "Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
+msgstr ""
+"Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
 
 #: ../stack/data/messages:125
 msgid "Sort items by:"
@@ -7883,7 +7887,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posição da barra de rolagem vertical em pixels"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Isto permite que você dê um clique direito sobre o desklet  para exibir o "
 "pop-up do menu do Cairo-Dock."
@@ -7973,103 +7978,6 @@ msgstr "Informações de Sinal Direto"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
-#~ msgid "Hey, you there!"
-#~ msgstr "Olá, você está aí!"
-
-#~ msgid ""
-#~ "This plug-in allows you to make different actions directly from the "
-#~ "keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "\n"
-#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
-#~ "    Type what you want to search, the results will be displayed in real "
-#~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
-#~ "    Use the up/down arrows to navigate inside the list,\n"
-#~ "    and use the left/right arrows to enter into a category, or to display "
-#~ "more actions (when a little arrow is drawn next to text).\n"
-#~ "    Once inside a category, you can filter the results by typing some "
-#~ "letters.\n"
-#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-#~ "results opened.\n"
-#~ "\n"
-#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
-#~ "    use the arrows to navigate into the docks and sub-docks,\n"
-#~ "    or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
-#~ "Escape or the same shortkey will cancel."
-#~ msgstr ""
-#~ "Este plug-in permite você fazer diferentes ações diretamente do teclado.\n"
-#~ "Existem 2 modos, cada um sendo acionado por um atalho do teclado:\n"
-#~ "- o modo localizador (atalho padrão: Ctrl + Enter):\n"
-#~ "    Permite a você encontrar e lançar aplicativos, arquivos, arquivos "
-#~ "recentes, favoritos do Firefox, comandos, e até cálculos.\n"
-#~ "    Digite o que quiser para procurar, os resultados serão mostrados em "
-#~ "tempo real.\n"
-#~ "    Os primeiros resultados de cada categoria serão mostrados na lista "
-#~ "principal.\n"
-#~ "    Use as setas para cima/baixo para navegar pela lista,\n"
-#~ "    e as setas para esquerda/direita para entrar em uma categoria, ou "
-#~ "para mostrar mais ações (quando uma pequena seta é desenhada próximo ao "
-#~ "texto).\n"
-#~ "    Uma vez dentro da categoria, você pode filtrar os resultados "
-#~ "digitando algumas letras.\n"
-#~ "    Pressione Enter para validar, mantenha o Shift ou Alt pressionados "
-#~ "para que a lista de resultados fique aberta.\n"
-#~ "\n"
-#~ "- o modo de navegação (atalho padrão: Ctrl + F9):\n"
-#~ "    use as setas para navegar nos docks e sub-docks.\n"
-#~ "    ou digite o nome do lançador e pressione Tab para pular "
-#~ "automaticamente para o próximo lançador adequado\n"
-#~ "    pressione Enter para clicar no ícone, Shift + Enter para Shift + "
-#~ "Clique, Alt + Enter para clicar com o botão do meio e Ctrl + Enter para "
-#~ "clicar com o botão esquerdo\n"
-#~ "Esc ou o mesmo atalho cancelará."
-
-#~ msgid ""
-#~ "A <b>notification area</b> for your dock\n"
-#~ "Also called 'systray'.\n"
-#~ "It is designed to work on any desktop that supports the latest systray "
-#~ "specifications (KDE, Gnome, etc)"
-#~ msgstr ""
-#~ "Uma <b>área de notificação</b> para seu dock\n"
-#~ "Também chamada de 'Bandeja do sistema'.\n"
-#~ "É projetada para funcionar em qualquer Área de trabalho que suporte as "
-#~ "últimas especificações da Bandeja do sistema (KDE, Gnome, etc)"
-
-#~ msgid "Monitor System"
-#~ msgstr "Monitor do Sistema"
-
-#~ msgid "Open folder"
-#~ msgstr "Abrir pasta"
-
-#~ msgid "Add a desktop"
-#~ msgstr "Adicionar uma Área de trabalho"
-
-#~ msgid "Remove last desktop"
-#~ msgstr "Remover a última Área de trabalho"
-
-#~ msgid "Move current Desktop to this Desktop"
-#~ msgstr "Renomeie esta área de trabalho"
-
-#~ msgid "Shortkey to enable/disable the navigation mode:"
-#~ msgstr "Atalho para activar/desactivar o modo de navegação:"
-
-#~ msgid ""
-#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
-#~ "clipboard"
-#~ msgstr ""
-#~ "Esta é a seleção feita pelo mouse, ao contrário da habitual Ctrl+C/Ctrl+V"
-
-#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
-#~ msgstr ""
-#~ "Quando copiar / colar / cortar, usar a seleção na área de transferência?"
-
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
@@ -8081,15 +7989,20 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid "Free"
 #~ msgstr "Livre"
 
+#~ msgid "Monitor System"
+#~ msgstr "Monitor do Sistema"
+
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Mostrar %s"
 
 #~ msgid "Show All"
 #~ msgstr "Mostrar todos"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Apagar %s"
 
@@ -8098,15 +8011,15 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
-#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down "
-#~ "for next song, Scroll-up for previous song.\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
 #~ "You can drag and drop covers (jpg) on the icon to use them,\n"
 #~ " and songs to put them in the queue."
 #~ msgstr ""
 #~ "Controle o Rhythmbox diretamente do dock !\n"
 #~ "Clique com o botão direito para executá-lo, tocar ou pause.\n"
-#~ "Clique com o botão do meio e role para baixo para ir à próxima música, "
-#~ "role para cima para a música anterior.\n"
+#~ "Clique com o botão do meio e role para baixo para ir à próxima música, role "
+#~ "para cima para a música anterior.\n"
 #~ "Você pode arrastar e soltar capas (arquivos .jpg) no ícone para usá-las,\n"
 #~ " e músicas para colocá-las na lista."
 
@@ -8122,6 +8035,9 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "Clique com o botão esquerdo para mostrar/ocultar a Área de trabalho\n"
 #~ "Clicar com o botão do meio faz o mesmo, mas não oculta seus desklets"
 
+#~ msgid "Open folder"
+#~ msgstr "Abrir pasta"
+
 #~ msgid ""
 #~ "This applet allows you to switch between your virtual desktops.\n"
 #~ "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
@@ -8130,13 +8046,17 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "click to show the desktop"
 #~ msgstr ""
 #~ "Este applet permite alternar entre suas Áreas de trabalho virtuais.\n"
-#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-"
-#~ "dock).\n"
-#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu "
-#~ "do botão direito.\n"
+#~ "Existem dois modos : compacto (em um ícone) e expandido (com um sub-dock).\n"
+#~ "Você pode adicionar ou remover rapidamente uma Área de trabalho pelo menu do "
+#~ "botão direito.\n"
 #~ "Role para cima/baixo no ícone principal para ir à Área de trabalho "
-#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de "
-#~ "trabalho"
+#~ "esquerda/direita, clique com o botão do meio para mostrar a Área de trabalho"
+
+#~ msgid "Add a desktop"
+#~ msgstr "Adicionar uma Área de trabalho"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Remover a última Área de trabalho"
 
 #~ msgid "Control your TomBoy's notes directly in the dock !\n"
 #~ msgstr "Controle seu TomBoy Notas diretamente do dock !\n"
@@ -8146,8 +8066,8 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
-#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring "
-#~ "is still experimental.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
 #~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "Launch/Play/Pause on left click, Next song on middle click.\n"
 #~ "You can drag and drop songs on the icon to put them in the queue.\n"
@@ -8166,8 +8086,8 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr "em segundos"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
 #~ msgstr ""
 #~ "Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
 #~ "ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
@@ -8178,8 +8098,8 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
-#~ "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT"
-#~ "+Clique do botão esquerdo"
+#~ "Dependendo do seu Administrador de Janelas, você pode movê-lo com ALT+Clique "
+#~ "do botão esquerdo"
 
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "Posição do Desklet (x ; y) :"
@@ -8200,9 +8120,9 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "Se bloqueado, o desklet não pode ser movido simplesmente arrastando-o com "
-#~ "o botão esquerdo do mouse. É claro que você ainda pode movê-lo com ALT"
-#~ "+Clique do botão esquerdo."
+#~ "Se bloqueado, o desklet não pode ser movido simplesmente arrastando-o com o "
+#~ "botão esquerdo do mouse. É claro que você ainda pode movê-lo com ALT+Clique "
+#~ "do botão esquerdo."
 
 #~ msgid "Lock position ?"
 #~ msgstr "Bloquear posição ?"
@@ -8223,8 +8143,8 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
-#~ "Esta é uma imagem que será mostrada abaixo dos desenhos, como, por "
-#~ "exemplo, uma moldura. Deixe vazio para não usar."
+#~ "Esta é uma imagem que será mostrada abaixo dos desenhos, como, por exemplo, "
+#~ "uma moldura. Deixe vazio para não usar."
 
 #~ msgid "Background image :"
 #~ msgstr "Imagem de fundo :"
@@ -8257,11 +8177,11 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr "Posição inferior :"
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
 #~ msgstr ""
-#~ "Esta é uma imagem que será mostrada abaixo dos desenhos, como, por "
-#~ "exemplo, um reflexo. Deixe vazio para não usar."
+#~ "Esta é uma imagem que será mostrada abaixo dos desenhos, como, por exemplo, "
+#~ "um reflexo. Deixe vazio para não usar."
 
 #~ msgid "Foreground image :"
 #~ msgstr "Imagem de frente :"
@@ -8270,15 +8190,14 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr "Transparência da frente :"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type a command to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use the arrows to navigate between the results.\n"
@@ -8286,15 +8205,15 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr ""
 #~ "Um plugin similar ao Gnome-Do que permite controlar seu dock através do "
 #~ "teclado.\n"
-#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho "
-#~ "do teclado:\n"
+#~ "Tem dois modos, cada um pode ser colocado em funcionamento por uma atalho do "
+#~ "teclado:\n"
 #~ "- modo de navegação : use as setas para navegar entre docks e sub-docks,\n"
 #~ " ou digite o nome do lançador e pressione Tab para pular automaticamente "
 #~ "para o próximo lançador apropriado.\n"
-#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, Alt"
-#~ "+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
-#~ "- modo buscador : digite um comando para chamar qualquer comando, "
-#~ "arquivo, ou cálculo.\n"
+#~ "Pressione Enter para clicar no ícone, Shift+Enter para Shift+Clicque, "
+#~ "Alt+Enter para clicar com o botão do meio e Ctrl+Enter para botão esquerdo\n"
+#~ "- modo buscador : digite um comando para chamar qualquer comando, arquivo, "
+#~ "ou cálculo.\n"
 #~ "Use as setas para navegar entre os resultados.\n"
 #~ "Esc, Retornar ou o mesmo atalho para finalizar."
 
@@ -8308,8 +8227,7 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
@@ -8329,18 +8247,18 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs on the icon to put them in the queue (depends "
-#~ "on Player),\n"
+#~ "You can drag and drop songs on the icon to put them in the queue (depends on "
+#~ "Player),\n"
 #~ " and jpeg image to use as cover.\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
 #~ msgstr ""
 #~ "Este applet permite controlar qualquer player de música.\n"
-#~ "Clique no botão esquerdo para Iniciar/Pausar, clique no botão do meio "
-#~ "para a próxima música.\n"
+#~ "Clique no botão esquerdo para Iniciar/Pausar, clique no botão do meio para a "
+#~ "próxima música.\n"
 #~ "Rolar para cima/para baixo para inciar  anterior/próxima música.\n"
-#~ "Você pode arrastar e soltar as músicas no ícone para colocá-los na fila"
-#~ "(depende do player),\n"
+#~ "Você pode arrastar e soltar as músicas no ícone para colocá-los na "
+#~ "fila(depende do player),\n"
 #~ " e de imagem JPEG para usar como cobertura.\n"
 #~ "Nota: Para o XMMS, você tem que instalar o plug-in 'xmms-infopipe'.\n"
 #~ "       Para Songbird, você tem que instalar o dbus add-on.\n"
@@ -8439,19 +8357,18 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr "Ver"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "Um plug-in Gnome-Do-like permite controlar seu dock através do teclado.\n"
@@ -8459,10 +8376,10 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "- Modo de navegação: use as setas para navegar nos docks e sub-doks,\n"
 #~ "  ou digite o nome de um lançador e pressione Tab para saltar "
 #~ "automaticamente para o próximo lançador adequado\n"
-#~ "  pressione Enter para clicar no ícone, Shift+Enter para Shift+clique, Alt"
-#~ "+Enter para um clique do meio e Ctrl+Enter para um clique esquerdo\n"
-#~ "- Modo finder: digite algum texto para lançar qualquer comando, arquivo "
-#~ "ou cálculo.\n"
+#~ "  pressione Enter para clicar no ícone, Shift+Enter para Shift+clique, "
+#~ "Alt+Enter para um clique do meio e Ctrl+Enter para um clique esquerdo\n"
+#~ "- Modo finder: digite algum texto para lançar qualquer comando, arquivo ou "
+#~ "cálculo.\n"
 #~ "  Use as setas para navegar entre os resultados, pressione Enter para "
 #~ "validar, manter a tecla CTRL, ALT ou SHIFT para manter os resultados.\n"
 #~ "Escape ou o mesmo atalho para cancelar."
@@ -8506,8 +8423,7 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
 #~ msgstr ""
-#~ "Se a pasta Lixiera não é informada pelo dock, você pode especificá-la "
-#~ "aqui:"
+#~ "Se a pasta Lixiera não é informada pelo dock, você pode especificá-la aqui:"
 
 #~ msgid ""
 #~ "only use this if it differs from its name. Generally it is not the case, "
@@ -8581,12 +8497,13 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "Layer, or all the desktops at once."
 #~ msgstr ""
 #~ "Este applet adiciona um ícone para mostrar sua área de trabalho,\n"
-#~ "e também : os desklets, o Widget Layer, ou todas as áreas de trabalho de "
-#~ "uma vez.\n"
+#~ "e também : os desklets, o Widget Layer, ou todas as áreas de trabalho de uma "
+#~ "vez.\n"
 #~ "Clique com o botão esquerdo para mostrar/ocultar a área de trabalho.\n"
 #~ "Clique com o botão do meio para mostrar/ocultar a área de trabalho, "
 #~ "desklets, Widget Layer, ou todas as áreas de trabalho de uma vez."
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8597,14 +8514,69 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ " e selecionar o canal de áudio adequado que você deseja controlar."
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr ""
-#~ "Só use isso se você notar que o mini-aplicativo não pode exibir a lixeira "
-#~ "ao clicá-la."
+#~ "Só use isso se você notar que o mini-aplicativo não pode exibir a lixeira ao "
+#~ "clicá-la."
 
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
+
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "Este plug-in permite você fazer diferentes ações diretamente do teclado.\n"
+#~ "Existem 2 modos, cada um sendo acionado por um atalho do teclado:\n"
+#~ "- o modo localizador (atalho padrão: Ctrl + Enter):\n"
+#~ "    Permite a você encontrar e lançar aplicativos, arquivos, arquivos "
+#~ "recentes, favoritos do Firefox, comandos, e até cálculos.\n"
+#~ "    Digite o que quiser para procurar, os resultados serão mostrados em "
+#~ "tempo real.\n"
+#~ "    Os primeiros resultados de cada categoria serão mostrados na lista "
+#~ "principal.\n"
+#~ "    Use as setas para cima/baixo para navegar pela lista,\n"
+#~ "    e as setas para esquerda/direita para entrar em uma categoria, ou para "
+#~ "mostrar mais ações (quando uma pequena seta é desenhada próximo ao texto).\n"
+#~ "    Uma vez dentro da categoria, você pode filtrar os resultados digitando "
+#~ "algumas letras.\n"
+#~ "    Pressione Enter para validar, mantenha o Shift ou Alt pressionados para "
+#~ "que a lista de resultados fique aberta.\n"
+#~ "\n"
+#~ "- o modo de navegação (atalho padrão: Ctrl + F9):\n"
+#~ "    use as setas para navegar nos docks e sub-docks.\n"
+#~ "    ou digite o nome do lançador e pressione Tab para pular automaticamente "
+#~ "para o próximo lançador adequado\n"
+#~ "    pressione Enter para clicar no ícone, Shift + Enter para Shift + Clique, "
+#~ "Alt + Enter para clicar com o botão do meio e Ctrl + Enter para clicar com o "
+#~ "botão esquerdo\n"
+#~ "Esc ou o mesmo atalho cancelará."
+
+#~ msgid "Hey, you there!"
+#~ msgstr "Olá, você está aí!"
 
 #~ msgid "ToolTip"
 #~ msgstr "janela pop-up contendo opções"
@@ -8612,9 +8584,11 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid "Empty Trash"
 #~ msgstr "Apagar Lixo"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Você está prestes a deletar todos os arquivos em %s. Tem certeza ?"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8623,6 +8597,9 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "Ocorreu um problema\n"
 #~ "Se '%s' não é seu navegador de arquivos padrão,\n"
 #~ "você pode mudá-lo no painel de configuração deste módulo"
+
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Renomeie esta área de trabalho"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Mostrar um balão informativo quando um feed mudar ?"
@@ -8633,27 +8610,30 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Animação do ícone quando um feed mudar :"
 
+#~ msgid "Shortkey to enable/disable the navigation mode:"
+#~ msgstr "Atalho para activar/desactivar o modo de navegação:"
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Escolha uma ação para o clique do meio no ícone:"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
 #~ "Em graus, em relação à posição vertical. É uma espécie de inclinação do "
-#~ "avião na horizontal, dando a sensação de 3D. Assim, o valor de 0 "
-#~ "significa que o avião não está inclinado totalmente (vertical)."
+#~ "avião na horizontal, dando a sensação de 3D. Assim, o valor de 0 significa "
+#~ "que o avião não está inclinado totalmente (vertical)."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Inclinação do avião:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "0,5 significa que o encaixe é meio-dobrado, de modo a uma metade dos "
-#~ "ícones está em primeiro plano, e outra metade está no fundo."
+#~ "0,5 significa que o encaixe é meio-dobrado, de modo a uma metade dos ícones "
+#~ "está em primeiro plano, e outra metade está no fundo."
 
 #~ msgid "Percentage of the dock's width that appears on the foreground:"
 #~ msgstr "Percentagem de largura do dock que aparece em primeiro plano:"
@@ -8681,8 +8661,7 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgstr "Número de lixeiras"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr ""
 #~ "em MB. Você será notificado quando esse limite for ultrapassado. Defina 0 "
 #~ "para não usá-lo."
@@ -8695,8 +8674,7 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
 #~ "Ele irá impedir que o ícone do gerenciador apareça na barra de tarefas. O "
 #~ "ícone do miniaplicativo se comportará como um lançador, um appli e um "
@@ -8707,6 +8685,10 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 
 #~ msgid "Delay between measurements:"
 #~ msgstr "Demora entre 2 medidas:"
+
+#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
+#~ msgstr ""
+#~ "Quando copiar / colar / cortar, usar a seleção na área de transferência?"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
@@ -8747,6 +8729,12 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid "in seconds. only used if you can't monitor directories."
 #~ msgstr "em segundos. Use apenas se você não puder monitorar diretórios."
 
+#~ msgid ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+#~ msgstr ""
+#~ "Esta é a seleção feita pelo mouse, ao contrário da habitual Ctrl+C/Ctrl+V"
+
 #~ msgid "Empty all dustbins"
 #~ msgstr "Limpar todas as lixeiras"
 
@@ -8763,6 +8751,17 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ msgid "No task is sheduled for today."
 #~ msgstr "Não existe tarefa agendada para hoje."
 
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "Uma <b>área de notificação</b> para seu dock\n"
+#~ "Também chamada de 'Bandeja do sistema'.\n"
+#~ "É projetada para funcionar em qualquer Área de trabalho que suporte as "
+#~ "últimas especificações da Bandeja do sistema (KDE, Gnome, etc)"
+
 #~ msgid "Menus to control your session, connection state, etc."
 #~ msgstr "Menus para controlar a sessão, a conexão do Estado, etc"
 
@@ -8773,19 +8772,18 @@ msgstr "Substituir o rótulo padrão pelo nome do ponto de conexão?"
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "Um applet que permitem aceder rapidamente a todos os seus atalhos.\n"
-#~ "Ele pode gerenciar discos e os pontos de rede, e os marcadores do "
-#~ "Nautilus (mesmo se você não tem Nautilus).\n"
+#~ "Ele pode gerenciar discos e os pontos de rede, e os marcadores do Nautilus "
+#~ "(mesmo se você não tem Nautilus).\n"
 #~ "Arrastar e soltar uma pasta sobre o ícone principal ou a sub-estação para "
 #~ "adicionar um marcador.\n"
 #~ "Clique do meio sobre o ícone principal para mostrar a sua pasta home.\n"
 #~ "Cliquedo meio no ícone de um ponto de montagem (des) montagem é rápida.\n"
-#~ "O applet pode também exibir informações valiosas sobre seus discos, como "
-#~ "o espaço livre, tipo, etc"
+#~ "O applet pode também exibir informações valiosas sobre seus discos, como o "
+#~ "espaço livre, tipo, etc"
