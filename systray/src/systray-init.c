@@ -115,7 +115,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (myDesklet)  // on cloue le desklet.
 	{
 		GdkGravity iGravity;
-		if (myContainer->iWindowPositionX < g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]/2)
+		if (myContainer->iWindowPositionX < g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]/2)  // on prend la taille de l'ecran ou il est place plutot que la taille totale, car en general on n'utilise pas un dual-screen comme un seul grand ecran maisplutot comme 2 bureaux.
 			iGravity = GDK_GRAVITY_NORTH_WEST;
 		else
 			iGravity = GDK_GRAVITY_NORTH_EAST;
