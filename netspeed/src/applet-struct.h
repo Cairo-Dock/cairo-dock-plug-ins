@@ -55,6 +55,7 @@ struct _AppletConfig {
 	
 	gchar *cSystemMonitorCommand;
 	gdouble fSmoothFactor;
+	RendererRotateTheme iRotateTheme;
 } ;
 
 struct _AppletData {

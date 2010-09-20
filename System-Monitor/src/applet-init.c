@@ -51,11 +51,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "gauge";
-		attr.cThemePath = myConfig.cGThemePath;
+		pRenderAttr = CD_APPLET_CREATE_GAUGE_ATTRIBUTE (myConfig.cGThemePath, myConfig.iRotateTheme);
 	}
 	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 	{

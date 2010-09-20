@@ -78,6 +78,7 @@ struct _AppletConfig {
 	gint iAlertLimit;
 	gboolean bAlert;
 	gboolean bAlertSound;
+	RendererRotateTheme iRotateTheme;
 } ;
 
 typedef struct {
