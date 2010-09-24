@@ -36,6 +36,7 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
+	g_return_if_fail (myDrawContext != NULL);
 	cairo_dock_erase_cairo_context (myDrawContext);
 	if (myData.pNumericBgSurface != NULL)
 	{
@@ -191,6 +192,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 
 void cd_clock_draw_analogic (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
+	g_return_if_fail (myDrawContext != NULL);
 	//g_print ("%s (%dx%d)\n", __func__, width, height);
 	cairo_t *pSourceContext = myDrawContext;
 	double fHalfX;

@@ -30,6 +30,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 {
 	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
 		return;
+	g_return_if_fail (myDrawContext != NULL);
 	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;

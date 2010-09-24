@@ -345,14 +345,24 @@ static inline void _extract_metadata (GHashTable *data_list)
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
 	
-	/**value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
+	value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
 	if (value == NULL)
 		value = (GValue *) g_hash_table_lookup(data_list, "track-number");  // au cas ou
-	if (value != NULL && G_VALUE_HOLDS_INT(value))
-		myData.iTrackNumber = g_value_get_int(value);
+	if (value != NULL)
+	{
+		if (G_VALUE_HOLDS_INT (value))  // amarok
+			myData.iTrackNumber = g_value_get_int (value);
+		else if (G_VALUE_HOLDS_UINT (value))
+			myData.iTrackNumber = g_value_get_uint (value);
+		else if (G_VALUE_HOLDS_STRING (value))  // qmmp
+		{
+			const gchar *s = g_value_get_string (value);
+			myData.iTrackNumber = (s ? atoi(s) : 0);
+		}
+	}
 	else
 		myData.iTrackNumber = 0;
-	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);*/
+	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
 	
 	myData.iSongLength = 0;
 	value = (GValue *) g_hash_table_lookup(data_list, "mtime");  // duree en ms.
