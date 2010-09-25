@@ -123,7 +123,7 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_object_unref (pIndicator->pServiceProxy);
 	g_print ("destroy menu...\n");
 	if (pIndicator->pMenu)
-		g_object_ref_sink (pIndicator->pMenu);
+		g_object_unref (pIndicator->pMenu);
 	g_print ("done.\n");
 	g_free (pIndicator);
 }
@@ -140,14 +140,30 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 	if (cStatusIcon == NULL)
 		return;
 	
-	gchar *cIconPath = cairo_dock_search_icon_s_path (cStatusIcon);
+	const gchar *cIconName = cStatusIcon;
+	gchar *tmp_icon_name = NULL;
+	gchar *cIconPath = cairo_dock_search_icon_s_path (cIconName);  // on regarde si l'icone sera trouvee.
 	gchar *cIconPathFallback = NULL;
+	if (cIconPath == NULL)  // l'icone ne sera pas trouvee, on regarde si ce n'est pas une icone en carton d'Ubuntu.
+	{
+		gchar *str = g_strstr_len (cIconName, -1, "-panel");
+		if (str)
+		{
+			tmp_icon_name = g_strndup (cIconName, str - cIconName);
+			cIconName = tmp_icon_name;
+			cIconPath = cairo_dock_search_icon_s_path (cIconName);
+		}
+	}
 	if (cIconPath == NULL)  // l'icone ne sera pas trouvee, on met une icone par defaut.
-		cIconPathFallback = g_strdup_printf ("%s/%s.svg", myApplet->pModule->pVisitCard->cShareDataDir, cStatusIcon);
+	{
+		gboolean bAddSuffix = (!g_str_has_suffix (cIconName, ".png") && !g_str_has_suffix (cIconName, ".svg"));
+		cIconPathFallback = g_strdup_printf ("%s/%s%s", myApplet->pModule->pVisitCard->cShareDataDir, cIconName, bAddSuffix ? ".svg" : "");
+	}
 	
-	g_print ("set %s\n", cIconPathFallback ? cIconPathFallback : cStatusIcon);
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cStatusIcon);
+	g_print ("set %s\n", cIconPathFallback ? cIconPathFallback : cIconName);
+	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cIconName);
 	
+	g_free (tmp_icon_name);
 	g_free (cIconPath);
 	g_free (cIconPathFallback);
 }
