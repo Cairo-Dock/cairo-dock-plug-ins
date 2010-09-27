@@ -282,9 +282,13 @@ void cd_dbus_stop_service (void)
 			}
 		}
 		if (pDbusApplet->pSubApplet != NULL)
+		{
 			g_object_unref (pDbusApplet->pSubApplet);
-		g_object_unref (pDbusApplet);
+			pDbusApplet->pSubApplet = NULL;
+		}
+		///g_object_unref (pDbusApplet);
 	}
+	g_list_foreach (myData.pAppletList, (GFunc)g_object_unref, NULL);
 	g_list_free (myData.pAppletList);
 	myData.pAppletList = NULL;
 	

@@ -78,7 +78,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 	for (a = myData.pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
-		if (strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
+		if (pDbusApplet->cModuleName && strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
 			break ;
 	}
 	return (a ? pDbusApplet : NULL);
@@ -92,7 +92,7 @@ static dbusApplet * _remove_dbus_applet_from_list (CairoDockModuleInstance *pMod
 	for (a = myData.pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
-		if (strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
+		if (pDbusApplet->cModuleName && strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
 			break ;
 	}
 	myData.pAppletList = g_list_delete_link (myData.pAppletList, a);
