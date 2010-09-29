@@ -28,6 +28,11 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
+	if(myData.bPreventDialog)
+	{
+		myData.bPreventDialog = FALSE;
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	}
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
@@ -37,32 +42,33 @@ CD_APPLET_ON_CLICK_BEGIN
 			"same icon");
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	}
-	if (myDock)
+	if (pClickedIcon == myIcon)
 	{
-		if (pClickedContainer == CAIRO_CONTAINER (myIcon->pSubDock) && pClickedIcon != NULL)  // on a clique sur une icone du sous-dock.
-		{
-			cd_debug (" clic sur %s", pClickedIcon->cName);
-			cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
-		}
+		if (myDesklet)  // en mode dock, le clic peut ouvrir le sous-dock.
+			cd_weather_show_current_conditions_dialog (myApplet);
+		else
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  /// utile ?...
 	}
-	else if (myDesklet)  // on a clique sur une icone du desklet.
+	else if (pClickedIcon != NULL)  // clic sur une des sous-icones.
 	{
-		if (pClickedIcon != NULL)
-		{
-			if (pClickedIcon == myIcon)
-				cd_weather_show_current_conditions_dialog (myApplet);
-			else
-				cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
-		}
+		cd_weather_show_forecast_dialog (myApplet, pClickedIcon);
 	}
-	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 CD_APPLET_ON_CLICK_END
 
 
-static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static inline void _go_to_site (CairoDockModuleInstance *myApplet, int iNumDay)
 {
-	CD_APPLET_ENTER;
+	gchar *cURI;
+	if (iNumDay == 0)
+		cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
+	else
+		cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail/%s?dayNum=%d", myConfig.cLocationCode, iNumDay);
+	cairo_dock_fm_launch_uri (cURI);
+	g_free (cURI);
+}
+
+static inline void _reload (CairoDockModuleInstance *myApplet)
+{
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
@@ -77,11 +83,39 @@ static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance 
 		
 		cairo_dock_launch_task (myData.pTask);
 	}
+}
+
+
+static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	_reload (myApplet);
+	CD_APPLET_LEAVE ();
+}
+static void _cd_weather_show_site (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	_go_to_site (myApplet, myData.iClickedDay);
+	CD_APPLET_LEAVE ();
+}
+static void _cd_weather_show_cc (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_weather_show_current_conditions_dialog (myApplet);
 	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	// Main Menu
+	if (pClickedIcon == myIcon)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show current conditions (middle-click)"), GTK_STOCK_DIALOG_INFO, _cd_weather_show_cc, CD_APPLET_MY_MENU);
+	}
+	if (pClickedIcon != NULL)
+	{
+		myData.iClickedDay = (pClickedIcon == myIcon ? 0 : pClickedIcon->fOrder/2+1);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GTK_STOCK_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
+	}
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GTK_STOCK_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
 	// Sub-Menu
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
@@ -93,9 +127,18 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	{
 		cd_weather_show_current_conditions_dialog (myApplet);
 	}
-	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	if (pClickedIcon != NULL)
+	{
+		cairo_dock_remove_dialog_if_any (pClickedIcon);
+		int iNumDay = (pClickedIcon == myIcon ? 0 : pClickedIcon->fOrder/2+1);
+		_go_to_site (myApplet, iNumDay);
+		myData.bPreventDialog = TRUE;  // apres le double-clic, il y'a un relachement, ce qui genere une notification de clic sur l'applet.
+	}
+CD_APPLET_ON_DOUBLE_CLICK_END
 
 
 CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
@@ -138,7 +181,7 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	cairo_dock_remove_dialog_if_any (myIcon);
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being fetched, please re-try in a few seconds."), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being fetched, please re-try in a few seconds."),
 			myIcon,
 			myContainer,
 			3000,
@@ -148,12 +191,12 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 	}
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\nRetrying now..."), 
+		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\nRetrying now..."),
 			myIcon,
 			myContainer,
 			3000,
 			myIcon->cFileName);
-		_cd_weather_reload (NULL, myApplet);
+		_reload (myApplet);
 		
 		return NULL;
 	}
