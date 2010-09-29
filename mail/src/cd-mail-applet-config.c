@@ -122,14 +122,22 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	g_strfreev (pGroupList);
 }
 
+#define _find_image_path(path) \
+	__extension__ ({\
+	gchar *_found_image = NULL; \
+	if (path != NULL) { \
+		_found_image = cairo_dock_search_image_s_path (path); \
+		if (_found_image == NULL)\
+			_found_image = cairo_dock_search_icon_s_path (path); }\
+	_found_image; })
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	gchar *path;
 	path = CD_CONFIG_GET_STRING ("Configuration", "no mail image");
-	myConfig.cNoMailUserImage = (path?cairo_dock_generate_file_path (path):NULL);
+	myConfig.cNoMailUserImage = _find_image_path (path);
 	g_free (path);
 	path = CD_CONFIG_GET_STRING ("Configuration", "has mail image");
-	myConfig.cHasMailUserImage = (path?cairo_dock_generate_file_path (path):NULL);
+	myConfig.cHasMailUserImage = _find_image_path (path);
 	g_free (path);
 	myConfig.bPlaySound = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "play sound", TRUE);
 	path = CD_CONFIG_GET_STRING ("Configuration", "new mail sound");

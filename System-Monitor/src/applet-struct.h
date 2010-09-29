@@ -108,6 +108,8 @@ struct _AppletData {
 	unsigned long long ramTotal, ramFree, ramUsed, ramBuffers, ramCached;
 	unsigned long long swapTotal, swapFree, swapUsed;
 	gint iGPUTemp;
+	gint iCPUTemp;
+	gint iFanSpeed;
 	gdouble fCpuPercent;
 	gdouble fPrevCpuPercent;
 	gdouble fRamPercent,fSwapPercent;

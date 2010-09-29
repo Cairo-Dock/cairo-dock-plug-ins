@@ -29,7 +29,7 @@ void env_backend_logout (void)
 
 void env_backend_shutdown (void)
 {
-	cairo_dock_launch_command ("xfce4-session-logout --halt");
+	cairo_dock_launch_command ("xfce4-session-logout");  // avec les options telles que --halt, la fenetre n'est pas montree.
 }
 
 void env_backend_lock_screen (void)
