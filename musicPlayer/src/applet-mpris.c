@@ -345,14 +345,24 @@ static inline void _extract_metadata (GHashTable *data_list)
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
 	
-	/**value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
+	value = (GValue *) g_hash_table_lookup(data_list, "tracknumber");
 	if (value == NULL)
 		value = (GValue *) g_hash_table_lookup(data_list, "track-number");  // au cas ou
-	if (value != NULL && G_VALUE_HOLDS_INT(value))
-		myData.iTrackNumber = g_value_get_int(value);
+	if (value != NULL)
+	{
+		if (G_VALUE_HOLDS_INT (value))  // amarok
+			myData.iTrackNumber = g_value_get_int (value);
+		else if (G_VALUE_HOLDS_UINT (value))
+			myData.iTrackNumber = g_value_get_uint (value);
+		else if (G_VALUE_HOLDS_STRING (value))  // qmmp
+		{
+			const gchar *s = g_value_get_string (value);
+			myData.iTrackNumber = (s ? atoi(s) : 0);
+		}
+	}
 	else
 		myData.iTrackNumber = 0;
-	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);*/
+	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
 	
 	myData.iSongLength = 0;
 	value = (GValue *) g_hash_table_lookup(data_list, "mtime");  // duree en ms.
@@ -690,23 +700,11 @@ void cd_mpris_configure (void)
 	myData.DBus_commands.interface = "org.freedesktop.MediaPlayer";
 	myData.DBus_commands.interface2 = "org.freedesktop.MediaPlayer";
 	
-	myData.dbus_enable = cd_mpris_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de MP.
+	myData.dbus_enable = cd_mpris_dbus_connect_to_bus ();  // se connecte au bus et aux signaux du lecteur.
 	if (myData.dbus_enable)
 	{
-		cd_musicplayer_dbus_detect_player_async (_on_detect_player);  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
+		cd_musicplayer_dbus_detect_player_async (_on_detect_player);  // on teste la presence du lecteur sur le bus <=> s'il est ouvert ou pas.
 		cd_musicplayer_set_surface (PLAYER_NONE);  // en attendant de le savoir, on considere qu'il est eteint.
-		/**cd_musicplayer_dbus_detect_player ();  // on teste la presence de MP sur le bus <=> s'il est ouvert ou pas.
-		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
-		{
-			cd_debug ("MP : MP is running\n");
-			cd_mpris_getPlaying ();
-			cd_mpris_getSongInfos ();
-			cd_musicplayer_update_icon (TRUE);
-		}
-		else  // player eteint.
-		{
-			cd_musicplayer_set_surface (PLAYER_NONE);
-		}*/
 	}
 	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
 	{

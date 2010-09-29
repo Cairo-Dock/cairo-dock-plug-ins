@@ -367,22 +367,25 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus)
 {
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	gboolean bUse3DTheme = (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes);
-	const gchar **cIconName = (bUse3DTheme ? s_cDefaultIconName3D : s_cDefaultIconName);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	
 	if (pSurface == NULL)  // surface pas encore chargee.
 	{
-		if (myConfig.cUserImage[iStatus] != NULL) {
-			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cUserImage[iStatus]);
-			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+		gchar *cUserIcon = myConfig.cUserImage[iStatus];
+		if (cUserIcon != NULL)  // l'utilisateur a defini une icone perso pour ce statut => on essaye de la charger.
+		{
+			gchar *cUserImagePath = cairo_dock_search_icon_s_path (cUserIcon);
+			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath ? cUserImagePath : cUserIcon);  // si on a trouve une icone, on la prend, sinon on considere le fichier comme une image.
 			g_free (cUserImagePath);
 		}
-		else {
-			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, cIconName[iStatus]);
+		if (myData.pSurfaces[iStatus] == NULL)  // pas d'icone perso pour ce statut, ou l'icone specifiee n'a pas ete trouvee ou pas ete chargee => on prend l'icone par defaut.
+		{
+			const gchar **cIconName = (bUse3DTheme ? s_cDefaultIconName3D : s_cDefaultIconName);
+			gchar *cImagePath = g_strdup_printf (MY_APPLET_SHARE_DATA_DIR"/%s", cIconName[iStatus]);
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
 			g_free (cImagePath);
 		}
-		if (bUse3DTheme)
+		if (bUse3DTheme)  // si on utilise un theme 3D, il faut aussi charger la nouvelle texture, et lancer une transition avec la precedente.
 		{
 			if (myData.iPrevTextureCover != 0)
 				_cairo_dock_delete_texture (myData.iPrevTextureCover);
@@ -399,9 +402,9 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus)
 				CD_APPLET_REDRAW_MY_ICON;
 			}
 		}
-		else
+		else  // pas de theme 3D, on applique juste la surface du statut.
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON(myData.pSurfaces[iStatus]);
+			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaces[iStatus]);
 		}
 	}
 	else  // surface en memoire.

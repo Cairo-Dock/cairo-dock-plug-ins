@@ -127,6 +127,7 @@ static int _compare_icons_stack_order (Icon *icon1, Icon *icon2)
 void cd_switcher_draw_main_icon_compact_mode (void)
 {
 	g_return_if_fail (myData.switcher.iNbColumns != 0 && myData.switcher.iNbLines != 0);
+	g_return_if_fail (myDrawContext != NULL);
 	//g_print ("%s (%d;%d)\n", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
 	cairo_dock_erase_cairo_context (myDrawContext);
@@ -524,66 +525,72 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 	cairo_dock_get_icon_extent (pIcon, NULL, &iWidth, &iHeight);
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
-	int w = 24, h = w;
-	cairo_surface_t *surface = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
-		w,
-		h);
-	cairo_t *pCairoContext = cairo_create (surface);
-	cairo_scale (pCairoContext, (double)w/iWidth, (double)h/iHeight);
-	cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
-	cairo_paint (pCairoContext);
-	cairo_destroy (pCairoContext);
-	guchar *d, *data = cairo_image_surface_get_data (surface);
-	int r = cairo_image_surface_get_stride (surface);
-	
-	// on la convertit en un pixbuf.
-	GdkPixbuf *pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
-		TRUE,
-		8,
-		w,
-		h);
-	guchar *p, *pixels = gdk_pixbuf_get_pixels (pixbuf);
-	int iNbChannels = gdk_pixbuf_get_n_channels (pixbuf);
-	int iRowstride = gdk_pixbuf_get_rowstride (pixbuf);
-	
-	int x, y;
-	int red, green, blue;
-	float fAlphaFactor;
-	for (y = 0; y < h; y ++)
+	GdkPixbuf *pixbuf = NULL;
+	if (iWidth > 0 && iHeight > 0 && pIcon->pIconBuffer != NULL)
 	{
-		for (x = 0; x < w; x ++)
+		int w = 24, h = w;
+		cairo_surface_t *surface = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
+			w,
+			h);
+		cairo_t *pCairoContext = cairo_create (surface);
+		cairo_scale (pCairoContext, (double)w/iWidth, (double)h/iHeight);
+		cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
+		cairo_paint (pCairoContext);
+		cairo_destroy (pCairoContext);
+		guchar *d, *data = cairo_image_surface_get_data (surface);
+		int r = cairo_image_surface_get_stride (surface);
+		
+		// on la convertit en un pixbuf.
+		pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+			TRUE,
+			8,
+			w,
+			h);
+		guchar *p, *pixels = gdk_pixbuf_get_pixels (pixbuf);
+		int iNbChannels = gdk_pixbuf_get_n_channels (pixbuf);
+		int iRowstride = gdk_pixbuf_get_rowstride (pixbuf);
+		
+		int x, y;
+		int red, green, blue;
+		float fAlphaFactor;
+		for (y = 0; y < h; y ++)
 		{
-			p = pixels + y * iRowstride + x * iNbChannels;
-			d = data + y * r + x * 4;
-			
-			fAlphaFactor = (float) d[3] / 255;
-			if (fAlphaFactor != 0)
+			for (x = 0; x < w; x ++)
 			{
-				red = d[0] / fAlphaFactor;
-				green = d[1] / fAlphaFactor;
-				blue = d[2] / fAlphaFactor;
+				p = pixels + y * iRowstride + x * iNbChannels;
+				d = data + y * r + x * 4;
+				
+				fAlphaFactor = (float) d[3] / 255;
+				if (fAlphaFactor != 0)
+				{
+					red = d[0] / fAlphaFactor;
+					green = d[1] / fAlphaFactor;
+					blue = d[2] / fAlphaFactor;
+				}
+				else
+				{
+					red = blue = green = 0;
+				}
+				p[0] = blue;
+				p[1] = green;
+				p[2] = red;
+				p[3] = d[3];
 			}
-			else
-			{
-				red = blue = green = 0;
-			}
-			p[0] = blue;
-			p[1] = green;
-			p[2] = red;
-			p[3] = d[3];
 		}
+		
+		cairo_surface_destroy (surface);
 	}
-	
-	cairo_surface_destroy (surface);
 	
 	// on ajoute une entree au menu avec le pixbuf.
 	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (pIcon->cName);
-	GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+	if (pixbuf)
+	{
+		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		g_object_unref (pixbuf);
+	}
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_window), pIcon);
-	
-	g_object_unref (pixbuf);
 }
 void cd_switcher_build_windows_list (GtkWidget *pMenu)
 {
