@@ -65,6 +65,13 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		cd_message("tomboy : %s",pClickedIcon->cCommand);
 		showNote (pClickedIcon->cCommand);
+		
+		if (myData.iSidPopupDialog != 0)
+		{
+			g_source_remove (myData.iSidPopupDialog);
+			myData.iSidPopupDialog = 0;
+		}
+		cairo_dock_remove_dialog_if_any (pClickedIcon);
 	}
 	else if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
@@ -281,7 +288,7 @@ gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *p
 		cairo_dock_remove_dialog_if_any (icon);
 	}
 	
-	if (pIcon->bPointed)
+	if (pIcon && pIcon->bPointed)
 	{
 		myData.iSidPopupDialog = g_timeout_add (500, (GSourceFunc)_popup_dialog, pIcon);
 	}
