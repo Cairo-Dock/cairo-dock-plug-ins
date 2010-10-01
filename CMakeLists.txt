@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.2.0-3")
+set (VERSION "2.2.0-4")
 
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -45,32 +45,33 @@ endif( WIN32 )
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
+					# CMAKE_INSTALL_PREFIX = /usr
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdir
+    COMMAND pkg-config cairo-dock --variable=pluginsdir		# /usr/lib/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
 STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # la commande rajoute un retour chariot ...
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdatadir
+    COMMAND pkg-config cairo-dock --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
 execute_process(
-    COMMAND pkg-config --modversion cairo-dock
+    COMMAND pkg-config --modversion cairo-dock			# 2.2.0-3
     OUTPUT_VARIABLE dock_version)
 STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
-if (NOT "${dock_version}" STREQUAL "${VERSION}")
+if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
 	MESSAGE (FATAL_ERROR "warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
 endif()
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
 if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
-	set (libdir ${prefix}/lib64)
+	set (libdir ${CMAKE_INSTALL_PREFIX}/lib64)
 else()
-	set (libdir ${prefix}/lib${LIB_SUFFIX})
+	set (libdir ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})	# /usr/lib
 endif()
 
-if (NOT "${pluginsdir}" STREQUAL "${CMAKE_INSTALL_PREFIX}/${libdir}")
-	message (STATUS "Warning : plug-ins should be installed in the same place asthe dock, that is to say in ${pluginsdir}")
-	STRING (REGEX REPLACE "/${libdir}" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
+if (NOT "${pluginsdir}" STREQUAL "${libdir}/cairo-dock")
+	message (STATUS "Warning : plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
+	STRING (REGEX REPLACE "/${libdir}/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
 endif()
 set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
 set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
