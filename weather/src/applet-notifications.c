@@ -28,11 +28,6 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if(myData.bPreventDialog)
-	{
-		myData.bPreventDialog = FALSE;
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	}
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
@@ -136,7 +131,6 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 		cairo_dock_remove_dialog_if_any (pClickedIcon);
 		int iNumDay = (pClickedIcon == myIcon ? 0 : pClickedIcon->fOrder/2+1);
 		_go_to_site (myApplet, iNumDay);
-		myData.bPreventDialog = TRUE;  // apres le double-clic, il y'a un relachement, ce qui genere une notification de clic sur l'applet.
 	}
 CD_APPLET_ON_DOUBLE_CLICK_END
 

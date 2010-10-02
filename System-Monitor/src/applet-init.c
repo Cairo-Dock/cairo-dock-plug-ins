@@ -19,6 +19,10 @@
 
 #include <stdlib.h>
 
+#ifdef HAVE_SENSORS
+#include <sensors/sensors.h>
+#endif
+
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
@@ -46,9 +50,15 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 	//return TRUE;
 }
 
+#define _add_graph_color(x) \
+	if (x) {\
+		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));\
+		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));\
+		i ++; }
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
+	int iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia + myConfig.bShowCpuTemp + myConfig.bShowFanSpeed;
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
 		CairoGaugeAttribute attr;  // les attributs de la jauge.
@@ -70,30 +80,11 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		attr.bMixGraphs = myConfig.bMixGraph;
 		double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
-		int i = 0;
-		if (myConfig.bShowCpu)
+		int i;
+		for (i = 0; i < iNbValues; i ++)
 		{
 			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
 			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
-			i ++;
-		}
-		if (myConfig.bShowRam)
-		{
-			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
-			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
-			i ++;
-		}
-		if (myConfig.bShowSwap)
-		{
-			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
-			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
-			i ++;
-		}
-		if (myConfig.bShowNvidia)
-		{
-			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
-			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
-			i ++;
 		}
 		attr.fHighColor = fHighColor;
 		attr.fLowColor = fLowColor;
@@ -106,16 +97,16 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	if (pRenderAttr != NULL)  // attributs generiques.
 	{
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia;
+		pRenderAttr->iNbValues = iNbValues;
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 		{
 			pRenderAttr->bWriteValues = TRUE;
 			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_sysmonitor_format_value;
 			pRenderAttr->pFormatData = myApplet;
 		}
-		const gchar *c[] = {"/usr/share/icons/gnome/scalable/actions/gtk-about.svg", "/usr/share/icons/gnome/scalable/actions/gtk-help.svg", "", ""};
+		//const gchar *c[] = {"/usr/share/icons/gnome/scalable/actions/gtk-about.svg", "/usr/share/icons/gnome/scalable/actions/gtk-help.svg", "", "", "", ""};
 		//pRenderAttr->cEmblems = c;
-		const gchar *labels[4] = {NULL, NULL, NULL, NULL};
+		const gchar *labels[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
 		int i = 0;
 		if (myConfig.bShowCpu)
 			labels[i++] = "CPU";
@@ -124,7 +115,11 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		if (myConfig.bShowSwap)
 			labels[i++] = "SWAP";
 		if (myConfig.bShowNvidia)
+			labels[i++] = "GPU";
+		if (myConfig.bShowCpuTemp)
 			labels[i++] = "TEMP";
+		if (myConfig.bShowFanSpeed)
+			labels[i++] = "FAN";
 		pRenderAttr->cLabels = (gchar **)labels;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -147,7 +142,7 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.bShowNvidia || (myConfig.bShowCpu && myConfig.bShowRam))
 		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
 			(CairoDockGetDataAsyncFunc) cd_sysmonitor_get_data,
-			(CairoDockUpdateSyncFunc) cd_sysmonitor_update_from_data,  // _unthreaded_task
+			(CairoDockUpdateSyncFunc) cd_sysmonitor_update_from_data,
 			myApplet);
 	else
 		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
@@ -155,7 +150,7 @@ CD_APPLET_INIT_BEGIN
 			(CairoDockUpdateSyncFunc) _unthreaded_task,
 			myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_task (myData.pPeriodicTask);
+	cairo_dock_launch_task_delayed (myData.pPeriodicTask, 0.);  // launch in idle.
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)
@@ -174,6 +169,12 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	CD_APPLET_MANAGE_APPLICATION (NULL);
+	
+#ifdef HAVE_SENSORS
+	if (myData.iSensorsState == 1)
+		sensors_cleanup();
+#endif
+
 CD_APPLET_STOP_END
 
 
@@ -202,6 +203,8 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevRamPercent = 0;
 		myData.fPrevSwapPercent = 0;
 		myData.fPrevGpuTempPercent = 0;
+		myData.fPrevCpuTempPercent = 0;
+		myData.fPrevFanSpeedPercent = 0;
 		myData.iTimerCount = 0;
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 		

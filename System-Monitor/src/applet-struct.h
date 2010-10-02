@@ -48,8 +48,10 @@ struct _AppletConfig {
 	gdouble fSmoothFactor;
 	gboolean bShowCpu;
 	gboolean bShowRam;
-	gboolean bShowNvidia;
 	gboolean bShowSwap;
+	gboolean bShowNvidia;
+	gboolean bShowCpuTemp;
+	gboolean bShowFanSpeed;
 	gboolean bShowFreeMemory;
 	
 	CairoDockInfoDisplay iInfoDisplay;
@@ -120,11 +122,15 @@ struct _AppletData {
 	gdouble fPrevCpuTempPercent;
 	gdouble fFanSpeedPercent;
 	gdouble fPrevFanSpeedPercent;
+	gdouble fMaxFanSpeed;
 	gboolean bNeedsUpdate;
 	gint iTimerCount;
+	gboolean bCpuTempAlarm;
+	gboolean bFanAlarm;
 	// end of shared memory.
 	gboolean bAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
+	gint iSensorsState;
 	
 	guint iNbProcesses;
 	CairoDialog *pTopDialog;

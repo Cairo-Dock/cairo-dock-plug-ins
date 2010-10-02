@@ -104,7 +104,6 @@ struct _AppletData {
 	GList *pLocationsList;
 	gboolean bSetName;
 	gint iClickedDay;
-	gboolean bPreventDialog;
 	} ;
 
 

@@ -30,6 +30,9 @@
 #include "applet-cpusage.h"
 #include "applet-rame.h"
 #include "applet-nvidia.h"
+#ifdef HAVE_SENSORS
+#include "applet-sensors.h"
+#endif
 #include "applet-monitor.h"
 
 
@@ -47,13 +50,17 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 	}
 	if (myConfig.bShowNvidia)
 	{
-		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lours, on decide donc de ne mettre a jour qu'une fois sur 3.
+		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lourd, on decide donc de ne mettre a jour qu'une fois sur 3.
 			cd_sysmonitor_get_nvidia_data (myApplet);
+	}
+	if (myConfig.bShowCpuTemp || myConfig.bShowFanSpeed)
+	{
+		cd_sysmonitor_get_sensors_data (myApplet);
 	}
 	
 	if (! myData.bInitialized)
 	{
-		cd_sysmonitor_get_cpu_info (myApplet);
+		cd_sysmonitor_get_cpu_info (myApplet);  // on le fait ici plutot que lors de la demande d'info pour avoir le nombre de CPUs.
 		myData.bInitialized = TRUE;
 	}
 	myData.iTimerCount ++;
@@ -151,6 +158,14 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
 						cd_nvidia_alert (myApplet);
 				}
+				if (myConfig.bShowCpuTemp)
+				{
+					s_fValues[i++] = myData.fCpuTempPercent / 100.;
+				}
+				if (myConfig.bShowFanSpeed)
+				{
+					s_fValues[i++] = myData.fFanSpeedPercent / 100.;
+				}
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 			}
 		}
@@ -201,5 +216,25 @@ void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gc
 			return ;
 		}
 	}
-	snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f" : (fValue < 1 ? " %.0f" : "%.0f"), fValue * 100.);
+	if (myConfig.bShowCpuTemp)
+	{
+		i ++;
+		if (i == iNumValue)
+		{
+			double fTemp = 0 + fValue * (100 - 0);
+			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f�" : "%.0f�", fTemp);
+			return ;
+		}
+	}
+	if (myConfig.bShowFanSpeed)
+	{
+		i ++;
+		if (i == iNumValue)
+		{
+			double fSpeed = fValue * myData.fMaxFanSpeed;
+			snprintf (cFormatBuffer, iBufferLength, fSpeed < 100. ? " %.0f" : "%.0f", fSpeed);  // 'rpm' est trop long a ecrire.
+			return ;
+		}
+	}
+	snprintf (cFormatBuffer, iBufferLength, fValue < .0995 ? "%.1f" : (fValue < 1 ? " %.0f" : "%.0f"), fValue * 100.);  // on ne devrait jamais pouvoir arriver la.
 }

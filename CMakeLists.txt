@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.2.0-4")
+set (VERSION "2.2.1-0alpha0")
 
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -64,18 +64,22 @@ endif()
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
 if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
-	set (libdir ${CMAKE_INSTALL_PREFIX}/lib64)
+	set (libname "lib64")
 else()
-	set (libdir ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})	# /usr/lib
+	set (libname "lib${LIB_SUFFIX}")	# /usr/lib
 endif()
+set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 
-if (NOT "${pluginsdir}" STREQUAL "${libdir}/cairo-dock")
+if (NOT "${pluginsdir}" STREQUAL "${libdir}")
 	message (STATUS "Warning : plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
-	STRING (REGEX REPLACE "/${libdir}/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
+	STRING (REGEX REPLACE "/${libname}/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
+	set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
+	message (STATUS "====> ${libdir}")
 endif()
 set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
 set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 
 ########### dependencies ###############
 
@@ -530,6 +534,10 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMA
 add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
+find_package (Sensors)
+if (NOT "${SENSORS_FOUND}" STREQUAL "TRUE")
+	message (STATUS "Could not find libsensors; System-Monitor won't be able to monitor fan speed and CPU temperature.")
+endif()
 set (GETTEXT_SYSTEM_MONITOR ${GETTEXT_PLUGINS})
 set (VERSION_SYSTEM_MONITOR "1.0.5")
 set (PACKAGE_SYSTEM_MONITOR "cd-system-monitor")

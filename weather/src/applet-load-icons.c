@@ -38,6 +38,7 @@ const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") 
 			g_free (pIcon->cFileName);\
 			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
 		}\
+		cairo_dock_listen_for_double_click (pIcon);\
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 

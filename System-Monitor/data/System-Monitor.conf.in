@@ -145,6 +145,12 @@ show swap = false
 #{You need an nVidia card and the 'nvidia-settings' tool.}
 show nvidia = false
 
+#b Show CPU temperature?
+show cpu temp = false
+
+#b Show fan speed?
+show fan = false
+
 #b Show free memory instead of used memory?
 show free = false
 
