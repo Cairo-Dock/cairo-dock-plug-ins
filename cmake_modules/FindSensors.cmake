@@ -5,7 +5,7 @@
 #  SENSORS_INCLUDE_DIR - the SENSORS include directory
 #  SENSORS_LIBRARIES - The libraries needed to use SENSORS
 #
-# taken from kde-base
+# taken from kde-base (kdebase-workspace: /cmake/modules)
 
 FIND_PATH(SENSORS_INCLUDE_DIR sensors/sensors.h)
 
