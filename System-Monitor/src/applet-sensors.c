@@ -76,11 +76,10 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 		if (err != 0)
 		{
 			myData.iSensorsState = -1;
-			cd_warning ("couldn't initialize libsensors: %s\n", sensors_strerror (err));
+			cd_warning ("couldn't initialize libsensors: %s\nTry running 'sensors-detect' as root in a terminal.", sensors_strerror (err));
 			return;
 		}
 		myData.iSensorsState = 1;
-		myData.fMaxFanSpeed = 8000.;  // pour l'instant on la laisse en dur a une valeur pas trop bete.
 	}
 	
 	if (myData.iSensorsState != 1)
@@ -92,6 +91,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 	int chip_nr;
 	
 	chip_nr = 0;
+	double fCpuTempPercent, fCpuTempPercentMax = 0;
 	myData.iFanSpeed = 0;
 	myData.iCPUTemp = 0;
 	myData.bCpuTempAlarm = FALSE;
@@ -106,7 +106,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 		{
 			switch (feature->type)
 			{
-				case SENSORS_FEATURE_TEMP:
+				case SENSORS_FEATURE_TEMP:  // une sonde de temperature
 				{
 					double limit1=0, limit2=100;
 					
@@ -123,12 +123,12 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					val = get_value(chip, sf);
 					if (val == 0)
 						break;
-					myData.iCPUTemp = MAX (myData.iCPUTemp, val);
 					
 					// alarme
 					sf = sensors_get_subfeature(chip, feature,
 						SENSORS_SUBFEATURE_TEMP_ALARM);
-					myData.bCpuTempAlarm = sf && get_value(chip, sf);
+					if (sf && get_value(chip, sf))
+						myData.bCpuTempAlarm = TRUE;
 					
 					// min limit
 					sf = sensors_get_subfeature(chip, feature,
@@ -140,7 +140,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 						sf = sensors_get_subfeature(chip, feature,
 							SENSORS_SUBFEATURE_TEMP_MIN_ALARM);
 						if (sf && get_value(chip, sf))
-							myData.bCpuTempAlarm = 1;
+							myData.bCpuTempAlarm = TRUE;
 					}
 					
 					// max limit
@@ -153,7 +153,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 						sf = sensors_get_subfeature(chip, feature,
 							SENSORS_SUBFEATURE_TEMP_MAX_ALARM);
 						if (sf && get_value(chip, sf))
-							myData.bCpuTempAlarm = 1;
+							myData.bCpuTempAlarm = TRUE;
 					}
 					else  // pas de valeur max, on regarde si une valeur critique existe.
 					{
@@ -169,14 +169,23 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 								myData.bCpuTempAlarm |= 1;
 						}
 					}
+					if (limit2 <= limit1 + 1)
+						limit2 = limit1 + 1;
+					
+					double fCpuTempPercent = 100. * (limit2 - val) / (limit2 - limit1);
+					if (fCpuTempPercent > fCpuTempPercentMax)  // on ne va garder qu'une seule valeur : celle qui est la plus grande en valeur relative.
+					{
+						fCpuTempPercentMax = fCpuTempPercent;
+						myData.fCpuTempPercent = fCpuTempPercent;
+						myData.iCPUTemp = val;
+						myData.iCPUTempMin = limit1;
+						myData.iCPUTempMax = limit2;
+					}
+					//g_print ("CPU : %.2f %d(%d) %.2f\n", limit1, myData.iCPUTemp, myData.bCpuTempAlarm, limit2);
 				}
 				break;
 				
-				case SENSORS_FEATURE_FAN:
-				{
-					const sensors_subfeature *sf;
-					int alarm = 0;
-					
+				case SENSORS_FEATURE_FAN:  // un ventilo
 					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_FAN_FAULT);
 					if (sf && get_value(chip, sf))  // fault
@@ -191,13 +200,20 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					if (val == 0)
 						return;
 					
-					myData.iFanSpeed = MAX (myData.iFanSpeed, val);
-					
 					// alarm
 					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_FAN_ALARM);
-					myData.bFanAlarm = sf && get_value(chip, sf);
-				}
+					if (sf && get_value(chip, sf))
+						myData.bFanAlarm = TRUE;
+					
+					// max speed
+					myData.fMaxFanSpeed = 8000.;  // pour l'instant on la laisse en dur a une valeur pas trop bete, car libsensors ne fournit pas de max pour les fans (elle fournit un min, mais sans le max ca a peu d'interet).
+					if (val > myData.fMaxFanSpeed)
+						val = myData.fMaxFanSpeed;
+					
+					myData.iFanSpeed = MAX (myData.iFanSpeed, val);  // on ne garde qu'une valeur : la plus grande.
+					
+					myData.fFanSpeedPercent = 100. * myData.iFanSpeed / myData.fMaxFanSpeed;
 				break;
 				
 				case SENSORS_FEATURE_IN:
@@ -217,15 +233,14 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 		myData.bAcquisitionOK = FALSE;
 	}
 	
-	if (myData.iGPUTemp <= myConfig.iLowerLimit)
-		myData.fGpuTempPercent = 0;
-	else if (myData.iGPUTemp >= myConfig.iUpperLimit )
-		myData.fGpuTempPercent = 100.;
-	else
-		myData.fGpuTempPercent = 100. * (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
-	if (fabs (myData.fGpuTempPercent - myData.fPrevGpuTempPercent) > 1)
+	if (fabs (myData.fCpuTempPercent - myData.fPrevCpuTempPercent) > 1)
 	{
-		myData.fPrevGpuTempPercent = myData.fGpuTempPercent;
+		myData.fPrevCpuTempPercent = myData.fCpuTempPercent;
+		myData.bNeedsUpdate = TRUE;
+	}
+	if (fabs (myData.fFanSpeedPercent - myData.fPrevFanSpeedPercent) > 1)
+	{
+		myData.fPrevFanSpeedPercent = myData.fFanSpeedPercent;
 		myData.bNeedsUpdate = TRUE;
 	}
 }
@@ -236,16 +251,28 @@ void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet)
 	
 }
 
-
-void cd_sensors_alert (CairoDockModuleInstance *myApplet)
+void cd_cpu_alert (CairoDockModuleInstance *myApplet)
 {
-	if (myData.bAlerted || ! myConfig.bAlert)
+	if (myData.bCPUAlerted || ! myConfig.bAlert)
 		return;
 	
-	cairo_dock_show_temporary_dialog_with_icon_printf (D_("Alert! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
+	cairo_dock_show_temporary_dialog_with_icon_printf (D_("CPU temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iCPUTemp);
 	
 	if (myConfig.bAlertSound)
 		cairo_dock_play_sound (myConfig.cSoundPath);
 	
-	myData.bAlerted = TRUE;
+	myData.bCPUAlerted = TRUE;
+}
+
+void cd_fan_alert (CairoDockModuleInstance *myApplet)
+{
+	if (myData.bFanAlerted || ! myConfig.bAlert)
+		return;
+	
+	cairo_dock_show_temporary_dialog_with_icon_printf (D_("Fan speed has reached %d rpm"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iFanSpeed);
+	
+	if (myConfig.bAlertSound)
+		cairo_dock_play_sound (myConfig.cSoundPath);
+	
+	myData.bFanAlerted = TRUE;
 }

@@ -111,18 +111,15 @@ CD_APPLET_ON_SCROLL_BEGIN
 	double f;
 	if (CD_APPLET_SCROLL_UP)
 	{
-		f = (1. - myConfig.iScrollVariation/100.);
-		myData.Xgamma.red *= f;
-		myData.Xgamma.green *= f;
-		myData.Xgamma.blue *= f;
+		f = (1. + myConfig.iScrollVariation/100.);
 	}
 	else
 	{
-		f = (1. + myConfig.iScrollVariation/100.);
-		myData.Xgamma.red *= f;
-		myData.Xgamma.green *= f;
-		myData.Xgamma.blue *= f;
+		f = (1. - myConfig.iScrollVariation/100.);
 	}
+	myData.Xgamma.red *= f;
+	myData.Xgamma.green *= f;
+	myData.Xgamma.blue *= f;
 	
 	xgamma_set_gamma (&myData.Xgamma);
 CD_APPLET_ON_SCROLL_END

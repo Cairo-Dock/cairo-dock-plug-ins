@@ -53,10 +53,12 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lourd, on decide donc de ne mettre a jour qu'une fois sur 3.
 			cd_sysmonitor_get_nvidia_data (myApplet);
 	}
+#ifdef HAVE_SENSORS
 	if (myConfig.bShowCpuTemp || myConfig.bShowFanSpeed)
 	{
 		cd_sysmonitor_get_sensors_data (myApplet);
 	}
+#endif
 	
 	if (! myData.bInitialized)
 	{
@@ -126,6 +128,20 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 						myData.iGPUTemp,
 						(bOneLine ? " - " : "\n"));
 				}
+				if (myConfig.bShowCpuTemp)
+				{
+					g_string_append_printf (sInfo, "%s%d°C%s",
+						(myDesklet ? "CPU:" : ""),
+						myData.iCPUTemp,
+						(bOneLine ? " - " : "\n"));
+				}
+				if (myConfig.bShowFanSpeed)
+				{
+					g_string_append_printf (sInfo, "%s%drpm%s",
+						(myDesklet ? "FAN:" : ""),
+						myData.iFanSpeed,
+						(bOneLine ? " - " : "\n"));
+				}
 				sInfo->str[sInfo->len-(bOneLine?3:1)] = '\0';
 				if (bOneLine)
 					CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
@@ -158,14 +174,20 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 					if (!myData.bAlerted && myData.iGPUTemp >= myConfig.iAlertLimit)
 						cd_nvidia_alert (myApplet);
 				}
+#ifdef HAVE_SENSORS
 				if (myConfig.bShowCpuTemp)
 				{
 					s_fValues[i++] = myData.fCpuTempPercent / 100.;
+					if (!myData.bCPUAlerted && myData.bCpuTempAlarm)
+						cd_cpu_alert (myApplet);
 				}
 				if (myConfig.bShowFanSpeed)
 				{
 					s_fValues[i++] = myData.fFanSpeedPercent / 100.;
+					if (!myData.bFanAlerted && myData.bFanAlarm)
+						cd_fan_alert (myApplet);
 				}
+#endif
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 			}
 		}

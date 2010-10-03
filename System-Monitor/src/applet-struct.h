@@ -127,8 +127,11 @@ struct _AppletData {
 	gint iTimerCount;
 	gboolean bCpuTempAlarm;
 	gboolean bFanAlarm;
+	gint iCPUTempMin, iCPUTempMax;
 	// end of shared memory.
 	gboolean bAlerted;
+	gboolean bCPUAlerted;
+	gboolean bFanAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	gint iSensorsState;
 	

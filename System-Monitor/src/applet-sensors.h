@@ -28,8 +28,9 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet);
 
 void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet);
 
+void cd_cpu_alert (CairoDockModuleInstance *myApplet);
 
-void cd_sensors_alert (CairoDockModuleInstance *myApplet);
+void cd_fan_alert (CairoDockModuleInstance *myApplet);
 
 
 #endif
