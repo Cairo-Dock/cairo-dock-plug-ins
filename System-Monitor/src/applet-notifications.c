@@ -71,7 +71,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		
 		// On affiche tout ca.
 		unsigned long long ram = myData.ramFree + myData.ramCached + myData.ramBuffers;
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n %s : %d MHz (%d %s)\n %s : %s / %s : %s\n%s : %d%s - %s : %d%s\n %s : %d%s - %s : %d%s%s",
+		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s\n  %s : %d MHz (%d %s)\n  %s : %s / %s : %s\n%s : %d%s - %s : %d%s\n  %s : %d%s - %s : %d%s%s",
 			myIcon, myContainer, cGCInfos ? 15e3 : 12e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("CPU model"), myData.cModelName,
@@ -101,10 +101,6 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	{
 		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		int r = system ("kde-system-monitor &");
-	}
 	else
 	{
 		cairo_dock_fm_show_system_monitor ();
@@ -113,7 +109,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-	CD_APPLET_ADD_IN_MENU (D_("System Monitor"), _show_monitor_system, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_JUMP_TO, _show_monitor_system, CD_APPLET_MY_MENU);
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

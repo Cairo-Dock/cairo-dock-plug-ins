@@ -103,6 +103,7 @@ struct _AppletData {
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;
 	gboolean bSetName;
+	gint iClickedDay;
 	} ;
 
 

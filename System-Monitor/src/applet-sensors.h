@@ -17,33 +17,20 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
+#ifndef __APPLET_SENSORS__
+#define __APPLET_SENSORS__
 
-#include "applet-utils.h"
+#include <cairo-dock.h>
 
 
-void env_backend_logout (void)
-{
-	cairo_dock_launch_command ("xfce4-session-logout");
-}
+void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet);
 
-void env_backend_shutdown (void)
-{
-	cairo_dock_launch_command ("xfce4-session-logout");  // avec les options telles que --halt, la fenetre n'est pas montree.
-}
 
-void env_backend_lock_screen (void)
-{
-	cairo_dock_launch_command ("xscreensaver-command -lock");
-}
+void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet);
 
-void env_backend_setup_time (void)
-{
-	cairo_dock_launch_command ("gksu time-admin");
-}
+void cd_cpu_alert (CairoDockModuleInstance *myApplet);
 
-void env_backend_show_system_monitor (void)
-{
-	cairo_dock_launch_command ("xfce-task-manager");
-}
+void cd_fan_alert (CairoDockModuleInstance *myApplet);
 
+
+#endif

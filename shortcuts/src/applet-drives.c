@@ -31,7 +31,7 @@
 
 static void _load_disk_icon (Icon *pIcon)
 {
-	CairoDockModuleInstance *myApplet = pIcon->pLinkedApplet;
+	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
 	int iWidth = pIcon->iImageWidth;
 	int iHeight = pIcon->iImageHeight;
 	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
@@ -79,7 +79,7 @@ static void _load_disk_icon (Icon *pIcon)
 static void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
 	pIcon->iface.load_image = _load_disk_icon;
-	pIcon->pLinkedApplet = myApplet;
+	pIcon->pAppletOwner = myApplet;
 	CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, pDiskUsage);
 	if (pIcon->cCommand)

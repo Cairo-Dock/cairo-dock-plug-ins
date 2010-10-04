@@ -147,6 +147,12 @@ show swap = false
 #{You need an nVidia card and the 'nvidia-settings' tool.}
 show nvidia = false
 
+#b Show CPU temperature?
+show cpu temp = false
+
+#b Show fan speed?
+show fan = false
+
 #b Show free memory instead of used memory?
 show free = false
 
@@ -161,8 +167,20 @@ delay = 2
 #{You need OpenGL for this option. Set it to 0 means not used, 1 means the movement is continue.}
 smooth = 1
 
-#v
-sep1=
+#F[Alerts;gtk-dialog-warning]
+frame_warn=
+
+#B[2] Show alerts?
+alert=true
+
+#B Play a sound when displaying warning?
+asound=true
+
+#u Path to sound file:
+sound path = /usr/share/sounds/error.wav
+
+#F[System-Monitor;gtk-execute]
+frame_sysmon=
 
 #s User command to display a system monitor:
 #{Leave empty to use the default one.}
@@ -211,12 +229,6 @@ llt = 0
 #i[60;120] Upper limit of graphic card temperature:
 #{in Celsius. The temperature will be displayed between this value and the upper limit.}
 ult = 110
-#b Notification when graphic card temperature is high?
-alert=true
 #i[60;120] Notification limit of graphic card temperature:
 #{in celcius.}
 alt = 100
-#b Play a sound when displaying warning?
-asound=true
-#u Path to sound file:
-sound path = /usr/share/sounds/error.wav

@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.2.0-3")
+set (VERSION "2.2.1~0alpha0")
 
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -45,43 +45,47 @@ endif( WIN32 )
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
+					# CMAKE_INSTALL_PREFIX = /usr
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdir
+    COMMAND pkg-config cairo-dock --variable=pluginsdir		# /usr/lib/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
 STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # la commande rajoute un retour chariot ...
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdatadir
+    COMMAND pkg-config cairo-dock --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
 execute_process(
-    COMMAND pkg-config --modversion cairo-dock
+    COMMAND pkg-config --modversion cairo-dock			# 2.2.0-3
     OUTPUT_VARIABLE dock_version)
 STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
-if (NOT "${dock_version}" STREQUAL "${VERSION}")
+if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
 	MESSAGE (FATAL_ERROR "warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
 endif()
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
 if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
-	set (libdir ${prefix}/lib64)
+	set (libname "lib64")
 else()
-	set (libdir ${prefix}/lib${LIB_SUFFIX})
+	set (libname "lib${LIB_SUFFIX}")
 endif()
+set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")	# /usr/lib
 
-if (NOT "${pluginsdir}" STREQUAL "${CMAKE_INSTALL_PREFIX}/${libdir}")
-	message (STATUS "Warning : plug-ins should be installed in the same place asthe dock, that is to say in ${pluginsdir}")
-	STRING (REGEX REPLACE "/${libdir}" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
+if (NOT "${pluginsdir}" STREQUAL "${libdir}")
+	message (STATUS "Warning : plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
+	STRING (REGEX REPLACE "/${libname}/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
+	set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
 set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
 set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 
 ########### dependencies ###############
 
 pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
 
 ############# ALSA_MIXER #################
-if (NOT "${enable_alsa_mixer}" STREQUAL "no")
+if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 	pkg_check_modules (ALSA_MIXER_PACKAGE alsa)
 	if ("${ALSA_MIXER_PACKAGE_FOUND}" STREQUAL "")
 		message (STATUS "Could not find alsa; Cairo-Dock won't be built with AlsaMixer applet.")
@@ -217,7 +221,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf.in ${CMAKE
 add_subdirectory (Folders)
 
 ############# GMENU #################
-if (NOT "${enable_gmenu}" STREQUAL "no")
+if (NOT "${enable-gmenu}" STREQUAL "no")
 	pkg_check_modules (GMENU_PACKAGE libgnome-menu)
 	if ("${GMENU_PACKAGE_FOUND}" STREQUAL "")
 		message (STATUS "Could not find libgnome-menu; Cairo-Dock won't be built with GMenu applet.")
@@ -236,7 +240,7 @@ pkg_check_modules ("LIBGIO" "gio-2.0")
 add_subdirectory (gvfs-integration)
 
 ############# GNOME-INTEGRATION #################
-if (NOT "${enable_gnome_integration}" STREQUAL "no")
+if (NOT "${enable-gnome-integration}" STREQUAL "no")
 	pkg_check_modules (GNOME_INTEGRATION gio-2.0)
 	if ("${GNOME_INTEGRATION_FOUND}" STREQUAL "")
 		message (STATUS "Could not find gio; Cairo-Dock won't be built with Gnome>=2.22 support.")
@@ -249,7 +253,7 @@ if (NOT "${enable_gnome_integration}" STREQUAL "no")
 endif()
 
 ############# GNOME-INTEGRATION-OLD #################
-if ("${enable_old_gnome_integration}" STREQUAL "yes")
+if ("${enable-old-gnome-integration}" STREQUAL "yes")
 	pkg_check_modules (OLD_GNOME_INTEGRATION gnome-vfs-2.0 libgnomeui-2.0)
 	if ("${OLD_GNOME_INTEGRATION_FOUND}" STREQUAL "")
 		message (STATUS "Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.")
@@ -285,7 +289,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/illusion/data/illusion.conf.in ${CMA
 add_subdirectory (illusion)
 
 ############# KDE-INTEGRATION #################
-if (NOT "${enable_kde_integration}" STREQUAL "no")
+if (NOT "${enable-kde-integration}" STREQUAL "no")
 	pkg_check_modules (KDE_INTEGRATION gio-2.0)
 	if ("${KDE_INTEGRATION_FOUND}" STREQUAL "")
 		message (STATUS "Could not find kde libs; Cairo-Dock won't be built with KDE support.")
@@ -439,6 +443,14 @@ set (quick_browserdatadir "${pluginsdatadir}/quick_browser")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/quick-browser/data/quick-browser.conf.in ${CMAKE_CURRENT_BINARY_DIR}/quick-browser/data/quick-browser.conf)
 add_subdirectory (quick-browser)
 
+############# REMOTE_CONTROL #################
+set (GETTEXT_REMOTE_CONTROL ${GETTEXT_PLUGINS})
+set (VERSION_REMOTE_CONTROL "0.0.1")
+set (PACKAGE_REMOTE_CONTROL "cd-Remote-Control")
+set (remote_controldatadir "${pluginsdatadir}/Remote-Control")
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Remote-Control/data/Remote-Control.conf)
+add_subdirectory (Remote-Control)
+
 ############# RSSREADER #################
 set (GETTEXT_RSS_READER ${GETTEXT_PLUGINS})
 set (VERSION_RSS_READER "1.0.2")
@@ -529,6 +541,10 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMA
 add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
+find_package (Sensors)
+if (NOT "${SENSORS_FOUND}" STREQUAL "TRUE")
+	message (STATUS "Could not find libsensors; System-Monitor won't be able to monitor fan speed and CPU temperature.")
+endif()
 set (GETTEXT_SYSTEM_MONITOR ${GETTEXT_PLUGINS})
 set (VERSION_SYSTEM_MONITOR "1.0.5")
 set (PACKAGE_SYSTEM_MONITOR "cd-system-monitor")
@@ -585,7 +601,7 @@ add_subdirectory (weather)
 
 ############# WEBLETS #################
 pkg_check_modules (WEBKIT webkit-1.0)
-if (NOT "${enable_weblets}" STREQUAL "no")
+if (NOT "${enable-weblets}" STREQUAL "no")
 	if ("${WEBKIT_FOUND}" STREQUAL "")
 		message (STATUS "Could not find webkit-1.0; Cairo-Dock won't be built with Weblets applet.")
 	else()
@@ -607,7 +623,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/wifi/data/wifi.conf.in ${CMAKE_CURRE
 add_subdirectory (wifi)
 
 ############# XFCE-INTEGRATION #################
-if (NOT "${enable_xfce_integration}" STREQUAL "no")
+if (NOT "${enable-xfce-integration}" STREQUAL "no")
 	pkg_check_modules (XFCE_INTEGRATION_THUNAR thunar-vfs-1)
 	pkg_check_modules (XFCE_INTEGRATION_GVFS gio-2.0)
 	if ("${XFCE_INTEGRATION_THUNAR_FOUND}" STREQUAL "" AND "${XFCE_INTEGRATION_GVFS_FOUND}" STREQUAL "")
@@ -634,13 +650,3 @@ else()
 endif()
 
 add_subdirectory (po)
-
-############# REMOTE_CONTROL #################
-if ("${enable_remote_control}" STREQUAL "yes")
-	set (GETTEXT_REMOTE_CONTROL ${GETTEXT_PLUGINS})
-	set (VERSION_REMOTE_CONTROL "0.0.1")
-	set (PACKAGE_REMOTE_CONTROL "cd-Remote-Control")
-	set (remote_controldatadir "${pluginsdatadir}/Remote-Control")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Remote-Control/data/Remote-Control.conf)
-	add_subdirectory (Remote-Control)
-endif()

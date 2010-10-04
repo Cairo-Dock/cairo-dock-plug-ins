@@ -37,6 +37,7 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	g_return_if_fail (myDrawContext != NULL);
+	//\______________ On efface le dessin courant.
 	cairo_dock_erase_cairo_context (myDrawContext);
 	if (myData.pNumericBgSurface != NULL)
 	{
@@ -45,6 +46,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	}
 	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
 	
+	//\______________ On defini le texte a dessiner.
+	// layout
 	PangoFontDescription *pDesc = pango_font_description_new ();
 	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
 	pango_font_description_set_family_static (pDesc, myConfig.cFont);
@@ -54,6 +57,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	pango_layout_set_font_description (pLayout, pDesc);
 	
+	// format de l'heure
 	const gchar *cFormat;
 	if (myConfig.b24Mode)
 	{
@@ -75,6 +79,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	PangoRectangle ink, log;
 	pango_layout_get_pixel_extents (pLayout, &ink, &log);
 	
+	//\______________ On dessine le texte.
 	cairo_save (myDrawContext);
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
@@ -86,8 +91,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		PangoRectangle ink2, log2;
 		pango_layout_get_pixel_extents (pLayout2, &ink2, &log2);
 		
-		double h=0, w=0, fZoomX=0, fZoomY=0;
-		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;
+		double h=0, w=0, fZoomX=0, fZoomY=0;  // parametres d'affichage 2 lignes
+		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;  // parametres d'affichage 1 ligne
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
 			h = ink.height + ink2.height + GAPY * iHeight;
@@ -97,10 +102,10 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 				fZoomY = MAX_RATIO * fZoomX;
 			
-			if (fZoomX * w > myConfig.fTextRatio * iWidth)
+			if (myConfig.fTextRatio < 1)
 			{
-				fZoomY *= myConfig.fTextRatio * iWidth / w * fZoomX;
-				fZoomX = myConfig.fTextRatio * iWidth / w;
+				fZoomX *= myConfig.fTextRatio;
+				fZoomY *= myConfig.fTextRatio;
 			}
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
@@ -112,10 +117,10 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 				fZoomY_ = MAX_RATIO * fZoomX_;
 			
-			if (fZoomX_ * w_ > myConfig.fTextRatio * iWidth)
+			if (myConfig.fTextRatio < 1)
 			{
-				fZoomY_ *= myConfig.fTextRatio * iWidth / w_ * fZoomX_;
-				fZoomX_ = myConfig.fTextRatio * iWidth / w_;
+				fZoomX_ *= myConfig.fTextRatio;
+				fZoomY_ *= myConfig.fTextRatio;
 			}
 			if (fZoomY_ > fZoomX_)
 			{
@@ -166,20 +171,22 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 		g_object_unref (pLayout2);
 	}
-	else
+	else  // affichage simple de l'heure sur 1 ligne.
 	{
-		double fZoomX = (double) (iWidth - 1) / ink.width;
+		double fZoomX = (double) iWidth / ink.width;
 		double fZoomY = (double) iHeight / ink.height;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
 		
-		if (fZoomX * ink.width > myConfig.fTextRatio * iWidth)
+		if (myConfig.fTextRatio < 1)
 		{
-			fZoomY *= myConfig.fTextRatio * iWidth / (ink.width * fZoomX);
-			fZoomX = myConfig.fTextRatio * iWidth / ink.width;
+			fZoomX *= myConfig.fTextRatio;
+			fZoomY *= myConfig.fTextRatio;
 		}
 		
-		cairo_translate (myDrawContext, 0., (iHeight - fZoomY * ink.height)/2);  // centre verticalement.
+		cairo_translate (myDrawContext,
+			(iWidth - fZoomX * ink.width)/2,
+			(iHeight - fZoomY * ink.height)/2);  // le texte sera centre.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		cairo_translate (myDrawContext, -ink.x, -ink.y);
 		pango_cairo_show_layout (myDrawContext, pLayout);

@@ -35,6 +35,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowRam = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show ram", TRUE);
 	myConfig.bShowSwap = CD_CONFIG_GET_BOOLEAN ("Configuration", "show swap");
 	myConfig.bShowNvidia = CD_CONFIG_GET_BOOLEAN ("Configuration", "show nvidia");
+#ifdef HAVE_SENSORS
+	myConfig.bShowCpuTemp = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show cpu temp", FALSE);
+	myConfig.bShowFanSpeed = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show fan", FALSE);
+#endif  // donc toujours a false si non defini
 	myConfig.bShowFreeMemory = CD_CONFIG_GET_BOOLEAN ("Configuration", "show free");
 	
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");

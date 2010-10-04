@@ -1,7 +1,7 @@
 
 ########### sources ###############
 
-SET(cd-System-Monitor_LIB_SRCS
+SET (cd-System-Monitor_LIB_SRCS
 	applet-init.c 		applet-init.h
 	applet-config.c 		applet-config.h
 	applet-cpusage.c 		applet-cpusage.h
@@ -12,8 +12,16 @@ SET(cd-System-Monitor_LIB_SRCS
 	applet-notifications.c 	applet-notifications.h
 	applet-struct.h
 )
-
-add_library(${PACKAGE_SYSTEM_MONITOR} SHARED ${cd-System-Monitor_LIB_SRCS})
+if ("${SENSORS_FOUND}" STREQUAL "TRUE")
+	SET (cd-System-Monitor_SENSORS_SRCS
+		applet-sensors.c 		applet-sensors.h)
+	add_library (${PACKAGE_SYSTEM_MONITOR} SHARED
+		${cd-System-Monitor_LIB_SRCS}
+		${cd-System-Monitor_SENSORS_SRCS})
+else()
+	add_library (${PACKAGE_SYSTEM_MONITOR} SHARED
+		${cd-System-Monitor_LIB_SRCS})
+endif()
 
 ########### compil ###############
 add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${system_monitordatadir}")
@@ -25,12 +33,18 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SYSTEM_MONITOR}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
+if ("${SENSORS_FOUND}" STREQUAL "TRUE")
+	add_definitions (-DHAVE_SENSORS="1")
+	include_directories (${SENSORS_INCLUDE_DIR})
 
-include_directories (
-	${PACKAGE_INCLUDE_DIRS})
+	link_directories (${SENSORS_LIBRARY_DIRS})
 
-link_directories (
-	${PACKAGE_LIBRARY_DIRS})
+	target_link_libraries (${SENSORS_LIBRARIES})
+endif()
+
+include_directories (${PACKAGE_INCLUDE_DIRS})
+
+link_directories (${PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_SYSTEM_MONITOR}
 	${PACKAGE_LIBRARIES})
@@ -38,58 +52,3 @@ target_link_libraries (${PACKAGE_SYSTEM_MONITOR}
 ########### install files ###############
 
 install(TARGETS ${PACKAGE_SYSTEM_MONITOR} DESTINATION ${pluginsdir})
-
-
-#original Makefile.am contents follow:
-
-# #dnl Process this file with automake to produce Makefile.in
-#
-#lib_LTLIBRARIES = 
-#	libcd-System-Monitor.la
-#
-#
-#libcd_System_Monitor_la_SOURCES = 
-#	applet-init.c
-#	applet-init.h
-#	applet-config.c
-#	applet-config.h
-#	applet-cpusage.c
-#	applet-cpusage.h
-#	applet-rame.c
-#	applet-rame.h
-#	applet-nvidia.c
-#	applet-nvidia.h
-#	applet-top.c
-#	applet-top.h
-#	applet-monitor.c
-#	applet-monitor.h
-#	applet-notifications.c
-#	applet-notifications.h
-#	applet-struct.h
-#
-#
-#dock_version = `pkg-config --modversion cairo-dock`
-#
-#libcd_System_Monitor_la_CFLAGS = 
-#	-I$(top_srcdir)/src
-#	$(PACKAGE_CFLAGS)
-#	-DMY_APPLET_SHARE_DATA_DIR=""${system_monitordatadir)""
-#	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
-#	-DMY_APPLET_CONF_FILE=""System-Monitor.conf""
-#	-DMY_APPLET_USER_DATA_DIR=""System-Monitor""
-#	-DMY_APPLET_VERSION=""${VERSION_SYSTEM_MONITOR)""
-#	-DMY_APPLET_GETTEXT_DOMAIN=""${GETTEXT_SYSTEM_MONITOR)""
-#	-DMY_APPLET_DOCK_VERSION=""${dock_version)""
-#	-DMY_APPLET_ICON_FILE=""icon.png""
-#	-DCD_APPLET_MULTI_INSTANCE="1"
-#	-std=c99
-#	-Werror-implicit-function-declaration
-##	-g -ggdb -W -Wall
-#
-#
-#libcd_System_Monitor_la_LIBADD = 
-#	$(PACKAGE_LIBS) -lm
-#
-#
-#libcd_System_Monitor_la_LDFLAGS =
-#	-avoid-version -module
