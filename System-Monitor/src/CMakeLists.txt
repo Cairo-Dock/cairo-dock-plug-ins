@@ -12,17 +12,15 @@ SET (cd-System-Monitor_LIB_SRCS
 	applet-notifications.c 	applet-notifications.h
 	applet-struct.h
 )
+message (STATUS "SENSORS_FOUND : ${SENSORS_FOUND}")
+
 if ("${SENSORS_FOUND}" STREQUAL "TRUE")
 	SET (cd-System-Monitor_SENSORS_SRCS
 		applet-sensors.c 		applet-sensors.h)
-	add_library (${PACKAGE_SYSTEM_MONITOR} SHARED
+endif()
+add_library (${PACKAGE_SYSTEM_MONITOR} SHARED
 		${cd-System-Monitor_LIB_SRCS}
 		${cd-System-Monitor_SENSORS_SRCS})
-else()
-	add_library (${PACKAGE_SYSTEM_MONITOR} SHARED
-		${cd-System-Monitor_LIB_SRCS})
-endif()
-
 ########### compil ###############
 add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${system_monitordatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
@@ -33,21 +31,20 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SYSTEM_MONITOR}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
+
 if ("${SENSORS_FOUND}" STREQUAL "TRUE")
 	add_definitions (-DHAVE_SENSORS="1")
-	include_directories (${SENSORS_INCLUDE_DIR})
-
-	link_directories (${SENSORS_LIBRARY_DIRS})
-
-	target_link_libraries (${SENSORS_LIBRARIES})
 endif()
 
-include_directories (${PACKAGE_INCLUDE_DIRS})
+include_directories (${PACKAGE_INCLUDE_DIRS}
+	${SENSORS_INCLUDE_DIR})
 
-link_directories (${PACKAGE_LIBRARY_DIRS})
+link_directories (${PACKAGE_LIBRARY_DIRS}
+	${SENSORS_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_SYSTEM_MONITOR}
-	${PACKAGE_LIBRARIES})
+	${PACKAGE_LIBRARIES}
+	${SENSORS_LIBRARIES})
 
 ########### install files ###############
 

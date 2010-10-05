@@ -49,7 +49,7 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 	
 	if (myData.iGPUTemp <= myConfig.iLowerLimit)
 		myData.fGpuTempPercent = 0;
-	else if (myData.iGPUTemp >= myConfig.iUpperLimit )
+	else if (myData.iGPUTemp >= myConfig.iUpperLimit)
 		myData.fGpuTempPercent = 100.;
 	else
 		myData.fGpuTempPercent = 100. * (myData.iGPUTemp - myConfig.iLowerLimit) / (myConfig.iUpperLimit - myConfig.iLowerLimit);
@@ -61,7 +61,7 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
+static void _get_nvidia_info (CairoDockModuleInstance *myApplet)
 {
 	gchar *cCommand = g_strdup_printf ("bash %s/nvidia-config", MY_APPLET_SHARE_DATA_DIR);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -131,6 +131,25 @@ void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
 	
 	g_strfreev (cInfopipesList);
 }
+
+void cd_sysmonitor_get_nivdia_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+{
+	if (myData.cGPUName == NULL)  // nvidia-config n'a encore jamais ete appele.
+		_get_nvidia_info (myApplet);
+	
+	if (myData.cGPUName && strcmp (myData.cGPUName, "none") != 0)  // nvidia-config est passe avec succes.
+	{
+		if (!myConfig.bShowNvidia)
+			cd_sysmonitor_get_nvidia_data (myApplet);  // le thread ne passe pas par la => pas de conflit.
+		
+		g_string_append_printf (pInfo, "\n%s: %s\n  %s: %d%s \n  %s: %s\n  %s: %d°C",
+			D_("GPU model"), myData.cGPUName,
+			D_("Video Ram"), myData.iVideoRam, D_("Mb"),
+			D_("Driver Version"), myData.cDriverVersion,
+			D_("Core Temperature"), myData.iGPUTemp);
+	}
+}
+
 
 
 void cd_nvidia_alert (CairoDockModuleInstance *myApplet)

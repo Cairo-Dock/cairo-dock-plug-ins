@@ -54,6 +54,15 @@ CPU Temp: +36°C (low = +15°C, high = +45°C) sensor = thermistor
 Temp3: +96°C (low = +15°C, high = +45°C) sensor = diode
 **************************************************/
 
+static int s_iSensorsState = 0;  // on en fait une variable globale plutot qu'un parametre de myData, car la libsensors ne doit etre fermee qu'une seule fois (meme si l'applet est instancee plusieurs fois, le .so du plug-in n'est ouvert une seule fois).
+
+void cd_sysmonitor_clean_sensors (void)
+{
+	if (s_iSensorsState == 1)
+		sensors_cleanup();
+	s_iSensorsState = 0;
+}
+
 static double get_value (const sensors_chip_name *name, const sensors_subfeature *sub)
 {
 	double val;
@@ -68,21 +77,25 @@ static double get_value (const sensors_chip_name *name, const sensors_subfeature
 	return val;
 }
 
-void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
+static inline void _init_sensors (void)
 {
-	if (myData.iSensorsState == 0)
+	if (s_iSensorsState == 0)
 	{
 		int err = sensors_init (NULL);
 		if (err != 0)
 		{
-			myData.iSensorsState = -1;
+			s_iSensorsState = -1;
 			cd_warning ("couldn't initialize libsensors: %s\nTry running 'sensors-detect' as root in a terminal.", sensors_strerror (err));
 			return;
 		}
-		myData.iSensorsState = 1;
+		s_iSensorsState = 1;
 	}
-	
-	if (myData.iSensorsState != 1)
+}
+
+void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
+{
+	_init_sensors ();
+	if (s_iSensorsState != 1)
 		return;
 	
 	const sensors_chip_name *chip;
@@ -166,7 +179,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 							sf = sensors_get_subfeature(chip, feature,
 								SENSORS_SUBFEATURE_TEMP_CRIT_ALARM);
 							if (sf && get_value(chip, sf))
-								myData.bCpuTempAlarm |= 1;
+								myData.bCpuTempAlarm = TRUE;
 						}
 					}
 					if (limit2 <= limit1 + 1)
@@ -216,13 +229,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					myData.fFanSpeedPercent = 100. * myData.iFanSpeed / myData.fMaxFanSpeed;
 				break;
 				
-				case SENSORS_FEATURE_IN:
-				case SENSORS_FEATURE_VID:
-				case SENSORS_FEATURE_BEEP_ENABLE:
-				case SENSORS_FEATURE_POWER:
-				case SENSORS_FEATURE_ENERGY:
-				case SENSORS_FEATURE_CURR:
-				default:
+				default:  // les 
 				break;
 			}
 		}
@@ -246,9 +253,151 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet, GString *pInfo)
 {
+	_init_sensors ();
+	if (s_iSensorsState != 1)
+		return;
 	
+	const sensors_chip_name *chip;
+	const sensors_subfeature *sf;
+	double val;
+	int chip_nr;
+	
+	chip_nr = 0;
+	char *label;
+	gboolean alarm;
+	while ((chip = sensors_get_detected_chips (NULL, &chip_nr)))
+	{
+		const sensors_feature *feature;
+		int i;
+		
+		i = 0;
+		while ((feature = sensors_get_features (chip, &i)))
+		{
+			label = NULL;
+			alarm = 0;
+			switch (feature->type)
+			{
+				case SENSORS_FEATURE_TEMP:  // une sonde de temperature
+				{
+					// name
+					label = sensors_get_label(chip, feature);
+					if (!label)
+						break;
+					
+					double limit1=-100, limit2=-100;
+					
+					sf = sensors_get_subfeature(chip, feature,
+						SENSORS_SUBFEATURE_TEMP_FAULT);
+					if (sf && get_value(chip, sf))  // fault
+						break;
+					
+					// valeur
+					sf = sensors_get_subfeature(chip, feature,
+						SENSORS_SUBFEATURE_TEMP_INPUT);
+					if (!sf)
+						break;
+					val = get_value(chip, sf);
+					if (val == 0)
+						break;
+					
+					// alarme
+					sf = sensors_get_subfeature(chip, feature,
+						SENSORS_SUBFEATURE_TEMP_ALARM);
+					if (sf && get_value(chip, sf))
+						alarm = TRUE;
+					
+					// min limit
+					sf = sensors_get_subfeature(chip, feature,
+						SENSORS_SUBFEATURE_TEMP_MIN);
+					if (sf)
+					{
+						limit1 = get_value(chip, sf);
+						
+						sf = sensors_get_subfeature(chip, feature,
+							SENSORS_SUBFEATURE_TEMP_MIN_ALARM);
+						if (sf && get_value(chip, sf))
+							alarm = TRUE;
+					}
+					
+					// max limit
+					sf = sensors_get_subfeature(chip, feature,
+						SENSORS_SUBFEATURE_TEMP_MAX);
+					if (sf)
+					{
+						limit2 = get_value(chip, sf);
+						
+						sf = sensors_get_subfeature(chip, feature,
+							SENSORS_SUBFEATURE_TEMP_MAX_ALARM);
+						if (sf && get_value(chip, sf))
+							alarm = TRUE;
+					}
+					else  // pas de valeur max, on regarde si une valeur critique existe.
+					{
+						sf = sensors_get_subfeature(chip, feature,
+							SENSORS_SUBFEATURE_TEMP_CRIT);
+						if (sf)
+						{
+							limit2 = get_value(chip, sf);
+							
+							sf = sensors_get_subfeature(chip, feature,
+								SENSORS_SUBFEATURE_TEMP_CRIT_ALARM);
+							if (sf && get_value(chip, sf))
+								alarm = TRUE;
+						}
+					}
+					
+					//g_print ("CPU : %.2f %d(%d) %.2f\n", limit1, myData.iCPUTemp, myData.bCpuTempAlarm, limit2);
+					g_string_append_printf (pInfo, "\n%s: %d°C", label, (int)val);
+					if (limit1 > -99)
+						g_string_append_printf (pInfo, ", %s: %d°C", D_("min"), (int)limit1);
+					if (limit2 > -99)
+						g_string_append_printf (pInfo, ", %s: %d°C", D_("max"), (int)limit2);
+					
+					if (alarm)
+						g_string_append_printf (pInfo, "  (%s)", D_("alarm"));
+					free(label);
+				}
+				break;
+				
+				case SENSORS_FEATURE_FAN:  // un ventilo
+					// name
+					label = sensors_get_label(chip, feature);
+					if (!label)
+						break;
+					
+					sf = sensors_get_subfeature (chip, feature,
+						SENSORS_SUBFEATURE_FAN_FAULT);
+					if (sf && get_value(chip, sf))  // fault
+						break;
+					
+					// valeur
+					sf = sensors_get_subfeature (chip, feature,
+						SENSORS_SUBFEATURE_FAN_INPUT);
+					if (!sf)
+						break;
+					val = get_value (chip, sf);  // rpm
+					if (val == 0)
+						return;
+					
+					// alarm
+					sf = sensors_get_subfeature (chip, feature,
+						SENSORS_SUBFEATURE_FAN_ALARM);
+					if (sf && get_value(chip, sf))
+						alarm = TRUE;
+					
+					g_string_append_printf (pInfo, "\n%s: %d %s", label, (int)val, D_("rpm"));
+					if (alarm)
+						g_string_append_printf (pInfo, "  (%s)", D_("alarm"));
+					free(label);
+				break;
+				
+				default:  // les autres ne nous interessent pas.
+				break;
+			}
+		}
+	}
 }
 
 void cd_cpu_alert (CairoDockModuleInstance *myApplet)

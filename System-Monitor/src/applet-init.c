@@ -26,9 +26,10 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-init.h"
 #include "applet-top.h"
+#include "applet-sensors.h"
 #include "applet-monitor.h"
+#include "applet-init.h"
 
 
 CD_APPLET_DEFINITION (N_("System Monitor"),
@@ -38,7 +39,7 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	"Middle click on the icon to get some valuable info.\n"
 	"Left click on the icon to get a list of the most ressources using programs.\n"
 	"You can instanciate this applet several times to show different values each time."),
-	"parAdOxxx_ZeRo &amp; Fabounet")
+	"parAdOxxx_ZeRo and Fabounet")
 
 
 static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
@@ -171,8 +172,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_MANAGE_APPLICATION (NULL);
 	
 #ifdef HAVE_SENSORS
-	if (myData.iSensorsState == 1)
-		sensors_cleanup();
+	cd_sysmonitor_clean_sensors ();
 #endif
 
 CD_APPLET_STOP_END

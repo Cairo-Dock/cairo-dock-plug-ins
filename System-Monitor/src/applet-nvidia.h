@@ -26,7 +26,7 @@
 void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet);
 
 
-void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_nivdia_info (CairoDockModuleInstance *myApplet, GString *pInfo);
 
 
 void cd_nvidia_alert (CairoDockModuleInstance *myApplet);

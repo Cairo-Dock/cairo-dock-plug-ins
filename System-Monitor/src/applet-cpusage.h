@@ -24,9 +24,9 @@
 #include <cairo-dock.h>
 
 
-void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime);
+void cd_sysmonitor_get_uptime_info (GString *pInfo);
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pInfo);
 
 void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet);
 
