@@ -1875,8 +1875,8 @@ msgid ""
 "\tScroll up/down to select the previous/next layout\n"
 "\tRight-click gives you access to the list of available layouts."
 msgstr ""
-"Cette applet vous permet un contrôle de l'agencement de votre clavier.\n"
-"\tUn indicateur du statut de NUM et CAPS lock peut être affiché\n"
+"Cette applet vous permet de contrôler l'agencement de votre clavier.\n"
+"\tElle peut aussi afficher le statut de NUM et CAPS lock\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
 "\tMolette vers le haut/bas pour sélectionner l'agencement "
 "précédent/suivant,\n"
@@ -1893,9 +1893,9 @@ msgid ""
 "restart\n"
 "  (you can invert the buttons if you prefer to shutdown on left-click)."
 msgstr ""
-"Un apple trés simple qui ajoute un icône pour vous déconnecter\n"
-"Faîtes un clic-gauche pour vous déconnecter ou changer de session, clic-"
-"milieu pour éteindre ou redémarrer\n"
+"Une applet trés simple qui ajoute une icône pour vous déconnecter\n"
+"Clic-gauche pour vous déconnecter ou changer de session,\n"
+"Clic-milieu pour éteindre ou redémarrer\n"
 "  (Vous pouvez inverser les bouttons si vous préférez éteindre avec le "
 "boutton gauche)."
 
@@ -1905,11 +1905,11 @@ msgstr "Choisissez dans combien de minutes votre PC s'arrêtera :"
 
 #: ../logout/src/applet-notifications.c:125
 msgid "Lock screen"
-msgstr "Vérrouiller l'écran"
+msgstr "Verrouiller l'écran"
 
 #: ../logout/src/applet-notifications.c:127
 msgid "Program an automatic shut-down"
-msgstr "Programmez une extinction automatique"
+msgstr "Programmer une extinction automatique"
 
 #: ../logout/src/applet-notifications.c:159
 msgid "Your computer will shut-down in 1 minute."
