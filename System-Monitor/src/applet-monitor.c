@@ -62,7 +62,6 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 	
 	if (! myData.bInitialized)
 	{
-		cd_sysmonitor_get_cpu_info (myApplet);  // on le fait ici plutot que lors de la demande d'info pour avoir le nombre de CPUs.
 		myData.bInitialized = TRUE;
 	}
 	myData.iTimerCount ++;
@@ -178,12 +177,18 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				if (myConfig.bShowCpuTemp)
 				{
 					s_fValues[i++] = myData.fCpuTempPercent / 100.;
+					if (myData.bCPUAlerted && !myData.bCpuTempAlarm)
+						myData.bCPUAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessous de la limite.
+					
 					if (!myData.bCPUAlerted && myData.bCpuTempAlarm)
 						cd_cpu_alert (myApplet);
 				}
 				if (myConfig.bShowFanSpeed)
 				{
 					s_fValues[i++] = myData.fFanSpeedPercent / 100.;
+					if (myData.bFanAlerted && myData.bFanAlarm)
+						myData.bFanAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessous de la limite.
+					
 					if (!myData.bFanAlerted && myData.bFanAlarm)
 						cd_fan_alert (myApplet);
 				}

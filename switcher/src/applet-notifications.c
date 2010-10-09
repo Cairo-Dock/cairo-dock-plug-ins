@@ -57,7 +57,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	{
 		GtkWidget *pMenu = gtk_menu_new ();
 		cd_switcher_build_windows_list (pMenu);
-		cairo_dock_popup_menu_on_container (pMenu, myContainer);
+		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
 	}
 	else if (myConfig.iActionOnMiddleClick == 1)
 	{

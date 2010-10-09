@@ -35,7 +35,7 @@
 #define CPUSAGE_PROC_INFO_PIPE	CD_SYSMONITOR_PROC_FS"/cpuinfo"
 
 
-void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
+void cd_sysmonitor_get_uptime_info (GString *pInfo)
 {
 	FILE *fd = fopen (CPUSAGE_UPTIME_PIPE, "r");
 	if (fd == NULL)
@@ -52,12 +52,14 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 	const int hour = minute * 60;
 	const int day = hour * 24;
 	int iUpTime = (int) fUpTime, iActivityTime = (int) (fUpTime - fIdleTime);
-	*cUpTime = g_strdup_printf ("%d %s, %d:%02d:%02d",
+	
+	g_string_append_printf (pInfo, "\n  %s : %d %s, %d:%02d:%02d / %s : %d %s, %d:%02d:%02d",
+		D_("Uptime"),
 		iUpTime / day, D_("day(s)"),
 		(iUpTime % day) / hour,
 		(iUpTime % hour) / minute,
-		iUpTime % minute);
-	*cActivityTime = g_strdup_printf ("%d %s, %d:%02d:%02d",
+		iUpTime % minute,
+		D_("Activity time"),
 		iActivityTime / day, D_("day(s)"),
 		(iActivityTime % day) / hour,
 		(iActivityTime % hour) / minute,
@@ -65,7 +67,7 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 }
 
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
+static void _get_cpu_info (CairoDockModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -133,6 +135,17 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 	g_free (cContent);
 }
 
+void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+{
+	if (myData.iNbCPU == 0)  // on n'a encore jamais initialise ca.
+		_get_cpu_info (myApplet);
+	
+	g_string_append_printf (pInfo,"%s : %s\n  %s : %d MHz (%d %s)",
+		D_("CPU model"), myData.cModelName,
+		D_("Frequency"), myData.iFrequency,
+		myData.iNbCPU, D_("core(s)"));  // on ne met pas les infos du thread, car la charge CPU varie trop vite pour etre pertinente a un instant donne.
+}
+
 
 #define go_to_next_value(tmp) \
 	tmp ++; \
@@ -148,6 +161,9 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
 {
 	static char cContent[512+1];
+	
+	if (myData.iNbCPU == 0)  // on n'a encore jamais initialise ca.
+		_get_cpu_info (myApplet);  // met toujours iNbCPU a 1 au moins.
 	
 	FILE *fd = fopen (CPUSAGE_DATA_PIPE, "r");
 	if (fd == NULL)

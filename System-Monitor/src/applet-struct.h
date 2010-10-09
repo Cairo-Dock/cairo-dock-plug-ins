@@ -134,7 +134,6 @@ struct _AppletData {
 	gboolean bCPUAlerted;
 	gboolean bFanAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
-	gint iSensorsState;
 	
 	guint iNbProcesses;
 	CairoDialog *pTopDialog;

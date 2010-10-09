@@ -118,3 +118,21 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 		g_free (cContent);
 	}
 }
+
+
+#define _convert_from_kb(s) (int) (((s >> 20) == 0) ? (s >> 10) : (s >> 20))
+#define _unit(s) (((s >> 20) == 0) ? D_("Mb") : D_("Gb"))
+void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+{
+	if (!myConfig.bShowRam && ! myConfig.bShowSwap)
+		cd_sysmonitor_get_ram_data (myApplet);  // le thread ne passe pas par la => pas de conflit.
+	if (myData.ramTotal == 0)
+		return;
+	
+	unsigned long long ram = myData.ramFree + myData.ramCached + myData.ramBuffers;
+	g_string_append_printf (pInfo,"\n%s : %d%s - %s : %d%s\n  %s : %d%s - %s : %d%s",
+		D_("Memory"), _convert_from_kb (myData.ramTotal), _unit (myData.ramTotal),
+		D_("Available"), _convert_from_kb (ram), _unit (ram),
+		D_("Cached"), _convert_from_kb (myData.ramCached), _unit (myData.ramCached),
+		D_("Buffers"), _convert_from_kb (myData.ramBuffers), _unit (myData.ramBuffers));
+}

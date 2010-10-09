@@ -25,5 +25,7 @@
 
 void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet);
 
+void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pInfo);
+
 
 #endif
