@@ -124,7 +124,7 @@ void cd_NetworkMonitor_bubble (void) {
 		return ;
 	}
 	GString *sInfo = g_string_new ("");
-	gchar *cIconPath;
+	const gchar *cIconPath;
 	if (myData.bWiredExt)
 	{
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/network-wired.png";

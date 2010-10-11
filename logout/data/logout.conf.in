@@ -59,8 +59,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -97,6 +95,19 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#F[Action;gtk-execute]
+frame_action=
+
+#l- [Log out; Shut down;Lock screen] Action on left-click:
+click=0
+
+#l- [Log out; Shut down;Lock screen] Action on middle-click:
+middle-click=1
+
+
+#F[Commands;gtk-preferences]
+frame_comm=
+
 #s User-defined command to execute for logout:
 #{Leave empty to execute the default command.}
 user action =
@@ -104,8 +115,5 @@ user action =
 #s User-defined command to execute for shutdown:
 #{This will be available when middle-clicking. Leave empty to execute the default command, which depends on your distribution. In some cases the command to shutdown is the same as the one to log out.}
 user action2 =
-
-#b Invert buttons?
-invert = true
 
 shutdown time = 0

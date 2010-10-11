@@ -32,7 +32,7 @@ CD_APPLET_DEFINITION (N_("terminal"),
 	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("Add a terminal to your dock !\n"
-	"Left/middle click to show/hide terminal (you can bind a keyboard shortcut for it.)\n"
+	"Left-click to show/hide terminal (you can bind a keyboard shortcut for it.)\n"
 	"You can drag'n'drop files or text and select an action.\n"
 	"You can open many tabs, rename them, change their color (right-click on a tab to interact on it)\n"
 	"To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"

@@ -405,6 +405,7 @@ void cd_cpu_alert (CairoDockModuleInstance *myApplet)
 	if (myData.bCPUAlerted || ! myConfig.bAlert)
 		return;
 	
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cairo_dock_show_temporary_dialog_with_icon_printf (D_("CPU temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iCPUTemp);
 	
 	if (myConfig.bAlertSound)
@@ -418,6 +419,7 @@ void cd_fan_alert (CairoDockModuleInstance *myApplet)
 	if (myData.bFanAlerted || ! myConfig.bAlert)
 		return;
 	
+	cairo_dock_remove_dialog_if_any (myIcon);
 	cairo_dock_show_temporary_dialog_with_icon_printf (D_("Fan speed has reached %d rpm"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iFanSpeed);
 	
 	if (myConfig.bAlertSound)

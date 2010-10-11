@@ -115,7 +115,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	// Main Menu
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Show Trash (click)"), GTK_STOCK_OPEN, _cd_dustbin_show_trash, CD_APPLET_MY_MENU, NULL);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Empty Trash (middle-click)"), GTK_STOCK_DELETE, _cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Empty Trash"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_DELETE, _cd_dustbin_delete_trash, CD_APPLET_MY_MENU, NULL);
+	g_free (cLabel);
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Display dustbins information"), GTK_STOCK_INFO, _cd_dustbin_show_info, CD_APPLET_MY_MENU);
 	

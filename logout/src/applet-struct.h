@@ -26,7 +26,8 @@
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
-	gboolean bInvertButtons;
+	gint iActionOnClick;
+	gint iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	} ;
 

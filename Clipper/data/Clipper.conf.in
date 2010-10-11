@@ -136,7 +136,7 @@ menu on mouse = false
 #F[Actions;gtk-execute]
 frame_act =
 
-#b Enable actions?
+#B[2] Enable actions?
 #{If some actions are associated with an item, they will be proposed when the item is created.}
 enable actions = false
 

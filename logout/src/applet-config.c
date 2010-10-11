@@ -27,7 +27,8 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");
 	myConfig.cUserAction2 = CD_CONFIG_GET_STRING ("Configuration", "user action2");
-	myConfig.bInvertButtons = CD_CONFIG_GET_BOOLEAN ("Configuration", "invert");
+	myConfig.iActionOnClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "click", 0);
+	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle-click", 1);
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 CD_APPLET_GET_CONFIG_END
 

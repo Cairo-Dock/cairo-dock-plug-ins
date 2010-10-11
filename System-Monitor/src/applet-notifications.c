@@ -106,9 +106,11 @@ static void _show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApple
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_JUMP_TO, _show_monitor_system, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _show_monitor_system, CD_APPLET_MY_MENU);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show info (middle-click)"), GTK_STOCK_DIALOG_INFO, _show_info, CD_APPLET_MY_MENU);
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Show info"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _show_info, CD_APPLET_MY_MENU);
+	g_free (cLabel);
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

@@ -45,20 +45,45 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-
-static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
+static void _nm_sleep (CairoDockModuleInstance *myApplet)
+{
+	DBusGProxy *pDbusProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			"/org/freedesktop/NetworkManager",
+			"org.freedesktop.DBus.Properties");
+	g_return_if_fail (pDbusProxy != NULL);
+	
+	guint state = cairo_dock_dbus_get_property_as_uint (pDbusProxy,
+		"org.freedesktop.NetworkManager",
+		"State");
+	g_object_unref (pDbusProxy);
+	cd_debug ("current network state : %d", state);
+	
+	pDbusProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.NetworkManager",
+			"/org/freedesktop/NetworkManager",
+			"org.freedesktop.NetworkManager");
+	g_return_if_fail (pDbusProxy != NULL);
+	dbus_g_proxy_call_no_reply (pDbusProxy, "Sleep",
+		G_TYPE_INVALID,
+		G_TYPE_BOOLEAN, state == 3,  // 3 = actif
+		G_TYPE_INVALID);
+	g_object_unref (pDbusProxy);
+}
+static void _netspeed_sleep (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	_nm_sleep (myApplet);
+}
+static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
 	cairo_dock_stop_task (myData.pPeriodicTask);
 	cairo_dock_launch_task (myData.pPeriodicTask);
 }
-static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _show_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
 		cairo_dock_launch_command (myConfig.cSystemMonitorCommand);
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		int r = system ("kde-system-monitor &");
 	}
 	else
 	{
@@ -69,7 +94,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	// Main Menu
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("System Monitor"), GTK_STOCK_MEDIA_PLAY, _show_monitor_system, CD_APPLET_MY_MENU);
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Enable/disable network"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_PAUSE, _netspeed_sleep, CD_APPLET_MY_MENU);
+	g_free (cLabel);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _show_system_monitor, CD_APPLET_MY_MENU);
 	
 	// Sub-Menu
 	if (! myData.bAcquisitionOK) {
@@ -83,30 +112,6 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	
-	if (myData.dbus_proxy_nm == NULL)
-		myData.dbus_proxy_nm = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.NetworkManager",
-			"/org/freedesktop/NetworkManager",
-			"org.freedesktop.NetworkManager");
-	g_return_val_if_fail (myData.dbus_proxy_nm != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	
-	guint state = 0;
-	dbus_g_proxy_call (myData.dbus_proxy_nm, "state", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_UINT, &state,
-		G_TYPE_INVALID);
-	cd_debug ("current network state : %d", state);
-	if (state == 3)  // actif
-	{
-		dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "sleep",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
-	else if (state == 1)  // inactif
-	{
-		dbus_g_proxy_call_no_reply (myData.dbus_proxy_nm, "wake",
-			G_TYPE_INVALID,
-			G_TYPE_INVALID);
-	}
+	_nm_sleep (myApplet);
 	
 CD_APPLET_ON_MIDDLE_CLICK_END

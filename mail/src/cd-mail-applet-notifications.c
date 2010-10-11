@@ -151,7 +151,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
 				CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
 			}
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Refresh all (Middle-click)"), GTK_STOCK_REFRESH, _cd_mail_update_all_accounts, CD_APPLET_MY_MENU, myApplet);
+			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Refresh all"), D_("middle-click"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_REFRESH, _cd_mail_update_all_accounts, CD_APPLET_MY_MENU, myApplet);
+			g_free (cLabel);
 		}
 		else  // 1 account -> in main menu
 		{

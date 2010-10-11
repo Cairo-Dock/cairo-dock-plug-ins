@@ -50,7 +50,11 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-
+static int _get_num_day_from_icon (CairoDockModuleInstance *myApplet, Icon *pIcon)
+{
+	/// TODO: determiner le jour exact...
+	return (pIcon == myIcon ? 0 : pIcon->fOrder/2);  // la 1ere icone est le plus souvent celle d'aujourd'hui, toutefois cela peut ne pas etre vrai, surtout la nuit autour du changement de jour.
+}
 static inline void _go_to_site (CairoDockModuleInstance *myApplet, int iNumDay)
 {
 	gchar *cURI;
@@ -108,7 +112,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	if (pClickedIcon != NULL)
 	{
-		myData.iClickedDay = (pClickedIcon == myIcon ? 0 : pClickedIcon->fOrder/2+1);
+		myData.iClickedDay = _get_num_day_from_icon (myApplet, pClickedIcon);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GTK_STOCK_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
 	}
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GTK_STOCK_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
@@ -129,7 +133,7 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 	if (pClickedIcon != NULL)
 	{
 		cairo_dock_remove_dialog_if_any (pClickedIcon);
-		int iNumDay = (pClickedIcon == myIcon ? 0 : pClickedIcon->fOrder/2+1);
+		int iNumDay = _get_num_day_from_icon (myApplet, pClickedIcon);
 		_go_to_site (myApplet, iNumDay);
 	}
 CD_APPLET_ON_DOUBLE_CLICK_END

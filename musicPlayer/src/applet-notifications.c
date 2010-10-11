@@ -176,11 +176,23 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	else
 	{
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PREVIOUS)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Previous"), GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
+		{
+			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Previous"), D_("scroll-up"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PLAY_PAUSE)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Play/Pause (left-click)"), (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+		{
+			gchar *cLabel = (myConfig.bPauseOnClick ? g_strdup_printf ("%s (%s)", D_("Play/Pause"), D_("left-click")) : g_strdup (D_("Play/Pause")));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_NEXT)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Next (middle-click)"), GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
+		{
+			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Next"), D_("scroll-down"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_STOP)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
 		

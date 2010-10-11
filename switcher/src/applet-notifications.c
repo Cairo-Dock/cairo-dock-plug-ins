@@ -53,20 +53,27 @@ static void _cd_expose (void)
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (myConfig.iActionOnMiddleClick == 0)
+	switch (myConfig.iActionOnMiddleClick)
 	{
-		GtkWidget *pMenu = gtk_menu_new ();
-		cd_switcher_build_windows_list (pMenu);
-		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
-	}
-	else if (myConfig.iActionOnMiddleClick == 1)
-	{
-		gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-		cairo_dock_show_hide_desktop (! bDesktopIsVisible);
-	}
-	else if (myConfig.iActionOnMiddleClick == 2)
-	{
-		_cd_expose ();
+		case SWICTHER_WINDOWS_LIST:
+		default:
+		{
+			GtkWidget *pMenu = gtk_menu_new ();
+			cd_switcher_build_windows_list (pMenu);
+			CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
+		}
+		break;
+		case SWICTHER_SHOW_DESKTOP:
+		{
+			gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+			cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+		}
+		break;
+		case SWICTHER_EXPOSE:
+		{
+			_cd_expose ();
+		}
+		break;
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -289,24 +296,31 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Main Menu
 	if (pSubMenu == CD_APPLET_MY_MENU)
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-	if (myConfig.iActionOnMiddleClick != 0)
+	gchar *cLabel;
+	///if (myConfig.iActionOnMiddleClick != 0)
 	{
-		GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Windows List"), CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_WINDOWS_LIST ? g_strdup_printf ("%s (%s)", D_("Windows List"), D_("middle-click")) : g_strdup (D_("Windows List")));
+		GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+		g_free (cLabel);
 		cd_switcher_build_windows_list (pWindowsListMenu);
 	}
-	if (myConfig.iActionOnMiddleClick != 1)
+	///if (myConfig.iActionOnMiddleClick != 1)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show the desktop"),
+		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_SHOW_DESKTOP ? g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click")) : g_strdup (D_("Show the desktop")));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
 			GTK_STOCK_FULLSCREEN,
 			_cd_switcher_show_desktop,
 			CD_APPLET_MY_MENU);
+		g_free (cLabel);
 	}
-	if (myConfig.iActionOnMiddleClick != 2)
+	///if (myConfig.iActionOnMiddleClick != 2)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Expose all the desktops (Compiz)"),
+		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops (Compiz)"), D_("middle-click")) : g_strdup (D_("Expose all the desktops (Compiz)")));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
 			GTK_STOCK_LEAVE_FULLSCREEN,
 			_cd_switcher_expose,
 			CD_APPLET_MY_MENU);
+		g_free (cLabel);
 	}
 	
 	// Sub-Menu

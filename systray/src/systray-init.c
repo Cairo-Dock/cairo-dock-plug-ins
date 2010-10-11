@@ -33,9 +33,8 @@ CD_APPLET_DEFINE_BEGIN (N_("systray"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Add a systray to your dock.\n"
-	"Left-click to show the systray in a dialog (you can bind a keyboard shortcut for it.)\n"
-	"Middle-click to close the dalog.\n"
-	"But the best way to use it id to detach it from the dock, and place it somewhere, above other windows."),
+	"Left-click to show/hide the systray in a dialog (you can bind a keyboard shortcut for it.)\n"
+	"But the best way to use it is to detach it from the dock, and place it somewhere, above other windows."),
 	"Ctaf (Cedric Gestes)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_UNRESIZABLE_DESKLET

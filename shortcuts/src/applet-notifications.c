@@ -232,6 +232,10 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	g_free (cInfo);
 	CD_APPLET_LEAVE ();
 }
+static void _open_home_dir (GtkMenuItem *menu_item, gpointer data)
+{
+	cairo_dock_fm_launch_uri (g_getenv ("HOME"));
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer *data = NULL;
 	if (data == NULL)
@@ -243,6 +247,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale (mode dock donc).
 	{
 		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open Home directory"), D_("middle-click"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_OPEN, _open_home_dir, CD_APPLET_MY_MENU);
+		g_free (cLabel);
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
@@ -261,7 +268,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			gboolean bIsMounted = FALSE;
 			gchar *cURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
 			g_free (cURI);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (bIsMounted ? D_("Unmount (middle-click)") : D_("Mount (middle-click)"), GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
+			gchar *cLabel = g_strdup_printf ("%s (%s)", bIsMounted ? D_("Unmount") : D_("Mount"), D_("middle-click"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
+			g_free (cLabel);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"), GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
 		}

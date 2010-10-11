@@ -35,7 +35,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		GtkWidget *pMenu = cd_NetworkMonitor_build_menu_with_access_points ();
 		if (pMenu)
-			cairo_dock_popup_menu_on_container (pMenu, myContainer);
+			CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	}
 	else
 	{

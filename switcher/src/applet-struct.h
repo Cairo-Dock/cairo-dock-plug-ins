@@ -30,8 +30,15 @@ typedef enum {
 	SWICTHER_DRAW_FRAME,
 	SWICTHER_FILL,
 	SWICTHER_FILL_INVERTED,
-	SWICTHER_NB_MODES,
+	SWICTHER_NB_MODES
 	} SwitcherDrawCurrentDesktopMode;
+
+typedef enum {
+	SWICTHER_WINDOWS_LIST=0,
+	SWICTHER_SHOW_DESKTOP,
+	SWICTHER_EXPOSE,
+	SWICTHER_NB_ACTIONS
+	} SwitcherAction;
 
 struct _AppletConfig {
 	gboolean bCompactView;
@@ -54,7 +61,7 @@ struct _AppletConfig {
 	gboolean bDisplayHiddenWindows;
 	gchar **cDesktopNames;
 	gint iNbNames;
-	gint iActionOnMiddleClick;
+	SwitcherAction iActionOnMiddleClick;
 	} ;
 
 typedef struct

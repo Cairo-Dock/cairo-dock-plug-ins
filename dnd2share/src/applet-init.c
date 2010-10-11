@@ -38,12 +38,13 @@
 CD_APPLET_DEFINE_BEGIN ("dnd2share",
 	2, 0, 7,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
-	N_("This applet lets you share files easily :\n"
+	N_("This applet lets you share files easily:\n"
 	"Drag-and-drop a file on the icon to upload it to one of the available hosting sites.\n"
-	"It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
-	"You can upload text, image, video, and files.\n"
+	"You can upload text, image, video, files, and even the current clipboard\n"
+	" and you can choose amongst many sites, like DropBox, Imageshack, pastebin, etc\n"
 	"The resulting URL is automatically stored in the clipboard to be directly copied by CTRL+v.\n"
-	"It can keep an history of your last uploads to retrieve them without any account.\n"
+	"It can keep an history of your last uploads to retrieve them without registering on the sites.\n"
+	"Press left-click to copy the latest URL into the clipboard, middle-click to copy it into the mouse selection.\n"
 	"You'll need to install 'curl' and 'wget' to upload the data."),
 	"Nochka85 (Yann Dulieu) &amp; Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE

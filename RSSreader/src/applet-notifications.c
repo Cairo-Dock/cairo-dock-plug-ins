@@ -28,14 +28,6 @@
 #include "applet-notifications.h"
 
 
-static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
-{
-	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
-		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
-	else  // sinon on utilise la commande par defaut.
-		cairo_dock_fm_launch_uri (myConfig.cUrl);
-}
-
 static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewURL)
 {
 	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On verifie que l'element glisser/copier commence bien par http
@@ -94,17 +86,19 @@ static void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInsta
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	cd_debug ("RSSreader-debug : CLIC");
 	cd_rssreader_show_dialog (myApplet);
 CD_APPLET_ON_CLICK_END
 
 
-CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	cd_debug ("RSSreader-debug : MIDDLE-CLIC");
+static inline void _update_feeds (CairoDockModuleInstance *myApplet)
+{
 	myData.bUpdateIsManual = TRUE;
 	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
 	if (! cairo_dock_task_is_running (myData.pTask))  // sinon on va bloquer jusqu'a ce que la tache courante se termine, pour la relancer aussitot, ce qui n'a aucun interet.
 		cd_rssreader_upload_feeds_TASK (myApplet);
+}
+CD_APPLET_ON_MIDDLE_CLICK_BEGIN
+	_update_feeds (myApplet);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -115,6 +109,17 @@ CD_APPLET_ON_DROP_DATA_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
+static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
+		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
+	else  // sinon on utilise la commande par defaut.
+		cairo_dock_fm_launch_uri (myConfig.cUrl);
+}
+static void _refresh (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	_update_feeds (myApplet);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
@@ -122,7 +127,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag and drop)"), GTK_STOCK_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
 	
 	if (myConfig.cUrl != NULL) // On ajoute une entrée dans le menu SI il y a une url seulement
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);	
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);
+		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Refresh"), D_("middle-click"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_REFRESH, _refresh, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
 	
 CD_APPLET_ON_BUILD_MENU_END
 

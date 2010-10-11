@@ -271,5 +271,5 @@ void cd_quick_browser_show_menu (CairoDockModuleInstance *myApplet)
 	myData.pRootItem = cd_quick_browser_make_menu_from_dir (myConfig.cDirPath, myApplet);
 	g_return_if_fail (myData.pRootItem != NULL && myData.pRootItem->pSubMenu != NULL);
 	
-	cairo_dock_popup_menu_on_icon (myData.pRootItem->pSubMenu, myIcon, myContainer);
+	CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pRootItem->pSubMenu);
 }

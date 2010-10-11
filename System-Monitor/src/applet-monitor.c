@@ -186,7 +186,7 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				if (myConfig.bShowFanSpeed)
 				{
 					s_fValues[i++] = myData.fFanSpeedPercent / 100.;
-					if (myData.bFanAlerted && myData.bFanAlarm)
+					if (myData.bFanAlerted && !myData.bFanAlarm)
 						myData.bFanAlerted = FALSE; //On reinitialise l'alerte quand la temperature descend en dessous de la limite.
 					
 					if (!myData.bFanAlerted && myData.bFanAlarm)
@@ -239,7 +239,7 @@ void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gc
 		if (i == iNumValue)
 		{
 			double fTemp = myConfig.iLowerLimit + fValue * (myConfig.iUpperLimit - myConfig.iLowerLimit);
-			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f�" : "%.0f�", fTemp);
+			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
 			return ;
 		}
 	}
@@ -249,7 +249,7 @@ void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gc
 		if (i == iNumValue)
 		{
 			double fTemp = 0 + fValue * (100 - 0);
-			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f�" : "%.0f�", fTemp);
+			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
 			return ;
 		}
 	}

@@ -148,7 +148,7 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 	rates = XRRRates(dpy, 0, iNumRes, &num_rates);
 	CD_APPLET_LEAVE_IF_FAIL (num_rates > 0);
 	//g_return_if_fail (num_rates > 0);
-	cd_debug ("available rates : from %d to %d Hz\n", rates[0], rates[num_rates-1]);
+	cd_debug ("available rates : from %d to %d Hz", rates[0], rates[num_rates-1]);
 	
 	XRRSetScreenConfigAndRate(dpy, conf, root, iNumRes, RR_Rotate_0, rates[num_rates-1], CurrentTime);
 	XRRFreeScreenConfigInfo (conf);
@@ -157,8 +157,41 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_LEAVE();
 }
 #endif
+static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
+{
+	_cd_show_hide_desktop (FALSE);
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	
+	gchar *cLabel;
+	if (myConfig.iActionOnLeftClick != CD_SHOW_DESKTOP)  // action is not bound to left-click => put it in the menu
+	{
+		if (myConfig.iActionOnMiddleClick == CD_SHOW_DESKTOP)
+			cLabel = g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click"));
+		else
+			cLabel = g_strdup (D_("Show the desktop"));
+		CD_APPLET_ADD_IN_MENU (cLabel, _show_desktop, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
+	if (myConfig.iActionOnLeftClick != CD_EXPOSE)  // action is not bound to left-click => put it in the menu
+	{
+		if (myConfig.iActionOnMiddleClick == CD_EXPOSE)
+			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops (Compiz)"), D_("middle-click"));
+		else
+			cLabel = g_strdup (D_("Expose all the desktops (Compiz)"));
+		CD_APPLET_ADD_IN_MENU (cLabel, _cd_expose, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
+	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER)  // action is not bound to left-click => put it in the menu
+	{
+		if (myConfig.iActionOnMiddleClick == CD_SHOW_WIDGET_LAYER)
+			cLabel = g_strdup_printf ("%s (%s)", D_("Show the Widget Layer (Compiz)"), D_("middle-click"));
+		else
+			cLabel = g_strdup (D_("Show the Widget Layer (Compiz)"));
+		CD_APPLET_ADD_IN_MENU (cLabel, _cd_show_widget_layer, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}  // on ne met pas les actions sur les desklets, surement assez peu utilisees.
 	
 	// Main Menu
 	#ifdef HAVE_XRANDR
@@ -311,7 +344,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		cairo_dock_add_in_menu_with_stock_and_data (D_("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _make_link_to_desktop, pMenu, myApplet);
 		cairo_dock_add_in_menu_with_stock_and_data (D_("Download onto the Desktop"), GTK_STOCK_COPY, (GFunc) _download_to_desktop, pMenu, myApplet);
 	}
-	cairo_dock_popup_menu_on_container (pMenu, myContainer);
+	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
 	
 CD_APPLET_ON_DROP_DATA_END

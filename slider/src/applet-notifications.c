@@ -169,7 +169,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myConfig.iClickOption != SLIDER_OPEN_IMAGE) {
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open current image"), GTK_STOCK_OPEN, _cd_slider_open_current_slide, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse images folder"), GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Browse images folder"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
+	g_free (cLabel);
 	
 	// Sub-Menu
 	if (pSubMenu == CD_APPLET_MY_MENU)

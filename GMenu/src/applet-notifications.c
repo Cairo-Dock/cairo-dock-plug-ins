@@ -30,7 +30,7 @@ static void cd_menu_show_menu (void)
 {
 	if (myData.pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_icon (myData.pMenu, myIcon, myContainer);
+		CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
 	}
 }
 
@@ -72,14 +72,18 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quick launch (Middle-click)"), GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	// Main menu
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Quick launch"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
+	g_free (cLabel);
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
+	
+	// Sub-Menu
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
