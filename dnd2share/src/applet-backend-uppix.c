@@ -44,8 +44,8 @@ static void upload (const gchar *cFilePath)
 	close(fds);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -F myimage=@'%s' -F submit=Upload -F formup=1 -o '%s'", myConfig.iLimitRate, cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
-	cd_debug ("%s\n", cCommand);
+	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -F myimage=@\"%s\" -F submit=Upload -F formup=1 -o \"%s\"", myConfig.iLimitRate, cFilePath, cLogFile);  /// peut-on ajouter le nom de l'auteur dans le formulaire ?...
+	cd_debug ("%s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
@@ -54,7 +54,7 @@ static void upload (const gchar *cFilePath)
 	/// TODO : se passer des g_spawn_command_line_sync !
 	//D'abord l'url de DisplayImage
 	gchar *cDisplayImage = NULL;
-	gchar *cCommandDisplayImage = g_strdup_printf ("grep -oEm 1 '\\[url\\=([^]]*)' %s", cLogFile);
+	gchar *cCommandDisplayImage = g_strdup_printf ("grep -oEm 1 '\\[url\\=([^]]*)' \"%s\"", cLogFile);
 	g_spawn_command_line_sync (cCommandDisplayImage, &cDisplayImage,  NULL, NULL, NULL);
 	g_free (cCommandDisplayImage);
 	
@@ -77,7 +77,7 @@ static void upload (const gchar *cFilePath)
 	
 	// Puis l'url de DirectLink
 	gchar *cDirectLink = NULL;
-	gchar *cCommandDirectLink = g_strdup_printf ("grep -oEm 1 '\\[img\\]([^[]*)' %s", cLogFile);
+	gchar *cCommandDirectLink = g_strdup_printf ("grep -oEm 1 '\\[img\\]([^[]*)' \"%s\"", cLogFile);
 	g_spawn_command_line_sync (cCommandDirectLink, &cDirectLink,  NULL, NULL, NULL);
 	g_free (cCommandDirectLink);
 	

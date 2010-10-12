@@ -123,13 +123,13 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 				{
 					double limit1=0, limit2=100;
 					
-					sf = sensors_get_subfeature(chip, feature,
+					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_TEMP_FAULT);
-					if (sf && get_value(chip, sf))  // fault
+					if (sf && get_value (chip, sf))  // fault
 						break;
 					
 					// valeur
-					sf = sensors_get_subfeature(chip, feature,
+					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_TEMP_INPUT);
 					if (!sf)
 						break;
@@ -138,21 +138,21 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 						break;
 					
 					// alarme
-					sf = sensors_get_subfeature(chip, feature,
+					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_TEMP_ALARM);
-					if (sf && get_value(chip, sf))
+					if (sf && get_value (chip, sf))
 						myData.bCpuTempAlarm = TRUE;
 					
 					// min limit
-					sf = sensors_get_subfeature(chip, feature,
+					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_TEMP_MIN);
 					if (sf)
 					{
 						limit1 = get_value(chip, sf);
 						
-						sf = sensors_get_subfeature(chip, feature,
+						sf = sensors_get_subfeature (chip, feature,
 							SENSORS_SUBFEATURE_TEMP_MIN_ALARM);
-						if (sf && get_value(chip, sf))
+						if (sf && get_value (chip, sf))
 							myData.bCpuTempAlarm = TRUE;
 					}
 					
@@ -161,11 +161,11 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 						SENSORS_SUBFEATURE_TEMP_MAX);
 					if (sf)
 					{
-						limit2 = get_value(chip, sf);
+						limit2 = get_value (chip, sf);
 						
-						sf = sensors_get_subfeature(chip, feature,
+						sf = sensors_get_subfeature (chip, feature,
 							SENSORS_SUBFEATURE_TEMP_MAX_ALARM);
-						if (sf && get_value(chip, sf))
+						if (sf && get_value (chip, sf))
 							myData.bCpuTempAlarm = TRUE;
 					}
 					else  // pas de valeur max, on regarde si une valeur critique existe.
@@ -199,9 +199,12 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 				break;
 				
 				case SENSORS_FEATURE_FAN:  // un ventilo
+				{
+					double min = 0;
+					
 					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_FAN_FAULT);
-					if (sf && get_value(chip, sf))  // fault
+					if (sf && get_value (chip, sf))  // fault
 						break;
 					
 					// valeur
@@ -215,8 +218,13 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					
 					// alarm
 					sf = sensors_get_subfeature (chip, feature,
+						SENSORS_SUBFEATURE_FAN_MIN);
+					if (sf)
+						min = get_value(chip, sf);
+					
+					sf = sensors_get_subfeature (chip, feature,
 						SENSORS_SUBFEATURE_FAN_ALARM);
-					if (sf && get_value(chip, sf))
+					if (sf && get_value(chip, sf) && val > min)  // on elimine les cas ou le min a une valeur aberrante.
 						myData.bFanAlarm = TRUE;
 					
 					// max speed
@@ -227,6 +235,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					myData.iFanSpeed = MAX (myData.iFanSpeed, val);  // on ne garde qu'une valeur : la plus grande.
 					
 					myData.fFanSpeedPercent = 100. * myData.iFanSpeed / myData.fMaxFanSpeed;
+				}
 				break;
 				
 				default:  // les 

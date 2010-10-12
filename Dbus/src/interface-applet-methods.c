@@ -104,6 +104,26 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	return TRUE;
 }
 
+static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gchar **cImages, const gchar *cIconID, GError **error)
+{
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
+		return FALSE;
+	
+	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	int i;
+	for (i = 0; cImages[i] != NULL; i ++)
+	{
+		
+		///cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
+	}
+	cairo_destroy (pIconContext);
+	cairo_dock_redraw_icon (pIcon, pContainer);
+	return TRUE;
+}
+
 static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;

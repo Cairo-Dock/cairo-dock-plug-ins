@@ -37,9 +37,9 @@ static void upload (const gchar *cFilePath)
 	// On lance la commande d'upload.
 	gchar *cCommand;
 	if (myConfig.cDropboxDir)
-		cCommand= g_strdup_printf ("cp '%s' '%s'", cFilePath, myConfig.cDropboxDir);
+		cCommand= g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, myConfig.cDropboxDir);
 	else
-		cCommand= g_strdup_printf ("cp '%s' ~/Dropbox/Public", cFilePath);
+		cCommand= g_strdup_printf ("cp \"%s\" ~/Dropbox/Public", cFilePath);
 	cd_debug ("commande dropbox1 : %s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
@@ -57,12 +57,12 @@ static void upload (const gchar *cFilePath)
 		}
 		g_return_if_fail (str != NULL);
 			
-		cCommand = g_strdup_printf ("dropbox puburl '%s/%s'", myConfig.cDropboxDir, cFileName);
+		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", myConfig.cDropboxDir, cFileName);
 	}
 	else
-		cCommand = g_strdup_printf ("dropbox puburl 'Dropbox/Public/%s'", cFileName); 
+		cCommand = g_strdup_printf ("dropbox puburl \"Dropbox/Public/%s\"", cFileName); 
 	
-	cd_debug ("commande dropbox2 : %s\n", cCommand);
+	cd_debug ("commande dropbox2 : %s", cCommand);
 	g_free (cFileName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);

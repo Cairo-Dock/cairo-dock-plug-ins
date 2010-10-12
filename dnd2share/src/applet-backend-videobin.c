@@ -35,8 +35,8 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 static void upload (const gchar *cFilePath)
 {
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@'%s' -F api=1", myConfig.iLimitRate, cFilePath);
-	cd_debug ("%s\n", cCommand);
+	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@\"%s\" -F api=1", myConfig.iLimitRate, cFilePath);
+	cd_debug ("%s", cCommand);
 	gchar *cURL = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 
