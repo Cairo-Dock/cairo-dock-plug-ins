@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2010-09-13 00:36+0000\n"
-"PO-Revision-Date: 2010-09-17 16:30+0000\n"
+"PO-Revision-Date: 2010-10-09 21:37+0000\n"
 "Last-Translator: olavi tohver <Unknown>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-18 05:35+0000\n"
+"X-Launchpad-Export-Date: 2010-10-10 04:59+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -111,7 +111,7 @@ msgstr "Kas sa tead kui valus on kui sinu peale vajutatakse??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha!"
-msgstr ""
+msgstr "See on minu dokk, hahaa!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate!"
@@ -609,7 +609,7 @@ msgstr "Lülita wifi sisse"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr ""
+msgstr "RSS-lugeja"
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -741,7 +741,7 @@ msgstr "E-posti fail"
 
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
-msgstr ""
+msgstr "Vali kaust"
 
 #: ../Scooby-Do/src/applet-backend-files.c:524
 msgid "Files"
@@ -946,7 +946,7 @@ msgstr "Multikad"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr ""
+msgstr "See vidin näitab tegelast kes jälgib sinu hiirt."
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -981,6 +981,14 @@ msgid ""
 "mixer.\n"
 "This applet works with the Alsa sound driver."
 msgstr ""
+"See vidin lubab sul dokilt helitugevust seadistada.\n"
+"Helitugevuse muutmiseks liiguta liugurit ülesse/alla.\n"
+"Helitugevuse seadistusvidina kuvamiseks klõpsake ikoonil ( kiirklahvi "
+"võimalus) \n"
+"Seadistusakna varjamiseks klõpsake ikoonil.\n"
+"Keskmine hiireklahv vaigistab ja taastab heli, topeltklõps kuvab kanalite "
+"mikseri.\n"
+"See vidin töötab Alsa helidraiveriga."
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
@@ -1010,11 +1018,11 @@ msgstr "Ma ei suutnud registreerida valikut"
 
 #: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
-msgstr ""
+msgstr "Ei saanud helimikserit laadida"
 
 #: ../alsaMixer/src/applet-mixer.c:289
 msgid "Set up volume:"
-msgstr ""
+msgstr "Sea helivaljus:"
 
 #: ../alsaMixer/src/applet-notifications.c:58
 msgid "Adjust channels"
@@ -1022,7 +1030,7 @@ msgstr "Reguleeri kanaleid"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Unmute (middle-click)"
-msgstr ""
+msgstr "Heli sisse (keskmine hiireklikk)"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Mute (middle-click)"
@@ -1050,7 +1058,7 @@ msgstr "Alarm"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
-msgstr ""
+msgstr "Aeg, mil soovite, et teid teavitatakse:"
 
 #: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
@@ -1110,11 +1118,11 @@ msgstr "Korda iga:"
 
 #: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
-msgstr ""
+msgstr "Kui iga kuu, siis mis kuupäeval?"
 
 #: ../clock/src/applet-config.c:36
 msgid "Message you want to use to be notified:"
-msgstr ""
+msgstr "Teade mida soovite teavituseks kasutada:"
 
 #: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
@@ -1122,7 +1130,7 @@ msgstr "Teejoomise aeg!"
 
 #: ../clock/src/applet-config.c:36
 msgid "Command to launch:"
-msgstr ""
+msgstr "Käsk käivitamiseks:"
 
 #: ../clock/src/applet-config.c:36
 msgid "E.g.:"
@@ -1148,6 +1156,16 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
+"See vidin kuvab aega, kuupäeva ja kalendri.  \t\n"
+"Kaks vaadet : <b>digitaalne</b> and <b>analoog</b>.\n"
+"Analoogvaade toetab Cairo-Clock teemasid ja te võite vidina töölauale "
+"lohistada nagu õiget Cairo-Clock-i.\n"
+"Vasak hiireklahv kuvab <b>kalendri<b>, mis lubab sul <b>ülesandeid "
+"hallata<b>.\n"
+"See toetab ka meeldetuletusi ja lubab seadistada nende aega ja kuupäeva.\n"
+"Vasak hiireklahv kuvab/varjab kalendri, keskmine hiireklahv peatab "
+"teavituse,\n"
+"Topeltklõps päeval lubab selle päeva ülesandeid redigeerida."
 
 #: ../clock/src/applet-notifications.c:62
 msgid ""
@@ -1156,6 +1174,10 @@ msgid ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 msgstr ""
+"Täna ülesandeid pole.\n"
+"\n"
+"Sa võid ülesandeid lisada klikkides vidinal avamaks kalendri ja siis "
+"topeltklõpsuga soovitud päeval."
 
 #: ../clock/src/applet-notifications.c:77
 msgid ""
@@ -1255,11 +1277,11 @@ msgstr ""
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
-msgstr ""
+msgstr "On aeg järgmiseks tegevuseks:"
 
 #: ../clock/src/applet-timer.c:470
 msgid "This task will begin in 15 minutes:"
-msgstr ""
+msgstr "Ülesanne käivitub 15 minuti pärast:"
 
 #: ../clock/src/applet-timer.c:490
 msgid "Today is the following anniversary:"
@@ -1271,7 +1293,7 @@ msgstr "Homme on järgmine tähtpäev:"
 
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
-msgstr ""
+msgstr "Compiz- ikoon"
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -1297,7 +1319,7 @@ msgstr "Emeraldi haldur"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Reload WM"
-msgstr ""
+msgstr "Taaskäivita aknahaldur"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
 msgid "Exposition"
@@ -1312,10 +1334,12 @@ msgid ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 msgstr ""
+"Compiz-i seadistamiseks paigalda CCSM oma\n"
+" paketihaldurist (Synaptic,Yast, jne)"
 
 #: ../compiz-icon/src/applet-notifications.c:181
 msgid "Reload Emerald"
-msgstr ""
+msgstr "Lae Emerald uuesti"
 
 #: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Manager"
@@ -1335,11 +1359,11 @@ msgstr ""
 
 #: ../compiz-icon/src/applet-notifications.c:198
 msgid "Toggle Show Desktop"
-msgstr ""
+msgstr "Näita/varja töölaud"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
-msgstr ""
+msgstr "raam&peegeldused"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch sellotape"
@@ -1384,7 +1408,7 @@ msgstr ""
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
-msgstr ""
+msgstr "3D alus"
 
 #: ../dialog-rendering/src/applet-decorator-comics.h:26
 msgid "comics"
@@ -1400,7 +1424,7 @@ msgstr "modernne"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr ""
+msgstr "Tööriistavihje"
 
 #: ../dialog-rendering/src/applet-init.c:32
 msgid "dialog rendering"
@@ -1413,18 +1437,21 @@ msgstr ""
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
 "Couldn't upload the file, check that your internet connexion is active."
-msgstr ""
+msgstr "Ei saanud faili üleslaadida, kontrolli oma internetiühendust."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
+"Fail üleslaaditud.\n"
+"URL-i kopeerimiseks vajutage CTRL+V."
 
 #: ../dnd2share/src/applet-dnd2share.c:318
 msgid ""
 "Please wait for the current upload to finish before starting a new one."
 msgstr ""
+"Palun oodake praeguse üleslaadimise lõpetamist enne kui alustate uut."
 
 #: ../dnd2share/src/applet-dnd2share.c:537
 msgid "Tiny URL"
@@ -1446,21 +1473,23 @@ msgstr ""
 
 #: ../dnd2share/src/applet-init.c:50
 msgid "Drop to share"
-msgstr ""
+msgstr "Jagamiseks lohista"
 
 #: ../dnd2share/src/applet-notifications.c:33
 msgid "Clear the list of the recently uploaded files?"
-msgstr ""
+msgstr "Tühjenda hiljuti üleslaetud failide nimekiri?"
 
 #: ../dnd2share/src/applet-notifications.c:51
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
 msgstr ""
+"Tekst on kopeeritud lõikepuhvrisse.\n"
+"Kleepimiseks vajutage CTRL+v."
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
-msgstr ""
+msgstr "Vabandust, ei leidnud orginaalfaili ega selle eelvaadet."
 
 #: ../dnd2share/src/applet-notifications.c:98
 msgid ""
@@ -1480,6 +1509,8 @@ msgid ""
 "Consider activating the history if you want the applet to remember previous "
 "uploads."
 msgstr ""
+"Üleslaetud faile pole.\n"
+"Palun kaaluge ajaloo aktiveerimist, et vidin mäletaks eelmisi üleslaadimisi."
 
 #: ../dnd2share/src/applet-notifications.c:131
 msgid ""
@@ -1507,7 +1538,7 @@ msgstr "Saada lõikepuhvri sisu"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "History"
-msgstr ""
+msgstr "Ajalugu"
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -1523,12 +1554,12 @@ msgstr "Puhasta ajalugu"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
-msgstr ""
+msgstr "Karussell"
 
 #: ../dock-rendering/src/rendering-init.c:35
 #: ../dialog-rendering/data/messages:19
 msgid "3D plane"
-msgstr ""
+msgstr "3D alus"
 
 #: ../dock-rendering/src/rendering-init.c:36
 #: ../dock-rendering/data/messages:79
@@ -1538,7 +1569,7 @@ msgstr "Paraboolne"
 #: ../dock-rendering/src/rendering-init.c:37
 #: ../dock-rendering/data/messages:103
 msgid "Rainbow"
-msgstr ""
+msgstr "Vikerkaar"
 
 #: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:111
 #: ../stack/data/messages:103
@@ -1579,7 +1610,7 @@ msgstr "kalkuleerin"
 
 #: ../dustbin/src/applet-draw.c:165 ../dustbin/src/applet-trashes-manager.c:59
 msgid " trashe(s)"
-msgstr ""
+msgstr " prügi(d)"
 
 #: ../dustbin/src/applet-draw.c:169 ../dustbin/src/applet-trashes-manager.c:63
 msgid " file(s)"
@@ -1627,11 +1658,11 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:117
 msgid "Show Trash (click)"
-msgstr ""
+msgstr "Näita prügikasti (vajuta)"
 
 #: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash (middle-click)"
-msgstr ""
+msgstr "Tühjenda prügikast (keskmine hiireklahv)"
 
 #: ../dustbin/src/applet-notifications.c:120
 msgid "Display dustbins information"
@@ -2953,7 +2984,7 @@ msgstr "Kapsel"
 
 #: ../Animated-icons/data/messages:93
 msgid "Colour of the sheen:"
-msgstr ""
+msgstr "Värvi sära:"
 
 #: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
 #: ../Clipper/data/messages:9 ../Doncky/data/messages:9
@@ -3027,7 +3058,7 @@ msgstr ""
 
 #: ../Animated-icons/data/messages:133
 msgid "Initial stretch:"
-msgstr ""
+msgstr "Esialgne venitus:"
 
 #: ../Animated-icons/data/messages:135
 msgid "Horizontal stretch"
@@ -3035,7 +3066,7 @@ msgstr "Horisontaalne venitamine"
 
 #: ../Animated-icons/data/messages:137
 msgid "Vertical stretch"
-msgstr "Vertikaalne venitamine"
+msgstr "Verikaalne venitamine"
 
 #: ../Animated-icons/data/messages:139
 msgid "Corner stretch"
@@ -3113,7 +3144,7 @@ msgstr ""
 #: ../tomboy/data/messages:1 ../weather/data/messages:1
 #: ../weblets/data/messages:1 ../wifi/data/messages:1
 msgid "Icon"
-msgstr ""
+msgstr "Ikoon"
 
 #: ../Cairo-Penguin/data/messages:3 ../Clipper/data/messages:3
 #: ../Doncky/data/messages:3 ../Folders/data/messages:3
@@ -3701,7 +3732,7 @@ msgstr ""
 #: ../weather/data/messages:51 ../weblets/data/messages:53
 #: ../wifi/data/messages:51
 msgid "Reserve space"
-msgstr ""
+msgstr "Varu maht"
 
 #: ../Clipper/data/messages:55 ../Doncky/data/messages:53
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
@@ -3723,7 +3754,7 @@ msgstr ""
 #: ../weather/data/messages:53 ../weblets/data/messages:55
 #: ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
-msgstr ""
+msgstr "Peaks olema nähtav kõigis töölaudades?"
 
 #: ../Clipper/data/messages:57 ../Doncky/data/messages:55
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
@@ -3745,7 +3776,7 @@ msgstr ""
 #: ../weather/data/messages:55 ../weblets/data/messages:57
 #: ../wifi/data/messages:55
 msgid "Decorations"
-msgstr ""
+msgstr "Dekoratsioonid"
 
 #: ../Clipper/data/messages:59 ../Doncky/data/messages:57
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
@@ -4079,7 +4110,7 @@ msgstr ""
 #: ../weather/data/messages:85 ../weblets/data/messages:87
 #: ../wifi/data/messages:85
 msgid "Foreground image:"
-msgstr ""
+msgstr "Esiplaani pilt:"
 
 #: ../Clipper/data/messages:89 ../Doncky/data/messages:87
 #: ../Folders/data/messages:101 ../GMenu/data/messages:89
@@ -4101,7 +4132,7 @@ msgstr ""
 #: ../weather/data/messages:87 ../weblets/data/messages:89
 #: ../wifi/data/messages:87
 msgid "Foreground tansparency:"
-msgstr ""
+msgstr "Esiplaani läbipaistvus:"
 
 #: ../Clipper/data/messages:93
 msgid "Items"
@@ -4115,11 +4146,11 @@ msgstr ""
 
 #: ../Clipper/data/messages:97
 msgid "Which items should be remembered?"
-msgstr ""
+msgstr "Millised esemed tuleb meeles pidada?"
 
 #: ../Clipper/data/messages:101
 msgid "Clipboard"
-msgstr ""
+msgstr "Lõikelaud"
 
 #: ../Clipper/data/messages:103
 msgid "Selection"
@@ -4158,7 +4189,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:119
 msgid "Paste into Clipboard?"
-msgstr ""
+msgstr "Aseta lõikelauale?"
 
 #: ../Clipper/data/messages:121
 msgid ""
@@ -4168,7 +4199,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:123
 msgid "Paste into Selection?"
-msgstr ""
+msgstr "Kleebi valitule?"
 
 #: ../Clipper/data/messages:125
 msgid "Shortkey to pop-up the items menu:"
@@ -4190,7 +4221,7 @@ msgstr ""
 
 #: ../Clipper/data/messages:133
 msgid "Enable actions?"
-msgstr ""
+msgstr "Luba tegevus?"
 
 #: ../Clipper/data/messages:135
 msgid "Display actions when selecting an item in the history."

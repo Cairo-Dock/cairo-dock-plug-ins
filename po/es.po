@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2010-09-13 00:36+0000\n"
-"PO-Revision-Date: 2010-09-13 20:11+0000\n"
-"Last-Translator: sebikul <Unknown>\n"
+"PO-Revision-Date: 2010-10-05 19:44+0000\n"
+"Last-Translator: Roberto López <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-14 05:01+0000\n"
+"X-Launchpad-Export-Date: 2010-10-08 04:45+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -55,7 +55,7 @@ msgstr "Pulso"
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
-msgstr "Temblar"
+msgstr "Temblor"
 
 #: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
@@ -88,11 +88,11 @@ msgstr "Cairo-Penguin"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
-msgstr "Hola, ¡Estoy aquí!"
+msgstr "Ey, ¡estoy aquí!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "Lo siento pero estoy ocupado ahora."
+msgstr "Lo siento, pero ahora estoy ocupado."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
@@ -119,7 +119,7 @@ msgstr "¿Sabes cuán doloroso es que me hagas clic a cada rato?"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha!"
-msgstr "¡Es mi barra ahora, Muajuajuajua!"
+msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate!"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
-msgstr "¡Para Aiur!"
+msgstr "¡Por Aiur!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:126
 msgid "Wake up"
@@ -152,7 +152,7 @@ msgstr "Despierta"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:130
 msgid "Keep quiet"
-msgstr "Quedate quieto"
+msgstr "Guarda silencio"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:133
 #: ../Scooby-Do/data/messages:99
@@ -1083,7 +1083,7 @@ msgstr "Ajustar canales"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Unmute (middle-click)"
-msgstr ""
+msgstr "Desenmudecer (clic-medio)"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Mute (middle-click)"
@@ -1330,7 +1330,7 @@ msgstr "Repetir este mensaje cada:"
 
 #: ../clock/src/applet-timer.c:170
 msgid "The following task has felt due:"
-msgstr ""
+msgstr "La siguiente tarea ha fallado debido a:"
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
@@ -5249,7 +5249,7 @@ msgstr "grande"
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
-msgstr ""
+msgstr "Atajo para lanzar la miniaplicación:"
 
 #: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -7248,7 +7248,7 @@ msgstr "¿Ignorar mayúsculas/minúsculas?"
 
 #: ../quick-browser/data/messages:105
 msgid "Menu"
-msgstr "Menu"
+msgstr "Menú"
 
 #: ../quick-browser/data/messages:107
 msgid "It can be CPU intense to load a lot of icons."

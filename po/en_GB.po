@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2010-08-29 00:59+0000\n"
-"PO-Revision-Date: 2010-09-07 03:57+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2010-09-13 00:36+0000\n"
+"PO-Revision-Date: 2010-10-07 06:42+0000\n"
+"Last-Translator: Gary M <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-08 04:53+0000\n"
+"X-Launchpad-Export-Date: 2010-10-08 04:45+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -142,29 +142,25 @@ msgstr ""
 msgid "For Aiur!"
 msgstr "For Aiur!"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:123
-msgid "Hey, you there!"
-msgstr "Hey, you there!"
-
-#: ../Cairo-Penguin/src/applet-notifications.c:127
+#: ../Cairo-Penguin/src/applet-notifications.c:126
 msgid "Wake up"
 msgstr "Wake up"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:131
+#: ../Cairo-Penguin/src/applet-notifications.c:130
 msgid "Keep quiet"
 msgstr "Keep quiet"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:134
-#: ../Scooby-Do/data/messages:101
+#: ../Cairo-Penguin/src/applet-notifications.c:133
+#: ../Scooby-Do/data/messages:99
 msgid "Start XPenguins"
 msgstr "Start XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:135
+#: ../Cairo-Penguin/src/applet-notifications.c:134
 msgid "Stop XPenguins"
 msgstr "Stop XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:158
-#: ../Cairo-Penguin/src/applet-notifications.c:160
+#: ../Cairo-Penguin/src/applet-notifications.c:157
+#: ../Cairo-Penguin/src/applet-notifications.c:159
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -195,7 +191,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr "Clipboard history"
 
-#: ../Clipper/src/applet-notifications.c:99
+#: ../Clipper/src/applet-notifications.c:101
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
@@ -343,33 +339,37 @@ msgstr ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 
-#: ../Folders/src/applet-notifications.c:319
-msgid "Open with"
-msgstr "Open with"
+#: ../Folders/src/applet-notifications.c:322
+msgid "Open the folder (middle-click)"
+msgstr "Open the folder (middle-click)"
 
-#: ../Folders/src/applet-notifications.c:352
-msgid "Delete this file"
-msgstr "Delete this file"
-
-#: ../Folders/src/applet-notifications.c:354
+#: ../Folders/src/applet-notifications.c:328
 msgid "Rename this file"
 msgstr "Rename this file"
 
-#: ../Folders/src/applet-notifications.c:356
+#: ../Folders/src/applet-notifications.c:329
+msgid "Delete this file"
+msgstr "Delete this file"
+
+#: ../Folders/src/applet-notifications.c:330
 msgid "Move this file"
 msgstr "Move this file"
 
-#: ../Folders/src/applet-notifications.c:358
+#: ../Folders/src/applet-notifications.c:336
+msgid "Open with"
+msgstr "Open with"
+
+#: ../Folders/src/applet-notifications.c:370
 msgid "Properties"
 msgstr "Properties"
 
-#: ../Folders/src/applet-notifications.c:360
+#: ../Folders/src/applet-notifications.c:373
 msgid "Create a new file"
 msgstr "Create a new file"
 
-#: ../Folders/src/applet-notifications.c:364
-msgid "Open the folder (middle-click)"
-msgstr "Open the folder (middle-click)"
+#: ../Folders/src/applet-notifications.c:374
+msgid "Create a new folder"
+msgstr "Create a new folder"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -389,15 +389,15 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Applications Menu"
 
-#: ../GMenu/src/applet-notifications.c:147
-msgid "Quick launch"
-msgstr "Quick launch"
+#: ../GMenu/src/applet-notifications.c:75
+msgid "Quick launch (Middle-click)"
+msgstr "Quick launch (middle-click)"
 
-#: ../GMenu/src/applet-notifications.c:148
+#: ../GMenu/src/applet-notifications.c:77
 msgid "Configure menu"
 msgstr "Configure menu"
 
-#: ../GMenu/src/applet-notifications.c:149
+#: ../GMenu/src/applet-notifications.c:80
 msgid "Clear recent"
 msgstr "Clear recent"
 
@@ -409,7 +409,7 @@ msgstr "Recent Documents"
 msgid "Clear the list of the recently used documents?"
 msgstr "Clear the list of the recently used documents?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:113
+#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Enter a command to launch:"
 
@@ -608,12 +608,12 @@ msgid "Loading"
 msgstr "Loading"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
-#: ../wifi/src/applet-notifications.c:75
+#: ../wifi/src/applet-notifications.c:76
 msgid "Check for Wireless Extension"
 msgstr "Check for Wireless Extension"
 
 #: ../Network-Monitor/src/applet-notifications.c:101
-#: ../wifi/src/applet-notifications.c:76
+#: ../wifi/src/applet-notifications.c:77
 msgid "Network Administration"
 msgstr "Network Administration"
 
@@ -783,16 +783,16 @@ msgid "Open in new window"
 msgstr "Open in new window"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:461
+#: ../dnd2share/src/applet-notifications.c:470
 msgid "Open file"
 msgstr "Open file"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:496
-#: ../Scooby-Do/data/messages:105
+#: ../Scooby-Do/data/messages:103
 msgid "Firefox bookmarks"
 msgstr "Firefox bookmarks"
 
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:107
+#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
 msgid "Recent files"
 msgstr "Recent files"
 
@@ -819,60 +819,6 @@ msgstr "Mediadico"
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
 msgstr "Amazon"
-
-#: ../Scooby-Do/src/applet-init.c:39
-msgid ""
-"This plug-in allows you to make different actions directly from the "
-"keyboard.\n"
-"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-"\n"
-"- the finder mode (default shortcut : CTRL + Enter) :\n"
-"    It lets you find and launch applications, files, recent files, firefox "
-"bookmarks, commands, and even calculations.\n"
-"    Type what you want to search, the results will be displayed in real "
-"time.\n"
-"    The first results of each category are displayed in the main listing.\n"
-"    Use the up/down arrows to navigate inside the list,\n"
-"    and use the left/right arrows to enter into a category, or to display "
-"more actions (when a little arrow is drawn next to text).\n"
-"    Once inside a category, you can filter the results by typing some "
-"letters.\n"
-"    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-"results opened.\n"
-"\n"
-"- the navigation mode (default shortcut : CTRL + F9) :\n"
-"    use the arrows to navigate into the docks and sub-docks,\n"
-"    or type the name of a launcher and press Tab to automatically jump to "
-"the next suitable launcher\n"
-"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-"for middle click, and Ctrl+Enter for left click\n"
-"Escape or the same shortkey will cancel."
-msgstr ""
-"This plug-in allows you to make different actions directly from the "
-"keyboard.\n"
-"It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-"\n"
-"- the finder mode (default shortcut : CTRL + Enter) :\n"
-"    It lets you find and launch applications, files, recent files, Firefox "
-"bookmarks, commands, and even calculations.\n"
-"    Type what you want to search, the results will be displayed in real "
-"time.\n"
-"    The first results of each category are displayed in the main listing.\n"
-"    Use the up/down arrows to navigate inside the list,\n"
-"    and use the left/right arrows to enter into a category, or to display "
-"more actions (when a little arrow is drawn next to text).\n"
-"    Once inside a category, you can filter the results by typing some "
-"letters.\n"
-"    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
-"results opened.\n"
-"\n"
-"- the navigation mode (default shortcut : CTRL + F9) :\n"
-"    use the arrows to navigate into the docks and sub-docks,\n"
-"    or type the name of a launcher and press Tab to automatically jump to "
-"the next suitable launcher\n"
-"    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
-"for middle click, and Ctrl+Enter for left click\n"
-"Escape or the same shortkey will cancel."
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
@@ -920,27 +866,17 @@ msgstr "result"
 msgid "Searching ..."
 msgstr "Searching ..."
 
-#: ../Scooby-Do/src/applet-session.c:50
+#: ../Scooby-Do/src/applet-session.c:62
 msgid "Enter your search"
 msgstr "Enter your search"
 
-#: ../Status-Notifier/src/applet-init.c:31
+#: ../Status-Notifier/src/applet-init.c:32
 msgid "Status Notifier"
 msgstr "Status Notifier"
 
-#: ../Status-Notifier/src/applet-init.c:34
-msgid ""
-"A <b>notification area</b> for your dock\n"
-"Also called 'systray'.\n"
-"It is designed to work on any desktop that supports the latest systray "
-"specifications (KDE, Gnome, etc)"
-msgstr ""
-"A <b>notification area</b> for your dock\n"
-"Also called 'systray'.\n"
-"It is designed to work on any desktop that supports the latest systray "
-"specifications (KDE, Gnome, etc)"
-
 #: ../System-Monitor/src/applet-init.c:30
+#: ../System-Monitor/src/applet-notifications.c:116
+#: ../netspeed/src/applet-notifications.c:72
 msgid "System Monitor"
 msgstr "System Monitor"
 
@@ -1025,12 +961,8 @@ msgstr "Cached"
 msgid "Buffers"
 msgstr "Buffers"
 
-#: ../System-Monitor/src/applet-notifications.c:115
-#: ../netspeed/src/applet-notifications.c:70
-msgid "Monitor System"
-msgstr "Monitor System"
-
 #: ../System-Monitor/src/applet-nvidia.c:141
+#: ../System-Monitor/src/applet-sensors.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr "Alert! Graphic Card core temperature has reached %d°C"
@@ -1067,7 +999,7 @@ msgstr "Screen Luminosity"
 msgid "Set up gamma:"
 msgstr "Set up gamma:"
 
-#: ../Xgamma/src/applet-notifications.c:61
+#: ../Xgamma/src/applet-notifications.c:62
 msgid "Apply current luminosity on startup"
 msgstr "Apply current luminosity on startup"
 
@@ -1124,154 +1056,121 @@ msgstr "I couldn't load the mixer"
 msgid "Set up volume:"
 msgstr "Set up volume:"
 
-#: ../alsaMixer/src/applet-notifications.c:57
+#: ../alsaMixer/src/applet-notifications.c:58
 msgid "Adjust channels"
 msgstr "Adjust channels"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-msgid "Unmute"
-msgstr "Unmute"
+msgid "Unmute (middle-click)"
+msgstr "Unmute (middle-click)"
 
-#: ../alsaMixer/src/applet-notifications.c:61
-msgid "Mute"
-msgstr "Mute"
+#: ../alsaMixer/src/applet-notifications.c:59
+msgid "Mute (middle-click)"
+msgstr "Mute (middle-click)"
 
-#: ../clock/src/applet-calendar.c:190 ../clock/src/applet-calendar.c:271
-#: ../clock/src/applet-calendar.c:437 ../clock/src/applet-calendar.c:442
-#: ../clock/src/applet-draw.c:83 ../clock/src/applet-draw.c:339
-#: ../clock/src/applet-draw.c:353 ../clock/src/applet-draw.c:374
-#: ../clock/src/applet-task-editor.c:119
+#: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
+#: ../clock/src/applet-calendar.c:519 ../clock/src/applet-calendar.c:524
+#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:84
+#: ../clock/src/applet-timer.c:172 ../clock/src/applet-timer.c:454
+#: ../clock/src/applet-timer.c:471 ../clock/src/applet-timer.c:491
 msgid "No title"
 msgstr "No title"
 
-#: ../clock/src/applet-calendar.c:438
+#: ../clock/src/applet-calendar.c:520
 msgid "years"
 msgstr "years"
 
-#: ../clock/src/applet-calendar.c:555
+#: ../clock/src/applet-calendar.c:637
 msgid "Calendar and tasks"
 msgstr "Calendar and tasks"
 
-#: ../clock/src/applet-config.c:35 ../clock/data/messages:157
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:165
 msgid "Alarm"
 msgstr "Alarm"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
 msgstr "Time that you want to be notified:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
 msgstr "In the form xx:xx. E.g.: 20:35 for 8:35pm"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Never"
 msgstr "Never"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Day"
 msgstr "Day"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
 msgstr "Monday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
 msgstr "Tuesday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
 msgstr "Wednesday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
 msgstr "Thursday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
 msgstr "Friday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
 msgstr "Saturday"
 
-#: ../clock/src/applet-config.c:35 ../weather/src/applet-load-icons.c:26
+#: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
 msgstr "Sunday"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Week Day"
 msgstr "Week Day"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Week End"
 msgstr "Week End"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Month"
 msgstr "Month"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
 msgstr "Repeat every:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
 msgstr "If every month, which day of the month?"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Message you want to use to be notified:"
 msgstr "Message you want to use to be notified:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
 msgstr "Tea Time!"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "Command to launch:"
 msgstr "Command to launch:"
 
-#: ../clock/src/applet-config.c:35
+#: ../clock/src/applet-config.c:36
 msgid "E.g.:"
 msgstr "E.g.:"
 
-#: ../clock/src/applet-config.c:492 ../weather/src/applet-config.c:180
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
 msgstr "Search for your location:"
-
-#: ../clock/src/applet-draw.c:54
-msgid "1mn"
-msgstr "1mn"
-
-#: ../clock/src/applet-draw.c:59
-msgid "1h"
-msgstr "1h"
-
-#: ../clock/src/applet-draw.c:82
-msgid "The following task was scheduled at"
-msgstr "The following task was scheduled at"
-
-#: ../clock/src/applet-draw.c:85 ../clock/src/applet-draw.c:355
-#: ../clock/src/applet-draw.c:376
-msgid "Repeat this message every:"
-msgstr "Repeat this message every:"
-
-#: ../clock/src/applet-draw.c:338
-msgid "This task will begin in 15 minutes:"
-msgstr "This task will begin in 15 minutes:"
-
-#: ../clock/src/applet-draw.c:352
-msgid "It's time for the following task:"
-msgstr "It's time for the following task:"
-
-#: ../clock/src/applet-draw.c:373
-msgid "Today is the following anniversary:"
-msgstr "Today is the following anniversary:"
-
-#: ../clock/src/applet-draw.c:373
-msgid "Tomorrow is the following anniversary:"
-msgstr "Tomorrow is the following anniversary:"
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
@@ -1323,17 +1222,17 @@ msgstr ""
 "You can add tasks by clicking on the applet to open the calendar, and then "
 "double-clicking on a day."
 
-#: ../clock/src/applet-notifications.c:90
-msgid "Set up time and date"
-msgstr "Set up time and date"
-
-#: ../clock/src/applet-notifications.c:91
+#: ../clock/src/applet-notifications.c:92
 msgid "Show today's tasks"
 msgstr "Show today's tasks"
 
-#: ../clock/src/applet-notifications.c:92
+#: ../clock/src/applet-notifications.c:93
 msgid "Show this week's tasks"
 msgstr "Show this week's tasks"
+
+#: ../clock/src/applet-notifications.c:96
+msgid "Set up time and date"
+msgstr "Set up time and date"
 
 #: ../clock/src/applet-task-editor.c:156
 msgid "Add a new task"
@@ -1390,6 +1289,43 @@ msgstr "Freq."
 msgid "Tags"
 msgstr "Tags"
 
+#: ../clock/src/applet-timer.c:55
+msgid "1mn"
+msgstr "1mn"
+
+#: ../clock/src/applet-timer.c:60
+msgid "1h"
+msgstr "1h"
+
+#: ../clock/src/applet-timer.c:83
+msgid "The following task was scheduled at"
+msgstr "The following task was scheduled at"
+
+#: ../clock/src/applet-timer.c:86 ../clock/src/applet-timer.c:456
+#: ../clock/src/applet-timer.c:493
+msgid "Repeat this message every:"
+msgstr "Repeat this message every:"
+
+#: ../clock/src/applet-timer.c:170
+msgid "The following task has felt due:"
+msgstr "The following task is due:"
+
+#: ../clock/src/applet-timer.c:453
+msgid "It's time for the following task:"
+msgstr "It's time for the following task:"
+
+#: ../clock/src/applet-timer.c:470
+msgid "This task will begin in 15 minutes:"
+msgstr "This task will begin in 15 minutes:"
+
+#: ../clock/src/applet-timer.c:490
+msgid "Today is the following anniversary:"
+msgstr "Today is the following anniversary:"
+
+#: ../clock/src/applet-timer.c:490
+msgid "Tomorrow is the following anniversary:"
+msgstr "Tomorrow is the following anniversary:"
+
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
 msgstr "compiz-icon"
@@ -1413,7 +1349,7 @@ msgid "Configure Compiz"
 msgstr "Configure Compiz"
 
 #: ../compiz-icon/src/applet-load-icon.c:31
-#: ../compiz-icon/src/applet-notifications.c:178
+#: ../compiz-icon/src/applet-notifications.c:180
 msgid "Emerald Manager"
 msgstr "Emerald Manager"
 
@@ -1437,27 +1373,27 @@ msgstr ""
 "To configure Compiz, you need to install CCSM\n"
 " through your package manager (Synaptic, YasT, etc)"
 
-#: ../compiz-icon/src/applet-notifications.c:179
+#: ../compiz-icon/src/applet-notifications.c:181
 msgid "Reload Emerald"
 msgstr "Reload Emerald"
 
-#: ../compiz-icon/src/applet-notifications.c:183
+#: ../compiz-icon/src/applet-notifications.c:184
 msgid "Switch Windows Manager"
 msgstr "Switch Windows Manager"
 
-#: ../compiz-icon/src/applet-notifications.c:184
+#: ../compiz-icon/src/applet-notifications.c:185
 msgid "Switch Windows Decorator"
 msgstr "Switch Windows Decorator"
 
-#: ../compiz-icon/src/applet-notifications.c:193
+#: ../compiz-icon/src/applet-notifications.c:194
 msgid "Toggle Exposition Mode"
 msgstr "Toggle Exposition Mode"
 
-#: ../compiz-icon/src/applet-notifications.c:194
+#: ../compiz-icon/src/applet-notifications.c:195
 msgid "Toggle Widget Layer"
 msgstr "Toggle Widget Layer"
 
-#: ../compiz-icon/src/applet-notifications.c:196
+#: ../compiz-icon/src/applet-notifications.c:198
 msgid "Toggle Show Desktop"
 msgstr "Toggle Show Desktop"
 
@@ -1657,16 +1593,20 @@ msgid "Send the clipboard's content"
 msgstr "Send the clipboard's content"
 
 #: ../dnd2share/src/applet-notifications.c:398
-msgid "Clear History"
-msgstr "Clear History"
+msgid "History"
+msgstr "History"
 
-#: ../dnd2share/src/applet-notifications.c:463
+#: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
 msgstr "Get text"
 
-#: ../dnd2share/src/applet-notifications.c:465
+#: ../dnd2share/src/applet-notifications.c:474
 msgid "Remove from history"
 msgstr "Remove from history"
+
+#: ../dnd2share/src/applet-notifications.c:477
+msgid "Clear History"
+msgstr "Clear History"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
@@ -1782,29 +1722,29 @@ msgstr "KB"
 msgid "Counting total size and files number..."
 msgstr "Counting total size and files number..."
 
-#: ../dustbin/src/applet-notifications.c:136
+#: ../dustbin/src/applet-notifications.c:117
 msgid "Show Trash (click)"
 msgstr "Show Trash (click)"
 
-#: ../dustbin/src/applet-notifications.c:137
+#: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash (middle-click)"
 msgstr "Empty Trash (middle-click)"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:120
 msgid "Display dustbins information"
 msgstr "Display dustbins information"
 
-#: ../dustbin/src/applet-notifications.c:151
+#: ../dustbin/src/applet-notifications.c:133
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s successfully unmounted"
 
-#: ../dustbin/src/applet-notifications.c:155
+#: ../dustbin/src/applet-notifications.c:137
 #, c-format
 msgid "failed to unmount %s"
 msgstr "failed to unmount %s"
 
-#: ../dustbin/src/applet-notifications.c:179
+#: ../dustbin/src/applet-notifications.c:161
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Unmouting this volume ..."
@@ -1933,11 +1873,11 @@ msgstr ""
 "restart\n"
 "  (you can invert the buttons if you prefer to shut-down on left-click)."
 
-#: ../logout/src/applet-notifications.c:101
+#: ../logout/src/applet-notifications.c:100
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Choose in how many minutes your PC will stop:"
 
-#: ../logout/src/applet-notifications.c:126
+#: ../logout/src/applet-notifications.c:125
 msgid "Lock screen"
 msgstr "Lock screen"
 
@@ -1945,7 +1885,7 @@ msgstr "Lock screen"
 msgid "Program an automatic shut-down"
 msgstr "Program an automatic shut-down"
 
-#: ../logout/src/applet-notifications.c:158
+#: ../logout/src/applet-notifications.c:159
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Your computer will shut-down in 1 minute."
 
@@ -2102,20 +2042,29 @@ msgstr ""
 "If '%s' is not your usual mail application,\n"
 "you can change it in the configuration panel of this module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:139
+#: ../mail/src/cd-mail-applet-notifications.c:147
 msgid "Refresh a mail account"
 msgstr "Refresh a mail account"
 
-#: ../mail/src/cd-mail-applet-notifications.c:148
+#: ../mail/src/cd-mail-applet-notifications.c:154
+msgid "Refresh all (Middle-click)"
+msgstr "Refresh all (middle-click)"
+
+#: ../mail/src/cd-mail-applet-notifications.c:159
+#, c-format
+msgid "Refresh %s"
+msgstr "Refresh %s"
+
+#: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
 msgstr "Mark all emails as read"
 
-#: ../mail/src/cd-mail-applet-notifications.c:151
+#: ../mail/src/cd-mail-applet-notifications.c:168
 #, c-format
 msgid "Launch %s"
 msgstr "Launch %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:326
+#: ../mail/src/cd-mail-applet-notifications.c:346
 msgid "Mail"
 msgstr "Mail"
 
@@ -2193,7 +2142,7 @@ msgstr ""
 "       For SongBird, you have to install its dbus add-on.\n"
 "       For Exaile 0.3, you will need to activate its MPRIS plug-in"
 
-#: ../musicPlayer/src/applet-notifications.c:70
+#: ../musicPlayer/src/applet-notifications.c:74
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
@@ -2203,49 +2152,49 @@ msgstr ""
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 
-#: ../musicPlayer/src/applet-notifications.c:162
+#: ../musicPlayer/src/applet-notifications.c:172
 msgid "Find opened player"
 msgstr "Find opened player"
 
-#: ../musicPlayer/src/applet-notifications.c:169
+#: ../musicPlayer/src/applet-notifications.c:179
 msgid "Previous"
 msgstr "Previous"
 
-#: ../musicPlayer/src/applet-notifications.c:171
+#: ../musicPlayer/src/applet-notifications.c:181
 msgid "Play/Pause (left-click)"
 msgstr "Play/Pause (left-click)"
 
-#: ../musicPlayer/src/applet-notifications.c:173
+#: ../musicPlayer/src/applet-notifications.c:183
 msgid "Next (middle-click)"
 msgstr "Next (middle-click)"
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:185
 msgid "Stop"
 msgstr "Stop"
 
-#: ../musicPlayer/src/applet-notifications.c:177
+#: ../musicPlayer/src/applet-notifications.c:189
+msgid "Information"
+msgstr "Information"
+
+#: ../musicPlayer/src/applet-notifications.c:192
 msgid "Show the Window"
 msgstr "Show the Window"
 
-#: ../musicPlayer/src/applet-notifications.c:179
+#: ../musicPlayer/src/applet-notifications.c:198
 msgid "Show JumpBox"
 msgstr "Show JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:181
+#: ../musicPlayer/src/applet-notifications.c:200
 msgid "Toggle Shuffle"
 msgstr "Toggle Shuffle"
 
-#: ../musicPlayer/src/applet-notifications.c:183
+#: ../musicPlayer/src/applet-notifications.c:202
 msgid "Toggle Repeat"
 msgstr "Toggle Repeat"
 
-#: ../musicPlayer/src/applet-notifications.c:185
+#: ../musicPlayer/src/applet-notifications.c:204
 msgid "Rate this song"
 msgstr "Rate this song"
-
-#: ../musicPlayer/src/applet-notifications.c:187
-msgid "Information"
-msgstr "Information"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2286,7 +2235,7 @@ msgstr ""
 " You may have to set up the interface you wish to monitor.\n"
 " Do you want to do it now?"
 
-#: ../netspeed/src/applet-notifications.c:72
+#: ../netspeed/src/applet-notifications.c:76
 msgid "Re-check interface"
 msgstr "Re-check interface"
 
@@ -2459,31 +2408,31 @@ msgstr "No disks or bookmarks were found."
 msgid "Enter a name for this bookmark:"
 msgstr "Enter a name for this bookmark:"
 
-#: ../shortcuts/src/applet-notifications.c:250
-msgid "Remove this bookmark"
-msgstr "Remove this bookmark"
-
-#: ../shortcuts/src/applet-notifications.c:251
+#: ../shortcuts/src/applet-notifications.c:252
 msgid "Rename this bookmark"
 msgstr "Rename this bookmark:"
 
-#: ../shortcuts/src/applet-notifications.c:257
+#: ../shortcuts/src/applet-notifications.c:253
+msgid "Remove this bookmark"
+msgstr "Remove this bookmark"
+
+#: ../shortcuts/src/applet-notifications.c:259
 msgid "Eject"
 msgstr "Eject"
 
-#: ../shortcuts/src/applet-notifications.c:262
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Unmount (middle-click)"
 msgstr "Unmount (middle-click)"
 
-#: ../shortcuts/src/applet-notifications.c:262
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Mount (middle-click)"
 msgstr "Mount (middle-click)"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:266
 msgid "Get disk info"
 msgstr "Get disk info"
 
-#: ../shortcuts/src/applet-notifications.c:289
+#: ../shortcuts/src/applet-notifications.c:292
 msgid "Only folders can be bookmarked."
 msgstr "Only folders can be bookmarked."
 
@@ -2530,20 +2479,20 @@ msgstr "You need to run Compiz and activate its 'DBus' plug-in."
 msgid "Change screen resolution"
 msgstr "Change screen resolution"
 
-#: ../showDesktop/src/applet-notifications.c:299
+#: ../showDesktop/src/applet-notifications.c:305
 msgid "Move to the Desktop"
 msgstr "Move to the Desktop"
 
-#: ../showDesktop/src/applet-notifications.c:300
+#: ../showDesktop/src/applet-notifications.c:306
 msgid "Copy to the Desktop"
 msgstr "Copy to the Desktop"
 
-#: ../showDesktop/src/applet-notifications.c:301
-#: ../showDesktop/src/applet-notifications.c:305
+#: ../showDesktop/src/applet-notifications.c:307
+#: ../showDesktop/src/applet-notifications.c:311
 msgid "Link to the Desktop"
 msgstr "Link to the Desktop"
 
-#: ../showDesktop/src/applet-notifications.c:306
+#: ../showDesktop/src/applet-notifications.c:312
 msgid "Download onto the Desktop"
 msgstr "Download onto the Desktop"
 
@@ -2563,19 +2512,19 @@ msgstr ""
 "Click to play/pause or to edit the current image.\n"
 "Middle-click to open the images folder."
 
-#: ../slider/src/applet-notifications.c:166
+#: ../slider/src/applet-notifications.c:167
 msgid "Play"
 msgstr "Play"
 
-#: ../slider/src/applet-notifications.c:166
+#: ../slider/src/applet-notifications.c:167
 msgid "Pause"
 msgstr "Pause"
 
-#: ../slider/src/applet-notifications.c:169
+#: ../slider/src/applet-notifications.c:170
 msgid "Open current image"
 msgstr "Open current image"
 
-#: ../slider/src/applet-notifications.c:171
+#: ../slider/src/applet-notifications.c:172
 msgid "Browse images folder"
 msgstr "Browse images folder"
 
@@ -2617,37 +2566,37 @@ msgstr "Clear the stack?"
 msgid "Set new name for this item:"
 msgstr "Set new name for this item:"
 
-#: ../stack/src/applet-notifications.c:165
-msgid "Copy (middle click)"
-msgstr "Copy (middle click)"
-
-#: ../stack/src/applet-notifications.c:166
-msgid "Cut"
-msgstr "Cut"
-
 #: ../stack/src/applet-notifications.c:167
-msgid "Rename this item"
-msgstr "Rename this item"
-
-#: ../stack/src/applet-notifications.c:168
-msgid "Remove this item"
-msgstr "Remove this item"
-
-#: ../stack/src/applet-notifications.c:172
-msgid "Open (click)"
-msgstr "Open (click)"
-
-#: ../stack/src/applet-notifications.c:174
-msgid "Open folder"
-msgstr "Open folder"
-
-#: ../stack/src/applet-notifications.c:179
 msgid "Paste (drag'n'drop)"
 msgstr "Paste (drag'n'drop)"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:170
 msgid "Clear the stack"
 msgstr "Clear the stack"
+
+#: ../stack/src/applet-notifications.c:177
+msgid "Open (click)"
+msgstr "Open (click)"
+
+#: ../stack/src/applet-notifications.c:179
+msgid "Open parent folder"
+msgstr "Open parent folder"
+
+#: ../stack/src/applet-notifications.c:181
+msgid "Copy (middle click)"
+msgstr "Copy (middle click)"
+
+#: ../stack/src/applet-notifications.c:182
+msgid "Cut"
+msgstr "Cut"
+
+#: ../stack/src/applet-notifications.c:185
+msgid "Rename this item"
+msgstr "Rename this item"
+
+#: ../stack/src/applet-notifications.c:186
+msgid "Remove this item"
+msgstr "Remove this item"
 
 #: ../stacks/src/applet-init.c:30
 msgid "stacks"
@@ -2663,7 +2612,7 @@ msgstr "Clean local directory"
 
 #: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:619
 #: ../switcher/src/applet-load-icons.c:43
-#: ../switcher/src/applet-notifications.c:393
+#: ../switcher/src/applet-notifications.c:400
 msgid "Current"
 msgstr "Current"
 
@@ -2671,8 +2620,8 @@ msgstr "Current"
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:213
 #: ../switcher/src/applet-notifications.c:225
-#: ../switcher/src/applet-notifications.c:385
-#: ../switcher/src/applet-notifications.c:450
+#: ../switcher/src/applet-notifications.c:392
+#: ../switcher/src/applet-notifications.c:452
 msgid "Desktop"
 msgstr "Desktop"
 
@@ -2699,23 +2648,23 @@ msgstr ""
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 
 #: ../switcher/src/applet-notifications.c:214
-#: ../switcher/src/applet-notifications.c:272
+#: ../switcher/src/applet-notifications.c:273
 msgid "Rename this workspace"
 msgstr "Rename this workspace"
 
-#: ../switcher/src/applet-notifications.c:259
-msgid "Add a desktop"
-msgstr "Add a desktop"
+#: ../switcher/src/applet-notifications.c:260
+msgid "Add a workspace"
+msgstr "Add a workspace"
 
-#: ../switcher/src/applet-notifications.c:263
-msgid "Remove last desktop"
-msgstr "Remove last desktop"
+#: ../switcher/src/applet-notifications.c:264
+msgid "Remove last workspace"
+msgstr "Remove last workspace"
 
-#: ../switcher/src/applet-notifications.c:279
-msgid "Move current Desktop to this Desktop"
-msgstr "Move current Desktop to this Desktop"
+#: ../switcher/src/applet-notifications.c:280
+msgid "Move current workspace to this workspace"
+msgstr "Move current workspace to this workspace"
 
-#: ../switcher/src/applet-notifications.c:284
+#: ../switcher/src/applet-notifications.c:285
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -2723,21 +2672,21 @@ msgstr ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 
-#: ../switcher/src/applet-notifications.c:290
+#: ../switcher/src/applet-notifications.c:294
 msgid "Windows List"
 msgstr "Windows List"
 
-#: ../switcher/src/applet-notifications.c:295 ../showDesktop/data/messages:103
+#: ../switcher/src/applet-notifications.c:299 ../showDesktop/data/messages:103
 #: ../showDesktop/data/messages:117
 msgid "Show the desktop"
 msgstr "Show the desktop"
 
-#: ../switcher/src/applet-notifications.c:302 ../showDesktop/data/messages:111
+#: ../switcher/src/applet-notifications.c:306 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125 ../switcher/data/messages:107
 msgid "Expose all the desktops (Compiz)"
 msgstr "Expose all the desktops (Compiz)"
 
-#: ../switcher/src/applet-notifications.c:308
+#: ../switcher/src/applet-notifications.c:314
 msgid "Refresh"
 msgstr "Refresh"
 
@@ -2813,16 +2762,16 @@ msgstr ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 
-#: ../terminal/src/terminal-menu-functions.c:78
+#: ../terminal/src/terminal-menu-functions.c:79
 #: ../terminal/src/terminal-widget.c:374
 msgid "New Tab"
 msgstr "New Tab"
 
-#: ../terminal/src/terminal-menu-functions.c:79
+#: ../terminal/src/terminal-menu-functions.c:80
 msgid "Rename current Tab"
 msgstr "Rename current Tab"
 
-#: ../terminal/src/terminal-menu-functions.c:80
+#: ../terminal/src/terminal-menu-functions.c:81
 msgid "Close current Tab"
 msgstr "Close current Tab"
 
@@ -2891,39 +2840,39 @@ msgstr "Search for:"
 msgid "Search for tag:"
 msgstr "Search for tag:"
 
-#: ../tomboy/src/tomboy-notifications.c:186
-msgid "Reload notes"
-msgstr "Reload notes"
-
-#: ../tomboy/src/tomboy-notifications.c:187
+#: ../tomboy/src/tomboy-notifications.c:195
 msgid "Add a note"
 msgstr "Add a note"
 
-#: ../tomboy/src/tomboy-notifications.c:193
+#: ../tomboy/src/tomboy-notifications.c:199
 msgid "Delete this note"
 msgstr "Delete this note"
 
-#: ../tomboy/src/tomboy-notifications.c:196
+#: ../tomboy/src/tomboy-notifications.c:202
+msgid "Reload notes"
+msgstr "Reload notes"
+
+#: ../tomboy/src/tomboy-notifications.c:208
 msgid "Search"
 msgstr "Search"
 
-#: ../tomboy/src/tomboy-notifications.c:197
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag"
 msgstr "Search for tag"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:211
 msgid "Search for today's note"
 msgstr "Search for today's note"
 
-#: ../tomboy/src/tomboy-notifications.c:200
+#: ../tomboy/src/tomboy-notifications.c:212
 msgid "Search for this week's note"
 msgstr "Search for this week's note"
 
-#: ../tomboy/src/tomboy-notifications.c:201
+#: ../tomboy/src/tomboy-notifications.c:213
 msgid "Search for next week's note"
 msgstr "Search for next week's note"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:223
 msgid "Reset marks"
 msgstr "Reset marks"
 
@@ -3018,11 +2967,11 @@ msgstr "Dec"
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Data are being retrieved, please wait a moment."
 
-#: ../weather/src/applet-notifications.c:84
+#: ../weather/src/applet-notifications.c:85
 msgid "Reload now"
 msgstr "Reload now"
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:110
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3030,40 +2979,40 @@ msgstr ""
 "No data available\n"
 " is your connection alive?"
 
-#: ../weather/src/applet-notifications.c:127
-#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:129
+#: ../weather/src/applet-notifications.c:165
 msgid "Temperature"
 msgstr "Temperature"
 
-#: ../weather/src/applet-notifications.c:128
+#: ../weather/src/applet-notifications.c:130
 msgid "Precipitation probability"
 msgstr "Precipitation probability"
 
-#: ../weather/src/applet-notifications.c:129
-#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:131
+#: ../weather/src/applet-notifications.c:166
 msgid "Wind"
 msgstr "Wind"
 
-#: ../weather/src/applet-notifications.c:130
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:132
+#: ../weather/src/applet-notifications.c:167
 msgid "Humidity"
 msgstr "Humidity"
 
-#: ../weather/src/applet-notifications.c:131
-#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:133
+#: ../weather/src/applet-notifications.c:168
 msgid "Sunrise"
 msgstr "Sunrise"
 
-#: ../weather/src/applet-notifications.c:131
-#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:133
+#: ../weather/src/applet-notifications.c:168
 msgid "Sunset"
 msgstr "Sunset"
 
-#: ../weather/src/applet-notifications.c:139
+#: ../weather/src/applet-notifications.c:141
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Data are being fetched, please re-try in a few seconds."
 
-#: ../weather/src/applet-notifications.c:149
+#: ../weather/src/applet-notifications.c:151
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3071,11 +3020,11 @@ msgstr ""
 "No data available\n"
 "Retrying now..."
 
-#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:165
 msgid "Feels like"
 msgstr "Feels like"
 
-#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:167
 msgid "Pressure"
 msgstr "Pressure"
 
@@ -3180,10 +3129,10 @@ msgstr "Rotation"
 #: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
 #: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
 #: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
-#: ../Scooby-Do/data/messages:17 ../Scooby-Do/data/messages:21
-#: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
-#: ../icon-effect/data/messages:145 ../icon-effect/data/messages:167
-#: ../icon-effect/data/messages:187
+#: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
+#: ../Scooby-Do/data/messages:19 ../icon-effect/data/messages:101
+#: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
+#: ../icon-effect/data/messages:167 ../icon-effect/data/messages:187
 msgid "In ms."
 msgstr "In ms."
 
@@ -3460,7 +3409,7 @@ msgstr "Name of the dock it belongs to:"
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
 #: ../Network-Monitor/data/messages:15 ../RSSreader/data/messages:17
-#: ../Scooby-Do/data/messages:117 ../Status-Notifier/data/messages:15
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:15
 #: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
 #: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:13
 #: ../clock/data/messages:15 ../compiz-icon/data/messages:11
@@ -3483,23 +3432,24 @@ msgstr "Applet's Handbook"
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
 #: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
-#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:91
-#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
-#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:89
-#: ../clock/data/messages:91 ../compiz-icon/data/messages:87
-#: ../dnd2share/data/messages:87 ../dustbin/data/messages:87
-#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:91
-#: ../mail/data/messages:87 ../motion-blur/data/messages:1
-#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
-#: ../powermanager/data/messages:89 ../quick-browser/data/messages:93
-#: ../shortcuts/data/messages:91 ../show-mouse/data/messages:1
-#: ../showDesktop/data/messages:95 ../slider/data/messages:89
-#: ../stack/data/messages:93 ../stacks/data/messages:89
-#: ../switcher/data/messages:83 ../switcher/data/messages:85
-#: ../systray/data/messages:83 ../template/data/messages:91
-#: ../terminal/data/messages:91 ../tomboy/data/messages:101
-#: ../weather/data/messages:89 ../weather/data/messages:91
-#: ../weblets/data/messages:91 ../wifi/data/messages:89
+#: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:1
+#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:89
+#: ../Toons/data/messages:89 ../Xgamma/data/messages:91
+#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
+#: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:87
+#: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:87
+#: ../logout/data/messages:91 ../mail/data/messages:87
+#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:89
+#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
+#: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
+#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
+#: ../slider/data/messages:89 ../stack/data/messages:93
+#: ../stacks/data/messages:89 ../switcher/data/messages:83
+#: ../switcher/data/messages:85 ../systray/data/messages:83
+#: ../template/data/messages:91 ../terminal/data/messages:91
+#: ../tomboy/data/messages:101 ../weather/data/messages:89
+#: ../weather/data/messages:91 ../weblets/data/messages:91
+#: ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Configuration"
 
@@ -3848,7 +3798,7 @@ msgstr "Visibility"
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
-#: ../Scooby-Do/data/messages:27 ../Status-Notifier/data/messages:39
+#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:39
 #: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
 #: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:37
 #: ../clock/data/messages:39 ../compiz-icon/data/messages:35
@@ -4120,7 +4070,7 @@ msgstr ""
 #: ../Status-Notifier/data/messages:65 ../System-Monitor/data/messages:63
 #: ../Toons/data/messages:63 ../Xgamma/data/messages:65
 #: ../alsaMixer/data/messages:63 ../clock/data/messages:65
-#: ../clock/data/messages:149 ../compiz-icon/data/messages:61
+#: ../clock/data/messages:157 ../compiz-icon/data/messages:61
 #: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:61
 #: ../keyboard-indicator/data/messages:113 ../logout/data/messages:65
@@ -4712,7 +4662,7 @@ msgstr "Size"
 msgid "Sort folders before files?"
 msgstr "Sort folders before files?"
 
-#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:103
+#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:101
 #: ../quick-browser/data/messages:103
 msgid "Show hidden files?"
 msgstr "Show hidden files?"
@@ -5203,15 +5153,23 @@ msgstr "normal"
 msgid "big"
 msgstr "big"
 
+#: ../Remote-Control/data/messages:3
+msgid "Shortkey to trigger the applet:"
+msgstr "Shortcut key to trigger the applet:"
+
+#: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
+msgid "Animation of the current icon :"
+msgstr "Animation of the current icon :"
+
+#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:21
+msgid "Duration of the stop animation :"
+msgstr "Duration of the stop animation :"
+
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to enable/disable the finder mode:"
 msgstr "Shortkey to enable/disable the finder mode:"
 
 #: ../Scooby-Do/data/messages:5
-msgid "Shortkey to enable/disable the navigation mode:"
-msgstr "Shortkey to enable/disable the navigation mode:"
-
-#: ../Scooby-Do/data/messages:7
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
@@ -5219,11 +5177,11 @@ msgstr ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
 
-#: ../Scooby-Do/data/messages:9
+#: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
 msgstr "Maximum number of results :"
 
-#: ../Scooby-Do/data/messages:11
+#: ../Scooby-Do/data/messages:9
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
@@ -5231,179 +5189,171 @@ msgstr ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
 
-#: ../Scooby-Do/data/messages:13
+#: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
 msgstr "Number of lines to display :"
 
-#: ../Scooby-Do/data/messages:15
+#: ../Scooby-Do/data/messages:13
 msgid "Animations"
 msgstr "Animations"
 
-#: ../Scooby-Do/data/messages:19
+#: ../Scooby-Do/data/messages:17
 msgid "Duration of the appearance animation :"
 msgstr "Duration of the appearance animation :"
 
-#: ../Scooby-Do/data/messages:23
-msgid "Duration of the stop animation :"
-msgstr "Duration of the stop animation :"
-
-#: ../Scooby-Do/data/messages:25
-msgid "Animation of the current icon :"
-msgstr "Animation of the current icon :"
-
-#: ../Scooby-Do/data/messages:29
+#: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type:"
 msgstr "Font used to display what you type:"
 
-#: ../Scooby-Do/data/messages:31
+#: ../Scooby-Do/data/messages:29
 msgid "Color of the text's frame  :"
 msgstr "Text frame colour:"
 
-#: ../Scooby-Do/data/messages:33
+#: ../Scooby-Do/data/messages:31
 msgid "Font size, relative to the dock size:"
 msgstr "Font size, relative to the dock size:"
 
-#: ../Scooby-Do/data/messages:35
+#: ../Scooby-Do/data/messages:33
 msgid "between 1 and 9, the higher, the bigger."
 msgstr "between 1 and 9, the higher, the bigger."
 
-#: ../Scooby-Do/data/messages:37
+#: ../Scooby-Do/data/messages:35
 msgid "Text size:"
 msgstr "Text size:"
 
-#: ../Scooby-Do/data/messages:39 ../keyboard-indicator/data/messages:103
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:103
 msgid "Outline text?"
 msgstr "Outline text?"
 
-#: ../Scooby-Do/data/messages:41 ../clock/data/messages:145
+#: ../Scooby-Do/data/messages:39 ../clock/data/messages:145
 msgid "Text colour:"
 msgstr "Text colour:"
 
-#: ../Scooby-Do/data/messages:43
+#: ../Scooby-Do/data/messages:41
 msgid "Character background colour:"
 msgstr "Character background colour:"
 
-#: ../Scooby-Do/data/messages:45
+#: ../Scooby-Do/data/messages:43
 msgid "Write text on the top of the dock?"
 msgstr "Write text on the top of the dock?"
 
-#: ../Scooby-Do/data/messages:47
+#: ../Scooby-Do/data/messages:45
 msgid "Favorite applications"
 msgstr "Favorite applications"
 
-#: ../Scooby-Do/data/messages:49
+#: ../Scooby-Do/data/messages:47
 msgid "FAvorite applications starting with 'a' :"
 msgstr "FAvorite applications starting with 'a' :"
 
-#: ../Scooby-Do/data/messages:51
+#: ../Scooby-Do/data/messages:49
 msgid "Favorite application starting with 'b' :"
 msgstr "Favorite application starting with 'b' :"
 
-#: ../Scooby-Do/data/messages:53
+#: ../Scooby-Do/data/messages:51
 msgid "Favorite application(s) starting with 'c' :"
 msgstr "Favorite application(s) starting with 'c' :"
 
-#: ../Scooby-Do/data/messages:55
+#: ../Scooby-Do/data/messages:53
 msgid "Favorite application(s starting with 'd' :"
 msgstr "Favorite application(s starting with 'd' :"
 
-#: ../Scooby-Do/data/messages:57
+#: ../Scooby-Do/data/messages:55
 msgid "Favorite application(s) starting with 'e' :"
 msgstr "Favorite application(s) starting with 'e' :"
 
-#: ../Scooby-Do/data/messages:59
+#: ../Scooby-Do/data/messages:57
 msgid "Favorite application(s) starting with 'f' :"
 msgstr "Favorite application(s) starting with 'f' :"
 
-#: ../Scooby-Do/data/messages:61
+#: ../Scooby-Do/data/messages:59
 msgid "Favorite application(s) starting with 'g' :"
 msgstr "Favorite application(s) starting with 'g' :"
 
-#: ../Scooby-Do/data/messages:63
+#: ../Scooby-Do/data/messages:61
 msgid "Favorite application(s) starting with 'h' :"
 msgstr "Favorite application(s) starting with 'h' :"
 
-#: ../Scooby-Do/data/messages:65
+#: ../Scooby-Do/data/messages:63
 msgid "Favorite application(s) starting with 'i' :"
 msgstr "Favorite application(s) starting with 'i' :"
 
-#: ../Scooby-Do/data/messages:67
+#: ../Scooby-Do/data/messages:65
 msgid "Favorite application(s) starting with 'j' :"
 msgstr "Favorite application(s) starting with 'j' :"
 
-#: ../Scooby-Do/data/messages:69
+#: ../Scooby-Do/data/messages:67
 msgid "Favorite application(s) starting with 'k' :"
 msgstr "Favorite application(s) starting with 'k' :"
 
-#: ../Scooby-Do/data/messages:71
+#: ../Scooby-Do/data/messages:69
 msgid "Favorite application(s) starting with 'l' :"
 msgstr "Favorite application(s) starting with 'l' :"
 
-#: ../Scooby-Do/data/messages:73
+#: ../Scooby-Do/data/messages:71
 msgid "Favorite application(s) starting with 'm' :"
 msgstr "Favorite application(s) starting with 'm' :"
 
-#: ../Scooby-Do/data/messages:75
+#: ../Scooby-Do/data/messages:73
 msgid "Favorite application(s) starting with 'n' :"
 msgstr "Favorite application(s) starting with 'n' :"
 
-#: ../Scooby-Do/data/messages:77
+#: ../Scooby-Do/data/messages:75
 msgid "Favorite application(s) starting with 'o' :"
 msgstr "Favorite application(s) starting with 'o' :"
 
-#: ../Scooby-Do/data/messages:79
+#: ../Scooby-Do/data/messages:77
 msgid "Favorite application(s) starting with 'p' :"
 msgstr "Favorite application(s) starting with 'p' :"
 
-#: ../Scooby-Do/data/messages:81
+#: ../Scooby-Do/data/messages:79
 msgid "Favorite application(s) starting with 'q' :"
 msgstr "Favorite application(s) starting with 'q' :"
 
-#: ../Scooby-Do/data/messages:83
+#: ../Scooby-Do/data/messages:81
 msgid "Favorite application(s) starting with 'r' :"
 msgstr "Favorite application(s) starting with 'r' :"
 
-#: ../Scooby-Do/data/messages:85
+#: ../Scooby-Do/data/messages:83
 msgid "Favorite application(s) starting with 's' :"
 msgstr "Favorite application(s) starting with 's' :"
 
-#: ../Scooby-Do/data/messages:87
+#: ../Scooby-Do/data/messages:85
 msgid "Favorite application(s) starting with 't' :"
 msgstr "Favorite application(s) starting with 't' :"
 
-#: ../Scooby-Do/data/messages:89
+#: ../Scooby-Do/data/messages:87
 msgid "Favorite application(s) starting with 'u' :"
 msgstr "Favorite application(s) starting with 'u' :"
 
-#: ../Scooby-Do/data/messages:91
+#: ../Scooby-Do/data/messages:89
 msgid "Favorite application(s) starting with 'v' :"
 msgstr "Favorite application(s) starting with 'v' :"
 
-#: ../Scooby-Do/data/messages:93
+#: ../Scooby-Do/data/messages:91
 msgid "Favorite application(s) starting with 'w' :"
 msgstr "Favorite application(s) starting with 'w' :"
 
-#: ../Scooby-Do/data/messages:95
+#: ../Scooby-Do/data/messages:93
 msgid "Favorite application(s) starting with 'x' :"
 msgstr "Favorite application(s) starting with 'x' :"
 
-#: ../Scooby-Do/data/messages:97
+#: ../Scooby-Do/data/messages:95
 msgid "Favorite application(s) starting with 'y' :"
 msgstr "Favorite application(s) starting with 'y' :"
 
-#: ../Scooby-Do/data/messages:99
+#: ../Scooby-Do/data/messages:97
 msgid "Favorite application(s) starting with 'z' :"
 msgstr "Favorite application(s) starting with 'z' :"
 
-#: ../Scooby-Do/data/messages:109
+#: ../Scooby-Do/data/messages:107
 msgid "Propose some web search engines ?"
 msgstr "Propose some web search engines?"
 
-#: ../Scooby-Do/data/messages:111
+#: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
 msgstr "It can launch commands and even do some calculations."
 
-#: ../Scooby-Do/data/messages:115
+#: ../Scooby-Do/data/messages:113
 msgid "Help"
 msgstr "Help"
 
@@ -5796,28 +5746,44 @@ msgid "Font:"
 msgstr "Font:"
 
 #: ../clock/data/messages:147
+msgid "Layout of the text:"
+msgstr "Layout of the text:"
+
+#: ../clock/data/messages:149
+msgid "Automatic"
+msgstr "Automatic"
+
+#: ../clock/data/messages:151
+msgid "On 1 line"
+msgstr "On 1 line"
+
+#: ../clock/data/messages:153
+msgid "On 2 lines"
+msgstr "On 2 lines"
+
+#: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
 msgstr "Ratio to apply on text :"
 
-#: ../clock/data/messages:151
+#: ../clock/data/messages:159
 msgid "Configure time and date"
 msgstr "Configure time and date"
 
-#: ../clock/data/messages:153
+#: ../clock/data/messages:161
 msgid "Leave empty to use the default command."
 msgstr "Leave empty to use the default command."
 
-#: ../clock/data/messages:155
+#: ../clock/data/messages:163
 msgid "Specific command to run:"
 msgstr "Specific command to run:"
 
-#: ../clock/data/messages:159
+#: ../clock/data/messages:167
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "The new alarm will be added to the end / the last alarm will be removed."
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:169
 msgid "Add or remove an alarm:"
 msgstr "Add or remove an alarm:"
 
@@ -7499,18 +7465,6 @@ msgstr "Type"
 msgid "Manual order"
 msgstr "Manual order"
 
-#: ../stack/data/messages:135
-msgid ""
-"It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
-"clipboard"
-msgstr ""
-"It is the selection made by the mouse, as opposed to usual Ctrl+C/Ctrl+V "
-"clipboard"
-
-#: ../stack/data/messages:137
-msgid "When copying/pasting/cutting, use the selection clipboard?"
-msgstr "When copying/pasting/cutting, use the selection clipboard?"
-
 #: ../stacks/data/messages:91
 msgid "Directory & Options"
 msgstr "Directory & Options"
@@ -7983,6 +7937,9 @@ msgstr "Raw Signal Informations"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Overwrite the default label with the connection point name?"
 
+#~ msgid "Quick launch"
+#~ msgstr "Quick launch"
+
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
@@ -7992,6 +7949,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Free"
 #~ msgstr "Free"
+
+#~ msgid "Monitor System"
+#~ msgstr "Monitor System"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
@@ -8022,6 +7982,15 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "showDesklets"
 #~ msgstr "showDesklets"
+
+#~ msgid "Open folder"
+#~ msgstr "Open folder"
+
+#~ msgid "Add a desktop"
+#~ msgstr "Add a desktop"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Remove last desktop"
 
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Desklet dimensions (width x height):"
@@ -8394,8 +8363,64 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Visibility :"
 #~ msgstr "Visibility:"
 
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, Firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
+
+#~ msgid "Hey, you there!"
+#~ msgstr "Hey, you there!"
 
 #~ msgid "ToolTip"
 #~ msgstr "ToolTip"
@@ -8417,6 +8442,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If '%s' is not your usual file browser,\n"
 #~ "you can change this in the configuration panel of this module"
 
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Move current Desktop to this Desktop"
+
 #~ msgid "Weather"
 #~ msgstr "Weather"
 
@@ -8428,6 +8456,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Animation of the icon when a feed has changed:"
+
+#~ msgid "Shortkey to enable/disable the navigation mode:"
+#~ msgstr "Shortkey to enable/disable the navigation mode:"
 
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Choose an action for middle click on the icon:"
@@ -8500,6 +8531,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Delay between measurements:"
 #~ msgstr "Delay between measurements:"
 
+#~ msgid "When copying/pasting/cutting, use the selection clipboard?"
+#~ msgstr "When copying/pasting/cutting, use the selection clipboard?"
+
 #~ msgid ""
 #~ "This applet lets you access your desklets quickly.\n"
 #~ "Left click to show/hide your desklets.\n"
@@ -8539,6 +8573,30 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "in seconds, only used if you can't monitor directories."
 
 #~ msgid ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+#~ msgstr ""
+#~ "It is the selection made by the mouse, as opposed to usual Ctrl+C/Ctrl+V "
+#~ "clipboard"
+
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+
+#~ msgid "Unmute"
+#~ msgstr "Unmute"
+
+#~ msgid "Mute"
+#~ msgstr "Mute"
+
+#~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
@@ -8556,12 +8614,3 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly.\n"
 #~ "The applet can also display valuable information about your disks, like free "
 #~ "space, type, etc."
-
-#~ msgid "Add a workspace"
-#~ msgstr "Add a workspace"
-
-#~ msgid "Remove last workspace"
-#~ msgstr "Remove last workspace"
-
-#~ msgid "Move current workspace to this workspace"
-#~ msgstr "Move current workspace to this workspace"

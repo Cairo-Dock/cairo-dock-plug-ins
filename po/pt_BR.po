@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2010-09-13 00:36+0000\n"
-"PO-Revision-Date: 2010-09-18 01:41+0000\n"
-"Last-Translator: Kauan Mocelin <Unknown>\n"
+"PO-Revision-Date: 2010-10-07 09:14+0000\n"
+"Last-Translator: Bruno Reboucas <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-18 05:35+0000\n"
+"X-Launchpad-Export-Date: 2010-10-08 04:45+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -81,7 +81,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
-msgstr ""
+msgstr "Cairo-Pinguim"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -277,10 +277,19 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
+"importações Este miniaplicativo dentro de pastas no Dock\n"
+"Você pode ter quantas instâncias deste applet que quiser, cada um com uma "
+"pasta diferente.\n"
+"Para adicionar uma pasta na Dock:\n"
+" - Ativar o miniaplicativo, abra o painel de configuração, e selecione uma "
+"pasta\n"
+" - Ou apenas uma gota de pasta no banco dos réus\n"
+"Médio clique sobre o ícone principal abre a pasta.\n"
 
 #: ../Folders/src/applet-notifications.c:37
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
+"Abra a configuração do miniaplicativo para escolher uma pasta para importar."
 
 #: ../Folders/src/applet-notifications.c:47
 msgid "Empty or unreadable folder."
@@ -293,6 +302,9 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
+"Você está a ponto de excluir este arquivo\n"
+"  (% s)\n"
+"a partir do seu disco rígido. Tem certeza?"
 
 #: ../Folders/src/applet-notifications.c:203
 msgid ""
@@ -328,6 +340,9 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"Aviso: não foi possível criar % s.\n"
+"Verifique as permissões do arquivo \n"
+"e que o novo nome ainda não existe."
 
 #: ../Folders/src/applet-notifications.c:322
 msgid "Open the folder (middle-click)"
@@ -964,7 +979,7 @@ msgstr "Alerta! Temperatura da placa gráfica alcançou %d°C"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
-msgstr ""
+msgstr "\"Toons\""
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
@@ -1021,7 +1036,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
-msgstr ""
+msgstr "Controle de Som"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -1059,7 +1074,7 @@ msgstr "Ajustar canais"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Unmute (middle-click)"
-msgstr ""
+msgstr "Rehabilitar som (clique com o botão do meio)"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "Mute (middle-click)"
@@ -1087,11 +1102,11 @@ msgstr "Alarme"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
-msgstr ""
+msgstr "Tempo desejado para ser notificado:"
 
 #: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
-msgstr ""
+msgstr "Na forma xx:xx. Por exemplo: 20:35 para 8:35pm"
 
 #: ../clock/src/applet-config.c:36
 msgid "Never"
@@ -1143,15 +1158,15 @@ msgstr "Mês"
 
 #: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
-msgstr ""
+msgstr "Repetir a cada:"
 
 #: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
-msgstr ""
+msgstr "Se a cada mês, em que dia do mês?"
 
 #: ../clock/src/applet-config.c:36
 msgid "Message you want to use to be notified:"
-msgstr ""
+msgstr "Mensagem que deseja usar para ser notificado:"
 
 #: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
@@ -1163,7 +1178,7 @@ msgstr "Comando para lançar:"
 
 #: ../clock/src/applet-config.c:36
 msgid "E.g.:"
-msgstr ""
+msgstr "Por exemplo:"
 
 #: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:180
 msgid "Search for your location :"
@@ -1306,7 +1321,7 @@ msgstr "Repita esta mensagem a cada:"
 
 #: ../clock/src/applet-timer.c:170
 msgid "The following task has felt due:"
-msgstr ""
+msgstr "A tarefa seguinte falhou devido a:"
 
 #: ../clock/src/applet-timer.c:453
 msgid "It's time for the following task:"
@@ -1326,7 +1341,7 @@ msgstr "Amanhã é o seguinte aniversário:"
 
 #: ../compiz-icon/src/applet-init.c:31
 msgid "compiz-icon"
-msgstr ""
+msgstr "Icon de Compiz"
 
 #: ../compiz-icon/src/applet-init.c:34
 msgid ""
@@ -1491,7 +1506,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:537
 msgid "Tiny URL"
-msgstr ""
+msgstr "Pequena URL"
 
 #: ../dnd2share/src/applet-init.c:41
 msgid ""
@@ -1593,7 +1608,7 @@ msgstr "Evniar o conteúdo da área de transferência"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "History"
-msgstr ""
+msgstr "Histórico"
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -1688,6 +1703,10 @@ msgid ""
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
+"Este miniaplicativo gerencia o caixote do lixo\n"
+"Você pode jogou arquivos e discos desmontar por arrastar-e-soltando-os sobre "
+"o ícone.\n"
+"Médio clique sobre o ícone irá esvaziar a lixeira."
 
 #: ../dustbin/src/applet-notifications.c:32
 msgid "You're about to delete all files in all dustbins. Sure ?"
@@ -1697,35 +1716,35 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:80
 msgid "The trash contains"
-msgstr ""
+msgstr "A lixeira contém"
 
 #: ../dustbin/src/applet-notifications.c:82
 msgid "files"
-msgstr ""
+msgstr "arquivos"
 
 #: ../dustbin/src/applet-notifications.c:82
 msgid "elements"
-msgstr ""
+msgstr "elementos"
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Mo"
-msgstr ""
+msgstr "Segunda-feira"
 
 #: ../dustbin/src/applet-notifications.c:84
 msgid "Ko"
-msgstr ""
+msgstr "Ko"
 
 #: ../dustbin/src/applet-notifications.c:100
 msgid "Counting total size and files number..."
-msgstr ""
+msgstr "Contando tamanho total eo número de arquivos ..."
 
 #: ../dustbin/src/applet-notifications.c:117
 msgid "Show Trash (click)"
-msgstr ""
+msgstr "Mostrar Lixeira (clicar)"
 
 #: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash (middle-click)"
-msgstr ""
+msgstr "Limpar Lixeira (clique com o botão do meio)"
 
 #: ../dustbin/src/applet-notifications.c:120
 msgid "Display dustbins information"
@@ -1744,7 +1763,7 @@ msgstr "falha ao desmontar %s"
 #: ../dustbin/src/applet-notifications.c:161
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
-msgstr ""
+msgstr "Desmontando este volume ..."
 
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
@@ -1889,37 +1908,39 @@ msgstr "Seu computador será desligado em 1 minuto."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr ""
+msgstr "Endereço do servidor:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
-msgstr ""
+msgstr "meuServidor"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr ""
+msgstr "Nome de usuário:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr ""
+msgstr "Senha:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
-msgstr ""
+msgstr "A senha será criptografada."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Port:"
-msgstr ""
+msgstr "Porta:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
 msgstr ""
+"Entre 0 para usar a a porta padrão. A porta padrão é 110 para POP3 ou APOP e "
+"995 para POP3S"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
-msgstr ""
+msgstr "Usar uma conexão segura (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:109
 #: ../netspeed/data/messages:133 ../powermanager/data/messages:147
@@ -1934,33 +1955,33 @@ msgstr "Em minutos"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific mail application"
-msgstr ""
+msgstr "Aplicação de correio específica"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr ""
+msgstr "Deixar em branco para usar aplicação de e-mail padrão."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
-msgstr ""
+msgstr "Diretório no servidor:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Path of mbox file:"
-msgstr ""
+msgstr "Caminho do arquivo mbox:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Path to Mail directory:"
-msgstr ""
+msgstr "Caminho para o diretório Mail:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Address of feed:"
-msgstr ""
+msgstr "Endereço de alimentos:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:49
 #: ../mail/src/cd-mail-applet-accounts.c:112
 #: ../mail/src/cd-mail-applet-accounts.c:289
 msgid "myLogin"
-msgstr ""
+msgstr "meuLogin"
 
 #: ../mail/src/cd-mail-applet-config.c:206
 msgid "Please choose an account type."
@@ -2045,12 +2066,12 @@ msgstr "Atualizar uma conta de e-mail"
 
 #: ../mail/src/cd-mail-applet-notifications.c:154
 msgid "Refresh all (Middle-click)"
-msgstr ""
+msgstr "Atualizar todos (clicar com botão do meio do mouse)"
 
 #: ../mail/src/cd-mail-applet-notifications.c:159
 #, c-format
 msgid "Refresh %s"
-msgstr ""
+msgstr "Atualizar %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:165
 msgid "Mark all emails as read"
@@ -2196,7 +2217,7 @@ msgstr "Avalie esta canção"
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
-msgstr ""
+msgstr "Velocidade da internet"
 
 #: ../netspeed/src/applet-init.c:32
 msgid ""
@@ -2290,7 +2311,7 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-init.c:31
 msgid "PowerManager"
-msgstr ""
+msgstr "Gerenciador de Energia"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
@@ -2351,13 +2372,13 @@ msgstr "Desmontado"
 #: ../shortcuts/src/applet-drives.c:147 ../shortcuts/src/applet-drives.c:204
 #, c-format
 msgid "%s is now mounted"
-msgstr ""
+msgstr "%s foi montado"
 
 #: ../shortcuts/src/applet-drives.c:147
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
-msgstr ""
+msgstr "% s foi conectado"
 
 #: ../shortcuts/src/applet-drives.c:204
 #, c-format
@@ -2393,29 +2414,29 @@ msgstr ""
 #: ../shortcuts/src/applet-notifications.c:72
 #, c-format
 msgid "failed to mount %s"
-msgstr ""
+msgstr "falha ao montar %s"
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:72
 #, c-format
 msgid "Failed to unmount %s"
-msgstr ""
+msgstr "falha ao desmontar %s"
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
-msgstr ""
+msgstr "Desculpe, este miniaplicativo ainda não está disponível para o KDE."
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr ""
+msgstr "Nenhum disco ou marcadores foram encontrados."
 
 #: ../shortcuts/src/applet-notifications.c:193
 msgid "Enter a name for this bookmark:"
-msgstr ""
+msgstr "Digitar um nome para este marcador:"
 
 #: ../shortcuts/src/applet-notifications.c:252
 msgid "Rename this bookmark"
-msgstr ""
+msgstr "Renomear este marcador"
 
 #: ../shortcuts/src/applet-notifications.c:253
 msgid "Remove this bookmark"
@@ -2423,15 +2444,15 @@ msgstr "Remover este favorito"
 
 #: ../shortcuts/src/applet-notifications.c:259
 msgid "Eject"
-msgstr ""
+msgstr "Ejetar"
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Unmount (middle-click)"
-msgstr ""
+msgstr "Desmontar (clicar com botão do meio do mouse)"
 
 #: ../shortcuts/src/applet-notifications.c:264
 msgid "Mount (middle-click)"
-msgstr ""
+msgstr "Montar (clicar com botão do meio do mouse)"
 
 #: ../shortcuts/src/applet-notifications.c:266
 msgid "Get disk info"
@@ -2439,7 +2460,7 @@ msgstr "Informação do disco"
 
 #: ../shortcuts/src/applet-notifications.c:292
 msgid "Only folders can be bookmarked."
-msgstr ""
+msgstr "Somente diretórios podem ser marcados."
 
 #: ../show-mouse/src/applet-init.c:28
 msgid "show mouse"
@@ -2588,7 +2609,7 @@ msgstr "Abrir (clique)"
 
 #: ../stack/src/applet-notifications.c:179
 msgid "Open parent folder"
-msgstr ""
+msgstr "Abrir diretório pai"
 
 #: ../stack/src/applet-notifications.c:181
 msgid "Copy (middle click)"
@@ -2608,7 +2629,7 @@ msgstr "Remover este item"
 
 #: ../stacks/src/applet-init.c:30
 msgid "stacks"
-msgstr ""
+msgstr "pilhas"
 
 #: ../stacks/src/applet-notifications.c:44
 msgid "Reload Stacks"
@@ -2702,7 +2723,7 @@ msgstr "Atualizar"
 
 #: ../systray/src/systray-init.c:32
 msgid "systray"
-msgstr ""
+msgstr "systray"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2750,7 +2771,7 @@ msgstr "Copiar"
 
 #: ../terminal/src/terminal-init.c:31
 msgid "terminal"
-msgstr ""
+msgstr "terminal"
 
 #: ../terminal/src/terminal-init.c:34
 msgid ""
@@ -2820,7 +2841,7 @@ msgstr "Fechar esta aba"
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
-msgstr ""
+msgstr "Tomar-nota"
 
 #: ../tomboy/src/tomboy-init.c:33
 msgid ""
@@ -3044,7 +3065,7 @@ msgstr "Pressão"
 
 #: ../weblets/src/applet-init.c:28
 msgid "weblets"
-msgstr ""
+msgstr "weblets"
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -3068,7 +3089,7 @@ msgstr "Wifi desabilitada."
 
 #: ../wifi/src/applet-init.c:30
 msgid "wifi"
-msgstr ""
+msgstr "wifi"
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -4642,35 +4663,35 @@ msgstr "Cor da borda:"
 
 #: ../Folders/data/messages:7
 msgid "Let empty to use the name of the folder."
-msgstr ""
+msgstr "Deixe em branco para usar o nome da pasta."
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
-msgstr ""
+msgstr "Como renderizar o ícone :"
 
 #: ../Folders/data/messages:15
 msgid "Use an image"
-msgstr ""
+msgstr "Usar uma imagem"
 
 #: ../Folders/data/messages:17
 msgid "Draw sub-dock's content as emblems"
-msgstr ""
+msgstr "Desenhar o conteúdo dos sub-docks como emblemas"
 
 #: ../Folders/data/messages:19
 msgid "Draw sub-dock's content as stack"
-msgstr ""
+msgstr "Desenhar o conteúdo dos sub-docks como pilha"
 
 #: ../Folders/data/messages:21
 msgid "Draw sub-dock's content inside a box"
-msgstr ""
+msgstr "Desenhar o conteúdo dos sub-docks dentro de uma caixa"
 
 #: ../Folders/data/messages:105
 msgid "Folder's path:"
-msgstr ""
+msgstr "Direção da pasta:"
 
 #: ../Folders/data/messages:107
 msgid "Sort files by :"
-msgstr ""
+msgstr "Ordenar arquivos por :"
 
 #: ../Folders/data/messages:109 ../stack/data/messages:127
 msgid "Name"
@@ -4682,11 +4703,11 @@ msgstr "Data"
 
 #: ../Folders/data/messages:113
 msgid "Size"
-msgstr ""
+msgstr "Tamanho"
 
 #: ../Folders/data/messages:115
 msgid "Sort folders before files?"
-msgstr ""
+msgstr "Ordenar diretórios antes dos arquivos?"
 
 #: ../Folders/data/messages:117 ../Scooby-Do/data/messages:101
 #: ../quick-browser/data/messages:103
@@ -5183,7 +5204,7 @@ msgstr "grande"
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
-msgstr ""
+msgstr "Atalho para lançar o aplicativo:"
 
 #: ../Remote-Control/data/messages:5 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -5411,7 +5432,7 @@ msgstr ""
 
 #: ../Status-Notifier/data/messages:93
 msgid "Display items in compact mode?"
-msgstr ""
+msgstr "Mostrar os items em modo compacto?"
 
 #: ../System-Monitor/data/messages:115 ../powermanager/data/messages:117
 msgid "It's the colour of the graphic for high values."
@@ -5777,19 +5798,19 @@ msgstr "Fonte:"
 
 #: ../clock/data/messages:147
 msgid "Layout of the text:"
-msgstr ""
+msgstr "Layout do texto:"
 
 #: ../clock/data/messages:149
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 #: ../clock/data/messages:151
 msgid "On 1 line"
-msgstr ""
+msgstr "Em 1 linha"
 
 #: ../clock/data/messages:153
 msgid "On 2 lines"
-msgstr ""
+msgstr "Em 2 linhas"
 
 #: ../clock/data/messages:155
 msgid "Ratio to apply on text :"
@@ -6127,19 +6148,19 @@ msgstr "Animação do ícone durante o carregamento:"
 
 #: ../dnd2share/data/messages:109
 msgid "Use the following service to make the URL smaller:"
-msgstr ""
+msgstr "Utilize o seguinte serviço para gerar a URL mas pequena:"
 
 #: ../dnd2share/data/messages:113
 msgid "Tiny-URL"
-msgstr ""
+msgstr "Pequena-URL"
 
 #: ../dnd2share/data/messages:115
 msgid "Shorter-Link"
-msgstr ""
+msgstr "Link-curto"
 
 #: ../dnd2share/data/messages:117
 msgid "Use the tiny URL by default?"
-msgstr ""
+msgstr "Usar o modo de pequena URL como padrão?"
 
 #: ../dnd2share/data/messages:119
 msgid "in KB/s - 0 means unlimited"
@@ -6208,22 +6229,24 @@ msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
+"O script toma a direção do arquivo como um parâmetro, e escreve a URL "
+"resultante na saída padrão"
 
 #: ../dnd2share/data/messages:157
 msgid "Custom script for text upload :"
-msgstr ""
+msgstr "Script padrão de texto para upload:"
 
 #: ../dnd2share/data/messages:161
 msgid "Custom script for image upload :"
-msgstr ""
+msgstr "Script padrão de imagem para upload:"
 
 #: ../dnd2share/data/messages:165
 msgid "Custom script for video upload :"
-msgstr ""
+msgstr "Script padrão de video para upload:"
 
 #: ../dnd2share/data/messages:169
 msgid "Custom script for file upload :"
-msgstr ""
+msgstr "Script padrão de arquivo para upload:"
 
 #: ../dnd2share/data/messages:171
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
@@ -6236,7 +6259,7 @@ msgstr "Caminho da pasta do Dropbox."
 
 #: ../dnd2share/data/messages:175
 msgid "Otherwise, your user name will be used when possible."
-msgstr ""
+msgstr "Caso contrário, seu nome de usuário será usado quando possível."
 
 #: ../dnd2share/data/messages:177
 msgid "Post text as Anonymous ?"
@@ -6300,7 +6323,7 @@ msgstr "Espaço entre linhas:"
 
 #: ../dock-rendering/data/messages:35
 msgid "Zoom when mouse hovers an icon:"
-msgstr ""
+msgstr "Zoom quando mouse passar por cima de um icon:"
 
 #: ../dock-rendering/data/messages:41
 msgid "Sinusoidal wave radius:"
@@ -6360,19 +6383,19 @@ msgstr "Movimento da seta %:"
 
 #: ../dock-rendering/data/messages:71
 msgid "Scroll bar"
-msgstr ""
+msgstr "Barra de rolagem"
 
 #: ../dock-rendering/data/messages:73
 msgid "Color of the scroll bar's outline:"
-msgstr ""
+msgstr "Cor exterior da barra de rolagem:"
 
 #: ../dock-rendering/data/messages:75
 msgid "Color of the scroll bar's inside:"
-msgstr ""
+msgstr "Cor interior da barra de rolagem"
 
 #: ../dock-rendering/data/messages:77
 msgid "Color of the scroll grip:"
-msgstr ""
+msgstr "Cor do controle da barra de rolagem"
 
 #: ../dock-rendering/data/messages:81
 msgid "The higher this value, the sooner the parabola will be curved."
@@ -6526,7 +6549,7 @@ msgstr "Mostrar a seguinte informação rápida:"
 
 #: ../dustbin/data/messages:103
 msgid "Number of files"
-msgstr ""
+msgstr "Número de arquivos"
 
 #: ../dustbin/data/messages:105
 msgid "Total number of files"
@@ -6809,7 +6832,7 @@ msgstr ""
 
 #: ../mail/data/messages:125
 msgid "Show '0' if there is no mail?"
-msgstr ""
+msgstr "Mostre '0' se não existe nenhum correio?"
 
 #: ../mail/data/messages:127
 msgid "Mail application"
@@ -6822,7 +6845,7 @@ msgstr ""
 
 #: ../mail/data/messages:131
 msgid "Add a mail account (you've to launch the applet)"
-msgstr ""
+msgstr "Adicionar uma conta de correio (você terá que iniciar o aplicativo)"
 
 #: ../mail/data/messages:133
 msgid "The new account will be created with the specified type and name."
@@ -6881,7 +6904,7 @@ msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:107
 msgid "GMusicBrowser"
-msgstr ""
+msgstr "GMusicBrowser"
 
 #: ../musicPlayer/data/messages:109
 msgid "Guayadeque"
@@ -7505,44 +7528,52 @@ msgstr "Ordem manual"
 
 #: ../stacks/data/messages:91
 msgid "Directory & Options"
-msgstr ""
+msgstr "Diretórios & Opções"
 
 #: ../stacks/data/messages:93
 msgid ""
 "Stacks will act as a the shortcut applet's but with files. To add a file, "
 "just drag and drop it on the Stacks icon"
 msgstr ""
+"A pilha irá se comportar como um atalho para o aplicativo porém com "
+"arquivos. Para adicionar um arquivo, arraste o arquivo com o mouse e o "
+"adicione no ícone da Pilha."
 
 #: ../stacks/data/messages:95
 msgid "Use only Stacks local directory ?"
-msgstr ""
+msgstr "Usar Pilha somente para diretório local?"
 
 #: ../stacks/data/messages:97
 msgid ""
 "You can use '_LocalDirectory_' tag to have both stack local and all "
 "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 msgstr ""
+"Você pode usar a etiqueta '_LocalDirectory_' para ter ambas pilhas locais e "
+"todos os diretórios monitorados. Assegure-se que tem desmarcado a opção "
+"'Usar Pilha somente para diretório local'."
 
 #: ../stacks/data/messages:99
 msgid "Monitored Directories :"
-msgstr ""
+msgstr "Diretórios Monitorados:"
 
 #: ../stacks/data/messages:101
 msgid ""
 "This option with large files lists can slow down the dock, use it properly."
 msgstr ""
+"Essa opção com uma lista de arquivos muito grande pode lentizar a "
+"performance do dock, use adequadamente."
 
 #: ../stacks/data/messages:103
 msgid "List hidden files ?"
-msgstr ""
+msgstr "Mostar arquivos ocultos?"
 
 #: ../stacks/data/messages:105
 msgid "Separate different directories with separators ?"
-msgstr ""
+msgstr "Separar diretórios diferentes com separadores?"
 
 #: ../stacks/data/messages:111
 msgid "Eg: image, text, video, audio, application..."
-msgstr ""
+msgstr "Por exemplo: imagen, texto, video, audio, aplicação"
 
 #: ../stacks/data/messages:117
 msgid "Name of the view used for the sub-dock :"
@@ -7733,11 +7764,11 @@ msgstr "Título padrão:"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
-msgstr ""
+msgstr "Nome da imagen do ícono 'Fechar':"
 
 #: ../tomboy/data/messages:107
 msgid "Image file for the notes:"
-msgstr ""
+msgstr "Arquivo da imagen para as notas:"
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
