@@ -17,12 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_NOTIFICATIONS__
 #define  __APPLET_NOTIFICATIONS__
 
 #include <cairo-dock.h>
 
+
+void cd_slider_free_apps_list (CairoDockModuleInstance *myApplet);
 
 
 CD_APPLET_ON_CLICK_H

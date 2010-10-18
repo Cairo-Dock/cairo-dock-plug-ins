@@ -42,6 +42,7 @@ typedef enum {
 typedef enum {
 	SLIDER_PAUSE = 0,
 	SLIDER_OPEN_IMAGE,
+	SLIDER_OPEN_FOLDER,
 	SLIDER_NB_CLICK_OPTION
 } SliderClickOption;
 
@@ -66,7 +67,7 @@ typedef struct {
 	gchar *cPath;
 	gint iSize;
 	SliderImageFormat iFormat;
-	gboolean iOrientation;
+	gint iOrientation;
 } SliderImage;
 
 //\___________ structure containing the applet's configuration parameters.
@@ -82,6 +83,7 @@ struct _AppletConfig {
 	SliderAnimation iAnimation;
 	gint iNbAnimationStep;
 	SliderClickOption iClickOption;
+	SliderClickOption iMiddleClickOption;
 	gboolean bUseThread;  // plante sur certaines images (svg) dans X :-(
 } ;
 
@@ -89,7 +91,9 @@ struct _AppletConfig {
 struct _AppletData {
 	GList *pList;  // list d'images.
 	GList *pElement;  // pointeur sur l'element courant de la liste.
-	gint iTimerID;  // timer d'attente de la prochaine image.
+	GList *pExifElement;  // pointeur sur l'element courant de la liste pour la recuperation des donnees exif.
+	guint iSidExifIdle;  // SID de la tache exif.
+	guint iTimerID;  // timer d'attente de la prochaine image.
 	gboolean bPause;
 	gdouble fAnimAlpha;  // ces 3 variables sont pour les animations.
 	gint iAnimCNT;
@@ -106,6 +110,8 @@ struct _AppletData {
 	CairoDockTask *pMeasureImage;  // mesure pour charger l'image courante.
 	guint iScrollID;
 	gint iNbScroll;
+	gchar *cSelectedImagePath;  // donnee du menu
+	GList *pAppList;  // donnee du menu
 } ;
 
 

@@ -40,6 +40,7 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet);
 void cd_slider_read_image (CairoDockModuleInstance *myApplet);
 gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet);
 gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_start_slide (CairoDockModuleInstance *myApplet);
 
 
 #endif

@@ -29,7 +29,7 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDirectory 		= CD_CONFIG_GET_STRING("Configuration", "directory");
 	myConfig.iSlideTime 		= CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
-	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "sub directories");
+	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "sub directories", TRUE);
 	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
 	myConfig.bImageName		= CD_CONFIG_GET_BOOLEAN ("Configuration", "image name");
 	
@@ -38,6 +38,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iAnimation 		= CD_CONFIG_GET_INTEGER ("Configuration", "change animation");
 	myConfig.iNbAnimationStep 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb step", 20);
 	myConfig.iClickOption 		= CD_CONFIG_GET_INTEGER ("Configuration", "click");
+	myConfig.iMiddleClickOption 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle click", SLIDER_OPEN_FOLDER);
 	
 	myConfig.bUseThread 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use_thread", TRUE);
 	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);

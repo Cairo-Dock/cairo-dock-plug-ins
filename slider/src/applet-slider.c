@@ -63,14 +63,9 @@ static int _compare_images_order (SliderImage *image2, SliderImage *image1) {
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
-static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha) {
-#ifdef HAVE_EXIF
-	ExifData *pExifData;
-	ExifEntry *pExifEntry;
-	ExifByteOrder byteOrder;
-#endif
+static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha)
+{
 	cd_debug ("%s (%s)", __func__, cDirectory);
-
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
 	if (erreur != NULL) {
@@ -111,24 +106,7 @@ static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolea
 						pImage->iSize = buf.st_size;
 						pImage->iFormat = iFormat;
 						pImage->iOrientation = 0;
-						#ifdef HAVE_EXIF
-						if (iFormat == SLIDER_JPG)
-						{
-							pExifData = exif_data_new_from_file (sFilePath->str);
-							if (pExifData != NULL)
-							{
-								pExifEntry = exif_data_get_entry (pExifData, EXIF_TAG_ORIENTATION);
-								if (pExifEntry != NULL)
-								{
-									byteOrder = exif_data_get_byte_order (pExifData);
-									pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
-									cd_debug ("iOrientation : %d", pImage->iOrientation);
-								}
-								
-								exif_data_unref (pExifData);
-							}
-						}
-						#endif
+						// exif orientation is got later.
 						if (bSortAlpha)  // ordre alphabetique.
 							pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) _compare_images_order);
 						else  // on randomise a la fin.
@@ -238,13 +216,13 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 	//return FALSE;
 }
 
+
 gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	CD_APPLET_ENTER;
 	if (myData.bPause)  // on est en pause.
 	{
 		myData.iTimerID = 0;
 		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;
 	}
 	//\___________________________ On recupere la nouvelle image a afficher.
 	if (myData.pElement == NULL)  // debut
@@ -257,10 +235,9 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 		cd_warning ("Slider stopped, list broken");
 		myData.iTimerID = 0;
 		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;
 	}
 	SliderImage *pImage = myData.pElement->data;
-	cd_message (" >> %s", pImage->cPath);
+	cd_message ("Slider - load %s", pImage->cPath);
 	
 	//\___________________________ On sauvegarde la surface actuelle.
 	if (myData.pPrevCairoSurface != NULL && myData.pPrevCairoSurface != myData.pCairoSurface)
@@ -289,30 +266,85 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	
 	//\___________________________ On charge la nouvelle surface/texture et on lance l'animation de transition.
 	if (myConfig.bUseThread && CD_APPLET_MY_CONTAINER_IS_OPENGL && pImage->iFormat != SLIDER_SVG &&  // pour certains SVG, ca plante dans X :-(
-		((pImage->iFormat == SLIDER_PNG && pImage->iSize > 100e3) ||
-		(pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3) ||
-		(pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3) ||
-		(pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3))) {
-		cd_debug ("Slider - on threade");
+		((pImage->iFormat == SLIDER_PNG && pImage->iSize > 100e3)
+		|| (pImage->iFormat == SLIDER_JPG && pImage->iSize > 70e3)
+		|| (pImage->iFormat == SLIDER_GIF && pImage->iSize > 100e3)
+		|| (pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3)) )
+	{
+		cd_debug ("Slider - launch thread");
 		cairo_dock_launch_task (myData.pMeasureImage);
 		myData.iTimerID = 0;
-		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+		CD_APPLET_LEAVE (FALSE);  // on quitte la boucle d'attente car on va effectuer une animation.
 	}
-	else {
+	else
+	{
 		cd_slider_read_image (myApplet);
 		cd_slider_update_transition (myApplet);
 		
 		if (myConfig.iAnimation == SLIDER_DEFAULT)
 		{
-			CD_APPLET_LEAVE (TRUE);
-			//return TRUE;  // pas d'animation => on ne quitte pas la boucle d'attente.
+			CD_APPLET_LEAVE (TRUE);  // pas d'animation => on ne quitte pas la boucle d'attente.
 		}
 		else
 		{
 			myData.iTimerID = 0;
-			CD_APPLET_LEAVE (FALSE);
-			//return FALSE;  // on quitte la boucle d'attente car on va effectuer une animation.
+			CD_APPLET_LEAVE (FALSE);  // on quitte la boucle d'attente car on va effectuer une animation.
 		}
 	}
+}
+
+
+static gboolean _cd_slider_get_exif_props (CairoDockModuleInstance *myApplet)
+{
+#ifdef HAVE_EXIF
+	ExifData *pExifData;
+	ExifEntry *pExifEntry;
+	ExifByteOrder byteOrder;
+	
+	if (myData.pExifElement == NULL)
+	{
+		myData.iSidExifIdle = 0;
+		return FALSE;
+	}
+	
+	SliderImage *pImage = myData.pExifElement->data;
+	if (pImage->iFormat == SLIDER_JPG)
+	{
+		g_print ("Slider : %s\n", pImage->cPath);
+		pExifData = exif_data_new_from_file (pImage->cPath);
+		if (pExifData != NULL)
+		{
+			pExifEntry = exif_data_get_entry (pExifData, EXIF_TAG_ORIENTATION);
+			if (pExifEntry != NULL)
+			{
+				byteOrder = exif_data_get_byte_order (pExifData);
+				pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
+				g_print ("Slider : %s -> orientation %d\n", pImage->cPath, pImage->iOrientation);
+			}
+			
+			exif_data_unref (pExifData);
+		}
+	}
+	
+	myData.pExifElement = myData.pExifElement->next;
+	return TRUE;
+#else
+	myData.iSidExifIdle = 0;
+	return FALSE;
+#endif
+}
+
+gboolean cd_slider_start_slide (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iSidExifIdle == 0)
+	{
+		myData.pExifElement = myData.pList;
+		myData.iSidExifIdle = g_idle_add_full (G_PRIORITY_LOW,  // on ne veut pas que ca vienne ralentir le chargement des icones, qui lui a une priorite normale.
+			(GSourceFunc) _cd_slider_get_exif_props,
+			myApplet,
+			NULL);
+	}
+	
+	cd_slider_next_slide (myApplet);
+	return FALSE;
 }

@@ -51,7 +51,7 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.pMeasureDirectory = cairo_dock_new_task (0,
 		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
-		(CairoDockUpdateSyncFunc) cd_slider_next_slide,
+		(CairoDockUpdateSyncFunc) cd_slider_start_slide,
 		myApplet);  // 0 <=> one shot task.
 	cairo_dock_launch_task_delayed (myData.pMeasureDirectory, 1500.);
 	
@@ -75,17 +75,23 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iTimerID);
 	if (myData.iScrollID != 0)
 		g_source_remove (myData.iScrollID);
+	if (myData.iSidExifIdle != 0)
+		g_source_remove (myData.iSidExifIdle);
+	
+	cd_slider_free_apps_list (myApplet);
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	//Stop all process!
-	if (myData.iTimerID != 0) {
+	if (myData.iTimerID != 0)
+	{
 		g_source_remove(myData.iTimerID);
 		myData.iTimerID = 0;
 	}
-	if (myData.iScrollID != 0) {
+	if (myData.iScrollID != 0)
+	{
 		g_source_remove (myData.iScrollID);
 		myData.iScrollID = 0;
 	}
@@ -100,6 +106,8 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
 	
+	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
+	
 	//\_______________ Reload all changed data.
 	if (CD_APPLET_MY_CONFIG_CHANGED) {
 		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
@@ -108,10 +116,13 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
-		
 		cairo_dock_stop_task (myData.pMeasureImage);
 		cairo_dock_stop_task (myData.pMeasureDirectory);
+		if (myData.iSidExifIdle != 0)
+		{
+			g_source_remove(myData.iSidExifIdle);
+			myData.iSidExifIdle = 0;
+		}
 		cd_slider_free_images_list (myData.pList);
 		myData.pList = NULL;
 		myData.pElement = NULL;
@@ -119,8 +130,6 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_launch_task (myData.pMeasureDirectory);
 	}
 	else {
-		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
-		
 		cd_slider_next_slide (myApplet); //restart sliding
 	}
 	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;

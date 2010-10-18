@@ -103,7 +103,7 @@ frame_td=
 #D Folder for the images:
 directory= 
 #b Scan sub direcotries?
-sub directories=false
+sub directories=true
 #b Randomly browse files?
 random = false
 #b Display image name as quickinfo?
@@ -116,12 +116,18 @@ use_thread = true
 #F[Behaviour;gtk-execute]
 frame_ops=
 
+#l[play/pause;open image] Action on left-click:
+click=0
+
+#l[play/pause;open image;open parent folder] Action on middle-click:
+middle click=2
+
+#v
+sep_click=
+
 #i[1;500] Sliding delay:
 #{in seconds.}
 slide time=30
-
-#l[play/pause;open image] Action when applet is clicked:
-click=0
 
 #l[none;fade;blank fade;fade in/out;side kick;slideshow;grow up;shrink;cube;random] Effect while changing image:
 change animation=1
