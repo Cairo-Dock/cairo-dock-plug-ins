@@ -23,16 +23,20 @@
 
 #include <cairo-dock.h>
 
+#define CD_REBOOT_NEEDED_FILE "/var/run/reboot-required"
+
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
 	gint iActionOnClick;
 	gint iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
+	gchar *cDefaultLabel;
 	} ;
 
 struct _AppletData {
 	guint iSidTimer;
+	gboolean bRebootNeeded;
 	} ;
 
 #endif

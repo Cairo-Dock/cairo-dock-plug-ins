@@ -24,7 +24,6 @@
 #include "applet-struct.h"
 #include "applet-init.h"
 
-
 CD_APPLET_DEFINITION (N_("logout"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
@@ -57,6 +56,10 @@ CD_APPLET_INIT_BEGIN
 	
 	//\_______________ On (re)lance l'eteignage programme.
 	cd_logout_set_timer ();
+	
+	//\_______________ On surveille le reboot necessaire.
+	cairo_dock_fm_add_monitor_full (CD_REBOOT_NEEDED_FILE, FALSE, NULL, (CairoDockFMMonitorCallback) cd_logout_check_reboot_required, NULL);
+	cd_logout_check_reboot_required_init ();
 CD_APPLET_INIT_END
 
 
@@ -70,6 +73,8 @@ CD_APPLET_STOP_BEGIN
 	
 	if (myData.iSidTimer != 0)
 		g_source_remove (myData.iSidTimer);
+	
+	cairo_dock_fm_remove_monitor_full (CD_REBOOT_NEEDED_FILE, FALSE, NULL);
 CD_APPLET_STOP_END
 
 

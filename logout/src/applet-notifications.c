@@ -226,3 +226,50 @@ void cd_logout_set_timer (void)
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
 }
+
+static void _set_reboot_message (void)
+{
+	gchar *cMessage = NULL;
+	gsize length = 0;
+	g_file_get_contents (CD_REBOOT_NEEDED_FILE,
+		&cMessage,
+		&length,
+		NULL);
+	if (cMessage != NULL)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
+	else
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+	g_free (cMessage);
+}
+void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
+{
+	switch (iEventType)
+	{
+		case CAIRO_DOCK_FILE_MODIFIED:  // new message
+			_set_reboot_message ();
+		break;
+		
+		case CAIRO_DOCK_FILE_DELETED:  // reboot no more required (shouldn't happen)
+			myData.bRebootNeeded = FALSE;
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+			CD_APPLET_STOP_DEMANDING_ATTENTION;
+		break;
+		
+		case CAIRO_DOCK_FILE_CREATED:  // reboot required
+			myData.bRebootNeeded = TRUE;
+			_set_reboot_message ();
+			CD_APPLET_DEMANDS_ATTENTION ("pulse", 18);
+			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
+		break;
+		default:
+		break;
+	}
+}
+
+void cd_logout_check_reboot_required_init (void)
+{
+	if (g_file_test (CD_REBOOT_NEEDED_FILE, G_FILE_TEST_EXISTS))
+	{
+		cd_logout_check_reboot_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE, NULL);
+	}
+}
