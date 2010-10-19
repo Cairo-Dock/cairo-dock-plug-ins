@@ -221,9 +221,9 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
 	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
-	for (j = 0; j < myData.switcher.iNbLines; j ++)
+	for (j = 0; j < myData.switcher.iNbLines && k < N; j ++)
 	{
-		for (i = 0; i < myData.switcher.iNbColumns; i ++)
+		for (i = 0; i < myData.switcher.iNbColumns && k < N; i ++)
 		{
 			cairo_save (myDrawContext);
 
@@ -294,8 +294,6 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 				}
 			}
 			k ++;
-			if (k == N)
-				break ;
 		}
 	}
 	

@@ -289,8 +289,8 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	}
 	
 	// On arrete son animation.
-	cairo_dock_stop_icon_animation (myIcon);
-	CD_APPLET_REDRAW_MY_ICON;  // pour ne pas s'arreter au milieu de l'animation.
+	CD_APPLET_STOP_DEMANDING_ATTENTION;
+	//CD_APPLET_REDRAW_MY_ICON;  // pour ne pas s'arreter au milieu de l'animation.
 	
 	// On nettoie la memoire partagee.
 	cairo_dock_free_task (myData.pTask);
@@ -342,9 +342,9 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	cairo_dock_launch_task (myData.pTask);
 	
 	// On lance une animation.
-	CD_APPLET_ANIMATE_MY_ICON (myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
-	cairo_dock_mark_icon_as_clicked (myIcon);  // pour ne pas se faire interrompre par un survol.
-	cairo_dock_launch_animation (myContainer);
+	CD_APPLET_DEMANDS_ATTENTION (myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
+	//cairo_dock_mark_icon_as_clicked (myIcon);  // pour ne pas se faire interrompre par un survol.
+	//cairo_dock_launch_animation (myContainer);
 }
 
 

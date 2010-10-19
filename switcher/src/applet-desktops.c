@@ -49,16 +49,22 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	{
 		int w, h;
 		cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
+		if (w == 0 || h == 0)
+			return;
+		g_print ("%d; %dx%d\n", iNbViewports, w, h);
 		double fRatio, fMinRatio=9999;
 		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 		{
 			///if (iNbViewports % iNbLines != 0)
 			///	continue;
-			iNbDesktopByLine = iNbViewports / iNbLines;
+			iNbDesktopByLine = ceil ((double)iNbViewports / iNbLines);
+			
+			
+			
 			fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 			fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
-			//cd_debug ("%d lignes => fRatio: %.2f", iNbLines, fRatio);
+			g_print ("%d lignes => iNbDesktopByLine: %d, fRatio: %.3f,%.3f => %.2f\n", iNbLines, iNbDesktopByLine, fZoomX, fZoomY, fRatio);
 			if (fRatio < fMinRatio)
 			{
 				fMinRatio = fRatio;

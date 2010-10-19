@@ -172,6 +172,9 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
+		gtk_window_set_type_hint (GTK_WINDOW (pDialog), GDK_WINDOW_TYPE_HINT_DOCK);  // sinon le dialogue sera toujours derriere le sous-dock, meme avec un 'set_keep_above'. en contrepartie, le dialgue n'aura pas de bordure (du moins avec Compiz).
+		gtk_window_set_keep_above (GTK_WINDOW (pDialog), TRUE);
+		
 		gtk_widget_show_all (GTK_DIALOG (pDialog)->vbox);
 		gtk_window_set_position (GTK_WINDOW (pDialog), GTK_WIN_POS_CENTER_ALWAYS);
 		int answer = gtk_dialog_run (GTK_DIALOG (pDialog));
@@ -365,8 +368,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			}
 			g_list_free (pApps);
 		}
-		else
-			//g_print ("no apps list for '%s'\n", CD_APPLET_CLICKED_ICON->cBaseURI);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Properties"), GTK_STOCK_PROPERTIES, _cd_folders_show_file_properties, CD_APPLET_MY_MENU, data);

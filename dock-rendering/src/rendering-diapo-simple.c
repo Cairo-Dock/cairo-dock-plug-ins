@@ -68,6 +68,7 @@ typedef struct {
 	guint iSidReleaseEvent;  // sid du relachement du clic
 	gint iClickY;  // hauteur ou on a clique, en coordonnees container.
 	gint iClickOffset;  // hauteur scrollee au moment du clic
+	gint iDeltaIconX;
 	} CDSlideData;
 
 static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
@@ -268,7 +269,8 @@ gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAni
 	
 	return (pData->bDraggingScrollbar ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
-const double sr = .5;  // screen ratio
+const double srx = .5;  // screen ratio hori
+const double sry = .6;  // screen ratio verti
 static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {
 	// On calcule la configuration de la grille sans contrainte.
@@ -288,7 +290,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		// on calcule la largeur avec contrainte, ce qui donne aussi le nombre de lignes.
 		iMaxIconWidth = ((Icon*)pDock->icons->data)->fWidth;  // approximation un peu bof.
 		iDockWidth = nRowsX * (iMaxIconWidth + my_diapo_simple_iconGapX) + 2*X_BORDER_SPACE;
-		int iMaxWidth = sr * Ws;
+		int iMaxWidth = Ws * (Ws > Hs ? srx : sry);
 		if (iDockWidth > iMaxWidth)
 		{
 			nRowsX = (iMaxWidth - 2*X_BORDER_SPACE) / (iMaxIconWidth + my_diapo_simple_iconGapX);
@@ -298,21 +300,21 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		}
 		
 		// on calcule la hauteur avec contrainte, ce qui donne aussi la marge de defilement.
-		iDockHeight = (nRowsY - 1) * (pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY) +  // les icones
-			pDock->iMaxIconHeight * pDock->container.fRatio * my_diapo_simple_fScaleMax +  // les icones des bords zooment
+		int iSingleLineHeight = pDock->iMaxIconHeight * pDock->container.fRatio * my_diapo_simple_fScaleMax +  // les icones des bords zooment
 			myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
 			my_diapo_simple_lineWidth + // les demi-lignes du haut et du bas
 			my_diapo_simple_arrowHeight + ARROW_TIP;  // la fleche etendue
-		int iMaxHeight = sr * Hs;
+		int iOneLineHeight = pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY;
+		
+		iDockHeight = (nRowsY - 1) * iOneLineHeight + iSingleLineHeight;
+		int iMaxHeight = Hs * (Ws > Hs ? sry : srx);
 		if (iDockHeight > iMaxHeight)
 		{
-			nRowsY = (iMaxHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + myLabels.iLabelSize + pDock->iMaxIconHeight * pDock->container.fRatio * my_diapo_simple_fScaleMax)) / (pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY);
+			nRowsY = (iMaxHeight - iSingleLineHeight) / iOneLineHeight + 1;
+			if (Ws > Hs && nRowsY > nRowsX)  // on evite d'avoir un sous-dock plus haut que large si l'ecran est ausi comme ca, ca rend mieux.
+				nRowsY = nRowsX;
 			int iMaxDockHeight0 = iDockHeight;
-			iDockHeight = (nRowsY - 1) * (pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY) +
-				pDock->iMaxIconHeight * pDock->container.fRatio * my_diapo_simple_fScaleMax +
-				myLabels.iLabelSize +
-				my_diapo_simple_lineWidth +
-				my_diapo_simple_arrowHeight + ARROW_TIP;
+			iDockHeight = (nRowsY - 1) * iOneLineHeight + iSingleLineHeight;
 			iDeltaHeight = iMaxDockHeight0 - iDockHeight;
 			//g_print ("%d -> %d\n", iMaxHeight, iDockHeight);
 		}
@@ -536,6 +538,9 @@ static void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pC
 static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
+	
+	double fDeltaIconX = 0.;
+	
 	if (my_diapo_simple_draw_background)
 	{
 		//\____________________ On trace le cadre.
@@ -1335,6 +1340,32 @@ void cd_rendering_free_slide_data (CairoDock *pDock)
 	}
 }
 
+void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDock)
+{
+	CairoDock *pSubDock = pPointedIcon->pSubDock;
+	
+	CDSlideData *pData = pSubDock->pRendererData;
+	g_return_if_fail (pData != NULL);
+	
+	int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
+	{
+		pSubDock->fAlign = 0.5;
+		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2;  // ici les sous-dock ont un alignement egal a 0.5
+		pSubDock->iGapY = pDock->iGapY + pDock->iMaxDockHeight;
+	}
+	else
+	{
+		pSubDock->fAlign = (pDock->container.bDirectionUp ? 1 : 0);
+		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight) * (pDock->container.bDirectionUp ? -1 : 1);
+		if (pDock->container.bDirectionUp)
+			pSubDock->iGapY = g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] - (iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY)) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
+		else
+			pSubDock->iGapY = iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
+	}
+	pData->iDeltaIconX = - MIN (0, iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockWidth);
+}
+
 void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
@@ -1345,7 +1376,7 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized 	= NULL;
 	pRenderer->render_opengl 	= cd_rendering_render_diapo_simple_opengl;
 	pRenderer->free_data 		= cd_rendering_free_slide_data;
-	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_slide;
 	// parametres
 	pRenderer->cReadmeFilePath 	= g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-diapo-simple-view");
 	pRenderer->cPreviewFilePath 	= g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-diapo-simple.jpg");

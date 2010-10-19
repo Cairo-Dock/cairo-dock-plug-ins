@@ -25,7 +25,7 @@ handbook=Cairo-Penguin
 #h+[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@;Cairo-Penguin] Choose one of the available themes:/
 theme = Classic
 
-#i Delay between animation changes :
+#i[4;30] Delay between animation changes :
 #{in seconds.}
 change delay = 8
 

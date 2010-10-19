@@ -95,7 +95,7 @@ fg alpha = 1
 #F[Actions;gtk-preferences]
 frame_act = 
 
-#l[None;Switch WM;Widget Layer;Expose;Show Desktop] Action on middle click :
+#l[None;Switch WM;Widget Layer;Expose;Show Desktop] Action on middle-click:
 #{Except when switching to another WM, you must activate the Dbus plugin in Compiz along with the plugin corresponding to the desired action.}
 middle click = 1
 
