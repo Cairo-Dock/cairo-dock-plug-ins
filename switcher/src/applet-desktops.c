@@ -41,52 +41,38 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 {
 	g_return_if_fail (iNbViewports != 0);
 	//g_print ("%s (%d)\n", __func__, iNbViewports);
+	
+	int w, h;
+	cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
+	g_return_if_fail (w != 0 && h != 0);
+	cd_debug ("%d; %dx%d", iNbViewports, w, h);
+	
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
-	int Nx, Ny;
-	
-	///if (myConfig.bPreserveScreenRatio)  // on va chercher a minimiser la deformation de l'image de fond d'ecran.
+	double fZoom, fZoomMax=0.;
+	for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
 	{
-		int w, h;
-		cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
-		if (w == 0 || h == 0)
-			return;
-		g_print ("%d; %dx%d\n", iNbViewports, w, h);
-		double fRatio, fMinRatio=9999;
-		for (iNbLines = 1; iNbLines <= iNbViewports; iNbLines ++)
+		iNbDesktopByLine = ceil ((double)iNbViewports / iNbLines);
+		
+		fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
+		fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+		fZoom = MIN (fZoomX, fZoomY);  // on preserve le ratio
+		cd_debug ("%d lignes => iNbDesktopByLine: %d, zooms: %.3f,%.3f", iNbLines, iNbDesktopByLine, fZoomX, fZoomY);
+		if (fZoom > fZoomMax)
 		{
-			///if (iNbViewports % iNbLines != 0)
-			///	continue;
-			iNbDesktopByLine = ceil ((double)iNbViewports / iNbLines);
-			
-			
-			
-			fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-			fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
-			fRatio = (fZoomX > fZoomY ? fZoomX / fZoomY : fZoomY / fZoomX);  // ratio ramene dans [1, inf].
-			g_print ("%d lignes => iNbDesktopByLine: %d, fRatio: %.3f,%.3f => %.2f\n", iNbLines, iNbDesktopByLine, fZoomX, fZoomY, fRatio);
-			if (fRatio < fMinRatio)
+			fZoomMax = fZoom;
+			*iBestNbColumns = iNbDesktopByLine;
+			*iBestNbLines = iNbLines;
+		}
+		else if (fabs (fZoom - fZoomMax) < 1e-4)  // same zoom, the solution which minimizes the number of squares is better.
+		{
+			if (iNbLines * iNbDesktopByLine < *iBestNbColumns * *iBestNbLines)
 			{
-				fMinRatio = fRatio;
 				*iBestNbColumns = iNbDesktopByLine;
-				*iBestNbLines = iNbLines;
+				*iBestNbLines = iNbLines;	
 			}
 		}
 	}
-	/**else  // on va chercher a repartir au mieux les bureaux sur l'icone.
-	{
-		if (myIcon->fWidth >= myIcon->fHeight)
-		{
-			*iBestNbColumns = (int) ceil (sqrt (iNbViewports));
-			*iBestNbLines = (int) ceil ((double)iNbViewports / (*iBestNbColumns));
-		}
-		else
-		{
-			*iBestNbLines = (int) ceil (sqrt (iNbViewports));
-			*iBestNbColumns = (int) ceil ((double)iNbViewports / (*iBestNbLines));
-		}
-	}*/
-	
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
 {
