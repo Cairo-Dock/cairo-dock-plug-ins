@@ -236,7 +236,12 @@ static void _set_reboot_message (void)
 		&length,
 		NULL);
 	if (cMessage != NULL)
+	{
+		int len = strlen (cMessage);
+		if (cMessage[len-1] == '\n')
+			cMessage[len-1] = '\0';
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
+	}
 	else
 		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
 	g_free (cMessage);
@@ -258,7 +263,7 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 		case CAIRO_DOCK_FILE_CREATED:  // reboot required
 			myData.bRebootNeeded = TRUE;
 			_set_reboot_message ();
-			CD_APPLET_DEMANDS_ATTENTION ("pulse", 18);
+			CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
 		break;
 		default:

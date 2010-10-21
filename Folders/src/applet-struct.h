@@ -29,6 +29,7 @@ struct _AppletConfig {
 	gchar *cDefaultTitle;
 	gchar *cDirPath;
 	///guint iNbIcons;
+	gboolean bShowFiles;
 	CairoDockFMSortType iSortType;
 	gboolean bFoldersFirst;
 	gboolean bShowHiddenFiles;

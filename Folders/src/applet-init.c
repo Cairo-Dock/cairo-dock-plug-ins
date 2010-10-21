@@ -88,11 +88,18 @@ CD_APPLET_INIT_BEGIN
 	
 	//\_______________ On lance la tache recuperation des fichiers.
 	_set_comparaison_func (myApplet);
-	myData.pTask = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) cd_folders_get_data,
-		(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
-		myApplet);
-	cairo_dock_launch_task_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
+	if (myConfig.bShowFiles)
+	{
+		myData.pTask = cairo_dock_new_task (0,
+			(CairoDockGetDataAsyncFunc) cd_folders_get_data,
+			(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
+			myApplet);
+		cairo_dock_launch_task_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
+	}
+	else if (myDesklet)  // comme on ne charge pas les icones, on met un renderer "simple" sur notre desklet.
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
 	
 	//\_______________ On enregistre nos notifications.
 	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer les dossier.
@@ -127,10 +134,22 @@ CD_APPLET_RELOAD_BEGIN
 		
 		//\_______________ On charge les icones dans un sous-dock.
 		_set_comparaison_func (myApplet);
-		myData.pTask = cairo_dock_new_task (0,
-			(CairoDockGetDataAsyncFunc) cd_folders_get_data,
-			(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
+		if (myConfig.bShowFiles)
+		{
+			myData.pTask = cairo_dock_new_task (0,
+				(CairoDockGetDataAsyncFunc) cd_folders_get_data,
+				(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
+				myApplet);
+			cairo_dock_launch_task (myData.pTask);
+		}
+		else if (myDock && myIcon->pSubDock)  // on veut un comportement de type lanceur, donc on ne veut pas d'un sous-dock vide.
+		{
+			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+			myIcon->pSubDock = NULL;
+		}
+		else if (myDesklet)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
 	}
 CD_APPLET_RELOAD_END

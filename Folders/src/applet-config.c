@@ -45,12 +45,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 			g_free (tmp);
 		}
 	}
+	myConfig.bShowFiles = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show files", TRUE);
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	//myConfig.iNbIcons = CD_CONFIG_GET_INTEGER ("Configuration", "nb icons");
 	myConfig.iSortType = CD_CONFIG_GET_INTEGER ("Configuration", "sort type");
 	myConfig.bFoldersFirst = CD_CONFIG_GET_BOOLEAN ("Configuration", "folders first");
 	myConfig.bShowHiddenFiles = CD_CONFIG_GET_BOOLEAN ("Configuration", "show hidden");
-	myConfig.iSubdockViewType = CD_CONFIG_GET_INTEGER ("Icon", "view type");
+	if (myConfig.bShowFiles)
+		myConfig.iSubdockViewType = CD_CONFIG_GET_INTEGER ("Icon", "view type");
+	else
+		myConfig.iSubdockViewType = 0;  // image definie en conf.
 CD_APPLET_GET_CONFIG_END
 
 

@@ -946,16 +946,20 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	pColorTab[4*i+3] = (c1[3]*f + c2[3]*(1-f)) * fAlpha; } while (0)*/
 static void cd_add_arrow_to_path (CairoDockGLPath *pPath, double fFrameWidth, CDSlideData *pData)
 {
+	int iArrowShift = pData->iArrowShift;
+	int iDeltaIconX = pData->iDeltaIconX;
 	double w = fFrameWidth / 2;
 	double aw = my_diapo_simple_arrowWidth/2;
 	double ah = my_diapo_simple_arrowHeight;
-	double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
-	
+	/**double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
 	cairo_dock_gl_path_rel_line_to (pPath, w + xa - aw, 0.);  // pointe.
 	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
-	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);*/
+	cairo_dock_gl_path_rel_line_to (pPath, w - aw + iArrowShift, 0.);  // pointe.
+	cairo_dock_gl_path_rel_line_to (pPath, aw - iArrowShift + iDeltaIconX, -ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw + iArrowShift - iDeltaIconX, ah);
 }
-static CairoDockGLPath *cd_generate_frame_path_without_arrow (double fFrameWidth, double fTotalHeight, double fRadius, CDSlideData *pData)
+static CairoDockGLPath *cd_generate_frame_path_without_arrow (double fFrameWidth, double fTotalHeight, double fRadius)
 {
 	static CairoDockGLPath *pPath = NULL;
 	double fTotalWidth = fFrameWidth + 2 * fRadius;
@@ -984,19 +988,26 @@ static CairoDockGLPath *cd_generate_frame_path_without_arrow (double fFrameWidth
 static CairoDockGLPath *cd_generate_arrow_path (double fFrameWidth, double fTotalHeight, CDSlideData *pData)
 {
 	static CairoDockGLPath *pPath = NULL;
+	int iArrowShift = pData->iArrowShift;
+	int iDeltaIconX = pData->iDeltaIconX;
 	double w = fFrameWidth / 2;
-	
 	double aw = my_diapo_simple_arrowWidth/2;
 	double ah = my_diapo_simple_arrowHeight;
-	double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
-	
+	/**double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
 	if (pPath == NULL)
 		pPath = cairo_dock_new_gl_path (3, xa - aw, -fTotalHeight/2, 0., 0.);
 	else
 		cairo_dock_gl_path_move_to (pPath, xa - aw, -fTotalHeight/2);
-	
 	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
-	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);*/
+	
+	if (pPath == NULL)
+		pPath = cairo_dock_new_gl_path (3, iArrowShift - aw, -fTotalHeight/2, 0., 0.);
+	else
+		cairo_dock_gl_path_move_to (pPath, iArrowShift - aw, -fTotalHeight/2);
+	
+	cairo_dock_gl_path_rel_line_to (pPath, aw - iArrowShift + iDeltaIconX, -ah);
+	cairo_dock_gl_path_rel_line_to (pPath, aw + iArrowShift - iDeltaIconX, ah);
 	
 	return pPath;
 }
@@ -1091,7 +1102,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	fDockOffsetY = my_diapo_simple_arrowHeight+ARROW_TIP;
 	
 	//\_____________ On genere les coordonnees du contour.
-	CairoDockGLPath *pFramePath = cd_generate_frame_path_without_arrow (fFrameWidth, fFrameHeight, fRadius, pData);
+	CairoDockGLPath *pFramePath = cd_generate_frame_path_without_arrow (fFrameWidth, fFrameHeight, fRadius);
 	
 	//\_____________ On remplit avec le fond.
 	glPushMatrix ();

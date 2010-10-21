@@ -108,6 +108,10 @@ fg alpha = 1
 #D Folder's path:
 dir path =
 
+#B[3] Show folder's content?
+#{Allow to show the files of the folder in a sub-dock. If disabled, the applet behaves as a mere launcher.}
+show files = true
+
 #l-[Name;Date;Size] Sort files by :
 sort type = 0
 
