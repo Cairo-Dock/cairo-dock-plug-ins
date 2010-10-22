@@ -41,7 +41,7 @@ extern gboolean my_diapo_simple_fade2bottom;
 extern gboolean my_diapo_simple_fade2right;
 extern gint    my_diapo_simple_arrowWidth;
 extern gint    my_diapo_simple_arrowHeight;
-extern gdouble  my_diapo_simple_arrowShift;
+//extern gdouble  my_diapo_simple_arrowShift;
 extern gint    my_diapo_simple_lineWidth;
 extern gint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];

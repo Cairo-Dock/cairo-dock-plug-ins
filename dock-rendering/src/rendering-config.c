@@ -90,7 +90,7 @@ extern gboolean my_diapo_simple_fade2bottom;
 extern gboolean my_diapo_simple_fade2right;
 extern gint    my_diapo_simple_arrowWidth;
 extern gint    my_diapo_simple_arrowHeight;
-extern gdouble  my_diapo_simple_arrowShift;
+//extern gdouble  my_diapo_simple_arrowShift;
 extern gint    my_diapo_simple_lineWidth;
 extern gint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
@@ -186,7 +186,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
 	my_diapo_simple_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
-	my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value (pKeyFile, "SimpleSlide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100.;
+	//my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value (pKeyFile, "SimpleSlide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100.;
 	my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 	my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "SimpleSlide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
 	my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "SimpleSlide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);

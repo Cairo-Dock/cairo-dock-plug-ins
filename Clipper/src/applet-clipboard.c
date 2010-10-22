@@ -23,7 +23,7 @@
 #include "applet-struct.h"
 #include "applet-clipboard.h"
 
-const gchar *cEnvName[4] = {NULL, "gnome", "kde", "xfce"};
+const gchar *cEnvName[4] = {"other", "gnome", "kde", "xfce"};  // "other" allows to handle all the other DE (put your own actions into the corresponding file).
 
 static int _cd_clipper_compare_item (CDClipperItem *pItem1, CDClipperItem *pItem2)
 {

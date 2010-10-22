@@ -90,9 +90,6 @@ simple_arrowWidth = 30
 #i+[0;50] Arrow height:
 simple_arrowHeight = 15
 
-#e+[-100;100] Arrow shift percentage:
-simple_arrowShift = 0
-
 #F[Scroll bar]
 frame_scroll=
 

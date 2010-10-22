@@ -104,7 +104,7 @@ gboolean my_diapo_simple_fade2bottom;
 gboolean my_diapo_simple_fade2right;
 gint    my_diapo_simple_arrowWidth;
 gint    my_diapo_simple_arrowHeight;
-gdouble  my_diapo_simple_arrowShift;
+//gdouble  my_diapo_simple_arrowShift;
 gint    my_diapo_simple_lineWidth;
 gint    my_diapo_simple_radius;
 gdouble  my_diapo_simple_color_border_line[4];
