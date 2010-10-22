@@ -49,7 +49,7 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	double fLineWidth = myConfig.iComicsLineWidth;
 	double fRadius = myConfig.iComicsRadius;
 	
-	double fGapFromDock = pDialog->iDistanceToDock + .5 * fLineWidth;
+	double fGapFromDock = pDialog->iMinBottomGap + pDialog->iBottomMargin + fLineWidth/2;
 	double cos_gamma = 1 / sqrt (1. + 1. * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock);
 	double cos_theta = 1 / sqrt (1. + 1. * CAIRO_DIALOG_TIP_MARGIN / fGapFromDock * CAIRO_DIALOG_TIP_MARGIN / fGapFromDock);
 	double fTipHeight = fGapFromDock / (1. + fLineWidth / 2. / CAIRO_DIALOG_TIP_BASE * (1./cos_gamma + 1./cos_theta));

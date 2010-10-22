@@ -30,7 +30,8 @@
 #define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
 
 
-void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
+void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
+{
 	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
 	int iIconOffset = myDialogs.iDialogIconSize/2;
 	pDialog->iRightMargin = iMargin;
@@ -47,7 +48,8 @@ void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog) {
 }
 
 
-void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog) {
+void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog)
+{
 	double fLineWidth = myConfig.iTooltipLineWidth;
 	double fRadius = myConfig.iTooltipRadius;
 	double fIconOffset = myDialogs.iDialogIconSize/2;
@@ -56,6 +58,23 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : -fIconOffset);
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	int iWidth = pDialog->container.iWidth - fIconOffset;
+	
+	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->iLeftMargin + pDialog->iBubbleWidth/2));
+	if (iDeltaIconX == 0)
+		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth - pDialog->iRightMargin - pDialog->iBubbleWidth/2));
+	
+	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+	
+	int iArrowShift;
+	if (iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
+	{
+		iArrowShift = MAX (0, fabs (iDeltaIconX) - _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT * .577 - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2);  // tan(30)
+		if (iDeltaIconX < 0)
+			iArrowShift = - iArrowShift;
+		//g_print ("iArrowShift: %d\n", iArrowShift);
+	}
+	else
+		iArrowShift = 0;
 	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
@@ -80,10 +99,15 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	
 	// La pointe.
 	double fDemiWidth = (iWidth - fLineWidth - 2 * fRadius - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH)/2;
-	cairo_rel_line_to (pCairoContext, -fDemiWidth,   0);
+	
+	cairo_rel_line_to (pCairoContext, - fDemiWidth + iArrowShift, 0);
+	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 - iArrowShift + iDeltaIconX, sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 + iArrowShift - iDeltaIconX, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - fDemiWidth - iArrowShift , 0);
+	/**cairo_rel_line_to (pCairoContext, -fDemiWidth,   0);
 	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
 	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - fDemiWidth, 0);
+	cairo_rel_line_to (pCairoContext, - fDemiWidth, 0);*/
 	
 	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,
@@ -109,7 +133,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	
 	cairo_stroke (pCairoContext); //On ferme notre chemin
 	
-	if (0&&pDialog->iIconSize != 0) {
+	/*if (pDialog->iIconSize != 0) {
 		//Ajout d'un cadre pour l'icône (Pas d'alpha)
 		int iIconFrameWidth = (pDialog->iIconSize / 2) - (2 * fRadius + fLineWidth);
 		//cd_debug ("Tooltip: %d", iIconFrameWidth);
@@ -144,7 +168,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		cairo_set_line_width (pCairoContext, fLineWidth);
 		
 		cairo_stroke (pCairoContext);
-	}
+	}*/
 }
 
 

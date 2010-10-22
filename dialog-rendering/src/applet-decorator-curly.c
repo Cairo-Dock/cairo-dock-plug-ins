@@ -25,7 +25,8 @@
 #include "applet-decorator-curly.h"
 
 
-void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
+void cd_decorator_set_frame_size_curly (CairoDialog *pDialog)
+{
 	int iMargin = .5 * myConfig.iCurlyLineWidth + (1. - sqrt (2) / 2) * myConfig.iCurlyRadius;
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
@@ -39,17 +40,44 @@ void cd_decorator_set_frame_size_curly (CairoDialog *pDialog) {
 }
 
 
-void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *pDialog) {
+void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *pDialog)
+{
 	double fLineWidth = myConfig.iCurlyLineWidth;
 	double fRadius = myConfig.iCurlyRadius;
 	double fBottomRadius = 2 * fRadius;
-	double fTipHeight = (pDialog->iDistanceToDock);  // on completera par un trait.
+	double fTipHeight = pDialog->iMinBottomGap + 0*pDialog->iBottomMargin + fLineWidth/2;
 	double dh = MIN (MAX (1, myConfig.fCurlyCurvature * fTipHeight), .4 * pDialog->container.iWidth);
 	
 	double fOffsetX = fRadius + fLineWidth / 2;
 	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2);
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	double fDemiWidth = .5 * pDialog->container.iWidth - fRadius - fLineWidth/2;
+	
+	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->iLeftMargin + pDialog->iBubbleWidth/2));
+	if (iDeltaIconX == 0)
+		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth - pDialog->iRightMargin - pDialog->iBubbleWidth/2));
+	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+	
+	double dh1, dh2;
+	if (iDeltaIconX != 0)  // on va limiter la courbature du petit cote.
+	{
+		double dhmin = dh * MAX (1. - fabs (iDeltaIconX) / fDemiWidth, .5);
+		if (iDeltaIconX > 0)  // pointe decale vers la droite.
+		{
+			dh1 = dhmin;
+			dh2 = dh;
+		}
+		else
+		{
+			dh1 = dh;
+			dh2 = dhmin;
+		}
+	}
+	else
+	{
+		dh1 = dh2 = dh;
+	}
+	
 	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
@@ -96,15 +124,15 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	fDemiWidth = .5 * pDialog->container.iWidth - fLineWidth/2;
 	// Coin bas droit et pointe.
 	cairo_rel_curve_to (pCairoContext,
-		0, sens * dh,
-		- fDemiWidth, sens * (fTipHeight - dh),
-		- fDemiWidth, sens * fTipHeight);
+		0, sens * dh1,
+		- fDemiWidth + iDeltaIconX, sens * (fTipHeight - dh1),
+		- fDemiWidth + iDeltaIconX, sens * fTipHeight);
 	
 	// Coin bas gauche et pointe.
 	cairo_rel_curve_to (pCairoContext,
-		0, - sens * dh,
-		- fDemiWidth, - sens * (fTipHeight - dh),
-		- fDemiWidth, - sens * fTipHeight);
+		0, - sens * dh2,
+		- fDemiWidth - iDeltaIconX, - sens * (fTipHeight - dh2),
+		- fDemiWidth - iDeltaIconX, - sens * fTipHeight);
 	
 	// On remonte par la gauche.
 	if (myConfig.bCulrySideToo)
@@ -119,10 +147,10 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 			- .5 * fDeltaSide, - sens * fDemiHeight);
 	}
 	else
-	{cairo_rel_line_to (pCairoContext,
+	{
+		cairo_rel_line_to (pCairoContext,
 			0,
 			- sens * fDemiHeight * 2);
-		
 	}
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
@@ -140,16 +168,6 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	cairo_set_source_rgba (pCairoContext, myConfig.fCurlyLineColor[0], myConfig.fCurlyLineColor[1], myConfig.fCurlyLineColor[2], myConfig.fCurlyLineColor[3]);
 	cairo_set_line_width (pCairoContext, fLineWidth);
 	cairo_stroke (pCairoContext);
-	
-	if (fTipHeight < pDialog->iDistanceToDock)  // on descend jusqu'a l'icone.
-	{
-		double fGap = pDialog->iDistanceToDock - fTipHeight;
-		cairo_move_to (pCairoContext,
-			pDialog->container.iWidth/2,
-			pDialog->container.bDirectionUp ? pDialog->container.iHeight - fGap : fGap);
-		cairo_rel_line_to (pCairoContext, 0, sens * fGap);
-		cairo_stroke (pCairoContext);
-	}
 }
 
 
