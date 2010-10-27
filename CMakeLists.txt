@@ -169,6 +169,16 @@ set (dialog_renderingdatadir "${pluginsdatadir}/dialog-rendering")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dialog-rendering/data/dialog-rendering.conf.in ${CMAKE_CURRENT_BINARY_DIR}/dialog-rendering/data/dialog-rendering.conf)
 add_subdirectory (dialog-rendering)
 
+############# DISKS #################
+if ("${enable-disks}" STREQUAL "yes")
+	set (GETTEXT_DISKS ${GETTEXT_PLUGINS})
+	set (VERSION_DISKS "0.0.1")
+	set (PACKAGE_DISKS "cd-disks")
+	set (disksdatadir "${pluginsdatadir}/Disks")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Disks/data/Disks.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Disks/data/Disks.conf)
+	add_subdirectory ("Disks")
+endif()
+
 ############# DND2SHARE #################
 set (GETTEXT_DND2SHARE ${GETTEXT_PLUGINS})
 set (VERSION_DND2SHARE "1.0.3")
