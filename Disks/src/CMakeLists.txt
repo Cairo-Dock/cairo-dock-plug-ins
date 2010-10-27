@@ -17,13 +17,13 @@ add_library(${PACKAGE_DISKS} SHARED ${cd-disks_LIB_SRCS})
 
 ########### compil ###############
 add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${disksdatadir}")
-add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.png")
+add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
 add_definitions (-DMY_APPLET_CONF_FILE="Disks.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="Disks")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_DISKS}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DISKS}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
-add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
 include_directories (

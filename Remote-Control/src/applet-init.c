@@ -28,7 +28,7 @@
 
 CD_APPLET_DEFINE_BEGIN (("Remote-Control"),
 	2, 2, 0,
-	CAIRO_DOCK_CATEGORY_APPLET_FUN,
+	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	("This plug-in lets you control your dock from the keyboard,\n"
 	" or even a remote controller.\n"
 	"Press the shortcut (by default CTRL + F9),\n"
