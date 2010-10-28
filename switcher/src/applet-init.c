@@ -62,21 +62,21 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 	if (myConfig.bCompactView)
 	{
-		cairo_dock_register_notification_on_container (myContainer,
+		cairo_dock_register_notification_on_object (myContainer,
 			CAIRO_DOCK_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved,
 			CAIRO_DOCK_RUN_AFTER, myApplet);
 		if (myDesklet)
 		{
-			cairo_dock_register_notification_on_container (myContainer,
+			cairo_dock_register_notification_on_object (myContainer,
 				CAIRO_DOCK_RENDER_DESKLET,
 				(CairoDockNotificationFunc) on_render_desklet,
 				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_container (myContainer,
+			cairo_dock_register_notification_on_object (myContainer,
 				CAIRO_DOCK_UPDATE_DESKLET,
 				(CairoDockNotificationFunc) on_update_desklet,
 				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_container (myContainer,
+			cairo_dock_register_notification_on_object (myContainer,
 				CAIRO_DOCK_LEAVE_DESKLET,
 				(CairoDockNotificationFunc) on_leave_desklet,
 				CAIRO_DOCK_RUN_AFTER, myApplet);
@@ -122,13 +122,13 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) on_window_configured, myApplet);
 	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window, myApplet);
-	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_MOUSE_MOVED,
+	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_MOUSE_MOVED,
 		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_RENDER_DESKLET,
+	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_RENDER_DESKLET,
 		(CairoDockNotificationFunc) on_render_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_UPDATE_DESKLET,
+	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_UPDATE_DESKLET,
 		(CairoDockNotificationFunc) on_update_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_LEAVE_DESKLET,
+	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_LEAVE_DESKLET,
 		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
 CD_APPLET_STOP_END
 
@@ -160,27 +160,27 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
 		{
-			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
+			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-			cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_RENDER_DESKLET,
+			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER, CAIRO_DOCK_RENDER_DESKLET,
 				(CairoDockNotificationFunc) on_render_desklet, myApplet);
 			if (myConfig.bCompactView)
 			{
-				cairo_dock_register_notification_on_container (myContainer,
+				cairo_dock_register_notification_on_object (myContainer,
 					CAIRO_DOCK_MOUSE_MOVED,
 					(CairoDockNotificationFunc) on_mouse_moved,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
 				if (myDesklet)
 				{
-					cairo_dock_register_notification_on_container (myContainer,
+					cairo_dock_register_notification_on_object (myContainer,
 						CAIRO_DOCK_RENDER_DESKLET,
 						(CairoDockNotificationFunc) on_render_desklet,
 						CAIRO_DOCK_RUN_AFTER, myApplet);
-					cairo_dock_register_notification_on_container (myContainer,
+					cairo_dock_register_notification_on_object (myContainer,
 						CAIRO_DOCK_UPDATE_DESKLET,
 						(CairoDockNotificationFunc) on_update_desklet,
 						CAIRO_DOCK_RUN_AFTER, myApplet);
-					cairo_dock_register_notification_on_container (myContainer,
+					cairo_dock_register_notification_on_object (myContainer,
 						CAIRO_DOCK_LEAVE_DESKLET,
 						(CairoDockNotificationFunc) on_leave_desklet,
 						CAIRO_DOCK_RUN_AFTER, myApplet);

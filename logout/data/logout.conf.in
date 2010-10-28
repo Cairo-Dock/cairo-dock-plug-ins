@@ -98,12 +98,11 @@ fg alpha = 1
 #F[Action;gtk-execute]
 frame_action=
 
-#l- [Log out; Shut down;Lock screen] Action on left-click:
+#l- [Log out;Shut down;Lock screen] Action on left-click:
 click=1
 
-#l- [Log out; Shut down;Lock screen] Action on middle-click:
+#l- [Log out;Shut down;Lock screen] Action on middle-click:
 middle-click=0
-
 
 #F[Commands;gtk-preferences]
 frame_comm=

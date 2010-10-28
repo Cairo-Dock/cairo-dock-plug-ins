@@ -84,7 +84,7 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	if (pDock->pRendererData == NULL)
 	{
 		pDock->pRendererData = GINT_TO_POINTER (1);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	}
 	
 	if (g_bEasterEggs)
@@ -317,7 +317,7 @@ void cd_rendering_free_caroussel_data (CairoDock *pDock)
 {
 	if (pDock->pRendererData != NULL)
 	{
-		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
+		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
 	}
 }
 

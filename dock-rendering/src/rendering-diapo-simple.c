@@ -284,7 +284,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	int Ws = g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // dimensions ecran.
 	int Hs = g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
 	nIcones = _cd_rendering_diapo_simple_guess_grid(pDock->icons, &nRowsX, &nRowsY);
-	g_print ("nIcones : %d\n", nIcones);
+	//g_print ("nIcones : %d\n", nIcones);
 	
 	// On calcule la taille de l'affichage avec contrainte taille ecran.
 	if(nIcones != 0)
@@ -332,9 +332,9 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	{
 		pData = g_new0 (CDSlideData, 1);
 		pDock->pRendererData = pData;
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
 		pData->iSidPressEvent = g_signal_connect (G_OBJECT (pDock->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (_cd_slide_on_press_button),
@@ -1345,9 +1345,9 @@ void cd_rendering_free_slide_data (CairoDock *pDock)
 	CDSlideData *pData = pDock->pRendererData;
 	if (pData != NULL)
 	{
-		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, NULL);
-		cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
+		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, NULL);
+		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidPressEvent);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidReleaseEvent);
 		

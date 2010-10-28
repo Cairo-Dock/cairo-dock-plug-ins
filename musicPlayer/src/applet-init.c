@@ -131,7 +131,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
 		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
 		{
-			cairo_dock_register_notification_on_container (myContainer,
+			cairo_dock_register_notification_on_object (myContainer,
 				CAIRO_DOCK_MOUSE_MOVED,
 				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 				CAIRO_DOCK_RUN_AFTER,
@@ -148,7 +148,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_remove_notification_func_on_container (myContainer,
+	cairo_dock_remove_notification_func_on_object (myContainer,
 		CAIRO_DOCK_MOUSE_MOVED,
 		(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 		myApplet);
@@ -191,7 +191,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
-		cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_OLD_CONTAINER,
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
 			CAIRO_DOCK_MOUSE_MOVED,
 			(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 			myApplet);
@@ -200,7 +200,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
-				cairo_dock_register_notification_on_container (myContainer,
+				cairo_dock_register_notification_on_object (myContainer,
 					CAIRO_DOCK_MOUSE_MOVED,
 					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 					CAIRO_DOCK_RUN_AFTER,

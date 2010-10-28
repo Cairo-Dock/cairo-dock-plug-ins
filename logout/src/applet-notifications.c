@@ -61,14 +61,15 @@ static inline void _execute_action (gint iAction)
 {
 	switch (iAction)
 	{
-		case 0:
+		case CD_LOGOUT:
+		default:
 			_logout ();
 		break;
-		case 1:
+		case CD_SHUTDOWN:
 			_shutdown ();
 		break;
-		case 2:
-			
+		case CD_LOCK_SCREEN:
+			cairo_dock_fm_lock_screen ();
 		break;
 	}
 }
@@ -145,27 +146,27 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	gchar *cLabel;
-	if (myConfig.iActionOnClick != 0)  // logout action not on click => put it in the menu
+	if (myConfig.iActionOnClick != CD_LOGOUT)  // logout action not on click => put it in the menu
 	{
-		if (myConfig.iActionOnMiddleClick == 0)  // logout action on middle-click
+		if (myConfig.iActionOnMiddleClick == CD_LOGOUT)  // logout action on middle-click
 			cLabel = g_strdup_printf ("%s (%s)", D_("Log out"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Log out"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, _cd_logout, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnClick != 1)  // shutdown action not on click => put it in the menu
+	if (myConfig.iActionOnClick != CD_SHUTDOWN)  // shutdown action not on click => put it in the menu
 	{
-		if (myConfig.iActionOnMiddleClick == 1)  // logout action on middle-click
+		if (myConfig.iActionOnMiddleClick == CD_SHUTDOWN)  // logout action on middle-click
 			cLabel = g_strdup_printf ("%s (%s)", D_("Shut down"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Shut down"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, _cd_shutdown, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnClick != 2)  // lockscreen action not on click => put it in the menu
+	if (myConfig.iActionOnClick != CD_LOCK_SCREEN)  // lockscreen action not on click => put it in the menu
 	{
-		if (myConfig.iActionOnMiddleClick == 2)  // lockscreen action on middle-click
+		if (myConfig.iActionOnMiddleClick == CD_LOCK_SCREEN)  // lockscreen action on middle-click
 			cLabel = g_strdup_printf ("%s (%s)", D_("Lock screen"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Lock screen"));
@@ -188,7 +189,6 @@ static gboolean _timer (gpointer data)
 	if (t_cur >= myConfig.iShutdownTime)
 	{
 		cd_debug ("shutdown !\n");
-		
 		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
 		else
@@ -207,7 +207,6 @@ static gboolean _timer (gpointer data)
 			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
 	}
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 	
 }
 void cd_logout_set_timer (void)

@@ -131,7 +131,7 @@ show content = true
 #{Maximum number of mails that will be previewed.}
 max shown mails = 0
 
-#i[3;30] Duration of the dialogue
+#i[3;30] Duration of the dialog:
 #{in seconds.}
 time_dialog = 5
 

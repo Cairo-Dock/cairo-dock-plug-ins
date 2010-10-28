@@ -134,7 +134,7 @@ frame_icons=
 battery icon = 
 #S+ Icon's filename when on charge :
 charge icon = 
-#l+[nothing;zoom;transparency;draw bar] Effect to apply on the icon according to the charge :
+#l+[Nothing;Zoom;Transparency;Draw bar] Effect to apply on the icon according to the charge :
 effect=0
 
 
@@ -145,7 +145,7 @@ frame_param =
 #{in seconds.}
 check interval = 30
 
-#l+[nothing;charge;time] Information to be displayed on the icon :
+#l+[Nothing;charge;Time] Information to display on the icon :
 quick-info_type=2
 
 use approx = false

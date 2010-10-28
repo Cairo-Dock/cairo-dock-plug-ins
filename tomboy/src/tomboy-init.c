@@ -63,7 +63,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-	cairo_dock_remove_notification_func_on_container (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);
+	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);
 	
 	if (myData.iSidResetQuickInfo != 0)
 		g_source_remove (myData.iSidResetQuickInfo);

@@ -108,7 +108,7 @@ theme = Classic
 wink delay = 20
 
 #i[50;500] Wink duration:
-#{in ms.}
+#{In ms.}
 wink duration = 150
 
 #b Keep ratio?

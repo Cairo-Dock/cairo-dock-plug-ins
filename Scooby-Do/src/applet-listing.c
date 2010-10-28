@@ -563,12 +563,12 @@ void cd_do_show_listing (void)
 	{
 		myData.pListing = cd_do_create_listing ();
 		
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (myData.pListing),
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
 			CAIRO_DOCK_UPDATE_DEFAULT_CONTAINER,
 			(CairoDockNotificationFunc) cd_do_update_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification_on_container (CAIRO_CONTAINER (myData.pListing),
+		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
 			CAIRO_DOCK_RENDER_DEFAULT_CONTAINER,
 			(CairoDockNotificationFunc) cd_do_render_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,

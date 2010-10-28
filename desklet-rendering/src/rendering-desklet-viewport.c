@@ -251,9 +251,9 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 	pViewport->color_grip[2] = .9;
 	pViewport->color_grip[3] = 1.;
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
 	pViewport->iSidPressEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-press-event",
 		G_CALLBACK (_cd_slide_on_press_button),
@@ -273,9 +273,9 @@ static void free_data (CairoDesklet *pDesklet)
 	if (pViewport == NULL)
 		return ;
 	
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidReleaseEvent);
 	

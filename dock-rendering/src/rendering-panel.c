@@ -765,7 +765,7 @@ void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
 	pRenderer->cReadmeFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-panel-view");
-	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-panel.png");
+	pRenderer->cPreviewFilePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-panel.jpg");
 	
 	cairo_dock_register_renderer (cRendererName, pRenderer);
 }

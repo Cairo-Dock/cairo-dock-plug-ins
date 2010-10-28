@@ -158,7 +158,7 @@ numeric bg =
 #F[Configure time and date;gtk-file]
 frame3 =
 #s Specific command to run:
-#{Leave empty to use the default command.}
+#{Leave empty to execute the default command.}
 setup command =
 
 #[@clockdatadir@/icon-alarm.png]

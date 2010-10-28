@@ -10,7 +10,7 @@ nb sources = 2
 #{In rotations per second.}
 rotation speed = 1
 
-#l[dock;desklet;both] Show mouse on:
+#l[Dock;Desklet;Both] Show mouse on:
 container = 2
 
 #v 
@@ -20,7 +20,7 @@ sep =
 nb part = 50
 
 #I+[200;2000] Particle life time:
-#{in ms.}
+#{In ms.}
 life = 600
 
 #i+[1;20] Particle size:

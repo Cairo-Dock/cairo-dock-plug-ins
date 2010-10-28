@@ -46,7 +46,7 @@ static CDSlideParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig) 
 		pSlide->iGapBetweenIcons = 10;
 	}
 	
-	cairo_dock_register_notification_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
 	
 	return pSlide;
 }
@@ -105,7 +105,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_container (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)

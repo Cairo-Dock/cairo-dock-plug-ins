@@ -81,8 +81,8 @@ static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myAppl
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
-	cairo_dock_remove_notification_func_on_container (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-	cairo_dock_remove_notification_func_on_icon (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func_on_object (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 	
 	//\_______________ On met l'animation de repos et on la dessine.
 	int iNewAnimation = penguin_choose_resting_animation (myApplet);

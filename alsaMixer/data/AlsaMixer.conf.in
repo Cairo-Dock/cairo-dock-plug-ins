@@ -110,7 +110,7 @@ mixer element = Master
 mixer element 2 = 
 
 #s Specific command to run to show an advanced sound mixer:
-#{Leave empty to use the defaut command.}
+#{Leave empty to use the default command.}
 show mixer = 
 
 

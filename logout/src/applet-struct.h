@@ -25,11 +25,18 @@
 
 #define CD_REBOOT_NEEDED_FILE "/var/run/reboot-required"
 
+typedef enum {
+	CD_LOGOUT=0,
+	CD_SHUTDOWN,
+	CD_LOCK_SCREEN,
+	CD_NB_ACTIONS
+	} CDActionsEnum;
+
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
-	gint iActionOnClick;
-	gint iActionOnMiddleClick;
+	CDActionsEnum iActionOnClick;
+	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	gchar *cDefaultLabel;
 	} ;

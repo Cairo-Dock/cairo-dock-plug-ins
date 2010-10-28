@@ -1,3 +1,5 @@
+
+
 /**
 * This file is a part of the Cairo-Dock project
 *
@@ -25,10 +27,9 @@
 #include "applet-decorator-comics.h"
 
 #define CAIRO_DIALOG_MIN_GAP 20
-#define CAIRO_DIALOG_TIP_ROUNDING_MARGIN 12
-#define CAIRO_DIALOG_TIP_MARGIN 25
-#define CAIRO_DIALOG_TIP_BASE 25
-
+#define CD_TIP_INNER_MARGIN 12
+#define CD_TIP_OUTER_MARGIN 25
+#define CD_TIP_BASE 25
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
@@ -38,7 +39,7 @@ void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 	pDialog->iTopMargin = iMargin;
 	pDialog->iBottomMargin = iMargin;
 	pDialog->iMinBottomGap = CAIRO_DIALOG_MIN_GAP;
-	pDialog->iMinFrameWidth = CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_ROUNDING_MARGIN + CAIRO_DIALOG_TIP_BASE;  // dans l'ordre.
+	pDialog->iMinFrameWidth = CD_TIP_OUTER_MARGIN + CD_TIP_BASE + CD_TIP_INNER_MARGIN + 2*iMargin;
 	pDialog->fAlign = 0.;  // la pointe colle au bord du dialogue.
 	pDialog->container.fRatio = 0.;  // pas de reflet merci.
 	pDialog->container.bUseReflect = FALSE;
@@ -47,78 +48,93 @@ void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
 	double fLineWidth = myConfig.iComicsLineWidth;
-	double fRadius = myConfig.iComicsRadius;
+	double fRadius = MIN (myConfig.iComicsRadius, pDialog->iBubbleHeight/2 - fLineWidth);
 	
-	double fGapFromDock = pDialog->iMinBottomGap + pDialog->iBottomMargin + fLineWidth/2;
-	double cos_gamma = 1 / sqrt (1. + 1. * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock * (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE) / fGapFromDock);
+	/**double fGapFromDock = pDialog->iMinBottomGap + pDialog->iBottomMargin + fLineWidth/2;
+	double cos_gamma = 1 / sqrt (1. + 1. * (CAIRO_DIALOG_TIP_MARGIN + CD_TIP_BASE) / fGapFromDock * (CAIRO_DIALOG_TIP_MARGIN + CD_TIP_BASE) / fGapFromDock);
 	double cos_theta = 1 / sqrt (1. + 1. * CAIRO_DIALOG_TIP_MARGIN / fGapFromDock * CAIRO_DIALOG_TIP_MARGIN / fGapFromDock);
-	double fTipHeight = fGapFromDock / (1. + fLineWidth / 2. / CAIRO_DIALOG_TIP_BASE * (1./cos_gamma + 1./cos_theta));
+	double fTipHeight = fGapFromDock / (1. + fLineWidth / 2. / CD_TIP_BASE * (1./cos_gamma + 1./cos_theta));*/
 	//g_print ("TipHeight <- %d\n", (int)fTipHeight);
-
-	double fOffsetX	= fRadius +	fLineWidth / 2;
-	double fOffsetY	= (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2);
-	int	sens = (pDialog->container.bDirectionUp ?	1 :	-1);
+	double fTipHeight =  pDialog->iMinBottomGap;
+	
+	int iWidth = pDialog->container.iWidth;
+	double fMargin = 2 * fRadius + fLineWidth;
+	double fBaseWidth = iWidth - fMargin;
+	double fTipWidth = CD_TIP_OUTER_MARGIN + CD_TIP_BASE + CD_TIP_INNER_MARGIN;
+	double fOffsetX = fRadius + fLineWidth / 2;
+	double fOffsetY = fLineWidth / 2;
+	
+	// coin haut gauche.
+	if (!pDialog->container.bDirectionUp)  // dessin a l'envers.
+	{
+		cairo_scale (pCairoContext, 1., -1.);
+		cairo_translate (pCairoContext, 0., -pDialog->container.iHeight);
+	}
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
-	//g_print ("  fOffsetX : %.2f; fOffsetY	: %.2f\n", fOffsetX, fOffsetY);
-	int	iWidth = pDialog->container.iWidth;
-
-	cairo_rel_line_to (pCairoContext, iWidth - (2 *	fRadius + fLineWidth), 0);
-	// Coin	haut droit.
+	
+	cairo_rel_line_to (pCairoContext, fBaseWidth, 0);
+	// Coin haut droit.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,
 		fRadius, 0,
-		fRadius, sens *	fRadius);
-	cairo_rel_line_to (pCairoContext, 0, sens *	(pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
-	// Coin	bas	droit.
+		fRadius, fRadius);
+	cairo_rel_line_to (pCairoContext, 0, pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - fMargin);
+	// Coin bas droit.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,
-		0, sens	* fRadius,
-		-fRadius, sens * fRadius);
+		0, fRadius,
+		-fRadius, fRadius);
 	// La pointe.
-	double fDeltaMargin;
+	gboolean bRight;
 	if (pDialog->bRight)
-	{
-		fDeltaMargin = MAX (0, pDialog->iAimedX	- pDialog->container.iWindowPositionX -	fRadius	- fLineWidth / 2);
-		//g_print ("fDeltaMargin : %.2f\n",	fDeltaMargin);
-		cairo_rel_line_to (pCairoContext, -iWidth +	fDeltaMargin + fLineWidth +	2 * fRadius + CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE + CAIRO_DIALOG_TIP_ROUNDING_MARGIN ,	0);	
-		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			- CAIRO_DIALOG_TIP_ROUNDING_MARGIN,	0,
-			- (CAIRO_DIALOG_TIP_ROUNDING_MARGIN	+ CAIRO_DIALOG_TIP_MARGIN +	CAIRO_DIALOG_TIP_BASE),	sens * fTipHeight);
-		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			CAIRO_DIALOG_TIP_MARGIN, - sens	* fTipHeight,
-			CAIRO_DIALOG_TIP_MARGIN	- CAIRO_DIALOG_TIP_ROUNDING_MARGIN,	- sens * fTipHeight);
-		cairo_rel_line_to (pCairoContext, -	CAIRO_DIALOG_TIP_MARGIN	- fDeltaMargin + CAIRO_DIALOG_TIP_ROUNDING_MARGIN, 0);
-	}
+		bRight = (pDialog->container.iWindowPositionX + iWidth > pDialog->iAimedX + fTipWidth);
 	else
+		bRight = (pDialog->container.iWindowPositionX + fTipWidth > pDialog->iAimedX);
+	g_print ("%d, %d, %d -> %d\n", pDialog->container.iWindowPositionX, (int) fTipWidth, pDialog->iAimedX, bRight);
+	int iDeltaIconX;
+	if (bRight)  // dialogue a droite de l'icone, pointe vers la gauche.
 	{
-		fDeltaMargin = MAX (0, MIN (- CAIRO_DIALOG_TIP_MARGIN -	CAIRO_DIALOG_TIP_ROUNDING_MARGIN - CAIRO_DIALOG_TIP_BASE - fRadius - fLineWidth / 2, pDialog->container.iWindowPositionX - pDialog->iAimedX	- fRadius -	fLineWidth / 2)	+ pDialog->container.iWidth);
-		//g_print ("fDeltaMargin : %.2f	/ %d\n", fDeltaMargin, pDialog->container.iWidth);
-		cairo_rel_line_to (pCairoContext, -	(CAIRO_DIALOG_TIP_MARGIN + fDeltaMargin) + CAIRO_DIALOG_TIP_ROUNDING_MARGIN, 0);
+		iDeltaIconX = MIN (0, pDialog->container.iWindowPositionX - pDialog->iAimedX);  // < 0
+		g_print ("iDeltaIconX right : %d / %d\n", iDeltaIconX, iWidth);
+		cairo_rel_line_to (pCairoContext, -(fBaseWidth + iDeltaIconX - fTipWidth), 0);
 		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			-CAIRO_DIALOG_TIP_ROUNDING_MARGIN, 0,
-			CAIRO_DIALOG_TIP_MARGIN	- CAIRO_DIALOG_TIP_ROUNDING_MARGIN,	sens * fTipHeight);
+			- CD_TIP_OUTER_MARGIN, 0,
+			- CD_TIP_OUTER_MARGIN, 0,
+			- fTipWidth, fTipHeight);
 		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			- (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE), - sens	* fTipHeight,
-			- (CAIRO_DIALOG_TIP_MARGIN + CAIRO_DIALOG_TIP_BASE)	- CAIRO_DIALOG_TIP_ROUNDING_MARGIN,	- sens * fTipHeight);
-		cairo_rel_line_to (pCairoContext, -iWidth +	fDeltaMargin + fLineWidth +	2 *	fRadius	+ CAIRO_DIALOG_TIP_MARGIN +	CAIRO_DIALOG_TIP_BASE +	CAIRO_DIALOG_TIP_ROUNDING_MARGIN, 0);
+			CD_TIP_INNER_MARGIN, - fTipHeight,
+			CD_TIP_INNER_MARGIN, - fTipHeight,
+			0, - fTipHeight);
+		cairo_rel_line_to (pCairoContext, iDeltaIconX, 0);
+	}
+	else  // dialogue a gauche de l'icone, pointe vers la droite.
+	{
+		iDeltaIconX = MAX (0, pDialog->container.iWindowPositionX + iWidth - pDialog->iAimedX);  // > 0
+		g_print ("iDeltaIconX left : %d / %d\n", iDeltaIconX, iWidth);
+		cairo_rel_line_to (pCairoContext, - iDeltaIconX, 0);
+		cairo_rel_curve_to (pCairoContext,
+			- (CD_TIP_INNER_MARGIN), 0,
+			- (CD_TIP_INNER_MARGIN), 0,
+			0, fTipHeight);	
+		cairo_rel_curve_to (pCairoContext,
+			- (CD_TIP_INNER_MARGIN + CD_TIP_BASE), - fTipHeight,
+			- (CD_TIP_INNER_MARGIN + CD_TIP_BASE), - fTipHeight,
+			- fTipWidth, - fTipHeight);	
+		cairo_rel_line_to (pCairoContext, - fBaseWidth + iDeltaIconX + fTipWidth, 0);
 	}
 
-	// Coin	bas	gauche.
+	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,
 		-fRadius, 0,
-		-fRadius, -sens	* fRadius);
-	cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth)));
-	// Coin	haut gauche.
+		-fRadius, -fRadius);
+	cairo_rel_line_to (pCairoContext, 0, - (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - fMargin));
+	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,
-		0, -sens * fRadius,
-		fRadius, -sens * fRadius);
-	if (fRadius	< 1)
+		0, -fRadius,
+		fRadius, -fRadius);
+	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 
 	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],	myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
