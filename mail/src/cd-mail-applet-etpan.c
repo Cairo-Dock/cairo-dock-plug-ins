@@ -465,8 +465,8 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHasMailUserImage);
 		}
-		if (myDock)
-			CD_APPLET_DEMANDS_ATTENTION ("rotate", 5);
+		if (myDock && myConfig.cAnimation)
+			CD_APPLET_DEMANDS_ATTENTION (myConfig.cAnimation, myConfig.iAnimationDuration);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", myData.iNbUnreadMails);
 	}
 	CD_APPLET_REDRAW_MY_ICON;

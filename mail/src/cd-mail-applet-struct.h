@@ -47,6 +47,8 @@ struct _AppletConfig {
 	gchar *cRenderer;
 	gchar *cMailApplication;
 	gchar *cMailClass;
+	gchar *cAnimation;
+	gint iAnimationDuration;
 	gboolean bPlaySound;
 	gboolean bStealTaskBarIcon;
 	gboolean bShowMessageContent;

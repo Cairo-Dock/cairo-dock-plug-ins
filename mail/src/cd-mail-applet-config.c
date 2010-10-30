@@ -117,6 +117,11 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		pMailAccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (cMailAccountName, "timeout mn", 10);
 		pMailAccount->pAppletInstance = myApplet;
 		pMailAccount->cMailApp = g_key_file_get_string (pKeyFile, cMailAccountName, "mail application", NULL);  // a specific mail application to launch for this account, if any.
+		if (pMailAccount->cMailApp && *pMailAccount->cMailApp == '\0')
+		{
+			g_free (pMailAccount->cMailApp);
+			pMailAccount->cMailApp = NULL;
+		}
 		(storage_tab[j].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
 	}
 	g_strfreev (pGroupList);
@@ -144,6 +149,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cNewMailUserSound = (path?cairo_dock_generate_file_path (path):NULL);
 	g_free (path);
 
+	myConfig.cAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
+	myConfig.iAnimationDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "anim duration", 5);
 	myConfig.cMailApplication = CD_CONFIG_GET_STRING ("Configuration", "mail application");
 	/**myConfig.cMailClass = CD_CONFIG_GET_STRING ("Configuration", "mail class");
 	myConfig.bStealTaskBarIcon = myConfig.cMailApplication && CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "inhibate appli", TRUE);*/
@@ -171,6 +178,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free( myConfig.cHasMailUserImage );
 	g_free( myConfig.cNewMailUserSound );
 	g_free( myConfig.cMailApplication );
+	g_free( myConfig.cAnimation );
 	///g_free( myConfig.cMailClass );
 	g_free (myConfig.cThemePath);
 	g_free (myConfig.cRenderer);
