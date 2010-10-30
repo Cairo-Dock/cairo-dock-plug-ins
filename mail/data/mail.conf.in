@@ -91,38 +91,52 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
+#b Check mail account on startup?
+#{If you have any problem with the applet, uncheck this option during the maintenance mode, then after the dock has relaunched, remove/modify the mail accounts you want.}
+check = true
 
-#X[Sub-Dock view] 
-frame_sub-dock =
+
+#X[Display]
+frame_disp =
+
+#h+[@maildatadir@/themes;mail;mail] Choose one of the available themes:
+theme = Default
+
+#S+ Name of the file for the "no mail" image :
+#{Let empty to use the default one.}
+no mail image = 
+
+#S+ Name of the file for the "has mail" image :
+#{Let empty to use the default one.}
+has mail image = 
+
+#b Show '0' if there is no mail?
+#{If checked, the number of mails will be shown even if there is no mail.}
+show zero mail = true
+
+#v
+sep_theme=
 
 #n+ Sub-dock view name:
 #{Leave empty to use default sub-dock view.}/
 renderer = 
 
 
-#X[Theme] 
-frame_them =
-
-#h+[@maildatadir@/themes;mail;mail] Choose one of the available themes:
-theme = Default
-
-#S+ Name of the file for the "no mail" image :
-no mail image = 
-
-#S+ Name of the file for the "has mail" image :
-has mail image = 
+#X[Action on new mail]
+frame_new =
 
 #B- Play sound when a new e-mail is received?
 play sound = true
 #u Name of the file for the "new mail" sound :
+#{Let empty to use the default one.}
 new mail sound = 
 
-
-#X[Behaviour] 
-frame_config_mail =
+#v
+sep_sound=
 
 #B[2] Show new messages' content?
 show content = true
@@ -135,18 +149,21 @@ max shown mails = 0
 #{in seconds.}
 time_dialog = 5
 
-#b Check mail account on startup?
-#{If you have any problem with the applet, uncheck this option during the maintenance mode, then after the dock has relaunched, remove/modify the mail accounts you want.}
-check = true
+#v
+sep_anim=
 
-#b Show '0' if there is no mail?
-#{If checked, the number of mails will be shown even if there is no mail.}
-show zero mail = true
+#a+ Animation when new message arrives:
+animation = rotate
 
-#X[Mail application] 
+#i[1;100] Duration of the animation:
+anim duration = 5
+
+
+#X[Mail application]
 frame_appli =
 
 #s Preferred mail application to launch on left-click :
+#{for instance "thunderbird" or "firefox mail.google.com"}
 mail application = thunderbird
 
 #F[Add a mail account (you've to launch the applet)]

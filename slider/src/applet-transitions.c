@@ -1,4 +1,4 @@
-/**
+	/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
@@ -23,20 +23,13 @@
 
 #include "applet-transitions.h"
 
-#define _cd_slider_erase_surface(myApplet) do { \
-	cairo_set_source_rgba (myDrawContext, 0., 0., 0., 0.);\
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);\
-	cairo_paint (myDrawContext);\
-	cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER); } while (0)
+#define _cd_slider_erase_surface(myApplet) cairo_dock_erase_cairo_context (myDrawContext)
 
-#define _cd_slider_add_background_to_slide(myApplet, fX, fY, alpha, slide) do { \
+/**#define _cd_slider_add_background_to_slide(myApplet, fX, fY, alpha, slide) do { \
 	if (myConfig.pBackgroundColor[3] != 0) {\
 	cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], alpha * myConfig.pBackgroundColor[3]);\
 	cairo_rectangle (myDrawContext, fX, fY, slide.fImgW, slide.fImgH);\
 	cairo_fill (myDrawContext); } } while (0)
-#define _cd_slider_add_background_to_current_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, myData.slideArea)
-#define _cd_slider_add_background_to_prev_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, myData.prevSlideArea)
-
 #define _cd_slider_add_background_to_slide_opengl(myApplet, fX, fY, alpha, slide) do { \
 	glColor4f (myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], alpha * myConfig.pBackgroundColor[3]);\
 	glPolygonMode (GL_FRONT, GL_FILL);\
@@ -48,10 +41,67 @@
 		glVertex3f(fX + slide.fImgW/2, fY - slide.fImgH/2, 0.);\
 		glVertex3f(fX + slide.fImgW/2, fY + slide.fImgH/2, 0.);\
 		glVertex3f(fX - slide.fImgW/2, fY + slide.fImgH/2, 0.);\
-		glEnd(); } } while (0)
-#define _cd_slider_add_background_to_current_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, myData.slideArea)
-#define _cd_slider_add_background_to_prev_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, myData.prevSlideArea)
+		glEnd(); } } while (0)*/
 
+static void _cd_slider_add_background_to_slide (CairoDockModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
+{
+	if (myConfig.pBackgroundColor[3] != 0)
+	{
+		cairo_set_source_rgba (myDrawContext, myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], alpha * myConfig.pBackgroundColor[3]);
+		if (myConfig.iBackgroundType == 2)
+		{
+			int iLineWidth = _get_frame_linewidth (myApplet);
+			double fRadius = 2. * iLineWidth;  /// a voir quelle valeur rend le mieux...
+			cairo_save (myDrawContext);
+			cairo_translate (myDrawContext, fX, fY);
+			cairo_dock_draw_rounded_rectangle (myDrawContext, fRadius, iLineWidth, slide->fImgW - 0*(2*fRadius+iLineWidth), slide->fImgH);
+			cairo_restore (myDrawContext);
+		}
+		else
+		{
+			cairo_rectangle (myDrawContext, fX, fY, slide->fImgW, slide->fImgH);
+			cairo_fill (myDrawContext);
+		}
+	}
+}
+#define _cd_slider_add_background_to_current_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, &myData.slideArea)
+#define _cd_slider_add_background_to_prev_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, &myData.prevSlideArea)
+
+static void _cd_slider_add_background_to_slide_opengl(CairoDockModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
+{
+	if (myConfig.pBackgroundColor[3] != 0)
+	{
+		glDisable (GL_TEXTURE_2D);
+		glColor4f (myConfig.pBackgroundColor[0], myConfig.pBackgroundColor[1], myConfig.pBackgroundColor[2], alpha * myConfig.pBackgroundColor[3]);
+		if (myConfig.iBackgroundType == 2)
+		{
+			int iLineWidth = _get_frame_linewidth (myApplet);
+			double fRadius = 0. * iLineWidth;  /// a voir quelle valeur rend le mieux...
+			glPushMatrix ();
+			glTranslatef (fX, fY, 0.);  // centre du rectangle.
+			cairo_dock_draw_rounded_rectangle_opengl (slide->fImgW - 0*(2*fRadius+iLineWidth), slide->fImgH, fRadius, iLineWidth, NULL);
+			glPopMatrix ();
+			glPolygonMode (GL_FRONT, GL_FILL);
+		}
+		else
+		{
+			glPolygonMode (GL_FRONT, GL_FILL);
+			glEnable (GL_BLEND);
+			glBlendFunc (GL_ONE, GL_ZERO);
+			if (myConfig.pBackgroundColor[3] != 0)
+			{
+				glBegin(GL_QUADS);
+				glVertex3f(fX - slide->fImgW/2, fY - slide->fImgH/2, 0.);
+				glVertex3f(fX + slide->fImgW/2, fY - slide->fImgH/2, 0.);
+				glVertex3f(fX + slide->fImgW/2, fY + slide->fImgH/2, 0.);
+				glVertex3f(fX - slide->fImgW/2, fY + slide->fImgH/2, 0.);
+				glEnd();
+			}
+		}
+	}
+}
+#define _cd_slider_add_background_to_current_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, &myData.slideArea)
+#define _cd_slider_add_background_to_prev_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, &myData.prevSlideArea)
 
 void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
 {
@@ -212,7 +262,7 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		if (myData.iAnimCNT < myConfig.iNbAnimationStep)  // image precedente en train de disparaitre
+		if (myData.iAnimCNT < myConfig.iNbAnimationStep && myData.iPrevTexture != 0)  // image precedente en train de disparaitre
 		{
 			//On empeche la transparence
 			_cd_slider_add_background_to_prev_slide_opengl (myApplet, 0., 0., myData.fAnimAlpha);
@@ -421,7 +471,10 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., myData.fAnimAlpha);
+		glPushMatrix ();
+		glScalef (myData.fAnimAlpha, myData.fAnimAlpha, 1.);
+		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., 1.);
+		glPopMatrix ();
 		
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable (GL_TEXTURE_2D);
@@ -465,7 +518,10 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., myData.fAnimAlpha);
+		glPushMatrix ();
+		glScalef (myData.fAnimAlpha, myData.fAnimAlpha, 1.);
+		_cd_slider_add_background_to_current_slide_opengl (myApplet, 0., 0., 1.);
+		glPopMatrix ();
 		
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable (GL_TEXTURE_2D);

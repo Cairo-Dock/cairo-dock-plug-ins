@@ -42,6 +42,9 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
+	myData.cDirectory = g_strdup (myConfig.cDirectory);
+	myData.bSubDirs = myConfig.bSubDirs;
+	myData.bRandom = myConfig.bRandom;
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
 	
 	myData.pMeasureImage = cairo_dock_new_task (0,
@@ -53,7 +56,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
 		(CairoDockUpdateSyncFunc) cd_slider_start_slide,
 		myApplet);  // 0 <=> one shot task.
-	cairo_dock_launch_task_delayed (myData.pMeasureDirectory, 1500.);
+	cairo_dock_launch_task_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500. : 0.);  // launch with a delay or just in the next main loop event.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -84,23 +87,7 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	//Stop all process!
-	if (myData.iTimerID != 0)
-	{
-		g_source_remove(myData.iTimerID);
-		myData.iTimerID = 0;
-	}
-	if (myData.iScrollID != 0)
-	{
-		g_source_remove (myData.iScrollID);
-		myData.iScrollID = 0;
-	}
-	CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
-	
-	cairo_surface_destroy (myData.pCairoSurface);
-	myData.pCairoSurface = NULL;
-	cairo_surface_destroy (myData.pPrevCairoSurface);
-	myData.pPrevCairoSurface = NULL;
+	///CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
 	
 	if ((!myConfig.bImageName || myDock) && myIcon->cQuickInfo != NULL) {
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
@@ -116,21 +103,61 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		cairo_dock_stop_task (myData.pMeasureImage);
-		cairo_dock_stop_task (myData.pMeasureDirectory);
-		if (myData.iSidExifIdle != 0)
+		if (cairo_dock_strings_differ (myData.cDirectory, myConfig.cDirectory)
+		|| myData.bSubDirs != myConfig.bSubDirs
+		|| myData.bRandom != myConfig.bRandom)  // need to reload the images list.
 		{
-			g_source_remove(myData.iSidExifIdle);
-			myData.iSidExifIdle = 0;
+			cd_debug ("reload all");
+			//Stop all process
+			cairo_dock_stop_task (myData.pMeasureImage);
+			cairo_dock_stop_task (myData.pMeasureDirectory);
+			if (myData.iSidExifIdle != 0)
+			{
+				g_source_remove(myData.iSidExifIdle);
+				myData.iSidExifIdle = 0;
+			}
+			if (myData.iScrollID != 0)
+			{
+				g_source_remove (myData.iScrollID);
+				myData.iScrollID = 0;
+			}
+			if (myData.iTimerID != 0)
+			{
+				g_source_remove(myData.iTimerID);
+				myData.iTimerID = 0;
+			}
+			
+			// destroy current buffers.
+			cairo_surface_destroy (myData.pCairoSurface);
+			myData.pCairoSurface = NULL;
+			cairo_surface_destroy (myData.pPrevCairoSurface);
+			myData.pPrevCairoSurface = NULL;
+			if (myData.iPrevTexture != 0)
+			{
+				myData.iPrevTexture = 0;
+				_cairo_dock_delete_texture (myData.iPrevTexture);
+			}
+			if (myData.iTexture != 0)
+			{
+				myData.iTexture = 0;
+				_cairo_dock_delete_texture (myData.iTexture);
+			}
+			
+			cd_slider_free_images_list (myData.pList);
+			myData.pList = NULL;
+			myData.pElement = NULL;
+			myData.bPause = FALSE;
+			
+			// launch the folder parsing.
+			g_free (myData.cDirectory);
+			myData.cDirectory = g_strdup (myConfig.cDirectory);
+			myData.bSubDirs = myConfig.bSubDirs;
+			myData.bRandom = myConfig.bRandom;
+			cairo_dock_launch_task (myData.pMeasureDirectory);
 		}
-		cd_slider_free_images_list (myData.pList);
-		myData.pList = NULL;
-		myData.pElement = NULL;
-		myData.bPause = FALSE;
-		cairo_dock_launch_task (myData.pMeasureDirectory);
 	}
-	else {
+	/**else {
 		cd_slider_next_slide (myApplet); //restart sliding
 	}
-	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;
+	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;*/
 CD_APPLET_RELOAD_END

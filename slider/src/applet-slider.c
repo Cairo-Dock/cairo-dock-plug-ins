@@ -35,6 +35,7 @@
 #include "applet-transitions.h"
 #include "applet-slider.h"
 
+static void _cd_slider_get_exif_props (SliderImage *pImage);
 
 void cd_slider_free_image (SliderImage *pImage) {
 	if (pImage == NULL)
@@ -101,11 +102,10 @@ static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolea
 					
 					if (iFormat != SLIDER_UNKNOWN_FORMAT) {
 						cd_debug ("Slider - Adding %s to list", cFileName);
-						pImage = g_new (SliderImage, 1);
+						pImage = g_new0 (SliderImage, 1);
 						pImage->cPath = g_strdup (sFilePath->str);
 						pImage->iSize = buf.st_size;
 						pImage->iFormat = iFormat;
-						pImage->iOrientation = 0;
 						// exif orientation is got later.
 						if (bSortAlpha)  // ordre alphabetique.
 							pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) _compare_images_order);
@@ -130,7 +130,6 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
 		cd_warning ("Slider : No directory to scan, halt.");
 		CD_APPLET_LEAVE();
-		//return;
 	}
 	
 	myData.pList = cd_slider_task_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
@@ -149,10 +148,12 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	CD_APPLET_ENTER;
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
+	if (!pImage->bGotExifData && myData.iSidExifIdle == 0)  // no exif data yet and no process currently retrieving them.
+		_cd_slider_get_exif_props (pImage);
 	cd_debug ("  Slider - loading %s (size %dbytes, orientation:%d)", cImagePath, pImage->iSize, pImage->iOrientation);
 	//\_______________ On definit comment charger l'image.
 	double fImgX, fImgY, fImgW=0, fImgH=0;
-	CairoDockLoadImageModifier iLoadingModifier = 0;  /// CAIRO_DOCK_FILL_SPACE
+	CairoDockLoadImageModifier iLoadingModifier = 0;  // CAIRO_DOCK_FILL_SPACE
 	if (pImage->iOrientation != 0)
 		iLoadingModifier |= ((pImage->iOrientation-1) << 3);
 	if (! myConfig.bFillIcon)
@@ -161,9 +162,16 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 		iLoadingModifier |= CAIRO_DOCK_KEEP_RATIO;
 	
 	//\_______________ On cree la surface cairo.
+	int iLineWidth = 0;
+	if (myConfig.iBackgroundType == 2)
+	{
+		iLineWidth = _get_frame_linewidth (myApplet);
+	}
+	
 	myData.pCairoSurface = cairo_dock_create_surface_from_image (cImagePath,
 		1.,
-		myData.iSurfaceWidth, myData.iSurfaceHeight,
+		myData.iSurfaceWidth - iLineWidth,  // iLineWidth/2 de chaque cote
+		myData.iSurfaceHeight - iLineWidth,  // idem
 		iLoadingModifier,
 		&fImgW, &fImgH,
 		NULL, NULL);
@@ -213,7 +221,6 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 		cd_slider_schedule_next_slide (myApplet);
 	}
 	CD_APPLET_LEAVE (FALSE);
-	//return FALSE;
 }
 
 
@@ -294,23 +301,16 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 }
 
 
-static gboolean _cd_slider_get_exif_props (CairoDockModuleInstance *myApplet)
+static void _cd_slider_get_exif_props (SliderImage *pImage)
 {
 #ifdef HAVE_EXIF
 	ExifData *pExifData;
 	ExifEntry *pExifEntry;
 	ExifByteOrder byteOrder;
 	
-	if (myData.pExifElement == NULL)
-	{
-		myData.iSidExifIdle = 0;
-		return FALSE;
-	}
-	
-	SliderImage *pImage = myData.pExifElement->data;
 	if (pImage->iFormat == SLIDER_JPG)
 	{
-		g_print ("Slider : %s\n", pImage->cPath);
+		//g_print ("Slider : %s\n", pImage->cPath);
 		pExifData = exif_data_new_from_file (pImage->cPath);
 		if (pExifData != NULL)
 		{
@@ -319,16 +319,32 @@ static gboolean _cd_slider_get_exif_props (CairoDockModuleInstance *myApplet)
 			{
 				byteOrder = exif_data_get_byte_order (pExifData);
 				pImage->iOrientation = exif_get_short (pExifEntry->data, byteOrder);
-				g_print ("Slider : %s -> orientation %d\n", pImage->cPath, pImage->iOrientation);
+				//g_print ("Slider : %s -> orientation %d\n", pImage->cPath, pImage->iOrientation);
 			}
 			
 			exif_data_unref (pExifData);
 		}
 	}
+#endif
+	pImage->bGotExifData = TRUE;
+}
+
+static gboolean _cd_slider_get_exif_props_idle (CairoDockModuleInstance *myApplet)
+{
+#ifdef HAVE_EXIF
+	if (myData.pExifElement == NULL)
+	{
+		myData.iSidExifIdle = 0;
+		return FALSE;
+	}
+	
+	SliderImage *pImage = myData.pExifElement->data;
+	_cd_slider_get_exif_props (pImage);
 	
 	myData.pExifElement = myData.pExifElement->next;
 	return TRUE;
 #else
+	myData.pExifElement = NULL;
 	myData.iSidExifIdle = 0;
 	return FALSE;
 #endif
@@ -336,11 +352,11 @@ static gboolean _cd_slider_get_exif_props (CairoDockModuleInstance *myApplet)
 
 gboolean cd_slider_start_slide (CairoDockModuleInstance *myApplet)
 {
-	if (myData.iSidExifIdle == 0)
+	if (myData.iSidExifIdle == 0 && myConfig.bGetExifDataAtOnce)
 	{
 		myData.pExifElement = myData.pList;
 		myData.iSidExifIdle = g_idle_add_full (G_PRIORITY_LOW,  // on ne veut pas que ca vienne ralentir le chargement des icones, qui lui a une priorite normale.
-			(GSourceFunc) _cd_slider_get_exif_props,
+			(GSourceFunc) _cd_slider_get_exif_props_idle,
 			myApplet,
 			NULL);
 	}

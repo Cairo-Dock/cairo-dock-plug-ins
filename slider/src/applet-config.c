@@ -31,6 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSlideTime 		= CD_CONFIG_GET_INTEGER ("Configuration", "slide time");
 	myConfig.bSubDirs 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "sub directories", TRUE);
 	myConfig.bRandom 			= CD_CONFIG_GET_BOOLEAN ("Configuration", "random");
+	myConfig.bGetExifDataAtOnce 	= CD_CONFIG_GET_BOOLEAN ("Configuration", "get exif");
 	myConfig.bImageName		= CD_CONFIG_GET_BOOLEAN ("Configuration", "image name");
 	
 	myConfig.bNoStretch 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "no stretch");
@@ -41,13 +42,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iMiddleClickOption 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle click", SLIDER_OPEN_FOLDER);
 	
 	myConfig.bUseThread 		= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "use_thread", TRUE);
-	CD_CONFIG_GET_COLOR ("Configuration", "background color", myConfig.pBackgroundColor);
+	myConfig.iBackgroundType 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "bg type", 2);
+	double white[4] = {1,1,1,1};
+	if (myConfig.iBackgroundType != 0)
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "background_color", myConfig.pBackgroundColor, white);
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before yo get the applet's config, and when your applet is stopped.
 CD_APPLET_RESET_CONFIG_BEGIN
-	g_free(myConfig.cDirectory);
+	g_free (myConfig.cDirectory);
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -57,12 +61,14 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_task (myData.pMeasureImage);
 	cd_slider_free_images_list (myData.pList);
 	
-	if (myData.pPrevCairoSurface != NULL && myData.pPrevCairoSurface != myData.pCairoSurface)
+	g_free (myData.cDirectory);
+	
+	if (myData.pPrevCairoSurface != NULL)
 		cairo_surface_destroy (myData.pPrevCairoSurface);
 	if (myData.pCairoSurface != NULL)
 		cairo_surface_destroy (myData.pCairoSurface);
 	
-	if (myData.iPrevTexture != 0 && myData.iPrevTexture != myData.iTexture)
+	if (myData.iPrevTexture != 0)
 		_cairo_dock_delete_texture (myData.iPrevTexture);
 	if (myData.iTexture != 0)
 		_cairo_dock_delete_texture (myData.iTexture);

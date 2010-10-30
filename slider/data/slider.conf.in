@@ -109,9 +109,15 @@ random = false
 #b Display image name as quickinfo?
 image name = false
 
+#v
+sep_thread=
+
 #b Use another thread to load images?
 #{This will prevent the dock from freezing during image loading, but works only with OpenGL.}
 use_thread = true
+
+#b Read all images properties on startup?
+get exif = true
 
 #F[Behaviour;gtk-execute]
 frame_ops=
@@ -143,6 +149,8 @@ no stretch=true
 #b Force the image to fill the icon/desklet?
 #{If the image is too small, it will be stretched.}
 fill icon = false
+#Y[No;0;0;Yes;1;1;Frame;1;1] Add a background to the image?
+bg type = 2
 #C+ Choose a background colour :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
-background color = 1.0; 1.0; 1.0; 0.
+background_color = 1.0; 1.0; 1.0; 1.0

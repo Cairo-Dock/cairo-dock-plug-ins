@@ -68,6 +68,7 @@ typedef struct {
 	gint iSize;
 	SliderImageFormat iFormat;
 	gint iOrientation;
+	gboolean bGotExifData;
 } SliderImage;
 
 //\___________ structure containing the applet's configuration parameters.
@@ -75,10 +76,12 @@ struct _AppletConfig {
 	gint iSlideTime;
 	gchar *cDirectory;
 	gboolean bSubDirs;
+	gboolean bRandom;
 	gboolean bNoStretch;
 	gboolean bFillIcon;
-	gboolean bRandom;
 	gboolean bImageName;
+	gboolean bGetExifDataAtOnce;
+	guint iBackgroundType;
 	gdouble pBackgroundColor[4];
 	SliderAnimation iAnimation;
 	gint iNbAnimationStep;
@@ -112,6 +115,9 @@ struct _AppletData {
 	gint iNbScroll;
 	gchar *cSelectedImagePath;  // donnee du menu
 	GList *pAppList;  // donnee du menu
+	gchar *cDirectory;
+	gboolean bSubDirs;
+	gboolean bRandom;
 } ;
 
 
