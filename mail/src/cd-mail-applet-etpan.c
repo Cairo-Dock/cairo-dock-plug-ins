@@ -279,30 +279,45 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	
 	//\_______________________ On met a jour l'icone du compte.
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	
+	if (pUpdatedMailAccount->bError && pUpdatedMailAccount->pAccountMailTimer->iPeriod > 20)
+	{
+		cd_message ("no data, will re-try in 20s");
+		cairo_dock_change_task_frequency (pUpdatedMailAccount->pAccountMailTimer, 20);  // on re-essaiera dans 20s.
+	}
+	else if (pUpdatedMailAccount->pAccountMailTimer->iPeriod != pUpdatedMailAccount->timeout * 60)
+	{
+		cd_message ("revert to normal frequency");
+		cairo_dock_change_task_frequency (pUpdatedMailAccount->pAccountMailTimer, pUpdatedMailAccount->timeout * 60);
+	}
+	
 	if (pUpdatedMailAccount->bError)
 	{
 		cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
-	else if (pUpdatedMailAccount->iNbUnseenMails > 0)
-	{
-		cairo_dock_set_quick_info_printf (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
-		
-		cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
-	}
 	else
 	{
-		if( myConfig.bAlwaysShowMailCount )
+		if (pUpdatedMailAccount->iNbUnseenMails > 0)
 		{
-			cairo_dock_set_quick_info (pIcon, pContainer, "0");
+			cairo_dock_set_quick_info_printf (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
+		
+			cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
 		}
 		else
 		{
-			cairo_dock_remove_quick_info(pIcon);
-		}
+			if( myConfig.bAlwaysShowMailCount )
+			{
+				cairo_dock_set_quick_info (pIcon, pContainer, "0");
+			}
+			else
+			{
+				cairo_dock_remove_quick_info(pIcon);
+			}
 		
-		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
+			cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
+		}
 	}
 	cairo_destroy (pIconContext);
 	

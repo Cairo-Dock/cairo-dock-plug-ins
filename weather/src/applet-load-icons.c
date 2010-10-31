@@ -130,8 +130,11 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+	if (pIconList != NULL)  // sinon on ne veut pas du sous-dock vide.
+	{
+		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+	}
 	if (myDesklet)
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	

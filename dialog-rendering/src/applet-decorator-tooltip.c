@@ -59,11 +59,13 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	int iWidth = pDialog->container.iWidth - fIconOffset;
 	
-	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->iLeftMargin + pDialog->iBubbleWidth/2));
+	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
 	if (iDeltaIconX == 0)
-		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth - pDialog->iRightMargin - pDialog->iBubbleWidth/2));
+		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
+	if (fabs (iDeltaIconX) < 3)  // filter useless tiny delta (and rounding errors).
+		iDeltaIconX = 0;
 	
-	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+	//g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
 	
 	int iArrowShift;
 	if (iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
@@ -104,10 +106,6 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 - iArrowShift + iDeltaIconX, sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
 	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 + iArrowShift - iDeltaIconX, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
 	cairo_rel_line_to (pCairoContext, - fDemiWidth - iArrowShift , 0);
-	/**cairo_rel_line_to (pCairoContext, -fDemiWidth,   0);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - fDemiWidth, 0);*/
 	
 	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,
@@ -132,43 +130,6 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	cairo_set_line_width (pCairoContext, fLineWidth); //La ligne externe
 	
 	cairo_stroke (pCairoContext); //On ferme notre chemin
-	
-	/*if (pDialog->iIconSize != 0) {
-		//Ajout d'un cadre pour l'icône (Pas d'alpha)
-		int iIconFrameWidth = (pDialog->iIconSize / 2) - (2 * fRadius + fLineWidth);
-		//cd_debug ("Tooltip: %d", iIconFrameWidth);
-		//cairo_move_to (pCairoContext, 0, 0); //On revient a l'origine
-		cairo_move_to (pCairoContext, fOffsetX + 2 * (fLineWidth + 1), fOffsetY + 2 * (fLineWidth + 1)); //Pour créer l'effet d'inclusion
-		//On trace une ligne HautGauche -> HautDroit
-		cairo_rel_line_to (pCairoContext, iIconFrameWidth, 0);
-		//On trace une ligne HautDroit -> BasDroit
-		cairo_rel_line_to (pCairoContext, 0, sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (fRadius + fLineWidth)));
-		//On trace une ligne BasDroit -> BasGauche
-		cairo_rel_line_to (pCairoContext, - iIconFrameWidth, 0);
-		// Coin bas     gauche.
-		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			-fRadius, 0,
-			-fRadius, -sens * fRadius);
-		//On trace une ligne BasGauche -> HautGauche
-		cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + 2 * (fLineWidth + 3.5))));
-		
-		// Coin haut gauche.
-		cairo_rel_curve_to (pCairoContext,
-			0, 0,
-			0, -sens * fRadius,
-			fRadius, -sens * fRadius);
-		
-		if (fRadius < 1)
-			cairo_close_path (pCairoContext);
-		
-		cairo_set_source_rgba (pCairoContext, myConfig.fTooltipMarginColor[0], myConfig.fTooltipMarginColor[1],  myConfig.fTooltipMarginColor[2], myConfig.fTooltipMarginColor[3]);
-		cairo_fill_preserve (pCairoContext);
-		cairo_set_source_rgba (pCairoContext, myConfig.fTooltipLineColor[0], myConfig.fTooltipLineColor[1], myConfig.fTooltipLineColor[2], myConfig.fTooltipLineColor[3]);
-		cairo_set_line_width (pCairoContext, fLineWidth);
-		
-		cairo_stroke (pCairoContext);
-	}*/
 }
 
 

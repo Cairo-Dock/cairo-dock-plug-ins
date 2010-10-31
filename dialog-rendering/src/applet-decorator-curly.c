@@ -53,10 +53,11 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	double fDemiWidth = .5 * pDialog->container.iWidth - fRadius - fLineWidth/2;
 	
-	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->iLeftMargin + pDialog->iBubbleWidth/2));
+	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
 	if (iDeltaIconX == 0)
-		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth - pDialog->iRightMargin - pDialog->iBubbleWidth/2));
-	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
+	if (fabs (iDeltaIconX) < 3)  // filter useless tiny delta (and rounding errors).
+		iDeltaIconX = 0;
 	
 	double dh1, dh2;
 	if (iDeltaIconX != 0)  // on va limiter la courbature du petit cote.

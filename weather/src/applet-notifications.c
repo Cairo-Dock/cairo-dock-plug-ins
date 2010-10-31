@@ -37,12 +37,9 @@ CD_APPLET_ON_CLICK_BEGIN
 			"same icon");
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	}
-	if (pClickedIcon == myIcon)
+	if (pClickedIcon == myIcon)  // en mode dock, on peut recevoir le clic sur l'icone principale si elle n'a pas de sous-dock, autrement dit si la connexion s'est mal passe, ce qui nous permet d'afficher le message d'erreur.
 	{
-		if (myDesklet)  // en mode dock, le clic peut ouvrir le sous-dock.
-			cd_weather_show_current_conditions_dialog (myApplet);
-		else
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  /// utile ?...
+		cd_weather_show_current_conditions_dialog (myApplet);
 	}
 	else if (pClickedIcon != NULL)  // clic sur une des sous-icones.
 	{
