@@ -417,7 +417,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		myData.pItemList = NULL;
 		myData.bInit = TRUE;
 	}
-		
+	
 	// On parse le flux XML.
 	if (myData.cTaskBridge == NULL || *myData.cTaskBridge == '\0')
 	{
@@ -431,8 +431,21 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 			cd_applet_update_my_icon (myApplet);
 		}
 		myData.bUpdateIsManual = FALSE;
+		
+		if (myData.pTask->iPeriod > 20)
+		{
+			cd_message ("no data, will re-try in 20s");
+			cairo_dock_change_task_frequency (myData.pTask, 20);  // on re-essaiera dans 20s.
+		}
+		
 		CD_APPLET_LEAVE (TRUE);
 		//return TRUE;
+	}
+	
+	if (myData.pTask->iPeriod != myConfig.iRefreshTime)
+	{
+		cd_message ("revert to normal frequency");
+		cairo_dock_change_task_frequency (myData.pTask, myConfig.iRefreshTime);
 	}
 	
 	xmlDocPtr doc = xmlParseMemory (myData.cTaskBridge, strlen (myData.cTaskBridge));
