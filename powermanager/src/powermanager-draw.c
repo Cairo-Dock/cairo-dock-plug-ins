@@ -177,7 +177,7 @@ void cd_powermanager_bubble (void)
 		g_string_printf (sInfo, "%s", D_("No battery found."));
 	}
 	
-	_cd_powermanager_dialog (sInfo->str, 6000);
+	_cd_powermanager_dialog (sInfo->str, 6);
 	g_string_free (sInfo, TRUE);
 }
 

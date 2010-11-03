@@ -423,12 +423,13 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		glPushMatrix ();
 		double x0, y0, x1, y1;
 		double fReflectRatio = myIcons.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
-		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		double fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 		if (pDock->container.bIsHorizontal)
 		{
 			if (pDock->container.bDirectionUp)
 			{
-				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
+				//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (0., - fOffsetY, 0.);
 				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
 				x0 = 0.;
@@ -439,7 +440,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->container.fRatio, 1.);
+				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);
 				x0 = 0.;
 				y0 = fReflectRatio;
 				x1 = 1.;
@@ -450,8 +451,9 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		{
 			if (pDock->container.bDirectionUp)
 			{
+				//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (fOffsetY, 0., 0.);
-				glScalef (- myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (- pIcon->fHeight * pIcon->fScale, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = 1. - fReflectRatio;
 				y0 = 0.;
 				x1 = 1.;
@@ -459,8 +461,9 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 			}
 			else
 			{
+				//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (- fOffsetY, 0., 0.);
-				glScalef (myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				glScalef (- pIcon->fHeight * pIcon->fScale, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 				x0 = fReflectRatio;
 				y0 = 0.;
 				x1 = 0.;
