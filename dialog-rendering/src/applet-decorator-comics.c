@@ -30,10 +30,12 @@
 #define CD_TIP_INNER_MARGIN 12
 #define CD_TIP_OUTER_MARGIN 25
 #define CD_TIP_BASE 25
+#define _CAIRO_DIALOG_COMICS_MARGIN 4
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
-	int iMargin = .5 * myConfig.iComicsLineWidth + (1. - sqrt (2) / 2) * myConfig.iComicsRadius;
+	int iMargin = .5 * myConfig.iComicsLineWidth + (1. - sqrt (2) / 2) * myConfig.iComicsRadius + _CAIRO_DIALOG_COMICS_MARGIN;  // on laisse qques pixels d'espace en plus tout autour.
+	g_print ("iMargin : %d\n", iMargin);
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;

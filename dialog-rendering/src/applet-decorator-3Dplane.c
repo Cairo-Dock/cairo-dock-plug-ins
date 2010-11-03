@@ -27,6 +27,20 @@
 #define DIALOG_REFLECT_SIZE 50
 #define DIALOG_INCLINATION 60.
 
+/*#[gtk-preference]
+[3D plane]
+
+#i+[0;10] Corner radius:
+corner = 0
+
+#i+[1;10] Border width of the plane :
+border = 1
+
+#C+ Colour of the plane's line :
+line color = 1.0; 1.0; 1.0; 1.0
+
+#C+ Colour of the plane :
+plane color = 1.0; 1.0; 1.0; 0.5*/
 
 void cd_decorator_set_frame_size_3Dplane (CairoDialog *pDialog)
 {

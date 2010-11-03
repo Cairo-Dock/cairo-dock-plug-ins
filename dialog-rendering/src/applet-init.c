@@ -61,7 +61,7 @@ CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
-	cd_decorator_register_3Dplane ();
+	///cd_decorator_register_3Dplane ();
 	cd_decorator_register_tooltip ();  // By ChAnGFu
 	cd_decorator_register_curly ();
 	
@@ -74,7 +74,7 @@ CD_APPLET_STOP_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_COMICS_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_MODERN_NAME);
-	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_3DPLANE_NAME);
+	///cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_3DPLANE_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_TOOLTIP_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_CURLY_NAME);
 	

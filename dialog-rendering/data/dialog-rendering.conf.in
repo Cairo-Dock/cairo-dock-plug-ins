@@ -23,22 +23,6 @@ line space = 2
 
 
 #[gtk-preference]
-[3D plane]
-
-#i+[0;10] Corner radius:
-corner = 0
-
-#i+[1;10] Border width of the plane :
-border = 1
-
-#C+ Colour of the plane's line :
-line color = 1.0; 1.0; 1.0; 1.0
-
-#C+ Colour of the plane :
-plane color = 1.0; 1.0; 1.0; 0.5
-
-
-#[gtk-preference]
 [Tooltip]
 
 #i+[0;20] Corner radius:
