@@ -51,10 +51,12 @@ static void _cd_slider_add_background_to_slide (CairoDockModuleInstance *myApple
 		if (myConfig.iBackgroundType == 2)
 		{
 			int iLineWidth = _get_frame_linewidth (myApplet);
-			double fRadius = 2. * iLineWidth;  /// a voir quelle valeur rend le mieux...
+			double fRadius = iLineWidth;  /// a voir quelle valeur rend le mieux...
 			cairo_save (myDrawContext);
-			cairo_translate (myDrawContext, fX, fY);
-			cairo_dock_draw_rounded_rectangle (myDrawContext, fRadius, iLineWidth, slide->fImgW - 0*(2*fRadius+iLineWidth), slide->fImgH);
+			cairo_translate (myDrawContext, fX - .5*iLineWidth, fY);
+			cairo_dock_draw_rounded_rectangle (myDrawContext, fRadius, iLineWidth, slide->fImgW - (2*fRadius), slide->fImgH - iLineWidth);
+			cairo_set_line_width (myDrawContext, iLineWidth);
+			cairo_stroke (myDrawContext);
 			cairo_restore (myDrawContext);
 		}
 		else
@@ -79,7 +81,7 @@ static void _cd_slider_add_background_to_slide_opengl(CairoDockModuleInstance *m
 			double fRadius = 0. * iLineWidth;  /// a voir quelle valeur rend le mieux...
 			glPushMatrix ();
 			glTranslatef (fX, fY, 0.);  // centre du rectangle.
-			cairo_dock_draw_rounded_rectangle_opengl (slide->fImgW - 0*(2*fRadius+iLineWidth), slide->fImgH, fRadius, iLineWidth, NULL);
+			cairo_dock_draw_rounded_rectangle_opengl (slide->fImgW, slide->fImgH, fRadius, iLineWidth, NULL);
 			glPopMatrix ();
 			glPolygonMode (GL_FRONT, GL_FILL);
 		}

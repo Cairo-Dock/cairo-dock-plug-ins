@@ -237,7 +237,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		GList *pApps = cairo_dock_fm_list_apps_for_file (myData.cSelectedImagePath);
 		if (pApps != NULL)
 		{
-			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GTK_STOCK_OPEN);
 			
 			cd_slider_free_apps_list (myApplet);
