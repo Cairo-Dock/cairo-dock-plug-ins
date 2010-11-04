@@ -726,14 +726,14 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 				if (pDock->container.bIsHorizontal)
 				{
 					cairo_translate (pCairoContext,
-						icon->fDrawX - my_diapo_simple_iconGapX/2,
-						icon->fDrawY - icon->iTextHeight);
+						floor (icon->fDrawX - my_diapo_simple_iconGapX/2),
+						floor (icon->fDrawY - icon->iTextHeight));
 				}
 				else
 				{
 					cairo_translate (pCairoContext,
-						icon->fDrawY - my_diapo_simple_iconGapX/2,
-						icon->fDrawX - icon->iTextHeight);
+						floor (icon->fDrawY - my_diapo_simple_iconGapX/2),
+						floor (icon->fDrawX - icon->iTextHeight));
 				}
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
@@ -776,8 +776,8 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 					else if (fOffsetX + icon->iTextWidth > pDock->container.iWidth)
 						fOffsetX = pDock->container.iWidth - icon->iTextWidth;
 					cairo_translate (pCairoContext,
-						fOffsetX,
-						icon->fDrawY - icon->iTextHeight);
+						floor (fOffsetX),
+						floor (icon->fDrawY - icon->iTextHeight));
 				}
 				else
 				{
@@ -787,8 +787,8 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 					else if (fOffsetX + icon->iTextWidth > pDock->container.iHeight)
 						fOffsetX = pDock->container.iHeight - icon->iTextWidth;
 					cairo_translate (pCairoContext,
-						fOffsetX,
-						icon->fDrawX - icon->iTextHeight);
+						floor (fOffsetX),
+						floor (icon->fDrawX - icon->iTextHeight));
 				}
 				cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
