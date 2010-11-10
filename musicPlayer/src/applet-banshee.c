@@ -561,7 +561,7 @@ void cd_musicplayer_register_banshee_handler (void)
 	pBanshee->get_cover = NULL;
 	pBanshee->cCoverDir = g_strdup_printf ("%s/.cache/media-art", g_getenv ("HOME"));
 	
-	pBanshee->appclass = "banshee";  // pffff
+	pBanshee->appclass = "banshee";  // en fait la vraie classe est plus compliquee (Mono oblige), mais le dock sait extraire ca.
 	pBanshee->launch = "banshee";
 	pBanshee->name = "Banshee";
 	pBanshee->cMprisService = "org.bansheeproject.Banshee";

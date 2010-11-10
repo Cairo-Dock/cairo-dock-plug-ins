@@ -35,7 +35,7 @@ void cd_musicplayer_register_exaile3_handler (void)
 {
 	MusicPlayerHandeler *pExaile3 = cd_mpris_new_handler ();
 	pExaile3->cMprisService = "org.mpris.exaile";
-	pExaile3->appclass = "exaile.py";  // les classes sont passees en minuscule par le dock.
+	pExaile3->appclass = "exaile";  // en vrai "Exaile.py", mais le dock tronque les extensions et passe tout en minuscule.
 	pExaile3->launch = "exaile";
 	pExaile3->name = "Exaile 0.3";
 	pExaile3->iPlayer = MP_EXAILE3;

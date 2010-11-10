@@ -43,12 +43,16 @@ CD_APPLET_ON_CLICK_BEGIN
 					8000.,
 					myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 			else
+			{
+				gchar *cPath = g_filename_from_uri (myConfig.cDirPath, NULL, NULL);
 				cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n%s",
 					myIcon, myContainer,
 					4000.,
 					myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-					myConfig.cDirPath,
+					cPath ? cPath : myConfig.cDirPath,
 					D_("Empty or unreadable folder."));
+				g_free (cPath);
+			}
 		}
 		else
 			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).

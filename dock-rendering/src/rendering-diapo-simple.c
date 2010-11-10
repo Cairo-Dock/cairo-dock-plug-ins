@@ -826,10 +826,12 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
 	Icon* icon;
 	GList* ic, *pointed_ic=NULL;
-	int i, x, y;
-	for (ic = pDock->icons, i = 0; ic != NULL; ic = ic->next, i++)
+	int i=0, x, y;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+			continue;
 		
 		// position sur la grille.
 		_get_gridXY_from_index(nRowsX, i, &x, &y);
@@ -889,9 +891,10 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		
 		// On affecte tous les parametres qui n'ont pas été défini précédement
 		icon->fPhase = 0.;
-		icon->fOrientation = 0 * 2. * G_PI * pDock->fFoldingFactor;
+		icon->fOrientation = 0.;  // 2. * G_PI * pDock->fFoldingFactor;
 		icon->fWidthFactor = icon->fHeightFactor = (pDock->fFoldingFactor > .7 ? (1 - pDock->fFoldingFactor) / .3 : 1.);
-		//icon->fWidthFactor = icon->fHeightFactor = 1.;
+		
+		i ++;
 	}
 	return (pointed_ic == NULL ? NULL : pointed_ic->data);
 }
