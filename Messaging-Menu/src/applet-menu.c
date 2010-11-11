@@ -30,6 +30,12 @@
 #include "dbus-data.h"
 #include "applet-menu.h"
 
+#define M_PI G_PI
+#define RIGHT_LABEL_FONT_SIZE 12
+#define RIGHT_LABEL_RADIUS 20
+
+static GtkSizeGroup * indicator_right_group = NULL;
+
   //////////////////////
  // APPLICATION ITEM //
 //////////////////////
@@ -59,7 +65,126 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 		}
 	}
 
+	if (!g_strcmp0(prop, APPLICATION_MENUITEM_PROP_RUNNING)) {
+		/* TODO: should hide/show the triangle live if the menu was open.
+		   In practice, this is rarely needed. */
+	}
+
 	return;
+}
+
+/* Draws a triangle on the left, using fg[STATE_TYPE] color. */
+static gboolean
+application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
+{
+	GtkStyle *style;
+	cairo_t *cr;
+	int x, y, arrow_width, arrow_height;
+
+	if (!GTK_IS_WIDGET (widget)) return FALSE;
+	if (!DBUSMENU_IS_MENUITEM (data)) return FALSE;
+
+	/* render the triangle indicator only if the application is running */
+	if (! dbusmenu_menuitem_property_get_bool (DBUSMENU_MENUITEM(data), APPLICATION_MENUITEM_PROP_RUNNING))
+		return FALSE;;
+
+	/* get style */
+	style = gtk_widget_get_style (widget);
+
+	/* set arrow position / dimensions */
+	arrow_width = 5; /* the pixel-based reference triangle is 5x9 */
+	arrow_height = 9;
+	x = widget->allocation.x;
+	y = widget->allocation.y + widget->allocation.height/2.0 - (double)arrow_height/2.0;
+
+	/* initialize cairo drawing area */
+	cr = (cairo_t*) gdk_cairo_create (widget->window);
+
+	/* set line width */	
+	cairo_set_line_width (cr, 1.0);
+
+	/* cairo drawing code */
+	cairo_move_to (cr, x, y);
+	cairo_line_to (cr, x, y + arrow_height);
+	cairo_line_to (cr, x + arrow_width, y + (double)arrow_height/2.0);
+	cairo_close_path (cr);
+	cairo_set_source_rgb (cr, style->fg[gtk_widget_get_state(widget)].red/65535.0,
+	                          style->fg[gtk_widget_get_state(widget)].green/65535.0,
+	                          style->fg[gtk_widget_get_state(widget)].blue/65535.0);
+	cairo_fill (cr);
+
+	/* remember to destroy cairo context to avoid leaks */
+	cairo_destroy (cr);
+
+	return FALSE;
+}
+
+/* Custom function to draw rounded rectangle with max radius */
+static void
+custom_cairo_rounded_rectangle (cairo_t *cr,
+                                double x, double y, double w, double h)
+{
+	double radius = MIN (w/2.0, h/2.0);
+
+	cairo_move_to (cr, x+radius, y);
+	cairo_arc (cr, x+w-radius, y+radius, radius, M_PI*1.5, M_PI*2);
+	cairo_arc (cr, x+w-radius, y+h-radius, radius, 0, M_PI*0.5);
+	cairo_arc (cr, x+radius,   y+h-radius, radius, M_PI*0.5, M_PI);
+	cairo_arc (cr, x+radius,   y+radius,   radius, M_PI, M_PI*1.5);
+}
+
+/* Draws a rounded rectangle with text inside. */
+static gboolean
+numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
+{
+	GtkStyle *style;
+	cairo_t *cr;
+	double x, y, w, h;
+	PangoLayout * layout;
+	gint font_size = RIGHT_LABEL_FONT_SIZE;
+
+	if (!GTK_IS_WIDGET (widget)) return FALSE;
+
+	/* get style */
+	style = gtk_widget_get_style (widget);
+
+	/* set arrow position / dimensions */
+	w = widget->allocation.width;
+	h = widget->allocation.height;
+	x = widget->allocation.x;
+	y = widget->allocation.y;
+
+	layout = gtk_label_get_layout (GTK_LABEL(widget));
+
+	/* This does not work, don't ask me why but font_size is 0.
+	 * I wanted to use a dynamic font size to adjust the padding on left/right edges
+	 * of the rounded rectangle. Andrea Cimitan */
+	/* const PangoFontDescription * font_description = pango_layout_get_font_description (layout);
+	font_size = pango_font_description_get_size (font_description); */
+
+	/* initialize cairo drawing area */
+	cr = (cairo_t*) gdk_cairo_create (widget->window);
+
+	/* set line width */	
+	cairo_set_line_width (cr, 1.0);
+
+	cairo_set_fill_rule (cr, CAIRO_FILL_RULE_EVEN_ODD);
+
+	/* cairo drawing code */
+	custom_cairo_rounded_rectangle (cr, x - font_size/2.0, y, w + font_size, h);
+
+	cairo_set_source_rgba (cr, style->fg[gtk_widget_get_state(widget)].red/65535.0,
+	                           style->fg[gtk_widget_get_state(widget)].green/65535.0,
+	                           style->fg[gtk_widget_get_state(widget)].blue/65535.0, 0.5);
+
+	cairo_move_to (cr, x, y);
+	pango_cairo_layout_path (cr, layout);
+	cairo_fill (cr);
+
+	/* remember to destroy cairo context to avoid leaks */
+        cairo_destroy (cr);
+
+	return TRUE;
 }
 
 /* Builds a menu item representing a running application in the
@@ -67,8 +192,10 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 static gboolean
 new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
-	//g_print ("%s ()\n", __func__);
+	g_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM(gmi), TRUE);
 
 	gint padding = 4;
 	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
@@ -80,13 +207,15 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
 
 	GtkWidget * icon = gtk_image_new_from_icon_name(dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_ICON), GTK_ICON_SIZE_MENU);
-	gtk_widget_set_size_request(icon, width, height);
-	gtk_misc_set_alignment(GTK_MISC(icon), 0.0, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), icon, FALSE, FALSE, padding);
+	gtk_widget_set_size_request(icon, width
+								+ 5 /* ref triangle is 5x9 pixels */
+								+ 2 /* padding */,
+								height);
+	gtk_misc_set_alignment(GTK_MISC(icon), 1.0 /* right aligned */, 0.5);
+	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(gmi), icon);
 	gtk_widget_show(icon);
 
 	/* Application name in a label */
-	//g_print ("  name : %s\n", dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
 	GtkWidget * label = gtk_label_new(dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, padding);
@@ -96,24 +225,16 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gtk_container_add(GTK_CONTAINER(gmi), hbox);
 	gtk_widget_show(hbox);
 
-	/* Build up the running icon */
-	GtkWidget * running_icon = gtk_image_new_from_icon_name("application-running", GTK_ICON_SIZE_MENU);
-	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(gmi), running_icon);
-	gtk_widget_show(running_icon);
-
-	/* Make sure it always appears */
-	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM(gmi), TRUE);
-
 	/* Attach some of the standard GTK stuff */
 	dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client), newitem, gmi, parent);
 
 	/* Make sure we can handle the label changing */
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_prop_change_cb), label);
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_icon_change_cb), icon);
+	g_signal_connect_after(G_OBJECT (gmi), "expose_event", G_CALLBACK (application_triangle_draw_cb), newitem);
 
 	return TRUE;
 }
-
 
   ////////////////////
  // INDICATOR ITEM //
@@ -131,7 +252,6 @@ struct _indicator_item_t {
 static void
 indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, indicator_item_t * mi_data)
 {
-	//g_print ("%s (%s)\n", __func__, prop);
 	if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_LABEL)) {
 		/* Set the main label */
 		gtk_label_set_text(GTK_LABEL(mi_data->label), g_value_get_string(value));
@@ -167,6 +287,10 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 			if (resized_pixbuf != pixbuf) {
 				g_object_unref(resized_pixbuf);
 			}
+
+			gtk_widget_show(mi_data->icon);
+		} else {
+			gtk_widget_hide(mi_data->icon);
 		}
 	}
 
@@ -180,7 +304,6 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 static gboolean
 new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
-	//g_print ("%s ()\n", __func__);
 	g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
 	g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 	/* Note: not checking parent, it's reasonable for it to be NULL */
@@ -190,6 +313,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_menu_item_new());
 
 	gint padding = 4;
+	gint font_size = RIGHT_LABEL_FONT_SIZE;
 	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
 
 	GtkWidget * hbox = gtk_hbox_new(FALSE, 0);
@@ -228,7 +352,10 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	}
 	gtk_misc_set_alignment(GTK_MISC(mi_data->icon), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->icon, FALSE, FALSE, padding);
-	gtk_widget_show(mi_data->icon);
+
+	if (pixbuf != NULL) {
+		gtk_widget_show(mi_data->icon);
+	}
 
 	/* Label, probably a username, chat room or mailbox name */
 	mi_data->label = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
@@ -239,9 +366,13 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	/* Usually either the time or the count on the individual
 	   item. */
 	mi_data->right = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_RIGHT));
-	gtk_size_group_add_widget(myData.indicator_right_group, mi_data->right);
+	gtk_size_group_add_widget(indicator_right_group, mi_data->right);
+	/* install extra decoration overlay */
+	g_signal_connect (G_OBJECT (mi_data->right), "expose_event",
+	                  G_CALLBACK (numbers_draw_cb), NULL);
+
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding);
+	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding + font_size/2.0);
 	gtk_widget_show(mi_data->right);
 
 	gtk_container_add(GTK_CONTAINER(gmi), hbox);
@@ -254,7 +385,6 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 
 	return TRUE;
 }
-
 
   ///////////////
  // MAKE MENU //

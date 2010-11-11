@@ -45,8 +45,8 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,
-		INDICATOR_MESSAGES_SERVICE_DBUS_OBJECT,
-		INDICATOR_MESSAGES_SERVICE_DBUS_INTERFACE,
+		INDICATOR_MESSAGES_DBUS_SERVICE_OBJECT,
+		INDICATOR_MESSAGES_DBUS_SERVICE_INTERFACE,
 		INDICATOR_MESSAGES_DBUS_OBJECT);	
 	myData.pIndicator->on_connect 			= cd_messaging_on_connect;
 	myData.pIndicator->on_disconnect 		= cd_messaging_on_disconnect;
