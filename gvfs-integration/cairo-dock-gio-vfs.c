@@ -29,11 +29,7 @@
 #include <gio/gio.h>
 #define G_VFS_DBUS_DAEMON_NAME "org.gtk.vfs.Daemon"
 
-#include <cairo-dock-launcher-manager.h>
-#include <cairo-dock-launcher-factory.h>
-#include <cairo-dock-log.h>
-#include <cairo-dock-desktop-file-factory.h>
-#include <cairo-dock-dbus.h>
+#include <cairo-dock.h>
 
 static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI);
 
@@ -626,7 +622,7 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	return pIconsList;
 }
 
-static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
+static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -705,7 +701,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-			icon->iType = iNewIconsType;
+			icon->iGroup = iNewIconsGroup;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
 			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
 			
@@ -847,7 +843,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			NULL,
 			iOrder++);
 		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-		icon->iType = iNewIconsType;
+		icon->iGroup = iNewIconsGroup;
 		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
 		icon->iVolumeID = 0;
 		

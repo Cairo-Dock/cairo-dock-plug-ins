@@ -161,7 +161,7 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 	//g_print ("%s (%.2f)\n", __func__, f);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	CD_LEAVE_IF_FAIL (iHeight != 0, TRUE);
+	CD_APPLET_LEAVE_IF_FAIL (iHeight != 0, TRUE);
 	
 	if (myData.pBackgroundSurface != NULL)
 	{
