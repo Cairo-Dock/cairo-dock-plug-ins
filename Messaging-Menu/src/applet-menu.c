@@ -392,6 +392,8 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 
 void cd_messaging_add_menu_handler (DbusmenuGtkClient * client)
 {
+	indicator_right_group = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
+	
 	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), INDICATOR_MENUITEM_TYPE, new_indicator_item);
 	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), APPLICATION_MENUITEM_TYPE, new_application_item);
 }
