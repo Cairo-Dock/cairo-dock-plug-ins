@@ -83,7 +83,7 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
+	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_LAUNCHER && CAIRO_DOCK_IS_APPLI (pIcon) && ! (iButtonState & GDK_SHIFT_MASK))
 		iType = CAIRO_DOCK_APPLI;
 	/**if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
@@ -108,7 +108,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 	CDIconEffectsEnum iEffect = -1;
 	if (strcmp (cAnimation, "default") == 0)
 	{
-		CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
+		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
 		iEffect = myConfig.iEffectsOnClick[iType][0];
 	}
 	else

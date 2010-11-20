@@ -36,7 +36,7 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iGroup == pNewIcon->iGroup)
+		if (pIcon->iType == pNewIcon->iType)
 			break;
 	}
 	GList *ic0 = ic;
@@ -58,7 +58,7 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 	for (ic = ic0; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iGroup != pNewIcon->iGroup)
+		if (pIcon->iType != pNewIcon->iType)
 			break;
 		if (cairo_dock_compare_icons_name (pNewIcon, pIcon) < 0)
 		{
@@ -123,7 +123,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				cd_warning ("couldn't create an icon for this network");
 				return ;
 			}
-			pNewIcon->iGroup = CD_NETWORK_GROUP;
+			pNewIcon->iType = CD_NETWORK_GROUP;
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
@@ -163,7 +163,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				cd_warning ("couldn't create an icon for this network");
 				return ;
 			}
-			pNewIcon->iGroup = CD_NETWORK_GROUP;
+			pNewIcon->iType = CD_NETWORK_GROUP;
 			
 			//\_______________________ on remplace l'icone si des choses ont change.
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))

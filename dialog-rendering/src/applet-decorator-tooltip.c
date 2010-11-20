@@ -68,7 +68,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		iDeltaIconX = pDialog->container.iWidth/2 - (fRadius + fLineWidth / 2);
 	else if (iDeltaIconX < - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2)
 		iDeltaIconX = - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2;
-	//g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
 	
 	int iArrowShift;
 	if (iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
@@ -76,7 +76,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		iArrowShift = MAX (0, fabs (iDeltaIconX) - _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT * .577 - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2);  // tan(30)
 		if (iDeltaIconX < 0)
 			iArrowShift = - iArrowShift;
-		//g_print ("iArrowShift: %d\n", iArrowShift);
+		g_print ("iArrowShift: %d\n", iArrowShift);
 		
 	}
 	else

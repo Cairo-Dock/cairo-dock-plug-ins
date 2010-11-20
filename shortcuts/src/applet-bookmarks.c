@@ -138,7 +138,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 							cRealURI,
 							NULL,
 							0);
-						pNewIcon->iGroup = CD_BOOKMARK_GROUP;
+						pNewIcon->iType = CD_BOOKMARK_GROUP;
 						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
 						pNewIcon->iLastCheckTime = iTime;
@@ -168,7 +168,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				for (ic = pIconsList; ic != NULL; ic = ic->next)
 				{
 					icon = ic->data;
-					if (icon->iGroup == CD_BOOKMARK_GROUP)
+					if (icon->iType == CD_BOOKMARK_GROUP)
 					{
 						if (icon->iLastCheckTime != iTime)
 						{
@@ -398,7 +398,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 					cRealURI,
 					NULL,
 					fCurrentOrder ++);
-				pNewIcon->iGroup = CD_BOOKMARK_GROUP;
+				pNewIcon->iType = CD_BOOKMARK_GROUP;
 				pNewIcon->cBaseURI = cOneBookmark;
 				pNewIcon->iVolumeID = iVolumeID;
 				pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);

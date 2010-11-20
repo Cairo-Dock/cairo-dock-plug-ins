@@ -150,6 +150,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
 
 
@@ -161,7 +162,6 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 	//g_print ("%s (%.2f)\n", __func__, f);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	CD_APPLET_LEAVE_IF_FAIL (iHeight != 0, TRUE);
 	
 	if (myData.pBackgroundSurface != NULL)
 	{
@@ -174,7 +174,7 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 		cairo_dock_set_icon_surface_full (myDrawContext, myData.pBackgroundSurface, 1., 1., myIcon, myContainer);
 	}
 	
-	double dx, dy, fScale;
+	double dx, dy, fScale=0;
 	if (myData.pOldSurface != NULL && 1-f > .01)
 	{
 		dx = (iWidth - myData.iOldTextWidth)/2;
@@ -182,12 +182,10 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 		if (dy < 0)  // peut arriver si une police de la taille de l'icone n'existe pas.
 		{
 			dy = 0;
-			fScale = (double)iHeight / myData.iOldTextHeight;
+			fScale = 1.*iHeight / myData.iOldTextHeight;
 			cairo_save (myDrawContext);
 			cairo_scale (myDrawContext, 1., fScale);  // a priori la difference n'est pas enorme, on laisse donc remplit en largeur.
 		}
-		else
-			fScale=0;
 		cairo_set_source_surface (
 			myDrawContext,
 			myData.pOldSurface,
@@ -204,12 +202,10 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 		if (dy < 0)
 		{
 			dy = 0;
-			fScale = (double)iHeight / myData.iCurrentTextHeight;
+			fScale = 1.*iHeight / myData.iCurrentTextHeight;
 			cairo_save (myDrawContext);
 			cairo_scale (myDrawContext, 1., fScale);
 		}
-		else
-			fScale=0;
 		cairo_set_source_surface (
 			myDrawContext,
 			myData.pCurrentSurface,
@@ -221,4 +217,5 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
+	//return TRUE;
 }
