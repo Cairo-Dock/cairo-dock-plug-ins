@@ -35,7 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		if (*myConfig.cDirPath == '~')
 		{
 			gchar *tmp = myConfig.cDirPath;
-			myConfig.cDirPath = g_strdup_printf ("%s/%s", g_getenv ("HOME"), myConfig.cDirPath);
+			myConfig.cDirPath = g_strdup_printf ("%s%s", g_getenv ("HOME"), myConfig.cDirPath+1);
 			g_free (tmp);
 		}
 		if (*myConfig.cDirPath == '/')
