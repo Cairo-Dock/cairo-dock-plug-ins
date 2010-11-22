@@ -142,6 +142,9 @@ video site = 1
 #l[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
 file site = 1
 
+#b Use only sites for files hosting?
+only file type=false
+
 #v
 sep_sites=
 

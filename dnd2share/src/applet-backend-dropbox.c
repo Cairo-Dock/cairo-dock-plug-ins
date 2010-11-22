@@ -60,7 +60,7 @@ static void upload (const gchar *cFilePath)
 		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", myConfig.cDropboxDir, cFileName);
 	}
 	else
-		cCommand = g_strdup_printf ("dropbox puburl \"Dropbox/Public/%s\"", cFileName); 
+		cCommand = g_strdup_printf ("dropbox puburl \"%s/Dropbox/Public/%s\"", getenv("HOME"), cFileName); 
 	
 	cd_debug ("commande dropbox2 : %s", cCommand);
 	g_free (cFileName);

@@ -64,6 +64,7 @@ struct _AppletConfig {
 	guint iNbItems;
 	gint iLimitRate;
 	gboolean bkeepCopy;
+	gboolean bUseOnlyFileType;
 	gboolean bDisplayLastImage;
 	gint iPreferedSite[CD_NB_FILE_TYPES];
 	gchar *cIconAnimation;

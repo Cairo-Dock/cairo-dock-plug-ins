@@ -181,7 +181,7 @@ endif()
 
 ############# DND2SHARE #################
 set (GETTEXT_DND2SHARE ${GETTEXT_PLUGINS})
-set (VERSION_DND2SHARE "1.0.3")
+set (VERSION_DND2SHARE "1.0.4")
 set (PACKAGE_DND2SHARE "cd-dnd2share")
 set (dnd2sharedatadir "${pluginsdatadir}/dnd2share")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dnd2share/data/dnd2share.conf.in ${CMAKE_CURRENT_BINARY_DIR}/dnd2share/data/dnd2share.conf)
