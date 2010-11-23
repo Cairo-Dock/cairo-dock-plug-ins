@@ -34,7 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDisplayLastImage = myConfig.bkeepCopy && CD_CONFIG_GET_BOOLEAN ("Configuration", "display last image");
 	myConfig.iLimitRate = CD_CONFIG_GET_INTEGER ("Configuration", "limit rate");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
-	myConfig.bUseOnlyFileType = CD_CONFIG_GET_BOOLEAN ("Configuration", "only file type");
+	myConfig.bUseOnlyFileType = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "only file type", FALSE);
 	myConfig.iPreferedSite[CD_TYPE_TEXT] = CD_CONFIG_GET_INTEGER ("Configuration", "text site");
 	myConfig.iPreferedSite[CD_TYPE_IMAGE] = CD_CONFIG_GET_INTEGER ("Configuration", "image site");
 	myConfig.iPreferedSite[CD_TYPE_VIDEO] = CD_CONFIG_GET_INTEGER ("Configuration", "video site");
