@@ -32,6 +32,14 @@ void cd_mail_create_mh_params( GKeyFile *pKeyFile, const gchar *pMailAccountName
 void cd_mail_create_maildir_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
 void cd_mail_create_gmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
 void cd_mail_create_feed_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_yahoo_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_hotmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_free_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_neuf_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_sfr_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_orange_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_uclouvain_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
+void cd_mail_create_skynet_params( GKeyFile *pKeyFile, const gchar *pMailAccountName );
 
 void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
@@ -40,6 +48,14 @@ void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile,
 void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_yahoo_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_hotmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_free_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_neuf_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_sfr_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_orange_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_uclouvain_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
+void cd_mail_retrieve_skynet_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 
 void cd_mail_init_accounts(CairoDockModuleInstance *myApplet);
 void cd_mail_free_account (CDMailAccount *pMailAccount);

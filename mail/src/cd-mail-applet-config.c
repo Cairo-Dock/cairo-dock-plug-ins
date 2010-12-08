@@ -29,10 +29,10 @@ typedef void (*cd_mail_fill_account)(CDMailAccount *mailaccount, GKeyFile *pKeyF
 typedef void (*cd_mail_create_account)( GKeyFile *pKeyFile, const gchar *pMailAccountName );
 
 struct storage_type_def {
-  const gchar * name;
-  const gchar * description;
-  cd_mail_fill_account pfillFunc;
-  cd_mail_create_account pcreateFunc;
+	const gchar * name;
+	const gchar * description;
+	cd_mail_fill_account pfillFunc;
+	cd_mail_create_account pcreateFunc;
 };
 
 static struct storage_type_def storage_tab[] = {
@@ -41,7 +41,15 @@ static struct storage_type_def storage_tab[] = {
 	{"mbox", "MBox", cd_mail_retrieve_mbox_params, cd_mail_create_mbox_params },
 	{"mh", "MH", cd_mail_retrieve_mh_params, cd_mail_create_mh_params },
 	{"maildir", "MailDir", cd_mail_retrieve_maildir_params , cd_mail_create_maildir_params},
-	{"gmail", "GMail", cd_mail_retrieve_gmail_params, cd_mail_create_gmail_params }
+	{"gmail", "GMail", cd_mail_retrieve_gmail_params, cd_mail_create_gmail_params },
+	{"yahoo", "Yahoo!", cd_mail_retrieve_yahoo_params, cd_mail_create_yahoo_params },
+	{"hotmail", "Hotmail / Live", cd_mail_retrieve_hotmail_params, cd_mail_create_hotmail_params },
+	{"free", "Free", cd_mail_retrieve_free_params, cd_mail_create_free_params },
+	{"neuf", "Neuf Télécom", cd_mail_retrieve_neuf_params, cd_mail_create_neuf_params },
+	{"sfr", "SFR", cd_mail_retrieve_sfr_params, cd_mail_create_sfr_params },
+	{"orange", "Orange", cd_mail_retrieve_orange_params, cd_mail_create_orange_params },
+	{"uclouvain", "UCLouvain", cd_mail_retrieve_uclouvain_params, cd_mail_create_uclouvain_params },
+	{"skynet", "Skynet (Belgacom)", cd_mail_retrieve_skynet_params, cd_mail_create_skynet_params }
 #if ( __WORDSIZE == 64 )
 /* in 64bit libetpan crashes with RSS, so... avoid it. */
 #warning "Compilation 64bits: avoiding RSS accounts"
@@ -357,12 +365,12 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 	GtkWidget *pMailTypesCombo = gtk_combo_box_new_text();
 	if( pMailTypesCombo )
 	{
-       guint j;
-        for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
-        {
-          gtk_combo_box_append_text( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
-          //gtk_widget_set_tooltip_text (pMenuItem, D_("description du type de compte"));
-        }
+		guint j;
+		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
+		{
+			gtk_combo_box_append_text( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
+			//gtk_widget_set_tooltip_text (pMenuItem, D_("description du type de compte"));
+		}
 	}
 	gtk_box_pack_start (GTK_BOX (pCustomWidgetBox),
 		pMailTypesCombo,
@@ -387,8 +395,8 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 
 	//\____________ On cree un bouton pour ajouter un compte mail et on l'ajoute dans notre container.
 	GtkWidget *pButton = gtk_button_new_from_stock (GTK_STOCK_ADD);
-    g_object_set_data (G_OBJECT (pButton), "MailTypesCombo", pMailTypesCombo); // associer le bouton add avec le combo
-    g_object_set_data (G_OBJECT (pButton), "MailNameEntry", pEntry); // associer le bouton add avec le texte du nom
+	g_object_set_data (G_OBJECT (pButton), "MailTypesCombo", pMailTypesCombo); // associer le bouton add avec le combo
+	g_object_set_data (G_OBJECT (pButton), "MailNameEntry", pEntry); // associer le bouton add avec le texte du nom
 	g_signal_connect (G_OBJECT (pButton),
 		"clicked",
 		G_CALLBACK (_cd_mail_add_account),
