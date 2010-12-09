@@ -36,13 +36,13 @@
 	pMailAccount->icon = pIcon;
 
 // Translation Hack:
-const char *strings_to_translate[19] = {N_("Server address:"), N_("myLogin"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account")};
+const char *strings_to_translate[20] = {N_("Server address:"), N_("myLogin"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account"), N_("Don't forget to enable IMAP (or POP) service from settings of your mail account.")};
 
 // Default parameters (to not copy these parameters each time)
 void _add_default_create_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "username", N_("myLogin"));
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:", NULL);
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:\n{Don't forget to enable IMAP (or POP) service from settings of your mail account.}", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "password", "p0 Password:", NULL);
