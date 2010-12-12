@@ -86,6 +86,7 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 		return FALSE;
 	
 	cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon, pContainer);  /// needs a function to redraw the label...
 	return TRUE;
 }
 
@@ -509,10 +510,10 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	}
 	
 	if (bUseMarkup)
-		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
 	if (bUseMarkup)
-		myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 	
 	g_free (cImageFilePath);
 	if (cButtonsImage)
@@ -898,9 +899,9 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 	if (cairo_dock_strings_differ (pIcon->cClass, cClass))
 	{
 		if (pIcon->cClass != NULL)
-			cairo_dock_deinhibate_class (pIcon->cClass, pIcon);
+			cairo_dock_deinhibite_class (pIcon->cClass, pIcon);
 		if (cClass != NULL)
-			cairo_dock_inhibate_class (cClass, pIcon);
+			cairo_dock_inhibite_class (cClass, pIcon);
 		if (! cairo_dock_is_loading ())
 		{
 			CairoContainer *pContainer = pInstance->pContainer;

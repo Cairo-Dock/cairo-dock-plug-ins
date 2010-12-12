@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
 # This is a part of the external demo applet for Cairo-Dock
-#
 # Copyright : (C) 2010 by Fabounet
 # E-mail : fabounet@glx-dock.org
-#
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,166 +15,143 @@
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
-### The name of this applet is "demo_python"; it is placed in a folder named "demo_python", with a file named "auto-load.conf" which describes it.
-### Copy this folder into ~/.config/cairo-dock/third-party to let the dock register it automatically.
-### In the folder we have :
-### "demo_python" (the executable script), "demo_python.conf" (the default config file), "auto-load.conf" (the file describing our applet), "icon" (the default icon of the applet) and "preview" (a preview of this applet)
+# The name of this applet is "demo_python"; it is placed in a folder named "demo_python", with a file named "auto-load.conf" which describes it.
+# Copy this folder into ~/.config/cairo-dock/third-party to let the dock register it automatically.
+# In the folder we have :
+# - "demo_python"       : the executable script, without extension
+# - "demo_python.conf"  : the default config file
+# - "auto-load.conf"    : the file describing our applet
+# - "icon"              : the default icon of the applet (optionnal)
+# - "preview"           : a preview of this applet (optionnal)
 
 ### This very simple applet features a counter from 0 to iMaxValue It displays the counter on the icon with a gauge and a quick info.
 ### Scroll on the icon increase or decrease the counter.
 ### The menu offers the possibility to set some default value.
-### Left click on the icon will set a random value.
-### Middle click on the icon will raise a dialog asking you to set the value you want.
+### Left-click on the icon will set a random value.
+### Middle-click on the icon will raise a dialog asking you to set the value you want.
 ### If you drop some text on the icon, it will be used as the icon's label.
 
 ####################
 ### dependancies ###
 ####################
-import sys
-import os.path
-import ConfigParser
 import random
-import gobject
-import glib
-import dbus
-from dbus.mainloop.glib import DBusGMainLoop
-
-applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
-DBusGMainLoop(set_as_default=True)
-
-##################################
-### callbacks on the main icon ###
-##################################
-def action_on_click(iState):
-	print ">>> clic !"
-	set_counter(random.randint(0,myApplet.config['iMaxValue']))
-
-def action_on_middle_click():
-	print ">>> middle clic !"
-	myApplet.icon.AskValue("Set the value you want", myApplet.count, myApplet.config['iMaxValue']);
-
-def action_on_build_menu():
-	print ">>> build menu !"
-	myApplet.icon.PopulateMenu(["set min value", "set medium value", "set max value"])
-	
-def action_on_menu_select(iNumEntry):
-	print ">>> choice",iNumEntry,"has been selected !"
-	if iNumEntry == 0:
-		myApplet.set_counter(0)
-	elif iNumEntry == 1:
-		myApplet.set_counter(myApplet.config['iMaxValue']/2)
-	elif iNumEntry == 2:
-		myApplet.set_counter(myApplet.config['iMaxValue'])
-
-def action_on_scroll(bScrollUp):
-	print ">>> scroll !"
-	if bScrollUp:
-		count = min(myApplet.config['iMaxValue'], myApplet.count+1)
-	else:
-		count = max(0, myApplet.count-1)
-	myApplet.set_counter(count)
-
-def action_on_drop_data(cReceivedData):
-	print ">>> received",cReceivedData
-	myApplet.icon.SetLabel(cReceivedData)
-
-def action_on_answer(answer):
-	print ">>> answer :",answer
-	myApplet.set_counter(int (answer))
-
-##################################
-### callbacks on the sub-icons ###
-##################################
-def on_click_sub_icon(iState, cIconID):
-	print "clic on the sub-icon '"+cIconID+"' !"
-
-###############################
-### callbacks on the applet ###
-###############################
-def action_on_stop():
-	print ">>> our module is stopped"
-	myApplet.end()
-	loop.quit()
-
-def action_on_reload(bConfigHasChanged):
-	print ">>> our module is reloaded"
-	if bConfigHasChanged:
-		print ">>>  and our config has changed"
-		myApplet.get_config()
-		myApplet.icon.AddDataRenderer("gauge", 1, myApplet.config['cTheme'])
-		myApplet.icon.RenderValues([float(myApplet.count)/myApplet.config['iMaxValue']])
-		myApplet.sub_icons.RemoveSubIcon("any")
-		myApplet.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"])
+from CDApplet import CDApplet
 
 ####################
 ### Applet class ###
 ####################
-class Applet:
+class Applet(CDApplet):
 	def __init__(self):
-		self.icon = None
-		self.sub_icons = None
-		self.config = {}
-		self.conf_file = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf")  # path to the conf file of our applet.
+		# define internal variables
 		self.count = 0
+		# call high-level init
+		CDApplet.__init__(self)
 	
-	def get_config(self):
-		keyfile = ConfigParser.RawConfigParser()
-		keyfile.read(self.conf_file)
-		self.config['cTheme'] 		= keyfile.get('Configuration', 'theme')
-		self.config['iMaxValue'] 	= keyfile.getint('Configuration', 'max value')
-		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
-	
-	def begin(self):
-		self.connect_to_dock()
-		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
-		self.icon.SetQuickInfo(format(self.count, "d"))  # write the counter value on the icon.
-		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
-		self.icon.RenderValues([float(self.count)/self.config['iMaxValue']])  # draw the gauge with an initial value.
-		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
-		self.sub_icons.RemoveSubIcon("id2")  # remove the 2nd icon of our sub-dock.
-		self.sub_icons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
-		self.sub_icons.SetQuickInfo("3", "id3")
-		self.sub_icons.SetQuickInfo("4", "id4")
-	
-	def end(self):
-		pass
-	
-	def connect_to_dock(self):
-		# get our applet on the bus.
-		applet_path = "/org/cairodock/CairoDock/"+applet_name  # path where our object is stored on the bus.
-		bus = dbus.SessionBus()
-		applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
-		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our applet and also our icon inside the dock or a desklet.
-		# we'll have a sub-dock, so we also get the sub-icons object
-		sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
-		self.sub_icons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
-		# connect to signals.
-		self.icon.connect_to_signal("on_click", action_on_click)  # when the user left-clicks on our icon.
-		self.icon.connect_to_signal("on_middle_click", action_on_middle_click)  # when the user middle-clicks on our icon.
-		self.icon.connect_to_signal("on_build_menu", action_on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
-		self.icon.connect_to_signal("on_menu_select", action_on_menu_select)  # when the user selects an entry of this menu.
-		self.icon.connect_to_signal("on_scroll", action_on_scroll)  # when the user scroll up or down on our icon.
-		self.icon.connect_to_signal("on_drop_data", action_on_drop_data)  # when the user drops something on our icon.
-		#myApplet.icon.connect_to_signal("on_init_module", action_on_init)
-		self.icon.connect_to_signal("on_answer", action_on_answer)  # when the user answer a question.
-		self.icon.connect_to_signal("on_stop_module", action_on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
-		self.icon.connect_to_signal("on_reload_module", action_on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
-		self.sub_icons.connect_to_signal("on_click_sub_icon", on_click_sub_icon)  # when the user left-clicks on a sub-icon.
+	##### private methods #####
 	
 	def set_counter(self,count):
 		self.count = count
 		percent = float(self.count)/self.config['iMaxValue']
 		self.icon.RenderValues([percent])
 		self.icon.SetQuickInfo(format(self.count, "d"))
-
+	
+	##### applet definition #####
+	
+	def get_config(self,keyfile):
+		print "*** get config"
+		self.config['cTheme'] 		= keyfile.get('Configuration', 'theme')
+		self.config['iMaxValue'] 	= keyfile.getint('Configuration', 'max value')
+		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
+	
+	def end(self):
+		print "*** end of demo_python"
+	
+	def begin(self):
+		print "*** begin"
+		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
+		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
+		self.set_counter(0)  # set the initial value of our counter.
+		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "trash", "id2", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])  # add 4 icons in our sub-dock. The tab contains triplets of {label, image, ID}.
+		self.sub_icons.RemoveSubIcon("id2")  # remove the 2nd icon of our sub-dock.
+		self.sub_icons.SetQuickInfo("1", "id1")  # write the ID on each icon of the sub-dock.
+		self.sub_icons.SetQuickInfo("3", "id3")
+		self.sub_icons.SetQuickInfo("4", "id4")
+		self.icon.BindShortkey(["<Control>F9"])  # bind to ctrl+F9
+	
+	def reload(self):
+		print "*** reload"
+		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])
+		self.icon.RenderValues([float(self.count)/self.config['iMaxValue']])
+		self.sub_icons.RemoveSubIcon("any")
+		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"])
+	
+	##### callbacks #####
+	
+	def on_click(self,iState):
+		print "*** click"
+		self.set_counter(random.randint(0,self.config['iMaxValue']))
+	
+	def on_middle_click(self):
+		print "*** middle click"
+		dialog_attributes = {
+			"icon" : "stock_properties",
+			"message" : "Set the value you want",
+			"buttons" : "ok;cancel"}
+		widget_attributes = {
+			"widget-type" : "scale",
+			"max-value" : self.config['iMaxValue'],
+			"message" : "Set the value you want"}
+		
+		self.icon.PopupDialog(dialog_attributes, widget_attributes)
+	
+	def on_build_menu(self):
+		print "*** build menu"
+		items = [ {
+				"label": "set min value",
+				"icon" : "gtk-zoom-out",
+				"id"   : 1
+			}, {
+				"label": "set medium value",
+				"icon" : "gtk-zoom-fit",
+				"id"   : 2 
+			}, {
+				"label": "set max value",
+				"icon" : "gtk-zoom-in",
+				"id"   : 3
+			} ]
+		self.icon.AddMenuItems(items)
+		
+	def on_menu_select(self,iNumEntry):
+		print "*** choice",iNumEntry,"has been selected !"
+		if iNumEntry == 1:
+			self.set_counter(0)
+		elif iNumEntry == 2:
+			self.set_counter(self.config['iMaxValue']/2)
+		elif iNumEntry == 3:
+			self.set_counter(self.config['iMaxValue'])
+	
+	def on_scroll(self,bScrollUp):
+		print "*** scroll !"
+		if bScrollUp:
+			count = min(self.config['iMaxValue'], self.count+1)
+		else:
+			count = max(0, self.count-1)
+		self.set_counter(count)
+	
+	def on_drop_data(self,cReceivedData):
+		print "*** received",cReceivedData
+		self.icon.SetLabel(cReceivedData)
+	
+	def on_answer_dialog(self,button, answer):
+		print "*** answer dialog :",button, answer
+		self.set_counter(int (answer))
+	
+	def on_shortkey(self,key):
+		print "*** shortkey :",key
+	
+	
 ############
 ### main ###
 ############
 if __name__ == '__main__':
-	myApplet = Applet()
-	myApplet.get_config()
-	myApplet.begin()
-	loop = gobject.MainLoop()
-	loop.run()
-	print ">>> bye"
-	sys.exit(0)
+	Applet().run()

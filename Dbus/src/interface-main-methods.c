@@ -49,7 +49,7 @@ gboolean cd_dbus_main_reboot(dbusMainObject *pDbusCallback, GError **error)
 {
 	if (! myConfig.bEnableReboot)
 		return FALSE;
-	cairo_dock_read_conf_file (g_cConfFile, g_pMainDock);
+	cairo_dock_load_current_theme ();
 	return TRUE;
 }
 
@@ -72,10 +72,12 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar 
 	}
 	else
 	{
-		CairoDockInternalModule *pInternalModule = cairo_dock_find_internal_module_from_name (cModuleName);
-		if (pInternalModule != NULL)
+		//CairoDockInternalModule *pInternalModule = cairo_dock_find_internal_module_from_name (cModuleName);
+		GldiManager *pManager = gldi_get_manager (cModuleName);
+		if (pManager != NULL)
 		{
-			cairo_dock_reload_internal_module (pInternalModule, g_cConfFile);
+			//cairo_dock_reload_internal_module (pInternalModule, g_cConfFile);
+			gldi_reload_manager (pManager, g_cConfFile);
 		}
 		else
 		{
@@ -94,9 +96,9 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule == NULL)
 	{
-		if (cairo_dock_find_internal_module_from_name (cModuleName) != NULL)
+		/*if (cairo_dock_find_internal_module_from_name (cModuleName) != NULL)
 			cd_warning ("Internal modules can't be (de)activated.");
-		else
+		else*/
 			cd_warning ("no such module (%s)", cModuleName);
 		return FALSE;
 	}
@@ -191,10 +193,10 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	
 	if (CAIRO_DOCK_IS_NORMAL_LAUNCHER (pIcon) && pIcon->cClass != NULL)
 	{
-		if (myTaskBar.bMixLauncherAppli)
-			cairo_dock_inhibate_class (pIcon->cClass, pIcon);
-		else  // on l'insere quand meme dans la classe pour pouvoir ecraser l'icone X avec la sienne.
-			cairo_dock_add_inhibator_to_class (pIcon->cClass, pIcon);
+		//if (myTaskBar.bMixLauncherAppli)
+			cairo_dock_inhibite_class (pIcon->cClass, pIcon);
+		//else  // on l'insere quand meme dans la classe pour pouvoir ecraser l'icone X avec la sienne.
+		//	cairo_dock_add_inhibator_to_class (pIcon->cClass, pIcon);
 	}
 	
 	return TRUE;
