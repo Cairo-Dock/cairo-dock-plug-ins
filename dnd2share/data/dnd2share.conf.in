@@ -130,6 +130,9 @@ limit rate = 0
 #F[Sites;gtk-convert]
 frame_site =
 
+#B[-3] Use files hosting site for any kind of files?
+only file type=false
+
 #l[Custom;Pastebin.ca] Preferred site for texts hosting :
 text site = 1
 
@@ -141,9 +144,6 @@ video site = 1
 
 #l[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
 file site = 1
-
-#b Use only sites for files hosting?
-only file type=false
 
 #v
 sep_sites=

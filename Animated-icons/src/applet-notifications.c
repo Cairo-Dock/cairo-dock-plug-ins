@@ -56,7 +56,7 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	_set_new_data (pIcon);
 	
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
-	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
+	double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	
 	int i;
 	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
@@ -116,7 +116,7 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3 && !myAccessibility.bShowSubDockOnClick)
+	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3 && !myDocksParam.bShowSubDockOnClick)  // icone de sous-dock avec rendu de type "box"-> on n'anime pas.
 	{
 		//cd_animations_free_data (pUserData, pIcon);
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -138,7 +138,7 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3)
+	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3)  // icone de sous-dock avec rendu de type "box" -> on arrete l'animation en cours.
 	{
 		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 		if (pData && ! pData->bIsUnfolding)
@@ -146,7 +146,7 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	}
 	
-	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_LAUNCHER && CAIRO_DOCK_IS_APPLI (pIcon) && ! (iButtonState & GDK_SHIFT_MASK))
 		iType = CAIRO_DOCK_APPLI;
 	/**if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
@@ -171,7 +171,7 @@ gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *p
 	CDAnimationsEffects anim[2] = {0, -1};
 	if (strcmp (cAnimation, "default") == 0)
 	{
-		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+		CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 		anim[0] =  myConfig.iEffectsOnClick[iType][0];
 	}
 	else
@@ -362,7 +362,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 	if (pData == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
-	double dt = (bUseOpenGL ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
+        double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	
 	if (pData->bIsUnfolding)
 	{

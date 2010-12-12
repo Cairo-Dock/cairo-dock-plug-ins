@@ -160,7 +160,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				myData.bIgnoreIconState = TRUE;
 				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
 				myData.bIgnoreIconState = FALSE;
-				cairo_dock_notify (CAIRO_DOCK_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 			}
 			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
 			{
@@ -174,7 +174,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else if (myData.pCurrentIcon != NULL)
 			{
-				cairo_dock_notify (CAIRO_DOCK_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 				if (CAIRO_DOCK_IS_APPLI (myData.pCurrentIcon))
 					myData.iPreviouslyActiveWindow = 0;
 			}

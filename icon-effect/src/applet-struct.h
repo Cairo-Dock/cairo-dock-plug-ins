@@ -99,7 +99,7 @@ struct _AppletConfig {
 	
 	gboolean bBackGround;
 	CDIconEffectsEnum iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
-	CDIconEffectsEnum iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ICON_EFFECT_NB_EFFECTS];
+	CDIconEffectsEnum iEffectsOnClick[CAIRO_DOCK_NB_GROUPS][CD_ICON_EFFECT_NB_EFFECTS];
 	gboolean bRotateEffects;
 	} ;
 

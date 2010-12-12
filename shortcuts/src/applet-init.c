@@ -55,11 +55,17 @@ CD_APPLET_INIT_BEGIN
 		myApplet);
 	cairo_dock_launch_task (myData.pTask);
 	
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones.
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones.
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
-	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_shortcuts_free_data, CAIRO_DOCK_RUN_AFTER, myApplet);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_STOP_ICON,
+		(CairoDockNotificationFunc) cd_shortcuts_free_data,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -69,7 +75,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
-	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_shortcuts_free_data, myApplet);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_STOP_ICON,
+		(CairoDockNotificationFunc) cd_shortcuts_free_data, myApplet);
 CD_APPLET_STOP_END
 
 

@@ -56,11 +56,11 @@ static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *p
 	pViewport->fScrollbarIconGap = 10.;
 	
 	int iIconSize = 48;
-	double h_min = pViewport->iIconSize + myLabels.iLabelSize;  // hauteur min pour caser 1 icone.
+	double h_min = pViewport->iIconSize + myIconsParam.iLabelSize;  // hauteur min pour caser 1 icone.
 	double fx=1, fy=1;
 	if (h_min > pDesklet->container.iHeight)
 	{
-		fy = (double) MAX (1, pDesklet->container.iHeight - myLabels.iLabelSize) / pViewport->iIconSize;
+		fy = (double) MAX (1, pDesklet->container.iHeight - myIconsParam.iLabelSize) / pViewport->iIconSize;
 		pViewport->fArrowHeight *= fy;
 		iIconSize *= fy;
 	}
@@ -81,14 +81,14 @@ static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *p
 	// taille de la grille.
 	pViewport->nRowsX = (pDesklet->container.iWidth - w_min) / (pViewport->iIconSize + pViewport->iIconGapX) + 1;
 	pViewport->nRowsY = ceil ((double)nIcones / pViewport->nRowsX);
-	pViewport->iDeltaHeight = MAX (0, (pViewport->nRowsY - 1) * (pViewport->iIconSize + myLabels.iLabelSize + pViewport->iIconGapY) + pViewport->iIconSize + myLabels.iLabelSize - pDesklet->container.iHeight);
+	pViewport->iDeltaHeight = MAX (0, (pViewport->nRowsY - 1) * (pViewport->iIconSize + myIconsParam.iLabelSize + pViewport->iIconGapY) + pViewport->iIconSize + myIconsParam.iLabelSize - pDesklet->container.iHeight);
 	pViewport->fMargin = (pDesklet->container.iWidth - (pViewport->nRowsX * (pViewport->iIconSize + pViewport->iIconGapX) - pViewport->iIconSize + pViewport->fScrollbarIconGap + pViewport->fScrollbarWidth + pViewport->fScrollbarIconGap)) / 2;  // on reajuste la marge pour centrer les icones.
 }
 
 static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameters *pViewport)
 {
 	double fScrollOffset = - pViewport->iScrollOffset;
-	int iOffsetY = myLabels.iLabelSize +  // le texte des icones de la 1ere ligne
+	int iOffsetY = myIconsParam.iLabelSize +  // le texte des icones de la 1ere ligne
 		fScrollOffset;
 	
 	Icon* icon;
@@ -103,7 +103,7 @@ static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameter
 		
 		// on en deduit la position au repos.
 		icon->fX = pViewport->fMargin + (icon->fWidth + pViewport->iIconGapX) * x;
-		icon->fY = iOffsetY + (icon->fHeight + myLabels.iLabelSize + pViewport->iIconGapY) * y;
+		icon->fY = iOffsetY + (icon->fHeight + myIconsParam.iLabelSize + pViewport->iIconGapY) * y;
 		
 		icon->fDrawX = icon->fX;
 		icon->fDrawY = icon->fY;
@@ -251,9 +251,9 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 	pViewport->color_grip[2] = .9;
 	pViewport->color_grip[3] = 1.;
 	
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
 	pViewport->iSidPressEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-press-event",
 		G_CALLBACK (_cd_slide_on_press_button),
@@ -273,9 +273,9 @@ static void free_data (CairoDesklet *pDesklet)
 	if (pViewport == NULL)
 		return ;
 	
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidReleaseEvent);
 	
@@ -450,18 +450,18 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 					cairo_set_source_surface (pCairoContext,
 						pIcon->pTextBuffer,
 						fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
-						-myLabels.iLabelSize);
+						-myIconsParam.iLabelSize);
 					cairo_paint_with_alpha (pCairoContext, fAlpha);
 				}
 				else
 				{
 					fAlpha = .6;
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
-						fOffsetX = - myLabels.iLabelSize;
+						fOffsetX = - myIconsParam.iLabelSize;
 						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (fOffsetX,
 							0.,
-							fOffsetX + pIcon->fWidth + 2*myLabels.iLabelSize,
+							fOffsetX + pIcon->fWidth + 2*myIconsParam.iLabelSize,
 							0.);
 						cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 						cairo_pattern_add_color_stop_rgba (pGradationPattern,
@@ -485,7 +485,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 						cairo_set_source_surface (pCairoContext,
 							pIcon->pTextBuffer,
 							fOffsetX,
-							-myLabels.iLabelSize);
+							-myIconsParam.iLabelSize);
 						cairo_mask (pCairoContext, pGradationPattern);
 						cairo_pattern_destroy (pGradationPattern);
 					}
@@ -495,7 +495,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 						cairo_set_source_surface (pCairoContext,
 							pIcon->pTextBuffer,
 							fOffsetX,
-							-myLabels.iLabelSize);
+							-myIconsParam.iLabelSize);
 						cairo_paint_with_alpha (pCairoContext, fAlpha);
 					}
 				}
@@ -634,10 +634,10 @@ static void render_opengl (CairoDesklet *pDesklet)
 				else
 				{
 					_cairo_dock_set_alpha (.6);
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
 						fOffsetX = 0.;
-						u1 = (double) (pIcon->fWidth + 2 * myLabels.iLabelSize) / pIcon->iTextWidth;
+						u1 = (double) (pIcon->fWidth + 2 * myIconsParam.iLabelSize) / pIcon->iTextWidth;
 					}
 				}
 				

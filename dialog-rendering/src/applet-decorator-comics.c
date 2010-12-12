@@ -139,7 +139,7 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 
-	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],	myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
+	cairo_set_source_rgba (pCairoContext, myDialogsParam.fDialogColor[0], myDialogsParam.fDialogColor[1],	myDialogsParam.fDialogColor[2], myDialogsParam.fDialogColor[3]);
 	cairo_fill_preserve (pCairoContext);
 
 	cairo_set_line_width (pCairoContext, fLineWidth);

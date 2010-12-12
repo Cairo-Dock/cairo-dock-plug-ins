@@ -97,3 +97,14 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	*bContinueAnimation = TRUE;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+gboolean cd_motion_free_data (gpointer pUserData, CairoDock *pDock)
+{
+	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
+	if (pData != NULL)
+	{
+		g_free (pData);
+		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

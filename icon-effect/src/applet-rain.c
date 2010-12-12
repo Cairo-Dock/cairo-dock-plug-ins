@@ -38,7 +38,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	if (myData.iRainTexture == 0)
 		myData.iRainTexture = cd_icon_effect_load_rain_texture ();
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRainParticles, myData.iRainTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
 	pParticleSystem->dt = dt;
@@ -118,7 +118,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		(bRepeat ? _rewind_rain_particle : NULL));
 	pData->pRainSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	pData->fAreaWidth = pData->pRainSystem->fWidth + myConfig.iRainParticleSize * pDock->container.fRatio;  // demi-largeur des particules a droite et a gauche.
 	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iRainParticleSize/2 * pDock->container.fRatio;
 	pData->fBottomGap = 0.;

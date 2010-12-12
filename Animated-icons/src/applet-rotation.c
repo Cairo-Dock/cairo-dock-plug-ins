@@ -248,7 +248,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 	if (pDock->container.bUseReflect)
 	{
 		glPushMatrix ();
-		_cairo_dock_set_alpha (myIcons.fAlbedo * sqrt (myIcons.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
+		_cairo_dock_set_alpha (myIconsParam.fAlbedo * sqrt (myIconsParam.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
 		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 		if (pDock->container.bIsHorizontal)
 		{
@@ -261,7 +261,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIcons.fReflectSize * pDock->container.fRatio, 1.);
+				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIconsParam.fReflectSize * pDock->container.fRatio, 1.);
 			}
 			glScalef (1., -1., 1.);
 		}
@@ -270,12 +270,12 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			if (pDock->container.bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				//glScalef (- myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (- myIconsParam.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				//glScalef (myIcons.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (myIconsParam.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			glScalef (-1., 1., 1.);
 		}

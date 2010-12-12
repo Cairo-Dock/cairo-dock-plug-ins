@@ -25,7 +25,7 @@ amplitude = 25
 ratio = .75
 
 
-[SimpleSlide]
+[Slide]
 
 #F[Grid]
 frame_grid=

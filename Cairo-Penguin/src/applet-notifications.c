@@ -49,7 +49,7 @@ CD_APPLET_ON_CLICK_PROTO
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
+		myData.iCurrentPositionY = (myConfig.bFree ? myDocksParam.iDockLineWidth : 0);
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
 		int iNewAnimation;
 		int iRandom = g_random_int_range (0, 4);
@@ -81,13 +81,13 @@ static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myAppl
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
-	cairo_dock_remove_notification_func_on_object (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-	cairo_dock_remove_notification_func_on_object (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer, NOTIFICATION_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
+	cairo_dock_remove_notification_func_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
 	
 	//\_______________ On met l'animation de repos et on la dessine.
 	int iNewAnimation = penguin_choose_resting_animation (myApplet);
 	penguin_set_new_animation (myApplet, iNewAnimation);
-	myData.iCurrentPositionY = (myConfig.bFree ? g_iDockLineWidth : 0);
+	myData.iCurrentPositionY = (myConfig.bFree ? myDocksParam.iDockLineWidth : 0);
 	if (myConfig.bFree)
 	{
 		penguin_move_in_dock (myApplet);
@@ -112,7 +112,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		if (pClickedIcon != myIcon && ! (CAIRO_DOCK_IS_APPLET (pClickedIcon) && pClickedIcon->pModuleInstance->pModule == myIcon->pModuleInstance->pModule))
 		{
 			cd_debug ("%s\n", myApplet->cConfFilePath);
-			cairo_dock_notify (CAIRO_DOCK_BUILD_ICON_MENU, myIcon, myContainer, CD_APPLET_MY_MENU);
+			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_ICON_MENU, myIcon, myContainer, CD_APPLET_MY_MENU);
 			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 		}
 		

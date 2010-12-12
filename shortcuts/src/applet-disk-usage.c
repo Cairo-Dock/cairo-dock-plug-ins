@@ -34,7 +34,6 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 {
 	static struct statfs sts;
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
-	//g_print ("checking device on '%s'...\n", cMountPath);
 	
 	if (statfs (cMountPath, &sts) == 0)
 	{
@@ -66,7 +65,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iType != CD_DRIVE_GROUP)  // les disques sont en 1er
+		if (pIcon->iGroup != CD_DRIVE_GROUP)  // les disques sont en 1er
 			break;
 		if (pIcon->cCommand != NULL)
 		{
@@ -196,6 +195,7 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 	GString *sInfo = g_string_new ("");
 	// on recupere les infos de taille.
 	CDDiskUsage diskUsage;
+	memset (&diskUsage, 0, sizeof (CDDiskUsage));
 	cd_shortcuts_get_fs_stat (cDiskURI, &diskUsage);
 	
 	// on recupere les infos du file system.

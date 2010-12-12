@@ -422,8 +422,8 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	{
 		glPushMatrix ();
 		double x0, y0, x1, y1;
-		double fReflectRatio = myIcons.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
-		///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIcons.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		double fReflectRatio = myIconsParam.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+		///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIconsParam.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 		double fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 		if (pDock->container.bIsHorizontal)
 		{
@@ -473,7 +473,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		
 		///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
 		glBlendFuncSeparate (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
 			GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -484,7 +484,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		/*glActiveTextureARB(GL_TEXTURE1_ARB); // Go pour le texturing 2eme passe
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, g_pGradationTexture[pDock->container.bIsHorizontal]);
-		glColor4f(1.0f, 1.0f, 1.0f, myIcons.fAlbedo * pIcon->fAlpha);  // transparence du reflet.  // myIcons.fAlbedo * pIcon->fAlpha
+		glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha);  // transparence du reflet.  // myIconsParam.fAlbedo * pIcon->fAlpha
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Le mode de combinaison des textures

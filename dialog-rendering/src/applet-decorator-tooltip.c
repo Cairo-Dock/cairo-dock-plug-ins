@@ -33,7 +33,7 @@
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 {
 	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
-	int iIconOffset = myDialogs.iDialogIconSize/2;
+	int iIconOffset = myDialogsParam.iDialogIconSize/2;
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iIconOffset + iMargin;
 	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + myConfig.iTooltipLineWidth;
@@ -52,7 +52,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 {
 	double fLineWidth = myConfig.iTooltipLineWidth;
 	double fRadius = myConfig.iTooltipRadius;
-	double fIconOffset = myDialogs.iDialogIconSize/2;
+	double fIconOffset = myDialogsParam.iDialogIconSize/2;
 	
 	double fOffsetX = fRadius + fLineWidth / 2 + fIconOffset;
 	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : -fIconOffset);
@@ -68,7 +68,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		iDeltaIconX = pDialog->container.iWidth/2 - (fRadius + fLineWidth / 2);
 	else if (iDeltaIconX < - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2)
 		iDeltaIconX = - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2;
-	g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
+	//g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
 	
 	int iArrowShift;
 	if (iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
@@ -76,7 +76,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		iArrowShift = MAX (0, fabs (iDeltaIconX) - _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT * .577 - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2);  // tan(30)
 		if (iDeltaIconX < 0)
 			iArrowShift = - iArrowShift;
-		g_print ("iArrowShift: %d\n", iArrowShift);
+		//g_print ("iArrowShift: %d\n", iArrowShift);
 		
 	}
 	else
@@ -132,7 +132,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 	
-	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1],     myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
+	cairo_set_source_rgba (pCairoContext, myDialogsParam.fDialogColor[0], myDialogsParam.fDialogColor[1],     myDialogsParam.fDialogColor[2], myDialogsParam.fDialogColor[3]);
 	cairo_fill_preserve (pCairoContext); //Notre fond
 	cairo_set_source_rgba (pCairoContext, myConfig.fTooltipLineColor[0], myConfig.fTooltipLineColor[1], myConfig.fTooltipLineColor[2], myConfig.fTooltipLineColor[3]);
 	cairo_set_line_width (pCairoContext, fLineWidth); //La ligne externe

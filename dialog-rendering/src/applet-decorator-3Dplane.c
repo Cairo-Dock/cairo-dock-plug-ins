@@ -88,7 +88,7 @@ void cd_decorator_draw_decorations_3Dplane (cairo_t *pCairoContext, CairoDialog 
 		pDialog->iTopMargin,
 		pDialog->iBubbleWidth,
 		pDialog->iBubbleHeight);
-	cairo_set_source_rgba (pCairoContext, myDialogs.fDialogColor[0], myDialogs.fDialogColor[1], myDialogs.fDialogColor[2], myDialogs.fDialogColor[3]);
+	cairo_set_source_rgba (pCairoContext, myDialogsParam.fDialogColor[0], myDialogsParam.fDialogColor[1], myDialogsParam.fDialogColor[2], myDialogsParam.fDialogColor[3]);
 	cairo_fill (pCairoContext);
 }
 

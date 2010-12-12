@@ -59,14 +59,14 @@ static gboolean _cd_do_fill_recent_entry (CDEntry *pEntry)
 			NULL);
 		if (pInfo != NULL)
 		{
-			GdkPixbuf *pixbuf = gtk_recent_info_get_icon (pInfo, myDialogs.dialogTextDescription.iSize + 2);
+			GdkPixbuf *pixbuf = gtk_recent_info_get_icon (pInfo, myDialogsParam.dialogTextDescription.iSize + 2);
 			if (pixbuf != NULL)
 			{
 				double fImageWidth, fImageHeight;
 				pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
 					1.,
-					myDialogs.dialogTextDescription.iSize,  // width
-					myDialogs.dialogTextDescription.iSize,  // height
+					myDialogsParam.dialogTextDescription.iSize,  // width
+					myDialogsParam.dialogTextDescription.iSize,  // height
 					0,  // modifier
 					&fImageWidth, &fImageHeight,
 					NULL, NULL);

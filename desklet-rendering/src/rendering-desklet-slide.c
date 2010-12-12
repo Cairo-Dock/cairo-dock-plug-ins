@@ -46,7 +46,7 @@ static CDSlideParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig) 
 		pSlide->iGapBetweenIcons = 10;
 	}
 	
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);  // CAIRO_CONTAINER (pDesklet)
 	
 	return pSlide;
 }
@@ -71,14 +71,14 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
-	int dh = myLabels.iLabelSize;  // taille verticale ajoutee a chaque icone.
+	int dh = myIconsParam.iLabelSize;  // taille verticale ajoutee a chaque icone.
 	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
 	int di = pSlide->iGapBetweenIcons;  // ecart entre 2 lignes/colonnes.
 	
 	int p, q;  // nombre de lignes et colonnes.
 	int iSize;
 	pSlide->iIconSize = 0, pSlide->iNbLines = 0, pSlide->iNbColumns = 0;
-	//g_print ("%d icones sur %dx%d (%d)\n", pSlide->iNbIcons, (int)w, (int)h, myLabels.iLabelSize);
+	//g_print ("%d icones sur %dx%d (%d)\n", pSlide->iNbIcons, (int)w, (int)h, myIconsParam.iLabelSize);
 	for (p = 1; p <= pSlide->iNbIcons; p ++)
 	{
 		q = (int) ceil ((double)pSlide->iNbIcons / p);
@@ -105,7 +105,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
 	
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
 	if (pSlide == NULL)
@@ -213,12 +213,12 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	// les icones.
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
-	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
+	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myIconsParam.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
 	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
 	// on determine la 1ere icone a tracer : l'icone suivant l'icone pointee.
 	
-	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
+	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myIconsParam.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
 	GList *ic;
@@ -237,7 +237,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		{
 			q = 0;
 			x = pSlide->fMargin + dw/2;
-			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
+			y += pSlide->iIconSize + myIconsParam.iLabelSize + dh;
 		}
 	}
 	
@@ -273,18 +273,18 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 					cairo_set_source_surface (pCairoContext,
 						pIcon->pTextBuffer,
 						fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
-						-myLabels.iLabelSize);
+						-myIconsParam.iLabelSize);
 					cairo_paint_with_alpha (pCairoContext, fAlpha);
 				}
 				else
 				{
 					fAlpha = .6;
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
-						fOffsetX = - myLabels.iLabelSize;
+						fOffsetX = - myIconsParam.iLabelSize;
 						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (fOffsetX,
 							0.,
-							fOffsetX + pIcon->fWidth + 2*myLabels.iLabelSize,
+							fOffsetX + pIcon->fWidth + 2*myIconsParam.iLabelSize,
 							0.);
 						cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 						cairo_pattern_add_color_stop_rgba (pGradationPattern,
@@ -308,7 +308,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 						cairo_set_source_surface (pCairoContext,
 							pIcon->pTextBuffer,
 							fOffsetX,
-							-myLabels.iLabelSize);
+							-myIconsParam.iLabelSize);
 						cairo_mask (pCairoContext, pGradationPattern);
 						cairo_pattern_destroy (pGradationPattern);
 					}
@@ -318,7 +318,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 						cairo_set_source_surface (pCairoContext,
 							pIcon->pTextBuffer,
 							fOffsetX,
-							-myLabels.iLabelSize);
+							-myIconsParam.iLabelSize);
 						cairo_paint_with_alpha (pCairoContext, fAlpha);
 					}
 				}
@@ -356,7 +356,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	// les icones.
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
-	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myLabels.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
+	int dh = (h - pSlide->iNbLines * (pSlide->iIconSize + myIconsParam.iLabelSize)) / (pSlide->iNbLines != 1 ? pSlide->iNbLines - 1 : 1);  // ecart entre 2 lignes.
 	int dw = (w - pSlide->iNbColumns * pSlide->iIconSize) / pSlide->iNbColumns;  // ecart entre 2 colonnes.
 	
 	_cairo_dock_enable_texture ();
@@ -364,7 +364,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	_cairo_dock_set_alpha (1.);
 	
 	
-	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myLabels.iLabelSize;
+	double x = pSlide->fMargin + dw/2, y = pSlide->fMargin + myIconsParam.iLabelSize;
 	int q = 0;
 	Icon *pIcon;
 	GList *ic;
@@ -383,7 +383,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 		{
 			q = 0;
 			x = pSlide->fMargin + dw/2;
-			y += pSlide->iIconSize + myLabels.iLabelSize + dh;
+			y += pSlide->iIconSize + myIconsParam.iLabelSize + dh;
 		}
 	}
 	
@@ -434,10 +434,10 @@ static void render_opengl (CairoDesklet *pDesklet)
 				else
 				{
 					_cairo_dock_set_alpha (.6);
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myLabels.iLabelSize)
+					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
 						fOffsetX = 0.;
-						u1 = (double) (pIcon->fWidth + 2 * myLabels.iLabelSize) / pIcon->iTextWidth;
+						u1 = (double) (pIcon->fWidth + 2 * myIconsParam.iLabelSize) / pIcon->iTextWidth;
 					}
 				}
 				

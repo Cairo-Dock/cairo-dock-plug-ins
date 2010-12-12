@@ -40,7 +40,7 @@ struct _AppletConfig {
 	gint iNbDays;
 	gchar *cRenderer;
 	gint cDialogDuration;
-	gint iCheckInterval;
+	guint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
 	gboolean bSetName;

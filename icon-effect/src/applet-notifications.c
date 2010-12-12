@@ -40,7 +40,7 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 		pData = g_new0 (CDIconEffectData, 1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	}
-	double dt = mySystem.iGLAnimationDeltaT;
+        double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	
 	CDIconEffectsEnum iEffect;
 	CDIconEffect *pEffect;
@@ -83,7 +83,7 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_LAUNCHER && CAIRO_DOCK_IS_APPLI (pIcon) && ! (iButtonState & GDK_SHIFT_MASK))
 		iType = CAIRO_DOCK_APPLI;
 	/**if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
@@ -108,7 +108,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 	CDIconEffectsEnum iEffect = -1;
 	if (strcmp (cAnimation, "default") == 0)
 	{
-		CairoDockIconType iType = cairo_dock_get_icon_type (pIcon);
+		CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 		iEffect = myConfig.iEffectsOnClick[iType][0];
 	}
 	else
@@ -227,7 +227,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	
 	if (pData->iRequestTime > 0)
 	{
-		int dt = mySystem.iGLAnimationDeltaT;
+	        int dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 		pData->iRequestTime -= dt;
 		if (pData->iRequestTime < 0)
 			pData->iRequestTime = 0;
@@ -252,7 +252,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 			pEffect->free (pData);
 	}
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{
@@ -270,10 +270,10 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		/*area.x = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.y = pIcon->fDrawY;
 		area.width = pIcon->fWidth * fMaxScale * 1.5;
-		area.height = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20 * fMaxScale;  // 20 = rayon max des particules, environ.
+		area.height = pIcon->fHeight * fMaxScale + myIconsParam.iconTextDescription.iSize + 20 * fMaxScale;  // 20 = rayon max des particules, environ.
 		if (pDock->container.bDirectionUp)
 		{
-			area.y -= myLabels.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
+			area.y -= myIconsParam.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
 		}
 		else
 		{
@@ -285,10 +285,10 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		/*area.y = pIcon->fDrawX - .25 * pIcon->fWidth * fMaxScale;
 		area.x = pIcon->fDrawY;
 		area.height = pIcon->fWidth * fMaxScale * 1.5;
-		area.width = pIcon->fHeight * fMaxScale + myLabels.iconTextDescription.iSize + 20 * fMaxScale;
+		area.width = pIcon->fHeight * fMaxScale + myIconsParam.iconTextDescription.iSize + 20 * fMaxScale;
 		if (pDock->container.bDirectionUp)
 		{
-			area.x -= myLabels.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
+			area.x -= myIconsParam.iconTextDescription.iSize + pIcon->fHeight * (fMaxScale - 1);
 		}
 		else
 		{

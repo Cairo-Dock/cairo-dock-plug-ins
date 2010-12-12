@@ -323,7 +323,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
 			cd_message (" -> icon->cBaseURI : %s", icon->cBaseURI);
 
-			icon->iType = iNewIconsType;
+			icon->iGroup = iNewIconsType;
 
 			icon->cName = g_strdup(thunar_vfs_volume_get_name( pThunarVfsVolume ));
 			cd_debug (" -> icon->cName : %s", icon->cName);
@@ -422,7 +422,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			icon->cBaseURI = thunar_vfs_path_dup_uri(pThunarVfsInfo->path);
 			cd_message (" item in directory : %s", icon->cBaseURI);
-			icon->iType = iNewIconsType;
+			icon->iGroup = iNewIconsType;
 			if ( strcmp (thunar_vfs_mime_info_get_name(pThunarVfsInfo->mime_info), "application/x-desktop") == 0)
 			{
 				gboolean bIsDirectory = FALSE;

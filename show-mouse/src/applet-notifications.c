@@ -89,7 +89,8 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 	else if (pData->fAlpha != 1)
 		pData->fAlpha = MIN (1., pData->fAlpha + .05);
 	
-	pData->fRotationAngle += 2*G_PI * myConfig.fRotationSpeed * mySystem.iGLAnimationDeltaT / 1000.;
+	double dt = cairo_dock_get_animation_delta_t (pContainer) * 1e-3;
+	pData->fRotationAngle += 2*G_PI * myConfig.fRotationSpeed * dt;
 	
 	cd_show_mouse_update_sources (pData);
 	pData->pSystem->fWidth = 2 * MIN (96, pContainer->iHeight);
@@ -115,7 +116,7 @@ gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pCon
 		pData = g_new0 (CDShowMouseData, 1);
 		pData->fAlpha = 1.;
 		
-		double dt = mySystem.iGLAnimationDeltaT;
+		double dt = cairo_dock_get_animation_delta_t (pContainer);
 		pData->pSourceCoords = cd_show_mouse_init_sources ();
 		pData->pSystem = cd_show_mouse_init_system (pContainer, dt, pData->pSourceCoords);
 		

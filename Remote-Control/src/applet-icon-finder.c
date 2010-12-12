@@ -148,8 +148,8 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	if (myData.pCurrentDock != NULL && pDock != myData.pCurrentDock)  // on remet au repos le dock precedemment anime.
 	{
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (myData.pCurrentDock), CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (myData.pCurrentDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
 	}
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
@@ -175,12 +175,12 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 			cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
 		}
 		
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock),
-			CAIRO_DOCK_UPDATE_DOCK,
+		cairo_dock_register_notification_on_object (pDock,
+			NOTIFICATION_UPDATE_DOCK,
 			(CairoDockNotificationFunc) cd_do_update_container,
 			CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock),
-			CAIRO_DOCK_RENDER_DOCK,
+		cairo_dock_register_notification_on_object (pDock,
+			NOTIFICATION_RENDER_DOCK,
 			(CairoDockNotificationFunc) cd_do_render,
 			CAIRO_DOCK_RUN_AFTER, NULL);
 	}

@@ -58,7 +58,7 @@ static GList * _list_icons (void) {
 		pIconList = g_list_append (pIconList, pIcon);
 		if (myConfig.bStealTaskBarIcon && s_iconClass[i] != NULL)
 		{
-			cairo_dock_inhibate_class (s_iconClass[i], pIcon);
+			cairo_dock_inhibite_class (s_iconClass[i], pIcon);
 		}
 	}
 	

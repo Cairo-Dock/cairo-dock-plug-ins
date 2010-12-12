@@ -53,7 +53,7 @@ CD_APPLET_DEFINE_BEGIN (N_("dialog rendering"),
 	rendering_register_text_dialog_renderer ();
 
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Dialogs");
+	CD_APPLET_EXTEND_MANAGER ("Dialogs");
 CD_APPLET_DEFINE_END
 
 

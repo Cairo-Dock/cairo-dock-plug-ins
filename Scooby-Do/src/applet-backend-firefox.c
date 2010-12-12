@@ -302,7 +302,7 @@ static gboolean _cd_do_fill_bookmark_entry (CDEntry *pEntry)
 	double fZoomX=0, fZoomY=0;
 	pEntry->pIconSurface = cairo_dock_create_surface_from_pixbuf (pixbuf,
 		1.,
-		myDialogs.dialogTextDescription.iSize, myDialogs.dialogTextDescription.iSize,
+		myDialogsParam.dialogTextDescription.iSize, myDialogsParam.dialogTextDescription.iSize,
 		0,
 		&fImageWidth, &fImageHeight,
 		&fZoomX, &fZoomY);

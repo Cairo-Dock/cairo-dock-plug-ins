@@ -133,7 +133,7 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	"Fabounet (Fabrice Rey) &amp; parAdOxxx_ZeRo")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Views");
+	CD_APPLET_EXTEND_MANAGER ("Backends");
 CD_APPLET_DEFINE_END
 
 
@@ -150,7 +150,8 @@ CD_APPLET_INIT_BEGIN
 	//cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	cairo_dock_register_notification (CAIRO_DOCK_LEAVE_DOCK,
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_LEAVE_DOCK,
 		(CairoDockNotificationFunc) cd_slide_on_leave,
 		CAIRO_DOCK_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
 	
@@ -178,7 +179,9 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	
-	cairo_dock_remove_notification_func (CAIRO_DOCK_LEAVE_DOCK, (CairoDockNotificationFunc) cd_slide_on_leave, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+                NOTIFICATION_LEAVE_DOCK,
+		(CairoDockNotificationFunc) cd_slide_on_leave, NULL);
 	
 	cairo_dock_reset_all_views ();
 	cairo_dock_update_renderer_list_for_gui ();

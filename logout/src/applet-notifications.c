@@ -76,15 +76,16 @@ static inline void _execute_action (gint iAction)
 
 CD_APPLET_ON_CLICK_BEGIN
 {
-	if (myIcon->Xid != 0)
+	/**if (myIcon->Xid != 0)
 	{
 		if (cairo_dock_get_current_active_window () == myIcon->Xid && myTaskBar.bMinimizeOnClick)
 			cairo_dock_minimize_xwindow (myIcon->Xid);
 		else
 			cairo_dock_show_xwindow (myIcon->Xid);
 	}
-	else
+	else*/
 	{
+		// on execute l'action meme si la fenetre est deja ouverte (ca lui redonne le focus), car si on avait deja execute l'autre action, ca empeche de faire celle-ci.
 		_execute_action (myConfig.iActionOnClick);
 	}
 }

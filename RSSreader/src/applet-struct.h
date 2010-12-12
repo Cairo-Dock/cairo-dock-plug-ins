@@ -30,7 +30,7 @@ struct _AppletConfig {
 	gchar *cUrlLogin;
 	gchar *cUrlPassword;
 	gchar *cUserTitle;
-	gint iRefreshTime;
+	guint iRefreshTime;
 	gchar *cSpecificWebBrowser;
 	///gboolean bDialogIfFeedChanged;
 	gint iNotificationType;

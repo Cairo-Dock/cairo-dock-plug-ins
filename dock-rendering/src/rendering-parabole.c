@@ -310,8 +310,8 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		//cd_debug ("=> %.2fx%.2f , %.2f", w, h, lambda);
 	}
 	
-	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.) * (1 + my_fParaboleMagnitude * g_fAmplitude);
-	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * (1 + my_fParaboleMagnitude * g_fAmplitude);  // ce serait plutot MaxIconWidth mais bon ...
+	pDock->iMaxDockHeight = h + pDock->iMaxIconHeight * sqrt (5./4.) * (1 + my_fParaboleMagnitude * myIconsParam.fAmplitude);
+	pDock->iMaxDockWidth = w + pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * (1 + my_fParaboleMagnitude * myIconsParam.fAmplitude);  // ce serait plutot MaxIconWidth mais bon ...
 	
 	pDock->iMaxDockWidth += pDock->iMaxLabelWidth;  // theta(0) = 0 => texte horizontal.
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);  // fCurve_ (W) se simplifie ici.
@@ -337,8 +337,8 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 	//\____________________ On dessine le cadre.
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, FALSE, FALSE);
+	if (myIconsParam.iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, myIconsParam.iStringLineWidth, FALSE, FALSE);
 	
 	
 	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
@@ -545,7 +545,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		return NULL;
 	
 	//\____________________ On calcule la projection du curseur sur la courbe.
-	double fMaxScale =  1. + my_fParaboleMagnitude * g_fAmplitude;
+	double fMaxScale =  1. + my_fParaboleMagnitude * myIconsParam.fAmplitude;
 	double w = MAX (1, pDock->container.iWidth - pDock->iMaxLabelWidth - pDock->iMaxIconHeight * (.5+sqrt(5./4.)) * fMaxScale);
 	double h = my_fParaboleRatio * w;
 	double alpha = my_fParaboleCurvature, lambda = h / pow (w, alpha);
@@ -682,8 +682,8 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 	//\____________________ On dessine le cadre.
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string_opengl (pDock, myIcons.iStringLineWidth, FALSE, FALSE);
+	if (myIconsParam.iStringLineWidth > 0)
+		cairo_dock_draw_string_opengl (pDock, myIconsParam.iStringLineWidth, FALSE, FALSE);
 	
 	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
 	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);

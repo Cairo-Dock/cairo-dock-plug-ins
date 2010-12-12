@@ -129,7 +129,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_warning ("couldn't create an icon for this mount point");
 				return ;
 			}
-			pNewIcon->iType = CD_DRIVE_GROUP;
+			pNewIcon->iGroup = CD_DRIVE_GROUP;
 			_init_disk_usage (pNewIcon, myApplet);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
@@ -174,7 +174,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_warning ("couldn't create an icon for this mount point");
 				return ;
 			}
-			pNewIcon->iType = CD_DRIVE_GROUP;
+			pNewIcon->iGroup = CD_DRIVE_GROUP;
 			
 			//\_______________________ on remplace l'icone si des choses ont change.
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
@@ -257,7 +257,7 @@ static void _cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
 			icon = ic->data;
-			if (icon->iType == CD_BOOKMARK_GROUP)
+			if (icon->iGroup == CD_BOOKMARK_GROUP)
 			{
 				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
 				{

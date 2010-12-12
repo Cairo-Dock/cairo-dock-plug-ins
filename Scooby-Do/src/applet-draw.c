@@ -406,7 +406,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		double fFrameWidth = myData.iTextWidth;
 		double fTextScale = (fFrameWidth > pMainDock->container.iWidth ? (double) pMainDock->container.iWidth / fFrameWidth : 1.);
 		double fFrameHeight = myData.iTextHeight;
-		double fRadius = myBackground.iDockRadius * myConfig.fFontSizeRatio;
+		double fRadius = myDocksParam.iDockRadius * myConfig.fFontSizeRatio;
 		double fLineWidth = 0.;
 		
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.

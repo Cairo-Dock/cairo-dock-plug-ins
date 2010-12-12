@@ -95,8 +95,8 @@ struct _AppletConfig {
 	gboolean bContinueBlink;
 	
 	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
-	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_TYPES][CD_ANIMATIONS_NB_EFFECTS];
-	gint iNbRoundsOnClick[CAIRO_DOCK_NB_TYPES];
+	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_GROUPS][CD_ANIMATIONS_NB_EFFECTS];
+	gint iNbRoundsOnClick[CAIRO_DOCK_NB_GROUPS];
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

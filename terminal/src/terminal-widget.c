@@ -289,18 +289,32 @@ void term_apply_settings (void)
 	}
 }
 
-static void on_terminal_child_exited(VteTerminal *vteterminal,
+static void on_terminal_child_exited(VteTerminal *vterm,
                                      gpointer t)
 {
-	gint p = gtk_notebook_page_num(GTK_NOTEBOOK(myData.tab), GTK_WIDGET(vteterminal));
+	gint p = gtk_notebook_page_num(GTK_NOTEBOOK(myData.tab), GTK_WIDGET(vterm));
 	gint sz = gtk_notebook_get_n_pages(GTK_NOTEBOOK(myData.tab));
 
 	if (sz > 1)
 		gtk_notebook_remove_page(GTK_NOTEBOOK(myData.tab), p);
 	else {
 		// \r needed to return to the beginning of the line
-		vte_terminal_feed(VTE_TERMINAL(vteterminal), "Shell exited. Another one is launching...\r\n\n", -1);
-		vte_terminal_fork_command(VTE_TERMINAL(vteterminal),
+		vte_terminal_feed(VTE_TERMINAL(vterm), "Shell exited. Another one is launching...\r\n\n", -1);
+		
+		pid_t pid; 
+		#if VTE_CHECK_VERSION(0,26,0)
+		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
+			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+			"~/",
+			NULL,  // argv
+			NULL,  // envv
+			0,  // GSpawnFlags spawn_flags
+			NULL,  // GSpawnChildSetupFunc child_setup
+			NULL,  // gpointer child_setup_data
+			&pid,
+			NULL);
+		#else
+		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
 			NULL,
 			NULL,
 			NULL,
@@ -308,6 +322,8 @@ static void on_terminal_child_exited(VteTerminal *vteterminal,
 			FALSE,
 			FALSE,
 			FALSE);
+		#endif
+		
 		if (myData.dialog)
 			cairo_dock_hide_dialog (myData.dialog);
 		else if (myDesklet && myConfig.shortcut)
@@ -417,7 +433,7 @@ static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *ev
 	}
 	return FALSE;
 }
-static void applet_on_terminal_eof(VteTerminal *vteterminal,
+static void applet_on_terminal_eof(VteTerminal *vterm,
                                    gpointer     user_data)
 {
 	cd_debug ("youkata EOF");
@@ -509,7 +525,20 @@ void terminal_new_tab(void)
 	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
 	#endif
 	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
-	vte_terminal_fork_command(VTE_TERMINAL(vterm),
+	pid_t pid; 
+	#if VTE_CHECK_VERSION(0,26,0)
+	vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
+		VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+		"~/",
+		NULL,  // argv
+		NULL,  // envv
+		0,  // GSpawnFlags spawn_flags
+		NULL,  // GSpawnChildSetupFunc child_setup
+		NULL,  // gpointer child_setup_data
+		&pid,
+		NULL);
+	#else
+	pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
 		NULL,
 		NULL,
 		NULL,
@@ -517,6 +546,7 @@ void terminal_new_tab(void)
 		FALSE,
 		FALSE,
 		FALSE);
+	#endif
 	g_signal_connect (G_OBJECT (vterm), "child-exited",
 				G_CALLBACK (on_terminal_child_exited), NULL);
 	g_signal_connect (G_OBJECT (vterm), "button-release-event",

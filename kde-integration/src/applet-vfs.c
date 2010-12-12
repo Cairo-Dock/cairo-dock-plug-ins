@@ -633,7 +633,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-			icon->iType = iNewIconsType;
+			icon->iGroup = iNewIconsType;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
 			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
 			
@@ -769,7 +769,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 			NULL,
 			iOrder++);
 		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-		icon->iType = iNewIconsType;
+		icon->iGroup = iNewIconsType;
 		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
 		icon->iVolumeID = 0;
 		pIconList = g_list_insert_sorted (pIconList,
