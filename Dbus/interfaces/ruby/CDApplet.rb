@@ -26,7 +26,18 @@ require 'parseconfig'
 
 class CDApplet
 	attr_accessor :conf_file, :applet_name, :icon, :sub_icons, :config, :bus
-	
+	BOTTOM = 0
+	TOP    = 1
+	RIGHT  = 2
+	LEFT   = 3
+	DOCK    = 0
+	DESKLET = 1
+	UPPER_LEFT  = 0
+	LOWER_RIGHT = 1
+	LOWER_LEFT  = 2
+	UPPER_RIGHT = 3
+	MIDDLE      = 4
+
 	def initialize
 		self.applet_name = File.basename(Dir.getwd)
 		self.conf_file = File.expand_path("~/.config/cairo-dock/current_theme/plug-ins/#{self.applet_name}/#{self.applet_name}.conf")

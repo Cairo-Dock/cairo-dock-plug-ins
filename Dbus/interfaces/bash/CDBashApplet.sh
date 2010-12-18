@@ -30,12 +30,18 @@ DBUS_INTERFACE="org.cairodock.CairoDock"
 COMMAND=$0
 SCRIPT_NAME=`basename $COMMAND`
 APP_NAME="`echo $SCRIPT_NAME | cut -f1 -d '.' `"
-ACTION=$1
-DROP_DATA=$2
-MENU_SELECT=$2
-SCROLL_UP=$2
 CONF_FILE="/home/$USER/.config/cairo-dock/current_theme/plug-ins/$APP_NAME/$APP_NAME.conf"
-
+BOTTOM=0
+TOP=1
+RIGHT=2
+LEFT=3
+DOCK=0
+DESKLET=1
+UPPER_LEFT=0
+LOWER_RIGHT=1
+LOWER_LEFT=2
+UPPER_RIGHT=3
+MIDDLE=4
 echo "bash initialized"
 
 call()  # method, args

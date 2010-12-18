@@ -38,8 +38,14 @@ class CDApplet:
 	TOP    = 1
 	RIGHT  = 2
 	LEFT   = 3
-	DOCK   = 0
-	DESKLET= 1
+	DOCK    = 0
+	DESKLET = 1
+	UPPER_LEFT  = 0
+	LOWER_RIGHT = 1
+	LOWER_LEFT  = 2
+	UPPER_RIGHT = 3
+	MIDDLE      = 4
+
 	
 	def __init__(self,applet_name=None):
 		""" initialize the applet. Must be called by any class that inheritates from it.

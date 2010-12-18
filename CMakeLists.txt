@@ -45,15 +45,18 @@ endif( WIN32 )
 
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
-					# CMAKE_INSTALL_PREFIX = /usr
+
+# get plug-ins install dir
 execute_process(
     COMMAND pkg-config cairo-dock --variable=pluginsdir		# /usr/lib/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
 STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # la commande rajoute un retour chariot ...
+# get plug-ins data dir
 execute_process(
     COMMAND pkg-config cairo-dock --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
+# check that version matches with the core
 execute_process(
     COMMAND pkg-config --modversion cairo-dock			# 2.2.0-3
     OUTPUT_VARIABLE dock_version)
@@ -61,20 +64,25 @@ STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
 if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
 	MESSAGE (FATAL_ERROR "warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
 endif()
-set (GETTEXT_PLUGINS "cairo-dock-plugins")
 
-if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
-	set (libname "lib64")
-else()
-	set (libname "lib${LIB_SUFFIX}")
-endif()
-set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")	# /usr/lib
+#if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
+#	set (libname "lib64")
+#else()
+#	set (libname "lib${LIB_SUFFIX}")
+#endif()
+#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")	# /usr/lib
 
-if (NOT "${pluginsdir}" STREQUAL "${libdir}")
+# check that installation dir matches with the core
+GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib
+GET_FILENAME_COMPONENT(prefix "${pluginsdir}/../.." ABSOLUTE)  # /usr
+if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
 	message (STATUS "Warning : plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
-	STRING (REGEX REPLACE "/${libname}/cairo-dock" "" CMAKE_INSTALL_PREFIX ${pluginsdir})
-	set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
+	set (CMAKE_INSTALL_PREFIX "${prefix}")
+	#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
+
+# set internationalisation
+set (GETTEXT_PLUGINS "cairo-dock-plugins")
 set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
 set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
 
@@ -186,11 +194,7 @@ else()
 endif()
 
 #find_package (Mono)
-FIND_PROGRAM (GMCS_EXECUTABLE gmcs
-	 /bin
-	 /usr/bin
-	 /usr/local/bin
-)
+FIND_PROGRAM (GMCS_EXECUTABLE gmcs)
 if ("${GMCS_EXECUTABLE}" STREQUAL "")
 	message (STATUS "Could not find Mono compiler gmcs, won't build Mono interface.")
 	set (with_mono "no")
@@ -198,6 +202,20 @@ else()
 	set (MONO_FOUND "TRUE")
 	set (with_mono "yes")
 endif()
+
+find_program (VALA_EXECUTABLE valac)
+if ("${VALA_EXECUTABLE}" STREQUAL "")
+	message (STATUS "Could not find Vala compiler, won't build Vala interface.")
+	set (with_vala "no")
+else()
+	set (VALA_FOUND "TRUE")
+	execute_process(COMMAND ${VALA_EXECUTABLE} "--version"
+		OUTPUT_VARIABLE "VALA_VERSION")
+    string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
+    string(STRIP ${VALA_VERSION} "VALA_VERSION")
+	set (with_vala "yes")
+endif()
+
 
 set (GETTEXT_DBUS ${GETTEXT_PLUGINS})
 set (VERSION_DBUS "1.1.0")

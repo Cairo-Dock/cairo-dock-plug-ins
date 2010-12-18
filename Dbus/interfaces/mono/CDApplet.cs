@@ -43,6 +43,24 @@ public class CDApplet
 	public ISubApplet sub_icons= null;
 	private GLib.MainLoop loop = null;
 	
+	public enum ScreenPosition {
+		BOTTOM = 0,
+		TOP,
+		RIGHT,
+		LEFT
+	}
+	public enum ContainerType {
+		DOCK = 0,
+		DESKLET
+	}
+	public enum EmblemPosition {
+		UPPER_LEFT = 0,
+		LOWER_RIGHT,
+		LOWER_LEFT,
+		UPPER_RIGHT,
+		MIDDLE
+	}
+	
 	public CDApplet(string name=null)
 	{
 		if (name == null)
