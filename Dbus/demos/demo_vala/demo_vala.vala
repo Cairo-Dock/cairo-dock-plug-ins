@@ -86,11 +86,11 @@ public class MyApplet : CDApplet
 		dialog_attributes.insert("icon", "stock_properties");
 		dialog_attributes.insert("message", "Set the value you want");
 		dialog_attributes.insert("buttons", "ok;cancel");
-		HashTable<string,Variant> widget_attributes = new HashTable<string,Variant>(str_hash, str_equal);
-		widget_attributes.insert("xxx",0);
-		widget_attributes.insert("yyy",0);
-		/// This causes a crash :-(
-		///this.icon.PopupDialog(dialog_attributes, widget_attributes);
+		HashTable<string,Variant> widget_attributes = new HashTable<string,Variant>(str_hash, str_equal);  // even if you don't have widget attributes, you must fill the hash-table with at least 1 value, otherwise vala will crash :-/
+		widget_attributes.insert("widget-type","scale");
+		widget_attributes.insert("max-value",this.config.iMaxValue);
+		widget_attributes.insert("message","Set the value you want");
+		this.icon.PopupDialog(dialog_attributes, widget_attributes);
 	}
 	public override void on_build_menu()
 	{
@@ -117,8 +117,6 @@ public class MyApplet : CDApplet
 		pItems += pItem;
 		
 		this.icon.AddMenuItems(pItems);
-		///string[] entries = {"set min value", "set medium value", "set max value"};
-		///this.icon.PopulateMenu(entries);
 	}
 	public override void on_menu_select(int iNumEntry)
 	{

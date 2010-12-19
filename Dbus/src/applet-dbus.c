@@ -268,6 +268,7 @@ void cd_dbus_stop_service (void)
 	for (a = myData.pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
+		g_print ("stop %s\n", pDbusApplet->cModuleName);
 		pIcon = (pDbusApplet->pModuleInstance ? pDbusApplet->pModuleInstance->pIcon : NULL);
 		pContainer = (pDbusApplet->pModuleInstance ? pDbusApplet->pModuleInstance->pContainer : NULL);
 		

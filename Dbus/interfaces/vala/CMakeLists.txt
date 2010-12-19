@@ -14,7 +14,7 @@ if ("${VALA_FOUND}" STREQUAL "TRUE")
 	
 	# valac is a bad boy, it messes up the signal names.
 	execute_process(COMMAND
-		sed -i "s/OnClick/on_click/g; s/OnMiddleClick/on_middle_click/g; s/OnScroll/on_scroll/g; s/OnBuildMenu/on_build_menu/g; s/OnMenuSelect/on_menu_select/g; s/OnDropData/on_drop_data/g; s/OnAnswer/on_answer/g; s/OnAnswerDialog/on_answer_dialog/g; s/OnShortkey/on_shortkey/g; s/OnChangeFocus/on_change_focus/g; s/OnReloadModule/on_reload_module/g; s/OnStopModule/on_stop_module/g" ${CMAKE_CURRENT_BINARY_DIR}/CDApplet.c)
+		sed -i "s/OnClick/on_click/g; s/OnMiddleClick/on_middle_click/g; s/OnScroll/on_scroll/g; s/OnBuildMenu/on_build_menu/g; s/OnMenuSelect/on_menu_select/g; s/OnDropData/on_drop_data/g; s/OnAnswerDialog/on_answer_dialog/g; s/OnAnswer/on_answer/g; s/OnShortkey/on_shortkey/g; s/OnChangeFocus/on_change_focus/g; s/OnReloadModule/on_reload_module/g; s/OnStopModule/on_stop_module/g" ${CMAKE_CURRENT_BINARY_DIR}/CDApplet.c)
 	
 	# now, compile it as any normal C lib.
 	add_library (${CDAPPLET} SHARED CDApplet.c)
