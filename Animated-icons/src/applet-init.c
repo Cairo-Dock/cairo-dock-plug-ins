@@ -44,40 +44,38 @@ CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
-	g_print ("animations notif ...\n");
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_ENTER_ICON,
 		(CairoDockNotificationFunc) cd_animations_on_enter,
 		CAIRO_DOCK_RUN_AFTER, NULL);
-	g_print (" - \n");
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
 		(CairoDockNotificationFunc) cd_animations_on_click,
 		CAIRO_DOCK_RUN_FIRST, NULL);
-	g_print (" - \n");
 	cairo_dock_register_notification_on_object (&myIconsMgr,
 		NOTIFICATION_REQUEST_ICON_ANIMATION,
 		(CairoDockNotificationFunc) cd_animations_on_request,
 		CAIRO_DOCK_RUN_FIRST, NULL);
-	g_print (" - \n");
 	cairo_dock_register_notification_on_object (&myIconsMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(CairoDockNotificationFunc) cd_animations_update_icon,
 		CAIRO_DOCK_RUN_AFTER, NULL);
-	g_print (" - \n");
 	cairo_dock_register_notification_on_object (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
 		(CairoDockNotificationFunc) cd_animations_render_icon,
 		CAIRO_DOCK_RUN_FIRST, NULL);
-	g_print (" - \n");
 	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
-	g_print (" - \n");
+		NOTIFICATION_RENDER_ICON,
+		(CairoDockNotificationFunc) cd_animations_post_render_icon,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
-	g_print (" - \n");
+		NOTIFICATION_STOP_ICON,
+		(CairoDockNotificationFunc) cd_animations_free_data,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_UNFOLD_SUBDOCK, (CairoDockNotificationFunc) cd_animations_unfold_subdock, CAIRO_DOCK_RUN_AFTER, NULL);
+		NOTIFICATION_UNFOLD_SUBDOCK,
+		(CairoDockNotificationFunc) cd_animations_unfold_subdock,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce", D_("Bounce"), FALSE);
 	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate", D_("Rotate"), FALSE);

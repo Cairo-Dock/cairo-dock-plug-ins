@@ -7,8 +7,8 @@ if ("${VALA_FOUND}" STREQUAL "TRUE")
 	execute_process(COMMAND
 		${VALA_EXECUTABLE} -q -C --disable-warnings --disable-dbus-transformation
 		--pkg gio-2.0
-		--internal-vapi=CDApplet.vapi
-		--internal-header=CDApplet.h
+		--vapi=CDApplet.vapi
+		--header=CDApplet.h
 		-o CDApplet.c
 		${CMAKE_CURRENT_BINARY_DIR}/CDApplet.vala)
 	

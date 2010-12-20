@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2010-10-08 17:38+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,43 +26,43 @@ msgstr "Icônes animées"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "Ce plug-in offre différentes animations pour vos icônes."
 
-#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
+#: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Rebond"
 
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
+#: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
 msgstr "Rotation"
 
-#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
+#: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
 msgstr "Clignotement"
 
-#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:15
+#: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
 msgstr "Pulsation"
 
-#: ../Animated-icons/src/applet-init.c:60 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
 msgstr "Élastique"
 
-#: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
+#: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
 msgstr "Vague"
 
-#: ../Animated-icons/src/applet-init.c:62 ../Animated-icons/data/messages:21
+#: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "Spot"
@@ -353,11 +354,11 @@ msgstr ""
 "Ouvrez le panneau de configuration de l'applet pour choisir le dossier à "
 "importer."
 
-#: ../Folders/src/applet-notifications.c:51
+#: ../Folders/src/applet-notifications.c:53
 msgid "Empty or unreadable folder."
 msgstr "Répertoire vide ou illisible."
 
-#: ../Folders/src/applet-notifications.c:200
+#: ../Folders/src/applet-notifications.c:204
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -367,7 +368,7 @@ msgstr ""
 "Êtes-vous certain de vouloir supprimer ce fichier de votre disque dur ?\n"
 "  (%s)"
 
-#: ../Folders/src/applet-notifications.c:210
+#: ../Folders/src/applet-notifications.c:214
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
@@ -375,11 +376,11 @@ msgstr ""
 "Attention : échec de suppression du fichier.\n"
 "Merci de vérifiez les droits d'écriture."
 
-#: ../Folders/src/applet-notifications.c:223
+#: ../Folders/src/applet-notifications.c:227
 msgid "Rename to:"
 msgstr "Renommer en :"
 
-#: ../Folders/src/applet-notifications.c:230
+#: ../Folders/src/applet-notifications.c:234
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -390,11 +391,11 @@ msgstr ""
 "Merci de vérifiez les droits d'écriture \n"
 "et que le nom n'existe pas déjà."
 
-#: ../Folders/src/applet-notifications.c:269
+#: ../Folders/src/applet-notifications.c:273
 msgid "Enter a file name:"
 msgstr "Entrez un nom de fichier :"
 
-#: ../Folders/src/applet-notifications.c:277
+#: ../Folders/src/applet-notifications.c:281
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -405,21 +406,21 @@ msgstr ""
 "Vérifiez les droits d'écriture \n"
 "et que le nom n'existe pas déjà."
 
-#: ../Folders/src/applet-notifications.c:331
+#: ../Folders/src/applet-notifications.c:335
 #, fuzzy
 msgid "Open the folder"
 msgstr "Ouvrir ce dossier"
 
-#: ../Folders/src/applet-notifications.c:331
+#: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
 #: ../System-Monitor/src/applet-notifications.c:111
 #: ../alsaMixer/src/applet-notifications.c:62
 #: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:152
-#: ../logout/src/applet-notifications.c:161
-#: ../logout/src/applet-notifications.c:170
-#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:162
+#: ../logout/src/applet-notifications.c:171
+#: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:250
@@ -428,7 +429,7 @@ msgstr "Ouvrir ce dossier"
 #: ../showDesktop/src/applet-notifications.c:180
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:230
-#: ../slider/src/applet-notifications.c:272
+#: ../slider/src/applet-notifications.c:271
 #: ../stack/src/applet-notifications.c:181
 #: ../switcher/src/applet-notifications.c:302
 #: ../switcher/src/applet-notifications.c:309
@@ -437,32 +438,32 @@ msgstr "Ouvrir ce dossier"
 msgid "middle-click"
 msgstr "Activer le son (clic du milieu)"
 
-#: ../Folders/src/applet-notifications.c:340
+#: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
 msgstr "Renommer ce fichier"
 
-#: ../Folders/src/applet-notifications.c:341
+#: ../Folders/src/applet-notifications.c:345
 msgid "Delete this file"
 msgstr "Effacer ce fichier"
 
-#: ../Folders/src/applet-notifications.c:342
+#: ../Folders/src/applet-notifications.c:346
 msgid "Move this file"
 msgstr "Déplacer ce fichier"
 
-#: ../Folders/src/applet-notifications.c:348
-#: ../slider/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:352
+#: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr "Ouvrir avec"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:384
 msgid "Properties"
 msgstr "Propriétés"
 
-#: ../Folders/src/applet-notifications.c:383
+#: ../Folders/src/applet-notifications.c:387
 msgid "Create a new file"
 msgstr "Créer un nouveau fichier"
 
-#: ../Folders/src/applet-notifications.c:384
+#: ../Folders/src/applet-notifications.c:388
 msgid "Create a new folder"
 msgstr "Créer un nouveau dossier"
 
@@ -680,12 +681,12 @@ msgid "Loading"
 msgstr "Chargement"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
-#: ../wifi/src/applet-notifications.c:76
+#: ../wifi/src/applet-notifications.c:72
 msgid "Check for Wireless Extension"
 msgstr "Vérifier les extensions wifi"
 
 #: ../Network-Monitor/src/applet-notifications.c:101
-#: ../wifi/src/applet-notifications.c:77
+#: ../wifi/src/applet-notifications.c:73
 msgid "Network Administration"
 msgstr "Administration du Réseau"
 
@@ -769,23 +770,23 @@ msgstr "Aucune URL définie."
 msgid "No data (no connection?)"
 msgstr "Aucune donnée (dû à la connexion)"
 
-#: ../RSSreader/src/applet-rss.c:445 ../RSSreader/src/applet-rss.c:465
+#: ../RSSreader/src/applet-rss.c:458 ../RSSreader/src/applet-rss.c:478
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Données invalides (flux RSS/Atom erroné ?)"
 
-#: ../RSSreader/src/applet-rss.c:517
+#: ../RSSreader/src/applet-rss.c:530
 msgid "No data"
 msgstr "Aucune donnée"
 
-#: ../RSSreader/src/applet-rss.c:556
+#: ../RSSreader/src/applet-rss.c:569
 msgid "No modification"
 msgstr "Aucune modification."
 
-#: ../RSSreader/src/applet-rss.c:582
+#: ../RSSreader/src/applet-rss.c:595
 msgid "This RSS feed has been modified..."
 msgstr "Ce flux RSS a été modifié…"
 
-#: ../RSSreader/src/applet-rss.c:731
+#: ../RSSreader/src/applet-rss.c:744
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -795,7 +796,7 @@ msgstr ""
 "Vous pouvez en définir une en copiant une URL dans le presse-papier\n"
 "et en sélectionnant « Coller l'URL » dans le menu."
 
-#: ../RSSreader/src/applet-rss.c:737
+#: ../RSSreader/src/applet-rss.c:750
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -804,6 +805,11 @@ msgstr ""
 "Aucune donnée.\n"
 "Avez-vous sélectionné un flux RSS ou Atom valide ?\n"
 "Votre connexion est-elle active ?"
+
+#: ../Recent-Events/src/applet-notifications.c:105
+#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
+msgid "Recent files"
+msgstr "Fichiers récents"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -871,10 +877,6 @@ msgstr "Ouvrir le fichier"
 #: ../Scooby-Do/data/messages:103
 msgid "Firefox bookmarks"
 msgstr "Signets de Firefox"
-
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
-msgid "Recent files"
-msgstr "Fichiers récents"
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Wikipedia"
@@ -946,7 +948,7 @@ msgstr "résultat"
 msgid "Searching ..."
 msgstr "Recherche..."
 
-#: ../Scooby-Do/src/applet-session.c:62
+#: ../Scooby-Do/src/applet-session.c:68
 msgid "Enter your search"
 msgstr "Entrez votre recherche"
 
@@ -1550,7 +1552,7 @@ msgid "futuristic"
 msgstr "Futuriste"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
-#: ../slider/data/messages:127
+#: ../slider/data/messages:129
 msgid "none"
 msgstr "Aucun"
 
@@ -1614,7 +1616,7 @@ msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
 
-#: ../dnd2share/src/applet-dnd2share.c:537
+#: ../dnd2share/src/applet-dnd2share.c:540
 msgid "Tiny URL"
 msgstr "URL réduite"
 
@@ -1742,7 +1744,6 @@ msgid "Caroussel"
 msgstr "Caroussel"
 
 #: ../dock-rendering/src/rendering-init.c:35
-#: ../dialog-rendering/data/messages:19
 msgid "3D plane"
 msgstr "Plan 3D"
 
@@ -1756,7 +1757,8 @@ msgstr "Parabolique"
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:111
+#: ../dock-rendering/src/rendering-init.c:39
+#: ../dock-rendering/data/messages:27 ../shortcuts/data/messages:111
 #: ../stack/data/messages:103
 msgid "Slide"
 msgstr "Diapositive"
@@ -1793,19 +1795,6 @@ msgid ""
 msgstr ""
 "Ce plug-in affiche un indicateur animé lorsque vous déposez quelque chose "
 "dans le dock"
-
-#: ../dustbin/src/applet-draw.c:155 ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
-msgid "calculating"
-msgstr "en cours"
-
-#: ../dustbin/src/applet-draw.c:165 ../dustbin/src/applet-trashes-manager.c:59
-msgid " trashe(s)"
-msgstr " déchet(s)"
-
-#: ../dustbin/src/applet-draw.c:169 ../dustbin/src/applet-trashes-manager.c:63
-msgid " file(s)"
-msgstr " fichier(s)"
 
 #: ../dustbin/src/applet-init.c:30
 msgid "dustbin"
@@ -1878,6 +1867,19 @@ msgstr "échec au démontage de %s"
 msgid "Unmouting this volume ..."
 msgstr "Démontage de ce volume ..."
 
+#: ../dustbin/src/applet-trashes-manager.c:59
+msgid " trashe(s)"
+msgstr " déchet(s)"
+
+#: ../dustbin/src/applet-trashes-manager.c:63
+msgid " file(s)"
+msgstr " fichier(s)"
+
+#: ../dustbin/src/applet-trashes-manager.c:98
+#: ../dustbin/src/applet-trashes-manager.c:127
+msgid "calculating"
+msgstr "en cours"
+
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
@@ -1910,37 +1912,37 @@ msgstr "Effets d'icône"
 msgid "This plugin adds many special effects to your icons."
 msgstr "Ce plug-in ajoute des effets spéciaux à vos icônes."
 
-#: ../icon-effect/src/applet-init.c:80 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:101 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr "Feu"
 
-#: ../icon-effect/src/applet-init.c:83 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:104 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
 msgstr "Etoiles"
 
-#: ../icon-effect/src/applet-init.c:86 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:107 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
 msgstr "Pluie"
 
-#: ../icon-effect/src/applet-init.c:89 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:110 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
 msgstr "Neige"
 
-#: ../icon-effect/src/applet-init.c:92 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:113 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
 msgstr "Tempête"
 
-#: ../icon-effect/src/applet-init.c:95 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:116 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:185
 msgid "Firework"
@@ -1988,6 +1990,10 @@ msgstr ""
 "suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
+#: ../keyboard-indicator/src/applet-notifications.c:63
+msgid "Keyboard preferences"
+msgstr ""
+
 #: ../logout/src/applet-init.c:27
 msgid "logout"
 msgstr "Déconnexion"
@@ -2005,40 +2011,45 @@ msgstr ""
 "  (Vous pouvez inverser les bouttons si vous préférez éteindre avec le "
 "boutton gauche)."
 
-#: ../logout/src/applet-notifications.c:123
+#: ../logout/src/applet-notifications.c:124
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Choisissez dans combien de minutes votre PC s'arrêtera :"
 
-#: ../logout/src/applet-notifications.c:152
-#: ../logout/src/applet-notifications.c:154 ../logout/data/messages:97
+#: ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:97
 #: ../logout/data/messages:105
 #, fuzzy
 msgid "Log out"
 msgstr "Déconnexion"
 
-#: ../logout/src/applet-notifications.c:161
-#: ../logout/src/applet-notifications.c:163 ../logout/data/messages:99
+#: ../logout/src/applet-notifications.c:162
+#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:99
 #: ../logout/data/messages:107
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:170
-#: ../logout/src/applet-notifications.c:172 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:171
+#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Lock screen"
 msgstr "Verrouiller l'écran"
 
-#: ../logout/src/applet-notifications.c:177
+#: ../logout/src/applet-notifications.c:178
 msgid "Program an automatic shut-down"
 msgstr "Programmer une extinction automatique"
 
-#: ../logout/src/applet-notifications.c:207
+#: ../logout/src/applet-notifications.c:208
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Votre ordinateur s'eteindra dans 1 minute"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
 msgstr "Adresse du serveur :"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#: ../mail/src/cd-mail-applet-accounts.c:44
+msgid "myLogin"
+msgstr "Mon Identifiant"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2064,6 +2075,15 @@ msgstr "Port :"
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
+msgstr ""
+"Entrez 0 pour utiliser le port par défaut. Les ports par défauts sont le 110 "
+"pour du POP3 ou APOP et 995 pour du POP3S."
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid ""
+"Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
+"IMAP4 over SSL."
 msgstr ""
 "Entrez 0 pour utiliser le port par défaut. Les ports par défauts sont le 110 "
 "pour du POP3 ou APOP et 995 pour du POP3S."
@@ -2108,25 +2128,30 @@ msgstr "Chemin du dossier Mail :"
 msgid "Address of feed:"
 msgstr "Adresse du flux :"
 
-#: ../mail/src/cd-mail-applet-accounts.c:49
-#: ../mail/src/cd-mail-applet-accounts.c:112
-#: ../mail/src/cd-mail-applet-accounts.c:289
-msgid "myLogin"
-msgstr "Mon Identifiant"
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Remove this account"
+msgstr "Supprimer ce compte"
 
-#: ../mail/src/cd-mail-applet-config.c:214
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid ""
+"Don't forget to enable IMAP (or POP) service from settings of your mail "
+"account."
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-config.c:230
 msgid "Please choose an account type."
 msgstr "Veuillez choisir un type de compte"
 
-#: ../mail/src/cd-mail-applet-config.c:219
+#: ../mail/src/cd-mail-applet-config.c:235
 msgid "New account's name"
 msgstr "Nom du nouveau compte"
 
-#: ../mail/src/cd-mail-applet-config.c:222
+#: ../mail/src/cd-mail-applet-config.c:238
 msgid "Please enter a name for this account."
 msgstr "Entrez un nom pour ce compte"
 
-#: ../mail/src/cd-mail-applet-config.c:232
+#: ../mail/src/cd-mail-applet-config.c:248
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2134,12 +2159,12 @@ msgstr ""
 "Ce compte existe déjà.\n"
 "Veuillez choisir un autre nom pour le nouveau compte"
 
-#: ../mail/src/cd-mail-applet-config.c:368
+#: ../mail/src/cd-mail-applet-config.c:384
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 "Entrez un nom pour ce compte. Vous pouvez mettre le nom que vous voulez."
 
-#: ../mail/src/cd-mail-applet-config.c:423
+#: ../mail/src/cd-mail-applet-config.c:439
 msgid "Remove Account"
 msgstr "Supprimer ce compte"
 
@@ -2151,16 +2176,16 @@ msgstr "Inconnu"
 msgid "no subject"
 msgstr "Pas de sujet"
 
-#: ../mail/src/cd-mail-applet-etpan.c:389
+#: ../mail/src/cd-mail-applet-etpan.c:404
 msgid "No unread mail in your mailboxes"
 msgstr "Aucun message non lu dans votre boîte de réception"
 
-#: ../mail/src/cd-mail-applet-etpan.c:411
+#: ../mail/src/cd-mail-applet-etpan.c:426
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Vous avez %d nouveaux messages"
 
-#: ../mail/src/cd-mail-applet-etpan.c:413
+#: ../mail/src/cd-mail-applet-etpan.c:428
 msgid "You have a new mail:"
 msgstr "Vous avez un nouveau message"
 
@@ -2182,7 +2207,7 @@ msgstr ""
 "Clic gauche pour lancer l'application mail préférée,\n"
 "Clic du milieu pour rafraîchir les comptes."
 
-#: ../mail/src/cd-mail-applet-notifications.c:63
+#: ../mail/src/cd-mail-applet-notifications.c:62
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2193,30 +2218,40 @@ msgstr ""
 "Si '%s' n'est pas votre application mail par défaut,\n"
 "vous pouvez le modifier dans le panneau de configuration de ce module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:147
+#: ../mail/src/cd-mail-applet-notifications.c:67
+#, fuzzy
+msgid ""
+"No mail application is defined,\n"
+"you can define it in the configuration panel of this module"
+msgstr ""
+"Un problème est survenu\n"
+"Si '%s' n'est pas votre application mail par défaut,\n"
+"vous pouvez le modifier dans le panneau de configuration de ce module"
+
+#: ../mail/src/cd-mail-applet-notifications.c:150
 msgid "Refresh a mail account"
 msgstr "Rafraîchir un compte e-mail"
 
-#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../mail/src/cd-mail-applet-notifications.c:157
 #, fuzzy
 msgid "Refresh all"
 msgstr "Rafraîchir"
 
-#: ../mail/src/cd-mail-applet-notifications.c:161
+#: ../mail/src/cd-mail-applet-notifications.c:164
 #, c-format
 msgid "Refresh %s"
 msgstr "Actualiser %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:167
+#: ../mail/src/cd-mail-applet-notifications.c:170
 msgid "Mark all emails as read"
 msgstr "Marquer tous les messages comme lus."
 
-#: ../mail/src/cd-mail-applet-notifications.c:170
+#: ../mail/src/cd-mail-applet-notifications.c:173
 #, c-format
 msgid "Launch %s"
 msgstr "Lancer %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:348
+#: ../mail/src/cd-mail-applet-notifications.c:351
 msgid "Mail"
 msgstr "Mail"
 
@@ -2744,8 +2779,8 @@ msgstr "Pause"
 msgid "Open current image"
 msgstr "Ouvrir l'image courante"
 
-#: ../slider/src/applet-notifications.c:272
-#: ../slider/src/applet-notifications.c:274
+#: ../slider/src/applet-notifications.c:271
+#: ../slider/src/applet-notifications.c:273
 msgid "Browse images folder"
 msgstr "Parcourir le dossier d'images"
 
@@ -2753,7 +2788,7 @@ msgstr "Parcourir le dossier d'images"
 msgid "stack"
 msgstr "Pile"
 
-#: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
+#: ../stack/src/applet-init.c:34
 msgid ""
 "This applet allows you to build a stack of files, just like the Stacks "
 "applet of MacOS X.\n"
@@ -2807,7 +2842,7 @@ msgstr "Ouvrir le dossier parent"
 
 #: ../stack/src/applet-notifications.c:181
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:358
+#: ../terminal/src/terminal-widget.c:374
 msgid "Copy"
 msgstr "Copier"
 
@@ -2822,18 +2857,6 @@ msgstr "Renommer cet objet"
 #: ../stack/src/applet-notifications.c:188
 msgid "Remove this item"
 msgstr "Enlever cet objet"
-
-#: ../stacks/src/applet-init.c:30
-msgid "stacks"
-msgstr "Piles"
-
-#: ../stacks/src/applet-notifications.c:44
-msgid "Reload Stacks"
-msgstr "Relancer Stacks"
-
-#: ../stacks/src/applet-notifications.c:45
-msgid "Clean local directory"
-msgstr "Nettoyer le dossier local"
 
 #: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
 #: ../switcher/src/applet-load-icons.c:43
@@ -2922,7 +2945,6 @@ msgstr ""
 " et de le placer sur le bureau, en le gardant au-dessus des autres fenêtres."
 
 #: ../systray/src/systray-interface.c:71
-#: ../systray/src/systray-menu-functions.c:70
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -2972,7 +2994,7 @@ msgstr ""
 "Pour fermer un onglet, tapez 'CTRL+w' ou clic milieu dessus."
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:374
+#: ../terminal/src/terminal-widget.c:390
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -2996,24 +3018,24 @@ msgstr "Définissez un titre pour cet onglet :"
 msgid "Select a color"
 msgstr "Sélectionner une couleur"
 
-#: ../terminal/src/terminal-widget.c:318
+#: ../terminal/src/terminal-widget.c:334
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Vous pouvez rappeler le desklet Terminal en tapant %s"
 
-#: ../terminal/src/terminal-widget.c:364
+#: ../terminal/src/terminal-widget.c:380
 msgid "Paste"
 msgstr "Coller"
 
-#: ../terminal/src/terminal-widget.c:380
+#: ../terminal/src/terminal-widget.c:396
 msgid "Rename this Tab"
 msgstr "Renommer cet onglet"
 
-#: ../terminal/src/terminal-widget.c:386
+#: ../terminal/src/terminal-widget.c:402
 msgid "Change this Tab's colour"
 msgstr "Changer la couleur de cet onglet"
 
-#: ../terminal/src/terminal-widget.c:392
+#: ../terminal/src/terminal-widget.c:408
 msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
@@ -3174,25 +3196,25 @@ msgid "Dec"
 msgstr "Déc"
 
 #: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:73
+#: ../weather/src/applet-notifications.c:70
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Données en cours de récupération, merci d'attendre un moment."
 
-#: ../weather/src/applet-notifications.c:111
+#: ../weather/src/applet-notifications.c:108
 #, fuzzy
 msgid "Show current conditions (middle-click)"
 msgstr "Monter (clic du milieu)"
 
-#: ../weather/src/applet-notifications.c:116
+#: ../weather/src/applet-notifications.c:113
 #, fuzzy
 msgid "Open weather.com (double-click)"
 msgstr "Ouvrir le dossier (clic du milieu)"
 
-#: ../weather/src/applet-notifications.c:118
+#: ../weather/src/applet-notifications.c:115
 msgid "Reload now"
 msgstr "Recharger maintenant"
 
-#: ../weather/src/applet-notifications.c:151
+#: ../weather/src/applet-notifications.c:148
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3200,41 +3222,41 @@ msgstr ""
 "Aucune donnée disponible\n"
 " la connexion est-elle établie ?"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:167
+#: ../weather/src/applet-notifications.c:203
 msgid "Temperature"
 msgstr "Température"
 
-#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:168
 msgid "Precipitation probability"
 msgstr "Probabilité de précipitation"
 
-#: ../weather/src/applet-notifications.c:172
-#: ../weather/src/applet-notifications.c:207
+#: ../weather/src/applet-notifications.c:169
+#: ../weather/src/applet-notifications.c:204
 msgid "Wind"
 msgstr "Vent"
 
-#: ../weather/src/applet-notifications.c:173
-#: ../weather/src/applet-notifications.c:208
+#: ../weather/src/applet-notifications.c:170
+#: ../weather/src/applet-notifications.c:205
 msgid "Humidity"
 msgstr "Humidité"
 
-#: ../weather/src/applet-notifications.c:174
-#: ../weather/src/applet-notifications.c:209
+#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:206
 msgid "Sunrise"
 msgstr "Lever du soleil"
 
-#: ../weather/src/applet-notifications.c:174
-#: ../weather/src/applet-notifications.c:209
+#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:206
 msgid "Sunset"
 msgstr "Coucher du soleil"
 
-#: ../weather/src/applet-notifications.c:182
+#: ../weather/src/applet-notifications.c:179
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
 "Données en cours de récupération, veuillez re-essayer dans quelques secondes."
 
-#: ../weather/src/applet-notifications.c:192
+#: ../weather/src/applet-notifications.c:189
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3242,11 +3264,11 @@ msgstr ""
 "Aucune donnée disponible\n"
 "Nouvel essai ..."
 
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:203
 msgid "Feels like"
 msgstr "ressentie"
 
-#: ../weather/src/applet-notifications.c:208
+#: ../weather/src/applet-notifications.c:205
 msgid "Pressure"
 msgstr "Pression"
 
@@ -3368,6 +3390,7 @@ msgstr "En ms"
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
+#: ../mail/data/messages:133
 msgid "Duration of the animation:"
 msgstr "Durée de l'animation :"
 
@@ -3399,11 +3422,11 @@ msgstr "Type de forme 3D :"
 #: ../netspeed/data/messages:41 ../powermanager/data/messages:43
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
-#: ../stack/data/messages:47 ../stacks/data/messages:43
-#: ../switcher/data/messages:37 ../systray/data/messages:37
-#: ../template/data/messages:45 ../terminal/data/messages:45
-#: ../tomboy/data/messages:55 ../weather/data/messages:43
-#: ../weblets/data/messages:45 ../wifi/data/messages:43
+#: ../stack/data/messages:47 ../switcher/data/messages:37
+#: ../systray/data/messages:37 ../template/data/messages:45
+#: ../terminal/data/messages:45 ../tomboy/data/messages:55
+#: ../weather/data/messages:43 ../weblets/data/messages:45
+#: ../wifi/data/messages:43
 msgid "Normal"
 msgstr "Normal"
 
@@ -3431,10 +3454,9 @@ msgstr "Couleur du reflet"
 #: ../dnd2share/data/messages:9 ../logout/data/messages:9
 #: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../stacks/data/messages:9 ../switcher/data/messages:9
-#: ../switcher/data/messages:141 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
+#: ../switcher/data/messages:9 ../switcher/data/messages:141
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Laissez vide pour utiliser celle par défaut."
 
@@ -3573,11 +3595,11 @@ msgstr "Durée du clignotement"
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
 #: ../showDesktop/data/messages:1 ../slider/data/messages:1
-#: ../stack/data/messages:1 ../stacks/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../template/data/messages:1 ../terminal/data/messages:1
-#: ../tomboy/data/messages:1 ../weather/data/messages:1
-#: ../weblets/data/messages:1 ../wifi/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../template/data/messages:1
+#: ../terminal/data/messages:1 ../tomboy/data/messages:1
+#: ../weather/data/messages:1 ../weblets/data/messages:1
+#: ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Icône"
 
@@ -3596,11 +3618,11 @@ msgstr "Icône"
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
 #: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../stacks/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../template/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
-#: ../weblets/data/messages:3 ../wifi/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../template/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
+#: ../weather/data/messages:3 ../weblets/data/messages:3
+#: ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
 msgstr "Laissez à 0 pour avoir la taille par défaut des applets"
 
@@ -3627,11 +3649,10 @@ msgstr "Nom de l'icône quand le pingouin n'est pas libre :"
 #: ../powermanager/data/messages:9 ../quick-browser/data/messages:15
 #: ../shortcuts/data/messages:13 ../showDesktop/data/messages:17
 #: ../slider/data/messages:9 ../stack/data/messages:15
-#: ../stacks/data/messages:13 ../switcher/data/messages:13
-#: ../systray/data/messages:13 ../template/data/messages:13
-#: ../terminal/data/messages:13 ../tomboy/data/messages:9
-#: ../weather/data/messages:11 ../weblets/data/messages:13
-#: ../wifi/data/messages:9
+#: ../switcher/data/messages:13 ../systray/data/messages:13
+#: ../template/data/messages:13 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../weather/data/messages:11
+#: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Nom du dock auquel il appartient :"
 
@@ -3675,19 +3696,18 @@ msgstr "Manuel de l'applet"
 #: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
-#: ../stacks/data/messages:89 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:83
-#: ../template/data/messages:91 ../terminal/data/messages:91
-#: ../tomboy/data/messages:101 ../weather/data/messages:89
-#: ../weather/data/messages:91 ../weblets/data/messages:91
-#: ../wifi/data/messages:89
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:83 ../template/data/messages:91
+#: ../terminal/data/messages:91 ../tomboy/data/messages:101
+#: ../weather/data/messages:89 ../weather/data/messages:91
+#: ../weblets/data/messages:91 ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Configuration"
 
 #: ../Cairo-Penguin/data/messages:15 ../Disks/data/messages:113
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:183
 #: ../System-Monitor/data/messages:99 ../Toons/data/messages:91
-#: ../dustbin/data/messages:91 ../mail/data/messages:97
+#: ../dustbin/data/messages:91 ../mail/data/messages:95
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:101
 #: ../weather/data/messages:121 ../wifi/data/messages:101
 msgid "Choose one of the available themes:"
@@ -3697,9 +3717,9 @@ msgstr "Choisissez l'un des thèmes disponibles :"
 #: ../Disks/data/messages:151 ../Network-Monitor/data/messages:167
 #: ../System-Monitor/data/messages:153 ../System-Monitor/data/messages:199
 #: ../Toons/data/messages:93 ../dnd2share/data/messages:93
-#: ../mail/data/messages:115 ../musicPlayer/data/messages:139
+#: ../mail/data/messages:127 ../musicPlayer/data/messages:139
 #: ../netspeed/data/messages:131 ../powermanager/data/messages:145
-#: ../shortcuts/data/messages:129 ../slider/data/messages:121
+#: ../shortcuts/data/messages:129 ../slider/data/messages:123
 #: ../tomboy/data/messages:115 ../wifi/data/messages:165
 msgid "in seconds."
 msgstr "en secondes."
@@ -3740,11 +3760,10 @@ msgstr "Décalage du sol :"
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
 #: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
 #: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../stacks/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../template/data/messages:5
-#: ../terminal/data/messages:5 ../tomboy/data/messages:5
-#: ../weather/data/messages:5 ../weblets/data/messages:5
-#: ../wifi/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../template/data/messages:5 ../terminal/data/messages:5
+#: ../tomboy/data/messages:5 ../weather/data/messages:5
+#: ../weblets/data/messages:5 ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Taille d'icône souhaitée pour cette applet"
 
@@ -3761,10 +3780,9 @@ msgstr "Taille d'icône souhaitée pour cette applet"
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
 #: ../showDesktop/data/messages:7 ../slider/data/messages:7
-#: ../stack/data/messages:9 ../stacks/data/messages:7
-#: ../switcher/data/messages:7 ../template/data/messages:7
-#: ../weather/data/messages:9 ../weblets/data/messages:7
-#: ../wifi/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../template/data/messages:7 ../weather/data/messages:9
+#: ../weblets/data/messages:7 ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
@@ -3774,10 +3792,9 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 #: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
 #: ../logout/data/messages:11 ../quick-browser/data/messages:13
 #: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../stacks/data/messages:11
-#: ../switcher/data/messages:11 ../systray/data/messages:11
-#: ../template/data/messages:11 ../terminal/data/messages:11
-#: ../weblets/data/messages:11
+#: ../stack/data/messages:13 ../switcher/data/messages:11
+#: ../systray/data/messages:11 ../template/data/messages:11
+#: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "Nom du fichier de l'image :"
 
@@ -3796,11 +3813,11 @@ msgstr "Nom du fichier de l'image :"
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../show-mouse/data/messages:13
 #: ../showDesktop/data/messages:21 ../slider/data/messages:15
-#: ../stack/data/messages:19 ../stacks/data/messages:15
-#: ../switcher/data/messages:17 ../systray/data/messages:17
-#: ../template/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:27 ../weather/data/messages:15
-#: ../weblets/data/messages:17 ../wifi/data/messages:15
+#: ../stack/data/messages:19 ../switcher/data/messages:17
+#: ../systray/data/messages:17 ../template/data/messages:17
+#: ../terminal/data/messages:17 ../tomboy/data/messages:27
+#: ../weather/data/messages:15 ../weblets/data/messages:17
+#: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
@@ -3819,11 +3836,10 @@ msgstr "Desklet"
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
 #: ../slider/data/messages:17 ../stack/data/messages:21
-#: ../stacks/data/messages:17 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
+#: ../switcher/data/messages:19 ../systray/data/messages:19
+#: ../template/data/messages:19 ../terminal/data/messages:19
+#: ../tomboy/data/messages:29 ../weather/data/messages:17
+#: ../weblets/data/messages:19 ../wifi/data/messages:17
 msgid "Position"
 msgstr "Position"
 
@@ -3842,11 +3858,10 @@ msgstr "Position"
 #: ../powermanager/data/messages:19 ../quick-browser/data/messages:23
 #: ../shortcuts/data/messages:21 ../showDesktop/data/messages:25
 #: ../slider/data/messages:19 ../stack/data/messages:23
-#: ../stacks/data/messages:19 ../switcher/data/messages:21
-#: ../systray/data/messages:21 ../template/data/messages:21
-#: ../terminal/data/messages:21 ../tomboy/data/messages:31
-#: ../weather/data/messages:19 ../weblets/data/messages:21
-#: ../wifi/data/messages:19
+#: ../switcher/data/messages:21 ../systray/data/messages:21
+#: ../template/data/messages:21 ../terminal/data/messages:21
+#: ../tomboy/data/messages:31 ../weather/data/messages:19
+#: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
@@ -3870,11 +3885,10 @@ msgstr ""
 #: ../powermanager/data/messages:21 ../quick-browser/data/messages:25
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:27
 #: ../slider/data/messages:21 ../stack/data/messages:25
-#: ../stacks/data/messages:21 ../switcher/data/messages:23
-#: ../systray/data/messages:23 ../template/data/messages:23
-#: ../terminal/data/messages:23 ../tomboy/data/messages:33
-#: ../weather/data/messages:21 ../weblets/data/messages:23
-#: ../wifi/data/messages:21
+#: ../switcher/data/messages:23 ../systray/data/messages:23
+#: ../template/data/messages:23 ../terminal/data/messages:23
+#: ../tomboy/data/messages:33 ../weather/data/messages:21
+#: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "Verrouiller la position ?"
 
@@ -3893,10 +3907,10 @@ msgstr "Verrouiller la position ?"
 #: ../powermanager/data/messages:23 ../quick-browser/data/messages:27
 #: ../shortcuts/data/messages:25 ../showDesktop/data/messages:29
 #: ../slider/data/messages:23 ../stack/data/messages:27
-#: ../stacks/data/messages:23 ../switcher/data/messages:25
-#: ../template/data/messages:25 ../terminal/data/messages:25
-#: ../tomboy/data/messages:35 ../weather/data/messages:23
-#: ../weblets/data/messages:25 ../wifi/data/messages:23
+#: ../switcher/data/messages:25 ../template/data/messages:25
+#: ../terminal/data/messages:25 ../tomboy/data/messages:35
+#: ../weather/data/messages:23 ../weblets/data/messages:25
+#: ../wifi/data/messages:23
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -3919,10 +3933,10 @@ msgstr ""
 #: ../powermanager/data/messages:25 ../quick-browser/data/messages:29
 #: ../shortcuts/data/messages:27 ../showDesktop/data/messages:31
 #: ../slider/data/messages:25 ../stack/data/messages:29
-#: ../stacks/data/messages:25 ../switcher/data/messages:27
-#: ../template/data/messages:27 ../terminal/data/messages:27
-#: ../tomboy/data/messages:37 ../weather/data/messages:25
-#: ../weblets/data/messages:27 ../wifi/data/messages:25
+#: ../switcher/data/messages:27 ../template/data/messages:27
+#: ../terminal/data/messages:27 ../tomboy/data/messages:37
+#: ../weather/data/messages:25 ../weblets/data/messages:27
+#: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "Dimension du desklet (largeur x hauteur) :"
 
@@ -3938,9 +3952,8 @@ msgstr "Dimension du desklet (largeur x hauteur) :"
 #: ../powermanager/data/messages:27 ../quick-browser/data/messages:31
 #: ../shortcuts/data/messages:29 ../showDesktop/data/messages:33
 #: ../slider/data/messages:27 ../stack/data/messages:31
-#: ../stacks/data/messages:27 ../terminal/data/messages:29
-#: ../weather/data/messages:27 ../weblets/data/messages:29
-#: ../wifi/data/messages:27
+#: ../terminal/data/messages:29 ../weather/data/messages:27
+#: ../weblets/data/messages:29 ../wifi/data/messages:27
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3963,11 +3976,10 @@ msgstr ""
 #: ../powermanager/data/messages:29 ../quick-browser/data/messages:33
 #: ../shortcuts/data/messages:31 ../showDesktop/data/messages:35
 #: ../slider/data/messages:29 ../stack/data/messages:33
-#: ../stacks/data/messages:29 ../switcher/data/messages:29
-#: ../systray/data/messages:27 ../template/data/messages:31
-#: ../terminal/data/messages:31 ../tomboy/data/messages:41
-#: ../weather/data/messages:29 ../weblets/data/messages:31
-#: ../wifi/data/messages:29
+#: ../switcher/data/messages:29 ../systray/data/messages:27
+#: ../template/data/messages:31 ../terminal/data/messages:31
+#: ../tomboy/data/messages:41 ../weather/data/messages:29
+#: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "Position du desklet (x ; y) :"
 
@@ -3985,10 +3997,10 @@ msgstr "Position du desklet (x ; y) :"
 #: ../netspeed/data/messages:29 ../powermanager/data/messages:31
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
-#: ../stack/data/messages:35 ../stacks/data/messages:31
-#: ../template/data/messages:33 ../terminal/data/messages:33
-#: ../tomboy/data/messages:43 ../weather/data/messages:31
-#: ../weblets/data/messages:33 ../wifi/data/messages:31
+#: ../stack/data/messages:35 ../template/data/messages:33
+#: ../terminal/data/messages:33 ../tomboy/data/messages:43
+#: ../weather/data/messages:31 ../weblets/data/messages:33
+#: ../wifi/data/messages:31
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -4010,10 +4022,10 @@ msgstr ""
 #: ../netspeed/data/messages:31 ../powermanager/data/messages:33
 #: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
 #: ../showDesktop/data/messages:39 ../slider/data/messages:33
-#: ../stack/data/messages:37 ../stacks/data/messages:33
-#: ../template/data/messages:35 ../terminal/data/messages:35
-#: ../tomboy/data/messages:45 ../weather/data/messages:33
-#: ../weblets/data/messages:35 ../wifi/data/messages:33
+#: ../stack/data/messages:37 ../template/data/messages:35
+#: ../terminal/data/messages:35 ../tomboy/data/messages:45
+#: ../weather/data/messages:33 ../weblets/data/messages:35
+#: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "Rotation:"
 
@@ -4032,11 +4044,10 @@ msgstr "Rotation:"
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
-#: ../stacks/data/messages:35 ../switcher/data/messages:31
-#: ../systray/data/messages:29 ../template/data/messages:37
-#: ../terminal/data/messages:37 ../tomboy/data/messages:47
-#: ../weather/data/messages:35 ../weblets/data/messages:37
-#: ../wifi/data/messages:35
+#: ../switcher/data/messages:31 ../systray/data/messages:29
+#: ../template/data/messages:37 ../terminal/data/messages:37
+#: ../tomboy/data/messages:47 ../weather/data/messages:35
+#: ../weblets/data/messages:37 ../wifi/data/messages:35
 msgid "Visibility"
 msgstr "Visibilité"
 
@@ -4055,11 +4066,11 @@ msgstr "Visibilité"
 #: ../netspeed/data/messages:35 ../powermanager/data/messages:37
 #: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
 #: ../showDesktop/data/messages:43 ../slider/data/messages:37
-#: ../stack/data/messages:41 ../stacks/data/messages:37
-#: ../switcher/data/messages:33 ../systray/data/messages:31
-#: ../template/data/messages:39 ../terminal/data/messages:39
-#: ../tomboy/data/messages:49 ../weather/data/messages:37
-#: ../weblets/data/messages:39 ../wifi/data/messages:37
+#: ../stack/data/messages:41 ../switcher/data/messages:33
+#: ../systray/data/messages:31 ../template/data/messages:39
+#: ../terminal/data/messages:39 ../tomboy/data/messages:49
+#: ../weather/data/messages:37 ../weblets/data/messages:39
+#: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "Est-il détaché du dock ?"
 
@@ -4078,10 +4089,10 @@ msgstr "Est-il détaché du dock ?"
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
-#: ../stacks/data/messages:39 ../systray/data/messages:33
-#: ../template/data/messages:41 ../terminal/data/messages:41
-#: ../tomboy/data/messages:51 ../weather/data/messages:39
-#: ../weblets/data/messages:41 ../wifi/data/messages:39
+#: ../systray/data/messages:33 ../template/data/messages:41
+#: ../terminal/data/messages:41 ../tomboy/data/messages:51
+#: ../weather/data/messages:39 ../weblets/data/messages:41
+#: ../wifi/data/messages:39
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -4104,11 +4115,10 @@ msgstr ""
 #: ../powermanager/data/messages:41 ../quick-browser/data/messages:45
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:47
 #: ../slider/data/messages:41 ../stack/data/messages:45
-#: ../stacks/data/messages:41 ../switcher/data/messages:35
-#: ../systray/data/messages:35 ../template/data/messages:43
-#: ../terminal/data/messages:43 ../tomboy/data/messages:53
-#: ../weather/data/messages:41 ../weblets/data/messages:43
-#: ../wifi/data/messages:41
+#: ../switcher/data/messages:35 ../systray/data/messages:35
+#: ../template/data/messages:43 ../terminal/data/messages:43
+#: ../tomboy/data/messages:53 ../weather/data/messages:41
+#: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr "Visibilité :"
 
@@ -4127,11 +4137,10 @@ msgstr "Visibilité :"
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
-#: ../stacks/data/messages:45 ../switcher/data/messages:39
-#: ../systray/data/messages:39 ../template/data/messages:47
-#: ../terminal/data/messages:47 ../tomboy/data/messages:57
-#: ../weather/data/messages:45 ../weblets/data/messages:47
-#: ../wifi/data/messages:45
+#: ../switcher/data/messages:39 ../systray/data/messages:39
+#: ../template/data/messages:47 ../terminal/data/messages:47
+#: ../tomboy/data/messages:57 ../weather/data/messages:45
+#: ../weblets/data/messages:47 ../wifi/data/messages:45
 msgid "Keep above"
 msgstr "Toujours devant"
 
@@ -4150,11 +4159,10 @@ msgstr "Toujours devant"
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
-#: ../stacks/data/messages:47 ../switcher/data/messages:41
-#: ../systray/data/messages:41 ../template/data/messages:49
-#: ../terminal/data/messages:49 ../tomboy/data/messages:59
-#: ../weather/data/messages:47 ../weblets/data/messages:49
-#: ../wifi/data/messages:47
+#: ../switcher/data/messages:41 ../systray/data/messages:41
+#: ../template/data/messages:49 ../terminal/data/messages:49
+#: ../tomboy/data/messages:59 ../weather/data/messages:47
+#: ../weblets/data/messages:49 ../wifi/data/messages:47
 msgid "Keep below"
 msgstr "Toujours derrière"
 
@@ -4173,11 +4181,10 @@ msgstr "Toujours derrière"
 #: ../powermanager/data/messages:49 ../quick-browser/data/messages:53
 #: ../shortcuts/data/messages:51 ../showDesktop/data/messages:55
 #: ../slider/data/messages:49 ../stack/data/messages:53
-#: ../stacks/data/messages:49 ../switcher/data/messages:43
-#: ../systray/data/messages:43 ../template/data/messages:51
-#: ../terminal/data/messages:51 ../tomboy/data/messages:61
-#: ../weather/data/messages:49 ../weblets/data/messages:51
-#: ../wifi/data/messages:49
+#: ../switcher/data/messages:43 ../systray/data/messages:43
+#: ../template/data/messages:51 ../terminal/data/messages:51
+#: ../tomboy/data/messages:61 ../weather/data/messages:49
+#: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr "Sur la couche widgets"
 
@@ -4196,11 +4203,10 @@ msgstr "Sur la couche widgets"
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
-#: ../stacks/data/messages:51 ../switcher/data/messages:45
-#: ../systray/data/messages:45 ../template/data/messages:53
-#: ../terminal/data/messages:53 ../tomboy/data/messages:63
-#: ../weather/data/messages:51 ../weblets/data/messages:53
-#: ../wifi/data/messages:51
+#: ../switcher/data/messages:45 ../systray/data/messages:45
+#: ../template/data/messages:53 ../terminal/data/messages:53
+#: ../tomboy/data/messages:63 ../weather/data/messages:51
+#: ../weblets/data/messages:53 ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr "Réserver l'espace"
 
@@ -4219,11 +4225,10 @@ msgstr "Réserver l'espace"
 #: ../powermanager/data/messages:53 ../quick-browser/data/messages:57
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:59
 #: ../slider/data/messages:53 ../stack/data/messages:57
-#: ../stacks/data/messages:53 ../switcher/data/messages:47
-#: ../systray/data/messages:47 ../template/data/messages:55
-#: ../terminal/data/messages:55 ../tomboy/data/messages:65
-#: ../weather/data/messages:53 ../weblets/data/messages:55
-#: ../wifi/data/messages:53
+#: ../switcher/data/messages:47 ../systray/data/messages:47
+#: ../template/data/messages:55 ../terminal/data/messages:55
+#: ../tomboy/data/messages:65 ../weather/data/messages:53
+#: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr "Visible sur tous les bureaux ?"
 
@@ -4242,11 +4247,10 @@ msgstr "Visible sur tous les bureaux ?"
 #: ../powermanager/data/messages:55 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
-#: ../stacks/data/messages:55 ../switcher/data/messages:49
-#: ../systray/data/messages:49 ../template/data/messages:57
-#: ../terminal/data/messages:57 ../tomboy/data/messages:67
-#: ../weather/data/messages:55 ../weblets/data/messages:57
-#: ../wifi/data/messages:55
+#: ../switcher/data/messages:49 ../systray/data/messages:49
+#: ../template/data/messages:57 ../terminal/data/messages:57
+#: ../tomboy/data/messages:67 ../weather/data/messages:55
+#: ../weblets/data/messages:57 ../wifi/data/messages:55
 msgid "Decorations"
 msgstr "Décorations"
 
@@ -4265,11 +4269,10 @@ msgstr "Décorations"
 #: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
-#: ../stacks/data/messages:57 ../switcher/data/messages:51
-#: ../systray/data/messages:51 ../template/data/messages:59
-#: ../terminal/data/messages:59 ../tomboy/data/messages:69
-#: ../weather/data/messages:57 ../weblets/data/messages:59
-#: ../wifi/data/messages:57
+#: ../switcher/data/messages:51 ../systray/data/messages:51
+#: ../template/data/messages:59 ../terminal/data/messages:59
+#: ../tomboy/data/messages:69 ../weather/data/messages:57
+#: ../weblets/data/messages:59 ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 "Choisissez 'Décoration personnelle' pour définir votre propre décoration ci-"
@@ -4290,11 +4293,10 @@ msgstr ""
 #: ../powermanager/data/messages:59 ../quick-browser/data/messages:63
 #: ../shortcuts/data/messages:61 ../showDesktop/data/messages:65
 #: ../slider/data/messages:59 ../stack/data/messages:63
-#: ../stacks/data/messages:59 ../switcher/data/messages:53
-#: ../systray/data/messages:53 ../template/data/messages:61
-#: ../terminal/data/messages:61 ../tomboy/data/messages:71
-#: ../weather/data/messages:59 ../weblets/data/messages:61
-#: ../wifi/data/messages:59
+#: ../switcher/data/messages:53 ../systray/data/messages:53
+#: ../template/data/messages:61 ../terminal/data/messages:61
+#: ../tomboy/data/messages:71 ../weather/data/messages:59
+#: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "Choisissez un thème de décorations pour ce desklet :"
 
@@ -4313,11 +4315,10 @@ msgstr "Choisissez un thème de décorations pour ce desklet :"
 #: ../powermanager/data/messages:61 ../quick-browser/data/messages:65
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:67
 #: ../slider/data/messages:61 ../stack/data/messages:65
-#: ../stacks/data/messages:61 ../switcher/data/messages:55
-#: ../systray/data/messages:55 ../template/data/messages:63
-#: ../terminal/data/messages:63 ../tomboy/data/messages:73
-#: ../weather/data/messages:61 ../weblets/data/messages:63
-#: ../wifi/data/messages:61
+#: ../switcher/data/messages:55 ../systray/data/messages:55
+#: ../template/data/messages:63 ../terminal/data/messages:63
+#: ../tomboy/data/messages:73 ../weather/data/messages:61
+#: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
@@ -4340,11 +4341,11 @@ msgstr ""
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
-#: ../stack/data/messages:67 ../stacks/data/messages:63
-#: ../switcher/data/messages:57 ../systray/data/messages:57
-#: ../template/data/messages:65 ../terminal/data/messages:65
-#: ../tomboy/data/messages:75 ../weather/data/messages:63
-#: ../weblets/data/messages:65 ../wifi/data/messages:63
+#: ../stack/data/messages:67 ../switcher/data/messages:57
+#: ../systray/data/messages:57 ../template/data/messages:65
+#: ../terminal/data/messages:65 ../tomboy/data/messages:75
+#: ../weather/data/messages:63 ../weblets/data/messages:65
+#: ../wifi/data/messages:63
 msgid "Background image:"
 msgstr "Image à dessiner en arrière-plan :"
 
@@ -4363,11 +4364,10 @@ msgstr "Image à dessiner en arrière-plan :"
 #: ../powermanager/data/messages:65 ../quick-browser/data/messages:69
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:71
 #: ../slider/data/messages:65 ../stack/data/messages:69
-#: ../stacks/data/messages:65 ../switcher/data/messages:59
-#: ../systray/data/messages:59 ../template/data/messages:67
-#: ../terminal/data/messages:67 ../tomboy/data/messages:77
-#: ../weather/data/messages:65 ../weblets/data/messages:67
-#: ../wifi/data/messages:65
+#: ../switcher/data/messages:59 ../systray/data/messages:59
+#: ../template/data/messages:67 ../terminal/data/messages:67
+#: ../tomboy/data/messages:77 ../weather/data/messages:65
+#: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "Transparence du fond :"
 
@@ -4386,11 +4386,10 @@ msgstr "Transparence du fond :"
 #: ../powermanager/data/messages:67 ../quick-browser/data/messages:71
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:73
 #: ../slider/data/messages:67 ../stack/data/messages:71
-#: ../stacks/data/messages:67 ../switcher/data/messages:61
-#: ../systray/data/messages:61 ../template/data/messages:69
-#: ../terminal/data/messages:69 ../tomboy/data/messages:79
-#: ../weather/data/messages:67 ../weblets/data/messages:69
-#: ../wifi/data/messages:67
+#: ../switcher/data/messages:61 ../systray/data/messages:61
+#: ../template/data/messages:69 ../terminal/data/messages:69
+#: ../tomboy/data/messages:79 ../weather/data/messages:67
+#: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
@@ -4409,11 +4408,10 @@ msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 #: ../powermanager/data/messages:69 ../quick-browser/data/messages:73
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:75
 #: ../slider/data/messages:69 ../stack/data/messages:73
-#: ../stacks/data/messages:69 ../switcher/data/messages:63
-#: ../systray/data/messages:63 ../template/data/messages:71
-#: ../terminal/data/messages:71 ../tomboy/data/messages:81
-#: ../weather/data/messages:69 ../weblets/data/messages:71
-#: ../wifi/data/messages:69
+#: ../switcher/data/messages:63 ../systray/data/messages:63
+#: ../template/data/messages:71 ../terminal/data/messages:71
+#: ../tomboy/data/messages:81 ../weather/data/messages:69
+#: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "Décalage à gauche :"
 
@@ -4432,11 +4430,10 @@ msgstr "Décalage à gauche :"
 #: ../powermanager/data/messages:71 ../quick-browser/data/messages:75
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:77
 #: ../slider/data/messages:71 ../stack/data/messages:75
-#: ../stacks/data/messages:71 ../switcher/data/messages:65
-#: ../systray/data/messages:65 ../template/data/messages:73
-#: ../terminal/data/messages:73 ../tomboy/data/messages:83
-#: ../weather/data/messages:71 ../weblets/data/messages:73
-#: ../wifi/data/messages:71
+#: ../switcher/data/messages:65 ../systray/data/messages:65
+#: ../template/data/messages:73 ../terminal/data/messages:73
+#: ../tomboy/data/messages:83 ../weather/data/messages:71
+#: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 
@@ -4455,11 +4452,10 @@ msgstr "en pixels. Utilisez-le pour ajuster la position en haut des dessins."
 #: ../powermanager/data/messages:73 ../quick-browser/data/messages:77
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:79
 #: ../slider/data/messages:73 ../stack/data/messages:77
-#: ../stacks/data/messages:73 ../switcher/data/messages:67
-#: ../systray/data/messages:67 ../template/data/messages:75
-#: ../terminal/data/messages:75 ../tomboy/data/messages:85
-#: ../weather/data/messages:73 ../weblets/data/messages:75
-#: ../wifi/data/messages:73
+#: ../switcher/data/messages:67 ../systray/data/messages:67
+#: ../template/data/messages:75 ../terminal/data/messages:75
+#: ../tomboy/data/messages:85 ../weather/data/messages:73
+#: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "Décalage en haut :"
 
@@ -4478,11 +4474,10 @@ msgstr "Décalage en haut :"
 #: ../powermanager/data/messages:75 ../quick-browser/data/messages:79
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:81
 #: ../slider/data/messages:75 ../stack/data/messages:79
-#: ../stacks/data/messages:75 ../switcher/data/messages:69
-#: ../systray/data/messages:69 ../template/data/messages:77
-#: ../terminal/data/messages:77 ../tomboy/data/messages:87
-#: ../weather/data/messages:75 ../weblets/data/messages:77
-#: ../wifi/data/messages:75
+#: ../switcher/data/messages:69 ../systray/data/messages:69
+#: ../template/data/messages:77 ../terminal/data/messages:77
+#: ../tomboy/data/messages:87 ../weather/data/messages:75
+#: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
@@ -4501,11 +4496,10 @@ msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 #: ../powermanager/data/messages:77 ../quick-browser/data/messages:81
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:83
 #: ../slider/data/messages:77 ../stack/data/messages:81
-#: ../stacks/data/messages:77 ../switcher/data/messages:71
-#: ../systray/data/messages:71 ../template/data/messages:79
-#: ../terminal/data/messages:79 ../tomboy/data/messages:89
-#: ../weather/data/messages:77 ../weblets/data/messages:79
-#: ../wifi/data/messages:77
+#: ../switcher/data/messages:71 ../systray/data/messages:71
+#: ../template/data/messages:79 ../terminal/data/messages:79
+#: ../tomboy/data/messages:89 ../weather/data/messages:77
+#: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "Décalage à droite :"
 
@@ -4524,11 +4518,10 @@ msgstr "Décalage à droite :"
 #: ../powermanager/data/messages:79 ../quick-browser/data/messages:83
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:85
 #: ../slider/data/messages:79 ../stack/data/messages:83
-#: ../stacks/data/messages:79 ../switcher/data/messages:73
-#: ../systray/data/messages:73 ../template/data/messages:81
-#: ../terminal/data/messages:81 ../tomboy/data/messages:91
-#: ../weather/data/messages:79 ../weblets/data/messages:81
-#: ../wifi/data/messages:79
+#: ../switcher/data/messages:73 ../systray/data/messages:73
+#: ../template/data/messages:81 ../terminal/data/messages:81
+#: ../tomboy/data/messages:91 ../weather/data/messages:79
+#: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 
@@ -4547,11 +4540,10 @@ msgstr "en pixels. Utilisez-le pour ajuster la position en bas des dessins."
 #: ../powermanager/data/messages:81 ../quick-browser/data/messages:85
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:87
 #: ../slider/data/messages:81 ../stack/data/messages:85
-#: ../stacks/data/messages:81 ../switcher/data/messages:75
-#: ../systray/data/messages:75 ../template/data/messages:83
-#: ../terminal/data/messages:83 ../tomboy/data/messages:93
-#: ../weather/data/messages:81 ../weblets/data/messages:83
-#: ../wifi/data/messages:81
+#: ../switcher/data/messages:75 ../systray/data/messages:75
+#: ../template/data/messages:83 ../terminal/data/messages:83
+#: ../tomboy/data/messages:93 ../weather/data/messages:81
+#: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "Décalage en bas :"
 
@@ -4570,11 +4562,10 @@ msgstr "Décalage en bas :"
 #: ../powermanager/data/messages:83 ../quick-browser/data/messages:87
 #: ../shortcuts/data/messages:85 ../showDesktop/data/messages:89
 #: ../slider/data/messages:83 ../stack/data/messages:87
-#: ../stacks/data/messages:83 ../switcher/data/messages:77
-#: ../systray/data/messages:77 ../template/data/messages:85
-#: ../terminal/data/messages:85 ../tomboy/data/messages:95
-#: ../weather/data/messages:83 ../weblets/data/messages:85
-#: ../wifi/data/messages:83
+#: ../switcher/data/messages:77 ../systray/data/messages:77
+#: ../template/data/messages:85 ../terminal/data/messages:85
+#: ../tomboy/data/messages:95 ../weather/data/messages:83
+#: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
@@ -4597,11 +4588,10 @@ msgstr ""
 #: ../powermanager/data/messages:85 ../quick-browser/data/messages:89
 #: ../shortcuts/data/messages:87 ../showDesktop/data/messages:91
 #: ../slider/data/messages:85 ../stack/data/messages:89
-#: ../stacks/data/messages:85 ../switcher/data/messages:79
-#: ../systray/data/messages:79 ../template/data/messages:87
-#: ../terminal/data/messages:87 ../tomboy/data/messages:97
-#: ../weather/data/messages:85 ../weblets/data/messages:87
-#: ../wifi/data/messages:85
+#: ../switcher/data/messages:79 ../systray/data/messages:79
+#: ../template/data/messages:87 ../terminal/data/messages:87
+#: ../tomboy/data/messages:97 ../weather/data/messages:85
+#: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "Image d'avant-plan :"
 
@@ -4620,11 +4610,10 @@ msgstr "Image d'avant-plan :"
 #: ../powermanager/data/messages:87 ../quick-browser/data/messages:91
 #: ../shortcuts/data/messages:89 ../showDesktop/data/messages:93
 #: ../slider/data/messages:87 ../stack/data/messages:91
-#: ../stacks/data/messages:87 ../switcher/data/messages:81
-#: ../systray/data/messages:81 ../template/data/messages:89
-#: ../terminal/data/messages:89 ../tomboy/data/messages:99
-#: ../weather/data/messages:87 ../weblets/data/messages:89
-#: ../wifi/data/messages:87
+#: ../switcher/data/messages:81 ../systray/data/messages:81
+#: ../template/data/messages:89 ../terminal/data/messages:89
+#: ../tomboy/data/messages:99 ../weather/data/messages:87
+#: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "Transparence de l'avant-plan :"
 
@@ -4822,10 +4811,10 @@ msgstr "Nom du dock auquel il appartient :"
 
 #: ../Disks/data/messages:11 ../Disks/data/messages:141
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
-#: ../musicPlayer/data/messages:145 ../shortcuts/data/messages:93
-#: ../shortcuts/data/messages:103 ../slider/data/messages:153
-#: ../stack/data/messages:95 ../tomboy/data/messages:103
-#: ../weather/data/messages:119
+#: ../mail/data/messages:93 ../musicPlayer/data/messages:145
+#: ../shortcuts/data/messages:93 ../shortcuts/data/messages:103
+#: ../slider/data/messages:155 ../stack/data/messages:95
+#: ../tomboy/data/messages:103 ../weather/data/messages:119
 msgid "Display"
 msgstr "Affichage"
 
@@ -4960,6 +4949,7 @@ msgstr "Afficher les valeurs :"
 #: ../RSSreader/data/messages:113 ../System-Monitor/data/messages:147
 #: ../alsaMixer/data/messages:119 ../clock/data/messages:97
 #: ../netspeed/data/messages:141 ../shortcuts/data/messages:119
+#: ../slider/data/messages:167
 msgid "No"
 msgstr "Non"
 
@@ -5449,8 +5439,8 @@ msgid "RSS password (optional):"
 msgstr "Mot de passe pour le flux RSS (optionnel) :"
 
 #: ../RSSreader/data/messages:105 ../clock/data/messages:93
-#: ../dnd2share/data/messages:97 ../mail/data/messages:107
-#: ../showDesktop/data/messages:97 ../slider/data/messages:105
+#: ../dnd2share/data/messages:97 ../showDesktop/data/messages:97
+#: ../slider/data/messages:107
 msgid "Behaviour"
 msgstr "Comportement"
 
@@ -5811,7 +5801,8 @@ msgstr "Aide"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 
-#: ../Status-Notifier/data/messages:9
+#: ../Status-Notifier/data/messages:9 ../mail/data/messages:97
+#: ../mail/data/messages:101 ../mail/data/messages:117
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser celle par défaut."
 
@@ -6244,7 +6235,7 @@ msgstr ""
 "ainsin que les plug-ins de l'action désirée"
 
 #: ../compiz-icon/data/messages:93 ../logout/data/messages:103
-#: ../showDesktop/data/messages:115 ../slider/data/messages:113
+#: ../showDesktop/data/messages:115 ../slider/data/messages:115
 #: ../switcher/data/messages:101
 msgid "Action on middle-click:"
 msgstr "Actions au clic du milieu :"
@@ -6402,14 +6393,14 @@ msgstr "kde-window-decorator"
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../compiz-icon/data/messages:159 ../mail/data/messages:91
+#: ../compiz-icon/data/messages:159 ../mail/data/messages:109
 #: ../shortcuts/data/messages:105 ../stack/data/messages:97
-#: ../stacks/data/messages:115 ../switcher/data/messages:145
-#: ../tomboy/data/messages:119 ../weather/data/messages:123
+#: ../switcher/data/messages:145 ../tomboy/data/messages:119
+#: ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
 msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 
-#: ../compiz-icon/data/messages:161 ../mail/data/messages:93
+#: ../compiz-icon/data/messages:161 ../mail/data/messages:111
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
 #: ../switcher/data/messages:147 ../tomboy/data/messages:121
 #: ../weather/data/messages:125
@@ -6460,17 +6451,17 @@ msgstr "Bande-dessinée"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
-#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:59
+#: ../dock-rendering/data/messages:59
 msgid "Corner radius:"
 msgstr "Rayon des coins :"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
 msgid "Border width:"
 msgstr "Largeur de la bordure :"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
 msgid "Bubble's line colour:"
 msgstr "Couleur du contour de la bulle :"
 
@@ -6482,35 +6473,23 @@ msgstr "Moderne"
 msgid "Space between lines of the tip :"
 msgstr "Espace entre les lignes de la pointe :"
 
-#: ../dialog-rendering/data/messages:23
-msgid "Border width of the plane :"
-msgstr "Largeur de la bordure du plan :"
-
-#: ../dialog-rendering/data/messages:25
-msgid "Colour of the plane's line :"
-msgstr "Couleur du contour :"
-
-#: ../dialog-rendering/data/messages:27
-msgid "Colour of the plane :"
-msgstr "Couleur du plan :"
-
-#: ../dialog-rendering/data/messages:29
+#: ../dialog-rendering/data/messages:19
 msgid "Tooltip"
 msgstr "Info-bulle"
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:27
 msgid "Colour of the margin :"
 msgstr "Couleur de la marge :"
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr "Courbé"
 
-#: ../dialog-rendering/data/messages:47
+#: ../dialog-rendering/data/messages:37
 msgid "Curvature of the tip :"
 msgstr "Courbure de la pointe :"
 
-#: ../dialog-rendering/data/messages:49
+#: ../dialog-rendering/data/messages:39
 msgid "Curve the sides too?"
 msgstr "Incurver les côtés aussi ?"
 
@@ -6575,56 +6554,60 @@ msgid "Sites"
 msgstr "Sites"
 
 #: ../dnd2share/data/messages:125
+msgid "Use files hosting site for any kind of files?"
+msgstr ""
+
+#: ../dnd2share/data/messages:127
 msgid "Preferred site for texts hosting :"
 msgstr "Site préféré pour l'hébergement des textes :"
 
-#: ../dnd2share/data/messages:127 ../dnd2share/data/messages:133
-#: ../dnd2share/data/messages:143 ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:129 ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:145 ../dnd2share/data/messages:151
 msgid "Custom"
 msgstr "Personel"
 
-#: ../dnd2share/data/messages:129
+#: ../dnd2share/data/messages:131
 msgid "Pastebin.ca"
 msgstr "Pastebin.ca"
 
-#: ../dnd2share/data/messages:131
+#: ../dnd2share/data/messages:133
 msgid "Preferred site for images hosting :"
 msgstr "Site préféré pour l'hébergement des images :"
 
-#: ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:137
 msgid "Uppix.net"
 msgstr "Uppix.net"
 
-#: ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:139
 msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
-#: ../dnd2share/data/messages:139
+#: ../dnd2share/data/messages:141
 msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
-#: ../dnd2share/data/messages:141
+#: ../dnd2share/data/messages:143
 msgid "Preferred site for videos hosting :"
 msgstr "Site préféré pour l'hébergement des vidéos :"
 
-#: ../dnd2share/data/messages:145
+#: ../dnd2share/data/messages:147
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:147
+#: ../dnd2share/data/messages:149
 msgid "Preferred site for files hosting :"
 msgstr "Site préféré pour l'hébergement des fichiers :"
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:155 ../dnd2share/data/messages:159
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
+#: ../dnd2share/data/messages:157 ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
@@ -6632,37 +6615,37 @@ msgstr ""
 "Le script recevra le chemin du fichier en paramètre ($1) et il devra "
 "renvoyer l'URL correspondante dans un format standard."
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:159
 msgid "Custom script for text upload :"
 msgstr "Script personnel pour l'upload des textes :"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:163
 msgid "Custom script for image upload :"
 msgstr "Script personnel pour l'upload des images :"
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:167
 msgid "Custom script for video upload :"
 msgstr "Script personnel pour l'upload des vidéos :"
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:171
 msgid "Custom script for file upload :"
 msgstr "Script personnel pour l'upload des fichiers :"
 
-#: ../dnd2share/data/messages:171
+#: ../dnd2share/data/messages:173
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
 "Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
 "Public'."
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:175
 msgid "Path of the DropBox folder :"
 msgstr "Chemin du dossier DropBox :"
 
-#: ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:177
 msgid "Otherwise, your user name will be used when possible."
 msgstr "Sinon, votre nom utilisateur sera utilisé si possible."
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:179
 msgid "Post text as Anonymous ?"
 msgstr "Envoyer le texte en tant qu'anonyme ?"
 
@@ -6707,10 +6690,6 @@ msgstr "Icônes plus petites"
 msgid "normal icons"
 msgstr "Icônes normales"
 
-#: ../dock-rendering/data/messages:27
-msgid "SimpleSlide"
-msgstr "Diapositive"
-
 #: ../dock-rendering/data/messages:29
 msgid "Grid"
 msgstr "Grille"
@@ -6739,7 +6718,7 @@ msgstr "Utiliser une vague linéaire plutôt que sinusoïdale ?"
 msgid "Display text for all icons?"
 msgstr "Montrer le texte pour toutes les icônes ?"
 
-#: ../dock-rendering/data/messages:47
+#: ../dock-rendering/data/messages:47 ../slider/data/messages:171
 msgid "Frame"
 msgstr "Cadre"
 
@@ -6926,7 +6905,7 @@ msgstr "Nombre de tours par seconde."
 msgid "Rotation speed :"
 msgstr "Vitesse de rotation :"
 
-#: ../dustbin/data/messages:89 ../mail/data/messages:95
+#: ../dustbin/data/messages:89
 msgid "Theme"
 msgstr "Thème"
 
@@ -7155,7 +7134,7 @@ msgid "Action"
 msgstr "Actions"
 
 #: ../logout/data/messages:95 ../showDesktop/data/messages:101
-#: ../slider/data/messages:107
+#: ../slider/data/messages:109
 msgid "Action on left-click:"
 msgstr "Action lors d'un clic gauche :"
 
@@ -7182,43 +7161,6 @@ msgid "User-defined command to execute for shutdown:"
 msgstr "Commande spécifique à exécuter pour éteindre :"
 
 #: ../mail/data/messages:89
-msgid "Sub-Dock view"
-msgstr "Vue des Sous-Dock"
-
-#: ../mail/data/messages:99
-msgid "Name of the file for the \"no mail\" image :"
-msgstr "Nom d'une image en cas d'aucun e-mail :"
-
-#: ../mail/data/messages:101
-msgid "Name of the file for the \"has mail\" image :"
-msgstr "Nom d'une image pour les nouveaux e-mails :"
-
-#: ../mail/data/messages:103
-msgid "Play sound when a new e-mail is received?"
-msgstr "Jouer un son quand un nouveau courriel est réceptionné?"
-
-#: ../mail/data/messages:105
-msgid "Name of the file for the \"new mail\" sound :"
-msgstr "Nom du fichier son pour les nouveaux e-mails :"
-
-#: ../mail/data/messages:109
-msgid "Show new messages' content?"
-msgstr "Montrer le contenu des nouveaux messages ?"
-
-#: ../mail/data/messages:111
-msgid "Maximum number of mails that will be previewed."
-msgstr ""
-"Nombre maximum de messages à afficher en prévue. (-1 pour tout afficher)"
-
-#: ../mail/data/messages:113
-msgid "Maximum of new messages shown?"
-msgstr "Nombre maximal de nouveaux messages montrés ?"
-
-#: ../mail/data/messages:117 ../tomboy/data/messages:117
-msgid "Duration of the dialog:"
-msgstr "Durée des dialogues :"
-
-#: ../mail/data/messages:119
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
@@ -7228,35 +7170,82 @@ msgstr ""
 "durant le mode de maintenance. Ensuite laissez le dock se lancer par lui-"
 "même et enlevez/modifiez le compte mail que vous désirez."
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:91
 msgid "Check mail account on startup?"
 msgstr "Vérifier le compte mail au démarrage ?"
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:99
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "Nom d'une image en cas d'aucun e-mail :"
+
+#: ../mail/data/messages:103
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "Nom d'une image pour les nouveaux e-mails :"
+
+#: ../mail/data/messages:105
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
-#: ../mail/data/messages:125
+#: ../mail/data/messages:107
 msgid "Show '0' if there is no mail?"
 msgstr "Afficher '0' si il n'y a aucun email ?"
 
-#: ../mail/data/messages:127
+#: ../mail/data/messages:113
+#, fuzzy
+msgid "Action on new mail"
+msgstr "Actions au clic du milieu :"
+
+#: ../mail/data/messages:115
+msgid "Play sound when a new e-mail is received?"
+msgstr "Jouer un son quand un nouveau courriel est réceptionné?"
+
+#: ../mail/data/messages:119
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr "Nom du fichier son pour les nouveaux e-mails :"
+
+#: ../mail/data/messages:121
+msgid "Show new messages' content?"
+msgstr "Montrer le contenu des nouveaux messages ?"
+
+#: ../mail/data/messages:123
+msgid "Maximum number of mails that will be previewed."
+msgstr ""
+"Nombre maximum de messages à afficher en prévue. (-1 pour tout afficher)"
+
+#: ../mail/data/messages:125
+msgid "Maximum of new messages shown?"
+msgstr "Nombre maximal de nouveaux messages montrés ?"
+
+#: ../mail/data/messages:129 ../tomboy/data/messages:117
+msgid "Duration of the dialog:"
+msgstr "Durée des dialogues :"
+
+#: ../mail/data/messages:131
+#, fuzzy
+msgid "Animation when new message arrives:"
+msgstr "Animation au changement de musique"
+
+#: ../mail/data/messages:135
 msgid "Mail application"
 msgstr "Application mail"
 
-#: ../mail/data/messages:129
+#: ../mail/data/messages:137
+msgid "for instance \"thunderbird\" or \"firefox mail.google.com\""
+msgstr ""
+
+#: ../mail/data/messages:139
 msgid "Preferred mail application to launch on left-click :"
 msgstr "Application mail préférée à exécuter au clic gauche"
 
-#: ../mail/data/messages:131
+#: ../mail/data/messages:141
 msgid "Add a mail account (you've to launch the applet)"
 msgstr "Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
 
-#: ../mail/data/messages:133
+#: ../mail/data/messages:143
 msgid "The new account will be created with the specified type and name."
 msgstr "Le nouveau compte sera créé avec le type et le nom spécifiés."
 
-#: ../mail/data/messages:135
+#: ../mail/data/messages:145
 msgid "Add an account with specified type and name:"
 msgstr "Ajouter un compte avec un type et un nom spécifiés:"
 
@@ -7721,98 +7710,111 @@ msgstr ""
 msgid "Use another thread to load images?"
 msgstr "Utiliser un autre processus pour charger les images ?"
 
-#: ../slider/data/messages:109 ../slider/data/messages:115
+#: ../slider/data/messages:105
+msgid "Read all images properties on startup?"
+msgstr ""
+
+#: ../slider/data/messages:111 ../slider/data/messages:117
 msgid "play/pause"
 msgstr "jouer/pause"
 
-#: ../slider/data/messages:111 ../slider/data/messages:117
+#: ../slider/data/messages:113 ../slider/data/messages:119
 msgid "open image"
 msgstr "ouvrir l'image"
 
-#: ../slider/data/messages:119
+#: ../slider/data/messages:121
 #, fuzzy
 msgid "open parent folder"
 msgstr "Ouvrir le dossier parent"
 
-#: ../slider/data/messages:123
+#: ../slider/data/messages:125
 msgid "Sliding delay:"
 msgstr "Délai de changement :"
 
-#: ../slider/data/messages:125
+#: ../slider/data/messages:127
 msgid "Effect while changing image:"
 msgstr "Effet au changement d'image :"
 
-#: ../slider/data/messages:129
+#: ../slider/data/messages:131
 msgid "fade"
 msgstr "fondu"
 
-#: ../slider/data/messages:131
+#: ../slider/data/messages:133
 msgid "blank fade"
 msgstr "flash"
 
-#: ../slider/data/messages:133
+#: ../slider/data/messages:135
 msgid "fade in/out"
 msgstr "fondu progressif"
 
-#: ../slider/data/messages:135
+#: ../slider/data/messages:137
 msgid "side kick"
 msgstr "coup de pied"
 
-#: ../slider/data/messages:137
+#: ../slider/data/messages:139
 msgid "slideshow"
 msgstr "slideshow"
 
-#: ../slider/data/messages:139
+#: ../slider/data/messages:141
 msgid "grow up"
 msgstr "agrandissement"
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:143
 msgid "shrink"
 msgstr "rétrécissement"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:145
 msgid "cube"
 msgstr "cube"
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:147
 msgid "random"
 msgstr "Aléatoire"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:149
 msgid "Number of steps for transitions:"
 msgstr "Nombre d'étapes pour une transition :"
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:151
 msgid "fast"
 msgstr "Rapide"
 
-#: ../slider/data/messages:151
+#: ../slider/data/messages:153
 msgid "slow"
 msgstr "Lent"
 
-#: ../slider/data/messages:155
+#: ../slider/data/messages:157
 msgid "Gives better image rendering."
 msgstr "Donne un meilleur rendu de l'image"
 
-#: ../slider/data/messages:157
+#: ../slider/data/messages:159
 msgid "Keep width/height ratio?"
 msgstr "Conserver le ratio entre la hauteur et la largeur ?"
 
-#: ../slider/data/messages:159
+#: ../slider/data/messages:161
 msgid "If the image is too small, it will be stretched."
 msgstr "Si l'image est trop petite, elle sera zoomée."
 
-#: ../slider/data/messages:161
+#: ../slider/data/messages:163
 msgid "Force the image to fill the icon/desklet?"
 msgstr "Forcer les images à remplir l'icône/le desklet ?"
 
-#: ../slider/data/messages:163
+#: ../slider/data/messages:165
+#, fuzzy
+msgid "Add a background to the image?"
+msgstr "Image à dessiner en arrière-plan :"
+
+#: ../slider/data/messages:169
+msgid "Yes"
+msgstr ""
+
+#: ../slider/data/messages:173
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Mettez la valeur de la transparence à 0 pour ne pas avoir de fond."
 
-#: ../slider/data/messages:165
+#: ../slider/data/messages:175
 msgid "Choose a background colour :"
 msgstr "Choisir la couleur du fond :"
 
@@ -7840,7 +7842,7 @@ msgstr "Image pour les objets 'URL' :"
 msgid "Options"
 msgstr "Options"
 
-#: ../stack/data/messages:117 ../stacks/data/messages:107
+#: ../stack/data/messages:117
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
@@ -7848,7 +7850,7 @@ msgstr ""
 "Cette option vous permet d'éviter que certains fichiers soit afficher dans "
 "la pile en prenant en compte leur types (video, images, etc...)"
 
-#: ../stack/data/messages:119 ../stacks/data/messages:109
+#: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
 msgstr "Filtrer les fichiers avec leur type mime ?"
 
@@ -7856,7 +7858,7 @@ msgstr "Filtrer les fichiers avec leur type mime ?"
 msgid "E.g. image, text, video, audio, application..."
 msgstr "Ex: image, text, video, audio, application, ..."
 
-#: ../stack/data/messages:123 ../stacks/data/messages:113
+#: ../stack/data/messages:123
 msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "Vous pouvez spécifié ici une liste de type mime à éviter:"
 
@@ -7871,58 +7873,6 @@ msgstr "Type"
 #: ../stack/data/messages:133
 msgid "Manual order"
 msgstr "Ordre manuel"
-
-#: ../stacks/data/messages:91
-msgid "Directory & Options"
-msgstr "Répertoire & Options"
-
-#: ../stacks/data/messages:93
-msgid ""
-"Stacks will act as a the shortcut applet's but with files. To add a file, "
-"just drag and drop it on the Stacks icon"
-msgstr ""
-"Cette applet agira comme l'applet Raccourcis mais avec des fichiers. Pour "
-"ajouter un fichier, glissez et déposez-le sur l'icône de l'applet"
-
-#: ../stacks/data/messages:95
-msgid "Use only Stacks local directory ?"
-msgstr "Utilisez uniquement le répertoire Stacks local"
-
-#: ../stacks/data/messages:97
-msgid ""
-"You can use '_LocalDirectory_' tag to have both stack local and all "
-"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
-msgstr ""
-"Vous pouvez utilisez le tag '_LocalDirectory_' pour avoir en même temps une "
-"pile locale et tous les répertoires sous contrôle. Assurez-vous que l'option "
-"'Utilisez uniquement le répertoire Stacks local' est décoché."
-
-#: ../stacks/data/messages:99
-msgid "Monitored Directories :"
-msgstr "Répertoires à contrôler :"
-
-#: ../stacks/data/messages:101
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-"Cette option peut ralentir votre dock si vous utilisez des fichiers "
-"volumineux, à utiliser avec précaution."
-
-#: ../stacks/data/messages:103
-msgid "List hidden files ?"
-msgstr "Lister les fichiers cachés"
-
-#: ../stacks/data/messages:105
-msgid "Separate different directories with separators ?"
-msgstr "Séparer les dossier différents avec des séparateurs ?"
-
-#: ../stacks/data/messages:111
-msgid "Eg: image, text, video, audio, application..."
-msgstr "Par ex : image, texte, video, audio, application..."
-
-#: ../stacks/data/messages:117
-msgid "Name of the view used for the sub-dock :"
-msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -8138,8 +8088,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/%"
-"m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/"
+"%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -8326,6 +8276,74 @@ msgstr "Infos Brutes du Signal"
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
+
+#~ msgid "stacks"
+#~ msgstr "Piles"
+
+#~ msgid "Reload Stacks"
+#~ msgstr "Relancer Stacks"
+
+#~ msgid "Clean local directory"
+#~ msgstr "Nettoyer le dossier local"
+
+#~ msgid "Border width of the plane :"
+#~ msgstr "Largeur de la bordure du plan :"
+
+#~ msgid "Colour of the plane's line :"
+#~ msgstr "Couleur du contour :"
+
+#~ msgid "Colour of the plane :"
+#~ msgstr "Couleur du plan :"
+
+#~ msgid "SimpleSlide"
+#~ msgstr "Diapositive"
+
+#~ msgid "Sub-Dock view"
+#~ msgstr "Vue des Sous-Dock"
+
+#~ msgid "Directory & Options"
+#~ msgstr "Répertoire & Options"
+
+#~ msgid ""
+#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
+#~ "just drag and drop it on the Stacks icon"
+#~ msgstr ""
+#~ "Cette applet agira comme l'applet Raccourcis mais avec des fichiers. Pour "
+#~ "ajouter un fichier, glissez et déposez-le sur l'icône de l'applet"
+
+#~ msgid "Use only Stacks local directory ?"
+#~ msgstr "Utilisez uniquement le répertoire Stacks local"
+
+#~ msgid ""
+#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
+#~ "unticked."
+#~ msgstr ""
+#~ "Vous pouvez utilisez le tag '_LocalDirectory_' pour avoir en même temps "
+#~ "une pile locale et tous les répertoires sous contrôle. Assurez-vous que "
+#~ "l'option 'Utilisez uniquement le répertoire Stacks local' est décoché."
+
+#~ msgid "Monitored Directories :"
+#~ msgstr "Répertoires à contrôler :"
+
+#~ msgid ""
+#~ "This option with large files lists can slow down the dock, use it "
+#~ "properly."
+#~ msgstr ""
+#~ "Cette option peut ralentir votre dock si vous utilisez des fichiers "
+#~ "volumineux, à utiliser avec précaution."
+
+#~ msgid "List hidden files ?"
+#~ msgstr "Lister les fichiers cachés"
+
+#~ msgid "Separate different directories with separators ?"
+#~ msgstr "Séparer les dossier différents avec des séparateurs ?"
+
+#~ msgid "Eg: image, text, video, audio, application..."
+#~ msgstr "Par ex : image, texte, video, audio, application..."
+
+#~ msgid "Name of the view used for the sub-dock :"
+#~ msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Lancement rapide (clic du milieu)"
