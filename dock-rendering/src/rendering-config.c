@@ -167,7 +167,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);*/
 	
-	
 	my_diapo_simple_iconGapX             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapX",             &bFlushConfFileNeeded,    50, NULL, NULL));
 	my_diapo_simple_iconGapY             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapY",             &bFlushConfFileNeeded,    50, NULL, NULL));
 	my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.0, NULL, NULL);
@@ -202,7 +201,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	gdouble scroll_grip_color[4] = {.9,.9,.9,0.9};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "scroll_grip_color", &bFlushConfFileNeeded, my_diapo_simple_color_grip, 4, scroll_grip_color, NULL, NULL);
 	
-	
 	my_fCurveCurvature = (double) cairo_dock_get_integer_key_value (pKeyFile, "Curve", "curvature", &bFlushConfFileNeeded, 50, NULL, NULL) / 100.;
 	my_iCurveAmplitude = cairo_dock_get_integer_key_value (pKeyFile, "Curve", "amplitude", &bFlushConfFileNeeded, 20, NULL, NULL);
 	
@@ -210,12 +208,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fPanelRadius = 16;
 	my_fPanelInclination = 45. / 180. * G_PI;
 	my_fPanelRatio = cairo_dock_get_double_key_value (pKeyFile, "Panel", "ratio",  &bFlushConfFileNeeded, .75,   NULL, NULL);
-	
-	if (g_key_file_has_group (pKeyFile, "Slide"))
-	{
-		g_key_file_remove_group (pKeyFile, "Slide", NULL);
-		bFlushConfFileNeeded = TRUE;
-	}
 	
 	cd_rendering_reload_rainbow_buffers ();
 CD_APPLET_GET_CONFIG_END

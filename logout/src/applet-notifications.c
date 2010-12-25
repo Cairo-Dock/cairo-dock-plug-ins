@@ -265,6 +265,7 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 			_set_reboot_message ();
 			CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
+			CD_APPLET_SET_EMBLEM_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/emblem-reboot.png", CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
 		break;
 		default:
 		break;
