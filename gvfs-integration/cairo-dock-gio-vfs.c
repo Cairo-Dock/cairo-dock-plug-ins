@@ -668,6 +668,10 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+		G_FILE_ATTRIBUTE_PREVIEW_ICON","
+		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
@@ -794,6 +798,18 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				icon->cCommand = g_strdup (icon->cBaseURI);
 			icon->cName = cName;
 			icon->cFileName = NULL;
+			icon->cFileName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
+			#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+			if (icon->cFileName == NULL)
+			{
+				GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
+				if (pPreviewIcon != NULL)
+				{
+					icon->cFileName = _cd_get_icon_path (pPreviewIcon, NULL);
+					g_print ("got preview icon '%s'\n", icon->cFileName);
+				}
+			}
+			#endif
 			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 			{
 				gchar *cHostname = NULL;
