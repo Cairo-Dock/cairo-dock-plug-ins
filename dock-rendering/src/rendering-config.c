@@ -77,6 +77,7 @@ extern gdouble  my_diapo_color_border_line[4];
 extern gboolean my_diapo_draw_background;
 extern gboolean my_diapo_display_all_icons;*/
 
+extern gdouble  my_diapo_simple_max_size;
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
 extern gdouble  my_diapo_simple_fScaleMax;
@@ -167,6 +168,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);*/
 	
+	my_diapo_simple_max_size             = cairo_dock_get_double_key_value (pKeyFile, "Slide", "simple_max_size", &bFlushConfFileNeeded, .5, NULL, NULL);
 	my_diapo_simple_iconGapX             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapX",             &bFlushConfFileNeeded,    50, NULL, NULL));
 	my_diapo_simple_iconGapY             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapY",             &bFlushConfFileNeeded,    50, NULL, NULL));
 	my_diapo_simple_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "simple_fScaleMax",            &bFlushConfFileNeeded,   2.0, NULL, NULL);

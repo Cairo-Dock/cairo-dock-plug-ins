@@ -257,6 +257,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			
 			double fScale = (double) iWidth / (double) myData.DimensionData.width;
 			CairoDockLabelDescription labelDescription;
+			memset (&labelDescription, 0, sizeof (CairoDockLabelDescription));
 			labelDescription.iSize = 10;
 			labelDescription.cFont = (gchar*)"Sans";  // on peut caster car on ne liberera rien.
 			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);

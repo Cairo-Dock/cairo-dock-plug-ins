@@ -64,9 +64,6 @@ CD_APPLET_INIT_BEGIN
 	///cd_decorator_register_3Dplane ();
 	cd_decorator_register_tooltip ();  // By ChAnGFu
 	cd_decorator_register_curly ();
-	
-	/*if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
-		cairo_dock_update_dialog_decorator_list_for_gui ();*/
 CD_APPLET_INIT_END
 
 
@@ -77,8 +74,6 @@ CD_APPLET_STOP_BEGIN
 	///cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_3DPLANE_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_TOOLTIP_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_CURLY_NAME);
-	
-	cairo_dock_update_dialog_decorator_list_for_gui ();
 CD_APPLET_STOP_END
 
 

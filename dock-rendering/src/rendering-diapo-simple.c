@@ -28,6 +28,7 @@
 
 #include "rendering-diapo-simple.h"
 
+extern gdouble  my_diapo_simple_max_size;
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
 extern gdouble  my_diapo_simple_fScaleMax;
@@ -270,11 +271,14 @@ gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAni
 	
 	return (pData->bDraggingScrollbar ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
-const double srx = .5;  // screen ratio hori
-const double sry = .6;  // screen ratio verti
+
+//const double srx = .5;  // screen ratio hori
+//const double sry = .6;  // screen ratio verti
 static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {
 	// On calcule la configuration de la grille sans contrainte.
+	double srx = my_diapo_simple_max_size;  // screen ratio hori
+	double sry = MIN (1., my_diapo_simple_max_size * 1.2);  // screen ratio verti
 	guint nRowsX = 0;  // nb colonnes.
 	guint nRowsY = 0;  // nb lignes.
 	guint nIcones = 0;  // nb icones.

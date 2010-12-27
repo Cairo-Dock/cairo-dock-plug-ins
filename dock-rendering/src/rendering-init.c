@@ -89,6 +89,7 @@ gdouble  my_diapo_color_border_line[4];
 gboolean my_diapo_draw_background;
 gboolean my_diapo_display_all_icons;*/
 
+gdouble  my_diapo_simple_max_size;
 gint     my_diapo_simple_iconGapX;
 gint     my_diapo_simple_iconGapY;
 gdouble  my_diapo_simple_fScaleMax;
@@ -162,7 +163,6 @@ CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_is_loading ())  // plug-in active a la main (en-dehors du chargement du theme).
 	{
 		cairo_dock_set_all_views_to_default (0);
-		cairo_dock_update_renderer_list_for_gui ();
 	}
 	else
 		gtk_widget_queue_draw (g_pMainDock->container.pWidget);
@@ -184,7 +184,6 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_slide_on_leave, NULL);
 	
 	cairo_dock_reset_all_views ();
-	cairo_dock_update_renderer_list_for_gui ();
 	gtk_widget_queue_draw (g_pMainDock->container.pWidget);
 CD_APPLET_STOP_END
 
