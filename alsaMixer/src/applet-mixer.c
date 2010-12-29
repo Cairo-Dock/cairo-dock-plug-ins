@@ -126,14 +126,16 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
 {
 	if (myData.mixer_handle == NULL)
 		return NULL;
-	g_return_val_if_fail (cName != NULL, NULL);
 	
-	int i = 0;
-	snd_mixer_elem_t *elem;
-	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
+	if (cName != NULL)
 	{
-		if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
-			return elem;
+		int i = 0;
+		snd_mixer_elem_t *elem;
+		for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
+		{
+			if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
+				return elem;
+		}
 	}
 	
 	cd_debug ("no channel matches '%s', we take the first available channel by default", cName);

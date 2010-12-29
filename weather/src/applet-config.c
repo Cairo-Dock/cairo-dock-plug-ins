@@ -92,8 +92,10 @@ static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocati
 	g_return_if_fail (cLocationCode != NULL);
 	
 	//\____________________ On met a jour le panneau de conf.
-	GtkWidget *pCodeEntry = cairo_dock_get_widget_from_name ("Configuration", "location code");
-	gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
+	CairoDockModuleInstance *myApplet = g_object_get_data (G_OBJECT (pMenuItem), "cd-applet");
+	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
+	if (pCodeEntry)
+		gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
 	cd_weather_free_location_list ();
 }
 static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
@@ -129,9 +131,6 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			0,
 			cIconPath);
 		g_free (cIconPath);
-		
-		g_error_free (erreur);
-		erreur = NULL;
 	}
 	else
 	{
@@ -150,6 +149,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			g_string_printf (sOneLocation, "%s : %s", cLocationName, cLocationCode);
 			pMenuItem = gtk_menu_item_new_with_label (sOneLocation->str);
 			gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+			g_object_set_data (G_OBJECT (pMenuItem), "cd-applet", myApplet);
 			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_cd_weather_location_choosed), cLocationCode);
 		}
 		g_string_free (sOneLocation, TRUE);
@@ -165,14 +165,13 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			gtk_get_current_event_time ());
 	}
 	
-	///g_remove (cFilePath);
 	g_free (cLocationData);
 }
 void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere le widget.
-	GtkWidget *pCodeEntry = cairo_dock_get_widget_from_name ("Configuration", "location code");
+	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
 	g_return_if_fail (pCodeEntry != NULL);
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pCodeEntry);

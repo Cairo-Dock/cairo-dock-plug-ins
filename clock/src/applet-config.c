@@ -322,7 +322,7 @@ static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 	cd_debug ("%s (%s, %s)", __func__, cLocationPath, myApplet->cConfFilePath);
 	
 	//\____________________ On met a jour le panneau de conf.
-	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Configuration", "location");
+	GtkWidget *pLocationEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location");
 	gtk_entry_set_text (GTK_ENTRY (pLocationEntry), cLocationPath);
 	
 	cd_clock_free_timezone_list ();
@@ -460,7 +460,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 {
 	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_get_group_key_widget_from_name ("Alarm", "add new");
+	CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET ("Alarm", "add new");
 	g_return_if_fail (pGroupKeyWidget != NULL);
 	
 	//\____________ On cree un bouton pour ajouter une alarme et on l'ajoute dans notre container.
@@ -487,7 +487,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 		0);
 	
 	//\____________ On recupere le widget de la location (un gtk_entry).
-	GtkWidget *pLocationEntry = cairo_dock_get_widget_from_name ("Configuration", "location");
+	GtkWidget *pLocationEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location");
 	g_return_if_fail (pLocationEntry != NULL);
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pLocationEntry);

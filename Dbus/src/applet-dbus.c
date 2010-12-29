@@ -245,7 +245,7 @@ void cd_dbus_launch_service (void)
 	const gchar *cSharePackagesDir = NULL;  // MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
-	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL);
+	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL, NULL);
 	g_free (cUserPackagesDir);
 	g_free (cDistantPackagesDir);
 }
