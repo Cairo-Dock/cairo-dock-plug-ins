@@ -98,16 +98,19 @@ static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocati
 		gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
 	cd_weather_free_location_list ();
 }
-static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
+static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleInstance *myApplet)
 {
-	const gchar *cLocationName = gtk_entry_get_text (pEntry);
-	if (cLocationName == NULL || *cLocationName == '\0')
-		return;
-	
-	gchar *cLocationData = cd_weather_get_location_data (cLocationName);
-	
 	GError *erreur = NULL;
 	cd_weather_free_location_list ();
+	
+	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
+	if (!pCodeEntry)
+	{
+		g_print ("request took too long, discard results\n");
+		return;
+	}
+	cairo_dock_set_status_message (NULL, "");
+	
 	s_pLocationsList = cd_weather_parse_location_data (cLocationData, &erreur);
 	if (erreur != NULL)
 	{
@@ -118,6 +121,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			0,
 			cIconPath);
 		g_free (cIconPath);
+		cairo_dock_set_status_message (NULL, D_("Couldn't get the location code (is connection alive?)"));
 		
 		g_error_free (erreur);
 		erreur = NULL;  // on ne garde pas trace de l'erreur, c'est deja fait au (re)chargement.
@@ -131,6 +135,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			0,
 			cIconPath);
 		g_free (cIconPath);
+		cairo_dock_set_status_message (NULL, "Location not available");
 	}
 	else
 	{
@@ -164,8 +169,24 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 			1,
 			gtk_get_current_event_time ());
 	}
+}
+#define CD_WEATHER_BASE_URL "http://xml.weather.com"
+static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
+{
+	const gchar *cLocationName = gtk_entry_get_text (pEntry);
+	if (cLocationName == NULL || *cLocationName == '\0')
+		return;
 	
-	g_free (cLocationData);
+	cairo_dock_set_status_message_printf (NULL, D_("Searching the location code..."));
+	
+	if (myData.pGetLocationTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pGetLocationTask);
+		myData.pGetLocationTask = NULL;
+	}
+	gchar *cFileName = g_strdup_printf ("search?where=%s", cLocationName);
+	myData.pGetLocationTask = cairo_dock_get_distant_file_content_async (CD_WEATHER_BASE_URL, "search", cFileName, (GFunc) _on_got_location_data, myApplet);
+	g_free (cFileName);
 }
 void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {

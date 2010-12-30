@@ -104,6 +104,7 @@ struct _AppletData {
 	GList *pLocationsList;
 	gboolean bSetName;
 	gint iClickedDay;
+	CairoDockTask *pGetLocationTask;
 	} ;
 
 
