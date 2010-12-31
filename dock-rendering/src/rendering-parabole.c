@@ -701,7 +701,7 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, FALSE);
 		
-		if (icon->pTextBuffer != NULL)  // en opengl on dessine les etiquettes meme pendant le depliage.
+		if (icon->iLabelTexture != 0)  // en opengl on dessine les etiquettes meme pendant le depliage.
 		{
 			glPushMatrix ();
 			cairo_dock_translate_on_icon_opengl (icon, CAIRO_CONTAINER (pDock), 1.);
@@ -711,7 +711,8 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 			glTranslatef (icon->fWidth * icon->fScale/2, -icon->fHeight * icon->fScale/2, 0.);
 			
 			_cairo_dock_enable_texture ();
-			_cairo_dock_set_blend_over ();
+			///_cairo_dock_set_blend_over ();
+			_cairo_dock_set_blend_alpha ();
 			_cairo_dock_set_alpha ((1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
 			
 			if (pDock->fAlign == 1)
