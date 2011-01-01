@@ -43,7 +43,7 @@ static void cd_compute_size (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
 			{
@@ -95,7 +95,7 @@ static void cd_compute_size (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
 			{
@@ -225,7 +225,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			x1 = pIcon->fDrawX = pIcon->fX;
 			
@@ -233,7 +233,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 			for (ic = ic->next; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				if (!CAIRO_DOCK_IS_SEPARATOR (pIcon))
+				if (!CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 					break;
 			}
 			if (ic != NULL)
@@ -304,7 +304,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	{
 		pIcon = ic->data;
 		
-		if (! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			cairo_save (pCairoContext);
 			cairo_dock_render_one_icon (pIcon, pDock, pCairoContext, fDockMagnitude, pIcon->bPointed);
@@ -505,7 +505,7 @@ static void cd_render_opengl (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			x1 = pIcon->fDrawX = pIcon->fX;
 			
@@ -513,7 +513,7 @@ static void cd_render_opengl (CairoDock *pDock)
 			for (ic = ic->next; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				if (!CAIRO_DOCK_IS_SEPARATOR (pIcon))
+				if (!CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 					break;
 			}
 			if (ic != NULL)
@@ -609,7 +609,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			pIcon->fScale = 1.;
 			if (pIcon->fInsertRemoveFactor != 0)
@@ -685,7 +685,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			pIcon->fX = x;
 			pIcon->fDrawX = pIcon->fX;

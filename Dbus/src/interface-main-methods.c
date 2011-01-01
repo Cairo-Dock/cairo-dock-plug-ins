@@ -191,12 +191,9 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 	cairo_dock_launch_animation (CAIRO_CONTAINER (pParentDock));
 	
-	if (CAIRO_DOCK_IS_NORMAL_LAUNCHER (pIcon) && pIcon->cClass != NULL)
+	if (pIcon->cClass != NULL)
 	{
-		//if (myTaskBar.bMixLauncherAppli)
-			cairo_dock_inhibite_class (pIcon->cClass, pIcon);
-		//else  // on l'insere quand meme dans la classe pour pouvoir ecraser l'icone X avec la sienne.
-		//	cairo_dock_add_inhibator_to_class (pIcon->cClass, pIcon);
+		cairo_dock_inhibite_class (pIcon->cClass, pIcon);
 	}
 	
 	return TRUE;

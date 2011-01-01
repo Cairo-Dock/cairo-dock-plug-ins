@@ -219,14 +219,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (n > 0)
 				{
 					myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-					if (CAIRO_DOCK_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
+					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
 						myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
 				}
 			}
 			if (myData.pCurrentDock->icons != NULL)
 			{
 				Icon *pPrevIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
-				if (CAIRO_DOCK_IS_SEPARATOR (pPrevIcon))
+				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pPrevIcon))
 					pPrevIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, pPrevIcon);
 				if (pPrevIcon == NULL)  // pas trouve ou bien 1ere icone.
 				{
@@ -246,14 +246,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (n > 0)
 				{
 					myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-					if (CAIRO_DOCK_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
+					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
 						myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
 				}
 			}
 			if (myData.pCurrentDock->icons != NULL)
 			{
 				Icon *pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
-				if (CAIRO_DOCK_IS_SEPARATOR (pNextIcon))
+				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pNextIcon))
 					pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, pNextIcon);
 				if (pNextIcon == NULL)  // pas trouve ou bien 1ere icone.
 				{
@@ -281,7 +281,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				if (n > 0)
 				{
 					pNextIcon =  g_list_nth_data (pNextDock->icons, (n-1) / 2);
-					if (CAIRO_DOCK_IS_SEPARATOR (pNextIcon) && n > 1)
+					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pNextIcon) && n > 1)
 						pNextIcon = g_list_nth_data (pNextDock->icons, (n+1) / 2);
 				}
 				cd_do_change_current_icon (pNextIcon, pNextDock);

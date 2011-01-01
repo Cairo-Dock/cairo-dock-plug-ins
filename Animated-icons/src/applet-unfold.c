@@ -90,7 +90,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	for (ic = pIcon->pSubDock->icons, i = 0; ic != NULL && i < 3; ic = ic->next, i++)
 	{
 		icon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (icon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 		{
 			i --;
 			continue;
@@ -201,7 +201,7 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	for (ic = pIcon->pSubDock->icons, i = 0; ic != NULL && i < 3; ic = ic->next, i++)
 	{
 		icon = ic->data;
-		if (CAIRO_DOCK_IS_SEPARATOR (icon))
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 		{
 			i --;
 			continue;

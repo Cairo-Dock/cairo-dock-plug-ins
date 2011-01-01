@@ -358,7 +358,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 		{
 			icon = ic->data;
 			
-			if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName == NULL && CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
 				cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
@@ -372,7 +372,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 		{
 			icon = ic->data;
 			
-			if (icon->cFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName != NULL || ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
 				cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, TRUE);
@@ -388,7 +388,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 			{
 				icon = ic->data;
 				
-				if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				if (icon->cFileName == NULL && CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 				{
 					cairo_save (pCairoContext);
 					cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
@@ -618,7 +618,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 			{
 				icon = ic->data;
 				
-				if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
+				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 				{
 					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 					{
@@ -634,7 +634,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 			do
 			{
 				icon = ic->data;
-				if (! CAIRO_DOCK_IS_SEPARATOR (icon) || icon->cFileName != NULL)
+				if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) || icon->cFileName != NULL)
 				{
 					fXLeft = icon->fDrawX + icon->fScale + 1;
 					fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
@@ -660,7 +660,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 				{
 					icon = ic->data;
 					
-					if (CAIRO_DOCK_IS_SEPARATOR (icon) && icon->cFileName == NULL)
+					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 					{
 						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 						{
@@ -802,7 +802,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName == NULL && CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
 				if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
@@ -819,7 +819,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		{
 			icon = ic->data;
 			
-			if (icon->cFileName != NULL || ! CAIRO_DOCK_IS_SEPARATOR (icon))
+			if (icon->cFileName != NULL || ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
 				cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, TRUE);
@@ -835,7 +835,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			{
 				icon = ic->data;
 				
-				if (icon->cFileName == NULL && CAIRO_DOCK_IS_SEPARATOR (icon))
+				if (icon->cFileName == NULL && CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 				{
 					glPushMatrix ();
 					cd_rendering_draw_physical_separator_opengl (icon, pDock, FALSE, NULL, NULL);

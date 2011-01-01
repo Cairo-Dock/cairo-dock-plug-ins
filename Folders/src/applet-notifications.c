@@ -335,7 +335,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open the folder"), D_("middle-click"));
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_OPEN, _cd_folders_open_folder, CD_APPLET_MY_MENU, myApplet);
 			g_free (cLabel);
-			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+			if (pSubMenu == CD_APPLET_MY_MENU)
+				CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		}
 		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}

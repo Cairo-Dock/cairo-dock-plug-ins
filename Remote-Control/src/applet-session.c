@@ -59,7 +59,7 @@ void cd_do_open_session (void)
 	if (n > 0)
 	{
 		pIcon =  g_list_nth_data (pDock->icons, (n-1) / 2);
-		if (CAIRO_DOCK_IS_SEPARATOR (pIcon) && n > 1)
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon) && n > 1)
 			pIcon = g_list_nth_data (pDock->icons, (n+1) / 2);
 	}
 	cd_do_change_current_icon (pIcon, pDock);

@@ -149,8 +149,6 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_LAUNCHER && CAIRO_DOCK_IS_APPLI (pIcon) && ! (iButtonState & GDK_SHIFT_MASK))
 		iType = CAIRO_DOCK_APPLI;
-	/**if (iType == CAIRO_DOCK_APPLI && CAIRO_DOCK_IS_LAUNCHER (pIcon) && iButtonState & GDK_SHIFT_MASK)
-		iType = CAIRO_DOCK_LAUNCHER;*/
 	
 	gboolean bStartAnimation = FALSE;
 	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnClick[iType], &bStartAnimation);

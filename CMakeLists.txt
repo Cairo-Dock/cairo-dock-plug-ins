@@ -367,7 +367,7 @@ add_subdirectory (icon-effect)
 ############# INDICATOR-APPLET #################
 pkg_check_modules (DBUSMENU dbusmenu-glib)
 pkg_check_modules (INDICATOR_APPLET indicator libido-0.1 dbusmenu-gtk)
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "TRUE" AND "${DBUSMENU_FOUND}" STREQUAL "TRUE")
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
 	add_subdirectory (Indicator-applet)
 endif()
 
@@ -459,7 +459,7 @@ endif()
 
 ############# MEMENU #################
 set (with_me_menu "no")
-if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
 	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
 	
 	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
@@ -484,7 +484,7 @@ endif()
 
 ############# MESSAGING_MENU #################
 set (with_messaging_menu "no")
-if (NOT "${INDICATOR_APPLET_FOUND}" STREQUAL "" AND NOT "${DBUSMENU_FOUND}" STREQUAL "")
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "0.0.1")
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")

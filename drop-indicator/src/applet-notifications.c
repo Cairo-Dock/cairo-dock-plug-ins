@@ -109,7 +109,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.hoverIndicator.pSurface != NULL)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+			if (pIcon != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			{
 				cairo_save (pCairoContext);
 				if (pDock->container.bIsHorizontal)
@@ -215,7 +215,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.hoverIndicator.iTexture != 0)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+			if (pIcon != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			{
 				_cairo_dock_enable_texture ();
 				_cairo_dock_set_blend_over ();
