@@ -32,15 +32,15 @@ CD_APPLET_DEFINE_BEGIN (N_("drop indicator"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
-	CD_APPLET_ATTACH_TO_INTERNAL_MODULE ("Indicators");
+	CD_APPLET_EXTEND_MANAGER ("Indicators");
 CD_APPLET_DEFINE_END
 
 
 static void _load_indicators (void)
 {
 	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
-	double iInitialWidth = myIcons.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
-	double iInitialHeight = myIcons.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
+	double iInitialWidth = myIconsParam.tIconAuthorizedWidth[CAIRO_DOCK_LAUNCHER] * fMaxScale;
+	double iInitialHeight = myIconsParam.tIconAuthorizedHeight[CAIRO_DOCK_LAUNCHER] * fMaxScale / 2;
 	
 	cd_drop_indicator_load_drop_indicator (myConfig.cDropIndicatorImageName,
 		iInitialWidth,
@@ -58,10 +58,22 @@ CD_APPLET_INIT_BEGIN
 	
 	_load_indicators ();
 	
-	cairo_dock_register_notification (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_stop_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) cd_drop_indicator_mouse_moved,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_RENDER_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_render,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_UPDATE_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_update_dock,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_STOP_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_stop_dock,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 
 CD_APPLET_INIT_END
 
@@ -72,10 +84,18 @@ static void _free_data_on_dock (const gchar *cDockName, CairoDock *pDock, gpoint
 	cd_drop_indicator_stop_dock (NULL, pDock);
 }
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_render, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_MOUSE_MOVED, (CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_DOCK, (CairoDockNotificationFunc) cd_drop_indicator_stop_dock, NULL);
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_RENDER_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_render, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_UPDATE_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_STOP_DOCK,
+		(CairoDockNotificationFunc) cd_drop_indicator_stop_dock, NULL);
 	
 	cairo_dock_foreach_docks ((GHFunc)_free_data_on_dock, NULL);
 CD_APPLET_STOP_END

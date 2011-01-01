@@ -11,6 +11,7 @@ msgstr ""
 "PO-Revision-Date: 2010-09-18 12:44+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,43 +26,43 @@ msgstr "Animované ikony"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "Tento zásuvný modul ponúka množstvo rôzných animácií pre vaše ikony."
 
-#: ../Animated-icons/src/applet-init.c:56 ../Animated-icons/data/messages:9
+#: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
 #: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
 msgid "Bounce"
 msgstr "Odrážať"
 
-#: ../Animated-icons/src/applet-init.c:57 ../Animated-icons/data/messages:11
+#: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:65
 msgid "Rotate"
 msgstr "Otočiť"
 
-#: ../Animated-icons/src/applet-init.c:58 ../Animated-icons/data/messages:13
+#: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
 msgid "Blink"
 msgstr "Blikať"
 
-#: ../Animated-icons/src/applet-init.c:59 ../Animated-icons/data/messages:15
+#: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
 msgid "Pulse"
 msgstr "Pulz"
 
-#: ../Animated-icons/src/applet-init.c:60 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
 msgid "Wobbly"
 msgstr "Trasenie"
 
-#: ../Animated-icons/src/applet-init.c:61 ../Animated-icons/data/messages:19
+#: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
 msgid "Wave"
 msgstr "Vlnenie"
 
-#: ../Animated-icons/src/applet-init.c:62 ../Animated-icons/data/messages:21
+#: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "Bodový"
@@ -337,11 +338,11 @@ msgstr ""
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:51
+#: ../Folders/src/applet-notifications.c:53
 msgid "Empty or unreadable folder."
 msgstr "Prázdny, alebo nečítateľný priečinok."
 
-#: ../Folders/src/applet-notifications.c:200
+#: ../Folders/src/applet-notifications.c:204
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -352,7 +353,7 @@ msgstr ""
 "  (%s)\n"
 "z vášho hardisku. Ste si istý ?"
 
-#: ../Folders/src/applet-notifications.c:210
+#: ../Folders/src/applet-notifications.c:214
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
@@ -360,11 +361,11 @@ msgstr ""
 "Upozornenie: nemôžete odstrániť tento súbor.\n"
 "Skontrolujte si či máte právo na zapisovanie."
 
-#: ../Folders/src/applet-notifications.c:223
+#: ../Folders/src/applet-notifications.c:227
 msgid "Rename to:"
 msgstr "Premenovať na :"
 
-#: ../Folders/src/applet-notifications.c:230
+#: ../Folders/src/applet-notifications.c:234
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -375,11 +376,11 @@ msgstr ""
 "Skontrolujte si či máte právo na zapisovanie.\n"
 " a či nový názov už neexistuje."
 
-#: ../Folders/src/applet-notifications.c:269
+#: ../Folders/src/applet-notifications.c:273
 msgid "Enter a file name:"
 msgstr "Vložte názov súboru:"
 
-#: ../Folders/src/applet-notifications.c:277
+#: ../Folders/src/applet-notifications.c:281
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -390,21 +391,21 @@ msgstr ""
 "Skontrolujte oprávnenia \n"
 "a či nový názov už neexistuje."
 
-#: ../Folders/src/applet-notifications.c:331
+#: ../Folders/src/applet-notifications.c:335
 #, fuzzy
 msgid "Open the folder"
 msgstr "Otvoriť tento priečinok"
 
-#: ../Folders/src/applet-notifications.c:331
+#: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
 #: ../System-Monitor/src/applet-notifications.c:111
 #: ../alsaMixer/src/applet-notifications.c:62
 #: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:152
-#: ../logout/src/applet-notifications.c:161
-#: ../logout/src/applet-notifications.c:170
-#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:162
+#: ../logout/src/applet-notifications.c:171
+#: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:250
@@ -413,7 +414,7 @@ msgstr "Otvoriť tento priečinok"
 #: ../showDesktop/src/applet-notifications.c:180
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:230
-#: ../slider/src/applet-notifications.c:272
+#: ../slider/src/applet-notifications.c:271
 #: ../stack/src/applet-notifications.c:181
 #: ../switcher/src/applet-notifications.c:302
 #: ../switcher/src/applet-notifications.c:309
@@ -422,32 +423,32 @@ msgstr "Otvoriť tento priečinok"
 msgid "middle-click"
 msgstr "Ďaľší (stredný-klik)"
 
-#: ../Folders/src/applet-notifications.c:340
+#: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
 msgstr "Premenovať tento súbor"
 
-#: ../Folders/src/applet-notifications.c:341
+#: ../Folders/src/applet-notifications.c:345
 msgid "Delete this file"
 msgstr "Odstrániť tento súbor"
 
-#: ../Folders/src/applet-notifications.c:342
+#: ../Folders/src/applet-notifications.c:346
 msgid "Move this file"
 msgstr "Premiestniť tento súbor"
 
-#: ../Folders/src/applet-notifications.c:348
-#: ../slider/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:352
+#: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr "Otvoriť s"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:384
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../Folders/src/applet-notifications.c:383
+#: ../Folders/src/applet-notifications.c:387
 msgid "Create a new file"
 msgstr "Vytvoriť nový súbor"
 
-#: ../Folders/src/applet-notifications.c:384
+#: ../Folders/src/applet-notifications.c:388
 msgid "Create a new folder"
 msgstr ""
 
@@ -655,12 +656,12 @@ msgid "Loading"
 msgstr "Načítanie"
 
 #: ../Network-Monitor/src/applet-notifications.c:100
-#: ../wifi/src/applet-notifications.c:76
+#: ../wifi/src/applet-notifications.c:72
 msgid "Check for Wireless Extension"
 msgstr "Skontrolujte Wireless pripojenie"
 
 #: ../Network-Monitor/src/applet-notifications.c:101
-#: ../wifi/src/applet-notifications.c:77
+#: ../wifi/src/applet-notifications.c:73
 msgid "Network Administration"
 msgstr "Sieťová administrácia"
 
@@ -739,23 +740,23 @@ msgstr "Žiadna URL nie je definovaná."
 msgid "No data (no connection?)"
 msgstr "Žiadne údaje (nie ste pripojený ?)"
 
-#: ../RSSreader/src/applet-rss.c:445 ../RSSreader/src/applet-rss.c:465
+#: ../RSSreader/src/applet-rss.c:458 ../RSSreader/src/applet-rss.c:478
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Nesprávne údaje (neplatný RSS/Atom zdroj ?)"
 
-#: ../RSSreader/src/applet-rss.c:517
+#: ../RSSreader/src/applet-rss.c:530
 msgid "No data"
 msgstr "Žiadne údaje"
 
-#: ../RSSreader/src/applet-rss.c:556
+#: ../RSSreader/src/applet-rss.c:569
 msgid "No modification"
 msgstr "Žiadna zmena"
 
-#: ../RSSreader/src/applet-rss.c:582
+#: ../RSSreader/src/applet-rss.c:595
 msgid "This RSS feed has been modified..."
 msgstr "Tento RSS zdroj bol zmenený..."
 
-#: ../RSSreader/src/applet-rss.c:731
+#: ../RSSreader/src/applet-rss.c:744
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -766,7 +767,7 @@ msgstr ""
 " a vybrať \"Vložiť RL\n"
 " v menu."
 
-#: ../RSSreader/src/applet-rss.c:737
+#: ../RSSreader/src/applet-rss.c:750
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -775,6 +776,11 @@ msgstr ""
 "Žiadne údaje\n"
 "Nastavili ste správny RSS zdroj ?\n"
 "Je vaše pripojenie aktívne ?"
+
+#: ../Recent-Events/src/applet-notifications.c:105
+#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
+msgid "Recent files"
+msgstr "Nedávne súbory"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -842,10 +848,6 @@ msgstr "Otvoriť súbor"
 #: ../Scooby-Do/data/messages:103
 msgid "Firefox bookmarks"
 msgstr "Záložky Firefox"
-
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
-msgid "Recent files"
-msgstr "Nedávne súbory"
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Wikipedia"
@@ -917,7 +919,7 @@ msgstr "výsledok"
 msgid "Searching ..."
 msgstr "Hľadanie ..."
 
-#: ../Scooby-Do/src/applet-session.c:62
+#: ../Scooby-Do/src/applet-session.c:68
 msgid "Enter your search"
 msgstr "Vložte svoje hľadanie"
 
@@ -1518,7 +1520,7 @@ msgid "futuristic"
 msgstr "futuristický"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
-#: ../slider/data/messages:127
+#: ../slider/data/messages:129
 msgid "none"
 msgstr "žiadny"
 
@@ -1579,7 +1581,7 @@ msgstr ""
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
-#: ../dnd2share/src/applet-dnd2share.c:537
+#: ../dnd2share/src/applet-dnd2share.c:540
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
@@ -1706,7 +1708,6 @@ msgid "Caroussel"
 msgstr "Caroussel"
 
 #: ../dock-rendering/src/rendering-init.c:35
-#: ../dialog-rendering/data/messages:19
 msgid "3D plane"
 msgstr "3D rovina"
 
@@ -1720,7 +1721,8 @@ msgstr "Parabolický"
 msgid "Rainbow"
 msgstr "Dúha"
 
-#: ../dock-rendering/src/rendering-init.c:39 ../shortcuts/data/messages:111
+#: ../dock-rendering/src/rendering-init.c:39
+#: ../dock-rendering/data/messages:27 ../shortcuts/data/messages:111
 #: ../stack/data/messages:103
 msgid "Slide"
 msgstr "Posun"
@@ -1756,19 +1758,6 @@ msgid ""
 "dock."
 msgstr ""
 "Tento plug-in zobrazuje animovaný indikátor, keď hodíte niečo do docku."
-
-#: ../dustbin/src/applet-draw.c:155 ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
-msgid "calculating"
-msgstr "prebieha výpočet"
-
-#: ../dustbin/src/applet-draw.c:165 ../dustbin/src/applet-trashes-manager.c:59
-msgid " trashe(s)"
-msgstr " kôš(e)"
-
-#: ../dustbin/src/applet-draw.c:169 ../dustbin/src/applet-trashes-manager.c:63
-msgid " file(s)"
-msgstr " súbor(y)"
 
 #: ../dustbin/src/applet-init.c:30
 msgid "dustbin"
@@ -1837,6 +1826,19 @@ msgstr "zlyhalo pripojenie %s"
 msgid "Unmouting this volume ..."
 msgstr "Odpojiť túto jednotku..."
 
+#: ../dustbin/src/applet-trashes-manager.c:59
+msgid " trashe(s)"
+msgstr " kôš(e)"
+
+#: ../dustbin/src/applet-trashes-manager.c:63
+msgid " file(s)"
+msgstr " súbor(y)"
+
+#: ../dustbin/src/applet-trashes-manager.c:98
+#: ../dustbin/src/applet-trashes-manager.c:127
+msgid "calculating"
+msgstr "prebieha výpočet"
+
 #: ../gnome-integration-old/src/applet-init.c:30
 msgid ""
 "This applet provides functions for a better integration into a GNOME "
@@ -1867,37 +1869,37 @@ msgstr "efekty ikôn"
 msgid "This plugin adds many special effects to your icons."
 msgstr "Tento plug-in pridáva mnoho špeciálnych efektov do vašich ikôn."
 
-#: ../icon-effect/src/applet-init.c:80 ../icon-effect/data/messages:7
+#: ../icon-effect/src/applet-init.c:101 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
 #: ../icon-effect/data/messages:55 ../icon-effect/data/messages:71
 msgid "Fire"
 msgstr "Oheň"
 
-#: ../icon-effect/src/applet-init.c:83 ../icon-effect/data/messages:9
+#: ../icon-effect/src/applet-init.c:104 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:57 ../icon-effect/data/messages:99
 msgid "Stars"
 msgstr "Hviezdy"
 
-#: ../icon-effect/src/applet-init.c:86 ../icon-effect/data/messages:11
+#: ../icon-effect/src/applet-init.c:107 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:59 ../icon-effect/data/messages:143
 msgid "Rain"
 msgstr "Dážď"
 
-#: ../icon-effect/src/applet-init.c:89 ../icon-effect/data/messages:13
+#: ../icon-effect/src/applet-init.c:110 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:61 ../icon-effect/data/messages:121
 msgid "Snow"
 msgstr "Sneh"
 
-#: ../icon-effect/src/applet-init.c:92 ../icon-effect/data/messages:15
+#: ../icon-effect/src/applet-init.c:113 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:165
 msgid "Storm"
 msgstr "Búrka"
 
-#: ../icon-effect/src/applet-init.c:95 ../icon-effect/data/messages:17
+#: ../icon-effect/src/applet-init.c:116 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:65 ../icon-effect/data/messages:185
 msgid "Firework"
@@ -1941,6 +1943,10 @@ msgstr ""
 "\t Posun nahor/nadol vyberie predchádzajúce/nasledujúce rozloženie\n"
 "\t Pravé-kliknutie vám umožní prístup k zoznamu dostupných rozložení."
 
+#: ../keyboard-indicator/src/applet-notifications.c:63
+msgid "Keyboard preferences"
+msgstr ""
+
 #: ../logout/src/applet-init.c:27
 msgid "logout"
 msgstr "odhlásiť sa"
@@ -1957,40 +1963,45 @@ msgstr ""
 "vypnete alebo reštartujete\n"
 "  (môžete invertovať tlačidlo, ak preferujete vypnutie ľavým kliknutím)."
 
-#: ../logout/src/applet-notifications.c:123
+#: ../logout/src/applet-notifications.c:124
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 
-#: ../logout/src/applet-notifications.c:152
-#: ../logout/src/applet-notifications.c:154 ../logout/data/messages:97
+#: ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:97
 #: ../logout/data/messages:105
 #, fuzzy
 msgid "Log out"
 msgstr "odhlásiť sa"
 
-#: ../logout/src/applet-notifications.c:161
-#: ../logout/src/applet-notifications.c:163 ../logout/data/messages:99
+#: ../logout/src/applet-notifications.c:162
+#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:99
 #: ../logout/data/messages:107
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:170
-#: ../logout/src/applet-notifications.c:172 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:171
+#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Lock screen"
 msgstr "Uzamknúť obrazovku"
 
-#: ../logout/src/applet-notifications.c:177
+#: ../logout/src/applet-notifications.c:178
 msgid "Program an automatic shut-down"
 msgstr "Program na automatické vypnutie"
 
-#: ../logout/src/applet-notifications.c:207
+#: ../logout/src/applet-notifications.c:208
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Váš počítač bude vypnutý za jednu minútu."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
 msgstr "Adresa servera:"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#: ../mail/src/cd-mail-applet-accounts.c:44
+msgid "myLogin"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2016,6 +2027,15 @@ msgstr "Port:"
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
+msgstr ""
+"Vložte 0 pre použitie predvoleného portu. Predvolené porty sú 110 pre POP3 a "
+"995 pre POP3S."
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid ""
+"Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
+"IMAP4 over SSL."
 msgstr ""
 "Vložte 0 pre použitie predvoleného portu. Predvolené porty sú 110 pre POP3 a "
 "995 pre POP3S."
@@ -2059,25 +2079,30 @@ msgstr ""
 msgid "Address of feed:"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-accounts.c:49
-#: ../mail/src/cd-mail-applet-accounts.c:112
-#: ../mail/src/cd-mail-applet-accounts.c:289
-msgid "myLogin"
+#: ../mail/src/cd-mail-applet-accounts.c:39
+#, fuzzy
+msgid "Remove this account"
+msgstr "Odstrániť účet"
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
+msgid ""
+"Don't forget to enable IMAP (or POP) service from settings of your mail "
+"account."
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-config.c:214
+#: ../mail/src/cd-mail-applet-config.c:230
 msgid "Please choose an account type."
 msgstr "Prosím vyberte typ účtu."
 
-#: ../mail/src/cd-mail-applet-config.c:219
+#: ../mail/src/cd-mail-applet-config.c:235
 msgid "New account's name"
 msgstr "Nový názov účtu"
 
-#: ../mail/src/cd-mail-applet-config.c:222
+#: ../mail/src/cd-mail-applet-config.c:238
 msgid "Please enter a name for this account."
 msgstr "Prosím, zadajte názov pre tento účet."
 
-#: ../mail/src/cd-mail-applet-config.c:232
+#: ../mail/src/cd-mail-applet-config.c:248
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2085,11 +2110,11 @@ msgstr ""
 "Tento účet už existuje.\n"
 "Prosím vyberte iný názov pre tento účet."
 
-#: ../mail/src/cd-mail-applet-config.c:368
+#: ../mail/src/cd-mail-applet-config.c:384
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
-#: ../mail/src/cd-mail-applet-config.c:423
+#: ../mail/src/cd-mail-applet-config.c:439
 msgid "Remove Account"
 msgstr "Odstrániť účet"
 
@@ -2101,16 +2126,16 @@ msgstr "neznámy"
 msgid "no subject"
 msgstr "bez predmetu"
 
-#: ../mail/src/cd-mail-applet-etpan.c:389
+#: ../mail/src/cd-mail-applet-etpan.c:404
 msgid "No unread mail in your mailboxes"
 msgstr "Žiadna neprečítaná správa vo vašej schránke"
 
-#: ../mail/src/cd-mail-applet-etpan.c:411
+#: ../mail/src/cd-mail-applet-etpan.c:426
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Máte %d nových mailov :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:413
+#: ../mail/src/cd-mail-applet-etpan.c:428
 msgid "You have a new mail:"
 msgstr "Máte nový e-mail :"
 
@@ -2130,7 +2155,7 @@ msgstr ""
 "Ľavé kliknutie spustí preferovaný mail,\n"
 "Stredným kliknutím obnovíte všetky poštové schránky."
 
-#: ../mail/src/cd-mail-applet-notifications.c:63
+#: ../mail/src/cd-mail-applet-notifications.c:62
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2141,30 +2166,40 @@ msgstr ""
 "Ak '%s' nie je obvyklou aplikáciou na spracovanie pošty,\n"
 "môžete to zmeniť v conf paneli tohto modulu"
 
-#: ../mail/src/cd-mail-applet-notifications.c:147
+#: ../mail/src/cd-mail-applet-notifications.c:67
+#, fuzzy
+msgid ""
+"No mail application is defined,\n"
+"you can define it in the configuration panel of this module"
+msgstr ""
+"Nastal problém\n"
+"Ak '%s' nie je obvyklou aplikáciou na spracovanie pošty,\n"
+"môžete to zmeniť v conf paneli tohto modulu"
+
+#: ../mail/src/cd-mail-applet-notifications.c:150
 msgid "Refresh a mail account"
 msgstr "Obnoviť poštový účet"
 
-#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../mail/src/cd-mail-applet-notifications.c:157
 #, fuzzy
 msgid "Refresh all"
 msgstr "Aktualizovať"
 
-#: ../mail/src/cd-mail-applet-notifications.c:161
+#: ../mail/src/cd-mail-applet-notifications.c:164
 #, c-format
 msgid "Refresh %s"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:167
+#: ../mail/src/cd-mail-applet-notifications.c:170
 msgid "Mark all emails as read"
 msgstr "Označiť všetku poštu ako prečítanú"
 
-#: ../mail/src/cd-mail-applet-notifications.c:170
+#: ../mail/src/cd-mail-applet-notifications.c:173
 #, c-format
 msgid "Launch %s"
 msgstr "Spustiť %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:348
+#: ../mail/src/cd-mail-applet-notifications.c:351
 msgid "Mail"
 msgstr "Pošta"
 
@@ -2679,8 +2714,8 @@ msgstr "Pozastaviť"
 msgid "Open current image"
 msgstr "Otvoriť aktuálny obrázok"
 
-#: ../slider/src/applet-notifications.c:272
-#: ../slider/src/applet-notifications.c:274
+#: ../slider/src/applet-notifications.c:271
+#: ../slider/src/applet-notifications.c:273
 msgid "Browse images folder"
 msgstr "Prechádzať priečinok s obrázkami"
 
@@ -2688,7 +2723,7 @@ msgstr "Prechádzať priečinok s obrázkami"
 msgid "stack"
 msgstr "sklad"
 
-#: ../stack/src/applet-init.c:34 ../stacks/src/applet-init.c:33
+#: ../stack/src/applet-init.c:34
 msgid ""
 "This applet allows you to build a stack of files, just like the Stacks "
 "applet of MacOS X.\n"
@@ -2740,7 +2775,7 @@ msgstr ""
 
 #: ../stack/src/applet-notifications.c:181
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:358
+#: ../terminal/src/terminal-widget.c:374
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -2755,18 +2790,6 @@ msgstr "Premenovať túto položku"
 #: ../stack/src/applet-notifications.c:188
 msgid "Remove this item"
 msgstr "Odstrániť túto položku"
-
-#: ../stacks/src/applet-init.c:30
-msgid "stacks"
-msgstr ""
-
-#: ../stacks/src/applet-notifications.c:44
-msgid "Reload Stacks"
-msgstr "Obnoviť sklad"
-
-#: ../stacks/src/applet-notifications.c:45
-msgid "Clean local directory"
-msgstr "Vyčistiť miestny adresár"
 
 #: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
 #: ../switcher/src/applet-load-icons.c:43
@@ -2855,7 +2878,6 @@ msgstr ""
 "ostatnými oknami."
 
 #: ../systray/src/systray-interface.c:71
-#: ../systray/src/systray-menu-functions.c:70
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -2901,7 +2923,7 @@ msgstr ""
 "ňu."
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:374
+#: ../terminal/src/terminal-widget.c:390
 msgid "New Tab"
 msgstr "Nová karta"
 
@@ -2925,24 +2947,24 @@ msgstr "Nastaviť názov pre túto kartu :"
 msgid "Select a color"
 msgstr "Vyberte farbu"
 
-#: ../terminal/src/terminal-widget.c:318
+#: ../terminal/src/terminal-widget.c:334
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Môžete vrátiť späť v Termináli napísaním %s"
 
-#: ../terminal/src/terminal-widget.c:364
+#: ../terminal/src/terminal-widget.c:380
 msgid "Paste"
 msgstr "Vložiť"
 
-#: ../terminal/src/terminal-widget.c:380
+#: ../terminal/src/terminal-widget.c:396
 msgid "Rename this Tab"
 msgstr "Premenovať"
 
-#: ../terminal/src/terminal-widget.c:386
+#: ../terminal/src/terminal-widget.c:402
 msgid "Change this Tab's colour"
 msgstr "Zmeniť farbu kariet"
 
-#: ../terminal/src/terminal-widget.c:392
+#: ../terminal/src/terminal-widget.c:408
 msgid "Close this Tab"
 msgstr "Zatvoriť túto kartu"
 
@@ -3102,25 +3124,25 @@ msgid "Dec"
 msgstr "Dec"
 
 #: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:73
+#: ../weather/src/applet-notifications.c:70
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Získavam údaje, prosím, počkajte chvíľu."
 
-#: ../weather/src/applet-notifications.c:111
+#: ../weather/src/applet-notifications.c:108
 #, fuzzy
 msgid "Show current conditions (middle-click)"
 msgstr "Pripojiť (stredné kliknutie)"
 
-#: ../weather/src/applet-notifications.c:116
+#: ../weather/src/applet-notifications.c:113
 #, fuzzy
 msgid "Open weather.com (double-click)"
 msgstr "Otvoriť priečinok (stredné kliknutie)"
 
-#: ../weather/src/applet-notifications.c:118
+#: ../weather/src/applet-notifications.c:115
 msgid "Reload now"
 msgstr "Znova načítať"
 
-#: ../weather/src/applet-notifications.c:151
+#: ../weather/src/applet-notifications.c:148
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3128,40 +3150,40 @@ msgstr ""
 "Nie sú k dispozícii žiadne údaje\n"
 " je spojenie aktívne ?"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:167
+#: ../weather/src/applet-notifications.c:203
 msgid "Temperature"
 msgstr "Teplota"
 
-#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:168
 msgid "Precipitation probability"
 msgstr "Pravdepodobnosť zrážok"
 
-#: ../weather/src/applet-notifications.c:172
-#: ../weather/src/applet-notifications.c:207
+#: ../weather/src/applet-notifications.c:169
+#: ../weather/src/applet-notifications.c:204
 msgid "Wind"
 msgstr "Vietor"
 
-#: ../weather/src/applet-notifications.c:173
-#: ../weather/src/applet-notifications.c:208
+#: ../weather/src/applet-notifications.c:170
+#: ../weather/src/applet-notifications.c:205
 msgid "Humidity"
 msgstr "Vlhkosť"
 
-#: ../weather/src/applet-notifications.c:174
-#: ../weather/src/applet-notifications.c:209
+#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:206
 msgid "Sunrise"
 msgstr "Východ slnka"
 
-#: ../weather/src/applet-notifications.c:174
-#: ../weather/src/applet-notifications.c:209
+#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:206
 msgid "Sunset"
 msgstr "Západ slnka"
 
-#: ../weather/src/applet-notifications.c:182
+#: ../weather/src/applet-notifications.c:179
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Dáta sú pritiahnuté za vlasy, prosím opakujte o niekoľko sekúnd."
 
-#: ../weather/src/applet-notifications.c:192
+#: ../weather/src/applet-notifications.c:189
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3169,11 +3191,11 @@ msgstr ""
 "Žiadne údaje nie sú k dispozícii\n"
 "Snažím sa znova ..."
 
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:203
 msgid "Feels like"
 msgstr "pocit"
 
-#: ../weather/src/applet-notifications.c:208
+#: ../weather/src/applet-notifications.c:205
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -3291,6 +3313,7 @@ msgstr "V Ms."
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
+#: ../mail/data/messages:133
 msgid "Duration of the animation:"
 msgstr "Doba trvania animácie:"
 
@@ -3322,11 +3345,11 @@ msgstr "Typ sľučky :"
 #: ../netspeed/data/messages:41 ../powermanager/data/messages:43
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:49 ../slider/data/messages:43
-#: ../stack/data/messages:47 ../stacks/data/messages:43
-#: ../switcher/data/messages:37 ../systray/data/messages:37
-#: ../template/data/messages:45 ../terminal/data/messages:45
-#: ../tomboy/data/messages:55 ../weather/data/messages:43
-#: ../weblets/data/messages:45 ../wifi/data/messages:43
+#: ../stack/data/messages:47 ../switcher/data/messages:37
+#: ../systray/data/messages:37 ../template/data/messages:45
+#: ../terminal/data/messages:45 ../tomboy/data/messages:55
+#: ../weather/data/messages:43 ../weblets/data/messages:45
+#: ../wifi/data/messages:43
 msgid "Normal"
 msgstr "Normálna"
 
@@ -3354,10 +3377,9 @@ msgstr "Farba lesku :"
 #: ../dnd2share/data/messages:9 ../logout/data/messages:9
 #: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
 #: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../stacks/data/messages:9 ../switcher/data/messages:9
-#: ../switcher/data/messages:141 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
+#: ../switcher/data/messages:9 ../switcher/data/messages:141
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Nechať prázdne a použiť predvolené."
 
@@ -3496,11 +3518,11 @@ msgstr "Doba trvania blikania :"
 #: ../netspeed/data/messages:1 ../powermanager/data/messages:1
 #: ../quick-browser/data/messages:1 ../shortcuts/data/messages:1
 #: ../showDesktop/data/messages:1 ../slider/data/messages:1
-#: ../stack/data/messages:1 ../stacks/data/messages:1
-#: ../switcher/data/messages:1 ../systray/data/messages:1
-#: ../template/data/messages:1 ../terminal/data/messages:1
-#: ../tomboy/data/messages:1 ../weather/data/messages:1
-#: ../weblets/data/messages:1 ../wifi/data/messages:1
+#: ../stack/data/messages:1 ../switcher/data/messages:1
+#: ../systray/data/messages:1 ../template/data/messages:1
+#: ../terminal/data/messages:1 ../tomboy/data/messages:1
+#: ../weather/data/messages:1 ../weblets/data/messages:1
+#: ../wifi/data/messages:1
 msgid "Icon"
 msgstr "Ikona"
 
@@ -3519,11 +3541,11 @@ msgstr "Ikona"
 #: ../netspeed/data/messages:3 ../powermanager/data/messages:3
 #: ../quick-browser/data/messages:3 ../shortcuts/data/messages:3
 #: ../showDesktop/data/messages:3 ../slider/data/messages:3
-#: ../stack/data/messages:3 ../stacks/data/messages:3
-#: ../switcher/data/messages:3 ../systray/data/messages:3
-#: ../template/data/messages:3 ../terminal/data/messages:3
-#: ../tomboy/data/messages:3 ../weather/data/messages:3
-#: ../weblets/data/messages:3 ../wifi/data/messages:3
+#: ../stack/data/messages:3 ../switcher/data/messages:3
+#: ../systray/data/messages:3 ../template/data/messages:3
+#: ../terminal/data/messages:3 ../tomboy/data/messages:3
+#: ../weather/data/messages:3 ../weblets/data/messages:3
+#: ../wifi/data/messages:3
 msgid "Set to 0 to use the default applet size"
 msgstr "Nastavte na 0 pre použitie predvolenej veľkosti appletu"
 
@@ -3550,11 +3572,10 @@ msgstr "Názov ikony, keď tučniak nie je uvolnený :"
 #: ../powermanager/data/messages:9 ../quick-browser/data/messages:15
 #: ../shortcuts/data/messages:13 ../showDesktop/data/messages:17
 #: ../slider/data/messages:9 ../stack/data/messages:15
-#: ../stacks/data/messages:13 ../switcher/data/messages:13
-#: ../systray/data/messages:13 ../template/data/messages:13
-#: ../terminal/data/messages:13 ../tomboy/data/messages:9
-#: ../weather/data/messages:11 ../weblets/data/messages:13
-#: ../wifi/data/messages:9
+#: ../switcher/data/messages:13 ../systray/data/messages:13
+#: ../template/data/messages:13 ../terminal/data/messages:13
+#: ../tomboy/data/messages:9 ../weather/data/messages:11
+#: ../weblets/data/messages:13 ../wifi/data/messages:9
 msgid "Name of the dock it belongs to:"
 msgstr "Názov doku ku ktorému patrí :"
 
@@ -3598,19 +3619,18 @@ msgstr "Príručka appletov"
 #: ../quick-browser/data/messages:93 ../shortcuts/data/messages:91
 #: ../show-mouse/data/messages:1 ../showDesktop/data/messages:95
 #: ../slider/data/messages:89 ../stack/data/messages:93
-#: ../stacks/data/messages:89 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:83
-#: ../template/data/messages:91 ../terminal/data/messages:91
-#: ../tomboy/data/messages:101 ../weather/data/messages:89
-#: ../weather/data/messages:91 ../weblets/data/messages:91
-#: ../wifi/data/messages:89
+#: ../switcher/data/messages:83 ../switcher/data/messages:85
+#: ../systray/data/messages:83 ../template/data/messages:91
+#: ../terminal/data/messages:91 ../tomboy/data/messages:101
+#: ../weather/data/messages:89 ../weather/data/messages:91
+#: ../weblets/data/messages:91 ../wifi/data/messages:89
 msgid "Configuration"
 msgstr "Konfigurácia"
 
 #: ../Cairo-Penguin/data/messages:15 ../Disks/data/messages:113
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:183
 #: ../System-Monitor/data/messages:99 ../Toons/data/messages:91
-#: ../dustbin/data/messages:91 ../mail/data/messages:97
+#: ../dustbin/data/messages:91 ../mail/data/messages:95
 #: ../netspeed/data/messages:97 ../powermanager/data/messages:101
 #: ../weather/data/messages:121 ../wifi/data/messages:101
 msgid "Choose one of the available themes:"
@@ -3620,9 +3640,9 @@ msgstr "Vyberte jeden z dostupných motívov :"
 #: ../Disks/data/messages:151 ../Network-Monitor/data/messages:167
 #: ../System-Monitor/data/messages:153 ../System-Monitor/data/messages:199
 #: ../Toons/data/messages:93 ../dnd2share/data/messages:93
-#: ../mail/data/messages:115 ../musicPlayer/data/messages:139
+#: ../mail/data/messages:127 ../musicPlayer/data/messages:139
 #: ../netspeed/data/messages:131 ../powermanager/data/messages:145
-#: ../shortcuts/data/messages:129 ../slider/data/messages:121
+#: ../shortcuts/data/messages:129 ../slider/data/messages:123
 #: ../tomboy/data/messages:115 ../wifi/data/messages:165
 msgid "in seconds."
 msgstr "v sekundách."
@@ -3663,11 +3683,10 @@ msgstr "Oblasť odsadenia:"
 #: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
 #: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
 #: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../stacks/data/messages:5 ../switcher/data/messages:5
-#: ../systray/data/messages:5 ../template/data/messages:5
-#: ../terminal/data/messages:5 ../tomboy/data/messages:5
-#: ../weather/data/messages:5 ../weblets/data/messages:5
-#: ../wifi/data/messages:5
+#: ../switcher/data/messages:5 ../systray/data/messages:5
+#: ../template/data/messages:5 ../terminal/data/messages:5
+#: ../tomboy/data/messages:5 ../weather/data/messages:5
+#: ../weblets/data/messages:5 ../wifi/data/messages:5
 msgid "Desired icon size for this applet"
 msgstr "Požadovaná veľkosť ikony pre tento applet"
 
@@ -3684,10 +3703,9 @@ msgstr "Požadovaná veľkosť ikony pre tento applet"
 #: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
 #: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
 #: ../showDesktop/data/messages:7 ../slider/data/messages:7
-#: ../stack/data/messages:9 ../stacks/data/messages:7
-#: ../switcher/data/messages:7 ../template/data/messages:7
-#: ../weather/data/messages:9 ../weblets/data/messages:7
-#: ../wifi/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../template/data/messages:7 ../weather/data/messages:9
+#: ../weblets/data/messages:7 ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 
@@ -3697,10 +3715,9 @@ msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 #: ../Xgamma/data/messages:11 ../dnd2share/data/messages:11
 #: ../logout/data/messages:11 ../quick-browser/data/messages:13
 #: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../stacks/data/messages:11
-#: ../switcher/data/messages:11 ../systray/data/messages:11
-#: ../template/data/messages:11 ../terminal/data/messages:11
-#: ../weblets/data/messages:11
+#: ../stack/data/messages:13 ../switcher/data/messages:11
+#: ../systray/data/messages:11 ../template/data/messages:11
+#: ../terminal/data/messages:11 ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "Názov súboru obrázku :"
 
@@ -3719,11 +3736,11 @@ msgstr "Názov súboru obrázku :"
 #: ../powermanager/data/messages:15 ../quick-browser/data/messages:19
 #: ../shortcuts/data/messages:17 ../show-mouse/data/messages:13
 #: ../showDesktop/data/messages:21 ../slider/data/messages:15
-#: ../stack/data/messages:19 ../stacks/data/messages:15
-#: ../switcher/data/messages:17 ../systray/data/messages:17
-#: ../template/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:27 ../weather/data/messages:15
-#: ../weblets/data/messages:17 ../wifi/data/messages:15
+#: ../stack/data/messages:19 ../switcher/data/messages:17
+#: ../systray/data/messages:17 ../template/data/messages:17
+#: ../terminal/data/messages:17 ../tomboy/data/messages:27
+#: ../weather/data/messages:15 ../weblets/data/messages:17
+#: ../wifi/data/messages:15
 msgid "Desklet"
 msgstr "Desklet"
 
@@ -3742,11 +3759,10 @@ msgstr "Desklet"
 #: ../powermanager/data/messages:17 ../quick-browser/data/messages:21
 #: ../shortcuts/data/messages:19 ../showDesktop/data/messages:23
 #: ../slider/data/messages:17 ../stack/data/messages:21
-#: ../stacks/data/messages:17 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
+#: ../switcher/data/messages:19 ../systray/data/messages:19
+#: ../template/data/messages:19 ../terminal/data/messages:19
+#: ../tomboy/data/messages:29 ../weather/data/messages:17
+#: ../weblets/data/messages:19 ../wifi/data/messages:17
 msgid "Position"
 msgstr "Pozícia"
 
@@ -3765,11 +3781,10 @@ msgstr "Pozícia"
 #: ../powermanager/data/messages:19 ../quick-browser/data/messages:23
 #: ../shortcuts/data/messages:21 ../showDesktop/data/messages:25
 #: ../slider/data/messages:19 ../stack/data/messages:23
-#: ../stacks/data/messages:19 ../switcher/data/messages:21
-#: ../systray/data/messages:21 ../template/data/messages:21
-#: ../terminal/data/messages:21 ../tomboy/data/messages:31
-#: ../weather/data/messages:19 ../weblets/data/messages:21
-#: ../wifi/data/messages:19
+#: ../switcher/data/messages:21 ../systray/data/messages:21
+#: ../template/data/messages:21 ../terminal/data/messages:21
+#: ../tomboy/data/messages:31 ../weather/data/messages:19
+#: ../weblets/data/messages:21 ../wifi/data/messages:19
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
@@ -3792,11 +3807,10 @@ msgstr ""
 #: ../powermanager/data/messages:21 ../quick-browser/data/messages:25
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:27
 #: ../slider/data/messages:21 ../stack/data/messages:25
-#: ../stacks/data/messages:21 ../switcher/data/messages:23
-#: ../systray/data/messages:23 ../template/data/messages:23
-#: ../terminal/data/messages:23 ../tomboy/data/messages:33
-#: ../weather/data/messages:21 ../weblets/data/messages:23
-#: ../wifi/data/messages:21
+#: ../switcher/data/messages:23 ../systray/data/messages:23
+#: ../template/data/messages:23 ../terminal/data/messages:23
+#: ../tomboy/data/messages:33 ../weather/data/messages:21
+#: ../weblets/data/messages:23 ../wifi/data/messages:21
 msgid "Lock position?"
 msgstr "Zamknúť pozíciu ?"
 
@@ -3815,10 +3829,10 @@ msgstr "Zamknúť pozíciu ?"
 #: ../powermanager/data/messages:23 ../quick-browser/data/messages:27
 #: ../shortcuts/data/messages:25 ../showDesktop/data/messages:29
 #: ../slider/data/messages:23 ../stack/data/messages:27
-#: ../stacks/data/messages:23 ../switcher/data/messages:25
-#: ../template/data/messages:25 ../terminal/data/messages:25
-#: ../tomboy/data/messages:35 ../weather/data/messages:23
-#: ../weblets/data/messages:25 ../wifi/data/messages:23
+#: ../switcher/data/messages:25 ../template/data/messages:25
+#: ../terminal/data/messages:25 ../tomboy/data/messages:35
+#: ../weather/data/messages:23 ../weblets/data/messages:25
+#: ../wifi/data/messages:23
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -3841,10 +3855,10 @@ msgstr ""
 #: ../powermanager/data/messages:25 ../quick-browser/data/messages:29
 #: ../shortcuts/data/messages:27 ../showDesktop/data/messages:31
 #: ../slider/data/messages:25 ../stack/data/messages:29
-#: ../stacks/data/messages:25 ../switcher/data/messages:27
-#: ../template/data/messages:27 ../terminal/data/messages:27
-#: ../tomboy/data/messages:37 ../weather/data/messages:25
-#: ../weblets/data/messages:27 ../wifi/data/messages:25
+#: ../switcher/data/messages:27 ../template/data/messages:27
+#: ../terminal/data/messages:27 ../tomboy/data/messages:37
+#: ../weather/data/messages:25 ../weblets/data/messages:27
+#: ../wifi/data/messages:25
 msgid "Desklet dimensions (width x height):"
 msgstr "Rozmery deskletov (šírka x výška) :"
 
@@ -3860,9 +3874,8 @@ msgstr "Rozmery deskletov (šírka x výška) :"
 #: ../powermanager/data/messages:27 ../quick-browser/data/messages:31
 #: ../shortcuts/data/messages:29 ../showDesktop/data/messages:33
 #: ../slider/data/messages:27 ../stack/data/messages:31
-#: ../stacks/data/messages:27 ../terminal/data/messages:29
-#: ../weather/data/messages:27 ../weblets/data/messages:29
-#: ../wifi/data/messages:27
+#: ../terminal/data/messages:29 ../weather/data/messages:27
+#: ../weblets/data/messages:29 ../wifi/data/messages:27
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -3885,11 +3898,10 @@ msgstr ""
 #: ../powermanager/data/messages:29 ../quick-browser/data/messages:33
 #: ../shortcuts/data/messages:31 ../showDesktop/data/messages:35
 #: ../slider/data/messages:29 ../stack/data/messages:33
-#: ../stacks/data/messages:29 ../switcher/data/messages:29
-#: ../systray/data/messages:27 ../template/data/messages:31
-#: ../terminal/data/messages:31 ../tomboy/data/messages:41
-#: ../weather/data/messages:29 ../weblets/data/messages:31
-#: ../wifi/data/messages:29
+#: ../switcher/data/messages:29 ../systray/data/messages:27
+#: ../template/data/messages:31 ../terminal/data/messages:31
+#: ../tomboy/data/messages:41 ../weather/data/messages:29
+#: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid "Desklet position (x, y):"
 msgstr "Pozícia deskletu (x ; y) :"
 
@@ -3907,10 +3919,10 @@ msgstr "Pozícia deskletu (x ; y) :"
 #: ../netspeed/data/messages:29 ../powermanager/data/messages:31
 #: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
 #: ../showDesktop/data/messages:37 ../slider/data/messages:31
-#: ../stack/data/messages:35 ../stacks/data/messages:31
-#: ../template/data/messages:33 ../terminal/data/messages:33
-#: ../tomboy/data/messages:43 ../weather/data/messages:31
-#: ../weblets/data/messages:33 ../wifi/data/messages:31
+#: ../stack/data/messages:35 ../template/data/messages:33
+#: ../terminal/data/messages:33 ../tomboy/data/messages:43
+#: ../weather/data/messages:31 ../weblets/data/messages:33
+#: ../wifi/data/messages:31
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -3932,10 +3944,10 @@ msgstr ""
 #: ../netspeed/data/messages:31 ../powermanager/data/messages:33
 #: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
 #: ../showDesktop/data/messages:39 ../slider/data/messages:33
-#: ../stack/data/messages:37 ../stacks/data/messages:33
-#: ../template/data/messages:35 ../terminal/data/messages:35
-#: ../tomboy/data/messages:45 ../weather/data/messages:33
-#: ../weblets/data/messages:35 ../wifi/data/messages:33
+#: ../stack/data/messages:37 ../template/data/messages:35
+#: ../terminal/data/messages:35 ../tomboy/data/messages:45
+#: ../weather/data/messages:33 ../weblets/data/messages:35
+#: ../wifi/data/messages:33
 msgid "Rotation:"
 msgstr "Otáčanie :"
 
@@ -3954,11 +3966,10 @@ msgstr "Otáčanie :"
 #: ../powermanager/data/messages:35 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:41
 #: ../slider/data/messages:35 ../stack/data/messages:39
-#: ../stacks/data/messages:35 ../switcher/data/messages:31
-#: ../systray/data/messages:29 ../template/data/messages:37
-#: ../terminal/data/messages:37 ../tomboy/data/messages:47
-#: ../weather/data/messages:35 ../weblets/data/messages:37
-#: ../wifi/data/messages:35
+#: ../switcher/data/messages:31 ../systray/data/messages:29
+#: ../template/data/messages:37 ../terminal/data/messages:37
+#: ../tomboy/data/messages:47 ../weather/data/messages:35
+#: ../weblets/data/messages:37 ../wifi/data/messages:35
 msgid "Visibility"
 msgstr "Viditeľnosť"
 
@@ -3977,11 +3988,11 @@ msgstr "Viditeľnosť"
 #: ../netspeed/data/messages:35 ../powermanager/data/messages:37
 #: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
 #: ../showDesktop/data/messages:43 ../slider/data/messages:37
-#: ../stack/data/messages:41 ../stacks/data/messages:37
-#: ../switcher/data/messages:33 ../systray/data/messages:31
-#: ../template/data/messages:39 ../terminal/data/messages:39
-#: ../tomboy/data/messages:49 ../weather/data/messages:37
-#: ../weblets/data/messages:39 ../wifi/data/messages:37
+#: ../stack/data/messages:41 ../switcher/data/messages:33
+#: ../systray/data/messages:31 ../template/data/messages:39
+#: ../terminal/data/messages:39 ../tomboy/data/messages:49
+#: ../weather/data/messages:37 ../weblets/data/messages:39
+#: ../wifi/data/messages:37
 msgid "Is detached from the dock"
 msgstr "Je oddelený od docku ?"
 
@@ -4000,10 +4011,10 @@ msgstr "Je oddelený od docku ?"
 #: ../powermanager/data/messages:39 ../quick-browser/data/messages:43
 #: ../shortcuts/data/messages:41 ../showDesktop/data/messages:45
 #: ../slider/data/messages:39 ../stack/data/messages:43
-#: ../stacks/data/messages:39 ../systray/data/messages:33
-#: ../template/data/messages:41 ../terminal/data/messages:41
-#: ../tomboy/data/messages:51 ../weather/data/messages:39
-#: ../weblets/data/messages:41 ../wifi/data/messages:39
+#: ../systray/data/messages:33 ../template/data/messages:41
+#: ../terminal/data/messages:41 ../tomboy/data/messages:51
+#: ../weather/data/messages:39 ../weblets/data/messages:41
+#: ../wifi/data/messages:39
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
@@ -4026,11 +4037,10 @@ msgstr ""
 #: ../powermanager/data/messages:41 ../quick-browser/data/messages:45
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:47
 #: ../slider/data/messages:41 ../stack/data/messages:45
-#: ../stacks/data/messages:41 ../switcher/data/messages:35
-#: ../systray/data/messages:35 ../template/data/messages:43
-#: ../terminal/data/messages:43 ../tomboy/data/messages:53
-#: ../weather/data/messages:41 ../weblets/data/messages:43
-#: ../wifi/data/messages:41
+#: ../switcher/data/messages:35 ../systray/data/messages:35
+#: ../template/data/messages:43 ../terminal/data/messages:43
+#: ../tomboy/data/messages:53 ../weather/data/messages:41
+#: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid "Visibility:"
 msgstr "Viditeľnosť :"
 
@@ -4049,11 +4059,10 @@ msgstr "Viditeľnosť :"
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:49
 #: ../shortcuts/data/messages:47 ../showDesktop/data/messages:51
 #: ../slider/data/messages:45 ../stack/data/messages:49
-#: ../stacks/data/messages:45 ../switcher/data/messages:39
-#: ../systray/data/messages:39 ../template/data/messages:47
-#: ../terminal/data/messages:47 ../tomboy/data/messages:57
-#: ../weather/data/messages:45 ../weblets/data/messages:47
-#: ../wifi/data/messages:45
+#: ../switcher/data/messages:39 ../systray/data/messages:39
+#: ../template/data/messages:47 ../terminal/data/messages:47
+#: ../tomboy/data/messages:57 ../weather/data/messages:45
+#: ../weblets/data/messages:47 ../wifi/data/messages:45
 msgid "Keep above"
 msgstr "Ponechať v popredí"
 
@@ -4072,11 +4081,10 @@ msgstr "Ponechať v popredí"
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:51
 #: ../shortcuts/data/messages:49 ../showDesktop/data/messages:53
 #: ../slider/data/messages:47 ../stack/data/messages:51
-#: ../stacks/data/messages:47 ../switcher/data/messages:41
-#: ../systray/data/messages:41 ../template/data/messages:49
-#: ../terminal/data/messages:49 ../tomboy/data/messages:59
-#: ../weather/data/messages:47 ../weblets/data/messages:49
-#: ../wifi/data/messages:47
+#: ../switcher/data/messages:41 ../systray/data/messages:41
+#: ../template/data/messages:49 ../terminal/data/messages:49
+#: ../tomboy/data/messages:59 ../weather/data/messages:47
+#: ../weblets/data/messages:49 ../wifi/data/messages:47
 msgid "Keep below"
 msgstr "Ponechať na pozadí"
 
@@ -4095,11 +4103,10 @@ msgstr "Ponechať na pozadí"
 #: ../powermanager/data/messages:49 ../quick-browser/data/messages:53
 #: ../shortcuts/data/messages:51 ../showDesktop/data/messages:55
 #: ../slider/data/messages:49 ../stack/data/messages:53
-#: ../stacks/data/messages:49 ../switcher/data/messages:43
-#: ../systray/data/messages:43 ../template/data/messages:51
-#: ../terminal/data/messages:51 ../tomboy/data/messages:61
-#: ../weather/data/messages:49 ../weblets/data/messages:51
-#: ../wifi/data/messages:49
+#: ../switcher/data/messages:43 ../systray/data/messages:43
+#: ../template/data/messages:51 ../terminal/data/messages:51
+#: ../tomboy/data/messages:61 ../weather/data/messages:49
+#: ../weblets/data/messages:51 ../wifi/data/messages:49
 msgid "Keep on widget layer"
 msgstr "Ponechať na vrstve widgetu"
 
@@ -4118,11 +4125,10 @@ msgstr "Ponechať na vrstve widgetu"
 #: ../powermanager/data/messages:51 ../quick-browser/data/messages:55
 #: ../shortcuts/data/messages:53 ../showDesktop/data/messages:57
 #: ../slider/data/messages:51 ../stack/data/messages:55
-#: ../stacks/data/messages:51 ../switcher/data/messages:45
-#: ../systray/data/messages:45 ../template/data/messages:53
-#: ../terminal/data/messages:53 ../tomboy/data/messages:63
-#: ../weather/data/messages:51 ../weblets/data/messages:53
-#: ../wifi/data/messages:51
+#: ../switcher/data/messages:45 ../systray/data/messages:45
+#: ../template/data/messages:53 ../terminal/data/messages:53
+#: ../tomboy/data/messages:63 ../weather/data/messages:51
+#: ../weblets/data/messages:53 ../wifi/data/messages:51
 msgid "Reserve space"
 msgstr "Vyhradiť miesto"
 
@@ -4141,11 +4147,10 @@ msgstr "Vyhradiť miesto"
 #: ../powermanager/data/messages:53 ../quick-browser/data/messages:57
 #: ../shortcuts/data/messages:55 ../showDesktop/data/messages:59
 #: ../slider/data/messages:53 ../stack/data/messages:57
-#: ../stacks/data/messages:53 ../switcher/data/messages:47
-#: ../systray/data/messages:47 ../template/data/messages:55
-#: ../terminal/data/messages:55 ../tomboy/data/messages:65
-#: ../weather/data/messages:53 ../weblets/data/messages:55
-#: ../wifi/data/messages:53
+#: ../switcher/data/messages:47 ../systray/data/messages:47
+#: ../template/data/messages:55 ../terminal/data/messages:55
+#: ../tomboy/data/messages:65 ../weather/data/messages:53
+#: ../weblets/data/messages:55 ../wifi/data/messages:53
 msgid "Should be visible on all desktops?"
 msgstr "Má byť viditeľný na všetkých plochách ?"
 
@@ -4164,11 +4169,10 @@ msgstr "Má byť viditeľný na všetkých plochách ?"
 #: ../powermanager/data/messages:55 ../quick-browser/data/messages:59
 #: ../shortcuts/data/messages:57 ../showDesktop/data/messages:61
 #: ../slider/data/messages:55 ../stack/data/messages:59
-#: ../stacks/data/messages:55 ../switcher/data/messages:49
-#: ../systray/data/messages:49 ../template/data/messages:57
-#: ../terminal/data/messages:57 ../tomboy/data/messages:67
-#: ../weather/data/messages:55 ../weblets/data/messages:57
-#: ../wifi/data/messages:55
+#: ../switcher/data/messages:49 ../systray/data/messages:49
+#: ../template/data/messages:57 ../terminal/data/messages:57
+#: ../tomboy/data/messages:67 ../weather/data/messages:55
+#: ../weblets/data/messages:57 ../wifi/data/messages:55
 msgid "Decorations"
 msgstr "Dekorácie"
 
@@ -4187,11 +4191,10 @@ msgstr "Dekorácie"
 #: ../powermanager/data/messages:57 ../quick-browser/data/messages:61
 #: ../shortcuts/data/messages:59 ../showDesktop/data/messages:63
 #: ../slider/data/messages:57 ../stack/data/messages:61
-#: ../stacks/data/messages:57 ../switcher/data/messages:51
-#: ../systray/data/messages:51 ../template/data/messages:59
-#: ../terminal/data/messages:59 ../tomboy/data/messages:69
-#: ../weather/data/messages:57 ../weblets/data/messages:59
-#: ../wifi/data/messages:57
+#: ../switcher/data/messages:51 ../systray/data/messages:51
+#: ../template/data/messages:59 ../terminal/data/messages:59
+#: ../tomboy/data/messages:69 ../weather/data/messages:57
+#: ../weblets/data/messages:59 ../wifi/data/messages:57
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 "Vyberte 'vlastné dekorácie' pre možnosť definovať si vlastné ozdoby nižšie."
@@ -4211,11 +4214,10 @@ msgstr ""
 #: ../powermanager/data/messages:59 ../quick-browser/data/messages:63
 #: ../shortcuts/data/messages:61 ../showDesktop/data/messages:65
 #: ../slider/data/messages:59 ../stack/data/messages:63
-#: ../stacks/data/messages:59 ../switcher/data/messages:53
-#: ../systray/data/messages:53 ../template/data/messages:61
-#: ../terminal/data/messages:61 ../tomboy/data/messages:71
-#: ../weather/data/messages:59 ../weblets/data/messages:61
-#: ../wifi/data/messages:59
+#: ../switcher/data/messages:53 ../systray/data/messages:53
+#: ../template/data/messages:61 ../terminal/data/messages:61
+#: ../tomboy/data/messages:71 ../weather/data/messages:59
+#: ../weblets/data/messages:61 ../wifi/data/messages:59
 msgid "Choose a decoration theme for this desklet:"
 msgstr "Vyberte ozdobu témy pre tento desklet :"
 
@@ -4234,11 +4236,10 @@ msgstr "Vyberte ozdobu témy pre tento desklet :"
 #: ../powermanager/data/messages:61 ../quick-browser/data/messages:65
 #: ../shortcuts/data/messages:63 ../showDesktop/data/messages:67
 #: ../slider/data/messages:61 ../stack/data/messages:65
-#: ../stacks/data/messages:61 ../switcher/data/messages:55
-#: ../systray/data/messages:55 ../template/data/messages:63
-#: ../terminal/data/messages:63 ../tomboy/data/messages:73
-#: ../weather/data/messages:61 ../weblets/data/messages:63
-#: ../wifi/data/messages:61
+#: ../switcher/data/messages:55 ../systray/data/messages:55
+#: ../template/data/messages:63 ../terminal/data/messages:63
+#: ../tomboy/data/messages:73 ../weather/data/messages:61
+#: ../weblets/data/messages:63 ../wifi/data/messages:61
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
@@ -4261,11 +4262,11 @@ msgstr ""
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:69 ../slider/data/messages:63
-#: ../stack/data/messages:67 ../stacks/data/messages:63
-#: ../switcher/data/messages:57 ../systray/data/messages:57
-#: ../template/data/messages:65 ../terminal/data/messages:65
-#: ../tomboy/data/messages:75 ../weather/data/messages:63
-#: ../weblets/data/messages:65 ../wifi/data/messages:63
+#: ../stack/data/messages:67 ../switcher/data/messages:57
+#: ../systray/data/messages:57 ../template/data/messages:65
+#: ../terminal/data/messages:65 ../tomboy/data/messages:75
+#: ../weather/data/messages:63 ../weblets/data/messages:65
+#: ../wifi/data/messages:63
 msgid "Background image:"
 msgstr "Obrázok pozadia:"
 
@@ -4284,11 +4285,10 @@ msgstr "Obrázok pozadia:"
 #: ../powermanager/data/messages:65 ../quick-browser/data/messages:69
 #: ../shortcuts/data/messages:67 ../showDesktop/data/messages:71
 #: ../slider/data/messages:65 ../stack/data/messages:69
-#: ../stacks/data/messages:65 ../switcher/data/messages:59
-#: ../systray/data/messages:59 ../template/data/messages:67
-#: ../terminal/data/messages:67 ../tomboy/data/messages:77
-#: ../weather/data/messages:65 ../weblets/data/messages:67
-#: ../wifi/data/messages:65
+#: ../switcher/data/messages:59 ../systray/data/messages:59
+#: ../template/data/messages:67 ../terminal/data/messages:67
+#: ../tomboy/data/messages:77 ../weather/data/messages:65
+#: ../weblets/data/messages:67 ../wifi/data/messages:65
 msgid "Background transparency:"
 msgstr "Priehľadnosť pozadia :"
 
@@ -4307,11 +4307,10 @@ msgstr "Priehľadnosť pozadia :"
 #: ../powermanager/data/messages:67 ../quick-browser/data/messages:71
 #: ../shortcuts/data/messages:69 ../showDesktop/data/messages:73
 #: ../slider/data/messages:67 ../stack/data/messages:71
-#: ../stacks/data/messages:67 ../switcher/data/messages:61
-#: ../systray/data/messages:61 ../template/data/messages:69
-#: ../terminal/data/messages:69 ../tomboy/data/messages:79
-#: ../weather/data/messages:67 ../weblets/data/messages:69
-#: ../wifi/data/messages:67
+#: ../switcher/data/messages:61 ../systray/data/messages:61
+#: ../template/data/messages:69 ../terminal/data/messages:69
+#: ../tomboy/data/messages:79 ../weather/data/messages:67
+#: ../weblets/data/messages:69 ../wifi/data/messages:67
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie ľavej polohy vykreslenia."
 
@@ -4330,11 +4329,10 @@ msgstr "v pixeloch. Použite pre nastavenie ľavej polohy vykreslenia."
 #: ../powermanager/data/messages:69 ../quick-browser/data/messages:73
 #: ../shortcuts/data/messages:71 ../showDesktop/data/messages:75
 #: ../slider/data/messages:69 ../stack/data/messages:73
-#: ../stacks/data/messages:69 ../switcher/data/messages:63
-#: ../systray/data/messages:63 ../template/data/messages:71
-#: ../terminal/data/messages:71 ../tomboy/data/messages:81
-#: ../weather/data/messages:69 ../weblets/data/messages:71
-#: ../wifi/data/messages:69
+#: ../switcher/data/messages:63 ../systray/data/messages:63
+#: ../template/data/messages:71 ../terminal/data/messages:71
+#: ../tomboy/data/messages:81 ../weather/data/messages:69
+#: ../weblets/data/messages:71 ../wifi/data/messages:69
 msgid "Left offset:"
 msgstr "Odsadenie zľava :"
 
@@ -4353,11 +4351,10 @@ msgstr "Odsadenie zľava :"
 #: ../powermanager/data/messages:71 ../quick-browser/data/messages:75
 #: ../shortcuts/data/messages:73 ../showDesktop/data/messages:77
 #: ../slider/data/messages:71 ../stack/data/messages:75
-#: ../stacks/data/messages:71 ../switcher/data/messages:65
-#: ../systray/data/messages:65 ../template/data/messages:73
-#: ../terminal/data/messages:73 ../tomboy/data/messages:83
-#: ../weather/data/messages:71 ../weblets/data/messages:73
-#: ../wifi/data/messages:71
+#: ../switcher/data/messages:65 ../systray/data/messages:65
+#: ../template/data/messages:73 ../terminal/data/messages:73
+#: ../tomboy/data/messages:83 ../weather/data/messages:71
+#: ../weblets/data/messages:73 ../wifi/data/messages:71
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie hornej polohy vykreslenia."
 
@@ -4376,11 +4373,10 @@ msgstr "v pixeloch. Použite pre nastavenie hornej polohy vykreslenia."
 #: ../powermanager/data/messages:73 ../quick-browser/data/messages:77
 #: ../shortcuts/data/messages:75 ../showDesktop/data/messages:79
 #: ../slider/data/messages:73 ../stack/data/messages:77
-#: ../stacks/data/messages:73 ../switcher/data/messages:67
-#: ../systray/data/messages:67 ../template/data/messages:75
-#: ../terminal/data/messages:75 ../tomboy/data/messages:85
-#: ../weather/data/messages:73 ../weblets/data/messages:75
-#: ../wifi/data/messages:73
+#: ../switcher/data/messages:67 ../systray/data/messages:67
+#: ../template/data/messages:75 ../terminal/data/messages:75
+#: ../tomboy/data/messages:85 ../weather/data/messages:73
+#: ../weblets/data/messages:75 ../wifi/data/messages:73
 msgid "Top offset:"
 msgstr "Odsadenie zhora :"
 
@@ -4399,11 +4395,10 @@ msgstr "Odsadenie zhora :"
 #: ../powermanager/data/messages:75 ../quick-browser/data/messages:79
 #: ../shortcuts/data/messages:77 ../showDesktop/data/messages:81
 #: ../slider/data/messages:75 ../stack/data/messages:79
-#: ../stacks/data/messages:75 ../switcher/data/messages:69
-#: ../systray/data/messages:69 ../template/data/messages:77
-#: ../terminal/data/messages:77 ../tomboy/data/messages:87
-#: ../weather/data/messages:75 ../weblets/data/messages:77
-#: ../wifi/data/messages:75
+#: ../switcher/data/messages:69 ../systray/data/messages:69
+#: ../template/data/messages:77 ../terminal/data/messages:77
+#: ../tomboy/data/messages:87 ../weather/data/messages:75
+#: ../weblets/data/messages:77 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie pravej polohy vykreslenia."
 
@@ -4422,11 +4417,10 @@ msgstr "v pixeloch. Použite pre nastavenie pravej polohy vykreslenia."
 #: ../powermanager/data/messages:77 ../quick-browser/data/messages:81
 #: ../shortcuts/data/messages:79 ../showDesktop/data/messages:83
 #: ../slider/data/messages:77 ../stack/data/messages:81
-#: ../stacks/data/messages:77 ../switcher/data/messages:71
-#: ../systray/data/messages:71 ../template/data/messages:79
-#: ../terminal/data/messages:79 ../tomboy/data/messages:89
-#: ../weather/data/messages:77 ../weblets/data/messages:79
-#: ../wifi/data/messages:77
+#: ../switcher/data/messages:71 ../systray/data/messages:71
+#: ../template/data/messages:79 ../terminal/data/messages:79
+#: ../tomboy/data/messages:89 ../weather/data/messages:77
+#: ../weblets/data/messages:79 ../wifi/data/messages:77
 msgid "Right offset:"
 msgstr "Odsadenie vpravo :"
 
@@ -4445,11 +4439,10 @@ msgstr "Odsadenie vpravo :"
 #: ../powermanager/data/messages:79 ../quick-browser/data/messages:83
 #: ../shortcuts/data/messages:81 ../showDesktop/data/messages:85
 #: ../slider/data/messages:79 ../stack/data/messages:83
-#: ../stacks/data/messages:79 ../switcher/data/messages:73
-#: ../systray/data/messages:73 ../template/data/messages:81
-#: ../terminal/data/messages:81 ../tomboy/data/messages:91
-#: ../weather/data/messages:79 ../weblets/data/messages:81
-#: ../wifi/data/messages:79
+#: ../switcher/data/messages:73 ../systray/data/messages:73
+#: ../template/data/messages:81 ../terminal/data/messages:81
+#: ../tomboy/data/messages:91 ../weather/data/messages:79
+#: ../weblets/data/messages:81 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "v pixeloch. Použite pre nastavenie dolnej polohy vykreslenia."
 
@@ -4468,11 +4461,10 @@ msgstr "v pixeloch. Použite pre nastavenie dolnej polohy vykreslenia."
 #: ../powermanager/data/messages:81 ../quick-browser/data/messages:85
 #: ../shortcuts/data/messages:83 ../showDesktop/data/messages:87
 #: ../slider/data/messages:81 ../stack/data/messages:85
-#: ../stacks/data/messages:81 ../switcher/data/messages:75
-#: ../systray/data/messages:75 ../template/data/messages:83
-#: ../terminal/data/messages:83 ../tomboy/data/messages:93
-#: ../weather/data/messages:81 ../weblets/data/messages:83
-#: ../wifi/data/messages:81
+#: ../switcher/data/messages:75 ../systray/data/messages:75
+#: ../template/data/messages:83 ../terminal/data/messages:83
+#: ../tomboy/data/messages:93 ../weather/data/messages:81
+#: ../weblets/data/messages:83 ../wifi/data/messages:81
 msgid "Bottom offset:"
 msgstr "Odsadenie zdola"
 
@@ -4491,11 +4483,10 @@ msgstr "Odsadenie zdola"
 #: ../powermanager/data/messages:83 ../quick-browser/data/messages:87
 #: ../shortcuts/data/messages:85 ../showDesktop/data/messages:89
 #: ../slider/data/messages:83 ../stack/data/messages:87
-#: ../stacks/data/messages:83 ../switcher/data/messages:77
-#: ../systray/data/messages:77 ../template/data/messages:85
-#: ../terminal/data/messages:85 ../tomboy/data/messages:95
-#: ../weather/data/messages:83 ../weblets/data/messages:85
-#: ../wifi/data/messages:83
+#: ../switcher/data/messages:77 ../systray/data/messages:77
+#: ../template/data/messages:85 ../terminal/data/messages:85
+#: ../tomboy/data/messages:95 ../weather/data/messages:83
+#: ../weblets/data/messages:85 ../wifi/data/messages:83
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
@@ -4518,11 +4509,10 @@ msgstr ""
 #: ../powermanager/data/messages:85 ../quick-browser/data/messages:89
 #: ../shortcuts/data/messages:87 ../showDesktop/data/messages:91
 #: ../slider/data/messages:85 ../stack/data/messages:89
-#: ../stacks/data/messages:85 ../switcher/data/messages:79
-#: ../systray/data/messages:79 ../template/data/messages:87
-#: ../terminal/data/messages:87 ../tomboy/data/messages:97
-#: ../weather/data/messages:85 ../weblets/data/messages:87
-#: ../wifi/data/messages:85
+#: ../switcher/data/messages:79 ../systray/data/messages:79
+#: ../template/data/messages:87 ../terminal/data/messages:87
+#: ../tomboy/data/messages:97 ../weather/data/messages:85
+#: ../weblets/data/messages:87 ../wifi/data/messages:85
 msgid "Foreground image:"
 msgstr "Obrázok popredia :"
 
@@ -4541,11 +4531,10 @@ msgstr "Obrázok popredia :"
 #: ../powermanager/data/messages:87 ../quick-browser/data/messages:91
 #: ../shortcuts/data/messages:89 ../showDesktop/data/messages:93
 #: ../slider/data/messages:87 ../stack/data/messages:91
-#: ../stacks/data/messages:87 ../switcher/data/messages:81
-#: ../systray/data/messages:81 ../template/data/messages:89
-#: ../terminal/data/messages:89 ../tomboy/data/messages:99
-#: ../weather/data/messages:87 ../weblets/data/messages:89
-#: ../wifi/data/messages:87
+#: ../switcher/data/messages:81 ../systray/data/messages:81
+#: ../template/data/messages:89 ../terminal/data/messages:89
+#: ../tomboy/data/messages:99 ../weather/data/messages:87
+#: ../weblets/data/messages:89 ../wifi/data/messages:87
 msgid "Foreground tansparency:"
 msgstr "Priehľadné popredie :"
 
@@ -4734,10 +4723,10 @@ msgstr "Názov doku ku ktorému patrí :"
 
 #: ../Disks/data/messages:11 ../Disks/data/messages:141
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
-#: ../musicPlayer/data/messages:145 ../shortcuts/data/messages:93
-#: ../shortcuts/data/messages:103 ../slider/data/messages:153
-#: ../stack/data/messages:95 ../tomboy/data/messages:103
-#: ../weather/data/messages:119
+#: ../mail/data/messages:93 ../musicPlayer/data/messages:145
+#: ../shortcuts/data/messages:93 ../shortcuts/data/messages:103
+#: ../slider/data/messages:155 ../stack/data/messages:95
+#: ../tomboy/data/messages:103 ../weather/data/messages:119
 msgid "Display"
 msgstr "Zobraziť"
 
@@ -4872,6 +4861,7 @@ msgstr "Zobraziť hodnoty :"
 #: ../RSSreader/data/messages:113 ../System-Monitor/data/messages:147
 #: ../alsaMixer/data/messages:119 ../clock/data/messages:97
 #: ../netspeed/data/messages:141 ../shortcuts/data/messages:119
+#: ../slider/data/messages:167
 msgid "No"
 msgstr "Nie"
 
@@ -5354,8 +5344,8 @@ msgid "RSS password (optional):"
 msgstr "RSS heslo (nepovinné):"
 
 #: ../RSSreader/data/messages:105 ../clock/data/messages:93
-#: ../dnd2share/data/messages:97 ../mail/data/messages:107
-#: ../showDesktop/data/messages:97 ../slider/data/messages:105
+#: ../dnd2share/data/messages:97 ../showDesktop/data/messages:97
+#: ../slider/data/messages:107
 msgid "Behaviour"
 msgstr "Správanie"
 
@@ -5714,7 +5704,8 @@ msgstr "Pomocník"
 msgid "Name of the icon as it will appear in its label in the dock :"
 msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 
-#: ../Status-Notifier/data/messages:9
+#: ../Status-Notifier/data/messages:9 ../mail/data/messages:97
+#: ../mail/data/messages:101 ../mail/data/messages:117
 msgid "Let empty to use the default one."
 msgstr "Nechať prázdne a použiť predvolené."
 
@@ -6143,7 +6134,7 @@ msgstr ""
 "s plug-inom zodpovedajúcim požadovanej akcii."
 
 #: ../compiz-icon/data/messages:93 ../logout/data/messages:103
-#: ../showDesktop/data/messages:115 ../slider/data/messages:113
+#: ../showDesktop/data/messages:115 ../slider/data/messages:115
 #: ../switcher/data/messages:101
 msgid "Action on middle-click:"
 msgstr "Akcia na stredné kliknutie :"
@@ -6297,14 +6288,14 @@ msgstr "kde-aranžér okien"
 msgid "heliodor"
 msgstr "heliodor"
 
-#: ../compiz-icon/data/messages:159 ../mail/data/messages:91
+#: ../compiz-icon/data/messages:159 ../mail/data/messages:109
 #: ../shortcuts/data/messages:105 ../stack/data/messages:97
-#: ../stacks/data/messages:115 ../switcher/data/messages:145
-#: ../tomboy/data/messages:119 ../weather/data/messages:123
+#: ../switcher/data/messages:145 ../tomboy/data/messages:119
+#: ../weather/data/messages:123
 msgid "Leave empty to use default sub-dock view."
 msgstr "Ponechajte prázdne pre použitie predvoleného vzhľadu sub-doku"
 
-#: ../compiz-icon/data/messages:161 ../mail/data/messages:93
+#: ../compiz-icon/data/messages:161 ../mail/data/messages:111
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
 #: ../switcher/data/messages:147 ../tomboy/data/messages:121
 #: ../weather/data/messages:125
@@ -6355,17 +6346,17 @@ msgstr "Komiks"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
-#: ../dialog-rendering/data/messages:41 ../dock-rendering/data/messages:59
+#: ../dock-rendering/data/messages:59
 msgid "Corner radius:"
 msgstr "Rohový rádius:"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:33 ../dialog-rendering/data/messages:43
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
 msgid "Border width:"
 msgstr "Šírka okraja :"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:35 ../dialog-rendering/data/messages:45
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
 msgid "Bubble's line colour:"
 msgstr "Farba ohraničenia bubliny :"
 
@@ -6377,35 +6368,23 @@ msgstr "Moderná"
 msgid "Space between lines of the tip :"
 msgstr "Medzery medzi riadkami nápovedy:"
 
-#: ../dialog-rendering/data/messages:23
-msgid "Border width of the plane :"
-msgstr "Šírka okraja roviny :"
-
-#: ../dialog-rendering/data/messages:25
-msgid "Colour of the plane's line :"
-msgstr "Farba ohraničenia roviny :"
-
-#: ../dialog-rendering/data/messages:27
-msgid "Colour of the plane :"
-msgstr "Farba roviny :"
-
-#: ../dialog-rendering/data/messages:29
+#: ../dialog-rendering/data/messages:19
 msgid "Tooltip"
 msgstr "Bublinová nápoveda"
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:27
 msgid "Colour of the margin :"
 msgstr "Farba okraja :"
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr "Vlnitý"
 
-#: ../dialog-rendering/data/messages:47
+#: ../dialog-rendering/data/messages:37
 msgid "Curvature of the tip :"
 msgstr "Tip pre zakrivenie :"
 
-#: ../dialog-rendering/data/messages:49
+#: ../dialog-rendering/data/messages:39
 msgid "Curve the sides too?"
 msgstr "Silne zakriviť po stranách ?"
 
@@ -6470,90 +6449,94 @@ msgid "Sites"
 msgstr "Siete"
 
 #: ../dnd2share/data/messages:125
+msgid "Use files hosting site for any kind of files?"
+msgstr ""
+
+#: ../dnd2share/data/messages:127
 msgid "Preferred site for texts hosting :"
 msgstr "Preferovaná sieť pre hosťovanie textov :"
 
-#: ../dnd2share/data/messages:127 ../dnd2share/data/messages:133
-#: ../dnd2share/data/messages:143 ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:129 ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:145 ../dnd2share/data/messages:151
 msgid "Custom"
 msgstr "Vlastná"
 
-#: ../dnd2share/data/messages:129
+#: ../dnd2share/data/messages:131
 msgid "Pastebin.ca"
 msgstr "Pastebin.ca"
 
-#: ../dnd2share/data/messages:131
+#: ../dnd2share/data/messages:133
 msgid "Preferred site for images hosting :"
 msgstr "Preferovaná sieť pre hosting obrázkov :"
 
-#: ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:137
 msgid "Uppix.net"
 msgstr "Uppix.net"
 
-#: ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:139
 msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
-#: ../dnd2share/data/messages:139
+#: ../dnd2share/data/messages:141
 msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
-#: ../dnd2share/data/messages:141
+#: ../dnd2share/data/messages:143
 msgid "Preferred site for videos hosting :"
 msgstr "Preferovaná sieť pre uloženie videí :"
 
-#: ../dnd2share/data/messages:145
+#: ../dnd2share/data/messages:147
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:147
+#: ../dnd2share/data/messages:149
 msgid "Preferred site for files hosting :"
 msgstr "Preferovaná sieť pre uloženie súborov :"
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:155 ../dnd2share/data/messages:159
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
+#: ../dnd2share/data/messages:157 ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:159
 msgid "Custom script for text upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:163
 msgid "Custom script for image upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:167
 msgid "Custom script for video upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:171
 msgid "Custom script for file upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:171
+#: ../dnd2share/data/messages:173
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr "Nechať prázdne pre odosielanie súborov do '~/Dropbox/Verejné'."
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:175
 msgid "Path of the DropBox folder :"
 msgstr "Cesta do priečinka DropBox :"
 
-#: ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:177
 msgid "Otherwise, your user name will be used when possible."
 msgstr ""
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:179
 msgid "Post text as Anonymous ?"
 msgstr "Textový príspevok ako anonym?"
 
@@ -6597,10 +6580,6 @@ msgstr ""
 msgid "normal icons"
 msgstr ""
 
-#: ../dock-rendering/data/messages:27
-msgid "SimpleSlide"
-msgstr "Jednoduché kĺzanie"
-
 #: ../dock-rendering/data/messages:29
 msgid "Grid"
 msgstr "Mriežka"
@@ -6629,7 +6608,7 @@ msgstr "Použiť lineárnu vlnu radšej ako sínusoidovú vlnu?"
 msgid "Display text for all icons?"
 msgstr "Zobraziť text pre všetky ikony ?"
 
-#: ../dock-rendering/data/messages:47
+#: ../dock-rendering/data/messages:47 ../slider/data/messages:171
 msgid "Frame"
 msgstr "Rám"
 
@@ -6811,7 +6790,7 @@ msgstr "Počet kôl za sekundu."
 msgid "Rotation speed :"
 msgstr "Rýchlosť rotácie :"
 
-#: ../dustbin/data/messages:89 ../mail/data/messages:95
+#: ../dustbin/data/messages:89
 msgid "Theme"
 msgstr "Téma vzhľadu"
 
@@ -7034,7 +7013,7 @@ msgid "Action"
 msgstr "Akcie"
 
 #: ../logout/data/messages:95 ../showDesktop/data/messages:101
-#: ../slider/data/messages:107
+#: ../slider/data/messages:109
 msgid "Action on left-click:"
 msgstr "Akcia na ľavé kliknutie :"
 
@@ -7061,42 +7040,6 @@ msgid "User-defined command to execute for shutdown:"
 msgstr "Užívateľom definovaný príkaz na vypnutie :"
 
 #: ../mail/data/messages:89
-msgid "Sub-Dock view"
-msgstr "Pohľad na sub-dock"
-
-#: ../mail/data/messages:99
-msgid "Name of the file for the \"no mail\" image :"
-msgstr "Názov súboru pre obrázok \"žiadna pošta\":"
-
-#: ../mail/data/messages:101
-msgid "Name of the file for the \"has mail\" image :"
-msgstr "Názov súboru pre obrázok \"má mail\" :"
-
-#: ../mail/data/messages:103
-msgid "Play sound when a new e-mail is received?"
-msgstr ""
-
-#: ../mail/data/messages:105
-msgid "Name of the file for the \"new mail\" sound :"
-msgstr "Názov súboru pre obrázok \"nový mail\" :"
-
-#: ../mail/data/messages:109
-msgid "Show new messages' content?"
-msgstr "Zobraziť obsah nových správ ?"
-
-#: ../mail/data/messages:111
-msgid "Maximum number of mails that will be previewed."
-msgstr "Maximálny počet správ, ktoré budú mať náhľad."
-
-#: ../mail/data/messages:113
-msgid "Maximum of new messages shown?"
-msgstr "Maximum nových zobrazených správ ?"
-
-#: ../mail/data/messages:117 ../tomboy/data/messages:117
-msgid "Duration of the dialog:"
-msgstr "Čas dĺžky dialógu :"
-
-#: ../mail/data/messages:119
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
@@ -7105,36 +7048,82 @@ msgstr ""
 "Ak máte nejaké problémy s appletom, vypnite túto voľbu počas režimu údržby, "
 "nech dock sám spustí, a odstráni/upraví poštové účty, ktoré chcete."
 
-#: ../mail/data/messages:121
+#: ../mail/data/messages:91
 msgid "Check mail account on startup?"
 msgstr "Skontrolovať poštový účet pri spustení ?"
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:99
+msgid "Name of the file for the \"no mail\" image :"
+msgstr "Názov súboru pre obrázok \"žiadna pošta\":"
+
+#: ../mail/data/messages:103
+msgid "Name of the file for the \"has mail\" image :"
+msgstr "Názov súboru pre obrázok \"má mail\" :"
+
+#: ../mail/data/messages:105
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Ak je začiarknuté, bude zobrazený počet mailov, aj keď nie je žiadny mail."
 
-#: ../mail/data/messages:125
+#: ../mail/data/messages:107
 msgid "Show '0' if there is no mail?"
 msgstr ""
 
-#: ../mail/data/messages:127
+#: ../mail/data/messages:113
+#, fuzzy
+msgid "Action on new mail"
+msgstr "Akcia na stredné kliknutie :"
+
+#: ../mail/data/messages:115
+msgid "Play sound when a new e-mail is received?"
+msgstr ""
+
+#: ../mail/data/messages:119
+msgid "Name of the file for the \"new mail\" sound :"
+msgstr "Názov súboru pre obrázok \"nový mail\" :"
+
+#: ../mail/data/messages:121
+msgid "Show new messages' content?"
+msgstr "Zobraziť obsah nových správ ?"
+
+#: ../mail/data/messages:123
+msgid "Maximum number of mails that will be previewed."
+msgstr "Maximálny počet správ, ktoré budú mať náhľad."
+
+#: ../mail/data/messages:125
+msgid "Maximum of new messages shown?"
+msgstr "Maximum nových zobrazených správ ?"
+
+#: ../mail/data/messages:129 ../tomboy/data/messages:117
+msgid "Duration of the dialog:"
+msgstr "Čas dĺžky dialógu :"
+
+#: ../mail/data/messages:131
+#, fuzzy
+msgid "Animation when new message arrives:"
+msgstr "Animácia keď sa zmení hudba :"
+
+#: ../mail/data/messages:135
 msgid "Mail application"
 msgstr "Poštová aplikácia"
 
-#: ../mail/data/messages:129
+#: ../mail/data/messages:137
+msgid "for instance \"thunderbird\" or \"firefox mail.google.com\""
+msgstr ""
+
+#: ../mail/data/messages:139
 msgid "Preferred mail application to launch on left-click :"
 msgstr "Preferovanú mailovú aplikáciu spustíte na ľavým-kliknutím :"
 
-#: ../mail/data/messages:131
+#: ../mail/data/messages:141
 msgid "Add a mail account (you've to launch the applet)"
 msgstr ""
 
-#: ../mail/data/messages:133
+#: ../mail/data/messages:143
 msgid "The new account will be created with the specified type and name."
 msgstr "Nový účet bude vytvorený s zadaním typu a názvu."
 
-#: ../mail/data/messages:135
+#: ../mail/data/messages:145
 msgid "Add an account with specified type and name:"
 msgstr "Pridať účet s uvedeným typom a názvom:"
 
@@ -7598,98 +7587,111 @@ msgstr ""
 msgid "Use another thread to load images?"
 msgstr "Použiť iné vlákno na načítanie obrázkov ?"
 
-#: ../slider/data/messages:109 ../slider/data/messages:115
+#: ../slider/data/messages:105
+msgid "Read all images properties on startup?"
+msgstr ""
+
+#: ../slider/data/messages:111 ../slider/data/messages:117
 msgid "play/pause"
 msgstr "Prehrať/pauza"
 
-#: ../slider/data/messages:111 ../slider/data/messages:117
+#: ../slider/data/messages:113 ../slider/data/messages:119
 msgid "open image"
 msgstr "otvoriť obrázok"
 
-#: ../slider/data/messages:119
+#: ../slider/data/messages:121
 #, fuzzy
 msgid "open parent folder"
 msgstr "Otvoriť tento priečinok"
 
-#: ../slider/data/messages:123
+#: ../slider/data/messages:125
 msgid "Sliding delay:"
 msgstr "Omeškanie posunutia :"
 
-#: ../slider/data/messages:125
+#: ../slider/data/messages:127
 msgid "Effect while changing image:"
 msgstr "Efekt pri zmene obrázka :"
 
-#: ../slider/data/messages:129
+#: ../slider/data/messages:131
 msgid "fade"
 msgstr "blednutie"
 
-#: ../slider/data/messages:131
+#: ../slider/data/messages:133
 msgid "blank fade"
 msgstr "Prázdne miznutie"
 
-#: ../slider/data/messages:133
+#: ../slider/data/messages:135
 msgid "fade in/out"
 msgstr "blednutie / tmavnutie"
 
-#: ../slider/data/messages:135
+#: ../slider/data/messages:137
 msgid "side kick"
 msgstr "kopnutie do boku"
 
-#: ../slider/data/messages:137
+#: ../slider/data/messages:139
 msgid "slideshow"
 msgstr "slideshow"
 
-#: ../slider/data/messages:139
+#: ../slider/data/messages:141
 msgid "grow up"
 msgstr "vyrásť"
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:143
 msgid "shrink"
 msgstr "zmenšiť"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:145
 msgid "cube"
 msgstr "kocka"
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:147
 msgid "random"
 msgstr "náhodné"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:149
 msgid "Number of steps for transitions:"
 msgstr "Počet krokov pri prechode :"
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:151
 msgid "fast"
 msgstr "rýchlo"
 
-#: ../slider/data/messages:151
+#: ../slider/data/messages:153
 msgid "slow"
 msgstr "pomaly"
 
-#: ../slider/data/messages:155
+#: ../slider/data/messages:157
 msgid "Gives better image rendering."
 msgstr "Poskytuje lepšie vykresľovanie obrazu."
 
-#: ../slider/data/messages:157
+#: ../slider/data/messages:159
 msgid "Keep width/height ratio?"
 msgstr "Udržujte pomer šírka/výška ?"
 
-#: ../slider/data/messages:159
+#: ../slider/data/messages:161
 msgid "If the image is too small, it will be stretched."
 msgstr "Ak je obraz príliš malý, bude priblížený."
 
-#: ../slider/data/messages:161
+#: ../slider/data/messages:163
 msgid "Force the image to fill the icon/desklet?"
 msgstr "Vnútiť obrázku vyplniť ikonu/desklet?"
 
-#: ../slider/data/messages:163
+#: ../slider/data/messages:165
+#, fuzzy
+msgid "Add a background to the image?"
+msgstr "Obrázok pozadia:"
+
+#: ../slider/data/messages:169
+msgid "Yes"
+msgstr ""
+
+#: ../slider/data/messages:173
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "Nastavte transparentnosť kanála na 0 len ak nechcete mať pozadia."
 
-#: ../slider/data/messages:165
+#: ../slider/data/messages:175
 msgid "Choose a background colour :"
 msgstr "Vyberte farbu pozadia :"
 
@@ -7717,7 +7719,7 @@ msgstr "Obrázok pre 'URL' položky :"
 msgid "Options"
 msgstr "Nastavenia"
 
-#: ../stack/data/messages:117 ../stacks/data/messages:107
+#: ../stack/data/messages:117
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
@@ -7725,7 +7727,7 @@ msgstr ""
 "Táto voľba vám umožní vyhnúť sa niektorým súborom, ktoré majú byť zobrazené "
 "v depozitárovi so zreteľom na ich typy (video, obrázky, atď ..)"
 
-#: ../stack/data/messages:119 ../stacks/data/messages:109
+#: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
 msgstr "Filtrovanie súborov s typom mime?"
 
@@ -7733,7 +7735,7 @@ msgstr "Filtrovanie súborov s typom mime?"
 msgid "E.g. image, text, video, audio, application..."
 msgstr "Napr.: Obrázok, text, video, audio, aplikácie, ..."
 
-#: ../stack/data/messages:123 ../stacks/data/messages:113
+#: ../stack/data/messages:123
 msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "Tu môžete zadať zoznam mime typov, ktorým sa chcete vyhnúť :"
 
@@ -7748,51 +7750,6 @@ msgstr "Typ"
 #: ../stack/data/messages:133
 msgid "Manual order"
 msgstr "Manuálne zoradenie"
-
-#: ../stacks/data/messages:91
-msgid "Directory & Options"
-msgstr ""
-
-#: ../stacks/data/messages:93
-msgid ""
-"Stacks will act as a the shortcut applet's but with files. To add a file, "
-"just drag and drop it on the Stacks icon"
-msgstr ""
-
-#: ../stacks/data/messages:95
-msgid "Use only Stacks local directory ?"
-msgstr ""
-
-#: ../stacks/data/messages:97
-msgid ""
-"You can use '_LocalDirectory_' tag to have both stack local and all "
-"monitored directories. Ensure 'Use only Stacks local directory' is unticked."
-msgstr ""
-
-#: ../stacks/data/messages:99
-msgid "Monitored Directories :"
-msgstr ""
-
-#: ../stacks/data/messages:101
-msgid ""
-"This option with large files lists can slow down the dock, use it properly."
-msgstr ""
-
-#: ../stacks/data/messages:103
-msgid "List hidden files ?"
-msgstr ""
-
-#: ../stacks/data/messages:105
-msgid "Separate different directories with separators ?"
-msgstr ""
-
-#: ../stacks/data/messages:111
-msgid "Eg: image, text, video, audio, application..."
-msgstr ""
-
-#: ../stacks/data/messages:117
-msgid "Name of the view used for the sub-dock :"
-msgstr "Názov zobrazenia používaných pre sub-dock :"
 
 #: ../switcher/data/messages:87
 msgid ""
@@ -8191,6 +8148,30 @@ msgstr "Oznámenia o čistote signálu"
 #: ../wifi/data/messages:189
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"
+
+#~ msgid "Reload Stacks"
+#~ msgstr "Obnoviť sklad"
+
+#~ msgid "Clean local directory"
+#~ msgstr "Vyčistiť miestny adresár"
+
+#~ msgid "Border width of the plane :"
+#~ msgstr "Šírka okraja roviny :"
+
+#~ msgid "Colour of the plane's line :"
+#~ msgstr "Farba ohraničenia roviny :"
+
+#~ msgid "Colour of the plane :"
+#~ msgstr "Farba roviny :"
+
+#~ msgid "SimpleSlide"
+#~ msgstr "Jednoduché kĺzanie"
+
+#~ msgid "Sub-Dock view"
+#~ msgstr "Pohľad na sub-dock"
+
+#~ msgid "Name of the view used for the sub-dock :"
+#~ msgstr "Názov zobrazenia používaných pre sub-dock :"
 
 #~ msgid "Play/Pause (left-click)"
 #~ msgstr "Prehrať/Pauza (ľavý-klik)"

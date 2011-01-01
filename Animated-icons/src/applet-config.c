@@ -31,7 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	{
 		myConfig.iEffectsOnMouseOver[i] = -1;
 	}
-	for (j = 0; j < CAIRO_DOCK_NB_TYPES; j += 2)
+	for (j = 0; j < CAIRO_DOCK_NB_GROUPS; j += 2)
 	{
 		for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
 		{

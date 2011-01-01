@@ -44,14 +44,38 @@ CD_APPLET_INIT_BEGIN
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
-	cairo_dock_register_notification (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_animations_on_enter, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_animations_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_animations_on_request, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_animations_update_icon , CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification (CAIRO_DOCK_UNFOLD_SUBDOCK, (CairoDockNotificationFunc) cd_animations_unfold_subdock, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_ENTER_ICON,
+		(CairoDockNotificationFunc) cd_animations_on_enter,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) cd_animations_on_click,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_REQUEST_ICON_ANIMATION,
+		(CairoDockNotificationFunc) cd_animations_on_request,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_UPDATE_ICON,
+		(CairoDockNotificationFunc) cd_animations_update_icon,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_RENDER_ICON,
+		(CairoDockNotificationFunc) cd_animations_render_icon,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_RENDER_ICON,
+		(CairoDockNotificationFunc) cd_animations_post_render_icon,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_STOP_ICON,
+		(CairoDockNotificationFunc) cd_animations_free_data,
+		CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myIconsMgr,
+		NOTIFICATION_UNFOLD_SUBDOCK,
+		(CairoDockNotificationFunc) cd_animations_unfold_subdock,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce", D_("Bounce"), FALSE);
 	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate", D_("Rotate"), FALSE);
@@ -60,9 +84,6 @@ CD_APPLET_INIT_BEGIN
 	myData.iAnimationID[CD_ANIMATIONS_WOBBLY] = cairo_dock_register_animation ("wobbly", D_("Wobbly"), FALSE);
 	myData.iAnimationID[CD_ANIMATIONS_WAVE] = cairo_dock_register_animation ("wave", D_("Wave"), FALSE);
 	myData.iAnimationID[CD_ANIMATIONS_SPOT] = cairo_dock_register_animation ("spot", D_("Spot"), FALSE);
-	
-	if (! cairo_dock_is_loading ())
-		cairo_dock_update_animations_list_for_gui ();
 CD_APPLET_INIT_END
 
 static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
@@ -71,14 +92,30 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 }
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func (CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_animations_on_enter, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) cd_animations_on_click, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_REQUEST_ICON_ANIMATION, (CairoDockNotificationFunc) cd_animations_on_request, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UPDATE_ICON, (CairoDockNotificationFunc) cd_animations_update_icon, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_render_icon, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_RENDER_ICON, (CairoDockNotificationFunc) cd_animations_post_render_icon, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_STOP_ICON, (CairoDockNotificationFunc) cd_animations_free_data, NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_UNFOLD_SUBDOCK, (CairoDockNotificationFunc) cd_animations_unfold_subdock, NULL);
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_ENTER_ICON,
+		(CairoDockNotificationFunc) cd_animations_on_enter, NULL);
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) cd_animations_on_click, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_REQUEST_ICON_ANIMATION,
+		(CairoDockNotificationFunc) cd_animations_on_request, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_UPDATE_ICON,
+		(CairoDockNotificationFunc) cd_animations_update_icon, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_RENDER_ICON,
+		(CairoDockNotificationFunc) cd_animations_render_icon, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_RENDER_ICON,
+		(CairoDockNotificationFunc) cd_animations_post_render_icon, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_STOP_ICON,
+		(CairoDockNotificationFunc) cd_animations_free_data, NULL);
+	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		NOTIFICATION_UNFOLD_SUBDOCK,
+		(CairoDockNotificationFunc) cd_animations_unfold_subdock, NULL);
 	
 	cairo_dock_unregister_animation ("bounce");
 	cairo_dock_unregister_animation ("rotate");
@@ -87,7 +124,6 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_unregister_animation ("wobbly");
 	cairo_dock_unregister_animation ("wave");
 	cairo_dock_unregister_animation ("spot");
-	cairo_dock_update_animations_list_for_gui ();
 	
 	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END

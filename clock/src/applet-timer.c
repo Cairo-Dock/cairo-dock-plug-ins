@@ -63,7 +63,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
 	
 	cairo_dock_dialog_unreference (pTask->pWarningDialog);
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	pTask->pWarningDialog = cairo_dock_show_dialog_full (cMessage,
 		myIcon, myContainer,
 		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) : 15) * 60e3,  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
@@ -72,7 +72,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
 		pTask,
 		NULL);
-	myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 	
 	CD_APPLET_DEMANDS_ATTENTION (NULL, 3600);  // ~ 1h, pour si on loupe le dialogue.
 	return TRUE;
@@ -257,6 +257,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			
 			double fScale = (double) iWidth / (double) myData.DimensionData.width;
 			CairoDockLabelDescription labelDescription;
+			memset (&labelDescription, 0, sizeof (CairoDockLabelDescription));
 			labelDescription.iSize = 10;
 			labelDescription.cFont = (gchar*)"Sans";  // on peut caster car on ne liberera rien.
 			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
@@ -448,7 +449,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 					{
 						//g_print ("first warning\n");
 						myData.pNextTask->bFirstWarning = TRUE;
-						myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+						myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 						gchar *cText = g_strdup_printf ("%s\n<b>%s</b>\n %s\n\n%s",
 							D_("It's time for the following task:"),
 							myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
@@ -462,7 +463,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				{
 					//g_print ("15 mn warning\n");
 					myData.pNextTask->b15mnWarning = TRUE;
-					myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+					myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 					cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
 						myIcon, myContainer,
 						60e3,
@@ -470,7 +471,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 						D_("This task will begin in 15 minutes:"),
 						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
 						myData.pNextTask->cText?myData.pNextTask->cText:"");
-					myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+					myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
 				}
 			}

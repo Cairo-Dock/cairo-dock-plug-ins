@@ -62,9 +62,9 @@ static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleI
 		cTasks = g_strdup (D_("No task is sheduled for today.\n\nYou can add tasks by clicking on the applet to open the calendar, and then double-clicking on a day."));
 	
 	cd_clock_hide_dialogs (myApplet);
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, 30e3, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	
 	g_free (cTasks);
 }
@@ -79,9 +79,9 @@ static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleIn
 	}
 	
 	cd_clock_hide_dialogs (myApplet);
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	cairo_dock_show_temporary_dialog_with_icon (cTasks, myIcon, myContainer, fDelay, MY_APPLET_SHARE_DATA_DIR"/icon-task.png");
-	myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+	myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	
 	g_free (cTasks);
 }

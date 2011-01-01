@@ -171,7 +171,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 	CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pItemData != NULL && pItemData->pToolTip != NULL)
 	{
-		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 		//g_print ("pItemData->pToolTip->cMessage : %s\n", pItemData->pToolTip->cMessage);
 		gchar *cText = g_strdup_printf ("<b>%s</b>\n%s", pItemData->pToolTip->cTitle, pItemData->pToolTip->cMessage);
 		gchar *cIconPath = NULL;
@@ -182,7 +182,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 		
 		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");
 		g_free (cText);
-		myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 		pItemData->iSidPopupTooltip = 0;
 	}
 	return FALSE;

@@ -53,7 +53,10 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//Enregistrement des notifications
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		CAIRO_DOCK_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
@@ -63,7 +66,10 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER, CAIRO_DOCK_ENTER_ICON, (CairoDockNotificationFunc) cd_tomboy_on_change_icon, myApplet);
+	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+		NOTIFICATION_ENTER_ICON,
+		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
+		myApplet);
 	
 	if (myData.iSidResetQuickInfo != 0)
 		g_source_remove (myData.iSidResetQuickInfo);

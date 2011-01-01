@@ -63,13 +63,13 @@ CDMediaplayerParameters *rendering_configure_mediaplayer (CairoDesklet *pDesklet
 		pMediaplayer->cTitle = pConfig[1];
 		if (pMediaplayer->cArtist != NULL)
 			pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cArtist,
-			&myLabels.iconTextDescription,
+			&myIconsParam.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 		if (pMediaplayer->cTitle != NULL)
 			pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
-			&myLabels.iconTextDescription,
+			&myIconsParam.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);
@@ -88,7 +88,7 @@ void rendering_load_mediaplayer_data (CairoDesklet *pDesklet, cairo_t *pSourceCo
 	//On initialise la bande des boutons de controle
 	pMediaplayer->iNbIcons = g_list_length (pDesklet->icons);
 	pMediaplayer->iIconsLimit = pMediaplayer->iNbIcons / 2;
-	pMediaplayer->fBandWidth = (pDesklet->container.iHeight - g_iDockRadius) / 4;
+	pMediaplayer->fBandWidth = (pDesklet->container.iHeight - myDocksParam.iDockRadius) / 4;
 	pMediaplayer->fIconBandOffset = pMediaplayer->fBandWidth / pMediaplayer->iNbIcons;
 	
 	//On force la détection du clique sur les icônes
@@ -137,9 +137,9 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	if (pMediaplayer != NULL)
 	{
 		if (pMediaplayer->bControlButton) //Certain voudrons uniquement l'info, d'autre l'info + les boutons de controle
-			pIcon->fWidth = (pDesklet->container.iHeight - g_iDockRadius) / 4 * 3; 
+			pIcon->fWidth = (pDesklet->container.iHeight - myDocksParam.iDockRadius) / 4 * 3; 
 		else
-			pIcon->fWidth = pDesklet->container.iHeight - g_iDockRadius; 
+			pIcon->fWidth = pDesklet->container.iHeight - myDocksParam.iDockRadius; 
 		
 		pIcon->fWidth = MAX (1, pIcon->fWidth); 
 		pIcon->fHeight = pIcon->fWidth; //L'icône aura la même taille en W et en H pour afficher le texte sur le coté
@@ -147,13 +147,13 @@ void rendering_load_icons_for_mediaplayer (CairoDesklet *pDesklet, cairo_t *pSou
 	}
 	else
 	{
-		pIcon->fWidth = MAX (1, pDesklet->container.iWidth - g_iDockRadius);  // 2 * g_iDockRadius/2
-		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - g_iDockRadius); //Icône de taille normal
+		pIcon->fWidth = MAX (1, pDesklet->container.iWidth - myDocksParam.iDockRadius);  // 2 * myDocksParam.iDockRadius/2
+		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - myDocksParam.iDockRadius); //Icône de taille normal
 	}
 	pIcon->iImageWidth = pIcon->fWidth;
 	pIcon->iImageHeight = pIcon->fHeight;
-	pIcon->fDrawX = .5 * g_iDockRadius;
-	pIcon->fDrawY = .5 * g_iDockRadius;
+	pIcon->fDrawX = .5 * myDocksParam.iDockRadius;
+	pIcon->fDrawY = .5 * myDocksParam.iDockRadius;
 	pIcon->fScale = 1;
 	
 	cd_debug ("%s (%.2fx%.2f)\n", __func__, pIcon->fWidth, pIcon->fHeight);
@@ -186,9 +186,9 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			pIcon->fAlpha = 1.;
 			pIcon->fDrawX = i * (pMainIcon->fWidth / pMediaplayer->iNbIcons) - pIcon->fWidth;
 			if (i <= pMediaplayer->iIconsLimit)
-				pIcon->fDrawY = ((pDesklet->container.iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (i - 1));
+				pIcon->fDrawY = ((pDesklet->container.iHeight - myDocksParam.iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (i - 1));
 			else
-				pIcon->fDrawY = ((pDesklet->container.iHeight - g_iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (pMediaplayer->iNbIcons - i));
+				pIcon->fDrawY = ((pDesklet->container.iHeight - myDocksParam.iDockRadius) - pMediaplayer->fBandWidth) + (pMediaplayer->fIconBandOffset * (pMediaplayer->iNbIcons - i));
 			i++;
 		}
 	}
@@ -272,13 +272,13 @@ void rendering_update_text_for_mediaplayer (CairoDesklet *pDesklet, gpointer *pN
 	
 	if (pMediaplayer->cArtist != NULL)
 		pMediaplayer->pArtistSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cArtist,
-			&myLabels.iconTextDescription,
+			&myIconsParam.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fArtistWidth, &pMediaplayer->fArtistHeight, &pMediaplayer->fArtistXOffset, &pMediaplayer->fArtistYOffset);
 	if (pMediaplayer->cTitle != NULL)
 		pMediaplayer->pTitleSurface = cairo_dock_create_surface_from_text_full (pMediaplayer->cTitle,
-			&myLabels.iconTextDescription,
+			&myIconsParam.iconTextDescription,
 			cairo_dock_get_max_scale (pDesklet),
 			pDesklet->container.iWidth,
 			&pMediaplayer->fTitleWidth, &pMediaplayer->fTitleHeight, &pMediaplayer->fTitleXOffset, &pMediaplayer->fTitleYOffset);

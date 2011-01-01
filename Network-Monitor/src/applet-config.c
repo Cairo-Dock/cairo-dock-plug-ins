@@ -122,7 +122,7 @@ void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFi
 {
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere la combo.
-	GtkWidget *pCombo = cairo_dock_get_widget_from_name ("Configuration", "interface");
+	GtkWidget *pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "interface");
 	g_return_if_fail (pCombo != NULL);
 	
 	//\____________ On construit la liste interfaces disponibles.

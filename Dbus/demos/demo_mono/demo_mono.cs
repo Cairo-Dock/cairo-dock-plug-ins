@@ -30,125 +30,103 @@
 //If you drop some text on the icon, it will be used as the icon's label.
 
 // Compile it with the following command, then rename 'demo_mono.exe' to 'demo_mono'.
-//gmcs demo_mono.cs -r:/usr/lib/mono/gtk-sharp-2.0/glib-sharp.dll -r:/usr/lib/cli/ndesk-dbus-glib-1.0/NDesk.DBus.GLib.dll -r:/usr/lib/cli/ndesk-dbus-1.0/NDesk.DBus.dll
+// gmcs demo_mono.cs -r:/usr/lib/cli/CDApplet.dll
+// ln -s demo_mono.exe demo_mono
 
   //////////////////////////
  ////// dependancies //////
 //////////////////////////
 using System;
-using GLib;
-using NDesk.DBus;
-
-  ////////////////////////////
- ////// DBus Interface //////
-////////////////////////////
-public delegate void OnClickEvent (int i);
-public delegate void OnMiddleClickEvent ();
-public delegate void OnScrollEvent (bool b);
-public delegate void OnBuildMenuEvent ();
-public delegate void OnMenuSelectEvent (int i);
-public delegate void OnDropDataEvent (string s);
-public delegate void OnChangeFocusEvent (bool b);
-public delegate void OnAnswerEvent (System.Object v);
-public delegate void OnStopModuleEvent ();
-public delegate void OnReloadModuleEvent (bool b);
-[NDesk.DBus.Interface ("org.cairodock.CairoDock.applet")]
-public interface IIcon
-{
-	System.Object Get (string s);
-	void GetAll ();
-	void SetLabel (string s);
-	void SetIcon (string s);
-	void SetEmblem (string s, int i);
-	void Animate (string s, int i);
-	void SetQuickInfo (string s);
-	void ShowDialog (string s, int i);
-	void AskQuestion (string s);
-	void AskValue (string s, double x, double y);
-	void AskText (string s, string t);
-	void AddDataRenderer (string s, int i, string t);
-	void RenderValues (double[] x);
-	void ControlAppli (string s);
-	void PopulateMenu (string[] s);
-	event OnClickEvent on_click; 
-	event OnMiddleClickEvent on_middle_click; 
-	event OnScrollEvent on_scroll; 
-	event OnBuildMenuEvent on_build_menu; 
-	event OnMenuSelectEvent on_menu_select; 
-	event OnDropDataEvent on_drop_data; 
-	event OnChangeFocusEvent on_change_focus; 
-	event OnAnswerEvent on_answer; 
-	event OnStopModuleEvent on_stop_module; 
-	event OnReloadModuleEvent on_reload_module; 
-}
+using System.Collections.Generic;
+using CairoDock.Applet;
 
 public struct Config {
-	public bool yesno;
-	public int iMaxValue;
 	public string cTheme;
+	public int iMaxValue;
+	public bool yesno;
 }
 
-public class Applet
+////////////////////
+/// Applet class ///
+////////////////////
+public class Applet : CDApplet
 {
-	public static string applet_name = "demo_mono";  // the name of the applet must the same as the folder.
-	public static string applet_path = "/org/cairodock/CairoDock/"+applet_name;  // path where our object is stored on the bus.
-	public static string conf_file = Environment.GetEnvironmentVariable("HOME")+"/.config/cairo-dock/current_theme/plug-ins/"+applet_name+"/"+applet_name+".conf";  // path to the conf file of our applet.
-	public IIcon myIcon = null;
-	public Config myConfig;
-	private GLib.MainLoop loop = null;
+	private Config config;
 	private int count = 0;
 	
-	public void begin()
+	public Applet()
 	{
-		connect_to_dock ();
-		get_config ();
-		myIcon.ShowDialog ("I'm connected to Cairo-Dock !", 4);
-		myIcon.AddDataRenderer("gauge", 1, myConfig.cTheme);
+		
+	}
+	
+	  ////////////////////////////
+	 ////// private methods //////
+	////////////////////////////
+	
+	private void set_counter(int n)
+	{
+		this.count = n;
+		this.icon.RenderValues(new double[] {(double)n/this.config.iMaxValue});
+		this.icon.SetQuickInfo(String.Format(n.ToString()));
+	}
+	
+	  ///////////////////////////////
+	 ////// applet definition //////
+	///////////////////////////////
+	
+	public override void get_config (string cConfFilePath)
+	{
+		/// read cConfFilePath...
+		this.config.iMaxValue = 100;
+		this.config.cTheme = "Turbo-night";
+		this.config.yesno = true;
+	}
+	
+	public override void end()
+	{
+		Console.WriteLine("*** Bye !");
+	}
+	
+	public override void begin()
+	{
+		this.icon.ShowDialog ("I'm connected to Cairo-Dock !", 4);
+		this.icon.AddDataRenderer("gauge", 1, this.config.cTheme);
 		this.set_counter (0);
-		loop = new GLib.MainLoop();
-		loop.Run();
 	}
-	public void end()
+	
+	public override void reload()
 	{
-		loop.Quit();
+		this.icon.AddDataRenderer("gauge", 1, this.config.cTheme);
+		this.set_counter (Math.Min (this.count, this.config.iMaxValue));
 	}
-	public void connect_to_dock()
-	{
-		BusG.Init ();
-		Bus bus = Bus.Session;
-		myIcon = bus.GetObject<IIcon> ("org.cairodock.CairoDock", new ObjectPath (applet_path));
-		myIcon.on_click 			+= new OnClickEvent (action_on_click);
-		myIcon.on_middle_click 	+= new OnMiddleClickEvent (action_on_middle_click);
-		myIcon.on_scroll 		+= new OnScrollEvent (action_on_scroll);
-		myIcon.on_build_menu 	+= new OnBuildMenuEvent (action_on_build_menu);
-		myIcon.on_menu_select 	+= new OnMenuSelectEvent (action_on_menu_select);
-		myIcon.on_drop_data 		+= new OnDropDataEvent (action_on_drop_data);
-		myIcon.on_answer 		+= new OnAnswerEvent (action_on_answer);
-		myIcon.on_stop_module 	+= new OnStopModuleEvent (action_on_stop_module);
-		myIcon.on_reload_module 	+= new OnReloadModuleEvent (action_on_reload_module);
-	}
-	public void get_config ()
-	{
-		/// read this.conf_file ...
-		myConfig.iMaxValue = 100;
-		myConfig.cTheme = "Turbo-night";
-		myConfig.yesno = true;
-	}
+	
 	  ////////////////////////////////////////
 	 ////// callbacks on the main icon //////
 	////////////////////////////////////////
-	private void action_on_click (int iClickState)
+	
+	public override void on_click (int iClickState)
 	{
-		Console.WriteLine(">>> click");
+		Console.WriteLine("*** click");
 	}
-	private void action_on_middle_click ()
+	
+	public override void on_middle_click ()
 	{
-		Console.WriteLine(">>> middle click");
-		myIcon.AskValue("Set the value you want", this.count, 100);
+		Console.WriteLine("*** middle click");
+		Dictionary<string, object> dialog_attributes = new Dictionary<string, object> () {
+			{"icon" , "stock_properties"},
+			{"message" , "Set the value you want"},
+			{"buttons" , "ok;cancel"} };
+		Dictionary<string, object> widget_attributes = new Dictionary<string, object> () {
+			{"widget-type" , "scale"},
+			{"max-value" , this.config.iMaxValue},
+			{"message" , "Set the value you want"} };
+		
+		this.icon.PopupDialog(dialog_attributes, widget_attributes);
 	}
-	private void action_on_scroll (bool bScrollUp)
+	
+	public override void on_scroll (bool bScrollUp)
 	{
-		Console.WriteLine(">>> scroll up " + bScrollUp);
+		Console.WriteLine("*** scroll up " + bScrollUp);
 		int n;
 		if (bScrollUp)
 			n = Math.Min(100, this.count+1);
@@ -156,70 +134,68 @@ public class Applet
 			n = Math.Max(0, this.count-1);
 		this.set_counter(n);
 	}
-	private void action_on_build_menu ()
+	
+	public override void on_build_menu ()
 	{
-		Console.WriteLine(">>> build menu");
-		myIcon.PopulateMenu(new string [] {"set min value", "set medium value", "set max value"});
+		Console.WriteLine("*** build menu");
+		/// Warning : teh AddMenuItems fails with NDesk-DBus 0.6.0; until this is fixed, use the PopulateMenu method.
+		/**Dictionary<string, object>[] pItems = new Dictionary<string, object>[] {
+			new Dictionary<string, object>()
+			{
+				{"label", "set min value"},
+				{"icon", "gtk-zoom-out"},
+				{"id", 0}
+			},
+			new Dictionary<string, object>()
+			{
+				{"label", "set medium value"},
+				{"icon", "gtk-zoom-fit"},
+				{"id", 1}
+			},
+			new Dictionary<string, object>()
+			{
+				{"label", "set max value"},
+				{"icon", "gtk-zoom-in"},
+				{"id", 2}
+			}
+		};
+		Console.WriteLine("*** item 1:"+pItems[0]["icon"]);
+		this.icon.AddMenuItems(pItems);*/
+		this.icon.PopulateMenu(new string[] {"set min value", "set medium value", "set max value"});
 	}
-	private void action_on_menu_select (int iNumEntry)
+	
+	public override void on_menu_select (int iNumEntry)
 	{
-		Console.WriteLine(">>> select entry : "+iNumEntry);
+		Console.WriteLine("*** select entry : "+iNumEntry);
 		if (iNumEntry == 0)
 			this.set_counter(0);
 		else if (iNumEntry == 1)
-			this.set_counter(100/2);
+			this.set_counter(this.config.iMaxValue/2);
 		else if (iNumEntry == 2)
-			this.set_counter(100);
+			this.set_counter(this.config.iMaxValue);
 	}
-	private void action_on_drop_data (string cReceivedData)
+	public override void on_drop_data (string cReceivedData)
 	{
-		Console.WriteLine(">>> drop : "+cReceivedData);
-		myIcon.SetLabel(cReceivedData);
+		Console.WriteLine("*** drop : "+cReceivedData);
+		this.icon.SetLabel(cReceivedData);
 	}
-	private void action_on_answer (System.Object answer)
+	public override void on_answer_dialog (int iButton, System.Object answer)
 	{
-		Console.WriteLine(">>> answer : "+(double)answer);
-		double x = (double)answer;
-		this.set_counter((int) x);
-	}
-	  /////////////////////////////////////
-	 ////// callbacks on the applet //////
-	/////////////////////////////////////
-	private void action_on_stop_module ()
-	{
-		Console.WriteLine(">>> stop");
-		this.end();
-	}
-	private void action_on_reload_module (bool bConfigHasChanged)
-	{
-		Console.WriteLine(">>> our module is reloaded");
-		if (bConfigHasChanged)
+		Console.WriteLine("*** answer : "+(double)answer);
+		if (iButton == 0)
 		{
-			Console.WriteLine (">>>  and our config has changed");
-			this.get_config();
-			myIcon.AddDataRenderer("gauge", 1, this.myConfig.cTheme);
-			this.set_counter (Math.Min (this.count, this.myConfig.iMaxValue));
+			double x = (double)answer;
+			this.set_counter((int) x);
 		}
-	}
-	
-	  ////////////////////////////
-	 ////// applet methods //////
-	////////////////////////////
-	public void set_counter(int n)
-	{
-		this.count = n;
-		myIcon.RenderValues(new double[] {(double)n/myConfig.iMaxValue});
-		myIcon.SetQuickInfo(String.Format(n.ToString()));
 	}
 	
 	  //////////////////
 	 ////// main //////
 	//////////////////
-	public static void Main ()
+	public static void Main (string[] args)
 	{
-		Applet myApplet = new Applet ();
-		myApplet.begin();
-		Console.WriteLine(">>> bye");
+		Applet myApplet = new Applet();
+		myApplet.run();
 	}
 }
 

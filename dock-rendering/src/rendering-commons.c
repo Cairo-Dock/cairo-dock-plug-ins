@@ -62,17 +62,17 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 			0.);
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			y,
-			myIcons.fSeparatorColor[0],
-			myIcons.fSeparatorColor[1],
-			myIcons.fSeparatorColor[2],
-			myIcons.fSeparatorColor[3]);
+			myIconsParam.fSeparatorColor[0],
+			myIconsParam.fSeparatorColor[1],
+			myIconsParam.fSeparatorColor[2],
+			myIconsParam.fSeparatorColor[3]);
 		y += 1.*hk / iHeight;
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			y,
-			myIcons.fSeparatorColor[0],
-			myIcons.fSeparatorColor[1],
-			myIcons.fSeparatorColor[2],
-			myIcons.fSeparatorColor[3]);
+			myIconsParam.fSeparatorColor[0],
+			myIconsParam.fSeparatorColor[1],
+			myIconsParam.fSeparatorColor[2],
+			myIconsParam.fSeparatorColor[3]);
 		hk -= fStep;
 	}
 	
@@ -136,7 +136,7 @@ double cd_rendering_interpol (double x, double *fXValues, double *fYValues)
 
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 {
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
+	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -150,7 +150,7 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	
 	double fDockOffsetX, fDockOffsetY;
 	fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
-	fDockOffsetY = fHeight + myBackground.iDockLineWidth;
+	fDockOffsetY = fHeight + myDocksParam.iDockLineWidth;
 	
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -204,22 +204,22 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		prev_icon = icon;
 	if (next_icon == NULL)
 		next_icon = icon;
-	double hi = myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin;
+	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
-	//g_print ("%s : hi = %.2f/%.2f\n", icon->cName, myIcons.fReflectSize * pDock->container.fRatio + myBackground.iFrameMargin, pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale));
+	//g_print ("%s : hi = %.2f/%.2f\n", icon->cName, myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin, pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale));
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
 	double fHeight, fBigWidth, fLittleWidth;
 	if (bBackGround)
 	{
-		fHeight = pDock->iDecorationsHeight + myBackground.iDockLineWidth - hi;
+		fHeight = pDock->iDecorationsHeight + myDocksParam.iDockLineWidth - hi;
 		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0);
 		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + 0 - fHeight);
 	}
 	else
 	{
-		fHeight = hi + myBackground.iDockLineWidth;
+		fHeight = hi + myDocksParam.iDockLineWidth;
 		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
 		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	}
@@ -230,7 +230,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	if (bBackGround)
 	{
 		fDockOffsetX = icon->fDrawX - fHeight * fLeftInclination;
-		fDockOffsetY = pDock->iDecorationsHeight + 2*myBackground.iDockLineWidth;
+		fDockOffsetY = pDock->iDecorationsHeight + 2*myDocksParam.iDockLineWidth;
 	}
 	else
 	{
@@ -273,15 +273,15 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 	glVertex3f(fLittleWidth + fDeltaXRight - fBigWidth, - fHeight, 0.);  // Top Left Of The Texture and Quad
 	glEnd();
 	
-	if (myBackground.iDockLineWidth != 0)
+	if (myDocksParam.iDockLineWidth != 0)
 	{
 		glPolygonMode (GL_FRONT, GL_LINE);
 		glEnable (GL_LINE_SMOOTH);
 		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
-		glLineWidth (myBackground.iDockLineWidth);
-		glColor4f (myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		glLineWidth (myDocksParam.iDockLineWidth);
+		glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		
 		glBegin(GL_LINES);
 		glVertex3f(fLittleWidth, 0., 0.);

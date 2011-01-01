@@ -17,13 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_NOTIFICATIONS__
 #define  __APPLET_NOTIFICATIONS__
 
-
 #include <cairo-dock.h>
-
 
 gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext);
 
@@ -32,5 +29,7 @@ gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo
 gboolean cd_motion_blur_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation);
 
 gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gboolean *bContinueAnimation);
+
+gboolean cd_motion_free_data (gpointer pUserData, CairoDock *pDock);
 
 #endif

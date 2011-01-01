@@ -119,7 +119,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_firework_texture ();
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	
 	pData->pFireworks = g_new0 (CDFirework, myConfig.iNbFireworks);
 	pData->iNbFireworks = myConfig.iNbFireworks;
@@ -146,7 +146,6 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 
 static gboolean _update_firework_system (CDFirework *pFirework, CairoParticleSystem *pParticleSystem, double t)
 {
-	double dt = mySystem.iGLAnimationDeltaT * 1e-3;
 	double k = myConfig.fFireworkFriction;
 	double a;
 	// y" + ky' = -g -> Y = -g/k + a*exp (-kt) -> y = y0 - g/k*t + a/k*(1 - exp(-kt))
@@ -184,7 +183,7 @@ static gboolean _update_firework_system (CDFirework *pFirework, CairoParticleSys
 
 static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconEffectData *pData)
 {
-	double dt = mySystem.iGLAnimationDeltaT * 1e-3;
+	double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock)) * 1e-3;
 	gboolean bAllParticlesEnded = TRUE;
 	gboolean bParticlesEnded;
 	double t;
@@ -212,14 +211,14 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 			bParticlesEnded = _update_firework_system (pFirework, pFirework->pParticleSystem, t);
 			if (bParticlesEnded && bRepeat)
 			{
-				_launch_one_firework (pFirework, pDock, mySystem.iGLAnimationDeltaT);
+				_launch_one_firework (pFirework, pDock, dt*1e3);
 				bParticlesEnded = FALSE;
 			}
 			bAllParticlesEnded &= bParticlesEnded;
 		}
 	}
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	pData->fAreaWidth = (1. + 2 * (myConfig.fFireworkRadius + .1)) * pIcon->fWidth * fMaxScale + myConfig.iFireworkParticleSize * pDock->container.fRatio;  // rayon de l'explosion avec sa dispersion + demi-largeur des particules, a droite et a gauche.
 	pData->fAreaHeight = pIcon->fHeight * fMaxScale * (.8 + myConfig.fFireworkRadius + .1) + myConfig.iFireParticleSize * pDock->container.fRatio;
 	pData->fBottomGap = 0.;  // les particules disparaissent en touchant le sol.

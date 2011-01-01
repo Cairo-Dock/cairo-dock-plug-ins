@@ -37,7 +37,7 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iType == pNewIcon->iType)
+		if (pIcon->iGroup == pNewIcon->iGroup)
 			break;
 	}
 	GList *ic0 = ic;
@@ -60,7 +60,7 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 	{
 		pIcon = ic->data;
 		g_print ("  compare with %s (%.2f)\n", pIcon->cName, pIcon->fOrder);
-		if (pIcon->iType != pNewIcon->iType)
+		if (pIcon->iGroup != pNewIcon->iGroup)
 		{
 			g_print ("  type differ, break\n");
 			break;
@@ -153,7 +153,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				cd_warning ("couldn't create an icon for this file");
 				return ;
 			}
-			pNewIcon->iType = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
+			pNewIcon->iGroup = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order (pNewIcon, pIconsList/**myData.pAllFiles*/, myData.comp);
@@ -210,7 +210,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				cd_warning ("couldn't create an icon for this file");
 				return ;
 			}
-			pNewIcon->iType = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
+			pNewIcon->iGroup = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
 			double fCurrentOrder = pConcernedIcon->fOrder;
 			if (myConfig.iSortType == 1 || myConfig.iSortType == 2)  // sort by date or size.
 				pConcernedIcon->fOrder = pNewIcon->fOrder;
@@ -304,7 +304,7 @@ void cd_folders_get_data (CairoDockModuleInstance *myApplet)
 		{
 			pIcon = ic->data;
 			if (pIcon->iVolumeID != 0)  // repertoire
-				pIcon->iType = 6;
+				pIcon->iGroup = 6;
 		}
 	}
 	

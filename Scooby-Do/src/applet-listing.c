@@ -38,7 +38,7 @@
 #define NB_STEPS_LATE 1
 #define _listing_compute_nb_steps(pListing) (NB_STEPS_FOR_1_ENTRY + NB_STEPS_LATE * (MIN (myConfig.iNbLinesInListing, pListing->iNbEntries) - 1))
 #define _listing_compute_width(pListing) (.4 * g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL])
-#define _listing_compute_height(pListing) ((myDialogs.dialogTextDescription.iSize + 2) * (myConfig.iNbLinesInListing + 5) + 2*GAP)
+#define _listing_compute_height(pListing) ((myDialogsParam.dialogTextDescription.iSize + 2) * (myConfig.iNbLinesInListing + 5) + 2*GAP)
 #define NB_STEPS_FOR_CURRENT_ENTRY 8
 #define NB_STEPS_FOR_SCROLL 2
 #define GAP 3
@@ -88,7 +88,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 				(int) pExpose->area.height);
 		}
 		
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_RENDER_DEFAULT_CONTAINER, pListing, NULL);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, NULL);
 		
 		glDisable (GL_SCISSOR_TEST);
 		
@@ -111,7 +111,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 			pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
 		}
 		
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
 		
 		cairo_destroy (pCairoContext);
 	}
@@ -163,7 +163,7 @@ static gboolean on_key_press_listing (GtkWidget *pWidget, GdkEventKey *pKey, CDL
 {
 	if (pKey->type == GDK_KEY_PRESS)
 	{
-		cairo_dock_notify_on_container (CAIRO_CONTAINER (pListing), CAIRO_DOCK_KEY_PRESSED, pListing, pKey->keyval, pKey->state, pKey->string);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_KEY_PRESSED, pListing, pKey->keyval, pKey->state, pKey->string);
 	}
 	return FALSE;
 }
@@ -293,7 +293,7 @@ gboolean cd_do_update_listing_notification (gpointer pUserData, CDListing *pList
 		double f = (double) pListing->iScrollAnimationCount / NB_STEPS_FOR_SCROLL;
 		pListing->fCurrentOffset = pListing->fPreviousOffset * f + pListing->fAimedOffset * (1 - f);
 	}
-	double fRadius = MIN (6, myDialogs.dialogTextDescription.iSize/2+1);
+	double fRadius = MIN (6, myDialogsParam.dialogTextDescription.iSize/2+1);
 	if (myData.pListing->iTitleWidth > myData.pListing->container.iWidth - 2*fRadius + 10)  // 10 pixels de rab
 	{
 		myData.pListing->iTitleOffset += 2 * myData.pListing->sens;
@@ -318,12 +318,12 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 {
 	//g_print ("%s ()\n", __func__);
 	int iWidth = pListing->container.iWidth, iHeight = pListing->container.iHeight;
-	int iLeftMargin = myDialogs.dialogTextDescription.iSize + 4, iRightMargin = (myDialogs.dialogTextDescription.iSize + 4) / 2;
-	int iTopMargin = (myDialogs.dialogTextDescription.iSize + 2) + GAP, iBottomMargin = (myDialogs.dialogTextDescription.iSize + 2) * 4 + GAP;
+	int iLeftMargin = myDialogsParam.dialogTextDescription.iSize + 4, iRightMargin = (myDialogsParam.dialogTextDescription.iSize + 4) / 2;
+	int iTopMargin = (myDialogsParam.dialogTextDescription.iSize + 2) + GAP, iBottomMargin = (myDialogsParam.dialogTextDescription.iSize + 2) * 4 + GAP;
 	CDEntry *pEntry;
 	
 	// on dessine un cadre et un fond
-	double fRadius = MIN (6, myDialogs.dialogTextDescription.iSize/2+1);
+	double fRadius = MIN (6, myDialogsParam.dialogTextDescription.iSize/2+1);
 	double fLineWidth = 1.;
 	cairo_set_line_width (pCairoContext, fLineWidth);
 	
@@ -353,10 +353,10 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	PangoLayout *pLayout = pango_cairo_create_layout (pCairoContext);
 	PangoFontDescription *pDesc = pango_font_description_new ();
 	
-	pango_font_description_set_absolute_size (pDesc, myDialogs.dialogTextDescription.iSize * PANGO_SCALE);
-	pango_font_description_set_family_static (pDesc, myDialogs.dialogTextDescription.cFont);
+	pango_font_description_set_absolute_size (pDesc, myDialogsParam.dialogTextDescription.iSize * PANGO_SCALE);
+	pango_font_description_set_family_static (pDesc, myDialogsParam.dialogTextDescription.cFont);
 	pango_font_description_set_weight (pDesc, PANGO_WEIGHT_NORMAL);
-	pango_font_description_set_style (pDesc, myLabels.iconTextDescription.iStyle);
+	pango_font_description_set_style (pDesc, myIconsParam.iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
 	
 	// on dessine les entrees.
@@ -365,7 +365,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 		// on dessine chaque entree.
 		int i2 = (double) (myConfig.iNbLinesInListing + DELTA) * (NB_STEPS - pListing->iAppearanceAnimationCount) / NB_STEPS;
 		int i1 = i2 - DELTA;  // le profil de transparence est : ``\__ , avec 0 <= i1 <= i2 <= L.
-		double dh = myDialogs.dialogTextDescription.iSize + 2;  // hauteur d'une ligne.
+		double dh = myDialogsParam.dialogTextDescription.iSize + 2;  // hauteur d'une ligne.
 		double h1 = (double) i1 * dh;  // hauteur correspondant a la ligne i1.
 		double h2 = (double) i2 * dh;  // hauteur correspondant a la ligne i2.
 		double h;  // hauteur de la ligne courante en tenant compte du scroll.
@@ -414,7 +414,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				double f = 1. - .5 * pListing->iCurrentEntryAnimationCount / NB_STEPS_FOR_CURRENT_ENTRY;
 				cairo_save (pCairoContext);
 				double rx = .5*(iWidth - iLeftMargin - iRightMargin);
-				double ry = .5*(myDialogs.dialogTextDescription.iSize + 2);
+				double ry = .5*(myDialogsParam.dialogTextDescription.iSize + 2);
 				cairo_pattern_t *pPattern = cairo_pattern_create_radial (ry,
 					ry,
 					0.,
@@ -439,9 +439,9 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 				if (pEntry->list != NULL)
 				{
 					cairo_set_source_rgba (pCairoContext, 0., 0., 0., f);
-					cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin - (! pEntry->bMainEntry && myData.pListingHistory == NULL ? iLeftMargin : 0), myDialogs.dialogTextDescription.iSize/4);
-					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogs.dialogTextDescription.iSize/3);
-					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogs.dialogTextDescription.iSize/3);
+					cairo_move_to (pCairoContext, iWidth - iLeftMargin - iRightMargin - (! pEntry->bMainEntry && myData.pListingHistory == NULL ? iLeftMargin : 0), myDialogsParam.dialogTextDescription.iSize/4);
+					cairo_rel_line_to (pCairoContext, iRightMargin, myDialogsParam.dialogTextDescription.iSize/3);
+					cairo_rel_line_to (pCairoContext, -iRightMargin, myDialogsParam.dialogTextDescription.iSize/3);
 					cairo_close_path (pCairoContext);
 					cairo_stroke_preserve (pCairoContext);
 					cairo_set_source_rgba (pCairoContext, 0.1, 0.3, 0.5, f*.7);
@@ -495,7 +495,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	cairo_paint (pCairoContext);
 	
 	cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
-	cairo_translate (pCairoContext, 2 * (myDialogs.dialogTextDescription.iSize + 2), GAP);
+	cairo_translate (pCairoContext, 2 * (myDialogsParam.dialogTextDescription.iSize + 2), GAP);
 	if (myData.cStatus != NULL)
 	{
 		pango_layout_set_text (pLayout, myData.cStatus, -1);
@@ -503,7 +503,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
 	// on dessine le filtre.
-	cairo_translate (pCairoContext, 0., myDialogs.dialogTextDescription.iSize + 2);
+	cairo_translate (pCairoContext, 0., myDialogsParam.dialogTextDescription.iSize + 2);
 	cairo_set_source_surface (pCairoContext, (myData.iCurrentFilter & DO_MATCH_CASE) ? myData.pActiveButtonSurface : myData.pInactiveButtonSurface, 0., 0.);
 	cairo_paint (pCairoContext);
 	cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
@@ -524,7 +524,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_layout_set_text (pLayout, D_("(F3) Image"), -1);
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
-	cairo_translate (pCairoContext, -2*iWidth/3, myDialogs.dialogTextDescription.iSize + 2);
+	cairo_translate (pCairoContext, -2*iWidth/3, myDialogsParam.dialogTextDescription.iSize + 2);
 	cairo_set_source_surface (pCairoContext, (myData.iCurrentFilter & DO_TYPE_VIDEO) ? myData.pActiveButtonSurface : myData.pInactiveButtonSurface, 0., 0.);
 	cairo_paint (pCairoContext);
 	cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
@@ -545,7 +545,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_layout_set_text (pLayout, D_("(F6) Html"), -1);
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
-	cairo_translate (pCairoContext, -2*iWidth/3, myDialogs.dialogTextDescription.iSize + 2);
+	cairo_translate (pCairoContext, -2*iWidth/3, myDialogsParam.dialogTextDescription.iSize + 2);
 	cairo_set_source_surface (pCairoContext, (myData.iCurrentFilter & DO_TYPE_SOURCE) ? myData.pActiveButtonSurface : myData.pInactiveButtonSurface, 0., 0.);
 	cairo_paint (pCairoContext);
 	cairo_set_source_rgb (pCairoContext, 0., 0., 0.);
@@ -564,31 +564,31 @@ void cd_do_show_listing (void)
 		myData.pListing = cd_do_create_listing ();
 		
 		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
-			CAIRO_DOCK_UPDATE_DEFAULT_CONTAINER,
+			NOTIFICATION_UPDATE_DEFAULT_CONTAINER,
 			(CairoDockNotificationFunc) cd_do_update_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
 		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
-			CAIRO_DOCK_RENDER_DEFAULT_CONTAINER,
+			NOTIFICATION_RENDER_DEFAULT_CONTAINER,
 			(CairoDockNotificationFunc) cd_do_render_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
 		if (myData.pScoobySurface == NULL)
 		{
 			myData.pScoobySurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-				2 * (myDialogs.dialogTextDescription.iSize + 2),
-				2 * (myDialogs.dialogTextDescription.iSize + 2));
+				2 * (myDialogsParam.dialogTextDescription.iSize + 2),
+				2 * (myDialogsParam.dialogTextDescription.iSize + 2));
 		}
 		if (myData.pActiveButtonSurface == NULL)
 		{
-			cd_debug ("load button : %dx%d\n", myDialogs.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
+			cd_debug ("load button : %dx%d\n", myDialogsParam.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
 			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
 			myData.pActiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/active-button.svg",
-				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 3) / 3,
-				myDialogs.dialogTextDescription.iSize + 2);
+				(myData.pListing->container.iWidth - (myDialogsParam.dialogTextDescription.iSize + 2) * 3) / 3,
+				myDialogsParam.dialogTextDescription.iSize + 2);
 			myData.pInactiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/inactive-button.svg",
-				(myData.pListing->container.iWidth - (myDialogs.dialogTextDescription.iSize + 2) * 3) / 3,
-				myDialogs.dialogTextDescription.iSize + 2);
+				(myData.pListing->container.iWidth - (myDialogsParam.dialogTextDescription.iSize + 2) * 3) / 3,
+				myDialogsParam.dialogTextDescription.iSize + 2);
 			cairo_destroy (pSourceContext);
 		}
 	}
@@ -726,16 +726,16 @@ static inline void _update_scroll (int iNewPosition, int delta)
 {
 	if (iNewPosition > myConfig.iNbLinesInListing/2 && iNewPosition < myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing/2)
 	{
-		myData.pListing->fAimedOffset += delta * (myDialogs.dialogTextDescription.iSize + 2);
-		if (myData.pListing->fAimedOffset > (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogs.dialogTextDescription.iSize + 2))
-			myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogs.dialogTextDescription.iSize + 2);
+		myData.pListing->fAimedOffset += delta * (myDialogsParam.dialogTextDescription.iSize + 2);
+		if (myData.pListing->fAimedOffset > (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogsParam.dialogTextDescription.iSize + 2))
+			myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogsParam.dialogTextDescription.iSize + 2);
 		else if (myData.pListing->fAimedOffset < 0)
 			myData.pListing->fAimedOffset = 0.;
 	}
 	else if (iNewPosition <= myConfig.iNbLinesInListing/2)
 		myData.pListing->fAimedOffset = 0.;
 	else
-		myData.pListing->fAimedOffset = myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogs.dialogTextDescription.iSize + 2);
+		myData.pListing->fAimedOffset = myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogsParam.dialogTextDescription.iSize + 2);
 	myData.pListing->iScrollAnimationCount = NB_STEPS_FOR_SCROLL;
 }
 static inline void _launch_new_entry_animation (void)
@@ -832,7 +832,7 @@ void cd_do_select_prev_next_page_in_listing (gboolean bNext)
 		} while (k < myConfig.iNbLinesInListing);
 	}
 	myData.pListing->pCurrentEntry = f;
-	///myData.pListing->fAimedOffset = g_list_position (myData.pListing->pEntries, f) * (myDialogs.dialogTextDescription.iSize + 2);
+	///myData.pListing->fAimedOffset = g_list_position (myData.pListing->pEntries, f) * (myDialogsParam.dialogTextDescription.iSize + 2);
 	
 	// on scrolle si necessaire.
 	if (myData.pListing->iNbVisibleEntries > myConfig.iNbLinesInListing)
@@ -878,7 +878,7 @@ void cd_do_select_last_first_entry_in_listing (gboolean bLast)
 		}
 	}
 	myData.pListing->pCurrentEntry = e;
-	///myData.pListing->fAimedOffset = i * (myDialogs.dialogTextDescription.iSize + 2);
+	///myData.pListing->fAimedOffset = i * (myDialogsParam.dialogTextDescription.iSize + 2);
 	
 	// on scrolle si necessaire.
 	if (myData.pListing->iNbVisibleEntries > myConfig.iNbLinesInListing)

@@ -131,23 +131,28 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	// on s'abonne aux notifications qu'on voudra propager sur le bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
 	{
-		cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON,
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_CLICK_ICON,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_click_icon,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification (CAIRO_DOCK_MIDDLE_CLICK_ICON,
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_MIDDLE_CLICK_ICON,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification (CAIRO_DOCK_SCROLL_ICON,
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_SCROLL_ICON,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
 			CAIRO_DOCK_RUN_FIRST,
 			NULL);
-		cairo_dock_register_notification (CAIRO_DOCK_BUILD_ICON_MENU,
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_BUILD_ICON_MENU,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 			CAIRO_DOCK_RUN_FIRST,
 			NULL);
-		cairo_dock_register_notification (CAIRO_DOCK_WINDOW_ACTIVATED,
+		cairo_dock_register_notification_on_object (&myDesktopMgr,
+			NOTIFICATION_WINDOW_ACTIVATED,
 			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
@@ -190,19 +195,24 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 
 void cd_dbus_unregister_notifications (void)
 {
-	cairo_dock_remove_notification_func (CAIRO_DOCK_CLICK_ICON,
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_click_icon,
 		NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_MIDDLE_CLICK_ICON,
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_MIDDLE_CLICK_ICON,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
 		NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_SCROLL_ICON,
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_SCROLL_ICON,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
 		NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_BUILD_ICON_MENU,
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_BUILD_ICON_MENU,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 		NULL);
-	cairo_dock_remove_notification_func (CAIRO_DOCK_WINDOW_ACTIVATED,
+	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 		NULL);
 }

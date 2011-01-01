@@ -86,6 +86,7 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 		return FALSE;
 	
 	cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon, pContainer);  /// needs a function to redraw the label...
 	return TRUE;
 }
 
@@ -509,10 +510,10 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	}
 	
 	if (bUseMarkup)
-		myDialogs.dialogTextDescription.bUseMarkup = TRUE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
 	if (bUseMarkup)
-		myDialogs.dialogTextDescription.bUseMarkup = FALSE;
+		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 	
 	g_free (cImageFilePath);
 	if (cButtonsImage)
@@ -898,9 +899,9 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 	if (cairo_dock_strings_differ (pIcon->cClass, cClass))
 	{
 		if (pIcon->cClass != NULL)
-			cairo_dock_deinhibate_class (pIcon->cClass, pIcon);
+			cairo_dock_deinhibite_class (pIcon->cClass, pIcon);
 		if (cClass != NULL)
-			cairo_dock_inhibate_class (cClass, pIcon);
+			cairo_dock_inhibite_class (cClass, pIcon);
 		if (! cairo_dock_is_loading ())
 		{
 			CairoContainer *pContainer = pInstance->pContainer;
@@ -1189,6 +1190,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 			bCouldBind = cd_keybinder_bind (cShortkey, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet);
 			if (bCouldBind)
 				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));
+			g_print ("*** bind %s: %d\n", cShortkey, bCouldBind);
 		}
 	}
 	return TRUE;
@@ -1251,6 +1253,12 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	{
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		if (pInstance->pDock)
+		{
+			double a = cairo_dock_get_max_scale (pContainer);
+			double s = pInstance->pDock->fMagnitudeMax;
+			iWidth /= (1 + a) / (1 + s*a);
+		}
 		g_value_init (v, G_TYPE_INT);
 		g_value_set_int (v, iWidth);
 	}
@@ -1258,6 +1266,12 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	{
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		if (pInstance->pDock)
+		{
+			double a = cairo_dock_get_max_scale (pContainer);
+			double s = pInstance->pDock->fMagnitudeMax;
+			iHeight /= (1 + a) / (1 + s*a);
+		}
 		g_value_init (v, G_TYPE_INT);
 		g_value_set_int (v, iHeight);
 	}
@@ -1307,6 +1321,13 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+	if (pInstance->pDock)
+	{
+		double a = cairo_dock_get_max_scale (pContainer);
+		double s = pInstance->pDock->fMagnitudeMax;
+		iWidth /= (1 + a) / (1 + s*a);
+		iHeight /= (1 + a) / (1 + s*a);
+	}
 	
 	Window Xid = pIcon->Xid;
 	gboolean bHasFocus = (pIcon->Xid != 0 && pIcon->Xid == cairo_dock_get_current_active_window ());

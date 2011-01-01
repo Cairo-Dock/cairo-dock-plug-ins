@@ -101,15 +101,17 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 		g_error_free (error);
 		error = NULL;
 	}
+	gchar *cIconName = g_key_file_get_string (pKeyFile, "Register", "icon", NULL);  // NULL if not specified, in which case we use the "icon" file.
 	
 	gchar *cShareDataDir = g_strdup_printf ("%s/%s", cThirdPartyPath, cModuleName);
 	
 	g_key_file_free (pKeyFile);
 	
-	gboolean bActivationOk = cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cShareDataDir);
+	gboolean bActivationOk = cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir);
 	g_free (cDescription);
 	g_free (cAuthor);
 	g_free (cVersion);
+	g_free (cIconName);
 	g_free (cShareDataDir);
 	g_free (cFilePath);
 	return bActivationOk;
@@ -176,7 +178,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
 			{
-				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIcons.iSeparateIcons);
+				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIconsParam.iSeparateIcons);
 				cairo_dock_free_icon (pIcon);
 				cairo_dock_update_dock_size (CAIRO_DOCK (pContainer));
 				cairo_dock_redraw_container (pContainer);
@@ -243,7 +245,7 @@ void cd_dbus_launch_service (void)
 	const gchar *cSharePackagesDir = NULL;  // MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
-	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL);
+	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir, (CairoDockGetPackagesFunc) _on_got_list, NULL, NULL);
 	g_free (cUserPackagesDir);
 	g_free (cDistantPackagesDir);
 }
@@ -275,7 +277,7 @@ void cd_dbus_stop_service (void)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
 			{
-				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIcons.iSeparateIcons);
+				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer), myIconsParam.iSeparateIcons);
 				cairo_dock_free_icon (pIcon);
 				cairo_dock_update_dock_size (CAIRO_DOCK (pContainer));
 				cairo_dock_redraw_container (pContainer);
@@ -344,7 +346,7 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	//\_____________ On (re)lance le script distant.
 	cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
 }
-gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir)
+gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir)
 {
 	if (! myConfig.bEnableNewModule)
 		return FALSE;
@@ -378,7 +380,10 @@ gboolean cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDe
 		pVisitCard->cModuleVersion = g_strdup (cVersion);
 		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
-		pVisitCard->cIconFilePath = cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL;
+		if (cIconName != NULL)
+			pVisitCard->cIconFilePath = cairo_dock_search_icon_s_path (cIconName);
+		if (pVisitCard->cIconFilePath == NULL)
+			pVisitCard->cIconFilePath = (cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL);
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
 		pVisitCard->cDescription = g_strdup (cDescription);

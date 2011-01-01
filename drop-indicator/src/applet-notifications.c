@@ -109,7 +109,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.hoverIndicator.pSurface != NULL)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+			if (pIcon != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			{
 				cairo_save (pCairoContext);
 				if (pDock->container.bIsHorizontal)
@@ -215,7 +215,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 		if (pData->fAlphaHover > 0 && myData.hoverIndicator.iTexture != 0)
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
-			if (pIcon != NULL && ! CAIRO_DOCK_IS_SEPARATOR (pIcon))
+			if (pIcon != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			{
 				_cairo_dock_enable_texture ();
 				_cairo_dock_set_blend_over ();
@@ -279,8 +279,10 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	pData->iDropIndicatorOffset += myConfig.iSpeed;
 	if (pData->iDropIndicatorOffset > 2*myData.dropIndicator.iHeight)
 		pData->iDropIndicatorOffset -= 2*myData.dropIndicator.iHeight;
-	double dt = (CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) ? mySystem.iGLAnimationDeltaT : mySystem.iCairoAnimationDeltaT);
+        
+	double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	pData->iDropIndicatorRotation += myConfig.fRotationSpeed * 360. * dt/1e3;
+	
 	if (pDock->bCanDrop)
 	{
 		pData->fAlphaHover -= .05;

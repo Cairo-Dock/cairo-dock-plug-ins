@@ -35,7 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	gchar *cMixerElementName = CD_CONFIG_GET_STRING ("Configuration", "mixer element");
 	gchar *cMixerElementName2 = CD_CONFIG_GET_STRING ("Configuration", "mixer element 2");
-	if (cMixerElementName2 != NULL && strcmp (cMixerElementName, cMixerElementName2) == 0)
+	if (cMixerElementName != NULL && cMixerElementName2 != NULL && strcmp (cMixerElementName, cMixerElementName2) == 0)
 	{
 		myConfig.cMixerElementName = g_strconcat (cMixerElementName, ",0", NULL);
 		myConfig.cMixerElementName2 = g_strconcat (cMixerElementName, ",1", NULL);
@@ -44,8 +44,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 	{
 		myConfig.cMixerElementName = cMixerElementName;
+		myConfig.cMixerElementName2 = cMixerElementName2;
 	}
-	g_free (cMixerElementName2);
 	
 	myConfig.cShowAdvancedMixerCommand = CD_CONFIG_GET_STRING ("Configuration", "show mixer");
 	
@@ -103,12 +103,12 @@ void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 	GList *pList = mixer_get_elements_list ();
 	
 	//\____________ On recupere la combo.
-	GtkWidget *pCombo = cairo_dock_get_widget_from_name ("Configuration", "mixer element");
+	GtkWidget *pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "mixer element");
 	g_return_if_fail (pCombo != NULL);
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName);
 	
 	//\____________ Idem pour la 2eme, avec une entree vide au debut.
-	pCombo = cairo_dock_get_widget_from_name ("Configuration", "mixer element 2");
+	pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "mixer element 2");
 	g_return_if_fail (pCombo != NULL);
 	pList = g_list_prepend (pList, (gpointer)"");  // on peut caster ici car tous les elements sont des const pour nous.
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);

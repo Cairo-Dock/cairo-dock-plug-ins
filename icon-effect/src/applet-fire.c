@@ -33,7 +33,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_fire_texture ();
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbFireParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
 	pParticleSystem->dt = dt;
@@ -152,7 +152,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 	
 	pData->pFireSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	pData->fAreaWidth = (1. + .02) * pData->pFireSystem->fWidth + myConfig.iFireParticleSize * pDock->container.fRatio;  // 2% d'oscillation + demi-largeur des particules a droite et a gauche.
 	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iFireParticleSize * pDock->container.fRatio;
 	pData->fBottomGap = myConfig.iFireParticleSize * pDock->container.fRatio / 2;

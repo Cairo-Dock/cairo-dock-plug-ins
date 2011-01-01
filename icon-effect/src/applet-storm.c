@@ -40,7 +40,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	if (myData.iFireTexture == 0)
 		myData.iFireTexture = cd_icon_effect_load_storm_texture ();
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStormParticles, myData.iFireTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
 	pParticleSystem->dt = dt;
@@ -137,7 +137,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		(bRepeat ? _rewind_storm_particle : NULL));
 	pData->pStormSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	pData->fAreaWidth = pData->pStormSystem->fWidth * (1 + ad) + myConfig.iStormParticleSize * pDock->container.fRatio;  // dispersion + demi-largeur des particules a droite et a gauche.
 	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iStormParticleSize * pDock->container.fRatio;
 	pData->fBottomGap = myConfig.iStormParticleSize * pDock->container.fRatio / 2;

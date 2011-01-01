@@ -47,7 +47,8 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_MANAGE_APPLICATION ("gnome-session");  // en fait depuis Gnome 2.28 seulement, avant c'etait x-session-manager.
 	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 		CD_APPLET_MANAGE_APPLICATION ("x-session-manager");
-	/// trouver celui de KDE ...
+	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+		CD_APPLET_MANAGE_APPLICATION ("ksmserver");  /// pas du tout sur...
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;

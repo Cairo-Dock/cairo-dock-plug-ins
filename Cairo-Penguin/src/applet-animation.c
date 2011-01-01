@@ -201,7 +201,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
 		
 		g_return_if_fail (pAnimation->iTexture != 0);
-		double f = (1 + g_fAmplitude) / fScale;
+		double f = (1 + myIconsParam.fAmplitude) / fScale;
 		double x, y;  // centre du pingouin, en coordonnées absolues.
 		x = myData.iCurrentPositionX - iXMin - iIconWidth/2 + pAnimation->iFrameWidth/2*f;
 		y = myData.iCurrentPositionY + pAnimation->iFrameHeight/2*f;
@@ -235,7 +235,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		if (pSurface != NULL)
 		{
 			cairo_save (myDrawContext);
-			cairo_scale (myDrawContext, (1 + g_fAmplitude) / fScale, (1 + g_fAmplitude) / fScale);
+			cairo_scale (myDrawContext, (1 + myIconsParam.fAmplitude) / fScale, (1 + myIconsParam.fAmplitude) / fScale);
 			cairo_set_source_surface (
 				myDrawContext,
 				pSurface,
@@ -308,9 +308,9 @@ void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinA
 		}
 	}
 	
-	if (myData.iCurrentPositionY < (myConfig.bFree ? myBackground.iDockLineWidth + myConfig.iGroundOffset : 0))
+	if (myData.iCurrentPositionY < (myConfig.bFree ? myDocksParam.iDockLineWidth + myConfig.iGroundOffset : 0))
 	{
-		myData.iCurrentPositionY = (myConfig.bFree ? myBackground.iDockLineWidth + myConfig.iGroundOffset : 0);
+		myData.iCurrentPositionY = (myConfig.bFree ? myDocksParam.iDockLineWidth + myConfig.iGroundOffset : 0);
 	}
 	else if (myData.iCurrentPositionY + pAnimation->iFrameHeight > iHeight)
 	{
@@ -340,7 +340,7 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 					cairo_surface_destroy (myIcon->pReflectionBuffer);
 					myIcon->pReflectionBuffer = NULL;
 				}
-					if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+				if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 					cairo_dock_update_icon_texture (myIcon);
 			}
 			else  // on reste sur la derniere image de l'animation de fin.
@@ -484,7 +484,7 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 			myData.iCurrentDirection = g_random_int_range (0, 2);  // [a;b[
 		else
 			myData.iCurrentDirection = 0;
-		myData.iCurrentPositionY = (myConfig.bFree ? myBackground.iDockLineWidth + myConfig.iGroundOffset : 0);
+		myData.iCurrentPositionY = (myConfig.bFree ? myDocksParam.iDockLineWidth + myConfig.iGroundOffset : 0);
 	}
 	else  // la direction reste la meme.
 	{
@@ -533,12 +533,12 @@ void penguin_start_animating (CairoDockModuleInstance *myApplet)
 	penguin_remove_notfications();
 	if (myConfig.bFree)
 	{
-		cairo_dock_register_notification_on_object (myContainer, CAIRO_DOCK_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
-		cairo_dock_register_notification_on_object (myContainer, CAIRO_DOCK_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification_on_object (myContainer, NOTIFICATION_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification_on_object (myContainer, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
 	}
 	else
 	{
-		cairo_dock_register_notification_on_object (myIcon, CAIRO_DOCK_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
+		cairo_dock_register_notification_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
 	}
 }
 
@@ -554,7 +554,7 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIcons.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
 			cairo_dock_update_dock_size (myDock);
 		}
 		else

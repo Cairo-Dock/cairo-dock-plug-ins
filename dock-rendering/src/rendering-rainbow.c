@@ -45,7 +45,7 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	pDock->fMagnitudeMax = my_fRainbowMagnitude;
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
+	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
 	int iNbIcons = g_list_length (pDock->icons);
@@ -68,7 +68,7 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//g_print ("pDock->fFoldingFactor : %.2f\n", pDock->fFoldingFactor);
-	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
+	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	double fRadius=0;
 	if (my_fRainbowColor[3] != 0 && pDock->icons != NULL)
 	{
@@ -176,7 +176,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
-		cairo_set_line_width (pCairoContext, myBackground.iDockLineWidth);
+		cairo_set_line_width (pCairoContext, myDocksParam.iDockLineWidth);
 		cairo_move_to (pCairoContext, pDock->container.iWidth/2 - fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2 + fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
@@ -230,7 +230,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 	int x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
 	cd_debug (" iIconNumber : %d ; x_cumulated : %d\n", iIconNumber, x_cumulated);
 	double fXMiddle = x_cumulated + iMaxIconHeight / 2;
-	double fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+	double fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 	if (fPhase < 0)
 	{
 		fPhase = 0;
@@ -239,7 +239,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 	{
 		fPhase = G_PI;
 	}
-	double fScale = 1 + fMagnitude * g_fAmplitude * sin (fPhase);
+	double fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
 	double fX = x_cumulated - 0*(fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (x_abs - x_cumulated + .5*my_iSpaceBetweenRows);
 	fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
 	
@@ -249,7 +249,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 		x_cumulated = iIconNumber * (iMaxIconHeight + my_iSpaceBetweenRows);
 		//cd_debug ("  %d) x_cumulated = %d\n", iIconNumber, x_cumulated);
 		fXMiddle = x_cumulated + iMaxIconHeight / 2;
-		fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+		fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 		if (fPhase < 0)
 		{
 			fPhase = 0;
@@ -258,7 +258,7 @@ static double _calculate_wave_offset (int x_abs, int iMaxIconHeight, double fMag
 		{
 			fPhase = G_PI;
 		}
-		fScale = 1 + fMagnitude * g_fAmplitude * sin (fPhase);
+		fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
 		
 		fX = fX - (iMaxIconHeight + my_iSpaceBetweenRows) * fScale;
 		fX = fAlign * iWidth + (fX - fAlign * iWidth) * (1. - fFoldingFactor);
@@ -318,12 +318,12 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		//cd_debug (" ligne %d\n", iNumRow);
 		fXMiddle = x_cumulated + .5*iMaxIconHeight;
 		
-		fPhase = (fXMiddle - x_abs) / myIcons.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
+		fPhase = (fXMiddle - x_abs) / myIconsParam.iSinusoidWidth / fRatio * G_PI + G_PI / 2;
 		if (fPhase < 0)
 			fPhase = 0;
 		else if (fPhase > G_PI)
 			fPhase = G_PI;
-		fScale = 1 + fMagnitude * g_fAmplitude * sin (fPhase);
+		fScale = 1 + fMagnitude * myIconsParam.fAmplitude * sin (fPhase);
 		pScales[2*iNumRow] = fScale;
 		//cd_debug ("  fScale : %.2f\n", fScale);
 		
@@ -381,7 +381,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		return NULL;
 	
 	//\____________________ On se place en coordonnees polaires.
-	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
+	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
 	int iNbIcons = g_list_length (pDock->icons);
@@ -487,7 +487,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->container.bInside ||
-		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myLabels.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
+		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myIconsParam.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
 		(fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale)
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
@@ -563,7 +563,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		}
 	}
 	
-	double fMaxScale =  1. + my_fRainbowMagnitude * g_fAmplitude;
+	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	double fRadius=0;
 	if (my_fRainbowColor[3] != 0 && pDock->icons != NULL)
 	{
@@ -684,7 +684,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		pVertexTab[2*4+0] = - pVertexTab[2*0+0];
 		pVertexTab[2*4+1] = pVertexTab[2*0+1];
 		
-		cairo_dock_draw_current_path_opengl (myBackground.iDockLineWidth, my_fRainbowLineColor, 5);
+		cairo_dock_draw_current_path_opengl (myDocksParam.iDockLineWidth, my_fRainbowLineColor, 5);
 		
 		glDisableClientState(GL_COLOR_ARRAY);
 		glPopMatrix ();

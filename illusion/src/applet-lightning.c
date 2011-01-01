@@ -65,7 +65,8 @@ void cd_illusion_update_lightning (Icon *pIcon, CairoDock *pDock, CDIllusionData
 	double xsource, ximpact; 
 	double alpha_s, alpha_t;  // correction pour aller plus a gauche ou plus a droite.
 	int sign;
-	int Nt = myConfig.iLightningDuration / mySystem.iGLAnimationDeltaT, Nv = pData->iNbVertex;
+        int dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
+	int Nt = myConfig.iLightningDuration / dt, Nv = pData->iNbVertex;
 	double xt, xs;
 	int i, j;
 	for (i = 0; i < pData->iNbSources; i ++)
@@ -123,7 +124,7 @@ void cd_illusion_draw_lightning_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	glPushMatrix ();
 	glTranslatef (0., - fSizeY/2, 0.);  // en bas au milieu.
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
-	double fScale = (1 + fDockMagnitude * myIcons.fAmplitude) / (1 + myIcons.fAmplitude);
+	double fScale = (1 + fDockMagnitude * myIconsParam.fAmplitude) / (1 + myIconsParam.fAmplitude);
 	glTranslatef (0., iHeight * fScale, 0.);  // en haut du dock, au milieu de l'icone.
 	
 	glScalef (iWidth/2 * fScale, iHeight * fScale, 1.);

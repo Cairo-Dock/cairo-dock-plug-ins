@@ -64,27 +64,27 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 {
 	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
-	int iEllipseHeight = (1 + g_fAmplitude) * pDock->iMaxIconHeight / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon) + my_iGapOnEllipse;
-	pDock->iDecorationsHeight = iEllipseHeight + 2 * myBackground.iFrameMargin + myIcons.fReflectSize;
+	int iEllipseHeight = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon) + my_iGapOnEllipse;
+	pDock->iDecorationsHeight = iEllipseHeight + 2 * myDocksParam.iFrameMargin + myIconsParam.fReflectSize;
 	
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
 	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
-	pDock->iMaxDockHeight = myBackground.iDockLineWidth + myBackground.iFrameMargin + myIcons.fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
-	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, myBackground.iDockLineWidth + myBackground.iFrameMargin + (1 + g_fAmplitude) * pDock->iMaxIconHeight + myIcons.fReflectSize + myLabels.iLabelSize);
+	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + myIconsParam.fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
+	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight + myIconsParam.fReflectSize + myIconsParam.iLabelSize);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
-	pDock->iMinDockHeight = pDock->iMaxIconHeight + myIcons.fReflectSize + 2 * myBackground.iFrameMargin + 2 * myBackground.iDockLineWidth;
+	pDock->iMinDockHeight = pDock->iMaxIconHeight + myIconsParam.fReflectSize + 2 * myDocksParam.iFrameMargin + 2 * myDocksParam.iDockLineWidth;
 	
-	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iMinDockHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iMinDockHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	pDock->iMinDockWidth = MIN (pDock->iMaxDockWidth, pDock->fFlatDockWidth + fExtraWidth);
 	
 	if (pDock->pRendererData == NULL)
 	{
 		pDock->pRendererData = GINT_TO_POINTER (1);
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_object (pDock, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	}
 	
 	if (g_bEasterEggs)
@@ -104,7 +104,7 @@ void cd_rendering_calculate_construction_parameters_caroussel (Icon *icon, int i
 	
 	double fXIconCenterDraw, fYIconBottomDraw;  // coordonnees du centre bas de l'icone une fois positionnee sur l'ellipse.
 	fXIconCenterDraw = b * sin (fTheta) + .5 * iWidth;
-	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + myBackground.iDockLineWidth - a * cos (fTheta));
+	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + myDocksParam.iDockLineWidth - a * cos (fTheta));
 	
 	icon->fHeightFactor = 1.;
 	icon->fOrientation = 0.;
@@ -143,7 +143,7 @@ void cd_rendering_calculate_construction_parameters_caroussel2 (Icon *icon, Cair
 	
 	double fXIconCenterDraw, fYIconBottomDraw;  // coordonnees du centre bas de l'icone une fois positionnee sur l'ellipse.
 	fXIconCenterDraw = b * sin (fTheta) + .5 * iWidth;
-	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + myBackground.iDockLineWidth - a * cos (fTheta));
+	fYIconBottomDraw = (bDirectionUp ? a * cos (fTheta) + iMaxIconHeight + a : a + myDocksParam.iDockLineWidth - a * cos (fTheta));
 	
 	icon->fHeightFactor = 1.;
 	icon->fOrientation = 0.;
@@ -215,13 +215,13 @@ void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDo
 void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On trace le cadre.
-	double fLineWidth = myBackground.iDockLineWidth;
-	double fMargin = myBackground.iFrameMargin;
-	///int iEllipseHeight = pDock->container.iHeight - myBackground.iDockLineWidth - fMargin - pDock->iMaxIconHeight;  // >0 par construction de iMinDockHeight.
-	int iEllipseHeight = pDock->container.iHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight + myIcons.fReflectSize);
-	int iFrameHeight = iEllipseHeight + 2 * fMargin + myIcons.fReflectSize;
+	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fMargin = myDocksParam.iFrameMargin;
+	///int iEllipseHeight = pDock->container.iHeight - myDocksParam.iDockLineWidth - fMargin - pDock->iMaxIconHeight;  // >0 par construction de iMinDockHeight.
+	int iEllipseHeight = pDock->container.iHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pDock->iMaxIconHeight + myIconsParam.fReflectSize);
+	int iFrameHeight = iEllipseHeight + 2 * fMargin + myIconsParam.fReflectSize;
 	
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	double fDockWidth = pDock->container.iWidth - fExtraWidth;
 	int sens;
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
@@ -238,7 +238,7 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 	
 	cairo_save (pCairoContext);
-	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, myBackground.iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->container.bIsHorizontal, myBackground.bRoundedBottomCorner);
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, myDocksParam.iDockRadius, fLineWidth, fDockWidth, iFrameHeight, fDockOffsetX, fDockOffsetY, sens, my_fInclinationOnHorizon, pDock->container.bIsHorizontal, myDocksParam.bRoundedBottomCorner);
 	
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->container.bDirectionUp ? pDock->iMaxIconHeight - fMargin : fLineWidth);
@@ -249,7 +249,7 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	if (fLineWidth > 0)
 	{
 		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myBackground.fLineColor[0], myBackground.fLineColor[1], myBackground.fLineColor[2], myBackground.fLineColor[3]);
+		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -258,8 +258,8 @@ void cd_rendering_render_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 	
 	
 	//\____________________ On dessine la ficelle qui les joint.
-	if (myIcons.iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, myIcons.iStringLineWidth, TRUE, FALSE);
+	if (myIconsParam.iStringLineWidth > 0)
+		cairo_dock_draw_string (pCairoContext, pDock, myIconsParam.iStringLineWidth, TRUE, FALSE);
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	cd_rendering_render_icons_caroussel (pCairoContext, pDock);
@@ -284,9 +284,9 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	int iEllipseHeight = pDock->container.iHeight - (myBackground.iDockLineWidth + myBackground.iFrameMargin + pDock->iMaxIconHeight + myIcons.fReflectSize);  // >0 par construction de iMinDockHeight.
-	int iFrameHeight = iEllipseHeight + 2 * myBackground.iFrameMargin + myIcons.fReflectSize;
-	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myBackground.iDockRadius, myBackground.iDockLineWidth);
+	int iEllipseHeight = pDock->container.iHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pDock->iMaxIconHeight + myIconsParam.fReflectSize);  // >0 par construction de iMinDockHeight.
+	int iFrameHeight = iEllipseHeight + 2 * myDocksParam.iFrameMargin + myIconsParam.fReflectSize;
+	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	double fLinearWidth = cairo_dock_get_current_dock_width_linear (pDock);
 	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
 	double fXFirstIcon = (pFirstIcon != NULL ? pFirstIcon->fX : 0);
@@ -317,7 +317,7 @@ void cd_rendering_free_caroussel_data (CairoDock *pDock)
 {
 	if (pDock->pRendererData != NULL)
 	{
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), CAIRO_DOCK_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
+		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
 	}
 }
 

@@ -40,7 +40,7 @@ struct _AppletConfig {
 	gint iNbDays;
 	gchar *cRenderer;
 	gint cDialogDuration;
-	gint iCheckInterval;
+	guint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
 	gboolean bSetName;
@@ -104,6 +104,7 @@ struct _AppletData {
 	GList *pLocationsList;
 	gboolean bSetName;
 	gint iClickedDay;
+	CairoDockTask *pGetLocationTask;
 	} ;
 
 

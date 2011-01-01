@@ -35,7 +35,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	if (myData.iStarTexture == 0)
 		myData.iStarTexture = cd_icon_effect_load_star_texture ();
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbStarParticles, myData.iStarTexture, pIcon->fWidth * pIcon->fScale, pIcon->fHeight * fMaxScale);
 	g_return_val_if_fail (pParticleSystem != NULL, FALSE);
 	pParticleSystem->dt = dt;
@@ -142,7 +142,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, gboolean bRepeat, CDIconE
 		(bRepeat ? _rewind_star_particle : NULL));
 	pData->pStarSystem->fWidth = pIcon->fWidth * pIcon->fScale;
 	
-	double fMaxScale = 1. + g_fAmplitude * pDock->fMagnitudeMax;
+	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	pData->fAreaWidth = pData->pStarSystem->fWidth + myConfig.iStarParticleSize * pDock->container.fRatio;  // demi-largeur des particules a droite et a gauche.
 	pData->fAreaHeight = pIcon->fHeight * fMaxScale + myConfig.iStarParticleSize * pDock->container.fRatio;
 	pData->fBottomGap = myConfig.iStarParticleSize * pDock->container.fRatio / 2;

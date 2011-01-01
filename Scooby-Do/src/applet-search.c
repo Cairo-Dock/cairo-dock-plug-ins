@@ -34,8 +34,8 @@ gboolean cd_do_fill_default_entry (CDEntry *pEntry)
 	if (pEntry->cIconName && pEntry->pIconSurface == NULL)
 	{
 		pEntry->pIconSurface = cairo_dock_create_surface_from_icon (pEntry->cIconName,
-			myDialogs.dialogTextDescription.iSize + 2,
-			myDialogs.dialogTextDescription.iSize + 2);
+			myDialogsParam.dialogTextDescription.iSize + 2,
+			myDialogsParam.dialogTextDescription.iSize + 2);
 		return TRUE;
 	}
 	return FALSE;

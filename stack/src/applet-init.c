@@ -46,7 +46,10 @@ CD_APPLET_INIT_BEGIN
 	if (myDock)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
-	cairo_dock_register_notification (CAIRO_DOCK_CLICK_ICON, (CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -55,7 +58,9 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		NOTIFICATION_CLICK_ICON,
+		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC, myApplet);
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;

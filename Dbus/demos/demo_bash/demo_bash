@@ -1,12 +1,8 @@
 #!/usr/bin/python
 
 # This is a part of the external demo applet for Cairo-Dock
-#
-# Copyright : (C) 2010 by Nochka85
-#                      modified by matttbe for the new API
-#                      (based on the demo.py by Fabounet)
-# E-mail : nochka85@glx-dock.org
-#
+# Copyright : (C) 2010 by Nochka85, Fabounet and Matttbe
+# E-mail : fabounet@glx-dock.org
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,96 +15,17 @@
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
-### We assume the name of this applet is "demo_bash"
-### This Python script (demo_bash) should be placed in a folder alongside with 3 files :
-### demo_bash.conf (the default config file), "icon" (the default icon of the applet) , "preview" (a preview of this applet) and demo_bash.sh (the script in bash, where you will place your code)
+# The name of this applet is "demo_bash"; it is placed in a folder named "demo_bash", with a file named "auto-load.conf" which describes it.
+# Copy this folder into ~/.config/cairo-dock/third-party to let the dock register it automatically.
+# In the folder we have :
+# - "demo_bash"         : this python script, without extension
+# - "demo_bash.sh"      : the script in bash, where you actually place your code
+# - "demo_bash.conf"    : the config file of the applet
+# - "auto-load.conf"    : the file describing the applet
+# - "icon"              : the default icon of the applet (optionnal)
+# - "preview"           : a preview of this applet (optionnal)
 
-### REV : 21/01/2010
+from CDBashApplet import CDBashApplet
 
-### import ###
-import sys
-import gobject
-import glib
-import gtk
-import dbus
-import os.path
-from dbus.mainloop.glib import DBusGMainLoop
-
-# get our applet on the bus
-app_folder = os.path.dirname(sys.argv[0])
-applet_name = os.path.basename(os.path.abspath("."))
-applet_path = "/org/cairodock/CairoDock/"+applet_name
-DBusGMainLoop(set_as_default=True)
-bus = dbus.SessionBus()
-try:
-	applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
-except dbus.DBusException:
-	print ">>> module '"+applet_name+"' can't be found on the bus, exit."
-	sys.exit(2)
-myIcon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet") 
-
-### we'll have a sub-dock, so we also get the sub-icons object ###
-#sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
-#mySubIcons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet") 
-
-### callbacks ###
-def action_on_click(iState):
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_click").read().rstrip()
-	print return_from_bash
-	
-def action_on_middle_click():
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_middle_click").read().rstrip()
-	print return_from_bash
-
-def action_on_scroll_icon(bUpOrDown):
-	if bUpOrDown:
-		return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_scroll_icon 0").read().rstrip()
-		print return_from_bash
-	else:
-		return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_scroll_icon 1").read().rstrip()
-		print return_from_bash
-
-def action_on_drop_data(sDataName):
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_drop_data " + sDataName).read().rstrip()
-	print return_from_bash
-
-def action_on_init():
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_init").read().rstrip()
-	print return_from_bash
-	
-def action_on_stop():
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_stop").read().rstrip()
-	print return_from_bash
-	
-def action_on_reload(bConfigHasChanged):
-	if bConfigHasChanged:
-		return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_reload").read().rstrip()
-		print return_from_bash
-
-def action_on_build_menu():
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_build_menu").read().rstrip()
-	print return_from_bash
-	
-def action_on_menu_select(iNumEntry):
-	return_from_bash = os.popen("cd " + app_folder + " && ./" + applet_name + ".sh " + " action_on_menu_select " + str(iNumEntry)).read().rstrip()
-	print return_from_bash
-
-### init ###
-def init():
-	# register to the notifications on our applet
-	myIcon.connect_to_signal("on_click", action_on_click)
-	myIcon.connect_to_signal("on_middle_click", action_on_middle_click)
-	myIcon.connect_to_signal("on_scroll", action_on_scroll_icon)
-	myIcon.connect_to_signal("on_drop_data", action_on_drop_data)
-	myIcon.connect_to_signal("on_init_module", action_on_init)
-	myIcon.connect_to_signal("on_stop_module", action_on_stop)
-	myIcon.connect_to_signal("on_reload_module", action_on_reload)
-	myIcon.connect_to_signal("on_build_menu", action_on_build_menu)
-	myIcon.connect_to_signal("on_menu_select", action_on_menu_select)
-
-### main ###
 if __name__ == '__main__':
-	init()
-	gtk.main()
-	stop()
-	sys.exit(0)
+	CDBashApplet().run()

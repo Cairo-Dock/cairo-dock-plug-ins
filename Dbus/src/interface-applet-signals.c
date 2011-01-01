@@ -521,7 +521,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 	{
 		Icon *pPrevActiveIcon = cairo_dock_get_icon_with_Xid (myData.xActiveWindow);
 		if (pPrevActiveIcon && pPrevActiveIcon->cParentDockName == NULL)
-			pPrevActiveIcon = cairo_dock_get_inhibator (pPrevActiveIcon, FALSE);
+			pPrevActiveIcon = cairo_dock_get_inhibitor (pPrevActiveIcon, FALSE);
 		if (CAIRO_DOCK_IS_MANUAL_APPLET (pPrevActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pPrevActiveIcon->pModuleInstance);
@@ -536,7 +536,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 	{
 		Icon *pNewActiveIcon = cairo_dock_get_icon_with_Xid (*xNewActiveWindow);
 		if (pNewActiveIcon && pNewActiveIcon->cParentDockName == NULL)
-			pNewActiveIcon = cairo_dock_get_inhibator (pNewActiveIcon, FALSE);
+			pNewActiveIcon = cairo_dock_get_inhibitor (pNewActiveIcon, FALSE);
 		if (CAIRO_DOCK_IS_MANUAL_APPLET (pNewActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance);

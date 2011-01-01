@@ -29,13 +29,9 @@
 #include <gio/gio.h>
 #define G_VFS_DBUS_DAEMON_NAME "org.gtk.vfs.Daemon"
 
-#include <cairo-dock-launcher-manager.h>
-#include <cairo-dock-launcher-factory.h>
-#include <cairo-dock-log.h>
-#include <cairo-dock-desktop-file-factory.h>
-#include <cairo-dock-dbus.h>
+#include <cairo-dock.h>
 
-static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI);
+static void _cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI);
 
 static GHashTable *s_hMonitorHandleTable = NULL;
 
@@ -358,6 +354,10 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+		G_FILE_ATTRIBUTE_PREVIEW_ICON","
+		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
@@ -451,7 +451,19 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	}
 	
 	*cIconName = NULL;
-	if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
+	*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
+	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+	if (*cIconName == NULL)
+	{
+		GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
+		if (pPreviewIcon != NULL)
+		{
+			*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
+			g_print ("got preview icon '%s'\n", *cIconName);
+		}
+	}
+	#endif
+	if (*cIconName == NULL && cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 	{
 		gchar *cHostname = NULL;
 		GError *erreur = NULL;
@@ -626,7 +638,7 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	return pIconsList;
 }
 
-static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsType, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
+static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -656,6 +668,10 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+		G_FILE_ATTRIBUTE_PREVIEW_ICON","
+		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
@@ -705,7 +721,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-			icon->iType = iNewIconsType;
+			icon->iGroup = iNewIconsGroup;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
 			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
 			
@@ -782,6 +798,18 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				icon->cCommand = g_strdup (icon->cBaseURI);
 			icon->cName = cName;
 			icon->cFileName = NULL;
+			icon->cFileName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
+			#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+			if (icon->cFileName == NULL)
+			{
+				GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
+				if (pPreviewIcon != NULL)
+				{
+					icon->cFileName = _cd_get_icon_path (pPreviewIcon, NULL);
+					g_print ("got preview icon '%s'\n", icon->cFileName);
+				}
+			}
+			#endif
 			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 			{
 				gchar *cHostname = NULL;
@@ -847,7 +875,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			NULL,
 			iOrder++);
 		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-		icon->iType = iNewIconsType;
+		icon->iGroup = iNewIconsGroup;
 		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
 		icon->iVolumeID = 0;
 		
@@ -1305,7 +1333,7 @@ static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI, gboolean bNoT
 		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 		if (iFileType == G_FILE_TYPE_DIRECTORY)
 		{
-			cairo_dock_gio_vfs_empty_dir (cURI);
+			_cairo_dock_gio_vfs_empty_dir (cURI);
 		}
 		
 		bSuccess = g_file_delete (pFile, NULL, &erreur);
@@ -1471,7 +1499,7 @@ static gchar *cairo_dock_gio_vfs_get_desktop_path (void)
 	return cPath;
 }
 
-static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
+static void _cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 {
 	if (cBaseURI == NULL)
 		return ;
@@ -1515,7 +1543,7 @@ static void cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 		g_string_printf (sFileUri, "%s/%s", cBaseURI, cFileName);
 		if (iFileType == G_FILE_TYPE_DIRECTORY)
 		{
-			cairo_dock_gio_vfs_empty_dir (sFileUri->str);
+			_cairo_dock_gio_vfs_empty_dir (sFileUri->str);
 		}
 		
 		file = (*cBaseURI == '/' ? g_file_new_for_path (sFileUri->str) : g_file_new_for_uri (sFileUri->str));
@@ -1550,7 +1578,8 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 	GFile *pFile = g_file_new_for_uri ("trash://");
 	GError *erreur = NULL;
 	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
-		G_FILE_ATTRIBUTE_STANDARD_NAME;
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_TYPE;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -1581,17 +1610,22 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			break ;
 		
 		const gchar *cFileName = g_file_info_get_name (pFileInfo);
-		g_print (" - %s\n", cFileName);
+		//g_print (" - %s\n", cFileName);
 		
 		// il y'a 2 cas : un fichier dans la poubelle du home, et un fichier dans une poubelle d'un autre volume.
 		if (cFileName && *cFileName == '\\')  // nom de la forme "\media\Fabounet2\.Trash-1000\files\t%C3%A8st%201" et URI "trash:///%5Cmedia%5CFabounet2%5C.Trash-1000%5Cfiles%5Ct%25C3%25A8st%25201", mais cette URI ne marche pas des qu'il y'a des caracteres non ASCII-7 dans le nom (bug dans gio/gvfs ?). Donc on feinte, en construisant le chemin du fichier (et de son double dans 'info').
 		{
 			g_string_printf (sFileUri, "file://%s", cFileName);
 			g_strdelimit (sFileUri->str, "\\", '/');
-			g_print ("   - %s\n", sFileUri->str);
+			//g_print ("   - %s\n", sFileUri->str);
 			
 			GFile *file = g_file_new_for_uri (sFileUri->str);
 			g_file_delete (file, NULL, &erreur);
+			GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+			if (iFileType == G_FILE_TYPE_DIRECTORY)  // can't delete a non-empty folder located on a different volume than home.
+			{
+				_cairo_dock_gio_vfs_empty_dir (sFileUri->str);
+			}
 			g_object_unref (file);
 			
 			gchar *str = g_strrstr (sFileUri->str, "/files/");
@@ -1599,10 +1633,10 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			{
 				*str = '\0';
 				gchar *cInfo = g_strdup_printf ("%s/info/%s.trashinfo", sFileUri->str, str+7);
-				g_print ("   - %s\n", cInfo);
+				//g_print ("   - %s\n", cInfo);
 				file = g_file_new_for_uri (cInfo);
 				g_free (cInfo);
-				g_file_delete (file, NULL, &erreur);
+				g_file_delete (file, NULL, NULL);
 				g_object_unref (file);
 			}
 		}
@@ -1611,7 +1645,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			g_string_printf (sFileUri, "trash:///%s", cFileName);
 			GFile *file = g_file_new_for_uri (sFileUri->str);
 			/*gchar *cValidURI = g_file_get_uri (file);
-			g_print ("   - %s\n", cValidURI);
+			//g_print ("   - %s\n", cValidURI);
 			g_object_unref (file);
 			
 			file = g_file_new_for_uri (cValidURI);
