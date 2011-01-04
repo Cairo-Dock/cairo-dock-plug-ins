@@ -7,9 +7,9 @@ if ("${VALA_FOUND}" STREQUAL "TRUE")
 	execute_process(COMMAND
 		${VALA_EXECUTABLE} -q -C --disable-warnings --disable-dbus-transformation
 		--pkg gio-2.0
-		--vapi=CDApplet.vapi
-		--header=CDApplet.h
-		-o CDApplet.c
+		--vapi=${CMAKE_CURRENT_BINARY_DIR}/CDApplet.vapi
+		--header=${CMAKE_CURRENT_BINARY_DIR}/CDApplet.h
+		-o ${CMAKE_CURRENT_BINARY_DIR}/CDApplet.c
 		${CMAKE_CURRENT_BINARY_DIR}/CDApplet.vala)
 	
 	# valac is a bad boy, it messes up the signal names.
