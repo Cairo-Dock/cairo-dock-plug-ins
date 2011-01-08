@@ -27,12 +27,13 @@
 
 
 CD_APPLET_DEFINE_BEGIN ("Dbus",
-	2, 0, 9,
+	2, 2, 1,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This plug-in lets extern applications interact on the dock.\n"
 	"The communication between both sides is based on Dbus"),
 	"Necropotame & Fabounet")
-	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.
+	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;  /// inutile je pense...
 	CD_APPLET_REDEFINE_TITLE ("DBus");
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 CD_APPLET_DEFINE_END
@@ -45,23 +46,5 @@ CD_APPLET_INIT_BEGIN
 		NOTIFICATION_DROP_DATA,
 		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
 		CAIRO_DOCK_RUN_FIRST,
-		NULL);  // on enregistre cette notification ici car elle gere le drop d'applets.
+		NULL);  // to register new applets by dropping a package on the dock.
 CD_APPLET_INIT_END
-
-
-//\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
-CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
-		NOTIFICATION_DROP_DATA,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
-		NULL);
-	if (myData.iSidRemoveAppletFromConf != 0)
-		g_source_remove (myData.iSidRemoveAppletFromConf);
-	cd_dbus_stop_service ();
-CD_APPLET_STOP_END
-
-
-//\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
-CD_APPLET_RELOAD_BEGIN
-	
-CD_APPLET_RELOAD_END

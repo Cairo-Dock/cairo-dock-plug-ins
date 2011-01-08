@@ -17,18 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_DBUS__
-#define  __APPLET_DBUS__
+#ifndef __APPLET_MARSHALLERS__
+#define  __APPLET_MARSHALLERS__
 
 #include <cairo-dock.h>
-#include "applet-struct.h"
-
-
-void cd_dbus_launch_service (void);
-
-
-gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *cThirdPartyPath);
-
 
 void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
 	GValue *return_value,

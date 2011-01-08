@@ -59,6 +59,7 @@ class CDApplet:
 		self.icon = None
 		self.sub_icons = None
 		self.config = {}
+		self.loop = None
 		if applet_name is None:
 			self.applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
 		else:

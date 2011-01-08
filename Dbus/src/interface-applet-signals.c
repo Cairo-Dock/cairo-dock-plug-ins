@@ -278,7 +278,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 	}
 }
 
-#define CAIRO_DOCK_IS_MANUAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
+#define CAIRO_DOCK_IS_EXTERNAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
 
 static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContainer *pContainer)
 {
@@ -306,7 +306,7 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 	if (pClickedIcon == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
+	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
@@ -331,7 +331,7 @@ gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClicked
 	if (pClickedIcon == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
+	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	//g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
@@ -350,7 +350,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 	if (pClickedIcon == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
+	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iDirection);
@@ -374,7 +374,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	if (pClickedIcon == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
+	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	myData.pModuleMainMenu = pAppletMenu;
@@ -463,27 +463,26 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 			}
 			
 			//\________________ On l'enregistre et on la (re)lance.
-			cd_dbus_add_applet_to_startup (cAppletName);
 			cd_dbus_register_module_in_dir (cAppletName, cExtractTo);
 			
 			//\________________ On balance un petit message a l'utilisateur.
 			pModule = cairo_dock_find_module_from_name (cAppletName);
 			if (!pModule)
 			{
-				cairo_dock_show_general_message (_("Sorry, this module couldn't be added."), 10000);
+				cairo_dock_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
 			}
 			else if (!pModule->pInstancesList)
 			{
-				cairo_dock_show_general_message (_("The module has been added, but couldn't be launched."), 10000);
+				cairo_dock_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
 			}
 			else
 			{
 				CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
 				if (!pInstance->pIcon || !pInstance->pContainer)
-					cairo_dock_show_general_message (_("The module has been added, but couldn't be launched."), 10000);
+					cairo_dock_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
 				else
 				{
-					cairo_dock_show_temporary_dialog_with_icon_printf (bUpdate ? _("The applet '%s' has been succefully updated and automatically reloaded") : _("The applet '%s' has been succefully installed and automatically launched"),
+					cairo_dock_show_temporary_dialog_with_icon_printf (bUpdate ? D_("The applet '%s' has been succefully updated and automatically reloaded") : D_("The applet '%s' has been succefully installed and automatically launched"),
 						pInstance->pIcon,
 						pInstance->pContainer,
 						10000,
@@ -499,7 +498,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 	
 	//\________________ Sinon on notifie l'applet du drop.
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
-	if (! CAIRO_DOCK_IS_MANUAL_APPLET (pAppletIcon))
+	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	cd_message (" %s --> sur le bus !", cReceivedData);
@@ -522,7 +521,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 		Icon *pPrevActiveIcon = cairo_dock_get_icon_with_Xid (myData.xActiveWindow);
 		if (pPrevActiveIcon && pPrevActiveIcon->cParentDockName == NULL)
 			pPrevActiveIcon = cairo_dock_get_inhibitor (pPrevActiveIcon, FALSE);
-		if (CAIRO_DOCK_IS_MANUAL_APPLET (pPrevActiveIcon))
+		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pPrevActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pPrevActiveIcon->pModuleInstance);
 			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
@@ -537,7 +536,7 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 		Icon *pNewActiveIcon = cairo_dock_get_icon_with_Xid (*xNewActiveWindow);
 		if (pNewActiveIcon && pNewActiveIcon->cParentDockName == NULL)
 			pNewActiveIcon = cairo_dock_get_inhibitor (pNewActiveIcon, FALSE);
-		if (CAIRO_DOCK_IS_MANUAL_APPLET (pNewActiveIcon))
+		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pNewActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance);
 			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
@@ -757,18 +756,9 @@ void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 	}
 }
 
-static gboolean _update_active_applets_in_conf (gpointer data)
-{
-	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-		G_TYPE_STRING, "Configuration", "modules", myData.cActiveModules,
-		G_TYPE_INVALID);
-	myData.iSidRemoveAppletFromConf = 0;
-	return FALSE;
-}
-
 void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {
-	//g_print ("%s (%s, %d)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName, myData.bServiceIsStopping);
+	//g_print ("%s (%s, %d)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName, myData.bKeepObjectAlive);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
 	if (pDbusApplet != NULL)
 		g_signal_emit (pDbusApplet,
@@ -778,23 +768,14 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 		
 	cd_dbus_action_on_stop_module (pModuleInstance);
 	
-	// on enleve le nom de myData.cActiveModules si c'est une desactivation par l'utilisateur (plutot que le plug-in DBus qui s'arrete).
-	if (myData.cActiveModules != NULL && ! myData.bServiceIsStopping)
+	if (! myData.bKeepObjectAlive)  // on detruit l'objet a la fin.
 	{
-		gchar *str = g_strstr_len (myData.cActiveModules, -1, pModuleInstance->pModule->pVisitCard->cModuleName);
-		if (str)
-		{
-			*str = '\0';
-			gchar *ptr = myData.cActiveModules;
-			myData.cActiveModules = g_strdup_printf ("%s%s", myData.cActiveModules, str + strlen (pModuleInstance->pModule->pVisitCard->cModuleName));
-			g_free (ptr);
-			if (myData.iSidRemoveAppletFromConf == 0)
-				myData.iSidRemoveAppletFromConf = g_idle_add ((GSourceFunc) _update_active_applets_in_conf, NULL);  // on differe la mise a jour du fichier de conf, pour le cas ou l'applet serait desactivee par le dock a la fermeture, avant la desactivation de Dbus.
-		}
+		cd_dbus_delete_remote_applet_object (pDbusApplet);
 	}
-	
-	if (! myData.bServiceIsStopping)  // on detruit l'objet a la fin.
-		cd_dbus_delete_remote_applet_object (pModuleInstance);
+	else
+	{
+		pDbusApplet->pModuleInstance = NULL;
+	}
 }
 
 gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)

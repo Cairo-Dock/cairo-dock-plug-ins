@@ -52,7 +52,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSpaceBetweenLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines");
 		
 	myConfig.iCheckInterval = 1; // Delay en en seconde
-	myData.iMaxGraphHistory = 300; // -> 5 minutes de graph
 	
 	
 	// REPRIS DE SYSTEM-MONITOR: (on impose les valeurs)	

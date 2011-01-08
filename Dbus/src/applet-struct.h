@@ -106,12 +106,9 @@ struct _AppletData {
 	GtkWidget *pModuleMainMenu;
 	Icon *pCurrentMenuIcon;
 	dbusApplet *pCurrentMenuDbusApplet;
-	gchar *cActiveModules;
-	gboolean bServiceIsStopping;
-	guint iSidRemoveAppletFromConf;
+	gboolean bKeepObjectAlive;
 	Window xActiveWindow;
 	CairoDockTask *pGetListTask;
-	GHashTable *pThemesTable;
 	GList *pUpdateTasksList;
 	} ;
 

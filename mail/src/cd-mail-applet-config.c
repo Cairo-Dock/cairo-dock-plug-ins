@@ -86,7 +86,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	guint j;
 	gsize i, length = 0;
 	gboolean bFlushConfFileNeeded = FALSE;
-		gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
 	myData.pMailAccounts = g_ptr_array_sized_new (length - 3);
 	
 	cd_debug ("recuperons les comptes ...\n");

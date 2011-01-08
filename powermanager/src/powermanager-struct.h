@@ -107,8 +107,6 @@ struct _AppletData {
 	gint iNbChargeMeasures;
 	gdouble fDischargeMeanRate;
 	gint iNbDischargeMeasures;
-	gdouble fLastDischargeMeanRate;
-	gdouble fLastChargeMeanRate;
 	
 	CairoEmblem *pEmblem;
 	} ;

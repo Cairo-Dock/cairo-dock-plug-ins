@@ -29,12 +29,10 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 
 dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
 
-void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
+void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet);
 
 void cd_dbus_unregister_notifications (void);
 
-
-gboolean cd_dbus_applet_is_used (const gchar *cModuleName);
 
 int cd_dbus_applet_is_running (const gchar *cModuleName);
 
