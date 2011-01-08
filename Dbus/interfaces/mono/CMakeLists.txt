@@ -6,7 +6,7 @@ if ("${MONO_FOUND}" STREQUAL "TRUE")
 		-target:library
 		-pkg:glib-sharp-2.0 -pkg:ndesk-dbus-1.0 -pkg:ndesk-dbus-glib-1.0
 		-out:${CMAKE_CURRENT_BINARY_DIR}/CDApplet.dll
-		${CMAKE_CURRENT_BINARY_DIR}/CDApplet.cs ${CMAKE_CURRENT_BINARY_DIR}/ISubApplet.cs ${CMAKE_CURRENT_BINARY_DIR}/IApplet.cs)
+		${CMAKE_CURRENT_SOURCE_DIR}/CDApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/ISubApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/IApplet.cs)
 	### find mono libs ...
 	set (MONO_LIB_DIR "/usr/lib/cli")
 	install (FILES ${CMAKE_CURRENT_BINARY_DIR}/CDApplet.dll
