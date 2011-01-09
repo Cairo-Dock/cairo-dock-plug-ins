@@ -163,11 +163,13 @@ add_subdirectory (compiz-icon)
 
 ############# DBUS #################
 find_package (PythonLibs)
-message (STATUS "PYTHON_LIBRARY: ${PYTHON_LIBRARY}")
-if (NOT "${PYTHONLIBS_FOUND}" STREQUAL "TRUE")
+## strange... ${PYTHONLIBS_FOUND} can be empty (!= TRUE) but ${PYTHON_LIBRARY} is not empty
+#if (NOT "${PYTHONLIBS_FOUND}" STREQUAL "TRUE")
+if ("${PYTHON_LIBRARY}" STREQUAL "")
 	message (STATUS "Could not find python libs, won't install Python interface.")
 	set (with_python "no")
 else()
+	message (STATUS "PYTHON_LIBRARY: ${PYTHON_LIBRARY}")
 	GET_FILENAME_COMPONENT(PYTHON_LIB_INSTALL ${PYTHON_LIBRARY} PATH)
 	GET_FILENAME_COMPONENT(PYTHON_DIR ${PYTHON_LIBRARY} NAME)  # NAME_WE is buggy, it removes the ".6"
 	STRING (REGEX REPLACE "lib" "" PYTHON_DIR "${PYTHON_DIR}")
