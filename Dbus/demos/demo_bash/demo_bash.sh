@@ -2,7 +2,7 @@
 
 # This is a part of the external demo applet for Cairo-Dock
 #
-# Copyright : (C) 2010 by Nochka85
+# Copyright : (C) 2010-2011 by Nochka85
 #                      modified by matttbe for the new API
 #                      (based on the demo.py by Fabounet)
 # E-mail : nochka85@glx-dock.org

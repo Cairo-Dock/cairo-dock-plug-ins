@@ -1,7 +1,7 @@
 
 ########### install files ###############
 
-if ("${PYTHONLIBS_FOUND}" STREQUAL "TRUE")
+if ("${PYTHON_FOUND}" STREQUAL "TRUE")
 	# the python script goes with other python scripts.
 	install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/CDBashApplet.py
 		DESTINATION ${PYTHON_SITE_PACKAGE})

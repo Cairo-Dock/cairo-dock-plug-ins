@@ -154,7 +154,7 @@ Files: 	alsaMixer/*
 	Status-Notifier/*
 	gvfs-integration/*
 	*/*
-Copyright: Fabrice Rey <fabounet@glx-dock.org>
+Copyright: 2007-2011 Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Icons inspired of the Humanity Icons theme and recolorized by Matthieu Baerts

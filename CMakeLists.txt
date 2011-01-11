@@ -163,7 +163,7 @@ add_subdirectory (compiz-icon)
 
 ############# DBUS #################
 find_package (PythonLibs)
-## strange... ${PYTHONLIBS_FOUND} can be empty (!= TRUE) but ${PYTHON_LIBRARY} is not empty
+## strange... ${PYTHONLIBS_FOUND} can be empty (!= TRUE ; if python-dev is not installed) but ${PYTHON_LIBRARY} is not empty
 #if (NOT "${PYTHONLIBS_FOUND}" STREQUAL "TRUE")
 if ("${PYTHON_LIBRARY}" STREQUAL "")
 	message (STATUS "Could not find python libs, won't install Python interface.")
@@ -180,6 +180,7 @@ else()
 		GET_FILENAME_COMPONENT(PYTHON_SITE_PACKAGE ${PYTHON_LIB_INSTALL}/${PYTHON_DIR}/site-packages ABSOLUTE)
 	endif()
 	message (STATUS "PYTHON_SITE_PACKAGE: ${PYTHON_SITE_PACKAGE}")
+	set (PYTHON_FOUND "TRUE")
 	set (with_python "yes")
 endif()
 

@@ -1,5 +1,5 @@
 # This is a part of the external demo applet for Cairo-Dock
-# Copyright : (C) 2010 by Fabounet
+# Copyright : (C) 2010-2011 by Fabounet
 # E-mail : fabounet@glx-dock.org
 #
 # This program is free software; you can redistribute it and/or
