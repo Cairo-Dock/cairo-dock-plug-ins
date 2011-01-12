@@ -162,26 +162,23 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/compiz-icon/data/compiz-icon.conf.in
 add_subdirectory (compiz-icon)
 
 ############# DBUS #################
-find_package (PythonLibs)
-## strange... ${PYTHONLIBS_FOUND} can be empty (!= TRUE ; if python-dev is not installed) but ${PYTHON_LIBRARY} is not empty
-#if (NOT "${PYTHONLIBS_FOUND}" STREQUAL "TRUE")
-if ("${PYTHON_LIBRARY}" STREQUAL "")
-	message (STATUS "Could not find python libs, won't install Python interface.")
-	set (with_python "no")
-else()
-	message (STATUS "PYTHON_LIBRARY: ${PYTHON_LIBRARY}")
-	GET_FILENAME_COMPONENT(PYTHON_LIB_INSTALL ${PYTHON_LIBRARY} PATH)
-	GET_FILENAME_COMPONENT(PYTHON_DIR ${PYTHON_LIBRARY} NAME)  # NAME_WE is buggy, it removes the ".6"
-	STRING (REGEX REPLACE "lib" "" PYTHON_DIR "${PYTHON_DIR}")
-	STRING (REGEX REPLACE ".so" "" PYTHON_DIR "${PYTHON_DIR}")
-	GET_FILENAME_COMPONENT(PYTHON_SITE_PACKAGE ${PYTHON_LIB_INSTALL}/${PYTHON_DIR}/dist-packages ABSOLUTE)
-	if (NOT EXISTS ${PYTHON_SITE_PACKAGE})
-		message (STATUS "use site-packages")
-		GET_FILENAME_COMPONENT(PYTHON_SITE_PACKAGE ${PYTHON_LIB_INSTALL}/${PYTHON_DIR}/site-packages ABSOLUTE)
-	endif()
-	message (STATUS "PYTHON_SITE_PACKAGE: ${PYTHON_SITE_PACKAGE}")
+# find_package (PythonLibs)
+EXECUTE_PROCESS(COMMAND python -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('LIBDEST'))" 
+				OUTPUT_VARIABLE PYTHON_LIBDIR)  # LIBDEST=$(prefix)/lib/python$(VERSION) 
+STRING (REGEX REPLACE "\n" "" PYTHON_LIBDIR ${PYTHON_LIBDIR})  # la commande rajoute un retour chariot ... 
+message (STATUS "PYTHON_LIBDIR: ${PYTHON_LIBDIR}") 
+if ("${PYTHON_LIBDIR}" STREQUAL "") 
+	message (STATUS "Could not find python libs, won't install Python interface.") 
+	set (with_python "no") 
+else() 
+	GET_FILENAME_COMPONENT(PYTHON_SITE_PACKAGE ${PYTHON_LIBDIR}/dist-packages ABSOLUTE) 
+	if (NOT EXISTS ${PYTHON_SITE_PACKAGE}) 
+		message (STATUS "use site-packages") 
+		GET_FILENAME_COMPONENT(PYTHON_SITE_PACKAGE ${PYTHON_LIBDIR}/site-packages ABSOLUTE) 
+	endif() 
+	message (STATUS "PYTHON_SITE_PACKAGE: ${PYTHON_SITE_PACKAGE}") 
 	set (PYTHON_FOUND "TRUE")
-	set (with_python "yes")
+	set (with_python "yes") 
 endif()
 
 # find_package(Ruby) nous cherche les libs de dev de Ruby, or on a seulement besoin de l'executable.
@@ -189,7 +186,7 @@ EXECUTE_PROCESS(COMMAND ruby -r rbconfig -e "print Config::CONFIG['rubylibdir']"
 	OUTPUT_VARIABLE RUBY_LIB_DIR)
 message (STATUS "RUBY_LIBRARY: ${RUBY_LIB_DIR}")
 if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
-	message (STATUS "Could not find ruby libs, won't install Ruby interface.")
+	message (STATUS "Could not findla commande rajoute un retour chariot ruby libs, won't install Ruby interface.")
 	set (with_ruby "no")
 else()
 	set (RUBY_FOUND "TRUE")
