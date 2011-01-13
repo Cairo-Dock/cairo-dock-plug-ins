@@ -1,0 +1,2 @@
+EXEC_PROGRAM("python" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
+				"setup.py" "install" "@DEBIAN_INSTALL_LAYOUT@")
